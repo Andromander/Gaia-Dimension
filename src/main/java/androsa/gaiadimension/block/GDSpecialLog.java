@@ -107,6 +107,11 @@ public class GDSpecialLog extends BlockLog implements ModelRegisterCallback {
         }
     }
 
+    @Override
+    public int damageDropped(IBlockState state) {
+        return getMetaFromState(state) & 3;
+    }
+
     @SideOnly(Side.CLIENT)
     @Override
     public void registerModel() {

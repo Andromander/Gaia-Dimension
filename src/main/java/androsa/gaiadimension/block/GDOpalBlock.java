@@ -61,6 +61,11 @@ public class GDOpalBlock extends Block implements ModelRegisterCallback {
         return new ItemStack(this, 1, world.getBlockState(pos).getValue(VARIANT).ordinal());
     }
 
+    @Override
+    public int damageDropped(IBlockState state) {
+        return getMetaFromState(state);
+    }
+
     @SideOnly(Side.CLIENT)
     @Override
     public void registerModel() {

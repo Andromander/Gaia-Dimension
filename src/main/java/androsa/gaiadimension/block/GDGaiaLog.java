@@ -85,6 +85,11 @@ public class GDGaiaLog extends BlockLog implements ModelRegisterCallback {
     }
 
     @Override
+    public int damageDropped(IBlockState state) {
+        return getMetaFromState(state) & 3;
+    }
+
+    @Override
     public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player) {
         return new ItemStack(state.getBlock(), 1, state.getValue(VARIANT).ordinal());
     }
