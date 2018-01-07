@@ -1,0 +1,20 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "cube_column"
+  },
+  "variants": {
+    "axis": {
+      "y": {},
+      "z": { "x": 90 },
+      "x": { "x": 90, "y": 90 },
+      "none": { "model": "cube_all", "textures": { "all": "#side" } }
+    },
+    "variant": {
+      "pink_agate": { "textures": { "end":"gaiadimension:blocks/pink_agate_log_top", "side":"gaiadimension:blocks/pink_agate_log_side" } },
+      "blue_agate": { "textures": { "end":"gaiadimension:blocks/blue_agate_log_top", "side":"gaiadimension:blocks/blue_agate_log_side" } },
+      "green_agate": { "textures": { "end":"gaiadimension:blocks/green_agate_log_top", "side":"gaiadimension:blocks/green_agate_log_side" } },
+      "purple_agate": { "textures": { "end":"gaiadimension:blocks/purple_agate_log_top", "side":"gaiadimension:blocks/purple_agate_log_side" } }
+    }
+  }
+}

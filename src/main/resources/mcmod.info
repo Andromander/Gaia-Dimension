@@ -1,0 +1,16 @@
+[
+{
+  "modid": "gaiadimension",
+  "name": "The Gaia Dimension",
+  "description": "Explore the fantastical land of Gaia and uncover the secrets within.",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["ExampleDude"],
+  "credits": "The Forge and FML guys, for making this example",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]

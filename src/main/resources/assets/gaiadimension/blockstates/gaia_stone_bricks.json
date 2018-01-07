@@ -1,0 +1,13 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "cube_all"
+  },
+  "variants": {
+    "variant": {
+      "normal": { "textures": { "all": "gaiadimension:blocks/gaia_bricks"}},
+      "cracked": { "textures": { "all": "gaiadimension:blocks/gaia_cracked_bricks"}},
+      "mossy": { "textures": { "all": "gaiadimension:blocks/gaia_mossy_bricks"}}
+    }
+  }
+}
