@@ -4,6 +4,7 @@ import androsa.gaiadimension.proxy.CommonProxy;
 import androsa.gaiadimension.registry.GDBlocks;
 import androsa.gaiadimension.registry.GDItems;
 import net.minecraft.init.Blocks;
+import net.minecraft.world.DimensionType;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.SidedProxy;
@@ -26,6 +27,9 @@ public class GaiaDimension
 
     @SidedProxy(clientSide = "androsa.gaiadimension.proxy.ClientProxy", serverSide = "androsa.gaiadimension.proxy.ServerProxy")
     public static CommonProxy proxy;
+
+    public static DimensionType dimType;
+    public static int backupdimensionID = -258;
 
     @EventHandler
     public void preInit(FMLPreInitializationEvent event) {
