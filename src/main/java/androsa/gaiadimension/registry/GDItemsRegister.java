@@ -1,10 +1,7 @@
 package androsa.gaiadimension.registry;
 
 import androsa.gaiadimension.GaiaDimension;
-import androsa.gaiadimension.item.GDGaiaChampArmor;
-import androsa.gaiadimension.item.GDGaiaChampSword;
-import androsa.gaiadimension.item.GDItem;
-import androsa.gaiadimension.item.GDMalachiteGuardArmor;
+import androsa.gaiadimension.item.*;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
@@ -13,9 +10,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.registries.IForgeRegistry;
 
-import static androsa.gaiadimension.registry.GDItems.ARMOR_GAIA_CHAMP;
-import static androsa.gaiadimension.registry.GDItems.ARMOR_MALACHITE;
-import static androsa.gaiadimension.registry.GDItems.TOOL_GAIA_CHAMP;
+import static androsa.gaiadimension.registry.GDItems.*;
 import static net.minecraft.inventory.EntityEquipmentSlot.*;
 
 @Mod.EventBusSubscriber()
@@ -38,6 +33,10 @@ public class GDItemsRegister {
         items.register("malachite_guard_brace", new GDMalachiteGuardArmor(ARMOR_MALACHITE, CHEST).setUnlocalizedName("malachite_guard_brace").setMaxStackSize(1));
         items.register("malachite_guard_gear", new GDMalachiteGuardArmor(ARMOR_MALACHITE, LEGS).setUnlocalizedName("malachite_guard_gear").setMaxStackSize(1));
         items.register("malachite_guard_boots", new GDMalachiteGuardArmor(ARMOR_MALACHITE, FEET).setUnlocalizedName("malachite_guard_boots").setMaxStackSize(1));
+        items.register("apex_predator_hood", new GDApexPredatorArmor(ARMOR_TIGER_EYE, HEAD).setUnlocalizedName("apex_predator_hood").setMaxStackSize(1));
+        items.register("apex_predator_jacket", new GDApexPredatorArmor(ARMOR_TIGER_EYE, CHEST).setUnlocalizedName("apex_predator_jacket").setMaxStackSize(1));
+        items.register("apex_predator_trousers", new GDApexPredatorArmor(ARMOR_TIGER_EYE, LEGS).setUnlocalizedName("apex_predator_trousers").setMaxStackSize(1));
+        items.register("apex_predator_boots", new GDApexPredatorArmor(ARMOR_TIGER_EYE, FEET).setUnlocalizedName("apex_predator_boots").setMaxStackSize(1));
         items.register("gaia_champion_helm", new GDGaiaChampArmor(ARMOR_GAIA_CHAMP, HEAD).setUnlocalizedName("gaia_champion_helm").setMaxStackSize(1));
         items.register("gaia_champion_guard", new GDGaiaChampArmor(ARMOR_GAIA_CHAMP, CHEST).setUnlocalizedName("gaia_champion_guard").setMaxStackSize(1));
         items.register("gaia_champion_greaves", new GDGaiaChampArmor(ARMOR_GAIA_CHAMP, LEGS).setUnlocalizedName("gaia_champion_greaves").setMaxStackSize(1));

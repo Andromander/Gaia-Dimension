@@ -10,7 +10,8 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 @GameRegistry.ObjectHolder(GaiaDimension.MODID)
 public class GDItems {
 
-    public static ItemArmor.ArmorMaterial ARMOR_MALACHITE = EnumHelper.addArmorMaterial("MALACHITE", "malachite_guard", 5120, new int[]{2, 5, 7, 2}, 10, SoundEvents.ITEM_ARMOR_EQUIP_GOLD, 3.0F);
+    public static ItemArmor.ArmorMaterial ARMOR_MALACHITE = EnumHelper.addArmorMaterial("MALACHITE", "malachite_guard", 5120, new int[]{2, 5, 7, 2}, 10, SoundEvents.ITEM_ARMOR_EQUIP_GOLD, 2.0F);
+    public static ItemArmor.ArmorMaterial ARMOR_TIGER_EYE = EnumHelper.addArmorMaterial("ARMOR_TIGER_EYE", "apex_predator", 4096, new int[]{2, 5, 7, 2}, 10, SoundEvents.ITEM_ARMOR_EQUIP_GOLD, 1.5F);
     public static ItemArmor.ArmorMaterial ARMOR_GAIA_CHAMP = EnumHelper.addArmorMaterial("GAIA_CHAMP", "gaia_champion", -1, new int[]{4, 7, 9, 4}, 20, SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, 4.0F);
 
     public static Item.ToolMaterial TOOL_GAIA_CHAMP = EnumHelper.addToolMaterial("GAIA_CHAMP", 4, -1, 8.0F, 16.0F, 25);
@@ -40,6 +41,14 @@ public class GDItems {
     public static final Item malachiteGuardGear;
     @GameRegistry.ObjectHolder("malachite_guard_boots")
     public static final Item malachiteGuardBoots;
+    @GameRegistry.ObjectHolder("apex_predator_hood")
+    public static final Item apexPredatorHood;
+    @GameRegistry.ObjectHolder("apex_predator_jacket")
+    public static final Item apexPredatorJacket;
+    @GameRegistry.ObjectHolder("apex_predator_trousers")
+    public static final Item apexPredatorTrousers;
+    @GameRegistry.ObjectHolder("apex_predator_boots")
+    public static final Item apexPredatorBoots;
     @GameRegistry.ObjectHolder("gaia_champion_helm")
     public static final Item gaiaChampionHelm;
     @GameRegistry.ObjectHolder("gaia_champion_guard")
@@ -66,6 +75,10 @@ public class GDItems {
         malachiteGuardBrace = null;
         malachiteGuardGear = null;
         malachiteGuardBoots = null;
+        apexPredatorHood = null;
+        apexPredatorJacket = null;
+        apexPredatorTrousers = null;
+        apexPredatorBoots = null;
         gaiaChampionHelm = null;
         gaiaChampionGuard = null;
         gaiaChampionGreaves = null;
