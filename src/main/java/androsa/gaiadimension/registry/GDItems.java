@@ -10,6 +10,7 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 @GameRegistry.ObjectHolder(GaiaDimension.MODID)
 public class GDItems {
 
+    public static ItemArmor.ArmorMaterial ARMOR_MALACHITE = EnumHelper.addArmorMaterial("MALACHITE", "malachite_guard", 5120, new int[]{2, 5, 7, 2}, 10, SoundEvents.ITEM_ARMOR_EQUIP_GOLD, 3.0F);
     public static ItemArmor.ArmorMaterial ARMOR_GAIA_CHAMP = EnumHelper.addArmorMaterial("GAIA_CHAMP", "gaia_champion", -1, new int[]{4, 7, 9, 4}, 20, SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, 4.0F);
 
     public static Item.ToolMaterial TOOL_GAIA_CHAMP = EnumHelper.addToolMaterial("GAIA_CHAMP", 4, -1, 8.0F, 16.0F, 25);
@@ -31,6 +32,14 @@ public class GDItems {
     @GameRegistry.ObjectHolder("white_opal")
     public static final Item opalWhite;
 
+    @GameRegistry.ObjectHolder("malachite_guard_headgear")
+    public static final Item malachiteGuardHeadgear;
+    @GameRegistry.ObjectHolder("malachite_guard_brace")
+    public static final Item malachiteGuardBrace;
+    @GameRegistry.ObjectHolder("malachite_guard_gear")
+    public static final Item malachiteGuardGear;
+    @GameRegistry.ObjectHolder("malachite_guard_boots")
+    public static final Item malachiteGuardBoots;
     @GameRegistry.ObjectHolder("gaia_champion_helm")
     public static final Item gaiaChampionHelm;
     @GameRegistry.ObjectHolder("gaia_champion_guard")
@@ -53,6 +62,10 @@ public class GDItems {
         opalGreen = null;
         opalWhite = null;
 
+        malachiteGuardHeadgear = null;
+        malachiteGuardBrace = null;
+        malachiteGuardGear = null;
+        malachiteGuardBoots = null;
         gaiaChampionHelm = null;
         gaiaChampionGuard = null;
         gaiaChampionGreaves = null;
