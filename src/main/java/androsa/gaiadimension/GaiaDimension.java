@@ -3,6 +3,7 @@ package androsa.gaiadimension;
 import androsa.gaiadimension.proxy.CommonProxy;
 import androsa.gaiadimension.registry.GDBlocks;
 import androsa.gaiadimension.registry.GDItems;
+import androsa.gaiadimension.world.GaiaWorld;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.DimensionType;
 import net.minecraftforge.fml.common.Mod;
@@ -11,6 +12,7 @@ import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 
 @Mod(modid = GaiaDimension.MODID,
         name = "GaiaDimension",
@@ -30,6 +32,11 @@ public class GaiaDimension
 
     public static DimensionType dimType;
     public static int backupdimensionID = -258;
+
+    @Mod.EventHandler
+    public void serverLoad(FMLServerStartingEvent event) {
+        event.registerServerCommand(new GaiaTeleporter());
+    }
 
     @EventHandler
     public void preInit(FMLPreInitializationEvent event) {
