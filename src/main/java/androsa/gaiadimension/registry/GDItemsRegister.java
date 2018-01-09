@@ -4,6 +4,7 @@ import androsa.gaiadimension.GaiaDimension;
 import androsa.gaiadimension.item.GDGaiaChampArmor;
 import androsa.gaiadimension.item.GDGaiaChampSword;
 import androsa.gaiadimension.item.GDItem;
+import androsa.gaiadimension.item.GDMalachiteGuardArmor;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
@@ -13,6 +14,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.registries.IForgeRegistry;
 
 import static androsa.gaiadimension.registry.GDItems.ARMOR_GAIA_CHAMP;
+import static androsa.gaiadimension.registry.GDItems.ARMOR_MALACHITE;
 import static androsa.gaiadimension.registry.GDItems.TOOL_GAIA_CHAMP;
 import static net.minecraft.inventory.EntityEquipmentSlot.*;
 
@@ -32,6 +34,10 @@ public class GDItemsRegister {
         items.register("green_opal", new GDItem().setUnlocalizedName("green_opal"));
         items.register("white_opal", new GDItem().setUnlocalizedName("white_opal"));
 
+        items.register("malachite_guard_headgear", new GDMalachiteGuardArmor(ARMOR_MALACHITE, HEAD).setUnlocalizedName("malachite_guard_headgear").setMaxStackSize(1));
+        items.register("malachite_guard_brace", new GDMalachiteGuardArmor(ARMOR_MALACHITE, CHEST).setUnlocalizedName("malachite_guard_brace").setMaxStackSize(1));
+        items.register("malachite_guard_gear", new GDMalachiteGuardArmor(ARMOR_MALACHITE, LEGS).setUnlocalizedName("malachite_guard_gear").setMaxStackSize(1));
+        items.register("malachite_guard_boots", new GDMalachiteGuardArmor(ARMOR_MALACHITE, FEET).setUnlocalizedName("malachite_guard_boots").setMaxStackSize(1));
         items.register("gaia_champion_helm", new GDGaiaChampArmor(ARMOR_GAIA_CHAMP, HEAD).setUnlocalizedName("gaia_champion_helm").setMaxStackSize(1));
         items.register("gaia_champion_guard", new GDGaiaChampArmor(ARMOR_GAIA_CHAMP, CHEST).setUnlocalizedName("gaia_champion_guard").setMaxStackSize(1));
         items.register("gaia_champion_greaves", new GDGaiaChampArmor(ARMOR_GAIA_CHAMP, LEGS).setUnlocalizedName("gaia_champion_greaves").setMaxStackSize(1));
