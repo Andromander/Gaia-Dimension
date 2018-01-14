@@ -30,8 +30,8 @@ public class GDItems {
     public static final Item labradorite;
     @GameRegistry.ObjectHolder("moonstone")
     public static final Item moonstone;
-  //  @GameRegistry.ObjectHolder("sugilite")
-  //  public static final Item sugilite;
+    @GameRegistry.ObjectHolder("cinnabar")
+    public static final Item cinnabar;
     @GameRegistry.ObjectHolder("red_opal")
     public static final Item opalRed;
     @GameRegistry.ObjectHolder("blue_opal")
@@ -122,7 +122,7 @@ public class GDItems {
         pyrite = null;
         labradorite = null;
         moonstone = null;
-       // sugilite = null;
+        cinnabar = null;
         opalRed = null;
         opalBlue = null;
         opalGreen = null;

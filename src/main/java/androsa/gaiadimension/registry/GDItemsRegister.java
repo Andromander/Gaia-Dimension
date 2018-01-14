@@ -24,7 +24,7 @@ public class GDItemsRegister {
         items.register("pyrite", new GDItem().setUnlocalizedName("pyrite"));
         items.register("labradorite", new GDItem().setUnlocalizedName("laboradorite"));
         items.register("moonstone", new GDItem().setUnlocalizedName("moonstone"));
-        items.register("sugilite", new GDItem().setUnlocalizedName("sugilite"));
+        items.register("cinnabar", new GDItem().setUnlocalizedName("cinnabar"));
         items.register("red_opal", new GDItem().setUnlocalizedName("red_opal"));
         items.register("blue_opal", new GDItem().setUnlocalizedName("blue_opal"));
         items.register("green_opal", new GDItem().setUnlocalizedName("green_opal"));
@@ -83,14 +83,14 @@ public class GDItemsRegister {
         items.registerBlock(GDBlocks.labradoriteBlock);
         items.registerBlock(GDBlocks.pyriteBlock);
         items.registerBlock(GDBlocks.moonstoneBlock);
-      //  items.registerSubItemBlock(GDBlocks.sugiliteBlock);
+        items.registerSubItemBlock(GDBlocks.cinnabarBlock);
 
         items.registerBlock(GDBlocks.hematiteOre);
         items.registerBlock(GDBlocks.pyriteOre);
         items.registerSubItemBlock(GDBlocks.opalOre);
         items.registerBlock(GDBlocks.labradoriteOre);
         items.registerBlock(GDBlocks.moonstoneOre);
-      //  items.registerBlock(GDBlocks.sugiliteOre);
+        items.registerBlock(GDBlocks.cinnabarOre);
     }
 
     private static class ItemRegistryHelper {

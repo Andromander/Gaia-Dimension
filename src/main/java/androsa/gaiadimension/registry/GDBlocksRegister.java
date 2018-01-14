@@ -28,12 +28,14 @@ public final class GDBlocksRegister {
         blocks.register("opal_block", (new GDOpalBlock()).setUnlocalizedName("opal_block"));
         blocks.register("pyrite_block", (new GDPyriteBlock()).setUnlocalizedName("pyrite_block"));
         blocks.register("moonstone_block", (new GDMoonstoneBlock()).setUnlocalizedName("moonstone_block"));
+        blocks.register("cinnabar_block", (new GDCinnabarBlock()).setUnlocalizedName("cinnabar_block"));
 
         blocks.register("hematite_ore", (new GDHematiteOre()).setUnlocalizedName("hematite_ore"));
         blocks.register("pyrite_ore", (new GDPyriteOre()).setUnlocalizedName("pyrite_ore"));
         blocks.register("opal_ore", (new GDOpalOre()).setUnlocalizedName("opal_ore"));
         blocks.register("labradorite_ore", (new GDLabradoriteOre()).setUnlocalizedName("labradorite_ore"));
         blocks.register("moonstone_ore", (new GDMoonstoneOre()).setUnlocalizedName("moonstone_ore"));
+        blocks.register("cinnabar_ore", (new GDCinnabarOre()).setUnlocalizedName("cinnabar_ore"));
     }
 
     private static class BlockRegistryHelper {

@@ -36,6 +36,8 @@ public class GDBlocks {
     public static final Block opalBlock = Blocks.AIR;
     @GameRegistry.ObjectHolder("moonstone_block")
     public static final Block moonstoneBlock = Blocks.AIR;
+    @GameRegistry.ObjectHolder("cinnabar_block")
+    public static final Block cinnabarBlock = Blocks.AIR;
 
     @GameRegistry.ObjectHolder("hematite_ore")
     public static final Block hematiteOre = Blocks.AIR;
@@ -47,5 +49,7 @@ public class GDBlocks {
     public static final Block labradoriteOre = Blocks.AIR;
     @GameRegistry.ObjectHolder("moonstone_ore")
     public static final Block moonstoneOre = Blocks.AIR;
+    @GameRegistry.ObjectHolder("cinnabar_ore")
+    public static final Block cinnabarOre = Blocks.AIR;
 
 }
