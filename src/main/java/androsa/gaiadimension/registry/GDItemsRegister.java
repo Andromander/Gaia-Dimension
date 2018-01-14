@@ -24,6 +24,7 @@ public class GDItemsRegister {
         items.register("pyrite", new GDItem().setUnlocalizedName("pyrite"));
         items.register("labradorite", new GDItem().setUnlocalizedName("laboradorite"));
         items.register("moonstone", new GDItem().setUnlocalizedName("moonstone"));
+        items.register("sugilite", new GDItem().setUnlocalizedName("sugilite"));
         items.register("red_opal", new GDItem().setUnlocalizedName("red_opal"));
         items.register("blue_opal", new GDItem().setUnlocalizedName("blue_opal"));
         items.register("green_opal", new GDItem().setUnlocalizedName("green_opal"));
@@ -37,6 +38,30 @@ public class GDItemsRegister {
         items.register("apex_predator_jacket", new GDApexPredatorArmor(ARMOR_TIGER_EYE, CHEST).setUnlocalizedName("apex_predator_jacket").setMaxStackSize(1));
         items.register("apex_predator_trousers", new GDApexPredatorArmor(ARMOR_TIGER_EYE, LEGS).setUnlocalizedName("apex_predator_trousers").setMaxStackSize(1));
         items.register("apex_predator_boots", new GDApexPredatorArmor(ARMOR_TIGER_EYE, FEET).setUnlocalizedName("apex_predator_boots").setMaxStackSize(1));
+        items.register("spinel_princess_cowl", new GDSpinelPrincessArmor(ARMOR_SPINEL, HEAD).setUnlocalizedName("spinel_princess_cowl").setMaxStackSize(1));
+        items.register("spinel_princess_cloak", new GDSpinelPrincessArmor(ARMOR_SPINEL, CHEST).setUnlocalizedName("spinel_princess_cloak").setMaxStackSize(1));
+        items.register("spinel_princess_dress", new GDSpinelPrincessArmor(ARMOR_SPINEL, LEGS).setUnlocalizedName("spinel_princess_dress").setMaxStackSize(1));
+        items.register("spinel_princess_heels", new GDSpinelPrincessArmor(ARMOR_SPINEL, FEET).setUnlocalizedName("spinel_princess_heel").setMaxStackSize(1));
+        items.register("zircon_prince_crown", new GDZirconPrinceArmor(ARMOR_ZIRCON, HEAD).setUnlocalizedName("zircon_prince_crown").setMaxStackSize(1));
+        items.register("zircon_prince_chestpiece", new GDZirconPrinceArmor(ARMOR_ZIRCON, CHEST).setUnlocalizedName("zircon_prince_chestpiece").setMaxStackSize(1));
+        items.register("zircon_prince_gear", new GDZirconPrinceArmor(ARMOR_ZIRCON, LEGS).setUnlocalizedName("zircon_prince_gear").setMaxStackSize(1));
+        items.register("zircon_prince_boots", new GDZirconPrinceArmor(ARMOR_ZIRCON, FEET).setUnlocalizedName("zircon_prince_boots").setMaxStackSize(1));
+        items.register("corrupt_warrior_helm", new GDCorruptWarriorArmor(ARMOR_CORRUPT, HEAD).setUnlocalizedName("corrupt_warrior_helm").setMaxStackSize(1));
+        items.register("corrupt_warrior_guard", new GDCorruptWarriorArmor(ARMOR_CORRUPT, CHEST).setUnlocalizedName("corrupt_warrior_guard").setMaxStackSize(1));
+        items.register("corrupt_warrior_greaves", new GDCorruptWarriorArmor(ARMOR_CORRUPT, LEGS).setUnlocalizedName("corrupt_warrior_greaves").setMaxStackSize(1));
+        items.register("corrupt_warrior_boots", new GDCorruptWarriorArmor(ARMOR_CORRUPT, FEET).setUnlocalizedName("corrupt_warrior_boots").setMaxStackSize(1));
+        items.register("gaia_duchess_helm", new GDGaiaDuchessArmor(ARMOR_BIXBITE, HEAD).setUnlocalizedName("gaia_duchess_helm").setMaxStackSize(1));
+        items.register("gaia_duchess_guard", new GDGaiaDuchessArmor(ARMOR_BIXBITE, CHEST).setUnlocalizedName("gaia_duchess_guard").setMaxStackSize(1));
+        items.register("gaia_duchess_greaves", new GDGaiaDuchessArmor(ARMOR_BIXBITE, LEGS).setUnlocalizedName("gaia_duchess_greaves").setMaxStackSize(1));
+        items.register("gaia_duchess_boots", new GDGaiaDuchessArmor(ARMOR_BIXBITE, FEET).setUnlocalizedName("gaia_duchess_boots").setMaxStackSize(1));
+        items.register("gaia_baron_mask", new GDGaiaBaronArmor(ARMOR_TSVAROVITE, HEAD).setUnlocalizedName("gaia_baron_mask").setMaxStackSize(1));
+        items.register("gaia_baron_tuxedo", new GDGaiaBaronArmor(ARMOR_TSVAROVITE,CHEST).setUnlocalizedName("gaia_baron_tuxedo").setMaxStackSize(1));
+        items.register("gaia_baron_pants", new GDGaiaBaronArmor(ARMOR_TSVAROVITE, LEGS).setUnlocalizedName("gaia_baron_pants").setMaxStackSize(1));
+        items.register("gaia_baron_shoes", new GDGaiaBaronArmor(ARMOR_TSVAROVITE, FEET).setUnlocalizedName("gaia_baron_shoes").setMaxStackSize(1));
+        items.register("gaia_duke_helm", new GDGaiaDukeArmor(ARMOR_LARVIKITE, HEAD).setUnlocalizedName("gaia_duke_helm").setMaxStackSize(1));
+        items.register("gaia_duke_guard", new GDGaiaDukeArmor(ARMOR_LARVIKITE, CHEST).setUnlocalizedName("gaia_duke_guard").setMaxStackSize(1));
+        items.register("gaia_duke_greaves", new GDGaiaDukeArmor(ARMOR_LARVIKITE, LEGS).setUnlocalizedName("gaia_duke_greaves").setMaxStackSize(1));
+        items.register("gaia_duke_boots", new GDGaiaDukeArmor(ARMOR_LARVIKITE, FEET).setUnlocalizedName("gaia_duke_boots").setMaxStackSize(1));
         items.register("gaia_champion_helm", new GDGaiaChampArmor(ARMOR_GAIA_CHAMP, HEAD).setUnlocalizedName("gaia_champion_helm").setMaxStackSize(1));
         items.register("gaia_champion_guard", new GDGaiaChampArmor(ARMOR_GAIA_CHAMP, CHEST).setUnlocalizedName("gaia_champion_guard").setMaxStackSize(1));
         items.register("gaia_champion_greaves", new GDGaiaChampArmor(ARMOR_GAIA_CHAMP, LEGS).setUnlocalizedName("gaia_champion_greaves").setMaxStackSize(1));
@@ -58,12 +83,14 @@ public class GDItemsRegister {
         items.registerBlock(GDBlocks.labradoriteBlock);
         items.registerBlock(GDBlocks.pyriteBlock);
         items.registerBlock(GDBlocks.moonstoneBlock);
+      //  items.registerSubItemBlock(GDBlocks.sugiliteBlock);
 
         items.registerBlock(GDBlocks.hematiteOre);
         items.registerBlock(GDBlocks.pyriteOre);
         items.registerSubItemBlock(GDBlocks.opalOre);
         items.registerBlock(GDBlocks.labradoriteOre);
         items.registerBlock(GDBlocks.moonstoneOre);
+      //  items.registerBlock(GDBlocks.sugiliteOre);
     }
 
     private static class ItemRegistryHelper {
