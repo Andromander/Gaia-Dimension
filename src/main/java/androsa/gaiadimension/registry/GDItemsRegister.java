@@ -69,6 +69,8 @@ public class GDItemsRegister {
 
         items.register("gaia_champion_sword", new GDGaiaChampSword(TOOL_GAIA_CHAMP).setUnlocalizedName("gaia_champion_sword").setMaxStackSize(1));
 
+        items.registerSubItemBlock(GDBlocks.gaiaPortal);
+
         items.registerBlock(GDBlocks.heavySoil);
         items.registerBlock(GDBlocks.glitterGrass);
         items.registerSubItemBlock(GDBlocks.gaiaLeaves);
@@ -83,7 +85,7 @@ public class GDItemsRegister {
         items.registerBlock(GDBlocks.labradoriteBlock);
         items.registerBlock(GDBlocks.pyriteBlock);
         items.registerBlock(GDBlocks.moonstoneBlock);
-        items.registerSubItemBlock(GDBlocks.cinnabarBlock);
+        items.registerBlock(GDBlocks.cinnabarBlock);
 
         items.registerBlock(GDBlocks.hematiteOre);
         items.registerBlock(GDBlocks.pyriteOre);

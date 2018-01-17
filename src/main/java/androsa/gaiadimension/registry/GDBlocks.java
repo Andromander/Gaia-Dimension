@@ -6,8 +6,10 @@ import net.minecraft.init.Blocks;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
 @GameRegistry.ObjectHolder(GaiaDimension.MODID)
-
 public class GDBlocks {
+
+    @GameRegistry.ObjectHolder("gaia_portal")
+    public static final Block gaiaPortal = Blocks.AIR;
 
     @GameRegistry.ObjectHolder("heavy_soil")
     public static final Block heavySoil = Blocks.AIR;
