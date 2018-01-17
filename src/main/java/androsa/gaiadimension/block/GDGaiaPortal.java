@@ -233,20 +233,19 @@ public class GDGaiaPortal extends BlockPortal {
         return new BlockStateContainer(this, new IProperty[] {AXIS});
     }
 
-    public BlockPattern.PatternHelper createPatternHelper(World worldIn, BlockPos p_181089_2_) {
+    public BlockPattern.PatternHelper createPatternHelper(World worldIn, BlockPos pos) {
         EnumFacing.Axis enumfacing$axis = EnumFacing.Axis.Z;
-        GDGaiaPortal.Size blockportal$size = new GDGaiaPortal.Size(worldIn, p_181089_2_, EnumFacing.Axis.X);
+        GDGaiaPortal.Size blockportal$size = new GDGaiaPortal.Size(worldIn, pos, EnumFacing.Axis.X);
         LoadingCache<BlockPos, BlockWorldState> loadingcache = BlockPattern.createLoadingCache(worldIn, true);
 
         if (!blockportal$size.isValid()) {
             enumfacing$axis = EnumFacing.Axis.X;
-            blockportal$size = new GDGaiaPortal.Size(worldIn, p_181089_2_, EnumFacing.Axis.Z);
+            blockportal$size = new GDGaiaPortal.Size(worldIn, pos, EnumFacing.Axis.Z);
         }
 
         if (!blockportal$size.isValid()) {
-            return new BlockPattern.PatternHelper(p_181089_2_, EnumFacing.NORTH, EnumFacing.UP, loadingcache, 1, 1, 1);
-        }
-        else {
+            return new BlockPattern.PatternHelper(pos, EnumFacing.NORTH, EnumFacing.UP, loadingcache, 1, 1, 1);
+        } else {
             int[] aint = new int[EnumFacing.AxisDirection.values().length];
             EnumFacing enumfacing = blockportal$size.rightDir.rotateYCCW();
             BlockPos blockpos = blockportal$size.bottomLeft.up(blockportal$size.getHeight() - 1);
