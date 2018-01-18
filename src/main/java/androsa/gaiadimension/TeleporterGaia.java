@@ -1,5 +1,6 @@
-package androsa.gaiadimension;
+package androsa.gaiadimension._ignore;
 
+import androsa.gaiadimension.block.GDGaiaPortal;
 import androsa.gaiadimension.registry.GDBlocks;
 import it.unimi.dsi.fastutil.longs.Long2ObjectMap;
 import it.unimi.dsi.fastutil.longs.Long2ObjectOpenHashMap;
@@ -17,7 +18,6 @@ import net.minecraft.world.Teleporter;
 import net.minecraft.world.WorldServer;
 
 import java.util.Random;
-
 
 public class TeleporterGaia extends Teleporter {
 
@@ -88,7 +88,7 @@ public class TeleporterGaia extends Teleporter {
                 this.destinationCoordinateCache.put(1, new PortalPosition(blockpos, this.world.getTotalWorldTime()));
             }
 
-            BlockPattern.PatternHelper blockpattern$patternhelper = GDBlocks.gaiaPortal.createPatternHelper(this.world, blockpos); //TODO: What's going on here?
+            BlockPattern.PatternHelper blockpattern$patternhelper = GDBlocks.gaiaPortal.createPatternHelper(this.world, blockpos);
             EnumFacing eTD = blockpattern$patternhelper.getForwards();
 
             float f = 0.0F;

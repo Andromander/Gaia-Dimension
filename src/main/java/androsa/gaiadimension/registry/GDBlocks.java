@@ -2,6 +2,7 @@ package androsa.gaiadimension.registry;
 
 import androsa.gaiadimension.GaiaDimension;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockPortal;
 import net.minecraft.init.Blocks;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
@@ -9,7 +10,7 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 public class GDBlocks {
 
     @GameRegistry.ObjectHolder("gaia_portal")
-    public static final Block gaiaPortal = Blocks.AIR;
+    public static BlockPortal gaiaPortal;
 
     @GameRegistry.ObjectHolder("heavy_soil")
     public static final Block heavySoil = Blocks.AIR;

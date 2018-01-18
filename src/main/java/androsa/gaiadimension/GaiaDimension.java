@@ -46,6 +46,7 @@ public class GaiaDimension
     @EventHandler
     public void preInit(FMLPreInitializationEvent event) {
 
+     //   DimensionManager.registerDimension(GDConfig.dimension.dimensionID, DimensionType.register("Gaia", "_gaia", GDConfig.dimension.dimensionID, WorldProviderGaia.class, false));
     }
 
     @EventHandler
@@ -53,9 +54,6 @@ public class GaiaDimension
     {
         // got to change this to something else...
         System.out.println("DIRT BLOCK >> "+Blocks.DIRT.getUnlocalizedName());
-
-        DimensionManager.registerDimension(GDConfig.dimension.dimensionID, DimensionType.register("Gaia", "_gaia", GDConfig.dimension.dimensionID, WorldProviderGaia.class, false));
-
     }
 
     @EventHandler
