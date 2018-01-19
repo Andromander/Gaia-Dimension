@@ -1,0 +1,11 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "minecraft:cross",
+    "textures": { "cross": "gaiadimension:blocks/crystal_growth" }
+  },
+  "variants": {
+    "inventory": [{ "model": "gaiadimension:util/item", "textures": { "layer0": "gaiadimension:blocks/crystal_growth"}}],
+    "normal": [{}]
+  }
+}

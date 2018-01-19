@@ -9,8 +9,12 @@ import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.BlockRenderLayer;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.common.EnumPlantType;
+import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -41,6 +45,16 @@ public class GDGlitterGrass extends Block implements ModelRegisterCallback {
                     if (iblockstate.getBlock() == GDBlocks.heavySoil && world.getLightFromNeighbors(blockpos.up()) >= 4 && block.getLightOpacity(world.getBlockState(blockpos.up()), world, blockpos.up()) <= 2)
                         world.setBlockState(blockpos, GDBlocks.glitterGrass.getDefaultState());
                 }
+    }
+
+    @Override
+    public boolean canSustainPlant(IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing direction, IPlantable plantable) {
+        boolean hasWater = world.getBlockState(pos.east()).getMaterial() == Material.WATER ||
+                world.getBlockState(pos.west()).getMaterial() == Material.WATER ||
+                world.getBlockState(pos.north()).getMaterial() == Material.WATER ||
+                world.getBlockState(pos.south()).getMaterial() == Material.WATER;
+        return plantable.getPlantType(world, pos.offset(direction)) == EnumPlantType.Plains ||
+                plantable.getPlantType(world, pos.offset(direction)) == EnumPlantType.Beach && hasWater;
     }
 
     @Override
