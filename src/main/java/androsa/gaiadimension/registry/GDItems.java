@@ -5,9 +5,10 @@ import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor;
 import net.minecraftforge.common.util.EnumHelper;
-import net.minecraftforge.fml.common.registry.GameRegistry;
 
-@GameRegistry.ObjectHolder(GaiaDimension.MODID)
+import static net.minecraftforge.fml.common.registry.GameRegistry.*;
+
+@ObjectHolder(GaiaDimension.MODID)
 public class GDItems {
 
     public static ItemArmor.ArmorMaterial ARMOR_MALACHITE = EnumHelper.addArmorMaterial("MALACHITE", "malachite_guard", 5120, new int[]{2, 5, 7, 2}, 10, SoundEvents.ITEM_ARMOR_EQUIP_GOLD, 2.0F);
@@ -22,99 +23,99 @@ public class GDItems {
 
     public static Item.ToolMaterial TOOL_GAIA_CHAMP = EnumHelper.addToolMaterial("GAIA_CHAMP", 4, -1, 8.0F, 16.0F, 25);
 
-    @GameRegistry.ObjectHolder("hematite")
+    @ObjectHolder("hematite")
     public static final Item hematite;
-    @GameRegistry.ObjectHolder("pyrite")
+    @ObjectHolder("pyrite")
     public static final Item pyrite;
-    @GameRegistry.ObjectHolder("laboradorite")
+    @ObjectHolder("laboradorite")
     public static final Item labradorite;
-    @GameRegistry.ObjectHolder("moonstone")
+    @ObjectHolder("moonstone")
     public static final Item moonstone;
-    @GameRegistry.ObjectHolder("cinnabar")
+    @ObjectHolder("cinnabar")
     public static final Item cinnabar;
-    @GameRegistry.ObjectHolder("red_opal")
+    @ObjectHolder("red_opal")
     public static final Item opalRed;
-    @GameRegistry.ObjectHolder("blue_opal")
+    @ObjectHolder("blue_opal")
     public static final Item opalBlue;
-    @GameRegistry.ObjectHolder("green_opal")
+    @ObjectHolder("green_opal")
     public static final Item opalGreen;
-    @GameRegistry.ObjectHolder("white_opal")
+    @ObjectHolder("white_opal")
     public static final Item opalWhite;
 
-    @GameRegistry.ObjectHolder("malachite_guard_headgear")
+    @ObjectHolder("malachite_guard_headgear")
     public static final Item malachiteGuardHeadgear;
-    @GameRegistry.ObjectHolder("malachite_guard_brace")
+    @ObjectHolder("malachite_guard_brace")
     public static final Item malachiteGuardBrace;
-    @GameRegistry.ObjectHolder("malachite_guard_gear")
+    @ObjectHolder("malachite_guard_gear")
     public static final Item malachiteGuardGear;
-    @GameRegistry.ObjectHolder("malachite_guard_boots")
+    @ObjectHolder("malachite_guard_boots")
     public static final Item malachiteGuardBoots;
-    @GameRegistry.ObjectHolder("apex_predator_hood")
+    @ObjectHolder("apex_predator_hood")
     public static final Item apexPredatorHood;
-    @GameRegistry.ObjectHolder("apex_predator_jacket")
+    @ObjectHolder("apex_predator_jacket")
     public static final Item apexPredatorJacket;
-    @GameRegistry.ObjectHolder("apex_predator_trousers")
+    @ObjectHolder("apex_predator_trousers")
     public static final Item apexPredatorTrousers;
-    @GameRegistry.ObjectHolder("apex_predator_boots")
+    @ObjectHolder("apex_predator_boots")
     public static final Item apexPredatorBoots;
-    @GameRegistry.ObjectHolder("spinel_princess_cowl")
+    @ObjectHolder("spinel_princess_cowl")
     public static final Item spinelPrincessCowl;
-    @GameRegistry.ObjectHolder("spinel_princess_cloak")
+    @ObjectHolder("spinel_princess_cloak")
     public static final Item spinelPrincessCloak;
-    @GameRegistry.ObjectHolder("spinel_princess_dress")
+    @ObjectHolder("spinel_princess_dress")
     public static final Item spinelPrincessDress;
-    @GameRegistry.ObjectHolder("spinel_princess_heels")
+    @ObjectHolder("spinel_princess_heels")
     public static final Item spinelPrincessHeels;
-    @GameRegistry.ObjectHolder("zircon_prince_crown")
+    @ObjectHolder("zircon_prince_crown")
     public static final Item zirconPrinceCrown;
-    @GameRegistry.ObjectHolder("zircon_prince_chestpiece")
+    @ObjectHolder("zircon_prince_chestpiece")
     public static final Item zirconPrinceChestpiece;
-    @GameRegistry.ObjectHolder("zircon_prince_gear")
+    @ObjectHolder("zircon_prince_gear")
     public static final Item zirconPrinceGear;
-    @GameRegistry.ObjectHolder("zirconPrinceBoots")
+    @ObjectHolder("zirconPrinceBoots")
     public static final Item zirconPrinceBoots;
-    @GameRegistry.ObjectHolder("corrupt_warrior_helm")
+    @ObjectHolder("corrupt_warrior_helm")
     public static final Item corruptWarriorHelm;
-    @GameRegistry.ObjectHolder("corrupt_warrior_guard")
+    @ObjectHolder("corrupt_warrior_guard")
     public static final Item corruptWarriorGuard;
-    @GameRegistry.ObjectHolder("corrupt_warrior_greaves")
+    @ObjectHolder("corrupt_warrior_greaves")
     public static final Item corruptWarriorGreaves;
-    @GameRegistry.ObjectHolder("corrupt_warrior_boots")
+    @ObjectHolder("corrupt_warrior_boots")
     public static final Item corruptWarriorBoots;
-    @GameRegistry.ObjectHolder("gaia_duchess_helm")
+    @ObjectHolder("gaia_duchess_helm")
     public static final Item gaiaDuchessHelm;
-    @GameRegistry.ObjectHolder("gaia_duchess_guard")
+    @ObjectHolder("gaia_duchess_guard")
     public static final Item gaiaDuchessGuard;
-    @GameRegistry.ObjectHolder("gaia_duchess_greaves")
+    @ObjectHolder("gaia_duchess_greaves")
     public static final Item gaiaDuchessGreaves;
-    @GameRegistry.ObjectHolder("gaia_duchess_boots")
+    @ObjectHolder("gaia_duchess_boots")
     public static final Item gaiaDuchessBoots;
-    @GameRegistry.ObjectHolder("gaia_baron_mask")
+    @ObjectHolder("gaia_baron_mask")
     public static final Item gaiaBaronMask;
-    @GameRegistry.ObjectHolder("gaia_baron_tuxedo")
+    @ObjectHolder("gaia_baron_tuxedo")
     public static final Item gaiaBaronTuxedo;
-    @GameRegistry.ObjectHolder("gaia_baron_pants")
+    @ObjectHolder("gaia_baron_pants")
     public static final Item gaiaBaronPants;
-    @GameRegistry.ObjectHolder("gaia_baron_shoes")
+    @ObjectHolder("gaia_baron_shoes")
     public static final Item gaiaBaronShoes;
-    @GameRegistry.ObjectHolder("gaia_duke_helm")
+    @ObjectHolder("gaia_duke_helm")
     public static final Item gaiaDukeHelm;
-    @GameRegistry.ObjectHolder("gaia_duke_guard")
+    @ObjectHolder("gaia_duke_guard")
     public static final Item gaiaDukeGuards;
-    @GameRegistry.ObjectHolder("gaia_duke_greaves")
+    @ObjectHolder("gaia_duke_greaves")
     public static final Item gaiaDukeGreaves;
-    @GameRegistry.ObjectHolder("gaia_duke_boots")
+    @ObjectHolder("gaia_duke_boots")
     public static final Item gaiaDukeBoots;
-    @GameRegistry.ObjectHolder("gaia_champion_helm")
+    @ObjectHolder("gaia_champion_helm")
     public static final Item gaiaChampionHelm;
-    @GameRegistry.ObjectHolder("gaia_champion_guard")
+    @ObjectHolder("gaia_champion_guard")
     public static final Item gaiaChampionGuard;
-    @GameRegistry.ObjectHolder("gaia_champion_greaves")
+    @ObjectHolder("gaia_champion_greaves")
     public static final Item gaiaChampionGreaves;
-    @GameRegistry.ObjectHolder("gaia_champion_boots")
+    @ObjectHolder("gaia_champion_boots")
     public static final Item gaiaChampionBoots;
 
-    @GameRegistry.ObjectHolder("gaia_champion_sword")
+    @ObjectHolder("gaia_champion_sword")
     public static final Item gaiaChampionSword;
 
     static {
