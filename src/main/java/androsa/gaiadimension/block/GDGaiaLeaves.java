@@ -1,6 +1,7 @@
 package androsa.gaiadimension.block;
 
 import androsa.gaiadimension.block.enums.GaiaLeavesVariant;
+import androsa.gaiadimension.registry.GDBlocks;
 import androsa.gaiadimension.registry.GDTabs;
 import androsa.gaiadimension.registry.ModelRegisterCallback;
 import androsa.gaiadimension.registry.ModelUtils;
@@ -15,6 +16,7 @@ import net.minecraft.client.renderer.block.statemap.StateMap;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
@@ -30,6 +32,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 @MethodsReturnNonnullByDefault
 @ParametersAreNonnullByDefault
@@ -53,6 +56,22 @@ public class GDGaiaLeaves extends BlockLeaves implements ModelRegisterCallback {
     @Override
     public List<ItemStack> onSheared(ItemStack item, IBlockAccess world, BlockPos pos, int fortune) {
         return NonNullList.withSize(1, new ItemStack(this, 1, world.getBlockState(pos).getValue(VARIANT).ordinal()));
+    }
+
+    @Override
+    public int damageDropped(IBlockState state) {
+        GaiaLeavesVariant leafType = state.getValue(VARIANT);
+        return leafType.ordinal();
+    }
+
+    @Override
+    public Item getItemDropped(IBlockState state, Random par2Random, int par3) {
+        return Item.getItemFromBlock(GDBlocks.gaiaSapling);
+    }
+
+    @Override
+    public int getSaplingDropChance(IBlockState state) {
+        return 20;
     }
 
     @Override
