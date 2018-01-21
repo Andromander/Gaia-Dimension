@@ -21,6 +21,8 @@ public class GDBlocks {
     public static final Block glitterGrass = Blocks.AIR;
     @ObjectHolder("crystal_growth")
     public static final Block crystalGrowth = Blocks.AIR;
+    @ObjectHolder("gaia_sapling")
+    public static Block gaiaSapling = Blocks.AIR;
     @ObjectHolder("gaia_leaves")
     public static final Block gaiaLeaves = Blocks.AIR;
     @ObjectHolder("special_gaia_leaves")
