@@ -23,6 +23,7 @@ public class GDItemsRegister {
         items.register("hot_dust", new GDItem().setUnlocalizedName("hot_dust"));
         items.register("goldstone_dust", new GDItem().setUnlocalizedName("goldstone_dust"));
         items.register("fine_dust", new GDItem().setUnlocalizedName("fine_dust"));
+        items.register("cloudy_shard", new GDItem().setUnlocalizedName("cloudy_shard"));
 
         items.register("hematite", new GDItem().setUnlocalizedName("hematite"));
         items.register("pyrite", new GDItem().setUnlocalizedName("pyrite"));

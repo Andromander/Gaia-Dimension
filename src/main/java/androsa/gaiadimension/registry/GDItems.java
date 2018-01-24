@@ -29,6 +29,8 @@ public class GDItems {
     public static final Item goldstoneDust;
     @ObjectHolder("fine_dust")
     public static final Item fineDust;
+    @ObjectHolder("cloudy_shard")
+    public static final Item cloudyShard;
 
     @ObjectHolder("hematite")
     public static final Item hematite;
@@ -129,6 +131,7 @@ public class GDItems {
         hotDust = null;
         goldstoneDust = null;
         fineDust = null;
+        cloudyShard = null;
 
         hematite = null;
         pyrite = null;
