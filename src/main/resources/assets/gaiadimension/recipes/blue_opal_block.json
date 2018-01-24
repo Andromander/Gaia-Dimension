@@ -1,0 +1,17 @@
+{
+  "result": {
+    "item": "gaiadimension:opal_block",
+    "data": 1
+  },
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "type": "forge:ore_shaped",
+  "key": {
+    "#": {
+      "item": "gaiadimension:blue_opal"
+    }
+  }
+}

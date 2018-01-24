@@ -1,0 +1,16 @@
+{
+  "result": {
+    "item": "gaiadimension:labradorite_block"
+  },
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "type": "forge:ore_shaped",
+  "key": {
+    "#": {
+      "item": "gaiadimension:labradorite"
+    }
+  }
+}
