@@ -2,14 +2,13 @@ package androsa.gaiadimension;
 
 import androsa.gaiadimension.proxy.CommonProxy;
 import androsa.gaiadimension.registry.GDBlocks;
+import androsa.gaiadimension.registry.GDFluids;
 import androsa.gaiadimension.registry.GDItems;
-import androsa.gaiadimension.world.GaiaChunkGenerator;
-import androsa.gaiadimension.world.GaiaWorld;
-import androsa.gaiadimension.world.WorldProviderGaia;
+import net.minecraft.block.material.MapColor;
+import net.minecraft.block.material.Material;
+import net.minecraft.block.material.MaterialLiquid;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.DimensionType;
-import net.minecraft.world.gen.IChunkGenerator;
-import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.SidedProxy;
@@ -17,7 +16,6 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
-import net.minecraftforge.fml.common.registry.GameRegistry;
 
 @Mod(modid = GaiaDimension.MODID,
         name = "GaiaDimension",
@@ -30,7 +28,11 @@ public class GaiaDimension
 
     public static final GDItems items = new GDItems();
     public static final GDBlocks blocks = new GDBlocks();
+    public static final GDFluids fluids = new GDFluids();
     public static final String ARMOR_DIR = "gaiadimension:textures/armor/";
+
+    public static final Material matMineralWater = new MaterialLiquid(MapColor.CYAN_STAINED_HARDENED_CLAY);
+    public static final Material matSuperhotMagma = new MaterialLiquid(MapColor.BLUE);
 
     @SidedProxy(clientSide = "androsa.gaiadimension.proxy.ClientProxy", serverSide = "androsa.gaiadimension.proxy.ServerProxy")
     public static CommonProxy proxy;
@@ -47,6 +49,7 @@ public class GaiaDimension
     public void preInit(FMLPreInitializationEvent event) {
 
      //   DimensionManager.registerDimension(GDConfig.dimension.dimensionID, DimensionType.register("Gaia", "_gaia", GDConfig.dimension.dimensionID, WorldProviderGaia.class, false));
+
     }
 
     @EventHandler
