@@ -1,0 +1,13 @@
+{
+  "result": {
+    "item": "gaiadimension:green_opal",
+    "count": 9
+  },
+  "ingredients": [
+    {
+      "item": "gaiadimension:opal_block",
+      "data": 2
+    }
+  ],
+  "type": "minecraft:crafting_shapeless"
+}
