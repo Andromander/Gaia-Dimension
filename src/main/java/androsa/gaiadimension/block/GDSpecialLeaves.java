@@ -2,10 +2,7 @@ package androsa.gaiadimension.block;
 
 import androsa.gaiadimension.block.enums.GaiaLeavesVariant;
 import androsa.gaiadimension.block.enums.SpecialGaiaLeavesVariant;
-import androsa.gaiadimension.registry.GDBlocks;
-import androsa.gaiadimension.registry.GDTabs;
-import androsa.gaiadimension.registry.ModelRegisterCallback;
-import androsa.gaiadimension.registry.ModelUtils;
+import androsa.gaiadimension.registry.*;
 import mcp.MethodsReturnNonnullByDefault;
 import net.minecraft.block.BlockLeaves;
 import net.minecraft.block.BlockPlanks;
@@ -66,14 +63,14 @@ public class GDSpecialLeaves extends BlockLeaves implements ModelRegisterCallbac
     public Item getItemDropped(IBlockState state, Random par2Random, int par3) {
         switch (state.getValue(VARIANT)) {
             case HEATED:
-                return Items.BLAZE_POWDER;
+                return GDItems.hotDust;
             case CRUSTY:
                 return Items.GUNPOWDER;
             case CORRUPTED:
-                return Items.COAL;
+                return GDItems.goldstoneDust;
             case FOSSILIZED:
             default:
-                return Items.BONE;
+                return GDItems.fineDust;
         }
     }
 
