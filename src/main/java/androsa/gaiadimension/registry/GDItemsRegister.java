@@ -20,6 +20,10 @@ public class GDItemsRegister {
     public static void onRegisterItems(RegistryEvent.Register<Item> event) {
         ItemRegistryHelper items = new ItemRegistryHelper(event.getRegistry());
 
+        items.register("hot_dust", new GDItem().setUnlocalizedName("hot_dust"));
+        items.register("goldstone_dust", new GDItem().setUnlocalizedName("goldstone_dust"));
+        items.register("fine_dust", new GDItem().setUnlocalizedName("fine_dust"));
+
         items.register("hematite", new GDItem().setUnlocalizedName("hematite"));
         items.register("pyrite", new GDItem().setUnlocalizedName("pyrite"));
         items.register("labradorite", new GDItem().setUnlocalizedName("laboradorite"));
