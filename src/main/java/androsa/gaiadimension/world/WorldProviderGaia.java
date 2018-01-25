@@ -2,14 +2,20 @@ package androsa.gaiadimension.world;
 
 import androsa.gaiadimension.GDConfig;
 import androsa.gaiadimension.GaiaDimension;
+import androsa.gaiadimension.biomes.GDBiomes;
+import androsa.gaiadimension.world.layer.GDBiomeProvider;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.DimensionType;
 import net.minecraft.world.WorldProviderSurface;
+import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraftforge.client.IRenderHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import javax.swing.text.html.parser.Entity;
 
 public class WorldProviderGaia extends WorldProviderSurface {
 
@@ -35,6 +41,18 @@ public class WorldProviderGaia extends WorldProviderSurface {
         return new Vec3d(red, green, blue);
     }
 
+    //TODO: Put the sun in the middle of the sky
+    @Override
+    public float calculateCelestialAngle(long par1, float par3) {
+        return 0.5f;
+    }
+
+    @Override
+    public void init() {
+        super.init();
+        this.biomeProvider = new GDBiomeProvider(world);
+    }
+
     @Override
     public DimensionType getDimensionType() {
         return GaiaDimension.dimType;
@@ -45,9 +63,54 @@ public class WorldProviderGaia extends WorldProviderSurface {
         return new GaiaChunkGenerator(world, world.getSeed(), world.getWorldInfo().isMapFeaturesEnabled());
     }
 
+    //Let's see what can be done here...
+    @Override
+    public boolean isSkyColored() {
+        return true;
+    }
+
     @Override
     public double getHorizon() {
         return GaiaWorld.SEALEVEL;
+    }
+
+    @Override
+    public int getAverageGroundLevel() {
+        return 126;
+    }
+
+    @Override
+    public boolean canRespawnHere() {
+        return world.getWorldInfo().isInitialized();
+    }
+
+    //TODO: Permanent Daytime in Gaia?
+    @Override
+    public boolean isDaytime() {
+        return true;
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public Vec3d getSkyColor(net.minecraft.entity.Entity cameraEntity, float partialTicks) {
+        //TODO: Yellow. Sky
+        return new Vec3d(64 / 256.0, 64 / 256.0, 32 / 256.0);
+    }
+
+    //I mean, there's not likely any stars, but oh well...
+    @Override
+    @SideOnly(Side.CLIENT)
+    public float getStarBrightness(float par1) {
+        return 0.5F;
+    }
+
+    @Override
+    public Biome getBiomeForCoords(BlockPos pos) {
+        Biome biome = super.getBiomeForCoords(pos);
+        if (biome == null) {
+            biome = GDBiomes.crystalPlains;
+        }
+        return biome;
     }
 
     //Do we have a seed override?
@@ -65,5 +128,10 @@ public class WorldProviderGaia extends WorldProviderSurface {
     @SideOnly(Side.CLIENT)
     public IRenderHandler getWeatherRenderer() {
         return null;
+    }
+
+    @Override
+    public float getCloudHeight() {
+        return 255.0F;
     }
 }

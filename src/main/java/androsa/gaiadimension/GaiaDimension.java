@@ -4,11 +4,13 @@ import androsa.gaiadimension.proxy.CommonProxy;
 import androsa.gaiadimension.registry.GDBlocks;
 import androsa.gaiadimension.registry.GDFluids;
 import androsa.gaiadimension.registry.GDItems;
+import androsa.gaiadimension.world.WorldProviderGaia;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialLiquid;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.DimensionType;
+import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.SidedProxy;
@@ -48,7 +50,7 @@ public class GaiaDimension
     @EventHandler
     public void preInit(FMLPreInitializationEvent event) {
 
-     //   DimensionManager.registerDimension(GDConfig.dimension.dimensionID, DimensionType.register("Gaia", "_gaia", GDConfig.dimension.dimensionID, WorldProviderGaia.class, false));
+        DimensionManager.registerDimension(GDConfig.dimension.dimensionID, DimensionType.register("Gaia", "_gaia", GDConfig.dimension.dimensionID, WorldProviderGaia.class, false));
 
     }
 

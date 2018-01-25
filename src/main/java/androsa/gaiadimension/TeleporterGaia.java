@@ -1,4 +1,4 @@
-package androsa.gaiadimension._ignore;
+package androsa.gaiadimension;
 
 import androsa.gaiadimension.block.GDGaiaPortal;
 import androsa.gaiadimension.registry.GDBlocks;

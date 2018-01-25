@@ -5,6 +5,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockBush;
 import net.minecraft.block.BlockPortal;
 import net.minecraft.init.Blocks;
+import net.minecraftforge.fluids.BlockFluidClassic;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
 import static net.minecraftforge.fml.common.registry.GameRegistry.*;
@@ -14,6 +15,8 @@ public class GDBlocks {
 
     @ObjectHolder("gaia_portal")
     public static BlockPortal gaiaPortal;
+    @ObjectHolder("mineral_water")
+    public static BlockFluidClassic mineralWater;
 
     @ObjectHolder("heavy_soil")
     public static final Block heavySoil = Blocks.AIR;
