@@ -1,5 +1,8 @@
 package androsa.gaiadimension.block;
 
+import androsa.gaiadimension.GDConfig;
+import androsa.gaiadimension.GaiaTeleporter;
+import androsa.gaiadimension.TeleporterGaia;
 import androsa.gaiadimension.registry.GDBlocks;
 import androsa.gaiadimension.registry.GDTabs;
 import com.google.common.cache.LoadingCache;
@@ -14,14 +17,20 @@ import net.minecraft.block.state.BlockWorldState;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.block.state.pattern.BlockPattern;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityList;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.*;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.IBlockAccess;
+import net.minecraft.world.Teleporter;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldServer;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -159,7 +168,96 @@ public class GDGaiaPortal extends BlockPortal {
 
     public void onEntityCollidedWithBlock(World worldIn, BlockPos pos, IBlockState state, Entity entityIn) {
         if (!entityIn.isRiding() && !entityIn.isBeingRidden() && entityIn.isNonBoss()) {
-            entityIn.setPortal(pos);
+            if (entityIn instanceof EntityPlayerMP) {
+                EntityPlayerMP playerMP = (EntityPlayerMP) entityIn;
+
+                if (playerMP.timeUntilPortal > 0) {
+                    playerMP.timeUntilPortal = 10;
+                } else {
+                    //Let's go to Gaia. I need a catchphrase...
+                    if (playerMP.dimension != GDConfig.dimension.dimensionID) {
+                        if (!net.minecraftforge.common.ForgeHooks.onTravelToDimension(playerMP, GDConfig.dimension.dimensionID)) return;
+
+                        playerMP.mcServer.getPlayerList().transferPlayerToDimension(playerMP, GDConfig.dimension.dimensionID, TeleporterGaia.getTeleporterForDim(playerMP.mcServer, GDConfig.dimension.dimensionID));
+                        playerMP.setSpawnChunk(new BlockPos(playerMP), true, GDConfig.dimension.dimensionID);
+                    } else {
+                        if (!net.minecraftforge.common.ForgeHooks.onTravelToDimension(playerMP, 0)) return;
+                        playerMP.mcServer.getPlayerList().transferPlayerToDimension(playerMP, 0, TeleporterGaia.getTeleporterForDim(playerMP.mcServer, 0));
+                    }
+                }
+            } else {
+                if (entityIn.dimension != GDConfig.dimension.dimensionID) {
+                    changeDimension(entityIn, GDConfig.dimension.dimensionID);
+                } else {
+                    changeDimension(entityIn, 0);
+                }
+            }
+        }
+    }
+
+    private void changeDimension(Entity toTeleport, int dimensionIn) {
+        if (!toTeleport.world.isRemote && !toTeleport.isDead) {
+            if (!net.minecraftforge.common.ForgeHooks.onTravelToDimension(toTeleport, dimensionIn)) return;
+            toTeleport.world.profiler.startSection("changeDimension");
+            MinecraftServer minecraftserver = toTeleport.getServer();
+            int i = toTeleport.dimension;
+            WorldServer worldserver = minecraftserver.getWorld(i);
+            WorldServer worldserver1 = minecraftserver.getWorld(dimensionIn);
+            toTeleport.dimension = dimensionIn;
+
+
+            if (i == 1 && dimensionIn == 1) {
+                worldserver1 = minecraftserver.getWorld(0);
+                toTeleport.dimension = 0;
+            }
+
+            toTeleport.world.removeEntity(toTeleport);
+            toTeleport.isDead = false;
+            toTeleport.world.profiler.startSection("reposition");
+            BlockPos blockpos;
+
+            if (dimensionIn == 1) {
+                blockpos = worldserver1.getSpawnCoordinate();
+            } else {
+                double d0 = toTeleport.posX;
+                double d1 = toTeleport.posZ;
+                double d2 = 8.0D;
+
+                d0 = (double) MathHelper.clamp((int) d0, -29999872, 29999872);
+                d1 = (double) MathHelper.clamp((int) d1, -29999872, 29999872);
+                float f = toTeleport.rotationYaw;
+                toTeleport.setLocationAndAngles(d0, toTeleport.posY, d1, 90.0F, 0.0F);
+                Teleporter teleporter = TeleporterGaia.getTeleporterForDim(minecraftserver, dimensionIn);
+                teleporter.placeInExistingPortal(toTeleport, f);
+                blockpos = new BlockPos(toTeleport);
+            }
+
+            worldserver.updateEntityWithOptionalForce(toTeleport, false);
+            toTeleport.world.profiler.endStartSection("reloading");
+            Entity entity = EntityList.newEntity(toTeleport.getClass(), worldserver1);
+
+            if (entity != null) {
+                entity.copyDataFromOld(toTeleport);
+
+                if (i == 1 && dimensionIn == 1) {
+                    BlockPos blockpos1 = worldserver1.getTopSolidOrLiquidBlock(worldserver1.getSpawnPoint());
+                    entity.moveToBlockPosAndAngles(blockpos1, entity.rotationYaw, entity.rotationPitch);
+                } else {
+                    entity.setLocationAndAngles((double) blockpos.getX(), (double) blockpos.getY(), (double) blockpos.getZ(), entity.rotationYaw, entity.rotationPitch);
+                }
+
+                boolean flag = entity.forceSpawn;
+                entity.forceSpawn = true;
+                worldserver1.spawnEntity(entity);
+                entity.forceSpawn = flag;
+                worldserver1.updateEntityWithOptionalForce(entity, false);
+            }
+
+            toTeleport.isDead = true;
+            toTeleport.world.profiler.endSection();
+            worldserver.resetUpdateEntityTick();
+            worldserver1.resetUpdateEntityTick();
+            toTeleport.world.profiler.endSection();
         }
     }
 

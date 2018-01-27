@@ -10,6 +10,7 @@ import net.minecraft.block.state.pattern.BlockPattern;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
@@ -20,17 +21,23 @@ import net.minecraft.world.WorldServer;
 import java.util.Random;
 
 public class TeleporterGaia extends Teleporter {
+    public static TeleporterGaia getTeleporterForDim(MinecraftServer server, int dim) {
+        WorldServer ws = server.getWorld(dim);
 
-    private final WorldServer world;
-    private final Random random;
+        for (Teleporter t : ws.customTeleporters) {
+            if (t instanceof TeleporterGaia) {
+                return (TeleporterGaia) t;
+            }
+        }
+        TeleporterGaia tp = new TeleporterGaia(ws);
+        ws.customTeleporters.add(tp);
+        return tp;
+    }
 
     private final Long2ObjectMap<PortalPosition> destinationCoordinateCache = new Long2ObjectOpenHashMap(4096);
 
-    public TeleporterGaia(WorldServer world) {
+    private TeleporterGaia(WorldServer world) {
         super(world);
-
-        this.world = world;
-        this.random = new Random(world.getSeed());
     }
 
     @Override
