@@ -17,7 +17,8 @@ import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 @Mod(modid = GaiaDimension.MODID,
         name = "GaiaDimension",
@@ -36,22 +37,22 @@ public class GaiaDimension
     public static final Material matMineralWater = new MaterialLiquid(MapColor.CYAN_STAINED_HARDENED_CLAY);
     public static final Material matSuperhotMagma = new MaterialLiquid(MapColor.BLUE);
 
-    @SidedProxy(clientSide = "androsa.gaiadimension.proxy.ClientProxy", serverSide = "androsa.gaiadimension.proxy.ServerProxy")
-    public static CommonProxy proxy;
+    public static final Logger LOGGER = LogManager.getLogger(MODID);
 
     public static DimensionType dimType;
     public static int backupdimensionID = -258;
 
-    @Mod.EventHandler
-    public void serverLoad(FMLServerStartingEvent event) {
-        event.registerServerCommand(new GaiaTeleporter());
-    }
+    @SidedProxy(clientSide = "androsa.gaiadimension.proxy.ClientProxy", serverSide = "androsa.gaiadimension.proxy.CommonProxy")
+    public static CommonProxy proxy;
+
+
 
     @EventHandler
     public void preInit(FMLPreInitializationEvent event) {
 
-        DimensionManager.registerDimension(GDConfig.dimension.dimensionID, DimensionType.register("Gaia", "_gaia", GDConfig.dimension.dimensionID, WorldProviderGaia.class, false));
+        dimType = DimensionType.register("gaia", "_gaia", GDConfig.dimension.dimensionID, WorldProviderGaia.class, false);
 
+        proxy.doPreLoadRegistration();
     }
 
     @EventHandler
@@ -63,6 +64,12 @@ public class GaiaDimension
 
     @EventHandler
     public void postInit(FMLPostInitializationEvent event) {
-
+        if (!DimensionManager.isDimensionRegistered(GDConfig.dimension.dimensionID)) {
+            DimensionManager.registerDimension(GDConfig.dimension.dimensionID, GaiaDimension.dimType);
+        } else {
+            GaiaDimension.LOGGER.warn("The ID '{}' chosen in the config log is already in use. Falling back onto backup dimension ID");
+            DimensionManager.registerDimension(GaiaDimension.backupdimensionID, GaiaDimension.dimType);
+            GDConfig.dimension.dimensionID = GaiaDimension.backupdimensionID;
+        }
     }
 }

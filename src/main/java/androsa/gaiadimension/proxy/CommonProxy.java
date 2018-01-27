@@ -1,7 +1,11 @@
 package androsa.gaiadimension.proxy;
 
-public abstract class CommonProxy {
-    public abstract void preInit();
-    public abstract void init();
-    public abstract void postInit();
+import net.minecraft.world.World;
+
+public class CommonProxy {
+    public void doPreLoadRegistration(){;}
+    public void doOnLoadRegistration(){;}
+    public World getClientWorld() {
+        return null;
+    }
 }
