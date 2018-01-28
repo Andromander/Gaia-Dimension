@@ -44,7 +44,7 @@ public class WorldProviderGaia extends WorldProviderSurface {
     //TODO: Put the sun in the middle of the sky
     @Override
     public float calculateCelestialAngle(long par1, float par3) {
-        return 0.5f;
+        return 1.0f;
     }
 
     @Override
@@ -76,7 +76,7 @@ public class WorldProviderGaia extends WorldProviderSurface {
 
     @Override
     public int getAverageGroundLevel() {
-        return 126;
+        return 65;
     }
 
     @Override
@@ -93,7 +93,6 @@ public class WorldProviderGaia extends WorldProviderSurface {
     @Override
     @SideOnly(Side.CLIENT)
     public Vec3d getSkyColor(net.minecraft.entity.Entity cameraEntity, float partialTicks) {
-        //TODO: Yellow. Sky
         return new Vec3d(64 / 256.0, 64 / 256.0, 32 / 256.0);
     }
 

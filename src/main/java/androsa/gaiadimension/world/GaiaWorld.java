@@ -5,7 +5,7 @@ import net.minecraft.world.WorldServer;
 import net.minecraft.world.gen.IChunkGenerator;
 
 public class GaiaWorld {
-    public static int SEALEVEL = 127;
+    public static int SEALEVEL = 63;
     public static int CHUNKHEIGHT = 256;
     public static int MAXHEIGHT = 256;
 

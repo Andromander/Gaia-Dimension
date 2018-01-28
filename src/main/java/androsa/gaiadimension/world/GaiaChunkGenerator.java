@@ -1,6 +1,7 @@
 package androsa.gaiadimension.world;
 
 import androsa.gaiadimension.registry.GDFeature;
+import androsa.gaiadimension.registry.GDFluids;
 import jline.internal.Nullable;
 import net.minecraft.block.BlockFalling;
 import net.minecraft.entity.EnumCreatureType;
@@ -69,8 +70,6 @@ public class GaiaChunkGenerator implements IChunkGenerator {
         rand.setSeed(cx * 0x4f9939f508L + cz * 0x1ef1565bd5L);
         ChunkPrimer primer = new ChunkPrimer();
         setBlocksInChunk(cx, cz, primer);
-
-        stretchTerrain(primer);
 
         //Biome setup for terraingen
 
@@ -250,23 +249,6 @@ public class GaiaChunkGenerator implements IChunkGenerator {
         }
     }
 
-    //Because Gaia is higher than Overworld, got to extend height. Oof, I hope I know what I'm doing...
-    private void stretchTerrain(ChunkPrimer primer) {
-        double stretchHeight = GaiaWorld.MAXHEIGHT * 1.5;
-
-        for (int x = 0; x < 16; x++) {
-            for (int z = 0; z < 16; z++) {
-                for (int y = 0; y < GaiaWorld.CHUNKHEIGHT; y++) {
-                    if (y < stretchHeight) {
-                        primer.setBlockState(x, y, z, primer.getBlockState(x, y * 2 + 1, z));
-                    } else {
-                        primer.setBlockState(x, y, z, Blocks.AIR.getDefaultState());
-                    }
-                }
-            }
-        }
-    }
-
     public void replaceBiomeBlocks(int x, int z, ChunkPrimer primer, Biome[] biomesIn)
     {
         if (!net.minecraftforge.event.ForgeEventFactory.onReplaceBiomeBlocks(this, x, z, primer, this.world)) return;
@@ -306,7 +288,7 @@ public class GaiaChunkGenerator implements IChunkGenerator {
             int i1 = blockpos.getX() + rand.nextInt(16) + 8;
             int i2 = rand.nextInt(GaiaWorld.CHUNKHEIGHT);
             int i3 = blockpos.getZ() + rand.nextInt(16) + 8;
-            (new WorldGenLakes(Blocks.WATER)).generate(world, rand, new BlockPos(i1, i2, i3));
+            (new WorldGenLakes(GDFluids.mineralWaterBlock)).generate(world, rand, new BlockPos(i1, i2, i3));
         }
 
         if (!disableFeatures && rand.nextInt(16) == 0) {
@@ -314,7 +296,7 @@ public class GaiaChunkGenerator implements IChunkGenerator {
             int j2 = rand.nextInt(rand.nextInt(GaiaWorld.CHUNKHEIGHT - 8) +8);
             int j3 = blockpos.getZ() + rand.nextInt(16) + 8;
             if (j2 < GaiaWorld.SEALEVEL || rand.nextInt(10) == 0) {
-                (new WorldGenLakes(Blocks.LAVA)).generate(world, rand, new BlockPos(j1, j2, j3));
+                (new WorldGenLakes(GDFluids.superhotMagmaBlock)).generate(world, rand, new BlockPos(j1, j2, j3));
             }
         }
 
@@ -346,6 +328,7 @@ public class GaiaChunkGenerator implements IChunkGenerator {
     public BlockPos getNearestStructurePos(World worldIn, String structureName, BlockPos position, boolean findUnexplored) {
         return null;
     }
+
 
     @Override
     public void recreateStructures(Chunk chunk, int var1, int var2) {
