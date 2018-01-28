@@ -26,6 +26,7 @@ public final class GDBlocksRegister {
         blocks.register("special_gaia_log", (new GDSpecialLog()).setUnlocalizedName("special_gaia_log"));
         blocks.register("gaia_stone", (new GDGaiaStone()).setUnlocalizedName("gaia_stone"));
         blocks.register("gaia_stone_bricks", (new GDGaiaStoneBricks()).setUnlocalizedName("gaia_stone_bricks"));
+        blocks.register("volcanic_rock", (new GDVolcanicRock()).setUnlocalizedName("volcanic_rock"));
 
         blocks.register("hematite_block", (new GDHematiteBlock()).setUnlocalizedName("hematite_block"));
         blocks.register("labradorite_block", (new GDLabradoriteBlock()).setUnlocalizedName("laboradorite_block"));

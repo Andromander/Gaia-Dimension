@@ -10,8 +10,8 @@ public class GDVolcanicRock extends Block implements ModelRegisterCallback {
     public GDVolcanicRock() {
         super(Material.ROCK);
 
-        this.setHardness(100F);
-        this.setResistance(6000000.0F);
+        this.setHardness(50F);
+        this.setResistance(600.0F);
         this.setCreativeTab(GDTabs.tabBlock);
     }
 }

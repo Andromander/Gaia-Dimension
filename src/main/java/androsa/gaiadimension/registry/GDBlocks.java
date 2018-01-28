@@ -15,8 +15,6 @@ public class GDBlocks {
 
     @ObjectHolder("gaia_portal")
     public static BlockPortal gaiaPortal;
-    @ObjectHolder("mineral_water")
-    public static BlockFluidClassic mineralWater;
 
     @ObjectHolder("heavy_soil")
     public static final Block heavySoil = Blocks.AIR;
@@ -38,6 +36,8 @@ public class GDBlocks {
     public static final Block gaiaStone = Blocks.AIR;
     @ObjectHolder("gaia_stone_bricks")
     public static final Block gaiaStoneBricks = Blocks.AIR;
+    @ObjectHolder("volcanic_rock")
+    public static final Block volcanicRock = Blocks.AIR;
 
     @ObjectHolder("hematite_block")
     public static final Block hematiteBlock = Blocks.AIR;

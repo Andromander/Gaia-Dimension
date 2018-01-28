@@ -86,6 +86,7 @@ public class GDItemsRegister {
         items.registerSubItemBlock(GDBlocks.gaiaLogSpecial);
         items.registerBlock(GDBlocks.gaiaStone);
         items.registerSubItemBlock(GDBlocks.gaiaStoneBricks);
+        items.registerBlock(GDBlocks.volcanicRock);
 
         items.registerSubItemBlock(GDBlocks.opalBlock);
         items.registerBlock(GDBlocks.hematiteBlock);
