@@ -8,6 +8,8 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.registries.IForgeRegistry;
 
+import static androsa.gaiadimension.registry.GDBlocks.malachiteStairs;
+
 @Mod.EventBusSubscriber
 public final class GDBlocksRegister {
     @SubscribeEvent
@@ -26,6 +28,11 @@ public final class GDBlocksRegister {
         blocks.register("special_gaia_log", (new GDSpecialLog()).setUnlocalizedName("special_gaia_log"));
         blocks.register("gaia_stone", (new GDGaiaStone()).setUnlocalizedName("gaia_stone"));
         blocks.register("gaia_stone_bricks", (new GDGaiaStoneBricks()).setUnlocalizedName("gaia_stone_bricks"));
+        blocks.register("malachite_bricks", (new GDMalachiteBricks()).setUnlocalizedName("malachite_bricks"));
+        blocks.register("malachite_brick_slab", (new GDMalachiteBrickSlab(false)).setUnlocalizedName("malachite_brick_slab"));
+        blocks.register("double_malachite_brick_slab", (new GDMalachiteBrickSlab(true)).setUnlocalizedName("double_malachite_brick_slab"));
+        blocks.register("malachite_pillar", new GDMalachiteBrickPillar().setUnlocalizedName("malachite_pillar"));
+        blocks.register("malachite_stairs", (new GDMalachiteStairs(malachiteStairs.getDefaultState())).setUnlocalizedName("malachite_stairs"));
         blocks.register("volcanic_rock", (new GDVolcanicRock()).setUnlocalizedName("volcanic_rock"));
 
         blocks.register("hematite_block", (new GDHematiteBlock()).setUnlocalizedName("hematite_block"));

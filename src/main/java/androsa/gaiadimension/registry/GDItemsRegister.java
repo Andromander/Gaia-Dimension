@@ -5,6 +5,7 @@ import androsa.gaiadimension.item.*;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
+import net.minecraft.item.ItemSlab;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -86,6 +87,10 @@ public class GDItemsRegister {
         items.registerSubItemBlock(GDBlocks.gaiaLogSpecial);
         items.registerBlock(GDBlocks.gaiaStone);
         items.registerSubItemBlock(GDBlocks.gaiaStoneBricks);
+        items.registerSubItemBlock(GDBlocks.malachiteBricks);
+        items.register(new ItemSlab(GDBlocks.malachiteBrickSlab, GDBlocks.malachiteBrickSlab, GDBlocks.malachiteBrickSlabDouble));
+        items.registerBlock(GDBlocks.malachiteBrickPillar);
+        items.registerSubItemBlock(GDBlocks.malachiteStairs);
         items.registerBlock(GDBlocks.volcanicRock);
 
         items.registerSubItemBlock(GDBlocks.opalBlock);

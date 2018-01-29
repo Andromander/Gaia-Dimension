@@ -4,6 +4,7 @@ import androsa.gaiadimension.GaiaDimension;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockBush;
 import net.minecraft.block.BlockPortal;
+import net.minecraft.block.BlockSlab;
 import net.minecraft.init.Blocks;
 import net.minecraftforge.fluids.BlockFluidClassic;
 import net.minecraftforge.fml.common.registry.GameRegistry;
@@ -36,6 +37,16 @@ public class GDBlocks {
     public static final Block gaiaStone = Blocks.AIR;
     @ObjectHolder("gaia_stone_bricks")
     public static final Block gaiaStoneBricks = Blocks.AIR;
+    @ObjectHolder("malachite_bricks")
+    public static final Block malachiteBricks = Blocks.AIR;
+    @ObjectHolder("malachite_brick_slab")
+    public static BlockSlab malachiteBrickSlab;
+    @ObjectHolder("double_malachite_brick_slab")
+    public static BlockSlab malachiteBrickSlabDouble;
+    @ObjectHolder("malachite_pillar")
+    public static Block malachiteBrickPillar;
+    @ObjectHolder("malachite_stairs")
+    public static Block malachiteStairs;
     @ObjectHolder("volcanic_rock")
     public static final Block volcanicRock = Blocks.AIR;
 
