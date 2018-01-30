@@ -1,0 +1,14 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "cube_all"
+  },
+  "variants": {
+    "variant": {
+      "normal": { "textures": { "all": "gaiadimension:blocks/malachite_bricks"}},
+      "cracked": { "textures": { "all": "gaiadimension:blocks/malachite_cracked_bricks"}},
+      "crusted": { "textures": { "all": "gaiadimension:blocks/malachite_mossy_bricks"}},
+      "pulsing": { "textures": { "all": "gaiadimension:blocks/malachite_pulsing_bricks"}}
+    }
+  }
+}

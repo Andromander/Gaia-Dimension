@@ -1,10 +1,7 @@
 package androsa.gaiadimension.registry;
 
 import androsa.gaiadimension.GaiaDimension;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockBush;
-import net.minecraft.block.BlockPortal;
-import net.minecraft.block.BlockSlab;
+import net.minecraft.block.*;
 import net.minecraft.init.Blocks;
 import net.minecraftforge.fluids.BlockFluidClassic;
 import net.minecraftforge.fml.common.registry.GameRegistry;

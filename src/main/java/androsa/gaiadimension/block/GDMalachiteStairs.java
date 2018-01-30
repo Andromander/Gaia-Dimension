@@ -58,6 +58,5 @@ public class GDMalachiteStairs extends BlockStairs implements ModelRegisterCallb
     @Override
     public void registerModel() {
         ModelUtils.registerToState(this, 0, getDefaultState().withProperty(FACING, EnumFacing.SOUTH));
-        ModelUtils.registerToState(this, 8, getDefaultState().withProperty(FACING, EnumFacing.SOUTH).withProperty(VARIANT, MalachiteStairsVariant.PILLAR));
     }
 }

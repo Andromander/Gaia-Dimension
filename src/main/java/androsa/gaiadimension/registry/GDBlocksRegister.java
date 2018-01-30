@@ -8,6 +8,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.registries.IForgeRegistry;
 
+import static androsa.gaiadimension.registry.GDBlocks.malachiteBrickPillar;
 import static androsa.gaiadimension.registry.GDBlocks.malachiteStairs;
 
 @Mod.EventBusSubscriber
@@ -32,7 +33,8 @@ public final class GDBlocksRegister {
         blocks.register("malachite_brick_slab", (new GDMalachiteBrickSlab(false)).setUnlocalizedName("malachite_brick_slab"));
         blocks.register("double_malachite_brick_slab", (new GDMalachiteBrickSlab(true)).setUnlocalizedName("double_malachite_brick_slab"));
         blocks.register("malachite_pillar", new GDMalachiteBrickPillar().setUnlocalizedName("malachite_pillar"));
-        blocks.register("malachite_stairs", (new GDMalachiteStairs(malachiteStairs.getDefaultState())).setUnlocalizedName("malachite_stairs"));
+        Block malachitePillar = new GDMalachiteBrickPillar();
+        blocks.register("malachite_stairs", (new GDMalachiteStairs(malachitePillar.getDefaultState())).setUnlocalizedName("malachite_stairs"));
         blocks.register("volcanic_rock", (new GDVolcanicRock()).setUnlocalizedName("volcanic_rock"));
 
         blocks.register("hematite_block", (new GDHematiteBlock()).setUnlocalizedName("hematite_block"));
