@@ -24,12 +24,12 @@
       "inner_left": { "model": "gaiadimension:util/inner_stairs" }
     },
     "variant": {
-      "bricks": { "textures": {
+      "pillar": { "textures": {
         "end":  "gaiadimension:blocks/malachite_pillar_end",
         "half": "gaiadimension:blocks/malachite_pillar_end",
         "side": "gaiadimension:blocks/malachite_pillar_side"
       } },
-      "pillar": { "textures": {
+      "bricks": { "textures": {
         "end": "gaiadimension:blocks/malachite_bricks",
         "half": "gaiadimension:blocks/malachite_bricks",
         "side": "gaiadimension:blocks/malachite_bricks"
@@ -39,7 +39,7 @@
     "facing=east,half=bottom,shape=outer_left,variant=pillar":  { "y": 270 },
     "facing=east,half=top,shape=inner_left,variant=pillar":  { "x": 180, "y": 0 },
     "facing=east,half=top,shape=inner_right,variant=pillar":  { "x": 180, "y": 90 },
-    "facing=east,half=top,shape=outer_left,variant=pillar":  { "x": 180, "y": 90 },
+    "facing=east,half=top,shape=outer_left,variant=pillar":  { "x": 180, "y": 0 },
     "facing=east,half=top,shape=outer_right,variant=pillar": { "x": 180, "y": 90 },
     "facing=north,half=bottom,shape=inner_left,variant=pillar": { "y": 180 },
     "facing=north,half=bottom,shape=outer_left,variant=pillar": { "y": 180 },
@@ -67,7 +67,7 @@
     "facing=east,half=bottom,shape=outer_left,variant=bricks":  { "y": 270 },
     "facing=east,half=top,shape=inner_left,variant=bricks":  { "x": 180, "y": 0 },
     "facing=east,half=top,shape=inner_right,variant=bricks":  { "x": 180, "y": 90 },
-    "facing=east,half=top,shape=outer_left,variant=bricks":  { "x": 180, "y": 90 },
+    "facing=east,half=top,shape=outer_left,variant=bricks":  { "x": 180, "y": 0 },
     "facing=east,half=top,shape=outer_right,variant=bricks": { "x": 180, "y": 90 },
     "facing=north,half=bottom,shape=inner_left,variant=bricks": { "y": 180 },
     "facing=north,half=bottom,shape=outer_left,variant=bricks": { "y": 180 },
