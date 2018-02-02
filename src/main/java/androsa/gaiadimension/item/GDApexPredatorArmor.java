@@ -3,6 +3,8 @@ package androsa.gaiadimension.item;
 import androsa.gaiadimension.GaiaDimension;
 import androsa.gaiadimension.registry.GDTabs;
 import androsa.gaiadimension.registry.ModelRegisterCallback;
+import net.minecraft.client.resources.I18n;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.inventory.EntityEquipmentSlot;
@@ -10,6 +12,11 @@ import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
+import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
+import java.util.List;
 
 public class GDApexPredatorArmor extends ItemArmor implements ModelRegisterCallback {
 
@@ -23,6 +30,13 @@ public class GDApexPredatorArmor extends ItemArmor implements ModelRegisterCallb
     @Override
     public EnumRarity getRarity(ItemStack par1ItemStack) {
         return EnumRarity.RARE;
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void addInformation(ItemStack stack, World world, List<String> tooltips, ITooltipFlag flags) {
+        super.addInformation(stack, world, tooltips, flags);
+        tooltips.add(I18n.format("tigereye_armor.tooltip"));
     }
 
     @Override

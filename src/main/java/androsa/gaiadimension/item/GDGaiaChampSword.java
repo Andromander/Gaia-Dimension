@@ -3,6 +3,8 @@ package androsa.gaiadimension.item;
 import androsa.gaiadimension.registry.GDTabs;
 import androsa.gaiadimension.registry.ModelRegisterCallback;
 import net.minecraft.block.Block;
+import net.minecraft.client.resources.I18n;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
@@ -11,6 +13,12 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
 import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
+import javax.annotation.Nonnull;
+import java.util.List;
 
 public class GDGaiaChampSword extends ItemSword implements ModelRegisterCallback {
 
@@ -20,8 +28,16 @@ public class GDGaiaChampSword extends ItemSword implements ModelRegisterCallback
     }
 
     @Override
+    @Nonnull
     public EnumRarity getRarity(ItemStack stack) {
         return EnumRarity.EPIC;
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void addInformation(ItemStack stack, World world, List<String> tooltips, ITooltipFlag flags) {
+        super.addInformation(stack, world, tooltips, flags);
+        tooltips.add(I18n.format(getUnlocalizedName() + ".tooltip"));
     }
 
     //TODO: Make this sword super special with cool effects

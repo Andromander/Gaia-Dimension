@@ -1,6 +1,6 @@
 #PARSE_ESCAPES
 
-//blocks
+# blocks
 tile.heavy_soil.name=Heavy Soil
 tile.glitter_grass.name=Glitter Grass
 tile.gaia_leaves.0.name=Pink Agate Leaves
@@ -42,7 +42,7 @@ tile.gaia_stone_bricks.0.name=Gaia Stone Bricks
 tile.gaia_stone_bricks.1.name=Cracked Gaia Stone Bricks
 tile.gaia_stone_bricks.2.name=Mossy Gaia Stone Bricks
 
-//items
+# items
 item.pyrite.name=Pyrite
 item.hematite.name=Hematite
 item.cinnabar.name=Cinnabar
@@ -53,58 +53,82 @@ item.blue_opal.name=Blue Opal
 item.green_opal.name=Green Opal
 item.white_opal.name=White Opal
 
-//Tools
-////Swords
+# Tools
+## Swords
 item.gaia_champion_sword.name=Gaia Champion Sword
 
-//Armor
-////Malachite Guard
+# Armor
+## Malachite Guard
 item.malachite_guard_headgear.name=Malachite Headgear
 item.malachite_guard_brace.name=Malachite Brace
 item.malachite_guard_gear.name=Malachite Gear
 item.malachite_guard_boots.name=Malachite Boots
-////Apex Predator
+
+## Apex Predator
 item.apex_predator_hood.name=Tiger's Eye Hood
 item.apex_predator_jacket.name=Tiger's Eye Jacket
 item.apex_predator_trousers.name=Tiger's Eye Trousers
 item.apex_predator_boots.name=Tiger's Eye Boots
-////Spinel Princess
+
+## Spinel Princess
 item.spinel_princess_cowl.name=Spinel Cowl
 item.spinel_princess_cloak.name=Spinel Cloak
 item.spinel_princess_dress.name=Spinel Dress
 item.spinel_princess_heel.name=Spinel Heels
-////Zircon Prince
+
+## Zircon Prince
 item.zircon_prince_crown.name=Zircon Crown
 item.zircon_prince_chestpiece.name=Zircon Chestpiece
 item.zircon_prince_gear.name=Zircon Gear
 item.zircon_prince_boots.name=Zircon Boots
-////Corrupt Warrior
+
+## Corrupt Warrior
 item.corrupt_warrior_helm.name=Corrupted Gaia Helm
 item.corrupt_warrior_guard.name=Corrupted Gaia Guard
 item.corrupt_warrior_greaves.name=Corrupted Gaia Greaves
 item.corrupt_warrior_boots.name=Corrupted Gaia Boots
-///Gaia Duchess
+
+## Gaia Duchess
 item.gaia_duchess_helm.name=Bixbite Helm
 item.gaia_duchess_guard.name=Bixbite Guard
 item.gaia_duchess_greaves.name=Bixbite Greaves
 item.gaia_duchess_boots.name=Bixbite Greaves
-///Gaia Baron
+
+## Gaia Baron
 item.gaia_baron_mask.name=Tsvarovite Mask
 item.gaia_baron_tuxedo.name=Tsvarovite Tuxedo
 item.gaia_baron_pants.name=Tsvarovite Pants
 item.gaia_baron_shoes.name=Tsvarovite Shoes
-///Gaia Duke
+
+## Gaia Duke
 item.gaia_duke_helm.name=Larvikite Helm
 item.gaia_duke_guard.name=Larvikite Guard
 item.gaia_duke_greaves.name=Larvikite Greaves
 item.gaia_duke_boots.name=Larvikite Boots
-////Gaia Champion
+
+## Gaia Champion
 item.gaia_champion_helm.name=Gaia Champion Helm
 item.gaia_champion_guard.name=Gaia Champion Guard
 item.gaia_champion_greaves.name=Gaia Champion Greaves
 item.gaia_champion_boots.name=Gaia Champion Boots
 
-//Creative Tabs
+# addInformation
+## Tools
+item.gaia_champion_sword.tooltip=She bestowed it upon you
+
+## Armor
+### Malachite
+malachite_armor.tooltip=Sturdy, heavy, and eerily polished
+tigereye_armor.tooltip=Who knew something old was still this dangerous?
+spinel_armor.tooltip=It looks thin, but it's warm to wear
+zircon_armor.tooltip=The armor is humming, and it zaps when you touch it
+corrupt_armor.tooltip=It hurts to wear it, both mentally and physically
+bixbite_armor.tooltip=Nothing about it looks remotely like Gaia
+tsvarovite_armor.tooltip=So stylish, yet so mysterious
+larvikite_armor.tooltip=It looks like it went through some intense battles
+champion_armor.tooltip=Amazing! This armor feels so pure!
+
+# Creative Tabs
 itemGroup.gaia_blocks=Gaia Blocks
 itemGroup.gaia_items=Gaia Items
 itemGroup.gaia_tools=Gaia Tools
