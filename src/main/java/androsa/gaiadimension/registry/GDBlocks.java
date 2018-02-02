@@ -15,27 +15,27 @@ public class GDBlocks {
     public static BlockPortal gaiaPortal;
 
     @ObjectHolder("heavy_soil")
-    public static final Block heavySoil = Blocks.AIR;
+    public static Block heavySoil;
     @ObjectHolder("glitter_grass")
-    public static final Block glitterGrass = Blocks.AIR;
+    public static Block glitterGrass;
     @ObjectHolder("crystal_growth")
-    public static final Block crystalGrowth = Blocks.AIR;
+    public static Block crystalGrowth;
     @ObjectHolder("gaia_sapling")
-    public static Block gaiaSapling = Blocks.AIR;
+    public static Block gaiaSapling;
     @ObjectHolder("gaia_leaves")
-    public static final Block gaiaLeaves = Blocks.AIR;
+    public static Block gaiaLeaves;
     @ObjectHolder("special_gaia_leaves")
-    public static final Block gaiaLeavesSpecial = Blocks.AIR;
+    public static Block gaiaLeavesSpecial;
     @ObjectHolder("gaia_log")
-    public static final Block gaiaLog = Blocks.AIR;
+    public static Block gaiaLog;
     @ObjectHolder("special_gaia_log")
-    public static final Block gaiaLogSpecial = Blocks.AIR;
+    public static Block gaiaLogSpecial;
     @ObjectHolder("gaia_stone")
-    public static final Block gaiaStone = Blocks.AIR;
+    public static Block gaiaStone;
     @ObjectHolder("gaia_stone_bricks")
-    public static final Block gaiaStoneBricks = Blocks.AIR;
+    public static Block gaiaStoneBricks;
     @ObjectHolder("malachite_bricks")
-    public static final Block malachiteBricks = Blocks.AIR;
+    public static Block malachiteBricks;
     @ObjectHolder("malachite_brick_slab")
     public static BlockSlab malachiteBrickSlab;
     @ObjectHolder("double_malachite_brick_slab")
@@ -45,32 +45,34 @@ public class GDBlocks {
     @ObjectHolder("malachite_stairs")
     public static Block malachiteStairs;
     @ObjectHolder("volcanic_rock")
-    public static final Block volcanicRock = Blocks.AIR;
+    public static Block volcanicRock;
 
     @ObjectHolder("hematite_block")
-    public static final Block hematiteBlock = Blocks.AIR;
+    public static Block hematiteBlock;
     @ObjectHolder("labradorite_block")
-    public static final Block labradoriteBlock = Blocks.AIR;
+    public static Block labradoriteBlock;
     @ObjectHolder("pyrite_block")
-    public static final Block pyriteBlock = Blocks.AIR;
+    public static Block pyriteBlock;
     @ObjectHolder("opal_block")
-    public static final Block opalBlock = Blocks.AIR;
+    public static Block opalBlock;
     @ObjectHolder("moonstone_block")
-    public static final Block moonstoneBlock = Blocks.AIR;
+    public static Block moonstoneBlock;
     @ObjectHolder("cinnabar_block")
-    public static final Block cinnabarBlock = Blocks.AIR;
+    public static Block cinnabarBlock;
+    @ObjectHolder("tektite_block")
+    public static Block tektiteBlock;
 
     @ObjectHolder("hematite_ore")
-    public static final Block hematiteOre = Blocks.AIR;
+    public static Block hematiteOre;
     @ObjectHolder("pyrite_ore")
-    public static final Block pyriteOre = Blocks.AIR;
+    public static Block pyriteOre;
     @ObjectHolder("opal_ore")
-    public static final Block opalOre = Blocks.AIR;
+    public static Block opalOre;
     @ObjectHolder("labradorite_ore")
-    public static final Block labradoriteOre = Blocks.AIR;
+    public static Block labradoriteOre;
     @ObjectHolder("moonstone_ore")
-    public static final Block moonstoneOre = Blocks.AIR;
+    public static Block moonstoneOre;
     @ObjectHolder("cinnabar_ore")
-    public static final Block cinnabarOre = Blocks.AIR;
+    public static Block cinnabarOre;
 
 }

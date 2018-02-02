@@ -99,6 +99,7 @@ public class GDItemsRegister {
         items.registerBlock(GDBlocks.pyriteBlock);
         items.registerBlock(GDBlocks.moonstoneBlock);
         items.registerBlock(GDBlocks.cinnabarBlock);
+        items.registerBlock(GDBlocks.tektiteBlock);
 
         items.registerBlock(GDBlocks.hematiteOre);
         items.registerBlock(GDBlocks.pyriteOre);

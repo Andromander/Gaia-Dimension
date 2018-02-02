@@ -40,6 +40,7 @@ public final class GDBlocksRegister {
         blocks.register("pyrite_block", (new GDPyriteBlock()).setUnlocalizedName("pyrite_block"));
         blocks.register("moonstone_block", (new GDMoonstoneBlock()).setUnlocalizedName("moonstone_block"));
         blocks.register("cinnabar_block", (new GDCinnabarBlock()).setUnlocalizedName("cinnabar_block"));
+        blocks.register("tektite_block", (new GDTektiteBlock()).setUnlocalizedName("tektite_block"));
 
         blocks.register("hematite_ore", (new GDHematiteOre()).setUnlocalizedName("hematite_ore"));
         blocks.register("pyrite_ore", (new GDPyriteOre()).setUnlocalizedName("pyrite_ore"));
