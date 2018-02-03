@@ -2,6 +2,7 @@ language: java
 notifications:
   email: false
 if: tag IS blank
+
 before_install: chmod +x gradlew
 install: "./gradlew setupCIWorkspace"
 script: "./gradlew clean build"
@@ -14,13 +15,18 @@ cache:
   - "$HOME/.gradle/caches/"
   - "$HOME/.gradle/wrapper/"
 sudo: false
+
 before_deploy:
-- export RELEASE_FILE_LIST=$(ls ./build/libs/* | tr '\n' ', ')
-- echo "deploying $RELEASE_FILE_LIST to GitHub releases"
+  - export RELEASE_FILE_LIST=$(ls ./build/libs/* | tr '\n' ', ')
+  - echo "deploying $RELEASE_FILE_LIST to GitHub releases"
 deploy:
+  skip_cleanup: true
   provider: releases
   api_key:
     secure: MBF4aODfOzuwRWAbppp0q+r8DpZoZk59j2N3knUOBoNQwLUFwz0BGm2f+IOV36J2fO+XQRsyTMvRJt/mDkx1LpApttWfnYl2ZgPqPJ02+oiHOEYe1zyOX83ls4W1wsD7IjL126h+Kv++Hs6KasQEe/c0Ihwjo3dhjDnPKWU0+IM5McjSZ7X65DU7ZvkwklBxHpwH8QMRJSqjgunZzza1qyUHNjgQCDbHcheJnnZ0pQ7L/8T8fevNPdVesIrGR4r0wXhaD/Q8jYUZX3shuSKbIJXzqqGRQTmjfeQrirFcaB9YasNcp2NrsBlhVA9AhhM3le+gRRCYP4pwfA2lX/k/h7RaXbA+demdZnbKZZzctDREsg026mMe4fKhe9vM24/sPxr72dcXvSJqLTPw9X5zaXQubu3WKH5WXOPDxKoFsOCSi98zBOS26iEPrnOI+aAy+uO7nYqNytiCS5kVZwZtLu8CsGauGxKstoejVOUoZumzqT72yaGnSr4mQbyLDbUcmQ1XwQUP+20E5nzA9/Hcs5qwIKy30PMptL9p6SQvS1DFPtAiEoVn5GbQ8k6uC1+SVmPpuNmcymgMaaYmBESzYlg1bdx+nY3VMSSL5MJipk789pXPdrPww3Tzhnk/UtTdLhT7ZKiPaFcJUFacnUPmki0m3ZqYfnmRjWDyjEp1lcM=
-  file: ".travis.yml"
+  file_glob: true
+  file: "{$RELEASE_FILE_LIST}"
   on:
     repo: Andromander/Gaia-Dimension
+    branch: 1.12-WIP
+    tags: false
