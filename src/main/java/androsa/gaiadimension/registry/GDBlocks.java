@@ -30,6 +30,24 @@ public class GDBlocks {
     public static Block gaiaLog;
     @ObjectHolder("special_gaia_log")
     public static Block gaiaLogSpecial;
+
+    @ObjectHolder("pink_agate_planks")
+    public static Block pinkAgatePlanks;
+    @ObjectHolder("blue_agate_planks")
+    public static Block blueAgatePlanks;
+    @ObjectHolder("green_agate_planks")
+    public static Block greenAgatePlanks;
+    @ObjectHolder("purple_agate_planks")
+    public static Block purpleAgatePlanks;
+    @ObjectHolder("fossilized_planks")
+    public static Block fossilizedPlanks;
+    @ObjectHolder("corrupted_planks")
+    public static Block corruptedPlanks;
+    @ObjectHolder("crusty_planks")
+    public static Block crustyPlanks;
+    @ObjectHolder("heated_planks")
+    public static Block heatedPlanks;
+
     @ObjectHolder("gaia_stone")
     public static Block gaiaStone;
     @ObjectHolder("gaia_stone_bricks")

@@ -21,6 +21,7 @@ public class GDItemsRegister {
     public static void onRegisterItems(RegistryEvent.Register<Item> event) {
         ItemRegistryHelper items = new ItemRegistryHelper(event.getRegistry());
 
+        items.register("agate_stick", new GDItem().setUnlocalizedName("agate_stick"));
         items.register("hot_dust", new GDItem().setUnlocalizedName("hot_dust"));
         items.register("goldstone_dust", new GDItem().setUnlocalizedName("goldstone_dust"));
         items.register("fine_dust", new GDItem().setUnlocalizedName("fine_dust"));
@@ -85,6 +86,16 @@ public class GDItemsRegister {
         items.registerSubItemBlock(GDBlocks.gaiaLeavesSpecial);
         items.registerSubItemBlock(GDBlocks.gaiaLog);
         items.registerSubItemBlock(GDBlocks.gaiaLogSpecial);
+
+        items.registerBlock(GDBlocks.pinkAgatePlanks);
+        items.registerBlock(GDBlocks.blueAgatePlanks);
+        items.registerBlock(GDBlocks.greenAgatePlanks);
+        items.registerBlock(GDBlocks.purpleAgatePlanks);
+        items.registerBlock(GDBlocks.fossilizedPlanks);
+        items.registerBlock(GDBlocks.corruptedPlanks);
+        items.registerBlock(GDBlocks.crustyPlanks);
+        items.registerBlock(GDBlocks.heatedPlanks);
+
         items.registerBlock(GDBlocks.gaiaStone);
         items.registerSubItemBlock(GDBlocks.gaiaStoneBricks);
         items.registerSubItemBlock(GDBlocks.malachiteBricks);

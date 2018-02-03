@@ -24,6 +24,16 @@ public final class GDBlocksRegister {
         blocks.register("special_gaia_leaves", (new GDSpecialLeaves()).setUnlocalizedName("special_gaia_leaves"));
         blocks.register("gaia_log", (new GDGaiaLog()).setUnlocalizedName("gaia_log"));
         blocks.register("special_gaia_log", (new GDSpecialLog()).setUnlocalizedName("special_gaia_log"));
+
+        blocks.register("pink_agate_planks", (new GDAgatePlanks()).setUnlocalizedName("pink_agate_planks"));
+        blocks.register("blue_agate_planks", (new GDAgatePlanks()).setUnlocalizedName("blue_agate_planks"));
+        blocks.register("green_agate_planks", (new GDAgatePlanks()).setUnlocalizedName("green_agate_planks"));
+        blocks.register("purple_agate_planks", (new GDAgatePlanks()).setUnlocalizedName("purple_agate_planks"));
+        blocks.register("fossilized_planks", (new GDAgatePlanks()).setUnlocalizedName("fossilized_planks"));
+        blocks.register("corrupted_planks", (new GDAgatePlanks()).setUnlocalizedName("corrupted_planks"));
+        blocks.register("crusty_planks", (new GDAgatePlanks()).setUnlocalizedName("crusty_planks"));
+        blocks.register("heated_planks", (new GDAgatePlanks()).setLightLevel(5).setUnlocalizedName("heated_planks"));
+
         blocks.register("gaia_stone", (new GDGaiaStone()).setUnlocalizedName("gaia_stone"));
         blocks.register("gaia_stone_bricks", (new GDGaiaStoneBricks()).setUnlocalizedName("gaia_stone_bricks"));
         blocks.register("malachite_bricks", (new GDMalachiteBricks()).setUnlocalizedName("malachite_bricks"));

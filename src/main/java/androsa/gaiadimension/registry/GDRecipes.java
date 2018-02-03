@@ -6,12 +6,23 @@ import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.oredict.OreDictionary;
 
 @Mod.EventBusSubscriber
 public class GDRecipes {
 
     @SubscribeEvent
     public static void ragisterRecipes(RegistryEvent.Register<IRecipe> event) {
+
+        OreDictionary.registerOre("planksAgate", new ItemStack(GDBlocks.pinkAgatePlanks, 1, OreDictionary.WILDCARD_VALUE));
+        OreDictionary.registerOre("planksAgate", new ItemStack(GDBlocks.blueAgatePlanks, 1, OreDictionary.WILDCARD_VALUE));
+        OreDictionary.registerOre("planksAgate", new ItemStack(GDBlocks.greenAgatePlanks, 1, OreDictionary.WILDCARD_VALUE));
+        OreDictionary.registerOre("planksAgate", new ItemStack(GDBlocks.purpleAgatePlanks, 1, OreDictionary.WILDCARD_VALUE));
+        OreDictionary.registerOre("planksAgate", new ItemStack(GDBlocks.fossilizedPlanks, 1, OreDictionary.WILDCARD_VALUE));
+        OreDictionary.registerOre("planksAgate", new ItemStack(GDBlocks.corruptedPlanks, 1, OreDictionary.WILDCARD_VALUE));
+        OreDictionary.registerOre("planksAgate", new ItemStack(GDBlocks.crustyPlanks, 1, OreDictionary.WILDCARD_VALUE));
+        OreDictionary.registerOre("planksAgate", new ItemStack(GDBlocks.heatedPlanks, 1, OreDictionary.WILDCARD_VALUE));
+
 
         GameRegistry.addSmelting(new ItemStack(GDItems.fineDust, 1), new ItemStack(GDItems.cloudyShard, 1), 0.1F);
         GameRegistry.addSmelting(GDBlocks.hematiteOre, new ItemStack(GDItems.hematite, 1), 0.3F);
