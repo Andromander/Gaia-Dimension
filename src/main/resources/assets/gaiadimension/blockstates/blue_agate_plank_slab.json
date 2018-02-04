@@ -1,0 +1,13 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "half_slab",
+    "textures": {
+      "top": "gaiadimension:blocks/blue_agate_planks",
+      "side": "gaiadimension:blocks/blue_agate_planks",
+      "bottom": "gaiadimension:blocks/blue_agate_planks"
+    },
+    "uvlock": true
+  },
+  "variants": { "half": { "bottom": {}, "top": { "x": 180 } } }
+}

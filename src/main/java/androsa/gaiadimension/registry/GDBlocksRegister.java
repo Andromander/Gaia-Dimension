@@ -33,6 +33,22 @@ public final class GDBlocksRegister {
         blocks.register("corrupted_planks", (new GDAgatePlanks()).setUnlocalizedName("corrupted_planks"));
         blocks.register("crusty_planks", (new GDAgatePlanks()).setUnlocalizedName("crusty_planks"));
         blocks.register("heated_planks", (new GDAgatePlanks()).setLightLevel(5).setUnlocalizedName("heated_planks"));
+        blocks.register("pink_agate_plank_slab", (new GDAgatePlankSlab(false)).setUnlocalizedName("pink_agate_plank_slab"));
+        blocks.register("blue_agate_plank_slab", (new GDAgatePlankSlab(false)).setUnlocalizedName("blue_agate_plank_slab"));
+        blocks.register("green_agate_plank_slab", (new GDAgatePlankSlab(false)).setUnlocalizedName("green_agate_plank_slab"));
+        blocks.register("purple_agate_plank_slab", (new GDAgatePlankSlab(false)).setUnlocalizedName("purple_agate_plank_slab"));
+        blocks.register("fossilized_plank_slab", (new GDAgatePlankSlab(false)).setUnlocalizedName("fossilized_plank_slab"));
+        blocks.register("corrupted_plank_slab", (new GDAgatePlankSlab(false)).setUnlocalizedName("corrupted_plank_slab"));
+        blocks.register("crusty_plank_slab", (new GDAgatePlankSlab(false)).setUnlocalizedName("crusty_plank_slab"));
+        blocks.register("heated_plank_slab", (new GDAgatePlankSlab(false)).setLightLevel(5).setUnlocalizedName("heated_plank_slab"));
+        blocks.register("double_pink_agate_plank_slab", (new GDAgatePlankSlab(true)).setUnlocalizedName("pink_agate_plank_slab"));
+        blocks.register("double_blue_agate_planks_slab", (new GDAgatePlankSlab(false)).setUnlocalizedName("blue_agate_plank_slab"));
+        blocks.register("double_green_agate_planks_slab", (new GDAgatePlankSlab(false)).setUnlocalizedName("green_agate_plank_slab"));
+        blocks.register("double_purple_agate_planks_slab", (new GDAgatePlankSlab(false)).setUnlocalizedName("purple_agate_plank_slab"));
+        blocks.register("double_fossilized_planks_slab", (new GDAgatePlankSlab(false)).setUnlocalizedName("fossilized_plank_slab"));
+        blocks.register("double_corrupted_planks_slab", (new GDAgatePlankSlab(false)).setUnlocalizedName("corrupted_plank_slab"));
+        blocks.register("double_crusty_planks_slab", (new GDAgatePlankSlab(false)).setUnlocalizedName("crusty_plank_slab"));
+        blocks.register("double_heated_planks_slab", (new GDAgatePlankSlab(false)).setLightLevel(5).setUnlocalizedName("heated_plank_slab"));
 
         blocks.register("gaia_stone", (new GDGaiaStone()).setUnlocalizedName("gaia_stone"));
         blocks.register("gaia_stone_bricks", (new GDGaiaStoneBricks()).setUnlocalizedName("gaia_stone_bricks"));

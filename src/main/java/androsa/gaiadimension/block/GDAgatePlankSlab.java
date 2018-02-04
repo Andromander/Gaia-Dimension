@@ -6,6 +6,7 @@ import androsa.gaiadimension.registry.ModelRegisterCallback;
 import androsa.gaiadimension.registry.ModelUtils;
 import mcp.MethodsReturnNonnullByDefault;
 import net.minecraft.block.BlockSlab;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyEnum;
@@ -25,22 +26,23 @@ import java.util.Random;
 
 @MethodsReturnNonnullByDefault
 @ParametersAreNonnullByDefault
-public class GDMalachiteBrickSlab extends BlockSlab implements ModelRegisterCallback {
+public class GDAgatePlankSlab extends BlockSlab implements ModelRegisterCallback {
 
-    private static final PropertyEnum<MalachiteSlabVariant> VARIANT = PropertyEnum.create("variant", MalachiteSlabVariant.class);
+    private static final PropertyEnum<AgatePlankSlab> VARIANT = PropertyEnum.create("variant", AgatePlankSlab.class);
 
     private final boolean isDouble;
 
-    public GDMalachiteBrickSlab(boolean isDouble) {
-        super(Material.ROCK);
+    public GDAgatePlankSlab(boolean isDouble) {
+        super(Material.WOOD);
 
+        this.setSoundType(SoundType.STONE);
         this.isDouble = isDouble;
         this.setCreativeTab(GDTabs.tabBlock);
-        this.setHardness(20F);
-        this.setResistance(100F);
+        this.setHardness(1.5F);
+        this.setResistance(2.0F);
         this.setLightOpacity(isDouble ? 255 : 0);
 
-        IBlockState state = this.blockState.getBaseState().withProperty(VARIANT, MalachiteSlabVariant.NORMAL);
+        IBlockState state = this.blockState.getBaseState().withProperty(VARIANT, AgatePlankSlab.NORMAL);
 
         if (!this.isDouble()) state = state.withProperty(HALF, EnumBlockHalf.BOTTOM);
 
@@ -54,7 +56,7 @@ public class GDMalachiteBrickSlab extends BlockSlab implements ModelRegisterCall
 
     @Override
     public Comparable<?> getTypeForItem(ItemStack stack) {
-        return MalachiteSlabVariant.NORMAL;
+        return AgatePlankSlab.NORMAL;
     }
 
     @Override
@@ -64,7 +66,7 @@ public class GDMalachiteBrickSlab extends BlockSlab implements ModelRegisterCall
 
     @Override
     public Item getItemDropped(IBlockState state, Random rand, int fortune) {
-        return Item.getItemFromBlock(GDBlocks.malachiteBrickSlab);
+        return Item.getItemFromBlock(GDBlocks.pinkAgatePlankSlab);
     }
 
     @Override
@@ -99,11 +101,12 @@ public class GDMalachiteBrickSlab extends BlockSlab implements ModelRegisterCall
         }
     }
 
-    public enum MalachiteSlabVariant implements IStringSerializable {
+    public enum AgatePlankSlab implements IStringSerializable {
         NORMAL;
 
         public String getName() {
             return name().toLowerCase(Locale.ROOT);
         }
     }
+
 }

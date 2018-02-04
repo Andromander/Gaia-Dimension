@@ -95,6 +95,14 @@ public class GDItemsRegister {
         items.registerBlock(GDBlocks.corruptedPlanks);
         items.registerBlock(GDBlocks.crustyPlanks);
         items.registerBlock(GDBlocks.heatedPlanks);
+        items.register(new ItemSlab(GDBlocks.pinkAgatePlankSlab, GDBlocks.pinkAgatePlankSlab, GDBlocks.pinkAgatePlankSlabDouble));
+        items.register(new ItemSlab(GDBlocks.blueAgatePlankSlab, GDBlocks.blueAgatePlankSlab, GDBlocks.blueAgatePlankSlabDouble));
+        items.register(new ItemSlab(GDBlocks.greenAgatePlankSlab, GDBlocks.greenAgatePlankSlab, GDBlocks.greenAgatePlankSlabDouble));
+        items.register(new ItemSlab(GDBlocks.purpleAgatePlankSlab, GDBlocks.purpleAgatePlankSlab, GDBlocks.purpleAgatePlankSlabDouble));
+        items.register(new ItemSlab(GDBlocks.fossilizedPlankSlab, GDBlocks.fossilizedPlankSlab, GDBlocks.fossilizedPlankSlabDouble));
+        items.register(new ItemSlab(GDBlocks.corruptedPlankSlab, GDBlocks.corruptedPlankSlab, GDBlocks.corruptedPlankSlabDouble));
+        items.register(new ItemSlab(GDBlocks.crustyPlankSlab, GDBlocks.crustyPlankSlab, GDBlocks.crustyPlankSlabDouble));
+        items.register(new ItemSlab(GDBlocks.heatedPlankSlab, GDBlocks.heatedPlankSlab, GDBlocks.heatedPlankSlabDouble));
 
         items.registerBlock(GDBlocks.gaiaStone);
         items.registerSubItemBlock(GDBlocks.gaiaStoneBricks);

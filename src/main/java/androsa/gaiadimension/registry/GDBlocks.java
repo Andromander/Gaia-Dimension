@@ -47,6 +47,38 @@ public class GDBlocks {
     public static Block crustyPlanks;
     @ObjectHolder("heated_planks")
     public static Block heatedPlanks;
+    @ObjectHolder("pink_agate_plank_slab")
+    public static BlockSlab pinkAgatePlankSlab;
+    @ObjectHolder("blue_agate_plank_slab")
+    public static BlockSlab blueAgatePlankSlab;
+    @ObjectHolder("green_agate_plank_slab")
+    public static BlockSlab greenAgatePlankSlab;
+    @ObjectHolder("purple_agate_plank_slab")
+    public static BlockSlab purpleAgatePlankSlab;
+    @ObjectHolder("fossilized_plank_slab")
+    public static BlockSlab fossilizedPlankSlab;
+    @ObjectHolder("corrupted_plank_slab")
+    public static BlockSlab corruptedPlankSlab;
+    @ObjectHolder("crusty_plank_slab")
+    public static BlockSlab crustyPlankSlab;
+    @ObjectHolder("heated_plank_slab")
+    public static BlockSlab heatedPlankSlab;
+    @ObjectHolder("double_pink_agate_plank_slab")
+    public static BlockSlab pinkAgatePlankSlabDouble;
+    @ObjectHolder("double_blue_agate_plank_slab")
+    public static BlockSlab blueAgatePlankSlabDouble;
+    @ObjectHolder("double_green_agate_plank_slab")
+    public static BlockSlab greenAgatePlankSlabDouble;
+    @ObjectHolder("double_purple_agate_plank_slab")
+    public static BlockSlab purpleAgatePlankSlabDouble;
+    @ObjectHolder("double_fossilized_plank_slab")
+    public static BlockSlab fossilizedPlankSlabDouble;
+    @ObjectHolder("double_corrupted_plank_slab")
+    public static BlockSlab corruptedPlankSlabDouble;
+    @ObjectHolder("double_crusty_plank_slab")
+    public static BlockSlab crustyPlankSlabDouble;
+    @ObjectHolder("double_heated_plank_slab")
+    public static BlockSlab heatedPlankSlabDouble;
 
     @ObjectHolder("gaia_stone")
     public static Block gaiaStone;
