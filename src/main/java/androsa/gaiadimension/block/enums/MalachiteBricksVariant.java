@@ -10,7 +10,8 @@ public enum MalachiteBricksVariant implements IStringSerializable {
     CRUSTED,
     FLOOR,
     PULSING,
-    PULSEFLOOR;
+    PULSEFLOOR,
+    CHISELED;
 
     @Override
     public String getName() {

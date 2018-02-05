@@ -49,6 +49,15 @@ public final class GDBlocksRegister {
         blocks.register("double_corrupted_planks_slab", (new GDAgatePlankSlab(false)).setUnlocalizedName("corrupted_plank_slab"));
         blocks.register("double_crusty_planks_slab", (new GDAgatePlankSlab(false)).setUnlocalizedName("crusty_plank_slab"));
         blocks.register("double_heated_planks_slab", (new GDAgatePlankSlab(false)).setLightLevel(5).setUnlocalizedName("heated_plank_slab"));
+        Block agatePlanks = new GDAgatePlanks();
+        blocks.register("pink_agate_plank_stairs", (new GDAgatePlankStairs(agatePlanks.getDefaultState())).setUnlocalizedName("pink_agate_plank_stairs"));
+        blocks.register("blue_agate_plank_stairs", (new GDAgatePlankStairs(agatePlanks.getDefaultState())).setUnlocalizedName("blue_agate_plank_stairs"));
+        blocks.register("green_agate_plank_stairs", (new GDAgatePlankStairs(agatePlanks.getDefaultState())).setUnlocalizedName("green_agate_plank_stairs"));
+        blocks.register("purple_agate_plank_stairs", (new GDAgatePlankStairs(agatePlanks.getDefaultState())).setUnlocalizedName("purple_agate_plank_stairs"));
+        blocks.register("fossilized_plank_stairs", (new GDAgatePlankStairs(agatePlanks.getDefaultState())).setUnlocalizedName("fossilized_plank_stairs"));
+        blocks.register("corrupted_plank_stairs", (new GDAgatePlankStairs(agatePlanks.getDefaultState())).setUnlocalizedName("corrupted_plank_stairs"));
+        blocks.register("crusty_plank_stairs", (new GDAgatePlankStairs(agatePlanks.getDefaultState())).setUnlocalizedName("crusty_plank_stairs"));
+        blocks.register("heated_plank_stairs", (new GDAgatePlankStairs(agatePlanks.getDefaultState())).setUnlocalizedName("heated_plank_stairs"));
 
         blocks.register("gaia_stone", (new GDGaiaStone()).setUnlocalizedName("gaia_stone"));
         blocks.register("gaia_stone_bricks", (new GDGaiaStoneBricks()).setUnlocalizedName("gaia_stone_bricks"));

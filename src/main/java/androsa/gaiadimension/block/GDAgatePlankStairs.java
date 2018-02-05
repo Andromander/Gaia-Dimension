@@ -1,35 +1,39 @@
 package androsa.gaiadimension.block;
 
-import androsa.gaiadimension.block.enums.MalachiteStairsVariant;
 import androsa.gaiadimension.registry.GDTabs;
 import androsa.gaiadimension.registry.ModelRegisterCallback;
 import androsa.gaiadimension.registry.ModelUtils;
 import mcp.MethodsReturnNonnullByDefault;
 import net.minecraft.block.BlockStairs;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.NonNullList;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.ParametersAreNonnullByDefault;
+import java.util.Locale;
 
 @MethodsReturnNonnullByDefault
 @ParametersAreNonnullByDefault
-public class GDMalachitePillarStairs extends BlockStairs implements ModelRegisterCallback {
+public class GDAgatePlankStairs extends BlockStairs implements ModelRegisterCallback {
 
-    public static final PropertyEnum<MalachiteStairsVariant> VARIANT = PropertyEnum.create("variant", MalachiteStairsVariant.class);
+    public static final PropertyEnum<AgatePlankStairs> VARIANT = PropertyEnum.create("variant", AgatePlankStairs.class);
 
-    public GDMalachitePillarStairs(IBlockState state) {
+    public GDAgatePlankStairs(IBlockState state) {
         super(state);
-        this.setHardness(20);
-        this.setResistance(100);
+
+        this.setSoundType(SoundType.STONE);
+        this.setHardness(1.5F);
+        this.setResistance(2.0F);
         this.setCreativeTab(GDTabs.tabBlock);
-        this.setDefaultState(this.getDefaultState().withProperty(VARIANT, MalachiteStairsVariant.BRICKS));
+        this.setDefaultState(this.getDefaultState().withProperty(VARIANT, AgatePlankStairs.NORMAL));
     }
 
     @Override
@@ -39,30 +43,31 @@ public class GDMalachitePillarStairs extends BlockStairs implements ModelRegiste
 
     @Override
     public int getMetaFromState(IBlockState state) {
-        return super.getMetaFromState(state) + (state.getValue(VARIANT) == MalachiteStairsVariant.PILLAR ? 8 : 0);
+        return super.getMetaFromState(state);
     }
 
     @Override
     @Deprecated
     public IBlockState getStateFromMeta(int meta) {
-        return super.getStateFromMeta(meta & 0b0111).withProperty(VARIANT, (meta & 0b1000) == 8 ? MalachiteStairsVariant.PILLAR : MalachiteStairsVariant.BRICKS);
+        return super.getStateFromMeta(meta & 0b0111);
     }
 
     @Override
     public void getSubBlocks(CreativeTabs par2CreativeTabs, NonNullList<ItemStack> par3List) {
         par3List.add(new ItemStack(this, 1, 0));
-        par3List.add(new ItemStack(this, 1, 8));
-    }
-
-    @Override
-    public int damageDropped(IBlockState state) {
-        return state.getValue(VARIANT) == MalachiteStairsVariant.PILLAR ? 8 : 0;
     }
 
     @SideOnly(Side.CLIENT)
     @Override
     public void registerModel() {
         ModelUtils.registerToState(this, 0, getDefaultState().withProperty(FACING, EnumFacing.SOUTH));
-        ModelUtils.registerToState(this, 8, getDefaultState().withProperty(FACING, EnumFacing.SOUTH).withProperty(VARIANT, MalachiteStairsVariant.PILLAR));
+    }
+
+    public enum AgatePlankStairs implements IStringSerializable {
+        NORMAL;
+
+        public String getName() {
+            return name().toLowerCase(Locale.ROOT);
+        }
     }
 }

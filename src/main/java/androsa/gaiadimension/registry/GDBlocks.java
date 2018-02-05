@@ -79,6 +79,22 @@ public class GDBlocks {
     public static BlockSlab crustyPlankSlabDouble;
     @ObjectHolder("double_heated_plank_slab")
     public static BlockSlab heatedPlankSlabDouble;
+    @ObjectHolder("pink_agate_plank_stairs")
+    public static Block pinkAgatePlankStairs;
+    @ObjectHolder("blue_agate_plank_stairs")
+    public static Block blueAgatePlankStairs;
+    @ObjectHolder("green_agate_plank_stairs")
+    public static Block greenAgatePlankStairs;
+    @ObjectHolder("purple_agate_plank_stairs")
+    public static Block purpleAgatePlankStairs;
+    @ObjectHolder("fossilized_plank_stairs")
+    public static Block fossilizedPlankStairs;
+    @ObjectHolder("corrupted_plank_stairs")
+    public static Block corruptedPlankStairs;
+    @ObjectHolder("crusty_plank_stairs")
+    public static Block crustyPlankStairs;
+    @ObjectHolder("heated_plank_stairs")
+    public static Block heatedPlankStairs;
 
     @ObjectHolder("gaia_stone")
     public static Block gaiaStone;
