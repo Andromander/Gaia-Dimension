@@ -107,7 +107,7 @@ public class WorldProviderGaia extends WorldProviderSurface {
     public Biome getBiomeForCoords(BlockPos pos) {
         Biome biome = super.getBiomeForCoords(pos);
         if (biome == null) {
-            biome = GDBiomes.crystalPlains;
+            biome = GDBiomes.pinkAgateForest;
         }
         return biome;
     }

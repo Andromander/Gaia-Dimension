@@ -22,7 +22,9 @@ import org.apache.logging.log4j.Logger;
 
 @Mod(modid = GaiaDimension.MODID,
         name = "GaiaDimension",
-        version = GaiaDimension.VERSION)
+        version = GaiaDimension.VERSION,
+        dependencies = "required-after:forge@[14.23.1.2584,)"
+)
 
 public class GaiaDimension
 {

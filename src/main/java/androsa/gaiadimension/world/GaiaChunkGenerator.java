@@ -1,5 +1,6 @@
 package androsa.gaiadimension.world;
 
+import androsa.gaiadimension.registry.GDBlocks;
 import androsa.gaiadimension.registry.GDFeature;
 import androsa.gaiadimension.registry.GDFluids;
 import jline.internal.Nullable;
@@ -132,7 +133,7 @@ public class GaiaChunkGenerator implements IChunkGenerator {
                                 if ((d15 += d16) > 0.0D) {
                                     primer.setBlockState(k * 4 + i3, k2 * 8 + l2, j1 * 4 + k3, Blocks.STONE.getDefaultState());
                                 } else if (k2 * 8 + l2 < seaLevel) {
-                                    primer.setBlockState(k * 4 + i3, k2 * 8 + l2, j1 * 4 + k3, Blocks.WATER.getDefaultState());
+                                    primer.setBlockState(k * 4 + i3, k2 * 8 + l2, j1 * 4 + k3, GDFluids.mineralWaterBlock.getDefaultState());
                                 }
                             }
 
