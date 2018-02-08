@@ -108,8 +108,12 @@ public class GDBlocks {
     public static BlockSlab malachiteBrickSlabDouble;
     @ObjectHolder("malachite_pillar")
     public static Block malachiteBrickPillar;
-    @ObjectHolder("malachite_stairs")
-    public static Block malachiteStairs;
+    @ObjectHolder("malachite_brick_stairs")
+    public static Block malachiteBrickStairs;
+    @ObjectHolder("malachite_pillar_stairs")
+    public static Block malachitePillarStairs;
+    @ObjectHolder("malachite_floor_stairs")
+    public static Block malachiteFloorStairs;
     @ObjectHolder("volcanic_rock")
     public static Block volcanicRock;
 

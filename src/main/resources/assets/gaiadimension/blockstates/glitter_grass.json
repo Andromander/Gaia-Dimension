@@ -2,7 +2,10 @@
   "forge_marker": 1,
   "variants": {
     "normal": [
-      { "model": "gaiadimension:glitter_grass" }
+      { "model": "gaiadimension:glitter_grass" },
+      { "model": "gaiadimension:glitter_grass", "y": 90 },
+      { "model": "gaiadimension:glitter_grass", "y": 180 },
+      { "model": "gaiadimension:glitter_grass", "y": 270 }
     ]
   }
 }

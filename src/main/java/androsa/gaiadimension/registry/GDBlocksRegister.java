@@ -65,8 +65,12 @@ public final class GDBlocksRegister {
         blocks.register("malachite_brick_slab", (new GDMalachiteBrickSlab(false)).setUnlocalizedName("malachite_brick_slab"));
         blocks.register("double_malachite_brick_slab", (new GDMalachiteBrickSlab(true)).setUnlocalizedName("double_malachite_brick_slab"));
         blocks.register("malachite_pillar", new GDMalachiteBrickPillar().setUnlocalizedName("malachite_pillar"));
+        Block malachiteBricks = new GDMalachiteBricks();
+        blocks.register("malachite_brick_stairs", (new GDMalachiteStairs(malachiteBricks.getDefaultState())).setUnlocalizedName("malachite_brick_stairs"));
         Block malachitePillar = new GDMalachiteBrickPillar();
-        blocks.register("malachite_stairs", (new GDMalachitePillarStairs(malachitePillar.getDefaultState())).setUnlocalizedName("malachite_stairs"));
+        blocks.register("malachite_pillar_stairs", (new GDMalachiteStairs(malachitePillar.getDefaultState())).setUnlocalizedName("malachite_pillar_stairs"));
+        Block malachiteFloor = new GDMalachiteBricks();
+        blocks.register("malachite_floor_stairs", (new GDMalachiteStairs(malachiteFloor.getDefaultState())).setUnlocalizedName("malachite_floor_stairs"));
         blocks.register("volcanic_rock", (new GDVolcanicRock()).setUnlocalizedName("volcanic_rock"));
 
         blocks.register("hematite_block", (new GDHematiteBlock()).setUnlocalizedName("hematite_block"));
