@@ -108,5 +108,5 @@ public class GDAgatePlankSlab extends BlockSlab implements ModelRegisterCallback
             return name().toLowerCase(Locale.ROOT);
         }
     }
-
 }
+

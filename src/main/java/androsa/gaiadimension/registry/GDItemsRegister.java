@@ -118,8 +118,11 @@ public class GDItemsRegister {
         items.register(new ItemSlab(GDBlocks.malachiteBrickSlab, GDBlocks.malachiteBrickSlab, GDBlocks.malachiteBrickSlabDouble));
         items.registerBlock(GDBlocks.malachiteBrickPillar);
         items.registerBlock(GDBlocks.malachiteBrickStairs);
+        items.registerBlock(GDBlocks.malachiteChiselStairs);
+        items.registerBlock(GDBlocks.malachitePulsingBrickStairs);
         items.registerBlock(GDBlocks.malachitePillarStairs);
         items.registerBlock(GDBlocks.malachiteFloorStairs);
+        items.registerBlock(GDBlocks.malachitePulsingFloorStairs);
         items.registerBlock(GDBlocks.volcanicRock);
 
         items.registerSubItemBlock(GDBlocks.opalBlock);

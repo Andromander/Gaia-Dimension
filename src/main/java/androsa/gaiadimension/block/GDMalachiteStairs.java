@@ -25,12 +25,23 @@ public class GDMalachiteStairs extends BlockStairs implements ModelRegisterCallb
 
     public static final PropertyEnum<MalachiteStairs> VARIANT = PropertyEnum.create("variant", MalachiteStairs.class);
 
-
     public GDMalachiteStairs(IBlockState state) {
         super(state);
+
+        this.setLightOpacity(255);
         this.setHardness(20);
         this.setResistance(100);
         this.setCreativeTab(GDTabs.tabBlock);
+    }
+
+    @Override
+    public boolean isOpaqueCube(IBlockState state) {
+        return false;
+    }
+
+    @Override
+    public boolean isFullCube(IBlockState state) {
+        return false;
     }
 
     @Override
