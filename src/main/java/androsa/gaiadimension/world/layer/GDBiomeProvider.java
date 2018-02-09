@@ -13,10 +13,10 @@ public class GDBiomeProvider extends BiomeProvider {
         //Do not spawn in Volcanic, Goldstone or "Sacred" biomes
         getBiomesToSpawnIn().clear();
         getBiomesToSpawnIn().add(GDBiomes.pinkAgateForest);
-        getBiomesToSpawnIn().add(GDBiomes.blueAgateForest);
-        getBiomesToSpawnIn().add(GDBiomes.greenAgateForest);
-        getBiomesToSpawnIn().add(GDBiomes.purpleAgateForest);
-        getBiomesToSpawnIn().add(GDBiomes.crystalPlains);
+      //  getBiomesToSpawnIn().add(GDBiomes.blueAgateForest);
+      //  getBiomesToSpawnIn().add(GDBiomes.greenAgateForest);
+      //  getBiomesToSpawnIn().add(GDBiomes.purpleAgateForest);
+      //  getBiomesToSpawnIn().add(GDBiomes.crystalPlains);
 
         makeLayers(world.getSeed());
     }
