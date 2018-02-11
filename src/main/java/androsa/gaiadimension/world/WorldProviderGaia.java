@@ -34,14 +34,13 @@ public class WorldProviderGaia extends WorldProviderSurface {
         }
         float red = 1.0F;
         float green = 0.85F;
-        float blue = 0.75F;
-        red *= bright * 0.94 + 0.06F;
-        green *= bright * 0.91 + 0.09F;
+        float blue = 0.25F;
+        red *= bright * 0.94F + 0.06F;
+        green *= bright * 0.91F + 0.09F;
         blue += bright * 0.94F + 0.06F;
         return new Vec3d(red, green, blue);
     }
 
-    //TODO: Put the sun in the middle of the sky
     @Override
     public float calculateCelestialAngle(long par1, float par3) {
         return 1.0f;
@@ -76,7 +75,7 @@ public class WorldProviderGaia extends WorldProviderSurface {
 
     @Override
     public int getAverageGroundLevel() {
-        return 65;
+        return 63;
     }
 
     @Override
@@ -84,7 +83,6 @@ public class WorldProviderGaia extends WorldProviderSurface {
         return world.getWorldInfo().isInitialized();
     }
 
-    //TODO: Permanent Daytime in Gaia?
     @Override
     public boolean isDaytime() {
         return true;
@@ -93,14 +91,7 @@ public class WorldProviderGaia extends WorldProviderSurface {
     @Override
     @SideOnly(Side.CLIENT)
     public Vec3d getSkyColor(net.minecraft.entity.Entity cameraEntity, float partialTicks) {
-        return new Vec3d(64 / 256.0, 64 / 256.0, 32 / 256.0);
-    }
-
-    //I mean, there's not likely any stars, but oh well...
-    @Override
-    @SideOnly(Side.CLIENT)
-    public float getStarBrightness(float par1) {
-        return 0.5F;
+        return new Vec3d(198 / 256.0, 157 / 256.0, 88 / 256.0);
     }
 
     @Override

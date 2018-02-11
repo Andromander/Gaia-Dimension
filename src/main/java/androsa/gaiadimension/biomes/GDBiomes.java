@@ -26,6 +26,8 @@ public class GDBiomes {
     public static final Biome mineralRiver;
 
     //Shut it, IntelliJ!
+    //Though, now that I think about it, nulling them turns them into an Ocean...
+    //Remember kids: always do something about nulls!
     static {
         pinkAgateForest = null;
         blueAgateForest = null;

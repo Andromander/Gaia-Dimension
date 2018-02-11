@@ -9,12 +9,7 @@ public class GDPinkAgateForest extends GDBiomeBase {
     public GDPinkAgateForest(Biome.BiomeProperties props) {
         super(props);
 
-        this.topBlock = GDBlocks.glitterGrass.getDefaultState();
-        this.fillerBlock = GDBlocks.heavySoil.getDefaultState();
-    }
-
-    @Override
-    public IBlockState getStoneReplacementState() {
-        return GDBlocks.gaiaStone.getDefaultState();
+        topBlock = GDBlocks.glitterGrass.getDefaultState();
+        fillerBlock = GDBlocks.heavySoil.getDefaultState();
     }
 }

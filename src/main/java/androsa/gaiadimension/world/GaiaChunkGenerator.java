@@ -1,6 +1,5 @@
 package androsa.gaiadimension.world;
 
-import androsa.gaiadimension.registry.GDBlocks;
 import androsa.gaiadimension.registry.GDFeature;
 import androsa.gaiadimension.registry.GDFluids;
 import jline.internal.Nullable;

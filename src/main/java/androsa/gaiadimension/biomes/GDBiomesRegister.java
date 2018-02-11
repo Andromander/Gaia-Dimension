@@ -24,7 +24,7 @@ public final class GDBiomesRegister {
                         new BiomeProperties("Pink Agate Forest")
                                 .setTemperature(0.66F)
                                 .setRainfall(0)
-                                .setHeightVariation(0.2F)
+                                .setHeightVariation(0.1F)
                 ),
                 Type.FOREST
         );
