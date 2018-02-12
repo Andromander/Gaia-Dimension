@@ -27,6 +27,18 @@ public class GDItemsRegister {
         items.register("fine_dust", new GDItem().setUnlocalizedName("fine_dust"));
         items.register("cloudy_shard", new GDItem().setUnlocalizedName("cloudy_shard"));
 
+        items.register("hematite_powder", new GDGroundGem().setUnlocalizedName("hematite_powder"));
+        items.register("pyrite_powder", new GDGroundGem().setUnlocalizedName("pyrite_powder"));
+        items.register("labradorite_powder", new GDGroundGem().setUnlocalizedName("labradorite_powder"));
+        items.register("moonstone_powder", new GDGroundGem().setUnlocalizedName("moonstone_powder"));
+        items.register("cinnabar_powder", new GDGroundGem().setUnlocalizedName("cinnabar_powder"));
+        items.register("red_opal_powder", new GDGroundGem().setUnlocalizedName("red_opal_powder"));
+        items.register("blue_opal_powder", new GDGroundGem().setUnlocalizedName("blue_opal_powder"));
+        items.register("green_opal_powder", new GDGroundGem().setUnlocalizedName("green_opal_powder"));
+        items.register("white_opal_grit", new GDGroundGem().setUnlocalizedName("white_opal_grit"));
+
+        items.register("property_dust", new GDPropertyDust().setUnlocalizedName("property_mix"));
+
         items.register("hematite", new GDItem().setUnlocalizedName("hematite"));
         items.register("pyrite", new GDItem().setUnlocalizedName("pyrite"));
         items.register("labradorite", new GDItem().setUnlocalizedName("laboradorite"));

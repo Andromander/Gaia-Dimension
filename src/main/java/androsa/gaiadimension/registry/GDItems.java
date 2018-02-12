@@ -23,6 +23,8 @@ public class GDItems {
 
     public static Item.ToolMaterial TOOL_GAIA_CHAMP = EnumHelper.addToolMaterial("GAIA_CHAMP", 4, -1, 8.0F, 16.0F, 25);
 
+    @ObjectHolder("property_dust")
+    public static final Item propertyDust;
     @ObjectHolder("agate_stick")
     public static final Item agateStick;
     @ObjectHolder("hot_dust")
@@ -33,6 +35,25 @@ public class GDItems {
     public static final Item fineDust;
     @ObjectHolder("cloudy_shard")
     public static final Item cloudyShard;
+
+    @ObjectHolder("hematite_powder")
+    public static final Item hematitePowder;
+    @ObjectHolder("pyrite_powder")
+    public static final Item pyritePowder;
+    @ObjectHolder("labradorite_powder")
+    public static final Item labradoritePowder;
+    @ObjectHolder("moonstone_powder")
+    public static final Item moonstonePowder;
+    @ObjectHolder("cinnabar_powder")
+    public static final Item cinnabarPowder;
+    @ObjectHolder("red_opal_powder")
+    public static final Item redOpalPowder;
+    @ObjectHolder("blue_opal_powder")
+    public static final Item blueOpalPowder;
+    @ObjectHolder("green_opal_powder")
+    public static final Item greenOpalPowder;
+    @ObjectHolder("white_opal_grit")
+    public static final Item whiteOpalGrit;
 
     @ObjectHolder("hematite")
     public static final Item hematite;
@@ -135,6 +156,18 @@ public class GDItems {
         goldstoneDust = null;
         fineDust = null;
         cloudyShard = null;
+
+        hematitePowder = null;
+        pyritePowder = null;
+        labradoritePowder = null;
+        moonstonePowder = null;
+        cinnabarPowder = null;
+        redOpalPowder = null;
+        blueOpalPowder = null;
+        greenOpalPowder = null;
+        whiteOpalGrit = null;
+
+        propertyDust = null;
 
         hematite = null;
         pyrite = null;

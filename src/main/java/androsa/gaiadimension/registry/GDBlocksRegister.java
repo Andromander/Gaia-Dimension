@@ -40,7 +40,7 @@ public final class GDBlocksRegister {
         blocks.register("fossilized_plank_slab", (new GDAgatePlankSlab(false)).setUnlocalizedName("fossilized_plank_slab"));
         blocks.register("corrupted_plank_slab", (new GDAgatePlankSlab(false)).setUnlocalizedName("corrupted_plank_slab"));
         blocks.register("crusty_plank_slab", (new GDAgatePlankSlab(false)).setUnlocalizedName("crusty_plank_slab"));
-        blocks.register("heated_plank_slab", (new GDAgatePlankSlab(false)).setLightLevel(5).setUnlocalizedName("double_heated_plank_slab"));
+        blocks.register("heated_plank_slab", (new GDAgatePlankSlab(false)).setLightLevel(5).setUnlocalizedName("heated_plank_slab"));
         blocks.register("double_pink_agate_plank_slab", (new GDAgatePlankSlab(true)).setUnlocalizedName("double_pink_agate_plank_slab"));
         blocks.register("double_blue_agate_plank_slab", (new GDAgatePlankSlab(true)).setUnlocalizedName("double_blue_agate_plank_slab"));
         blocks.register("double_green_agate_plank_slab", (new GDAgatePlankSlab(true)).setUnlocalizedName("double_green_agate_plank_slab"));
