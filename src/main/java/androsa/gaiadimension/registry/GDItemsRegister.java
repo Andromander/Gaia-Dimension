@@ -86,6 +86,14 @@ public class GDItemsRegister {
         items.register("gaia_champion_greaves", new GDGaiaChampArmor(ARMOR_GAIA_CHAMP, LEGS).setUnlocalizedName("gaia_champion_greaves").setMaxStackSize(1));
         items.register("gaia_champion_boots", new GDGaiaChampArmor(ARMOR_GAIA_CHAMP, FEET).setUnlocalizedName("gaia_champion_boots").setMaxStackSize(1));
 
+        items.register("malachite_guard_sword", new GDMalachiteGuardSword(TOOL_MALACHITE).setUnlocalizedName("malachite_guard_baton").setMaxStackSize(1));
+        items.register("apex_predator_sword", new GDApexPredatorSword(TOOL_TIGER_EYE).setUnlocalizedName("apex_predator_mace").setMaxStackSize(1));
+        items.register("spinel_princess_sword", new GDSpinelPrincessSword(TOOL_SPINEL).setUnlocalizedName("spinel_princess_flamberge").setMaxStackSize(1));
+        items.register("zircon_prince_sword", new GDZirconPrinceSword(TOOL_ZIRCON).setUnlocalizedName("zircon_prince_razor").setMaxStackSize(1));
+        items.register("corrupt_warrior_sword", new GDCorruptWarriorSword(TOOL_CORRUPT).setUnlocalizedName("corrupt_warrior_sword").setMaxStackSize(1));
+        items.register("gaia_duchess_sword", new GDGaiaDuchessSword(TOOL_BIXBITE).setUnlocalizedName("gaia_duchess_khopesh").setMaxStackSize(1));
+        items.register("gaia_baron_sword", new GDGaiaBaronSword(TOOL_TSVAROVITE).setUnlocalizedName("gaia_baron_dagger").setMaxStackSize(1));
+        items.register("gaia_duke_sword", new GDGaiaDukeSword(TOOL_LARVIKITE).setUnlocalizedName("gaia_duke_blade").setMaxStackSize(1));
         items.register("gaia_champion_sword", new GDGaiaChampSword(TOOL_GAIA_CHAMP).setUnlocalizedName("gaia_champion_sword").setMaxStackSize(1));
 
         items.registerSubItemBlock(GDBlocks.gaiaPortal);

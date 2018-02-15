@@ -23,6 +23,8 @@ public class GDBiomeBase extends Biome {
 
     public GDBiomeBase(BiomeProperties props) {
         super(props);
+        topBlock = GDBlocks.glitterGrass.getDefaultState();
+        fillerBlock = GDBlocks.heavySoil.getDefaultState();
 
         undergroundMonsterList = new ArrayList<SpawnListEntry>();
 
@@ -33,10 +35,10 @@ public class GDBiomeBase extends Biome {
         undergroundMonsterList.add(new SpawnListEntry(EntitySlime.class, 10, 4, 4));
         undergroundMonsterList.add(new SpawnListEntry(EntityEnderman.class, 1, 1, 4));
 
-        getGDBiomeDecorator().setTreesPerChunk(5);
-        getGDBiomeDecorator().setGrassPerChunk(2);
+        //getGDBiomeDecorator().setTreesPerChunk(5);
+       // getGDBiomeDecorator().setGrassPerChunk(2);
     }
-
+/*
     @Override
     public BiomeDecorator createBiomeDecorator() {
         return new GDBiomeDecorator();
@@ -45,7 +47,7 @@ public class GDBiomeBase extends Biome {
     protected GDBiomeDecorator getGDBiomeDecorator() {
         return (GDBiomeDecorator) this.decorator;
     }
-
+*/
     @Override
     public void genTerrainBlocks(World world, Random rand, ChunkPrimer primer, int x, int z, double noiseVal) {
         this.genGaiaBiomeTerrain(world, rand, primer, x, z, noiseVal);
@@ -70,11 +72,11 @@ public class GDBiomeBase extends Biome {
                 if (iblockstate2.getMaterial() == Material.AIR) {
                     j = -1;
                 }
-                else if (iblockstate2.getBlock() == Blocks.STONE) {
+                else if (iblockstate2.getBlock() == GDBlocks.gaiaStone.getDefaultState()) {
                     if (j == -1) {
                         if (k <= 0) {
-                            iblockstate = AIR;
-                            iblockstate1 = STONE;
+                            iblockstate = null;
+                            iblockstate1 = GDBlocks.gaiaStone.getDefaultState();
                         } else if (j1 >= i - 4 && j1 <= i + 1) {
                             iblockstate = this.topBlock;
                             iblockstate1 = this.fillerBlock;
@@ -94,8 +96,8 @@ public class GDBiomeBase extends Biome {
                             chunkPrimerIn.setBlockState(i1, j1, l, iblockstate);
                         }
                         else if (j1 < i - 7 - k) {
-                            iblockstate = AIR;
-                            iblockstate1 = STONE;
+                            iblockstate = null;
+                            iblockstate1 = GDBlocks.gaiaStone.getDefaultState();
                             chunkPrimerIn.setBlockState(i1, j1, l, GRAVEL);
                         }
                         else {
@@ -114,15 +116,6 @@ public class GDBiomeBase extends Biome {
                 }
             }
         }
-    }
-
-
-    public IBlockState getStoneReplacementState() {
-        return null;
-    }
-
-    public IBlockState getGrassReplacementState() {
-        return null;
     }
 
     public List<SpawnListEntry> getUndergroundMonsterList() {

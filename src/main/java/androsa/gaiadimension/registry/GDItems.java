@@ -21,6 +21,14 @@ public class GDItems {
     public static ItemArmor.ArmorMaterial ARMOR_LARVIKITE = EnumHelper.addArmorMaterial("LARVAKITE", "gaia_duke", 10240, new int[]{3, 6, 8, 3}, 20, SoundEvents.ITEM_ARMOR_EQUIP_GOLD, 3.0F);
     public static ItemArmor.ArmorMaterial ARMOR_GAIA_CHAMP = EnumHelper.addArmorMaterial("GAIA_CHAMP", "gaia_champion", -1, new int[]{4, 7, 9, 4}, 30, SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, 4.0F);
 
+    public static Item.ToolMaterial TOOL_MALACHITE = EnumHelper.addToolMaterial("MALACHITE", 3, 5120, 6.0F, 4.0F, 10);
+    public static Item.ToolMaterial TOOL_TIGER_EYE = EnumHelper.addToolMaterial("TIGER_EYE", 3, 4096, 6.0F, 5.0F, 10);
+    public static Item.ToolMaterial TOOL_SPINEL = EnumHelper.addToolMaterial("SPINEL", 3, 5120, 6.0F, 4.0F, 15);
+    public static Item.ToolMaterial TOOL_ZIRCON = EnumHelper.addToolMaterial("ZIRCON", 3, 6144, 6.0F, 5.0F, 15);
+    public static Item.ToolMaterial TOOL_CORRUPT = EnumHelper.addToolMaterial("CORRUPT", 4, -1, 8.0F, 21.0F, 25);
+    public static Item.ToolMaterial TOOL_BIXBITE = EnumHelper.addToolMaterial("BIXBITE", 3,8192, 6.0F, 1.5F, 20);
+    public static Item.ToolMaterial TOOL_TSVAROVITE = EnumHelper.addToolMaterial("TSVAROVITE", 3, 9216, 6.0F, 1.0F, 20);
+    public static Item.ToolMaterial TOOL_LARVIKITE = EnumHelper.addToolMaterial("LARVIKITE", 3, 10240, 6.0F, 5.0F, 20);
     public static Item.ToolMaterial TOOL_GAIA_CHAMP = EnumHelper.addToolMaterial("GAIA_CHAMP", 4, -1, 8.0F, 16.0F, 25);
 
     @ObjectHolder("property_dust")
@@ -147,6 +155,22 @@ public class GDItems {
     @ObjectHolder("gaia_champion_boots")
     public static final Item gaiaChampionBoots;
 
+    @ObjectHolder("malachite_guard_sword")
+    public static final Item malachiteGuardSword;
+    @ObjectHolder("apex_predator_sword")
+    public static final Item apexPredatorSword;
+    @ObjectHolder("spinel_princess_sword")
+    public static final Item spinelPrincessSword;
+    @ObjectHolder("zircon_prince_sword")
+    public static final Item zirconPrinceSword;
+    @ObjectHolder("corrupt_warrior_sword")
+    public static final Item corruptWarriorSword;
+    @ObjectHolder("gaia_duchess_sword")
+    public static final Item gaiaDuchessSword;
+    @ObjectHolder("gaia_baron_sword")
+    public static final Item gaiaBaronSword;
+    @ObjectHolder("gaia_duke_sword")
+    public static final Item gaiaDukeSword;
     @ObjectHolder("gaia_champion_sword")
     public static final Item gaiaChampionSword;
 
@@ -216,6 +240,14 @@ public class GDItems {
         gaiaChampionGreaves = null;
         gaiaChampionBoots = null;
 
+        malachiteGuardSword = null;
+        apexPredatorSword = null;
+        spinelPrincessSword = null;
+        zirconPrinceSword = null;
+        corruptWarriorSword = null;
+        gaiaDuchessSword = null;
+        gaiaBaronSword = null;
+        gaiaDukeSword = null;
         gaiaChampionSword = null;
     }
 

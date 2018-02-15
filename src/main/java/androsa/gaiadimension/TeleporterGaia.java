@@ -1,6 +1,5 @@
 package androsa.gaiadimension;
 
-import androsa.gaiadimension.block.GDGaiaPortal;
 import androsa.gaiadimension.registry.GDBlocks;
 import it.unimi.dsi.fastutil.longs.Long2ObjectMap;
 import it.unimi.dsi.fastutil.longs.Long2ObjectOpenHashMap;
@@ -17,8 +16,6 @@ import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.Teleporter;
 import net.minecraft.world.WorldServer;
-
-import java.util.Random;
 
 public class TeleporterGaia extends Teleporter {
     public static TeleporterGaia getTeleporterForDim(MinecraftServer server, int dim) {

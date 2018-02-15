@@ -11,11 +11,17 @@ import net.minecraft.client.renderer.block.statemap.StateMapperBase;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fluids.BlockFluidClassic;
 import net.minecraftforge.fluids.Fluid;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
+import javax.annotation.Nonnull;
 
 public class GDFluidBlock extends BlockFluidClassic implements SuperRegistry {
 
@@ -27,6 +33,40 @@ public class GDFluidBlock extends BlockFluidClassic implements SuperRegistry {
         setUnlocalizedName(name);
         setRegistryName(name);
         setCreativeTab(tab);
+        lightOpacity = 0;
+    }
+
+    @Override
+    public int getLightValue(@Nonnull IBlockState state, @Nonnull IBlockAccess world, @Nonnull BlockPos pos)
+    {
+        if (maxScaledLight == 0)
+        {
+            return super.getLightValue(state, world, pos);
+        }
+        int data = quantaPerBlock - state.getValue(LEVEL) - 1;
+        return (int) (data / quantaPerBlockFloat * maxScaledLight);
+    }
+
+    protected int getDepth(IBlockState state) {
+        return state.getMaterial() == this.blockMaterial ? ((Integer)state.getValue(LEVEL)).intValue() : -1;
+    }
+
+    protected int getRenderedDepth(IBlockState state)
+    {
+        int i = this.getDepth(state);
+        return i >= 8 ? 0 : i;
+    }
+
+    @SideOnly(Side.CLIENT)
+    public int getPackedLightmapCoords(IBlockState state, IBlockAccess source, BlockPos pos)
+    {
+        int i = source.getCombinedLight(pos, 0);
+        int j = source.getCombinedLight(pos.up(), 0);
+        int k = i & 255;
+        int l = j & 255;
+        int i1 = i >> 16 & 255;
+        int j1 = j >> 16 & 255;
+        return (k > l ? k : l) | (i1 > j1 ? i1 : j1) << 16;
     }
 
     public String getModelDir() {

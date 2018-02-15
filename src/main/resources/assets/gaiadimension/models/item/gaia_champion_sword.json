@@ -2,7 +2,5 @@
   "parent": "item/handheld",
   "textures": {
     "layer0": "gaiadimension:items/gaia_champion_sword"
-
   }
-
 }

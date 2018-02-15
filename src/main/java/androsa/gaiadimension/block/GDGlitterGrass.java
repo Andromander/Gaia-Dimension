@@ -1,6 +1,7 @@
 package androsa.gaiadimension.block;
 
 import androsa.gaiadimension.registry.GDBlocks;
+import androsa.gaiadimension.registry.GDFluids;
 import androsa.gaiadimension.registry.GDTabs;
 import androsa.gaiadimension.registry.ModelRegisterCallback;
 import net.minecraft.block.Block;
