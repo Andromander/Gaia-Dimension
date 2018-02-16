@@ -18,6 +18,8 @@ public class GDBlocks {
     public static Block heavySoil;
     @ObjectHolder("glitter_grass")
     public static Block glitterGrass;
+    @ObjectHolder("frail_glitter_block")
+    public static Block frailGlitterBlock;
     @ObjectHolder("crystal_growth")
     public static Block crystalGrowth;
     @ObjectHolder("gaia_sapling")

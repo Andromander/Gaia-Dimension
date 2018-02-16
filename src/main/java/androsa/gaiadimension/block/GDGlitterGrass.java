@@ -5,7 +5,6 @@ import androsa.gaiadimension.registry.GDFluids;
 import androsa.gaiadimension.registry.GDTabs;
 import androsa.gaiadimension.registry.ModelRegisterCallback;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockGrass;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -35,7 +34,7 @@ public class GDGlitterGrass extends Block implements ModelRegisterCallback {
     @Override
     public void updateTick(World world, BlockPos pos, IBlockState state, Random rand) {
         if (!world.isRemote)
-            if (world.getLightFromNeighbors(pos.up()) < 4 && world.getBlockState(pos.up()).getBlock().getLightOpacity(world.getBlockState(pos.up()), world, pos.up()) > 2)
+            if (world.getLightFromNeighbors(pos.up()) < 4 && world.getBlockState(pos.up()).getBlock().getLightOpacity(world.getBlockState(pos.up()), world, pos.up()) > 2 || world.getBlockState(pos.up()).getBlock() == GDFluids.mineralWaterBlock)
                 world.setBlockState(pos, GDBlocks.heavySoil.getDefaultState());
             else if (world.getLightFromNeighbors(pos.up()) >= 9)
                 for (int i = 0; i < 4; ++i) {
@@ -43,8 +42,8 @@ public class GDGlitterGrass extends Block implements ModelRegisterCallback {
                     Block block = world.getBlockState(blockpos.up()).getBlock();
                     IBlockState iblockstate = world.getBlockState(blockpos);
 
-                    if (iblockstate.getBlock() == GDBlocks.heavySoil && world.getLightFromNeighbors(blockpos.up()) >= 4 && block.getLightOpacity(world.getBlockState(blockpos.up()), world, blockpos.up()) <= 2)
-                        world.setBlockState(blockpos, GDBlocks.glitterGrass.getDefaultState());
+                 //   if (iblockstate.getBlock() == GDBlocks.heavySoil && world.getLightFromNeighbors(blockpos.up()) >= 4 && block.getLightOpacity(world.getBlockState(blockpos.up()), world, blockpos.up()) <= 2 && world.getBlockState(pos.up()).getBlock() != GDFluids.mineralWaterBlock)
+                //        world.setBlockState(blockpos, GDBlocks.glitterGrass.getDefaultState());
                 }
     }
 
