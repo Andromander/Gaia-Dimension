@@ -1,7 +1,6 @@
 package androsa.gaiadimension.biomes;
 
 import androsa.gaiadimension.registry.GDBlocks;
-import androsa.gaiadimension.registry.GDFluids;
 import androsa.gaiadimension.world.GaiaWorld;
 import net.minecraft.block.BlockSand;
 import net.minecraft.block.material.Material;
@@ -19,12 +18,13 @@ import java.util.List;
 import java.util.Random;
 
 public class GDBiomeBase extends Biome {
+
+    protected static final IBlockState STONE_GAIA = GDBlocks.gaiaStone.getDefaultState();
+    protected static final IBlockState GRAVEL_PLACE = GDBlocks.hematiteBlock.getDefaultState();
     protected List<SpawnListEntry> undergroundMonsterList;
 
     public GDBiomeBase(BiomeProperties props) {
         super(props);
-        topBlock = GDBlocks.glitterGrass.getDefaultState();
-        fillerBlock = GDBlocks.heavySoil.getDefaultState();
 
         undergroundMonsterList = new ArrayList<SpawnListEntry>();
 
@@ -35,10 +35,10 @@ public class GDBiomeBase extends Biome {
         undergroundMonsterList.add(new SpawnListEntry(EntitySlime.class, 10, 4, 4));
         undergroundMonsterList.add(new SpawnListEntry(EntityEnderman.class, 1, 1, 4));
 
-        //getGDBiomeDecorator().setTreesPerChunk(5);
-       // getGDBiomeDecorator().setGrassPerChunk(2);
+        getGDBiomeDecorator().setTreesPerChunk(5);
+        getGDBiomeDecorator().setGrassPerChunk(2);
     }
-/*
+
     @Override
     public BiomeDecorator createBiomeDecorator() {
         return new GDBiomeDecorator();
@@ -47,13 +47,13 @@ public class GDBiomeBase extends Biome {
     protected GDBiomeDecorator getGDBiomeDecorator() {
         return (GDBiomeDecorator) this.decorator;
     }
-*/
+
     @Override
     public void genTerrainBlocks(World world, Random rand, ChunkPrimer primer, int x, int z, double noiseVal) {
         this.genGaiaBiomeTerrain(world, rand, primer, x, z, noiseVal);
     }
 
-    protected void genGaiaBiomeTerrain(World worldIn, Random rand, ChunkPrimer chunkPrimerIn, int x, int z, double noiseVal) {
+    public final void genGaiaBiomeTerrain(World worldIn, Random rand, ChunkPrimer chunkPrimerIn, int x, int z, double noiseVal) {
         int i = GaiaWorld.SEALEVEL;
         IBlockState iblockstate = this.topBlock;
         IBlockState iblockstate1 = this.fillerBlock;
@@ -72,11 +72,11 @@ public class GDBiomeBase extends Biome {
                 if (iblockstate2.getMaterial() == Material.AIR) {
                     j = -1;
                 }
-                else if (iblockstate2.getBlock() == GDBlocks.gaiaStone.getDefaultState()) {
+                else if (iblockstate2.getBlock() == GDBlocks.gaiaStone) {
                     if (j == -1) {
                         if (k <= 0) {
-                            iblockstate = null;
-                            iblockstate1 = GDBlocks.gaiaStone.getDefaultState();
+                            iblockstate = AIR;
+                            iblockstate1 = STONE_GAIA;
                         } else if (j1 >= i - 4 && j1 <= i + 1) {
                             iblockstate = this.topBlock;
                             iblockstate1 = this.fillerBlock;
@@ -96,15 +96,15 @@ public class GDBiomeBase extends Biome {
                             chunkPrimerIn.setBlockState(i1, j1, l, iblockstate);
                         }
                         else if (j1 < i - 7 - k) {
-                            iblockstate = null;
-                            iblockstate1 = GDBlocks.gaiaStone.getDefaultState();
-                            chunkPrimerIn.setBlockState(i1, j1, l, GRAVEL);
+                            iblockstate = AIR;
+                            iblockstate1 = STONE_GAIA;
+                            chunkPrimerIn.setBlockState(i1, j1, l, GRAVEL_PLACE);
                         }
                         else {
                             chunkPrimerIn.setBlockState(i1, j1, l, iblockstate1);
                         }
                     }
-                    else if (j > 0) {
+/*                    else if (j > 0) {
                         --j;
                         chunkPrimerIn.setBlockState(i1, j1, l, iblockstate1);
 
@@ -113,7 +113,7 @@ public class GDBiomeBase extends Biome {
                             iblockstate1 = iblockstate1.getValue(BlockSand.VARIANT) == BlockSand.EnumType.RED_SAND ? RED_SANDSTONE : SANDSTONE;
                         }
                     }
-                }
+*/                }
             }
         }
     }

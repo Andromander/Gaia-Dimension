@@ -43,7 +43,7 @@ public class GaiaChunkGenerator implements IChunkGenerator {
     private double[] depthRegion;
 
     private final MapGenGDMajorFeature majorFeatureGenerator = new MapGenGDMajorFeature();
-    private final MapGenBase caveGenerator = new MapGenCaves();
+    private final GDGenCaves caveGenerator = new GDGenCaves();
 
     public GaiaChunkGenerator(World world, long l, boolean flag) {
         this.world = world;

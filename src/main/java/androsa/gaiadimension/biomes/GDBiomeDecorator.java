@@ -1,9 +1,7 @@
 package androsa.gaiadimension.biomes;
 
-import androsa.gaiadimension.registry.GDBlocks;
 import androsa.gaiadimension.registry.GDFeature;
 import androsa.gaiadimension.registry.GDFluids;
-import androsa.gaiadimension.world.GDGenerator;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
