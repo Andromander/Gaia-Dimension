@@ -1,6 +1,8 @@
 package androsa.gaiadimension.biomes;
 
+import androsa.gaiadimension.block.GDCrystalGrowth;
 import androsa.gaiadimension.registry.GDBlocks;
+import androsa.gaiadimension.world.GDGenCrystalGrowth;
 import androsa.gaiadimension.world.GaiaWorld;
 import net.minecraft.block.BlockSand;
 import net.minecraft.block.material.Material;
@@ -12,6 +14,8 @@ import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeDecorator;
 import net.minecraft.world.chunk.ChunkPrimer;
+import net.minecraft.world.gen.feature.WorldGenTallGrass;
+import net.minecraft.world.gen.feature.WorldGenerator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -98,7 +102,7 @@ public class GDBiomeBase extends Biome {
                         else if (j1 < i - 7 - k) {
                             iblockstate = AIR;
                             iblockstate1 = STONE_GAIA;
-                            chunkPrimerIn.setBlockState(i1, j1, l, GRAVEL_PLACE);
+                            chunkPrimerIn.setBlockState(i1, j1, l, GDBlocks.heavySoil.getDefaultState());
                         }
                         else {
                             chunkPrimerIn.setBlockState(i1, j1, l, iblockstate1);
