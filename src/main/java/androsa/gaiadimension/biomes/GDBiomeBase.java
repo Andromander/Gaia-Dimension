@@ -37,7 +37,7 @@ public class GDBiomeBase extends Biome {
         undergroundMonsterList.add(new SpawnListEntry(EntityZombie.class, 10, 4, 4));
         undergroundMonsterList.add(new SpawnListEntry(EntitySkeleton.class, 10, 4, 4));
         undergroundMonsterList.add(new SpawnListEntry(EntitySlime.class, 10, 4, 4));
-        undergroundMonsterList.add(new SpawnListEntry(EntityEnderman.class, 1, 1, 4));
+        undergroundMonsterList.add(new SpawnListEntry(EntityEnderman.class, 1, 1, 4)); //Keep this guy, though
 
         getGDBiomeDecorator().setTreesPerChunk(5);
         getGDBiomeDecorator().setGrassPerChunk(2);

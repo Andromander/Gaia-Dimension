@@ -1,11 +1,14 @@
 package androsa.gaiadimension.biomes;
 
+import androsa.gaiadimension.block.GDCrystalBloom;
 import androsa.gaiadimension.block.GDCrystalGrowth;
 import androsa.gaiadimension.registry.GDBlocks;
+import androsa.gaiadimension.world.GDGenCrystalBloom;
 import androsa.gaiadimension.world.GDGenCrystalGrowth;
 import androsa.gaiadimension.world.GDGenNoTrees;
 import androsa.gaiadimension.world.GDGenPinkAgateTree;
 import net.minecraft.block.BlockBush;
+import net.minecraft.block.BlockFlower;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -52,7 +55,16 @@ public class GDPinkAgateForest extends GDBiomeBase {
 
     @Override
     public WorldGenerator getRandomWorldGenForGrass(Random rand) {
-        return new GDGenCrystalGrowth(GDCrystalGrowth.CrystalGrowthVariant.PINK);
-    }
 
+        //TODO: Find a way to not generate poppies and dandelions
+        if (rand.nextInt(16) == 0) {
+            if (rand.nextInt(4) == 0) {
+                return new GDGenCrystalBloom(GDCrystalBloom.CrystalBloomVariant.OUZIUM);
+            } else {
+                return new GDGenCrystalBloom(GDCrystalBloom.CrystalBloomVariant.THISCUS);
+            }
+        } else {
+            return new GDGenCrystalGrowth(GDCrystalGrowth.CrystalGrowthVariant.PINK);
+        }
+    }
 }

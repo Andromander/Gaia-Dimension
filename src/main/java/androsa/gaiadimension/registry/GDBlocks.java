@@ -2,9 +2,6 @@ package androsa.gaiadimension.registry;
 
 import androsa.gaiadimension.GaiaDimension;
 import net.minecraft.block.*;
-import net.minecraft.init.Blocks;
-import net.minecraftforge.fluids.BlockFluidClassic;
-import net.minecraftforge.fml.common.registry.GameRegistry;
 
 import static net.minecraftforge.fml.common.registry.GameRegistry.*;
 
@@ -22,6 +19,8 @@ public class GDBlocks {
     public static Block frailGlitterBlock;
     @ObjectHolder("crystal_growth")
     public static Block crystalGrowth;
+    @ObjectHolder("crystal_bloom")
+    public static Block crystalBloom;
     @ObjectHolder("gaia_sapling")
     public static Block gaiaSapling;
     @ObjectHolder("gaia_leaves")

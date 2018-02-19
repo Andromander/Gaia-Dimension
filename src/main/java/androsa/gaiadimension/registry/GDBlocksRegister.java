@@ -20,6 +20,7 @@ public final class GDBlocksRegister {
         blocks.register("glitter_grass", (new GDGlitterGrass()).setUnlocalizedName("glitter_grass"));
         blocks.register("frail_glitter_block", (new GDFrailGlitterBlock()).setUnlocalizedName("frail_glitter_block"));
         blocks.register("crystal_growth", (new GDCrystalGrowth()).setUnlocalizedName("crystal_growth"));
+        blocks.register("crystal_bloom", (new GDCrystalBloom()).setUnlocalizedName("crystal_bloom"));
         blocks.register("gaia_sapling", (new GDGaiaSapling()).setUnlocalizedName("gaia_sapling"));
         blocks.register("gaia_leaves", (new GDGaiaLeaves()).setUnlocalizedName("gaia_leaves"));
         blocks.register("special_gaia_leaves", (new GDSpecialLeaves()).setUnlocalizedName("special_gaia_leaves"));
