@@ -3,7 +3,21 @@
 # blocks
 tile.heavy_soil.name=Heavy Soil
 tile.glitter_grass.name=Glitter Grass
-tile.crystal_growth.name=Crystal Growth
+tile.crystal_growth.0.name=Crystal Growth
+tile.crystal_growth.1.name=Cool Crystal Growth
+tile.crystal_growth.2.name=Verdant Crystal Growth
+tile.crystal_growth.3.name=Scented Crystal Growth
+tile.crystal_growth.4.name=Dull Crystal Growth
+tile.crystal_growth.5.name=Red Crystal Growth
+tile.crystal_growth.6.name=Black Crystal Growth
+tile.crystal_growth.7.name=Warm Crystal Growth
+tile.crystal_growth.8.name=Rare Crystal Growth
+tile.crystal_growth.9.name=Chasm Growth
+tile.crystal_bloom.0.name=Thiscus
+tile.crystal_bloom.1.name=Ouzium
+tile.crystal_bloom.2.name=Varloom
+tile.crystal_bloom.3.name=Corrupt Varloom
+tile.crystal_bloom.4.name=Missing Texture Plant
 tile.gaia_leaves.0.name=Pink Agate Leaves
 tile.gaia_leaves.1.name=Blue Agate Leaves
 tile.gaia_leaves.2.name=Green Agate Leaves
@@ -52,6 +66,7 @@ tile.crusty_plank_slab.name=Burnt Plank Slab
 tile.heated_planks.name=Burning Planks
 tile.heated_plank_stairs.name=Burning Plank Stairs
 tile.heated_plank_slab.name=Burning Plank Slab
+tile.frail_glitter_block.name=Frail Glitter Block
 tile.gaia_stone.name=Gaia Stone
 tile.pyrite_ore.name=Pyrite Ore
 tile.hematite_ore.name=Hematite Ore
@@ -111,9 +126,41 @@ item.blue_opal.name=Blue Opal
 item.green_opal.name=Green Opal
 item.white_opal.name=White Opal
 
+## Dust
+item.hematite_powder.name=Hematite Powder
+item.cinnabar_powder.name=Cinnabar Powder
+item.pyrite_powder.name=Pyrite Powder
+item.labradorite_powder.name=Labradorite Powder
+item.moonstone_powder.name=Moonstone Powder
+item.red_opal_powder.name=Red Opal Powder
+item.blue_opal_powder.name=Blue Opal Powder
+item.green_opal_powder.name=Green Opal Powder
+item.white_opal_grit.name=White Opal Grit
+
+item.property_mix.name=Gemstone Blend
+
 # Tools
 ## Swords
+item.malachite_guard_baton.name=Malachite Guard Baton
+item.apex_predator_mace.name=Apex Predator Mace
+item.spinel_princess_flamberge.name=Spinel Princess Flamberge
+item.zircon_prince_razor.name=Zircon Prince Razor
+item.corrupt_warrior_sword.name=Corrupt Warrior Sword
+item.gaia_duchess_khopesh.name=Gaia Duchess Khopesh
+item.gaia_baron_dagger.name=Gaia Baron Dagger
+item.gaia_duke_blade.name=Gaia Duke Blade
 item.gaia_champion_sword.name=Gaia Champion Sword
+
+### addInformation
+item.malachite_guard_baton.tooltip=That thick club could hurt someone's unprotected head
+item.apex_predator_mace.tooltip=Those claws could dig deep into skin
+item.spinel_princess_flamberge.tooltip=Every swing leaves an entrail of fire
+item.zircon_prince_razor.tooltip=Those two prongs channel electricity
+item.corrupt_warrior_sword.tooltip=It's so heavy, and it hurts to use it
+item.gaia_duchess_khopesh.tooltip=It looks like it could fly apart
+item.gaia_baron_dagger.tooltip=Though the blade is small, it could break armor
+item.gaia_duke_blade.tooltip=That blade could hurt at high velocity
+item.gaia_champion_sword.tooltip=She bestowed it upon you
 
 # Armor
 ## Malachite Guard
@@ -170,12 +217,7 @@ item.gaia_champion_guard.name=Gaia Champion Guard
 item.gaia_champion_greaves.name=Gaia Champion Greaves
 item.gaia_champion_boots.name=Gaia Champion Boots
 
-# addInformation
-## Tools
-item.gaia_champion_sword.tooltip=She bestowed it upon you
-
 ## Armor
-### Malachite
 malachite_armor.tooltip=Sturdy, heavy, and eerily polished
 tigereye_armor.tooltip=Who knew something old was still this dangerous?
 spinel_armor.tooltip=It looks thin, but it's warm to wear
