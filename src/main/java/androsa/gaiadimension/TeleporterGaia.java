@@ -17,6 +17,7 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.Teleporter;
 import net.minecraft.world.WorldServer;
 
+@SuppressWarnings("unchecked")
 public class TeleporterGaia extends Teleporter {
     public static TeleporterGaia getTeleporterForDim(MinecraftServer server, int dim) {
         WorldServer ws = server.getWorld(dim);
@@ -30,6 +31,7 @@ public class TeleporterGaia extends Teleporter {
         ws.customTeleporters.add(tp);
         return tp;
     }
+
 
     private final Long2ObjectMap<PortalPosition> destinationCoordinateCache = new Long2ObjectOpenHashMap(4096);
 
