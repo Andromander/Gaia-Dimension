@@ -1,9 +1,6 @@
 package androsa.gaiadimension.block;
 
-import androsa.gaiadimension.registry.GDBlocks;
-import androsa.gaiadimension.registry.GDFluids;
-import androsa.gaiadimension.registry.GDTabs;
-import androsa.gaiadimension.registry.ModelRegisterCallback;
+import androsa.gaiadimension.registry.*;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -11,8 +8,11 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.ColorizerGrass;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraft.world.biome.BiomeColorHelper;
+import net.minecraft.world.border.IBorderListener;
 import net.minecraftforge.common.EnumPlantType;
 import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.fml.relauncher.Side;
@@ -20,7 +20,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.Random;
 
-public class GDGlitterGrass extends Block implements ModelRegisterCallback {
+public class GDGlitterGrass extends Block implements ModelRegisterCallback, IColouredBlock {
 
     public GDGlitterGrass() {
         super(Material.GRASS);
@@ -45,6 +45,11 @@ public class GDGlitterGrass extends Block implements ModelRegisterCallback {
                  //   if (iblockstate.getBlock() == GDBlocks.heavySoil && world.getLightFromNeighbors(blockpos.up()) >= 4 && block.getLightOpacity(world.getBlockState(blockpos.up()), world, blockpos.up()) <= 2 && world.getBlockState(pos.up()).getBlock() != GDFluids.mineralWaterBlock)
                 //        world.setBlockState(blockpos, GDBlocks.glitterGrass.getDefaultState());
                 }
+    }
+
+    @Override
+    public int getColorMultiplier(IBlockState state, IBlockAccess access, BlockPos pos, int tintIndex) {
+        return access != null && pos != null ? BiomeColorHelper.getGrassColorAtPos(access, pos) : ColorizerGrass.getGrassColor(0.5D, 1.0D);
     }
 
     @Override

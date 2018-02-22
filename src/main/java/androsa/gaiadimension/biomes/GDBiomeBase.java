@@ -16,6 +16,8 @@ import net.minecraft.world.biome.BiomeDecorator;
 import net.minecraft.world.chunk.ChunkPrimer;
 import net.minecraft.world.gen.feature.WorldGenTallGrass;
 import net.minecraft.world.gen.feature.WorldGenerator;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,8 +25,9 @@ import java.util.Random;
 
 public class GDBiomeBase extends Biome {
 
+    private int grassColor = -1;
+    private int foliageColor = -1;
     protected static final IBlockState STONE_GAIA = GDBlocks.gaiaStone.getDefaultState();
-    protected static final IBlockState GRAVEL_PLACE = GDBlocks.hematiteBlock.getDefaultState();
     protected List<SpawnListEntry> undergroundMonsterList;
 
     public GDBiomeBase(BiomeProperties props) {
@@ -50,6 +53,30 @@ public class GDBiomeBase extends Biome {
 
     protected GDBiomeDecorator getGDBiomeDecorator() {
         return (GDBiomeDecorator) this.decorator;
+    }
+
+    public final GDBiomeBase setFoliageColors(int grassColor, int foliageColor) {
+        this.grassColor = grassColor;
+        this.foliageColor = foliageColor;
+        return this;
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public int getGrassColorAtPos(BlockPos pos) {
+        if (this.foliageColor < 0) {
+            return super.getGrassColorAtPos(pos);
+        }
+        return this.grassColor;
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public int getFoliageColorAtPos(BlockPos pos) {
+        if (this.foliageColor < 0) {
+            return super.getGrassColorAtPos(pos);
+        }
+        return this.foliageColor;
     }
 
     @Override

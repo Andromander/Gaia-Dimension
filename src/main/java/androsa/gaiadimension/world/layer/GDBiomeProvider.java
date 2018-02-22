@@ -14,7 +14,7 @@ public class GDBiomeProvider extends BiomeProvider {
         getBiomesToSpawnIn().clear();
         getBiomesToSpawnIn().add(GDBiomes.pinkAgateForest);
       //  getBiomesToSpawnIn().add(GDBiomes.blueAgateForest);
-      //  getBiomesToSpawnIn().add(GDBiomes.greenAgateForest);
+        getBiomesToSpawnIn().add(GDBiomes.greenAgateForest);
       //  getBiomesToSpawnIn().add(GDBiomes.purpleAgateForest);
       //  getBiomesToSpawnIn().add(GDBiomes.crystalPlains);
 
@@ -32,9 +32,9 @@ public class GDBiomeProvider extends BiomeProvider {
         biomes = new GenLayerZoom(1004, biomes);
         biomes = new GenLayerZoom(1005, biomes);
 
-       // GenLayer riverLayer = new GenLayerGDRiver(1L, biomes);
-       // riverLayer = new GenLayerSmooth(7000L, riverLayer);
-       // biomes = new GenLayerGDRiverMix(100L, biomes, riverLayer);
+        GenLayer riverLayer = new GenLayerGDRiver(1L, biomes);
+        riverLayer = new GenLayerSmooth(7000L, riverLayer);
+        biomes = new GenLayerGDRiverMix(100L, biomes, riverLayer);
 
         //oof, I like Voronoi. Looks cool
         GenLayer genlayervoronoizoom = new GenLayerVoronoiZoom(10L, biomes);

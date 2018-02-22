@@ -11,7 +11,7 @@ public class GenLayerGDBiomes extends GenLayer {
     protected Biome commonBiomes[] = (new Biome[]{
             GDBiomes.pinkAgateForest,
      //       GDBiomes.blueAgateForest,
-      //      GDBiomes.greenAgateForest,
+            GDBiomes.greenAgateForest,
       //      GDBiomes.purpleAgateForest,
        //     GDBiomes.crystalPlains
     });

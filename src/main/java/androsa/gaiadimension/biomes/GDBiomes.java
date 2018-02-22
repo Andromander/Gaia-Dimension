@@ -12,7 +12,7 @@ public class GDBiomes {
     public static final Biome pinkAgateForest;
     @ObjectHolder("blue_agate_forest")
     public static final Biome blueAgateForest;
-    @ObjectHolder("green_agate_forest")
+    @ObjectHolder("green_agate_jungle")
     public static final Biome greenAgateForest;
     @ObjectHolder("purple_agate_forest")
     public static final Biome purpleAgateForest;

@@ -28,6 +28,17 @@ public final class GDBiomesRegister {
                 ),
                 Type.FOREST
         );
+
+        biomes.register(
+                "green_agate_jungle",
+                new GDGreenAgateJungle(
+                        new BiomeProperties("Green Agate Jungle")
+                        .setTemperature(0.75F)
+                        .setRainfall(0)
+                        .setHeightVariation(0.2F)
+                ),
+                Type.JUNGLE
+        );
 /*
         biomes.register(
                 "crystal plains",
@@ -36,6 +47,7 @@ public final class GDBiomesRegister {
                 ),
                 Type.PLAINS
         );
+
 */
         biomes.register(
                 "mineral_reservoir",
@@ -47,6 +59,18 @@ public final class GDBiomesRegister {
                         .setHeightVariation(0.1F)
                 ),
                 Type.OCEAN
+        );
+
+        biomes.register(
+                "mineral_river",
+                new GDMineralRiver(
+                        new BiomeProperties("Mineral River")
+                        .setTemperature(0.5F)
+                        .setRainfall(0)
+                        .setBaseHeight(-0.5F)
+                        .setHeightVariation(0)
+                ),
+                Type.RIVER
         );
     }
 

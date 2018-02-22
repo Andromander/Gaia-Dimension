@@ -5,25 +5,23 @@ import androsa.gaiadimension.block.GDCrystalGrowth;
 import androsa.gaiadimension.registry.GDBlocks;
 import androsa.gaiadimension.world.GDGenCrystalBloom;
 import androsa.gaiadimension.world.GDGenCrystalGrowth;
+import androsa.gaiadimension.world.GDGenGreenAgateTree;
 import androsa.gaiadimension.world.GDGenNoTrees;
-import androsa.gaiadimension.world.GDGenPinkAgateTree;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import net.minecraft.world.gen.feature.WorldGenTrees;
 import net.minecraft.world.gen.feature.WorldGenerator;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.Random;
 
-public class GDPinkAgateForest extends GDBiomeBase {
+public class GDGreenAgateJungle extends GDBiomeBase {
 
-    private WorldGenTrees GaiaGenPinkTrees;
+    private WorldGenTrees GaiaGenGreenTrees;
 
-    public GDPinkAgateForest(Biome.BiomeProperties props) {
+    public GDGreenAgateJungle(Biome.BiomeProperties props) {
         super(props);
-        GaiaGenPinkTrees = new GDGenPinkAgateTree(false);
+
+        GaiaGenGreenTrees = new GDGenGreenAgateTree(false);
 
         topBlock = GDBlocks.glitterGrass.getDefaultState();
         fillerBlock = GDBlocks.heavySoil.getDefaultState();
@@ -31,7 +29,7 @@ public class GDPinkAgateForest extends GDBiomeBase {
 
     @Override
     public WorldGenAbstractTree getRandomTreeFeature(Random par1Random) {
-        return par1Random.nextInt(5) == 0 ? new GDGenNoTrees() : par1Random.nextInt(3) == 0 ? GaiaGenPinkTrees : new GDGenNoTrees();
+        return par1Random.nextInt(10) == 0 ? new GDGenNoTrees() : par1Random.nextInt(2) == 0 ? GaiaGenGreenTrees : new GDGenNoTrees();
     }
 
     @Override
@@ -45,13 +43,7 @@ public class GDPinkAgateForest extends GDBiomeBase {
                 return new GDGenCrystalBloom(GDCrystalBloom.CrystalBloomVariant.THISCUS);
             }
         } else {
-            return new GDGenCrystalGrowth(GDCrystalGrowth.CrystalGrowthVariant.PINK);
+            return new GDGenCrystalGrowth(GDCrystalGrowth.CrystalGrowthVariant.GREEN);
         }
-    }
-
-    @Override
-    @SideOnly(Side.CLIENT)
-    public int getGrassColorAtPos(BlockPos pos) {
-        return 0xFF0000;
     }
 }
