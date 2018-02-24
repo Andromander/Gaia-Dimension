@@ -129,22 +129,13 @@ public class GDBiomeBase extends Biome {
                         else if (j1 < i - 7 - k) {
                             iblockstate = AIR;
                             iblockstate1 = STONE_GAIA;
-                            chunkPrimerIn.setBlockState(i1, j1, l, GDBlocks.heavySoil.getDefaultState());
+                            chunkPrimerIn.setBlockState(i1, j1, l, GDBlocks.saltBlock.getDefaultState());
                         }
                         else {
                             chunkPrimerIn.setBlockState(i1, j1, l, iblockstate1);
                         }
                     }
-/*                    else if (j > 0) {
-                        --j;
-                        chunkPrimerIn.setBlockState(i1, j1, l, iblockstate1);
-
-                        if (j == 0 && iblockstate1.getBlock() == Blocks.SAND && k > 1) {
-                            j = rand.nextInt(4) + Math.max(0, j1 - 63);
-                            iblockstate1 = iblockstate1.getValue(BlockSand.VARIANT) == BlockSand.EnumType.RED_SAND ? RED_SANDSTONE : SANDSTONE;
-                        }
-                    }
-*/                }
+                }
             }
         }
     }

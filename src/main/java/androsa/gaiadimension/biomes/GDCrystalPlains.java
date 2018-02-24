@@ -5,45 +5,44 @@ import androsa.gaiadimension.block.GDCrystalGrowth;
 import androsa.gaiadimension.registry.GDBlocks;
 import androsa.gaiadimension.world.GDGenCrystalBloom;
 import androsa.gaiadimension.world.GDGenCrystalGrowth;
-import androsa.gaiadimension.world.GDGenGreenAgateTree;
 import androsa.gaiadimension.world.GDGenNoTrees;
-import net.minecraft.world.biome.Biome;
+import androsa.gaiadimension.world.GDGenPinkAgateTree;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import net.minecraft.world.gen.feature.WorldGenTrees;
 import net.minecraft.world.gen.feature.WorldGenerator;
 
 import java.util.Random;
 
-public class GDGreenAgateJungle extends GDBiomeBase {
+public class GDCrystalPlains extends GDBiomeBase {
 
-    private WorldGenTrees GaiaGenGreenTrees;
+    private WorldGenTrees GaiaGenPinkTrees;
 
-    public GDGreenAgateJungle(Biome.BiomeProperties props) {
+    public GDCrystalPlains(BiomeProperties props) {
         super(props);
 
-        GaiaGenGreenTrees = new GDGenGreenAgateTree(false);
+        GaiaGenPinkTrees = new GDGenPinkAgateTree(false);
 
-        topBlock = GDBlocks.verdantGrass.getDefaultState();
+        topBlock = GDBlocks.glitterGrass.getDefaultState();
         fillerBlock = GDBlocks.heavySoil.getDefaultState();
     }
 
     @Override
     public WorldGenAbstractTree getRandomTreeFeature(Random par1Random) {
-        return par1Random.nextInt(10) == 0 ? new GDGenNoTrees() : par1Random.nextInt(2) == 0 ? GaiaGenGreenTrees : new GDGenNoTrees();
+        return par1Random.nextInt(3) == 0 ? new GDGenNoTrees() : par1Random.nextInt(12) == 0 ? GaiaGenPinkTrees : new GDGenNoTrees();
     }
 
     @Override
     public WorldGenerator getRandomWorldGenForGrass(Random rand) {
 
         //TODO: Find a way to not generate poppies and dandelions
-        if (rand.nextInt(16) == 0) {
-            if (rand.nextInt(4) == 0) {
+        if (rand.nextInt(24) == 0) {
+            if (rand.nextInt(8) == 0) {
                 return new GDGenCrystalBloom(GDCrystalBloom.CrystalBloomVariant.OUZIUM);
             } else {
                 return new GDGenCrystalBloom(GDCrystalBloom.CrystalBloomVariant.THISCUS);
             }
         } else {
-            return new GDGenCrystalGrowth(GDCrystalGrowth.CrystalGrowthVariant.GREEN);
+            return new GDGenCrystalGrowth(GDCrystalGrowth.CrystalGrowthVariant.PINK);
         }
     }
 }

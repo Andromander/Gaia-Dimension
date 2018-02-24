@@ -30,6 +30,17 @@ public final class GDBiomesRegister {
         );
 
         biomes.register(
+                "blue_agate_taiga",
+                new GDBlueAgateTaiga(
+                        new BiomeProperties("Blue Agate Taiga")
+                        .setTemperature(0.4F)
+                        .setRainfall(0)
+                        .setHeightVariation(0.2F)
+                ),
+                Type.CONIFEROUS
+        );
+
+        biomes.register(
                 "green_agate_jungle",
                 new GDGreenAgateJungle(
                         new BiomeProperties("Green Agate Jungle")
@@ -39,16 +50,65 @@ public final class GDBiomesRegister {
                 ),
                 Type.JUNGLE
         );
-/*
+
+        biomes.register("purple_agate_swamp",
+                new GDPurpleAgateSwamp(
+                        new BiomeProperties("Purple Agate Swamp")
+                        .setTemperature(0.7F)
+                        .setRainDisabled()
+                        .setBaseHeight(-0.05F)
+                        .setHeightVariation(0.05F)
+                ),
+                Type.SWAMP, Type.MAGICAL
+        );
+
         biomes.register(
-                "crystal plains",
+                "fossil_woodland",
+                new GDFossilWoodland(
+                        new BiomeProperties("Fossil Woodland")
+                        .setTemperature(0.66F)
+                        .setRainfall(0)
+                        .setHeightVariation(0.05F)
+                ),
+                Type.SAVANNA
+        );
+
+        biomes.register(
+                "crystal_plains",
                 new GDCrystalPlains(
                         new BiomeProperties("Crystal Plains")
+                        .setTemperature(0.66F)
+                        .setRainDisabled()
+                        .setBaseHeight(0.125F)
+                        .setHeightVariation(0.05F)
                 ),
                 Type.PLAINS
         );
 
-*/
+        biomes.register(
+                "volcaniclands",
+                new GDVolcanicLands(
+                        new BiomeProperties("Volcaniclands")
+                        .setTemperature(0.9F)
+                        .setRainDisabled()
+                        .setBaseHeight(1F)
+                        .setHeightVariation(0.7F)
+                ),
+                Type.HOT, Type.SPARSE, Type.DRY, Type.MOUNTAIN
+        );
+
+        biomes.register(
+                "goldstonelands",
+                new GDGoldstoneLands(
+                        new BiomeProperties("Goldstonelands")
+                        .setTemperature(0.55F)
+                        .setRainDisabled()
+                        .setBaseHeight(0.125F)
+                        .setHeightVariation(0.05F)
+                ),
+                Type.WASTELAND, Type.PLAINS
+        );
+
         biomes.register(
                 "mineral_reservoir",
                 new GDMineralReservoir(
@@ -82,7 +142,7 @@ public final class GDBiomesRegister {
             this.registry = registry;
         }
 
-        public void register(String registryName, Biome biome, Type biomeTypes) {
+        public void register(String registryName, Biome biome, Type... biomeTypes) {
             biome.setRegistryName(GaiaDimension.MODID, registryName);
             registry.register(biome);
             BiomeDictionary.addTypes(biome, biomeTypes);

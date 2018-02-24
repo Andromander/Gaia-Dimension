@@ -1,11 +1,7 @@
 package androsa.gaiadimension.biomes;
 
-import androsa.gaiadimension.block.GDCrystalBloom;
-import androsa.gaiadimension.registry.GDBlocks;
 import androsa.gaiadimension.registry.GDFeature;
 import androsa.gaiadimension.registry.GDFluids;
-import androsa.gaiadimension.world.GDGenCrystalBloom;
-import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -27,7 +23,7 @@ public class GDBiomeDecorator extends BiomeDecorator {
     public World world;
     public Random rand;
     public int lakesPerChunk = 0;
-    public int lavaPoolChance = 0;
+    public float lavaPoolChance = 0;
 
     @Override
     public void decorate(World world, Random rand, Biome biome, BlockPos pos) {

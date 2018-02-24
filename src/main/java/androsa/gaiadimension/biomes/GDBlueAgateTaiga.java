@@ -3,33 +3,32 @@ package androsa.gaiadimension.biomes;
 import androsa.gaiadimension.block.GDCrystalBloom;
 import androsa.gaiadimension.block.GDCrystalGrowth;
 import androsa.gaiadimension.registry.GDBlocks;
+import androsa.gaiadimension.world.GDGenBlueAgateTree;
 import androsa.gaiadimension.world.GDGenCrystalBloom;
 import androsa.gaiadimension.world.GDGenCrystalGrowth;
-import androsa.gaiadimension.world.GDGenGreenAgateTree;
 import androsa.gaiadimension.world.GDGenNoTrees;
-import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import net.minecraft.world.gen.feature.WorldGenTrees;
 import net.minecraft.world.gen.feature.WorldGenerator;
 
 import java.util.Random;
 
-public class GDGreenAgateJungle extends GDBiomeBase {
+public class GDBlueAgateTaiga extends GDBiomeBase {
 
-    private WorldGenTrees GaiaGenGreenTrees;
+    private WorldGenTrees GaiaGenBlueTrees;
 
-    public GDGreenAgateJungle(Biome.BiomeProperties props) {
+    public GDBlueAgateTaiga(BiomeProperties props) {
         super(props);
 
-        GaiaGenGreenTrees = new GDGenGreenAgateTree(false);
+        GaiaGenBlueTrees = new GDGenBlueAgateTree(false);
 
-        topBlock = GDBlocks.verdantGrass.getDefaultState();
+        topBlock = GDBlocks.coolGrass.getDefaultState();
         fillerBlock = GDBlocks.heavySoil.getDefaultState();
     }
 
     @Override
     public WorldGenAbstractTree getRandomTreeFeature(Random par1Random) {
-        return par1Random.nextInt(10) == 0 ? new GDGenNoTrees() : par1Random.nextInt(2) == 0 ? GaiaGenGreenTrees : new GDGenNoTrees();
+        return par1Random.nextInt(8) == 0 ? new GDGenNoTrees() : par1Random.nextInt(4) == 0 ? GaiaGenBlueTrees : new GDGenNoTrees();
     }
 
     @Override
@@ -43,7 +42,7 @@ public class GDGreenAgateJungle extends GDBiomeBase {
                 return new GDGenCrystalBloom(GDCrystalBloom.CrystalBloomVariant.THISCUS);
             }
         } else {
-            return new GDGenCrystalGrowth(GDCrystalGrowth.CrystalGrowthVariant.GREEN);
+            return new GDGenCrystalGrowth(GDCrystalGrowth.CrystalGrowthVariant.BLUE);
         }
     }
 }
