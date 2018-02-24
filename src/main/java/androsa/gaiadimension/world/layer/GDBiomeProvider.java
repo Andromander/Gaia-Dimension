@@ -10,13 +10,13 @@ import net.minecraft.world.gen.layer.GenLayerZoom;
 
 public class GDBiomeProvider extends BiomeProvider {
     public GDBiomeProvider(World world) {
-        //Do not spawn in Volcanic, Goldstone or "Sacred" biomes
+        //Do not spawn in Volcanic, Goldstone, Water or "Sacred" biomes
         getBiomesToSpawnIn().clear();
         getBiomesToSpawnIn().add(GDBiomes.pinkAgateForest);
-      //  getBiomesToSpawnIn().add(GDBiomes.blueAgateForest);
+        getBiomesToSpawnIn().add(GDBiomes.blueAgateForest);
         getBiomesToSpawnIn().add(GDBiomes.greenAgateForest);
-      //  getBiomesToSpawnIn().add(GDBiomes.purpleAgateForest);
-      //  getBiomesToSpawnIn().add(GDBiomes.crystalPlains);
+        getBiomesToSpawnIn().add(GDBiomes.purpleAgateForest);
+        getBiomesToSpawnIn().add(GDBiomes.crystalPlains);
 
         makeLayers(world.getSeed());
     }

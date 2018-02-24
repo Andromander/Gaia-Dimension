@@ -158,13 +158,13 @@ public class GDGenCaves extends MapGenCaves {
                                                 hitGrass = true;
                                             }
 
-                                            if (blockAt != null && (blockAt == GDBlocks.gaiaStone || blockStateAt.getMaterial() == Material.GROUND || blockStateAt.getMaterial() == Material.GRASS)) {
+                                            if (blockAt != null && (blockAt == GDBlocks.gaiaStone || blockAt == GDBlocks.thickGlitterBlock || blockStateAt.getMaterial() == Material.GROUND || blockStateAt.getMaterial() == Material.GRASS)) {
                                                 if (var59 * var59 + var51 * var51 + var46 * var46 < 0.85D) {
                                                     final IBlockState state = (caveY < 10 ? GDFluids.superhotMagmaBlock : Blocks.AIR).getDefaultState();
                                                     blockStorage.setBlockState(genX, caveY, genZ, state);
                                                 } else {
-                                                    Block localBlock = clusterRNG.nextInt(6) == 0 ? GDBlocks.hematiteBlock : GDBlocks.cinnabarBlock;
-                                                    localBlock = isVolcanic ? localBlock : GDBlocks.frailGlitterBlock;
+                                                    Block localBlock = clusterRNG.nextInt(6) == 0 ? GDBlocks.frailGlitterBlock : GDBlocks.gaiaStone;
+                                                    localBlock = isVolcanic ? localBlock : GDBlocks.thickGlitterBlock;
                                                     localBlock = hitGrass ? GDBlocks.glitterGrass : localBlock;
                                                     blockStorage.setBlockState(genX, caveY, genZ, localBlock.getDefaultState());
                                                     hitGrass = false;

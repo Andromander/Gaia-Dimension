@@ -79,6 +79,14 @@ public class GenLayerGDRiver extends GenLayer {
         if (biome1 == Biome.getIdForBiome(GDBiomes.volcaniclands) && biome2 == Biome.getIdForBiome(GDBiomes.fossilForest)) {
             return false;
         }
+        //Crystal Plains and Pink Agate Forest are too similar for rivers
+        if (biome1 == Biome.getIdForBiome(GDBiomes.pinkAgateForest) && biome2 == Biome.getIdForBiome(GDBiomes.crystalPlains)) {
+            return false;
+        }
+        //If a reservoir gens near another reservoir, remove the river because it would look goofy
+        if (biome1 == Biome.getIdForBiome(GDBiomes.mineralReservoir) && biome2 == Biome.getIdForBiome(GDBiomes.mineralReservoir)) {
+            return false;
+        }
 
         return true;
     }

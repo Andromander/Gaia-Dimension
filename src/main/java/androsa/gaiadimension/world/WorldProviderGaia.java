@@ -37,7 +37,7 @@ public class WorldProviderGaia extends WorldProviderSurface {
         float blue = 0.25F;
         red *= bright * 0.94F + 0.06F;
         green *= bright * 0.91F + 0.09F;
-        blue += bright * 0.94F + 0.06F;
+        blue += bright * 0.7F + 0.06F;
         return new Vec3d(red, green, blue);
     }
 
@@ -94,6 +94,7 @@ public class WorldProviderGaia extends WorldProviderSurface {
         return new Vec3d(198 / 256.0, 157 / 256.0, 88 / 256.0);
     }
 
+    //I mean, it will always be null, but if it should we have this
     @Override
     public Biome getBiomeForCoords(BlockPos pos) {
         Biome biome = super.getBiomeForCoords(pos);
@@ -113,13 +114,7 @@ public class WorldProviderGaia extends WorldProviderSurface {
         }
     }
 
-    //There's no weather in Gaia
-    @Override
-    @SideOnly(Side.CLIENT)
-    public IRenderHandler getWeatherRenderer() {
-        return null;
-    }
-
+    //Can't really null this, so we have clouds, but *way* up there
     @Override
     public float getCloudHeight() {
         return 255.0F;

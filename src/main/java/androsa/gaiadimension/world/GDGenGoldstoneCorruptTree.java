@@ -15,71 +15,80 @@ import net.minecraft.world.gen.feature.WorldGenTrees;
 
 import java.util.Random;
 
-public class GDGenGoldstoneCorruptTree extends WorldGenAbstractTree {
+public class GDGenGoldstoneCorruptTree extends WorldGenTrees {
 
     public GDGenGoldstoneCorruptTree(boolean flag) {
         super(flag);
     }
 
-    public boolean generate(World world, Random rand, BlockPos pos)
-    {
-        int i = rand.nextInt(5) + 7;
-        int j = i - rand.nextInt(2) - 3;
-        int k = i - j;
+    public boolean generate(World world, Random rand, BlockPos pos) {
+        int height = rand.nextInt(5) + 7;
+        int j = height - rand.nextInt(2) - 3;
+        int k = height - j;
         int l = 1 + rand.nextInt(k + 1);
+        boolean allClear = true;
 
-        if (pos.getY() >= 1 && pos.getY() + i + 1 <= 256) {
-            boolean flag = true;
+        if (pos.getY() >= 1 && pos.getY() + height + 1 <= 256) {
+            Block blockID;
 
-            for (int i1 = pos.getY(); i1 <= pos.getY() + 1 + i && flag; ++i1) {
+            for (int cy = pos.getY(); cy <= pos.getY() + 1 + height && allClear; ++cy) {
                 int j1 = 1;
 
-                if (i1 - pos.getY() < j) {
+                if (cy - pos.getY() < j) {
                     j1 = 0;
-                }
-                else {
+                } else {
                     j1 = l;
                 }
 
-                BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
+                for (int cx = pos.getX() - j1; cx <= pos.getX() + j1 && allClear; ++cx) {
+                    for (int cz = pos.getZ() - j1; cz <= pos.getZ() + j1 && allClear; ++cz) {
+                        if (cy >= 0 && cy < 256) {
+                            BlockPos cPos = new BlockPos(cx, cy, cz);
 
-                for (int k1 = pos.getX() - j1; k1 <= pos.getX() + j1 && flag; ++k1) {
-                    for (int l1 = pos.getZ() - j1; l1 <= pos.getZ() + j1 && flag; ++l1) {
-                        if (i1 >= 0 && i1 < 256) {
-                            if (!this.isReplaceable(world,blockpos$mutableblockpos.setPos(k1, i1, l1))) {
-                                flag = false;
+                            IBlockState block = world.getBlockState(cPos);
+                            blockID = block.getBlock();
+
+                            if (blockID != Blocks.AIR &&
+                                    !blockID.isLeaves(block, world, cPos) &&
+                                    blockID != Blocks.GRASS &&
+                                    blockID != Blocks.DIRT &&
+                                    blockID != GDBlocks.corruptGrass &&
+                                    blockID != GDBlocks.corruptSoil &&
+                                    !blockID.isWood(world, cPos)) {
+                                allClear = false;
                             }
                         } else {
-                            flag = false;
+                            allClear = false;
                         }
                     }
                 }
             }
 
-            if (!flag) {
+            if (!allClear) {
                 return false;
             } else {
-                BlockPos down = pos.down();
-                IBlockState state = world.getBlockState(down);
-                boolean isSoil = state.getBlock().canSustainPlant(state, world, down, net.minecraft.util.EnumFacing.UP, (net.minecraft.block.BlockSapling)Blocks.SAPLING);
+                Block blockUsing = world.getBlockState(pos.down()).getBlock();
 
-                if (isSoil && pos.getY() < 256 - i - 1) {
-                    state.getBlock().onPlantGrow(state, world, down, pos);
+                if ((blockUsing == GDBlocks.corruptGrass || blockUsing == GDBlocks.heavySoil) && pos.getY() < 256 - height - 1) {
+                    setBlockAndNotifyAdequately(world, pos.down(), GDBlocks.corruptSoil.getDefaultState());
                     int k2 = 0;
 
-                    for (int l2 = pos.getY() + i; l2 >= pos.getY() + j; --l2) {
+                    for (int l2 = pos.getY() + height; l2 >= pos.getY() + j; --l2) {
                         for (int j3 = pos.getX() - k2; j3 <= pos.getX() + k2; ++j3) {
                             int k3 = j3 - pos.getX();
 
                             for (int i2 = pos.getZ() - k2; i2 <= pos.getZ() + k2; ++i2) {
                                 int j2 = i2 - pos.getZ();
 
-                                if (Math.abs(k3) != k2 || Math.abs(j2) != k2 || k2 <= 0) {
-                                    BlockPos blockpos = new BlockPos(j3, l2, i2);
-                                    state = world.getBlockState(blockpos);
+                                BlockPos tPos = new BlockPos(j3, l2, i2);
 
-                                    if (state.getBlock().canBeReplacedByLeaves(state, world, blockpos)) {
-                                        this.setBlockAndNotifyAdequately(world, blockpos, GDBlocks.gaiaLeavesSpecial.getDefaultState().withProperty(GDSpecialLeaves.VARIANT, SpecialGaiaLeavesVariant.CORRUPTED));
+                                IBlockState state = world.getBlockState(tPos);
+
+                                if (Math.abs(k3) != k2 || Math.abs(j2) != k2 || k2 <= 0) {
+                                    state.getBlock().canBeReplacedByLeaves(state, world, tPos);
+
+                                    if (state.getBlock().canBeReplacedByLeaves(state, world, tPos)) {
+                                        this.setBlockAndNotifyAdequately(world, tPos, GDBlocks.gaiaLeavesSpecial.getDefaultState().withProperty(GDSpecialLeaves.VARIANT, SpecialGaiaLeavesVariant.CORRUPTED));
                                     }
                                 }
                             }
@@ -93,12 +102,13 @@ public class GDGenGoldstoneCorruptTree extends WorldGenAbstractTree {
                         }
                     }
 
-                    for (int i3 = 0; i3 < i - 1; ++i3) {
-                        BlockPos upN = pos.up(i3);
-                        state = world.getBlockState(upN);
+                    for (int i3 = 0; i3 < height - 1; ++i3) {
+                        BlockPos cPos = pos.up(i3);
+                        IBlockState block = world.getBlockState(cPos);
+                        blockID = block.getBlock();
 
-                        if (state.getBlock().isAir(state, world, upN) || state.getBlock().isLeaves(state, world, upN)) {
-                            this.setBlockAndNotifyAdequately(world, pos.up(i3), GDBlocks.gaiaLogSpecial.getDefaultState().withProperty(GDSpecialLog.VARIANT, SpecialGaiaLogVariant.CORRUPTED));
+                        if (blockID == Blocks.AIR || blockID.isLeaves(block, world, cPos)) {
+                            this.setBlockAndNotifyAdequately(world, cPos, GDBlocks.gaiaLogSpecial.getDefaultState().withProperty(GDSpecialLog.VARIANT, SpecialGaiaLogVariant.CORRUPTED));
                         }
                     }
 
