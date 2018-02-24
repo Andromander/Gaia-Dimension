@@ -17,8 +17,16 @@ public final class GDBlocksRegister {
         blocks.register("gaia_portal", (new GDGaiaPortal()).setUnlocalizedName("gaia_portal"));
 
         blocks.register("heavy_soil", (new GDHeavySoil()).setUnlocalizedName("heavy_soil"));
+        blocks.register("corrupt_soil", (new GDCorruptSoil()).setUnlocalizedName("corrupt_soil"));
         blocks.register("glitter_grass", (new GDGlitterGrass()).setUnlocalizedName("glitter_grass"));
+        blocks.register("cool_grass", (new GDGlitterGrass()).setUnlocalizedName("cool_grass"));
+        blocks.register("verdant_grass", (new GDGlitterGrass()).setUnlocalizedName("verdant_grass"));
+        blocks.register("scented_grass", (new GDGlitterGrass()).setUnlocalizedName("scented_grass"));
+        blocks.register("old_grass", (new GDGlitterGrass()).setUnlocalizedName("old_grass"));
+        blocks.register("corrupt_grass", (new GDCorruptGrass()).setUnlocalizedName("corrupt_grass"));
+        blocks.register("singed_grass", (new GDGlitterGrass()).setUnlocalizedName("singed_grass"));
         blocks.register("frail_glitter_block", (new GDFrailGlitterBlock()).setUnlocalizedName("frail_glitter_block"));
+        blocks.register("thick_glitter_block", (new GDThickGlitterBlock()).setUnlocalizedName("thick_glitter_block"));
         blocks.register("crystal_growth", (new GDCrystalGrowth()).setUnlocalizedName("crystal_growth"));
         blocks.register("crystal_bloom", (new GDCrystalBloom()).setUnlocalizedName("crystal_bloom"));
         blocks.register("gaia_sapling", (new GDGaiaSapling()).setUnlocalizedName("gaia_sapling"));
@@ -61,6 +69,7 @@ public final class GDBlocksRegister {
         blocks.register("crusty_plank_stairs", (new GDAgatePlankStairs(agatePlanks.getDefaultState())).setUnlocalizedName("crusty_plank_stairs"));
         blocks.register("heated_plank_stairs", (new GDAgatePlankStairs(agatePlanks.getDefaultState())).setUnlocalizedName("heated_plank_stairs"));
 
+        blocks.register("salt_block", (new GDSaltBlock()).setUnlocalizedName("salt_block"));
         blocks.register("gaia_stone", (new GDGaiaStone()).setUnlocalizedName("gaia_stone"));
         blocks.register("gaia_stone_bricks", (new GDGaiaStoneBricks()).setUnlocalizedName("gaia_stone_bricks"));
         blocks.register("malachite_bricks", (new GDMalachiteBricks()).setUnlocalizedName("malachite_bricks"));

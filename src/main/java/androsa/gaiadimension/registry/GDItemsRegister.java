@@ -99,8 +99,16 @@ public class GDItemsRegister {
         items.registerSubItemBlock(GDBlocks.gaiaPortal);
 
         items.registerBlock(GDBlocks.heavySoil);
+        items.registerBlock(GDBlocks.corruptSoil);
         items.registerBlock(GDBlocks.glitterGrass);
+        items.registerBlock(GDBlocks.coolGrass);
+        items.registerBlock(GDBlocks.verdantGrass);
+        items.registerBlock(GDBlocks.scentedGrass);
+        items.registerBlock(GDBlocks.oldGrass);
+        items.registerBlock(GDBlocks.corruptGrass);
+        items.registerBlock(GDBlocks.singedGrass);
         items.registerBlock(GDBlocks.frailGlitterBlock);
+        items.registerBlock(GDBlocks.thickGlitterBlock);
         items.registerSubItemBlock(GDBlocks.crystalGrowth);
         items.registerSubItemBlock(GDBlocks.crystalBloom);
         items.registerSubItemBlock(GDBlocks.gaiaSapling);
@@ -134,6 +142,7 @@ public class GDItemsRegister {
         items.registerBlock(GDBlocks.crustyPlankStairs);
         items.registerBlock(GDBlocks.heatedPlankStairs);
 
+        items.registerBlock(GDBlocks.saltBlock);
         items.registerBlock(GDBlocks.gaiaStone);
         items.registerSubItemBlock(GDBlocks.gaiaStoneBricks);
         items.registerSubItemBlock(GDBlocks.malachiteBricks);

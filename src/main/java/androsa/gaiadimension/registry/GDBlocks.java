@@ -13,10 +13,26 @@ public class GDBlocks {
 
     @ObjectHolder("heavy_soil")
     public static Block heavySoil;
+    @ObjectHolder("corrupt_soil")
+    public static Block corruptSoil;
     @ObjectHolder("glitter_grass")
     public static Block glitterGrass;
+    @ObjectHolder("cool_grass")
+    public static Block coolGrass;
+    @ObjectHolder("verdant_grass")
+    public static Block verdantGrass;
+    @ObjectHolder("scented_grass")
+    public static Block scentedGrass;
+    @ObjectHolder("old_grass")
+    public static Block oldGrass;
+    @ObjectHolder("corrupt_grass")
+    public static Block corruptGrass;
+    @ObjectHolder("singed_grass")
+    public static Block singedGrass;
     @ObjectHolder("frail_glitter_block")
     public static Block frailGlitterBlock;
+    @ObjectHolder("thick_glitter_block")
+    public static Block thickGlitterBlock;
     @ObjectHolder("crystal_growth")
     public static Block crystalGrowth;
     @ObjectHolder("crystal_bloom")
@@ -97,6 +113,8 @@ public class GDBlocks {
     @ObjectHolder("heated_plank_stairs")
     public static Block heatedPlankStairs;
 
+    @ObjectHolder("salt_block")
+    public static Block saltBlock;
     @ObjectHolder("gaia_stone")
     public static Block gaiaStone;
     @ObjectHolder("gaia_stone_bricks")
