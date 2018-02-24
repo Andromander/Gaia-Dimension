@@ -1,0 +1,10 @@
+{
+  "parent": "block/grass",
+  "textures": {
+    "particle": "gaiadimension:blocks/heavy_soil",
+    "bottom":   "gaiadimension:blocks/heavy_soil",
+    "top":      "gaiadimension:blocks/verdant_grass_top",
+    "side":     "gaiadimension:blocks/verdant_grass_side",
+    "overlay":  "gaiadimension:blocks/verdant_grass_overlay"
+  }
+}
