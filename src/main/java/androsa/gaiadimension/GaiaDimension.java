@@ -1,5 +1,6 @@
 package androsa.gaiadimension;
 
+import androsa.gaiadimension.entity.GaiaEntities;
 import androsa.gaiadimension.proxy.CommonProxy;
 import androsa.gaiadimension.registry.GDBlocks;
 import androsa.gaiadimension.registry.GDFluids;
@@ -13,6 +14,7 @@ import net.minecraft.world.DimensionType;
 import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
+import net.minecraftforge.fml.common.Mod.Instance;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
@@ -35,6 +37,7 @@ public class GaiaDimension
     public static final GDBlocks blocks = new GDBlocks();
     public static final GDFluids fluids = new GDFluids();
     public static final String ARMOR_DIR = "gaiadimension:textures/armor/";
+    public static final String MODEL_DIR = "gaiadimension:textures/model/";
 
     public static final Material matMineralWater = new MaterialLiquid(MapColor.CYAN_STAINED_HARDENED_CLAY);
     public static final Material matSuperhotMagma = new MaterialLiquid(MapColor.BLUE);
@@ -44,6 +47,9 @@ public class GaiaDimension
     public static DimensionType dimType;
     public static int backupdimensionID = -258;
 
+    @Instance(MODID)
+    public static GaiaDimension instance;
+
     @SidedProxy(clientSide = "androsa.gaiadimension.proxy.ClientProxy", serverSide = "androsa.gaiadimension.proxy.CommonProxy")
     public static CommonProxy proxy;
 
@@ -52,6 +58,7 @@ public class GaiaDimension
     @EventHandler
     public void preInit(FMLPreInitializationEvent event) {
 
+        registerCreatures();
         dimType = DimensionType.register("gaia", "_gaia", GDConfig.dimension.dimensionID, WorldProviderGaia.class, false);
 
         proxy.doPreLoadRegistration();
@@ -73,5 +80,12 @@ public class GaiaDimension
             DimensionManager.registerDimension(GaiaDimension.backupdimensionID, GaiaDimension.dimType);
             GDConfig.dimension.dimensionID = GaiaDimension.backupdimensionID;
         }
+    }
+
+    private void registerCreatures() {
+        int id = 0;
+        GaiaEntities.registerEntity(GaiaEntityNames.HOWLITE_WOLF, androsa.gaiadimension.entity.GDHowliteWolf.class, id++, 0xFF0000, 0x0000FF);
+
+        GaiaEntities.registerEntity(GaiaEntityNames.BLUE_HOWLITE_WOLF, androsa.gaiadimension.entity.boss.GDBlueHowliteWolf.class, id++, 0x00FF00, 0xFF00FF);
     }
 }
