@@ -97,6 +97,7 @@ public class GDItemsRegister {
         items.register("gaia_champion_sword", new GDGaiaChampSword(TOOL_GAIA_CHAMP).setUnlocalizedName("gaia_champion_sword").setMaxStackSize(1));
 
         items.registerSubItemBlock(GDBlocks.gaiaPortal);
+        items.registerBlock(GDBlocks.pyriteTorch);
 
         items.registerBlock(GDBlocks.heavySoil);
         items.registerBlock(GDBlocks.corruptSoil);

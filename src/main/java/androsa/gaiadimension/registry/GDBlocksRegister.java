@@ -15,6 +15,7 @@ public final class GDBlocksRegister {
         BlockRegistryHelper blocks = new BlockRegistryHelper(event.getRegistry());
 
         blocks.register("gaia_portal", (new GDGaiaPortal()).setUnlocalizedName("gaia_portal"));
+        blocks.register("pyrite_torch", (new GDPyriteTorch()).setUnlocalizedName("pyrite_torch"));
 
         blocks.register("heavy_soil", (new GDHeavySoil()).setUnlocalizedName("heavy_soil"));
         blocks.register("corrupt_soil", (new GDCorruptSoil()).setUnlocalizedName("corrupt_soil"));

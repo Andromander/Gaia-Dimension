@@ -1,0 +1,6 @@
+{
+  "parent": "gaiadimension:block/util/torch_wall",
+  "textures": {
+    "torch": "gaiadimension:blocks/pyrite_torch"
+  }
+}

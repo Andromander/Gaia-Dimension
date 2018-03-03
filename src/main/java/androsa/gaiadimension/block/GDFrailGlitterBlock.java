@@ -31,6 +31,7 @@ public class GDFrailGlitterBlock extends Block implements ModelRegisterCallback 
     }
 
     @Override
+    @Deprecated
     public boolean isOpaqueCube(IBlockState state) {
         return false;
     }

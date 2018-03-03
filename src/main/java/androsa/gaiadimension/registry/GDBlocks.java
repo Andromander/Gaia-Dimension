@@ -10,6 +10,8 @@ public class GDBlocks {
 
     @ObjectHolder("gaia_portal")
     public static BlockPortal gaiaPortal;
+    @ObjectHolder("pyrite_torch")
+    public static Block pyriteTorch;
 
     @ObjectHolder("heavy_soil")
     public static Block heavySoil;
