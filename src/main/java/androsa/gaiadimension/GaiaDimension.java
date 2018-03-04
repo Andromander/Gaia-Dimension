@@ -25,7 +25,7 @@ import org.apache.logging.log4j.Logger;
 @Mod(modid = GaiaDimension.MODID,
         name = "GaiaDimension",
         version = GaiaDimension.VERSION,
-        dependencies = "required-after:forge@[14.23.1.2584,)"
+        dependencies = "required-after:forge@[14.23.2.2611,)"
 )
 
 public class GaiaDimension
@@ -85,6 +85,7 @@ public class GaiaDimension
     private void registerCreatures() {
         int id = 0;
         GaiaEntities.registerEntity(GaiaEntityNames.HOWLITE_WOLF, androsa.gaiadimension.entity.GDHowliteWolf.class, id++, 0xFF0000, 0x0000FF);
+       // GaiaEntities.registerEntity(GaiaEntityNames.SPELLBOUND_ELEMENTAL, androsa.gaiadimension.entity.GDSpellElement.class, id++, 0xFFFF00, 0x0000FF);
 
         GaiaEntities.registerEntity(GaiaEntityNames.BLUE_HOWLITE_WOLF, androsa.gaiadimension.entity.boss.GDBlueHowliteWolf.class, id++, 0x00FF00, 0xFF00FF);
     }
