@@ -9,9 +9,11 @@ import androsa.gaiadimension.world.WorldProviderGaia;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialLiquid;
+import net.minecraft.entity.EnumCreatureAttribute;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.DimensionType;
 import net.minecraftforge.common.DimensionManager;
+import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.Mod.Instance;
@@ -46,6 +48,8 @@ public class GaiaDimension
 
     public static DimensionType dimType;
     public static int backupdimensionID = -258;
+
+    public static final EnumCreatureAttribute CORRUPT = EnumHelper.addCreatureAttribute("CORRUPT");
 
     @Instance(MODID)
     public static GaiaDimension instance;
