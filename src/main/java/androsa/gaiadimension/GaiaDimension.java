@@ -49,6 +49,7 @@ public class GaiaDimension
     public static DimensionType dimType;
     public static int backupdimensionID = -258;
 
+    public static final EnumCreatureAttribute GAIAN = EnumHelper.addCreatureAttribute("GAIAN");
     public static final EnumCreatureAttribute CORRUPT = EnumHelper.addCreatureAttribute("CORRUPT");
 
     @Instance(MODID)
@@ -92,5 +93,6 @@ public class GaiaDimension
         GaiaEntities.registerEntity(GaiaEntityNames.SPELLBOUND_ELEMENTAL, androsa.gaiadimension.entity.GDSpellElement.class, id++, 0xFFFF00, 0x0000FF);
 
         GaiaEntities.registerEntity(GaiaEntityNames.BLUE_HOWLITE_WOLF, androsa.gaiadimension.entity.boss.GDBlueHowliteWolf.class, id++, 0x00FF00, 0xFF00FF);
+        GaiaEntities.registerEntity(GaiaEntityNames.MALACHITE_GUARD, androsa.gaiadimension.entity.boss.GDMalachiteGuard.class, id++, 0x0000FF, 0x00FF00);
     }
 }

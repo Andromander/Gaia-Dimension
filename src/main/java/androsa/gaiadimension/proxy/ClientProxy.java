@@ -3,11 +3,14 @@ package androsa.gaiadimension.proxy;
 import androsa.gaiadimension.entity.GDHowliteWolf;
 import androsa.gaiadimension.entity.GDSpellElement;
 import androsa.gaiadimension.entity.boss.GDBlueHowliteWolf;
+import androsa.gaiadimension.entity.boss.GDMalachiteGuard;
 import androsa.gaiadimension.model.ModelBlueHowliteWolf;
 import androsa.gaiadimension.model.ModelHowliteWolf;
+import androsa.gaiadimension.model.ModelMalachiteGuard;
 import androsa.gaiadimension.model.ModelSpellElement;
 import androsa.gaiadimension.renderer.EntityRenderBlueHowliteWolf;
 import androsa.gaiadimension.renderer.EntityRenderHowliteWolf;
+import androsa.gaiadimension.renderer.EntityRenderMalachiteGuard;
 import androsa.gaiadimension.renderer.EntityRenderSpellElement;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.client.FMLClientHandler;
@@ -22,6 +25,7 @@ public class ClientProxy extends CommonProxy {
         RenderingRegistry.registerEntityRenderingHandler(GDSpellElement.class, m -> new EntityRenderSpellElement(m, new ModelSpellElement(), 0.0F));
 
         RenderingRegistry.registerEntityRenderingHandler(GDBlueHowliteWolf.class, m -> new EntityRenderBlueHowliteWolf(m, new ModelBlueHowliteWolf(), 1.2F));
+        RenderingRegistry.registerEntityRenderingHandler(GDMalachiteGuard.class, m -> new EntityRenderMalachiteGuard(m, new ModelMalachiteGuard(), 1.0F));
     }
     @Override
     public void doOnLoadRegistration() {
