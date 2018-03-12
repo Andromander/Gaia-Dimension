@@ -15,12 +15,10 @@ import java.util.Random;
 
 public class GDBlueAgateTaiga extends GDBiomeBase {
 
-    private WorldGenTrees GaiaGenBlueTrees;
+    private static final GDGenBlueAgateTree GaiaGenBlueTrees = new GDGenBlueAgateTree(false);
 
     public GDBlueAgateTaiga(BiomeProperties props) {
         super(props);
-
-        GaiaGenBlueTrees = new GDGenBlueAgateTree(false);
 
         topBlock = GDBlocks.coolGrass.getDefaultState();
         fillerBlock = GDBlocks.heavySoil.getDefaultState();

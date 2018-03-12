@@ -5,6 +5,10 @@ import androsa.gaiadimension.registry.ModelRegisterCallback;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockStone;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.properties.PropertyEnum;
+import net.minecraft.util.IStringSerializable;
+
+import java.util.Locale;
 
 public class GDGaiaStone extends Block implements ModelRegisterCallback {
 

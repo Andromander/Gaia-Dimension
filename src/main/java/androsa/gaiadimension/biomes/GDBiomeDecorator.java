@@ -1,8 +1,9 @@
 package androsa.gaiadimension.biomes;
 
+import androsa.gaiadimension.registry.GDBlocks;
 import androsa.gaiadimension.registry.GDFeature;
 import androsa.gaiadimension.registry.GDFluids;
-import net.minecraft.init.Blocks;
+import mcp.MethodsReturnNonnullByDefault;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
@@ -12,17 +13,20 @@ import net.minecraft.world.gen.feature.WorldGenLakes;
 import net.minecraft.world.gen.feature.WorldGenLiquids;
 import net.minecraft.world.gen.feature.WorldGenMinable;
 
+import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.Random;
 
+@MethodsReturnNonnullByDefault
+@ParametersAreNonnullByDefault
 public class GDBiomeDecorator extends BiomeDecorator {
-    private WorldGenLakes extraLakeGen = new WorldGenLakes(GDFluids.mineralWaterBlock);
+   // private WorldGenLakes extraLakeGen = new WorldGenLakes(GDFluids.mineralWaterBlock); //Bring this back if necessary, but I doubt that
     private WorldGenLakes extraLavaPoolGen = new WorldGenLakes(GDFluids.superhotMagmaBlock);
 
     private WorldGenLiquids caveLavaGen = new WorldGenLiquids(GDFluids.superhotMagmaBlock);
 
     public World world;
     public Random rand;
-    public int lakesPerChunk = 0;
+   // public int lakesPerChunk = 0;
     public float lavaPoolChance = 0;
 
     @Override
@@ -31,7 +35,19 @@ public class GDBiomeDecorator extends BiomeDecorator {
 
         if (!nearFeature.areChunkDecorationsEnabled) {
             decorateUnderground(world, rand, pos);
-            decorateOnlyOres(world, rand, pos);
+
+            if (this.chunkProviderSettings == null) {
+                this.chunkProviderSettings = ChunkGeneratorSettings.Factory.jsonToFactory(world.getWorldInfo().getGeneratorOptions()).build();
+
+                this.chunkPos = pos;
+                new WorldGenMinable(GDBlocks.hematiteOre.getDefaultState(), chunkProviderSettings.coalSize, input -> input == GDBlocks.gaiaStone.getDefaultState());
+                new WorldGenMinable(GDBlocks.pyriteOre.getDefaultState(), chunkProviderSettings.coalSize, input -> input == GDBlocks.gaiaStone.getDefaultState());
+                new WorldGenMinable(GDBlocks.cinnabarOre.getDefaultState(), chunkProviderSettings.ironSize, input -> input == GDBlocks.gaiaStone.getDefaultState());
+                new WorldGenMinable(GDBlocks.labradoriteOre.getDefaultState(), chunkProviderSettings.goldSize, input -> input == GDBlocks.gaiaStone.getDefaultState());
+                new WorldGenMinable(GDBlocks.moonstoneOre.getDefaultState(), chunkProviderSettings.goldSize, input -> input == GDBlocks.gaiaStone.getDefaultState());
+            }
+            this.generateOres(world, rand);
+
         } else {
             super.decorate(world, rand, biome, pos);
         }
@@ -68,16 +84,15 @@ public class GDBiomeDecorator extends BiomeDecorator {
     }
 
     public void decorateOnlyOres(World world, Random rand, BlockPos pos) {
-        this.chunkPos = pos;
         if (this.chunkProviderSettings == null) {
             this.chunkProviderSettings = ChunkGeneratorSettings.Factory.jsonToFactory(world.getWorldInfo().getGeneratorOptions()).build();
+
             this.chunkPos = pos;
-            this.coalGen = new WorldGenMinable(Blocks.COAL_ORE.getDefaultState(), this.chunkProviderSettings.coalSize);
-            this.ironGen = new WorldGenMinable(Blocks.IRON_ORE.getDefaultState(), this.chunkProviderSettings.ironSize);
-            this.goldGen = new WorldGenMinable(Blocks.GOLD_ORE.getDefaultState(), this.chunkProviderSettings.goldSize);
-            this.redstoneGen = new WorldGenMinable(Blocks.REDSTONE_ORE.getDefaultState(), this.chunkProviderSettings.redstoneSize);
-            this.diamondGen = new WorldGenMinable(Blocks.DIAMOND_ORE.getDefaultState(), this.chunkProviderSettings.diamondSize);
-            this.lapisGen = new WorldGenMinable(Blocks.LAPIS_ORE.getDefaultState(), this.chunkProviderSettings.lapisSize);
+            new WorldGenMinable(GDBlocks.hematiteOre.getDefaultState(), chunkProviderSettings.coalSize, input -> input == GDBlocks.gaiaStone.getDefaultState());
+            new WorldGenMinable(GDBlocks.pyriteOre.getDefaultState(), chunkProviderSettings.coalSize, input -> input == GDBlocks.gaiaStone.getDefaultState());
+            new WorldGenMinable(GDBlocks.cinnabarOre.getDefaultState(), chunkProviderSettings.ironSize, input -> input == GDBlocks.gaiaStone.getDefaultState());
+            new WorldGenMinable(GDBlocks.labradoriteOre.getDefaultState(), chunkProviderSettings.goldSize, input -> input == GDBlocks.gaiaStone.getDefaultState());
+            new WorldGenMinable(GDBlocks.moonstoneOre.getDefaultState(), chunkProviderSettings.goldSize, input -> input == GDBlocks.gaiaStone.getDefaultState());
         }
         this.generateOres(world, rand);
     }
