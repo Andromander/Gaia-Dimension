@@ -11,14 +11,32 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.ChunkPrimer;
-import net.minecraft.world.gen.MapGenCaves;
+import net.minecraft.world.gen.MapGenBase;
 
 import java.util.Random;
 
-public class GDGenCaves extends MapGenCaves {
+public class GDGenCaves extends MapGenBase {
 
     protected void generateLargeCaveNode(long caveSeed, int centerX, int centerZ, ChunkPrimer blockStorage, double randX, double randY, double randZ, boolean isVolcanic) {
         this.generateCaveNode(caveSeed, centerX, centerZ, blockStorage, randX, randY, randZ, 1.0F + this.rand.nextFloat() * 6.0F, 0.0F, 0.0F, -1, -1, 0.5D, isVolcanic);
+    }
+
+    @Override
+    public void generate(World worldIn, int x, int z, ChunkPrimer primer) {
+        int i = this.range;
+        this.world = worldIn;
+        this.rand.setSeed(world.getSeed());
+        long j = this.rand.nextLong();
+        long k = this.rand.nextLong();
+
+        for (int l = x - i; l <= x + i; ++l) {
+            for (int i1 = z - i; i1 <= z + i; ++i1) {
+                long j1 = (long)l * j;
+                long k1 = (long)i1 * k;
+                this.rand.setSeed(j1 ^ k1 ^ worldIn.getSeed());
+                this.recursiveGenerate(worldIn, l, i1, x, z, primer);
+            }
+        }
     }
 
     protected void generateCaveNode(long caveSeed, int centerX, int centerZ, ChunkPrimer blockStorage, double randX, double randY, double randZ, float caveSize, float randPI, float angleToGenerate, int loopOne, int loopEnd, double yScale, boolean isVolcanic) {
