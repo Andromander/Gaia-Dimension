@@ -4,6 +4,8 @@ import androsa.gaiadimension.registry.GDBlocks;
 import androsa.gaiadimension.registry.GDFeature;
 import androsa.gaiadimension.registry.GDFluids;
 import mcp.MethodsReturnNonnullByDefault;
+import net.minecraft.block.BlockFlower;
+import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -114,21 +116,7 @@ public class GDBiomeDecorator extends BiomeDecorator {
             }
         }
     }
-/*
-    public void decorateOnlyOres(World world, Random rand, BlockPos pos) {
-        if (this.chunkProviderSettings == null) {
-            this.chunkProviderSettings = ChunkGeneratorSettings.Factory.jsonToFactory(world.getWorldInfo().getGeneratorOptions()).build();
 
-            this.chunkPos = pos;
-            new WorldGenMinable(GDBlocks.hematiteOre.getDefaultState(), chunkProviderSettings.coalSize, input -> input == GDBlocks.gaiaStone.getDefaultState());
-            new WorldGenMinable(GDBlocks.pyriteOre.getDefaultState(), chunkProviderSettings.coalSize, input -> input == GDBlocks.gaiaStone.getDefaultState());
-            new WorldGenMinable(GDBlocks.cinnabarOre.getDefaultState(), chunkProviderSettings.ironSize, input -> input == GDBlocks.gaiaStone.getDefaultState());
-            new WorldGenMinable(GDBlocks.labradoriteOre.getDefaultState(), chunkProviderSettings.goldSize, input -> input == GDBlocks.gaiaStone.getDefaultState());
-            new WorldGenMinable(GDBlocks.moonstoneOre.getDefaultState(), chunkProviderSettings.goldSize, input -> input == GDBlocks.gaiaStone.getDefaultState());
-        }
-        this.generateOres(world, rand);
-    }
-*/
     public void setTreesPerChunk(int treesPerChunk) {
         this.treesPerChunk = treesPerChunk;
     }

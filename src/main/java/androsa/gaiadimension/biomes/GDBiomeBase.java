@@ -1,10 +1,13 @@
 package androsa.gaiadimension.biomes;
 
+import androsa.gaiadimension.block.GDCrystalBloom;
 import androsa.gaiadimension.registry.GDBlocks;
 import androsa.gaiadimension.world.GaiaWorld;
+import net.minecraft.block.BlockFlower;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.monster.*;
+import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
@@ -38,6 +41,8 @@ public class GDBiomeBase extends Biome {
 
         getGDBiomeDecorator().setTreesPerChunk(5);
         getGDBiomeDecorator().setGrassPerChunk(2);
+        decorator.flowersPerChunk = -1;
+        decorator.reedsPerChunk = -1;
     }
 
     @Override
@@ -47,12 +52,6 @@ public class GDBiomeBase extends Biome {
 
     protected GDBiomeDecorator getGDBiomeDecorator() {
         return (GDBiomeDecorator) this.decorator;
-    }
-
-    public final GDBiomeBase setFoliageColors(int grassColor, int foliageColor) {
-        this.grassColor = grassColor;
-        this.foliageColor = foliageColor;
-        return this;
     }
 
     @Override
