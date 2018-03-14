@@ -3,7 +3,10 @@ package androsa.gaiadimension.world;
 import androsa.gaiadimension.GDConfig;
 import androsa.gaiadimension.GaiaDimension;
 import androsa.gaiadimension.biomes.GDBiomes;
+import androsa.gaiadimension.biomes.GDBlueAgateTaiga;
 import androsa.gaiadimension.world.layer.GDBiomeProvider;
+import net.minecraft.client.Minecraft;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
@@ -88,13 +91,53 @@ public class WorldProviderGaia extends WorldProviderSurface {
         return true;
     }
 
+    @SideOnly(Side.CLIENT)
+    private double[] currentSkyColor;
+    @SideOnly(Side.CLIENT)
+    private short[] targetSkyColor;
+
     @Override
     @SideOnly(Side.CLIENT)
     public Vec3d getSkyColor(net.minecraft.entity.Entity cameraEntity, float partialTicks) {
         return new Vec3d(198 / 256.0, 157 / 256.0, 88 / 256.0);
     }
+/* //If I can get this to work, I'll implement it
+        EntityPlayer player = Minecraft.getMinecraft().player;
+        Biome biome = world.getBiome(new BlockPos(player.posX, player.posY, player.posZ));
 
-    //I mean, it will always be null, but if it should we have this
+        if (biome instanceof GDBlueAgateTaiga) {
+            targetSkyColor = ((GDBlueAgateTaiga) biome).getSkyRGB();
+        } else {
+            return new Vec3d(198 / 256.0, 157 / 256.0, 88 / 256.0);
+        }
+
+        if (currentSkyColor == null) {
+            currentSkyColor = new double[3];
+            for (int time = 0; time < 3; time++) {
+                currentSkyColor[time] = targetSkyColor[time];
+            }
+        }
+
+        for (int time = 0; time < 3; time++) {
+            if (currentSkyColor[time] != targetSkyColor[time]) {
+                if (currentSkyColor[time] < targetSkyColor[time]) {
+                    currentSkyColor[time] += 2D;
+                    if (currentSkyColor[time] > targetSkyColor[time]) {
+                        currentSkyColor[time] = targetSkyColor[time];
+                    }
+                }
+            } else if (currentSkyColor[time] > targetSkyColor[time]) {
+                currentSkyColor[time] -= 2D;
+                if (currentSkyColor[time] < targetSkyColor[time]) {
+                    targetSkyColor[time] = targetSkyColor[time];
+                }
+            }
+        }
+
+        return new Vec3d(currentSkyColor[0] / 255D, currentSkyColor[1] / 255D, currentSkyColor[2] / 255D);
+    }
+*/
+    //I mean, it will never be null, but if it should we have this
     @Override
     public Biome getBiomeForCoords(BlockPos pos) {
         Biome biome = super.getBiomeForCoords(pos);

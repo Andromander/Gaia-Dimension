@@ -10,12 +10,15 @@ import androsa.gaiadimension.world.GDGenNoTrees;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import net.minecraft.world.gen.feature.WorldGenTrees;
 import net.minecraft.world.gen.feature.WorldGenerator;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.Random;
 
 public class GDBlueAgateTaiga extends GDBiomeBase {
 
     private static final GDGenBlueAgateTree GaiaGenBlueTrees = new GDGenBlueAgateTree(false);
+    private short[] skyColorRGB = new short[] { 133, 182, 210 };
 
     public GDBlueAgateTaiga(BiomeProperties props) {
         super(props);
@@ -42,5 +45,10 @@ public class GDBlueAgateTaiga extends GDBiomeBase {
         } else {
             return new GDGenCrystalGrowth(GDCrystalGrowth.CrystalGrowthVariant.BLUE);
         }
+    }
+
+    @SideOnly(Side.CLIENT)
+    public final short[] getSkyRGB() {
+        return skyColorRGB;
     }
 }
