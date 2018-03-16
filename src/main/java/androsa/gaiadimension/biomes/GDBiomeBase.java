@@ -24,11 +24,14 @@ public class GDBiomeBase extends Biome {
 
     private int grassColor = -1;
     private int foliageColor = -1;
+    //private short[] skyColorRGB = new short[] { 198, 157, 88 };
     protected static final IBlockState STONE_GAIA = GDBlocks.gaiaStone.getDefaultState();
     protected List<SpawnListEntry> undergroundMonsterList;
 
     public GDBiomeBase(BiomeProperties props) {
         super(props);
+
+        spawnableCreatureList.clear();
 
         undergroundMonsterList = new ArrayList<SpawnListEntry>();
 
@@ -43,6 +46,11 @@ public class GDBiomeBase extends Biome {
         getGDBiomeDecorator().setGrassPerChunk(2);
         decorator.flowersPerChunk = -1;
         decorator.reedsPerChunk = -1;
+    }
+
+    @Override
+    public float getSpawningChance() {
+        return 0.12F;
     }
 
     @Override

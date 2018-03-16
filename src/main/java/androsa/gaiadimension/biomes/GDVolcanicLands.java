@@ -20,6 +20,7 @@ import java.util.Random;
 public class GDVolcanicLands extends GDBiomeBase {
 
     private WorldGenTrees GaiaGenBurntTrees = new GDGenBurntAgateTree(false);
+    private short[] skyColorRGB = new short[] { 75, 30, 25 };
 
     public GDVolcanicLands(Biome.BiomeProperties props) {
         super(props);
@@ -40,5 +41,10 @@ public class GDVolcanicLands extends GDBiomeBase {
     @Override
     public WorldGenerator getRandomWorldGenForGrass(Random rand) {
         return new GDGenCrystalGrowth(GDCrystalGrowth.CrystalGrowthVariant.SEARED);
+    }
+
+    @SideOnly(Side.CLIENT)
+    public final short[] getSkyRGB() {
+        return skyColorRGB;
     }
 }

@@ -10,12 +10,15 @@ import androsa.gaiadimension.world.GDGenNoTrees;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import net.minecraft.world.gen.feature.WorldGenTrees;
 import net.minecraft.world.gen.feature.WorldGenerator;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.Random;
 
 public class GDGoldstoneLands extends GDBiomeBase {
 
     private WorldGenTrees GaiaGenCorruptTrees;
+    private short[] skyColorRGB = new short[] { 34, 34, 34 };
 
     public GDGoldstoneLands(BiomeProperties props) {
         super(props);
@@ -24,6 +27,11 @@ public class GDGoldstoneLands extends GDBiomeBase {
 
         topBlock = GDBlocks.corruptGrass.getDefaultState();
         fillerBlock = GDBlocks.corruptSoil.getDefaultState();
+    }
+
+    @SideOnly(Side.CLIENT)
+    public final short[] getSkyRGB() {
+        return skyColorRGB;
     }
 
     //TODO: Generate veins of Corrupt Blocks
@@ -36,7 +44,6 @@ public class GDGoldstoneLands extends GDBiomeBase {
     @Override
     public WorldGenerator getRandomWorldGenForGrass(Random rand) {
 
-        //TODO: Find a way to not generate poppies and dandelions
         if (rand.nextInt(16) == 0) {
             return new GDGenCrystalBloom(GDCrystalBloom.CrystalBloomVariant.CORRUPT_VARLOOM);
         } else {

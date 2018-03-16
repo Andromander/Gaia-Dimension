@@ -20,6 +20,7 @@ import java.util.Random;
 public class GDPinkAgateForest extends GDBiomeBase {
 
     private WorldGenTrees GaiaGenPinkTrees;
+    private short[] skyColorRGB = new short[] { 198, 157, 88 };
 
     public GDPinkAgateForest(Biome.BiomeProperties props) {
         super(props);
@@ -27,6 +28,11 @@ public class GDPinkAgateForest extends GDBiomeBase {
 
         topBlock = GDBlocks.glitterGrass.getDefaultState();
         fillerBlock = GDBlocks.heavySoil.getDefaultState();
+    }
+
+    @SideOnly(Side.CLIENT)
+    public final short[] getSkyRGB() {
+        return skyColorRGB;
     }
 
     @Override
@@ -37,7 +43,6 @@ public class GDPinkAgateForest extends GDBiomeBase {
     @Override
     public WorldGenerator getRandomWorldGenForGrass(Random rand) {
 
-        //TODO: Find a way to not generate poppies and dandelions
         if (rand.nextInt(16) == 0) {
             if (rand.nextInt(4) == 0) {
                 return new GDGenCrystalBloom(GDCrystalBloom.CrystalBloomVariant.OUZIUM);

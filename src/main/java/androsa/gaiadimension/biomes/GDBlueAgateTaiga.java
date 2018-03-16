@@ -18,10 +18,12 @@ import java.util.Random;
 public class GDBlueAgateTaiga extends GDBiomeBase {
 
     private static final GDGenBlueAgateTree GaiaGenBlueTrees = new GDGenBlueAgateTree(false);
-    private short[] skyColorRGB = new short[] { 133, 182, 210 };
+    private short[] skyColorRGB = new short[] { 149, 197, 231 };
 
     public GDBlueAgateTaiga(BiomeProperties props) {
         super(props);
+
+        spawnableCreatureList.add(new SpawnListEntry(androsa.gaiadimension.entity.GDHowliteWolf.class, 5, 2, 4));
 
         topBlock = GDBlocks.coolGrass.getDefaultState();
         fillerBlock = GDBlocks.heavySoil.getDefaultState();
@@ -35,7 +37,6 @@ public class GDBlueAgateTaiga extends GDBiomeBase {
     @Override
     public WorldGenerator getRandomWorldGenForGrass(Random rand) {
 
-        //TODO: Find a way to not generate poppies and dandelions
         if (rand.nextInt(16) == 0) {
             if (rand.nextInt(4) == 0) {
                 return new GDGenCrystalBloom(GDCrystalBloom.CrystalBloomVariant.OUZIUM);

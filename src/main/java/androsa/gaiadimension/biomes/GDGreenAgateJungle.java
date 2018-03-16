@@ -11,12 +11,15 @@ import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import net.minecraft.world.gen.feature.WorldGenTrees;
 import net.minecraft.world.gen.feature.WorldGenerator;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.Random;
 
 public class GDGreenAgateJungle extends GDBiomeBase {
 
     private WorldGenTrees GaiaGenGreenTrees;
+    private short[] skyColorRGB = new short[] { 128, 191, 158 };
 
     public GDGreenAgateJungle(Biome.BiomeProperties props) {
         super(props);
@@ -25,6 +28,11 @@ public class GDGreenAgateJungle extends GDBiomeBase {
 
         topBlock = GDBlocks.verdantGrass.getDefaultState();
         fillerBlock = GDBlocks.heavySoil.getDefaultState();
+    }
+
+    @SideOnly(Side.CLIENT)
+    public final short[] getSkyRGB() {
+        return skyColorRGB;
     }
 
     @Override

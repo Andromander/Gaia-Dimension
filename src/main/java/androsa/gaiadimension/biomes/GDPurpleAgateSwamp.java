@@ -10,15 +10,20 @@ import androsa.gaiadimension.world.GDGenPurpleAgateTree;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import net.minecraft.world.gen.feature.WorldGenTrees;
 import net.minecraft.world.gen.feature.WorldGenerator;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.Random;
 
 public class GDPurpleAgateSwamp extends GDBiomeBase {
 
     private WorldGenTrees GaiaGenPurpleTrees;
+    private short[] skyColorRGB = new short[] { 171, 109, 241 };
 
     public GDPurpleAgateSwamp(BiomeProperties props) {
         super(props);
+
+        spawnableCreatureList.add(new SpawnListEntry(androsa.gaiadimension.entity.GDSpellElement.class, 5, 1, 2));
 
         //TODO: Decorate with unique plants/mobs to stand out more as a swamp
 
@@ -26,6 +31,11 @@ public class GDPurpleAgateSwamp extends GDBiomeBase {
 
         topBlock = GDBlocks.scentedGrass.getDefaultState();
         fillerBlock = GDBlocks.heavySoil.getDefaultState();
+    }
+
+    @SideOnly(Side.CLIENT)
+    public final short[] getSkyRGB() {
+        return skyColorRGB;
     }
 
     @Override
@@ -36,7 +46,6 @@ public class GDPurpleAgateSwamp extends GDBiomeBase {
     @Override
     public WorldGenerator getRandomWorldGenForGrass(Random rand) {
 
-        //TODO: Find a way to not generate poppies and dandelions
         if (rand.nextInt(16) == 0) {
             if (rand.nextInt(4) == 0) {
                 return new GDGenCrystalBloom(GDCrystalBloom.CrystalBloomVariant.THISCUS);
