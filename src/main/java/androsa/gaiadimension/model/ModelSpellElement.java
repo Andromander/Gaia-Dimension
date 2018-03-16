@@ -6,7 +6,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.util.math.MathHelper;
 
 /**
- * ModelSpellElement - Undefined
+ * ModelSpellElement - Androsa
  * Created using Tabula 7.0.0
  */
 public class ModelSpellElement extends ModelBase {

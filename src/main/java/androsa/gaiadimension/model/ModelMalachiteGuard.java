@@ -5,7 +5,7 @@ import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 
 /**
- * ModelMalachiteGuard - Undefined
+ * ModelMalachiteGuard - Androsa
  * Created using Tabula 7.0.0
  */
 public class ModelMalachiteGuard extends ModelBase {

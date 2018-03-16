@@ -1,11 +1,17 @@
 package androsa.gaiadimension.entity;
 
+import androsa.gaiadimension.biomes.GDBiomes;
 import androsa.gaiadimension.entity.boss.GDBlueHowliteWolf;
+import androsa.gaiadimension.registry.GDBlocks;
+import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.*;
 import net.minecraft.entity.monster.EntityMob;
+import net.minecraft.entity.passive.EntityWolf;
+import net.minecraft.entity.passive.IAnimals;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.EnumSkyBlock;
 import net.minecraft.world.World;
@@ -42,22 +48,8 @@ public class GDHowliteWolf extends EntityMob {
         }
     }
 
-    protected boolean isValidLightLevel() {
-        BlockPos blockpos = new BlockPos(this.posX, this.getEntityBoundingBox().minY, this.posZ);
-
-        if (this.world.getLightFor(EnumSkyBlock.SKY, blockpos) > this.rand.nextInt(32)) {
-            return false;
-        } else {
-            int i = this.world.getLightFromNeighbors(blockpos);
-
-            if (this.world.isThundering()) {
-                int j = this.world.getSkylightSubtracted();
-                this.world.setSkylightSubtracted(10);
-                i = this.world.getLightFromNeighbors(blockpos);
-                this.world.setSkylightSubtracted(j);
-            }
-
-            return i <= this.rand.nextInt(8);
-        }
+    @Override
+    public boolean getCanSpawnHere() {
+        return world.getBiome(new BlockPos(this)) == GDBiomes.blueAgateForest;
     }
 }

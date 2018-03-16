@@ -7,7 +7,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.math.MathHelper;
 
 /**
- * ModelBlueHowliteWolf - Undefined
+ * ModelBlueHowliteWolf - Androsa
  * Created using Tabula 7.0.0
  */
 public class ModelBlueHowliteWolf extends ModelBase {
