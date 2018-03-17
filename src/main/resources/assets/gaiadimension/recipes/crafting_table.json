@@ -1,0 +1,15 @@
+{
+  "result": {
+    "item": "minecraft:crafting_table"
+  },
+  "pattern": [
+    "##",
+    "##"
+    ],
+  "type": "forge:ore_shaped",
+  "key": {
+    "#": {
+      "item": "#AGATEPLANKS"
+    }
+  }
+}
