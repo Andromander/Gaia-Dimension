@@ -1,0 +1,19 @@
+{
+  "result": {
+    "item": "gaiadimension:agate_axe"
+  },
+  "pattern": [
+    "WW",
+    "WS",
+    " S"
+  ],
+  "type": "forge:ore_shaped",
+  "key": {
+    "W": {
+      "item": "#AGATEPLANKS"
+    },
+    "S": {
+      "item": "gaiadimension:agate_stick"
+    }
+  }
+}

@@ -21,6 +21,7 @@ public class GDItems {
     public static ItemArmor.ArmorMaterial ARMOR_LARVIKITE = EnumHelper.addArmorMaterial("LARVAKITE", "gaia_duke", 10240, new int[]{3, 6, 8, 3}, 20, SoundEvents.ITEM_ARMOR_EQUIP_GOLD, 3.0F);
     public static ItemArmor.ArmorMaterial ARMOR_GAIA_CHAMP = EnumHelper.addArmorMaterial("GAIA_CHAMP", "gaia_champion", -1, new int[]{4, 7, 9, 4}, 30, SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, 4.0F);
 
+    public static Item.ToolMaterial TOOL_AGATE = EnumHelper.addToolMaterial("AGATE", 0, 150, 3.0F, 1.0F, 5);
     public static Item.ToolMaterial TOOL_MALACHITE = EnumHelper.addToolMaterial("MALACHITE", 3, 5120, 6.0F, 4.0F, 10);
     public static Item.ToolMaterial TOOL_TIGER_EYE = EnumHelper.addToolMaterial("TIGER_EYE", 3, 4096, 6.0F, 5.0F, 10);
     public static Item.ToolMaterial TOOL_SPINEL = EnumHelper.addToolMaterial("SPINEL", 3, 5120, 6.0F, 4.0F, 15);
@@ -155,6 +156,15 @@ public class GDItems {
     @ObjectHolder("gaia_champion_boots")
     public static final Item gaiaChampionBoots;
 
+    @ObjectHolder("agate_sword")
+    public static final Item agateSword;
+    @ObjectHolder("agate_pickaxe")
+    public static final Item agatePickaxe;
+    @ObjectHolder("agate_axe")
+    public static final Item agateAxe;
+    @ObjectHolder("agate_shovel")
+    public static final Item agateShovel;
+
     @ObjectHolder("malachite_guard_sword")
     public static final Item malachiteGuardSword;
     @ObjectHolder("apex_predator_sword")
@@ -202,6 +212,11 @@ public class GDItems {
         opalBlue = null;
         opalGreen = null;
         opalWhite = null;
+
+        agateSword = null;
+        agatePickaxe = null;
+        agateAxe = null;
+        agateShovel = null;
 
         malachiteGuardHeadgear = null;
         malachiteGuardBrace = null;
