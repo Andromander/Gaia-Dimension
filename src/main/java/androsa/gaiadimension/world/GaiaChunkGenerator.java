@@ -3,6 +3,7 @@ package androsa.gaiadimension.world;
 import androsa.gaiadimension.registry.GDBlocks;
 import androsa.gaiadimension.registry.GDFeature;
 import androsa.gaiadimension.registry.GDFluids;
+import androsa.gaiadimension.world.layer.GDGenLavaLake;
 import jline.internal.Nullable;
 import net.minecraft.block.BlockFalling;
 import net.minecraft.entity.EnumCreatureType;
@@ -297,7 +298,7 @@ public class GaiaChunkGenerator implements IChunkGenerator {
             int j2 = rand.nextInt(rand.nextInt(GaiaWorld.CHUNKHEIGHT - 8) +8);
             int j3 = blockpos.getZ() + rand.nextInt(16) + 8;
             if (j2 < GaiaWorld.SEALEVEL || rand.nextInt(10) == 0) {
-                (new WorldGenLakes(GDFluids.superhotMagmaBlock)).generate(world, rand, new BlockPos(j1, j2, j3));
+                (new GDGenLavaLake(GDFluids.superhotMagmaBlock)).generate(world, rand, new BlockPos(j1, j2, j3));
             }
         }
 

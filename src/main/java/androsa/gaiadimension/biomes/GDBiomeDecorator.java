@@ -3,6 +3,7 @@ package androsa.gaiadimension.biomes;
 import androsa.gaiadimension.registry.GDBlocks;
 import androsa.gaiadimension.registry.GDFeature;
 import androsa.gaiadimension.registry.GDFluids;
+import androsa.gaiadimension.world.layer.GDGenLavaLake;
 import mcp.MethodsReturnNonnullByDefault;
 import net.minecraft.block.BlockFlower;
 import net.minecraft.block.material.Material;
@@ -23,9 +24,9 @@ import java.util.Random;
 @ParametersAreNonnullByDefault
 public class GDBiomeDecorator extends BiomeDecorator {
    // private WorldGenLakes extraLakeGen = new WorldGenLakes(GDFluids.mineralWaterBlock); //Bring this back if necessary, but I doubt that
-    private WorldGenLakes extraLavaPoolGen = new WorldGenLakes(GDFluids.superhotMagmaBlock);
+    private GDGenLavaLake extraLavaPoolGen = new GDGenLavaLake(GDFluids.superhotMagmaBlock);
 
-    private WorldGenLiquids caveLavaGen = new WorldGenLiquids(GDFluids.superhotMagmaBlock);
+    private GDGenLavaLake caveLavaGen = new GDGenLavaLake(GDFluids.superhotMagmaBlock);
 
     public World world;
     public Random rand;
