@@ -8,7 +8,6 @@ import androsa.gaiadimension.world.GDGenCrystalBloom;
 import androsa.gaiadimension.world.GDGenCrystalGrowth;
 import androsa.gaiadimension.world.GDGenNoTrees;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
-import net.minecraft.world.gen.feature.WorldGenTrees;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;

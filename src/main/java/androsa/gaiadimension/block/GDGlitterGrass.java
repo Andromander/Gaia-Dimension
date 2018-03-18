@@ -1,6 +1,5 @@
 package androsa.gaiadimension.block;
 
-import androsa.gaiadimension.item.GDItem;
 import androsa.gaiadimension.registry.*;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
@@ -14,7 +13,6 @@ import net.minecraft.world.ColorizerGrass;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeColorHelper;
-import net.minecraft.world.border.IBorderListener;
 import net.minecraftforge.common.EnumPlantType;
 import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.fml.relauncher.Side;

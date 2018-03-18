@@ -7,7 +7,6 @@ import androsa.gaiadimension.world.layer.GDGenLavaLake;
 import jline.internal.Nullable;
 import net.minecraft.block.BlockFalling;
 import net.minecraft.entity.EnumCreatureType;
-import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.math.MathHelper;

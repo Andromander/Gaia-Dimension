@@ -33,7 +33,6 @@ public class GDFluidBlock extends BlockFluidClassic implements SuperRegistry {
         setUnlocalizedName(name);
         setRegistryName(name);
         setCreativeTab(tab);
-        lightOpacity = 0;
     }
 
     @Override

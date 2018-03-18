@@ -1,7 +1,6 @@
 package androsa.gaiadimension.block;
 
 import androsa.gaiadimension.GDConfig;
-import androsa.gaiadimension.GaiaTeleporter;
 import androsa.gaiadimension.TeleporterGaia;
 import androsa.gaiadimension.registry.GDBlocks;
 import androsa.gaiadimension.registry.GDTabs;

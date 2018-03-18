@@ -5,7 +5,6 @@ import androsa.gaiadimension.block.GDGaiaLog;
 import androsa.gaiadimension.block.enums.GaiaLeavesVariant;
 import androsa.gaiadimension.block.enums.GaiaLogVariant;
 import androsa.gaiadimension.registry.GDBlocks;
-import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
