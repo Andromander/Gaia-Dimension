@@ -65,11 +65,6 @@ public class GDAgatePlankSlab extends BlockSlab implements ModelRegisterCallback
     }
 
     @Override
-    public Item getItemDropped(IBlockState state, Random rand, int fortune) {
-        return Item.getItemFromBlock(GDBlocks.pinkAgatePlankSlab);
-    }
-
-    @Override
     public String getUnlocalizedName(int meta) {
         return super.getUnlocalizedName();
     }
