@@ -75,6 +75,12 @@ public class GDCrystalGrowth extends BlockBush implements IShearable, ModelRegis
     }
 
     @Override
+    public int damageDropped(IBlockState state) {
+        CrystalGrowthVariant leafType = state.getValue(VARIANT);
+        return leafType.ordinal();
+    }
+
+    @Override
     public boolean isShearable(ItemStack item, IBlockAccess world, BlockPos pos) {
         return true;
     }
