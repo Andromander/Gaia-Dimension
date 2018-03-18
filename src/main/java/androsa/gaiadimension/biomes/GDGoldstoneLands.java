@@ -47,7 +47,7 @@ public class GDGoldstoneLands extends GDBiomeBase {
         if (rand.nextInt(16) == 0) {
             return new GDGenCrystalBloom(GDCrystalBloom.CrystalBloomVariant.CORRUPT_VARLOOM);
         } else {
-            if (rand.nextInt(1) == 0) {
+            if (rand.nextInt(2) == 0) {
                 return new GDGenCrystalGrowth(GDCrystalGrowth.CrystalGrowthVariant.BLACK_GOLDSTONE);
             } else {
                 return new GDGenCrystalGrowth(GDCrystalGrowth.CrystalGrowthVariant.RED_GOLDSTONE);

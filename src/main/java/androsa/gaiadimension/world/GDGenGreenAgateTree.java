@@ -21,7 +21,7 @@ public class GDGenGreenAgateTree extends WorldGenTrees {
     }
 
     public boolean generate(World world, Random rand, BlockPos pos) {
-        int height = rand.nextInt(4) + 6;
+        int height = rand.nextInt(4) + 10;
         boolean allClear = true;
 
         if (pos.getY() >= 1 && pos.getY() + height + 1 <= 256) {

@@ -37,14 +37,14 @@ public class GDGreenAgateJungle extends GDBiomeBase {
 
     @Override
     public WorldGenAbstractTree getRandomTreeFeature(Random par1Random) {
-        return par1Random.nextInt(10) == 0 ? new GDGenNoTrees() : par1Random.nextInt(2) == 0 ? GaiaGenGreenTrees : new GDGenNoTrees();
+        return par1Random.nextInt(15) == 0 ? new GDGenNoTrees() : par1Random.nextInt(2) == 0 ? GaiaGenGreenTrees : new GDGenNoTrees();
     }
 
     @Override
     public WorldGenerator getRandomWorldGenForGrass(Random rand) {
 
         //TODO: Find a way to not generate poppies and dandelions
-        if (rand.nextInt(16) == 0) {
+        if (rand.nextInt(8) == 0) {
             if (rand.nextInt(4) == 0) {
                 return new GDGenCrystalBloom(GDCrystalBloom.CrystalBloomVariant.OUZIUM);
             } else {
