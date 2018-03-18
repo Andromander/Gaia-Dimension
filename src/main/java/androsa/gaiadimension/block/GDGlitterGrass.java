@@ -1,10 +1,12 @@
 package androsa.gaiadimension.block;
 
+import androsa.gaiadimension.item.GDItem;
 import androsa.gaiadimension.registry.*;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.item.Item;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
@@ -45,6 +47,11 @@ public class GDGlitterGrass extends Block implements ModelRegisterCallback, ICol
                  //   if (iblockstate.getBlock() == GDBlocks.heavySoil && world.getLightFromNeighbors(blockpos.up()) >= 4 && block.getLightOpacity(world.getBlockState(blockpos.up()), world, blockpos.up()) <= 2 && world.getBlockState(pos.up()).getBlock() != GDFluids.mineralWaterBlock)
                 //        world.setBlockState(blockpos, GDBlocks.glitterGrass.getDefaultState());
                 }
+    }
+
+    @Override
+    public Item getItemDropped(IBlockState state, Random random, int j) {
+        return GDBlocks.heavySoil.getItemDropped(GDBlocks.heavySoil.getDefaultState(), random, j);
     }
 
     @Override
