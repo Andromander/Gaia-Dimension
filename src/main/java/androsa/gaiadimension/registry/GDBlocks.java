@@ -119,6 +119,8 @@ public class GDBlocks {
     public static Block saltBlock;
     @ObjectHolder("gaia_stone")
     public static Block gaiaStone;
+    @ObjectHolder("gaia_cobblestone")
+    public static Block gaiaCobblestone;
     @ObjectHolder("gaia_stone_bricks")
     public static Block gaiaStoneBricks;
     @ObjectHolder("malachite_bricks")

@@ -150,6 +150,7 @@ public class GDItemsRegister {
 
         items.registerBlock(GDBlocks.saltBlock);
         items.registerBlock(GDBlocks.gaiaStone);
+        items.registerBlock(GDBlocks.gaiaCobblestone);
         items.registerSubItemBlock(GDBlocks.gaiaStoneBricks);
         items.registerSubItemBlock(GDBlocks.malachiteBricks);
         items.register(new ItemSlab(GDBlocks.malachiteBrickSlab, GDBlocks.malachiteBrickSlab, GDBlocks.malachiteBrickSlabDouble));
