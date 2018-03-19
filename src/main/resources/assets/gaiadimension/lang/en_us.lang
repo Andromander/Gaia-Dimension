@@ -2,7 +2,14 @@
 
 # blocks
 tile.heavy_soil.name=Heavy Soil
+tile.corrupt_soil.name=Corrupted Soil
 tile.glitter_grass.name=Glitter Grass
+tile.cool_grass.name=Cool Grass
+tile.verdant_grass.name=Verdant Grass
+tile.scented_grass.name=Scented Grass
+tile.old_grass.name=Old Grass
+tile.corrupt_grass.name=Corrupted Grass
+tile.singed_grass.name=Singed Grass
 tile.crystal_growth.0.name=Crystal Growth
 tile.crystal_growth.1.name=Cool Crystal Growth
 tile.crystal_growth.2.name=Verdant Crystal Growth
@@ -10,7 +17,7 @@ tile.crystal_growth.3.name=Scented Crystal Growth
 tile.crystal_growth.4.name=Dull Crystal Growth
 tile.crystal_growth.5.name=Red Crystal Growth
 tile.crystal_growth.6.name=Black Crystal Growth
-tile.crystal_growth.7.name=Warm Crystal Growth
+tile.crystal_growth.7.name=Singed Crystal Growth
 tile.crystal_growth.8.name=Rare Crystal Growth
 tile.crystal_growth.9.name=Chasm Growth
 tile.crystal_bloom.0.name=Thiscus
@@ -66,8 +73,10 @@ tile.crusty_plank_slab.name=Burnt Plank Slab
 tile.heated_planks.name=Burning Planks
 tile.heated_plank_stairs.name=Burning Plank Stairs
 tile.heated_plank_slab.name=Burning Plank Slab
+tile.pyrite_torch.name=Pyrite Torch
 tile.frail_glitter_block.name=Frail Glitter Block
 tile.gaia_stone.name=Gaia Stone
+tile.gaia_cobblestone.name=Gaia Cobblestone
 tile.pyrite_ore.name=Pyrite Ore
 tile.hematite_ore.name=Hematite Ore
 tile.cinnabar_ore.name=Cinnabar Ore
@@ -140,7 +149,12 @@ item.white_opal_grit.name=White Opal Grit
 item.property_mix.name=Gemstone Blend
 
 # Tools
-## Swords
+item.agate_shovel.name=Agate Shovel
+item.agate_pickaxe.name=Agate Pickaxe
+item.agate_axe.name=Agate Axe
+item.agate_sword.name=Agate Sword
+
+## Boss Drops
 item.malachite_guard_baton.name=Malachite Guard Baton
 item.apex_predator_mace.name=Apex Predator Mace
 item.spinel_princess_flamberge.name=Spinel Princess Flamberge
