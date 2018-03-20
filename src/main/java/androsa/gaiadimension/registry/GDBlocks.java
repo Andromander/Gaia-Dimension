@@ -12,6 +12,8 @@ public class GDBlocks {
     public static BlockPortal gaiaPortal;
     @ObjectHolder("pyrite_torch")
     public static Block pyriteTorch;
+    @ObjectHolder("agate_crafting_table")
+    public static Block agateCraftingTable;
 
     @ObjectHolder("heavy_soil")
     public static Block heavySoil;

@@ -21,6 +21,8 @@ import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.network.NetworkRegistry;
+import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -74,6 +76,9 @@ public class GaiaDimension
     {
         // got to change this to something else...
         System.out.println("DIRT BLOCK >> "+Blocks.DIRT.getUnlocalizedName());
+
+        NetworkRegistry.INSTANCE.registerGuiHandler(instance, proxy);
+
     }
 
     @EventHandler

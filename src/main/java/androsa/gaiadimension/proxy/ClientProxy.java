@@ -1,5 +1,6 @@
 package androsa.gaiadimension.proxy;
 
+import androsa.gaiadimension.block.inventory.GuiAgateCraftingTable;
 import androsa.gaiadimension.entity.GDHowliteWolf;
 import androsa.gaiadimension.entity.GDRockyLuggeroth;
 import androsa.gaiadimension.entity.GDSpellElement;
@@ -7,13 +8,31 @@ import androsa.gaiadimension.entity.boss.GDBlueHowliteWolf;
 import androsa.gaiadimension.entity.boss.GDMalachiteGuard;
 import androsa.gaiadimension.model.*;
 import androsa.gaiadimension.renderer.*;
+import net.minecraft.client.gui.inventory.GuiContainer;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.client.FMLClientHandler;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 
-@SuppressWarnings("unused")
 public class ClientProxy extends CommonProxy {
 
+    @Override
+    public GuiContainer getClientGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
+        GuiID guiID = GuiID.values()[ID];
+        BlockPos pos = new BlockPos(x, y, z);
+        TileEntity tile = world.getTileEntity(pos);
+        Entity entity = world.getEntityByID(x);
+
+        switch (guiID) {
+            case AGATE_CRAFT:
+                return new GuiAgateCraftingTable(player.inventory, world, pos);
+            default:
+                return null;
+        }
+    }
     @Override
     public void doPreLoadRegistration() {
         RenderingRegistry.registerEntityRenderingHandler(GDHowliteWolf.class, m -> new EntityRenderHowliteWolf(m, new ModelHowliteWolf(), 0.6F));

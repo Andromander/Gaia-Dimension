@@ -103,6 +103,7 @@ public class GDItemsRegister {
 
         items.registerSubItemBlock(GDBlocks.gaiaPortal);
         items.registerBlock(GDBlocks.pyriteTorch);
+        items.registerBlock(GDBlocks.agateCraftingTable);
 
         items.registerBlock(GDBlocks.heavySoil);
         items.registerBlock(GDBlocks.corruptSoil);

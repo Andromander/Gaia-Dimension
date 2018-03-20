@@ -16,6 +16,7 @@ public final class GDBlocksRegister {
 
         blocks.register("gaia_portal", (new GDGaiaPortal()).setUnlocalizedName("gaia_portal"));
         blocks.register("pyrite_torch", (new GDPyriteTorch()).setUnlocalizedName("pyrite_torch"));
+        blocks.register("agate_crafting_table", (new GDAgateCraftingTable()).setUnlocalizedName("agate_crafting_table"));
 
         blocks.register("heavy_soil", (new GDHeavySoil()).setUnlocalizedName("heavy_soil"));
         blocks.register("corrupt_soil", (new GDCorruptSoil()).setUnlocalizedName("corrupt_soil"));
