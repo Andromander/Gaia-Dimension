@@ -4,9 +4,12 @@ import androsa.gaiadimension.GDConfig;
 import androsa.gaiadimension.TeleporterGaia;
 import androsa.gaiadimension.registry.GDBlocks;
 import androsa.gaiadimension.registry.GDTabs;
+import androsa.gaiadimension.registry.ModelRegisterCallback;
 import com.google.common.cache.LoadingCache;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockBreakable;
 import net.minecraft.block.BlockPortal;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyEnum;
@@ -17,6 +20,8 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.block.state.pattern.BlockPattern;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityList;
+import net.minecraft.entity.item.EntityItem;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.SoundEvents;
@@ -36,12 +41,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import javax.annotation.Nullable;
 import java.util.Random;
 
-public class GDGaiaPortal extends BlockPortal {
-
-    public static final PropertyEnum<EnumFacing.Axis> AXIS = PropertyEnum.<EnumFacing.Axis>create("axis", EnumFacing.Axis.class, EnumFacing.Axis.X, EnumFacing.Axis.Z);
-    protected static final AxisAlignedBB X_AABB = new AxisAlignedBB(0.0D, 0.0D, 0.375D, 1.0D, 1.0D, 0.625D);
-    protected static final AxisAlignedBB Z_AABB = new AxisAlignedBB(0.375D, 0.0D, 0.0D, 0.625D, 1.0D, 1.0D);
-    protected static final AxisAlignedBB Y_AABB = new AxisAlignedBB(0.375D, 0.0D, 0.375D, 0.625D, 1.0D, 0.625D);
+public class GDGaiaPortal extends BlockPortal implements ModelRegisterCallback {
 
     public GDGaiaPortal() {
         super();
@@ -49,19 +49,9 @@ public class GDGaiaPortal extends BlockPortal {
         this.setTickRandomly(true);
         this.setCreativeTab(GDTabs.tabBlock);
     }
-
-    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
-        switch ((EnumFacing.Axis)state.getValue(AXIS)) {
-            case X:
-                return X_AABB;
-            case Y:
-            default:
-                return Y_AABB;
-            case Z:
-                return Z_AABB;
-        }
-    }
-
+    
+    @Override
+    @Deprecated
     @Nullable
     public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, IBlockAccess worldIn, BlockPos pos) {
         return NULL_AABB;
@@ -76,6 +66,8 @@ public class GDGaiaPortal extends BlockPortal {
         }
     }
 
+    @Override
+    @Deprecated
     public boolean isFullCube(IBlockState state) {
         return false;
     }
@@ -100,6 +92,8 @@ public class GDGaiaPortal extends BlockPortal {
         }
     }
 
+    @Override
+    @Deprecated
     public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos fromPos) {
         EnumFacing.Axis enumfacing$axis = (EnumFacing.Axis)state.getValue(AXIS);
 
@@ -119,6 +113,7 @@ public class GDGaiaPortal extends BlockPortal {
         }
     }
 
+    @Override
     @SideOnly(Side.CLIENT)
     public boolean shouldSideBeRendered(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side) {
         pos = pos.offset(side);
@@ -161,17 +156,19 @@ public class GDGaiaPortal extends BlockPortal {
         }
     }
 
+    @Override
     public int quantityDropped(Random random) {
         return 0;
     }
 
+    @Override
     public void onEntityCollidedWithBlock(World worldIn, BlockPos pos, IBlockState state, Entity entityIn) {
         if (!entityIn.isRiding() && !entityIn.isBeingRidden() && entityIn.isNonBoss()) {
             if (entityIn instanceof EntityPlayerMP) {
                 EntityPlayerMP playerMP = (EntityPlayerMP) entityIn;
 
                 if (playerMP.timeUntilPortal > 0) {
-                    playerMP.timeUntilPortal = 10;
+                    playerMP.timeUntilPortal = 50;
                 } else {
                     //Let's go to Gaia. I need a catchphrase...
                     if (playerMP.dimension != GDConfig.dimension.dimensionID) {
@@ -260,19 +257,25 @@ public class GDGaiaPortal extends BlockPortal {
         }
     }
 
+    @Override
+    @Deprecated
     public ItemStack getItem(World worldIn, BlockPos pos, IBlockState state) {
         return ItemStack.EMPTY;
     }
 
+    @Override
+    @Deprecated
     public IBlockState getStateFromMeta(int meta) {
         return this.getDefaultState().withProperty(AXIS, (meta & 3) == 2 ? EnumFacing.Axis.Z : EnumFacing.Axis.X);
     }
 
+    @Override
     @SideOnly(Side.CLIENT)
     public BlockRenderLayer getBlockLayer() {
         return BlockRenderLayer.TRANSLUCENT;
     }
 
+    @Override
     @SideOnly(Side.CLIENT)
     public void randomDisplayTick(IBlockState stateIn, World worldIn, BlockPos pos, Random rand) {
         if (rand.nextInt(100) == 0) {
@@ -303,10 +306,13 @@ public class GDGaiaPortal extends BlockPortal {
         }
     }
 
+    @Override
     public int getMetaFromState(IBlockState state) {
         return getMetaForAxis((EnumFacing.Axis)state.getValue(AXIS));
     }
 
+    @Override
+    @Deprecated
     public IBlockState withRotation(IBlockState state, Rotation rot) {
         switch (rot) {
             case COUNTERCLOCKWISE_90:
@@ -326,6 +332,7 @@ public class GDGaiaPortal extends BlockPortal {
         }
     }
 
+    @Override
     protected BlockStateContainer createBlockState() {
         return new BlockStateContainer(this, new IProperty[] {AXIS});
     }
@@ -373,6 +380,8 @@ public class GDGaiaPortal extends BlockPortal {
         }
     }
 
+    @Override
+    @Deprecated
     public BlockFaceShape getBlockFaceShape(IBlockAccess worldIn, IBlockState state, BlockPos pos, EnumFacing face) {
         return BlockFaceShape.UNDEFINED;
     }

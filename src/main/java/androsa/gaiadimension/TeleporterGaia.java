@@ -123,7 +123,7 @@ public class TeleporterGaia extends Teleporter {
             entity.rotationYaw = yaw - (float) (eTD.getOpposite().getHorizontalIndex() * 90) + (float) (blockpattern$patternhelper.getForwards().getHorizontalIndex() * 90);
 
             if (entity instanceof EntityPlayerMP)
-                ((EntityPlayerMP) entity).connection.setPlayerLocation(blockpos.getX() + 0.5D, blockpos.getY() + 0.5D, blockpos.getZ() + 0.5D, entity.rotationYaw, entity.rotationPitch);
+                ((EntityPlayerMP) entity).connection.setPlayerLocation(blockpos.getX() + 2.5D, blockpos.getY() + 0.5D, blockpos.getZ() + 2.5D, entity.rotationYaw, entity.rotationPitch);
             else
                 entity.setLocationAndAngles(blockpos.getX() + 0.5D, blockpos.getY() + 0.5D, blockpos.getZ() + 0.5D, entity.rotationYaw, entity.rotationPitch);
             return true;
