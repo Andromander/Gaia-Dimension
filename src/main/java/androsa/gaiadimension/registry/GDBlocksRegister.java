@@ -15,6 +15,7 @@ public final class GDBlocksRegister {
         BlockRegistryHelper blocks = new BlockRegistryHelper(event.getRegistry());
 
         blocks.register("gaia_portal", (new GDGaiaPortal()).setUnlocalizedName("gaia_portal"));
+        blocks.register("key_block", (new GDKeyBlock()).setUnlocalizedName("key_block"));
         blocks.register("pyrite_torch", (new GDPyriteTorch()).setUnlocalizedName("pyrite_torch"));
         blocks.register("agate_crafting_table", (new GDAgateCraftingTable()).setUnlocalizedName("agate_crafting_table"));
 
@@ -74,6 +75,8 @@ public final class GDBlocksRegister {
         blocks.register("salt_block", (new GDSaltBlock()).setUnlocalizedName("salt_block"));
         blocks.register("gaia_stone", (new GDGaiaStone()).setUnlocalizedName("gaia_stone"));
         blocks.register("gaia_cobblestone", (new GDGaiaStone()).setUnlocalizedName("gaia_cobblestone"));
+        blocks.register("wasteland_stone", (new GDWastelandStone()).setUnlocalizedName("wasteland_stone"));
+        blocks.register("static_stone", (new GDStaticStone()).setUnlocalizedName("static_stone"));
         blocks.register("gaia_stone_bricks", (new GDGaiaStoneBricks()).setUnlocalizedName("gaia_stone_bricks"));
         blocks.register("malachite_bricks", (new GDMalachiteBricks()).setUnlocalizedName("malachite_bricks"));
         blocks.register("malachite_brick_slab", (new GDMalachiteBrickSlab(false)).setUnlocalizedName("malachite_brick_slab"));

@@ -98,6 +98,18 @@ public final class GDBiomesRegister {
         );
 
         biomes.register(
+                "static_wasteland",
+                new GDStaticWasteland(
+                        new BiomeProperties("Static Wasteland")
+                        .setTemperature(0.4F)
+                        .setRainDisabled()
+                        .setBaseHeight(3F)
+                        .setHeightVariation(0.05F)
+                ),
+                Type.WASTELAND, Type.MOUNTAIN
+        );
+
+        biomes.register(
                 "goldstonelands",
                 new GDGoldstoneLands(
                         new BiomeProperties("Goldstonelands")

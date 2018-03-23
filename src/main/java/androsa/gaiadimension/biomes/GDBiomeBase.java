@@ -60,6 +60,11 @@ public class GDBiomeBase extends Biome {
     }
 
     @Override
+    public void decorate(World worldIn, Random rand, BlockPos pos) {
+        this.decorator.decorate(worldIn, rand, this, pos);
+    }
+
+    @Override
     @SideOnly(Side.CLIENT)
     public int getGrassColorAtPos(BlockPos pos) {
         if (this.foliageColor < 0) {

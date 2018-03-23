@@ -20,6 +20,8 @@ public class GDBiomes {
     public static final Biome fossilForest;
     @ObjectHolder("volcaniclands")
     public static final Biome volcaniclands;
+    @ObjectHolder("static_wasteland")
+    public static final Biome staticWasteland;
     @ObjectHolder("goldstonelands")
     public static final Biome goldstonelands;
     @ObjectHolder("crystal_plains")
@@ -39,6 +41,7 @@ public class GDBiomes {
         purpleAgateForest = null;
         fossilForest = null;
         volcaniclands = null;
+        staticWasteland = null;
         goldstonelands = null;
         crystalPlains = null;
         mineralReservoir = null;

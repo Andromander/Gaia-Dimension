@@ -49,7 +49,7 @@ public class GDGaiaPortal extends BlockPortal implements ModelRegisterCallback {
         this.setTickRandomly(true);
         this.setCreativeTab(GDTabs.tabBlock);
     }
-    
+
     @Override
     @Deprecated
     @Nullable

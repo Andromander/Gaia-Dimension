@@ -3,6 +3,7 @@ package androsa.gaiadimension.world;
 import androsa.gaiadimension.GDConfig;
 import androsa.gaiadimension.GaiaDimension;
 import androsa.gaiadimension.biomes.*;
+import androsa.gaiadimension.block.GDStaticStone;
 import androsa.gaiadimension.world.layer.GDBiomeProvider;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
@@ -39,6 +40,8 @@ public class WorldProviderGaia extends WorldProviderSurface {
             targetFogColor = new short[]{ 245, 119, 112 };
         } else if (biome instanceof GDGoldstoneLands) {
             targetFogColor = new short[]{ 188, 122, 44 };
+        } else if (biome instanceof GDStaticWasteland) {
+            targetFogColor = new short[]{ 86, 213, 170 };
         }
 
         return new Vec3d(targetFogColor[0] / 255D, targetFogColor[1] / 255D, targetFogColor[2] / 255D);
@@ -127,6 +130,8 @@ public class WorldProviderGaia extends WorldProviderSurface {
             targetSkyColor = ((GDVolcanicLands) biome).getSkyRGB();
         } else if (biome instanceof GDGoldstoneLands) {
             targetSkyColor = ((GDGoldstoneLands) biome).getSkyRGB();
+        } else if (biome instanceof GDStaticWasteland) {
+            targetSkyColor = ((GDStaticWasteland) biome).getSkyRGB();
         }
 
 //Will find a way to get this to work properly

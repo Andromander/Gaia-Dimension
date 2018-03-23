@@ -10,6 +10,8 @@ public class GDBlocks {
 
     @ObjectHolder("gaia_portal")
     public static BlockPortal gaiaPortal;
+    @ObjectHolder("key_block")
+    public static Block keyBlock;
     @ObjectHolder("pyrite_torch")
     public static Block pyriteTorch;
     @ObjectHolder("agate_crafting_table")
@@ -123,6 +125,10 @@ public class GDBlocks {
     public static Block gaiaStone;
     @ObjectHolder("gaia_cobblestone")
     public static Block gaiaCobblestone;
+    @ObjectHolder("wasteland_stone")
+    public static Block wastelandStone;
+    @ObjectHolder("static_stone")
+    public static Block staticStone;
     @ObjectHolder("gaia_stone_bricks")
     public static Block gaiaStoneBricks;
     @ObjectHolder("malachite_bricks")
