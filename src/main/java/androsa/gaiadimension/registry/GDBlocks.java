@@ -10,8 +10,6 @@ public class GDBlocks {
 
     @ObjectHolder("gaia_portal")
     public static BlockPortal gaiaPortal;
-    @ObjectHolder("key_block")
-    public static Block keyBlock;
     @ObjectHolder("pyrite_torch")
     public static Block pyriteTorch;
     @ObjectHolder("agate_crafting_table")
