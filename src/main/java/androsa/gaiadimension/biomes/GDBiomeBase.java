@@ -1,6 +1,7 @@
 package androsa.gaiadimension.biomes;
 
 import androsa.gaiadimension.registry.GDBlocks;
+import androsa.gaiadimension.registry.GDFluids;
 import androsa.gaiadimension.world.GaiaWorld;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -105,12 +106,11 @@ public class GDBiomeBase extends Biome {
 
                 if (iblockstate2.getMaterial() == Material.AIR) {
                     j = -1;
-                }
-                else if (iblockstate2.getBlock() == GDBlocks.gaiaStone) {
+                } else if (iblockstate2.getBlock() == GDBlocks.gaiaStone) {
                     if (j == -1) {
                         if (k <= 0) {
                             iblockstate = AIR;
-                            iblockstate1 = STONE_GAIA;
+                            iblockstate1 = GDBlocks.gaiaStone.getDefaultState();
                         } else if (j1 >= i - 4 && j1 <= i + 1) {
                             iblockstate = this.topBlock;
                             iblockstate1 = this.fillerBlock;
@@ -120,7 +120,7 @@ public class GDBiomeBase extends Biome {
                             if (this.getTemperature(blockpos$mutableblockpos.setPos(x, j1, z)) < 0.15F) {
                                 iblockstate = ICE;
                             } else {
-                                iblockstate = WATER;
+                                iblockstate = GDFluids.mineralWaterBlock.getDefaultState();
                             }
                         }
 
@@ -128,15 +128,16 @@ public class GDBiomeBase extends Biome {
 
                         if (j1 >= i - 1) {
                             chunkPrimerIn.setBlockState(i1, j1, l, iblockstate);
-                        }
-                        else if (j1 < i - 7 - k) {
+                        } else if (j1 < i - 7 - k) {
                             iblockstate = AIR;
-                            iblockstate1 = STONE_GAIA;
+                            iblockstate1 = GDBlocks.gaiaStone.getDefaultState();
                             chunkPrimerIn.setBlockState(i1, j1, l, GDBlocks.saltBlock.getDefaultState());
-                        }
-                        else {
+                        } else {
                             chunkPrimerIn.setBlockState(i1, j1, l, iblockstate1);
                         }
+                    } else if (j > 0) {
+                        --j;
+                        chunkPrimerIn.setBlockState(i1, j1, l, iblockstate1);
                     }
                 }
             }
