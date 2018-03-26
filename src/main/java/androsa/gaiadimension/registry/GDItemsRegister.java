@@ -22,7 +22,7 @@ public class GDItemsRegister {
         ItemRegistryHelper items = new ItemRegistryHelper(event.getRegistry());
 
        // items.register("earth_staff", new GDEarthStaff().setUnlocalizedName("earth_staff"));
-        items.register("flint_and_gold", new GDFlintAndGold().setUnlocalizedName("flint_and_gold"));
+       // items.register("flint_and_gold", new GDFlintAndGold().setUnlocalizedName("flint_and_gold"));
 
         items.register("agate_stick", new GDItem().setUnlocalizedName("agate_stick"));
         items.register("hot_dust", new GDItem().setUnlocalizedName("hot_dust"));
