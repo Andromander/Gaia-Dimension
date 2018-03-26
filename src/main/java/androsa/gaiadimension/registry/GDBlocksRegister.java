@@ -2,7 +2,6 @@ package androsa.gaiadimension.registry;
 
 import androsa.gaiadimension.GaiaDimension;
 import androsa.gaiadimension.block.*;
-import androsa.gaiadimension.block.portal.GDGaiaPortal;
 import net.minecraft.block.Block;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -16,6 +15,7 @@ public final class GDBlocksRegister {
         BlockRegistryHelper blocks = new BlockRegistryHelper(event.getRegistry());
 
         blocks.register("gaia_portal", (new GDGaiaPortal()).setUnlocalizedName("gaia_portal"));
+        //blocks.register("key_block", (new GDKeyBlock()).setUnlocalizedName("key_block"));
         blocks.register("pyrite_torch", (new GDPyriteTorch()).setUnlocalizedName("pyrite_torch"));
         blocks.register("agate_crafting_table", (new GDAgateCraftingTable()).setUnlocalizedName("agate_crafting_table"));
 
