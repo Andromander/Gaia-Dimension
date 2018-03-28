@@ -1,5 +1,6 @@
 package androsa.gaiadimension.world;
 
+import androsa.gaiadimension.biomes.GDStaticWasteland;
 import androsa.gaiadimension.registry.GDBlocks;
 import androsa.gaiadimension.registry.GDFeature;
 import androsa.gaiadimension.registry.GDFluids;
@@ -285,19 +286,21 @@ public class GaiaChunkGenerator implements IChunkGenerator {
         boolean disableFeatures = this.majorFeatureGenerator.generateStructure(world, rand, chunkpos)
                 || !GDFeature.getNearestFeature(chunkX, chunkZ, world).areChunkDecorationsEnabled;
 
-        if (!disableFeatures && rand.nextInt(4) == 0 && biome.decorator.generateFalls) {
-            int i1 = blockpos.getX() + rand.nextInt(16) + 8;
-            int i2 = rand.nextInt(GaiaWorld.CHUNKHEIGHT);
-            int i3 = blockpos.getZ() + rand.nextInt(16) + 8;
-            (new WorldGenLakes(GDFluids.mineralWaterBlock)).generate(world, rand, new BlockPos(i1, i2, i3));
+        if (!(biome instanceof GDStaticWasteland)) {
+            if (!disableFeatures && rand.nextInt(4) == 0 && biome.decorator.generateFalls) {
+                int i1 = blockpos.getX() + rand.nextInt(16) + 8;
+                int i2 = rand.nextInt(GaiaWorld.CHUNKHEIGHT);
+                int i3 = blockpos.getZ() + rand.nextInt(16) + 8;
+                (new WorldGenLakes(GDFluids.mineralWaterBlock)).generate(world, rand, new BlockPos(i1, i2, i3));
+            }
         }
-
+        
         if (!disableFeatures && rand.nextInt(16) == 0) {
             int j1 = blockpos.getX() + rand.nextInt(16) + 8;
             int j2 = rand.nextInt(rand.nextInt(GaiaWorld.CHUNKHEIGHT - 8) +8);
             int j3 = blockpos.getZ() + rand.nextInt(16) + 8;
             if (j2 < GaiaWorld.SEALEVEL || rand.nextInt(10) == 0) {
-                (new GDGenLavaLake(GDFluids.superhotMagmaBlock)).generate(world, rand, new BlockPos(j1, j2, j3));
+                (new WorldGenLakes(GDFluids.superhotMagmaBlock)).generate(world, rand, new BlockPos(j1, j2, j3));
             }
         }
 

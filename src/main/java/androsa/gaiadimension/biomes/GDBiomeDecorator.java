@@ -24,7 +24,7 @@ public class GDBiomeDecorator extends BiomeDecorator {
 
     public World world;
     public Random rand;
-   // public int lakesPerChunk = 0;
+    public int lakesPerChunk = 0;
     public float lavaPoolChance = 0;
 
     @Override

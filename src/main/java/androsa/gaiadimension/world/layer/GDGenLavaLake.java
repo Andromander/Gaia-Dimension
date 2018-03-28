@@ -8,15 +8,18 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.EnumSkyBlock;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
+import net.minecraft.world.gen.feature.WorldGenLakes;
 import net.minecraft.world.gen.feature.WorldGenerator;
 
 import java.util.Random;
 
-public class GDGenLavaLake extends WorldGenerator {
+public class GDGenLavaLake extends WorldGenLakes {
 
     private final Block block;
 
     public GDGenLavaLake(Block blockIn) {
+        super(blockIn);
+
         this.block = blockIn;
     }
 

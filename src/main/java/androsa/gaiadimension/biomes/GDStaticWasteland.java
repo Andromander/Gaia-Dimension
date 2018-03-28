@@ -14,6 +14,8 @@ public class GDStaticWasteland extends GDBiomeBase {
         this.topBlock = GDBlocks.wastelandStone.getDefaultState();
         this.fillerBlock = GDBlocks.wastelandStone.getDefaultState();
 
+        this.decorator.treesPerChunk = -1;
+
         //TODO: Generate Wasteland Stone and Static Stone as Ores
         //TODO: Have random junk generate on the ground
     }

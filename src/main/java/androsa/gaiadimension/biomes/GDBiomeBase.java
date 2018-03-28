@@ -22,8 +22,6 @@ public class GDBiomeBase extends Biome {
 
     private int grassColor = -1;
     private int foliageColor = -1;
-    //private short[] skyColorRGB = new short[] { 198, 157, 88 };
-    protected static final IBlockState STONE_GAIA = GDBlocks.gaiaStone.getDefaultState();
     protected List<SpawnListEntry> undergroundMonsterList;
 
     public GDBiomeBase(BiomeProperties props) {
