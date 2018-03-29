@@ -1,6 +1,7 @@
 package androsa.gaiadimension.world;
 
 import androsa.gaiadimension.biomes.GDVolcanicLands;
+import androsa.gaiadimension.block.GDGlitterGrass;
 import androsa.gaiadimension.registry.GDBlocks;
 import androsa.gaiadimension.registry.GDFluids;
 import net.minecraft.block.Block;
@@ -11,7 +12,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.ChunkPrimer;
-import net.minecraft.world.gen.MapGenBase;
 import net.minecraft.world.gen.MapGenCaves;
 
 import java.util.Random;
@@ -20,24 +20,6 @@ public class GDGenCaves extends MapGenCaves {
 
     protected void generateLargeCaveNode(long caveSeed, int centerX, int centerZ, ChunkPrimer blockStorage, double randX, double randY, double randZ, boolean isVolcanic) {
         this.generateCaveNode(caveSeed, centerX, centerZ, blockStorage, randX, randY, randZ, 1.0F + this.rand.nextFloat() * 6.0F, 0.0F, 0.0F, -1, -1, 0.5D, isVolcanic);
-    }
-
-    @Override
-    public void generate(World worldIn, int x, int z, ChunkPrimer primer) {
-        int i = this.range;
-        this.world = worldIn;
-        this.rand.setSeed(world.getSeed());
-        long j = this.rand.nextLong();
-        long k = this.rand.nextLong();
-
-        for (int l = x - i; l <= x + i; ++l) {
-            for (int i1 = z - i; i1 <= z + i; ++i1) {
-                long j1 = (long)l * j;
-                long k1 = (long)i1 * k;
-                this.rand.setSeed(j1 ^ k1 ^ worldIn.getSeed());
-                this.recursiveGenerate(worldIn, l, i1, x, z, primer);
-            }
-        }
     }
 
     protected void generateCaveNode(long caveSeed, int centerX, int centerZ, ChunkPrimer blockStorage, double randX, double randY, double randZ, float caveSize, float randPI, float angleToGenerate, int loopOne, int loopEnd, double yScale, boolean isVolcanic) {
@@ -49,7 +31,7 @@ public class GDGenCaves extends MapGenCaves {
         Random clusterRNG = new Random(caveSeed);
 
         if (isVolcanic && caveSize < 6F) {
-            caveSize *= 1.5F;
+            caveSize *= 2.0F;
         }
 
         if (loopEnd <= 0) {
@@ -78,13 +60,13 @@ public class GDGenCaves extends MapGenCaves {
             if (var28) {
                 angleToGenerate *= 0.92F;
             } else {
-                angleToGenerate += 0.7F;
+                angleToGenerate *= 0.7F;
             }
 
             angleToGenerate += var24 * 0.1F;
             randPI += var23 * 0.1F;
-            var24 += 0.9F;
-            var23 += 0.75F;
+            var24 *= 0.9F;
+            var23 *= 0.75F;
             var24 += (caveRNG.nextFloat() - caveRNG.nextFloat()) * caveRNG.nextFloat() * 2.0F;
             var23 += (caveRNG.nextFloat() - caveRNG.nextFloat()) * caveRNG.nextFloat() * 4.0F;
 
@@ -173,18 +155,18 @@ public class GDGenCaves extends MapGenCaves {
                                             final IBlockState blockStateAt = blockStorage.getBlockState(genX, caveY, genZ);
                                             Block blockAt = blockStateAt.getBlock();
 
-                                            if (blockAt == GDBlocks.glitterGrass) {
+                                            if (blockAt instanceof GDGlitterGrass || blockAt == GDBlocks.corruptGrass) {
                                                 hitGrass = true;
                                             }
 
-                                            if (blockAt != null && (blockAt == GDBlocks.gaiaStone || blockAt == GDBlocks.thickGlitterBlock || blockStateAt.getMaterial() == Material.GROUND || blockStateAt.getMaterial() == Material.GRASS)) {
+                                            if (blockAt != null && (blockAt == GDBlocks.gaiaStone || blockAt == GDBlocks.frailGlitterBlock || blockStateAt.getMaterial() == Material.GROUND || blockStateAt.getMaterial() == Material.GRASS)) {
                                                 if (var59 * var59 + var51 * var51 + var46 * var46 < 0.85D) {
                                                     final IBlockState state = (caveY < 10 ? GDFluids.superhotMagmaBlock : Blocks.AIR).getDefaultState();
                                                     blockStorage.setBlockState(genX, caveY, genZ, state);
                                                 } else {
-                                                    Block localBlock = clusterRNG.nextInt(6) == 0 ? GDBlocks.frailGlitterBlock : GDBlocks.gaiaStone;
-                                                    localBlock = isVolcanic ? localBlock : GDBlocks.thickGlitterBlock;
-                                                    localBlock = hitGrass ? GDBlocks.glitterGrass : localBlock;
+                                                    Block localBlock = clusterRNG.nextInt(6) == 0 ? GDBlocks.volcanicRock : GDBlocks.gaiaStone;
+                                                    localBlock = isVolcanic ? localBlock : GDBlocks.frailGlitterBlock;
+                                                    localBlock = hitGrass ? GDBlocks.frailGlitterBlock : localBlock;
                                                     blockStorage.setBlockState(genX, caveY, genZ, localBlock.getDefaultState());
                                                     hitGrass = false;
                                                 }
@@ -209,10 +191,10 @@ public class GDGenCaves extends MapGenCaves {
         }
     }
 
-    @Override
-    protected void recursiveGenerate(World par1World, int genX, int genZ, int centerX, int centerZ, ChunkPrimer blockStorage) {
+        @Override
+        protected void recursiveGenerate(World par1World, int genX, int genZ, int centerX, int centerZ, ChunkPrimer blockStorage) {
         int numberOfCaves = this.rand.nextInt(this.rand.nextInt(this.rand.nextInt(40) + 1) + 1);
-        boolean isVolcanic = par1World.getBiome(new BlockPos(genX * 16, 0, genZ * 16)) instanceof GDVolcanicLands;
+        boolean isHighlands = par1World.getBiome(new BlockPos(genX * 16, 0, genZ * 16)) instanceof GDVolcanicLands;
 
         if (this.rand.nextInt(15) != 0) {
             numberOfCaves = 0;
@@ -225,7 +207,7 @@ public class GDGenCaves extends MapGenCaves {
             int numberOfNormalNodes = 1;
 
             if (this.rand.nextInt(4) == 0) {
-                this.generateLargeCaveNode(this.rand.nextLong(), centerX, centerZ, blockStorage, randX, randY, randZ, isVolcanic);
+                this.generateLargeCaveNode(this.rand.nextLong(), centerX, centerZ, blockStorage, randX, randY, randZ, isHighlands);
                 numberOfNormalNodes += this.rand.nextInt(4);
             }
 
@@ -238,16 +220,30 @@ public class GDGenCaves extends MapGenCaves {
                     caveSize *= this.rand.nextFloat() * this.rand.nextFloat() * 3.0F + 1.0F;
                 }
 
-                this.generateCaveNode(this.rand.nextLong(), centerX, centerZ, blockStorage, randX, randY, randZ, caveSize, randPi, randEight, 0, 0, 1.0D, isVolcanic);
+                this.generateCaveNode(this.rand.nextLong(), centerX, centerZ, blockStorage, randX, randY, randZ, caveSize, randPi, randEight, 0, 0, 1.0D, isHighlands);
             }
         }
     }
 
-    private  boolean isOceanBlock (ChunkPrimer data, int x, int y, int z) {
+        private boolean isOceanBlock(ChunkPrimer data, int x, int y, int z) {
         IBlockState state = data.getBlockState(x, y, z);
-        return state.getBlock() == GDFluids.mineralWaterBlock;
+        return state.getBlock() == GDFluids.mineralWaterBlock || state.getBlock() == GDFluids.mineralWaterBlock;
     }
 }
+/*
+    private boolean isGaiaStone(IBlockState state) {
+        return state.getBlock() == GDBlocks.gaiaStone;
+    }
 
+    private boolean isGaiaTerrain(Block block) {
+        return block instanceof GDGlitterGrass ||
+                block == GDBlocks.corruptSoil ||
+                block == GDBlocks.corruptGrass ||
+                block == GDBlocks.heavySoil;
+    }
 
-
+    @Override
+    protected boolean canReplaceBlock(IBlockState state1, IBlockState state2) {
+        return isGaiaStone(state1) || (isGaiaTerrain(state1.getBlock()) || super.canReplaceBlock(state1, state2));
+    }
+    */
