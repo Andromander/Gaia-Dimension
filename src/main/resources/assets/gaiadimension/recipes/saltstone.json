@@ -1,15 +1,15 @@
 {
   "result": {
-    "item": "gaiadimension:agate_crafting_table"
+    "item": "gaiadimension:saltstone"
   },
   "pattern": [
     "##",
     "##"
-    ],
+  ],
   "type": "forge:ore_shaped",
   "key": {
     "#": {
-      "item": "#AGATEPLANKS"
+      "item": "gaiadimension:salt"
     }
   }
 }

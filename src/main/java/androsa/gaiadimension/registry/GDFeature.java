@@ -19,7 +19,7 @@ public class GDFeature {
     public static final GDFeature[] featureList = new GDFeature[256];
 
     public static final GDFeature nothing = new GDFeature(0, 0, "no_feature").enableDecorations().disableStructure();
-    //Malachite Guard Feature
+    public static final GDFeature malachiteWatchtower = new GDFeature(1, 2, "malachite_watchtower").enableDecorations().enableTerrainAlteration();
     //Gaia Apex Predator Feature
     //Princess of Fire Feature
     //Prince of Thunder Feature
@@ -109,6 +109,12 @@ public class GDFeature {
 
     public GDFeature disableStructure() {
         this.isStructureEnabled = false;
+        return this;
+    }
+
+    //This will tell the Chunk Generator to alter terrain
+    public GDFeature enableTerrainAlteration() {
+        this.isTerrainAltered = true;
         return this;
     }
 
@@ -230,6 +236,21 @@ public class GDFeature {
         int featureZ = Math.round(chunkZ / 16F) * 16;
 
         return GDFeature.generateFeature(featureX, featureZ, world);
+    }
+
+    public static int[] getNearestCenter(int cx, int cz, World world) {
+        for (int rad = 1; rad <= 4; rad++) {
+            for (int x = -rad; x <= rad; x++) {
+                for (int z = -rad; z <= rad; z++) {
+                    if (getFeatureDirectlyAt(x + cx, z + cz, world).size == rad) {
+                        int[] center = {x * 16 + 8, z * 16 + 8};
+                        return center;
+                    }
+                }
+            }
+        }
+        int[] no = {0, 0};
+        return no;
     }
 
     public static BlockPos getNearestCenterXYZ(int cx, int cz, World world) {

@@ -154,6 +154,7 @@ public class GDItemsRegister {
         items.registerBlock(GDBlocks.heatedPlankStairs);
 
         items.registerBlock(GDBlocks.saltBlock);
+        items.registerBlock(GDBlocks.rockSalt);
         items.registerBlock(GDBlocks.gaiaStone);
         items.registerBlock(GDBlocks.gaiaCobblestone);
         items.registerBlock(GDBlocks.wastelandStone);

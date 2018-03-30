@@ -10,6 +10,8 @@ public class GDBlocks {
 
     @ObjectHolder("gaia_portal")
     public static BlockPortal gaiaPortal;
+    @ObjectHolder("key_block")
+    public static Block keyBlock;
     @ObjectHolder("pyrite_torch")
     public static Block pyriteTorch;
     @ObjectHolder("agate_crafting_table")
@@ -117,8 +119,10 @@ public class GDBlocks {
     @ObjectHolder("heated_plank_stairs")
     public static Block heatedPlankStairs;
 
-    @ObjectHolder("salt_block")
+    @ObjectHolder("salt")
     public static Block saltBlock;
+    @ObjectHolder("saltstone")
+    public static Block rockSalt;
     @ObjectHolder("gaia_stone")
     public static Block gaiaStone;
     @ObjectHolder("gaia_cobblestone")

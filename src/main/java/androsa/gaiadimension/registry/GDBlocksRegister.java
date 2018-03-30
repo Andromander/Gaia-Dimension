@@ -72,7 +72,8 @@ public final class GDBlocksRegister {
         blocks.register("crusty_plank_stairs", (new GDAgatePlankStairs(agatePlanks.getDefaultState())).setUnlocalizedName("crusty_plank_stairs"));
         blocks.register("heated_plank_stairs", (new GDAgatePlankStairs(agatePlanks.getDefaultState())).setUnlocalizedName("heated_plank_stairs"));
 
-        blocks.register("salt_block", (new GDSaltBlock()).setUnlocalizedName("salt_block"));
+        blocks.register("salt", (new GDSaltBlock()).setUnlocalizedName("salt"));
+        blocks.register("saltstone", (new GDSaltRock()).setUnlocalizedName("saltstone"));
         blocks.register("gaia_stone", (new GDGaiaStone()).setUnlocalizedName("gaia_stone"));
         blocks.register("gaia_cobblestone", (new GDGaiaStone()).setUnlocalizedName("gaia_cobblestone"));
         blocks.register("wasteland_stone", (new GDWastelandStone()).setUnlocalizedName("wasteland_stone"));

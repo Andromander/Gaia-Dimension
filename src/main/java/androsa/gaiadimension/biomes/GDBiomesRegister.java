@@ -86,6 +86,18 @@ public final class GDBiomesRegister {
         );
 
         biomes.register(
+                "salt_dunes",
+                new GDSaltDunes(
+                        new BiomeProperties("Salt Dunes")
+                        .setTemperature(0.8F)
+                        .setRainDisabled()
+                        .setBaseHeight(0.2F)
+                        .setHeightVariation(0.05F)
+                ),
+                Type.DRY, Type.HOT, Type.SANDY, Type.SPARSE
+        );
+
+        biomes.register(
                 "volcaniclands",
                 new GDVolcanicLands(
                         new BiomeProperties("Volcaniclands")

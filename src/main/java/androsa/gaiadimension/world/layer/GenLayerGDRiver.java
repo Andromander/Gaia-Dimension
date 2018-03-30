@@ -60,7 +60,7 @@ public class GenLayerGDRiver extends GenLayer {
         if (biome1 == -biome2) {
             return false;
         }
-        //The Volcanic Biomes will use a special river, which means we cannot have this river
+        //The Volcanic Biomes will be too hot for the mineral water. Remove rivers
         if (biome1 == Biome.getIdForBiome(GDBiomes.volcaniclands) && biome2 == Biome.getIdForBiome(GDBiomes.pinkAgateForest)) {
             return false;
         }
@@ -79,12 +79,25 @@ public class GenLayerGDRiver extends GenLayer {
         if (biome1 == Biome.getIdForBiome(GDBiomes.volcaniclands) && biome2 == Biome.getIdForBiome(GDBiomes.fossilForest)) {
             return false;
         }
+        if (biome1 == Biome.getIdForBiome(GDBiomes.volcaniclands) && biome2 == Biome.getIdForBiome(GDBiomes.saltDunes)) {
+            return false;
+        }
+        if (biome1 == Biome.getIdForBiome(GDBiomes.volcaniclands) && biome2 == Biome.getIdForBiome(GDBiomes.staticWasteland)) {
+            return false;
+        }
+        if (biome1 == Biome.getIdForBiome(GDBiomes.volcaniclands) && biome2 == Biome.getIdForBiome(GDBiomes.goldstonelands)) {
+            return false;
+        }
         //Crystal Plains and Pink Agate Forest are too similar for rivers
         if (biome1 == Biome.getIdForBiome(GDBiomes.pinkAgateForest) && biome2 == Biome.getIdForBiome(GDBiomes.crystalPlains)) {
             return false;
         }
         //If a reservoir gens near another reservoir, remove the river because it would look goofy
         if (biome1 == Biome.getIdForBiome(GDBiomes.mineralReservoir) && biome2 == Biome.getIdForBiome(GDBiomes.mineralReservoir)) {
+            return false;
+        }
+        //Salt Dunes and Mineral Reservoirs are similar, no need for river
+        if (biome1 == Biome.getIdForBiome(GDBiomes.saltDunes) && biome2 == Biome.getIdForBiome(GDBiomes.mineralReservoir)) {
             return false;
         }
 

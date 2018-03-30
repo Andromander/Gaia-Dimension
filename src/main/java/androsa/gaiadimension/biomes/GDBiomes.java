@@ -26,6 +26,8 @@ public class GDBiomes {
     public static final Biome goldstonelands;
     @ObjectHolder("crystal_plains")
     public static final Biome crystalPlains;
+    @ObjectHolder("salt_dunes")
+    public static final Biome saltDunes;
     @ObjectHolder("mineral_reservoir")
     public static final Biome mineralReservoir;
     @ObjectHolder("mineral_river")
@@ -44,6 +46,7 @@ public class GDBiomes {
         staticWasteland = null;
         goldstonelands = null;
         crystalPlains = null;
+        saltDunes = null;
         mineralReservoir = null;
         mineralRiver = null;
     }

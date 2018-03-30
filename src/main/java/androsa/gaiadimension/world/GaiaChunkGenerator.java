@@ -7,8 +7,10 @@ import androsa.gaiadimension.registry.GDFeature;
 import androsa.gaiadimension.registry.GDFluids;
 import androsa.gaiadimension.world.layer.GDGenLavaLake;
 import jline.internal.Nullable;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockFalling;
 import net.minecraft.entity.EnumCreatureType;
+import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.math.MathHelper;
@@ -268,6 +270,82 @@ public class GaiaChunkGenerator implements IChunkGenerator {
         }
     }
 
+    //Terrain deformer. Used for easier structure placement
+    private void deformTerrainForFeature(int cx, int cz, ChunkPrimer primer) {
+        GDFeature nearFeature = GDFeature.getNearestFeature(cx, cz, world);
+
+        int[] nearCenter = GDFeature.getNearestCenter(cx, cz, world);
+        int hx = nearCenter[0];
+        int hz = nearCenter[1];
+
+        //The structure does not need altered terrain. Skip this whole thing
+        if (!nearFeature.isTerrainAltered) {
+            return;
+        }
+
+        for (int x = 0; x < 16; ++x) {
+            for (int z = 0; z < 16; ++z) {
+                int dx = x - hx;
+                int dz = z - hz;
+
+                if (nearFeature == GDFeature.malachiteWatchtower) {
+                    //Terrain is deformed upwards
+                    raiseLand(primer, nearFeature, x, z, dx, dz);
+                }
+            }
+        }
+    }
+
+    private void raiseLand(ChunkPrimer primer, GDFeature nearFeature, int x, int z, int dx, int dz) {
+        int oldGround;
+        int newGround;
+        float riseFactor = 0;
+        int towerHeight = GaiaWorld.SEALEVEL + 15;
+        final int FEATUREBOUND = (nearFeature.size * 2 + 1) * 8 - 8;
+
+        if (dx <= -FEATUREBOUND) {
+            riseFactor = (-dx - FEATUREBOUND) / 8.0F;
+        }
+        if (dx >= FEATUREBOUND) {
+            riseFactor = (dx - FEATUREBOUND) / 8.0F;
+        }
+        if (dx <= -FEATUREBOUND) {
+            riseFactor = Math.max(riseFactor, (-dz - FEATUREBOUND) / 8.0F);
+        }
+        if (dx >= FEATUREBOUND) {
+            riseFactor = Math.max(riseFactor, (dz - FEATUREBOUND) / 8.0F);
+        }
+
+        if (riseFactor > 0) {
+            //smooth transition
+            newGround = -1;
+
+            for (int y = 0; y <= 127; ++y) {
+                Block currentTerrain = primer.getBlockState(x, y, x).getBlock();
+                if (currentTerrain != GDBlocks.gaiaStone) {
+                    if (newGround == -1) {
+                        //that's low
+                        oldGround = y;
+                        towerHeight += ((oldGround = towerHeight) * riseFactor);
+
+                        newGround = oldGround;
+                    }
+                }
+            }
+        }
+
+        //set ground level
+        for (int y = 0; y <= 127; ++y) {
+            Block b = primer.getBlockState(x, y, z).getBlock();
+            if (y < towerHeight && (b == Blocks.AIR || b == GDFluids.mineralWaterBlock)) {
+                primer.setBlockState(x, y, z, GDBlocks.gaiaStone.getDefaultState());
+            }
+            if (y >= towerHeight && b != GDFluids.mineralWaterBlock) {
+                primer.setBlockState(x, y, z, Blocks.AIR.getDefaultState());
+            }
+        }
+    }
+
     @Override
     public void populate(int chunkX, int chunkZ) {
         BlockFalling.fallInstantly = true;
@@ -295,7 +373,7 @@ public class GaiaChunkGenerator implements IChunkGenerator {
                 (new WorldGenLakes(GDFluids.mineralWaterBlock)).generate(world, rand, new BlockPos(i1, i2, i3));
             }
         }
-/*
+
         if (!disableFeatures && rand.nextInt(16) == 0) {
             int j1 = blockpos.getX() + rand.nextInt(16) + 8;
             int j2 = rand.nextInt(rand.nextInt(GaiaWorld.CHUNKHEIGHT - 8) +8);
@@ -304,7 +382,7 @@ public class GaiaChunkGenerator implements IChunkGenerator {
                 (new GDGenLavaLake(GDFluids.superhotMagmaBlock)).generate(world, rand, new BlockPos(j1, j2, j3));
             }
         }
-*/
+
         biome.decorate(this.world, this.rand, new BlockPos(i, 0, j));
         if (net.minecraftforge.event.terraingen.TerrainGen.populate(this, this.world, this.rand, chunkX, chunkZ, flag, net.minecraftforge.event.terraingen.PopulateChunkEvent.Populate.EventType.ANIMALS))
             WorldEntitySpawner.performWorldGenSpawning(this.world, biome, i + 8, j + 8, 16, 16, this.rand);

@@ -13,13 +13,14 @@ public class GenLayerGDBiomes extends GenLayer {
             GDBiomes.pinkAgateForest,
             GDBiomes.blueAgateForest,
             GDBiomes.greenAgateForest,
-            GDBiomes.crystalPlains
+            GDBiomes.crystalPlains,
+            GDBiomes.fossilForest,
     });
     protected Biome uncommonBiomes[] = (new Biome[]{
-            GDBiomes.fossilForest,
             GDBiomes.mineralReservoir,
             GDBiomes.volcaniclands,
-            GDBiomes.staticWasteland
+            GDBiomes.staticWasteland,
+            GDBiomes.saltDunes
     });
     protected Biome rareBiomes[] = (new Biome[]{
             GDBiomes.purpleAgateForest, //This wil make the sacred biome less likely to generate

@@ -136,6 +136,11 @@ public class GDBiomeBase extends Biome {
                     } else if (j > 0) {
                         --j;
                         chunkPrimerIn.setBlockState(i1, j1, l, iblockstate1);
+
+                        if (j == 0 && iblockstate1.getBlock() == GDBlocks.saltBlock && k > 1) {
+                            j = rand.nextInt(4) + Math.max(0, j1 - 63);
+                            iblockstate1 = GDBlocks.rockSalt.getDefaultState();
+                        }
                     }
                 }
             }

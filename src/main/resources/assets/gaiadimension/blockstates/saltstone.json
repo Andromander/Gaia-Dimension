@@ -1,0 +1,15 @@
+{
+  "forge_marker": 1,
+  "variants": {
+    "normal": [
+      { "model": "cube", "textures": {
+        "particle": "gaiadimension:blocks/salt_rock_side",
+        "up":       "gaiadimension:blocks/salt_rock_top",
+        "down":     "gaiadimension:blocks/salt_rock_bottom",
+        "north":    "gaiadimension:blocks/salt_rock_side",
+        "east":     "gaiadimension:blocks/salt_rock_side",
+        "south":    "gaiadimension:blocks/salt_rock_side",
+        "west":     "gaiadimension:blocks/salt_rock_side"}}
+    ]
+  }
+}
