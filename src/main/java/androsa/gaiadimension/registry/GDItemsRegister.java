@@ -118,6 +118,7 @@ public class GDItemsRegister {
         items.registerBlock(GDBlocks.oldGrass);
         items.registerBlock(GDBlocks.corruptGrass);
         items.registerBlock(GDBlocks.singedGrass);
+        items.registerBlock(GDBlocks.mutantGrass);
         items.registerBlock(GDBlocks.frailGlitterBlock);
         items.registerBlock(GDBlocks.thickGlitterBlock);
         items.registerSubItemBlock(GDBlocks.crystalGrowth);

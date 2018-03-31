@@ -100,6 +100,19 @@ public class GenLayerGDRiver extends GenLayer {
         if (biome1 == Biome.getIdForBiome(GDBiomes.saltDunes) && biome2 == Biome.getIdForBiome(GDBiomes.mineralReservoir)) {
             return false;
         }
+        //Mutated Agate Wildwoods should look like they were any Agate Forest, but with strange growth patterns
+        if (biome1 == Biome.getIdForBiome(GDBiomes.mutantAgateWildwood) && biome2 == Biome.getIdForBiome(GDBiomes.pinkAgateForest)) {
+            return false;
+        }
+        if (biome1 == Biome.getIdForBiome(GDBiomes.mutantAgateWildwood) && biome2 == Biome.getIdForBiome(GDBiomes.blueAgateForest)) {
+            return false;
+        }
+        if (biome1 == Biome.getIdForBiome(GDBiomes.mutantAgateWildwood) && biome2 == Biome.getIdForBiome(GDBiomes.greenAgateForest)) {
+            return false;
+        }
+        if (biome1 == Biome.getIdForBiome(GDBiomes.mutantAgateWildwood) && biome2 == Biome.getIdForBiome(GDBiomes.purpleAgateForest)) {
+            return false;
+        }
 
         return true;
     }

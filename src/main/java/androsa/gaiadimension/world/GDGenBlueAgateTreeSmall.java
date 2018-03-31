@@ -14,9 +14,9 @@ import net.minecraft.world.gen.feature.WorldGenTrees;
 
 import java.util.Random;
 
-public class GDGenPurpleAgateTree extends WorldGenTrees {
+public class GDGenBlueAgateTreeSmall extends WorldGenTrees {
 
-    public GDGenPurpleAgateTree(boolean flag) {
+    public GDGenBlueAgateTreeSmall(boolean flag) {
         super(flag);
     }
 
@@ -53,7 +53,7 @@ public class GDGenPurpleAgateTree extends WorldGenTrees {
                                     !blockID.isLeaves(block, world, cPos) &&
                                     blockID != Blocks.GRASS &&
                                     blockID != Blocks.DIRT &&
-                                    blockID != GDBlocks.scentedGrass &&
+                                    blockID != GDBlocks.glitterGrass &&
                                     blockID != GDBlocks.mutantGrass &&
                                     blockID != GDBlocks.heavySoil &&
                                     !blockID.isWood(world, cPos)) {
@@ -71,7 +71,7 @@ public class GDGenPurpleAgateTree extends WorldGenTrees {
             } else {
                 Block blockUsing = world.getBlockState(pos.down()).getBlock();
 
-                if ((blockUsing == GDBlocks.scentedGrass || blockUsing == GDBlocks.mutantGrass || blockUsing == GDBlocks.heavySoil) && pos.getY() < 256 - height - 1) {
+                if ((blockUsing == GDBlocks.glitterGrass || blockUsing == GDBlocks.mutantGrass || blockUsing == GDBlocks.heavySoil) && pos.getY() < 256 - height - 1) {
                     setBlockAndNotifyAdequately(world, pos.down(), GDBlocks.heavySoil.getDefaultState());
                     width = 3;
                     byte var18 = 0;
@@ -95,7 +95,7 @@ public class GDGenPurpleAgateTree extends WorldGenTrees {
 
                                 if ((Math.abs(var15) != treeWidth || Math.abs(var17) != treeWidth || rand.nextInt(2) != 0 && number != 0) &&
                                         state.getBlock().canBeReplacedByLeaves(state, world, tPos)) {
-                                    this.setBlockAndNotifyAdequately(world, tPos, GDBlocks.gaiaLeaves.getDefaultState().withProperty(GDGaiaLeaves.VARIANT, GaiaLeavesVariant.PURPLE_AGATE));
+                                    this.setBlockAndNotifyAdequately(world, tPos, GDBlocks.gaiaLeaves.getDefaultState().withProperty(GDGaiaLeaves.VARIANT, GaiaLeavesVariant.BLUE_AGATE));
                                 }
                             }
                         }
@@ -107,7 +107,7 @@ public class GDGenPurpleAgateTree extends WorldGenTrees {
                         blockID = block.getBlock();
 
                         if (blockID == Blocks.AIR || blockID.isLeaves(block, world, cPos)) {
-                            this.setBlockAndNotifyAdequately(world, cPos, GDBlocks.gaiaLog.getDefaultState().withProperty(GDGaiaLog.VARIANT, GaiaLogVariant.PURPLE_AGATE));
+                            this.setBlockAndNotifyAdequately(world, cPos, GDBlocks.gaiaLog.getDefaultState().withProperty(GDGaiaLog.VARIANT, GaiaLogVariant.BLUE_AGATE));
                         }
                     }
 

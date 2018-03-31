@@ -7,12 +7,14 @@
   "variants": {
     "inventory_thiscus":         [{ "model": "builtin/generated", "textures": {"layer0": "gaiadimension:blocks/thiscus"         }}],
     "inventory_ouzium":          [{ "model": "builtin/generated", "textures": {"layer0": "gaiadimension:blocks/ouzium"          }}],
+    "inventory_agathum":         [{ "model": "builtin/generated", "textures": {"layer0": "gaiadimension:blocks/agathum"         }}],
     "inventory_varloom":         [{ "model": "builtin/generated", "textures": {"layer0": "gaiadimension:blocks/varloom"         }}],
     "inventory_corrupt_varloom": [{ "model": "builtin/generated", "textures": {"layer0": "gaiadimension:blocks/corrupt_varloom" }}],
     "inventory_missingno":       [{ "model": "builtin/generated", "textures": {"layer0": "gaiadimension:blocks/missingno"       }}],
 
     "variant=thiscus":         [{ "model": "cross", "textures": {"cross": "gaiadimension:blocks/thiscus"         }}],
     "variant=ouzium":          [{ "model": "cross", "textures": {"cross": "gaiadimension:blocks/ouzium"          }}],
+    "variant=agathum":         [{ "model": "cross", "textures": {"cross": "gaiadimension:blocks/agathum"         }}],
     "variant=varloom":         [{ "model": "cross", "textures": {"cross": "gaiadimension:blocks/varloom"         }}],
     "variant=corrupt_varloom": [{ "model": "cross", "textures": {"cross": "gaiadimension:blocks/corrupt_varloom" }}],
     "variant=missingno":       [{ "model": "cross", "textures": {"cross": "gaiadimension:blocks/missingno"       }}]

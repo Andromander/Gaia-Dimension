@@ -35,6 +35,8 @@ public class GDBlocks {
     public static Block corruptGrass;
     @ObjectHolder("singed_grass")
     public static Block singedGrass;
+    @ObjectHolder("mutated_grass")
+    public static Block mutantGrass;
     @ObjectHolder("frail_glitter_block")
     public static Block frailGlitterBlock;
     @ObjectHolder("thick_glitter_block")

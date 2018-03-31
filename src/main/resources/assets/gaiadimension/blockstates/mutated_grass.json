@@ -1,0 +1,11 @@
+{
+  "forge_marker": 1,
+  "variants": {
+    "normal": [
+      { "model": "gaiadimension:mutated_grass" },
+      { "model": "gaiadimension:mutated_grass", "y": 90 },
+      { "model": "gaiadimension:mutated_grass", "y": 180 },
+      { "model": "gaiadimension:mutated_grass", "y": 270 }
+    ]
+  }
+}
