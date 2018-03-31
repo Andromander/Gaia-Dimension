@@ -10,7 +10,7 @@ public class GDWastelandStone extends Block implements ModelRegisterCallback {
     public GDWastelandStone() {
         super(Material.ROCK);
 
-        this.setHardness(50.0F);
+        this.setHardness(15.0F);
         this.setResistance(200.0F);
         this.setCreativeTab(GDTabs.tabBlock);
     }

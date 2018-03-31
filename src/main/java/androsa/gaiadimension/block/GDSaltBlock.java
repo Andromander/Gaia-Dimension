@@ -11,6 +11,7 @@ public class GDSaltBlock extends BlockFalling implements ModelRegisterCallback {
     public GDSaltBlock() {
         super(Material.SAND);
 
+        this.setHardness(0.9F);
         this.setSoundType(SoundType.SAND);
         this.setCreativeTab(GDTabs.tabBlock);
     }

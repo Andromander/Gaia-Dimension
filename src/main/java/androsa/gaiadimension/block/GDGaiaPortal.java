@@ -274,56 +274,7 @@ public class GDGaiaPortal extends BlockPortal implements ModelRegisterCallback {
     protected BlockStateContainer createBlockState() {
         return new BlockStateContainer(this, new IProperty[] {AXIS});
     }
-/*
-    public BlockPattern.PatternHelper createPatternHelper(World worldIn, BlockPos pos) {
-        EnumFacing.Axis enumfacing$axis = EnumFacing.Axis.Z;
-        GDGaiaPortal.Size blockportal$size = new GDGaiaPortal.Size(worldIn, pos, EnumFacing.Axis.X);
-        LoadingCache<BlockPos, BlockWorldState> loadingcache = BlockPattern.createLoadingCache(worldIn, true);
 
-        if (!blockportal$size.isValid()) {
-            enumfacing$axis = EnumFacing.Axis.X;
-            blockportal$size = new GDGaiaPortal.Size(worldIn, pos, EnumFacing.Axis.Z);
-        }
-
-        if (!blockportal$size.isValid()) {
-            return new BlockPattern.PatternHelper(pos, EnumFacing.NORTH, EnumFacing.UP, loadingcache, 1, 1, 1);
-        } else {
-            int[] aint = new int[EnumFacing.AxisDirection.values().length];
-            EnumFacing enumfacing = blockportal$size.rightDir.rotateYCCW();
-            BlockPos blockpos = blockportal$size.bottomLeft.up(blockportal$size.getHeight() - 1);
-
-            for (EnumFacing.AxisDirection enumfacing$axisdirection : EnumFacing.AxisDirection.values()) {
-                BlockPattern.PatternHelper blockpattern$patternhelper = new BlockPattern.PatternHelper(enumfacing.getAxisDirection() == enumfacing$axisdirection ? blockpos : blockpos.offset(blockportal$size.rightDir, blockportal$size.getWidth() - 1), EnumFacing.getFacingFromAxis(enumfacing$axisdirection, enumfacing$axis), EnumFacing.UP, loadingcache, blockportal$size.getWidth(), blockportal$size.getHeight(), 1);
-
-                for (int i = 0; i < blockportal$size.getWidth(); ++i) {
-                    for (int j = 0; j < blockportal$size.getHeight(); ++j) {
-                        BlockWorldState blockworldstate = blockpattern$patternhelper.translateOffset(i, j, 1);
-
-                        if (blockworldstate.getBlockState() != null && blockworldstate.getBlockState().getMaterial() != Material.AIR) {
-                            ++aint[enumfacing$axisdirection.ordinal()];
-                        }
-                    }
-                }
-            }
-
-            EnumFacing.AxisDirection enumfacing$axisdirection1 = EnumFacing.AxisDirection.POSITIVE;
-
-            for (EnumFacing.AxisDirection enumfacing$axisdirection2 : EnumFacing.AxisDirection.values()) {
-                if (aint[enumfacing$axisdirection2.ordinal()] < aint[enumfacing$axisdirection1.ordinal()]) {
-                    enumfacing$axisdirection1 = enumfacing$axisdirection2;
-                }
-            }
-
-            return new BlockPattern.PatternHelper(enumfacing.getAxisDirection() == enumfacing$axisdirection1 ? blockpos : blockpos.offset(blockportal$size.rightDir, blockportal$size.getWidth() - 1), EnumFacing.getFacingFromAxis(enumfacing$axisdirection1, enumfacing$axis), EnumFacing.UP, loadingcache, blockportal$size.getWidth(), blockportal$size.getHeight(), 1);
-        }
-    }
-*/ /*
-    @Override
-    @Deprecated
-    public BlockFaceShape getBlockFaceShape(IBlockAccess worldIn, IBlockState state, BlockPos pos, EnumFacing face) {
-        return BlockFaceShape.UNDEFINED;
-    }
-*/
     public static class Size {
         private final World world;
         private final EnumFacing.Axis axis;

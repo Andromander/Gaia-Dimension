@@ -41,7 +41,6 @@ public class GDCrystalGrowth extends BlockBush implements IShearable, ModelRegis
         super(Material.PLANTS);
 
         this.setTickRandomly(true);
-        this.setHardness(0.0F);
         this.setSoundType(SoundType.GLASS);
         this.setCreativeTab(GDTabs.tabBlock);
         this.getDefaultState().withProperty(VARIANT, CrystalGrowthVariant.PINK);

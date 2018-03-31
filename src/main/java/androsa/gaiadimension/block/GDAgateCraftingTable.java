@@ -19,6 +19,8 @@ public class GDAgateCraftingTable extends Block implements ModelRegisterCallback
     public GDAgateCraftingTable() {
         super(Material.WOOD);
 
+        this.setHardness(1.5F);
+        this.setResistance(2.0F);
         this.setSoundType(SoundType.STONE);
         this.setCreativeTab(GDTabs.tabBlock);
     }
