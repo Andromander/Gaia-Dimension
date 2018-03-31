@@ -24,7 +24,8 @@ public class GenLayerGDBiomes extends GenLayer {
     });
     protected Biome rareBiomes[] = (new Biome[]{
             GDBiomes.purpleAgateForest, //This wil make the sacred biome less likely to generate
-            GDBiomes.goldstonelands //It's basically the sacred biome turned corrupt, so there's that. //TODO: Should it be changed to uncommon to better reflect the spread?
+            GDBiomes.goldstonelands, //It's basically the sacred biome turned corrupt, so there's that. //TODO: Should it be changed to uncommon to better reflect the spread?
+            GDBiomes.mutantAgateWildwood //A rare kind of Agate Forest with different Agate Trees
     });
 
     public GenLayerGDBiomes(long l, GenLayer genlayer) {

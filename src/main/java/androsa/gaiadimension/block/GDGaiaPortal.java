@@ -35,6 +35,8 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.Teleporter;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
+import net.minecraftforge.common.ForgeHooks;
+import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -78,15 +80,13 @@ public class GDGaiaPortal extends BlockPortal implements ModelRegisterCallback {
         if (blockportal$size.isValid() && blockportal$size.portalBlockCount == 0) {
             blockportal$size.placePortalBlocks();
             return true;
-        }
-        else {
+        } else {
             GDGaiaPortal.Size blockportal$size1 = new GDGaiaPortal.Size(worldIn, pos, EnumFacing.Axis.Z);
 
             if (blockportal$size1.isValid() && blockportal$size1.portalBlockCount == 0) {
                 blockportal$size1.placePortalBlocks();
                 return true;
-            }
-            else {
+            } else {
                 return false;
             }
         }
@@ -95,7 +95,7 @@ public class GDGaiaPortal extends BlockPortal implements ModelRegisterCallback {
     @Override
     @Deprecated
     public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos fromPos) {
-        EnumFacing.Axis enumfacing$axis = (EnumFacing.Axis)state.getValue(AXIS);
+        EnumFacing.Axis enumfacing$axis = state.getValue(AXIS);
 
         if (enumfacing$axis == EnumFacing.Axis.X) {
             GDGaiaPortal.Size blockportal$size = new GDGaiaPortal.Size(worldIn, pos, EnumFacing.Axis.X);
@@ -116,11 +116,10 @@ public class GDGaiaPortal extends BlockPortal implements ModelRegisterCallback {
     @Override
     @SideOnly(Side.CLIENT)
     public boolean shouldSideBeRendered(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side) {
-        pos = pos.offset(side);
         EnumFacing.Axis enumfacing$axis = null;
 
         if (blockState.getBlock() == this) {
-            enumfacing$axis = (EnumFacing.Axis)blockState.getValue(AXIS);
+            enumfacing$axis = blockState.getValue(AXIS);
 
             if (enumfacing$axis == null) {
                 return false;
@@ -141,19 +140,7 @@ public class GDGaiaPortal extends BlockPortal implements ModelRegisterCallback {
         boolean flag3 = blockAccess.getBlockState(pos.south()).getBlock() == this && blockAccess.getBlockState(pos.south(2)).getBlock() != this;
         boolean flag4 = flag || flag1 || enumfacing$axis == EnumFacing.Axis.X;
         boolean flag5 = flag2 || flag3 || enumfacing$axis == EnumFacing.Axis.Z;
-
-        if (flag4 && side == EnumFacing.WEST) {
-            return true;
-        }
-        else if (flag4 && side == EnumFacing.EAST) {
-            return true;
-        }
-        else if (flag5 && side == EnumFacing.NORTH) {
-            return true;
-        }
-        else {
-            return flag5 && side == EnumFacing.SOUTH;
-        }
+        return flag4 && side == EnumFacing.WEST ? true : flag4 && side == EnumFacing.EAST ? true : flag5 && side == EnumFacing.NORTH ? true : flag5 && side == EnumFacing.SOUTH;
     }
 
     @Override
@@ -163,98 +150,49 @@ public class GDGaiaPortal extends BlockPortal implements ModelRegisterCallback {
 
     @Override
     public void onEntityCollidedWithBlock(World worldIn, BlockPos pos, IBlockState state, Entity entityIn) {
-        if (!entityIn.isRiding() && !entityIn.isBeingRidden() && entityIn.isNonBoss()) {
-            if (entityIn instanceof EntityPlayerMP) {
-                EntityPlayerMP playerMP = (EntityPlayerMP) entityIn;
 
-                if (playerMP.timeUntilPortal > 0) {
-                    playerMP.timeUntilPortal = 50;
+        if (!entityIn.isRiding() && !entityIn.isBeingRidden() && !worldIn.isRemote)
+            if(entityIn.timeUntilPortal <= 0){
+                if(entityIn instanceof EntityPlayerMP){
+                    EntityPlayerMP thePlayer = (EntityPlayerMP)entityIn;
+
+                    thePlayer.timeUntilPortal = 10;
+                    if (thePlayer.dimension != GDConfig.dimension.dimensionID)
+                    {
+                        if(!ForgeHooks.onTravelToDimension(thePlayer, GDConfig.dimension.dimensionID)) return;
+                        thePlayer.mcServer.getPlayerList().transferPlayerToDimension(thePlayer, GDConfig.dimension.dimensionID, new TeleporterGaia(thePlayer.mcServer.getWorld(GDConfig.dimension.dimensionID), this, Blocks.GOLD_BLOCK.getDefaultState()));
+                    }
+                    else {
+                        if(!ForgeHooks.onTravelToDimension(thePlayer, 0)) return;
+                        thePlayer.mcServer.getPlayerList().transferPlayerToDimension(thePlayer, 0, new TeleporterGaia(thePlayer.mcServer.getWorld(0), this, Blocks.GOLD_BLOCK.getDefaultState()));
+                    }
                 } else {
-                    //Let's go to Gaia. I need a catchphrase...
-                    if (playerMP.dimension != GDConfig.dimension.dimensionID) {
-                        if (!net.minecraftforge.common.ForgeHooks.onTravelToDimension(playerMP, GDConfig.dimension.dimensionID)) return;
+                    MinecraftServer server = FMLCommonHandler.instance().getMinecraftServerInstance();
+                    entityIn.timeUntilPortal = entityIn.getPortalCooldown();
 
-                        playerMP.mcServer.getPlayerList().transferPlayerToDimension(playerMP, GDConfig.dimension.dimensionID, TeleporterGaia.getTeleporterForDim(playerMP.mcServer, GDConfig.dimension.dimensionID));
-                        playerMP.setSpawnChunk(new BlockPos(playerMP), true, GDConfig.dimension.dimensionID);
+                    if(entityIn.dimension != GDConfig.dimension.dimensionID){
+                        if(!ForgeHooks.onTravelToDimension(entityIn, GDConfig.dimension.dimensionID)) return;
+
+                        int i = entityIn.dimension;
+
+                        entityIn.dimension = GDConfig.dimension.dimensionID;
+                        worldIn.removeEntityDangerously(entityIn);
+
+                        entityIn.isDead = false;
+
+                        server.getPlayerList().transferEntityToWorld(entityIn, i, server.getWorld(i), server.getWorld(GDConfig.dimension.dimensionID), new TeleporterGaia(server.getWorld(GDConfig.dimension.dimensionID), this, Blocks.GOLD_BLOCK.getDefaultState()));
                     } else {
-                        if (!net.minecraftforge.common.ForgeHooks.onTravelToDimension(playerMP, 0)) return;
-                        playerMP.mcServer.getPlayerList().transferPlayerToDimension(playerMP, 0, TeleporterGaia.getTeleporterForDim(playerMP.mcServer, 0));
+                        if(!ForgeHooks.onTravelToDimension(entityIn, 0)) return;
+
+                        entityIn.dimension = 0;
+                        worldIn.removeEntityDangerously(entityIn);
+
+                        entityIn.isDead = false;
+
+                        server.getPlayerList().transferEntityToWorld(entityIn, GDConfig.dimension.dimensionID, server.getWorld(GDConfig.dimension.dimensionID), server.getWorld(0), new TeleporterGaia(server.getWorld(0), this, Blocks.GOLD_BLOCK.getDefaultState()));
                     }
                 }
-            } else {
-                if (entityIn.dimension != GDConfig.dimension.dimensionID) {
-                    changeDimension(entityIn, GDConfig.dimension.dimensionID);
-                } else {
-                    changeDimension(entityIn, 0);
-                }
-            }
-        }
-    }
-
-    private void changeDimension(Entity toTeleport, int dimensionIn) {
-        if (!toTeleport.world.isRemote && !toTeleport.isDead) {
-            if (!net.minecraftforge.common.ForgeHooks.onTravelToDimension(toTeleport, dimensionIn)) return;
-            toTeleport.world.profiler.startSection("changeDimension");
-            MinecraftServer minecraftserver = toTeleport.getServer();
-            int i = toTeleport.dimension;
-            WorldServer worldserver = minecraftserver.getWorld(i);
-            WorldServer worldserver1 = minecraftserver.getWorld(dimensionIn);
-            toTeleport.dimension = dimensionIn;
-
-
-            if (i == 1 && dimensionIn == 1) {
-                worldserver1 = minecraftserver.getWorld(0);
-                toTeleport.dimension = 0;
-            }
-
-            toTeleport.world.removeEntity(toTeleport);
-            toTeleport.isDead = false;
-            toTeleport.world.profiler.startSection("reposition");
-            BlockPos blockpos;
-
-            if (dimensionIn == 1) {
-                blockpos = worldserver1.getSpawnCoordinate();
-            } else {
-                double d0 = toTeleport.posX;
-                double d1 = toTeleport.posZ;
-                double d2 = 8.0D;
-
-                d0 = (double) MathHelper.clamp((int) d0, -29999872, 29999872);
-                d1 = (double) MathHelper.clamp((int) d1, -29999872, 29999872);
-                float f = toTeleport.rotationYaw;
-                toTeleport.setLocationAndAngles(d0, toTeleport.posY, d1, 90.0F, 0.0F);
-                Teleporter teleporter = TeleporterGaia.getTeleporterForDim(minecraftserver, dimensionIn);
-                teleporter.placeInExistingPortal(toTeleport, f);
-                blockpos = new BlockPos(toTeleport);
-            }
-
-            worldserver.updateEntityWithOptionalForce(toTeleport, false);
-            toTeleport.world.profiler.endStartSection("reloading");
-            Entity entity = EntityList.newEntity(toTeleport.getClass(), worldserver1);
-
-            if (entity != null) {
-                entity.copyDataFromOld(toTeleport);
-
-                if (i == 1 && dimensionIn == 1) {
-                    BlockPos blockpos1 = worldserver1.getTopSolidOrLiquidBlock(worldserver1.getSpawnPoint());
-                    entity.moveToBlockPosAndAngles(blockpos1, entity.rotationYaw, entity.rotationPitch);
-                } else {
-                    entity.setLocationAndAngles((double) blockpos.getX(), (double) blockpos.getY(), (double) blockpos.getZ(), entity.rotationYaw, entity.rotationPitch);
-                }
-
-                boolean flag = entity.forceSpawn;
-                entity.forceSpawn = true;
-                worldserver1.spawnEntity(entity);
-                entity.forceSpawn = flag;
-                worldserver1.updateEntityWithOptionalForce(entity, false);
-            }
-
-            toTeleport.isDead = true;
-            toTeleport.world.profiler.endSection();
-            worldserver.resetUpdateEntityTick();
-            worldserver1.resetUpdateEntityTick();
-            toTeleport.world.profiler.endSection();
-        }
+            } else entityIn.timeUntilPortal = entityIn.getPortalCooldown();
     }
 
     @Override
@@ -336,7 +274,7 @@ public class GDGaiaPortal extends BlockPortal implements ModelRegisterCallback {
     protected BlockStateContainer createBlockState() {
         return new BlockStateContainer(this, new IProperty[] {AXIS});
     }
-
+/*
     public BlockPattern.PatternHelper createPatternHelper(World worldIn, BlockPos pos) {
         EnumFacing.Axis enumfacing$axis = EnumFacing.Axis.Z;
         GDGaiaPortal.Size blockportal$size = new GDGaiaPortal.Size(worldIn, pos, EnumFacing.Axis.X);
@@ -379,28 +317,28 @@ public class GDGaiaPortal extends BlockPortal implements ModelRegisterCallback {
             return new BlockPattern.PatternHelper(enumfacing.getAxisDirection() == enumfacing$axisdirection1 ? blockpos : blockpos.offset(blockportal$size.rightDir, blockportal$size.getWidth() - 1), EnumFacing.getFacingFromAxis(enumfacing$axisdirection1, enumfacing$axis), EnumFacing.UP, loadingcache, blockportal$size.getWidth(), blockportal$size.getHeight(), 1);
         }
     }
-
+*/ /*
     @Override
     @Deprecated
     public BlockFaceShape getBlockFaceShape(IBlockAccess worldIn, IBlockState state, BlockPos pos, EnumFacing face) {
         return BlockFaceShape.UNDEFINED;
     }
-
+*/
     public static class Size {
         private final World world;
         private final EnumFacing.Axis axis;
         private final EnumFacing rightDir;
         private final EnumFacing leftDir;
-        private int portalBlockCount;
+        private int portalBlockCount = 0;
         private BlockPos bottomLeft;
         private int height;
         private int width;
 
-        public Size(World worldIn, BlockPos p_i45694_2_, EnumFacing.Axis p_i45694_3_) {
+        public Size(World worldIn, BlockPos pos, EnumFacing.Axis facing) {
             this.world = worldIn;
-            this.axis = p_i45694_3_;
+            this.axis = facing;
 
-            if (p_i45694_3_ == EnumFacing.Axis.X) {
+            if (facing == EnumFacing.Axis.X) {
                 this.leftDir = EnumFacing.EAST;
                 this.rightDir = EnumFacing.WEST;
             }
@@ -409,14 +347,14 @@ public class GDGaiaPortal extends BlockPortal implements ModelRegisterCallback {
                 this.rightDir = EnumFacing.SOUTH;
             }
 
-            for (BlockPos blockpos = p_i45694_2_; p_i45694_2_.getY() > blockpos.getY() - 21 && p_i45694_2_.getY() > 0 && this.isEmptyBlock(worldIn.getBlockState(p_i45694_2_.down()).getBlock()); p_i45694_2_ = p_i45694_2_.down()) {
+            for (BlockPos blockpos = pos; pos.getY() > blockpos.getY() - 21 && pos.getY() > 0 && this.isEmptyBlock(worldIn.getBlockState(pos.down()).getBlock()); pos = pos.down()) {
                 ;
             }
 
-            int i = this.getDistanceUntilEdge(p_i45694_2_, this.leftDir) - 1;
+            int i = this.getDistanceUntilEdge(pos, this.leftDir) - 1;
 
             if (i >= 0) {
-                this.bottomLeft = p_i45694_2_.offset(this.leftDir, i);
+                this.bottomLeft = pos.offset(this.leftDir, i);
                 this.width = this.getDistanceUntilEdge(this.bottomLeft, this.rightDir);
 
                 if (this.width < 2 || this.width > 21) {
@@ -430,18 +368,18 @@ public class GDGaiaPortal extends BlockPortal implements ModelRegisterCallback {
             }
         }
 
-        protected int getDistanceUntilEdge(BlockPos p_180120_1_, EnumFacing p_180120_2_) {
+        protected int getDistanceUntilEdge(BlockPos pos, EnumFacing facing) {
             int i;
 
             for (i = 0; i < 22; ++i) {
-                BlockPos blockpos = p_180120_1_.offset(p_180120_2_, i);
+                BlockPos blockpos = pos.offset(facing, i);
 
                 if (!this.isEmptyBlock(this.world.getBlockState(blockpos).getBlock()) || this.world.getBlockState(blockpos.down()).getBlock() != Blocks.GOLD_BLOCK) {
                     break;
                 }
             }
 
-            Block block = this.world.getBlockState(p_180120_1_.offset(p_180120_2_, i)).getBlock();
+            Block block = this.world.getBlockState(pos.offset(facing, i)).getBlock();
             return block == Blocks.GOLD_BLOCK ? i : 0;
         }
 
@@ -476,7 +414,7 @@ public class GDGaiaPortal extends BlockPortal implements ModelRegisterCallback {
                             break label56;
                         }
                     }
-                    else if (i == this.width - 1) {
+                    else if (i == this.width) {
                         block = this.world.getBlockState(blockpos.offset(this.rightDir)).getBlock();
 
                         if (block != Blocks.GOLD_BLOCK) {
@@ -516,7 +454,7 @@ public class GDGaiaPortal extends BlockPortal implements ModelRegisterCallback {
             for (int i = 0; i < this.width; ++i) {
                 BlockPos blockpos = this.bottomLeft.offset(this.rightDir, i);
 
-                for (int j = 0; j < this.height; ++j) {
+                for (int j = 0; j < this.height + 1; ++j) {
                     this.world.setBlockState(blockpos.up(j), GDBlocks.gaiaPortal.getDefaultState().withProperty(BlockPortal.AXIS, this.axis), 2);
                 }
             }
