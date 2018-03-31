@@ -14,7 +14,6 @@
     "inventory_black_goldstone": [{ "model": "builtin/generated", "textures": {"layer0": "gaiadimension:blocks/crystal_growth_black"  }}],
     "inventory_seared":          [{ "model": "builtin/generated", "textures": {"layer0": "gaiadimension:blocks/crystal_growth_singed" }}],
     "inventory_sacred":          [{ "model": "builtin/generated", "textures": {"layer0": "gaiadimension:blocks/crystal_growth_pink"   }}],
-    "inventory_mutant":          [{ "model": "builtin/generated", "textures": {"layer0": "gaiadimension:blocks/crystal_growth_mutant" }}],
     "inventory_ceiling":         [{ "model": "builtin/generated", "textures": {"layer0": "gaiadimension:blocks/crystal_growth_pink"   }}],
 
     "variant=pink":            [{ "model": "cross", "textures": {"cross": "gaiadimension:blocks/crystal_growth_pink"   }}],
@@ -26,7 +25,6 @@
     "variant=black_goldstone": [{ "model": "cross", "textures": {"cross": "gaiadimension:blocks/crystal_growth_black"  }}],
     "variant=seared":          [{ "model": "cross", "textures": {"cross": "gaiadimension:blocks/crystal_growth_singed" }}],
     "variant=sacred":          [{ "model": "cross", "textures": {"cross": "gaiadimension:blocks/crystal_growth_pink"   }}],
-    "variant=mutant":          [{ "model": "cross", "textures": {"cross": "gaiadimension:blocks/crystal_growth_mutant" }}],
     "variant=ceiling":         [{ "model": "cross", "textures": {"cross": "gaiadimension:blocks/crystal_growth_pink"   }}]
   }
 }

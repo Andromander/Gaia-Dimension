@@ -74,18 +74,6 @@ public final class GDBiomesRegister {
         );
 
         biomes.register(
-                "mutant_agate_wildwood",
-                new GDMutantAgateWildwood(
-                        new BiomeProperties("Mutant Agate Wildwood")
-                        .setTemperature(0.66F)
-                        .setRainDisabled()
-                        .setBaseHeight(0.1F)
-                        .setHeightVariation(0.1F)
-                ),
-                Type.FOREST, Type.LUSH, Type.MAGICAL
-        );
-
-        biomes.register(
                 "crystal_plains",
                 new GDCrystalPlains(
                         new BiomeProperties("Crystal Plains")

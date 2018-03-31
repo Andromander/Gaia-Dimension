@@ -54,7 +54,6 @@ public class GDGenGreenAgateTree extends WorldGenTrees {
                                     blockID != Blocks.GRASS &&
                                     blockID != Blocks.DIRT &&
                                     blockID != GDBlocks.verdantGrass &&
-                                    blockID != GDBlocks.mutantGrass &&
                                     blockID != GDBlocks.heavySoil &&
                                     !blockID.isWood(world, cPos)) {
                                 allClear = false;
@@ -71,7 +70,7 @@ public class GDGenGreenAgateTree extends WorldGenTrees {
             } else {
                 Block blockUsing = world.getBlockState(pos.down()).getBlock();
 
-                if ((blockUsing == GDBlocks.verdantGrass || blockUsing == GDBlocks.mutantGrass || blockUsing == GDBlocks.heavySoil) && pos.getY() < 256 - height - 1) {
+                if ((blockUsing == GDBlocks.verdantGrass || blockUsing == GDBlocks.heavySoil) && pos.getY() < 256 - height - 1) {
                     setBlockAndNotifyAdequately(world, pos.down(), GDBlocks.heavySoil.getDefaultState());
                     width = 3;
                     byte var18 = 0;

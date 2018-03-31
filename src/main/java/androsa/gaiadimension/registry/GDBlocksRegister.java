@@ -28,7 +28,6 @@ public final class GDBlocksRegister {
         blocks.register("old_grass", (new GDGlitterGrass()).setUnlocalizedName("old_grass"));
         blocks.register("corrupt_grass", (new GDCorruptGrass()).setUnlocalizedName("corrupt_grass"));
         blocks.register("singed_grass", (new GDGlitterGrass()).setUnlocalizedName("singed_grass"));
-        blocks.register("mutated_grass", (new GDMutantGrass()).setUnlocalizedName("mutated_grass"));
         blocks.register("frail_glitter_block", (new GDFrailGlitterBlock()).setUnlocalizedName("frail_glitter_block"));
         blocks.register("thick_glitter_block", (new GDThickGlitterBlock()).setUnlocalizedName("thick_glitter_block"));
         blocks.register("crystal_growth", (new GDCrystalGrowth()).setUnlocalizedName("crystal_growth"));

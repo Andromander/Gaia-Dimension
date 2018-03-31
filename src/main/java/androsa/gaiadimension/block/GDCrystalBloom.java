@@ -96,7 +96,6 @@ public class GDCrystalBloom extends BlockBush implements ModelRegisterCallback {
     public enum CrystalBloomVariant implements IStringSerializable {
         THISCUS,
         OUZIUM,
-        AGATHUM,
         VARLOOM,
         CORRUPT_VARLOOM,
         MISSINGNO;

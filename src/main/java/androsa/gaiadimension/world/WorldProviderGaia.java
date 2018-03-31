@@ -42,8 +42,6 @@ public class WorldProviderGaia extends WorldProviderSurface {
             targetFogColor = new short[]{ 188, 122, 44 };
         } else if (biome instanceof GDStaticWasteland) {
             targetFogColor = new short[]{ 86, 213, 170 };
-        } else if (biome instanceof GDSaltDunes) {
-            targetFogColor = new short[]{ 187, 211, 255 };
         }
 
         return new Vec3d(targetFogColor[0] / 255D, targetFogColor[1] / 255D, targetFogColor[2] / 255D);
@@ -134,10 +132,6 @@ public class WorldProviderGaia extends WorldProviderSurface {
             targetSkyColor = ((GDGoldstoneLands) biome).getSkyRGB();
         } else if (biome instanceof GDStaticWasteland) {
             targetSkyColor = ((GDStaticWasteland) biome).getSkyRGB();
-        } else if (biome instanceof GDSaltDunes) {
-            targetSkyColor = ((GDSaltDunes) biome).getSkyRGB();
-        } else if (biome instanceof GDMutantAgateWildwood) {
-            targetSkyColor = ((GDMutantAgateWildwood) biome).getSkyRGB();
         }
 
 //Will find a way to get this to work properly

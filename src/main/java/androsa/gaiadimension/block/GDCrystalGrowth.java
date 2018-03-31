@@ -137,7 +137,6 @@ public class GDCrystalGrowth extends BlockBush implements IShearable, ModelRegis
         BLACK_GOLDSTONE,
         SEARED,
         SACRED,
-        MUTANT,
         CEILING;
 
         @Override
