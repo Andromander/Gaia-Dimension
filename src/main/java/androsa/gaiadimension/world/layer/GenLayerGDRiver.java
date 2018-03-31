@@ -61,35 +61,14 @@ public class GenLayerGDRiver extends GenLayer {
             return false;
         }
         //The Volcanic Biomes will be too hot for the mineral water. Remove rivers
-        if (biome1 == Biome.getIdForBiome(GDBiomes.volcaniclands) && biome2 == Biome.getIdForBiome(GDBiomes.pinkAgateForest)) {
-            return false;
-        }
-        if (biome1 == Biome.getIdForBiome(GDBiomes.volcaniclands) && biome2 == Biome.getIdForBiome(GDBiomes.blueAgateForest)) {
-            return false;
-        }
-        if (biome1 == Biome.getIdForBiome(GDBiomes.volcaniclands) && biome2 == Biome.getIdForBiome(GDBiomes.greenAgateForest)) {
-            return false;
-        }
-        if (biome1 == Biome.getIdForBiome(GDBiomes.volcaniclands) && biome2 == Biome.getIdForBiome(GDBiomes.purpleAgateForest)) {
-            return false;
-        }
-        if (biome1 == Biome.getIdForBiome(GDBiomes.volcaniclands) && biome2 == Biome.getIdForBiome(GDBiomes.crystalPlains)) {
-            return false;
-        }
-        if (biome1 == Biome.getIdForBiome(GDBiomes.volcaniclands) && biome2 == Biome.getIdForBiome(GDBiomes.fossilForest)) {
-            return false;
-        }
-        if (biome1 == Biome.getIdForBiome(GDBiomes.volcaniclands) && biome2 == Biome.getIdForBiome(GDBiomes.saltDunes)) {
-            return false;
-        }
-        if (biome1 == Biome.getIdForBiome(GDBiomes.volcaniclands) && biome2 == Biome.getIdForBiome(GDBiomes.staticWasteland)) {
-            return false;
-        }
-        if (biome1 == Biome.getIdForBiome(GDBiomes.volcaniclands) && biome2 == Biome.getIdForBiome(GDBiomes.goldstonelands)) {
+        if (biome1 == Biome.getIdForBiome(GDBiomes.volcaniclands) || biome2 == Biome.getIdForBiome(GDBiomes.volcaniclands)) {
             return false;
         }
         //Crystal Plains and Pink Agate Forest are too similar for rivers
         if (biome1 == Biome.getIdForBiome(GDBiomes.pinkAgateForest) && biome2 == Biome.getIdForBiome(GDBiomes.crystalPlains)) {
+            return false;
+        }
+        if (biome1 == Biome.getIdForBiome(GDBiomes.crystalPlains) && biome2 == Biome.getIdForBiome(GDBiomes.pinkAgateForest)) {
             return false;
         }
         //If a reservoir gens near another reservoir, remove the river because it would look goofy
@@ -98,6 +77,9 @@ public class GenLayerGDRiver extends GenLayer {
         }
         //Salt Dunes and Mineral Reservoirs are similar, no need for river
         if (biome1 == Biome.getIdForBiome(GDBiomes.saltDunes) && biome2 == Biome.getIdForBiome(GDBiomes.mineralReservoir)) {
+            return false;
+        }
+        if (biome1 == Biome.getIdForBiome(GDBiomes.mineralReservoir) && biome2 == Biome.getIdForBiome(GDBiomes.saltDunes)) {
             return false;
         }
         //Mutated Agate Wildwoods should look like they were any Agate Forest, but with strange growth patterns
@@ -111,6 +93,18 @@ public class GenLayerGDRiver extends GenLayer {
             return false;
         }
         if (biome1 == Biome.getIdForBiome(GDBiomes.mutantAgateWildwood) && biome2 == Biome.getIdForBiome(GDBiomes.purpleAgateForest)) {
+            return false;
+        }
+        if (biome1 == Biome.getIdForBiome(GDBiomes.pinkAgateForest) && biome2 == Biome.getIdForBiome(GDBiomes.mutantAgateWildwood)) {
+            return false;
+        }
+        if (biome1 == Biome.getIdForBiome(GDBiomes.blueAgateForest) && biome2 == Biome.getIdForBiome(GDBiomes.mutantAgateWildwood)) {
+            return false;
+        }
+        if (biome1 == Biome.getIdForBiome(GDBiomes.greenAgateForest) && biome2 == Biome.getIdForBiome(GDBiomes.mutantAgateWildwood)) {
+            return false;
+        }
+        if (biome1 == Biome.getIdForBiome(GDBiomes.purpleAgateForest) && biome2 == Biome.getIdForBiome(GDBiomes.mutantAgateWildwood)) {
             return false;
         }
 
