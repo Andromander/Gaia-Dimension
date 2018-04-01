@@ -64,6 +64,10 @@ public class GenLayerGDRiver extends GenLayer {
         if (biome1 == Biome.getIdForBiome(GDBiomes.volcaniclands) || biome2 == Biome.getIdForBiome(GDBiomes.volcaniclands)) {
             return false;
         }
+        //For consistency's sake, there will be no Mineral River at Static Wastelands
+        if (biome1 == Biome.getIdForBiome(GDBiomes.staticWasteland) || biome2 == Biome.getIdForBiome(GDBiomes.staticWasteland)) {
+            return false;
+        }
         //Crystal Plains and Pink Agate Forest are too similar for rivers
         if (biome1 == Biome.getIdForBiome(GDBiomes.pinkAgateForest) && biome2 == Biome.getIdForBiome(GDBiomes.crystalPlains)) {
             return false;
