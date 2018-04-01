@@ -1,6 +1,7 @@
 package androsa.gaiadimension.biomes;
 
 import androsa.gaiadimension.registry.GDBlocks;
+import androsa.gaiadimension.world.layer.GDGenStaticPatch;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -15,8 +16,10 @@ public class GDStaticWasteland extends GDBiomeBase {
         this.fillerBlock = GDBlocks.wastelandStone.getDefaultState();
 
         this.decorator.treesPerChunk = -1;
+        this.decorator.grassPerChunk = -1;
 
-        //TODO: Generate Wasteland Stone and Static Stone as Ores
+        getGDBiomeDecorator().staticPerChunk = 2;
+
         //TODO: Have random junk generate on the ground
     }
 

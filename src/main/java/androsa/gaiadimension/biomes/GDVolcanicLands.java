@@ -27,8 +27,6 @@ public class GDVolcanicLands extends GDBiomeBase {
         getGDBiomeDecorator().lavaPoolChance = 0.25F;
     }
 
-    //TODO: Generate Volcanic Rock as an ore
-
     @Override
     public WorldGenAbstractTree getRandomTreeFeature(Random par1Random) {
         if (par1Random.nextInt(16) == 0) {

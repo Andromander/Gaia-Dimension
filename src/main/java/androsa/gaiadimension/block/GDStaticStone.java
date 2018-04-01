@@ -16,7 +16,7 @@ public class GDStaticStone extends Block implements ModelRegisterCallback {
     public GDStaticStone() {
         super(Material.ROCK);
 
-        this.setLightLevel(15);
+        this.setLightLevel(0.5F);
         this.setHardness(50.0F);
         this.setResistance(200.0F);
         this.setCreativeTab(GDTabs.tabBlock);
@@ -24,7 +24,7 @@ public class GDStaticStone extends Block implements ModelRegisterCallback {
 
     public void onEntityWalk(World worldIn, BlockPos pos, Entity entityIn) {
         if ( entityIn instanceof EntityLivingBase && !EnchantmentHelper.hasFrostWalkerEnchantment((EntityLivingBase)entityIn)) {
-            entityIn.attackEntityFrom(DamageSource.LIGHTNING_BOLT, 1.0F);
+            entityIn.attackEntityFrom(DamageSource.LIGHTNING_BOLT, 2.0F);
         }
 
         super.onEntityWalk(worldIn, pos, entityIn);
