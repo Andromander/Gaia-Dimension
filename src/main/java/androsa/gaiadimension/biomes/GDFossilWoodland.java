@@ -36,7 +36,6 @@ public class GDFossilWoodland extends GDBiomeBase {
     @Override
     public WorldGenerator getRandomWorldGenForGrass(Random rand) {
 
-        //TODO: Find a way to not generate poppies and dandelions
         if (rand.nextInt(16) == 0) {
             if (rand.nextInt(4) == 0) {
                 return new GDGenCrystalBloom(GDCrystalBloom.CrystalBloomVariant.OUZIUM);

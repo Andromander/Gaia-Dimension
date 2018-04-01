@@ -34,7 +34,6 @@ public class GDCrystalPlains extends GDBiomeBase {
     @Override
     public WorldGenerator getRandomWorldGenForGrass(Random rand) {
 
-        //TODO: Find a way to not generate poppies and dandelions
         if (rand.nextInt(24) == 0) {
             if (rand.nextInt(8) == 0) {
                 return new GDGenCrystalBloom(GDCrystalBloom.CrystalBloomVariant.OUZIUM);
