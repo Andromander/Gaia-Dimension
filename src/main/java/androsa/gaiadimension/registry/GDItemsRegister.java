@@ -30,6 +30,15 @@ public class GDItemsRegister {
         items.register("fine_dust", new GDItem().setUnlocalizedName("fine_dust"));
         items.register("cloudy_shard", new GDItem().setUnlocalizedName("cloudy_shard"));
 
+        items.register("pink_geode", new GDGeode().setUnlocalizedName("pink_geode"));
+        items.register("blue_geode", new GDGeode().setUnlocalizedName("blue_geode"));
+        items.register("green_geode", new GDGeode().setUnlocalizedName("green_geode"));
+        items.register("purple_geode", new GDGeode().setUnlocalizedName("purple_geode"));
+        items.register("pink_geode_slice", new GDFood(3, 0.5F, false).setUnlocalizedName("pink_geode_slice"));
+        items.register("blue_geode_slice", new GDFood(4, 0.4F, false).setUnlocalizedName("blue_geode_slice"));
+        items.register("green_geode_slice", new GDFood(5, 0.3F, false).setUnlocalizedName("green_geode_slice"));
+        items.register("purple_geode_slice", new GDFood(6, 0.2F, false).setUnlocalizedName("purple_geode_slice"));
+
         items.register("hematite_powder", new GDGroundGem().setUnlocalizedName("hematite_powder"));
         items.register("pyrite_powder", new GDGroundGem().setUnlocalizedName("pyrite_powder"));
         items.register("labradorite_powder", new GDGroundGem().setUnlocalizedName("labradorite_powder"));
@@ -108,6 +117,7 @@ public class GDItemsRegister {
         //items.registerSubItemBlock(GDBlocks.keyBlock);
         items.registerBlock(GDBlocks.pyriteTorch);
         items.registerBlock(GDBlocks.agateCraftingTable);
+        items.registerBlock(GDBlocks.glitteringFurnace);
 
         items.registerBlock(GDBlocks.heavySoil);
         items.registerBlock(GDBlocks.corruptSoil);

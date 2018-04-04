@@ -1,0 +1,12 @@
+{
+  "result": {
+    "item": "gaiadimension:blue_geode_slice",
+    "count": 4
+  },
+  "ingredients": [
+    {
+      "item": "gaiadimension:blue_geode"
+    }
+  ],
+  "type": "minecraft:crafting_shapeless"
+}

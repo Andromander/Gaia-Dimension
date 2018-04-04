@@ -47,6 +47,23 @@ public class GDItems {
     @ObjectHolder("cloudy_shard")
     public static final Item cloudyShard;
 
+    @ObjectHolder("pink_geode")
+    public static final Item pinkGeode;
+    @ObjectHolder("blue_geode")
+    public static final Item blueGeode;
+    @ObjectHolder("green_geode")
+    public static final Item greenGeode;
+    @ObjectHolder("purple_geode")
+    public static final Item purpleGeode;
+    @ObjectHolder("pink_geode_slice")
+    public static final Item pinkGeodeSlice;
+    @ObjectHolder("blue_geode_slice")
+    public static final Item blueGeodeSlice;
+    @ObjectHolder("green_geode_slice")
+    public static final Item greenGeodeSlice;
+    @ObjectHolder("purple_geode_slice")
+    public static final Item purpleGeodeSlice;
+
     @ObjectHolder("hematite_powder")
     public static final Item hematitePowder;
     @ObjectHolder("pyrite_powder")
@@ -194,6 +211,15 @@ public class GDItems {
         goldstoneDust = null;
         fineDust = null;
         cloudyShard = null;
+
+        pinkGeode = null;
+        blueGeode = null;
+        greenGeode = null;
+        purpleGeode = null;
+        pinkGeodeSlice = null;
+        blueGeodeSlice = null;
+        greenGeodeSlice = null;
+        purpleGeodeSlice = null;
 
         hematitePowder = null;
         pyritePowder = null;
