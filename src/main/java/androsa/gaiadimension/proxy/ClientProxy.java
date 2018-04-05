@@ -1,8 +1,6 @@
 package androsa.gaiadimension.proxy;
 
 import androsa.gaiadimension.block.inventory.GuiAgateCraftingTable;
-import androsa.gaiadimension.block.inventory.GuiGaiaStoneFurnace;
-import androsa.gaiadimension.block.tileentity.TileEntityGaiaStoneFurnace;
 import androsa.gaiadimension.entity.*;
 import androsa.gaiadimension.entity.boss.GDBlueHowliteWolf;
 import androsa.gaiadimension.entity.boss.GDMalachiteGuard;
@@ -10,7 +8,6 @@ import androsa.gaiadimension.model.*;
 import androsa.gaiadimension.renderer.*;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.inventory.GuiContainer;
-import net.minecraft.client.renderer.entity.RenderSnowball;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
