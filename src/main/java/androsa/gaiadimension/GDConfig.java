@@ -28,6 +28,17 @@ public class GDConfig {
 
     }
 
+    @Config.LangKey(config + "sky_and_fog")
+    @Config.Comment("Changes that will affect the sky and fog in Gaia. A restart is advised here.")
+    public static SkyAndFog skyAndFog = new SkyAndFog();
+
+    public static class SkyAndFog {
+        @Config.LangKey(config + "enable_sky_fog")
+        @Config.RequiresMcRestart
+        @Config.Comment("For those bothered by the sky transtions or using shaders. Disables the differing sky and fog colour to the default preset.")
+        public boolean enableSkyFog = true;
+    }
+
     @SubscribeEvent
     public static void onConfigChanged(ConfigChangedEvent.OnConfigChangedEvent event) {
         if (event.getModID().equals(GaiaDimension.MODID));

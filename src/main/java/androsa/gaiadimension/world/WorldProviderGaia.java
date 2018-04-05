@@ -36,14 +36,18 @@ public class WorldProviderGaia extends WorldProviderSurface {
         Biome biome = world.getBiome(new BlockPos(player.posX, player.posY, player.posZ));
         targetFogColor = new short[] { 234, 178, 224 };
 
-        if (biome instanceof GDVolcanicLands) {
-            targetFogColor = new short[]{ 245, 119, 112 };
-        } else if (biome instanceof GDGoldstoneLands) {
-            targetFogColor = new short[]{ 188, 122, 44 };
-        } else if (biome instanceof GDStaticWasteland) {
-            targetFogColor = new short[]{ 86, 213, 170 };
-        } else if (biome instanceof GDSaltDunes) {
-            targetFogColor = new short[]{ 187, 211, 255 };
+        if (GDConfig.skyAndFog.enableSkyFog == true) {
+            if (biome instanceof GDVolcanicLands) {
+                targetFogColor = new short[]{ 245, 119, 112 };
+            } else if (biome instanceof GDGoldstoneLands) {
+                targetFogColor = new short[]{ 188, 122, 44 };
+            } else if (biome instanceof GDStaticWasteland) {
+                targetFogColor = new short[]{ 86, 213, 170 };
+            } else if (biome instanceof GDSaltDunes) {
+                targetFogColor = new short[]{ 187, 211, 255 };
+            }
+        } else {
+            targetFogColor = new short[] { 234, 178, 224 };
         }
 
         return new Vec3d(targetFogColor[0] / 255D, targetFogColor[1] / 255D, targetFogColor[2] / 255D);
@@ -122,23 +126,28 @@ public class WorldProviderGaia extends WorldProviderSurface {
         Biome biome = world.getBiome(new BlockPos(player.posX, player.posY, player.posZ));
         targetSkyColor = new short[]{ 198, 157, 88 };
 
-        if (biome instanceof GDBlueAgateTaiga) {
-            targetSkyColor = ((GDBlueAgateTaiga) biome).getSkyRGB();
-        } else if (biome instanceof GDGreenAgateJungle) {
-            targetSkyColor = ((GDGreenAgateJungle) biome).getSkyRGB();
-        } else if (biome instanceof GDPurpleAgateSwamp) {
-            targetSkyColor = ((GDPurpleAgateSwamp) biome).getSkyRGB();
-        } else if (biome instanceof GDVolcanicLands) {
-            targetSkyColor = ((GDVolcanicLands) biome).getSkyRGB();
-        } else if (biome instanceof GDGoldstoneLands) {
-            targetSkyColor = ((GDGoldstoneLands) biome).getSkyRGB();
-        } else if (biome instanceof GDStaticWasteland) {
-            targetSkyColor = ((GDStaticWasteland) biome).getSkyRGB();
-        } else if (biome instanceof GDSaltDunes) {
-            targetSkyColor = ((GDSaltDunes) biome).getSkyRGB();
-        } else if (biome instanceof GDMutantAgateWildwood) {
-            targetSkyColor = ((GDMutantAgateWildwood) biome).getSkyRGB();
+        if (GDConfig.skyAndFog.enableSkyFog == true) {
+            if (biome instanceof GDBlueAgateTaiga) {
+                targetSkyColor = ((GDBlueAgateTaiga) biome).getSkyRGB();
+            } else if (biome instanceof GDGreenAgateJungle) {
+                targetSkyColor = ((GDGreenAgateJungle) biome).getSkyRGB();
+            } else if (biome instanceof GDPurpleAgateSwamp) {
+                targetSkyColor = ((GDPurpleAgateSwamp) biome).getSkyRGB();
+            } else if (biome instanceof GDVolcanicLands) {
+                targetSkyColor = ((GDVolcanicLands) biome).getSkyRGB();
+            } else if (biome instanceof GDGoldstoneLands) {
+                targetSkyColor = ((GDGoldstoneLands) biome).getSkyRGB();
+            } else if (biome instanceof GDStaticWasteland) {
+                targetSkyColor = ((GDStaticWasteland) biome).getSkyRGB();
+            } else if (biome instanceof GDSaltDunes) {
+                targetSkyColor = ((GDSaltDunes) biome).getSkyRGB();
+            } else if (biome instanceof GDMutantAgateWildwood) {
+                targetSkyColor = ((GDMutantAgateWildwood) biome).getSkyRGB();
+            }
+        } else {
+            targetSkyColor = new short[]{ 198, 157, 88 };
         }
+
 
 //Will find a way to get this to work properly
 /*
