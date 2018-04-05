@@ -1,16 +1,19 @@
 package androsa.gaiadimension.proxy;
 
 import androsa.gaiadimension.block.inventory.GuiAgateCraftingTable;
-import androsa.gaiadimension.entity.GDHowliteWolf;
-import androsa.gaiadimension.entity.GDRockyLuggeroth;
-import androsa.gaiadimension.entity.GDSpellElement;
+import androsa.gaiadimension.block.inventory.GuiGaiaStoneFurnace;
+import androsa.gaiadimension.block.tileentity.TileEntityGaiaStoneFurnace;
+import androsa.gaiadimension.entity.*;
 import androsa.gaiadimension.entity.boss.GDBlueHowliteWolf;
 import androsa.gaiadimension.entity.boss.GDMalachiteGuard;
 import androsa.gaiadimension.model.*;
 import androsa.gaiadimension.renderer.*;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.inventory.GuiContainer;
+import net.minecraft.client.renderer.entity.RenderSnowball;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Items;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -29,12 +32,20 @@ public class ClientProxy extends CommonProxy {
         switch (guiID) {
             case AGATE_CRAFT:
                 return new GuiAgateCraftingTable(player.inventory, world, pos);
+            //case GAIA_STONE_FURNACE:
+           //     return new GuiGaiaStoneFurnace(player.inventory, (TileEntityGaiaStoneFurnace) tile);
             default:
                 return null;
         }
     }
     @Override
     public void doPreLoadRegistration() {
+       // RenderingRegistry.registerEntityRenderingHandler(GDShotGaianEnergy.class, m -> new RenderSnowball<>(m, Items.ENDER_PEARL, Minecraft.getMinecraft().getRenderItem()));
+
+        RenderingRegistry.registerEntityRenderingHandler(GDCommonGrowthSapper.class, m -> new EntityRenderCommonSapper(m, new ModelGrowthSapper(), 0.6F));
+        RenderingRegistry.registerEntityRenderingHandler(GDChilledGrowthSapper.class, m -> new EntityRenderChilledSapper(m, new ModelGrowthSapper(), 0.6F));
+        RenderingRegistry.registerEntityRenderingHandler(GDNutrientGrowthSapper.class, m -> new EntityRenderNutrientSapper(m, new ModelGrowthSapper(), 0.6F));
+        RenderingRegistry.registerEntityRenderingHandler(GDMystifiedGrowthSapper.class, m -> new EntityRenderMystifiedSapper(m, new ModelGrowthSapper(), 0.6F));
         RenderingRegistry.registerEntityRenderingHandler(GDHowliteWolf.class, m -> new EntityRenderHowliteWolf(m, new ModelHowliteWolf(), 0.6F));
         RenderingRegistry.registerEntityRenderingHandler(GDSpellElement.class, m -> new EntityRenderSpellElement(m, new ModelSpellElement(), 0.0F));
         RenderingRegistry.registerEntityRenderingHandler(GDRockyLuggeroth.class, m -> new EntityRenderRockyLuggeroth(m, new ModelRockyLuggeroth(), 1.0F));

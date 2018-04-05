@@ -22,7 +22,6 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
-import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -66,7 +65,7 @@ public class GaiaDimension
     public void preInit(FMLPreInitializationEvent event) {
 
         registerCreatures();
-        dimType = DimensionType.register("gaia", "_gaia", GDConfig.dimension.dimensionID, WorldProviderGaia.class, false);
+        dimType = DimensionType.register("Gaia", "_gaia", GDConfig.dimension.dimensionID, WorldProviderGaia.class, false);
 
         proxy.doPreLoadRegistration();
     }
@@ -94,6 +93,11 @@ public class GaiaDimension
 
     private void registerCreatures() {
         int id = 0;
+        //GaiaEntities.registerEntity(GaiaEntityNames.EARTH_SHOT, GDShotGaianEnergy.class, id++, 150, 5, true);
+        GaiaEntities.registerEntity(GaiaEntityNames.COMMON_SAPPER, androsa.gaiadimension.entity.GDCommonGrowthSapper.class, id++, 0x5A4514, 0xFF00FF);
+        GaiaEntities.registerEntity(GaiaEntityNames.CHILLED_SAPPER, androsa.gaiadimension.entity.GDChilledGrowthSapper.class, id++, 0x5A4514, 0x0080A0);
+        GaiaEntities.registerEntity(GaiaEntityNames.NUTRIENT_SAPPER, androsa.gaiadimension.entity.GDNutrientGrowthSapper.class, id++, 0x5A4514, 0x00FF10);
+        GaiaEntities.registerEntity(GaiaEntityNames.MYSTIFIED_SAPPER, androsa.gaiadimension.entity.GDMystifiedGrowthSapper.class, id++, 0x5A4514, 0x800080);
         GaiaEntities.registerEntity(GaiaEntityNames.HOWLITE_WOLF, androsa.gaiadimension.entity.GDHowliteWolf.class, id++, 0xFF0000, 0x0000FF);
         GaiaEntities.registerEntity(GaiaEntityNames.SPELLBOUND_ELEMENTAL, androsa.gaiadimension.entity.GDSpellElement.class, id++, 0xFFFF00, 0x0000FF);
         GaiaEntities.registerEntity(GaiaEntityNames.ROCKY_LUGGEROTH, androsa.gaiadimension.entity.GDRockyLuggeroth.class, id++, 0x00FF00, 0xFF00FF);

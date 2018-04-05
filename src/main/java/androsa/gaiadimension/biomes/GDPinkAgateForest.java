@@ -24,6 +24,9 @@ public class GDPinkAgateForest extends GDBiomeBase {
 
     public GDPinkAgateForest(Biome.BiomeProperties props) {
         super(props);
+
+        spawnableCreatureList.add(new SpawnListEntry(androsa.gaiadimension.entity.GDCommonGrowthSapper.class, 9, 3, 5));
+
         GaiaGenPinkTrees = new GDGenPinkAgateTree(false);
 
         topBlock = GDBlocks.glitterGrass.getDefaultState();

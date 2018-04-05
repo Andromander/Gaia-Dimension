@@ -1,27 +1,30 @@
 package androsa.gaiadimension.entity;
 
-import androsa.gaiadimension.registry.GDBlocks;
+import androsa.gaiadimension.GaiaDimension;
+import androsa.gaiadimension.biomes.GDBiomes;
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.*;
 import net.minecraft.entity.passive.IAnimals;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 
-public class GDRockyLuggeroth extends EntityCreature implements IAnimals {
+public class GDCommonGrowthSapper extends EntityCreature implements IAnimals {
 
-    public GDRockyLuggeroth(World world) {
+    public static final ResourceLocation LOOT_TABLE = new ResourceLocation(GaiaDimension.MODID, "entities/common_sapper");
+
+    public GDCommonGrowthSapper(World world) {
         super(world);
 
-        this.setSize(1.0F, 1.0F);
+        this.setSize(0.8F, 0.8F);
     }
 
     @Override
     protected final void applyEntityAttributes() {
         super.applyEntityAttributes();
-        this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(50.0D);
+        this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(15.0D);
     }
 
     @Override
@@ -35,11 +38,14 @@ public class GDRockyLuggeroth extends EntityCreature implements IAnimals {
 
     @Override
     public boolean getCanSpawnHere() {
-        int i = MathHelper.floor(this.posX);
-        int j = MathHelper.floor(this.getEntityBoundingBox().minY);
-        int k = MathHelper.floor(this.posZ);
-        BlockPos blockpos = new BlockPos(i, j, k);
-        return this.world.getBlockState(blockpos.down()).getBlock() == GDBlocks.oldGrass && this.world.getLight(blockpos) > 8 && super.getCanSpawnHere();
+        return world.getBiome(new BlockPos(this)) == GDBiomes.pinkAgateForest ||
+                world.getBiome(new BlockPos(this)) == GDBiomes.crystalPlains ||
+                world.getBiome(new BlockPos(this)) == GDBiomes.mutantAgateWildwood;
+    }
+
+    @Override
+    public ResourceLocation getLootTable() {
+        return LOOT_TABLE;
     }
 
 }

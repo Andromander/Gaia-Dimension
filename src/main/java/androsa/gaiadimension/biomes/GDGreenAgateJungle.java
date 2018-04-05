@@ -24,6 +24,8 @@ public class GDGreenAgateJungle extends GDBiomeBase {
     public GDGreenAgateJungle(Biome.BiomeProperties props) {
         super(props);
 
+        spawnableCreatureList.add(new SpawnListEntry(androsa.gaiadimension.entity.GDNutrientGrowthSapper.class, 9, 3, 5));
+
         GaiaGenGreenTrees = new GDGenGreenAgateTree(false);
 
         topBlock = GDBlocks.verdantGrass.getDefaultState();

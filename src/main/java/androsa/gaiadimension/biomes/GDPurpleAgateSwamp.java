@@ -23,6 +23,7 @@ public class GDPurpleAgateSwamp extends GDBiomeBase {
     public GDPurpleAgateSwamp(BiomeProperties props) {
         super(props);
 
+        spawnableCreatureList.add(new SpawnListEntry(androsa.gaiadimension.entity.GDMystifiedGrowthSapper.class, 9, 3, 5));
         spawnableCreatureList.add(new SpawnListEntry(androsa.gaiadimension.entity.GDSpellElement.class, 5, 1, 2));
 
         //TODO: Decorate with unique plants/mobs to stand out more as a swamp

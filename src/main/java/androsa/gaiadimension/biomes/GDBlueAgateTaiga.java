@@ -22,6 +22,7 @@ public class GDBlueAgateTaiga extends GDBiomeBase {
     public GDBlueAgateTaiga(BiomeProperties props) {
         super(props);
 
+        spawnableCreatureList.add(new SpawnListEntry(androsa.gaiadimension.entity.GDChilledGrowthSapper.class, 9, 3, 5));
         spawnableCreatureList.add(new SpawnListEntry(androsa.gaiadimension.entity.GDHowliteWolf.class, 5, 2, 4));
 
         topBlock = GDBlocks.coolGrass.getDefaultState();
