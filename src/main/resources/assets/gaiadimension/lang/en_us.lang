@@ -10,6 +10,7 @@ tile.scented_grass.name=Scented Grass
 tile.old_grass.name=Old Grass
 tile.corrupt_grass.name=Corrupted Grass
 tile.singed_grass.name=Singed Grass
+tile.mutated_grass.name=Mutated Grass
 tile.crystal_growth.0.name=Crystal Growth
 tile.crystal_growth.1.name=Cool Crystal Growth
 tile.crystal_growth.2.name=Verdant Crystal Growth
@@ -19,12 +20,14 @@ tile.crystal_growth.5.name=Red Crystal Growth
 tile.crystal_growth.6.name=Black Crystal Growth
 tile.crystal_growth.7.name=Singed Crystal Growth
 tile.crystal_growth.8.name=Rare Crystal Growth
-tile.crystal_growth.9.name=Chasm Growth
+tile.crystal_growth.9.name=Mutated Crystal Growth
+tile.crystal_growth.10.name=Chasm Growth
 tile.crystal_bloom.0.name=Thiscus
 tile.crystal_bloom.1.name=Ouzium
-tile.crystal_bloom.2.name=Varloom
-tile.crystal_bloom.3.name=Corrupt Varloom
-tile.crystal_bloom.4.name=Missing Texture Plant
+tile.crystal_bloom.2.name=Agathum
+tile.crystal_bloom.3.name=Varloom
+tile.crystal_bloom.4.name=Corrupt Varloom
+tile.crystal_bloom.5.name=Missing Texture Plant
 tile.gaia_leaves.0.name=Pink Agate Leaves
 tile.gaia_leaves.1.name=Blue Agate Leaves
 tile.gaia_leaves.2.name=Green Agate Leaves
@@ -73,8 +76,12 @@ tile.crusty_plank_slab.name=Burnt Plank Slab
 tile.heated_planks.name=Burning Planks
 tile.heated_plank_stairs.name=Burning Plank Stairs
 tile.heated_plank_slab.name=Burning Plank Slab
+tile.agate_crafting_table.name=Agate Crafting Table
 tile.pyrite_torch.name=Pyrite Torch
+tile.salt.name=Salt
+tile.saltstone.name=Saltstone
 tile.frail_glitter_block.name=Frail Glitter Block
+tile.thick_glitter_block.name=Thick Glitter Block
 tile.gaia_stone.name=Gaia Stone
 tile.gaia_cobblestone.name=Gaia Cobblestone
 tile.pyrite_ore.name=Pyrite Ore
@@ -115,12 +122,19 @@ tile.malachite_pulsing_floor_stairs.name=Pulsing Malachite Tile Stairs
 tile.malachite_pillar.name=Malachite Pillar
 tile.malachite_pillar_stairs.name=Malachite Pillar Stairs
 tile.volcanic_rock.name=Volcanic Rock
+tile.wasteland_stone.name=Wasteland Stone
+tile.static_stone.name=Static Stone
 
 tile.mineral_water.name=Mineral Water
 tile.superhot_magma.name=Superhot Magma
+tile.gaia_portal.0.name=Gaia Portal
 
 # items
 item.agate_stick.name=Agate Stick
+item.pink_geode.name=Geode
+item.blue_geode.name=Geode
+item.green_geode.name=Geode
+item.purple_geode.name=Geode
 item.fine_dust.name=Fine Dust
 item.goldstone_dust.name=Goldstone Dust
 item.hot_dust.name=Hot Dust
@@ -134,6 +148,12 @@ item.red_opal.name=Red Opal
 item.blue_opal.name=Blue Opal
 item.green_opal.name=Green Opal
 item.white_opal.name=White Opal
+
+## Food
+item.pink_geode_slice.name=Sweet Geode Slice
+item.blue_geode_slice.name=Tangy Geode Slice
+item.green_geode_slice.name=Tarty Geode Slice
+item.purple_geode_slice.name=Sour Geode Slice
 
 ## Dust
 item.hematite_powder.name=Hematite Powder
