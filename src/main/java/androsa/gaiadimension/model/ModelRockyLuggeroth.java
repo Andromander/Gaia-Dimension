@@ -3,6 +3,7 @@ package androsa.gaiadimension.model;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
+import net.minecraft.util.math.MathHelper;
 
 /**
  * ModelRockyLuggeroth - Androsa
@@ -66,5 +67,17 @@ public class ModelRockyLuggeroth extends ModelBase {
         modelRenderer.rotateAngleX = x;
         modelRenderer.rotateAngleY = y;
         modelRenderer.rotateAngleZ = z;
+    }
+
+    @Override
+    public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, Entity par7Entity) {
+        this.head.rotateAngleY = netHeadYaw / (180F / (float) Math.PI);
+        this.head.rotateAngleX = headPitch / (180F / (float) Math.PI);
+
+        this.foot1.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F) * 0.5F * limbSwingAmount;
+        this.foot2.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F + (float) Math.PI) * 0.5F * limbSwingAmount;
+
+        this.foot3.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F + (float) Math.PI) * 0.5F * limbSwingAmount;
+        this.foot4.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F) * 0.5F * limbSwingAmount;
     }
 }
