@@ -21,7 +21,7 @@ public class GDItemsRegister {
     public static void onRegisterItems(RegistryEvent.Register<Item> event) {
         ItemRegistryHelper items = new ItemRegistryHelper(event.getRegistry());
 
-        items.register("glint_and_gold", new GDFlintAndGold().setUnlocalizedName("flint_and_gold"));
+        items.register("glint_and_gold", new GDFlintAndGold().setUnlocalizedName("glint_and_gold"));
 
         items.register("agate_stick", new GDItem().setUnlocalizedName("agate_stick"));
         items.register("hot_dust", new GDItem().setUnlocalizedName("hot_dust"));
