@@ -3,6 +3,7 @@ package androsa.gaiadimension.model;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
+import net.minecraft.util.math.MathHelper;
 
 /**
  * ModelGrowthSapper - Androsa
@@ -40,7 +41,7 @@ public class ModelGrowthSapper extends ModelBase {
         this.nozzle = new ModelRenderer(this, 41, 16);
         this.nozzle.setRotationPoint(0.0F, 1.0F, -5.0F);
         this.nozzle.addBox(-0.5F, 0.0F, -5.0F, 1, 1, 5, 0.0F);
-        this.setRotateAngle(nozzle, 0.27314402793711257F, 0.0F, 0.0F);
+        this.setRotation(nozzle, 0.27314402793711257F, 0.0F, 0.0F);
         this.leg5 = new ModelRenderer(this, 46, 8);
         this.leg5.setRotationPoint(1.4F, 18.0F, 0.0F);
         this.leg5.addBox(0.0F, 0.0F, 0.0F, 2, 6, 2, 0.0F);
@@ -68,9 +69,23 @@ public class ModelGrowthSapper extends ModelBase {
     /**
      * This is a helper function from Tabula to set the rotation of model parts
      */
-    public void setRotateAngle(ModelRenderer modelRenderer, float x, float y, float z) {
+    public void setRotation(ModelRenderer modelRenderer, float x, float y, float z) {
         modelRenderer.rotateAngleX = x;
         modelRenderer.rotateAngleY = y;
         modelRenderer.rotateAngleZ = z;
+    }
+
+    @Override
+    public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, Entity par7Entity) {
+        this.head.rotateAngleY = netHeadYaw / (180F / (float) Math.PI);
+        this.head.rotateAngleX = headPitch / (180F / (float) Math.PI);
+
+        this.leg1.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F) * 0.5F * limbSwingAmount;
+        this.leg4.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F + (float) Math.PI) * 0.5F * limbSwingAmount;
+
+        this.leg2.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F + (float) Math.PI) * 0.5F * limbSwingAmount;
+        this.leg3.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F + (float) Math.PI) * 0.5F * limbSwingAmount;
+        this.leg5.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F) * 0.5F * limbSwingAmount;
+        this.leg6.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F) * 0.5F * limbSwingAmount;
     }
 }
