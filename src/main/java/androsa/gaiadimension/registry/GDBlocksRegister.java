@@ -15,9 +15,11 @@ public final class GDBlocksRegister {
         BlockRegistryHelper blocks = new BlockRegistryHelper(event.getRegistry());
 
         blocks.register("gaia_portal", (new GDGaiaPortal()).setUnlocalizedName("gaia_portal"));
-        //blocks.register("key_block", (new GDKeyBlock()).setUnlocalizedName("key_block"));
+        blocks.register("gold_fire", (new GDGoldFire()).setUnlocalizedName("gold_fire"));
         blocks.register("pyrite_torch", (new GDPyriteTorch()).setUnlocalizedName("pyrite_torch"));
         blocks.register("agate_crafting_table", (new GDAgateCraftingTable()).setUnlocalizedName("agate_crafting_table"));
+        blocks.register("gaia_stone_furnace", (new GDGlitteringFurnace(false)).setUnlocalizedName("glittering_furnace_off"));
+        blocks.register("gaia_stone_furnace_lit", (new GDGlitteringFurnace(true)).setUnlocalizedName("glittering_furnace_on"));
 
         blocks.register("heavy_soil", (new GDHeavySoil()).setUnlocalizedName("heavy_soil"));
         blocks.register("corrupt_soil", (new GDCorruptSoil()).setUnlocalizedName("corrupt_soil"));

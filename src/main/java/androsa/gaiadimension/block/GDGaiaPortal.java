@@ -393,7 +393,7 @@ public class GDGaiaPortal extends BlockPortal implements ModelRegisterCallback {
         }
 
         protected boolean isEmptyBlock(Block blockIn) {
-            return blockIn.getMaterial(blockIn.getDefaultState()) == Material.AIR || blockIn == Blocks.FIRE || blockIn == GDBlocks.gaiaPortal;
+            return blockIn.getMaterial(blockIn.getDefaultState()) == Material.AIR || blockIn == GDBlocks.goldFire || blockIn == GDBlocks.gaiaPortal;
         }
 
         public boolean isValid() {

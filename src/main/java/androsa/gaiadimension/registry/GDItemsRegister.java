@@ -21,8 +21,7 @@ public class GDItemsRegister {
     public static void onRegisterItems(RegistryEvent.Register<Item> event) {
         ItemRegistryHelper items = new ItemRegistryHelper(event.getRegistry());
 
-       // items.register("earth_staff", new GDEarthStaff().setUnlocalizedName("earth_staff"));
-       // items.register("flint_and_gold", new GDFlintAndGold().setUnlocalizedName("flint_and_gold"));
+        items.register("glint_and_gold", new GDFlintAndGold().setUnlocalizedName("flint_and_gold"));
 
         items.register("agate_stick", new GDItem().setUnlocalizedName("agate_stick"));
         items.register("hot_dust", new GDItem().setUnlocalizedName("hot_dust"));
@@ -114,7 +113,7 @@ public class GDItemsRegister {
         items.register("gaia_champion_sword", new GDGaiaChampSword(TOOL_GAIA_CHAMP).setUnlocalizedName("gaia_champion_sword").setMaxStackSize(1));
 
         items.registerSubItemBlock(GDBlocks.gaiaPortal);
-        //items.registerSubItemBlock(GDBlocks.keyBlock);
+        items.registerBlock(GDBlocks.goldFire);
         items.registerBlock(GDBlocks.pyriteTorch);
         items.registerBlock(GDBlocks.agateCraftingTable);
         //items.registerBlock(GDBlocks.glitteringFurnace);

@@ -33,7 +33,7 @@ public class GDItems {
     public static Item.ToolMaterial TOOL_GAIA_CHAMP = EnumHelper.addToolMaterial("GAIA_CHAMP", 4, -1, 8.0F, 16.0F, 25);
 
     @ObjectHolder("earth_staff")
-    public static final Item earthStaff;
+    public static final Item glintAndGold;
     @ObjectHolder("property_dust")
     public static final Item propertyDust;
     @ObjectHolder("agate_stick")
@@ -204,7 +204,7 @@ public class GDItems {
     public static final Item gaiaChampionSword;
 
     static {
-        earthStaff = null;
+        glintAndGold = null;
 
         agateStick = null;
         hotDust = null;
