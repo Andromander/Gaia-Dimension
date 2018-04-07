@@ -8,6 +8,10 @@
     "superhot_magma": {
       "model": "forge:fluid",
       "custom": { "fluid": "superhot_magma" }
+    },
+    "sweet_muck": {
+      "model": "forge:fluid",
+      "custom": { "fluid": "sweet_muck" }
     }
   }
 }

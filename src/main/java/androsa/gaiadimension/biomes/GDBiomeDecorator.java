@@ -5,7 +5,6 @@ import androsa.gaiadimension.registry.GDFluids;
 import androsa.gaiadimension.world.layer.GDGenLavaLake;
 import androsa.gaiadimension.world.layer.GDGenStaticPatch;
 import mcp.MethodsReturnNonnullByDefault;
-import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
@@ -22,6 +21,7 @@ public class GDBiomeDecorator extends BiomeDecorator {
     private GDGenStaticPatch staticPatch = new GDGenStaticPatch(6);
    // private WorldGenLakes extraLakeGen = new WorldGenLakes(GDFluids.mineralWaterBlock); //Bring this back if necessary, but I doubt that
     private GDGenLavaLake extraLavaPoolGen = new GDGenLavaLake(GDFluids.superhotMagmaBlock);
+    private GDGenLavaLake extraMuckPoolGen = new GDGenLavaLake(GDFluids.sweetMuckBlock);
 
     private GDGenLavaLake caveLavaGen = new GDGenLavaLake(GDFluids.superhotMagmaBlock);
 
@@ -30,6 +30,7 @@ public class GDBiomeDecorator extends BiomeDecorator {
     public int staticPerChunk = 0;
     public int lakesPerChunk = 0;
     public float lavaPoolChance = 0;
+    public float muckPoolChance = -100;
 
     @Override
     public void decorate(World world, Random rand, Biome biome, BlockPos pos) {
@@ -171,13 +172,21 @@ public class GDBiomeDecorator extends BiomeDecorator {
             int rz = chunkPos.getZ() + randomGenerator.nextInt(14) + 8;
         }
 
-        //More magma in volcanic biomes
+        //Handles the number of Lava Pools per chunk
         if (randomGenerator.nextFloat() <= lavaPoolChance) {
             int rx = chunkPos.getX() + randomGenerator.nextInt(16) + 8;
             int rz = chunkPos.getZ() + randomGenerator.nextInt(16) + 8;
             extraLavaPoolGen.generate(world, randomGenerator, world.getHeight(new BlockPos(rx, 0, rz)));
         }
 
+        //Handles the number of Muck Pools per chunk
+        if (randomGenerator.nextFloat() <= muckPoolChance) {
+            int rx = chunkPos.getX() + randomGenerator.nextInt(16) + 8;
+            int rz = chunkPos.getZ() + randomGenerator.nextInt(16) + 8;
+            extraMuckPoolGen.generate(world, randomGenerator, world.getHeight(new BlockPos(rx, 0, rz)));
+        }
+
+        //Handles the static patches in Static Wastelands
         for (int i = 0; i < staticPerChunk; i++) {
             int rx = chunkPos.getX() + randomGenerator.nextInt(16) + 8;
             int rz = chunkPos.getZ() + randomGenerator.nextInt(16) + 8;
