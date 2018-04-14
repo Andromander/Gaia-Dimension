@@ -18,10 +18,10 @@ public class GDBlocks {
     public static Block pyriteTorch;
     @ObjectHolder("agate_crafting_table")
     public static Block agateCraftingTable;
-    @ObjectHolder("gaia_stone_furnace")
-    public static Block glitteringFurnace;
-    @ObjectHolder("gaia_stone_furnace_lit")
-    public static Block glitteringFurnaceLit;
+    //@ObjectHolder("gaia_stone_furnace")
+    //public static Block glitteringFurnace;
+    //@ObjectHolder("gaia_stone_furnace_lit")
+    //public static Block glitteringFurnaceLit;
 
     @ObjectHolder("heavy_soil")
     public static Block heavySoil;
@@ -164,6 +164,8 @@ public class GDBlocks {
     @ObjectHolder("volcanic_rock")
     public static Block volcanicRock;
 
+    @ObjectHolder("sugilite_block")
+    public static Block sugiliteBlock;
     @ObjectHolder("hematite_block")
     public static Block hematiteBlock;
     @ObjectHolder("labradorite_block")
@@ -179,6 +181,8 @@ public class GDBlocks {
     @ObjectHolder("tektite_block")
     public static Block tektiteBlock;
 
+    @ObjectHolder("sugilite_ore")
+    public static Block sugiliteOre;
     @ObjectHolder("hematite_ore")
     public static Block hematiteOre;
     @ObjectHolder("pyrite_ore")

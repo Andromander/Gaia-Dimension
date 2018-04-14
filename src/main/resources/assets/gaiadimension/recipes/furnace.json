@@ -1,0 +1,16 @@
+{
+  "result": {
+    "item": "minecraft:furnace"
+  },
+  "pattern": [
+    "SSS",
+    "S S",
+    "SSS"
+  ],
+  "type": "forge:ore_shaped",
+  "key": {
+    "S": {
+      "item": "gaiadimension:gaia_cobblestone"
+    }
+  }
+}

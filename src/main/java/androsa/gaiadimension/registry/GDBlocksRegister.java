@@ -96,6 +96,7 @@ public final class GDBlocksRegister {
         blocks.register("malachite_pulsing_floor_stairs", (new GDMalachiteStairs(malachiteBricks.getDefaultState())).setUnlocalizedName("malachite_pulsing_floor_stairs"));
         blocks.register("volcanic_rock", (new GDVolcanicRock()).setUnlocalizedName("volcanic_rock"));
 
+        blocks.register("sugilite_block", (new GDSugiliteBlock()).setUnlocalizedName("sugilite_block"));
         blocks.register("hematite_block", (new GDHematiteBlock()).setUnlocalizedName("hematite_block"));
         blocks.register("labradorite_block", (new GDLabradoriteBlock()).setUnlocalizedName("laboradorite_block"));
         blocks.register("opal_block", (new GDOpalBlock()).setUnlocalizedName("opal_block"));
@@ -104,6 +105,7 @@ public final class GDBlocksRegister {
         blocks.register("cinnabar_block", (new GDCinnabarBlock()).setUnlocalizedName("cinnabar_block"));
         blocks.register("tektite_block", (new GDTektiteBlock()).setUnlocalizedName("tektite_block"));
 
+        blocks.register("sugilite_ore", (new GDSugiliteOre()).setUnlocalizedName("sugilite_ore"));
         blocks.register("hematite_ore", (new GDHematiteOre()).setUnlocalizedName("hematite_ore"));
         blocks.register("pyrite_ore", (new GDPyriteOre()).setUnlocalizedName("pyrite_ore"));
         blocks.register("opal_ore", (new GDOpalOre()).setUnlocalizedName("opal_ore"));

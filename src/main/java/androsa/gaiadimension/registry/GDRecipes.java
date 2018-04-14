@@ -23,8 +23,8 @@ public class GDRecipes {
         OreDictionary.registerOre("planksAgate", new ItemStack(GDBlocks.crustyPlanks, 1, OreDictionary.WILDCARD_VALUE));
         OreDictionary.registerOre("planksAgate", new ItemStack(GDBlocks.heatedPlanks, 1, OreDictionary.WILDCARD_VALUE));
 
-
         GameRegistry.addSmelting(new ItemStack(GDItems.fineDust, 1), new ItemStack(GDItems.cloudyShard, 1), 0.1F);
+        GameRegistry.addSmelting(GDBlocks.sugiliteOre, new ItemStack(GDItems.sugilite, 1), 0.3F);
         GameRegistry.addSmelting(GDBlocks.hematiteOre, new ItemStack(GDItems.hematite, 1), 0.3F);
         GameRegistry.addSmelting(GDBlocks.pyriteOre, new ItemStack(GDItems.hematite, 1), 0.3F);
         GameRegistry.addSmelting(GDBlocks.cinnabarOre, new ItemStack(GDItems.hematite, 1), 0.3F);

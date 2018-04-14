@@ -50,6 +50,7 @@ public class GDItemsRegister {
 
         items.register("property_dust", new GDPropertyDust().setUnlocalizedName("property_mix"));
 
+        items.register("sugilite", new GDItem().setUnlocalizedName("sugilite"));
         items.register("hematite", new GDItem().setUnlocalizedName("hematite"));
         items.register("pyrite", new GDItem().setUnlocalizedName("pyrite"));
         items.register("labradorite", new GDItem().setUnlocalizedName("laboradorite"));
@@ -182,6 +183,7 @@ public class GDItemsRegister {
         items.registerBlock(GDBlocks.volcanicRock);
 
         items.registerSubItemBlock(GDBlocks.opalBlock);
+        items.registerBlock(GDBlocks.sugiliteBlock);
         items.registerBlock(GDBlocks.hematiteBlock);
         items.registerBlock(GDBlocks.labradoriteBlock);
         items.registerBlock(GDBlocks.pyriteBlock);
@@ -189,6 +191,7 @@ public class GDItemsRegister {
         items.registerBlock(GDBlocks.cinnabarBlock);
         items.registerBlock(GDBlocks.tektiteBlock);
 
+        items.registerBlock(GDBlocks.sugiliteOre);
         items.registerBlock(GDBlocks.hematiteOre);
         items.registerBlock(GDBlocks.pyriteOre);
         items.registerSubItemBlock(GDBlocks.opalOre);

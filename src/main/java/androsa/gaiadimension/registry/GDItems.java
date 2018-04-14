@@ -83,6 +83,8 @@ public class GDItems {
     @ObjectHolder("white_opal_grit")
     public static final Item whiteOpalGrit;
 
+    @ObjectHolder("sugilite")
+    public static final Item sugilite;
     @ObjectHolder("hematite")
     public static final Item hematite;
     @ObjectHolder("pyrite")
@@ -233,6 +235,7 @@ public class GDItems {
 
         propertyDust = null;
 
+        sugilite = null;
         hematite = null;
         pyrite = null;
         labradorite = null;
