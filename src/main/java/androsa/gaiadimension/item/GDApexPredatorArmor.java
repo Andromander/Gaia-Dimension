@@ -25,7 +25,7 @@ public class GDApexPredatorArmor extends ItemArmor implements ModelRegisterCallb
         this.setCreativeTab(GDTabs.tabArmor);
     }
 
-    //TODO: Can I make this armor swanky?
+    //TODO: Deal melee damage to attacker
 
     @Override
     public EnumRarity getRarity(ItemStack par1ItemStack) {

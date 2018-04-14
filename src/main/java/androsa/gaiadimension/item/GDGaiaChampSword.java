@@ -40,9 +40,9 @@ public class GDGaiaChampSword extends ItemSword implements ModelRegisterCallback
         tooltips.add(I18n.format(getUnlocalizedName() + ".tooltip"));
     }
 
-    //TODO: Make this sword super special with cool effects
+    //TODO: Deals extra damage to Corrupt and Non-Gaian mobs
+    //TODO: [FUTURE] Can this be used to unlock every strucure?
 
-    //Need some effect planting
     @Override
     public boolean onLeftClickEntity(ItemStack stack, EntityPlayer player, Entity entity) {
         if (player.world.isRemote) {

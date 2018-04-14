@@ -47,8 +47,8 @@ public class GDGaiaDuchessSword extends ItemSword implements ModelRegisterCallba
         tooltips.add(I18n.format(getUnlocalizedName() + ".tooltip"));
     }
 
-    //TODO: Make this sword have projectiles, but lowers durability by 2
-    //TODO: [FUTURE] Can be used to unlock Unknown Stage 4 Final Boss Structure
+    //TODO: Make this sword shoot projectiles, but lowers durability by 2
+    //TODO: [FUTURE] Can be used to unlock Unknown Stage 2 Final Boss Structure
 
 
     //We will need this in order to make the weapon slow

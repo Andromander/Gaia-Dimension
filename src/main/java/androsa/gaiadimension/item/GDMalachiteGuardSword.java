@@ -39,7 +39,7 @@ public class GDMalachiteGuardSword extends ItemSword implements ModelRegisterCal
         tooltips.add(I18n.format(getUnlocalizedName() + ".tooltip"));
     }
 
-    //TODO: Make this sword special with effects
+    //TODO: Knocks back hit targets
     //TODO: [FUTURE] Can be used to unlock Predator Dungeons
 
 

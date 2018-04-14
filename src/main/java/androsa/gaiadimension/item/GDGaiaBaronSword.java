@@ -47,7 +47,7 @@ public class GDGaiaBaronSword extends ItemSword implements ModelRegisterCallback
         tooltips.add(I18n.format(getUnlocalizedName() + ".tooltip"));
     }
 
-    //TODO: Make this sword special with effects
+    //TODO: Deals damage to target, regardless of armor
     //TODO: [FUTURE] Can be used to unlock Unknown Stage 3 Final Boss Structure
 
 

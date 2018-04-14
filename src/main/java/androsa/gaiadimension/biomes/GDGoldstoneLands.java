@@ -34,7 +34,7 @@ public class GDGoldstoneLands extends GDBiomeBase {
         return skyColorRGB;
     }
 
-    //TODO: Generate veins of Corrupt Blocks
+    //TODO: Generate veins of Corrupt Blocks (Done in BiomeDecorator)
 
     @Override
     public WorldGenAbstractTree getRandomTreeFeature(Random par1Random) {

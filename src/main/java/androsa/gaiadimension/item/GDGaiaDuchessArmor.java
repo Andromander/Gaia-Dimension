@@ -27,7 +27,7 @@ public class GDGaiaDuchessArmor extends ItemArmor implements ModelRegisterCallba
         this.setCreativeTab(GDTabs.tabArmor);
     }
 
-    //TODO: Can I make this armor kind-of swanky?
+    //TODO: May teleport user if they are dealt damage. Will check if area is safe to do so
 
     @Override
     @Nonnull

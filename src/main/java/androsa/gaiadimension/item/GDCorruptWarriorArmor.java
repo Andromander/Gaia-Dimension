@@ -27,7 +27,7 @@ public class GDCorruptWarriorArmor extends ItemArmor implements ModelRegisterCal
         this.setCreativeTab(GDTabs.tabArmor);
     }
 
-    //TODO: Can I make this armor not-so swanky?
+    //TODO: Half damage from normal targets, but extra damage from bosses
     //This set is identical to Gaia Champion, but needs serious repercussions when worn
 
     @Override

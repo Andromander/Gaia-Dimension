@@ -26,7 +26,7 @@ public class GDGaiaChampArmor extends ItemArmor implements ModelRegisterCallback
         this.setCreativeTab(GDTabs.tabArmor);
     }
 
-    //TODO: Can I make this armor super-swanky?
+    //TODO: Half damage from Corrupt and Non-Gaian mobs
 
     @Override
     @Nonnull

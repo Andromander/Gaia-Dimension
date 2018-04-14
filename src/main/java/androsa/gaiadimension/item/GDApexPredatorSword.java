@@ -39,7 +39,7 @@ public class GDApexPredatorSword extends ItemSword implements ModelRegisterCallb
         tooltips.add(I18n.format(getUnlocalizedName() + ".tooltip"));
     }
 
-    //TODO: Make this sword special with effects
+    //TODO: Deal Bleeding damage/effect
     //TODO: [FUTURE] Can be used to unlock Unknown Spinel Princess Structure
 
     //We will need this in order to make the weapon slow

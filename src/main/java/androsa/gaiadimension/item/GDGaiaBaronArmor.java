@@ -27,7 +27,7 @@ public class GDGaiaBaronArmor extends ItemArmor implements ModelRegisterCallback
         this.setCreativeTab(GDTabs.tabArmor);
     }
 
-    //TODO: Can I make this armor kind-of swanky?
+    //TODO: Small chance to not be dealt damage through melee
 
     @Override
     @Nonnull

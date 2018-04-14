@@ -47,8 +47,8 @@ public class GDCorruptWarriorSword extends ItemSword implements ModelRegisterCal
         tooltips.add(I18n.format(getUnlocalizedName() + ".tooltip"));
     }
 
-    //TODO: Make this sword special with effects. Make sure the effects look corrupt
-    //TODO: [FUTURE] Can be used to unlock Predator Dungeons
+    //TODO: Deal extra damage to Gaian Mobs, but half damage to bosses
+    //TODO: [FUTURE] Can be used to unlock Unknown Stage 1 Final Boss Structure
 
 
     //We will need this in order to make the weapon slow

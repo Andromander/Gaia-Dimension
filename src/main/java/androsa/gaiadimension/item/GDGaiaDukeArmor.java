@@ -27,7 +27,7 @@ public class GDGaiaDukeArmor extends ItemArmor implements ModelRegisterCallback 
         this.setCreativeTab(GDTabs.tabArmor);
     }
 
-    //TODO: Can I make this armor kind-of swanky?
+    //TODO: If I can, allows for temporary Elytra flight. Otherwise, teleports the attacker randomly
 
     @Override
     @Nonnull

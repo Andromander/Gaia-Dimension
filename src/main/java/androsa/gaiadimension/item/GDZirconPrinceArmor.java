@@ -26,7 +26,7 @@ public class GDZirconPrinceArmor extends ItemArmor implements ModelRegisterCallb
         this.setCreativeTab(GDTabs.tabArmor);
     }
 
-    //TODO: Can I make this armor swanky?
+    //TODO: Deals lightning damage to attackers
 
     @Override
     @Nonnull

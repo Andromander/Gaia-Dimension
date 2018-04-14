@@ -26,7 +26,7 @@ public class GDSpinelPrincessArmor extends ItemArmor implements ModelRegisterCal
         this.setCreativeTab(GDTabs.tabArmor);
     }
 
-    //TODO: Can I make this armor swanky?
+    //TODO: Reduces damage from fire damage and sources
 
     @Override
     @Nonnull

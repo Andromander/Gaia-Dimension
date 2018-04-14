@@ -39,7 +39,7 @@ public class GDZirconPrinceSword extends ItemSword implements ModelRegisterCallb
         tooltips.add(I18n.format(getUnlocalizedName() + ".tooltip"));
     }
 
-    //TODO: Make this sword have lightning projectiles, reducing durability by 3
+    //TODO: Deals lightning damage to those hit
     //TODO: [FUTURE] Can be used to unlock Unknown Goldstone Structure
 
 

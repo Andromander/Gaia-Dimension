@@ -39,7 +39,7 @@ public class GDSpinelPrincessSword extends ItemSword implements ModelRegisterCal
         tooltips.add(I18n.format(getUnlocalizedName() + ".tooltip"));
     }
 
-    //TODO: Make this sword have fire projectiles, reducig durability by 2
+    //TODO: Deals fire damage to hit target
     //TODO: [FUTURE] Can be used to unlock Unknown Zircon Prince Structure
 
 

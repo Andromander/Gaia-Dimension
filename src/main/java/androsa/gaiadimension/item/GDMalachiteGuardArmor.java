@@ -26,7 +26,7 @@ public class GDMalachiteGuardArmor extends ItemArmor implements ModelRegisterCal
         this.setCreativeTab(GDTabs.tabArmor);
     }
 
-    //TODO: Can I make this armor swanky?
+    //TODO: Reduces knockback from attacks
 
     @Override
     @Nonnull
