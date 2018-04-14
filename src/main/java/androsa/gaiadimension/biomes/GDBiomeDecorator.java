@@ -39,6 +39,14 @@ public class GDBiomeDecorator extends BiomeDecorator {
 
         this.chunkProviderSettings = ChunkGeneratorSettings.Factory.jsonToFactory(world.getWorldInfo().getGeneratorOptions()).build();
 
+        //Sugilite Ore gen
+        for (int i = 0; i < 8; i++) {
+            int Xcoord = pos.getX() + rand.nextInt(16);
+            int Zcoord = pos.getZ() + rand.nextInt(16);
+            int Ycoord = rand.nextInt(100);
+            new WorldGenMinable(GDBlocks.sugiliteOre.getDefaultState(), chunkProviderSettings.coalSize, input -> input == GDBlocks.gaiaStone.getDefaultState()).generate(world, rand, new BlockPos(Xcoord, Ycoord, Zcoord));
+        }
+
         //Hematite Ore gen
         for (int i = 0; i < 8; i++) {
             int Xcoord = pos.getX() + rand.nextInt(16);
