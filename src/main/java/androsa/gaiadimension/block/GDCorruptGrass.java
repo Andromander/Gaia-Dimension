@@ -40,9 +40,11 @@ public class GDCorruptGrass extends Block implements ModelRegisterCallback {
                     Block block = world.getBlockState(blockpos.up()).getBlock();
                     IBlockState iblockstate = world.getBlockState(blockpos);
 
-                    //   if (iblockstate.getBlock() == GDBlocks.heavySoil && world.getLightFromNeighbors(blockpos.up()) >= 4 && block.getLightOpacity(world.getBlockState(blockpos.up()), world, blockpos.up()) <= 2 && world.getBlockState(pos.up()).getBlock() != GDFluids.mineralWaterBlock)
-                    //        world.setBlockState(blockpos, GDBlocks.glitterGrass.getDefaultState());
-                }
+                    if (world.getBlockState(pos.up()).getBlock() != GDFluids.mineralWaterBlock) {
+                        if (iblockstate.getBlock() == GDBlocks.corruptSoil && world.getLightFromNeighbors(blockpos.up()) >= 4 && block.getLightOpacity(world.getBlockState(blockpos.up()), world, blockpos.up()) <= 2 && world.getBlockState(pos.up()).getBlock() != GDFluids.mineralWaterBlock)
+                            world.setBlockState(blockpos, GDBlocks.corruptGrass.getDefaultState());
+                    }
+            }
     }
 
     @Override
