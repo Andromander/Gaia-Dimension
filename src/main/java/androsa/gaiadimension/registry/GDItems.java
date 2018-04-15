@@ -103,6 +103,22 @@ public class GDItems {
     public static final Item opalGreen;
     @ObjectHolder("white_opal")
     public static final Item opalWhite;
+    @ObjectHolder("ixiolite")
+    public static final Item ixiolite;
+    @ObjectHolder("proustite")
+    public static final Item proustite;
+    @ObjectHolder("euclase")
+    public static final Item euclase;
+    @ObjectHolder("leucite")
+    public static final Item leucite;
+    @ObjectHolder("carnelian")
+    public static final Item carnelian;
+    @ObjectHolder("benitoite")
+    public static final Item benitoite;
+    @ObjectHolder("diopside")
+    public static final Item diopside;
+    @ObjectHolder("chalsedony")
+    public static final Item chalcedony;
 
     @ObjectHolder("malachite_guard_headgear")
     public static final Item malachiteGuardHeadgear;
@@ -245,6 +261,14 @@ public class GDItems {
         opalBlue = null;
         opalGreen = null;
         opalWhite = null;
+        ixiolite = null;
+        proustite = null;
+        euclase = null;
+        leucite = null;
+        carnelian = null;
+        benitoite = null;
+        diopside = null;
+        chalcedony = null;
 
         agateSword = null;
         agatePickaxe = null;

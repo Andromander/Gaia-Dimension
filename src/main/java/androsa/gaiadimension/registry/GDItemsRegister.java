@@ -60,6 +60,14 @@ public class GDItemsRegister {
         items.register("blue_opal", new GDItem().setUnlocalizedName("blue_opal"));
         items.register("green_opal", new GDItem().setUnlocalizedName("green_opal"));
         items.register("white_opal", new GDItem().setUnlocalizedName("white_opal"));
+        items.register("ixiolite", new GDItem().setUnlocalizedName("ixiolite"));
+        items.register("proustite", new GDItem().setUnlocalizedName("proustite"));
+        items.register("euclase", new GDItem().setUnlocalizedName("euclase"));
+        items.register("leucite", new GDItem().setUnlocalizedName("leucite"));
+        items.register("carnelian", new GDItem().setUnlocalizedName("carnelian"));
+        items.register("benitoite", new GDItem().setUnlocalizedName("benitoite"));
+        items.register("diopside", new GDItem().setUnlocalizedName("diopside"));
+        items.register("chalcedony", new GDItem().setUnlocalizedName("chalcedony"));
 
         items.register("agate_sword", new GDAgateSword(TOOL_AGATE).setUnlocalizedName("agate_sword").setMaxStackSize(1));
         items.register("agate_pickaxe", new GDAgatePickaxe(TOOL_AGATE).setUnlocalizedName("agate_pickaxe").setMaxStackSize(1));
