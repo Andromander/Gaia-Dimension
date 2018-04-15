@@ -24,7 +24,7 @@ public class ContainerGlitterFurnace extends Container {
         addSlotToContainer(new Slot(glitterFurnace, 0, 56, 17));
         addSlotToContainer(new Slot(glitterFurnace, 1, 56, 53));
         addSlotToContainer(new SlotGlitter(invPlayer.player, glitterFurnace, 2, 116, 35));
-        addSlotToContainer(new SlotGlitter(invPlayer.player, glitterFurnace, 3, 132, 35));
+        addSlotToContainer(new SlotGlitter(invPlayer.player, glitterFurnace, 3, 136, 35));
         int i;
 
         for (i = 0; i < 3; ++i)
