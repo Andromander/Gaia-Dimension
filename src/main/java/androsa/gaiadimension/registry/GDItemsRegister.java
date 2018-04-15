@@ -172,6 +172,7 @@ public class GDItemsRegister {
         items.registerBlock(GDBlocks.wastelandStone);
         items.registerBlock(GDBlocks.staticStone);
         items.registerSubItemBlock(GDBlocks.gaiaStoneBricks);
+        items.registerBlock(GDBlocks.reinforcedBricks);
         items.registerSubItemBlock(GDBlocks.malachiteBricks);
         items.register(new ItemSlab(GDBlocks.malachiteBrickSlab, GDBlocks.malachiteBrickSlab, GDBlocks.malachiteBrickSlabDouble));
         items.registerBlock(GDBlocks.malachiteBrickPillar);
