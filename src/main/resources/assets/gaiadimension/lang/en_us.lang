@@ -129,6 +129,8 @@ tile.mineral_water.name=Mineral Water
 tile.superhot_magma.name=Superhot Magma
 tile.gaia_portal.0.name=Gaia Portal
 
+container.gaiadimension.glitter_furnace=Glittering Furnace
+
 # items
 item.agate_stick.name=Agate Stick
 item.pink_geode.name=Geode
