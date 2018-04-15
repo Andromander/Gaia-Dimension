@@ -117,7 +117,8 @@ public class GDItemsRegister {
         items.registerBlock(GDBlocks.goldFire);
         items.registerBlock(GDBlocks.pyriteTorch);
         items.registerBlock(GDBlocks.agateCraftingTable);
-        //items.registerBlock(GDBlocks.glitteringFurnace);
+        items.registerBlock(GDBlocks.glitterFurnaceIdle);
+        items.registerBlock(GDBlocks.glitterFurnaceActive); //Fallback
 
         items.registerBlock(GDBlocks.heavySoil);
         items.registerBlock(GDBlocks.corruptSoil);

@@ -2,10 +2,12 @@ package androsa.gaiadimension.registry;
 
 import androsa.gaiadimension.GaiaDimension;
 import androsa.gaiadimension.block.*;
+import androsa.gaiadimension.block.tileentity.TileEntityGlitterFurnace;
 import net.minecraft.block.Block;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.registries.IForgeRegistry;
 
 @Mod.EventBusSubscriber
@@ -18,8 +20,8 @@ public final class GDBlocksRegister {
         blocks.register("gold_fire", (new GDGoldFire()).setUnlocalizedName("gold_fire"));
         blocks.register("pyrite_torch", (new GDPyriteTorch()).setUnlocalizedName("pyrite_torch"));
         blocks.register("agate_crafting_table", (new GDAgateCraftingTable()).setUnlocalizedName("agate_crafting_table"));
-        //blocks.register("gaia_stone_furnace", (new GDGlitteringFurnace(false)).setUnlocalizedName("glittering_furnace_off"));
-        //blocks.register("gaia_stone_furnace_lit", (new GDGlitteringFurnace(true)).setUnlocalizedName("glittering_furnace_on"));
+        blocks.register("glitter_furnace_idle", (new GDGlitterFurnace(false)).setUnlocalizedName("glittering_furnace_off"));
+        blocks.register("glitter_furnace_lit", (new GDGlitterFurnace(true)).setUnlocalizedName("glittering_furnace_on"));
 
         blocks.register("heavy_soil", (new GDHeavySoil()).setUnlocalizedName("heavy_soil"));
         blocks.register("corrupt_soil", (new GDCorruptSoil()).setUnlocalizedName("corrupt_soil"));
@@ -112,6 +114,8 @@ public final class GDBlocksRegister {
         blocks.register("labradorite_ore", (new GDLabradoriteOre()).setUnlocalizedName("labradorite_ore"));
         blocks.register("moonstone_ore", (new GDMoonstoneOre()).setUnlocalizedName("moonstone_ore"));
         blocks.register("cinnabar_ore", (new GDCinnabarOre()).setUnlocalizedName("cinnabar_ore"));
+
+        GameRegistry.registerTileEntity(TileEntityGlitterFurnace.class, "tileEntityGlitterFurnace");
     }
 
     private static class BlockRegistryHelper {
