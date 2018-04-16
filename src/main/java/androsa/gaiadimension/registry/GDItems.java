@@ -119,6 +119,10 @@ public class GDItems {
     public static final Item diopside;
     @ObjectHolder("chalsedony")
     public static final Item chalcedony;
+    @ObjectHolder("black_residue")
+    public static final Item blackResidue;
+    @ObjectHolder("tektite")
+    public static final Item tektite;
 
     @ObjectHolder("malachite_guard_headgear")
     public static final Item malachiteGuardHeadgear;
@@ -269,6 +273,8 @@ public class GDItems {
         benitoite = null;
         diopside = null;
         chalcedony = null;
+        blackResidue = null;
+        tektite = null;
 
         agateSword = null;
         agatePickaxe = null;
