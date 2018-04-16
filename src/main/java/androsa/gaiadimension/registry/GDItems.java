@@ -217,6 +217,14 @@ public class GDItems {
     public static final Item agateAxe;
     @ObjectHolder("agate_shovel")
     public static final Item agateShovel;
+    @ObjectHolder("sugilite_sword")
+    public static final Item sugiliteSword;
+    @ObjectHolder("sugilite_pickaxe")
+    public static final Item sugilitePickaxe;
+    @ObjectHolder("sugilite_axe")
+    public static final Item sugiliteAxe;
+    @ObjectHolder("sugilite_shovel")
+    public static final Item sugiliteShovel;
 
     @ObjectHolder("malachite_guard_sword")
     public static final Item malachiteGuardSword;
@@ -292,6 +300,10 @@ public class GDItems {
         agatePickaxe = null;
         agateAxe = null;
         agateShovel = null;
+        sugiliteSword = null;
+        sugilitePickaxe = null;
+        sugiliteAxe = null;
+        sugiliteShovel = null;
 
         malachiteGuardHeadgear = null;
         malachiteGuardBrace = null;
