@@ -89,7 +89,7 @@ public class GDItems {
     public static final Item hematite;
     @ObjectHolder("pyrite")
     public static final Item pyrite;
-    @ObjectHolder("laboradorite")
+    @ObjectHolder("labradorite")
     public static final Item labradorite;
     @ObjectHolder("moonstone")
     public static final Item moonstone;
@@ -117,7 +117,7 @@ public class GDItems {
     public static final Item benitoite;
     @ObjectHolder("diopside")
     public static final Item diopside;
-    @ObjectHolder("chalsedony")
+    @ObjectHolder("chalcedony")
     public static final Item chalcedony;
     @ObjectHolder("black_residue")
     public static final Item blackResidue;

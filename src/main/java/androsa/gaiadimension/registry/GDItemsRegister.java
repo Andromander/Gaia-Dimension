@@ -53,7 +53,7 @@ public class GDItemsRegister {
         items.register("sugilite", new GDItem().setUnlocalizedName("sugilite"));
         items.register("hematite", new GDItem().setUnlocalizedName("hematite"));
         items.register("pyrite", new GDItem().setUnlocalizedName("pyrite"));
-        items.register("labradorite", new GDItem().setUnlocalizedName("laboradorite"));
+        items.register("labradorite", new GDItem().setUnlocalizedName("labradorite"));
         items.register("moonstone", new GDItem().setUnlocalizedName("moonstone"));
         items.register("cinnabar", new GDItem().setUnlocalizedName("cinnabar"));
         items.register("red_opal", new GDItem().setUnlocalizedName("red_opal"));
