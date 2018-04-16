@@ -1,0 +1,16 @@
+{
+  "result": {
+    "item": "gaiadimension:tektite"
+  },
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "type": "forge:ore_shaped",
+  "key": {
+    "#": {
+      "item": "gaiadimension:black_residue"
+    }
+  }
+}

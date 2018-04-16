@@ -1,0 +1,19 @@
+{
+  "result": {
+    "item": "gaiadimension:glitter_furnace_idle"
+  },
+  "pattern": [
+    "SSS",
+    "SFS",
+    "SSS"
+  ],
+  "type": "forge:ore_shaped",
+  "key": {
+    "S": {
+      "item": "gaiadimension:reinforced_bricks"
+    },
+    "F": {
+      "item": "minecraft:furnace"
+    }
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "result": {
+    "item": "gaiadimension:reinforced_bricks",
+    "count": 2
+  },
+  "pattern": [
+    "#%",
+    "%#"
+  ],
+  "type": "forge:ore_shaped",
+  "key": {
+    "#": [
+      {
+        "item": "gaiadimension:gaia_stone_bricks",
+        "data": 0
+      },
+      {
+        "item": "gaiadimension:gaia_stone_bricks",
+        "data": 1
+      },
+      {
+        "item": "gaiadimension:gaia_stone_bricks",
+        "data": 2
+      }
+    ],
+    "%": {
+      "item": "gaiadimension:thick_glitter_block"
+    }
+  }
+}
