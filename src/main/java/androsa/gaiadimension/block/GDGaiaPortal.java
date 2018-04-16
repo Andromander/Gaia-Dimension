@@ -404,7 +404,7 @@ public class GDGaiaPortal extends BlockPortal implements ModelRegisterCallback {
             for (int i = 0; i < this.width; ++i) {
                 BlockPos blockpos = bottomLeft.offset(rightDir, i);
 
-                for (int j = 0; j < height + 1; ++j) {
+                for (int j = 0; j < height; ++j) {
                     world.setBlockState(blockpos.up(j), GDBlocks.gaiaPortal.getDefaultState().withProperty(BlockPortal.AXIS, axis), 2);
                 }
             }
