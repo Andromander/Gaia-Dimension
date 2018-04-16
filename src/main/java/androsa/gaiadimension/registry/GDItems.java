@@ -11,6 +11,12 @@ import static net.minecraftforge.fml.common.registry.GameRegistry.*;
 @ObjectHolder(GaiaDimension.MODID)
 public class GDItems {
 
+    public static ItemArmor.ArmorMaterial ARMOR_SUGILITE = EnumHelper.addArmorMaterial("SUGILITE", "sugilite", 1000, new int[]{1, 4, 6, 1}, 5, SoundEvents.ITEM_ARMOR_EQUIP_CHAIN, 0.0F);
+    public static ItemArmor.ArmorMaterial ARMOR_PROUSTITE = EnumHelper.addArmorMaterial("PROUSTITE", "proustite", 1500, new int[]{1, 4, 6, 1}, 5, SoundEvents.ITEM_ARMOR_EQUIP_CHAIN, 0.0F);
+    public static ItemArmor.ArmorMaterial ARMOR_LEUCITE = EnumHelper.addArmorMaterial("LEUCITE", "leucite", 1300, new int[]{1, 4, 6, 1}, 5, SoundEvents.ITEM_ARMOR_EQUIP_CHAIN, 1.0F);
+    public static ItemArmor.ArmorMaterial ARMOR_CARNELIAN = EnumHelper.addArmorMaterial("CARNELIAN", "carnelian", 2500, new int[]{2, 5, 7, 2}, 5, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0.0F);
+    public static ItemArmor.ArmorMaterial ARMOR_DIOPSIDE = EnumHelper.addArmorMaterial("DIOPSIDE", "diopside", 2300, new int[]{2, 5, 7, 2}, 5, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 1.0F);
+    public static ItemArmor.ArmorMaterial ARMOR_CHALSEDONY = EnumHelper.addArmorMaterial("CHALSEDONY", "chalsedony", 3000, new int[]{3, 6, 8, 3}, 5, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 2.0F);
     public static ItemArmor.ArmorMaterial ARMOR_MALACHITE = EnumHelper.addArmorMaterial("MALACHITE", "malachite_guard", 5120, new int[]{2, 5, 7, 2}, 10, SoundEvents.ITEM_ARMOR_EQUIP_GOLD, 2.0F);
     public static ItemArmor.ArmorMaterial ARMOR_TIGER_EYE = EnumHelper.addArmorMaterial("TIGER_EYE", "apex_predator", 4096, new int[]{2, 5, 7, 2}, 10, SoundEvents.ITEM_ARMOR_EQUIP_GOLD, 1.5F);
     public static ItemArmor.ArmorMaterial ARMOR_SPINEL = EnumHelper.addArmorMaterial("SPINEL", "spinel_princess", 5120, new int[]{3, 6, 8, 3}, 15, SoundEvents.ITEM_ARMOR_EQUIP_GOLD, 1.0F);
@@ -21,7 +27,13 @@ public class GDItems {
     public static ItemArmor.ArmorMaterial ARMOR_LARVIKITE = EnumHelper.addArmorMaterial("LARVAKITE", "gaia_duke", 10240, new int[]{3, 6, 8, 3}, 20, SoundEvents.ITEM_ARMOR_EQUIP_GOLD, 3.0F);
     public static ItemArmor.ArmorMaterial ARMOR_GAIA_CHAMP = EnumHelper.addArmorMaterial("GAIA_CHAMP", "gaia_champion", -1, new int[]{4, 7, 9, 4}, 30, SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, 4.0F);
 
-    public static Item.ToolMaterial TOOL_AGATE = EnumHelper.addToolMaterial("AGATE", 0, 150, 3.0F, 1.0F, 5);
+    public static Item.ToolMaterial TOOL_AGATE = EnumHelper.addToolMaterial("AGATE", 0, 150, 0.5F, 1.0F, 5);
+    public static Item.ToolMaterial TOOL_SUGILITE = EnumHelper.addToolMaterial("SUGILITE", 1, 800, 1.0F, 1.5F, 10);
+    public static Item.ToolMaterial TOOL_IXIOLITE = EnumHelper.addToolMaterial("IXIOLITE", 2, 1500, 2.0F, 2.0F, 10);
+    public static Item.ToolMaterial TOOL_EUCLASE = EnumHelper.addToolMaterial("EUCLASE", 2, 3000, 2.0F, 2.0F, 10);
+    public static Item.ToolMaterial TOOL_CARNELIAN = EnumHelper.addToolMaterial("CARNELIAN", 3, 2500, 3.0F, 3.0F, 10);
+    public static Item.ToolMaterial TOOL_BENITOITE = EnumHelper.addToolMaterial("BENITOITE", 3, 3500, 3.0F, 3.0F, 10);
+    public static Item.ToolMaterial TOOL_CHALCEDONY = EnumHelper.addToolMaterial("CHALCEDONY", 4, 4000, 4.0F, 4.0F, 10);
     public static Item.ToolMaterial TOOL_MALACHITE = EnumHelper.addToolMaterial("MALACHITE", 3, 5120, 6.0F, 4.0F, 10);
     public static Item.ToolMaterial TOOL_TIGER_EYE = EnumHelper.addToolMaterial("TIGER_EYE", 3, 4096, 6.0F, 5.0F, 10);
     public static Item.ToolMaterial TOOL_SPINEL = EnumHelper.addToolMaterial("SPINEL", 3, 5120, 6.0F, 4.0F, 15);
