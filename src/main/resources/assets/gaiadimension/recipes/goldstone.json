@@ -1,0 +1,16 @@
+{
+  "result": {
+    "item": "gaiadimension:goldstone"
+  },
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "type": "forge:ore_shaped",
+  "key": {
+    "#": {
+      "item": "gaiadimension:goldstone_residue"
+    }
+  }
+}

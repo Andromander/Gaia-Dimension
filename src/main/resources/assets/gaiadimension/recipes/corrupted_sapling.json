@@ -1,0 +1,35 @@
+{
+  "result": {
+    "item": "gaiadimension:gaia_sapling",
+    "data": 5
+  },
+  "pattern": [
+    " R ",
+    "RSR",
+    " R "
+  ],
+  "type": "forge:ore_shaped",
+  "key": {
+    "S": [
+      {
+        "item": "gaiadimension:gaia_sapling",
+        "data": 0
+      },
+      {
+        "item": "gaiadimension:gaia_sapling",
+        "data": 1
+      },
+      {
+        "item": "gaiadimension:gaia_sapling",
+        "data": 2
+      },
+      {
+        "item": "gaiadimension:gaia_sapling",
+        "data": 3
+      }
+    ],
+    "R": {
+      "item": "gaiadimension:goldstone_residue"
+    }
+  }
+}

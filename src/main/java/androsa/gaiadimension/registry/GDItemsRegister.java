@@ -22,12 +22,12 @@ public class GDItemsRegister {
         ItemRegistryHelper items = new ItemRegistryHelper(event.getRegistry());
 
         items.register("glint_and_gold", new GDFlintAndGold().setUnlocalizedName("glint_and_gold"));
-
         items.register("agate_stick", new GDItem().setUnlocalizedName("agate_stick"));
         items.register("hot_dust", new GDItem().setUnlocalizedName("hot_dust"));
         items.register("goldstone_dust", new GDItem().setUnlocalizedName("goldstone_dust"));
         items.register("fine_dust", new GDItem().setUnlocalizedName("fine_dust"));
         items.register("cloudy_shard", new GDItem().setUnlocalizedName("cloudy_shard"));
+        items.register("goldstone_residue", new GDItem().setUnlocalizedName("goldstone_residue"));
 
         items.register("pink_geode", new GDGeode().setUnlocalizedName("pink_geode"));
         items.register("blue_geode", new GDGeode().setUnlocalizedName("blue_geode"));
@@ -68,6 +68,7 @@ public class GDItemsRegister {
         items.register("chalcedony", new GDItem().setUnlocalizedName("chalcedony"));
         items.register("black_residue", new GDItem().setUnlocalizedName("black_residue"));
         items.register("tektite", new GDItem().setUnlocalizedName("tektite"));
+        items.register("goldstone", new GDItem().setUnlocalizedName("goldstone"));
 
         items.register("agate_sword", new GDAgateSword(TOOL_AGATE).setUnlocalizedName("agate_sword").setMaxStackSize(1));
         items.register("agate_pickaxe", new GDAgatePickaxe(TOOL_AGATE).setUnlocalizedName("agate_pickaxe").setMaxStackSize(1));

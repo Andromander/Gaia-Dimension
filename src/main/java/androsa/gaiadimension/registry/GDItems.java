@@ -56,6 +56,8 @@ public class GDItems {
     public static final Item fineDust;
     @ObjectHolder("cloudy_shard")
     public static final Item cloudyShard;
+    @ObjectHolder("goldstone_residue")
+    public static final Item goldstoneResidue;
 
     @ObjectHolder("pink_geode")
     public static final Item pinkGeode;
@@ -133,6 +135,8 @@ public class GDItems {
     public static final Item blackResidue;
     @ObjectHolder("tektite")
     public static final Item tektite;
+    @ObjectHolder("goldstone")
+    public static final Item goldstone;
 
     @ObjectHolder("malachite_guard_headgear")
     public static final Item malachiteGuardHeadgear;
@@ -245,12 +249,12 @@ public class GDItems {
 
     static {
         glintAndGold = null;
-
         agateStick = null;
         hotDust = null;
         goldstoneDust = null;
         fineDust = null;
         cloudyShard = null;
+        goldstoneResidue = null;
 
         pinkGeode = null;
         blueGeode = null;
@@ -291,6 +295,7 @@ public class GDItems {
         chalcedony = null;
         blackResidue = null;
         tektite = null;
+        goldstone = null;
 
         agateSword = null;
         agatePickaxe = null;
