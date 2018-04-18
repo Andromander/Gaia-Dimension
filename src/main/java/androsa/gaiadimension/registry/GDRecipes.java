@@ -27,6 +27,11 @@ public class GDRecipes {
 
         GameRegistry.addSmelting(new ItemStack(GDItems.fineDust, 1), new ItemStack(GDItems.cloudyShard, 1), 0.1F);
         GameRegistry.addSmelting(new ItemStack(GDItems.goldstoneDust, 1), new ItemStack(GDItems.goldstoneResidue, 1), 0.1F);
+        GameRegistry.addSmelting(new ItemStack(GDBlocks.gaiaSapling, 1, 0), new ItemStack(GDBlocks.gaiaSapling, 1, 6), 0.1F);
+        GameRegistry.addSmelting(new ItemStack(GDBlocks.gaiaSapling, 1, 1), new ItemStack(GDBlocks.gaiaSapling, 1, 6), 0.1F);
+        GameRegistry.addSmelting(new ItemStack(GDBlocks.gaiaSapling, 1, 2), new ItemStack(GDBlocks.gaiaSapling, 1, 6), 0.1F);
+        GameRegistry.addSmelting(new ItemStack(GDBlocks.gaiaSapling, 1, 3), new ItemStack(GDBlocks.gaiaSapling, 1, 6), 0.1F);
+        GameRegistry.addSmelting(new ItemStack(GDBlocks.gaiaSapling, 1, 6), new ItemStack(GDBlocks.gaiaSapling, 1, 7), 0.1F);
         GameRegistry.addSmelting(GDBlocks.sugiliteOre, new ItemStack(GDItems.sugilite, 1), 0.3F);
         GameRegistry.addSmelting(GDBlocks.hematiteOre, new ItemStack(GDItems.hematite, 1), 0.3F);
         GameRegistry.addSmelting(GDBlocks.pyriteOre, new ItemStack(GDItems.hematite, 1), 0.3F);
