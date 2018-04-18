@@ -46,8 +46,6 @@ public class GDItems {
 
     @ObjectHolder("glint_and_gold")
     public static final Item glintAndGold;
-    @ObjectHolder("property_dust")
-    public static final Item propertyDust;
     @ObjectHolder("agate_stick")
     public static final Item agateStick;
     @ObjectHolder("hot_dust")
@@ -272,8 +270,6 @@ public class GDItems {
         blueOpalPowder = null;
         greenOpalPowder = null;
         whiteOpalGrit = null;
-
-        propertyDust = null;
 
         sugilite = null;
         hematite = null;

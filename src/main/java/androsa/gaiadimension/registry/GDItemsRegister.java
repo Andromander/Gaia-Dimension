@@ -48,8 +48,6 @@ public class GDItemsRegister {
         items.register("green_opal_powder", new GDGroundGem().setUnlocalizedName("green_opal_powder"));
         items.register("white_opal_grit", new GDGroundGem().setUnlocalizedName("white_opal_grit"));
 
-        items.register("property_dust", new GDPropertyDust().setUnlocalizedName("property_mix"));
-
         items.register("sugilite", new GDItem().setUnlocalizedName("sugilite"));
         items.register("hematite", new GDItem().setUnlocalizedName("hematite"));
         items.register("pyrite", new GDItem().setUnlocalizedName("pyrite"));
