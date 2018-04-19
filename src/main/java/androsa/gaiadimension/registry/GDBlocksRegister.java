@@ -108,7 +108,7 @@ public final class GDBlocksRegister {
         blocks.register("moonstone_block", (new GDMoonstoneBlock()).setUnlocalizedName("moonstone_block"));
         blocks.register("cinnabar_block", (new GDCinnabarBlock()).setUnlocalizedName("cinnabar_block"));
         blocks.register("tektite_block", (new GDTektiteBlock()).setUnlocalizedName("tektite_block"));
-        //blocks.register("goldstone_block", (new GDGoldstoneBlock()).setUnlocalizedName("goldstone_block"));
+        blocks.register("goldstone_block", (new GDGoldstoneBlock()).setUnlocalizedName("goldstone_block"));
         blocks.register("ixiolite_block", (new GDIxioliteBlock()).setUnlocalizedName("ixiolite_block"));
         blocks.register("proustite_block", (new GDProustiteBlock()).setUnlocalizedName("proustite_block"));
         blocks.register("euclase_block", (new GDEuclaseBlock()).setUnlocalizedName("euclase_block"));

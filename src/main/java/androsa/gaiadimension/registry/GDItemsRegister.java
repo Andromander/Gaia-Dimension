@@ -206,7 +206,7 @@ public class GDItemsRegister {
         items.registerBlock(GDBlocks.moonstoneBlock);
         items.registerBlock(GDBlocks.cinnabarBlock);
         items.registerBlock(GDBlocks.tektiteBlock);
-        //items.registerBlock(GDBlocks.goldstoneBlock);
+        items.registerBlock(GDBlocks.goldstoneBlock);
         items.registerBlock(GDBlocks.ixioliteBlock);
         items.registerBlock(GDBlocks.proustiteBlock);
         items.registerBlock(GDBlocks.euclaseBlock);

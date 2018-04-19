@@ -182,8 +182,8 @@ public class GDBlocks {
     public static Block cinnabarBlock;
     @ObjectHolder("tektite_block")
     public static Block tektiteBlock;
-    //@ObjectHolder("goldstone_block")
-    //public static Block goldstoneBlock;
+    @ObjectHolder("goldstone_block")
+    public static Block goldstoneBlock;
     @ObjectHolder("ixiolite_block")
     public static Block ixioliteBlock;
     @ObjectHolder("proustite_block")
