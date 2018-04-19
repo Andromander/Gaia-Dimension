@@ -184,6 +184,7 @@ public class GDItemsRegister {
         items.registerBlock(GDBlocks.gaiaCobblestone);
         items.registerBlock(GDBlocks.wastelandStone);
         items.registerBlock(GDBlocks.staticStone);
+        items.registerBlock(GDBlocks.volcanicRock);
         items.registerSubItemBlock(GDBlocks.gaiaStoneBricks);
         items.registerBlock(GDBlocks.reinforcedBricks);
         items.registerSubItemBlock(GDBlocks.malachiteBricks);
@@ -195,7 +196,7 @@ public class GDItemsRegister {
         items.registerBlock(GDBlocks.malachitePillarStairs);
         items.registerBlock(GDBlocks.malachiteFloorStairs);
         items.registerBlock(GDBlocks.malachitePulsingFloorStairs);
-        items.registerBlock(GDBlocks.volcanicRock);
+
 
         items.registerSubItemBlock(GDBlocks.opalBlock);
         items.registerBlock(GDBlocks.sugiliteBlock);
@@ -205,6 +206,15 @@ public class GDItemsRegister {
         items.registerBlock(GDBlocks.moonstoneBlock);
         items.registerBlock(GDBlocks.cinnabarBlock);
         items.registerBlock(GDBlocks.tektiteBlock);
+        //items.registerBlock(GDBlocks.goldstoneBlock);
+        items.registerBlock(GDBlocks.ixioliteBlock);
+        items.registerBlock(GDBlocks.proustiteBlock);
+        items.registerBlock(GDBlocks.euclaseBlock);
+        items.registerBlock(GDBlocks.leuciteBlock);
+        items.registerBlock(GDBlocks.carnelianBlock);
+        items.registerBlock(GDBlocks.benitoiteBlock);
+        items.registerBlock(GDBlocks.diopsideBlock);
+        items.registerBlock(GDBlocks.chalcedonyBlock);
 
         items.registerBlock(GDBlocks.sugiliteOre);
         items.registerBlock(GDBlocks.hematiteOre);
