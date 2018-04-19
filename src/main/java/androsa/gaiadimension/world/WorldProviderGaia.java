@@ -14,6 +14,7 @@ import net.minecraft.world.WorldProviderSurface;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.gen.IChunkGenerator;
+import net.minecraftforge.client.IRenderHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -63,6 +64,35 @@ public class WorldProviderGaia extends WorldProviderSurface {
             return 0.5F;
         }
         return world.getStarBrightnessBody(par1);
+    }
+
+    @SideOnly(Side.CLIENT)
+    private double[] currentCloudColor;
+    @SideOnly(Side.CLIENT)
+    private short[] targetCloudColor;
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public Vec3d getCloudColor(float partialTicks) {
+        EntityPlayer player = Minecraft.getMinecraft().player;
+        Biome biome = world.getBiome(new BlockPos(player.posX, player.posY, player.posZ));
+        targetCloudColor = new short[] { 234, 178, 224 };
+
+        if (GDConfig.skyAndFog.enableSkyFog == true) {
+            if (biome instanceof GDVolcanicLands) {
+                targetCloudColor = new short[]{ 245, 119, 112 };
+            } else if (biome instanceof GDGoldstoneLands) {
+                targetCloudColor = new short[]{ 188, 122, 44 };
+            } else if (biome instanceof GDStaticWasteland) {
+                targetCloudColor = new short[]{ 86, 213, 170 };
+            } else if (biome instanceof GDSaltDunes) {
+                targetCloudColor = new short[]{ 187, 211, 255 };
+            }
+        } else {
+            targetCloudColor = new short[] { 234, 178, 224 };
+        }
+
+        return new Vec3d(targetCloudColor[0] / 255D, targetCloudColor[1] / 255D, targetCloudColor[2] / 255D);
     }
 
     @Override

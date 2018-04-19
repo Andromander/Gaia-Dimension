@@ -1,5 +1,6 @@
 package androsa.gaiadimension.world;
 
+import androsa.gaiadimension.biomes.GDSaltDunes;
 import androsa.gaiadimension.world.GDGenCaves;
 import androsa.gaiadimension.biomes.GDStaticWasteland;
 import androsa.gaiadimension.registry.GDBlocks;
@@ -365,7 +366,8 @@ public class GaiaChunkGenerator implements IChunkGenerator {
         boolean disableFeatures = this.majorFeatureGenerator.generateStructure(world, rand, chunkpos)
                 || !GDFeature.getNearestFeature(chunkX, chunkZ, world).areChunkDecorationsEnabled;
 
-        if (!(biome instanceof GDStaticWasteland)) {
+        //Generate Mineral Water lakes outside of the Static Wasteland and Salt Dunes
+        if (!(biome instanceof GDStaticWasteland) || !(biome instanceof GDSaltDunes)) {
             if (!disableFeatures && rand.nextInt(4) == 0 && biome.decorator.generateFalls) {
                 int i1 = blockpos.getX() + rand.nextInt(16) + 8;
                 int i2 = rand.nextInt(GaiaWorld.CHUNKHEIGHT);
