@@ -1,11 +1,14 @@
 package androsa.gaiadimension.recipe;
 
+import androsa.gaiadimension.registry.GDBlocks;
+import androsa.gaiadimension.registry.GDItems;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.IFuelHandler;
 
+@SuppressWarnings("deprecated")
 public class GlitterFuelHandler implements IFuelHandler {
 
     @Override
@@ -31,6 +34,10 @@ public class GlitterFuelHandler implements IFuelHandler {
             return 2000;
         if(fuel.getItem() == Item.getItemFromBlock(Blocks.GOLD_ORE))
             return 150;
+        if(fuel.getItem() == GDItems.pyrite)
+            return 500;
+        if(fuel.getItem() == Item.getItemFromBlock(GDBlocks.pyriteBlock))
+            return 5000;
         return 0;
     }
 }

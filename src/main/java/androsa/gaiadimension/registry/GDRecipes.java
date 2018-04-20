@@ -1,6 +1,5 @@
 package androsa.gaiadimension.registry;
 
-import androsa.gaiadimension.recipe.GlitterFurnaceRecipes;
 import androsa.gaiadimension.recipe.RecipeHandler;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
@@ -14,7 +13,7 @@ import net.minecraftforge.oredict.OreDictionary;
 public class GDRecipes {
 
     @SubscribeEvent
-    public static void ragisterRecipes(RegistryEvent.Register<IRecipe> event) {
+    public static void registerRecipes(RegistryEvent.Register<IRecipe> event) {
 
         OreDictionary.registerOre("planksAgate", new ItemStack(GDBlocks.pinkAgatePlanks, 1, OreDictionary.WILDCARD_VALUE));
         OreDictionary.registerOre("planksAgate", new ItemStack(GDBlocks.blueAgatePlanks, 1, OreDictionary.WILDCARD_VALUE));
@@ -51,5 +50,14 @@ public class GDRecipes {
         RecipeHandler.addGlitterRefactoring(new ItemStack(GDItems.opalBlue, 1), new ItemStack(GDItems.benitoite, 1), new ItemStack(GDItems.blackResidue, 1), 0.3F);
         RecipeHandler.addGlitterRefactoring(new ItemStack(GDItems.opalGreen, 1), new ItemStack(GDItems.diopside, 1), new ItemStack(GDItems.blackResidue, 1), 0.3F);
         RecipeHandler.addGlitterRefactoring(new ItemStack(GDItems.opalWhite, 1), new ItemStack(GDItems.chalcedony, 1), new ItemStack(GDItems.blackResidue, 1), 0.3F);
+
+        RecipeHandler.addGlitterRefactoring(GDBlocks.hematiteBlock, new ItemStack(GDBlocks.ixioliteBlock, 1), new ItemStack(GDItems.tektite, 1), 2.7F);
+        RecipeHandler.addGlitterRefactoring(GDBlocks.cinnabarBlock, new ItemStack(GDBlocks.proustiteBlock, 1), new ItemStack(GDItems.tektite, 1), 2.7F);
+        RecipeHandler.addGlitterRefactoring(GDBlocks.labradoriteBlock, new ItemStack(GDBlocks.euclaseBlock, 1), new ItemStack(GDItems.tektite, 1), 2.7F);
+        RecipeHandler.addGlitterRefactoring(GDBlocks.moonstoneBlock, new ItemStack(GDBlocks.leuciteBlock, 1), new ItemStack(GDItems.tektite, 1), 2.7F);
+        RecipeHandler.addGlitterRefactoring(new ItemStack(GDBlocks.opalBlock, 1, 0), new ItemStack(GDBlocks.carnelianBlock, 1), new ItemStack(GDItems.tektite, 1), 2.7F);
+        RecipeHandler.addGlitterRefactoring(new ItemStack(GDBlocks.opalBlock, 1, 1), new ItemStack(GDBlocks.benitoiteBlock, 1), new ItemStack(GDItems.tektite, 1), 2.7F);
+        RecipeHandler.addGlitterRefactoring(new ItemStack(GDBlocks.opalBlock, 1, 2), new ItemStack(GDBlocks.diopsideBlock, 1), new ItemStack(GDItems.tektite, 1), 2.7F);
+        RecipeHandler.addGlitterRefactoring(new ItemStack(GDBlocks.opalBlock, 1, 3), new ItemStack(GDBlocks.chalcedonyBlock, 1), new ItemStack(GDItems.tektite, 1), 2.7F);
     }
 }
