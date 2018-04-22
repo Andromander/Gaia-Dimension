@@ -2,7 +2,9 @@ package androsa.gaiadimension.proxy;
 
 import androsa.gaiadimension.block.inventory.GuiAgateCraftingTable;
 import androsa.gaiadimension.block.inventory.GuiGlitterFurnace;
+import androsa.gaiadimension.block.inventory.GuiPurifier;
 import androsa.gaiadimension.block.tileentity.TileEntityGlitterFurnace;
+import androsa.gaiadimension.block.tileentity.TileEntityPurifier;
 import androsa.gaiadimension.entity.*;
 import androsa.gaiadimension.entity.boss.GDBlueHowliteWolf;
 import androsa.gaiadimension.entity.boss.GDMalachiteGuard;
@@ -31,6 +33,8 @@ public class ClientProxy extends CommonProxy {
                 return new GuiAgateCraftingTable(player.inventory, world, pos);
             case GLITTER_FURNACE:
                 return new GuiGlitterFurnace(player.inventory, (TileEntityGlitterFurnace) tile);
+            case PURIFIER:
+                return new GuiPurifier(player.inventory, (TileEntityPurifier) tile);
             default:
                 return null;
         }
