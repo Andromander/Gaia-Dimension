@@ -1,0 +1,8 @@
+{
+  "variants": {
+    "facing=north": { "model": "gaiadimension:purifier" },
+    "facing=south": { "model": "gaiadimension:purifier", "y": 180 },
+    "facing=west":  { "model": "gaiadimension:purifier", "y": 270 },
+    "facing=east":  { "model": "gaiadimension:purifier", "y": 90 }
+  }
+}

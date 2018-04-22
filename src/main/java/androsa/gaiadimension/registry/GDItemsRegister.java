@@ -132,6 +132,8 @@ public class GDItemsRegister {
         items.registerBlock(GDBlocks.agateCraftingTable);
         items.registerBlock(GDBlocks.glitterFurnaceIdle);
         items.registerBlock(GDBlocks.glitterFurnaceActive); //Fallback
+        items.registerBlock(GDBlocks.purifierIdle);
+        items.registerBlock(GDBlocks.purifierActive); //Fallback
 
         items.registerBlock(GDBlocks.heavySoil);
         items.registerBlock(GDBlocks.corruptSoil);
@@ -196,7 +198,7 @@ public class GDItemsRegister {
         items.registerBlock(GDBlocks.malachitePillarStairs);
         items.registerBlock(GDBlocks.malachiteFloorStairs);
         items.registerBlock(GDBlocks.malachitePulsingFloorStairs);
-
+        items.registerBlock(GDBlocks.bolsteredBricks);
 
         items.registerSubItemBlock(GDBlocks.opalBlock);
         items.registerBlock(GDBlocks.sugiliteBlock);

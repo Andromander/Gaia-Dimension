@@ -50,7 +50,6 @@ public class GDRecipes {
         RecipeHandler.addGlitterRefactoring(new ItemStack(GDItems.opalBlue, 1), new ItemStack(GDItems.benitoite, 1), new ItemStack(GDItems.blackResidue, 1), 0.3F);
         RecipeHandler.addGlitterRefactoring(new ItemStack(GDItems.opalGreen, 1), new ItemStack(GDItems.diopside, 1), new ItemStack(GDItems.blackResidue, 1), 0.3F);
         RecipeHandler.addGlitterRefactoring(new ItemStack(GDItems.opalWhite, 1), new ItemStack(GDItems.chalcedony, 1), new ItemStack(GDItems.blackResidue, 1), 0.3F);
-
         RecipeHandler.addGlitterRefactoring(GDBlocks.hematiteBlock, new ItemStack(GDBlocks.ixioliteBlock, 1), new ItemStack(GDItems.tektite, 1), 2.7F);
         RecipeHandler.addGlitterRefactoring(GDBlocks.cinnabarBlock, new ItemStack(GDBlocks.proustiteBlock, 1), new ItemStack(GDItems.tektite, 1), 2.7F);
         RecipeHandler.addGlitterRefactoring(GDBlocks.labradoriteBlock, new ItemStack(GDBlocks.euclaseBlock, 1), new ItemStack(GDItems.tektite, 1), 2.7F);
@@ -59,5 +58,10 @@ public class GDRecipes {
         RecipeHandler.addGlitterRefactoring(new ItemStack(GDBlocks.opalBlock, 1, 1), new ItemStack(GDBlocks.benitoiteBlock, 1), new ItemStack(GDItems.tektite, 1), 2.7F);
         RecipeHandler.addGlitterRefactoring(new ItemStack(GDBlocks.opalBlock, 1, 2), new ItemStack(GDBlocks.diopsideBlock, 1), new ItemStack(GDItems.tektite, 1), 2.7F);
         RecipeHandler.addGlitterRefactoring(new ItemStack(GDBlocks.opalBlock, 1, 3), new ItemStack(GDBlocks.chalcedonyBlock, 1), new ItemStack(GDItems.tektite, 1), 2.7F);
+
+        RecipeHandler.addPurifying(GDBlocks.corruptSoil, new ItemStack(GDBlocks.heavySoil), new ItemStack(GDItems.goldstoneResidue, 1), 0.3F);
+        RecipeHandler.addPurifying(GDBlocks.corruptGrass, new ItemStack(GDBlocks.glitterGrass), new ItemStack(GDItems.goldstoneResidue, 1), 0.3F);
+        RecipeHandler.addPurifying(new ItemStack(GDBlocks.gaiaLeavesSpecial, 1, 2), new ItemStack(GDBlocks.gaiaLeaves, 1, 0), new ItemStack(GDItems.goldstoneResidue, 1), 0.3F);
+        RecipeHandler.addPurifying(new ItemStack(GDBlocks.gaiaLogSpecial, 1, 2), new ItemStack(GDBlocks.gaiaLog, 1, 0), new ItemStack(GDItems.goldstoneResidue, 2), 0.3F);
     }
 }

@@ -3,6 +3,7 @@ package androsa.gaiadimension.registry;
 import androsa.gaiadimension.GaiaDimension;
 import androsa.gaiadimension.block.*;
 import androsa.gaiadimension.block.tileentity.TileEntityGlitterFurnace;
+import androsa.gaiadimension.block.tileentity.TileEntityPurifier;
 import net.minecraft.block.Block;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -22,6 +23,8 @@ public final class GDBlocksRegister {
         blocks.register("agate_crafting_table", (new GDAgateCraftingTable()).setUnlocalizedName("agate_crafting_table"));
         blocks.register("glitter_furnace_idle", (new GDGlitterFurnace(false)).setUnlocalizedName("glittering_furnace_off"));
         blocks.register("glitter_furnace_lit", (new GDGlitterFurnace(true)).setUnlocalizedName("glittering_furnace_on"));
+        blocks.register("purifier_idle", (new GDPurifier(false)).setUnlocalizedName("purifier_off"));
+        blocks.register("purifier_lit", (new GDPurifier(true)).setUnlocalizedName("purifier_on"));
 
         blocks.register("heavy_soil", (new GDHeavySoil()).setUnlocalizedName("heavy_soil"));
         blocks.register("corrupt_soil", (new GDCorruptSoil()).setUnlocalizedName("corrupt_soil"));
@@ -98,7 +101,7 @@ public final class GDBlocksRegister {
         blocks.register("malachite_pillar_stairs", (new GDMalachiteStairs(malachitePillar.getDefaultState())).setUnlocalizedName("malachite_pillar_stairs"));
         blocks.register("malachite_floor_stairs", (new GDMalachiteStairs(malachiteBricks.getDefaultState())).setUnlocalizedName("malachite_floor_stairs"));
         blocks.register("malachite_pulsing_floor_stairs", (new GDMalachiteStairs(malachiteBricks.getDefaultState())).setUnlocalizedName("malachite_pulsing_floor_stairs"));
-
+        blocks.register("bolstered_bricks", (new GDBolsteredBricks()).setUnlocalizedName("bolstered_bricks"));
 
         blocks.register("sugilite_block", (new GDSugiliteBlock()).setUnlocalizedName("sugilite_block"));
         blocks.register("hematite_block", (new GDHematiteBlock()).setUnlocalizedName("hematite_block"));
@@ -127,6 +130,7 @@ public final class GDBlocksRegister {
         blocks.register("cinnabar_ore", (new GDCinnabarOre()).setUnlocalizedName("cinnabar_ore"));
 
         GameRegistry.registerTileEntity(TileEntityGlitterFurnace.class, "tileEntityGlitterFurnace");
+        GameRegistry.registerTileEntity(TileEntityPurifier.class, "tileEntityPurifier");
     }
 
     private static class BlockRegistryHelper {

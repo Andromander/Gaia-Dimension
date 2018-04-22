@@ -12,8 +12,6 @@ public class GDBlocks {
     public static BlockPortal gaiaPortal;
     @ObjectHolder("gold_fire")
     public static Block goldFire;
-    @ObjectHolder("key_block")
-    public static Block keyBlock;
     @ObjectHolder("pyrite_torch")
     public static Block pyriteTorch;
     @ObjectHolder("agate_crafting_table")
@@ -22,6 +20,10 @@ public class GDBlocks {
     public static Block glitterFurnaceIdle;
     @ObjectHolder("glitter_furnace_lit")
     public static Block glitterFurnaceActive;
+    @ObjectHolder("purifier_idle")
+    public static Block purifierIdle;
+    @ObjectHolder("purifier_lit")
+    public static Block purifierActive;
 
     @ObjectHolder("heavy_soil")
     public static Block heavySoil;
@@ -139,6 +141,8 @@ public class GDBlocks {
     public static Block wastelandStone;
     @ObjectHolder("static_stone")
     public static Block staticStone;
+    @ObjectHolder("volcanic_rock")
+    public static Block volcanicRock;
     @ObjectHolder("gaia_stone_bricks")
     public static Block gaiaStoneBricks;
     @ObjectHolder("reinforced_bricks")
@@ -163,8 +167,8 @@ public class GDBlocks {
     public static Block malachitePillarStairs;
     @ObjectHolder("malachite_floor_stairs")
     public static Block malachiteFloorStairs;
-    @ObjectHolder("volcanic_rock")
-    public static Block volcanicRock;
+    @ObjectHolder("bolstered_bricks")
+    public static Block bolsteredBricks;
 
     @ObjectHolder("sugilite_block")
     public static Block sugiliteBlock;

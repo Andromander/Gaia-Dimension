@@ -1,0 +1,19 @@
+{
+  "result": {
+    "item": "gaiadimension:bolstered_bricks",
+    "count": 2
+  },
+  "pattern": [
+    "#%",
+    "%#"
+  ],
+  "type": "forge:ore_shaped",
+  "key": {
+    "%": {
+      "item": "gaiadimension:reinforced_bricks"
+    },
+    "#": {
+      "item": "gaiadimension:goldstone_block"
+    }
+  }
+}

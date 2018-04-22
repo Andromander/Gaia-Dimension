@@ -3,6 +3,7 @@ package androsa.gaiadimension;
 import androsa.gaiadimension.entity.GaiaEntities;
 import androsa.gaiadimension.proxy.CommonProxy;
 import androsa.gaiadimension.recipe.GlitterFuelHandler;
+import androsa.gaiadimension.recipe.PurifierFuelHandler;
 import androsa.gaiadimension.registry.GDBlocks;
 import androsa.gaiadimension.registry.GDFluids;
 import androsa.gaiadimension.registry.GDItems;
@@ -26,7 +27,6 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
-import net.minecraftforge.fml.common.registry.GameRegistry;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -38,8 +38,8 @@ import java.util.List;
         dependencies = "required-after:forge@[14.23.2.2611,)"
 )
 
-public class GaiaDimension
-{
+@SuppressWarnings("deprecated")
+public class GaiaDimension {
     public static final String MODID = "gaiadimension";
     public static final String VERSION = "1.0";
 
@@ -50,6 +50,7 @@ public class GaiaDimension
     public static final String MODEL_DIR = "gaiadimension:textures/model/";
 
     private static final List<IFuelHandler> glitterFuelHandlers = Lists.newArrayList();
+    private static final List<IFuelHandler> purifierFuelHandlers = Lists.newArrayList();
 
     public static final Material matMineralWater = new MaterialLiquid(MapColor.CYAN_STAINED_HARDENED_CLAY);
     public static final Material matSuperhotMagma = new MaterialLiquid(MapColor.BLUE);
@@ -87,6 +88,7 @@ public class GaiaDimension
 
         NetworkRegistry.INSTANCE.registerGuiHandler(instance, proxy);
         registerFuelHandler(new GlitterFuelHandler(), FuelType.GLITTER_FURNACE);
+        registerFuelHandler(new PurifierFuelHandler(), FuelType.PURIFIER);
 
     }
 
@@ -102,13 +104,16 @@ public class GaiaDimension
     }
 
     public enum FuelType {
-        GLITTER_FURNACE
+        GLITTER_FURNACE,
+        PURIFIER
     }
 
     public static void registerFuelHandler(IFuelHandler handler, FuelType type) {
         switch(type) {
             case GLITTER_FURNACE:
                 glitterFuelHandlers.add(handler);
+            case PURIFIER:
+                purifierFuelHandlers.add(handler);
         }
     }
 
@@ -117,6 +122,9 @@ public class GaiaDimension
         switch(type) {
             case GLITTER_FURNACE:
                 for (IFuelHandler handler : glitterFuelHandlers)
+                    fuelValue = Math.max(fuelValue, handler.getBurnTime(stack));
+            case PURIFIER:
+                for (IFuelHandler handler : purifierFuelHandlers)
                     fuelValue = Math.max(fuelValue, handler.getBurnTime(stack));
         }
 

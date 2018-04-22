@@ -1,0 +1,8 @@
+{
+  "parent": "block/orientable",
+  "textures": {
+    "top": "gaiadimension:blocks/purifier_side",
+    "front": "gaiadimension:blocks/purifier_front_off",
+    "side": "gaiadimension:blocks/purifier_side"
+  }
+}

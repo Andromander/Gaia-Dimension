@@ -8,9 +8,11 @@ import net.minecraftforge.fml.common.IFuelHandler;
 
 import java.util.List;
 
+@SuppressWarnings("deprecated")
 public class RecipeHandler {
 
     private static final List<IFuelHandler> glitterFuelHandlers = Lists.newArrayList();
+    private static final List<IFuelHandler> purifierFuelHandlers = Lists.newArrayList();
 
     public static void addGlitterRefactoring(Block input, ItemStack output1, ItemStack output2, float xp) {
         GlitterFurnaceRecipes.instance().glittering(input, output1, output2, xp);
@@ -22,5 +24,17 @@ public class RecipeHandler {
 
     public static void addGlitterRefactoring(ItemStack input, ItemStack output1, ItemStack output2, float xp) {
         GlitterFurnaceRecipes.instance().glittering(input, output1, output2, xp);
+    }
+
+    public static void addPurifying(Block input, ItemStack output1, ItemStack output2, float xp) {
+        PurifierRecipes.instance().purifying(input, output1, output2, xp);
+    }
+
+    public static void addPurifying(Item input, ItemStack output1, ItemStack output2, float xp) {
+        PurifierRecipes.instance().purifying(input, output1, output2, xp);
+    }
+
+    public static void addPurifying(ItemStack input, ItemStack output1, ItemStack output2, float xp) {
+        PurifierRecipes.instance().purifying(input, output1, output2, xp);
     }
 }

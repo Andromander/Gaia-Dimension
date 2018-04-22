@@ -1,0 +1,19 @@
+{
+  "result": {
+    "item": "gaiadimension:purifier_idle"
+  },
+  "pattern": [
+    "SSS",
+    "SFS",
+    "SSS"
+  ],
+  "type": "forge:ore_shaped",
+  "key": {
+    "S": {
+      "item": "gaiadimension:bolstered_bricks"
+    },
+    "F": {
+      "item": "minecraft:furnace"
+    }
+  }
+}
