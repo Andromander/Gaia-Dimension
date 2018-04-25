@@ -1,7 +1,7 @@
 package androsa.gaiadimension.world;
 
+import androsa.gaiadimension.biomes.GDBiomeBase;
 import androsa.gaiadimension.biomes.GDSaltDunes;
-import androsa.gaiadimension.world.GDGenCaves;
 import androsa.gaiadimension.biomes.GDStaticWasteland;
 import androsa.gaiadimension.registry.GDBlocks;
 import androsa.gaiadimension.registry.GDFeature;
@@ -405,7 +405,11 @@ public class GaiaChunkGenerator implements IChunkGenerator {
     public List<Biome.SpawnListEntry> getPossibleCreatures(EnumCreatureType creatureType, BlockPos pos) {
         Biome biome = world.getBiome(pos);
 
-        return biome.getSpawnableList(creatureType);
+        if (pos.getY() < GaiaWorld.SEALEVEL && biome instanceof GDBiomeBase) {
+            return ((GDBiomeBase) biome).getUndergroundMonsterList();
+        } else {
+            return biome.getSpawnableList(creatureType);
+        }
     }
 
     @Nullable

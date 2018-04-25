@@ -1,5 +1,6 @@
 package androsa.gaiadimension.biomes;
 
+import androsa.gaiadimension.entity.GDShalurker;
 import androsa.gaiadimension.registry.GDBlocks;
 import androsa.gaiadimension.registry.GDFluids;
 import androsa.gaiadimension.world.GaiaWorld;
@@ -28,12 +29,13 @@ public class GDBiomeBase extends Biome {
         super(props);
 
         spawnableCreatureList.clear();
+        spawnableMonsterList.clear();
 
         undergroundMonsterList = new ArrayList<SpawnListEntry>();
 
         //TODO: Replace with Gaia-Specific Monsters. Perhaps underground-exclusive?
         undergroundMonsterList.add(new SpawnListEntry(EntitySpider.class, 10, 4, 4));
-        undergroundMonsterList.add(new SpawnListEntry(EntityZombie.class, 10, 4, 4));
+        undergroundMonsterList.add(new SpawnListEntry(GDShalurker.class, 10, 4, 4));
         undergroundMonsterList.add(new SpawnListEntry(EntitySkeleton.class, 10, 4, 4));
         undergroundMonsterList.add(new SpawnListEntry(EntitySlime.class, 10, 4, 4));
         undergroundMonsterList.add(new SpawnListEntry(EntityEnderman.class, 1, 1, 4)); //Keep this guy, though
