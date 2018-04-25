@@ -194,7 +194,7 @@ public class GDGenCaves extends MapGenCaves {
         @Override
         protected void recursiveGenerate(World par1World, int genX, int genZ, int centerX, int centerZ, ChunkPrimer blockStorage) {
         int numberOfCaves = this.rand.nextInt(this.rand.nextInt(this.rand.nextInt(40) + 1) + 1);
-        boolean isHighlands = par1World.getBiome(new BlockPos(genX * 16, 0, genZ * 16)) instanceof GDVolcanicLands;
+        boolean isVolcanic = par1World.getBiome(new BlockPos(genX * 16, 0, genZ * 16)) instanceof GDVolcanicLands;
 
         if (this.rand.nextInt(15) != 0) {
             numberOfCaves = 0;
@@ -207,7 +207,7 @@ public class GDGenCaves extends MapGenCaves {
             int numberOfNormalNodes = 1;
 
             if (this.rand.nextInt(4) == 0) {
-                this.generateLargeCaveNode(this.rand.nextLong(), centerX, centerZ, blockStorage, randX, randY, randZ, isHighlands);
+                this.generateLargeCaveNode(this.rand.nextLong(), centerX, centerZ, blockStorage, randX, randY, randZ, isVolcanic);
                 numberOfNormalNodes += this.rand.nextInt(4);
             }
 
@@ -220,7 +220,7 @@ public class GDGenCaves extends MapGenCaves {
                     caveSize *= this.rand.nextFloat() * this.rand.nextFloat() * 3.0F + 1.0F;
                 }
 
-                this.generateCaveNode(this.rand.nextLong(), centerX, centerZ, blockStorage, randX, randY, randZ, caveSize, randPi, randEight, 0, 0, 1.0D, isHighlands);
+                this.generateCaveNode(this.rand.nextLong(), centerX, centerZ, blockStorage, randX, randY, randZ, caveSize, randPi, randEight, 0, 0, 1.0D, isVolcanic);
             }
         }
     }
@@ -230,20 +230,3 @@ public class GDGenCaves extends MapGenCaves {
         return state.getBlock() == GDFluids.mineralWaterBlock || state.getBlock() == GDFluids.mineralWaterBlock;
     }
 }
-/*
-    private boolean isGaiaStone(IBlockState state) {
-        return state.getBlock() == GDBlocks.gaiaStone;
-    }
-
-    private boolean isGaiaTerrain(Block block) {
-        return block instanceof GDGlitterGrass ||
-                block == GDBlocks.corruptSoil ||
-                block == GDBlocks.corruptGrass ||
-                block == GDBlocks.heavySoil;
-    }
-
-    @Override
-    protected boolean canReplaceBlock(IBlockState state1, IBlockState state2) {
-        return isGaiaStone(state1) || (isGaiaTerrain(state1.getBlock()) || super.canReplaceBlock(state1, state2));
-    }
-    */

@@ -180,9 +180,4 @@ public class ModelBlueHowliteWolf extends ModelBase {
         this.backUpperLeg1.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F + (float) Math.PI) * 0.5F * limbSwingAmount + -0.7285004297824331F;
         this.backUpperLeg2.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F) * 0.5F * limbSwingAmount + -0.7285004297824331F;
     }
-/*
-    @Override
-    public void setLivingAnimations(EntityLivingBase entitylivingbaseIn, float limbSwing, float limbSwingAmount, float partialTickTime) {
-    }
-*/
 }
