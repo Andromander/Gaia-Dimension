@@ -24,6 +24,7 @@ public final class GDBiomesRegister {
                         new BiomeProperties("Pink Agate Forest")
                                 .setTemperature(0.66F)
                                 .setRainfall(0)
+                                .setRainDisabled()
                                 .setHeightVariation(0.1F)
                 ),
                 Type.FOREST
@@ -33,9 +34,10 @@ public final class GDBiomesRegister {
                 "blue_agate_taiga",
                 new GDBlueAgateTaiga(
                         new BiomeProperties("Blue Agate Taiga")
-                        .setTemperature(0.4F)
-                        .setRainfall(0)
-                        .setHeightVariation(0.2F)
+                                .setTemperature(0.4F)
+                                .setRainfall(0)
+                                .setRainDisabled()
+                                .setHeightVariation(0.2F)
                 ),
                 Type.CONIFEROUS
         );
@@ -44,9 +46,10 @@ public final class GDBiomesRegister {
                 "green_agate_jungle",
                 new GDGreenAgateJungle(
                         new BiomeProperties("Green Agate Jungle")
-                        .setTemperature(0.75F)
-                        .setRainfall(0)
-                        .setHeightVariation(0.2F)
+                                .setTemperature(0.75F)
+                                .setRainfall(0)
+                                .setRainDisabled()
+                                .setHeightVariation(0.2F)
                 ),
                 Type.JUNGLE
         );
@@ -54,10 +57,11 @@ public final class GDBiomesRegister {
         biomes.register("purple_agate_swamp",
                 new GDPurpleAgateSwamp(
                         new BiomeProperties("Purple Agate Swamp")
-                        .setTemperature(0.7F)
-                        .setRainDisabled()
-                        .setBaseHeight(-0.05F)
-                        .setHeightVariation(0.05F)
+                                .setTemperature(0.7F)
+                                .setRainfall(0)
+                                .setRainDisabled()
+                                .setBaseHeight(-0.05F)
+                                .setHeightVariation(0.05F)
                 ),
                 Type.SWAMP, Type.MAGICAL
         );
@@ -66,9 +70,10 @@ public final class GDBiomesRegister {
                 "fossil_woodland",
                 new GDFossilWoodland(
                         new BiomeProperties("Fossil Woodland")
-                        .setTemperature(0.66F)
-                        .setRainfall(0)
-                        .setHeightVariation(0.05F)
+                                .setTemperature(0.66F)
+                                .setRainfall(0)
+                                .setRainDisabled()
+                                .setHeightVariation(0.05F)
                 ),
                 Type.SAVANNA
         );
@@ -77,10 +82,10 @@ public final class GDBiomesRegister {
                 "mutant_agate_wildwood",
                 new GDMutantAgateWildwood(
                         new BiomeProperties("Mutant Agate Wildwood")
-                        .setTemperature(0.66F)
-                        .setRainDisabled()
-                        .setBaseHeight(0.1F)
-                        .setHeightVariation(0.1F)
+                                .setTemperature(0.66F)
+                                .setRainDisabled()
+                                .setBaseHeight(0.1F)
+                                .setHeightVariation(0.1F)
                 ),
                 Type.FOREST, Type.LUSH, Type.MAGICAL
         );
@@ -89,10 +94,11 @@ public final class GDBiomesRegister {
                 "crystal_plains",
                 new GDCrystalPlains(
                         new BiomeProperties("Crystal Plains")
-                        .setTemperature(0.66F)
-                        .setRainDisabled()
-                        .setBaseHeight(0.125F)
-                        .setHeightVariation(0.05F)
+                                .setTemperature(0.66F)
+                                .setRainfall(0)
+                                .setRainDisabled()
+                                .setBaseHeight(0.125F)
+                                .setHeightVariation(0.05F)
                 ),
                 Type.PLAINS
         );
@@ -101,10 +107,10 @@ public final class GDBiomesRegister {
                 "salt_dunes",
                 new GDSaltDunes(
                         new BiomeProperties("Salt Dunes")
-                        .setTemperature(0.8F)
-                        .setRainDisabled()
-                        .setBaseHeight(0.2F)
-                        .setHeightVariation(0.05F)
+                                .setTemperature(0.8F)
+                                .setRainDisabled()
+                                .setBaseHeight(0.2F)
+                                .setHeightVariation(0.05F)
                 ),
                 Type.DRY, Type.HOT, Type.SANDY, Type.SPARSE
         );
@@ -113,10 +119,11 @@ public final class GDBiomesRegister {
                 "volcaniclands",
                 new GDVolcanicLands(
                         new BiomeProperties("Volcaniclands")
-                        .setTemperature(0.9F)
-                        .setRainDisabled()
-                        .setBaseHeight(1F)
-                        .setHeightVariation(0.7F)
+                                .setTemperature(0.9F)
+                                .setRainfall(0)
+                                .setRainDisabled()
+                                .setBaseHeight(1F)
+                                .setHeightVariation(0.7F)
                 ),
                 Type.HOT, Type.SPARSE, Type.DRY, Type.MOUNTAIN
         );
@@ -125,10 +132,11 @@ public final class GDBiomesRegister {
                 "static_wasteland",
                 new GDStaticWasteland(
                         new BiomeProperties("Static Wasteland")
-                        .setTemperature(0.4F)
-                        .setRainDisabled()
-                        .setBaseHeight(3F)
-                        .setHeightVariation(0.05F)
+                                .setTemperature(0.4F)
+                                .setRainfall(0)
+                                .setRainDisabled()
+                                .setBaseHeight(3F)
+                                .setHeightVariation(0.05F)
                 ),
                 Type.WASTELAND, Type.MOUNTAIN
         );
@@ -137,10 +145,11 @@ public final class GDBiomesRegister {
                 "goldstonelands",
                 new GDGoldstoneLands(
                         new BiomeProperties("Goldstonelands")
-                        .setTemperature(0.55F)
-                        .setRainDisabled()
-                        .setBaseHeight(0.125F)
-                        .setHeightVariation(0.05F)
+                                .setTemperature(0.55F)
+                                .setRainfall(0)
+                                .setRainDisabled()
+                                .setBaseHeight(0.125F)
+                                .setHeightVariation(0.05F)
                 ),
                 Type.WASTELAND, Type.PLAINS
         );
@@ -149,10 +158,11 @@ public final class GDBiomesRegister {
                 "mineral_reservoir",
                 new GDMineralReservoir(
                         new BiomeProperties("Mineral Reservoir")
-                        .setTemperature(0.66F)
-                        .setRainfall(0)
-                        .setBaseHeight(-1.8F)
-                        .setHeightVariation(0.1F)
+                                .setTemperature(0.66F)
+                                .setRainfall(0)
+                                .setRainDisabled()
+                                .setBaseHeight(-1.8F)
+                                .setHeightVariation(0.1F)
                 ),
                 Type.OCEAN
         );
@@ -161,10 +171,11 @@ public final class GDBiomesRegister {
                 "mineral_river",
                 new GDMineralRiver(
                         new BiomeProperties("Mineral River")
-                        .setTemperature(0.5F)
-                        .setRainfall(0)
-                        .setBaseHeight(-0.5F)
-                        .setHeightVariation(0)
+                                .setTemperature(0.5F)
+                                .setRainfall(0)
+                                .setRainDisabled()
+                                .setBaseHeight(-0.5F)
+                                .setHeightVariation(0)
                 ),
                 Type.RIVER
         );
