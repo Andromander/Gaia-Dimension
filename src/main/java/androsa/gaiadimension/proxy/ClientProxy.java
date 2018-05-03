@@ -11,6 +11,7 @@ import androsa.gaiadimension.entity.boss.GDMalachiteGuard;
 import androsa.gaiadimension.model.*;
 import androsa.gaiadimension.renderer.*;
 import net.minecraft.client.gui.inventory.GuiContainer;
+import net.minecraft.client.model.ModelSlime;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
@@ -51,6 +52,7 @@ public class ClientProxy extends CommonProxy {
         RenderingRegistry.registerEntityRenderingHandler(GDSpellElement.class, m -> new EntityRenderSpellElement(m, new ModelSpellElement(), 0.0F));
         RenderingRegistry.registerEntityRenderingHandler(GDRockyLuggeroth.class, m -> new EntityRenderRockyLuggeroth(m, new ModelRockyLuggeroth(), 1.0F));
         RenderingRegistry.registerEntityRenderingHandler(GDShalurker.class, m -> new EntityRenderShalurker(m, new ModelShalurker(), 1.0F));
+        RenderingRegistry.registerEntityRenderingHandler(GDMuckling.class, m -> new EntityRenderMuckling(m, 0.625F));
 
         RenderingRegistry.registerEntityRenderingHandler(GDBlueHowliteWolf.class, m -> new EntityRenderBlueHowliteWolf(m, new ModelBlueHowliteWolf(), 1.2F));
         RenderingRegistry.registerEntityRenderingHandler(GDMalachiteGuard.class, m -> new EntityRenderMalachiteGuard(m, new ModelMalachiteGuard(), 1.0F));
