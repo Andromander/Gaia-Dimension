@@ -13,6 +13,7 @@ public class GaiaEntityNames {
     public static final ResourceLocation ROCKY_LUGGEROTH = prefix("rocky_luggeroth");
     public static final ResourceLocation SHALURKER = prefix("shalurker");
     public static final ResourceLocation MUCKLING = prefix("muckling");
+    public static final ResourceLocation MARKUZAR_PLANT = prefix("markuzar_plant");
 
     public static final ResourceLocation BLUE_HOWLITE_WOLF = prefix("blue_howlite_wolf");
     public static final ResourceLocation MALACHITE_GUARD = prefix("malachite_guard");

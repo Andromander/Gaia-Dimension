@@ -2,6 +2,7 @@ package androsa.gaiadimension.biomes;
 
 import androsa.gaiadimension.block.GDCrystalBloom;
 import androsa.gaiadimension.block.GDCrystalGrowth;
+import androsa.gaiadimension.entity.GDMarkuzarPlant;
 import androsa.gaiadimension.registry.GDBlocks;
 import androsa.gaiadimension.world.GDGenCrystalBloom;
 import androsa.gaiadimension.world.GDGenCrystalGrowth;
@@ -25,6 +26,7 @@ public class GDGreenAgateJungle extends GDBiomeBase {
         super(props);
 
         spawnableCreatureList.add(new SpawnListEntry(androsa.gaiadimension.entity.GDNutrientGrowthSapper.class, 9, 3, 5));
+        spawnableCreatureList.add(new SpawnListEntry(androsa.gaiadimension.entity.GDMarkuzarPlant.class, 5, 1, 3));
 
         GaiaGenGreenTrees = new GDGenGreenAgateTree(false);
 

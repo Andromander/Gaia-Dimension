@@ -146,6 +146,7 @@ public class GaiaDimension {
         GaiaEntities.registerEntity(GaiaEntityNames.ROCKY_LUGGEROTH, androsa.gaiadimension.entity.GDRockyLuggeroth.class, id++, 0x00FF00, 0xFF00FF);
         GaiaEntities.registerEntity(GaiaEntityNames.SHALURKER, androsa.gaiadimension.entity.GDShalurker.class, id++, 0xF0F0F0, 0x0F0F0F);
         GaiaEntities.registerEntity(GaiaEntityNames.MUCKLING, androsa.gaiadimension.entity.GDMuckling.class, id++, 0xF00000, 0x00000F);
+        GaiaEntities.registerEntity(GaiaEntityNames.MARKUZAR_PLANT, androsa.gaiadimension.entity.GDMarkuzarPlant.class, id++, 0x00FF00, 0x800080);
 
         GaiaEntities.registerEntity(GaiaEntityNames.BLUE_HOWLITE_WOLF, androsa.gaiadimension.entity.boss.GDBlueHowliteWolf.class, id++, 0x00FF00, 0xFF00FF);
         GaiaEntities.registerEntity(GaiaEntityNames.MALACHITE_GUARD, androsa.gaiadimension.entity.boss.GDMalachiteGuard.class, id++, 0x0000FF, 0x00FF00);
