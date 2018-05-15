@@ -158,19 +158,19 @@ public class WorldProviderGaia extends WorldProviderSurface {
 
         if (GDConfig.skyAndFog.enableSkyFog == true) {
             if (biome instanceof GDBlueAgateTaiga) {
-                targetSkyColor = ((GDBlueAgateTaiga) biome).getSkyRGB();
+                targetSkyColor = ((GDBlueAgateTaiga) biome)     .getSkyRGB();
             } else if (biome instanceof GDGreenAgateJungle) {
-                targetSkyColor = ((GDGreenAgateJungle) biome).getSkyRGB();
+                targetSkyColor = ((GDGreenAgateJungle) biome)   .getSkyRGB();
             } else if (biome instanceof GDPurpleAgateSwamp) {
-                targetSkyColor = ((GDPurpleAgateSwamp) biome).getSkyRGB();
+                targetSkyColor = ((GDPurpleAgateSwamp) biome)   .getSkyRGB();
             } else if (biome instanceof GDVolcanicLands) {
-                targetSkyColor = ((GDVolcanicLands) biome).getSkyRGB();
+                targetSkyColor = ((GDVolcanicLands) biome)      .getSkyRGB();
             } else if (biome instanceof GDGoldstoneLands) {
-                targetSkyColor = ((GDGoldstoneLands) biome).getSkyRGB();
+                targetSkyColor = ((GDGoldstoneLands) biome)     .getSkyRGB();
             } else if (biome instanceof GDStaticWasteland) {
-                targetSkyColor = ((GDStaticWasteland) biome).getSkyRGB();
+                targetSkyColor = ((GDStaticWasteland) biome)    .getSkyRGB();
             } else if (biome instanceof GDSaltDunes) {
-                targetSkyColor = ((GDSaltDunes) biome).getSkyRGB();
+                targetSkyColor = ((GDSaltDunes) biome)          .getSkyRGB();
             } else if (biome instanceof GDMutantAgateWildwood) {
                 targetSkyColor = ((GDMutantAgateWildwood) biome).getSkyRGB();
             }

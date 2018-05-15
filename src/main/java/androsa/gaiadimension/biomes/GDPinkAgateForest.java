@@ -22,7 +22,7 @@ public class GDPinkAgateForest extends GDBiomeBase {
     private WorldGenTrees GaiaGenPinkTrees;
     private short[] skyColorRGB = new short[] { 198, 157, 88 };
 
-    public GDPinkAgateForest(Biome.BiomeProperties props) {
+    public GDPinkAgateForest(BiomeProperties props) {
         super(props);
 
         spawnableCreatureList.add(new SpawnListEntry(androsa.gaiadimension.entity.GDCommonGrowthSapper.class, 9, 3, 5));
