@@ -58,6 +58,8 @@ public class GDItems {
     public static final Item cloudyShard;
     @ObjectHolder("goldstone_residue")
     public static final Item goldstoneResidue;
+    //@ObjectHolder("scaynyx_ingot")
+    //public static final Item scaynyxIngot;
 
     @ObjectHolder("pink_geode")
     public static final Item pinkGeode;
@@ -255,6 +257,7 @@ public class GDItems {
         fineDust = null;
         cloudyShard = null;
         goldstoneResidue = null;
+        //scaynyxIngot = null;
 
         pinkGeode = null;
         blueGeode = null;

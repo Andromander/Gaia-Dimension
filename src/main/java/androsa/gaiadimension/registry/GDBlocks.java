@@ -143,6 +143,8 @@ public class GDBlocks {
     public static Block staticStone;
     @ObjectHolder("volcanic_rock")
     public static Block volcanicRock;
+    @ObjectHolder("searing_rock")
+    public static Block searingRock;
     @ObjectHolder("gaia_stone_bricks")
     public static Block gaiaStoneBricks;
     @ObjectHolder("reinforced_bricks")

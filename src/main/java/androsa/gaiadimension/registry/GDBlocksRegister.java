@@ -87,6 +87,7 @@ public final class GDBlocksRegister {
         blocks.register("wasteland_stone", (new GDWastelandStone()).setUnlocalizedName("wasteland_stone"));
         blocks.register("static_stone", (new GDStaticStone()).setUnlocalizedName("static_stone"));
         blocks.register("volcanic_rock", (new GDVolcanicRock()).setUnlocalizedName("volcanic_rock"));
+        blocks.register("searing_rock", (new GDSearingRock()).setUnlocalizedName("searing_rock"));
         blocks.register("gaia_stone_bricks", (new GDGaiaStoneBricks()).setUnlocalizedName("gaia_stone_bricks"));
         blocks.register("reinforced_bricks", (new GDReinforcedBricks()).setUnlocalizedName("reinforced_bricks"));
         blocks.register("malachite_bricks", (new GDMalachiteBricks()).setUnlocalizedName("malachite_bricks"));

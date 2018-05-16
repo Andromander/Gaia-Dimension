@@ -28,6 +28,7 @@ public class GDItemsRegister {
         items.register("fine_dust", new GDItem().setUnlocalizedName("fine_dust"));
         items.register("cloudy_shard", new GDItem().setUnlocalizedName("cloudy_shard"));
         items.register("goldstone_residue", new GDItem().setUnlocalizedName("goldstone_residue"));
+        //items.register("scaynyx_ingot", new GDItem().setUnlocalizedName("scaynyx_ingot"));
 
         items.register("pink_geode", new GDGeode().setUnlocalizedName("pink_geode"));
         items.register("blue_geode", new GDGeode().setUnlocalizedName("blue_geode"));
@@ -187,6 +188,7 @@ public class GDItemsRegister {
         items.registerBlock(GDBlocks.wastelandStone);
         items.registerBlock(GDBlocks.staticStone);
         items.registerBlock(GDBlocks.volcanicRock);
+        items.registerBlock(GDBlocks.searingRock);
         items.registerSubItemBlock(GDBlocks.gaiaStoneBricks);
         items.registerBlock(GDBlocks.reinforcedBricks);
         items.registerSubItemBlock(GDBlocks.malachiteBricks);
