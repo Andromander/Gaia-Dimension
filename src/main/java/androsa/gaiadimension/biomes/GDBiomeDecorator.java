@@ -46,7 +46,6 @@ public class GDBiomeDecorator extends BiomeDecorator {
             int Ycoord = rand.nextInt(100);
             new WorldGenMinable(GDBlocks.sugiliteOre.getDefaultState(), chunkProviderSettings.coalSize, input -> input == GDBlocks.gaiaStone.getDefaultState()).generate(world, rand, new BlockPos(Xcoord, Ycoord, Zcoord));
         }
-
         //Hematite Ore gen
         for (int i = 0; i < 8; i++) {
             int Xcoord = pos.getX() + rand.nextInt(16);
@@ -132,6 +131,15 @@ public class GDBiomeDecorator extends BiomeDecorator {
                 int Zcoord = pos.getZ() + rand.nextInt(16);
                 int Ycoord = rand.nextInt(100);
                 new WorldGenMinable(GDBlocks.volcanicRock.getDefaultState(), chunkProviderSettings.dirtSize, input -> input == GDBlocks.gaiaStone.getDefaultState()).generate(world, rand, new BlockPos(Xcoord, Ycoord, Zcoord));
+            }
+        }
+        //Searing Rock gen
+        if (biome instanceof GDVolcanicLands) {
+            for (int i = 0; i < 9; i++) {
+                int Xcoord = pos.getX() + rand.nextInt(16);
+                int Zcoord = pos.getZ() + rand.nextInt(16);
+                int Ycoord = rand.nextInt(100);
+                new WorldGenMinable(GDBlocks.searingRock.getDefaultState(), chunkProviderSettings.dirtSize, input -> input == GDBlocks.gaiaStone.getDefaultState()).generate(world, rand, new BlockPos(Xcoord, Ycoord, Zcoord));
             }
         }
         //Wasteland Stone gen
