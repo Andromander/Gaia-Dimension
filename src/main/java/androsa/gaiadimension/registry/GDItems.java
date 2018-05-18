@@ -77,6 +77,10 @@ public class GDItems {
     public static final Item greenGeodeSlice;
     @ObjectHolder("purple_geode_slice")
     public static final Item purpleGeodeSlice;
+    @ObjectHolder("lurmorus_meat")
+    public static final Item lurmorusMeat;
+    @ObjectHolder("lurmorus_steak")
+    public static final Item lurmorusSteak;
 
     @ObjectHolder("hematite_powder")
     public static final Item hematitePowder;
@@ -267,6 +271,8 @@ public class GDItems {
         blueGeodeSlice = null;
         greenGeodeSlice = null;
         purpleGeodeSlice = null;
+        lurmorusMeat = null;
+        lurmorusSteak = null;
 
         hematitePowder = null;
         pyritePowder = null;

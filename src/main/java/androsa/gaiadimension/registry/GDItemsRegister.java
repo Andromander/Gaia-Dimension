@@ -38,6 +38,9 @@ public class GDItemsRegister {
         items.register("blue_geode_slice", new GDFood(4, 0.4F, false).setUnlocalizedName("blue_geode_slice"));
         items.register("green_geode_slice", new GDFood(5, 0.3F, false).setUnlocalizedName("green_geode_slice"));
         items.register("purple_geode_slice", new GDFood(6, 0.2F, false).setUnlocalizedName("purple_geode_slice"));
+        items.register("lurmorus_meat", new GDFood(4, 0.4F, false).setUnlocalizedName("lurmorus_meat"));
+        items.register("lurmorus_steak", new GDFood(9, 0.9F, false).setUnlocalizedName("lurmorus_steak"));
+        //items.register("markuzar_mint", new GDFood(1, 0.2F, false).setUnlocalizedName("markuzar_mint"));
 
         items.register("hematite_powder", new GDGroundGem().setUnlocalizedName("hematite_powder"));
         items.register("pyrite_powder", new GDGroundGem().setUnlocalizedName("pyrite_powder"));

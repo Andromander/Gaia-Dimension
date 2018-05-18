@@ -14,6 +14,7 @@ public class RecipeHandler {
     private static final List<IFuelHandler> glitterFuelHandlers = Lists.newArrayList();
     private static final List<IFuelHandler> purifierFuelHandlers = Lists.newArrayList();
 
+    //===GLITTER FURNACE===//
     public static void addGlitterRefactoring(Block input, ItemStack output1, ItemStack output2, float xp) {
         GlitterFurnaceRecipes.instance().glittering(input, output1, output2, xp);
     }
@@ -26,6 +27,7 @@ public class RecipeHandler {
         GlitterFurnaceRecipes.instance().glittering(input, output1, output2, xp);
     }
 
+    //===PURIFIER===//
     public static void addPurifying(Block input, ItemStack output1, ItemStack output2, float xp) {
         PurifierRecipes.instance().purifying(input, output1, output2, xp);
     }
