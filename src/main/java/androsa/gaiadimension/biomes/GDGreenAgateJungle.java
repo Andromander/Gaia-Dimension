@@ -32,6 +32,8 @@ public class GDGreenAgateJungle extends GDBiomeBase {
 
         topBlock = GDBlocks.verdantGrass.getDefaultState();
         fillerBlock = GDBlocks.heavySoil.getDefaultState();
+
+        getGDBiomeDecorator().grassPerChunk = 4;
     }
 
     @SideOnly(Side.CLIENT)
