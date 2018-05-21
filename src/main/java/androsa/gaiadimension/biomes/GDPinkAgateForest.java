@@ -26,6 +26,7 @@ public class GDPinkAgateForest extends GDBiomeBase {
         super(props);
 
         spawnableCreatureList.add(new SpawnListEntry(androsa.gaiadimension.entity.GDCommonGrowthSapper.class, 9, 3, 5));
+        spawnableCreatureList.add(new SpawnListEntry(androsa.gaiadimension.entity.GDAgateGolem.class, 15, 1, 2));
 
         GaiaGenPinkTrees = new GDGenPinkAgateTree(false);
 
