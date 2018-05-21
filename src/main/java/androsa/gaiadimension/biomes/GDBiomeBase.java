@@ -34,11 +34,12 @@ public class GDBiomeBase extends Biome {
         undergroundMonsterList = new ArrayList<SpawnListEntry>();
 
         //TODO: Replace with Gaia-Specific Monsters. Perhaps underground-exclusive?
-        undergroundMonsterList.add(new SpawnListEntry(EntitySpider.class, 10, 4, 4));
-        undergroundMonsterList.add(new SpawnListEntry(GDShalurker.class, 10, 4, 4));
-        undergroundMonsterList.add(new SpawnListEntry(EntitySkeleton.class, 10, 4, 4));
-        undergroundMonsterList.add(new SpawnListEntry(EntitySlime.class, 10, 4, 4));
-        undergroundMonsterList.add(new SpawnListEntry(EntityEnderman.class, 1, 1, 4)); //Keep this guy, though
+        //Well, they have to be underground exclusive, it's always day time
+        undergroundMonsterList.add(new SpawnListEntry(EntitySpider.class, 20, 2, 4));
+        undergroundMonsterList.add(new SpawnListEntry(GDShalurker.class, 20, 2, 4));
+        undergroundMonsterList.add(new SpawnListEntry(EntitySkeleton.class, 20, 2, 4));
+        undergroundMonsterList.add(new SpawnListEntry(EntitySlime.class, 20, 2, 4));
+        undergroundMonsterList.add(new SpawnListEntry(EntityEnderman.class, 10, 1, 4)); //Keep this guy, though
 
         getGDBiomeDecorator().setTreesPerChunk(5);
         getGDBiomeDecorator().setGrassPerChunk(2);
