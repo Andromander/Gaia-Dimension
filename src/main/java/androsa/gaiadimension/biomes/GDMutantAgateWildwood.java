@@ -22,10 +22,11 @@ public class GDMutantAgateWildwood extends GDBiomeBase {
     public GDMutantAgateWildwood(BiomeProperties props) {
         super(props);
 
-        spawnableCreatureList.add(new SpawnListEntry(androsa.gaiadimension.entity.GDCommonGrowthSapper.class, 5, 3, 5));
-        spawnableCreatureList.add(new SpawnListEntry(androsa.gaiadimension.entity.GDChilledGrowthSapper.class, 5, 3, 5));
-        spawnableCreatureList.add(new SpawnListEntry(androsa.gaiadimension.entity.GDNutrientGrowthSapper.class, 5, 3, 5));
-        spawnableCreatureList.add(new SpawnListEntry(androsa.gaiadimension.entity.GDMystifiedGrowthSapper.class, 5, 3, 5));
+        spawnableCreatureList.add(new SpawnListEntry(androsa.gaiadimension.entity.GDCommonGrowthSapper.class, 10, 3, 5));
+        spawnableCreatureList.add(new SpawnListEntry(androsa.gaiadimension.entity.GDChilledGrowthSapper.class, 10, 3, 5));
+        spawnableCreatureList.add(new SpawnListEntry(androsa.gaiadimension.entity.GDNutrientGrowthSapper.class, 10, 3, 5));
+        spawnableCreatureList.add(new SpawnListEntry(androsa.gaiadimension.entity.GDMystifiedGrowthSapper.class, 10, 3, 5));
+        spawnableCreatureList.add(new SpawnListEntry(androsa.gaiadimension.entity.GDMutantGrowthExtractor.class, 5, 2, 4));
 
         topBlock = GDBlocks.mutantGrass.getDefaultState();
         fillerBlock = GDBlocks.heavySoil.getDefaultState();
