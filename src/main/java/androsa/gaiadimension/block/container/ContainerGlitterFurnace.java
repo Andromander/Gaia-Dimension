@@ -52,10 +52,8 @@ public class ContainerGlitterFurnace extends Container {
 
             if (lastCookTime != tileGlitterFurnace.glitterFormTime)
                 icrafting.sendWindowProperty(this, 0, tileGlitterFurnace.glitterFormTime);
-
             if (lastBurnTime != tileGlitterFurnace.glitterTimer)
                 icrafting.sendWindowProperty(this, 1, tileGlitterFurnace.glitterTimer);
-
             if (lastItemBurnTime != tileGlitterFurnace.currentItemRefactorTime)
                 icrafting.sendWindowProperty(this, 2, tileGlitterFurnace.currentItemRefactorTime);
             if (lastCookTime2 != tileGlitterFurnace.glitterFormTime)

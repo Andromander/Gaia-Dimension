@@ -2,7 +2,10 @@ package androsa.gaiadimension.biomes;
 
 import androsa.gaiadimension.block.GDCrystalGrowth;
 import androsa.gaiadimension.registry.GDBlocks;
-import androsa.gaiadimension.world.*;
+import androsa.gaiadimension.world.gen.GDGenBurntAgateTree;
+import androsa.gaiadimension.world.gen.GDGenCrystalGrowth;
+import androsa.gaiadimension.world.gen.GDGenFieryAgateTree;
+import androsa.gaiadimension.world.gen.GDGenNoTrees;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;

@@ -3,7 +3,7 @@ package androsa.gaiadimension.biomes;
 import androsa.gaiadimension.block.GDCrystalBloom;
 import androsa.gaiadimension.block.GDCrystalGrowth;
 import androsa.gaiadimension.registry.GDBlocks;
-import androsa.gaiadimension.world.*;
+import androsa.gaiadimension.world.gen.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import net.minecraft.world.gen.feature.WorldGenerator;

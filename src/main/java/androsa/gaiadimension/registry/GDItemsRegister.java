@@ -2,6 +2,8 @@ package androsa.gaiadimension.registry;
 
 import androsa.gaiadimension.GaiaDimension;
 import androsa.gaiadimension.item.*;
+import androsa.gaiadimension.item.armor.*;
+import androsa.gaiadimension.item.tools.*;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;

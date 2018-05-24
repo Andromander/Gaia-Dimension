@@ -1,10 +1,12 @@
 package androsa.gaiadimension;
 
 import androsa.gaiadimension.entity.GaiaEntities;
+import androsa.gaiadimension.entity.GaiaEntityNames;
 import androsa.gaiadimension.proxy.CommonProxy;
 import androsa.gaiadimension.recipe.GlitterFuelHandler;
 import androsa.gaiadimension.recipe.PurifierFuelHandler;
 import androsa.gaiadimension.registry.GDBlocks;
+import androsa.gaiadimension.registry.GDConfig;
 import androsa.gaiadimension.registry.GDFluids;
 import androsa.gaiadimension.registry.GDItems;
 import androsa.gaiadimension.world.WorldProviderGaia;
@@ -13,7 +15,6 @@ import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialLiquid;
 import net.minecraft.entity.EnumCreatureAttribute;
-import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.DimensionType;
 import net.minecraftforge.common.DimensionManager;

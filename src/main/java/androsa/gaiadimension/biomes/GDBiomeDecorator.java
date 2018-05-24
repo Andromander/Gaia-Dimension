@@ -2,8 +2,8 @@ package androsa.gaiadimension.biomes;
 
 import androsa.gaiadimension.registry.GDBlocks;
 import androsa.gaiadimension.registry.GDFluids;
-import androsa.gaiadimension.world.layer.GDGenLavaLake;
-import androsa.gaiadimension.world.layer.GDGenStaticPatch;
+import androsa.gaiadimension.world.gen.GDGenLavaLake;
+import androsa.gaiadimension.world.gen.GDGenStaticPatch;
 import mcp.MethodsReturnNonnullByDefault;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;

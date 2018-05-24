@@ -1,9 +1,8 @@
 package androsa.gaiadimension.world;
 
-import androsa.gaiadimension.GDConfig;
+import androsa.gaiadimension.registry.GDConfig;
 import androsa.gaiadimension.GaiaDimension;
 import androsa.gaiadimension.biomes.*;
-import androsa.gaiadimension.block.GDStaticStone;
 import androsa.gaiadimension.world.layer.GDBiomeProvider;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
@@ -14,7 +13,6 @@ import net.minecraft.world.WorldProviderSurface;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.gen.IChunkGenerator;
-import net.minecraftforge.client.IRenderHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 

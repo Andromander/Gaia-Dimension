@@ -2,12 +2,11 @@ package androsa.gaiadimension.biomes;
 
 import androsa.gaiadimension.block.GDCrystalBloom;
 import androsa.gaiadimension.block.GDCrystalGrowth;
-import androsa.gaiadimension.entity.GDMarkuzarPlant;
 import androsa.gaiadimension.registry.GDBlocks;
-import androsa.gaiadimension.world.GDGenCrystalBloom;
-import androsa.gaiadimension.world.GDGenCrystalGrowth;
-import androsa.gaiadimension.world.GDGenGreenAgateTree;
-import androsa.gaiadimension.world.GDGenNoTrees;
+import androsa.gaiadimension.world.gen.GDGenCrystalBloom;
+import androsa.gaiadimension.world.gen.GDGenCrystalGrowth;
+import androsa.gaiadimension.world.gen.GDGenGreenAgateTree;
+import androsa.gaiadimension.world.gen.GDGenNoTrees;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
