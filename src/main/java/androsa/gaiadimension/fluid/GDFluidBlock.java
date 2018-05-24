@@ -16,6 +16,7 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.fluids.BlockFluidBase;
 import net.minecraftforge.fluids.BlockFluidClassic;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fml.relauncher.Side;
@@ -30,6 +31,7 @@ public class GDFluidBlock extends BlockFluidClassic implements SuperRegistry {
     public GDFluidBlock(CreativeTabs tab, Fluid fluid, Material material, String name) {
         super(fluid, material);
         this.name = name;
+        setLightOpacity(3);
         setUnlocalizedName(name);
         setRegistryName(name);
         setCreativeTab(tab);
@@ -50,12 +52,6 @@ public class GDFluidBlock extends BlockFluidClassic implements SuperRegistry {
         return state.getMaterial() == this.blockMaterial ? ((Integer)state.getValue(LEVEL)).intValue() : -1;
     }
 
-    protected int getRenderedDepth(IBlockState state)
-    {
-        int i = this.getDepth(state);
-        return i >= 8 ? 0 : i;
-    }
-
     @SideOnly(Side.CLIENT)
     public int getPackedLightmapCoords(IBlockState state, IBlockAccess source, BlockPos pos)
     {
@@ -66,6 +62,15 @@ public class GDFluidBlock extends BlockFluidClassic implements SuperRegistry {
         int i1 = i >> 16 & 255;
         int j1 = j >> 16 & 255;
         return (k > l ? k : l) | (i1 > j1 ? i1 : j1) << 16;
+    }
+
+    @Override
+    public BlockFluidBase setQuantaPerBlock(int quantaPerBlock)
+    {
+        if (quantaPerBlock > 16 || quantaPerBlock < 1) quantaPerBlock = 8;
+        this.quantaPerBlock = quantaPerBlock;
+        this.quantaPerBlockFloat = quantaPerBlock;
+        return this;
     }
 
     public String getModelDir() {
