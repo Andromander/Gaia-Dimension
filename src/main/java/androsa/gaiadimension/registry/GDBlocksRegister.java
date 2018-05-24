@@ -4,7 +4,6 @@ import androsa.gaiadimension.GaiaDimension;
 import androsa.gaiadimension.block.*;
 import androsa.gaiadimension.block.blocksgrass.*;
 import androsa.gaiadimension.block.blocksore.*;
-import androsa.gaiadimension.block.tileentity.TileEntityGaiaStoneFurnace;
 import androsa.gaiadimension.block.tileentity.TileEntityGlitterFurnace;
 import androsa.gaiadimension.block.tileentity.TileEntityPurifier;
 import net.minecraft.block.Block;
@@ -132,7 +131,7 @@ public final class GDBlocksRegister {
         blocks.register("labradorite_ore", (new GDOreLabradorite()).setUnlocalizedName("labradorite_ore"));
         blocks.register("moonstone_ore", (new GDOreMoonstone()).setUnlocalizedName("moonstone_ore"));
         blocks.register("cinnabar_ore", (new GDOreCinnabar()).setUnlocalizedName("cinnabar_ore"));
-
+        
         GameRegistry.registerTileEntity(TileEntityGlitterFurnace.class, "tileEntityGlitterFurnace");
         GameRegistry.registerTileEntity(TileEntityPurifier.class, "tileEntityPurifier");
     }
