@@ -35,7 +35,7 @@ import java.util.List;
 @Mod(modid = GaiaDimension.MODID,
         name = "GaiaDimension",
         version = GaiaDimension.VERSION,
-        dependencies = "required-after:forge@[14.23.2.2611,)"
+        dependencies = "required-after:forge@[14.23.3.2655,)"
 )
 
 @SuppressWarnings("deprecated")
