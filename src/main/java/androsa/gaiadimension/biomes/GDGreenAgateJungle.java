@@ -8,6 +8,7 @@ import androsa.gaiadimension.world.GDGenCrystalBloom;
 import androsa.gaiadimension.world.GDGenCrystalGrowth;
 import androsa.gaiadimension.world.GDGenGreenAgateTree;
 import androsa.gaiadimension.world.GDGenNoTrees;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import net.minecraft.world.gen.feature.WorldGenTrees;
@@ -58,5 +59,17 @@ public class GDGreenAgateJungle extends GDBiomeBase {
         } else {
             return new GDGenCrystalGrowth(GDCrystalGrowth.CrystalGrowthVariant.GREEN);
         }
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public int getGrassColorAtPos(BlockPos pos) {
+        return 0x46D663;
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public int getFoliageColorAtPos(BlockPos pos) {
+        return 0x46D663;
     }
 }

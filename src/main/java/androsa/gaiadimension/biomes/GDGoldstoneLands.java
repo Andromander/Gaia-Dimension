@@ -7,6 +7,7 @@ import androsa.gaiadimension.world.GDGenCrystalBloom;
 import androsa.gaiadimension.world.GDGenCrystalGrowth;
 import androsa.gaiadimension.world.GDGenGoldstoneCorruptTree;
 import androsa.gaiadimension.world.GDGenNoTrees;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import net.minecraft.world.gen.feature.WorldGenTrees;
 import net.minecraft.world.gen.feature.WorldGenerator;
@@ -53,5 +54,17 @@ public class GDGoldstoneLands extends GDBiomeBase {
                 return new GDGenCrystalGrowth(GDCrystalGrowth.CrystalGrowthVariant.RED_GOLDSTONE);
             }
         }
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public int getGrassColorAtPos(BlockPos pos) {
+        return 0x160503;
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public int getFoliageColorAtPos(BlockPos pos) {
+        return 0x160503;
     }
 }

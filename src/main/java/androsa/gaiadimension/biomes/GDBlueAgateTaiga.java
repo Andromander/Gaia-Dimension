@@ -7,6 +7,7 @@ import androsa.gaiadimension.world.GDGenBlueAgateTree;
 import androsa.gaiadimension.world.GDGenCrystalBloom;
 import androsa.gaiadimension.world.GDGenCrystalGrowth;
 import androsa.gaiadimension.world.GDGenNoTrees;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraftforge.fml.relauncher.Side;
@@ -51,5 +52,17 @@ public class GDBlueAgateTaiga extends GDBiomeBase {
     @SideOnly(Side.CLIENT)
     public final short[] getSkyRGB() {
         return skyColorRGB;
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public int getGrassColorAtPos(BlockPos pos) {
+        return 0x73A3E2;
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public int getFoliageColorAtPos(BlockPos pos) {
+        return 0x73A3E2;
     }
 }

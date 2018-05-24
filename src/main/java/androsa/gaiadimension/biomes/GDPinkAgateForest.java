@@ -57,10 +57,4 @@ public class GDPinkAgateForest extends GDBiomeBase {
             return new GDGenCrystalGrowth(GDCrystalGrowth.CrystalGrowthVariant.PINK);
         }
     }
-
-    @Override
-    @SideOnly(Side.CLIENT)
-    public int getGrassColorAtPos(BlockPos pos) {
-        return 0xFF0000;
-    }
 }

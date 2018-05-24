@@ -7,6 +7,7 @@ import androsa.gaiadimension.world.GDGenCrystalBloom;
 import androsa.gaiadimension.world.GDGenCrystalGrowth;
 import androsa.gaiadimension.world.GDGenNoTrees;
 import androsa.gaiadimension.world.GDGenPurpleAgateTree;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import net.minecraft.world.gen.feature.WorldGenTrees;
 import net.minecraft.world.gen.feature.WorldGenerator;
@@ -58,5 +59,17 @@ public class GDPurpleAgateSwamp extends GDBiomeBase {
         } else {
             return new GDGenCrystalGrowth(GDCrystalGrowth.CrystalGrowthVariant.PURPLE);
         }
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public int getGrassColorAtPos(BlockPos pos) {
+        return 0xB974E8;
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public int getFoliageColorAtPos(BlockPos pos) {
+        return 0xB974E8;
     }
 }

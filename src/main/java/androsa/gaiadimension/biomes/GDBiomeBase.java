@@ -69,19 +69,13 @@ public class GDBiomeBase extends Biome {
     @Override
     @SideOnly(Side.CLIENT)
     public int getGrassColorAtPos(BlockPos pos) {
-        if (this.foliageColor < 0) {
-            return super.getGrassColorAtPos(pos);
-        }
-        return this.grassColor;
+        return 0xED7A9E;
     }
 
     @Override
     @SideOnly(Side.CLIENT)
     public int getFoliageColorAtPos(BlockPos pos) {
-        if (this.foliageColor < 0) {
-            return super.getGrassColorAtPos(pos);
-        }
-        return this.foliageColor;
+        return 0xED7A9E;
     }
 
     @Override
