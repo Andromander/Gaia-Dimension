@@ -15,7 +15,7 @@ import java.util.Random;
 
 public class GDCrystalPlains extends GDBiomeBase {
 
-    private WorldGenTrees GaiaGenPinkTrees;
+    private WorldGenAbstractTree GaiaGenPinkTrees;
 
     public GDCrystalPlains(BiomeProperties props) {
         super(props);

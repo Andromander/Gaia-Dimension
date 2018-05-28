@@ -33,6 +33,7 @@ public class GDBiomeDecorator extends BiomeDecorator {
     public float muckPoolChance = -100;
 
     @Override
+    @SuppressWarnings("deprecated")
     public void decorate(World world, Random rand, Biome biome, BlockPos pos) {
 
         super.decorate(world, rand, biome, pos);

@@ -17,8 +17,7 @@ import java.util.Random;
 
 public class GDPinkAgateForest extends GDBiomeBase {
 
-    private WorldGenTrees GaiaGenPinkTrees;
-    private short[] skyColorRGB = new short[] { 198, 157, 88 };
+    private WorldGenAbstractTree GaiaGenPinkTrees;
 
     public GDPinkAgateForest(BiomeProperties props) {
         super(props);
@@ -30,11 +29,6 @@ public class GDPinkAgateForest extends GDBiomeBase {
 
         topBlock = GDBlocks.glitterGrass.getDefaultState();
         fillerBlock = GDBlocks.heavySoil.getDefaultState();
-    }
-
-    @SideOnly(Side.CLIENT)
-    public final short[] getSkyRGB() {
-        return skyColorRGB;
     }
 
     @Override
