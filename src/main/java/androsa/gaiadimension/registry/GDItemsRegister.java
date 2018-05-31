@@ -136,6 +136,8 @@ public class GDItemsRegister {
         items.registerBlock(GDBlocks.goldFire);
         items.registerBlock(GDBlocks.pyriteTorch);
         items.registerBlock(GDBlocks.agateCraftingTable);
+        items.registerBlock(GDBlocks.gaiaStoneFurnaceIdle);
+        items.registerBlock(GDBlocks.gaiaStoneFurnaceActive); //Fallback
         items.registerBlock(GDBlocks.glitterFurnaceIdle);
         items.registerBlock(GDBlocks.glitterFurnaceActive); //Fallback
         items.registerBlock(GDBlocks.purifierIdle);

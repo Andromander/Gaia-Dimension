@@ -16,6 +16,10 @@ public class GDBlocks {
     public static Block pyriteTorch;
     @ObjectHolder("agate_crafting_table")
     public static Block agateCraftingTable;
+    @ObjectHolder("gaia_stone_furnace_idle")
+    public static Block gaiaStoneFurnaceIdle;
+    @ObjectHolder("gaia_stone_furnace_lit")
+    public static Block gaiaStoneFurnaceActive;
     @ObjectHolder("glitter_furnace_idle")
     public static Block glitterFurnaceIdle;
     @ObjectHolder("glitter_furnace_lit")

@@ -4,6 +4,7 @@ import androsa.gaiadimension.GaiaDimension;
 import androsa.gaiadimension.block.*;
 import androsa.gaiadimension.block.blocksgrass.*;
 import androsa.gaiadimension.block.blocksore.*;
+import androsa.gaiadimension.block.tileentity.TileEntityGaiaStoneFurnace;
 import androsa.gaiadimension.block.tileentity.TileEntityGlitterFurnace;
 import androsa.gaiadimension.block.tileentity.TileEntityPurifier;
 import net.minecraft.block.Block;
@@ -23,6 +24,8 @@ public final class GDBlocksRegister {
         blocks.register("gold_fire", (new GDGoldFire()).setUnlocalizedName("gold_fire"));
         blocks.register("pyrite_torch", (new GDPyriteTorch()).setUnlocalizedName("pyrite_torch"));
         blocks.register("agate_crafting_table", (new GDAgateCraftingTable()).setUnlocalizedName("agate_crafting_table"));
+        blocks.register("gaia_stone_furnace_idle", (new GDGaiaStoneFurnace(false)).setUnlocalizedName("gaia_stone_furnace_off"));
+        blocks.register("gaia_stone_furnace_lit", (new GDGaiaStoneFurnace(true)).setUnlocalizedName("gaia_stone_furnace_on"));
         blocks.register("glitter_furnace_idle", (new GDGlitterFurnace(false)).setUnlocalizedName("glittering_furnace_off"));
         blocks.register("glitter_furnace_lit", (new GDGlitterFurnace(true)).setUnlocalizedName("glittering_furnace_on"));
         blocks.register("purifier_idle", (new GDPurifier(false)).setUnlocalizedName("purifier_off"));
@@ -131,7 +134,8 @@ public final class GDBlocksRegister {
         blocks.register("labradorite_ore", (new GDOreLabradorite()).setUnlocalizedName("labradorite_ore"));
         blocks.register("moonstone_ore", (new GDOreMoonstone()).setUnlocalizedName("moonstone_ore"));
         blocks.register("cinnabar_ore", (new GDOreCinnabar()).setUnlocalizedName("cinnabar_ore"));
-        
+
+        GameRegistry.registerTileEntity(TileEntityGaiaStoneFurnace.class, "tileEntityGaiaStoneFurnace");
         GameRegistry.registerTileEntity(TileEntityGlitterFurnace.class, "tileEntityGlitterFurnace");
         GameRegistry.registerTileEntity(TileEntityPurifier.class, "tileEntityPurifier");
     }

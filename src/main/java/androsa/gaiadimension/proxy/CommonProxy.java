@@ -2,8 +2,10 @@ package androsa.gaiadimension.proxy;
 
 import androsa.gaiadimension.GaiaDimension;
 import androsa.gaiadimension.block.container.ContainerAgateCraftingTable;
+import androsa.gaiadimension.block.container.ContainerGaiaStoneFurnace;
 import androsa.gaiadimension.block.container.ContainerGlitterFurnace;
 import androsa.gaiadimension.block.container.ContainerPurifier;
+import androsa.gaiadimension.block.tileentity.TileEntityGaiaStoneFurnace;
 import androsa.gaiadimension.block.tileentity.TileEntityGlitterFurnace;
 import androsa.gaiadimension.block.tileentity.TileEntityPurifier;
 import net.minecraft.entity.Entity;
@@ -19,6 +21,7 @@ public class CommonProxy implements IGuiHandler {
 
     public static enum GuiID {
         AGATE_CRAFT,
+        GAIA_STONE_FURNACE,
         GLITTER_FURNACE,
         PURIFIER;
     }
@@ -37,6 +40,8 @@ public class CommonProxy implements IGuiHandler {
         switch (guiID) {
             case AGATE_CRAFT:
                 return new ContainerAgateCraftingTable(player.inventory, world, pos);
+            case GAIA_STONE_FURNACE:
+                return new ContainerGaiaStoneFurnace(player.inventory, (TileEntityGaiaStoneFurnace) tile);
             case GLITTER_FURNACE:
                 return new ContainerGlitterFurnace(player.inventory, (TileEntityGlitterFurnace) tile);
             case PURIFIER:
