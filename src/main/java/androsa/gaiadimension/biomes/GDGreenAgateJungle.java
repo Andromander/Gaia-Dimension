@@ -10,6 +10,7 @@ import androsa.gaiadimension.world.gen.GDGenNoTrees;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
+import net.minecraft.world.gen.feature.WorldGenShrub;
 import net.minecraft.world.gen.feature.WorldGenTrees;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraftforge.fml.relauncher.Side;
@@ -34,6 +35,7 @@ public class GDGreenAgateJungle extends GDBiomeBase {
         fillerBlock = GDBlocks.heavySoil.getDefaultState();
 
         getGDBiomeDecorator().grassPerChunk = 4;
+        getGDBiomeDecorator().treesPerChunk = 20;
     }
 
     @SideOnly(Side.CLIENT)
@@ -42,8 +44,17 @@ public class GDGreenAgateJungle extends GDBiomeBase {
     }
 
     @Override
-    public WorldGenAbstractTree getRandomTreeFeature(Random par1Random) {
-        return par1Random.nextInt(15) == 0 ? new GDGenNoTrees() : par1Random.nextInt(2) == 0 ? GaiaGenGreenTrees : new GDGenNoTrees();
+    public WorldGenAbstractTree getRandomTreeFeature(Random rand) {
+
+        if (rand.nextInt(3) == 0) {
+            if (rand.nextInt(2) == 0) {
+                return new WorldGenShrub(GDBlocks.gaiaLog.getStateFromMeta(2),GDBlocks.gaiaLeaves.getStateFromMeta(2));
+            } else {
+                return GaiaGenGreenTrees;
+            }
+        } else {
+            return new GDGenNoTrees();
+        }
     }
 
     @Override
