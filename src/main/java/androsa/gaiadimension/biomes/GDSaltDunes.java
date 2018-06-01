@@ -16,6 +16,7 @@ public class GDSaltDunes extends GDBiomeBase {
 
         this.decorator.treesPerChunk = -1;
         this.decorator.grassPerChunk = -1;
+        getGDBiomeDecorator().lakesPerChunk = -1;
     }
 
     @SideOnly(Side.CLIENT)

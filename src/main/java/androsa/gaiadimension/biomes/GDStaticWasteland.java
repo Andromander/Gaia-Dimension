@@ -18,6 +18,7 @@ public class GDStaticWasteland extends GDBiomeBase {
         this.decorator.treesPerChunk = -1;
         this.decorator.grassPerChunk = -1;
 
+        getGDBiomeDecorator().lakesPerChunk = -1;
         getGDBiomeDecorator().staticPerChunk = 2;
 
         //TODO: Have random junk generate on the ground
