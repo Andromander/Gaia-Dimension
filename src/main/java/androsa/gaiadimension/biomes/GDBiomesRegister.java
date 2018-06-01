@@ -25,6 +25,7 @@ public final class GDBiomesRegister {
                                 .setTemperature(0.66F)
                                 .setRainfall(0)
                                 .setRainDisabled()
+                                .setBaseHeight(0.1F)
                                 .setHeightVariation(0.1F)
                 ),
                 Type.FOREST
@@ -37,6 +38,7 @@ public final class GDBiomesRegister {
                                 .setTemperature(0.4F)
                                 .setRainfall(0)
                                 .setRainDisabled()
+                                .setBaseHeight(0.1F)
                                 .setHeightVariation(0.2F)
                 ),
                 Type.CONIFEROUS
@@ -49,6 +51,7 @@ public final class GDBiomesRegister {
                                 .setTemperature(0.75F)
                                 .setRainfall(0)
                                 .setRainDisabled()
+                                .setBaseHeight(0.1F)
                                 .setHeightVariation(0.2F)
                 ),
                 Type.JUNGLE
@@ -60,7 +63,6 @@ public final class GDBiomesRegister {
                                 .setTemperature(0.7F)
                                 .setRainfall(0)
                                 .setRainDisabled()
-                                .setBaseHeight(-0.05F)
                                 .setHeightVariation(0.05F)
                 ),
                 Type.SWAMP, Type.MAGICAL
@@ -73,6 +75,7 @@ public final class GDBiomesRegister {
                                 .setTemperature(0.66F)
                                 .setRainfall(0)
                                 .setRainDisabled()
+                                .setBaseHeight(0.1F)
                                 .setHeightVariation(0.05F)
                 ),
                 Type.SAVANNA
@@ -97,7 +100,7 @@ public final class GDBiomesRegister {
                                 .setTemperature(0.66F)
                                 .setRainfall(0)
                                 .setRainDisabled()
-                                .setBaseHeight(0.125F)
+                                .setBaseHeight(0.05F)
                                 .setHeightVariation(0.05F)
                 ),
                 Type.PLAINS

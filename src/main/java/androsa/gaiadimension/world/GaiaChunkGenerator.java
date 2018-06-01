@@ -386,9 +386,8 @@ public class GaiaChunkGenerator implements IChunkGenerator {
         biome.decorate(this.world, this.rand, new BlockPos(i, 0, j));
         if (net.minecraftforge.event.terraingen.TerrainGen.populate(this, this.world, this.rand, chunkX, chunkZ, flag, net.minecraftforge.event.terraingen.PopulateChunkEvent.Populate.EventType.ANIMALS))
             WorldEntitySpawner.performWorldGenSpawning(this.world, biome, i + 8, j + 8, 16, 16, this.rand);
+
         blockpos = blockpos.add(8, 0, 8);
-
-
         net.minecraftforge.event.ForgeEventFactory.onChunkPopulate(false, this, this.world, this.rand, chunkX, chunkZ, flag);
 
         BlockFalling.fallInstantly = false;
