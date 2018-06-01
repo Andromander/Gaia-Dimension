@@ -53,6 +53,8 @@ public class GDBlocks {
     public static Block frailGlitterBlock;
     @ObjectHolder("thick_glitter_block")
     public static Block thickGlitterBlock;
+    @ObjectHolder("gummy_glitter_block")
+    public static Block gummyGlitterBlock;
     @ObjectHolder("crystal_growth")
     public static Block crystalGrowth;
     @ObjectHolder("crystal_bloom")
