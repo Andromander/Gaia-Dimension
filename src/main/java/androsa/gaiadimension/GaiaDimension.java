@@ -3,8 +3,6 @@ package androsa.gaiadimension;
 import androsa.gaiadimension.entity.GaiaEntities;
 import androsa.gaiadimension.entity.GaiaEntityNames;
 import androsa.gaiadimension.proxy.CommonProxy;
-import androsa.gaiadimension.recipe.GlitterFuelHandler;
-import androsa.gaiadimension.recipe.PurifierFuelHandler;
 import androsa.gaiadimension.registry.GDBlocks;
 import androsa.gaiadimension.registry.GDConfig;
 import androsa.gaiadimension.registry.GDFluids;
@@ -15,7 +13,6 @@ import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialLiquid;
 import net.minecraft.entity.EnumCreatureAttribute;
-import net.minecraft.item.ItemStack;
 import net.minecraft.world.DimensionType;
 import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.common.util.EnumHelper;
@@ -49,9 +46,6 @@ public class GaiaDimension {
     public static final GDFluids fluids = new GDFluids();
     public static final String ARMOR_DIR = "gaiadimension:textures/armor/";
     public static final String MODEL_DIR = "gaiadimension:textures/model/";
-
-    private static final List<IFuelHandler> glitterFuelHandlers = Lists.newArrayList();
-    private static final List<IFuelHandler> purifierFuelHandlers = Lists.newArrayList();
 
     public static final Material matMineralWater = new MaterialLiquid(MapColor.CYAN_STAINED_HARDENED_CLAY);
     public static final Material matSuperhotMagma = new MaterialLiquid(MapColor.BLUE);
@@ -88,9 +82,6 @@ public class GaiaDimension {
 
         GaiaDimension.LOGGER.info("Registering GUI Handler...");
         NetworkRegistry.INSTANCE.registerGuiHandler(instance, proxy);
-        GaiaDimension.LOGGER.info("Prepping Fuel for the tile entities...");
-        registerFuelHandler(new GlitterFuelHandler(), FuelType.GLITTER_FURNACE);
-        registerFuelHandler(new PurifierFuelHandler(), FuelType.PURIFIER);
 
     }
 
@@ -103,34 +94,6 @@ public class GaiaDimension {
             DimensionManager.registerDimension(GaiaDimension.backupdimensionID, GaiaDimension.dimType);
             GDConfig.dimension.dimensionID = GaiaDimension.backupdimensionID;
         }
-    }
-
-    public enum FuelType {
-        GLITTER_FURNACE,
-        PURIFIER
-    }
-
-    public static void registerFuelHandler(IFuelHandler handler, FuelType type) {
-        switch(type) {
-            case GLITTER_FURNACE:
-                glitterFuelHandlers.add(handler);
-            case PURIFIER:
-                purifierFuelHandlers.add(handler);
-        }
-    }
-
-    public static int getFuelValue(ItemStack stack, FuelType type) {
-        int fuelValue = 0;
-        switch(type) {
-            case GLITTER_FURNACE:
-                for (IFuelHandler handler : glitterFuelHandlers)
-                    fuelValue = Math.max(fuelValue, handler.getBurnTime(stack));
-            case PURIFIER:
-                for (IFuelHandler handler : purifierFuelHandlers)
-                    fuelValue = Math.max(fuelValue, handler.getBurnTime(stack));
-        }
-
-        return fuelValue;
     }
 
     private void registerCreatures() {

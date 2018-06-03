@@ -4,8 +4,10 @@ import androsa.gaiadimension.GaiaDimension;
 import androsa.gaiadimension.block.GDGlitterFurnace;
 import androsa.gaiadimension.recipe.GlitterFurnaceRecipes;
 import androsa.gaiadimension.registry.GDBlocks;
+import androsa.gaiadimension.registry.GDItems;
 import mcp.MethodsReturnNonnullByDefault;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.inventory.ItemStackHelper;
@@ -228,14 +230,45 @@ public class TileEntityGlitterFurnace extends TileEntity implements ISidedInvent
         if (stack.isEmpty())
             return 0;
         else {
+            int burnTime = net.minecraftforge.event.ForgeEventFactory.getItemBurnTime(stack);
+            if (burnTime >= 0) return burnTime;
             Item item = stack.getItem();
 
             //TODO: Fuel Sources
-            if (item == Item.getItemFromBlock(GDBlocks.frailGlitterBlock)) return 100;
-            if (item == Item.getItemFromBlock(GDBlocks.thickGlitterBlock)) return 3000;
-            if (item == Items.BLAZE_POWDER) return 1200;
-            if (item == Items.BLAZE_ROD) return 2400;
-            return GaiaDimension.getFuelValue(stack, GaiaDimension.FuelType.GLITTER_FURNACE);
+            if(item == Items.GOLD_NUGGET)
+                return 20;
+            if(item == Items.GOLD_INGOT)
+                return 200;
+            if(item == Items.GOLDEN_AXE ||
+                    item == Items.GOLDEN_HOE ||
+                    item == Items.GOLDEN_PICKAXE ||
+                    item == Items.GOLDEN_SHOVEL ||
+                    item == Items.GOLDEN_SWORD)
+                return 150;
+            if(item == Items.GOLDEN_HELMET ||
+                    item == Items.GOLDEN_CHESTPLATE ||
+                    item == Items.GOLDEN_LEGGINGS ||
+                    item == Items.GOLDEN_BOOTS)
+                return 500;
+            if(item == Items.GOLDEN_HORSE_ARMOR)
+                return 1000;
+            if(item == Item.getItemFromBlock(Blocks.GOLD_BLOCK))
+                return 2000;
+            if(item == Item.getItemFromBlock(Blocks.GOLD_ORE))
+                return 150;
+            if(item == GDItems.pyrite)
+                return 500;
+            if(item == Item.getItemFromBlock(GDBlocks.pyriteBlock))
+                return 5000;
+            if(item == Item.getItemFromBlock(GDBlocks.frailGlitterBlock))
+                return 100;
+            if(item == Item.getItemFromBlock(GDBlocks.thickGlitterBlock))
+                return 3000;
+            if(item == Items.BLAZE_POWDER)
+                return 1200;
+            if(item == Items.BLAZE_ROD)
+                return 2400;
+            return 0;
         }
     }
 
