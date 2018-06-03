@@ -1,0 +1,8 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "cube_all",
+    "textures": { "all": "gaiadimension:blocks/gaia_crystalized_bricks" }
+  },
+  "variants": { "normal": [{}] }
+}

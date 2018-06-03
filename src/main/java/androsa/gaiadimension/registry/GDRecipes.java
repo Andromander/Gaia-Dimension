@@ -1,6 +1,5 @@
 package androsa.gaiadimension.registry;
 
-import androsa.gaiadimension.item.GDItem;
 import androsa.gaiadimension.recipe.RecipeHandler;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
@@ -56,10 +55,10 @@ public class GDRecipes {
         RecipeHandler.addGlitterRefactoring(GDBlocks.cinnabarBlock, new ItemStack(GDBlocks.proustiteBlock, 1), new ItemStack(GDItems.tektite, 1), 2.7F);
         RecipeHandler.addGlitterRefactoring(GDBlocks.labradoriteBlock, new ItemStack(GDBlocks.euclaseBlock, 1), new ItemStack(GDItems.tektite, 1), 2.7F);
         RecipeHandler.addGlitterRefactoring(GDBlocks.moonstoneBlock, new ItemStack(GDBlocks.leuciteBlock, 1), new ItemStack(GDItems.tektite, 1), 2.7F);
-        RecipeHandler.addGlitterRefactoring(new ItemStack(GDBlocks.opalBlock, 1, 0), new ItemStack(GDBlocks.carnelianBlock, 1), new ItemStack(GDItems.tektite, 1), 2.7F);
-        RecipeHandler.addGlitterRefactoring(new ItemStack(GDBlocks.opalBlock, 1, 1), new ItemStack(GDBlocks.benitoiteBlock, 1), new ItemStack(GDItems.tektite, 1), 2.7F);
-        RecipeHandler.addGlitterRefactoring(new ItemStack(GDBlocks.opalBlock, 1, 2), new ItemStack(GDBlocks.diopsideBlock, 1), new ItemStack(GDItems.tektite, 1), 2.7F);
-        RecipeHandler.addGlitterRefactoring(new ItemStack(GDBlocks.opalBlock, 1, 3), new ItemStack(GDBlocks.chalcedonyBlock, 1), new ItemStack(GDItems.tektite, 1), 2.7F);
+        RecipeHandler.addGlitterRefactoring(GDBlocks.opalBlockRed, new ItemStack(GDBlocks.carnelianBlock, 1), new ItemStack(GDItems.tektite, 1), 2.7F);
+        RecipeHandler.addGlitterRefactoring(GDBlocks.opalBlockBlue, new ItemStack(GDBlocks.benitoiteBlock, 1), new ItemStack(GDItems.tektite, 1), 2.7F);
+        RecipeHandler.addGlitterRefactoring(GDBlocks.opalBlockGreen, new ItemStack(GDBlocks.diopsideBlock, 1), new ItemStack(GDItems.tektite, 1), 2.7F);
+        RecipeHandler.addGlitterRefactoring(GDBlocks.opalBlockWhite, new ItemStack(GDBlocks.chalcedonyBlock, 1), new ItemStack(GDItems.tektite, 1), 2.7F);
 
         RecipeHandler.addPurifying(GDBlocks.corruptSoil, new ItemStack(GDBlocks.heavySoil), new ItemStack(GDItems.goldstoneResidue, 1), 0.3F);
         RecipeHandler.addPurifying(GDBlocks.corruptGrass, new ItemStack(GDBlocks.glitterGrass), new ItemStack(GDItems.goldstoneResidue, 1), 0.3F);

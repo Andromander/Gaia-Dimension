@@ -132,6 +132,11 @@ public class GDItemsRegister {
         items.register("gaia_duke_sword", new GDGaiaDukeSword(TOOL_LARVIKITE).setUnlocalizedName("gaia_duke_blade").setMaxStackSize(1));
         items.register("gaia_champion_sword", new GDGaiaChampSword(TOOL_GAIA_CHAMP).setUnlocalizedName("gaia_champion_sword").setMaxStackSize(1));
 
+        /* Blocks
+         *
+         */
+
+        //Utility Blocks
         items.registerSubItemBlock(GDBlocks.gaiaPortal);
         items.registerBlock(GDBlocks.goldFire);
         items.registerBlock(GDBlocks.pyriteTorch);
@@ -143,6 +148,7 @@ public class GDItemsRegister {
         items.registerBlock(GDBlocks.purifierIdle);
         items.registerBlock(GDBlocks.purifierActive); //Fallback
 
+        //Natural Blocks
         items.registerBlock(GDBlocks.heavySoil);
         items.registerBlock(GDBlocks.corruptSoil);
         items.registerBlock(GDBlocks.glitterGrass);
@@ -163,7 +169,16 @@ public class GDItemsRegister {
         items.registerSubItemBlock(GDBlocks.gaiaLeavesSpecial);
         items.registerSubItemBlock(GDBlocks.gaiaLog);
         items.registerSubItemBlock(GDBlocks.gaiaLogSpecial);
+        items.registerBlock(GDBlocks.saltBlock);
+        items.registerBlock(GDBlocks.rockSalt);
+        items.registerBlock(GDBlocks.gaiaStone);
+        items.registerBlock(GDBlocks.gaiaCobblestone);
+        items.registerBlock(GDBlocks.wastelandStone);
+        items.registerBlock(GDBlocks.staticStone);
+        items.registerBlock(GDBlocks.volcanicRock);
+        items.registerBlock(GDBlocks.searingRock);
 
+        //Planks
         items.registerBlock(GDBlocks.pinkAgatePlanks);
         items.registerBlock(GDBlocks.blueAgatePlanks);
         items.registerBlock(GDBlocks.greenAgatePlanks);
@@ -189,15 +204,9 @@ public class GDItemsRegister {
         items.registerBlock(GDBlocks.crustyPlankStairs);
         items.registerBlock(GDBlocks.heatedPlankStairs);
 
-        items.registerBlock(GDBlocks.saltBlock);
-        items.registerBlock(GDBlocks.rockSalt);
-        items.registerBlock(GDBlocks.gaiaStone);
-        items.registerBlock(GDBlocks.gaiaCobblestone);
-        items.registerBlock(GDBlocks.wastelandStone);
-        items.registerBlock(GDBlocks.staticStone);
-        items.registerBlock(GDBlocks.volcanicRock);
-        items.registerBlock(GDBlocks.searingRock);
-        items.registerSubItemBlock(GDBlocks.gaiaStoneBricks);
+        items.registerBlock(GDBlocks.gaiaStoneBricks);
+        items.registerBlock(GDBlocks.gaiaStoneBricksCracked);
+        items.registerBlock(GDBlocks.gaiaStoneBricksCrusted);
         items.registerBlock(GDBlocks.reinforcedBricks);
         items.registerSubItemBlock(GDBlocks.malachiteBricks);
         items.register(new ItemSlab(GDBlocks.malachiteBrickSlab, GDBlocks.malachiteBrickSlab, GDBlocks.malachiteBrickSlabDouble));
@@ -210,7 +219,10 @@ public class GDItemsRegister {
         items.registerBlock(GDBlocks.malachitePulsingFloorStairs);
         items.registerBlock(GDBlocks.bolsteredBricks);
 
-        items.registerSubItemBlock(GDBlocks.opalBlock);
+        items.registerBlock(GDBlocks.opalBlockRed);
+        items.registerBlock(GDBlocks.opalBlockBlue);
+        items.registerBlock(GDBlocks.opalBlockGreen);
+        items.registerBlock(GDBlocks.opalBlockWhite);
         items.registerBlock(GDBlocks.sugiliteBlock);
         items.registerBlock(GDBlocks.hematiteBlock);
         items.registerBlock(GDBlocks.labradoriteBlock);

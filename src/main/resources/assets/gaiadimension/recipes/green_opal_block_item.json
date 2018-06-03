@@ -5,8 +5,7 @@
   },
   "ingredients": [
     {
-      "item": "gaiadimension:opal_block",
-      "data": 2
+      "item": "gaiadimension:opal_block_green"
     }
   ],
   "type": "minecraft:crafting_shapeless"

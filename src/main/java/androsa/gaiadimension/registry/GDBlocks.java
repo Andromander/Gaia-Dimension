@@ -8,6 +8,7 @@ import static net.minecraftforge.fml.common.registry.GameRegistry.*;
 @ObjectHolder(GaiaDimension.MODID)
 public class GDBlocks {
 
+    //Utility Blocks
     @ObjectHolder("gaia_portal")
     public static BlockPortal gaiaPortal;
     @ObjectHolder("gold_fire")
@@ -29,6 +30,7 @@ public class GDBlocks {
     @ObjectHolder("purifier_lit")
     public static Block purifierActive;
 
+    //Natural Blocks
     @ObjectHolder("heavy_soil")
     public static Block heavySoil;
     @ObjectHolder("corrupt_soil")
@@ -69,7 +71,24 @@ public class GDBlocks {
     public static Block gaiaLog;
     @ObjectHolder("special_gaia_log")
     public static Block gaiaLogSpecial;
+    @ObjectHolder("salt")
+    public static Block saltBlock;
+    @ObjectHolder("saltstone")
+    public static Block rockSalt;
+    @ObjectHolder("gaia_stone")
+    public static Block gaiaStone;
+    @ObjectHolder("gaia_cobblestone")
+    public static Block gaiaCobblestone;
+    @ObjectHolder("wasteland_stone")
+    public static Block wastelandStone;
+    @ObjectHolder("static_stone")
+    public static Block staticStone;
+    @ObjectHolder("volcanic_rock")
+    public static Block volcanicRock;
+    @ObjectHolder("searing_rock")
+    public static Block searingRock;
 
+    //Planks
     @ObjectHolder("pink_agate_planks")
     public static Block pinkAgatePlanks;
     @ObjectHolder("blue_agate_planks")
@@ -135,24 +154,13 @@ public class GDBlocks {
     @ObjectHolder("heated_plank_stairs")
     public static Block heatedPlankStairs;
 
-    @ObjectHolder("salt")
-    public static Block saltBlock;
-    @ObjectHolder("saltstone")
-    public static Block rockSalt;
-    @ObjectHolder("gaia_stone")
-    public static Block gaiaStone;
-    @ObjectHolder("gaia_cobblestone")
-    public static Block gaiaCobblestone;
-    @ObjectHolder("wasteland_stone")
-    public static Block wastelandStone;
-    @ObjectHolder("static_stone")
-    public static Block staticStone;
-    @ObjectHolder("volcanic_rock")
-    public static Block volcanicRock;
-    @ObjectHolder("searing_rock")
-    public static Block searingRock;
+    //Manufactured
     @ObjectHolder("gaia_stone_bricks")
     public static Block gaiaStoneBricks;
+    @ObjectHolder("cracked_gaia_stone_bricks")
+    public static Block gaiaStoneBricksCracked;
+    @ObjectHolder("crusted_gaia_stone_bricks")
+    public static Block gaiaStoneBricksCrusted;
     @ObjectHolder("reinforced_bricks")
     public static Block reinforcedBricks;
     @ObjectHolder("malachite_bricks")
@@ -178,6 +186,7 @@ public class GDBlocks {
     @ObjectHolder("bolstered_bricks")
     public static Block bolsteredBricks;
 
+    //Storage Blocks
     @ObjectHolder("sugilite_block")
     public static Block sugiliteBlock;
     @ObjectHolder("hematite_block")
@@ -186,8 +195,14 @@ public class GDBlocks {
     public static Block labradoriteBlock;
     @ObjectHolder("pyrite_block")
     public static Block pyriteBlock;
-    @ObjectHolder("opal_block")
-    public static Block opalBlock;
+    @ObjectHolder("opal_block_red")
+    public static Block opalBlockRed;
+    @ObjectHolder("opal_block_blue")
+    public static Block opalBlockBlue;
+    @ObjectHolder("opal_block_green")
+    public static Block opalBlockGreen;
+    @ObjectHolder("opal_block_white")
+    public static Block opalBlockWhite;
     @ObjectHolder("moonstone_block")
     public static Block moonstoneBlock;
     @ObjectHolder("cinnabar_block")
@@ -213,6 +228,7 @@ public class GDBlocks {
     @ObjectHolder("chalcedony_block")
     public static Block chalcedonyBlock;
 
+    //Ores
     @ObjectHolder("sugilite_ore")
     public static Block sugiliteOre;
     @ObjectHolder("hematite_ore")
@@ -227,5 +243,4 @@ public class GDBlocks {
     public static Block moonstoneOre;
     @ObjectHolder("cinnabar_ore")
     public static Block cinnabarOre;
-
 }
