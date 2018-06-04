@@ -30,7 +30,7 @@ public class GDConfig {
     }
 
     @Config.LangKey(config + "sky_and_fog")
-    @Config.Comment("Changes that will affect the sky and fog in Gaia. A restart is advised here.")
+    @Config.Comment("Changes that will affect the sky, fog and clouds in Gaia. A restart is advised here.")
     public static SkyAndFog skyAndFog = new SkyAndFog();
 
     public static class SkyAndFog {

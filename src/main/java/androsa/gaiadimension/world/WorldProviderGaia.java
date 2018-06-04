@@ -24,33 +24,7 @@ public class WorldProviderGaia extends WorldProviderSurface {
         setDimension(GDConfig.dimension.dimensionID);
     }
 
-    @SideOnly(Side.CLIENT)
-    private double[] currentFogColor;
-    @SideOnly(Side.CLIENT)
-    private short[] targetFogColor;
 
-    @Override
-    public Vec3d getFogColor(float f, float f1) {
-        EntityPlayer player = Minecraft.getMinecraft().player;
-        Biome biome = world.getBiome(new BlockPos(player.posX, player.posY, player.posZ));
-        targetFogColor = new short[] { 234, 178, 224 };
-
-        if (GDConfig.skyAndFog.enableSkyFog == true) {
-            if (biome instanceof GDVolcanicLands) {
-                targetFogColor = new short[]{ 245, 119, 112 };
-            } else if (biome instanceof GDGoldstoneLands) {
-                targetFogColor = new short[]{ 188, 122, 44 };
-            } else if (biome instanceof GDStaticWasteland) {
-                targetFogColor = new short[]{ 86, 213, 170 };
-            } else if (biome instanceof GDSaltDunes) {
-                targetFogColor = new short[]{ 187, 211, 255 };
-            }
-        } else {
-            targetFogColor = new short[] { 234, 178, 224 };
-        }
-
-        return new Vec3d(targetFogColor[0] / 255D, targetFogColor[1] / 255D, targetFogColor[2] / 255D);
-    }
 
     @Override
     @SideOnly(Side.CLIENT)
@@ -64,34 +38,7 @@ public class WorldProviderGaia extends WorldProviderSurface {
         return world.getStarBrightnessBody(par1);
     }
 
-    @SideOnly(Side.CLIENT)
-    private double[] currentCloudColor;
-    @SideOnly(Side.CLIENT)
-    private short[] targetCloudColor;
 
-    @Override
-    @SideOnly(Side.CLIENT)
-    public Vec3d getCloudColor(float partialTicks) {
-        EntityPlayer player = Minecraft.getMinecraft().player;
-        Biome biome = world.getBiome(new BlockPos(player.posX, player.posY, player.posZ));
-        targetCloudColor = new short[] { 234, 178, 224 };
-
-        if (GDConfig.skyAndFog.enableSkyFog == true) {
-            if (biome instanceof GDVolcanicLands) {
-                targetCloudColor = new short[]{ 245, 119, 112 };
-            } else if (biome instanceof GDGoldstoneLands) {
-                targetCloudColor = new short[]{ 188, 122, 44 };
-            } else if (biome instanceof GDStaticWasteland) {
-                targetCloudColor = new short[]{ 86, 213, 170 };
-            } else if (biome instanceof GDSaltDunes) {
-                targetCloudColor = new short[]{ 187, 211, 255 };
-            }
-        } else {
-            targetCloudColor = new short[] { 234, 178, 224 };
-        }
-
-        return new Vec3d(targetCloudColor[0] / 255D, targetCloudColor[1] / 255D, targetCloudColor[2] / 255D);
-    }
 
     @Override
     public float calculateCelestialAngle(long par1, float par3) {
@@ -127,7 +74,7 @@ public class WorldProviderGaia extends WorldProviderSurface {
 
     @Override
     public int getAverageGroundLevel() {
-        return 63;
+        return 64;
     }
 
     @Override
@@ -145,16 +92,16 @@ public class WorldProviderGaia extends WorldProviderSurface {
     @SideOnly(Side.CLIENT)
     private short[] targetSkyColor;
 
+    //Sky colour render
     @Override
     @SideOnly(Side.CLIENT)
     public Vec3d getSkyColor(net.minecraft.entity.Entity cameraEntity, float partialTicks) {
-        //return new Vec3d(198/255, 157/255, 88/255);
 
         EntityPlayer player = Minecraft.getMinecraft().player;
         Biome biome = world.getBiome(new BlockPos(player.posX, player.posY, player.posZ));
         targetSkyColor = new short[]{ 198, 157, 88 };
 
-        if (GDConfig.skyAndFog.enableSkyFog == true) {
+        if (GDConfig.skyAndFog.enableSkyFog) {
             if (biome instanceof GDBlueAgateTaiga) {
                 targetSkyColor = ((GDBlueAgateTaiga) biome)     .getSkyRGB();
             } else if (biome instanceof GDGreenAgateJungle) {
@@ -176,33 +123,121 @@ public class WorldProviderGaia extends WorldProviderSurface {
             targetSkyColor = new short[]{ 198, 157, 88 };
         }
 
-
-//Will find a way to get this to work properly
-/*
         if (currentSkyColor == null) {
             currentSkyColor = new double[3];
-            for (int time = 0; time < 3; time++) {
-                currentSkyColor[time] = targetSkyColor[time];
-            }
+            for (int a = 0; a < 3; a++)
+                currentSkyColor[a] = targetSkyColor[a];
         }
 
-        for (int time = 0; time < 3; time++) {
-            if (currentSkyColor[time] != targetSkyColor[time]) {
-                if (currentSkyColor[time] < targetSkyColor[time]) {
-                    currentSkyColor[time] += 2D;
-                    if (currentSkyColor[time] > targetSkyColor[time]) {
-                        currentSkyColor[time] = targetSkyColor[time];
-                    }
+        for (int a = 0; a < 3; a++)
+            if (currentSkyColor[a] != targetSkyColor[a])
+                if (currentSkyColor[a] < targetSkyColor[a]) {
+                    currentSkyColor[a] += 2D;
+                    if (currentSkyColor[a] > targetSkyColor[a])
+                        currentSkyColor[a] = targetSkyColor[a];
+                } else if (currentSkyColor[a] > targetSkyColor[a]) {
+                    currentSkyColor[a] -= 2D;
+                    if (currentSkyColor[a] < targetSkyColor[a])
+                        currentSkyColor[a] = targetSkyColor[a];
                 }
-            } else if (currentSkyColor[time] > targetSkyColor[time]) {
-                currentSkyColor[time] -= 2D;
-                if (currentSkyColor[time] < targetSkyColor[time]) {
-                    targetSkyColor[time] = targetSkyColor[time];
-                }
+
+        return new Vec3d(currentSkyColor[0] / 255D, currentSkyColor[1] / 255D, currentSkyColor[2] / 255D);
+    }
+
+    @SideOnly(Side.CLIENT)
+    private double[] currentFogColor;
+    @SideOnly(Side.CLIENT)
+    private short[] targetFogColor;
+
+    //Fog colour render
+    @Override
+    public Vec3d getFogColor(float f, float f1) {
+
+        EntityPlayer player = Minecraft.getMinecraft().player;
+        Biome biome = world.getBiome(new BlockPos(player.posX, player.posY, player.posZ));
+        targetFogColor = new short[] { 234, 178, 224 };
+
+        if (GDConfig.skyAndFog.enableSkyFog) {
+            if (biome instanceof GDVolcanicLands) {
+                targetFogColor = new short[]{ 245, 119, 112 };
+            } else if (biome instanceof GDGoldstoneLands) {
+                targetFogColor = new short[]{ 188, 122, 44 };
+            } else if (biome instanceof GDStaticWasteland) {
+                targetFogColor = new short[]{ 86, 213, 170 };
+            } else if (biome instanceof GDSaltDunes) {
+                targetFogColor = new short[]{ 187, 211, 255 };
             }
+        } else {
+            targetFogColor = new short[] { 234, 178, 224 };
         }
-*/
-        return new Vec3d(targetSkyColor[0] / 255D, targetSkyColor[1] / 255D, targetSkyColor[2] / 255D);
+
+        if (currentFogColor == null) {
+            currentFogColor = new double[3];
+            for (int a = 0; a < 3; a++)
+                currentFogColor[a] = targetFogColor[a];
+        }
+
+        for (int a = 0; a < 3; a++)
+            if (currentFogColor[a] != targetFogColor[a])
+                if (currentFogColor[a] < targetFogColor[a]) {
+                    currentFogColor[a] += 2D;
+                    if (currentFogColor[a] > targetFogColor[a])
+                        currentFogColor[a] = targetFogColor[a];
+                } else if (currentFogColor[a] > targetFogColor[a]) {
+                    currentFogColor[a] -= 2D;
+                    if (currentFogColor[a] < targetFogColor[a])
+                        currentFogColor[a] = targetFogColor[a];
+                }
+
+        return new Vec3d(currentFogColor[0] / 255D, currentFogColor[1] / 255D, currentFogColor[2] / 255D);
+    }
+
+    @SideOnly(Side.CLIENT)
+    private double[] currentCloudColor;
+    @SideOnly(Side.CLIENT)
+    private short[] targetCloudColor;
+
+    //Cloud colour render
+    @Override
+    @SideOnly(Side.CLIENT)
+    public Vec3d getCloudColor(float partialTicks) {
+        EntityPlayer player = Minecraft.getMinecraft().player;
+        Biome biome = world.getBiome(new BlockPos(player.posX, player.posY, player.posZ));
+        targetCloudColor = new short[] { 234, 178, 224 };
+
+        if (GDConfig.skyAndFog.enableSkyFog) {
+            if (biome instanceof GDVolcanicLands) {
+                targetCloudColor = new short[]{ 245, 119, 112 };
+            } else if (biome instanceof GDGoldstoneLands) {
+                targetCloudColor = new short[]{ 188, 122, 44 };
+            } else if (biome instanceof GDStaticWasteland) {
+                targetCloudColor = new short[]{ 86, 213, 170 };
+            } else if (biome instanceof GDSaltDunes) {
+                targetCloudColor = new short[]{ 187, 211, 255 };
+            }
+        } else {
+            targetCloudColor = new short[] { 234, 178, 224 };
+        }
+
+        if (currentCloudColor == null) {
+            currentCloudColor = new double[3];
+            for (int a = 0; a < 3; a++)
+                currentCloudColor[a] = targetCloudColor[a];
+        }
+
+        for (int a = 0; a < 3; a++)
+            if (currentCloudColor[a] != targetCloudColor[a])
+                if (currentCloudColor[a] < targetCloudColor[a]) {
+                    currentCloudColor[a] += 2D;
+                    if (currentCloudColor[a] > targetCloudColor[a])
+                        currentCloudColor[a] = targetCloudColor[a];
+                } else if (currentCloudColor[a] > targetCloudColor[a]) {
+                    currentCloudColor[a] -= 2D;
+                    if (currentCloudColor[a] < targetCloudColor[a])
+                        currentCloudColor[a] = targetCloudColor[a];
+                }
+
+        return new Vec3d(currentFogColor[0] / 255D, currentFogColor[1] / 255D, currentFogColor[2] / 255D);
     }
 
     //I mean, it will never be null, but if it should we have this
