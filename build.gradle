@@ -10,10 +10,9 @@ buildscript {
 apply plugin: 'net.minecraftforge.gradle.forge'
 //Only edit below this line, the above code adds and enables the necessary things for Forge to be setup.
 
-
-version = "1.0"
-group = "cpw.mods.gaiadimension" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
-archivesBaseName = "gaiadimension"
+version = project.mod_version
+group = project.mod_group // http://maven.apache.org/guides/mini/guide-naming-conventions.html
+archivesBaseName = project.mod_group
 
 sourceCompatibility = targetCompatibility = '1.8' // Need this here so eclipse task generates correctly.
 compileJava {
@@ -21,7 +20,7 @@ compileJava {
 }
 
 minecraft {
-    version = "1.12.2-14.23.3.2655"
+    version = "${project.mc_version}-${project.forge_version}"
     runDir = "run"
     
     // the mappings can be changed at any time, and must be in the following format.
@@ -29,7 +28,7 @@ minecraft {
     // stable_#            stables are built at the discretion of the MCP team.
     // Use non-default mappings at your own risk. they may not always work.
     // simply re-run your setup task after changing the mappings to update your workspace.
-    mappings = "snapshot_20171003"
+    mappings = project.forge_mappings
     // makeObfSourceJar = false // an Srg named sources jar is made by default. uncomment this to disable.
 }
 
@@ -42,7 +41,6 @@ jar {
 
 repositories {
     maven {
-        name 'tterrag\'s Maven'
         url 'http://maven.tterrag.com/'
     }
 }
@@ -69,7 +67,7 @@ dependencies {
     // http://www.gradle.org/docs/current/userguide/artifact_dependencies_tutorial.html
     // http://www.gradle.org/docs/current/userguide/dependency_management.html
 
-    compile "team.chisel.ctm:CTM:MC1.12-0.2.3.12"
+    compile "team.chisel.ctm:CTM:${project.ctm_version}"
 }
 
 processResources {
