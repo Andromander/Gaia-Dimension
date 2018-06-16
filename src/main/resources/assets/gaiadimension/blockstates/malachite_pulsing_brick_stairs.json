@@ -1,7 +1,7 @@
 {
   "forge_marker": 1,
   "defaults": {
-    "model": "gaiadimension:util/stairs",
+    "model": "gaiadimension:util/stairs_2_layer",
     "textures": {
       "particle": "#side"
     },
@@ -25,9 +25,12 @@
     },
     "variant": {
       "normal": { "textures": {
-        "end": "gaiadimension:blocks/malachite_pulsing_bricks",
-        "half": "gaiadimension:blocks/malachite_pulsing_bricks",
-        "side": "gaiadimension:blocks/malachite_pulsing_bricks"
+        "end": "gaiadimension:blocks/malachite_bricks",
+        "half": "gaiadimension:blocks/malachite_bricks",
+        "side": "gaiadimension:blocks/malachite_bricks",
+        "end2": "gaiadimension:blocks/malachite_green_pulse",
+        "half2": "gaiadimension:blocks/malachite_green_pulse",
+        "side2": "gaiadimension:blocks/malachite_green_pulse"
       } }
     },
     "facing=east,half=bottom,shape=inner_left,variant=normal":  { "y": 270 },

@@ -25,12 +25,12 @@
     },
     "variant": {
       "normal": { "textures": {
-        "end": "gaiadimension:blocks/malachite_floor_bricks",
-        "half": "gaiadimension:blocks/malachite_floor_bricks",
-        "side": "gaiadimension:blocks/malachite_floor_bricks",
-        "end2": "gaiadimension:blocks/malachite_blue_pulse",
-        "half2": "gaiadimension:blocks/malachite_blue_pulse",
-        "side2": "gaiadimension:blocks/malachite_blue_pulse"
+        "end": "gaiadimension:blocks/malachite_chiseled_bricks",
+        "half": "gaiadimension:blocks/malachite_chiseled_bricks",
+        "side": "gaiadimension:blocks/malachite_chiseled_bricks",
+        "end2": "gaiadimension:blocks/malachite_lime_pulse",
+        "half2": "gaiadimension:blocks/malachite_lime_pulse",
+        "side2": "gaiadimension:blocks/malachite_lime_pulse"
       } }
     },
     "facing=east,half=bottom,shape=inner_left,variant=normal":  { "y": 270 },

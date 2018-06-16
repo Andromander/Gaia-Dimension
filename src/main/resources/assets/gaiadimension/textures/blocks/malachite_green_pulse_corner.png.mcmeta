@@ -1,0 +1,18 @@
+{
+  "ctm": {
+    "ctm_version": 1,
+    "type":"CTM",
+    "layer":"TRANSLUCENT",
+    "textures":[
+      "gaiadimension:blocks/malachite_green_pulse_ctm"
+    ],
+    "extra": {
+      "ignore_states": true,
+      "light": 15,
+      "connect_to": [
+        { "block": "gaiadimension:malachite_pulsing_bricks" },
+        { "block": "gaiadimension:malachite_pulsing_brick_stairs" }
+      ]
+    }
+  }
+}

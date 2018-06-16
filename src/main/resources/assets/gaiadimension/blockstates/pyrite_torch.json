@@ -1,11 +1,20 @@
 {
+  "forge_marker": 1,
+  "defaults": {
+    "transform": "forge:default-item",
+    "model": "normal_torch",
+    "textures": {
+      "torch": "gaiadimension:blocks/pyrite_torch",
+      "particle": "#torch"
+    }
+  },
   "variants": {
-    "facing=up":    { "model": "gaiadimension:pyrite_torch" },
-    "facing=east":  { "model": "gaiadimension:pyrite_torch_wall" },
-    "facing=south": { "model": "gaiadimension:pyrite_torch_wall", "y": 90 },
-    "facing=west":  { "model": "gaiadimension:pyrite_torch_wall", "y": 180 },
-    "facing=north": { "model": "gaiadimension:pyrite_torch_wall", "y": 270 },
-
-    "inventory": [{ "model": "builtin/generated", "textures": {"layer0": "gaiadimension:blocks/pyrite_torch" }}]
+    "facing": {
+      "up": { "model": "normal_torch" },
+      "east": { "model": "normal_torch_wall" },
+      "south": { "model": "normal_torch_wall", "y": 90 },
+      "west": { "model": "normal_torch_wall", "y": 180 },
+      "north": { "model": "normal_torch_wall", "y": 270 }
+    }
   }
 }

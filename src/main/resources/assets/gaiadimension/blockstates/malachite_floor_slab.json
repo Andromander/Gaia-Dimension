@@ -1,0 +1,13 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "half_slab",
+    "textures": {
+      "top": "gaiadimension:blocks/malachite_floor_bricks",
+      "side": "gaiadimension:blocks/malachite_floor_bricks",
+      "bottom": "gaiadimension:blocks/malachite_floor_bricks"
+    },
+    "uvlock": true
+  },
+  "variants": { "half": { "bottom": {}, "top": { "x": 180 } } }
+}

@@ -165,10 +165,20 @@ public class GDBlocks {
     public static Block reinforcedBricks;
     @ObjectHolder("malachite_bricks")
     public static Block malachiteBricks;
+    @ObjectHolder("malachite_pulsing_bricks")
+    public static Block malachitePulseBricks;
+    @ObjectHolder("malachite_pulsing_tiles")
+    public static Block malachitePulseTiles;
+    @ObjectHolder("malachite_pulsing_chisel")
+    public static Block malachitePulseChisel;
     @ObjectHolder("malachite_brick_slab")
     public static BlockSlab malachiteBrickSlab;
     @ObjectHolder("double_malachite_brick_slab")
     public static BlockSlab malachiteBrickSlabDouble;
+    @ObjectHolder("malachite_floor_slab")
+    public static BlockSlab malachiteFloorSlab;
+    @ObjectHolder("double_malachite_floor_slab")
+    public static BlockSlab malachiteFloorSlabDouble;
     @ObjectHolder("malachite_pillar")
     public static Block malachiteBrickPillar;
     @ObjectHolder("malachite_brick_stairs")
@@ -179,6 +189,8 @@ public class GDBlocks {
     public static Block malachitePulsingBrickStairs;
     @ObjectHolder("malachite_pulsing_floor_stairs")
     public static Block malachitePulsingFloorStairs;
+    @ObjectHolder("malachite_pulsing_chisel_stairs")
+    public static Block malachitePulsingChiselStairs;
     @ObjectHolder("malachite_pillar_stairs")
     public static Block malachitePillarStairs;
     @ObjectHolder("malachite_floor_stairs")

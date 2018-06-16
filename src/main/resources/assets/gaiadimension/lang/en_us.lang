@@ -124,13 +124,11 @@ tile.malachite_brick_stairs.name=Malachite Brick Stairs
 tile.malachite_brick_slab.name=Malachite Brick Slab
 tile.malachite_bricks.1.name=Cracked Malachite Bricks
 tile.malachite_bricks.2.name=Crusted Malachite Bricks
-tile.malachite_bricks.6.name=Crystallized Malachite Bricks
+tile.malachite_bricks.4.name=Crystallized Malachite Bricks
 tile.malachite_chisel_brick_stairs.name=Chiseled Malachite Brick Stairs
-tile.malachite_bricks.4.name=Pulsing Malachite Bricks
 tile.malachite_pulsing_brick_stairs.name=Pulsing Malachite Brick Stairs
 tile.malachite_bricks.3.name=Malachite Brick Tiles
 tile.malachite_floor_stairs.name=Malachite Brick Tile Stairs
-tile.malachite_bricks.5.name=Pulsing Malachite Brick Tiles
 tile.malachite_pulsing_floor_stairs.name=Pulsing Malachite Tile Stairs
 tile.malachite_pillar.name=Malachite Pillar
 tile.malachite_pillar_stairs.name=Malachite Pillar Stairs
@@ -144,7 +142,10 @@ tile.sweet_muck.name=Sweet Muck
 tile.gold_fire.name=Gold Fire
 tile.gaia_portal.0.name=Gaia Portal
 
+container.gaiadimension.gaia_stone_furnace=Gaia Stone Furnace
 container.gaiadimension.glitter_furnace=Glittering Furnace
+container.gaiadimension.purifier=Purifier
+
 
 # items
 item.glint_and_gold.name=Glint and Gold

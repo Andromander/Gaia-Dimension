@@ -9,8 +9,6 @@ public enum MalachiteBricksVariant implements IStringSerializable {
     CRACKED,
     CRUSTED,
     FLOOR,
-    PULSING,
-    PULSEFLOOR,
     CHISELED;
 
     @Override

@@ -37,8 +37,6 @@ public class GDFeature {
     private List<Biome.SpawnListEntry> ambientCreatureList;
     private List<Biome.SpawnListEntry> waterCreatureList;
 
-    private long lastSpawnedHintMonsterTime;
-
     private static int maxSize;
 
     public GDFeature(int parID, int parSize, String parName) {

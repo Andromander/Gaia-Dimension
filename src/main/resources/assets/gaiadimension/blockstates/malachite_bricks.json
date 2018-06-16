@@ -9,8 +9,6 @@
       "cracked": { "textures": { "all": "gaiadimension:blocks/malachite_cracked_bricks"}},
       "crusted": { "textures": { "all": "gaiadimension:blocks/malachite_crystalized_bricks"}},
       "floor": { "textures": {"all": "gaiadimension:blocks/malachite_floor_bricks" }},
-      "pulsing": { "textures": { "all": "gaiadimension:blocks/malachite_pulsing_bricks"}},
-      "pulsefloor": { "textures": { "all": "gaiadimension:blocks/malachite_pulsing_floor_bricks"}},
       "chiseled": { "textures": { "all": "gaiadimension:blocks/malachite_chiseled_bricks" }}
     }
   }

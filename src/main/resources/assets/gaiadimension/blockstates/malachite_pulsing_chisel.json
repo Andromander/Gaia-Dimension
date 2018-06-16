@@ -1,0 +1,9 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "gaiadimension:malachite_lime",
+    "textures": { "all": "gaiadimension:blocks/malachite_chiseled_bricks" } },
+  "variants": {
+    "normal": [{}]
+  }
+}

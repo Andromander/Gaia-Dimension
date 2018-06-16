@@ -209,7 +209,11 @@ public class GDItemsRegister {
         items.registerBlock(GDBlocks.gaiaStoneBricksCrusted);
         items.registerBlock(GDBlocks.reinforcedBricks);
         items.registerSubItemBlock(GDBlocks.malachiteBricks);
+        items.registerBlock(GDBlocks.malachitePulseBricks);
+        items.registerBlock(GDBlocks.malachitePulseTiles);
+        items.registerBlock(GDBlocks.malachitePulseChisel);
         items.register(new ItemSlab(GDBlocks.malachiteBrickSlab, GDBlocks.malachiteBrickSlab, GDBlocks.malachiteBrickSlabDouble));
+        items.register(new ItemSlab(GDBlocks.malachiteFloorSlab, GDBlocks.malachiteFloorSlab, GDBlocks.malachiteFloorSlabDouble));
         items.registerBlock(GDBlocks.malachiteBrickPillar);
         items.registerBlock(GDBlocks.malachiteBrickStairs);
         items.registerBlock(GDBlocks.malachiteChiselStairs);
@@ -217,6 +221,7 @@ public class GDItemsRegister {
         items.registerBlock(GDBlocks.malachitePillarStairs);
         items.registerBlock(GDBlocks.malachiteFloorStairs);
         items.registerBlock(GDBlocks.malachitePulsingFloorStairs);
+        items.registerBlock(GDBlocks.malachitePulsingChiselStairs);
         items.registerBlock(GDBlocks.bolsteredBricks);
 
         items.registerBlock(GDBlocks.opalBlockRed);
