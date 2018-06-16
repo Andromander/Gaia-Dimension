@@ -8,7 +8,6 @@ import androsa.gaiadimension.registry.GDConfig;
 import androsa.gaiadimension.registry.GDFluids;
 import androsa.gaiadimension.registry.GDItems;
 import androsa.gaiadimension.world.WorldProviderGaia;
-import com.google.common.collect.Lists;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialLiquid;
@@ -16,7 +15,6 @@ import net.minecraft.entity.EnumCreatureAttribute;
 import net.minecraft.world.DimensionType;
 import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.common.util.EnumHelper;
-import net.minecraftforge.fml.common.IFuelHandler;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.Mod.Instance;
@@ -27,8 +25,6 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
-import java.util.List;
 
 @Mod(modid = GaiaDimension.MODID,
         name = "GaiaDimension",

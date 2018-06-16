@@ -1,18 +1,10 @@
 package androsa.gaiadimension.recipe;
 
-import com.google.common.collect.Lists;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.fml.common.IFuelHandler;
 
-import java.util.List;
-
-@SuppressWarnings("deprecated")
 public class RecipeHandler {
-
-    private static final List<IFuelHandler> glitterFuelHandlers = Lists.newArrayList();
-    private static final List<IFuelHandler> purifierFuelHandlers = Lists.newArrayList();
 
     //===GLITTER FURNACE===//
     public static void addGlitterRefactoring(Block input, ItemStack output1, ItemStack output2, float xp) {

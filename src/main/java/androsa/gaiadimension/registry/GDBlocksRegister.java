@@ -17,6 +17,7 @@ import net.minecraftforge.registries.IForgeRegistry;
 @Mod.EventBusSubscriber
 public final class GDBlocksRegister {
     @SubscribeEvent
+    @SuppressWarnings("deprecated")
     public static void onRegisterBlocks(RegistryEvent.Register<Block> event) {
         BlockRegistryHelper blocks = new BlockRegistryHelper(event.getRegistry());
 
@@ -153,9 +154,9 @@ public final class GDBlocksRegister {
         blocks.register("moonstone_ore", (new GDOreMoonstone()).setUnlocalizedName("moonstone_ore"));
         blocks.register("cinnabar_ore", (new GDOreCinnabar()).setUnlocalizedName("cinnabar_ore"));
 
-        GameRegistry.registerTileEntity(TileEntityGaiaStoneFurnace.class, "tileEntityGaiaStoneFurnace");
-        GameRegistry.registerTileEntity(TileEntityGlitterFurnace.class, "tileEntityGlitterFurnace");
-        GameRegistry.registerTileEntity(TileEntityPurifier.class, "tileEntityPurifier");
+        GameRegistry.registerTileEntity(TileEntityGaiaStoneFurnace.class, "gaiadimension:tileEntityGaiaStoneFurnace");
+        GameRegistry.registerTileEntity(TileEntityGlitterFurnace.class, "gaiadimension:tileEntityGlitterFurnace");
+        GameRegistry.registerTileEntity(TileEntityPurifier.class, "gaiadimension:tileEntityPurifier");
     }
 
     private static class BlockRegistryHelper {
