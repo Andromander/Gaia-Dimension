@@ -109,6 +109,7 @@ public class GDAgateLeaves extends BlockLeaves implements ModelRegisterCallback 
 
     @Override
     @SideOnly(Side.CLIENT)
+    @Deprecated
     public boolean shouldSideBeRendered(IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing side) {
         return Blocks.LEAVES.shouldSideBeRendered(state, world, pos, side);
     }

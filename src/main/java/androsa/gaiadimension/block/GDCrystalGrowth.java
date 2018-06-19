@@ -106,6 +106,7 @@ public class GDCrystalGrowth extends BlockBush implements IShearable, ModelRegis
     }
 
     @Override
+    @Deprecated
     public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
         return PLANT_AABB;
     }
