@@ -84,7 +84,7 @@ public class GDItemsRegister {
         items.register("sugilite_pickaxe", new GDSugilitePickaxe(TOOL_SUGILITE).setUnlocalizedName("sugilite_pickaxe").setMaxStackSize(1));
         items.register("sugilite_axe", new GDSugiliteAxe(TOOL_SUGILITE).setUnlocalizedName("sugilite_axe").setMaxStackSize(1));
         items.register("sugilite_shovel", new GDSugiliteShovel(TOOL_SUGILITE).setUnlocalizedName("sugilite_shovel").setMaxStackSize(1));
-        items.register("ixiolite_sword", new GDIxioliteShovel(TOOL_IXIOLITE).setUnlocalizedName("ixiolite_sword").setMaxStackSize(1));
+        items.register("ixiolite_sword", new GDIxioliteSword(TOOL_IXIOLITE).setUnlocalizedName("ixiolite_sword").setMaxStackSize(1));
         items.register("ixiolite_pickaxe", new GDIxiolitePickaxe(TOOL_IXIOLITE).setUnlocalizedName("ixiolite_pickaxe").setMaxStackSize(1));
         items.register("ixiolite_axe", new GDIxioliteAxe(TOOL_IXIOLITE).setUnlocalizedName("ixiolite_axe").setMaxStackSize(1));
         items.register("ixiolite_shovel", new GDIxioliteShovel(TOOL_IXIOLITE).setUnlocalizedName("ixiolite_shovel").setMaxStackSize(1));
