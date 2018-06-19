@@ -8,6 +8,6 @@ public class GDIxioliteSword extends ItemSword implements ModelRegisterCallback 
 
     public GDIxioliteSword(ToolMaterial material) {
         super(material);
-        this.setCreativeTab(GDTabs.tabBlock);
+        this.setCreativeTab(GDTabs.tabTool);
     }
 }

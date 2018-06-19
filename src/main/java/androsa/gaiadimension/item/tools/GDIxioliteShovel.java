@@ -8,6 +8,6 @@ public class GDIxioliteShovel extends ItemSpade implements ModelRegisterCallback
 
     public GDIxioliteShovel(ToolMaterial material) {
         super(material);
-        this.setCreativeTab(GDTabs.tabBlock);
+        this.setCreativeTab(GDTabs.tabTool);
     }
 }
