@@ -88,6 +88,10 @@ public class GDItemsRegister {
         items.register("ixiolite_pickaxe", new GDIxiolitePickaxe(TOOL_IXIOLITE).setUnlocalizedName("ixiolite_pickaxe").setMaxStackSize(1));
         items.register("ixiolite_axe", new GDIxioliteAxe(TOOL_IXIOLITE).setUnlocalizedName("ixiolite_axe").setMaxStackSize(1));
         items.register("ixiolite_shovel", new GDIxioliteShovel(TOOL_IXIOLITE).setUnlocalizedName("ixiolite_shovel").setMaxStackSize(1));
+        items.register("euclase_sword", new GDAgateSword(TOOL_EUCLASE).setUnlocalizedName("euclase_sword").setMaxStackSize(1));
+        items.register("euclase_pickaxe", new GDAgatePickaxe(TOOL_EUCLASE).setUnlocalizedName("euclase_pickaxe").setMaxStackSize(1));
+        items.register("euclase_axe", new GDAgateAxe(TOOL_EUCLASE).setUnlocalizedName("euclase_axe").setMaxStackSize(1));
+        items.register("euclase_shovel", new GDAgateShovel(TOOL_EUCLASE).setUnlocalizedName("euclase_shovel").setMaxStackSize(1));
 
         items.register("malachite_guard_headgear", new GDMalachiteGuardArmor(ARMOR_MALACHITE, HEAD).setUnlocalizedName("malachite_guard_headgear").setMaxStackSize(1));
         items.register("malachite_guard_brace", new GDMalachiteGuardArmor(ARMOR_MALACHITE, CHEST).setUnlocalizedName("malachite_guard_brace").setMaxStackSize(1));
