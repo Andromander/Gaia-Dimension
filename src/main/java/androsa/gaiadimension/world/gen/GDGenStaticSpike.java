@@ -45,20 +45,16 @@ public class GDGenStaticSpike extends GDGenerator {
             worldIn.setBlockState(position.up(i), this.block.getDefaultState());
 
             if (i < height / 2) {
-                for (int j = 0; j < height / 2 + 1; j++) {
-                    worldIn.setBlockState(position.add(0, j, -1), this.block.getDefaultState());
-                    worldIn.setBlockState(position.add(0, j, 1), this.block.getDefaultState());
-                    worldIn.setBlockState(position.add(-1, j, 0), this.block.getDefaultState());
-                    worldIn.setBlockState(position.add(1, j, 0), this.block.getDefaultState());
+                worldIn.setBlockState(position.add(0, i, -1), this.block.getDefaultState());
+                worldIn.setBlockState(position.add(0, i, 1), this.block.getDefaultState());
+                worldIn.setBlockState(position.add(-1, i, 0), this.block.getDefaultState());
+                worldIn.setBlockState(position.add(1, i, 0), this.block.getDefaultState());
 
-                    if (j < height / 4) {
-                        for (int k = 0; k < height / 4 + 1; k++) {
-                            worldIn.setBlockState(position.add(1, k, -1), this.block.getDefaultState());
-                            worldIn.setBlockState(position.add(1, k, 1), this.block.getDefaultState());
-                            worldIn.setBlockState(position.add(-1, k, -1), this.block.getDefaultState());
-                            worldIn.setBlockState(position.add(-1, k, 1), this.block.getDefaultState());
-                        }
-                    }
+                if (i < height / 4) {
+                    worldIn.setBlockState(position.add(1, i, -1), this.block.getDefaultState());
+                    worldIn.setBlockState(position.add(1, i, 1), this.block.getDefaultState());
+                    worldIn.setBlockState(position.add(-1, i, -1), this.block.getDefaultState());
+                    worldIn.setBlockState(position.add(-1, i, 1), this.block.getDefaultState());
                 }
             }
         }
