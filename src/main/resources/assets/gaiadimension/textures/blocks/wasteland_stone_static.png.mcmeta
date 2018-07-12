@@ -1,0 +1,16 @@
+{
+  "ctm": {
+    "ctm_version": 1,
+    "type": "EDGES_FULL",
+    "layer": "TRANSLUCENT",
+    "textures": [
+      "gaiadimension:blocks/wasteland_stone_charged"
+    ],
+    "extra": {
+      "connect_to": [
+        { "block": "gaiadimension:static_stone" }
+      ],
+      "light": 15
+    }
+  }
+}
