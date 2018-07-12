@@ -5,10 +5,13 @@ import androsa.gaiadimension.registry.ModelRegisterCallback;
 import net.minecraft.block.BlockBreakable;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.BlockRenderLayer;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -52,6 +55,13 @@ public class GDGummyGlitterBlock extends BlockBreakable implements ModelRegister
         }
 
         super.onEntityWalk(worldIn, pos, entityIn);
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    @Deprecated
+    public boolean shouldSideBeRendered(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side) {
+        return super.shouldSideBeRendered(blockState, blockAccess, pos, side) && blockState != blockAccess.getBlockState(pos.offset(side));
     }
 
     @Override
