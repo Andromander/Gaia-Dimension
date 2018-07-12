@@ -24,8 +24,6 @@ public class WorldProviderGaia extends WorldProviderSurface {
         setDimension(GDConfig.dimension.dimensionID);
     }
 
-
-
     @Override
     @SideOnly(Side.CLIENT)
     public float getStarBrightness(float par1) {
@@ -37,8 +35,6 @@ public class WorldProviderGaia extends WorldProviderSurface {
         }
         return world.getStarBrightnessBody(par1);
     }
-
-
 
     @Override
     public float calculateCelestialAngle(long par1, float par3) {

@@ -9,6 +9,7 @@ import androsa.gaiadimension.registry.GDFluids;
 import androsa.gaiadimension.world.gen.GDGenCaves;
 import androsa.gaiadimension.world.gen.GDGenLavaLake;
 import jline.internal.Nullable;
+import mcp.MethodsReturnNonnullByDefault;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFalling;
 import net.minecraft.entity.EnumCreatureType;
@@ -28,6 +29,7 @@ import net.minecraft.world.gen.feature.WorldGenLakes;
 import java.util.List;
 import java.util.Random;
 
+@MethodsReturnNonnullByDefault
 public class GaiaChunkGenerator implements IChunkGenerator {
 
     private final Random rand;
@@ -35,7 +37,6 @@ public class GaiaChunkGenerator implements IChunkGenerator {
     private NoiseGeneratorOctaves maxLimitPerlinNoise;
     private NoiseGeneratorOctaves mainPerlinNoise;
     private NoiseGeneratorPerlin surfaceNoise;
-    private NoiseGeneratorOctaves noiseGen4;
     private NoiseGeneratorOctaves depthNoise;
     private final World world;
     private WorldType terrainType;
@@ -51,6 +52,7 @@ public class GaiaChunkGenerator implements IChunkGenerator {
     private final MapGenGDMajorFeature majorFeatureGenerator = new MapGenGDMajorFeature();
     private final GDGenCaves caveGenerator = new GDGenCaves();
 
+
     public GaiaChunkGenerator(World world, long l, boolean flag) {
         this.world = world;
         this.terrainType = world.getWorldInfo().getTerrainType();
@@ -59,7 +61,6 @@ public class GaiaChunkGenerator implements IChunkGenerator {
         this.maxLimitPerlinNoise = new NoiseGeneratorOctaves(this.rand, 16);
         this.mainPerlinNoise = new NoiseGeneratorOctaves(this.rand, 8);
         this.surfaceNoise = new NoiseGeneratorPerlin(this.rand, 4);
-        this.noiseGen4 = new NoiseGeneratorOctaves(rand, 4);
         this.depthNoise = new NoiseGeneratorOctaves(rand, 16);
         this.heightMap = new double[825];
         this.biomeWeights = new float[25];
@@ -258,7 +259,6 @@ public class GaiaChunkGenerator implements IChunkGenerator {
 
     public void replaceBiomeBlocks(int x, int z, ChunkPrimer primer, Biome[] biomesIn) {
         if (!net.minecraftforge.event.ForgeEventFactory.onReplaceBiomeBlocks(this, x, z, primer, this.world)) return;
-        double d0 = 0.03125D;
         this.depthBuffer = this.surfaceNoise.getRegion(this.depthBuffer, (double)(x * 16), (double)(z * 16), 16, 16, 0.0625D, 0.0625D, 1.0D);
 
         for (int i = 0; i < 16; ++i) {

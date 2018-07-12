@@ -21,8 +21,6 @@ import java.util.Random;
 
 public class GDBiomeBase extends Biome {
 
-    private int grassColor = -1;
-    private int foliageColor = -1;
     protected List<SpawnListEntry> undergroundMonsterList;
 
     public GDBiomeBase(BiomeProperties props) {

@@ -10,25 +10,24 @@ import net.minecraft.block.state.pattern.BlockPattern;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
-import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.Teleporter;
 import net.minecraft.world.WorldServer;
 
+import javax.annotation.Nonnull;
 import java.util.Random;
 
 public class TeleporterGaia extends Teleporter {
 
     private final Random random;
+    @SuppressWarnings("unchecked")
     private final Long2ObjectMap<Teleporter.PortalPosition> destinationCoordinateCache = new Long2ObjectOpenHashMap(4096);
     private final Block portal;
     private final IBlockState frame;
 
-    public TeleporterGaia(WorldServer par1WorldServer, Block portal, IBlockState frame)
-    {
+    public TeleporterGaia(WorldServer par1WorldServer, Block portal, IBlockState frame) {
         super(par1WorldServer);
         random = new Random(par1WorldServer.getSeed());
         this.portal = portal;
@@ -36,7 +35,7 @@ public class TeleporterGaia extends Teleporter {
     }
 
     @Override
-    public void placeInPortal(Entity entity, float yaw) {
+    public void placeInPortal(@Nonnull Entity entity, float yaw) {
 
         if (!this.placeInExistingPortal(entity, yaw)) {
             this.makePortal(entity);
@@ -47,11 +46,8 @@ public class TeleporterGaia extends Teleporter {
     @Override
     public boolean placeInExistingPortal(Entity entity, float yaw) {
         double d0 = -1.0D;
-        int j = MathHelper.floor(entity.posX);
-        int k = MathHelper.floor(entity.posZ);
         boolean flag = true;
         BlockPos blockpos = BlockPos.ORIGIN;
-        long l = ChunkPos.asLong(j, k);
 
         if (this.destinationCoordinateCache.containsKey(1)) {
             PortalPosition teleporter$portalposition = this.destinationCoordinateCache.get(1);
@@ -141,10 +137,10 @@ public class TeleporterGaia extends Teleporter {
         int i2 = this.random.nextInt(4);
         BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
 
-        for (int j2 = j - 16; j2 <= j + 16; ++j2) {
+        for (int j2 = j - i; j2 <= j + i; ++j2) {
             double d1 = (double)j2 + 0.5D - entityIn.posX;
 
-            for (int l2 = l - 16; l2 <= l + 16; ++l2) {
+            for (int l2 = l - i; l2 <= l + i; ++l2) {
                 double d2 = (double)l2 + 0.5D - entityIn.posZ;
                 label293:
 
@@ -195,10 +191,10 @@ public class TeleporterGaia extends Teleporter {
         }
 
         if (d0 < 0.0D) {
-            for (int l5 = j - 16; l5 <= j + 16; ++l5) {
+            for (int l5 = j - i; l5 <= j + i; ++l5) {
                 double d3 = (double)l5 + 0.5D - entityIn.posX;
 
-                for (int j6 = l - 16; j6 <= l + 16; ++j6) {
+                for (int j6 = l - i; j6 <= l + i; ++j6) {
                     double d4 = (double)j6 + 0.5D - entityIn.posZ;
                     label231:
 
