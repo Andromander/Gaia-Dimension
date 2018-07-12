@@ -26,7 +26,7 @@ public class GDGenStaticSpike extends GDGenerator {
 
         for (int cx = 0; cx < 3; cx++) {
             for (int cz = 0; cz < 3; cz++) {
-                BlockPos pos = position.down();
+                BlockPos pos = position.add(cx - 1, 0, cz - 1);
 
                 if (worldIn.isBlockLoaded(pos)) {
                     Block blockBelow = worldIn.getBlockState(pos.down()).getBlock();
