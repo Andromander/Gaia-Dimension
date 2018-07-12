@@ -365,7 +365,7 @@ public class GaiaChunkGenerator implements IChunkGenerator {
                 || !GDFeature.getNearestFeature(chunkX, chunkZ, world).areChunkDecorationsEnabled;
 
         //Generate Mineral Water lakes outside of the Static Wasteland and Salt Dunes
-        if (!(biome instanceof GDStaticWasteland) || !(biome instanceof GDSaltDunes)) {
+        if (!(biome instanceof GDStaticWasteland) && !(biome instanceof GDSaltDunes)) {
             if (!disableFeatures && rand.nextInt(4) == 0 && biome.decorator.generateFalls) {
                 int i1 = blockpos.getX() + rand.nextInt(16) + 8;
                 int i2 = rand.nextInt(GaiaWorld.CHUNKHEIGHT);

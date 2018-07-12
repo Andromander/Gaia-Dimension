@@ -183,6 +183,7 @@ public class GDItemsRegister {
         items.registerBlock(GDBlocks.gaiaCobblestone);
         items.registerBlock(GDBlocks.wastelandStone);
         items.registerBlock(GDBlocks.staticStone);
+        items.registerBlock(GDBlocks.chargedMineral);
         items.registerBlock(GDBlocks.volcanicRock);
         items.registerBlock(GDBlocks.searingRock);
 

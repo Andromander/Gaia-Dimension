@@ -16,7 +16,6 @@ public class GDStaticStone extends Block implements ModelRegisterCallback {
     public GDStaticStone() {
         super(Material.ROCK);
 
-        this.setLightLevel(0.5F);
         this.setHardness(50.0F);
         this.setResistance(200.0F);
         this.setCreativeTab(GDTabs.tabBlock);

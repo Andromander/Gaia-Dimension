@@ -83,6 +83,8 @@ public class GDBlocks {
     public static Block wastelandStone;
     @ObjectHolder("static_stone")
     public static Block staticStone;
+    @ObjectHolder("charged_mineral")
+    public static Block chargedMineral;
     @ObjectHolder("volcanic_rock")
     public static Block volcanicRock;
     @ObjectHolder("searing_rock")

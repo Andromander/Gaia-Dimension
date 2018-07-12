@@ -60,6 +60,7 @@ public final class GDBlocksRegister {
         blocks.register("gaia_cobblestone", (new GDGaiaStone()).setUnlocalizedName("gaia_cobblestone"));
         blocks.register("wasteland_stone", (new GDWastelandStone()).setUnlocalizedName("wasteland_stone"));
         blocks.register("static_stone", (new GDStaticStone()).setUnlocalizedName("static_stone"));
+        blocks.register("charged_mineral", (new GDChargedMineral()).setUnlocalizedName("charged_mineral"));
         blocks.register("volcanic_rock", (new GDVolcanicRock()).setUnlocalizedName("volcanic_rock"));
         blocks.register("searing_rock", (new GDSearingRock()).setUnlocalizedName("searing_rock"));
 
