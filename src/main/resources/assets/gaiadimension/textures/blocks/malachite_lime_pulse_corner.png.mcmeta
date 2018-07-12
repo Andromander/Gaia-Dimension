@@ -9,6 +9,7 @@
     "extra": {
       "ignore_states": true,
       "light": 15,
+      "connect_inside": true,
       "connect_to": [
         { "block": "gaiadimension:malachite_pulsing_chisel" },
         { "block": "gaiadimension:malachite_pulsing_chisel_stairs" }
