@@ -6,6 +6,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
 
+import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.Random;
 
 public class GDGenGummyBlob extends WorldGenerator {
@@ -18,6 +19,8 @@ public class GDGenGummyBlob extends WorldGenerator {
         this.startRadius = startRadiusIn;
     }
 
+    @Override
+    @ParametersAreNonnullByDefault
     public boolean generate(World worldIn, Random rand, BlockPos position) {
         while (true) {
             label50:{

@@ -7,6 +7,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
 
+import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.Random;
 
 public class GDGenCrystalBloom extends WorldGenerator {
@@ -17,6 +18,7 @@ public class GDGenCrystalBloom extends WorldGenerator {
     }
 
     @Override
+    @ParametersAreNonnullByDefault
     public boolean generate(World worldIn, Random rand, BlockPos position) {
         for (IBlockState iblockstate = worldIn.getBlockState(position); (iblockstate.getBlock().isAir(iblockstate, worldIn, position) || iblockstate.getBlock().isLeaves(iblockstate, worldIn, position)) && position.getY() > 0; iblockstate = worldIn.getBlockState(position)) {
             position = position.down();

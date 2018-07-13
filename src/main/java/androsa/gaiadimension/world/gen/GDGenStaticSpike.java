@@ -2,15 +2,14 @@ package androsa.gaiadimension.world.gen;
 
 import androsa.gaiadimension.registry.GDBlocks;
 import net.minecraft.block.Block;
-import net.minecraft.block.material.Material;
-import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraft.world.gen.feature.WorldGenerator;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.Random;
 
-public class GDGenStaticSpike extends GDGenerator {
+public class GDGenStaticSpike extends WorldGenerator {
 
     private final Block block;
     private final int startHeight;

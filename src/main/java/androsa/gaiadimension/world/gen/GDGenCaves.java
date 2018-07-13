@@ -14,6 +14,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.chunk.ChunkPrimer;
 import net.minecraft.world.gen.MapGenCaves;
 
+import javax.annotation.Nullable;
 import java.util.Random;
 
 public class GDGenCaves extends MapGenCaves {
@@ -192,7 +193,7 @@ public class GDGenCaves extends MapGenCaves {
     }
 
         @Override
-        protected void recursiveGenerate(World par1World, int genX, int genZ, int centerX, int centerZ, ChunkPrimer blockStorage) {
+        protected void recursiveGenerate(World par1World, int genX, int genZ, int centerX, int centerZ, @Nullable  ChunkPrimer blockStorage) {
         int numberOfCaves = this.rand.nextInt(this.rand.nextInt(this.rand.nextInt(40) + 1) + 1);
         boolean isVolcanic = par1World.getBiome(new BlockPos(genX * 16, 0, genZ * 16)) instanceof GDVolcanicLands;
 
