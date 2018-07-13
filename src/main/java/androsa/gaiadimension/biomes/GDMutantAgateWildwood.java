@@ -5,7 +5,9 @@ import androsa.gaiadimension.block.GDCrystalGrowth;
 import androsa.gaiadimension.registry.GDBlocks;
 import androsa.gaiadimension.world.gen.*;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
+import net.minecraft.world.gen.feature.WorldGenMinable;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -31,6 +33,33 @@ public class GDMutantAgateWildwood extends GDBiomeBase {
 
         topBlock = GDBlocks.mutantGrass.getDefaultState();
         fillerBlock = GDBlocks.heavySoil.getDefaultState();
+    }
+
+    @Override
+    public void decorate(World world, Random rand, BlockPos pos) {
+
+        super.decorate(world, rand, pos);
+
+        for (int i = 0; i < 4; i++) {
+            int Xcoord = pos.getX() + rand.nextInt(16);
+            int Zcoord = pos.getZ() + rand.nextInt(16);
+            int Ycoord = rand.nextInt(40);
+            new WorldGenMinable(GDBlocks.opalOre.getStateFromMeta(0), 8, input -> input == GDBlocks.gaiaStone.getDefaultState()).generate(world, rand, new BlockPos(Xcoord, Ycoord, Zcoord));
+        }
+
+        for (int i = 0; i < 4; i++) {
+            int Xcoord = pos.getX() + rand.nextInt(16);
+            int Zcoord = pos.getZ() + rand.nextInt(16);
+            int Ycoord = rand.nextInt(40);
+            new WorldGenMinable(GDBlocks.opalOre.getStateFromMeta(1), 8, input -> input == GDBlocks.gaiaStone.getDefaultState()).generate(world, rand, new BlockPos(Xcoord, Ycoord, Zcoord));
+        }
+
+        for (int i = 0; i < 4; i++) {
+            int Xcoord = pos.getX() + rand.nextInt(16);
+            int Zcoord = pos.getZ() + rand.nextInt(16);
+            int Ycoord = rand.nextInt(40);
+            new WorldGenMinable(GDBlocks.opalOre.getStateFromMeta(2), 8, input -> input == GDBlocks.gaiaStone.getDefaultState()).generate(world, rand, new BlockPos(Xcoord, Ycoord, Zcoord));
+        }
     }
 
     @Override

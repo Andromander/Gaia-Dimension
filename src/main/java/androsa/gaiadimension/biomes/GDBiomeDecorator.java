@@ -82,33 +82,6 @@ public class GDBiomeDecorator extends BiomeDecorator {
             int Ycoord = rand.nextInt(40);
             new WorldGenMinable(GDBlocks.moonstoneOre.getDefaultState(), chunkProviderSettings.goldSize, input -> input == GDBlocks.gaiaStone.getDefaultState()).generate(world, rand, new BlockPos(Xcoord, Ycoord, Zcoord));
         }
-        //Red Opal Ore gen
-        if (biome instanceof GDPinkAgateForest || biome instanceof GDMutantAgateWildwood) {
-            for (int i = 0; i < 4; i++) {
-                int Xcoord = pos.getX() + rand.nextInt(16);
-                int Zcoord = pos.getZ() + rand.nextInt(16);
-                int Ycoord = rand.nextInt(40);
-                new WorldGenMinable(GDBlocks.opalOre.getStateFromMeta(0), chunkProviderSettings.diamondSize, input -> input == GDBlocks.gaiaStone.getDefaultState()).generate(world, rand, new BlockPos(Xcoord, Ycoord, Zcoord));
-            }
-        }
-        //Blue Opal Ore gen
-        if (biome instanceof GDBlueAgateTaiga || biome instanceof GDMutantAgateWildwood) {
-            for (int i = 0; i < 4; i++) {
-                int Xcoord = pos.getX() + rand.nextInt(16);
-                int Zcoord = pos.getZ() + rand.nextInt(16);
-                int Ycoord = rand.nextInt(40);
-                new WorldGenMinable(GDBlocks.opalOre.getStateFromMeta(1), chunkProviderSettings.diamondSize, input -> input == GDBlocks.gaiaStone.getDefaultState()).generate(world, rand, new BlockPos(Xcoord, Ycoord, Zcoord));
-            }
-        }
-        //Green Opal Ore gen
-        if (biome instanceof GDGreenAgateJungle || biome instanceof GDMutantAgateWildwood) {
-            for (int i = 0; i < 4; i++) {
-                int Xcoord = pos.getX() + rand.nextInt(16);
-                int Zcoord = pos.getZ() + rand.nextInt(16);
-                int Ycoord = rand.nextInt(40);
-                new WorldGenMinable(GDBlocks.opalOre.getStateFromMeta(2), chunkProviderSettings.diamondSize, input -> input == GDBlocks.gaiaStone.getDefaultState()).generate(world, rand, new BlockPos(Xcoord, Ycoord, Zcoord));
-            }
-        }
         //White Opal Ore gen
         if (biome instanceof GDMutantAgateWildwood) {
             for (int i = 0; i < 4; i++) {
@@ -123,51 +96,6 @@ public class GDBiomeDecorator extends BiomeDecorator {
                 int Zcoord = pos.getZ() + rand.nextInt(16);
                 int Ycoord = rand.nextInt(25);
                 new WorldGenMinable(GDBlocks.opalOre.getStateFromMeta(3), chunkProviderSettings.diamondSize, input -> input == GDBlocks.gaiaStone.getDefaultState()).generate(world, rand, new BlockPos(Xcoord, Ycoord, Zcoord));
-            }
-        }
-        //Volcanic Rock gen
-        if (biome instanceof GDVolcanicLands) {
-            for (int i = 0; i < 9; i++) {
-                int Xcoord = pos.getX() + rand.nextInt(16);
-                int Zcoord = pos.getZ() + rand.nextInt(16);
-                int Ycoord = rand.nextInt(100);
-                new WorldGenMinable(GDBlocks.volcanicRock.getDefaultState(), chunkProviderSettings.dirtSize, input -> input == GDBlocks.gaiaStone.getDefaultState()).generate(world, rand, new BlockPos(Xcoord, Ycoord, Zcoord));
-            }
-        }
-        //Searing Rock gen
-        if (biome instanceof GDVolcanicLands) {
-            for (int i = 0; i < 9; i++) {
-                int Xcoord = pos.getX() + rand.nextInt(16);
-                int Zcoord = pos.getZ() + rand.nextInt(16);
-                int Ycoord = rand.nextInt(100);
-                new WorldGenMinable(GDBlocks.searingRock.getDefaultState(), chunkProviderSettings.dirtSize, input -> input == GDBlocks.gaiaStone.getDefaultState()).generate(world, rand, new BlockPos(Xcoord, Ycoord, Zcoord));
-            }
-        }
-        //Wasteland Stone gen
-        if (biome instanceof GDStaticWasteland) {
-            for (int i = 0; i < 9; i++) {
-                int Xcoord = pos.getX() + rand.nextInt(16);
-                int Zcoord = pos.getZ() + rand.nextInt(16);
-                int Ycoord = rand.nextInt(100);
-                new WorldGenMinable(GDBlocks.wastelandStone.getDefaultState(), chunkProviderSettings.dirtSize, input -> input == GDBlocks.gaiaStone.getDefaultState()).generate(world, rand, new BlockPos(Xcoord, Ycoord, Zcoord));
-            }
-        }
-        //Static Stone gen
-        if (biome instanceof GDStaticWasteland) {
-            for (int i = 0; i < 9; i++) {
-                int Xcoord = pos.getX() + rand.nextInt(16);
-                int Zcoord = pos.getZ() + rand.nextInt(16);
-                int Ycoord = rand.nextInt(100);
-                new WorldGenMinable(GDBlocks.staticStone.getDefaultState(), chunkProviderSettings.dirtSize, input -> input == GDBlocks.gaiaStone.getDefaultState()).generate(world, rand, new BlockPos(Xcoord, Ycoord, Zcoord));
-            }
-        }
-        //Thick Glitter Block gen
-        if (biome instanceof GDPurpleAgateSwamp) {
-            for (int i = 0; i < 9; i++) {
-                int Xcoord = pos.getX() + rand.nextInt(16);
-                int Zcoord = pos.getZ() + rand.nextInt(16);
-                int Ycoord = rand.nextInt(100);
-                new WorldGenMinable(GDBlocks.thickGlitterBlock.getDefaultState(), chunkProviderSettings.dirtSize, input -> input == GDBlocks.gaiaStone.getDefaultState()).generate(world, rand, new BlockPos(Xcoord, Ycoord, Zcoord));
             }
         }
 
@@ -218,7 +146,7 @@ public class GDBiomeDecorator extends BiomeDecorator {
     protected void decorateUnderground(World world, Random rand, BlockPos pos) {
         //magma, magma everywhere
         if (this.generateFalls) {
-            for (int i = 0; i < 50; ++i) {
+            for (int i = 0; i < 25; ++i) {
                 int rx = pos.getX() + rand.nextInt(16) + 8;
                 int ry = rand.nextInt(24) + 4;
                 int rz = pos.getZ() + rand.nextInt(16) + 8;

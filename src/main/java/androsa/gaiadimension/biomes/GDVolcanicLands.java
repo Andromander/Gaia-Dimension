@@ -7,8 +7,10 @@ import androsa.gaiadimension.world.gen.GDGenCrystalGrowth;
 import androsa.gaiadimension.world.gen.GDGenFieryAgateTree;
 import androsa.gaiadimension.world.gen.GDGenNoTrees;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
+import net.minecraft.world.gen.feature.WorldGenMinable;
 import net.minecraft.world.gen.feature.WorldGenTrees;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraftforge.fml.relauncher.Side;
@@ -30,6 +32,26 @@ public class GDVolcanicLands extends GDBiomeBase {
 
         getGDBiomeDecorator().lavaPoolChance = 0.25F;
         getGDBiomeDecorator().grassPerChunk = 1;
+    }
+
+    @Override
+    public void decorate(World world, Random rand, BlockPos pos) {
+
+        super.decorate(world, rand, pos);
+
+        for (int i = 0; i < 9; i++) {
+            int Xcoord = pos.getX() + rand.nextInt(16);
+            int Zcoord = pos.getZ() + rand.nextInt(16);
+            int Ycoord = rand.nextInt(100);
+            new WorldGenMinable(GDBlocks.volcanicRock.getDefaultState(), 33, input -> input == GDBlocks.gaiaStone.getDefaultState()).generate(world, rand, new BlockPos(Xcoord, Ycoord, Zcoord));
+        }
+
+        for (int i = 0; i < 9; i++) {
+            int Xcoord = pos.getX() + rand.nextInt(16);
+            int Zcoord = pos.getZ() + rand.nextInt(16);
+            int Ycoord = rand.nextInt(100);
+            new WorldGenMinable(GDBlocks.searingRock.getDefaultState(), 33, input -> input == GDBlocks.gaiaStone.getDefaultState()).generate(world, rand, new BlockPos(Xcoord, Ycoord, Zcoord));
+        }
     }
 
     @Override

@@ -7,7 +7,12 @@ import androsa.gaiadimension.world.gen.GDGenCrystalBloom;
 import androsa.gaiadimension.world.gen.GDGenCrystalGrowth;
 import androsa.gaiadimension.world.gen.GDGenNoTrees;
 import androsa.gaiadimension.world.gen.GDGenPinkAgateTree;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
+import net.minecraft.world.biome.Biome;
+import net.minecraft.world.gen.ChunkGeneratorSettings;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
+import net.minecraft.world.gen.feature.WorldGenMinable;
 import net.minecraft.world.gen.feature.WorldGenTrees;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraftforge.fml.relauncher.Side;
@@ -29,6 +34,19 @@ public class GDPinkAgateForest extends GDBiomeBase {
 
         topBlock = GDBlocks.glitterGrass.getDefaultState();
         fillerBlock = GDBlocks.heavySoil.getDefaultState();
+    }
+
+    @Override
+    public void decorate(World world, Random rand, BlockPos pos) {
+
+        super.decorate(world, rand, pos);
+
+        for (int i = 0; i < 4; i++) {
+            int Xcoord = pos.getX() + rand.nextInt(16);
+            int Zcoord = pos.getZ() + rand.nextInt(16);
+            int Ycoord = rand.nextInt(40);
+            new WorldGenMinable(GDBlocks.opalOre.getStateFromMeta(0), 8, input -> input == GDBlocks.gaiaStone.getDefaultState()).generate(world, rand, new BlockPos(Xcoord, Ycoord, Zcoord));
+        }
     }
 
     @Override

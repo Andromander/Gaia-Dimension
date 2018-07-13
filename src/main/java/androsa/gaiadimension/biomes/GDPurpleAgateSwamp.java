@@ -6,10 +6,7 @@ import androsa.gaiadimension.registry.GDBlocks;
 import androsa.gaiadimension.world.gen.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraft.world.gen.feature.WorldGenAbstractTree;
-import net.minecraft.world.gen.feature.WorldGenBlockBlob;
-import net.minecraft.world.gen.feature.WorldGenTrees;
-import net.minecraft.world.gen.feature.WorldGenerator;
+import net.minecraft.world.gen.feature.*;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -40,8 +37,10 @@ public class GDPurpleAgateSwamp extends GDBiomeBase {
 
     @Override
     public void decorate(World world, Random rand, BlockPos pos) {
-        int dx, dy, dz;
 
+        super.decorate(world, rand, pos);
+
+        int dx, dy, dz;
         int maxBoulder = rand.nextInt(2);
         for (int i = 0; i < maxBoulder; ++i) {
             dx = pos.getX() + rand.nextInt(16) + 8;
@@ -49,7 +48,12 @@ public class GDPurpleAgateSwamp extends GDBiomeBase {
             genGummyBlock.generate(world, rand, world.getHeight(new BlockPos(dx, 0, dz)));
         }
 
-        super.decorate(world, rand, pos);
+        for (int i = 0; i < 9; i++) {
+            int Xcoord = pos.getX() + rand.nextInt(16);
+            int Zcoord = pos.getZ() + rand.nextInt(16);
+            int Ycoord = rand.nextInt(100);
+            new WorldGenMinable(GDBlocks.thickGlitterBlock.getDefaultState(), 33, input -> input == GDBlocks.gaiaStone.getDefaultState()).generate(world, rand, new BlockPos(Xcoord, Ycoord, Zcoord));
+        }
     }
 
     @SideOnly(Side.CLIENT)
