@@ -5,6 +5,7 @@ import androsa.gaiadimension.world.TeleporterGaia;
 import androsa.gaiadimension.registry.GDBlocks;
 import androsa.gaiadimension.registry.GDTabs;
 import androsa.gaiadimension.registry.ModelRegisterCallback;
+import mcp.MethodsReturnNonnullByDefault;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockPortal;
 import net.minecraft.block.material.Material;
@@ -27,9 +28,11 @@ import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.Random;
 
+@MethodsReturnNonnullByDefault
 public class GDGaiaPortal extends BlockPortal implements ModelRegisterCallback {
 
     public GDGaiaPortal() {
@@ -80,8 +83,7 @@ public class GDGaiaPortal extends BlockPortal implements ModelRegisterCallback {
     }
 
     @Override
-    @Deprecated
-    public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos fromPos) {
+    public void neighborChanged(IBlockState state, @Nullable World worldIn, @Nullable BlockPos pos, Block blockIn, BlockPos fromPos) {
         EnumFacing.Axis enumfacing$axis = state.getValue(AXIS);
 
         if (enumfacing$axis == EnumFacing.Axis.X) {
@@ -102,11 +104,11 @@ public class GDGaiaPortal extends BlockPortal implements ModelRegisterCallback {
 
     @Override
     @SideOnly(Side.CLIENT)
-    public boolean shouldSideBeRendered(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side) {
+    public boolean doesSideBlockRendering(IBlockState state, IBlockAccess access, BlockPos pos, EnumFacing side) {
         EnumFacing.Axis enumfacing$axis = null;
 
         if (blockState.getBlock() == this) {
-            enumfacing$axis = blockState.getValue(AXIS);
+            enumfacing$axis = state.getValue(AXIS);
 
             if (enumfacing$axis == null) {
                 return false;
@@ -121,13 +123,14 @@ public class GDGaiaPortal extends BlockPortal implements ModelRegisterCallback {
             }
         }
 
-        boolean flag = blockAccess.getBlockState(pos.west()).getBlock() == this && blockAccess.getBlockState(pos.west(2)).getBlock() != this;
-        boolean flag1 = blockAccess.getBlockState(pos.east()).getBlock() == this && blockAccess.getBlockState(pos.east(2)).getBlock() != this;
-        boolean flag2 = blockAccess.getBlockState(pos.north()).getBlock() == this && blockAccess.getBlockState(pos.north(2)).getBlock() != this;
-        boolean flag3 = blockAccess.getBlockState(pos.south()).getBlock() == this && blockAccess.getBlockState(pos.south(2)).getBlock() != this;
+        boolean flag = access.getBlockState(pos.west()).getBlock() == this && access.getBlockState(pos.west(2)).getBlock() != this;
+        boolean flag1 = access.getBlockState(pos.east()).getBlock() == this && access.getBlockState(pos.east(2)).getBlock() != this;
+        boolean flag2 = access.getBlockState(pos.north()).getBlock() == this && access.getBlockState(pos.north(2)).getBlock() != this;
+        boolean flag3 = access.getBlockState(pos.south()).getBlock() == this && access.getBlockState(pos.south(2)).getBlock() != this;
         boolean flag4 = flag || flag1 || enumfacing$axis == EnumFacing.Axis.X;
         boolean flag5 = flag2 || flag3 || enumfacing$axis == EnumFacing.Axis.Z;
-        return flag4 && side == EnumFacing.WEST ? true : flag4 && side == EnumFacing.EAST ? true : flag5 && side == EnumFacing.NORTH ? true : flag5 && side == EnumFacing.SOUTH;
+
+        return flag4 && side == EnumFacing.WEST || (flag4 && side == EnumFacing.EAST || (flag5 && side == EnumFacing.NORTH || flag5 && side == EnumFacing.SOUTH));
     }
 
     @Override
@@ -136,7 +139,7 @@ public class GDGaiaPortal extends BlockPortal implements ModelRegisterCallback {
     }
 
     @Override
-    public void onEntityCollidedWithBlock(World worldIn, BlockPos pos, IBlockState state, Entity entityIn) {
+    public void onEntityCollidedWithBlock(World worldIn, @Nullable BlockPos pos, IBlockState state, Entity entityIn) {
 
         if (!entityIn.isRiding() && !entityIn.isBeingRidden() && !worldIn.isRemote)
             if(entityIn.timeUntilPortal <= 0){
@@ -183,13 +186,11 @@ public class GDGaiaPortal extends BlockPortal implements ModelRegisterCallback {
     }
 
     @Override
-    @Deprecated
     public ItemStack getItem(World worldIn, BlockPos pos, IBlockState state) {
         return ItemStack.EMPTY;
     }
 
     @Override
-    @Deprecated
     public IBlockState getStateFromMeta(int meta) {
         return this.getDefaultState().withProperty(AXIS, (meta & 3) == 2 ? EnumFacing.Axis.Z : EnumFacing.Axis.X);
     }
@@ -202,7 +203,7 @@ public class GDGaiaPortal extends BlockPortal implements ModelRegisterCallback {
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void randomDisplayTick(IBlockState stateIn, World worldIn, BlockPos pos, Random rand) {
+    public void randomDisplayTick(IBlockState stateIn, @Nullable World worldIn, @Nullable BlockPos pos, Random rand) {
         if (rand.nextInt(100) == 0) {
             worldIn.playSound((double)pos.getX() + 0.5D, (double)pos.getY() + 0.5D, (double)pos.getZ() + 0.5D, SoundEvents.BLOCK_PORTAL_AMBIENT, SoundCategory.BLOCKS, 0.5F, rand.nextFloat() * 0.4F + 0.8F, false);
         }
@@ -233,17 +234,17 @@ public class GDGaiaPortal extends BlockPortal implements ModelRegisterCallback {
 
     @Override
     public int getMetaFromState(IBlockState state) {
-        return getMetaForAxis((EnumFacing.Axis)state.getValue(AXIS));
+        return getMetaForAxis(state.getValue(AXIS));
     }
 
     @Override
     @Deprecated
-    public IBlockState withRotation(IBlockState state, Rotation rot) {
+    public IBlockState withRotation(@Nonnull IBlockState state, Rotation rot) {
         switch (rot) {
             case COUNTERCLOCKWISE_90:
             case CLOCKWISE_90:
 
-                switch ((EnumFacing.Axis)state.getValue(AXIS)) {
+                switch (state.getValue(AXIS)) {
                     case X:
                         return state.withProperty(AXIS, EnumFacing.Axis.Z);
                     case Z:
@@ -259,7 +260,7 @@ public class GDGaiaPortal extends BlockPortal implements ModelRegisterCallback {
 
     @Override
     protected BlockStateContainer createBlockState() {
-        return new BlockStateContainer(this, new IProperty[] {AXIS});
+        return new BlockStateContainer(this, AXIS);
     }
 
     public static class Size {
@@ -379,6 +380,7 @@ public class GDGaiaPortal extends BlockPortal implements ModelRegisterCallback {
             }
         }
 
+        @SuppressWarnings("deprecated")
         protected boolean isEmptyBlock(Block blockIn) {
             return blockIn.getMaterial(blockIn.getDefaultState()) == Material.AIR || blockIn == GDBlocks.goldFire || blockIn == GDBlocks.gaiaPortal;
         }

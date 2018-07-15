@@ -29,48 +29,12 @@ import java.util.Locale;
 
 public class GDCrystalBloom extends BlockBush implements ModelRegisterCallback {
 
-    protected static final AxisAlignedBB PLANT_AABB = new AxisAlignedBB(0.09999999403953552D, 0.0D, 0.09999999403953552D, 0.8999999761581421D, 0.800000011920929D, 0.8999999761581421D);
-
-    public static final PropertyEnum<CrystalBloomVariant> VARIANT = PropertyEnum.create("variant", CrystalBloomVariant.class);
-
     public GDCrystalBloom() {
         super(Material.PLANTS);
 
         this.setHardness(0.0F);
         this.setSoundType(SoundType.PLANT);
         this.setCreativeTab(GDTabs.tabBlock);
-    }
-
-    @Override
-    public BlockStateContainer createBlockState() {
-        return new BlockStateContainer(this, VARIANT);
-    }
-
-    @Override
-    public int getMetaFromState(IBlockState state) {
-        return state.getValue(VARIANT).ordinal();
-    }
-
-    @Override
-    @Deprecated
-    public IBlockState getStateFromMeta(int meta) {
-        return getDefaultState().withProperty(VARIANT, CrystalBloomVariant.values()[meta]);
-    }
-
-    @Override
-    public void getSubBlocks(CreativeTabs itemIn, NonNullList<ItemStack> items) {
-        for(int i = 0; i < CrystalBloomVariant.values().length; i++)
-            items.add(new ItemStack(this, 1, i));
-    }
-
-    @Override
-    public int damageDropped(IBlockState state) {
-        CrystalBloomVariant leafType = state.getValue(VARIANT);
-        return leafType.ordinal();
-    }
-
-    public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player) {
-        return new ItemStack(this, 1, world.getBlockState(pos).getValue(VARIANT).ordinal());
     }
 
     public boolean canPlaceBlockAt(IBlockState state) {
@@ -80,30 +44,12 @@ public class GDCrystalBloom extends BlockBush implements ModelRegisterCallback {
     @SideOnly(Side.CLIENT)
     @Override
     public BlockRenderLayer getBlockLayer() {
-        return BlockRenderLayer.TRANSLUCENT;
+        return BlockRenderLayer.CUTOUT_MIPPED;
     }
 
     @SideOnly(Side.CLIENT)
     @Override
     public void registerModel() {
-        for (int i = 0; i < CrystalBloomVariant.values().length; i++) {
-            String variant = "inventory_" + CrystalBloomVariant.values()[i].getName();
-            ModelResourceLocation mrl = new ModelResourceLocation(getRegistryName(), variant);
-            ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(this), i, mrl);
-        }
-    }
-
-    public enum CrystalBloomVariant implements IStringSerializable {
-        THISCUS,
-        OUZIUM,
-        AGATHUM,
-        VARLOOM,
-        CORRUPT_VARLOOM,
-        MISSINGNO;
-
-        @Override
-        public String getName() {
-            return name().toLowerCase(Locale.ROOT);
-        }
+        ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(this), 0, new ModelResourceLocation((Item.getItemFromBlock(this)).getRegistryName(), "inventory"));
     }
 }

@@ -137,6 +137,7 @@ public class GDAgateSapling extends BlockBush implements IGrowable, ModelRegiste
     }
 
     @Override
+    @Deprecated
     public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
         return SAPLING_AABB;
     }

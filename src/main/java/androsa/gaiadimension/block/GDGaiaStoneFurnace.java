@@ -193,6 +193,7 @@ public class GDGaiaStoneFurnace extends BlockContainer implements ModelRegisterC
     }
 
     @Override
+    @Deprecated
     public EnumBlockRenderType getRenderType(IBlockState state) {
         return EnumBlockRenderType.MODEL;
     }
