@@ -59,8 +59,21 @@ public class GDBlocks {
     public static Block gummyGlitterBlock;
     @ObjectHolder("crystal_growth")
     public static Block crystalGrowth;
-    @ObjectHolder("crystal_bloom")
-    public static Block crystalBloom;
+
+    //Crystal Bloom
+    @ObjectHolder("thiscus")
+    public static Block thiscus;
+    @ObjectHolder("ouzium")
+    public static Block ouzium;
+    @ObjectHolder("agathum")
+    public static Block agathum;
+    @ObjectHolder("varloom")
+    public static Block varloom;
+    @ObjectHolder("corrupt_varloom")
+    public static Block corruptVarloom;
+    @ObjectHolder("missingno_plant")
+    public static Block missingnoPlant;
+
     @ObjectHolder("gaia_sapling")
     public static Block gaiaSapling;
     @ObjectHolder("gaia_leaves")

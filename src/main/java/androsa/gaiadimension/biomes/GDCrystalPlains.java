@@ -38,9 +38,9 @@ public class GDCrystalPlains extends GDBiomeBase {
 
         if (rand.nextInt(24) == 0) {
             if (rand.nextInt(8) == 0) {
-                return new GDGenCrystalBloom(GDCrystalBloom.CrystalBloomVariant.OUZIUM);
+                return new GDGenCrystalBloom(GDBlocks.ouzium);
             } else {
-                return new GDGenCrystalBloom(GDCrystalBloom.CrystalBloomVariant.THISCUS);
+                return new GDGenCrystalBloom(GDBlocks.thiscus);
             }
         } else {
             return new GDGenCrystalGrowth(GDCrystalGrowth.CrystalGrowthVariant.PINK);

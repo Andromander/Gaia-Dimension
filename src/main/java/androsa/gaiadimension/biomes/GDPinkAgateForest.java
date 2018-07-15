@@ -59,9 +59,9 @@ public class GDPinkAgateForest extends GDBiomeBase {
 
         if (rand.nextInt(16) == 0) {
             if (rand.nextInt(4) == 0) {
-                return new GDGenCrystalBloom(GDCrystalBloom.CrystalBloomVariant.OUZIUM);
+                return new GDGenCrystalBloom(GDBlocks.ouzium);
             } else {
-                return new GDGenCrystalBloom(GDCrystalBloom.CrystalBloomVariant.THISCUS);
+                return new GDGenCrystalBloom(GDBlocks.thiscus);
             }
         } else {
             return new GDGenCrystalGrowth(GDCrystalGrowth.CrystalGrowthVariant.PINK);

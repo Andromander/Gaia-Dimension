@@ -171,7 +171,15 @@ public class GDItemsRegister {
         items.registerBlock(GDBlocks.thickGlitterBlock);
         items.registerBlock(GDBlocks.gummyGlitterBlock);
         items.registerSubItemBlock(GDBlocks.crystalGrowth);
-        items.registerSubItemBlock(GDBlocks.crystalBloom);
+
+        //Crystal Bloom
+        items.registerBlock(GDBlocks.thiscus);
+        items.registerBlock(GDBlocks.ouzium);
+        items.registerBlock(GDBlocks.agathum);
+        items.registerBlock(GDBlocks.varloom);
+        items.registerBlock(GDBlocks.corruptVarloom);
+        items.registerBlock(GDBlocks.missingnoPlant);
+
         items.registerSubItemBlock(GDBlocks.gaiaSapling);
         items.registerSubItemBlock(GDBlocks.gaiaLeaves);
         items.registerSubItemBlock(GDBlocks.gaiaLeavesSpecial);

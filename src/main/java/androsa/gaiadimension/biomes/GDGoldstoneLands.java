@@ -46,7 +46,7 @@ public class GDGoldstoneLands extends GDBiomeBase {
     public WorldGenerator getRandomWorldGenForGrass(Random rand) {
 
         if (rand.nextInt(16) == 0) {
-            return new GDGenCrystalBloom(GDCrystalBloom.CrystalBloomVariant.CORRUPT_VARLOOM);
+            return new GDGenCrystalBloom(GDBlocks.corruptVarloom);
         } else {
             if (rand.nextInt(2) == 0) {
                 return new GDGenCrystalGrowth(GDCrystalGrowth.CrystalGrowthVariant.BLACK_GOLDSTONE);

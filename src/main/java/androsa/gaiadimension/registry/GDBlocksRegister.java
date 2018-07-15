@@ -48,7 +48,15 @@ public final class GDBlocksRegister {
         blocks.register("thick_glitter_block", (new GDThickGlitterBlock()).setUnlocalizedName("thick_glitter_block"));
         blocks.register("gummy_glitter_block", (new GDGummyGlitterBlock()).setUnlocalizedName("gummy_glitter_block"));
         blocks.register("crystal_growth", (new GDCrystalGrowth()).setUnlocalizedName("crystal_growth"));
-        blocks.register("crystal_bloom", (new GDCrystalBloom()).setUnlocalizedName("crystal_bloom"));
+
+        //Crystal Bloom
+        blocks.register("thiscus", (new GDCrystalBloom()).setUnlocalizedName("thiscus"));
+        blocks.register("ouzium", (new GDCrystalBloom()).setUnlocalizedName("ouzium"));
+        blocks.register("agathum", (new GDCrystalBloom()).setUnlocalizedName("agathum"));
+        blocks.register("varloom", (new GDCrystalBloom()).setUnlocalizedName("varloom"));
+        blocks.register("corrupt_varloom", (new GDCrystalBloom()).setUnlocalizedName("corrupt_varloom"));
+        blocks.register("missingno_plant", (new GDCrystalBloom()).setUnlocalizedName("missingno_plant"));
+
         blocks.register("gaia_sapling", (new GDAgateSapling()).setUnlocalizedName("gaia_sapling"));
         blocks.register("gaia_leaves", (new GDAgateLeaves()).setUnlocalizedName("gaia_leaves"));
         blocks.register("special_gaia_leaves", (new GDSpecialLeaves()).setUnlocalizedName("special_gaia_leaves"));
