@@ -170,7 +170,17 @@ public class GDItemsRegister {
         items.registerBlock(GDBlocks.frailGlitterBlock);
         items.registerBlock(GDBlocks.thickGlitterBlock);
         items.registerBlock(GDBlocks.gummyGlitterBlock);
-        items.registerSubItemBlock(GDBlocks.crystalGrowth);
+
+        //Crystal Growth
+        items.registerBlock(GDBlocks.growthPink);
+        items.registerBlock(GDBlocks.growthBlue);
+        items.registerBlock(GDBlocks.growthGreen);
+        items.registerBlock(GDBlocks.growthPurple);
+        items.registerBlock(GDBlocks.growthOld);
+        items.registerBlock(GDBlocks.growthCorruptRed);
+        items.registerBlock(GDBlocks.growthCorruptBlack);
+        items.registerBlock(GDBlocks.growthSeared);
+        items.registerBlock(GDBlocks.growthMutant);
 
         //Crystal Bloom
         items.registerBlock(GDBlocks.thiscus);

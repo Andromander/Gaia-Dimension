@@ -1,6 +1,5 @@
 package androsa.gaiadimension.biomes;
 
-import androsa.gaiadimension.block.GDCrystalGrowth;
 import androsa.gaiadimension.registry.GDBlocks;
 import androsa.gaiadimension.world.gen.GDGenBurntAgateTree;
 import androsa.gaiadimension.world.gen.GDGenCrystalGrowth;
@@ -69,7 +68,7 @@ public class GDVolcanicLands extends GDBiomeBase {
 
     @Override
     public WorldGenerator getRandomWorldGenForGrass(Random rand) {
-        return new GDGenCrystalGrowth(GDCrystalGrowth.CrystalGrowthVariant.SEARED);
+        return new GDGenCrystalGrowth(GDBlocks.growthSeared);
     }
 
     @SideOnly(Side.CLIENT)

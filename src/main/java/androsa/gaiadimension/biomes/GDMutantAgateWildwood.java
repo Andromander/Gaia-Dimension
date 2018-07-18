@@ -1,7 +1,5 @@
 package androsa.gaiadimension.biomes;
 
-import androsa.gaiadimension.block.GDCrystalBloom;
-import androsa.gaiadimension.block.GDCrystalGrowth;
 import androsa.gaiadimension.registry.GDBlocks;
 import androsa.gaiadimension.world.gen.*;
 import net.minecraft.util.math.BlockPos;
@@ -90,7 +88,7 @@ public class GDMutantAgateWildwood extends GDBiomeBase {
                 return new GDGenCrystalBloom(GDBlocks.ouzium);
             }
         } else {
-            return new GDGenCrystalGrowth(GDCrystalGrowth.CrystalGrowthVariant.MUTANT);
+            return new GDGenCrystalGrowth(GDBlocks.growthMutant);
         }
     }
 

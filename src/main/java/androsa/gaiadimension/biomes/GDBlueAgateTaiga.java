@@ -1,7 +1,5 @@
 package androsa.gaiadimension.biomes;
 
-import androsa.gaiadimension.block.GDCrystalBloom;
-import androsa.gaiadimension.block.GDCrystalGrowth;
 import androsa.gaiadimension.registry.GDBlocks;
 import androsa.gaiadimension.world.gen.GDGenBlueAgateTree;
 import androsa.gaiadimension.world.gen.GDGenCrystalBloom;
@@ -60,7 +58,7 @@ public class GDBlueAgateTaiga extends GDBiomeBase {
                 return new GDGenCrystalBloom(GDBlocks.thiscus);
             }
         } else {
-            return new GDGenCrystalGrowth(GDCrystalGrowth.CrystalGrowthVariant.BLUE);
+            return new GDGenCrystalGrowth(GDBlocks.growthBlue);
         }
     }
 

@@ -33,49 +33,12 @@ import java.util.Locale;
 
 public class GDCrystalGrowth extends BlockBush implements IShearable, ModelRegisterCallback {
 
-    public static final PropertyEnum<CrystalGrowthVariant> VARIANT = PropertyEnum.create("variant", CrystalGrowthVariant.class);
-
-    protected static final AxisAlignedBB PLANT_AABB = new AxisAlignedBB(0.09999999403953552D, 0.0D, 0.09999999403953552D, 0.8999999761581421D, 0.800000011920929D, 0.8999999761581421D);
-
     public GDCrystalGrowth() {
         super(Material.PLANTS);
 
         this.setTickRandomly(true);
         this.setSoundType(SoundType.GLASS);
         this.setCreativeTab(GDTabs.tabBlock);
-        this.getDefaultState().withProperty(VARIANT, CrystalGrowthVariant.PINK);
-    }
-
-    @Override
-    public BlockStateContainer createBlockState() {
-        return new BlockStateContainer(this, VARIANT);
-    }
-
-    @Override
-    public int getMetaFromState(IBlockState state) {
-        return state.getValue(VARIANT).ordinal();
-    }
-
-    @Override
-    @Deprecated
-    public IBlockState getStateFromMeta(int meta) {
-        return getDefaultState().withProperty(VARIANT, CrystalGrowthVariant.values()[meta]);
-    }
-
-    @Override
-    public void getSubBlocks(CreativeTabs itemIn, NonNullList<ItemStack> items) {
-        for(int i = 0; i < CrystalGrowthVariant.values().length; i++)
-            items.add(new ItemStack(this, 1, i));
-    }
-
-    public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player) {
-        return new ItemStack(this, 1, world.getBlockState(pos).getValue(VARIANT).ordinal());
-    }
-
-    @Override
-    public int damageDropped(IBlockState state) {
-        CrystalGrowthVariant leafType = state.getValue(VARIANT);
-        return leafType.ordinal();
     }
 
     @Override
@@ -99,50 +62,15 @@ public class GDCrystalGrowth extends BlockBush implements IShearable, ModelRegis
         return super.canBlockStay(worldIn, pos, state);
     }
 
-    @Override
-    @Deprecated
-    public boolean isOpaqueCube(IBlockState state) {
-        return false;
-    }
-
-    @Override
-    @Deprecated
-    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
-        return PLANT_AABB;
-    }
-
     @SideOnly(Side.CLIENT)
     @Override
     public BlockRenderLayer getBlockLayer() {
-        return BlockRenderLayer.TRANSLUCENT;
+        return BlockRenderLayer.CUTOUT_MIPPED;
     }
 
     @SideOnly(Side.CLIENT)
     @Override
     public void registerModel() {
-        for (int i = 0; i < CrystalGrowthVariant.values().length; i++) {
-            String variant = "inventory_" + CrystalGrowthVariant.values()[i].getName();
-            ModelResourceLocation mrl = new ModelResourceLocation(getRegistryName(), variant);
-            ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(this), i, mrl);
-        }
-    }
-
-    public enum CrystalGrowthVariant implements IStringSerializable {
-        PINK,
-        BLUE,
-        GREEN,
-        PURPLE,
-        OLD,
-        RED_GOLDSTONE,
-        BLACK_GOLDSTONE,
-        SEARED,
-        SACRED,
-        MUTANT,
-        CEILING;
-
-        @Override
-        public String getName() {
-            return name().toLowerCase(Locale.ROOT);
-        }
+        ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(this), 0, new ModelResourceLocation((Item.getItemFromBlock(this)).getRegistryName(), "inventory"));
     }
 }

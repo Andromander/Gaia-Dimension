@@ -1,7 +1,6 @@
 package androsa.gaiadimension.world.gen;
 
-import androsa.gaiadimension.block.GDCrystalGrowth;
-import androsa.gaiadimension.registry.GDBlocks;
+import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -12,9 +11,11 @@ import java.util.Random;
 
 public class GDGenCrystalGrowth extends WorldGenerator {
     private final IBlockState tallGrassState;
+    private final Block blockTallGrass;
 
-    public GDGenCrystalGrowth(GDCrystalGrowth.CrystalGrowthVariant var1) {
-        this.tallGrassState = GDBlocks.crystalGrowth.getDefaultState().withProperty(GDCrystalGrowth.VARIANT, var1);
+    public GDGenCrystalGrowth(Block block) {
+        this.tallGrassState = block.getDefaultState();
+        this.blockTallGrass = block;
     }
 
     @Override
@@ -27,8 +28,8 @@ public class GDGenCrystalGrowth extends WorldGenerator {
         for (int i = 0; i < 128; ++i) {
             BlockPos blockpos = position.add(rand.nextInt(8) - rand.nextInt(8), rand.nextInt(4) - rand.nextInt(4), rand.nextInt(8) - rand.nextInt(8));
 
-            if (worldIn.isAirBlock(blockpos) && GDBlocks.crystalGrowth.canPlaceBlockAt(worldIn, blockpos)) {
-                    worldIn.setBlockState(blockpos, this.tallGrassState, 2);
+            if (worldIn.isAirBlock(blockpos) && blockTallGrass.canPlaceBlockAt(worldIn, blockpos)) {
+                worldIn.setBlockState(blockpos, this.tallGrassState, 2);
             }
         }
         return true;

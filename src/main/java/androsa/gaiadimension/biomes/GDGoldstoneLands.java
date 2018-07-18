@@ -1,7 +1,5 @@
 package androsa.gaiadimension.biomes;
 
-import androsa.gaiadimension.block.GDCrystalBloom;
-import androsa.gaiadimension.block.GDCrystalGrowth;
 import androsa.gaiadimension.registry.GDBlocks;
 import androsa.gaiadimension.world.gen.GDGenCrystalBloom;
 import androsa.gaiadimension.world.gen.GDGenCrystalGrowth;
@@ -49,9 +47,9 @@ public class GDGoldstoneLands extends GDBiomeBase {
             return new GDGenCrystalBloom(GDBlocks.corruptVarloom);
         } else {
             if (rand.nextInt(2) == 0) {
-                return new GDGenCrystalGrowth(GDCrystalGrowth.CrystalGrowthVariant.BLACK_GOLDSTONE);
+                return new GDGenCrystalGrowth(GDBlocks.growthCorruptBlack);
             } else {
-                return new GDGenCrystalGrowth(GDCrystalGrowth.CrystalGrowthVariant.RED_GOLDSTONE);
+                return new GDGenCrystalGrowth(GDBlocks.growthCorruptRed);
             }
         }
     }

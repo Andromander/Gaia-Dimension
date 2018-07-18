@@ -57,8 +57,26 @@ public class GDBlocks {
     public static Block thickGlitterBlock;
     @ObjectHolder("gummy_glitter_block")
     public static Block gummyGlitterBlock;
-    @ObjectHolder("crystal_growth")
-    public static Block crystalGrowth;
+
+    //Crystal Growth
+    @ObjectHolder("crystal_growth_pink")
+    public static Block growthPink;
+    @ObjectHolder("crystal_growth_blue")
+    public static Block growthBlue;
+    @ObjectHolder("crystal_growth_green")
+    public static Block growthGreen;
+    @ObjectHolder("crystal_growth_purple")
+    public static Block growthPurple;
+    @ObjectHolder("crystal_growth_old")
+    public static Block growthOld;
+    @ObjectHolder("crystal_growth_red")
+    public static Block growthCorruptRed;
+    @ObjectHolder("crystal_growth_black")
+    public static Block growthCorruptBlack;
+    @ObjectHolder("crystal_growth_seared")
+    public static Block growthSeared;
+    @ObjectHolder("crystal_growth_mutant")
+    public static Block growthMutant;
 
     //Crystal Bloom
     @ObjectHolder("thiscus")

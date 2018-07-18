@@ -1,14 +1,11 @@
 package androsa.gaiadimension.biomes;
 
-import androsa.gaiadimension.block.GDCrystalBloom;
-import androsa.gaiadimension.block.GDCrystalGrowth;
 import androsa.gaiadimension.registry.GDBlocks;
 import androsa.gaiadimension.world.gen.GDGenCrystalBloom;
 import androsa.gaiadimension.world.gen.GDGenCrystalGrowth;
 import androsa.gaiadimension.world.gen.GDGenNoTrees;
 import androsa.gaiadimension.world.gen.GDGenPinkAgateTree;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
-import net.minecraft.world.gen.feature.WorldGenTrees;
 import net.minecraft.world.gen.feature.WorldGenerator;
 
 import java.util.Random;
@@ -43,7 +40,7 @@ public class GDCrystalPlains extends GDBiomeBase {
                 return new GDGenCrystalBloom(GDBlocks.thiscus);
             }
         } else {
-            return new GDGenCrystalGrowth(GDCrystalGrowth.CrystalGrowthVariant.PINK);
+            return new GDGenCrystalGrowth(GDBlocks.growthPink);
         }
     }
 }
