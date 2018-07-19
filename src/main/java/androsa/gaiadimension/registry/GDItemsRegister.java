@@ -76,22 +76,22 @@ public class GDItemsRegister {
         items.register("tektite", new GDItem().setUnlocalizedName("tektite"));
         items.register("goldstone", new GDItem().setUnlocalizedName("goldstone"));
 
-        items.register("agate_sword", new GDAgateSword(TOOL_AGATE).setUnlocalizedName("agate_sword").setMaxStackSize(1));
-        items.register("agate_pickaxe", new GDAgatePickaxe(TOOL_AGATE).setUnlocalizedName("agate_pickaxe").setMaxStackSize(1));
+        items.register("agate_sword", new GDGenericSword(TOOL_AGATE).setUnlocalizedName("agate_sword").setMaxStackSize(1));
+        items.register("agate_pickaxe", new GDGenericPickaxe(TOOL_AGATE).setUnlocalizedName("agate_pickaxe").setMaxStackSize(1));
         items.register("agate_axe", new GDAgateAxe(TOOL_AGATE).setUnlocalizedName("agate_axe").setMaxStackSize(1));
-        items.register("agate_shovel", new GDAgateShovel(TOOL_AGATE).setUnlocalizedName("agate_shovel").setMaxStackSize(1));
-        items.register("sugilite_sword", new GDSugiliteSword(TOOL_SUGILITE).setUnlocalizedName("sugilite_sword").setMaxStackSize(1));
-        items.register("sugilite_pickaxe", new GDSugilitePickaxe(TOOL_SUGILITE).setUnlocalizedName("sugilite_pickaxe").setMaxStackSize(1));
+        items.register("agate_shovel", new GDGenericShovel(TOOL_AGATE).setUnlocalizedName("agate_shovel").setMaxStackSize(1));
+        items.register("sugilite_sword", new GDGenericSword(TOOL_SUGILITE).setUnlocalizedName("sugilite_sword").setMaxStackSize(1));
+        items.register("sugilite_pickaxe", new GDGenericPickaxe(TOOL_SUGILITE).setUnlocalizedName("sugilite_pickaxe").setMaxStackSize(1));
         items.register("sugilite_axe", new GDSugiliteAxe(TOOL_SUGILITE).setUnlocalizedName("sugilite_axe").setMaxStackSize(1));
-        items.register("sugilite_shovel", new GDSugiliteShovel(TOOL_SUGILITE).setUnlocalizedName("sugilite_shovel").setMaxStackSize(1));
-        items.register("ixiolite_sword", new GDIxioliteSword(TOOL_IXIOLITE).setUnlocalizedName("ixiolite_sword").setMaxStackSize(1));
-        items.register("ixiolite_pickaxe", new GDIxiolitePickaxe(TOOL_IXIOLITE).setUnlocalizedName("ixiolite_pickaxe").setMaxStackSize(1));
+        items.register("sugilite_shovel", new GDGenericShovel(TOOL_SUGILITE).setUnlocalizedName("sugilite_shovel").setMaxStackSize(1));
+        items.register("ixiolite_sword", new GDGenericSword(TOOL_IXIOLITE).setUnlocalizedName("ixiolite_sword").setMaxStackSize(1));
+        items.register("ixiolite_pickaxe", new GDGenericPickaxe(TOOL_IXIOLITE).setUnlocalizedName("ixiolite_pickaxe").setMaxStackSize(1));
         items.register("ixiolite_axe", new GDIxioliteAxe(TOOL_IXIOLITE).setUnlocalizedName("ixiolite_axe").setMaxStackSize(1));
-        items.register("ixiolite_shovel", new GDIxioliteShovel(TOOL_IXIOLITE).setUnlocalizedName("ixiolite_shovel").setMaxStackSize(1));
-        items.register("euclase_sword", new GDAgateSword(TOOL_EUCLASE).setUnlocalizedName("euclase_sword").setMaxStackSize(1));
-        items.register("euclase_pickaxe", new GDAgatePickaxe(TOOL_EUCLASE).setUnlocalizedName("euclase_pickaxe").setMaxStackSize(1));
-        items.register("euclase_axe", new GDAgateAxe(TOOL_EUCLASE).setUnlocalizedName("euclase_axe").setMaxStackSize(1));
-        items.register("euclase_shovel", new GDAgateShovel(TOOL_EUCLASE).setUnlocalizedName("euclase_shovel").setMaxStackSize(1));
+        items.register("ixiolite_shovel", new GDGenericShovel(TOOL_IXIOLITE).setUnlocalizedName("ixiolite_shovel").setMaxStackSize(1));
+        items.register("euclase_sword", new GDGenericSword(TOOL_EUCLASE).setUnlocalizedName("euclase_sword").setMaxStackSize(1));
+        items.register("euclase_pickaxe", new GDGenericPickaxe(TOOL_EUCLASE).setUnlocalizedName("euclase_pickaxe").setMaxStackSize(1));
+        items.register("euclase_axe", new GDEuclaseAxe(TOOL_EUCLASE).setUnlocalizedName("euclase_axe").setMaxStackSize(1));
+        items.register("euclase_shovel", new GDGenericShovel(TOOL_EUCLASE).setUnlocalizedName("euclase_shovel").setMaxStackSize(1));
 
         items.register("malachite_guard_headgear", new GDMalachiteGuardArmor(ARMOR_MALACHITE, HEAD).setUnlocalizedName("malachite_guard_headgear").setMaxStackSize(1));
         items.register("malachite_guard_brace", new GDMalachiteGuardArmor(ARMOR_MALACHITE, CHEST).setUnlocalizedName("malachite_guard_brace").setMaxStackSize(1));
