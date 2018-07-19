@@ -26,8 +26,8 @@ public class GDFossilWoodland extends GDBiomeBase {
 
         GaiaGenFossilTrees = new GDGenFossilizedTree(false);
 
-        topBlock = GDBlocks.oldGrass.getDefaultState();
-        fillerBlock = GDBlocks.heavySoil.getDefaultState();
+        topBlock = GDBlocks.old_grass.getDefaultState();
+        fillerBlock = GDBlocks.heavy_soil.getDefaultState();
     }
 
     @Override
@@ -45,7 +45,7 @@ public class GDFossilWoodland extends GDBiomeBase {
                 return new GDGenCrystalBloom(GDBlocks.thiscus);
             }
         } else {
-            return new GDGenCrystalGrowth(GDBlocks.growthOld);
+            return new GDGenCrystalGrowth(GDBlocks.crystal_growth_old);
         }
     }
 

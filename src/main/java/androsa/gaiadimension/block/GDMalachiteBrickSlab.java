@@ -64,7 +64,7 @@ public class GDMalachiteBrickSlab extends BlockSlab implements ModelRegisterCall
 
     @Override
     public Item getItemDropped(IBlockState state, Random rand, int fortune) {
-        return Item.getItemFromBlock(GDBlocks.malachiteBrickSlab);
+        return Item.getItemFromBlock(GDBlocks.malachite_brick_slab);
     }
 
     @Override

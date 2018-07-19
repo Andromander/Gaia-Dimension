@@ -145,140 +145,140 @@ public class GDItemsRegister {
          */
 
         //Utility Blocks
-        items.registerSubItemBlock(GDBlocks.gaiaPortal);
-        items.registerBlock(GDBlocks.goldFire);
-        items.registerBlock(GDBlocks.pyriteTorch);
-        items.registerBlock(GDBlocks.agateCraftingTable);
-        items.registerBlock(GDBlocks.gaiaStoneFurnaceIdle);
-        items.registerBlock(GDBlocks.gaiaStoneFurnaceActive); //Fallback
-        items.registerBlock(GDBlocks.glitterFurnaceIdle);
-        items.registerBlock(GDBlocks.glitterFurnaceActive); //Fallback
-        items.registerBlock(GDBlocks.purifierIdle);
-        items.registerBlock(GDBlocks.purifierActive); //Fallback
+        items.registerSubItemBlock(GDBlocks.gaia_portal);
+        items.registerBlock(GDBlocks.gold_fire);
+        items.registerBlock(GDBlocks.pyrite_torch);
+        items.registerBlock(GDBlocks.agate_crafting_table);
+        items.registerBlock(GDBlocks.gaia_stone_furnace_idle);
+        items.registerBlock(GDBlocks.gaia_stone_furnace_lit); //Fallback
+        items.registerBlock(GDBlocks.glitter_furnace_idle);
+        items.registerBlock(GDBlocks.glitter_furnace_lit); //Fallback
+        items.registerBlock(GDBlocks.purifier_idle);
+        items.registerBlock(GDBlocks.purifier_lit); //Fallback
 
         //Natural Blocks
-        items.registerBlock(GDBlocks.heavySoil);
-        items.registerBlock(GDBlocks.corruptSoil);
-        items.registerBlock(GDBlocks.glitterGrass);
-        items.registerBlock(GDBlocks.coolGrass);
-        items.registerBlock(GDBlocks.verdantGrass);
-        items.registerBlock(GDBlocks.scentedGrass);
-        items.registerBlock(GDBlocks.oldGrass);
-        items.registerBlock(GDBlocks.corruptGrass);
-        items.registerBlock(GDBlocks.singedGrass);
-        items.registerBlock(GDBlocks.mutantGrass);
-        items.registerBlock(GDBlocks.frailGlitterBlock);
-        items.registerBlock(GDBlocks.thickGlitterBlock);
-        items.registerBlock(GDBlocks.gummyGlitterBlock);
+        items.registerBlock(GDBlocks.heavy_soil);
+        items.registerBlock(GDBlocks.corrupt_soil);
+        items.registerBlock(GDBlocks.glitter_grass);
+        items.registerBlock(GDBlocks.cool_grass);
+        items.registerBlock(GDBlocks.verdant_grass);
+        items.registerBlock(GDBlocks.scented_grass);
+        items.registerBlock(GDBlocks.old_grass);
+        items.registerBlock(GDBlocks.corrupt_grass);
+        items.registerBlock(GDBlocks.singed_grass);
+        items.registerBlock(GDBlocks.mutated_grass);
+        items.registerBlock(GDBlocks.frail_glitter_block);
+        items.registerBlock(GDBlocks.thick_glitter_block);
+        items.registerBlock(GDBlocks.gummy_glitter_block);
 
         //Crystal Growth
-        items.registerBlock(GDBlocks.growthPink);
-        items.registerBlock(GDBlocks.growthBlue);
-        items.registerBlock(GDBlocks.growthGreen);
-        items.registerBlock(GDBlocks.growthPurple);
-        items.registerBlock(GDBlocks.growthOld);
-        items.registerBlock(GDBlocks.growthCorruptRed);
-        items.registerBlock(GDBlocks.growthCorruptBlack);
-        items.registerBlock(GDBlocks.growthSeared);
-        items.registerBlock(GDBlocks.growthMutant);
+        items.registerBlock(GDBlocks.crystal_growth_pink);
+        items.registerBlock(GDBlocks.crystal_growth_blue);
+        items.registerBlock(GDBlocks.crystal_growth_green);
+        items.registerBlock(GDBlocks.crystal_growth_purple);
+        items.registerBlock(GDBlocks.crystal_growth_old);
+        items.registerBlock(GDBlocks.crystal_growth_red);
+        items.registerBlock(GDBlocks.crystal_growth_black);
+        items.registerBlock(GDBlocks.crystal_growth_seared);
+        items.registerBlock(GDBlocks.crystal_growth_mutant);
 
         //Crystal Bloom
         items.registerBlock(GDBlocks.thiscus);
         items.registerBlock(GDBlocks.ouzium);
         items.registerBlock(GDBlocks.agathum);
         items.registerBlock(GDBlocks.varloom);
-        items.registerBlock(GDBlocks.corruptVarloom);
-        items.registerBlock(GDBlocks.missingnoPlant);
+        items.registerBlock(GDBlocks.corrupt_varloom);
+        items.registerBlock(GDBlocks.missingno_plant);
 
-        items.registerSubItemBlock(GDBlocks.gaiaSapling);
-        items.registerSubItemBlock(GDBlocks.gaiaLeaves);
-        items.registerSubItemBlock(GDBlocks.gaiaLeavesSpecial);
-        items.registerSubItemBlock(GDBlocks.gaiaLog);
-        items.registerSubItemBlock(GDBlocks.gaiaLogSpecial);
-        items.registerBlock(GDBlocks.saltBlock);
-        items.registerBlock(GDBlocks.rockSalt);
-        items.registerBlock(GDBlocks.gaiaStone);
-        items.registerBlock(GDBlocks.gaiaCobblestone);
-        items.registerBlock(GDBlocks.wastelandStone);
-        items.registerBlock(GDBlocks.staticStone);
-        items.registerBlock(GDBlocks.chargedMineral);
-        items.registerBlock(GDBlocks.volcanicRock);
-        items.registerBlock(GDBlocks.searingRock);
+        items.registerSubItemBlock(GDBlocks.gaia_sapling);
+        items.registerSubItemBlock(GDBlocks.gaia_leaves);
+        items.registerSubItemBlock(GDBlocks.special_gaia_leaves);
+        items.registerSubItemBlock(GDBlocks.gaia_log);
+        items.registerSubItemBlock(GDBlocks.special_gaia_log);
+        items.registerBlock(GDBlocks.salt);
+        items.registerBlock(GDBlocks.saltstone);
+        items.registerBlock(GDBlocks.gaia_stone);
+        items.registerBlock(GDBlocks.gaia_cobblestone);
+        items.registerBlock(GDBlocks.wasteland_stone);
+        items.registerBlock(GDBlocks.static_stone);
+        items.registerBlock(GDBlocks.charged_mineral);
+        items.registerBlock(GDBlocks.volcanic_rock);
+        items.registerBlock(GDBlocks.searing_rock);
 
         //Planks
-        items.registerBlock(GDBlocks.pinkAgatePlanks);
-        items.registerBlock(GDBlocks.blueAgatePlanks);
-        items.registerBlock(GDBlocks.greenAgatePlanks);
-        items.registerBlock(GDBlocks.purpleAgatePlanks);
-        items.registerBlock(GDBlocks.fossilizedPlanks);
-        items.registerBlock(GDBlocks.corruptedPlanks);
-        items.registerBlock(GDBlocks.crustyPlanks);
-        items.registerBlock(GDBlocks.heatedPlanks);
-        items.register(new ItemSlab(GDBlocks.pinkAgatePlankSlab, GDBlocks.pinkAgatePlankSlab, GDBlocks.pinkAgatePlankSlabDouble));
-        items.register(new ItemSlab(GDBlocks.blueAgatePlankSlab, GDBlocks.blueAgatePlankSlab, GDBlocks.blueAgatePlankSlabDouble));
-        items.register(new ItemSlab(GDBlocks.greenAgatePlankSlab, GDBlocks.greenAgatePlankSlab, GDBlocks.greenAgatePlankSlabDouble));
-        items.register(new ItemSlab(GDBlocks.purpleAgatePlankSlab, GDBlocks.purpleAgatePlankSlab, GDBlocks.purpleAgatePlankSlabDouble));
-        items.register(new ItemSlab(GDBlocks.fossilizedPlankSlab, GDBlocks.fossilizedPlankSlab, GDBlocks.fossilizedPlankSlabDouble));
-        items.register(new ItemSlab(GDBlocks.corruptedPlankSlab, GDBlocks.corruptedPlankSlab, GDBlocks.corruptedPlankSlabDouble));
-        items.register(new ItemSlab(GDBlocks.crustyPlankSlab, GDBlocks.crustyPlankSlab, GDBlocks.crustyPlankSlabDouble));
-        items.register(new ItemSlab(GDBlocks.heatedPlankSlab, GDBlocks.heatedPlankSlab, GDBlocks.heatedPlankSlabDouble));
-        items.registerBlock(GDBlocks.pinkAgatePlankStairs);
-        items.registerBlock(GDBlocks.blueAgatePlankStairs);
-        items.registerBlock(GDBlocks.greenAgatePlankStairs);
-        items.registerBlock(GDBlocks.purpleAgatePlankStairs);
-        items.registerBlock(GDBlocks.fossilizedPlankStairs);
-        items.registerBlock(GDBlocks.corruptedPlankStairs);
-        items.registerBlock(GDBlocks.crustyPlankStairs);
-        items.registerBlock(GDBlocks.heatedPlankStairs);
+        items.registerBlock(GDBlocks.pink_agate_planks);
+        items.registerBlock(GDBlocks.blue_agate_planks);
+        items.registerBlock(GDBlocks.green_agate_planks);
+        items.registerBlock(GDBlocks.purple_agate_planks);
+        items.registerBlock(GDBlocks.fossilized_planks);
+        items.registerBlock(GDBlocks.corrupted_planks);
+        items.registerBlock(GDBlocks.crusty_planks);
+        items.registerBlock(GDBlocks.heated_planks);
+        items.register(new ItemSlab(GDBlocks.pink_agate_plank_slab, GDBlocks.pink_agate_plank_slab, GDBlocks.double_pink_agate_plank_slab));
+        items.register(new ItemSlab(GDBlocks.blue_agate_plank_slab, GDBlocks.blue_agate_plank_slab, GDBlocks.double_blue_agate_plank_slab));
+        items.register(new ItemSlab(GDBlocks.green_agate_plank_slab, GDBlocks.green_agate_plank_slab, GDBlocks.double_green_agate_plank_slab));
+        items.register(new ItemSlab(GDBlocks.purple_agate_plank_slab, GDBlocks.purple_agate_plank_slab, GDBlocks.double_purple_agate_plank_slab));
+        items.register(new ItemSlab(GDBlocks.fossilized_plank_slab, GDBlocks.fossilized_plank_slab, GDBlocks.double_fossilized_plank_slab));
+        items.register(new ItemSlab(GDBlocks.corrupted_plank_slab, GDBlocks.corrupted_plank_slab, GDBlocks.double_corrupted_plank_slab));
+        items.register(new ItemSlab(GDBlocks.crusty_plank_slab, GDBlocks.crusty_plank_slab, GDBlocks.double_crusty_plank_slab));
+        items.register(new ItemSlab(GDBlocks.heated_plank_slab, GDBlocks.heated_plank_slab, GDBlocks.double_heated_plank_slab));
+        items.registerBlock(GDBlocks.pink_agate_plank_stairs);
+        items.registerBlock(GDBlocks.blue_agate_plank_stairs);
+        items.registerBlock(GDBlocks.green_agate_plank_stairs);
+        items.registerBlock(GDBlocks.purple_agate_plank_stairs);
+        items.registerBlock(GDBlocks.fossilized_plank_stairs);
+        items.registerBlock(GDBlocks.corrupted_plank_stairs);
+        items.registerBlock(GDBlocks.crusty_plank_stairs);
+        items.registerBlock(GDBlocks.heated_plank_stairs);
 
-        items.registerBlock(GDBlocks.gaiaStoneBricks);
-        items.registerBlock(GDBlocks.gaiaStoneBricksCracked);
-        items.registerBlock(GDBlocks.gaiaStoneBricksCrusted);
-        items.registerBlock(GDBlocks.reinforcedBricks);
-        items.registerSubItemBlock(GDBlocks.malachiteBricks);
-        items.registerBlock(GDBlocks.malachitePulseBricks);
-        items.registerBlock(GDBlocks.malachitePulseTiles);
-        items.registerBlock(GDBlocks.malachitePulseChisel);
-        items.register(new ItemSlab(GDBlocks.malachiteBrickSlab, GDBlocks.malachiteBrickSlab, GDBlocks.malachiteBrickSlabDouble));
-        items.register(new ItemSlab(GDBlocks.malachiteFloorSlab, GDBlocks.malachiteFloorSlab, GDBlocks.malachiteFloorSlabDouble));
-        items.registerBlock(GDBlocks.malachiteBrickPillar);
-        items.registerBlock(GDBlocks.malachiteBrickStairs);
-        items.registerBlock(GDBlocks.malachiteChiselStairs);
-        items.registerBlock(GDBlocks.malachitePulsingBrickStairs);
-        items.registerBlock(GDBlocks.malachitePillarStairs);
-        items.registerBlock(GDBlocks.malachiteFloorStairs);
-        items.registerBlock(GDBlocks.malachitePulsingFloorStairs);
-        items.registerBlock(GDBlocks.malachitePulsingChiselStairs);
-        items.registerBlock(GDBlocks.bolsteredBricks);
+        items.registerBlock(GDBlocks.gaia_stone_bricks);
+        items.registerBlock(GDBlocks.cracked_gaia_stone_bricks);
+        items.registerBlock(GDBlocks.crusted_gaia_stone_bricks);
+        items.registerBlock(GDBlocks.reinforced_bricks);
+        items.registerSubItemBlock(GDBlocks.malachite_bricks);
+        items.registerBlock(GDBlocks.malachite_pulsing_bricks);
+        items.registerBlock(GDBlocks.malachite_pulsing_tiles);
+        items.registerBlock(GDBlocks.malachite_pulsing_chisel);
+        items.register(new ItemSlab(GDBlocks.malachite_brick_slab, GDBlocks.malachite_brick_slab, GDBlocks.double_malachite_brick_slab));
+        items.register(new ItemSlab(GDBlocks.malachite_floor_slab, GDBlocks.malachite_floor_slab, GDBlocks.double_malachite_floor_slab));
+        items.registerBlock(GDBlocks.malachite_pillar);
+        items.registerBlock(GDBlocks.malachite_brick_stairs);
+        items.registerBlock(GDBlocks.malachite_chisel_stairs);
+        items.registerBlock(GDBlocks.malachite_pulsing_brick_stairs);
+        items.registerBlock(GDBlocks.malachite_pillar_stairs);
+        items.registerBlock(GDBlocks.malachite_floor_stairs);
+        items.registerBlock(GDBlocks.malachite_pulsing_floor_stairs);
+        items.registerBlock(GDBlocks.malachite_pulsing_chisel_stairs);
+        items.registerBlock(GDBlocks.bolstered_bricks);
 
-        items.registerBlock(GDBlocks.opalBlockRed);
-        items.registerBlock(GDBlocks.opalBlockBlue);
-        items.registerBlock(GDBlocks.opalBlockGreen);
-        items.registerBlock(GDBlocks.opalBlockWhite);
-        items.registerBlock(GDBlocks.sugiliteBlock);
-        items.registerBlock(GDBlocks.hematiteBlock);
-        items.registerBlock(GDBlocks.labradoriteBlock);
-        items.registerBlock(GDBlocks.pyriteBlock);
-        items.registerBlock(GDBlocks.moonstoneBlock);
-        items.registerBlock(GDBlocks.cinnabarBlock);
-        items.registerBlock(GDBlocks.tektiteBlock);
-        items.registerBlock(GDBlocks.goldstoneBlock);
-        items.registerBlock(GDBlocks.ixioliteBlock);
-        items.registerBlock(GDBlocks.proustiteBlock);
-        items.registerBlock(GDBlocks.euclaseBlock);
-        items.registerBlock(GDBlocks.leuciteBlock);
-        items.registerBlock(GDBlocks.carnelianBlock);
-        items.registerBlock(GDBlocks.benitoiteBlock);
-        items.registerBlock(GDBlocks.diopsideBlock);
-        items.registerBlock(GDBlocks.chalcedonyBlock);
+        items.registerBlock(GDBlocks.opal_block_red);
+        items.registerBlock(GDBlocks.opal_block_blue);
+        items.registerBlock(GDBlocks.opal_block_green);
+        items.registerBlock(GDBlocks.opal_block_white);
+        items.registerBlock(GDBlocks.sugilite_block);
+        items.registerBlock(GDBlocks.hematite_block);
+        items.registerBlock(GDBlocks.labradorite_block);
+        items.registerBlock(GDBlocks.pyrite_block);
+        items.registerBlock(GDBlocks.moonstone_block);
+        items.registerBlock(GDBlocks.cinnabar_block);
+        items.registerBlock(GDBlocks.tektite_block);
+        items.registerBlock(GDBlocks.goldstone_block);
+        items.registerBlock(GDBlocks.ixiolite_block);
+        items.registerBlock(GDBlocks.proustite_block);
+        items.registerBlock(GDBlocks.euclase_block);
+        items.registerBlock(GDBlocks.leucite_block);
+        items.registerBlock(GDBlocks.carnelian_block);
+        items.registerBlock(GDBlocks.benitoite_block);
+        items.registerBlock(GDBlocks.diopside_block);
+        items.registerBlock(GDBlocks.chalcedony_block);
 
-        items.registerBlock(GDBlocks.sugiliteOre);
-        items.registerBlock(GDBlocks.hematiteOre);
-        items.registerBlock(GDBlocks.pyriteOre);
-        items.registerSubItemBlock(GDBlocks.opalOre);
-        items.registerBlock(GDBlocks.labradoriteOre);
-        items.registerBlock(GDBlocks.moonstoneOre);
-        items.registerBlock(GDBlocks.cinnabarOre);
+        items.registerBlock(GDBlocks.sugilite_ore);
+        items.registerBlock(GDBlocks.hematite_ore);
+        items.registerBlock(GDBlocks.pyrite_ore);
+        items.registerSubItemBlock(GDBlocks.opal_ore);
+        items.registerBlock(GDBlocks.labradorite_ore);
+        items.registerBlock(GDBlocks.moonstone_ore);
+        items.registerBlock(GDBlocks.cinnabar_ore);
     }
 
     private static class ItemRegistryHelper {

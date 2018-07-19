@@ -1,6 +1,5 @@
 package androsa.gaiadimension.block.tileentity;
 
-import androsa.gaiadimension.GaiaDimension;
 import androsa.gaiadimension.block.GDGlitterFurnace;
 import androsa.gaiadimension.recipe.GlitterFurnaceRecipes;
 import androsa.gaiadimension.registry.GDBlocks;
@@ -24,7 +23,6 @@ import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
 
 @MethodsReturnNonnullByDefault
@@ -258,11 +256,11 @@ public class TileEntityGlitterFurnace extends TileEntity implements ISidedInvent
                 return 150;
             if(item == GDItems.pyrite)
                 return 500;
-            if(item == Item.getItemFromBlock(GDBlocks.pyriteBlock))
+            if(item == Item.getItemFromBlock(GDBlocks.pyrite_block))
                 return 5000;
-            if(item == Item.getItemFromBlock(GDBlocks.frailGlitterBlock))
+            if(item == Item.getItemFromBlock(GDBlocks.frail_glitter_block))
                 return 100;
-            if(item == Item.getItemFromBlock(GDBlocks.thickGlitterBlock))
+            if(item == Item.getItemFromBlock(GDBlocks.thick_glitter_block))
                 return 3000;
             if(item == Items.BLAZE_POWDER)
                 return 1200;

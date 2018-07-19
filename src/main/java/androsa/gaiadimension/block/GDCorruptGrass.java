@@ -33,7 +33,7 @@ public class GDCorruptGrass extends Block implements ModelRegisterCallback {
     public void updateTick(World world, BlockPos pos, IBlockState state, Random rand) {
         if (!world.isRemote)
             if (world.getLightFromNeighbors(pos.up()) < 4 && world.getBlockState(pos.up()).getBlock().getLightOpacity(world.getBlockState(pos.up()), world, pos.up()) > 2 || world.getBlockState(pos.up()).getBlock() == GDFluids.mineralWaterBlock)
-                world.setBlockState(pos, GDBlocks.corruptSoil.getDefaultState());
+                world.setBlockState(pos, GDBlocks.corrupt_soil.getDefaultState());
             else if (world.getLightFromNeighbors(pos.up()) >= 9)
                 for (int i = 0; i < 4; ++i) {
                     BlockPos blockpos = pos.add(rand.nextInt(3) - 1, rand.nextInt(5) - 3, rand.nextInt(3) - 1);
@@ -41,15 +41,15 @@ public class GDCorruptGrass extends Block implements ModelRegisterCallback {
                     IBlockState iblockstate = world.getBlockState(blockpos);
 
                     if (world.getBlockState(pos.up()).getBlock() != GDFluids.mineralWaterBlock) {
-                        if (iblockstate.getBlock() == GDBlocks.corruptSoil && world.getLightFromNeighbors(blockpos.up()) >= 4 && block.getLightOpacity(world.getBlockState(blockpos.up()), world, blockpos.up()) <= 2 && world.getBlockState(pos.up()).getBlock() != GDFluids.mineralWaterBlock)
-                            world.setBlockState(blockpos, GDBlocks.corruptGrass.getDefaultState());
+                        if (iblockstate.getBlock() == GDBlocks.corrupt_soil && world.getLightFromNeighbors(blockpos.up()) >= 4 && block.getLightOpacity(world.getBlockState(blockpos.up()), world, blockpos.up()) <= 2 && world.getBlockState(pos.up()).getBlock() != GDFluids.mineralWaterBlock)
+                            world.setBlockState(blockpos, GDBlocks.corrupt_grass.getDefaultState());
                     }
             }
     }
 
     @Override
     public Item getItemDropped(IBlockState state, Random random, int j) {
-        return GDBlocks.corruptSoil.getItemDropped(GDBlocks.corruptSoil.getDefaultState(), random, j);
+        return GDBlocks.corrupt_soil.getItemDropped(GDBlocks.corrupt_soil.getDefaultState(), random, j);
     }
 
     @Override

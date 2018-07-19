@@ -80,7 +80,7 @@ public class GDGenBlueAgateTree extends WorldGenTrees {
                                     state = world.getBlockState(blockpos);
 
                                     if (state.getBlock().canBeReplacedByLeaves(state, world, blockpos)) {
-                                        this.setBlockAndNotifyAdequately(world, blockpos, GDBlocks.gaiaLeaves.getDefaultState().withProperty(GDAgateLeaves.VARIANT, GaiaLeavesVariant.BLUE_AGATE));
+                                        this.setBlockAndNotifyAdequately(world, blockpos, GDBlocks.gaia_leaves.getDefaultState().withProperty(GDAgateLeaves.VARIANT, GaiaLeavesVariant.BLUE_AGATE));
                                     }
                                 }
                             }
@@ -106,7 +106,7 @@ public class GDGenBlueAgateTree extends WorldGenTrees {
                         state = world.getBlockState(upN);
 
                         if (state.getBlock().isAir(state, world, upN) || state.getBlock().isLeaves(state, world, upN)) {
-                            this.setBlockAndNotifyAdequately(world, pos.up(k4), GDBlocks.gaiaLog.getDefaultState().withProperty(GDAgateLog.VARIANT, GaiaLogVariant.BLUE_AGATE));
+                            this.setBlockAndNotifyAdequately(world, pos.up(k4), GDBlocks.gaia_log.getDefaultState().withProperty(GDAgateLog.VARIANT, GaiaLogVariant.BLUE_AGATE));
                         }
                     }
 

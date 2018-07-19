@@ -50,8 +50,8 @@ public class GDGenFieryAgateTree extends WorldGenTrees {
                                     !blockID.isLeaves(block, world, cPos) &&
                                     blockID != Blocks.GRASS &&
                                     blockID != Blocks.DIRT &&
-                                    blockID != GDBlocks.singedGrass &&
-                                    blockID != GDBlocks.heavySoil &&
+                                    blockID != GDBlocks.singed_grass &&
+                                    blockID != GDBlocks.heavy_soil &&
                                     !blockID.isWood(world, cPos)) {
                                 allClear = false;
                             }
@@ -67,8 +67,8 @@ public class GDGenFieryAgateTree extends WorldGenTrees {
             } else {
                 Block blockUsing = world.getBlockState(pos.down()).getBlock();
 
-                if ((blockUsing == GDBlocks.singedGrass || blockUsing == GDBlocks.heavySoil) && pos.getY() < 256 - height - 1) {
-                    setBlockAndNotifyAdequately(world, pos.down(), GDBlocks.heavySoil.getDefaultState());
+                if ((blockUsing == GDBlocks.singed_grass || blockUsing == GDBlocks.heavy_soil) && pos.getY() < 256 - height - 1) {
+                    setBlockAndNotifyAdequately(world, pos.down(), GDBlocks.heavy_soil.getDefaultState());
                     width = 4;
                     byte var18 = 0;
                     int treeWidth;
@@ -91,7 +91,7 @@ public class GDGenFieryAgateTree extends WorldGenTrees {
 
                                 if ((Math.abs(var15) != treeWidth || Math.abs(var17) != treeWidth || rand.nextInt(2) != 0 && number != 0) &&
                                         state.getBlock().canBeReplacedByLeaves(state, world, tPos)) {
-                                    this.setBlockAndNotifyAdequately(world, tPos, GDBlocks.gaiaLeavesSpecial.getDefaultState().withProperty(GDSpecialLeaves.VARIANT, SpecialGaiaLeavesVariant.HEATED));
+                                    this.setBlockAndNotifyAdequately(world, tPos, GDBlocks.special_gaia_leaves.getDefaultState().withProperty(GDSpecialLeaves.VARIANT, SpecialGaiaLeavesVariant.HEATED));
                                 }
                             }
                         }
@@ -103,7 +103,7 @@ public class GDGenFieryAgateTree extends WorldGenTrees {
                         blockID = block.getBlock();
 
                         if (blockID == Blocks.AIR || blockID.isLeaves(block, world, cPos)) {
-                            this.setBlockAndNotifyAdequately(world, cPos, GDBlocks.gaiaLogSpecial.getDefaultState().withProperty(GDSpecialLog.VARIANT, SpecialGaiaLogVariant.HEATED));
+                            this.setBlockAndNotifyAdequately(world, cPos, GDBlocks.special_gaia_log.getDefaultState().withProperty(GDSpecialLog.VARIANT, SpecialGaiaLogVariant.HEATED));
                         }
                     }
 

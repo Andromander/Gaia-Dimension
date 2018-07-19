@@ -16,7 +16,7 @@ public class GDTabs {
         @SideOnly(Side.CLIENT)
         @Override
         public ItemStack getTabIconItem() {
-            return new ItemStack(GDBlocks.glitterGrass);
+            return new ItemStack(GDBlocks.glitter_grass);
         }
     };
 

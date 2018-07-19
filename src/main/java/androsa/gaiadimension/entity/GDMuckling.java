@@ -1,5 +1,6 @@
 package androsa.gaiadimension.entity;
 
+import androsa.gaiadimension.biomes.GDBiomes;
 import androsa.gaiadimension.registry.GDBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
@@ -10,10 +11,9 @@ import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.EnumDifficulty;
-import net.minecraft.world.EnumSkyBlock;
 import net.minecraft.world.World;
 
-//TODO: Loot Table, and check for sound level
+//TODO: Loot Table
 public class GDMuckling extends EntitySlime {
     private static final AttributeModifier DOUBLE_HEALTH = new AttributeModifier("Muckling extra health", 1, 1).setSaved(false);
 
@@ -38,7 +38,8 @@ public class GDMuckling extends EntitySlime {
                 this.world.checkNoEntityCollision(getEntityBoundingBox()) &&
                 this.world.getCollisionBoxes(this, getEntityBoundingBox()).isEmpty() &&
                 !this.world.containsAnyLiquid(getEntityBoundingBox()) &&
-                this.isValidLightLevel();
+                this.isValidLightLevel() ||
+                this.world.getBiome(new BlockPos(this)) == GDBiomes.purpleAgateForest;
     }
 
     @Override
@@ -68,28 +69,13 @@ public class GDMuckling extends EntitySlime {
             World world = this.world;
             double d0 = this.posX + (double) f2;
             double d1 = this.posZ + (double) f3;
-            IBlockState state = GDBlocks.thickGlitterBlock.getDefaultState();
+            IBlockState state = GDBlocks.gummy_glitter_block.getDefaultState();
             world.spawnParticle(EnumParticleTypes.BLOCK_CRACK, d0, this.getEntityBoundingBox().minY, d1, 0.0D, 0.0D, 0.0D, Block.getStateId(state));
         }
         return true;
     }
 
     private boolean isValidLightLevel() {
-        BlockPos blockpos = new BlockPos(this.posX, this.getEntityBoundingBox().minY, this.posZ);
-
-        if (this.world.getLightFor(EnumSkyBlock.SKY, blockpos) > this.rand.nextInt(32)) {
-            return false;
-        } else {
-            int i = this.world.getLightFromNeighbors(blockpos);
-
-            if (this.world.isThundering()) {
-                int j = this.world.getSkylightSubtracted();
-                this.world.setSkylightSubtracted(10);
-                i = this.world.getLightFromNeighbors(blockpos);
-                this.world.setSkylightSubtracted(j);
-            }
-
-            return i <= this.rand.nextInt(8);
-        }
+        return true;
     }
 }

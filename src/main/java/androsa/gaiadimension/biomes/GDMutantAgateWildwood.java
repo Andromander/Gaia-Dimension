@@ -29,8 +29,8 @@ public class GDMutantAgateWildwood extends GDBiomeBase {
         spawnableCreatureList.add(new SpawnListEntry(androsa.gaiadimension.entity.GDMystifiedGrowthSapper.class, 10, 3, 5));
         spawnableCreatureList.add(new SpawnListEntry(androsa.gaiadimension.entity.GDMutantGrowthExtractor.class, 5, 2, 4));
 
-        topBlock = GDBlocks.mutantGrass.getDefaultState();
-        fillerBlock = GDBlocks.heavySoil.getDefaultState();
+        topBlock = GDBlocks.mutated_grass.getDefaultState();
+        fillerBlock = GDBlocks.heavy_soil.getDefaultState();
     }
 
     @Override
@@ -42,21 +42,21 @@ public class GDMutantAgateWildwood extends GDBiomeBase {
             int Xcoord = pos.getX() + rand.nextInt(16);
             int Zcoord = pos.getZ() + rand.nextInt(16);
             int Ycoord = rand.nextInt(40);
-            new WorldGenMinable(GDBlocks.opalOre.getStateFromMeta(0), 8, input -> input == GDBlocks.gaiaStone.getDefaultState()).generate(world, rand, new BlockPos(Xcoord, Ycoord, Zcoord));
+            new WorldGenMinable(GDBlocks.opal_ore.getStateFromMeta(0), 8, input -> input == GDBlocks.gaia_stone.getDefaultState()).generate(world, rand, new BlockPos(Xcoord, Ycoord, Zcoord));
         }
 
         for (int i = 0; i < 4; i++) {
             int Xcoord = pos.getX() + rand.nextInt(16);
             int Zcoord = pos.getZ() + rand.nextInt(16);
             int Ycoord = rand.nextInt(40);
-            new WorldGenMinable(GDBlocks.opalOre.getStateFromMeta(1), 8, input -> input == GDBlocks.gaiaStone.getDefaultState()).generate(world, rand, new BlockPos(Xcoord, Ycoord, Zcoord));
+            new WorldGenMinable(GDBlocks.opal_ore.getStateFromMeta(1), 8, input -> input == GDBlocks.gaia_stone.getDefaultState()).generate(world, rand, new BlockPos(Xcoord, Ycoord, Zcoord));
         }
 
         for (int i = 0; i < 4; i++) {
             int Xcoord = pos.getX() + rand.nextInt(16);
             int Zcoord = pos.getZ() + rand.nextInt(16);
             int Ycoord = rand.nextInt(40);
-            new WorldGenMinable(GDBlocks.opalOre.getStateFromMeta(2), 8, input -> input == GDBlocks.gaiaStone.getDefaultState()).generate(world, rand, new BlockPos(Xcoord, Ycoord, Zcoord));
+            new WorldGenMinable(GDBlocks.opal_ore.getStateFromMeta(2), 8, input -> input == GDBlocks.gaia_stone.getDefaultState()).generate(world, rand, new BlockPos(Xcoord, Ycoord, Zcoord));
         }
     }
 
@@ -88,7 +88,7 @@ public class GDMutantAgateWildwood extends GDBiomeBase {
                 return new GDGenCrystalBloom(GDBlocks.ouzium);
             }
         } else {
-            return new GDGenCrystalGrowth(GDBlocks.growthMutant);
+            return new GDGenCrystalGrowth(GDBlocks.crystal_growth_mutant);
         }
     }
 

@@ -1,6 +1,5 @@
 package androsa.gaiadimension.block.tileentity;
 
-import androsa.gaiadimension.GaiaDimension;
 import androsa.gaiadimension.block.GDPurifier;
 import androsa.gaiadimension.recipe.PurifierRecipes;
 import androsa.gaiadimension.registry.GDBlocks;
@@ -257,11 +256,11 @@ public class TileEntityPurifier extends TileEntity implements ISidedInventory, I
                 return 150;
             if(item == GDItems.tektite)
                 return 500;
-            if(item == Item.getItemFromBlock(GDBlocks.tektiteBlock))
+            if(item == Item.getItemFromBlock(GDBlocks.tektite_block))
                 return 5000;
-            if(item == Item.getItemFromBlock(GDBlocks.frailGlitterBlock))
+            if(item == Item.getItemFromBlock(GDBlocks.frail_glitter_block))
                 return 100;
-            if(item == Item.getItemFromBlock(GDBlocks.thickGlitterBlock))
+            if(item == Item.getItemFromBlock(GDBlocks.thick_glitter_block))
                 return 3000;
             if(item == Items.BLAZE_POWDER)
                 return 1200;

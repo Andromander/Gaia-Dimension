@@ -156,23 +156,23 @@ public class GDGenCaves extends MapGenCaves {
                                             final IBlockState blockStateAt = blockStorage.getBlockState(genX, caveY, genZ);
                                             Block blockAt = blockStateAt.getBlock();
 
-                                            if (blockAt instanceof GDGrassGlitter || blockAt == GDBlocks.corruptGrass) {
+                                            if (blockAt instanceof GDGrassGlitter || blockAt == GDBlocks.corrupt_grass) {
                                                 hitGrass = true;
                                             }
 
-                                            if (blockAt != null && (blockAt == GDBlocks.gaiaStone || blockAt == GDBlocks.frailGlitterBlock || blockAt == GDBlocks.volcanicRock || blockStateAt.getMaterial() == Material.GROUND || blockStateAt.getMaterial() == Material.GRASS)) {
+                                            if (blockAt != null && (blockAt == GDBlocks.gaia_stone || blockAt == GDBlocks.frail_glitter_block || blockAt == GDBlocks.volcanic_rock || blockStateAt.getMaterial() == Material.GROUND || blockStateAt.getMaterial() == Material.GRASS)) {
                                                 if (var59 * var59 + var51 * var51 + var46 * var46 < 0.85D) {
                                                     final IBlockState state = (caveY < 10 ? GDFluids.superhotMagmaBlock : Blocks.AIR).getDefaultState();
                                                     blockStorage.setBlockState(genX, caveY, genZ, state);
                                                 } else {
-                                                    Block localBlock = clusterRNG.nextInt(6) == 0 ? GDBlocks.volcanicRock : GDBlocks.gaiaStone;
-                                                    localBlock = isVolcanic ? localBlock : GDBlocks.frailGlitterBlock;
-                                                    localBlock = hitGrass ? GDBlocks.frailGlitterBlock : localBlock;
+                                                    Block localBlock = clusterRNG.nextInt(6) == 0 ? GDBlocks.volcanic_rock : GDBlocks.gaia_stone;
+                                                    localBlock = isVolcanic ? localBlock : GDBlocks.frail_glitter_block;
+                                                    localBlock = hitGrass ? GDBlocks.frail_glitter_block : localBlock;
                                                     blockStorage.setBlockState(genX, caveY, genZ, localBlock.getDefaultState());
                                                     hitGrass = false;
                                                 }
 
-                                                if (hitGrass && blockStorage.getBlockState(genX, caveY - 1, genZ).getBlock() == GDBlocks.heavySoil) {
+                                                if (hitGrass && blockStorage.getBlockState(genX, caveY - 1, genZ).getBlock() == GDBlocks.heavy_soil) {
                                                     IBlockState blockState = this.world.getBiome(new BlockPos(genX + centerX * 16, 0, genZ + centerZ * 16)).topBlock;
                                                     blockStorage.setBlockState(genX, caveY - 1, genZ, blockState);
                                                 }

@@ -27,8 +27,8 @@ public class GDGreenAgateJungle extends GDBiomeBase {
 
         GaiaGenGreenTrees = new GDGenGreenAgateTree(false);
 
-        topBlock = GDBlocks.verdantGrass.getDefaultState();
-        fillerBlock = GDBlocks.heavySoil.getDefaultState();
+        topBlock = GDBlocks.verdant_grass.getDefaultState();
+        fillerBlock = GDBlocks.heavy_soil.getDefaultState();
 
         getGDBiomeDecorator().grassPerChunk = 4;
         getGDBiomeDecorator().treesPerChunk = 20;
@@ -43,7 +43,7 @@ public class GDGreenAgateJungle extends GDBiomeBase {
             int Xcoord = pos.getX() + rand.nextInt(16);
             int Zcoord = pos.getZ() + rand.nextInt(16);
             int Ycoord = rand.nextInt(40);
-            new WorldGenMinable(GDBlocks.opalOre.getStateFromMeta(2), 8, input -> input == GDBlocks.gaiaStone.getDefaultState()).generate(world, rand, new BlockPos(Xcoord, Ycoord, Zcoord));
+            new WorldGenMinable(GDBlocks.opal_ore.getStateFromMeta(2), 8, input -> input == GDBlocks.gaia_stone.getDefaultState()).generate(world, rand, new BlockPos(Xcoord, Ycoord, Zcoord));
         }
     }
 
@@ -57,7 +57,7 @@ public class GDGreenAgateJungle extends GDBiomeBase {
 
         if (rand.nextInt(3) == 0) {
             if (rand.nextInt(2) == 0) {
-                return new WorldGenShrub(GDBlocks.gaiaLog.getStateFromMeta(2),GDBlocks.gaiaLeaves.getStateFromMeta(2));
+                return new WorldGenShrub(GDBlocks.gaia_log.getStateFromMeta(2),GDBlocks.gaia_leaves.getStateFromMeta(2));
             } else {
                 return GaiaGenGreenTrees;
             }
@@ -76,7 +76,7 @@ public class GDGreenAgateJungle extends GDBiomeBase {
                 return new GDGenCrystalBloom(GDBlocks.thiscus);
             }
         } else {
-            return new GDGenCrystalGrowth(GDBlocks.growthGreen);
+            return new GDGenCrystalGrowth(GDBlocks.crystal_growth_green);
         }
     }
 

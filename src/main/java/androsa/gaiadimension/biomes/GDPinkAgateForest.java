@@ -25,8 +25,8 @@ public class GDPinkAgateForest extends GDBiomeBase {
 
         GaiaGenPinkTrees = new GDGenPinkAgateTree(false);
 
-        topBlock = GDBlocks.glitterGrass.getDefaultState();
-        fillerBlock = GDBlocks.heavySoil.getDefaultState();
+        topBlock = GDBlocks.glitter_grass.getDefaultState();
+        fillerBlock = GDBlocks.heavy_soil.getDefaultState();
     }
 
     @Override
@@ -38,7 +38,7 @@ public class GDPinkAgateForest extends GDBiomeBase {
             int Xcoord = pos.getX() + rand.nextInt(16);
             int Zcoord = pos.getZ() + rand.nextInt(16);
             int Ycoord = rand.nextInt(40);
-            new WorldGenMinable(GDBlocks.opalOre.getStateFromMeta(0), 8, input -> input == GDBlocks.gaiaStone.getDefaultState()).generate(world, rand, new BlockPos(Xcoord, Ycoord, Zcoord));
+            new WorldGenMinable(GDBlocks.opal_ore.getStateFromMeta(0), 8, input -> input == GDBlocks.gaia_stone.getDefaultState()).generate(world, rand, new BlockPos(Xcoord, Ycoord, Zcoord));
         }
     }
 
@@ -57,7 +57,7 @@ public class GDPinkAgateForest extends GDBiomeBase {
                 return new GDGenCrystalBloom(GDBlocks.thiscus);
             }
         } else {
-            return new GDGenCrystalGrowth(GDBlocks.growthPink);
+            return new GDGenCrystalGrowth(GDBlocks.crystal_growth_pink);
         }
     }
 }

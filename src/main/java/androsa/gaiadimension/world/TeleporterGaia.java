@@ -64,8 +64,8 @@ public class TeleporterGaia extends Teleporter {
                     for (BlockPos blockpos1 = blockpos3.add(i1, this.world.getActualHeight() - 1 - blockpos3.getY(), j1); blockpos1.getY() >= 0; blockpos1 = blockpos2) {
                         blockpos2 = blockpos1.down();
 
-                        if (this.world.getBlockState(blockpos1).getBlock() == GDBlocks.gaiaPortal) {
-                            while (this.world.getBlockState(blockpos2 = blockpos1.down()).getBlock() == GDBlocks.gaiaPortal) {
+                        if (this.world.getBlockState(blockpos1).getBlock() == GDBlocks.gaia_portal) {
+                            while (this.world.getBlockState(blockpos2 = blockpos1.down()).getBlock() == GDBlocks.gaia_portal) {
                                 blockpos1 = blockpos2;
                             }
 
@@ -86,7 +86,7 @@ public class TeleporterGaia extends Teleporter {
                 this.destinationCoordinateCache.put(1, new PortalPosition(blockpos, this.world.getTotalWorldTime()));
             }
 
-            BlockPattern.PatternHelper blockpattern$patternhelper = GDBlocks.gaiaPortal.createPatternHelper(this.world, blockpos);
+            BlockPattern.PatternHelper blockpattern$patternhelper = GDBlocks.gaia_portal.createPatternHelper(this.world, blockpos);
             EnumFacing eTD = blockpattern$patternhelper.getForwards();
 
             float f = 0.0F;

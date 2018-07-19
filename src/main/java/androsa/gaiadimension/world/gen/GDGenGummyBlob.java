@@ -31,7 +31,7 @@ public class GDGenGummyBlob extends WorldGenerator {
 
                     Block block = worldIn.getBlockState(position.down()).getBlock();
 
-                    if (block != GDBlocks.scentedGrass && block != GDBlocks.heavySoil && block != GDBlocks.gaiaStone) {
+                    if (block != GDBlocks.scented_grass && block != GDBlocks.heavy_soil && block != GDBlocks.gaia_stone) {
                         break label50;
                     }
                 }

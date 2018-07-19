@@ -35,21 +35,21 @@ public class GDGrassOld extends Block implements ModelRegisterCallback {
     public void updateTick(World world, BlockPos pos, IBlockState state, Random rand) {
         if (!world.isRemote)
             if (world.getLightFromNeighbors(pos.up()) < 4 && world.getBlockState(pos.up()).getBlock().getLightOpacity(world.getBlockState(pos.up()), world, pos.up()) > 2)
-                world.setBlockState(pos, GDBlocks.heavySoil.getDefaultState());
+                world.setBlockState(pos, GDBlocks.heavy_soil.getDefaultState());
             else if (world.getLightFromNeighbors(pos.up()) >= 9)
                 for (int i = 0; i < 4; ++i) {
                     BlockPos blockpos = pos.add(rand.nextInt(3) - 1, rand.nextInt(5) - 3, rand.nextInt(3) - 1);
                     Block block = world.getBlockState(blockpos.up()).getBlock();
                     IBlockState iblockstate = world.getBlockState(blockpos);
 
-                    if (iblockstate.getBlock() == GDBlocks.heavySoil && world.getLightFromNeighbors(blockpos.up()) >= 4 && block.getLightOpacity(world.getBlockState(blockpos.up()), world, blockpos.up()) <= 2)
-                        world.setBlockState(blockpos, GDBlocks.oldGrass.getDefaultState());
+                    if (iblockstate.getBlock() == GDBlocks.heavy_soil && world.getLightFromNeighbors(blockpos.up()) >= 4 && block.getLightOpacity(world.getBlockState(blockpos.up()), world, blockpos.up()) <= 2)
+                        world.setBlockState(blockpos, GDBlocks.old_grass.getDefaultState());
                 }
     }
 
     @Override
     public Item getItemDropped(IBlockState state, Random random, int j) {
-        return GDBlocks.heavySoil.getItemDropped(GDBlocks.heavySoil.getDefaultState(), random, j);
+        return GDBlocks.heavy_soil.getItemDropped(GDBlocks.heavy_soil.getDefaultState(), random, j);
     }
 
     @Override

@@ -53,7 +53,7 @@ public class GDPurifier extends BlockContainer implements ModelRegisterCallback 
 
     @Override
     public Item getItemDropped(IBlockState state, Random random, int fortune) {
-        return Item.getItemFromBlock(GDBlocks.purifierIdle);
+        return Item.getItemFromBlock(GDBlocks.purifier_idle);
     }
 
     @Override
@@ -95,9 +95,9 @@ public class GDPurifier extends BlockContainer implements ModelRegisterCallback 
         keepInventory = true;
 
         if (flag)
-            world.setBlockState(pos, GDBlocks.purifierActive.getDefaultState().withProperty(FACING, state.getValue(FACING)), 3);
+            world.setBlockState(pos, GDBlocks.purifier_lit.getDefaultState().withProperty(FACING, state.getValue(FACING)), 3);
         else
-            world.setBlockState(pos, GDBlocks.purifierIdle.getDefaultState().withProperty(FACING, state.getValue(FACING)), 3);
+            world.setBlockState(pos, GDBlocks.purifier_idle.getDefaultState().withProperty(FACING, state.getValue(FACING)), 3);
 
         keepInventory = false;
 
@@ -182,7 +182,7 @@ public class GDPurifier extends BlockContainer implements ModelRegisterCallback 
     @Deprecated
     @SideOnly(Side.CLIENT)
     public ItemStack getItem(World world, BlockPos pos, IBlockState state) {
-        return new ItemStack(GDBlocks.purifierIdle);
+        return new ItemStack(GDBlocks.purifier_idle);
     }
 
     @Override

@@ -51,7 +51,7 @@ public class GDGlitterFurnace extends BlockContainer implements ModelRegisterCal
 
     @Override
     public Item getItemDropped(IBlockState state, Random random, int fortune) {
-        return Item.getItemFromBlock(GDBlocks.glitterFurnaceIdle);
+        return Item.getItemFromBlock(GDBlocks.glitter_furnace_idle);
     }
 
     @Override
@@ -93,9 +93,9 @@ public class GDGlitterFurnace extends BlockContainer implements ModelRegisterCal
         keepInventory = true;
 
         if (flag)
-            world.setBlockState(pos, GDBlocks.glitterFurnaceActive.getDefaultState().withProperty(FACING, state.getValue(FACING)), 3);
+            world.setBlockState(pos, GDBlocks.glitter_furnace_lit.getDefaultState().withProperty(FACING, state.getValue(FACING)), 3);
         else
-            world.setBlockState(pos, GDBlocks.glitterFurnaceIdle.getDefaultState().withProperty(FACING, state.getValue(FACING)), 3);
+            world.setBlockState(pos, GDBlocks.glitter_furnace_idle.getDefaultState().withProperty(FACING, state.getValue(FACING)), 3);
 
         keepInventory = false;
 
@@ -180,7 +180,7 @@ public class GDGlitterFurnace extends BlockContainer implements ModelRegisterCal
     @Deprecated
     @SideOnly(Side.CLIENT)
     public ItemStack getItem(World world, BlockPos pos, IBlockState state) {
-        return new ItemStack(GDBlocks.glitterFurnaceIdle);
+        return new ItemStack(GDBlocks.glitter_furnace_idle);
     }
 
     @Override

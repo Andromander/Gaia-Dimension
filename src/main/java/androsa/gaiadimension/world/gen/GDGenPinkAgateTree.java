@@ -16,8 +16,8 @@ import java.util.Random;
 
 
 public class GDGenPinkAgateTree extends WorldGenAbstractTree {
-    private static final IBlockState TRUNK = GDBlocks.gaiaLog.getDefaultState().withProperty(GDAgateLog.VARIANT, GaiaLogVariant.PINK_AGATE);
-    private static final IBlockState LEAF = GDBlocks.gaiaLeaves.getDefaultState().withProperty(GDAgateLeaves.VARIANT, GaiaLeavesVariant.PINK_AGATE).withProperty(GDAgateLeaves.CHECK_DECAY, Boolean.valueOf(false));
+    private static final IBlockState TRUNK = GDBlocks.gaia_log.getDefaultState().withProperty(GDAgateLog.VARIANT, GaiaLogVariant.PINK_AGATE);
+    private static final IBlockState LEAF = GDBlocks.gaia_leaves.getDefaultState().withProperty(GDAgateLeaves.VARIANT, GaiaLeavesVariant.PINK_AGATE).withProperty(GDAgateLeaves.CHECK_DECAY, Boolean.valueOf(false));
 
     public GDGenPinkAgateTree(boolean flag) {
         super(flag);
@@ -60,7 +60,7 @@ public class GDGenPinkAgateTree extends WorldGenAbstractTree {
             } else {
                 BlockPos down = position.down();
                 IBlockState state = worldIn.getBlockState(down);
-                boolean isSoil = state.getBlock().canSustainPlant(state, worldIn, down, net.minecraft.util.EnumFacing.UP, ((androsa.gaiadimension.block.GDAgateSapling)GDBlocks.gaiaSapling));
+                boolean isSoil = state.getBlock().canSustainPlant(state, worldIn, down, net.minecraft.util.EnumFacing.UP, ((androsa.gaiadimension.block.GDAgateSapling)GDBlocks.gaia_sapling));
 
                 if (isSoil && position.getY() < worldIn.getHeight() - height - 1) {
                     state.getBlock().onPlantGrow(state, worldIn, down, position);

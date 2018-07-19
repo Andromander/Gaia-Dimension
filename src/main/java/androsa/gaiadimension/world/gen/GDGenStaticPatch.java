@@ -14,7 +14,7 @@ public class GDGenStaticPatch extends WorldGenerator {
     private int numberOfBlocks;
 
     public GDGenStaticPatch(int i) {
-        this(GDBlocks.staticStone, i);
+        this(GDBlocks.static_stone, i);
     }
 
     public GDGenStaticPatch(Block block, int i) {
@@ -39,7 +39,7 @@ public class GDGenStaticPatch extends WorldGenerator {
                 for (int dy = pos.getY() - yRange; dy <= pos.getY() + yRange; dy++) {
                     BlockPos dPos = new BlockPos(dx, dy, dz);
                     Block blockThere = world.getBlockState(dPos).getBlock();
-                    if (blockThere == GDBlocks.wastelandStone) {
+                    if (blockThere == GDBlocks.wasteland_stone) {
                         world.setBlockState(dPos, staticState, 2);
                     }
                 }

@@ -62,7 +62,7 @@ public class GDAgateLeaves extends BlockLeaves implements ModelRegisterCallback 
 
     @Override
     public Item getItemDropped(IBlockState state, Random par2Random, int par3) {
-        return Item.getItemFromBlock(GDBlocks.gaiaSapling);
+        return Item.getItemFromBlock(GDBlocks.gaia_sapling);
     }
 
     @Override

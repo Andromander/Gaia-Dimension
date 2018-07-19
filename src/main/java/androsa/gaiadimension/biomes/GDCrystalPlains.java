@@ -21,8 +21,8 @@ public class GDCrystalPlains extends GDBiomeBase {
 
         GaiaGenPinkTrees = new GDGenPinkAgateTree(false);
 
-        topBlock = GDBlocks.glitterGrass.getDefaultState();
-        fillerBlock = GDBlocks.heavySoil.getDefaultState();
+        topBlock = GDBlocks.glitter_grass.getDefaultState();
+        fillerBlock = GDBlocks.heavy_soil.getDefaultState();
     }
 
     @Override
@@ -40,7 +40,7 @@ public class GDCrystalPlains extends GDBiomeBase {
                 return new GDGenCrystalBloom(GDBlocks.thiscus);
             }
         } else {
-            return new GDGenCrystalGrowth(GDBlocks.growthPink);
+            return new GDGenCrystalGrowth(GDBlocks.crystal_growth_pink);
         }
     }
 }

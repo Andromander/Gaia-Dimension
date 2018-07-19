@@ -51,7 +51,7 @@ public class GDGaiaStoneFurnace extends BlockContainer implements ModelRegisterC
 
     @Override
     public Item getItemDropped(IBlockState state, Random rand, int fortune) {
-        return Item.getItemFromBlock(GDBlocks.gaiaStoneFurnaceIdle);
+        return Item.getItemFromBlock(GDBlocks.gaia_stone_furnace_idle);
     }
 
     @Override
@@ -126,11 +126,11 @@ public class GDGaiaStoneFurnace extends BlockContainer implements ModelRegisterC
         keepInventory = true;
 
         if (active) {
-            worldIn.setBlockState(pos, GDBlocks.gaiaStoneFurnaceActive.getDefaultState().withProperty(FACING, iblockstate.getValue(FACING)), 3);
-            worldIn.setBlockState(pos, GDBlocks.gaiaStoneFurnaceActive.getDefaultState().withProperty(FACING, iblockstate.getValue(FACING)), 3);
+            worldIn.setBlockState(pos, GDBlocks.gaia_stone_furnace_lit.getDefaultState().withProperty(FACING, iblockstate.getValue(FACING)), 3);
+            worldIn.setBlockState(pos, GDBlocks.gaia_stone_furnace_lit.getDefaultState().withProperty(FACING, iblockstate.getValue(FACING)), 3);
         } else {
-            worldIn.setBlockState(pos, GDBlocks.gaiaStoneFurnaceIdle.getDefaultState().withProperty(FACING, iblockstate.getValue(FACING)), 3);
-            worldIn.setBlockState(pos, GDBlocks.gaiaStoneFurnaceIdle.getDefaultState().withProperty(FACING, iblockstate.getValue(FACING)), 3);
+            worldIn.setBlockState(pos, GDBlocks.gaia_stone_furnace_idle.getDefaultState().withProperty(FACING, iblockstate.getValue(FACING)), 3);
+            worldIn.setBlockState(pos, GDBlocks.gaia_stone_furnace_idle.getDefaultState().withProperty(FACING, iblockstate.getValue(FACING)), 3);
         }
 
         keepInventory = false;
@@ -189,7 +189,7 @@ public class GDGaiaStoneFurnace extends BlockContainer implements ModelRegisterC
     @Override
     @Deprecated
     public ItemStack getItem(World worldIn, BlockPos pos, IBlockState state) {
-        return new ItemStack(GDBlocks.gaiaStoneFurnaceIdle);
+        return new ItemStack(GDBlocks.gaia_stone_furnace_idle);
     }
 
     @Override

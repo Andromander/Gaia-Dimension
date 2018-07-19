@@ -9,7 +9,6 @@ import mcp.MethodsReturnNonnullByDefault;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockPortal;
 import net.minecraft.block.material.Material;
-import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
@@ -342,7 +341,7 @@ public class GDGaiaPortal extends BlockPortal implements ModelRegisterCallback {
                         break label56;
                     }
 
-                    if (block.getBlock() == GDBlocks.gaiaPortal) {
+                    if (block.getBlock() == GDBlocks.gaia_portal) {
                         ++this.portalBlockCount;
                     }
 
@@ -382,7 +381,7 @@ public class GDGaiaPortal extends BlockPortal implements ModelRegisterCallback {
 
         @SuppressWarnings("deprecated")
         protected boolean isEmptyBlock(Block blockIn) {
-            return blockIn.getMaterial(blockIn.getDefaultState()) == Material.AIR || blockIn == GDBlocks.goldFire || blockIn == GDBlocks.gaiaPortal;
+            return blockIn.getMaterial(blockIn.getDefaultState()) == Material.AIR || blockIn == GDBlocks.gold_fire || blockIn == GDBlocks.gaia_portal;
         }
 
         public boolean isValid() {
@@ -394,7 +393,7 @@ public class GDGaiaPortal extends BlockPortal implements ModelRegisterCallback {
                 BlockPos blockpos = bottomLeft.offset(rightDir, i);
 
                 for (int j = 0; j < height; ++j) {
-                    world.setBlockState(blockpos.up(j), GDBlocks.gaiaPortal.getDefaultState().withProperty(BlockPortal.AXIS, axis), 2);
+                    world.setBlockState(blockpos.up(j), GDBlocks.gaia_portal.getDefaultState().withProperty(BlockPortal.AXIS, axis), 2);
                 }
             }
         }

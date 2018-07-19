@@ -9,8 +9,8 @@ public class GDMineralReservoir extends GDBiomeBase {
 
         this.spawnableWaterCreatureList.clear();
 
-        this.topBlock = GDBlocks.saltBlock.getDefaultState();
-        this.fillerBlock = GDBlocks.heavySoil.getDefaultState();
+        this.topBlock = GDBlocks.salt.getDefaultState();
+        this.fillerBlock = GDBlocks.heavy_soil.getDefaultState();
 
         this.decorator.grassPerChunk = -1;
         this.decorator.treesPerChunk = -1;

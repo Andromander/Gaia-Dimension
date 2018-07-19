@@ -30,7 +30,7 @@ public class GDGenStaticSpike extends WorldGenerator {
                 if (worldIn.isBlockLoaded(pos)) {
                     Block blockBelow = worldIn.getBlockState(pos.down()).getBlock();
 
-                    if (blockBelow != GDBlocks.wastelandStone && blockBelow != GDBlocks.staticStone) {
+                    if (blockBelow != GDBlocks.wasteland_stone && blockBelow != GDBlocks.static_stone) {
                         return false;
                     }
                 }

@@ -26,8 +26,8 @@ public class GDVolcanicLands extends GDBiomeBase {
     public GDVolcanicLands(Biome.BiomeProperties props) {
         super(props);
 
-        topBlock = GDBlocks.singedGrass.getDefaultState();
-        fillerBlock = GDBlocks.heavySoil.getDefaultState();
+        topBlock = GDBlocks.singed_grass.getDefaultState();
+        fillerBlock = GDBlocks.heavy_soil.getDefaultState();
 
         getGDBiomeDecorator().lavaPoolChance = 0.25F;
         getGDBiomeDecorator().grassPerChunk = 1;
@@ -42,14 +42,14 @@ public class GDVolcanicLands extends GDBiomeBase {
             int Xcoord = pos.getX() + rand.nextInt(16);
             int Zcoord = pos.getZ() + rand.nextInt(16);
             int Ycoord = rand.nextInt(100);
-            new WorldGenMinable(GDBlocks.volcanicRock.getDefaultState(), 33, input -> input == GDBlocks.gaiaStone.getDefaultState()).generate(world, rand, new BlockPos(Xcoord, Ycoord, Zcoord));
+            new WorldGenMinable(GDBlocks.volcanic_rock.getDefaultState(), 33, input -> input == GDBlocks.gaia_stone.getDefaultState()).generate(world, rand, new BlockPos(Xcoord, Ycoord, Zcoord));
         }
 
         for (int i = 0; i < 9; i++) {
             int Xcoord = pos.getX() + rand.nextInt(16);
             int Zcoord = pos.getZ() + rand.nextInt(16);
             int Ycoord = rand.nextInt(100);
-            new WorldGenMinable(GDBlocks.searingRock.getDefaultState(), 33, input -> input == GDBlocks.gaiaStone.getDefaultState()).generate(world, rand, new BlockPos(Xcoord, Ycoord, Zcoord));
+            new WorldGenMinable(GDBlocks.searing_rock.getDefaultState(), 33, input -> input == GDBlocks.gaia_stone.getDefaultState()).generate(world, rand, new BlockPos(Xcoord, Ycoord, Zcoord));
         }
     }
 
@@ -68,7 +68,7 @@ public class GDVolcanicLands extends GDBiomeBase {
 
     @Override
     public WorldGenerator getRandomWorldGenForGrass(Random rand) {
-        return new GDGenCrystalGrowth(GDBlocks.growthSeared);
+        return new GDGenCrystalGrowth(GDBlocks.crystal_growth_seared);
     }
 
     @SideOnly(Side.CLIENT)

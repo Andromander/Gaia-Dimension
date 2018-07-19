@@ -9,283 +9,148 @@ import static net.minecraftforge.fml.common.registry.GameRegistry.*;
 public class GDBlocks {
 
     //Utility Blocks
-    @ObjectHolder("gaia_portal")
-    public static BlockPortal gaiaPortal;
-    @ObjectHolder("gold_fire")
-    public static Block goldFire;
-    @ObjectHolder("pyrite_torch")
-    public static Block pyriteTorch;
-    @ObjectHolder("agate_crafting_table")
-    public static Block agateCraftingTable;
-    @ObjectHolder("gaia_stone_furnace_idle")
-    public static Block gaiaStoneFurnaceIdle;
-    @ObjectHolder("gaia_stone_furnace_lit")
-    public static Block gaiaStoneFurnaceActive;
-    @ObjectHolder("glitter_furnace_idle")
-    public static Block glitterFurnaceIdle;
-    @ObjectHolder("glitter_furnace_lit")
-    public static Block glitterFurnaceActive;
-    @ObjectHolder("purifier_idle")
-    public static Block purifierIdle;
-    @ObjectHolder("purifier_lit")
-    public static Block purifierActive;
+    public static final BlockPortal gaia_portal = null;
+    public static final Block gold_fire = null;
+    public static final Block pyrite_torch = null;
+    public static final Block agate_crafting_table = null;
+    public static final Block gaia_stone_furnace_idle = null;
+    public static final Block gaia_stone_furnace_lit = null;
+    public static final Block glitter_furnace_idle = null;
+    public static final Block glitter_furnace_lit = null;
+    public static final Block purifier_idle = null;
+    public static final Block purifier_lit = null;
 
     //Natural Blocks
-    @ObjectHolder("heavy_soil")
-    public static Block heavySoil;
-    @ObjectHolder("corrupt_soil")
-    public static Block corruptSoil;
-    @ObjectHolder("glitter_grass")
-    public static Block glitterGrass;
-    @ObjectHolder("cool_grass")
-    public static Block coolGrass;
-    @ObjectHolder("verdant_grass")
-    public static Block verdantGrass;
-    @ObjectHolder("scented_grass")
-    public static Block scentedGrass;
-    @ObjectHolder("old_grass")
-    public static Block oldGrass;
-    @ObjectHolder("corrupt_grass")
-    public static Block corruptGrass;
-    @ObjectHolder("singed_grass")
-    public static Block singedGrass;
-    @ObjectHolder("mutated_grass")
-    public static Block mutantGrass;
-    @ObjectHolder("frail_glitter_block")
-    public static Block frailGlitterBlock;
-    @ObjectHolder("thick_glitter_block")
-    public static Block thickGlitterBlock;
-    @ObjectHolder("gummy_glitter_block")
-    public static Block gummyGlitterBlock;
+    public static final Block heavy_soil = null;
+    public static final Block corrupt_soil = null;
+    public static final Block glitter_grass = null;
+    public static final Block cool_grass = null;
+    public static final Block verdant_grass = null;
+    public static final Block scented_grass = null;
+    public static final Block old_grass = null;
+    public static final Block corrupt_grass = null;
+    public static final Block singed_grass = null;
+    public static final Block mutated_grass = null;
+    public static final Block frail_glitter_block = null;
+    public static final Block thick_glitter_block = null;
+    public static final Block gummy_glitter_block = null;
+    public static final Block gaia_leaves = null;
+    public static final Block special_gaia_leaves = null;
+    public static final Block gaia_log = null;
+    public static final Block special_gaia_log = null;
+    public static final Block salt = null;
+    public static final Block saltstone = null;
+    public static final Block gaia_stone = null;
+    public static final Block gaia_cobblestone = null;
+    public static final Block wasteland_stone = null;
+    public static final Block static_stone = null;
+    public static final Block charged_mineral = null;
+    public static final Block volcanic_rock = null;
+    public static final Block searing_rock = null;
 
-    //Crystal Growth
-    @ObjectHolder("crystal_growth_pink")
-    public static Block growthPink;
-    @ObjectHolder("crystal_growth_blue")
-    public static Block growthBlue;
-    @ObjectHolder("crystal_growth_green")
-    public static Block growthGreen;
-    @ObjectHolder("crystal_growth_purple")
-    public static Block growthPurple;
-    @ObjectHolder("crystal_growth_old")
-    public static Block growthOld;
-    @ObjectHolder("crystal_growth_red")
-    public static Block growthCorruptRed;
-    @ObjectHolder("crystal_growth_black")
-    public static Block growthCorruptBlack;
-    @ObjectHolder("crystal_growth_seared")
-    public static Block growthSeared;
-    @ObjectHolder("crystal_growth_mutant")
-    public static Block growthMutant;
-
-    //Crystal Bloom
-    @ObjectHolder("thiscus")
-    public static Block thiscus;
-    @ObjectHolder("ouzium")
-    public static Block ouzium;
-    @ObjectHolder("agathum")
-    public static Block agathum;
-    @ObjectHolder("varloom")
-    public static Block varloom;
-    @ObjectHolder("corrupt_varloom")
-    public static Block corruptVarloom;
-    @ObjectHolder("missingno_plant")
-    public static Block missingnoPlant;
-
-    @ObjectHolder("gaia_sapling")
-    public static Block gaiaSapling;
-    @ObjectHolder("gaia_leaves")
-    public static Block gaiaLeaves;
-    @ObjectHolder("special_gaia_leaves")
-    public static Block gaiaLeavesSpecial;
-    @ObjectHolder("gaia_log")
-    public static Block gaiaLog;
-    @ObjectHolder("special_gaia_log")
-    public static Block gaiaLogSpecial;
-    @ObjectHolder("salt")
-    public static Block saltBlock;
-    @ObjectHolder("saltstone")
-    public static Block rockSalt;
-    @ObjectHolder("gaia_stone")
-    public static Block gaiaStone;
-    @ObjectHolder("gaia_cobblestone")
-    public static Block gaiaCobblestone;
-    @ObjectHolder("wasteland_stone")
-    public static Block wastelandStone;
-    @ObjectHolder("static_stone")
-    public static Block staticStone;
-    @ObjectHolder("charged_mineral")
-    public static Block chargedMineral;
-    @ObjectHolder("volcanic_rock")
-    public static Block volcanicRock;
-    @ObjectHolder("searing_rock")
-    public static Block searingRock;
+    //Plants
+    public static final Block crystal_growth_pink = null;
+    public static final Block crystal_growth_blue = null;
+    public static final Block crystal_growth_green = null;
+    public static final Block crystal_growth_purple = null;
+    public static final Block crystal_growth_old = null;
+    public static final Block crystal_growth_red = null;
+    public static final Block crystal_growth_black = null;
+    public static final Block crystal_growth_seared = null;
+    public static final Block crystal_growth_mutant = null;
+    public static final Block thiscus = null;
+    public static final Block ouzium = null;
+    public static final Block agathum = null;
+    public static final Block varloom = null;
+    public static final Block corrupt_varloom = null;
+    public static final Block missingno_plant = null;
+    public static final Block gaia_sapling = null;
 
     //Planks
-    @ObjectHolder("pink_agate_planks")
-    public static Block pinkAgatePlanks;
-    @ObjectHolder("blue_agate_planks")
-    public static Block blueAgatePlanks;
-    @ObjectHolder("green_agate_planks")
-    public static Block greenAgatePlanks;
-    @ObjectHolder("purple_agate_planks")
-    public static Block purpleAgatePlanks;
-    @ObjectHolder("fossilized_planks")
-    public static Block fossilizedPlanks;
-    @ObjectHolder("corrupted_planks")
-    public static Block corruptedPlanks;
-    @ObjectHolder("crusty_planks")
-    public static Block crustyPlanks;
-    @ObjectHolder("heated_planks")
-    public static Block heatedPlanks;
-    @ObjectHolder("pink_agate_plank_slab")
-    public static BlockSlab pinkAgatePlankSlab;
-    @ObjectHolder("blue_agate_plank_slab")
-    public static BlockSlab blueAgatePlankSlab;
-    @ObjectHolder("green_agate_plank_slab")
-    public static BlockSlab greenAgatePlankSlab;
-    @ObjectHolder("purple_agate_plank_slab")
-    public static BlockSlab purpleAgatePlankSlab;
-    @ObjectHolder("fossilized_plank_slab")
-    public static BlockSlab fossilizedPlankSlab;
-    @ObjectHolder("corrupted_plank_slab")
-    public static BlockSlab corruptedPlankSlab;
-    @ObjectHolder("crusty_plank_slab")
-    public static BlockSlab crustyPlankSlab;
-    @ObjectHolder("heated_plank_slab")
-    public static BlockSlab heatedPlankSlab;
-    @ObjectHolder("double_pink_agate_plank_slab")
-    public static BlockSlab pinkAgatePlankSlabDouble;
-    @ObjectHolder("double_blue_agate_plank_slab")
-    public static BlockSlab blueAgatePlankSlabDouble;
-    @ObjectHolder("double_green_agate_plank_slab")
-    public static BlockSlab greenAgatePlankSlabDouble;
-    @ObjectHolder("double_purple_agate_plank_slab")
-    public static BlockSlab purpleAgatePlankSlabDouble;
-    @ObjectHolder("double_fossilized_plank_slab")
-    public static BlockSlab fossilizedPlankSlabDouble;
-    @ObjectHolder("double_corrupted_plank_slab")
-    public static BlockSlab corruptedPlankSlabDouble;
-    @ObjectHolder("double_crusty_plank_slab")
-    public static BlockSlab crustyPlankSlabDouble;
-    @ObjectHolder("double_heated_plank_slab")
-    public static BlockSlab heatedPlankSlabDouble;
-    @ObjectHolder("pink_agate_plank_stairs")
-    public static Block pinkAgatePlankStairs;
-    @ObjectHolder("blue_agate_plank_stairs")
-    public static Block blueAgatePlankStairs;
-    @ObjectHolder("green_agate_plank_stairs")
-    public static Block greenAgatePlankStairs;
-    @ObjectHolder("purple_agate_plank_stairs")
-    public static Block purpleAgatePlankStairs;
-    @ObjectHolder("fossilized_plank_stairs")
-    public static Block fossilizedPlankStairs;
-    @ObjectHolder("corrupted_plank_stairs")
-    public static Block corruptedPlankStairs;
-    @ObjectHolder("crusty_plank_stairs")
-    public static Block crustyPlankStairs;
-    @ObjectHolder("heated_plank_stairs")
-    public static Block heatedPlankStairs;
+    public static final Block pink_agate_planks = null;
+    public static final Block blue_agate_planks = null;
+    public static final Block green_agate_planks = null;
+    public static final Block purple_agate_planks = null;
+    public static final Block fossilized_planks = null;
+    public static final Block corrupted_planks = null;
+    public static final Block crusty_planks = null;
+    public static final Block heated_planks = null;
+    public static final BlockSlab pink_agate_plank_slab = null;
+    public static final BlockSlab blue_agate_plank_slab = null;
+    public static final BlockSlab green_agate_plank_slab = null;
+    public static final BlockSlab purple_agate_plank_slab = null;
+    public static final BlockSlab fossilized_plank_slab = null;
+    public static final BlockSlab corrupted_plank_slab = null;
+    public static final BlockSlab crusty_plank_slab = null;
+    public static final BlockSlab heated_plank_slab = null;
+    public static final BlockSlab double_pink_agate_plank_slab = null;
+    public static final BlockSlab double_blue_agate_plank_slab = null;
+    public static final BlockSlab double_green_agate_plank_slab = null;
+    public static final BlockSlab double_purple_agate_plank_slab = null;
+    public static final BlockSlab double_fossilized_plank_slab = null;
+    public static final BlockSlab double_corrupted_plank_slab = null;
+    public static final BlockSlab double_crusty_plank_slab = null;
+    public static final BlockSlab double_heated_plank_slab = null;
+    public static final Block pink_agate_plank_stairs = null;
+    public static final Block blue_agate_plank_stairs = null;
+    public static final Block green_agate_plank_stairs = null;
+    public static final Block purple_agate_plank_stairs = null;
+    public static final Block fossilized_plank_stairs = null;
+    public static final Block corrupted_plank_stairs = null;
+    public static final Block crusty_plank_stairs = null;
+    public static final Block heated_plank_stairs = null;
 
     //Manufactured
-    @ObjectHolder("gaia_stone_bricks")
-    public static Block gaiaStoneBricks;
-    @ObjectHolder("cracked_gaia_stone_bricks")
-    public static Block gaiaStoneBricksCracked;
-    @ObjectHolder("crusted_gaia_stone_bricks")
-    public static Block gaiaStoneBricksCrusted;
-    @ObjectHolder("reinforced_bricks")
-    public static Block reinforcedBricks;
-    @ObjectHolder("malachite_bricks")
-    public static Block malachiteBricks;
-    @ObjectHolder("malachite_pulsing_bricks")
-    public static Block malachitePulseBricks;
-    @ObjectHolder("malachite_pulsing_tiles")
-    public static Block malachitePulseTiles;
-    @ObjectHolder("malachite_pulsing_chisel")
-    public static Block malachitePulseChisel;
-    @ObjectHolder("malachite_brick_slab")
-    public static BlockSlab malachiteBrickSlab;
-    @ObjectHolder("double_malachite_brick_slab")
-    public static BlockSlab malachiteBrickSlabDouble;
-    @ObjectHolder("malachite_floor_slab")
-    public static BlockSlab malachiteFloorSlab;
-    @ObjectHolder("double_malachite_floor_slab")
-    public static BlockSlab malachiteFloorSlabDouble;
-    @ObjectHolder("malachite_pillar")
-    public static Block malachiteBrickPillar;
-    @ObjectHolder("malachite_brick_stairs")
-    public static Block malachiteBrickStairs;
-    @ObjectHolder("malachite_chisel_stairs")
-    public static Block malachiteChiselStairs;
-    @ObjectHolder("malachite_pulsing_brick_stairs")
-    public static Block malachitePulsingBrickStairs;
-    @ObjectHolder("malachite_pulsing_floor_stairs")
-    public static Block malachitePulsingFloorStairs;
-    @ObjectHolder("malachite_pulsing_chisel_stairs")
-    public static Block malachitePulsingChiselStairs;
-    @ObjectHolder("malachite_pillar_stairs")
-    public static Block malachitePillarStairs;
-    @ObjectHolder("malachite_floor_stairs")
-    public static Block malachiteFloorStairs;
-    @ObjectHolder("bolstered_bricks")
-    public static Block bolsteredBricks;
+    public static final Block gaia_stone_bricks = null;
+    public static final Block cracked_gaia_stone_bricks = null;
+    public static final Block crusted_gaia_stone_bricks = null;
+    public static final Block reinforced_bricks = null;
+    public static final Block malachite_bricks = null;
+    public static final Block malachite_pulsing_bricks = null;
+    public static final Block malachite_pulsing_tiles = null;
+    public static final Block malachite_pulsing_chisel = null;
+    public static final BlockSlab malachite_brick_slab = null;
+    public static final BlockSlab double_malachite_brick_slab = null;
+    public static final BlockSlab malachite_floor_slab = null;
+    public static final BlockSlab double_malachite_floor_slab = null;
+    public static final Block malachite_pillar = null;
+    public static final Block malachite_brick_stairs = null;
+    public static final Block malachite_chisel_stairs = null;
+    public static final Block malachite_pulsing_brick_stairs = null;
+    public static final Block malachite_pulsing_floor_stairs = null;
+    public static final Block malachite_pulsing_chisel_stairs = null;
+    public static final Block malachite_pillar_stairs = null;
+    public static final Block malachite_floor_stairs = null;
+    public static final Block bolstered_bricks = null;
 
     //Storage Blocks
-    @ObjectHolder("sugilite_block")
-    public static Block sugiliteBlock;
-    @ObjectHolder("hematite_block")
-    public static Block hematiteBlock;
-    @ObjectHolder("labradorite_block")
-    public static Block labradoriteBlock;
-    @ObjectHolder("pyrite_block")
-    public static Block pyriteBlock;
-    @ObjectHolder("opal_block_red")
-    public static Block opalBlockRed;
-    @ObjectHolder("opal_block_blue")
-    public static Block opalBlockBlue;
-    @ObjectHolder("opal_block_green")
-    public static Block opalBlockGreen;
-    @ObjectHolder("opal_block_white")
-    public static Block opalBlockWhite;
-    @ObjectHolder("moonstone_block")
-    public static Block moonstoneBlock;
-    @ObjectHolder("cinnabar_block")
-    public static Block cinnabarBlock;
-    @ObjectHolder("tektite_block")
-    public static Block tektiteBlock;
-    @ObjectHolder("goldstone_block")
-    public static Block goldstoneBlock;
-    @ObjectHolder("ixiolite_block")
-    public static Block ixioliteBlock;
-    @ObjectHolder("proustite_block")
-    public static Block proustiteBlock;
-    @ObjectHolder("euclase_block")
-    public static Block euclaseBlock;
-    @ObjectHolder("leucite_block")
-    public static Block leuciteBlock;
-    @ObjectHolder("carnelian_block")
-    public static Block carnelianBlock;
-    @ObjectHolder("benitoite_block")
-    public static Block benitoiteBlock;
-    @ObjectHolder("diopside_block")
-    public static Block diopsideBlock;
-    @ObjectHolder("chalcedony_block")
-    public static Block chalcedonyBlock;
+    public static final Block sugilite_block = null;
+    public static final Block hematite_block = null;
+    public static final Block labradorite_block = null;
+    public static final Block pyrite_block = null;
+    public static final Block opal_block_red = null;
+    public static final Block opal_block_blue = null;
+    public static final Block opal_block_green = null;
+    public static final Block opal_block_white = null;
+    public static final Block moonstone_block = null;
+    public static final Block cinnabar_block = null;
+    public static final Block tektite_block = null;
+    public static final Block goldstone_block = null;
+    public static final Block ixiolite_block = null;
+    public static final Block proustite_block = null;
+    public static final Block euclase_block = null;
+    public static final Block leucite_block = null;
+    public static final Block carnelian_block = null;
+    public static final Block benitoite_block = null;
+    public static final Block diopside_block = null;
+    public static final Block chalcedony_block = null;
 
     //Ores
-    @ObjectHolder("sugilite_ore")
-    public static Block sugiliteOre;
-    @ObjectHolder("hematite_ore")
-    public static Block hematiteOre;
-    @ObjectHolder("pyrite_ore")
-    public static Block pyriteOre;
-    @ObjectHolder("opal_ore")
-    public static Block opalOre;
-    @ObjectHolder("labradorite_ore")
-    public static Block labradoriteOre;
-    @ObjectHolder("moonstone_ore")
-    public static Block moonstoneOre;
-    @ObjectHolder("cinnabar_ore")
-    public static Block cinnabarOre;
+    public static final Block sugilite_ore = null;
+    public static final Block hematite_ore = null;
+    public static final Block pyrite_ore = null;
+    public static final Block opal_ore = null;
+    public static final Block labradorite_ore = null;
+    public static final Block moonstone_ore = null;
+    public static final Block cinnabar_ore = null;
 }

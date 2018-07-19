@@ -52,8 +52,8 @@ public class GDGenFossilizedTree extends WorldGenTrees {
                                     !blockID.isLeaves(block, world, cPos) &&
                                     blockID != Blocks.GRASS &&
                                     blockID != Blocks.DIRT &&
-                                    blockID != GDBlocks.oldGrass &&
-                                    blockID != GDBlocks.heavySoil &&
+                                    blockID != GDBlocks.old_grass &&
+                                    blockID != GDBlocks.heavy_soil &&
                                     !blockID.isWood(world, cPos)) {
                                 allClear = false;
                             }
@@ -69,8 +69,8 @@ public class GDGenFossilizedTree extends WorldGenTrees {
             } else {
                 Block blockUsing = world.getBlockState(pos.down()).getBlock();
 
-                if ((blockUsing == GDBlocks.oldGrass || blockUsing == GDBlocks.heavySoil) && pos.getY() < 256 - height - 1) {
-                    setBlockAndNotifyAdequately(world, pos.down(), GDBlocks.heavySoil.getDefaultState());
+                if ((blockUsing == GDBlocks.old_grass || blockUsing == GDBlocks.heavy_soil) && pos.getY() < 256 - height - 1) {
+                    setBlockAndNotifyAdequately(world, pos.down(), GDBlocks.heavy_soil.getDefaultState());
                     width = 3;
                     byte var18 = 0;
                     int treeWidth;
@@ -93,7 +93,7 @@ public class GDGenFossilizedTree extends WorldGenTrees {
 
                                 if ((Math.abs(var15) != treeWidth || Math.abs(var17) != treeWidth || rand.nextInt(2) != 0 && number != 0) &&
                                         state.getBlock().canBeReplacedByLeaves(state, world, tPos)) {
-                                    this.setBlockAndNotifyAdequately(world, tPos, GDBlocks.gaiaLeavesSpecial.getDefaultState().withProperty(GDSpecialLeaves.VARIANT, SpecialGaiaLeavesVariant.FOSSILIZED));
+                                    this.setBlockAndNotifyAdequately(world, tPos, GDBlocks.special_gaia_leaves.getDefaultState().withProperty(GDSpecialLeaves.VARIANT, SpecialGaiaLeavesVariant.FOSSILIZED));
                                 }
                             }
                         }
@@ -105,7 +105,7 @@ public class GDGenFossilizedTree extends WorldGenTrees {
                         blockID = block.getBlock();
 
                         if (blockID == Blocks.AIR || blockID.isLeaves(block, world, cPos)) {
-                            this.setBlockAndNotifyAdequately(world, cPos, GDBlocks.gaiaLogSpecial.getDefaultState());
+                            this.setBlockAndNotifyAdequately(world, cPos, GDBlocks.special_gaia_log.getDefaultState());
                         }
                     }
 

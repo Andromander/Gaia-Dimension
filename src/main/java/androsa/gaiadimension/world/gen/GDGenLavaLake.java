@@ -98,13 +98,13 @@ public class GDGenLavaLake extends WorldGenerator {
                         if (aboolean[(i2 * 16 + j3) * 8 + j4]) {
                             BlockPos blockpos = position.add(i2, j4 - 1, j3);
 
-                            if (worldIn.getBlockState(blockpos).getBlock() == GDBlocks.heavySoil && worldIn.getLightFor(EnumSkyBlock.SKY, position.add(i2, j4, j3)) > 0) {
+                            if (worldIn.getBlockState(blockpos).getBlock() == GDBlocks.heavy_soil && worldIn.getLightFor(EnumSkyBlock.SKY, position.add(i2, j4, j3)) > 0) {
                                 Biome biome = worldIn.getBiome(blockpos);
 
                                 if (biome.topBlock.getBlock() == Blocks.MYCELIUM) {
                                     worldIn.setBlockState(blockpos, Blocks.MYCELIUM.getDefaultState(), 2);
                                 } else {
-                                    worldIn.setBlockState(blockpos, GDBlocks.glitterGrass.getDefaultState(), 2);
+                                    worldIn.setBlockState(blockpos, GDBlocks.glitter_grass.getDefaultState(), 2);
                                 }
                             }
                         }
@@ -119,7 +119,7 @@ public class GDGenLavaLake extends WorldGenerator {
                             boolean flag1 = !aboolean[(j2 * 16 + k3) * 8 + k4] && (j2 < 15 && aboolean[((j2 + 1) * 16 + k3) * 8 + k4] || j2 > 0 && aboolean[((j2 - 1) * 16 + k3) * 8 + k4] || k3 < 15 && aboolean[(j2 * 16 + k3 + 1) * 8 + k4] || k3 > 0 && aboolean[(j2 * 16 + (k3 - 1)) * 8 + k4] || k4 < 7 && aboolean[(j2 * 16 + k3) * 8 + k4 + 1] || k4 > 0 && aboolean[(j2 * 16 + k3) * 8 + (k4 - 1)]);
 
                             if (flag1 && (k4 < 4 || rand.nextInt(2) != 0) && worldIn.getBlockState(position.add(j2, k4, k3)).getMaterial().isSolid()) {
-                                worldIn.setBlockState(position.add(j2, k4, k3), GDBlocks.volcanicRock.getDefaultState(), 2);
+                                worldIn.setBlockState(position.add(j2, k4, k3), GDBlocks.volcanic_rock.getDefaultState(), 2);
                             }
                         }
                     }
@@ -133,7 +133,7 @@ public class GDGenLavaLake extends WorldGenerator {
                             boolean flag1 = !aboolean[(j2 * 16 + k3) * 8 + k4] && (j2 < 15 && aboolean[((j2 + 1) * 16 + k3) * 8 + k4] || j2 > 0 && aboolean[((j2 - 1) * 16 + k3) * 8 + k4] || k3 < 15 && aboolean[(j2 * 16 + k3 + 1) * 8 + k4] || k3 > 0 && aboolean[(j2 * 16 + (k3 - 1)) * 8 + k4] || k4 < 7 && aboolean[(j2 * 16 + k3) * 8 + k4 + 1] || k4 > 0 && aboolean[(j2 * 16 + k3) * 8 + (k4 - 1)]);
 
                             if (flag1 && (k4 < 4 || rand.nextInt(2) != 0) && worldIn.getBlockState(position.add(j2, k4, k3)).getMaterial().isSolid()) {
-                                worldIn.setBlockState(position.add(j2, k4, k3), GDBlocks.thickGlitterBlock.getDefaultState(), 2);
+                                worldIn.setBlockState(position.add(j2, k4, k3), GDBlocks.thick_glitter_block.getDefaultState(), 2);
                             }
                         }
                     }

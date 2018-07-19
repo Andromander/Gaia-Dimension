@@ -13,7 +13,7 @@ import java.util.Random;
 public class GDPurpleAgateSwamp extends GDBiomeBase {
 
     private WorldGenTrees GaiaGenPurpleTrees;
-    private GDGenGummyBlob genGummyBlock = new GDGenGummyBlob(GDBlocks.gummyGlitterBlock, 0);
+    private GDGenGummyBlob genGummyBlock = new GDGenGummyBlob(GDBlocks.gummy_glitter_block, 0);
     private short[] skyColorRGB = new short[] { 171, 109, 241 };
 
     public GDPurpleAgateSwamp(BiomeProperties props) {
@@ -29,8 +29,8 @@ public class GDPurpleAgateSwamp extends GDBiomeBase {
 
         getGDBiomeDecorator().muckPoolChance = 0.25F;
 
-        topBlock = GDBlocks.scentedGrass.getDefaultState();
-        fillerBlock = GDBlocks.heavySoil.getDefaultState();
+        topBlock = GDBlocks.scented_grass.getDefaultState();
+        fillerBlock = GDBlocks.heavy_soil.getDefaultState();
     }
 
     @Override
@@ -50,7 +50,7 @@ public class GDPurpleAgateSwamp extends GDBiomeBase {
             int Xcoord = pos.getX() + rand.nextInt(16);
             int Zcoord = pos.getZ() + rand.nextInt(16);
             int Ycoord = rand.nextInt(100);
-            new WorldGenMinable(GDBlocks.thickGlitterBlock.getDefaultState(), 33, input -> input == GDBlocks.gaiaStone.getDefaultState()).generate(world, rand, new BlockPos(Xcoord, Ycoord, Zcoord));
+            new WorldGenMinable(GDBlocks.thick_glitter_block.getDefaultState(), 33, input -> input == GDBlocks.gaia_stone.getDefaultState()).generate(world, rand, new BlockPos(Xcoord, Ycoord, Zcoord));
         }
     }
 
@@ -74,7 +74,7 @@ public class GDPurpleAgateSwamp extends GDBiomeBase {
                 return new GDGenCrystalBloom(GDBlocks.thiscus);
             }
         } else {
-            return new GDGenCrystalGrowth(GDBlocks.growthPurple);
+            return new GDGenCrystalGrowth(GDBlocks.crystal_growth_purple);
         }
     }
 

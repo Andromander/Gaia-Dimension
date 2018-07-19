@@ -23,6 +23,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nonnull;
+import javax.annotation.ParametersAreNonnullByDefault;
 
 public class GDFluidBlock extends BlockFluidClassic implements SuperRegistry {
 
@@ -48,11 +49,10 @@ public class GDFluidBlock extends BlockFluidClassic implements SuperRegistry {
         return (int) (data / quantaPerBlockFloat * maxScaledLight);
     }
 
-    protected int getDepth(IBlockState state) {
-        return state.getMaterial() == this.blockMaterial ? ((Integer)state.getValue(LEVEL)).intValue() : -1;
-    }
-
+    @Override
+    @Deprecated
     @SideOnly(Side.CLIENT)
+    @ParametersAreNonnullByDefault
     public int getPackedLightmapCoords(IBlockState state, IBlockAccess source, BlockPos pos)
     {
         int i = source.getCombinedLight(pos, 0);

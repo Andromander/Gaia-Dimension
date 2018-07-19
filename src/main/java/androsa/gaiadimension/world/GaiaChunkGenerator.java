@@ -138,7 +138,7 @@ public class GaiaChunkGenerator implements IChunkGenerator {
 
                             for (int k3 = 0; k3 < 4; ++k3) {
                                 if ((d15 += d16) > 0.0D) {
-                                    primer.setBlockState(k * 4 + i3, k2 * 8 + l2, j1 * 4 + k3, GDBlocks.gaiaStone.getDefaultState());
+                                    primer.setBlockState(k * 4 + i3, k2 * 8 + l2, j1 * 4 + k3, GDBlocks.gaia_stone.getDefaultState());
                                 } else if (k2 * 8 + l2 < seaLevel) {
                                     primer.setBlockState(k * 4 + i3, k2 * 8 + l2, j1 * 4 + k3, GDFluids.mineralWaterBlock.getDefaultState());
                                 }
@@ -321,7 +321,7 @@ public class GaiaChunkGenerator implements IChunkGenerator {
 
             for (int y = 0; y <= 127; ++y) {
                 Block currentTerrain = primer.getBlockState(x, y, x).getBlock();
-                if (currentTerrain != GDBlocks.gaiaStone) {
+                if (currentTerrain != GDBlocks.gaia_stone) {
                     if (newGround == -1) {
                         //that's low
                         oldGround = y;
@@ -337,7 +337,7 @@ public class GaiaChunkGenerator implements IChunkGenerator {
         for (int y = 0; y <= 127; ++y) {
             Block b = primer.getBlockState(x, y, z).getBlock();
             if (y < towerHeight && (b == Blocks.AIR || b == GDFluids.mineralWaterBlock)) {
-                primer.setBlockState(x, y, z, GDBlocks.gaiaStone.getDefaultState());
+                primer.setBlockState(x, y, z, GDBlocks.gaia_stone.getDefaultState());
             }
             if (y >= towerHeight && b != GDFluids.mineralWaterBlock) {
                 primer.setBlockState(x, y, z, Blocks.AIR.getDefaultState());

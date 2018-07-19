@@ -39,7 +39,7 @@ public class GDRockyLuggeroth extends EntityCreature implements IAnimals {
         int j = MathHelper.floor(this.getEntityBoundingBox().minY);
         int k = MathHelper.floor(this.posZ);
         BlockPos blockpos = new BlockPos(i, j, k);
-        return this.world.getBlockState(blockpos.down()).getBlock() == GDBlocks.oldGrass && this.world.getLight(blockpos) > 8 && super.getCanSpawnHere();
+        return this.world.getBlockState(blockpos.down()).getBlock() == GDBlocks.old_grass && this.world.getLight(blockpos) > 8 && super.getCanSpawnHere();
     }
 
 }

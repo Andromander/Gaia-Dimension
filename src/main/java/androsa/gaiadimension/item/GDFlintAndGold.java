@@ -7,7 +7,6 @@ import androsa.gaiadimension.registry.ModelRegisterCallback;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.init.Blocks;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -35,7 +34,7 @@ public class GDFlintAndGold extends Item implements ModelRegisterCallback {
         } else {
             if (worldIn.isAirBlock(pos)) {
                 worldIn.playSound(player, pos, SoundEvents.ITEM_FLINTANDSTEEL_USE, SoundCategory.BLOCKS, 1.0F, itemRand.nextFloat() * 0.4F + 0.8F);
-                worldIn.setBlockState(pos, GDBlocks.goldFire.getDefaultState(), 11);
+                worldIn.setBlockState(pos, GDBlocks.gold_fire.getDefaultState(), 11);
             }
 
             if (player instanceof EntityPlayerMP) {

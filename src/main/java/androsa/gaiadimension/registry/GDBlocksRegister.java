@@ -17,7 +17,6 @@ import net.minecraftforge.registries.IForgeRegistry;
 @Mod.EventBusSubscriber
 public final class GDBlocksRegister {
     @SubscribeEvent
-    @SuppressWarnings("deprecated")
     public static void onRegisterBlocks(RegistryEvent.Register<Block> event) {
         BlockRegistryHelper blocks = new BlockRegistryHelper(event.getRegistry());
 

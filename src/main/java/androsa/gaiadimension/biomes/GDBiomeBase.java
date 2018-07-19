@@ -100,11 +100,11 @@ public class GDBiomeBase extends Biome {
 
                 if (iblockstate2.getMaterial() == Material.AIR) {
                     j = -1;
-                } else if (iblockstate2.getBlock() == GDBlocks.gaiaStone) {
+                } else if (iblockstate2.getBlock() == GDBlocks.gaia_stone) {
                     if (j == -1) {
                         if (k <= 0) {
                             iblockstate = AIR;
-                            iblockstate1 = GDBlocks.gaiaStone.getDefaultState();
+                            iblockstate1 = GDBlocks.gaia_stone.getDefaultState();
                         } else if (j1 >= i - 4 && j1 <= i + 1) {
                             iblockstate = this.topBlock;
                             iblockstate1 = this.fillerBlock;
@@ -124,8 +124,8 @@ public class GDBiomeBase extends Biome {
                             chunkPrimerIn.setBlockState(i1, j1, l, iblockstate);
                         } else if (j1 < i - 7 - k) {
                             iblockstate = AIR;
-                            iblockstate1 = GDBlocks.gaiaStone.getDefaultState();
-                            chunkPrimerIn.setBlockState(i1, j1, l, GDBlocks.saltBlock.getDefaultState());
+                            iblockstate1 = GDBlocks.gaia_stone.getDefaultState();
+                            chunkPrimerIn.setBlockState(i1, j1, l, GDBlocks.salt.getDefaultState());
                         } else {
                             chunkPrimerIn.setBlockState(i1, j1, l, iblockstate1);
                         }
@@ -133,9 +133,9 @@ public class GDBiomeBase extends Biome {
                         --j;
                         chunkPrimerIn.setBlockState(i1, j1, l, iblockstate1);
 
-                        if (j == 0 && iblockstate1.getBlock() == GDBlocks.saltBlock && k > 1) {
+                        if (j == 0 && iblockstate1.getBlock() == GDBlocks.salt && k > 1) {
                             j = rand.nextInt(4) + Math.max(0, j1 - 63);
-                            iblockstate1 = GDBlocks.rockSalt.getDefaultState();
+                            iblockstate1 = GDBlocks.saltstone.getDefaultState();
                         }
                     }
                 }

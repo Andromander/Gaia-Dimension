@@ -24,8 +24,8 @@ public class GDGoldstoneLands extends GDBiomeBase {
 
         GaiaGenCorruptTrees = new GDGenGoldstoneCorruptTree(false);
 
-        topBlock = GDBlocks.corruptGrass.getDefaultState();
-        fillerBlock = GDBlocks.corruptSoil.getDefaultState();
+        topBlock = GDBlocks.corrupt_grass.getDefaultState();
+        fillerBlock = GDBlocks.corrupt_soil.getDefaultState();
     }
 
     @SideOnly(Side.CLIENT)
@@ -44,12 +44,12 @@ public class GDGoldstoneLands extends GDBiomeBase {
     public WorldGenerator getRandomWorldGenForGrass(Random rand) {
 
         if (rand.nextInt(16) == 0) {
-            return new GDGenCrystalBloom(GDBlocks.corruptVarloom);
+            return new GDGenCrystalBloom(GDBlocks.corrupt_varloom);
         } else {
             if (rand.nextInt(2) == 0) {
-                return new GDGenCrystalGrowth(GDBlocks.growthCorruptBlack);
+                return new GDGenCrystalGrowth(GDBlocks.crystal_growth_black);
             } else {
-                return new GDGenCrystalGrowth(GDBlocks.growthCorruptRed);
+                return new GDGenCrystalGrowth(GDBlocks.crystal_growth_red);
             }
         }
     }

@@ -52,8 +52,8 @@ public class GDGenGoldstoneCorruptTree extends WorldGenTrees {
                                     !blockID.isLeaves(block, world, cPos) &&
                                     blockID != Blocks.GRASS &&
                                     blockID != Blocks.DIRT &&
-                                    blockID != GDBlocks.corruptGrass &&
-                                    blockID != GDBlocks.corruptSoil &&
+                                    blockID != GDBlocks.corrupt_grass &&
+                                    blockID != GDBlocks.corrupt_soil &&
                                     !blockID.isWood(world, cPos)) {
                                 allClear = false;
                             }
@@ -69,8 +69,8 @@ public class GDGenGoldstoneCorruptTree extends WorldGenTrees {
             } else {
                 Block blockUsing = world.getBlockState(pos.down()).getBlock();
 
-                if ((blockUsing == GDBlocks.corruptGrass || blockUsing == GDBlocks.heavySoil) && pos.getY() < 256 - height - 1) {
-                    setBlockAndNotifyAdequately(world, pos.down(), GDBlocks.corruptSoil.getDefaultState());
+                if ((blockUsing == GDBlocks.corrupt_grass || blockUsing == GDBlocks.heavy_soil) && pos.getY() < 256 - height - 1) {
+                    setBlockAndNotifyAdequately(world, pos.down(), GDBlocks.corrupt_soil.getDefaultState());
                     int k2 = 0;
 
                     for (int l2 = pos.getY() + height; l2 >= pos.getY() + j; --l2) {
@@ -88,7 +88,7 @@ public class GDGenGoldstoneCorruptTree extends WorldGenTrees {
                                     state.getBlock().canBeReplacedByLeaves(state, world, tPos);
 
                                     if (state.getBlock().canBeReplacedByLeaves(state, world, tPos)) {
-                                        this.setBlockAndNotifyAdequately(world, tPos, GDBlocks.gaiaLeavesSpecial.getDefaultState().withProperty(GDSpecialLeaves.VARIANT, SpecialGaiaLeavesVariant.CORRUPTED));
+                                        this.setBlockAndNotifyAdequately(world, tPos, GDBlocks.special_gaia_leaves.getDefaultState().withProperty(GDSpecialLeaves.VARIANT, SpecialGaiaLeavesVariant.CORRUPTED));
                                     }
                                 }
                             }
@@ -108,7 +108,7 @@ public class GDGenGoldstoneCorruptTree extends WorldGenTrees {
                         blockID = block.getBlock();
 
                         if (blockID == Blocks.AIR || blockID.isLeaves(block, world, cPos)) {
-                            this.setBlockAndNotifyAdequately(world, cPos, GDBlocks.gaiaLogSpecial.getDefaultState().withProperty(GDSpecialLog.VARIANT, SpecialGaiaLogVariant.CORRUPTED));
+                            this.setBlockAndNotifyAdequately(world, cPos, GDBlocks.special_gaia_log.getDefaultState().withProperty(GDSpecialLog.VARIANT, SpecialGaiaLogVariant.CORRUPTED));
                         }
                     }
 
