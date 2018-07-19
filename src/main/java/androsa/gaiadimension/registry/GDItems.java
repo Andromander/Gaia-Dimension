@@ -9,6 +9,7 @@ import net.minecraftforge.common.util.EnumHelper;
 import static net.minecraftforge.fml.common.registry.GameRegistry.*;
 
 @ObjectHolder(GaiaDimension.MODID)
+//@SuppressWarnings("unused")
 public class GDItems {
 
     public static ItemArmor.ArmorMaterial ARMOR_SUGILITE = EnumHelper.addArmorMaterial("SUGILITE", "sugilite", 1000, new int[]{1, 4, 6, 1}, 5, SoundEvents.ITEM_ARMOR_EQUIP_CHAIN, 0.0F);
@@ -44,347 +45,119 @@ public class GDItems {
     public static Item.ToolMaterial TOOL_LARVIKITE = EnumHelper.addToolMaterial("LARVIKITE", 3, 10240, 8.0F, 5.0F, 20);
     public static Item.ToolMaterial TOOL_GAIA_CHAMP = EnumHelper.addToolMaterial("GAIA_CHAMP", 4, -1, 10.0F, 16.0F, 25);
 
-    @ObjectHolder("glint_and_gold")
-    public static final Item glintAndGold;
-    @ObjectHolder("agate_stick")
-    public static final Item agateStick;
-    @ObjectHolder("hot_dust")
-    public static final Item hotDust;
-    @ObjectHolder("goldstone_dust")
-    public static final Item goldstoneDust;
-    @ObjectHolder("fine_dust")
-    public static final Item fineDust;
-    @ObjectHolder("cloudy_shard")
-    public static final Item cloudyShard;
-    @ObjectHolder("goldstone_residue")
-    public static final Item goldstoneResidue;
-    //@ObjectHolder("scaynyx_ingot")
-    //public static final Item scaynyxIngot;
+    public static final Item glint_and_gold = null;
+    public static final Item agate_stick = null;
+    public static final Item hot_dust = null;
+    public static final Item goldstone_dust = null;
+    public static final Item fine_dust = null;
+    public static final Item cloudy_shard = null;
+    public static final Item goldstone_residue = null;
+    //public static final Item scaynyx_ingot = null;
 
-    @ObjectHolder("pink_geode")
-    public static final Item pinkGeode;
-    @ObjectHolder("blue_geode")
-    public static final Item blueGeode;
-    @ObjectHolder("green_geode")
-    public static final Item greenGeode;
-    @ObjectHolder("purple_geode")
-    public static final Item purpleGeode;
-    @ObjectHolder("pink_geode_slice")
-    public static final Item pinkGeodeSlice;
-    @ObjectHolder("blue_geode_slice")
-    public static final Item blueGeodeSlice;
-    @ObjectHolder("green_geode_slice")
-    public static final Item greenGeodeSlice;
-    @ObjectHolder("purple_geode_slice")
-    public static final Item purpleGeodeSlice;
-    @ObjectHolder("lurmorus_meat")
-    public static final Item lurmorusMeat;
-    @ObjectHolder("lurmorus_steak")
-    public static final Item lurmorusSteak;
+    public static final Item pink_geode = null;
+    public static final Item blue_geode = null;
+    public static final Item green_geode = null;
+    public static final Item purple_geode = null;
+    public static final Item pink_geode_slice = null;
+    public static final Item blue_geode_slice = null;
+    public static final Item green_geode_slice = null;
+    public static final Item purple_geode_slice = null;
+    public static final Item lurmorus_meat = null;
+    public static final Item lurmorus_steak = null;
 
-    @ObjectHolder("hematite_powder")
-    public static final Item hematitePowder;
-    @ObjectHolder("pyrite_powder")
-    public static final Item pyritePowder;
-    @ObjectHolder("labradorite_powder")
-    public static final Item labradoritePowder;
-    @ObjectHolder("moonstone_powder")
-    public static final Item moonstonePowder;
-    @ObjectHolder("cinnabar_powder")
-    public static final Item cinnabarPowder;
-    @ObjectHolder("red_opal_powder")
-    public static final Item redOpalPowder;
-    @ObjectHolder("blue_opal_powder")
-    public static final Item blueOpalPowder;
-    @ObjectHolder("green_opal_powder")
-    public static final Item greenOpalPowder;
-    @ObjectHolder("white_opal_grit")
-    public static final Item whiteOpalGrit;
+    public static final Item hematite_powder = null;
+    public static final Item pyrite_powder = null;
+    public static final Item labradorite_powder = null;
+    public static final Item moonstone_powder = null;
+    public static final Item cinnabar_powder = null;
+    public static final Item red_opal_powder = null;
+    public static final Item blue_opal_powder = null;
+    public static final Item green_opal_powder = null;
+    public static final Item white_opal_grit = null;
 
-    @ObjectHolder("sugilite")
-    public static final Item sugilite;
-    @ObjectHolder("hematite")
-    public static final Item hematite;
-    @ObjectHolder("pyrite")
-    public static final Item pyrite;
-    @ObjectHolder("labradorite")
-    public static final Item labradorite;
-    @ObjectHolder("moonstone")
-    public static final Item moonstone;
-    @ObjectHolder("cinnabar")
-    public static final Item cinnabar;
-    @ObjectHolder("red_opal")
-    public static final Item opalRed;
-    @ObjectHolder("blue_opal")
-    public static final Item opalBlue;
-    @ObjectHolder("green_opal")
-    public static final Item opalGreen;
-    @ObjectHolder("white_opal")
-    public static final Item opalWhite;
-    @ObjectHolder("ixiolite")
-    public static final Item ixiolite;
-    @ObjectHolder("proustite")
-    public static final Item proustite;
-    @ObjectHolder("euclase")
-    public static final Item euclase;
-    @ObjectHolder("leucite")
-    public static final Item leucite;
-    @ObjectHolder("carnelian")
-    public static final Item carnelian;
-    @ObjectHolder("benitoite")
-    public static final Item benitoite;
-    @ObjectHolder("diopside")
-    public static final Item diopside;
-    @ObjectHolder("chalcedony")
-    public static final Item chalcedony;
-    @ObjectHolder("black_residue")
-    public static final Item blackResidue;
-    @ObjectHolder("tektite")
-    public static final Item tektite;
-    @ObjectHolder("goldstone")
-    public static final Item goldstone;
+    public static final Item sugilite = null;
+    public static final Item hematite = null;
+    public static final Item pyrite = null;
+    public static final Item labradorite = null;
+    public static final Item moonstone = null;
+    public static final Item cinnabar = null;
+    public static final Item red_opal = null;
+    public static final Item blue_opal = null;
+    public static final Item green_opal = null;
+    public static final Item white_opal = null;
+    public static final Item ixiolite = null;
+    public static final Item proustite = null;
+    public static final Item euclase = null;
+    public static final Item leucite = null;
+    public static final Item carnelian = null;
+    public static final Item benitoite = null;
+    public static final Item diopside = null;
+    public static final Item chalcedony = null;
+    public static final Item black_residue = null;
+    public static final Item tektite = null;
+    public static final Item goldstone = null;
 
-    @ObjectHolder("malachite_guard_headgear")
-    public static final Item malachiteGuardHeadgear;
-    @ObjectHolder("malachite_guard_brace")
-    public static final Item malachiteGuardBrace;
-    @ObjectHolder("malachite_guard_gear")
-    public static final Item malachiteGuardGear;
-    @ObjectHolder("malachite_guard_boots")
-    public static final Item malachiteGuardBoots;
-    @ObjectHolder("apex_predator_hood")
-    public static final Item apexPredatorHood;
-    @ObjectHolder("apex_predator_jacket")
-    public static final Item apexPredatorJacket;
-    @ObjectHolder("apex_predator_trousers")
-    public static final Item apexPredatorTrousers;
-    @ObjectHolder("apex_predator_boots")
-    public static final Item apexPredatorBoots;
-    @ObjectHolder("spinel_princess_cowl")
-    public static final Item spinelPrincessCowl;
-    @ObjectHolder("spinel_princess_cloak")
-    public static final Item spinelPrincessCloak;
-    @ObjectHolder("spinel_princess_dress")
-    public static final Item spinelPrincessDress;
-    @ObjectHolder("spinel_princess_heels")
-    public static final Item spinelPrincessHeels;
-    @ObjectHolder("zircon_prince_crown")
-    public static final Item zirconPrinceCrown;
-    @ObjectHolder("zircon_prince_chestpiece")
-    public static final Item zirconPrinceChestpiece;
-    @ObjectHolder("zircon_prince_gear")
-    public static final Item zirconPrinceGear;
-    @ObjectHolder("zirconPrinceBoots")
-    public static final Item zirconPrinceBoots;
-    @ObjectHolder("corrupt_warrior_helm")
-    public static final Item corruptWarriorHelm;
-    @ObjectHolder("corrupt_warrior_guard")
-    public static final Item corruptWarriorGuard;
-    @ObjectHolder("corrupt_warrior_greaves")
-    public static final Item corruptWarriorGreaves;
-    @ObjectHolder("corrupt_warrior_boots")
-    public static final Item corruptWarriorBoots;
-    @ObjectHolder("gaia_duchess_helm")
-    public static final Item gaiaDuchessHelm;
-    @ObjectHolder("gaia_duchess_guard")
-    public static final Item gaiaDuchessGuard;
-    @ObjectHolder("gaia_duchess_greaves")
-    public static final Item gaiaDuchessGreaves;
-    @ObjectHolder("gaia_duchess_boots")
-    public static final Item gaiaDuchessBoots;
-    @ObjectHolder("gaia_baron_mask")
-    public static final Item gaiaBaronMask;
-    @ObjectHolder("gaia_baron_tuxedo")
-    public static final Item gaiaBaronTuxedo;
-    @ObjectHolder("gaia_baron_pants")
-    public static final Item gaiaBaronPants;
-    @ObjectHolder("gaia_baron_shoes")
-    public static final Item gaiaBaronShoes;
-    @ObjectHolder("gaia_duke_helm")
-    public static final Item gaiaDukeHelm;
-    @ObjectHolder("gaia_duke_guard")
-    public static final Item gaiaDukeGuards;
-    @ObjectHolder("gaia_duke_greaves")
-    public static final Item gaiaDukeGreaves;
-    @ObjectHolder("gaia_duke_boots")
-    public static final Item gaiaDukeBoots;
-    @ObjectHolder("gaia_champion_helm")
-    public static final Item gaiaChampionHelm;
-    @ObjectHolder("gaia_champion_guard")
-    public static final Item gaiaChampionGuard;
-    @ObjectHolder("gaia_champion_greaves")
-    public static final Item gaiaChampionGreaves;
-    @ObjectHolder("gaia_champion_boots")
-    public static final Item gaiaChampionBoots;
+    public static final Item malachite_guard_headgear = null;
+    public static final Item malachite_guard_brace = null;
+    public static final Item malachite_guard_gear = null;
+    public static final Item malachite_guard_boots = null;
+    public static final Item apex_predator_hood = null;
+    public static final Item apex_predator_jacket = null;
+    public static final Item apex_predator_trousers = null;
+    public static final Item apex_predator_boots = null;
+    public static final Item spinel_princess_cowl = null;
+    public static final Item spinel_princess_cloak = null;
+    public static final Item spinel_princess_dress = null;
+    public static final Item spinel_princess_heels = null;
+    public static final Item zircon_prince_crown = null;
+    public static final Item zircon_prince_chestpiece = null;
+    public static final Item zircon_prince_gear = null;
+    public static final Item zirconPrinceBoots = null;
+    public static final Item corrupt_warrior_helm = null;
+    public static final Item corrupt_warrior_guard = null;
+    public static final Item corrupt_warrior_greaves = null;
+    public static final Item corrupt_warrior_boots = null;
+    public static final Item gaia_duchess_helm = null;
+    public static final Item gaia_duchess_guard = null;
+    public static final Item gaia_duchess_greaves = null;
+    public static final Item gaia_duchess_boots = null;
+    public static final Item gaia_baron_mask = null;
+    public static final Item gaia_baron_tuxedo = null;
+    public static final Item gaia_baron_pants = null;
+    public static final Item gaia_baron_shoes = null;
+    public static final Item gaia_duke_helm = null;
+    public static final Item gaia_duke_guard = null;
+    public static final Item gaia_duke_greaves = null;
+    public static final Item gaia_duke_boots = null;
+    public static final Item gaia_champion_helm = null;
+    public static final Item gaia_champion_guard = null;
+    public static final Item gaia_champion_greaves = null;
+    public static final Item gaia_champion_boots = null;
 
-    @ObjectHolder("agate_sword")
-    public static final Item agateSword;
-    @ObjectHolder("agate_pickaxe")
-    public static final Item agatePickaxe;
-    @ObjectHolder("agate_axe")
-    public static final Item agateAxe;
-    @ObjectHolder("agate_shovel")
-    public static final Item agateShovel;
-    @ObjectHolder("sugilite_sword")
-    public static final Item sugiliteSword;
-    @ObjectHolder("sugilite_pickaxe")
-    public static final Item sugilitePickaxe;
-    @ObjectHolder("sugilite_axe")
-    public static final Item sugiliteAxe;
-    @ObjectHolder("sugilite_shovel")
-    public static final Item sugiliteShovel;
-    @ObjectHolder("ixiolite_sword")
-    public static final Item ixioliteSword;
-    @ObjectHolder("ixiolite_pickaxe")
-    public static final Item ixiolitePickaxe;
-    @ObjectHolder("ixiolite_axe")
-    public static final Item ixioliteAxe;
-    @ObjectHolder("ixiolite_shovel")
-    public static final Item ixioliteShovel;
-    @ObjectHolder("euclase_sword")
-    public static final Item euclaseSword;
-    @ObjectHolder("euclase_pickaxe")
-    public static final Item euclasePickaxe;
-    @ObjectHolder("euclase_axe")
-    public static final Item euclaseAxe;
-    @ObjectHolder("euclase_shovel")
-    public static final Item euclaseShovel;
+    public static final Item agate_sword = null;
+    public static final Item agate_pickaxe = null;
+    public static final Item agate_axe = null;
+    public static final Item agate_shovel = null;
+    public static final Item sugilite_sword = null;
+    public static final Item sugilite_pickaxe = null;
+    public static final Item sugilite_axe = null;
+    public static final Item sugilite_shovel = null;
+    public static final Item ixiolite_sword = null;
+    public static final Item ixiolite_pickaxe = null;
+    public static final Item ixiolite_axe = null;
+    public static final Item ixiolite_shovel = null;
+    public static final Item euclase_sword = null;
+    public static final Item euclase_pickaxe = null;
+    public static final Item euclase_axe = null;
+    public static final Item euclase_shovel = null;
 
-    @ObjectHolder("malachite_guard_sword")
-    public static final Item malachiteGuardSword;
-    @ObjectHolder("apex_predator_sword")
-    public static final Item apexPredatorSword;
-    @ObjectHolder("spinel_princess_sword")
-    public static final Item spinelPrincessSword;
-    @ObjectHolder("zircon_prince_sword")
-    public static final Item zirconPrinceSword;
-    @ObjectHolder("corrupt_warrior_sword")
-    public static final Item corruptWarriorSword;
-    @ObjectHolder("gaia_duchess_sword")
-    public static final Item gaiaDuchessSword;
-    @ObjectHolder("gaia_baron_sword")
-    public static final Item gaiaBaronSword;
-    @ObjectHolder("gaia_duke_sword")
-    public static final Item gaiaDukeSword;
-    @ObjectHolder("gaia_champion_sword")
-    public static final Item gaiaChampionSword;
-
-    static {
-        glintAndGold = null;
-        agateStick = null;
-        hotDust = null;
-        goldstoneDust = null;
-        fineDust = null;
-        cloudyShard = null;
-        goldstoneResidue = null;
-        //scaynyxIngot = null;
-
-        pinkGeode = null;
-        blueGeode = null;
-        greenGeode = null;
-        purpleGeode = null;
-        pinkGeodeSlice = null;
-        blueGeodeSlice = null;
-        greenGeodeSlice = null;
-        purpleGeodeSlice = null;
-        lurmorusMeat = null;
-        lurmorusSteak = null;
-
-        hematitePowder = null;
-        pyritePowder = null;
-        labradoritePowder = null;
-        moonstonePowder = null;
-        cinnabarPowder = null;
-        redOpalPowder = null;
-        blueOpalPowder = null;
-        greenOpalPowder = null;
-        whiteOpalGrit = null;
-
-        sugilite = null;
-        hematite = null;
-        pyrite = null;
-        labradorite = null;
-        moonstone = null;
-        cinnabar = null;
-        opalRed = null;
-        opalBlue = null;
-        opalGreen = null;
-        opalWhite = null;
-        ixiolite = null;
-        proustite = null;
-        euclase = null;
-        leucite = null;
-        carnelian = null;
-        benitoite = null;
-        diopside = null;
-        chalcedony = null;
-        blackResidue = null;
-        tektite = null;
-        goldstone = null;
-
-        agateSword = null;
-        agatePickaxe = null;
-        agateAxe = null;
-        agateShovel = null;
-        sugiliteSword = null;
-        sugilitePickaxe = null;
-        sugiliteAxe = null;
-        sugiliteShovel = null;
-        ixioliteSword = null;
-        ixiolitePickaxe = null;
-        ixioliteAxe = null;
-        ixioliteShovel = null;
-        euclaseSword = null;
-        euclasePickaxe = null;
-        euclaseAxe = null;
-        euclaseShovel = null;
-
-        malachiteGuardHeadgear = null;
-        malachiteGuardBrace = null;
-        malachiteGuardGear = null;
-        malachiteGuardBoots = null;
-        apexPredatorHood = null;
-        apexPredatorJacket = null;
-        apexPredatorTrousers = null;
-        apexPredatorBoots = null;
-        spinelPrincessCowl = null;
-        spinelPrincessCloak = null;
-        spinelPrincessDress = null;
-        spinelPrincessHeels = null;
-        zirconPrinceCrown = null;
-        zirconPrinceChestpiece = null;
-        zirconPrinceGear = null;
-        zirconPrinceBoots = null;
-        corruptWarriorHelm = null;
-        corruptWarriorGuard = null;
-        corruptWarriorGreaves = null;
-        corruptWarriorBoots = null;
-        gaiaDuchessHelm = null;
-        gaiaDuchessGuard = null;
-        gaiaDuchessGreaves = null;
-        gaiaDuchessBoots = null;
-        gaiaBaronMask = null;
-        gaiaBaronTuxedo = null;
-        gaiaBaronPants = null;
-        gaiaBaronShoes = null;
-        gaiaDukeHelm = null;
-        gaiaDukeGuards = null;
-        gaiaDukeGreaves = null;
-        gaiaDukeBoots = null;
-        gaiaChampionHelm = null;
-        gaiaChampionGuard = null;
-        gaiaChampionGreaves = null;
-        gaiaChampionBoots = null;
-
-        malachiteGuardSword = null;
-        apexPredatorSword = null;
-        spinelPrincessSword = null;
-        zirconPrinceSword = null;
-        corruptWarriorSword = null;
-        gaiaDuchessSword = null;
-        gaiaBaronSword = null;
-        gaiaDukeSword = null;
-        gaiaChampionSword = null;
-    }
-
+    public static final Item malachite_guard_sword = null;
+    public static final Item apex_predator_sword = null;
+    public static final Item spinel_princess_sword = null;
+    public static final Item zircon_prince_sword = null;
+    public static final Item corrupt_warrior_sword = null;
+    public static final Item gaia_duchess_sword = null;
+    public static final Item gaia_baron_sword = null;
+    public static final Item gaia_duke_sword = null;
+    public static final Item gaia_champion_sword = null;
 }

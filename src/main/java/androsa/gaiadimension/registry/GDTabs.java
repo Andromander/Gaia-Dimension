@@ -36,7 +36,7 @@ public class GDTabs {
         @SideOnly(Side.CLIENT)
         @Override
         public ItemStack getTabIconItem() {
-            return new ItemStack(GDItems.gaiaChampionSword);
+            return new ItemStack(GDItems.gaia_champion_sword);
         }
     };
 
@@ -46,7 +46,7 @@ public class GDTabs {
         @SideOnly(Side.CLIENT)
         @Override
         public ItemStack getTabIconItem() {
-            return new ItemStack(GDItems.gaiaChampionHelm);
+            return new ItemStack(GDItems.gaia_champion_helm);
         }
     };
 }

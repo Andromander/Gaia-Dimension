@@ -41,13 +41,13 @@ public class GDOreOpal extends Block implements ModelRegisterCallback {
         switch (state.getValue(VARIANT)) {
             default:
             case RED:
-                return GDItems.opalRed;
+                return GDItems.red_opal;
             case BLUE:
-                return GDItems.opalBlue;
+                return GDItems.blue_opal;
             case GREEN:
-                return GDItems.opalGreen;
+                return GDItems.green_opal;
             case WHITE:
-                return GDItems.opalWhite;
+                return GDItems.white_opal;
         }
     }
 

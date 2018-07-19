@@ -62,14 +62,14 @@ public class GDSpecialLeaves extends BlockLeaves implements ModelRegisterCallbac
     public Item getItemDropped(IBlockState state, Random par2Random, int par3) {
         switch (state.getValue(VARIANT)) {
             case HEATED:
-                return GDItems.hotDust;
+                return GDItems.hot_dust;
             case CRUSTY:
                 return Items.GUNPOWDER;
             case CORRUPTED:
-                return GDItems.goldstoneDust;
+                return GDItems.goldstone_dust;
             case FOSSILIZED:
             default:
-                return GDItems.fineDust;
+                return GDItems.fine_dust;
         }
     }
 
