@@ -1,5 +1,6 @@
 package androsa.gaiadimension.world;
 
+import androsa.gaiadimension.registry.GDBiomes;
 import androsa.gaiadimension.registry.GDConfig;
 import androsa.gaiadimension.GaiaDimension;
 import androsa.gaiadimension.biomes.*;
@@ -241,7 +242,7 @@ public class WorldProviderGaia extends WorldProviderSurface {
     public Biome getBiomeForCoords(BlockPos pos) {
         Biome biome = super.getBiomeForCoords(pos);
         if (biome == null) {
-            biome = GDBiomes.pinkAgateForest;
+            biome = GDBiomes.pink_agate_forest;
         }
         return biome;
     }

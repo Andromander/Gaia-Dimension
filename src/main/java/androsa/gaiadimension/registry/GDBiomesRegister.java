@@ -1,6 +1,7 @@
-package androsa.gaiadimension.biomes;
+package androsa.gaiadimension.registry;
 
 import androsa.gaiadimension.GaiaDimension;
+import androsa.gaiadimension.biomes.*;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.Biome.BiomeProperties;
 import net.minecraftforge.common.BiomeDictionary;
@@ -13,7 +14,7 @@ import static net.minecraftforge.common.BiomeDictionary.*;
 
 @EventBusSubscriber
 public final class GDBiomesRegister {
-    @SuppressWarnings("OverlyCoupledMethod")
+
     @SubscribeEvent
     public static void onRegisterBiomes(Register<Biome> event) {
         final BiomeRegistry biomes = new BiomeRegistry(event.getRegistry());

@@ -1,7 +1,7 @@
 package androsa.gaiadimension.entity;
 
 import androsa.gaiadimension.GaiaDimension;
-import androsa.gaiadimension.biomes.GDBiomes;
+import androsa.gaiadimension.registry.GDBiomes;
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.*;
@@ -38,9 +38,9 @@ public class GDCommonGrowthSapper extends EntityCreature implements IAnimals {
 
     @Override
     public boolean getCanSpawnHere() {
-        return world.getBiome(new BlockPos(this)) == GDBiomes.pinkAgateForest ||
-                world.getBiome(new BlockPos(this)) == GDBiomes.crystalPlains ||
-                world.getBiome(new BlockPos(this)) == GDBiomes.mutantAgateWildwood;
+        return world.getBiome(new BlockPos(this)) == GDBiomes.pink_agate_forest ||
+                world.getBiome(new BlockPos(this)) == GDBiomes.crystal_plains ||
+                world.getBiome(new BlockPos(this)) == GDBiomes.mutant_agate_wildwood;
     }
 
     @Override

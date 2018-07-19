@@ -1,6 +1,6 @@
 package androsa.gaiadimension.world.layer;
 
-import androsa.gaiadimension.biomes.GDBiomes;
+import androsa.gaiadimension.registry.GDBiomes;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeProvider;
 import net.minecraft.world.gen.layer.GenLayer;
@@ -12,11 +12,11 @@ public class GDBiomeProvider extends BiomeProvider {
     public GDBiomeProvider(World world) {
         //Do not spawn in Volcanic, Goldstone, Water or "Sacred" biomes
         getBiomesToSpawnIn().clear();
-        getBiomesToSpawnIn().add(GDBiomes.pinkAgateForest);
-        getBiomesToSpawnIn().add(GDBiomes.blueAgateForest);
-        getBiomesToSpawnIn().add(GDBiomes.greenAgateForest);
-        getBiomesToSpawnIn().add(GDBiomes.purpleAgateForest);
-        getBiomesToSpawnIn().add(GDBiomes.crystalPlains);
+        getBiomesToSpawnIn().add(GDBiomes.pink_agate_forest);
+        getBiomesToSpawnIn().add(GDBiomes.blue_agate_taiga);
+        getBiomesToSpawnIn().add(GDBiomes.green_agate_jungle);
+        getBiomesToSpawnIn().add(GDBiomes.purple_agate_swamp);
+        getBiomesToSpawnIn().add(GDBiomes.crystal_plains);
 
         makeLayers(world.getSeed());
     }

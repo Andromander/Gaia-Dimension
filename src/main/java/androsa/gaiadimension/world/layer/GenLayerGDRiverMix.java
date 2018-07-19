@@ -1,6 +1,6 @@
 package androsa.gaiadimension.world.layer;
 
-import androsa.gaiadimension.biomes.GDBiomes;
+import androsa.gaiadimension.registry.GDBiomes;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.layer.GenLayer;
 import net.minecraft.world.gen.layer.IntCache;
@@ -30,7 +30,7 @@ public class GenLayerGDRiverMix extends GenLayer {
         int[] outputs = IntCache.getIntCache(par3 * par4);
 
         for (int i = 0; i < par3 * par4; ++i) {
-            if (riverInputs[i] == Biome.getIdForBiome(GDBiomes.mineralRiver)) {
+            if (riverInputs[i] == Biome.getIdForBiome(GDBiomes.mineral_river)) {
                 outputs[i] = riverInputs[i] & 255;
             } else {
                 outputs[i] = biomeInputs[i];

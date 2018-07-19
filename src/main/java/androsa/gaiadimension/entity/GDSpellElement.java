@@ -1,6 +1,6 @@
 package androsa.gaiadimension.entity;
 
-import androsa.gaiadimension.biomes.GDBiomes;
+import androsa.gaiadimension.registry.GDBiomes;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.*;
 import net.minecraft.entity.monster.EntityMob;
@@ -43,7 +43,7 @@ public class GDSpellElement extends EntityMob {
 
     @Override
     public boolean getCanSpawnHere() {
-        return world.getBiome(new BlockPos(this)) == GDBiomes.purpleAgateForest;
+        return world.getBiome(new BlockPos(this)) == GDBiomes.purple_agate_swamp;
     }
 
 }

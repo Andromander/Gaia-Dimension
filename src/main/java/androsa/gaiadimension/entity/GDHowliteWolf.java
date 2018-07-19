@@ -1,6 +1,6 @@
 package androsa.gaiadimension.entity;
 
-import androsa.gaiadimension.biomes.GDBiomes;
+import androsa.gaiadimension.registry.GDBiomes;
 import androsa.gaiadimension.entity.boss.GDBlueHowliteWolf;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.*;
@@ -44,6 +44,6 @@ public class GDHowliteWolf extends EntityMob {
 
     @Override
     public boolean getCanSpawnHere() {
-        return world.getBiome(new BlockPos(this)) == GDBiomes.blueAgateForest;
+        return world.getBiome(new BlockPos(this)) == GDBiomes.blue_agate_taiga;
     }
 }

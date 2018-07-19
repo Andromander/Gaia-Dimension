@@ -1,6 +1,6 @@
 package androsa.gaiadimension.entity;
 
-import androsa.gaiadimension.biomes.GDBiomes;
+import androsa.gaiadimension.registry.GDBiomes;
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAILookIdle;
@@ -37,6 +37,6 @@ public class GDMutantGrowthExtractor extends EntityCreature implements IAnimals 
 
     @Override
     public boolean getCanSpawnHere() {
-        return world.getBiome(new BlockPos(this)) == GDBiomes.mutantAgateWildwood;
+        return world.getBiome(new BlockPos(this)) == GDBiomes.mutant_agate_wildwood;
     }
 }

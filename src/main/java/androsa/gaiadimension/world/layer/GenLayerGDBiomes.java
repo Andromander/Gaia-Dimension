@@ -1,6 +1,6 @@
 package androsa.gaiadimension.world.layer;
 
-import androsa.gaiadimension.biomes.GDBiomes;
+import androsa.gaiadimension.registry.GDBiomes;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.layer.GenLayer;
 import net.minecraft.world.gen.layer.IntCache;
@@ -10,22 +10,22 @@ public class GenLayerGDBiomes extends GenLayer {
     private static final int UNCOMMON_BIOME_CHANCE = 8;
     private static final int RARE_BIOME_CHANCE = 16;
     protected Biome commonBiomes[] = (new Biome[]{
-            GDBiomes.pinkAgateForest,
-            GDBiomes.blueAgateForest,
-            GDBiomes.greenAgateForest,
-            GDBiomes.crystalPlains,
-            GDBiomes.fossilForest,
+            GDBiomes.pink_agate_forest,
+            GDBiomes.blue_agate_taiga,
+            GDBiomes.green_agate_jungle,
+            GDBiomes.crystal_plains,
+            GDBiomes.fossil_woodland,
     });
     protected Biome uncommonBiomes[] = (new Biome[]{
-            GDBiomes.mineralReservoir,
+            GDBiomes.mineral_reservoir,
             GDBiomes.volcaniclands,
-            GDBiomes.staticWasteland,
-            GDBiomes.saltDunes
+            GDBiomes.static_wasteland,
+            GDBiomes.salt_dunes
     });
     protected Biome rareBiomes[] = (new Biome[]{
-            GDBiomes.purpleAgateForest, //This wil make the sacred biome less likely to generate
+            GDBiomes.purple_agate_swamp, //This wil make the sacred biome less likely to generate
             GDBiomes.goldstonelands, //It's basically the sacred biome turned corrupt, so there's that
-            GDBiomes.mutantAgateWildwood //A rare kind of Agate Forest with different Agate Trees
+            GDBiomes.mutant_agate_wildwood //A rare kind of Agate Forest with different Agate Trees
     });
 
     public GenLayerGDBiomes(long l, GenLayer genlayer) {

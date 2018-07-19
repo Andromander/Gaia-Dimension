@@ -1,6 +1,6 @@
 package androsa.gaiadimension.entity;
 
-import androsa.gaiadimension.biomes.GDBiomes;
+import androsa.gaiadimension.registry.GDBiomes;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.*;
 import net.minecraft.entity.monster.EntityGolem;
@@ -47,6 +47,6 @@ public class GDAgateGolem extends EntityMob {
 
     @Override
     public boolean getCanSpawnHere() {
-        return world.getBiome(new BlockPos(this)) == GDBiomes.pinkAgateForest;
+        return world.getBiome(new BlockPos(this)) == GDBiomes.pink_agate_forest;
     }
 }

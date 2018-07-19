@@ -1,6 +1,6 @@
 package androsa.gaiadimension.entity;
 
-import androsa.gaiadimension.biomes.GDBiomes;
+import androsa.gaiadimension.registry.GDBiomes;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.MoverType;
@@ -41,6 +41,6 @@ public class GDMarkuzarPlant extends EntityCreature implements IAnimals {
 
     @Override
     public boolean getCanSpawnHere() {
-        return world.getBiome(new BlockPos(this)) == GDBiomes.greenAgateForest;
+        return world.getBiome(new BlockPos(this)) == GDBiomes.green_agate_jungle;
     }
 }

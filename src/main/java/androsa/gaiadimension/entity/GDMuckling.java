@@ -1,6 +1,6 @@
 package androsa.gaiadimension.entity;
 
-import androsa.gaiadimension.biomes.GDBiomes;
+import androsa.gaiadimension.registry.GDBiomes;
 import androsa.gaiadimension.registry.GDBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
@@ -39,7 +39,7 @@ public class GDMuckling extends EntitySlime {
                 this.world.getCollisionBoxes(this, getEntityBoundingBox()).isEmpty() &&
                 !this.world.containsAnyLiquid(getEntityBoundingBox()) &&
                 this.isValidLightLevel() ||
-                this.world.getBiome(new BlockPos(this)) == GDBiomes.purpleAgateForest;
+                this.world.getBiome(new BlockPos(this)) == GDBiomes.purple_agate_swamp;
     }
 
     @Override
