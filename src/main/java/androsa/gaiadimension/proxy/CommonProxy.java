@@ -1,6 +1,5 @@
 package androsa.gaiadimension.proxy;
 
-import androsa.gaiadimension.GaiaDimension;
 import androsa.gaiadimension.block.container.ContainerAgateCraftingTable;
 import androsa.gaiadimension.block.container.ContainerGaiaStoneFurnace;
 import androsa.gaiadimension.block.container.ContainerGlitterFurnace;
@@ -15,7 +14,6 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.IGuiHandler;
-import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class CommonProxy implements IGuiHandler {
 
@@ -23,11 +21,7 @@ public class CommonProxy implements IGuiHandler {
         AGATE_CRAFT,
         GAIA_STONE_FURNACE,
         GLITTER_FURNACE,
-        PURIFIER;
-    }
-
-    private void registerTileEntity(Class<? extends TileEntity> cls, String baseName) {
-        GameRegistry.registerTileEntity(cls, GaiaDimension.MODID + "." + baseName);
+        PURIFIER
     }
 
     @Override
@@ -35,7 +29,6 @@ public class CommonProxy implements IGuiHandler {
         GuiID guiID = GuiID.values()[ID];
         BlockPos pos = new BlockPos(x, y, z);
         TileEntity tile = world.getTileEntity(pos);
-        Entity entity = world.getEntityByID(x);
 
         switch (guiID) {
             case AGATE_CRAFT:
