@@ -4,6 +4,7 @@ import androsa.gaiadimension.GaiaDimension;
 import androsa.gaiadimension.item.*;
 import androsa.gaiadimension.item.armor.*;
 import androsa.gaiadimension.item.tools.*;
+import com.google.common.collect.ImmutableList;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
@@ -12,6 +13,9 @@ import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.registries.IForgeRegistry;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static androsa.gaiadimension.registry.GDItems.*;
 import static net.minecraft.inventory.EntityEquipmentSlot.*;
@@ -281,8 +285,14 @@ public class GDItemsRegister {
         items.registerBlock(GDBlocks.cinnabar_ore);
     }
 
-    private static class ItemRegistryHelper {
+    public static class ItemRegistryHelper {
         private final IForgeRegistry<Item> registry;
+
+        private static List<ModelRegisterCallback> itemModels = new ArrayList<>();
+
+        public static List<ModelRegisterCallback> getItemModels() {
+            return ImmutableList.copyOf(itemModels);
+        }
 
         ItemRegistryHelper(IForgeRegistry<Item> registry) {
             this.registry = registry;
@@ -290,6 +300,9 @@ public class GDItemsRegister {
 
         private void register(String registryName, Item item) {
             item.setRegistryName(GaiaDimension.MODID, registryName);
+            if (item instanceof ModelRegisterCallback) {
+                itemModels.add((ModelRegisterCallback) item);
+            }
             registry.register(item);
         }
 

@@ -7,12 +7,16 @@ import androsa.gaiadimension.block.blocksore.*;
 import androsa.gaiadimension.block.tileentity.TileEntityGaiaStoneFurnace;
 import androsa.gaiadimension.block.tileentity.TileEntityGlitterFurnace;
 import androsa.gaiadimension.block.tileentity.TileEntityPurifier;
+import com.google.common.collect.ImmutableList;
 import net.minecraft.block.Block;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.registries.IForgeRegistry;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Mod.EventBusSubscriber
 public final class GDBlocksRegister {
@@ -177,8 +181,14 @@ public final class GDBlocksRegister {
         GameRegistry.registerTileEntity(TileEntityPurifier.class, "gaiadimension:tileEntityPurifier");
     }
 
+    public static List<ModelRegisterCallback> getBlockModels() {
+        return ImmutableList.copyOf(BlockRegistryHelper.blockModels);
+    }
+
     private static class BlockRegistryHelper {
         private final IForgeRegistry<Block> registry;
+
+        private static List<ModelRegisterCallback> blockModels = new ArrayList<>();
 
         BlockRegistryHelper(IForgeRegistry<Block> registry) {
             this.registry = registry;
@@ -186,6 +196,9 @@ public final class GDBlocksRegister {
 
         private void register(String registryName, Block block) {
             block.setRegistryName(GaiaDimension.MODID, registryName);
+            if (block instanceof ModelRegisterCallback) {
+                blockModels.add((ModelRegisterCallback) block);
+            }
             registry.register(block);
         }
     }
