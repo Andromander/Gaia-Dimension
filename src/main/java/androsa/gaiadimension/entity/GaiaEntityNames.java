@@ -18,6 +18,7 @@ public class GaiaEntityNames {
     public static final ResourceLocation MARKUZAR_PLANT = prefix("markuzar_plant");
     public static final ResourceLocation RUGGED_LURMORUS = prefix("rugged_lurmorus");
     public static final ResourceLocation AGATE_GOLEM = prefix("agate_golem");
+    public static final ResourceLocation ANCIENT_LAGRAHK = prefix("ancient_lagrahk");
 
     public static final ResourceLocation BLUE_HOWLITE_WOLF = prefix("blue_howlite_wolf");
     public static final ResourceLocation MALACHITE_GUARD = prefix("malachite_guard");

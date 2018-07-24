@@ -5,6 +5,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
 
+//TODO: Rewrite this
 public class GaiaEntities {
 
     public static void registerEntity(ResourceLocation registryName, Class<? extends Entity> entityClass, int id, int backgroundEggColour, int foregroundEggColour) {

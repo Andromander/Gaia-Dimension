@@ -23,6 +23,7 @@ public class GDFossilWoodland extends GDBiomeBase {
 
         spawnableCreatureList.add(new SpawnListEntry(androsa.gaiadimension.entity.GDRockyLuggeroth.class, 10, 4, 5));
         spawnableCreatureList.add(new SpawnListEntry(androsa.gaiadimension.entity.GDRuggedLurmorus.class, 10, 1, 3));
+        spawnableCreatureList.add(new SpawnListEntry(androsa.gaiadimension.entity.GDAncientLagrahk.class, 10, 1, 1));
 
         GaiaGenFossilTrees = new GDGenFossilizedTree(false);
 
