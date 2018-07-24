@@ -135,8 +135,9 @@ public class GDSpecialLeaves extends BlockLeaves implements ModelRegisterCallbac
 
     @Override
     @SideOnly(Side.CLIENT)
-    public boolean doesSideBlockRendering(IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing side) {
-        return Blocks.LEAVES.doesSideBlockRendering(state, world, pos, side);
+    @Deprecated
+    public boolean shouldSideBeRendered(IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing side) {
+        return Blocks.LEAVES.shouldSideBeRendered(state, world, pos, side);
     }
 
     @Override
