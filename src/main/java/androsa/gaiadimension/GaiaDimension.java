@@ -64,7 +64,6 @@ public class GaiaDimension {
     public void preInit(FMLPreInitializationEvent event) {
 
         GaiaDimension.LOGGER.info("Registering creatures of Gaia...");
-        registerCreatures();
         dimType = DimensionType.register("Gaia", "_gaia", GDConfig.dimension.dimensionID, WorldProviderGaia.class, false);
         GaiaDimension.LOGGER.info("We are set for the world of Gaia.");
 
@@ -90,28 +89,5 @@ public class GaiaDimension {
             DimensionManager.registerDimension(GaiaDimension.backupdimensionID, GaiaDimension.dimType);
             GDConfig.dimension.dimensionID = GaiaDimension.backupdimensionID;
         }
-    }
-
-    //TODO: This should be moved
-    private void registerCreatures() {
-        int id = 0;
-        //GaiaEntities.registerEntity(GaiaEntityNames.EARTH_SHOT, GDShotGaianEnergy.class, id++, 150, 5, true);
-        GaiaEntities.registerEntity(GaiaEntityNames.COMMON_SAPPER, androsa.gaiadimension.entity.GDCommonGrowthSapper.class, id++, 0x5A4514, 0xFF00FF);
-        GaiaEntities.registerEntity(GaiaEntityNames.CHILLED_SAPPER, androsa.gaiadimension.entity.GDChilledGrowthSapper.class, id++, 0x5A4514, 0x0080A0);
-        GaiaEntities.registerEntity(GaiaEntityNames.NUTRIENT_SAPPER, androsa.gaiadimension.entity.GDNutrientGrowthSapper.class, id++, 0x5A4514, 0x00FF10);
-        GaiaEntities.registerEntity(GaiaEntityNames.MYSTIFIED_SAPPER, androsa.gaiadimension.entity.GDMystifiedGrowthSapper.class, id++, 0x5A4514, 0x800080);
-        GaiaEntities.registerEntity(GaiaEntityNames.MUTANT_EXTRACTOR, androsa.gaiadimension.entity.GDMutantGrowthExtractor.class, id++, 0xFFFFFF, 0x999999);
-        GaiaEntities.registerEntity(GaiaEntityNames.HOWLITE_WOLF, androsa.gaiadimension.entity.GDHowliteWolf.class, id++, 0xFF0000, 0x0000FF);
-        GaiaEntities.registerEntity(GaiaEntityNames.SPELLBOUND_ELEMENTAL, androsa.gaiadimension.entity.GDSpellElement.class, id++, 0xFFFF00, 0x0000FF);
-        GaiaEntities.registerEntity(GaiaEntityNames.ROCKY_LUGGEROTH, androsa.gaiadimension.entity.GDRockyLuggeroth.class, id++, 0x00FF00, 0xFF00FF);
-        GaiaEntities.registerEntity(GaiaEntityNames.SHALURKER, androsa.gaiadimension.entity.GDShalurker.class, id++, 0xF0F0F0, 0x0F0F0F);
-        GaiaEntities.registerEntity(GaiaEntityNames.MUCKLING, androsa.gaiadimension.entity.GDMuckling.class, id++, 0xF00000, 0x00000F);
-        GaiaEntities.registerEntity(GaiaEntityNames.MARKUZAR_PLANT, androsa.gaiadimension.entity.GDMarkuzarPlant.class, id++, 0x00FF00, 0x800080);
-        GaiaEntities.registerEntity(GaiaEntityNames.RUGGED_LURMORUS, androsa.gaiadimension.entity.GDRuggedLurmorus.class, id++, 0x294934, 0x204750);
-        GaiaEntities.registerEntity(GaiaEntityNames.AGATE_GOLEM, androsa.gaiadimension.entity.GDAgateGolem.class, id++, 0x946353, 0x122534);
-        GaiaEntities.registerEntity(GaiaEntityNames.ANCIENT_LAGRAHK, androsa.gaiadimension.entity.GDAncientLagrahk.class, id++, 0x999999, 0x987654);
-
-        GaiaEntities.registerEntity(GaiaEntityNames.BLUE_HOWLITE_WOLF, androsa.gaiadimension.entity.boss.GDBlueHowliteWolf.class, id++, 0x00FF00, 0xFF00FF);
-        GaiaEntities.registerEntity(GaiaEntityNames.MALACHITE_GUARD, androsa.gaiadimension.entity.boss.GDMalachiteGuard.class, id++, 0x0000FF, 0x00FF00);
     }
 }
