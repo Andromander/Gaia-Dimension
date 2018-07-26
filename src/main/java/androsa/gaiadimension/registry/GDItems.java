@@ -9,7 +9,7 @@ import net.minecraftforge.common.util.EnumHelper;
 import static net.minecraftforge.fml.common.registry.GameRegistry.*;
 
 @ObjectHolder(GaiaDimension.MODID)
-//@SuppressWarnings("unused")
+@SuppressWarnings("unused")
 public class GDItems {
 
     public static ItemArmor.ArmorMaterial ARMOR_SUGILITE = EnumHelper.addArmorMaterial("SUGILITE", "sugilite", 1000, new int[]{1, 4, 6, 1}, 5, SoundEvents.ITEM_ARMOR_EQUIP_CHAIN, 0.0F);
@@ -17,7 +17,7 @@ public class GDItems {
     public static ItemArmor.ArmorMaterial ARMOR_LEUCITE = EnumHelper.addArmorMaterial("LEUCITE", "leucite", 1300, new int[]{1, 4, 6, 1}, 5, SoundEvents.ITEM_ARMOR_EQUIP_CHAIN, 1.0F);
     public static ItemArmor.ArmorMaterial ARMOR_CARNELIAN = EnumHelper.addArmorMaterial("CARNELIAN", "carnelian", 2500, new int[]{2, 5, 7, 2}, 5, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0.0F);
     public static ItemArmor.ArmorMaterial ARMOR_DIOPSIDE = EnumHelper.addArmorMaterial("DIOPSIDE", "diopside", 2300, new int[]{2, 5, 7, 2}, 5, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 1.0F);
-    public static ItemArmor.ArmorMaterial ARMOR_CHALSEDONY = EnumHelper.addArmorMaterial("CHALSEDONY", "chalsedony", 3000, new int[]{3, 6, 8, 3}, 5, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 2.0F);
+    public static ItemArmor.ArmorMaterial ARMOR_CHALCEDONY = EnumHelper.addArmorMaterial("CHALCEDONY", "chalcedony", 3000, new int[]{3, 6, 8, 3}, 5, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 2.0F);
     public static ItemArmor.ArmorMaterial ARMOR_MALACHITE = EnumHelper.addArmorMaterial("MALACHITE", "malachite_guard", 5120, new int[]{2, 5, 7, 2}, 10, SoundEvents.ITEM_ARMOR_EQUIP_GOLD, 2.0F);
     public static ItemArmor.ArmorMaterial ARMOR_TIGER_EYE = EnumHelper.addArmorMaterial("TIGER_EYE", "apex_predator", 4096, new int[]{2, 5, 7, 2}, 10, SoundEvents.ITEM_ARMOR_EQUIP_GOLD, 1.5F);
     public static ItemArmor.ArmorMaterial ARMOR_SPINEL = EnumHelper.addArmorMaterial("SPINEL", "spinel_princess", 5120, new int[]{3, 6, 8, 3}, 15, SoundEvents.ITEM_ARMOR_EQUIP_GOLD, 1.0F);
@@ -44,6 +44,7 @@ public class GDItems {
     public static Item.ToolMaterial TOOL_TSVAROVITE = EnumHelper.addToolMaterial("TSVAROVITE", 3, 9216, 8.0F, 1.0F, 20);
     public static Item.ToolMaterial TOOL_LARVIKITE = EnumHelper.addToolMaterial("LARVIKITE", 3, 10240, 8.0F, 5.0F, 20);
     public static Item.ToolMaterial TOOL_GAIA_CHAMP = EnumHelper.addToolMaterial("GAIA_CHAMP", 4, -1, 10.0F, 16.0F, 25);
+
 
     public static final Item glint_and_gold = null;
     public static final Item agate_stick = null;
@@ -97,6 +98,31 @@ public class GDItems {
     public static final Item tektite = null;
     public static final Item goldstone = null;
 
+    public static final Item sugilite_helmet = null;
+    public static final Item sugilite_chestplate = null;
+    public static final Item sugilite_legs = null;
+    public static final Item sugilite_boots = null;
+    public static final Item proustite_helmet = null;
+    public static final Item proustite_chestplate = null;
+    public static final Item proustite_legs = null;
+    public static final Item proustite_boots = null;
+    public static final Item leucite_helmet = null;
+    public static final Item leucite_chestplate = null;
+    public static final Item leucite_legs = null;
+    public static final Item leucite_boots = null;
+    public static final Item carnelian_helmet = null;
+    public static final Item carnelian_chestplate = null;
+    public static final Item carnelian_legs = null;
+    public static final Item carnelian_boots = null;
+    public static final Item diopside_helmet = null;
+    public static final Item diopside_chestplate = null;
+    public static final Item diopside_legs = null;
+    public static final Item diopside_boots = null;
+    public static final Item chalcedony_helmet = null;
+    public static final Item chalcedony_chestplate = null;
+    public static final Item chalcedony_legs = null;
+    public static final Item chalcedony_boots = null;
+
     public static final Item malachite_guard_headgear = null;
     public static final Item malachite_guard_brace = null;
     public static final Item malachite_guard_gear = null;
@@ -112,7 +138,7 @@ public class GDItems {
     public static final Item zircon_prince_crown = null;
     public static final Item zircon_prince_chestpiece = null;
     public static final Item zircon_prince_gear = null;
-    public static final Item zirconPrinceBoots = null;
+    public static final Item zircon_prince_boots = null;
     public static final Item corrupt_warrior_helm = null;
     public static final Item corrupt_warrior_guard = null;
     public static final Item corrupt_warrior_greaves = null;
@@ -150,6 +176,18 @@ public class GDItems {
     public static final Item euclase_pickaxe = null;
     public static final Item euclase_axe = null;
     public static final Item euclase_shovel = null;
+    public static final Item carnelian_sword = null;
+    public static final Item carnelian_pickaxe = null;
+    public static final Item carnelian_axe = null;
+    public static final Item carnelian_shovel = null;
+    public static final Item benitoite_sword = null;
+    public static final Item benitoite_pickaxe = null;
+    public static final Item benitoite_axe = null;
+    public static final Item benitoite_shovel = null;
+    public static final Item chalcedony_sword = null;
+    public static final Item chalcedony_pickaxe = null;
+    public static final Item chalcedony_axe = null;
+    public static final Item chalcedony_shovel = null;
 
     public static final Item malachite_guard_sword = null;
     public static final Item apex_predator_sword = null;
