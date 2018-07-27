@@ -9,6 +9,7 @@ import androsa.gaiadimension.block.tileentity.TileEntityGlitterFurnace;
 import androsa.gaiadimension.block.tileentity.TileEntityPurifier;
 import com.google.common.collect.ImmutableList;
 import net.minecraft.block.Block;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -176,9 +177,9 @@ public final class GDBlocksRegister {
         blocks.register("moonstone_ore", (new GDOreMoonstone()).setUnlocalizedName("moonstone_ore"));
         blocks.register("cinnabar_ore", (new GDOreCinnabar()).setUnlocalizedName("cinnabar_ore"));
 
-        GameRegistry.registerTileEntity(TileEntityGaiaStoneFurnace.class, "gaiadimension:tileEntityGaiaStoneFurnace");
-        GameRegistry.registerTileEntity(TileEntityGlitterFurnace.class, "gaiadimension:tileEntityGlitterFurnace");
-        GameRegistry.registerTileEntity(TileEntityPurifier.class, "gaiadimension:tileEntityPurifier");
+        GameRegistry.registerTileEntity(TileEntityGaiaStoneFurnace.class, new ResourceLocation("gaiadimension:gaia_stone_furnace"));
+        GameRegistry.registerTileEntity(TileEntityGlitterFurnace.class, new ResourceLocation("gaiadimension:glitter_furnace"));
+        GameRegistry.registerTileEntity(TileEntityPurifier.class, new ResourceLocation("gaiadimension:purifier"));
     }
 
     public static List<ModelRegisterCallback> getBlockModels() {
