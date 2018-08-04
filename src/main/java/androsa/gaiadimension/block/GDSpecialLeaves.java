@@ -1,6 +1,5 @@
 package androsa.gaiadimension.block;
 
-import androsa.gaiadimension.block.enums.GaiaLeavesVariant;
 import androsa.gaiadimension.block.enums.SpecialGaiaLeavesVariant;
 import androsa.gaiadimension.registry.*;
 import mcp.MethodsReturnNonnullByDefault;
@@ -50,7 +49,7 @@ public class GDSpecialLeaves extends BlockLeaves implements ModelRegisterCallbac
 
     @Override
     public BlockPlanks.EnumType getWoodType(int meta) {
-        return BlockPlanks.EnumType.OAK;
+        return null;
     }
 
     @Override

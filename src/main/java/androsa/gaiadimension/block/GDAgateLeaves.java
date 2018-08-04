@@ -46,7 +46,7 @@ public class GDAgateLeaves extends BlockLeaves implements ModelRegisterCallback 
 
     @Override
     public BlockPlanks.EnumType getWoodType(int meta) {
-        return BlockPlanks.EnumType.OAK;
+        return null;
     }
 
     @Override
@@ -97,6 +97,7 @@ public class GDAgateLeaves extends BlockLeaves implements ModelRegisterCallback 
     }
 
     @Override
+    @Deprecated
     public boolean isOpaqueCube(IBlockState state) {
         return Blocks.LEAVES.isOpaqueCube(state);
     }
