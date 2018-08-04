@@ -25,6 +25,7 @@ public class GDGaiaBaronSword extends ItemSword implements ModelRegisterCallback
     public GDGaiaBaronSword(Item.ToolMaterial material) {
         super(material);
         this.setCreativeTab(GDTabs.tabTool);
+        this.setMaxStackSize(1);
     }
 
     @Override

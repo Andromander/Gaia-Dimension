@@ -25,6 +25,7 @@ public class GDGaiaBaronArmor extends ItemArmor implements ModelRegisterCallback
     public GDGaiaBaronArmor(ArmorMaterial par2EnumArmorMaterial, EntityEquipmentSlot armorType) {
         super(par2EnumArmorMaterial, 0, armorType);
         this.setCreativeTab(GDTabs.tabArmor);
+        this.setMaxStackSize(1);
     }
 
     //TODO: Small chance to not be dealt damage through melee

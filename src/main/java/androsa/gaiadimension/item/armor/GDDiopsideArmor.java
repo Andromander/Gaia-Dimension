@@ -16,6 +16,7 @@ public class GDDiopsideArmor extends ItemArmor implements ModelRegisterCallback 
         super(material, 0, armorType);
 
         this.setCreativeTab(GDTabs.tabArmor);
+        this.setMaxStackSize(1);
     }
 
     @Override

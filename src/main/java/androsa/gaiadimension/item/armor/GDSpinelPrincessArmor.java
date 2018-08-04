@@ -24,6 +24,7 @@ public class GDSpinelPrincessArmor extends ItemArmor implements ModelRegisterCal
     public GDSpinelPrincessArmor(ArmorMaterial par2EnumArmorMaterial, EntityEquipmentSlot armorType) {
         super(par2EnumArmorMaterial, 0, armorType);
         this.setCreativeTab(GDTabs.tabArmor);
+        this.setMaxStackSize(1);
     }
 
     //TODO: Reduces damage from fire damage and sources

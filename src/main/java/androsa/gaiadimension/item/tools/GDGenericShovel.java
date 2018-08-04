@@ -9,5 +9,6 @@ public class GDGenericShovel extends ItemSpade implements ModelRegisterCallback 
     public GDGenericShovel(ToolMaterial material) {
         super(material);
         this.setCreativeTab(GDTabs.tabTool);
+        this.setMaxStackSize(1);
     }
 }

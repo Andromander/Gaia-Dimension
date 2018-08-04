@@ -25,6 +25,7 @@ public class GDGaiaDuchessArmor extends ItemArmor implements ModelRegisterCallba
     public GDGaiaDuchessArmor(ArmorMaterial par2EnumArmorMaterial, EntityEquipmentSlot armorType) {
         super(par2EnumArmorMaterial, 0, armorType);
         this.setCreativeTab(GDTabs.tabArmor);
+        this.setMaxStackSize(1);
     }
 
     //TODO: May teleport user if they are dealt damage. Will check if area is safe to do so

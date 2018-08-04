@@ -10,5 +10,6 @@ public class GDIxioliteAxe extends ItemAxe implements ModelRegisterCallback {
     public GDIxioliteAxe(Item.ToolMaterial material) {
         super(material, 6F, -3.2F); //TODO: Change damage
         this.setCreativeTab(GDTabs.tabTool);
+        this.setMaxStackSize(1);
     }
 }

@@ -9,5 +9,6 @@ public class GDGenericSword extends ItemSword implements ModelRegisterCallback {
     public GDGenericSword(ToolMaterial material) {
         super(material);
         this.setCreativeTab(GDTabs.tabTool);
+        this.setMaxStackSize(1);
     }
 }

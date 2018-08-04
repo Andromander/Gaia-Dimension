@@ -24,6 +24,7 @@ public class GDSpinelPrincessSword extends ItemSword implements ModelRegisterCal
     public GDSpinelPrincessSword(Item.ToolMaterial material) {
         super(material);
         this.setCreativeTab(GDTabs.tabTool);
+        this.setMaxStackSize(1);
     }
 
     @Override

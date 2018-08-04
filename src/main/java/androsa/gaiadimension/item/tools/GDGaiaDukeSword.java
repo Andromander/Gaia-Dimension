@@ -25,6 +25,7 @@ public class GDGaiaDukeSword extends ItemSword implements ModelRegisterCallback 
     public GDGaiaDukeSword(Item.ToolMaterial material) {
         super(material);
         this.setCreativeTab(GDTabs.tabTool);
+        this.setMaxStackSize(1);
     }
 
     @Override

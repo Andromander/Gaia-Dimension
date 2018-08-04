@@ -24,6 +24,7 @@ public class GDMalachiteGuardSword extends ItemSword implements ModelRegisterCal
     public GDMalachiteGuardSword(Item.ToolMaterial material) {
         super(material);
         this.setCreativeTab(GDTabs.tabTool);
+        this.setMaxStackSize(1);
     }
 
     @Override

@@ -23,6 +23,7 @@ public class GDApexPredatorArmor extends ItemArmor implements ModelRegisterCallb
     public GDApexPredatorArmor(ArmorMaterial par2EnumArmorMaterial, EntityEquipmentSlot armorType) {
         super(par2EnumArmorMaterial, 0, armorType);
         this.setCreativeTab(GDTabs.tabArmor);
+        this.setMaxStackSize(1);
     }
 
     //TODO: Deal melee damage to attacker

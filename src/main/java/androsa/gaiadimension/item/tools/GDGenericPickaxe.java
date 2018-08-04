@@ -9,5 +9,6 @@ public class GDGenericPickaxe extends ItemPickaxe implements ModelRegisterCallba
     public GDGenericPickaxe(ToolMaterial material) {
         super(material);
         this.setCreativeTab(GDTabs.tabTool);
+        this.setMaxStackSize(1);
     }
 }

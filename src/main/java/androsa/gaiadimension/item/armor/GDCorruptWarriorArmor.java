@@ -25,6 +25,7 @@ public class GDCorruptWarriorArmor extends ItemArmor implements ModelRegisterCal
     public GDCorruptWarriorArmor(ArmorMaterial par2EnumArmorMaterial, EntityEquipmentSlot armorType) {
         super(par2EnumArmorMaterial, 0, armorType);
         this.setCreativeTab(GDTabs.tabArmor);
+        this.setMaxStackSize(1);
     }
 
     //TODO: Half damage from normal targets, but extra damage from bosses

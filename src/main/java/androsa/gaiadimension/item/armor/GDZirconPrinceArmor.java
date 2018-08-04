@@ -24,6 +24,7 @@ public class GDZirconPrinceArmor extends ItemArmor implements ModelRegisterCallb
     public GDZirconPrinceArmor(ArmorMaterial par2EnumArmorMaterial, EntityEquipmentSlot armorType) {
         super(par2EnumArmorMaterial, 0, armorType);
         this.setCreativeTab(GDTabs.tabArmor);
+        this.setMaxStackSize(1);
     }
 
     //TODO: Deals lightning damage to attackers

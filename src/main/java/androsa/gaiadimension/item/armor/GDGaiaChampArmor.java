@@ -24,6 +24,7 @@ public class GDGaiaChampArmor extends ItemArmor implements ModelRegisterCallback
     public GDGaiaChampArmor(ArmorMaterial par2EnumArmorMaterial, EntityEquipmentSlot armorType) {
         super(par2EnumArmorMaterial, 0, armorType);
         this.setCreativeTab(GDTabs.tabArmor);
+        this.setMaxStackSize(1);
     }
 
     //TODO: Half damage from Corrupt and Non-Gaian mobs

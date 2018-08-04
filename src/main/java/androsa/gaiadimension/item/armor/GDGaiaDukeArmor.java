@@ -25,6 +25,7 @@ public class GDGaiaDukeArmor extends ItemArmor implements ModelRegisterCallback 
     public GDGaiaDukeArmor(ArmorMaterial par2EnumArmorMaterial, EntityEquipmentSlot armorType) {
         super(par2EnumArmorMaterial, 0, armorType);
         this.setCreativeTab(GDTabs.tabArmor);
+        this.setMaxStackSize(1);
     }
 
     //TODO: If I can, allows for temporary Elytra flight. Otherwise, teleports the attacker randomly

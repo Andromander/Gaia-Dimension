@@ -9,5 +9,6 @@ public class GDCarnelianAxe extends ItemAxe implements ModelRegisterCallback {
     public GDCarnelianAxe(ToolMaterial material) {
         super(material, 6F, -3.2F);
         this.setCreativeTab(GDTabs.tabTool);
+        this.setMaxStackSize(1);
     }
 }

@@ -10,5 +10,6 @@ public class GDChalcedonyAxe extends ItemAxe implements ModelRegisterCallback {
     public GDChalcedonyAxe(Item.ToolMaterial material) {
         super(material, 5F, -3.2F);
         this.setCreativeTab(GDTabs.tabTool);
+        this.setMaxStackSize(1);
     }
 }

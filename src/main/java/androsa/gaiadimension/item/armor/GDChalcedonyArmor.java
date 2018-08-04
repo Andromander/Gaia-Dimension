@@ -16,6 +16,7 @@ public class GDChalcedonyArmor extends ItemArmor implements ModelRegisterCallbac
         super(material, 0, armorType);
 
         this.setCreativeTab(GDTabs.tabArmor);
+        this.setMaxStackSize(1);
     }
 
     @Override

@@ -25,6 +25,7 @@ public class GDGaiaDuchessSword extends ItemSword implements ModelRegisterCallba
     public GDGaiaDuchessSword(Item.ToolMaterial material) {
         super(material);
         this.setCreativeTab(GDTabs.tabTool);
+        this.setMaxStackSize(1);
     }
 
     @Override

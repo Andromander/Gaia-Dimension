@@ -189,13 +189,13 @@ public class GDItems {
     public static final Item chalcedony_axe = null;
     public static final Item chalcedony_shovel = null;
 
-    public static final Item malachite_guard_sword = null;
-    public static final Item apex_predator_sword = null;
-    public static final Item spinel_princess_sword = null;
-    public static final Item zircon_prince_sword = null;
+    public static final Item malachite_guard_baton = null;
+    public static final Item apex_predator_mace = null;
+    public static final Item spinel_princess_flamberge = null;
+    public static final Item zircon_prince_razor = null;
     public static final Item corrupt_warrior_sword = null;
-    public static final Item gaia_duchess_sword = null;
-    public static final Item gaia_baron_sword = null;
-    public static final Item gaia_duke_sword = null;
+    public static final Item gaia_duchess_khopesh = null;
+    public static final Item gaia_baron_dagger = null;
+    public static final Item gaia_duke_blade = null;
     public static final Item gaia_champion_sword = null;
 }

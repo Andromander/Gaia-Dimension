@@ -24,6 +24,7 @@ public class GDZirconPrinceSword extends ItemSword implements ModelRegisterCallb
     public GDZirconPrinceSword(Item.ToolMaterial material) {
         super(material);
         this.setCreativeTab(GDTabs.tabTool);
+        this.setMaxStackSize(1);
     }
 
     @Override
