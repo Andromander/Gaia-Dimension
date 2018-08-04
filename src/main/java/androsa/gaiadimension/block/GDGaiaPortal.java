@@ -39,6 +39,7 @@ public class GDGaiaPortal extends BlockPortal implements ModelRegisterCallback {
         this.setDefaultState(this.blockState.getBaseState().withProperty(AXIS, EnumFacing.Axis.X));
         this.setTickRandomly(true);
         this.setCreativeTab(GDTabs.tabBlock);
+        this.setLightLevel(1.0F);
     }
 
     @Override
@@ -66,13 +67,13 @@ public class GDGaiaPortal extends BlockPortal implements ModelRegisterCallback {
     public boolean tryToCreatePortal(World worldIn, BlockPos pos) {
         GDGaiaPortal.Size blockportal$size = new GDGaiaPortal.Size(worldIn, pos, EnumFacing.Axis.X);
 
-        if (blockportal$size.isValid() && blockportal$size.portalBlockCount == 0) {
+        if (blockportal$size.isValid() && blockportal$size.portalBlockCount == 0 && pos.getY() < 32) {
             blockportal$size.placePortalBlocks();
             return true;
         } else {
             GDGaiaPortal.Size blockportal$size1 = new GDGaiaPortal.Size(worldIn, pos, EnumFacing.Axis.Z);
 
-            if (blockportal$size1.isValid() && blockportal$size1.portalBlockCount == 0) {
+            if (blockportal$size1.isValid() && blockportal$size1.portalBlockCount == 0 && pos.getY() < 32) {
                 blockportal$size1.placePortalBlocks();
                 return true;
             } else {
