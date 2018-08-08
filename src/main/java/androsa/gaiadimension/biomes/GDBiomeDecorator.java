@@ -40,47 +40,77 @@ public class GDBiomeDecorator extends BiomeDecorator {
 
         this.chunkProviderSettings = ChunkGeneratorSettings.Factory.jsonToFactory(world.getWorldInfo().getGeneratorOptions()).build();
 
+        //Speckled Rock gen
+        for (int i = 0; i < 10; i++) {
+            int Xcoord = pos.getX() + rand.nextInt(16);
+            int Zcoord = pos.getZ() + rand.nextInt(16);
+            int Ycoord = rand.nextInt(120);
+            new WorldGenMinable(GDBlocks.speckled_rock.getDefaultState(), chunkProviderSettings.diamondSize,
+                    input -> input == GDBlocks.gaia_stone.getDefaultState()).generate(world, rand, new BlockPos(Xcoord, Ycoord, Zcoord));
+        }
+        //Coarse Rock gen
+        for (int i = 0; i < 10; i++) {
+            int Xcoord = pos.getX() + rand.nextInt(16);
+            int Zcoord = pos.getZ() + rand.nextInt(16);
+            int Ycoord = rand.nextInt(60);
+            new WorldGenMinable(GDBlocks.coarse_rock.getDefaultState(), chunkProviderSettings.diamondSize,
+                    input -> input == GDBlocks.gaia_stone.getDefaultState()).generate(world, rand, new BlockPos(Xcoord, Ycoord, Zcoord));
+        }
+        //Precious Rock gen
+        for (int i = 0; i < 10; i++) {
+            int Xcoord = pos.getX() + rand.nextInt(16);
+            int Zcoord = pos.getZ() + rand.nextInt(16);
+            int Ycoord = rand.nextInt(30);
+            new WorldGenMinable(GDBlocks.precious_rock.getDefaultState(), chunkProviderSettings.diamondSize,
+                    input -> input == GDBlocks.gaia_stone.getDefaultState()).generate(world, rand, new BlockPos(Xcoord, Ycoord, Zcoord));
+        }
         //Sugilite Ore gen
         for (int i = 0; i < 8; i++) {
             int Xcoord = pos.getX() + rand.nextInt(16);
             int Zcoord = pos.getZ() + rand.nextInt(16);
             int Ycoord = rand.nextInt(100);
-            new WorldGenMinable(GDBlocks.sugilite_ore.getDefaultState(), chunkProviderSettings.coalSize, input -> input == GDBlocks.gaia_stone.getDefaultState()).generate(world, rand, new BlockPos(Xcoord, Ycoord, Zcoord));
+            new WorldGenMinable(GDBlocks.sugilite_ore.getDefaultState(), chunkProviderSettings.coalSize,
+                    input -> input == GDBlocks.gaia_stone.getDefaultState()).generate(world, rand, new BlockPos(Xcoord, Ycoord, Zcoord));
         }
         //Hematite Ore gen
         for (int i = 0; i < 8; i++) {
             int Xcoord = pos.getX() + rand.nextInt(16);
             int Zcoord = pos.getZ() + rand.nextInt(16);
             int Ycoord = rand.nextInt(100);
-            new WorldGenMinable(GDBlocks.hematite_ore.getDefaultState(), chunkProviderSettings.coalSize, input -> input == GDBlocks.gaia_stone.getDefaultState()).generate(world, rand, new BlockPos(Xcoord, Ycoord, Zcoord));
+            new WorldGenMinable(GDBlocks.hematite_ore.getDefaultState(), chunkProviderSettings.coalSize,
+                    input -> input == GDBlocks.gaia_stone.getDefaultState()).generate(world, rand, new BlockPos(Xcoord, Ycoord, Zcoord));
         }
         //Pyrite Ore gen
         for (int i = 0; i < 8; i++) {
             int Xcoord = pos.getX() + rand.nextInt(16);
             int Zcoord = pos.getZ() + rand.nextInt(16);
             int Ycoord = rand.nextInt(80);
-            new WorldGenMinable(GDBlocks.pyrite_ore.getDefaultState(), chunkProviderSettings.ironSize, input -> input == GDBlocks.gaia_stone.getDefaultState()).generate(world, rand, new BlockPos(Xcoord, Ycoord, Zcoord));
+            new WorldGenMinable(GDBlocks.pyrite_ore.getDefaultState(), chunkProviderSettings.ironSize,
+                    input -> input == GDBlocks.gaia_stone.getDefaultState()).generate(world, rand, new BlockPos(Xcoord, Ycoord, Zcoord));
         }
         //Cinnabar Ore gen
         for (int i = 0; i < 7; i++) {
             int Xcoord = pos.getX() + rand.nextInt(16);
             int Zcoord = pos.getZ() + rand.nextInt(16);
             int Ycoord = rand.nextInt(60);
-            new WorldGenMinable(GDBlocks.cinnabar_ore.getDefaultState(), chunkProviderSettings.ironSize, input -> input == GDBlocks.gaia_stone.getDefaultState()).generate(world, rand, new BlockPos(Xcoord, Ycoord, Zcoord));
+            new WorldGenMinable(GDBlocks.cinnabar_ore.getDefaultState(), chunkProviderSettings.ironSize,
+                    input -> input == GDBlocks.gaia_stone.getDefaultState()).generate(world, rand, new BlockPos(Xcoord, Ycoord, Zcoord));
         }
         //Labradorite Ore gen
         for (int i = 0; i < 6; i++) {
             int Xcoord = pos.getX() + rand.nextInt(16);
             int Zcoord = pos.getZ() + rand.nextInt(16);
             int Ycoord = rand.nextInt(40);
-            new WorldGenMinable(GDBlocks.labradorite_ore.getDefaultState(), chunkProviderSettings.goldSize, input -> input == GDBlocks.gaia_stone.getDefaultState()).generate(world, rand, new BlockPos(Xcoord, Ycoord, Zcoord));
+            new WorldGenMinable(GDBlocks.labradorite_ore.getDefaultState(), chunkProviderSettings.goldSize,
+                    input -> input == GDBlocks.gaia_stone.getDefaultState()).generate(world, rand, new BlockPos(Xcoord, Ycoord, Zcoord));
         }
         //Moonstone Ore gen
         for (int i = 0; i < 6; i++) {
             int Xcoord = pos.getX() + rand.nextInt(16);
             int Zcoord = pos.getZ() + rand.nextInt(16);
             int Ycoord = rand.nextInt(40);
-            new WorldGenMinable(GDBlocks.moonstone_ore.getDefaultState(), chunkProviderSettings.goldSize, input -> input == GDBlocks.gaia_stone.getDefaultState()).generate(world, rand, new BlockPos(Xcoord, Ycoord, Zcoord));
+            new WorldGenMinable(GDBlocks.moonstone_ore.getDefaultState(), chunkProviderSettings.goldSize,
+                    input -> input == GDBlocks.gaia_stone.getDefaultState()).generate(world, rand, new BlockPos(Xcoord, Ycoord, Zcoord));
         }
         //White Opal Ore gen
         if (biome instanceof GDMutantAgateWildwood) {
@@ -88,14 +118,16 @@ public class GDBiomeDecorator extends BiomeDecorator {
                 int Xcoord = pos.getX() + rand.nextInt(16);
                 int Zcoord = pos.getZ() + rand.nextInt(16);
                 int Ycoord = rand.nextInt(20);
-                new WorldGenMinable(GDBlocks.opal_ore.getStateFromMeta(3), chunkProviderSettings.diamondSize, input -> input == GDBlocks.gaia_stone.getDefaultState()).generate(world, rand, new BlockPos(Xcoord, Ycoord, Zcoord));
+                new WorldGenMinable(GDBlocks.opal_ore.getStateFromMeta(3), chunkProviderSettings.diamondSize,
+                        input -> input == GDBlocks.gaia_stone.getDefaultState()).generate(world, rand, new BlockPos(Xcoord, Ycoord, Zcoord));
             }
         } else {
             for (int i = 0; i < 3; i++) {
                 int Xcoord = pos.getX() + rand.nextInt(16);
                 int Zcoord = pos.getZ() + rand.nextInt(16);
                 int Ycoord = rand.nextInt(25);
-                new WorldGenMinable(GDBlocks.opal_ore.getStateFromMeta(3), chunkProviderSettings.diamondSize, input -> input == GDBlocks.gaia_stone.getDefaultState()).generate(world, rand, new BlockPos(Xcoord, Ycoord, Zcoord));
+                new WorldGenMinable(GDBlocks.opal_ore.getStateFromMeta(3), chunkProviderSettings.diamondSize,
+                        input -> input == GDBlocks.gaia_stone.getDefaultState()).generate(world, rand, new BlockPos(Xcoord, Ycoord, Zcoord));
             }
         }
 

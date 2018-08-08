@@ -320,6 +320,10 @@ public class GDItemsRegister {
         items.registerBlock(GDBlocks.labradorite_ore);
         items.registerBlock(GDBlocks.moonstone_ore);
         items.registerBlock(GDBlocks.cinnabar_ore);
+        items.registerBlock(GDBlocks.speckled_rock);
+        items.registerBlock(GDBlocks.coarse_rock);
+        items.registerBlock(GDBlocks.precious_rock);
+
     }
 
     public static class ItemRegistryHelper {

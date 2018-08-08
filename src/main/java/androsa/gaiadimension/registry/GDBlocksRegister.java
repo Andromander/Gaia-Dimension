@@ -178,6 +178,9 @@ public final class GDBlocksRegister {
         blocks.register("labradorite_ore", new GDOreLabradorite());
         blocks.register("moonstone_ore", new GDOreMoonstone());
         blocks.register("cinnabar_ore", new GDOreCinnabar());
+        blocks.register("speckled_rock", new GDScaynyxOre());
+        blocks.register("coarse_rock", new GDScaynyxOre());
+        blocks.register("precious_rock", new GDScaynyxOre());
 
         GameRegistry.registerTileEntity(TileEntityGaiaStoneFurnace.class, new ResourceLocation("gaiadimension:gaia_stone_furnace"));
         GameRegistry.registerTileEntity(TileEntityGlitterFurnace.class, new ResourceLocation("gaiadimension:glitter_furnace"));

@@ -153,4 +153,7 @@ public class GDBlocks {
     public static final Block labradorite_ore = null;
     public static final Block moonstone_ore = null;
     public static final Block cinnabar_ore = null;
+    public static final Block speckled_rock = null;
+    public static final Block coarse_rock = null;
+    public static final Block precious_rock = null;
 }

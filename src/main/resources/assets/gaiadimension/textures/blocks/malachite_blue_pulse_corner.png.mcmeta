@@ -1,8 +1,8 @@
 {
   "ctm": {
     "ctm_version": 1,
-    "type":"CTM",
-    "layer":"CUTOUT_MIPPED",
+    "type": "CTM",
+    "layer": "CUTOUT_MIPPED",
     "textures":[
       "gaiadimension:blocks/malachite_blue_pulse_ctm"
     ],

@@ -1,0 +1,8 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "cube_all",
+    "textures": { "all": "gaiadimension:blocks/coarse_rock" }
+  },
+  "variants": { "normal": [{}] }
+}
