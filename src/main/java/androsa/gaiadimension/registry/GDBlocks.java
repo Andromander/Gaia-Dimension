@@ -19,6 +19,9 @@ public class GDBlocks {
     public static final Block glitter_furnace_lit = null;
     public static final Block purifier_idle = null;
     public static final Block purifier_lit = null;
+    public static final Block mineral_water_block = null;
+    public static final Block superhot_magma_block = null;
+    public static final Block sweet_muck_block = null;
 
     //Natural Blocks
     public static final Block heavy_soil = null;

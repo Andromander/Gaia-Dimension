@@ -7,8 +7,11 @@ import androsa.gaiadimension.block.blocksore.*;
 import androsa.gaiadimension.block.tileentity.TileEntityGaiaStoneFurnace;
 import androsa.gaiadimension.block.tileentity.TileEntityGlitterFurnace;
 import androsa.gaiadimension.block.tileentity.TileEntityPurifier;
+import androsa.gaiadimension.fluid.GDFluidBlock;
+import androsa.gaiadimension.fluid.GDSuperhotMagma;
 import com.google.common.collect.ImmutableList;
 import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -18,8 +21,6 @@ import net.minecraftforge.registries.IForgeRegistry;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static androsa.gaiadimension.registry.GDBlocks.*;
 
 @Mod.EventBusSubscriber
 public final class GDBlocksRegister {
@@ -38,6 +39,9 @@ public final class GDBlocksRegister {
         blocks.register("glitter_furnace_lit", new GDGlitterFurnace(true));
         blocks.register("purifier_idle", new GDPurifier(false));
         blocks.register("purifier_lit", new GDPurifier(true));
+        blocks.register("mineral_water_block", new GDFluidBlock(GDFluids.mineralWater, Material.WATER));
+        blocks.register("superhot_magma_block", new GDSuperhotMagma(GDFluids.superhotMagma, Material.LAVA));
+        blocks.register("sweet_muck_block", new GDFluidBlock(GDFluids.sweetMuck, Material.WATER));
 
         //Natural Blocks
         blocks.register("heavy_soil", new GDHeavySoil());

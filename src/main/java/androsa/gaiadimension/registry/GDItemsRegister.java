@@ -323,7 +323,6 @@ public class GDItemsRegister {
         items.registerBlock(GDBlocks.speckled_rock);
         items.registerBlock(GDBlocks.coarse_rock);
         items.registerBlock(GDBlocks.precious_rock);
-
     }
 
     public static class ItemRegistryHelper {

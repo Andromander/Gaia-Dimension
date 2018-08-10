@@ -1,11 +1,9 @@
 package androsa.gaiadimension.world;
 
-import androsa.gaiadimension.biomes.GDBiomeBase;
 import androsa.gaiadimension.biomes.GDSaltDunes;
 import androsa.gaiadimension.biomes.GDStaticWasteland;
 import androsa.gaiadimension.registry.GDBlocks;
 import androsa.gaiadimension.registry.GDFeature;
-import androsa.gaiadimension.registry.GDFluids;
 import androsa.gaiadimension.world.gen.GDGenCaves;
 import androsa.gaiadimension.world.gen.GDGenLavaLake;
 import jline.internal.Nullable;
@@ -26,10 +24,12 @@ import net.minecraft.world.chunk.ChunkPrimer;
 import net.minecraft.world.gen.*;
 import net.minecraft.world.gen.feature.WorldGenLakes;
 
+import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.List;
 import java.util.Random;
 
 @MethodsReturnNonnullByDefault
+@ParametersAreNonnullByDefault
 public class GaiaChunkGenerator implements IChunkGenerator {
 
     private final Random rand;
@@ -51,7 +51,6 @@ public class GaiaChunkGenerator implements IChunkGenerator {
 
     private final MapGenGDMajorFeature majorFeatureGenerator = new MapGenGDMajorFeature();
     private final GDGenCaves caveGenerator = new GDGenCaves();
-
 
     public GaiaChunkGenerator(World world, long l, boolean flag) {
         this.world = world;
@@ -140,7 +139,7 @@ public class GaiaChunkGenerator implements IChunkGenerator {
                                 if ((d15 += d16) > 0.0D) {
                                     primer.setBlockState(k * 4 + i3, k2 * 8 + l2, j1 * 4 + k3, GDBlocks.gaia_stone.getDefaultState());
                                 } else if (k2 * 8 + l2 < seaLevel) {
-                                    primer.setBlockState(k * 4 + i3, k2 * 8 + l2, j1 * 4 + k3, GDFluids.mineralWaterBlock.getDefaultState());
+                                    primer.setBlockState(k * 4 + i3, k2 * 8 + l2, j1 * 4 + k3, GDBlocks.mineral_water_block.getDefaultState());
                                 }
                             }
 
@@ -336,10 +335,10 @@ public class GaiaChunkGenerator implements IChunkGenerator {
         //set ground level
         for (int y = 0; y <= 127; ++y) {
             Block b = primer.getBlockState(x, y, z).getBlock();
-            if (y < towerHeight && (b == Blocks.AIR || b == GDFluids.mineralWaterBlock)) {
+            if (y < towerHeight && (b == Blocks.AIR || b == GDBlocks.mineral_water_block)) {
                 primer.setBlockState(x, y, z, GDBlocks.gaia_stone.getDefaultState());
             }
-            if (y >= towerHeight && b != GDFluids.mineralWaterBlock) {
+            if (y >= towerHeight && b != GDBlocks.mineral_water_block) {
                 primer.setBlockState(x, y, z, Blocks.AIR.getDefaultState());
             }
         }
@@ -370,7 +369,7 @@ public class GaiaChunkGenerator implements IChunkGenerator {
                 int i1 = blockpos.getX() + rand.nextInt(16) + 8;
                 int i2 = rand.nextInt(GaiaWorld.CHUNKHEIGHT);
                 int i3 = blockpos.getZ() + rand.nextInt(16) + 8;
-                (new WorldGenLakes(GDFluids.mineralWaterBlock)).generate(world, rand, new BlockPos(i1, i2, i3));
+                (new WorldGenLakes(GDBlocks.mineral_water_block)).generate(world, rand, new BlockPos(i1, i2, i3));
             }
         }
 
@@ -379,7 +378,7 @@ public class GaiaChunkGenerator implements IChunkGenerator {
             int j2 = rand.nextInt(rand.nextInt(GaiaWorld.CHUNKHEIGHT - 8) +8);
             int j3 = blockpos.getZ() + rand.nextInt(16) + 8;
             if (j2 < GaiaWorld.SEALEVEL || rand.nextInt(5) == 0) {
-                (new GDGenLavaLake(GDFluids.superhotMagmaBlock)).generate(world, rand, new BlockPos(j1, j2, j3));
+                (new GDGenLavaLake(GDBlocks.superhot_magma_block)).generate(world, rand, new BlockPos(j1, j2, j3));
             }
         }
 

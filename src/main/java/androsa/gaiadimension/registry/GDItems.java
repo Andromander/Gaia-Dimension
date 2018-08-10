@@ -198,4 +198,8 @@ public class GDItems {
     public static final Item gaia_baron_dagger = null;
     public static final Item gaia_duke_blade = null;
     public static final Item gaia_champion_sword = null;
+
+    public static ItemStack mineral_water_bucket_item;
+    public static ItemStack superhot_magma_bucket_item;
+    public static ItemStack sweet_muck_bucket_item;
 }

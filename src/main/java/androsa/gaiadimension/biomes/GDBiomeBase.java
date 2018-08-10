@@ -3,7 +3,6 @@ package androsa.gaiadimension.biomes;
 import androsa.gaiadimension.entity.GDMuckling;
 import androsa.gaiadimension.entity.GDShalurker;
 import androsa.gaiadimension.registry.GDBlocks;
-import androsa.gaiadimension.registry.GDFluids;
 import androsa.gaiadimension.world.GaiaWorld;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -114,7 +113,7 @@ public class GDBiomeBase extends Biome {
                             if (this.getTemperature(blockpos$mutableblockpos.setPos(x, j1, z)) < 0.15F) {
                                 iblockstate = ICE;
                             } else {
-                                iblockstate = GDFluids.mineralWaterBlock.getDefaultState();
+                                iblockstate = GDBlocks.mineral_water_block.getDefaultState();
                             }
                         }
 

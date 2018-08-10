@@ -1,9 +1,7 @@
 package androsa.gaiadimension.biomes;
 
 import androsa.gaiadimension.registry.GDBlocks;
-import androsa.gaiadimension.registry.GDFluids;
 import androsa.gaiadimension.world.gen.GDGenLavaLake;
-import androsa.gaiadimension.world.gen.GDGenStaticPatch;
 import mcp.MethodsReturnNonnullByDefault;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -18,16 +16,15 @@ import java.util.Random;
 @MethodsReturnNonnullByDefault
 @ParametersAreNonnullByDefault
 public class GDBiomeDecorator extends BiomeDecorator {
-    private GDGenStaticPatch staticPatch = new GDGenStaticPatch(6);
    // private WorldGenLakes extraLakeGen = new WorldGenLakes(GDFluids.mineralWaterBlock); //Bring this back if necessary, but I doubt that
-    private GDGenLavaLake extraLavaPoolGen = new GDGenLavaLake(GDFluids.superhotMagmaBlock);
-    private GDGenLavaLake extraMuckPoolGen = new GDGenLavaLake(GDFluids.sweetMuckBlock);
+    private GDGenLavaLake extraLavaPoolGen = new GDGenLavaLake(GDBlocks.superhot_magma_block);
+    private GDGenLavaLake extraMuckPoolGen = new GDGenLavaLake(GDBlocks.sweet_muck_block);
 
-    private GDGenLavaLake caveLavaGen = new GDGenLavaLake(GDFluids.superhotMagmaBlock);
+    private GDGenLavaLake caveLavaGen = new GDGenLavaLake(GDBlocks.superhot_magma_block);
 
     public World world;
     public Random rand;
-    public int staticPerChunk = 0;
+
     public int lakesPerChunk = 0;
     public float lavaPoolChance = 0;
     public float muckPoolChance = -100;
@@ -161,13 +158,6 @@ public class GDBiomeDecorator extends BiomeDecorator {
             int rx = chunkPos.getX() + randomGenerator.nextInt(16) + 8;
             int rz = chunkPos.getZ() + randomGenerator.nextInt(16) + 8;
             extraMuckPoolGen.generate(world, randomGenerator, world.getHeight(new BlockPos(rx, 0, rz)));
-        }
-
-        //Handles the static patches in Static Wastelands
-        for (int i = 0; i < staticPerChunk; i++) {
-            int rx = chunkPos.getX() + randomGenerator.nextInt(16) + 8;
-            int rz = chunkPos.getZ() + randomGenerator.nextInt(16) + 8;
-            staticPatch.generate(world, randomGenerator, world.getHeight(new BlockPos(rx, 0, rz)));
         }
 
         super.genDecorations(biome, world, randomGenerator);
