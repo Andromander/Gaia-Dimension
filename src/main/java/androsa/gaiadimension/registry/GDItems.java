@@ -4,6 +4,7 @@ import androsa.gaiadimension.GaiaDimension;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.util.EnumHelper;
 
 import static net.minecraftforge.fml.common.registry.GameRegistry.*;
