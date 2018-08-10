@@ -1,5 +1,6 @@
 package androsa.gaiadimension.world;
 
+import androsa.gaiadimension.biomes.GDBiomeBase;
 import androsa.gaiadimension.biomes.GDSaltDunes;
 import androsa.gaiadimension.biomes.GDStaticWasteland;
 import androsa.gaiadimension.registry.GDBlocks;

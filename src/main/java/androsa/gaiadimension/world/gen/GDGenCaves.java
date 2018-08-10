@@ -162,7 +162,7 @@ public class GDGenCaves extends MapGenCaves {
 
                                             if (blockAt != null && (blockAt == GDBlocks.gaia_stone || blockAt == GDBlocks.frail_glitter_block || blockAt == GDBlocks.volcanic_rock || blockStateAt.getMaterial() == Material.GROUND || blockStateAt.getMaterial() == Material.GRASS)) {
                                                 if (var59 * var59 + var51 * var51 + var46 * var46 < 0.85D) {
-                                                    final IBlockState state = (caveY < 10 ? GDFluids.superhotMagmaBlock : Blocks.AIR).getDefaultState();
+                                                    final IBlockState state = (caveY < 10 ? GDBlocks.superhot_magma_block : Blocks.AIR).getDefaultState();
                                                     blockStorage.setBlockState(genX, caveY, genZ, state);
                                                 } else {
                                                     Block localBlock = clusterRNG.nextInt(6) == 0 ? GDBlocks.volcanic_rock : GDBlocks.gaia_stone;
@@ -228,6 +228,6 @@ public class GDGenCaves extends MapGenCaves {
 
         private boolean isOceanBlock(ChunkPrimer data, int x, int y, int z) {
         IBlockState state = data.getBlockState(x, y, z);
-        return state.getBlock() == GDFluids.mineralWaterBlock || state.getBlock() == GDFluids.mineralWaterBlock;
+        return state.getBlock() == GDBlocks.mineral_water_block || state.getBlock() == GDBlocks.mineral_water_block;
     }
 }

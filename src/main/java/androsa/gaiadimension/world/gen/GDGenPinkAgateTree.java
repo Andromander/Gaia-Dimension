@@ -14,7 +14,6 @@ import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.Random;
 
-
 public class GDGenPinkAgateTree extends WorldGenAbstractTree {
     private static final IBlockState TRUNK = GDBlocks.gaia_log.getDefaultState().withProperty(GDAgateLog.VARIANT, GaiaLogVariant.PINK_AGATE);
     private static final IBlockState LEAF = GDBlocks.gaia_leaves.getDefaultState().withProperty(GDAgateLeaves.VARIANT, GaiaLeavesVariant.PINK_AGATE).withProperty(GDAgateLeaves.CHECK_DECAY, Boolean.valueOf(false));

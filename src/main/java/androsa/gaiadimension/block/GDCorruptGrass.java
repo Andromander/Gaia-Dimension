@@ -32,7 +32,7 @@ public class GDCorruptGrass extends Block implements ModelRegisterCallback {
     @Override
     public void updateTick(World world, BlockPos pos, IBlockState state, Random rand) {
         if (!world.isRemote)
-            if (world.getLightFromNeighbors(pos.up()) < 4 && world.getBlockState(pos.up()).getBlock().getLightOpacity(world.getBlockState(pos.up()), world, pos.up()) > 2 || world.getBlockState(pos.up()).getBlock() == GDFluids.mineralWaterBlock)
+            if (world.getLightFromNeighbors(pos.up()) < 4 && world.getBlockState(pos.up()).getBlock().getLightOpacity(world.getBlockState(pos.up()), world, pos.up()) > 2)
                 world.setBlockState(pos, GDBlocks.corrupt_soil.getDefaultState());
             else if (world.getLightFromNeighbors(pos.up()) >= 9)
                 for (int i = 0; i < 4; ++i) {
@@ -40,10 +40,8 @@ public class GDCorruptGrass extends Block implements ModelRegisterCallback {
                     Block block = world.getBlockState(blockpos.up()).getBlock();
                     IBlockState iblockstate = world.getBlockState(blockpos);
 
-                    if (world.getBlockState(pos.up()).getBlock() != GDFluids.mineralWaterBlock) {
-                        if (iblockstate.getBlock() == GDBlocks.corrupt_soil && world.getLightFromNeighbors(blockpos.up()) >= 4 && block.getLightOpacity(world.getBlockState(blockpos.up()), world, blockpos.up()) <= 2 && world.getBlockState(pos.up()).getBlock() != GDFluids.mineralWaterBlock)
-                            world.setBlockState(blockpos, GDBlocks.corrupt_grass.getDefaultState());
-                    }
+                    if (iblockstate.getBlock() == GDBlocks.corrupt_soil && world.getLightFromNeighbors(blockpos.up()) >= 4 && block.getLightOpacity(world.getBlockState(blockpos.up()), world, blockpos.up()) <= 2)
+                        world.setBlockState(blockpos, GDBlocks.corrupt_grass.getDefaultState());
             }
     }
 
