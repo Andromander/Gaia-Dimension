@@ -54,6 +54,7 @@ public class GDItems {
     public static final Item fine_dust = null;
     public static final Item cloudy_shard = null;
     public static final Item goldstone_residue = null;
+    public static final Item agate_cup = null;
     //public static final Item scaynyx_ingot = null;
 
     public static final Item pink_geode = null;
@@ -64,6 +65,11 @@ public class GDItems {
     public static final Item blue_geode_slice = null;
     public static final Item green_geode_slice = null;
     public static final Item purple_geode_slice = null;
+    public static final Item pink_geode_juice = null;
+    public static final Item blue_geode_tea = null;
+    public static final Item green_geode_ale = null;
+    public static final Item purple_geode_soda = null;
+    public static final Item pearly_geode_elixir = null;
     public static final Item lurmorus_meat = null;
     public static final Item lurmorus_steak = null;
 

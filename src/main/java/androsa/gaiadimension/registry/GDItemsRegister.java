@@ -34,6 +34,7 @@ public class GDItemsRegister {
         items.register("fine_dust", new GDItem());
         items.register("cloudy_shard", new GDItem());
         items.register("goldstone_residue", new GDItem());
+        items.register("agate_cup", new GDItem());
         //items.register("scaynyx_ingot", new GDItem());
 
         items.register("pink_geode", new GDGeode());
@@ -44,6 +45,11 @@ public class GDItemsRegister {
         items.register("blue_geode_slice", new GDFood(4, 0.4F, false));
         items.register("green_geode_slice", new GDFood(5, 0.3F, false));
         items.register("purple_geode_slice", new GDFood(6, 0.2F, false));
+        items.register("pink_geode_juice", new GDGeodeJuice(8, 0.7F, false));
+        items.register("blue_geode_tea", new GDGeodeJuice(8, 0.7F, false));
+        items.register("green_geode_ale", new GDGeodeJuice(8, 0.7F, false));
+        items.register("purple_geode_soda", new GDGeodeJuice(8, 0.7F, false));
+        items.register("pearly_geode_elixir", new GDGeodeJuice(8, 0.7F, false));
         items.register("lurmorus_meat", new GDFood(4, 0.4F, false));
         items.register("lurmorus_steak", new GDFood(9, 0.9F, false));
         //items.register("markuzar_mint", new GDFood(1, 0.2F, false));
