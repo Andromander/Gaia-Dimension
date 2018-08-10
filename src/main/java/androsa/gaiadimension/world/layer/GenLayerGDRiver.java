@@ -53,64 +53,57 @@ public class GenLayerGDRiver extends GenLayer {
         }
     }
 
-    boolean shouldRiver(int biome1, int biome2) {
-        if (biome1 == biome2) {
+    boolean shouldRiver(int id1, int id2) {
+
+        Biome biome1 = Biome.getBiomeForId(id1);
+        Biome biome2 = Biome.getBiomeForId(id2);
+
+        if (id1 == id2)
             return false;
-        }
-        if (biome1 == -biome2) {
+        if (id1 == -id2)
             return false;
-        }
+
         //The Volcanic Biomes will be too hot for the mineral water. Remove rivers
-        if (biome1 == Biome.getIdForBiome(GDBiomes.volcaniclands) || biome2 == Biome.getIdForBiome(GDBiomes.volcaniclands)) {
+        if (biome1 == GDBiomes.volcaniclands || biome2 == GDBiomes.volcaniclands)
             return false;
-        }
+
         //For consistency's sake, there will be no Mineral River at Static Wastelands
-        if (biome1 == Biome.getIdForBiome(GDBiomes.static_wasteland) || biome2 == Biome.getIdForBiome(GDBiomes.static_wasteland)) {
+        if (biome1 == GDBiomes.static_wasteland || biome2 == GDBiomes.static_wasteland)
             return false;
-        }
+
         //Crystal Plains and Pink Agate Forest are too similar for rivers
-        if (biome1 == Biome.getIdForBiome(GDBiomes.pink_agate_forest) && biome2 == Biome.getIdForBiome(GDBiomes.crystal_plains)) {
+        if (biome1 == GDBiomes.pink_agate_forest && biome2 == GDBiomes.crystal_plains)
             return false;
-        }
-        if (biome1 == Biome.getIdForBiome(GDBiomes.crystal_plains) && biome2 == Biome.getIdForBiome(GDBiomes.pink_agate_forest)) {
+        if (biome1 == GDBiomes.crystal_plains && biome2 == GDBiomes.pink_agate_forest)
             return false;
-        }
+
         //If a reservoir gens near another reservoir, remove the river because it would look goofy
-        if (biome1 == Biome.getIdForBiome(GDBiomes.mineral_reservoir) && biome2 == Biome.getIdForBiome(GDBiomes.mineral_reservoir)) {
+        if (biome1 == GDBiomes.mineral_reservoir && biome2 == GDBiomes.mineral_reservoir)
             return false;
-        }
+
         //Salt Dunes and Mineral Reservoirs are similar, no need for river
-        if (biome1 == Biome.getIdForBiome(GDBiomes.salt_dunes) && biome2 == Biome.getIdForBiome(GDBiomes.mineral_reservoir)) {
+        if (biome1 == GDBiomes.salt_dunes && biome2 == GDBiomes.mineral_reservoir)
             return false;
-        }
-        if (biome1 == Biome.getIdForBiome(GDBiomes.mineral_reservoir) && biome2 == Biome.getIdForBiome(GDBiomes.salt_dunes)) {
+        if (biome1 == GDBiomes.mineral_reservoir && biome2 == GDBiomes.salt_dunes)
             return false;
-        }
+
         //Mutated Agate Wildwoods should look like they were any Agate Forest, but with strange growth patterns
-        if (biome1 == Biome.getIdForBiome(GDBiomes.mutant_agate_wildwood) && biome2 == Biome.getIdForBiome(GDBiomes.pink_agate_forest)) {
+        if (biome1 == GDBiomes.mutant_agate_wildwood && biome2 == GDBiomes.pink_agate_forest)
             return false;
-        }
-        if (biome1 == Biome.getIdForBiome(GDBiomes.mutant_agate_wildwood) && biome2 == Biome.getIdForBiome(GDBiomes.blue_agate_taiga)) {
+        if (biome1 == GDBiomes.mutant_agate_wildwood && biome2 == GDBiomes.blue_agate_taiga)
             return false;
-        }
-        if (biome1 == Biome.getIdForBiome(GDBiomes.mutant_agate_wildwood) && biome2 == Biome.getIdForBiome(GDBiomes.green_agate_jungle)) {
+        if (biome1 == GDBiomes.mutant_agate_wildwood && biome2 == GDBiomes.green_agate_jungle)
             return false;
-        }
-        if (biome1 == Biome.getIdForBiome(GDBiomes.mutant_agate_wildwood) && biome2 == Biome.getIdForBiome(GDBiomes.purple_agate_swamp)) {
+        if (biome1 == GDBiomes.mutant_agate_wildwood && biome2 == GDBiomes.purple_agate_swamp)
             return false;
-        }
-        if (biome1 == Biome.getIdForBiome(GDBiomes.pink_agate_forest) && biome2 == Biome.getIdForBiome(GDBiomes.mutant_agate_wildwood)) {
+        if (biome1 == GDBiomes.pink_agate_forest && biome2 == GDBiomes.mutant_agate_wildwood)
             return false;
-        }
-        if (biome1 == Biome.getIdForBiome(GDBiomes.blue_agate_taiga) && biome2 == Biome.getIdForBiome(GDBiomes.mutant_agate_wildwood)) {
+        if (biome1 == GDBiomes.blue_agate_taiga && biome2 == GDBiomes.mutant_agate_wildwood)
             return false;
-        }
-        if (biome1 == Biome.getIdForBiome(GDBiomes.green_agate_jungle) && biome2 == Biome.getIdForBiome(GDBiomes.mutant_agate_wildwood)) {
+        if (biome1 == GDBiomes.green_agate_jungle && biome2 == GDBiomes.mutant_agate_wildwood)
             return false;
-        }
-        if (biome1 == Biome.getIdForBiome(GDBiomes.purple_agate_swamp) && biome2 == Biome.getIdForBiome(GDBiomes.mutant_agate_wildwood)) {
+        if (biome1 == GDBiomes.purple_agate_swamp && biome2 == GDBiomes.mutant_agate_wildwood)
             return false;
-        }
 
         return true;
     }
