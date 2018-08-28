@@ -237,6 +237,17 @@ public class GDItemsRegister {
         items.registerBlock(GDBlocks.corrupt_varloom);
         items.registerBlock(GDBlocks.missingno_plant);
 
+        //Crystal Fungi
+        items.registerBlock(GDBlocks.spotted_kersei);
+        items.registerBlock(GDBlocks.thorny_wiltha);
+        items.registerBlock(GDBlocks.roofed_agaric);
+        items.registerBlock(GDBlocks.bulbous_hobina);
+        items.registerBlock(GDBlocks.stickly_cupsir);
+        items.registerBlock(GDBlocks.mystical_murgni);
+        items.registerBlock(GDBlocks.corrupted_gaia_eye);
+        //items.registerBlock(GDBlocks.sacred_gaia_eye);
+        items.registerBlock(GDBlocks.missingno_fungus);
+
         items.registerSubItemBlock(GDBlocks.gaia_sapling);
         items.registerSubItemBlock(GDBlocks.gaia_leaves);
         items.registerSubItemBlock(GDBlocks.special_gaia_leaves);

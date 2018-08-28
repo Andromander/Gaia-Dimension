@@ -1,13 +1,11 @@
 package androsa.gaiadimension.biomes;
 
 import androsa.gaiadimension.registry.GDBlocks;
-import androsa.gaiadimension.world.gen.GDGenCrystalBloom;
-import androsa.gaiadimension.world.gen.GDGenCrystalGrowth;
+import androsa.gaiadimension.world.gen.GDGenCrystalPlants;
 import androsa.gaiadimension.world.gen.GDGenFossilizedTree;
 import androsa.gaiadimension.world.gen.GDGenNoTrees;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
-import net.minecraft.world.gen.feature.WorldGenTrees;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -16,7 +14,7 @@ import java.util.Random;
 
 public class GDFossilWoodland extends GDBiomeBase {
 
-    private WorldGenTrees GaiaGenFossilTrees;
+    private WorldGenAbstractTree GaiaGenFossilTrees;
 
     public GDFossilWoodland(BiomeProperties props) {
         super(props);
@@ -39,14 +37,16 @@ public class GDFossilWoodland extends GDBiomeBase {
     @Override
     public WorldGenerator getRandomWorldGenForGrass(Random rand) {
 
-        if (rand.nextInt(16) == 0) {
+        if (rand.nextInt(32) == 0) {
+            return new GDGenCrystalPlants(GDBlocks.stickly_cupsir);
+        } else if (rand.nextInt(16) == 0) {
             if (rand.nextInt(4) == 0) {
-                return new GDGenCrystalBloom(GDBlocks.ouzium);
+                return new GDGenCrystalPlants(GDBlocks.ouzium);
             } else {
-                return new GDGenCrystalBloom(GDBlocks.thiscus);
+                return new GDGenCrystalPlants(GDBlocks.thiscus);
             }
         } else {
-            return new GDGenCrystalGrowth(GDBlocks.crystal_growth_old);
+            return new GDGenCrystalPlants(GDBlocks.crystal_growth_old);
         }
     }
 

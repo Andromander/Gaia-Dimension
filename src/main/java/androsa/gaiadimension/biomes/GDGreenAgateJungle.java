@@ -1,8 +1,7 @@
 package androsa.gaiadimension.biomes;
 
 import androsa.gaiadimension.registry.GDBlocks;
-import androsa.gaiadimension.world.gen.GDGenCrystalBloom;
-import androsa.gaiadimension.world.gen.GDGenCrystalGrowth;
+import androsa.gaiadimension.world.gen.GDGenCrystalPlants;
 import androsa.gaiadimension.world.gen.GDGenGreenAgateTree;
 import androsa.gaiadimension.world.gen.GDGenNoTrees;
 import net.minecraft.util.math.BlockPos;
@@ -69,14 +68,16 @@ public class GDGreenAgateJungle extends GDBiomeBase {
     @Override
     public WorldGenerator getRandomWorldGenForGrass(Random rand) {
 
-        if (rand.nextInt(8) == 0) {
+        if (rand.nextInt(32) == 0) {
+            return new GDGenCrystalPlants(GDBlocks.roofed_agaric);
+        } else if (rand.nextInt(8) == 0) {
             if (rand.nextInt(4) == 0) {
-                return new GDGenCrystalBloom(GDBlocks.ouzium);
+                return new GDGenCrystalPlants(GDBlocks.ouzium);
             } else {
-                return new GDGenCrystalBloom(GDBlocks.thiscus);
+                return new GDGenCrystalPlants(GDBlocks.thiscus);
             }
         } else {
-            return new GDGenCrystalGrowth(GDBlocks.crystal_growth_green);
+            return new GDGenCrystalPlants(GDBlocks.crystal_growth_green);
         }
     }
 

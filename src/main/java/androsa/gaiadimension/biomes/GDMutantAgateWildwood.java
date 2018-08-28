@@ -81,14 +81,16 @@ public class GDMutantAgateWildwood extends GDBiomeBase {
     @Override
     public WorldGenerator getRandomWorldGenForGrass(Random rand) {
 
-        if (rand.nextInt(16) == 0) {
+        if (rand.nextInt(32) == 0) {
+            return new GDGenCrystalPlants(GDBlocks.mystical_murgni);
+        } else if (rand.nextInt(16) == 0) {
             if (rand.nextInt(4) == 0) {
-                return new GDGenCrystalBloom(GDBlocks.agathum);
+                return new GDGenCrystalPlants(GDBlocks.agathum);
             } else {
-                return new GDGenCrystalBloom(GDBlocks.ouzium);
+                return new GDGenCrystalPlants(GDBlocks.ouzium);
             }
         } else {
-            return new GDGenCrystalGrowth(GDBlocks.crystal_growth_mutant);
+            return new GDGenCrystalPlants(GDBlocks.crystal_growth_mutant);
         }
     }
 

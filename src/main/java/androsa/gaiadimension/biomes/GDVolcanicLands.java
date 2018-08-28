@@ -2,7 +2,7 @@ package androsa.gaiadimension.biomes;
 
 import androsa.gaiadimension.registry.GDBlocks;
 import androsa.gaiadimension.world.gen.GDGenBurntAgateTree;
-import androsa.gaiadimension.world.gen.GDGenCrystalGrowth;
+import androsa.gaiadimension.world.gen.GDGenCrystalPlants;
 import androsa.gaiadimension.world.gen.GDGenFieryAgateTree;
 import androsa.gaiadimension.world.gen.GDGenNoTrees;
 import net.minecraft.util.math.BlockPos;
@@ -68,7 +68,7 @@ public class GDVolcanicLands extends GDBiomeBase {
 
     @Override
     public WorldGenerator getRandomWorldGenForGrass(Random rand) {
-        return new GDGenCrystalGrowth(GDBlocks.crystal_growth_seared);
+        return new GDGenCrystalPlants(GDBlocks.crystal_growth_seared);
     }
 
     @SideOnly(Side.CLIENT)

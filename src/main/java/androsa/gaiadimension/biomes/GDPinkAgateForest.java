@@ -1,10 +1,7 @@
 package androsa.gaiadimension.biomes;
 
 import androsa.gaiadimension.registry.GDBlocks;
-import androsa.gaiadimension.world.gen.GDGenCrystalBloom;
-import androsa.gaiadimension.world.gen.GDGenCrystalGrowth;
-import androsa.gaiadimension.world.gen.GDGenNoTrees;
-import androsa.gaiadimension.world.gen.GDGenPinkAgateTree;
+import androsa.gaiadimension.world.gen.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
@@ -50,14 +47,16 @@ public class GDPinkAgateForest extends GDBiomeBase {
     @Override
     public WorldGenerator getRandomWorldGenForGrass(Random rand) {
 
-        if (rand.nextInt(16) == 0) {
+        if (rand.nextInt(32) == 0) {
+            return new GDGenCrystalPlants(GDBlocks.spotted_kersei);
+        } else if (rand.nextInt(16) == 0) {
             if (rand.nextInt(4) == 0) {
-                return new GDGenCrystalBloom(GDBlocks.ouzium);
+                return new GDGenCrystalPlants(GDBlocks.ouzium);
             } else {
-                return new GDGenCrystalBloom(GDBlocks.thiscus);
+                return new GDGenCrystalPlants(GDBlocks.thiscus);
             }
         } else {
-            return new GDGenCrystalGrowth(GDBlocks.crystal_growth_pink);
+            return new GDGenCrystalPlants(GDBlocks.crystal_growth_pink);
         }
     }
 }

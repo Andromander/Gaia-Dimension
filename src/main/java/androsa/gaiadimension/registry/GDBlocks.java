@@ -67,6 +67,15 @@ public class GDBlocks {
     public static final Block varloom = null;
     public static final Block corrupt_varloom = null;
     public static final Block missingno_plant = null;
+    public static final Block spotted_kersei = null;
+    public static final Block thorny_wiltha = null;
+    public static final Block roofed_agaric = null;
+    public static final Block bulbous_hobina = null;
+    public static final Block stickly_cupsir = null;
+    public static final Block mystical_murgni = null;
+    //public static final Block sacred_gaia_eye = null;
+    public static final Block corrupted_gaia_eye = null;
+    public static final Block missingno_fungus = null;
     public static final Block gaia_sapling = null;
 
     //Planks

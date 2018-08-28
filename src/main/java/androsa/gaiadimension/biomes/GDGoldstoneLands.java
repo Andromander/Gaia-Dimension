@@ -1,8 +1,7 @@
 package androsa.gaiadimension.biomes;
 
 import androsa.gaiadimension.registry.GDBlocks;
-import androsa.gaiadimension.world.gen.GDGenCrystalBloom;
-import androsa.gaiadimension.world.gen.GDGenCrystalGrowth;
+import androsa.gaiadimension.world.gen.GDGenCrystalPlants;
 import androsa.gaiadimension.world.gen.GDGenGoldstoneCorruptTree;
 import androsa.gaiadimension.world.gen.GDGenNoTrees;
 import net.minecraft.util.math.BlockPos;
@@ -43,13 +42,15 @@ public class GDGoldstoneLands extends GDBiomeBase {
     @Override
     public WorldGenerator getRandomWorldGenForGrass(Random rand) {
 
-        if (rand.nextInt(16) == 0) {
-            return new GDGenCrystalBloom(GDBlocks.corrupt_varloom);
+        if (rand.nextInt(32) == 0) {
+            return new GDGenCrystalPlants(GDBlocks.corrupted_gaia_eye);
+        } else if (rand.nextInt(16) == 0) {
+            return new GDGenCrystalPlants(GDBlocks.corrupt_varloom);
         } else {
             if (rand.nextInt(2) == 0) {
-                return new GDGenCrystalGrowth(GDBlocks.crystal_growth_black);
+                return new GDGenCrystalPlants(GDBlocks.crystal_growth_black);
             } else {
-                return new GDGenCrystalGrowth(GDBlocks.crystal_growth_red);
+                return new GDGenCrystalPlants(GDBlocks.crystal_growth_red);
             }
         }
     }

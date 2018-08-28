@@ -9,13 +9,13 @@ import net.minecraft.world.gen.feature.WorldGenerator;
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.Random;
 
-public class GDGenCrystalBloom extends WorldGenerator {
-    private final IBlockState bloomState;
-    private final Block bloomBlock;
+public class GDGenCrystalPlants extends WorldGenerator {
+    private final IBlockState tallGrassState;
+    private final Block blockTallGrass;
 
-    public GDGenCrystalBloom(Block block) {
-        this.bloomState = block.getDefaultState();
-        this.bloomBlock = block;
+    public GDGenCrystalPlants(Block block) {
+        this.tallGrassState = block.getDefaultState();
+        this.blockTallGrass = block;
     }
 
     @Override
@@ -28,8 +28,8 @@ public class GDGenCrystalBloom extends WorldGenerator {
         for (int i = 0; i < 128; ++i) {
             BlockPos blockpos = position.add(rand.nextInt(8) - rand.nextInt(8), rand.nextInt(4) - rand.nextInt(4), rand.nextInt(8) - rand.nextInt(8));
 
-            if (worldIn.isAirBlock(blockpos) && bloomBlock.canPlaceBlockAt(worldIn, blockpos)) {
-                worldIn.setBlockState(blockpos, this.bloomState, 2);
+            if (worldIn.isAirBlock(blockpos) && blockTallGrass.canPlaceBlockAt(worldIn, blockpos)) {
+                worldIn.setBlockState(blockpos, this.tallGrassState, 2);
             }
         }
         return true;
