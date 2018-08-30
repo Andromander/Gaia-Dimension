@@ -40,7 +40,7 @@ public final class GDBlocksRegister {
         blocks.register("purifier_idle", new GDPurifier(false));
         blocks.register("purifier_lit", new GDPurifier(true));
         blocks.register("mineral_water_block", new GDFluidBlock(GDFluids.mineralWater, Material.WATER));
-        blocks.register("superhot_magma_block", new GDSuperhotMagma(GDFluids.superhotMagma, Material.LAVA));
+        blocks.register("superhot_magma_block", new GDSuperhotMagma(GDFluids.superhotMagma, Material.LAVA).setLightLevel(1.0F));
         blocks.register("sweet_muck_block", new GDFluidBlock(GDFluids.sweetMuck, Material.WATER));
 
         //Natural Blocks

@@ -1,7 +1,6 @@
 package androsa.gaiadimension.fluid;
 
 import androsa.gaiadimension.registry.GDTabs;
-import androsa.gaiadimension.registry.MeshDefinitionFix;
 import androsa.gaiadimension.registry.ModelRegisterCallback;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -65,8 +64,8 @@ public class GDFluidBlock extends BlockFluidClassic implements ModelRegisterCall
         final Item item = Item.getItemFromBlock(this);
         ModelBakery.registerItemVariants(item);
         String domain = getRegistryName() == null ? "minecraft" : getRegistryName().getResourceDomain();
-        ModelResourceLocation modelResourceLocation = new ModelResourceLocation(domain + ":blocks/fluids", getFluid().getName());
-        ModelLoader.setCustomMeshDefinition(item, MeshDefinitionFix.create(stack -> modelResourceLocation));
+        ModelResourceLocation modelResourceLocation = new ModelResourceLocation(domain + ":fluids", getFluid().getName());
+        ModelLoader.setCustomMeshDefinition(item, stack -> modelResourceLocation);
         ModelLoader.setCustomStateMapper(this, new StateMapperBase() {
             @Override
             protected ModelResourceLocation getModelResourceLocation(IBlockState state) {
