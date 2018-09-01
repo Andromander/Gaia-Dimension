@@ -144,7 +144,7 @@ public class GDCrateSmall extends Block implements ModelRegisterCallback, ITileE
 
     @Override
     @Deprecated
-    public EnumPushReaction getMobilityFlag(IBlockState state) {
+    public EnumPushReaction getPushReaction(IBlockState state) {
         return EnumPushReaction.DESTROY;
     }
 
@@ -167,7 +167,7 @@ public class GDCrateSmall extends Block implements ModelRegisterCallback, ITileE
         TileEntitySmallCrate tileEntitySmallCrate = (TileEntitySmallCrate)worldIn.getTileEntity(pos);
         NBTTagCompound nbttagcompound = tileEntitySmallCrate.saveToNbt(new NBTTagCompound());
 
-        if (!nbttagcompound.hasNoTags()) {
+        if (!nbttagcompound.isEmpty()) {
             itemstack.setTagInfo("BlockEntityTag", nbttagcompound);
         }
 

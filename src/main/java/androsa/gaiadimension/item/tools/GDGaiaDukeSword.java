@@ -45,12 +45,11 @@ public class GDGaiaDukeSword extends ItemSword implements ModelRegisterCallback 
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack stack, World world, List<String> tooltips, ITooltipFlag flags) {
         super.addInformation(stack, world, tooltips, flags);
-        tooltips.add(I18n.format(getUnlocalizedName() + ".tooltip"));
+        tooltips.add(I18n.format(getTranslationKey() + ".tooltip"));
     }
 
     //TODO: Deals extra damage to Gaian mobs
     //TODO: [FUTURE] Can be used to unlock Unknown Stage 4 Final Boss Structure
-
 
     //We will need this in order to make the weapon slow
     @Override

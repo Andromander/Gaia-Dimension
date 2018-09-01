@@ -191,7 +191,7 @@ public class GDGlitterFurnace extends BlockContainer implements ModelRegisterCal
     @Override
     @Deprecated
     public IBlockState getStateFromMeta(int meta) {
-        EnumFacing enumfacing = EnumFacing.getFront(meta);
+        EnumFacing enumfacing = EnumFacing.byIndex(meta);
 
         if (enumfacing.getAxis() == EnumFacing.Axis.Y)
             enumfacing = EnumFacing.NORTH;

@@ -37,7 +37,7 @@ public class GDApexPredatorSword extends ItemSword implements ModelRegisterCallb
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack stack, World world, List<String> tooltips, ITooltipFlag flags) {
         super.addInformation(stack, world, tooltips, flags);
-        tooltips.add(I18n.format(getUnlocalizedName() + ".tooltip"));
+        tooltips.add(I18n.format(getTranslationKey() + ".tooltip"));
     }
 
     //TODO: Deal Bleeding damage/effect

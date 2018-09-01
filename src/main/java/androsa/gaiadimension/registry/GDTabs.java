@@ -15,7 +15,7 @@ public class GDTabs {
     public static final CreativeTabs tabBlock = new CreativeTabs("gaia_blocks") {
         @SideOnly(Side.CLIENT)
         @Override
-        public ItemStack getTabIconItem() {
+        public ItemStack createIcon() {
             return new ItemStack(GDBlocks.glitter_grass);
         }
     };
@@ -24,7 +24,7 @@ public class GDTabs {
     public static final CreativeTabs tabItem = new CreativeTabs("gaia_items") {
         @SideOnly(Side.CLIENT)
         @Override
-        public ItemStack getTabIconItem() {
+        public ItemStack createIcon() {
             return new ItemStack(GDItems.hematite);
         }
     };
@@ -35,7 +35,7 @@ public class GDTabs {
     public static final CreativeTabs tabTool = new CreativeTabs("gaia_tools") {
         @SideOnly(Side.CLIENT)
         @Override
-        public ItemStack getTabIconItem() {
+        public ItemStack createIcon() {
             return new ItemStack(GDItems.gaia_champion_sword);
         }
     };
@@ -45,7 +45,7 @@ public class GDTabs {
     public static final CreativeTabs tabArmor = new CreativeTabs("gaia_armor") {
         @SideOnly(Side.CLIENT)
         @Override
-        public ItemStack getTabIconItem() {
+        public ItemStack createIcon() {
             return new ItemStack(GDItems.gaia_champion_helm);
         }
     };

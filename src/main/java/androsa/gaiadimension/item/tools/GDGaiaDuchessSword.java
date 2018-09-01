@@ -45,7 +45,7 @@ public class GDGaiaDuchessSword extends ItemSword implements ModelRegisterCallba
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack stack, World world, List<String> tooltips, ITooltipFlag flags) {
         super.addInformation(stack, world, tooltips, flags);
-        tooltips.add(I18n.format(getUnlocalizedName() + ".tooltip"));
+        tooltips.add(I18n.format(getTranslationKey() + ".tooltip"));
     }
 
     //TODO: Make this sword shoot projectiles, but lowers durability by 2

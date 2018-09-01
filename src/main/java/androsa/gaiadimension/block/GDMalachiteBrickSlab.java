@@ -68,8 +68,8 @@ public class GDMalachiteBrickSlab extends BlockSlab implements ModelRegisterCall
     }
 
     @Override
-    public String getUnlocalizedName(int meta) {
-        return super.getUnlocalizedName();
+    public String getTranslationKey(int meta) {
+        return super.getTranslationKey();
     }
 
     @Override

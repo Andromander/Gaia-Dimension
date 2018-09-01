@@ -62,8 +62,8 @@ public class GDAgatePlankSlab extends BlockSlab implements ModelRegisterCallback
     }
 
     @Override
-    public String getUnlocalizedName(int meta) {
-        return super.getUnlocalizedName();
+    public String getTranslationKey(int meta) {
+        return super.getTranslationKey();
     }
 
     @Override

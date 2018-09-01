@@ -75,7 +75,7 @@ public class GaiaDimension {
 
     @EventHandler
     public void init(FMLInitializationEvent event) {
-        //System.out.println("DIRT BLOCK >> "+Blocks.DIRT.getUnlocalizedName());
+        //System.out.println("DIRT BLOCK >> "+Blocks.DIRT.getTranslationKey());
 
         GaiaDimension.LOGGER.info("Registering GUI Handler...");
         NetworkRegistry.INSTANCE.registerGuiHandler(instance, proxy);
