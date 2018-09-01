@@ -153,6 +153,7 @@ tile.sweet_muck.name=Sweet Muck
 tile.gaiadimension.gold_fire.name=Gold Fire
 tile.gaiadimension.gaia_portal.0.name=Gaia Portal
 
+container.gaiadimension.small_crate=Crude Storage Crate
 container.gaiadimension.gaia_stone_furnace=Gaia Stone Furnace
 container.gaiadimension.glitter_furnace=Glittering Furnace
 container.gaiadimension.purifier=Purifier

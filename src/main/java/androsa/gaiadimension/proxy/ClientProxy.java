@@ -1,12 +1,10 @@
 package androsa.gaiadimension.proxy;
 
-import androsa.gaiadimension.block.inventory.GuiAgateCraftingTable;
-import androsa.gaiadimension.block.inventory.GuiGaiaStoneFurnace;
-import androsa.gaiadimension.block.inventory.GuiGlitterFurnace;
-import androsa.gaiadimension.block.inventory.GuiPurifier;
+import androsa.gaiadimension.block.inventory.*;
 import androsa.gaiadimension.block.tileentity.TileEntityGaiaStoneFurnace;
 import androsa.gaiadimension.block.tileentity.TileEntityGlitterFurnace;
 import androsa.gaiadimension.block.tileentity.TileEntityPurifier;
+import androsa.gaiadimension.block.tileentity.TileEntitySmallCrate;
 import androsa.gaiadimension.entity.*;
 import androsa.gaiadimension.entity.boss.GDBlueHowliteWolf;
 import androsa.gaiadimension.entity.boss.GDMalachiteGuard;
@@ -34,6 +32,8 @@ public class ClientProxy extends CommonProxy {
         switch (guiID) {
             case AGATE_CRAFT:
                 return new GuiAgateCraftingTable(player.inventory, world, pos);
+            case SMALL_CRATE:
+                return new GuiSmallCrate(player.inventory, (TileEntitySmallCrate) tile);
             case GAIA_STONE_FURNACE:
                 return new GuiGaiaStoneFurnace(player.inventory, (TileEntityGaiaStoneFurnace) tile);
             case GLITTER_FURNACE:

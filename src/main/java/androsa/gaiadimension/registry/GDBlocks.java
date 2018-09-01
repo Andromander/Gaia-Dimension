@@ -13,6 +13,7 @@ public class GDBlocks {
     public static final Block gold_fire = null;
     public static final Block pyrite_torch = null;
     public static final Block agate_crafting_table = null;
+    public static final Block crude_storage_crate = null;
     public static final Block gaia_stone_furnace_idle = null;
     public static final Block gaia_stone_furnace_lit = null;
     public static final Block glitter_furnace_idle = null;
