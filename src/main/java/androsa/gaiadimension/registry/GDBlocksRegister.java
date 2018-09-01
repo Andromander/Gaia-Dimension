@@ -220,7 +220,7 @@ public final class GDBlocksRegister {
 
         private void register(String registryName, Block block) {
             block.setRegistryName(GaiaDimension.MODID, registryName);
-            block.setUnlocalizedName(GaiaDimension.MODID + "." + registryName);
+            block.setTranslationKey(GaiaDimension.MODID + "." + registryName);
 
             if (block instanceof ModelRegisterCallback) {
                 blockModels.add((ModelRegisterCallback) block);

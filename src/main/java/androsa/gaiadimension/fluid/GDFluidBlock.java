@@ -63,7 +63,7 @@ public class GDFluidBlock extends BlockFluidClassic implements ModelRegisterCall
     public void registerModel() {
         final Item item = Item.getItemFromBlock(this);
         ModelBakery.registerItemVariants(item);
-        String domain = getRegistryName() == null ? "minecraft" : getRegistryName().getResourceDomain();
+        String domain = getRegistryName() == null ? "minecraft" : getRegistryName().getNamespace();
         ModelResourceLocation modelResourceLocation = new ModelResourceLocation(domain + ":fluids", getFluid().getName());
         ModelLoader.setCustomMeshDefinition(item, stack -> modelResourceLocation);
         ModelLoader.setCustomStateMapper(this, new StateMapperBase() {

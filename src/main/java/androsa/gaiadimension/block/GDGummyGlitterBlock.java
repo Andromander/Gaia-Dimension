@@ -66,7 +66,7 @@ public class GDGummyGlitterBlock extends BlockBreakable implements ModelRegister
 
     @Override
     @SideOnly(Side.CLIENT)
-    public BlockRenderLayer getBlockLayer() {
+    public BlockRenderLayer getRenderLayer() {
         return BlockRenderLayer.TRANSLUCENT;
     }
 }

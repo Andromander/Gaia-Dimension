@@ -139,7 +139,7 @@ public class GDGaiaPortal extends BlockPortal implements ModelRegisterCallback {
     }
 
     @Override
-    public void onEntityCollidedWithBlock(World worldIn, @Nullable BlockPos pos, IBlockState state, Entity entityIn) {
+    public void onEntityCollision(World worldIn, @Nullable BlockPos pos, IBlockState state, Entity entityIn) {
 
         if (!entityIn.isRiding() && !entityIn.isBeingRidden() && !worldIn.isRemote)
             if(entityIn.timeUntilPortal <= 0){
@@ -150,11 +150,11 @@ public class GDGaiaPortal extends BlockPortal implements ModelRegisterCallback {
                     if (thePlayer.dimension != GDConfig.dimension.dimensionID)
                     {
                         if(!ForgeHooks.onTravelToDimension(thePlayer, GDConfig.dimension.dimensionID)) return;
-                        thePlayer.mcServer.getPlayerList().transferPlayerToDimension(thePlayer, GDConfig.dimension.dimensionID, new TeleporterGaia(thePlayer.mcServer.getWorld(GDConfig.dimension.dimensionID), this, Blocks.GOLD_BLOCK.getDefaultState()));
+                        thePlayer.server.getPlayerList().transferPlayerToDimension(thePlayer, GDConfig.dimension.dimensionID, new TeleporterGaia(thePlayer.server.getWorld(GDConfig.dimension.dimensionID), this, Blocks.GOLD_BLOCK.getDefaultState()));
                     }
                     else {
                         if(!ForgeHooks.onTravelToDimension(thePlayer, 0)) return;
-                        thePlayer.mcServer.getPlayerList().transferPlayerToDimension(thePlayer, 0, new TeleporterGaia(thePlayer.mcServer.getWorld(0), this, Blocks.GOLD_BLOCK.getDefaultState()));
+                        thePlayer.server.getPlayerList().transferPlayerToDimension(thePlayer, 0, new TeleporterGaia(thePlayer.server.getWorld(0), this, Blocks.GOLD_BLOCK.getDefaultState()));
                     }
                 } else {
                     MinecraftServer server = FMLCommonHandler.instance().getMinecraftServerInstance();
@@ -197,7 +197,7 @@ public class GDGaiaPortal extends BlockPortal implements ModelRegisterCallback {
 
     @Override
     @SideOnly(Side.CLIENT)
-    public BlockRenderLayer getBlockLayer() {
+    public BlockRenderLayer getRenderLayer() {
         return BlockRenderLayer.TRANSLUCENT;
     }
 
@@ -380,7 +380,7 @@ public class GDGaiaPortal extends BlockPortal implements ModelRegisterCallback {
             }
         }
 
-        @SuppressWarnings("deprecated")
+        @SuppressWarnings("deprecation")
         protected boolean isEmptyBlock(Block blockIn) {
             return blockIn.getMaterial(blockIn.getDefaultState()) == Material.AIR || blockIn == GDBlocks.gold_fire || blockIn == GDBlocks.gaia_portal;
         }

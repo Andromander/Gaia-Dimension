@@ -27,7 +27,7 @@ public class GDSuperhotMagma extends BlockFluidClassic implements ModelRegisterC
     public void registerModel() {
         final Item item = Item.getItemFromBlock(this);
         ModelBakery.registerItemVariants(item);
-        String domain = getRegistryName() == null ? "minecraft" : getRegistryName().getResourceDomain();
+        String domain = getRegistryName() == null ? "minecraft" : getRegistryName().getNamespace();
         ModelResourceLocation modelResourceLocation = new ModelResourceLocation(domain + ":fluids", getFluid().getName());
         ModelLoader.setCustomMeshDefinition(item, stack -> modelResourceLocation);
         ModelLoader.setCustomStateMapper(this, new StateMapperBase() {
@@ -39,8 +39,8 @@ public class GDSuperhotMagma extends BlockFluidClassic implements ModelRegisterC
     }
 
     @Override
-    public void onEntityCollidedWithBlock(World world, BlockPos pos, IBlockState state, Entity entity) {
-        super.onEntityCollidedWithBlock(world, pos, state, entity);
+    public void onEntityCollision(World world, BlockPos pos, IBlockState state, Entity entity) {
+        super.onEntityCollision(world, pos, state, entity);
         entity.attackEntityFrom(DamageSource.IN_FIRE, 5.0F);
     }
 }

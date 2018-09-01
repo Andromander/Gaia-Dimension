@@ -55,7 +55,7 @@ public class GDCrystalGrowth extends BlockBush implements IShearable, ModelRegis
 
     @SideOnly(Side.CLIENT)
     @Override
-    public BlockRenderLayer getBlockLayer() {
+    public BlockRenderLayer getRenderLayer() {
         return BlockRenderLayer.CUTOUT_MIPPED;
     }
 

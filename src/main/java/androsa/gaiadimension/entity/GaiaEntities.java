@@ -54,7 +54,7 @@ public class GaiaEntities {
         }
 
         private static String toString(ResourceLocation regName) {
-            return regName.getResourceDomain() + "." + regName.getResourcePath();
+            return regName.getNamespace() + "." + regName.getPath();
         }
 
         final <T extends Entity> EntityEntryBuilder<T> builder(ResourceLocation regName, Class<T> entity, Function<World, T> factory) {

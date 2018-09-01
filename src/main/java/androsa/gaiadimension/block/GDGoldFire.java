@@ -83,13 +83,13 @@ public class GDGoldFire extends Block implements ModelRegisterCallback {
 
     @Override
     @SideOnly(Side.CLIENT)
-    public BlockRenderLayer getBlockLayer() {
+    public BlockRenderLayer getRenderLayer() {
         return BlockRenderLayer.CUTOUT;
     }
 
     @Override
-    public void onEntityCollidedWithBlock(World par1World, BlockPos pos, IBlockState state, Entity par5Entity) {
-        super.onEntityCollidedWithBlock(par1World, pos, state, par5Entity);
+    public void onEntityCollision(World par1World, BlockPos pos, IBlockState state, Entity par5Entity) {
+        super.onEntityCollision(par1World, pos, state, par5Entity);
 
         if(par5Entity instanceof EntityLivingBase)
             ((EntityLivingBase)par5Entity).addPotionEffect(new PotionEffect(MobEffects.GLOWING, 100));

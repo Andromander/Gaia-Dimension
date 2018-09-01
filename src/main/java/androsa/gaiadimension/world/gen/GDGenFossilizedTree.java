@@ -116,8 +116,8 @@ public class GDGenFossilizedTree extends WorldGenAbstractTree {
 
                         for (int l4 = l3; l4 < height && k4 > 0; --k4) {
                             if (l4 >= 1) {
-                                posX += enumfacing1.getFrontOffsetX();
-                                posZ += enumfacing1.getFrontOffsetZ();
+                                posX += enumfacing1.getXOffset();
+                                posZ += enumfacing1.getZOffset();
                             }
 
                             ++l4;

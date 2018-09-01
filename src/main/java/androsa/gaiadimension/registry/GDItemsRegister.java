@@ -358,7 +358,7 @@ public class GDItemsRegister {
 
         private void register(String registryName, Item item) {
             item.setRegistryName(GaiaDimension.MODID, registryName);
-            item.setUnlocalizedName(GaiaDimension.MODID + "." + registryName);
+            item.setTranslationKey(GaiaDimension.MODID + "." + registryName);
 
             if (item instanceof ModelRegisterCallback) {
                 itemModels.add((ModelRegisterCallback) item);
@@ -382,7 +382,7 @@ public class GDItemsRegister {
 
         private void register(ItemBlock item) {
             item.setRegistryName(item.getBlock().getRegistryName());
-            item.setUnlocalizedName(item.getBlock().getUnlocalizedName());
+            item.setTranslationKey(item.getBlock().getTranslationKey());
             registry.register(item);
         }
     }

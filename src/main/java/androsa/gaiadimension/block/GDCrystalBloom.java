@@ -30,7 +30,7 @@ public class GDCrystalBloom extends BlockBush implements ModelRegisterCallback {
 
     @SideOnly(Side.CLIENT)
     @Override
-    public BlockRenderLayer getBlockLayer() {
+    public BlockRenderLayer getRenderLayer() {
         return BlockRenderLayer.CUTOUT_MIPPED;
     }
 

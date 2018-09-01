@@ -71,8 +71,8 @@ public class GDFeature {
 
     //MODID
     public static GDFeature getFeatureByName(ResourceLocation name) {
-        if (name.getResourceDomain().equalsIgnoreCase(GaiaDimension.MODID))
-            return getFeatureByName(name.getResourcePath());
+        if (name.getNamespace().equalsIgnoreCase(GaiaDimension.MODID))
+            return getFeatureByName(name.getPath());
         return nothing;
     }
 
