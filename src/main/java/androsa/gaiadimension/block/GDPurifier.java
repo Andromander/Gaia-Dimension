@@ -7,7 +7,8 @@ import androsa.gaiadimension.registry.GDBlocks;
 import androsa.gaiadimension.registry.GDTabs;
 import androsa.gaiadimension.registry.ModelRegisterCallback;
 import mcp.MethodsReturnNonnullByDefault;
-import net.minecraft.block.BlockContainer;
+import net.minecraft.block.Block;
+import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyDirection;
@@ -20,11 +21,11 @@ import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.internal.FMLNetworkHandler;
 import net.minecraftforge.fml.relauncher.Side;
@@ -33,10 +34,9 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import java.util.Random;
 
 @MethodsReturnNonnullByDefault
-public class GDPurifier extends BlockContainer implements ModelRegisterCallback {
+public class GDPurifier extends Block implements ModelRegisterCallback, ITileEntityProvider {
 
     public static final PropertyDirection FACING = PropertyDirection.create("facing", EnumFacing.Plane.HORIZONTAL);
-    private final Random rand = new Random();
     private final boolean isPurifying;
     private static boolean keepInventory;
 
@@ -179,16 +179,9 @@ public class GDPurifier extends BlockContainer implements ModelRegisterCallback 
     }
 
     @Override
-    @Deprecated
     @SideOnly(Side.CLIENT)
-    public ItemStack getItem(World world, BlockPos pos, IBlockState state) {
+    public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player) {
         return new ItemStack(GDBlocks.purifier_idle);
-    }
-
-    @Override
-    @Deprecated
-    public EnumBlockRenderType getRenderType(IBlockState state) {
-        return EnumBlockRenderType.MODEL;
     }
 
     @Override
