@@ -30,7 +30,7 @@ public class GDAgateCraftingTable extends Block implements ModelRegisterCallback
         if (world.isRemote) {
             return true;
         } else {
-            System.out.println("Block Activated");
+            //System.out.println("Block Activated");
             player.openGui(GaiaDimension.instance, CommonProxy.GuiID.AGATE_CRAFT.ordinal(), world, pos.getX(), pos.getY(), pos.getZ());
             return true;
         }
