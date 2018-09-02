@@ -24,8 +24,6 @@ import java.util.Locale;
 @ParametersAreNonnullByDefault
 public class GDAgatePlankStairs extends BlockStairs implements ModelRegisterCallback {
 
-    public static final PropertyEnum<AgatePlankStairs> VARIANT = PropertyEnum.create("variant", AgatePlankStairs.class);
-
     public GDAgatePlankStairs(IBlockState state) {
         super(state);
 
@@ -33,12 +31,13 @@ public class GDAgatePlankStairs extends BlockStairs implements ModelRegisterCall
         this.setHardness(1.5F);
         this.setResistance(2.0F);
         this.setCreativeTab(GDTabs.tabBlock);
-        this.setDefaultState(this.getDefaultState().withProperty(VARIANT, AgatePlankStairs.NORMAL));
+
+        this.useNeighborBrightness = true;
     }
 
     @Override
     public BlockStateContainer createBlockState() {
-        return new BlockStateContainer(this, FACING, HALF, SHAPE, VARIANT);
+        return new BlockStateContainer(this, FACING, HALF, SHAPE);
     }
 
     @Override
@@ -60,14 +59,6 @@ public class GDAgatePlankStairs extends BlockStairs implements ModelRegisterCall
     @SideOnly(Side.CLIENT)
     @Override
     public void registerModel() {
-        ModelUtils.registerToState(this, 0, getDefaultState().withProperty(FACING, EnumFacing.SOUTH));
-    }
-
-    public enum AgatePlankStairs implements IStringSerializable {
-        NORMAL;
-
-        public String getName() {
-            return name().toLowerCase(Locale.ROOT);
-        }
+        ModelUtils.registerToState(this, 0, getDefaultState().withProperty(FACING, EnumFacing.EAST));
     }
 }
