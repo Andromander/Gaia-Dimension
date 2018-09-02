@@ -42,6 +42,9 @@ public class GDRecipes {
         GameRegistry.addSmelting(new ItemStack(GDBlocks.opal_ore, 1, 1), new ItemStack(GDItems.blue_opal, 1), 0.3F);
         GameRegistry.addSmelting(new ItemStack(GDBlocks.opal_ore, 1, 2), new ItemStack(GDItems.green_opal, 1), 0.3F);
         GameRegistry.addSmelting(new ItemStack(GDBlocks.opal_ore, 1, 3), new ItemStack(GDItems.white_opal, 1), 1.0F);
+        GameRegistry.addSmelting(GDBlocks.speckled_rock, new ItemStack(GDItems.scaynyx_ingot), 0.2F);
+        GameRegistry.addSmelting(GDBlocks.coarse_rock, new ItemStack(GDItems.scaynyx_ingot, 2), 0.2F);
+        GameRegistry.addSmelting(GDBlocks.precious_rock, new ItemStack(GDItems.scaynyx_ingot, 4), 0.2F);
 
         RecipeHandler.addGlitterRefactoring(new ItemStack(GDItems.hematite, 1), new ItemStack(GDItems.ixiolite, 1), new ItemStack(GDItems.black_residue, 1), 0.3F);
         RecipeHandler.addGlitterRefactoring(new ItemStack(GDItems.cinnabar, 1), new ItemStack(GDItems.proustite, 1), new ItemStack(GDItems.black_residue, 1), 0.3F);
