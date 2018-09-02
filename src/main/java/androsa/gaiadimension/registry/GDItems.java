@@ -55,7 +55,7 @@ public class GDItems {
     public static final Item cloudy_shard = null;
     public static final Item goldstone_residue = null;
     public static final Item agate_cup = null;
-    //public static final Item scaynyx_ingot = null;
+    public static final Item scaynyx_ingot = null;
 
     public static final Item pink_geode = null;
     public static final Item blue_geode = null;

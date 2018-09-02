@@ -35,7 +35,7 @@ public class GDItemsRegister {
         items.register("cloudy_shard", new GDItem());
         items.register("goldstone_residue", new GDItem());
         items.register("agate_cup", new GDItem());
-        //items.register("scaynyx_ingot", new GDItem());
+        items.register("scaynyx_ingot", new GDItem());
 
         items.register("pink_geode", new GDGeode());
         items.register("blue_geode", new GDGeode());
