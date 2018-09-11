@@ -3,7 +3,7 @@
   "defaults": {
     "model": "cube_all",
     "textures": {
-      "all": "gaiadimension:blocks/malachite_bricks"
+      "all": "gaiadimension:blocks/malachite_floor_bricks"
     }
   },
   "variants": {

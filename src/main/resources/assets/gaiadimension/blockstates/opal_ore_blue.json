@@ -3,10 +3,8 @@
   "defaults": {
     "model": "cube_all",
     "textures": {
-      "all": "gaiadimension:blocks/malachite_bricks"
+      "all": "gaiadimension:blocks/blue_opal_ore"
     }
   },
-  "variants": {
-    "normal": [{}]
-  }
+  "variants": { "normal": [{}] }
 }
