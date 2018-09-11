@@ -27,21 +27,21 @@ public class GDRecipes {
         GameRegistry.addSmelting(new ItemStack(GDItems.lurmorus_meat, 1), new ItemStack(GDItems.lurmorus_steak, 1), 0.0F);
         GameRegistry.addSmelting(new ItemStack(GDItems.fine_dust, 1), new ItemStack(GDItems.cloudy_shard, 1), 0.1F);
         GameRegistry.addSmelting(new ItemStack(GDItems.goldstone_dust, 1), new ItemStack(GDItems.goldstone_residue, 1), 0.1F);
-        GameRegistry.addSmelting(new ItemStack(GDBlocks.gaia_sapling, 1, 0), new ItemStack(GDBlocks.gaia_sapling, 1, 6), 0.1F);
-        GameRegistry.addSmelting(new ItemStack(GDBlocks.gaia_sapling, 1, 1), new ItemStack(GDBlocks.gaia_sapling, 1, 6), 0.1F);
-        GameRegistry.addSmelting(new ItemStack(GDBlocks.gaia_sapling, 1, 2), new ItemStack(GDBlocks.gaia_sapling, 1, 6), 0.1F);
-        GameRegistry.addSmelting(new ItemStack(GDBlocks.gaia_sapling, 1, 3), new ItemStack(GDBlocks.gaia_sapling, 1, 6), 0.1F);
-        GameRegistry.addSmelting(new ItemStack(GDBlocks.gaia_sapling, 1, 6), new ItemStack(GDBlocks.gaia_sapling, 1, 7), 0.1F);
+        GameRegistry.addSmelting(GDBlocks.pink_agate_sapling, new ItemStack(GDBlocks.burnt_sapling, 1), 0.1F);
+        GameRegistry.addSmelting(GDBlocks.blue_agate_sapling, new ItemStack(GDBlocks.burnt_sapling, 1), 0.1F);
+        GameRegistry.addSmelting(GDBlocks.green_agate_sapling, new ItemStack(GDBlocks.burnt_sapling, 1), 0.1F);
+        GameRegistry.addSmelting(GDBlocks.purple_agate_sapling, new ItemStack(GDBlocks.burnt_sapling, 1), 0.1F);
+        GameRegistry.addSmelting(GDBlocks.burnt_sapling, new ItemStack(GDBlocks.burning_sapling, 1), 0.1F);
         GameRegistry.addSmelting(GDBlocks.sugilite_ore, new ItemStack(GDItems.sugilite, 1), 0.3F);
         GameRegistry.addSmelting(GDBlocks.hematite_ore, new ItemStack(GDItems.hematite, 1), 0.3F);
         GameRegistry.addSmelting(GDBlocks.pyrite_ore, new ItemStack(GDItems.hematite, 1), 0.3F);
         GameRegistry.addSmelting(GDBlocks.cinnabar_ore, new ItemStack(GDItems.hematite, 1), 0.3F);
         GameRegistry.addSmelting(GDBlocks.labradorite_ore, new ItemStack(GDItems.hematite, 1), 0.3F);
         GameRegistry.addSmelting(GDBlocks.moonstone_ore, new ItemStack(GDItems.hematite, 1), 0.3F);
-        GameRegistry.addSmelting(new ItemStack(GDBlocks.opal_ore, 1, 0), new ItemStack(GDItems.red_opal, 1), 0.3F);
-        GameRegistry.addSmelting(new ItemStack(GDBlocks.opal_ore, 1, 1), new ItemStack(GDItems.blue_opal, 1), 0.3F);
-        GameRegistry.addSmelting(new ItemStack(GDBlocks.opal_ore, 1, 2), new ItemStack(GDItems.green_opal, 1), 0.3F);
-        GameRegistry.addSmelting(new ItemStack(GDBlocks.opal_ore, 1, 3), new ItemStack(GDItems.white_opal, 1), 1.0F);
+        GameRegistry.addSmelting(GDBlocks.opal_ore_red, new ItemStack(GDItems.red_opal, 1), 0.3F);
+        GameRegistry.addSmelting(GDBlocks.opal_ore_blue, new ItemStack(GDItems.blue_opal, 1), 0.3F);
+        GameRegistry.addSmelting(GDBlocks.opal_ore_green, new ItemStack(GDItems.green_opal, 1), 0.3F);
+        GameRegistry.addSmelting(GDBlocks.opal_ore_white, new ItemStack(GDItems.white_opal, 1), 1.0F);
         GameRegistry.addSmelting(GDBlocks.speckled_rock, new ItemStack(GDItems.scaynyx_ingot), 0.2F);
         GameRegistry.addSmelting(GDBlocks.coarse_rock, new ItemStack(GDItems.scaynyx_ingot, 2), 0.2F);
         GameRegistry.addSmelting(GDBlocks.precious_rock, new ItemStack(GDItems.scaynyx_ingot, 4), 0.2F);
@@ -65,7 +65,7 @@ public class GDRecipes {
 
         RecipeHandler.addPurifying(GDBlocks.corrupt_soil, new ItemStack(GDBlocks.heavy_soil), new ItemStack(GDItems.goldstone_residue, 1), 0.3F);
         RecipeHandler.addPurifying(GDBlocks.corrupt_grass, new ItemStack(GDBlocks.glitter_grass), new ItemStack(GDItems.goldstone_residue, 1), 0.3F);
-        RecipeHandler.addPurifying(new ItemStack(GDBlocks.special_gaia_leaves, 1, 2), new ItemStack(GDBlocks.gaia_leaves, 1, 0), new ItemStack(GDItems.goldstone_residue, 1), 0.3F);
-        RecipeHandler.addPurifying(new ItemStack(GDBlocks.special_gaia_log, 1, 2), new ItemStack(GDBlocks.gaia_log, 1, 0), new ItemStack(GDItems.goldstone_residue, 2), 0.3F);
+        RecipeHandler.addPurifying(GDBlocks.corrupted_leaves, new ItemStack(GDBlocks.pink_agate_leaves), new ItemStack(GDItems.goldstone_residue, 1), 0.3F);
+        RecipeHandler.addPurifying(GDBlocks.corrupted_log, new ItemStack(GDBlocks.pink_agate_log), new ItemStack(GDItems.goldstone_residue, 2), 0.3F);
     }
 }

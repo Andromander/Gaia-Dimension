@@ -1,9 +1,11 @@
 package androsa.gaiadimension.registry;
 
 import androsa.gaiadimension.GaiaDimension;
-import net.minecraft.block.*;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockPortal;
+import net.minecraft.block.BlockSlab;
 
-import static net.minecraftforge.fml.common.registry.GameRegistry.*;
+import static net.minecraftforge.fml.common.registry.GameRegistry.ObjectHolder;
 
 @ObjectHolder(GaiaDimension.MODID)
 public class GDBlocks {
@@ -38,10 +40,22 @@ public class GDBlocks {
     public static final Block frail_glitter_block = null;
     public static final Block thick_glitter_block = null;
     public static final Block gummy_glitter_block = null;
-    public static final Block gaia_leaves = null;
-    public static final Block special_gaia_leaves = null;
-    public static final Block gaia_log = null;
-    public static final Block special_gaia_log = null;
+    public static final Block pink_agate_leaves = null;
+    public static final Block blue_agate_leaves = null;
+    public static final Block green_agate_leaves = null;
+    public static final Block purple_agate_leaves = null;
+    public static final Block fossilized_leaves = null;
+    public static final Block corrupted_leaves = null;
+    public static final Block crusty_leaves = null;
+    public static final Block heated_leaves = null;
+    public static final Block pink_agate_log = null;
+    public static final Block blue_agate_log = null;
+    public static final Block green_agate_log = null;
+    public static final Block purple_agate_log = null;
+    public static final Block fossilized_log = null;
+    public static final Block corrupted_log = null;
+    public static final Block crusty_log = null;
+    public static final Block heated_log = null;
     public static final Block salt = null;
     public static final Block saltstone = null;
     public static final Block gaia_stone = null;
@@ -77,7 +91,14 @@ public class GDBlocks {
     //public static final Block sacred_gaia_eye = null;
     public static final Block corrupted_gaia_eye = null;
     public static final Block missingno_fungus = null;
-    public static final Block gaia_sapling = null;
+    public static final Block pink_agate_sapling = null;
+    public static final Block blue_agate_sapling = null;
+    public static final Block green_agate_sapling = null;
+    public static final Block purple_agate_sapling = null;
+    public static final Block fossilized_sapling = null;
+    public static final Block corrupted_sapling = null;
+    public static final Block burnt_sapling = null;
+    public static final Block burning_sapling = null;
 
     //Planks
     public static final Block pink_agate_planks = null;
@@ -119,6 +140,10 @@ public class GDBlocks {
     public static final Block crusted_gaia_stone_bricks = null;
     public static final Block reinforced_bricks = null;
     public static final Block malachite_bricks = null;
+    public static final Block malachite_cracked_bricks = null;
+    public static final Block malachite_crusted_bricks = null;
+    public static final Block malachite_floor_tiles = null;
+    public static final Block malachite_chisel_bricks = null;
     public static final Block malachite_pulsing_bricks = null;
     public static final Block malachite_pulsing_tiles = null;
     public static final Block malachite_pulsing_chisel = null;
@@ -162,7 +187,10 @@ public class GDBlocks {
     public static final Block sugilite_ore = null;
     public static final Block hematite_ore = null;
     public static final Block pyrite_ore = null;
-    public static final Block opal_ore = null;
+    public static final Block opal_ore_red = null;
+    public static final Block opal_ore_blue = null;
+    public static final Block opal_ore_green = null;
+    public static final Block opal_ore_white = null;
     public static final Block labradorite_ore = null;
     public static final Block moonstone_ore = null;
     public static final Block cinnabar_ore = null;

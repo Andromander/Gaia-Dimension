@@ -192,7 +192,7 @@ public class GDItemsRegister {
          */
 
         //Utility Blocks
-        items.registerSubItemBlock(GDBlocks.gaia_portal);
+        items.registerBlock(GDBlocks.gaia_portal);
         items.registerBlock(GDBlocks.gold_fire);
         items.registerBlock(GDBlocks.pyrite_torch);
         items.registerBlock(GDBlocks.agate_crafting_table);
@@ -249,11 +249,30 @@ public class GDItemsRegister {
         //items.registerBlock(GDBlocks.sacred_gaia_eye);
         items.registerBlock(GDBlocks.missingno_fungus);
 
-        items.registerSubItemBlock(GDBlocks.gaia_sapling);
-        items.registerSubItemBlock(GDBlocks.gaia_leaves);
-        items.registerSubItemBlock(GDBlocks.special_gaia_leaves);
-        items.registerSubItemBlock(GDBlocks.gaia_log);
-        items.registerSubItemBlock(GDBlocks.special_gaia_log);
+        items.registerBlock(GDBlocks.pink_agate_sapling);
+        items.registerBlock(GDBlocks.blue_agate_sapling);
+        items.registerBlock(GDBlocks.green_agate_sapling);
+        items.registerBlock(GDBlocks.purple_agate_sapling);
+        items.registerBlock(GDBlocks.fossilized_sapling);
+        items.registerBlock(GDBlocks.corrupted_sapling);
+        items.registerBlock(GDBlocks.burnt_sapling);
+        items.registerBlock(GDBlocks.burning_sapling);
+        items.registerBlock(GDBlocks.pink_agate_leaves);
+        items.registerBlock(GDBlocks.blue_agate_leaves);
+        items.registerBlock(GDBlocks.green_agate_leaves);
+        items.registerBlock(GDBlocks.purple_agate_leaves);
+        items.registerBlock(GDBlocks.fossilized_leaves);
+        items.registerBlock(GDBlocks.corrupted_leaves);
+        items.registerBlock(GDBlocks.crusty_leaves);
+        items.registerBlock(GDBlocks.heated_leaves);
+        items.registerBlock(GDBlocks.pink_agate_log);
+        items.registerBlock(GDBlocks.blue_agate_log);
+        items.registerBlock(GDBlocks.green_agate_log);
+        items.registerBlock(GDBlocks.purple_agate_log);
+        items.registerBlock(GDBlocks.fossilized_log);
+        items.registerBlock(GDBlocks.corrupted_log);
+        items.registerBlock(GDBlocks.crusty_log);
+        items.registerBlock(GDBlocks.heated_log);
         items.registerBlock(GDBlocks.salt);
         items.registerBlock(GDBlocks.saltstone);
         items.registerBlock(GDBlocks.gaia_stone);
@@ -294,7 +313,11 @@ public class GDItemsRegister {
         items.registerBlock(GDBlocks.cracked_gaia_stone_bricks);
         items.registerBlock(GDBlocks.crusted_gaia_stone_bricks);
         items.registerBlock(GDBlocks.reinforced_bricks);
-        items.registerSubItemBlock(GDBlocks.malachite_bricks);
+        items.registerBlock(GDBlocks.malachite_bricks);
+        items.registerBlock(GDBlocks.malachite_cracked_bricks);
+        items.registerBlock(GDBlocks.malachite_crusted_bricks);
+        items.registerBlock(GDBlocks.malachite_floor_tiles);
+        items.registerBlock(GDBlocks.malachite_chisel_bricks);
         items.registerBlock(GDBlocks.malachite_pulsing_bricks);
         items.registerBlock(GDBlocks.malachite_pulsing_tiles);
         items.registerBlock(GDBlocks.malachite_pulsing_chisel);
@@ -334,7 +357,10 @@ public class GDItemsRegister {
         items.registerBlock(GDBlocks.sugilite_ore);
         items.registerBlock(GDBlocks.hematite_ore);
         items.registerBlock(GDBlocks.pyrite_ore);
-        items.registerSubItemBlock(GDBlocks.opal_ore);
+        items.registerBlock(GDBlocks.opal_ore_red);
+        items.registerBlock(GDBlocks.opal_ore_blue);
+        items.registerBlock(GDBlocks.opal_ore_green);
+        items.registerBlock(GDBlocks.opal_ore_white);
         items.registerBlock(GDBlocks.labradorite_ore);
         items.registerBlock(GDBlocks.moonstone_ore);
         items.registerBlock(GDBlocks.cinnabar_ore);
@@ -368,15 +394,6 @@ public class GDItemsRegister {
 
         private void registerBlock(Block block) {
             ItemBlock metaItemBlock = new ItemBlock(block);
-            register(metaItemBlock);
-        }
-
-        private void registerSubItemBlock(Block block) {
-            registerSubItemBlock(block, true);
-        }
-
-        private void registerSubItemBlock(Block block, boolean shouldAppendNumber) {
-            GDItemBlockMeta metaItemBlock = new GDItemBlockMeta(block).setAppend(shouldAppendNumber);
             register(metaItemBlock);
         }
 

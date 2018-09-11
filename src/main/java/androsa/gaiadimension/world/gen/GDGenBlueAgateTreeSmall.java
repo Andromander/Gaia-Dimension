@@ -1,9 +1,5 @@
 package androsa.gaiadimension.world.gen;
 
-import androsa.gaiadimension.block.GDAgateLeaves;
-import androsa.gaiadimension.block.GDAgateLog;
-import androsa.gaiadimension.block.enums.GaiaLeavesVariant;
-import androsa.gaiadimension.block.enums.GaiaLogVariant;
 import androsa.gaiadimension.registry.GDBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
@@ -95,7 +91,7 @@ public class GDGenBlueAgateTreeSmall extends WorldGenTrees {
 
                                 if ((Math.abs(var15) != treeWidth || Math.abs(var17) != treeWidth || rand.nextInt(2) != 0 && number != 0) &&
                                         state.getBlock().canBeReplacedByLeaves(state, world, tPos)) {
-                                    this.setBlockAndNotifyAdequately(world, tPos, GDBlocks.gaia_leaves.getDefaultState().withProperty(GDAgateLeaves.VARIANT, GaiaLeavesVariant.BLUE_AGATE));
+                                    this.setBlockAndNotifyAdequately(world, tPos, GDBlocks.blue_agate_leaves.getDefaultState());
                                 }
                             }
                         }
@@ -107,7 +103,7 @@ public class GDGenBlueAgateTreeSmall extends WorldGenTrees {
                         blockID = block.getBlock();
 
                         if (blockID == Blocks.AIR || blockID.isLeaves(block, world, cPos)) {
-                            this.setBlockAndNotifyAdequately(world, cPos, GDBlocks.gaia_log.getDefaultState().withProperty(GDAgateLog.VARIANT, GaiaLogVariant.BLUE_AGATE));
+                            this.setBlockAndNotifyAdequately(world, cPos, GDBlocks.blue_agate_log.getDefaultState());
                         }
                     }
 

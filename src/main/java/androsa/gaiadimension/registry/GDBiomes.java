@@ -1,7 +1,6 @@
 package androsa.gaiadimension.registry;
 
 import androsa.gaiadimension.GaiaDimension;
-
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.fml.common.registry.GameRegistry.ObjectHolder;
 

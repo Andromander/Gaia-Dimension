@@ -1,7 +1,9 @@
 package androsa.gaiadimension.biomes;
 
 import androsa.gaiadimension.registry.GDBlocks;
-import androsa.gaiadimension.world.gen.*;
+import androsa.gaiadimension.world.gen.GDGenCrystalPlants;
+import androsa.gaiadimension.world.gen.GDGenNoTrees;
+import androsa.gaiadimension.world.gen.GDGenPinkAgateTree;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
@@ -35,7 +37,7 @@ public class GDPinkAgateForest extends GDBiomeBase {
             int Xcoord = pos.getX() + rand.nextInt(16);
             int Zcoord = pos.getZ() + rand.nextInt(16);
             int Ycoord = rand.nextInt(40);
-            new WorldGenMinable(GDBlocks.opal_ore.getStateFromMeta(0), 8, input -> input == GDBlocks.gaia_stone.getDefaultState()).generate(world, rand, new BlockPos(Xcoord, Ycoord, Zcoord));
+            new WorldGenMinable(GDBlocks.opal_ore_red.getDefaultState(), 8, input -> input == GDBlocks.gaia_stone.getDefaultState()).generate(world, rand, new BlockPos(Xcoord, Ycoord, Zcoord));
         }
     }
 

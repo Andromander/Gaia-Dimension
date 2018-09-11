@@ -22,7 +22,9 @@ import net.minecraft.world.WorldType;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.ChunkPrimer;
-import net.minecraft.world.gen.*;
+import net.minecraft.world.gen.IChunkGenerator;
+import net.minecraft.world.gen.NoiseGeneratorOctaves;
+import net.minecraft.world.gen.NoiseGeneratorPerlin;
 import net.minecraft.world.gen.feature.WorldGenLakes;
 
 import javax.annotation.ParametersAreNonnullByDefault;
@@ -414,7 +416,6 @@ public class GaiaChunkGenerator implements IChunkGenerator {
     public BlockPos getNearestStructurePos(World worldIn, String structureName, BlockPos position, boolean findUnexplored) {
         return null;
     }
-
 
     @Override
     public void recreateStructures(Chunk chunk, int var1, int var2) {

@@ -1,11 +1,7 @@
 package androsa.gaiadimension.world.gen;
 
 import androsa.gaiadimension.block.GDAgateLeaves;
-import androsa.gaiadimension.block.GDAgateSapling;
-import androsa.gaiadimension.block.GDSpecialLeaves;
-import androsa.gaiadimension.block.GDSpecialLog;
-import androsa.gaiadimension.block.enums.SpecialGaiaLeavesVariant;
-import androsa.gaiadimension.block.enums.SpecialGaiaLogVariant;
+import androsa.gaiadimension.block.sapling.GDFossilSapling;
 import androsa.gaiadimension.registry.GDBlocks;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.EnumFacing;
@@ -17,8 +13,8 @@ import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.Random;
 
 public class GDGenFossilizedTree extends WorldGenAbstractTree {
-    private static final IBlockState TRUNK = GDBlocks.special_gaia_log.getDefaultState().withProperty(GDSpecialLog.VARIANT, SpecialGaiaLogVariant.FOSSILIZED);
-    private static final IBlockState LEAF = GDBlocks.special_gaia_leaves.getDefaultState().withProperty(GDSpecialLeaves.VARIANT, SpecialGaiaLeavesVariant.FOSSILIZED).withProperty(GDAgateLeaves.CHECK_DECAY, Boolean.valueOf(false));
+    private static final IBlockState TRUNK = GDBlocks.fossilized_log.getDefaultState();
+    private static final IBlockState LEAF = GDBlocks.fossilized_leaves.getDefaultState().withProperty(GDAgateLeaves.CHECK_DECAY, Boolean.FALSE);
 
     public GDGenFossilizedTree(boolean flag) {
         super(flag);
@@ -61,7 +57,7 @@ public class GDGenFossilizedTree extends WorldGenAbstractTree {
             } else {
                 BlockPos down = position.down();
                 IBlockState state = worldIn.getBlockState(down);
-                boolean isSoil = state.getBlock().canSustainPlant(state, worldIn, down, net.minecraft.util.EnumFacing.UP, ((GDAgateSapling)GDBlocks.gaia_sapling));
+                boolean isSoil = state.getBlock().canSustainPlant(state, worldIn, down, EnumFacing.UP, ((GDFossilSapling)GDBlocks.fossilized_sapling));
 
                 if (isSoil && position.getY() < worldIn.getHeight() - height - 1) {
                     state.getBlock().onPlantGrow(state, worldIn, down, position);

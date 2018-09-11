@@ -33,7 +33,7 @@ public class GDAgateGolem extends EntityMob {
         this.tasks.addTask(4, new EntityAIWanderAvoidWater(this, 0.2D));
         this.tasks.addTask(5, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
         this.tasks.addTask(5, new EntityAILookIdle(this));
-        this.targetTasks.addTask(3, new EntityAIHurtByTarget(this, true, new Class[0]));
+        this.targetTasks.addTask(3, new EntityAIHurtByTarget(this, true));
         this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityGolem.class, false));
     }
 

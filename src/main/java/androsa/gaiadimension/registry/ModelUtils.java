@@ -1,7 +1,6 @@
 package androsa.gaiadimension.registry;
 
 import net.minecraft.block.Block;
-import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.renderer.block.statemap.DefaultStateMapper;
@@ -11,8 +10,6 @@ import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.relauncher.ReflectionHelper;
 import net.minecraftforge.registries.IRegistryDelegate;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 
 public class ModelUtils {
@@ -24,12 +21,5 @@ public class ModelUtils {
                 .putStateModelLocations(state.getBlock())
                 .get(state);
         ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(b), itemMeta, mrl);
-    }
-
-    public static <T extends Comparable<T>> void registerToStateSingleVariant(Block b, IProperty<T> variant) {
-        List<T> variants = new ArrayList<>(variant.getAllowedValues());
-        for (int i = 0; i < variants.size(); i++) {
-            registerToState(b, i, b.getDefaultState().withProperty(variant, variants.get(i)));
-        }
     }
 }

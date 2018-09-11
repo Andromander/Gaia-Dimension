@@ -1,17 +1,13 @@
 package androsa.gaiadimension.proxy;
 
 import androsa.gaiadimension.block.inventory.*;
-import androsa.gaiadimension.block.tileentity.TileEntityGaiaStoneFurnace;
-import androsa.gaiadimension.block.tileentity.TileEntityGlitterFurnace;
-import androsa.gaiadimension.block.tileentity.TileEntityPurifier;
-import androsa.gaiadimension.block.tileentity.TileEntitySmallCrate;
+import androsa.gaiadimension.block.tileentity.*;
 import androsa.gaiadimension.entity.*;
 import androsa.gaiadimension.entity.boss.GDBlueHowliteWolf;
 import androsa.gaiadimension.entity.boss.GDMalachiteGuard;
 import androsa.gaiadimension.model.*;
 import androsa.gaiadimension.renderer.*;
 import net.minecraft.client.gui.inventory.GuiContainer;
-import net.minecraft.client.model.ModelSlime;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;

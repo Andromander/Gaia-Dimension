@@ -1,9 +1,9 @@
 package androsa.gaiadimension.world;
 
-import androsa.gaiadimension.registry.GDBiomes;
-import androsa.gaiadimension.registry.GDConfig;
 import androsa.gaiadimension.GaiaDimension;
 import androsa.gaiadimension.biomes.*;
+import androsa.gaiadimension.registry.GDBiomes;
+import androsa.gaiadimension.registry.GDConfig;
 import androsa.gaiadimension.world.layer.GDBiomeProvider;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;

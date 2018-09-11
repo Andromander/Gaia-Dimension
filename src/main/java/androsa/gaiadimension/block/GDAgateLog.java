@@ -1,27 +1,13 @@
 package androsa.gaiadimension.block;
 
-import androsa.gaiadimension.block.enums.GaiaLogVariant;
 import androsa.gaiadimension.registry.GDTabs;
 import androsa.gaiadimension.registry.ModelRegisterCallback;
-import androsa.gaiadimension.registry.ModelUtils;
 import net.minecraft.block.BlockLog;
 import net.minecraft.block.SoundType;
-import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.NonNullList;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.RayTraceResult;
-import net.minecraft.world.World;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class GDAgateLog extends BlockLog implements ModelRegisterCallback {
-
-    public static final PropertyEnum<GaiaLogVariant> VARIANT = PropertyEnum.create("variant", GaiaLogVariant.class);
 
     public GDAgateLog() {
         this.setHardness(1.5F);
@@ -33,12 +19,12 @@ public class GDAgateLog extends BlockLog implements ModelRegisterCallback {
 
     @Override
     public BlockStateContainer createBlockState() {
-        return new BlockStateContainer(this, VARIANT, LOG_AXIS);
+        return new BlockStateContainer(this, LOG_AXIS);
     }
 
     @Override
     public IBlockState getStateFromMeta(int meta) {
-        IBlockState iblockstate = this.getDefaultState().withProperty(VARIANT, GaiaLogVariant.values()[meta & 3]);
+        IBlockState iblockstate = this.getDefaultState();
 
         switch (meta & 0b1100) {
             case 0:
@@ -58,7 +44,7 @@ public class GDAgateLog extends BlockLog implements ModelRegisterCallback {
 
     @Override
     public int getMetaFromState(IBlockState state) {
-        int i = state.getValue(VARIANT).ordinal();
+        int i = 0;
 
         switch (state.getValue(LOG_AXIS)) {
             case X:
@@ -74,29 +60,5 @@ public class GDAgateLog extends BlockLog implements ModelRegisterCallback {
                 i |= 12;
         }
         return i;
-    }
-
-    @Override
-    public void getSubBlocks(CreativeTabs itemIn, NonNullList<ItemStack> items) {
-        items.add(new ItemStack(this, 1, 0));
-        items.add(new ItemStack(this, 1, 1));
-        items.add(new ItemStack(this, 1, 2));
-        items.add(new ItemStack(this, 1, 3));
-    }
-
-    @Override
-    public int damageDropped(IBlockState state) {
-        return getMetaFromState(state) & 3;
-    }
-
-    @Override
-    public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player) {
-        return new ItemStack(state.getBlock(), 1, state.getValue(VARIANT).ordinal());
-    }
-
-    @SideOnly(Side.CLIENT)
-    @Override
-    public void registerModel() {
-        ModelUtils.registerToStateSingleVariant(this, VARIANT);
     }
 }

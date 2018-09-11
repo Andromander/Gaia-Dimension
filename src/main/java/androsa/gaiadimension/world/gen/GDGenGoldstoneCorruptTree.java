@@ -1,11 +1,7 @@
 package androsa.gaiadimension.world.gen;
 
-import androsa.gaiadimension.block.GDSpecialLeaves;
-import androsa.gaiadimension.block.GDSpecialLog;
-import androsa.gaiadimension.block.enums.SpecialGaiaLeavesVariant;
-import androsa.gaiadimension.block.enums.SpecialGaiaLogVariant;
 import androsa.gaiadimension.registry.GDBlocks;
-import net.minecraft.block.*;
+import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
@@ -88,7 +84,7 @@ public class GDGenGoldstoneCorruptTree extends WorldGenTrees {
                                     state.getBlock().canBeReplacedByLeaves(state, world, tPos);
 
                                     if (state.getBlock().canBeReplacedByLeaves(state, world, tPos)) {
-                                        this.setBlockAndNotifyAdequately(world, tPos, GDBlocks.special_gaia_leaves.getDefaultState().withProperty(GDSpecialLeaves.VARIANT, SpecialGaiaLeavesVariant.CORRUPTED));
+                                        this.setBlockAndNotifyAdequately(world, tPos, GDBlocks.corrupted_leaves.getDefaultState());
                                     }
                                 }
                             }
@@ -108,7 +104,7 @@ public class GDGenGoldstoneCorruptTree extends WorldGenTrees {
                         blockID = block.getBlock();
 
                         if (blockID == Blocks.AIR || blockID.isLeaves(block, world, cPos)) {
-                            this.setBlockAndNotifyAdequately(world, cPos, GDBlocks.special_gaia_log.getDefaultState().withProperty(GDSpecialLog.VARIANT, SpecialGaiaLogVariant.CORRUPTED));
+                            this.setBlockAndNotifyAdequately(world, cPos, GDBlocks.corrupted_log.getDefaultState());
                         }
                     }
 

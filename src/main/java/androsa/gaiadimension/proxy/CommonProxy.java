@@ -1,11 +1,7 @@
 package androsa.gaiadimension.proxy;
 
 import androsa.gaiadimension.block.container.*;
-import androsa.gaiadimension.block.tileentity.TileEntityGaiaStoneFurnace;
-import androsa.gaiadimension.block.tileentity.TileEntityGlitterFurnace;
-import androsa.gaiadimension.block.tileentity.TileEntityPurifier;
-import androsa.gaiadimension.block.tileentity.TileEntitySmallCrate;
-import net.minecraft.entity.Entity;
+import androsa.gaiadimension.block.tileentity.*;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.tileentity.TileEntity;

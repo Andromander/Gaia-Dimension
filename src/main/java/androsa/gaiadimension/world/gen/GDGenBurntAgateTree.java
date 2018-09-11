@@ -1,9 +1,5 @@
 package androsa.gaiadimension.world.gen;
 
-import androsa.gaiadimension.block.GDSpecialLeaves;
-import androsa.gaiadimension.block.GDSpecialLog;
-import androsa.gaiadimension.block.enums.SpecialGaiaLeavesVariant;
-import androsa.gaiadimension.block.enums.SpecialGaiaLogVariant;
 import androsa.gaiadimension.registry.GDBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
@@ -90,7 +86,9 @@ public class GDGenBurntAgateTree extends WorldGenTrees {
 
                                 if ((Math.abs(var15) != treeWidth || Math.abs(var17) != treeWidth || rand.nextInt(2) != 0 && number != 0) &&
                                         state.getBlock().canBeReplacedByLeaves(state, world, tPos)) {
-                                    this.setBlockAndNotifyAdequately(world, tPos, GDBlocks.special_gaia_leaves.getDefaultState().withProperty(GDSpecialLeaves.VARIANT, SpecialGaiaLeavesVariant.CRUSTY));
+                                    //this.setBlockAndNotifyAdequately(world, tPos, GDBlocks.burnt_sapling.getDefaultState());
+                                    //Wait, uh, I mean...
+                                    this.setBlockAndNotifyAdequately(world, tPos, GDBlocks.crusty_leaves.getDefaultState());
                                 }
                             }
                         }
@@ -102,7 +100,7 @@ public class GDGenBurntAgateTree extends WorldGenTrees {
                         blockID = block.getBlock();
 
                         if (blockID == Blocks.AIR || blockID.isLeaves(block, world, cPos)) {
-                            this.setBlockAndNotifyAdequately(world, cPos, GDBlocks.special_gaia_log.getDefaultState().withProperty(GDSpecialLog.VARIANT, SpecialGaiaLogVariant.CRUSTY));
+                            this.setBlockAndNotifyAdequately(world, cPos, GDBlocks.crusty_log.getDefaultState());
                         }
                     }
 

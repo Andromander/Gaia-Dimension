@@ -7,7 +7,7 @@ import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.util.EnumHelper;
 
-import static net.minecraftforge.fml.common.registry.GameRegistry.*;
+import static net.minecraftforge.fml.common.registry.GameRegistry.ObjectHolder;
 
 @ObjectHolder(GaiaDimension.MODID)
 @SuppressWarnings("unused")

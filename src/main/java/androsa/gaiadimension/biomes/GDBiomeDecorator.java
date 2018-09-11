@@ -115,7 +115,7 @@ public class GDBiomeDecorator extends BiomeDecorator {
                 int Xcoord = pos.getX() + rand.nextInt(16);
                 int Zcoord = pos.getZ() + rand.nextInt(16);
                 int Ycoord = rand.nextInt(20);
-                new WorldGenMinable(GDBlocks.opal_ore.getStateFromMeta(3), chunkProviderSettings.diamondSize,
+                new WorldGenMinable(GDBlocks.opal_ore_white.getDefaultState(), chunkProviderSettings.diamondSize,
                         input -> input == GDBlocks.gaia_stone.getDefaultState()).generate(world, rand, new BlockPos(Xcoord, Ycoord, Zcoord));
             }
         } else {
@@ -123,7 +123,7 @@ public class GDBiomeDecorator extends BiomeDecorator {
                 int Xcoord = pos.getX() + rand.nextInt(16);
                 int Zcoord = pos.getZ() + rand.nextInt(16);
                 int Ycoord = rand.nextInt(25);
-                new WorldGenMinable(GDBlocks.opal_ore.getStateFromMeta(3), chunkProviderSettings.diamondSize,
+                new WorldGenMinable(GDBlocks.opal_ore_white.getDefaultState(), chunkProviderSettings.diamondSize,
                         input -> input == GDBlocks.gaia_stone.getDefaultState()).generate(world, rand, new BlockPos(Xcoord, Ycoord, Zcoord));
             }
         }

@@ -1,10 +1,10 @@
 package androsa.gaiadimension.block;
 
-import androsa.gaiadimension.registry.GDConfig;
-import androsa.gaiadimension.world.TeleporterGaia;
 import androsa.gaiadimension.registry.GDBlocks;
+import androsa.gaiadimension.registry.GDConfig;
 import androsa.gaiadimension.registry.GDTabs;
 import androsa.gaiadimension.registry.ModelRegisterCallback;
+import androsa.gaiadimension.world.TeleporterGaia;
 import mcp.MethodsReturnNonnullByDefault;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockPortal;

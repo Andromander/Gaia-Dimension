@@ -1,10 +1,16 @@
 package androsa.gaiadimension.biomes;
 
 import androsa.gaiadimension.registry.GDBlocks;
-import androsa.gaiadimension.world.gen.*;
+import androsa.gaiadimension.world.gen.GDGenCrystalPlants;
+import androsa.gaiadimension.world.gen.GDGenGummyBlob;
+import androsa.gaiadimension.world.gen.GDGenNoTrees;
+import androsa.gaiadimension.world.gen.GDGenPurpleAgateTree;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraft.world.gen.feature.*;
+import net.minecraft.world.gen.feature.WorldGenAbstractTree;
+import net.minecraft.world.gen.feature.WorldGenMinable;
+import net.minecraft.world.gen.feature.WorldGenTrees;
+import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 

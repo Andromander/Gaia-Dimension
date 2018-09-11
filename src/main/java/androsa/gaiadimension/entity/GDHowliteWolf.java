@@ -1,7 +1,7 @@
 package androsa.gaiadimension.entity;
 
-import androsa.gaiadimension.registry.GDBiomes;
 import androsa.gaiadimension.entity.boss.GDBlueHowliteWolf;
+import androsa.gaiadimension.registry.GDBiomes;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.*;
 import net.minecraft.entity.monster.EntityMob;

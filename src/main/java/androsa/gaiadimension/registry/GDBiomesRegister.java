@@ -10,7 +10,7 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.registries.IForgeRegistry;
 
-import static net.minecraftforge.common.BiomeDictionary.*;
+import static net.minecraftforge.common.BiomeDictionary.Type;
 
 @EventBusSubscriber
 public final class GDBiomesRegister {

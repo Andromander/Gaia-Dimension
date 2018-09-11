@@ -42,7 +42,7 @@ public class GDGreenAgateJungle extends GDBiomeBase {
             int Xcoord = pos.getX() + rand.nextInt(16);
             int Zcoord = pos.getZ() + rand.nextInt(16);
             int Ycoord = rand.nextInt(40);
-            new WorldGenMinable(GDBlocks.opal_ore.getStateFromMeta(2), 8, input -> input == GDBlocks.gaia_stone.getDefaultState()).generate(world, rand, new BlockPos(Xcoord, Ycoord, Zcoord));
+            new WorldGenMinable(GDBlocks.opal_ore_green.getDefaultState(), 8, input -> input == GDBlocks.gaia_stone.getDefaultState()).generate(world, rand, new BlockPos(Xcoord, Ycoord, Zcoord));
         }
     }
 
@@ -56,7 +56,7 @@ public class GDGreenAgateJungle extends GDBiomeBase {
 
         if (rand.nextInt(3) == 0) {
             if (rand.nextInt(2) == 0) {
-                return new WorldGenShrub(GDBlocks.gaia_log.getStateFromMeta(2),GDBlocks.gaia_leaves.getStateFromMeta(2));
+                return new WorldGenShrub(GDBlocks.green_agate_log.getDefaultState(), GDBlocks.green_agate_leaves.getDefaultState());
             } else {
                 return GaiaGenGreenTrees;
             }
