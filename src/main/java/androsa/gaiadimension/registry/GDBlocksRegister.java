@@ -167,9 +167,9 @@ public final class GDBlocksRegister {
         blocks.register("malachite_crusted_bricks", new GDMalachiteBricks());
         blocks.register("malachite_floor_tiles", new GDMalachiteBricks());
         blocks.register("malachite_chisel_bricks", new GDMalachiteBricks());
-        blocks.register("malachite_pulsing_bricks", new GDMalachitePulseBricks());
-        blocks.register("malachite_pulsing_tiles", new GDMalachitePulseBricks());
-        blocks.register("malachite_pulsing_chisel", new GDMalachitePulseBricks());
+        blocks.register("malachite_pulsing_bricks", new GDMalachiteBricks());
+        blocks.register("malachite_pulsing_tiles", new GDMalachiteBricks());
+        blocks.register("malachite_pulsing_chisel", new GDMalachiteBricks());
         blocks.register("malachite_brick_slab", new GDMalachiteBrickSlab(false));
         blocks.register("double_malachite_brick_slab", new GDMalachiteBrickSlab(true));
         blocks.register("malachite_floor_slab", new GDMalachiteBrickSlab(false));
