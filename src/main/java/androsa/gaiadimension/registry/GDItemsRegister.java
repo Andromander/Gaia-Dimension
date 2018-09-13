@@ -88,31 +88,31 @@ public class GDItemsRegister {
 
         items.register("agate_sword", new GDGenericSword(TOOL_AGATE));
         items.register("agate_pickaxe", new GDGenericPickaxe(TOOL_AGATE));
-        items.register("agate_axe", new GDAgateAxe(TOOL_AGATE));
+        items.register("agate_axe", new GDGenericAxe(TOOL_AGATE, 5F, -3.2F));
         items.register("agate_shovel", new GDGenericShovel(TOOL_AGATE));
         items.register("sugilite_sword", new GDGenericSword(TOOL_SUGILITE));
         items.register("sugilite_pickaxe", new GDGenericPickaxe(TOOL_SUGILITE));
-        items.register("sugilite_axe", new GDSugiliteAxe(TOOL_SUGILITE));
+        items.register("sugilite_axe", new GDGenericAxe(TOOL_SUGILITE, 6F, -3.2F));
         items.register("sugilite_shovel", new GDGenericShovel(TOOL_SUGILITE));
         items.register("ixiolite_sword", new GDGenericSword(TOOL_IXIOLITE));
         items.register("ixiolite_pickaxe", new GDGenericPickaxe(TOOL_IXIOLITE));
-        items.register("ixiolite_axe", new GDIxioliteAxe(TOOL_IXIOLITE));
+        items.register("ixiolite_axe", new GDGenericAxe(TOOL_IXIOLITE, 6F, -3.2F));
         items.register("ixiolite_shovel", new GDGenericShovel(TOOL_IXIOLITE));
         items.register("euclase_sword", new GDGenericSword(TOOL_EUCLASE));
         items.register("euclase_pickaxe", new GDGenericPickaxe(TOOL_EUCLASE));
-        items.register("euclase_axe", new GDEuclaseAxe(TOOL_EUCLASE));
+        items.register("euclase_axe", new GDGenericAxe(TOOL_EUCLASE, 6F, -3.2F));
         items.register("euclase_shovel", new GDGenericShovel(TOOL_EUCLASE));
         items.register("carnelian_sword", new GDGenericSword(TOOL_CARNELIAN));
         items.register("carnelian_pickaxe", new GDGenericPickaxe(TOOL_CARNELIAN));
-        items.register("carnelian_axe", new GDCarnelianAxe(TOOL_CARNELIAN));
+        items.register("carnelian_axe", new GDGenericAxe(TOOL_CARNELIAN, 6F, -3.2F));
         items.register("carnelian_shovel", new GDGenericShovel(TOOL_CARNELIAN));
         items.register("benitoite_sword", new GDGenericSword(TOOL_BENITOITE));
         items.register("benitoite_pickaxe", new GDGenericPickaxe(TOOL_BENITOITE));
-        items.register("benitoite_axe", new GDBenitoiteAxe(TOOL_BENITOITE));
+        items.register("benitoite_axe", new GDGenericAxe(TOOL_BENITOITE, 6F, -3.2F));
         items.register("benitoite_shovel", new GDGenericShovel(TOOL_BENITOITE));
         items.register("chalcedony_sword", new GDGenericSword(TOOL_CHALCEDONY));
         items.register("chalcedony_pickaxe", new GDGenericPickaxe(TOOL_CHALCEDONY));
-        items.register("chalcedony_axe", new GDChalcedonyAxe(TOOL_CHALCEDONY));
+        items.register("chalcedony_axe", new GDGenericAxe(TOOL_CHALCEDONY, 6F, -3.2F));
         items.register("chalcedony_shovel", new GDGenericShovel(TOOL_CHALCEDONY));
 
         items.register("sugilite_helmet", new GDSugiliteArmor(ARMOR_SUGILITE, HEAD));
