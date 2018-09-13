@@ -4,10 +4,7 @@ import androsa.gaiadimension.GaiaDimension;
 import androsa.gaiadimension.block.*;
 import androsa.gaiadimension.block.blocksore.*;
 import androsa.gaiadimension.block.sapling.*;
-import androsa.gaiadimension.block.tileentity.TileEntityGaiaStoneFurnace;
-import androsa.gaiadimension.block.tileentity.TileEntityGlitterFurnace;
-import androsa.gaiadimension.block.tileentity.TileEntityPurifier;
-import androsa.gaiadimension.block.tileentity.TileEntitySmallCrate;
+import androsa.gaiadimension.block.tileentity.*;
 import androsa.gaiadimension.fluid.GDFluidBlock;
 import androsa.gaiadimension.fluid.GDSuperhotMagma;
 import com.google.common.collect.ImmutableList;
@@ -35,6 +32,7 @@ public final class GDBlocksRegister {
         blocks.register("pyrite_torch", new GDPyriteTorch());
         blocks.register("agate_crafting_table", new GDAgateCraftingTable());
         blocks.register("crude_storage_crate", new GDCrateSmall());
+        blocks.register("mega_storage_crate", new GDCrateLarge());
         blocks.register("gaia_stone_furnace_idle", new GDGaiaStoneFurnace(false));
         blocks.register("gaia_stone_furnace_lit", new GDGaiaStoneFurnace(true));
         blocks.register("glitter_furnace_idle", new GDGlitterFurnace(false));
@@ -226,6 +224,7 @@ public final class GDBlocksRegister {
         blocks.register("precious_rock", new GDScaynyxOre());
 
         GameRegistry.registerTileEntity(TileEntitySmallCrate.class, new ResourceLocation("gaiadimension:small_crate"));
+        GameRegistry.registerTileEntity(TileEntityLargeCrate.class, new ResourceLocation("gaiadimension:large_crate"));
         GameRegistry.registerTileEntity(TileEntityGaiaStoneFurnace.class, new ResourceLocation("gaiadimension:gaia_stone_furnace"));
         GameRegistry.registerTileEntity(TileEntityGlitterFurnace.class, new ResourceLocation("gaiadimension:glitter_furnace"));
         GameRegistry.registerTileEntity(TileEntityPurifier.class, new ResourceLocation("gaiadimension:purifier"));

@@ -197,6 +197,7 @@ public class GDItemsRegister {
         items.registerBlock(GDBlocks.pyrite_torch);
         items.registerBlock(GDBlocks.agate_crafting_table);
         items.registerBlock(GDBlocks.crude_storage_crate);
+        items.registerBlock(GDBlocks.mega_storage_crate);
         items.registerBlock(GDBlocks.gaia_stone_furnace_idle);
         items.registerBlock(GDBlocks.gaia_stone_furnace_lit); //Fallback
         items.registerBlock(GDBlocks.glitter_furnace_idle);

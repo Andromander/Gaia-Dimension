@@ -30,6 +30,8 @@ public class ClientProxy extends CommonProxy {
                 return new GuiAgateCraftingTable(player.inventory, world, pos);
             case SMALL_CRATE:
                 return new GuiSmallCrate(player.inventory, (TileEntitySmallCrate) tile);
+            case LARGE_CRATE:
+                return new GuiLargeCrate(player.inventory, (TileEntityLargeCrate) tile);
             case GAIA_STONE_FURNACE:
                 return new GuiGaiaStoneFurnace(player.inventory, (TileEntityGaiaStoneFurnace) tile);
             case GLITTER_FURNACE:

@@ -14,6 +14,7 @@ public class CommonProxy implements IGuiHandler {
     public static enum GuiID {
         AGATE_CRAFT,
         SMALL_CRATE,
+        LARGE_CRATE,
         GAIA_STONE_FURNACE,
         GLITTER_FURNACE,
         PURIFIER
@@ -30,6 +31,8 @@ public class CommonProxy implements IGuiHandler {
                 return new ContainerAgateCraftingTable(player.inventory, world, pos);
             case SMALL_CRATE:
                 return new ContainerSmallCrate(player.inventory, (TileEntitySmallCrate) tile);
+            case LARGE_CRATE:
+                return new ContainerLargeCrate(player.inventory, (TileEntityLargeCrate) tile);
             case GAIA_STONE_FURNACE:
                 return new ContainerGaiaStoneFurnace(player.inventory, (TileEntityGaiaStoneFurnace) tile);
             case GLITTER_FURNACE:
