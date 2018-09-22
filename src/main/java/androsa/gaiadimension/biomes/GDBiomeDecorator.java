@@ -2,6 +2,7 @@ package androsa.gaiadimension.biomes;
 
 import androsa.gaiadimension.registry.GDBlocks;
 import androsa.gaiadimension.world.gen.GDGenLavaLake;
+import androsa.gaiadimension.world.gen.GDGenUndergroundLake;
 import mcp.MethodsReturnNonnullByDefault;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -168,11 +169,11 @@ public class GDBiomeDecorator extends BiomeDecorator {
     protected void decorateUnderground(World world, Random rand, BlockPos pos) {
         //magma, magma everywhere
         if (this.generateFalls) {
-            for (int i = 0; i < 25; ++i) {
+            for (int i = 0; i < 40; ++i) {
                 int rx = pos.getX() + rand.nextInt(16) + 8;
-                int ry = rand.nextInt(24) + 4;
+                int ry = rand.nextInt(14) + 4;
                 int rz = pos.getZ() + rand.nextInt(16) + 8;
-                caveLavaGen.generate(world, rand, new BlockPos(rx, ry, rz));
+                new GDGenUndergroundLake(GDBlocks.superhot_magma_block).generate(world, rand, new BlockPos(rx, ry, rz));
             }
         }
     }

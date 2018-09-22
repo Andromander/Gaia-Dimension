@@ -378,7 +378,7 @@ public class GaiaChunkGenerator implements IChunkGenerator {
 
         if (!disableFeatures && rand.nextInt(16) == 0) {
             int j1 = blockpos.getX() + rand.nextInt(16) + 8;
-            int j2 = rand.nextInt(rand.nextInt(GaiaWorld.CHUNKHEIGHT - 8) +8);
+            int j2 = rand.nextInt(rand.nextInt(GaiaWorld.CHUNKHEIGHT - 8) + 8);
             int j3 = blockpos.getZ() + rand.nextInt(16) + 8;
             if (j2 < GaiaWorld.SEALEVEL || rand.nextInt(5) == 0) {
                 (new GDGenLavaLake(GDBlocks.superhot_magma_block)).generate(world, rand, new BlockPos(j1, j2, j3));
