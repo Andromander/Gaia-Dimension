@@ -36,10 +36,10 @@ public class GDGenUndergroundLake extends WorldGenerator {
 
             for (int j = 0; j < i; ++j) {
                 double d0 = rand.nextDouble() * 8.0D + 5.0D;
-                double d1 = rand.nextDouble() * 6.0D + 4.0D;
+                double d1 = rand.nextDouble() * 8.0D + 5.0D;
                 double d2 = rand.nextDouble() * 8.0D + 5.0D;
                 double d3 = rand.nextDouble() * (16.0D - d0 - 2.0D) + 1.0D + d0 / 2.0D;
-                double d4 = rand.nextDouble() * (8.0D - d1 - 4.0D) + 2.0D + d1 / 2.0D;
+                double d4 = rand.nextDouble() * (4.0D - d1 - 4.0D) + 2.0D + d1 / 2.0D;
                 double d5 = rand.nextDouble() * (16.0D - d2 - 2.0D) + 1.0D + d2 / 2.0D;
 
                 for (int pointX = 1; pointX < 15; ++pointX) {
@@ -83,36 +83,18 @@ public class GDGenUndergroundLake extends WorldGenerator {
                 }
             }
 
+            //How high does the magma generate?
             for (int pondX = 0; pondX < 16; ++pondX) {
                 for (int pondZ = 0; pondZ < 16; ++pondZ) {
                     for (int pondY = 0; pondY < 8; ++pondY) {
                         if (aboolean[(pondX * 16 + pondZ) * 8 + pondY]) {
-                            worldIn.setBlockState(position.add(pondX, pondY, pondZ), pondY >= 4 ? Blocks.AIR.getDefaultState() : this.block.getDefaultState(), 2);
+                            worldIn.setBlockState(position.add(pondX, pondY, pondZ), pondY >= 3 ? Blocks.AIR.getDefaultState() : this.block.getDefaultState(), 2);
                         }
                     }
                 }
             }
 
-            for (int grassX = 0; grassX < 16; ++grassX) {
-                for (int grassZ = 0; grassZ < 16; ++grassZ) {
-                    for (int grassY = 4; grassY < 8; ++grassY) {
-                        if (aboolean[(grassX * 16 + grassZ) * 8 + grassY]) {
-                            BlockPos blockpos = position.add(grassX, grassY - 1, grassZ);
-
-                            if (worldIn.getBlockState(blockpos).getBlock() == GDBlocks.heavy_soil && worldIn.getLightFor(EnumSkyBlock.SKY, position.add(grassX, grassY, grassZ)) > 0) {
-                                Biome biome = worldIn.getBiome(blockpos);
-
-                                if (biome.topBlock.getBlock() == Blocks.MYCELIUM) {
-                                    worldIn.setBlockState(blockpos, Blocks.MYCELIUM.getDefaultState(), 2);
-                                } else {
-                                    worldIn.setBlockState(blockpos, GDBlocks.glitter_grass.getDefaultState(), 2);
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-
+            //Should we generate Volcanic Rock?
             if (this.block.getDefaultState().getMaterial() == Material.LAVA) {
                 for (int volX = 0; volX < 16; ++volX) {
                     for (int volZ = 0; volZ < 16; ++volZ) {
