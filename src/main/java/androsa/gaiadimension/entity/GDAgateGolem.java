@@ -1,10 +1,14 @@
 package androsa.gaiadimension.entity;
 
 import androsa.gaiadimension.registry.GDBiomes;
+import com.google.common.base.Predicate;
+import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.*;
+import net.minecraft.entity.monster.EntityCreeper;
 import net.minecraft.entity.monster.EntityGolem;
 import net.minecraft.entity.monster.EntityMob;
+import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.EnumDifficulty;
@@ -27,13 +31,14 @@ public class GDAgateGolem extends EntityMob {
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     protected void initEntityAI() {
-        this.tasks.addTask(1, new EntityAISwimming(this));
-        this.tasks.addTask(2, new EntityAIAttackMelee(this, 0.3D, true));
-        this.tasks.addTask(4, new EntityAIWanderAvoidWater(this, 0.2D));
-        this.tasks.addTask(5, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
+        this.tasks.addTask(1, new EntityAIAttackMelee(this, 0.3D, true));
+        this.tasks.addTask(2, new EntityAIMoveTowardsTarget(this, 0.3D, 32.0F));
+        this.tasks.addTask(3, new EntityAIWanderAvoidWater(this, 0.6D));
+        this.tasks.addTask(4, new EntityAIWatchClosest(this, EntityPlayer.class, 6.0F));
         this.tasks.addTask(5, new EntityAILookIdle(this));
-        this.targetTasks.addTask(3, new EntityAIHurtByTarget(this, true));
+        this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, false));
         this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityGolem.class, false));
     }
 
