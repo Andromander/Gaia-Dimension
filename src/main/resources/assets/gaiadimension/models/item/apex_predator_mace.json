@@ -1,0 +1,6 @@
+{
+  "parent": "item/handheld",
+  "textures": {
+    "layer0": "gaiadimension:items/apex_predator_mace"
+  }
+}
