@@ -7,6 +7,7 @@ import androsa.gaiadimension.registry.GDBlocks;
 import androsa.gaiadimension.registry.GDFeature;
 import androsa.gaiadimension.world.gen.GDGenCaves;
 import androsa.gaiadimension.world.gen.GDGenLavaLake;
+import androsa.gaiadimension.world.gen.GDGenUndergroundCaves;
 import jline.internal.Nullable;
 import mcp.MethodsReturnNonnullByDefault;
 import net.minecraft.block.Block;
@@ -54,6 +55,7 @@ public class GaiaChunkGenerator implements IChunkGenerator {
 
     private final MapGenGDMajorFeature majorFeatureGenerator = new MapGenGDMajorFeature();
     private final GDGenCaves caveGenerator = new GDGenCaves();
+    private final GDGenUndergroundCaves chasmGenerator = new GDGenUndergroundCaves();
 
     public GaiaChunkGenerator(World world, long l, boolean flag) {
         this.world = world;
@@ -86,6 +88,7 @@ public class GaiaChunkGenerator implements IChunkGenerator {
         this.biomesForGeneration = world.getBiomeProvider().getBiomes(biomesForGeneration, cx * 16, cz * 16, 16, 16);
         replaceBiomeBlocks(cx, cz, primer, biomesForGeneration);
         caveGenerator.generate(world, cx, cz, primer);
+        chasmGenerator.generate(world, cx, cz, primer);
 
         Chunk chunk = new Chunk(world, primer, cx, cz);
 
