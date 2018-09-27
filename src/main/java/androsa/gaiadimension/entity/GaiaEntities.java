@@ -37,6 +37,7 @@ public class GaiaEntities {
         entity.registerEntity(GaiaEntityNames.RUGGED_LURMORUS, GDRuggedLurmorus.class, GDRuggedLurmorus::new, 0x294934, 0x204750);
         entity.registerEntity(GaiaEntityNames.AGATE_GOLEM, GDAgateGolem.class, GDAgateGolem::new, 0x946353, 0x122534);
         entity.registerEntity(GaiaEntityNames.ANCIENT_LAGRAHK, GDAncientLagrahk.class, GDAncientLagrahk::new, 0x999999, 0x987654);
+        entity.registerEntity(GaiaEntityNames.CRYSTAL_GOLEM, GDCrystalGolem.class, GDCrystalGolem::new, 0xff7777, 0x905555);
 
         entity.registerEntity(GaiaEntityNames.BLUE_HOWLITE_WOLF, GDBlueHowliteWolf.class, GDBlueHowliteWolf::new, 0x00FF00, 0xFF00FF);
         entity.registerEntity(GaiaEntityNames.MALACHITE_GUARD, GDMalachiteGuard.class, GDMalachiteGuard::new, 0x0000FF, 0x00FF00);
