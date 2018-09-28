@@ -17,6 +17,7 @@ import net.minecraft.world.chunk.ChunkPrimer;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -87,6 +88,7 @@ public class GDBiomeBase extends Biome {
         int i = GaiaWorld.SEALEVEL;
         IBlockState iblockstate = this.topBlock;
         IBlockState iblockstate1 = this.fillerBlock;
+        IBlockState stone = getStoneReplacement();
         int j = -1;
         int k = (int) (noiseVal / 3.0D + 3.0D + rand.nextDouble() * 0.25D);
         int l = x & 15;
@@ -102,6 +104,9 @@ public class GDBiomeBase extends Biome {
                 if (iblockstate2.getMaterial() == Material.AIR) {
                     j = -1;
                 } else if (iblockstate2.getBlock() == GDBlocks.gaia_stone) {
+                    if (stone != null)
+                        chunkPrimerIn.setBlockState(i1, j1, l, stone);
+
                     if (j == -1) {
                         if (k <= 0) {
                             iblockstate = AIR;
@@ -142,6 +147,11 @@ public class GDBiomeBase extends Biome {
                 }
             }
         }
+    }
+
+    @Nullable
+    public IBlockState getStoneReplacement() {
+        return null;
     }
 
     public List<SpawnListEntry> getUndergroundMonsterList() {

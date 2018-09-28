@@ -1,5 +1,6 @@
 package androsa.gaiadimension.world.gen;
 
+import androsa.gaiadimension.biomes.GDStaticWasteland;
 import androsa.gaiadimension.biomes.GDVolcanicLands;
 import androsa.gaiadimension.block.GDCrystalGrass;
 import androsa.gaiadimension.registry.GDBlocks;
@@ -18,11 +19,11 @@ import java.util.Random;
 
 public class GDGenCaves extends MapGenCaves {
 
-    protected void generateLargeCaveNode(long caveSeed, int centerX, int centerZ, ChunkPrimer blockStorage, double randX, double randY, double randZ, boolean isVolcanic) {
-        this.generateCaveNode(caveSeed, centerX, centerZ, blockStorage, randX, randY, randZ, 1.0F + this.rand.nextFloat() * 6.0F, 0.0F, 0.0F, -1, -1, 0.5D, isVolcanic);
+    protected void generateLargeCaveNode(long caveSeed, int centerX, int centerZ, ChunkPrimer blockStorage, double randX, double randY, double randZ, boolean isHostile) {
+        this.generateCaveNode(caveSeed, centerX, centerZ, blockStorage, randX, randY, randZ, 1.0F + this.rand.nextFloat() * 6.0F, 0.0F, 0.0F, -1, -1, 0.5D, isHostile);
     }
 
-    protected void generateCaveNode(long caveSeed, int centerX, int centerZ, ChunkPrimer blockStorage, double randX, double randY, double randZ, float caveSize, float randPI, float angleToGenerate, int loopOne, int loopEnd, double yScale, boolean isVolcanic) {
+    protected void generateCaveNode(long caveSeed, int centerX, int centerZ, ChunkPrimer blockStorage, double randX, double randY, double randZ, float caveSize, float randPI, float angleToGenerate, int loopOne, int loopEnd, double yScale, boolean isHostile) {
         double offsetCenterX = (double) (centerX * 16 + 8);
         double offsetCenterZ = (double) (centerZ * 16 + 8);
         float var23 = 0.0F;
@@ -30,7 +31,7 @@ public class GDGenCaves extends MapGenCaves {
         Random caveRNG = new Random(caveSeed);
         Random clusterRNG = new Random(caveSeed);
 
-        if (isVolcanic && caveSize < 6F) {
+        if (isHostile && caveSize < 6F) {
             caveSize *= 2.0F;
         }
 
@@ -71,8 +72,8 @@ public class GDGenCaves extends MapGenCaves {
             var23 += (caveRNG.nextFloat() - caveRNG.nextFloat()) * caveRNG.nextFloat() * 4.0F;
 
             if (!shouldStop && loopOne == var27 && caveSize > 1.0F && loopEnd > 0) {
-                this.generateCaveNode(caveRNG.nextLong(), centerX, centerZ, blockStorage, randX, randY, randZ, caveRNG.nextFloat() * 0.5F + 0.5F, randPI - ((float) Math.PI / 2F), angleToGenerate / 3.0F, loopOne, loopEnd, 1.0D, isVolcanic);
-                this.generateCaveNode(caveRNG.nextLong(), centerX, centerZ, blockStorage, randX, randY, randZ, caveRNG.nextFloat() * 0.5F + 0.5F, randPI + ((float) Math.PI / 2F), angleToGenerate / 3.0F, loopOne, loopEnd, 1.0D, isVolcanic);
+                this.generateCaveNode(caveRNG.nextLong(), centerX, centerZ, blockStorage, randX, randY, randZ, caveRNG.nextFloat() * 0.5F + 0.5F, randPI - ((float) Math.PI / 2F), angleToGenerate / 3.0F, loopOne, loopEnd, 1.0D, isHostile);
+                this.generateCaveNode(caveRNG.nextLong(), centerX, centerZ, blockStorage, randX, randY, randZ, caveRNG.nextFloat() * 0.5F + 0.5F, randPI + ((float) Math.PI / 2F), angleToGenerate / 3.0F, loopOne, loopEnd, 1.0D, isHostile);
                 return;
             }
 
@@ -159,15 +160,17 @@ public class GDGenCaves extends MapGenCaves {
                                                 hitGrass = true;
                                             }
 
-                                            if (blockAt != null && (blockAt == GDBlocks.gaia_stone || blockAt == GDBlocks.frail_glitter_block || blockAt == GDBlocks.volcanic_rock || blockStateAt.getMaterial() == Material.GROUND || blockStateAt.getMaterial() == Material.GRASS)) {
+                                            if (blockAt != null && (blockAt == GDBlocks.gaia_stone || blockAt == GDBlocks.frail_glitter_block || blockAt == GDBlocks.volcanic_rock || blockAt == GDBlocks.wasteland_stone || blockStateAt.getMaterial() == Material.GROUND || blockStateAt.getMaterial() == Material.GRASS)) {
                                                 if (var59 * var59 + var51 * var51 + var46 * var46 < 0.85D) {
                                                     final IBlockState state = (caveY < 10 ? GDBlocks.superhot_magma_block : Blocks.AIR).getDefaultState();
                                                     blockStorage.setBlockState(genX, caveY, genZ, state);
                                                 } else {
-                                                    Block localBlock = clusterRNG.nextInt(6) == 0 ? GDBlocks.volcanic_rock : GDBlocks.gaia_stone;
-                                                    localBlock = isVolcanic ? localBlock : GDBlocks.frail_glitter_block;
-                                                    localBlock = hitGrass ? GDBlocks.frail_glitter_block : localBlock;
-                                                    blockStorage.setBlockState(genX, caveY, genZ, localBlock.getDefaultState());
+                                                    if (!isHostile) {
+                                                        Block localBlock = clusterRNG.nextInt(6) == 0 ? Blocks.AIR : GDBlocks.gaia_stone;
+                                                        localBlock = isHostile ? localBlock : GDBlocks.frail_glitter_block;
+                                                        localBlock = hitGrass ? GDBlocks.frail_glitter_block : localBlock;
+                                                        blockStorage.setBlockState(genX, caveY, genZ, localBlock.getDefaultState());
+                                                    }
                                                     hitGrass = false;
                                                 }
 
@@ -194,7 +197,8 @@ public class GDGenCaves extends MapGenCaves {
         @Override
         protected void recursiveGenerate(World par1World, int genX, int genZ, int centerX, int centerZ, @Nullable  ChunkPrimer blockStorage) {
         int numberOfCaves = this.rand.nextInt(this.rand.nextInt(this.rand.nextInt(40) + 1) + 1);
-        boolean isVolcanic = par1World.getBiome(new BlockPos(genX * 16, 0, genZ * 16)) instanceof GDVolcanicLands;
+        boolean isHostile = par1World.getBiome(new BlockPos(genX * 16, 0, genZ * 16)) instanceof GDVolcanicLands ||
+                par1World.getBiome(new BlockPos(genX * 16, 0, genZ * 16)) instanceof GDStaticWasteland;
 
         if (this.rand.nextInt(15) != 0) {
             numberOfCaves = 0;
@@ -207,7 +211,7 @@ public class GDGenCaves extends MapGenCaves {
             int numberOfNormalNodes = 1;
 
             if (this.rand.nextInt(4) == 0) {
-                this.generateLargeCaveNode(this.rand.nextLong(), centerX, centerZ, blockStorage, randX, randY, randZ, isVolcanic);
+                this.generateLargeCaveNode(this.rand.nextLong(), centerX, centerZ, blockStorage, randX, randY, randZ, isHostile);
                 numberOfNormalNodes += this.rand.nextInt(4);
             }
 
@@ -220,7 +224,7 @@ public class GDGenCaves extends MapGenCaves {
                     caveSize *= this.rand.nextFloat() * this.rand.nextFloat() * 3.0F + 1.0F;
                 }
 
-                this.generateCaveNode(this.rand.nextLong(), centerX, centerZ, blockStorage, randX, randY, randZ, caveSize, randPi, randEight, 0, 0, 1.0D, isVolcanic);
+                this.generateCaveNode(this.rand.nextLong(), centerX, centerZ, blockStorage, randX, randY, randZ, caveSize, randPi, randEight, 0, 0, 1.0D, isHostile);
             }
         }
     }

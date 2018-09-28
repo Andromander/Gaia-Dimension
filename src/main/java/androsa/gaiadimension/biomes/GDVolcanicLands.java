@@ -5,6 +5,7 @@ import androsa.gaiadimension.world.gen.GDGenBurntAgateTree;
 import androsa.gaiadimension.world.gen.GDGenCrystalPlants;
 import androsa.gaiadimension.world.gen.GDGenFieryAgateTree;
 import androsa.gaiadimension.world.gen.GDGenNoTrees;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
@@ -38,18 +39,12 @@ public class GDVolcanicLands extends GDBiomeBase {
 
         super.decorate(world, rand, pos);
 
-        for (int i = 0; i < 9; i++) {
+        //Searing Rock gen
+        for (int i = 0; i < 20; i++) {
             int Xcoord = pos.getX() + rand.nextInt(16);
             int Zcoord = pos.getZ() + rand.nextInt(16);
             int Ycoord = rand.nextInt(100);
-            new WorldGenMinable(GDBlocks.volcanic_rock.getDefaultState(), 33, input -> input == GDBlocks.gaia_stone.getDefaultState()).generate(world, rand, new BlockPos(Xcoord, Ycoord, Zcoord));
-        }
-
-        for (int i = 0; i < 9; i++) {
-            int Xcoord = pos.getX() + rand.nextInt(16);
-            int Zcoord = pos.getZ() + rand.nextInt(16);
-            int Ycoord = rand.nextInt(100);
-            new WorldGenMinable(GDBlocks.searing_rock.getDefaultState(), 33, input -> input == GDBlocks.gaia_stone.getDefaultState()).generate(world, rand, new BlockPos(Xcoord, Ycoord, Zcoord));
+            new WorldGenMinable(GDBlocks.searing_rock.getDefaultState(), 33, input -> input == GDBlocks.volcanic_rock.getDefaultState()).generate(world, rand, new BlockPos(Xcoord, Ycoord, Zcoord));
         }
     }
 
@@ -86,5 +81,10 @@ public class GDVolcanicLands extends GDBiomeBase {
     @SideOnly(Side.CLIENT)
     public int getFoliageColorAtPos(BlockPos pos) {
         return 0x131023;
+    }
+
+    @Override
+    public IBlockState getStoneReplacement() {
+        return GDBlocks.volcanic_rock.getDefaultState();
     }
 }

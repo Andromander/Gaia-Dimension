@@ -157,7 +157,7 @@ public class GDGenUndergroundCaves extends MapGenCaves {
                                                 hitGrass = true;
                                             }
 
-                                            if (blockAt != null && (blockAt == GDBlocks.gaia_stone || blockAt == GDBlocks.frail_glitter_block || blockAt == GDBlocks.volcanic_rock || blockStateAt.getMaterial() == Material.GROUND || blockStateAt.getMaterial() == Material.GRASS)) {
+                                            if (blockAt != null && (blockAt == GDBlocks.gaia_stone || blockAt == GDBlocks.frail_glitter_block || blockAt == GDBlocks.volcanic_rock || blockAt == GDBlocks.wasteland_stone || blockStateAt.getMaterial() == Material.GROUND || blockStateAt.getMaterial() == Material.GRASS)) {
                                                 if (var59 * var59 + var51 * var51 + var46 * var46 < 0.85D) {
                                                     final IBlockState state = (caveY < 10 ? GDBlocks.superhot_magma_block : Blocks.AIR).getDefaultState();
                                                     blockStorage.setBlockState(genX, caveY, genZ, state);

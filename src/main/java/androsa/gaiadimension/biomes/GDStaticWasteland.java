@@ -3,6 +3,7 @@ package androsa.gaiadimension.biomes;
 import androsa.gaiadimension.registry.GDBlocks;
 import androsa.gaiadimension.world.gen.GDGenStaticPatch;
 import androsa.gaiadimension.world.gen.GDGenStaticSpike;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenMinable;
@@ -53,14 +54,7 @@ public class GDStaticWasteland extends GDBiomeBase {
             int Xcoord = pos.getX() + rand.nextInt(16);
             int Zcoord = pos.getZ() + rand.nextInt(16);
             int Ycoord = rand.nextInt(100);
-            new WorldGenMinable(GDBlocks.wasteland_stone.getDefaultState(), 33, input -> input == GDBlocks.gaia_stone.getDefaultState()).generate(world, rand, new BlockPos(Xcoord, Ycoord, Zcoord));
-        }
-
-        for (int i = 0; i < 9; i++) {
-            int Xcoord = pos.getX() + rand.nextInt(16);
-            int Zcoord = pos.getZ() + rand.nextInt(16);
-            int Ycoord = rand.nextInt(100);
-            new WorldGenMinable(GDBlocks.static_stone.getDefaultState(), 33, input -> input == GDBlocks.gaia_stone.getDefaultState()).generate(world, rand, new BlockPos(Xcoord, Ycoord, Zcoord));
+            new WorldGenMinable(GDBlocks.static_stone.getDefaultState(), 33, input -> input == GDBlocks.wasteland_stone.getDefaultState()).generate(world, rand, new BlockPos(Xcoord, Ycoord, Zcoord));
         }
     }
 
@@ -79,5 +73,10 @@ public class GDStaticWasteland extends GDBiomeBase {
     @SideOnly(Side.CLIENT)
     public int getFoliageColorAtPos(BlockPos pos) {
         return 0x2B4D96;
+    }
+
+    @Override
+    public IBlockState getStoneReplacement() {
+        return GDBlocks.wasteland_stone.getDefaultState();
     }
 }
