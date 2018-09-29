@@ -7,12 +7,15 @@ import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.Item;
+import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.EnumPlantType;
 import net.minecraftforge.common.IPlantable;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.Random;
 import java.util.function.Supplier;
@@ -62,5 +65,11 @@ public class GDCrystalGrass extends Block implements ModelRegisterCallback {
                 world.getBlockState(pos.south()).getMaterial() == Material.WATER;
         return plantable.getPlantType(world, pos.offset(direction)) == EnumPlantType.Plains ||
                 plantable.getPlantType(world, pos.offset(direction)) == EnumPlantType.Beach && hasWater;
+    }
+
+    @SideOnly(Side.CLIENT)
+    @Override
+    public BlockRenderLayer getRenderLayer() {
+        return BlockRenderLayer.CUTOUT_MIPPED;
     }
 }
