@@ -1,0 +1,11 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "gaiadimension:util/cube_all_2_layer",
+    "textures": {
+      "all": "gaiadimension:blocks/keystone_block",
+      "all2": "gaiadimension:blocks/keystone_block_empty"
+    }
+  },
+  "variants": { "normal": [{}] }
+}

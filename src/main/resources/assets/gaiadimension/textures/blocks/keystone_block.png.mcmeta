@@ -1,0 +1,15 @@
+{
+  "ctm": {
+    "ctm_version": 1,
+    "type": "EDGES_FULL",
+    "layer": "CUTOUT_MIPPED",
+    "textures": [
+      "gaiadimension:blocks/keystone_block_full"
+    ],
+    "extra": {
+      "connect_to": [
+        { "block": "gaiadimension:blocks/gaia_portal" }
+      ]
+    }
+  }
+}

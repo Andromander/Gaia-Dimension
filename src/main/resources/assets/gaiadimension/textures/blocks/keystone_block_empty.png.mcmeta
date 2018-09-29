@@ -1,0 +1,16 @@
+{
+  "ctm": {
+    "ctm_version": 1,
+    "type": "EDGES_FULL",
+    "layer": "TRANSLUCENT",
+    "textures": [
+      "gaiadimension:blocks/keystone_block_ctm"
+    ],
+    "extra": {
+      "connect_to": [
+        { "block": "gaiadimension:gaia_portal" }
+      ],
+      "light": 15
+    }
+  }
+}

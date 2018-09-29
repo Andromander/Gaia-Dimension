@@ -12,6 +12,7 @@ public class GDBlocks {
 
     //Utility Blocks
     public static final BlockPortal gaia_portal = null;
+    public static final Block keystone_block = null;
     public static final Block gold_fire = null;
     public static final Block pyrite_torch = null;
     public static final Block agate_crafting_table = null;
@@ -66,6 +67,7 @@ public class GDBlocks {
     public static final Block charged_mineral = null;
     public static final Block volcanic_rock = null;
     public static final Block searing_rock = null;
+    public static final Block primal_mass = null;
 
     //Plants
     public static final Block crystal_growth_pink = null;

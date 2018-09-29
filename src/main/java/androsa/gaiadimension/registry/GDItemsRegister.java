@@ -193,6 +193,7 @@ public class GDItemsRegister {
 
         //Utility Blocks
         items.registerBlock(GDBlocks.gaia_portal);
+        items.registerBlock(GDBlocks.keystone_block);
         items.registerBlock(GDBlocks.gold_fire);
         items.registerBlock(GDBlocks.pyrite_torch);
         items.registerBlock(GDBlocks.agate_crafting_table);
@@ -283,6 +284,7 @@ public class GDItemsRegister {
         items.registerBlock(GDBlocks.charged_mineral);
         items.registerBlock(GDBlocks.volcanic_rock);
         items.registerBlock(GDBlocks.searing_rock);
+        items.registerBlock(GDBlocks.primal_mass);
 
         //Planks
         items.registerBlock(GDBlocks.pink_agate_planks);

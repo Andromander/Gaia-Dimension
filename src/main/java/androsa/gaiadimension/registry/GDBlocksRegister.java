@@ -28,6 +28,7 @@ public final class GDBlocksRegister {
 
         //Utility Blocks
         blocks.register("gaia_portal", new GDGaiaPortal());
+        blocks.register("keystone_block", new GDKeystoneBlock());
         blocks.register("gold_fire", new GDGoldFire());
         blocks.register("pyrite_torch", new GDPyriteTorch());
         blocks.register("agate_crafting_table", new GDAgateCraftingTable());
@@ -121,6 +122,7 @@ public final class GDBlocksRegister {
         blocks.register("charged_mineral", new GDChargedMineral());
         blocks.register("volcanic_rock", new GDVolcanicRock());
         blocks.register("searing_rock", new GDSearingRock());
+        blocks.register("primal_mass", new GDPrimalMass());
 
         //Planks
         blocks.register("pink_agate_planks", new GDAgatePlanks());

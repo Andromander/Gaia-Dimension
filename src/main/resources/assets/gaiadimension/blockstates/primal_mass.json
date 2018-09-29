@@ -1,0 +1,14 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "cube_all"
+  },
+  "variants": {
+    "normal": [
+      { "textures": { "all": "gaiadimension:blocks/primal_mass" }},
+      { "textures": { "all": "gaiadimension:blocks/primal_mass" }, "x": 90, "y": 90 },
+      { "textures": { "all": "gaiadimension:blocks/primal_mass" }, "x": 180, "y": 180 },
+      { "textures": { "all": "gaiadimension:blocks/primal_mass" }, "x": 270, "y": 270 }
+    ]
+  }
+}
