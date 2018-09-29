@@ -162,8 +162,8 @@ public class GDGenUndergroundCaves extends MapGenCaves {
                                                     final IBlockState state = (caveY < 10 ? GDBlocks.superhot_magma_block : Blocks.AIR).getDefaultState();
                                                     blockStorage.setBlockState(genX, caveY, genZ, state);
                                                 } else {
-                                                    Block localBlock = GDBlocks.volcanic_rock;
-                                                    localBlock = hitGrass ? GDBlocks.volcanic_rock : localBlock;
+                                                    Block localBlock = GDBlocks.primal_mass;
+                                                    localBlock = hitGrass ? GDBlocks.primal_mass : localBlock;
                                                     blockStorage.setBlockState(genX, caveY, genZ, localBlock.getDefaultState());
                                                     hitGrass = false;
                                                 }
