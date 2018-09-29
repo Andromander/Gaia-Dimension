@@ -97,7 +97,7 @@ public class GDGoldFire extends Block implements ModelRegisterCallback {
 
     @Override
     public void onBlockAdded(World world, BlockPos pos, IBlockState state) {
-        if (world.getBlockState(pos.add(0, -1, 0)).getBlock() != Blocks.GOLD_BLOCK || !((GDGaiaPortal) GDBlocks.gaia_portal).tryToCreatePortal(world, pos)) {
+        if (world.getBlockState(pos.add(0, -1, 0)).getBlock() != GDBlocks.keystone_block || !((GDGaiaPortal) GDBlocks.gaia_portal).tryToCreatePortal(world, pos)) {
             if (!world.isSideSolid(pos.down(), EnumFacing.UP)) {
                 world.setBlockToAir(pos);
             } else {

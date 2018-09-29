@@ -150,11 +150,11 @@ public class GDGaiaPortal extends BlockPortal implements ModelRegisterCallback {
                     if (thePlayer.dimension != GDConfig.dimension.dimensionID)
                     {
                         if(!ForgeHooks.onTravelToDimension(thePlayer, GDConfig.dimension.dimensionID)) return;
-                        thePlayer.server.getPlayerList().transferPlayerToDimension(thePlayer, GDConfig.dimension.dimensionID, new TeleporterGaia(thePlayer.server.getWorld(GDConfig.dimension.dimensionID), this, Blocks.GOLD_BLOCK.getDefaultState()));
+                        thePlayer.server.getPlayerList().transferPlayerToDimension(thePlayer, GDConfig.dimension.dimensionID, new TeleporterGaia(thePlayer.server.getWorld(GDConfig.dimension.dimensionID), this, GDBlocks.keystone_block.getDefaultState()));
                     }
                     else {
                         if(!ForgeHooks.onTravelToDimension(thePlayer, 0)) return;
-                        thePlayer.server.getPlayerList().transferPlayerToDimension(thePlayer, 0, new TeleporterGaia(thePlayer.server.getWorld(0), this, Blocks.GOLD_BLOCK.getDefaultState()));
+                        thePlayer.server.getPlayerList().transferPlayerToDimension(thePlayer, 0, new TeleporterGaia(thePlayer.server.getWorld(0), this, GDBlocks.keystone_block.getDefaultState()));
                     }
                 } else {
                     MinecraftServer server = FMLCommonHandler.instance().getMinecraftServerInstance();
@@ -170,7 +170,7 @@ public class GDGaiaPortal extends BlockPortal implements ModelRegisterCallback {
 
                         entityIn.isDead = false;
 
-                        server.getPlayerList().transferEntityToWorld(entityIn, i, server.getWorld(i), server.getWorld(GDConfig.dimension.dimensionID), new TeleporterGaia(server.getWorld(GDConfig.dimension.dimensionID), this, Blocks.GOLD_BLOCK.getDefaultState()));
+                        server.getPlayerList().transferEntityToWorld(entityIn, i, server.getWorld(i), server.getWorld(GDConfig.dimension.dimensionID), new TeleporterGaia(server.getWorld(GDConfig.dimension.dimensionID), this, GDBlocks.keystone_block.getDefaultState()));
                     } else {
                         if(!ForgeHooks.onTravelToDimension(entityIn, 0)) return;
 
@@ -179,7 +179,7 @@ public class GDGaiaPortal extends BlockPortal implements ModelRegisterCallback {
 
                         entityIn.isDead = false;
 
-                        server.getPlayerList().transferEntityToWorld(entityIn, GDConfig.dimension.dimensionID, server.getWorld(GDConfig.dimension.dimensionID), server.getWorld(0), new TeleporterGaia(server.getWorld(0), this, Blocks.GOLD_BLOCK.getDefaultState()));
+                        server.getPlayerList().transferEntityToWorld(entityIn, GDConfig.dimension.dimensionID, server.getWorld(GDConfig.dimension.dimensionID), server.getWorld(0), new TeleporterGaia(server.getWorld(0), this, GDBlocks.keystone_block.getDefaultState()));
                     }
                 }
             } else entityIn.timeUntilPortal = entityIn.getPortalCooldown();
@@ -313,13 +313,13 @@ public class GDGaiaPortal extends BlockPortal implements ModelRegisterCallback {
             for (i = 0; i < 22; ++i) {
                 BlockPos blockpos = pos.offset(facing, i);
 
-                if (!isEmptyBlock(world.getBlockState(blockpos).getBlock()) || world.getBlockState(blockpos.down()) != Blocks.GOLD_BLOCK.getDefaultState()) {
+                if (!isEmptyBlock(world.getBlockState(blockpos).getBlock()) || world.getBlockState(blockpos.down()) != GDBlocks.keystone_block.getDefaultState()) {
                     break;
                 }
             }
 
             IBlockState block = world.getBlockState(pos.offset(facing, i));
-            return block == Blocks.GOLD_BLOCK.getDefaultState() ? i : 0;
+            return block == GDBlocks.keystone_block.getDefaultState() ? i : 0;
         }
 
         public int getHeight() {
@@ -349,14 +349,14 @@ public class GDGaiaPortal extends BlockPortal implements ModelRegisterCallback {
                     if (i == 0) {
                         block = world.getBlockState(blockpos.offset(leftDir));
 
-                        if (block != Blocks.GOLD_BLOCK.getDefaultState()) {
+                        if (block != GDBlocks.keystone_block.getDefaultState()) {
                             break label56;
                         }
                     }
                     else if (i == this.width) {
                         block = world.getBlockState(blockpos.offset(rightDir));
 
-                        if (block != Blocks.GOLD_BLOCK.getDefaultState()) {
+                        if (block != GDBlocks.keystone_block.getDefaultState()) {
                             break label56;
                         }
                     }
@@ -364,7 +364,7 @@ public class GDGaiaPortal extends BlockPortal implements ModelRegisterCallback {
             }
 
             for (int j = 0; j < width; ++j) {
-                if (world.getBlockState(bottomLeft.offset(rightDir, j).up(height)) != Blocks.GOLD_BLOCK.getDefaultState()) {
+                if (world.getBlockState(bottomLeft.offset(rightDir, j).up(height)) != GDBlocks.keystone_block.getDefaultState()) {
                     height = 0;
                     break;
                 }
