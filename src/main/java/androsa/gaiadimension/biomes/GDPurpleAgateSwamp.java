@@ -34,9 +34,6 @@ public class GDPurpleAgateSwamp extends GDBiomeBase {
         GaiaGenPurpleTrees = new GDGenPurpleAgateTree(false);
 
         getGDBiomeDecorator().muckPoolChance = 0.25F;
-
-        topBlock = GDBlocks.scented_grass.getDefaultState();
-        fillerBlock = GDBlocks.heavy_soil.getDefaultState();
     }
 
     @Override

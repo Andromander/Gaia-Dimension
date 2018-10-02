@@ -26,9 +26,6 @@ public class GDGreenAgateJungle extends GDBiomeBase {
 
         GaiaGenGreenTrees = new GDGenGreenAgateTree(false);
 
-        topBlock = GDBlocks.verdant_grass.getDefaultState();
-        fillerBlock = GDBlocks.heavy_soil.getDefaultState();
-
         getGDBiomeDecorator().grassPerChunk = 4;
         getGDBiomeDecorator().treesPerChunk = 20;
     }

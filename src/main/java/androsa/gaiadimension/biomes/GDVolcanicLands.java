@@ -27,9 +27,6 @@ public class GDVolcanicLands extends GDBiomeBase {
     public GDVolcanicLands(Biome.BiomeProperties props) {
         super(props);
 
-        topBlock = GDBlocks.singed_grass.getDefaultState();
-        fillerBlock = GDBlocks.heavy_soil.getDefaultState();
-
         getGDBiomeDecorator().lavaPoolChance = 0.25F;
         getGDBiomeDecorator().grassPerChunk = 1;
     }

@@ -28,9 +28,6 @@ public class GDMutantAgateWildwood extends GDBiomeBase {
         spawnableCreatureList.add(new SpawnListEntry(androsa.gaiadimension.entity.GDNutrientGrowthSapper.class, 10, 3, 5));
         spawnableCreatureList.add(new SpawnListEntry(androsa.gaiadimension.entity.GDMystifiedGrowthSapper.class, 10, 3, 5));
         spawnableCreatureList.add(new SpawnListEntry(androsa.gaiadimension.entity.GDMutantGrowthExtractor.class, 5, 2, 4));
-
-        topBlock = GDBlocks.mutated_grass.getDefaultState();
-        fillerBlock = GDBlocks.heavy_soil.getDefaultState();
     }
 
     @Override

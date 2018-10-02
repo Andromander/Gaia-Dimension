@@ -24,9 +24,6 @@ public class GDFossilWoodland extends GDBiomeBase {
         spawnableCreatureList.add(new SpawnListEntry(androsa.gaiadimension.entity.GDAncientLagrahk.class, 10, 1, 1));
 
         GaiaGenFossilTrees = new GDGenFossilizedTree(false);
-
-        topBlock = GDBlocks.old_grass.getDefaultState();
-        fillerBlock = GDBlocks.heavy_soil.getDefaultState();
     }
 
     @Override

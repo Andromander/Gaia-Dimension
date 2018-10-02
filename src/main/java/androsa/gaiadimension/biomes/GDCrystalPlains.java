@@ -19,9 +19,6 @@ public class GDCrystalPlains extends GDBiomeBase {
         spawnableCreatureList.add(new SpawnListEntry(androsa.gaiadimension.entity.GDCommonGrowthSapper.class, 8, 4, 6));
 
         GaiaGenPinkTrees = new GDGenPinkAgateTree(false);
-
-        topBlock = GDBlocks.glitter_grass.getDefaultState();
-        fillerBlock = GDBlocks.heavy_soil.getDefaultState();
     }
 
     @Override
