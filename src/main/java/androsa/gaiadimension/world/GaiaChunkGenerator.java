@@ -407,11 +407,7 @@ public class GaiaChunkGenerator implements IChunkGenerator {
     public List<Biome.SpawnListEntry> getPossibleCreatures(EnumCreatureType creatureType, BlockPos pos) {
         Biome biome = world.getBiome(pos);
 
-        if (pos.getY() < GaiaWorld.SEALEVEL && biome instanceof GDBiomeBase) {
-            return ((GDBiomeBase) biome).getUndergroundMonsterList();
-        } else {
-            return biome.getSpawnableList(creatureType);
-        }
+        return biome.getSpawnableList(creatureType);
     }
 
     @Nullable

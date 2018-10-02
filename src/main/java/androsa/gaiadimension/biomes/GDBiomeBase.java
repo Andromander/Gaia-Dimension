@@ -24,23 +24,19 @@ import java.util.Random;
 
 public class GDBiomeBase extends Biome {
 
-    protected List<SpawnListEntry> undergroundMonsterList;
-
     public GDBiomeBase(BiomeProperties props) {
         super(props);
 
         spawnableCreatureList.clear();
         spawnableMonsterList.clear();
 
-        undergroundMonsterList = new ArrayList<SpawnListEntry>();
-
         //TODO: Replace with Gaia-Specific Monsters. Perhaps underground-exclusive?
         //Well, they have to be underground exclusive, it's always day time
-        undergroundMonsterList.add(new SpawnListEntry(EntitySpider.class, 20, 1, 2));
-        undergroundMonsterList.add(new SpawnListEntry(GDShalurker.class, 20, 1, 2));
-        undergroundMonsterList.add(new SpawnListEntry(EntitySkeleton.class, 20, 1, 2));
-        undergroundMonsterList.add(new SpawnListEntry(GDMuckling.class, 20, 1, 2));
-        undergroundMonsterList.add(new SpawnListEntry(EntityEnderman.class, 5, 1, 2)); //Keep this guy, though
+        spawnableMonsterList.add(new SpawnListEntry(EntitySpider.class, 20, 1, 2));
+        spawnableMonsterList.add(new SpawnListEntry(GDShalurker.class, 20, 1, 2));
+        spawnableMonsterList.add(new SpawnListEntry(EntitySkeleton.class, 20, 1, 2));
+        spawnableMonsterList.add(new SpawnListEntry(GDMuckling.class, 20, 1, 2));
+        spawnableMonsterList.add(new SpawnListEntry(EntityEnderman.class, 5, 1, 2)); //Keep this guy, though
 
         getGDBiomeDecorator().setTreesPerChunk(5);
         getGDBiomeDecorator().setGrassPerChunk(2);
@@ -152,9 +148,5 @@ public class GDBiomeBase extends Biome {
     @Nullable
     public IBlockState getStoneReplacement() {
         return null;
-    }
-
-    public List<SpawnListEntry> getUndergroundMonsterList() {
-        return this.undergroundMonsterList;
     }
 }
