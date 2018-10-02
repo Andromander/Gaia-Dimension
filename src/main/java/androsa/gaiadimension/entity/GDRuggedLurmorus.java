@@ -1,5 +1,6 @@
 package androsa.gaiadimension.entity;
 
+import androsa.gaiadimension.registry.GDBiomes;
 import androsa.gaiadimension.registry.GDBlocks;
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -39,10 +40,13 @@ public class GDRuggedLurmorus extends EntityCreature implements IAnimals {
 
     @Override
     public boolean getCanSpawnHere() {
-        int i = MathHelper.floor(this.posX);
-        int j = MathHelper.floor(this.getEntityBoundingBox().minY);
-        int k = MathHelper.floor(this.posZ);
-        BlockPos blockpos = new BlockPos(i, j, k);
-        return this.world.getBlockState(blockpos.down()).getBlock() == GDBlocks.old_grass && this.world.getLight(blockpos) > 8 && super.getCanSpawnHere();
+        int x = MathHelper.floor(this.posX);
+        int y = MathHelper.floor(this.getEntityBoundingBox().minY);
+        int z = MathHelper.floor(this.posZ);
+        BlockPos blockpos = new BlockPos(x, y, z);
+
+        return world.getBlockState(blockpos.down()).getBlock() == GDBlocks.glitter_grass &&
+                world.getLight(blockpos) > 8 &&
+                world.getBiome(new BlockPos(this)) == GDBiomes.fossil_woodland;
     }
 }

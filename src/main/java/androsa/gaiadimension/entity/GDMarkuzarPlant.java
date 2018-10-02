@@ -1,12 +1,14 @@
 package androsa.gaiadimension.entity;
 
 import androsa.gaiadimension.registry.GDBiomes;
+import androsa.gaiadimension.registry.GDBlocks;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.MoverType;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.passive.IAnimals;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 
 public class GDMarkuzarPlant extends EntityCreature implements IAnimals {
@@ -30,10 +32,8 @@ public class GDMarkuzarPlant extends EntityCreature implements IAnimals {
     }
 
     @Override
-    public void move(MoverType type, double x, double y, double z)
-    {
-        if (type == MoverType.PISTON)
-        {
+    public void move(MoverType type, double x, double y, double z) {
+        if (type == MoverType.PISTON) {
             super.move(type, x, y, z);
         }
     }
@@ -41,6 +41,13 @@ public class GDMarkuzarPlant extends EntityCreature implements IAnimals {
 
     @Override
     public boolean getCanSpawnHere() {
-        return world.getBiome(new BlockPos(this)) == GDBiomes.green_agate_jungle;
+        int x = MathHelper.floor(this.posX);
+        int y = MathHelper.floor(this.getEntityBoundingBox().minY);
+        int z = MathHelper.floor(this.posZ);
+        BlockPos blockpos = new BlockPos(x, y, z);
+
+        return world.getBlockState(blockpos.down()).getBlock() == GDBlocks.glitter_grass &&
+                world.getLight(blockpos) > 8 &&
+                world.getBiome(new BlockPos(this)) == GDBiomes.green_agate_jungle;
     }
 }
