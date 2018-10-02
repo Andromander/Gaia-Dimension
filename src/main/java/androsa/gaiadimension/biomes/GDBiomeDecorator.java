@@ -18,11 +18,12 @@ import java.util.Random;
 @MethodsReturnNonnullByDefault
 @ParametersAreNonnullByDefault
 public class GDBiomeDecorator extends BiomeDecorator {
-   // private WorldGenLakes extraLakeGen = new WorldGenLakes(GDFluids.mineralWaterBlock); //Bring this back if necessary, but I doubt that
+    //private WorldGenLakes extraLakeGen = new WorldGenLakes(GDFluids.mineralWaterBlock);
+    //private GDGenLavaLake caveLavaGen = new GDGenLavaLake(GDBlocks.superhot_magma_block);
+    /* Uncomment these if needed */
+
     private GDGenLavaLake extraLavaPoolGen = new GDGenLavaLake(GDBlocks.superhot_magma_block);
     private GDGenLavaLake extraMuckPoolGen = new GDGenLavaLake(GDBlocks.sweet_muck_block);
-
-    private GDGenLavaLake caveLavaGen = new GDGenLavaLake(GDBlocks.superhot_magma_block);
 
     public World world;
     public Random rand;
@@ -32,7 +33,6 @@ public class GDBiomeDecorator extends BiomeDecorator {
     public float muckPoolChance = -100;
 
     @Override
-    @SuppressWarnings("deprecated")
     public void decorate(World world, Random rand, Biome biome, BlockPos pos) {
 
         super.decorate(world, rand, biome, pos);

@@ -29,6 +29,6 @@ public class ClientEvents {
         BlockColors blocks = e.getBlockColors();
         ItemColors items = e.getItemColors();
 
-        items.registerItemColorHandler((stack, tintIndex) -> blocks.colorMultiplier(((ItemBlock)stack.getItem()).getBlock().getStateFromMeta(stack.getMetadata()), null, null, tintIndex), GDBlocks.glitter_grass, GDBlocks.crystal_growth);
+        items.registerItemColorHandler((stack, tintIndex) -> blocks.colorMultiplier(((ItemBlock)stack.getItem()).getBlock().getDefaultState(), null, null, tintIndex), GDBlocks.glitter_grass, GDBlocks.crystal_growth);
     }
 }

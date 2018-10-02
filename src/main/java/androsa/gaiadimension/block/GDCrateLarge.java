@@ -10,6 +10,7 @@ import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.EnumPushReaction;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -25,7 +26,6 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextFormatting;
-import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.internal.FMLNetworkHandler;
 import net.minecraftforge.fml.relauncher.Side;
@@ -136,7 +136,7 @@ public class GDCrateLarge extends Block implements ModelRegisterCallback, ITileE
                 }
 
                 if (j - i > 0) {
-                    tooltip.add(String.format(TextFormatting.ITALIC + I18n.translateToLocal("container.gaiadimension.largeCrate.more"), j - i));
+                    tooltip.add(I18n.format(TextFormatting.ITALIC + (getTranslationKey() + ".more"), j - i));
                 }
             }
         }
