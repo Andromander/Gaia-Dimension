@@ -1,13 +1,14 @@
 {
   "forge_marker": 1,
   "defaults": {
-    "model": "grass",
+    "model": "gaiadimension:util/grass",
     "textures": {
       "particle": "gaiadimension:blocks/heavy_soil",
       "bottom":   "gaiadimension:blocks/heavy_soil",
       "top":      "gaiadimension:blocks/glitter_grass_top",
       "side":     "gaiadimension:blocks/glitter_grass_side",
-      "overlay":  "gaiadimension:blocks/glitter_grass_overlay"
+      "overlay":  "gaiadimension:blocks/glitter_grass_overlay",
+      "glimmer":  "gaiadimension:blocks/glitter_grass_glimmer"
     }
   },
   "variants": {

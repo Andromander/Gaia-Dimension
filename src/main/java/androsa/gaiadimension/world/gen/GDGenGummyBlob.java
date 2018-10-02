@@ -31,7 +31,7 @@ public class GDGenGummyBlob extends WorldGenerator {
 
                     Block block = worldIn.getBlockState(position.down()).getBlock();
 
-                    if (block != GDBlocks.scented_grass && block != GDBlocks.heavy_soil && block != GDBlocks.gaia_stone) {
+                    if (block != GDBlocks.glitter_grass && block != GDBlocks.heavy_soil && block != GDBlocks.gaia_stone) {
                         break label50;
                     }
                 }
@@ -40,21 +40,21 @@ public class GDGenGummyBlob extends WorldGenerator {
                     return false;
                 }
 
-                int i1 = this.startRadius;
+                int radius = this.startRadius;
 
-                for (int i = 0; i1 >= 0 && i < 3; ++i) {
-                    int j = i1 + rand.nextInt(2);
-                    int k = i1 + rand.nextInt(2);
-                    int l = i1 + rand.nextInt(2);
-                    float f = (float)(j + k + l) * 0.333F + 0.5F;
+                for (int i = 0; radius >= 0 && i < 3; ++i) {
+                    int x = radius + rand.nextInt(2);
+                    int y = radius + rand.nextInt(2);
+                    int z = radius + rand.nextInt(2);
+                    float f = (float)(x + y + z) * 0.333F + 0.5F;
 
-                    for (BlockPos blockpos : BlockPos.getAllInBox(position.add(-j, -k, -l), position.add(j, k, l))) {
+                    for (BlockPos blockpos : BlockPos.getAllInBoxMutable(position.add(-x, -y, -z), position.add(x, y, z))) {
                         if (blockpos.distanceSq(position) <= (double)(f * f)) {
                             worldIn.setBlockState(blockpos, this.block.getDefaultState(), 4);
                         }
                     }
 
-                    position = position.add(-(i1 + 1) + rand.nextInt(2 + i1 * 2), 0 - rand.nextInt(2), -(i1 + 1) + rand.nextInt(2 + i1 * 2));
+                    position = position.add(-(radius + 1) + rand.nextInt(2 + radius * 2), 0 - rand.nextInt(2), -(radius + 1) + rand.nextInt(2 + radius * 2));
                 }
 
                 return true;

@@ -74,7 +74,7 @@ public class GDGreenAgateJungle extends GDBiomeBase {
                 return new GDGenCrystalPlants(GDBlocks.thiscus);
             }
         } else {
-            return new GDGenCrystalPlants(GDBlocks.crystal_growth_green);
+            return new GDGenCrystalPlants(GDBlocks.crystal_growth);
         }
     }
 

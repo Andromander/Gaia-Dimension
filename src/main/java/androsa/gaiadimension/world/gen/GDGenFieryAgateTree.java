@@ -46,7 +46,7 @@ public class GDGenFieryAgateTree extends WorldGenTrees {
                                     !blockID.isLeaves(block, world, cPos) &&
                                     blockID != Blocks.GRASS &&
                                     blockID != Blocks.DIRT &&
-                                    blockID != GDBlocks.singed_grass &&
+                                    blockID != GDBlocks.glitter_grass &&
                                     blockID != GDBlocks.heavy_soil &&
                                     !blockID.isWood(world, cPos)) {
                                 allClear = false;
@@ -63,7 +63,7 @@ public class GDGenFieryAgateTree extends WorldGenTrees {
             } else {
                 Block blockUsing = world.getBlockState(pos.down()).getBlock();
 
-                if ((blockUsing == GDBlocks.singed_grass || blockUsing == GDBlocks.heavy_soil) && pos.getY() < 256 - height - 1) {
+                if ((blockUsing == GDBlocks.glitter_grass || blockUsing == GDBlocks.heavy_soil) && pos.getY() < 256 - height - 1) {
                     setBlockAndNotifyAdequately(world, pos.down(), GDBlocks.heavy_soil.getDefaultState());
                     width = 4;
                     byte var18 = 0;

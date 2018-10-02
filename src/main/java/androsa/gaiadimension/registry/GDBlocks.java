@@ -32,13 +32,7 @@ public class GDBlocks {
     public static final Block heavy_soil = null;
     public static final Block corrupt_soil = null;
     public static final Block glitter_grass = null;
-    public static final Block cool_grass = null;
-    public static final Block verdant_grass = null;
-    public static final Block scented_grass = null;
-    public static final Block old_grass = null;
     public static final Block corrupt_grass = null;
-    public static final Block singed_grass = null;
-    public static final Block mutated_grass = null;
     public static final Block frail_glitter_block = null;
     public static final Block thick_glitter_block = null;
     public static final Block gummy_glitter_block = null;
@@ -70,11 +64,7 @@ public class GDBlocks {
     public static final Block primal_mass = null;
 
     //Plants
-    public static final Block crystal_growth_pink = null;
-    public static final Block crystal_growth_blue = null;
-    public static final Block crystal_growth_green = null;
-    public static final Block crystal_growth_purple = null;
-    public static final Block crystal_growth_old = null;
+    public static final Block crystal_growth = null;
     public static final Block crystal_growth_red = null;
     public static final Block crystal_growth_black = null;
     public static final Block crystal_growth_seared = null;

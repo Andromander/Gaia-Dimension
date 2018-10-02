@@ -48,37 +48,23 @@ public final class GDBlocksRegister {
         blocks.register("heavy_soil", new GDHeavySoil());
         blocks.register("corrupt_soil", new GDCorruptSoil());
         blocks.register("glitter_grass", new GDCrystalGrass(() -> GDBlocks.glitter_grass, () -> GDBlocks.heavy_soil));
-        blocks.register("cool_grass", new GDCrystalGrass(() -> GDBlocks.cool_grass, () -> GDBlocks.heavy_soil));
-        blocks.register("verdant_grass", new GDCrystalGrass(() -> GDBlocks.verdant_grass, () -> GDBlocks.heavy_soil));
-        blocks.register("scented_grass", new GDCrystalGrass(() -> GDBlocks.scented_grass, () -> GDBlocks.heavy_soil));
-        blocks.register("old_grass", new GDCrystalGrass(() -> GDBlocks.old_grass, () -> GDBlocks.heavy_soil));
         blocks.register("corrupt_grass", new GDCrystalGrass(() -> GDBlocks.corrupt_grass, () -> GDBlocks.corrupt_soil));
-        blocks.register("singed_grass", new GDCrystalGrass(() -> GDBlocks.singed_grass, () -> GDBlocks.heavy_soil));
-        blocks.register("mutated_grass", new GDCrystalGrass(() -> GDBlocks.mutated_grass, () -> GDBlocks.heavy_soil));
         blocks.register("frail_glitter_block", new GDFrailGlitterBlock());
         blocks.register("thick_glitter_block", new GDThickGlitterBlock());
         blocks.register("gummy_glitter_block", new GDGummyGlitterBlock());
 
-        //Crystal Growth
-        blocks.register("crystal_growth_pink", new GDCrystalGrowth());
-        blocks.register("crystal_growth_blue", new GDCrystalGrowth());
-        blocks.register("crystal_growth_green", new GDCrystalGrowth());
-        blocks.register("crystal_growth_purple", new GDCrystalGrowth());
-        blocks.register("crystal_growth_old", new GDCrystalGrowth());
+        //Plants
+        blocks.register("crystal_growth", new GDCrystalGrowth());
         blocks.register("crystal_growth_red", new GDCrystalGrowth());
         blocks.register("crystal_growth_black", new GDCrystalGrowth());
         blocks.register("crystal_growth_seared", new GDCrystalGrowth());
         blocks.register("crystal_growth_mutant", new GDCrystalGrowth());
-
-        //Crystal Bloom
         blocks.register("thiscus", new GDCrystalBloom());
         blocks.register("ouzium", new GDCrystalBloom());
         blocks.register("agathum", new GDCrystalBloom());
         blocks.register("varloom", new GDCrystalBloom());
         blocks.register("corrupt_varloom", new GDCrystalBloom());
         blocks.register("missingno_plant", new GDCrystalBloom());
-
-        //Crystal Fungi
         blocks.register("spotted_kersei", new GDCrystalFungus());
         blocks.register("thorny_wiltha", new GDCrystalFungus());
         blocks.register("roofed_agaric", new GDCrystalFungus());

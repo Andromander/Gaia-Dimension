@@ -56,7 +56,7 @@ public class GDBlueAgateTaiga extends GDBiomeBase {
                 return new GDGenCrystalPlants(GDBlocks.thiscus);
             }
         } else {
-            return new GDGenCrystalPlants(GDBlocks.crystal_growth_blue);
+            return new GDGenCrystalPlants(GDBlocks.crystal_growth);
         }
     }
 

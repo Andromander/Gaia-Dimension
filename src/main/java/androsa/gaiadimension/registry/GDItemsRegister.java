@@ -210,37 +210,23 @@ public class GDItemsRegister {
         items.registerBlock(GDBlocks.heavy_soil);
         items.registerBlock(GDBlocks.corrupt_soil);
         items.registerBlock(GDBlocks.glitter_grass);
-        items.registerBlock(GDBlocks.cool_grass);
-        items.registerBlock(GDBlocks.verdant_grass);
-        items.registerBlock(GDBlocks.scented_grass);
-        items.registerBlock(GDBlocks.old_grass);
         items.registerBlock(GDBlocks.corrupt_grass);
-        items.registerBlock(GDBlocks.singed_grass);
-        items.registerBlock(GDBlocks.mutated_grass);
         items.registerBlock(GDBlocks.frail_glitter_block);
         items.registerBlock(GDBlocks.thick_glitter_block);
         items.registerBlock(GDBlocks.gummy_glitter_block);
 
-        //Crystal Growth
-        items.registerBlock(GDBlocks.crystal_growth_pink);
-        items.registerBlock(GDBlocks.crystal_growth_blue);
-        items.registerBlock(GDBlocks.crystal_growth_green);
-        items.registerBlock(GDBlocks.crystal_growth_purple);
-        items.registerBlock(GDBlocks.crystal_growth_old);
+        //Plants
+        items.registerBlock(GDBlocks.crystal_growth);
         items.registerBlock(GDBlocks.crystal_growth_red);
         items.registerBlock(GDBlocks.crystal_growth_black);
         items.registerBlock(GDBlocks.crystal_growth_seared);
         items.registerBlock(GDBlocks.crystal_growth_mutant);
-
-        //Crystal Bloom
         items.registerBlock(GDBlocks.thiscus);
         items.registerBlock(GDBlocks.ouzium);
         items.registerBlock(GDBlocks.agathum);
         items.registerBlock(GDBlocks.varloom);
         items.registerBlock(GDBlocks.corrupt_varloom);
         items.registerBlock(GDBlocks.missingno_plant);
-
-        //Crystal Fungi
         items.registerBlock(GDBlocks.spotted_kersei);
         items.registerBlock(GDBlocks.thorny_wiltha);
         items.registerBlock(GDBlocks.roofed_agaric);

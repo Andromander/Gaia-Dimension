@@ -79,7 +79,7 @@ public class GDPurpleAgateSwamp extends GDBiomeBase {
                 return new GDGenCrystalPlants(GDBlocks.thiscus);
             }
         } else {
-            return new GDGenCrystalPlants(GDBlocks.crystal_growth_purple);
+            return new GDGenCrystalPlants(GDBlocks.crystal_growth);
         }
     }
 
