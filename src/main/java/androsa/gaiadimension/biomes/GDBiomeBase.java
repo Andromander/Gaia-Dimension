@@ -69,13 +69,13 @@ public class GDBiomeBase extends Biome {
     @Override
     @SideOnly(Side.CLIENT)
     public int getGrassColorAtPos(BlockPos pos) {
-        return 0xED7A9E;
+        return 0xF2A3B4;
     }
 
     @Override
     @SideOnly(Side.CLIENT)
     public int getFoliageColorAtPos(BlockPos pos) {
-        return 0xED7A9E;
+        return 0xF2A3B4;
     }
 
     @Override

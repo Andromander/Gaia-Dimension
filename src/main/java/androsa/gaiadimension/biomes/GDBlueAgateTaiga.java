@@ -68,12 +68,12 @@ public class GDBlueAgateTaiga extends GDBiomeBase {
     @Override
     @SideOnly(Side.CLIENT)
     public int getGrassColorAtPos(BlockPos pos) {
-        return 0x73A3E2;
+        return 0x688AC8;
     }
 
     @Override
     @SideOnly(Side.CLIENT)
     public int getFoliageColorAtPos(BlockPos pos) {
-        return 0x73A3E2;
+        return 0x688AC8;
     }
 }

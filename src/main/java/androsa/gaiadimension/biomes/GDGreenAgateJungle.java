@@ -81,12 +81,12 @@ public class GDGreenAgateJungle extends GDBiomeBase {
     @Override
     @SideOnly(Side.CLIENT)
     public int getGrassColorAtPos(BlockPos pos) {
-        return 0x46D663;
+        return 0x4BB64E;
     }
 
     @Override
     @SideOnly(Side.CLIENT)
     public int getFoliageColorAtPos(BlockPos pos) {
-        return 0x46D663;
+        return 0x4BB64E;
     }
 }

@@ -86,12 +86,12 @@ public class GDPurpleAgateSwamp extends GDBiomeBase {
     @Override
     @SideOnly(Side.CLIENT)
     public int getGrassColorAtPos(BlockPos pos) {
-        return 0xB974E8;
+        return 0x806FB9;
     }
 
     @Override
     @SideOnly(Side.CLIENT)
     public int getFoliageColorAtPos(BlockPos pos) {
-        return 0xB974E8;
+        return 0x806FB9;
     }
 }

@@ -50,12 +50,12 @@ public class GDFossilWoodland extends GDBiomeBase {
     @Override
     @SideOnly(Side.CLIENT)
     public int getGrassColorAtPos(BlockPos pos) {
-        return 0xEFC673;
+        return 0xBBA779;
     }
 
     @Override
     @SideOnly(Side.CLIENT)
     public int getFoliageColorAtPos(BlockPos pos) {
-        return 0xEFC673;
+        return 0xBBA779;
     }
 }

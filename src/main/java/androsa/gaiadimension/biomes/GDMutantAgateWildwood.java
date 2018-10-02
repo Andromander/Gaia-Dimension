@@ -99,12 +99,12 @@ public class GDMutantAgateWildwood extends GDBiomeBase {
     @Override
     @SideOnly(Side.CLIENT)
     public int getGrassColorAtPos(BlockPos pos) {
-        return 0xE0EDCB;
+        return 0xD4D7B0;
     }
 
     @Override
     @SideOnly(Side.CLIENT)
     public int getFoliageColorAtPos(BlockPos pos) {
-        return 0xE0EDCB;
+        return 0xD4D7B0;
     }
 }

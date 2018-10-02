@@ -71,13 +71,13 @@ public class GDVolcanicLands extends GDBiomeBase {
     @Override
     @SideOnly(Side.CLIENT)
     public int getGrassColorAtPos(BlockPos pos) {
-        return 0x131023;
+        return 0x232323;
     }
 
     @Override
     @SideOnly(Side.CLIENT)
     public int getFoliageColorAtPos(BlockPos pos) {
-        return 0x131023;
+        return 0x232323;
     }
 
     @Override
