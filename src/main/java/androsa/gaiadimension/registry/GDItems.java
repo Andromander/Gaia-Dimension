@@ -47,6 +47,8 @@ public class GDItems {
     public static Item.ToolMaterial TOOL_GAIA_CHAMP = EnumHelper.addToolMaterial("GAIA_CHAMP", 4, -1, 10.0F, 16.0F, 25);
 
 
+    public static final Item crystallized_redstone = null;
+    public static final Item crystallized_lapis_lazuli = null;
     public static final Item glint_and_gold = null;
     public static final Item agate_stick = null;
     public static final Item hot_dust = null;

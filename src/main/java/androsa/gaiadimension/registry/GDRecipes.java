@@ -1,6 +1,8 @@
 package androsa.gaiadimension.registry;
 
+import androsa.gaiadimension.item.GDItem;
 import androsa.gaiadimension.recipe.RecipeHandler;
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraftforge.event.RegistryEvent;
@@ -24,6 +26,8 @@ public class GDRecipes {
         OreDictionary.registerOre("planksAgate", new ItemStack(GDBlocks.crusty_planks, 1, OreDictionary.WILDCARD_VALUE));
         OreDictionary.registerOre("planksAgate", new ItemStack(GDBlocks.heated_planks, 1, OreDictionary.WILDCARD_VALUE));
 
+        GameRegistry.addSmelting(new ItemStack(Items.REDSTONE, 1), new ItemStack(GDItems.crystallized_redstone, 1), 0.0F);
+        GameRegistry.addSmelting(new ItemStack(Items.DYE, 1, 4), new ItemStack(GDItems.crystallized_lapis_lazuli, 1), 0.0F);
         GameRegistry.addSmelting(new ItemStack(GDItems.lurmorus_meat, 1), new ItemStack(GDItems.lurmorus_steak, 1), 0.0F);
         GameRegistry.addSmelting(new ItemStack(GDItems.fine_dust, 1), new ItemStack(GDItems.cloudy_shard, 1), 0.1F);
         GameRegistry.addSmelting(new ItemStack(GDItems.goldstone_dust, 1), new ItemStack(GDItems.goldstone_residue, 1), 0.1F);

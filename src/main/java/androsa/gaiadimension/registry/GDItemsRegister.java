@@ -27,6 +27,8 @@ public class GDItemsRegister {
     public static void onRegisterItems(RegistryEvent.Register<Item> event) {
         ItemRegistryHelper items = new ItemRegistryHelper(event.getRegistry());
 
+        items.register("crystallized_redstone", new GDItem());
+        items.register("crystallized_lapis_lazuli", new GDItem());
         items.register("glint_and_gold", new GDFlintAndGold());
         items.register("agate_stick", new GDItem());
         items.register("hot_dust", new GDItem());
