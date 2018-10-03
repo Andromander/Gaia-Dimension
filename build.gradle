@@ -14,6 +14,14 @@ version = project.mod_version
 group = project.mod_group // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = project.archives_base_name
 
+String fullVersion = project.mc_version + "-" + version
+if (System.getenv("TRAVIS_BUILD_NUMBER") != null) {
+    fullVersion += "+${System.getenv("TRAVIS_BUILD_NUMBER")}"
+} else {
+    fullVersion += "+UNOFFICIAL"
+}
+String jarVersion = fullVersion.replace("+", "-")
+
 sourceCompatibility = targetCompatibility = '1.8' // Need this here so eclipse task generates correctly.
 compileJava {
     sourceCompatibility = targetCompatibility = '1.8'
@@ -22,6 +30,7 @@ compileJava {
 minecraft {
     version = "${project.mc_version}-${project.forge_version}"
     runDir = "run"
+    replace '${version}', fullVersion
     
     // the mappings can be changed at any time, and must be in the following format.
     // snapshot_YYYYMMDD   snapshot are built nightly.
@@ -33,10 +42,22 @@ minecraft {
 }
 
 jar {
+    archiveName = archivesBaseName + "-" + jarVersion + ".jar"
+
     classifier = 'universal'
     manifest {
         attributes 'FMLAT': 'gd_at.cfg'
     }
+}
+
+task sourcesJar(type: Jar, dependsOn: classes) {
+    archiveName = archivesBaseName + "-" + jarVersion + "-sources.jar"
+    classifier = 'sources'
+    from sourceSets.main.allSource
+}
+
+artifacts {
+    archives sourcesJar
 }
 
 repositories {
