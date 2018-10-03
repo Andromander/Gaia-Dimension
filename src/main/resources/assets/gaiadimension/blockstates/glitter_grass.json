@@ -5,14 +5,17 @@
     "textures": {
       "particle": "gaiadimension:blocks/heavy_soil",
       "bottom":   "gaiadimension:blocks/heavy_soil",
-      "top":      "gaiadimension:blocks/glitter_grass_top",
       "side":     "gaiadimension:blocks/glitter_grass_side",
-      "overlay":  "gaiadimension:blocks/glitter_grass_overlay",
-      "glimmer":  "gaiadimension:blocks/glitter_grass_glimmer"
+      "overlay":  "gaiadimension:blocks/glitter_grass_overlay"
     }
   },
   "variants": {
-    "normal": [{}],
+    "normal": [
+      { "textures": { "top": "gaiadimension:blocks/glitter_grass_top", "glimmer":  "gaiadimension:blocks/glitter_grass_glimmer" } },
+      { "textures": { "top": "gaiadimension:blocks/glitter_grass_top", "glimmer":  "gaiadimension:blocks/glitter_grass_glimmer" }, "y": 90 },
+      { "textures": { "top": "gaiadimension:blocks/glitter_grass_top", "glimmer":  "gaiadimension:blocks/glitter_grass_glimmer" }, "y": 180 },
+      { "textures": { "top": "gaiadimension:blocks/glitter_grass_top", "glimmer":  "gaiadimension:blocks/glitter_grass_glimmer" }, "y": 270 }
+    ],
     "inventory": [{}]
   }
 }
