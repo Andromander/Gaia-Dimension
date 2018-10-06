@@ -20,6 +20,7 @@ public class GaiaEntityNames {
     public static final ResourceLocation AGATE_GOLEM = prefix("agate_golem");
     public static final ResourceLocation ANCIENT_LAGRAHK = prefix("ancient_lagrahk");
     public static final ResourceLocation CRYSTAL_GOLEM = prefix("crystal_golem");
+    public static final ResourceLocation SALTION = prefix("saltion");
 
     public static final ResourceLocation BLUE_HOWLITE_WOLF = prefix("blue_howlite_wolf");
     public static final ResourceLocation MALACHITE_GUARD = prefix("malachite_guard");
