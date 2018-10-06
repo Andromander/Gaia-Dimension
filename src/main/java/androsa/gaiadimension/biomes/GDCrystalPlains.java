@@ -19,6 +19,8 @@ public class GDCrystalPlains extends GDBiomeBase {
         spawnableCreatureList.add(new SpawnListEntry(androsa.gaiadimension.entity.GDCommonGrowthSapper.class, 8, 4, 6));
 
         GaiaGenPinkTrees = new GDGenPinkAgateTree(false);
+
+        decorator.grassPerChunk = 5;
     }
 
     @Override
@@ -28,15 +30,6 @@ public class GDCrystalPlains extends GDBiomeBase {
 
     @Override
     public WorldGenerator getRandomWorldGenForGrass(Random rand) {
-
-        if (rand.nextInt(24) == 0) {
-            if (rand.nextInt(8) == 0) {
-                return new GDGenCrystalPlants(GDBlocks.ouzium);
-            } else {
-                return new GDGenCrystalPlants(GDBlocks.thiscus);
-            }
-        } else {
-            return new GDGenCrystalPlants(GDBlocks.crystal_growth);
-        }
+        return new GDGenCrystalPlants(GDBlocks.crystal_growth);
     }
 }

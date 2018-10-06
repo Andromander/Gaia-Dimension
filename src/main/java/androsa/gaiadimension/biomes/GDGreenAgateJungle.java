@@ -26,8 +26,8 @@ public class GDGreenAgateJungle extends GDBiomeBase {
 
         GaiaGenGreenTrees = new GDGenGreenAgateTree(false);
 
-        getGDBiomeDecorator().grassPerChunk = 4;
-        getGDBiomeDecorator().treesPerChunk = 20;
+        biomeDecorator.grassPerChunk = 4;
+        biomeDecorator.treesPerChunk = 20;
     }
 
     @Override
@@ -64,18 +64,7 @@ public class GDGreenAgateJungle extends GDBiomeBase {
 
     @Override
     public WorldGenerator getRandomWorldGenForGrass(Random rand) {
-
-        if (rand.nextInt(32) == 0) {
-            return new GDGenCrystalPlants(GDBlocks.roofed_agaric);
-        } else if (rand.nextInt(8) == 0) {
-            if (rand.nextInt(4) == 0) {
-                return new GDGenCrystalPlants(GDBlocks.ouzium);
-            } else {
-                return new GDGenCrystalPlants(GDBlocks.thiscus);
-            }
-        } else {
-            return new GDGenCrystalPlants(GDBlocks.crystal_growth);
-        }
+        return new GDGenCrystalPlants(GDBlocks.crystal_growth);
     }
 
     @Override

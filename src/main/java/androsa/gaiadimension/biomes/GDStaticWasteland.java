@@ -24,10 +24,10 @@ public class GDStaticWasteland extends GDBiomeBase {
         this.topBlock = GDBlocks.wasteland_stone.getDefaultState();
         this.fillerBlock = GDBlocks.wasteland_stone.getDefaultState();
 
-        this.decorator.treesPerChunk = -1;
-        this.decorator.grassPerChunk = -1;
-
-        getGDBiomeDecorator().lakesPerChunk = -1;
+        biomeDecorator.treesPerChunk = -1;
+        biomeDecorator.grassPerChunk = -1;
+        biomeDecorator.lakesPerChunk = -1;
+        biomeDecorator.fungiPerChunk = -1;
     }
 
     @Override

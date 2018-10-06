@@ -11,7 +11,7 @@ public class GDMineralRiver extends GDBiomeBase {
         topBlock = GDBlocks.salt.getDefaultState();
         fillerBlock = GDBlocks.salt.getDefaultState();
 
-        getGDBiomeDecorator().treesPerChunk = -1;
-        getGDBiomeDecorator().grassPerChunk = -1;
+        biomeDecorator.treesPerChunk = -1;
+        biomeDecorator.grassPerChunk = -1;
     }
 }

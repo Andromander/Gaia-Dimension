@@ -33,7 +33,7 @@ public class GDPurpleAgateSwamp extends GDBiomeBase {
 
         GaiaGenPurpleTrees = new GDGenPurpleAgateTree(false);
 
-        getGDBiomeDecorator().muckPoolChance = 0.25F;
+        biomeDecorator.muckPoolChance = 0.25F;
     }
 
     @Override

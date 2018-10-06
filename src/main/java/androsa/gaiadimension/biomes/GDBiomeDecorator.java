@@ -1,43 +1,240 @@
 package androsa.gaiadimension.biomes;
 
 import androsa.gaiadimension.registry.GDBlocks;
+import androsa.gaiadimension.world.gen.GDGenCrystalPlants;
 import androsa.gaiadimension.world.gen.GDGenLavaLake;
-import androsa.gaiadimension.world.gen.GDGenUndergroundCaves;
-import mcp.MethodsReturnNonnullByDefault;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
-import net.minecraft.world.biome.BiomeDecorator;
 import net.minecraft.world.gen.ChunkGeneratorSettings;
-import net.minecraft.world.gen.feature.WorldGenLiquids;
+import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import net.minecraft.world.gen.feature.WorldGenMinable;
+import net.minecraft.world.gen.feature.WorldGenerator;
 
-import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.Random;
 
-@MethodsReturnNonnullByDefault
-@ParametersAreNonnullByDefault
-public class GDBiomeDecorator extends BiomeDecorator {
+public class GDBiomeDecorator {
     //private WorldGenLakes extraLakeGen = new WorldGenLakes(GDFluids.mineralWaterBlock);
     //private GDGenLavaLake caveLavaGen = new GDGenLavaLake(GDBlocks.superhot_magma_block);
     /* Uncomment these if needed */
 
     private GDGenLavaLake extraLavaPoolGen = new GDGenLavaLake(GDBlocks.superhot_magma_block);
     private GDGenLavaLake extraMuckPoolGen = new GDGenLavaLake(GDBlocks.sweet_muck_block);
+    /** Section for Flowers */
+    public WorldGenerator thiscusGen = new GDGenCrystalPlants(GDBlocks.thiscus);
+    public WorldGenerator ouziumGen = new GDGenCrystalPlants(GDBlocks.ouzium);
+    public WorldGenerator agathumGen = new GDGenCrystalPlants(GDBlocks.agathum);
+    //public WorldGenerator varloomGen = new GDGenCrystalPlants(GDBlocks.varloom); TBD
+    public WorldGenerator corruptVarloomGen = new GDGenCrystalPlants(GDBlocks.corrupt_varloom);
+    /** Section for Fungi */
+    public WorldGenerator pinkShroomGen = new GDGenCrystalPlants(GDBlocks.spotted_kersei);
+    public WorldGenerator blueShroomGen = new GDGenCrystalPlants(GDBlocks.thorny_wiltha);
+    public WorldGenerator greenShroomGen = new GDGenCrystalPlants(GDBlocks.roofed_agaric);
+    public WorldGenerator purpleShroomGen = new GDGenCrystalPlants(GDBlocks.bulbous_hobina);
+    public WorldGenerator fossilShroomGen = new GDGenCrystalPlants(GDBlocks.stickly_cupsir);
+    public WorldGenerator mutantShroomGen = new GDGenCrystalPlants(GDBlocks.mystical_murgni);
+    public WorldGenerator corruptShroomGen = new GDGenCrystalPlants(GDBlocks.corrupted_gaia_eye);
 
     public World world;
     public Random rand;
+    public BlockPos chunkPos;
+    public ChunkGeneratorSettings chunkProviderSettings;
 
-    public int lakesPerChunk = 0;
+    public int lakesPerChunk;
+    public int fungiPerChunk;
+    public int flowersPerChunk;
+    public int treesPerChunk = 0;
+    public int grassPerChunk = 0;
     public float lavaPoolChance = 0;
-    public float muckPoolChance = -100;
+    public float muckPoolChance;
 
-    @Override
     public void decorate(World world, Random rand, Biome biome, BlockPos pos) {
-
-        super.decorate(world, rand, biome, pos);
-
         this.chunkProviderSettings = ChunkGeneratorSettings.Factory.jsonToFactory(world.getWorldInfo().getGeneratorOptions()).build();
+        this.chunkPos = pos;
+
+        for (int i = 0; i < treesPerChunk; ++i) {
+            int k6 = rand.nextInt(16) + 8;
+            int l = rand.nextInt(16) + 8;
+            WorldGenAbstractTree worldgenabstracttree = biome.getRandomTreeFeature(rand);
+            worldgenabstracttree.setDecorationDefaults();
+            BlockPos blockpos = world.getHeight(this.chunkPos.add(k6, 0, l));
+
+            if (worldgenabstracttree.generate(world, rand, blockpos)) {
+                worldgenabstracttree.generateSaplings(world, rand, blockpos);
+            }
+        }
+
+        for (int i = 0; i < this.grassPerChunk; ++i) {
+            int x = rand.nextInt(16) + 8;
+            int z = rand.nextInt(16) + 8;
+            int height = world.getHeight(this.chunkPos.add(x, 0, z)).getY() * 2;
+
+            if (height > 0) {
+                int y = rand.nextInt(height);
+                biome.getRandomWorldGenForGrass(rand).generate(world, rand, this.chunkPos.add(x, y, z));
+            }
+        }
+
+        for (int i = 0; i < fungiPerChunk; ++i) {
+            if (rand.nextInt(8) == 0) {
+                if (biome instanceof GDBlueAgateTaiga) {
+                    int x = rand.nextInt(16) + 8;
+                    int z = rand.nextInt(16) + 8;
+                    int height = world.getHeight(this.chunkPos.add(x, 0, z)).getY() + 32;
+
+                    if (height > 0) {
+                        int y = rand.nextInt(height);
+                        BlockPos blockpos1 = this.chunkPos.add(x, y, z);
+                        this.blueShroomGen.generate(world, rand, blockpos1);
+                    }
+                } else if (biome instanceof GDFossilWoodland) {
+                    int x = rand.nextInt(16) + 8;
+                    int z = rand.nextInt(16) + 8;
+                    int height = world.getHeight(this.chunkPos.add(x, 0, z)).getY() + 32;
+
+                    if (height > 0) {
+                        int y = rand.nextInt(height);
+                        BlockPos blockpos1 = this.chunkPos.add(x, y, z);
+                        this.fossilShroomGen.generate(world, rand, blockpos1);
+                    }
+                } else if (biome instanceof GDGoldstoneLands) {
+                    int x = rand.nextInt(16) + 8;
+                    int z = rand.nextInt(16) + 8;
+                    int height = world.getHeight(this.chunkPos.add(x, 0, z)).getY() + 32;
+
+                    if (height > 0) {
+                        int y = rand.nextInt(height);
+                        BlockPos blockpos1 = this.chunkPos.add(x, y, z);
+                        this.corruptShroomGen.generate(world, rand, blockpos1);
+                    }
+                } else if (biome instanceof GDGreenAgateJungle) {
+                    int x = rand.nextInt(16) + 8;
+                    int z = rand.nextInt(16) + 8;
+                    int height = world.getHeight(this.chunkPos.add(x, 0, z)).getY() + 32;
+
+                    if (height > 0) {
+                        int y = rand.nextInt(height);
+                        BlockPos blockpos1 = this.chunkPos.add(x, y, z);
+                        this.greenShroomGen.generate(world, rand, blockpos1);
+                    }
+                } else if (biome instanceof GDMutantAgateWildwood) {
+                    int x = rand.nextInt(16) + 8;
+                    int z = rand.nextInt(16) + 8;
+                    int height = world.getHeight(this.chunkPos.add(x, 0, z)).getY() + 32;
+
+                    if (height > 0) {
+                        int y = rand.nextInt(height);
+                        BlockPos blockpos1 = this.chunkPos.add(x, y, z);
+                        this.mutantShroomGen.generate(world, rand, blockpos1);
+                    }
+                } else if (biome instanceof GDPurpleAgateSwamp) {
+                    int x = rand.nextInt(16) + 8;
+                    int z = rand.nextInt(16) + 8;
+                    int height = world.getHeight(this.chunkPos.add(x, 0, z)).getY() + 32;
+
+                    if (height > 0) {
+                        int y = rand.nextInt(height);
+                        BlockPos blockpos1 = this.chunkPos.add(x, y, z);
+                        this.purpleShroomGen.generate(world, rand, blockpos1);
+                    }
+                } else {
+                    int x = rand.nextInt(16) + 8;
+                    int z = rand.nextInt(16) + 8;
+                    int height = world.getHeight(this.chunkPos.add(x, 0, z)).getY() + 32;
+
+                    if (height > 0) {
+                        int y = rand.nextInt(height);
+                        BlockPos blockpos1 = this.chunkPos.add(x, y, z);
+                        this.pinkShroomGen.generate(world, rand, blockpos1);
+                    }
+                }
+            }
+        }
+
+        for (int i = 0; i < flowersPerChunk; ++i) {
+            if (rand.nextInt(4) == 0) {
+                if (biome instanceof GDGoldstoneLands) {
+                    int x = rand.nextInt(16) + 8;
+                    int z = rand.nextInt(16) + 8;
+                    int height = world.getHeight(this.chunkPos.add(x, 0, z)).getY() + 32;
+
+                    if (height > 0) {
+                        int y = rand.nextInt(height);
+                        BlockPos blockpos1 = this.chunkPos.add(x, y, z);
+                        this.corruptVarloomGen.generate(world, rand, blockpos1);
+                    }
+                } else if (biome instanceof GDMutantAgateWildwood) {
+                    if (rand.nextInt(4) == 0) {
+                        int x = rand.nextInt(16) + 8;
+                        int z = rand.nextInt(16) + 8;
+                        int height = world.getHeight(this.chunkPos.add(x, 0, z)).getY() + 32;
+
+                        if (height > 0) {
+                            int y = rand.nextInt(height);
+                            BlockPos blockpos1 = this.chunkPos.add(x, y, z);
+                            this.agathumGen.generate(world, rand, blockpos1);
+                        }
+                    } else {
+                        int x = rand.nextInt(16) + 8;
+                        int z = rand.nextInt(16) + 8;
+                        int height = world.getHeight(this.chunkPos.add(x, 0, z)).getY() + 32;
+
+                        if (height > 0) {
+                            int y = rand.nextInt(height);
+                            BlockPos blockpos1 = this.chunkPos.add(x, y, z);
+                            this.ouziumGen.generate(world, rand, blockpos1);
+                        }
+                    }
+                } else {
+                    if (rand.nextInt(4) == 0) {
+                        int x = rand.nextInt(16) + 8;
+                        int z = rand.nextInt(16) + 8;
+                        int height = world.getHeight(this.chunkPos.add(x, 0, z)).getY() + 32;
+
+                        if (height > 0) {
+                            int y = rand.nextInt(height);
+                            BlockPos blockpos1 = this.chunkPos.add(x, y, z);
+                            this.ouziumGen.generate(world, rand, blockpos1);
+                        }
+                    } else {
+                        int x = rand.nextInt(16) + 8;
+                        int z = rand.nextInt(16) + 8;
+                        int height = world.getHeight(this.chunkPos.add(x, 0, z)).getY() + 32;
+
+                        if (height > 0) {
+                            int y = rand.nextInt(height);
+                            BlockPos blockpos1 = this.chunkPos.add(x, y, z);
+                            this.thiscusGen.generate(world, rand, blockpos1);
+                        }
+                    }
+                }
+            }
+        }
+
+        genDecorations(biome, world, rand);
+        decorateUnderground(world, rand, pos);
+    }
+
+    protected void genDecorations(Biome biome, World world, Random randomGenerator) {
+        //Handles the number of Lava Pools per chunk
+        if (randomGenerator.nextFloat() <= lavaPoolChance) {
+            int rx = chunkPos.getX() + randomGenerator.nextInt(16) + 8;
+            int rz = chunkPos.getZ() + randomGenerator.nextInt(16) + 8;
+            extraLavaPoolGen.generate(world, randomGenerator, world.getHeight(new BlockPos(rx, 0, rz)));
+        }
+
+        //Handles the number of Muck Pools per chunk
+        if (randomGenerator.nextFloat() <= muckPoolChance) {
+            int rx = chunkPos.getX() + randomGenerator.nextInt(16) + 8;
+            int rz = chunkPos.getZ() + randomGenerator.nextInt(16) + 8;
+            extraMuckPoolGen.generate(world, randomGenerator, world.getHeight(new BlockPos(rx, 0, rz)));
+        }
+    }
+
+    /**
+     * Method used to decorate the underground
+     */
+    protected void decorateUnderground(World world, Random rand, BlockPos pos) {
 
         //Speckled Rock gen
         for (int i = 0; i < 10; i++) {
@@ -112,7 +309,7 @@ public class GDBiomeDecorator extends BiomeDecorator {
                     input -> input == GDBlocks.gaia_stone.getDefaultState()).generate(world, rand, new BlockPos(Xcoord, Ycoord, Zcoord));
         }
         //White Opal Ore gen
-        if (biome instanceof GDMutantAgateWildwood) {
+        if (world.getBiome(pos) instanceof GDMutantAgateWildwood) {
             for (int i = 0; i < 4; i++) {
                 int Xcoord = pos.getX() + rand.nextInt(16);
                 int Zcoord = pos.getZ() + rand.nextInt(16);
@@ -130,45 +327,7 @@ public class GDBiomeDecorator extends BiomeDecorator {
             }
         }
 
-        decorateUnderground(world, rand, pos);
-    }
-        //GDFeature nearFeature = GDFeature.getNearestFeature(pos.getX() >> 4, pos.getZ() >> 4, world);
-/*
-        if (!nearFeature.areChunkDecorationsEnabled) {
-
-        } else {
-            super.decorate(world, rand, biome, pos);
-        }
-    }
-*/
-    @Override
-    protected void genDecorations(Biome biome, World world, Random randomGenerator) {
-        if (randomGenerator.nextInt(6) == 0) {
-            int rx = chunkPos.getX() + randomGenerator.nextInt(14) + 8;
-            int rz = chunkPos.getZ() + randomGenerator.nextInt(14) + 8;
-        }
-
-        //Handles the number of Lava Pools per chunk
-        if (randomGenerator.nextFloat() <= lavaPoolChance) {
-            int rx = chunkPos.getX() + randomGenerator.nextInt(16) + 8;
-            int rz = chunkPos.getZ() + randomGenerator.nextInt(16) + 8;
-            extraLavaPoolGen.generate(world, randomGenerator, world.getHeight(new BlockPos(rx, 0, rz)));
-        }
-
-        //Handles the number of Muck Pools per chunk
-        if (randomGenerator.nextFloat() <= muckPoolChance) {
-            int rx = chunkPos.getX() + randomGenerator.nextInt(16) + 8;
-            int rz = chunkPos.getZ() + randomGenerator.nextInt(16) + 8;
-            extraMuckPoolGen.generate(world, randomGenerator, world.getHeight(new BlockPos(rx, 0, rz)));
-        }
-
-        super.genDecorations(biome, world, randomGenerator);
-
-        decorateUnderground(world, randomGenerator, chunkPos);
-    }
-
-    protected void decorateUnderground(World world, Random rand, BlockPos pos) {
-        //magma, magma everywhere
+        /* Until I can find a good use of this, I'm commenting it out...
         if (this.generateFalls) {
             for (int i = 0; i < 40; ++i) {
                 int rx = pos.getX() + rand.nextInt(16) + 8;
@@ -176,14 +335,6 @@ public class GDBiomeDecorator extends BiomeDecorator {
                 int rz = pos.getZ() + rand.nextInt(16) + 8;
                 new WorldGenLiquids(GDBlocks.superhot_magma_block).generate(world, rand, new BlockPos(rx, ry, rz));
             }
-        }
-    }
-
-    public void setTreesPerChunk(int treesPerChunk) {
-        this.treesPerChunk = treesPerChunk;
-    }
-
-    public void setGrassPerChunk(int grassPerChunk) {
-        this.grassPerChunk = grassPerChunk;
+        } */
     }
 }

@@ -14,9 +14,10 @@ public class GDSaltDunes extends GDBiomeBase {
         topBlock = GDBlocks.salt.getDefaultState();
         fillerBlock = GDBlocks.salt.getDefaultState();
 
-        this.decorator.treesPerChunk = -1;
-        this.decorator.grassPerChunk = -1;
-        getGDBiomeDecorator().lakesPerChunk = -1;
+        biomeDecorator.treesPerChunk = -1;
+        biomeDecorator.grassPerChunk = -1;
+        biomeDecorator.lakesPerChunk = -1;
+        biomeDecorator.fungiPerChunk = -1;
     }
 
     @SideOnly(Side.CLIENT)

@@ -12,20 +12,20 @@ import net.minecraft.entity.monster.EntitySpider;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
-import net.minecraft.world.biome.BiomeDecorator;
 import net.minecraft.world.chunk.ChunkPrimer;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nullable;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 
-public class GDBiomeBase extends Biome {
+public abstract class GDBiomeBase extends Biome {
+
+    public GDBiomeDecorator biomeDecorator;
 
     public GDBiomeBase(BiomeProperties props) {
         super(props);
+        biomeDecorator = getBiomeDecorator();
 
         spawnableCreatureList.clear();
         spawnableMonsterList.clear();
@@ -38,13 +38,17 @@ public class GDBiomeBase extends Biome {
         spawnableMonsterList.add(new SpawnListEntry(GDMuckling.class, 20, 1, 2));
         spawnableMonsterList.add(new SpawnListEntry(EntityEnderman.class, 5, 1, 2)); //Keep this guy, though
 
-        getGDBiomeDecorator().setTreesPerChunk(5);
-        getGDBiomeDecorator().setGrassPerChunk(2);
-        decorator.flowersPerChunk = -1;
-        decorator.reedsPerChunk = -1;
+        biomeDecorator.treesPerChunk = 5;
+        biomeDecorator.grassPerChunk = 3;
+        biomeDecorator.flowersPerChunk = 2;
+        biomeDecorator.fungiPerChunk = 1;
 
         this.topBlock = GDBlocks.glitter_grass.getDefaultState();
         this.fillerBlock = GDBlocks.heavy_soil.getDefaultState();
+    }
+
+    public GDBiomeDecorator getBiomeDecorator() {
+        return new GDBiomeDecorator();
     }
 
     @Override
@@ -53,17 +57,8 @@ public class GDBiomeBase extends Biome {
     }
 
     @Override
-    public BiomeDecorator createBiomeDecorator() {
-        return new GDBiomeDecorator();
-    }
-
-    protected GDBiomeDecorator getGDBiomeDecorator() {
-        return (GDBiomeDecorator) this.decorator;
-    }
-
-    @Override
     public void decorate(World worldIn, Random rand, BlockPos pos) {
-        this.decorator.decorate(worldIn, rand, this, pos);
+        this.biomeDecorator.decorate(worldIn, rand, this, pos);
     }
 
     @Override
@@ -83,6 +78,16 @@ public class GDBiomeBase extends Biome {
         this.genGaiaBiomeTerrain(world, rand, primer, x, z, noiseVal);
     }
 
+    /**
+     * Here's the rundown:
+     *
+     * We are checking layers from the very top of the world down
+     * Anything at or below 5 gets Bedrock
+     * Air blocks stay as air. Gaia Stone blocks will be prepared for Top and Filler Blocks
+     * If the stone blocks are below sea level, then we prepare the Mineral Water, or Ice, but that never happens
+     * Also it gets set to Salt
+     * If there is Air below Salt, prepare it with Saltstone
+     */
     public final void genGaiaBiomeTerrain(World worldIn, Random rand, ChunkPrimer chunkPrimerIn, int x, int z, double noiseVal) {
         int seaLevel = GaiaWorld.SEALEVEL;
         IBlockState iblockstate = this.topBlock;

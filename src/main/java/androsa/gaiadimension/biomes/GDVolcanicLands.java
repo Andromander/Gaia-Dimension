@@ -27,8 +27,8 @@ public class GDVolcanicLands extends GDBiomeBase {
     public GDVolcanicLands(Biome.BiomeProperties props) {
         super(props);
 
-        getGDBiomeDecorator().lavaPoolChance = 0.25F;
-        getGDBiomeDecorator().grassPerChunk = 1;
+        biomeDecorator.lavaPoolChance = 0.25F;
+        biomeDecorator.grassPerChunk = 1;
     }
 
     @Override

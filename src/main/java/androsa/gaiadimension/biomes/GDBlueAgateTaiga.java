@@ -46,18 +46,7 @@ public class GDBlueAgateTaiga extends GDBiomeBase {
 
     @Override
     public WorldGenerator getRandomWorldGenForGrass(Random rand) {
-
-        if (rand.nextInt(32) == 0) {
-            return new GDGenCrystalPlants(GDBlocks.thorny_wiltha);
-        } else if (rand.nextInt(16) == 0) {
-            if (rand.nextInt(4) == 0) {
-                return new GDGenCrystalPlants(GDBlocks.ouzium);
-            } else {
-                return new GDGenCrystalPlants(GDBlocks.thiscus);
-            }
-        } else {
-            return new GDGenCrystalPlants(GDBlocks.crystal_growth);
-        }
+        return new GDGenCrystalPlants(GDBlocks.crystal_growth);
     }
 
     @SideOnly(Side.CLIENT)

@@ -41,17 +41,10 @@ public class GDGoldstoneLands extends GDBiomeBase {
 
     @Override
     public WorldGenerator getRandomWorldGenForGrass(Random rand) {
-
-        if (rand.nextInt(32) == 0) {
-            return new GDGenCrystalPlants(GDBlocks.corrupted_gaia_eye);
-        } else if (rand.nextInt(16) == 0) {
-            return new GDGenCrystalPlants(GDBlocks.corrupt_varloom);
+        if (rand.nextInt(2) == 0) {
+            return new GDGenCrystalPlants(GDBlocks.crystal_growth_black);
         } else {
-            if (rand.nextInt(2) == 0) {
-                return new GDGenCrystalPlants(GDBlocks.crystal_growth_black);
-            } else {
-                return new GDGenCrystalPlants(GDBlocks.crystal_growth_red);
-            }
+            return new GDGenCrystalPlants(GDBlocks.crystal_growth_red);
         }
     }
 
