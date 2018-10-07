@@ -5,8 +5,7 @@
   },
   "ingredients": [
     {
-      "item": "gaiadimension:gaia_log",
-      "data": 0
+      "item": "gaiadimension:pink_agate_log"
     }
   ],
   "type": "minecraft:crafting_shapeless"

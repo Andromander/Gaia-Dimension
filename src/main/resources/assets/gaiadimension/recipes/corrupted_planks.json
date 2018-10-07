@@ -5,8 +5,7 @@
   },
   "ingredients": [
     {
-      "item": "gaiadimension:special_gaia_log",
-      "data": 1
+      "item": "gaiadimension:corrupted_log"
     }
   ],
   "type": "minecraft:crafting_shapeless"

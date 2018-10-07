@@ -1,6 +1,6 @@
 {
   "result": {
-    "item": "gaiadimension:gaia_sapling",
+    "item": "gaiadimension:corrupted_sapling",
     "data": 5
   },
   "pattern": [
@@ -12,20 +12,16 @@
   "key": {
     "S": [
       {
-        "item": "gaiadimension:gaia_sapling",
-        "data": 0
+        "item": "gaiadimension:pink_agate_sapling"
       },
       {
-        "item": "gaiadimension:gaia_sapling",
-        "data": 1
+        "item": "gaiadimension:blue_agate_sapling"
       },
       {
-        "item": "gaiadimension:gaia_sapling",
-        "data": 2
+        "item": "gaiadimension:green_agate_sapling"
       },
       {
-        "item": "gaiadimension:gaia_sapling",
-        "data": 3
+        "item": "gaiadimension:purple_agate_sapling"
       }
     ],
     "R": {

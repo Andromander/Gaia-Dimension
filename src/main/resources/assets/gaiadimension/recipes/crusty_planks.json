@@ -5,8 +5,7 @@
   },
   "ingredients": [
     {
-      "item": "gaiadimension:special_gaia_log",
-      "data": 2
+      "item": "gaiadimension:crusty_log"
     }
   ],
   "type": "minecraft:crafting_shapeless"
