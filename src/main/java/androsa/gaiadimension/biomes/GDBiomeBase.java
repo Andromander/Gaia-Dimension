@@ -1,6 +1,7 @@
 package androsa.gaiadimension.biomes;
 
 import androsa.gaiadimension.entity.GDMuckling;
+import androsa.gaiadimension.entity.GDNomadicLagrahk;
 import androsa.gaiadimension.entity.GDShalurker;
 import androsa.gaiadimension.registry.GDBlocks;
 import androsa.gaiadimension.world.GaiaWorld;
@@ -30,13 +31,14 @@ public abstract class GDBiomeBase extends Biome {
         spawnableCreatureList.clear();
         spawnableMonsterList.clear();
 
-        //TODO: Replace with Gaia-Specific Monsters. Perhaps underground-exclusive?
-        //Well, they have to be underground exclusive, it's always day time
-        spawnableMonsterList.add(new SpawnListEntry(EntitySpider.class, 20, 1, 2));
+        spawnableMonsterList.add(new SpawnListEntry(EntitySpider.class, 20, 1, 2)); //TODO: Replace with Cavernous Tick
         spawnableMonsterList.add(new SpawnListEntry(GDShalurker.class, 20, 1, 2));
-        spawnableMonsterList.add(new SpawnListEntry(EntitySkeleton.class, 20, 1, 2));
+        spawnableMonsterList.add(new SpawnListEntry(EntitySkeleton.class, 20, 1, 2)); //TODO: Replace with Archaic Warrior
         spawnableMonsterList.add(new SpawnListEntry(GDMuckling.class, 20, 1, 2));
         spawnableMonsterList.add(new SpawnListEntry(EntityEnderman.class, 5, 1, 2)); //Keep this guy, though
+        //TODO: Add Primal Beast
+
+        spawnableCreatureList.add(new SpawnListEntry(GDNomadicLagrahk.class, 15, 1, 2));
 
         biomeDecorator.treesPerChunk = 5;
         biomeDecorator.grassPerChunk = 3;

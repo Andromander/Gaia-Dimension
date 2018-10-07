@@ -23,6 +23,8 @@ public class GDGoldstoneLands extends GDBiomeBase {
 
         GaiaGenCorruptTrees = new GDGenGoldstoneCorruptTree(false);
 
+        //TODO: For now, just a Corrupt Sapper and Contorted Monster
+
         topBlock = GDBlocks.corrupt_grass.getDefaultState();
         fillerBlock = GDBlocks.corrupt_soil.getDefaultState();
     }

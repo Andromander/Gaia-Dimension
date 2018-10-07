@@ -1,5 +1,8 @@
 package androsa.gaiadimension.biomes;
 
+import androsa.gaiadimension.entity.GDMuckling;
+import androsa.gaiadimension.entity.GDMystifiedGrowthSapper;
+import androsa.gaiadimension.entity.GDSpellElement;
 import androsa.gaiadimension.registry.GDBlocks;
 import androsa.gaiadimension.world.gen.GDGenCrystalPlants;
 import androsa.gaiadimension.world.gen.GDGenGummyBlob;
@@ -25,11 +28,9 @@ public class GDPurpleAgateSwamp extends GDBiomeBase {
     public GDPurpleAgateSwamp(BiomeProperties props) {
         super(props);
 
-        spawnableCreatureList.add(new SpawnListEntry(androsa.gaiadimension.entity.GDMystifiedGrowthSapper.class, 10, 3, 5));
-        spawnableCreatureList.add(new SpawnListEntry(androsa.gaiadimension.entity.GDSpellElement.class, 10, 1, 2));
-        spawnableCreatureList.add(new SpawnListEntry(androsa.gaiadimension.entity.GDMuckling.class, 10, 1, 1));
-
-        //TODO: Decorate with unique plants/mobs to stand out more as a swamp
+        spawnableCreatureList.add(new SpawnListEntry(GDMystifiedGrowthSapper.class, 10, 3, 5));
+        spawnableCreatureList.add(new SpawnListEntry(GDSpellElement.class, 10, 1, 2));
+        spawnableCreatureList.add(new SpawnListEntry(GDMuckling.class, 10, 1, 1));
 
         GaiaGenPurpleTrees = new GDGenPurpleAgateTree(false);
 

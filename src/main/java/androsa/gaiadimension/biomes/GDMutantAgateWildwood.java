@@ -1,5 +1,6 @@
 package androsa.gaiadimension.biomes;
 
+import androsa.gaiadimension.entity.*;
 import androsa.gaiadimension.registry.GDBlocks;
 import androsa.gaiadimension.world.gen.*;
 import net.minecraft.util.math.BlockPos;
@@ -23,11 +24,11 @@ public class GDMutantAgateWildwood extends GDBiomeBase {
     public GDMutantAgateWildwood(BiomeProperties props) {
         super(props);
 
-        spawnableCreatureList.add(new SpawnListEntry(androsa.gaiadimension.entity.GDCommonGrowthSapper.class, 10, 3, 5));
-        spawnableCreatureList.add(new SpawnListEntry(androsa.gaiadimension.entity.GDChilledGrowthSapper.class, 10, 3, 5));
-        spawnableCreatureList.add(new SpawnListEntry(androsa.gaiadimension.entity.GDNutrientGrowthSapper.class, 10, 3, 5));
-        spawnableCreatureList.add(new SpawnListEntry(androsa.gaiadimension.entity.GDMystifiedGrowthSapper.class, 10, 3, 5));
-        spawnableCreatureList.add(new SpawnListEntry(androsa.gaiadimension.entity.GDMutantGrowthExtractor.class, 5, 2, 4));
+        spawnableCreatureList.add(new SpawnListEntry(GDCommonGrowthSapper.class, 10, 3, 5));
+        spawnableCreatureList.add(new SpawnListEntry(GDChilledGrowthSapper.class, 10, 3, 5));
+        spawnableCreatureList.add(new SpawnListEntry(GDNutrientGrowthSapper.class, 10, 3, 5));
+        spawnableCreatureList.add(new SpawnListEntry(GDMystifiedGrowthSapper.class, 10, 3, 5));
+        spawnableCreatureList.add(new SpawnListEntry(GDMutantGrowthExtractor.class, 5, 2, 4));
     }
 
     @Override

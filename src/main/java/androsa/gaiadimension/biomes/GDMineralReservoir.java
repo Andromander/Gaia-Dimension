@@ -8,6 +8,9 @@ public class GDMineralReservoir extends GDBiomeBase {
         super(props);
 
         this.spawnableWaterCreatureList.clear();
+        this.spawnableCreatureList.clear();
+
+        //TODO: Whenever required, add a Mineral Arenthis and Salty Angler
 
         this.topBlock = GDBlocks.salt.getDefaultState();
         this.fillerBlock = GDBlocks.salt.getDefaultState();

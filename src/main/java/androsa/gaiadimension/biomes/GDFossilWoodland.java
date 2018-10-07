@@ -1,5 +1,8 @@
 package androsa.gaiadimension.biomes;
 
+import androsa.gaiadimension.entity.GDAncientLagrahk;
+import androsa.gaiadimension.entity.GDRockyLuggeroth;
+import androsa.gaiadimension.entity.GDRuggedLurmorus;
 import androsa.gaiadimension.registry.GDBlocks;
 import androsa.gaiadimension.world.gen.GDGenCrystalPlants;
 import androsa.gaiadimension.world.gen.GDGenFossilizedTree;
@@ -19,9 +22,9 @@ public class GDFossilWoodland extends GDBiomeBase {
     public GDFossilWoodland(BiomeProperties props) {
         super(props);
 
-        spawnableCreatureList.add(new SpawnListEntry(androsa.gaiadimension.entity.GDRockyLuggeroth.class, 10, 4, 5));
-        spawnableCreatureList.add(new SpawnListEntry(androsa.gaiadimension.entity.GDRuggedLurmorus.class, 10, 1, 3));
-        spawnableCreatureList.add(new SpawnListEntry(androsa.gaiadimension.entity.GDAncientLagrahk.class, 10, 1, 1));
+        spawnableCreatureList.add(new SpawnListEntry(GDRockyLuggeroth.class, 10, 4, 5));
+        spawnableCreatureList.add(new SpawnListEntry(GDRuggedLurmorus.class, 10, 1, 3));
+        spawnableCreatureList.add(new SpawnListEntry(GDAncientLagrahk.class, 10, 1, 1));
 
         GaiaGenFossilTrees = new GDGenFossilizedTree(false);
     }
