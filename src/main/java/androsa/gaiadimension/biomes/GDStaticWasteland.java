@@ -24,6 +24,8 @@ public class GDStaticWasteland extends GDBiomeBase {
         this.topBlock = GDBlocks.wasteland_stone.getDefaultState();
         this.fillerBlock = GDBlocks.wasteland_stone.getDefaultState();
 
+        spawnableCreatureList.add(new SpawnListEntry(androsa.gaiadimension.entity.GDNomadicLagrahk.class, 15, 1, 2));
+
         biomeDecorator.treesPerChunk = -1;
         biomeDecorator.grassPerChunk = -1;
         biomeDecorator.lakesPerChunk = -1;

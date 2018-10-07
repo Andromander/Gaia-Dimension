@@ -27,6 +27,8 @@ public class GDVolcanicLands extends GDBiomeBase {
     public GDVolcanicLands(Biome.BiomeProperties props) {
         super(props);
 
+        spawnableCreatureList.add(new SpawnListEntry(androsa.gaiadimension.entity.GDNomadicLagrahk.class, 15, 1, 2));
+
         biomeDecorator.lavaPoolChance = 0.25F;
         biomeDecorator.grassPerChunk = 1;
     }

@@ -14,6 +14,9 @@ public class GDSaltDunes extends GDBiomeBase {
         topBlock = GDBlocks.salt.getDefaultState();
         fillerBlock = GDBlocks.salt.getDefaultState();
 
+        spawnableCreatureList.add(new SpawnListEntry(androsa.gaiadimension.entity.GDNomadicLagrahk.class, 15, 1, 2));
+        spawnableCreatureList.add(new SpawnListEntry(androsa.gaiadimension.entity.GDSaltion.class, 15, 1, 3));
+
         biomeDecorator.treesPerChunk = -1;
         biomeDecorator.grassPerChunk = -1;
         biomeDecorator.lakesPerChunk = -1;
