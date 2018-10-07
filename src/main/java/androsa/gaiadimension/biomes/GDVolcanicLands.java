@@ -31,6 +31,8 @@ public class GDVolcanicLands extends GDBiomeBase {
 
         biomeDecorator.lavaPoolChance = 0.25F;
         biomeDecorator.grassPerChunk = 1;
+        biomeDecorator.flowersPerChunk = -1;
+        biomeDecorator.fungiPerChunk = -1;
     }
 
     @Override
