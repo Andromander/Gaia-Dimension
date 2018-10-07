@@ -39,6 +39,7 @@ public class GaiaEntities {
         entity.registerEntity(GaiaEntityNames.ANCIENT_LAGRAHK, GDAncientLagrahk.class, GDAncientLagrahk::new, 0x999999, 0x987654);
         entity.registerEntity(GaiaEntityNames.CRYSTAL_GOLEM, GDCrystalGolem.class, GDCrystalGolem::new, 0xff7777, 0x905555);
         entity.registerEntity(GaiaEntityNames.SALTION, GDSaltion.class, GDSaltion::new, 0x98afc6, 0x424676);
+        entity.registerEntity(GaiaEntityNames.NOMADIC_LAGRAHK, GDNomadicLagrahk.class, GDNomadicLagrahk::new, 0x4c5477, 0x4da69f);
 
         entity.registerEntity(GaiaEntityNames.BLUE_HOWLITE_WOLF, GDBlueHowliteWolf.class, GDBlueHowliteWolf::new, 0x00FF00, 0xFF00FF);
         entity.registerEntity(GaiaEntityNames.MALACHITE_GUARD, GDMalachiteGuard.class, GDMalachiteGuard::new, 0x0000FF, 0x00FF00);
