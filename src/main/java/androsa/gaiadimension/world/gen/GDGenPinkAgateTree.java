@@ -2,7 +2,6 @@ package androsa.gaiadimension.world.gen;
 
 import androsa.gaiadimension.block.GDAgateLeaves;
 import androsa.gaiadimension.block.GDAgateSapling;
-import androsa.gaiadimension.block.sapling.GDPinkAgateSapling;
 import androsa.gaiadimension.registry.GDBlocks;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.EnumFacing;
