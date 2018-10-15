@@ -22,6 +22,8 @@ public class GDGenStaticSpike extends WorldGenerator {
 
     @ParametersAreNonnullByDefault
     public boolean generate(World worldIn, Random rand, BlockPos position) {
+        int height = startHeight + rand.nextInt(4);
+        boolean flag = true;
 
         for (int cx = 0; cx < 3; cx++) {
             for (int cz = 0; cz < 3; cz++) {
@@ -31,32 +33,33 @@ public class GDGenStaticSpike extends WorldGenerator {
                     Block blockBelow = worldIn.getBlockState(pos.down()).getBlock();
 
                     if (blockBelow != GDBlocks.wasteland_stone && blockBelow != GDBlocks.static_stone) {
-                        return false;
+                        flag = false;
                     }
                 }
             }
         }
 
+        if (!flag) {
+            return false;
+        } else {
+            for (int i = 0; i < height; i++) {
+                worldIn.setBlockState(position.up(i), this.block.getDefaultState());
 
-        int height = startHeight + rand.nextInt(4);
+                if (i < height / 2) {
+                    worldIn.setBlockState(position.add(0, i, -1), this.block.getDefaultState());
+                    worldIn.setBlockState(position.add(0, i, 1), this.block.getDefaultState());
+                    worldIn.setBlockState(position.add(-1, i, 0), this.block.getDefaultState());
+                    worldIn.setBlockState(position.add(1, i, 0), this.block.getDefaultState());
 
-        for (int i = 0; i < height; i++) {
-            worldIn.setBlockState(position.up(i), this.block.getDefaultState());
-
-            if (i < height / 2) {
-                worldIn.setBlockState(position.add(0, i, -1), this.block.getDefaultState());
-                worldIn.setBlockState(position.add(0, i, 1), this.block.getDefaultState());
-                worldIn.setBlockState(position.add(-1, i, 0), this.block.getDefaultState());
-                worldIn.setBlockState(position.add(1, i, 0), this.block.getDefaultState());
-
-                if (i < height / 4) {
-                    worldIn.setBlockState(position.add(1, i, -1), this.block.getDefaultState());
-                    worldIn.setBlockState(position.add(1, i, 1), this.block.getDefaultState());
-                    worldIn.setBlockState(position.add(-1, i, -1), this.block.getDefaultState());
-                    worldIn.setBlockState(position.add(-1, i, 1), this.block.getDefaultState());
+                    if (i < height / 4) {
+                        worldIn.setBlockState(position.add(1, i, -1), this.block.getDefaultState());
+                        worldIn.setBlockState(position.add(1, i, 1), this.block.getDefaultState());
+                        worldIn.setBlockState(position.add(-1, i, -1), this.block.getDefaultState());
+                        worldIn.setBlockState(position.add(-1, i, 1), this.block.getDefaultState());
+                    }
                 }
             }
+            return true;
         }
-        return true;
     }
 }
