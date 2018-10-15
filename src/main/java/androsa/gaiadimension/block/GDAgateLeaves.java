@@ -29,16 +29,16 @@ import java.util.function.Supplier;
 @ParametersAreNonnullByDefault
 public class GDAgateLeaves extends BlockLeaves implements ModelRegisterCallback {
 
-    private final Supplier<Block> blockSupplier;
+    private final Supplier<Item> itemSupplier;
 
-    public GDAgateLeaves(Supplier<Block> block) {
+    public GDAgateLeaves(Supplier<Item> block) {
         this.setHardness(0.3F);
         this.setSoundType(SoundType.GLASS);
         this.setLightOpacity(1);
         this.setCreativeTab(GDTabs.tabBlock);
         this.setDefaultState(blockState.getBaseState().withProperty(CHECK_DECAY, true).withProperty(DECAYABLE, true));
 
-        blockSupplier = block;
+        itemSupplier = block;
     }
 
     @Override
@@ -53,7 +53,7 @@ public class GDAgateLeaves extends BlockLeaves implements ModelRegisterCallback 
 
     @Override
     public Item getItemDropped(IBlockState state, Random random, int par3) {
-        return Item.getItemFromBlock(blockSupplier.get());
+        return itemSupplier.get();
     }
 
     @Override
