@@ -1,9 +1,11 @@
-package androsa.gaiadimension.block.sapling;
+package androsa.gaiadimension.block;
 
 import androsa.gaiadimension.registry.GDBlocks;
 import androsa.gaiadimension.registry.GDTabs;
 import androsa.gaiadimension.registry.ModelRegisterCallback;
-import androsa.gaiadimension.world.gen.GDGenFossilizedTree;
+import androsa.gaiadimension.world.gen.GDGenGoldstoneCorruptTree;
+import androsa.gaiadimension.world.gen.GDGenPinkAgateTree;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockBush;
 import net.minecraft.block.IGrowable;
 import net.minecraft.block.SoundType;
@@ -21,17 +23,25 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.Random;
+import java.util.function.Supplier;
 
-public class GDFossilSapling extends BlockBush implements ModelRegisterCallback, IGrowable {
+public class GDAgateSapling extends BlockBush implements ModelRegisterCallback, IGrowable {
     protected static final AxisAlignedBB SAPLING_AABB = new AxisAlignedBB(0.09999999403953552D, 0.0D, 0.09999999403953552D, 0.8999999761581421D, 0.800000011920929D, 0.8999999761581421D);
+    private final Supplier<WorldGenerator> worldGenerator;
 
-    public GDFossilSapling() {
+    public GDAgateSapling(Supplier<WorldGenerator> tree) {
         this.setCreativeTab(GDTabs.tabBlock);
         this.setSoundType(SoundType.GLASS);
+
+        worldGenerator = tree;
     }
 
     public boolean canPlaceBlockAt(IBlockState state) {
-        return state.getBlock() == GDBlocks.glitter_grass || state.getBlock() == GDBlocks.heavy_soil;
+        if (worldGenerator instanceof GDGenGoldstoneCorruptTree) {
+            return state.getBlock() == GDBlocks.corrupt_grass || state.getBlock() == GDBlocks.corrupt_soil;
+        } else {
+            return state.getBlock() == GDBlocks.glitter_grass || state.getBlock() == GDBlocks.heavy_soil;
+        }
     }
 
     @Override
@@ -41,12 +51,9 @@ public class GDFossilSapling extends BlockBush implements ModelRegisterCallback,
 
     @Override
     public void grow(World world, Random rand, BlockPos pos, IBlockState state) {
-        WorldGenerator treeGen;
-        treeGen = new GDGenFossilizedTree(true);
-
         world.setBlockState(pos, Blocks.AIR.getDefaultState(), 4);
 
-        if (!treeGen.generate(world, rand, pos)) {
+        if (!worldGenerator.get().generate(world, rand, pos)) {
             world.setBlockState(pos, state, 4);
         }
     }

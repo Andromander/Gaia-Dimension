@@ -1,6 +1,7 @@
 package androsa.gaiadimension.world.gen;
 
 import androsa.gaiadimension.block.GDAgateLeaves;
+import androsa.gaiadimension.block.GDAgateSapling;
 import androsa.gaiadimension.block.sapling.GDFossilSapling;
 import androsa.gaiadimension.registry.GDBlocks;
 import net.minecraft.block.state.IBlockState;
@@ -57,7 +58,7 @@ public class GDGenFossilizedTree extends WorldGenAbstractTree {
             } else {
                 BlockPos down = position.down();
                 IBlockState state = worldIn.getBlockState(down);
-                boolean isSoil = state.getBlock().canSustainPlant(state, worldIn, down, EnumFacing.UP, ((GDFossilSapling)GDBlocks.fossilized_sapling));
+                boolean isSoil = state.getBlock().canSustainPlant(state, worldIn, down, EnumFacing.UP, ((GDAgateSapling)GDBlocks.fossilized_sapling));
 
                 if (isSoil && position.getY() < worldIn.getHeight() - height - 1) {
                     state.getBlock().onPlantGrow(state, worldIn, down, position);

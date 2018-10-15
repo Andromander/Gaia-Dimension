@@ -1,5 +1,6 @@
 package androsa.gaiadimension.world.gen;
 
+import androsa.gaiadimension.block.GDAgateSapling;
 import androsa.gaiadimension.registry.GDBlocks;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
@@ -55,7 +56,7 @@ public class GDGenBlueAgateTree extends WorldGenTrees {
                 BlockPos down = pos.down();
                 IBlockState state = world.getBlockState(down);
 
-                if (state.getBlock().canSustainPlant(state, world, down, net.minecraft.util.EnumFacing.UP, (net.minecraft.block.BlockSapling)Blocks.SAPLING) && pos.getY() < world.getHeight() - height - 1)
+                if (state.getBlock().canSustainPlant(state, world, down, net.minecraft.util.EnumFacing.UP, (GDAgateSapling)GDBlocks.blue_agate_sapling) && pos.getY() < world.getHeight() - height - 1)
                 {
                     state.getBlock().onPlantGrow(state, world, down, pos);
                     int i3 = rand.nextInt(2);
