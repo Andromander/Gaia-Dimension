@@ -10,6 +10,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
 import net.minecraft.util.BlockRenderLayer;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -21,21 +22,55 @@ import java.util.Random;
 
 public class GDCrystalFungus extends BlockBush implements ModelRegisterCallback {
 
-    public GDCrystalFungus() {
+    private boolean cavernous;
+
+    public GDCrystalFungus(boolean isCave) {
         super(Material.PLANTS);
 
         this.setHardness(0.0F);
         this.setSoundType(SoundType.PLANT);
         this.setCreativeTab(GDTabs.tabBlock);
         this.setTickRandomly(true);
+
+        cavernous = isCave;
     }
 
-    public boolean canPlaceBlockAt(IBlockState state) {
-        return state.getBlock() == GDBlocks.glitter_grass || state.getBlock() == GDBlocks.heavy_soil;
+    @Override
+    public boolean canPlaceBlockAt(World worldIn, BlockPos pos) {
+        IBlockState ground = worldIn.getBlockState(pos.down());
+
+        if (cavernous) {
+            return this.canBlockStay(worldIn, pos, this.getDefaultState());
+        } else {
+            return super.canPlaceBlockAt(worldIn, pos) && ground.getBlock().canSustainPlant(ground, worldIn, pos.down(), net.minecraft.util.EnumFacing.UP, this);
+        }
+    }
+
+    @Override
+    public boolean canBlockStay(World worldIn, BlockPos pos, IBlockState state) {
+        if (cavernous) {
+            if (pos.getY() >= 0 && pos.getY() < 256) {
+                IBlockState iblockstate = worldIn.getBlockState(pos.down());
+
+                if (iblockstate.getBlock() == GDBlocks.gaia_stone ||
+                        iblockstate.getBlock() == GDBlocks.primal_mass ||
+                        iblockstate.getBlock() == GDBlocks.wasteland_stone ||
+                        iblockstate.getBlock() == GDBlocks.volcanic_rock) {
+                    return true;
+                } else {
+                    return false;
+                }
+            } else {
+                return false;
+            }
+        } else {
+            return super.canBlockStay(worldIn, pos, this.getDefaultState());
+        }
     }
 
     //TODO: Grow into giant Fungus?
 
+    @Override
     @SideOnly(Side.CLIENT)
     public void randomDisplayTick(IBlockState stateIn, World worldIn, BlockPos pos, Random rand) {
         double d0 = (double)pos.getX() + rand.nextDouble() * 0.6D + 0.2D;
@@ -50,7 +85,6 @@ public class GDCrystalFungus extends BlockBush implements ModelRegisterCallback 
     public BlockRenderLayer getRenderLayer() {
         return BlockRenderLayer.CUTOUT_MIPPED;
     }
-
 
     @SideOnly(Side.CLIENT)
     @Override

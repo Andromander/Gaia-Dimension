@@ -1,6 +1,7 @@
 package androsa.gaiadimension.biomes;
 
 import androsa.gaiadimension.registry.GDBlocks;
+import androsa.gaiadimension.world.gen.GDGenCrystalFungi;
 import androsa.gaiadimension.world.gen.GDGenCrystalPlants;
 import androsa.gaiadimension.world.gen.GDGenLavaLake;
 import net.minecraft.util.math.BlockPos;
@@ -34,6 +35,8 @@ public class GDBiomeDecorator {
     public WorldGenerator fossilShroomGen = new GDGenCrystalPlants(GDBlocks.stickly_cupsir);
     public WorldGenerator mutantShroomGen = new GDGenCrystalPlants(GDBlocks.mystical_murgni);
     public WorldGenerator corruptShroomGen = new GDGenCrystalPlants(GDBlocks.corrupted_gaia_eye);
+    public WorldGenerator goldorbShroomGen = new GDGenCrystalFungi(GDBlocks.gold_orb_tucher);
+    public WorldGenerator elderShroomGen = new GDGenCrystalFungi(GDBlocks.elder_imklia);
 
     public World world;
     public Random rand;
@@ -235,6 +238,26 @@ public class GDBiomeDecorator {
      * Method used to decorate the underground
      */
     protected void decorateUnderground(World world, Random rand, BlockPos pos) {
+
+        for (int i = 0; i < 5; i++) {
+            int x = rand.nextInt(16) + 8;
+            int z = rand.nextInt(16) + 8;
+            int height = world.getHeight(this.chunkPos.add(x, 0, z)).getY() * 2;
+
+            if (rand.nextInt(4) == 0) {
+                if (height > 0) {
+                    int y = rand.nextInt(height);
+                    BlockPos blockpos1 = this.chunkPos.add(x, y, z);
+                    this.elderShroomGen.generate(world, rand, blockpos1);
+                }
+            } else {
+                if (height > 0) {
+                    int y = rand.nextInt(height);
+                    BlockPos blockpos1 = this.chunkPos.add(x, y, z);
+                    this.goldorbShroomGen.generate(world, rand, blockpos1);
+                }
+            }
+        }
 
         //Speckled Rock gen
         for (int i = 0; i < 10; i++) {

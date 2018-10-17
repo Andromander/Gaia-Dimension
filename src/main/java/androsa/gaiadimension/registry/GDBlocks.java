@@ -1,6 +1,7 @@
 package androsa.gaiadimension.registry;
 
 import androsa.gaiadimension.GaiaDimension;
+import androsa.gaiadimension.block.GDCrystalFungus;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockPortal;
 import net.minecraft.block.BlockSlab;
@@ -83,6 +84,8 @@ public class GDBlocks {
     public static final Block mystical_murgni = null;
     //public static final Block sacred_gaia_eye = null;
     public static final Block corrupted_gaia_eye = null;
+    public static final GDCrystalFungus elder_imklia = null;
+    public static final GDCrystalFungus gold_orb_tucher = null;
     public static final Block missingno_fungus = null;
     public static final Block pink_agate_sapling = null;
     public static final Block blue_agate_sapling = null;

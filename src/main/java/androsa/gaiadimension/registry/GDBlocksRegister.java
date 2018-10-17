@@ -68,15 +68,17 @@ public final class GDBlocksRegister {
         blocks.register("varloom", new GDCrystalBloom());
         blocks.register("corrupt_varloom", new GDCrystalBloom());
         blocks.register("missingno_plant", new GDCrystalBloom());
-        blocks.register("spotted_kersei", new GDCrystalFungus());
-        blocks.register("thorny_wiltha", new GDCrystalFungus());
-        blocks.register("roofed_agaric", new GDCrystalFungus());
-        blocks.register("bulbous_hobina", new GDCrystalFungus());
-        blocks.register("stickly_cupsir", new GDCrystalFungus());
-        blocks.register("mystical_murgni", new GDCrystalFungus());
-        blocks.register("corrupted_gaia_eye", new GDCrystalFungus());
-        //blocks.register("sacred_gaia_eye", new GDCrystalFungus());
-        blocks.register("missingno_fungus", new GDCrystalFungus());
+        blocks.register("spotted_kersei", new GDCrystalFungus(false));
+        blocks.register("thorny_wiltha", new GDCrystalFungus(false));
+        blocks.register("roofed_agaric", new GDCrystalFungus(false));
+        blocks.register("bulbous_hobina", new GDCrystalFungus(false));
+        blocks.register("stickly_cupsir", new GDCrystalFungus(false));
+        blocks.register("mystical_murgni", new GDCrystalFungus(false));
+        blocks.register("corrupted_gaia_eye", new GDCrystalFungus(false));
+        //blocks.register("sacred_gaia_eye", new GDCrystalFungus(false));
+        blocks.register("elder_imklia", new GDCrystalFungus(true));
+        blocks.register("gold_orb_tucher", new GDCrystalFungus(true));
+        blocks.register("missingno_fungus", new GDCrystalFungus(false));
 
         blocks.register("pink_agate_sapling", new GDAgateSapling(() -> new GDGenPinkAgateTree(true)));
         blocks.register("blue_agate_sapling", new GDAgateSapling(() -> new GDGenBlueAgateTree(true)));

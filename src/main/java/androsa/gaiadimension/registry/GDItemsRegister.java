@@ -237,6 +237,8 @@ public class GDItemsRegister {
         items.registerBlock(GDBlocks.mystical_murgni);
         items.registerBlock(GDBlocks.corrupted_gaia_eye);
         //items.registerBlock(GDBlocks.sacred_gaia_eye);
+        items.registerBlock(GDBlocks.elder_imklia);
+        items.registerBlock(GDBlocks.gold_orb_tucher);
         items.registerBlock(GDBlocks.missingno_fungus);
 
         items.registerBlock(GDBlocks.pink_agate_sapling);
