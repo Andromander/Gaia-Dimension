@@ -9,6 +9,7 @@ public class GaiaEntityNames {
     public static final ResourceLocation CHILLED_SAPPER = prefix("chilled_growth_sapper");
     public static final ResourceLocation NUTRIENT_SAPPER = prefix("nutrient_growth_sapper");
     public static final ResourceLocation MYSTIFIED_SAPPER = prefix("mystified_growth_sapper");
+    public static final ResourceLocation CORRUPT_SAPPER = prefix("corrupt_sapper");
     public static final ResourceLocation MUTANT_EXTRACTOR = prefix("mutant_growth_extractor");
     public static final ResourceLocation AGATE_GOLEM = prefix("agate_golem");
     public static final ResourceLocation CRYSTAL_GOLEM = prefix("crystal_golem");
