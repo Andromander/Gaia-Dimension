@@ -81,6 +81,17 @@ public class GDNomadicLagrahk extends EntityCreature {
     }
 
     @Override
+    public int getMaxSpawnedInChunk() {
+        Biome biome = world.getBiome(new BlockPos(posX, posY, posZ));
+
+        if (biome instanceof GDSaltDunes || biome instanceof GDStaticWasteland || biome instanceof GDVolcanicLands) {
+            return 4;
+        } else {
+            return 1;
+        }
+    }
+
+    @Override
     public IEntityLivingData onInitialSpawn(DifficultyInstance difficulty, IEntityLivingData livingData) {
         Object data = super.onInitialSpawn(difficulty, livingData);
         Biome biome = world.getBiome(new BlockPos(posX, posY, posZ));
