@@ -56,10 +56,10 @@ public class GaiaChunkGenerator implements IChunkGenerator {
     private final GDGenCaves caveGenerator = new GDGenCaves();
     private final GDGenUndergroundCaves chasmGenerator = new GDGenUndergroundCaves();
 
-    public GaiaChunkGenerator(World world, long l, boolean flag) {
+    public GaiaChunkGenerator(World world, long seed, boolean flag) {
         this.world = world;
         this.terrainType = world.getWorldInfo().getTerrainType();
-        this.rand = new Random(l);
+        this.rand = new Random(seed);
         this.minLimitPerlinNoise = new NoiseGeneratorOctaves(this.rand, 16);
         this.maxLimitPerlinNoise = new NoiseGeneratorOctaves(this.rand, 16);
         this.mainPerlinNoise = new NoiseGeneratorOctaves(this.rand, 8);
@@ -107,55 +107,55 @@ public class GaiaChunkGenerator implements IChunkGenerator {
         this.biomesForGeneration = this.world.getBiomeProvider().getBiomesForGeneration(this.biomesForGeneration, chunkX * 4 - 2, chunkZ * 4 - 2, 10, 10);
         this.generateHeightmap(chunkX * 4, 0, chunkZ * 4);
 
-        for (int k = 0; k < 4; ++k) {
-            int l = k * 5;
-            int i1 = (k + 1) * 5;
+        for (int xChunk = 0; xChunk < 4; ++xChunk) {
+            int xs = xChunk * 5;
+            int xl = (xChunk + 1) * 5;
 
-            for (int j1 = 0; j1 < 4; ++j1) {
-                int k1 = (l + j1) * 33;
-                int l1 = (l + j1 + 1) * 33;
-                int i2 = (i1 + j1) * 33;
-                int j2 = (i1 + j1 + 1) * 33;
+            for (int zChunk = 0; zChunk < 4; ++zChunk) {
+                int zsxs = (xs + zChunk) * 33;
+                int zlxs = (xs + zChunk + 1) * 33;
+                int zsxl = (xl + zChunk) * 33;
+                int zlxl = (xl + zChunk + 1) * 33;
 
-                for (int k2 = 0; k2 < 32; ++k2) {
-                    double d0 = 0.125D;
-                    double d1 = this.heightMap[k1 + k2];
-                    double d2 = this.heightMap[l1 + k2];
-                    double d3 = this.heightMap[i2 + k2];
-                    double d4 = this.heightMap[j2 + k2];
-                    double d5 = (this.heightMap[k1 + k2 + 1] - d1) * d0;
-                    double d6 = (this.heightMap[l1 + k2 + 1] - d2) * d0;
-                    double d7 = (this.heightMap[i2 + k2 + 1] - d3) * d0;
-                    double d8 = (this.heightMap[j2 + k2 + 1] - d4) * d0;
+                for (int yChunk = 0; yChunk < 32; ++yChunk) {
+                    double fracD = 0.125D;
+                    double nZSXS = this.heightMap[zsxs + yChunk];
+                    double nZLXS = this.heightMap[zlxs + yChunk];
+                    double nZSXL = this.heightMap[zsxl + yChunk];
+                    double nZLXL = this.heightMap[zlxl + yChunk];
+                    double heightZSXS = (this.heightMap[zsxs + yChunk + 1] - nZSXS) * fracD;
+                    double heightZLXS = (this.heightMap[zlxs + yChunk + 1] - nZLXS) * fracD;
+                    double heightZSXL = (this.heightMap[zsxl + yChunk + 1] - nZSXL) * fracD;
+                    double heightZLXL = (this.heightMap[zlxl + yChunk + 1] - nZLXL) * fracD;
 
-                    for (int l2 = 0; l2 < 8; ++l2) {
-                        double d9 = 0.25D;
-                        double d10 = d1;
-                        double d11 = d2;
-                        double d12 = (d3 - d1) * d9;
-                        double d13 = (d4 - d2) * d9;
+                    for (int yNoise = 0; yNoise < 8; ++yNoise) {
+                        double quart1 = 0.25D;
+                        double zsNoise = nZSXS;
+                        double zlNoise = nZLXS;
+                        double zsAdd = (nZSXL - nZSXS) * quart1;
+                        double zlAdd = (nZLXL - nZLXS) * quart1;
 
-                        for (int i3 = 0; i3 < 4; ++i3) {
-                            double d14 = 0.25D;
-                            double d16 = (d11 - d10) * d14;
-                            double d15 = d10 - d16;
+                        for (int xNoise = 0; xNoise < 4; ++xNoise) {
+                            double quart2 = 0.25D;
+                            double zSubtract = (zlNoise - zsNoise) * quart2;
+                            double zNoiseResult = zsNoise - zSubtract;
 
-                            for (int k3 = 0; k3 < 4; ++k3) {
-                                if ((d15 += d16) > 0.0D) {
-                                    primer.setBlockState(k * 4 + i3, k2 * 8 + l2, j1 * 4 + k3, GDBlocks.gaia_stone.getDefaultState());
-                                } else if (k2 * 8 + l2 < seaLevel) {
-                                    primer.setBlockState(k * 4 + i3, k2 * 8 + l2, j1 * 4 + k3, GDBlocks.mineral_water_block.getDefaultState());
+                            for (int zNoise = 0; zNoise < 4; ++zNoise) {
+                                if ((zNoiseResult += zSubtract) > 0.0D) {
+                                    primer.setBlockState(xChunk * 4 + xNoise, yChunk * 8 + yNoise, zChunk * 4 + zNoise, GDBlocks.gaia_stone.getDefaultState());
+                                } else if (yChunk * 8 + yNoise < seaLevel) {
+                                    primer.setBlockState(xChunk * 4 + xNoise, yChunk * 8 + yNoise, zChunk * 4 + zNoise, GDBlocks.mineral_water_block.getDefaultState());
                                 }
                             }
 
-                            d10 += d12;
-                            d11 += d13;
+                            zsNoise += zsAdd;
+                            zlNoise += zlAdd;
                         }
 
-                        d1 += d5;
-                        d2 += d6;
-                        d3 += d7;
-                        d4 += d8;
+                        nZSXS += heightZSXS;
+                        nZLXS += heightZLXS;
+                        nZSXL += heightZSXL;
+                        nZLXL += heightZLXL;
                     }
                 }
             }
