@@ -23,6 +23,7 @@ public class GaiaEntityNames {
     public static final ResourceLocation ANCIENT_LAGRAHK = prefix("ancient_lagrahk");
     public static final ResourceLocation NOMADIC_LAGRAHK = prefix("nomadic_lagrahk");
     public static final ResourceLocation SALTION = prefix("saltion");
+    public static final ResourceLocation LESSER_SHOCKSHOOTER = prefix("lesser_shockshooter");
     public static final ResourceLocation LESSER_SPITFIRE = prefix("lesser_spitfire");
     public static final ResourceLocation CONTORTED_NAGA = prefix("contorted_naga");
     public static final ResourceLocation SHALLOW_ARENTHIS = prefix("shallow_arenthis");
