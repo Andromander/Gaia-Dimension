@@ -24,6 +24,7 @@ public class GaiaEntityNames {
     public static final ResourceLocation NOMADIC_LAGRAHK = prefix("nomadic_lagrahk");
     public static final ResourceLocation SALTION = prefix("saltion");
     public static final ResourceLocation SHALLOW_ARENTHIS = prefix("shallow_arenthis");
+    public static final ResourceLocation SHALURKER = prefix("shalurker");
 
     public static final ResourceLocation MALACHITE_GUARD = prefix("malachite_guard");
 
