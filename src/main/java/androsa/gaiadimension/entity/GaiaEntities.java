@@ -43,6 +43,7 @@ public class GaiaEntities {
         entity.registerEntity(GaiaEntityNames.SHALLOW_ARENTHIS, GDShallowArenthis.class, GDShallowArenthis::new, 0x000000, 0x000000);
         entity.registerEntity(GaiaEntityNames.CORRUPT_SAPPER, GDCorruptSapper.class, GDCorruptSapper::new, 0x444444, 0x444444);
         entity.registerEntity(GaiaEntityNames.CONTORTED_NAGA, GDContortedNaga.class, GDContortedNaga::new, 0x777777, 0x777777);
+        entity.registerEntity(GaiaEntityNames.LESSER_SPITFIRE, GDLesserSpitfire.class, GDLesserSpitfire::new, 0xFF00FF, 0x800080);
 
         entity.registerEntity(GaiaEntityNames.BLUE_HOWLITE_WOLF, GDBlueHowliteWolf.class, GDBlueHowliteWolf::new, 0x00FF00, 0xFF00FF);
         entity.registerEntity(GaiaEntityNames.MALACHITE_GUARD, GDMalachiteGuard.class, GDMalachiteGuard::new, 0x0000FF, 0x00FF00);

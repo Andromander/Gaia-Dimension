@@ -66,6 +66,7 @@ public class ClientProxy extends CommonProxy {
         RenderingRegistry.registerEntityRenderingHandler(GDShallowArenthis.class, m -> new EntityRenderShallowArenthis(m, new ModelShallowArenthis(), 0.5F));
         RenderingRegistry.registerEntityRenderingHandler(GDCorruptSapper.class, m -> new EntityRenderCorruptSapper(m, new ModelGrowthSapper(), 0.6F));
         RenderingRegistry.registerEntityRenderingHandler(GDContortedNaga.class, m -> new EntityRenderContortedNaga(m, new ModelContortedNaga(), 0.7F));
+        RenderingRegistry.registerEntityRenderingHandler(GDLesserSpitfire.class, m -> new EntityRenderLesserSpitfire(m, new ModelLesserSpitfire(), 0.5F));
 
         RenderingRegistry.registerEntityRenderingHandler(GDBlueHowliteWolf.class, m -> new EntityRenderBlueHowliteWolf(m, new ModelBlueHowliteWolf(), 1.2F));
         RenderingRegistry.registerEntityRenderingHandler(GDMalachiteGuard.class, m -> new EntityRenderMalachiteGuard(m, new ModelMalachiteGuard(), 1.0F));
