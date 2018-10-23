@@ -13,15 +13,6 @@ public class ModelShallowArenthis extends ModelBase {
     public ModelRenderer cap;
     public ModelRenderer head;
     public ModelRenderer[] tentacles = new ModelRenderer[7];
-    /*
-    public ModelRenderer tentacle1;
-    public ModelRenderer tentacle2;
-    public ModelRenderer tentacle3;
-    public ModelRenderer tentacle4;
-    public ModelRenderer tentacle5;
-    public ModelRenderer tentacle6;
-    public ModelRenderer tentacle7;
-    */
     public ModelRenderer body;
     public ModelRenderer tail;
 
@@ -53,33 +44,6 @@ public class ModelShallowArenthis extends ModelBase {
             d0 = (double)j * Math.PI * -2.0D / (double)this.tentacles.length + (Math.PI / 2D);
             this.tentacles[j].rotateAngleY = (float)d0;
         }
-        /*
-        this.tentacle1 = new ModelRenderer(this, 0, 0);
-        this.tentacle1.setRotationPoint(-3.5F, 4.0F, -3.5F);
-        this.tentacle1.addBox(-0.5F, 0.0F, -0.5F, 1, 8, 1, 0.0F);
-        this.setRotateAngle(tentacle1, 0.0F, -0.7853981633974483F, 0.0F);
-        this.tentacle6 = new ModelRenderer(this, 0, 0);
-        this.tentacle6.setRotationPoint(4.0F, 4.0F, 0.0F);
-        this.tentacle6.addBox(-0.5F, 0.0F, -0.5F, 1, 8, 1, 0.0F);
-        this.tentacle3 = new ModelRenderer(this, 0, 0);
-        this.tentacle3.setRotationPoint(-3.5F, 4.0F, 3.5F);
-        this.tentacle3.addBox(-0.5F, 0.0F, -0.5F, 1, 8, 1, 0.0F);
-        this.setRotateAngle(tentacle3, 0.0F, 0.7853981633974483F, 0.0F);
-        this.tentacle2 = new ModelRenderer(this, 0, 0);
-        this.tentacle2.setRotationPoint(-4.0F, 4.0F, 0.0F);
-        this.tentacle2.addBox(-0.5F, 0.0F, -0.5F, 1, 8, 1, 0.0F);
-        this.tentacle5 = new ModelRenderer(this, 0, 0);
-        this.tentacle5.setRotationPoint(3.5F, 4.0F, 3.5F);
-        this.tentacle5.addBox(-0.5F, 0.0F, -0.5F, 1, 8, 1, 0.0F);
-        this.setRotateAngle(tentacle5, 0.0F, 0.7853981633974483F, 0.0F);
-        this.tentacle4 = new ModelRenderer(this, 0, 0);
-        this.tentacle4.setRotationPoint(0.0F, 4.0F, 4.0F);
-        this.tentacle4.addBox(-0.5F, 0.0F, -0.5F, 1, 8, 1, 0.0F);
-        this.tentacle7 = new ModelRenderer(this, 0, 0);
-        this.tentacle7.setRotationPoint(3.5F, 4.0F, -3.5F);
-        this.tentacle7.addBox(-0.5F, 0.0F, -0.5F, 1, 8, 1, 0.0F);
-        this.setRotateAngle(tentacle7, 0.0F, 0.7853981633974483F, 0.0F);
-        */
 
         this.head.addChild(this.body);
         this.cap.addChild(this.head);
