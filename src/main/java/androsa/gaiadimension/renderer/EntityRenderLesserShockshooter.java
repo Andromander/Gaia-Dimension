@@ -7,7 +7,7 @@ import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.util.ResourceLocation;
 
-public class EntityRenderLesserShockshooter  extends RenderLiving<GDLesserShockshooter> {
+public class EntityRenderLesserShockshooter extends RenderLiving<GDLesserShockshooter> {
     private static final ResourceLocation textureLoc = new ResourceLocation(GaiaDimension.MODEL_DIR + "lessershockshooter.png");
 
     public EntityRenderLesserShockshooter(RenderManager manager, ModelBase model, float shadowSize) {
