@@ -27,6 +27,7 @@ public class GaiaEntityNames {
     public static final ResourceLocation LESSER_SPITFIRE = prefix("lesser_spitfire");
     public static final ResourceLocation CONTORTED_NAGA = prefix("contorted_naga");
     public static final ResourceLocation SHALLOW_ARENTHIS = prefix("shallow_arenthis");
+    public static final ResourceLocation MINERAL_ARENTHIS = prefix("mineral_arenthis");
     public static final ResourceLocation SHALURKER = prefix("shalurker");
 
     public static final ResourceLocation MALACHITE_GUARD = prefix("malachite_guard");
