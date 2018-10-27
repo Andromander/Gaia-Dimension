@@ -24,39 +24,8 @@ public class GDFluidBlock extends BlockFluidClassic implements ModelRegisterCall
 
     public GDFluidBlock(Fluid fluid, Material material) {
         super(fluid, material);
-        setLightOpacity(3);
+        setLightOpacity(4);
         setCreativeTab(GDTabs.tabBlock);
-    }
-
-    @Override
-    public int getLightValue(@Nonnull IBlockState state, @Nonnull IBlockAccess world, @Nonnull BlockPos pos) {
-        if (maxScaledLight == 0) {
-            return super.getLightValue(state, world, pos);
-        }
-        int data = quantaPerBlock - state.getValue(LEVEL) - 1;
-        return (int) (data / quantaPerBlockFloat * maxScaledLight);
-    }
-
-    @Override
-    @Deprecated
-    @SideOnly(Side.CLIENT)
-    @ParametersAreNonnullByDefault
-    public int getPackedLightmapCoords(IBlockState state, IBlockAccess source, BlockPos pos) {
-        int i = source.getCombinedLight(pos, 0);
-        int j = source.getCombinedLight(pos.up(), 0);
-        int k = i & 255;
-        int l = j & 255;
-        int i1 = i >> 16 & 255;
-        int j1 = j >> 16 & 255;
-        return (k > l ? k : l) | (i1 > j1 ? i1 : j1) << 16;
-    }
-
-    @Override
-    public BlockFluidBase setQuantaPerBlock(int quantaPerBlock) {
-        if (quantaPerBlock > 16 || quantaPerBlock < 1) quantaPerBlock = 8;
-        this.quantaPerBlock = quantaPerBlock;
-        this.quantaPerBlockFloat = quantaPerBlock;
-        return this;
     }
 
     @Override

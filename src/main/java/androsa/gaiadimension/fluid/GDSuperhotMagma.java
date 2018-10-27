@@ -41,6 +41,8 @@ public class GDSuperhotMagma extends BlockFluidClassic implements ModelRegisterC
     @Override
     public void onEntityCollision(World world, BlockPos pos, IBlockState state, Entity entity) {
         super.onEntityCollision(world, pos, state, entity);
-        entity.attackEntityFrom(DamageSource.IN_FIRE, 5.0F);
+        if(!entity.isImmuneToFire()) {
+            entity.attackEntityFrom(DamageSource.IN_FIRE, 5.0F);
+        }
     }
 }
