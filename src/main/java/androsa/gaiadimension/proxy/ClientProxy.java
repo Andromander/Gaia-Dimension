@@ -70,10 +70,10 @@ public class ClientProxy extends CommonProxy {
         RenderingRegistry.registerEntityRenderingHandler(GDLesserShockshooter.class, m -> new EntityRenderLesserShockshooter(m, new ModelLesserShockshooter(), 0.5F));
         RenderingRegistry.registerEntityRenderingHandler(GDMineralArenthis.class, m -> new EntityRenderMineralArenthis(m, new ModelMineralArenthis(), 0.5F));
         RenderingRegistry.registerEntityRenderingHandler(GDArchaicWarrior.class, m -> new EntityRenderArchaicWarrior(m, new ModelArchaicWarrior(), 0.5F));
-
         RenderingRegistry.registerEntityRenderingHandler(GDPrimalBeast.class, m -> new EntityRenderPrimalBeast(m, new ModelPrimalBeast(), 0.5F));
         RenderingRegistry.registerEntityRenderingHandler(GDCavernTick.class, m -> new EntityRenderCavernTick(m, new ModelCavernTick(), 0.2F));
         RenderingRegistry.registerEntityRenderingHandler(GDBlueHowliteWolf.class, m -> new EntityRenderBlueHowliteWolf(m, new ModelBlueHowliteWolf(), 1.2F));
+
         RenderingRegistry.registerEntityRenderingHandler(GDMalachiteGuard.class, m -> new EntityRenderMalachiteGuard(m, new ModelMalachiteGuard(), 1.0F));
     }
     @Override
