@@ -48,6 +48,7 @@ public class GaiaEntities {
         entity.registerEntity(GaiaEntityNames.MINERAL_ARENTHIS, GDMineralArenthis.class, GDMineralArenthis::new, 0x0000FF, 0x00FFFF);
         entity.registerEntity(GaiaEntityNames.ARCHAIC_WARRIOR, GDArchaicWarrior.class, GDArchaicWarrior::new, 0xFF00FF, 0xFF0000);
 
+        entity.registerEntity(GaiaEntityNames.PRIMAL_BEAST, GDPrimalBeast.class, GDPrimalBeast::new, 0x0080FF, 0x00FFFF);
         entity.registerEntity(GaiaEntityNames.BLUE_HOWLITE_WOLF, GDBlueHowliteWolf.class, GDBlueHowliteWolf::new, 0x00FF00, 0xFF00FF);
         entity.registerEntity(GaiaEntityNames.MALACHITE_GUARD, GDMalachiteGuard.class, GDMalachiteGuard::new, 0x0000FF, 0x00FF00);
     }

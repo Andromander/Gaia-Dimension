@@ -30,6 +30,7 @@ public class GaiaEntityNames {
     public static final ResourceLocation MINERAL_ARENTHIS = prefix("mineral_arenthis");
     public static final ResourceLocation SHALURKER = prefix("shalurker");
     public static final ResourceLocation ARCHAIC_WARRIOR = prefix("archaic_warrior");
+    public static final ResourceLocation PRIMAL_BEAST = prefix("primal_beast");
 
     public static final ResourceLocation MALACHITE_GUARD = prefix("malachite_guard");
 
