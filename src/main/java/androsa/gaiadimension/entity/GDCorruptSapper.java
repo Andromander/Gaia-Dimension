@@ -21,7 +21,7 @@ public class GDCorruptSapper extends EntityMob {
     public GDCorruptSapper(World world) {
         super(world);
 
-        this.setSize(0.8F, 0.8F);
+        this.setSize(1.0F, 1.0F);
     }
 
     @Override
@@ -39,6 +39,11 @@ public class GDCorruptSapper extends EntityMob {
         this.tasks.addTask(4, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
         this.tasks.addTask(5, new EntityAILookIdle(this));
         this.targetTasks.addTask(1, new EntityAINearestAttackableTarget(this, EntityPlayer.class, true));
+    }
+
+    @Override
+    public float getEyeHeight() {
+        return 0.70F;
     }
 
     @Override

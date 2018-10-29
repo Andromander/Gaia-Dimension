@@ -19,6 +19,7 @@ public class GDLesserShockshooter extends EntityMob implements IShockshooterMob,
     public GDLesserShockshooter(World worldIn) {
         super(worldIn);
         this.isImmuneToFire = true;
+        this.setSize(0.5F, 2.0F);
     }
 
     @Override
@@ -38,6 +39,11 @@ public class GDLesserShockshooter extends EntityMob implements IShockshooterMob,
         super.applyEntityAttributes();
         this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(6.0D);
         this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.23000000417232513D);
+    }
+
+    @Override
+    public float getEyeHeight() {
+        return 1.8F;
     }
 
     /*

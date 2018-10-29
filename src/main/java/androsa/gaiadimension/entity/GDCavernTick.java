@@ -32,6 +32,11 @@ public class GDCavernTick extends EntityMob implements IMob {
         this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityPlayer.class, true));
     }
 
+    @Override
+    public float getEyeHeight() {
+        return 0.1F;
+    }
+
     /*
     public double getYOffset() {
         return 0.1D;

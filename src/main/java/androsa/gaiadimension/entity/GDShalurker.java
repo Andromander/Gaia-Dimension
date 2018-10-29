@@ -15,7 +15,7 @@ public class GDShalurker extends EntityMob implements IMob {
 
     public GDShalurker(World worldIn) {
         super(worldIn);
-        this.setSize(0.6F, 1.7F);
+        this.setSize(0.6F, 1.9F);
     }
 
     protected void initEntityAI() {
@@ -35,7 +35,7 @@ public class GDShalurker extends EntityMob implements IMob {
 
     @Override
     public float getEyeHeight() {
-        return 1.5F;
+        return 1.75F;
     }
 
     @Override

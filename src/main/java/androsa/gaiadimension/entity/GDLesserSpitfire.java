@@ -18,6 +18,8 @@ public class GDLesserSpitfire extends EntityMob implements ISpitfireMob, IMob {
     //TODO: Shoot small fire projectiles
     public GDLesserSpitfire(World worldIn) {
         super(worldIn);
+        this.setSize(0.5F, 2.0F);
+
         this.isImmuneToFire = true;
     }
 
@@ -38,6 +40,11 @@ public class GDLesserSpitfire extends EntityMob implements ISpitfireMob, IMob {
         super.applyEntityAttributes();
         this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(6.0D);
         this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.23000000417232513D);
+    }
+
+    @Override
+    public float getEyeHeight() {
+        return 1.8F;
     }
 
     /*

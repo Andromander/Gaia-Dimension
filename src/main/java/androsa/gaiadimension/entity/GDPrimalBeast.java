@@ -41,6 +41,11 @@ public class GDPrimalBeast extends EntityMob implements IMob {
     }
 
     @Override
+    public float getEyeHeight() {
+        return 1.9F;
+    }
+
+    @Override
     public float getBrightness() {
         return 1.0F;
     }

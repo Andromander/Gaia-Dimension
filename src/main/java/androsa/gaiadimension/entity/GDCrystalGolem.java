@@ -22,7 +22,7 @@ public class GDCrystalGolem extends EntityGolem {
 
     public GDCrystalGolem(World world) {
         super(world);
-        this.setSize(1.0F, 2.0F);
+        this.setSize(1.2F, 2.7F);
     }
 
     @Override

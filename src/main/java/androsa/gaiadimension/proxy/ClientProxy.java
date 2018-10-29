@@ -51,30 +51,30 @@ public class ClientProxy extends CommonProxy {
         RenderingRegistry.registerEntityRenderingHandler(GDNutrientGrowthSapper.class, m -> new EntityRenderNutrientSapper(m, new ModelGrowthSapper(), 0.6F));
         RenderingRegistry.registerEntityRenderingHandler(GDMystifiedGrowthSapper.class, m -> new EntityRenderMystifiedSapper(m, new ModelGrowthSapper(), 0.6F));
         RenderingRegistry.registerEntityRenderingHandler(GDMutantGrowthExtractor.class, m -> new EntityRendererGrowthExtractor(m, new ModelGrowthExtractor(),0.8F));
-        RenderingRegistry.registerEntityRenderingHandler(GDHowliteWolf.class, m -> new EntityRenderHowliteWolf(m, new ModelHowliteWolf(), 0.6F));
-        RenderingRegistry.registerEntityRenderingHandler(GDSpellElement.class, m -> new EntityRenderSpellElement(m, new ModelSpellElement(), 0.0F));
-        RenderingRegistry.registerEntityRenderingHandler(GDRockyLuggeroth.class, m -> new EntityRenderRockyLuggeroth(m, new ModelRockyLuggeroth(), 1.0F));
-        RenderingRegistry.registerEntityRenderingHandler(GDShalurker.class, m -> new EntityRenderShalurker(m, new ModelShalurker(), 1.0F));
+        RenderingRegistry.registerEntityRenderingHandler(GDHowliteWolf.class, m -> new EntityRenderHowliteWolf(m, new ModelHowliteWolf(), 0.5F));
+        RenderingRegistry.registerEntityRenderingHandler(GDSpellElement.class, m -> new EntityRenderSpellElement(m, new ModelSpellElement(), 0.4F));
+        RenderingRegistry.registerEntityRenderingHandler(GDRockyLuggeroth.class, m -> new EntityRenderRockyLuggeroth(m, new ModelRockyLuggeroth(), 0.7F));
+        RenderingRegistry.registerEntityRenderingHandler(GDShalurker.class, m -> new EntityRenderShalurker(m, new ModelShalurker(), 0.5F));
         RenderingRegistry.registerEntityRenderingHandler(GDMuckling.class, m -> new EntityRenderMuckling(m, 0.625F));
         RenderingRegistry.registerEntityRenderingHandler(GDMarkuzarPlant.class, m -> new EntityRenderMarkuzarPlant(m, new ModelMarkuzarPlant(), 0.5F));
-        RenderingRegistry.registerEntityRenderingHandler(GDRuggedLurmorus.class, m -> new EntityRenderRuggedLurmorus(m, new ModelRuggedLurmorus(), 1.2F));
-        RenderingRegistry.registerEntityRenderingHandler(GDAgateGolem.class, m -> new EntityRenderAgateGolem(m, new ModelAgateGolem(), 1.0F));
+        RenderingRegistry.registerEntityRenderingHandler(GDRuggedLurmorus.class, m -> new EntityRenderRuggedLurmorus(m, new ModelRuggedLurmorus(), 4.0F));
+        RenderingRegistry.registerEntityRenderingHandler(GDAgateGolem.class, m -> new EntityRenderAgateGolem(m, new ModelAgateGolem(), 0.9F));
         RenderingRegistry.registerEntityRenderingHandler(GDAncientLagrahk.class, m -> new EntityRenderAncientLagrahk(m, new ModelAncientLagrahk(), 2.0F));
-        RenderingRegistry.registerEntityRenderingHandler(GDCrystalGolem.class, m -> new EntityRenderCrystalGolem(m, new ModelCrystalGolem(), 1.0F));
-        RenderingRegistry.registerEntityRenderingHandler(GDSaltion.class, m -> new EntityRenderSaltion(m, new ModelSaltion(), 1.0F));
+        RenderingRegistry.registerEntityRenderingHandler(GDCrystalGolem.class, m -> new EntityRenderCrystalGolem(m, new ModelCrystalGolem(), 0.9F));
+        RenderingRegistry.registerEntityRenderingHandler(GDSaltion.class, m -> new EntityRenderSaltion(m, new ModelSaltion(), 0.7F));
         RenderingRegistry.registerEntityRenderingHandler(GDNomadicLagrahk.class, m -> new EntityRenderNomadicLagrahk(m, new ModelNomadicLagrahk(), 1.0F));
         RenderingRegistry.registerEntityRenderingHandler(GDShallowArenthis.class, m -> new EntityRenderShallowArenthis(m, new ModelShallowArenthis(), 0.5F));
         RenderingRegistry.registerEntityRenderingHandler(GDCorruptSapper.class, m -> new EntityRenderCorruptSapper(m, new ModelGrowthSapper(), 0.6F));
         RenderingRegistry.registerEntityRenderingHandler(GDContortedNaga.class, m -> new EntityRenderContortedNaga(m, new ModelContortedNaga(), 0.7F));
         RenderingRegistry.registerEntityRenderingHandler(GDLesserSpitfire.class, m -> new EntityRenderLesserSpitfire(m, new ModelLesserSpitfire(), 0.5F));
         RenderingRegistry.registerEntityRenderingHandler(GDLesserShockshooter.class, m -> new EntityRenderLesserShockshooter(m, new ModelLesserShockshooter(), 0.5F));
-        RenderingRegistry.registerEntityRenderingHandler(GDMineralArenthis.class, m -> new EntityRenderMineralArenthis(m, new ModelMineralArenthis(), 0.5F));
+        RenderingRegistry.registerEntityRenderingHandler(GDMineralArenthis.class, m -> new EntityRenderMineralArenthis(m, new ModelMineralArenthis(), 0.8F));
         RenderingRegistry.registerEntityRenderingHandler(GDArchaicWarrior.class, m -> new EntityRenderArchaicWarrior(m, new ModelArchaicWarrior(), 0.5F));
         RenderingRegistry.registerEntityRenderingHandler(GDPrimalBeast.class, m -> new EntityRenderPrimalBeast(m, new ModelPrimalBeast(), 0.5F));
         RenderingRegistry.registerEntityRenderingHandler(GDCavernTick.class, m -> new EntityRenderCavernTick(m, new ModelCavernTick(), 0.2F));
-        RenderingRegistry.registerEntityRenderingHandler(GDBlueHowliteWolf.class, m -> new EntityRenderBlueHowliteWolf(m, new ModelBlueHowliteWolf(), 1.2F));
+        RenderingRegistry.registerEntityRenderingHandler(GDBlueHowliteWolf.class, m -> new EntityRenderBlueHowliteWolf(m, new ModelBlueHowliteWolf(), 1.0F));
 
-        RenderingRegistry.registerEntityRenderingHandler(GDMalachiteGuard.class, m -> new EntityRenderMalachiteGuard(m, new ModelMalachiteGuard(), 1.0F));
+        RenderingRegistry.registerEntityRenderingHandler(GDMalachiteGuard.class, m -> new EntityRenderMalachiteGuard(m, new ModelMalachiteGuard(), 0.7F));
     }
     @Override
     public void doOnLoadRegistration() {

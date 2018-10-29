@@ -18,7 +18,7 @@ public class GDSaltion extends EntityMob {
 
     public GDSaltion(World world) {
         super(world);
-        this.setSize(1.0F, 1.0F);
+        this.setSize(1.0F, 0.3F);
     }
 
     @Override
@@ -35,6 +35,11 @@ public class GDSaltion extends EntityMob {
         this.tasks.addTask(3, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
         this.tasks.addTask(4, new EntityAILookIdle(this));
         this.tasks.addTask(1, new EntityAIWander(this, 0.5D));
+    }
+
+    @Override
+    public float getEyeHeight() {
+        return 0.25F;
     }
 
     @Override

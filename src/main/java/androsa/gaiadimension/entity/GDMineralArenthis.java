@@ -28,7 +28,7 @@ public class GDMineralArenthis extends EntityWaterMob {
 
     public GDMineralArenthis(World worldIn) {
         super(worldIn);
-        this.setSize(2.0F, 2.0F);
+        this.setSize(1.5F, 1.5F);
         this.rand.setSeed((long) (1 + this.getEntityId()));
         this.rotationVelocity = 1.0F / (this.rand.nextFloat() + 1.0F) * 0.2F;
     }
@@ -41,6 +41,11 @@ public class GDMineralArenthis extends EntityWaterMob {
     protected void applyEntityAttributes() {
         super.applyEntityAttributes();
         this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(15.0D);
+    }
+
+    @Override
+    public float getEyeHeight() {
+        return this.height * 0.85F;
     }
 
     @Override

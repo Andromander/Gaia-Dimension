@@ -15,7 +15,7 @@ public class GDBlueHowliteWolf extends EntityMob {
     public GDBlueHowliteWolf(World world) {
         super(world);
 
-        this.setSize(1.2F, 1.8F);
+        this.setSize(1.2F, 2.2F);
     }
 
     @Override
@@ -32,6 +32,11 @@ public class GDBlueHowliteWolf extends EntityMob {
         this.tasks.addTask(2, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
         this.tasks.addTask(3, new EntityAILookIdle(this));
         this.tasks.addTask(1, new EntityAIWander(this, 0.5D));
+    }
+
+    @Override
+    public float getEyeHeight() {
+        return 2.1F;
     }
 
     @Override

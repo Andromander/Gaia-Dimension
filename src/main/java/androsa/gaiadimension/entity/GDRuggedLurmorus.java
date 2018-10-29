@@ -19,7 +19,7 @@ public class GDRuggedLurmorus extends EntityCreature implements IAnimals {
     public GDRuggedLurmorus(World world) {
         super(world);
 
-        this.setSize(2.0F * 2.5F, 3.0F * 1.5F);
+        this.setSize(3.5F, 8.0F);
     }
 
     @Override
@@ -36,6 +36,11 @@ public class GDRuggedLurmorus extends EntityCreature implements IAnimals {
         this.tasks.addTask(2, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
         this.tasks.addTask(3, new EntityAILookIdle(this));
         this.tasks.addTask(1, new EntityAIWander(this, 0.3D));
+    }
+
+    @Override
+    public float getEyeHeight() {
+        return 7.6F;
     }
 
     @Override

@@ -17,7 +17,7 @@ public class GDContortedNaga extends EntityMob {
 
     public GDContortedNaga(World world) {
         super(world);
-        this.setSize(1.0F, 2.0F);
+        this.setSize(1.0F, 2.6F);
     }
 
     @Override
@@ -38,6 +38,11 @@ public class GDContortedNaga extends EntityMob {
         this.tasks.addTask(8, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
         this.tasks.addTask(8, new EntityAILookIdle(this));
         this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityPlayer.class, true));
+    }
+
+    @Override
+    public float getEyeHeight() {
+        return 2.3F;
     }
 
     @Override

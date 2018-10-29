@@ -19,7 +19,7 @@ public class GDMutantGrowthExtractor extends EntityCreature implements IAnimals 
     public GDMutantGrowthExtractor(World world) {
         super(world);
 
-        this.setSize(1.0F, 1.0F);
+        this.setSize(1.F, 1.5F);
     }
 
     @Override
@@ -35,6 +35,11 @@ public class GDMutantGrowthExtractor extends EntityCreature implements IAnimals 
         this.tasks.addTask(3, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
         this.tasks.addTask(4, new EntityAILookIdle(this));
         this.tasks.addTask(1, new EntityAIWander(this, 0.5D));
+    }
+
+    @Override
+    public float getEyeHeight() {
+        return 1.3F;
     }
 
     @Override

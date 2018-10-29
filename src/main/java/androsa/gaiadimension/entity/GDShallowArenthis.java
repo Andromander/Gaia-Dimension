@@ -29,7 +29,7 @@ public class GDShallowArenthis extends EntityWaterMob {
 
     public GDShallowArenthis(World worldIn) {
         super(worldIn);
-        this.setSize(0.8F, 0.8F);
+        this.setSize(0.6F, 0.6F);
         this.rand.setSeed((long) (1 + this.getEntityId()));
         this.rotationVelocity = 1.0F / (this.rand.nextFloat() + 1.0F) * 0.2F;
     }

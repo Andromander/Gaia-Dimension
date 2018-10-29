@@ -37,6 +37,11 @@ public class GDAncientLagrahk extends EntityMob {
     }
 
     @Override
+    public float getEyeHeight() {
+        return 3.55F;
+    }
+
+    @Override
     public void onUpdate() {
         super.onUpdate();
         if (!world.isRemote && world.getDifficulty() == EnumDifficulty.PEACEFUL) {

@@ -44,6 +44,11 @@ public class GDNomadicLagrahk extends EntityCreature {
         this.dataManager.register(LAGRAHK_VARIANT, 0);
     }
 
+    @Override
+    public float getEyeHeight() {
+        return 3.55F;
+    }
+
     /**
      * Get the variant integer
      */
