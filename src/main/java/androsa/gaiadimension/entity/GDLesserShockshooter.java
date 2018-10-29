@@ -18,7 +18,6 @@ public class GDLesserShockshooter extends EntityMob implements IShockshooterMob,
     //TODO: Shoot small fire projectiles
     public GDLesserShockshooter(World worldIn) {
         super(worldIn);
-        this.isImmuneToFire = true;
 
         this.setSize(0.5F, 2.0F);
 
