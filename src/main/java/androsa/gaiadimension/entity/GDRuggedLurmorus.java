@@ -20,6 +20,8 @@ public class GDRuggedLurmorus extends EntityCreature implements IAnimals {
         super(world);
 
         this.setSize(3.5F, 8.0F);
+
+        this.experienceValue = 5;
     }
 
     @Override

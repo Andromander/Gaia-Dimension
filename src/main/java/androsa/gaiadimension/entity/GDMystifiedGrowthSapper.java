@@ -24,6 +24,8 @@ public class GDMystifiedGrowthSapper extends EntityCreature implements IAnimals 
         super(world);
 
         this.setSize(1.0F, 1.0F);
+
+        this.experienceValue = 1 + rand.nextInt(3);
     }
 
     @Override

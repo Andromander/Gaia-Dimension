@@ -18,9 +18,11 @@ public class GDLesserSpitfire extends EntityMob implements ISpitfireMob, IMob {
     //TODO: Shoot small fire projectiles
     public GDLesserSpitfire(World worldIn) {
         super(worldIn);
+
         this.setSize(0.5F, 2.0F);
 
         this.isImmuneToFire = true;
+        this.experienceValue = 10;
     }
 
     @Override

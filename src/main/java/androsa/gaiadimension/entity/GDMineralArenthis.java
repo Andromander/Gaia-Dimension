@@ -29,6 +29,8 @@ public class GDMineralArenthis extends EntityWaterMob {
     public GDMineralArenthis(World worldIn) {
         super(worldIn);
         this.setSize(1.5F, 1.5F);
+
+        this.experienceValue = 5;
         this.rand.setSeed((long) (1 + this.getEntityId()));
         this.rotationVelocity = 1.0F / (this.rand.nextFloat() + 1.0F) * 0.2F;
     }

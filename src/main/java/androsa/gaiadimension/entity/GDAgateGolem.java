@@ -20,7 +20,10 @@ public class GDAgateGolem extends EntityMob {
 
     public GDAgateGolem(World world) {
         super(world);
+
         this.setSize(1.2F, 2.7F);
+
+        this.experienceValue = 15;
     }
 
     @Override

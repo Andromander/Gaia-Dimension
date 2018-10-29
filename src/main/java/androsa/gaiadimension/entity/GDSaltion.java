@@ -18,7 +18,10 @@ public class GDSaltion extends EntityMob {
 
     public GDSaltion(World world) {
         super(world);
+
         this.setSize(1.0F, 0.3F);
+
+        this.experienceValue = 1 + rand.nextInt(3);
     }
 
     @Override

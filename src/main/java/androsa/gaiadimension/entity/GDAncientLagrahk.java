@@ -15,7 +15,10 @@ public class GDAncientLagrahk extends EntityMob {
 
     public GDAncientLagrahk(World world) {
         super(world);
+
         this.setSize(1.5F, 4.0F);
+
+        this.experienceValue = 20;
     }
 
     @Override

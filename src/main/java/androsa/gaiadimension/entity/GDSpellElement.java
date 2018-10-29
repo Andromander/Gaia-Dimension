@@ -18,7 +18,10 @@ public class GDSpellElement extends EntityMob {
 
     public GDSpellElement(World world) {
         super(world);
+
         this.setSize(0.5F, 2.0F);
+
+        this.experienceValue = 5;
     }
 
     @Override

@@ -16,7 +16,10 @@ public class GDHowliteWolf extends EntityMob {
 
     public GDHowliteWolf(World world) {
         super(world);
+
         this.setSize(0.6F, 0.85F);
+
+        this.experienceValue = 5;
     }
 
     @Override

@@ -16,6 +16,8 @@ public class GDMalachiteGuard extends EntityMob {
         super(world);
 
         this.setSize(0.8F, 3.3F);
+
+        this.experienceValue = 75;
     }
 
     @Override

@@ -17,6 +17,8 @@ public class GDMarkuzarPlant extends EntityCreature implements IAnimals {
         super(world);
 
         this.setSize(0.6F, 2.0F);
+
+        this.experienceValue = 1 + rand.nextInt(3);
     }
 
     @Override

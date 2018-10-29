@@ -15,7 +15,10 @@ public class GDShalurker extends EntityMob implements IMob {
 
     public GDShalurker(World worldIn) {
         super(worldIn);
+
         this.setSize(0.6F, 1.9F);
+
+        this.experienceValue = 10;
     }
 
     protected void initEntityAI() {

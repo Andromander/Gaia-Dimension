@@ -21,7 +21,10 @@ public class GDCavernTick extends EntityMob implements IMob {
 
     public GDCavernTick(World worldIn) {
         super(worldIn);
+
         this.setSize(0.4F, 0.3F);
+
+        this.experienceValue = 5;
     }
 
     @Override

@@ -16,6 +16,8 @@ public class GDBlueHowliteWolf extends EntityMob {
         super(world);
 
         this.setSize(1.2F, 2.2F);
+
+        this.experienceValue = 30;
     }
 
     @Override

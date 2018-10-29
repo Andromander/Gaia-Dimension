@@ -17,7 +17,10 @@ public class GDContortedNaga extends EntityMob {
 
     public GDContortedNaga(World world) {
         super(world);
+
         this.setSize(1.0F, 2.6F);
+
+        this.experienceValue = 15;
     }
 
     @Override

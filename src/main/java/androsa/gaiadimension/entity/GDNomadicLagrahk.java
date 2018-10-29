@@ -1,6 +1,5 @@
 package androsa.gaiadimension.entity;
 
-import androsa.gaiadimension.biomes.GDMineralRiver;
 import androsa.gaiadimension.biomes.GDSaltDunes;
 import androsa.gaiadimension.biomes.GDStaticWasteland;
 import androsa.gaiadimension.biomes.GDVolcanicLands;
@@ -27,7 +26,10 @@ public class GDNomadicLagrahk extends EntityCreature {
 
     public GDNomadicLagrahk(World world) {
         super(world);
+
         this.setSize(1.5F, 4.0F);
+
+        this.experienceValue = 10;
     }
 
     @Override

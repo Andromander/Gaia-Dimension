@@ -19,7 +19,10 @@ public class GDLesserShockshooter extends EntityMob implements IShockshooterMob,
     public GDLesserShockshooter(World worldIn) {
         super(worldIn);
         this.isImmuneToFire = true;
+
         this.setSize(0.5F, 2.0F);
+
+        this.experienceValue = 10;
     }
 
     @Override

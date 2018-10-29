@@ -16,9 +16,11 @@ public class GDPrimalBeast extends EntityMob implements IMob {
 
     public GDPrimalBeast(World world) {
         super(world);
+
         this.setSize(1.0F, 2.0F);
 
         this.isImmuneToFire = true;
+        this.experienceValue = 15;
     }
 
     @Override

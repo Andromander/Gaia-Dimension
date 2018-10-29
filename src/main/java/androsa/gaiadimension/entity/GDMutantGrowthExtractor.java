@@ -20,6 +20,8 @@ public class GDMutantGrowthExtractor extends EntityCreature implements IAnimals 
         super(world);
 
         this.setSize(1.F, 1.5F);
+
+        this.experienceValue = 5;
     }
 
     @Override
