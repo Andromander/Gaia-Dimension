@@ -17,8 +17,8 @@ public class GDOre extends Block implements ModelRegisterCallback {
 
     private final Supplier<Item> itemSupplier;
 
-    public GDOre(Material material, MapColor color, @Nullable Supplier<Item> item) {
-        super(material, color);
+    public GDOre(MapColor color, @Nullable Supplier<Item> item) {
+        super(Material.ROCK, color);
 
         setSoundType(SoundType.STONE);
         setCreativeTab(GDTabs.tabBlock);
