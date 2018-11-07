@@ -58,6 +58,12 @@ public class GDItems {
     public static final Item goldstone_residue = null;
     public static final Item agate_cup = null;
     public static final Item scaynyx_ingot = null;
+    public static final Item sweet_muckball = null;
+    public static final Item sugar_crystals = null;
+    public static final Item sugar_cluster = null;
+    public static final Item shiny_bone = null;
+    public static final Item fine_thread = null;
+    public static final Item twined_thread = null;
 
     public static final Item pink_geode = null;
     public static final Item blue_geode = null;
@@ -74,6 +80,13 @@ public class GDItems {
     public static final Item pearly_geode_elixir = null;
     public static final Item lurmorus_meat = null;
     public static final Item lurmorus_steak = null;
+    public static final Item small_tentacle = null;
+    public static final Item small_calamari = null;
+    public static final Item large_tentacle = null;
+    public static final Item large_calamari = null;
+    public static final Item markuzar_mint = null;
+    public static final Item luggeroth_chop = null;
+    public static final Item cooked_luggeroth_chop = null;
 
     public static final Item hematite_powder = null;
     public static final Item pyrite_powder = null;
@@ -197,6 +210,7 @@ public class GDItems {
     public static final Item chalcedony_pickaxe = null;
     public static final Item chalcedony_axe = null;
     public static final Item chalcedony_shovel = null;
+    public static final Item old_bow = null;
 
     public static final Item malachite_guard_baton = null;
     public static final Item apex_predator_mace = null;

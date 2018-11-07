@@ -38,6 +38,12 @@ public class GDItemsRegister {
         items.register("goldstone_residue", new GDItem());
         items.register("agate_cup", new GDItem());
         items.register("scaynyx_ingot", new GDItem());
+        items.register("sweet_muckball", new GDItem());
+        items.register("sugar_crystals", new GDItem());
+        items.register("sugar_cluster", new GDItem());
+        items.register("shiny_bone", new GDItem());
+        items.register("fine_thread", new GDItem());
+        items.register("twined_thread", new GDItem());
 
         items.register("pink_geode", new GDGeode());
         items.register("blue_geode", new GDGeode());
@@ -54,7 +60,13 @@ public class GDItemsRegister {
         items.register("pearly_geode_elixir", new GDGeodeJuice(8, 0.7F, false));
         items.register("lurmorus_meat", new GDFood(4, 0.4F, false));
         items.register("lurmorus_steak", new GDFood(9, 0.9F, false));
-        //items.register("markuzar_mint", new GDFood(1, 0.2F, false));
+        items.register("small_tentacle", new GDFood(3, 0.2F, false));
+        items.register("small_calamari", new GDFood(6, 0.6F, false));
+        items.register("large_tentacle", new GDFood(4, 0.3F, false));
+        items.register("large_calamari", new GDFood(8, 0.7F, false));
+        items.register("markuzar_mint", new GDFood(2, 0.4F, false));
+        items.register("luggeroth_chop", new GDFood(3, 0.3F, false));
+        items.register("cooked_luggeroth_chop", new GDFood(8, 0.8F, false));
 
         items.register("hematite_powder", new GDGroundGem());
         items.register("pyrite_powder", new GDGroundGem());
@@ -116,6 +128,7 @@ public class GDItemsRegister {
         items.register("chalcedony_pickaxe", new GDGenericPickaxe(TOOL_CHALCEDONY));
         items.register("chalcedony_axe", new GDGenericAxe(TOOL_CHALCEDONY, 6F, -3.2F));
         items.register("chalcedony_shovel", new GDGenericShovel(TOOL_CHALCEDONY));
+        items.register("old_bow", new GDBow());
 
         items.register("sugilite_helmet", new GDSugiliteArmor(ARMOR_SUGILITE, HEAD));
         items.register("sugilite_chestplate", new GDSugiliteArmor(ARMOR_SUGILITE, CHEST));
