@@ -1,6 +1,6 @@
 {
   "result": {
-    "item": "gaiadimension:agate_pickaxe"
+    "item": "gaiadimension:chalcedony_pickaxe"
   },
   "pattern": [
     "WWW",
@@ -8,9 +8,10 @@
     " S "
   ],
   "type": "forge:ore_shaped",
+  "group": "chalcedony_tools",
   "key": {
     "W": {
-      "item": "#AGATEPLANKS"
+      "item": "gaiadimension:chalcedony"
     },
     "S": {
       "item": "gaiadimension:agate_stick"

@@ -1,16 +1,17 @@
 {
   "result": {
-    "item": "gaiadimension:agate_axe"
+    "item": "gaiadimension:euclase_pickaxe"
   },
   "pattern": [
-    "WW",
-    "WS",
-    " S"
+    "WWW",
+    " S ",
+    " S "
   ],
   "type": "forge:ore_shaped",
+  "group": "euclase_tools",
   "key": {
     "W": {
-      "item": "#AGATEPLANKS"
+      "item": "gaiadimension:euclase"
     },
     "S": {
       "item": "gaiadimension:agate_stick"

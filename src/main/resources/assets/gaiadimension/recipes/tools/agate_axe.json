@@ -1,13 +1,14 @@
 {
   "result": {
-    "item": "gaiadimension:agate_shovel"
+    "item": "gaiadimension:agate_axe"
   },
   "pattern": [
-    "W",
-    "S",
-    "S"
+    "WW",
+    "WS",
+    " S"
   ],
   "type": "forge:ore_shaped",
+  "group": "agate_tools",
   "key": {
     "W": {
       "item": "#AGATEPLANKS"

@@ -1,0 +1,20 @@
+{
+  "result": {
+    "item": "gaiadimension:chalcedony_shovel"
+  },
+  "pattern": [
+    "W",
+    "S",
+    "S"
+  ],
+  "type": "forge:ore_shaped",
+  "group": "chalcedony_tools",
+  "key": {
+    "W": {
+      "item": "gaiadimension:chalcedony"
+    },
+    "S": {
+      "item": "gaiadimension:agate_stick"
+    }
+  }
+}
