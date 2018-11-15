@@ -3,6 +3,7 @@ package androsa.gaiadimension.biomes;
 import androsa.gaiadimension.entity.GDMuckling;
 import androsa.gaiadimension.entity.GDNomadicLagrahk;
 import androsa.gaiadimension.entity.GDShalurker;
+import androsa.gaiadimension.registry.GDBiomes;
 import androsa.gaiadimension.registry.GDBlocks;
 import androsa.gaiadimension.world.GaiaWorld;
 import net.minecraft.block.material.Material;
@@ -110,8 +111,10 @@ public abstract class GDBiomeBase extends Biome {
                 if (iblockstate2.getMaterial() == Material.AIR) {
                     j = -1;
                 } else if (iblockstate2.getBlock() == GDBlocks.gaia_stone) {
-                    if (stone != null && worldIn.getHeight() > seaLevel - 10)
+                    if (stone != null && posY > seaLevel + 10) {
                         chunkPrimerIn.setBlockState(posX, posY, posZ, stone);
+                    }
+
 
                     if (j == -1) {
                         if (k <= 0) {

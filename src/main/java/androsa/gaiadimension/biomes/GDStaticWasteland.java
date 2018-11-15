@@ -1,11 +1,14 @@
 package androsa.gaiadimension.biomes;
 
 import androsa.gaiadimension.registry.GDBlocks;
+import androsa.gaiadimension.world.GaiaWorld;
 import androsa.gaiadimension.world.gen.GDGenStaticPatch;
 import androsa.gaiadimension.world.gen.GDGenStaticSpike;
+import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraft.world.chunk.ChunkPrimer;
 import net.minecraft.world.gen.feature.WorldGenMinable;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -55,7 +58,7 @@ public class GDStaticWasteland extends GDBiomeBase {
         for (int i = 0; i < 9; i++) {
             int Xcoord = pos.getX() + rand.nextInt(16);
             int Zcoord = pos.getZ() + rand.nextInt(16);
-            int Ycoord = rand.nextInt(100);
+            int Ycoord = rand.nextInt(60);
             new WorldGenMinable(GDBlocks.static_stone.getDefaultState(), 33, input -> input == GDBlocks.wasteland_stone.getDefaultState()).generate(world, rand, new BlockPos(Xcoord, Ycoord, Zcoord));
         }
     }
