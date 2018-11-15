@@ -7,7 +7,6 @@ import androsa.gaiadimension.registry.GDFeature;
 import androsa.gaiadimension.world.gen.GDGenCaves;
 import androsa.gaiadimension.world.gen.GDGenLavaLake;
 import androsa.gaiadimension.world.gen.GDGenUndergroundCaves;
-import jline.internal.Nullable;
 import mcp.MethodsReturnNonnullByDefault;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFalling;
@@ -27,6 +26,7 @@ import net.minecraft.world.gen.NoiseGeneratorOctaves;
 import net.minecraft.world.gen.NoiseGeneratorPerlin;
 import net.minecraft.world.gen.feature.WorldGenLakes;
 
+import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.List;
 import java.util.Random;

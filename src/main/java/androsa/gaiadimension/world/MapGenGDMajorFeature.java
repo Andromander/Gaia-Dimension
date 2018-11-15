@@ -2,11 +2,12 @@ package androsa.gaiadimension.world;
 
 import androsa.gaiadimension.registry.GDFeature;
 import androsa.gaiadimension.structure.StructureGDMajorFeatureStart;
-import jline.internal.Nullable;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.structure.MapGenStructure;
 import net.minecraft.world.gen.structure.StructureStart;
+
+import javax.annotation.Nullable;
 
 public class MapGenGDMajorFeature extends MapGenStructure {
 
