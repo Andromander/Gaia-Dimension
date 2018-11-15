@@ -23,7 +23,7 @@ public class GDCrystalPlains extends GDBiomeBase {
 
         GaiaGenPinkTrees = new GDGenPinkAgateTree(false);
 
-        decorator.grassPerChunk = 5;
+        biomeDecorator.grassPerChunk = 5;
     }
 
     @Override
