@@ -18,16 +18,17 @@ import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.*;
-import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraft.world.biome.Biome;
+import net.minecraftforge.common.BiomeDictionary;
+import net.minecraftforge.common.BiomeDictionary.Type;
 import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.Random;
 
@@ -42,44 +43,40 @@ public class GDGaiaPortal extends BlockPortal implements ModelRegisterCallback {
         this.setLightLevel(1.0F);
     }
 
-    @Override
-    @Deprecated
-    @Nullable
-    public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, IBlockAccess worldIn, BlockPos pos) {
-        return NULL_AABB;
-    }
-
     public static int getMetaForAxis(EnumFacing.Axis axis) {
         if (axis == EnumFacing.Axis.X) {
             return 1;
-        }
-        else {
+        } else {
             return axis == EnumFacing.Axis.Z ? 2 : 0;
         }
-    }
-
-    @Override
-    @Deprecated
-    public boolean isFullCube(IBlockState state) {
-        return false;
     }
 
     public boolean tryToCreatePortal(World worldIn, BlockPos pos) {
         GDGaiaPortal.Size blockportal$size = new GDGaiaPortal.Size(worldIn, pos, EnumFacing.Axis.X);
 
-        if (blockportal$size.isValid() && blockportal$size.portalBlockCount == 0 && pos.getY() < 32) {
+        if (blockportal$size.isValid() && blockportal$size.portalBlockCount == 0 && canCreatePortalByWorld(worldIn, pos)) {
             blockportal$size.placePortalBlocks();
             return true;
         } else {
             GDGaiaPortal.Size blockportal$size1 = new GDGaiaPortal.Size(worldIn, pos, EnumFacing.Axis.Z);
 
-            if (blockportal$size1.isValid() && blockportal$size1.portalBlockCount == 0 && pos.getY() < 32) {
+            if (blockportal$size1.isValid() && blockportal$size1.portalBlockCount == 0 && canCreatePortalByWorld(worldIn, pos)) {
                 blockportal$size1.placePortalBlocks();
                 return true;
             } else {
                 return false;
             }
         }
+    }
+
+    // This will check for creation conditions in the Overworld or Gaia
+    private boolean canCreatePortalByWorld(World world, BlockPos pos) {
+        Biome biome = world.getBiome(pos);
+
+        if (world.provider.getDimension() == 0)
+            return BiomeDictionary.hasType(biome, Type.HOT) || BiomeDictionary.hasType(biome, Type.MOUNTAIN) || BiomeDictionary.hasType(biome, Type.DRY);
+        else
+            return world.provider.getDimension() == GDConfig.dimension.dimensionID;
     }
 
     @Override
@@ -134,25 +131,18 @@ public class GDGaiaPortal extends BlockPortal implements ModelRegisterCallback {
     }
 
     @Override
-    public int quantityDropped(Random random) {
-        return 0;
-    }
-
-    @Override
     public void onEntityCollision(World worldIn, @Nullable BlockPos pos, IBlockState state, Entity entityIn) {
 
         if (!entityIn.isRiding() && !entityIn.isBeingRidden() && !worldIn.isRemote)
-            if(entityIn.timeUntilPortal <= 0){
-                if(entityIn instanceof EntityPlayerMP){
+            if (entityIn.timeUntilPortal <= 0) {
+                if (entityIn instanceof EntityPlayerMP) {
                     EntityPlayerMP thePlayer = (EntityPlayerMP)entityIn;
 
-                    thePlayer.timeUntilPortal = 10;
-                    if (thePlayer.dimension != GDConfig.dimension.dimensionID)
-                    {
+                    thePlayer.timeUntilPortal = entityIn.getPortalCooldown();
+                    if (thePlayer.dimension != GDConfig.dimension.dimensionID) {
                         if(!ForgeHooks.onTravelToDimension(thePlayer, GDConfig.dimension.dimensionID)) return;
                         thePlayer.server.getPlayerList().transferPlayerToDimension(thePlayer, GDConfig.dimension.dimensionID, new TeleporterGaia(thePlayer.server.getWorld(GDConfig.dimension.dimensionID), this, GDBlocks.keystone_block.getDefaultState()));
-                    }
-                    else {
+                    } else {
                         if(!ForgeHooks.onTravelToDimension(thePlayer, 0)) return;
                         thePlayer.server.getPlayerList().transferPlayerToDimension(thePlayer, 0, new TeleporterGaia(thePlayer.server.getWorld(0), this, GDBlocks.keystone_block.getDefaultState()));
                     }
@@ -164,30 +154,20 @@ public class GDGaiaPortal extends BlockPortal implements ModelRegisterCallback {
                         if(!ForgeHooks.onTravelToDimension(entityIn, GDConfig.dimension.dimensionID)) return;
 
                         int i = entityIn.dimension;
-
                         entityIn.dimension = GDConfig.dimension.dimensionID;
                         worldIn.removeEntityDangerously(entityIn);
-
                         entityIn.isDead = false;
-
                         server.getPlayerList().transferEntityToWorld(entityIn, i, server.getWorld(i), server.getWorld(GDConfig.dimension.dimensionID), new TeleporterGaia(server.getWorld(GDConfig.dimension.dimensionID), this, GDBlocks.keystone_block.getDefaultState()));
                     } else {
                         if(!ForgeHooks.onTravelToDimension(entityIn, 0)) return;
 
                         entityIn.dimension = 0;
                         worldIn.removeEntityDangerously(entityIn);
-
                         entityIn.isDead = false;
-
                         server.getPlayerList().transferEntityToWorld(entityIn, GDConfig.dimension.dimensionID, server.getWorld(GDConfig.dimension.dimensionID), server.getWorld(0), new TeleporterGaia(server.getWorld(0), this, GDBlocks.keystone_block.getDefaultState()));
                     }
                 }
             } else entityIn.timeUntilPortal = entityIn.getPortalCooldown();
-    }
-
-    @Override
-    public ItemStack getItem(World worldIn, BlockPos pos, IBlockState state) {
-        return ItemStack.EMPTY;
     }
 
     @Override
@@ -217,13 +197,10 @@ public class GDGaiaPortal extends BlockPortal implements ModelRegisterCallback {
             double d5 = ((double)rand.nextFloat() - 0.5D) * 0.5D;
             int j = rand.nextInt(2) * 2 - 1;
 
-            if (worldIn.getBlockState(pos.west()).getBlock() != this && worldIn.getBlockState(pos.east()).getBlock() != this)
-            {
+            if (worldIn.getBlockState(pos.west()).getBlock() != this && worldIn.getBlockState(pos.east()).getBlock() != this) {
                 d0 = (double)pos.getX() + 0.5D + 0.25D * (double)j;
                 d3 = (double)(rand.nextFloat() * 2.0F * (float)j);
-            }
-            else
-            {
+            } else {
                 d2 = (double)pos.getZ() + 0.5D + 0.25D * (double)j;
                 d5 = (double)(rand.nextFloat() * 2.0F * (float)j);
             }
@@ -235,27 +212,6 @@ public class GDGaiaPortal extends BlockPortal implements ModelRegisterCallback {
     @Override
     public int getMetaFromState(IBlockState state) {
         return getMetaForAxis(state.getValue(AXIS));
-    }
-
-    @Override
-    @Deprecated
-    public IBlockState withRotation(@Nonnull IBlockState state, Rotation rot) {
-        switch (rot) {
-            case COUNTERCLOCKWISE_90:
-            case CLOCKWISE_90:
-
-                switch (state.getValue(AXIS)) {
-                    case X:
-                        return state.withProperty(AXIS, EnumFacing.Axis.Z);
-                    case Z:
-                        return state.withProperty(AXIS, EnumFacing.Axis.X);
-                    default:
-                        return state;
-                }
-
-            default:
-                return state;
-        }
     }
 
     @Override
@@ -280,15 +236,12 @@ public class GDGaiaPortal extends BlockPortal implements ModelRegisterCallback {
             if (facing == EnumFacing.Axis.X) {
                 leftDir = EnumFacing.EAST;
                 rightDir = EnumFacing.WEST;
-            }
-            else {
+            } else {
                 leftDir = EnumFacing.NORTH;
                 rightDir = EnumFacing.SOUTH;
             }
 
-            for (BlockPos blockpos = pos; pos.getY() > blockpos.getY() - 21 && pos.getY() > 0 && isEmptyBlock(worldIn.getBlockState(pos.down()).getBlock()); pos = pos.down()) {
-                ;
-            }
+            for (BlockPos blockpos = pos; pos.getY() > blockpos.getY() - 21 && pos.getY() > 0 && isEmptyBlock(worldIn.getBlockState(pos.down()).getBlock()); pos = pos.down()) { }
 
             int i = getDistanceUntilEdge(pos, leftDir) - 1;
 
@@ -307,7 +260,7 @@ public class GDGaiaPortal extends BlockPortal implements ModelRegisterCallback {
             }
         }
 
-        protected int getDistanceUntilEdge(BlockPos pos, EnumFacing facing) {
+        int getDistanceUntilEdge(BlockPos pos, EnumFacing facing) {
             int i;
 
             for (i = 0; i < 22; ++i) {
@@ -330,7 +283,7 @@ public class GDGaiaPortal extends BlockPortal implements ModelRegisterCallback {
             return width;
         }
 
-        protected int calculatePortalHeight() {
+        int calculatePortalHeight() {
             label56:
 
             for (height = 0; height < 21; ++height) {
@@ -352,8 +305,7 @@ public class GDGaiaPortal extends BlockPortal implements ModelRegisterCallback {
                         if (block != GDBlocks.keystone_block.getDefaultState()) {
                             break label56;
                         }
-                    }
-                    else if (i == this.width) {
+                    } else if (i == this.width) {
                         block = world.getBlockState(blockpos.offset(rightDir));
 
                         if (block != GDBlocks.keystone_block.getDefaultState()) {
@@ -380,16 +332,17 @@ public class GDGaiaPortal extends BlockPortal implements ModelRegisterCallback {
             }
         }
 
-        @SuppressWarnings("deprecation")
-        protected boolean isEmptyBlock(Block blockIn) {
-            return blockIn.getMaterial(blockIn.getDefaultState()) == Material.AIR || blockIn == GDBlocks.gold_fire || blockIn == GDBlocks.gaia_portal;
+        boolean isEmptyBlock(Block blockIn) {
+            IBlockState state = blockIn.getDefaultState();
+
+            return state.getMaterial() == Material.AIR || blockIn == GDBlocks.gold_fire || blockIn == GDBlocks.gaia_portal;
         }
 
         public boolean isValid() {
             return bottomLeft != null && width >= 2 && width <= 21 && height >= 3 && this.height <= 21;
         }
 
-        public void placePortalBlocks() {
+        void placePortalBlocks() {
             for (int i = 0; i < this.width; ++i) {
                 BlockPos blockpos = bottomLeft.offset(rightDir, i);
 
