@@ -8,10 +8,6 @@
   },
   "variants": {
     "normal": [{ }],
-    "inventory": [{ }],
-    "check_decay=true,decayable=true":[{ }],
-    "check_decay=true,decayable=false":[{ }],
-    "check_decay=false,decayable=true":[{ }],
-    "check_decay=false,decayable=false":[{ }]
+    "inventory": [{ }]
   }
 }

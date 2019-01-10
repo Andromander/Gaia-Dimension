@@ -1,17 +1,13 @@
 {
   "forge_marker": 1,
   "defaults": {
-    "model": "cube_all",
+    "model": "leaves",
     "textures": {
       "all": "gaiadimension:blocks/blue_agate_leaves"
     }
   },
   "variants": {
     "normal": [{ }],
-    "inventory": [{ }],
-    "check_decay=true,decayable=true":[{ }],
-    "check_decay=true,decayable=false":[{ }],
-    "check_decay=false,decayable=true":[{ }],
-    "check_decay=false,decayable=false":[{ }]
+    "inventory": [{ }]
   }
 }

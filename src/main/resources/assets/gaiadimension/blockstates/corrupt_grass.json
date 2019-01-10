@@ -5,13 +5,17 @@
     "textures": {
       "particle": "gaiadimension:blocks/corrupt_soil",
       "bottom":   "gaiadimension:blocks/corrupt_soil",
-      "top":      "gaiadimension:blocks/dead_grass_top",
       "side":     "gaiadimension:blocks/dead_grass_side",
       "overlay":  "gaiadimension:blocks/dead_grass_overlay"
     }
   },
   "variants": {
-    "normal": [{}],
+    "normal": [
+      { "textures": { "top": "gaiadimension:blocks/dead_grass_top" } },
+      { "textures": { "top": "gaiadimension:blocks/dead_grass_top" }, "y": 90 },
+      { "textures": { "top": "gaiadimension:blocks/dead_grass_top" }, "y": 180 },
+      { "textures": { "top": "gaiadimension:blocks/dead_grass_top" }, "y": 270 }
+    ],
     "inventory": [{}]
   }
 }

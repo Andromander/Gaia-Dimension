@@ -1,14 +1,18 @@
 {
   "forge_marker": 1,
   "defaults": {
-    "model": "gaiadimension:util/cube_all_2_layer"
+    "model": "gaiadimension:util/cube_all_2_layer",
+    "textures": {
+      "all": "gaiadimension:blocks/wasteland_stone",
+      "all2": "gaiadimension:blocks/static_stone"
+    }
   },
   "variants": {
     "normal": [
-      { "model": "gaiadimension:util/cube_all_2_layer", "textures": { "all": "gaiadimension:blocks/wasteland_stone", "all2": "gaiadimension:blocks/static_stone" }, "x": 270 },
-      { "model": "gaiadimension:util/cube_all_2_layer", "textures": { "all": "gaiadimension:blocks/wasteland_stone", "all2": "gaiadimension:blocks/static_stone" }, "x": 180, "y": 90 },
-      { "model": "gaiadimension:util/cube_all_2_layer", "textures": { "all": "gaiadimension:blocks/wasteland_stone", "all2": "gaiadimension:blocks/static_stone" }, "x": 90, "y": 180 },
-      { "model": "gaiadimension:util/cube_all_2_layer", "textures": { "all": "gaiadimension:blocks/wasteland_stone", "all2": "gaiadimension:blocks/static_stone" }, "y": 270 }
+      {  },
+      { "y": 180 },
+      { "model": "gaiadimension:util/cube_mirrored_all_2_layer" },
+      { "model": "gaiadimension:util/cube_mirrored_all_2_layer", "y": 180 }
     ]
   }
 }

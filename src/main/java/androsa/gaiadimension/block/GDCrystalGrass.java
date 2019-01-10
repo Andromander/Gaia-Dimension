@@ -70,6 +70,6 @@ public class GDCrystalGrass extends Block implements ModelRegisterCallback {
     @SideOnly(Side.CLIENT)
     @Override
     public BlockRenderLayer getRenderLayer() {
-        return BlockRenderLayer.TRANSLUCENT;
+        return BlockRenderLayer.CUTOUT_MIPPED;
     }
 }

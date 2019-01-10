@@ -1,14 +1,17 @@
 {
   "forge_marker": 1,
   "defaults": {
-    "model": "cube_all"
+    "model": "cube_all",
+    "textures": {
+      "all": "gaiadimension:blocks/thick_glitter_block"
+    }
   },
   "variants": {
     "normal": [
-      { "model": "cube_all", "textures": {"all": "gaiadimension:blocks/thick_glitter_block" }},
-      { "model": "cube_all", "textures": {"all": "gaiadimension:blocks/thick_glitter_block" }, "x": 90, "y": 90 },
-      { "model": "cube_all", "textures": {"all": "gaiadimension:blocks/thick_glitter_block" }, "x": 180, "y": 180 },
-      { "model": "cube_all", "textures": {"all": "gaiadimension:blocks/thick_glitter_block" }, "x": 270, "y": 270 }
+      { },
+      { "y": 180 },
+      { "model": "cube_mirrored_all" },
+      { "model": "cube_mirrored_all", "y": 180 }
     ]
   }
 }
