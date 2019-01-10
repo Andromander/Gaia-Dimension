@@ -14,7 +14,7 @@ public class GDPyriteTorch extends BlockTorch implements ModelRegisterCallback {
     public GDPyriteTorch() {
         super();
 
-        this.setLightLevel(2F);
+        this.setLightLevel(0.5F);
         this.setCreativeTab(GDTabs.tabBlock);
     }
 
