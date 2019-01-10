@@ -53,7 +53,7 @@ public class GDRestructurer extends Block implements ModelRegisterCallback, ITil
 
     @Override
     public Item getItemDropped(IBlockState state, Random random, int fortune) {
-        return Item.getItemFromBlock(GDBlocks.glitter_furnace_idle);
+        return Item.getItemFromBlock(GDBlocks.restructurer_idle);
     }
 
     @Override
@@ -95,9 +95,9 @@ public class GDRestructurer extends Block implements ModelRegisterCallback, ITil
         keepInventory = true;
 
         if (flag)
-            world.setBlockState(pos, GDBlocks.glitter_furnace_lit.getDefaultState().withProperty(FACING, state.getValue(FACING)), 3);
+            world.setBlockState(pos, GDBlocks.restructurer_lit.getDefaultState().withProperty(FACING, state.getValue(FACING)), 3);
         else
-            world.setBlockState(pos, GDBlocks.glitter_furnace_idle.getDefaultState().withProperty(FACING, state.getValue(FACING)), 3);
+            world.setBlockState(pos, GDBlocks.restructurer_idle.getDefaultState().withProperty(FACING, state.getValue(FACING)), 3);
 
         keepInventory = false;
 
@@ -181,7 +181,7 @@ public class GDRestructurer extends Block implements ModelRegisterCallback, ITil
     @Override
     @SideOnly(Side.CLIENT)
     public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player) {
-        return new ItemStack(GDBlocks.glitter_furnace_idle);
+        return new ItemStack(GDBlocks.restructurer_idle);
     }
 
     @Override
