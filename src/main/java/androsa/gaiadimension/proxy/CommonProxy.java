@@ -36,7 +36,7 @@ public class CommonProxy implements IGuiHandler {
             case GAIA_STONE_FURNACE:
                 return new ContainerGaiaStoneFurnace(player.inventory, (TileEntityGaiaStoneFurnace) tile);
             case GLITTER_FURNACE:
-                return new ContainerGlitterFurnace(player.inventory, (TileEntityGlitterFurnace) tile);
+                return new ContainerRestructurer(player.inventory, (TileEntityRestructurer) tile);
             case PURIFIER:
                 return new ContainerPurifier(player.inventory, (TileEntityPurifier) tile);
             default:

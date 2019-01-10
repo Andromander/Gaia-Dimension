@@ -1,7 +1,7 @@
 package androsa.gaiadimension.block;
 
 import androsa.gaiadimension.GaiaDimension;
-import androsa.gaiadimension.block.tileentity.TileEntityGlitterFurnace;
+import androsa.gaiadimension.block.tileentity.TileEntityRestructurer;
 import androsa.gaiadimension.proxy.CommonProxy;
 import androsa.gaiadimension.registry.GDBlocks;
 import androsa.gaiadimension.registry.GDTabs;
@@ -34,19 +34,19 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import java.util.Random;
 
 @MethodsReturnNonnullByDefault
-public class GDGlitterFurnace extends Block implements ModelRegisterCallback, ITileEntityProvider {
+public class GDRestructurer extends Block implements ModelRegisterCallback, ITileEntityProvider {
 
     public static final PropertyDirection FACING = PropertyDirection.create("facing", EnumFacing.Plane.HORIZONTAL);
-    private final boolean isGittering;
+    private final boolean isRestructuring;
     private static boolean keepInventory;
 
-    public GDGlitterFurnace(boolean flag) {
+    public GDRestructurer(boolean flag) {
         super(Material.ROCK);
         this.setDefaultState(blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
         this.setSoundType(SoundType.STONE);
-        this.isGittering = flag;
+        this.isRestructuring = flag;
 
-        if (!isGittering) {
+        if (!isRestructuring) {
             this.setCreativeTab(GDTabs.tabBlock);
         }
     }
@@ -109,7 +109,7 @@ public class GDGlitterFurnace extends Block implements ModelRegisterCallback, IT
 
     @Override
     public TileEntity createNewTileEntity(World world, int index) {
-        return new TileEntityGlitterFurnace();
+        return new TileEntityRestructurer();
     }
 
     @Override
@@ -118,13 +118,13 @@ public class GDGlitterFurnace extends Block implements ModelRegisterCallback, IT
         world.setBlockState(pos, state.withProperty(FACING, living.getHorizontalFacing().getOpposite()), 2);
 
         if (stack.hasDisplayName())
-            ((TileEntityGlitterFurnace) world.getTileEntity(pos)).setCustomInventoryName(stack.getDisplayName());
+            ((TileEntityRestructurer) world.getTileEntity(pos)).setCustomInventoryName(stack.getDisplayName());
     }
 
     @Override
     public void breakBlock(World world, BlockPos pos, IBlockState state) {
         if (!keepInventory) {
-            TileEntityGlitterFurnace tileentityglitter = (TileEntityGlitterFurnace) world.getTileEntity(pos);
+            TileEntityRestructurer tileentityglitter = (TileEntityRestructurer) world.getTileEntity(pos);
 
             if (tileentityglitter != null) {
 
@@ -140,7 +140,7 @@ public class GDGlitterFurnace extends Block implements ModelRegisterCallback, IT
     @Override
     @SideOnly(Side.CLIENT)
     public void randomDisplayTick(IBlockState state, World world, BlockPos pos, Random rand) {
-        if (isGittering){
+        if (isRestructuring){
             EnumFacing enumfacing = state.getValue(FACING);
             double d0 = pos.getX() + 0.5D;
             double d1 = pos.getY() + rand.nextDouble() * 6.0D / 16.0D;

@@ -216,8 +216,8 @@ public class GDItemsRegister {
         items.registerBlock(GDBlocks.mega_storage_crate);
         items.registerBlock(GDBlocks.gaia_stone_furnace_idle);
         items.registerBlock(GDBlocks.gaia_stone_furnace_lit); //Fallback
-        items.registerBlock(GDBlocks.glitter_furnace_idle);
-        items.registerBlock(GDBlocks.glitter_furnace_lit); //Fallback
+        items.registerBlock(GDBlocks.restructurer_idle);
+        items.registerBlock(GDBlocks.restructurer_lit); //Fallback
         items.registerBlock(GDBlocks.purifier_idle);
         items.registerBlock(GDBlocks.purifier_lit); //Fallback
 

@@ -8,17 +8,17 @@ import net.minecraftforge.oredict.OreDictionary;
 import java.util.HashMap;
 import java.util.Map;
 
-public class GlitterFurnaceRecipes {
+public class RestructurerRecipes {
 
-    private static final GlitterFurnaceRecipes glitteringBase = new GlitterFurnaceRecipes();
+    private static final RestructurerRecipes glitteringBase = new RestructurerRecipes();
     private final Map<ItemStack, ItemStack[]> glitteringList = new HashMap<ItemStack, ItemStack[]>();
     private final Map<ItemStack, Float> experienceList = new HashMap<ItemStack, Float>();
 
-    public static GlitterFurnaceRecipes instance() {
+    public static RestructurerRecipes instance() {
         return glitteringBase;
     }
 
-    private GlitterFurnaceRecipes() {}
+    private RestructurerRecipes() {}
 
     public void glittering(Block input, ItemStack output1, ItemStack output2, float xp) {
         glittering(Item.getItemFromBlock(input), output1, output2, xp);

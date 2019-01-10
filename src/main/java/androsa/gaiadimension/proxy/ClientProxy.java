@@ -35,7 +35,7 @@ public class ClientProxy extends CommonProxy {
             case GAIA_STONE_FURNACE:
                 return new GuiGaiaStoneFurnace(player.inventory, (TileEntityGaiaStoneFurnace) tile);
             case GLITTER_FURNACE:
-                return new GuiGlitterFurnace(player.inventory, (TileEntityGlitterFurnace) tile);
+                return new GuiRestructurer(player.inventory, (TileEntityRestructurer) tile);
             case PURIFIER:
                 return new GuiPurifier(player.inventory, (TileEntityPurifier) tile);
             default:

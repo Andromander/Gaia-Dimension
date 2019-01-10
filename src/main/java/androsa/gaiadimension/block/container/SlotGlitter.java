@@ -1,6 +1,6 @@
 package androsa.gaiadimension.block.container;
 
-import androsa.gaiadimension.recipe.GlitterFurnaceRecipes;
+import androsa.gaiadimension.recipe.RestructurerRecipes;
 import androsa.gaiadimension.registry.GDEvents;
 import net.minecraft.entity.item.EntityXPOrb;
 import net.minecraft.entity.player.EntityPlayer;
@@ -15,8 +15,8 @@ public class SlotGlitter extends Slot {
     private EntityPlayer thePlayer;
     private int stackSize;
 
-    public SlotGlitter(EntityPlayer player, IInventory inv, int hitX, int hitY, int hitZ) {
-        super(inv, hitX, hitY, hitZ);
+    public SlotGlitter(EntityPlayer player, IInventory inv, int index, int xPosition, int yPosition) {
+        super(inv, index, xPosition, yPosition);
         thePlayer = player;
     }
 
@@ -52,7 +52,7 @@ public class SlotGlitter extends Slot {
 
         if (!thePlayer.world.isRemote) {
             int i = stackSize;
-            float f = GlitterFurnaceRecipes.instance().getExperience(par1ItemStack);
+            float f = RestructurerRecipes.instance().getExperience(par1ItemStack);
             int j;
 
             if (f == 0.0F)

@@ -39,8 +39,8 @@ public final class GDBlocksRegister {
         blocks.register("mega_storage_crate", new GDCrateLarge());
         blocks.register("gaia_stone_furnace_idle", new GDGaiaStoneFurnace(false));
         blocks.register("gaia_stone_furnace_lit", new GDGaiaStoneFurnace(true));
-        blocks.register("glitter_furnace_idle", new GDGlitterFurnace(false));
-        blocks.register("glitter_furnace_lit", new GDGlitterFurnace(true));
+        blocks.register("restructurer_idle", new GDRestructurer(false));
+        blocks.register("restructurer_lit", new GDRestructurer(true));
         blocks.register("purifier_idle", new GDPurifier(false));
         blocks.register("purifier_lit", new GDPurifier(true));
         blocks.register("mineral_water_block", new GDFluidBlock(GDFluids.mineralWater, Material.WATER));
@@ -226,7 +226,7 @@ public final class GDBlocksRegister {
         GameRegistry.registerTileEntity(TileEntitySmallCrate.class, new ResourceLocation("gaiadimension:small_crate"));
         GameRegistry.registerTileEntity(TileEntityLargeCrate.class, new ResourceLocation("gaiadimension:large_crate"));
         GameRegistry.registerTileEntity(TileEntityGaiaStoneFurnace.class, new ResourceLocation("gaiadimension:gaia_stone_furnace"));
-        GameRegistry.registerTileEntity(TileEntityGlitterFurnace.class, new ResourceLocation("gaiadimension:glitter_furnace"));
+        GameRegistry.registerTileEntity(TileEntityRestructurer.class, new ResourceLocation("gaiadimension:restructurer"));
         GameRegistry.registerTileEntity(TileEntityPurifier.class, new ResourceLocation("gaiadimension:purifier"));
     }
 

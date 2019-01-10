@@ -21,8 +21,8 @@ public class GDBlocks {
     public static final Block mega_storage_crate = null;
     public static final Block gaia_stone_furnace_idle = null;
     public static final Block gaia_stone_furnace_lit = null;
-    public static final Block glitter_furnace_idle = null;
-    public static final Block glitter_furnace_lit = null;
+    public static final Block restructurer_idle = null;
+    public static final Block restructurer_lit = null;
     public static final Block purifier_idle = null;
     public static final Block purifier_lit = null;
     public static final Block mineral_water_block = null;

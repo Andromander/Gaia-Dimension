@@ -8,15 +8,15 @@ public class RecipeHandler {
 
     //===GLITTER FURNACE===//
     public static void addGlitterRefactoring(Block input, ItemStack output1, ItemStack output2, float xp) {
-        GlitterFurnaceRecipes.instance().glittering(input, output1, output2, xp);
+        RestructurerRecipes.instance().glittering(input, output1, output2, xp);
     }
 
     public static void addGlitterRefactoring(Item input, ItemStack output1, ItemStack output2, float xp) {
-        GlitterFurnaceRecipes.instance().glittering(input, output1, output2, xp);
+        RestructurerRecipes.instance().glittering(input, output1, output2, xp);
     }
 
     public static void addGlitterRefactoring(ItemStack input, ItemStack output1, ItemStack output2, float xp) {
-        GlitterFurnaceRecipes.instance().glittering(input, output1, output2, xp);
+        RestructurerRecipes.instance().glittering(input, output1, output2, xp);
     }
 
     //===PURIFIER===//
