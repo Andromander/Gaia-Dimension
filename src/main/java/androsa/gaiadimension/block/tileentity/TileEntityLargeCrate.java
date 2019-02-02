@@ -151,9 +151,7 @@ public class TileEntityLargeCrate extends TileEntityLockableLoot implements ISid
     }
 
     static {
-        for (int i = 0; i < SLOTS.length; SLOTS[i] = i++) {
-            ;
-        }
+        for (int i = 0; i < SLOTS.length; SLOTS[i] = i++) { }
     }
 
     @Override
