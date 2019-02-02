@@ -15,8 +15,8 @@ public class SlotPurify extends Slot {
     private EntityPlayer thePlayer;
     private int stackSize;
 
-    public SlotPurify(EntityPlayer player, IInventory inv, int hitX, int hitY, int hitZ) {
-        super(inv, hitX, hitY, hitZ);
+    public SlotPurify(EntityPlayer player, IInventory inv, int index, int positionX, int positionY) {
+        super(inv, index, positionX, positionY);
         thePlayer = player;
     }
 

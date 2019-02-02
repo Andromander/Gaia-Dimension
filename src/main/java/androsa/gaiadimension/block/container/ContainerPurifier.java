@@ -21,67 +21,67 @@ public class ContainerPurifier extends Container {
 
     public ContainerPurifier(InventoryPlayer invPlayer, TileEntityPurifier purifier) {
         tilePurifier = purifier;
-        addSlotToContainer(new Slot(purifier, 0, 56, 17));
-        addSlotToContainer(new Slot(purifier, 1, 56, 53));
-        addSlotToContainer(new SlotPurify(invPlayer.player, purifier, 2, 116, 35));
-        addSlotToContainer(new SlotPurify(invPlayer.player, purifier, 3, 136, 35));
+        addSlotToContainer(new Slot(purifier, 0, 80, 17));       //Input
+        addSlotToContainer(new SlotGold(purifier, 1, 59, 63));   //Fuel 1
+        addSlotToContainer(new SlotShine(purifier, 2, 101, 63)); //Fuel 2
+        addSlotToContainer(new SlotNull(purifier, 3, 80, 35));   //Fuel 3
+        addSlotToContainer(new SlotPurify(invPlayer.player, purifier, 4, 46, 91));  //Output 1
+        addSlotToContainer(new SlotPurify(invPlayer.player, purifier, 5, 114, 91)); //Output 2
         int i;
 
+        //Player Inventory
         for (i = 0; i < 3; ++i)
             for (int j = 0; j < 9; ++j)
-                addSlotToContainer(new Slot(invPlayer, j + i * 9 + 9, 8 + j * 18, 84 + i * 18));
+                addSlotToContainer(new Slot(invPlayer, j + i * 9 + 9, 8 + j * 18, 124 + i * 18));
+        //Player Hotbar
         for (i = 0; i < 9; ++i)
-            addSlotToContainer(new Slot(invPlayer, i, 8 + i * 18, 142));
+            addSlotToContainer(new Slot(invPlayer, i, 8 + i * 18, 182));
     }
 
     @Override
     public void addListener(IContainerListener listener) {
         super.addListener(listener);
-        listener.sendWindowProperty(this, 0, tilePurifier.purifyClearTime);
-        listener.sendWindowProperty(this, 1, tilePurifier.purifyTimer);
-        listener.sendWindowProperty(this, 2, tilePurifier.currentItemPurifyTime);
-        listener.sendWindowProperty(this, 3, tilePurifier.purifyClearTime);
+        listener.sendWindowProperty(this, 0, tilePurifier.clearTime);
+        listener.sendWindowProperty(this, 1, tilePurifier.purifyingTime);
+        listener.sendWindowProperty(this, 2, tilePurifier.currentPurifyingTime);
+        listener.sendWindowProperty(this, 3, tilePurifier.clearTime);
     }
 
     @Override
     public void detectAndSendChanges() {
         super.detectAndSendChanges();
 
-        for (int i = 0; i < listeners.size(); ++i) {
-            IContainerListener icrafting = listeners.get(i);
-
-            if (lastCookTime != tilePurifier.purifyClearTime)
-                icrafting.sendWindowProperty(this, 0, tilePurifier.purifyClearTime);
-
-            if (lastBurnTime != tilePurifier.purifyTimer)
-                icrafting.sendWindowProperty(this, 1, tilePurifier.purifyTimer);
-
-            if (lastItemBurnTime != tilePurifier.currentItemPurifyTime)
-                icrafting.sendWindowProperty(this, 2, tilePurifier.currentItemPurifyTime);
-            if (lastCookTime2 != tilePurifier.purifyClearTime)
-                icrafting.sendWindowProperty(this, 3, tilePurifier.purifyClearTime);
+        for (IContainerListener icrafting : listeners) {
+            if (lastCookTime != tilePurifier.clearTime)
+                icrafting.sendWindowProperty(this, 0, tilePurifier.clearTime);
+            if (lastBurnTime != tilePurifier.purifyingTime)
+                icrafting.sendWindowProperty(this, 1, tilePurifier.purifyingTime);
+            if (lastItemBurnTime != tilePurifier.currentPurifyingTime)
+                icrafting.sendWindowProperty(this, 2, tilePurifier.currentPurifyingTime);
+            if (lastCookTime2 != tilePurifier.clearTime)
+                icrafting.sendWindowProperty(this, 3, tilePurifier.clearTime);
         }
 
-        lastCookTime = tilePurifier.purifyClearTime;
-        lastCookTime2 = tilePurifier.purifyClearTime;
-        lastBurnTime = tilePurifier.purifyTimer;
-        lastItemBurnTime = tilePurifier.currentItemPurifyTime;
+        lastCookTime = tilePurifier.clearTime;
+        lastCookTime2 = tilePurifier.clearTime;
+        lastBurnTime = tilePurifier.purifyingTime;
+        lastItemBurnTime = tilePurifier.currentPurifyingTime;
     }
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void updateProgressBar(int par1, int par2) {
-        if (par1 == 0)
-            tilePurifier.purifyClearTime = par2;
+    public void updateProgressBar(int id, int index) {
+        if (id == 0)
+            tilePurifier.clearTime = index;
 
-        if (par1 == 1)
-            tilePurifier.purifyTimer = par2;
+        if (id == 1)
+            tilePurifier.purifyingTime = index;
 
-        if (par1 == 2)
-            tilePurifier.currentItemPurifyTime = par2;
+        if (id == 2)
+            tilePurifier.currentPurifyingTime = index;
 
-        if (par1 == 3)
-            tilePurifier.purifyClearTime = par2;
+        if (id == 3)
+            tilePurifier.clearTime = index;
     }
 
     @Override
@@ -90,43 +90,43 @@ public class ContainerPurifier extends Container {
     }
 
     @Override
-    public ItemStack transferStackInSlot(EntityPlayer par1EntityPlayer, int par2) {
+    public ItemStack transferStackInSlot(EntityPlayer player, int index) {
         ItemStack itemstack = ItemStack.EMPTY;
-        Slot slot = inventorySlots.get(par2);
+        Slot slot = inventorySlots.get(index);
 
         if (slot != null && slot.getHasStack()) {
-            ItemStack itemstack1 = slot.getStack();
-            itemstack = itemstack1.copy();
+            ItemStack slotStack = slot.getStack();
+            itemstack = slotStack.copy();
 
-            if (par2 == 2) {
-                if (!mergeItemStack(itemstack1, 3, 39, true))
+            if (index == 4 || index == 5) {
+                if (!mergeItemStack(slotStack, 3, 39, true))
                     return ItemStack.EMPTY;
 
-                slot.onSlotChange(itemstack1, itemstack);
-            } else if (par2 != 1 && par2 != 0) {
-                if (PurifierRecipes.instance().getPurifyingResult(itemstack1) != null) {
-                    if (!mergeItemStack(itemstack1, 0, 1, false))
+                slot.onSlotChange(slotStack, itemstack);
+            } else if (index != 1 && index != 0) {
+                if (PurifierRecipes.instance().getPurifyingResult(slotStack) != null) {
+                    if (!mergeItemStack(slotStack, 0, 1, false))
                         return ItemStack.EMPTY;
-                } else if (TileEntityPurifier.isItemFuel(itemstack1)) {
-                    if (!mergeItemStack(itemstack1, 1, 2, false))
+                } else if (TileEntityPurifier.isItemFuel(slotStack)) {
+                    if (!mergeItemStack(slotStack, 1, 3, false))
                         return ItemStack.EMPTY;
-                } else if (par2 >= 3 && par2 < 30) {
-                    if (!mergeItemStack(itemstack1, 30, 39, false))
+                } else if (index >= 4 && index < 30) {
+                    if (!mergeItemStack(slotStack, 30, 39, false))
                         return ItemStack.EMPTY;
-                } else if (par2 >= 30 && par2 < 39 && !mergeItemStack(itemstack1, 3, 30, false))
+                } else if (index >= 30 && index < 39 && !mergeItemStack(slotStack, 3, 30, false))
                     return ItemStack.EMPTY;
-            } else if (!mergeItemStack(itemstack1, 3, 39, false))
+            } else if (!mergeItemStack(slotStack, 3, 39, false))
                 return ItemStack.EMPTY;
 
-            if (itemstack1.isEmpty())
+            if (slotStack.isEmpty())
                 slot.putStack(ItemStack.EMPTY);
             else
                 slot.onSlotChanged();
 
-            if (itemstack1.getCount() == itemstack.getCount())
+            if (slotStack.getCount() == itemstack.getCount())
                 return ItemStack.EMPTY;
 
-            slot.onTake(par1EntityPlayer, itemstack1);
+            slot.onTake(player, slotStack);
         }
 
         return itemstack;

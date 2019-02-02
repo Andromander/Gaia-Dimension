@@ -16,6 +16,9 @@ public class GuiPurifier extends GuiContainer {
     public GuiPurifier(InventoryPlayer invPlayer, TileEntityPurifier purifier) {
         super(new ContainerPurifier(invPlayer, purifier));
         tilePurifier = purifier;
+
+        xSize = 176;
+        ySize = 207;
     }
 
     @Override
@@ -27,9 +30,9 @@ public class GuiPurifier extends GuiContainer {
 
     @Override
     protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
-        String name = tilePurifier.hasCustomName() ? tilePurifier.getName() : I18n.format(tilePurifier.getName(), new Object[0]);
+        String name = tilePurifier.hasCustomName() ? tilePurifier.getName() : I18n.format(tilePurifier.getName());
         fontRenderer.drawString(name, xSize / 2 - fontRenderer.getStringWidth(name) / 2, 6, 0x000000);
-        fontRenderer.drawString(I18n.format("container.inventory", new Object[0]), 8, ySize -96 + 2, 0x000000);
+        fontRenderer.drawString(I18n.format("container.inventory"), 8, ySize -96 + 2, 0x000000);
     }
 
     @Override
@@ -41,12 +44,12 @@ public class GuiPurifier extends GuiContainer {
         drawTexturedModalRect(k, l, 0, 0, xSize, ySize);
         int i1;
 
-        if (tilePurifier.isPurifying()) {
-            i1 = tilePurifier.getPurifyTimeRemainingScaled(12);
-            drawTexturedModalRect(k + 56, l + 36 + 12 - i1, 176, 12 - i1, 14, i1 + 2);
+        if (tilePurifier.isBurning()) {
+            i1 = tilePurifier.getClearTimeRemainingScaled(22);
+            drawTexturedModalRect(k + 77, l + 62 + 12 - i1, 176, 21 - i1, 22, i1 + 2);
         }
 
-        i1 = tilePurifier.getPurifyProgressScaled(24);
-        drawTexturedModalRect(k + 79, l + 34, 176, 14, i1 + 1, 16);
+        i1 = tilePurifier.getClearProgressScaled(25);
+        drawTexturedModalRect(k + 64, l + 81, 176, 22, 47, i1 + 1);
     }
 }
