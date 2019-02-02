@@ -35,7 +35,6 @@ public class GDItemsRegister {
         items.register("goldstone_dust", new GDItem());
         items.register("fine_dust", new GDItem());
         items.register("cloudy_shard", new GDItem());
-        items.register("goldstone_residue", new GDItem());
         items.register("agate_cup", new GDItem());
         items.register("scaynyx_ingot", new GDItem());
         items.register("sweet_muckball", new GDItem());
@@ -44,6 +43,8 @@ public class GDItemsRegister {
         items.register("shiny_bone", new GDItem());
         items.register("fine_thread", new GDItem());
         items.register("twined_thread", new GDItem());
+        items.register("pink_essence", new GDItem());
+        items.register("pink_goo", new GDItem());
 
         items.register("pink_geode", new GDGeode());
         items.register("blue_geode", new GDGeode());
@@ -98,7 +99,12 @@ public class GDItemsRegister {
         items.register("chalcedony", new GDItem());
         items.register("black_residue", new GDItem());
         items.register("tektite", new GDItem());
+        items.register("goldstone_residue", new GDItem());
         items.register("goldstone", new GDItem());
+        items.register("aura_residue", new GDItem());
+        items.register("aura_cluster", new GDItem());
+        items.register("bismuth_residue", new GDItem());
+        items.register("bismuth_crystal", new GDItem());
 
         items.register("agate_sword", new GDGenericSword(TOOL_AGATE));
         items.register("agate_pickaxe", new GDGenericPickaxe(TOOL_AGATE));
@@ -229,6 +235,7 @@ public class GDItemsRegister {
         items.registerBlock(GDBlocks.frail_glitter_block);
         items.registerBlock(GDBlocks.thick_glitter_block);
         items.registerBlock(GDBlocks.gummy_glitter_block);
+        items.registerBlock(GDBlocks.pink_sludge_block);
 
         //Plants
         items.registerBlock(GDBlocks.crystal_growth);
@@ -351,6 +358,8 @@ public class GDItemsRegister {
         items.registerBlock(GDBlocks.cinnabar_block);
         items.registerBlock(GDBlocks.tektite_block);
         items.registerBlock(GDBlocks.goldstone_block);
+        items.registerBlock(GDBlocks.aura_block);
+        items.registerBlock(GDBlocks.bismuth_block);
         items.registerBlock(GDBlocks.ixiolite_block);
         items.registerBlock(GDBlocks.proustite_block);
         items.registerBlock(GDBlocks.euclase_block);

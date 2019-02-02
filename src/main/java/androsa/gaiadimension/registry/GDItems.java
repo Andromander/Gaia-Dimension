@@ -55,7 +55,6 @@ public class GDItems {
     public static final Item goldstone_dust = null;
     public static final Item fine_dust = null;
     public static final Item cloudy_shard = null;
-    public static final Item goldstone_residue = null;
     public static final Item agate_cup = null;
     public static final Item scaynyx_ingot = null;
     public static final Item sweet_muckball = null;
@@ -64,6 +63,8 @@ public class GDItems {
     public static final Item shiny_bone = null;
     public static final Item fine_thread = null;
     public static final Item twined_thread = null;
+    public static final Item pink_essence = null;
+    public static final Item pink_goo = null;
 
     public static final Item pink_geode = null;
     public static final Item blue_geode = null;
@@ -119,6 +120,11 @@ public class GDItems {
     public static final Item black_residue = null;
     public static final Item tektite = null;
     public static final Item goldstone = null;
+    public static final Item goldstone_residue = null;
+    public static final Item aura_residue = null;
+    public static final Item aura_cluster = null;
+    public static final Item bismuth_residue = null;
+    public static final Item bismuth_crystal = null;
 
     public static final Item sugilite_helmet = null;
     public static final Item sugilite_chestplate = null;
@@ -210,6 +216,7 @@ public class GDItems {
     public static final Item chalcedony_pickaxe = null;
     public static final Item chalcedony_axe = null;
     public static final Item chalcedony_shovel = null;
+    //public static final Item agate_arrow = null;
     public static final Item old_bow = null;
 
     public static final Item malachite_guard_baton = null;
