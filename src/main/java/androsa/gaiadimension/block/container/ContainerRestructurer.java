@@ -21,10 +21,9 @@ public class ContainerRestructurer extends Container {
 
     public ContainerRestructurer(InventoryPlayer invPlayer, TileEntityRestructurer restructurer) {
         tileRestructurer = restructurer;
-        //TODO: Restructure Furnace GUI. May need to be taller
-        addSlotToContainer(new Slot(restructurer, 0, 80, 34));  //Input
-        addSlotToContainer(new Slot(restructurer, 1, 51, 17));  //Fuel 1
-        addSlotToContainer(new Slot(restructurer, 2, 109, 17)); //Fuel 2
+        addSlotToContainer(new Slot(restructurer, 0, 80, 34));       //Input
+        addSlotToContainer(new SlotGold(restructurer, 1, 51, 17));   //Fuel 1
+        addSlotToContainer(new SlotShine(restructurer, 2, 109, 17)); //Fuel 2
         addSlotToContainer(new SlotGlitter(invPlayer.player, restructurer, 3, 70, 80)); //Output 1
         addSlotToContainer(new SlotGlitter(invPlayer.player, restructurer, 4, 90, 80)); //Output 2
         int i;
@@ -51,9 +50,7 @@ public class ContainerRestructurer extends Container {
     public void detectAndSendChanges() {
         super.detectAndSendChanges();
 
-        for (int i = 0; i < listeners.size(); ++i) {
-            IContainerListener icrafting = listeners.get(i);
-
+        for (IContainerListener icrafting : listeners) {
             if (lastCookTime != tileRestructurer.changeTime)
                 icrafting.sendWindowProperty(this, 0, tileRestructurer.changeTime);
             if (lastBurnTime != tileRestructurer.restructuringTime)

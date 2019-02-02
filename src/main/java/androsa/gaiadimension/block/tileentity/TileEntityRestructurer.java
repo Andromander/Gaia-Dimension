@@ -349,7 +349,7 @@ public class TileEntityRestructurer extends TileEntity implements ISidedInventor
      */
     @Override
     public boolean isItemValidForSlot(int index, ItemStack stack) {
-        return index != 2 && (index != 1 || isItemFuel(stack));
+        return index != 3 && index != 4 && (index == 0 || isItemFuel(stack));
     }
 
     @Override
@@ -480,22 +480,19 @@ public class TileEntityRestructurer extends TileEntity implements ISidedInventor
             if (burnTime >= 0) return burnTime;
             Item item = stack.getItem();
 
-            /*
+
             if(item == GDItems.pink_essence)
                 return 100;
             if(item == GDItems.pink_goo)
                 return 900;
-            if(item == GDItems.pink_sludge)
+            if(item == Item.getItemFromBlock(GDBlocks.pink_sludge_block))
                 return 8100;
-            if(item == GDItems.aura_shard)
+            if(item == GDItems.aura_residue)
                 return 200;
-            if(item == GDItems.aura_geode)
+            if(item == GDItems.aura_cluster)
                 return 1800;
             if(item == Item.getItemFromBlock(GDBlocks.aura_block))
                 return 16200;
-                */
-            if(item == GDItems.white_opal)
-                return 200;
             return 0;
         }
     }
