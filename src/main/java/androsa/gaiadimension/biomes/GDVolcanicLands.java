@@ -20,8 +20,8 @@ import java.util.Random;
 
 public class GDVolcanicLands extends GDBiomeBase {
 
-    private WorldGenTrees GaiaGenBurntTrees = new GDGenBurntAgateTree(false);
-    private WorldGenTrees GaiaGenFireTrees = new GDGenFieryAgateTree(false);
+    private WorldGenAbstractTree GaiaGenBurntTrees = new GDGenBurntAgateTree(false);
+    private WorldGenAbstractTree GaiaGenFireTrees = new GDGenFieryAgateTree(false);
     private short[] skyColorRGB = new short[] { 75, 30, 25 };
 
     public GDVolcanicLands(Biome.BiomeProperties props) {

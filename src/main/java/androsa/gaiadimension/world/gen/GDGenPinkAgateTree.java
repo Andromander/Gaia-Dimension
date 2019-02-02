@@ -61,8 +61,6 @@ public class GDGenPinkAgateTree extends WorldGenAbstractTree {
 
                 if (isSoil && position.getY() < worldIn.getHeight() - height - 1) {
                     state.getBlock().onPlantGrow(state, worldIn, down, position);
-                    EnumFacing enumfacing = EnumFacing.Plane.HORIZONTAL.random(rand);
-                    int k2 = height - rand.nextInt(4) - 1;
                     int posX = position.getX();
                     int posZ = position.getZ();
                     int k1 = 0;
@@ -101,44 +99,6 @@ public class GDGenPinkAgateTree extends WorldGenAbstractTree {
                     this.placeLeafAt(worldIn, blockpos2.west(2));
                     this.placeLeafAt(worldIn, blockpos2.south(2));
                     this.placeLeafAt(worldIn, blockpos2.north(2));
-                    posX = position.getX();
-                    posZ = position.getZ();
-                    EnumFacing enumfacing1 = EnumFacing.Plane.HORIZONTAL.random(rand);
-
-                    if (enumfacing1 != enumfacing) {
-                        int l3 = k2 - rand.nextInt(2) - 1;
-                        int k4 = 1 + rand.nextInt(3);
-                        k1 = 0;
-
-                        for (int l4 = l3; l4 < height && k4 > 0; --k4) {
-                            if (l4 >= 1) {
-                                posX += enumfacing1.getXOffset();
-                                posZ += enumfacing1.getZOffset();
-                            }
-
-                            ++l4;
-                        }
-
-                        if (k1 > 0) {
-                            BlockPos blockpos3 = new BlockPos(posX, k1, posZ);
-
-                            for (int i5 = -2; i5 <= 2; ++i5) {
-                                for (int k5 = -2; k5 <= 2; ++k5) {
-                                    if (Math.abs(i5) != 2 || Math.abs(k5) != 2) {
-                                        this.placeLeafAt(worldIn, blockpos3.add(i5, 0, k5));
-                                    }
-                                }
-                            }
-
-                            blockpos3 = blockpos3.up();
-
-                            for (int j5 = -1; j5 <= 1; ++j5) {
-                                for (int l5 = -1; l5 <= 1; ++l5) {
-                                    this.placeLeafAt(worldIn, blockpos3.add(j5, 0, l5));
-                                }
-                            }
-                        }
-                    }
 
                     return true;
                 } else {

@@ -21,7 +21,7 @@ import java.util.Random;
 
 public class GDPurpleAgateSwamp extends GDBiomeBase {
 
-    private WorldGenTrees GaiaGenPurpleTrees;
+    private WorldGenAbstractTree GaiaGenPurpleTrees;
     private GDGenGummyBlob genGummyBlock = new GDGenGummyBlob(GDBlocks.gummy_glitter_block, 0);
     private short[] skyColorRGB = new short[] { 171, 109, 241 };
 

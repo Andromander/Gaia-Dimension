@@ -1,106 +1,97 @@
 package androsa.gaiadimension.world.gen;
 
+import androsa.gaiadimension.block.GDAgateLeaves;
+import androsa.gaiadimension.block.GDAgateSapling;
 import androsa.gaiadimension.registry.GDBlocks;
-import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.init.Blocks;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraft.world.gen.feature.WorldGenTrees;
+import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 
+import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.Random;
 
-public class GDGenBurntAgateTree extends WorldGenTrees {
+public class GDGenBurntAgateTree extends WorldGenAbstractTree {
+    private static final IBlockState TRUNK = GDBlocks.crusty_log.getDefaultState();
+    private static final IBlockState LEAF = GDBlocks.crusty_leaves.getDefaultState().withProperty(GDAgateLeaves.CHECK_DECAY, Boolean.FALSE);
 
     public GDGenBurntAgateTree(boolean flag) {
         super(flag);
     }
 
-    public boolean generate(World world, Random rand, BlockPos pos) {
-        int height = rand.nextInt(4) + 6;
-        boolean allClear = true;
+    @ParametersAreNonnullByDefault
+    public boolean generate(World worldIn, Random rand, BlockPos position) {
+        int height = rand.nextInt(3) + rand.nextInt(3) + 5;
+        boolean flag = true;
 
-        if (pos.getY() >= 1 && pos.getY() + height + 1 <= 256) {
-            int cy;
-            byte width;
-            int cz;
-            Block blockID;
+        if (position.getY() >= 1 && position.getY() + height + 1 <= 256) {
+            for (int cy = position.getY(); cy <= position.getY() + 1 + height; ++cy) {
+                int k = 1;
 
-            for (cy = pos.getY(); cy <= pos.getY() + 1 + height; ++cy) {
-                width = 1;
-
-                if (cy == pos.getY()) {
-                    width = 0;
+                if (cy == position.getY()) {
+                    k = 0;
                 }
 
-                for (int cx = pos.getX() - width; cx <= pos.getX() + width && allClear; ++cx) {
-                    for (cz = pos.getZ() - width; cz <= pos.getZ() + width && allClear; ++cz) {
+                if (cy >= position.getY() + 1 + height - 2) {
+                    k = 2;
+                }
+
+                BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
+
+                for (int cx = position.getX() - k; cx <= position.getX() + k && flag; ++cx) {
+                    for (int cz = position.getZ() - k; cz <= position.getZ() + k && flag; ++cz) {
                         if (cy >= 0 && cy < 256) {
-                            BlockPos cPos = new BlockPos(cx, cy, cz);
-
-                            IBlockState block = world.getBlockState(cPos);
-                            blockID = block.getBlock();
-
-                            if (blockID != Blocks.AIR &&
-                                    !blockID.isLeaves(block, world, cPos) &&
-                                    blockID != Blocks.GRASS &&
-                                    blockID != Blocks.DIRT &&
-                                    blockID != GDBlocks.glitter_grass &&
-                                    blockID != GDBlocks.heavy_soil &&
-                                    !blockID.isWood(world, cPos)) {
-                                allClear = false;
+                            if (!this.isReplaceable(worldIn,blockpos$mutableblockpos.setPos(cx, cy, cz))) {
+                                flag = false;
                             }
                         } else {
-                            allClear = false;
+                            flag = false;
                         }
                     }
                 }
             }
 
-            if (!allClear) {
+            if (!flag) {
                 return false;
             } else {
-                Block blockUsing = world.getBlockState(pos.down()).getBlock();
+                BlockPos down = position.down();
+                IBlockState state = worldIn.getBlockState(down);
+                boolean isSoil = state.getBlock().canSustainPlant(state, worldIn, down, EnumFacing.UP, ((GDAgateSapling)GDBlocks.burnt_sapling));
 
-                if ((blockUsing == GDBlocks.glitter_grass || blockUsing == GDBlocks.heavy_soil) && pos.getY() < 256 - height - 1) {
-                    setBlockAndNotifyAdequately(world, pos.down(), GDBlocks.heavy_soil.getDefaultState());
-                    width = 4;
-                    byte var18 = 0;
-                    int treeWidth;
-                    int tx;
-                    int var15;
+                if (isSoil && position.getY() < worldIn.getHeight() - height - 1) {
+                    state.getBlock().onPlantGrow(state, worldIn, down, position);
+                    int posX = position.getX();
+                    int posZ = position.getZ();
+                    int k1 = 0;
 
-                    for (cz = pos.getY() - width + height; cz <= pos.getY() + height; ++cz) {
-                        int number = cz - (pos.getY() + height);
-                        treeWidth = var18 - number / 2;
+                    for (int base = 0; base < height; ++base) {
+                        int i2 = position.getY() + base;
 
-                        for (tx = pos.getX() - treeWidth; tx <= pos.getX() + treeWidth; ++tx) {
-                            var15 = tx - pos.getX();
+                        BlockPos blockpos = new BlockPos(posX, i2, posZ);
+                        state = worldIn.getBlockState(blockpos);
 
-                            for (int tz = pos.getZ() - treeWidth; tz <= pos.getZ() + treeWidth; ++tz) {
-                                int var17 = tz - pos.getZ();
+                        if (state.getBlock().isAir(state, worldIn, blockpos) || state.getBlock().isLeaves(state, worldIn, blockpos)) {
+                            this.placeLogAt(worldIn, blockpos);
+                            k1 = i2;
+                        }
+                    }
 
-                                BlockPos tPos = new BlockPos(tx, cz, tz);
+                    BlockPos blockpos2 = new BlockPos(posX, k1, posZ);
 
-                                IBlockState state = world.getBlockState(tPos);
-
-                                if ((Math.abs(var15) != treeWidth || Math.abs(var17) != treeWidth || rand.nextInt(2) != 0 && number != 0) &&
-                                        state.getBlock().canBeReplacedByLeaves(state, world, tPos)) {
-                                    //this.setBlockAndNotifyAdequately(world, tPos, GDBlocks.burnt_sapling.getDefaultState());
-                                    //Wait, uh, I mean...
-                                    this.setBlockAndNotifyAdequately(world, tPos, GDBlocks.crusty_leaves.getDefaultState());
-                                }
+                    for (int j3 = -2; j3 <= 2; ++j3) {
+                        for (int i4 = -2; i4 <= 2; ++i4) {
+                            if (Math.abs(j3) != 2 || Math.abs(i4) != 2){
+                                this.placeLeafAt(worldIn, blockpos2.add(j3, 0, i4));
                             }
                         }
                     }
 
-                    for (cz = 0; cz < height - 2; ++cz) {
-                        BlockPos cPos = pos.up(cz);
-                        IBlockState block = world.getBlockState(cPos);
-                        blockID = block.getBlock();
+                    blockpos2 = blockpos2.up();
 
-                        if (blockID == Blocks.AIR || blockID.isLeaves(block, world, cPos)) {
-                            this.setBlockAndNotifyAdequately(world, cPos, GDBlocks.crusty_log.getDefaultState());
+                    for (int k3 = -1; k3 <= 1; ++k3) {
+                        for (int j4 = -1; j4 <= 1; ++j4) {
+                            this.placeLeafAt(worldIn, blockpos2.add(k3, 0, j4));
                         }
                     }
 
@@ -111,6 +102,18 @@ public class GDGenBurntAgateTree extends WorldGenTrees {
             }
         } else {
             return false;
+        }
+    }
+
+    private void placeLogAt(World worldIn, BlockPos pos) {
+        this.setBlockAndNotifyAdequately(worldIn, pos, TRUNK);
+    }
+
+    private void placeLeafAt(World worldIn, BlockPos pos) {
+        IBlockState state = worldIn.getBlockState(pos);
+
+        if (state.getBlock().isAir(state, worldIn, pos) || state.getBlock().isLeaves(state, worldIn, pos)) {
+            this.setBlockAndNotifyAdequately(worldIn, pos, LEAF);
         }
     }
 }

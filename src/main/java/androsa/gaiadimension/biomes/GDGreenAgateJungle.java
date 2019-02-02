@@ -17,7 +17,7 @@ import java.util.Random;
 
 public class GDGreenAgateJungle extends GDBiomeBase {
 
-    private WorldGenTrees GaiaGenGreenTrees;
+    private WorldGenAbstractTree GaiaGenGreenTrees;
     private short[] skyColorRGB = new short[] { 128, 191, 158 };
 
     public GDGreenAgateJungle(Biome.BiomeProperties props) {
