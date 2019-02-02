@@ -38,6 +38,7 @@ public class GDBlocks {
     public static final Block frail_glitter_block = null;
     public static final Block thick_glitter_block = null;
     public static final Block gummy_glitter_block = null;
+    public static final Block pink_sludge_block = null;
     public static final Block pink_agate_leaves = null;
     public static final Block blue_agate_leaves = null;
     public static final Block green_agate_leaves = null;
@@ -171,6 +172,8 @@ public class GDBlocks {
     public static final Block cinnabar_block = null;
     public static final Block tektite_block = null;
     public static final Block goldstone_block = null;
+    public static final Block aura_block = null;
+    public static final Block bismuth_block = null;
     public static final Block ixiolite_block = null;
     public static final Block proustite_block = null;
     public static final Block euclase_block = null;

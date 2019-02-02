@@ -55,6 +55,7 @@ public final class GDBlocksRegister {
         blocks.register("frail_glitter_block", new GDFrailGlitterBlock());
         blocks.register("thick_glitter_block", new GDBlock(Material.ROCK, MapColor.PURPLE_STAINED_HARDENED_CLAY).setHardness(1.5F).setResistance(7.5F));
         blocks.register("gummy_glitter_block", new GDGummyGlitterBlock());
+        blocks.register("pink_sludge_block", new GDPinkSludgeBlock());
 
         //Plants
         blocks.register("crystal_growth", new GDCrystalGrowth());
@@ -199,6 +200,8 @@ public final class GDBlocksRegister {
         blocks.register("cinnabar_block",    new GDStorageBlock(MapColor.ADOBE).setHardness(5.0F).setResistance(10.0F));
         blocks.register("tektite_block",     new GDStorageBlock(MapColor.BLACK).setHardness(5.0F).setResistance(10.0F));
         blocks.register("goldstone_block",   new GDStorageBlock(MapColor.BLACK).setHardness(5.0F).setResistance(10.0F));
+        blocks.register("aura_block",        new GDStorageBlock(MapColor.ICE).setHardness(5.0F).setResistance(10.0F));
+        blocks.register("bismuth_block",     new GDStorageBlock(MapColor.OBSIDIAN).setHardness(5.0F).setResistance(10.0F));
         blocks.register("ixiolite_block",    new GDStorageBlock(MapColor.GRAY).setHardness(5.0F).setResistance(10.0F));
         blocks.register("proustite_block",   new GDStorageBlock(MapColor.MAGENTA).setHardness(5.0F).setResistance(10.0F));
         blocks.register("euclase_block",     new GDStorageBlock(MapColor.LIME).setHardness(5.0F).setResistance(10.0F));
