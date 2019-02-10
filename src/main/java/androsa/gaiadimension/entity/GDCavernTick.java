@@ -3,10 +3,7 @@ package androsa.gaiadimension.entity;
 import androsa.gaiadimension.registry.GDBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.entity.ai.EntityAIAttackMelee;
-import net.minecraft.entity.ai.EntityAIHurtByTarget;
-import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
-import net.minecraft.entity.ai.EntityAISwimming;
+import net.minecraft.entity.ai.*;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.player.EntityPlayer;
@@ -30,8 +27,9 @@ public class GDCavernTick extends EntityMob implements IMob {
     @Override
     protected void initEntityAI() {
         this.tasks.addTask(1, new EntityAISwimming(this));
-        this.tasks.addTask(4, new EntityAIAttackMelee(this, 1.0D, false));
-        this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, true, new Class[0]));
+        this.tasks.addTask(2, new EntityAIWander(this, 1.5D, 30));
+        this.tasks.addTask(4, new EntityAIAttackMelee(this, 1.5D, false));
+        this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, true));
         this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityPlayer.class, true));
     }
 
@@ -39,12 +37,6 @@ public class GDCavernTick extends EntityMob implements IMob {
     public float getEyeHeight() {
         return 0.1F;
     }
-
-    /*
-    public double getYOffset() {
-        return 0.1D;
-    }
-    */
 
     @Override
     protected void applyEntityAttributes() {

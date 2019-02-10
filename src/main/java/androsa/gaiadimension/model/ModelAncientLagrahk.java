@@ -3,6 +3,7 @@ package androsa.gaiadimension.model;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
+import net.minecraft.util.math.MathHelper;
 
 /**
  * ModelAncientLagrahk - Androsa
@@ -316,5 +317,47 @@ public class ModelAncientLagrahk extends ModelBase {
         modelRenderer.rotateAngleX = x;
         modelRenderer.rotateAngleY = y;
         modelRenderer.rotateAngleZ = z;
+    }
+
+    @Override
+    public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, Entity par7Entity) {
+        this.head.rotateAngleY = netHeadYaw / (180F / (float) Math.PI);
+        this.head.rotateAngleX = headPitch / (180F / (float) Math.PI) - 0.5235987755982988F;
+
+        this.upperArm1.rotateAngleZ = 0.0F;
+        this.upperArm1.rotateAngleX = -0.33161255787892263F;
+        this.upperArm1.rotateAngleZ += MathHelper.cos(ageInTicks * 0.09F) * 0.05F + 0.15F;
+        this.upperArm1.rotateAngleX += MathHelper.sin(ageInTicks * 0.067F) * 0.05F;
+        this.upperArm1.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F + (float) Math.PI) * 1.0F * limbSwingAmount + -0.33161255787892263F;
+
+        this.upperArm2.rotateAngleZ = 0.0F;
+        this.upperArm2.rotateAngleX = -0.33161255787892263F;
+        this.upperArm2.rotateAngleZ -= MathHelper.cos(ageInTicks * 0.09F) * 0.05F + 0.15F;
+        this.upperArm2.rotateAngleX -= MathHelper.sin(ageInTicks * 0.067F) * 0.05F;
+        this.upperArm2.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F) * 1.0F * limbSwingAmount + -0.33161255787892263F;
+
+        this.upperArm3.rotateAngleZ = 0.0F;
+        this.upperArm3.rotateAngleX = -0.33161255787892263F;
+        this.upperArm3.rotateAngleZ += MathHelper.cos(ageInTicks * 0.09F) * 0.05F + 0.15F;
+        this.upperArm3.rotateAngleX += MathHelper.sin(ageInTicks * 0.067F) * 0.05F;
+        this.upperArm3.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F + (float) Math.PI) * 1.0F * limbSwingAmount + -0.33161255787892263F;
+
+        this.upperArm4.rotateAngleZ = 0.0F;
+        this.upperArm4.rotateAngleX = -0.33161255787892263F;
+        this.upperArm4.rotateAngleZ -= MathHelper.cos(ageInTicks * 0.09F) * 0.05F + 0.15F;
+        this.upperArm4.rotateAngleX -= MathHelper.sin(ageInTicks * 0.067F) * 0.05F;
+        this.upperArm4.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F) * 1.0F * limbSwingAmount + -0.33161255787892263F;
+
+        this.upperLegL.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F) * 0.7F * limbSwingAmount + 1.0471975511965976F;
+        this.upperLegR.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F + (float) Math.PI) * 0.7F * limbSwingAmount + 1.0471975511965976F;
+
+        this.tail1.rotateAngleY = MathHelper.cos(limbSwing * 0.6662F) * 0.5F * limbSwingAmount * 0.5F;
+        this.tail1.rotateAngleY -= MathHelper.sin(ageInTicks * 0.067F) * 0.05F;
+        this.tail2.rotateAngleY = MathHelper.cos(limbSwing * 0.6662F) * 0.5F * limbSwingAmount * 0.5F;
+        this.tail2.rotateAngleY -= MathHelper.sin(ageInTicks * 0.067F) * 0.05F;
+        this.tail3.rotateAngleY = MathHelper.cos(limbSwing * 0.6662F) * 0.5F * limbSwingAmount * 0.5F;
+        this.tail3.rotateAngleY -= MathHelper.sin(ageInTicks * 0.067F) * 0.05F;
+        this.tail4.rotateAngleY = MathHelper.cos(limbSwing * 0.6662F) * 0.5F * limbSwingAmount * 0.5F;
+        this.tail4.rotateAngleY -= MathHelper.sin(ageInTicks * 0.067F) * 0.05F;
     }
 }

@@ -4,10 +4,7 @@ import androsa.gaiadimension.registry.GDBiomes;
 import androsa.gaiadimension.registry.GDBlocks;
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.entity.ai.EntityAILookIdle;
-import net.minecraft.entity.ai.EntityAISwimming;
-import net.minecraft.entity.ai.EntityAIWander;
-import net.minecraft.entity.ai.EntityAIWatchClosest;
+import net.minecraft.entity.ai.*;
 import net.minecraft.entity.passive.IAnimals;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.math.BlockPos;
@@ -35,9 +32,11 @@ public class GDRuggedLurmorus extends EntityCreature implements IAnimals {
     protected void initEntityAI() {
         super.initEntityAI();
         this.tasks.addTask(0, new EntityAISwimming(this));
-        this.tasks.addTask(2, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
+        this.tasks.addTask(4, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
         this.tasks.addTask(3, new EntityAILookIdle(this));
-        this.tasks.addTask(1, new EntityAIWander(this, 0.3D));
+        this.tasks.addTask(2, new EntityAIWander(this, 0.3D));
+        this.tasks.addTask(1, new EntityAIAvoidEntity(this, GDAncientLagrahk.class, 10.0F, 0.35D, 0.4D));
+
     }
 
     @Override

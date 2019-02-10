@@ -46,10 +46,7 @@ public class ClientProxy extends CommonProxy {
     public void doPreLoadRegistration() {
        // RenderingRegistry.registerEntityRenderingHandler(GDShotGaianEnergy.class, m -> new RenderSnowball<>(m, Items.ENDER_PEARL, Minecraft.getMinecraft().getRenderItem()));
 
-        RenderingRegistry.registerEntityRenderingHandler(GDCommonGrowthSapper.class, m -> new EntityRenderCommonSapper(m, new ModelGrowthSapper(), 0.6F));
-        RenderingRegistry.registerEntityRenderingHandler(GDChilledGrowthSapper.class, m -> new EntityRenderChilledSapper(m, new ModelGrowthSapper(), 0.6F));
-        RenderingRegistry.registerEntityRenderingHandler(GDNutrientGrowthSapper.class, m -> new EntityRenderNutrientSapper(m, new ModelGrowthSapper(), 0.6F));
-        RenderingRegistry.registerEntityRenderingHandler(GDMystifiedGrowthSapper.class, m -> new EntityRenderMystifiedSapper(m, new ModelGrowthSapper(), 0.6F));
+        RenderingRegistry.registerEntityRenderingHandler(GDGrowthSapper.class, m -> new EntityRenderGrowthSapper(m, new ModelGrowthSapper(), 0.6F));
         RenderingRegistry.registerEntityRenderingHandler(GDMutantGrowthExtractor.class, m -> new EntityRendererGrowthExtractor(m, new ModelGrowthExtractor(),0.8F));
         RenderingRegistry.registerEntityRenderingHandler(GDHowliteWolf.class, m -> new EntityRenderHowliteWolf(m, new ModelHowliteWolf(), 0.5F));
         RenderingRegistry.registerEntityRenderingHandler(GDSpellElement.class, m -> new EntityRenderSpellElement(m, new ModelSpellElement(), 0.4F));

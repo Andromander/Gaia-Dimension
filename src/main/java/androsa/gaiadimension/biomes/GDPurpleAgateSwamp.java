@@ -1,7 +1,7 @@
 package androsa.gaiadimension.biomes;
 
+import androsa.gaiadimension.entity.GDGrowthSapper;
 import androsa.gaiadimension.entity.GDMuckling;
-import androsa.gaiadimension.entity.GDMystifiedGrowthSapper;
 import androsa.gaiadimension.entity.GDSpellElement;
 import androsa.gaiadimension.registry.GDBlocks;
 import androsa.gaiadimension.world.gen.GDGenCrystalPlants;
@@ -12,7 +12,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import net.minecraft.world.gen.feature.WorldGenMinable;
-import net.minecraft.world.gen.feature.WorldGenTrees;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -28,7 +27,7 @@ public class GDPurpleAgateSwamp extends GDBiomeBase {
     public GDPurpleAgateSwamp(BiomeProperties props) {
         super(props);
 
-        spawnableCreatureList.add(new SpawnListEntry(GDMystifiedGrowthSapper.class, 10, 3, 5));
+        spawnableCreatureList.add(new SpawnListEntry(GDGrowthSapper.class, 10, 3, 5));
         spawnableCreatureList.add(new SpawnListEntry(GDSpellElement.class, 10, 1, 2));
         spawnableCreatureList.add(new SpawnListEntry(GDMuckling.class, 10, 1, 1));
 

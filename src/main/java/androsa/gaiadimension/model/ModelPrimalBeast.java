@@ -3,6 +3,7 @@ package androsa.gaiadimension.model;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
+import net.minecraft.util.math.MathHelper;
 
 /**
  * ModelPrimalBeast - Androsa
@@ -91,6 +92,35 @@ public class ModelPrimalBeast extends ModelBase {
         this.head.render(f5);
         this.bodyTop.render(f5);
         this.bodyLower.render(f5);
+    }
+
+    @Override
+    public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, Entity par7Entity) {
+        this.head.rotateAngleY = netHeadYaw / (180F / (float) Math.PI);
+        this.head.rotateAngleX = headPitch / (180F / (float) Math.PI);
+
+        this.armR.rotateAngleZ = 0.0F;
+        this.armL.rotateAngleZ = 0.0F;
+        this.armR.rotateAngleX = -0.33161255787892263F;
+        this.armL.rotateAngleX = -0.33161255787892263F;
+        this.armR.rotateAngleZ += MathHelper.cos(ageInTicks * 0.09F) * 0.05F + 0.15F;
+        this.armL.rotateAngleZ -= MathHelper.cos(ageInTicks * 0.09F) * 0.05F + 0.15F;
+        this.armR.rotateAngleX += MathHelper.sin(ageInTicks * 0.067F) * 0.05F;
+        this.armL.rotateAngleX -= MathHelper.sin(ageInTicks * 0.067F) * 0.05F;
+
+        this.armL.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F) * 1.0F * limbSwingAmount + -0.33161255787892263F;
+        this.armR.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F + (float) Math.PI) * 1.0F * limbSwingAmount + -0.33161255787892263F;
+
+        this.fingersL.rotateAngleZ = MathHelper.sin(ageInTicks * (float)Math.PI * 0.025F) * 0.15F + 0.3F;
+        this.fingersR.rotateAngleZ = MathHelper.sin(ageInTicks * (float)Math.PI * 0.025F) * -0.15F + -0.3F;
+
+        this.legL.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F) * 0.5F * limbSwingAmount;
+        this.legR.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F + (float) Math.PI) * 0.5F * limbSwingAmount;
+
+        this.tailtop.rotateAngleY = MathHelper.cos(limbSwing * 0.6662F) * 0.5F * limbSwingAmount * 0.5F;
+        this.tailtop.rotateAngleY -= MathHelper.sin(ageInTicks * 0.067F) * 0.05F;
+        this.tailBottom.rotateAngleY = MathHelper.cos(limbSwing * 0.6662F) * 0.5F * limbSwingAmount * 0.5F;
+        this.tailBottom.rotateAngleY -= MathHelper.sin(ageInTicks * 0.067F) * 0.05F;
     }
 
     /**

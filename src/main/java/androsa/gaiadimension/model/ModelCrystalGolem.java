@@ -3,6 +3,7 @@ package androsa.gaiadimension.model;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
+import net.minecraft.util.math.MathHelper;
 
 /**
  * ModelCrystalGolem - Androsa
@@ -110,7 +111,7 @@ public class ModelCrystalGolem extends ModelBase {
         this.upperArmR = new ModelRenderer(this, 63, 26);
         this.upperArmR.setRotationPoint(-6.5F, -7.5F, 0.0F);
         this.upperArmR.addBox(-3.5F, 0.0F, -2.5F, 5, 10, 5, 0.0F);
-        this.setRotateAngle(upperArmR, 0.0F, 0.7853981633974483F, 0.17453292519943295F);
+        this.setRotateAngle(upperArmR, 0.0F, 0, 0.17453292519943295F);
         this.footR = new ModelRenderer(this, 117, 35);
         this.footR.setRotationPoint(0.0F, 14.0F, -1.0F);
         this.footR.addBox(-2.0F, 0.0F, -4.0F, 4, 3, 4, 0.0F);
@@ -121,7 +122,7 @@ public class ModelCrystalGolem extends ModelBase {
         this.upperArmL = new ModelRenderer(this, 13, 19);
         this.upperArmL.setRotationPoint(6.5F, -7.5F, 0.0F);
         this.upperArmL.addBox(-1.5F, 0.0F, -2.5F, 5, 10, 5, 0.0F);
-        this.setRotateAngle(upperArmL, 0.0F, -0.7853981633974483F, -0.17453292519943295F);
+        this.setRotateAngle(upperArmL, 0.0F, 0, -0.17453292519943295F);
         this.faceT = new ModelRenderer(this, 68, 0);
         this.faceT.setRotationPoint(0.0F, -7.8F, -4.7F);
         this.faceT.addBox(-2.5F, 0.0F, 0.0F, 5, 2, 5, 0.0F);
@@ -172,5 +173,25 @@ public class ModelCrystalGolem extends ModelBase {
         modelRenderer.rotateAngleX = x;
         modelRenderer.rotateAngleY = y;
         modelRenderer.rotateAngleZ = z;
+    }
+
+    @Override
+    public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, Entity par7Entity) {
+        this.face.rotateAngleY = netHeadYaw / (180F / (float) Math.PI);
+        this.face.rotateAngleX = headPitch / (180F / (float) Math.PI);
+
+        this.upperArmR.rotateAngleZ = 0.0F;
+        this.upperArmL.rotateAngleZ = 0.0F;
+        this.upperArmR.rotateAngleX = 0.0F;
+        this.upperArmL.rotateAngleX = 0.0F;
+        this.upperArmR.rotateAngleZ += MathHelper.cos(ageInTicks * 0.09F) * 0.05F + 0.2F;
+        this.upperArmL.rotateAngleZ -= MathHelper.cos(ageInTicks * 0.09F) * 0.05F + 0.2F;
+        this.upperArmR.rotateAngleX += MathHelper.sin(ageInTicks * 0.067F) * 0.05F;
+        this.upperArmL.rotateAngleX -= MathHelper.sin(ageInTicks * 0.067F) * 0.05F;
+        this.upperArmL.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F) * 1.0F * limbSwingAmount;
+        this.upperArmR.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F + (float) Math.PI) * 1.0F * limbSwingAmount;
+
+        this.legL.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F) * 0.5F * limbSwingAmount;
+        this.legR.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F + (float) Math.PI) * 0.5F * limbSwingAmount;
     }
 }

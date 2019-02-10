@@ -181,24 +181,20 @@ public class ModelContortedNaga extends ModelBase {
         this.head.rotateAngleY = netHeadYaw / (180F / (float) Math.PI);
         this.head.rotateAngleX = headPitch / (180F / (float) Math.PI) + -0.3141592653589793F;
 
+        this.lowerJaw.rotateAngleX = MathHelper.sin(ageInTicks * (float)Math.PI * 0.025F) * 0.1F + 0.15F;
+
         this.upperArmL.rotateAngleY = MathHelper.cos(limbSwing * 0.6662F) * 0.5F * limbSwingAmount * 0.5F;
         this.upperArmL.rotateAngleY -= MathHelper.sin(ageInTicks * 0.067F) * 0.05F - 0.3141592653589793F;
 
+        this.tendril1.rotateAngleX = MathHelper.sin(ageInTicks * (float)Math.PI * 0.025F) * 0.15F - 0.2565634000431664F;
+        this.tendril2.rotateAngleX = MathHelper.sin(ageInTicks * (float)Math.PI * 0.025F) * 0.15F + 0.9075712110370513F;
+        this.tendril3.rotateAngleX = MathHelper.sin(ageInTicks * (float)Math.PI * 0.025F) * 0.15F - 0.7155849933176751F;
 
-        this.tendril1.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F) * 0.5F * limbSwingAmount * 0.5F;
-        this.tendril1.rotateAngleX -= MathHelper.sin(ageInTicks * 0.067F) * 0.2F + 0.2565634000431664F;
-        this.tendril2.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F) * 0.5F * limbSwingAmount * 0.5F;
-        this.tendril2.rotateAngleX -= MathHelper.sin(ageInTicks * 0.067F) * 0.25F - 0.9075712110370513F;
-        this.tendril3.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F) * 0.5F * limbSwingAmount * 0.5F;
-        this.tendril3.rotateAngleX -= MathHelper.sin(ageInTicks * 0.067F) * 0.3F + 0.7155849933176751F;
+        this.miniTendril1.rotateAngleZ = MathHelper.sin(ageInTicks * (float)Math.PI * 0.025F) * 0.15F + 0.9075712110370513F;
+        this.miniTendril2.rotateAngleZ = MathHelper.sin(ageInTicks * (float)Math.PI * 0.025F) * 0.15F - 0.6108652381980153F;
+        this.miniTendril3.rotateAngleZ = MathHelper.sin(ageInTicks * (float)Math.PI * 0.025F) * 0.15F + 0.45378560551852565F;
 
-
-        this.miniTendril1.rotateAngleZ = MathHelper.cos(limbSwing * 0.6662F) * 0.5F * limbSwingAmount * 0.5F;
-        this.miniTendril1.rotateAngleZ -= MathHelper.sin(ageInTicks * 0.067F) * 0.1F - 0.9075712110370513F;
-        this.miniTendril2.rotateAngleZ = MathHelper.cos(limbSwing * 0.6662F) * 0.5F * limbSwingAmount * 0.5F;
-        this.miniTendril2.rotateAngleZ -= MathHelper.sin(ageInTicks * 0.067F) * 0.15F + 0.6108652381980153F;
-        this.miniTendril3.rotateAngleZ = MathHelper.cos(limbSwing * 0.6662F) * 0.5F * limbSwingAmount * 0.5F;
-        this.miniTendril3.rotateAngleZ -= MathHelper.sin(ageInTicks * 0.067F) * 0.2F - 0.45378560551852565F;
-
+        this.tailTop.rotateAngleY = MathHelper.cos(limbSwing * 0.6662F) * 0.5F * limbSwingAmount;
+        this.tailBottom.rotateAngleY = MathHelper.cos(limbSwing * 0.6662F) * 0.5F * limbSwingAmount;
     }
 }

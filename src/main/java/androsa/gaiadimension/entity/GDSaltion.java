@@ -46,14 +46,6 @@ public class GDSaltion extends EntityMob {
     }
 
     @Override
-    public void onUpdate() {
-        super.onUpdate();
-        if (!world.isRemote && world.getDifficulty() == EnumDifficulty.PEACEFUL) {
-            this.setDead();
-        }
-    }
-
-    @Override
     public boolean getCanSpawnHere() {
         int x = MathHelper.floor(this.posX);
         int y = MathHelper.floor(this.getEntityBoundingBox().minY);

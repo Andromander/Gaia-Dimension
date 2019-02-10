@@ -3,6 +3,7 @@ package androsa.gaiadimension.model;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
+import net.minecraft.util.math.MathHelper;
 
 /**
  * ModelMineralArenthis - Androsa
@@ -12,21 +13,12 @@ public class ModelMineralArenthis extends ModelBase {
     public ModelRenderer capTop;
     public ModelRenderer capBottom;
     public ModelRenderer head;
-    /*
-    public ModelRenderer tentacle1;
-    public ModelRenderer tentacle2;
-    public ModelRenderer tentacle3;
-    public ModelRenderer tentacle4;
-    public ModelRenderer tentacle5;
-    public ModelRenderer tentacle6;
-    public ModelRenderer tentacle7;
-    */
     public ModelRenderer[] tentacles = new ModelRenderer[10];
     public ModelRenderer body;
     public ModelRenderer tail;
     public ModelRenderer finL;
     public ModelRenderer finR;
-    public ModelRenderer shape6;
+    public ModelRenderer tailfin;
 
     public ModelMineralArenthis() {
         this.textureWidth = 128;
@@ -55,9 +47,9 @@ public class ModelMineralArenthis extends ModelBase {
         this.tail = new ModelRenderer(this, 0, 0);
         this.tail.setRotationPoint(0.0F, 5.0F, 0.0F);
         this.tail.addBox(-2.0F, 0.0F, -1.0F, 4, 7, 2, 0.0F);
-        this.shape6 = new ModelRenderer(this, 86, 30);
-        this.shape6.setRotationPoint(0.0F, 7.0F, 0.0F);
-        this.shape6.addBox(-5.5F, 0.0F, 0.0F, 11, 6, 0, 0.0F);
+        this.tailfin = new ModelRenderer(this, 86, 30);
+        this.tailfin.setRotationPoint(0.0F, 7.0F, 0.0F);
+        this.tailfin.addBox(-5.5F, 0.0F, 0.0F, 11, 6, 0, 0.0F);
         for (int j = 0; j < this.tentacles.length; ++j) {
             this.tentacles[j] = new ModelRenderer(this, 28, 23);
             double d0 = (double)j * Math.PI * 2.0D / (double)this.tentacles.length;
@@ -70,33 +62,6 @@ public class ModelMineralArenthis extends ModelBase {
             d0 = (double)j * Math.PI * -2.0D / (double)this.tentacles.length + (Math.PI / 2D);
             this.tentacles[j].rotateAngleY = (float)d0;
         }
-        /*
-        this.tentacle1 = new ModelRenderer(this, 28, 23);
-        this.tentacle1.setRotationPoint(-7.0F, 5.0F, -7.0F);
-        this.tentacle1.addBox(-1.0F, 0.0F, -1.0F, 2, 30, 2, 0.0F);
-        this.setRotateAngle(tentacle1, 0.0F, -0.7853981633974483F, 0.0F);
-        this.tentacle2 = new ModelRenderer(this, 36, 23);
-        this.tentacle2.setRotationPoint(-8.0F, 5.0F, 0.0F);
-        this.tentacle2.addBox(-1.0F, 0.0F, -1.0F, 2, 30, 2, 0.0F);
-        this.tentacle4 = new ModelRenderer(this, 52, 29);
-        this.tentacle4.setRotationPoint(0.0F, 5.0F, 8.0F);
-        this.tentacle4.addBox(-1.0F, 0.0F, -1.0F, 2, 30, 2, 0.0F);
-        this.tentacle3 = new ModelRenderer(this, 44, 29);
-        this.tentacle3.setRotationPoint(-7.0F, 5.0F, 7.0F);
-        this.tentacle3.addBox(-1.0F, 0.0F, -1.0F, 2, 30, 2, 0.0F);
-        this.setRotateAngle(tentacle3, 0.0F, 0.7853981633974483F, 0.0F);
-        this.tentacle5 = new ModelRenderer(this, 60, 29);
-        this.tentacle5.setRotationPoint(7.0F, 5.0F, 7.0F);
-        this.tentacle5.addBox(-1.0F, 0.0F, -1.0F, 2, 30, 2, 0.0F);
-        this.setRotateAngle(tentacle5, 0.0F, 0.7853981633974483F, 0.0F);
-        this.tentacle7 = new ModelRenderer(this, 76, 29);
-        this.tentacle7.setRotationPoint(7.0F, 5.0F, -7.0F);
-        this.tentacle7.addBox(-1.0F, 0.0F, -1.0F, 2, 30, 2, 0.0F);
-        this.setRotateAngle(tentacle7, 0.0F, 0.7853981633974483F, 0.0F);
-        this.tentacle6 = new ModelRenderer(this, 68, 29);
-        this.tentacle6.setRotationPoint(8.0F, 5.0F, 0.0F);
-        this.tentacle6.addBox(-1.0F, 0.0F, -1.0F, 2, 30, 2, 0.0F);
-        */
 
         this.capBottom.addChild(this.head);
         this.head.addChild(this.body);
@@ -104,16 +69,7 @@ public class ModelMineralArenthis extends ModelBase {
         this.body.addChild(this.finR);
         this.body.addChild(this.finL);
         this.body.addChild(this.tail);
-        this.tail.addChild(this.shape6);
-        /*
-        this.capBottom.addChild(this.tentacle1);
-        this.capBottom.addChild(this.tentacle2);
-        this.capBottom.addChild(this.tentacle4);
-        this.capBottom.addChild(this.tentacle3);
-        this.capBottom.addChild(this.tentacle5);
-        this.capBottom.addChild(this.tentacle7);
-        this.capBottom.addChild(this.tentacle6);
-        */
+        this.tail.addChild(this.tailfin);
     }
 
     @Override
@@ -136,6 +92,10 @@ public class ModelMineralArenthis extends ModelBase {
 
     @Override
     public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, Entity entityIn) {
+        this.body.rotateAngleX = MathHelper.sin(ageInTicks * (float)Math.PI * 0.025F) * 3.0F;
+        this.tail.rotateAngleX = MathHelper.sin(ageInTicks * (float)Math.PI * 0.025F) * 3.0F;
+        this.tailfin.rotateAngleX = MathHelper.sin(ageInTicks * (float)Math.PI * 0.025F) * 3.0F;
+
         for (ModelRenderer modelrenderer : this.tentacles) {
             modelrenderer.rotateAngleX = ageInTicks;
         }

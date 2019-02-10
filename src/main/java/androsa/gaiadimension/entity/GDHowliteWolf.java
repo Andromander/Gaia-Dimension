@@ -5,6 +5,7 @@ import androsa.gaiadimension.registry.GDBiomes;
 import androsa.gaiadimension.registry.GDBlocks;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.*;
+import net.minecraft.entity.monster.EntityGolem;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.math.BlockPos;
@@ -37,19 +38,13 @@ public class GDHowliteWolf extends EntityMob {
         this.tasks.addTask(4, new EntityAILookIdle(this));
         this.tasks.addTask(1, new EntityAIWander(this, 0.5D));
         this.tasks.addTask(2, new EntityAIWatchClosest2(this, GDBlueHowliteWolf.class, 16.0F, 0.02F));
+        this.tasks.addTask(3, new EntityAIAttackMelee(this, 1.0D, false));
+        this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, true));
     }
 
     @Override
     public float getEyeHeight() {
         return 0.68F;
-    }
-
-    @Override
-    public void onUpdate() {
-        super.onUpdate();
-        if (!world.isRemote && world.getDifficulty() == EnumDifficulty.PEACEFUL) {
-            this.setDead();
-        }
     }
 
     @Override

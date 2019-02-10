@@ -17,17 +17,14 @@ public class GDMutantAgateWildwood extends GDBiomeBase {
 
     private static final GDGenPinkAgateTree GaiaGenPinkTrees = new GDGenPinkAgateTree(false);           //30% chance
     private static final GDGenBlueAgateTreeSmall GaiaGenBlueTrees = new GDGenBlueAgateTreeSmall(false); //30% chance
-    private static final GDGenGreenAgateTree GaiaGenGreenTrees = new GDGenGreenAgateTree(false);        //30% chance
+    private static final GDGenGreenAgateTree GaiaGenGreenTrees = new GDGenGreenAgateTree(false);    //30% chance
     private static final GDGenPurpleAgateTree GaiaGenPurpleTrees = new GDGenPurpleAgateTree(false);     //10% chance
     private short[] skyColorRGB = new short[] { 241, 154, 193 };
 
     public GDMutantAgateWildwood(BiomeProperties props) {
         super(props);
 
-        spawnableCreatureList.add(new SpawnListEntry(GDCommonGrowthSapper.class, 10, 3, 5));
-        spawnableCreatureList.add(new SpawnListEntry(GDChilledGrowthSapper.class, 10, 3, 5));
-        spawnableCreatureList.add(new SpawnListEntry(GDNutrientGrowthSapper.class, 10, 3, 5));
-        spawnableCreatureList.add(new SpawnListEntry(GDMystifiedGrowthSapper.class, 10, 3, 5));
+        spawnableCreatureList.add(new SpawnListEntry(GDGrowthSapper.class, 40, 3, 5));
         spawnableCreatureList.add(new SpawnListEntry(GDMutantGrowthExtractor.class, 5, 2, 4));
     }
 

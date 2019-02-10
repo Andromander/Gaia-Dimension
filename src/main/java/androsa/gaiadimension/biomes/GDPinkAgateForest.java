@@ -1,7 +1,7 @@
 package androsa.gaiadimension.biomes;
 
 import androsa.gaiadimension.entity.GDAgateGolem;
-import androsa.gaiadimension.entity.GDCommonGrowthSapper;
+import androsa.gaiadimension.entity.GDGrowthSapper;
 import androsa.gaiadimension.registry.GDBlocks;
 import androsa.gaiadimension.world.gen.GDGenCrystalPlants;
 import androsa.gaiadimension.world.gen.GDGenNoTrees;
@@ -21,7 +21,7 @@ public class GDPinkAgateForest extends GDBiomeBase {
     public GDPinkAgateForest(BiomeProperties props) {
         super(props);
 
-        spawnableCreatureList.add(new SpawnListEntry(GDCommonGrowthSapper.class, 9, 3, 5));
+        spawnableCreatureList.add(new SpawnListEntry(GDGrowthSapper.class, 9, 3, 5));
         spawnableCreatureList.add(new SpawnListEntry(GDAgateGolem.class, 15, 1, 2));
 
         GaiaGenPinkTrees = new GDGenPinkAgateTree(false);

@@ -41,14 +41,6 @@ public class GDBlueHowliteWolf extends EntityMob {
         return 2.1F;
     }
 
-    @Override
-    public void onUpdate() {
-        super.onUpdate();
-        if (!world.isRemote && world.getDifficulty() == EnumDifficulty.PEACEFUL) {
-            this.setDead();
-        }
-    }
-
     //Keep this commented out until later
 /*
     @Override

@@ -3,6 +3,7 @@ package androsa.gaiadimension.model;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
+import net.minecraft.util.math.MathHelper;
 
 /**
  * ModelSaltion - Androsa
@@ -15,7 +16,7 @@ public class ModelSaltion extends ModelBase {
     public ModelRenderer legL3;
     public ModelRenderer legR1;
     public ModelRenderer legR2;
-    public ModelRenderer legR1_1;
+    public ModelRenderer legR3;
     public ModelRenderer tail1;
     public ModelRenderer head;
     public ModelRenderer armR;
@@ -32,10 +33,10 @@ public class ModelSaltion extends ModelBase {
     public ModelSaltion() {
         this.textureWidth = 64;
         this.textureHeight = 40;
-        this.legR1_1 = new ModelRenderer(this, 46, 8);
-        this.legR1_1.setRotationPoint(2.0F, 0.6F, 8.8F);
-        this.legR1_1.addBox(0.0F, -1.0F, -1.0F, 6, 2, 2, 0.0F);
-        this.setRotateAngle(legR1_1, 0.0F, -0.20943951023931953F, 0.3490658503988659F);
+        this.legR3 = new ModelRenderer(this, 46, 8);
+        this.legR3.setRotationPoint(2.0F, 0.6F, 8.8F);
+        this.legR3.addBox(0.0F, -1.0F, -1.0F, 6, 2, 2, 0.0F);
+        this.setRotateAngle(legR3, 0.0F, -0.20943951023931953F, 0.3490658503988659F);
         this.body = new ModelRenderer(this, 0, 0);
         this.body.setRotationPoint(0.0F, 21.0F, -4.0F);
         this.body.addBox(-2.5F, -1.5F, 0.0F, 5, 3, 10, 0.0F);
@@ -105,7 +106,7 @@ public class ModelSaltion extends ModelBase {
         this.armR.setRotationPoint(-2.0F, 1.0F, 0.8F);
         this.armR.addBox(-1.0F, -1.0F, -5.0F, 2, 2, 5, 0.0F);
         this.setRotateAngle(armR, 0.0F, 0.8377580409572781F, 0.0F);
-        this.body.addChild(this.legR1_1);
+        this.body.addChild(this.legR3);
         this.tail1.addChild(this.tail2);
         this.bulb.addChild(this.stinger);
         this.body.addChild(this.legR2);
@@ -137,5 +138,54 @@ public class ModelSaltion extends ModelBase {
         modelRenderer.rotateAngleX = x;
         modelRenderer.rotateAngleY = y;
         modelRenderer.rotateAngleZ = z;
+    }
+
+    public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, Entity entityIn) {
+        this.head.rotateAngleY = netHeadYaw / (180F / (float) Math.PI);
+
+        this.armR.rotateAngleY = MathHelper.cos(limbSwing * 0.6662F) * 0.4F * limbSwingAmount + 0.8377580409572781F;
+        this.armL.rotateAngleY = MathHelper.cos(limbSwing * 0.6662F + (float) Math.PI) * 0.4F * limbSwingAmount - 0.8377580409572781F ;
+
+        this.tail1.rotateAngleX = MathHelper.sin(ageInTicks * (float)Math.PI * 0.05F) * 0.1F + 0.7853981633974483F;
+        this.tail2.rotateAngleX = MathHelper.sin(ageInTicks * (float)Math.PI * 0.05F) * 0.1F + 0.9560913642424937F;
+        this.tail3.rotateAngleX = MathHelper.sin(ageInTicks * (float)Math.PI * 0.05F) * 0.1F + 0.8651597102135892F;
+        this.bulb.rotateAngleX = MathHelper.sin(ageInTicks * (float)Math.PI * 0.05F) * 0.1F + 0.7853981633974483F;
+
+        float f1 = -(MathHelper.cos(limbSwing * 0.6662F * 2.0F + (float)Math.PI) * 0.4F) * limbSwingAmount;
+        float f2 = -(MathHelper.cos(limbSwing * 0.6662F * 2.0F + ((float)Math.PI / 2F)) * 0.4F) * limbSwingAmount;
+        float f3 = -(MathHelper.cos(limbSwing * 0.6662F * 2.0F + ((float)Math.PI * 3F / 2F)) * 0.4F) * limbSwingAmount;
+        float f4 = Math.abs(MathHelper.sin(limbSwing * 0.6662F + (float)Math.PI) * 0.4F) * limbSwingAmount;
+        float f5 = Math.abs(MathHelper.sin(limbSwing * 0.6662F + ((float)Math.PI / 2F)) * 0.4F) * limbSwingAmount;
+        float f6 = Math.abs(MathHelper.sin(limbSwing * 0.6662F + ((float)Math.PI * 3F / 2F)) * 0.4F) * limbSwingAmount;
+
+        this.legL1.rotateAngleZ = -0.3490658503988659F;
+        this.legL1.rotateAngleY = 0.13962634015954636F;
+        this.legL1.rotateAngleY += f1;
+        this.legL1.rotateAngleZ += f4;
+
+        this.legR1.rotateAngleZ = 0.3490658503988659F;
+        this.legR1.rotateAngleY = -0.13962634015954636F;
+        this.legR1.rotateAngleY += -f1;
+        this.legR1.rotateAngleZ += -f4;
+
+        this.legL2.rotateAngleZ = -0.3490658503988659F;
+        this.legL2.rotateAngleY = 0.17453292519943295F;
+        this.legL2.rotateAngleY += f2;
+        this.legL2.rotateAngleZ += f5;
+
+        this.legR2.rotateAngleZ = 0.3490658503988659F;
+        this.legR2.rotateAngleY = -0.17453292519943295F;
+        this.legR2.rotateAngleY += -f2;
+        this.legR2.rotateAngleZ += -f5;
+
+        this.legL3.rotateAngleZ = -0.3490658503988659F;
+        this.legL3.rotateAngleY = 0.20943951023931953F;
+        this.legL3.rotateAngleY += f3;
+        this.legL3.rotateAngleZ += f6;
+
+        this.legR3.rotateAngleZ = 0.3490658503988659F;
+        this.legR3.rotateAngleY = -0.20943951023931953F;
+        this.legR3.rotateAngleY += -f3;
+        this.legR3.rotateAngleZ += -f6;
     }
 }

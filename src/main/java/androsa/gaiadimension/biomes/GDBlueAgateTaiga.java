@@ -1,6 +1,6 @@
 package androsa.gaiadimension.biomes;
 
-import androsa.gaiadimension.entity.GDChilledGrowthSapper;
+import androsa.gaiadimension.entity.GDGrowthSapper;
 import androsa.gaiadimension.entity.GDHowliteWolf;
 import androsa.gaiadimension.registry.GDBlocks;
 import androsa.gaiadimension.world.gen.GDGenBlueAgateTree;
@@ -24,8 +24,9 @@ public class GDBlueAgateTaiga extends GDBiomeBase {
     public GDBlueAgateTaiga(BiomeProperties props) {
         super(props);
 
-        spawnableCreatureList.add(new SpawnListEntry(GDChilledGrowthSapper.class, 9, 3, 5));
+        spawnableCreatureList.add(new SpawnListEntry(GDGrowthSapper.class, 9, 3, 5));
         spawnableCreatureList.add(new SpawnListEntry(GDHowliteWolf.class, 5, 2, 4));
+        //TODO: What to do wih that Blue Howlite Wolf?
     }
 
     @Override

@@ -3,6 +3,7 @@ package androsa.gaiadimension.entity;
 import androsa.gaiadimension.registry.GDBiomes;
 import androsa.gaiadimension.registry.GDBlocks;
 import com.google.common.base.Predicate;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.*;
@@ -11,6 +12,7 @@ import net.minecraft.entity.monster.EntityGolem;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.EnumDifficulty;
@@ -40,7 +42,7 @@ public class GDAgateGolem extends EntityMob {
     protected void initEntityAI() {
         this.tasks.addTask(1, new EntityAIAttackMelee(this, 0.3D, true));
         this.tasks.addTask(2, new EntityAIMoveTowardsTarget(this, 0.3D, 32.0F));
-        this.tasks.addTask(3, new EntityAIWanderAvoidWater(this, 0.6D));
+        this.tasks.addTask(3, new EntityAIWanderAvoidWater(this, 0.3D));
         this.tasks.addTask(4, new EntityAIWatchClosest(this, EntityPlayer.class, 6.0F));
         this.tasks.addTask(5, new EntityAILookIdle(this));
         this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, false));
@@ -48,11 +50,16 @@ public class GDAgateGolem extends EntityMob {
     }
 
     @Override
-    public void onUpdate() {
-        super.onUpdate();
-        if (!world.isRemote && world.getDifficulty() == EnumDifficulty.PEACEFUL) {
-            this.setDead();
+    public boolean attackEntityAsMob(Entity entityIn) {
+        this.world.setEntityState(this, (byte)4);
+        boolean flag = entityIn.attackEntityFrom(DamageSource.causeMobDamage(this), (float)(6 + this.rand.nextInt(15)));
+
+        if (flag) {
+            entityIn.motionY += 0.4D;
+            this.applyEnchantments(this, entityIn);
         }
+
+        return flag;
     }
 
     @Override

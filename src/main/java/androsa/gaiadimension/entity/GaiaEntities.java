@@ -23,10 +23,7 @@ public class GaiaEntities {
     public static void registerEntities(RegistryEvent.Register<EntityEntry> event) {
         EntityRegistryHelper entity = new EntityRegistryHelper(event.getRegistry());
 
-        entity.registerEntity(GaiaEntityNames.COMMON_SAPPER, GDCommonGrowthSapper.class, GDCommonGrowthSapper::new, 0x5A4514, 0xFF00FF);
-        entity.registerEntity(GaiaEntityNames.CHILLED_SAPPER, GDChilledGrowthSapper.class, GDChilledGrowthSapper::new, 0x5A4514, 0x0080A0);
-        entity.registerEntity(GaiaEntityNames.NUTRIENT_SAPPER, GDNutrientGrowthSapper.class, GDNutrientGrowthSapper::new, 0x5A4514, 0x00FF10);
-        entity.registerEntity(GaiaEntityNames.MYSTIFIED_SAPPER, GDMystifiedGrowthSapper.class, GDMystifiedGrowthSapper::new, 0x5A4514, 0x800080);
+        entity.registerEntity(GaiaEntityNames.GROWTH_SAPPER, GDGrowthSapper.class, GDGrowthSapper::new, 0x5A4514, 0xFF00FF);
         entity.registerEntity(GaiaEntityNames.MUTANT_EXTRACTOR, GDMutantGrowthExtractor.class, GDMutantGrowthExtractor::new, 0x5A4514, 0xFFFFCC);
         entity.registerEntity(GaiaEntityNames.HOWLITE_WOLF, GDHowliteWolf.class, GDHowliteWolf::new, 0xDDDDDD, 0x3333FF);
         entity.registerEntity(GaiaEntityNames.SPELLBOUND_ELEMENTAL, GDSpellElement.class, GDSpellElement::new, 0x885555, 0xCC33CC);

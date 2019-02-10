@@ -41,13 +41,6 @@ public class GDMalachiteGuard extends EntityMob {
         return 3.0F;
     }
 
-    @Override
-    public void onUpdate() {
-        super.onUpdate();
-        if (!world.isRemote && world.getDifficulty() == EnumDifficulty.PEACEFUL) {
-            this.setDead();
-        }
-    }
     //Keep this commented out until later
 /*
     @Override

@@ -70,6 +70,9 @@ public class ModelShallowArenthis extends ModelBase {
 
     @Override
     public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, Entity entityIn) {
+        this.body.rotateAngleX = MathHelper.sin(ageInTicks * (float)Math.PI * 0.025F) * 3.0F;
+        this.tail.rotateAngleX = MathHelper.sin(ageInTicks * (float)Math.PI * 0.025F) * 3.0F;
+
         for (ModelRenderer modelrenderer : this.tentacles) {
             modelrenderer.rotateAngleX = ageInTicks;
         }
