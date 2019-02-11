@@ -18,7 +18,6 @@ import java.util.Random;
 public class GDGreenAgateJungle extends GDBiomeBase {
 
     private WorldGenAbstractTree GaiaGenGreenTrees;
-    private short[] skyColorRGB = new short[] { 128, 191, 158 };
 
     public GDGreenAgateJungle(Biome.BiomeProperties props) {
         super(props);
@@ -28,6 +27,7 @@ public class GDGreenAgateJungle extends GDBiomeBase {
 
         GaiaGenGreenTrees = new GDGenGreenAgateTree(false);
 
+        skyColorRGB = new short[] { 128, 191, 158 };
         biomeDecorator.grassPerChunk = 4;
         biomeDecorator.treesPerChunk = 20;
     }
@@ -43,11 +43,6 @@ public class GDGreenAgateJungle extends GDBiomeBase {
             int Ycoord = rand.nextInt(40);
             new WorldGenMinable(GDBlocks.opal_ore_green.getDefaultState(), 8, input -> input == GDBlocks.gaia_stone.getDefaultState()).generate(world, rand, new BlockPos(Xcoord, Ycoord, Zcoord));
         }
-    }
-
-    @SideOnly(Side.CLIENT)
-    public final short[] getSkyRGB() {
-        return skyColorRGB;
     }
 
     @Override

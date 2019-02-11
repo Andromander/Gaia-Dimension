@@ -99,22 +99,8 @@ public class WorldProviderGaia extends WorldProviderSurface {
         targetSkyColor = new short[]{ 198, 157, 88 };
 
         if (GDConfig.skyAndFog.enableSkyFog) {
-            if (biome instanceof GDBlueAgateTaiga) {
-                targetSkyColor = ((GDBlueAgateTaiga) biome)     .getSkyRGB();
-            } else if (biome instanceof GDGreenAgateJungle) {
-                targetSkyColor = ((GDGreenAgateJungle) biome)   .getSkyRGB();
-            } else if (biome instanceof GDPurpleAgateSwamp) {
-                targetSkyColor = ((GDPurpleAgateSwamp) biome)   .getSkyRGB();
-            } else if (biome instanceof GDVolcanicLands) {
-                targetSkyColor = ((GDVolcanicLands) biome)      .getSkyRGB();
-            } else if (biome instanceof GDGoldstoneLands) {
-                targetSkyColor = ((GDGoldstoneLands) biome)     .getSkyRGB();
-            } else if (biome instanceof GDStaticWasteland) {
-                targetSkyColor = ((GDStaticWasteland) biome)    .getSkyRGB();
-            } else if (biome instanceof GDSaltDunes) {
-                targetSkyColor = ((GDSaltDunes) biome)          .getSkyRGB();
-            } else if (biome instanceof GDMutantAgateWildwood) {
-                targetSkyColor = ((GDMutantAgateWildwood) biome).getSkyRGB();
+            if (biome instanceof GDBiomeBase) {
+                targetSkyColor = ((GDBiomeBase) biome).getSkyRGB();
             }
         } else {
             targetSkyColor = new short[]{ 198, 157, 88 };

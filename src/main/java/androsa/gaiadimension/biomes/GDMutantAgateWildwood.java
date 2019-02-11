@@ -19,13 +19,14 @@ public class GDMutantAgateWildwood extends GDBiomeBase {
     private static final GDGenBlueAgateTreeSmall GaiaGenBlueTrees = new GDGenBlueAgateTreeSmall(false); //30% chance
     private static final GDGenGreenAgateTree GaiaGenGreenTrees = new GDGenGreenAgateTree(false);    //30% chance
     private static final GDGenPurpleAgateTree GaiaGenPurpleTrees = new GDGenPurpleAgateTree(false);     //10% chance
-    private short[] skyColorRGB = new short[] { 241, 154, 193 };
 
     public GDMutantAgateWildwood(BiomeProperties props) {
         super(props);
 
         spawnableCreatureList.add(new SpawnListEntry(GDGrowthSapper.class, 40, 3, 5));
         spawnableCreatureList.add(new SpawnListEntry(GDMutantGrowthExtractor.class, 5, 2, 4));
+
+        skyColorRGB = new short[] { 241, 154, 193 };
     }
 
     @Override
@@ -76,11 +77,6 @@ public class GDMutantAgateWildwood extends GDBiomeBase {
     @Override
     public WorldGenerator getRandomWorldGenForGrass(Random rand) {
         return new GDGenCrystalPlants(GDBlocks.crystal_growth_mutant);
-    }
-
-    @SideOnly(Side.CLIENT)
-    public final short[] getSkyRGB() {
-        return skyColorRGB;
     }
 
     @Override

@@ -19,6 +19,7 @@ import java.util.Random;
 public abstract class GDBiomeBase extends Biome {
 
     public GDBiomeDecorator biomeDecorator;
+    public short[] skyColorRGB = new short[] { 198, 157, 88 };
 
     public GDBiomeBase(BiomeProperties props) {
         super(props);
@@ -51,6 +52,11 @@ public abstract class GDBiomeBase extends Biome {
 
     public GDBiomeDecorator getBiomeDecorator() {
         return new GDBiomeDecorator();
+    }
+
+    @SideOnly(Side.CLIENT)
+    public final short[] getSkyRGB() {
+        return skyColorRGB;
     }
 
     @Override

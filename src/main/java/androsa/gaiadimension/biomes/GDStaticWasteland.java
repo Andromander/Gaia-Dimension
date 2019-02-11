@@ -17,7 +17,6 @@ public class GDStaticWasteland extends GDBiomeBase {
 
     private GDGenStaticSpike genStaticJunk = new GDGenStaticSpike(GDBlocks.charged_mineral, 8);
     private GDGenStaticPatch staticPatch = new GDGenStaticPatch(6);
-    private short[] skyColorRGB = new short[]{40, 47, 82};
 
     public GDStaticWasteland(BiomeProperties props) {
         super(props);
@@ -27,6 +26,7 @@ public class GDStaticWasteland extends GDBiomeBase {
 
         this.spawnableCreatureList.add(new SpawnListEntry(GDLesserShockshooter.class, 10, 2, 4));
 
+        skyColorRGB = new short[]{ 40, 47, 82 };
         biomeDecorator.treesPerChunk = -1;
         biomeDecorator.grassPerChunk = -1;
         biomeDecorator.lakesPerChunk = -1;
@@ -59,11 +59,6 @@ public class GDStaticWasteland extends GDBiomeBase {
             int Ycoord = rand.nextInt(60);
             new WorldGenMinable(GDBlocks.static_stone.getDefaultState(), 33, input -> input == GDBlocks.wasteland_stone.getDefaultState()).generate(world, rand, new BlockPos(Xcoord, Ycoord, Zcoord));
         }
-    }
-
-    @SideOnly(Side.CLIENT)
-    public final short[] getSkyRGB() {
-        return skyColorRGB;
     }
 
     @Override

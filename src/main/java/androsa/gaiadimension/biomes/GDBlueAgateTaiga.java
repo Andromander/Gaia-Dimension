@@ -20,7 +20,6 @@ import java.util.Random;
 public class GDBlueAgateTaiga extends GDBiomeBase {
 
     private static final GDGenBlueAgateTree GaiaGenBlueTrees = new GDGenBlueAgateTree(false);
-    private short[] skyColorRGB = new short[] { 149, 197, 231 };
 
     public GDBlueAgateTaiga(BiomeProperties props) {
         super(props);
@@ -28,6 +27,8 @@ public class GDBlueAgateTaiga extends GDBiomeBase {
         spawnableCreatureList.add(new SpawnListEntry(GDGrowthSapper.class, 30, 3, 5));
         spawnableCreatureList.add(new SpawnListEntry(GDHowliteWolf.class, 15, 2, 4));
         spawnableCreatureList.add(new SpawnListEntry(GDBlueHowliteWolf.class, 1, 1, 1));
+
+        skyColorRGB = new short[] { 149, 197, 231 };
     }
 
     @Override
@@ -51,11 +52,6 @@ public class GDBlueAgateTaiga extends GDBiomeBase {
     @Override
     public WorldGenerator getRandomWorldGenForGrass(Random rand) {
         return new GDGenCrystalPlants(GDBlocks.crystal_growth);
-    }
-
-    @SideOnly(Side.CLIENT)
-    public final short[] getSkyRGB() {
-        return skyColorRGB;
     }
 
     @Override

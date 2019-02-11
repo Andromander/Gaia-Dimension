@@ -22,13 +22,13 @@ public class GDVolcanicLands extends GDBiomeBase {
 
     private WorldGenAbstractTree GaiaGenBurntTrees = new GDGenBurntAgateTree(false);
     private WorldGenAbstractTree GaiaGenFireTrees = new GDGenFieryAgateTree(false);
-    private short[] skyColorRGB = new short[] { 75, 30, 25 };
 
     public GDVolcanicLands(Biome.BiomeProperties props) {
         super(props);
 
         this.spawnableCreatureList.add(new SpawnListEntry(GDLesserSpitfire.class, 10, 2, 4));
 
+        skyColorRGB = new short[] { 75, 30, 25 };
         biomeDecorator.lavaPoolChance = 0.25F;
         biomeDecorator.grassPerChunk = 1;
         biomeDecorator.flowersPerChunk = -1;
@@ -65,11 +65,6 @@ public class GDVolcanicLands extends GDBiomeBase {
     @Override
     public WorldGenerator getRandomWorldGenForGrass(Random rand) {
         return new GDGenCrystalPlants(GDBlocks.crystal_growth_seared);
-    }
-
-    @SideOnly(Side.CLIENT)
-    public final short[] getSkyRGB() {
-        return skyColorRGB;
     }
 
     @Override

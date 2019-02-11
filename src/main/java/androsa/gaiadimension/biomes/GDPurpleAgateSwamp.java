@@ -22,7 +22,6 @@ public class GDPurpleAgateSwamp extends GDBiomeBase {
 
     private WorldGenAbstractTree GaiaGenPurpleTrees;
     private GDGenGummyBlob genGummyBlock = new GDGenGummyBlob(GDBlocks.gummy_glitter_block, 0);
-    private short[] skyColorRGB = new short[] { 171, 109, 241 };
 
     public GDPurpleAgateSwamp(BiomeProperties props) {
         super(props);
@@ -33,6 +32,7 @@ public class GDPurpleAgateSwamp extends GDBiomeBase {
 
         GaiaGenPurpleTrees = new GDGenPurpleAgateTree(false);
 
+        skyColorRGB = new short[] { 171, 109, 241 };
         biomeDecorator.muckPoolChance = 0.25F;
     }
 
@@ -55,11 +55,6 @@ public class GDPurpleAgateSwamp extends GDBiomeBase {
             int Ycoord = rand.nextInt(100);
             new WorldGenMinable(GDBlocks.thick_glitter_block.getDefaultState(), 33, input -> input == GDBlocks.gaia_stone.getDefaultState()).generate(world, rand, new BlockPos(Xcoord, Ycoord, Zcoord));
         }
-    }
-
-    @SideOnly(Side.CLIENT)
-    public final short[] getSkyRGB() {
-        return skyColorRGB;
     }
 
     @Override

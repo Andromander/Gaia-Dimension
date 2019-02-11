@@ -18,7 +18,6 @@ import java.util.Random;
 public class GDGoldstoneLands extends GDBiomeBase {
 
     private WorldGenTrees GaiaGenCorruptTrees;
-    private short[] skyColorRGB = new short[] { 34, 34, 34 };
 
     public GDGoldstoneLands(BiomeProperties props) {
         super(props);
@@ -28,13 +27,9 @@ public class GDGoldstoneLands extends GDBiomeBase {
         spawnableCreatureList.add(new SpawnListEntry(GDContortedNaga.class, 10, 2, 3));
         spawnableCreatureList.add(new SpawnListEntry(GDCorruptSapper.class, 20, 2, 4));
 
+        skyColorRGB = new short[] { 34, 34, 34 };
         topBlock = GDBlocks.corrupt_grass.getDefaultState();
         fillerBlock = GDBlocks.corrupt_soil.getDefaultState();
-    }
-
-    @SideOnly(Side.CLIENT)
-    public final short[] getSkyRGB() {
-        return skyColorRGB;
     }
 
     //TODO: Generate veins of Corrupt Blocks
