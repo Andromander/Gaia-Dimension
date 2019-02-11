@@ -7,7 +7,6 @@ import net.minecraft.entity.ai.EntityAIWander;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 
 public class GDMalachiteGuard extends EntityMob {

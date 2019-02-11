@@ -1,5 +1,7 @@
 package androsa.gaiadimension.biomes;
 
+import androsa.gaiadimension.entity.GDContortedNaga;
+import androsa.gaiadimension.entity.GDCorruptSapper;
 import androsa.gaiadimension.registry.GDBlocks;
 import androsa.gaiadimension.world.gen.GDGenCrystalPlants;
 import androsa.gaiadimension.world.gen.GDGenGoldstoneCorruptTree;
@@ -23,7 +25,8 @@ public class GDGoldstoneLands extends GDBiomeBase {
 
         GaiaGenCorruptTrees = new GDGenGoldstoneCorruptTree(false);
 
-        //TODO: For now, just a Corrupt Sapper and Contorted Monster
+        spawnableCreatureList.add(new SpawnListEntry(GDContortedNaga.class, 10, 2, 3));
+        spawnableCreatureList.add(new SpawnListEntry(GDCorruptSapper.class, 20, 2, 4));
 
         topBlock = GDBlocks.corrupt_grass.getDefaultState();
         fillerBlock = GDBlocks.corrupt_soil.getDefaultState();

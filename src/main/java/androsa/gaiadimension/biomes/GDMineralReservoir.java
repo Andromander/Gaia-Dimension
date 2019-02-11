@@ -1,5 +1,6 @@
 package androsa.gaiadimension.biomes;
 
+import androsa.gaiadimension.entity.GDMineralArenthis;
 import androsa.gaiadimension.registry.GDBlocks;
 
 public class GDMineralReservoir extends GDBiomeBase {
@@ -7,10 +8,9 @@ public class GDMineralReservoir extends GDBiomeBase {
     public GDMineralReservoir(BiomeProperties props) {
         super(props);
 
-        this.spawnableWaterCreatureList.clear();
         this.spawnableCreatureList.clear();
 
-        //TODO: Whenever required, add a Mineral Arenthis and Salty Angler
+        this.spawnableWaterCreatureList.add(new SpawnListEntry(GDMineralArenthis.class, 10, 1, 3));
 
         this.topBlock = GDBlocks.salt.getDefaultState();
         this.fillerBlock = GDBlocks.salt.getDefaultState();

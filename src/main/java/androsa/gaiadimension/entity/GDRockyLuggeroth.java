@@ -1,5 +1,6 @@
 package androsa.gaiadimension.entity;
 
+import androsa.gaiadimension.GaiaDimension;
 import androsa.gaiadimension.registry.GDBiomes;
 import androsa.gaiadimension.registry.GDBlocks;
 import net.minecraft.entity.EntityCreature;
@@ -10,11 +11,14 @@ import net.minecraft.entity.ai.EntityAIWander;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.passive.IAnimals;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 
 public class GDRockyLuggeroth extends EntityCreature implements IAnimals {
+
+    public static final ResourceLocation LOOT_TABLE = new ResourceLocation(GaiaDimension.MODID, "entities/rocky_luggeroth");
 
     public GDRockyLuggeroth(World world) {
         super(world);
@@ -56,4 +60,8 @@ public class GDRockyLuggeroth extends EntityCreature implements IAnimals {
                 world.getBiome(new BlockPos(this)) == GDBiomes.fossil_woodland;
     }
 
+    @Override
+    public ResourceLocation getLootTable() {
+        return LOOT_TABLE;
+    }
 }

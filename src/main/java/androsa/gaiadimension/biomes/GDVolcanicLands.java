@@ -1,5 +1,6 @@
 package androsa.gaiadimension.biomes;
 
+import androsa.gaiadimension.entity.GDLesserSpitfire;
 import androsa.gaiadimension.registry.GDBlocks;
 import androsa.gaiadimension.world.gen.GDGenBurntAgateTree;
 import androsa.gaiadimension.world.gen.GDGenCrystalPlants;
@@ -11,7 +12,6 @@ import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import net.minecraft.world.gen.feature.WorldGenMinable;
-import net.minecraft.world.gen.feature.WorldGenTrees;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -27,7 +27,7 @@ public class GDVolcanicLands extends GDBiomeBase {
     public GDVolcanicLands(Biome.BiomeProperties props) {
         super(props);
 
-        //TODO: Whenever Possible, add a Lesser Spitfire
+        this.spawnableCreatureList.add(new SpawnListEntry(GDLesserSpitfire.class, 10, 2, 4));
 
         biomeDecorator.lavaPoolChance = 0.25F;
         biomeDecorator.grassPerChunk = 1;

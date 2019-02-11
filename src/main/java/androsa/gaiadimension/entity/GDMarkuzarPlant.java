@@ -1,5 +1,6 @@
 package androsa.gaiadimension.entity;
 
+import androsa.gaiadimension.GaiaDimension;
 import androsa.gaiadimension.registry.GDBiomes;
 import androsa.gaiadimension.registry.GDBlocks;
 import net.minecraft.entity.Entity;
@@ -7,11 +8,14 @@ import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.MoverType;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.passive.IAnimals;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 
 public class GDMarkuzarPlant extends EntityCreature implements IAnimals {
+
+    public static final ResourceLocation LOOT_TABLE = new ResourceLocation(GaiaDimension.MODID, "entities/markuzar_plant");
 
     public GDMarkuzarPlant(World world) {
         super(world);
@@ -51,5 +55,10 @@ public class GDMarkuzarPlant extends EntityCreature implements IAnimals {
         return world.getBlockState(blockpos.down()).getBlock() == GDBlocks.glitter_grass &&
                 world.getLight(blockpos) > 8 &&
                 world.getBiome(new BlockPos(this)) == GDBiomes.green_agate_jungle;
+    }
+
+    @Override
+    public ResourceLocation getLootTable() {
+        return LOOT_TABLE;
     }
 }

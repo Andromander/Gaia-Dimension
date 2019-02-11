@@ -4,12 +4,10 @@ import androsa.gaiadimension.registry.GDBiomes;
 import androsa.gaiadimension.registry.GDBlocks;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.*;
-import net.minecraft.entity.monster.EntityGolem;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
-import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 
 public class GDAncientLagrahk extends EntityMob {
@@ -34,7 +32,8 @@ public class GDAncientLagrahk extends EntityMob {
     @Override
     protected void initEntityAI() {
         this.tasks.addTask(1, new EntityAISwimming(this));
-        this.tasks.addTask(2, new EntityAIAttackMelee(this, 0.3D, true));
+        this.tasks.addTask(2, new EntityAILeapAtTarget(this, 0.5F));
+        this.tasks.addTask(3, new EntityAIAttackMelee(this, 0.3D, true));
         this.tasks.addTask(4, new EntityAIWanderAvoidWater(this, 0.2D));
         this.tasks.addTask(5, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
         this.tasks.addTask(5, new EntityAILookIdle(this));

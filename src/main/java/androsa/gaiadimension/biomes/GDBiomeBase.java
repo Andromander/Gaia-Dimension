@@ -1,16 +1,11 @@
 package androsa.gaiadimension.biomes;
 
-import androsa.gaiadimension.entity.GDMuckling;
-import androsa.gaiadimension.entity.GDNomadicLagrahk;
-import androsa.gaiadimension.entity.GDShalurker;
-import androsa.gaiadimension.registry.GDBiomes;
+import androsa.gaiadimension.entity.*;
 import androsa.gaiadimension.registry.GDBlocks;
 import androsa.gaiadimension.world.GaiaWorld;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.monster.EntityEnderman;
-import net.minecraft.entity.monster.EntitySkeleton;
-import net.minecraft.entity.monster.EntitySpider;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
@@ -31,15 +26,19 @@ public abstract class GDBiomeBase extends Biome {
 
         spawnableCreatureList.clear();
         spawnableMonsterList.clear();
+        spawnableWaterCreatureList.clear();
+        spawnableCaveCreatureList.clear();
 
-        spawnableMonsterList.add(new SpawnListEntry(EntitySpider.class, 20, 1, 2)); //TODO: Replace with Cavernous Tick
-        spawnableMonsterList.add(new SpawnListEntry(GDShalurker.class, 20, 1, 2));
-        spawnableMonsterList.add(new SpawnListEntry(EntitySkeleton.class, 20, 1, 2)); //TODO: Replace with Archaic Warrior
-        spawnableMonsterList.add(new SpawnListEntry(GDMuckling.class, 20, 1, 2));
-        spawnableMonsterList.add(new SpawnListEntry(EntityEnderman.class, 5, 1, 2)); //Keep this guy, though
-        //TODO: Add Primal Beast
+        spawnableMonsterList.add(new SpawnListEntry(GDCavernTick.class, 100, 4, 4));
+        spawnableMonsterList.add(new SpawnListEntry(GDShalurker.class, 100, 4, 4));
+        spawnableMonsterList.add(new SpawnListEntry(GDArchaicWarrior.class, 100, 4, 4));
+        spawnableMonsterList.add(new SpawnListEntry(GDMuckling.class, 100, 4, 4));
+        spawnableMonsterList.add(new SpawnListEntry(EntityEnderman.class, 5, 1, 2));
+        spawnableMonsterList.add(new SpawnListEntry(GDPrimalBeast.class, 30, 1, 2));
 
         spawnableCreatureList.add(new SpawnListEntry(GDNomadicLagrahk.class, 15, 1, 2));
+
+        spawnableWaterCreatureList.add(new SpawnListEntry(GDShallowArenthis.class, 10, 4, 4));
 
         biomeDecorator.treesPerChunk = 5;
         biomeDecorator.grassPerChunk = 3;

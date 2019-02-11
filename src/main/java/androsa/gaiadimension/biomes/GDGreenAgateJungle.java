@@ -23,8 +23,8 @@ public class GDGreenAgateJungle extends GDBiomeBase {
     public GDGreenAgateJungle(Biome.BiomeProperties props) {
         super(props);
 
-        spawnableCreatureList.add(new SpawnListEntry(GDGrowthSapper.class, 9, 3, 5));
-        spawnableCreatureList.add(new SpawnListEntry(GDMarkuzarPlant.class, 5, 1, 3));
+        spawnableCreatureList.add(new SpawnListEntry(GDGrowthSapper.class, 30, 2, 4));
+        spawnableCreatureList.add(new SpawnListEntry(GDMarkuzarPlant.class, 15, 1, 3));
 
         GaiaGenGreenTrees = new GDGenGreenAgateTree(false);
 

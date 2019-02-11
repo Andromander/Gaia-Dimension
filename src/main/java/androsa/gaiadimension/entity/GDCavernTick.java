@@ -1,5 +1,6 @@
 package androsa.gaiadimension.entity;
 
+import androsa.gaiadimension.GaiaDimension;
 import androsa.gaiadimension.registry.GDBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -9,12 +10,15 @@ import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 
 public class GDCavernTick extends EntityMob implements IMob {
+
+    public static final ResourceLocation LOOT_TABLE = new ResourceLocation(GaiaDimension.MODID, "entities/cavern_tick");
 
     public GDCavernTick(World worldIn) {
         super(worldIn);
@@ -83,5 +87,10 @@ public class GDCavernTick extends EntityMob implements IMob {
                 this.world.getCollisionBoxes(this, getEntityBoundingBox()).isEmpty() &&
                 !this.world.containsAnyLiquid(getEntityBoundingBox()) &&
                 this.isValidLightLevel();
+    }
+
+    @Override
+    public ResourceLocation getLootTable() {
+        return LOOT_TABLE;
     }
 }

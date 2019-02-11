@@ -1,16 +1,20 @@
 package androsa.gaiadimension.entity;
 
+import androsa.gaiadimension.GaiaDimension;
 import net.minecraft.entity.MoverType;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.passive.EntityWaterMob;
 import net.minecraft.init.MobEffects;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class GDMineralArenthis extends EntityWaterMob {
+    public static final ResourceLocation LOOT_TABLE = new ResourceLocation(GaiaDimension.MODID, "entities/mineral_arenthis");
+
     public float arenthisPitch;
     public float prevArenthisPitch;
     public float arenthisYaw;
@@ -128,6 +132,11 @@ public class GDMineralArenthis extends EntityWaterMob {
     }
 
     @Override
+    public boolean getCanSpawnHere() {
+        return this.posY > 30.0D && this.posY < 50.0D && super.getCanSpawnHere();
+    }
+
+    @Override
     public void travel(float strafe, float vertical, float forward) {
         this.move(MoverType.SELF, this.motionX, this.motionY, this.motionZ);
     }
@@ -150,6 +159,11 @@ public class GDMineralArenthis extends EntityWaterMob {
 
     public boolean hasMovementVector() {
         return this.randomMotionVecX != 0.0F || this.randomMotionVecY != 0.0F || this.randomMotionVecZ != 0.0F;
+    }
+
+    @Override
+    public ResourceLocation getLootTable() {
+        return LOOT_TABLE;
     }
 
     static class AIMoveRandom extends EntityAIBase {

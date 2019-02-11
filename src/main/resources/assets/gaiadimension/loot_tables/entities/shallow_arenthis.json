@@ -1,0 +1,39 @@
+{
+  "pools": [
+    {
+      "name": "sugar",
+      "rolls": 1,
+      "entries": [{
+        "type": "item",
+        "name": "gaiadimension:sugar_crystals",
+        "functions": [
+          { "function": "set_count", "count": { "min": 0, "max": 2 } },
+          { "function": "looting_enchant", "count": { "min": 0, "max": 1 } }
+        ]
+      }]
+    },
+    {
+      "name": "tentacle",
+      "rolls": 1,
+      "entries": [{
+        "type": "item",
+        "name": "gaiadimension:small_tentacle",
+        "functions": [
+          { "function": "set_count", "count": { "min": 0, "max": 3 } },
+          { "function": "furnace_smelt",
+            "conditions": [
+              {
+                "condition": "entity_properties",
+                "entity": "this",
+                "properties": {
+                  "on_fire": true
+                }
+              }
+            ]
+          },
+          { "function": "looting_enchant", "count": { "min": 0, "max": 1 } }
+        ]
+      }]
+    }
+  ]
+}

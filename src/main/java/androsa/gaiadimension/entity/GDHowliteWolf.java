@@ -5,12 +5,9 @@ import androsa.gaiadimension.registry.GDBiomes;
 import androsa.gaiadimension.registry.GDBlocks;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.*;
-import net.minecraft.entity.monster.EntityGolem;
 import net.minecraft.entity.monster.EntityMob;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
-import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 
 public class GDHowliteWolf extends EntityMob {
@@ -34,12 +31,11 @@ public class GDHowliteWolf extends EntityMob {
     protected void initEntityAI() {
         super.initEntityAI();
         this.tasks.addTask(0, new EntityAISwimming(this));
-        this.tasks.addTask(3, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
         this.tasks.addTask(4, new EntityAILookIdle(this));
-        this.tasks.addTask(1, new EntityAIWander(this, 0.5D));
-        this.tasks.addTask(2, new EntityAIWatchClosest2(this, GDBlueHowliteWolf.class, 16.0F, 0.02F));
+        this.tasks.addTask(2, new EntityAIWander(this, 0.5D));
+        this.tasks.addTask(2, new EntityAIWatchClosest(this, GDBlueHowliteWolf.class, 16.0F));
         this.tasks.addTask(3, new EntityAIAttackMelee(this, 1.0D, false));
-        this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, true));
+        this.targetTasks.addTask(2, new EntityAIHurtByTarget(this, true));
     }
 
     @Override

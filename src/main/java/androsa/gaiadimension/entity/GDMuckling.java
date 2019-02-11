@@ -1,5 +1,6 @@
 package androsa.gaiadimension.entity;
 
+import androsa.gaiadimension.GaiaDimension;
 import androsa.gaiadimension.registry.GDBiomes;
 import androsa.gaiadimension.registry.GDBlocks;
 import net.minecraft.block.Block;
@@ -8,15 +9,16 @@ import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.monster.EntitySlime;
 import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.EnumSkyBlock;
 import net.minecraft.world.World;
 
-//TODO: Loot Table
 public class GDMuckling extends EntitySlime {
     private static final AttributeModifier DOUBLE_HEALTH = new AttributeModifier("Muckling extra health", 1, 1).setSaved(false);
+    public static final ResourceLocation LOOT_TABLE = new ResourceLocation(GaiaDimension.MODID, "entities/muckling");
 
     public GDMuckling(World par1World) {
         super(par1World);
@@ -96,5 +98,10 @@ public class GDMuckling extends EntitySlime {
                 return i <= this.rand.nextInt(8);
             }
         }
+    }
+
+    @Override
+    public ResourceLocation getLootTable() {
+        return LOOT_TABLE;
     }
 }

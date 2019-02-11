@@ -1,14 +1,12 @@
 package androsa.gaiadimension.biomes;
 
+import androsa.gaiadimension.entity.GDLesserShockshooter;
 import androsa.gaiadimension.registry.GDBlocks;
-import androsa.gaiadimension.world.GaiaWorld;
 import androsa.gaiadimension.world.gen.GDGenStaticPatch;
 import androsa.gaiadimension.world.gen.GDGenStaticSpike;
-import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraft.world.chunk.ChunkPrimer;
 import net.minecraft.world.gen.feature.WorldGenMinable;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -27,7 +25,7 @@ public class GDStaticWasteland extends GDBiomeBase {
         this.topBlock = GDBlocks.wasteland_stone.getDefaultState();
         this.fillerBlock = GDBlocks.wasteland_stone.getDefaultState();
 
-        //TODO: Whenever required, add a Lesser Shockshooter
+        this.spawnableCreatureList.add(new SpawnListEntry(GDLesserShockshooter.class, 10, 2, 4));
 
         biomeDecorator.treesPerChunk = -1;
         biomeDecorator.grassPerChunk = -1;

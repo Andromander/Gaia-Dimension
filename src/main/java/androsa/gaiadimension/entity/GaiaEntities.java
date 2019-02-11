@@ -3,9 +3,14 @@ package androsa.gaiadimension.entity;
 import androsa.gaiadimension.GaiaDimension;
 import androsa.gaiadimension.entity.boss.GDBlueHowliteWolf;
 import androsa.gaiadimension.entity.boss.GDMalachiteGuard;
+import net.minecraft.block.material.Material;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.EntitySpawnPlacementRegistry;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
+import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.EntityEntry;
@@ -18,6 +23,12 @@ import static net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 
 @EventBusSubscriber(modid = GaiaDimension.MODID)
 public class GaiaEntities {
+
+    public static final EntityLiving.SpawnPlacementType IN_LAVA = EnumHelper.addSpawnPlacementType("GD_IN_LAVA", (access, pos) -> {
+        IBlockState blockstate = access.getBlockState(pos);
+
+        return blockstate.getMaterial() == Material.LAVA && access.getBlockState(pos.down()).getMaterial() == Material.LAVA && !access.getBlockState(pos.up()).isNormalCube();
+    });
 
     @SubscribeEvent
     public static void registerEntities(RegistryEvent.Register<EntityEntry> event) {
@@ -49,6 +60,12 @@ public class GaiaEntities {
         entity.registerEntity(GaiaEntityNames.BLUE_HOWLITE_WOLF, GDBlueHowliteWolf.class, GDBlueHowliteWolf::new, 0x0099CC, 0xCC00FF);
 
         entity.registerEntity(GaiaEntityNames.MALACHITE_GUARD, GDMalachiteGuard.class, GDMalachiteGuard::new, 0x339900, 0x33CC99);
+    }
+
+    static {
+        EntitySpawnPlacementRegistry.setPlacementType(GDShallowArenthis.class, EntityLiving.SpawnPlacementType.IN_WATER);
+        EntitySpawnPlacementRegistry.setPlacementType(GDMineralArenthis.class, EntityLiving.SpawnPlacementType.IN_WATER);
+        EntitySpawnPlacementRegistry.setPlacementType(GDPrimalBeast.class, IN_LAVA);
     }
 
     public static class EntityRegistryHelper {

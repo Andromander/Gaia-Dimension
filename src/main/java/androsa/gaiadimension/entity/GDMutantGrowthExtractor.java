@@ -1,5 +1,6 @@
 package androsa.gaiadimension.entity;
 
+import androsa.gaiadimension.GaiaDimension;
 import androsa.gaiadimension.registry.GDBiomes;
 import androsa.gaiadimension.registry.GDBlocks;
 import net.minecraft.entity.EntityCreature;
@@ -10,11 +11,14 @@ import net.minecraft.entity.ai.EntityAIWander;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.passive.IAnimals;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 
 public class GDMutantGrowthExtractor extends EntityCreature implements IAnimals {
+
+    public static final ResourceLocation LOOT_TABLE = new ResourceLocation(GaiaDimension.MODID, "entities/growth_extractor");
 
     public GDMutantGrowthExtractor(World world) {
         super(world);
@@ -28,6 +32,7 @@ public class GDMutantGrowthExtractor extends EntityCreature implements IAnimals 
     protected final void applyEntityAttributes() {
         super.applyEntityAttributes();
         this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(25.0D);
+        this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(6.0D);
     }
 
     @Override
@@ -54,5 +59,10 @@ public class GDMutantGrowthExtractor extends EntityCreature implements IAnimals 
         return world.getBlockState(blockpos.down()).getBlock() == GDBlocks.glitter_grass &&
                 world.getLight(blockpos) > 8 &&
                 world.getBiome(new BlockPos(this)) == GDBiomes.mutant_agate_wildwood;
+    }
+
+    @Override
+    public ResourceLocation getLootTable() {
+        return LOOT_TABLE;
     }
 }
