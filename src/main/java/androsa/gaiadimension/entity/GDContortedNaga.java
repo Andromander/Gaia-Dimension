@@ -8,11 +8,15 @@ import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.*;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 
 public class GDContortedNaga extends EntityMob {
+
+    public static final ResourceLocation LOOT_TABLE = new ResourceLocation(GaiaDimension.MODID, "entities/contorted_naga");
+
 
     public GDContortedNaga(World world) {
         super(world);
@@ -64,4 +68,10 @@ public class GDContortedNaga extends EntityMob {
     public EnumCreatureAttribute getCreatureAttribute() {
         return GaiaDimension.CORRUPT;
     }
+
+    @Override
+    public ResourceLocation getLootTable() {
+        return LOOT_TABLE;
+    }
+
 }
