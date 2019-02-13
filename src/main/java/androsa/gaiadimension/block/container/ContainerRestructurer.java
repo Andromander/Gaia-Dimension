@@ -97,17 +97,17 @@ public class ContainerRestructurer extends Container {
             ItemStack slotStack = slot.getStack();
             itemstack = slotStack.copy();
 
-            if (index == 2) {
+            if (index == 3 || index == 4) {
                 if (!mergeItemStack(slotStack, 3, 39, true))
                     return ItemStack.EMPTY;
 
                 slot.onSlotChange(slotStack, itemstack);
-            } else if (index != 1 && index != 0) {
+            } else if (index != 2 && index != 1 && index != 0) {
                 if (RestructurerRecipes.instance().getRefactoringResult(slotStack) != null) {
                     if (!mergeItemStack(slotStack, 0, 1, false))
                         return ItemStack.EMPTY;
                 } else if (TileEntityRestructurer.isItemFuel(slotStack)) {
-                    if (!mergeItemStack(slotStack, 1, 2, false))
+                    if (!mergeItemStack(slotStack, 1, 3, false))
                         return ItemStack.EMPTY;
                 } else if (index >= 3 && index < 30) {
                     if (!mergeItemStack(slotStack, 30, 39, false))

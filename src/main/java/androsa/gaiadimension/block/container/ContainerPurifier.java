@@ -103,19 +103,19 @@ public class ContainerPurifier extends Container {
                     return ItemStack.EMPTY;
 
                 slot.onSlotChange(slotStack, itemstack);
-            } else if (index != 1 && index != 0) {
+            } else if (index != 3 && index != 2 && index != 1 && index != 0) {
                 if (PurifierRecipes.instance().getPurifyingResult(slotStack) != null) {
                     if (!mergeItemStack(slotStack, 0, 1, false))
                         return ItemStack.EMPTY;
                 } else if (TileEntityPurifier.isItemFuel(slotStack)) {
-                    if (!mergeItemStack(slotStack, 1, 3, false))
+                    if (!mergeItemStack(slotStack, 1, 4, false))
                         return ItemStack.EMPTY;
                 } else if (index >= 4 && index < 30) {
                     if (!mergeItemStack(slotStack, 30, 39, false))
                         return ItemStack.EMPTY;
                 } else if (index >= 30 && index < 39 && !mergeItemStack(slotStack, 3, 30, false))
                     return ItemStack.EMPTY;
-            } else if (!mergeItemStack(slotStack, 3, 39, false))
+            } else if (!mergeItemStack(slotStack, 4, 39, false))
                 return ItemStack.EMPTY;
 
             if (slotStack.isEmpty())
