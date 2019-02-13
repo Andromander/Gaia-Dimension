@@ -1,5 +1,6 @@
 package androsa.gaiadimension.block;
 
+import androsa.gaiadimension.entity.IShockshooterMob;
 import androsa.gaiadimension.registry.GDTabs;
 import androsa.gaiadimension.registry.ModelRegisterCallback;
 import net.minecraft.block.Block;
@@ -22,7 +23,7 @@ public class GDStaticStone extends Block implements ModelRegisterCallback {
     }
 
     public void onEntityWalk(World worldIn, BlockPos pos, Entity entityIn) {
-        if ( entityIn instanceof EntityLivingBase && !EnchantmentHelper.hasFrostWalkerEnchantment((EntityLivingBase)entityIn)) {
+        if (entityIn instanceof EntityLivingBase && !EnchantmentHelper.hasFrostWalkerEnchantment((EntityLivingBase)entityIn) || !(entityIn instanceof IShockshooterMob)) {
             entityIn.attackEntityFrom(DamageSource.LIGHTNING_BOLT, 2.0F);
         }
 

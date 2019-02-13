@@ -1,5 +1,6 @@
 package androsa.gaiadimension.block;
 
+import androsa.gaiadimension.entity.ISpitfireMob;
 import androsa.gaiadimension.registry.GDTabs;
 import androsa.gaiadimension.registry.ModelRegisterCallback;
 import net.minecraft.block.Block;
@@ -23,7 +24,7 @@ public class GDSearingRock extends Block implements ModelRegisterCallback {
     }
 
     public void onEntityWalk(World worldIn, BlockPos pos, Entity entityIn) {
-        if (entityIn instanceof EntityLivingBase && !EnchantmentHelper.hasFrostWalkerEnchantment((EntityLivingBase)entityIn)) {
+        if (entityIn instanceof EntityLivingBase && !EnchantmentHelper.hasFrostWalkerEnchantment((EntityLivingBase)entityIn) || !(entityIn instanceof ISpitfireMob)) {
             entityIn.attackEntityFrom(DamageSource.HOT_FLOOR, 2.0F);
         }
 
