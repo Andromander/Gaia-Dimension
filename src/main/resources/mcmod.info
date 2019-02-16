@@ -6,7 +6,7 @@
   "version": "${version}",
   "mcversion": "${mcversion}",
   "authorList": ["Androsa"],
-  "credits": "Literally me, m'kay? //TODO: Replace this...",
+  "credits": "Androsa, and the Gaia Dimension contributors.",
   "logoFile": "",
   "screenshots": [],
   "dependencies": []
