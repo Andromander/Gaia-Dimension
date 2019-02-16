@@ -20,8 +20,9 @@ public class ClientEvents {
     public static void registerBlockColors(ColorHandlerEvent.Block e) {
         BlockColors blocks = e.getBlockColors();
 
-        blocks.registerBlockColorHandler((state, worldIn, pos, tintIndex) -> worldIn != null && pos != null && worldIn.getBiome(pos) instanceof GDBiomeBase ? BiomeColorHelper.getGrassColorAtPos(worldIn, pos) : 0xF2A3B4, GDBlocks.glitter_grass);
-        blocks.registerBlockColorHandler((state, worldIn, pos, tintIndex) -> worldIn != null && pos != null && worldIn.getBiome(pos) instanceof GDBiomeBase ? BiomeColorHelper.getFoliageColorAtPos(worldIn, pos) : 0xF2A3B4, GDBlocks.crystal_growth);
+        blocks.registerBlockColorHandler((state, worldIn, pos, tintIndex) -> worldIn != null && pos != null && worldIn.getBiome(pos) instanceof GDBiomeBase ? BiomeColorHelper.getGrassColorAtPos(worldIn, pos) : 0xF2A3B4,
+                GDBlocks.glitter_grass,
+                GDBlocks.crystal_growth);
     }
 
     @SubscribeEvent
@@ -29,6 +30,8 @@ public class ClientEvents {
         BlockColors blocks = e.getBlockColors();
         ItemColors items = e.getItemColors();
 
-        items.registerItemColorHandler((stack, tintIndex) -> blocks.colorMultiplier(((ItemBlock)stack.getItem()).getBlock().getDefaultState(), null, null, tintIndex), GDBlocks.glitter_grass, GDBlocks.crystal_growth);
+        items.registerItemColorHandler((stack, tintIndex) -> blocks.colorMultiplier(((ItemBlock)stack.getItem()).getBlock().getDefaultState(), null, null, tintIndex),
+                GDBlocks.glitter_grass,
+                GDBlocks.crystal_growth);
     }
 }

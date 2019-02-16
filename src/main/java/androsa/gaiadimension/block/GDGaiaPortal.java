@@ -167,7 +167,8 @@ public class GDGaiaPortal extends BlockPortal implements ModelRegisterCallback {
                         server.getPlayerList().transferEntityToWorld(entityIn, GDConfig.dimension.dimensionID, server.getWorld(GDConfig.dimension.dimensionID), server.getWorld(0), new TeleporterGaia(server.getWorld(0), this, GDBlocks.keystone_block.getDefaultState()));
                     }
                 }
-            } else entityIn.timeUntilPortal = entityIn.getPortalCooldown();
+            } else
+                entityIn.timeUntilPortal = entityIn.getPortalCooldown();
     }
 
     @Override
