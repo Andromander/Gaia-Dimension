@@ -26,12 +26,12 @@ import org.apache.logging.log4j.Logger;
 @Mod(modid = GaiaDimension.MODID,
         name = "GaiaDimension",
         version = GaiaDimension.VERSION,
-        dependencies = "required-after:forge@[14.23.3.2655,)"
+        dependencies = "required-after:forge@[14.23.5.2768,)"
 )
 
 public class GaiaDimension {
     public static final String MODID = "gaiadimension";
-    public static final String VERSION = "1.0";
+    public static final String VERSION = "1.0.0";
 
     public static final GDItems items = new GDItems();
     public static final GDBlocks blocks = new GDBlocks();
@@ -76,8 +76,6 @@ public class GaiaDimension {
 
     @EventHandler
     public void init(FMLInitializationEvent event) {
-        //System.out.println("DIRT BLOCK >> "+Blocks.DIRT.getTranslationKey());
-
         GaiaDimension.LOGGER.info("Registering GUI Handler...");
         NetworkRegistry.INSTANCE.registerGuiHandler(instance, proxy);
     }

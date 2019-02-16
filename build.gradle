@@ -17,8 +17,6 @@ archivesBaseName = project.archives_base_name
 String fullVersion = project.mc_version + "-" + version
 if (System.getenv("TRAVIS_BUILD_NUMBER") != null) {
     fullVersion += "+${System.getenv("TRAVIS_BUILD_NUMBER")}"
-} else {
-    fullVersion += "+UNOFFICIAL"
 }
 String jarVersion = fullVersion.replace("+", "-")
 
