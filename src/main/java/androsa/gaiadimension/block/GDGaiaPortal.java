@@ -39,7 +39,6 @@ public class GDGaiaPortal extends BlockPortal implements ModelRegisterCallback {
         super();
         this.setDefaultState(this.blockState.getBaseState().withProperty(AXIS, EnumFacing.Axis.X));
         this.setTickRandomly(true);
-        this.setCreativeTab(GDTabs.tabBlock);
         this.setLightLevel(1.0F);
     }
 

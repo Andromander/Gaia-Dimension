@@ -28,7 +28,6 @@ public class GDGoldFire extends Block implements ModelRegisterCallback {
         super(Material.FIRE);
         this.setTickRandomly(true);
         this.setLightLevel(1.0F);
-        this.setCreativeTab(GDTabs.tabBlock);
     }
 
     @Override
