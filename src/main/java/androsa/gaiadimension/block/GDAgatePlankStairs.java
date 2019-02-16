@@ -28,6 +28,7 @@ public class GDAgatePlankStairs extends BlockStairs implements ModelRegisterCall
         this.setHardness(1.5F);
         this.setResistance(2.0F);
         this.setCreativeTab(GDTabs.tabBlock);
+        this.setHarvestLevel("axe", 0);
 
         this.useNeighborBrightness = true;
     }

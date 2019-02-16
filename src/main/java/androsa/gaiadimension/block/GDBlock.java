@@ -12,11 +12,27 @@ import net.minecraft.block.material.Material;
  */
 public class GDBlock extends Block implements ModelRegisterCallback {
 
+    public GDBlock(Material material, MapColor color, SoundType sound, String toolClass, int harvestLevel) {
+        super(material, color);
+
+        setSoundType(sound);
+        setCreativeTab(GDTabs.tabBlock);
+        setHarvestLevel(toolClass, harvestLevel);
+    }
+
     public GDBlock(Material material, MapColor color, SoundType sound) {
         super(material, color);
 
         setSoundType(sound);
         setCreativeTab(GDTabs.tabBlock);
+    }
+
+    public GDBlock(Material material, MapColor color, String toolClass, int harvestLevel) {
+        super(material, color);
+
+        setSoundType(SoundType.STONE);
+        setCreativeTab(GDTabs.tabBlock);
+        setHarvestLevel(toolClass, harvestLevel);
     }
 
     public GDBlock(Material material, MapColor color) {

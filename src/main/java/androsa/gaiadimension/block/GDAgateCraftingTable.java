@@ -23,6 +23,7 @@ public class GDAgateCraftingTable extends Block implements ModelRegisterCallback
         this.setResistance(2.0F);
         this.setSoundType(SoundType.STONE);
         this.setCreativeTab(GDTabs.tabBlock);
+        this.setHarvestLevel("axe", 0);
     }
 
     @Override

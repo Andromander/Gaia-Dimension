@@ -20,6 +20,7 @@ public class GDHeavySoil extends Block implements ModelRegisterCallback {
         this.setSoundType(SoundType.GROUND);
         this.setHardness(0.9F);
         this.setCreativeTab(GDTabs.tabBlock);
+        this.setHarvestLevel("shovel", 0);
     }
 
     @Override

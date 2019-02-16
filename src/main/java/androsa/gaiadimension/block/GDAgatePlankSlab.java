@@ -38,6 +38,7 @@ public class GDAgatePlankSlab extends BlockSlab implements ModelRegisterCallback
         this.setHardness(1.5F);
         this.setResistance(2.0F);
         this.setLightOpacity(isDouble ? 255 : 0);
+        this.setHarvestLevel("axe", 0);
 
         IBlockState state = this.blockState.getBaseState().withProperty(VARIANT, AgatePlankSlab.NORMAL);
 

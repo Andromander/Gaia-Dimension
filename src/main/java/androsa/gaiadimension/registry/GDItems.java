@@ -29,8 +29,8 @@ public class GDItems {
     public static ItemArmor.ArmorMaterial ARMOR_LARVIKITE = EnumHelper.addArmorMaterial("LARVAKITE", "gaia_duke", 788, new int[]{3, 6, 8, 3}, 20, SoundEvents.ITEM_ARMOR_EQUIP_GOLD, 3.0F);
     public static ItemArmor.ArmorMaterial ARMOR_GAIA_CHAMP = EnumHelper.addArmorMaterial("GAIA_CHAMP", "gaia_champion", 1000, new int[]{4, 7, 9, 4}, 30, SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, 4.0F);
 
-    public static Item.ToolMaterial TOOL_AGATE = EnumHelper.addToolMaterial("AGATE", 0, 150, 2.5F, 1.0F, 5);
-    public static Item.ToolMaterial TOOL_SUGILITE = EnumHelper.addToolMaterial("SUGILITE", 1, 800, 3.0F, 1.5F, 10);
+    public static Item.ToolMaterial TOOL_AGATE = EnumHelper.addToolMaterial("AGATE", 1, 150, 2.5F, 1.0F, 5);
+    public static Item.ToolMaterial TOOL_SUGILITE = EnumHelper.addToolMaterial("SUGILITE", 2, 800, 3.0F, 1.5F, 10);
     public static Item.ToolMaterial TOOL_IXIOLITE = EnumHelper.addToolMaterial("IXIOLITE", 2, 1500, 4.0F, 2.0F, 10);
     public static Item.ToolMaterial TOOL_EUCLASE = EnumHelper.addToolMaterial("EUCLASE", 2, 3000, 4.0F, 2.0F, 10);
     public static Item.ToolMaterial TOOL_CARNELIAN = EnumHelper.addToolMaterial("CARNELIAN", 3, 2500, 5.0F, 3.0F, 10);

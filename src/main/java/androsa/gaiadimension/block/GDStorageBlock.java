@@ -18,6 +18,7 @@ public class GDStorageBlock extends Block implements ModelRegisterCallback {
         setHardness(5.0F);
         setResistance(10.0F);
         setCreativeTab(GDTabs.tabBlock);
+        setHarvestLevel("pickaxe", 2);
     }
 
     public boolean isBeaconBase(IBlockAccess access, BlockPos pos, BlockPos beacon) {

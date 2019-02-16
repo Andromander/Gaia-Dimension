@@ -39,6 +39,7 @@ public class GDCrateSmall extends Block implements ModelRegisterCallback, ITileE
     public GDCrateSmall() {
         super(Material.ROCK);
         this.setCreativeTab(GDTabs.tabBlock);
+        this.setHarvestLevel("axe", 0);
     }
 
     @Override

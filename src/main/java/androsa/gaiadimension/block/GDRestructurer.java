@@ -44,6 +44,7 @@ public class GDRestructurer extends Block implements ModelRegisterCallback, ITil
         super(Material.ROCK);
         this.setDefaultState(blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
         this.setSoundType(SoundType.STONE);
+        this.setHarvestLevel("pickaxe", 1);
         this.isRestructuring = flag;
 
         if (!isRestructuring) {

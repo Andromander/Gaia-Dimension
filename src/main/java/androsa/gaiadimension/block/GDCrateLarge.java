@@ -39,6 +39,7 @@ public class GDCrateLarge extends Block implements ModelRegisterCallback, ITileE
     public GDCrateLarge() {
         super(Material.ROCK);
         setCreativeTab(GDTabs.tabBlock);
+        setHarvestLevel("axe", 0);
     }
 
     @Override

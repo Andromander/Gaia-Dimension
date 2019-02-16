@@ -15,6 +15,7 @@ public class GDAgateLog extends BlockLog implements ModelRegisterCallback {
         this.setSoundType(SoundType.STONE);
         this.setCreativeTab(GDTabs.tabBlock);
         this.setDefaultState(this.getDefaultState().withProperty(LOG_AXIS, EnumAxis.Y));
+        this.setHarvestLevel("axe", 0);
     }
 
     @Override

@@ -31,7 +31,7 @@ public final class GDBlocksRegister {
 
         //Utility Blocks
         blocks.register("gaia_portal", new GDGaiaPortal());
-        blocks.register("keystone_block", new GDBlock(Material.IRON, MapColor.GOLD, SoundType.METAL).setHardness(3.0F).setResistance(5.0F));
+        blocks.register("keystone_block", new GDBlock(Material.IRON, MapColor.GOLD, SoundType.METAL, "pickaxe", 2).setHardness(3.0F).setResistance(5.0F));
         blocks.register("gold_fire", new GDGoldFire());
         blocks.register("pyrite_torch", new GDPyriteTorch());
         blocks.register("agate_crafting_table", new GDAgateCraftingTable());
@@ -53,7 +53,7 @@ public final class GDBlocksRegister {
         blocks.register("glitter_grass", new GDCrystalGrass(() -> GDBlocks.glitter_grass, () -> GDBlocks.heavy_soil));
         blocks.register("corrupt_grass", new GDCrystalGrass(() -> GDBlocks.corrupt_grass, () -> GDBlocks.corrupt_soil));
         blocks.register("frail_glitter_block", new GDFrailGlitterBlock());
-        blocks.register("thick_glitter_block", new GDBlock(Material.ROCK, MapColor.PURPLE_STAINED_HARDENED_CLAY).setHardness(1.5F).setResistance(7.5F));
+        blocks.register("thick_glitter_block", new GDBlock(Material.ROCK, MapColor.PURPLE_STAINED_HARDENED_CLAY, "pickaxe", 1).setHardness(1.5F).setResistance(7.5F));
         blocks.register("gummy_glitter_block", new GDGummyGlitterBlock());
         blocks.register("pink_sludge_block", new GDPinkSludgeBlock());
 
@@ -96,7 +96,7 @@ public final class GDBlocksRegister {
         blocks.register("fossilized_leaves", new GDAgateLeaves(() -> GDItems.fine_dust));
         blocks.register("corrupted_leaves", new GDAgateLeaves(() -> GDItems.goldstone_dust));
         blocks.register("burnt_leaves", new GDAgateLeaves(() -> Items.GUNPOWDER));
-        blocks.register("burning_leaves", (new GDAgateLeaves(() -> GDItems.hot_dust)).setLightLevel(0.3F));
+        blocks.register("burning_leaves", new GDAgateLeaves(() -> GDItems.hot_dust).setLightLevel(0.3F));
         blocks.register("pink_agate_log", new GDAgateLog());
         blocks.register("blue_agate_log", new GDAgateLog());
         blocks.register("green_agate_log", new GDAgateLog());
@@ -104,27 +104,27 @@ public final class GDBlocksRegister {
         blocks.register("fossilized_log", new GDAgateLog());
         blocks.register("corrupted_log", new GDAgateLog());
         blocks.register("burnt_log", new GDAgateLog());
-        blocks.register("burning_log", (new GDAgateLog()).setLightLevel(0.3F));
+        blocks.register("burning_log", new GDAgateLog().setLightLevel(0.3F));
         blocks.register("salt", new GDSaltBlock());
-        blocks.register("saltstone", new GDBlock(Material.ROCK, MapColor.LIGHT_BLUE_STAINED_HARDENED_CLAY).setHardness(1.5F).setResistance(10.0F));
-        blocks.register("gaia_stone", new GDBlock(Material.ROCK, MapColor.MAGENTA).setHardness(2.0F).setResistance(15.0F));
-        blocks.register("gaia_cobblestone", new GDBlock(Material.ROCK, MapColor.MAGENTA).setHardness(2.0F).setResistance(15.0F));
-        blocks.register("wasteland_stone", new GDBlock(Material.ROCK, MapColor.BLUE_STAINED_HARDENED_CLAY).setHardness(15.0F).setResistance(200.0F));
+        blocks.register("saltstone", new GDBlock(Material.ROCK, MapColor.LIGHT_BLUE_STAINED_HARDENED_CLAY, "pickaxe", 0).setHardness(1.5F).setResistance(10.0F));
+        blocks.register("gaia_stone", new GDBlock(Material.ROCK, MapColor.MAGENTA, "pickaxe", 1).setHardness(2.0F).setResistance(15.0F));
+        blocks.register("gaia_cobblestone", new GDBlock(Material.ROCK, MapColor.MAGENTA, "pickaxe", 1).setHardness(2.0F).setResistance(15.0F));
+        blocks.register("wasteland_stone", new GDBlock(Material.ROCK, MapColor.BLUE_STAINED_HARDENED_CLAY, "pickaxe", 2).setHardness(15.0F).setResistance(200.0F));
         blocks.register("static_stone", new GDStaticStone());
         blocks.register("charged_mineral", new GDChargedMineral());
-        blocks.register("volcanic_rock", new GDBlock(Material.ROCK, MapColor.GRAY_STAINED_HARDENED_CLAY).setHardness(15.0F).setResistance(200.0F));
+        blocks.register("volcanic_rock", new GDBlock(Material.ROCK, MapColor.GRAY_STAINED_HARDENED_CLAY, "pickaxe", 2).setHardness(15.0F).setResistance(200.0F));
         blocks.register("searing_rock", new GDSearingRock());
-        blocks.register("primal_mass", new GDBlock(Material.ROCK, MapColor.PURPLE_STAINED_HARDENED_CLAY).setHardness(30.0F).setResistance(400.0F));
+        blocks.register("primal_mass", new GDBlock(Material.ROCK, MapColor.PURPLE_STAINED_HARDENED_CLAY, "pickaxe", 2).setHardness(30.0F).setResistance(400.0F));
 
         //Planks
-        blocks.register("pink_agate_planks", new GDBlock(Material.WOOD, MapColor.PINK, SoundType.STONE).setHardness(1.5F).setResistance(2.0F));
-        blocks.register("blue_agate_planks", new GDBlock(Material.WOOD, MapColor.LIGHT_BLUE, SoundType.STONE).setHardness(1.5F).setResistance(2.0F));
-        blocks.register("green_agate_planks", new GDBlock(Material.WOOD, MapColor.LIME, SoundType.STONE).setHardness(1.5F).setResistance(2.0F));
-        blocks.register("purple_agate_planks", new GDBlock(Material.WOOD, MapColor.PURPLE_STAINED_HARDENED_CLAY, SoundType.STONE).setHardness(1.5F).setResistance(2.0F));
-        blocks.register("fossilized_planks", new GDBlock(Material.WOOD, MapColor.YELLOW_STAINED_HARDENED_CLAY, SoundType.STONE).setHardness(1.5F).setResistance(2.0F));
-        blocks.register("corrupted_planks", new GDBlock(Material.WOOD, MapColor.BLACK_STAINED_HARDENED_CLAY, SoundType.STONE).setHardness(1.5F).setResistance(2.0F));
-        blocks.register("burnt_planks", new GDBlock(Material.WOOD, MapColor.BLACK, SoundType.STONE).setHardness(1.5F).setResistance(2.0F));
-        blocks.register("burning_planks", new GDBlock(Material.WOOD, MapColor.ORANGE_STAINED_HARDENED_CLAY, SoundType.STONE).setHardness(1.5F).setResistance(2.0F).setLightLevel(0.5F));
+        blocks.register("pink_agate_planks", new GDBlock(Material.WOOD, MapColor.PINK, SoundType.STONE, "axe", 0).setHardness(1.5F).setResistance(2.0F));
+        blocks.register("blue_agate_planks", new GDBlock(Material.WOOD, MapColor.LIGHT_BLUE, SoundType.STONE, "axe", 0).setHardness(1.5F).setResistance(2.0F));
+        blocks.register("green_agate_planks", new GDBlock(Material.WOOD, MapColor.LIME, SoundType.STONE, "axe", 0).setHardness(1.5F).setResistance(2.0F));
+        blocks.register("purple_agate_planks", new GDBlock(Material.WOOD, MapColor.PURPLE_STAINED_HARDENED_CLAY, SoundType.STONE, "axe", 0).setHardness(1.5F).setResistance(2.0F));
+        blocks.register("fossilized_planks", new GDBlock(Material.WOOD, MapColor.YELLOW_STAINED_HARDENED_CLAY, SoundType.STONE, "axe", 0).setHardness(1.5F).setResistance(2.0F));
+        blocks.register("corrupted_planks", new GDBlock(Material.WOOD, MapColor.BLACK_STAINED_HARDENED_CLAY, SoundType.STONE, "axe", 0).setHardness(1.5F).setResistance(2.0F));
+        blocks.register("burnt_planks", new GDBlock(Material.WOOD, MapColor.BLACK, SoundType.STONE, "axe", 0).setHardness(1.5F).setResistance(2.0F));
+        blocks.register("burning_planks", new GDBlock(Material.WOOD, MapColor.ORANGE_STAINED_HARDENED_CLAY, SoundType.STONE, "axe", 0).setHardness(1.5F).setResistance(2.0F).setLightLevel(0.5F));
         blocks.register("pink_agate_plank_slab", new GDAgatePlankSlab(false));
         blocks.register("blue_agate_plank_slab", new GDAgatePlankSlab(false));
         blocks.register("green_agate_plank_slab", new GDAgatePlankSlab(false));
@@ -132,7 +132,7 @@ public final class GDBlocksRegister {
         blocks.register("fossilized_plank_slab", new GDAgatePlankSlab(false));
         blocks.register("corrupted_plank_slab", new GDAgatePlankSlab(false));
         blocks.register("burnt_plank_slab", new GDAgatePlankSlab(false));
-        blocks.register("burning_plank_slab", (new GDAgatePlankSlab(false)).setLightLevel(0.5F));
+        blocks.register("burning_plank_slab", new GDAgatePlankSlab(false).setLightLevel(0.5F));
         blocks.register("double_pink_agate_plank_slab", new GDAgatePlankSlab(true));
         blocks.register("double_blue_agate_plank_slab", new GDAgatePlankSlab(true));
         blocks.register("double_green_agate_plank_slab", new GDAgatePlankSlab(true));
@@ -140,7 +140,7 @@ public final class GDBlocksRegister {
         blocks.register("double_fossilized_plank_slab", new GDAgatePlankSlab(true));
         blocks.register("double_corrupted_plank_slab", new GDAgatePlankSlab(true));
         blocks.register("double_burnt_plank_slab", new GDAgatePlankSlab(true));
-        blocks.register("double_burning_plank_slab", (new GDAgatePlankSlab(true)).setLightLevel(0.5F));
+        blocks.register("double_burning_plank_slab", new GDAgatePlankSlab(true).setLightLevel(0.5F));
         Block pinkPlanks    = new GDBlock(Material.WOOD, MapColor.PINK);
         Block bluePlanks    = new GDBlock(Material.WOOD, MapColor.LIGHT_BLUE);
         Block greenPlanks   = new GDBlock(Material.WOOD, MapColor.LIME);
@@ -159,18 +159,18 @@ public final class GDBlocksRegister {
         blocks.register("burning_plank_stairs", new GDAgatePlankStairs(firePlanks.getDefaultState()).setLightLevel(0.5F));
 
         //Manufactured Blocks
-        blocks.register("gaia_stone_bricks", new GDBlock(Material.ROCK, MapColor.MAGENTA).setHardness(2.0F).setResistance(20.0F));
-        blocks.register("cracked_gaia_stone_bricks", new GDBlock(Material.ROCK, MapColor.MAGENTA).setHardness(2.0F).setResistance(20.0F));
-        blocks.register("crusted_gaia_stone_bricks", new GDBlock(Material.ROCK, MapColor.MAGENTA).setHardness(2.0F).setResistance(20.0F));
-        blocks.register("reinforced_bricks", new GDBlock(Material.ROCK, MapColor.PURPLE).setHardness(10.0F).setResistance(100.0F));
-        blocks.register("malachite_bricks", new GDBlock(Material.ROCK, MapColor.GREEN).setHardness(20.0F).setResistance(200.0F));
-        blocks.register("malachite_cracked_bricks", new GDBlock(Material.ROCK, MapColor.GREEN).setHardness(20.0F).setResistance(200.0F));
-        blocks.register("malachite_crusted_bricks", new GDBlock(Material.ROCK, MapColor.GREEN).setHardness(20.0F).setResistance(200.0F));
-        blocks.register("malachite_floor_tiles", new GDBlock(Material.ROCK, MapColor.GREEN).setHardness(20.0F).setResistance(200.0F));
-        blocks.register("malachite_chisel_bricks", new GDBlock(Material.ROCK, MapColor.GREEN).setHardness(20.0F).setResistance(200.0F));
-        blocks.register("malachite_pulsing_bricks", new GDBlock(Material.ROCK, MapColor.GREEN).setHardness(20.0F).setResistance(200.0F));
-        blocks.register("malachite_pulsing_tiles", new GDBlock(Material.ROCK, MapColor.GREEN).setHardness(20.0F).setResistance(200.0F));
-        blocks.register("malachite_pulsing_chisel", new GDBlock(Material.ROCK, MapColor.GREEN).setHardness(20.0F).setResistance(200.0F));
+        blocks.register("gaia_stone_bricks", new GDBlock(Material.ROCK, MapColor.MAGENTA, "pickaxe", 1).setHardness(2.0F).setResistance(20.0F));
+        blocks.register("cracked_gaia_stone_bricks", new GDBlock(Material.ROCK, MapColor.MAGENTA, "pickaxe", 1).setHardness(2.0F).setResistance(20.0F));
+        blocks.register("crusted_gaia_stone_bricks", new GDBlock(Material.ROCK, MapColor.MAGENTA, "pickaxe", 1).setHardness(2.0F).setResistance(20.0F));
+        blocks.register("reinforced_bricks", new GDBlock(Material.ROCK, MapColor.PURPLE, "pickaxe", 1).setHardness(10.0F).setResistance(100.0F));
+        blocks.register("malachite_bricks", new GDBlock(Material.ROCK, MapColor.GREEN, "pickaxe", 2).setHardness(20.0F).setResistance(200.0F));
+        blocks.register("malachite_cracked_bricks", new GDBlock(Material.ROCK, MapColor.GREEN, "pickaxe", 2).setHardness(20.0F).setResistance(200.0F));
+        blocks.register("malachite_crusted_bricks", new GDBlock(Material.ROCK, MapColor.GREEN, "pickaxe", 2).setHardness(20.0F).setResistance(200.0F));
+        blocks.register("malachite_floor_tiles", new GDBlock(Material.ROCK, MapColor.GREEN, "pickaxe", 2).setHardness(20.0F).setResistance(200.0F));
+        blocks.register("malachite_chisel_bricks", new GDBlock(Material.ROCK, MapColor.GREEN, "pickaxe", 2).setHardness(20.0F).setResistance(200.0F));
+        blocks.register("malachite_pulsing_bricks", new GDBlock(Material.ROCK, MapColor.GREEN, "pickaxe", 2).setHardness(20.0F).setResistance(200.0F));
+        blocks.register("malachite_pulsing_tiles", new GDBlock(Material.ROCK, MapColor.GREEN, "pickaxe", 2).setHardness(20.0F).setResistance(200.0F));
+        blocks.register("malachite_pulsing_chisel", new GDBlock(Material.ROCK, MapColor.GREEN, "pickaxe", 2).setHardness(20.0F).setResistance(200.0F));
         blocks.register("malachite_brick_slab", new GDMalachiteBrickSlab(false));
         blocks.register("double_malachite_brick_slab", new GDMalachiteBrickSlab(true));
         blocks.register("malachite_floor_slab", new GDMalachiteBrickSlab(false));
@@ -185,7 +185,7 @@ public final class GDBlocksRegister {
         blocks.register("malachite_pillar_stairs", new GDMalachiteStairs(malachitePillar.getDefaultState()));
         blocks.register("malachite_floor_stairs", new GDMalachiteStairs(malachiteBricks.getDefaultState()));
         blocks.register("malachite_pulsing_floor_stairs", new GDMalachiteStairs(malachiteBricks.getDefaultState()));
-        blocks.register("bolstered_bricks", new GDBlock(Material.ROCK, MapColor.SAND).setHardness(30.0F).setResistance(400.0F));
+        blocks.register("bolstered_bricks", new GDBlock(Material.ROCK, MapColor.SAND, "pickaxe", 2).setHardness(30.0F).setResistance(400.0F));
 
         //Storage Blocks
         blocks.register("sugilite_block",    new GDStorageBlock(MapColor.PURPLE).setHardness(5.0F).setResistance(10.0F));
@@ -212,19 +212,19 @@ public final class GDBlocksRegister {
         blocks.register("chalcedony_block",  new GDStorageBlock(MapColor.SNOW).setHardness(5.0F).setResistance(10.0F));
 
         //Ores
-        blocks.register("sugilite_ore",    new GDOre(MapColor.PURPLE, () -> GDItems.sugilite).setHardness(4.0F).setResistance(25.0F));
-        blocks.register("hematite_ore",    new GDOre(MapColor.GRAY, () -> GDItems.hematite).setHardness(4.0F).setResistance(25.0F));
-        blocks.register("pyrite_ore",      new GDOre(MapColor.GOLD, () -> GDItems.pyrite).setHardness(4.0F).setResistance(25.0F));
-        blocks.register("opal_ore_red",    new GDOre(MapColor.RED, () -> GDItems.red_opal).setHardness(4.0F).setResistance(25.0F));
-        blocks.register("opal_ore_blue",   new GDOre(MapColor.LIGHT_BLUE, () -> GDItems.blue_opal).setHardness(4.0F).setResistance(25.0F));
-        blocks.register("opal_ore_green",  new GDOre(MapColor.LIME, () -> GDItems.green_opal).setHardness(4.0F).setResistance(25.0F));
-        blocks.register("opal_ore_white",  new GDOre(MapColor.SNOW, () -> GDItems.white_opal).setHardness(4.0F).setResistance(25.0F));
-        blocks.register("labradorite_ore", new GDOre(MapColor.GREEN, () -> GDItems.labradorite).setHardness(4.0F).setResistance(25.0F));
-        blocks.register("moonstone_ore",   new GDOre(MapColor.SILVER, () -> GDItems.moonstone).setHardness(4.0F).setResistance(25.0F));
-        blocks.register("cinnabar_ore",    new GDOre(MapColor.ADOBE, () -> GDItems.cinnabar).setHardness(4.0F).setResistance(25.0F));
-        blocks.register("speckled_rock",   new GDOre(MapColor.MAGENTA, null).setHardness(4.0F).setResistance(25.0F));
-        blocks.register("coarse_rock",     new GDOre(MapColor.MAGENTA, null).setHardness(4.0F).setResistance(25.0F));
-        blocks.register("precious_rock",   new GDOre(MapColor.MAGENTA, null).setHardness(4.0F).setResistance(25.0F));
+        blocks.register("sugilite_ore",    new GDOre(MapColor.PURPLE, "pickaxe", 1, () -> GDItems.sugilite).setHardness(4.0F).setResistance(25.0F));
+        blocks.register("hematite_ore",    new GDOre(MapColor.GRAY, "pickaxe", 2, () -> GDItems.hematite).setHardness(4.0F).setResistance(25.0F));
+        blocks.register("pyrite_ore",      new GDOre(MapColor.GOLD, "pickaxe", 2, () -> GDItems.pyrite).setHardness(4.0F).setResistance(25.0F));
+        blocks.register("opal_ore_red",    new GDOre(MapColor.RED, "pickaxe", 2, () -> GDItems.red_opal).setHardness(4.0F).setResistance(25.0F));
+        blocks.register("opal_ore_blue",   new GDOre(MapColor.LIGHT_BLUE, "pickaxe", 2, () -> GDItems.blue_opal).setHardness(4.0F).setResistance(25.0F));
+        blocks.register("opal_ore_green",  new GDOre(MapColor.LIME, "pickaxe", 2, () -> GDItems.green_opal).setHardness(4.0F).setResistance(25.0F));
+        blocks.register("opal_ore_white",  new GDOre(MapColor.SNOW, "pickaxe", 3, () -> GDItems.white_opal).setHardness(4.0F).setResistance(25.0F));
+        blocks.register("labradorite_ore", new GDOre(MapColor.GREEN, "pickaxe", 2, () -> GDItems.labradorite).setHardness(4.0F).setResistance(25.0F));
+        blocks.register("moonstone_ore",   new GDOre(MapColor.SILVER, "pickaxe", 2, () -> GDItems.moonstone).setHardness(4.0F).setResistance(25.0F));
+        blocks.register("cinnabar_ore",    new GDOre(MapColor.ADOBE, "pickaxe", 2, () -> GDItems.cinnabar).setHardness(4.0F).setResistance(25.0F));
+        blocks.register("speckled_rock",   new GDOre(MapColor.MAGENTA, "pickaxe", 1, null).setHardness(4.0F).setResistance(25.0F));
+        blocks.register("coarse_rock",     new GDOre(MapColor.MAGENTA, "pickaxe", 2, null).setHardness(4.0F).setResistance(25.0F));
+        blocks.register("precious_rock",   new GDOre(MapColor.MAGENTA, "pickaxe", 3, null).setHardness(4.0F).setResistance(25.0F));
 
         GameRegistry.registerTileEntity(TileEntitySmallCrate.class, new ResourceLocation("gaiadimension:small_crate"));
         GameRegistry.registerTileEntity(TileEntityLargeCrate.class, new ResourceLocation("gaiadimension:large_crate"));

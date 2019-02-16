@@ -17,11 +17,12 @@ public class GDOre extends Block implements ModelRegisterCallback {
 
     private final Supplier<Item> itemSupplier;
 
-    public GDOre(MapColor color, @Nullable Supplier<Item> item) {
+    public GDOre(MapColor color, String toolClass, int harvestLevel, @Nullable Supplier<Item> item) {
         super(Material.ROCK, color);
 
         setSoundType(SoundType.STONE);
         setCreativeTab(GDTabs.tabBlock);
+        setHarvestLevel(toolClass, harvestLevel);
 
         itemSupplier = item;
     }

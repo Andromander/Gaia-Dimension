@@ -31,6 +31,7 @@ public class GDCrystalGrass extends Block implements ModelRegisterCallback {
         this.setHardness(0.9F);
         this.setTickRandomly(true);
         this.setCreativeTab(GDTabs.tabBlock);
+        this.setHarvestLevel("shovel", 0);
 
         grassSupplier = grass;
         dirtSupplier = dirt;

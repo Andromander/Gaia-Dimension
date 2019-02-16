@@ -39,6 +39,7 @@ public class GDMalachiteBrickSlab extends BlockSlab implements ModelRegisterCall
         this.setHardness(20F);
         this.setResistance(100F);
         this.setLightOpacity(isDouble ? 255 : 0);
+        this.setHarvestLevel("pickaxe", 2);
 
         IBlockState state = this.blockState.getBaseState().withProperty(VARIANT, MalachiteSlabVariant.NORMAL);
 

@@ -22,6 +22,7 @@ public class GDChargedMineral extends BlockGlass implements ModelRegisterCallbac
 
         this.setSoundType(SoundType.GLASS);
         this.setCreativeTab(GDTabs.tabBlock);
+        this.setHarvestLevel("pickaxe", 1);
     }
 
     @Override

@@ -21,6 +21,7 @@ public class GDSearingRock extends Block implements ModelRegisterCallback {
         this.setHardness(20.0F);
         this.setResistance(600.0F);
         this.setCreativeTab(GDTabs.tabBlock);
+        this.setHarvestLevel("pickaxe", 2);
     }
 
     public void onEntityWalk(World worldIn, BlockPos pos, Entity entityIn) {

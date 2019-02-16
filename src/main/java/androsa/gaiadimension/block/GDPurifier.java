@@ -44,6 +44,7 @@ public class GDPurifier extends Block implements ModelRegisterCallback, ITileEnt
         super(Material.ROCK);
         this.setDefaultState(blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
         this.setSoundType(SoundType.STONE);
+        this.setHarvestLevel("pickaxe", 2);
         this.isPurifying = flag;
 
         if (!isPurifying) {

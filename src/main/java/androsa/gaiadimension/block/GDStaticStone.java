@@ -20,6 +20,7 @@ public class GDStaticStone extends Block implements ModelRegisterCallback {
         this.setHardness(50.0F);
         this.setResistance(200.0F);
         this.setCreativeTab(GDTabs.tabBlock);
+        this.setHarvestLevel("pickaxe", 2);
     }
 
     public void onEntityWalk(World worldIn, BlockPos pos, Entity entityIn) {

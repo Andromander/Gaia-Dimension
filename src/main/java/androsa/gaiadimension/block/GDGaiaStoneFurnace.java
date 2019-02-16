@@ -45,6 +45,7 @@ public class GDGaiaStoneFurnace extends Block implements ModelRegisterCallback, 
     public GDGaiaStoneFurnace(boolean isBurning) {
         super(Material.ROCK);
         this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
+        this.setHarvestLevel("pickaxe", 0);
         this.isBurning = isBurning;
 
         if (!isBurning) {

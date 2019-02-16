@@ -27,6 +27,7 @@ public class GDMalachiteStairs extends BlockStairs implements ModelRegisterCallb
         this.setHardness(20);
         this.setResistance(100);
         this.setCreativeTab(GDTabs.tabBlock);
+        this.setHarvestLevel("pickaxe", 2);
 
         this.useNeighborBrightness = true;
     }

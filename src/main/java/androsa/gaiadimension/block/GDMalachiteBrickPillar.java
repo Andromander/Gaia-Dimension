@@ -18,6 +18,7 @@ public class GDMalachiteBrickPillar extends BlockRotatedPillar implements ModelR
         this.setResistance(100);
         this.setCreativeTab(GDTabs.tabBlock);
         this.setDefaultState(this.blockState.getBaseState().withProperty(AXIS, EnumFacing.Axis.Y));
+        this.setHarvestLevel("pickaxe", 2);
     }
 
     @SideOnly(Side.CLIENT)
