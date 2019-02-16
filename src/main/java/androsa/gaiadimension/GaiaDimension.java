@@ -26,7 +26,8 @@ import org.apache.logging.log4j.Logger;
 @Mod(modid = GaiaDimension.MODID,
         name = "GaiaDimension",
         version = GaiaDimension.VERSION,
-        dependencies = "required-after:forge@[14.23.5.2768,)"
+        dependencies = "required-after:forge@[14.23.5.2768,)",
+        updateJSON = "https://github.com/Andromander/Gaia-Dimension/blob/master/update.json"
 )
 
 public class GaiaDimension {
