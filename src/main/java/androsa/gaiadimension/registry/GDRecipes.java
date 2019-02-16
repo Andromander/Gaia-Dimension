@@ -138,6 +138,7 @@ public class GDRecipes {
         GameRegistry.addSmelting(GDBlocks.speckled_rock, new ItemStack(GDItems.scaynyx_ingot), 0.2F);
         GameRegistry.addSmelting(GDBlocks.coarse_rock, new ItemStack(GDItems.scaynyx_ingot, 2), 0.2F);
         GameRegistry.addSmelting(GDBlocks.precious_rock, new ItemStack(GDItems.scaynyx_ingot, 4), 0.2F);
+        GameRegistry.addSmelting(GDBlocks.gaia_cobblestone, new ItemStack(GDBlocks.gaia_stone, 1), 0.1F);
         GameRegistry.addSmelting(GDBlocks.gaia_stone, new ItemStack(GDItems.pink_essence, 2), 0.1F);
         GameRegistry.addSmelting(GDBlocks.gummy_glitter_block, new ItemStack(GDBlocks.thick_glitter_block, 1), 0.1F);
 
