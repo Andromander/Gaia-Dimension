@@ -1,0 +1,16 @@
+{
+  "result": {
+    "item": "gaiadimension:purple_agate_plank_slab",
+    "count": 6,
+    "data": 0
+  },
+  "pattern": [
+    "###"
+  ],
+  "type": "forge:ore_shaped",
+  "key": {
+    "#": {
+      "item": "gaiadimension:purple_agate_planks"
+    }
+  }
+}

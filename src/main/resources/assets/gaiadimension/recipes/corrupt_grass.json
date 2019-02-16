@@ -1,0 +1,19 @@
+{
+  "result": {
+    "item": "gaiadimension:corrupt_grass"
+  },
+  "pattern": [
+    "###",
+    "#G#",
+    "###"
+  ],
+  "type": "forge:ore_shaped",
+  "key": {
+    "#": {
+      "item": "gaiadimension:goldstone_residue"
+    },
+    "G": {
+      "item": "gaiadimension:glitter_grass"
+    }
+  }
+}

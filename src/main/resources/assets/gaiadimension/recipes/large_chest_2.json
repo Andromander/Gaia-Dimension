@@ -1,0 +1,22 @@
+{
+  "result": {
+    "item": "gaiadimension:mega_storage_crate"
+  },
+  "pattern": [
+    "#$#",
+    "$C$",
+    "#$#"
+  ],
+  "type": "forge:ore_shaped",
+  "key": {
+    "$": {
+      "item": "#AGATEPLANKS"
+    },
+    "#": {
+      "item": "gaiadimension:thick_glitter_block"
+    },
+    "C": {
+      "item": "gaiadimension:crude_storage_crate"
+    }
+  }
+}

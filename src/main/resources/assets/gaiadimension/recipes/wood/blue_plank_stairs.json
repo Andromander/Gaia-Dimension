@@ -1,0 +1,17 @@
+{
+  "result": {
+    "item": "gaiadimension:blue_agate_plank_stairs",
+    "count": 8
+  },
+  "pattern": [
+    "#  ",
+    "## ",
+    "###"
+  ],
+  "type": "forge:ore_shaped",
+  "key": {
+    "#": {
+      "item": "gaiadimension:blue_agate_planks"
+    }
+  }
+}

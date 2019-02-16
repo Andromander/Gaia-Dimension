@@ -1,0 +1,17 @@
+{
+  "result": {
+    "item": "gaiadimension:green_geode_ale"
+  },
+  "ingredients": [
+    {
+      "item": "gaiadimension:agate_cup"
+    },
+    {
+      "item": "gaiadimension:green_geode_slice"
+    },
+    {
+      "item": "gaiadimension:sugar_crystals"
+    }
+  ],
+  "type": "minecraft:crafting_shapeless"
+}

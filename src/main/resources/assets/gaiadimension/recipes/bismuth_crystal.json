@@ -1,0 +1,16 @@
+{
+  "result": {
+    "item": "gaiadimension:bismuth_crystal"
+  },
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "type": "forge:ore_shaped",
+  "key": {
+    "#": {
+      "item": "gaiadimension:bismuth_residue"
+    }
+  }
+}

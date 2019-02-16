@@ -1,0 +1,16 @@
+{
+  "result": {
+    "item": "gaiadimension:chalcedony_helmet"
+  },
+  "pattern": [
+    "###",
+    "# #"
+  ],
+  "type": "forge:ore_shaped",
+  "group": "chalcedony_armor",
+  "key": {
+    "#": {
+      "item": "gaiadimension:chalcedony"
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "result": {
+    "item": "gaiadimension:agate_cup",
+    "count": 8
+  },
+  "pattern": [
+    "B B",
+    " B "
+  ],
+  "type": "forge:ore_shaped",
+  "key": {
+    "B": {
+      "item": "#AGATEPLANKS"
+    }
+  }
+}

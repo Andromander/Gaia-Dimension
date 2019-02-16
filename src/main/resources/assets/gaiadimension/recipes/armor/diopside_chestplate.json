@@ -1,0 +1,17 @@
+{
+  "result": {
+    "item": "gaiadimension:diopside_chestplate"
+  },
+  "pattern": [
+    "# #",
+    "###",
+    "###"
+  ],
+  "type": "forge:ore_shaped",
+  "group": "diopside_armor",
+  "key": {
+    "#": {
+      "item": "gaiadimension:diopside"
+    }
+  }
+}

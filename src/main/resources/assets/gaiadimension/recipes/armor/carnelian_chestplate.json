@@ -1,0 +1,17 @@
+{
+  "result": {
+    "item": "gaiadimension:carnelian_chestplate"
+  },
+  "pattern": [
+    "# #",
+    "###",
+    "###"
+  ],
+  "type": "forge:ore_shaped",
+  "group": "carnelian_armor",
+  "key": {
+    "#": {
+      "item": "gaiadimension:carnelian"
+    }
+  }
+}

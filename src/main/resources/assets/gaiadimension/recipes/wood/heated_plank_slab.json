@@ -1,0 +1,16 @@
+{
+  "result": {
+    "item": "gaiadimension:burning_plank_slab",
+    "count": 6,
+    "data": 0
+  },
+  "pattern": [
+    "###"
+  ],
+  "type": "forge:ore_shaped",
+  "key": {
+    "#": {
+      "item": "gaiadimension:burning_planks"
+    }
+  }
+}
