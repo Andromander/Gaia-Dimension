@@ -13,8 +13,8 @@ import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.Random;
 
 public class GDGenBurntAgateTree extends WorldGenAbstractTree {
-    private static final IBlockState TRUNK = GDBlocks.crusty_log.getDefaultState();
-    private static final IBlockState LEAF = GDBlocks.crusty_leaves.getDefaultState().withProperty(GDAgateLeaves.CHECK_DECAY, Boolean.FALSE);
+    private static final IBlockState TRUNK = GDBlocks.burnt_log.getDefaultState();
+    private static final IBlockState LEAF = GDBlocks.burnt_leaves.getDefaultState().withProperty(GDAgateLeaves.CHECK_DECAY, Boolean.FALSE);
 
     public GDGenBurntAgateTree(boolean flag) {
         super(flag);

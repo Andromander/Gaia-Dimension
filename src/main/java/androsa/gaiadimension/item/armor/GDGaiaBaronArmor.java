@@ -47,7 +47,7 @@ public class GDGaiaBaronArmor extends ItemArmor implements ModelRegisterCallback
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack stack, World world, List<String> tooltips, ITooltipFlag flags) {
         super.addInformation(stack, world, tooltips, flags);
-        tooltips.add(I18n.format("tsvarovite_armor.tooltip"));
+        tooltips.add(I18n.format("tsavorite_armor.tooltip"));
     }
 
     @Override

@@ -1,11 +1,11 @@
 {
   "result": {
-    "item": "gaiadimension:crusty_planks",
+    "item": "gaiadimension:burnt_planks",
     "count": 4
   },
   "ingredients": [
     {
-      "item": "gaiadimension:crusty_log"
+      "item": "gaiadimension:burnt_log"
     }
   ],
   "type": "minecraft:crafting_shapeless"

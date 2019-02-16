@@ -25,7 +25,7 @@ public class GDItems {
     public static ItemArmor.ArmorMaterial ARMOR_ZIRCON = EnumHelper.addArmorMaterial("ZIRCON", "zircon_prince", 472, new int[]{3, 6, 8, 3}, 15, SoundEvents.ITEM_ARMOR_EQUIP_GOLD, 1.0F);
     public static ItemArmor.ArmorMaterial ARMOR_CORRUPT = EnumHelper.addArmorMaterial("CORRUPT", "corrupt_warrior", 1000, new int[]{4, 7, 9, 4}, 30, SoundEvents.ENTITY_BLAZE_HURT, 4.0F);
     public static ItemArmor.ArmorMaterial ARMOR_BIXBITE = EnumHelper.addArmorMaterial("BIXBITE", "gaia_duchess", 630, new int[]{3, 6, 8, 3}, 20, SoundEvents.ITEM_ARMOR_EQUIP_GOLD, 2.0F);
-    public static ItemArmor.ArmorMaterial ARMOR_TSVAROVITE = EnumHelper.addArmorMaterial("TSVAROVITE", "gaia_baron", 709, new int[]{3, 6, 8, 3}, 20, SoundEvents.ITEM_ARMOR_EQUIP_GOLD, 2.5F);
+    public static ItemArmor.ArmorMaterial ARMOR_TSAVORITE = EnumHelper.addArmorMaterial("TSAVORITE", "gaia_baron", 709, new int[]{3, 6, 8, 3}, 20, SoundEvents.ITEM_ARMOR_EQUIP_GOLD, 2.5F);
     public static ItemArmor.ArmorMaterial ARMOR_LARVIKITE = EnumHelper.addArmorMaterial("LARVAKITE", "gaia_duke", 788, new int[]{3, 6, 8, 3}, 20, SoundEvents.ITEM_ARMOR_EQUIP_GOLD, 3.0F);
     public static ItemArmor.ArmorMaterial ARMOR_GAIA_CHAMP = EnumHelper.addArmorMaterial("GAIA_CHAMP", "gaia_champion", 1000, new int[]{4, 7, 9, 4}, 30, SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, 4.0F);
 
@@ -42,7 +42,7 @@ public class GDItems {
     public static Item.ToolMaterial TOOL_ZIRCON = EnumHelper.addToolMaterial("ZIRCON", 3, 6144, 8.0F, 5.0F, 15);
     public static Item.ToolMaterial TOOL_CORRUPT = EnumHelper.addToolMaterial("CORRUPT", 4, 13000, 10.0F, 21.0F, 25);
     public static Item.ToolMaterial TOOL_BIXBITE = EnumHelper.addToolMaterial("BIXBITE", 3,8192, 8.0F, 1.5F, 20);
-    public static Item.ToolMaterial TOOL_TSVAROVITE = EnumHelper.addToolMaterial("TSVAROVITE", 3, 9216, 8.0F, 1.0F, 20);
+    public static Item.ToolMaterial TOOL_TSAVORITE = EnumHelper.addToolMaterial("TSAVORITE", 3, 9216, 8.0F, 1.0F, 20);
     public static Item.ToolMaterial TOOL_LARVIKITE = EnumHelper.addToolMaterial("LARVIKITE", 3, 10240, 8.0F, 5.0F, 20);
     public static Item.ToolMaterial TOOL_GAIA_CHAMP = EnumHelper.addToolMaterial("GAIA_CHAMP", 4, 13000, 10.0F, 16.0F, 25);
 
