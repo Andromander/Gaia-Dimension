@@ -9,6 +9,7 @@ import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemSlab;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -31,7 +32,12 @@ public class GDItemsRegister {
         items.register("crystallized_lapis_lazuli", new GDItem());
         items.register("glint_and_gold", new GDFlintAndGold());
         items.register("agate_stick", new GDItem());
-        items.register("hot_dust", new GDItem());
+        items.register("hot_dust", new GDItem() {
+            @Override
+            public int getItemBurnTime(ItemStack stack) {
+                return 100;
+            }
+        });
         items.register("goldstone_dust", new GDItem());
         items.register("fine_dust", new GDItem());
         items.register("cloudy_shard", new GDItem());
