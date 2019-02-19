@@ -13,11 +13,14 @@ import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
+import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.registries.IForgeRegistry;
 
 import java.util.ArrayList;
@@ -31,7 +34,13 @@ public final class GDBlocksRegister {
 
         //Utility Blocks
         blocks.register("gaia_portal", new GDGaiaPortal());
-        blocks.register("keystone_block", new GDBlock(Material.IRON, MapColor.GOLD, SoundType.METAL, "pickaxe", 2).setHardness(3.0F).setResistance(5.0F));
+        blocks.register("keystone_block", new GDBlock(Material.IRON, MapColor.GOLD, SoundType.METAL, "pickaxe", 2) {
+            @Override
+            @SideOnly(Side.CLIENT)
+            public BlockRenderLayer getRenderLayer() {
+                return BlockRenderLayer.CUTOUT;
+            }
+        }.setHardness(3.0F).setResistance(5.0F));
         blocks.register("gold_fire", new GDGoldFire());
         blocks.register("pyrite_torch", new GDPyriteTorch());
         blocks.register("agate_crafting_table", new GDAgateCraftingTable());
@@ -168,9 +177,9 @@ public final class GDBlocksRegister {
         blocks.register("malachite_crusted_bricks", new GDBlock(Material.ROCK, MapColor.GREEN, "pickaxe", 2).setHardness(20.0F).setResistance(200.0F));
         blocks.register("malachite_floor_tiles", new GDBlock(Material.ROCK, MapColor.GREEN, "pickaxe", 2).setHardness(20.0F).setResistance(200.0F));
         blocks.register("malachite_chisel_bricks", new GDBlock(Material.ROCK, MapColor.GREEN, "pickaxe", 2).setHardness(20.0F).setResistance(200.0F));
-        blocks.register("malachite_pulsing_bricks", new GDBlock(Material.ROCK, MapColor.GREEN, "pickaxe", 2).setHardness(20.0F).setResistance(200.0F));
-        blocks.register("malachite_pulsing_tiles", new GDBlock(Material.ROCK, MapColor.GREEN, "pickaxe", 2).setHardness(20.0F).setResistance(200.0F));
-        blocks.register("malachite_pulsing_chisel", new GDBlock(Material.ROCK, MapColor.GREEN, "pickaxe", 2).setHardness(20.0F).setResistance(200.0F));
+        blocks.register("malachite_pulsing_bricks", new GDMalachitePulseBricks());
+        blocks.register("malachite_pulsing_tiles", new GDMalachitePulseBricks());
+        blocks.register("malachite_pulsing_chisel", new GDMalachitePulseBricks());
         blocks.register("malachite_brick_slab", new GDMalachiteBrickSlab(false));
         blocks.register("double_malachite_brick_slab", new GDMalachiteBrickSlab(true));
         blocks.register("malachite_floor_slab", new GDMalachiteBrickSlab(false));
