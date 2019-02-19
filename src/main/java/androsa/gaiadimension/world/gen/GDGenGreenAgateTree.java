@@ -3,6 +3,8 @@ package androsa.gaiadimension.world.gen;
 import androsa.gaiadimension.block.GDAgateLeaves;
 import androsa.gaiadimension.block.GDAgateSapling;
 import androsa.gaiadimension.registry.GDBlocks;
+import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
@@ -44,6 +46,20 @@ public class GDGenGreenAgateTree extends WorldGenAbstractTree {
                                 canGrow = false;
                             }
                         } else {
+                            canGrow = false;
+                        }
+                    }
+                }
+            }
+
+            for (int cx = 0; cx < 3; cx++) {
+                for (int cz = 0; cz < 3; cz++) {
+                    BlockPos pos = position.add(cx - 1, 0, cz - 1);
+
+                    if (worldIn.isBlockLoaded(pos)) {
+                        Block blockBelow = worldIn.getBlockState(pos.down()).getBlock();
+
+                        if (blockBelow != GDBlocks.glitter_grass && blockBelow != GDBlocks.heavy_soil) {
                             canGrow = false;
                         }
                     }

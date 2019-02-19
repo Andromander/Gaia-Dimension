@@ -48,7 +48,7 @@ public class GDGreenAgateJungle extends GDBiomeBase {
     @Override
     public WorldGenAbstractTree getRandomTreeFeature(Random rand) {
 
-        if (rand.nextInt(3) == 0) {
+        if (rand.nextInt(2) == 0) {
             if (rand.nextInt(2) == 0) {
                 return new WorldGenShrub(GDBlocks.green_agate_log.getDefaultState(), GDBlocks.green_agate_leaves.getDefaultState());
             } else {
