@@ -22,11 +22,6 @@ public class GDConfig {
         @Config.Comment("The ID of the Gaia dimension. This setting should only be changed if mod conflicts are present.")
         public int dimensionID = -30;
 
-        @Config.LangKey(config + "dimension_seed")
-        @Config.RequiresMcRestart
-        @Config.Comment("Overrides the seed of the dimension. Changing this setting will always generate the Gaia dimension to the specified seed.")
-        public String gaiaSeed = "";
-
         @Config.LangKey(config + "enable_sky_fog")
         @Config.Comment("For those bothered by the sky transtions or using shaders. Disables the differing sky and fog colour to the default preset.")
         public boolean enableSkyFog = true;
@@ -41,11 +36,6 @@ public class GDConfig {
     public static OreDictionaryOptions oreDict = new OreDictionaryOptions();
 
     public static class OreDictionaryOptions {
-        @Config.LangKey(config + "x")
-        @Config.RequiresMcRestart
-        @Config.Comment("Register y to gemy and blocky")
-        public boolean x = false;
-
         @Config.LangKey(config + "sugilite")
         @Config.RequiresMcRestart
         @Config.Comment("Register Sugilite to oreSugilite, gemSugilite and blockSugilite")
