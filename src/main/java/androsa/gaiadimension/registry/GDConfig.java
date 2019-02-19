@@ -27,17 +27,13 @@ public class GDConfig {
         @Config.Comment("Overrides the seed of the dimension. Changing this setting will always generate the Gaia dimension to the specified seed.")
         public String gaiaSeed = "";
 
-    }
-
-    @Config.LangKey(config + "sky_and_fog")
-    @Config.Comment("Changes that will affect the sky, fog and clouds in Gaia. A restart is advised here.")
-    public static SkyAndFog skyAndFog = new SkyAndFog();
-
-    public static class SkyAndFog {
         @Config.LangKey(config + "enable_sky_fog")
-        @Config.RequiresMcRestart
         @Config.Comment("For those bothered by the sky transtions or using shaders. Disables the differing sky and fog colour to the default preset.")
         public boolean enableSkyFog = true;
+
+        @Config.LangKey(config + "sky_option")
+        @Config.Comment("Set the Sky, Fog, and Cloud color to any of the existing biome options. This config option does not work if Enable Sky Transitions is true")
+        public EnumSkyColors skyColors = EnumSkyColors.GENERAL;
     }
 
     @Config.LangKey(config + "ore_dictionary")
