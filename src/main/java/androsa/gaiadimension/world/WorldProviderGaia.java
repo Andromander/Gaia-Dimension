@@ -61,6 +61,7 @@ public class WorldProviderGaia extends WorldProviderSurface {
 
     //Let's see what can be done here...
     @Override
+    @SideOnly(Side.CLIENT)
     public boolean isSkyColored() {
         return true;
     }
@@ -164,6 +165,7 @@ public class WorldProviderGaia extends WorldProviderSurface {
 
     //Fog colour render
     @Override
+    @SideOnly(Side.CLIENT)
     public Vec3d getFogColor(float f, float f1) {
 
         EntityPlayer player = Minecraft.getMinecraft().player;
@@ -307,6 +309,7 @@ public class WorldProviderGaia extends WorldProviderSurface {
 
     //Can't really null this, so we have clouds, but *way* up there
     @Override
+    @SideOnly(Side.CLIENT)
     public float getCloudHeight() {
         return 255.0F;
     }
