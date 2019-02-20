@@ -23,6 +23,8 @@ import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fluids.BlockFluidBase;
 import net.minecraftforge.fluids.BlockFluidClassic;
 import net.minecraftforge.fluids.Fluid;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -98,6 +100,7 @@ public class GDSuperhotMagma extends GDFluidBlock implements ModelRegisterCallba
     }
 
     @Override
+    @SideOnly(Side.CLIENT)
     public void registerModel() {
         final Item item = Item.getItemFromBlock(this);
         ModelBakery.registerItemVariants(item);
