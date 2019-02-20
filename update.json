@@ -1,10 +1,11 @@
 {
   "homepage": "https://minecraft.curseforge.com/projects/gaia-dimension",
   "1.12.2": {
-    "1.0.0": "• Gaia Dimension is officially released. This is the first version."
-  },
+    "1.0.0": "• Gaia Dimension is officially released. This is the first version.",
+    "1.0.1": "+ Added a config option for sky settings. If you turn them off, but you don't want the bland yellow skies and pink clouds, you can switch them out for another setting. These settings are preset from existing biomes.\n + Added Foggy Glass. Smelt some Salt for pristine white windows\n + Added Cloudy Glass. Can be made from Cloudy Shards.\n • Green Agate trees now check more ground to grow from. Too little space will result in no growth.\n • Due to the new generation checks, Green Agate Jungles allow for more trees to generate.\n • Fluids now mix together properly. They used to not mix at all, resulting in weird fluid behavior.\n • Fixed Gold Fire in general. CodeChickenLib spammed a tesselating block error, and some entities caused the world to crash when near this block.\n • Fixed some texture renders if ConnectedTexturesMod isn't loaded. Warned you all.\n • Rearranged the configuration file options. I would advise clearing the current config.\n • Fixed dedicated servers crashing in two places thanks to missing sided annotations.\n - Removed Dimension Seed config. Doesn't seem to work as nicely as expected.\n - Removed random config option that did nothing and was a copy-paste error."
+},
   "promos": {
-    "1.12.2-latest": "1.0.0",
-    "1.12.2-recommended": "1.0.0"
+    "1.12.2-latest": "1.0.1",
+    "1.12.2-recommended": "1.0.1"
   }
 }
