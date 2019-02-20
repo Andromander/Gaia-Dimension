@@ -168,6 +168,8 @@ public final class GDBlocksRegister {
         blocks.register("burning_plank_stairs", new GDAgatePlankStairs(firePlanks.getDefaultState()).setLightLevel(0.5F));
 
         //Manufactured Blocks
+        blocks.register("cloudy_glass", new GDGlassBlock());
+        blocks.register("foggy_glass", new GDGlassBlock());
         blocks.register("gaia_stone_bricks", new GDBlock(Material.ROCK, MapColor.MAGENTA, "pickaxe", 1).setHardness(2.0F).setResistance(20.0F));
         blocks.register("cracked_gaia_stone_bricks", new GDBlock(Material.ROCK, MapColor.MAGENTA, "pickaxe", 1).setHardness(2.0F).setResistance(20.0F));
         blocks.register("crusted_gaia_stone_bricks", new GDBlock(Material.ROCK, MapColor.MAGENTA, "pickaxe", 1).setHardness(2.0F).setResistance(20.0F));

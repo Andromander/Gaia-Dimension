@@ -328,6 +328,8 @@ public class GDItemsRegister {
         items.registerBlock(GDBlocks.burnt_plank_stairs);
         items.registerBlock(GDBlocks.burning_plank_stairs);
 
+        items.registerBlock(GDBlocks.cloudy_glass);
+        items.registerBlock(GDBlocks.foggy_glass);
         items.registerBlock(GDBlocks.gaia_stone_bricks);
         items.registerBlock(GDBlocks.cracked_gaia_stone_bricks);
         items.registerBlock(GDBlocks.crusted_gaia_stone_bricks);

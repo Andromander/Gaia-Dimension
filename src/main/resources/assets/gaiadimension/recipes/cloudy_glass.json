@@ -1,0 +1,16 @@
+{
+  "result": {
+    "item": "gaiadimension:cloudy_glass"
+  },
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "type": "forge:ore_shaped",
+  "key": {
+    "#": {
+      "item": "gaiadimension:cloudy_shard"
+    }
+  }
+}

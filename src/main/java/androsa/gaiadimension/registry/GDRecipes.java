@@ -119,6 +119,7 @@ public class GDRecipes {
         GameRegistry.addSmelting(new ItemStack(Items.DYE, 1, 4), new ItemStack(GDItems.crystallized_lapis_lazuli, 1), 0.0F);
         GameRegistry.addSmelting(new ItemStack(GDItems.lurmorus_meat, 1), new ItemStack(GDItems.lurmorus_steak, 1), 0.0F);
         GameRegistry.addSmelting(new ItemStack(GDItems.fine_dust, 1), new ItemStack(GDItems.cloudy_shard, 1), 0.1F);
+        GameRegistry.addSmelting(GDBlocks.salt, new ItemStack(GDBlocks.foggy_glass, 1), 0.1F);
         GameRegistry.addSmelting(new ItemStack(GDItems.goldstone_dust, 1), new ItemStack(GDItems.goldstone_residue, 1), 0.1F);
         GameRegistry.addSmelting(GDBlocks.pink_agate_sapling, new ItemStack(GDBlocks.burnt_sapling, 1), 0.1F);
         GameRegistry.addSmelting(GDBlocks.blue_agate_sapling, new ItemStack(GDBlocks.burnt_sapling, 1), 0.1F);

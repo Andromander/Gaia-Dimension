@@ -133,6 +133,8 @@ public class GDBlocks {
     public static final Block burning_plank_stairs = null;
 
     //Manufactured
+    public static final Block cloudy_glass = null;
+    public static final Block foggy_glass = null;
     public static final Block gaia_stone_bricks = null;
     public static final Block cracked_gaia_stone_bricks = null;
     public static final Block crusted_gaia_stone_bricks = null;
