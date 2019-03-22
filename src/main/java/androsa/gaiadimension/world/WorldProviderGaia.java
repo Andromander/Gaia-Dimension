@@ -82,6 +82,11 @@ public class WorldProviderGaia extends WorldProviderSurface {
     }
 
     @Override
+    public boolean shouldMapSpin(String entity, double x, double z, double rotation) {
+        return false;
+    }
+
+    @Override
     public boolean isDaytime() {
         return true;
     }
