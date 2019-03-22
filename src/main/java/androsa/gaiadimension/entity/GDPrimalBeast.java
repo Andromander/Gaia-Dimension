@@ -7,9 +7,11 @@ import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
+import net.minecraft.pathfinding.PathNodeType;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -18,6 +20,10 @@ public class GDPrimalBeast extends EntityMob implements IMob {
 
     public GDPrimalBeast(World world) {
         super(world);
+
+        this.setPathPriority(PathNodeType.LAVA, 8.0F);
+        this.setPathPriority(PathNodeType.DANGER_FIRE, 0.0F);
+        this.setPathPriority(PathNodeType.DAMAGE_FIRE, 0.0F);
 
         this.setSize(1.0F, 2.0F);
 
@@ -81,8 +87,27 @@ public class GDPrimalBeast extends EntityMob implements IMob {
     }
 
     @Override
+    protected boolean isValidLightLevel() {
+        return true;
+    }
+
+    @Override
+    public boolean isNotColliding() {
+        return this.world.checkNoEntityCollision(this.getEntityBoundingBox(), this);
+    }
+
+    @Override
+    public float getBlockPathWeight(BlockPos pos) {
+        return 0.0F;
+    }
+
+    @Override
     public boolean getCanSpawnHere() {
-        return this.posY > 0.0D && this.posY < 20.0D && super.getCanSpawnHere();
+        return this.posY > 0.0D &&
+                this.posY < 20.0D &&
+                this.isValidLightLevel() &&
+                this.world.getDifficulty() != EnumDifficulty.PEACEFUL &&
+                this.getBlockPathWeight(new BlockPos(this.posX, this.getEntityBoundingBox().minY, this.posZ)) >= 0.0F;
     }
 
     @Override

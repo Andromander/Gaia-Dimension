@@ -3,12 +3,15 @@ package androsa.gaiadimension.entity;
 import androsa.gaiadimension.GaiaDimension;
 import androsa.gaiadimension.entity.boss.GDBlueHowliteWolf;
 import androsa.gaiadimension.entity.boss.GDMalachiteGuard;
+import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntitySpawnPlacementRegistry;
+import net.minecraft.init.Blocks;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.event.RegistryEvent;
@@ -19,15 +22,29 @@ import net.minecraftforge.registries.IForgeRegistry;
 
 import java.util.function.Function;
 
+import static net.minecraft.world.WorldEntitySpawner.isValidEmptySpawnBlock;
 import static net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 
 @EventBusSubscriber(modid = GaiaDimension.MODID)
 public class GaiaEntities {
 
     public static final EntityLiving.SpawnPlacementType IN_LAVA = EnumHelper.addSpawnPlacementType("GD_IN_LAVA", (access, pos) -> {
-        IBlockState blockstate = access.getBlockState(pos);
+        IBlockState iblockstate = access.getBlockState(pos);
 
-        return blockstate.getMaterial() == Material.LAVA && access.getBlockState(pos.down()).getMaterial() == Material.LAVA && !access.getBlockState(pos.up()).isNormalCube();
+        if (iblockstate.getMaterial() == Material.LAVA && access.getBlockState(pos.down()).getMaterial() == Material.LAVA && !access.getBlockState(pos.up()).isNormalCube()) {
+            return true;
+        } else {
+            BlockPos blockpos = pos.down();
+            IBlockState state = access.getBlockState(blockpos);
+
+            if (!state.getBlock().canCreatureSpawn(state, access, blockpos, EntityLiving.SpawnPlacementType.ON_GROUND)) {
+                return false;
+            } else {
+                Block block = access.getBlockState(blockpos).getBlock();
+                boolean flag = block != Blocks.BEDROCK && block != Blocks.BARRIER;
+                return flag && isValidEmptySpawnBlock(iblockstate) && isValidEmptySpawnBlock(access.getBlockState(pos.up()));
+            }
+        }
     });
 
     @SubscribeEvent

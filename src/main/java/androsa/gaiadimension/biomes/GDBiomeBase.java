@@ -35,7 +35,7 @@ public abstract class GDBiomeBase extends Biome {
         spawnableMonsterList.add(new SpawnListEntry(GDArchaicWarrior.class, 100, 4, 4));
         spawnableMonsterList.add(new SpawnListEntry(GDMuckling.class, 100, 4, 4));
         spawnableMonsterList.add(new SpawnListEntry(EntityEnderman.class, 5, 1, 2));
-        spawnableMonsterList.add(new SpawnListEntry(GDPrimalBeast.class, 30, 1, 2));
+        spawnableMonsterList.add(new SpawnListEntry(GDPrimalBeast.class, 25, 1, 2));
 
         spawnableCreatureList.add(new SpawnListEntry(GDNomadicLagrahk.class, 15, 1, 2));
 
