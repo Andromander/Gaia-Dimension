@@ -1,0 +1,16 @@
+{
+  "forge_marker": 1,
+  "variants": {
+    "inventory": {
+      "model": "forge:forgebucket",
+      "textures": {
+        "base": "gaiadimension:items/scaynyx_bucket",
+        "fluid": "forge:items/bucket_fluid"
+      },
+      "transform": "forge:default-item",
+      "custom": {
+        "flipGas": true
+      }
+    }
+  }
+}

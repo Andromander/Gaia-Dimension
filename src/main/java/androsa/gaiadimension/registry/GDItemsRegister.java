@@ -53,6 +53,7 @@ public class GDItemsRegister {
         items.register("pink_goo", new GDItem());
         items.register("agate_fabric", new GDItem());
         items.register("sturdy_pebble", new GDSturdyPebble());
+        items.register("scaynyx_bucket", new GDScaynyxBucket());
 
         items.register("pink_geode", new GDGeode());
         items.register("blue_geode", new GDGeode());

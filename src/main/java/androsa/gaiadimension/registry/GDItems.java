@@ -67,6 +67,7 @@ public class GDItems {
     public static final Item pink_goo = null;
     public static final Item agate_fabric = null;
     public static final Item sturdy_pebble = null;
+    public static final Item scaynyx_bucket = null;
 
     public static final Item pink_geode = null;
     public static final Item blue_geode = null;

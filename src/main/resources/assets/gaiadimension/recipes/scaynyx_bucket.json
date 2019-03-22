@@ -1,0 +1,15 @@
+{
+  "result": {
+    "item": "gaiadimension:scaynyx_ingot"
+  },
+  "pattern": [
+    "B B",
+    " B "
+  ],
+  "type": "forge:ore_shaped",
+  "key": {
+    "B": {
+      "item": "gaiadimension:scaynyx_bucket"
+    }
+  }
+}
