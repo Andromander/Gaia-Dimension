@@ -2,6 +2,8 @@ package androsa.gaiadimension.renderer;
 
 import androsa.gaiadimension.GaiaDimension;
 import androsa.gaiadimension.entity.GDMineralArenthis;
+import androsa.gaiadimension.model.ModelMineralArenthis;
+import androsa.gaiadimension.renderer.layer.LayerMineralArenthisParts;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.RenderLiving;
@@ -13,7 +15,12 @@ public class EntityRenderMineralArenthis extends RenderLiving<GDMineralArenthis>
 
     public EntityRenderMineralArenthis(RenderManager manager, ModelBase model, float shadowSize) {
         super(manager, model, shadowSize);
-        //this.addLayer(new LayerMineralArenthisParts(this)); Comment out until it works
+        this.addLayer(new LayerMineralArenthisParts(this));
+    }
+
+    @Override
+    public ModelMineralArenthis getMainModel() {
+        return (ModelMineralArenthis)super.getMainModel();
     }
 
     @Override
