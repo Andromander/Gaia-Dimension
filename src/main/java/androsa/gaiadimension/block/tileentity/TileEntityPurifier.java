@@ -420,13 +420,12 @@ public class TileEntityPurifier extends TileEntity implements ISidedInventory, I
         this.purifyingItemStacks.clear();
     }
 
-    IItemHandler handlerTop = new SidedInvWrapper(this, EnumFacing.UP);
-    IItemHandler handlerBottom = new SidedInvWrapper(this, EnumFacing.DOWN);
-    IItemHandler handlerSide = new SidedInvWrapper(this, EnumFacing.WEST);
+    private IItemHandler handlerTop = new SidedInvWrapper(this, EnumFacing.UP);
+    private IItemHandler handlerBottom = new SidedInvWrapper(this, EnumFacing.DOWN);
+    private IItemHandler handlerSide = new SidedInvWrapper(this, EnumFacing.WEST);
 
     @SuppressWarnings("unchecked")
     @Override
-    @javax.annotation.Nullable
     public <T> T getCapability(Capability<T> capability, @Nullable EnumFacing facing) {
         if (facing != null && capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY)
             if (facing == EnumFacing.DOWN)
@@ -443,8 +442,6 @@ public class TileEntityPurifier extends TileEntity implements ISidedInventory, I
         if (stack.isEmpty())
             return 0;
         else {
-            int burnTime = ForgeEventFactory.getItemBurnTime(stack);
-            if (burnTime >= 0) return burnTime;
             Item item = stack.getItem();
 
             if(item == Items.GOLD_NUGGET)
@@ -493,10 +490,7 @@ public class TileEntityPurifier extends TileEntity implements ISidedInventory, I
         if (stack.isEmpty())
             return 0;
         else {
-            int burnTime = net.minecraftforge.event.ForgeEventFactory.getItemBurnTime(stack);
-            if (burnTime >= 0) return burnTime;
             Item item = stack.getItem();
-
 
             if(item == GDItems.pink_essence)
                 return 100;
@@ -519,8 +513,6 @@ public class TileEntityPurifier extends TileEntity implements ISidedInventory, I
         if (stack.isEmpty())
             return 0;
         else {
-            int burnTime = net.minecraftforge.event.ForgeEventFactory.getItemBurnTime(stack);
-            if (burnTime >= 0) return burnTime;
             Item item = stack.getItem();
 
             if(item == GDItems.bismuth_residue)

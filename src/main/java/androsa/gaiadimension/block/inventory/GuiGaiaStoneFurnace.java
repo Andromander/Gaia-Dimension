@@ -27,9 +27,9 @@ public class GuiGaiaStoneFurnace extends GuiContainer {
 
     @Override
     protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
-        String name = tileFurnace.hasCustomName() ? tileFurnace.getName() : I18n.format(tileFurnace.getName(), new Object[0]);
+        String name = tileFurnace.hasCustomName() ? tileFurnace.getName() : I18n.format(tileFurnace.getName());
         fontRenderer.drawString(name, xSize / 2 - fontRenderer.getStringWidth(name) / 2, 6, 0xFFFFFF);
-        fontRenderer.drawString(I18n.format("container.inventory", new Object[0]), 8, ySize -96 + 2, 0xFFFFFF);
+        fontRenderer.drawString(I18n.format("container.inventory"), 8, ySize - 96 + 2, 0xFFFFFF);
     }
 
     @Override

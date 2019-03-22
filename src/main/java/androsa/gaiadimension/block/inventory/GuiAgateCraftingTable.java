@@ -11,8 +11,6 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import java.awt.*;
-
 @SideOnly(Side.CLIENT)
 public class GuiAgateCraftingTable extends GuiCrafting {
     private static final ResourceLocation textureLoc = new ResourceLocation("gaiadimension:textures/gui/crafting_table.png");
@@ -30,11 +28,7 @@ public class GuiAgateCraftingTable extends GuiCrafting {
 
     @Override
     protected void drawGuiContainerForegroundLayer(int x, int y) {
-        fontRenderer.drawString(I18n.format(new TextComponentTranslation("container.crafting").getFormattedText()), 29, 7, getColour(0, 0, 0));
-        fontRenderer.drawString(I18n.format(new TextComponentTranslation("container.inventory").getFormattedText()), 8, ySize - 96 + 3, getColour(0, 0, 0));
-    }
-
-    public static final int getColour(int R, int G, int B) {
-        return new Color(R, G, B).getRGB() & 0x00ffffff;
+        fontRenderer.drawString(I18n.format(new TextComponentTranslation("container.crafting").getFormattedText()), 29, 7, 0x000000);
+        fontRenderer.drawString(I18n.format(new TextComponentTranslation("container.inventory").getFormattedText()), 8, ySize - 96 + 3, 0x000000);
     }
 }

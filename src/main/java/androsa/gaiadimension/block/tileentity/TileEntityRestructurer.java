@@ -18,9 +18,15 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.MathHelper;
+import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.event.ForgeEventFactory;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraftforge.items.CapabilityItemHandler;
+import net.minecraftforge.items.IItemHandler;
+import net.minecraftforge.items.wrapper.SidedInvWrapper;
 
+import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
 
 @MethodsReturnNonnullByDefault
@@ -402,16 +408,15 @@ public class TileEntityRestructurer extends TileEntity implements ISidedInventor
         this.restructurerItemStacks.clear();
     }
 
-    net.minecraftforge.items.IItemHandler handlerTop = new net.minecraftforge.items.wrapper.SidedInvWrapper(this, net.minecraft.util.EnumFacing.UP);
-    net.minecraftforge.items.IItemHandler handlerBottom = new net.minecraftforge.items.wrapper.SidedInvWrapper(this, net.minecraft.util.EnumFacing.DOWN);
-    net.minecraftforge.items.IItemHandler handlerSide = new net.minecraftforge.items.wrapper.SidedInvWrapper(this, net.minecraft.util.EnumFacing.WEST);
+    private IItemHandler handlerTop = new SidedInvWrapper(this, EnumFacing.UP);
+    private IItemHandler handlerBottom = new SidedInvWrapper(this, EnumFacing.DOWN);
+    private IItemHandler handlerSide = new SidedInvWrapper(this, EnumFacing.WEST);
 
     @SuppressWarnings("unchecked")
     @Override
     @javax.annotation.Nullable
-    public <T> T getCapability(net.minecraftforge.common.capabilities.Capability<T> capability, @javax.annotation.Nullable net.minecraft.util.EnumFacing facing)
-    {
-        if (facing != null && capability == net.minecraftforge.items.CapabilityItemHandler.ITEM_HANDLER_CAPABILITY)
+    public <T> T getCapability(Capability<T> capability, @Nullable EnumFacing facing) {
+        if (facing != null && capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY)
             if (facing == EnumFacing.DOWN)
                 return (T) handlerBottom;
             else if (facing == EnumFacing.UP)
@@ -426,8 +431,6 @@ public class TileEntityRestructurer extends TileEntity implements ISidedInventor
         if (stack.isEmpty())
             return 0;
         else {
-            int burnTime = net.minecraftforge.event.ForgeEventFactory.getItemBurnTime(stack);
-            if (burnTime >= 0) return burnTime;
             Item item = stack.getItem();
 
             if(item == Items.GOLD_NUGGET)
@@ -476,10 +479,7 @@ public class TileEntityRestructurer extends TileEntity implements ISidedInventor
         if (stack.isEmpty())
             return 0;
         else {
-            int burnTime = net.minecraftforge.event.ForgeEventFactory.getItemBurnTime(stack);
-            if (burnTime >= 0) return burnTime;
             Item item = stack.getItem();
-
 
             if(item == GDItems.pink_essence)
                 return 100;

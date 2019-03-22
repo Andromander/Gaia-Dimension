@@ -18,6 +18,7 @@ import net.minecraftforge.registries.IForgeRegistry;
 import java.util.ArrayList;
 import java.util.List;
 
+import static androsa.gaiadimension.item.GDGeodeJuice.*;
 import static androsa.gaiadimension.registry.GDItems.*;
 import static net.minecraft.inventory.EntityEquipmentSlot.*;
 
@@ -56,10 +57,10 @@ public class GDItemsRegister {
         items.register("sturdy_pebble", new GDSturdyPebble());
         items.register("scaynyx_bucket", new GDScaynyxBucket());
 
-        items.register("pink_geode", new GDGeode());
-        items.register("blue_geode", new GDGeode());
-        items.register("green_geode", new GDGeode());
-        items.register("purple_geode", new GDGeode());
+        items.register("pink_geode", new GDItem());
+        items.register("blue_geode", new GDItem());
+        items.register("green_geode", new GDItem());
+        items.register("purple_geode", new GDItem());
         items.register("pink_geode_slice", new GDGeodeSlice(3, 0.5F));
         items.register("blue_geode_slice", new GDGeodeSlice(4, 0.4F));
         items.register("green_geode_slice", new GDGeodeSlice(5, 0.3F));

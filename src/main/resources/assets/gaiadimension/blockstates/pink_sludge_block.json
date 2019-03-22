@@ -2,7 +2,16 @@
   "forge_marker": 1,
   "defaults": {
     "model": "cube_all",
-    "textures": { "all": "gaiadimension:blocks/pink_sludge_block" }
+    "textures": {
+      "all": "gaiadimension:blocks/pink_sludge_block"
+    }
   },
-  "variants": { "normal": [{}] }
+  "variants": {
+    "normal": [
+      { },
+      { "y": 180 },
+      { "model": "cube_mirrored_all" },
+      { "model": "cube_mirrored_all", "y": 180 }
+    ]
+  }
 }

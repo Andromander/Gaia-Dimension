@@ -139,7 +139,8 @@ public class GDConfig {
 
     @SubscribeEvent
     public static void onConfigChanged(ConfigChangedEvent.OnConfigChangedEvent event) {
-        if (event.getModID().equals(GaiaDimension.MODID));
-        ConfigManager.sync(GaiaDimension.MODID, Config.Type.INSTANCE);
+        if (event.getModID().equals(GaiaDimension.MODID)) {
+            ConfigManager.sync(GaiaDimension.MODID, Config.Type.INSTANCE);
+        }
     }
 }

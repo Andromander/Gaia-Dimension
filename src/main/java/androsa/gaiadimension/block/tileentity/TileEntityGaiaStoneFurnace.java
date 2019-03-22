@@ -2,8 +2,6 @@ package androsa.gaiadimension.block.tileentity;
 
 import androsa.gaiadimension.block.GDGaiaStoneFurnace;
 import mcp.MethodsReturnNonnullByDefault;
-import net.minecraft.block.Block;
-import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -13,15 +11,21 @@ import net.minecraft.item.*;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.tileentity.TileEntityFurnace;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextComponentTranslation;
+import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraftforge.items.CapabilityItemHandler;
+import net.minecraftforge.items.IItemHandler;
+import net.minecraftforge.items.wrapper.SidedInvWrapper;
 
+import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
 
 @MethodsReturnNonnullByDefault
@@ -31,7 +35,7 @@ public class TileEntityGaiaStoneFurnace extends TileEntity implements ITickable,
     private static final int[] slotsTop = new int[] { 0 };
     private static final int[] slotsBottom = new int[] { 2, 1 };
     private static final int[] slotsSides = new int [] { 1 };
-    private NonNullList<ItemStack> furnaceItemStacks = NonNullList.<ItemStack>withSize(4, ItemStack.EMPTY);
+    private NonNullList<ItemStack> furnaceItemStacks = NonNullList.withSize(4, ItemStack.EMPTY);
     public int furnaceTimer;
     public int currentItemSmeltTime;
     public int cookTime;
@@ -185,15 +189,9 @@ public class TileEntityGaiaStoneFurnace extends TileEntity implements ITickable,
             } else {
                 ItemStack itemstack1 = this.furnaceItemStacks.get(2);
 
-                if (itemstack1.isEmpty()) {
-                    return true;
-                } else if (!itemstack1.isItemEqual(itemstack)) {
-                    return false;
-                } else if (itemstack1.getCount() + itemstack.getCount() <= this.getInventoryStackLimit() && itemstack1.getCount() + itemstack.getCount() <= itemstack1.getMaxStackSize()) {
-                    return true;
-                } else {
-                    return itemstack1.getCount() + itemstack.getCount() <= itemstack.getMaxStackSize();
-                }
+                return itemstack1.isEmpty() ||
+                        itemstack1.isItemEqual(itemstack) && (itemstack1.getCount() + itemstack.getCount() <= this.getInventoryStackLimit() && itemstack1.getCount() + itemstack.getCount() <= itemstack1.getMaxStackSize() ||
+                        itemstack1.getCount() + itemstack.getCount() <= itemstack.getMaxStackSize());
             }
         }
     }
@@ -219,57 +217,7 @@ public class TileEntityGaiaStoneFurnace extends TileEntity implements ITickable,
     }
 
     public static int getItemBurnTime(ItemStack stack) {
-        if (stack.isEmpty()) {
-            return 0;
-        } else {
-            int burnTime = net.minecraftforge.event.ForgeEventFactory.getItemBurnTime(stack);
-            if (burnTime >= 0) return burnTime;
-            Item item = stack.getItem();
-
-            if (item == Item.getItemFromBlock(Blocks.WOODEN_SLAB)) {
-                return 150;
-            } else if (item == Item.getItemFromBlock(Blocks.WOOL)) {
-                return 100;
-            } else if (item == Item.getItemFromBlock(Blocks.CARPET)) {
-                return 67;
-            } else if (item == Item.getItemFromBlock(Blocks.LADDER)) {
-                return 300;
-            } else if (item == Item.getItemFromBlock(Blocks.WOODEN_BUTTON)) {
-                return 100;
-            } else if (Block.getBlockFromItem(item).getDefaultState().getMaterial() == Material.WOOD) {
-                return 300;
-            } else if (item == Item.getItemFromBlock(Blocks.COAL_BLOCK)) {
-                return 16000;
-            } else if (item instanceof ItemTool && "WOOD".equals(((ItemTool) item).getToolMaterialName())) {
-                return 200;
-            } else if (item instanceof ItemSword && "WOOD".equals(((ItemSword) item).getToolMaterialName())) {
-                return 200;
-            } else if (item instanceof ItemHoe && "WOOD".equals(((ItemHoe) item).getMaterialName())) {
-                return 200;
-            } else if (item == Items.STICK) {
-                return 100;
-            } else if (item != Items.BOW && item != Items.FISHING_ROD) {
-                if (item == Items.SIGN) {
-                    return 200;
-                } else if (item == Items.COAL) {
-                    return 1600;
-                } else if (item == Items.LAVA_BUCKET) {
-                    return 20000;
-                } else if (item != Item.getItemFromBlock(Blocks.SAPLING) && item != Items.BOWL) {
-                    if (item == Items.BLAZE_ROD) {
-                        return 2400;
-                    } else if (item instanceof ItemDoor && item != Items.IRON_DOOR) {
-                        return 200;
-                    } else {
-                        return item instanceof ItemBoat ? 400 : 0;
-                    }
-                } else {
-                    return 100;
-                }
-            } else {
-                return 300;
-            }
-        }
+        return TileEntityFurnace.getItemBurnTime(stack);
     }
 
     public static boolean isItemFuel(ItemStack stack) {
@@ -278,7 +226,7 @@ public class TileEntityGaiaStoneFurnace extends TileEntity implements ITickable,
 
     @Override
     public boolean isUsableByPlayer(EntityPlayer player) {
-        return world.getTileEntity(pos) != this ? false : player.getDistanceSq(pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D) <= 64.0D;
+        return world.getTileEntity(pos) == this && player.getDistanceSq(pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D) <= 64.0D;
     }
 
     @Override
@@ -289,7 +237,7 @@ public class TileEntityGaiaStoneFurnace extends TileEntity implements ITickable,
 
     @Override
     public boolean isItemValidForSlot(int par1, ItemStack stack) {
-        return par1 == 2 ? false : par1 == 1 ? isItemFuel(stack) : true;
+        return par1 != 2 && (par1 != 1 || isItemFuel(stack));
     }
 
     @Override
@@ -307,8 +255,7 @@ public class TileEntityGaiaStoneFurnace extends TileEntity implements ITickable,
         if (face == EnumFacing.DOWN && par1 == 1) {
             Item item = par2ItemStack.getItem();
 
-            if (item != Items.WATER_BUCKET && item != Items.BUCKET)
-                return false;
+            return item == Items.WATER_BUCKET || item == Items.BUCKET;
         }
 
         return true;
@@ -316,7 +263,6 @@ public class TileEntityGaiaStoneFurnace extends TileEntity implements ITickable,
 
     @Override
     public int getField(int id) {
-
         return 0;
     }
 
@@ -334,17 +280,17 @@ public class TileEntityGaiaStoneFurnace extends TileEntity implements ITickable,
 
     @Override
     public ITextComponent getDisplayName() {
-        return hasCustomName() ? new TextComponentString(getName()) : new TextComponentTranslation(getName(), new Object[0]);
+        return hasCustomName() ? new TextComponentString(getName()) : new TextComponentTranslation(getName());
     }
 
-    net.minecraftforge.items.IItemHandler handlerTop = new net.minecraftforge.items.wrapper.SidedInvWrapper(this, net.minecraft.util.EnumFacing.UP);
-    net.minecraftforge.items.IItemHandler handlerBottom = new net.minecraftforge.items.wrapper.SidedInvWrapper(this, net.minecraft.util.EnumFacing.DOWN);
-    net.minecraftforge.items.IItemHandler handlerSide = new net.minecraftforge.items.wrapper.SidedInvWrapper(this, net.minecraft.util.EnumFacing.WEST);
+    private IItemHandler handlerTop = new SidedInvWrapper(this, EnumFacing.UP);
+    private IItemHandler handlerBottom = new SidedInvWrapper(this, EnumFacing.DOWN);
+    private IItemHandler handlerSide = new SidedInvWrapper(this, EnumFacing.WEST);
 
     @Override
     @SuppressWarnings("unchecked")
-    public <T> T getCapability(net.minecraftforge.common.capabilities.Capability<T> capability, net.minecraft.util.EnumFacing facing) {
-        if (facing != null && capability == net.minecraftforge.items.CapabilityItemHandler.ITEM_HANDLER_CAPABILITY)
+    public <T> T getCapability(Capability<T> capability, @Nullable EnumFacing facing) {
+        if (facing != null && capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY)
             if (facing == EnumFacing.DOWN)
                 return (T) handlerBottom;
             else if (facing == EnumFacing.UP)

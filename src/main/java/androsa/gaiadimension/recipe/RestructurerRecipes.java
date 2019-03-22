@@ -11,8 +11,8 @@ import java.util.Map;
 public class RestructurerRecipes {
 
     private static final RestructurerRecipes glitteringBase = new RestructurerRecipes();
-    private final Map<ItemStack, ItemStack[]> glitteringList = new HashMap<ItemStack, ItemStack[]>();
-    private final Map<ItemStack, Float> experienceList = new HashMap<ItemStack, Float>();
+    private final Map<ItemStack, ItemStack[]> glitteringList = new HashMap<>();
+    private final Map<ItemStack, Float> experienceList = new HashMap<>();
 
     public static RestructurerRecipes instance() {
         return glitteringBase;
@@ -30,7 +30,7 @@ public class RestructurerRecipes {
 
     public void glittering(ItemStack input, ItemStack output1, ItemStack output2, float xp) {
         glitteringList.put(input, new ItemStack[]{ output1, output2 });
-        experienceList.put(output1, Float.valueOf(xp));
+        experienceList.put(output1, xp);
     }
 
     public ItemStack[] getRefactoringResult(ItemStack stack) {
@@ -56,8 +56,9 @@ public class RestructurerRecipes {
         if (ret != -1) return ret;
 
         for (Map.Entry<ItemStack, Float> entry : experienceList.entrySet()) {
-            if (areStacksEqual(stack, entry.getKey()));
-            return entry.getValue().floatValue();
+            if (areStacksEqual(stack, entry.getKey())) {
+                return entry.getValue();
+            }
         }
 
         return 0.0F;

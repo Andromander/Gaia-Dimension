@@ -4,7 +4,6 @@ import androsa.gaiadimension.GaiaDimension;
 import androsa.gaiadimension.proxy.CommonProxy;
 import androsa.gaiadimension.registry.GDTabs;
 import androsa.gaiadimension.registry.ModelRegisterCallback;
-import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
@@ -15,16 +14,13 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-public class GDAgateCraftingTable extends Block implements ModelRegisterCallback {
+public class GDAgateCraftingTable extends GDBlock {
 
     public GDAgateCraftingTable() {
-        super(Material.WOOD);
         super(Material.WOOD, MapColor.PINK_STAINED_HARDENED_CLAY);
 
         this.setHardness(1.5F);
         this.setResistance(2.0F);
-        this.setSoundType(SoundType.STONE);
-        this.setCreativeTab(GDTabs.tabBlock);
         this.setHarvestLevel("axe", 0);
     }
 

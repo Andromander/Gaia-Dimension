@@ -1,7 +1,5 @@
 package androsa.gaiadimension.world;
 
-import androsa.gaiadimension.biomes.GDSaltDunes;
-import androsa.gaiadimension.biomes.GDStaticWasteland;
 import androsa.gaiadimension.registry.GDBlocks;
 import androsa.gaiadimension.registry.GDFeature;
 import androsa.gaiadimension.world.gen.GDGenCaves;
@@ -24,7 +22,9 @@ import net.minecraft.world.chunk.ChunkPrimer;
 import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraft.world.gen.NoiseGeneratorOctaves;
 import net.minecraft.world.gen.NoiseGeneratorPerlin;
-import net.minecraft.world.gen.feature.WorldGenLakes;
+import net.minecraftforge.event.ForgeEventFactory;
+import net.minecraftforge.event.terraingen.PopulateChunkEvent;
+import net.minecraftforge.event.terraingen.TerrainGen;
 
 import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
@@ -105,7 +105,7 @@ public class GaiaChunkGenerator implements IChunkGenerator {
     public void setBlocksInChunk(int chunkX, int chunkZ, ChunkPrimer primer) {
         byte seaLevel = 63;
         this.biomesForGeneration = this.world.getBiomeProvider().getBiomesForGeneration(this.biomesForGeneration, chunkX * 4 - 2, chunkZ * 4 - 2, 10, 10);
-        this.generateHeightmap(chunkX * 4, 0, chunkZ * 4);
+        this.generateHeightmap(chunkX * 4, chunkZ * 4);
 
         for (int xChunk = 0; xChunk < 4; ++xChunk) {
             int xs = xChunk * 5;
@@ -162,11 +162,11 @@ public class GaiaChunkGenerator implements IChunkGenerator {
         }
     }
 
-    private void generateHeightmap(int x, int zero, int z) {
+    private void generateHeightmap(int x, int z) {
         this.depthRegion = this.depthNoise.generateNoiseOctaves(this.depthRegion, x, z, 5, 5, 200.0D, 200.0D, 0.5D);
-        this.mainNoiseRegion = this.mainPerlinNoise.generateNoiseOctaves(this.mainNoiseRegion, x, zero, z, 5, 33, 5, 8.555150000000001D, 4.277575000000001D, 8.555150000000001D);
-        this.minLimitRegion = this.minLimitPerlinNoise.generateNoiseOctaves(this.minLimitRegion, x, zero, z, 5, 33, 5, 684.412D, 684.412D, 684.412D);
-        this.maxLimitRegion = this.maxLimitPerlinNoise.generateNoiseOctaves(this.maxLimitRegion, x, zero, z, 5, 33, 5, 684.412D, 684.412D, 684.412D);
+        this.mainNoiseRegion = this.mainPerlinNoise.generateNoiseOctaves(this.mainNoiseRegion, x, 0, z, 5, 33, 5, 8.555150000000001D, 4.277575000000001D, 8.555150000000001D);
+        this.minLimitRegion = this.minLimitPerlinNoise.generateNoiseOctaves(this.minLimitRegion, x, 0, z, 5, 33, 5, 684.412D, 684.412D, 684.412D);
+        this.maxLimitRegion = this.maxLimitPerlinNoise.generateNoiseOctaves(this.maxLimitRegion, x, 0, z, 5, 33, 5, 684.412D, 684.412D, 684.412D);
         int terrainIndex = 0;
         int noiseIndex = 0;
 
@@ -378,11 +378,11 @@ public class GaiaChunkGenerator implements IChunkGenerator {
         }
 
         biome.decorate(this.world, this.rand, new BlockPos(i, 0, j));
-        if (net.minecraftforge.event.terraingen.TerrainGen.populate(this, this.world, this.rand, chunkX, chunkZ, flag, net.minecraftforge.event.terraingen.PopulateChunkEvent.Populate.EventType.ANIMALS))
+        if (TerrainGen.populate(this, this.world, this.rand, chunkX, chunkZ, flag, PopulateChunkEvent.Populate.EventType.ANIMALS))
             WorldEntitySpawner.performWorldGenSpawning(this.world, biome, i + 8, j + 8, 16, 16, this.rand);
 
         blockpos = blockpos.add(8, 0, 8);
-        net.minecraftforge.event.ForgeEventFactory.onChunkPopulate(false, this, this.world, this.rand, chunkX, chunkZ, flag);
+        ForgeEventFactory.onChunkPopulate(false, this, this.world, this.rand, chunkX, chunkZ, flag);
 
         BlockFalling.fallInstantly = false;
     }

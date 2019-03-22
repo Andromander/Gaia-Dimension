@@ -19,7 +19,7 @@ import java.util.Random;
 
 public class GDBlueAgateTaiga extends GDBiomeBase {
 
-    private static final GDGenBlueAgateTree GaiaGenBlueTrees = new GDGenBlueAgateTree(false);
+    private WorldGenAbstractTree GaiaGenBlueTrees = new GDGenBlueAgateTree(false);
 
     public GDBlueAgateTaiga(BiomeProperties props) {
         super(props);

@@ -15,10 +15,10 @@ import java.util.Random;
 
 public class GDMutantAgateWildwood extends GDBiomeBase {
 
-    private static final GDGenPinkAgateTree GaiaGenPinkTrees = new GDGenPinkAgateTree(false);           //30% chance
-    private static final GDGenBlueAgateTreeSmall GaiaGenBlueTrees = new GDGenBlueAgateTreeSmall(false); //30% chance
-    private static final GDGenGreenAgateTree GaiaGenGreenTrees = new GDGenGreenAgateTree(false);    //30% chance
-    private static final GDGenPurpleAgateTree GaiaGenPurpleTrees = new GDGenPurpleAgateTree(false);     //10% chance
+    private static final GDGenPinkAgateTree GaiaGenPinkTrees = new GDGenPinkAgateTree(false);
+    private static final GDGenBlueAgateTree GaiaGenBlueTrees = new GDGenBlueAgateTree(false);
+    private static final GDGenGreenAgateTree GaiaGenGreenTrees = new GDGenGreenAgateTree(false);
+    private static final GDGenPurpleAgateTree GaiaGenPurpleTrees = new GDGenPurpleAgateTree(false);
 
     public GDMutantAgateWildwood(BiomeProperties props) {
         super(props);
@@ -60,17 +60,19 @@ public class GDMutantAgateWildwood extends GDBiomeBase {
     public WorldGenAbstractTree getRandomTreeFeature(Random par1Random) {
 
         if (par1Random.nextInt(8) == 0) {
-            if (par1Random.nextInt(7) == 0) {
-                return GaiaGenPurpleTrees;
-            } else if (par1Random.nextInt(3) == 0) {
-                return GaiaGenGreenTrees;
-            } else if (par1Random.nextInt(3) == 0) {
-                return GaiaGenBlueTrees;
-            } else {
-                return GaiaGenPinkTrees;
+            switch (par1Random.nextInt(4)) {
+                case 3:
+                    return GaiaGenPurpleTrees;
+                case 2:
+                    return GaiaGenGreenTrees;
+                case 1:
+                    return GaiaGenBlueTrees;
+                case 0:
+                default:
+                    return GaiaGenPinkTrees;
             }
         } else {
-                return new GDGenNoTrees();
+            return new GDGenNoTrees();
         }
     }
 

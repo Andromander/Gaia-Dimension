@@ -4,6 +4,7 @@ import androsa.gaiadimension.entity.IShockshooterMob;
 import androsa.gaiadimension.registry.GDTabs;
 import androsa.gaiadimension.registry.ModelRegisterCallback;
 import net.minecraft.block.Block;
+import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
@@ -15,7 +16,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class GDStaticStone extends Block implements ModelRegisterCallback {
+public class GDStaticStone extends GDBlock {
 
     public GDStaticStone() {
         super(Material.ROCK, MapColor.BLUE_STAINED_HARDENED_CLAY);

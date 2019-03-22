@@ -60,14 +60,10 @@ public class GDCrystalFungus extends BlockBush implements ModelRegisterCallback 
             if (pos.getY() >= 0 && pos.getY() < 256) {
                 IBlockState iblockstate = worldIn.getBlockState(pos.down());
 
-                if (iblockstate.getBlock() == GDBlocks.gaia_stone ||
+                return iblockstate.getBlock() == GDBlocks.gaia_stone ||
                         iblockstate.getBlock() == GDBlocks.primal_mass ||
                         iblockstate.getBlock() == GDBlocks.wasteland_stone ||
-                        iblockstate.getBlock() == GDBlocks.volcanic_rock) {
-                    return true;
-                } else {
-                    return false;
-                }
+                        iblockstate.getBlock() == GDBlocks.volcanic_rock;
             } else {
                 return false;
             }

@@ -1,9 +1,7 @@
 package androsa.gaiadimension.block;
 
 import androsa.gaiadimension.entity.ISpitfireMob;
-import androsa.gaiadimension.registry.GDTabs;
-import androsa.gaiadimension.registry.ModelRegisterCallback;
-import net.minecraft.block.Block;
+import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
@@ -15,7 +13,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class GDSearingRock extends Block implements ModelRegisterCallback {
+public class GDSearingRock extends GDBlock {
 
     public GDSearingRock() {
         super(Material.ROCK, MapColor.GRAY_STAINED_HARDENED_CLAY);
@@ -23,7 +21,6 @@ public class GDSearingRock extends Block implements ModelRegisterCallback {
         this.setLightLevel(0.5F);
         this.setHardness(20.0F);
         this.setResistance(600.0F);
-        this.setCreativeTab(GDTabs.tabBlock);
         this.setHarvestLevel("pickaxe", 2);
     }
 

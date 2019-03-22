@@ -4,8 +4,6 @@ import androsa.gaiadimension.registry.GDBlocks;
 import androsa.gaiadimension.registry.GDTabs;
 import androsa.gaiadimension.registry.ModelRegisterCallback;
 import androsa.gaiadimension.world.gen.GDGenGoldstoneCorruptTree;
-import androsa.gaiadimension.world.gen.GDGenPinkAgateTree;
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockBush;
 import net.minecraft.block.IGrowable;
 import net.minecraft.block.SoundType;

@@ -1,9 +1,5 @@
 package androsa.gaiadimension.block;
 
-import androsa.gaiadimension.registry.GDTabs;
-import androsa.gaiadimension.registry.ModelRegisterCallback;
-import net.minecraft.block.Block;
-import net.minecraft.block.SoundType;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -13,17 +9,14 @@ import javax.annotation.Nullable;
 import java.util.Random;
 import java.util.function.Supplier;
 
-public class GDOre extends Block implements ModelRegisterCallback {
+public class GDOre extends GDBlock {
 
     private final Supplier<Item> itemSupplier;
 
     public GDOre(MapColor color, String toolClass, int harvestLevel, @Nullable Supplier<Item> item) {
         super(Material.ROCK, color);
 
-        setSoundType(SoundType.STONE);
-        setCreativeTab(GDTabs.tabBlock);
         setHarvestLevel(toolClass, harvestLevel);
-
         itemSupplier = item;
     }
 

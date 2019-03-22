@@ -11,8 +11,8 @@ import java.util.Map;
 public class PurifierRecipes {
 
     private static final PurifierRecipes purifyingBase = new PurifierRecipes();
-    private final Map<ItemStack, ItemStack[]> purifyingList = new HashMap<ItemStack, ItemStack[]>();
-    private final Map<ItemStack, Float> experienceList = new HashMap<ItemStack, Float>();
+    private final Map<ItemStack, ItemStack[]> purifyingList = new HashMap<>();
+    private final Map<ItemStack, Float> experienceList = new HashMap<>();
 
     public static PurifierRecipes instance() {
         return purifyingBase;
@@ -30,7 +30,7 @@ public class PurifierRecipes {
 
     public void purifying(ItemStack input, ItemStack output1, ItemStack output2, float xp) {
         purifyingList.put(input, new ItemStack[]{ output1, output2 });
-        experienceList.put(output1, Float.valueOf(xp));
+        experienceList.put(output1, xp);
     }
 
     public ItemStack[] getPurifyingResult(ItemStack stack) {
@@ -47,7 +47,7 @@ public class PurifierRecipes {
         return par2ItemStack.getItem() == par1ItemStack.getItem() && (par2ItemStack.getItemDamage() == OreDictionary.WILDCARD_VALUE|| par2ItemStack.getItemDamage() == par1ItemStack.getItemDamage());
     }
 
-    public Map<ItemStack, ItemStack[]> getGlitteringList() {
+    public Map<ItemStack, ItemStack[]> getPurifyingList() {
         return purifyingList;
     }
 
@@ -56,8 +56,9 @@ public class PurifierRecipes {
         if (ret != -1) return ret;
 
         for (Map.Entry<ItemStack, Float> entry : experienceList.entrySet()) {
-            if (areStacksEqual(stack, entry.getKey()));
-            return entry.getValue().floatValue();
+            if (areStacksEqual(stack, entry.getKey())) {
+                return entry.getValue();
+            }
         }
 
         return 0.0F;

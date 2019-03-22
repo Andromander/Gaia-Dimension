@@ -4,7 +4,6 @@ import androsa.gaiadimension.registry.GDTabs;
 import androsa.gaiadimension.registry.ModelRegisterCallback;
 import androsa.gaiadimension.registry.ModelUtils;
 import mcp.MethodsReturnNonnullByDefault;
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockLeaves;
 import net.minecraft.block.BlockPlanks;
 import net.minecraft.block.SoundType;
@@ -101,6 +100,12 @@ public class GDAgateLeaves extends BlockLeaves implements ModelRegisterCallback 
     @Deprecated
     public boolean isOpaqueCube(IBlockState state) {
         return Blocks.LEAVES.isOpaqueCube(state);
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void setGraphicsLevel(boolean fancy) {
+        Blocks.LEAVES.setGraphicsLevel(fancy);
     }
 
     @Override

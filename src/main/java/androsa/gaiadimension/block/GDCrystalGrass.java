@@ -1,7 +1,5 @@
 package androsa.gaiadimension.block;
 
-import androsa.gaiadimension.registry.GDTabs;
-import androsa.gaiadimension.registry.ModelRegisterCallback;
 import androsa.gaiadimension.biomes.*;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
@@ -23,17 +21,15 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import java.util.Random;
 import java.util.function.Supplier;
 
-public class GDCrystalGrass extends Block implements ModelRegisterCallback {
+public class GDCrystalGrass extends GDBlock {
 
     private final Supplier<Block> grassSupplier, dirtSupplier;
 
     public GDCrystalGrass(Supplier<Block> grass, Supplier<Block> dirt) {
-        super(Material.GRASS);
+        super(Material.GRASS, SoundType.PLANT);
 
-        this.setSoundType(SoundType.PLANT);
         this.setHardness(0.9F);
         this.setTickRandomly(true);
-        this.setCreativeTab(GDTabs.tabBlock);
         this.setHarvestLevel("shovel", 0);
 
         grassSupplier = grass;

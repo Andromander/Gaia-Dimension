@@ -2,6 +2,7 @@ package androsa.gaiadimension.block.tileentity;
 
 import androsa.gaiadimension.block.GDCrateLarge;
 import androsa.gaiadimension.block.container.ContainerLargeCrate;
+import mcp.MethodsReturnNonnullByDefault;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -13,7 +14,13 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntityLockableLoot;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.NonNullList;
+import net.minecraftforge.items.IItemHandler;
+import net.minecraftforge.items.wrapper.SidedInvWrapper;
 
+import javax.annotation.ParametersAreNonnullByDefault;
+
+@MethodsReturnNonnullByDefault
+@ParametersAreNonnullByDefault
 public class TileEntityLargeCrate extends TileEntityLockableLoot implements ISidedInventory {
     private static final int[] SLOTS = new int[54];
     private NonNullList<ItemStack> items;
@@ -155,7 +162,7 @@ public class TileEntityLargeCrate extends TileEntityLockableLoot implements ISid
     }
 
     @Override
-    protected net.minecraftforge.items.IItemHandler createUnSidedHandler() {
-        return new net.minecraftforge.items.wrapper.SidedInvWrapper(this, EnumFacing.UP);
+    protected IItemHandler createUnSidedHandler() {
+        return new SidedInvWrapper(this, EnumFacing.UP);
     }
 }

@@ -14,7 +14,6 @@ import androsa.gaiadimension.registry.GDItems;
 import androsa.gaiadimension.renderer.*;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.inventory.GuiContainer;
-import net.minecraft.client.renderer.entity.RenderArrow;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -65,7 +64,7 @@ public class ClientProxy extends CommonProxy {
         RenderingRegistry.registerEntityRenderingHandler(GDAgateArrowEntity.class, RenderAgateArrow::new);
 
         RenderingRegistry.registerEntityRenderingHandler(GDGrowthSapper.class, m -> new EntityRenderGrowthSapper(m, new ModelGrowthSapper(), 0.6F));
-        RenderingRegistry.registerEntityRenderingHandler(GDMutantGrowthExtractor.class, m -> new EntityRendererGrowthExtractor(m, new ModelGrowthExtractor(),0.8F));
+        RenderingRegistry.registerEntityRenderingHandler(GDMutantGrowthExtractor.class, m -> new EntityRenderGrowthExtractor(m, new ModelGrowthExtractor(),0.8F));
         RenderingRegistry.registerEntityRenderingHandler(GDHowliteWolf.class, m -> new EntityRenderHowliteWolf(m, new ModelHowliteWolf(), 0.5F));
         RenderingRegistry.registerEntityRenderingHandler(GDSpellElement.class, m -> new EntityRenderSpellElement(m, new ModelSpellElement(), 0.4F));
         RenderingRegistry.registerEntityRenderingHandler(GDRockyLuggeroth.class, m -> new EntityRenderRockyLuggeroth(m, new ModelRockyLuggeroth(), 0.7F));

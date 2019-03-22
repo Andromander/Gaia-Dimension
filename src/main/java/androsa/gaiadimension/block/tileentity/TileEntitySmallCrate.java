@@ -2,6 +2,7 @@ package androsa.gaiadimension.block.tileentity;
 
 import androsa.gaiadimension.block.GDCrateSmall;
 import androsa.gaiadimension.block.container.ContainerSmallCrate;
+import mcp.MethodsReturnNonnullByDefault;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -13,7 +14,13 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntityLockableLoot;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.NonNullList;
+import net.minecraftforge.items.IItemHandler;
+import net.minecraftforge.items.wrapper.SidedInvWrapper;
 
+import javax.annotation.ParametersAreNonnullByDefault;
+
+@MethodsReturnNonnullByDefault
+@ParametersAreNonnullByDefault
 public class TileEntitySmallCrate extends TileEntityLockableLoot implements ISidedInventory {
     private static final int[] SLOTS = new int[27];
     private NonNullList<ItemStack> items;
@@ -151,13 +158,11 @@ public class TileEntitySmallCrate extends TileEntityLockableLoot implements ISid
     }
 
     static {
-        for (int i = 0; i < SLOTS.length; SLOTS[i] = i++) {
-            ;
-        }
+        for (int i = 0; i < SLOTS.length; SLOTS[i] = i++) { }
     }
 
     @Override
-    protected net.minecraftforge.items.IItemHandler createUnSidedHandler() {
-        return new net.minecraftforge.items.wrapper.SidedInvWrapper(this, EnumFacing.UP);
+    protected IItemHandler createUnSidedHandler() {
+        return new SidedInvWrapper(this, EnumFacing.UP);
     }
 }
