@@ -11,16 +11,13 @@
   "key": {
     "%": [
       {
-        "item": "gaiadimension:gaia_stone_bricks",
-        "data": 0
+        "item": "gaiadimension:gaia_stone_bricks"
       },
       {
-        "item": "gaiadimension:gaia_stone_bricks",
-        "data": 1
+        "item": "gaiadimension:cracked_gaia_stone_bricks"
       },
       {
-        "item": "gaiadimension:gaia_stone_bricks",
-        "data": 2
+        "item": "gaiadimension:crusted_gaia_stone_bricks"
       }
     ],
     "#": {

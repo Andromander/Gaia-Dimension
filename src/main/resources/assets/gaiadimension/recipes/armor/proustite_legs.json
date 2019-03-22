@@ -3,9 +3,9 @@
     "item": "gaiadimension:proustite_legs"
   },
   "pattern": [
-    "# #",
     "###",
-    "###"
+    "# #",
+    "# #"
   ],
   "type": "forge:ore_shaped",
   "group": "proustite_armor",

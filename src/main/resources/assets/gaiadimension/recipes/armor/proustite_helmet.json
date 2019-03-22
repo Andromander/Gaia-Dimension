@@ -3,9 +3,8 @@
     "item": "gaiadimension:proustite_helmet"
   },
   "pattern": [
-    "# #",
     "###",
-    "###"
+    "# #"
   ],
   "type": "forge:ore_shaped",
   "group": "proustite_armor",

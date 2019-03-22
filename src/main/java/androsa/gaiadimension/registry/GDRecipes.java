@@ -115,8 +115,8 @@ public class GDRecipes {
             OreDictionary.registerOre("blockGoldstone", new ItemStack(GDBlocks.goldstone_block, 1));
         }
 
-        GameRegistry.addSmelting(new ItemStack(Items.REDSTONE, 1), new ItemStack(GDItems.crystallized_redstone, 1), 0.0F);
-        GameRegistry.addSmelting(new ItemStack(Items.DYE, 1, 4), new ItemStack(GDItems.crystallized_lapis_lazuli, 1), 0.0F);
+        GameRegistry.addSmelting(new ItemStack(Items.REDSTONE, 1), new ItemStack(GDItems.crystallized_redstone, 1), 0.25F);
+        GameRegistry.addSmelting(new ItemStack(Items.DYE, 1, 4), new ItemStack(GDItems.crystallized_lapis_lazuli, 1), 0.25F);
         GameRegistry.addSmelting(new ItemStack(GDItems.lurmorus_meat, 1), new ItemStack(GDItems.lurmorus_steak, 1), 0.2F);
         GameRegistry.addSmelting(new ItemStack(GDItems.luggeroth_chop, 1), new ItemStack(GDItems.cooked_luggeroth_chop, 1), 0.2F);
         GameRegistry.addSmelting(new ItemStack(GDItems.small_tentacle, 1), new ItemStack(GDItems.small_calamari, 1), 0.2F);
@@ -131,17 +131,17 @@ public class GDRecipes {
         GameRegistry.addSmelting(GDBlocks.burnt_sapling, new ItemStack(GDBlocks.burning_sapling, 1), 0.1F);
         GameRegistry.addSmelting(GDBlocks.sugilite_ore, new ItemStack(GDItems.sugilite, 1), 0.3F);
         GameRegistry.addSmelting(GDBlocks.hematite_ore, new ItemStack(GDItems.hematite, 1), 0.3F);
-        GameRegistry.addSmelting(GDBlocks.pyrite_ore, new ItemStack(GDItems.hematite, 1), 0.3F);
-        GameRegistry.addSmelting(GDBlocks.cinnabar_ore, new ItemStack(GDItems.hematite, 1), 0.3F);
-        GameRegistry.addSmelting(GDBlocks.labradorite_ore, new ItemStack(GDItems.hematite, 1), 0.3F);
-        GameRegistry.addSmelting(GDBlocks.moonstone_ore, new ItemStack(GDItems.hematite, 1), 0.3F);
+        GameRegistry.addSmelting(GDBlocks.pyrite_ore, new ItemStack(GDItems.pyrite, 1), 0.3F);
+        GameRegistry.addSmelting(GDBlocks.cinnabar_ore, new ItemStack(GDItems.cinnabar, 1), 0.3F);
+        GameRegistry.addSmelting(GDBlocks.labradorite_ore, new ItemStack(GDItems.labradorite, 1), 0.3F);
+        GameRegistry.addSmelting(GDBlocks.moonstone_ore, new ItemStack(GDItems.moonstone, 1), 0.3F);
         GameRegistry.addSmelting(GDBlocks.opal_ore_red, new ItemStack(GDItems.red_opal, 1), 0.3F);
         GameRegistry.addSmelting(GDBlocks.opal_ore_blue, new ItemStack(GDItems.blue_opal, 1), 0.3F);
         GameRegistry.addSmelting(GDBlocks.opal_ore_green, new ItemStack(GDItems.green_opal, 1), 0.3F);
         GameRegistry.addSmelting(GDBlocks.opal_ore_white, new ItemStack(GDItems.white_opal, 1), 1.0F);
         GameRegistry.addSmelting(GDBlocks.speckled_rock, new ItemStack(GDItems.scaynyx_ingot), 0.2F);
-        GameRegistry.addSmelting(GDBlocks.coarse_rock, new ItemStack(GDItems.scaynyx_ingot, 2), 0.2F);
-        GameRegistry.addSmelting(GDBlocks.precious_rock, new ItemStack(GDItems.scaynyx_ingot, 4), 0.2F);
+        GameRegistry.addSmelting(GDBlocks.coarse_rock, new ItemStack(GDItems.scaynyx_ingot, 2), 0.4F);
+        GameRegistry.addSmelting(GDBlocks.precious_rock, new ItemStack(GDItems.scaynyx_ingot, 4), 0.8F);
         GameRegistry.addSmelting(GDBlocks.gaia_cobblestone, new ItemStack(GDBlocks.gaia_stone, 1), 0.1F);
         GameRegistry.addSmelting(GDBlocks.gaia_stone, new ItemStack(GDItems.pink_essence, 2), 0.1F);
         GameRegistry.addSmelting(GDBlocks.gummy_glitter_block, new ItemStack(GDBlocks.thick_glitter_block, 1), 0.1F);
