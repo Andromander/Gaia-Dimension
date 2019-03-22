@@ -86,10 +86,11 @@ tile.gaiadimension.frail_glitter_block.name=Frail Glitter Block
 tile.gaiadimension.thick_glitter_block.name=Thick Glitter Block
 tile.gaiadimension.gummy_glitter_block.name=Gummy Glitter Block
 tile.gaiadimension.pink_sludge_block.name=Pink Sludge Block
+tile.gaiadimension.pebbles.name=Pebbles
 tile.gaiadimension.gaia_stone.name=Gaia Stone
 tile.gaiadimension.gaia_cobblestone.name=Gaia Cobblestone
 tile.gaiadimension.cloudy_glass.name=Cloudy Glass
-tile.gaiadimension.foggy_glass=Foggy Glass
+tile.gaiadimension.foggy_glass.name=Foggy Glass
 tile.gaiadimension.gaia_stone_bricks.name=Gaia Stone Bricks
 tile.gaiadimension.cracked_gaia_stone_bricks.name=Cracked Gaia Stone Bricks
 tile.gaiadimension.crusted_gaia_stone_bricks.name=Crystallized Gaia Stone Bricks
@@ -166,25 +167,32 @@ fluid.sweet_muck=Sweet Muck
 tile.gaiadimension.gold_fire.name=Gold Fire
 tile.gaiadimension.gaia_portal.name=Gaia Portal
 
-container.gaiadimension.crude_storage_crate=Crude Storage Crate
-container.gaiadimension.mega_storage_crate=Crude Storage Crate
+container.gaiadimension.small_storage_crate=Crude Storage Crate
+container.gaiadimension.large_storage_crate=Mega Storage Crate
 container.gaiadimension.gaia_stone_furnace=Gaia Stone Furnace
 container.gaiadimension.restructurer=Restructurer
 container.gaiadimension.purifier=Purifier
+container.gaiadimension.gem_pouch=Gemstone Pouch
 
 # items
 item.gaiadimension.crystallized_redstone.name=Crystallized Redstone
 item.gaiadimension.crystallized_lapis_lazuli.name=Crystallized Lapis Lazuli
 item.gaiadimension.glint_and_gold.name=Glint and Gold
+item.gaiadimension.agate_fabric.name=Agate Fabric
 item.gaiadimension.agate_stick.name=Agate Stick
+item.gaiadimension.sturdy_pebble.name=Sturdy Pebble
+item.gaiadimension.agate_arrow.name=Agate Arrow
 item.gaiadimension.agate_cup.name=Agate Cup
 item.gaiadimension.scaynyx_ingot.name=Scaynyx Ingot
+item.gaiadimension.scaynyx_bucket.name=Scaynyx Bucket
+item.gaiadimension.scaynyx_bucket.filled.name=%s Scaynyx Bucket
 item.gaiadimension.sweet_muckball.name=Sweet Muckball
 item.gaiadimension.sugar_crystals.name=Sugar Crystals
 item.gaiadimension.sugar_cluster.name=Sugar Cluster
 item.gaiadimension.shiny_bone.name=Shiny Bone
 item.gaiadimension.fine_thread.name=Fine Thread
 item.gaiadimension.twined_thread.name=Twined Thread
+item.gaiadimension.gemstone_pouch.name=Gemstone Pouch
 item.gaiadimension.pink_essence.name=Pink Essence
 item.gaiadimension.pink_goo.name=Pink Goo
 item.gaiadimension.pink_geode.name=Geode
@@ -431,7 +439,8 @@ entity.gaiadimension.primal_beast.name=Primal Beast
 entity.gaiadimension.malachite_guard.name=Malachite Guard
 
 #Config
-gaiadimension.config.dimensionID=Dimension ID
+gaiadimension.config.dimension=Dimension
+gaiadimension.config.dimension_id=Dimension ID
 gaiadimension.config.enable_sky_fog=Enable Sky Transitions
 gaiadimension.config.sky_option=Sky Color
 gaiadimension.config.ore_dictionary=Ore Dictionary
@@ -455,3 +464,12 @@ gaiadimension.config.diopside=Diopside
 gaiadimension.config.chalcedony=Chalcedony
 gaiadimension.config.tektite=Tektite
 gaiadimension.config.goldstone=Goldstone
+
+#JEI
+gui.gaiadimension.category.fuel.smeltAverage.singleAverage=Burns ~1 item
+gui.gaiadimension.category.fuel.smeltAverage=Burns ~%s items
+gui.gaiadimension.category.glitterFuel=Glittering
+gui.gaiadimension.category.shineFuel=Shining
+gui.gaiadimension.category.nullFuel=Nulling
+gui.gaiadimension.category.restructuring=Restructuring
+gui.gaiadimension.category.purifying=Purifying
