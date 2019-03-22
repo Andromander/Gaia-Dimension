@@ -98,7 +98,7 @@ public class ContainerRestructurer extends Container {
             itemstack = slotStack.copy();
 
             if (index == 3 || index == 4) {
-                if (!mergeItemStack(slotStack, 3, 39, true))
+                if (!mergeItemStack(slotStack, 5, 39, true))
                     return ItemStack.EMPTY;
 
                 slot.onSlotChange(slotStack, itemstack);
@@ -109,12 +109,12 @@ public class ContainerRestructurer extends Container {
                 } else if (TileEntityRestructurer.isItemFuel(slotStack)) {
                     if (!mergeItemStack(slotStack, 1, 3, false))
                         return ItemStack.EMPTY;
-                } else if (index >= 3 && index < 30) {
+                } else if (index >= 5 && index < 30) {
                     if (!mergeItemStack(slotStack, 30, 39, false))
                         return ItemStack.EMPTY;
-                } else if (index >= 30 && index < 39 && !mergeItemStack(slotStack, 3, 30, false))
+                } else if (index >= 31 && index < 40 && !mergeItemStack(slotStack, 5, 30, false))
                     return ItemStack.EMPTY;
-            } else if (!mergeItemStack(slotStack, 3, 39, false))
+            } else if (!mergeItemStack(slotStack, 5, 39, false))
                 return ItemStack.EMPTY;
 
             if (slotStack.isEmpty())

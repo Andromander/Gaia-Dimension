@@ -99,9 +99,8 @@ public class ContainerPurifier extends Container {
             itemstack = slotStack.copy();
 
             if (index == 4 || index == 5) {
-                if (!mergeItemStack(slotStack, 3, 39, true))
+                if (!mergeItemStack(slotStack, 6, 39, true))
                     return ItemStack.EMPTY;
-
                 slot.onSlotChange(slotStack, itemstack);
             } else if (index != 3 && index != 2 && index != 1 && index != 0) {
                 if (PurifierRecipes.instance().getPurifyingResult(slotStack) != null) {
@@ -110,12 +109,12 @@ public class ContainerPurifier extends Container {
                 } else if (TileEntityPurifier.isItemFuel(slotStack)) {
                     if (!mergeItemStack(slotStack, 1, 4, false))
                         return ItemStack.EMPTY;
-                } else if (index >= 4 && index < 30) {
+                } else if (index >= 6 && index < 30) {
                     if (!mergeItemStack(slotStack, 30, 39, false))
                         return ItemStack.EMPTY;
-                } else if (index >= 30 && index < 39 && !mergeItemStack(slotStack, 3, 30, false))
+                } else if (index >= 31 && index < 40 && !mergeItemStack(slotStack, 6, 30, false))
                     return ItemStack.EMPTY;
-            } else if (!mergeItemStack(slotStack, 4, 39, false))
+            } else if (!mergeItemStack(slotStack, 6, 39, false))
                 return ItemStack.EMPTY;
 
             if (slotStack.isEmpty())
