@@ -2,8 +2,12 @@ package androsa.gaiadimension.proxy;
 
 import androsa.gaiadimension.block.container.*;
 import androsa.gaiadimension.block.tileentity.*;
+import androsa.gaiadimension.item.GDGemstonePouch;
+import androsa.gaiadimension.item.inventory.ContainerGemPouch;
+import androsa.gaiadimension.item.inventory.InventoryGemPouch;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
+import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -11,13 +15,14 @@ import net.minecraftforge.fml.common.network.IGuiHandler;
 
 public class CommonProxy implements IGuiHandler {
 
-    public static enum GuiID {
+    public enum GuiID {
         AGATE_CRAFT,
         SMALL_CRATE,
         LARGE_CRATE,
         GAIA_STONE_FURNACE,
         GLITTER_FURNACE,
-        PURIFIER
+        PURIFIER,
+        GEM_POUCH
     }
 
     @Override
@@ -39,6 +44,15 @@ public class CommonProxy implements IGuiHandler {
                 return new ContainerRestructurer(player.inventory, (TileEntityRestructurer) tile);
             case PURIFIER:
                 return new ContainerPurifier(player.inventory, (TileEntityPurifier) tile);
+            case GEM_POUCH:
+                ItemStack item = player.getHeldItemMainhand();
+                if(item.isEmpty() || !(item.getItem() instanceof GDGemstonePouch)) {
+                    item = player.getHeldItemOffhand();
+                }
+                if(!item.isEmpty() && item.getItem() instanceof GDGemstonePouch) {
+                    String name = item.hasDisplayName() ? item.getDisplayName() : "container.gaiadimension.gem_pouch";
+                    return new ContainerGemPouch(player.inventory, new InventoryGemPouch(item, name));
+                }
             default:
                 return null;
         }
@@ -51,6 +65,7 @@ public class CommonProxy implements IGuiHandler {
     public void doPreLoadRegistration(){;}
 
     public void doOnLoadRegistration(){;}
+
     public World getClientWorld() {
         return null;
     }

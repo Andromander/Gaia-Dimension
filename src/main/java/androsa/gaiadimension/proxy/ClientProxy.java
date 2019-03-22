@@ -5,11 +5,19 @@ import androsa.gaiadimension.block.tileentity.*;
 import androsa.gaiadimension.entity.*;
 import androsa.gaiadimension.entity.boss.GDBlueHowliteWolf;
 import androsa.gaiadimension.entity.boss.GDMalachiteGuard;
+import androsa.gaiadimension.item.GDGemstonePouch;
+import androsa.gaiadimension.item.inventory.ContainerGemPouch;
+import androsa.gaiadimension.item.inventory.GuiGemPouch;
+import androsa.gaiadimension.item.inventory.InventoryGemPouch;
 import androsa.gaiadimension.model.*;
+import androsa.gaiadimension.registry.GDItems;
 import androsa.gaiadimension.renderer.*;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.inventory.GuiContainer;
-import net.minecraft.entity.Entity;
+import net.minecraft.client.renderer.entity.RenderArrow;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -23,7 +31,6 @@ public class ClientProxy extends CommonProxy {
         GuiID guiID = GuiID.values()[ID];
         BlockPos pos = new BlockPos(x, y, z);
         TileEntity tile = world.getTileEntity(pos);
-        Entity entity = world.getEntityByID(x);
 
         switch (guiID) {
             case AGATE_CRAFT:
@@ -38,6 +45,15 @@ public class ClientProxy extends CommonProxy {
                 return new GuiRestructurer(player.inventory, (TileEntityRestructurer) tile);
             case PURIFIER:
                 return new GuiPurifier(player.inventory, (TileEntityPurifier) tile);
+            case GEM_POUCH:
+                ItemStack item = player.getHeldItemMainhand();
+                if(item.isEmpty() || !(item.getItem() instanceof GDGemstonePouch)) {
+                    item = player.getHeldItemOffhand();
+                }
+                if(!item.isEmpty() && item.getItem() instanceof GDGemstonePouch) {
+                    String name = item.hasDisplayName() ? item.getDisplayName() : I18n.format("container.gaiadimension.gem_pouch");
+                    return new GuiGemPouch(new ContainerGemPouch(player.inventory, new InventoryGemPouch(item, name)));
+                }
             default:
                 return null;
         }

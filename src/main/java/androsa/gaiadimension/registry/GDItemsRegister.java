@@ -51,6 +51,7 @@ public class GDItemsRegister {
         items.register("twined_thread", new GDItem());
         items.register("pink_essence", new GDItem());
         items.register("pink_goo", new GDItem());
+        items.register("gemstone_pouch", new GDGemstonePouch());
         items.register("agate_fabric", new GDItem());
         items.register("sturdy_pebble", new GDSturdyPebble());
         items.register("scaynyx_bucket", new GDScaynyxBucket());
