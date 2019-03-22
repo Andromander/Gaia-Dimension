@@ -65,6 +65,8 @@ public class GDItems {
     public static final Item twined_thread = null;
     public static final Item pink_essence = null;
     public static final Item pink_goo = null;
+    public static final Item agate_fabric = null;
+    public static final Item sturdy_pebble = null;
 
     public static final Item pink_geode = null;
     public static final Item blue_geode = null;
@@ -216,7 +218,7 @@ public class GDItems {
     public static final Item chalcedony_pickaxe = null;
     public static final Item chalcedony_axe = null;
     public static final Item chalcedony_shovel = null;
-    //public static final Item agate_arrow = null;
+    public static final Item agate_arrow = null;
     public static final Item old_bow = null;
 
     public static final Item malachite_guard_baton = null;

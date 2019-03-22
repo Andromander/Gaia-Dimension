@@ -12,6 +12,7 @@ public class GDSaltBlock extends BlockFalling implements ModelRegisterCallback {
         super(Material.SAND);
 
         this.setHardness(0.9F);
+        setHarvestLevel("shovel", -1);
         this.setSoundType(SoundType.SAND);
         this.setCreativeTab(GDTabs.tabBlock);
     }

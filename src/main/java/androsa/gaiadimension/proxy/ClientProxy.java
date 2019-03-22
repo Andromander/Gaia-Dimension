@@ -45,6 +45,8 @@ public class ClientProxy extends CommonProxy {
     @Override
     public void doPreLoadRegistration() {
        // RenderingRegistry.registerEntityRenderingHandler(GDShotGaianEnergy.class, m -> new RenderSnowball<>(m, Items.ENDER_PEARL, Minecraft.getMinecraft().getRenderItem()));
+        RenderingRegistry.registerEntityRenderingHandler(GDThrownPebble.class, m -> new RenderThrownPebble<>(m, GDItems.sturdy_pebble, Minecraft.getMinecraft().getRenderItem()));
+        RenderingRegistry.registerEntityRenderingHandler(GDAgateArrowEntity.class, RenderAgateArrow::new);
 
         RenderingRegistry.registerEntityRenderingHandler(GDGrowthSapper.class, m -> new EntityRenderGrowthSapper(m, new ModelGrowthSapper(), 0.6F));
         RenderingRegistry.registerEntityRenderingHandler(GDMutantGrowthExtractor.class, m -> new EntityRendererGrowthExtractor(m, new ModelGrowthExtractor(),0.8F));
@@ -77,6 +79,7 @@ public class ClientProxy extends CommonProxy {
     public void doOnLoadRegistration() {
         ;
     }
+
     @Override
     public World getClientWorld() {
         return FMLClientHandler.instance().getClient().world;

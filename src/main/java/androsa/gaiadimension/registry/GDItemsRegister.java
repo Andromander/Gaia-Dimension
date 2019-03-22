@@ -51,20 +51,22 @@ public class GDItemsRegister {
         items.register("twined_thread", new GDItem());
         items.register("pink_essence", new GDItem());
         items.register("pink_goo", new GDItem());
+        items.register("agate_fabric", new GDItem());
+        items.register("sturdy_pebble", new GDSturdyPebble());
 
         items.register("pink_geode", new GDGeode());
         items.register("blue_geode", new GDGeode());
         items.register("green_geode", new GDGeode());
         items.register("purple_geode", new GDGeode());
-        items.register("pink_geode_slice", new GDFood(3, 0.5F, false));
-        items.register("blue_geode_slice", new GDFood(4, 0.4F, false));
-        items.register("green_geode_slice", new GDFood(5, 0.3F, false));
-        items.register("purple_geode_slice", new GDFood(6, 0.2F, false));
         items.register("pink_geode_juice", new GDGeodeJuice(8, 0.7F, false));
         items.register("blue_geode_tea", new GDGeodeJuice(8, 0.7F, false));
         items.register("green_geode_ale", new GDGeodeJuice(8, 0.7F, false));
         items.register("purple_geode_soda", new GDGeodeJuice(8, 0.7F, false));
         items.register("pearly_geode_elixir", new GDGeodeJuice(8, 0.7F, false));
+        items.register("pink_geode_slice", new GDGeodeSlice(3, 0.5F));
+        items.register("blue_geode_slice", new GDGeodeSlice(4, 0.4F));
+        items.register("green_geode_slice", new GDGeodeSlice(5, 0.3F));
+        items.register("purple_geode_slice", new GDGeodeSlice(6, 0.2F));
         items.register("lurmorus_meat", new GDFood(4, 0.4F, false));
         items.register("lurmorus_steak", new GDFood(9, 0.9F, false));
         items.register("small_tentacle", new GDFood(3, 0.2F, false));
@@ -141,6 +143,7 @@ public class GDItemsRegister {
         items.register("chalcedony_axe", new GDGenericAxe(TOOL_CHALCEDONY, 6F, -3.2F));
         items.register("chalcedony_shovel", new GDGenericShovel(TOOL_CHALCEDONY));
         items.register("old_bow", new GDBow());
+        items.register("agate_arrow", new GDAgateArrow());
 
         items.register("sugilite_helmet", new GDSugiliteArmor(ARMOR_SUGILITE, HEAD));
         items.register("sugilite_chestplate", new GDSugiliteArmor(ARMOR_SUGILITE, CHEST));
@@ -293,6 +296,7 @@ public class GDItemsRegister {
         items.registerBlock(GDBlocks.burning_log);
         items.registerBlock(GDBlocks.salt);
         items.registerBlock(GDBlocks.saltstone);
+        items.registerBlock(GDBlocks.pebbles);
         items.registerBlock(GDBlocks.gaia_stone);
         items.registerBlock(GDBlocks.gaia_cobblestone);
         items.registerBlock(GDBlocks.wasteland_stone);

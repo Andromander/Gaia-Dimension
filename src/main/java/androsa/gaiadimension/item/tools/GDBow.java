@@ -1,5 +1,6 @@
 package androsa.gaiadimension.item.tools;
 
+import androsa.gaiadimension.registry.GDItems;
 import androsa.gaiadimension.registry.GDTabs;
 import androsa.gaiadimension.registry.ModelRegisterCallback;
 import net.minecraft.entity.EntityLivingBase;
@@ -30,5 +31,10 @@ public class GDBow extends ItemBow implements ModelRegisterCallback {
                 }
             }
         });
+    }
+
+    @Override
+    protected boolean isArrow(ItemStack stack) {
+        return stack.getItem() == GDItems.agate_arrow;
     }
 }

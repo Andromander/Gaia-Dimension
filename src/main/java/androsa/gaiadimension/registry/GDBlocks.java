@@ -57,6 +57,7 @@ public class GDBlocks {
     public static final BlockLog burning_log = null;
     public static final Block salt = null;
     public static final Block saltstone = null;
+    public static final Block pebbles = null;
     public static final Block gaia_stone = null;
     public static final Block gaia_cobblestone = null;
     public static final Block wasteland_stone = null;

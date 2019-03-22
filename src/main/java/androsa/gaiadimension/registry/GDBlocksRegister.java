@@ -116,6 +116,7 @@ public final class GDBlocksRegister {
         blocks.register("burning_log", new GDAgateLog().setLightLevel(0.3F));
         blocks.register("salt", new GDSaltBlock());
         blocks.register("saltstone", new GDBlock(Material.ROCK, MapColor.LIGHT_BLUE_STAINED_HARDENED_CLAY, "pickaxe", 0).setHardness(1.5F).setResistance(10.0F));
+        blocks.register("pebbles", new GDPebblesBlock());
         blocks.register("gaia_stone", new GDBlock(Material.ROCK, MapColor.MAGENTA, "pickaxe", 1).setHardness(2.0F).setResistance(15.0F));
         blocks.register("gaia_cobblestone", new GDBlock(Material.ROCK, MapColor.MAGENTA, "pickaxe", 1).setHardness(2.0F).setResistance(15.0F));
         blocks.register("wasteland_stone", new GDBlock(Material.ROCK, MapColor.BLUE_STAINED_HARDENED_CLAY, "pickaxe", 2).setHardness(15.0F).setResistance(200.0F));

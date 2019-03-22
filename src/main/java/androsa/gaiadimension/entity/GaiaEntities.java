@@ -51,6 +51,9 @@ public class GaiaEntities {
     public static void registerEntities(RegistryEvent.Register<EntityEntry> event) {
         EntityRegistryHelper entity = new EntityRegistryHelper(event.getRegistry());
 
+        entity.registerEntity(GaiaEntityNames.THROWN_PEBBLE, GDThrownPebble.class, GDThrownPebble::new, 150, 2, true);
+        entity.registerEntity(GaiaEntityNames.AGATE_ARROW, GDAgateArrowEntity.class, GDAgateArrowEntity::new, 150, 1, true);
+
         entity.registerEntity(GaiaEntityNames.GROWTH_SAPPER, GDGrowthSapper.class, GDGrowthSapper::new, 0x5A4514, 0xFF00FF);
         entity.registerEntity(GaiaEntityNames.MUTANT_EXTRACTOR, GDMutantGrowthExtractor.class, GDMutantGrowthExtractor::new, 0x5A4514, 0xFFFFCC);
         entity.registerEntity(GaiaEntityNames.HOWLITE_WOLF, GDHowliteWolf.class, GDHowliteWolf::new, 0xDDDDDD, 0x3333FF);
@@ -113,9 +116,9 @@ public class GaiaEntities {
         final <T extends Entity> void registerEntity(ResourceLocation regName, Class<T> entity, Function<World, T> factory) {
             registerEntity(regName, entity, factory, 80, 3, true);
         }*/
-/*
+
         final <T extends Entity> void registerEntity(ResourceLocation regName, Class<T> entity, Function<World, T> factory, int trackingRange, int updateInterval, boolean sendVelocityUpdates) {
             registry.register(builder(regName, entity, factory).tracker(trackingRange, updateInterval, sendVelocityUpdates).build());
-        }*/
+        }
     }
 }

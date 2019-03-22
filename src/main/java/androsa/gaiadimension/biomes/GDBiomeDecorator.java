@@ -259,6 +259,16 @@ public class GDBiomeDecorator {
             }
         }
 
+        //Pebbles gen
+
+        for (int i = 0; i < 25; i++) {
+            int Xcoord = pos.getX() + rand.nextInt(16);
+            int Zcoord = pos.getZ() + rand.nextInt(16);
+            int Ycoord = rand.nextInt(120);
+            new WorldGenMinable(GDBlocks.pebbles.getDefaultState(), 25,
+                    input -> input == GDBlocks.gaia_stone.getDefaultState()).generate(world, rand, new BlockPos(Xcoord, Ycoord, Zcoord));
+        }
+
         //Speckled Rock gen
         for (int i = 0; i < 10; i++) {
             int Xcoord = pos.getX() + rand.nextInt(16);

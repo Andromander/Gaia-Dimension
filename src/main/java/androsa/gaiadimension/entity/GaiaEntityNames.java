@@ -5,6 +5,9 @@ import net.minecraft.util.ResourceLocation;
 
 public class GaiaEntityNames {
     //public static final ResourceLocation EARTH_SHOT = prefix("earth_shot");
+    public static final ResourceLocation THROWN_PEBBLE = prefix("thrown_pebble");
+    public static final ResourceLocation AGATE_ARROW = prefix("agate_arrow");
+
     public static final ResourceLocation GROWTH_SAPPER = prefix("growth_sapper");
     public static final ResourceLocation CORRUPT_SAPPER = prefix("corrupt_sapper");
     public static final ResourceLocation MUTANT_EXTRACTOR = prefix("mutant_growth_extractor");
