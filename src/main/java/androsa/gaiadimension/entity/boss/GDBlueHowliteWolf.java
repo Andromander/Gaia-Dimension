@@ -1,11 +1,15 @@
 package androsa.gaiadimension.entity.boss;
 
 import androsa.gaiadimension.entity.GDHowliteWolf;
+import androsa.gaiadimension.registry.GDBiomes;
+import androsa.gaiadimension.registry.GDBlocks;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.*;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 
 public class GDBlueHowliteWolf extends EntityMob implements IMob {
@@ -47,6 +51,18 @@ public class GDBlueHowliteWolf extends EntityMob implements IMob {
     @Override
     public int getMaxSpawnedInChunk() {
         return 1;
+    }
+
+    @Override
+    public boolean getCanSpawnHere() {
+        int x = MathHelper.floor(this.posX);
+        int y = MathHelper.floor(this.getEntityBoundingBox().minY);
+        int z = MathHelper.floor(this.posZ);
+        BlockPos blockpos = new BlockPos(x, y, z);
+
+        return world.getBlockState(blockpos.down()).getBlock() == GDBlocks.glitter_grass &&
+                world.getLight(blockpos) > 8 &&
+                world.getBiome(new BlockPos(this)) == GDBiomes.blue_agate_taiga;
     }
 
     //Keep this commented out until later
