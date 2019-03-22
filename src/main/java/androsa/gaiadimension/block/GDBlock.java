@@ -41,4 +41,18 @@ public class GDBlock extends Block implements ModelRegisterCallback {
         setSoundType(SoundType.STONE);
         setCreativeTab(GDTabs.tabBlock);
     }
+    public GDBlock(Material material, SoundType sound) {
+        super(material);
+
+        setSoundType(sound);
+        setCreativeTab(GDTabs.tabBlock);
+    }
+
+
+    public GDBlock(Material material) {
+        super(material);
+
+        setSoundType(SoundType.STONE);
+        setCreativeTab(GDTabs.tabBlock);
+    }
 }

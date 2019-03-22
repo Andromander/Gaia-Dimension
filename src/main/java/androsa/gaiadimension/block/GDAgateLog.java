@@ -4,18 +4,30 @@ import androsa.gaiadimension.registry.GDTabs;
 import androsa.gaiadimension.registry.ModelRegisterCallback;
 import net.minecraft.block.BlockLog;
 import net.minecraft.block.SoundType;
+import net.minecraft.block.material.MapColor;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockAccess;
 
 public class GDAgateLog extends BlockLog implements ModelRegisterCallback {
 
-    public GDAgateLog() {
+    private final MapColor mapColor;
+
+    public GDAgateLog(MapColor color) {
         this.setHardness(1.5F);
         this.setResistance(2.0F);
         this.setSoundType(SoundType.STONE);
         this.setCreativeTab(GDTabs.tabBlock);
         this.setDefaultState(this.getDefaultState().withProperty(LOG_AXIS, EnumAxis.Y));
         this.setHarvestLevel("axe", 0);
+        mapColor = color;
+    }
+
+    @Override
+    @Deprecated
+    public MapColor getMapColor(IBlockState state, IBlockAccess worldIn, BlockPos pos) {
+        return mapColor;
     }
 
     @Override

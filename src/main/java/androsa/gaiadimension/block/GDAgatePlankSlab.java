@@ -6,6 +6,7 @@ import androsa.gaiadimension.registry.ModelUtils;
 import mcp.MethodsReturnNonnullByDefault;
 import net.minecraft.block.BlockSlab;
 import net.minecraft.block.SoundType;
+import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyEnum;
@@ -14,6 +15,8 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.block.statemap.StateMap;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IStringSerializable;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -26,25 +29,31 @@ import java.util.Locale;
 public class GDAgatePlankSlab extends BlockSlab implements ModelRegisterCallback {
 
     private static final PropertyEnum<AgatePlankSlab> VARIANT = PropertyEnum.create("variant", AgatePlankSlab.class);
-
     private final boolean isDouble;
+    private final MapColor mapColor;
 
-    public GDAgatePlankSlab(boolean isDouble) {
-        super(Material.WOOD);
+    public GDAgatePlankSlab(boolean isDouble, MapColor color) {
+        super(Material.WOOD, color);
 
         this.setSoundType(SoundType.STONE);
-        this.isDouble = isDouble;
         this.setCreativeTab(GDTabs.tabBlock);
         this.setHardness(1.5F);
         this.setResistance(2.0F);
         this.setLightOpacity(isDouble ? 255 : 0);
         this.setHarvestLevel("axe", 0);
+        this.isDouble = isDouble;
+        this.mapColor = color;
 
         IBlockState state = this.blockState.getBaseState().withProperty(VARIANT, AgatePlankSlab.NORMAL);
-
-        if (!this.isDouble()) state = state.withProperty(HALF, EnumBlockHalf.BOTTOM);
-
+        if (!this.isDouble())
+            state = state.withProperty(HALF, EnumBlockHalf.BOTTOM);
         this.setDefaultState(state);
+    }
+
+    @Override
+    @Deprecated
+    public MapColor getMapColor(IBlockState state, IBlockAccess worldIn, BlockPos pos) {
+        return mapColor;
     }
 
     @Override

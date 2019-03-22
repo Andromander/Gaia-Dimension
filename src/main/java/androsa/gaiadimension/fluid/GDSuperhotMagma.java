@@ -4,6 +4,7 @@ import androsa.gaiadimension.registry.GDBlocks;
 import androsa.gaiadimension.registry.ModelRegisterCallback;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockLiquid;
+import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.block.model.ModelBakery;
@@ -32,7 +33,7 @@ import javax.annotation.Nullable;
 public class GDSuperhotMagma extends GDFluidBlock implements ModelRegisterCallback {
 
     public GDSuperhotMagma(Fluid fluid, Material material) {
-        super(fluid, material);
+        super(fluid, material, MapColor.LIGHT_BLUE);
         setLightLevel(1.0F);
         setLightOpacity(0);
     }

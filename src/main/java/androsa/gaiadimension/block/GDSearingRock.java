@@ -18,7 +18,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class GDSearingRock extends Block implements ModelRegisterCallback {
 
     public GDSearingRock() {
-        super(Material.ROCK);
+        super(Material.ROCK, MapColor.GRAY_STAINED_HARDENED_CLAY);
 
         this.setLightLevel(0.5F);
         this.setHardness(20.0F);

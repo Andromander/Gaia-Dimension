@@ -5,6 +5,7 @@ import androsa.gaiadimension.registry.GDTabs;
 import androsa.gaiadimension.registry.ModelRegisterCallback;
 import net.minecraft.block.BlockBush;
 import net.minecraft.block.SoundType;
+import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
@@ -17,7 +18,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class GDCrystalBloom extends BlockBush implements ModelRegisterCallback {
 
     public GDCrystalBloom() {
-        super(Material.PLANTS);
+        super(Material.PLANTS, MapColor.MAGENTA_STAINED_HARDENED_CLAY);
 
         this.setHardness(0.0F);
         this.setSoundType(SoundType.PLANT);

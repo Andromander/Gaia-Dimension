@@ -6,12 +6,15 @@ import androsa.gaiadimension.registry.ModelUtils;
 import mcp.MethodsReturnNonnullByDefault;
 import net.minecraft.block.BlockStairs;
 import net.minecraft.block.SoundType;
+import net.minecraft.block.material.MapColor;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.NonNullList;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -21,7 +24,9 @@ import javax.annotation.ParametersAreNonnullByDefault;
 @ParametersAreNonnullByDefault
 public class GDAgatePlankStairs extends BlockStairs implements ModelRegisterCallback {
 
-    public GDAgatePlankStairs(IBlockState state) {
+    private final MapColor mapColor;
+
+    public GDAgatePlankStairs(IBlockState state, MapColor color) {
         super(state);
 
         this.setSoundType(SoundType.STONE);
@@ -29,8 +34,14 @@ public class GDAgatePlankStairs extends BlockStairs implements ModelRegisterCall
         this.setResistance(2.0F);
         this.setCreativeTab(GDTabs.tabBlock);
         this.setHarvestLevel("axe", 0);
-
+        this.mapColor = color;
         this.useNeighborBrightness = true;
+    }
+
+    @Override
+    @Deprecated
+    public MapColor getMapColor(IBlockState state, IBlockAccess worldIn, BlockPos pos) {
+        return mapColor;
     }
 
     @Override

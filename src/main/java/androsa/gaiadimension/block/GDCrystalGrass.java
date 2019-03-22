@@ -2,8 +2,10 @@ package androsa.gaiadimension.block;
 
 import androsa.gaiadimension.registry.GDTabs;
 import androsa.gaiadimension.registry.ModelRegisterCallback;
+import androsa.gaiadimension.biomes.*;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
+import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.Item;
@@ -12,6 +14,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.EnumPlantType;
 import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.fml.relauncher.Side;
@@ -35,6 +38,28 @@ public class GDCrystalGrass extends Block implements ModelRegisterCallback {
 
         grassSupplier = grass;
         dirtSupplier = dirt;
+    }
+
+    @Override
+    @Deprecated
+    public MapColor getMapColor(IBlockState state, IBlockAccess worldIn, BlockPos pos) {
+        Biome biome = worldIn.getBiome(pos);
+
+        if (biome instanceof GDBlueAgateTaiga)
+            return MapColor.LIGHT_BLUE;
+        if (biome instanceof GDGreenAgateJungle)
+            return MapColor.LIME;
+        if (biome instanceof GDPurpleAgateSwamp)
+            return MapColor.PURPLE;
+        if (biome instanceof GDFossilWoodland)
+            return MapColor.YELLOW_STAINED_HARDENED_CLAY;
+        if (biome instanceof GDMutantAgateWildwood)
+            return MapColor.WHITE_STAINED_HARDENED_CLAY;
+        if (biome instanceof GDStaticWasteland)
+            return MapColor.CYAN;
+        if (biome instanceof GDVolcanicLands || biome instanceof GDGoldstoneLands)
+            return MapColor.BLACK;
+        return MapColor.PINK;
     }
 
     @Override

@@ -8,6 +8,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockLeaves;
 import net.minecraft.block.BlockPlanks;
 import net.minecraft.block.SoundType;
+import net.minecraft.block.material.MapColor;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.block.statemap.StateMap;
@@ -32,16 +33,23 @@ import java.util.function.Supplier;
 @ParametersAreNonnullByDefault
 public class GDAgateLeaves extends BlockLeaves implements ModelRegisterCallback {
 
+    private final MapColor mapColor;
     private final Supplier<Item> itemSupplier;
 
-    public GDAgateLeaves(Supplier<Item> block) {
+    public GDAgateLeaves(Supplier<Item> block, MapColor color) {
         this.setHardness(0.3F);
         this.setSoundType(SoundType.GLASS);
         this.setLightOpacity(1);
         this.setCreativeTab(GDTabs.tabBlock);
         this.setDefaultState(blockState.getBaseState().withProperty(CHECK_DECAY, true).withProperty(DECAYABLE, true));
-
+        mapColor = color;
         itemSupplier = block;
+    }
+
+    @Override
+    @Deprecated
+    public MapColor getMapColor(IBlockState state, IBlockAccess worldIn, BlockPos pos) {
+        return mapColor;
     }
 
     @Override

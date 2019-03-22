@@ -1,10 +1,12 @@
 package androsa.gaiadimension.block;
 
+import androsa.gaiadimension.biomes.*;
 import androsa.gaiadimension.registry.GDBlocks;
 import androsa.gaiadimension.registry.GDTabs;
 import androsa.gaiadimension.registry.ModelRegisterCallback;
 import net.minecraft.block.BlockBush;
 import net.minecraft.block.SoundType;
+import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
@@ -14,6 +16,7 @@ import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraft.world.biome.Biome;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.common.IShearable;
 import net.minecraftforge.fml.relauncher.Side;
@@ -30,6 +33,28 @@ public class GDCrystalGrowth extends BlockBush implements IShearable, ModelRegis
         this.setTickRandomly(true);
         this.setSoundType(SoundType.GLASS);
         this.setCreativeTab(GDTabs.tabBlock);
+    }
+
+    @Override
+    @Deprecated
+    public MapColor getMapColor(IBlockState state, IBlockAccess worldIn, BlockPos pos) {
+        Biome biome = worldIn.getBiome(pos);
+
+        if (biome instanceof GDBlueAgateTaiga)
+            return MapColor.LIGHT_BLUE;
+        if (biome instanceof GDGreenAgateJungle)
+            return MapColor.LIME;
+        if (biome instanceof GDPurpleAgateSwamp)
+            return MapColor.PURPLE;
+        if (biome instanceof GDFossilWoodland)
+            return MapColor.YELLOW_STAINED_HARDENED_CLAY;
+        if (biome instanceof GDMutantAgateWildwood)
+            return MapColor.WHITE_STAINED_HARDENED_CLAY;
+        if (biome instanceof GDStaticWasteland)
+            return MapColor.CYAN;
+        if (biome instanceof GDVolcanicLands || biome instanceof GDGoldstoneLands)
+            return MapColor.BLACK;
+        return MapColor.PINK;
     }
 
     @Override

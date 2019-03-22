@@ -6,6 +6,7 @@ import androsa.gaiadimension.registry.GDTabs;
 import androsa.gaiadimension.registry.ModelRegisterCallback;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
+import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
@@ -18,6 +19,7 @@ public class GDAgateCraftingTable extends Block implements ModelRegisterCallback
 
     public GDAgateCraftingTable() {
         super(Material.WOOD);
+        super(Material.WOOD, MapColor.PINK_STAINED_HARDENED_CLAY);
 
         this.setHardness(1.5F);
         this.setResistance(2.0F);

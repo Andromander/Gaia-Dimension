@@ -5,14 +5,15 @@ import androsa.gaiadimension.registry.GDTabs;
 import androsa.gaiadimension.registry.ModelRegisterCallback;
 import net.minecraft.block.BlockBush;
 import net.minecraft.block.SoundType;
+import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
 import net.minecraft.util.BlockRenderLayer;
-import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.relauncher.Side;
@@ -22,17 +23,24 @@ import java.util.Random;
 
 public class GDCrystalFungus extends BlockBush implements ModelRegisterCallback {
 
+    private final MapColor mapColor;
     private boolean cavernous;
 
-    public GDCrystalFungus(boolean isCave) {
+    public GDCrystalFungus(MapColor color, boolean isCave) {
         super(Material.PLANTS);
 
         this.setHardness(0.0F);
         this.setSoundType(SoundType.PLANT);
         this.setCreativeTab(GDTabs.tabBlock);
         this.setTickRandomly(true);
-
+        mapColor = color;
         cavernous = isCave;
+    }
+
+    @Override
+    @Deprecated
+    public MapColor getMapColor(IBlockState state, IBlockAccess worldIn, BlockPos pos) {
+        return mapColor;
     }
 
     @Override

@@ -18,7 +18,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class GDStaticStone extends Block implements ModelRegisterCallback {
 
     public GDStaticStone() {
-        super(Material.ROCK);
+        super(Material.ROCK, MapColor.BLUE_STAINED_HARDENED_CLAY);
 
         this.setHardness(50.0F);
         this.setResistance(200.0F);

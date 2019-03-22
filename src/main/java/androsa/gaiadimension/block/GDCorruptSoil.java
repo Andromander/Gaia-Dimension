@@ -1,9 +1,7 @@
 package androsa.gaiadimension.block;
 
-import androsa.gaiadimension.registry.GDTabs;
-import androsa.gaiadimension.registry.ModelRegisterCallback;
-import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
+import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.EnumFacing;
@@ -12,14 +10,12 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.common.EnumPlantType;
 import net.minecraftforge.common.IPlantable;
 
-public class GDCorruptSoil extends Block implements ModelRegisterCallback {
+public class GDCorruptSoil extends GDBlock {
 
     public GDCorruptSoil() {
-        super(Material.GROUND);
+        super(Material.GROUND, MapColor.GRAY, SoundType.GROUND);
 
-        this.setSoundType(SoundType.GROUND);
         this.setHardness(0.9F);
-        this.setCreativeTab(GDTabs.tabBlock);
         this.setHarvestLevel("shovel", 0);
     }
 

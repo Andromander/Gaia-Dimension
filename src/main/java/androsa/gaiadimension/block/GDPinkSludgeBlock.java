@@ -1,21 +1,17 @@
 package androsa.gaiadimension.block;
 
-import androsa.gaiadimension.registry.GDTabs;
-import androsa.gaiadimension.registry.ModelRegisterCallback;
-import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
+import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-public class GDPinkSludgeBlock extends Block implements ModelRegisterCallback {
+public class GDPinkSludgeBlock extends GDBlock {
 
     public GDPinkSludgeBlock() {
-        super(Material.CLAY);
-        this.setCreativeTab(GDTabs.tabBlock);
-        this.setSoundType(SoundType.SLIME);
+        super(Material.CLAY, MapColor.PURPLE, SoundType.SLIME);
     }
 
     @Override

@@ -5,6 +5,7 @@ import androsa.gaiadimension.registry.GDTabs;
 import androsa.gaiadimension.registry.ModelRegisterCallback;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockLiquid;
+import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.block.model.ModelBakery;
@@ -16,6 +17,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fluids.BlockFluidBase;
@@ -28,10 +30,19 @@ import javax.annotation.Nonnull;
 
 public class GDFluidBlock extends BlockFluidClassic implements ModelRegisterCallback {
 
-    public GDFluidBlock(Fluid fluid, Material material) {
+    private final MapColor mapColor;
+
+    public GDFluidBlock(Fluid fluid, Material material, MapColor color) {
         super(fluid, material);
         setLightOpacity(4);
         setCreativeTab(GDTabs.tabBlock);
+        mapColor = color;
+    }
+
+    @Override
+    @Deprecated
+    public MapColor getMapColor(IBlockState state, IBlockAccess worldIn, BlockPos pos) {
+        return mapColor;
     }
 
     @Override

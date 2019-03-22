@@ -3,11 +3,9 @@ package androsa.gaiadimension.block;
 import androsa.gaiadimension.GaiaDimension;
 import androsa.gaiadimension.block.tileentity.TileEntitySmallCrate;
 import androsa.gaiadimension.proxy.CommonProxy;
-import androsa.gaiadimension.registry.GDTabs;
-import androsa.gaiadimension.registry.ModelRegisterCallback;
-import net.minecraft.block.Block;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.EnumPushReaction;
+import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.resources.I18n;
@@ -34,11 +32,10 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import javax.annotation.Nullable;
 import java.util.List;
 
-public class GDCrateSmall extends Block implements ModelRegisterCallback, ITileEntityProvider {
+public class GDCrateSmall extends GDBlock implements ITileEntityProvider {
 
     public GDCrateSmall() {
-        super(Material.ROCK);
-        this.setCreativeTab(GDTabs.tabBlock);
+        super(Material.ROCK, MapColor.PINK_STAINED_HARDENED_CLAY);
         this.setHarvestLevel("axe", 0);
     }
 
