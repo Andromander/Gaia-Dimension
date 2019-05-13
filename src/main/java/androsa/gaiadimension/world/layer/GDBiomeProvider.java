@@ -32,6 +32,8 @@ public class GDBiomeProvider extends BiomeProvider {
         biomes = new GenLayerZoom(1004, biomes);
         biomes = new GenLayerZoom(1005, biomes);
 
+        biomes = GenLayerZoom.magnify(1000L, biomes, 1);
+
         GenLayer riverLayer = new GenLayerGDRiver(1L, biomes);
         riverLayer = new GenLayerSmooth(7000L, riverLayer);
         biomes = new GenLayerGDRiverMix(100L, biomes, riverLayer);
