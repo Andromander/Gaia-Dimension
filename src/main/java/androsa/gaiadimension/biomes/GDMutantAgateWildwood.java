@@ -1,6 +1,7 @@
 package androsa.gaiadimension.biomes;
 
 import androsa.gaiadimension.entity.*;
+import androsa.gaiadimension.registry.EnumSkyColors;
 import androsa.gaiadimension.registry.GDBlocks;
 import androsa.gaiadimension.world.gen.*;
 import net.minecraft.util.math.BlockPos;
@@ -26,7 +27,7 @@ public class GDMutantAgateWildwood extends GDBiomeBase {
         spawnableCreatureList.add(new SpawnListEntry(GDGrowthSapper.class, 40, 3, 5));
         spawnableCreatureList.add(new SpawnListEntry(GDMutantGrowthExtractor.class, 5, 2, 4));
 
-        skyColorRGB = new short[] { 241, 154, 193 };
+        skyColor = EnumSkyColors.MUTANT_AGATE;
     }
 
     @Override

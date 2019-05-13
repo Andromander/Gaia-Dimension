@@ -3,6 +3,7 @@ package androsa.gaiadimension.biomes;
 import androsa.gaiadimension.entity.GDGrowthSapper;
 import androsa.gaiadimension.entity.GDHowliteWolf;
 import androsa.gaiadimension.entity.boss.GDBlueHowliteWolf;
+import androsa.gaiadimension.registry.EnumSkyColors;
 import androsa.gaiadimension.registry.GDBlocks;
 import androsa.gaiadimension.world.gen.GDGenBlueAgateTree;
 import androsa.gaiadimension.world.gen.GDGenCrystalPlants;
@@ -28,7 +29,7 @@ public class GDBlueAgateTaiga extends GDBiomeBase {
         spawnableCreatureList.add(new SpawnListEntry(GDHowliteWolf.class, 15, 2, 4));
         spawnableCreatureList.add(new SpawnListEntry(GDBlueHowliteWolf.class, 1, 1, 1));
 
-        skyColorRGB = new short[] { 149, 197, 231 };
+        skyColor = EnumSkyColors.BLUE_AGATE;
     }
 
     @Override

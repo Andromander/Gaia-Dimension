@@ -28,7 +28,7 @@ public class GDConfig {
 
         @Config.LangKey(config + "sky_option")
         @Config.Comment("Set the Sky, Fog, and Cloud color to any of the existing biome options. This config option does not work if Enable Sky Transitions is true")
-        public EnumSkyColors skyColors = EnumSkyColors.GENERAL;
+        public EnumSkyColors skyColors = EnumSkyColors.values()[0];
     }
 
     @Config.LangKey(config + "ore_dictionary")

@@ -32,7 +32,7 @@ public class WorldProviderGaia extends WorldProviderSurface {
         EntityPlayer player = Minecraft.getMinecraft().player;
         Biome biome = world.getBiome(new BlockPos(player.posX, player.posY, player.posZ));
 
-        if ((biome instanceof GDPurpleAgateSwamp) || (!GDConfig.dimension.enableSkyFog && GDConfig.dimension.skyColors == EnumSkyColors.PURPLE_AGATE)) {
+        if (GDConfig.dimension.skyColors == EnumSkyColors.PURPLE_AGATE || ((GDBiomeBase)biome).skyColor == EnumSkyColors.PURPLE_AGATE) {
             return 0.5F;
         }
         return world.getStarBrightnessBody(par1);
@@ -57,13 +57,6 @@ public class WorldProviderGaia extends WorldProviderSurface {
     @Override
     public IChunkGenerator createChunkGenerator() {
         return new GaiaChunkGenerator(world, world.getSeed(), world.getWorldInfo().isMapFeaturesEnabled());
-    }
-
-    //Let's see what can be done here...
-    @Override
-    @SideOnly(Side.CLIENT)
-    public boolean isSkyColored() {
-        return true;
     }
 
     @Override
@@ -99,48 +92,17 @@ public class WorldProviderGaia extends WorldProviderSurface {
     //Sky colour render
     @Override
     @SideOnly(Side.CLIENT)
-    public Vec3d getSkyColor(net.minecraft.entity.Entity cameraEntity, float partialTicks) {
+    public Vec3d getSkyColor(Entity cameraEntity, float partialTicks) {
 
         EntityPlayer player = Minecraft.getMinecraft().player;
         Biome biome = world.getBiome(new BlockPos(player.posX, player.posY, player.posZ));
-        targetSkyColor = new short[]{ 198, 157, 88 };
+        targetSkyColor = GDConfig.dimension.skyColors.getSkyColor();
 
-        if (GDConfig.dimension.enableSkyFog) {
-            if (biome instanceof GDBiomeBase) {
+        if (GDConfig.dimension.enableSkyFog)
+            if (biome instanceof GDBiomeBase)
                 targetSkyColor = ((GDBiomeBase) biome).getSkyRGB();
-            }
-        } else {
-            switch (GDConfig.dimension.skyColors) {
-                case BLUE_AGATE:
-                    targetSkyColor = new short[] { 149, 197, 231 };
-                    break;
-                case GREEN_AGATE:
-                    targetSkyColor = new short[] { 128, 191, 158 };
-                    break;
-                case PURPLE_AGATE:
-                    targetSkyColor = new short[] { 171, 109, 241 };
-                    break;
-                case MUTANT_AGATE:
-                    targetSkyColor = new short[] { 241, 154, 193 };
-                    break;
-                case SALT_DUNES:
-                    targetSkyColor = new short[] { 230, 193, 110 };
-                    break;
-                case STATIC_WASTELAND:
-                    targetSkyColor = new short[]{ 40, 47, 82 };
-                    break;
-                case VOLCANICLAND:
-                    targetSkyColor = new short[] { 75, 30, 25 };
-                    break;
-                case GOLDSTONE:
-                    targetSkyColor = new short[] { 34, 34, 34 };
-                    break;
-                case GENERAL:
-                default:
-                    targetSkyColor = new short[]{ 198, 157, 88 };
-                    break;
-            }
-        }
+        else
+            targetSkyColor = GDConfig.dimension.skyColors.getSkyColor();
 
         if (currentSkyColor == null) {
             currentSkyColor = new double[3];
@@ -175,42 +137,13 @@ public class WorldProviderGaia extends WorldProviderSurface {
 
         EntityPlayer player = Minecraft.getMinecraft().player;
         Biome biome = world.getBiome(new BlockPos(player.posX, player.posY, player.posZ));
-        targetFogColor = new short[] { 234, 178, 224 };
+        targetFogColor = GDConfig.dimension.skyColors.getFogColor();
 
-        if (GDConfig.dimension.enableSkyFog) {
-            if (biome instanceof GDVolcanicLands) {
-                targetFogColor = new short[]{ 245, 119, 112 };
-            } else if (biome instanceof GDGoldstoneLands) {
-                targetFogColor = new short[]{ 188, 122, 44 };
-            } else if (biome instanceof GDStaticWasteland) {
-                targetFogColor = new short[]{ 86, 213, 170 };
-            } else if (biome instanceof GDSaltDunes) {
-                targetFogColor = new short[]{ 187, 211, 255 };
-            }
-        } else {
-            switch (GDConfig.dimension.skyColors) {
-                case SALT_DUNES:
-                    targetFogColor = new short[]{ 187, 211, 255 };
-                    break;
-                case STATIC_WASTELAND:
-                    targetFogColor = new short[]{ 86, 213, 170 };
-                    break;
-                case VOLCANICLAND:
-                    targetFogColor = new short[]{ 245, 119, 112 };
-                    break;
-                case GOLDSTONE:
-                    targetFogColor = new short[]{ 188, 122, 44 };
-                    break;
-                case GENERAL:
-                case BLUE_AGATE:
-                case GREEN_AGATE:
-                case PURPLE_AGATE:
-                case MUTANT_AGATE:
-                default:
-                    targetFogColor = new short[] { 234, 178, 224 };
-                    break;
-            }
-        }
+        if (GDConfig.dimension.enableSkyFog)
+            if (biome instanceof GDBiomeBase)
+                targetFogColor = ((GDBiomeBase) biome).getFogRGB();
+        else
+            targetFogColor = GDConfig.dimension.skyColors.getFogColor();
 
         if (currentFogColor == null) {
             currentFogColor = new double[3];
@@ -246,40 +179,11 @@ public class WorldProviderGaia extends WorldProviderSurface {
         Biome biome = world.getBiome(new BlockPos(player.posX, player.posY, player.posZ));
         targetCloudColor = new short[] { 234, 178, 224 };
 
-        if (GDConfig.dimension.enableSkyFog) {
-            if (biome instanceof GDVolcanicLands) {
-                targetCloudColor = new short[]{ 245, 119, 112 };
-            } else if (biome instanceof GDGoldstoneLands) {
-                targetCloudColor = new short[]{ 188, 122, 44 };
-            } else if (biome instanceof GDStaticWasteland) {
-                targetCloudColor = new short[]{ 86, 213, 170 };
-            } else if (biome instanceof GDSaltDunes) {
-                targetCloudColor = new short[]{ 187, 211, 255 };
-            }
-        } else {
-            switch (GDConfig.dimension.skyColors) {
-                case SALT_DUNES:
-                    targetFogColor = new short[]{ 187, 211, 255 };
-                    break;
-                case STATIC_WASTELAND:
-                    targetFogColor = new short[]{ 86, 213, 170 };
-                    break;
-                case VOLCANICLAND:
-                    targetFogColor = new short[]{ 245, 119, 112 };
-                    break;
-                case GOLDSTONE:
-                    targetFogColor = new short[]{ 188, 122, 44 };
-                    break;
-                case GENERAL:
-                case BLUE_AGATE:
-                case GREEN_AGATE:
-                case PURPLE_AGATE:
-                case MUTANT_AGATE:
-                default:
-                    targetFogColor = new short[] { 234, 178, 224 };
-                    break;
-            }
-        }
+        if (GDConfig.dimension.enableSkyFog)
+            if (biome instanceof GDBiomeBase)
+                targetCloudColor = ((GDBiomeBase) biome).getFogRGB();
+        else
+            targetCloudColor = GDConfig.dimension.skyColors.getFogColor();
 
         if (currentCloudColor == null) {
             currentCloudColor = new double[3];
@@ -302,7 +206,6 @@ public class WorldProviderGaia extends WorldProviderSurface {
         return new Vec3d(currentFogColor[0] / 255D, currentFogColor[1] / 255D, currentFogColor[2] / 255D);
     }
 
-    //I mean, it will never be null, but if it should we have this
     @Override
     public Biome getBiomeForCoords(BlockPos pos) {
         Biome biome = super.getBiomeForCoords(pos);
@@ -312,7 +215,7 @@ public class WorldProviderGaia extends WorldProviderSurface {
         return biome;
     }
 
-    //Can't really null this, so we have clouds, but *way* up there
+    //Clouds are *way* up there
     @Override
     @SideOnly(Side.CLIENT)
     public float getCloudHeight() {

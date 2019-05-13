@@ -2,6 +2,7 @@ package androsa.gaiadimension.biomes;
 
 import androsa.gaiadimension.entity.GDGrowthSapper;
 import androsa.gaiadimension.entity.GDMarkuzarPlant;
+import androsa.gaiadimension.registry.EnumSkyColors;
 import androsa.gaiadimension.registry.GDBlocks;
 import androsa.gaiadimension.world.gen.GDGenCrystalPlants;
 import androsa.gaiadimension.world.gen.GDGenGreenAgateTree;
@@ -27,7 +28,7 @@ public class GDGreenAgateJungle extends GDBiomeBase {
 
         GaiaGenGreenTrees = new GDGenGreenAgateTree(false);
 
-        skyColorRGB = new short[] { 128, 191, 158 };
+        skyColor = EnumSkyColors.GREEN_AGATE;
         biomeDecorator.grassPerChunk = 4;
         biomeDecorator.treesPerChunk = 20;
     }

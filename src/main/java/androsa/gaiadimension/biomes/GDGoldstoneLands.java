@@ -2,6 +2,7 @@ package androsa.gaiadimension.biomes;
 
 import androsa.gaiadimension.entity.GDContortedNaga;
 import androsa.gaiadimension.entity.GDCorruptSapper;
+import androsa.gaiadimension.registry.EnumSkyColors;
 import androsa.gaiadimension.registry.GDBlocks;
 import androsa.gaiadimension.world.gen.GDGenCrystalPlants;
 import androsa.gaiadimension.world.gen.GDGenGoldstoneCorruptTree;
@@ -27,7 +28,7 @@ public class GDGoldstoneLands extends GDBiomeBase {
         spawnableCreatureList.add(new SpawnListEntry(GDContortedNaga.class, 10, 2, 3));
         spawnableCreatureList.add(new SpawnListEntry(GDCorruptSapper.class, 20, 2, 4));
 
-        skyColorRGB = new short[] { 34, 34, 34 };
+        skyColor = EnumSkyColors.GOLDSTONE;
         topBlock = GDBlocks.corrupt_grass.getDefaultState();
         fillerBlock = GDBlocks.corrupt_soil.getDefaultState();
     }

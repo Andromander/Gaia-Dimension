@@ -28,7 +28,7 @@ public class GDVolcanicLands extends GDBiomeBase {
 
         this.spawnableCreatureList.add(new SpawnListEntry(GDLesserSpitfire.class, 10, 2, 4));
 
-        skyColorRGB = new short[] { 75, 30, 25 };
+        skyColor = EnumSkyColors.VOLCANICLAND;
         biomeDecorator.lavaPoolChance = 0.25F;
         biomeDecorator.grassPerChunk = 1;
         biomeDecorator.flowersPerChunk = -1;

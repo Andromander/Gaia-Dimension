@@ -1,6 +1,7 @@
 package androsa.gaiadimension.biomes;
 
 import androsa.gaiadimension.entity.*;
+import androsa.gaiadimension.registry.EnumSkyColors;
 import androsa.gaiadimension.registry.GDBlocks;
 import androsa.gaiadimension.world.GaiaWorld;
 import net.minecraft.block.material.Material;
@@ -19,7 +20,7 @@ import java.util.Random;
 public abstract class GDBiomeBase extends Biome {
 
     public GDBiomeDecorator biomeDecorator;
-    public short[] skyColorRGB = new short[] { 198, 157, 88 };
+    public EnumSkyColors skyColor = EnumSkyColors.GENERAL;
 
     public GDBiomeBase(BiomeProperties props) {
         super(props);
@@ -56,7 +57,12 @@ public abstract class GDBiomeBase extends Biome {
 
     @SideOnly(Side.CLIENT)
     public final short[] getSkyRGB() {
-        return skyColorRGB;
+        return skyColor.getSkyColor();
+    }
+
+    @SideOnly(Side.CLIENT)
+    public final short[] getFogRGB() {
+        return skyColor.getFogColor();
     }
 
     @Override

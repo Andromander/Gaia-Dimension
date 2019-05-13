@@ -3,6 +3,7 @@ package androsa.gaiadimension.biomes;
 import androsa.gaiadimension.entity.GDGrowthSapper;
 import androsa.gaiadimension.entity.GDMuckling;
 import androsa.gaiadimension.entity.GDSpellElement;
+import androsa.gaiadimension.registry.EnumSkyColors;
 import androsa.gaiadimension.registry.GDBlocks;
 import androsa.gaiadimension.world.gen.GDGenCrystalPlants;
 import androsa.gaiadimension.world.gen.GDGenGummyBlob;
@@ -32,7 +33,7 @@ public class GDPurpleAgateSwamp extends GDBiomeBase {
 
         GaiaGenPurpleTrees = new GDGenPurpleAgateTree(false);
 
-        skyColorRGB = new short[] { 171, 109, 241 };
+        skyColor = EnumSkyColors.PURPLE_AGATE;
         biomeDecorator.muckPoolChance = 0.25F;
     }
 
