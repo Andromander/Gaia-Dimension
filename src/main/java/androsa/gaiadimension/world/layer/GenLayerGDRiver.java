@@ -41,17 +41,7 @@ public class GenLayerGDRiver extends GenLayer {
     }
 
     boolean shouldRiver(int mid, int left, int down, int right, int up) {
-        if (shouldRiver(mid, left)) {
-            return true;
-        } else if (shouldRiver(mid, right)) {
-            return true;
-        } else if (shouldRiver(mid, down)) {
-            return true;
-        } else if (shouldRiver(mid, up)) {
-            return true;
-        } else {
-            return false;
-        }
+        return shouldRiver(mid, left) || shouldRiver(mid, right) || shouldRiver(mid, down) || shouldRiver(mid, up);
     }
 
     boolean shouldRiver(int id1, int id2) {

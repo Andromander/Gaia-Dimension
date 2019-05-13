@@ -20,6 +20,7 @@ public class GDGenStaticSpike extends WorldGenerator {
         this.startHeight = startHeightIn;
     }
 
+    @Override
     @ParametersAreNonnullByDefault
     public boolean generate(World worldIn, Random rand, BlockPos position) {
         int height = startHeight + rand.nextInt(4);

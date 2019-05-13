@@ -262,7 +262,7 @@ public class GaiaChunkGenerator implements IChunkGenerator {
     }
 
     public void replaceBiomeBlocks(int x, int z, ChunkPrimer primer, Biome[] biomesIn) {
-        if (!net.minecraftforge.event.ForgeEventFactory.onReplaceBiomeBlocks(this, x, z, primer, this.world)) return;
+        if (!ForgeEventFactory.onReplaceBiomeBlocks(this, x, z, primer, this.world)) return;
         this.depthBuffer = this.surfaceNoise.getRegion(this.depthBuffer, (double)(x * 16), (double)(z * 16), 16, 16, 0.0625D, 0.0625D, 1.0D);
 
         for (int i = 0; i < 16; ++i) {
@@ -363,7 +363,7 @@ public class GaiaChunkGenerator implements IChunkGenerator {
         boolean flag = false;
         ChunkPos chunkpos = new ChunkPos(chunkX, chunkZ);
 
-        net.minecraftforge.event.ForgeEventFactory.onChunkPopulate(true, this, this.world, this.rand, chunkX, chunkZ, flag);
+        ForgeEventFactory.onChunkPopulate(true, this, this.world, this.rand, chunkX, chunkZ, flag);
 
         boolean disableFeatures = this.majorFeatureGenerator.generateStructure(world, rand, chunkpos)
                 || !GDFeature.getNearestFeature(chunkX, chunkZ, world).areChunkDecorationsEnabled;

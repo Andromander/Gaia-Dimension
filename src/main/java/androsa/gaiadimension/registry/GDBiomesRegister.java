@@ -24,7 +24,6 @@ public final class GDBiomesRegister {
                 new GDPinkAgateForest(
                         new BiomeProperties("Pink Agate Forest")
                                 .setTemperature(0.66F)
-                                .setRainfall(0)
                                 .setRainDisabled()
                                 .setBaseHeight(0.1F)
                                 .setHeightVariation(0.1F)
@@ -37,7 +36,6 @@ public final class GDBiomesRegister {
                 new GDBlueAgateTaiga(
                         new BiomeProperties("Blue Agate Taiga")
                                 .setTemperature(0.4F)
-                                .setRainfall(0)
                                 .setRainDisabled()
                                 .setBaseHeight(0.1F)
                                 .setHeightVariation(0.2F)
@@ -50,7 +48,6 @@ public final class GDBiomesRegister {
                 new GDGreenAgateJungle(
                         new BiomeProperties("Green Agate Jungle")
                                 .setTemperature(0.75F)
-                                .setRainfall(0)
                                 .setRainDisabled()
                                 .setBaseHeight(0.1F)
                                 .setHeightVariation(0.2F)
@@ -62,7 +59,6 @@ public final class GDBiomesRegister {
                 new GDPurpleAgateSwamp(
                         new BiomeProperties("Purple Agate Swamp")
                                 .setTemperature(0.7F)
-                                .setRainfall(0)
                                 .setRainDisabled()
                                 .setHeightVariation(0.05F)
                 ),
@@ -74,7 +70,6 @@ public final class GDBiomesRegister {
                 new GDFossilWoodland(
                         new BiomeProperties("Fossil Woodland")
                                 .setTemperature(0.66F)
-                                .setRainfall(0)
                                 .setRainDisabled()
                                 .setBaseHeight(0.1F)
                                 .setHeightVariation(0.05F)
@@ -99,7 +94,6 @@ public final class GDBiomesRegister {
                 new GDCrystalPlains(
                         new BiomeProperties("Crystal Plains")
                                 .setTemperature(0.66F)
-                                .setRainfall(0)
                                 .setRainDisabled()
                                 .setBaseHeight(0.05F)
                                 .setHeightVariation(0.05F)

@@ -26,8 +26,9 @@ import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import javax.annotation.Nonnull;
+import javax.annotation.ParametersAreNonnullByDefault;
 
+@ParametersAreNonnullByDefault
 public class GDFluidBlock extends BlockFluidClassic implements ModelRegisterCallback {
 
     private final MapColor mapColor;
@@ -46,14 +47,14 @@ public class GDFluidBlock extends BlockFluidClassic implements ModelRegisterCall
     }
 
     @Override
-    public void onBlockAdded(@Nonnull World world, @Nonnull BlockPos pos, @Nonnull IBlockState state) {
+    public void onBlockAdded(World world, BlockPos pos, IBlockState state) {
         super.onBlockAdded(world, pos, state);
 
         this.mixFluids(world, pos);
     }
 
     @Override
-    public void neighborChanged(@Nonnull IBlockState state, @Nonnull World world, @Nonnull BlockPos pos, @Nonnull Block neighborBlock, @Nonnull BlockPos neighbourPos) {
+    public void neighborChanged(IBlockState state, World world, BlockPos pos, Block neighborBlock, BlockPos neighbourPos) {
         super.neighborChanged(state, world, pos, neighborBlock, neighbourPos);
 
         this.mixFluids(world, pos);

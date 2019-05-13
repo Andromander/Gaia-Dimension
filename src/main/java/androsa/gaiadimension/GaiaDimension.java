@@ -9,7 +9,6 @@ import androsa.gaiadimension.world.WorldProviderGaia;
 import net.minecraft.entity.EnumCreatureAttribute;
 import net.minecraft.world.DimensionType;
 import net.minecraftforge.common.DimensionManager;
-import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fml.common.Mod;
