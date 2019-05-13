@@ -12,6 +12,10 @@
     "sweet_muck": {
       "model": "forge:fluid",
       "custom": { "fluid": "sweet_muck" }
+    },
+    "liquid_bismuth": {
+      "model": "forge:fluid",
+      "custom": { "fluid": "liquid_bismuth" }
     }
   }
 }

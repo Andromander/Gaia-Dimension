@@ -2,6 +2,7 @@ package androsa.gaiadimension.world;
 
 import androsa.gaiadimension.registry.GDBlocks;
 import androsa.gaiadimension.registry.GDFeature;
+import androsa.gaiadimension.world.gen.GDGenBismuthBog;
 import androsa.gaiadimension.world.gen.GDGenCaves;
 import androsa.gaiadimension.world.gen.GDGenLavaLake;
 import androsa.gaiadimension.world.gen.GDGenUndergroundCaves;
@@ -369,11 +370,16 @@ public class GaiaChunkGenerator implements IChunkGenerator {
                 || !GDFeature.getNearestFeature(chunkX, chunkZ, world).areChunkDecorationsEnabled;
 
         if (!disableFeatures && rand.nextInt(16) == 0) {
-            int j1 = blockpos.getX() + rand.nextInt(16) + 8;
-            int j2 = rand.nextInt(rand.nextInt(GaiaWorld.CHUNKHEIGHT - 8) + 8);
-            int j3 = blockpos.getZ() + rand.nextInt(16) + 8;
-            if (j2 < GaiaWorld.SEALEVEL || rand.nextInt(5) == 0) {
-                (new GDGenLavaLake(GDBlocks.superhot_magma_block)).generate(world, rand, new BlockPos(j1, j2, j3));
+            int posX = blockpos.getX() + rand.nextInt(16) + 8;
+            int posY = rand.nextInt(rand.nextInt(GaiaWorld.CHUNKHEIGHT - 8) + 8);
+            int posZ = blockpos.getZ() + rand.nextInt(16) + 8;
+
+            if (posY < GaiaWorld.SEALEVEL || rand.nextInt(5) == 0) {
+                new GDGenLavaLake(GDBlocks.superhot_magma_block).generate(world, rand, new BlockPos(posX, posY, posZ));
+            }
+
+            if (posY < GaiaWorld.SEALEVEL && rand.nextInt(20) == 0) {
+                new GDGenBismuthBog().generate(world, rand, new BlockPos(posX, posY, posZ));
             }
         }
 

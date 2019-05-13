@@ -20,7 +20,8 @@ public class GenLayerGDBiomes extends GenLayer {
             GDBiomes.mineral_reservoir,
             GDBiomes.volcaniclands,
             GDBiomes.static_wasteland,
-            GDBiomes.salt_dunes
+            GDBiomes.salt_dunes,
+            GDBiomes.smoldering_bog
     });
     protected Biome rareBiomes[] = (new Biome[]{
             GDBiomes.purple_agate_swamp, //This wil make the sacred biome less likely to generate

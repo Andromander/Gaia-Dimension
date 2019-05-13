@@ -29,12 +29,15 @@ public class GDBlocks {
     public static final Block mineral_water_block = null;
     public static final Block superhot_magma_block = null;
     public static final Block sweet_muck_block = null;
+    public static final Block liquid_bismuth_block = null;
 
     //Natural Blocks
     public static final Block heavy_soil = null;
     public static final Block corrupt_soil = null;
+    public static final Block boggy_soil = null;
     public static final Block glitter_grass = null;
     public static final Block corrupt_grass = null;
+    public static final Block murky_grass = null;
     public static final Block frail_glitter_block = null;
     public static final Block thick_glitter_block = null;
     public static final Block gummy_glitter_block = null;
@@ -66,6 +69,10 @@ public class GDBlocks {
     public static final Block volcanic_rock = null;
     public static final Block searing_rock = null;
     public static final Block primal_mass = null;
+    public static final Block impure_rock = null;
+    public static final Block active_rock = null;
+    public static final Block impure_sludge = null;
+    public static final Block geyser_block = null;
 
     //Plants
     public static final Block crystal_growth = null;

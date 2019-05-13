@@ -1,6 +1,7 @@
 package androsa.gaiadimension.biomes;
 
 import androsa.gaiadimension.registry.GDBlocks;
+import androsa.gaiadimension.world.gen.GDGenBismuthBog;
 import androsa.gaiadimension.world.gen.GDGenCrystalFungi;
 import androsa.gaiadimension.world.gen.GDGenCrystalPlants;
 import androsa.gaiadimension.world.gen.GDGenLavaLake;
@@ -21,6 +22,7 @@ public class GDBiomeDecorator {
 
     private GDGenLavaLake extraLavaPoolGen = new GDGenLavaLake(GDBlocks.superhot_magma_block);
     private GDGenLavaLake extraMuckPoolGen = new GDGenLavaLake(GDBlocks.sweet_muck_block);
+    private GDGenBismuthBog extraBismuthBogGen = new GDGenBismuthBog();
     /** Section for Flowers */
     public WorldGenerator thiscusGen = new GDGenCrystalPlants(GDBlocks.thiscus);
     public WorldGenerator ouziumGen = new GDGenCrystalPlants(GDBlocks.ouzium);
@@ -50,10 +52,13 @@ public class GDBiomeDecorator {
     public int grassPerChunk = 0;
     public float lavaPoolChance = 0;
     public float muckPoolChance;
+    public float bismuthBogChance;
 
     public void decorate(World world, Random rand, Biome biome, BlockPos pos) {
         this.chunkProviderSettings = ChunkGeneratorSettings.Factory.jsonToFactory(world.getWorldInfo().getGeneratorOptions()).build();
         this.chunkPos = pos;
+
+        genLakes(biome, world, rand);
 
         for (int i = 0; i < treesPerChunk; ++i) {
             int k6 = rand.nextInt(16) + 8;
@@ -214,11 +219,10 @@ public class GDBiomeDecorator {
             }
         }
 
-        genDecorations(biome, world, rand);
         decorateUnderground(world, rand, pos);
     }
 
-    protected void genDecorations(Biome biome, World world, Random randomGenerator) {
+    protected void genLakes(Biome biome, World world, Random randomGenerator) {
         //Handles the number of Lava Pools per chunk
         if (randomGenerator.nextFloat() <= lavaPoolChance) {
             int rx = chunkPos.getX() + randomGenerator.nextInt(16) + 8;
@@ -231,6 +235,13 @@ public class GDBiomeDecorator {
             int rx = chunkPos.getX() + randomGenerator.nextInt(16) + 8;
             int rz = chunkPos.getZ() + randomGenerator.nextInt(16) + 8;
             extraMuckPoolGen.generate(world, randomGenerator, world.getHeight(new BlockPos(rx, 0, rz)));
+        }
+
+        //Handles the number of Bismuth Bogs per chunk
+        if (randomGenerator.nextFloat() <= bismuthBogChance) {
+            int rx = chunkPos.getX() + randomGenerator.nextInt(16) + 8;
+            int rz = chunkPos.getZ() + randomGenerator.nextInt(16) + 8;
+            extraBismuthBogGen.generate(world, randomGenerator, world.getHeight(new BlockPos(rx, 0, rz)));
         }
     }
 

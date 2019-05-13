@@ -114,6 +114,18 @@ public final class GDBiomesRegister {
         );
 
         biomes.register(
+                "smoldering_bog",
+                new GDSmolderingBog(
+                        new BiomeProperties("Smoldering Bog")
+                                .setTemperature(0.9F)
+                                .setRainDisabled()
+                                .setBaseHeight(0.2F)
+                                .setHeightVariation(0.02F)
+                ),
+                Type.HOT, Type.WASTELAND, Type.DEAD
+        );
+
+        biomes.register(
                 "volcaniclands",
                 new GDVolcanicLands(
                         new BiomeProperties("Volcaniclands")

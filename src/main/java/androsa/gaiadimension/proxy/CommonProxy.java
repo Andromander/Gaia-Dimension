@@ -5,6 +5,7 @@ import androsa.gaiadimension.block.tileentity.*;
 import androsa.gaiadimension.item.GDGemstonePouch;
 import androsa.gaiadimension.item.inventory.ContainerGemPouch;
 import androsa.gaiadimension.item.inventory.InventoryGemPouch;
+import androsa.gaiadimension.registry.EnumParticlesGD;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.item.ItemStack;
@@ -65,4 +66,5 @@ public class CommonProxy implements IGuiHandler {
 
     public void doPreLoadRegistration(){ }
 
+    public void spawnParticle(EnumParticlesGD particle, double x, double y, double z, double velocityX, double velocityY, double velocityZ) { }
 }

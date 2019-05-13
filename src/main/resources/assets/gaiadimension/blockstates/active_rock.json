@@ -1,0 +1,10 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "gaiadimension:util/cube_all_2_layer",
+    "textures": {
+      "all": "gaiadimension:blocks/active_rock",
+      "all2": "gaiadimension:blocks/active_rock_overlay" }
+  },
+  "variants": { "normal": [{}] }
+}

@@ -236,4 +236,5 @@ public class GDItems {
     public static ItemStack mineral_water_bucket_item;
     public static ItemStack superhot_magma_bucket_item;
     public static ItemStack sweet_muck_bucket_item;
+    public static ItemStack liquid_bismuth_bucket_item;
 }

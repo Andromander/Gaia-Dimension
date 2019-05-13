@@ -4,6 +4,7 @@ import androsa.gaiadimension.GaiaDimension;
 import androsa.gaiadimension.block.*;
 import androsa.gaiadimension.block.tileentity.*;
 import androsa.gaiadimension.fluid.GDFluidBlock;
+import androsa.gaiadimension.fluid.GDLiquidBismuth;
 import androsa.gaiadimension.fluid.GDSuperhotMagma;
 import androsa.gaiadimension.world.gen.*;
 import com.google.common.collect.ImmutableList;
@@ -55,12 +56,15 @@ public final class GDBlocksRegister {
         blocks.register("mineral_water_block", new GDFluidBlock(GDFluids.mineralWater, Material.WATER, MapColor.LIGHT_BLUE_STAINED_HARDENED_CLAY));
         blocks.register("superhot_magma_block", new GDSuperhotMagma(GDFluids.superhotMagma, Material.LAVA).setLightLevel(1.0F));
         blocks.register("sweet_muck_block", new GDFluidBlock(GDFluids.sweetMuck, Material.WATER, MapColor.PURPLE));
+        blocks.register("liquid_bismuth_block", new GDLiquidBismuth(GDFluids.liquidBismuth, Material.LAVA));
 
         //Natural Blocks
         blocks.register("heavy_soil", new GDGaiaSoil(MapColor.PURPLE_STAINED_HARDENED_CLAY));
         blocks.register("corrupt_soil", new GDGaiaSoil(MapColor.GRAY));
+        blocks.register("boggy_soil", new GDGaiaSoil(MapColor.GRAY));
         blocks.register("glitter_grass", new GDCrystalGrass(() -> GDBlocks.glitter_grass, () -> GDBlocks.heavy_soil));
         blocks.register("corrupt_grass", new GDCrystalGrass(() -> GDBlocks.corrupt_grass, () -> GDBlocks.corrupt_soil));
+        blocks.register("murky_grass", new GDCrystalGrass(() -> GDBlocks.murky_grass, () -> GDBlocks.boggy_soil));
         blocks.register("frail_glitter_block", new GDFrailGlitterBlock());
         blocks.register("thick_glitter_block", new GDBlock(Material.ROCK, MapColor.PURPLE_STAINED_HARDENED_CLAY, "pickaxe", 1).setHardness(1.5F).setResistance(7.5F));
         blocks.register("gummy_glitter_block", new GDGummyGlitterBlock());
@@ -125,6 +129,10 @@ public final class GDBlocksRegister {
         blocks.register("volcanic_rock", new GDBlock(Material.ROCK, MapColor.GRAY_STAINED_HARDENED_CLAY, "pickaxe", 2).setHardness(15.0F).setResistance(200.0F));
         blocks.register("searing_rock", new GDSearingRock());
         blocks.register("primal_mass", new GDBlock(Material.ROCK, MapColor.PURPLE_STAINED_HARDENED_CLAY, "pickaxe", 2).setHardness(30.0F).setResistance(400.0F));
+        blocks.register("impure_rock", new GDBlock(Material.ROCK, MapColor.GRAY, "pickaxe", 2).setHardness(20.0F).setResistance(300.0F));
+        blocks.register("active_rock", new GDActiveRock());
+        blocks.register("impure_sludge", new GDImpureSludge());
+        blocks.register("geyser_block", new GDGeyserBlock());
 
         //Planks
         blocks.register("pink_agate_planks", new GDBlock(Material.WOOD, MapColor.PINK, SoundType.STONE, "axe", 0).setHardness(1.5F).setResistance(2.0F));
@@ -243,6 +251,7 @@ public final class GDBlocksRegister {
         GameRegistry.registerTileEntity(TileEntityGaiaStoneFurnace.class, new ResourceLocation("gaiadimension:gaia_stone_furnace"));
         GameRegistry.registerTileEntity(TileEntityRestructurer.class, new ResourceLocation("gaiadimension:restructurer"));
         GameRegistry.registerTileEntity(TileEntityPurifier.class, new ResourceLocation("gaiadimension:purifier"));
+        GameRegistry.registerTileEntity(TileEntityGeyser.class, new ResourceLocation("gaiadimension:geyser"));
     }
 
     public static List<ModelRegisterCallback> getBlockModels() {

@@ -28,6 +28,7 @@ public class GaiaEntityNames {
     public static final ResourceLocation CONTORTED_NAGA = prefix("contorted_naga");
     public static final ResourceLocation SHALLOW_ARENTHIS = prefix("shallow_arenthis");
     public static final ResourceLocation MINERAL_ARENTHIS = prefix("mineral_arenthis");
+    public static final ResourceLocation BISMUTH_ULETRUS = prefix("bismuth_uletrus");
     public static final ResourceLocation SHALURKER = prefix("shalurker");
     public static final ResourceLocation CAVERN_TICK = prefix("cavern_tick");
     public static final ResourceLocation ARCHAIC_WARRIOR = prefix("archaic_warrior");

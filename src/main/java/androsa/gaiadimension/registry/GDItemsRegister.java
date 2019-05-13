@@ -242,8 +242,10 @@ public class GDItemsRegister {
         //Natural Blocks
         items.registerBlock(GDBlocks.heavy_soil);
         items.registerBlock(GDBlocks.corrupt_soil);
+        items.registerBlock(GDBlocks.boggy_soil);
         items.registerBlock(GDBlocks.glitter_grass);
         items.registerBlock(GDBlocks.corrupt_grass);
+        items.registerBlock(GDBlocks.murky_grass);
         items.registerBlock(GDBlocks.frail_glitter_block);
         items.registerBlock(GDBlocks.thick_glitter_block);
         items.registerBlock(GDBlocks.gummy_glitter_block);
@@ -308,6 +310,10 @@ public class GDItemsRegister {
         items.registerBlock(GDBlocks.volcanic_rock);
         items.registerBlock(GDBlocks.searing_rock);
         items.registerBlock(GDBlocks.primal_mass);
+        items.registerBlock(GDBlocks.impure_rock);
+        items.registerBlock(GDBlocks.active_rock);
+        items.registerBlock(GDBlocks.impure_sludge);
+        items.registerBlock(GDBlocks.geyser_block);
 
         //Planks
         items.registerBlock(GDBlocks.pink_agate_planks);

@@ -74,6 +74,7 @@ public class GaiaEntities {
         entity.registerEntity(GaiaEntityNames.LESSER_SPITFIRE, GDLesserSpitfire.class, GDLesserSpitfire::new, 0xFF00FF, 0x202020);
         entity.registerEntity(GaiaEntityNames.LESSER_SHOCKSHOOTER, GDLesserShockshooter.class, GDLesserShockshooter::new, 0x00FFFF, 202020);
         entity.registerEntity(GaiaEntityNames.MINERAL_ARENTHIS, GDMineralArenthis.class, GDMineralArenthis::new, 0x0066CC, 0x000033);
+        entity.registerEntity(GaiaEntityNames.BISMUTH_ULETRUS, GDBismuthUletrus.class, GDBismuthUletrus::new, 0x4E3863, 0x303030);
         entity.registerEntity(GaiaEntityNames.ARCHAIC_WARRIOR, GDArchaicWarrior.class, GDArchaicWarrior::new, 0x996699, 0xCC3366);
         entity.registerEntity(GaiaEntityNames.PRIMAL_BEAST, GDPrimalBeast.class, GDPrimalBeast::new, 0x006699, 0x66FFFF);
         entity.registerEntity(GaiaEntityNames.CAVERN_TICK, GDCavernTick.class, GDCavernTick::new, 0x9966CC, 0x666699);
@@ -105,18 +106,22 @@ public class GaiaEntities {
             return EntityEntryBuilder.<T>create().id(regName, id++).name(toString(regName)).entity(entity).factory(factory);
         }
 
+        //Create Entity with Spawn Egg
         final <T extends Entity> void registerEntity(ResourceLocation regName, Class<T> entity, Function<World, T> factory, int backgroundEggColour, int foregroundEggColour) {
             registerEntity(regName, entity, factory, backgroundEggColour, foregroundEggColour, 80, 3, true);
         }
 
+        //Create Entity with Spawn Egg and Tracking Range
         final <T extends Entity> void registerEntity(ResourceLocation regName, Class<T> entity, Function<World, T> factory, int backgroundEggColour, int foregroundEggColour, int trackingRange, int updateFrequency, boolean sendsVelocityUpdates) {
             registry.register(builder(regName, entity, factory).tracker(trackingRange, updateFrequency, sendsVelocityUpdates).egg(backgroundEggColour, foregroundEggColour).build());
         }
 /*
+        //Create Entity with no Spawn Egg
         final <T extends Entity> void registerEntity(ResourceLocation regName, Class<T> entity, Function<World, T> factory) {
             registerEntity(regName, entity, factory, 80, 3, true);
         }*/
 
+        //Create Entity with no Spawn Egg and Tracking Range
         final <T extends Entity> void registerEntity(ResourceLocation regName, Class<T> entity, Function<World, T> factory, int trackingRange, int updateInterval, boolean sendVelocityUpdates) {
             registry.register(builder(regName, entity, factory).tracker(trackingRange, updateInterval, sendVelocityUpdates).build());
         }
