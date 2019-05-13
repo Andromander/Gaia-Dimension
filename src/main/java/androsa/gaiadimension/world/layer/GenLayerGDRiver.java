@@ -1,5 +1,6 @@
 package androsa.gaiadimension.world.layer;
 
+import androsa.gaiadimension.biomes.IDangerousBiome;
 import androsa.gaiadimension.registry.GDBiomes;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.layer.GenLayer;
@@ -63,12 +64,8 @@ public class GenLayerGDRiver extends GenLayer {
         if (id1 == -id2)
             return false;
 
-        //The Volcanic Biomes will be too hot for the mineral water. Remove rivers
-        if (biome1 == GDBiomes.volcaniclands || biome2 == GDBiomes.volcaniclands)
-            return false;
-
-        //For consistency's sake, there will be no Mineral River at Static Wastelands
-        if (biome1 == GDBiomes.static_wasteland || biome2 == GDBiomes.static_wasteland)
+        //Biomes not allowed rivers are omitted entirely
+        if (biome1 instanceof IDangerousBiome || biome2 instanceof IDangerousBiome)
             return false;
 
         //Crystal Plains and Pink Agate Forest are too similar for rivers

@@ -1,6 +1,7 @@
 package androsa.gaiadimension.biomes;
 
 import androsa.gaiadimension.entity.GDLesserShockshooter;
+import androsa.gaiadimension.registry.EnumSkyColors;
 import androsa.gaiadimension.registry.GDBlocks;
 import androsa.gaiadimension.world.gen.GDGenStaticPatch;
 import androsa.gaiadimension.world.gen.GDGenStaticSpike;
@@ -13,7 +14,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.Random;
 
-public class GDStaticWasteland extends GDBiomeBase {
+public class GDStaticWasteland extends GDBiomeBase implements IDangerousBiome {
 
     private GDGenStaticSpike genStaticJunk = new GDGenStaticSpike(GDBlocks.charged_mineral, 8);
     private GDGenStaticPatch staticPatch = new GDGenStaticPatch(6);
@@ -31,6 +32,7 @@ public class GDStaticWasteland extends GDBiomeBase {
         biomeDecorator.grassPerChunk = -1;
         biomeDecorator.lakesPerChunk = -1;
         biomeDecorator.fungiPerChunk = -1;
+        biomeDecorator.flowersPerChunk = -1;
     }
 
     @Override

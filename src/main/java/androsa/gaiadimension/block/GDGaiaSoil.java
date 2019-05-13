@@ -10,10 +10,10 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.common.EnumPlantType;
 import net.minecraftforge.common.IPlantable;
 
-public class GDCorruptSoil extends GDBlock {
+public class GDGaiaSoil extends GDBlock {
 
-    public GDCorruptSoil() {
-        super(Material.GROUND, MapColor.GRAY, SoundType.GROUND);
+    public GDGaiaSoil(MapColor color) {
+        super(Material.GROUND, color, SoundType.GROUND);
 
         this.setHardness(0.9F);
         this.setHarvestLevel("shovel", 0);

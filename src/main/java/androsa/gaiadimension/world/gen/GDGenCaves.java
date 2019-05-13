@@ -1,7 +1,6 @@
 package androsa.gaiadimension.world.gen;
 
-import androsa.gaiadimension.biomes.GDStaticWasteland;
-import androsa.gaiadimension.biomes.GDVolcanicLands;
+import androsa.gaiadimension.biomes.IDangerousBiome;
 import androsa.gaiadimension.block.GDCrystalGrass;
 import androsa.gaiadimension.registry.GDBlocks;
 import net.minecraft.block.Block;
@@ -156,7 +155,7 @@ public class GDGenCaves extends MapGenCaves {
                                             final IBlockState blockStateAt = blockStorage.getBlockState(genX, caveY, genZ);
                                             Block blockAt = blockStateAt.getBlock();
 
-                                            if (blockAt instanceof GDCrystalGrass || blockAt == GDBlocks.corrupt_grass) {
+                                            if (blockAt instanceof GDCrystalGrass) {
                                                 hitGrass = true;
                                             }
 
@@ -197,8 +196,7 @@ public class GDGenCaves extends MapGenCaves {
         @Override
         protected void recursiveGenerate(World par1World, int genX, int genZ, int centerX, int centerZ, @Nullable  ChunkPrimer blockStorage) {
         int numberOfCaves = this.rand.nextInt(this.rand.nextInt(this.rand.nextInt(40) + 1) + 1);
-        boolean isHostile = par1World.getBiome(new BlockPos(genX * 16, 0, genZ * 16)) instanceof GDVolcanicLands ||
-                par1World.getBiome(new BlockPos(genX * 16, 0, genZ * 16)) instanceof GDStaticWasteland;
+        boolean isHostile = par1World.getBiome(new BlockPos(genX * 16, 0, genZ * 16)) instanceof IDangerousBiome;
 
         if (this.rand.nextInt(15) != 0) {
             numberOfCaves = 0;

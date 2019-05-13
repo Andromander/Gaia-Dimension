@@ -1,6 +1,7 @@
 package androsa.gaiadimension.biomes;
 
 import androsa.gaiadimension.entity.GDLesserSpitfire;
+import androsa.gaiadimension.registry.EnumSkyColors;
 import androsa.gaiadimension.registry.GDBlocks;
 import androsa.gaiadimension.world.gen.GDGenBurntAgateTree;
 import androsa.gaiadimension.world.gen.GDGenCrystalPlants;
@@ -18,7 +19,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.Random;
 
-public class GDVolcanicLands extends GDBiomeBase {
+public class GDVolcanicLands extends GDBiomeBase implements IDangerousBiome {
 
     private WorldGenAbstractTree GaiaGenBurntTrees = new GDGenBurntAgateTree(false);
     private WorldGenAbstractTree GaiaGenFireTrees = new GDGenFieryAgateTree(false);

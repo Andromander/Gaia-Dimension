@@ -57,8 +57,8 @@ public final class GDBlocksRegister {
         blocks.register("sweet_muck_block", new GDFluidBlock(GDFluids.sweetMuck, Material.WATER, MapColor.PURPLE));
 
         //Natural Blocks
-        blocks.register("heavy_soil", new GDHeavySoil());
-        blocks.register("corrupt_soil", new GDCorruptSoil());
+        blocks.register("heavy_soil", new GDGaiaSoil(MapColor.PURPLE_STAINED_HARDENED_CLAY));
+        blocks.register("corrupt_soil", new GDGaiaSoil(MapColor.GRAY));
         blocks.register("glitter_grass", new GDCrystalGrass(() -> GDBlocks.glitter_grass, () -> GDBlocks.heavy_soil));
         blocks.register("corrupt_grass", new GDCrystalGrass(() -> GDBlocks.corrupt_grass, () -> GDBlocks.corrupt_soil));
         blocks.register("frail_glitter_block", new GDFrailGlitterBlock());
