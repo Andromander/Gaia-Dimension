@@ -42,7 +42,7 @@ public class GDPurpleAgateSwamp extends GDBiomeBase {
 
         super.decorate(world, rand, pos);
 
-        int dx, dy, dz;
+        int dx, dz;
         int maxBoulder = rand.nextInt(2);
         for (int i = 0; i < maxBoulder; ++i) {
             dx = pos.getX() + rand.nextInt(16) + 8;
@@ -64,18 +64,16 @@ public class GDPurpleAgateSwamp extends GDBiomeBase {
     }
 
     @Override
-    public WorldGenerator getRandomWorldGenForGrass(Random rand) {
+    public WorldGenerator getRandomFungus(Random rand) {
+        return new GDGenCrystalPlants(GDBlocks.bulbous_hobina);
+    }
 
-        if (rand.nextInt(32) == 0) {
-            return new GDGenCrystalPlants(GDBlocks.bulbous_hobina);
-        } else if (rand.nextInt(16) == 0) {
-            if (rand.nextInt(4) == 0) {
-                return new GDGenCrystalPlants(GDBlocks.ouzium);
-            } else {
-                return new GDGenCrystalPlants(GDBlocks.thiscus);
-            }
+    @Override
+    public WorldGenerator getRandomBloom(Random rand) {
+        if (rand.nextInt(4) == 0) {
+            return new GDGenCrystalPlants(GDBlocks.thiscus);
         } else {
-            return new GDGenCrystalPlants(GDBlocks.crystal_growth);
+            return new GDGenCrystalPlants(GDBlocks.ouzium);
         }
     }
 

@@ -1,7 +1,6 @@
 package androsa.gaiadimension.block;
 
 import androsa.gaiadimension.biomes.*;
-import androsa.gaiadimension.registry.GDBlocks;
 import androsa.gaiadimension.registry.GDTabs;
 import androsa.gaiadimension.registry.ModelRegisterCallback;
 import net.minecraft.block.BlockBush;
@@ -54,6 +53,8 @@ public class GDCrystalGrowth extends BlockBush implements IShearable, ModelRegis
             return MapColor.CYAN;
         if (biome instanceof GDVolcanicLands || biome instanceof GDGoldstoneLands)
             return MapColor.BLACK;
+        if (biome instanceof GDShiningGrove)
+            return MapColor.BLUE;
         return MapColor.PINK;
     }
 
@@ -70,7 +71,7 @@ public class GDCrystalGrowth extends BlockBush implements IShearable, ModelRegis
     }
 
     public boolean canPlaceBlockAt(IBlockState state) {
-        return state.getBlock() == GDBlocks.glitter_grass || state.getBlock() == GDBlocks.heavy_soil;
+        return state.getBlock() instanceof GDCrystalGrass || state.getBlock() instanceof GDGaiaSoil;
     }
 
     @Override

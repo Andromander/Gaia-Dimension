@@ -51,8 +51,8 @@ public class GDBlueAgateTaiga extends GDBiomeBase {
     }
 
     @Override
-    public WorldGenerator getRandomWorldGenForGrass(Random rand) {
-        return new GDGenCrystalPlants(GDBlocks.crystal_growth);
+    public WorldGenerator getRandomFungus(Random rand) {
+        return new GDGenCrystalPlants(GDBlocks.thorny_wiltha);
     }
 
     @Override

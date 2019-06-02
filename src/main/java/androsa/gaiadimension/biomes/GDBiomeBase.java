@@ -4,6 +4,8 @@ import androsa.gaiadimension.entity.*;
 import androsa.gaiadimension.registry.EnumSkyColors;
 import androsa.gaiadimension.registry.GDBlocks;
 import androsa.gaiadimension.world.GaiaWorld;
+import androsa.gaiadimension.world.gen.GDGenCrystalPlants;
+import androsa.gaiadimension.world.gen.GDGenNoTrees;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.monster.EntityEnderman;
@@ -11,6 +13,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.chunk.ChunkPrimer;
+import net.minecraft.world.gen.feature.WorldGenAbstractTree;
+import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -73,6 +77,28 @@ public abstract class GDBiomeBase extends Biome {
     @Override
     public void decorate(World worldIn, Random rand, BlockPos pos) {
         this.biomeDecorator.decorate(worldIn, rand, this, pos);
+    }
+
+    @Override
+    public WorldGenAbstractTree getRandomTreeFeature(Random rand) {
+        return new GDGenNoTrees();
+    }
+
+    @Override
+    public WorldGenerator getRandomWorldGenForGrass(Random rand) {
+        return new GDGenCrystalPlants(GDBlocks.crystal_growth);
+    }
+
+    public WorldGenerator getRandomFungus(Random rand) {
+        return new GDGenCrystalPlants(GDBlocks.spotted_kersei);
+    }
+
+    public WorldGenerator getRandomBloom(Random rand) {
+        if (rand.nextInt(4) == 0) {
+            return new GDGenCrystalPlants(GDBlocks.ouzium);
+        } else {
+            return new GDGenCrystalPlants(GDBlocks.thiscus);
+        }
     }
 
     @Override

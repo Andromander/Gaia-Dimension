@@ -92,7 +92,7 @@ public class GDGenBismuthBog extends WorldGenerator {
                         if (aboolean[(i2 * 16 + j3) * 8 + j4]) {
                             BlockPos blockpos = position.add(i2, j4 - 1, j3);
 
-                            if (worldIn.getBlockState(blockpos).getBlock() == GDBlocks.heavy_soil && worldIn.getLightFor(EnumSkyBlock.SKY, position.add(i2, j4, j3)) > 0) {
+                            if (worldIn.getBlockState(blockpos).getBlock() == GDBlocks.boggy_soil && worldIn.getLightFor(EnumSkyBlock.SKY, position.add(i2, j4, j3)) > 0) {
                                 worldIn.setBlockState(blockpos, GDBlocks.murky_grass.getDefaultState(), 2);
                             }
                         }

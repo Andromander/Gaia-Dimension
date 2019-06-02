@@ -29,7 +29,6 @@ public class GDPinkAgateForest extends GDBiomeBase {
 
     @Override
     public void decorate(World world, Random rand, BlockPos pos) {
-
         super.decorate(world, rand, pos);
 
         for (int i = 0; i < 4; i++) {
@@ -43,10 +42,5 @@ public class GDPinkAgateForest extends GDBiomeBase {
     @Override
     public WorldGenAbstractTree getRandomTreeFeature(Random par1Random) {
         return par1Random.nextInt(5) == 0 ? new GDGenNoTrees() : par1Random.nextInt(3) == 0 ? GaiaGenPinkTrees : new GDGenNoTrees();
-    }
-
-    @Override
-    public WorldGenerator getRandomWorldGenForGrass(Random rand) {
-        return new GDGenCrystalPlants(GDBlocks.crystal_growth);
     }
 }

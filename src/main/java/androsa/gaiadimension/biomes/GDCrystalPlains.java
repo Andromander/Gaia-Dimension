@@ -30,9 +30,4 @@ public class GDCrystalPlains extends GDBiomeBase {
     public WorldGenAbstractTree getRandomTreeFeature(Random par1Random) {
         return par1Random.nextInt(3) == 0 ? new GDGenNoTrees() : par1Random.nextInt(12) == 0 ? GaiaGenPinkTrees : new GDGenNoTrees();
     }
-
-    @Override
-    public WorldGenerator getRandomWorldGenForGrass(Random rand) {
-        return new GDGenCrystalPlants(GDBlocks.crystal_growth);
-    }
 }

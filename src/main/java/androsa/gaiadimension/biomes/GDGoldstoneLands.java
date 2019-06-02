@@ -50,6 +50,16 @@ public class GDGoldstoneLands extends GDBiomeBase {
     }
 
     @Override
+    public WorldGenerator getRandomFungus(Random rand) {
+        return new GDGenCrystalPlants(GDBlocks.corrupted_gaia_eye);
+    }
+
+    @Override
+    public WorldGenerator getRandomBloom(Random rand) {
+        return new GDGenCrystalPlants(GDBlocks.corrupt_varloom);
+    }
+
+    @Override
     @SideOnly(Side.CLIENT)
     public int getGrassColorAtPos(BlockPos pos) {
         return 0x232323;
