@@ -64,11 +64,13 @@ public class GaiaDimension {
         FluidRegistry.registerFluid(GDFluids.superhotMagma);
         FluidRegistry.registerFluid(GDFluids.sweetMuck);
         FluidRegistry.registerFluid(GDFluids.liquidBismuth);
+        FluidRegistry.registerFluid(GDFluids.liquidAura);
 
         FluidRegistry.addBucketForFluid(GDFluids.mineralWater);
         FluidRegistry.addBucketForFluid(GDFluids.superhotMagma);
         FluidRegistry.addBucketForFluid(GDFluids.sweetMuck);
         FluidRegistry.addBucketForFluid(GDFluids.liquidBismuth);
+        FluidRegistry.addBucketForFluid(GDFluids.liquidAura);
 
         proxy.doPreLoadRegistration();
     }

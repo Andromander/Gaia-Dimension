@@ -20,6 +20,7 @@ public class GDBiomeDecorator {
     private GDGenLavaLake extraLavaPoolGen = new GDGenLavaLake(GDBlocks.superhot_magma_block);
     private GDGenLavaLake extraMuckPoolGen = new GDGenLavaLake(GDBlocks.sweet_muck_block);
     private GDGenBismuthBog extraBismuthBogGen = new GDGenBismuthBog();
+    private GDGenAuraPond extraAuraPondGen = new GDGenAuraPond();
     /** Section for Fungi */
     public WorldGenerator goldorbShroomGen = new GDGenCrystalFungi(GDBlocks.gold_orb_tucher);
     public WorldGenerator elderShroomGen = new GDGenCrystalFungi(GDBlocks.elder_imklia);
@@ -38,6 +39,7 @@ public class GDBiomeDecorator {
     public float lavaPoolChance = 0;
     public float muckPoolChance;
     public float bismuthBogChance;
+    public float auraPondChance;
 
     public void decorate(World world, Random rand, Biome biome, BlockPos pos) {
         this.chunkProviderSettings = ChunkGeneratorSettings.Factory.jsonToFactory(world.getWorldInfo().getGeneratorOptions()).build();
@@ -120,6 +122,13 @@ public class GDBiomeDecorator {
             int rx = chunkPos.getX() + randomGenerator.nextInt(16) + 8;
             int rz = chunkPos.getZ() + randomGenerator.nextInt(16) + 8;
             extraBismuthBogGen.generate(world, randomGenerator, world.getHeight(new BlockPos(rx, 0, rz)));
+        }
+
+        //Handles the number of Aura Ponds per chunk
+        if (randomGenerator.nextFloat() <= auraPondChance) {
+            int rx = chunkPos.getX() + randomGenerator.nextInt(16) + 8;
+            int rz = chunkPos.getZ() + randomGenerator.nextInt(16) + 8;
+            extraAuraPondGen.generate(world, randomGenerator, world.getHeight(new BlockPos(rx, 0, rz)));
         }
     }
 

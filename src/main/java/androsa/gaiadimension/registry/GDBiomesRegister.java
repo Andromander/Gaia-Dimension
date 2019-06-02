@@ -122,6 +122,19 @@ public final class GDBiomesRegister {
         );
 
         biomes.register(
+                "shining_grove",
+                new GDShiningGrove(
+                        new BiomeProperties("Shining Grove")
+                                .setTemperature(0.5F)
+                                .setRainDisabled()
+                                .setRainfall(0.0F)
+                                .setBaseHeight(0.4F)
+                                .setHeightVariation(0.05F)
+                ),
+                Type.LUSH, Type.FOREST, Type.MAGICAL
+        );
+
+        biomes.register(
                 "smoldering_bog",
                 new GDSmolderingBog(
                         new BiomeProperties("Smoldering Bog")

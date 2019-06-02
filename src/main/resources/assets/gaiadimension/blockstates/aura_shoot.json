@@ -1,0 +1,13 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "textures": {
+      "side": "gaiadimension:blocks/aura_shoot",
+      "end": "gaiadimension:blocks/aura_shoot_tip"
+    }
+  },
+  "variants": {
+    "is_top=true": { "model": "gaiadimension:aura_shoot_top" },
+    "is_top=false": { "model": "gaiadimension:aura_shoot" }
+  }
+}

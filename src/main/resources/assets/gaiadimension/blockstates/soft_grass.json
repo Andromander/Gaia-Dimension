@@ -1,0 +1,21 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "grass",
+    "textures": {
+      "particle": "gaiadimension:blocks/light_soil",
+      "bottom":   "gaiadimension:blocks/light_soil",
+      "side":     "gaiadimension:blocks/soft_grass_side",
+      "overlay":  "gaiadimension:blocks/soft_grass_overlay"
+    }
+  },
+  "variants": {
+    "normal": [
+      { "textures": { "top": "gaiadimension:blocks/soft_grass_top" } },
+      { "textures": { "top": "gaiadimension:blocks/soft_grass_top" }, "y": 90 },
+      { "textures": { "top": "gaiadimension:blocks/soft_grass_top" }, "y": 180 },
+      { "textures": { "top": "gaiadimension:blocks/soft_grass_top" }, "y": 270 }
+    ],
+    "inventory": [{}]
+  }
+}

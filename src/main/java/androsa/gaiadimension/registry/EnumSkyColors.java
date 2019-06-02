@@ -10,7 +10,8 @@ public enum EnumSkyColors {
     STATIC_WASTELAND(40, 47, 82, 86, 213, 170),
     VOLCANICLAND(75, 30, 25, 245, 119, 112),
     GOLDSTONE(34, 34, 34, 188, 122, 44),
-    BISMUTH(50, 43, 51, 126, 105, 182);
+    BISMUTH(50, 43, 51, 126, 105, 182),
+    AURA(228, 243, 211, 255, 206, 73);
 
     private final short skyRed;
     private final short skyGreen;

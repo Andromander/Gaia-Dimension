@@ -4,6 +4,7 @@ import androsa.gaiadimension.GaiaDimension;
 import androsa.gaiadimension.block.*;
 import androsa.gaiadimension.block.tileentity.*;
 import androsa.gaiadimension.fluid.GDFluidBlock;
+import androsa.gaiadimension.fluid.GDLiquidAura;
 import androsa.gaiadimension.fluid.GDLiquidBismuth;
 import androsa.gaiadimension.fluid.GDSuperhotMagma;
 import androsa.gaiadimension.world.gen.*;
@@ -57,14 +58,17 @@ public final class GDBlocksRegister {
         blocks.register("superhot_magma_block", new GDSuperhotMagma(GDFluids.superhotMagma, Material.LAVA).setLightLevel(1.0F));
         blocks.register("sweet_muck_block", new GDFluidBlock(GDFluids.sweetMuck, Material.WATER, MapColor.PURPLE));
         blocks.register("liquid_bismuth_block", new GDLiquidBismuth(GDFluids.liquidBismuth, Material.LAVA));
+        blocks.register("liquid_aura_block", new GDLiquidAura(GDFluids.liquidAura, Material.WATER));
 
         //Natural Blocks
         blocks.register("heavy_soil", new GDGaiaSoil(MapColor.PURPLE_STAINED_HARDENED_CLAY));
         blocks.register("corrupt_soil", new GDGaiaSoil(MapColor.GRAY));
         blocks.register("boggy_soil", new GDGaiaSoil(MapColor.GRAY));
+        blocks.register("light_soil", new GDGaiaSoil(MapColor.GOLD));
         blocks.register("glitter_grass", new GDCrystalGrass(() -> GDBlocks.glitter_grass, () -> GDBlocks.heavy_soil));
         blocks.register("corrupt_grass", new GDCrystalGrass(() -> GDBlocks.corrupt_grass, () -> GDBlocks.corrupt_soil));
         blocks.register("murky_grass", new GDCrystalGrass(() -> GDBlocks.murky_grass, () -> GDBlocks.boggy_soil));
+        blocks.register("soft_grass", new GDCrystalGrass(() -> GDBlocks.soft_grass, () -> GDBlocks.light_soil));
         blocks.register("frail_glitter_block", new GDFrailGlitterBlock());
         blocks.register("thick_glitter_block", new GDBlock(Material.ROCK, MapColor.PURPLE_STAINED_HARDENED_CLAY, "pickaxe", 1).setHardness(1.5F).setResistance(7.5F));
         blocks.register("gummy_glitter_block", new GDGummyGlitterBlock());
@@ -76,6 +80,7 @@ public final class GDBlocksRegister {
         blocks.register("crystal_growth_black", new GDCrystalGrowth());
         blocks.register("crystal_growth_seared", new GDCrystalGrowth());
         blocks.register("crystal_growth_mutant", new GDCrystalGrowth());
+        blocks.register("crystal_growth_aura", new GDCrystalGrowth());
         blocks.register("thiscus", new GDCrystalBloom());
         blocks.register("ouzium", new GDCrystalBloom());
         blocks.register("agathum", new GDCrystalBloom());
@@ -102,6 +107,7 @@ public final class GDBlocksRegister {
         blocks.register("corrupted_sapling", new GDAgateSapling(() -> new GDGenGoldstoneCorruptTree(true)));
         blocks.register("burnt_sapling", new GDAgateSapling(() -> new GDGenBurntAgateTree(true)));
         blocks.register("burning_sapling", new GDAgateSapling(() -> new GDGenFieryAgateTree(true)));
+        blocks.register("aura_sapling", new GDAgateSapling(() -> new GDGenAuraTree(true)));
         blocks.register("pink_agate_leaves", new GDAgateLeaves(() -> Item.getItemFromBlock(GDBlocks.pink_agate_sapling), MapColor.MAGENTA));
         blocks.register("blue_agate_leaves", new GDAgateLeaves(() -> Item.getItemFromBlock(GDBlocks.blue_agate_sapling), MapColor.BLUE));
         blocks.register("green_agate_leaves", new GDAgateLeaves(() -> Item.getItemFromBlock(GDBlocks.green_agate_sapling), MapColor.GREEN));
@@ -110,6 +116,7 @@ public final class GDBlocksRegister {
         blocks.register("corrupted_leaves", new GDAgateLeaves(() -> GDItems.goldstone_dust, MapColor.TNT));
         blocks.register("burnt_leaves", new GDAgateLeaves(() -> Items.GUNPOWDER, MapColor.GRAY));
         blocks.register("burning_leaves", new GDAgateLeaves(() -> GDItems.hot_dust, MapColor.ORANGE_STAINED_HARDENED_CLAY).setLightLevel(0.3F));
+        blocks.register("aura_leaves", new GDAgateLeaves(() -> Item.getItemFromBlock(GDBlocks.aura_sapling), MapColor.SILVER));
         blocks.register("pink_agate_log", new GDAgateLog(MapColor.PINK_STAINED_HARDENED_CLAY));
         blocks.register("blue_agate_log", new GDAgateLog(MapColor.BLUE_STAINED_HARDENED_CLAY));
         blocks.register("green_agate_log", new GDAgateLog(MapColor.LIME_STAINED_HARDENED_CLAY));
@@ -118,6 +125,7 @@ public final class GDBlocksRegister {
         blocks.register("corrupted_log", new GDAgateLog(MapColor.GRAY_STAINED_HARDENED_CLAY));
         blocks.register("burnt_log", new GDAgateLog(MapColor.BLACK_STAINED_HARDENED_CLAY));
         blocks.register("burning_log", new GDAgateLog(MapColor.ORANGE_STAINED_HARDENED_CLAY).setLightLevel(0.3F));
+        blocks.register("aura_log", new GDAgateLog(MapColor.SILVER));
         blocks.register("salt", new GDSaltBlock());
         blocks.register("saltstone", new GDBlock(Material.ROCK, MapColor.LIGHT_BLUE_STAINED_HARDENED_CLAY, "pickaxe", 0).setHardness(1.5F).setResistance(10.0F));
         blocks.register("pebbles", new GDPebblesBlock());
@@ -133,6 +141,8 @@ public final class GDBlocksRegister {
         blocks.register("active_rock", new GDActiveRock());
         blocks.register("impure_sludge", new GDImpureSludge());
         blocks.register("geyser_block", new GDGeyserBlock());
+        blocks.register("sparkling_rock", new GDBlock(Material.ROCK, MapColor.SILVER, SoundType.GLASS, "pickaxe", 1).setHardness(10.0F).setResistance(150.0F));
+        blocks.register("aura_shoot", new GDAuraShoot());
 
         //Planks
         blocks.register("pink_agate_planks", new GDBlock(Material.WOOD, MapColor.PINK, SoundType.STONE, "axe", 0).setHardness(1.5F).setResistance(2.0F));
@@ -143,6 +153,7 @@ public final class GDBlocksRegister {
         blocks.register("corrupted_planks", new GDBlock(Material.WOOD, MapColor.BLACK_STAINED_HARDENED_CLAY, SoundType.STONE, "axe", 0).setHardness(1.5F).setResistance(2.0F));
         blocks.register("burnt_planks", new GDBlock(Material.WOOD, MapColor.BLACK, SoundType.STONE, "axe", 0).setHardness(1.5F).setResistance(2.0F));
         blocks.register("burning_planks", new GDBlock(Material.WOOD, MapColor.ORANGE_STAINED_HARDENED_CLAY, SoundType.STONE, "axe", 0).setHardness(1.5F).setResistance(2.0F).setLightLevel(0.5F));
+        blocks.register("aura_planks", new GDBlock(Material.WOOD, MapColor.SILVER, SoundType.STONE, "axe", 0).setHardness(1.5F).setResistance(2.0F));
         blocks.register("pink_agate_plank_slab", new GDAgatePlankSlab(false, MapColor.PINK_STAINED_HARDENED_CLAY));
         blocks.register("blue_agate_plank_slab", new GDAgatePlankSlab(false, MapColor.BLUE_STAINED_HARDENED_CLAY));
         blocks.register("green_agate_plank_slab", new GDAgatePlankSlab(false, MapColor.LIME_STAINED_HARDENED_CLAY));
@@ -151,6 +162,7 @@ public final class GDBlocksRegister {
         blocks.register("corrupted_plank_slab", new GDAgatePlankSlab(false, MapColor.GRAY_STAINED_HARDENED_CLAY));
         blocks.register("burnt_plank_slab", new GDAgatePlankSlab(false, MapColor.BLACK_STAINED_HARDENED_CLAY));
         blocks.register("burning_plank_slab", new GDAgatePlankSlab(false, MapColor.ORANGE_STAINED_HARDENED_CLAY).setLightLevel(0.5F));
+        blocks.register("aura_plank_slab", new GDAgatePlankSlab(false, MapColor.SILVER));
         blocks.register("double_pink_agate_plank_slab", new GDAgatePlankSlab(true, MapColor.PINK_STAINED_HARDENED_CLAY));
         blocks.register("double_blue_agate_plank_slab", new GDAgatePlankSlab(true, MapColor.BLUE_STAINED_HARDENED_CLAY));
         blocks.register("double_green_agate_plank_slab", new GDAgatePlankSlab(true, MapColor.LIME_STAINED_HARDENED_CLAY));
@@ -159,6 +171,7 @@ public final class GDBlocksRegister {
         blocks.register("double_corrupted_plank_slab", new GDAgatePlankSlab(true, MapColor.GRAY_STAINED_HARDENED_CLAY));
         blocks.register("double_burnt_plank_slab", new GDAgatePlankSlab(true, MapColor.BLACK_STAINED_HARDENED_CLAY));
         blocks.register("double_burning_plank_slab", new GDAgatePlankSlab(true, MapColor.ORANGE_STAINED_HARDENED_CLAY).setLightLevel(0.5F));
+        blocks.register("double_aura_plank_slab", new GDAgatePlankSlab(true, MapColor.SILVER));
         Block pinkPlanks    = new GDBlock(Material.WOOD, MapColor.PINK);
         Block bluePlanks    = new GDBlock(Material.WOOD, MapColor.LIGHT_BLUE);
         Block greenPlanks   = new GDBlock(Material.WOOD, MapColor.LIME);
@@ -167,6 +180,7 @@ public final class GDBlocksRegister {
         Block corruptPlanks = new GDBlock(Material.WOOD, MapColor.BLACK_STAINED_HARDENED_CLAY);
         Block burntPlanks   = new GDBlock(Material.WOOD, MapColor.BLACK);
         Block firePlanks    = new GDBlock(Material.WOOD, MapColor.ORANGE_STAINED_HARDENED_CLAY).setLightLevel(0.5F);
+        Block auraPlanks    = new GDBlock(Material.WOOD, MapColor.SILVER);
         blocks.register("pink_agate_plank_stairs", new GDAgatePlankStairs(pinkPlanks.getDefaultState(), MapColor.PINK_STAINED_HARDENED_CLAY));
         blocks.register("blue_agate_plank_stairs", new GDAgatePlankStairs(bluePlanks.getDefaultState(), MapColor.BLUE_STAINED_HARDENED_CLAY));
         blocks.register("green_agate_plank_stairs", new GDAgatePlankStairs(greenPlanks.getDefaultState(), MapColor.LIME_STAINED_HARDENED_CLAY));
@@ -175,6 +189,7 @@ public final class GDBlocksRegister {
         blocks.register("corrupted_plank_stairs", new GDAgatePlankStairs(corruptPlanks.getDefaultState(), MapColor.GRAY_STAINED_HARDENED_CLAY));
         blocks.register("burnt_plank_stairs", new GDAgatePlankStairs(burntPlanks.getDefaultState(), MapColor.BLACK_STAINED_HARDENED_CLAY));
         blocks.register("burning_plank_stairs", new GDAgatePlankStairs(firePlanks.getDefaultState(), MapColor.ORANGE_STAINED_HARDENED_CLAY).setLightLevel(0.5F));
+        blocks.register("aura_plank_stairs", new GDAgatePlankStairs(auraPlanks.getDefaultState(), MapColor.SILVER));
 
         //Manufactured Blocks
         blocks.register("cloudy_glass", new GDGlassBlock());

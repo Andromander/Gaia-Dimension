@@ -14,6 +14,8 @@ public class GDFluids {
             .setDensity(1000).setViscosity(750).setColor(0xFF800080);
     public static final Fluid liquidBismuth = registerFluid("liquid_bismuth", "liquidbismuth")
             .setDensity(2500).setViscosity(3500).setTemperature(300);
+    public static final Fluid liquidAura =    registerFluid("liquid_aura", "liquidaura")
+            .setViscosity(1500);
 
     private static Fluid registerFluid(String name, String dir) {
         return new Fluid(name, fluidPath(name, dir, "_still"), fluidPath(name, dir, "_flow"));

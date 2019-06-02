@@ -18,6 +18,7 @@ public class GDBiomes {
     public static final Biome goldstonelands = null;
     public static final Biome crystal_plains = null;
     public static final Biome salt_dunes = null;
+    public static final Biome shining_grove = null;
     public static final Biome smoldering_bog = null;
     public static final Biome mineral_reservoir = null;
     public static final Biome mineral_river = null;

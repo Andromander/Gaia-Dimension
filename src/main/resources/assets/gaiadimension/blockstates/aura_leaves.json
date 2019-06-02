@@ -1,0 +1,13 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "leaves",
+    "textures": {
+      "all": "gaiadimension:blocks/aura_leaves"
+    }
+  },
+  "variants": {
+    "normal": [{ }],
+    "inventory": [{ }]
+  }
+}

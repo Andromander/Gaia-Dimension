@@ -30,14 +30,17 @@ public class GDBlocks {
     public static final Block superhot_magma_block = null;
     public static final Block sweet_muck_block = null;
     public static final Block liquid_bismuth_block = null;
+    public static final Block liquid_aura_block = null;
 
     //Natural Blocks
     public static final Block heavy_soil = null;
     public static final Block corrupt_soil = null;
     public static final Block boggy_soil = null;
+    public static final Block light_soil = null;
     public static final Block glitter_grass = null;
     public static final Block corrupt_grass = null;
     public static final Block murky_grass = null;
+    public static final Block soft_grass = null;
     public static final Block frail_glitter_block = null;
     public static final Block thick_glitter_block = null;
     public static final Block gummy_glitter_block = null;
@@ -50,6 +53,7 @@ public class GDBlocks {
     public static final Block corrupted_leaves = null;
     public static final Block burnt_leaves = null;
     public static final Block burning_leaves = null;
+    public static final Block aura_leaves = null;
     public static final BlockLog pink_agate_log = null;
     public static final BlockLog blue_agate_log = null;
     public static final BlockLog green_agate_log = null;
@@ -58,6 +62,7 @@ public class GDBlocks {
     public static final BlockLog corrupted_log = null;
     public static final BlockLog burnt_log = null;
     public static final BlockLog burning_log = null;
+    public static final BlockLog aura_log = null;
     public static final Block salt = null;
     public static final Block saltstone = null;
     public static final Block pebbles = null;
@@ -73,6 +78,8 @@ public class GDBlocks {
     public static final Block active_rock = null;
     public static final Block impure_sludge = null;
     public static final Block geyser_block = null;
+    public static final Block sparkling_rock = null;
+    public static final Block aura_shoot = null;
 
     //Plants
     public static final Block crystal_growth = null;
@@ -80,6 +87,7 @@ public class GDBlocks {
     public static final Block crystal_growth_black = null;
     public static final Block crystal_growth_seared = null;
     public static final Block crystal_growth_mutant = null;
+    public static final Block crystal_growth_aura = null;
     public static final Block thiscus = null;
     public static final Block ouzium = null;
     public static final Block agathum = null;
@@ -105,6 +113,7 @@ public class GDBlocks {
     public static final Block corrupted_sapling = null;
     public static final Block burnt_sapling = null;
     public static final Block burning_sapling = null;
+    public static final Block aura_sapling = null;
 
     //Planks
     public static final Block pink_agate_planks = null;
@@ -115,6 +124,7 @@ public class GDBlocks {
     public static final Block corrupted_planks = null;
     public static final Block burnt_planks = null;
     public static final Block burning_planks = null;
+    public static final Block aura_planks = null;
     public static final BlockSlab pink_agate_plank_slab = null;
     public static final BlockSlab blue_agate_plank_slab = null;
     public static final BlockSlab green_agate_plank_slab = null;
@@ -123,6 +133,7 @@ public class GDBlocks {
     public static final BlockSlab corrupted_plank_slab = null;
     public static final BlockSlab burnt_plank_slab = null;
     public static final BlockSlab burning_plank_slab = null;
+    public static final BlockSlab aura_plank_slab = null;
     public static final BlockSlab double_pink_agate_plank_slab = null;
     public static final BlockSlab double_blue_agate_plank_slab = null;
     public static final BlockSlab double_green_agate_plank_slab = null;
@@ -131,6 +142,7 @@ public class GDBlocks {
     public static final BlockSlab double_corrupted_plank_slab = null;
     public static final BlockSlab double_burnt_plank_slab = null;
     public static final BlockSlab double_burning_plank_slab = null;
+    public static final BlockSlab double_aura_plank_slab = null;
     public static final Block pink_agate_plank_stairs = null;
     public static final Block blue_agate_plank_stairs = null;
     public static final Block green_agate_plank_stairs = null;
@@ -139,6 +151,7 @@ public class GDBlocks {
     public static final Block corrupted_plank_stairs = null;
     public static final Block burnt_plank_stairs = null;
     public static final Block burning_plank_stairs = null;
+    public static final Block aura_plank_stairs = null;
 
     //Manufactured
     public static final Block cloudy_glass = null;

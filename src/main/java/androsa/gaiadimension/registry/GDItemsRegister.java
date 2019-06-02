@@ -246,9 +246,11 @@ public class GDItemsRegister {
         items.registerBlock(GDBlocks.heavy_soil);
         items.registerBlock(GDBlocks.corrupt_soil);
         items.registerBlock(GDBlocks.boggy_soil);
+        items.registerBlock(GDBlocks.light_soil);
         items.registerBlock(GDBlocks.glitter_grass);
         items.registerBlock(GDBlocks.corrupt_grass);
         items.registerBlock(GDBlocks.murky_grass);
+        items.registerBlock(GDBlocks.soft_grass);
         items.registerBlock(GDBlocks.frail_glitter_block);
         items.registerBlock(GDBlocks.thick_glitter_block);
         items.registerBlock(GDBlocks.gummy_glitter_block);
@@ -260,6 +262,7 @@ public class GDItemsRegister {
         items.registerBlock(GDBlocks.crystal_growth_black);
         items.registerBlock(GDBlocks.crystal_growth_seared);
         items.registerBlock(GDBlocks.crystal_growth_mutant);
+        items.registerBlock(GDBlocks.crystal_growth_aura);
         items.registerBlock(GDBlocks.thiscus);
         items.registerBlock(GDBlocks.ouzium);
         items.registerBlock(GDBlocks.agathum);
@@ -286,6 +289,7 @@ public class GDItemsRegister {
         items.registerBlock(GDBlocks.corrupted_sapling);
         items.registerBlock(GDBlocks.burnt_sapling);
         items.registerBlock(GDBlocks.burning_sapling);
+        items.registerBlock(GDBlocks.aura_sapling);
         items.registerBlock(GDBlocks.pink_agate_leaves);
         items.registerBlock(GDBlocks.blue_agate_leaves);
         items.registerBlock(GDBlocks.green_agate_leaves);
@@ -294,6 +298,7 @@ public class GDItemsRegister {
         items.registerBlock(GDBlocks.corrupted_leaves);
         items.registerBlock(GDBlocks.burnt_leaves);
         items.registerBlock(GDBlocks.burning_leaves);
+        items.registerBlock(GDBlocks.aura_leaves);
         items.registerBlock(GDBlocks.pink_agate_log);
         items.registerBlock(GDBlocks.blue_agate_log);
         items.registerBlock(GDBlocks.green_agate_log);
@@ -302,6 +307,7 @@ public class GDItemsRegister {
         items.registerBlock(GDBlocks.corrupted_log);
         items.registerBlock(GDBlocks.burnt_log);
         items.registerBlock(GDBlocks.burning_log);
+        items.registerBlock(GDBlocks.aura_log);
         items.registerBlock(GDBlocks.salt);
         items.registerBlock(GDBlocks.saltstone);
         items.registerBlock(GDBlocks.pebbles);
@@ -317,6 +323,8 @@ public class GDItemsRegister {
         items.registerBlock(GDBlocks.active_rock);
         items.registerBlock(GDBlocks.impure_sludge);
         items.registerBlock(GDBlocks.geyser_block);
+        items.registerBlock(GDBlocks.sparkling_rock);
+        items.registerBlock(GDBlocks.aura_shoot);
 
         //Planks
         items.registerBlock(GDBlocks.pink_agate_planks);
@@ -327,6 +335,7 @@ public class GDItemsRegister {
         items.registerBlock(GDBlocks.corrupted_planks);
         items.registerBlock(GDBlocks.burnt_planks);
         items.registerBlock(GDBlocks.burning_planks);
+        items.registerBlock(GDBlocks.aura_planks);
         items.register(new ItemSlab(GDBlocks.pink_agate_plank_slab, GDBlocks.pink_agate_plank_slab, GDBlocks.double_pink_agate_plank_slab));
         items.register(new ItemSlab(GDBlocks.blue_agate_plank_slab, GDBlocks.blue_agate_plank_slab, GDBlocks.double_blue_agate_plank_slab));
         items.register(new ItemSlab(GDBlocks.green_agate_plank_slab, GDBlocks.green_agate_plank_slab, GDBlocks.double_green_agate_plank_slab));
@@ -335,6 +344,7 @@ public class GDItemsRegister {
         items.register(new ItemSlab(GDBlocks.corrupted_plank_slab, GDBlocks.corrupted_plank_slab, GDBlocks.double_corrupted_plank_slab));
         items.register(new ItemSlab(GDBlocks.burnt_plank_slab, GDBlocks.burnt_plank_slab, GDBlocks.double_burnt_plank_slab));
         items.register(new ItemSlab(GDBlocks.burning_plank_slab, GDBlocks.burning_plank_slab, GDBlocks.double_burning_plank_slab));
+        items.register(new ItemSlab(GDBlocks.aura_plank_slab, GDBlocks.aura_plank_slab, GDBlocks.double_aura_plank_slab));
         items.registerBlock(GDBlocks.pink_agate_plank_stairs);
         items.registerBlock(GDBlocks.blue_agate_plank_stairs);
         items.registerBlock(GDBlocks.green_agate_plank_stairs);
@@ -343,6 +353,7 @@ public class GDItemsRegister {
         items.registerBlock(GDBlocks.corrupted_plank_stairs);
         items.registerBlock(GDBlocks.burnt_plank_stairs);
         items.registerBlock(GDBlocks.burning_plank_stairs);
+        items.registerBlock(GDBlocks.aura_plank_stairs);
 
         items.registerBlock(GDBlocks.cloudy_glass);
         items.registerBlock(GDBlocks.foggy_glass);
@@ -414,6 +425,7 @@ public class GDItemsRegister {
         superhot_magma_bucket_item = FluidUtil.getFilledBucket(new FluidStack(GDFluids.superhotMagma, Fluid.BUCKET_VOLUME));
         sweet_muck_bucket_item = FluidUtil.getFilledBucket(new FluidStack(GDFluids.sweetMuck, Fluid.BUCKET_VOLUME));
         liquid_bismuth_bucket_item = FluidUtil.getFilledBucket(new FluidStack(GDFluids.liquidBismuth, Fluid.BUCKET_VOLUME));
+        liquid_aura_bucket_item = FluidUtil.getFilledBucket(new FluidStack(GDFluids.liquidAura, Fluid.BUCKET_VOLUME));
     }
 
     public static class ItemRegistryHelper {

@@ -32,6 +32,9 @@ public class ClientEvents {
         blocks.registerBlockColorHandler((state, worldIn, pos, tintIndex) -> worldIn != null && pos != null && worldIn.getBiome(pos) instanceof GDBiomeBase ? BiomeColorHelper.getGrassColorAtPos(worldIn, pos) : 0x606060,
                 GDBlocks.murky_grass);
 
+        blocks.registerBlockColorHandler((state, worldIn, pos, tintIndex) -> worldIn != null && pos != null && worldIn.getBiome(pos) instanceof GDBiomeBase ? BiomeColorHelper.getGrassColorAtPos(worldIn, pos) : 0x606060,
+                GDBlocks.soft_grass);
+
         blocks.registerBlockColorHandler((state, worldIn, pos, tintIndex) -> {
             int red = (int) ((MathHelper.cos((float) Math.toRadians(pos.getX() * 2)) + 1F) / 2F * 0xFF);
             int green = (int) ((MathHelper.cos((float) Math.toRadians(pos.getY() * 2)) + 1F) / 3F * 0xFF);
@@ -43,6 +46,67 @@ public class ClientEvents {
 
             return (blue << 16) | (red << 8) | green;
         }, GDBlocks.liquid_bismuth_block);
+
+        blocks.registerBlockColorHandler((state, worldIn, pos, tintIndex) -> {
+            if (worldIn != null && pos != null) {
+                int red = (int) ((MathHelper.cos((float) Math.toRadians((pos.getX() + 100) * 8)) + 1F) / 2F * 0xFF);
+                int green = (int) ((MathHelper.cos((float) Math.toRadians((pos.getY() + 100) * 32)) + 1F) / 2F * 0xFF);
+                int blue = (int) ((MathHelper.cos((float) Math.toRadians((pos.getZ() + 100) * 8)) + 1F) / 2F * 0xFF);
+
+                red = MathHelper.clamp(red, 150, 256);
+                green = MathHelper.clamp(green, 100, 220);
+                blue = MathHelper.clamp(blue, 150, 256);
+
+                return (red << 16) | (green << 8) | blue;
+            } else {
+                return 0xFFFFFF;
+            }
+
+        }, GDBlocks.liquid_aura_block, GDBlocks.aura_leaves);
+
+        blocks.registerBlockColorHandler((state, worldIn, pos, tintIndex) -> {
+            int hex;
+
+            if (worldIn != null && pos != null) {
+                int location = (Math.abs(pos.getX() % 5)) + (Math.abs(pos.getZ() % 5));
+                switch (location) {
+                    case 0:
+                        hex = 0xEA500D;
+                        break;
+                    case 1:
+                        hex = 0xFFC24C;
+                        break;
+                    case 2:
+                        hex = 0xC1ED26;
+                        break;
+                    case 3:
+                        hex = 0x67FFB9;
+                        break;
+                    case 4:
+                        hex = 0x265AEf;
+                        break;
+                    case 5:
+                        hex = 0x5C0AD7;
+                        break;
+                    case 6:
+                        hex = 0x5D3883;
+                        break;
+                    case 7:
+                        hex = 0xC330E8;
+                        break;
+                    case 8:
+                        hex = 0xFF6CAE;
+                        break;
+                    default:
+                        hex = 0x5D3883;
+                        break;
+                }
+            } else {
+                hex = 0x1109B7;
+            }
+
+            return hex;
+        }, GDBlocks.aura_shoot);
     }
 
     @SubscribeEvent
@@ -53,7 +117,8 @@ public class ClientEvents {
         items.registerItemColorHandler((stack, tintIndex) -> blocks.colorMultiplier(((ItemBlock)stack.getItem()).getBlock().getDefaultState(), null, null, tintIndex),
                 GDBlocks.glitter_grass,
                 GDBlocks.crystal_growth,
-                GDBlocks.murky_grass);
+                GDBlocks.murky_grass,
+                GDBlocks.aura_shoot);
     }
 
     @SubscribeEvent
