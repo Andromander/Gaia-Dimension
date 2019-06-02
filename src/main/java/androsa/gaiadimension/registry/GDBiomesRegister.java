@@ -25,6 +25,7 @@ public final class GDBiomesRegister {
                         new BiomeProperties("Pink Agate Forest")
                                 .setTemperature(0.66F)
                                 .setRainDisabled()
+                                .setRainfall(0.0F)
                                 .setBaseHeight(0.1F)
                                 .setHeightVariation(0.1F)
                 ),
@@ -37,6 +38,7 @@ public final class GDBiomesRegister {
                         new BiomeProperties("Blue Agate Taiga")
                                 .setTemperature(0.4F)
                                 .setRainDisabled()
+                                .setRainfall(0.0F)
                                 .setBaseHeight(0.1F)
                                 .setHeightVariation(0.2F)
                 ),
@@ -49,6 +51,7 @@ public final class GDBiomesRegister {
                         new BiomeProperties("Green Agate Jungle")
                                 .setTemperature(0.75F)
                                 .setRainDisabled()
+                                .setRainfall(0.0F)
                                 .setBaseHeight(0.1F)
                                 .setHeightVariation(0.2F)
                 ),
@@ -60,6 +63,7 @@ public final class GDBiomesRegister {
                         new BiomeProperties("Purple Agate Swamp")
                                 .setTemperature(0.7F)
                                 .setRainDisabled()
+                                .setRainfall(0.0F)
                                 .setHeightVariation(0.05F)
                 ),
                 Type.SWAMP, Type.MAGICAL
@@ -71,6 +75,7 @@ public final class GDBiomesRegister {
                         new BiomeProperties("Fossil Woodland")
                                 .setTemperature(0.66F)
                                 .setRainDisabled()
+                                .setRainfall(0.0F)
                                 .setBaseHeight(0.1F)
                                 .setHeightVariation(0.05F)
                 ),
@@ -83,6 +88,7 @@ public final class GDBiomesRegister {
                         new BiomeProperties("Mutant Agate Wildwood")
                                 .setTemperature(0.66F)
                                 .setRainDisabled()
+                                .setRainfall(0.0F)
                                 .setBaseHeight(0.1F)
                                 .setHeightVariation(0.1F)
                 ),
@@ -95,6 +101,7 @@ public final class GDBiomesRegister {
                         new BiomeProperties("Crystal Plains")
                                 .setTemperature(0.66F)
                                 .setRainDisabled()
+                                .setRainfall(0.0F)
                                 .setBaseHeight(0.05F)
                                 .setHeightVariation(0.05F)
                 ),
@@ -107,6 +114,7 @@ public final class GDBiomesRegister {
                         new BiomeProperties("Salt Dunes")
                                 .setTemperature(0.8F)
                                 .setRainDisabled()
+                                .setRainfall(0.0F)
                                 .setBaseHeight(0.2F)
                                 .setHeightVariation(0.05F)
                 ),
@@ -119,6 +127,7 @@ public final class GDBiomesRegister {
                         new BiomeProperties("Smoldering Bog")
                                 .setTemperature(0.9F)
                                 .setRainDisabled()
+                                .setRainfall(0.0F)
                                 .setBaseHeight(0.2F)
                                 .setHeightVariation(0.02F)
                 ),
@@ -130,7 +139,7 @@ public final class GDBiomesRegister {
                 new GDVolcanicLands(
                         new BiomeProperties("Volcaniclands")
                                 .setTemperature(0.9F)
-                                .setRainfall(0)
+                                .setRainfall(0.0F)
                                 .setRainDisabled()
                                 .setBaseHeight(1F)
                                 .setHeightVariation(0.7F)
@@ -143,7 +152,7 @@ public final class GDBiomesRegister {
                 new GDStaticWasteland(
                         new BiomeProperties("Static Wasteland")
                                 .setTemperature(0.4F)
-                                .setRainfall(0)
+                                .setRainfall(0.0F)
                                 .setRainDisabled()
                                 .setBaseHeight(3F)
                                 .setHeightVariation(0.05F)
@@ -156,7 +165,7 @@ public final class GDBiomesRegister {
                 new GDGoldstoneLands(
                         new BiomeProperties("Goldstonelands")
                                 .setTemperature(0.55F)
-                                .setRainfall(0)
+                                .setRainfall(0.0F)
                                 .setRainDisabled()
                                 .setBaseHeight(0.125F)
                                 .setHeightVariation(0.05F)
@@ -169,7 +178,7 @@ public final class GDBiomesRegister {
                 new GDMineralReservoir(
                         new BiomeProperties("Mineral Reservoir")
                                 .setTemperature(0.66F)
-                                .setRainfall(0)
+                                .setRainfall(0.0F)
                                 .setRainDisabled()
                                 .setBaseHeight(-1.8F)
                                 .setHeightVariation(0.1F)
@@ -182,7 +191,7 @@ public final class GDBiomesRegister {
                 new GDMineralRiver(
                         new BiomeProperties("Mineral River")
                                 .setTemperature(0.5F)
-                                .setRainfall(0)
+                                .setRainfall(0.0F)
                                 .setRainDisabled()
                                 .setBaseHeight(-0.5F)
                                 .setHeightVariation(0)
