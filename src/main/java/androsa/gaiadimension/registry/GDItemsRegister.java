@@ -11,6 +11,9 @@ import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemSlab;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.fluids.Fluid;
+import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.registries.IForgeRegistry;
@@ -403,6 +406,14 @@ public class GDItemsRegister {
         items.registerBlock(GDBlocks.speckled_rock);
         items.registerBlock(GDBlocks.coarse_rock);
         items.registerBlock(GDBlocks.precious_rock);
+
+        /*
+         * Buckets of Fluids
+         */
+        mineral_water_bucket_item = FluidUtil.getFilledBucket(new FluidStack(GDFluids.mineralWater, Fluid.BUCKET_VOLUME));
+        superhot_magma_bucket_item = FluidUtil.getFilledBucket(new FluidStack(GDFluids.superhotMagma, Fluid.BUCKET_VOLUME));
+        sweet_muck_bucket_item = FluidUtil.getFilledBucket(new FluidStack(GDFluids.sweetMuck, Fluid.BUCKET_VOLUME));
+        liquid_bismuth_bucket_item = FluidUtil.getFilledBucket(new FluidStack(GDFluids.liquidBismuth, Fluid.BUCKET_VOLUME));
     }
 
     public static class ItemRegistryHelper {
