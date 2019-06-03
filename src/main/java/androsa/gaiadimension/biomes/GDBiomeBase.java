@@ -51,6 +51,10 @@ public abstract class GDBiomeBase extends Biome {
         biomeDecorator.flowersPerChunk = 2;
         biomeDecorator.fungiPerChunk = 1;
 
+        this.flowers.clear();
+        this.flowers.add(new FlowerEntry(GDBlocks.thiscus.getDefaultState(), 20));
+        this.flowers.add(new FlowerEntry(GDBlocks.ouzium.getDefaultState(), 10));
+
         this.topBlock = GDBlocks.glitter_grass.getDefaultState();
         this.fillerBlock = GDBlocks.heavy_soil.getDefaultState();
     }

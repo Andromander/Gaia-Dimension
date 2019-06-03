@@ -1,6 +1,7 @@
 package androsa.gaiadimension.registry;
 
 import androsa.gaiadimension.GaiaDimension;
+import androsa.gaiadimension.block.GDCorruptGrass;
 import androsa.gaiadimension.block.*;
 import androsa.gaiadimension.block.tileentity.*;
 import androsa.gaiadimension.fluid.GDFluidBlock;
@@ -65,10 +66,10 @@ public final class GDBlocksRegister {
         blocks.register("corrupt_soil", new GDGaiaSoil(MapColor.GRAY));
         blocks.register("boggy_soil", new GDGaiaSoil(MapColor.GRAY));
         blocks.register("light_soil", new GDGaiaSoil(MapColor.GOLD));
-        blocks.register("glitter_grass", new GDCrystalGrass(() -> GDBlocks.glitter_grass, () -> GDBlocks.heavy_soil));
-        blocks.register("corrupt_grass", new GDCrystalGrass(() -> GDBlocks.corrupt_grass, () -> GDBlocks.corrupt_soil));
-        blocks.register("murky_grass", new GDCrystalGrass(() -> GDBlocks.murky_grass, () -> GDBlocks.boggy_soil));
-        blocks.register("soft_grass", new GDCrystalGrass(() -> GDBlocks.soft_grass, () -> GDBlocks.light_soil));
+        blocks.register("glitter_grass", new GDGlitterGrass());
+        blocks.register("corrupt_grass", new GDCorruptGrass());
+        blocks.register("murky_grass", new GDMurkyGrass());
+        blocks.register("soft_grass", new GDSoftGrass());
         blocks.register("frail_glitter_block", new GDFrailGlitterBlock());
         blocks.register("thick_glitter_block", new GDBlock(Material.ROCK, MapColor.PURPLE_STAINED_HARDENED_CLAY, "pickaxe", 1).setHardness(1.5F).setResistance(7.5F));
         blocks.register("gummy_glitter_block", new GDGummyGlitterBlock());

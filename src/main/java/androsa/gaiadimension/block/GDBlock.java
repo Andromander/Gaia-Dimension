@@ -41,6 +41,7 @@ public class GDBlock extends Block implements ModelRegisterCallback {
         setSoundType(SoundType.STONE);
         setCreativeTab(GDTabs.tabBlock);
     }
+
     public GDBlock(Material material, SoundType sound) {
         super(material);
 
@@ -48,6 +49,13 @@ public class GDBlock extends Block implements ModelRegisterCallback {
         setCreativeTab(GDTabs.tabBlock);
     }
 
+    public GDBlock(Material material, SoundType sound, String toolClass, int harvestLevel) {
+        super(material);
+
+        setSoundType(sound);
+        setCreativeTab(GDTabs.tabBlock);
+        setHarvestLevel(toolClass, harvestLevel);
+    }
 
     public GDBlock(Material material) {
         super(material);

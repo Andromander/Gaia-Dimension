@@ -27,6 +27,8 @@ public class GDSmolderingBog extends GDBiomeBase implements IDangerousBiome {
 
         spawnableCreatureList.add(new SpawnListEntry(GDBismuthUletrus.class, 15, 2, 3));
 
+        flowers.clear();
+
         skyColor = EnumSkyColors.BISMUTH;
         biomeDecorator.treesPerChunk = -1;
         biomeDecorator.grassPerChunk = -1;

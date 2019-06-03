@@ -14,6 +14,8 @@ public class GDSaltDunes extends GDBiomeBase {
 
         spawnableCreatureList.add(new SpawnListEntry(GDSaltion.class, 15, 1, 3));
 
+        flowers.clear();
+
         skyColor = EnumSkyColors.SALT_DUNES;
         biomeDecorator.treesPerChunk = -1;
         biomeDecorator.grassPerChunk = -1;

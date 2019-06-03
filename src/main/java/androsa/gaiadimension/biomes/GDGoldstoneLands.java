@@ -28,6 +28,10 @@ public class GDGoldstoneLands extends GDBiomeBase {
         spawnableCreatureList.add(new SpawnListEntry(GDContortedNaga.class, 10, 2, 3));
         spawnableCreatureList.add(new SpawnListEntry(GDCorruptSapper.class, 20, 2, 4));
 
+        flowers.clear();
+        flowers.add(new FlowerEntry(GDBlocks.corrupt_varloom.getDefaultState(), 20));
+        flowers.add(new FlowerEntry(GDBlocks.corrupted_gaia_eye.getDefaultState(), 5));
+
         skyColor = EnumSkyColors.GOLDSTONE;
         topBlock = GDBlocks.corrupt_grass.getDefaultState();
         fillerBlock = GDBlocks.corrupt_soil.getDefaultState();

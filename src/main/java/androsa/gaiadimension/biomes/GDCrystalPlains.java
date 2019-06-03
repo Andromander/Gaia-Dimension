@@ -21,6 +21,8 @@ public class GDCrystalPlains extends GDBiomeBase {
         spawnableCreatureList.add(new SpawnListEntry(GDGrowthSapper.class, 20, 4, 6));
         spawnableCreatureList.add(new SpawnListEntry(GDCrystalGolem.class, 15, 1, 3));
 
+        flowers.add(new FlowerEntry(GDBlocks.spotted_kersei.getDefaultState(), 5));
+
         GaiaGenPinkTrees = new GDGenPinkAgateTree(false);
 
         biomeDecorator.grassPerChunk = 5;

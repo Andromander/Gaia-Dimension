@@ -27,6 +27,11 @@ public class GDMutantAgateWildwood extends GDBiomeBase {
         spawnableCreatureList.add(new SpawnListEntry(GDGrowthSapper.class, 40, 3, 5));
         spawnableCreatureList.add(new SpawnListEntry(GDMutantGrowthExtractor.class, 5, 2, 4));
 
+        flowers.clear();
+        flowers.add(new FlowerEntry(GDBlocks.ouzium.getDefaultState(), 20));
+        flowers.add(new FlowerEntry(GDBlocks.agathum.getDefaultState(), 10));
+        flowers.add(new FlowerEntry(GDBlocks.mystical_murgni.getDefaultState(), 5));
+
         skyColor = EnumSkyColors.MUTANT_AGATE;
     }
 

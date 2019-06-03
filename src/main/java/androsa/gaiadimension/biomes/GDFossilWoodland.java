@@ -26,6 +26,8 @@ public class GDFossilWoodland extends GDBiomeBase {
         spawnableCreatureList.add(new SpawnListEntry(GDRuggedLurmorus.class, 10, 1, 3));
         spawnableCreatureList.add(new SpawnListEntry(GDAncientLagrahk.class, 10, 1, 1));
 
+        this.flowers.add(new FlowerEntry(GDBlocks.stickly_cupsir.getDefaultState(), 5));
+
         GaiaGenFossilTrees = new GDGenFossilizedTree(false);
     }
 

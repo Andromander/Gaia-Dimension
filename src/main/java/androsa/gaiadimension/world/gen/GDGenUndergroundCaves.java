@@ -1,6 +1,6 @@
 package androsa.gaiadimension.world.gen;
 
-import androsa.gaiadimension.block.GDCrystalGrass;
+import androsa.gaiadimension.block.GDGaiaGrass;
 import androsa.gaiadimension.registry.GDBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -153,7 +153,7 @@ public class GDGenUndergroundCaves extends MapGenCaves {
                                             final IBlockState blockStateAt = blockStorage.getBlockState(genX, caveY, genZ);
                                             Block blockAt = blockStateAt.getBlock();
 
-                                            if (blockAt instanceof GDCrystalGrass || blockAt == GDBlocks.corrupt_grass) {
+                                            if (blockAt instanceof GDGaiaGrass || blockAt == GDBlocks.corrupt_grass) {
                                                 hitGrass = true;
                                             }
 

@@ -30,6 +30,8 @@ public class GDBlueAgateTaiga extends GDBiomeBase {
         spawnableCreatureList.add(new SpawnListEntry(GDBlueHowliteWolf.class, 1, 1, 1));
 
         skyColor = EnumSkyColors.BLUE_AGATE;
+
+        flowers.add(new FlowerEntry(GDBlocks.thorny_wiltha.getDefaultState(), 5));
     }
 
     @Override

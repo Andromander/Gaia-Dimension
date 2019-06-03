@@ -27,6 +27,8 @@ public class GDStaticWasteland extends GDBiomeBase implements IDangerousBiome {
 
         this.spawnableCreatureList.add(new SpawnListEntry(GDLesserShockshooter.class, 10, 2, 4));
 
+        flowers.clear();
+
         skyColor = EnumSkyColors.STATIC_WASTELAND;
         biomeDecorator.treesPerChunk = -1;
         biomeDecorator.grassPerChunk = -1;

@@ -1,7 +1,7 @@
 package androsa.gaiadimension.block;
 
-import androsa.gaiadimension.biomes.*;
 import net.minecraft.block.Block;
+import net.minecraft.block.IGrowable;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
@@ -12,7 +12,6 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.EnumPlantType;
 import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.fml.relauncher.Side;
@@ -21,41 +20,28 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import java.util.Random;
 import java.util.function.Supplier;
 
-public class GDCrystalGrass extends GDBlock {
+public abstract class GDGaiaGrass extends GDBlock implements IGrowable {
 
     private final Supplier<Block> grassSupplier, dirtSupplier;
 
-    public GDCrystalGrass(Supplier<Block> grass, Supplier<Block> dirt) {
-        super(Material.GRASS, SoundType.PLANT);
+    public GDGaiaGrass(Supplier<Block> grass, Supplier<Block> dirt) {
+        super(Material.GRASS, SoundType.PLANT, "shovel", 0);
 
         this.setHardness(0.9F);
         this.setTickRandomly(true);
-        this.setHarvestLevel("shovel", 0);
 
         grassSupplier = grass;
         dirtSupplier = dirt;
     }
 
-    @Override
-    @Deprecated
-    public MapColor getMapColor(IBlockState state, IBlockAccess worldIn, BlockPos pos) {
-        Biome biome = worldIn.getBiome(pos);
+    public GDGaiaGrass(MapColor color, Supplier<Block> grass, Supplier<Block> dirt) {
+        super(Material.GRASS, color, SoundType.PLANT, "shovel", 0);
 
-        if (biome instanceof GDBlueAgateTaiga)
-            return MapColor.LIGHT_BLUE;
-        if (biome instanceof GDGreenAgateJungle)
-            return MapColor.LIME;
-        if (biome instanceof GDPurpleAgateSwamp)
-            return MapColor.PURPLE;
-        if (biome instanceof GDFossilWoodland)
-            return MapColor.YELLOW_STAINED_HARDENED_CLAY;
-        if (biome instanceof GDMutantAgateWildwood)
-            return MapColor.WHITE_STAINED_HARDENED_CLAY;
-        if (biome instanceof GDStaticWasteland)
-            return MapColor.CYAN;
-        if (biome instanceof GDVolcanicLands || biome instanceof GDGoldstoneLands)
-            return MapColor.BLACK;
-        return MapColor.PINK;
+        this.setHardness(0.9F);
+        this.setTickRandomly(true);
+
+        grassSupplier = grass;
+        dirtSupplier = dirt;
     }
 
     @Override
@@ -93,5 +79,15 @@ public class GDCrystalGrass extends GDBlock {
     @Override
     public BlockRenderLayer getRenderLayer() {
         return BlockRenderLayer.CUTOUT_MIPPED;
+    }
+
+    @Override
+    public boolean canGrow(World worldIn, BlockPos pos, IBlockState state, boolean isClient) {
+        return true;
+    }
+
+    @Override
+    public boolean canUseBonemeal(World worldIn, Random rand, BlockPos pos, IBlockState state) {
+        return true;
     }
 }

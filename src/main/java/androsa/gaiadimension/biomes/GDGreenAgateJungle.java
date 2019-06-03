@@ -28,6 +28,8 @@ public class GDGreenAgateJungle extends GDBiomeBase {
 
         GaiaGenGreenTrees = new GDGenGreenAgateTree(false);
 
+        flowers.add(new FlowerEntry(GDBlocks.roofed_agaric.getDefaultState(), 5));
+
         skyColor = EnumSkyColors.GREEN_AGATE;
         biomeDecorator.grassPerChunk = 4;
         biomeDecorator.treesPerChunk = 20;

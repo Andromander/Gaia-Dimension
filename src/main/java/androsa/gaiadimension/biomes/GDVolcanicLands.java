@@ -29,6 +29,8 @@ public class GDVolcanicLands extends GDBiomeBase implements IDangerousBiome {
 
         this.spawnableCreatureList.add(new SpawnListEntry(GDLesserSpitfire.class, 10, 2, 4));
 
+        flowers.clear();
+
         skyColor = EnumSkyColors.VOLCANICLAND;
         biomeDecorator.lavaPoolChance = 0.25F;
         biomeDecorator.grassPerChunk = 1;

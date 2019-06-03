@@ -24,6 +24,8 @@ public class GDPinkAgateForest extends GDBiomeBase {
         spawnableCreatureList.add(new SpawnListEntry(GDGrowthSapper.class, 20, 3, 5));
         spawnableCreatureList.add(new SpawnListEntry(GDAgateGolem.class, 15, 1, 2));
 
+        flowers.add(new FlowerEntry(GDBlocks.spotted_kersei.getDefaultState(), 5));
+
         GaiaGenPinkTrees = new GDGenPinkAgateTree(false);
     }
 

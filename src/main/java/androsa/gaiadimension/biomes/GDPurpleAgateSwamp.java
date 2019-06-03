@@ -31,6 +31,11 @@ public class GDPurpleAgateSwamp extends GDBiomeBase {
         spawnableCreatureList.add(new SpawnListEntry(GDSpellElement.class, 10, 1, 2));
         spawnableCreatureList.add(new SpawnListEntry(GDMuckling.class, 10, 1, 1));
 
+        flowers.clear();
+        flowers.add(new FlowerEntry(GDBlocks.ouzium.getDefaultState(), 20));
+        flowers.add(new FlowerEntry(GDBlocks.thiscus.getDefaultState(), 10));
+        flowers.add(new FlowerEntry(GDBlocks.bulbous_hobina.getDefaultState(), 5));
+
         GaiaGenPurpleTrees = new GDGenPurpleAgateTree(false);
 
         skyColor = EnumSkyColors.PURPLE_AGATE;

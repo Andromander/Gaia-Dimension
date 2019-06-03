@@ -71,7 +71,7 @@ public class GDCrystalGrowth extends BlockBush implements IShearable, ModelRegis
     }
 
     public boolean canPlaceBlockAt(IBlockState state) {
-        return state.getBlock() instanceof GDCrystalGrass || state.getBlock() instanceof GDGaiaSoil;
+        return state.getBlock() instanceof GDGaiaGrass || state.getBlock() instanceof GDGaiaSoil;
     }
 
     @Override
