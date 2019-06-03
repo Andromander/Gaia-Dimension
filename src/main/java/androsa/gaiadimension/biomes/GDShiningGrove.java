@@ -30,7 +30,7 @@ public class GDShiningGrove extends GDBiomeBase {
         biomeDecorator.grassPerChunk = 2;
         biomeDecorator.lakesPerChunk = -1;
         biomeDecorator.fungiPerChunk = -1;
-        biomeDecorator.flowersPerChunk = -1;
+        biomeDecorator.flowersPerChunk = 1;
         biomeDecorator.auraPondChance = 0.3F;
     }
 
