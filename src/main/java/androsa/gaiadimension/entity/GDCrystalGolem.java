@@ -2,7 +2,6 @@ package androsa.gaiadimension.entity;
 
 import androsa.gaiadimension.registry.GDBiomes;
 import androsa.gaiadimension.registry.GDBlocks;
-import com.google.common.base.Predicate;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -37,7 +36,6 @@ public class GDCrystalGolem extends EntityGolem {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
     protected void initEntityAI() {
         this.tasks.addTask(1, new EntityAIAttackMelee(this, 0.3D, true));
         this.tasks.addTask(2, new EntityAIMoveTowardsTarget(this, 0.3D, 32.0F));
@@ -45,8 +43,8 @@ public class GDCrystalGolem extends EntityGolem {
         this.tasks.addTask(4, new EntityAIWatchClosest(this, EntityPlayer.class, 6.0F));
         this.tasks.addTask(5, new EntityAILookIdle(this));
         this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, false));
-        this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, GDAgateGolem.class, false));
-        this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityLiving.class, 10, false, true, (Predicate<EntityLiving>) apply -> apply != null && IMob.VISIBLE_MOB_SELECTOR.apply(apply) && !(apply instanceof EntityCreeper)));
+        this.targetTasks.addTask(2, new EntityAINearestAttackableTarget<>(this, GDAgateGolem.class, false));
+        this.targetTasks.addTask(3, new EntityAINearestAttackableTarget<>(this, EntityLiving.class, 10, false, true, apply -> apply != null && IMob.VISIBLE_MOB_SELECTOR.apply(apply) && !(apply instanceof EntityCreeper)));
     }
 
     @Override

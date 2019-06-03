@@ -38,7 +38,7 @@ public class GDAncientLagrahk extends EntityMob {
         this.tasks.addTask(5, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
         this.tasks.addTask(5, new EntityAILookIdle(this));
         this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, false));
-        this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, GDRuggedLurmorus.class, false));
+        this.targetTasks.addTask(2, new EntityAINearestAttackableTarget<>(this, GDRuggedLurmorus.class, false));
     }
 
     @Override

@@ -33,7 +33,6 @@ public class GDAgateGolem extends EntityMob {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
     protected void initEntityAI() {
         this.tasks.addTask(1, new EntityAIAttackMelee(this, 0.3D, true));
         this.tasks.addTask(2, new EntityAIMoveTowardsTarget(this, 0.3D, 32.0F));
@@ -41,7 +40,7 @@ public class GDAgateGolem extends EntityMob {
         this.tasks.addTask(4, new EntityAIWatchClosest(this, EntityPlayer.class, 6.0F));
         this.tasks.addTask(5, new EntityAILookIdle(this));
         this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, false));
-        this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityGolem.class, false));
+        this.targetTasks.addTask(2, new EntityAINearestAttackableTarget<>(this, EntityGolem.class, false));
     }
 
     @Override

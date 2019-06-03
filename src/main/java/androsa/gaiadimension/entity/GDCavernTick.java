@@ -34,7 +34,7 @@ public class GDCavernTick extends EntityMob implements IMob {
         this.tasks.addTask(2, new EntityAIWander(this, 1.5D, 30));
         this.tasks.addTask(4, new EntityAIAttackMelee(this, 1.5D, false));
         this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, true));
-        this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityPlayer.class, true));
+        this.targetTasks.addTask(2, new EntityAINearestAttackableTarget<>(this, EntityPlayer.class, true));
     }
 
     @Override

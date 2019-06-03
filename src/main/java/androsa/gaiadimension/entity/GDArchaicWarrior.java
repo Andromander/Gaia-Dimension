@@ -40,7 +40,7 @@ public class GDArchaicWarrior extends EntityMob implements IMob {
         this.tasks.addTask(7, new EntityAIWanderAvoidWater(this, 0.8D));
         this.tasks.addTask(8, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
         this.tasks.addTask(8, new EntityAILookIdle(this));
-        this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityPlayer.class, true));
+        this.targetTasks.addTask(2, new EntityAINearestAttackableTarget<>(this, EntityPlayer.class, true));
     }
 
     @Override
