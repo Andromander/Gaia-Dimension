@@ -3,11 +3,15 @@ package androsa.gaiadimension.entity;
 import androsa.gaiadimension.GaiaDimension;
 import androsa.gaiadimension.registry.GDBiomes;
 import androsa.gaiadimension.registry.GDBlocks;
+import androsa.gaiadimension.registry.GDPotions;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.EnumCreatureAttribute;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.*;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
@@ -50,6 +54,36 @@ public class GDContortedNaga extends EntityMob {
     @Override
     public float getEyeHeight() {
         return 2.3F;
+    }
+
+    @Override
+    public boolean attackEntityAsMob(Entity entityIn) {
+        if (super.attackEntityAsMob(entityIn)) {
+            if (entityIn instanceof EntityLivingBase) {
+                int i;
+
+                switch (this.world.getDifficulty()) {
+                    case EASY:
+                        i = 5;
+                        break;
+                    case NORMAL:
+                        i = 10;
+                        break;
+                    case HARD:
+                        i = 20;
+                        break;
+                    default:
+                        i = 0;
+                }
+
+                if (i > 0) {
+                    ((EntityLivingBase)entityIn).addPotionEffect(new PotionEffect(GDPotions.goldstone_plague, i * 20, 0));
+                }
+            }
+            return true;
+        } else {
+            return false;
+        }
     }
 
     @Override
