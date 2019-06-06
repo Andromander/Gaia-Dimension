@@ -27,14 +27,15 @@ public class GDAncientLagrahk extends EntityMob {
         this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(8);
         this.getEntityAttribute(SharedMonsterAttributes.KNOCKBACK_RESISTANCE).setBaseValue(1.0D);
         this.getEntityAttribute(SharedMonsterAttributes.ARMOR).setBaseValue(2.0D);
+        this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.6D);
     }
 
     @Override
     protected void initEntityAI() {
         this.tasks.addTask(1, new EntityAISwimming(this));
         this.tasks.addTask(2, new EntityAILeapAtTarget(this, 0.5F));
-        this.tasks.addTask(3, new EntityAIAttackMelee(this, 0.3D, true));
-        this.tasks.addTask(4, new EntityAIWanderAvoidWater(this, 0.2D));
+        this.tasks.addTask(3, new EntityAIAttackMelee(this, 0.5D, true));
+        this.tasks.addTask(4, new EntityAIWanderAvoidWater(this, 0.5D));
         this.tasks.addTask(5, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
         this.tasks.addTask(5, new EntityAILookIdle(this));
         this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, false));

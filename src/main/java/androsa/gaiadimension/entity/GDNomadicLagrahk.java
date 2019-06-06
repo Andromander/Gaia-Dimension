@@ -38,6 +38,7 @@ public class GDNomadicLagrahk extends EntityCreature {
         this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(120.0D);
         this.getEntityAttribute(SharedMonsterAttributes.KNOCKBACK_RESISTANCE).setBaseValue(1.0D);
         this.getEntityAttribute(SharedMonsterAttributes.ARMOR).setBaseValue(2.0D);
+        this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.6D);
     }
 
     @Override
@@ -71,7 +72,7 @@ public class GDNomadicLagrahk extends EntityCreature {
     @Override
     protected void initEntityAI() {
         this.tasks.addTask(1, new EntityAISwimming(this));
-        this.tasks.addTask(4, new EntityAIWanderAvoidWater(this, 0.2D));
+        this.tasks.addTask(4, new EntityAIWanderAvoidWater(this, 0.5D));
         this.tasks.addTask(5, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
         this.tasks.addTask(5, new EntityAILookIdle(this));
     }
