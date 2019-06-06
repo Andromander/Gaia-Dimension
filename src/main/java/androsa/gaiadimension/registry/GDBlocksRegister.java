@@ -248,19 +248,19 @@ public final class GDBlocksRegister {
         blocks.register("chalcedony_block",  new GDStorageBlock(MapColor.SNOW).setHardness(5.0F).setResistance(10.0F));
 
         //Ores
-        blocks.register("sugilite_ore",    new GDOre(MapColor.PURPLE, "pickaxe", 1, () -> GDItems.sugilite).setHardness(4.0F).setResistance(25.0F));
-        blocks.register("hematite_ore",    new GDOre(MapColor.GRAY, "pickaxe", 2, () -> GDItems.hematite).setHardness(4.0F).setResistance(25.0F));
-        blocks.register("pyrite_ore",      new GDOre(MapColor.GOLD, "pickaxe", 2, () -> GDItems.pyrite).setHardness(4.0F).setResistance(25.0F));
-        blocks.register("opal_ore_red",    new GDOre(MapColor.RED, "pickaxe", 2, () -> GDItems.red_opal).setHardness(4.0F).setResistance(25.0F));
-        blocks.register("opal_ore_blue",   new GDOre(MapColor.LIGHT_BLUE, "pickaxe", 2, () -> GDItems.blue_opal).setHardness(4.0F).setResistance(25.0F));
-        blocks.register("opal_ore_green",  new GDOre(MapColor.LIME, "pickaxe", 2, () -> GDItems.green_opal).setHardness(4.0F).setResistance(25.0F));
-        blocks.register("opal_ore_white",  new GDOre(MapColor.SNOW, "pickaxe", 3, () -> GDItems.white_opal).setHardness(4.0F).setResistance(25.0F));
-        blocks.register("labradorite_ore", new GDOre(MapColor.GREEN, "pickaxe", 2, () -> GDItems.labradorite).setHardness(4.0F).setResistance(25.0F));
-        blocks.register("moonstone_ore",   new GDOre(MapColor.SILVER, "pickaxe", 2, () -> GDItems.moonstone).setHardness(4.0F).setResistance(25.0F));
-        blocks.register("cinnabar_ore",    new GDOre(MapColor.ADOBE, "pickaxe", 2, () -> GDItems.cinnabar).setHardness(4.0F).setResistance(25.0F));
-        blocks.register("speckled_rock",   new GDOre(MapColor.MAGENTA, "pickaxe", 1, null).setHardness(4.0F).setResistance(25.0F));
-        blocks.register("coarse_rock",     new GDOre(MapColor.MAGENTA, "pickaxe", 2, null).setHardness(4.0F).setResistance(25.0F));
-        blocks.register("precious_rock",   new GDOre(MapColor.MAGENTA, "pickaxe", 3, null).setHardness(4.0F).setResistance(25.0F));
+        blocks.register("sugilite_ore",    new GDOre(MapColor.PURPLE, "pickaxe", 1, 0, 3, () -> GDItems.sugilite).setHardness(4.0F).setResistance(25.0F));
+        blocks.register("hematite_ore",    new GDOre(MapColor.GRAY, "pickaxe", 2, 1, 4, () -> GDItems.hematite).setHardness(4.0F).setResistance(25.0F));
+        blocks.register("pyrite_ore",      new GDOre(MapColor.GOLD, "pickaxe", 2, 1, 4, () -> GDItems.pyrite).setHardness(4.0F).setResistance(25.0F));
+        blocks.register("opal_ore_red",    new GDOre(MapColor.RED, "pickaxe", 2, 2, 5, () -> GDItems.red_opal).setHardness(4.0F).setResistance(25.0F));
+        blocks.register("opal_ore_blue",   new GDOre(MapColor.LIGHT_BLUE, "pickaxe", 2, 2, 5, () -> GDItems.blue_opal).setHardness(4.0F).setResistance(25.0F));
+        blocks.register("opal_ore_green",  new GDOre(MapColor.LIME, "pickaxe", 2, 2, 5, () -> GDItems.green_opal).setHardness(4.0F).setResistance(25.0F));
+        blocks.register("opal_ore_white",  new GDOre(MapColor.SNOW, "pickaxe", 3, 3, 7, () -> GDItems.white_opal).setHardness(4.0F).setResistance(25.0F));
+        blocks.register("labradorite_ore", new GDOre(MapColor.GREEN, "pickaxe", 2, 5, 2, () -> GDItems.labradorite).setHardness(4.0F).setResistance(25.0F));
+        blocks.register("moonstone_ore",   new GDOre(MapColor.SILVER, "pickaxe", 2, 5, 2, () -> GDItems.moonstone).setHardness(4.0F).setResistance(25.0F));
+        blocks.register("cinnabar_ore",    new GDOre(MapColor.ADOBE, "pickaxe", 2, 1, 4, () -> GDItems.cinnabar).setHardness(4.0F).setResistance(25.0F));
+        blocks.register("speckled_rock",   new GDOre(MapColor.MAGENTA, "pickaxe", 1).setHardness(4.0F).setResistance(25.0F));
+        blocks.register("coarse_rock",     new GDOre(MapColor.MAGENTA, "pickaxe", 2).setHardness(4.0F).setResistance(25.0F));
+        blocks.register("precious_rock",   new GDOre(MapColor.MAGENTA, "pickaxe", 3).setHardness(4.0F).setResistance(25.0F));
 
         GameRegistry.registerTileEntity(TileEntitySmallCrate.class, new ResourceLocation("gaiadimension:small_crate"));
         GameRegistry.registerTileEntity(TileEntityLargeCrate.class, new ResourceLocation("gaiadimension:large_crate"));
