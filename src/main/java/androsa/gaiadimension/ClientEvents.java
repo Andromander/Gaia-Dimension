@@ -32,19 +32,23 @@ public class ClientEvents {
         blocks.registerBlockColorHandler((state, worldIn, pos, tintIndex) -> worldIn != null && pos != null && worldIn.getBiome(pos) instanceof GDBiomeBase ? BiomeColorHelper.getGrassColorAtPos(worldIn, pos) : 0x606060,
                 GDBlocks.murky_grass);
 
-        blocks.registerBlockColorHandler((state, worldIn, pos, tintIndex) -> worldIn != null && pos != null && worldIn.getBiome(pos) instanceof GDBiomeBase ? BiomeColorHelper.getGrassColorAtPos(worldIn, pos) : 0x606060,
+        blocks.registerBlockColorHandler((state, worldIn, pos, tintIndex) -> worldIn != null && pos != null && worldIn.getBiome(pos) instanceof GDBiomeBase ? BiomeColorHelper.getGrassColorAtPos(worldIn, pos) : 0xA0A0A0,
                 GDBlocks.soft_grass);
 
         blocks.registerBlockColorHandler((state, worldIn, pos, tintIndex) -> {
-            int red = (int) ((MathHelper.cos((float) Math.toRadians(pos.getX() * 2)) + 1F) / 2F * 0xFF);
-            int green = (int) ((MathHelper.cos((float) Math.toRadians(pos.getY() * 2)) + 1F) / 3F * 0xFF);
-            int blue = (int) ((MathHelper.cos((float) Math.toRadians(pos.getZ() * 2)) + 1F) / 2F * 0xFF);
+            if (worldIn != null && pos != null) {
+                int red = (int) ((MathHelper.cos((float) Math.toRadians(pos.getX() * 2)) + 1F) / 2F * 0xFF);
+                int green = (int) ((MathHelper.cos((float) Math.toRadians(pos.getY() * 2)) + 1F) / 3F * 0xFF);
+                int blue = (int) ((MathHelper.cos((float) Math.toRadians(pos.getZ() * 2)) + 1F) / 2F * 0xFF);
 
-            red = MathHelper.clamp(red, 0, 170);
-            green = MathHelper.clamp(green, 0, 160);
-            blue = MathHelper.clamp(blue, 0, 180);
+                red = MathHelper.clamp(red, 0, 170);
+                green = MathHelper.clamp(green, 0, 160);
+                blue = MathHelper.clamp(blue, 0, 180);
 
-            return (blue << 16) | (red << 8) | green;
+                return (blue << 16) | (red << 8) | green;
+            } else {
+                return 0x808080;
+            }
         }, GDBlocks.liquid_bismuth_block);
 
         blocks.registerBlockColorHandler((state, worldIn, pos, tintIndex) -> {
@@ -118,7 +122,8 @@ public class ClientEvents {
                 GDBlocks.glitter_grass,
                 GDBlocks.crystal_growth,
                 GDBlocks.murky_grass,
-                GDBlocks.aura_shoot);
+                GDBlocks.aura_shoot,
+                GDBlocks.soft_grass);
     }
 
     @SubscribeEvent
