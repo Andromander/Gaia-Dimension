@@ -92,6 +92,14 @@ public class GDItems {
     public static final Item markuzar_mint = null;
     public static final Item luggeroth_chop = null;
     public static final Item cooked_luggeroth_chop = null;
+    public static final Item tilipi = null;
+    public static final Item tilibl = null;
+    public static final Item tiligr = null;
+    public static final Item tilipu = null;
+    public static final Item tiliol = null;
+    public static final Item tilimy = null;
+    public static final Item plagued_tiliey = null;
+    public static final Item tiliou = null;
 
     public static final Item hematite_powder = null;
     public static final Item pyrite_powder = null;

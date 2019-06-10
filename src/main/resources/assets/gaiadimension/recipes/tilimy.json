@@ -1,0 +1,14 @@
+{
+  "result": {
+    "item": "gaiadimension:tilimy"
+  },
+  "ingredients": [
+    {
+      "item": "gaiadimension:thiscus"
+    },
+    {
+      "item": "gaiadimension:mystical_murgni"
+    }
+  ],
+  "type": "minecraft:crafting_shapeless"
+}

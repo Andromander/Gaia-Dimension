@@ -1,0 +1,14 @@
+{
+  "result": {
+    "item": "gaiadimension:tilipi"
+  },
+  "ingredients": [
+    {
+      "item": "gaiadimension:thiscus"
+    },
+    {
+      "item": "gaiadimension:spotted_kersei"
+    }
+  ],
+  "type": "minecraft:crafting_shapeless"
+}

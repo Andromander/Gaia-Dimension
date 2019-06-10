@@ -82,6 +82,14 @@ public class GDItemsRegister {
         items.register("markuzar_mint", new GDFood(2, 0.4F, false));
         items.register("luggeroth_chop", new GDFood(3, 0.3F, false));
         items.register("cooked_luggeroth_chop", new GDFood(8, 0.8F, false));
+        items.register("tilipi", new GDTiliFood(5, 0.6F, false));
+        items.register("tilibl", new GDTiliFood(5, 0.6F, false));
+        items.register("tiligr", new GDTiliFood(7, 0.3F, false));
+        items.register("tilipu", new GDTiliFood(7, 0.3F,false));
+        items.register("tiliol", new GDTiliFood(5, 0.6F,false));
+        items.register("tilimy", new GDTiliFood(7, 0.3F,false));
+        items.register("plagued_tiliey", new GDTiliFood(7, 0.3F,true));
+        items.register("tiliou", new GDTiliFood(5, 0.6F, false));
 
         items.register("hematite_powder", new GDGroundGem());
         items.register("pyrite_powder", new GDGroundGem());

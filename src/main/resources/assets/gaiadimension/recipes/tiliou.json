@@ -1,0 +1,14 @@
+{
+  "result": {
+    "item": "gaiadimension:tiliou"
+  },
+  "ingredients": [
+    {
+      "item": "gaiadimension:thiscus"
+    },
+    {
+      "item": "gaiadimension:ouzium"
+    }
+  ],
+  "type": "minecraft:crafting_shapeless"
+}

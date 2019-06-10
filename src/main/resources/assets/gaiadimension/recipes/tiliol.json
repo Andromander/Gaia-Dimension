@@ -1,0 +1,14 @@
+{
+  "result": {
+    "item": "gaiadimension:tiliol"
+  },
+  "ingredients": [
+    {
+      "item": "gaiadimension:thiscus"
+    },
+    {
+      "item": "gaiadimension:stickly_cupsir"
+    }
+  ],
+  "type": "minecraft:crafting_shapeless"
+}

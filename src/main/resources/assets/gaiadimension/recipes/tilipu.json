@@ -1,0 +1,14 @@
+{
+  "result": {
+    "item": "gaiadimension:tilipu"
+  },
+  "ingredients": [
+    {
+      "item": "gaiadimension:thiscus"
+    },
+    {
+      "item": "gaiadimension:bulbous_hobina"
+    }
+  ],
+  "type": "minecraft:crafting_shapeless"
+}
