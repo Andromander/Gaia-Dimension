@@ -24,6 +24,7 @@ public class GDRecipes {
         OreDictionary.registerOre("planksAgate", new ItemStack(GDBlocks.corrupted_planks, 1));
         OreDictionary.registerOre("planksAgate", new ItemStack(GDBlocks.burnt_planks, 1));
         OreDictionary.registerOre("planksAgate", new ItemStack(GDBlocks.burning_planks, 1));
+        OreDictionary.registerOre("planksAgate", new ItemStack(GDBlocks.aura_planks, 1));
         if (GDConfig.oreDict.sugilite) {
             OreDictionary.registerOre("oreSugilite", new ItemStack(GDBlocks.sugilite_ore, 1));
             OreDictionary.registerOre("gemSugilite", new ItemStack(GDItems.sugilite, 1));
