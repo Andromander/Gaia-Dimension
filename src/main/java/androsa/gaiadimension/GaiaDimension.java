@@ -33,7 +33,7 @@ import org.apache.logging.log4j.Logger;
 
 public class GaiaDimension {
     public static final String MODID = "gaiadimension";
-    public static final String VERSION = "1.0.3";
+    public static final String VERSION = "1.0.4";
     public static final String NAME = "Gaia Dimension";
 
     public static final GDItems items = new GDItems();
