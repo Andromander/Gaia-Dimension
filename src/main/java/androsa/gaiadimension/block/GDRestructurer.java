@@ -3,6 +3,7 @@ package androsa.gaiadimension.block;
 import androsa.gaiadimension.GaiaDimension;
 import androsa.gaiadimension.block.tileentity.TileEntityRestructurer;
 import androsa.gaiadimension.proxy.CommonProxy;
+import androsa.gaiadimension.registry.EnumParticlesGD;
 import androsa.gaiadimension.registry.GDBlocks;
 import androsa.gaiadimension.registry.GDTabs;
 import androsa.gaiadimension.registry.ModelRegisterCallback;
@@ -151,16 +152,16 @@ public class GDRestructurer extends Block implements ModelRegisterCallback, ITil
 
             switch (enumfacing) {
                 case WEST:
-                    world.spawnParticle(EnumParticleTypes.END_ROD, d0 - d3, d1, d2 + d4, 0.0D, 0.0D, 0.0D);
+                    GaiaDimension.proxy.spawnParticle(EnumParticlesGD.RESTRUCTURER_FIRE, d0 - d3, d1, d2 + d4, 0.0D, 0.0D, 0.0D);
                     break;
                 case EAST:
-                    world.spawnParticle(EnumParticleTypes.END_ROD, d0 + d3, d1, d2 + d4, 0.0D, 0.0D, 0.0D);
+                    GaiaDimension.proxy.spawnParticle(EnumParticlesGD.RESTRUCTURER_FIRE, d0 + d3, d1, d2 + d4, 0.0D, 0.0D, 0.0D);
                     break;
                 case NORTH:
-                    world.spawnParticle(EnumParticleTypes.END_ROD, d0 + d4, d1, d2 - d3, 0.0D, 0.0D, 0.0D);
+                    GaiaDimension.proxy.spawnParticle(EnumParticlesGD.RESTRUCTURER_FIRE, d0 + d4, d1, d2 - d3, 0.0D, 0.0D, 0.0D);
                     break;
                 case SOUTH:
-                    world.spawnParticle(EnumParticleTypes.END_ROD, d0 + d4, d1, d2 + d3, 0.0D, 0.0D, 0.0D);
+                    GaiaDimension.proxy.spawnParticle(EnumParticlesGD.RESTRUCTURER_FIRE, d0 + d4, d1, d2 + d3, 0.0D, 0.0D, 0.0D);
                 default:
                     break;
             }

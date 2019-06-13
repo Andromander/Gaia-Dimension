@@ -10,7 +10,7 @@ import androsa.gaiadimension.item.inventory.ContainerGemPouch;
 import androsa.gaiadimension.item.inventory.GuiGemPouch;
 import androsa.gaiadimension.item.inventory.InventoryGemPouch;
 import androsa.gaiadimension.model.*;
-import androsa.gaiadimension.particle.ParticleGeyserSmoke;
+import androsa.gaiadimension.particle.*;
 import androsa.gaiadimension.registry.EnumParticlesGD;
 import androsa.gaiadimension.registry.GDItems;
 import androsa.gaiadimension.renderer.*;
@@ -96,7 +96,7 @@ public class ClientProxy extends CommonProxy {
     }
 
     @Override
-    public void spawnParticle(EnumParticlesGD particle, double x, double y, double z, double velocityX, double velocityY, double velocityZ) {
+    public void spawnParticle(EnumParticlesGD particle, double x, double y, double z, double speedX, double speedY, double speedZ) {
         Minecraft mc = Minecraft.getMinecraft();
         Entity entity = mc.getRenderViewEntity();
         World world = mc.world;
@@ -104,20 +104,32 @@ public class ClientProxy extends CommonProxy {
         if (entity != null && mc.effectRenderer != null) {
             int i = mc.gameSettings.particleSetting;
 
-            if(i == 1 && world.rand.nextInt(3) == 0) {
+            if (i == 1 && world.rand.nextInt(3) == 0) {
                 i = 2;
             }
 
-            double eX = entity.posX - x;
-            double eY = entity.posY - y;
-            double eZ = entity.posZ - z;
+            double dx = entity.posX - x;
+            double dy = entity.posY - y;
+            double dz = entity.posZ - z;
 
-            if (eX * eX + eY * eY + eZ * eZ <= 1024D && i <= 1) {
+            if (dx * dx + dy * dy + dz * dz <= 1024D && i <= 1) {
                 Particle part = null;
 
                 switch (particle) {
                     case GEYSER_SMOKE:
-                        part = new ParticleGeyserSmoke(world, x, y, z, velocityX, velocityY, velocityZ);
+                        part = new ParticleGeyserSmoke(world, x, y, z, speedX, speedY, speedZ);
+                        break;
+                    case RESTRUCTURER_FIRE:
+                        part = new ParticleRestructurerFire(world, x, y, z, speedX, speedY, speedZ);
+                        break;
+                    case PURIFIER_FIRE:
+                        part = new ParticlePurifierFire(world, x, y, z, speedX, speedY, speedZ);
+                        break;
+                    case PORTAL:
+                        part = new ParticleGaiaPortal(world, x, y, z, speedX, speedY, speedZ);
+                        break;
+                    case PYRITE:
+                        part = new ParticlePyrite(world, x, y, z, speedX, speedY, speedZ);
                         break;
                 }
 

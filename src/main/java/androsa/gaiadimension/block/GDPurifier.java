@@ -3,6 +3,7 @@ package androsa.gaiadimension.block;
 import androsa.gaiadimension.GaiaDimension;
 import androsa.gaiadimension.block.tileentity.TileEntityPurifier;
 import androsa.gaiadimension.proxy.CommonProxy;
+import androsa.gaiadimension.registry.EnumParticlesGD;
 import androsa.gaiadimension.registry.GDBlocks;
 import androsa.gaiadimension.registry.GDTabs;
 import androsa.gaiadimension.registry.ModelRegisterCallback;
@@ -23,7 +24,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
-import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
@@ -151,16 +151,16 @@ public class GDPurifier extends Block implements ModelRegisterCallback, ITileEnt
 
             switch (enumfacing) {
                 case WEST:
-                    world.spawnParticle(EnumParticleTypes.CRIT_MAGIC, d0 - d3, d1, d2 + d4, 0.0D, 0.0D, 0.0D);
+                    GaiaDimension.proxy.spawnParticle(EnumParticlesGD.PURIFIER_FIRE, d0 - d3, d1, d2 + d4, 0.0D, 0.0D, 0.0D);
                     break;
                 case EAST:
-                    world.spawnParticle(EnumParticleTypes.CRIT_MAGIC, d0 + d3, d1, d2 + d4, 0.0D, 0.0D, 0.0D);
+                    GaiaDimension.proxy.spawnParticle(EnumParticlesGD.PURIFIER_FIRE, d0 + d3, d1, d2 + d4, 0.0D, 0.0D, 0.0D);
                     break;
                 case NORTH:
-                    world.spawnParticle(EnumParticleTypes.CRIT_MAGIC, d0 + d4, d1, d2 - d3, 0.0D, 0.0D, 0.0D);
+                    GaiaDimension.proxy.spawnParticle(EnumParticlesGD.PURIFIER_FIRE, d0 + d4, d1, d2 - d3, 0.0D, 0.0D, 0.0D);
                     break;
                 case SOUTH:
-                    world.spawnParticle(EnumParticleTypes.CRIT_MAGIC, d0 + d4, d1, d2 + d3, 0.0D, 0.0D, 0.0D);
+                    GaiaDimension.proxy.spawnParticle(EnumParticlesGD.PURIFIER_FIRE, d0 + d4, d1, d2 + d3, 0.0D, 0.0D, 0.0D);
                 default:
                     break;
             }

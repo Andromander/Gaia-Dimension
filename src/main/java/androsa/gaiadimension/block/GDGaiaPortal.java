@@ -1,8 +1,9 @@
 package androsa.gaiadimension.block;
 
+import androsa.gaiadimension.GaiaDimension;
+import androsa.gaiadimension.registry.EnumParticlesGD;
 import androsa.gaiadimension.registry.GDBlocks;
 import androsa.gaiadimension.registry.GDConfig;
-import androsa.gaiadimension.registry.GDTabs;
 import androsa.gaiadimension.registry.ModelRegisterCallback;
 import androsa.gaiadimension.world.TeleporterGaia;
 import mcp.MethodsReturnNonnullByDefault;
@@ -15,7 +16,6 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.SoundEvents;
-import net.minecraft.item.ItemStack;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
@@ -205,7 +205,7 @@ public class GDGaiaPortal extends BlockPortal implements ModelRegisterCallback {
                 d5 = (double)(rand.nextFloat() * 2.0F * (float)j);
             }
 
-            worldIn.spawnParticle(EnumParticleTypes.PORTAL, d0, d1, d2, d3, d4, d5);
+            GaiaDimension.proxy.spawnParticle(EnumParticlesGD.PORTAL, d0, d1, d2, d3, d4, d5);
         }
     }
 

@@ -7,11 +7,14 @@ import androsa.gaiadimension.registry.GDItemsRegister;
 import androsa.gaiadimension.registry.ModelRegisterCallback;
 import net.minecraft.client.renderer.color.BlockColors;
 import net.minecraft.client.renderer.color.ItemColors;
+import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.item.ItemBlock;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.biome.BiomeColorHelper;
 import net.minecraftforge.client.event.ColorHandlerEvent;
 import net.minecraftforge.client.event.ModelRegistryEvent;
+import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
@@ -131,5 +134,14 @@ public class ClientEvents {
         for (ModelRegisterCallback b : GDBlocksRegister.getBlockModels()) b.registerModel();
 
         for (ModelRegisterCallback i : GDItemsRegister.ItemRegistryHelper.getItemModels()) i.registerModel();
+    }
+
+    @SubscribeEvent
+    public static void textureStitch(TextureStitchEvent.Pre e) {
+        TextureMap map = e.getMap();
+
+        map.registerSprite(new ResourceLocation(GaiaDimension.MODID, "particle/yellow_fire"));
+        map.registerSprite(new ResourceLocation(GaiaDimension.MODID, "particle/green_fire"));
+        map.registerSprite(new ResourceLocation(GaiaDimension.MODID, "particle/portal_sparkle"));
     }
 }
