@@ -33,8 +33,10 @@ public class WorldProviderGaia extends WorldProviderSurface {
         EntityPlayer player = Minecraft.getMinecraft().player;
         Biome biome = world.getBiome(new BlockPos(player.posX, player.posY, player.posZ));
 
-        if (GDConfig.dimension.skyColors == EnumSkyColors.PURPLE_AGATE || ((GDBiomeBase)biome).skyColor == EnumSkyColors.PURPLE_AGATE) {
-            return 0.5F;
+        if (biome instanceof GDBiomeBase) {
+            if (GDConfig.dimension.skyColors == EnumSkyColors.PURPLE_AGATE || ((GDBiomeBase)biome).skyColor == EnumSkyColors.PURPLE_AGATE) {
+                return 0.5F;
+            }
         }
         return world.getStarBrightnessBody(par1);
     }
