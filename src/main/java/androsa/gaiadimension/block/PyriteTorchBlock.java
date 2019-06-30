@@ -1,0 +1,29 @@
+package androsa.gaiadimension.block;
+
+import androsa.gaiadimension.GaiaDimension;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.TorchBlock;
+import net.minecraft.block.material.Material;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
+
+import java.util.Random;
+
+public class PyriteTorchBlock extends TorchBlock {
+
+    public PyriteTorchBlock() {
+        super(Properties.create(Material.MISCELLANEOUS).hardnessAndResistance(0.0F).lightValue(14));
+    }
+
+    @Override
+    @OnlyIn(Dist.CLIENT)
+    public void animateTick(BlockState state, World world, BlockPos pos, Random rand) {
+        double d0 = (double)pos.getX() + rand.nextDouble() * 0.5D + 0.2D;
+        double d1 = (double)pos.getY() + rand.nextDouble() * 0.7D + 0.2D;
+        double d2 = (double)pos.getZ() + rand.nextDouble() * 0.5D + 0.2D;
+
+        GaiaDimension.proxy.spawnParticle(EnumParticlesGD.PYRITE, d0, d1, d2, 0.0D, 0.0D, 0.0D);
+    }
+}
