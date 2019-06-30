@@ -1,14 +1,17 @@
 buildscript {
     repositories {
+        maven { url = 'https://files.minecraftforge.net/maven' }
         jcenter()
-        maven { url = "http://files.minecraftforge.net/maven" }
+        mavenCentral()
     }
     dependencies {
-        classpath 'net.minecraftforge.gradle:ForgeGradle:2.3-SNAPSHOT'
+        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '3.+', changing: true
     }
 }
-apply plugin: 'net.minecraftforge.gradle.forge'
+apply plugin: 'net.minecraftforge.gradle'
 //Only edit below this line, the above code adds and enables the necessary things for Forge to be setup.
+apply plugin: 'eclipse'
+apply plugin: 'maven-publish'
 
 version = project.mod_version
 group = project.mod_group
@@ -20,24 +23,63 @@ if (System.getenv("TRAVIS_BUILD_NUMBER") != null) {
 }
 String jarVersion = fullVersion.replace("+", "-")
 
-sourceCompatibility = targetCompatibility = '1.8' // Need this here so eclipse task generates correctly.
-compileJava {
-    sourceCompatibility = targetCompatibility = '1.8'
-}
+sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '1.8' // Need this here so eclipse task generates correctly.
 
 minecraft {
-    version = "${project.mc_version}-${project.forge_version}"
-    runDir = "run"
-    replace '${version}', fullVersion
-    mappings = project.forge_mappings
+    mappings channel: project.forge_channel, version: project.forge_mappings
+    //version = "${project.mc_version}-${project.forge_version}"
+    // makeObfSourceJar = false // an Srg named sources jar is made by default. uncomment this to disable.
+
+    accessTransformer = file('gd_at.cfg')
+
+    // default run configurations.
+    // these can be tweaked, removed, or duplicated as needed.
+    runs {
+        client {
+            workingDirectory project.file('run')
+
+            // Recommended logging data for a userdev environment
+            property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
+
+            // Recommended logging level for the console
+            property 'forge.logging.console.level', 'debug'
+
+            mods {
+                nifty {
+                    source sourceSets.main
+                }
+            }
+        }
+
+        server {
+            workingDirectory project.file('run')
+
+            // Recommended logging data for a userdev environment
+            property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
+
+            // Recommended logging level for the console
+            property 'forge.logging.console.level', 'debug'
+
+            mods {
+                nifty {
+                    source sourceSets.main
+                }
+            }
+        }
+    }
 }
 
 jar {
     archiveName = archivesBaseName + "-" + jarVersion + ".jar"
 
-    classifier = 'universal'
     manifest {
-        attributes 'FMLAT': 'gd_at.cfg'
+        attributes(["Specification-Title": "gaiadimension",
+                    "Specification-Vendor": "Androsa",
+                    "Specification-Version": "1", // We are version 1 of the modlauncher specification
+                    "Implementation-Title": project.name,
+                    "Implementation-Version": "${fullVersion}",
+                    "Implementation-Vendor" :"Androsa",
+                    "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")],)
     }
 }
 
@@ -51,6 +93,7 @@ artifacts {
     archives sourcesJar
 }
 
+/*
 repositories {
     maven {
         name = "tterrag maven"
@@ -67,28 +110,11 @@ repositories {
         url = "modmaven.k-4u.nl"
     }
 }
-
+*/
 dependencies {
-    compile "team.chisel.ctm:CTM:${project.ctm_version}"
-    deobfProvided "mezz.jei:jei_${mc_version}:${jei_version}:api"
-    runtime "mezz.jei:jei_${mc_version}:${jei_version}"
-}
+    //compile "team.chisel.ctm:CTM:${project.ctm_version}"
+    //deobfProvided "mezz.jei:jei_${mc_version}:${jei_version}:api"
+    //runtime "mezz.jei:jei_${mc_version}:${jei_version}"
 
-processResources {
-    // this will ensure that this task is redone when the versions change.
-    inputs.property "version", project.version
-    inputs.property "mcversion", project.minecraft.version
-
-    // replace stuff in mcmod.info, nothing else
-    from(sourceSets.main.resources.srcDirs) {
-        include 'mcmod.info'
-
-        // replace version and mcversion
-        expand 'version':project.version, 'mcversion':project.minecraft.version
-    }
-
-    // copy everything else except the mcmod.info
-    from(sourceSets.main.resources.srcDirs) {
-        exclude 'mcmod.info'
-    }
+    minecraft "net.minecraftforge:forge:${project.mc_version}-${project.forge_version}"
 }
