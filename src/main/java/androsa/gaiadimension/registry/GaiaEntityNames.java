@@ -1,4 +1,4 @@
-package androsa.gaiadimension.entity;
+package androsa.gaiadimension.registry;
 
 import androsa.gaiadimension.GaiaDimension;
 import net.minecraft.util.ResourceLocation;
