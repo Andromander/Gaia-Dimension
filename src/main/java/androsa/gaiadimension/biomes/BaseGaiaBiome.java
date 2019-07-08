@@ -1,74 +1,49 @@
 package androsa.gaiadimension.biomes;
 
-import androsa.gaiadimension.entity.*;
-import androsa.gaiadimension.registry.EnumSkyColors;
-import androsa.gaiadimension.registry.GDBlocks;
-import androsa.gaiadimension.world.GaiaWorld;
-import androsa.gaiadimension.world.gen.GDGenCrystalPlants;
-import androsa.gaiadimension.world.gen.GDGenNoTrees;
-import net.minecraft.block.material.Material;
-import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.monster.EntityEnderman;
+import androsa.gaiadimension.registry.ModEntities;
+import androsa.gaiadimension.registry.GaiaSkyColors;
+import net.minecraft.entity.EntityClassification;
+import net.minecraft.entity.EntityType;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
-import net.minecraft.world.chunk.ChunkPrimer;
-import net.minecraft.world.gen.feature.WorldGenAbstractTree;
-import net.minecraft.world.gen.feature.WorldGenerator;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
-import javax.annotation.Nullable;
-import java.util.Random;
+public abstract class BaseGaiaBiome extends Biome {
 
-public abstract class GDBiomeBase extends Biome {
+    public GaiaSkyColors skyColor = GaiaSkyColors.GENERAL;
 
-    public GDBiomeDecorator biomeDecorator;
-    public EnumSkyColors skyColor = EnumSkyColors.GENERAL;
-
-    public GDBiomeBase(BiomeProperties props) {
+    public BaseGaiaBiome(Builder props) {
         super(props);
-        biomeDecorator = getBiomeDecorator();
 
-        spawnableCreatureList.clear();
-        spawnableMonsterList.clear();
-        spawnableWaterCreatureList.clear();
-        spawnableCaveCreatureList.clear();
+        this.addSpawn(EntityClassification.CREATURE, new SpawnListEntry(ModEntities.NOMADIC_LAGRAHK, 15, 1, 2));
+        this.addSpawn(EntityClassification.WATER_CREATURE, new SpawnListEntry(ModEntities.SHALLOW_ARENTHIS, 10, 4, 4));
+        this.addSpawn(EntityClassification.MONSTER, new SpawnListEntry(ModEntities.CAVERN_TICK, 100, 4, 4));
+        this.addSpawn(EntityClassification.MONSTER, new SpawnListEntry(ModEntities.SHALURKER, 100, 4, 4));
+        this.addSpawn(EntityClassification.MONSTER, new SpawnListEntry(ModEntities.ARCHAIC_WARRIOR, 100, 4, 4));
+        this.addSpawn(EntityClassification.MONSTER, new SpawnListEntry(ModEntities.MUCKLING, 100, 4, 4));
+        this.addSpawn(EntityClassification.MONSTER, new SpawnListEntry(EntityType.ENDERMAN, 5, 1, 2));
+        this.addSpawn(EntityClassification.MONSTER, new SpawnListEntry(ModEntities.PRIMAL_BEAST, 25, 1, 2));
 
-        spawnableMonsterList.add(new SpawnListEntry(GDCavernTick.class, 100, 4, 4));
-        spawnableMonsterList.add(new SpawnListEntry(GDShalurker.class, 100, 4, 4));
-        spawnableMonsterList.add(new SpawnListEntry(GDArchaicWarrior.class, 100, 4, 4));
-        spawnableMonsterList.add(new SpawnListEntry(GDMuckling.class, 100, 4, 4));
-        spawnableMonsterList.add(new SpawnListEntry(EntityEnderman.class, 5, 1, 2));
-        spawnableMonsterList.add(new SpawnListEntry(GDPrimalBeast.class, 25, 1, 2));
+        //biomeDecorator.treesPerChunk = 5;
+        //biomeDecorator.grassPerChunk = 3;
+        //biomeDecorator.flowersPerChunk = 2;
+        //biomeDecorator.fungiPerChunk = 1;
 
-        spawnableCreatureList.add(new SpawnListEntry(GDNomadicLagrahk.class, 15, 1, 2));
+        //this.flowers.clear();
+        //this.flowers.add(new FlowerEntry(GDBlocks.thiscus.getDefaultState(), 20));
+        //this.flowers.add(new FlowerEntry(GDBlocks.ouzium.getDefaultState(), 10));
 
-        spawnableWaterCreatureList.add(new SpawnListEntry(GDShallowArenthis.class, 10, 4, 4));
-
-        biomeDecorator.treesPerChunk = 5;
-        biomeDecorator.grassPerChunk = 3;
-        biomeDecorator.flowersPerChunk = 2;
-        biomeDecorator.fungiPerChunk = 1;
-
-        this.flowers.clear();
-        this.flowers.add(new FlowerEntry(GDBlocks.thiscus.getDefaultState(), 20));
-        this.flowers.add(new FlowerEntry(GDBlocks.ouzium.getDefaultState(), 10));
-
-        this.topBlock = GDBlocks.glitter_grass.getDefaultState();
-        this.fillerBlock = GDBlocks.heavy_soil.getDefaultState();
+        //this.topBlock = GDBlocks.glitter_grass.getDefaultState();
+        //this.fillerBlock = GDBlocks.heavy_soil.getDefaultState();
     }
 
-    public GDBiomeDecorator getBiomeDecorator() {
-        return new GDBiomeDecorator();
-    }
-
-    @SideOnly(Side.CLIENT)
+    @OnlyIn(Dist.CLIENT)
     public final short[] getSkyRGB() {
         return skyColor.getSkyColor();
     }
 
-    @SideOnly(Side.CLIENT)
+    @OnlyIn(Dist.CLIENT)
     public final short[] getFogRGB() {
         return skyColor.getFogColor();
     }
@@ -79,48 +54,21 @@ public abstract class GDBiomeBase extends Biome {
     }
 
     @Override
-    public void decorate(World worldIn, Random rand, BlockPos pos) {
-        this.biomeDecorator.decorate(worldIn, rand, this, pos);
-    }
-
-    @Override
-    public WorldGenAbstractTree getRandomTreeFeature(Random rand) {
-        return new GDGenNoTrees();
-    }
-
-    @Override
-    public WorldGenerator getRandomWorldGenForGrass(Random rand) {
-        return new GDGenCrystalPlants(GDBlocks.crystal_growth);
-    }
-
-    public WorldGenerator getRandomFungus(Random rand) {
-        return new GDGenCrystalPlants(GDBlocks.spotted_kersei);
-    }
-
-    public WorldGenerator getRandomBloom(Random rand) {
-        if (rand.nextInt(4) == 0) {
-            return new GDGenCrystalPlants(GDBlocks.ouzium);
-        } else {
-            return new GDGenCrystalPlants(GDBlocks.thiscus);
-        }
-    }
-
-    @Override
-    @SideOnly(Side.CLIENT)
-    public int getGrassColorAtPos(BlockPos pos) {
+    @OnlyIn(Dist.CLIENT)
+    public int getGrassColor(BlockPos pos) {
         return 0xF2A3B4;
     }
 
     @Override
-    @SideOnly(Side.CLIENT)
-    public int getFoliageColorAtPos(BlockPos pos) {
+    @OnlyIn(Dist.CLIENT)
+    public int getFoliageColor(BlockPos pos) {
         return 0xF2A3B4;
     }
 
-    @Override
+    /*@Override
     public void genTerrainBlocks(World world, Random rand, ChunkPrimer primer, int x, int z, double noiseVal) {
         this.genGaiaBiomeTerrain(world, rand, primer, x, z, noiseVal);
-    }
+    }*/
 
     /**
      * Here's the rundown:
@@ -131,8 +79,10 @@ public abstract class GDBiomeBase extends Biome {
      * If the stone blocks are below sea level, then we prepare the Mineral Water, or Ice, but that never happens
      * Also it gets set to Salt
      * If there is Air below Salt, prepare it with Saltstone
+     *
+     * FIXME: This is now no longer the case. Look up how vanilla does this. Appears to use SurfaceBuilder
      */
-    public final void genGaiaBiomeTerrain(World worldIn, Random rand, ChunkPrimer chunkPrimerIn, int x, int z, double noiseVal) {
+    /*public final void genGaiaBiomeTerrain(World worldIn, Random rand, ChunkPrimer chunkPrimerIn, int x, int z, double noiseVal) {
         int seaLevel = GaiaWorld.SEALEVEL;
         IBlockState iblockstate = this.topBlock;
         IBlockState iblockstate1 = this.fillerBlock;
@@ -202,5 +152,5 @@ public abstract class GDBiomeBase extends Biome {
     @Nullable
     public IBlockState getStoneReplacement() {
         return null;
-    }
+    }*/
 }

@@ -1,6 +1,6 @@
 package androsa.gaiadimension.registry;
 
-public enum EnumSkyColors {
+public enum GaiaSkyColors {
     GENERAL(198, 157, 88, 234, 178, 224),
     BLUE_AGATE(149, 197, 231, 234, 178, 224),
     GREEN_AGATE(128, 191, 158, 234, 178, 224),
@@ -20,7 +20,7 @@ public enum EnumSkyColors {
     private final short fogGreen;
     private final short fogBlue;
 
-    EnumSkyColors(int skyR, int skyG, int skyB, int fogR, int fogG, int fogB) {
+    GaiaSkyColors(int skyR, int skyG, int skyB, int fogR, int fogG, int fogB) {
         skyRed = (short) skyR;
         skyGreen = (short) skyG;
         skyBlue = (short) skyB;
