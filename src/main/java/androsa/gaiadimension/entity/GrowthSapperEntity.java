@@ -1,5 +1,6 @@
 package androsa.gaiadimension.entity;
 
+import androsa.gaiadimension.biomes.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.LookAtGoal;
 import net.minecraft.entity.ai.goal.LookRandomlyGoal;
@@ -90,13 +91,13 @@ public class GrowthSapperEntity extends CreatureEntity {
         spawnDataIn = super.onInitialSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
         Biome biome = world.getBiome(new BlockPos(posX, posY, posZ));
 
-        if (biome instanceof GDPinkAgateForest || biome instanceof GDCrystalPlains) {
+        if (biome instanceof PinkAgateForestBiome || biome instanceof CrystalPlainsBiome) {
             setSapperVariant(0);
-        } else if (biome instanceof GDBlueAgateTaiga) {
+        } else if (biome instanceof BlueAgateTaigaBiome) {
             setSapperVariant(1);
-        } else if (biome instanceof GDGreenAgateJungle) {
+        } else if (biome instanceof GreenAgateJungleBiome) {
             setSapperVariant(2);
-        } else if (biome instanceof GDPurpleAgateSwamp) {
+        } else if (biome instanceof PurpleAgateSwampBiome) {
             setSapperVariant(3);
         } else {
             Random rand = new Random();

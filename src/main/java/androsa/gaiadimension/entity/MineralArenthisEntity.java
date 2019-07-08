@@ -1,11 +1,9 @@
 package androsa.gaiadimension.entity;
 
-import androsa.gaiadimension.GaiaDimension;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.Goal;
 import net.minecraft.entity.passive.WaterMobEntity;
 import net.minecraft.potion.Effects;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
@@ -17,7 +15,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import java.util.Random;
 
 public class MineralArenthisEntity extends WaterMobEntity {
-    public static final ResourceLocation LOOT_TABLE = new ResourceLocation(GaiaDimension.MODID, "entities/mineral_arenthis");
+    //public static final ResourceLocation LOOT_TABLE = new ResourceLocation(GaiaDimension.MODID, "entities/mineral_arenthis");
 
     public float arenthisPitch;
     public float prevArenthisPitch;

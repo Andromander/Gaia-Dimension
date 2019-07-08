@@ -4,6 +4,8 @@ import androsa.gaiadimension.GaiaDimension;
 import androsa.gaiadimension.entity.*;
 import androsa.gaiadimension.entity.boss.BlueHowliteWolfEntity;
 import androsa.gaiadimension.entity.boss.MalachiteGuardEntity;
+import androsa.gaiadimension.entity.projectile.AgateArrowEntity;
+import androsa.gaiadimension.entity.projectile.ThrownPebbleEntity;
 import net.minecraft.entity.*;
 
 import static net.minecraftforge.fml.common.Mod.EventBusSubscriber;

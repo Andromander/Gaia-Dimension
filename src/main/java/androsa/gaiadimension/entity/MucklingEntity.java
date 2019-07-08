@@ -1,6 +1,7 @@
 package androsa.gaiadimension.entity;
 
 import androsa.gaiadimension.GaiaDimension;
+import androsa.gaiadimension.registry.ModBiomes;
 import androsa.gaiadimension.registry.ModBlocks;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.EntityType;
@@ -20,7 +21,7 @@ import net.minecraft.world.biome.Biome;
 import java.util.Random;
 
 public class MucklingEntity extends SlimeEntity {
-    public static final ResourceLocation LOOT_TABLE = new ResourceLocation(GaiaDimension.MODID, "entities/muckling");
+    //public static final ResourceLocation LOOT_TABLE = new ResourceLocation(GaiaDimension.MODID, "entities/muckling");
 
     public MucklingEntity(EntityType<? extends MucklingEntity> entity, World par1World) {
         super(entity, par1World);

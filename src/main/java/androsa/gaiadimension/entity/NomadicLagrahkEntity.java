@@ -1,5 +1,8 @@
 package androsa.gaiadimension.entity;
 
+import androsa.gaiadimension.biomes.SaltDunesBiome;
+import androsa.gaiadimension.biomes.StaticWastelandBiome;
+import androsa.gaiadimension.biomes.VolcaniclandsBiome;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.LookAtGoal;
 import net.minecraft.entity.ai.goal.LookRandomlyGoal;
@@ -86,7 +89,7 @@ public class NomadicLagrahkEntity extends CreatureEntity {
     public int getMaxSpawnedInChunk() {
         Biome biome = world.getBiome(new BlockPos(posX, posY, posZ));
 
-        if (biome instanceof GDSaltDunes || biome instanceof GDStaticWasteland || biome instanceof GDVolcanicLands) {
+        if (biome instanceof SaltDunesBiome || biome instanceof StaticWastelandBiome || biome instanceof VolcaniclandsBiome) {
             return 4;
         } else {
             return 1;
@@ -98,11 +101,11 @@ public class NomadicLagrahkEntity extends CreatureEntity {
         spawnDataIn = super.onInitialSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
         Biome biome = world.getBiome(new BlockPos(posX, posY, posZ));
 
-        if (biome instanceof GDSaltDunes) {
+        if (biome instanceof SaltDunesBiome) {
             setLagrahkVariant(1);
-        } else if (biome instanceof GDStaticWasteland) {
+        } else if (biome instanceof StaticWastelandBiome) {
             setLagrahkVariant(2);
-        } else if (biome instanceof GDVolcanicLands) {
+        } else if (biome instanceof VolcaniclandsBiome) {
             setLagrahkVariant(3);
         } else {
             setLagrahkVariant(0);

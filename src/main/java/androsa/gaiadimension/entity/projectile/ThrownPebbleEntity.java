@@ -1,6 +1,6 @@
-package androsa.gaiadimension.entity;
+package androsa.gaiadimension.entity.projectile;
 
-import androsa.gaiadimension.registry.GaiaEntities;
+import androsa.gaiadimension.registry.ModEntities;
 import androsa.gaiadimension.registry.ModItems;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
@@ -25,11 +25,11 @@ public class ThrownPebbleEntity extends ProjectileItemEntity {
     }
 
     public ThrownPebbleEntity(World worldIn, LivingEntity throwerIn) {
-        super(GaiaEntities.THROWN_PEBBLE, throwerIn, worldIn);
+        super(ModEntities.THROWN_PEBBLE, throwerIn, worldIn);
     }
 
     public ThrownPebbleEntity(World worldIn, double x, double y, double z) {
-        super(GaiaEntities.THROWN_PEBBLE, x, y, z, worldIn);
+        super(ModEntities.THROWN_PEBBLE, x, y, z, worldIn);
     }
 
     @Override

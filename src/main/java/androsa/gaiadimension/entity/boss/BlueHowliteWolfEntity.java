@@ -1,6 +1,7 @@
 package androsa.gaiadimension.entity.boss;
 
 import androsa.gaiadimension.entity.HowliteWolfEntity;
+import androsa.gaiadimension.registry.ModBiomes;
 import androsa.gaiadimension.registry.ModBlocks;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.*;
@@ -57,7 +58,7 @@ public class BlueHowliteWolfEntity extends MonsterEntity {
     public static boolean isValidSpawn(IWorld world, SpawnReason spawn, BlockPos pos) {
         BlockPos blockpos = pos.down();
         return spawn == SpawnReason.SPAWNER ||
-                world.getBlockState(blockpos).getBlock() == ModBlocks.glitter_grass && world.getLight(blockpos) > 8 && world.getBiome(blockpos) == ModBiomes.blue_agate_forest;
+                world.getBlockState(blockpos).getBlock() == ModBlocks.glitter_grass && world.getLight(blockpos) > 8 && world.getBiome(blockpos) == ModBiomes.blue_agate_taiga;
     }
 
     //Keep this commented out until later

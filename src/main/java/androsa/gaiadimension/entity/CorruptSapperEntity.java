@@ -1,6 +1,7 @@
 package androsa.gaiadimension.entity;
 
 import androsa.gaiadimension.GaiaDimension;
+import androsa.gaiadimension.registry.ModBiomes;
 import androsa.gaiadimension.registry.ModBlocks;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.*;
