@@ -1,24 +1,27 @@
 package androsa.gaiadimension.renderer;
 
 import androsa.gaiadimension.GaiaDimension;
-import androsa.gaiadimension.entity.GDGrowthSapper;
-import net.minecraft.client.model.ModelBase;
-import net.minecraft.client.renderer.entity.RenderLiving;
-import net.minecraft.client.renderer.entity.RenderManager;
+import androsa.gaiadimension.entity.GrowthSapperEntity;
+import androsa.gaiadimension.model.GrowthSapperModel;
+import net.minecraft.client.renderer.entity.MobRenderer;
+import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
-public class EntityRenderGrowthSapper extends RenderLiving<GDGrowthSapper> {
+@OnlyIn(Dist.CLIENT)
+public class GrowthSapperRenderer extends MobRenderer<GrowthSapperEntity, GrowthSapperModel<GrowthSapperEntity>> {
     private static final ResourceLocation pinkLoc = new ResourceLocation(GaiaDimension.MODEL_DIR + "commongrowthsapper.png");
     private static final ResourceLocation blueLoc = new ResourceLocation(GaiaDimension.MODEL_DIR + "chilledgrowthsapper.png");
     private static final ResourceLocation grenLoc = new ResourceLocation(GaiaDimension.MODEL_DIR + "nutrientgrowthsapper.png");
     private static final ResourceLocation purpLoc = new ResourceLocation(GaiaDimension.MODEL_DIR + "mystifiedgrowthsapper.png");
 
-    public EntityRenderGrowthSapper(RenderManager manager, ModelBase model, float shadowSize) {
+    public GrowthSapperRenderer(EntityRendererManager manager, GrowthSapperModel<GrowthSapperEntity> model, float shadowSize) {
         super(manager, model, shadowSize);
     }
 
     @Override
-    protected ResourceLocation getEntityTexture(GDGrowthSapper entity) {
+    protected ResourceLocation getEntityTexture(GrowthSapperEntity entity) {
         switch(entity.getEntityVariant()) {
             case 0:
                 return pinkLoc;
