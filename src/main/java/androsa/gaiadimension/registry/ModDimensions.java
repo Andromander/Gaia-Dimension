@@ -24,26 +24,26 @@ import java.util.function.BiFunction;
 public class ModDimensions {
 
     public static final ChunkGeneratorType<GaiaGenerationSettings, GaiaChunkGenerator> GAIA_GEN = new ChunkGeneratorType<>(GaiaChunkGenerator::new, true, GaiaGenerationSettings::new);
-    public static final ModDimension GAIA_DIM = new ModDimension() {
+    public static final ModDimension GAIA = new ModDimension() {
         @Override
         public BiFunction<World, DimensionType, ? extends Dimension> getFactory() {
             return GaiaDimension::new;
         }
     };
-    public static final BiomeProviderType<GaiaBiomeProviderSettings, GaiaBiomeProvider> GAIA_PROVIDER = new BiomeProviderType<>(GaiaBiomeProvider::new, GaiaBiomeProviderSettings::new);
+    public static final BiomeProviderType<GaiaBiomeProviderSettings, GaiaBiomeProvider> GAIA_DIMENSION = new BiomeProviderType<>(GaiaBiomeProvider::new, GaiaBiomeProviderSettings::new);
 
     @SubscribeEvent
     public static void registerChunkGenerators(RegistryEvent.Register<ChunkGeneratorType<?, ?>> e) {
-        e.getRegistry().register(GAIA_GEN.setRegistryName("gaia"));
+        e.getRegistry().register(GAIA_GEN.setRegistryName("gaia_gen"));
     }
 
     @SubscribeEvent
     public static void registerDimensions(RegistryEvent.Register<ModDimension> e) {
-        e.getRegistry().register(GAIA_DIM.setRegistryName("gaia"));
+        e.getRegistry().register(GAIA.setRegistryName("gaia"));
     }
 
     @SubscribeEvent
     public static void registerBiomeProviders(RegistryEvent.Register<BiomeProviderType<?, ?>> e) {
-        e.getRegistry().register(GAIA_PROVIDER.setRegistryName("gaia_dimension"));
+        e.getRegistry().register(GAIA_DIMENSION.setRegistryName("gaia_dimension"));
     }
 }

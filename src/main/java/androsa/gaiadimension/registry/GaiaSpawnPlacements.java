@@ -50,7 +50,7 @@ public class GaiaSpawnPlacements {
         register(ModEntities.MARKUZAR_PLANT, EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, MarkuzarPlantEntity::canSpawnHere);
         register(ModEntities.MINERAL_ARENTHIS, EntitySpawnPlacementRegistry.PlacementType.IN_WATER, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, MineralArenthisEntity::canSpawnHere);
         register(ModEntities.MUCKLING, EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, MucklingEntity::canSpawnHere);
-        register(ModEntities.MUTANT_EXTRACTOR, EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, MutantGrowthExtractorEntity::canSpawnHere);
+        register(ModEntities.MUTANT_GROWTH_EXTRACTOR, EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, MutantGrowthExtractorEntity::canSpawnHere);
         register(ModEntities.NOMADIC_LAGRAHK, EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, NomadicLagrahkEntity::canSpawnHere);
         register(ModEntities.PRIMAL_BEAST, GaiaSpawnPlacements.IN_LAVA, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, PrimalBeastEntity::canSpawnHere);
         register(ModEntities.ROCKY_LUGGEROTH, EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, RockyLuggerothEntity::canSpawnHere);

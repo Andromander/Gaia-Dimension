@@ -80,7 +80,7 @@ public class ModBiomes {
             .waterColor(0x6C99B1)
             .waterFogColor(0x92BED4)
             .parent(null));
-    public static final Biome volcaniclands = new VolcaniclandsBiome((new Biome.Builder())
+    public static final Biome volcanic_lands = new VolcaniclandsBiome((new Biome.Builder())
             .surfaceBuilder(ModWorldgen.VOLCANIC, GaiaBiomeFeatures.VOLCANIC_SURFACE_CONFIG)
             .precipitation(Biome.RainType.NONE)
             .category(Biome.Category.EXTREME_HILLS)
@@ -102,7 +102,7 @@ public class ModBiomes {
             .waterColor(0x6C99B1)
             .waterFogColor(0x92BED4)
             .parent(null));
-    public static final Biome goldstonelands = new GoldstonelandsBiome((new Biome.Builder())
+    public static final Biome goldstone_lands = new GoldstonelandsBiome((new Biome.Builder())
             .surfaceBuilder(ModWorldgen.DEFAULT_GAIA, GaiaBiomeFeatures.CORRUPT_SURFACE_CONFIG)
             .precipitation(Biome.RainType.NONE)
             .category(Biome.Category.PLAINS)
@@ -190,29 +190,31 @@ public class ModBiomes {
         registry.register(purple_agate_swamp.setRegistryName("purple_agate_swamp"));
         registry.register(mutant_agate_wildwood.setRegistryName("mutant_agate_wildwood"));
         registry.register(fossil_woodland.setRegistryName("fossil_woodland"));
+        registry.register(crystal_plains.setRegistryName("crystal_plains"));
         registry.register(salt_dunes.setRegistryName("salt_dunes"));
         registry.register(smoldering_bog.setRegistryName("smoldering_bog"));
         registry.register(shining_grove.setRegistryName("shining_grove"));
-        registry.register(volcaniclands.setRegistryName("volcanic_lands"));
+        registry.register(volcanic_lands.setRegistryName("volcanic_lands"));
         registry.register(static_wasteland.setRegistryName("static_wasteland"));
-        registry.register(goldstonelands.setRegistryName("goldstone_lands"));
+        registry.register(goldstone_lands.setRegistryName("goldstone_lands"));
         registry.register(mineral_reservoir.setRegistryName("mineral_reservoir"));
         registry.register(mineral_river.setRegistryName("mineral_river"));
     }
 
-    static {
+    public static void addBiomeTypes() {
         addTypes(pink_agate_forest, Type.FOREST);
         addTypes(blue_agate_taiga, Type.CONIFEROUS);
         addTypes(green_agate_jungle, Type.JUNGLE);
         addTypes(purple_agate_swamp, Type.SWAMP, Type.MAGICAL);
         addTypes(mutant_agate_wildwood, Type.FOREST, Type.LUSH, Type.MAGICAL);
         addTypes(fossil_woodland, Type.SAVANNA);
+        addTypes(crystal_plains, Type.PLAINS);
         addTypes(salt_dunes, Type.DRY, Type.HOT, Type.SANDY, Type.SPARSE);
         addTypes(smoldering_bog, Type.HOT, Type.WASTELAND, Type.DEAD);
         addTypes(shining_grove, Type.LUSH, Type.FOREST, Type.MAGICAL);
-        addTypes(volcaniclands, Type.HOT, Type.SPARSE, Type.DRY, Type.MOUNTAIN);
+        addTypes(volcanic_lands, Type.HOT, Type.SPARSE, Type.DRY, Type.MOUNTAIN);
         addTypes(static_wasteland, Type.WASTELAND, Type.MOUNTAIN);
-        addTypes(goldstonelands, Type.WASTELAND, Type.PLAINS);
+        addTypes(goldstone_lands, Type.WASTELAND, Type.PLAINS);
         addTypes(mineral_reservoir, Type.OCEAN);
         addTypes(mineral_river, Type.RIVER);
     }

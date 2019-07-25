@@ -20,12 +20,12 @@ public class GaiaBiomeFeatures {
     public static final SurfaceBuilderConfig BISMUTH_SURFACE_CONFIG = new SurfaceBuilderConfig(ModBlocks.murky_grass.getDefaultState(), ModBlocks.boggy_soil.getDefaultState(), ModBlocks.pebbles.getDefaultState());
 
     public static void addCarverNormal(Biome biomeIn) {
-        biomeIn.addCarver(GenerationStage.Carving.AIR, Biome.createCarver(ModWorldgen.COATED_CAVES, new ProbabilityConfig(0.02F)));
+        biomeIn.addCarver(GenerationStage.Carving.AIR, Biome.createCarver(ModWorldgen.CRYSTAL_CAVES, new ProbabilityConfig(0.02F)));
         biomeIn.addCarver(GenerationStage.Carving.AIR, Biome.createCarver(ModWorldgen.CHASMS, new ProbabilityConfig(0.02F)));
     }
 
     public static void addCarverUncoated(Biome biomeIn) {
-        biomeIn.addCarver(GenerationStage.Carving.AIR, Biome.createCarver(ModWorldgen.UNCOATED_CAVES, new ProbabilityConfig(0.02F)));
+        biomeIn.addCarver(GenerationStage.Carving.AIR, Biome.createCarver(ModWorldgen.BLANK_CAVES, new ProbabilityConfig(0.02F)));
         biomeIn.addCarver(GenerationStage.Carving.AIR, Biome.createCarver(ModWorldgen.CHASMS, new ProbabilityConfig(0.02F)));
     }
 
@@ -60,50 +60,50 @@ public class GaiaBiomeFeatures {
     }
 
     public static void addPocketsUnderground(Biome biomeIn) {
-        biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Biome.createDecoratedFeature(ModWorldgen.ORE, new GaiaOreFeatureConfig(GaiaOreFeatureConfig.FillerBlockType.STONE, ModBlocks.pebbles.getDefaultState(), 25), Placement.COUNT_RANGE, new CountRangeConfig(25, 0, 0, 128)));
-        biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Biome.createDecoratedFeature(ModWorldgen.ORE, new GaiaOreFeatureConfig(GaiaOreFeatureConfig.FillerBlockType.STONE, ModBlocks.speckled_rock.getDefaultState(), 8), Placement.COUNT_RANGE, new CountRangeConfig(10, 0, 0, 120)));
-        biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Biome.createDecoratedFeature(ModWorldgen.ORE, new GaiaOreFeatureConfig(GaiaOreFeatureConfig.FillerBlockType.STONE, ModBlocks.coarse_rock.getDefaultState(), 8), Placement.COUNT_RANGE, new CountRangeConfig(10, 0, 0, 60)));
-        biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Biome.createDecoratedFeature(ModWorldgen.ORE, new GaiaOreFeatureConfig(GaiaOreFeatureConfig.FillerBlockType.STONE, ModBlocks.precious_rock.getDefaultState(), 8), Placement.COUNT_RANGE, new CountRangeConfig(10, 0, 0, 30)));
+        biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Biome.createDecoratedFeature(ModWorldgen.GAIA_ORE, new GaiaOreFeatureConfig(GaiaOreFeatureConfig.FillerBlockType.STONE, ModBlocks.pebbles.getDefaultState(), 25), Placement.COUNT_RANGE, new CountRangeConfig(25, 0, 0, 128)));
+        biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Biome.createDecoratedFeature(ModWorldgen.GAIA_ORE, new GaiaOreFeatureConfig(GaiaOreFeatureConfig.FillerBlockType.STONE, ModBlocks.speckled_rock.getDefaultState(), 8), Placement.COUNT_RANGE, new CountRangeConfig(10, 0, 0, 120)));
+        biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Biome.createDecoratedFeature(ModWorldgen.GAIA_ORE, new GaiaOreFeatureConfig(GaiaOreFeatureConfig.FillerBlockType.STONE, ModBlocks.coarse_rock.getDefaultState(), 8), Placement.COUNT_RANGE, new CountRangeConfig(10, 0, 0, 60)));
+        biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Biome.createDecoratedFeature(ModWorldgen.GAIA_ORE, new GaiaOreFeatureConfig(GaiaOreFeatureConfig.FillerBlockType.STONE, ModBlocks.precious_rock.getDefaultState(), 8), Placement.COUNT_RANGE, new CountRangeConfig(10, 0, 0, 30)));
     }
 
     public static void addThickGlitterUnderground(Biome biomeIn) {
-        biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Biome.createDecoratedFeature(ModWorldgen.ORE, new GaiaOreFeatureConfig(GaiaOreFeatureConfig.FillerBlockType.STONE, ModBlocks.thick_glitter_block.getDefaultState(), 33), Placement.COUNT_RANGE, new CountRangeConfig(9, 0, 0, 100)));
+        biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Biome.createDecoratedFeature(ModWorldgen.GAIA_ORE, new GaiaOreFeatureConfig(GaiaOreFeatureConfig.FillerBlockType.STONE, ModBlocks.thick_glitter_block.getDefaultState(), 33), Placement.COUNT_RANGE, new CountRangeConfig(9, 0, 0, 100)));
     }
 
     public static void addStaticStoneUnderground(Biome biomeIn) {
-        biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Biome.createDecoratedFeature(ModWorldgen.ORE, new GaiaOreFeatureConfig(GaiaOreFeatureConfig.FillerBlockType.STATIC, ModBlocks.static_stone.getDefaultState(), 33), Placement.COUNT_RANGE, new CountRangeConfig(9, 0, 0, 100)));
+        biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Biome.createDecoratedFeature(ModWorldgen.GAIA_ORE, new GaiaOreFeatureConfig(GaiaOreFeatureConfig.FillerBlockType.STATIC, ModBlocks.static_stone.getDefaultState(), 33), Placement.COUNT_RANGE, new CountRangeConfig(9, 0, 0, 100)));
     }
 
     public static void addSearingRockUnderground(Biome biomeIn) {
-        biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Biome.createDecoratedFeature(ModWorldgen.ORE, new GaiaOreFeatureConfig(GaiaOreFeatureConfig.FillerBlockType.VOLCANIC, ModBlocks.searing_rock.getDefaultState(), 33), Placement.COUNT_RANGE, new CountRangeConfig(9, 0, 0, 100)));
+        biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Biome.createDecoratedFeature(ModWorldgen.GAIA_ORE, new GaiaOreFeatureConfig(GaiaOreFeatureConfig.FillerBlockType.VOLCANIC, ModBlocks.searing_rock.getDefaultState(), 33), Placement.COUNT_RANGE, new CountRangeConfig(9, 0, 0, 100)));
     }
 
     public static void addBasicOres(Biome biomeIn) {
-        biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Biome.createDecoratedFeature(ModWorldgen.ORE, new GaiaOreFeatureConfig(GaiaOreFeatureConfig.FillerBlockType.STONE, ModBlocks.sugilite_ore.getDefaultState(), 17), Placement.COUNT_RANGE, new CountRangeConfig(8, 0, 0, 100)));
-        biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Biome.createDecoratedFeature(ModWorldgen.ORE, new GaiaOreFeatureConfig(GaiaOreFeatureConfig.FillerBlockType.STONE, ModBlocks.hematite_ore.getDefaultState(), 17), Placement.COUNT_RANGE, new CountRangeConfig(8, 0, 0, 100)));
-        biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Biome.createDecoratedFeature(ModWorldgen.ORE, new GaiaOreFeatureConfig(GaiaOreFeatureConfig.FillerBlockType.STONE, ModBlocks.pyrite_ore.getDefaultState(), 9), Placement.COUNT_RANGE, new CountRangeConfig(8, 0, 0, 80)));
-        biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Biome.createDecoratedFeature(ModWorldgen.ORE, new GaiaOreFeatureConfig(GaiaOreFeatureConfig.FillerBlockType.STONE, ModBlocks.cinnabar_ore.getDefaultState(), 9), Placement.COUNT_RANGE, new CountRangeConfig(7, 0, 0, 60)));
-        biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Biome.createDecoratedFeature(ModWorldgen.ORE, new GaiaOreFeatureConfig(GaiaOreFeatureConfig.FillerBlockType.STONE, ModBlocks.labradorite_ore.getDefaultState(), 9), Placement.COUNT_RANGE, new CountRangeConfig(6, 0, 0, 40)));
-        biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Biome.createDecoratedFeature(ModWorldgen.ORE, new GaiaOreFeatureConfig(GaiaOreFeatureConfig.FillerBlockType.STONE, ModBlocks.moonstone_ore.getDefaultState(), 9), Placement.COUNT_RANGE, new CountRangeConfig(6, 0, 0, 40)));
+        biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Biome.createDecoratedFeature(ModWorldgen.GAIA_ORE, new GaiaOreFeatureConfig(GaiaOreFeatureConfig.FillerBlockType.STONE, ModBlocks.sugilite_ore.getDefaultState(), 17), Placement.COUNT_RANGE, new CountRangeConfig(8, 0, 0, 100)));
+        biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Biome.createDecoratedFeature(ModWorldgen.GAIA_ORE, new GaiaOreFeatureConfig(GaiaOreFeatureConfig.FillerBlockType.STONE, ModBlocks.hematite_ore.getDefaultState(), 17), Placement.COUNT_RANGE, new CountRangeConfig(8, 0, 0, 100)));
+        biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Biome.createDecoratedFeature(ModWorldgen.GAIA_ORE, new GaiaOreFeatureConfig(GaiaOreFeatureConfig.FillerBlockType.STONE, ModBlocks.pyrite_ore.getDefaultState(), 9), Placement.COUNT_RANGE, new CountRangeConfig(8, 0, 0, 80)));
+        biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Biome.createDecoratedFeature(ModWorldgen.GAIA_ORE, new GaiaOreFeatureConfig(GaiaOreFeatureConfig.FillerBlockType.STONE, ModBlocks.cinnabar_ore.getDefaultState(), 9), Placement.COUNT_RANGE, new CountRangeConfig(7, 0, 0, 60)));
+        biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Biome.createDecoratedFeature(ModWorldgen.GAIA_ORE, new GaiaOreFeatureConfig(GaiaOreFeatureConfig.FillerBlockType.STONE, ModBlocks.labradorite_ore.getDefaultState(), 9), Placement.COUNT_RANGE, new CountRangeConfig(6, 0, 0, 40)));
+        biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Biome.createDecoratedFeature(ModWorldgen.GAIA_ORE, new GaiaOreFeatureConfig(GaiaOreFeatureConfig.FillerBlockType.STONE, ModBlocks.moonstone_ore.getDefaultState(), 9), Placement.COUNT_RANGE, new CountRangeConfig(6, 0, 0, 40)));
     }
 
     public static void addRedOpals(Biome biomeIn) {
-        biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Biome.createDecoratedFeature(ModWorldgen.ORE, new GaiaOreFeatureConfig(GaiaOreFeatureConfig.FillerBlockType.STONE, ModBlocks.opal_ore_red.getDefaultState(), 8), Placement.COUNT_RANGE, new CountRangeConfig(4, 0, 0, 30)));
+        biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Biome.createDecoratedFeature(ModWorldgen.GAIA_ORE, new GaiaOreFeatureConfig(GaiaOreFeatureConfig.FillerBlockType.STONE, ModBlocks.opal_ore_red.getDefaultState(), 8), Placement.COUNT_RANGE, new CountRangeConfig(4, 0, 0, 30)));
     }
 
     public static void addBlueOpals(Biome biomeIn) {
-        biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Biome.createDecoratedFeature(ModWorldgen.ORE, new GaiaOreFeatureConfig(GaiaOreFeatureConfig.FillerBlockType.STONE, ModBlocks.opal_ore_blue.getDefaultState(), 8), Placement.COUNT_RANGE, new CountRangeConfig(4, 0, 0, 30)));
+        biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Biome.createDecoratedFeature(ModWorldgen.GAIA_ORE, new GaiaOreFeatureConfig(GaiaOreFeatureConfig.FillerBlockType.STONE, ModBlocks.opal_ore_blue.getDefaultState(), 8), Placement.COUNT_RANGE, new CountRangeConfig(4, 0, 0, 30)));
     }
 
     public static void addGreenOpals(Biome biomeIn) {
-        biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Biome.createDecoratedFeature(ModWorldgen.ORE, new GaiaOreFeatureConfig(GaiaOreFeatureConfig.FillerBlockType.STONE, ModBlocks.opal_ore_green.getDefaultState(), 8), Placement.COUNT_RANGE, new CountRangeConfig(4, 0, 0, 30)));
+        biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Biome.createDecoratedFeature(ModWorldgen.GAIA_ORE, new GaiaOreFeatureConfig(GaiaOreFeatureConfig.FillerBlockType.STONE, ModBlocks.opal_ore_green.getDefaultState(), 8), Placement.COUNT_RANGE, new CountRangeConfig(4, 0, 0, 30)));
     }
 
     public static void addWhiteOpals(Biome biomeIn) {
         if (biomeIn instanceof MutantAgateWildwoodBiome) {
-            biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Biome.createDecoratedFeature(ModWorldgen.ORE, new GaiaOreFeatureConfig(GaiaOreFeatureConfig.FillerBlockType.STONE, ModBlocks.opal_ore_white.getDefaultState(), 8), Placement.COUNT_RANGE, new CountRangeConfig(4, 0, 0, 25)));
+            biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Biome.createDecoratedFeature(ModWorldgen.GAIA_ORE, new GaiaOreFeatureConfig(GaiaOreFeatureConfig.FillerBlockType.STONE, ModBlocks.opal_ore_white.getDefaultState(), 8), Placement.COUNT_RANGE, new CountRangeConfig(4, 0, 0, 25)));
         } else {
-            biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Biome.createDecoratedFeature(ModWorldgen.ORE, new GaiaOreFeatureConfig(GaiaOreFeatureConfig.FillerBlockType.STONE, ModBlocks.opal_ore_white.getDefaultState(), 8), Placement.COUNT_RANGE, new CountRangeConfig(3, 0, 0, 20)));
+            biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Biome.createDecoratedFeature(ModWorldgen.GAIA_ORE, new GaiaOreFeatureConfig(GaiaOreFeatureConfig.FillerBlockType.STONE, ModBlocks.opal_ore_white.getDefaultState(), 8), Placement.COUNT_RANGE, new CountRangeConfig(3, 0, 0, 20)));
         }
     }
 
@@ -148,7 +148,7 @@ public class GaiaBiomeFeatures {
     }
 
     public static void addFossilTrees(Biome biomeIn) {
-        biomeIn.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Biome.createDecoratedFeature(ModWorldgen.FOSSIL_TREE, IFeatureConfig.NO_FEATURE_CONFIG, Placement.COUNT_EXTRA_HEIGHTMAP, new AtSurfaceWithExtraConfig(0, 0.1F, 1))); //FIXME: Tweak it
+        biomeIn.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Biome.createDecoratedFeature(ModWorldgen.FOSSILIZED_TREE, IFeatureConfig.NO_FEATURE_CONFIG, Placement.COUNT_EXTRA_HEIGHTMAP, new AtSurfaceWithExtraConfig(0, 0.1F, 1))); //FIXME: Tweak it
     }
 
     public static void addGoldstoneTrees(Biome biomeIn) {
@@ -156,11 +156,11 @@ public class GaiaBiomeFeatures {
     }
 
     public static void addBurntTrees(Biome biomeIn) {
-        biomeIn.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Biome.createDecoratedFeature(ModWorldgen.BURNT_TREE, IFeatureConfig.NO_FEATURE_CONFIG, Placement.COUNT_EXTRA_HEIGHTMAP, new AtSurfaceWithExtraConfig(0, 0.1F, 1))); //FIXME: Tweak it
+        biomeIn.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Biome.createDecoratedFeature(ModWorldgen.BURNT_AGATE_TREE, IFeatureConfig.NO_FEATURE_CONFIG, Placement.COUNT_EXTRA_HEIGHTMAP, new AtSurfaceWithExtraConfig(0, 0.1F, 1))); //FIXME: Tweak it
     }
 
     public static void addBurningTrees(Biome biomeIn) {
-        biomeIn.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Biome.createDecoratedFeature(ModWorldgen.BURNING_TREE, IFeatureConfig.NO_FEATURE_CONFIG, Placement.COUNT_EXTRA_HEIGHTMAP, new AtSurfaceWithExtraConfig(0, 0.1F, 1))); //FIXME: Tweak it
+        biomeIn.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Biome.createDecoratedFeature(ModWorldgen.FIERY_AGATE_TREE, IFeatureConfig.NO_FEATURE_CONFIG, Placement.COUNT_EXTRA_HEIGHTMAP, new AtSurfaceWithExtraConfig(0, 0.1F, 1))); //FIXME: Tweak it
     }
 
     public static void addAuraTrees(Biome biomeIn) {
@@ -208,7 +208,7 @@ public class GaiaBiomeFeatures {
     }
 
     public static void addBloomsCorrupt(Biome biomeIn) {
-        biomeIn.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Biome.createDecoratedFeature(Feature.BUSH, new BushConfig(ModBlocks.corrupt_varloom.getDefaultState()), Placement.COUNT_CHANCE_HEIGHTMAP, new HeightWithChanceConfig(8, 0.25F))); //FIXME: Tweak it
+        biomeIn.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Biome.createDecoratedFeature(Feature.BUSH, new BushConfig(ModBlocks.corrupted_varloom.getDefaultState()), Placement.COUNT_CHANCE_HEIGHTMAP, new HeightWithChanceConfig(8, 0.25F))); //FIXME: Tweak it
     }
 
     public static void addPinkMushrooms(Biome biomeIn) {

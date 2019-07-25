@@ -18,7 +18,7 @@ public class GemPouchContainer extends Container {
     }
 
     public GemPouchContainer(int id, PlayerInventory invPlayer, IInventory inventory) {
-        super(ModContainers.GEM_POUCH, id);
+        super(ModContainers.GEMSTONE_POUCH, id);
         this.inventory = inventory;
         //Pouch
         for (int row = 0; row < 4; ++row) {

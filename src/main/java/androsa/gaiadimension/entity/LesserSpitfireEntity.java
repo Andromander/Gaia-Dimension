@@ -52,6 +52,6 @@ public class LesserSpitfireEntity extends MonsterEntity implements ISpitfireMob 
     public static boolean isValidSpawn(IWorld world, SpawnReason spawn, BlockPos pos) {
         BlockPos blockpos = pos.down();
         return spawn == SpawnReason.SPAWNER ||
-                world.getBlockState(blockpos).getBlock() == ModBlocks.glitter_grass && world.getLight(blockpos) > 8 && world.getBiome(blockpos) == ModBiomes.volcaniclands;
+                world.getBlockState(blockpos).getBlock() == ModBlocks.glitter_grass && world.getLight(blockpos) > 8 && world.getBiome(blockpos) == ModBiomes.volcanic_lands;
     }
 }

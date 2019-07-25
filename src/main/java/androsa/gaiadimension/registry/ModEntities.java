@@ -36,7 +36,7 @@ public class ModEntities {
     public static final EntityType<MarkuzarPlantEntity> MARKUZAR_PLANT = EntityType.Builder.create(MarkuzarPlantEntity::new, EntityClassification.AMBIENT).size(0.6F, 2.0F).build(GaiaEntityNames.MARKUZAR_PLANT.toString());
     public static final EntityType<MineralArenthisEntity> MINERAL_ARENTHIS = EntityType.Builder.create(MineralArenthisEntity::new, EntityClassification.WATER_CREATURE).size(1.5F, 1.5F).build(GaiaEntityNames.MINERAL_ARENTHIS.toString());
     public static final EntityType<MucklingEntity> MUCKLING = EntityType.Builder.create(MucklingEntity::new, EntityClassification.MONSTER).size(2.0F, 2.0F).build(GaiaEntityNames.MUCKLING.toString());
-    public static final EntityType<MutantGrowthExtractorEntity> MUTANT_EXTRACTOR = EntityType.Builder.create(MutantGrowthExtractorEntity::new, EntityClassification.CREATURE).size(1.0F, 1.5F).build(GaiaEntityNames.MUTANT_EXTRACTOR.toString());
+    public static final EntityType<MutantGrowthExtractorEntity> MUTANT_GROWTH_EXTRACTOR = EntityType.Builder.create(MutantGrowthExtractorEntity::new, EntityClassification.CREATURE).size(1.0F, 1.5F).build(GaiaEntityNames.MUTANT_EXTRACTOR.toString());
     public static final EntityType<NomadicLagrahkEntity> NOMADIC_LAGRAHK = EntityType.Builder.create(NomadicLagrahkEntity::new, EntityClassification.CREATURE).size(1.5F, 4.0F).build(GaiaEntityNames.NOMADIC_LAGRAHK.toString());
     public static final EntityType<PrimalBeastEntity> PRIMAL_BEAST = EntityType.Builder.create(PrimalBeastEntity::new, EntityClassification.MONSTER).size(1.0F, 2.0F).immuneToFire().build(GaiaEntityNames.PRIMAL_BEAST.toString());
     public static final EntityType<RockyLuggerothEntity> ROCKY_LUGGEROTH = EntityType.Builder.create(RockyLuggerothEntity::new, EntityClassification.CREATURE).size(1.0F, 1.6F).build(GaiaEntityNames.ROCKY_LUGGEROTH.toString());
@@ -70,7 +70,7 @@ public class ModEntities {
         registry.register(MARKUZAR_PLANT.setRegistryName("markuzar_plant"));
         registry.register(MINERAL_ARENTHIS.setRegistryName("mineral_arenthis"));
         registry.register(MUCKLING.setRegistryName("muckling"));
-        registry.register(MUTANT_EXTRACTOR.setRegistryName("mutant_growth_extractor"));
+        registry.register(MUTANT_GROWTH_EXTRACTOR.setRegistryName("mutant_growth_extractor"));
         registry.register(NOMADIC_LAGRAHK.setRegistryName("nomadic_lagrahk"));
         registry.register(PRIMAL_BEAST.setRegistryName("primal_beast"));
         registry.register(ROCKY_LUGGEROTH.setRegistryName("rocky_luggeroth"));

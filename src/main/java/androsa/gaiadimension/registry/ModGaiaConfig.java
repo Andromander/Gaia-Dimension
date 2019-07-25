@@ -5,7 +5,6 @@ import net.minecraftforge.fml.common.Mod;
 
 import static net.minecraftforge.common.ForgeConfigSpec.*;
 
-@Mod.EventBusSubscriber(modid = GaiaDimensionMod.MODID)
 public class ModGaiaConfig {
     private static final String config = GaiaDimensionMod.MODID + ".config.";
 

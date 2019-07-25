@@ -111,7 +111,7 @@ public class GaiaPortalBlock extends Block {
     public void onEntityCollision(BlockState state, World worldIn, BlockPos pos, Entity entityIn) {
         if (!worldIn.isRemote && !entityIn.isPassenger() && !entityIn.isBeingRidden() && entityIn.isNonBoss() ) {
             //TODO: Figure out if this works properly
-            this.changeDimension(entityIn, worldIn.dimension.getType().getModType() == ModDimensions.GAIA_DIM ? DimensionType.OVERWORLD : DimensionType.byName(ModDimensions.GAIA_DIM.getRegistryName()));
+            this.changeDimension(entityIn, worldIn.dimension.getType().getModType() == ModDimensions.GAIA ? DimensionType.OVERWORLD : DimensionType.byName(ModDimensions.GAIA.getRegistryName()));
         }
     }
 

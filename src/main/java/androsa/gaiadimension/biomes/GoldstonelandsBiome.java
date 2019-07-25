@@ -30,7 +30,7 @@ public class GoldstonelandsBiome extends BaseGaiaBiome {
         //TODO: Corrupt Lagrahk
 
         //flowers.clear();
-        //flowers.add(new FlowerEntry(GDBlocks.corrupt_varloom.getDefaultState(), 20));
+        //flowers.add(new FlowerEntry(GDBlocks.corrupted_varloom.getDefaultState(), 20));
         //flowers.add(new FlowerEntry(GDBlocks.corrupted_gaia_eye.getDefaultState(), 5));
 
         skyColor = GaiaSkyColors.GOLDSTONE;

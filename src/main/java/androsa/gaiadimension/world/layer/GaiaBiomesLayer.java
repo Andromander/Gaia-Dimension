@@ -19,7 +19,7 @@ public class GaiaBiomesLayer implements IC0Transformer {
     });
     protected Biome uncommonBiomes[] = (new Biome[]{
             ModBiomes.mineral_reservoir,
-            ModBiomes.volcaniclands,
+            ModBiomes.volcanic_lands,
             ModBiomes.static_wasteland,
             ModBiomes.salt_dunes,
             ModBiomes.smoldering_bog,
@@ -27,7 +27,7 @@ public class GaiaBiomesLayer implements IC0Transformer {
     });
     protected Biome rareBiomes[] = (new Biome[]{
             ModBiomes.purple_agate_swamp, //This wil make the sacred biome less likely to generate
-            ModBiomes.goldstonelands, //It's basically the sacred biome turned corrupt, so there's that
+            ModBiomes.goldstone_lands, //It's basically the sacred biome turned corrupt, so there's that
             ModBiomes.mutant_agate_wildwood //A rare kind of Agate Forest with different Agate Trees
     });
 

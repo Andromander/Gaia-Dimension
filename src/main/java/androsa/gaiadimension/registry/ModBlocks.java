@@ -124,7 +124,7 @@ public class ModBlocks {
     public static final Block ouzium = new CrystalBloomBlock();
     public static final Block agathum = new CrystalBloomBlock();
     public static final Block varloom = new CrystalBloomBlock();
-    public static final Block corrupt_varloom = new CrystalBloomBlock();
+    public static final Block corrupted_varloom = new CrystalBloomBlock();
     public static final Block missingno_plant = new CrystalBloomBlock();
     public static final Block spotted_kersei = new CrystalFungusBlock(MaterialColor.PINK, false);
     public static final Block thorny_wiltha = new CrystalFungusBlock(MaterialColor.LIGHT_BLUE, false);
@@ -242,7 +242,7 @@ public class ModBlocks {
     public static final Block coarse_rock = new GaiaOreBlock(MaterialColor.MAGENTA, 2);
     public static final Block precious_rock = new GaiaOreBlock(MaterialColor.MAGENTA, 3);
 
-    //@SubscribeEvent
+    @SubscribeEvent
     public static void registerBlocks(RegistryEvent.Register<Block> e) {
         final IForgeRegistry<Block> registry = e.getRegistry();
 
@@ -280,16 +280,16 @@ public class ModBlocks {
 
         //Plants
         registry.register(crystal_growth.setRegistryName("crystal_growth"));
-        registry.register(crystal_growth_red.setRegistryName("red_crystal_growth"));
-        registry.register(crystal_growth_black.setRegistryName("black_crystal_growth"));
-        registry.register(crystal_growth_seared.setRegistryName("seared_crystal_growth"));
-        registry.register(crystal_growth_mutant.setRegistryName("mutant_crystal_growth"));
-        registry.register(crystal_growth_aura.setRegistryName("aura_crystal_growth"));
+        registry.register(crystal_growth_red.setRegistryName("crystal_growth_red"));
+        registry.register(crystal_growth_black.setRegistryName("crystal_growth_black"));
+        registry.register(crystal_growth_seared.setRegistryName("crystal_growth_seared"));
+        registry.register(crystal_growth_mutant.setRegistryName("crystal_growth_mutant"));
+        registry.register(crystal_growth_aura.setRegistryName("crystal_growth_aura"));
         registry.register(thiscus.setRegistryName("thiscus"));
         registry.register(ouzium.setRegistryName("ouzium"));
         registry.register(agathum.setRegistryName("agathum"));
         registry.register(varloom.setRegistryName("varloom"));
-        registry.register(corrupt_varloom.setRegistryName("corrupted_varloom"));
+        registry.register(corrupted_varloom.setRegistryName("corrupted_varloom"));
         registry.register(missingno_plant.setRegistryName("missingno_plant"));
         registry.register(spotted_kersei.setRegistryName("spotted_kersei"));
         registry.register(thorny_wiltha.setRegistryName("thorny_wiltha"));
@@ -664,7 +664,7 @@ public class ModBlocks {
     public static final Item gaia_champion_sword = new GaiaChampSwordItem(GaiaToolMaterials.GAIA_CHAMP);
 
     public static final Item growth_sapper_spawn_egg = new SpawnEggItem(ModEntities.GROWTH_SAPPER, 0x5A4514, 0xFF00FF, (new Item.Properties()).group(ItemGroup.MISC));
-    public static final Item mutant_growth_extractor_spawn_egg = new SpawnEggItem(ModEntities.MUTANT_EXTRACTOR, 0x5A4514, 0xFFFFCC, (new Item.Properties()).group(ItemGroup.MISC));
+    public static final Item mutant_growth_extractor_spawn_egg = new SpawnEggItem(ModEntities.MUTANT_GROWTH_EXTRACTOR, 0x5A4514, 0xFFFFCC, (new Item.Properties()).group(ItemGroup.MISC));
     public static final Item howlite_wolf_spawn_egg = new SpawnEggItem(ModEntities.HOWLITE_WOLF, 0xDDDDDD, 0x3333FF, (new Item.Properties()).group(ItemGroup.MISC));
     public static final Item spellbound_elemental_spawn_egg = new SpawnEggItem(ModEntities.SPELLBOUND_ELEMENTAL, 0x885555, 0xCC33CC, (new Item.Properties()).group(ItemGroup.MISC));
     public static final Item rocky_luggeroth_spawn_egg = new SpawnEggItem(ModEntities.ROCKY_LUGGEROTH, 0xB07700, 0xCC9900, (new Item.Properties()).group(ItemGroup.MISC));
@@ -696,7 +696,7 @@ public class ModBlocks {
     public static ItemStack liquid_bismuth_bucket_item;
     public static ItemStack liquid_aura_bucket_item;
 
-    //@SubscribeEvent
+    @SubscribeEvent
     public static void onRegisterItems(RegistryEvent.Register<Item> e) {
         final IForgeRegistry<Item> registry = e.getRegistry();
 
@@ -709,7 +709,7 @@ public class ModBlocks {
         registry.register(fine_dust.setRegistryName("fine_dust"));
         registry.register(cloudy_shard.setRegistryName("cloudy_shard"));
         registry.register(agate_cup.setRegistryName("agate_cup"));
-        registry.register(scaynyx_ingot.setRegistryName(""));
+        registry.register(scaynyx_ingot.setRegistryName("scaynyx_ingot"));
         registry.register(sweet_muckball.setRegistryName("sweet_muckball"));
         registry.register(sugar_crystals.setRegistryName("sugar_crystals"));
         registry.register(sugar_cluster.setRegistryName("sugar_cluster"));
@@ -927,7 +927,7 @@ public class ModBlocks {
         //Utility Blocks
         registry.register(registerBlock(ModBlocks.keystone_block));
         registry.register(registerBlock(ModBlocks.gold_fire));
-        registry.register(new WallOrFloorItem(ModBlocks.pyrite_torch, ModBlocks.pyrite_wall_torch, new Item.Properties().group(GaiaItemGroups.GAIA_BLOCKS)));
+        registry.register(new WallOrFloorItem(ModBlocks.pyrite_torch, ModBlocks.pyrite_wall_torch, new Item.Properties().group(GaiaItemGroups.GAIA_BLOCKS)).setRegistryName("pyrite_torch"));
         registry.register(registerBlock(ModBlocks.agate_crafting_table));
         registry.register(registerBlock(ModBlocks.crude_storage_crate));
         registry.register(registerBlock(ModBlocks.mega_storage_crate));
@@ -960,7 +960,7 @@ public class ModBlocks {
         registry.register(registerBlock(ModBlocks.ouzium));
         registry.register(registerBlock(ModBlocks.agathum));
         registry.register(registerBlock(ModBlocks.varloom));
-        registry.register(registerBlock(ModBlocks.corrupt_varloom));
+        registry.register(registerBlock(ModBlocks.corrupted_varloom));
         registry.register(registerBlock(ModBlocks.missingno_plant));
         registry.register(registerBlock(ModBlocks.spotted_kersei));
         registry.register(registerBlock(ModBlocks.thorny_wiltha));

@@ -10,10 +10,10 @@ import net.minecraft.util.IIntArray;
 public class GaiaStoneFurnaceContainer extends AbstractFurnaceContainer {
 
     public GaiaStoneFurnaceContainer(int id, PlayerInventory playerinv) {
-        super(ModContainers.GAIA_FURNACE, IRecipeType.SMELTING, id, playerinv);
+        super(ModContainers.GAIA_STONE_FURNACE, IRecipeType.SMELTING, id, playerinv);
     }
 
     public GaiaStoneFurnaceContainer(int id, PlayerInventory playerinv, IInventory inventory, IIntArray array) {
-        super(ModContainers.GAIA_FURNACE, IRecipeType.SMELTING, id, playerinv, inventory, array);
+        super(ModContainers.GAIA_STONE_FURNACE, IRecipeType.SMELTING, id, playerinv, inventory, array);
     }
 }

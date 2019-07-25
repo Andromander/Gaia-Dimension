@@ -84,7 +84,7 @@ public class CorruptSapperEntity extends MonsterEntity {
     public static boolean isValidSpawn(IWorld world, SpawnReason spawn, BlockPos pos) {
         BlockPos blockpos = pos.down();
         return spawn == SpawnReason.SPAWNER ||
-                world.getBlockState(blockpos).getBlock() == ModBlocks.corrupt_grass && world.getLight(blockpos) > 8 && world.getBiome(blockpos) == ModBiomes.goldstonelands;
+                world.getBlockState(blockpos).getBlock() == ModBlocks.corrupt_grass && world.getLight(blockpos) > 8 && world.getBiome(blockpos) == ModBiomes.goldstone_lands;
     }
 
     @Override
