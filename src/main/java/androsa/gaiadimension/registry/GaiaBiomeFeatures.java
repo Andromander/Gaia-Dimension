@@ -71,7 +71,7 @@ public class GaiaBiomeFeatures {
     }
 
     public static void addStaticStoneUnderground(Biome biomeIn) {
-        biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Biome.createDecoratedFeature(ModWorldgen.ORE, new GaiaOreFeatureConfig(GaiaOreFeatureConfig.FillerBlockType.WASTELAND, ModBlocks.static_stone.getDefaultState(), 33), Placement.COUNT_RANGE, new CountRangeConfig(9, 0, 0, 100)));
+        biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Biome.createDecoratedFeature(ModWorldgen.ORE, new GaiaOreFeatureConfig(GaiaOreFeatureConfig.FillerBlockType.STATIC, ModBlocks.static_stone.getDefaultState(), 33), Placement.COUNT_RANGE, new CountRangeConfig(9, 0, 0, 100)));
     }
 
     public static void addSearingRockUnderground(Biome biomeIn) {

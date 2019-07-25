@@ -92,7 +92,7 @@ public class ModBiomes {
             .waterFogColor(0x92BED4)
             .parent(null));
     public static final Biome static_wasteland = new StaticWastelandBiome((new Biome.Builder())
-            .surfaceBuilder(ModWorldgen.WASTELAND, GaiaBiomeFeatures.WASTELAND_SURFACE_CONFIG)
+            .surfaceBuilder(ModWorldgen.STATIC, GaiaBiomeFeatures.WASTELAND_SURFACE_CONFIG)
             .precipitation(Biome.RainType.NONE)
             .category(Biome.Category.EXTREME_HILLS)
             .depth(3.0F)

@@ -40,7 +40,7 @@ public class GaiaOreFeatureConfig implements IFeatureConfig {
 
     public enum FillerBlockType {
         STONE("stone", new BlockMatcher(ModBlocks.gaia_stone)),
-        WASTELAND("wasteland", (stone) -> {
+        STATIC("wasteland", (stone) -> {
             if (stone == null) {
                 return false;
             } else {
@@ -48,12 +48,12 @@ public class GaiaOreFeatureConfig implements IFeatureConfig {
                 return block == ModBlocks.gaia_stone || block == ModBlocks.wasteland_stone;
             }
         }),
-        VOLCANIC("wasteland", (stone) -> {
+        VOLCANIC("volcanic", (stone) -> {
             if (stone == null) {
                 return false;
             } else {
                 Block block = stone.getBlock();
-                return block == ModBlocks.gaia_stone || block == ModBlocks.wasteland_stone;
+                return block == ModBlocks.gaia_stone || block == ModBlocks.volcanic_rock;
             }
         });
 

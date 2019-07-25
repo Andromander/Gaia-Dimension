@@ -42,7 +42,7 @@ public class ModWorldgen {
     //SurfaceBuilder
     public static final SurfaceBuilder<SurfaceBuilderConfig> DEFAULT_GAIA = new GaiaDefaultSurfaceBuilder(SurfaceBuilderConfig::deserialize);
     public static final SurfaceBuilder<SurfaceBuilderConfig> VOLCANIC = new VolcanicSurfaceBuilder(SurfaceBuilderConfig::deserialize);
-    public static final SurfaceBuilder<SurfaceBuilderConfig> WASTELAND = new WastelandSurfaceBuilder(SurfaceBuilderConfig::deserialize);
+    public static final SurfaceBuilder<SurfaceBuilderConfig> STATIC = new WastelandSurfaceBuilder(SurfaceBuilderConfig::deserialize);
 
     //WorldCarver
     public static final WorldCarver<ProbabilityConfig> COATED_CAVES = new CoatedCavesWorldCarver(ProbabilityConfig::deserialize, 256);
@@ -76,7 +76,7 @@ public class ModWorldgen {
     public static void registerSurfaceBuilders(RegistryEvent.Register<SurfaceBuilder<?>> e) {
         e.getRegistry().register(DEFAULT_GAIA.setRegistryName("gaia_default"));
         e.getRegistry().register(VOLCANIC.setRegistryName("volcanic"));
-        e.getRegistry().register(WASTELAND.setRegistryName("wasteland"));
+        e.getRegistry().register(STATIC.setRegistryName("wasteland"));
     }
 
     @SubscribeEvent
