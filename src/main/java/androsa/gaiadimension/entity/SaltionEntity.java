@@ -1,21 +1,19 @@
 package androsa.gaiadimension.entity;
 
-import androsa.gaiadimension.GaiaDimension;
 import androsa.gaiadimension.registry.ModBiomes;
 import androsa.gaiadimension.registry.ModBlocks;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 
-public class SaltionEntity extends MonsterEntity {
+import java.util.Random;
 
-    public static final ResourceLocation LOOT_TABLE = new ResourceLocation(GaiaDimension.MODID, "entities/saltion");
+public class SaltionEntity extends MonsterEntity {
 
     public SaltionEntity(EntityType<? extends SaltionEntity> entity, World world) {
         super(entity, world);
@@ -45,7 +43,7 @@ public class SaltionEntity extends MonsterEntity {
         return 0.25F;
     }
 
-    public static boolean canSpawnHere(IWorld world, SpawnReason spawn, BlockPos pos) {
+    public static boolean canSpawnHere(EntityType<SaltionEntity> entity, IWorld world, SpawnReason spawn, BlockPos pos, Random random) {
         return world.getDifficulty() != Difficulty.PEACEFUL &&
                 isValidSpawn(world, spawn, pos);
     }
@@ -53,11 +51,6 @@ public class SaltionEntity extends MonsterEntity {
     public static boolean isValidSpawn(IWorld world, SpawnReason spawn, BlockPos pos) {
         BlockPos blockpos = pos.down();
         return spawn == SpawnReason.SPAWNER ||
-                world.getBlockState(blockpos).getBlock() == ModBlocks.corrupt_grass && world.getLight(blockpos) > 8 && world.getBiome(blockpos) == ModBiomes.salt_dunes;
+                world.getBlockState(blockpos).getBlock() == ModBlocks.salt && world.getLight(blockpos) > 8 && world.getBiome(blockpos) == ModBiomes.salt_dunes;
     }
-
-    /*@Override
-    public ResourceLocation getLootTable() {
-        return LOOT_TABLE;
-    }*/
 }

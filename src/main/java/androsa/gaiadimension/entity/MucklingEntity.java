@@ -1,6 +1,5 @@
 package androsa.gaiadimension.entity;
 
-import androsa.gaiadimension.GaiaDimension;
 import androsa.gaiadimension.registry.ModBiomes;
 import androsa.gaiadimension.registry.ModBlocks;
 import net.minecraft.block.BlockState;
@@ -10,7 +9,6 @@ import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.monster.SlimeEntity;
 import net.minecraft.particles.BlockParticleData;
 import net.minecraft.particles.ParticleTypes;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.Difficulty;
@@ -21,7 +19,6 @@ import net.minecraft.world.biome.Biome;
 import java.util.Random;
 
 public class MucklingEntity extends SlimeEntity {
-    //public static final ResourceLocation LOOT_TABLE = new ResourceLocation(GaiaDimension.MODID, "entities/muckling");
 
     public MucklingEntity(EntityType<? extends MucklingEntity> entity, World par1World) {
         super(entity, par1World);
@@ -75,9 +72,4 @@ public class MucklingEntity extends SlimeEntity {
         }
         return true;
     }
-
-    /*@Override
-    public ResourceLocation getLootTable() {
-        return LOOT_TABLE;
-    }*/
 }

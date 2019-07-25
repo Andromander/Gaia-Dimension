@@ -1,6 +1,6 @@
 package androsa.gaiadimension.item.inventory;
 
-import androsa.gaiadimension.registry.ModItems;
+import androsa.gaiadimension.registry.ModBlocks;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.container.Slot;
 import net.minecraft.item.Item;
@@ -16,27 +16,27 @@ public class GemPouchSlot extends Slot {
     public boolean isItemValid(ItemStack stack) {
         Item item = stack.getItem();
 
-        return (item == ModItems.sugilite ||
-        item == ModItems.hematite ||
-        item == ModItems.pyrite ||
-        item == ModItems.labradorite ||
-        item == ModItems.moonstone ||
-        item == ModItems.cinnabar ||
-        item == ModItems.red_opal ||
-        item == ModItems.blue_opal ||
-        item == ModItems.green_opal ||
-        item == ModItems.white_opal ||
-        item == ModItems.ixiolite ||
-        item == ModItems.proustite ||
-        item == ModItems.euclase ||
-        item == ModItems.leucite ||
-        item == ModItems.carnelian ||
-        item == ModItems.benitoite ||
-        item == ModItems.diopside ||
-        item == ModItems.chalcedony ||
-        item == ModItems.tektite ||
-        item == ModItems.goldstone ||
-        item == ModItems.aura_cluster ||
-        item == ModItems.bismuth_crystal);
+        return (item == ModBlocks.sugilite ||
+        item == ModBlocks.hematite ||
+        item == ModBlocks.pyrite ||
+        item == ModBlocks.labradorite ||
+        item == ModBlocks.moonstone ||
+        item == ModBlocks.cinnabar ||
+        item == ModBlocks.red_opal ||
+        item == ModBlocks.blue_opal ||
+        item == ModBlocks.green_opal ||
+        item == ModBlocks.white_opal ||
+        item == ModBlocks.ixiolite ||
+        item == ModBlocks.proustite ||
+        item == ModBlocks.euclase ||
+        item == ModBlocks.leucite ||
+        item == ModBlocks.carnelian ||
+        item == ModBlocks.benitoite ||
+        item == ModBlocks.diopside ||
+        item == ModBlocks.chalcedony ||
+        item == ModBlocks.tektite ||
+        item == ModBlocks.goldstone ||
+        item == ModBlocks.aura_cluster ||
+        item == ModBlocks.bismuth_crystal);
     }
 }

@@ -1,6 +1,6 @@
 package androsa.gaiadimension.item.tools;
 
-import androsa.gaiadimension.registry.ModItemGroups;
+import androsa.gaiadimension.registry.GaiaItemGroups;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.*;
 import net.minecraft.util.text.ITextComponent;
@@ -16,7 +16,7 @@ import java.util.List;
 public class CorruptWarriorSwordItem extends SwordItem {
 
     public CorruptWarriorSwordItem(IItemTier material) {
-        super(material, 3, -3.5F, new Properties().maxStackSize(1).defaultMaxDamage(material.getMaxUses()).rarity(Rarity.RARE).group(ModItemGroups.GAIA_TOOLS));
+        super(material, 3, -3.5F, new Properties().maxStackSize(1).defaultMaxDamage(material.getMaxUses()).rarity(Rarity.RARE).group(GaiaItemGroups.GAIA_TOOLS));
     }
 
     @Override

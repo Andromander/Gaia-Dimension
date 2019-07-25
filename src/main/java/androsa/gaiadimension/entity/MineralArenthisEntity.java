@@ -15,7 +15,6 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import java.util.Random;
 
 public class MineralArenthisEntity extends WaterMobEntity {
-    //public static final ResourceLocation LOOT_TABLE = new ResourceLocation(GaiaDimension.MODID, "entities/mineral_arenthis");
 
     public float arenthisPitch;
     public float prevArenthisPitch;
@@ -154,11 +153,6 @@ public class MineralArenthisEntity extends WaterMobEntity {
     public boolean hasMovementVector() {
         return this.randomMotionVecX != 0.0F || this.randomMotionVecY != 0.0F || this.randomMotionVecZ != 0.0F;
     }
-
-    /*@Override
-    public ResourceLocation getLootTable() {
-        return LOOT_TABLE;
-    }*/
 
     static class MoveRandomGoal extends Goal {
         private final MineralArenthisEntity arenthis;

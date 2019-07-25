@@ -18,7 +18,6 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import java.util.Random;
 
 public class ShallowArenthisEntity extends WaterMobEntity {
-    //public static final ResourceLocation LOOT_TABLE = new ResourceLocation(GaiaDimension.MODID, "entities/shallow_arenthis");
 
     public float arenthisPitch;
     public float prevArenthisPitch;
@@ -126,7 +125,7 @@ public class ShallowArenthisEntity extends WaterMobEntity {
         }
     }
 
-    public static boolean canSpawnHere(EntityType<MineralArenthisEntity> entity, IWorld world, SpawnReason reason, BlockPos pos, Random rand) {
+    public static boolean canSpawnHere(EntityType<ShallowArenthisEntity> entity, IWorld world, SpawnReason reason, BlockPos pos, Random rand) {
         return pos.getY() > 30 && pos.getY() < world.getSeaLevel();
     }
 
@@ -154,11 +153,6 @@ public class ShallowArenthisEntity extends WaterMobEntity {
     public boolean hasMovementVector() {
         return this.randomMotionVecX != 0.0F || this.randomMotionVecY != 0.0F || this.randomMotionVecZ != 0.0F;
     }
-
-    /*@Override
-    public ResourceLocation getLootTable() {
-        return LOOT_TABLE;
-    }*/
 
     static class AIMoveRandom extends Goal {
         private final ShallowArenthisEntity arenthis;

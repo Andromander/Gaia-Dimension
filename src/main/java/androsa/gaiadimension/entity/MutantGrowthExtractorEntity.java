@@ -1,16 +1,19 @@
 package androsa.gaiadimension.entity;
 
+import androsa.gaiadimension.registry.ModBlocks;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.LookAtGoal;
 import net.minecraft.entity.ai.goal.LookRandomlyGoal;
 import net.minecraft.entity.ai.goal.RandomWalkingGoal;
 import net.minecraft.entity.ai.goal.SwimGoal;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 
-public class MutantGrowthExtractorEntity extends CreatureEntity {
+import java.util.Random;
 
-    //public static final ResourceLocation LOOT_TABLE = new ResourceLocation(GaiaDimension.MODID, "entities/growth_extractor");
+public class MutantGrowthExtractorEntity extends CreatureEntity {
 
     public MutantGrowthExtractorEntity(EntityType<? extends MutantGrowthExtractorEntity> entity, World world) {
         super(entity, world);
@@ -38,8 +41,7 @@ public class MutantGrowthExtractorEntity extends CreatureEntity {
         return 1.3F;
     }
 
-    /*@Override
-    public ResourceLocation getLootTable() {
-        return LOOT_TABLE;
-    }*/
+    public static boolean canSpawnHere(EntityType<MutantGrowthExtractorEntity> entity, IWorld world, SpawnReason spawn, BlockPos pos, Random random) {
+        return world.getBlockState(pos.down()).getBlock() == ModBlocks.glitter_grass && world.getLightSubtracted(pos, 0) > 8;
+    }
 }

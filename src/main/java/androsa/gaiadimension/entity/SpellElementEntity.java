@@ -1,14 +1,20 @@
 package androsa.gaiadimension.entity;
 
+import androsa.gaiadimension.registry.ModBlocks;
 import net.minecraft.entity.CreatureEntity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.ai.goal.LookAtGoal;
 import net.minecraft.entity.ai.goal.LookRandomlyGoal;
 import net.minecraft.entity.ai.goal.RandomWalkingGoal;
 import net.minecraft.entity.ai.goal.SwimGoal;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
+
+import java.util.Random;
 
 public class SpellElementEntity extends CreatureEntity {
 
@@ -30,5 +36,9 @@ public class SpellElementEntity extends CreatureEntity {
         this.goalSelector.addGoal(3, new LookAtGoal(this, PlayerEntity.class, 8.0F));
         this.goalSelector.addGoal(4, new LookRandomlyGoal(this));
         this.goalSelector.addGoal(2, new RandomWalkingGoal(this, 0.5D));
+    }
+
+    public static boolean canSpawnHere(EntityType<SpellElementEntity> entity, IWorld world, SpawnReason spawn, BlockPos pos, Random random) {
+        return world.getBlockState(pos.down()).getBlock() == ModBlocks.glitter_grass && world.getLightSubtracted(pos, 0) > 8;
     }
 }

@@ -1,8 +1,9 @@
 package androsa.gaiadimension.entity;
 
-import androsa.gaiadimension.GaiaDimension;
+import androsa.gaiadimension.GaiaDimensionMod;
 import androsa.gaiadimension.registry.ModBiomes;
 import androsa.gaiadimension.registry.ModBlocks;
+import androsa.gaiadimension.registry.ModEffects;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.monster.MonsterEntity;
@@ -13,9 +14,9 @@ import net.minecraft.world.Difficulty;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 
-public class CorruptSapperEntity extends MonsterEntity {
+import java.util.Random;
 
-    //public static final ResourceLocation LOOT_TABLE = new ResourceLocation(GaiaDimension.MODID, "entities/corrupt_sapper");
+public class CorruptSapperEntity extends MonsterEntity {
 
     public CorruptSapperEntity(EntityType<? extends CorruptSapperEntity> entity, World world) {
         super(entity, world);
@@ -75,7 +76,7 @@ public class CorruptSapperEntity extends MonsterEntity {
         }
     }
 
-    public static boolean canSpawnHere(IWorld world, SpawnReason spawn, BlockPos pos) {
+    public static boolean canSpawnHere(EntityType<CorruptSapperEntity> entity, IWorld world, SpawnReason spawn, BlockPos pos, Random random) {
         return world.getDifficulty() != Difficulty.PEACEFUL &&
                 isValidSpawn(world, spawn, pos);
     }
@@ -88,11 +89,6 @@ public class CorruptSapperEntity extends MonsterEntity {
 
     @Override
     public CreatureAttribute getCreatureAttribute() {
-        return GaiaDimension.CORRUPT;
+        return GaiaDimensionMod.CORRUPT;
     }
-
-    /*@Override
-    public ResourceLocation getLootTable() {
-        return LOOT_TABLE;
-    }*/
 }

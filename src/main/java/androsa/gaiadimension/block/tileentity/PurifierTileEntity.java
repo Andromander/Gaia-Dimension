@@ -2,7 +2,11 @@ package androsa.gaiadimension.block.tileentity;
 
 import androsa.gaiadimension.block.PurifierBlock;
 import androsa.gaiadimension.block.container.PurifierContainer;
+import androsa.gaiadimension.recipe.PurifierRecipe;
 import androsa.gaiadimension.registry.ModBlocks;
+import androsa.gaiadimension.registry.ModBlocks;
+import androsa.gaiadimension.registry.ModRecipes;
+import androsa.gaiadimension.registry.ModTileEntities;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import net.minecraft.entity.item.ExperienceOrbEntity;
@@ -108,11 +112,11 @@ public class PurifierTileEntity extends LockableTileEntity implements ISidedInve
     /** Burn times for the third slot*/
     public static Map<Item, Integer> getThirdFuelBurnTime() {
         Map<Item, Integer> map = Maps.newLinkedHashMap();
-        addItemToMap(map, GDItems.bismuth_residue, 200);
-        addItemToMap(map, GDItems.bismuth_crystal, 1800);
+        addItemToMap(map, ModBlocks.bismuth_residue, 200);
+        addItemToMap(map, ModBlocks.bismuth_crystal, 1800);
         addItemToMap(map, ModBlocks.bismuth_block, 16200);
-        addItemToMap(map, GDItems.black_residue, 100);
-        addItemToMap(map, GDItems.tektite, 900);
+        addItemToMap(map, ModBlocks.black_residue, 100);
+        addItemToMap(map, ModBlocks.tektite, 900);
         addItemToMap(map, ModBlocks.tektite_block, 8100);
         return map;
     }
@@ -177,7 +181,7 @@ public class PurifierTileEntity extends LockableTileEntity implements ISidedInve
             ItemStack bismuthStack = this.purifyingItemStacks.get(3);
 
             if (this.isBurning() || !goldStack.isEmpty() && !essenceStack.isEmpty() && !bismuthStack.isEmpty() && !this.purifyingItemStacks.get(0).isEmpty()) {
-                IRecipe<?> irecipe = this.world.getRecipeManager().getRecipe(ModRecipeTypes.PURIFYING, this, this.world).orElse(null);
+                IRecipe<?> irecipe = this.world.getRecipeManager().getRecipe(ModRecipes.PURIFYING, this, this.world).orElse(null);
                 if (!this.isBurning() && this.canChange(irecipe)) {
                     this.burnTime = getItemBurnTime(goldStack, essenceStack, bismuthStack);
                     this.recipesUsed = this.burnTime;
@@ -251,7 +255,6 @@ public class PurifierTileEntity extends LockableTileEntity implements ISidedInve
         if (!this.purifyingItemStacks.get(0).isEmpty() && recipe != null) {
             ItemStack[] itemstack = ((PurifierRecipe)recipe).getRecipeOutputs();
 
-
             if(itemstack[0].isEmpty() && itemstack[1].isEmpty() || itemstack[0].isEmpty()) {
                 return false;
             } else {
@@ -321,7 +324,7 @@ public class PurifierTileEntity extends LockableTileEntity implements ISidedInve
     }
 
     private int cookingTime() {
-        return this.world.getRecipeManager().getRecipe(ModRecipeTypes.PURIFYING, this, this.world).map(PurifierRecipe::getCookTime).orElse(200);
+        return this.world.getRecipeManager().getRecipe(ModRecipes.PURIFYING, this, this.world).map(PurifierRecipe::getCookTime).orElse(200);
     }
 
     public static boolean isItemFuel(ItemStack stack) {

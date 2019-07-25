@@ -1,6 +1,6 @@
 package androsa.gaiadimension.renderer;
 
-import androsa.gaiadimension.GaiaDimension;
+import androsa.gaiadimension.GaiaDimensionMod;
 import androsa.gaiadimension.entity.NomadicLagrahkEntity;
 import androsa.gaiadimension.model.NomadicLagrahkModel;
 import net.minecraft.client.renderer.entity.MobRenderer;
@@ -11,10 +11,10 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
 public class NomadicLagrahkRenderer extends MobRenderer<NomadicLagrahkEntity, NomadicLagrahkModel> {
-    private static final ResourceLocation defaultLoc = new ResourceLocation(GaiaDimension.MODEL_DIR + "nomadiclagrahk_none.png");
-    private static final ResourceLocation saltyLoc = new ResourceLocation(GaiaDimension.MODEL_DIR + "nomadiclagrahk_salty.png");
-    private static final ResourceLocation staticLoc = new ResourceLocation(GaiaDimension.MODEL_DIR + "nomadiclagrahk_static.png");
-    private static final ResourceLocation volcanicLoc = new ResourceLocation(GaiaDimension.MODEL_DIR + "nomadiclagrahk_volcanic.png");
+    private static final ResourceLocation defaultLoc = new ResourceLocation(GaiaDimensionMod.MODEL_DIR + "nomadiclagrahk_none.png");
+    private static final ResourceLocation saltyLoc = new ResourceLocation(GaiaDimensionMod.MODEL_DIR + "nomadiclagrahk_salty.png");
+    private static final ResourceLocation staticLoc = new ResourceLocation(GaiaDimensionMod.MODEL_DIR + "nomadiclagrahk_static.png");
+    private static final ResourceLocation volcanicLoc = new ResourceLocation(GaiaDimensionMod.MODEL_DIR + "nomadiclagrahk_volcanic.png");
 
     public NomadicLagrahkRenderer(EntityRendererManager manager, NomadicLagrahkModel model, float shadowSize) {
         super(manager, model, shadowSize);

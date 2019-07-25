@@ -1,6 +1,6 @@
 package androsa.gaiadimension.block;
 
-import androsa.gaiadimension.GaiaDimension;
+import androsa.gaiadimension.GaiaDimensionMod;
 import androsa.gaiadimension.registry.ModBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -16,10 +16,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.math.shapes.VoxelShapes;
-import net.minecraft.world.IBlockReader;
-import net.minecraft.world.IWorld;
-import net.minecraft.world.IWorldReader;
-import net.minecraft.world.World;
+import net.minecraft.world.*;
 import net.minecraft.world.dimension.DimensionType;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -61,7 +58,7 @@ public class GoldFireBlock extends Block {
     @Override
     @Deprecated
     public void tick(BlockState state, World worldIn, BlockPos pos, Random random) {
-        if (worldIn.getGameRules().getBoolean("doFireTick")) {
+        if (worldIn.getGameRules().getBoolean(GameRules.DO_FIRE_TICK)) {
             if (!worldIn.isAreaLoaded(pos, 2)) return;
             if (!state.isValidPosition(worldIn, pos)) {
                 worldIn.removeBlock(pos, false);
@@ -116,7 +113,7 @@ public class GoldFireBlock extends Block {
     @Deprecated
     public void onBlockAdded(BlockState state1, World worldIn, BlockPos pos, BlockState state2, boolean flag) {
         if (state2.getBlock() != state1.getBlock()) {
-            if (worldIn.dimension.getType() != DimensionType.OVERWORLD && worldIn.dimension.getType() != GaiaDimension.dimType || !ModBlocks.gaia_portal.tryToCreatePortal(worldIn, pos)) {
+            if (worldIn.dimension.getType() != DimensionType.OVERWORLD && worldIn.dimension.getType() != GaiaDimensionMod.dimType || !ModBlocks.gaia_portal.tryToCreatePortal(worldIn, pos)) {
                 if (!state1.isValidPosition(worldIn, pos)) {
                     worldIn.removeBlock(pos, false);
                 } else {

@@ -1,7 +1,7 @@
 package androsa.gaiadimension.entity;
 
-import androsa.gaiadimension.GaiaDimension;
-import androsa.gaiadimension.registry.ModItems;
+import androsa.gaiadimension.GaiaDimensionMod;
+import androsa.gaiadimension.registry.ModBlocks;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.*;
@@ -22,8 +22,6 @@ import net.minecraft.world.World;
 import javax.annotation.Nullable;
 
 public class ArchaicWarriorEntity extends MonsterEntity {
-
-    //public static final ResourceLocation LOOT_TABLE = new ResourceLocation(GaiaDimension.MODID, "entities/archaic_warrior");
 
     public ArchaicWarriorEntity(EntityType<? extends ArchaicWarriorEntity> entity, World worldIn) {
         super(entity, worldIn);
@@ -91,7 +89,7 @@ public class ArchaicWarriorEntity extends MonsterEntity {
 
     @Override
     public CreatureAttribute getCreatureAttribute() {
-        return GaiaDimension.GAIAN;
+        return GaiaDimensionMod.GAIAN;
     }
 
     @Override
@@ -99,7 +97,7 @@ public class ArchaicWarriorEntity extends MonsterEntity {
         super.setEquipmentBasedOnDifficulty(difficulty);
 
         if (this.rand.nextFloat() < (this.world.getDifficulty() == Difficulty.NORMAL ? 0.05F : 0.01F)) {
-            this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(ModItems.sugilite_sword));
+            this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(ModBlocks.sugilite_sword));
         }
     }
 
@@ -118,9 +116,4 @@ public class ArchaicWarriorEntity extends MonsterEntity {
 
         return spawnDataIn;
     }
-
-    /*@Override
-    public ResourceLocation getLootTable() {
-        return LOOT_TABLE;
-    }*/
 }

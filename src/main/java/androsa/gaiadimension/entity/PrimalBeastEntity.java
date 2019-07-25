@@ -15,6 +15,8 @@ import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
+import java.util.Random;
+
 public class PrimalBeastEntity extends MonsterEntity {
 
     public PrimalBeastEntity(EntityType<? extends PrimalBeastEntity> entity, World world) {
@@ -85,7 +87,7 @@ public class PrimalBeastEntity extends MonsterEntity {
         return 0.0F;
     }
 
-    public static boolean canSpawnHere(IWorld world, SpawnReason spawn, BlockPos pos) {
+    public static boolean canSpawnHere(EntityType<PrimalBeastEntity> entity, IWorld world, SpawnReason spawn, BlockPos pos, Random random) {
         return world.getDifficulty() != Difficulty.PEACEFUL && pos.getY() < 20.0D && pos.getY() > 0.0D;
     }
 

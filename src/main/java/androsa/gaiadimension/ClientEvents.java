@@ -1,44 +1,39 @@
 package androsa.gaiadimension;
 
-import androsa.gaiadimension.biomes.GDBiomeBase;
-import androsa.gaiadimension.registry.GDBlocks;
-import androsa.gaiadimension.registry.GDBlocksRegister;
-import androsa.gaiadimension.registry.GDItemsRegister;
-import androsa.gaiadimension.registry.ModelRegisterCallback;
+import androsa.gaiadimension.biomes.BaseGaiaBiome;
+import androsa.gaiadimension.registry.ModBlocks;
 import net.minecraft.client.renderer.color.BlockColors;
 import net.minecraft.client.renderer.color.ItemColors;
-import net.minecraft.client.renderer.texture.TextureMap;
-import net.minecraft.item.ItemBlock;
+import net.minecraft.item.BlockItem;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
-import net.minecraft.world.biome.BiomeColorHelper;
+import net.minecraft.world.biome.BiomeColors;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.ColorHandlerEvent;
-import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.event.TextureStitchEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
-@SideOnly(Side.CLIENT)
-@Mod.EventBusSubscriber(modid = GaiaDimension.MODID, value = Side.CLIENT)
+@OnlyIn(Dist.CLIENT)
+@Mod.EventBusSubscriber(modid = GaiaDimensionMod.MODID, value = Dist.CLIENT)
 public class ClientEvents {
 
     @SubscribeEvent
     public static void registerBlockColors(ColorHandlerEvent.Block e) {
         BlockColors blocks = e.getBlockColors();
 
-        blocks.registerBlockColorHandler((state, worldIn, pos, tintIndex) -> worldIn != null && pos != null && worldIn.getBiome(pos) instanceof GDBiomeBase ? BiomeColorHelper.getGrassColorAtPos(worldIn, pos) : 0xF2A3B4,
-                GDBlocks.glitter_grass,
-                GDBlocks.crystal_growth);
+        blocks.register((state, worldIn, pos, tintIndex) -> worldIn != null && pos != null && worldIn.getBiome(pos) instanceof BaseGaiaBiome ? BiomeColors.getGrassColor(worldIn, pos) : 0xF2A3B4,
+                ModBlocks.glitter_grass,
+                ModBlocks.crystal_growth);
 
-        blocks.registerBlockColorHandler((state, worldIn, pos, tintIndex) -> worldIn != null && pos != null && worldIn.getBiome(pos) instanceof GDBiomeBase ? BiomeColorHelper.getGrassColorAtPos(worldIn, pos) : 0x606060,
-                GDBlocks.murky_grass);
+        blocks.register((state, worldIn, pos, tintIndex) -> worldIn != null && pos != null && worldIn.getBiome(pos) instanceof BaseGaiaBiome ? BiomeColors.getGrassColor(worldIn, pos) : 0x606060,
+                ModBlocks.murky_grass);
 
-        blocks.registerBlockColorHandler((state, worldIn, pos, tintIndex) -> worldIn != null && pos != null && worldIn.getBiome(pos) instanceof GDBiomeBase ? BiomeColorHelper.getGrassColorAtPos(worldIn, pos) : 0xA0A0A0,
-                GDBlocks.soft_grass);
+        blocks.register((state, worldIn, pos, tintIndex) -> worldIn != null && pos != null && worldIn.getBiome(pos) instanceof BaseGaiaBiome ? BiomeColors.getGrassColor(worldIn, pos) : 0xA0A0A0,
+                ModBlocks.soft_grass);
 
-        blocks.registerBlockColorHandler((state, worldIn, pos, tintIndex) -> {
+        /*blocks.register((state, worldIn, pos, tintIndex) -> {
             if (worldIn != null && pos != null) {
                 int red = (int) ((MathHelper.cos((float) Math.toRadians(pos.getX() * 2)) + 1F) / 2F * 0xFF);
                 int green = (int) ((MathHelper.cos((float) Math.toRadians(pos.getY() * 2)) + 1F) / 3F * 0xFF);
@@ -52,9 +47,9 @@ public class ClientEvents {
             } else {
                 return 0x808080;
             }
-        }, GDBlocks.liquid_bismuth_block);
+        }, ModBlocks.liquid_bismuth_block);
 
-        blocks.registerBlockColorHandler((state, worldIn, pos, tintIndex) -> {
+        blocks.register((state, worldIn, pos, tintIndex) -> {
             if (worldIn != null && pos != null) {
                 int red = (int) ((MathHelper.cos((float) Math.toRadians((pos.getX() + 100) * 8)) + 1F) / 2F * 0xFF);
                 int green = (int) ((MathHelper.cos((float) Math.toRadians((pos.getY() + 100) * 32)) + 1F) / 2F * 0xFF);
@@ -69,9 +64,9 @@ public class ClientEvents {
                 return 0xFFFFFF;
             }
 
-        }, GDBlocks.liquid_aura_block, GDBlocks.aura_leaves);
+        }, ModBlocks.liquid_aura_block, ModBlocks.aura_leaves);*/
 
-        blocks.registerBlockColorHandler((state, worldIn, pos, tintIndex) -> {
+        blocks.register((state, worldIn, pos, tintIndex) -> {
             int hex;
 
             if (worldIn != null && pos != null) {
@@ -113,7 +108,7 @@ public class ClientEvents {
             }
 
             return hex;
-        }, GDBlocks.aura_shoot);
+        }, ModBlocks.aura_shoot);
     }
 
     @SubscribeEvent
@@ -121,27 +116,20 @@ public class ClientEvents {
         BlockColors blocks = e.getBlockColors();
         ItemColors items = e.getItemColors();
 
-        items.registerItemColorHandler((stack, tintIndex) -> blocks.colorMultiplier(((ItemBlock)stack.getItem()).getBlock().getDefaultState(), null, null, tintIndex),
-                GDBlocks.glitter_grass,
-                GDBlocks.crystal_growth,
-                GDBlocks.murky_grass,
-                GDBlocks.aura_shoot,
-                GDBlocks.soft_grass);
+        items.register((stack, tintIndex) -> blocks.getColor(((BlockItem)stack.getItem()).getBlock().getDefaultState(), null, null, tintIndex),
+                ModBlocks.glitter_grass,
+                ModBlocks.crystal_growth,
+                ModBlocks.murky_grass,
+                ModBlocks.aura_shoot,
+                ModBlocks.soft_grass);
     }
 
-    @SubscribeEvent
-    public static void onModelRegistryReady(ModelRegistryEvent event) {
-        for (ModelRegisterCallback b : GDBlocksRegister.getBlockModels()) b.registerModel();
-
-        for (ModelRegisterCallback i : GDItemsRegister.ItemRegistryHelper.getItemModels()) i.registerModel();
-    }
-
-    @SubscribeEvent
+    /*@SubscribeEvent
     public static void textureStitch(TextureStitchEvent.Pre e) {
         TextureMap map = e.getMap();
 
-        map.registerSprite(new ResourceLocation(GaiaDimension.MODID, "particle/yellow_fire"));
-        map.registerSprite(new ResourceLocation(GaiaDimension.MODID, "particle/green_fire"));
-        map.registerSprite(new ResourceLocation(GaiaDimension.MODID, "particle/portal_sparkle"));
-    }
+        map.registerSprite(new ResourceLocation(GaiaDimensionMod.MODID, "particle/yellow_fire"));
+        map.registerSprite(new ResourceLocation(GaiaDimensionMod.MODID, "particle/green_fire"));
+        map.registerSprite(new ResourceLocation(GaiaDimensionMod.MODID, "particle/portal_sparkle"));
+    }*/
 }

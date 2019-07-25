@@ -1,142 +1,50 @@
 package androsa.gaiadimension.proxy;
 
-import androsa.gaiadimension.block.inventory.*;
-import androsa.gaiadimension.block.tileentity.*;
 import androsa.gaiadimension.entity.*;
-import androsa.gaiadimension.entity.boss.GDBlueHowliteWolf;
-import androsa.gaiadimension.entity.boss.GDMalachiteGuard;
-import androsa.gaiadimension.item.GDGemstonePouch;
-import androsa.gaiadimension.item.inventory.ContainerGemPouch;
-import androsa.gaiadimension.item.inventory.GuiGemPouch;
-import androsa.gaiadimension.item.inventory.InventoryGemPouch;
+import androsa.gaiadimension.entity.boss.BlueHowliteWolfEntity;
+import androsa.gaiadimension.entity.boss.MalachiteGuardEntity;
+import androsa.gaiadimension.entity.projectile.AgateArrowEntity;
+import androsa.gaiadimension.entity.projectile.ThrownPebbleEntity;
 import androsa.gaiadimension.model.*;
-import androsa.gaiadimension.particle.*;
-import androsa.gaiadimension.registry.EnumParticlesGD;
-import androsa.gaiadimension.registry.GDItems;
 import androsa.gaiadimension.renderer.*;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.inventory.GuiContainer;
-import net.minecraft.client.particle.Particle;
-import net.minecraft.client.resources.I18n;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
+import net.minecraft.client.renderer.entity.SpriteRenderer;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 
 public class ClientProxy extends CommonProxy {
 
     @Override
-    public GuiContainer getClientGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
-        GuiID guiID = GuiID.values()[ID];
-        BlockPos pos = new BlockPos(x, y, z);
-        TileEntity tile = world.getTileEntity(pos);
-
-        switch (guiID) {
-            case AGATE_CRAFT:
-                return new GuiAgateCraftingTable(player.inventory, world, pos);
-            case SMALL_CRATE:
-                return new GuiSmallCrate(player.inventory, (TileEntitySmallCrate) tile);
-            case LARGE_CRATE:
-                return new GuiLargeCrate(player.inventory, (TileEntityLargeCrate) tile);
-            case GAIA_STONE_FURNACE:
-                return new GuiGaiaStoneFurnace(player.inventory, (TileEntityGaiaStoneFurnace) tile);
-            case GLITTER_FURNACE:
-                return new GuiRestructurer(player.inventory, (TileEntityRestructurer) tile);
-            case PURIFIER:
-                return new GuiPurifier(player.inventory, (TileEntityPurifier) tile);
-            case GEM_POUCH:
-                ItemStack item = player.getHeldItemMainhand();
-                if(item.isEmpty() || !(item.getItem() instanceof GDGemstonePouch)) {
-                    item = player.getHeldItemOffhand();
-                }
-                if(!item.isEmpty() && item.getItem() instanceof GDGemstonePouch) {
-                    String name = item.hasDisplayName() ? item.getDisplayName() : I18n.format("container.gaiadimension.gem_pouch");
-                    return new GuiGemPouch(new ContainerGemPouch(player.inventory, new InventoryGemPouch(item, name)));
-                }
-            default:
-                return null;
-        }
-    }
-    @Override
     public void doPreLoadRegistration() {
        // RenderingRegistry.registerEntityRenderingHandler(GDShotGaianEnergy.class, m -> new RenderSnowball<>(m, Items.ENDER_PEARL, Minecraft.getMinecraft().getRenderItem()));
-        RenderingRegistry.registerEntityRenderingHandler(GDThrownPebble.class, m -> new RenderThrownPebble<>(m, GDItems.sturdy_pebble, Minecraft.getMinecraft().getRenderItem()));
-        RenderingRegistry.registerEntityRenderingHandler(GDAgateArrowEntity.class, RenderAgateArrow::new);
+        RenderingRegistry.registerEntityRenderingHandler(ThrownPebbleEntity.class, m -> new SpriteRenderer<>(m, Minecraft.getInstance().getItemRenderer()));
+        RenderingRegistry.registerEntityRenderingHandler(AgateArrowEntity.class, AgateArrowRenderer::new);
 
-        RenderingRegistry.registerEntityRenderingHandler(GDGrowthSapper.class, m -> new EntityRenderGrowthSapper(m, new ModelGrowthSapper(), 0.6F));
-        RenderingRegistry.registerEntityRenderingHandler(GDMutantGrowthExtractor.class, m -> new EntityRenderGrowthExtractor(m, new ModelGrowthExtractor(),0.8F));
-        RenderingRegistry.registerEntityRenderingHandler(GDHowliteWolf.class, m -> new EntityRenderHowliteWolf(m, new ModelHowliteWolf(), 0.5F));
-        RenderingRegistry.registerEntityRenderingHandler(GDSpellElement.class, m -> new EntityRenderSpellElement(m, new ModelSpellElement(), 0.4F));
-        RenderingRegistry.registerEntityRenderingHandler(GDRockyLuggeroth.class, m -> new EntityRenderRockyLuggeroth(m, new ModelRockyLuggeroth(), 0.7F));
-        RenderingRegistry.registerEntityRenderingHandler(GDShalurker.class, m -> new EntityRenderShalurker(m, new ModelShalurker(), 0.5F));
-        RenderingRegistry.registerEntityRenderingHandler(GDMuckling.class, m -> new EntityRenderMuckling(m, 0.625F));
-        RenderingRegistry.registerEntityRenderingHandler(GDMarkuzarPlant.class, m -> new EntityRenderMarkuzarPlant(m, new ModelMarkuzarPlant(), 0.5F));
-        RenderingRegistry.registerEntityRenderingHandler(GDRuggedLurmorus.class, m -> new EntityRenderRuggedLurmorus(m, new ModelRuggedLurmorus(), 4.0F));
-        RenderingRegistry.registerEntityRenderingHandler(GDAgateGolem.class, m -> new EntityRenderAgateGolem(m, new ModelAgateGolem(), 0.9F));
-        RenderingRegistry.registerEntityRenderingHandler(GDAncientLagrahk.class, m -> new EntityRenderAncientLagrahk(m, new ModelAncientLagrahk(), 2.0F));
-        RenderingRegistry.registerEntityRenderingHandler(GDCrystalGolem.class, m -> new EntityRenderCrystalGolem(m, new ModelCrystalGolem(), 0.9F));
-        RenderingRegistry.registerEntityRenderingHandler(GDSaltion.class, m -> new EntityRenderSaltion(m, new ModelSaltion(), 0.7F));
-        RenderingRegistry.registerEntityRenderingHandler(GDNomadicLagrahk.class, m -> new EntityRenderNomadicLagrahk(m, new ModelNomadicLagrahk(), 1.0F));
-        RenderingRegistry.registerEntityRenderingHandler(GDShallowArenthis.class, m -> new EntityRenderShallowArenthis(m, new ModelShallowArenthis(), 0.5F));
-        RenderingRegistry.registerEntityRenderingHandler(GDCorruptSapper.class, m -> new EntityRenderCorruptSapper(m, new ModelGrowthSapper(), 0.6F));
-        RenderingRegistry.registerEntityRenderingHandler(GDContortedNaga.class, m -> new EntityRenderContortedNaga(m, new ModelContortedNaga(), 0.7F));
-        RenderingRegistry.registerEntityRenderingHandler(GDLesserSpitfire.class, m -> new EntityRenderLesserSpitfire(m, new ModelLesserSpitfire(), 0.5F));
-        RenderingRegistry.registerEntityRenderingHandler(GDLesserShockshooter.class, m -> new EntityRenderLesserShockshooter(m, new ModelLesserShockshooter(), 0.5F));
-        RenderingRegistry.registerEntityRenderingHandler(GDMineralArenthis.class, m -> new EntityRenderMineralArenthis(m, new ModelMineralArenthis(), 0.8F));
-        RenderingRegistry.registerEntityRenderingHandler(GDBismuthUletrus.class, m -> new EntityRenderBismuthUletrus(m, new ModelBismuthUletrus(), 1.0F));
-        RenderingRegistry.registerEntityRenderingHandler(GDArchaicWarrior.class, m -> new EntityRenderArchaicWarrior(m, new ModelArchaicWarrior(), 0.5F));
-        RenderingRegistry.registerEntityRenderingHandler(GDPrimalBeast.class, m -> new EntityRenderPrimalBeast(m, new ModelPrimalBeast(), 0.5F));
-        RenderingRegistry.registerEntityRenderingHandler(GDCavernTick.class, m -> new EntityRenderCavernTick(m, new ModelCavernTick(), 0.2F));
-        RenderingRegistry.registerEntityRenderingHandler(GDBlueHowliteWolf.class, m -> new EntityRenderBlueHowliteWolf(m, new ModelBlueHowliteWolf(), 1.0F));
+        RenderingRegistry.registerEntityRenderingHandler(AgateGolemEntity.class, m -> new AgateGolemRenderer(m, new AgateGolemModel(), 0.9F));
+        RenderingRegistry.registerEntityRenderingHandler(AncientLagrahkEntity.class, m -> new AncientLagrahkRenderer(m, new AncientLagrahkModel(), 2.0F));
+        RenderingRegistry.registerEntityRenderingHandler(ArchaicWarriorEntity.class, m -> new ArchaicWarriorRenderer(m, new ArchaicWarriorModel(), 0.5F));
+        RenderingRegistry.registerEntityRenderingHandler(BismuthUletrusEntity.class, m -> new BismuthUletrusRenderer(m, new BismuthUletrusModel(), 1.0F));
+        RenderingRegistry.registerEntityRenderingHandler(CavernTickEntity.class, m -> new CavernTickRenderer(m, new CavernTickModel(), 0.2F));
+        RenderingRegistry.registerEntityRenderingHandler(ContortedNagaEntity.class, m -> new ContortedNagaRenderer(m, new ContortedNagaModel(), 0.7F));
+        RenderingRegistry.registerEntityRenderingHandler(CorruptSapperEntity.class, m -> new CorruptSapperRenderer(m, new GrowthSapperModel<>(), 0.6F));
+        RenderingRegistry.registerEntityRenderingHandler(CrystalGolemEntity.class, m -> new CrystalGolemRenderer(m, new CrystalGolemModel(), 0.9F));
+        RenderingRegistry.registerEntityRenderingHandler(GrowthSapperEntity.class, m -> new GrowthSapperRenderer(m, new GrowthSapperModel<>(), 0.6F));
+        RenderingRegistry.registerEntityRenderingHandler(HowliteWolfEntity.class, m -> new HowliteWolfRenderer(m, new HowliteWolfModel(), 0.5F));
+        RenderingRegistry.registerEntityRenderingHandler(LesserShockshooterEntity.class, m -> new LesserShockshooterRenderer(m, new LesserShockshooterModel(), 0.5F));
+        RenderingRegistry.registerEntityRenderingHandler(LesserSpitfireEntity.class, m -> new LesserSpitfireRenderer(m, new LesserSpitfireModel(), 0.5F));
+        RenderingRegistry.registerEntityRenderingHandler(MarkuzarPlantEntity.class, m -> new MarkuzarPlantRenderer(m, new MarkuzarPlantModel(), 0.5F));
+        RenderingRegistry.registerEntityRenderingHandler(MineralArenthisEntity.class, m -> new MineralArenthisRenderer(m, new MineralArenthisModel(), 0.8F));
+        RenderingRegistry.registerEntityRenderingHandler(MucklingEntity.class, m -> new MucklingRenderer(m, 0.625F));
+        RenderingRegistry.registerEntityRenderingHandler(MutantGrowthExtractorEntity.class, m -> new GrowthExtractorRenderer(m, new GrowthExtractorModel(),0.8F));
+        RenderingRegistry.registerEntityRenderingHandler(NomadicLagrahkEntity.class, m -> new NomadicLagrahkRenderer(m, new NomadicLagrahkModel(), 1.0F));
+        RenderingRegistry.registerEntityRenderingHandler(PrimalBeastEntity.class, m -> new PrimalBeastRenderer(m, new PrimalBeastModel(), 0.5F));
+        RenderingRegistry.registerEntityRenderingHandler(RockyLuggerothEntity.class, m -> new RockyLuggerothRenderer(m, new RockyLuggerothModel(), 0.7F));
+        RenderingRegistry.registerEntityRenderingHandler(RuggedLurmorusEntity.class, m -> new RuggedLurmorusRenderer(m, new RuggedLurmorusModel(), 4.0F));
+        RenderingRegistry.registerEntityRenderingHandler(SaltionEntity.class, m -> new SaltionRenderer(m, new SaltionModel(), 0.7F));
+        RenderingRegistry.registerEntityRenderingHandler(ShallowArenthisEntity.class, m -> new ShallowArenthisRenderer(m, new ShallowArenthisModel(), 0.5F));
+        RenderingRegistry.registerEntityRenderingHandler(ShalurkerEntity.class, m -> new ShalurkerRenderer(m, new ShalurkerModel(), 0.5F));
+        RenderingRegistry.registerEntityRenderingHandler(SpellElementEntity.class, m -> new SpellElementRenderer(m, new SpellElementModel(), 0.4F));
 
-        RenderingRegistry.registerEntityRenderingHandler(GDMalachiteGuard.class, m -> new EntityRenderMalachiteGuard(m, new ModelMalachiteGuard(), 0.7F));
-    }
-
-    @Override
-    public void spawnParticle(EnumParticlesGD particle, double x, double y, double z, double speedX, double speedY, double speedZ) {
-        Minecraft mc = Minecraft.getMinecraft();
-        Entity entity = mc.getRenderViewEntity();
-        World world = mc.world;
-
-        if (entity != null && mc.effectRenderer != null) {
-            int i = mc.gameSettings.particleSetting;
-
-            if (i == 1 && world.rand.nextInt(3) == 0) {
-                i = 2;
-            }
-
-            double dx = entity.posX - x;
-            double dy = entity.posY - y;
-            double dz = entity.posZ - z;
-
-            if (dx * dx + dy * dy + dz * dz <= 1024D && i <= 1) {
-                Particle part = null;
-
-                switch (particle) {
-                    case GEYSER_SMOKE:
-                        part = new ParticleGeyserSmoke(world, x, y, z, speedX, speedY, speedZ);
-                        break;
-                    case RESTRUCTURER_FIRE:
-                        part = new ParticleRestructurerFire(world, x, y, z, speedX, speedY, speedZ);
-                        break;
-                    case PURIFIER_FIRE:
-                        part = new ParticlePurifierFire(world, x, y, z, speedX, speedY, speedZ);
-                        break;
-                    case PORTAL:
-                        part = new ParticleGaiaPortal(world, x, y, z, speedX, speedY, speedZ);
-                        break;
-                    case PYRITE:
-                        part = new ParticlePyrite(world, x, y, z, speedX, speedY, speedZ);
-                        break;
-                }
-
-                if (part != null) {
-                    mc.effectRenderer.addEffect(part);
-                }
-            }
-        }
+        RenderingRegistry.registerEntityRenderingHandler(BlueHowliteWolfEntity.class, m -> new BlueHowliteWolfRenderer(m, new BlueHowliteWolfModel(), 1.0F));
+        RenderingRegistry.registerEntityRenderingHandler(MalachiteGuardEntity.class, m -> new MalachiteGuardRenderer(m, new MalachiteGuardModel(), 0.7F));
     }
 }

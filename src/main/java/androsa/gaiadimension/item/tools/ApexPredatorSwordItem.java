@@ -1,6 +1,6 @@
 package androsa.gaiadimension.item.tools;
 
-import androsa.gaiadimension.registry.ModItemGroups;
+import androsa.gaiadimension.registry.GaiaItemGroups;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.*;
 import net.minecraft.util.text.ITextComponent;
@@ -14,7 +14,7 @@ import java.util.List;
 public class ApexPredatorSwordItem extends SwordItem {
 
     public ApexPredatorSwordItem(IItemTier material) {
-        super(material, 3, -3.2F, new Properties().maxStackSize(1).defaultMaxDamage(material.getMaxUses()).rarity(Rarity.RARE).group(ModItemGroups.GAIA_TOOLS));
+        super(material, 3, -3.2F, new Properties().maxStackSize(1).defaultMaxDamage(material.getMaxUses()).rarity(Rarity.RARE).group(GaiaItemGroups.GAIA_TOOLS));
     }
 
     @Override

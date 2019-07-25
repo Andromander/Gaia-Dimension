@@ -1,7 +1,7 @@
 package androsa.gaiadimension.item.armor;
 
-import androsa.gaiadimension.GaiaDimension;
-import androsa.gaiadimension.registry.ModItemGroups;
+import androsa.gaiadimension.GaiaDimensionMod;
+import androsa.gaiadimension.registry.GaiaItemGroups;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
 import net.minecraft.inventory.EquipmentSlotType;
@@ -22,7 +22,7 @@ import java.util.List;
 public class CorruptWarriorArmorItem extends ArmorItem {
 
     public CorruptWarriorArmorItem(IArmorMaterial material, EquipmentSlotType slot) {
-        super(material, slot, new Properties().maxStackSize(1).defaultMaxDamage(material.getDurability(slot)).rarity(Rarity.RARE).group(ModItemGroups.GAIA_ARMOR));
+        super(material, slot, new Properties().maxStackSize(1).defaultMaxDamage(material.getDurability(slot)).rarity(Rarity.RARE).group(GaiaItemGroups.GAIA_ARMOR));
     }
 
     //TODO: Half damage from normal targets, but extra damage from bosses
@@ -44,9 +44,9 @@ public class CorruptWarriorArmorItem extends ArmorItem {
     @Override
     public String getArmorTexture(ItemStack itemstack, Entity entity, EquipmentSlotType slot, String layer) {
         if (slot == EquipmentSlotType.LEGS) {
-            return GaiaDimension.ARMOR_DIR + "corrupt_armor_2.png";
+            return GaiaDimensionMod.ARMOR_DIR + "corrupt_armor_2.png";
         } else {
-            return GaiaDimension.ARMOR_DIR + "corrupt_armor_1.png";
+            return GaiaDimensionMod.ARMOR_DIR + "corrupt_armor_1.png";
         }
     }
 }

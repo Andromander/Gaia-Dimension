@@ -1,9 +1,7 @@
 package androsa.gaiadimension.item;
 
-import androsa.gaiadimension.registry.ModItemGroups;
+import androsa.gaiadimension.registry.GaiaItemGroups;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.fluids.*;
 
 public class ScaynyxBucketItem extends UniversalBucket {
@@ -13,7 +11,7 @@ public class ScaynyxBucketItem extends UniversalBucket {
     }
 
     public ScaynyxBucketItem(int capacity) {
-        super(new Properties().maxStackSize(1).group(ModItemGroups.GAIA_ITEMS), capacity, ItemStack.EMPTY, true);
+        super(new Properties().maxStackSize(1).group(GaiaItemGroups.GAIA_ITEMS), capacity, ItemStack.EMPTY, true);
     }
 
     /*
@@ -81,11 +79,11 @@ public class ScaynyxBucketItem extends UniversalBucket {
     @Override
     public FluidStack getFluid(ItemStack container) {
         return FluidUtil.getFluidContained(container);
-    }*/
+    }
 
     @Override
     public ICapabilityProvider initCapabilities(ItemStack stack, CompoundNBT nbt) {
         // FluidBucketWrapper only works with Forge's UniversalBucket instance, use a different IFluidHandlerItem implementation instead
         return new GDFluidHandlerBucket(stack, getCapacity());
-    }
+    }*/
 }

@@ -1,6 +1,5 @@
 package androsa.gaiadimension.block;
 
-import net.minecraft.block.BlockState;
 import net.minecraft.block.LogBlock;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -14,16 +13,6 @@ public class AgateLogBlock extends LogBlock {
     }
 
     public AgateLogBlock(MaterialColor topColor, MaterialColor baseColor, int light) {
-        super(topColor, Properties.create(Material.WOOD, baseColor).hardnessAndResistance(1.5F, 2.0F).sound(SoundType.STONE).lightValue(light));
-    }
-
-    @Override
-    public ToolType getHarvestTool(BlockState state) {
-        return ToolType.AXE;
-    }
-
-    @Override
-    public int getHarvestLevel(BlockState state) {
-        return 0;
+        super(topColor, Properties.create(Material.WOOD, baseColor).hardnessAndResistance(1.5F, 2.0F).sound(SoundType.STONE).harvestTool(ToolType.AXE).harvestLevel(0).lightValue(light));
     }
 }

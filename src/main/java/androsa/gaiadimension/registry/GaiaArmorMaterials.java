@@ -11,12 +11,12 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import java.util.function.Supplier;
 
 public enum GaiaArmorMaterials implements IArmorMaterial {
-    SUGILITE("sugilite", 77, new int[]{1, 4, 6, 1}, 5, SoundEvents.ITEM_ARMOR_EQUIP_CHAIN, 0.0F, () -> Ingredient.fromTag(ModItemTags.SUGILITE)),
-    PROUSTITE("proustite", 115, new int[]{1, 4, 6, 1}, 5, SoundEvents.ITEM_ARMOR_EQUIP_CHAIN, 0.0F, () -> Ingredient.fromTag(ModItemTags.PROUSTITE)),
-    LEUCITE("leucite", 100, new int[]{1, 4, 6, 1}, 5, SoundEvents.ITEM_ARMOR_EQUIP_CHAIN, 1.0F, () -> Ingredient.fromTag(ModItemTags.LEUCITE)),
-    CARNELIAN("carnelian", 192, new int[]{2, 5, 7, 2}, 5, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0.0F, () -> Ingredient.fromTag(ModItemTags.CARNELIAN)),
-    DIOPSIDE("diopside", 177, new int[]{2, 5, 7, 2}, 5, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 1.0F, () -> Ingredient.fromTag(ModItemTags.DIOPSIDE)),
-    CHALCEDONY("chalcedony", 230, new int[]{3, 6, 8, 3}, 5, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 2.0F, () -> Ingredient.fromTag(ModItemTags.CHALCEDONY)),
+    SUGILITE("sugilite", 77, new int[]{1, 4, 6, 1}, 5, SoundEvents.ITEM_ARMOR_EQUIP_CHAIN, 0.0F, () -> Ingredient.fromItems(ModBlocks.sugilite)),
+    PROUSTITE("proustite", 115, new int[]{1, 4, 6, 1}, 5, SoundEvents.ITEM_ARMOR_EQUIP_CHAIN, 0.0F, () -> Ingredient.fromItems(ModBlocks.proustite)),
+    LEUCITE("leucite", 100, new int[]{1, 4, 6, 1}, 5, SoundEvents.ITEM_ARMOR_EQUIP_CHAIN, 1.0F, () -> Ingredient.fromItems(ModBlocks.leucite)),
+    CARNELIAN("carnelian", 192, new int[]{2, 5, 7, 2}, 5, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0.0F, () -> Ingredient.fromItems(ModBlocks.carnelian)),
+    DIOPSIDE("diopside", 177, new int[]{2, 5, 7, 2}, 5, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 1.0F, () -> Ingredient.fromItems(ModBlocks.diopside)),
+    CHALCEDONY("chalcedony", 230, new int[]{3, 6, 8, 3}, 5, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 2.0F, () -> Ingredient.fromItems(ModBlocks.chalcedony)),
 
     MALACHITE("malachite_guard", 394, new int[]{2, 5, 7, 2}, 10, SoundEvents.ITEM_ARMOR_EQUIP_GOLD, 2.0F, null),
     TIGER_EYE("apex_predator", 315, new int[]{2, 5, 7, 2}, 10, SoundEvents.ITEM_ARMOR_EQUIP_GOLD, 1.5F, null),

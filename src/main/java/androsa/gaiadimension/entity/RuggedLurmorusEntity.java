@@ -1,13 +1,16 @@
 package androsa.gaiadimension.entity;
 
+import androsa.gaiadimension.registry.ModBlocks;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 
-public class RuggedLurmorusEntity extends CreatureEntity {
+import java.util.Random;
 
-    //public static final ResourceLocation LOOT_TABLE = new ResourceLocation(GaiaDimension.MODID, "entities/rugged_lurmorus");
+public class RuggedLurmorusEntity extends CreatureEntity {
 
     public RuggedLurmorusEntity(EntityType<? extends RuggedLurmorusEntity> entity, World world) {
         super(entity, world);
@@ -36,8 +39,7 @@ public class RuggedLurmorusEntity extends CreatureEntity {
         return 7.6F;
     }
 
-    /*@Override
-    public ResourceLocation getLootTable() {
-        return LOOT_TABLE;
-    }*/
+    public static boolean canSpawnHere(EntityType<RuggedLurmorusEntity> entity, IWorld world, SpawnReason spawn, BlockPos pos, Random random) {
+        return world.getBlockState(pos.down()).getBlock() == ModBlocks.glitter_grass && world.getLightSubtracted(pos, 0) > 8;
+    }
 }

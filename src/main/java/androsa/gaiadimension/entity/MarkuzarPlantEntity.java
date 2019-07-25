@@ -9,9 +9,9 @@ import net.minecraft.world.Difficulty;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 
-public class MarkuzarPlantEntity extends CreatureEntity {
+import java.util.Random;
 
-    //public static final ResourceLocation LOOT_TABLE = new ResourceLocation(GaiaDimension.MODID, "entities/markuzar_plant");
+public class MarkuzarPlantEntity extends CreatureEntity {
 
     public MarkuzarPlantEntity(EntityType<? extends MarkuzarPlantEntity> entity, World world) {
         super(entity, world);
@@ -35,7 +35,7 @@ public class MarkuzarPlantEntity extends CreatureEntity {
         }
     }
 
-    public static boolean canSpawnHere(IWorld world, SpawnReason spawn, BlockPos pos) {
+    public static boolean canSpawnHere(EntityType<MarkuzarPlantEntity> entity, IWorld world, SpawnReason spawn, BlockPos pos, Random random) {
         return world.getDifficulty() != Difficulty.PEACEFUL &&
                 isValidSpawn(world, spawn, pos);
     }
@@ -45,9 +45,4 @@ public class MarkuzarPlantEntity extends CreatureEntity {
         return spawn == SpawnReason.SPAWNER ||
                 world.getBlockState(blockpos).getBlock() == ModBlocks.glitter_grass && world.getLight(blockpos) > 8 && world.getBiome(blockpos) == ModBiomes.green_agate_jungle;
     }
-
-    /*@Override
-    public ResourceLocation getLootTable() {
-        return LOOT_TABLE;
-    }*/
 }

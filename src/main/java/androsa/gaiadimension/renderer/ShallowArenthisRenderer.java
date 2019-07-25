@@ -1,6 +1,6 @@
 package androsa.gaiadimension.renderer;
 
-import androsa.gaiadimension.GaiaDimension;
+import androsa.gaiadimension.GaiaDimensionMod;
 import androsa.gaiadimension.entity.ShallowArenthisEntity;
 import androsa.gaiadimension.model.ShallowArenthisModel;
 import com.mojang.blaze3d.platform.GlStateManager;
@@ -12,7 +12,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
 public class ShallowArenthisRenderer extends MobRenderer<ShallowArenthisEntity, ShallowArenthisModel> {
-    private static final ResourceLocation textureLoc = new ResourceLocation(GaiaDimension.MODEL_DIR + "shallowarenthis.png");
+    private static final ResourceLocation textureLoc = new ResourceLocation(GaiaDimensionMod.MODEL_DIR + "shallowarenthis.png");
 
     public ShallowArenthisRenderer(EntityRendererManager manager, ShallowArenthisModel model, float shadowSize) {
         super(manager, model, shadowSize);

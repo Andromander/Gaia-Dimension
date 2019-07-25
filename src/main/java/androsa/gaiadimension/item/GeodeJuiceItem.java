@@ -1,6 +1,6 @@
 package androsa.gaiadimension.item;
 
-import androsa.gaiadimension.registry.ModItems;
+import androsa.gaiadimension.registry.ModBlocks;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Food;
@@ -17,7 +17,7 @@ public class GeodeJuiceItem extends BasicGaiaItem {
     @Override
     public ItemStack onItemUseFinish(ItemStack stack, World worldIn, LivingEntity entityLiving) {
         PlayerEntity player = (PlayerEntity)entityLiving;
-        ItemStack cup = new ItemStack(ModItems.agate_cup);
+        ItemStack cup = new ItemStack(ModBlocks.agate_cup);
 
         super.onItemUseFinish(stack, worldIn, entityLiving);
 

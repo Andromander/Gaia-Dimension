@@ -7,6 +7,10 @@ import net.minecraft.util.IWorldPosCallable;
 
 public class AgateCraftingTableContainer extends WorkbenchContainer {
 
+    public AgateCraftingTableContainer(int id, PlayerInventory player) {
+        this(id, player, IWorldPosCallable.DUMMY);
+    }
+
     public AgateCraftingTableContainer(int id, PlayerInventory player, IWorldPosCallable world) {
         super(id, player, world);
     }

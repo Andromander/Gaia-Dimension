@@ -14,8 +14,6 @@ import net.minecraft.world.World;
 
 public class CavernTickEntity extends MonsterEntity {
 
-    //public static final ResourceLocation LOOT_TABLE = new ResourceLocation(GaiaDimension.MODID, "entities/cavern_tick");
-
     public CavernTickEntity(EntityType<? extends CavernTickEntity> entity, World worldIn) {
         super(entity, worldIn);
         this.experienceValue = 5;
@@ -72,9 +70,4 @@ public class CavernTickEntity extends MonsterEntity {
     public float getBlockPathWeight(BlockPos pos) {
         return this.world.getBlockState(pos.down()).getBlock() == ModBlocks.gaia_stone ? 10.0F : super.getBlockPathWeight(pos);
     }
-
-    /*@Override
-    public ResourceLocation getLootTable() {
-        return LOOT_TABLE;
-    }*/
 }

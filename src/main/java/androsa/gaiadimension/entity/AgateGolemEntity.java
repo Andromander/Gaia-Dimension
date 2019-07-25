@@ -13,6 +13,8 @@ import net.minecraft.world.Difficulty;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 
+import java.util.Random;
+
 public class AgateGolemEntity extends MonsterEntity {
 
     public AgateGolemEntity(EntityType<? extends AgateGolemEntity> entity, World world) {
@@ -53,7 +55,7 @@ public class AgateGolemEntity extends MonsterEntity {
         return flag;
     }
 
-    public static boolean canSpawnHere(IWorld world, SpawnReason spawn, BlockPos pos) {
+    public static boolean canSpawnHere(EntityType<AgateGolemEntity> entity, IWorld world, SpawnReason spawn, BlockPos pos, Random random) {
         return world.getDifficulty() != Difficulty.PEACEFUL &&
                 isValidSpawn(world, spawn, pos);
     }

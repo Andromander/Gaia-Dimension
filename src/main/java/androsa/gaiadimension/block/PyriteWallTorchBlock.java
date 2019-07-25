@@ -1,6 +1,6 @@
 package androsa.gaiadimension.block;
 
-import androsa.gaiadimension.GaiaDimension;
+import androsa.gaiadimension.registry.ModParticles;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.WallTorchBlock;
 import net.minecraft.block.material.Material;
@@ -28,6 +28,6 @@ public class PyriteWallTorchBlock extends WallTorchBlock {
         double d0 = 0.22D;
         double d1 = 0.27D;
         Direction opposite = direction.getOpposite();
-        GaiaDimension.proxy.spawnParticle(EnumParticlesGD.PYRITE, dx + d1 * (double)opposite.getXOffset(), dy + d0, dz + d1 * (double)opposite.getZOffset(), 0.0D, 0.0D, 0.0D);
+        world.addParticle(ModParticles.PYRITE, dx + d1 * (double)opposite.getXOffset(), dy + d0, dz + d1 * (double)opposite.getZOffset(), 0.0D, 0.0D, 0.0D);
     }
 }

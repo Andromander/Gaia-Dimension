@@ -24,20 +24,10 @@ public abstract class AbstractGaiaGrassBlock extends Block implements IGrowable 
     private final Block grass, dirt;
 
     public AbstractGaiaGrassBlock(MaterialColor color, Block grassblock, Block dirtblock) {
-        super(Properties.create(Material.ORGANIC, color).hardnessAndResistance(0.9F, 0.0F).sound(SoundType.PLANT).tickRandomly());
+        super(Properties.create(Material.ORGANIC, color).hardnessAndResistance(0.9F, 0.0F).sound(SoundType.PLANT).harvestTool(ToolType.SHOVEL).harvestLevel(0).tickRandomly());
 
         grass = grassblock;
         dirt = dirtblock;
-    }
-
-    @Override
-    public ToolType getHarvestTool(BlockState state) {
-        return ToolType.SHOVEL;
-    }
-
-    @Override
-    public int getHarvestLevel(BlockState state) {
-        return 0;
     }
 
     public void tick(BlockState state, World worldIn, BlockPos pos, Random random) {

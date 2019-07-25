@@ -5,7 +5,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
 import net.minecraftforge.common.ToolType;
 
-public class AgatePlanksSlabBlock extends BasicGaiaSlabBlock {
+public class AgatePlanksSlabBlock extends GaiaSlabBlock {
 
     public AgatePlanksSlabBlock(MaterialColor color) {
         this(color, 0);

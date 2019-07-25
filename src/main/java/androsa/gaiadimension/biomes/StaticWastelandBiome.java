@@ -39,9 +39,4 @@ public class StaticWastelandBiome extends BaseGaiaBiome implements IDryBiome {
     public int getFoliageColor(BlockPos pos) {
         return 0x2B4D96;
     }
-
-    /*@Override
-    public IBlockState getStoneReplacement() {
-        return GDBlocks.wasteland_stone.getDefaultState();
-    }*/
 }

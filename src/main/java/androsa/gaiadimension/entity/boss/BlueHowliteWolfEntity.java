@@ -12,6 +12,8 @@ import net.minecraft.world.Difficulty;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 
+import java.util.Random;
+
 public class BlueHowliteWolfEntity extends MonsterEntity {
 
     public BlueHowliteWolfEntity(EntityType<? extends BlueHowliteWolfEntity> entity, World world) {
@@ -50,7 +52,7 @@ public class BlueHowliteWolfEntity extends MonsterEntity {
         return 1;
     }
 
-    public static boolean canSpawnHere(IWorld world, SpawnReason spawn, BlockPos pos) {
+    public static boolean canSpawnHere(EntityType<BlueHowliteWolfEntity> entity, IWorld world, SpawnReason spawn, BlockPos pos, Random random) {
         return world.getDifficulty() != Difficulty.PEACEFUL &&
                 isValidSpawn(world, spawn, pos);
     }

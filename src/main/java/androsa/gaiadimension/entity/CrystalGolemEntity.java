@@ -1,9 +1,7 @@
 package androsa.gaiadimension.entity;
 
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.MobEntity;
-import net.minecraft.entity.SharedMonsterAttributes;
+import androsa.gaiadimension.registry.ModBlocks;
+import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.monster.CreeperEntity;
 import net.minecraft.entity.monster.IMob;
@@ -12,7 +10,11 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
+
+import java.util.Random;
 
 public class CrystalGolemEntity extends GolemEntity {
 
@@ -62,5 +64,9 @@ public class CrystalGolemEntity extends GolemEntity {
     @Override
     protected SoundEvent getDeathSound() {
         return SoundEvents.ENTITY_GENERIC_DEATH;
+    }
+
+    public static boolean canSpawnHere(EntityType<CrystalGolemEntity> entity, IWorld world, SpawnReason spawn, BlockPos pos, Random random) {
+        return world.getBlockState(pos.down()).getBlock() == ModBlocks.glitter_grass && world.getLightSubtracted(pos, 0) > 8;
     }
 }

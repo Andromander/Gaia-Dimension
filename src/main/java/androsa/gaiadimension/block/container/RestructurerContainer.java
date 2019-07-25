@@ -4,6 +4,9 @@ import androsa.gaiadimension.block.container.slots.GlitterOutputSlot;
 import androsa.gaiadimension.block.container.slots.GoldSlot;
 import androsa.gaiadimension.block.container.slots.ShineSlot;
 import androsa.gaiadimension.block.tileentity.RestructurerTileEntity;
+import androsa.gaiadimension.recipe.RestructurerRecipe;
+import androsa.gaiadimension.registry.ModContainers;
+import androsa.gaiadimension.registry.ModRecipes;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.IInventory;
@@ -13,6 +16,7 @@ import net.minecraft.inventory.container.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipeType;
 import net.minecraft.util.IIntArray;
+import net.minecraft.util.IntArray;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -22,7 +26,11 @@ public class RestructurerContainer extends Container {
     private final IInventory tileRestructurer;
     private final IIntArray slotsArray;
     private final World world;
-    private final IRecipeType<?> recipeType = ModRecipeTypes.RESTRUCTURING;
+    private final IRecipeType<RestructurerRecipe> recipeType = ModRecipes.RESTRUCTURING;
+
+    public RestructurerContainer(int id, PlayerInventory playerinv) {
+        this(id, playerinv, new Inventory(5), new IntArray(4));
+    }
 
     public RestructurerContainer(int id, PlayerInventory invPlayer, IInventory restructurer, IIntArray slots) {
         super(ModContainers.RESTRUCTURER, id);
@@ -45,7 +53,7 @@ public class RestructurerContainer extends Container {
         for (int i = 0; i < 9; ++i)
             addSlot(new Slot(invPlayer, i, 8 + i * 18, 172));
 
-        this.func_216961_a(slots);
+        this.trackIntArray(slots);
     }
 
     @Override
@@ -97,7 +105,7 @@ public class RestructurerContainer extends Container {
     }
 
     private boolean isRecipePresent(ItemStack stack) {
-        return this.world.getRecipeManager().getRecipe((IRecipeType)this.recipeType, new Inventory(stack), this.world).isPresent();
+        return this.world.getRecipeManager().getRecipe(this.recipeType, new Inventory(stack), this.world).isPresent();
     }
 
     @OnlyIn(Dist.CLIENT)

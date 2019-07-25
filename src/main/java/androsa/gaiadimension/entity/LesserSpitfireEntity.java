@@ -11,6 +11,8 @@ import net.minecraft.world.Difficulty;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 
+import java.util.Random;
+
 public class LesserSpitfireEntity extends MonsterEntity implements ISpitfireMob {
 
     public LesserSpitfireEntity(EntityType<? extends LesserSpitfireEntity> entity, World worldIn) {
@@ -42,7 +44,7 @@ public class LesserSpitfireEntity extends MonsterEntity implements ISpitfireMob 
         return 1.8F;
     }
 
-    public static boolean canSpawnHere(IWorld world, SpawnReason spawn, BlockPos pos) {
+    public static boolean canSpawnHere(EntityType<LesserSpitfireEntity> entity, IWorld world, SpawnReason spawn, BlockPos pos, Random random) {
         return world.getDifficulty() != Difficulty.PEACEFUL &&
                 isValidSpawn(world, spawn, pos);
     }

@@ -3,6 +3,9 @@ package androsa.gaiadimension.entity;
 import androsa.gaiadimension.biomes.SaltDunesBiome;
 import androsa.gaiadimension.biomes.StaticWastelandBiome;
 import androsa.gaiadimension.biomes.VolcaniclandsBiome;
+import androsa.gaiadimension.block.AbstractGaiaGrassBlock;
+import androsa.gaiadimension.registry.ModBlocks;
+import net.minecraft.block.BlockState;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.LookAtGoal;
 import net.minecraft.entity.ai.goal.LookRandomlyGoal;
@@ -20,6 +23,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 
 import javax.annotation.Nullable;
+import java.util.Random;
 
 public class NomadicLagrahkEntity extends CreatureEntity {
     private static final DataParameter<Integer> LAGRAHK_VARIANT = EntityDataManager.createKey(NomadicLagrahkEntity.class, DataSerializers.VARINT);
@@ -94,6 +98,15 @@ public class NomadicLagrahkEntity extends CreatureEntity {
         } else {
             return 1;
         }
+    }
+
+    public static boolean canSpawnHere(EntityType<NomadicLagrahkEntity> entity, IWorld world, SpawnReason spawn, BlockPos pos, Random random) {
+        BlockState state = world.getBlockState(pos.down());
+        return (state.getBlock() instanceof AbstractGaiaGrassBlock && state.getBlock() != ModBlocks.corrupt_grass)
+                || state.getBlock() == ModBlocks.wasteland_stone
+                || state.getBlock() == ModBlocks.volcanic_rock
+                || state.getBlock() == ModBlocks.salt
+                && world.getLightSubtracted(pos, 0) > 8;
     }
 
     @Override

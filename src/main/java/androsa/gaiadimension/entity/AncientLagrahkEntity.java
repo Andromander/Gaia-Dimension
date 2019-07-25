@@ -11,6 +11,8 @@ import net.minecraft.world.Difficulty;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 
+import java.util.Random;
+
 public class AncientLagrahkEntity extends MonsterEntity {
 
     public AncientLagrahkEntity(EntityType<? extends AncientLagrahkEntity> entity, World world) {
@@ -45,7 +47,7 @@ public class AncientLagrahkEntity extends MonsterEntity {
         return 3.55F;
     }
 
-    public static boolean canSpawnHere(IWorld world, SpawnReason spawn, BlockPos pos) {
+    public static boolean canSpawnHere(EntityType<AncientLagrahkEntity> entity, IWorld world, SpawnReason spawn, BlockPos pos, Random random) {
         return world.getDifficulty() != Difficulty.PEACEFUL &&
                 isValidSpawn(world, spawn, pos);
     }

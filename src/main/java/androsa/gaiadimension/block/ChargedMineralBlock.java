@@ -14,13 +14,11 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.ToolType;
 
-import javax.annotation.Nullable;
-
 public class ChargedMineralBlock extends AbstractGlassBlock {
 
     //TODO: Contact with this block on any side deals damage
     public ChargedMineralBlock() {
-        super(Properties.create(Material.IRON, MaterialColor.CYAN).hardnessAndResistance(4.0F, 15.0F).sound(SoundType.GLASS));
+        super(Properties.create(Material.IRON, MaterialColor.CYAN).hardnessAndResistance(4.0F, 15.0F).harvestTool(ToolType.PICKAXE).harvestLevel(1).sound(SoundType.GLASS));
     }
 
     @Override
@@ -33,16 +31,5 @@ public class ChargedMineralBlock extends AbstractGlassBlock {
     @Deprecated
     public void onEntityCollision(BlockState state, World worldIn, BlockPos pos, Entity entityIn) {
         entityIn.attackEntityFrom(DamageSource.LIGHTNING_BOLT, 4.0F);
-    }
-
-    @Nullable
-    @Override
-    public ToolType getHarvestTool(BlockState state) {
-        return ToolType.PICKAXE;
-    }
-
-    @Override
-    public int getHarvestLevel(BlockState state) {
-        return 1;
     }
 }

@@ -1,7 +1,7 @@
 package androsa.gaiadimension.item;
 
 import androsa.gaiadimension.registry.ModBlocks;
-import androsa.gaiadimension.registry.ModItemGroups;
+import androsa.gaiadimension.registry.GaiaItemGroups;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
@@ -16,7 +16,7 @@ import net.minecraft.world.IWorld;
 public class GlintAndGoldItem extends Item {
 
     public GlintAndGoldItem() {
-        super(new Properties().defaultMaxDamage(32).maxStackSize(1).group(ModItemGroups.GAIA_ITEMS));
+        super(new Properties().defaultMaxDamage(32).group(GaiaItemGroups.GAIA_ITEMS));
     }
 
     @Override

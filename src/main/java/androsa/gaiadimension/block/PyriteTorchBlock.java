@@ -1,6 +1,6 @@
 package androsa.gaiadimension.block;
 
-import androsa.gaiadimension.GaiaDimension;
+import androsa.gaiadimension.registry.ModParticles;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.TorchBlock;
 import net.minecraft.block.material.Material;
@@ -24,6 +24,6 @@ public class PyriteTorchBlock extends TorchBlock {
         double d1 = (double)pos.getY() + rand.nextDouble() * 0.7D + 0.2D;
         double d2 = (double)pos.getZ() + rand.nextDouble() * 0.5D + 0.2D;
 
-        GaiaDimension.proxy.spawnParticle(EnumParticlesGD.PYRITE, d0, d1, d2, 0.0D, 0.0D, 0.0D);
+        world.addParticle(ModParticles.PYRITE, d0, d1, d2, 0.0D, 0.0D, 0.0D);
     }
 }

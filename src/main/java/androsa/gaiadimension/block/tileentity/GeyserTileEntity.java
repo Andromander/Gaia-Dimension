@@ -1,6 +1,7 @@
 package androsa.gaiadimension.block.tileentity;
 
-import androsa.gaiadimension.GaiaDimension;
+import androsa.gaiadimension.registry.ModParticles;
+import androsa.gaiadimension.registry.ModTileEntities;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.MathHelper;
@@ -10,7 +11,7 @@ import java.util.Random;
 public class GeyserTileEntity extends TileEntity implements ITickableTileEntity {
 
     private long counter = 0;
-    Random random = new Random();
+    private Random random = new Random();
 
     public GeyserTileEntity() {
         super(ModTileEntities.GEYSER);
@@ -29,7 +30,7 @@ public class GeyserTileEntity extends TileEntity implements ITickableTileEntity 
             xVel = MathHelper.clamp(xVel, -0.02D, 0.02D);
             zVel = MathHelper.clamp(zVel, -0.02D, 0.02D);
 
-            GaiaDimension.proxy.spawnParticle(EnumParticlesGD.GEYSER_SMOKE, xPos, yPos, zPos, xVel, 0.3D, zVel);
+            world.addParticle(ModParticles.GEYSER_SMOKE, xPos, yPos, zPos, xVel, 0.3D, zVel);
         }
     }
 }

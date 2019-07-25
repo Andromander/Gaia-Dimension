@@ -1,18 +1,27 @@
 package androsa.gaiadimension.block;
 
-import androsa.gaiadimension.GaiaDimension;
+import androsa.gaiadimension.GaiaDimensionMod;
 import androsa.gaiadimension.registry.ModBlocks;
+import androsa.gaiadimension.registry.ModDimensions;
+import androsa.gaiadimension.registry.ModParticles;
+import androsa.gaiadimension.world.GaiaTeleporter;
+import com.google.common.cache.LoadingCache;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
+import net.minecraft.block.pattern.BlockPattern;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.state.EnumProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
@@ -20,6 +29,7 @@ import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.dimension.DimensionType;
+import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.BiomeDictionary;
@@ -67,7 +77,7 @@ public class GaiaPortalBlock extends Block {
         if (world.dimension.getType() == DimensionType.OVERWORLD)
             return BiomeDictionary.hasType(biome, Type.HOT) || BiomeDictionary.hasType(biome, Type.MOUNTAIN) || BiomeDictionary.hasType(biome, Type.DRY);
         else
-            return world.dimension.getType() == GaiaDimension.dimType;
+            return world.dimension.getType() == GaiaDimensionMod.dimType;
     }
 
     @Nullable
@@ -100,8 +110,59 @@ public class GaiaPortalBlock extends Block {
     @Deprecated
     public void onEntityCollision(BlockState state, World worldIn, BlockPos pos, Entity entityIn) {
         if (!worldIn.isRemote && !entityIn.isPassenger() && !entityIn.isBeingRidden() && entityIn.isNonBoss() ) {
-            //TODO: Figure out the spaghetti that is Nether Portal. For now, just repeat The End Portal
-            entityIn.changeDimension(worldIn.dimension.getType() == GaiaDimension.dimType ? DimensionType.OVERWORLD : GaiaDimension.dimType);
+            //TODO: Figure out if this works properly
+            this.changeDimension(entityIn, worldIn.dimension.getType().getModType() == ModDimensions.GAIA_DIM ? DimensionType.OVERWORLD : DimensionType.byName(ModDimensions.GAIA_DIM.getRegistryName()));
+        }
+    }
+
+    //Copy of Entity.changeDimension, with relevant changes
+    public void changeDimension(Entity entity, DimensionType destination) {
+        if (!net.minecraftforge.common.ForgeHooks.onTravelToDimension(entity, destination))
+            return;
+
+        if (!entity.world.isRemote && entity.isAlive()) {
+            entity.world.getProfiler().startSection("changeDimension");
+            MinecraftServer minecraftserver = entity.getServer();
+            DimensionType dimensiontype = entity.dimension;
+            ServerWorld serverworld = minecraftserver.getWorld(dimensiontype);
+            ServerWorld serverworld1 = minecraftserver.getWorld(destination);
+            entity.dimension = destination;
+            entity.detach();
+            entity.world.getProfiler().startSection("reposition");
+            Vec3d vec3d = entity.getMotion();
+            BlockPos blockpos;
+            double movementFactor = serverworld.getDimension().getMovementFactor() / serverworld1.getDimension().getMovementFactor();
+            double d0 = entity.posX * movementFactor;
+            double d1 = entity.posZ * movementFactor;
+            double d3 = Math.min(-2.9999872E7D, serverworld1.getWorldBorder().minX() + 16.0D);
+            double d4 = Math.min(-2.9999872E7D, serverworld1.getWorldBorder().minZ() + 16.0D);
+            double d5 = Math.min(2.9999872E7D, serverworld1.getWorldBorder().maxX() - 16.0D);
+            double d6 = Math.min(2.9999872E7D, serverworld1.getWorldBorder().maxZ() - 16.0D);
+            d0 = MathHelper.clamp(d0, d3, d5);
+            d1 = MathHelper.clamp(d1, d4, d6);
+            Vec3d vec3d1 = entity.getLastPortalVec();
+            blockpos = new BlockPos(d0, entity.posY, d1);
+            GaiaTeleporter teleporter = new GaiaTeleporter(serverworld1);
+            BlockPattern.PortalInfo blockpattern$portalinfo = teleporter.func_222272_a(blockpos, vec3d, entity.getTeleportDirection(), vec3d1.x, vec3d1.y, entity instanceof PlayerEntity);
+            if (blockpattern$portalinfo == null) {
+                return;
+            }
+
+            float f = (float)blockpattern$portalinfo.field_222507_c;
+            entity.world.getProfiler().endStartSection("reloading");
+            Entity entityType = entity.getType().create(serverworld1);
+            if (entityType != null) {
+                entityType.copyDataFromOld(entity);
+                entityType.moveToBlockPosAndAngles(blockpos, entityType.rotationYaw + f, entityType.rotationPitch);
+                entityType.setMotion(vec3d);
+                serverworld1.func_217460_e(entityType);
+            }
+
+            entity.remove(false);
+            entity.world.getProfiler().endSection();
+            serverworld.resetUpdateEntityTick();
+            serverworld1.resetUpdateEntityTick();
+            entity.world.getProfiler().endSection();
         }
     }
 
@@ -129,7 +190,7 @@ public class GaiaPortalBlock extends Block {
                 d5 = (double)(rand.nextFloat() * 2.0F * (float)j);
             }
 
-            GaiaDimension.proxy.spawnParticle(EnumParticlesGD.PORTAL, d0, d1, d2, d3, d4, d5);
+            worldIn.addParticle(ModParticles.PORTAL, d0, d1, d2, d3, d4, d5);
         }
     }
 
@@ -155,6 +216,47 @@ public class GaiaPortalBlock extends Block {
     @Override
     protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
         builder.add(AXIS);
+    }
+
+    public BlockPattern.PatternHelper createPatternHelper(IWorld worldIn, BlockPos pos) {
+        Direction.Axis direction$axis = Direction.Axis.Z;
+        GaiaPortalBlock.Size gaiaportalblock$size = new GaiaPortalBlock.Size(worldIn, pos, Direction.Axis.X);
+        LoadingCache<BlockPos, CachedBlockInfo> loadingcache = BlockPattern.createLoadingCache(worldIn, true);
+        if (!gaiaportalblock$size.isValid()) {
+            direction$axis = Direction.Axis.X;
+            gaiaportalblock$size = new GaiaPortalBlock.Size(worldIn, pos, Direction.Axis.Z);
+        }
+
+        if (!gaiaportalblock$size.isValid()) {
+            return new BlockPattern.PatternHelper(pos, Direction.NORTH, Direction.UP, loadingcache, 1, 1, 1);
+        } else {
+            int[] aint = new int[Direction.AxisDirection.values().length];
+            Direction direction = gaiaportalblock$size.rightDir.rotateYCCW();
+            BlockPos blockpos = gaiaportalblock$size.bottomLeft.up(gaiaportalblock$size.getHeight() - 1);
+
+            for(Direction.AxisDirection direction$axisdirection : Direction.AxisDirection.values()) {
+                BlockPattern.PatternHelper blockpattern$patternhelper = new BlockPattern.PatternHelper(direction.getAxisDirection() == direction$axisdirection ? blockpos : blockpos.offset(gaiaportalblock$size.rightDir, gaiaportalblock$size.getWidth() - 1), Direction.getFacingFromAxis(direction$axisdirection, direction$axis), Direction.UP, loadingcache, gaiaportalblock$size.getWidth(), gaiaportalblock$size.getHeight(), 1);
+
+                for(int i = 0; i < gaiaportalblock$size.getWidth(); ++i) {
+                    for(int j = 0; j < gaiaportalblock$size.getHeight(); ++j) {
+                        CachedBlockInfo cachedblockinfo = blockpattern$patternhelper.translateOffset(i, j, 1);
+                        if (!cachedblockinfo.getBlockState().isAir()) {
+                            ++aint[direction$axisdirection.ordinal()];
+                        }
+                    }
+                }
+            }
+
+            Direction.AxisDirection direction$axisdirection1 = Direction.AxisDirection.POSITIVE;
+
+            for(Direction.AxisDirection direction$axisdirection2 : Direction.AxisDirection.values()) {
+                if (aint[direction$axisdirection2.ordinal()] < aint[direction$axisdirection1.ordinal()]) {
+                    direction$axisdirection1 = direction$axisdirection2;
+                }
+            }
+
+            return new BlockPattern.PatternHelper(direction.getAxisDirection() == direction$axisdirection1 ? blockpos : blockpos.offset(gaiaportalblock$size.rightDir, gaiaportalblock$size.getWidth() - 1), Direction.getFacingFromAxis(direction$axisdirection1, direction$axis), Direction.UP, loadingcache, gaiaportalblock$size.getWidth(), gaiaportalblock$size.getHeight(), 1);
+        }
     }
 
     //TODO: Once porting is done, we're redoing this

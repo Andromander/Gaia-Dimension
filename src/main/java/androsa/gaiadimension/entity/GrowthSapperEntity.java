@@ -1,6 +1,7 @@
 package androsa.gaiadimension.entity;
 
 import androsa.gaiadimension.biomes.*;
+import androsa.gaiadimension.registry.ModBlocks;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.LookAtGoal;
 import net.minecraft.entity.ai.goal.LookRandomlyGoal;
@@ -22,10 +23,6 @@ import java.util.Random;
 
 public class GrowthSapperEntity extends CreatureEntity {
     private static final DataParameter<Integer> SAPPER_VARIANT = EntityDataManager.createKey(GrowthSapperEntity.class, DataSerializers.VARINT);
-    /*public static final ResourceLocation PINK_TABLE = new ResourceLocation(GaiaDimension.MODID, "entities/common_sapper");
-    public static final ResourceLocation BLUE_TABLE = new ResourceLocation(GaiaDimension.MODID, "entities/chilled_sapper");
-    public static final ResourceLocation GREN_TABLE = new ResourceLocation(GaiaDimension.MODID, "entities/nutrient_sapper");
-    public static final ResourceLocation PURP_TABLE = new ResourceLocation(GaiaDimension.MODID, "entities/mystified_sapper");*/
 
     public GrowthSapperEntity(EntityType<? extends GrowthSapperEntity> entity, World world) {
         super(entity, world);
@@ -86,6 +83,10 @@ public class GrowthSapperEntity extends CreatureEntity {
         return 0.70F;
     }
 
+    public static boolean canSpawnHere(EntityType<GrowthSapperEntity> entity, IWorld world, SpawnReason spawn, BlockPos pos, Random random) {
+        return world.getBlockState(pos.down()).getBlock() == ModBlocks.glitter_grass && world.getLightSubtracted(pos, 0) > 8;
+    }
+
     @Override
     public ILivingEntityData onInitialSpawn(IWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
         spawnDataIn = super.onInitialSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
@@ -106,20 +107,4 @@ public class GrowthSapperEntity extends CreatureEntity {
 
         return spawnDataIn;
     }
-
-    /*@Override
-    public ResourceLocation getLootTable() {
-        switch (getEntityVariant()) {
-            case 0:
-                return PINK_TABLE;
-            case 1:
-                return BLUE_TABLE;
-            case 2:
-                return GREN_TABLE;
-            case 3:
-                return PURP_TABLE;
-            default:
-                return null;
-        }
-    }*/
 }

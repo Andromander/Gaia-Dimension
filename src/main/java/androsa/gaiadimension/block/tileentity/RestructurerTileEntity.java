@@ -2,7 +2,11 @@ package androsa.gaiadimension.block.tileentity;
 
 import androsa.gaiadimension.block.RestructurerBlock;
 import androsa.gaiadimension.block.container.RestructurerContainer;
+import androsa.gaiadimension.recipe.RestructurerRecipe;
 import androsa.gaiadimension.registry.ModBlocks;
+import androsa.gaiadimension.registry.ModBlocks;
+import androsa.gaiadimension.registry.ModRecipes;
+import androsa.gaiadimension.registry.ModTileEntities;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import net.minecraft.block.Blocks;
@@ -122,9 +126,9 @@ public class RestructurerTileEntity extends LockableTileEntity implements ISided
         addItemToMap(map, Items.GOLDEN_HORSE_ARMOR, 1000);
         addItemToMap(map, Blocks.GOLD_BLOCK, 2000);
         addItemToMap(map, Blocks.GOLD_ORE, 150);
-        addItemToMap(map, GDItems.pyrite, 500);
+        addItemToMap(map, ModBlocks.pyrite, 500);
         addItemToMap(map, ModBlocks.pyrite_block, 5000);
-        addItemToMap(map, GDItems.sweet_muckball, 250);
+        addItemToMap(map, ModBlocks.sweet_muckball, 250);
         addItemToMap(map, ModBlocks.frail_glitter_block, 1000);
         addItemToMap(map, ModBlocks.thick_glitter_block, 2000);
         addItemToMap(map, ModBlocks.gummy_glitter_block, 4000);
@@ -136,11 +140,11 @@ public class RestructurerTileEntity extends LockableTileEntity implements ISided
     /** Burn times for the second slot */
     public static Map<Item, Integer> getSecondFuelBurnTime() {
         Map<Item, Integer> map = Maps.newLinkedHashMap();
-        addItemToMap(map, GDItems.pink_essence, 100);
-        addItemToMap(map, GDItems.pink_goo, 900);
+        addItemToMap(map, ModBlocks.pink_essence, 100);
+        addItemToMap(map, ModBlocks.pink_goo, 900);
         addItemToMap(map, ModBlocks.pink_sludge_block, 8100);
-        addItemToMap(map, GDItems.aura_residue, 200);
-        addItemToMap(map, GDItems.aura_cluster, 1800);
+        addItemToMap(map, ModBlocks.aura_residue, 200);
+        addItemToMap(map, ModBlocks.aura_cluster, 1800);
         addItemToMap(map, ModBlocks.aura_block, 16200);
         return map;
     }
@@ -208,7 +212,7 @@ public class RestructurerTileEntity extends LockableTileEntity implements ISided
             ItemStack essenceStack = this.restructurerItemStacks.get(2);
 
             if (this.isBurning() || !goldStack.isEmpty() && !essenceStack.isEmpty() && !this.restructurerItemStacks.get(0).isEmpty()) {
-                IRecipe<?> irecipe = this.world.getRecipeManager().getRecipe(ModRecipeTypes.RESTRUCTURING, this, this.world).orElse(null);
+                IRecipe<?> irecipe = this.world.getRecipeManager().getRecipe(ModRecipes.RESTRUCTURING, this, this.world).orElse(null);
                 if (!this.isBurning() && this.canChange(irecipe)) {
                     this.burnTime = getItemBurnTime(goldStack, essenceStack);
                     this.recipesUsed = this.burnTime;
@@ -340,7 +344,7 @@ public class RestructurerTileEntity extends LockableTileEntity implements ISided
     }
 
     private int cookingTime() {
-        return this.world.getRecipeManager().getRecipe(ModRecipeTypes.RESTRUCTURING, this, this.world).map(RestructurerRecipe::getCookTime).orElse(200);
+        return this.world.getRecipeManager().getRecipe(ModRecipes.RESTRUCTURING, this, this.world).map(RestructurerRecipe::getCookTime).orElse(200);
     }
 
     public static boolean isItemFuel(ItemStack stack) {

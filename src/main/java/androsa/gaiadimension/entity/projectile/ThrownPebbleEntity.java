@@ -1,7 +1,7 @@
 package androsa.gaiadimension.entity.projectile;
 
 import androsa.gaiadimension.registry.ModEntities;
-import androsa.gaiadimension.registry.ModItems;
+import androsa.gaiadimension.registry.ModBlocks;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
@@ -63,6 +63,6 @@ public class ThrownPebbleEntity extends ProjectileItemEntity {
 
     @Override
     protected Item func_213885_i() {
-        return ModItems.sturdy_pebble;
+        return ModBlocks.sturdy_pebble;
     }
 }

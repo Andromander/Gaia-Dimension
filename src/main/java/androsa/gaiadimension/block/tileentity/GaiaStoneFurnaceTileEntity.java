@@ -1,6 +1,7 @@
 package androsa.gaiadimension.block.tileentity;
 
 import androsa.gaiadimension.block.container.GaiaStoneFurnaceContainer;
+import androsa.gaiadimension.registry.ModTileEntities;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.item.crafting.IRecipeType;

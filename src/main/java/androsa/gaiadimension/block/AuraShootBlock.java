@@ -31,18 +31,8 @@ public class AuraShootBlock extends Block implements IPlantable {
     private static final VoxelShape SHOOT_SHAPE = Block.makeCuboidShape(5.0D, 0.0D, 5.0D, 11.0D, 16.0D, 11.0D);
 
     public AuraShootBlock() {
-        super(Properties.create(Material.GLASS, MaterialColor.BLUE).sound(SoundType.GLASS).tickRandomly());
+        super(Properties.create(Material.GLASS, MaterialColor.BLUE).sound(SoundType.GLASS).harvestTool(ToolType.PICKAXE).harvestLevel(1).tickRandomly());
         this.setDefaultState(this.stateContainer.getBaseState().with(AGE, 0).with(IS_TOP, true));
-    }
-
-    @Override
-    public ToolType getHarvestTool(BlockState state) {
-        return ToolType.PICKAXE;
-    }
-
-    @Override
-    public int getHarvestLevel(BlockState state) {
-        return 1;
     }
 
     @Override

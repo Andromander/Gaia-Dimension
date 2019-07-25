@@ -1,7 +1,7 @@
 package androsa.gaiadimension.block;
 
-import androsa.gaiadimension.GaiaDimension;
 import androsa.gaiadimension.block.tileentity.RestructurerTileEntity;
+import androsa.gaiadimension.registry.ModParticles;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.LivingEntity;
@@ -32,7 +32,7 @@ public class RestructurerBlock extends Block {
     public static final BooleanProperty LIT = RedstoneTorchBlock.LIT;
 
     public RestructurerBlock() {
-        super(Properties.create(Material.ROCK).doesNotBlockMovement().lightValue(14));
+        super(Properties.create(Material.ROCK).doesNotBlockMovement().harvestTool(ToolType.PICKAXE).harvestLevel(1).lightValue(14));
         this.setDefaultState(this.stateContainer.getBaseState().with(FACING, Direction.NORTH).with(LIT, Boolean.FALSE));
     }
 
@@ -151,17 +151,7 @@ public class RestructurerBlock extends Block {
             double d5 = direction$axis == Direction.Axis.X ? (double)direction.getXOffset() * 0.52D : d4;
             double d6 = rand.nextDouble() * 6.0D / 16.0D;
             double d7 = direction$axis == Direction.Axis.Z ? (double)direction.getZOffset() * 0.52D : d4;
-            GaiaDimension.proxy.spawnParticle(EnumParticlesGD.RESTRUCTURER_FIRE, d0 + d5, d1 + d6, d2 + d7, 0.0D, 0.0D, 0.0D);
+            worldIn.addParticle(ModParticles.RESTRUCTURER_FIRE, d0 + d5, d1 + d6, d2 + d7, 0.0D, 0.0D, 0.0D);
         }
-    }
-
-    @Override
-    public ToolType getHarvestTool(BlockState state) {
-        return ToolType.PICKAXE;
-    }
-
-    @Override
-    public int getHarvestLevel(BlockState state) {
-        return 1;
     }
 }

@@ -14,19 +14,9 @@ public class MalachiteStairsBlock extends StairsBlock {
     private boolean isPulsing;
 
     public MalachiteStairsBlock(BlockState state, boolean pulsing) {
-        super(state, Properties.create(Material.ROCK, MaterialColor.GREEN).hardnessAndResistance(20.0F, 100.0F));
+        super(state, Properties.create(Material.ROCK, MaterialColor.GREEN).hardnessAndResistance(20.0F, 100.0F).harvestTool(ToolType.PICKAXE).harvestLevel(2));
 
         isPulsing = pulsing;
-    }
-
-    @Override
-    public ToolType getHarvestTool(BlockState state) {
-        return ToolType.PICKAXE;
-    }
-
-    @Override
-    public int getHarvestLevel(BlockState state) {
-        return 2;
     }
 
     @Override

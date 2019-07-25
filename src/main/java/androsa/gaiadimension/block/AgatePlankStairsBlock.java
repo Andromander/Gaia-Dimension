@@ -14,16 +14,6 @@ public class AgatePlankStairsBlock extends StairsBlock {
     }
 
     public AgatePlankStairsBlock(BlockState state, MaterialColor color, int light) {
-        super(state, Properties.create(Material.WOOD, color).hardnessAndResistance(1.5F, 2.0F).sound(SoundType.STONE).lightValue(light));
-    }
-
-    @Override
-    public ToolType getHarvestTool(BlockState state) {
-        return ToolType.AXE;
-    }
-
-    @Override
-    public int getHarvestLevel(BlockState state) {
-        return 0;
+        super(state, Properties.create(Material.WOOD, color).hardnessAndResistance(1.5F, 2.0F).sound(SoundType.STONE).harvestTool(ToolType.AXE).harvestLevel(0).lightValue(light));
     }
 }

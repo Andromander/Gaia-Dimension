@@ -1,6 +1,6 @@
 package androsa.gaiadimension.renderer;
 
-import androsa.gaiadimension.GaiaDimension;
+import androsa.gaiadimension.GaiaDimensionMod;
 import androsa.gaiadimension.entity.SaltionEntity;
 import androsa.gaiadimension.model.SaltionModel;
 import net.minecraft.client.renderer.entity.MobRenderer;
@@ -11,7 +11,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
 public class SaltionRenderer extends MobRenderer<SaltionEntity, SaltionModel> {
-    private static final ResourceLocation textureLoc = new ResourceLocation(GaiaDimension.MODEL_DIR + "saltion.png");
+    private static final ResourceLocation textureLoc = new ResourceLocation(GaiaDimensionMod.MODEL_DIR + "saltion.png");
 
     public SaltionRenderer(EntityRendererManager manager, SaltionModel model, float shadowSize) {
         super(manager, model, shadowSize);

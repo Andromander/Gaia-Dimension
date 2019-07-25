@@ -1,7 +1,6 @@
 package androsa.gaiadimension.block;
 
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
@@ -11,9 +10,6 @@ import net.minecraftforge.common.ToolType;
  * The generic Block class in the event of a block that does not have special properties.
  */
 public class BasicGaiaBlock extends Block {
-
-    private ToolType toolType;
-    private int toolLevel;
 
     public BasicGaiaBlock(Material material) {
         this(material, material.getColor());
@@ -60,19 +56,6 @@ public class BasicGaiaBlock extends Block {
     }
 
     public BasicGaiaBlock(Material material, MaterialColor color, float hardness, float resistance, SoundType sound, ToolType toolClass, int harvestLevel, int light) {
-        super(Properties.create(material, color).hardnessAndResistance(hardness, resistance).sound(sound).lightValue(light));
-
-        toolType = toolClass;
-        toolLevel = harvestLevel;
-    }
-
-    @Override
-    public ToolType getHarvestTool(BlockState state) {
-        return toolType;
-    }
-
-    @Override
-    public int getHarvestLevel(BlockState state) {
-        return toolLevel;
+        super(Properties.create(material, color).hardnessAndResistance(hardness, resistance).sound(sound).harvestTool(toolClass).harvestLevel(harvestLevel).lightValue(light));
     }
 }

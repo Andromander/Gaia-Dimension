@@ -1,7 +1,7 @@
 package androsa.gaiadimension.item.tools;
 
-import androsa.gaiadimension.registry.ModItems;
-import androsa.gaiadimension.registry.ModItemGroups;
+import androsa.gaiadimension.registry.ModBlocks;
+import androsa.gaiadimension.registry.GaiaItemGroups;
 import net.minecraft.item.BowItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
@@ -10,10 +10,10 @@ import java.util.function.Predicate;
 
 public class OldBowItem extends BowItem {
 
-    public static final Predicate<ItemStack> ARROW = (stack) -> stack.getItem() == ModItems.agate_arrow;
+    public static final Predicate<ItemStack> ARROW = (stack) -> stack.getItem() == ModBlocks.agate_arrow;
 
     public OldBowItem() {
-        super(new Properties().defaultMaxDamage(425).group(ModItemGroups.GAIA_TOOLS));
+        super(new Properties().defaultMaxDamage(425).group(GaiaItemGroups.GAIA_TOOLS));
 
         this.addPropertyOverride(new ResourceLocation("pull"), (stack, world, entity) -> {
             if (entity == null) {

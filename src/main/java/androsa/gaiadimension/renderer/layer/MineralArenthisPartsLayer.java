@@ -1,6 +1,6 @@
 package androsa.gaiadimension.renderer.layer;
 
-import androsa.gaiadimension.GaiaDimension;
+import androsa.gaiadimension.GaiaDimensionMod;
 import androsa.gaiadimension.entity.MineralArenthisEntity;
 import androsa.gaiadimension.model.MineralArenthisModel;
 import com.mojang.blaze3d.platform.GLX;
@@ -14,7 +14,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
 public class MineralArenthisPartsLayer extends LayerRenderer<MineralArenthisEntity, MineralArenthisModel> {
-    private static final ResourceLocation textureLoc = new ResourceLocation(GaiaDimension.MODEL_DIR + "mineralarenthis_glow.png");
+    private static final ResourceLocation textureLoc = new ResourceLocation(GaiaDimensionMod.MODEL_DIR + "mineralarenthis_glow.png");
 
     public MineralArenthisPartsLayer(IEntityRenderer<MineralArenthisEntity, MineralArenthisModel> arentisRenderIn) {
         super(arentisRenderIn);

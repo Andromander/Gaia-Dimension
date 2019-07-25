@@ -1,6 +1,7 @@
 package androsa.gaiadimension.block.container;
 
 import androsa.gaiadimension.block.container.slots.LargeCrateSlot;
+import androsa.gaiadimension.registry.ModContainers;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.IInventory;

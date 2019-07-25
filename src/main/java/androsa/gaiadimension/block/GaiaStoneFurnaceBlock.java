@@ -15,7 +15,7 @@ import net.minecraftforge.common.ToolType;
 public class GaiaStoneFurnaceBlock extends FurnaceBlock {
 
     public GaiaStoneFurnaceBlock() {
-        super(Properties.create(Material.ROCK).hardnessAndResistance(20.0F, 300.0F).doesNotBlockMovement().lightValue(13));
+        super(Properties.create(Material.ROCK).hardnessAndResistance(20.0F, 300.0F).doesNotBlockMovement().harvestTool(ToolType.PICKAXE).harvestLevel(0).lightValue(13));
     }
 
     @Override
@@ -34,15 +34,5 @@ public class GaiaStoneFurnaceBlock extends FurnaceBlock {
         if (tileentity instanceof GaiaStoneFurnaceTileEntity) {
             player.openContainer((INamedContainerProvider)tileentity);
         }
-    }
-
-    @Override
-    public ToolType getHarvestTool(BlockState state) {
-        return ToolType.PICKAXE;
-    }
-
-    @Override
-    public int getHarvestLevel(BlockState state) {
-        return 0;
     }
 }

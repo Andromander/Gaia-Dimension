@@ -1,8 +1,10 @@
 package androsa.gaiadimension.item.inventory;
 
+import androsa.gaiadimension.registry.ModContainers;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.IInventory;
+import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.Slot;
 import net.minecraft.item.ItemStack;
@@ -10,6 +12,10 @@ import net.minecraft.item.ItemStack;
 public class GemPouchContainer extends Container {
 
     private final IInventory inventory;
+
+    public GemPouchContainer(int id, PlayerInventory inventory) {
+        this(id, inventory, new Inventory(20));
+    }
 
     public GemPouchContainer(int id, PlayerInventory invPlayer, IInventory inventory) {
         super(ModContainers.GEM_POUCH, id);

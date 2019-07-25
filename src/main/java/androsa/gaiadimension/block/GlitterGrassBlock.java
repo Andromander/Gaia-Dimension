@@ -1,5 +1,6 @@
 package androsa.gaiadimension.block;
 
+import androsa.gaiadimension.biomes.MutantAgateWildwoodBiome;
 import androsa.gaiadimension.registry.ModBlocks;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.IGrowable;
@@ -53,7 +54,7 @@ public class GlitterGrassBlock extends AbstractGaiaGrassBlock {
                     }
 
                     if (blockstate1.isValidPosition(worldIn, blockpos1)) {
-                        if (worldIn.getBiome(pos) instanceof GDMutantAgateWildwood) {
+                        if (worldIn.getBiome(pos) instanceof MutantAgateWildwoodBiome) {
                             worldIn.setBlockState(blockpos1, mutantGrowth, 3);
                         } else {
                             worldIn.setBlockState(blockpos1, normalGrowth, 3);

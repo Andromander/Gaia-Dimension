@@ -1,6 +1,7 @@
 package androsa.gaiadimension.item;
 
-import androsa.gaiadimension.registry.ModItemGroups;
+import androsa.gaiadimension.entity.projectile.ThrownPebbleEntity;
+import androsa.gaiadimension.registry.GaiaItemGroups;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -11,7 +12,7 @@ import net.minecraft.world.World;
 public class SturdyPebbleItem extends Item {
 
     public SturdyPebbleItem() {
-        super(new Properties().maxStackSize(16).group(ModItemGroups.GAIA_ITEMS));
+        super(new Properties().maxStackSize(16).group(GaiaItemGroups.GAIA_ITEMS));
     }
 
     @Override
@@ -25,7 +26,7 @@ public class SturdyPebbleItem extends Item {
         worldIn.playSound(null, playerIn.posX, playerIn.posY, playerIn.posZ, SoundEvents.ENTITY_SNOWBALL_THROW, SoundCategory.NEUTRAL, 0.5F, 0.4F / (random.nextFloat() * 0.4F + 0.8F));
 
         if (!worldIn.isRemote) {
-            GDThrownPebble pebble = new GDThrownPebble(worldIn, playerIn);
+            ThrownPebbleEntity pebble = new ThrownPebbleEntity(worldIn, playerIn);
             pebble.func_213884_b(itemstack);
             pebble.shoot(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, 1.5F, 1.0F);
             worldIn.addEntity(pebble);

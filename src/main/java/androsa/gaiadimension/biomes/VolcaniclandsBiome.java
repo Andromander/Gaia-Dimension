@@ -55,9 +55,4 @@ public class VolcaniclandsBiome extends BaseGaiaBiome implements IDryBiome {
     public int getFoliageColor(BlockPos pos) {
         return 0x232323;
     }
-
-    /*@Override
-    public IBlockState getStoneReplacement() {
-        return GDBlocks.volcanic_rock.getDefaultState();
-    }*/
 }

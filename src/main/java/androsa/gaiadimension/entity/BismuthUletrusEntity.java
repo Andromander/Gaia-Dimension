@@ -1,8 +1,10 @@
 package androsa.gaiadimension.entity;
 
+import androsa.gaiadimension.registry.ModBlocks;
 import net.minecraft.entity.CreatureEntity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.ai.goal.LookAtGoal;
 import net.minecraft.entity.ai.goal.LookRandomlyGoal;
 import net.minecraft.entity.ai.goal.SwimGoal;
@@ -14,7 +16,10 @@ import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
+
+import java.util.Random;
 
 public class BismuthUletrusEntity extends CreatureEntity {
 
@@ -73,6 +78,10 @@ public class BismuthUletrusEntity extends CreatureEntity {
     public boolean attackEntityFrom(DamageSource source, float amount) {
         this.setResting(false);
         return super.attackEntityFrom(source, amount);
+    }
+
+    public static boolean canSpawnHere(EntityType<BismuthUletrusEntity> entity, IWorld world, SpawnReason spawn, BlockPos pos, Random random) {
+        return world.getBlockState(pos.down()).getBlock() == ModBlocks.murky_grass || world.getBlockState(pos.down()).getBlock() == ModBlocks.impure_sludge && world.getLightSubtracted(pos, 0) > 8;
     }
 
     @Override

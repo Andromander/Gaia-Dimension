@@ -1,6 +1,7 @@
 package androsa.gaiadimension.block.container.slots;
 
 import androsa.gaiadimension.block.tileentity.PurifierTileEntity;
+import androsa.gaiadimension.registry.ModEvents;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.container.Slot;
@@ -53,6 +54,6 @@ public class PurifyOutputSlot extends Slot {
 
         stackSize = 0;
 
-        MinecraftForge.EVENT_BUS.post(new GDEvents.ItemPurifiedEvent(thePlayer, par1ItemStack));
+        MinecraftForge.EVENT_BUS.post(new ModEvents.ItemPurifiedEvent(thePlayer, par1ItemStack));
     }
 }

@@ -1,6 +1,6 @@
 package androsa.gaiadimension.renderer;
 
-import androsa.gaiadimension.GaiaDimension;
+import androsa.gaiadimension.GaiaDimensionMod;
 import androsa.gaiadimension.entity.ShalurkerEntity;
 import androsa.gaiadimension.model.ShalurkerModel;
 import net.minecraft.client.renderer.entity.MobRenderer;
@@ -11,7 +11,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
 public class ShalurkerRenderer extends MobRenderer<ShalurkerEntity, ShalurkerModel> {
-    private static final ResourceLocation textureLoc = new ResourceLocation(GaiaDimension.MODEL_DIR + "shalurker.png");
+    private static final ResourceLocation textureLoc = new ResourceLocation(GaiaDimensionMod.MODEL_DIR + "shalurker.png");
 
     public ShalurkerRenderer(EntityRendererManager manager, ShalurkerModel model, float shadowSize) {
         super(manager, model, shadowSize);

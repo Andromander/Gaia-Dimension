@@ -1,16 +1,19 @@
 package androsa.gaiadimension.entity;
 
+import androsa.gaiadimension.registry.ModBlocks;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.LookAtGoal;
 import net.minecraft.entity.ai.goal.LookRandomlyGoal;
 import net.minecraft.entity.ai.goal.RandomWalkingGoal;
 import net.minecraft.entity.ai.goal.SwimGoal;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 
-public class RockyLuggerothEntity extends CreatureEntity {
+import java.util.Random;
 
-    //public static final ResourceLocation LOOT_TABLE = new ResourceLocation(GaiaDimension.MODID, "entities/rocky_luggeroth");
+public class RockyLuggerothEntity extends CreatureEntity {
 
     public RockyLuggerothEntity(EntityType<? extends RockyLuggerothEntity> entity, World world) {
         super(entity, world);
@@ -37,8 +40,7 @@ public class RockyLuggerothEntity extends CreatureEntity {
         return 0.35F;
     }
 
-    /*@Override
-    public ResourceLocation getLootTable() {
-        return LOOT_TABLE;
-    }*/
+    public static boolean canSpawnHere(EntityType<RockyLuggerothEntity> entity, IWorld world, SpawnReason spawn, BlockPos pos, Random random) {
+        return world.getBlockState(pos.down()).getBlock() == ModBlocks.glitter_grass && world.getLightSubtracted(pos, 0) > 8;
+    }
 }

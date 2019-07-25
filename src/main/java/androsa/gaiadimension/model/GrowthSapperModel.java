@@ -2,7 +2,7 @@ package androsa.gaiadimension.model;
 
 import net.minecraft.client.renderer.entity.model.EntityModel;
 import net.minecraft.client.renderer.entity.model.RendererModel;
-import net.minecraft.entity.MobEntity;
+import net.minecraft.entity.Entity;
 import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -12,7 +12,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
  * Created using Tabula 7.0.0
  */
 @OnlyIn(Dist.CLIENT)
-public class GrowthSapperModel extends EntityModel<MobEntity> {
+public class GrowthSapperModel<T extends Entity> extends EntityModel<T> {
     public RendererModel head;
     public RendererModel body;
     public RendererModel leg1;
@@ -58,7 +58,7 @@ public class GrowthSapperModel extends EntityModel<MobEntity> {
     }
 
     @Override
-    public void render(MobEntity entity, float f, float f1, float f2, float f3, float f4, float f5) {
+    public void render(T entity, float f, float f1, float f2, float f3, float f4, float f5) {
         this.leg2.render(f5);
         this.body.render(f5);
         this.head.render(f5);
@@ -79,7 +79,7 @@ public class GrowthSapperModel extends EntityModel<MobEntity> {
     }
 
     @Override
-    public void setRotationAngles(MobEntity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor) {
+    public void setRotationAngles(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor) {
         this.head.rotateAngleY = netHeadYaw / (180F / (float) Math.PI);
         this.head.rotateAngleX = headPitch / (180F / (float) Math.PI);
 

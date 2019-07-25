@@ -2,6 +2,7 @@ package androsa.gaiadimension.block.tileentity;
 
 import androsa.gaiadimension.block.SmallCrateBlock;
 import androsa.gaiadimension.block.container.SmallCrateContainer;
+import androsa.gaiadimension.registry.ModTileEntities;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;

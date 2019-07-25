@@ -1,6 +1,6 @@
 package androsa.gaiadimension.registry;
 
-import androsa.gaiadimension.GaiaDimension;
+import androsa.gaiadimension.GaiaDimensionMod;
 import net.minecraft.util.ResourceLocation;
 
 public class GaiaEntityNames {
@@ -37,6 +37,6 @@ public class GaiaEntityNames {
     public static final ResourceLocation MALACHITE_GUARD = prefix("malachite_guard");
 
     private static ResourceLocation prefix(String path) {
-        return new ResourceLocation(GaiaDimension.MODID, path);
+        return new ResourceLocation(GaiaDimensionMod.MODID, path);
     }
 }

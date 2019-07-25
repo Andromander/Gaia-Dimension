@@ -1,5 +1,6 @@
 package androsa.gaiadimension.block.container;
 
+import androsa.gaiadimension.registry.ModContainers;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.*;
 import net.minecraft.inventory.container.AbstractFurnaceContainer;

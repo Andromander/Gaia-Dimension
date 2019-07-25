@@ -1,6 +1,6 @@
 package androsa.gaiadimension.item;
 
-import androsa.gaiadimension.registry.ModItems;
+import androsa.gaiadimension.registry.ModBlocks;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Food;
@@ -16,7 +16,7 @@ public class GeodeSliceItem extends BasicGaiaItem {
     @Override
     public ItemStack onItemUseFinish(ItemStack stack, World worldIn, LivingEntity entityLiving) {
         PlayerEntity player = (PlayerEntity)entityLiving;
-        ItemStack item = new ItemStack(ModItems.agate_fabric);
+        ItemStack item = new ItemStack(ModBlocks.agate_fabric);
 
         super.onItemUseFinish(stack, worldIn, entityLiving);
 
