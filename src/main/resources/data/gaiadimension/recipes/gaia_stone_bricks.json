@@ -1,0 +1,16 @@
+{
+  "result": {
+    "item": "gaiadimension:gaia_stone_bricks",
+    "count": 4
+  },
+  "pattern": [
+    "##",
+    "##"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "#": {
+      "item": "gaiadimension:gaia_stone"
+    }
+  }
+}

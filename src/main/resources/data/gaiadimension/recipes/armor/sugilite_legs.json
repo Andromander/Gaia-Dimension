@@ -1,0 +1,17 @@
+{
+  "result": {
+    "item": "gaiadimension:sugilite_legs"
+  },
+  "pattern": [
+    "###",
+    "# #",
+    "# #"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "group": "sugilite_armor",
+  "key": {
+    "#": {
+      "item": "gaiadimension:sugilite"
+    }
+  }
+}

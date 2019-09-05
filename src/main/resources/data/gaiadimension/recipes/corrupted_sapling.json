@@ -1,0 +1,30 @@
+{
+  "result": {
+    "item": "gaiadimension:corrupted_sapling"
+  },
+  "pattern": [
+    " R ",
+    "RSR",
+    " R "
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "S": [
+      {
+        "item": "gaiadimension:pink_agate_sapling"
+      },
+      {
+        "item": "gaiadimension:blue_agate_sapling"
+      },
+      {
+        "item": "gaiadimension:green_agate_sapling"
+      },
+      {
+        "item": "gaiadimension:purple_agate_sapling"
+      }
+    ],
+    "R": {
+      "item": "gaiadimension:goldstone_residue"
+    }
+  }
+}

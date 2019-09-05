@@ -1,0 +1,16 @@
+{
+  "result": {
+    "item": "gaiadimension:burnt_plank_slab",
+    "count": 6,
+    "data": 0
+  },
+  "pattern": [
+    "###"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "#": {
+      "item": "gaiadimension:burnt_planks"
+    }
+  }
+}

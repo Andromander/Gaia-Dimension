@@ -1,0 +1,15 @@
+{
+  "result": {
+    "item": "gaiadimension:sugar_cluster"
+  },
+  "pattern": [
+    "SS",
+    "SS"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "S": {
+      "item": "gaiadimension:sugar_crystals"
+    }
+  }
+}

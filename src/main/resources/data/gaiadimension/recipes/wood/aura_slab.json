@@ -1,0 +1,16 @@
+{
+  "result": {
+    "item": "gaiadimension:aura_plank_slab",
+    "count": 6,
+    "data": 0
+  },
+  "pattern": [
+    "###"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "#": {
+      "item": "gaiadimension:aura_planks"
+    }
+  }
+}

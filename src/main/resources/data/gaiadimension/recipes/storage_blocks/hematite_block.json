@@ -1,0 +1,16 @@
+{
+  "result": {
+    "item": "gaiadimension:hematite_block"
+  },
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "#": {
+      "item": "gaiadimension:hematite"
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "result": {
+    "item": "gaiadimension:diopside_helmet"
+  },
+  "pattern": [
+    "###",
+    "# #"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "group": "diopside_armor",
+  "key": {
+    "#": {
+      "item": "gaiadimension:diopside"
+    }
+  }
+}

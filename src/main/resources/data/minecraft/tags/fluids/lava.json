@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "gaiadimension:superhot_magma_still",
+    "gaiadimension:superhot_magma_flow",
+    "gaiadimension:liquid_bismuth_still",
+    "gaiadimension:liquid_bismuth_flow"
+  ]
+}

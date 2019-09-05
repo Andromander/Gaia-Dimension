@@ -1,0 +1,20 @@
+{
+  "result": {
+    "item": "gaiadimension:chalcedony_sword"
+  },
+  "pattern": [
+    "W",
+    "W",
+    "S"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "group": "chalcedony_tools",
+  "key": {
+    "W": {
+      "item": "gaiadimension:chalcedony"
+    },
+    "S": {
+      "item": "gaiadimension:agate_stick"
+    }
+  }
+}

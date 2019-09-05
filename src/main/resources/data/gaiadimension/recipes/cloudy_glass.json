@@ -1,0 +1,16 @@
+{
+  "result": {
+    "item": "gaiadimension:cloudy_glass"
+  },
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "#": {
+      "item": "gaiadimension:cloudy_shard"
+    }
+  }
+}

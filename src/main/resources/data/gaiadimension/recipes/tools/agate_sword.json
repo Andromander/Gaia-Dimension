@@ -1,0 +1,20 @@
+{
+  "result": {
+    "item": "gaiadimension:agate_sword"
+  },
+  "pattern": [
+    "W",
+    "W",
+    "S"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "group": "agate_tools",
+  "key": {
+    "W": {
+      "item": "#AGATEPLANKS"
+    },
+    "S": {
+      "item": "gaiadimension:agate_stick"
+    }
+  }
+}

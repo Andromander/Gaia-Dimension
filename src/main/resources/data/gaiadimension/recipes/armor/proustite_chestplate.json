@@ -1,0 +1,17 @@
+{
+  "result": {
+    "item": "gaiadimension:proustite_chestplate"
+  },
+  "pattern": [
+    "# #",
+    "###",
+    "###"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "group": "proustite_armor",
+  "key": {
+    "#": {
+      "item": "gaiadimension:proustite"
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "result": {
+    "item": "gaiadimension:pink_sludge_block"
+  },
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "#": {
+      "item": "gaiadimension:pink_goo"
+    }
+  }
+}

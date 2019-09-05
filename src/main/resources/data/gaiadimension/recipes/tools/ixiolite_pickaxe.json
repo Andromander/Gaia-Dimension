@@ -1,0 +1,20 @@
+{
+  "result": {
+    "item": "gaiadimension:ixiolite_pickaxe"
+  },
+  "pattern": [
+    "WWW",
+    " S ",
+    " S "
+  ],
+  "type": "minecraft:crafting_shaped",
+  "group": "ixiolite_tools",
+  "key": {
+    "W": {
+      "item": "gaiadimension:ixiolite"
+    },
+    "S": {
+      "item": "gaiadimension:agate_stick"
+    }
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "result": {
+    "item": "gaiadimension:agate_crafting_table"
+  },
+  "pattern": [
+    "##",
+    "##"
+    ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "#": {
+      "item": "#AGATEPLANKS"
+    }
+  }
+}

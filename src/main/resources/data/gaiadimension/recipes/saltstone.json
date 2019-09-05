@@ -1,0 +1,15 @@
+{
+  "result": {
+    "item": "gaiadimension:saltstone"
+  },
+  "pattern": [
+    "##",
+    "##"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "#": {
+      "item": "gaiadimension:salt"
+    }
+  }
+}

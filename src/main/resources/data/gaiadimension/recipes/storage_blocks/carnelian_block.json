@@ -1,0 +1,16 @@
+{
+  "result": {
+    "item": "gaiadimension:carnelian_block"
+  },
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "#": {
+      "item": "gaiadimension:carnelian"
+    }
+  }
+}

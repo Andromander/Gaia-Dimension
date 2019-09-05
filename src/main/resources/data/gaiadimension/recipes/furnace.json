@@ -1,0 +1,16 @@
+{
+  "result": {
+    "item": "gaiadimension:gaia_stone_furnace_idle"
+  },
+  "pattern": [
+    "SSS",
+    "S S",
+    "SSS"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "S": {
+      "item": "gaiadimension:gaia_cobblestone"
+    }
+  }
+}

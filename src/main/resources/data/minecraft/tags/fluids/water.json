@@ -1,0 +1,11 @@
+{
+  "replace": false,
+  "values": [
+    "gaiadimension:mineral_water_still",
+    "gaiadimension:mineral_water_flow",
+    "gaiadimension:sweet_muck_still",
+    "gaiadimension:sweet_muck_flow",
+    "gaiadimension:liquid_aura_still",
+    "gaiadimension:liquid_aura_flow"
+  ]
+}

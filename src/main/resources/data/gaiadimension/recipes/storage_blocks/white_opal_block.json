@@ -1,0 +1,16 @@
+{
+  "result": {
+    "item": "gaiadimension:opal_block_white"
+  },
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "#": {
+      "item": "gaiadimension:white_opal"
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "result": {
+    "item": "gaiadimension:agate_stick",
+    "count": 4
+  },
+  "pattern": [
+    "B",
+    "B"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "B": {
+      "item": "#AGATEPLANKS"
+    }
+  }
+}

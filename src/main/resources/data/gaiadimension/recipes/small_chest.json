@@ -1,0 +1,16 @@
+{
+  "result": {
+    "item": "gaiadimension:crude_storage_crate"
+  },
+  "pattern": [
+    "###",
+    "# #",
+    "###"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "#": {
+      "item": "#AGATEPLANKS"
+    }
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "result": {
+    "item": "gaiadimension:sugilite_shovel"
+  },
+  "pattern": [
+    "W",
+    "S",
+    "S"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "group": "sugilite_tools",
+  "key": {
+    "W": {
+      "item": "gaiadimension:sugilite"
+    },
+    "S": {
+      "item": "gaiadimension:agate_stick"
+    }
+  }
+}
