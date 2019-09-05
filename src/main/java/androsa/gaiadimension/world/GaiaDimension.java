@@ -33,7 +33,7 @@ public class GaiaDimension extends Dimension {
     @Override
     public ChunkGenerator<?> createChunkGenerator() {
         GaiaGenerationSettings gaisSettings = ModDimensions.GAIA_GEN.createSettings();
-        return ModDimensions.GAIA_GEN.create(this.world, ModDimensions.GAIA_DIMENSION.create(ModDimensions.GAIA_DIMENSION.createSettings()), gaisSettings);
+        return ModDimensions.GAIA_GEN.create(this.world, ModDimensions.GAIA_DIMENSION.create(ModDimensions.GAIA_DIMENSION.createSettings().setGeneratorSettings(new GaiaGenerationSettings()).setWorldInfo(this.world.getWorldInfo())), gaisSettings);
     }
 
     @Override

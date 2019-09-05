@@ -1,10 +1,10 @@
 package androsa.gaiadimension.block;
 
 import androsa.gaiadimension.GaiaDimensionMod;
+import androsa.gaiadimension.WorldEvents;
 import androsa.gaiadimension.registry.ModBlocks;
 import androsa.gaiadimension.registry.ModDimensions;
 import androsa.gaiadimension.registry.ModParticles;
-import androsa.gaiadimension.world.GaiaTeleporter;
 import com.google.common.cache.LoadingCache;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -44,7 +44,7 @@ public class GaiaPortalBlock extends Block {
     protected static final VoxelShape Z_AABB = Block.makeCuboidShape(6.0D, 0.0D, 0.0D, 10.0D, 16.0D, 16.0D);
 
     public GaiaPortalBlock() {
-        super(Properties.create(Material.PORTAL, MaterialColor.PINK_TERRACOTTA).hardnessAndResistance(-1.0F).doesNotBlockMovement().tickRandomly().lightValue(15));
+        super(Properties.create(Material.PORTAL, MaterialColor.PINK_TERRACOTTA).hardnessAndResistance(-1.0F).doesNotBlockMovement().tickRandomly().lightValue(15).noDrops());
         this.setDefaultState(this.stateContainer.getBaseState().with(AXIS, Direction.Axis.X));
     }
 
@@ -77,7 +77,7 @@ public class GaiaPortalBlock extends Block {
         if (world.dimension.getType() == DimensionType.OVERWORLD)
             return BiomeDictionary.hasType(biome, Type.HOT) || BiomeDictionary.hasType(biome, Type.MOUNTAIN) || BiomeDictionary.hasType(biome, Type.DRY);
         else
-            return world.dimension.getType() == GaiaDimensionMod.dimType;
+            return world.dimension.getType() == GaiaDimensionMod.gaia_dimension;
     }
 
     @Nullable
@@ -111,16 +111,23 @@ public class GaiaPortalBlock extends Block {
     public void onEntityCollision(BlockState state, World worldIn, BlockPos pos, Entity entityIn) {
         if (!worldIn.isRemote && !entityIn.isPassenger() && !entityIn.isBeingRidden() && entityIn.isNonBoss() ) {
             //TODO: Figure out if this works properly
-            this.changeDimension(entityIn, worldIn.dimension.getType().getModType() == ModDimensions.GAIA ? DimensionType.OVERWORLD : DimensionType.byName(ModDimensions.GAIA.getRegistryName()));
+            System.out.println("Begin changeDimension");
+            this.changeDimension(entityIn, worldIn.dimension.getType() == DimensionType.byName(ModDimensions.GAIA.getRegistryName()) ? DimensionType.OVERWORLD : DimensionType.byName(ModDimensions.GAIA.getRegistryName()));
+            System.out.println("Passed changeDimension in onEntityCollision");
         }
     }
 
     //Copy of Entity.changeDimension, with relevant changes
+    //TODO: Remove if PR is merged
     public void changeDimension(Entity entity, DimensionType destination) {
-        if (!net.minecraftforge.common.ForgeHooks.onTravelToDimension(entity, destination))
+        if (!net.minecraftforge.common.ForgeHooks.onTravelToDimension(entity, destination)) {
+            System.out.println("Detected use of onTravelToDimension. Halting");
             return;
+        }
 
+        System.out.println("Begin regular activities of changeDimension: Gaia Edition");
         if (!entity.world.isRemote && entity.isAlive()) {
+            System.out.println("Yep, entity is most certainly alive");
             entity.world.getProfiler().startSection("changeDimension");
             MinecraftServer minecraftserver = entity.getServer();
             DimensionType dimensiontype = entity.dimension;
@@ -142,9 +149,11 @@ public class GaiaPortalBlock extends Block {
             d1 = MathHelper.clamp(d1, d4, d6);
             Vec3d vec3d1 = entity.getLastPortalVec();
             blockpos = new BlockPos(d0, entity.posY, d1);
-            GaiaTeleporter teleporter = new GaiaTeleporter(serverworld1);
-            BlockPattern.PortalInfo blockpattern$portalinfo = teleporter.func_222272_a(blockpos, vec3d, entity.getTeleportDirection(), vec3d1.x, vec3d1.y, entity instanceof PlayerEntity);
+            System.out.println("Getting portal info");
+            BlockPattern.PortalInfo blockpattern$portalinfo = WorldEvents.gaiaTeleporter.func_222272_a(blockpos, vec3d, entity.getTeleportDirection(), vec3d1.x, vec3d1.y, entity instanceof PlayerEntity);
+            System.out.println("Got the portal info");
             if (blockpattern$portalinfo == null) {
+                System.out.println("Portal info is null. Stopping");
                 return;
             }
 
@@ -152,17 +161,21 @@ public class GaiaPortalBlock extends Block {
             entity.world.getProfiler().endStartSection("reloading");
             Entity entityType = entity.getType().create(serverworld1);
             if (entityType != null) {
+                System.out.println("We have an entity to teleport");
                 entityType.copyDataFromOld(entity);
                 entityType.moveToBlockPosAndAngles(blockpos, entityType.rotationYaw + f, entityType.rotationPitch);
                 entityType.setMotion(vec3d);
                 serverworld1.func_217460_e(entityType);
+                System.out.println("Entity transferred");
             }
 
+            System.out.println("Cleanup time");
             entity.remove(false);
             entity.world.getProfiler().endSection();
             serverworld.resetUpdateEntityTick();
             serverworld1.resetUpdateEntityTick();
             entity.world.getProfiler().endSection();
+            System.out.println("Finished cleaning");
         }
     }
 
