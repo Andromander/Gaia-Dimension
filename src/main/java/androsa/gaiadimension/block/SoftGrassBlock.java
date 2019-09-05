@@ -16,7 +16,7 @@ import java.util.Random;
 public class SoftGrassBlock extends AbstractGaiaGrassBlock {
 
     public SoftGrassBlock() {
-        super(MaterialColor.CYAN, ModBlocks.soft_grass, ModBlocks.light_soil);
+        super(MaterialColor.CYAN, ModBlocks.light_soil);
     }
 
     @Override

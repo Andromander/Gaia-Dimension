@@ -16,7 +16,7 @@ import java.util.Random;
 public class CorruptGrassBlock extends AbstractGaiaGrassBlock {
 
     public CorruptGrassBlock() {
-        super(MaterialColor.BLACK, ModBlocks.corrupt_grass, ModBlocks.corrupt_soil);
+        super(MaterialColor.BLACK, ModBlocks.corrupt_soil);
     }
 
     @Override

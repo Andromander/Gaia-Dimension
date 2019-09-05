@@ -14,7 +14,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 public class CrystalBloomBlock extends BushBlock {
 
     public CrystalBloomBlock() {
-        super(Properties.create(Material.PLANTS, MaterialColor.MAGENTA_TERRACOTTA).hardnessAndResistance(0.0F).sound(SoundType.PLANT));
+        super(Properties.create(Material.PLANTS, MaterialColor.MAGENTA_TERRACOTTA).hardnessAndResistance(0.0F).sound(SoundType.PLANT).doesNotBlockMovement());
     }
 
     @Override

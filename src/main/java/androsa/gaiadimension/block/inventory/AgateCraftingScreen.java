@@ -50,7 +50,7 @@ public class AgateCraftingScreen extends ContainerScreen<AgateCraftingTableConta
     public void recipesUpdated() { }
 
     @Override
-    public RecipeBookGui func_194310_f() {
+    public RecipeBookGui getRecipeGui() {
         return null;
     }
 }

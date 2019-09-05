@@ -3,10 +3,8 @@ package androsa.gaiadimension.block.tileentity;
 import androsa.gaiadimension.block.PurifierBlock;
 import androsa.gaiadimension.block.container.PurifierContainer;
 import androsa.gaiadimension.recipe.PurifierRecipe;
+import androsa.gaiadimension.registry.*;
 import androsa.gaiadimension.registry.ModBlocks;
-import androsa.gaiadimension.registry.ModBlocks;
-import androsa.gaiadimension.registry.ModRecipes;
-import androsa.gaiadimension.registry.ModTileEntities;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import net.minecraft.entity.item.ExperienceOrbEntity;
@@ -112,11 +110,11 @@ public class PurifierTileEntity extends LockableTileEntity implements ISidedInve
     /** Burn times for the third slot*/
     public static Map<Item, Integer> getThirdFuelBurnTime() {
         Map<Item, Integer> map = Maps.newLinkedHashMap();
-        addItemToMap(map, ModBlocks.bismuth_residue, 200);
-        addItemToMap(map, ModBlocks.bismuth_crystal, 1800);
+        addItemToMap(map, ModItems.bismuth_residue, 200);
+        addItemToMap(map, ModItems.bismuth_crystal, 1800);
         addItemToMap(map, ModBlocks.bismuth_block, 16200);
-        addItemToMap(map, ModBlocks.black_residue, 100);
-        addItemToMap(map, ModBlocks.tektite, 900);
+        addItemToMap(map, ModItems.black_residue, 100);
+        addItemToMap(map, ModItems.tektite, 900);
         addItemToMap(map, ModBlocks.tektite_block, 8100);
         return map;
     }
@@ -495,7 +493,6 @@ public class PurifierTileEntity extends LockableTileEntity implements ISidedInve
 
     private LazyOptional<? extends IItemHandler>[] handlers = SidedInvWrapper.create(this, Direction.UP, Direction.DOWN, Direction.NORTH);
 
-    @SuppressWarnings("unchecked")
     @Override
     public <T> LazyOptional<T> getCapability(Capability<T> capability, @Nullable Direction facing) {
         if (facing != null && capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY)

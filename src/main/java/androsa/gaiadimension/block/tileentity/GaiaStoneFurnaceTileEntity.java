@@ -20,6 +20,6 @@ public class GaiaStoneFurnaceTileEntity extends AbstractFurnaceTileEntity {
     }
 
     protected Container createMenu(int id, PlayerInventory inventory) {
-        return new GaiaStoneFurnaceContainer(id, inventory, this, this.field_214013_b);
+        return new GaiaStoneFurnaceContainer(id, inventory, this, this.furnaceData);
     }
 }

@@ -4,7 +4,7 @@ import androsa.gaiadimension.block.RestructurerBlock;
 import androsa.gaiadimension.block.container.RestructurerContainer;
 import androsa.gaiadimension.recipe.RestructurerRecipe;
 import androsa.gaiadimension.registry.ModBlocks;
-import androsa.gaiadimension.registry.ModBlocks;
+import androsa.gaiadimension.registry.ModItems;
 import androsa.gaiadimension.registry.ModRecipes;
 import androsa.gaiadimension.registry.ModTileEntities;
 import com.google.common.collect.Lists;
@@ -126,9 +126,9 @@ public class RestructurerTileEntity extends LockableTileEntity implements ISided
         addItemToMap(map, Items.GOLDEN_HORSE_ARMOR, 1000);
         addItemToMap(map, Blocks.GOLD_BLOCK, 2000);
         addItemToMap(map, Blocks.GOLD_ORE, 150);
-        addItemToMap(map, ModBlocks.pyrite, 500);
+        addItemToMap(map, ModItems.pyrite, 500);
         addItemToMap(map, ModBlocks.pyrite_block, 5000);
-        addItemToMap(map, ModBlocks.sweet_muckball, 250);
+        addItemToMap(map, ModItems.sweet_muckball, 250);
         addItemToMap(map, ModBlocks.frail_glitter_block, 1000);
         addItemToMap(map, ModBlocks.thick_glitter_block, 2000);
         addItemToMap(map, ModBlocks.gummy_glitter_block, 4000);
@@ -140,11 +140,11 @@ public class RestructurerTileEntity extends LockableTileEntity implements ISided
     /** Burn times for the second slot */
     public static Map<Item, Integer> getSecondFuelBurnTime() {
         Map<Item, Integer> map = Maps.newLinkedHashMap();
-        addItemToMap(map, ModBlocks.pink_essence, 100);
-        addItemToMap(map, ModBlocks.pink_goo, 900);
+        addItemToMap(map, ModItems.pink_essence, 100);
+        addItemToMap(map, ModItems.pink_goo, 900);
         addItemToMap(map, ModBlocks.pink_sludge_block, 8100);
-        addItemToMap(map, ModBlocks.aura_residue, 200);
-        addItemToMap(map, ModBlocks.aura_cluster, 1800);
+        addItemToMap(map, ModItems.aura_residue, 200);
+        addItemToMap(map, ModItems.aura_cluster, 1800);
         addItemToMap(map, ModBlocks.aura_block, 16200);
         return map;
     }
@@ -501,7 +501,7 @@ public class RestructurerTileEntity extends LockableTileEntity implements ISided
     private LazyOptional<? extends IItemHandler>[] handlers = SidedInvWrapper.create(this, Direction.UP, Direction.DOWN, Direction.NORTH);
 
     @Override
-    @javax.annotation.Nullable
+    @Nullable
     public <T> LazyOptional<T> getCapability(Capability<T> capability, @Nullable Direction facing) {
         if (facing != null && capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY)
             if (facing == Direction.DOWN)

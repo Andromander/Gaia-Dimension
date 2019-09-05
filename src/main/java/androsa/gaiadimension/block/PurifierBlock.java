@@ -35,7 +35,7 @@ public class PurifierBlock extends Block {
     public static final BooleanProperty LIT = RedstoneTorchBlock.LIT;
 
     public PurifierBlock() {
-        super(Properties.create(Material.ROCK).doesNotBlockMovement().harvestTool(ToolType.PICKAXE).harvestLevel(2).lightValue(14));
+        super(Properties.create(Material.ROCK).harvestTool(ToolType.PICKAXE).harvestLevel(2).lightValue(14));
         this.setDefaultState(this.stateContainer.getBaseState().with(FACING, Direction.NORTH).with(LIT, Boolean.FALSE));
     }
 

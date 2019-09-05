@@ -21,15 +21,16 @@ import java.util.Random;
 
 public abstract class AbstractGaiaGrassBlock extends Block implements IGrowable {
 
-    private final Block grass, dirt;
+    private final Block dirt;
 
-    public AbstractGaiaGrassBlock(MaterialColor color, Block grassblock, Block dirtblock) {
+    public AbstractGaiaGrassBlock(MaterialColor color, Block dirtblock) {
         super(Properties.create(Material.ORGANIC, color).hardnessAndResistance(0.9F, 0.0F).sound(SoundType.PLANT).harvestTool(ToolType.SHOVEL).harvestLevel(0).tickRandomly());
 
-        grass = grassblock;
         dirt = dirtblock;
     }
 
+    //TODO: They keep growing despite being on top of each other. Find cause
+    @Override
     public void tick(BlockState state, World worldIn, BlockPos pos, Random random) {
         if (!worldIn.isRemote) {
             if (!worldIn.isAreaLoaded(pos, 3)) return;
@@ -37,7 +38,7 @@ public abstract class AbstractGaiaGrassBlock extends Block implements IGrowable 
                 worldIn.setBlockState(pos, dirt.getDefaultState());
             } else if (worldIn.getLight(pos.up()) >= 4) {
                 if (worldIn.getLight(pos.up()) >= 9) {
-                    BlockState blockstate = grass.getDefaultState();
+                    BlockState blockstate = this.getDefaultState();
 
                     for (int i = 0; i < 4; ++i) {
                         BlockPos blockpos = pos.add(random.nextInt(3) - 1, random.nextInt(5) - 3, random.nextInt(3) - 1);

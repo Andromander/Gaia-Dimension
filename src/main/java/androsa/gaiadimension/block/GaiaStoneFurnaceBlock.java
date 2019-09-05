@@ -15,7 +15,7 @@ import net.minecraftforge.common.ToolType;
 public class GaiaStoneFurnaceBlock extends FurnaceBlock {
 
     public GaiaStoneFurnaceBlock() {
-        super(Properties.create(Material.ROCK).hardnessAndResistance(20.0F, 300.0F).doesNotBlockMovement().harvestTool(ToolType.PICKAXE).harvestLevel(0).lightValue(13));
+        super(Properties.create(Material.ROCK).hardnessAndResistance(20.0F, 300.0F).harvestTool(ToolType.PICKAXE).harvestLevel(0).lightValue(13));
     }
 
     @Override

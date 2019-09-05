@@ -21,7 +21,7 @@ public class CrystalFungusBlock extends BushBlock {
     private boolean cavernous;
 
     public CrystalFungusBlock(MaterialColor color, boolean isCave) {
-        super(Properties.create(Material.PLANTS, color).hardnessAndResistance(0.0F).sound(SoundType.PLANT));
+        super(Properties.create(Material.PLANTS, color).hardnessAndResistance(0.0F).sound(SoundType.PLANT).doesNotBlockMovement());
 
         cavernous = isCave;
     }

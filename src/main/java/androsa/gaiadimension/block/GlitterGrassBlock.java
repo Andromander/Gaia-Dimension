@@ -17,7 +17,7 @@ import java.util.Random;
 public class GlitterGrassBlock extends AbstractGaiaGrassBlock {
 
     public GlitterGrassBlock() {
-        super(MaterialColor.PINK, ModBlocks.glitter_grass, ModBlocks.heavy_soil);
+        super(MaterialColor.PINK, ModBlocks.heavy_soil);
     }
 
     @Override
