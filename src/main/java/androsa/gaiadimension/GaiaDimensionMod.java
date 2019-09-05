@@ -54,28 +54,13 @@ public class GaiaDimensionMod {
         DimensionManager.registerDimension(new ResourceLocation(GaiaDimensionMod.MODID, "gaia"), GAIA, null, true);
         GaiaDimensionMod.LOGGER.info("We are set for the world of Gaia.");
 
-        /* TODO: Re-enable once Fludis are back
-        FluidRegistry.registerFluid(GDFluids.mineralWater);
-        FluidRegistry.registerFluid(GDFluids.superhotMagma);
-        FluidRegistry.registerFluid(GDFluids.sweetMuck);
-        FluidRegistry.registerFluid(GDFluids.liquidBismuth);
-        FluidRegistry.registerFluid(GDFluids.liquidAura);
-
-        FluidRegistry.addBucketForFluid(GDFluids.mineralWater);
-        FluidRegistry.addBucketForFluid(GDFluids.superhotMagma);
-        FluidRegistry.addBucketForFluid(GDFluids.sweetMuck);
-        FluidRegistry.addBucketForFluid(GDFluids.liquidBismuth);
-        FluidRegistry.addBucketForFluid(GDFluids.liquidAura);
-        */
-
         ModBiomes.addBiomeTypes();
         proxy.doPreLoadRegistration();
-        particles.registerFactories();
 
         DistExecutor.runWhenOn(Dist.CLIENT, () -> ModContainers::registerScreens);
     }
 
-    static {
-        FluidRegistry.enableUniversalBucket();
+    public void clientSetup(FMLClientSetupEvent event) {
+        particles.registerFactories();
     }
 }

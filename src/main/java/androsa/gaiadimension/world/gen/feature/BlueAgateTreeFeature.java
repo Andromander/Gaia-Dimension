@@ -71,7 +71,7 @@ public class BlueAgateTreeFeature extends AbstractTreeFeature<NoFeatureConfig> {
                             int l2 = k2 - pos.getZ();
                             if (Math.abs(j2) != i3 || Math.abs(l2) != i3 || i3 <= 0) {
                                 BlockPos blockpos = new BlockPos(i2, j4, k2);
-                                if (isAirOrLeaves(world, blockpos) || func_214576_j(world, blockpos)) {
+                                if (isAirOrLeaves(world, blockpos) || isTallPlants(world, blockpos)) {
                                     this.setLogState(changedBlocks, world, blockpos, ModBlocks.blue_agate_leaves.getDefaultState(), boundingBox);
                                 }
                             }
