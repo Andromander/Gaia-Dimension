@@ -1,7 +1,7 @@
 package androsa.gaiadimension.entity.projectile;
 
 import androsa.gaiadimension.registry.ModEntities;
-import androsa.gaiadimension.registry.ModBlocks;
+import androsa.gaiadimension.registry.ModItems;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.projectile.AbstractArrowEntity;
@@ -25,6 +25,6 @@ public class AgateArrowEntity extends AbstractArrowEntity {
 
     @Override
     protected ItemStack getArrowStack() {
-        return new ItemStack(ModBlocks.agate_arrow);
+        return new ItemStack(ModItems.agate_arrow);
     }
 }

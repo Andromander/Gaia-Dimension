@@ -1,7 +1,7 @@
 package androsa.gaiadimension.entity;
 
 import androsa.gaiadimension.GaiaDimensionMod;
-import androsa.gaiadimension.registry.ModBlocks;
+import androsa.gaiadimension.registry.ModItems;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.*;
@@ -97,7 +97,7 @@ public class ArchaicWarriorEntity extends MonsterEntity {
         super.setEquipmentBasedOnDifficulty(difficulty);
 
         if (this.rand.nextFloat() < (this.world.getDifficulty() == Difficulty.NORMAL ? 0.05F : 0.01F)) {
-            this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(ModBlocks.sugilite_sword));
+            this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(ModItems.sugilite_sword));
         }
     }
 

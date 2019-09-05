@@ -6,13 +6,13 @@ import net.minecraft.item.crafting.Ingredient;
 import java.util.function.Supplier;
 
 public enum GaiaToolMaterials implements IItemTier {
-    AGATE(1, 150, 2.5F, 1.0F, 5, () -> Ingredient.fromItems(ModBlocks.pink_agate_planks)), //TODO: From all planks (ugh...)
-    SUGILITE(2, 800, 3.0F, 1.5F, 10, () -> Ingredient.fromItems(ModBlocks.sugilite)),
-    IXIOLITE(2, 1500, 4.0F, 2.0F, 10, () -> Ingredient.fromItems(ModBlocks.ixiolite)),
-    EUCLASE(2, 3000, 4.0F, 2.0F, 10, () -> Ingredient.fromItems(ModBlocks.euclase)),
-    CARNELIAN(3, 2500, 5.0F, 3.0F, 10, () -> Ingredient.fromItems(ModBlocks.carnelian)),
-    BENITOITE(3, 3500, 5.0F, 3.0F, 10, () -> Ingredient.fromItems(ModBlocks.benitoite)),
-    CHALCEDONY(4, 4000, 6.0F, 4.0F, 10, () -> Ingredient.fromItems(ModBlocks.chalcedony)),
+    AGATE(1, 150, 2.5F, 1.0F, 5, () -> Ingredient.fromItems(ModBlocks.pink_agate_planks)), //TODO: Tag it
+    SUGILITE(2, 800, 3.0F, 1.5F, 10, () -> Ingredient.fromItems(ModItems.sugilite)),
+    IXIOLITE(2, 1500, 4.0F, 2.0F, 10, () -> Ingredient.fromItems(ModItems.ixiolite)),
+    EUCLASE(2, 3000, 4.0F, 2.0F, 10, () -> Ingredient.fromItems(ModItems.euclase)),
+    CARNELIAN(3, 2500, 5.0F, 3.0F, 10, () -> Ingredient.fromItems(ModItems.carnelian)),
+    BENITOITE(3, 3500, 5.0F, 3.0F, 10, () -> Ingredient.fromItems(ModItems.benitoite)),
+    CHALCEDONY(4, 4000, 6.0F, 4.0F, 10, () -> Ingredient.fromItems(ModItems.chalcedony)),
 
     MALACHITE(3, 5120, 8.0F, 4.0F, 10, null),
     TIGER_EYE(3, 4096, 8.0F, 5.0F, 10, null),

@@ -17,9 +17,9 @@ public class BasicGaiaArmorItem extends ArmorItem {
     @Override
     public String getArmorTexture(ItemStack itemstack, Entity entity, EquipmentSlotType slot, String layer) {
         if (slot == EquipmentSlotType.LEGS) {
-            return GaiaDimensionMod.ARMOR_DIR + material.getName() + "armor_2.png";
+            return GaiaDimensionMod.ARMOR_DIR + material.getName() + "_armor_2.png";
         } else {
-            return GaiaDimensionMod.ARMOR_DIR + material.getName() + "armor_1.png";
+            return GaiaDimensionMod.ARMOR_DIR + material.getName() + "_armor_1.png";
         }
     }
 }
