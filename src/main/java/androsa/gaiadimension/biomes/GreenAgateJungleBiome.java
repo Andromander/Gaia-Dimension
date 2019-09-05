@@ -5,13 +5,15 @@ import androsa.gaiadimension.registry.ModEntities;
 import androsa.gaiadimension.registry.GaiaSkyColors;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.gen.surfacebuilders.SurfaceBuilder;
+import net.minecraft.world.gen.surfacebuilders.SurfaceBuilderConfig;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 public class GreenAgateJungleBiome extends BaseGaiaBiome {
 
-    public GreenAgateJungleBiome(Builder props) {
-        super(props);
+    public GreenAgateJungleBiome(SurfaceBuilder<SurfaceBuilderConfig> surface, SurfaceBuilderConfig config, Category category, float depth, float scale, float temp) {
+        super(surface, config, category, depth, scale, temp);
 
         GaiaBiomeFeatures.addCarverNormal(this);
         GaiaBiomeFeatures.addMagmaLakes(this);

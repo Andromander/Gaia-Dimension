@@ -6,6 +6,8 @@ import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.biome.Biome;
+import net.minecraft.world.gen.surfacebuilders.SurfaceBuilder;
+import net.minecraft.world.gen.surfacebuilders.SurfaceBuilderConfig;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
@@ -13,8 +15,8 @@ public abstract class BaseGaiaBiome extends Biome {
 
     public GaiaSkyColors skyColor = GaiaSkyColors.GENERAL;
 
-    public BaseGaiaBiome(Builder props) {
-        super(props);
+    public BaseGaiaBiome(SurfaceBuilder<SurfaceBuilderConfig> surface, SurfaceBuilderConfig config, Category category, float depth, float scale, float temp) {
+        super(new Biome.Builder().surfaceBuilder(surface, config).precipitation(RainType.NONE).category(category).depth(depth).scale(scale).temperature(temp).downfall(0.0F).waterColor(0x6C99B1).waterFogColor(0x92BED4));
 
         this.addSpawn(EntityClassification.CREATURE, new SpawnListEntry(ModEntities.NOMADIC_LAGRAHK, 15, 1, 2));
         this.addSpawn(EntityClassification.WATER_CREATURE, new SpawnListEntry(ModEntities.SHALLOW_ARENTHIS, 10, 4, 4));
@@ -33,9 +35,6 @@ public abstract class BaseGaiaBiome extends Biome {
         //this.flowers.clear();
         //this.flowers.add(new FlowerEntry(GDBlocks.thiscus.getDefaultState(), 20));
         //this.flowers.add(new FlowerEntry(GDBlocks.ouzium.getDefaultState(), 10));
-
-        //this.topBlock = GDBlocks.glitter_grass.getDefaultState();
-        //this.fillerBlock = GDBlocks.heavy_soil.getDefaultState();
     }
 
     @OnlyIn(Dist.CLIENT)

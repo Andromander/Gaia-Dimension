@@ -5,13 +5,15 @@ import androsa.gaiadimension.registry.ModEntities;
 import androsa.gaiadimension.registry.GaiaSkyColors;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.gen.surfacebuilders.SurfaceBuilder;
+import net.minecraft.world.gen.surfacebuilders.SurfaceBuilderConfig;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 public class GoldstonelandsBiome extends BaseGaiaBiome {
 
-    public GoldstonelandsBiome(Builder props) {
-        super(props);
+    public GoldstonelandsBiome(SurfaceBuilder<SurfaceBuilderConfig> surface, SurfaceBuilderConfig config, Category category, float depth, float scale, float temp) {
+        super(surface, config, category, depth, scale, temp);
 
         //TODO: Generate veins of Corrupt Blocks
 
@@ -34,8 +36,6 @@ public class GoldstonelandsBiome extends BaseGaiaBiome {
         //flowers.add(new FlowerEntry(GDBlocks.corrupted_gaia_eye.getDefaultState(), 5));
 
         skyColor = GaiaSkyColors.GOLDSTONE;
-        //topBlock = GDBlocks.corrupt_grass.getDefaultState();
-        //fillerBlock = GDBlocks.corrupt_soil.getDefaultState();
     }
 
     /*@Override

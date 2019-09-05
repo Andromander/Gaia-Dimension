@@ -3,11 +3,13 @@ package androsa.gaiadimension.biomes;
 import androsa.gaiadimension.registry.GaiaBiomeFeatures;
 import androsa.gaiadimension.registry.ModEntities;
 import net.minecraft.entity.EntityClassification;
+import net.minecraft.world.gen.surfacebuilders.SurfaceBuilder;
+import net.minecraft.world.gen.surfacebuilders.SurfaceBuilderConfig;
 
 public class PinkAgateForestBiome extends BaseGaiaBiome {
 
-    public PinkAgateForestBiome(Builder props) {
-        super(props);
+    public PinkAgateForestBiome(SurfaceBuilder<SurfaceBuilderConfig> surface, SurfaceBuilderConfig config, Category category, float depth, float scale, float temp) {
+        super(surface, config, category, depth, scale, temp);
 
         GaiaBiomeFeatures.addCarverNormal(this);
         GaiaBiomeFeatures.addMagmaLakes(this);

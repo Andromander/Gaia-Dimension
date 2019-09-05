@@ -5,13 +5,15 @@ import androsa.gaiadimension.registry.ModEntities;
 import androsa.gaiadimension.registry.GaiaSkyColors;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.gen.surfacebuilders.SurfaceBuilder;
+import net.minecraft.world.gen.surfacebuilders.SurfaceBuilderConfig;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 public class StaticWastelandBiome extends BaseGaiaBiome implements IDryBiome {
 
-    public StaticWastelandBiome(Builder props) {
-        super(props);
+    public StaticWastelandBiome(SurfaceBuilder<SurfaceBuilderConfig> surface, SurfaceBuilderConfig config, Category category, float depth, float scale, float temp) {
+        super(surface, config, category, depth, scale, temp);
 
         GaiaBiomeFeatures.addCarverUncoated(this);
         GaiaBiomeFeatures.addStaticStoneUnderground(this);
@@ -22,9 +24,7 @@ public class StaticWastelandBiome extends BaseGaiaBiome implements IDryBiome {
         GaiaBiomeFeatures.addUndergroundMushrooms(this);
         this.addSpawn(EntityClassification.MONSTER, new SpawnListEntry(ModEntities.LESSER_SHOCKSHOOTER, 10, 2, 4));
 
-        //this.topBlock = GDBlocks.wasteland_stone.getDefaultState();
-        //this.fillerBlock = GDBlocks.wasteland_stone.getDefaultState();
-        //flowers.clear();
+        flowers.clear();
         skyColor = GaiaSkyColors.STATIC_WASTELAND;
     }
 

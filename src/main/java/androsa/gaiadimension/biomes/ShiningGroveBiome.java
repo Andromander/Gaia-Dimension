@@ -3,13 +3,15 @@ package androsa.gaiadimension.biomes;
 import androsa.gaiadimension.registry.GaiaBiomeFeatures;
 import androsa.gaiadimension.registry.GaiaSkyColors;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.gen.surfacebuilders.SurfaceBuilder;
+import net.minecraft.world.gen.surfacebuilders.SurfaceBuilderConfig;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 public class ShiningGroveBiome extends BaseGaiaBiome {
 
-    public ShiningGroveBiome(Builder props) {
-        super(props);
+    public ShiningGroveBiome(SurfaceBuilder<SurfaceBuilderConfig> surface, SurfaceBuilderConfig config, Category category, float depth, float scale, float temp) {
+        super(surface, config, category, depth, scale, temp);
 
         GaiaBiomeFeatures.addCarverNormal(this);
         GaiaBiomeFeatures.addAuraLake(this);
@@ -21,8 +23,6 @@ public class ShiningGroveBiome extends BaseGaiaBiome {
         GaiaBiomeFeatures.addBloomsNormal(this);
         GaiaBiomeFeatures.addUndergroundMushrooms(this);
 
-        //this.topBlock = GDBlocks.soft_grass.getDefaultState();
-        //this.fillerBlock = GDBlocks.light_soil.getDefaultState();
         skyColor = GaiaSkyColors.AURA;
     }
 

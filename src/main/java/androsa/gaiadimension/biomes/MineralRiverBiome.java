@@ -1,11 +1,13 @@
 package androsa.gaiadimension.biomes;
 
 import androsa.gaiadimension.registry.GaiaBiomeFeatures;
+import net.minecraft.world.gen.surfacebuilders.SurfaceBuilder;
+import net.minecraft.world.gen.surfacebuilders.SurfaceBuilderConfig;
 
 public class MineralRiverBiome extends BaseGaiaBiome {
 
-    public MineralRiverBiome(Builder props) {
-        super(props);
+    public MineralRiverBiome(SurfaceBuilder<SurfaceBuilderConfig> surface, SurfaceBuilderConfig config, Category category, float depth, float scale, float temp) {
+        super(surface, config, category, depth, scale, temp);
 
         GaiaBiomeFeatures.addCarverNormal(this);
         GaiaBiomeFeatures.addMagmaLakes(this);
@@ -14,8 +16,5 @@ public class MineralRiverBiome extends BaseGaiaBiome {
         GaiaBiomeFeatures.addBasicOres(this);
         GaiaBiomeFeatures.addUndergroundMushrooms(this);
         //TODO: Salt Growth
-
-        //topBlock = GDBlocks.salt.getDefaultState();
-        //fillerBlock = GDBlocks.salt.getDefaultState();
     }
 }

@@ -5,13 +5,15 @@ import androsa.gaiadimension.registry.ModEntities;
 import androsa.gaiadimension.registry.GaiaSkyColors;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.gen.surfacebuilders.SurfaceBuilder;
+import net.minecraft.world.gen.surfacebuilders.SurfaceBuilderConfig;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 public class SmolderingBogBiome extends BaseGaiaBiome implements IDryBiome {
 
-    public SmolderingBogBiome(Builder props) {
-        super(props);
+    public SmolderingBogBiome(SurfaceBuilder<SurfaceBuilderConfig> surface, SurfaceBuilderConfig config, Category category, float depth, float scale, float temp) {
+        super(surface, config, category, depth, scale, temp);
 
         GaiaBiomeFeatures.addCarverUncoated(this);
         GaiaBiomeFeatures.addBismuthLakes(this);
@@ -23,9 +25,7 @@ public class SmolderingBogBiome extends BaseGaiaBiome implements IDryBiome {
         GaiaBiomeFeatures.addUndergroundMushrooms(this);
         this.addSpawn(EntityClassification.CREATURE, new SpawnListEntry(ModEntities.BISMUTH_ULETRUS, 15, 2, 3));
 
-        //this.topBlock = GDBlocks.murky_grass.getDefaultState();
-        //this.fillerBlock = GDBlocks.boggy_soil.getDefaultState();
-        //flowers.clear();
+        flowers.clear();
         skyColor = GaiaSkyColors.BISMUTH;
     }
 
