@@ -128,15 +128,15 @@ public class GaiaLakesFeature extends Feature<LakesConfig> {
                                 boolean flag1 = !aboolean[(x * 16 + z) * 8 + y] && (x < 15 && aboolean[((x + 1) * 16 + z) * 8 + y] || x > 0 && aboolean[((x - 1) * 16 + z) * 8 + y] || z < 15 && aboolean[(x * 16 + z + 1) * 8 + y] || z > 0 && aboolean[(x * 16 + (z - 1)) * 8 + y] || y < 7 && aboolean[(x * 16 + z) * 8 + y + 1] || y > 0 && aboolean[(x * 16 + z) * 8 + (y - 1)]);
                                 if (flag1 && (y < 4 || rand.nextInt(2) != 0) && worldIn.getBlockState(pos.add(x, y, z)).getMaterial().isSolid()) {
                                     /*
-                                    if (config.state.getBlock() == ModBlocks.liquid_bismuth_block) {
+                                    if (config.state.getBlock() == ModBlocks.liquid_bismuth) {
                                         if (rand.nextInt(4) == 0) {
                                             worldIn.setBlockState(pos.add(x, y, z), ModBlocks.active_rock.getDefaultState(), 2);
                                         } else {
                                             worldIn.setBlockState(pos.add(x, y, z), ModBlocks.impure_rock.getDefaultState(), 2);
                                         }
-                                    } else if (config.state.getBlock() == ModBlocks.liquid_aura_block) {
+                                    } else if (config.state.getBlock() == ModBlocks.liquid_aura) {
                                         worldIn.setBlockState(pos.add(x, y, z), ModBlocks.sparkling_rock.getDefaultState(), 2);
-                                    } else if (config.state.getBlock() == ModBlocks.sweet_muck_block) {
+                                    } else if (config.state.getBlock() == ModBlocks.sweet_muck) {
                                         worldIn.setBlockState(pos.add(x, y, z), ModBlocks.thick_glitter_block.getDefaultState(), 2);
                                     } else {
                                         worldIn.setBlockState(pos.add(x, y, z), ModBlocks.volcanic_rock.getDefaultState(), 2);

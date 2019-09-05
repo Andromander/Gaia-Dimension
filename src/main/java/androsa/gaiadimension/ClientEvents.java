@@ -5,18 +5,15 @@ import androsa.gaiadimension.registry.ModBlocks;
 import net.minecraft.client.renderer.color.BlockColors;
 import net.minecraft.client.renderer.color.ItemColors;
 import net.minecraft.item.BlockItem;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.biome.BiomeColors;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.ColorHandlerEvent;
-import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
 @OnlyIn(Dist.CLIENT)
-@Mod.EventBusSubscriber(modid = GaiaDimensionMod.MODID, value = Dist.CLIENT)
+@Mod.EventBusSubscriber(modid = GaiaDimensionMod.MODID, value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ClientEvents {
 
     @SubscribeEvent
@@ -47,7 +44,7 @@ public class ClientEvents {
             } else {
                 return 0x808080;
             }
-        }, ModBlocks.liquid_bismuth_block);
+        }, ModBlocks.liquid_bismuth);
 
         blocks.register((state, worldIn, pos, tintIndex) -> {
             if (worldIn != null && pos != null) {
@@ -64,7 +61,7 @@ public class ClientEvents {
                 return 0xFFFFFF;
             }
 
-        }, ModBlocks.liquid_aura_block, ModBlocks.aura_leaves);*/
+        }, ModBlocks.liquid_aura, ModBlocks.aura_leaves);*/
 
         blocks.register((state, worldIn, pos, tintIndex) -> {
             int hex;

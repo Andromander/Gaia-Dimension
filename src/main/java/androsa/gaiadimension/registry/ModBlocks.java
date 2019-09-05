@@ -30,11 +30,11 @@ public class ModBlocks {
     public static final Block gaia_stone_furnace = new GaiaStoneFurnaceBlock();
     public static final Block restructurer = new RestructurerBlock();
     public static final Block purifier = new PurifierBlock();
-    /*public static final Block mineral_water_block = null;
-    public static final Block superhot_magma_block = null;
-    public static final Block sweet_muck_block = null;
-    public static final Block liquid_bismuth_block = null;
-    public static final Block liquid_aura_block = null;*/
+    public static final Block mineral_water = new GaiaFluidBlock(ModFluids.mineral_water_still, Block.Properties.create(Material.WATER, MaterialColor.LIGHT_BLUE_TERRACOTTA).doesNotBlockMovement().hardnessAndResistance(100.0F).noDrops());
+    public static final Block superhot_magma = new GaiaFluidBlock(ModFluids.superhot_magma_still, Block.Properties.create(Material.LAVA, MaterialColor.BLUE).doesNotBlockMovement().tickRandomly().hardnessAndResistance(100.0F).lightValue(15).noDrops());
+    public static final Block sweet_muck = new GaiaFluidBlock(ModFluids.sweet_muck_still, Block.Properties.create(Material.WATER, MaterialColor.PURPLE).doesNotBlockMovement().hardnessAndResistance(100.0F).noDrops());
+    public static final Block liquid_bismuth = new GaiaFluidBlock(ModFluids.liquid_bismuth_still, Block.Properties.create(Material.LAVA).doesNotBlockMovement().tickRandomly().hardnessAndResistance(100.0F).lightValue(3).noDrops());
+    public static final Block liquid_aura = new GaiaFluidBlock(ModFluids.liquid_aura_still, Block.Properties.create(Material.WATER).doesNotBlockMovement().hardnessAndResistance(100.0F).noDrops());
 
     //Natural Blocks
     public static final Block heavy_soil = new GaiaSoilBlock(MaterialColor.PURPLE_TERRACOTTA);
@@ -251,11 +251,11 @@ public class ModBlocks {
         registry.register(gaia_stone_furnace.setRegistryName("gaia_stone_furnace"));
         registry.register(restructurer.setRegistryName("restructurer"));
         registry.register(purifier.setRegistryName("purifier"));
-        //registry.register(mineral_water_block, new GDFluidBlock(GDFluids.mineralWater, Material.WATER, MapColor.LIGHT_BLUE_STAINED_HARDENED_CLAY));
-        //registry.register(superhot_magma_block, new GDSuperhotMagma(GDFluids.superhotMagma, Material.LAVA).setLightLevel(1.0F));
-        //registry.register(sweet_muck_block, new GDFluidBlock(GDFluids.sweetMuck, Material.WATER, MapColor.PURPLE));
-        //registry.register(liquid_bismuth_block, new GDLiquidBismuth(GDFluids.liquidBismuth, Material.LAVA));
-        //registry.register(liquid_aura_block, new GDLiquidAura(GDFluids.liquidAura, Material.WATER));
+        registry.register(mineral_water.setRegistryName("mineral_water"));
+        registry.register(superhot_magma.setRegistryName("superhot_magma"));
+        registry.register(sweet_muck.setRegistryName("sweet_muck"));
+        registry.register(liquid_bismuth.setRegistryName("liquid_bismuth"));
+        registry.register(liquid_aura.setRegistryName("liquid_aura"));
 
         //Natural Blocks
         registry.register(heavy_soil.setRegistryName("heavy_soil"));

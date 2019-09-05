@@ -1,17 +1,23 @@
 package androsa.gaiadimension.item;
 
 import androsa.gaiadimension.registry.GaiaItemGroups;
+import androsa.gaiadimension.registry.ModItems;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.fluid.Fluid;
+import net.minecraft.item.BucketItem;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraftforge.fluids.*;
 
-public class ScaynyxBucketItem extends UniversalBucket {
+public class ScaynyxBucketItem extends BucketItem {
 
-    public ScaynyxBucketItem() {
-        this(Fluid.BUCKET_VOLUME);
+    public ScaynyxBucketItem(Fluid fluid) {
+        super(fluid, new Properties().maxStackSize(1).group(GaiaItemGroups.GAIA_ITEMS));
     }
 
-    public ScaynyxBucketItem(int capacity) {
-        super(new Properties().maxStackSize(1).group(GaiaItemGroups.GAIA_ITEMS), capacity, ItemStack.EMPTY, true);
+    @Override
+    protected ItemStack emptyBucket(ItemStack stack, PlayerEntity entity) {
+        return !entity.abilities.isCreativeMode ? new ItemStack(ModItems.scaynyx_bucket) : stack;
     }
 
     /*
