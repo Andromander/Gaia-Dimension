@@ -138,7 +138,7 @@ public class ChasmsWorldCarver extends WorldCarver<ProbabilityConfig> {
                 return false;
             } else {
                 if (posY < 11) {
-                    chunkIn.setBlockState(mutablePos, LAVA.getBlockState(), false);
+                    chunkIn.setBlockState(mutablePos, ModBlocks.superhot_magma.getDefaultState(), false);
                 } else {
                     BlockState localBlock = rand.nextInt(3) == 0 ? CAVE_AIR : ModBlocks.primal_mass.getDefaultState();
                     localBlock = flag.get() ? ModBlocks.primal_mass.getDefaultState() : localBlock;

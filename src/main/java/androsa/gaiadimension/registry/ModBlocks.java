@@ -4,6 +4,7 @@ import androsa.gaiadimension.GaiaDimensionMod;
 import androsa.gaiadimension.block.*;
 import androsa.gaiadimension.world.gen.tree.*;
 import net.minecraft.block.Block;
+import net.minecraft.block.FlowingFluidBlock;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
@@ -30,11 +31,11 @@ public class ModBlocks {
     public static final Block gaia_stone_furnace = new GaiaStoneFurnaceBlock();
     public static final Block restructurer = new RestructurerBlock();
     public static final Block purifier = new PurifierBlock();
-    public static final Block mineral_water = new GaiaFluidBlock(ModFluids.mineral_water_still, Block.Properties.create(Material.WATER, MaterialColor.LIGHT_BLUE_TERRACOTTA).doesNotBlockMovement().hardnessAndResistance(100.0F).noDrops());
-    public static final Block superhot_magma = new GaiaFluidBlock(ModFluids.superhot_magma_still, Block.Properties.create(Material.LAVA, MaterialColor.BLUE).doesNotBlockMovement().tickRandomly().hardnessAndResistance(100.0F).lightValue(15).noDrops());
-    public static final Block sweet_muck = new GaiaFluidBlock(ModFluids.sweet_muck_still, Block.Properties.create(Material.WATER, MaterialColor.PURPLE).doesNotBlockMovement().hardnessAndResistance(100.0F).noDrops());
-    public static final Block liquid_bismuth = new GaiaFluidBlock(ModFluids.liquid_bismuth_still, Block.Properties.create(Material.LAVA).doesNotBlockMovement().tickRandomly().hardnessAndResistance(100.0F).lightValue(3).noDrops());
-    public static final Block liquid_aura = new GaiaFluidBlock(ModFluids.liquid_aura_still, Block.Properties.create(Material.WATER).doesNotBlockMovement().hardnessAndResistance(100.0F).noDrops());
+    public static final FlowingFluidBlock mineral_water = new GaiaFluidBlock(() -> ModFluids.mineral_water_still, Block.Properties.create(Material.WATER, MaterialColor.LIGHT_BLUE_TERRACOTTA).doesNotBlockMovement().hardnessAndResistance(100.0F).noDrops());
+    public static final FlowingFluidBlock superhot_magma = new GaiaFluidBlock(() -> ModFluids.superhot_magma_still, Block.Properties.create(Material.LAVA, MaterialColor.BLUE).doesNotBlockMovement().tickRandomly().hardnessAndResistance(100.0F).lightValue(15).noDrops());
+    public static final FlowingFluidBlock sweet_muck = new GaiaFluidBlock(() -> ModFluids.sweet_muck_still, Block.Properties.create(Material.WATER, MaterialColor.PURPLE).doesNotBlockMovement().hardnessAndResistance(100.0F).noDrops());
+    public static final FlowingFluidBlock liquid_bismuth = new GaiaFluidBlock(() -> ModFluids.liquid_bismuth_still, Block.Properties.create(Material.LAVA).doesNotBlockMovement().tickRandomly().hardnessAndResistance(100.0F).lightValue(3).noDrops());
+    public static final FlowingFluidBlock liquid_aura = new GaiaFluidBlock(() -> ModFluids.liquid_aura_still, Block.Properties.create(Material.WATER).doesNotBlockMovement().hardnessAndResistance(100.0F).noDrops());
 
     //Natural Blocks
     public static final Block heavy_soil = new GaiaSoilBlock(MaterialColor.PURPLE_TERRACOTTA);

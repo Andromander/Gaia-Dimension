@@ -1,7 +1,6 @@
 package androsa.gaiadimension.world.gen.feature;
 
 import androsa.gaiadimension.block.GaiaSoilBlock;
-import androsa.gaiadimension.registry.ModBiomes;
 import androsa.gaiadimension.registry.ModBlocks;
 import com.mojang.datafixers.Dynamic;
 import net.minecraft.block.BlockState;
@@ -121,13 +120,13 @@ public class GaiaLakesFeature extends Feature<LakesConfig> {
                     }
                 }
 
-                if (config.state.getBlock() != Blocks.WATER) {
+                if (config.state.getBlock() != ModBlocks.mineral_water) {
                     for(int x = 0; x < 16; ++x) {
                         for(int z = 0; z < 16; ++z) {
                             for(int y = 0; y < 8; ++y) {
                                 boolean flag1 = !aboolean[(x * 16 + z) * 8 + y] && (x < 15 && aboolean[((x + 1) * 16 + z) * 8 + y] || x > 0 && aboolean[((x - 1) * 16 + z) * 8 + y] || z < 15 && aboolean[(x * 16 + z + 1) * 8 + y] || z > 0 && aboolean[(x * 16 + (z - 1)) * 8 + y] || y < 7 && aboolean[(x * 16 + z) * 8 + y + 1] || y > 0 && aboolean[(x * 16 + z) * 8 + (y - 1)]);
                                 if (flag1 && (y < 4 || rand.nextInt(2) != 0) && worldIn.getBlockState(pos.add(x, y, z)).getMaterial().isSolid()) {
-                                    /*
+
                                     if (config.state.getBlock() == ModBlocks.liquid_bismuth) {
                                         if (rand.nextInt(4) == 0) {
                                             worldIn.setBlockState(pos.add(x, y, z), ModBlocks.active_rock.getDefaultState(), 2);
@@ -139,20 +138,6 @@ public class GaiaLakesFeature extends Feature<LakesConfig> {
                                     } else if (config.state.getBlock() == ModBlocks.sweet_muck) {
                                         worldIn.setBlockState(pos.add(x, y, z), ModBlocks.thick_glitter_block.getDefaultState(), 2);
                                     } else {
-                                        worldIn.setBlockState(pos.add(x, y, z), ModBlocks.volcanic_rock.getDefaultState(), 2);
-                                    }*/
-
-                                    if (worldIn.getBiome(pos.add(x, y, z)) == ModBiomes.smoldering_bog) {
-                                        if (rand.nextInt(4) == 0) {
-                                            worldIn.setBlockState(pos.add(x, y, z), ModBlocks.active_rock.getDefaultState(), 2);
-                                        } else {
-                                            worldIn.setBlockState(pos.add(x, y, z), ModBlocks.impure_rock.getDefaultState(), 2);
-                                        }
-                                    } else if (worldIn.getBiome(pos.add(x, y, z)) == ModBiomes.shining_grove) {
-                                        worldIn.setBlockState(pos.add(x, y, z), ModBlocks.sparkling_rock.getDefaultState(), 2);
-                                    } else if (worldIn.getBiome(pos.add(x, y, z)) == ModBiomes.purple_agate_swamp) {
-                                        worldIn.setBlockState(pos.add(x, y, z), ModBlocks.thick_glitter_block.getDefaultState(), 2);
-                                    } else if (config.state.getBlock() == Blocks.LAVA) {
                                         worldIn.setBlockState(pos.add(x, y, z), ModBlocks.volcanic_rock.getDefaultState(), 2);
                                     }
                                 }

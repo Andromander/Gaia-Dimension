@@ -9,7 +9,7 @@ public class GaiaGenerationSettings extends GenerationSettings {
 
     public GaiaGenerationSettings() {
         setDefaultBlock(ModBlocks.gaia_stone.getDefaultState());
-        setDefaultFluid(Blocks.WATER.getDefaultState());
+        setDefaultFluid(ModBlocks.mineral_water.getDefaultState());
     }
 
     public int getBiomeSize() {

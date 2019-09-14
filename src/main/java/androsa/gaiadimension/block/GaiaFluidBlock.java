@@ -2,6 +2,7 @@ package androsa.gaiadimension.block;
 
 import androsa.gaiadimension.fluids.*;
 import androsa.gaiadimension.registry.ModBlocks;
+import androsa.gaiadimension.registry.ModFluids;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.FlowingFluidBlock;
 import net.minecraft.entity.Entity;
@@ -15,15 +16,17 @@ import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.Constants;
 
+import java.util.function.Supplier;
+
 public class GaiaFluidBlock extends FlowingFluidBlock {
 
-    public GaiaFluidBlock(FlowingFluid fluid, Properties builder) {
+    public GaiaFluidBlock(Supplier<? extends FlowingFluid> fluid, Properties builder) {
         super(fluid, builder);
     }
 
     @Override
     public boolean reactWithNeighbors(World world, BlockPos pos, BlockState state) {
-        if (this.fluid instanceof LiquidAuraFluid) {
+        if (this.getFluid() == ModFluids.liquid_aura_still || this.getFluid() == ModFluids.liquid_aura_flow) {
 
             for (Direction side : Direction.values()) {
                 if (side != Direction.DOWN) {
@@ -37,7 +40,7 @@ public class GaiaFluidBlock extends FlowingFluidBlock {
                 }
             }
 
-        } else if (this.fluid instanceof SuperhotMagmaFluid) {
+        } else if (this.getFluid() == ModFluids.superhot_magma_still || this.getFluid() == ModFluids.superhot_magma_flow) {
 
             for (Direction side : Direction.values()) {
                 if (side != Direction.DOWN) {
@@ -47,11 +50,11 @@ public class GaiaFluidBlock extends FlowingFluidBlock {
                         world.setBlockState(pos, ModBlocks.primal_mass.getDefaultState());
                         this.triggerMixEffects(world, pos);
                         return false;
-                    } else if (offset.getFluid() instanceof LiquidAuraFluid) {
+                    } else if (offset.getFluid() == ModFluids.liquid_aura_still || offset.getFluid() == ModFluids.liquid_aura_flow) {
                         world.setBlockState(pos, ModBlocks.aura_block.getDefaultState());
                         this.triggerMixEffects(world, pos);
                         return false;
-                    } else if (offset.isTagged(FluidTags.WATER) || offset.getFluid() instanceof MineralWaterFluid) {
+                    } else if (offset.isTagged(FluidTags.WATER)) {
                         world.setBlockState(pos, ModBlocks.gaia_cobblestone.getDefaultState());
                         this.triggerMixEffects(world, pos);
                         return false;
@@ -59,7 +62,7 @@ public class GaiaFluidBlock extends FlowingFluidBlock {
                 }
             }
 
-        } else if (this.fluid instanceof LiquidBismuthFluid) {
+        } else if (this.getFluid() instanceof LiquidBismuthFluid) {
 
             for (Direction side : Direction.values()) {
                 if (side != Direction.DOWN) {
@@ -69,11 +72,11 @@ public class GaiaFluidBlock extends FlowingFluidBlock {
                         world.setBlockState(pos, ModBlocks.active_rock.getDefaultState());
                         this.triggerMixEffects(world, pos);
                         return false;
-                    } else if (offset.getFluid() instanceof LiquidAuraFluid) {
+                    } else if (offset.getFluid() == ModFluids.liquid_aura_still || offset.getFluid() == ModFluids.liquid_aura_flow) {
                         world.setBlockState(pos, ModBlocks.tektite_block.getDefaultState());
                         this.triggerMixEffects(world, pos);
                         return false;
-                    } else if (offset.isTagged(FluidTags.WATER) || offset.getFluid() instanceof MineralWaterFluid) {
+                    } else if (offset.isTagged(FluidTags.WATER)) {
                         world.setBlockState(pos, ModBlocks.impure_rock.getDefaultState());
                         this.triggerMixEffects(world, pos);
                         return false;
@@ -92,8 +95,8 @@ public class GaiaFluidBlock extends FlowingFluidBlock {
 
     @Override
     public void onEntityCollision(BlockState state, World worldIn, BlockPos pos, Entity entityIn) {
-        if (this.fluid.isIn(FluidTags.LAVA)) {
-            if (this.fluid instanceof SuperhotMagmaFluid && !entityIn.isImmuneToFire()) {
+        if (this.getFluid().isIn(FluidTags.LAVA)) {
+            if (this.getFluid() instanceof SuperhotMagmaFluid && !entityIn.isImmuneToFire()) {
                 entityIn.attackEntityFrom(DamageSource.IN_FIRE, 5.0F);
             }
             entityIn.setInLava();

@@ -30,32 +30,32 @@ public class GaiaBiomeFeatures {
     }
 
     public static void addMuckLakes(Biome biomeIn) {
-        biomeIn.addFeature(GenerationStage.Decoration.LOCAL_MODIFICATIONS, Biome.createDecoratedFeature(ModWorldgen.POOL, new LakesConfig(Blocks.WATER.getDefaultState()), Placement.LAVA_LAKE, new LakeChanceConfig(4)));
+        biomeIn.addFeature(GenerationStage.Decoration.LOCAL_MODIFICATIONS, Biome.createDecoratedFeature(ModWorldgen.POOL, new LakesConfig(ModBlocks.sweet_muck.getDefaultState()), Placement.LAVA_LAKE, new LakeChanceConfig(4)));
     }
 
     public static void addBismuthLakes(Biome biomeIn) {
-        biomeIn.addFeature(GenerationStage.Decoration.LOCAL_MODIFICATIONS, Biome.createDecoratedFeature(ModWorldgen.POOL, new LakesConfig(Blocks.LAVA.getDefaultState()), Placement.LAVA_LAKE, new LakeChanceConfig(20)));
+        biomeIn.addFeature(GenerationStage.Decoration.LOCAL_MODIFICATIONS, Biome.createDecoratedFeature(ModWorldgen.POOL, new LakesConfig(ModBlocks.liquid_bismuth.getDefaultState()), Placement.LAVA_LAKE, new LakeChanceConfig(20)));
     }
 
     public static void addAuraLake(Biome biomeIn) {
-        biomeIn.addFeature(GenerationStage.Decoration.LOCAL_MODIFICATIONS, Biome.createDecoratedFeature(ModWorldgen.POOL, new LakesConfig(Blocks.WATER.getDefaultState()), Placement.LAVA_LAKE, new LakeChanceConfig(20)));
+        biomeIn.addFeature(GenerationStage.Decoration.LOCAL_MODIFICATIONS, Biome.createDecoratedFeature(ModWorldgen.POOL, new LakesConfig(ModBlocks.liquid_aura.getDefaultState()), Placement.LAVA_LAKE, new LakeChanceConfig(20)));
     }
 
     public static void addMagmaLakes(Biome biomeIn) {
         if (biomeIn instanceof VolcaniclandsBiome) {
-            biomeIn.addFeature(GenerationStage.Decoration.LOCAL_MODIFICATIONS, Biome.createDecoratedFeature(ModWorldgen.POOL, new LakesConfig(Blocks.LAVA.getDefaultState()), Placement.LAVA_LAKE, new LakeChanceConfig(20)));
+            biomeIn.addFeature(GenerationStage.Decoration.LOCAL_MODIFICATIONS, Biome.createDecoratedFeature(ModWorldgen.POOL, new LakesConfig(ModBlocks.superhot_magma.getDefaultState()), Placement.LAVA_LAKE, new LakeChanceConfig(20)));
         } else {
-            biomeIn.addFeature(GenerationStage.Decoration.LOCAL_MODIFICATIONS, Biome.createDecoratedFeature(ModWorldgen.POOL, new LakesConfig(Blocks.LAVA.getDefaultState()), Placement.LAVA_LAKE, new LakeChanceConfig(80)));
+            biomeIn.addFeature(GenerationStage.Decoration.LOCAL_MODIFICATIONS, Biome.createDecoratedFeature(ModWorldgen.POOL, new LakesConfig(ModBlocks.superhot_magma.getDefaultState()), Placement.LAVA_LAKE, new LakeChanceConfig(80)));
         }
     }
 
     public static void addMineralLakes(Biome biomeIn) {
         if (biomeIn instanceof PurpleAgateSwampBiome) {
-            biomeIn.addFeature(GenerationStage.Decoration.LOCAL_MODIFICATIONS, Biome.createDecoratedFeature(ModWorldgen.POOL, new LakesConfig(Blocks.WATER.getDefaultState()), Placement.WATER_LAKE, new LakeChanceConfig(40)));
+            biomeIn.addFeature(GenerationStage.Decoration.LOCAL_MODIFICATIONS, Biome.createDecoratedFeature(ModWorldgen.POOL, new LakesConfig(ModBlocks.mineral_water.getDefaultState()), Placement.WATER_LAKE, new LakeChanceConfig(40)));
         } else if (biomeIn instanceof SaltDunesBiome) {
-            biomeIn.addFeature(GenerationStage.Decoration.LOCAL_MODIFICATIONS, Biome.createDecoratedFeature(ModWorldgen.POOL, new LakesConfig(Blocks.WATER.getDefaultState()), Placement.WATER_LAKE, new LakeChanceConfig(50)));
+            biomeIn.addFeature(GenerationStage.Decoration.LOCAL_MODIFICATIONS, Biome.createDecoratedFeature(ModWorldgen.POOL, new LakesConfig(ModBlocks.mineral_water.getDefaultState()), Placement.WATER_LAKE, new LakeChanceConfig(50)));
         } else {
-            biomeIn.addFeature(GenerationStage.Decoration.LOCAL_MODIFICATIONS, Biome.createDecoratedFeature(ModWorldgen.POOL, new LakesConfig(Blocks.WATER.getDefaultState()), Placement.WATER_LAKE, new LakeChanceConfig(4)));
+            biomeIn.addFeature(GenerationStage.Decoration.LOCAL_MODIFICATIONS, Biome.createDecoratedFeature(ModWorldgen.POOL, new LakesConfig(ModBlocks.mineral_water.getDefaultState()), Placement.WATER_LAKE, new LakeChanceConfig(4)));
         }
     }
 

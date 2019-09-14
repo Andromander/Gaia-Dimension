@@ -5,10 +5,13 @@ import androsa.gaiadimension.registry.ModBlocks;
 import net.minecraft.client.renderer.color.BlockColors;
 import net.minecraft.client.renderer.color.ItemColors;
 import net.minecraft.item.BlockItem;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.biome.BiomeColors;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.ColorHandlerEvent;
+import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
@@ -30,7 +33,7 @@ public class ClientEvents {
         blocks.register((state, worldIn, pos, tintIndex) -> worldIn != null && pos != null && worldIn.getBiome(pos) instanceof BaseGaiaBiome ? BiomeColors.getGrassColor(worldIn, pos) : 0xA0A0A0,
                 ModBlocks.soft_grass);
 
-        /*blocks.register((state, worldIn, pos, tintIndex) -> {
+        blocks.register((state, worldIn, pos, tintIndex) -> {
             if (worldIn != null && pos != null) {
                 int red = (int) ((MathHelper.cos((float) Math.toRadians(pos.getX() * 2)) + 1F) / 2F * 0xFF);
                 int green = (int) ((MathHelper.cos((float) Math.toRadians(pos.getY() * 2)) + 1F) / 3F * 0xFF);
@@ -61,7 +64,7 @@ public class ClientEvents {
                 return 0xFFFFFF;
             }
 
-        }, ModBlocks.liquid_aura, ModBlocks.aura_leaves);*/
+        }, ModBlocks.liquid_aura, ModBlocks.aura_leaves);
 
         blocks.register((state, worldIn, pos, tintIndex) -> {
             int hex;
@@ -123,7 +126,11 @@ public class ClientEvents {
 
     /*@SubscribeEvent
     public static void textureStitch(TextureStitchEvent.Pre e) {
-        TextureMap map = e.getMap();
+        e.addSprite(new ResourceLocation(GaiaDimensionMod.MODID, "fluids/mineralwater/mineral_water_flow"));
+        e.addSprite(new ResourceLocation(GaiaDimensionMod.MODID, "fluids/superhotmagma/superhot_magma_flow"));
+        e.addSprite(new ResourceLocation(GaiaDimensionMod.MODID, "fluids/sweetmuck/sweet_muck_flow"));
+        e.addSprite(new ResourceLocation(GaiaDimensionMod.MODID, "fluids/liquidbismuth/liquid_bismuth_flow"));
+        e.addSprite(new ResourceLocation(GaiaDimensionMod.MODID, "fluids/liquidaura/liquid_aura_flow"));
 
         map.registerSprite(new ResourceLocation(GaiaDimensionMod.MODID, "particle/yellow_fire"));
         map.registerSprite(new ResourceLocation(GaiaDimensionMod.MODID, "particle/green_fire"));
