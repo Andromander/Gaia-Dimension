@@ -17,6 +17,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 import java.util.Random;
 
+//FIXME: Potentially not spawning in Magma
 public class PrimalBeastEntity extends MonsterEntity {
 
     public PrimalBeastEntity(EntityType<? extends PrimalBeastEntity> entity, World world) {

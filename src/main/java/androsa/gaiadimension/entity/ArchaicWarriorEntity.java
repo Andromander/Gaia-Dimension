@@ -48,19 +48,11 @@ public class ArchaicWarriorEntity extends MonsterEntity {
 
     @Override
     public void livingTick() {
-        if (this.world.isDaytime() && !this.world.isRemote && this.shouldBurnInDay()) {
-            float f = this.getBrightness();
-
-            if (f > 0.5F && this.rand.nextFloat() * 30.0F < (f - 0.4F) * 2.0F && this.world.canBlockSeeSky(new BlockPos(this.posX, this.posY + (double) this.getEyeHeight(), this.posZ))) {
-                this.setFire(8);
-            }
+        if (this.isInDaylight()) {
+            this.setFire(8);
         }
 
         super.livingTick();
-    }
-
-    protected boolean shouldBurnInDay() {
-        return true;
     }
 
     @Override

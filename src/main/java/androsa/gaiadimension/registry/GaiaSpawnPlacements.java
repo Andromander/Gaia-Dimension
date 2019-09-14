@@ -4,6 +4,7 @@ import androsa.gaiadimension.entity.*;
 import androsa.gaiadimension.entity.boss.BlueHowliteWolfEntity;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.EntitySpawnPlacementRegistry;
+import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.fluid.IFluidState;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.util.math.BlockPos;
@@ -33,13 +34,13 @@ public class GaiaSpawnPlacements {
         }
     });
 
-    static {
+    public static void registerSpawnPlacement() {
         register(ModEntities.AGATE_GOLEM, EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, AgateGolemEntity::canSpawnHere);
         register(ModEntities.ANCIENT_LAGRAHK, EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, AncientLagrahkEntity::canSpawnHere);
-        register(ModEntities.ARCHAIC_WARRIOR, EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, ArchaicWarriorEntity::func_223325_c);
+        register(ModEntities.ARCHAIC_WARRIOR, EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, MonsterEntity::func_223325_c);
         register(ModEntities.BISMUTH_ULETRUS, EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, BismuthUletrusEntity::canSpawnHere);
         register(ModEntities.BLUE_HOWLITE_WOLF, EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, BlueHowliteWolfEntity::canSpawnHere);
-        register(ModEntities.CAVERN_TICK, EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, CavernTickEntity::func_223325_c);
+        register(ModEntities.CAVERN_TICK, EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, MonsterEntity::func_223325_c);
         register(ModEntities.CONTORTED_NAGA, EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, ContortedNagaEntity::canSpawnHere);
         register(ModEntities.CORRUPT_SAPPER, EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, CorruptSapperEntity::canSpawnHere);
         register(ModEntities.CRYSTAL_GOLEM, EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, CrystalGolemEntity::canSpawnHere);
@@ -57,7 +58,7 @@ public class GaiaSpawnPlacements {
         register(ModEntities.RUGGED_LURMORUS, EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, RuggedLurmorusEntity::canSpawnHere);
         register(ModEntities.SALTION, EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, SaltionEntity::canSpawnHere);
         register(ModEntities.SHALLOW_ARENTHIS, EntitySpawnPlacementRegistry.PlacementType.IN_WATER, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, ShallowArenthisEntity::canSpawnHere);
-        register(ModEntities.SHALURKER, EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, ShalurkerEntity::func_223325_c);
+        register(ModEntities.SHALURKER, EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, MonsterEntity::func_223325_c);
         register(ModEntities.SPELLBOUND_ELEMENTAL, EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, SpellElementEntity::canSpawnHere);
     }
 }

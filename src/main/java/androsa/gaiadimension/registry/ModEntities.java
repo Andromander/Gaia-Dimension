@@ -80,5 +80,7 @@ public class ModEntities {
         registry.register(SHALURKER.setRegistryName("shalurker"));
         registry.register(SPELLBOUND_ELEMENTAL.setRegistryName("spellbound_elemental"));
         registry.register(MALACHITE_GUARD.setRegistryName("malachite_guard"));
+
+        GaiaSpawnPlacements.registerSpawnPlacement();
     }
 }
