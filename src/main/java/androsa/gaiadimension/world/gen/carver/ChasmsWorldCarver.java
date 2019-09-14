@@ -3,9 +3,10 @@ package androsa.gaiadimension.world.gen.carver;
 import androsa.gaiadimension.block.AbstractGaiaGrassBlock;
 import androsa.gaiadimension.block.GaiaSoilBlock;
 import androsa.gaiadimension.registry.ModBlocks;
+import com.google.common.collect.ImmutableSet;
 import com.mojang.datafixers.Dynamic;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
@@ -15,10 +16,13 @@ import net.minecraft.world.gen.feature.ProbabilityConfig;
 
 import java.util.BitSet;
 import java.util.Random;
+import java.util.Set;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.function.Function;
 
 public class ChasmsWorldCarver extends WorldCarver<ProbabilityConfig> {
+
+    protected Set<Block> carvableBlocks = ImmutableSet.of(ModBlocks.glitter_grass, ModBlocks.corrupt_grass, ModBlocks.murky_grass, ModBlocks.soft_grass, ModBlocks.heavy_soil, ModBlocks.corrupt_soil, ModBlocks.boggy_soil, ModBlocks.light_soil, ModBlocks.saltstone, ModBlocks.gaia_stone, ModBlocks.wasteland_stone, ModBlocks.volcanic_rock, ModBlocks.primal_mass, ModBlocks.frail_glitter_block);
 
     public ChasmsWorldCarver(Function<Dynamic<?>, ? extends ProbabilityConfig> config, int height) {
         super(config, height);
@@ -80,7 +84,7 @@ public class ChasmsWorldCarver extends WorldCarver<ProbabilityConfig> {
     protected void func_222723_a(IChunk chunkIn, long seed, int seaLevel, int p_222723_5_, int p_222723_6_, double chunkX, double chunkY, double chunkZ, float radius, double half, BitSet mask) {
         double d0 = 1.5D + (double)(MathHelper.sin(((float)Math.PI / 2F)) * radius);
         double d1 = d0 * half;
-        this.func_222705_a(chunkIn, seed, seaLevel, p_222723_5_, p_222723_6_, chunkX + 1.0D, chunkY, chunkZ, d0, d1, mask);
+        this.func_222705_a(chunkIn, seed, seaLevel, p_222723_5_, p_222723_6_, chunkX + 1.0D, chunkY, chunkZ, d0 * 4, d1 * 2, mask);
     }
 
     protected void carveTunnel(IChunk chunkIn, long seed, int seaLevel, int centerX, int centerZ, double chunkX, double chunkY, double chunkZ, float radius, float p_222727_14_, float p_222727_15_, int baseSize, int maxSize, double diameter, BitSet mask) {
@@ -115,7 +119,7 @@ public class ChasmsWorldCarver extends WorldCarver<ProbabilityConfig> {
                     return;
                 }
 
-                this.func_222705_a(chunkIn, seed, seaLevel, centerX, centerZ, chunkX, chunkY, chunkZ, d0, d1, mask);
+                this.func_222705_a(chunkIn, seed, seaLevel, centerX, centerZ, chunkX, chunkY, chunkZ, d0 * 4, d1 * 2, mask);
             }
         }
     }
@@ -140,9 +144,7 @@ public class ChasmsWorldCarver extends WorldCarver<ProbabilityConfig> {
                 if (posY < 11) {
                     chunkIn.setBlockState(mutablePos, ModBlocks.superhot_magma.getDefaultState(), false);
                 } else {
-                    BlockState localBlock = rand.nextInt(3) == 0 ? CAVE_AIR : ModBlocks.primal_mass.getDefaultState();
-                    localBlock = flag.get() ? ModBlocks.primal_mass.getDefaultState() : localBlock;
-                    chunkIn.setBlockState(mutablePos, localBlock, false);
+                    chunkIn.setBlockState(mutablePos, CAVE_AIR, false);
                     if (flag.get()) {
                         mutablePosBelow.setPos(mutablePos).move(Direction.DOWN);
                         if (chunkIn.getBlockState(mutablePosBelow).getBlock() instanceof GaiaSoilBlock) {
@@ -154,6 +156,11 @@ public class ChasmsWorldCarver extends WorldCarver<ProbabilityConfig> {
                 return true;
             }
         }
+    }
+
+    @Override
+    protected boolean func_222706_a(BlockState state) {
+        return this.carvableBlocks.contains(state.getBlock());
     }
 
     protected boolean func_222708_a(double p_222708_1_, double p_222708_3_, double p_222708_5_, int p_222708_7_) {

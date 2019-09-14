@@ -3,9 +3,10 @@ package androsa.gaiadimension.world.gen.carver;
 import androsa.gaiadimension.block.AbstractGaiaGrassBlock;
 import androsa.gaiadimension.block.GaiaSoilBlock;
 import androsa.gaiadimension.registry.ModBlocks;
+import com.google.common.collect.ImmutableSet;
 import com.mojang.datafixers.Dynamic;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.fluid.Fluids;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
@@ -15,10 +16,13 @@ import net.minecraft.world.gen.feature.ProbabilityConfig;
 
 import java.util.BitSet;
 import java.util.Random;
+import java.util.Set;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.function.Function;
 
 public class CoatedCavesWorldCarver extends WorldCarver<ProbabilityConfig> {
+
+    protected Set<Block> carvableBlocks = ImmutableSet.of(ModBlocks.glitter_grass, ModBlocks.corrupt_grass, ModBlocks.murky_grass, ModBlocks.soft_grass, ModBlocks.heavy_soil, ModBlocks.corrupt_soil, ModBlocks.boggy_soil, ModBlocks.light_soil, ModBlocks.saltstone, ModBlocks.gaia_stone, ModBlocks.wasteland_stone, ModBlocks.volcanic_rock, ModBlocks.primal_mass, ModBlocks.frail_glitter_block);
 
     public CoatedCavesWorldCarver(Function<Dynamic<?>, ? extends ProbabilityConfig> config, int height) {
         super(config, height);
@@ -138,11 +142,9 @@ public class CoatedCavesWorldCarver extends WorldCarver<ProbabilityConfig> {
                 return false;
             } else {
                 if (posY < 11) {
-                    chunkIn.setBlockState(mutablePos, LAVA.getBlockState(), false);
+                    chunkIn.setBlockState(mutablePos, ModBlocks.superhot_magma.getDefaultState(), false);
                 } else {
-                    BlockState localBlock = rand.nextInt(6) == 0 ? CAVE_AIR : ModBlocks.frail_glitter_block.getDefaultState();
-                    localBlock = flag.get() ? ModBlocks.frail_glitter_block.getDefaultState() : localBlock;
-                    chunkIn.setBlockState(mutablePos, localBlock, false);
+                    chunkIn.setBlockState(mutablePos, CAVE_AIR, false);
                     if (flag.get()) {
                         mutablePosBelow.setPos(mutablePos).move(Direction.DOWN);
                         if (chunkIn.getBlockState(mutablePosBelow).getBlock() instanceof GaiaSoilBlock) {
@@ -154,6 +156,11 @@ public class CoatedCavesWorldCarver extends WorldCarver<ProbabilityConfig> {
                 return true;
             }
         }
+    }
+
+    @Override
+    protected boolean func_222706_a(BlockState state) {
+        return this.carvableBlocks.contains(state.getBlock());
     }
 
     protected boolean func_222708_a(double p_222708_1_, double p_222708_3_, double p_222708_5_, int p_222708_7_) {

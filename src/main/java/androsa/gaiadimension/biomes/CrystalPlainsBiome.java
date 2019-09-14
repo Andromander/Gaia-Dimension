@@ -13,7 +13,6 @@ public class CrystalPlainsBiome extends BaseGaiaBiome {
 
         //TODO: Add Crystal Spires
 
-        GaiaBiomeFeatures.addCarverNormal(this);
         GaiaBiomeFeatures.addMagmaLakes(this);
         GaiaBiomeFeatures.addMineralLakes(this);
         GaiaBiomeFeatures.addPocketsUnderground(this);

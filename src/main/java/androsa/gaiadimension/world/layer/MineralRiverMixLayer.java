@@ -1,7 +1,5 @@
 package androsa.gaiadimension.world.layer;
 
-import androsa.gaiadimension.registry.ModBiomes;
-import net.minecraft.util.registry.Registry;
 import net.minecraft.world.gen.INoiseRandom;
 import net.minecraft.world.gen.area.IArea;
 import net.minecraft.world.gen.layer.traits.IAreaTransformer2;
@@ -18,9 +16,9 @@ public enum MineralRiverMixLayer implements IAreaTransformer2, IDimOffset0Transf
         int i = area1.getValue(this.func_215721_a(val1), this.func_215722_b(val2));
         int j = area2.getValue(this.func_215721_a(val1), this.func_215722_b(val2));
 
-        if (i == Registry.BIOME.getId(ModBiomes.mineral_reservoir)) {
+        if (i == GaiaLayerUtil.RESERVOIR) {
             return i;
-        } else if (j == Registry.BIOME.getId(ModBiomes.mineral_river)) {
+        } else if (j == GaiaLayerUtil.RIVER) {
             return j;
         } else {
             return i;

@@ -1,7 +1,6 @@
 package androsa.gaiadimension.world.layer;
 
 import androsa.gaiadimension.registry.ModBiomes;
-import androsa.gaiadimension.world.GaiaGenerationSettings;
 import com.google.common.collect.Sets;
 import net.minecraft.block.BlockState;
 import net.minecraft.util.math.BlockPos;
@@ -42,8 +41,7 @@ public class GaiaBiomeProvider extends BiomeProvider {
 
     public GaiaBiomeProvider(GaiaBiomeProviderSettings settings) {
         WorldInfo worldinfo = settings.getWorldInfo();
-        GaiaGenerationSettings genSettings = settings.getGeneratorSettings();
-        Layer[] alayer = GaiaLayerUtil.makeLayers(worldinfo.getSeed(), worldinfo.getGenerator(), genSettings);
+        Layer[] alayer = GaiaLayerUtil.makeLayers(worldinfo.getSeed());
         this.genBiomes = alayer[0];
         this.biomeFactoryLayer = alayer[1];
 
@@ -53,8 +51,6 @@ public class GaiaBiomeProvider extends BiomeProvider {
         getBiomesToSpawnIn().add(ModBiomes.green_agate_jungle);
         getBiomesToSpawnIn().add(ModBiomes.purple_agate_swamp);
         getBiomesToSpawnIn().add(ModBiomes.crystal_plains);
-
-        //makeLayers(world.getSeed());
     }
 
     @Override

@@ -15,7 +15,6 @@ public class StaticWastelandBiome extends BaseGaiaBiome implements IDryBiome {
     public StaticWastelandBiome(SurfaceBuilder<SurfaceBuilderConfig> surface, SurfaceBuilderConfig config, Category category, float depth, float scale, float temp) {
         super(surface, config, category, depth, scale, temp);
 
-        GaiaBiomeFeatures.addCarverUncoated(this);
         GaiaBiomeFeatures.addStaticStoneUnderground(this);
         GaiaBiomeFeatures.addPocketsUnderground(this);
         GaiaBiomeFeatures.addBasicOres(this);

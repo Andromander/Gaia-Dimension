@@ -8,7 +8,6 @@ import androsa.gaiadimension.world.gen.feature.*;
 import androsa.gaiadimension.world.surface.GaiaDefaultSurfaceBuilder;
 import androsa.gaiadimension.world.surface.VolcanicSurfaceBuilder;
 import androsa.gaiadimension.world.surface.WastelandSurfaceBuilder;
-import net.minecraft.world.gen.carver.CaveWorldCarver;
 import net.minecraft.world.gen.carver.WorldCarver;
 import net.minecraft.world.gen.feature.*;
 import net.minecraft.world.gen.surfacebuilders.SurfaceBuilder;
@@ -40,6 +39,8 @@ public class ModWorldgen {
     public static final Feature<NoFeatureConfig> BISMUTH_SPIRE = new BismuthSpireFeature(NoFeatureConfig::deserialize, 7);
     public static final Feature<NoFeatureConfig> BISMUTH_GEYSER = new BismuthGeyserFeature(NoFeatureConfig::deserialize);
     public static final Feature<NoFeatureConfig> STATIC_SPIKE = new StaticSpikeFeature(NoFeatureConfig::deserialize, 8);
+    public static final Feature<NoFeatureConfig> FRAIL_BLOB = new FrailGlitterBlobFeature(NoFeatureConfig::deserialize);
+    public static final Feature<BushConfig> UNDERGROUND_FUNGI = new UndergroundFungusFeature(BushConfig::deserialize);
 
     //SurfaceBuilder
     public static final SurfaceBuilder<SurfaceBuilderConfig> DEFAULT_GAIA = new GaiaDefaultSurfaceBuilder(SurfaceBuilderConfig::deserialize);
@@ -48,7 +49,6 @@ public class ModWorldgen {
 
     //WorldCarver
     public static final WorldCarver<ProbabilityConfig> CRYSTAL_CAVES = new CoatedCavesWorldCarver(ProbabilityConfig::deserialize, 256);
-    public static final WorldCarver<ProbabilityConfig> BLANK_CAVES = new CaveWorldCarver(ProbabilityConfig::deserialize, 256);
     public static final WorldCarver<ProbabilityConfig> CHASMS = new ChasmsWorldCarver(ProbabilityConfig::deserialize, 32);
 
     @SubscribeEvent
@@ -72,6 +72,7 @@ public class ModWorldgen {
         registry.register(BISMUTH_SPIRE.setRegistryName("bismuth_spire"));
         registry.register(BISMUTH_GEYSER.setRegistryName("bismuth_geyser"));
         registry.register(STATIC_SPIKE.setRegistryName("static_spike"));
+        registry.register(FRAIL_BLOB.setRegistryName("frail_blob"));
     }
 
     @SubscribeEvent
@@ -84,7 +85,6 @@ public class ModWorldgen {
     @SubscribeEvent
     public static void registerWorldCarvers(RegistryEvent.Register<WorldCarver<?>> e) {
         e.getRegistry().register(CRYSTAL_CAVES.setRegistryName("crystal_caves"));
-        e.getRegistry().register(BLANK_CAVES.setRegistryName("blank_caves"));
         e.getRegistry().register(CHASMS.setRegistryName("chasms"));
     }
 }

@@ -2,14 +2,14 @@ package androsa.gaiadimension.world;
 
 import net.minecraft.util.SharedSeedRandom;
 import net.minecraft.util.Util;
+import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.WorldType;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.provider.BiomeProvider;
-import net.minecraft.world.gen.NoiseChunkGenerator;
-import net.minecraft.world.gen.OctavesNoiseGenerator;
-import net.minecraft.world.gen.WorldGenRegion;
+import net.minecraft.world.chunk.IChunk;
+import net.minecraft.world.gen.*;
 import net.minecraft.world.spawner.WorldEntitySpawner;
 
 public class GaiaChunkGenerator extends NoiseChunkGenerator<GaiaGenerationSettings> {
@@ -25,12 +25,14 @@ public class GaiaChunkGenerator extends NoiseChunkGenerator<GaiaGenerationSettin
     });
     private OctavesNoiseGenerator depthNoise;
     private final boolean amplified;
+    private final INoiseGenerator surfaceDepthNoise;
 
     public GaiaChunkGenerator(IWorld worldIn, BiomeProvider provider, GaiaGenerationSettings settingsIn) {
         super(worldIn, provider, 4, 8, 256, settingsIn, true);
         this.randomSeed.skip(2620);
         this.depthNoise = new OctavesNoiseGenerator(randomSeed, 16);
         this.amplified = worldIn.getWorldInfo().getGenerator() == WorldType.AMPLIFIED;
+        this.surfaceDepthNoise = new PerlinNoiseGenerator(this.randomSeed, 4);
     }
 
     @Override

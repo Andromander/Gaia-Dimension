@@ -13,7 +13,6 @@ public class ShiningGroveBiome extends BaseGaiaBiome {
     public ShiningGroveBiome(SurfaceBuilder<SurfaceBuilderConfig> surface, SurfaceBuilderConfig config, Category category, float depth, float scale, float temp) {
         super(surface, config, category, depth, scale, temp);
 
-        GaiaBiomeFeatures.addCarverNormal(this);
         GaiaBiomeFeatures.addAuraLake(this);
         GaiaBiomeFeatures.addPocketsUnderground(this);
         GaiaBiomeFeatures.addBasicOres(this);

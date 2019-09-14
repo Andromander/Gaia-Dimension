@@ -5,6 +5,8 @@ import androsa.gaiadimension.registry.GaiaSkyColors;
 import androsa.gaiadimension.registry.ModBiomes;
 import androsa.gaiadimension.registry.ModDimensions;
 import androsa.gaiadimension.registry.ModGaiaConfig;
+import androsa.gaiadimension.world.layer.GaiaBiomeProvider;
+import androsa.gaiadimension.world.layer.GaiaBiomeProviderSettings;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.PlayerEntity;
@@ -14,10 +16,12 @@ import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
+import net.minecraft.world.biome.provider.BiomeProviderType;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.dimension.Dimension;
 import net.minecraft.world.dimension.DimensionType;
 import net.minecraft.world.gen.ChunkGenerator;
+import net.minecraft.world.gen.ChunkGeneratorType;
 import net.minecraft.world.gen.Heightmap;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -32,8 +36,10 @@ public class GaiaDimension extends Dimension {
 
     @Override
     public ChunkGenerator<?> createChunkGenerator() {
-        GaiaGenerationSettings gaisSettings = ModDimensions.GAIA_GEN.createSettings();
-        return ModDimensions.GAIA_GEN.create(this.world, ModDimensions.GAIA_DIMENSION.create(ModDimensions.GAIA_DIMENSION.createSettings().setGeneratorSettings(new GaiaGenerationSettings()).setWorldInfo(this.world.getWorldInfo())), gaisSettings);
+        ChunkGeneratorType<GaiaGenerationSettings, GaiaChunkGenerator> chunkGen = ModDimensions.GAIA_GEN;
+        GaiaGenerationSettings gaisSettings = chunkGen.createSettings();
+        BiomeProviderType<GaiaBiomeProviderSettings, GaiaBiomeProvider> biomeProvider = ModDimensions.GAIA_DIMENSION;
+        return chunkGen.create(this.world, ModDimensions.GAIA_DIMENSION.create(biomeProvider.createSettings().setGeneratorSettings(gaisSettings).setWorldInfo(this.world.getWorldInfo())), gaisSettings);
     }
 
     @Override

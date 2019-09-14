@@ -15,7 +15,6 @@ public class PurpleAgateSwampBiome extends BaseGaiaBiome {
     public PurpleAgateSwampBiome(SurfaceBuilder<SurfaceBuilderConfig> surface, SurfaceBuilderConfig config, Category category, float depth, float scale, float temp) {
         super(surface, config, category, depth, scale, temp);
 
-        GaiaBiomeFeatures.addCarverNormal(this);
         GaiaBiomeFeatures.addMuckLakes(this);
         GaiaBiomeFeatures.addMagmaLakes(this);
         GaiaBiomeFeatures.addMineralLakes(this);

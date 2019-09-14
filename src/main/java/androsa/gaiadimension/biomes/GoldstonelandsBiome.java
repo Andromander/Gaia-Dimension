@@ -17,7 +17,6 @@ public class GoldstonelandsBiome extends BaseGaiaBiome {
 
         //TODO: Generate veins of Corrupt Blocks
 
-        GaiaBiomeFeatures.addCarverNormal(this);
         GaiaBiomeFeatures.addMagmaLakes(this);
         GaiaBiomeFeatures.addMineralLakes(this);
         GaiaBiomeFeatures.addPocketsUnderground(this);

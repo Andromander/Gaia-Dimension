@@ -16,7 +16,7 @@ public enum MineralRiverLayer implements ICastleTransformer {
     @Override
     public int apply(INoiseRandom random, int north, int west, int south, int east, int center) {
         if (shouldRiver(center, west, south, east, north)) {
-            return Registry.BIOME.getId(ModBiomes.mineral_river);
+            return GaiaLayerUtil.RIVER;
         } else {
             return -1;
         }

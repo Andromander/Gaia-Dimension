@@ -1,5 +1,6 @@
 package androsa.gaiadimension.biomes;
 
+import androsa.gaiadimension.registry.GaiaBiomeFeatures;
 import androsa.gaiadimension.registry.ModEntities;
 import androsa.gaiadimension.registry.GaiaSkyColors;
 import net.minecraft.entity.EntityClassification;
@@ -18,6 +19,8 @@ public abstract class BaseGaiaBiome extends Biome {
     public BaseGaiaBiome(SurfaceBuilder<SurfaceBuilderConfig> surface, SurfaceBuilderConfig config, Category category, float depth, float scale, float temp) {
         super(new Biome.Builder().surfaceBuilder(surface, config).precipitation(RainType.NONE).category(category).depth(depth).scale(scale).temperature(temp).downfall(0.0F).waterColor(0x6C99B1).waterFogColor(0x92BED4));
 
+        GaiaBiomeFeatures.addPrimalMassUnderground(this);
+        GaiaBiomeFeatures.addCarver(this);
         this.addSpawn(EntityClassification.CREATURE, new SpawnListEntry(ModEntities.NOMADIC_LAGRAHK, 15, 1, 2));
         this.addSpawn(EntityClassification.WATER_CREATURE, new SpawnListEntry(ModEntities.SHALLOW_ARENTHIS, 10, 4, 4));
         this.addSpawn(EntityClassification.MONSTER, new SpawnListEntry(ModEntities.CAVERN_TICK, 100, 4, 4));
