@@ -86,6 +86,12 @@ public abstract class AbstractGaiaGrassBlock extends Block implements IGrowable 
     }
 
     @Override
+    @Deprecated
+    public boolean isSolid(BlockState state) {
+        return true;
+    }
+
+    @Override
     @OnlyIn(Dist.CLIENT)
     public BlockRenderLayer getRenderLayer() {
         return BlockRenderLayer.CUTOUT_MIPPED;

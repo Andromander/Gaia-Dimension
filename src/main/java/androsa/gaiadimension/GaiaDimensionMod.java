@@ -4,14 +4,19 @@ import androsa.gaiadimension.proxy.ClientProxy;
 import androsa.gaiadimension.proxy.CommonProxy;
 import androsa.gaiadimension.registry.*;
 import io.netty.buffer.Unpooled;
+import net.minecraft.block.Block;
 import net.minecraft.entity.CreatureAttribute;
 import net.minecraft.network.PacketBuffer;
+import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.Tag;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.dimension.DimensionType;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.common.ForgeConfigSpec;
+import net.minecraftforge.event.world.RegisterDimensionsEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
@@ -35,7 +40,7 @@ public class GaiaDimensionMod {
     public static final Logger LOGGER = LogManager.getLogger(MODID);
     public static ModGaiaConfig config;
     public static ModParticles particles = new ModParticles();
-
+    public static CommonProxy proxy = DistExecutor.runForDist(() -> ClientProxy::new, () -> CommonProxy::new);
     public static DimensionType gaia_dimension;
 
     public static final CreatureAttribute GAIAN = new CreatureAttribute();
@@ -43,7 +48,7 @@ public class GaiaDimensionMod {
 
     public static final DamageSource CORRUPTION = new DamageSource("corruption").setDamageBypassesArmor();
 
-    public static CommonProxy proxy = DistExecutor.runForDist(() -> ClientProxy::new, () -> CommonProxy::new);
+    public static final Tag<Block> AGATE_LOGS = new BlockTags.Wrapper(new ResourceLocation(MODID, "agate_logs"));
 
     public GaiaDimensionMod() {
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
@@ -55,17 +60,29 @@ public class GaiaDimensionMod {
     }
 
     public void setup(FMLCommonSetupEvent event) {
-        gaia_dimension = DimensionManager.registerDimension(new ResourceLocation(GaiaDimensionMod.MODID, "gaia"), GAIA, new PacketBuffer(Unpooled.buffer()), true);
-        DimensionManager.keepLoaded(gaia_dimension, false);
-        GaiaDimensionMod.LOGGER.info("We are set for the world of Gaia.");
-
         ModBiomes.addBiomeTypes();
         proxy.doPreLoadRegistration();
-
         DistExecutor.runWhenOn(Dist.CLIENT, () -> ModContainers::registerScreens);
     }
 
     public void clientSetup(FMLClientSetupEvent event) {
-        particles.registerFactories();
+        particles.registerFactories(); //TODO: Remove on PR
+    }
+
+    @Mod.EventBusSubscriber(modid = MODID)
+    public static class ForgeEventBus {
+        @SubscribeEvent
+        public static void registerModDimension(final RegisterDimensionsEvent e) {
+            ResourceLocation gaia = new ResourceLocation(GaiaDimensionMod.MODID, "gaia");
+
+            if (DimensionType.byName(gaia) == null) {
+                gaia_dimension = DimensionManager.registerDimension(gaia, GAIA, new PacketBuffer(Unpooled.buffer()), true);
+                DimensionManager.keepLoaded(gaia_dimension, false);
+            } else {
+                gaia_dimension = DimensionType.byName(gaia);
+            }
+
+            GaiaDimensionMod.LOGGER.info("We are set for the world of Gaia.");
+        }
     }
 }
