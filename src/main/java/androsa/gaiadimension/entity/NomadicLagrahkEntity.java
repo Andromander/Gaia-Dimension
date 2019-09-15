@@ -5,6 +5,7 @@ import androsa.gaiadimension.biomes.StaticWastelandBiome;
 import androsa.gaiadimension.biomes.VolcaniclandsBiome;
 import androsa.gaiadimension.block.AbstractGaiaGrassBlock;
 import androsa.gaiadimension.registry.ModBlocks;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.LookAtGoal;
@@ -101,12 +102,8 @@ public class NomadicLagrahkEntity extends CreatureEntity {
     }
 
     public static boolean canSpawnHere(EntityType<NomadicLagrahkEntity> entity, IWorld world, SpawnReason spawn, BlockPos pos, Random random) {
-        BlockState state = world.getBlockState(pos.down());
-        return (state.getBlock() instanceof AbstractGaiaGrassBlock && state.getBlock() != ModBlocks.corrupt_grass)
-                || state.getBlock() == ModBlocks.wasteland_stone
-                || state.getBlock() == ModBlocks.volcanic_rock
-                || state.getBlock() == ModBlocks.salt
-                && world.getLightSubtracted(pos, 0) > 8;
+        Block block = world.getBlockState(pos.down()).getBlock();
+        return ((block instanceof AbstractGaiaGrassBlock && block != ModBlocks.corrupt_grass) || block == ModBlocks.wasteland_stone || block == ModBlocks.volcanic_rock || block == ModBlocks.salt) && world.getLightSubtracted(pos, 0) > 8;
     }
 
     @Override

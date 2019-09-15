@@ -20,7 +20,7 @@ public class ModEntities {
     public static final EntityType<AgateArrowEntity> AGATE_ARROW = EntityType.Builder.create((EntityType.IFactory<AgateArrowEntity>) AgateArrowEntity::new, EntityClassification.MISC).size(0.5F, 0.5F).build(GaiaEntityNames.AGATE_ARROW.toString());
     public static final EntityType<ThrownPebbleEntity> THROWN_PEBBLE = EntityType.Builder.create((EntityType.IFactory<ThrownPebbleEntity>) ThrownPebbleEntity::new, EntityClassification.MISC).size(0.25F, 0.25F).build(GaiaEntityNames.THROWN_PEBBLE.toString());
 
-    public static final EntityType<AgateGolemEntity> AGATE_GOLEM = EntityType.Builder.create(AgateGolemEntity::new, EntityClassification.MONSTER).size(1.2F, 2.7F).build(GaiaEntityNames.AGATE_GOLEM.toString());
+    public static final EntityType<AgateGolemEntity> AGATE_GOLEM = EntityType.Builder.create(AgateGolemEntity::new, EntityClassification.MONSTER).size(0.5F, 0.5F).build(GaiaEntityNames.AGATE_GOLEM.toString());
     public static final EntityType<AncientLagrahkEntity> ANCIENT_LAGRAHK = EntityType.Builder.create(AncientLagrahkEntity::new, EntityClassification.MONSTER).size(1.5F, 4.0F).build(GaiaEntityNames.ANCIENT_LAGRAHK.toString());
     public static final EntityType<ArchaicWarriorEntity> ARCHAIC_WARRIOR = EntityType.Builder.create(ArchaicWarriorEntity::new, EntityClassification.MONSTER).size(0.6F, 1.95F).build(GaiaEntityNames.ARCHAIC_WARRIOR.toString());
     public static final EntityType<BismuthUletrusEntity> BISMUTH_ULETRUS = EntityType.Builder.create(BismuthUletrusEntity::new, EntityClassification.CREATURE).size(2.0F, 1.8F).build(GaiaEntityNames.BISMUTH_ULETRUS.toString());
@@ -52,35 +52,33 @@ public class ModEntities {
     public static void registerEntities(RegistryEvent.Register<EntityType<?>> e) {
         final IForgeRegistry<EntityType<?>> registry = e.getRegistry();
 
-        registry.register(AGATE_ARROW.setRegistryName("agate_arrow"));
-        registry.register(THROWN_PEBBLE.setRegistryName("thrown_pebble"));
-        registry.register(AGATE_GOLEM.setRegistryName("agate_golem"));
-        registry.register(ANCIENT_LAGRAHK.setRegistryName("ancient_lagrahk"));
-        registry.register(ARCHAIC_WARRIOR.setRegistryName("archaic_warrior"));
-        registry.register(BISMUTH_ULETRUS.setRegistryName("bismuth_uletrus"));
-        registry.register(BLUE_HOWLITE_WOLF.setRegistryName("blue_howlite_wolf"));
-        registry.register(CAVERN_TICK.setRegistryName("cavern_tick"));
-        registry.register(CONTORTED_NAGA.setRegistryName("contorted_naga"));
-        registry.register(CORRUPT_SAPPER.setRegistryName("corrupt_sapper"));
-        registry.register(CRYSTAL_GOLEM.setRegistryName("crystal_golem"));
-        registry.register(GROWTH_SAPPER.setRegistryName("growth_sapper"));
-        registry.register(HOWLITE_WOLF.setRegistryName("howlite_wolf"));
-        registry.register(LESSER_SHOCKSHOOTER.setRegistryName("lesser_shockshooter"));
-        registry.register(LESSER_SPITFIRE.setRegistryName("lesser_spitfire"));
-        registry.register(MARKUZAR_PLANT.setRegistryName("markuzar_plant"));
-        registry.register(MINERAL_ARENTHIS.setRegistryName("mineral_arenthis"));
-        registry.register(MUCKLING.setRegistryName("muckling"));
-        registry.register(MUTANT_GROWTH_EXTRACTOR.setRegistryName("mutant_growth_extractor"));
-        registry.register(NOMADIC_LAGRAHK.setRegistryName("nomadic_lagrahk"));
-        registry.register(PRIMAL_BEAST.setRegistryName("primal_beast"));
-        registry.register(ROCKY_LUGGEROTH.setRegistryName("rocky_luggeroth"));
-        registry.register(RUGGED_LURMORUS.setRegistryName("rugged_lurmorus"));
-        registry.register(SALTION.setRegistryName("saltion"));
-        registry.register(SHALLOW_ARENTHIS.setRegistryName("shallow_arenthis"));
-        registry.register(SHALURKER.setRegistryName("shalurker"));
-        registry.register(SPELLBOUND_ELEMENTAL.setRegistryName("spellbound_elemental"));
-        registry.register(MALACHITE_GUARD.setRegistryName("malachite_guard"));
-
-        GaiaSpawnPlacements.registerSpawnPlacement();
+        registry.register(AGATE_ARROW.setRegistryName(GaiaDimensionMod.MODID, "agate_arrow"));
+        registry.register(THROWN_PEBBLE.setRegistryName(GaiaDimensionMod.MODID, "thrown_pebble"));
+        registry.register(AGATE_GOLEM.setRegistryName(GaiaDimensionMod.MODID, "agate_golem"));
+        registry.register(ANCIENT_LAGRAHK.setRegistryName(GaiaDimensionMod.MODID, "ancient_lagrahk"));
+        registry.register(ARCHAIC_WARRIOR.setRegistryName(GaiaDimensionMod.MODID, "archaic_warrior"));
+        registry.register(BISMUTH_ULETRUS.setRegistryName(GaiaDimensionMod.MODID, "bismuth_uletrus"));
+        registry.register(BLUE_HOWLITE_WOLF.setRegistryName(GaiaDimensionMod.MODID, "blue_howlite_wolf"));
+        registry.register(CAVERN_TICK.setRegistryName(GaiaDimensionMod.MODID, "cavern_tick"));
+        registry.register(CONTORTED_NAGA.setRegistryName(GaiaDimensionMod.MODID, "contorted_naga"));
+        registry.register(CORRUPT_SAPPER.setRegistryName(GaiaDimensionMod.MODID, "corrupt_sapper"));
+        registry.register(CRYSTAL_GOLEM.setRegistryName(GaiaDimensionMod.MODID, "crystal_golem"));
+        registry.register(GROWTH_SAPPER.setRegistryName(GaiaDimensionMod.MODID, "growth_sapper"));
+        registry.register(HOWLITE_WOLF.setRegistryName(GaiaDimensionMod.MODID, "howlite_wolf"));
+        registry.register(LESSER_SHOCKSHOOTER.setRegistryName(GaiaDimensionMod.MODID, "lesser_shockshooter"));
+        registry.register(LESSER_SPITFIRE.setRegistryName(GaiaDimensionMod.MODID, "lesser_spitfire"));
+        registry.register(MARKUZAR_PLANT.setRegistryName(GaiaDimensionMod.MODID, "markuzar_plant"));
+        registry.register(MINERAL_ARENTHIS.setRegistryName(GaiaDimensionMod.MODID, "mineral_arenthis"));
+        registry.register(MUCKLING.setRegistryName(GaiaDimensionMod.MODID, "muckling"));
+        registry.register(MUTANT_GROWTH_EXTRACTOR.setRegistryName(GaiaDimensionMod.MODID, "mutant_growth_extractor"));
+        registry.register(NOMADIC_LAGRAHK.setRegistryName(GaiaDimensionMod.MODID, "nomadic_lagrahk"));
+        registry.register(PRIMAL_BEAST.setRegistryName(GaiaDimensionMod.MODID, "primal_beast"));
+        registry.register(ROCKY_LUGGEROTH.setRegistryName(GaiaDimensionMod.MODID, "rocky_luggeroth"));
+        registry.register(RUGGED_LURMORUS.setRegistryName(GaiaDimensionMod.MODID, "rugged_lurmorus"));
+        registry.register(SALTION.setRegistryName(GaiaDimensionMod.MODID, "saltion"));
+        registry.register(SHALLOW_ARENTHIS.setRegistryName(GaiaDimensionMod.MODID, "shallow_arenthis"));
+        registry.register(SHALURKER.setRegistryName(GaiaDimensionMod.MODID, "shalurker"));
+        registry.register(SPELLBOUND_ELEMENTAL.setRegistryName(GaiaDimensionMod.MODID, "spellbound_elemental"));
+        registry.register(MALACHITE_GUARD.setRegistryName(GaiaDimensionMod.MODID, "malachite_guard"));
     }
 }

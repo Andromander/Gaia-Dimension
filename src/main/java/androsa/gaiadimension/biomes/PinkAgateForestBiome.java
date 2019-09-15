@@ -23,8 +23,8 @@ public class PinkAgateForestBiome extends BaseGaiaBiome {
         GaiaBiomeFeatures.addBloomsNormal(this);
         GaiaBiomeFeatures.addPinkMushrooms(this);
         GaiaBiomeFeatures.addUndergroundMushrooms(this);
-        this.addSpawn(EntityClassification.CREATURE, new SpawnListEntry(ModEntities.GROWTH_SAPPER, 20, 3, 5));
-        this.addSpawn(EntityClassification.MONSTER, new SpawnListEntry(ModEntities.AGATE_GOLEM, 15, 1, 2));
+        //this.addSpawn(EntityClassification.CREATURE, new SpawnListEntry(ModEntities.GROWTH_SAPPER, 20, 3, 5));
+        this.addSpawn(EntityClassification.MONSTER, new SpawnListEntry(ModEntities.AGATE_GOLEM, 100, 2, 4));
 
         //flowers.add(new FlowerEntry(GDBlocks.spotted_kersei.getDefaultState(), 5));
     }

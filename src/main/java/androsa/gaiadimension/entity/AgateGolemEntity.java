@@ -1,5 +1,7 @@
 package androsa.gaiadimension.entity;
 
+import androsa.gaiadimension.registry.ModBiomes;
+import androsa.gaiadimension.registry.ModBlocks;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.monster.MonsterEntity;
@@ -43,9 +45,10 @@ public class AgateGolemEntity extends MonsterEntity {
     @Override
     public boolean attackEntityAsMob(Entity entityIn) {
         this.world.setEntityState(this, (byte)4);
-        boolean flag = entityIn.attackEntityFrom(DamageSource.causeMobDamage(this), (float)(7 + this.rand.nextInt(15)));
+        boolean flag = entityIn.attackEntityFrom(DamageSource.causeMobDamage(this), (float)(6 + this.rand.nextInt(15)));
+
         if (flag) {
-            entityIn.setMotion(entityIn.getMotion().add(0.0D, (double)0.4F, 0.0D));
+            entityIn.setMotion(entityIn.getMotion().add(0.0D, 0.4D, 0.0D));
             this.applyEnchantments(this, entityIn);
         }
 
@@ -53,6 +56,6 @@ public class AgateGolemEntity extends MonsterEntity {
     }
 
     public static boolean canSpawnHere(EntityType<AgateGolemEntity> entity, IWorld world, SpawnReason spawn, BlockPos pos, Random random) {
-        return world.getDifficulty() != Difficulty.PEACEFUL;
+        return world.getDifficulty() != Difficulty.PEACEFUL && world.getBlockState(pos.down()).getBlock() == ModBlocks.glitter_grass/* && world.getLightSubtracted(pos.down(), 0) > 8*/;
     }
 }

@@ -60,6 +60,7 @@ public class GaiaDimensionMod {
     }
 
     public void setup(FMLCommonSetupEvent event) {
+        GaiaSpawnPlacements.registerSpawnPlacement();
         ModBiomes.addBiomeTypes();
         proxy.doPreLoadRegistration();
         DistExecutor.runWhenOn(Dist.CLIENT, () -> ModContainers::registerScreens);
