@@ -22,11 +22,11 @@ public class BlueAgateTaigaBiome extends BaseGaiaBiome {
         GaiaBiomeFeatures.addBlueOpals(this);
         GaiaBiomeFeatures.addWhiteOpals(this);
         GaiaBiomeFeatures.addBlueAgateTrees(this);
-        GaiaBiomeFeatures.addCrystalGrowthNormal(this, 3);
+        GaiaBiomeFeatures.addCrystalGrowthNormal(this, 2);
         GaiaBiomeFeatures.addBloomsNormal(this);
         GaiaBiomeFeatures.addBlueMushrooms(this);
         GaiaBiomeFeatures.addUndergroundMushrooms(this);
-        this.addSpawn(EntityClassification.CREATURE, new SpawnListEntry(ModEntities.GROWTH_SAPPER, 30, 3, 5));
+        //this.addSpawn(EntityClassification.CREATURE, new SpawnListEntry(ModEntities.GROWTH_SAPPER, 30, 3, 5));
         this.addSpawn(EntityClassification.MONSTER, new SpawnListEntry(ModEntities.HOWLITE_WOLF, 15, 2, 4));
         this.addSpawn(EntityClassification.MONSTER, new SpawnListEntry(ModEntities.BLUE_HOWLITE_WOLF, 1, 1, 1));
 

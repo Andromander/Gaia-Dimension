@@ -55,6 +55,11 @@ public class AgateGolemEntity extends MonsterEntity {
         return flag;
     }
 
+    @Override
+    public boolean canSpawn(IWorld world, SpawnReason reason) {
+        return true;
+    }
+
     public static boolean canSpawnHere(EntityType<AgateGolemEntity> entity, IWorld world, SpawnReason spawn, BlockPos pos, Random random) {
         return world.getDifficulty() != Difficulty.PEACEFUL && world.getBlockState(pos.down()).getBlock() == ModBlocks.glitter_grass/* && world.getLightSubtracted(pos.down(), 0) > 8*/;
     }

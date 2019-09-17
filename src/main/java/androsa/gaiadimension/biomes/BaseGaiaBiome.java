@@ -23,10 +23,10 @@ public abstract class BaseGaiaBiome extends Biome {
         GaiaBiomeFeatures.addCarver(this);
         //this.addSpawn(EntityClassification.CREATURE, new SpawnListEntry(ModEntities.NOMADIC_LAGRAHK, 15, 1, 2));
         this.addSpawn(EntityClassification.WATER_CREATURE, new SpawnListEntry(ModEntities.SHALLOW_ARENTHIS, 10, 4, 4));
-        this.addSpawn(EntityClassification.MONSTER, new SpawnListEntry(ModEntities.CAVERN_TICK, 100, 4, 4));
-        this.addSpawn(EntityClassification.MONSTER, new SpawnListEntry(ModEntities.SHALURKER, 100, 4, 4));
-        this.addSpawn(EntityClassification.MONSTER, new SpawnListEntry(ModEntities.ARCHAIC_WARRIOR, 100, 4, 4));
-        this.addSpawn(EntityClassification.MONSTER, new SpawnListEntry(ModEntities.MUCKLING, 100, 4, 4));
+        this.addSpawn(EntityClassification.MONSTER, new SpawnListEntry(ModEntities.CAVERN_TICK, 75, 4, 4));
+        this.addSpawn(EntityClassification.MONSTER, new SpawnListEntry(ModEntities.SHALURKER, 75, 4, 4));
+        this.addSpawn(EntityClassification.MONSTER, new SpawnListEntry(ModEntities.ARCHAIC_WARRIOR, 75, 4, 4));
+        this.addSpawn(EntityClassification.MONSTER, new SpawnListEntry(ModEntities.MUCKLING, 75, 4, 4));
         this.addSpawn(EntityClassification.MONSTER, new SpawnListEntry(EntityType.ENDERMAN, 5, 1, 2));
         this.addSpawn(EntityClassification.MONSTER, new SpawnListEntry(ModEntities.PRIMAL_BEAST, 25, 1, 2));
 

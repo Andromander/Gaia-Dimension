@@ -45,7 +45,7 @@ public class BlueAgateTreeFeature extends AbstractTreeFeature<NoFeatureConfig> {
                 for (int k1 = pos.getX() - j1; k1 <= pos.getX() + j1 && allClear; ++k1) {
                     for (int l1 = pos.getZ() - j1; l1 <= pos.getZ() + j1 && allClear; ++l1) {
                         if (i1 >= 0 && i1 < world.getMaxHeight()) {
-                            if (isAirOrLeaves(world, blockpos$mutableblockpos.setPos(k1, i1, l1))) {
+                            if (!func_214587_a(world, blockpos$mutableblockpos.setPos(k1, i1, l1))) {
                                 allClear = false;
                             }
                         } else {

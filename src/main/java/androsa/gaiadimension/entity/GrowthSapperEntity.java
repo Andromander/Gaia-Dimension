@@ -90,7 +90,7 @@ public class GrowthSapperEntity extends CreatureEntity {
     @Override
     public ILivingEntityData onInitialSpawn(IWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
         spawnDataIn = super.onInitialSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
-        Biome biome = world.getBiome(new BlockPos(posX, posY, posZ));
+        Biome biome = world.getBiome(new BlockPos(this));
 
         if (biome instanceof PinkAgateForestBiome || biome instanceof CrystalPlainsBiome) {
             setSapperVariant(0);

@@ -7,6 +7,8 @@ import androsa.gaiadimension.entity.boss.MalachiteGuardEntity;
 import androsa.gaiadimension.entity.projectile.AgateArrowEntity;
 import androsa.gaiadimension.entity.projectile.ThrownPebbleEntity;
 import net.minecraft.entity.*;
+import net.minecraft.world.biome.Biome;
+import net.minecraft.world.biome.Biomes;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -20,7 +22,7 @@ public class ModEntities {
     public static final EntityType<AgateArrowEntity> AGATE_ARROW = EntityType.Builder.create((EntityType.IFactory<AgateArrowEntity>) AgateArrowEntity::new, EntityClassification.MISC).size(0.5F, 0.5F).build(GaiaEntityNames.AGATE_ARROW.toString());
     public static final EntityType<ThrownPebbleEntity> THROWN_PEBBLE = EntityType.Builder.create((EntityType.IFactory<ThrownPebbleEntity>) ThrownPebbleEntity::new, EntityClassification.MISC).size(0.25F, 0.25F).build(GaiaEntityNames.THROWN_PEBBLE.toString());
 
-    public static final EntityType<AgateGolemEntity> AGATE_GOLEM = EntityType.Builder.create(AgateGolemEntity::new, EntityClassification.MONSTER).size(0.5F, 0.5F).build(GaiaEntityNames.AGATE_GOLEM.toString());
+    public static final EntityType<AgateGolemEntity> AGATE_GOLEM = EntityType.Builder.create(AgateGolemEntity::new, EntityClassification.MONSTER).size(1.2F, 2.7F).build(GaiaEntityNames.AGATE_GOLEM.toString());
     public static final EntityType<AncientLagrahkEntity> ANCIENT_LAGRAHK = EntityType.Builder.create(AncientLagrahkEntity::new, EntityClassification.MONSTER).size(1.5F, 4.0F).build(GaiaEntityNames.ANCIENT_LAGRAHK.toString());
     public static final EntityType<ArchaicWarriorEntity> ARCHAIC_WARRIOR = EntityType.Builder.create(ArchaicWarriorEntity::new, EntityClassification.MONSTER).size(0.6F, 1.95F).build(GaiaEntityNames.ARCHAIC_WARRIOR.toString());
     public static final EntityType<BismuthUletrusEntity> BISMUTH_ULETRUS = EntityType.Builder.create(BismuthUletrusEntity::new, EntityClassification.CREATURE).size(2.0F, 1.8F).build(GaiaEntityNames.BISMUTH_ULETRUS.toString());
@@ -80,5 +82,17 @@ public class ModEntities {
         registry.register(SHALURKER.setRegistryName(GaiaDimensionMod.MODID, "shalurker"));
         registry.register(SPELLBOUND_ELEMENTAL.setRegistryName(GaiaDimensionMod.MODID, "spellbound_elemental"));
         registry.register(MALACHITE_GUARD.setRegistryName(GaiaDimensionMod.MODID, "malachite_guard"));
+
+        //spawnTest();
     }
+
+    /*public static void spawnTest() {
+        registerSpawn(AGATE_GOLEM, Biomes.PLAINS, Biomes.FOREST, Biomes.DESERT);
+    }
+
+    public static void registerSpawn(EntityType<?> entity, Biome... biomes) {
+        for (Biome biome : biomes) {
+            biome.getSpawns(EntityClassification.MONSTER).add(new Biome.SpawnListEntry(entity, 100, 1, 2));
+        }
+    }*/
 }

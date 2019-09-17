@@ -281,6 +281,4 @@ public class GaiaDimension extends Dimension {
     public boolean canDoRainSnowIce(@Nullable Chunk chunk) {
         return false;
     }
-
-
 }

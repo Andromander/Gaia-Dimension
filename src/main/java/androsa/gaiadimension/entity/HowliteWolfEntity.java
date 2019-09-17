@@ -43,14 +43,12 @@ public class HowliteWolfEntity extends MonsterEntity {
         return 0.68F;
     }
 
-    public static boolean canSpawnHere(EntityType<HowliteWolfEntity> entity, IWorld world, SpawnReason spawn, BlockPos pos, Random random) {
-        return world.getDifficulty() != Difficulty.PEACEFUL &&
-                isValidSpawn(world, spawn, pos);
+    @Override
+    public boolean canSpawn(IWorld world, SpawnReason reason) {
+        return true;
     }
 
-    public static boolean isValidSpawn(IWorld world, SpawnReason spawn, BlockPos pos) {
-        BlockPos blockpos = pos.down();
-        return spawn == SpawnReason.SPAWNER ||
-                world.getBlockState(blockpos).getBlock() == ModBlocks.glitter_grass && world.getLight(blockpos) > 8 && world.getBiome(blockpos) == ModBiomes.blue_agate_taiga;
+    public static boolean canSpawnHere(EntityType<HowliteWolfEntity> entity, IWorld world, SpawnReason spawn, BlockPos pos, Random random) {
+        return world.getDifficulty() != Difficulty.PEACEFUL && world.getBlockState(pos.down()).getBlock() == ModBlocks.glitter_grass && world.getLightSubtracted(pos.down(), 0) > 8;
     }
 }

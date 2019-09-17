@@ -8,11 +8,11 @@ import net.minecraftforge.fluids.ForgeFlowingFluid;
 
 public class GaiaFluidAttributes {
 
-    private static final String mineralDir = "mineral_water_";
-    private static final String superhotDir = "superhot_magma_";
-    private static final String sweetDir = "sweet_muck_";
-    private static final String bismuthDir = "liquid_bismuth_";
-    private static final String auraDir = "liquid_aura_";
+    private static final String mineralDir = "fluids/mineralwater/mineral_water_";
+    private static final String superhotDir = "fluids/superhotmagma/superhot_magma_";
+    private static final String sweetDir = "fluids/sweetmuck/sweet_muck_";
+    private static final String bismuthDir = "fluids/liquidbismuth/liquid_bismuth_";
+    private static final String auraDir = "fluids/liquidaura/liquid_aura_";
 
     public static final FluidAttributes.Builder mineral_water_attributes =
             FluidAttributes.builder(new ResourceLocation(GaiaDimensionMod.MODID, mineralDir + "still"), new ResourceLocation(GaiaDimensionMod.MODID, mineralDir + "flow"))

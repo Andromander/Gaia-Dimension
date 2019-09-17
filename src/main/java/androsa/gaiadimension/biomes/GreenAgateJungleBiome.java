@@ -27,7 +27,7 @@ public class GreenAgateJungleBiome extends BaseGaiaBiome {
         GaiaBiomeFeatures.addBloomsNormal(this);
         GaiaBiomeFeatures.addGreenMushrooms(this);
         GaiaBiomeFeatures.addUndergroundMushrooms(this);
-        this.addSpawn(EntityClassification.CREATURE, new SpawnListEntry(ModEntities.GROWTH_SAPPER, 30, 2, 4));
+        //this.addSpawn(EntityClassification.CREATURE, new SpawnListEntry(ModEntities.GROWTH_SAPPER, 30, 2, 4));
         this.addSpawn(EntityClassification.AMBIENT, new SpawnListEntry(ModEntities.MARKUZAR_PLANT, 15, 1, 3));
         //TODO: Moss Agate Lizard
 

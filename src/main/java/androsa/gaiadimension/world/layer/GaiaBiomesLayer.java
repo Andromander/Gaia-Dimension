@@ -11,11 +11,11 @@ public class GaiaBiomesLayer implements IAreaTransformer0 {
     private static final int UNCOMMON_BIOME_CHANCE = 8;
     private static final int RARE_BIOME_CHANCE = 16;
     protected Biome commonBiomes[] = (new Biome[]{
-            ModBiomes.pink_agate_forest,
+            //ModBiomes.pink_agate_forest,
             //ModBiomes.blue_agate_taiga,
             //ModBiomes.green_agate_jungle,
             //ModBiomes.crystal_plains,
-            //ModBiomes.fossil_woodland,
+            ModBiomes.fossil_woodland,
     });/*
     protected Biome uncommonBiomes[] = (new Biome[]{
             ModBiomes.mineral_reservoir,
