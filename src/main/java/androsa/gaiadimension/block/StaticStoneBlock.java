@@ -1,6 +1,7 @@
 package androsa.gaiadimension.block;
 
 import androsa.gaiadimension.entity.IShockshooterMob;
+import net.minecraft.block.BlockState;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
 import net.minecraft.enchantment.EnchantmentHelper;
@@ -27,6 +28,12 @@ public class StaticStoneBlock extends BasicGaiaBlock {
         }
 
         super.onEntityWalk(worldIn, pos, entityIn);
+    }
+
+    @Override
+    @Deprecated
+    public boolean isSolid(BlockState state) {
+        return true;
     }
 
     @Override
