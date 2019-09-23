@@ -19,7 +19,6 @@ public class GaiaLayerUtil {
     protected static final int FOREST = Registry.BIOME.getId(ModBiomes.pink_agate_forest);
 
     public static <T extends IArea, C extends IExtendedNoiseRandom<T>> ImmutableList<IAreaFactory<T>> makeLayers(LongFunction<C> contextFactory) {
-        //IAreaFactory<T> factory = GaiaBaseLayer.INSTANCE.apply(contextFactory.apply(1L));
         IAreaFactory<T> biomes = new GaiaBiomesLayer().apply(contextFactory.apply(1L));
 
         biomes = ZoomLayer.NORMAL.apply(contextFactory.apply(1000), biomes);
@@ -31,9 +30,9 @@ public class GaiaLayerUtil {
 
         biomes = LayerUtil.repeat(1000L, ZoomLayer.NORMAL, biomes, 1, contextFactory);
 
-        //IAreaFactory<T> riverLayer = MineralRiverLayer.INSTANCE.apply(contextFactory.apply(1L), biomes);
-        //riverLayer = SmoothLayer.INSTANCE.apply(contextFactory.apply(7000L), riverLayer);
-        //biomes = MineralRiverMixLayer.INSTANCE.apply(contextFactory.apply(100L), biomes, riverLayer);
+        IAreaFactory<T> riverLayer = MineralRiverLayer.INSTANCE.apply(contextFactory.apply(1L), biomes);
+        riverLayer = SmoothLayer.INSTANCE.apply(contextFactory.apply(7000L), riverLayer);
+        biomes = MineralRiverMixLayer.INSTANCE.apply(contextFactory.apply(100L), biomes, riverLayer);
 
         IAreaFactory<T> genlayervoronoizoom = VoroniZoomLayer.INSTANCE.apply(contextFactory.apply(10L), biomes);
         return ImmutableList.of(biomes, genlayervoronoizoom, biomes);

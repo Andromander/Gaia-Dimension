@@ -19,7 +19,7 @@ public class FossilWoodlandBiome extends BaseGaiaBiome {
         GaiaBiomeFeatures.addPocketsUnderground(this);
         GaiaBiomeFeatures.addBasicOres(this);
         GaiaBiomeFeatures.addFossilTrees(this);
-        GaiaBiomeFeatures.addCrystalGrowthNormal(this, 3);
+        GaiaBiomeFeatures.addCrystalGrowthNormal(this, 2);
         GaiaBiomeFeatures.addBloomsNormal(this);
         GaiaBiomeFeatures.addFossilMushrooms(this);
         GaiaBiomeFeatures.addUndergroundMushrooms(this);

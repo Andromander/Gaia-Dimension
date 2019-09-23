@@ -1,7 +1,9 @@
 package androsa.gaiadimension.world.gen.feature;
 
+import androsa.gaiadimension.block.AuraShootBlock;
 import androsa.gaiadimension.registry.ModBlocks;
 import com.mojang.datafixers.Dynamic;
+import net.minecraft.block.BlockState;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.gen.ChunkGenerator;
@@ -15,6 +17,8 @@ import java.util.function.Function;
 
 @ParametersAreNonnullByDefault
 public class AuraShootsFeature extends Feature<NoFeatureConfig> {
+
+    private static final BlockState AURA_SHOOT = ModBlocks.aura_shoot.getDefaultState();
 
     public AuraShootsFeature(Function<Dynamic<?>, ? extends NoFeatureConfig> configIn) {
         super(configIn);
@@ -30,8 +34,8 @@ public class AuraShootsFeature extends Feature<NoFeatureConfig> {
                     int j = 7 + rand.nextInt(5);
 
                     for (int k = 0; k < j; ++k) {
-                        if (ModBlocks.aura_shoot.getDefaultState().isValidPosition(worldIn, blockpos)) {
-                            worldIn.setBlockState(blockpos.up(k), ModBlocks.aura_shoot.getDefaultState(), 2);
+                        if (AURA_SHOOT.isValidPosition(worldIn, blockpos)) {
+                            worldIn.setBlockState(blockpos.up(k), AURA_SHOOT.with(AuraShootBlock.IS_TOP, k + 1 == j), 2);
                         }
                     }
                 }

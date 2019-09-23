@@ -24,11 +24,11 @@ public class PurpleAgateSwampBiome extends BaseGaiaBiome {
         GaiaBiomeFeatures.addWhiteOpals(this);
         GaiaBiomeFeatures.addPurpleAgateTrees(this);
         GaiaBiomeFeatures.addGummyBlobs(this);
-        GaiaBiomeFeatures.addCrystalGrowthNormal(this, 3);
+        GaiaBiomeFeatures.addCrystalGrowthNormal(this, 2);
         GaiaBiomeFeatures.addBloomsRare(this);
         GaiaBiomeFeatures.addPurpleMushrooms(this);
         GaiaBiomeFeatures.addUndergroundMushrooms(this);
-        this.addSpawn(EntityClassification.CREATURE, new SpawnListEntry(ModEntities.GROWTH_SAPPER, 10, 3, 5));
+        //this.addSpawn(EntityClassification.CREATURE, new SpawnListEntry(ModEntities.GROWTH_SAPPER, 10, 3, 5));
         this.addSpawn(EntityClassification.CREATURE, new SpawnListEntry(ModEntities.SPELLBOUND_ELEMENTAL, 10, 1, 2));
         this.addSpawn(EntityClassification.MONSTER, new SpawnListEntry(ModEntities.MUCKLING, 10, 1, 1));
 

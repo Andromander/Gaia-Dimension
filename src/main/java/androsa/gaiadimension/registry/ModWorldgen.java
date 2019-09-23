@@ -41,6 +41,8 @@ public class ModWorldgen {
     public static final Feature<NoFeatureConfig> STATIC_SPIKE = new StaticSpikeFeature(NoFeatureConfig::deserialize, 8);
     public static final Feature<NoFeatureConfig> FRAIL_BLOB = new FrailGlitterBlobFeature(NoFeatureConfig::deserialize);
     public static final Feature<BushConfig> UNDERGROUND_FUNGI = new UndergroundFungusFeature(BushConfig::deserialize);
+    public static final Feature<SphereReplaceConfig> GAIA_DISK = new DiskNoWaterFeature(SphereReplaceConfig::deserialize);
+    public static final Feature<NoFeatureConfig> MUTANT_GROWTH = new MutantGrowthFeature(NoFeatureConfig::deserialize);
 
     //SurfaceBuilder
     public static final SurfaceBuilder<SurfaceBuilderConfig> DEFAULT_GAIA = new GaiaDefaultSurfaceBuilder(SurfaceBuilderConfig::deserialize);
@@ -73,6 +75,8 @@ public class ModWorldgen {
         registry.register(BISMUTH_GEYSER.setRegistryName("bismuth_geyser"));
         registry.register(STATIC_SPIKE.setRegistryName("static_spike"));
         registry.register(FRAIL_BLOB.setRegistryName("frail_blob"));
+        registry.register(UNDERGROUND_FUNGI.setRegistryName("underground_fungi"));
+        registry.register(GAIA_DISK.setRegistryName("gaia_disk"));
     }
 
     @SubscribeEvent

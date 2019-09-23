@@ -23,15 +23,11 @@ public class MutantAgateWildwoodBiome extends BaseGaiaBiome {
         GaiaBiomeFeatures.addBlueOpals(this);
         GaiaBiomeFeatures.addGreenOpals(this);
         GaiaBiomeFeatures.addWhiteOpals(this);
-        GaiaBiomeFeatures.addPinkAgateTreesSparse(this);
-        GaiaBiomeFeatures.addBlueAgateTreesSparse(this);
-        GaiaBiomeFeatures.addGreenAgateTreesSparse(this);
-        GaiaBiomeFeatures.addPurpleAgateTreesSparse(this);
-        GaiaBiomeFeatures.addCrystalGrowthMutant(this);
+        GaiaBiomeFeatures.addVariousTrees(this);
         GaiaBiomeFeatures.addBloomsMutant(this);
         GaiaBiomeFeatures.addMysteryMushrooms(this);
         GaiaBiomeFeatures.addUndergroundMushrooms(this);
-        this.addSpawn(EntityClassification.CREATURE, new SpawnListEntry(ModEntities.GROWTH_SAPPER, 40, 3, 5));
+        //this.addSpawn(EntityClassification.CREATURE, new SpawnListEntry(ModEntities.GROWTH_SAPPER, 40, 3, 5));
         this.addSpawn(EntityClassification.CREATURE, new SpawnListEntry(ModEntities.MUTANT_GROWTH_EXTRACTOR, 5, 2, 4));
 
         //flowers.clear();
@@ -40,26 +36,6 @@ public class MutantAgateWildwoodBiome extends BaseGaiaBiome {
         //flowers.add(new FlowerEntry(GDBlocks.mystical_murgni.getDefaultState(), 5));
         skyColor = GaiaSkyColors.MUTANT_AGATE;
     }
-
-    /*@Override
-    public WorldGenAbstractTree getRandomTreeFeature(Random par1Random) {
-
-        if (par1Random.nextInt(8) == 0) {
-            switch (par1Random.nextInt(4)) {
-                case 3:
-                    return GaiaGenPurpleTrees;
-                case 2:
-                    return GaiaGenGreenTrees;
-                case 1:
-                    return GaiaGenBlueTrees;
-                case 0:
-                default:
-                    return GaiaGenPinkTrees;
-            }
-        } else {
-            return new GDGenNoTrees();
-        }
-    }*/
 
     @Override
     @OnlyIn(Dist.CLIENT)
