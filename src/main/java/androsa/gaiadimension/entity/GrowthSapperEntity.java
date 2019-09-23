@@ -13,6 +13,7 @@ import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
@@ -51,7 +52,7 @@ public class GrowthSapperEntity extends CreatureEntity {
     }
 
     public int getEntityVariant() {
-        return dataManager.get(SAPPER_VARIANT);
+        return MathHelper.clamp(dataManager.get(SAPPER_VARIANT), 0, 3);
     }
 
     /**
@@ -89,10 +90,9 @@ public class GrowthSapperEntity extends CreatureEntity {
 
     @Override
     public ILivingEntityData onInitialSpawn(IWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
-        spawnDataIn = super.onInitialSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
-        Biome biome = world.getBiome(new BlockPos(this));
+        //Biome biome = worldIn.getBiome(new BlockPos(this));
 
-        if (biome instanceof PinkAgateForestBiome || biome instanceof CrystalPlainsBiome) {
+        /*if (biome instanceof PinkAgateForestBiome || biome instanceof CrystalPlainsBiome) {
             setSapperVariant(0);
         } else if (biome instanceof BlueAgateTaigaBiome) {
             setSapperVariant(1);
@@ -100,11 +100,11 @@ public class GrowthSapperEntity extends CreatureEntity {
             setSapperVariant(2);
         } else if (biome instanceof PurpleAgateSwampBiome) {
             setSapperVariant(3);
-        } else {
+        } else {*/
             Random rand = new Random();
             setSapperVariant(rand.nextInt(4));
-        }
+        //}
 
-        return spawnDataIn;
+        return super.onInitialSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
     }
 }
