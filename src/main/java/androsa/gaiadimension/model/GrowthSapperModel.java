@@ -3,6 +3,7 @@ package androsa.gaiadimension.model;
 import net.minecraft.client.renderer.entity.model.EntityModel;
 import net.minecraft.client.renderer.entity.model.RendererModel;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.MobEntity;
 import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -12,7 +13,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
  * Created using Tabula 7.0.0
  */
 @OnlyIn(Dist.CLIENT)
-public class GrowthSapperModel<T extends Entity> extends EntityModel<T> {
+public class GrowthSapperModel<T extends MobEntity> extends EntityModel<T> {
     public RendererModel head;
     public RendererModel body;
     public RendererModel leg1;

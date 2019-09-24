@@ -12,7 +12,6 @@ public class CrystalPlainsBiome extends BaseGaiaBiome {
         super(surface, config, category, depth, scale, temp);
 
         //TODO: Add Crystal Spires
-
         GaiaBiomeFeatures.addMagmaLakes(this);
         GaiaBiomeFeatures.addMineralLakes(this);
         GaiaBiomeFeatures.addPocketsUnderground(this);
@@ -22,7 +21,7 @@ public class CrystalPlainsBiome extends BaseGaiaBiome {
         GaiaBiomeFeatures.addBloomsNormal(this);
         GaiaBiomeFeatures.addPinkMushrooms(this);
         GaiaBiomeFeatures.addUndergroundMushrooms(this);
-        //this.addSpawn(EntityClassification.CREATURE, new SpawnListEntry(ModEntities.GROWTH_SAPPER, 20, 4, 6));
+        this.addSpawn(EntityClassification.CREATURE, new SpawnListEntry(ModEntities.GROWTH_SAPPER, 20, 4, 6));
         this.addSpawn(EntityClassification.CREATURE, new SpawnListEntry(ModEntities.CRYSTAL_GOLEM, 15, 1, 3));
 
         //flowers.add(new FlowerEntry(GDBlocks.spotted_kersei.getDefaultState(), 5));

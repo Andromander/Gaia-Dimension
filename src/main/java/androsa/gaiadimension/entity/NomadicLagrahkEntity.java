@@ -6,7 +6,6 @@ import androsa.gaiadimension.biomes.VolcaniclandsBiome;
 import androsa.gaiadimension.block.AbstractGaiaGrassBlock;
 import androsa.gaiadimension.registry.ModBlocks;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.LookAtGoal;
 import net.minecraft.entity.ai.goal.LookRandomlyGoal;
@@ -18,6 +17,7 @@ import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
@@ -58,7 +58,7 @@ public class NomadicLagrahkEntity extends CreatureEntity {
      * Get the variant integer
      */
     public int getEntityVariant() {
-        return dataManager.get(LAGRAHK_VARIANT);
+        return MathHelper.clamp(dataManager.get(LAGRAHK_VARIANT), 0, 3);
     }
 
     /**
@@ -108,8 +108,7 @@ public class NomadicLagrahkEntity extends CreatureEntity {
 
     @Override
     public ILivingEntityData onInitialSpawn(IWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
-        spawnDataIn = super.onInitialSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
-        Biome biome = world.getBiome(new BlockPos(posX, posY, posZ));
+        Biome biome = worldIn.getBiome(new BlockPos(posX, posY, posZ));
 
         if (biome instanceof SaltDunesBiome) {
             setLagrahkVariant(1);
@@ -121,6 +120,6 @@ public class NomadicLagrahkEntity extends CreatureEntity {
             setLagrahkVariant(0);
         }
 
-        return spawnDataIn;
+        return super.onInitialSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
     }
 }

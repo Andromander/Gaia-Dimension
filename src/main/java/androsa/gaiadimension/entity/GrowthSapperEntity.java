@@ -61,7 +61,7 @@ public class GrowthSapperEntity extends CreatureEntity {
      * 2 = Nutrient Sapper
      * 3 = Mystified Sapper
      *
-     * @param type The integer variant of the entity
+     * //@param type The integer variant of the entity
      */
     public void setSapperVariant(int type) {
         dataManager.set(SAPPER_VARIANT, type);
@@ -90,9 +90,9 @@ public class GrowthSapperEntity extends CreatureEntity {
 
     @Override
     public ILivingEntityData onInitialSpawn(IWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
-        //Biome biome = worldIn.getBiome(new BlockPos(this));
+        Biome biome = worldIn.getBiome(new BlockPos(this));
 
-        /*if (biome instanceof PinkAgateForestBiome || biome instanceof CrystalPlainsBiome) {
+        if (biome instanceof PinkAgateForestBiome || biome instanceof CrystalPlainsBiome) {
             setSapperVariant(0);
         } else if (biome instanceof BlueAgateTaigaBiome) {
             setSapperVariant(1);
@@ -100,10 +100,10 @@ public class GrowthSapperEntity extends CreatureEntity {
             setSapperVariant(2);
         } else if (biome instanceof PurpleAgateSwampBiome) {
             setSapperVariant(3);
-        } else {*/
+        } else {
             Random rand = new Random();
             setSapperVariant(rand.nextInt(4));
-        //}
+        }
 
         return super.onInitialSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
     }
