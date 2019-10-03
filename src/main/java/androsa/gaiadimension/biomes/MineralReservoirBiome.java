@@ -17,6 +17,6 @@ public class MineralReservoirBiome extends BaseGaiaBiome {
         GaiaBiomeFeatures.addBasicOres(this);
         GaiaBiomeFeatures.addUndergroundMushrooms(this);
         //TODO: Salt Growth
-        this.addSpawn(EntityClassification.WATER_CREATURE, new SpawnListEntry(ModEntities.MINERAL_ARENTHIS, 10, 1, 3));
+        this.addSpawn(EntityClassification.WATER_CREATURE, new SpawnListEntry(ModEntities.MINERAL_ARENTHIS.get(), 10, 1, 3));
     }
 }

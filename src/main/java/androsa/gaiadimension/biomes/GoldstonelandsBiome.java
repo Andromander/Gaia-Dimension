@@ -26,8 +26,8 @@ public class GoldstonelandsBiome extends BaseGaiaBiome {
         GaiaBiomeFeatures.addBloomsCorrupt(this);
         GaiaBiomeFeatures.addCorruptMushrooms(this);
         GaiaBiomeFeatures.addUndergroundMushrooms(this);
-        this.addSpawn(EntityClassification.MONSTER, new SpawnListEntry(ModEntities.CONTORTED_NAGA, 10, 2, 3));
-        this.addSpawn(EntityClassification.MONSTER, new SpawnListEntry(ModEntities.CORRUPT_SAPPER, 20, 2, 4));
+        this.addSpawn(EntityClassification.MONSTER, new SpawnListEntry(ModEntities.CONTORTED_NAGA.get(), 10, 2, 3));
+        this.addSpawn(EntityClassification.MONSTER, new SpawnListEntry(ModEntities.CORRUPT_SAPPER.get(), 20, 2, 4));
         //TODO: Corrupt Lagrahk
 
         //flowers.clear();
@@ -36,11 +36,6 @@ public class GoldstonelandsBiome extends BaseGaiaBiome {
 
         skyColor = GaiaSkyColors.GOLDSTONE;
     }
-
-    /*@Override
-    public WorldGenAbstractTree getRandomTreeFeature(Random par1Random) {
-        return par1Random.nextInt(5) == 0 ? new GDGenNoTrees() : par1Random.nextInt(4) == 0 ? GaiaGenCorruptTrees : new GDGenNoTrees();
-    }*/
 
     @Override
     @OnlyIn(Dist.CLIENT)

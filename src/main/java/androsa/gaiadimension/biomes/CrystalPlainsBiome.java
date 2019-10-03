@@ -21,14 +21,9 @@ public class CrystalPlainsBiome extends BaseGaiaBiome {
         GaiaBiomeFeatures.addBloomsNormal(this);
         GaiaBiomeFeatures.addPinkMushrooms(this);
         GaiaBiomeFeatures.addUndergroundMushrooms(this);
-        this.addSpawn(EntityClassification.CREATURE, new SpawnListEntry(ModEntities.GROWTH_SAPPER, 20, 4, 6));
-        this.addSpawn(EntityClassification.CREATURE, new SpawnListEntry(ModEntities.CRYSTAL_GOLEM, 15, 1, 3));
+        this.addSpawn(EntityClassification.CREATURE, new SpawnListEntry(ModEntities.GROWTH_SAPPER.get(), 20, 4, 6));
+        this.addSpawn(EntityClassification.CREATURE, new SpawnListEntry(ModEntities.CRYSTAL_GOLEM.get(), 15, 1, 3));
 
         //flowers.add(new FlowerEntry(GDBlocks.spotted_kersei.getDefaultState(), 5));
     }
-
-    /*@Override
-    public WorldGenAbstractTree getRandomTreeFeature(Random par1Random) {
-        return par1Random.nextInt(3) == 0 ? new GDGenNoTrees() : par1Random.nextInt(12) == 0 ? GaiaGenPinkTrees : new GDGenNoTrees();
-    }*/
 }

@@ -9,15 +9,17 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraftforge.fluids.*;
 
+import java.util.function.Supplier;
+
 public class ScaynyxBucketItem extends BucketItem {
 
-    public ScaynyxBucketItem(Fluid fluid) {
+    public ScaynyxBucketItem(Supplier<? extends Fluid> fluid) {
         super(fluid, new Properties().maxStackSize(1).group(GaiaItemGroups.GAIA_ITEMS));
     }
 
     @Override
     protected ItemStack emptyBucket(ItemStack stack, PlayerEntity entity) {
-        return !entity.abilities.isCreativeMode ? new ItemStack(ModItems.scaynyx_bucket) : stack;
+        return !entity.abilities.isCreativeMode ? new ItemStack(ModItems.scaynyx_bucket.get()) : stack;
     }
 
     /*

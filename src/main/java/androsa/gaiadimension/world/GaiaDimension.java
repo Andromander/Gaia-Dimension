@@ -36,10 +36,10 @@ public class GaiaDimension extends Dimension {
 
     @Override
     public ChunkGenerator<?> createChunkGenerator() {
-        ChunkGeneratorType<GaiaGenerationSettings, GaiaChunkGenerator> chunkGen = ModDimensions.GAIA_GEN;
+        ChunkGeneratorType<GaiaGenerationSettings, GaiaChunkGenerator> chunkGen = ModDimensions.GAIA_GEN.get();
         GaiaGenerationSettings gaisSettings = chunkGen.createSettings();
-        BiomeProviderType<GaiaBiomeProviderSettings, GaiaBiomeProvider> biomeProvider = ModDimensions.GAIA_DIMENSION;
-        return chunkGen.create(this.world, ModDimensions.GAIA_DIMENSION.create(biomeProvider.createSettings().setGeneratorSettings(gaisSettings).setWorldInfo(this.world.getWorldInfo())), gaisSettings);
+        BiomeProviderType<GaiaBiomeProviderSettings, GaiaBiomeProvider> biomeProvider = ModDimensions.GAIA_DIMENSION.get();
+        return chunkGen.create(this.world, ModDimensions.GAIA_DIMENSION.get().create(biomeProvider.createSettings().setGeneratorSettings(gaisSettings).setWorldInfo(this.world.getWorldInfo())), gaisSettings);
     }
 
     @Override
@@ -264,7 +264,7 @@ public class GaiaDimension extends Dimension {
     public Biome getBiome(BlockPos pos) {
         Biome biome = super.getBiome(pos);
         if (biome == null) {
-            biome = ModBiomes.pink_agate_forest;
+            biome = ModBiomes.pink_agate_forest.get();
         }
         return biome;
     }
@@ -281,4 +281,8 @@ public class GaiaDimension extends Dimension {
     public boolean canDoRainSnowIce(@Nullable Chunk chunk) {
         return false;
     }
+
+    //TODO: What happens if it is storming and someone enters Gaia?
+    @Override
+    public void updateWeather(Runnable defaultLogic) { }
 }

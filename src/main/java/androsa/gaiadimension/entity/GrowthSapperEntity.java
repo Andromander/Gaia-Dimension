@@ -85,7 +85,7 @@ public class GrowthSapperEntity extends CreatureEntity {
     }
 
     public static boolean canSpawnHere(EntityType<GrowthSapperEntity> entity, IWorld world, SpawnReason spawn, BlockPos pos, Random random) {
-        return world.getBlockState(pos.down()).getBlock() == ModBlocks.glitter_grass && world.getLightSubtracted(pos, 0) > 8;
+        return world.getBlockState(pos.down()).getBlock() == ModBlocks.glitter_grass.get() && world.getLightSubtracted(pos, 0) > 8;
     }
 
     @Override

@@ -18,12 +18,12 @@ import java.util.function.Function;
 
 @ParametersAreNonnullByDefault
 public class FossilizedTreeFeature extends AbstractTreeFeature<NoFeatureConfig> {
-    private static final BlockState TRUNK = ModBlocks.fossilized_log.getDefaultState();
-    private static final BlockState LEAF = ModBlocks.fossilized_leaves.getDefaultState();
+    private static final BlockState TRUNK = ModBlocks.fossilized_log.get().getDefaultState();
+    private static final BlockState LEAF = ModBlocks.fossilized_leaves.get().getDefaultState();
 
     public FossilizedTreeFeature(Function<Dynamic<?>, ? extends NoFeatureConfig> configIn, boolean flag) {
         super(configIn, flag);
-        this.setSapling((IPlantable)ModBlocks.fossilized_sapling);
+        this.setSapling((IPlantable)ModBlocks.fossilized_sapling.get());
     }
 
     @Override

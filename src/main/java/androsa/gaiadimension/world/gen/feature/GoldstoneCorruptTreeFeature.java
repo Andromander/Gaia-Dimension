@@ -19,7 +19,7 @@ public class GoldstoneCorruptTreeFeature extends AbstractTreeFeature<NoFeatureCo
 
     public GoldstoneCorruptTreeFeature(Function<Dynamic<?>, ? extends NoFeatureConfig> configIn, boolean flag) {
         super(configIn, flag);
-        this.setSapling((IPlantable) ModBlocks.corrupted_sapling);
+        this.setSapling((IPlantable) ModBlocks.corrupted_sapling.get());
     }
 
     @Override
@@ -71,7 +71,7 @@ public class GoldstoneCorruptTreeFeature extends AbstractTreeFeature<NoFeatureCo
                                 BlockPos tPos = new BlockPos(j3, l2, i2);
                                 if (Math.abs(k3) != k2 || Math.abs(j2) != k2 || k2 <= 0) {
                                     if (isAirOrLeaves(world, tPos)) {
-                                        this.setLogState(changedBlocks, world, tPos, ModBlocks.corrupted_leaves.getDefaultState(), boundingBox);
+                                        this.setLogState(changedBlocks, world, tPos, ModBlocks.corrupted_leaves.get().getDefaultState(), boundingBox);
                                     }
                                 }
                             }
@@ -88,7 +88,7 @@ public class GoldstoneCorruptTreeFeature extends AbstractTreeFeature<NoFeatureCo
                     for (int i3 = 0; i3 < height - 1; ++i3) {
                         BlockPos cPos = pos.up(i3);
                         if (isAirOrLeaves(world, cPos)) {
-                            this.setLogState(changedBlocks, world, cPos, ModBlocks.corrupted_log.getDefaultState(), boundingBox);
+                            this.setLogState(changedBlocks, world, cPos, ModBlocks.corrupted_log.get().getDefaultState(), boundingBox);
                         }
                     }
 

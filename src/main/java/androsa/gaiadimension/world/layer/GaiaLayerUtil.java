@@ -3,20 +3,41 @@ package androsa.gaiadimension.world.layer;
 import androsa.gaiadimension.registry.ModBiomes;
 import com.google.common.collect.ImmutableList;
 import net.minecraft.util.registry.Registry;
+import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.IExtendedNoiseRandom;
 import net.minecraft.world.gen.LazyAreaLayerContext;
 import net.minecraft.world.gen.area.IArea;
 import net.minecraft.world.gen.area.IAreaFactory;
 import net.minecraft.world.gen.area.LazyArea;
 import net.minecraft.world.gen.layer.*;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.RegistryObject;
+import net.minecraftforge.fml.event.lifecycle.FMLModIdMappingEvent;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.function.LongFunction;
+
 
 public class GaiaLayerUtil {
 
-    protected static final int RIVER = Registry.BIOME.getId(ModBiomes.mineral_river);
-    protected static final int RESERVOIR = Registry.BIOME.getId(ModBiomes.mineral_reservoir);
-    protected static final int FOREST = Registry.BIOME.getId(ModBiomes.pink_agate_forest);
+    private static final List<LazyInt> CACHES = new ArrayList<>();
+
+    protected static final LazyInt RIVER = lazyId(ModBiomes.mineral_river);
+    protected static final LazyInt RESERVOIR = lazyId(ModBiomes.mineral_reservoir);
+    protected static final LazyInt PINK_FOREST = lazyId(ModBiomes.pink_agate_forest);
+    protected static final LazyInt BLUE_FOREST = lazyId(ModBiomes.blue_agate_taiga);
+    protected static final LazyInt GREEN_FOREST = lazyId(ModBiomes.green_agate_jungle);
+    protected static final LazyInt PURPLE_FOREST = lazyId(ModBiomes.purple_agate_swamp);
+    protected static final LazyInt PLAINS = lazyId(ModBiomes.crystal_plains);
+    protected static final LazyInt DUNES = lazyId(ModBiomes.salt_dunes);
+    protected static final LazyInt WILDWOOD = lazyId(ModBiomes.mutant_agate_wildwood);
+
+    static LazyInt lazyId(RegistryObject<Biome> biome) {
+        LazyInt lazyInt = new LazyInt(biome.lazyMap(Registry.BIOME::getId));
+        CACHES.add(lazyInt);
+        return lazyInt;
+    }
 
     public static <T extends IArea, C extends IExtendedNoiseRandom<T>> ImmutableList<IAreaFactory<T>> makeLayers(LongFunction<C> contextFactory) {
         IAreaFactory<T> biomes = new GaiaBiomesLayer().apply(contextFactory.apply(1L));
@@ -44,5 +65,10 @@ public class GaiaLayerUtil {
         Layer layer1 = new Layer(immutablelist.get(1));
         Layer layer2 = new Layer(immutablelist.get(2));
         return new Layer[]{layer, layer1, layer2};
+    }
+
+    @SubscribeEvent
+    public static void onModIdMapped(FMLModIdMappingEvent e) {
+        CACHES.forEach(LazyInt::invalidate);
     }
 }

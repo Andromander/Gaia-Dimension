@@ -26,18 +26,13 @@ public class BlueAgateTaigaBiome extends BaseGaiaBiome {
         GaiaBiomeFeatures.addBloomsNormal(this);
         GaiaBiomeFeatures.addBlueMushrooms(this);
         GaiaBiomeFeatures.addUndergroundMushrooms(this);
-        this.addSpawn(EntityClassification.CREATURE, new SpawnListEntry(ModEntities.GROWTH_SAPPER, 30, 3, 5));
-        this.addSpawn(EntityClassification.MONSTER, new SpawnListEntry(ModEntities.HOWLITE_WOLF, 15, 2, 4));
-        this.addSpawn(EntityClassification.MONSTER, new SpawnListEntry(ModEntities.BLUE_HOWLITE_WOLF, 1, 1, 1));
+        this.addSpawn(EntityClassification.CREATURE, new SpawnListEntry(ModEntities.GROWTH_SAPPER.get(), 30, 3, 5));
+        this.addSpawn(EntityClassification.MONSTER, new SpawnListEntry(ModEntities.HOWLITE_WOLF.get(), 15, 2, 4));
+        this.addSpawn(EntityClassification.MONSTER, new SpawnListEntry(ModEntities.BLUE_HOWLITE_WOLF.get(), 1, 1, 1));
 
         skyColor = GaiaSkyColors.BLUE_AGATE;
         //flowers.add(new FlowerEntry(GDBlocks.thorny_wiltha.getDefaultState(), 5));
     }
-
-    /*@Override
-    public WorldGenAbstractTree getRandomTreeFeature(Random par1Random) {
-        return par1Random.nextInt(8) == 0 ? new GDGenNoTrees() : par1Random.nextInt(4) == 0 ? GaiaGenBlueTrees : new GDGenNoTrees();
-    }*/
 
     @Override
     @OnlyIn(Dist.CLIENT)

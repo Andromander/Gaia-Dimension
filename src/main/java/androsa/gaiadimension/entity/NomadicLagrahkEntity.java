@@ -103,7 +103,11 @@ public class NomadicLagrahkEntity extends CreatureEntity {
 
     public static boolean canSpawnHere(EntityType<NomadicLagrahkEntity> entity, IWorld world, SpawnReason spawn, BlockPos pos, Random random) {
         Block block = world.getBlockState(pos.down()).getBlock();
-        return ((block instanceof AbstractGaiaGrassBlock && block != ModBlocks.corrupt_grass) || block == ModBlocks.wasteland_stone || block == ModBlocks.volcanic_rock || block == ModBlocks.salt) && world.getLightSubtracted(pos, 0) > 8;
+        return ((block instanceof AbstractGaiaGrassBlock && block != ModBlocks.corrupt_grass.get())
+                || block == ModBlocks.wasteland_stone.get()
+                || block == ModBlocks.volcanic_rock.get()
+                || block == ModBlocks.salt.get())
+                && world.getLightSubtracted(pos, 0) > 8;
     }
 
     @Override

@@ -19,7 +19,7 @@ public class BlueAgateTreeFeature extends AbstractTreeFeature<NoFeatureConfig> {
 
     public BlueAgateTreeFeature(Function<Dynamic<?>, ? extends NoFeatureConfig> configIn, boolean flag) {
         super(configIn, flag);
-        this.setSapling((IPlantable) ModBlocks.blue_agate_sapling);
+        this.setSapling((IPlantable) ModBlocks.blue_agate_sapling.get());
     }
 
     @Override
@@ -72,7 +72,7 @@ public class BlueAgateTreeFeature extends AbstractTreeFeature<NoFeatureConfig> {
                             if (Math.abs(j2) != i3 || Math.abs(l2) != i3 || i3 <= 0) {
                                 BlockPos blockpos = new BlockPos(i2, j4, k2);
                                 if (isAirOrLeaves(world, blockpos) || isTallPlants(world, blockpos)) {
-                                    this.setLogState(changedBlocks, world, blockpos, ModBlocks.blue_agate_leaves.getDefaultState(), boundingBox);
+                                    this.setLogState(changedBlocks, world, blockpos, ModBlocks.blue_agate_leaves.get().getDefaultState(), boundingBox);
                                 }
                             }
                         }
@@ -96,7 +96,7 @@ public class BlueAgateTreeFeature extends AbstractTreeFeature<NoFeatureConfig> {
                 for (int k4 = 0; k4 < height - i4; ++k4) {
                     BlockPos upN = pos.up(k4);
                     if (isAirOrLeaves(world, upN)) {
-                        this.setLogState(changedBlocks, world, pos.up(k4), ModBlocks.blue_agate_log.getDefaultState(), boundingBox);
+                        this.setLogState(changedBlocks, world, pos.up(k4), ModBlocks.blue_agate_log.get().getDefaultState(), boundingBox);
                     }
                 }
 

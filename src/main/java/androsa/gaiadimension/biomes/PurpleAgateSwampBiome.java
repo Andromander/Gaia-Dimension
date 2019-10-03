@@ -28,9 +28,9 @@ public class PurpleAgateSwampBiome extends BaseGaiaBiome {
         GaiaBiomeFeatures.addBloomsRare(this);
         GaiaBiomeFeatures.addPurpleMushrooms(this);
         GaiaBiomeFeatures.addUndergroundMushrooms(this);
-        this.addSpawn(EntityClassification.CREATURE, new SpawnListEntry(ModEntities.GROWTH_SAPPER, 10, 3, 5));
-        this.addSpawn(EntityClassification.CREATURE, new SpawnListEntry(ModEntities.SPELLBOUND_ELEMENTAL, 10, 1, 2));
-        this.addSpawn(EntityClassification.MONSTER, new SpawnListEntry(ModEntities.MUCKLING, 10, 1, 1));
+        this.addSpawn(EntityClassification.CREATURE, new SpawnListEntry(ModEntities.GROWTH_SAPPER.get(), 10, 3, 5));
+        this.addSpawn(EntityClassification.CREATURE, new SpawnListEntry(ModEntities.SPELLBOUND_ELEMENTAL.get(), 10, 1, 2));
+        this.addSpawn(EntityClassification.MONSTER, new SpawnListEntry(ModEntities.MUCKLING.get(), 10, 1, 1));
 
         //flowers.clear();
         //flowers.add(new FlowerEntry(GDBlocks.ouzium.getDefaultState(), 20));
@@ -38,11 +38,6 @@ public class PurpleAgateSwampBiome extends BaseGaiaBiome {
         //flowers.add(new FlowerEntry(GDBlocks.bulbous_hobina.getDefaultState(), 5));
         skyColor = GaiaSkyColors.PURPLE_AGATE;
     }
-
-    /*@Override
-    public WorldGenAbstractTree getRandomTreeFeature(Random par1Random) {
-        return par1Random.nextInt(5) == 0 ? new GDGenNoTrees() : par1Random.nextInt(3) == 0 ? GaiaGenPurpleTrees : new GDGenNoTrees();
-    }*/
 
     @Override
     @OnlyIn(Dist.CLIENT)

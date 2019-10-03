@@ -18,7 +18,7 @@ import java.util.function.Function;
 @ParametersAreNonnullByDefault
 public class StaticSpikeFeature extends Feature<NoFeatureConfig> {
 
-    private final BlockState block = ModBlocks.charged_mineral.getDefaultState();
+    private final BlockState block = ModBlocks.charged_mineral.get().getDefaultState();
     private final int startHeight;
 
     public StaticSpikeFeature(Function<Dynamic<?>, ? extends NoFeatureConfig> configIn, int startHeightIn) {
@@ -38,7 +38,7 @@ public class StaticSpikeFeature extends Feature<NoFeatureConfig> {
                 if (worldIn.isBlockLoaded(pos1)) {
                     Block blockBelow = worldIn.getBlockState(pos1.down()).getBlock();
 
-                    if (blockBelow != ModBlocks.wasteland_stone && blockBelow != ModBlocks.static_stone) {
+                    if (blockBelow != ModBlocks.wasteland_stone.get() && blockBelow != ModBlocks.static_stone.get()) {
                         flag = false;
                     }
                 }

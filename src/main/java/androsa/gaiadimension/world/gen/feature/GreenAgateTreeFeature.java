@@ -18,12 +18,12 @@ import java.util.function.Function;
 
 @ParametersAreNonnullByDefault
 public class GreenAgateTreeFeature extends AbstractTreeFeature<NoFeatureConfig> {
-    private static final BlockState TRUNK = ModBlocks.green_agate_log.getDefaultState();
-    private static final BlockState LEAF = ModBlocks.green_agate_leaves.getDefaultState();
+    private static final BlockState TRUNK = ModBlocks.green_agate_log.get().getDefaultState();
+    private static final BlockState LEAF = ModBlocks.green_agate_leaves.get().getDefaultState();
 
     public GreenAgateTreeFeature(Function<Dynamic<?>, ? extends NoFeatureConfig> configIn, boolean flag) {
         super(configIn, flag);
-        this.setSapling((IPlantable)ModBlocks.green_agate_sapling);
+        this.setSapling((IPlantable)ModBlocks.green_agate_sapling.get());
     }
 
     @Override

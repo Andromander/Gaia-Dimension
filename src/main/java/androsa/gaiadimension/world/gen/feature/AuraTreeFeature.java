@@ -9,6 +9,7 @@ import net.minecraft.world.IWorldWriter;
 import net.minecraft.world.gen.IWorldGenerationReader;
 import net.minecraft.world.gen.feature.AbstractTreeFeature;
 import net.minecraft.world.gen.feature.NoFeatureConfig;
+import net.minecraftforge.common.IPlantable;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.Random;
@@ -17,11 +18,12 @@ import java.util.function.Function;
 
 @ParametersAreNonnullByDefault
 public class AuraTreeFeature extends AbstractTreeFeature<NoFeatureConfig> {
-    private static final BlockState TRUNK = ModBlocks.aura_log.getDefaultState();
-    private static final BlockState LEAF = ModBlocks.aura_leaves.getDefaultState();
+    private static final BlockState TRUNK = ModBlocks.aura_log.get().getDefaultState();
+    private static final BlockState LEAF = ModBlocks.aura_leaves.get().getDefaultState();
 
     public AuraTreeFeature(Function<Dynamic<?>, ? extends NoFeatureConfig> configIn, boolean flag) {
         super(configIn, flag);
+        setSapling((IPlantable)ModBlocks.aura_sapling.get());
     }
 
     @Override

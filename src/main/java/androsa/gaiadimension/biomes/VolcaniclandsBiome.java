@@ -25,7 +25,7 @@ public class VolcaniclandsBiome extends BaseGaiaBiome implements IDryBiome {
         GaiaBiomeFeatures.addCrystalGrowthBurnt(this);
         GaiaBiomeFeatures.addUndergroundMushrooms(this);
         //TODO: Fire Geysers
-        this.addSpawn(EntityClassification.MONSTER, new SpawnListEntry(ModEntities.LESSER_SPITFIRE, 10, 2, 4));
+        this.addSpawn(EntityClassification.MONSTER, new SpawnListEntry(ModEntities.LESSER_SPITFIRE.get(), 10, 2, 4));
 
         flowers.clear();
         skyColor = GaiaSkyColors.VOLCANICLAND;

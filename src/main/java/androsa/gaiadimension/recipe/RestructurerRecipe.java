@@ -33,7 +33,7 @@ public class RestructurerRecipe implements IRecipe<IInventory> {
 
     @Override
     public ItemStack getIcon() {
-        return new ItemStack(ModBlocks.restructurer);
+        return new ItemStack(ModBlocks.restructurer.get());
     }
 
     @Override
@@ -95,7 +95,7 @@ public class RestructurerRecipe implements IRecipe<IInventory> {
 
     @Override
     public IRecipeSerializer<?> getSerializer() {
-        return ModRecipes.RESTRUCTURING_SERIALIZER;
+        return ModRecipes.RESTRUCTURING_SERIALIZER.get();
     }
 
     /*private static final RestructurerRecipe glitteringBase = new RestructurerRecipe();

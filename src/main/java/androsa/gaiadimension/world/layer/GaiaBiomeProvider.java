@@ -22,21 +22,21 @@ public class GaiaBiomeProvider extends BiomeProvider {
     private final Layer genBiomes;
     private final Layer biomeFactoryLayer;
     private final Biome[] biomes = new Biome[]{
-            pink_agate_forest,
-            blue_agate_taiga,
-            green_agate_jungle,
-            purple_agate_swamp,
-            fossil_woodland,
-            mutant_agate_wildwood,
-            volcanic_lands,
-            static_wasteland,
-            goldstone_lands,
-            crystal_plains,
-            salt_dunes,
-            shining_grove,
-            smoldering_bog,
-            mineral_reservoir,
-            mineral_river};
+            pink_agate_forest.get(),
+            blue_agate_taiga.get(),
+            green_agate_jungle.get(),
+            purple_agate_swamp.get(),
+            fossil_woodland.get(),
+            mutant_agate_wildwood.get(),
+            volcanic_lands.get(),
+            static_wasteland.get(),
+            goldstone_lands.get(),
+            crystal_plains.get(),
+            salt_dunes.get(),
+            shining_grove.get(),
+            smoldering_bog.get(),
+            mineral_reservoir.get(),
+            mineral_river.get()};
 
 
     public GaiaBiomeProvider(GaiaBiomeProviderSettings settings) {
@@ -46,11 +46,11 @@ public class GaiaBiomeProvider extends BiomeProvider {
         this.biomeFactoryLayer = alayer[1];
 
         getBiomesToSpawnIn().clear();
-        getBiomesToSpawnIn().add(ModBiomes.pink_agate_forest);
-        getBiomesToSpawnIn().add(ModBiomes.blue_agate_taiga);
-        getBiomesToSpawnIn().add(ModBiomes.green_agate_jungle);
-        getBiomesToSpawnIn().add(ModBiomes.purple_agate_swamp);
-        getBiomesToSpawnIn().add(ModBiomes.crystal_plains);
+        getBiomesToSpawnIn().add(ModBiomes.pink_agate_forest.get());
+        getBiomesToSpawnIn().add(ModBiomes.blue_agate_taiga.get());
+        getBiomesToSpawnIn().add(ModBiomes.green_agate_jungle.get());
+        getBiomesToSpawnIn().add(ModBiomes.purple_agate_swamp.get());
+        getBiomesToSpawnIn().add(ModBiomes.crystal_plains.get());
     }
 
     @Override

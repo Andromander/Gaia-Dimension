@@ -40,6 +40,6 @@ public class RuggedLurmorusEntity extends CreatureEntity {
     }
 
     public static boolean canSpawnHere(EntityType<RuggedLurmorusEntity> entity, IWorld world, SpawnReason spawn, BlockPos pos, Random random) {
-        return world.getBlockState(pos.down()).getBlock() == ModBlocks.glitter_grass && world.getLightSubtracted(pos, 0) > 8;
+        return world.getBlockState(pos.down()).getBlock() == ModBlocks.glitter_grass.get() && world.getLightSubtracted(pos, 0) > 8;
     }
 }

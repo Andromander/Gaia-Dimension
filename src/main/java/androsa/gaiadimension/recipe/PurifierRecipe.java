@@ -33,7 +33,7 @@ public class PurifierRecipe implements IRecipe<IInventory> {
 
     @Override
     public ItemStack getIcon() {
-        return new ItemStack(ModBlocks.purifier);
+        return new ItemStack(ModBlocks.purifier.get());
     }
 
     @Override
@@ -95,7 +95,7 @@ public class PurifierRecipe implements IRecipe<IInventory> {
 
     @Override
     public IRecipeSerializer<?> getSerializer() {
-        return ModRecipes.PURIFYING_SERIALIZER;
+        return ModRecipes.PURIFYING_SERIALIZER.get();
     }
 
     /*private static final PurifierRecipes purifyingBase = new PurifierRecipes();

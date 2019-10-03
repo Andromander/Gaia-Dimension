@@ -94,7 +94,7 @@ public class PurifierTileEntity extends LockableTileEntity implements ISidedInve
     private final Map<ResourceLocation, Integer> recipeMap = Maps.newHashMap();
 
     public PurifierTileEntity() {
-        super(ModTileEntities.PURIFIER);
+        super(ModTileEntities.PURIFIER.get());
     }
 
     @Override
@@ -110,12 +110,12 @@ public class PurifierTileEntity extends LockableTileEntity implements ISidedInve
     /** Burn times for the third slot*/
     public static Map<Item, Integer> getThirdFuelBurnTime() {
         Map<Item, Integer> map = Maps.newLinkedHashMap();
-        addItemToMap(map, ModItems.bismuth_residue, 200);
-        addItemToMap(map, ModItems.bismuth_crystal, 1800);
-        addItemToMap(map, ModBlocks.bismuth_block, 16200);
-        addItemToMap(map, ModItems.black_residue, 100);
-        addItemToMap(map, ModItems.tektite, 900);
-        addItemToMap(map, ModBlocks.tektite_block, 8100);
+        addItemToMap(map, ModItems.bismuth_residue.get(), 200);
+        addItemToMap(map, ModItems.bismuth_crystal.get(), 1800);
+        addItemToMap(map, ModBlocks.bismuth_block.get(), 16200);
+        addItemToMap(map, ModItems.black_residue.get(), 100);
+        addItemToMap(map, ModItems.tektite.get(), 900);
+        addItemToMap(map, ModBlocks.tektite_block.get(), 8100);
         return map;
     }
 

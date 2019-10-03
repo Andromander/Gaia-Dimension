@@ -27,27 +27,13 @@ public class GreenAgateJungleBiome extends BaseGaiaBiome {
         GaiaBiomeFeatures.addBloomsNormal(this);
         GaiaBiomeFeatures.addGreenMushrooms(this);
         GaiaBiomeFeatures.addUndergroundMushrooms(this);
-        this.addSpawn(EntityClassification.CREATURE, new SpawnListEntry(ModEntities.GROWTH_SAPPER, 30, 2, 4));
-        this.addSpawn(EntityClassification.AMBIENT, new SpawnListEntry(ModEntities.MARKUZAR_PLANT, 15, 1, 3));
+        this.addSpawn(EntityClassification.CREATURE, new SpawnListEntry(ModEntities.GROWTH_SAPPER.get(), 30, 2, 4));
+        this.addSpawn(EntityClassification.AMBIENT, new SpawnListEntry(ModEntities.MARKUZAR_PLANT.get(), 15, 3, 3));
         //TODO: Moss Agate Lizard
 
         //flowers.add(new FlowerEntry(GDBlocks.roofed_agaric.getDefaultState(), 5));
         skyColor = GaiaSkyColors.GREEN_AGATE;
-        //biomeDecorator.treesPerChunk = 20;
     }
-
-    /*@Override
-    public WorldGenAbstractTree getRandomTreeFeature(Random rand) {
-        if (rand.nextInt(2) == 0) {
-            if (rand.nextInt(2) == 0) {
-                return new WorldGenShrub(GDBlocks.green_agate_log.getDefaultState(), GDBlocks.green_agate_leaves.getDefaultState());
-            } else {
-                return GaiaGenGreenTrees;
-            }
-        } else {
-            return new GDGenNoTrees();
-        }
-    }*/
 
     @Override
     @OnlyIn(Dist.CLIENT)

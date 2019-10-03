@@ -16,7 +16,7 @@ public class SaltDunesBiome extends BaseGaiaBiome {
         GaiaBiomeFeatures.addPocketsUnderground(this);
         GaiaBiomeFeatures.addBasicOres(this);
         GaiaBiomeFeatures.addUndergroundMushrooms(this);
-        this.addSpawn(EntityClassification.CREATURE, new SpawnListEntry(ModEntities.SALTION, 15, 1, 3));
+        this.addSpawn(EntityClassification.CREATURE, new SpawnListEntry(ModEntities.SALTION.get(), 15, 1, 3));
 
         flowers.clear();
         skyColor = GaiaSkyColors.SALT_DUNES;

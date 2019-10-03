@@ -113,7 +113,7 @@ public class GoldFireBlock extends Block {
     @Deprecated
     public void onBlockAdded(BlockState state1, World worldIn, BlockPos pos, BlockState state2, boolean flag) {
         if (state2.getBlock() != state1.getBlock()) {
-            if (worldIn.dimension.getType() != DimensionType.OVERWORLD && worldIn.dimension.getType() != GaiaDimensionMod.gaia_dimension || !ModBlocks.gaia_portal.tryToCreatePortal(worldIn, pos)) {
+            if (worldIn.dimension.getType() != DimensionType.OVERWORLD && worldIn.dimension.getType() != GaiaDimensionMod.gaia_dimension || !((GaiaPortalBlock)ModBlocks.gaia_portal.get()).tryToCreatePortal(worldIn, pos)) {
                 if (!state1.isValidPosition(worldIn, pos)) {
                     worldIn.removeBlock(pos, false);
                 } else {

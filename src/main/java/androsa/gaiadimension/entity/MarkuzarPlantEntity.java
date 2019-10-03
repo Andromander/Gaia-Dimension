@@ -1,16 +1,15 @@
 package androsa.gaiadimension.entity;
 
-import androsa.gaiadimension.registry.ModBiomes;
 import androsa.gaiadimension.registry.ModBlocks;
 import net.minecraft.entity.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
-import net.minecraft.world.Difficulty;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 
 import java.util.Random;
 
+//TODO: Random colours of the petals
 public class MarkuzarPlantEntity extends CreatureEntity {
 
     public MarkuzarPlantEntity(EntityType<? extends MarkuzarPlantEntity> entity, World world) {
@@ -35,14 +34,14 @@ public class MarkuzarPlantEntity extends CreatureEntity {
         }
     }
 
-    public static boolean canSpawnHere(EntityType<MarkuzarPlantEntity> entity, IWorld world, SpawnReason spawn, BlockPos pos, Random random) {
-        return world.getDifficulty() != Difficulty.PEACEFUL &&
-                isValidSpawn(world, spawn, pos);
+    @Override
+    public boolean canSpawn(IWorld world, SpawnReason reason) {
+        return true;
     }
 
-    public static boolean isValidSpawn(IWorld world, SpawnReason spawn, BlockPos pos) {
+    public static boolean canSpawnHere(EntityType<MarkuzarPlantEntity> entity, IWorld world, SpawnReason spawn, BlockPos pos, Random random) {
         BlockPos blockpos = pos.down();
         return spawn == SpawnReason.SPAWNER ||
-                world.getBlockState(blockpos).getBlock() == ModBlocks.glitter_grass && world.getLight(blockpos) > 8 && world.getBiome(blockpos) == ModBiomes.green_agate_jungle;
+                world.getBlockState(blockpos).getBlock() == ModBlocks.glitter_grass.get() /*&& world.getLight(blockpos) > 8*/;
     }
 }

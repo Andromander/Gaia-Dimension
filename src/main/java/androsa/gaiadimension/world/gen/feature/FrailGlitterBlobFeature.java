@@ -23,13 +23,13 @@ public class FrailGlitterBlobFeature extends Feature<NoFeatureConfig> {
     public boolean place(IWorld worldIn, ChunkGenerator<? extends GenerationSettings> generator, Random rand, BlockPos pos, NoFeatureConfig config) {
         if (!worldIn.isAirBlock(pos)) {
             return false;
-        } else if (worldIn.getBlockState(pos.up()).getBlock() != ModBlocks.gaia_stone && worldIn.getBlockState(pos.down()).getBlock() != ModBlocks.gaia_stone) {
+        } else if (worldIn.getBlockState(pos.up()).getBlock() != ModBlocks.gaia_stone.get() && worldIn.getBlockState(pos.down()).getBlock() != ModBlocks.gaia_stone.get()) {
             return false;
         } else {
             if (pos.getY() > worldIn.getSeaLevel() || pos.getY() < 15)
                 return false;
 
-            worldIn.setBlockState(pos, ModBlocks.frail_glitter_block.getDefaultState(), 2);
+            worldIn.setBlockState(pos, ModBlocks.frail_glitter_block.get().getDefaultState(), 2);
 
             for(int i = 0; i < 1500; ++i) {
                 BlockPos blockpos = pos.add(rand.nextInt(8) - rand.nextInt(8), -rand.nextInt(12), rand.nextInt(8) - rand.nextInt(8));
@@ -37,7 +37,7 @@ public class FrailGlitterBlobFeature extends Feature<NoFeatureConfig> {
                     int j = 0;
 
                     for(Direction direction : Direction.values()) {
-                        if (worldIn.getBlockState(blockpos.offset(direction)).getBlock() == ModBlocks.frail_glitter_block) {
+                        if (worldIn.getBlockState(blockpos.offset(direction)).getBlock() == ModBlocks.frail_glitter_block.get()) {
                             ++j;
                         }
 
@@ -47,7 +47,7 @@ public class FrailGlitterBlobFeature extends Feature<NoFeatureConfig> {
                     }
 
                     if (j == 1) {
-                        worldIn.setBlockState(blockpos, ModBlocks.frail_glitter_block.getDefaultState(), 2);
+                        worldIn.setBlockState(blockpos, ModBlocks.frail_glitter_block.get().getDefaultState(), 2);
                     }
                 }
             }

@@ -22,7 +22,7 @@ public class SmolderingBogBiome extends BaseGaiaBiome implements IDryBiome {
         GaiaBiomeFeatures.addBismuthSpires(this);
         GaiaBiomeFeatures.addBismuthGeysers(this);
         GaiaBiomeFeatures.addUndergroundMushrooms(this);
-        this.addSpawn(EntityClassification.CREATURE, new SpawnListEntry(ModEntities.BISMUTH_ULETRUS, 15, 2, 3));
+        this.addSpawn(EntityClassification.CREATURE, new SpawnListEntry(ModEntities.BISMUTH_ULETRUS.get(), 15, 2, 3));
 
         flowers.clear();
         skyColor = GaiaSkyColors.BISMUTH;

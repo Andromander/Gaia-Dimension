@@ -33,7 +33,7 @@ public class RestructurerContainer extends Container {
     }
 
     public RestructurerContainer(int id, PlayerInventory invPlayer, IInventory restructurer, IIntArray slots) {
-        super(ModContainers.RESTRUCTURER, id);
+        super(ModContainers.RESTRUCTURER.get(), id);
         assertInventorySize(restructurer, 5);
         assertIntArraySize(slots, 4);
         tileRestructurer = restructurer;

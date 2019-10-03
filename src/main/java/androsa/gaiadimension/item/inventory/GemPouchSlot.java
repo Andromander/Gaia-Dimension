@@ -12,31 +12,32 @@ public class GemPouchSlot extends Slot {
         super(inv, index, xPosition, yPosition);
     }
 
+    //TODO: Make a tag for this?
     @Override
     public boolean isItemValid(ItemStack stack) {
         Item item = stack.getItem();
 
-        return (item == ModItems.sugilite ||
-        item == ModItems.hematite ||
-        item == ModItems.pyrite ||
-        item == ModItems.labradorite ||
-        item == ModItems.moonstone ||
-        item == ModItems.cinnabar ||
-        item == ModItems.red_opal ||
-        item == ModItems.blue_opal ||
-        item == ModItems.green_opal ||
-        item == ModItems.white_opal ||
-        item == ModItems.ixiolite ||
-        item == ModItems.proustite ||
-        item == ModItems.euclase ||
-        item == ModItems.leucite ||
-        item == ModItems.carnelian ||
-        item == ModItems.benitoite ||
-        item == ModItems.diopside ||
-        item == ModItems.chalcedony ||
-        item == ModItems.tektite ||
-        item == ModItems.goldstone ||
-        item == ModItems.aura_cluster ||
-        item == ModItems.bismuth_crystal);
+        return (item == ModItems.sugilite.get() ||
+        item == ModItems.hematite.get() ||
+        item == ModItems.pyrite.get() ||
+        item == ModItems.labradorite.get() ||
+        item == ModItems.moonstone.get() ||
+        item == ModItems.cinnabar.get() ||
+        item == ModItems.red_opal.get() ||
+        item == ModItems.blue_opal.get() ||
+        item == ModItems.green_opal.get() ||
+        item == ModItems.white_opal.get() ||
+        item == ModItems.ixiolite.get() ||
+        item == ModItems.proustite.get() ||
+        item == ModItems.euclase.get() ||
+        item == ModItems.leucite.get() ||
+        item == ModItems.carnelian.get() ||
+        item == ModItems.benitoite.get() ||
+        item == ModItems.diopside.get() ||
+        item == ModItems.chalcedony.get() ||
+        item == ModItems.tektite.get() ||
+        item == ModItems.goldstone.get() ||
+        item == ModItems.aura_cluster.get() ||
+        item == ModItems.bismuth_crystal.get());
     }
 }

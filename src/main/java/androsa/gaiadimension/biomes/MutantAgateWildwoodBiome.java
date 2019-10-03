@@ -28,7 +28,7 @@ public class MutantAgateWildwoodBiome extends BaseGaiaBiome {
         GaiaBiomeFeatures.addMysteryMushrooms(this);
         GaiaBiomeFeatures.addUndergroundMushrooms(this);
         //this.addSpawn(EntityClassification.CREATURE, new SpawnListEntry(ModEntities.GROWTH_SAPPER, 40, 3, 5));
-        this.addSpawn(EntityClassification.CREATURE, new SpawnListEntry(ModEntities.MUTANT_GROWTH_EXTRACTOR, 5, 2, 4));
+        this.addSpawn(EntityClassification.CREATURE, new SpawnListEntry(ModEntities.MUTANT_GROWTH_EXTRACTOR.get(), 5, 2, 4));
 
         //flowers.clear();
         //flowers.add(new FlowerEntry(GDBlocks.ouzium.getDefaultState(), 20));

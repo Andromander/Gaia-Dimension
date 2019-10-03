@@ -39,7 +39,7 @@ public class GaiaChampSwordItem extends SwordItem {
                 double px = entity.posX + random.nextFloat() * entity.getWidth() * 2.0F - entity.getWidth();
                 double py = entity.posY + random.nextFloat() * entity.getHeight();
                 double pz = entity.posZ + random.nextFloat() * entity.getWidth() * 2.0F - entity.getWidth();
-                entity.world.addParticle(new BlockParticleData(ParticleTypes.BLOCK, ModBlocks.gaia_portal.getDefaultState()), px, py, pz, 1, 1, 1);
+                entity.world.addParticle(new BlockParticleData(ParticleTypes.BLOCK, ModBlocks.gaia_portal.get().getDefaultState()), px, py, pz, 1, 1, 1);
             }
         }
         return false;

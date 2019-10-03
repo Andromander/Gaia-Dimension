@@ -12,7 +12,7 @@ import java.util.Random;
 public class MurkyGrassBlock extends AbstractGaiaGrassBlock {
 
     public MurkyGrassBlock() {
-        super(MaterialColor.GRAY, ModBlocks.boggy_soil);
+        super(MaterialColor.GRAY, ModBlocks.boggy_soil.get());
     }
 
     @Override

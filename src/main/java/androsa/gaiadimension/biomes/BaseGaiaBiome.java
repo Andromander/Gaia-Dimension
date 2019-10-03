@@ -21,14 +21,14 @@ public abstract class BaseGaiaBiome extends Biome {
 
         GaiaBiomeFeatures.addPrimalMassUnderground(this);
         GaiaBiomeFeatures.addCarver(this);
-        this.addSpawn(EntityClassification.CREATURE, new SpawnListEntry(ModEntities.NOMADIC_LAGRAHK, 15, 1, 2));
-        this.addSpawn(EntityClassification.WATER_CREATURE, new SpawnListEntry(ModEntities.SHALLOW_ARENTHIS, 10, 4, 4));
-        this.addSpawn(EntityClassification.MONSTER, new SpawnListEntry(ModEntities.CAVERN_TICK, 75, 4, 4));
-        this.addSpawn(EntityClassification.MONSTER, new SpawnListEntry(ModEntities.SHALURKER, 75, 4, 4));
-        this.addSpawn(EntityClassification.MONSTER, new SpawnListEntry(ModEntities.ARCHAIC_WARRIOR, 75, 4, 4));
-        this.addSpawn(EntityClassification.MONSTER, new SpawnListEntry(ModEntities.MUCKLING, 75, 4, 4));
+        this.addSpawn(EntityClassification.CREATURE, new SpawnListEntry(ModEntities.NOMADIC_LAGRAHK.get(), 15, 1, 2));
+        this.addSpawn(EntityClassification.WATER_CREATURE, new SpawnListEntry(ModEntities.SHALLOW_ARENTHIS.get(), 10, 2, 4));
+        this.addSpawn(EntityClassification.MONSTER, new SpawnListEntry(ModEntities.CAVERN_TICK.get(), 65, 2, 4));
+        this.addSpawn(EntityClassification.MONSTER, new SpawnListEntry(ModEntities.SHALURKER.get(), 65, 2, 4));
+        this.addSpawn(EntityClassification.MONSTER, new SpawnListEntry(ModEntities.ARCHAIC_WARRIOR.get(), 65, 2, 4));
+        this.addSpawn(EntityClassification.MONSTER, new SpawnListEntry(ModEntities.MUCKLING.get(), 65, 2, 4));
         this.addSpawn(EntityClassification.MONSTER, new SpawnListEntry(EntityType.ENDERMAN, 5, 1, 2));
-        this.addSpawn(EntityClassification.MONSTER, new SpawnListEntry(ModEntities.PRIMAL_BEAST, 25, 1, 2));
+        this.addSpawn(EntityClassification.MONSTER, new SpawnListEntry(ModEntities.PRIMAL_BEAST.get(), 25, 1, 2));
 
         //biomeDecorator.treesPerChunk = 5;
         //biomeDecorator.grassPerChunk = 3;
@@ -48,11 +48,6 @@ public abstract class BaseGaiaBiome extends Biome {
     @OnlyIn(Dist.CLIENT)
     public final short[] getFogRGB() {
         return skyColor.getFogColor();
-    }
-
-    @Override
-    public float getSpawningChance() {
-        return 0.12F;
     }
 
     @Override

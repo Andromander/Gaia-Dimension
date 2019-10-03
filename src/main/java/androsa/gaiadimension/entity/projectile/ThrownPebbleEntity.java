@@ -25,11 +25,11 @@ public class ThrownPebbleEntity extends ProjectileItemEntity {
     }
 
     public ThrownPebbleEntity(World worldIn, LivingEntity throwerIn) {
-        super(ModEntities.THROWN_PEBBLE, throwerIn, worldIn);
+        super(ModEntities.THROWN_PEBBLE.get(), throwerIn, worldIn);
     }
 
     public ThrownPebbleEntity(World worldIn, double x, double y, double z) {
-        super(ModEntities.THROWN_PEBBLE, x, y, z, worldIn);
+        super(ModEntities.THROWN_PEBBLE.get(), x, y, z, worldIn);
     }
 
     @Override
@@ -63,6 +63,6 @@ public class ThrownPebbleEntity extends ProjectileItemEntity {
 
     @Override
     protected Item func_213885_i() {
-        return ModItems.sturdy_pebble;
+        return ModItems.sturdy_pebble.get();
     }
 }

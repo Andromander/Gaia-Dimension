@@ -6,40 +6,34 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.ParticleManager;
 import net.minecraft.particles.BasicParticleType;
 import net.minecraft.particles.ParticleType;
-import net.minecraft.particles.ParticleTypes;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.client.event.ParticleFactoryRegisterEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.registries.ObjectHolder;
+import net.minecraftforge.registries.DeferredRegister;
+import net.minecraftforge.registries.ForgeRegistries;
 
-@ObjectHolder(GaiaDimensionMod.MODID)
 @Mod.EventBusSubscriber(modid = GaiaDimensionMod.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ModParticles {
-    public static final BasicParticleType GEYSER_SMOKE = new BasicParticleType(false);
-    public static final BasicParticleType RESTRUCTURER_FIRE = new BasicParticleType(false);
-    public static final BasicParticleType PURIFIER_FIRE = new BasicParticleType(false);
-    public static final BasicParticleType PORTAL = new BasicParticleType(false);
-    public static final BasicParticleType PYRITE = new BasicParticleType(false);
+
+    public static final DeferredRegister<ParticleType<?>> PARTICLE_TYPES = new DeferredRegister<>(ForgeRegistries.PARTICLE_TYPES, GaiaDimensionMod.MODID);
+
+    public static final RegistryObject<BasicParticleType> GEYSER_SMOKE = PARTICLE_TYPES.register("geyser_smoke", () -> new BasicParticleType(false));
+    public static final RegistryObject<BasicParticleType> RESTRUCTURER_FIRE = PARTICLE_TYPES.register("restructurer_fire", () -> new BasicParticleType(false));
+    public static final RegistryObject<BasicParticleType> PURIFIER_FIRE = PARTICLE_TYPES.register("purifier_fire", () -> new BasicParticleType(false));
+    public static final RegistryObject<BasicParticleType> PORTAL = PARTICLE_TYPES.register("portal", () -> new BasicParticleType(false));
+    public static final RegistryObject<BasicParticleType> PYRITE = PARTICLE_TYPES.register("pyrite", () -> new BasicParticleType(false));
 
     @SubscribeEvent
-    public static void registerParticles(RegistryEvent.Register<ParticleType<?>> e) {
-        e.getRegistry().register(GEYSER_SMOKE.setRegistryName("geyser_smoke"));
-        e.getRegistry().register(RESTRUCTURER_FIRE.setRegistryName("restructurer_fire"));
-        e.getRegistry().register(PURIFIER_FIRE.setRegistryName("purifier_fire"));
-        e.getRegistry().register(PORTAL.setRegistryName("portal"));
-        e.getRegistry().register(PYRITE.setRegistryName("pyrite"));
-    }
-
-    @OnlyIn(Dist.CLIENT)
-    public void registerFactories() {
+    public static void registerFactories(ParticleFactoryRegisterEvent e) {
         ParticleManager particles = Minecraft.getInstance().particles;
 
-        particles.registerFactory(GEYSER_SMOKE, GeyserSmokeParticle.Factory::new);
-        particles.registerFactory(RESTRUCTURER_FIRE, RestructurerFireParticle.Factory::new);
-        particles.registerFactory(PURIFIER_FIRE, PurifierFireParticle.Factory::new);
-        particles.registerFactory(PORTAL, GaiaPortalParticle.Factory::new);
-        particles.registerFactory(PYRITE, PyriteParticle.Factory::new);
+        particles.registerFactory(GEYSER_SMOKE.get(), GeyserSmokeParticle.Factory::new);
+        particles.registerFactory(RESTRUCTURER_FIRE.get(), RestructurerFireParticle.Factory::new);
+        particles.registerFactory(PURIFIER_FIRE.get(), PurifierFireParticle.Factory::new);
+        particles.registerFactory(PORTAL.get(), GaiaPortalParticle.Factory::new);
+        particles.registerFactory(PYRITE.get(), PyriteParticle.Factory::new);
     }
 }

@@ -33,7 +33,7 @@ public class MucklingEntity extends SlimeEntity {
     public static boolean canSpawnHere(EntityType<MucklingEntity> entity, IWorld world, SpawnReason spawn, BlockPos pos, Random random) {
         if (world.getDifficulty() != Difficulty.PEACEFUL) {
             Biome biome = world.getBiome(pos);
-            if (biome == ModBiomes.purple_agate_swamp || pos.getY() < 40 && random.nextFloat() < 0.5F) {
+            if (biome == ModBiomes.purple_agate_swamp.get() || pos.getY() < 40 && random.nextFloat() < 0.5F) {
                 return func_223315_a(entity, world, spawn, pos, random);
             }
         }
@@ -67,7 +67,7 @@ public class MucklingEntity extends SlimeEntity {
             World world = this.world;
             double d0 = this.posX + (double) f2;
             double d1 = this.posZ + (double) f3;
-            BlockState state = ModBlocks.gummy_glitter_block.getDefaultState();
+            BlockState state = ModBlocks.gummy_glitter_block.get().getDefaultState();
             world.addParticle(new BlockParticleData(ParticleTypes.BLOCK, state), d0, this.getBoundingBox().minY, d1, 0.0D, 0.0D, 0.0D);
         }
         return true;

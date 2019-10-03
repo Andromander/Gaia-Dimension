@@ -113,9 +113,9 @@ public class AuraShootBlock extends Block implements IPlantable {
                 if (ForgeHooks.onCropsGrowPre(worldIn, blockpos, state, true)) {
                     if (j == 5) {
                         worldIn.setBlockState(blockpos, this.getDefaultState());
-                        worldIn.setBlockState(pos, state.with(AGE, 0), 4);
+                        worldIn.setBlockState(pos, state.with(AGE, 0).with(IS_TOP, false), 3);
                     } else {
-                        worldIn.setBlockState(pos, state.with(AGE, j + 1), 4);
+                        worldIn.setBlockState(pos, state.with(AGE, j + 1), 3);
                     }
                     ForgeHooks.onCropsGrowPost(worldIn, pos, state);
                 }

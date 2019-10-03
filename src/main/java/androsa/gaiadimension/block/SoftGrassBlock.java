@@ -16,13 +16,13 @@ import java.util.Random;
 public class SoftGrassBlock extends AbstractGaiaGrassBlock {
 
     public SoftGrassBlock() {
-        super(MaterialColor.CYAN, ModBlocks.light_soil);
+        super(MaterialColor.CYAN, ModBlocks.light_soil.get());
     }
 
     @Override
     public void grow(World worldIn, Random rand, BlockPos pos, BlockState state) {
         BlockPos blockpos = pos.up();
-        BlockState growth = ModBlocks.crystal_growth.getDefaultState();
+        BlockState growth = ModBlocks.crystal_growth.get().getDefaultState();
 
         for(int i = 0; i < 128; ++i) {
             BlockPos blockpos1 = blockpos;

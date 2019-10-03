@@ -7,13 +7,14 @@ import androsa.gaiadimension.recipe.RestructurerRecipe;
 import androsa.gaiadimension.recipe.RestructurerRecipeSerializer;
 import net.minecraft.item.crafting.IRecipeSerializer;
 import net.minecraft.item.crafting.IRecipeType;
-import net.minecraftforge.event.RegistryEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.registries.ObjectHolder;
+import net.minecraftforge.fml.RegistryObject;
+import net.minecraftforge.registries.DeferredRegister;
+import net.minecraftforge.registries.ForgeRegistries;
 
-@Mod.EventBusSubscriber(modid = GaiaDimensionMod.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ModRecipes {
+
+    public static final DeferredRegister<IRecipeSerializer<?>> RECIPE_SERIALIZERS = new DeferredRegister<>(ForgeRegistries.RECIPE_SERIALIZERS, GaiaDimensionMod.MODID);
+
     //RecipeType
     public static final IRecipeType<RestructurerRecipe> RESTRUCTURING = new IRecipeType<RestructurerRecipe>() {
         @Override
@@ -29,16 +30,10 @@ public class ModRecipes {
     };
 
     //RecipeSerializer
-    @ObjectHolder("gaiadimension:restructuring")
-    public static final RestructurerRecipeSerializer<RestructurerRecipe> RESTRUCTURING_SERIALIZER = new RestructurerRecipeSerializer<>(RestructurerRecipe::new, 200);
-    @ObjectHolder("gaiadimension:purifying")
-    public static final PurifierRecipeSerializer<PurifierRecipe> PURIFYING_SERIALIZER = new PurifierRecipeSerializer<>(PurifierRecipe::new, 200);
-
-    @SubscribeEvent
-    public static void registerRecipeSerializers(RegistryEvent.Register<IRecipeSerializer<?>> e) {
-        e.getRegistry().register(RESTRUCTURING_SERIALIZER.setRegistryName("restructuring"));
-        e.getRegistry().register(PURIFYING_SERIALIZER.setRegistryName("purifying"));
-    }
+    public static final RegistryObject<RestructurerRecipeSerializer<RestructurerRecipe>> RESTRUCTURING_SERIALIZER = RECIPE_SERIALIZERS.register(
+            "restructuring", () -> new RestructurerRecipeSerializer<>(RestructurerRecipe::new, 200));
+    public static final RegistryObject<PurifierRecipeSerializer<PurifierRecipe>> PURIFYING_SERIALIZER = RECIPE_SERIALIZERS.register(
+            "purifying", () -> new PurifierRecipeSerializer<>(PurifierRecipe::new, 200));
 
     /*
     //===GLITTER FURNACE===//

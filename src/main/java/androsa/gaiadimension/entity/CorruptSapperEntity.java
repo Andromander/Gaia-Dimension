@@ -1,7 +1,6 @@
 package androsa.gaiadimension.entity;
 
 import androsa.gaiadimension.GaiaDimensionMod;
-import androsa.gaiadimension.registry.ModBiomes;
 import androsa.gaiadimension.registry.ModBlocks;
 import androsa.gaiadimension.registry.ModEffects;
 import net.minecraft.entity.*;
@@ -67,13 +66,18 @@ public class CorruptSapperEntity extends MonsterEntity {
                 }
 
                 if (i > 0) {
-                    ((LivingEntity)entityIn).addPotionEffect(new EffectInstance(ModEffects.goldstone_plague, i * 20, 0));
+                    ((LivingEntity)entityIn).addPotionEffect(new EffectInstance(ModEffects.goldstone_plague.get(), i * 20, 0));
                 }
             }
             return true;
         } else {
             return false;
         }
+    }
+
+    @Override
+    public boolean canSpawn(IWorld world, SpawnReason reason) {
+        return true;
     }
 
     public static boolean canSpawnHere(EntityType<CorruptSapperEntity> entity, IWorld world, SpawnReason spawn, BlockPos pos, Random random) {
@@ -84,7 +88,7 @@ public class CorruptSapperEntity extends MonsterEntity {
     public static boolean isValidSpawn(IWorld world, SpawnReason spawn, BlockPos pos) {
         BlockPos blockpos = pos.down();
         return spawn == SpawnReason.SPAWNER ||
-                world.getBlockState(blockpos).getBlock() == ModBlocks.corrupt_grass && world.getLight(blockpos) > 8 && world.getBiome(blockpos) == ModBiomes.goldstone_lands;
+                world.getBlockState(blockpos).getBlock() == ModBlocks.corrupt_grass.get() && world.getLight(blockpos) > 8;
     }
 
     @Override

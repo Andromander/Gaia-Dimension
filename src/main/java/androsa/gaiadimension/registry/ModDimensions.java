@@ -12,38 +12,26 @@ import net.minecraft.world.dimension.Dimension;
 import net.minecraft.world.dimension.DimensionType;
 import net.minecraft.world.gen.ChunkGeneratorType;
 import net.minecraftforge.common.ModDimension;
-import net.minecraftforge.event.RegistryEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.registries.ObjectHolder;
+import net.minecraftforge.fml.RegistryObject;
+import net.minecraftforge.registries.DeferredRegister;
+import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.function.BiFunction;
 
-@ObjectHolder(GaiaDimensionMod.MODID)
-@Mod.EventBusSubscriber(modid = GaiaDimensionMod.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ModDimensions {
 
-    public static final ChunkGeneratorType<GaiaGenerationSettings, GaiaChunkGenerator> GAIA_GEN = new ChunkGeneratorType<>(GaiaChunkGenerator::new, true, GaiaGenerationSettings::new);
-    public static final ModDimension GAIA = new ModDimension() {
+    public static final DeferredRegister<BiomeProviderType<?,?>> BIOME_PROVIDER_TYPES = new DeferredRegister<>(ForgeRegistries.BIOME_PROVIDER_TYPES, GaiaDimensionMod.MODID);
+    public static final DeferredRegister<ChunkGeneratorType<?,?>> CHUNK_GENERATOR_TYPES = new DeferredRegister<>(ForgeRegistries.CHUNK_GENERATOR_TYPES, GaiaDimensionMod.MODID);
+    public static final DeferredRegister<ModDimension> MOD_DIMENSIONS = new DeferredRegister<>(ForgeRegistries.MOD_DIMENSIONS, GaiaDimensionMod.MODID);
+
+    public static final RegistryObject<BiomeProviderType<GaiaBiomeProviderSettings, GaiaBiomeProvider>> GAIA_DIMENSION = BIOME_PROVIDER_TYPES.register(
+            "gaia_dimension", () -> new BiomeProviderType<>(GaiaBiomeProvider::new, GaiaBiomeProviderSettings::new));
+    public static final RegistryObject<ChunkGeneratorType<GaiaGenerationSettings, GaiaChunkGenerator>> GAIA_GEN = CHUNK_GENERATOR_TYPES.register(
+            "gaia_gen", () -> new ChunkGeneratorType<>(GaiaChunkGenerator::new, true, GaiaGenerationSettings::new));
+    public static final RegistryObject<ModDimension> GAIA = MOD_DIMENSIONS.register("gaia", () -> new ModDimension() {
         @Override
         public BiFunction<World, DimensionType, ? extends Dimension> getFactory() {
             return GaiaDimension::new;
         }
-    };
-    public static final BiomeProviderType<GaiaBiomeProviderSettings, GaiaBiomeProvider> GAIA_DIMENSION = new BiomeProviderType<>(GaiaBiomeProvider::new, GaiaBiomeProviderSettings::new);
-
-    @SubscribeEvent
-    public static void registerChunkGenerators(RegistryEvent.Register<ChunkGeneratorType<?, ?>> e) {
-        e.getRegistry().register(GAIA_GEN.setRegistryName("gaia_gen"));
-    }
-
-    @SubscribeEvent
-    public static void registerDimensions(RegistryEvent.Register<ModDimension> e) {
-        e.getRegistry().register(GAIA.setRegistryName("gaia"));
-    }
-
-    @SubscribeEvent
-    public static void registerBiomeProviders(RegistryEvent.Register<BiomeProviderType<?, ?>> e) {
-        e.getRegistry().register(GAIA_DIMENSION.setRegistryName("gaia_dimension"));
-    }
+    });
 }

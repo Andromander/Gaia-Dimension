@@ -16,15 +16,15 @@ public class AgateArrowEntity extends AbstractArrowEntity {
     }
 
     public AgateArrowEntity(World worldIn, double x, double y, double z) {
-        super(ModEntities.AGATE_ARROW, x, y, z, worldIn);
+        super(ModEntities.AGATE_ARROW.get(), x, y, z, worldIn);
     }
 
     public AgateArrowEntity(World worldIn, LivingEntity shooter) {
-        super(ModEntities.AGATE_ARROW, shooter, worldIn);
+        super(ModEntities.AGATE_ARROW.get(), shooter, worldIn);
     }
 
     @Override
     protected ItemStack getArrowStack() {
-        return new ItemStack(ModItems.agate_arrow);
+        return new ItemStack(ModItems.agate_arrow.get());
     }
 }

@@ -3,19 +3,13 @@ package androsa.gaiadimension.registry;
 import androsa.gaiadimension.GaiaDimensionMod;
 import androsa.gaiadimension.potion.CorruptionEffect;
 import net.minecraft.potion.Effect;
-import net.minecraftforge.event.RegistryEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.registries.ObjectHolder;
+import net.minecraftforge.fml.RegistryObject;
+import net.minecraftforge.registries.DeferredRegister;
+import net.minecraftforge.registries.ForgeRegistries;
 
-@ObjectHolder(GaiaDimensionMod.MODID)
-@Mod.EventBusSubscriber(modid = GaiaDimensionMod.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ModEffects {
 
-    public static final Effect goldstone_plague = new CorruptionEffect(0xF68414, 4.0D);
+    public static final DeferredRegister<Effect> POTIONS = new DeferredRegister<>(ForgeRegistries.POTIONS, GaiaDimensionMod.MODID);
 
-    @SubscribeEvent
-    public static void onRegisterPotions(RegistryEvent.Register<Effect> e) {
-        e.getRegistry().register(goldstone_plague.setRegistryName(GaiaDimensionMod.MODID, "goldstone_plague"));
-    }
+    public static final RegistryObject<Effect> goldstone_plague = POTIONS.register("goldstone_plague", () -> new CorruptionEffect(0xF68414, 4.0D));
 }

@@ -1,11 +1,10 @@
 package androsa.gaiadimension.block;
 
 import androsa.gaiadimension.GaiaDimensionMod;
-import androsa.gaiadimension.WorldEvents;
 import androsa.gaiadimension.registry.ModBlocks;
-import androsa.gaiadimension.registry.ModDimensions;
 import androsa.gaiadimension.registry.ModParticles;
 import com.google.common.cache.LoadingCache;
+import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -13,15 +12,16 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
 import net.minecraft.block.pattern.BlockPattern;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.server.MinecraftServer;
+import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.network.play.server.*;
+import net.minecraft.potion.EffectInstance;
+import net.minecraft.server.management.PlayerList;
 import net.minecraft.state.EnumProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
@@ -30,6 +30,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.dimension.DimensionType;
 import net.minecraft.world.server.ServerWorld;
+import net.minecraft.world.storage.WorldInfo;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.BiomeDictionary;
@@ -109,74 +110,76 @@ public class GaiaPortalBlock extends Block {
     @Override
     @Deprecated
     public void onEntityCollision(BlockState state, World worldIn, BlockPos pos, Entity entityIn) {
-        if (!worldIn.isRemote && !entityIn.isPassenger() && !entityIn.isBeingRidden() && entityIn.isNonBoss() ) {
-            //TODO: Figure out if this works properly
-            System.out.println("Begin changeDimension");
-            this.changeDimension(entityIn, worldIn.dimension.getType() == DimensionType.byName(ModDimensions.GAIA.getRegistryName()) ? DimensionType.OVERWORLD : DimensionType.byName(ModDimensions.GAIA.getRegistryName()));
-            System.out.println("Passed changeDimension in onEntityCollision");
+        if (!worldIn.isRemote && !entityIn.isPassenger() && !entityIn.isBeingRidden() && entityIn.isNonBoss() && entityIn instanceof ServerPlayerEntity) {
+            //TODO: Oh piss off. I would appreciate the patch some day, but no, gotta complain about making changes and inconvenience everybody else.
+            this.changeDimension((ServerPlayerEntity)entityIn, worldIn.dimension.getType() == GaiaDimensionMod.gaia_dimension ? DimensionType.OVERWORLD : GaiaDimensionMod.gaia_dimension);
         }
     }
 
-    //Copy of Entity.changeDimension, with relevant changes
-    //TODO: Remove if PR is merged
-    public void changeDimension(Entity entity, DimensionType destination) {
-        if (!net.minecraftforge.common.ForgeHooks.onTravelToDimension(entity, destination)) {
-            System.out.println("Detected use of onTravelToDimension. Halting");
-            return;
+    //Copy of ServerPlayerEntity.changeDimension, with relevant changes
+    public void changeDimension(ServerPlayerEntity entity, DimensionType destination) {
+        if (!net.minecraftforge.common.ForgeHooks.onTravelToDimension(entity, destination)) return;
+        //this.invulnerableDimensionChange = true;
+        DimensionType dimensiontype = entity.dimension;
+        ServerWorld serverworld = entity.server.getWorld(dimensiontype);
+        entity.dimension = destination;
+        ServerWorld serverworld1 = entity.server.getWorld(destination);
+        WorldInfo worldinfo = entity.world.getWorldInfo();
+
+        entity.connection.sendPacket(new SRespawnPacket(destination, worldinfo.getGenerator(), entity.interactionManager.getGameType()));
+        entity.connection.sendPacket(new SServerDifficultyPacket(worldinfo.getDifficulty(), worldinfo.isDifficultyLocked()));
+
+        PlayerList playerlist = entity.server.getPlayerList();
+
+        playerlist.updatePermissionLevel(entity);
+        serverworld.removeEntity(entity, true); //Forge: the player entity is moved to the new world, NOT cloned. So keep the data alive with no matching invalidate call.
+        entity.revive();
+
+        double d0 = entity.posX;
+        double d1 = entity.posY;
+        double d2 = entity.posZ;
+        float f = entity.rotationPitch;
+        float f1 = entity.rotationYaw;
+
+        serverworld.getProfiler().startSection("moving");
+        double moveFactor = serverworld.getDimension().getMovementFactor() / serverworld1.getDimension().getMovementFactor();
+        d0 *= moveFactor;
+        d2 *= moveFactor;
+        entity.setLocationAndAngles(d0, d1, d2, f1, f);
+        serverworld.getProfiler().endSection();
+
+        serverworld.getProfiler().startSection("placing");
+        double d7 = Math.min(-2.9999872E7D, serverworld1.getWorldBorder().minX() + 16.0D);
+        double d4 = Math.min(-2.9999872E7D, serverworld1.getWorldBorder().minZ() + 16.0D);
+        double d5 = Math.min(2.9999872E7D, serverworld1.getWorldBorder().maxX() - 16.0D);
+        double d6 = Math.min(2.9999872E7D, serverworld1.getWorldBorder().maxZ() - 16.0D);
+        d0 = MathHelper.clamp(d0, d7, d5);
+        d2 = MathHelper.clamp(d2, d4, d6);
+        entity.setLocationAndAngles(d0, d1, d2, f1, f);
+        if (!GaiaDimensionMod.gaiaTeleporter.func_222268_a(entity, f1)) {
+            GaiaDimensionMod.gaiaTeleporter.makePortal(entity);
+            GaiaDimensionMod.gaiaTeleporter.func_222268_a(entity, f1);
+        }
+        serverworld.getProfiler().endSection();
+
+        entity.setWorld(serverworld1);
+        serverworld1.func_217447_b(entity);
+        CriteriaTriggers.CHANGED_DIMENSION.trigger(entity, serverworld.dimension.getType(), entity.world.dimension.getType());
+        entity.connection.setPlayerLocation(entity.posX, entity.posY, entity.posZ, f1, f);
+        entity.interactionManager.setWorld(serverworld1);
+        entity.connection.sendPacket(new SPlayerAbilitiesPacket(entity.abilities));
+        playerlist.sendWorldInfo(entity, serverworld1);
+        playerlist.sendInventory(entity);
+
+        for(EffectInstance effectinstance : entity.getActivePotionEffects()) {
+            entity.connection.sendPacket(new SPlayEntityEffectPacket(entity.getEntityId(), effectinstance));
         }
 
-        System.out.println("Begin regular activities of changeDimension: Gaia Edition");
-        if (!entity.world.isRemote && entity.isAlive()) {
-            System.out.println("Yep, entity is most certainly alive");
-            entity.world.getProfiler().startSection("changeDimension");
-            MinecraftServer minecraftserver = entity.getServer();
-            DimensionType dimensiontype = entity.dimension;
-            ServerWorld serverworld = minecraftserver.getWorld(dimensiontype);
-            ServerWorld serverworld1 = minecraftserver.getWorld(destination);
-            entity.dimension = destination;
-            entity.detach();
-            entity.world.getProfiler().startSection("reposition");
-            Vec3d vec3d = entity.getMotion();
-            BlockPos blockpos;
-            double movementFactor = serverworld.getDimension().getMovementFactor() / serverworld1.getDimension().getMovementFactor();
-            double d0 = entity.posX * movementFactor;
-            double d1 = entity.posZ * movementFactor;
-            double d3 = Math.min(-2.9999872E7D, serverworld1.getWorldBorder().minX() + 16.0D);
-            double d4 = Math.min(-2.9999872E7D, serverworld1.getWorldBorder().minZ() + 16.0D);
-            double d5 = Math.min(2.9999872E7D, serverworld1.getWorldBorder().maxX() - 16.0D);
-            double d6 = Math.min(2.9999872E7D, serverworld1.getWorldBorder().maxZ() - 16.0D);
-            d0 = MathHelper.clamp(d0, d3, d5);
-            d1 = MathHelper.clamp(d1, d4, d6);
-            Vec3d vec3d1 = entity.getLastPortalVec();
-            blockpos = new BlockPos(d0, entity.posY, d1);
-            System.out.println("Getting portal info");
-            BlockPattern.PortalInfo blockpattern$portalinfo = WorldEvents.gaiaTeleporter.func_222272_a(blockpos, vec3d, entity.getTeleportDirection(), vec3d1.x, vec3d1.y, entity instanceof PlayerEntity);
-            System.out.println("Got the portal info");
-            if (blockpattern$portalinfo == null) {
-                System.out.println("Portal info is null. Stopping");
-                return;
-            }
-
-            float f = (float)blockpattern$portalinfo.field_222507_c;
-            entity.world.getProfiler().endStartSection("reloading");
-            Entity entityType = entity.getType().create(serverworld1);
-            if (entityType != null) {
-                System.out.println("We have an entity to teleport");
-                entityType.copyDataFromOld(entity);
-                entityType.moveToBlockPosAndAngles(blockpos, entityType.rotationYaw + f, entityType.rotationPitch);
-                entityType.setMotion(vec3d);
-                serverworld1.func_217460_e(entityType);
-                System.out.println("Entity transferred");
-            }
-
-            System.out.println("Cleanup time");
-            entity.remove(false);
-            entity.world.getProfiler().endSection();
-            serverworld.resetUpdateEntityTick();
-            serverworld1.resetUpdateEntityTick();
-            entity.world.getProfiler().endSection();
-            System.out.println("Finished cleaning");
-        }
+        entity.connection.sendPacket(new SPlaySoundEventPacket(1032, BlockPos.ZERO, 0, false));
+        //entity.lastExperience = -1;
+        //entity.lastHealth = -1.0F;
+        //entity.lastFoodLevel = -1;
+        net.minecraftforge.fml.hooks.BasicEventHooks.firePlayerChangedDimensionEvent(entity, dimensiontype, destination);
     }
 
     @Override
@@ -203,7 +206,7 @@ public class GaiaPortalBlock extends Block {
                 d5 = (double)(rand.nextFloat() * 2.0F * (float)j);
             }
 
-            worldIn.addParticle(ModParticles.PORTAL, d0, d1, d2, d3, d4, d5);
+            worldIn.addParticle(ModParticles.PORTAL.get(), d0, d1, d2, d3, d4, d5);
         }
     }
 
@@ -282,6 +285,7 @@ public class GaiaPortalBlock extends Block {
         private BlockPos bottomLeft;
         private int height;
         private int width;
+        private final Block KEYSTONE = ModBlocks.keystone_block.get();
 
         public Size(IWorld worldIn, BlockPos pos, Direction.Axis facing) {
             world = worldIn;
@@ -323,13 +327,13 @@ public class GaiaPortalBlock extends Block {
             for (i = 0; i < 22; ++i) {
                 BlockPos blockpos = pos.offset(facing, i);
 
-                if (!isEmptyBlock(world.getBlockState(blockpos)) || world.getBlockState(blockpos.down()) != ModBlocks.keystone_block.getDefaultState()) {
+                if (!isEmptyBlock(world.getBlockState(blockpos)) || world.getBlockState(blockpos.down()) != KEYSTONE.getDefaultState()) {
                     break;
                 }
             }
 
             Block block = world.getBlockState(pos.offset(facing, i)).getBlock();
-            return block == ModBlocks.keystone_block ? i : 0;
+            return block == KEYSTONE ? i : 0;
         }
 
         public int getHeight() {
@@ -352,20 +356,20 @@ public class GaiaPortalBlock extends Block {
                         break label56;
                     }
 
-                    if (blockstate.getBlock() == ModBlocks.gaia_portal) {
+                    if (blockstate.getBlock() == ModBlocks.gaia_portal.get()) {
                         ++this.portalBlockCount;
                     }
 
                     if (i == 0) {
                         blockstate = world.getBlockState(blockpos.offset(leftDir));
 
-                        if (blockstate != ModBlocks.keystone_block.getDefaultState()) {
+                        if (blockstate != KEYSTONE.getDefaultState()) {
                             break label56;
                         }
                     } else if (i == this.width) {
                         blockstate = world.getBlockState(blockpos.offset(rightDir));
 
-                        if (blockstate != ModBlocks.keystone_block.getDefaultState()) {
+                        if (blockstate != KEYSTONE.getDefaultState()) {
                             break label56;
                         }
                     }
@@ -373,7 +377,7 @@ public class GaiaPortalBlock extends Block {
             }
 
             for (int j = 0; j < width; ++j) {
-                if (world.getBlockState(bottomLeft.offset(rightDir, j).up(height)) != ModBlocks.keystone_block.getDefaultState()) {
+                if (world.getBlockState(bottomLeft.offset(rightDir, j).up(height)) != KEYSTONE.getDefaultState()) {
                     height = 0;
                     break;
                 }
@@ -392,7 +396,7 @@ public class GaiaPortalBlock extends Block {
         boolean isEmptyBlock(BlockState state) {
             Block block = state.getBlock();
 
-            return state.isAir() || block == ModBlocks.gold_fire || block == ModBlocks.gaia_portal;
+            return state.isAir() || block == ModBlocks.gold_fire.get() || block == ModBlocks.gaia_portal.get();
         }
 
         public boolean isValid() {
@@ -404,7 +408,7 @@ public class GaiaPortalBlock extends Block {
                 BlockPos blockpos = bottomLeft.offset(rightDir, i);
 
                 for (int j = 0; j < height; ++j) {
-                    world.setBlockState(blockpos.up(j), ModBlocks.gaia_portal.getDefaultState().with(AXIS, axis), 2);
+                    world.setBlockState(blockpos.up(j), ModBlocks.gaia_portal.get().getDefaultState().with(AXIS, axis), 2);
                 }
             }
         }

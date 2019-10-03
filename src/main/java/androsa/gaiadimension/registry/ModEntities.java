@@ -6,93 +6,173 @@ import androsa.gaiadimension.entity.boss.BlueHowliteWolfEntity;
 import androsa.gaiadimension.entity.boss.MalachiteGuardEntity;
 import androsa.gaiadimension.entity.projectile.AgateArrowEntity;
 import androsa.gaiadimension.entity.projectile.ThrownPebbleEntity;
+import androsa.gaiadimension.model.*;
+import androsa.gaiadimension.renderer.*;
+import net.minecraft.block.BlockState;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.entity.SpriteRenderer;
 import net.minecraft.entity.*;
-import net.minecraft.world.biome.Biome;
-import net.minecraft.world.biome.Biomes;
-import net.minecraftforge.event.RegistryEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.registries.IForgeRegistry;
-import net.minecraftforge.registries.ObjectHolder;
+import net.minecraft.entity.EntitySpawnPlacementRegistry.PlacementType;
+import net.minecraft.entity.monster.MonsterEntity;
+import net.minecraft.fluid.IFluidState;
+import net.minecraft.tags.FluidTags;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.gen.Heightmap;
+import net.minecraft.world.spawner.WorldEntitySpawner;
+import net.minecraftforge.fml.RegistryObject;
+import net.minecraftforge.fml.client.registry.RenderingRegistry;
+import net.minecraftforge.registries.DeferredRegister;
+import net.minecraftforge.registries.ForgeRegistries;
 
-@ObjectHolder(GaiaDimensionMod.MODID)
-@Mod.EventBusSubscriber(modid = GaiaDimensionMod.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
+import static net.minecraft.entity.EntitySpawnPlacementRegistry.register;
+
 public class ModEntities {
 
-    public static final EntityType<AgateArrowEntity> AGATE_ARROW = EntityType.Builder.create((EntityType.IFactory<AgateArrowEntity>) AgateArrowEntity::new, EntityClassification.MISC).size(0.5F, 0.5F).build(GaiaEntityNames.AGATE_ARROW.toString());
-    public static final EntityType<ThrownPebbleEntity> THROWN_PEBBLE = EntityType.Builder.create((EntityType.IFactory<ThrownPebbleEntity>) ThrownPebbleEntity::new, EntityClassification.MISC).size(0.25F, 0.25F).build(GaiaEntityNames.THROWN_PEBBLE.toString());
+    public static final DeferredRegister<EntityType<?>> ENTITIES = new DeferredRegister<>(ForgeRegistries.ENTITIES, GaiaDimensionMod.MODID);
 
-    public static final EntityType<AgateGolemEntity> AGATE_GOLEM = EntityType.Builder.create(AgateGolemEntity::new, EntityClassification.MONSTER).size(1.2F, 2.7F).build(GaiaEntityNames.AGATE_GOLEM.toString());
-    public static final EntityType<AncientLagrahkEntity> ANCIENT_LAGRAHK = EntityType.Builder.create(AncientLagrahkEntity::new, EntityClassification.MONSTER).size(1.5F, 4.0F).build(GaiaEntityNames.ANCIENT_LAGRAHK.toString());
-    public static final EntityType<ArchaicWarriorEntity> ARCHAIC_WARRIOR = EntityType.Builder.create(ArchaicWarriorEntity::new, EntityClassification.MONSTER).size(0.6F, 1.95F).build(GaiaEntityNames.ARCHAIC_WARRIOR.toString());
-    public static final EntityType<BismuthUletrusEntity> BISMUTH_ULETRUS = EntityType.Builder.create(BismuthUletrusEntity::new, EntityClassification.CREATURE).size(2.0F, 1.8F).build(GaiaEntityNames.BISMUTH_ULETRUS.toString());
-    public static final EntityType<BlueHowliteWolfEntity> BLUE_HOWLITE_WOLF = EntityType.Builder.create(BlueHowliteWolfEntity::new, EntityClassification.MONSTER).size(1.2F, 2.2F).build(GaiaEntityNames.BLUE_HOWLITE_WOLF.toString());
-    public static final EntityType<CavernTickEntity> CAVERN_TICK = EntityType.Builder.create(CavernTickEntity::new, EntityClassification.MONSTER).size(0.4F, 0.3F).build(GaiaEntityNames.CAVERN_TICK.toString());
-    public static final EntityType<ContortedNagaEntity> CONTORTED_NAGA = EntityType.Builder.create(ContortedNagaEntity::new, EntityClassification.MONSTER).size(1.0F, 2.6F).build(GaiaEntityNames.CONTORTED_NAGA.toString());
-    public static final EntityType<CorruptSapperEntity> CORRUPT_SAPPER = EntityType.Builder.create(CorruptSapperEntity::new, EntityClassification.MONSTER).size(1.0F, 1.0F).build(GaiaEntityNames.CORRUPT_SAPPER.toString());
-    public static final EntityType<CrystalGolemEntity> CRYSTAL_GOLEM = EntityType.Builder.create(CrystalGolemEntity::new, EntityClassification.CREATURE).size(1.2F, 2.7F).build(GaiaEntityNames.CRYSTAL_GOLEM.toString());
-    public static final EntityType<GrowthSapperEntity> GROWTH_SAPPER = EntityType.Builder.create(GrowthSapperEntity::new, EntityClassification.CREATURE).size(1.0F, 1.0F).build(GaiaEntityNames.GROWTH_SAPPER.toString());
-    public static final EntityType<HowliteWolfEntity> HOWLITE_WOLF = EntityType.Builder.create(HowliteWolfEntity::new, EntityClassification.CREATURE).size(1.0F, 1.0F).build(GaiaEntityNames.HOWLITE_WOLF.toString());
-    public static final EntityType<LesserShockshooterEntity> LESSER_SHOCKSHOOTER = EntityType.Builder.create(LesserShockshooterEntity::new, EntityClassification.MONSTER).size(0.5F, 2.0F).build(GaiaEntityNames.LESSER_SHOCKSHOOTER.toString());
-    public static final EntityType<LesserSpitfireEntity> LESSER_SPITFIRE = EntityType.Builder.create(LesserSpitfireEntity::new, EntityClassification.MONSTER).size(0.5F, 2.0F).immuneToFire().build(GaiaEntityNames.LESSER_SPITFIRE.toString());
-    public static final EntityType<MarkuzarPlantEntity> MARKUZAR_PLANT = EntityType.Builder.create(MarkuzarPlantEntity::new, EntityClassification.AMBIENT).size(0.6F, 2.0F).build(GaiaEntityNames.MARKUZAR_PLANT.toString());
-    public static final EntityType<MineralArenthisEntity> MINERAL_ARENTHIS = EntityType.Builder.create(MineralArenthisEntity::new, EntityClassification.WATER_CREATURE).size(1.5F, 1.5F).build(GaiaEntityNames.MINERAL_ARENTHIS.toString());
-    public static final EntityType<MucklingEntity> MUCKLING = EntityType.Builder.create(MucklingEntity::new, EntityClassification.MONSTER).size(2.0F, 2.0F).build(GaiaEntityNames.MUCKLING.toString());
-    public static final EntityType<MutantGrowthExtractorEntity> MUTANT_GROWTH_EXTRACTOR = EntityType.Builder.create(MutantGrowthExtractorEntity::new, EntityClassification.CREATURE).size(1.0F, 1.5F).build(GaiaEntityNames.MUTANT_EXTRACTOR.toString());
-    public static final EntityType<NomadicLagrahkEntity> NOMADIC_LAGRAHK = EntityType.Builder.create(NomadicLagrahkEntity::new, EntityClassification.CREATURE).size(1.5F, 4.0F).build(GaiaEntityNames.NOMADIC_LAGRAHK.toString());
-    public static final EntityType<PrimalBeastEntity> PRIMAL_BEAST = EntityType.Builder.create(PrimalBeastEntity::new, EntityClassification.MONSTER).size(1.0F, 2.0F).immuneToFire().build(GaiaEntityNames.PRIMAL_BEAST.toString());
-    public static final EntityType<RockyLuggerothEntity> ROCKY_LUGGEROTH = EntityType.Builder.create(RockyLuggerothEntity::new, EntityClassification.CREATURE).size(1.0F, 1.6F).build(GaiaEntityNames.ROCKY_LUGGEROTH.toString());
-    public static final EntityType<RuggedLurmorusEntity> RUGGED_LURMORUS = EntityType.Builder.create(RuggedLurmorusEntity::new, EntityClassification.CREATURE).size(3.5F, 8.0F).build(GaiaEntityNames.RUGGED_LURMORUS.toString());
-    public static final EntityType<SaltionEntity> SALTION = EntityType.Builder.create(SaltionEntity::new, EntityClassification.CREATURE).size(1.0F, 0.3F).build(GaiaEntityNames.SALTION.toString());
-    public static final EntityType<ShallowArenthisEntity> SHALLOW_ARENTHIS = EntityType.Builder.create(ShallowArenthisEntity::new, EntityClassification.WATER_CREATURE).size(0.6F, 0.6F).build(GaiaEntityNames.SHALLOW_ARENTHIS.toString());
-    public static final EntityType<ShalurkerEntity> SHALURKER = EntityType.Builder.create(ShalurkerEntity::new, EntityClassification.MONSTER).size(0.6F, 1.9F).build(GaiaEntityNames.SHALURKER.toString());
-    public static final EntityType<SpellElementEntity> SPELLBOUND_ELEMENTAL = EntityType.Builder.create(SpellElementEntity::new, EntityClassification.CREATURE).size(0.5F, 2.0F).build(GaiaEntityNames.SPELLBOUND_ELEMENTAL.toString());
+    //Projectiles
+    public static final RegistryObject<EntityType<AgateArrowEntity>> AGATE_ARROW = ENTITIES.register("agate_arrow",
+            () -> EntityType.Builder.<AgateArrowEntity>create(AgateArrowEntity::new, EntityClassification.MISC).size(0.5F, 0.5F).build("agate_arrow"));
+    public static final RegistryObject<EntityType<ThrownPebbleEntity>> THROWN_PEBBLE = ENTITIES.register("thrown_pebble",
+            () -> EntityType.Builder.<ThrownPebbleEntity>create(ThrownPebbleEntity::new, EntityClassification.MISC).size(0.25F, 0.25F).build("thrown_pebble"));
 
-    public static final EntityType<MalachiteGuardEntity> MALACHITE_GUARD = EntityType.Builder.create(MalachiteGuardEntity::new, EntityClassification.MONSTER).size(0.8F, 3.3F).build(GaiaEntityNames.MALACHITE_GUARD.toString());
+    //Mobs
+    public static final RegistryObject<EntityType<AgateGolemEntity>> AGATE_GOLEM = ENTITIES.register("agate_golem",
+            () -> EntityType.Builder.create(AgateGolemEntity::new, EntityClassification.MONSTER).size(1.2F, 2.7F).build("agate_golem"));
+    public static final RegistryObject<EntityType<AncientLagrahkEntity>> ANCIENT_LAGRAHK = ENTITIES.register("ancient_lagrahk",
+            () -> EntityType.Builder.create(AncientLagrahkEntity::new, EntityClassification.MONSTER).size(1.5F, 4.0F).build("ancient_lagrahk"));
+    public static final RegistryObject<EntityType<ArchaicWarriorEntity>> ARCHAIC_WARRIOR = ENTITIES.register("archaic_warrior",
+            () -> EntityType.Builder.create(ArchaicWarriorEntity::new, EntityClassification.MONSTER).size(0.6F, 1.95F).build("archaic_warrior"));
+    public static final RegistryObject<EntityType<BismuthUletrusEntity>> BISMUTH_ULETRUS = ENTITIES.register("bismuth_uletrus",
+            () -> EntityType.Builder.create(BismuthUletrusEntity::new, EntityClassification.CREATURE).size(2.0F, 1.8F).build("bismuth_uletrus"));
+    public static final RegistryObject<EntityType<CavernTickEntity>> CAVERN_TICK = ENTITIES.register("cavern_tick",
+            () -> EntityType.Builder.create(CavernTickEntity::new, EntityClassification.MONSTER).size(0.4F, 0.3F).build("cavern_tick"));
+    public static final RegistryObject<EntityType<ContortedNagaEntity>> CONTORTED_NAGA = ENTITIES.register("contorted_naga",
+            () -> EntityType.Builder.create(ContortedNagaEntity::new, EntityClassification.MONSTER).size(1.0F, 2.6F).build("contorted_naga"));
+    public static final RegistryObject<EntityType<CorruptSapperEntity>> CORRUPT_SAPPER = ENTITIES.register("corrupt_sapper",
+            () -> EntityType.Builder.create(CorruptSapperEntity::new, EntityClassification.MONSTER).size(1.0F, 1.0F).build("corrupt_sapper"));
+    public static final RegistryObject<EntityType<CrystalGolemEntity>> CRYSTAL_GOLEM = ENTITIES.register("crystal_golem",
+            () -> EntityType.Builder.create(CrystalGolemEntity::new, EntityClassification.CREATURE).size(1.2F, 2.7F).build("crystal_golem"));
+    public static final RegistryObject<EntityType<GrowthSapperEntity>> GROWTH_SAPPER = ENTITIES.register("growth_sapper",
+            () -> EntityType.Builder.create(GrowthSapperEntity::new, EntityClassification.CREATURE).size(1.0F, 1.0F).build("growth_sapper"));
+    public static final RegistryObject<EntityType<HowliteWolfEntity>> HOWLITE_WOLF = ENTITIES.register("howlite_wolf",
+            () -> EntityType.Builder.create(HowliteWolfEntity::new, EntityClassification.CREATURE).size(1.0F, 1.0F).build("howlite_wolf"));
+    public static final RegistryObject<EntityType<LesserShockshooterEntity>> LESSER_SHOCKSHOOTER = ENTITIES.register("lesser_shockshooter",
+            () -> EntityType.Builder.create(LesserShockshooterEntity::new, EntityClassification.MONSTER).size(0.5F, 2.0F).build("lesser_shockshooter"));
+    public static final RegistryObject<EntityType<LesserSpitfireEntity>> LESSER_SPITFIRE = ENTITIES.register("lesser_spitfire",
+            () -> EntityType.Builder.create(LesserSpitfireEntity::new, EntityClassification.MONSTER).size(0.5F, 2.0F).immuneToFire().build("lesser_spitfire"));
+    public static final RegistryObject<EntityType<MarkuzarPlantEntity>> MARKUZAR_PLANT = ENTITIES.register("markuzar_plant",
+            () -> EntityType.Builder.create(MarkuzarPlantEntity::new, EntityClassification.AMBIENT).size(0.6F, 2.0F).build("markuzar_plant"));
+    public static final RegistryObject<EntityType<MineralArenthisEntity>> MINERAL_ARENTHIS = ENTITIES.register("mineral_arenthis",
+            () -> EntityType.Builder.create(MineralArenthisEntity::new, EntityClassification.WATER_CREATURE).size(1.5F, 1.5F).build("mineral_arenthis"));
+    public static final RegistryObject<EntityType<MucklingEntity>> MUCKLING = ENTITIES.register("muckling",
+            () -> EntityType.Builder.create(MucklingEntity::new, EntityClassification.MONSTER).size(2.0F, 2.0F).build("muckling"));
+    public static final RegistryObject<EntityType<MutantGrowthExtractorEntity>> MUTANT_GROWTH_EXTRACTOR = ENTITIES.register("mutant_growth_extractor",
+            () -> EntityType.Builder.create(MutantGrowthExtractorEntity::new, EntityClassification.CREATURE).size(1.0F, 1.5F).build("mutant_growth_extractor"));
+    public static final RegistryObject<EntityType<NomadicLagrahkEntity>> NOMADIC_LAGRAHK = ENTITIES.register("nomadic_lagrahk",
+            () -> EntityType.Builder.create(NomadicLagrahkEntity::new, EntityClassification.CREATURE).size(1.5F, 4.0F).build("nomadic_lagrahk"));
+    public static final RegistryObject<EntityType<PrimalBeastEntity>> PRIMAL_BEAST = ENTITIES.register("primal_beast",
+            () -> EntityType.Builder.create(PrimalBeastEntity::new, EntityClassification.MONSTER).size(1.0F, 2.0F).immuneToFire().build("primal_beast"));
+    public static final RegistryObject<EntityType<RockyLuggerothEntity>> ROCKY_LUGGEROTH = ENTITIES.register("rocky_luggeroth",
+            () -> EntityType.Builder.create(RockyLuggerothEntity::new, EntityClassification.CREATURE).size(1.0F, 1.6F).build("rocky_luggeroth"));
+    public static final RegistryObject<EntityType<RuggedLurmorusEntity>> RUGGED_LURMORUS = ENTITIES.register("rugged_lurmorus",
+            () -> EntityType.Builder.create(RuggedLurmorusEntity::new, EntityClassification.CREATURE).size(3.5F, 8.0F).build("rugged_lurmorus"));
+    public static final RegistryObject<EntityType<SaltionEntity>> SALTION = ENTITIES.register("saltion",
+            () -> EntityType.Builder.create(SaltionEntity::new, EntityClassification.CREATURE).size(1.0F, 0.3F).build("saltion"));
+    public static final RegistryObject<EntityType<ShallowArenthisEntity>> SHALLOW_ARENTHIS = ENTITIES.register("shallow_arenthis",
+            () -> EntityType.Builder.create(ShallowArenthisEntity::new, EntityClassification.WATER_CREATURE).size(0.6F, 0.6F).build("shallow_arenthis"));
+    public static final RegistryObject<EntityType<ShalurkerEntity>> SHALURKER = ENTITIES.register("shalurker",
+            () -> EntityType.Builder.create(ShalurkerEntity::new, EntityClassification.MONSTER).size(0.6F, 1.9F).build("shalurker"));
+    public static final RegistryObject<EntityType<SpellElementEntity>> SPELLBOUND_ELEMENTAL = ENTITIES.register("spellbound_elemental",
+            () -> EntityType.Builder.create(SpellElementEntity::new, EntityClassification.CREATURE).size(0.5F, 2.0F).build("spellbound_elemental"));
 
-    @SubscribeEvent
-    public static void registerEntities(RegistryEvent.Register<EntityType<?>> e) {
-        final IForgeRegistry<EntityType<?>> registry = e.getRegistry();
+    //Mini Bosses
+    public static final RegistryObject<EntityType<BlueHowliteWolfEntity>> BLUE_HOWLITE_WOLF = ENTITIES.register("blue_howlite_wolf",
+            () -> EntityType.Builder.create(BlueHowliteWolfEntity::new, EntityClassification.MONSTER).size(1.2F, 2.2F).build("blue_howlite_wolf"));
 
-        registry.register(AGATE_ARROW.setRegistryName(GaiaDimensionMod.MODID, "agate_arrow"));
-        registry.register(THROWN_PEBBLE.setRegistryName(GaiaDimensionMod.MODID, "thrown_pebble"));
-        registry.register(AGATE_GOLEM.setRegistryName(GaiaDimensionMod.MODID, "agate_golem"));
-        registry.register(ANCIENT_LAGRAHK.setRegistryName(GaiaDimensionMod.MODID, "ancient_lagrahk"));
-        registry.register(ARCHAIC_WARRIOR.setRegistryName(GaiaDimensionMod.MODID, "archaic_warrior"));
-        registry.register(BISMUTH_ULETRUS.setRegistryName(GaiaDimensionMod.MODID, "bismuth_uletrus"));
-        registry.register(BLUE_HOWLITE_WOLF.setRegistryName(GaiaDimensionMod.MODID, "blue_howlite_wolf"));
-        registry.register(CAVERN_TICK.setRegistryName(GaiaDimensionMod.MODID, "cavern_tick"));
-        registry.register(CONTORTED_NAGA.setRegistryName(GaiaDimensionMod.MODID, "contorted_naga"));
-        registry.register(CORRUPT_SAPPER.setRegistryName(GaiaDimensionMod.MODID, "corrupt_sapper"));
-        registry.register(CRYSTAL_GOLEM.setRegistryName(GaiaDimensionMod.MODID, "crystal_golem"));
-        registry.register(GROWTH_SAPPER.setRegistryName(GaiaDimensionMod.MODID, "growth_sapper"));
-        registry.register(HOWLITE_WOLF.setRegistryName(GaiaDimensionMod.MODID, "howlite_wolf"));
-        registry.register(LESSER_SHOCKSHOOTER.setRegistryName(GaiaDimensionMod.MODID, "lesser_shockshooter"));
-        registry.register(LESSER_SPITFIRE.setRegistryName(GaiaDimensionMod.MODID, "lesser_spitfire"));
-        registry.register(MARKUZAR_PLANT.setRegistryName(GaiaDimensionMod.MODID, "markuzar_plant"));
-        registry.register(MINERAL_ARENTHIS.setRegistryName(GaiaDimensionMod.MODID, "mineral_arenthis"));
-        registry.register(MUCKLING.setRegistryName(GaiaDimensionMod.MODID, "muckling"));
-        registry.register(MUTANT_GROWTH_EXTRACTOR.setRegistryName(GaiaDimensionMod.MODID, "mutant_growth_extractor"));
-        registry.register(NOMADIC_LAGRAHK.setRegistryName(GaiaDimensionMod.MODID, "nomadic_lagrahk"));
-        registry.register(PRIMAL_BEAST.setRegistryName(GaiaDimensionMod.MODID, "primal_beast"));
-        registry.register(ROCKY_LUGGEROTH.setRegistryName(GaiaDimensionMod.MODID, "rocky_luggeroth"));
-        registry.register(RUGGED_LURMORUS.setRegistryName(GaiaDimensionMod.MODID, "rugged_lurmorus"));
-        registry.register(SALTION.setRegistryName(GaiaDimensionMod.MODID, "saltion"));
-        registry.register(SHALLOW_ARENTHIS.setRegistryName(GaiaDimensionMod.MODID, "shallow_arenthis"));
-        registry.register(SHALURKER.setRegistryName(GaiaDimensionMod.MODID, "shalurker"));
-        registry.register(SPELLBOUND_ELEMENTAL.setRegistryName(GaiaDimensionMod.MODID, "spellbound_elemental"));
-        registry.register(MALACHITE_GUARD.setRegistryName(GaiaDimensionMod.MODID, "malachite_guard"));
+    //Bosses
+    public static final RegistryObject<EntityType<MalachiteGuardEntity>> MALACHITE_GUARD = ENTITIES.register("malachite_guard",
+            () -> EntityType.Builder.create(MalachiteGuardEntity::new, EntityClassification.MONSTER).size(0.8F, 3.3F).build("malachite_guard"));
 
-        //spawnTest();
-    }
+    /* Spawn Placements */
+    public static final PlacementType IN_LAVA = PlacementType.create("GD_IN_LAVA", (reader, pos, entity) -> {
+        BlockState blockState = reader.getBlockState(pos);
+        IFluidState fluidState = reader.getFluidState(pos);
+        BlockPos posUp = pos.up();
+        BlockPos posDown = pos.down();
 
-    /*public static void spawnTest() {
-        registerSpawn(AGATE_GOLEM, Biomes.PLAINS, Biomes.FOREST, Biomes.DESERT);
-    }
+        if (fluidState.isTagged(FluidTags.LAVA) && reader.getFluidState(posDown).isTagged(FluidTags.LAVA) && !reader.getBlockState(posUp).isNormalCube(reader, posUp)) {
+            return true;
+        } else {
+            BlockState state = reader.getBlockState(posDown);
 
-    public static void registerSpawn(EntityType<?> entity, Biome... biomes) {
-        for (Biome biome : biomes) {
-            biome.getSpawns(EntityClassification.MONSTER).add(new Biome.SpawnListEntry(entity, 100, 1, 2));
+            if (!state.canCreatureSpawn(reader, posDown, PlacementType.ON_GROUND, entity)) {
+                return false;
+            } else {
+                return WorldEntitySpawner.isSpawnableSpace(reader, pos, blockState, fluidState) && WorldEntitySpawner.isSpawnableSpace(reader, posUp, reader.getBlockState(posUp), reader.getFluidState(posUp));
+            }
         }
-    }*/
+    });
+
+    public static void registerSpawnPlacement() {
+        register(AGATE_GOLEM.get(), PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, AgateGolemEntity::canSpawnHere);
+        register(ANCIENT_LAGRAHK.get(), PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, AncientLagrahkEntity::canSpawnHere);
+        register(ARCHAIC_WARRIOR.get(), PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, MonsterEntity::func_223325_c);
+        register(BISMUTH_ULETRUS.get(), PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, BismuthUletrusEntity::canSpawnHere);
+        register(BLUE_HOWLITE_WOLF.get(), PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, BlueHowliteWolfEntity::canSpawnHere);
+        register(CAVERN_TICK.get(), PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, MonsterEntity::func_223325_c);
+        register(CONTORTED_NAGA.get(), PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, ContortedNagaEntity::canSpawnHere);
+        register(CORRUPT_SAPPER.get(), PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, CorruptSapperEntity::canSpawnHere);
+        register(CRYSTAL_GOLEM.get(), PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, CrystalGolemEntity::canSpawnHere);
+        register(GROWTH_SAPPER.get(), PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, GrowthSapperEntity::canSpawnHere);
+        register(HOWLITE_WOLF.get(), PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, HowliteWolfEntity::canSpawnHere);
+        register(LESSER_SHOCKSHOOTER.get(), PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, LesserShockshooterEntity::canSpawnHere);
+        register(LESSER_SPITFIRE.get(), PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, LesserSpitfireEntity::canSpawnHere);
+        register(MARKUZAR_PLANT.get(), PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, MarkuzarPlantEntity::canSpawnHere);
+        register(MINERAL_ARENTHIS.get(), PlacementType.IN_WATER, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, MineralArenthisEntity::canSpawnHere);
+        register(MUCKLING.get(), PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, MucklingEntity::canSpawnHere);
+        register(MUTANT_GROWTH_EXTRACTOR.get(), PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, MutantGrowthExtractorEntity::canSpawnHere);
+        register(NOMADIC_LAGRAHK.get(), PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, NomadicLagrahkEntity::canSpawnHere);
+        register(PRIMAL_BEAST.get(), IN_LAVA, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, PrimalBeastEntity::canSpawnHere);
+        register(ROCKY_LUGGEROTH.get(), PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, RockyLuggerothEntity::canSpawnHere);
+        register(RUGGED_LURMORUS.get(), PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, RuggedLurmorusEntity::canSpawnHere);
+        register(SALTION.get(), PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, SaltionEntity::canSpawnHere);
+        register(SHALLOW_ARENTHIS.get(), PlacementType.IN_WATER, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, ShallowArenthisEntity::canSpawnHere);
+        register(SHALURKER.get(), PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, MonsterEntity::func_223325_c);
+        register(SPELLBOUND_ELEMENTAL.get(), PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, SpellElementEntity::canSpawnHere);
+    }
+
+    public static void registerEntityRender() {
+        // RenderingRegistry.registerEntityRenderingHandler(GDShotGaianEnergy.class, m -> new RenderSnowball<>(m, Items.ENDER_PEARL, Minecraft.getMinecraft().getRenderItem()));
+        RenderingRegistry.registerEntityRenderingHandler(ThrownPebbleEntity.class, m -> new SpriteRenderer<>(m, Minecraft.getInstance().getItemRenderer()));
+        RenderingRegistry.registerEntityRenderingHandler(AgateArrowEntity.class, AgateArrowRenderer::new);
+
+        RenderingRegistry.registerEntityRenderingHandler(AgateGolemEntity.class, m -> new AgateGolemRenderer(m, new AgateGolemModel(), 0.9F));
+        RenderingRegistry.registerEntityRenderingHandler(AncientLagrahkEntity.class, m -> new AncientLagrahkRenderer(m, new AncientLagrahkModel(), 2.0F));
+        RenderingRegistry.registerEntityRenderingHandler(ArchaicWarriorEntity.class, m -> new ArchaicWarriorRenderer(m, new ArchaicWarriorModel(), 0.5F));
+        RenderingRegistry.registerEntityRenderingHandler(BismuthUletrusEntity.class, m -> new BismuthUletrusRenderer(m, new BismuthUletrusModel(), 1.0F));
+        RenderingRegistry.registerEntityRenderingHandler(CavernTickEntity.class, m -> new CavernTickRenderer(m, new CavernTickModel(), 0.2F));
+        RenderingRegistry.registerEntityRenderingHandler(ContortedNagaEntity.class, m -> new ContortedNagaRenderer(m, new ContortedNagaModel(), 0.7F));
+        RenderingRegistry.registerEntityRenderingHandler(CorruptSapperEntity.class, m -> new CorruptSapperRenderer(m, new GrowthSapperModel<>(), 0.6F));
+        RenderingRegistry.registerEntityRenderingHandler(CrystalGolemEntity.class, m -> new CrystalGolemRenderer(m, new CrystalGolemModel(), 0.9F));
+        RenderingRegistry.registerEntityRenderingHandler(GrowthSapperEntity.class, m -> new GrowthSapperRenderer(m, new GrowthSapperModel<>(), 0.6F));
+        RenderingRegistry.registerEntityRenderingHandler(HowliteWolfEntity.class, m -> new HowliteWolfRenderer(m, new HowliteWolfModel(), 0.5F));
+        RenderingRegistry.registerEntityRenderingHandler(LesserShockshooterEntity.class, m -> new LesserShockshooterRenderer(m, new LesserShockshooterModel(), 0.5F));
+        RenderingRegistry.registerEntityRenderingHandler(LesserSpitfireEntity.class, m -> new LesserSpitfireRenderer(m, new LesserSpitfireModel(), 0.5F));
+        RenderingRegistry.registerEntityRenderingHandler(MarkuzarPlantEntity.class, m -> new MarkuzarPlantRenderer(m, new MarkuzarPlantModel(), 0.5F));
+        RenderingRegistry.registerEntityRenderingHandler(MineralArenthisEntity.class, m -> new MineralArenthisRenderer(m, new MineralArenthisModel(), 0.8F));
+        RenderingRegistry.registerEntityRenderingHandler(MucklingEntity.class, m -> new MucklingRenderer(m, 0.625F));
+        RenderingRegistry.registerEntityRenderingHandler(MutantGrowthExtractorEntity.class, m -> new GrowthExtractorRenderer(m, new GrowthExtractorModel(),0.8F));
+        RenderingRegistry.registerEntityRenderingHandler(NomadicLagrahkEntity.class, m -> new NomadicLagrahkRenderer(m, new NomadicLagrahkModel(), 1.0F));
+        RenderingRegistry.registerEntityRenderingHandler(PrimalBeastEntity.class, m -> new PrimalBeastRenderer(m, new PrimalBeastModel(), 0.5F));
+        RenderingRegistry.registerEntityRenderingHandler(RockyLuggerothEntity.class, m -> new RockyLuggerothRenderer(m, new RockyLuggerothModel(), 0.7F));
+        RenderingRegistry.registerEntityRenderingHandler(RuggedLurmorusEntity.class, m -> new RuggedLurmorusRenderer(m, new RuggedLurmorusModel(), 4.0F));
+        RenderingRegistry.registerEntityRenderingHandler(SaltionEntity.class, m -> new SaltionRenderer(m, new SaltionModel(), 0.7F));
+        RenderingRegistry.registerEntityRenderingHandler(ShallowArenthisEntity.class, m -> new ShallowArenthisRenderer(m, new ShallowArenthisModel(), 0.5F));
+        RenderingRegistry.registerEntityRenderingHandler(ShalurkerEntity.class, m -> new ShalurkerRenderer(m, new ShalurkerModel(), 0.5F));
+        RenderingRegistry.registerEntityRenderingHandler(SpellElementEntity.class, m -> new SpellElementRenderer(m, new SpellElementModel(), 0.4F));
+
+        RenderingRegistry.registerEntityRenderingHandler(BlueHowliteWolfEntity.class, m -> new BlueHowliteWolfRenderer(m, new BlueHowliteWolfModel(), 1.0F));
+        RenderingRegistry.registerEntityRenderingHandler(MalachiteGuardEntity.class, m -> new MalachiteGuardRenderer(m, new MalachiteGuardModel(), 0.7F));
+    }
 }

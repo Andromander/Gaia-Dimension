@@ -66,28 +66,24 @@ public class ShallowArenthisEntity extends WaterMobEntity {
         this.prevArenthisRotation = this.arenthisRotation;
         this.lastTentacleAngle = this.tentacleAngle;
         this.arenthisRotation += this.rotationVelocity;
-
-        if ((double) this.arenthisRotation > (Math.PI * 2D)) {
+        if ((double)this.arenthisRotation > (Math.PI * 2D)) {
             if (this.world.isRemote) {
-                this.arenthisRotation = ((float) Math.PI * 2F);
+                this.arenthisRotation = ((float)Math.PI * 2F);
             } else {
-                this.arenthisRotation = (float) ((double) this.arenthisRotation - (Math.PI * 2D));
-
+                this.arenthisRotation = (float)((double)this.arenthisRotation - (Math.PI * 2D));
                 if (this.rand.nextInt(10) == 0) {
                     this.rotationVelocity = 1.0F / (this.rand.nextFloat() + 1.0F) * 0.2F;
                 }
 
-                this.world.setEntityState(this, (byte) 19);
+                this.world.setEntityState(this, (byte)19);
             }
         }
 
-
-        if (this.inWater) {
-            if (this.arenthisRotation < (float) Math.PI) {
-                float randomVec = this.arenthisRotation / (float) Math.PI;
-                this.tentacleAngle = MathHelper.sin(randomVec * randomVec * (float) Math.PI) * (float) Math.PI * 0.25F;
-
-                if ((double) randomVec > 0.75D) {
+        if (this.isInWaterOrBubbleColumn()) {
+            if (this.arenthisRotation < (float)Math.PI) {
+                float f = this.arenthisRotation / (float)Math.PI;
+                this.tentacleAngle = MathHelper.sin(f * f * (float)Math.PI) * (float)Math.PI * 0.25F;
+                if ((double)f > 0.75D) {
                     this.randomMotionSpeed = 1.0F;
                     this.rotateSpeed = 1.0F;
                 } else {
@@ -100,29 +96,29 @@ public class ShallowArenthisEntity extends WaterMobEntity {
             }
 
             if (!this.world.isRemote) {
-                this.setMotion(getMotion().mul(this.randomMotionVecX * this.randomMotionSpeed, this.randomMotionVecY * this.randomMotionSpeed, this.randomMotionVecZ * this.randomMotionSpeed));
+                this.setMotion((double)(this.randomMotionVecX * this.randomMotionSpeed), (double)(this.randomMotionVecY * this.randomMotionSpeed), (double)(this.randomMotionVecZ * this.randomMotionSpeed));
             }
 
-            float f1 = MathHelper.sqrt(this.getMotion().x * this.getMotion().x + this.getMotion().z * this.getMotion().z);
-            this.renderYawOffset += (-((float) MathHelper.atan2(this.getMotion().x, this.getMotion().z)) * (180F / (float) Math.PI) - this.renderYawOffset) * 0.1F;
+            Vec3d vec3d = this.getMotion();
+            float f1 = MathHelper.sqrt(func_213296_b(vec3d));
+            this.renderYawOffset += (-((float)MathHelper.atan2(vec3d.x, vec3d.z)) * (180F / (float)Math.PI) - this.renderYawOffset) * 0.1F;
             this.rotationYaw = this.renderYawOffset;
-            this.arenthisYaw = (float) ((double) this.arenthisYaw + Math.PI * (double) this.rotateSpeed * 1.5D);
-            this.arenthisPitch += (-((float) MathHelper.atan2((double) f1, this.getMotion().y)) * (180F / (float) Math.PI) - this.arenthisPitch) * 0.1F;
+            this.arenthisYaw = (float)((double)this.arenthisYaw + Math.PI * (double)this.rotateSpeed * 1.5D);
+            this.arenthisPitch += (-((float)MathHelper.atan2((double)f1, vec3d.y)) * (180F / (float)Math.PI) - this.arenthisPitch) * 0.1F;
         } else {
-            this.tentacleAngle = MathHelper.abs(MathHelper.sin(this.arenthisRotation)) * (float) Math.PI * 0.25F;
-
+            this.tentacleAngle = MathHelper.abs(MathHelper.sin(this.arenthisRotation)) * (float)Math.PI * 0.25F;
             if (!this.world.isRemote) {
                 double d0 = this.getMotion().y;
                 if (this.isPotionActive(Effects.LEVITATION)) {
-                    d0 += 0.05D * (double) (this.getActivePotionEffect(Effects.LEVITATION).getAmplifier() + 1) - d0;
+                    d0 = 0.05D * (double)(this.getActivePotionEffect(Effects.LEVITATION).getAmplifier() + 1);
                 } else if (!this.hasNoGravity()) {
                     d0 -= 0.08D;
                 }
 
-                this.setMotion(getMotion().mul(0.0D, d0 * 0.98D, 0.0D));
+                this.setMotion(0.0D, d0 * (double)0.98F, 0.0D);
             }
 
-            this.arenthisPitch = (float) ((double) this.arenthisPitch + (double) (-90.0F - this.arenthisPitch) * 0.02D);
+            this.arenthisPitch = (float)((double)this.arenthisPitch + (double)(-90.0F - this.arenthisPitch) * 0.02D);
         }
     }
 
@@ -132,7 +128,7 @@ public class ShallowArenthisEntity extends WaterMobEntity {
 
     @Override
     public void travel(Vec3d motion) {
-        this.move(MoverType.SELF, motion);
+        this.move(MoverType.SELF, this.getMotion());
     }
 
     @Override

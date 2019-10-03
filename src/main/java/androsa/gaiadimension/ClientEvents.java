@@ -5,13 +5,11 @@ import androsa.gaiadimension.registry.ModBlocks;
 import net.minecraft.client.renderer.color.BlockColors;
 import net.minecraft.client.renderer.color.ItemColors;
 import net.minecraft.item.BlockItem;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.biome.BiomeColors;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.ColorHandlerEvent;
-import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
@@ -24,15 +22,16 @@ public class ClientEvents {
         BlockColors blocks = e.getBlockColors();
 
         blocks.register((state, worldIn, pos, tintIndex) -> worldIn != null && pos != null && worldIn.getBiome(pos) instanceof BaseGaiaBiome ? BiomeColors.getGrassColor(worldIn, pos) : 0xF2A3B4,
-                ModBlocks.glitter_grass,
-                ModBlocks.crystal_growth);
+                ModBlocks.glitter_grass.get(),
+                ModBlocks.crystal_growth.get());
 
         blocks.register((state, worldIn, pos, tintIndex) -> worldIn != null && pos != null && worldIn.getBiome(pos) instanceof BaseGaiaBiome ? BiomeColors.getGrassColor(worldIn, pos) : 0x606060,
-                ModBlocks.murky_grass);
+                ModBlocks.murky_grass.get());
 
         blocks.register((state, worldIn, pos, tintIndex) -> worldIn != null && pos != null && worldIn.getBiome(pos) instanceof BaseGaiaBiome ? BiomeColors.getGrassColor(worldIn, pos) : 0xA0A0A0,
-                ModBlocks.soft_grass);
+                ModBlocks.soft_grass.get());
 
+        //TODO: This doesn't work
         blocks.register((state, worldIn, pos, tintIndex) -> {
             if (worldIn != null && pos != null) {
                 int red = (int) ((MathHelper.cos((float) Math.toRadians(pos.getX() * 2)) + 1F) / 2F * 0xFF);
@@ -47,7 +46,7 @@ public class ClientEvents {
             } else {
                 return 0x808080;
             }
-        }, ModBlocks.liquid_bismuth);
+        }, ModBlocks.liquid_bismuth.get());
 
         blocks.register((state, worldIn, pos, tintIndex) -> {
             if (worldIn != null && pos != null) {
@@ -64,7 +63,7 @@ public class ClientEvents {
                 return 0xFFFFFF;
             }
 
-        }, ModBlocks.liquid_aura, ModBlocks.aura_leaves);
+        }, ModBlocks.liquid_aura.get(), ModBlocks.aura_leaves.get());
 
         blocks.register((state, worldIn, pos, tintIndex) -> {
             int hex;
@@ -108,7 +107,7 @@ public class ClientEvents {
             }
 
             return hex;
-        }, ModBlocks.aura_shoot);
+        }, ModBlocks.aura_shoot.get());
     }
 
     @SubscribeEvent
@@ -117,11 +116,11 @@ public class ClientEvents {
         ItemColors items = e.getItemColors();
 
         items.register((stack, tintIndex) -> blocks.getColor(((BlockItem)stack.getItem()).getBlock().getDefaultState(), null, null, tintIndex),
-                ModBlocks.glitter_grass,
-                ModBlocks.crystal_growth,
-                ModBlocks.murky_grass,
-                ModBlocks.aura_shoot,
-                ModBlocks.soft_grass);
+                ModBlocks.glitter_grass.get(),
+                ModBlocks.crystal_growth.get(),
+                ModBlocks.murky_grass.get(),
+                ModBlocks.aura_shoot.get(),
+                ModBlocks.soft_grass.get());
     }
 
     /*@SubscribeEvent

@@ -30,7 +30,7 @@ public class GaiaFoods {
     public static final Food TILIPU = buildFood(7, 0.3F);
     public static final Food TILIOL = buildFood(5, 0.6F);
     public static final Food TILIMY = buildFood(7, 0.3F);
-    public static final Food PLAGUED_TILIEY = buildFoodWithEffect(7, 0.3F, false, new EffectInstance(ModEffects.goldstone_plague, 100, 0), 1.0F);
+    public static final Food PLAGUED_TILIEY = buildFoodWithEffect(7, 0.3F, false, new EffectInstance(ModEffects.goldstone_plague.get(), 100, 0), 1.0F);
     public static final Food TILIOU = buildFood(5, 0.6F);
 
     private static Food buildFood(int hunger, float saturation) {

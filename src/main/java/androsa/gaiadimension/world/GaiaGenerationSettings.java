@@ -8,20 +8,8 @@ public class GaiaGenerationSettings extends GenerationSettings {
     public static int SEALEVEL = 63;
 
     public GaiaGenerationSettings() {
-        setDefaultBlock(ModBlocks.gaia_stone.getDefaultState());
-        setDefaultFluid(ModBlocks.mineral_water.getDefaultState());
-    }
-
-    public int getBiomeSize() {
-        return 4;
-    }
-
-    public int getRiverSize() {
-        return 4;
-    }
-
-    public int getBiomeId() {
-        return -1;
+        setDefaultBlock(ModBlocks.gaia_stone.get().getDefaultState());
+        setDefaultFluid(ModBlocks.mineral_water.get().getDefaultState());
     }
 
     public int getBedrockFloorHeight() {

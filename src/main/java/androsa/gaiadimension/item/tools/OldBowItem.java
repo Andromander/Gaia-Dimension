@@ -10,7 +10,7 @@ import java.util.function.Predicate;
 
 public class OldBowItem extends BowItem {
 
-    public static final Predicate<ItemStack> ARROW = (stack) -> stack.getItem() == ModItems.agate_arrow;
+    public static final Predicate<ItemStack> ARROW = (stack) -> stack.getItem() == ModItems.agate_arrow.get();
 
     public OldBowItem() {
         super(new Properties().defaultMaxDamage(425).group(GaiaItemGroups.GAIA_TOOLS));

@@ -6,6 +6,7 @@ import androsa.gaiadimension.registry.ModBlocks;
 import com.google.common.collect.Maps;
 import it.unimi.dsi.fastutil.objects.Object2LongMap;
 import it.unimi.dsi.fastutil.objects.Object2LongOpenHashMap;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.pattern.BlockPattern;
@@ -25,9 +26,10 @@ import java.util.function.Supplier;
 
 public class GaiaTeleporter extends Teleporter {
 
-    private static final GaiaPortalBlock BLOCK_GAIA_PORTAL = ModBlocks.gaia_portal;
+    private static final Block BLOCK_GAIA_PORTAL = ModBlocks.gaia_portal.get();
+    private static final Block BLOCK_KEYSTONE = ModBlocks.keystone_block.get();
     protected final Map<ColumnPos, PortalPosition> destinationCoordinateCache = Maps.newHashMapWithExpectedSize(4096);
-    private final Object2LongMap<ColumnPos> field_222275_f = new Object2LongOpenHashMap<>();
+    private final Object2LongMap<ColumnPos> columnMap = new Object2LongOpenHashMap<>();
 
     public GaiaTeleporter(ServerWorld serverWorld) {
         super(serverWorld);
@@ -61,7 +63,7 @@ public class GaiaTeleporter extends Teleporter {
         boolean flag = true;
         BlockPos blockpos = null;
         ColumnPos columnpos = new ColumnPos(pos);
-        if (!isPlayer && this.field_222275_f.containsKey(columnpos)) {
+        if (!isPlayer && this.columnMap.containsKey(columnpos)) {
             return null;
         } else {
             GaiaTeleporter.PortalPosition teleporter$portalposition = this.destinationCoordinateCache.get(columnpos);
@@ -95,7 +97,7 @@ public class GaiaTeleporter extends Teleporter {
 
             if (blockpos == null) {
                 long l = this.world.getGameTime() + 300L;
-                this.field_222275_f.put(columnpos, l);
+                this.columnMap.put(columnpos, l);
                 return null;
             } else {
                 if (flag) {
@@ -109,7 +111,7 @@ public class GaiaTeleporter extends Teleporter {
                     this.world.getChunkProvider().func_217228_a(TicketType.PORTAL, new ChunkPos(blockpos), 3, columnpos);
                 }
 
-                BlockPattern.PatternHelper blockpattern$patternhelper = BLOCK_GAIA_PORTAL.createPatternHelper(this.world, blockpos);
+                BlockPattern.PatternHelper blockpattern$patternhelper = ((GaiaPortalBlock)BLOCK_GAIA_PORTAL).createPatternHelper(this.world, blockpos);
                 return blockpattern$patternhelper.func_222504_a(directon, blockpos, vecY, vec3d, vecX);
             }
         }
@@ -255,13 +257,13 @@ public class GaiaTeleporter extends Teleporter {
                         int frameY = k2 + k8;
                         int frameZ = k6 + (l7 - 1) * i3 - j7 * l6;
                         boolean flag = k8 < 0;
-                        this.world.setBlockState(new BlockPos(frameX, frameY, frameZ), flag ? ModBlocks.keystone_block.getDefaultState() : Blocks.AIR.getDefaultState());
+                        this.world.setBlockState(new BlockPos(frameX, frameY, frameZ), flag ? BLOCK_KEYSTONE.getDefaultState() : Blocks.AIR.getDefaultState());
                     }
                 }
             }
         }
 
-        BlockState iblockstate = ModBlocks.gaia_portal.getDefaultState().with(GaiaPortalBlock.AXIS, l6 == 0 ? Direction.Axis.Z : Direction.Axis.X);
+        BlockState iblockstate = BLOCK_GAIA_PORTAL.getDefaultState().with(GaiaPortalBlock.AXIS, l6 == 0 ? Direction.Axis.Z : Direction.Axis.X);
 
         for (int i8 = 0; i8 < 4; ++i8) {
             for (int l8 = 0; l8 < 4; ++l8) {
@@ -270,7 +272,7 @@ public class GaiaTeleporter extends Teleporter {
                     int portalY = k2 + l9;
                     int portalZ = k6 + (l8 - 1) * i3;
                     boolean flag1 = l8 == 0 || l8 == 3 || l9 == -1 || l9 == 3;
-                    this.world.setBlockState(new BlockPos(portalX, portalY, portalZ), flag1 ? ModBlocks.keystone_block.getDefaultState() : iblockstate, 2);
+                    this.world.setBlockState(new BlockPos(portalX, portalY, portalZ), flag1 ? BLOCK_KEYSTONE.getDefaultState() : iblockstate, 2);
                 }
             }
 

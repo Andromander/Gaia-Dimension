@@ -18,7 +18,7 @@ import java.util.function.Function;
 @ParametersAreNonnullByDefault
 public class AuraShootsFeature extends Feature<NoFeatureConfig> {
 
-    private static final BlockState AURA_SHOOT = ModBlocks.aura_shoot.getDefaultState();
+    private static final BlockState AURA_SHOOT = ModBlocks.aura_shoot.get().getDefaultState();
 
     public AuraShootsFeature(Function<Dynamic<?>, ? extends NoFeatureConfig> configIn) {
         super(configIn);

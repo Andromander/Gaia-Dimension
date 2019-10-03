@@ -21,7 +21,7 @@ public class MutantGrowthFeature extends Feature<NoFeatureConfig> {
     }
 
     public boolean place(IWorld worldIn, ChunkGenerator<? extends GenerationSettings> generator, Random rand, BlockPos pos, NoFeatureConfig config) {
-        BlockState blockstate = ModBlocks.crystal_growth_mutant.getDefaultState();
+        BlockState blockstate = ModBlocks.crystal_growth_mutant.get().getDefaultState();
 
         for(BlockState blockstate1 = worldIn.getBlockState(pos); (blockstate1.isAir(worldIn, pos) || blockstate1.isIn(BlockTags.LEAVES)) && pos.getY() > 0; blockstate1 = worldIn.getBlockState(pos)) {
             pos = pos.down();

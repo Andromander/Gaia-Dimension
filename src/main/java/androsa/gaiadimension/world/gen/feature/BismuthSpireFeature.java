@@ -35,7 +35,7 @@ public class BismuthSpireFeature extends Feature<NoFeatureConfig> {
                 if (worldIn.isBlockLoaded(pos)) {
                     Block blockBelow = worldIn.getBlockState(pos.down()).getBlock();
 
-                    if (blockBelow != ModBlocks.murky_grass) {
+                    if (blockBelow != ModBlocks.murky_grass.get()) {
                         return false;
                     }
                 }
@@ -80,11 +80,11 @@ public class BismuthSpireFeature extends Feature<NoFeatureConfig> {
         BlockState state;
 
         if (random.nextInt(30) == 0) {
-            state = ModBlocks.bismuth_block.getDefaultState();
+            state = ModBlocks.bismuth_block.get().getDefaultState();
         } else if (random.nextInt(15) == 0) {
-            state = ModBlocks.active_rock.getDefaultState();
+            state = ModBlocks.active_rock.get().getDefaultState();
         } else {
-            state = ModBlocks.impure_rock.getDefaultState();
+            state = ModBlocks.impure_rock.get().getDefaultState();
         }
         world.setBlockState(pos, state, 2);
     }

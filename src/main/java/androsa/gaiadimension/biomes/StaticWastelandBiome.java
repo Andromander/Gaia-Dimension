@@ -21,7 +21,7 @@ public class StaticWastelandBiome extends BaseGaiaBiome implements IDryBiome {
         GaiaBiomeFeatures.addStaticPatches(this);
         GaiaBiomeFeatures.addStaticSpikes(this);
         GaiaBiomeFeatures.addUndergroundMushrooms(this);
-        this.addSpawn(EntityClassification.MONSTER, new SpawnListEntry(ModEntities.LESSER_SHOCKSHOOTER, 10, 2, 4));
+        this.addSpawn(EntityClassification.MONSTER, new SpawnListEntry(ModEntities.LESSER_SHOCKSHOOTER.get(), 10, 2, 4));
 
         flowers.clear();
         skyColor = GaiaSkyColors.STATIC_WASTELAND;

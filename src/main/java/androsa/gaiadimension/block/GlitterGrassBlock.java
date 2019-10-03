@@ -17,14 +17,14 @@ import java.util.Random;
 public class GlitterGrassBlock extends AbstractGaiaGrassBlock {
 
     public GlitterGrassBlock() {
-        super(MaterialColor.PINK, ModBlocks.heavy_soil);
+        super(MaterialColor.PINK, ModBlocks.heavy_soil.get());
     }
 
     @Override
     public void grow(World worldIn, Random rand, BlockPos pos, BlockState state) {
         BlockPos blockpos = pos.up();
-        BlockState normalGrowth = ModBlocks.crystal_growth.getDefaultState();
-        BlockState mutantGrowth = ModBlocks.crystal_growth_mutant.getDefaultState();
+        BlockState normalGrowth = ModBlocks.crystal_growth.get().getDefaultState();
+        BlockState mutantGrowth = ModBlocks.crystal_growth_mutant.get().getDefaultState();
 
         for(int i = 0; i < 128; ++i) {
             BlockPos blockpos1 = blockpos;

@@ -2,32 +2,26 @@ package androsa.gaiadimension.registry;
 
 import androsa.gaiadimension.GaiaDimensionMod;
 import androsa.gaiadimension.block.tileentity.*;
+import com.google.common.collect.Sets;
 import net.minecraft.tileentity.TileEntityType;
-import net.minecraftforge.event.RegistryEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.registries.IForgeRegistry;
-import net.minecraftforge.registries.ObjectHolder;
+import net.minecraftforge.fml.RegistryObject;
+import net.minecraftforge.registries.DeferredRegister;
+import net.minecraftforge.registries.ForgeRegistries;
 
-@ObjectHolder(GaiaDimensionMod.MODID)
-@Mod.EventBusSubscriber(modid = GaiaDimensionMod.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ModTileEntities {
-    public static final TileEntityType<GaiaStoneFurnaceTileEntity> GAIA_STONE_FURNACE = TileEntityType.Builder.create(GaiaStoneFurnaceTileEntity::new, ModBlocks.gaia_stone_furnace).build(null);
-    public static final TileEntityType<GeyserTileEntity> GEYSER = TileEntityType.Builder.create(GeyserTileEntity::new, ModBlocks.geyser_block).build(null);
-    public static final TileEntityType<LargeCrateTileEntity> LARGE_CRATE = TileEntityType.Builder.create(LargeCrateTileEntity::new, ModBlocks.mega_storage_crate).build(null);
-    public static final TileEntityType<PurifierTileEntity> PURIFIER = TileEntityType.Builder.create(PurifierTileEntity::new, ModBlocks.purifier).build(null);
-    public static final TileEntityType<RestructurerTileEntity> RESTRUCTURER = TileEntityType.Builder.create(RestructurerTileEntity::new, ModBlocks.restructurer).build(null);
-    public static final TileEntityType<SmallCrateTileEntity> SMALL_CRATE = TileEntityType.Builder.create(SmallCrateTileEntity::new, ModBlocks.crude_storage_crate).build(null);
 
-    @SubscribeEvent
-    public static void registerTileEntities(RegistryEvent.Register<TileEntityType<?>> e) {
-        final IForgeRegistry<TileEntityType<?>> registry = e.getRegistry();
+    public static final DeferredRegister<TileEntityType<?>> TILE_ENTITIES = new DeferredRegister<>(ForgeRegistries.TILE_ENTITIES, GaiaDimensionMod.MODID);
 
-        registry.register(GAIA_STONE_FURNACE.setRegistryName("gaia_stone_furnace"));
-        registry.register(GEYSER.setRegistryName("geyser"));
-        registry.register(LARGE_CRATE.setRegistryName("large_crate"));
-        registry.register(PURIFIER.setRegistryName("purifier"));
-        registry.register(RESTRUCTURER.setRegistryName("restructurer"));
-        registry.register(SMALL_CRATE.setRegistryName("small_crate"));
-    }
+    public static final RegistryObject<TileEntityType<GaiaStoneFurnaceTileEntity>> GAIA_STONE_FURNACE =  TILE_ENTITIES.register(
+            "gaia_stone_furnace", () -> new TileEntityType<>(GaiaStoneFurnaceTileEntity::new, Sets.newHashSet(ModBlocks.gaia_stone_furnace.get()), null));
+    public static final RegistryObject<TileEntityType<GeyserTileEntity>> GEYSER = TILE_ENTITIES.register(
+            "geyser", () -> new TileEntityType<>(GeyserTileEntity::new, Sets.newHashSet(ModBlocks.geyser_block.get()), null));
+    public static final RegistryObject<TileEntityType<LargeCrateTileEntity>> LARGE_CRATE = TILE_ENTITIES.register(
+            "large_crate", () -> new TileEntityType<>(LargeCrateTileEntity::new, Sets.newHashSet(ModBlocks.mega_storage_crate.get()), null));
+    public static final RegistryObject<TileEntityType<PurifierTileEntity>> PURIFIER = TILE_ENTITIES.register(
+            "purifier", () -> new TileEntityType<>(PurifierTileEntity::new, Sets.newHashSet(ModBlocks.purifier.get()), null));
+    public static final RegistryObject<TileEntityType<RestructurerTileEntity>> RESTRUCTURER = TILE_ENTITIES.register(
+            "restructurer", () -> new TileEntityType<>(RestructurerTileEntity::new, Sets.newHashSet(ModBlocks.restructurer.get()), null));
+    public static final RegistryObject<TileEntityType<SmallCrateTileEntity>> SMALL_CRATE = TILE_ENTITIES.register(
+            "small_crate", () -> new TileEntityType<>(SmallCrateTileEntity::new, Sets.newHashSet(ModBlocks.crude_storage_crate.get()), null));
 }
