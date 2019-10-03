@@ -1,0 +1,7 @@
+{
+  "parent": "gaiadimension:block/util/cube_all_2_layer",
+  "textures": {
+    "all": "gaiadimension:blocks/malachite_floor_bricks",
+    "all2": "gaiadimension:blocks/malachite_blue_pulse_corner"
+  }
+}

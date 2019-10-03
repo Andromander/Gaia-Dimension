@@ -1,14 +1,10 @@
 {
-  "forge_marker": 1,
-  "defaults": {
-    "model": "cube_all"
-  },
   "variants": {
-    "normal": [
-      { "model": "cube_all", "textures": {"all": "gaiadimension:blocks/corrupt_soil" }},
-      { "model": "cube_all", "textures": {"all": "gaiadimension:blocks/corrupt_soil" }, "x": 90, "y": 90 },
-      { "model": "cube_all", "textures": {"all": "gaiadimension:blocks/corrupt_soil" }, "x": 180, "y": 180 },
-      { "model": "cube_all", "textures": {"all": "gaiadimension:blocks/corrupt_soil" }, "x": 270, "y": 270 }
+    "": [
+      { "model": "gaiadimension:block/corrupt_soil" },
+      { "model": "gaiadimension:block/corrupt_soil", "y": 90 },
+      { "model": "gaiadimension:block/corrupt_soil", "y": 180 },
+      { "model": "gaiadimension:block/corrupt_soil", "y": 270 }
     ]
   }
 }

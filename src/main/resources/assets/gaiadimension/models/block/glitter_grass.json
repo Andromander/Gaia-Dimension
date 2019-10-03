@@ -1,0 +1,9 @@
+{
+  "parent": "gaiadimension:block/util/grass_block",
+  "textures": {
+    "top":      "gaiadimension:blocks/glitter_grass_top",
+    "bottom":   "gaiadimension:blocks/heavy_soil",
+    "side":     "gaiadimension:blocks/glitter_grass_side",
+    "overlay":  "gaiadimension:blocks/glitter_grass_overlay"
+  }
+}

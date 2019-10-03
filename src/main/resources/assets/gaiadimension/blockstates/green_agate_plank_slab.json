@@ -1,13 +1,7 @@
 {
-  "forge_marker": 1,
-  "defaults": {
-    "model": "half_slab",
-    "textures": {
-      "top": "gaiadimension:blocks/green_agate_planks",
-      "side": "gaiadimension:blocks/green_agate_planks",
-      "bottom": "gaiadimension:blocks/green_agate_planks"
-    },
-    "uvlock": true
-  },
-  "variants": { "half": { "bottom": {}, "top": { "x": 180 } } }
+  "variants": {
+    "type=bottom": { "model": "gaiadimension:block/green_agate_plank_slab" },
+    "type=top":    { "model": "gaiadimension:block/green_agate_plank_slab_top" },
+    "type=double": { "model": "gaiadimension:block/green_agate_planks" }
+  }
 }

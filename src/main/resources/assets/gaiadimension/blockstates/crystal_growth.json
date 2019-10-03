@@ -1,11 +1,7 @@
 {
-  "forge_marker": 1,
-  "defaults": {
-    "model": "minecraft:tinted_cross",
-    "transform": "forge:default-item"
-  },
   "variants": {
-    "normal":    [{ "model": "tinted_cross",      "textures": { "cross":  "gaiadimension:blocks/crystal_growth" }}],
-    "inventory": [{ "model": "builtin/generated", "textures": { "layer0": "gaiadimension:blocks/crystal_growth" }}]
+    "": {
+      "model": "gaiadimension:block/crystal_growth"
+    }
   }
 }

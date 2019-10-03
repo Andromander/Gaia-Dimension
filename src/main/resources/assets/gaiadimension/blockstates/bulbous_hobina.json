@@ -1,11 +1,7 @@
 {
-  "forge_marker": 1,
-  "defaults": {
-    "model": "minecraft:cross",
-    "transform": "forge:default-item"
-  },
   "variants": {
-    "normal":    [{ "model": "cross",             "textures": { "cross":  "gaiadimension:blocks/bulbous_hobina" }}],
-    "inventory": [{ "model": "builtin/generated", "textures": { "layer0": "gaiadimension:blocks/bulbous_hobina" }}]
+    "": {
+      "model": "gaiadimension:block/bulbous_hobina"
+    }
   }
 }

@@ -1,17 +1,10 @@
 {
-  "forge_marker": 1,
-  "defaults": {
-    "model": "cube_all",
-    "textures": {
-      "all": "gaiadimension:blocks/heavy_soil"
-    }
-  },
   "variants": {
-    "normal": [
-      { },
-      { "y": 180 },
-      { "model": "cube_mirrored_all" },
-      { "model": "cube_mirrored_all", "y": 180 }
+    "": [
+      { "model": "gaiadimension:block/heavy_soil" },
+      { "model": "gaiadimension:block/heavy_soil", "y": 90 },
+      { "model": "gaiadimension:block/heavy_soil", "y": 180 },
+      { "model": "gaiadimension:block/heavy_soil", "y": 270 }
     ]
   }
 }

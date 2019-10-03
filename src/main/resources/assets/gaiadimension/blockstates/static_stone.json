@@ -1,18 +1,7 @@
 {
-  "forge_marker": 1,
-  "defaults": {
-    "model": "gaiadimension:util/cube_all_2_layer",
-    "textures": {
-      "all": "gaiadimension:blocks/wasteland_stone",
-      "all2": "gaiadimension:blocks/static_stone"
-    }
-  },
   "variants": {
-    "normal": [
-      {  },
-      { "y": 180 },
-      { "model": "gaiadimension:util/cube_mirrored_all_2_layer" },
-      { "model": "gaiadimension:util/cube_mirrored_all_2_layer", "y": 180 }
-    ]
+    "": {
+      "model": "gaiadimension:block/static_stone"
+    }
   }
 }

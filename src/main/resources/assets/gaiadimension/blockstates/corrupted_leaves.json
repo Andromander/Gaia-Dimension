@@ -1,13 +1,7 @@
 {
-  "forge_marker": 1,
-  "defaults": {
-    "model": "leaves",
-    "textures": {
-      "all": "gaiadimension:blocks/corrupted_leaves"
-    }
-  },
   "variants": {
-    "normal": [{ }],
-    "inventory": [{ }]
+    "": {
+      "model": "gaiadimension:block/corrupted_leaves"
+    }
   }
 }

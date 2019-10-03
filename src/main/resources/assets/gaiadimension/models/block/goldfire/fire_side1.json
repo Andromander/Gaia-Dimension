@@ -1,7 +1,0 @@
-{
-  "parent": "block/fire_side",
-  "textures": {
-    "particle": "gaiadimension:blocks/gold_fire_layer_1",
-    "fire": "gaiadimension:blocks/gold_fire_layer_1"
-  }
-}

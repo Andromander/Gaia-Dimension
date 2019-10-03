@@ -1,13 +1,15 @@
 {
   "parent": "block/block",
   "textures": {
-    "particle": "#side"
+    "particle": "gaiadimension:blocks/aura_shoot",
+    "side": "gaiadimension:blocks/aura_shoot",
+    "end": "gaiadimension:blocks/aura_shoot_tip"
   },
   "elements": [{
     "from": [ 5, 0, 5 ],
     "to": [ 11, 10, 11 ],
     "faces": {
-      "down":  { "texture": "#end",  "cullface": "down",  "tintindex": 0 },
+      "down":  { "texture": "#end",  "cullface": "down","tintindex": 0 },
       "up":    { "texture": "#end",  "cullface": "up",    "tintindex": 0 },
       "north": { "texture": "#side", "tintindex": 0 },
       "south": { "texture": "#side", "tintindex": 0 },

@@ -1,11 +1,7 @@
 {
-  "forge_marker": 1,
-  "defaults": {
-    "model": "gaiadimension:util/cube_all_2_layer",
-    "textures": {
-      "all": "gaiadimension:blocks/malachite_bricks",
-      "all2": "gaiadimension:blocks/malachite_green_pulse_corner"} },
   "variants": {
-    "normal": [{}]
+    "": {
+      "model": "gaiadimension:block/malachite_pulsing_bricks"
+    }
   }
 }

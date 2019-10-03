@@ -1,14 +1,7 @@
 {
-  "forge_marker": 1,
-  "defaults": {
-    "model": "cube_bottom_top",
-    "textures": {
-      "side": "gaiadimension:blocks/geyser_block_side",
-      "top": "gaiadimension:blocks/geyser_block_top",
-      "bottom": "gaiadimension:blocks/bismuth_block"
-    }
-  },
   "variants": {
-    "normal": [{}]
+    "": {
+      "model": "gaiadimension:block/geyser_block"
+    }
   }
 }

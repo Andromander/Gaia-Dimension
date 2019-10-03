@@ -1,0 +1,9 @@
+{
+  "parent": "gaiadimension:block/util/grass_block",
+  "textures": {
+    "top":      "gaiadimension:blocks/dead_grass_top",
+    "bottom":   "gaiadimension:blocks/corrupt_soil",
+    "side":     "gaiadimension:blocks/dead_grass_side",
+    "overlay":  "gaiadimension:blocks/dead_grass_overlay"
+  }
+}

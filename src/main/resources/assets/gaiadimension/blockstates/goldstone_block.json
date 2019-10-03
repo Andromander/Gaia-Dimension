@@ -1,8 +1,7 @@
 {
-  "forge_marker": 1,
-  "defaults": {
-    "model": "cube_all",
-    "textures": { "all": "gaiadimension:blocks/goldstone_block" }
-  },
-  "variants": { "normal": [{}] }
+  "variants": {
+    "": {
+      "model": "gaiadimension:block/goldstone_block"
+    }
+  }
 }

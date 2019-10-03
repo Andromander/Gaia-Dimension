@@ -1,0 +1,6 @@
+{
+  "parent": "block/leaves",
+  "textures": {
+    "all": "gaiadimension:blocks/pink_agate_leaves"
+  }
+}

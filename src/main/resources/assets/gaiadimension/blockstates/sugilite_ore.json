@@ -1,8 +1,7 @@
 {
-  "forge_marker": 1,
-  "defaults": {
-    "model": "cube_all",
-    "textures": { "all": "gaiadimension:blocks/sugilite_ore" }
-  },
-  "variants": { "normal": [{}] }
+  "variants": {
+    "": {
+      "model": "gaiadimension:block/sugilite_ore"
+    }
+  }
 }

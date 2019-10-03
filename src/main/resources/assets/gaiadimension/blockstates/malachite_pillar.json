@@ -1,15 +1,7 @@
 {
-  "forge_marker": 1,
-  "defaults": {
-    "model": "cube_column",
-    "textures": { "end":"gaiadimension:blocks/malachite_pillar_end", "side":"gaiadimension:blocks/malachite_pillar_side" }
-  },
   "variants": {
-    "axis": {
-      "y": {},
-      "z": { "x": 90 },
-      "x": { "x": 90, "y": 90 },
-      "none": { "model": "cube_all", "textures": { "all": "#side" } }
-    }
+    "axis=y":  { "model": "gaiadimension:block/malachite_pillar" },
+    "axis=z":   { "model": "gaiadimension:block/malachite_pillar", "x": 90 },
+    "axis=x":   { "model": "gaiadimension:block/malachite_pillar", "x": 90, "y": 90 }
   }
 }

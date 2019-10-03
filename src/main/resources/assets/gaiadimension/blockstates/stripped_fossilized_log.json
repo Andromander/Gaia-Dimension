@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "axis=y": { "model": "gaiadimension:block/stripped_fossilized_log" },
+    "axis=z": { "model": "gaiadimension:block/stripped_fossilized_log", "x": 90 },
+    "axis=x": { "model": "gaiadimension:block/stripped_fossilized_log", "x": 90, "y": 90 }
+  }
+}

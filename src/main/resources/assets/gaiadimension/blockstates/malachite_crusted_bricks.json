@@ -1,12 +1,7 @@
 {
-  "forge_marker": 1,
-  "defaults": {
-    "model": "cube_all",
-    "textures": {
-      "all": "gaiadimension:blocks/malachite_crystalized_bricks"
-    }
-  },
   "variants": {
-    "normal": [{}]
+    "": {
+      "model": "gaiadimension:block/malachite_crusted_bricks"
+    }
   }
 }

@@ -1,0 +1,8 @@
+{
+  "parent": "block/stairs",
+  "textures": {
+    "bottom": "gaiadimension:blocks/crusty_planks",
+    "top": "gaiadimension:blocks/crusty_planks",
+    "side": "gaiadimension:blocks/crusty_planks"
+  }
+}

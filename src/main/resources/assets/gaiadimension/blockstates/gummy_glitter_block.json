@@ -1,17 +1,7 @@
 {
-  "forge_marker": 1,
-  "defaults": {
-    "model": "cube_all",
-    "textures": {
-      "all": "gaiadimension:blocks/gummy_glitter_block"
-    }
-  },
   "variants": {
-    "normal": [
-      { },
-      { "y": 180 },
-      { "model": "cube_mirrored_all" },
-      { "model": "cube_mirrored_all", "y": 180 }
-    ]
+    "": {
+      "model": "gaiadimension:block/gummy_glitter_block"
+    }
   }
 }

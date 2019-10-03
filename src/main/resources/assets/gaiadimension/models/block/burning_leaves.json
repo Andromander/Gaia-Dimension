@@ -1,0 +1,6 @@
+{
+  "parent": "block/leaves",
+  "textures": {
+    "all": "gaiadimension:blocks/heated_leaves"
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "parent": "block/inner_stairs",
+  "textures": {
+    "bottom": "gaiadimension:blocks/fossilized_planks",
+    "top": "gaiadimension:blocks/fossilized_planks",
+    "side": "gaiadimension:blocks/fossilized_planks"
+  }
+}

@@ -1,8 +1,7 @@
 {
-  "forge_marker": 1,
-  "defaults": {
-    "model": "cube_all",
-    "textures": { "all": "gaiadimension:blocks/precious_rock" }
-  },
-  "variants": { "normal": [{}] }
+  "variants": {
+    "": {
+      "model": "gaiadimension:block/precious_rock"
+    }
+  }
 }

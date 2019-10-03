@@ -1,8 +1,7 @@
 {
-  "forge_marker": 1,
-  "defaults": {
-    "model": "cube_all",
-    "textures": { "all": "gaiadimension:blocks/reinforced_bricks" }
-  },
-  "variants": { "normal": [{}] }
+  "variants": {
+    "": {
+      "model": "gaiadimension:block/reinforced_bricks"
+    }
+  }
 }

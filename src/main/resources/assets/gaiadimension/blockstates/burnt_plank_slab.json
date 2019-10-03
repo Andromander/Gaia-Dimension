@@ -1,13 +1,7 @@
 {
-  "forge_marker": 1,
-  "defaults": {
-    "model": "half_slab",
-    "textures": {
-      "top": "gaiadimension:blocks/crusty_planks",
-      "side": "gaiadimension:blocks/crusty_planks",
-      "bottom": "gaiadimension:blocks/crusty_planks"
-    },
-    "uvlock": true
-  },
-  "variants": { "half": { "bottom": {}, "top": { "x": 180 } } }
+  "variants": {
+    "type=bottom": { "model": "gaiadimension:block/burnt_plank_slab" },
+    "type=top":    { "model": "gaiadimension:block/burnt_plank_slab_top" },
+    "type=double": { "model": "gaiadimension:block/burnt_planks" }
+  }
 }

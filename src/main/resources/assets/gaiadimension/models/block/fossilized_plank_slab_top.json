@@ -1,0 +1,8 @@
+{
+  "parent": "block/slab_top",
+  "textures": {
+    "bottom": "gaiadimension:blocks/fossilized_planks",
+    "top":    "gaiadimension:blocks/fossilized_planks",
+    "side":   "gaiadimension:blocks/fossilized_planks"
+  }
+}

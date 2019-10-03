@@ -1,10 +1,7 @@
 {
-  "forge_marker": 1,
-  "defaults": {
-    "model": "cube_all",
-    "textures": {
-      "all": "gaiadimension:blocks/blue_opal_ore"
+  "variants": {
+    "": {
+      "model": "gaiadimension:block/opal_ore_blue"
     }
-  },
-  "variants": { "normal": [{}] }
+  }
 }

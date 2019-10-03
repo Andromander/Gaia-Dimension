@@ -1,11 +1,7 @@
 {
-  "forge_marker": 1,
-  "defaults": {
-    "model": "minecraft:cross",
-    "transform": "forge:default-item"
-  },
   "variants": {
-    "normal":    [{ "model": "cross",             "textures": { "cross":  "gaiadimension:blocks/missingno_fungus" }}],
-    "inventory": [{ "model": "builtin/generated", "textures": { "layer0": "gaiadimension:blocks/missingno_fungus" }}]
+    "": {
+      "model": "gaiadimension:block/missingno_fungus"
+    }
   }
 }
