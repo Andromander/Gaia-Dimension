@@ -54,6 +54,8 @@ public class GaiaDimensionMod {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
         modEventBus.addListener(this::setup);
 
+        ModRecipes.registerRecipeTypes();
+
         ModBiomes.BIOMES.register(modEventBus);
         ModBlocks.BLOCKS.register(modEventBus);
         ModContainers.CONTAINERS.register(modEventBus);

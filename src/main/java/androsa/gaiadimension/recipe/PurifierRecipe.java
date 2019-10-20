@@ -64,11 +64,11 @@ public class PurifierRecipe implements IRecipe<IInventory> {
 
     @Override
     public ItemStack getRecipeOutput() {
-        return ItemStack.EMPTY;
+        return this.result;
     }
 
-    public ItemStack[] getRecipeOutputs() {
-        return new ItemStack[]{this.result, this.byproduct};
+    public ItemStack getByproduct() {
+        return this.byproduct;
     }
 
     /**

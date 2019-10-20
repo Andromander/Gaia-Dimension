@@ -3,6 +3,7 @@ package androsa.gaiadimension.block.tileentity;
 import androsa.gaiadimension.block.PurifierBlock;
 import androsa.gaiadimension.block.container.PurifierContainer;
 import androsa.gaiadimension.recipe.PurifierRecipe;
+import androsa.gaiadimension.recipe.PurifierRecipe;
 import androsa.gaiadimension.registry.*;
 import androsa.gaiadimension.registry.ModBlocks;
 import com.google.common.collect.Lists;
@@ -251,22 +252,23 @@ public class PurifierTileEntity extends LockableTileEntity implements ISidedInve
      */
     private boolean canChange(IRecipe<?> recipe) {
         if (!this.purifyingItemStacks.get(0).isEmpty() && recipe != null) {
-            ItemStack[] itemstack = ((PurifierRecipe)recipe).getRecipeOutputs();
+            ItemStack slot1 = ((PurifierRecipe)recipe).getRecipeOutput();
+            ItemStack slot2 = ((PurifierRecipe)recipe).getByproduct();
 
-            if(itemstack[0].isEmpty() && itemstack[1].isEmpty() || itemstack[0].isEmpty()) {
+            if(slot1.isEmpty() && slot2.isEmpty() || slot1.isEmpty()) {
                 return false;
             } else {
                 ItemStack output = purifyingItemStacks.get(4), byproduct = purifyingItemStacks.get(5);
 
                 if(output.isEmpty() && byproduct.isEmpty()) {
                     return true;
-                } else if (!output.isItemEqual(itemstack[0]) || !byproduct.isItemEqual(itemstack[1])) {
+                } else if (!output.isItemEqual(slot1) || !byproduct.isItemEqual(slot2)) {
                     return false;
-                } else if ((output.getCount() + itemstack[0].getCount() <= this.getInventoryStackLimit() && output.getCount() + itemstack[0].getCount() <= output.getMaxStackSize()) &&
-                        byproduct.getCount() + itemstack[1].getCount() <= this.getInventoryStackLimit() && byproduct.getCount() + itemstack[1].getCount() <= byproduct.getMaxStackSize()) {
+                } else if ((output.getCount() + slot1.getCount() <= this.getInventoryStackLimit() && output.getCount() + slot1.getCount() <= output.getMaxStackSize()) &&
+                        byproduct.getCount() + slot2.getCount() <= this.getInventoryStackLimit() && byproduct.getCount() + slot2.getCount() <= byproduct.getMaxStackSize()) {
                     return true;
                 } else {
-                    return output.getCount() + itemstack[0].getCount() <= output.getMaxStackSize() && byproduct.getCount() + itemstack[1].getCount() <= byproduct.getMaxStackSize();
+                    return output.getCount() + slot1.getCount() <= output.getMaxStackSize() && byproduct.getCount() + slot2.getCount() <= byproduct.getMaxStackSize();
                 }
             }
         } else {
@@ -280,19 +282,20 @@ public class PurifierTileEntity extends LockableTileEntity implements ISidedInve
     public void changeItem(IRecipe<?> recipe) {
         if (recipe != null && canChange(recipe)) {
             ItemStack input = this.purifyingItemStacks.get(0);
-            ItemStack[] itemstack = ((PurifierRecipe)recipe).getRecipeOutputs();
-            ItemStack output = this.purifyingItemStacks.get(3);
-            ItemStack byproduct = this.purifyingItemStacks.get(4);
+            ItemStack slot1 = ((PurifierRecipe)recipe).getRecipeOutput();
+            ItemStack slot2 = ((PurifierRecipe)recipe).getByproduct();
+            ItemStack output = this.purifyingItemStacks.get(4);
+            ItemStack byproduct = this.purifyingItemStacks.get(5);
 
             if (output.isEmpty())
-                purifyingItemStacks.set(4, itemstack[0].copy());
-            else if (output.getItem() == itemstack[0].getItem())
-                output.grow(itemstack[0].getCount());
-            if (!itemstack[1].isEmpty()) {
+                purifyingItemStacks.set(4, slot1.copy());
+            else if (output.getItem() == slot1.getItem())
+                output.grow(slot1.getCount());
+            if (!slot2.isEmpty()) {
                 if (byproduct.isEmpty())
-                    purifyingItemStacks.set(5, itemstack[1].copy());
-                else if (byproduct.getItem() == itemstack[1].getItem())
-                    byproduct.grow(itemstack[1].getCount());
+                    purifyingItemStacks.set(5, slot2.copy());
+                else if (byproduct.getItem() == slot2.getItem())
+                    byproduct.grow(slot2.getCount());
             }
 
             if (!this.world.isRemote) {
@@ -327,7 +330,7 @@ public class PurifierTileEntity extends LockableTileEntity implements ISidedInve
 
     public static boolean isItemFuel(ItemStack stack) {
         Item item = stack.getItem();
-        return RestructurerTileEntity.getFuelBurnTime().get(item) > 0 || RestructurerTileEntity.getSecondFuelBurnTime().get(item) > 0 || getThirdFuelBurnTime().get(item) > 0;
+        return RestructurerTileEntity.getFuelBurnTime().get(item) != null || RestructurerTileEntity.getSecondFuelBurnTime().get(item) != null || getThirdFuelBurnTime().get(item) != null;
     }
 
     @Override
@@ -439,7 +442,7 @@ public class PurifierTileEntity extends LockableTileEntity implements ISidedInve
     @Override
     public void setRecipeUsed(IRecipe<?> recipe) {
         if (recipe != null) {
-            this.recipeMap.compute(recipe.getId(), (location, integer) -> 1 + (location == null ? 0 : integer));
+            this.recipeMap.compute(recipe.getId(), (location, integer) -> 1 + (integer == null ? 0 : integer));
         }
     }
 

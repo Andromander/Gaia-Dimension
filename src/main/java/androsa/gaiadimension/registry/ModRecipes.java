@@ -7,6 +7,7 @@ import androsa.gaiadimension.recipe.RestructurerRecipe;
 import androsa.gaiadimension.recipe.RestructurerRecipeSerializer;
 import net.minecraft.item.crafting.IRecipeSerializer;
 import net.minecraft.item.crafting.IRecipeType;
+import net.minecraft.util.registry.Registry;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -35,30 +36,8 @@ public class ModRecipes {
     public static final RegistryObject<PurifierRecipeSerializer<PurifierRecipe>> PURIFYING_SERIALIZER = RECIPE_SERIALIZERS.register(
             "purifying", () -> new PurifierRecipeSerializer<>(PurifierRecipe::new, 200));
 
-    /*
-    //===GLITTER FURNACE===//
-    public static void addGlitterRefactoring(Block input, ItemStack output1, ItemStack output2, float xp) {
-        RestructurerRecipe.instance().glittering(input, output1, output2, xp);
+    public static void registerRecipeTypes() {
+        Registry.register(Registry.RECIPE_TYPE, RESTRUCTURING.toString(), RESTRUCTURING);
+        Registry.register(Registry.RECIPE_TYPE, PURIFYING.toString(), PURIFYING);
     }
-
-    public static void addGlitterRefactoring(Item input, ItemStack output1, ItemStack output2, float xp) {
-        RestructurerRecipe.instance().glittering(input, output1, output2, xp);
-    }
-
-    public static void addGlitterRefactoring(ItemStack input, ItemStack output1, ItemStack output2, float xp) {
-        RestructurerRecipe.instance().glittering(input, output1, output2, xp);
-    }
-
-    //===PURIFIER===//
-    public static void addPurifying(Block input, ItemStack output1, ItemStack output2, float xp) {
-        PurifierRecipe.instance().purifying(input, output1, output2, xp);
-    }
-
-    public static void addPurifying(Item input, ItemStack output1, ItemStack output2, float xp) {
-        PurifierRecipe.instance().purifying(input, output1, output2, xp);
-    }
-
-    public static void addPurifying(ItemStack input, ItemStack output1, ItemStack output2, float xp) {
-        PurifierRecipe.instance().purifying(input, output1, output2, xp);
-    }*/
 }

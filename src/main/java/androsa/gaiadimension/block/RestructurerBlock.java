@@ -60,18 +60,14 @@ public class RestructurerBlock extends Block {
     @Override
     @Deprecated
     public boolean onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
-        if (worldIn.isRemote) {
-            return true;
-        } else {
+        if (!worldIn.isRemote) {
             TileEntity tileentity = worldIn.getTileEntity(pos);
             if (tileentity instanceof RestructurerTileEntity) {
-                RestructurerTileEntity restructurertileentity = (RestructurerTileEntity)tileentity;
-                player.openContainer(restructurertileentity);
-                return true;
-            } else {
-                return false;
+                player.openContainer((RestructurerTileEntity) tileentity);
             }
         }
+
+        return true;
     }
 
     @Override
@@ -135,6 +131,11 @@ public class RestructurerBlock extends Block {
     @Override
     public TileEntity createTileEntity(BlockState state, IBlockReader world) {
         return new RestructurerTileEntity();
+    }
+
+    @Override
+    public boolean hasTileEntity(BlockState state) {
+        return true;
     }
 
     @Override

@@ -13,6 +13,7 @@ import net.minecraft.util.text.ITextComponent;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
+//FIXME: GUI is not using custom texture. Investigate.
 @OnlyIn(Dist.CLIENT)
 public class AgateCraftingScreen extends ContainerScreen<AgateCraftingTableContainer> implements IRecipeShownListener {
     private static final ResourceLocation textureLoc = new ResourceLocation(GaiaDimensionMod.MODID, "textures/gui/crafting_table.png");

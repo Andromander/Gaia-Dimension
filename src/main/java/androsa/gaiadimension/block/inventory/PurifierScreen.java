@@ -46,10 +46,11 @@ public class PurifierScreen extends ContainerScreen<PurifierContainer> implement
 
         if (container.isBurning()) {
             i1 = container.getTimeLeftScaled();
-            blit(k + 77, l + 62 + 12 - i1, 176, 21 - i1, 22, i1 + 2);
+            blit(k + 64, l + 81, 176, 22, 47, i1 + 1);
+
         }
 
         i1 = container.getTimeLeft();
-        blit(k + 64, l + 81, 176, 22, 47, i1 + 1);
+        blit(k + 77, l + 62 + 12 - i1, 176, 21 - i1, 22, i1 + 2);
     }
 }

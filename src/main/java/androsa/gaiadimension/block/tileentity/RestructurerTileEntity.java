@@ -274,22 +274,23 @@ public class RestructurerTileEntity extends LockableTileEntity implements ISided
      */
     private boolean canChange(IRecipe<?> recipe) {
         if (!this.restructurerItemStacks.get(0).isEmpty() && recipe != null) {
-            ItemStack[] itemstack = ((RestructurerRecipe)recipe).getRecipeOutputs();
+            ItemStack slot1 = ((RestructurerRecipe)recipe).getRecipeOutput();
+            ItemStack slot2 = ((RestructurerRecipe)recipe).getByproduct();
 
-            if (itemstack[0].isEmpty() && itemstack[1].isEmpty() || itemstack[0].isEmpty()) {
+            if (slot1.isEmpty() && slot2.isEmpty() || slot1.isEmpty()) {
                 return false;
             } else {
                 ItemStack output = restructurerItemStacks.get(3), byproduct = restructurerItemStacks.get(4);
 
                 if (output.isEmpty() && byproduct.isEmpty()) {
                     return true;
-                } else if (!output.isItemEqual(itemstack[0]) || !byproduct.isItemEqual(itemstack[1])) {
+                } else if (!output.isItemEqual(slot1) || !byproduct.isItemEqual(slot2)) {
                     return false;
-                } else if ((output.getCount() + itemstack[0].getCount() <= this.getInventoryStackLimit() && output.getCount() + itemstack[0].getCount() <= output.getMaxStackSize()) &&
-                        byproduct.getCount() + itemstack[1].getCount() <= this.getInventoryStackLimit() && byproduct.getCount() + itemstack[1].getCount() <= byproduct.getMaxStackSize()) {
+                } else if ((output.getCount() + slot1.getCount() <= this.getInventoryStackLimit() && output.getCount() + slot1.getCount() <= output.getMaxStackSize()) &&
+                        byproduct.getCount() + slot2.getCount() <= this.getInventoryStackLimit() && byproduct.getCount() + slot2.getCount() <= byproduct.getMaxStackSize()) {
                     return true;
                 } else {
-                    return output.getCount() + itemstack[0].getCount() <= output.getMaxStackSize() && byproduct.getCount() + itemstack[1].getCount() <= byproduct.getMaxStackSize();
+                    return output.getCount() + slot1.getCount() <= output.getMaxStackSize() && byproduct.getCount() + slot2.getCount() <= byproduct.getMaxStackSize();
                 }
             }
         } else {
@@ -303,19 +304,20 @@ public class RestructurerTileEntity extends LockableTileEntity implements ISided
     private void changeItem(IRecipe<?> recipe) {
         if (recipe != null && canChange(recipe)) {
             ItemStack input = this.restructurerItemStacks.get(0);
-            ItemStack[] itemstack = ((RestructurerRecipe)recipe).getRecipeOutputs();
+            ItemStack slot1 = ((RestructurerRecipe)recipe).getRecipeOutput();
+            ItemStack slot2 = ((RestructurerRecipe)recipe).getByproduct();
             ItemStack output = this.restructurerItemStacks.get(3);
             ItemStack byproduct = this.restructurerItemStacks.get(4);
 
             if (output.isEmpty())
-                restructurerItemStacks.set(3, itemstack[0].copy());
-            else if (output.getItem() == itemstack[0].getItem())
-                output.grow(itemstack[0].getCount());
-            if (!itemstack[1].isEmpty()) {
+                restructurerItemStacks.set(3, slot1.copy());
+            else if (output.getItem() == slot1.getItem())
+                output.grow(slot1.getCount());
+            if (!slot2.isEmpty()) {
                 if (byproduct.isEmpty())
-                    restructurerItemStacks.set(4, itemstack[1].copy());
-                else if (byproduct.getItem() == itemstack[1].getItem())
-                    byproduct.grow(itemstack[1].getCount());
+                    restructurerItemStacks.set(4, slot2.copy());
+                else if (byproduct.getItem() == slot2.getItem())
+                    byproduct.grow(slot2.getCount());
             }
 
             if (!this.world.isRemote) {
@@ -349,7 +351,12 @@ public class RestructurerTileEntity extends LockableTileEntity implements ISided
 
     public static boolean isItemFuel(ItemStack stack) {
         Item item = stack.getItem();
-        return getFuelBurnTime().get(item) > 0 || getSecondFuelBurnTime().get(item) > 0;
+        if (getFuelBurnTime().get(item) != null) {
+            return getFuelBurnTime().get(item) > 0;
+        } else if (getSecondFuelBurnTime().get(item) != null) {
+            return getSecondFuelBurnTime().get(item) > 0;
+        }
+        return false;
     }
 
     @Override
@@ -444,10 +451,11 @@ public class RestructurerTileEntity extends LockableTileEntity implements ISided
     }
 
     @Override
-    public void setRecipeUsed(IRecipe<?> recipe) {
+    public void setRecipeUsed(@Nullable IRecipe<?> recipe) {
         if (recipe != null) {
-            this.recipeMap.compute(recipe.getId(), (location, integer) -> 1 + (location == null ? 0 : integer));
+            this.recipeMap.compute(recipe.getId(), (location, integer) -> 1 + (integer == null ? 0 : integer));
         }
+
     }
 
     @Override

@@ -62,19 +62,15 @@ public class PurifierBlock extends Block {
 
     @Override
     @Deprecated
-    public boolean onBlockActivated(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockRayTraceResult result) {
-        if (world.isRemote) {
-            return true;
-        } else {
-            TileEntity tileentity = world.getTileEntity(pos);
+    public boolean onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
+        if (!worldIn.isRemote) {
+            TileEntity tileentity = worldIn.getTileEntity(pos);
             if (tileentity instanceof PurifierTileEntity) {
-                PurifierTileEntity purifiertileentity = (PurifierTileEntity)tileentity;
-                player.openContainer(purifiertileentity);
-                return true;
-            } else {
-                return false;
+                player.openContainer((PurifierTileEntity) tileentity);
             }
         }
+
+        return true;
     }
 
     @Override
@@ -138,6 +134,11 @@ public class PurifierBlock extends Block {
     @Override
     public TileEntity createTileEntity(BlockState state, IBlockReader world) {
         return new PurifierTileEntity();
+    }
+
+    @Override
+    public boolean hasTileEntity(BlockState state) {
+        return true;
     }
 
     @Override
