@@ -5,8 +5,10 @@ import androsa.gaiadimension.world.GaiaTeleporter;
 import io.netty.buffer.Unpooled;
 import net.minecraft.block.Block;
 import net.minecraft.entity.CreatureAttribute;
+import net.minecraft.item.Item;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.Tag;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
@@ -49,6 +51,8 @@ public class GaiaDimensionMod {
     public static final DamageSource CORRUPTION = new DamageSource("corruption").setDamageBypassesArmor();
 
     public static final Tag<Block> AGATE_LOGS = new BlockTags.Wrapper(new ResourceLocation(MODID, "agate_logs"));
+    public static final Tag<Block> AGATE_PLANKS_BLOCK = new BlockTags.Wrapper(new ResourceLocation(MODID, "agate_planks_block"));
+    public static final Tag<Item> AGATE_PLANKS = new ItemTags.Wrapper(new ResourceLocation(MODID, "agate_planks"));
 
     public GaiaDimensionMod() {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
