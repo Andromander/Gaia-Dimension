@@ -4,7 +4,6 @@ notifications:
 if: tag IS blank
 
 before_install: chmod +x gradlew
-install: "./gradlew setupCIWorkspace"
 script: "./gradlew clean build"
 jdk:
 - oraclejdk8
@@ -36,5 +35,5 @@ deploy:
   file: "{$RELEASE_FILE_LIST}"
   on:
     repo: Andromander/Gaia-Dimension
-    branch: master
+    branch: 1.14.x
     tags: false
