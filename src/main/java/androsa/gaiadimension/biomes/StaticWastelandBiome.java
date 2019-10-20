@@ -15,16 +15,21 @@ public class StaticWastelandBiome extends BaseGaiaBiome implements IDryBiome {
     public StaticWastelandBiome(SurfaceBuilder<SurfaceBuilderConfig> surface, SurfaceBuilderConfig config, Category category, float depth, float scale, float temp) {
         super(surface, config, category, depth, scale, temp);
 
+        flowers.clear();
+        skyColor = GaiaSkyColors.STATIC_WASTELAND;
+    }
+
+    @Override
+    public void addFeatures() {
+        super.addFeatures();
         GaiaBiomeFeatures.addStaticStoneUnderground(this);
         GaiaBiomeFeatures.addPocketsUnderground(this);
         GaiaBiomeFeatures.addBasicOres(this);
         GaiaBiomeFeatures.addStaticPatches(this);
         GaiaBiomeFeatures.addStaticSpikes(this);
         GaiaBiomeFeatures.addUndergroundMushrooms(this);
-        this.addSpawn(EntityClassification.MONSTER, new SpawnListEntry(ModEntities.LESSER_SHOCKSHOOTER.get(), 10, 2, 4));
 
-        flowers.clear();
-        skyColor = GaiaSkyColors.STATIC_WASTELAND;
+        this.addSpawn(EntityClassification.MONSTER, new SpawnListEntry(ModEntities.LESSER_SHOCKSHOOTER.get(), 10, 2, 4));
     }
 
     @Override

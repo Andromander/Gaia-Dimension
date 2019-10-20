@@ -15,6 +15,13 @@ public class BlueAgateTaigaBiome extends BaseGaiaBiome {
     public BlueAgateTaigaBiome(SurfaceBuilder<SurfaceBuilderConfig> surface, SurfaceBuilderConfig config, Category category, float depth, float scale, float temp) {
         super(surface, config, category, depth, scale, temp);
 
+        skyColor = GaiaSkyColors.BLUE_AGATE;
+        //flowers.add(new FlowerEntry(GDBlocks.thorny_wiltha.getDefaultState(), 5));
+    }
+
+    @Override
+    public void addFeatures() {
+        super.addFeatures();
         GaiaBiomeFeatures.addMagmaLakes(this);
         GaiaBiomeFeatures.addMineralLakes(this);
         GaiaBiomeFeatures.addPocketsUnderground(this);
@@ -26,12 +33,10 @@ public class BlueAgateTaigaBiome extends BaseGaiaBiome {
         GaiaBiomeFeatures.addBloomsNormal(this);
         GaiaBiomeFeatures.addBlueMushrooms(this);
         GaiaBiomeFeatures.addUndergroundMushrooms(this);
+
         this.addSpawn(EntityClassification.CREATURE, new SpawnListEntry(ModEntities.GROWTH_SAPPER.get(), 30, 3, 5));
         this.addSpawn(EntityClassification.MONSTER, new SpawnListEntry(ModEntities.HOWLITE_WOLF.get(), 15, 2, 4));
         this.addSpawn(EntityClassification.MONSTER, new SpawnListEntry(ModEntities.BLUE_HOWLITE_WOLF.get(), 1, 1, 1));
-
-        skyColor = GaiaSkyColors.BLUE_AGATE;
-        //flowers.add(new FlowerEntry(GDBlocks.thorny_wiltha.getDefaultState(), 5));
     }
 
     @Override

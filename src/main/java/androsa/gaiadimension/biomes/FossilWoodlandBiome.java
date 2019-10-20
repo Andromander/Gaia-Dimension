@@ -14,6 +14,12 @@ public class FossilWoodlandBiome extends BaseGaiaBiome {
     public FossilWoodlandBiome(SurfaceBuilder<SurfaceBuilderConfig> surface, SurfaceBuilderConfig config, Category category, float depth, float scale, float temp) {
         super(surface, config, category, depth, scale, temp);
 
+        //this.flowers.add(new FlowerEntry(GDBlocks.stickly_cupsir.getDefaultState(), 5));
+    }
+
+    @Override
+    public void addFeatures() {
+        super.addFeatures();
         GaiaBiomeFeatures.addMagmaLakes(this);
         GaiaBiomeFeatures.addMineralLakes(this);
         GaiaBiomeFeatures.addPocketsUnderground(this);
@@ -23,11 +29,10 @@ public class FossilWoodlandBiome extends BaseGaiaBiome {
         GaiaBiomeFeatures.addBloomsNormal(this);
         GaiaBiomeFeatures.addFossilMushrooms(this);
         GaiaBiomeFeatures.addUndergroundMushrooms(this);
+
         this.addSpawn(EntityClassification.CREATURE, new SpawnListEntry(ModEntities.ROCKY_LUGGEROTH.get(), 10, 4, 5));
         this.addSpawn(EntityClassification.CREATURE, new SpawnListEntry(ModEntities.RUGGED_LURMORUS.get(), 10, 1, 3));
         this.addSpawn(EntityClassification.MONSTER, new SpawnListEntry(ModEntities.ANCIENT_LAGRAHK.get(), 10, 1, 1));
-
-        //this.flowers.add(new FlowerEntry(GDBlocks.stickly_cupsir.getDefaultState(), 5));
     }
 
     @Override

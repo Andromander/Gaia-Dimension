@@ -15,6 +15,13 @@ public class SmolderingBogBiome extends BaseGaiaBiome implements IDryBiome {
     public SmolderingBogBiome(SurfaceBuilder<SurfaceBuilderConfig> surface, SurfaceBuilderConfig config, Category category, float depth, float scale, float temp) {
         super(surface, config, category, depth, scale, temp);
 
+        flowers.clear();
+        skyColor = GaiaSkyColors.BISMUTH;
+    }
+
+    @Override
+    public void addFeatures() {
+        super.addFeatures();
         GaiaBiomeFeatures.addBismuthLakes(this);
         GaiaBiomeFeatures.addPocketsUnderground(this);
         GaiaBiomeFeatures.addBasicOres(this);
@@ -22,10 +29,8 @@ public class SmolderingBogBiome extends BaseGaiaBiome implements IDryBiome {
         GaiaBiomeFeatures.addBismuthSpires(this);
         GaiaBiomeFeatures.addBismuthGeysers(this);
         GaiaBiomeFeatures.addUndergroundMushrooms(this);
-        this.addSpawn(EntityClassification.CREATURE, new SpawnListEntry(ModEntities.BISMUTH_ULETRUS.get(), 15, 2, 3));
 
-        flowers.clear();
-        skyColor = GaiaSkyColors.BISMUTH;
+        this.addSpawn(EntityClassification.CREATURE, new SpawnListEntry(ModEntities.BISMUTH_ULETRUS.get(), 15, 2, 3));
     }
 
     @Override

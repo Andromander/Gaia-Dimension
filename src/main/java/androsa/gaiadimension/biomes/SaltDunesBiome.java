@@ -12,13 +12,18 @@ public class SaltDunesBiome extends BaseGaiaBiome {
     public SaltDunesBiome(SurfaceBuilder<SurfaceBuilderConfig> surface, SurfaceBuilderConfig config, Category category, float depth, float scale, float temp) {
         super(surface, config, category, depth, scale, temp);
 
+        flowers.clear();
+        skyColor = GaiaSkyColors.SALT_DUNES;
+    }
+
+    @Override
+    public void addFeatures() {
+        super.addFeatures();
         GaiaBiomeFeatures.addMineralLakes(this);
         GaiaBiomeFeatures.addPocketsUnderground(this);
         GaiaBiomeFeatures.addBasicOres(this);
         GaiaBiomeFeatures.addUndergroundMushrooms(this);
-        this.addSpawn(EntityClassification.CREATURE, new SpawnListEntry(ModEntities.SALTION.get(), 15, 1, 3));
 
-        flowers.clear();
-        skyColor = GaiaSkyColors.SALT_DUNES;
+        this.addSpawn(EntityClassification.CREATURE, new SpawnListEntry(ModEntities.SALTION.get(), 15, 1, 3));
     }
 }

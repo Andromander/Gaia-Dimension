@@ -11,6 +11,12 @@ public class CrystalPlainsBiome extends BaseGaiaBiome {
     public CrystalPlainsBiome(SurfaceBuilder<SurfaceBuilderConfig> surface, SurfaceBuilderConfig config, Category category, float depth, float scale, float temp) {
         super(surface, config, category, depth, scale, temp);
 
+        //flowers.add(new FlowerEntry(GDBlocks.spotted_kersei.getDefaultState(), 5));
+    }
+
+    @Override
+    public void addFeatures() {
+        super.addFeatures();
         //TODO: Add Crystal Spires
         GaiaBiomeFeatures.addMagmaLakes(this);
         GaiaBiomeFeatures.addMineralLakes(this);
@@ -21,9 +27,8 @@ public class CrystalPlainsBiome extends BaseGaiaBiome {
         GaiaBiomeFeatures.addBloomsNormal(this);
         GaiaBiomeFeatures.addPinkMushrooms(this);
         GaiaBiomeFeatures.addUndergroundMushrooms(this);
+
         this.addSpawn(EntityClassification.CREATURE, new SpawnListEntry(ModEntities.GROWTH_SAPPER.get(), 20, 4, 6));
         this.addSpawn(EntityClassification.CREATURE, new SpawnListEntry(ModEntities.CRYSTAL_GOLEM.get(), 15, 1, 3));
-
-        //flowers.add(new FlowerEntry(GDBlocks.spotted_kersei.getDefaultState(), 5));
     }
 }

@@ -15,6 +15,13 @@ public class GreenAgateJungleBiome extends BaseGaiaBiome {
     public GreenAgateJungleBiome(SurfaceBuilder<SurfaceBuilderConfig> surface, SurfaceBuilderConfig config, Category category, float depth, float scale, float temp) {
         super(surface, config, category, depth, scale, temp);
 
+        //flowers.add(new FlowerEntry(GDBlocks.roofed_agaric.getDefaultState(), 5));
+        skyColor = GaiaSkyColors.GREEN_AGATE;
+    }
+
+    @Override
+    public void addFeatures() {
+        super.addFeatures();
         GaiaBiomeFeatures.addMagmaLakes(this);
         GaiaBiomeFeatures.addMineralLakes(this);
         GaiaBiomeFeatures.addPocketsUnderground(this);
@@ -27,12 +34,10 @@ public class GreenAgateJungleBiome extends BaseGaiaBiome {
         GaiaBiomeFeatures.addBloomsNormal(this);
         GaiaBiomeFeatures.addGreenMushrooms(this);
         GaiaBiomeFeatures.addUndergroundMushrooms(this);
+
+        //TODO: Moss Agate Lizard
         this.addSpawn(EntityClassification.CREATURE, new SpawnListEntry(ModEntities.GROWTH_SAPPER.get(), 30, 2, 4));
         this.addSpawn(EntityClassification.AMBIENT, new SpawnListEntry(ModEntities.MARKUZAR_PLANT.get(), 15, 3, 3));
-        //TODO: Moss Agate Lizard
-
-        //flowers.add(new FlowerEntry(GDBlocks.roofed_agaric.getDefaultState(), 5));
-        skyColor = GaiaSkyColors.GREEN_AGATE;
     }
 
     @Override

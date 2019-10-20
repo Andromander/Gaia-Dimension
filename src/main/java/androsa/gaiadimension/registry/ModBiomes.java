@@ -14,35 +14,35 @@ public class ModBiomes {
     public static final DeferredRegister<Biome> BIOMES = new DeferredRegister<>(ForgeRegistries.BIOMES, GaiaDimensionMod.MODID);
 
     public static final RegistryObject<Biome> pink_agate_forest = BIOMES.register("pink_agate_forest", () ->
-            new PinkAgateForestBiome(ModWorldgen.DEFAULT_GAIA.get(), GaiaBiomeFeatures.GENERIC_SURFACE_CONFIG, Biome.Category.FOREST, 0.1F, 0.1F, 0.66F));
+            new PinkAgateForestBiome(ModWorldgen.s_gaia, GaiaBiomeFeatures.GENERIC_SURFACE_CONFIG, Biome.Category.FOREST, 0.1F, 0.1F, 0.66F));
     public static final RegistryObject<Biome> blue_agate_taiga = BIOMES.register("blue_agate_taiga", () ->
-            new BlueAgateTaigaBiome(ModWorldgen.DEFAULT_GAIA.get(), GaiaBiomeFeatures.GENERIC_SURFACE_CONFIG, Biome.Category.TAIGA, 0.1F, 0.2F, 0.4F));
+            new BlueAgateTaigaBiome(ModWorldgen.s_gaia, GaiaBiomeFeatures.GENERIC_SURFACE_CONFIG, Biome.Category.TAIGA, 0.1F, 0.2F, 0.4F));
     public static final RegistryObject<Biome> green_agate_jungle = BIOMES.register("green_agate_jungle", () ->
-            new GreenAgateJungleBiome(ModWorldgen.DEFAULT_GAIA.get(), GaiaBiomeFeatures.GENERIC_SURFACE_CONFIG, Biome.Category.JUNGLE, 0.1F, 0.2F, 0.75F));
+            new GreenAgateJungleBiome(ModWorldgen.s_gaia, GaiaBiomeFeatures.GENERIC_SURFACE_CONFIG, Biome.Category.JUNGLE, 0.1F, 0.2F, 0.75F));
     public static final RegistryObject<Biome> purple_agate_swamp = BIOMES.register("purple_agate_swamp", () ->
-            new PurpleAgateSwampBiome(ModWorldgen.DEFAULT_GAIA.get(), GaiaBiomeFeatures.GENERIC_SURFACE_CONFIG, Biome.Category.SWAMP, 0.0F, 0.05F, 0.66F));
+            new PurpleAgateSwampBiome(ModWorldgen.s_gaia, GaiaBiomeFeatures.GENERIC_SURFACE_CONFIG, Biome.Category.SWAMP, 0.0F, 0.05F, 0.66F));
     public static final RegistryObject<Biome> fossil_woodland = BIOMES.register("fossil_woodland", () ->
-            new FossilWoodlandBiome(ModWorldgen.DEFAULT_GAIA.get(), GaiaBiomeFeatures.GENERIC_SURFACE_CONFIG, Biome.Category.FOREST, 0.1F, 0.05F ,0.66F));
+            new FossilWoodlandBiome(ModWorldgen.s_gaia, GaiaBiomeFeatures.GENERIC_SURFACE_CONFIG, Biome.Category.FOREST, 0.1F, 0.05F ,0.66F));
     public static final RegistryObject<Biome> mutant_agate_wildwood = BIOMES.register("mutant_agate_wildwood", () ->
-            new MutantAgateWildwoodBiome(ModWorldgen.DEFAULT_GAIA.get(), GaiaBiomeFeatures.GENERIC_SURFACE_CONFIG, Biome.Category.FOREST ,0.1F, 0.1F, 0.66F));
+            new MutantAgateWildwoodBiome(ModWorldgen.s_gaia, GaiaBiomeFeatures.GENERIC_SURFACE_CONFIG, Biome.Category.FOREST ,0.1F, 0.1F, 0.66F));
     public static final RegistryObject<Biome> volcanic_lands = BIOMES.register("volcanic_lands", () ->
-            new VolcaniclandsBiome(ModWorldgen.VOLCANIC.get(), GaiaBiomeFeatures.VOLCANIC_SURFACE_CONFIG, Biome.Category.EXTREME_HILLS, 1.0F, 0.7F, 0.9F));
+            new VolcaniclandsBiome(ModWorldgen.s_volcanic, GaiaBiomeFeatures.VOLCANIC_SURFACE_CONFIG, Biome.Category.EXTREME_HILLS, 1.0F, 0.7F, 0.9F));
     public static final RegistryObject<Biome> static_wasteland = BIOMES.register("static_wasteland", () ->
-            new StaticWastelandBiome(ModWorldgen.STATIC.get(), GaiaBiomeFeatures.WASTELAND_SURFACE_CONFIG, Biome.Category.EXTREME_HILLS, 3.0F, 0.05F, 0.4F));
+            new StaticWastelandBiome(ModWorldgen.s_static, GaiaBiomeFeatures.WASTELAND_SURFACE_CONFIG, Biome.Category.EXTREME_HILLS, 3.0F, 0.05F, 0.4F));
     public static final RegistryObject<Biome> goldstone_lands = BIOMES.register("goldstone_lands", () ->
-            new GoldstonelandsBiome(ModWorldgen.DEFAULT_GAIA.get(), GaiaBiomeFeatures.CORRUPT_SURFACE_CONFIG, Biome.Category.PLAINS, 0.125F, 0.05F, 0.55F));
+            new GoldstonelandsBiome(ModWorldgen.s_gaia, GaiaBiomeFeatures.CORRUPT_SURFACE_CONFIG, Biome.Category.PLAINS, 0.125F, 0.05F, 0.55F));
     public static final RegistryObject<Biome> crystal_plains = BIOMES.register("crystal_plains", () ->
-            new CrystalPlainsBiome(ModWorldgen.DEFAULT_GAIA.get(), GaiaBiomeFeatures.GENERIC_SURFACE_CONFIG, Biome.Category.PLAINS, 0.05F, 0.05F, 0.66F));
+            new CrystalPlainsBiome(ModWorldgen.s_gaia, GaiaBiomeFeatures.GENERIC_SURFACE_CONFIG, Biome.Category.PLAINS, 0.05F, 0.05F, 0.66F));
     public static final RegistryObject<Biome> salt_dunes = BIOMES.register("salt_dunes", () ->
-            new SaltDunesBiome(ModWorldgen.DEFAULT_GAIA.get(), GaiaBiomeFeatures.SALT_SURFACE_CONFIG, Biome.Category.DESERT, 0.2F, 0.05F, 0.8F));
+            new SaltDunesBiome(ModWorldgen.s_gaia, GaiaBiomeFeatures.SALT_SURFACE_CONFIG, Biome.Category.DESERT, 0.2F, 0.05F, 0.8F));
     public static final RegistryObject<Biome> shining_grove = BIOMES.register("shining_grove", () ->
-            new ShiningGroveBiome(ModWorldgen.DEFAULT_GAIA.get(), GaiaBiomeFeatures.AURA_SURFACE_CONFIG, Biome.Category.FOREST, 0.4F, 0.05F, 0.5F));
+            new ShiningGroveBiome(ModWorldgen.s_gaia, GaiaBiomeFeatures.AURA_SURFACE_CONFIG, Biome.Category.FOREST, 0.4F, 0.05F, 0.5F));
     public static final RegistryObject<Biome> smoldering_bog = BIOMES.register("smoldering_bog", () ->
-            new SmolderingBogBiome(ModWorldgen.DEFAULT_GAIA.get(), GaiaBiomeFeatures.BISMUTH_SURFACE_CONFIG, Biome.Category.SWAMP, 0.2F, 0.02F, 0.9F));
+            new SmolderingBogBiome(ModWorldgen.s_gaia, GaiaBiomeFeatures.BISMUTH_SURFACE_CONFIG, Biome.Category.SWAMP, 0.2F, 0.02F, 0.9F));
     public static final RegistryObject<Biome> mineral_reservoir = BIOMES.register("mineral_reservoir", () ->
-            new MineralReservoirBiome(ModWorldgen.DEFAULT_GAIA.get(), GaiaBiomeFeatures.SALT_SURFACE_CONFIG, Biome.Category.OCEAN, -1.8F, 0.1F, 0.66F));
+            new MineralReservoirBiome(ModWorldgen.s_gaia, GaiaBiomeFeatures.SALT_SURFACE_CONFIG, Biome.Category.OCEAN, -1.8F, 0.1F, 0.66F));
     public static final RegistryObject<Biome> mineral_river = BIOMES.register("mineral_river", () ->
-            new MineralRiverBiome(ModWorldgen.DEFAULT_GAIA.get(), GaiaBiomeFeatures.SALT_SURFACE_CONFIG, Biome.Category.OCEAN, -0.5F, 0.0F, 0.66F));
+            new MineralRiverBiome(ModWorldgen.s_gaia, GaiaBiomeFeatures.SALT_SURFACE_CONFIG, Biome.Category.OCEAN, -0.5F, 0.0F, 0.66F));
 
     public static void addBiomeTypes() {
         addTypes(pink_agate_forest.get(), Type.FOREST);
@@ -60,5 +60,13 @@ public class ModBiomes {
         addTypes(goldstone_lands.get(), Type.WASTELAND, Type.PLAINS);
         addTypes(mineral_reservoir.get(), Type.OCEAN);
         addTypes(mineral_river.get(), Type.RIVER);
+    }
+
+    public static void addBiomeFeatures() {
+        for (Biome biome : ForgeRegistries.BIOMES.getValues()) {
+            if (biome instanceof BaseGaiaBiome) {
+                ((BaseGaiaBiome)biome).addFeatures();
+            }
+        }
     }
 }

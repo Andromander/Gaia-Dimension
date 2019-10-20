@@ -15,6 +15,14 @@ public class VolcaniclandsBiome extends BaseGaiaBiome implements IDryBiome {
     public VolcaniclandsBiome(SurfaceBuilder<SurfaceBuilderConfig> surface, SurfaceBuilderConfig config, Category category, float depth, float scale, float temp) {
         super(surface, config, category, depth, scale, temp);
 
+        flowers.clear();
+        skyColor = GaiaSkyColors.VOLCANICLAND;
+    }
+
+    @Override
+    public void addFeatures() {
+        super.addFeatures();
+        //TODO: Fire Geysers
         GaiaBiomeFeatures.addMagmaLakes(this);
         GaiaBiomeFeatures.addMineralLakes(this);
         GaiaBiomeFeatures.addSearingRockUnderground(this);
@@ -24,25 +32,9 @@ public class VolcaniclandsBiome extends BaseGaiaBiome implements IDryBiome {
         GaiaBiomeFeatures.addBurntTrees(this);
         GaiaBiomeFeatures.addCrystalGrowthBurnt(this);
         GaiaBiomeFeatures.addUndergroundMushrooms(this);
-        //TODO: Fire Geysers
+
         this.addSpawn(EntityClassification.MONSTER, new SpawnListEntry(ModEntities.LESSER_SPITFIRE.get(), 10, 2, 4));
-
-        flowers.clear();
-        skyColor = GaiaSkyColors.VOLCANICLAND;
     }
-
-    /*@Override
-    public WorldGenAbstractTree getRandomTreeFeature(Random par1Random) {
-        if (par1Random.nextInt(16) == 0) {
-            if (par1Random.nextInt(5) == 0) {
-                return GaiaGenFireTrees;
-            } else {
-                return GaiaGenBurntTrees;
-            }
-        } else {
-            return new GDGenNoTrees();
-        }
-    }*/
 
     @Override
     @OnlyIn(Dist.CLIENT)

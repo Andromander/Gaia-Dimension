@@ -15,6 +15,16 @@ public class MutantAgateWildwoodBiome extends BaseGaiaBiome {
     public MutantAgateWildwoodBiome(SurfaceBuilder<SurfaceBuilderConfig> surface, SurfaceBuilderConfig config, Category category, float depth, float scale, float temp) {
         super(surface, config, category, depth, scale, temp);
 
+        //flowers.clear();
+        //flowers.add(new FlowerEntry(GDBlocks.ouzium.getDefaultState(), 20));
+        //flowers.add(new FlowerEntry(GDBlocks.agathum.getDefaultState(), 10));
+        //flowers.add(new FlowerEntry(GDBlocks.mystical_murgni.getDefaultState(), 5));
+        skyColor = GaiaSkyColors.MUTANT_AGATE;
+    }
+
+    @Override
+    public void addFeatures() {
+        super.addFeatures();
         GaiaBiomeFeatures.addMagmaLakes(this);
         GaiaBiomeFeatures.addMineralLakes(this);
         GaiaBiomeFeatures.addPocketsUnderground(this);
@@ -27,14 +37,9 @@ public class MutantAgateWildwoodBiome extends BaseGaiaBiome {
         GaiaBiomeFeatures.addBloomsMutant(this);
         GaiaBiomeFeatures.addMysteryMushrooms(this);
         GaiaBiomeFeatures.addUndergroundMushrooms(this);
-        //this.addSpawn(EntityClassification.CREATURE, new SpawnListEntry(ModEntities.GROWTH_SAPPER, 40, 3, 5));
-        this.addSpawn(EntityClassification.CREATURE, new SpawnListEntry(ModEntities.MUTANT_GROWTH_EXTRACTOR.get(), 5, 2, 4));
 
-        //flowers.clear();
-        //flowers.add(new FlowerEntry(GDBlocks.ouzium.getDefaultState(), 20));
-        //flowers.add(new FlowerEntry(GDBlocks.agathum.getDefaultState(), 10));
-        //flowers.add(new FlowerEntry(GDBlocks.mystical_murgni.getDefaultState(), 5));
-        skyColor = GaiaSkyColors.MUTANT_AGATE;
+        this.addSpawn(EntityClassification.CREATURE, new SpawnListEntry(ModEntities.GROWTH_SAPPER.get(), 40, 3, 5));
+        this.addSpawn(EntityClassification.CREATURE, new SpawnListEntry(ModEntities.MUTANT_GROWTH_EXTRACTOR.get(), 5, 2, 4));
     }
 
     @Override

@@ -15,8 +15,17 @@ public class GoldstonelandsBiome extends BaseGaiaBiome {
     public GoldstonelandsBiome(SurfaceBuilder<SurfaceBuilderConfig> surface, SurfaceBuilderConfig config, Category category, float depth, float scale, float temp) {
         super(surface, config, category, depth, scale, temp);
 
-        //TODO: Generate veins of Corrupt Blocks
+        //flowers.clear();
+        //flowers.add(new FlowerEntry(GDBlocks.corrupted_varloom.getDefaultState(), 20));
+        //flowers.add(new FlowerEntry(GDBlocks.corrupted_gaia_eye.getDefaultState(), 5));
 
+        skyColor = GaiaSkyColors.GOLDSTONE;
+    }
+
+    @Override
+    public void addFeatures() {
+        super.addFeatures();
+        //TODO: Generate veins of Corrupt Blocks
         GaiaBiomeFeatures.addMagmaLakes(this);
         GaiaBiomeFeatures.addMineralLakes(this);
         GaiaBiomeFeatures.addPocketsUnderground(this);
@@ -26,15 +35,10 @@ public class GoldstonelandsBiome extends BaseGaiaBiome {
         GaiaBiomeFeatures.addBloomsCorrupt(this);
         GaiaBiomeFeatures.addCorruptMushrooms(this);
         GaiaBiomeFeatures.addUndergroundMushrooms(this);
+
+        //TODO: Corrupt Lagrahk
         this.addSpawn(EntityClassification.MONSTER, new SpawnListEntry(ModEntities.CONTORTED_NAGA.get(), 10, 2, 3));
         this.addSpawn(EntityClassification.MONSTER, new SpawnListEntry(ModEntities.CORRUPT_SAPPER.get(), 20, 2, 4));
-        //TODO: Corrupt Lagrahk
-
-        //flowers.clear();
-        //flowers.add(new FlowerEntry(GDBlocks.corrupted_varloom.getDefaultState(), 20));
-        //flowers.add(new FlowerEntry(GDBlocks.corrupted_gaia_eye.getDefaultState(), 5));
-
-        skyColor = GaiaSkyColors.GOLDSTONE;
     }
 
     @Override

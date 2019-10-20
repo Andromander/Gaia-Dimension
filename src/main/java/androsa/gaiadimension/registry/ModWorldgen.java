@@ -63,13 +63,14 @@ public class ModWorldgen {
     public static final RegistryObject<Feature<NoFeatureConfig>> MUTANT_GROWTH = FEATURES.register(
             "mutant_growth", () -> new MutantGrowthFeature(NoFeatureConfig::deserialize));
 
+    public static final SurfaceBuilder<SurfaceBuilderConfig> s_gaia = new GaiaDefaultSurfaceBuilder(SurfaceBuilderConfig::deserialize);
+    public static final SurfaceBuilder<SurfaceBuilderConfig> s_volcanic = new VolcanicSurfaceBuilder(SurfaceBuilderConfig::deserialize);
+    public static final SurfaceBuilder<SurfaceBuilderConfig> s_static =  new WastelandSurfaceBuilder(SurfaceBuilderConfig::deserialize);
+
     //SurfaceBuilder
-    public static final RegistryObject<SurfaceBuilder<SurfaceBuilderConfig>> DEFAULT_GAIA = SURFACE_BUILDERS.register(
-            "default_gaia", () -> new GaiaDefaultSurfaceBuilder(SurfaceBuilderConfig::deserialize));
-    public static final RegistryObject<SurfaceBuilder<SurfaceBuilderConfig>> VOLCANIC = SURFACE_BUILDERS.register(
-            "volcanic", () -> new VolcanicSurfaceBuilder(SurfaceBuilderConfig::deserialize));
-    public static final RegistryObject<SurfaceBuilder<SurfaceBuilderConfig>> STATIC = SURFACE_BUILDERS.register(
-            "static", () -> new WastelandSurfaceBuilder(SurfaceBuilderConfig::deserialize));
+    public static final RegistryObject<SurfaceBuilder<SurfaceBuilderConfig>> DEFAULT_GAIA = SURFACE_BUILDERS.register("default_gaia", () -> s_gaia);
+    public static final RegistryObject<SurfaceBuilder<SurfaceBuilderConfig>> VOLCANIC = SURFACE_BUILDERS.register("volcanic", () -> s_volcanic);
+    public static final RegistryObject<SurfaceBuilder<SurfaceBuilderConfig>> STATIC = SURFACE_BUILDERS.register("static", () -> s_static);
 
     //WorldCarver
     public static final RegistryObject<WorldCarver<ProbabilityConfig>> CRYSTAL_CAVES = WORLD_CARVERS.register(

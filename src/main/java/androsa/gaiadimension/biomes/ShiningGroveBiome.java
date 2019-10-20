@@ -13,6 +13,12 @@ public class ShiningGroveBiome extends BaseGaiaBiome {
     public ShiningGroveBiome(SurfaceBuilder<SurfaceBuilderConfig> surface, SurfaceBuilderConfig config, Category category, float depth, float scale, float temp) {
         super(surface, config, category, depth, scale, temp);
 
+        skyColor = GaiaSkyColors.AURA;
+    }
+
+    @Override
+    public void addFeatures() {
+        super.addFeatures();
         GaiaBiomeFeatures.addAuraLake(this);
         GaiaBiomeFeatures.addPocketsUnderground(this);
         GaiaBiomeFeatures.addBasicOres(this);
@@ -21,8 +27,6 @@ public class ShiningGroveBiome extends BaseGaiaBiome {
         GaiaBiomeFeatures.addCrystalGrowthAura(this);
         GaiaBiomeFeatures.addBloomsNormal(this);
         GaiaBiomeFeatures.addUndergroundMushrooms(this);
-
-        skyColor = GaiaSkyColors.AURA;
     }
 
     @Override
