@@ -1,7 +1,14 @@
 {
+  "forge_marker": 1,
+  "defaults": {
+    "textures": {
+      "end": "gaiadimension:blocks/aura_stripped_top",
+      "side": "gaiadimension:blocks/aura_stripped_side"
+    }
+  },
   "variants": {
-    "axis=y": { "model": "gaiadimension:block/stripped_aura_log" },
-    "axis=z": { "model": "gaiadimension:block/stripped_aura_log", "x": 90 },
-    "axis=x": { "model": "gaiadimension:block/stripped_aura_log", "x": 90, "y": 90 }
+    "axis=y": { "model": "block/cube_column" },
+    "axis=z": { "model": "block/cube_column", "x": 90 },
+    "axis=x": { "model": "block/cube_column", "x": 90, "y": 90 }
   }
 }

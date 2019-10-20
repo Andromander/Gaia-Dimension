@@ -2,8 +2,8 @@
   "forge_marker": 1,
   "defaults": {
     "textures": {
-      "end": "gaiadimension:blocks/fossilized_stripped_top",
-      "side": "gaiadimension:blocks/fossilized_stripped_side"
+      "end": "gaiadimension:blocks/crusty_agate_side",
+      "side": "gaiadimension:blocks/crusty_agate_side"
     }
   },
   "variants": {

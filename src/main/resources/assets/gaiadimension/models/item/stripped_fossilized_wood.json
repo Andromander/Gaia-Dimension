@@ -1,7 +1,7 @@
 {
   "parent": "block/cube_column",
   "textures": {
-    "end": "gaiadimension:blocks/fossilized_stripped_top",
+    "end": "gaiadimension:blocks/fossilized_stripped_side",
     "side": "gaiadimension:blocks/fossilized_stripped_side"
   }
 }

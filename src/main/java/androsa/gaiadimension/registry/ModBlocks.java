@@ -135,6 +135,15 @@ public class ModBlocks {
     public static final RegistryObject<Block> burnt_wood = registerBlockGeneral("burnt_wood", () -> new AgateLogBlock(MaterialColor.BLACK_TERRACOTTA, MaterialColor.BLACK_TERRACOTTA));
     public static final RegistryObject<Block> burning_wood = registerBlockWithFuel("burning_wood", () -> new AgateLogBlock(MaterialColor.ORANGE_TERRACOTTA, MaterialColor.ORANGE_TERRACOTTA, 3), 1600);
     public static final RegistryObject<Block> aura_wood = registerBlockGeneral("aura_wood", () -> new AgateLogBlock(MaterialColor.GRAY, MaterialColor.GRAY));
+    public static final RegistryObject<Block> stripped_pink_agate_wood = registerBlockGeneral("stripped_pink_agate_wood", () -> new AgateLogBlock(MaterialColor.MAGENTA, MaterialColor.MAGENTA));
+    public static final RegistryObject<Block> stripped_blue_agate_wood = registerBlockGeneral("stripped_blue_agate_wood", () -> new AgateLogBlock(MaterialColor.BLUE, MaterialColor.BLUE));
+    public static final RegistryObject<Block> stripped_green_agate_wood = registerBlockGeneral("stripped_green_agate_wood", () -> new AgateLogBlock(MaterialColor.GREEN, MaterialColor.GREEN));
+    public static final RegistryObject<Block> stripped_purple_agate_wood = registerBlockGeneral("stripped_purple_agate_wood", () -> new AgateLogBlock(MaterialColor.PURPLE_TERRACOTTA, MaterialColor.PURPLE_TERRACOTTA));
+    public static final RegistryObject<Block> stripped_fossilized_wood = registerBlockGeneral("stripped_fossilized_wood", () -> new AgateLogBlock(MaterialColor.YELLOW, MaterialColor.YELLOW));
+    public static final RegistryObject<Block> stripped_corrupted_wood = registerBlockGeneral("stripped_corrupted_wood", () -> new AgateLogBlock(MaterialColor.TNT, MaterialColor.TNT));
+    public static final RegistryObject<Block> stripped_burnt_wood = registerBlockGeneral("stripped_burnt_wood", () -> new AgateLogBlock(MaterialColor.GRAY, MaterialColor.GRAY));
+    public static final RegistryObject<Block> stripped_burning_wood = registerBlockWithFuel("stripped_burning_wood", () -> new AgateLogBlock(MaterialColor.ADOBE, MaterialColor.ADOBE, 3), 1600);
+    public static final RegistryObject<Block> stripped_aura_wood = registerBlockGeneral("stripped_aura_wood", () -> new AgateLogBlock(MaterialColor.IRON, MaterialColor.IRON));
 
     public static final RegistryObject<Block> salt = registerBlockGeneral("salt", () -> new GaiaFallingBlock(MaterialColor.SNOW, 0.9F, SoundType.SAND, 0xE0E0FF));
     public static final RegistryObject<Block> saltstone = registerBlockGeneral("saltstone", () -> new BasicGaiaBlock(Material.ROCK, MaterialColor.LIGHT_BLUE_TERRACOTTA, 1.5F, 10.0F, PICKAXE, 0));
@@ -279,11 +288,11 @@ public class ModBlocks {
         return reg;
     }
 
-    private static Supplier<BlockItem> registerBlockItem(final RegistryObject<? extends Block> block) {
+    private static <T extends Block> Supplier<BlockItem> registerBlockItem(final RegistryObject<T> block) {
         return () -> new BlockItem(block.get(), new Item.Properties().group(GaiaItemGroups.GAIA_BLOCKS));
     }
 
-    private static Supplier<BlockItem> registerBlockItemFuel(final RegistryObject<? extends Block> block, int burnTime) {
+    private static <T extends Block> Supplier<BlockItem> registerBlockItemFuel(final RegistryObject<T> block, int burnTime) {
         return () -> new BlockItem(block.get(), new Item.Properties().group(GaiaItemGroups.GAIA_BLOCKS)) {
             @Override
             public int getBurnTime(ItemStack itemStack) {

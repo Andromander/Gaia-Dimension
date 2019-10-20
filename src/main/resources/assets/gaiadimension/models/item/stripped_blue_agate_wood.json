@@ -1,7 +1,7 @@
 {
   "parent": "block/cube_column",
   "textures": {
-    "end": "gaiadimension:blocks/blue_agate",
+    "end": "gaiadimension:blocks/blue_agate_side",
     "side": "gaiadimension:blocks/blue_agate_side"
   }
 }
