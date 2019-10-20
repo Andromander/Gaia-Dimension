@@ -1,6 +1,6 @@
 {
   "result": {
-    "item": "gaiadimension:restructurer_idle"
+    "item": "gaiadimension:restructurer"
   },
   "pattern": [
     "SSS",
@@ -13,7 +13,7 @@
       "item": "gaiadimension:reinforced_bricks"
     },
     "F": {
-      "item": "gaiadimension:gaia_stone_furnace_idle"
+      "item": "gaiadimension:gaia_stone_furnace"
     }
   }
 }
