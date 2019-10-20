@@ -1,6 +1,6 @@
 {
   "result": {
-    "item": "gaiadimension:purifier_idle"
+    "item": "gaiadimension:purifier"
   },
   "pattern": [
     "SSS",
@@ -13,7 +13,7 @@
       "item": "gaiadimension:bolstered_bricks"
     },
     "F": {
-      "item": "gaiadimension:restructurer_idle"
+      "item": "gaiadimension:restructurer"
     }
   }
 }

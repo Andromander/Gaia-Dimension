@@ -11,7 +11,7 @@
   "group": "agate_tools",
   "key": {
     "W": {
-      "item": "#AGATEPLANKS"
+      "tag": "gaiadimension:agate_planks"
     },
     "S": {
       "item": "gaiadimension:agate_stick"

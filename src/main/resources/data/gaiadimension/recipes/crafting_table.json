@@ -9,7 +9,7 @@
   "type": "minecraft:crafting_shaped",
   "key": {
     "#": {
-      "item": "#AGATEPLANKS"
+      "tag": "gaiadimension:agate_planks"
     }
   }
 }
