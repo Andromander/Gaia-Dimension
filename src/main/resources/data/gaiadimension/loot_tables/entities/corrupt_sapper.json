@@ -5,7 +5,7 @@
       "rolls": 1,
       "entries": [{
         "type": "item",
-        "name": "gaiadimension:goldstone_essence",
+        "name": "gaiadimension:goldstone_residue",
         "functions": [
           { "function": "set_count", "count": { "min": 0, "max": 2 } },
           { "function": "looting_enchant", "count": { "min": 0, "max": 1 } }
