@@ -1,8 +1,12 @@
 package androsa.gaiadimension.registry;
 
+import androsa.gaiadimension.ClientEvents;
 import androsa.gaiadimension.GaiaDimensionMod;
+import net.minecraft.fluid.Fluid;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IEnviromentBlockReader;
 import net.minecraftforge.fluids.FluidAttributes;
 import net.minecraftforge.fluids.ForgeFlowingFluid;
 
@@ -33,15 +37,16 @@ public class GaiaFluidAttributes {
                     .overlay(new ResourceLocation(GaiaDimensionMod.MODID, sweetDir + "overlay"))
                     .viscosity(750);
     public static final FluidAttributes.Builder liquid_bismuth_attributes =
-            FluidAttributes.builder(new ResourceLocation(GaiaDimensionMod.MODID, bismuthDir + "still"), new ResourceLocation(GaiaDimensionMod.MODID, bismuthDir + "flow"))
+            LiquidBismuth.builder(new ResourceLocation(GaiaDimensionMod.MODID, bismuthDir + "still"), new ResourceLocation(GaiaDimensionMod.MODID, bismuthDir + "flow"))
+                    .color(0xFF808080)
                     .density(2500)
                     .luminosity(3)
                     .overlay(new ResourceLocation(GaiaDimensionMod.MODID, bismuthDir + "overlay"))
                     .temperature(300)
                     .viscosity(3500);
     public static final FluidAttributes.Builder liquid_aura_attributes =
-            FluidAttributes.builder(new ResourceLocation(GaiaDimensionMod.MODID, auraDir + "still"), new ResourceLocation(GaiaDimensionMod.MODID, auraDir + "flow"))
-                    .color(0xCEB0C0FF)
+            LiquidAura.builder(new ResourceLocation(GaiaDimensionMod.MODID, auraDir + "still"), new ResourceLocation(GaiaDimensionMod.MODID, auraDir + "flow"))
+                    .color(0xFFFFFFFF)
                     .overlay(new ResourceLocation(GaiaDimensionMod.MODID, auraDir + "overlay"))
                     .viscosity(1500);
 
@@ -78,4 +83,26 @@ public class GaiaFluidAttributes {
                     .bucket(ModItems.liquid_aura_bucket)
                     .explosionResistance(100.0F)
                     .renderLayer(BlockRenderLayer.SOLID);
+
+    public static class LiquidBismuth extends FluidAttributes {
+        protected LiquidBismuth(Builder builder, Fluid fluid) {
+            super(builder, fluid);
+        }
+
+        @Override
+        public int getColor(IEnviromentBlockReader world, BlockPos pos) {
+            return ClientEvents.getBismuthColor(pos) | 0xFF000000;
+        }
+    }
+
+    public static class LiquidAura extends FluidAttributes {
+        protected LiquidAura(Builder builder, Fluid fluid) {
+            super(builder, fluid);
+        }
+
+        @Override
+        public int getColor(IEnviromentBlockReader world, BlockPos pos) {
+            return ClientEvents.getAuraColor(pos) | 0xFF000000;
+        }
+    }
 }

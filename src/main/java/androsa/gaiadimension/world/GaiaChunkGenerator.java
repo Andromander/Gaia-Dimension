@@ -35,7 +35,7 @@ public class GaiaChunkGenerator extends NoiseChunkGenerator<GaiaGenerationSettin
         this.surfaceDepthNoise = new PerlinNoiseGenerator(this.randomSeed, 4);
     }
 
-    @Override
+    /*@Override
     public void spawnMobs(WorldGenRegion region) {
         int i = region.getMainChunkX();
         int j = region.getMainChunkZ();
@@ -43,7 +43,7 @@ public class GaiaChunkGenerator extends NoiseChunkGenerator<GaiaGenerationSettin
         SharedSeedRandom sharedseedrandom = new SharedSeedRandom();
         sharedseedrandom.setDecorationSeed(region.getSeed(), i << 4, j << 4);
         WorldEntitySpawner.performWorldGenSpawning(region, biome, i, j, sharedseedrandom);
-    }
+    }*/
 
     @Override
     protected void func_222548_a(double[] adouble, int noiseX, int noiseZ) {

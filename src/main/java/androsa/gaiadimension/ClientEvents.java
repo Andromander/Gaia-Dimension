@@ -5,6 +5,7 @@ import androsa.gaiadimension.registry.ModBlocks;
 import net.minecraft.client.renderer.color.BlockColors;
 import net.minecraft.client.renderer.color.ItemColors;
 import net.minecraft.item.BlockItem;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.biome.BiomeColors;
 import net.minecraftforge.api.distmarker.Dist;
@@ -34,15 +35,7 @@ public class ClientEvents {
         //TODO: This doesn't work
         blocks.register((state, worldIn, pos, tintIndex) -> {
             if (worldIn != null && pos != null) {
-                int red = (int) ((MathHelper.cos((float) Math.toRadians(pos.getX() * 2)) + 1F) / 2F * 0xFF);
-                int green = (int) ((MathHelper.cos((float) Math.toRadians(pos.getY() * 2)) + 1F) / 3F * 0xFF);
-                int blue = (int) ((MathHelper.cos((float) Math.toRadians(pos.getZ() * 2)) + 1F) / 2F * 0xFF);
-
-                red = MathHelper.clamp(red, 0, 170);
-                green = MathHelper.clamp(green, 0, 160);
-                blue = MathHelper.clamp(blue, 0, 180);
-
-                return (blue << 16) | (red << 8) | green;
+                return getBismuthColor(pos);
             } else {
                 return 0x808080;
             }
@@ -50,15 +43,7 @@ public class ClientEvents {
 
         blocks.register((state, worldIn, pos, tintIndex) -> {
             if (worldIn != null && pos != null) {
-                int red = (int) ((MathHelper.cos((float) Math.toRadians((pos.getX() + 100) * 8)) + 1F) / 2F * 0xFF);
-                int green = (int) ((MathHelper.cos((float) Math.toRadians((pos.getY() + 100) * 32)) + 1F) / 2F * 0xFF);
-                int blue = (int) ((MathHelper.cos((float) Math.toRadians((pos.getZ() + 100) * 8)) + 1F) / 2F * 0xFF);
-
-                red = MathHelper.clamp(red, 150, 256);
-                green = MathHelper.clamp(green, 100, 220);
-                blue = MathHelper.clamp(blue, 150, 256);
-
-                return (red << 16) | (green << 8) | blue;
+                return getAuraColor(pos);
             } else {
                 return 0xFFFFFF;
             }
@@ -108,6 +93,30 @@ public class ClientEvents {
 
             return hex;
         }, ModBlocks.aura_shoot.get());
+    }
+
+    public static int getBismuthColor(BlockPos pos) {
+        int red = (int) ((MathHelper.cos((float) Math.toRadians(pos.getX() * 2)) + 1F) / 2F * 0xFF);
+        int green = (int) ((MathHelper.cos((float) Math.toRadians(pos.getY() * 2)) + 1F) / 3F * 0xFF);
+        int blue = (int) ((MathHelper.cos((float) Math.toRadians(pos.getZ() * 2)) + 1F) / 2F * 0xFF);
+
+        red = MathHelper.clamp(red, 0, 170);
+        green = MathHelper.clamp(green, 0, 160);
+        blue = MathHelper.clamp(blue, 0, 180);
+
+        return (blue << 16) | (red << 8) | green;
+    }
+
+    public static int getAuraColor(BlockPos pos) {
+        int red = (int) ((MathHelper.cos((float) Math.toRadians((pos.getX() + 100) * 8)) + 1F) / 2F * 0xFF);
+        int green = (int) ((MathHelper.cos((float) Math.toRadians((pos.getY() + 100) * 32)) + 1F) / 2F * 0xFF);
+        int blue = (int) ((MathHelper.cos((float) Math.toRadians((pos.getZ() + 100) * 8)) + 1F) / 2F * 0xFF);
+
+        red = MathHelper.clamp(red, 150, 256);
+        green = MathHelper.clamp(green, 100, 220);
+        blue = MathHelper.clamp(blue, 150, 256);
+
+        return (red << 16) | (green << 8) | blue;
     }
 
     @SubscribeEvent
