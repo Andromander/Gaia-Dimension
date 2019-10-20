@@ -1,5 +1,5 @@
 {
-  "model": "block/cube_bottom_top",
+  "parent": "block/cube_bottom_top",
   "textures": {
     "top":        "gaiadimension:blocks/salt_rock_top",
     "bottom":     "gaiadimension:blocks/salt_rock_bottom",
