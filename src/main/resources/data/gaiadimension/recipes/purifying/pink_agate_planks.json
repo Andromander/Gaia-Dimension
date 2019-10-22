@@ -1,0 +1,10 @@
+{
+  "type": "gaiadimension:purifying",
+  "ingredient": {
+    "item": "gaiadimension:corrupted_planks"
+  },
+  "result": "gaiadimension:pink_agate_planks",
+  "byproduct": "gaiadimension:goldstone_residue",
+  "experience": 0.3,
+  "cookingtime": 200
+}

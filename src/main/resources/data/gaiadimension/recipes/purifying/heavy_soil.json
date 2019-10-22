@@ -1,0 +1,10 @@
+{
+  "type": "gaiadimension:purifying",
+  "ingredient": {
+    "item": "gaiadimension:corrupt_soil"
+  },
+  "result": "gaiadimension:heavy_soil",
+  "byproduct": "gaiadimension:goldstone_residue",
+  "experience": 0.3,
+  "cookingtime": 200
+}

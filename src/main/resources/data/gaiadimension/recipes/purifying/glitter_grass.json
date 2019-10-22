@@ -1,0 +1,10 @@
+{
+  "type": "gaiadimension:purifying",
+  "ingredient": {
+    "item": "gaiadimension:corrupt_grass"
+  },
+  "result": "gaiadimension:glitter_grass",
+  "byproduct": "gaiadimension:goldstone_residue",
+  "experience": 0.3,
+  "cookingtime": 200
+}

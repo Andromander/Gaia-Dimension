@@ -1,0 +1,10 @@
+{
+  "type": "gaiadimension:restructuring",
+  "ingredient": {
+    "item": "gaiadimension:pyrite"
+  },
+  "result": "gaiadimension:aura_residue",
+  "byproduct": "gaiadimension:bismuth_residue",
+  "experience": 0.2,
+  "cookingtime": 200
+}

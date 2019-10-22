@@ -5,6 +5,7 @@ import com.google.gson.JsonObject;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipeSerializer;
 import net.minecraft.item.crafting.Ingredient;
+import net.minecraft.item.crafting.ShapedRecipe;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.JSONUtils;
 import net.minecraft.util.ResourceLocation;
@@ -25,15 +26,32 @@ public class PurifierRecipeSerializer<T extends PurifierRecipe> extends ForgeReg
         String s = JSONUtils.getString(json, "group", "");
         JsonElement jsonelement = JSONUtils.isJsonArray(json, "ingredient") ? JSONUtils.getJsonArray(json, "ingredient") : JSONUtils.getJsonObject(json, "ingredient");
         Ingredient ingredient = Ingredient.deserialize(jsonelement);
-        String s1 = JSONUtils.getString(json, "result");
-        String s2 = JSONUtils.getString(json, "byproduct");
-        ResourceLocation resourcelocation = new ResourceLocation(s1);
-        ItemStack itemstack = new ItemStack(Registry.ITEM.getValue(resourcelocation).orElseThrow(() -> new IllegalStateException("Item: " + s1 + " does not exist")));
-        ResourceLocation resourcelocation1 = new ResourceLocation(s2);
-        ItemStack itemstack1 = new ItemStack(Registry.ITEM.getValue(resourcelocation1).orElseThrow(() -> new IllegalStateException("Item: " + s2 + " does not exist")));
+        //RESULT
+        if (!json.has("result"))
+            throw new com.google.gson.JsonSyntaxException("Missing result, expected to find a string or object");
+        ItemStack resultStack;
+        if (json.get("result").isJsonObject())
+            resultStack = ShapedRecipe.deserializeItem(JSONUtils.getJsonObject(json, "result"));
+        else {
+            String s1 = JSONUtils.getString(json, "result");
+            ResourceLocation resourcelocation = new ResourceLocation(s1);
+            resultStack = new ItemStack(Registry.ITEM.getValue(resourcelocation).orElseThrow(() -> new IllegalStateException("Item: " + s1 + " does not exist")));
+        }
+
+        //BYPRODUCT
+        if (!json.has("byproduct"))
+            throw new com.google.gson.JsonSyntaxException("Missing result, expected to find a string or object");
+        ItemStack byStack;
+        if (json.get("byproduct").isJsonObject())
+            byStack = ShapedRecipe.deserializeItem(JSONUtils.getJsonObject(json, "byproduct"));
+        else {
+            String s2 = JSONUtils.getString(json, "byproduct");
+            ResourceLocation resourcelocation = new ResourceLocation(s2);
+            byStack = new ItemStack(Registry.ITEM.getValue(resourcelocation).orElseThrow(() -> new IllegalStateException("Item: " + s2 + " does not exist")));
+        }
         float f = JSONUtils.getFloat(json, "experience", 0.0F);
         int i = JSONUtils.getInt(json, "cookingtime", this.cookTime);
-        return this.factory.create(recipeId, s, ingredient, itemstack, itemstack1, f, i);
+        return this.factory.create(recipeId, s, ingredient, resultStack, byStack, f, i);
     }
 
     @Override

@@ -1,0 +1,10 @@
+{
+  "type": "gaiadimension:restructuring",
+  "ingredient": {
+    "item": "gaiadimension:pyrite_block"
+  },
+  "result": "gaiadimension:aura_cluster",
+  "byproduct": "gaiadimension:bismuth_crystal",
+  "experience": 2.7,
+  "cookingtime": 200
+}

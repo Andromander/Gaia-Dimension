@@ -1,0 +1,10 @@
+{
+  "type": "gaiadimension:restructuring",
+  "ingredient": {
+    "item": "gaiadimension:green_opal"
+  },
+  "result": "gaiadimension:diopside",
+  "byproduct": "gaiadimension:black_residue",
+  "experience": 0.3,
+  "cookingtime": 200
+}

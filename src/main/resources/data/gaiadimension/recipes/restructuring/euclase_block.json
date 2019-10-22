@@ -1,0 +1,10 @@
+{
+  "type": "gaiadimension:restructuring",
+  "ingredient": {
+    "item": "gaiadimension:labradorite_block"
+  },
+  "result": "gaiadimension:euclase_block",
+  "byproduct": "gaiadimension:tektite",
+  "experience": 2.7,
+  "cookingtime": 200
+}

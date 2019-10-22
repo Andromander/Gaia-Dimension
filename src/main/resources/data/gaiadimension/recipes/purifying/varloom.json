@@ -1,0 +1,10 @@
+{
+  "type": "gaiadimension:purifying",
+  "ingredient": {
+    "item": "gaiadimension:corrupted_varloom"
+  },
+  "result": "gaiadimension:varloom",
+  "byproduct": "gaiadimension:goldstone_residue",
+  "experience": 0.3,
+  "cookingtime": 200
+}

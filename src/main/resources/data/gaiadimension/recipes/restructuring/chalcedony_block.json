@@ -1,0 +1,10 @@
+{
+  "type": "gaiadimension:restructuring",
+  "ingredient": {
+    "item": "gaiadimension:opal_block_white"
+  },
+  "result": "gaiadimension:chalcedony_block",
+  "byproduct": "gaiadimension:tektite",
+  "experience": 2.7,
+  "cookingtime": 200
+}

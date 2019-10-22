@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "gaiadimension:luggeroth_chop"
+  },
+  "result": "gaiadimension:cooked_luggeroth_chop",
+  "experience": 0.2,
+  "cookingtime": 200
+}

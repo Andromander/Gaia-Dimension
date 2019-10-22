@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "gaiadimension:cinnabar_ore"
+  },
+  "result": "gaiadimension:cinnabar",
+  "experience": 0.3,
+  "cookingtime": 200
+}

@@ -1,0 +1,10 @@
+{
+  "type": "gaiadimension:restructuring",
+  "ingredient": {
+    "item": "gaiadimension:labradorite"
+  },
+  "result": "gaiadimension:euclase",
+  "byproduct": "gaiadimension:black_residue",
+  "experience": 0.3,
+  "cookingtime": 200
+}
