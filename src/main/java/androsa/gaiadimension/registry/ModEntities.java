@@ -19,6 +19,8 @@ import net.minecraft.tags.FluidTags;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.gen.Heightmap;
 import net.minecraft.world.spawner.WorldEntitySpawner;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.registries.DeferredRegister;
@@ -73,7 +75,8 @@ public class ModEntities {
             .size(3.5F, 8.0F).build("rugged_lurmorus");
     public static final EntityType<SaltionEntity> saltion = EntityType.Builder.create(SaltionEntity::new, EntityClassification.CREATURE)
             .size(1.0F, 0.3F).build("saltion");
-    public static final EntityType<ShallowArenthisEntity> shallow_arenthis = EntityType.Builder.create(ShallowArenthisEntity::new, EntityClassification.WATER_CREATURE).size(0.6F, 0.6F).build("shallow_arenthis");
+    public static final EntityType<ShallowArenthisEntity> shallow_arenthis = EntityType.Builder.create(ShallowArenthisEntity::new, EntityClassification.WATER_CREATURE)
+            .size(0.6F, 0.6F).build("shallow_arenthis");
     public static final EntityType<ShalurkerEntity> shalurker = EntityType.Builder.create(ShalurkerEntity::new, EntityClassification.MONSTER)
             .size(0.6F, 1.9F).build("shalurker");
     public static final EntityType<SpellElementEntity> spell_elemental = EntityType.Builder.create(SpellElementEntity::new, EntityClassification.CREATURE)
@@ -82,8 +85,6 @@ public class ModEntities {
             .size(1.2F, 2.2F).build("blue_howlite_wolf");
     public static final EntityType<MalachiteGuardEntity> malachite_guard = EntityType.Builder.create(MalachiteGuardEntity::new, EntityClassification.MONSTER)
             .size(0.8F, 3.3F).build("malachite_guard");
-
-
 
     //Projectiles
     public static final RegistryObject<EntityType<AgateArrowEntity>> AGATE_ARROW = ENTITIES.register("agate_arrow",
@@ -171,6 +172,7 @@ public class ModEntities {
         register(SPELLBOUND_ELEMENTAL.get(), PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, SpellElementEntity::canSpawnHere);
     }
 
+    @OnlyIn(Dist.CLIENT)
     public static void registerEntityRender() {
         // RenderingRegistry.registerEntityRenderingHandler(GDShotGaianEnergy.class, m -> new RenderSnowball<>(m, Items.ENDER_PEARL, Minecraft.getMinecraft().getRenderItem()));
         RenderingRegistry.registerEntityRenderingHandler(ThrownPebbleEntity.class, m -> new SpriteRenderer<>(m, Minecraft.getInstance().getItemRenderer()));
