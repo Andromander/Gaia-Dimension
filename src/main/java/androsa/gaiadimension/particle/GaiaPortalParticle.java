@@ -26,7 +26,7 @@ public class GaiaPortalParticle extends SpriteTexturedParticle {
         this.portalPosX = this.posX;
         this.portalPosY = this.posY;
         this.portalPosZ = this.posZ;
-        this.particleScale = this.rand.nextFloat() * 0.2F + 0.5F;
+        this.particleScale = 0.1F + (this.rand.nextFloat() * 0.2F + 0.5F);
         float f = this.rand.nextFloat() * 0.6F + 0.4F;
         this.particleRed = f * 0.9F;
         this.particleGreen = f * 0.3F;
