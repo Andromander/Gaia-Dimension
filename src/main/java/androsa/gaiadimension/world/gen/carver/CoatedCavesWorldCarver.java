@@ -24,7 +24,7 @@ public class CoatedCavesWorldCarver extends WorldCarver<ProbabilityConfig> {
     public CoatedCavesWorldCarver(Function<Dynamic<?>, ? extends ProbabilityConfig> config, int height) {
         super(config, height);
         carvableBlocks = ImmutableSet.of(ModBlocks.glitter_grass.get(), ModBlocks.corrupt_grass.get(), ModBlocks.murky_grass.get(), ModBlocks.soft_grass.get(), ModBlocks.heavy_soil.get(), ModBlocks.corrupt_soil.get(), ModBlocks.boggy_soil.get(), ModBlocks.light_soil.get(), ModBlocks.saltstone.get(), ModBlocks.gaia_stone.get(), ModBlocks.wasteland_stone.get(), ModBlocks.volcanic_rock.get(), ModBlocks.primal_mass.get());
-        //carvableFluids = ImmutableSet.of(ModFluids.mineral_water_still.get()); FIXME
+        carvableFluids = ImmutableSet.of(ModFluids.mineral_water_s);
     }
 
     @Override
