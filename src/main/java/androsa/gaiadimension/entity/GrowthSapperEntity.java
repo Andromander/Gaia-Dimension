@@ -1,5 +1,6 @@
 package androsa.gaiadimension.entity;
 
+import androsa.gaiadimension.GaiaDimensionMod;
 import androsa.gaiadimension.biomes.*;
 import androsa.gaiadimension.registry.ModBlocks;
 import net.minecraft.entity.*;
@@ -12,6 +13,7 @@ import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.DifficultyInstance;
@@ -77,6 +79,25 @@ public class GrowthSapperEntity extends CreatureEntity {
     public void writeAdditional(CompoundNBT compound) {
         super.writeAdditional(compound);
         compound.putInt("SapperVariant", this.getEntityVariant());
+    }
+
+    @Override
+    public ResourceLocation getLootTable() {
+        switch (this.getEntityVariant()) {
+            case 0:
+            default:
+                return getLocation("common_sapper");
+            case 1:
+                return getLocation("chilled_sapper");
+            case 2:
+                return getLocation("nutrient_sapper");
+            case 3:
+                return getLocation("mystified_sapper");
+        }
+    }
+
+    private ResourceLocation getLocation(String name) {
+        return new ResourceLocation(GaiaDimensionMod.MODID, "entities/" + name);
     }
 
     @Override
