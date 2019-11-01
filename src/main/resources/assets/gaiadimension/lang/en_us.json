@@ -495,15 +495,14 @@
 
   "effect.gaiadimension.goldstone_plague": "Corrupt Mania",
 
-  "death.attack.corruption": "%1$s succumbed to the Goldstone Plague"
+  "death.attack.corruption": "%1$s succumbed to the Goldstone Plague",
 
-  //#JEI
-  //gui.gaiadimension.category.fuel.smeltAverage.singleAverage=Burns ~1 item
-  //gui.gaiadimension.category.fuel.smeltAverage=Burns ~%s items
-  //gui.gaiadimension.category.glitterFuel=Glittering
-  //gui.gaiadimension.category.shineFuel=Shining
-  //gui.gaiadimension.category.nullFuel=Nulling
-  //gui.gaiadimension.category.restructuring=Restructuring
-  //gui.gaiadimension.category.purifying=Purifying
+  "gui.gaiadimension.category.fuel.single_average": "Burns ~1 item",
+  "gui.gaiadimension.category.fuel.smelt_average": "Burns ~%s items",
+  "gui.gaiadimension.category.glitter_fuel": "Glittering",
+  "gui.gaiadimension.category.shine_fuel": "Shining",
+  "gui.gaiadimension.category.null_fuel": "Nulling",
+  "gui.gaiadimension.category.restructuring": "Restructuring",
+  "gui.gaiadimension.category.purifying": "Purifying"
 }
 
