@@ -32,15 +32,6 @@ public class ClientEvents {
         blocks.register((state, worldIn, pos, tintIndex) -> worldIn != null && pos != null && worldIn.getBiome(pos) instanceof BaseGaiaBiome ? BiomeColors.getGrassColor(worldIn, pos) : 0xA0A0A0,
                 ModBlocks.soft_grass.get());
 
-        //TODO: This doesn't work
-        blocks.register((state, worldIn, pos, tintIndex) -> {
-            if (worldIn != null && pos != null) {
-                return getBismuthColor(pos);
-            } else {
-                return 0x808080;
-            }
-        }, ModBlocks.liquid_bismuth.get());
-
         blocks.register((state, worldIn, pos, tintIndex) -> {
             if (worldIn != null && pos != null) {
                 return getAuraColor(pos);
@@ -48,7 +39,7 @@ public class ClientEvents {
                 return 0xFFFFFF;
             }
 
-        }, ModBlocks.liquid_aura.get(), ModBlocks.aura_leaves.get());
+        }, ModBlocks.aura_leaves.get());
 
         blocks.register((state, worldIn, pos, tintIndex) -> {
             int hex;
@@ -96,15 +87,15 @@ public class ClientEvents {
     }
 
     public static int getBismuthColor(BlockPos pos) {
-        int red = (int) ((MathHelper.cos((float) Math.toRadians(pos.getX() * 2)) + 1F) / 2F * 0xFF);
-        int green = (int) ((MathHelper.cos((float) Math.toRadians(pos.getY() * 2)) + 1F) / 3F * 0xFF);
-        int blue = (int) ((MathHelper.cos((float) Math.toRadians(pos.getZ() * 2)) + 1F) / 2F * 0xFF);
+        int red = (int) ((MathHelper.cos((float) Math.toRadians(pos.getX() * 4)) + 1F) / 2F * 0xFF);
+        int green = (int) ((MathHelper.cos((float) Math.toRadians(pos.getY() * 8)) + 1F) / 3F * 0xFF);
+        int blue = (int) ((MathHelper.cos((float) Math.toRadians(pos.getZ() * 4)) + 1F) / 2F * 0xFF);
 
-        red = MathHelper.clamp(red, 0, 170);
-        green = MathHelper.clamp(green, 0, 160);
-        blue = MathHelper.clamp(blue, 0, 180);
+        red = MathHelper.clamp(red, 20, 170);
+        green = MathHelper.clamp(green, 20, 160);
+        blue = MathHelper.clamp(blue, 20, 200);
 
-        return (blue << 16) | (red << 8) | green;
+        return (red << 16) | (green << 8) | blue;
     }
 
     public static int getAuraColor(BlockPos pos) {

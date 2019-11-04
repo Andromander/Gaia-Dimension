@@ -93,6 +93,16 @@ public class GaiaFluidAttributes {
         public int getColor(IEnviromentBlockReader world, BlockPos pos) {
             return ClientEvents.getBismuthColor(pos) | 0xFF000000;
         }
+
+        public static Builder builder(ResourceLocation stillTexture, ResourceLocation flowingTexture) {
+            return new LiquidBismuthBuilder(stillTexture, flowingTexture);
+        }
+
+        static class LiquidBismuthBuilder extends FluidAttributes.Builder {
+            LiquidBismuthBuilder(ResourceLocation still, ResourceLocation flow) {
+                super(still, flow, LiquidBismuth::new);
+            }
+        }
     }
 
     public static class LiquidAura extends FluidAttributes {
@@ -103,6 +113,16 @@ public class GaiaFluidAttributes {
         @Override
         public int getColor(IEnviromentBlockReader world, BlockPos pos) {
             return ClientEvents.getAuraColor(pos) | 0xFF000000;
+        }
+
+        public static Builder builder(ResourceLocation stillTexture, ResourceLocation flowingTexture) {
+            return new LiquidAuraBuilder(stillTexture, flowingTexture);
+        }
+
+        static class LiquidAuraBuilder extends FluidAttributes.Builder {
+            LiquidAuraBuilder(ResourceLocation still, ResourceLocation flow) {
+                super(still, flow, LiquidAura::new);
+            }
         }
     }
 }
