@@ -32,7 +32,7 @@ public class RestructurerBlock extends Block {
     public static final BooleanProperty LIT = RedstoneTorchBlock.LIT;
 
     public RestructurerBlock() {
-        super(Properties.create(Material.ROCK).harvestTool(ToolType.PICKAXE).harvestLevel(1).lightValue(14));
+        super(Properties.create(Material.ROCK).hardnessAndResistance(20.0F, 300.0F).harvestTool(ToolType.PICKAXE).harvestLevel(1).lightValue(14));
         this.setDefaultState(this.stateContainer.getBaseState().with(FACING, Direction.NORTH).with(LIT, Boolean.FALSE));
     }
 
