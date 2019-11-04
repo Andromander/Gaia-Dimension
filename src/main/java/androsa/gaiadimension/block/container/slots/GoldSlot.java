@@ -13,7 +13,7 @@ public class GoldSlot extends Slot {
 
     @Override
     public boolean isItemValid(ItemStack stack) {
-        return RestructurerTileEntity.getFuelBurnTime().get(stack.getItem()) > 0;
+        return RestructurerTileEntity.getFuelBurnTime().getOrDefault(stack.getItem(), 0) > 0;
     }
 
     @Override

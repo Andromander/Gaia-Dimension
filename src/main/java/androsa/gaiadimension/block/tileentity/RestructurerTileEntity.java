@@ -351,12 +351,7 @@ public class RestructurerTileEntity extends LockableTileEntity implements ISided
 
     public static boolean isItemFuel(ItemStack stack) {
         Item item = stack.getItem();
-        if (getFuelBurnTime().get(item) != null) {
-            return getFuelBurnTime().get(item) > 0;
-        } else if (getSecondFuelBurnTime().get(item) != null) {
-            return getSecondFuelBurnTime().get(item) > 0;
-        }
-        return false;
+        return getFuelBurnTime().get(item) != null || getSecondFuelBurnTime().get(item) != null;
     }
 
     @Override

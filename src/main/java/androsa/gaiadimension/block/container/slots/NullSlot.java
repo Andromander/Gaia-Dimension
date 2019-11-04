@@ -13,7 +13,7 @@ public class NullSlot extends Slot {
 
     @Override
     public boolean isItemValid(ItemStack stack) {
-        return PurifierTileEntity.getThirdFuelBurnTime().get(stack.getItem()) > 0;
+        return PurifierTileEntity.getThirdFuelBurnTime().getOrDefault(stack.getItem(), 0) > 0;
     }
 
     @Override

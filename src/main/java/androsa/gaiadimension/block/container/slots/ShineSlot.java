@@ -13,7 +13,7 @@ public class ShineSlot extends Slot {
 
     @Override
     public boolean isItemValid(ItemStack stack) {
-    return RestructurerTileEntity.getSecondFuelBurnTime().get(stack.getItem()) > 0;
+    return RestructurerTileEntity.getSecondFuelBurnTime().getOrDefault(stack.getItem(), 0) > 0;
     }
 
     @Override
