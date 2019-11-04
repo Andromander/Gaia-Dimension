@@ -122,17 +122,4 @@ public class ClientEvents {
                 ModBlocks.aura_shoot.get(),
                 ModBlocks.soft_grass.get());
     }
-
-    /*@SubscribeEvent
-    public static void textureStitch(TextureStitchEvent.Pre e) {
-        e.addSprite(new ResourceLocation(GaiaDimensionMod.MODID, "fluids/mineralwater/mineral_water_flow"));
-        e.addSprite(new ResourceLocation(GaiaDimensionMod.MODID, "fluids/superhotmagma/superhot_magma_flow"));
-        e.addSprite(new ResourceLocation(GaiaDimensionMod.MODID, "fluids/sweetmuck/sweet_muck_flow"));
-        e.addSprite(new ResourceLocation(GaiaDimensionMod.MODID, "fluids/liquidbismuth/liquid_bismuth_flow"));
-        e.addSprite(new ResourceLocation(GaiaDimensionMod.MODID, "fluids/liquidaura/liquid_aura_flow"));
-
-        map.registerSprite(new ResourceLocation(GaiaDimensionMod.MODID, "particle/yellow_fire"));
-        map.registerSprite(new ResourceLocation(GaiaDimensionMod.MODID, "particle/green_fire"));
-        map.registerSprite(new ResourceLocation(GaiaDimensionMod.MODID, "particle/portal_sparkle"));
-    }*/
 }
