@@ -17,7 +17,6 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 import java.util.Random;
 
-//FIXME: Movement
 public class ShallowArenthisEntity extends WaterMobEntity {
 
     public float arenthisPitch;

@@ -10,7 +10,6 @@ import net.minecraft.world.World;
 
 public class GemstonePouchItem extends BasicGaiaItem {
 
-    //TODO: Is this right??
     @Override
     public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity playerIn, Hand handIn) {
         ItemStack stack = playerIn.getHeldItem(handIn);

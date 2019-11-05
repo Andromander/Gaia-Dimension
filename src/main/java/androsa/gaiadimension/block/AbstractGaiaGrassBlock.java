@@ -29,7 +29,6 @@ public abstract class AbstractGaiaGrassBlock extends Block implements IGrowable 
         dirt = dirtblock;
     }
 
-    //TODO: They keep growing despite being on top of each other. Find cause
     @Override
     public void tick(BlockState state, World worldIn, BlockPos pos, Random random) {
         if (!worldIn.isRemote) {

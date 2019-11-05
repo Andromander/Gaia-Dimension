@@ -41,7 +41,8 @@ public class GaiaDimensionMod {
     public static final String MODEL_DIR = "gaiadimension:textures/model/";
 
     public static final Logger LOGGER = LogManager.getLogger(MODID);
-    public static ModGaiaConfig config;
+    public static ModGaiaConfig.ClientConfig clientConfig;
+    public static ModGaiaConfig.ServerConfig serverConfig;
     public static DimensionType gaia_dimension;
     public static GaiaTeleporter gaiaTeleporter;
 
@@ -77,9 +78,12 @@ public class GaiaDimensionMod {
         ModWorldgen.SURFACE_BUILDERS.register(modEventBus);
         ModWorldgen.WORLD_CARVERS.register(modEventBus);
 
-        final Pair<ModGaiaConfig, ForgeConfigSpec> specPair = new ForgeConfigSpec.Builder().configure(ModGaiaConfig::new);
-        ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, specPair.getRight());
-        config = specPair.getLeft();
+        final Pair<ModGaiaConfig.ClientConfig, ForgeConfigSpec> specPairC = new ForgeConfigSpec.Builder().configure(ModGaiaConfig.ClientConfig::new);
+        final Pair<ModGaiaConfig.ServerConfig, ForgeConfigSpec> specPairS = new ForgeConfigSpec.Builder().configure(ModGaiaConfig.ServerConfig::new);
+        ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, specPairC.getRight());
+        ModLoadingContext.get().registerConfig(ModConfig.Type.SERVER, specPairS.getRight());
+        clientConfig = specPairC.getLeft();
+        serverConfig = specPairS.getLeft();
     }
 
     public void setup(FMLCommonSetupEvent event) {

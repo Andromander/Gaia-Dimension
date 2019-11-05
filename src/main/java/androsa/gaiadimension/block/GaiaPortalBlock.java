@@ -2,6 +2,7 @@ package androsa.gaiadimension.block;
 
 import androsa.gaiadimension.GaiaDimensionMod;
 import androsa.gaiadimension.registry.ModBlocks;
+import androsa.gaiadimension.registry.ModGaiaConfig;
 import androsa.gaiadimension.registry.ModParticles;
 import com.google.common.cache.LoadingCache;
 import net.minecraft.advancements.CriteriaTriggers;
@@ -75,10 +76,11 @@ public class GaiaPortalBlock extends Block {
     private boolean canCreatePortalByWorld(World world, BlockPos pos) {
         Biome biome = world.getBiome(pos);
 
-        if (world.dimension.getType() == DimensionType.OVERWORLD)
-            return BiomeDictionary.hasType(biome, Type.HOT) || BiomeDictionary.hasType(biome, Type.MOUNTAIN) || BiomeDictionary.hasType(biome, Type.DRY);
-        else
+        if (world.dimension.getType() == DimensionType.OVERWORLD) {
+            return !ModGaiaConfig.portalCheck.get() || BiomeDictionary.hasType(biome, Type.HOT) || BiomeDictionary.hasType(biome, Type.MOUNTAIN) || BiomeDictionary.hasType(biome, Type.DRY);
+        } else {
             return world.dimension.getType() == GaiaDimensionMod.gaia_dimension;
+        }
     }
 
     @Nullable
