@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "##",
+    "##"
+  ],
+  "key": {
+    "#": {
+      "item": "gaiadimension:aura_log"
+    }
+  },
+  "result": {
+    "item": "gaiadimension:aura_wood",
+    "count": 3
+  }
+}

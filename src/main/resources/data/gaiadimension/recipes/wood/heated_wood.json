@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "##",
+    "##"
+  ],
+  "key": {
+    "#": {
+      "item": "gaiadimension:burning_log"
+    }
+  },
+  "result": {
+    "item": "gaiadimension:burning_wood",
+    "count": 3
+  }
+}
