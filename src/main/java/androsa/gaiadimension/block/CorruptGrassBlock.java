@@ -2,7 +2,6 @@ package androsa.gaiadimension.block;
 
 import androsa.gaiadimension.registry.ModBlocks;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.IGrowable;
 import net.minecraft.block.material.MaterialColor;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -32,9 +31,6 @@ public class CorruptGrassBlock extends AbstractGaiaGrassBlock {
             while(true) {
                 if (j >= i / 16) {
                     BlockState blockstate2 = worldIn.getBlockState(blockpos1);
-                    if (blockstate2.getBlock() == redGrowth.getBlock() && rand.nextInt(10) == 0) {
-                        ((IGrowable)redGrowth.getBlock()).grow(worldIn, rand, blockpos1, blockstate2);
-                    }
 
                     if (!blockstate2.isAir()) {
                         break;
@@ -48,16 +44,21 @@ public class CorruptGrassBlock extends AbstractGaiaGrassBlock {
                         }
 
                         blockstate1 = ((FlowersFeature)((DecoratedFeatureConfig)(list.get(0)).config).feature.feature).getRandomFlower(rand, blockpos1);
+
+                        if (list.get(1) != null && rand.nextInt(3) == 0) {
+                            blockstate1 = ((FlowersFeature)((DecoratedFeatureConfig)(list.get(1)).config).feature.feature).getRandomFlower(rand, blockpos1);
+                        }
                     } else {
-                        blockstate1 = redGrowth;
+                        if (rand.nextInt(2) == 0) {
+                            blockstate1 = blackGrowth;
+                        } else {
+                            blockstate1 = redGrowth;
+                        }
                     }
 
                     if (blockstate1.isValidPosition(worldIn, blockpos1)) {
-                        if (rand.nextInt(2) == 0) {
-                            worldIn.setBlockState(blockpos1, blackGrowth, 3);
-                        } else {
-                            worldIn.setBlockState(blockpos1, redGrowth, 3);
-                        }
+                        worldIn.setBlockState(blockpos1, blockstate1, 3);
+
                     }
                     break;
                 }

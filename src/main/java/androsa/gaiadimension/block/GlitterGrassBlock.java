@@ -3,7 +3,6 @@ package androsa.gaiadimension.block;
 import androsa.gaiadimension.biomes.MutantAgateWildwoodBiome;
 import androsa.gaiadimension.registry.ModBlocks;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.IGrowable;
 import net.minecraft.block.material.MaterialColor;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -33,9 +32,6 @@ public class GlitterGrassBlock extends AbstractGaiaGrassBlock {
             while(true) {
                 if (j >= i / 16) {
                     BlockState blockstate2 = worldIn.getBlockState(blockpos1);
-                    if (blockstate2.getBlock() == normalGrowth.getBlock() && rand.nextInt(10) == 0) {
-                        ((IGrowable)normalGrowth.getBlock()).grow(worldIn, rand, blockpos1, blockstate2);
-                    }
 
                     if (!blockstate2.isAir()) {
                         break;
@@ -49,16 +45,20 @@ public class GlitterGrassBlock extends AbstractGaiaGrassBlock {
                         }
 
                         blockstate1 = ((FlowersFeature)((DecoratedFeatureConfig)(list.get(0)).config).feature.feature).getRandomFlower(rand, blockpos1);
+
+                        if (list.get(1) != null && rand.nextInt(3) == 0) {
+                            blockstate1 = ((FlowersFeature)((DecoratedFeatureConfig)(list.get(1)).config).feature.feature).getRandomFlower(rand, blockpos1);
+                        }
                     } else {
-                        blockstate1 = normalGrowth;
+                        if (worldIn.getBiome(pos) instanceof MutantAgateWildwoodBiome) {
+                            blockstate1 = mutantGrowth;
+                        } else {
+                            blockstate1 = normalGrowth;
+                        }
                     }
 
                     if (blockstate1.isValidPosition(worldIn, blockpos1)) {
-                        if (worldIn.getBiome(pos) instanceof MutantAgateWildwoodBiome) {
-                            worldIn.setBlockState(blockpos1, mutantGrowth, 3);
-                        } else {
-                            worldIn.setBlockState(blockpos1, normalGrowth, 3);
-                        }
+                        worldIn.setBlockState(blockpos1, blockstate1, 3);
                     }
                     break;
                 }

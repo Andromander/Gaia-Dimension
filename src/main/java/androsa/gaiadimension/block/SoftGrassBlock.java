@@ -2,7 +2,6 @@ package androsa.gaiadimension.block;
 
 import androsa.gaiadimension.registry.ModBlocks;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.IGrowable;
 import net.minecraft.block.material.MaterialColor;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -31,9 +30,6 @@ public class SoftGrassBlock extends AbstractGaiaGrassBlock {
             while(true) {
                 if (j >= i / 16) {
                     BlockState blockstate2 = worldIn.getBlockState(blockpos1);
-                    if (blockstate2.getBlock() == growth.getBlock() && rand.nextInt(10) == 0) {
-                        ((IGrowable)growth.getBlock()).grow(worldIn, rand, blockpos1, blockstate2);
-                    }
 
                     if (!blockstate2.isAir()) {
                         break;
@@ -47,12 +43,16 @@ public class SoftGrassBlock extends AbstractGaiaGrassBlock {
                         }
 
                         blockstate1 = ((FlowersFeature)((DecoratedFeatureConfig)(list.get(0)).config).feature.feature).getRandomFlower(rand, blockpos1);
+
+                        if (list.get(1) != null && rand.nextInt(3) == 0) {
+                            blockstate1 = ((FlowersFeature)((DecoratedFeatureConfig)(list.get(1)).config).feature.feature).getRandomFlower(rand, blockpos1);
+                        }
                     } else {
                         blockstate1 = growth;
                     }
 
                     if (blockstate1.isValidPosition(worldIn, blockpos1)) {
-                        worldIn.setBlockState(blockpos1, growth, 3);
+                        worldIn.setBlockState(blockpos1, blockstate1, 3);
                     }
                     break;
                 }

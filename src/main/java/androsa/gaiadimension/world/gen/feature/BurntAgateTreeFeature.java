@@ -61,7 +61,7 @@ public class BurntAgateTreeFeature extends AbstractTreeFeature<NoFeatureConfig> 
             if (!flag) {
                 return false;
             } else if (isSoil(worldIn, position.down(), getSapling()) && position.getY() < worldIn.getMaxHeight() - height - 1) {
-                this.setDirtAt(worldIn, position.down(), position); //TODO: evaluate if this will set the right block
+                this.setDirtAt(worldIn, position.down(), position);
                 int posX = position.getX();
                 int posZ = position.getZ();
                 int k1 = 0;

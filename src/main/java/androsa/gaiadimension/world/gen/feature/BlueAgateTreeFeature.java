@@ -58,7 +58,7 @@ public class BlueAgateTreeFeature extends AbstractTreeFeature<NoFeatureConfig> {
             if (!allClear) {
                 return false;
             } else if (isSoil(world, pos.down(), getSapling()) && pos.getY() < world.getMaxHeight() - height - 1) {
-                this.setDirtAt(world, pos.down(), pos); //TODO: evaluate if this will set the right block
+                this.setDirtAt(world, pos.down(), pos);
                 int i3 = rand.nextInt(2);
                 int j3 = 1;
                 int k3 = 0;
