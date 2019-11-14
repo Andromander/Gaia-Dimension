@@ -74,7 +74,7 @@ public class GaiaBiomeFeatures {
     }
 
     public static void addGlitterBlobUnderground(Biome biomeIn) {
-        biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, Biome.createDecoratedFeature(ModWorldgen.FRAIL_BLOB.get(), IFeatureConfig.NO_FEATURE_CONFIG, Placement.LIGHT_GEM_CHANCE, new FrequencyConfig(150)));
+        biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, Biome.createDecoratedFeature(ModWorldgen.FRAIL_BLOB.get(), IFeatureConfig.NO_FEATURE_CONFIG, Placement.LIGHT_GEM_CHANCE, new FrequencyConfig(200)));
     }
 
     public static void addPocketsUnderground(Biome biomeIn) {
@@ -150,11 +150,11 @@ public class GaiaBiomeFeatures {
     }
 
     public static void addPurpleAgateTrees(Biome biomeIn) {
-        biomeIn.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Biome.createDecoratedFeature(ModWorldgen.PURPLE_AGATE_TREE.get(), IFeatureConfig.NO_FEATURE_CONFIG, Placement.COUNT_EXTRA_HEIGHTMAP, new AtSurfaceWithExtraConfig(2, 0.1F, 1))); //FIXME: Tweak it
+        biomeIn.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Biome.createDecoratedFeature(ModWorldgen.PURPLE_AGATE_TREE.get(), IFeatureConfig.NO_FEATURE_CONFIG, Placement.COUNT_EXTRA_HEIGHTMAP, new AtSurfaceWithExtraConfig(1, 0.1F, 2)));
     }
 
     public static void addGummyBlobs(Biome biomeIn) {
-        biomeIn.addFeature(GenerationStage.Decoration.LOCAL_MODIFICATIONS, Biome.createDecoratedFeature(Feature.FOREST_ROCK, new BlockBlobConfig(ModBlocks.gummy_glitter_block.get().getDefaultState(), 0), Placement.FOREST_ROCK, new FrequencyConfig(5))); //FIXME: New generator
+        biomeIn.addFeature(GenerationStage.Decoration.LOCAL_MODIFICATIONS, Biome.createDecoratedFeature(ModWorldgen.GAIA_BLOB.get(), new BlockBlobConfig(ModBlocks.gummy_glitter_block.get().getDefaultState(), 0), Placement.COUNT_HEIGHTMAP, new FrequencyConfig(2)));
     }
 
     public static void addFossilTrees(Biome biomeIn) {
@@ -162,15 +162,15 @@ public class GaiaBiomeFeatures {
     }
 
     public static void addGoldstoneTrees(Biome biomeIn) {
-        biomeIn.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Biome.createDecoratedFeature(ModWorldgen.GOLDSTONE_TREE.get(), IFeatureConfig.NO_FEATURE_CONFIG, Placement.COUNT_EXTRA_HEIGHTMAP, new AtSurfaceWithExtraConfig(1, 0.1F, 1))); //FIXME: Tweak it
+        biomeIn.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Biome.createDecoratedFeature(ModWorldgen.GOLDSTONE_TREE.get(), IFeatureConfig.NO_FEATURE_CONFIG, Placement.COUNT_EXTRA_HEIGHTMAP, new AtSurfaceWithExtraConfig(1, 0.1F, 1)));
     }
 
     public static void addBurntTrees(Biome biomeIn) {
-        biomeIn.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Biome.createDecoratedFeature(ModWorldgen.BURNT_AGATE_TREE.get(), IFeatureConfig.NO_FEATURE_CONFIG, Placement.COUNT_EXTRA_HEIGHTMAP, new AtSurfaceWithExtraConfig(0, 0.1F, 1))); //FIXME: Tweak it
+        biomeIn.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Biome.createDecoratedFeature(ModWorldgen.BURNT_AGATE_TREE.get(), IFeatureConfig.NO_FEATURE_CONFIG, Placement.COUNT_EXTRA_HEIGHTMAP, new AtSurfaceWithExtraConfig(0, 0.1F, 1)));
     }
 
     public static void addBurningTrees(Biome biomeIn) {
-        biomeIn.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Biome.createDecoratedFeature(ModWorldgen.FIERY_AGATE_TREE.get(), IFeatureConfig.NO_FEATURE_CONFIG, Placement.COUNT_EXTRA_HEIGHTMAP, new AtSurfaceWithExtraConfig(0, 0.1F, 1))); //FIXME: Tweak it
+        biomeIn.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Biome.createDecoratedFeature(ModWorldgen.FIERY_AGATE_TREE.get(), IFeatureConfig.NO_FEATURE_CONFIG, Placement.COUNT_EXTRA_HEIGHTMAP, new AtSurfaceWithExtraConfig(0, 0.1F, 1)));
     }
 
     public static void addAuraTrees(Biome biomeIn) {
@@ -251,8 +251,8 @@ public class GaiaBiomeFeatures {
     }
 
     public static void addUndergroundMushrooms(Biome biomeIn) {
-        biomeIn.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Biome.createDecoratedFeature(ModWorldgen.UNDERGROUND_FUNGI.get(), new BushConfig(ModBlocks.elder_imklia.get().getDefaultState()), Placement.CHANCE_HEIGHTMAP_DOUBLE, new ChanceConfig(16))); //FIXME: Tweak it
-        biomeIn.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Biome.createDecoratedFeature(ModWorldgen.UNDERGROUND_FUNGI.get(), new BushConfig(ModBlocks.gold_orb_tucher.get().getDefaultState()), Placement.CHANCE_HEIGHTMAP_DOUBLE, new ChanceConfig(16))); //FIXME: Tweak it
+        biomeIn.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Biome.createDecoratedFeature(ModWorldgen.UNDERGROUND_FUNGI.get(), new BushConfig(ModBlocks.elder_imklia.get().getDefaultState()), Placement.CHANCE_HEIGHTMAP_DOUBLE, new ChanceConfig(2)));
+        biomeIn.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Biome.createDecoratedFeature(ModWorldgen.UNDERGROUND_FUNGI.get(), new BushConfig(ModBlocks.gold_orb_tucher.get().getDefaultState()), Placement.CHANCE_HEIGHTMAP_DOUBLE, new ChanceConfig(2)));
     }
 
     public static void addBogPatches(Biome biomeIn) {

@@ -16,6 +16,7 @@ public class CrystalPlainsBiome extends BaseGaiaBiome {
     public void addFeatures() {
         super.addFeatures();
         //TODO: Add Crystal Spires
+        GaiaBiomeFeatures.addGlitterBlobUnderground(this);
         GaiaBiomeFeatures.addMagmaLakes(this);
         GaiaBiomeFeatures.addMineralLakes(this);
         GaiaBiomeFeatures.addPocketsUnderground(this);

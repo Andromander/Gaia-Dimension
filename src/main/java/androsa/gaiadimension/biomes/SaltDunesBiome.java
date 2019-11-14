@@ -18,6 +18,7 @@ public class SaltDunesBiome extends BaseGaiaBiome {
     @Override
     public void addFeatures() {
         super.addFeatures();
+        GaiaBiomeFeatures.addGlitterBlobUnderground(this);
         GaiaBiomeFeatures.addMineralLakes(this);
         GaiaBiomeFeatures.addPocketsUnderground(this);
         GaiaBiomeFeatures.addBasicOres(this);

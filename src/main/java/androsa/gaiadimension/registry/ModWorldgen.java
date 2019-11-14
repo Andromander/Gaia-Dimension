@@ -84,6 +84,8 @@ public class ModWorldgen {
             "murgni", () -> new SinglePlantFeature(NoFeatureConfig::deserialize, ModBlocks.mystical_murgni));
     public static final RegistryObject<FlowersFeature> CORRUPT_GAIA_EYE = FEATURES.register(
             "corrupt_gaia_eye", () -> new SinglePlantFeature(NoFeatureConfig::deserialize, ModBlocks.corrupted_gaia_eye));
+    public static final RegistryObject<Feature<BlockBlobConfig>> GAIA_BLOB = FEATURES.register(
+            "gaia_blob", () -> new GaiaBlobFeature(BlockBlobConfig::deserialize));
 
     public static final SurfaceBuilder<SurfaceBuilderConfig> s_gaia = new GaiaDefaultSurfaceBuilder(SurfaceBuilderConfig::deserialize);
     public static final SurfaceBuilder<SurfaceBuilderConfig> s_volcanic = new VolcanicSurfaceBuilder(SurfaceBuilderConfig::deserialize);

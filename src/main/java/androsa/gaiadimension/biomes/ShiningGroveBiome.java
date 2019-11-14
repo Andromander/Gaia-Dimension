@@ -19,6 +19,7 @@ public class ShiningGroveBiome extends BaseGaiaBiome {
     @Override
     public void addFeatures() {
         super.addFeatures();
+        GaiaBiomeFeatures.addGlitterBlobUnderground(this);
         GaiaBiomeFeatures.addAuraLake(this);
         GaiaBiomeFeatures.addPocketsUnderground(this);
         GaiaBiomeFeatures.addBasicOres(this);

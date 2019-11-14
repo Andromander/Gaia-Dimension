@@ -22,6 +22,7 @@ public class GoldstonelandsBiome extends BaseGaiaBiome {
     public void addFeatures() {
         super.addFeatures();
         //TODO: Generate veins of Corrupt Blocks
+        GaiaBiomeFeatures.addGlitterBlobUnderground(this);
         GaiaBiomeFeatures.addMagmaLakes(this);
         GaiaBiomeFeatures.addMineralLakes(this);
         GaiaBiomeFeatures.addPocketsUnderground(this);

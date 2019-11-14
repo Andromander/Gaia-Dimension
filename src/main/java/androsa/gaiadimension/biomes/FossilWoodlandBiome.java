@@ -18,6 +18,7 @@ public class FossilWoodlandBiome extends BaseGaiaBiome {
     @Override
     public void addFeatures() {
         super.addFeatures();
+        GaiaBiomeFeatures.addGlitterBlobUnderground(this);
         GaiaBiomeFeatures.addMagmaLakes(this);
         GaiaBiomeFeatures.addMineralLakes(this);
         GaiaBiomeFeatures.addPocketsUnderground(this);

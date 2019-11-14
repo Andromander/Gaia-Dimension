@@ -16,6 +16,7 @@ public class MineralReservoirBiome extends BaseGaiaBiome {
     public void addFeatures() {
         super.addFeatures();
         //TODO: Salt Growth
+        GaiaBiomeFeatures.addGlitterBlobUnderground(this);
         GaiaBiomeFeatures.addMagmaLakes(this);
         GaiaBiomeFeatures.addMineralLakes(this);
         GaiaBiomeFeatures.addPocketsUnderground(this);

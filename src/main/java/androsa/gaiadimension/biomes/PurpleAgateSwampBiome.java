@@ -21,6 +21,7 @@ public class PurpleAgateSwampBiome extends BaseGaiaBiome {
     @Override
     public void addFeatures() {
         super.addFeatures();
+        GaiaBiomeFeatures.addGlitterBlobUnderground(this);
         GaiaBiomeFeatures.addMuckLakes(this);
         GaiaBiomeFeatures.addMagmaLakes(this);
         GaiaBiomeFeatures.addMineralLakes(this);
