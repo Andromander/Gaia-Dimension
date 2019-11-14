@@ -15,10 +15,6 @@ public class MutantAgateWildwoodBiome extends BaseGaiaBiome {
     public MutantAgateWildwoodBiome(SurfaceBuilder<SurfaceBuilderConfig> surface, SurfaceBuilderConfig config, Category category, float depth, float scale, float temp) {
         super(surface, config, category, depth, scale, temp);
 
-        //flowers.clear();
-        //flowers.add(new FlowerEntry(GDBlocks.ouzium.getDefaultState(), 20));
-        //flowers.add(new FlowerEntry(GDBlocks.agathum.getDefaultState(), 10));
-        //flowers.add(new FlowerEntry(GDBlocks.mystical_murgni.getDefaultState(), 5));
         skyColor = GaiaSkyColors.MUTANT_AGATE;
     }
 

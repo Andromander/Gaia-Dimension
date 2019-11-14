@@ -15,10 +15,6 @@ public class PurpleAgateSwampBiome extends BaseGaiaBiome {
     public PurpleAgateSwampBiome(SurfaceBuilder<SurfaceBuilderConfig> surface, SurfaceBuilderConfig config, Category category, float depth, float scale, float temp) {
         super(surface, config, category, depth, scale, temp);
 
-        //flowers.clear();
-        //flowers.add(new FlowerEntry(GDBlocks.ouzium.getDefaultState(), 20));
-        //flowers.add(new FlowerEntry(GDBlocks.thiscus.getDefaultState(), 10));
-        //flowers.add(new FlowerEntry(GDBlocks.bulbous_hobina.getDefaultState(), 5));
         skyColor = GaiaSkyColors.PURPLE_AGATE;
     }
 

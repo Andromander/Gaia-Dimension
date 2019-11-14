@@ -15,10 +15,6 @@ public class GoldstonelandsBiome extends BaseGaiaBiome {
     public GoldstonelandsBiome(SurfaceBuilder<SurfaceBuilderConfig> surface, SurfaceBuilderConfig config, Category category, float depth, float scale, float temp) {
         super(surface, config, category, depth, scale, temp);
 
-        //flowers.clear();
-        //flowers.add(new FlowerEntry(GDBlocks.corrupted_varloom.getDefaultState(), 20));
-        //flowers.add(new FlowerEntry(GDBlocks.corrupted_gaia_eye.getDefaultState(), 5));
-
         skyColor = GaiaSkyColors.GOLDSTONE;
     }
 

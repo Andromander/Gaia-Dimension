@@ -15,7 +15,6 @@ public class GreenAgateJungleBiome extends BaseGaiaBiome {
     public GreenAgateJungleBiome(SurfaceBuilder<SurfaceBuilderConfig> surface, SurfaceBuilderConfig config, Category category, float depth, float scale, float temp) {
         super(surface, config, category, depth, scale, temp);
 
-        //flowers.add(new FlowerEntry(GDBlocks.roofed_agaric.getDefaultState(), 5));
         skyColor = GaiaSkyColors.GREEN_AGATE;
     }
 

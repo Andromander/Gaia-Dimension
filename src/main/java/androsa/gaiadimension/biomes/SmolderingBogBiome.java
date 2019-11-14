@@ -15,7 +15,6 @@ public class SmolderingBogBiome extends BaseGaiaBiome implements IDryBiome {
     public SmolderingBogBiome(SurfaceBuilder<SurfaceBuilderConfig> surface, SurfaceBuilderConfig config, Category category, float depth, float scale, float temp) {
         super(surface, config, category, depth, scale, temp);
 
-        flowers.clear();
         skyColor = GaiaSkyColors.BISMUTH;
     }
 

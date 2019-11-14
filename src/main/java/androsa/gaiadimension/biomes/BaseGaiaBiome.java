@@ -27,15 +27,6 @@ public abstract class BaseGaiaBiome extends Biome {
                 .downfall(0.0F)
                 .waterColor(0x6C99B1)
                 .waterFogColor(0x92BED4));
-
-        //biomeDecorator.treesPerChunk = 5;
-        //biomeDecorator.grassPerChunk = 3;
-        //biomeDecorator.flowersPerChunk = 2;
-        //biomeDecorator.fungiPerChunk = 1;
-
-        //this.flowers.clear();
-        //this.flowers.add(new FlowerEntry(GDBlocks.thiscus.getDefaultState(), 20));
-        //this.flowers.add(new FlowerEntry(GDBlocks.ouzium.getDefaultState(), 10));
     }
 
     public void addFeatures() {

@@ -15,7 +15,6 @@ public class VolcaniclandsBiome extends BaseGaiaBiome implements IDryBiome {
     public VolcaniclandsBiome(SurfaceBuilder<SurfaceBuilderConfig> surface, SurfaceBuilderConfig config, Category category, float depth, float scale, float temp) {
         super(surface, config, category, depth, scale, temp);
 
-        flowers.clear();
         skyColor = GaiaSkyColors.VOLCANICLAND;
     }
 

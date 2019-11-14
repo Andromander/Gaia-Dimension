@@ -13,8 +13,6 @@ public class FossilWoodlandBiome extends BaseGaiaBiome {
 
     public FossilWoodlandBiome(SurfaceBuilder<SurfaceBuilderConfig> surface, SurfaceBuilderConfig config, Category category, float depth, float scale, float temp) {
         super(surface, config, category, depth, scale, temp);
-
-        //this.flowers.add(new FlowerEntry(GDBlocks.stickly_cupsir.getDefaultState(), 5));
     }
 
     @Override

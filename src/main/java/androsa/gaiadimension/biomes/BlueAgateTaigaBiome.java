@@ -16,7 +16,6 @@ public class BlueAgateTaigaBiome extends BaseGaiaBiome {
         super(surface, config, category, depth, scale, temp);
 
         skyColor = GaiaSkyColors.BLUE_AGATE;
-        //flowers.add(new FlowerEntry(GDBlocks.thorny_wiltha.getDefaultState(), 5));
     }
 
     @Override

@@ -12,7 +12,6 @@ public class SaltDunesBiome extends BaseGaiaBiome {
     public SaltDunesBiome(SurfaceBuilder<SurfaceBuilderConfig> surface, SurfaceBuilderConfig config, Category category, float depth, float scale, float temp) {
         super(surface, config, category, depth, scale, temp);
 
-        flowers.clear();
         skyColor = GaiaSkyColors.SALT_DUNES;
     }
 

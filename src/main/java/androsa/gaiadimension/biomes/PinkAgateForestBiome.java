@@ -10,8 +10,6 @@ public class PinkAgateForestBiome extends BaseGaiaBiome {
 
     public PinkAgateForestBiome(SurfaceBuilder<SurfaceBuilderConfig> surface, SurfaceBuilderConfig config, Category category, float depth, float scale, float temp) {
         super(surface, config, category, depth, scale, temp);
-
-        //flowers.add(new FlowerEntry(GDBlocks.spotted_kersei.getDefaultState(), 5));
     }
 
     @Override
