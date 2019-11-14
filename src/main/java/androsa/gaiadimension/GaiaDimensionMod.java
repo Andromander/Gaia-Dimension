@@ -51,9 +51,8 @@ public class GaiaDimensionMod {
 
     public static final DamageSource CORRUPTION = new DamageSource("corruption").setDamageBypassesArmor();
 
-    public static final Tag<Block> AGATE_LOGS = new BlockTags.Wrapper(new ResourceLocation(MODID, "agate_logs"));
-    public static final Tag<Block> AGATE_PLANKS_BLOCK = new BlockTags.Wrapper(new ResourceLocation(MODID, "agate_planks_block"));
     public static final Tag<Item> AGATE_PLANKS = new ItemTags.Wrapper(new ResourceLocation(MODID, "agate_planks"));
+    public static final Tag<Item> GEM_POUCH_ITEMS = new ItemTags.Wrapper(new ResourceLocation(MODID, "gem_pouch_items"));
 
     public GaiaDimensionMod() {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
