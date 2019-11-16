@@ -32,7 +32,13 @@ public class ModEntities {
 
     public static final DeferredRegister<EntityType<?>> ENTITIES = new DeferredRegister<>(ForgeRegistries.ENTITIES, GaiaDimensionMod.MODID);
 
-    //Fallback for Spawn Eggs. Only entities that require it
+    public static final EntityType<AgateArrowEntity> agate_arrow = EntityType.Builder.<AgateArrowEntity>create(AgateArrowEntity::new, EntityClassification.MISC)
+                    .setShouldReceiveVelocityUpdates(true).setTrackingRange(150).setUpdateInterval(1)
+                    .size(0.5F, 0.5F).build("agate_arrow");
+    public static final EntityType<ThrownPebbleEntity> thrown_pebble = EntityType.Builder.<ThrownPebbleEntity>create(ThrownPebbleEntity::new, EntityClassification.MISC)
+                    .setShouldReceiveVelocityUpdates(true).setTrackingRange(150).setUpdateInterval(2)
+                    .size(0.25F, 0.25F).build("thrown_pebble");
+
     public static final EntityType<AgateGolemEntity> agate_golem = EntityType.Builder.create(AgateGolemEntity::new, EntityClassification.MONSTER)
             .size(1.2F, 2.7F).build("agate_golem");
     public static final EntityType<AncientLagrahkEntity> ancient_lagrahk = EntityType.Builder.create(AncientLagrahkEntity::new, EntityClassification.MONSTER)
@@ -87,10 +93,8 @@ public class ModEntities {
             .size(0.8F, 3.3F).build("malachite_guard");
 
     //Projectiles
-    public static final RegistryObject<EntityType<AgateArrowEntity>> AGATE_ARROW = ENTITIES.register("agate_arrow",
-            () -> EntityType.Builder.<AgateArrowEntity>create(AgateArrowEntity::new, EntityClassification.MISC).size(0.5F, 0.5F).build("agate_arrow"));
-    public static final RegistryObject<EntityType<ThrownPebbleEntity>> THROWN_PEBBLE = ENTITIES.register("thrown_pebble",
-            () -> EntityType.Builder.<ThrownPebbleEntity>create(ThrownPebbleEntity::new, EntityClassification.MISC).size(0.25F, 0.25F).build("thrown_pebble"));
+    public static final RegistryObject<EntityType<AgateArrowEntity>> AGATE_ARROW = ENTITIES.register("agate_arrow", () -> agate_arrow);
+    public static final RegistryObject<EntityType<ThrownPebbleEntity>> THROWN_PEBBLE = ENTITIES.register("thrown_pebble", () -> thrown_pebble);
 
     //Mobs
     public static final RegistryObject<EntityType<AgateGolemEntity>> AGATE_GOLEM = ENTITIES.register("agate_golem", () -> agate_golem);

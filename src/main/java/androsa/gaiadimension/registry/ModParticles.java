@@ -25,6 +25,7 @@ public class ModParticles {
     public static final RegistryObject<BasicParticleType> PURIFIER_FIRE = PARTICLE_TYPES.register("purifier_fire", () -> new BasicParticleType(false));
     public static final RegistryObject<BasicParticleType> PORTAL = PARTICLE_TYPES.register("portal", () -> new BasicParticleType(false));
     public static final RegistryObject<BasicParticleType> PYRITE = PARTICLE_TYPES.register("pyrite", () -> new BasicParticleType(false));
+    public static final RegistryObject<BasicParticleType> ITEM_PEBBLE = PARTICLE_TYPES.register("item_pebble", () -> new BasicParticleType(false));
 
     @SubscribeEvent
     public static void registerFactories(ParticleFactoryRegisterEvent e) {
@@ -35,5 +36,6 @@ public class ModParticles {
         particles.registerFactory(PURIFIER_FIRE.get(), PurifierFireParticle.Factory::new);
         particles.registerFactory(PORTAL.get(), GaiaPortalParticle.Factory::new);
         particles.registerFactory(PYRITE.get(), PyriteParticle.Factory::new);
+        particles.registerFactory(ITEM_PEBBLE.get(), new GaiaBreakingParticle.PebbleFactory());
     }
 }

@@ -2,12 +2,14 @@ package androsa.gaiadimension.entity.projectile;
 
 import androsa.gaiadimension.registry.ModEntities;
 import androsa.gaiadimension.registry.ModItems;
+import androsa.gaiadimension.registry.ModParticles;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.projectile.ProjectileItemEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.network.IPacket;
 import net.minecraft.particles.IParticleData;
 import net.minecraft.particles.ItemParticleData;
 import net.minecraft.particles.ParticleTypes;
@@ -17,6 +19,7 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.fml.network.NetworkHooks;
 
 public class ThrownPebbleEntity extends ProjectileItemEntity {
 
@@ -36,16 +39,19 @@ public class ThrownPebbleEntity extends ProjectileItemEntity {
     @OnlyIn(Dist.CLIENT)
     public void handleStatusUpdate(byte id) {
         if (id == 3) {
-            for (int i = 0; i < 8; ++i) {
-                this.world.addParticle(func_213887_n(), this.posX, this.posY, this.posZ, 0.0D, 0.0D, 0.0D);
+            IParticleData iparticledata = this.func_213887_n();
+
+            for(int i = 0; i < 8; ++i) {
+                this.world.addParticle(iparticledata, this.posX, this.posY, this.posZ, 0.0D, 0.0D, 0.0D);
             }
         }
+
     }
 
     @OnlyIn(Dist.CLIENT)
     private IParticleData func_213887_n() {
         ItemStack itemstack = this.func_213882_k();
-        return new ItemParticleData(ParticleTypes.ITEM, itemstack);
+        return itemstack.isEmpty() ? ModParticles.ITEM_PEBBLE.get() : new ItemParticleData(ParticleTypes.ITEM, itemstack);
     }
 
     @Override
@@ -64,5 +70,10 @@ public class ThrownPebbleEntity extends ProjectileItemEntity {
     @Override
     protected Item func_213885_i() {
         return ModItems.sturdy_pebble.get();
+    }
+
+    @Override
+    public IPacket<?> createSpawnPacket() {
+        return NetworkHooks.getEntitySpawningPacket(this);
     }
 }
