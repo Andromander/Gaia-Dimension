@@ -34,20 +34,19 @@ public class GaiaFluidAttributes {
             FluidAttributes.builder(new ResourceLocation(GaiaDimensionMod.MODID, sweetDir + "still"), new ResourceLocation(GaiaDimensionMod.MODID, sweetDir + "flow"))
                     .color(0xFF800080)
                     .density(1000)
-                    .overlay(new ResourceLocation(GaiaDimensionMod.MODID, sweetDir + "overlay"))
+                    .overlay(new ResourceLocation("block/water_overlay"))
                     .viscosity(750);
     public static final FluidAttributes.Builder liquid_bismuth_attributes =
             LiquidBismuth.builder(new ResourceLocation(GaiaDimensionMod.MODID, bismuthDir + "still"), new ResourceLocation(GaiaDimensionMod.MODID, bismuthDir + "flow"))
                     .color(0xFF808080)
                     .density(2500)
                     .luminosity(3)
-                    .overlay(new ResourceLocation(GaiaDimensionMod.MODID, bismuthDir + "overlay"))
                     .temperature(300)
                     .viscosity(3500);
     public static final FluidAttributes.Builder liquid_aura_attributes =
             LiquidAura.builder(new ResourceLocation(GaiaDimensionMod.MODID, auraDir + "still"), new ResourceLocation(GaiaDimensionMod.MODID, auraDir + "flow"))
                     .color(0xFFFFFFFF)
-                    .overlay(new ResourceLocation(GaiaDimensionMod.MODID, auraDir + "overlay"))
+                    .overlay(new ResourceLocation("block/water_overlay"))
                     .viscosity(1500);
 
     public static final ForgeFlowingFluid.Properties mineral_water_properties =
