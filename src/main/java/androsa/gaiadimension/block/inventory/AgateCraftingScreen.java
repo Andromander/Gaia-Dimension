@@ -13,7 +13,6 @@ import net.minecraft.util.text.ITextComponent;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
-//FIXME: GUI is not using custom texture. Investigate.
 @OnlyIn(Dist.CLIENT)
 public class AgateCraftingScreen extends ContainerScreen<AgateCraftingTableContainer> implements IRecipeShownListener {
     private static final ResourceLocation textureLoc = new ResourceLocation(GaiaDimensionMod.MODID, "textures/gui/crafting_table.png");
@@ -43,7 +42,7 @@ public class AgateCraftingScreen extends ContainerScreen<AgateCraftingTableConta
         GlStateManager.color4f(1.0F, 1.0F, 1.0F, 1.0F);
         minecraft.getTextureManager().bindTexture(textureLoc);
         int left = guiLeft;
-        int top = (guiTop - ySize) / 2;
+        int top = guiTop;
         blit(left, top, 0, 0, xSize, ySize);
     }
 
