@@ -11,13 +11,13 @@ import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.IWorld;
+import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 import java.util.Random;
 
-//FIXME: Potentially not spawning in Magma
 public class PrimalBeastEntity extends MonsterEntity {
 
     public PrimalBeastEntity(EntityType<? extends PrimalBeastEntity> entity, World world) {
@@ -88,8 +88,18 @@ public class PrimalBeastEntity extends MonsterEntity {
         return 0.0F;
     }
 
+    @Override
+    public boolean canSpawn(IWorld world, SpawnReason reason) {
+        return true;
+    }
+
     public static boolean canSpawnHere(EntityType<PrimalBeastEntity> entity, IWorld world, SpawnReason spawn, BlockPos pos, Random random) {
         return world.getDifficulty() != Difficulty.PEACEFUL && pos.getY() < 20.0D && pos.getY() > 0.0D;
+    }
+
+    @Override
+    public boolean isNotColliding(IWorldReader world) {
+        return world.checkNoEntityCollision(this);
     }
 
     @Override

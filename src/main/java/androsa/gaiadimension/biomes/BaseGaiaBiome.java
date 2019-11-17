@@ -40,7 +40,7 @@ public abstract class BaseGaiaBiome extends Biome {
         this.addSpawn(EntityClassification.MONSTER, new SpawnListEntry(ModEntities.ARCHAIC_WARRIOR.get(), 65, 2, 4));
         this.addSpawn(EntityClassification.MONSTER, new SpawnListEntry(ModEntities.MUCKLING.get(), 65, 2, 4));
         this.addSpawn(EntityClassification.MONSTER, new SpawnListEntry(EntityType.ENDERMAN, 5, 1, 2));
-        this.addSpawn(EntityClassification.MONSTER, new SpawnListEntry(ModEntities.PRIMAL_BEAST.get(), 25, 1, 2));
+        this.addSpawn(EntityClassification.MONSTER, new SpawnListEntry(ModEntities.PRIMAL_BEAST.get(), 15, 1, 2));
     }
 
     @OnlyIn(Dist.CLIENT)

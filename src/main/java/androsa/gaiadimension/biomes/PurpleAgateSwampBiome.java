@@ -38,7 +38,6 @@ public class PurpleAgateSwampBiome extends BaseGaiaBiome {
 
         this.addSpawn(EntityClassification.CREATURE, new SpawnListEntry(ModEntities.GROWTH_SAPPER.get(), 10, 3, 5));
         this.addSpawn(EntityClassification.CREATURE, new SpawnListEntry(ModEntities.SPELLBOUND_ELEMENTAL.get(), 10, 1, 2));
-        this.addSpawn(EntityClassification.MONSTER, new SpawnListEntry(ModEntities.MUCKLING.get(), 10, 1, 1));
     }
 
     @Override

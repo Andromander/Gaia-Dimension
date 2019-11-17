@@ -50,13 +50,6 @@ public class LesserShockshooterEntity extends MonsterEntity implements IShocksho
     }
 
     public static boolean canSpawnHere(EntityType<LesserShockshooterEntity> entity, IWorld world, SpawnReason spawn, BlockPos pos, Random random) {
-        return world.getDifficulty() != Difficulty.PEACEFUL &&
-                isValidSpawn(world, spawn, pos);
-    }
-
-    public static boolean isValidSpawn(IWorld world, SpawnReason spawn, BlockPos pos) {
-        BlockPos blockpos = pos.down();
-        return spawn == SpawnReason.SPAWNER ||
-                world.getBlockState(blockpos).getBlock() == ModBlocks.wasteland_stone.get() && world.getLight(blockpos) > 8;
+        return world.getDifficulty() != Difficulty.PEACEFUL && world.getBlockState(pos.down()).getBlock() == ModBlocks.wasteland_stone.get() /*&& world.getLightSubtracted(pos.down(), 0) > 8*/;
     }
 }

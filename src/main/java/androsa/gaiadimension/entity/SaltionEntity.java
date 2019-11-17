@@ -49,13 +49,6 @@ public class SaltionEntity extends MonsterEntity {
     }
 
     public static boolean canSpawnHere(EntityType<SaltionEntity> entity, IWorld world, SpawnReason spawn, BlockPos pos, Random random) {
-        return world.getDifficulty() != Difficulty.PEACEFUL &&
-                isValidSpawn(world, spawn, pos);
-    }
-
-    public static boolean isValidSpawn(IWorld world, SpawnReason spawn, BlockPos pos) {
-        BlockPos blockpos = pos.down();
-        return spawn == SpawnReason.SPAWNER ||
-                world.getBlockState(blockpos).getBlock() == ModBlocks.salt.get() && world.getLight(blockpos) > 8;
+        return world.getDifficulty() != Difficulty.PEACEFUL && world.getBlockState(pos.down()).getBlock() == ModBlocks.salt.get() /*&& world.getLightSubtracted(pos.down(), 0) > 8*/;
     }
 }

@@ -58,7 +58,7 @@ public class BlueHowliteWolfEntity extends MonsterEntity {
     }
 
     public static boolean canSpawnHere(EntityType<BlueHowliteWolfEntity> entity, IWorld world, SpawnReason spawn, BlockPos pos, Random random) {
-        return world.getDifficulty() != Difficulty.PEACEFUL && world.getBlockState(pos.down()).getBlock() == ModBlocks.glitter_grass.get() && world.getLight(pos.down()) > 8;
+        return world.getDifficulty() != Difficulty.PEACEFUL && world.getBlockState(pos.down()).getBlock() == ModBlocks.glitter_grass.get();
     }
 
     //Keep this commented out until later

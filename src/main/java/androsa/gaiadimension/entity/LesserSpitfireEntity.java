@@ -50,13 +50,6 @@ public class LesserSpitfireEntity extends MonsterEntity implements ISpitfireMob 
     }
 
     public static boolean canSpawnHere(EntityType<LesserSpitfireEntity> entity, IWorld world, SpawnReason spawn, BlockPos pos, Random random) {
-        return world.getDifficulty() != Difficulty.PEACEFUL &&
-                isValidSpawn(world, spawn, pos);
-    }
-
-    public static boolean isValidSpawn(IWorld world, SpawnReason spawn, BlockPos pos) {
-        BlockPos blockpos = pos.down();
-        return spawn == SpawnReason.SPAWNER ||
-                world.getBlockState(blockpos).getBlock() == ModBlocks.glitter_grass.get() && world.getLight(blockpos) > 8;
+        return world.getDifficulty() != Difficulty.PEACEFUL && world.getBlockState(pos.down()).getBlock() == ModBlocks.glitter_grass.get() /*&& world.getLightSubtracted(pos.down(), 0) > 8*/;
     }
 }

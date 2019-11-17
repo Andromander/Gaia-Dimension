@@ -31,9 +31,9 @@ public class CorruptSapperEntity extends MonsterEntity {
     @Override
     protected void registerGoals() {
         this.goalSelector.addGoal(0, new SwimGoal(this));
-        this.goalSelector.addGoal(1, new MeleeAttackGoal(this, 1.0D, false));
+        this.goalSelector.addGoal(1, new MeleeAttackGoal(this, 0.7D, false));
         this.goalSelector.addGoal(2, new MoveTowardsRestrictionGoal(this, 1.0D));
-        this.goalSelector.addGoal(3, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
+        this.goalSelector.addGoal(3, new WaterAvoidingRandomWalkingGoal(this, 0.7D));
         this.goalSelector.addGoal(4, new LookAtGoal(this, PlayerEntity.class, 8.0F));
         this.goalSelector.addGoal(5, new LookRandomlyGoal(this));
         this.targetSelector.addGoal(1, new HurtByTargetGoal(this));
@@ -81,14 +81,7 @@ public class CorruptSapperEntity extends MonsterEntity {
     }
 
     public static boolean canSpawnHere(EntityType<CorruptSapperEntity> entity, IWorld world, SpawnReason spawn, BlockPos pos, Random random) {
-        return world.getDifficulty() != Difficulty.PEACEFUL &&
-                isValidSpawn(world, spawn, pos);
-    }
-
-    public static boolean isValidSpawn(IWorld world, SpawnReason spawn, BlockPos pos) {
-        BlockPos blockpos = pos.down();
-        return spawn == SpawnReason.SPAWNER ||
-                world.getBlockState(blockpos).getBlock() == ModBlocks.corrupt_grass.get() && world.getLight(blockpos) > 8;
+        return world.getDifficulty() != Difficulty.PEACEFUL && world.getBlockState(pos.down()).getBlock() == ModBlocks.corrupt_grass.get() /*&& world.getLightSubtracted(pos.down(), 0) > 8*/;
     }
 
     @Override
