@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "gaiadimension:burning_log",
+    "gaiadimension:burning_wood",
+    "gaiadimension:stripped_burning_log",
+    "gaiadimension:stripped_burning_wood"
+  ]
+}

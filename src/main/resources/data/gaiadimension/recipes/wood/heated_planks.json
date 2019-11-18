@@ -5,7 +5,7 @@
   },
   "ingredients": [
     {
-      "item": "gaiadimension:burning_log"
+      "tag": "gaiadimension:burning_logs"
     }
   ],
   "type": "minecraft:crafting_shapeless"

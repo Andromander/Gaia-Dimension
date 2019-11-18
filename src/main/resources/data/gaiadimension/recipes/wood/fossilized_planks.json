@@ -5,7 +5,7 @@
   },
   "ingredients": [
     {
-      "item": "gaiadimension:fossilized_log"
+      "tag": "gaiadimension:fossilized_logs"
     }
   ],
   "type": "minecraft:crafting_shapeless"

@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "gaiadimension:green_agate_log",
+    "gaiadimension:green_agate_wood",
+    "gaiadimension:stripped_green_agate_log",
+    "gaiadimension:stripped_green_agate_wood"
+  ]
+}

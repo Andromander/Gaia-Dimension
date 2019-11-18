@@ -5,7 +5,7 @@
   },
   "ingredients": [
     {
-      "item": "gaiadimension:aura_log"
+      "tag": "gaiadimension:aura_logs"
     }
   ],
   "type": "minecraft:crafting_shapeless"
