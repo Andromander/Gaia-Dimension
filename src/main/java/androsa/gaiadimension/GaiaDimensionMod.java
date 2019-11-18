@@ -89,6 +89,7 @@ public class GaiaDimensionMod {
         ModBiomes.addBiomeFeatures();
         DistExecutor.runWhenOn(Dist.CLIENT, () -> ModContainers::registerScreens);
         DistExecutor.runWhenOn(Dist.CLIENT, () -> ModEntities::registerEntityRender);
+        DistExecutor.runWhenOn(Dist.CLIENT, () -> ModParticles::forgeClassLoadingIsFuckedThisShouldntBeHereButHereItIs);
     }
 
     @Mod.EventBusSubscriber(modid = MODID)

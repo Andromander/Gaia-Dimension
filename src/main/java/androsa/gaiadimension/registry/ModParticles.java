@@ -36,6 +36,10 @@ public class ModParticles {
         particles.registerFactory(PURIFIER_FIRE.get(), PurifierFireParticle.Factory::new);
         particles.registerFactory(PORTAL.get(), GaiaPortalParticle.Factory::new);
         particles.registerFactory(PYRITE.get(), PyriteParticle.Factory::new);
-        particles.registerFactory(ITEM_PEBBLE.get(), new GaiaBreakingParticle.PebbleFactory());
+    }
+
+    @OnlyIn(Dist.CLIENT)
+    public static void forgeClassLoadingIsFuckedThisShouldntBeHereButHereItIs() {
+        Minecraft.getInstance().particles.registerFactory(ITEM_PEBBLE.get(), new GaiaBreakingParticle.PebbleFactory());
     }
 }

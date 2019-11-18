@@ -47,6 +47,15 @@ public class GaiaPortalParticle extends SpriteTexturedParticle {
     }
 
     @Override
+    public float getScale(float partialTick) {
+        float f = ((float)this.age + partialTick) / (float)this.maxAge;
+        f = 1.0F - f;
+        f = f * f;
+        f = 1.0F - f;
+        return this.particleScale * f;
+    }
+
+    @Override
     public int getBrightnessForRender(float partialTick) {
         int i = super.getBrightnessForRender(partialTick);
         float f = (float)this.age / (float)this.maxAge;
