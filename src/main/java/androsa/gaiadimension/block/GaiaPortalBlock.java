@@ -5,7 +5,6 @@ import androsa.gaiadimension.registry.ModBlocks;
 import androsa.gaiadimension.registry.ModGaiaConfig;
 import androsa.gaiadimension.registry.ModParticles;
 import com.google.common.cache.LoadingCache;
-import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -36,6 +35,7 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.BiomeDictionary.Type;
+import net.minecraftforge.fml.network.NetworkHooks;
 
 import javax.annotation.Nullable;
 import java.util.Random;
@@ -121,56 +121,54 @@ public class GaiaPortalBlock extends Block {
     //Copy of ServerPlayerEntity.changeDimension, with relevant changes
     public void changeDimension(ServerPlayerEntity entity, DimensionType destination) {
         if (!net.minecraftforge.common.ForgeHooks.onTravelToDimension(entity, destination)) return;
-        //this.invulnerableDimensionChange = true;
+
+        //entity.invulnerableDimensionChange = true;
         DimensionType dimensiontype = entity.dimension;
         ServerWorld serverworld = entity.server.getWorld(dimensiontype);
         entity.dimension = destination;
-        ServerWorld serverworld1 = entity.server.getWorld(destination);
+        ServerWorld serverdest = entity.server.getWorld(destination);
         WorldInfo worldinfo = entity.world.getWorldInfo();
-
+        NetworkHooks.sendDimensionDataPacket(entity.connection.netManager, entity);
         entity.connection.sendPacket(new SRespawnPacket(destination, worldinfo.getGenerator(), entity.interactionManager.getGameType()));
         entity.connection.sendPacket(new SServerDifficultyPacket(worldinfo.getDifficulty(), worldinfo.isDifficultyLocked()));
-
         PlayerList playerlist = entity.server.getPlayerList();
-
         playerlist.updatePermissionLevel(entity);
         serverworld.removeEntity(entity, true); //Forge: the player entity is moved to the new world, NOT cloned. So keep the data alive with no matching invalidate call.
         entity.revive();
-
-        double d0 = entity.posX;
-        double d1 = entity.posY;
-        double d2 = entity.posZ;
-        float f = entity.rotationPitch;
-        float f1 = entity.rotationYaw;
+        double x = entity.posX;
+        double y = entity.posY;
+        double z = entity.posZ;
+        float rotate = entity.rotationPitch;
+        float yaw = entity.rotationYaw;
 
         serverworld.getProfiler().startSection("moving");
-        double moveFactor = serverworld.getDimension().getMovementFactor() / serverworld1.getDimension().getMovementFactor();
-        d0 *= moveFactor;
-        d2 *= moveFactor;
-        entity.setLocationAndAngles(d0, d1, d2, f1, f);
+        double moveFactor = serverworld.getDimension().getMovementFactor() / serverdest.getDimension().getMovementFactor();
+        x *= moveFactor;
+        z *= moveFactor;
+        entity.setLocationAndAngles(x + 1, y, z + 1, yaw, rotate);
         serverworld.getProfiler().endSection();
 
         serverworld.getProfiler().startSection("placing");
-        double d7 = Math.min(-2.9999872E7D, serverworld1.getWorldBorder().minX() + 16.0D);
-        double d4 = Math.min(-2.9999872E7D, serverworld1.getWorldBorder().minZ() + 16.0D);
-        double d5 = Math.min(2.9999872E7D, serverworld1.getWorldBorder().maxX() - 16.0D);
-        double d6 = Math.min(2.9999872E7D, serverworld1.getWorldBorder().maxZ() - 16.0D);
-        d0 = MathHelper.clamp(d0, d7, d5);
-        d2 = MathHelper.clamp(d2, d4, d6);
-        entity.setLocationAndAngles(d0, d1, d2, f1, f);
-        if (!GaiaDimensionMod.gaiaTeleporter.func_222268_a(entity, f1)) {
+        double d7 = Math.min(-2.9999872E7D, serverdest.getWorldBorder().minX() + 16.0D);
+        double d4 = Math.min(-2.9999872E7D, serverdest.getWorldBorder().minZ() + 16.0D);
+        double d5 = Math.min(2.9999872E7D, serverdest.getWorldBorder().maxX() - 16.0D);
+        double d6 = Math.min(2.9999872E7D, serverdest.getWorldBorder().maxZ() - 16.0D);
+        x = MathHelper.clamp(x, d7, d5);
+        z = MathHelper.clamp(z, d4, d6);
+        entity.setLocationAndAngles(x + 1, y, z + 1, yaw, rotate);
+
+        if (!GaiaDimensionMod.gaiaTeleporter.placeInPortal(entity, yaw)) {
             GaiaDimensionMod.gaiaTeleporter.makePortal(entity);
-            GaiaDimensionMod.gaiaTeleporter.func_222268_a(entity, f1);
+            GaiaDimensionMod.gaiaTeleporter.placeInPortal(entity, yaw);
         }
         serverworld.getProfiler().endSection();
 
-        entity.setWorld(serverworld1);
-        serverworld1.func_217447_b(entity);
-        CriteriaTriggers.CHANGED_DIMENSION.trigger(entity, serverworld.dimension.getType(), entity.world.dimension.getType());
-        entity.connection.setPlayerLocation(entity.posX, entity.posY, entity.posZ, f1, f);
-        entity.interactionManager.setWorld(serverworld1);
+        entity.setWorld(serverdest);
+        serverdest.func_217447_b(entity);
+        entity.connection.setPlayerLocation(entity.posX + 1, entity.posY, entity.posZ + 1, yaw, rotate);
+        entity.interactionManager.setWorld(serverdest);
         entity.connection.sendPacket(new SPlayerAbilitiesPacket(entity.abilities));
-        playerlist.sendWorldInfo(entity, serverworld1);
+        playerlist.sendWorldInfo(entity, serverdest);
         playerlist.sendInventory(entity);
 
         for(EffectInstance effectinstance : entity.getActivePotionEffects()) {
@@ -178,9 +176,6 @@ public class GaiaPortalBlock extends Block {
         }
 
         entity.connection.sendPacket(new SPlaySoundEventPacket(1032, BlockPos.ZERO, 0, false));
-        //entity.lastExperience = -1;
-        //entity.lastHealth = -1.0F;
-        //entity.lastFoodLevel = -1;
         net.minecraftforge.fml.hooks.BasicEventHooks.firePlayerChangedDimensionEvent(entity, dimensiontype, destination);
     }
 

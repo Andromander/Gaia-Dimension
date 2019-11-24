@@ -68,7 +68,7 @@ public class ThrownPebbleEntity extends ProjectileItemEntity {
     }
 
     @Override
-    protected Item func_213885_i() {
+    protected Item getDefaultItem() {
         return ModItems.sturdy_pebble.get();
     }
 

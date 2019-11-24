@@ -27,7 +27,7 @@ public class SturdyPebbleItem extends Item {
 
         if (!worldIn.isRemote) {
             ThrownPebbleEntity pebble = new ThrownPebbleEntity(worldIn, playerIn);
-            pebble.func_213884_b(itemstack);
+            pebble.setItem(itemstack);
             pebble.shoot(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, 1.5F, 1.0F);
             worldIn.addEntity(pebble);
         }

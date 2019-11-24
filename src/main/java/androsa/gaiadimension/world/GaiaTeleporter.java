@@ -36,17 +36,17 @@ public class GaiaTeleporter extends Teleporter {
     }
 
     @Override
-    public boolean func_222268_a(Entity entity, float yaw) {
+    public boolean placeInPortal(Entity entity, float yaw) {
         Vec3d vec3d = entity.getLastPortalVec();
         Direction direction = entity.getTeleportDirection();
-        BlockPattern.PortalInfo blockpattern$portalinfo = this.func_222272_a(new BlockPos(entity), entity.getMotion(), direction, vec3d.x, vec3d.y, entity instanceof PlayerEntity);
+        BlockPattern.PortalInfo blockpattern$portalinfo = this.placeInExistingPortal(new BlockPos(entity), entity.getMotion(), direction, vec3d.x, vec3d.y, entity instanceof PlayerEntity);
         if (blockpattern$portalinfo == null) {
             return false;
         } else {
-            Vec3d vec3d1 = blockpattern$portalinfo.field_222505_a;
-            Vec3d vec3d2 = blockpattern$portalinfo.field_222506_b;
+            Vec3d vec3d1 = blockpattern$portalinfo.pos;
+            Vec3d vec3d2 = blockpattern$portalinfo.motion;
             entity.setMotion(vec3d2);
-            entity.rotationYaw = yaw + (float)blockpattern$portalinfo.field_222507_c;
+            entity.rotationYaw = yaw + (float)blockpattern$portalinfo.rotation;
             if (entity instanceof ServerPlayerEntity) {
                 ((ServerPlayerEntity)entity).connection.setPlayerLocation(vec3d1.x, vec3d1.y, vec3d1.z, entity.rotationYaw, entity.rotationPitch);
                 ((ServerPlayerEntity)entity).connection.captureCurrentPosition();
@@ -59,7 +59,7 @@ public class GaiaTeleporter extends Teleporter {
     }
 
     @Override
-    public BlockPattern.PortalInfo func_222272_a(BlockPos pos, Vec3d vec3d, Direction directon, double vecX, double vecY, boolean isPlayer) {
+    public BlockPattern.PortalInfo placeInExistingPortal(BlockPos pos, Vec3d vec3d, Direction directon, double vecX, double vecY, boolean isPlayer) {
         boolean flag = true;
         BlockPos blockpos = null;
         ColumnPos columnpos = new ColumnPos(pos);
@@ -112,7 +112,7 @@ public class GaiaTeleporter extends Teleporter {
                 }
 
                 BlockPattern.PatternHelper blockpattern$patternhelper = ((GaiaPortalBlock)BLOCK_GAIA_PORTAL).createPatternHelper(this.world, blockpos);
-                return blockpattern$patternhelper.func_222504_a(directon, blockpos, vecY, vec3d, vecX);
+                return blockpattern$patternhelper.getPortalInfo(directon, blockpos, vecY, vec3d, vecX);
             }
         }
     }

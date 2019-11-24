@@ -34,7 +34,7 @@ public class MucklingEntity extends SlimeEntity {
         if (world.getDifficulty() != Difficulty.PEACEFUL) {
             Biome biome = world.getBiome(pos);
             if (biome == ModBiomes.purple_agate_swamp.get() || pos.getY() < 40 && random.nextFloat() < 0.5F) {
-                return func_223315_a(entity, world, spawn, pos, random);
+                return canSpawnOn(entity, world, spawn, pos, random);
             }
         }
         return false;

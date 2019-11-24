@@ -100,7 +100,7 @@ public class MineralArenthisEntity extends WaterMobEntity {
             }
 
             Vec3d vec3d = this.getMotion();
-            float f1 = MathHelper.sqrt(func_213296_b(vec3d));
+            float f1 = MathHelper.sqrt(horizontalMag(vec3d));
             this.renderYawOffset += (-((float)MathHelper.atan2(vec3d.x, vec3d.z)) * (180F / (float)Math.PI) - this.renderYawOffset) * 0.1F;
             this.rotationYaw = this.renderYawOffset;
             this.arenthisYaw = (float)((double)this.arenthisYaw + Math.PI * (double)this.rotateSpeed * 1.5D);
