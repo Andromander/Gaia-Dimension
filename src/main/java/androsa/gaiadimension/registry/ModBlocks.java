@@ -279,7 +279,7 @@ public class ModBlocks {
     public static final RegistryObject<Block> chalcedony_block = registerBlockGeneral("chalcedony_block", () -> new StorageBlock(MaterialColor.SNOW));
 
     //Ores
-    public static final RegistryObject<Block> sugilite_ore = registerBlockGeneral("sugilite_ore", () -> new GaiaOreBlock(MaterialColor.PURPLE, 1, 0, 3));
+    public static final RegistryObject<Block> sugilite_ore = registerBlockGeneral("sugilite_ore", () -> new GaiaOreBlock(MaterialColor.PURPLE, 1, 1, 3));
     public static final RegistryObject<Block> hematite_ore = registerBlockGeneral("hematite_ore", () -> new GaiaOreBlock(MaterialColor.GRAY, 2, 1, 4));
     public static final RegistryObject<Block> cinnabar_ore = registerBlockGeneral("cinnabar_ore", () -> new GaiaOreBlock(MaterialColor.ADOBE, 2, 1, 4));
     public static final RegistryObject<Block> labradorite_ore = registerBlockGeneral("labradorite_ore", () -> new GaiaOreBlock(MaterialColor.GREEN, 2, 5, 2));
