@@ -11,8 +11,6 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.pattern.BlockPattern;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.*;
 import net.minecraft.world.Teleporter;
@@ -37,30 +35,12 @@ public class GaiaTeleporter extends Teleporter {
 
     @Override
     public boolean placeInPortal(Entity entity, float yaw) {
-        Vec3d vec3d = entity.getLastPortalVec();
-        Direction direction = entity.getTeleportDirection();
-        BlockPattern.PortalInfo blockpattern$portalinfo = this.placeInExistingPortal(new BlockPos(entity), entity.getMotion(), direction, vec3d.x, vec3d.y, entity instanceof PlayerEntity);
-        if (blockpattern$portalinfo == null) {
-            return false;
-        } else {
-            Vec3d vec3d1 = blockpattern$portalinfo.pos;
-            Vec3d vec3d2 = blockpattern$portalinfo.motion;
-            entity.setMotion(vec3d2);
-            entity.rotationYaw = yaw + (float)blockpattern$portalinfo.rotation;
-            if (entity instanceof ServerPlayerEntity) {
-                ((ServerPlayerEntity)entity).connection.setPlayerLocation(vec3d1.x, vec3d1.y, vec3d1.z, entity.rotationYaw, entity.rotationPitch);
-                ((ServerPlayerEntity)entity).connection.captureCurrentPosition();
-            } else {
-                entity.setLocationAndAngles(vec3d1.x, vec3d1.y, vec3d1.z, entity.rotationYaw, entity.rotationPitch);
-            }
-
-            return true;
-        }
+        return super.placeInPortal(entity, yaw);
     }
 
     @Override
-    public BlockPattern.PortalInfo placeInExistingPortal(BlockPos pos, Vec3d vec3d, Direction directon, double vecX, double vecY, boolean isPlayer) {
-        boolean flag = true;
+    public BlockPattern.PortalInfo placeInExistingPortal(BlockPos pos, Vec3d motion, Direction directionIn, double x, double y, boolean isPlayer) {
+        boolean isFrame = true;
         BlockPos blockpos = null;
         ColumnPos columnpos = new ColumnPos(pos);
         if (!isPlayer && this.columnMap.containsKey(columnpos)) {
@@ -68,16 +48,16 @@ public class GaiaTeleporter extends Teleporter {
         } else {
             GaiaTeleporter.PortalPosition teleporter$portalposition = this.destinationCoordinateCache.get(columnpos);
             if (teleporter$portalposition != null) {
-                blockpos = teleporter$portalposition.blockPos;
+                blockpos = teleporter$portalposition.pos;
                 teleporter$portalposition.lastUpdateTime = this.world.getGameTime();
-                flag = false;
+                isFrame = false;
             } else {
                 double d0 = Double.MAX_VALUE;
 
-                for(int j = -128; j <= 128; ++j) {
+                for(int eX = -128; eX <= 128; ++eX) {
                     BlockPos blockpos2;
-                    for(int k = -128; k <= 128; ++k) {
-                        for(BlockPos blockpos1 = pos.add(j, this.world.getActualHeight() - 1 - pos.getY(), k); blockpos1.getY() >= 0; blockpos1 = blockpos2) {
+                    for(int eY = -128; eY <= 128; ++eY) {
+                        for(BlockPos blockpos1 = pos.add(eX, this.world.getActualHeight() - 1 - pos.getY(), eY); blockpos1.getY() >= 0; blockpos1 = blockpos2) {
                             blockpos2 = blockpos1.down();
                             if (this.world.getBlockState(blockpos1).getBlock() == BLOCK_GAIA_PORTAL) {
                                 for(blockpos2 = blockpos1.down(); this.world.getBlockState(blockpos2).getBlock() == BLOCK_GAIA_PORTAL; blockpos2 = blockpos2.down()) {
@@ -96,23 +76,23 @@ public class GaiaTeleporter extends Teleporter {
             }
 
             if (blockpos == null) {
-                long l = this.world.getGameTime() + 300L;
-                this.columnMap.put(columnpos, l);
+                long eZ = this.world.getGameTime() + 300L;
+                this.columnMap.put(columnpos, eZ);
                 return null;
             } else {
-                if (flag) {
+                if (isFrame) {
                     this.destinationCoordinateCache.put(columnpos, new GaiaTeleporter.PortalPosition(blockpos, this.world.getGameTime()));
                     Logger logger = GaiaDimensionMod.LOGGER;
                     Supplier[] asupplier = new Supplier[2];
                     Dimension dimension = this.world.getDimension();
                     asupplier[0] = dimension::getType;
                     asupplier[1] = () -> columnpos;
-                    logger.debug("Adding nether portal ticket for {}:{}", asupplier[0], asupplier[1]);
+                    logger.debug("Adding gaia portal ticket for {}:{}", asupplier[0], asupplier[1]);
                     this.world.getChunkProvider().func_217228_a(TicketType.PORTAL, new ChunkPos(blockpos), 3, columnpos);
                 }
 
                 BlockPattern.PatternHelper blockpattern$patternhelper = ((GaiaPortalBlock)BLOCK_GAIA_PORTAL).createPatternHelper(this.world, blockpos);
-                return blockpattern$patternhelper.getPortalInfo(directon, blockpos, vecY, vec3d, vecX);
+                return blockpattern$patternhelper.getPortalInfo(directionIn, blockpos, y, motion, x);
             }
         }
     }
@@ -122,63 +102,59 @@ public class GaiaTeleporter extends Teleporter {
      */
     @Override
     public boolean makePortal(Entity entityIn) {
-        int i = 16;
         double d0 = -1.0D;
-        int entityX = MathHelper.floor(entityIn.posX);
-        int entityY = MathHelper.floor(entityIn.posY);
-        int entityZ = MathHelper.floor(entityIn.posZ);
-        int eX = entityX;
-        int eY = entityY;
-        int eZ = entityZ;
+        int eX = MathHelper.floor(entityIn.posX);
+        int eY = MathHelper.floor(entityIn.posY);
+        int eZ = MathHelper.floor(entityIn.posZ);
+        int i1 = eX;
+        int j1 = eY;
+        int k1 = eZ;
         int l1 = 0;
         int i2 = this.random.nextInt(4);
         BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
 
-        for (int ePosX = entityX - i; ePosX <= entityX + i; ++ePosX) {
-            double d1 = (double)ePosX + 0.5D - entityIn.posX;
+        for(int x = eX - 16; x <= eX + 16; ++x) {
+            double d1 = (double)x + 0.5D - entityIn.posX;
 
-            for (int ePosZ = entityZ - i; ePosZ <= entityZ + i; ++ePosZ) {
-                double d2 = (double)ePosZ + 0.5D - entityIn.posZ;
-                label293:
+            for(int z = eZ - 16; z <= eZ + 16; ++z) {
+                double d2 = (double)z + 0.5D - entityIn.posZ;
 
-                for (int ePosY = this.world.getActualHeight() - 1; ePosY >= 0; --ePosY) {
-                    if (this.world.isAirBlock(blockpos$mutableblockpos.setPos(ePosX, ePosY, ePosZ))) {
-                        while (ePosY > 0 && this.world.isAirBlock(blockpos$mutableblockpos.setPos(ePosX, ePosY - 1, ePosZ))) {
-                            --ePosY;
+                label276:
+                for(int y = this.world.getActualHeight() - 1; y >= 0; --y) {
+                    if (this.world.isAirBlock(blockpos$mutableblockpos.setPos(x, y, z))) {
+                        while(y > 0 && this.world.isAirBlock(blockpos$mutableblockpos.setPos(x, y - 1, z))) {
+                            --y;
                         }
 
-                        for (int k3 = i2; k3 < i2 + 4; ++k3) {
+                        for(int k3 = i2; k3 < i2 + 4; ++k3) {
                             int l3 = k3 % 2;
                             int i4 = 1 - l3;
-
                             if (k3 % 4 >= 2) {
                                 l3 = -l3;
                                 i4 = -i4;
                             }
 
-                            for (int j4 = 0; j4 < 3; ++j4) {
-                                for (int k4 = 0; k4 < 4; ++k4) {
-                                    for (int l4 = -1; l4 < 4; ++l4) {
-                                        int mbX = ePosX + (k4 - 1) * l3 + j4 * i4;
-                                        int mbY = ePosY + l4;
-                                        int mbZ = ePosZ + (k4 - 1) * i4 - j4 * l3;
-                                        blockpos$mutableblockpos.setPos(mbX, mbY, mbZ);
-
+                            for(int j4 = 0; j4 < 3; ++j4) {
+                                for(int k4 = 0; k4 < 4; ++k4) {
+                                    for(int l4 = -1; l4 < 4; ++l4) {
+                                        int bX = x + (k4 - 1) * l3 + j4 * i4;
+                                        int bY = y + l4;
+                                        int bZ = z + (k4 - 1) * i4 - j4 * l3;
+                                        blockpos$mutableblockpos.setPos(bX, bY, bZ);
                                         if (l4 < 0 && !this.world.getBlockState(blockpos$mutableblockpos).getMaterial().isSolid() || l4 >= 0 && !this.world.isAirBlock(blockpos$mutableblockpos)) {
-                                            continue label293;
+                                            continue label276;
                                         }
                                     }
                                 }
                             }
 
-                            double d5 = (double)ePosY + 0.5D - entityIn.posY;
+                            double d5 = (double)y + 0.5D - entityIn.posY;
                             double d7 = d1 * d1 + d5 * d5 + d2 * d2;
-
                             if (d0 < 0.0D || d7 < d0) {
                                 d0 = d7;
-                                eX = ePosX;
-                                eY = ePosY;
-                                eZ = ePosZ;
+                                i1 = x;
+                                j1 = y;
+                                k1 = z;
                                 l1 = k3 % 4;
                             }
                         }
@@ -188,45 +164,43 @@ public class GaiaTeleporter extends Teleporter {
         }
 
         if (d0 < 0.0D) {
-            for (int iX = entityX - i; iX <= entityX + i; ++iX) {
-                double mX = (double)iX + 0.5D - entityIn.posX;
+            for(int x = eX - 16; x <= eX + 16; ++x) {
+                double d3 = (double)x + 0.5D - entityIn.posX;
 
-                for (int iZ = entityZ - i; iZ <= entityZ + i; ++iZ) {
-                    double mZ = (double)iZ + 0.5D - entityIn.posZ;
-                    label231:
+                for(int z = eZ - 16; z <= eZ + 16; ++z) {
+                    double d4 = (double)z + 0.5D - entityIn.posZ;
 
-                    for (int iY = this.world.getActualHeight() - 1; iY >= 0; --iY) {
-                        if (this.world.isAirBlock(blockpos$mutableblockpos.setPos(iX, iY, iZ))) {
-                            while (iY > 0 && this.world.isAirBlock(blockpos$mutableblockpos.setPos(iX, iY - 1, iZ))) {
-                                --iY;
+                    label214:
+                    for(int y = this.world.getActualHeight() - 1; y >= 0; --y) {
+                        if (this.world.isAirBlock(blockpos$mutableblockpos.setPos(x, y, z))) {
+                            while(y > 0 && this.world.isAirBlock(blockpos$mutableblockpos.setPos(x, y - 1, z))) {
+                                --y;
                             }
 
-                            for (int k7 = i2; k7 < i2 + 2; ++k7) {
-                                int j8 = k7 % 2;
-                                int j9 = 1 - j8;
+                            for(int l7 = i2; l7 < i2 + 2; ++l7) {
+                                int l8 = l7 % 2;
+                                int k9 = 1 - l8;
 
-                                for (int j10 = 0; j10 < 4; ++j10) {
-                                    for (int j11 = -1; j11 < 4; ++j11) {
-                                        int jX = iX + (j10 - 1) * j8;
-                                        int jY = iY + j11;
-                                        int jZ = iZ + (j10 - 1) * j9;
-                                        blockpos$mutableblockpos.setPos(jX, jY, jZ);
-
-                                        if (j11 < 0 && !this.world.getBlockState(blockpos$mutableblockpos).getMaterial().isSolid() || j11 >= 0 && !this.world.isAirBlock(blockpos$mutableblockpos)) {
-                                            continue label231;
+                                for(int i10 = 0; i10 < 4; ++i10) {
+                                    for(int k10 = -1; k10 < 4; ++k10) {
+                                        int bX = x + (i10 - 1) * l8;
+                                        int bY = y + k10;
+                                        int bZ = z + (i10 - 1) * k9;
+                                        blockpos$mutableblockpos.setPos(bX, bY, bZ);
+                                        if (k10 < 0 && !this.world.getBlockState(blockpos$mutableblockpos).getMaterial().isSolid() || k10 >= 0 && !this.world.isAirBlock(blockpos$mutableblockpos)) {
+                                            continue label214;
                                         }
                                     }
                                 }
 
-                                double d6 = (double)iY + 0.5D - entityIn.posY;
-                                double d8 = mX * mX + d6 * d6 + mZ * mZ;
-
+                                double d6 = (double)y + 0.5D - entityIn.posY;
+                                double d8 = d3 * d3 + d6 * d6 + d4 * d4;
                                 if (d0 < 0.0D || d8 < d0) {
                                     d0 = d8;
-                                    eX = iX;
-                                    eY = iY;
-                                    eZ = iZ;
-                                    l1 = k7 % 2;
+                                    i1 = x;
+                                    j1 = y;
+                                    k1 = z;
+                                    l1 = l7 % 2;
                                 }
                             }
                         }
@@ -235,55 +209,49 @@ public class GaiaTeleporter extends Teleporter {
             }
         }
 
-        int i6 = eX;
-        int k2 = eY;
-        int k6 = eZ;
+        int i6 = i1;
+        int k2 = j1;
+        int k6 = k1;
         int l6 = l1 % 2;
         int i3 = 1 - l6;
-
         if (l1 % 4 >= 2) {
             l6 = -l6;
             i3 = -i3;
         }
 
         if (d0 < 0.0D) {
-            eY = MathHelper.clamp(eY, 70, this.world.getActualHeight() - 10);
-            k2 = eY;
+            j1 = MathHelper.clamp(j1, 70, this.world.getActualHeight() - 10);
+            k2 = j1;
 
-            for (int j7 = -1; j7 <= 1; ++j7) {
-                for (int l7 = 1; l7 < 3; ++l7) {
-                    for (int k8 = -1; k8 < 3; ++k8) {
-                        int frameX = i6 + (l7 - 1) * l6 + j7 * i3;
-                        int frameY = k2 + k8;
-                        int frameZ = k6 + (l7 - 1) * i3 - j7 * l6;
-                        boolean flag = k8 < 0;
-                        this.world.setBlockState(new BlockPos(frameX, frameY, frameZ), flag ? BLOCK_KEYSTONE.getDefaultState() : Blocks.AIR.getDefaultState());
+            for(int j7 = -1; j7 <= 1; ++j7) {
+                for(int i8 = 1; i8 < 3; ++i8) {
+                    for(int i9 = -1; i9 < 3; ++i9) {
+                        int bX = i6 + (i8 - 1) * l6 + j7 * i3;
+                        int bY = k2 + i9;
+                        int bZ = k6 + (i8 - 1) * i3 - j7 * l6;
+                        boolean isFrame = i9 < 0;
+                        blockpos$mutableblockpos.setPos(bX, bY, bZ);
+                        this.world.setBlockState(blockpos$mutableblockpos, isFrame ? BLOCK_KEYSTONE.getDefaultState() : Blocks.AIR.getDefaultState());
                     }
                 }
             }
         }
 
-        BlockState iblockstate = BLOCK_GAIA_PORTAL.getDefaultState().with(GaiaPortalBlock.AXIS, l6 == 0 ? Direction.Axis.Z : Direction.Axis.X);
-
-        for (int i8 = 0; i8 < 4; ++i8) {
-            for (int l8 = 0; l8 < 4; ++l8) {
-                for (int l9 = -1; l9 < 4; ++l9) {
-                    int portalX = i6 + (l8 - 1) * l6;
-                    int portalY = k2 + l9;
-                    int portalZ = k6 + (l8 - 1) * i3;
-                    boolean flag1 = l8 == 0 || l8 == 3 || l9 == -1 || l9 == 3;
-                    this.world.setBlockState(new BlockPos(portalX, portalY, portalZ), flag1 ? BLOCK_KEYSTONE.getDefaultState() : iblockstate, 2);
+        for(int k7 = -1; k7 < 3; ++k7) {
+            for(int j8 = -1; j8 < 4; ++j8) {
+                if (k7 == -1 || k7 == 2 || j8 == -1 || j8 == 3) {
+                    blockpos$mutableblockpos.setPos(i6 + k7 * l6, k2 + j8, k6 + k7 * i3);
+                    this.world.setBlockState(blockpos$mutableblockpos, BLOCK_KEYSTONE.getDefaultState(), 3);
                 }
             }
+        }
 
-            for (int i9 = 0; i9 < 4; ++i9) {
-                for (int i10 = -1; i10 < 4; ++i10) {
-                    int i11 = i6 + (i9 - 1) * l6;
-                    int i12 = k2 + i10;
-                    int l12 = k6 + (i9 - 1) * i3;
-                    BlockPos blockpos = new BlockPos(i11, i12, l12);
-                    this.world.notifyNeighborsOfStateChange(blockpos, this.world.getBlockState(blockpos).getBlock());
-                }
+        BlockState blockstate = BLOCK_GAIA_PORTAL.getDefaultState().with(GaiaPortalBlock.AXIS, l6 == 0 ? Direction.Axis.Z : Direction.Axis.X);
+
+        for(int k8 = 0; k8 < 2; ++k8) {
+            for(int j9 = 0; j9 < 3; ++j9) {
+                blockpos$mutableblockpos.setPos(i6 + k8 * l6, k2 + j9, k6 + k8 * i3);
+                this.world.setBlockState(blockpos$mutableblockpos, blockstate, 18);
             }
         }
 
@@ -291,11 +259,11 @@ public class GaiaTeleporter extends Teleporter {
     }
 
     static class PortalPosition {
-        public final BlockPos blockPos;
+        public final BlockPos pos;
         public long lastUpdateTime;
 
         public PortalPosition(BlockPos pos, long time) {
-            this.blockPos = pos;
+            this.pos = pos;
             this.lastUpdateTime = time;
         }
     }
