@@ -503,6 +503,21 @@
   "gui.gaiadimension.category.shine_fuel": "Shining",
   "gui.gaiadimension.category.null_fuel": "Nulling",
   "gui.gaiadimension.category.restructuring": "Restructuring",
-  "gui.gaiadimension.category.purifying": "Purifying"
-}
+  "gui.gaiadimension.category.purifying": "Purifying",
 
+  "biome.gaiadimension.pink_agate_forest": "Pink Agate Forest",
+  "biome.gaiadimension.blue_agate_taiga": "Blue Agate Taiga",
+  "biome.gaiadimension.green_agate_jungle": "Green Agate Jungle",
+  "biome.gaiadimension.purple_agate_swamp": "Purple Agate Swamp",
+  "biome.gaiadimension.fossil_woodland": "Fossil Woodland",
+  "biome.gaiadimension.mutant_agate_wildwood": "Mutant Agate Wildwood",
+  "biome.gaiadimension.volcanic_lands": "Volcanic Lands",
+  "biome.gaiadimension.static_wasteland": "Static Wasteland",
+  "biome.gaiadimension.goldstone_lands": "Goldstone Lands",
+  "biome.gaiadimension.crystal_plains": "Crystal Plains",
+  "biome.gaiadimension.salt_dunes": "Salt Dunes",
+  "biome.gaiadimension.shining_grove": "Shining Grove",
+  "biome.gaiadimension.smoldering_bog": "Smoldering Bog",
+  "biome.gaiadimension.mineral_reservoir": "Mineral Reservoir",
+  "biome.gaiadimension.mineral_river": "Mineral River"
+}
