@@ -1,7 +1,7 @@
 {
   "type": "minecraft:smelting",
   "ingredient": {
-    "item": "gaiadimension:precious_rock"
+    "item": "gaiadimension:speckled_rock"
   },
   "result": "gaiadimension:scaynyx_ingot",
   "experience": 0.2,
