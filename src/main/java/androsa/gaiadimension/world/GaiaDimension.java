@@ -282,7 +282,7 @@ public class GaiaDimension extends Dimension {
         return false;
     }
 
-    //TODO: What happens if it is storming and someone enters Gaia?
+    //TODO: Change it so that it is only sunny?
     @Override
     public void updateWeather(Runnable defaultLogic) { }
 }

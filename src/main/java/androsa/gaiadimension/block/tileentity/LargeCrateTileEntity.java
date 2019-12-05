@@ -19,8 +19,10 @@ import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.wrapper.SidedInvWrapper;
 
+import java.util.stream.IntStream;
+
 public class LargeCrateTileEntity extends LockableLootTileEntity implements ISidedInventory {
-    private static final int[] SLOTS = new int[54];
+    private static final int[] SLOTS = IntStream.range(0, 54).toArray();
     private NonNullList<ItemStack> items = NonNullList.withSize(54, ItemStack.EMPTY);
 
     public LargeCrateTileEntity() {
