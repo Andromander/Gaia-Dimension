@@ -45,7 +45,7 @@ minecraft {
             property 'forge.logging.console.level', 'debug'
 
             mods {
-                nifty {
+                gaiadimension {
                     source sourceSets.main
                 }
             }
@@ -61,7 +61,7 @@ minecraft {
             property 'forge.logging.console.level', 'debug'
 
             mods {
-                nifty {
+                gaiadimension {
                     source sourceSets.main
                 }
             }
