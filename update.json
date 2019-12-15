@@ -8,8 +8,13 @@
     "1.0.4": "+ New biomes: Smoldering Bog, Shining Grove.\n + New blocks: Boggy Soil, Light Soil, Murky Grass, Soft Grass, Aura Crystal Growth, Aura Shoot, Aura Log, Aura Leaves, Aura Planks, Aura Plank Slab, Aura Plank Stairs, Sparkling Rock, Impure Sludge, Impure Rock, Active Rock, Geyser Vent.\n + New items: Tilipi, Tilibl, Tiligr, Tilipu, Tiliol, Tilimy, Tiliou, Plagued Tiliey.\n + New mobs: Bismuth Uletrus.\n + New fluids: Liquid Bismuth, Liquid Aura.\n + Added Corrupt Mania effect. Damages you over time, but gives you a damage boost. Attacks from Corrupt mobs will deal additional damage.\n   + Eating Plagued Tiliey will afflict Corrupt Mania.\n + New particles for Pyrite Torch, Gaia Portal, Restructurer, and Purifier.\n • Optimised how sky colours are determined.\n • Retextured the Ancient Lagrahk and Nomadic Lagrahk.\n • Biomes got a bit bigger than last time. Note that this change will only happen in new chunks or dimensions.\n • Corrupted Growth Sappers and Contorted Nagas can now afflict Corrupt Mania.\n • Absolutely positively disabled rain in Gaia.\n • Bonemeal can now be applied to Glitter Grass, Corrupt Grass, and Soft Grass. Murky Grass does not have any effect.\n • Made Rugged Lurmorus, Ancient Lagrahk, and Nomadic Lagrahk faster.\n • Attempted to make Archaic Warriors slower.\n • General code cleanups.\n • Fixed Slabs not dropping properly if they were double-stacked.\n • Mining certain ores now drop experience orbs.",
     "1.0.5": "• Create a workaround fix for mods that try to cast where it clearly cannot. If a biome casting error persists, please report the crash to other offending mods, such as biome modifiers."
   },
+  "1.14.4": {
+    "1.1.0": "Gaia Dimension is now out for 1.14.4! In celebration, there's some new features not present in 1.0.5. First, there are now Stripped Logs, Wood, and Stripped Wood of all Agate Logs. Then, there's now a config option to let the portal be created anywhere, not just Hot, Dry, or Mountain biomes. Lastly, the option to change dimension ID has been removed, as these are now automatically assigned by Forge. Along with this, all Ore Dictionary entries have been removed in exchange for Tags. Some entries still exist, but most have been removed due to lack of use (if you wish to have blocks or items in tags by default in Minecraft or Forge, let me know via GitHub or Discord)."
+  },
   "promos": {
     "1.12.2-latest": "1.0.5",
-    "1.12.2-recommended": "1.0.5"
+    "1.12.2-recommended": "1.0.5",
+    "1.14.4-latest": "1.1.0",
+    "1.14.4-recommended": "1.1.0"
   }
 }
