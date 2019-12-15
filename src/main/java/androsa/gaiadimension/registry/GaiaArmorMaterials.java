@@ -18,15 +18,15 @@ public enum GaiaArmorMaterials implements IArmorMaterial {
     DIOPSIDE("diopside", 177, new int[]{2, 5, 7, 2}, 5, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 1.0F, () -> Ingredient.fromItems(ModItems.diopside.get())),
     CHALCEDONY("chalcedony", 230, new int[]{3, 6, 8, 3}, 5, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 2.0F, () -> Ingredient.fromItems(ModItems.chalcedony.get())),
 
-    MALACHITE("malachite_guard", 394, new int[]{2, 5, 7, 2}, 10, SoundEvents.ITEM_ARMOR_EQUIP_GOLD, 2.0F, null),
-    TIGER_EYE("apex_predator", 315, new int[]{2, 5, 7, 2}, 10, SoundEvents.ITEM_ARMOR_EQUIP_GOLD, 1.5F, null),
-    SPINEL("spinel_princess", 394, new int[]{3, 6, 8, 3}, 15, SoundEvents.ITEM_ARMOR_EQUIP_GOLD, 1.0F, null),
-    ZIRCON("zircon_prince", 472, new int[]{3, 6, 8, 3}, 15, SoundEvents.ITEM_ARMOR_EQUIP_GOLD, 1.0F, null),
-    CORRUPT("corrupt_warrior", 1000, new int[]{4, 7, 9, 4}, 30, SoundEvents.ENTITY_BLAZE_HURT, 4.0F, null),
-    BIXBITE("gaia_duchess", 630, new int[]{3, 6, 8, 3}, 20, SoundEvents.ITEM_ARMOR_EQUIP_GOLD, 2.0F, null),
-    TSAVORITE("gaia_baron", 709, new int[]{3, 6, 8, 3}, 20, SoundEvents.ITEM_ARMOR_EQUIP_GOLD, 2.5F, null),
-    LARVIKITE("gaia_duke", 788, new int[]{3, 6, 8, 3}, 20, SoundEvents.ITEM_ARMOR_EQUIP_GOLD, 3.0F, null),
-    GAIA_CHAMP("gaia_champion", 1000, new int[]{4, 7, 9, 4}, 30, SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, 4.0F, null);
+    MALACHITE("malachite_guard", 394, new int[]{2, 5, 7, 2}, 10, SoundEvents.ITEM_ARMOR_EQUIP_GOLD, 2.0F, () -> Ingredient.EMPTY),
+    TIGER_EYE("apex_predator", 315, new int[]{2, 5, 7, 2}, 10, SoundEvents.ITEM_ARMOR_EQUIP_GOLD, 1.5F, () -> Ingredient.EMPTY),
+    SPINEL("spinel_princess", 394, new int[]{3, 6, 8, 3}, 15, SoundEvents.ITEM_ARMOR_EQUIP_GOLD, 1.0F, () -> Ingredient.EMPTY),
+    ZIRCON("zircon_prince", 472, new int[]{3, 6, 8, 3}, 15, SoundEvents.ITEM_ARMOR_EQUIP_GOLD, 1.0F, () -> Ingredient.EMPTY),
+    CORRUPT("corrupt_warrior", 1000, new int[]{4, 7, 9, 4}, 30, SoundEvents.ENTITY_BLAZE_HURT, 4.0F, () -> Ingredient.EMPTY),
+    BIXBITE("gaia_duchess", 630, new int[]{3, 6, 8, 3}, 20, SoundEvents.ITEM_ARMOR_EQUIP_GOLD, 2.0F, () -> Ingredient.EMPTY),
+    TSAVORITE("gaia_baron", 709, new int[]{3, 6, 8, 3}, 20, SoundEvents.ITEM_ARMOR_EQUIP_GOLD, 2.5F, () -> Ingredient.EMPTY),
+    LARVIKITE("gaia_duke", 788, new int[]{3, 6, 8, 3}, 20, SoundEvents.ITEM_ARMOR_EQUIP_GOLD, 3.0F, () -> Ingredient.EMPTY),
+    GAIA_CHAMP("gaia_champion", 1000, new int[]{4, 7, 9, 4}, 30, SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, 4.0F, () -> Ingredient.EMPTY);
 
     private static final int[] MAX_DAMAGE_ARRAY = new int[]{13, 15, 16, 11};
     private final String armorName;

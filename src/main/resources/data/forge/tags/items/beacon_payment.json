@@ -1,0 +1,27 @@
+{
+  "replace": false,
+  "values": [
+    "gaiadimension:sugilite",
+    "gaiadimension:hematite",
+    "gaiadimension:cinnabar",
+    "gaiadimension:labradorite",
+    "gaiadimension:moonstone",
+    "gaiadimension:opal_red",
+    "gaiadimension:opal_blue",
+    "gaiadimension:opal_green",
+    "gaiadimension:opal_white",
+    "gaiadimension:pyrite",
+    "gaiadimension:tektite",
+    "gaiadimension:goldstone",
+    "gaiadimension:aura_crystal",
+    "gaiadimension:bismuth_crystal",
+    "gaiadimension:ixiolite",
+    "gaiadimension:proustite",
+    "gaiadimension:euclase",
+    "gaiadimension:leucite",
+    "gaiadimension:carnelian",
+    "gaiadimension:benitoite",
+    "gaiadimension:diopside",
+    "gaiadimension:chalcedony"
+  ]
+}
