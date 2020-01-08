@@ -23,6 +23,7 @@ import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
+import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.commons.lang3.tuple.Pair;
@@ -55,6 +56,7 @@ public class GaiaDimensionMod {
     public GaiaDimensionMod() {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
         modEventBus.addListener(this::setup);
+        modEventBus.addListener(this::clientSetup);
 
         ModRecipes.registerRecipeTypes();
 
@@ -87,9 +89,14 @@ public class GaiaDimensionMod {
         ModEntities.registerSpawnPlacement();
         ModBiomes.addBiomeTypes();
         ModBiomes.addBiomeFeatures();
+    }
+
+    public void clientSetup(FMLClientSetupEvent event) {
         DistExecutor.runWhenOn(Dist.CLIENT, () -> ModContainers::registerScreens);
         DistExecutor.runWhenOn(Dist.CLIENT, () -> ModEntities::registerEntityRender);
         DistExecutor.runWhenOn(Dist.CLIENT, () -> ModParticles::forgeClassLoadingIsFuckedThisShouldntBeHereButHereItIs);
+        DistExecutor.runWhenOn(Dist.CLIENT, () -> ClientEvents::registerBlockColors);
+        DistExecutor.runWhenOn(Dist.CLIENT, () -> ClientEvents::registerItemColors);
     }
 
     @Mod.EventBusSubscriber(modid = MODID)

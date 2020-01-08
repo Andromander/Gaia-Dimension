@@ -2,6 +2,7 @@ package androsa.gaiadimension;
 
 import androsa.gaiadimension.biomes.BaseGaiaBiome;
 import androsa.gaiadimension.registry.ModBlocks;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.color.BlockColors;
 import net.minecraft.client.renderer.color.ItemColors;
 import net.minecraft.item.BlockItem;
@@ -10,17 +11,12 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.biome.BiomeColors;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.client.event.ColorHandlerEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
 
 @OnlyIn(Dist.CLIENT)
-@Mod.EventBusSubscriber(modid = GaiaDimensionMod.MODID, value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ClientEvents {
 
-    @SubscribeEvent
-    public static void registerBlockColors(ColorHandlerEvent.Block e) {
-        BlockColors blocks = e.getBlockColors();
+    public static void registerBlockColors() {
+        BlockColors blocks = Minecraft.getInstance().getBlockColors();
 
         blocks.register((state, worldIn, pos, tintIndex) -> worldIn != null && pos != null && worldIn.getBiome(pos) instanceof BaseGaiaBiome ? BiomeColors.getGrassColor(worldIn, pos) : 0xF2A3B4,
                 ModBlocks.glitter_grass.get(),
@@ -110,10 +106,9 @@ public class ClientEvents {
         return (red << 16) | (green << 8) | blue;
     }
 
-    @SubscribeEvent
-    public static void registerItemColors(ColorHandlerEvent.Item e) {
-        BlockColors blocks = e.getBlockColors();
-        ItemColors items = e.getItemColors();
+    public static void registerItemColors() {
+        BlockColors blocks = Minecraft.getInstance().getBlockColors();
+        ItemColors items = Minecraft.getInstance().getItemColors();
 
         items.register((stack, tintIndex) -> blocks.getColor(((BlockItem)stack.getItem()).getBlock().getDefaultState(), null, null, tintIndex),
                 ModBlocks.glitter_grass.get(),
