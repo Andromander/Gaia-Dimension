@@ -205,6 +205,33 @@
   "block.gaiadimension.charged_mineral": "Charged Mineral",
   "block.gaiadimension.bolstered_bricks": "Bolstered Bricks",
 
+  //Potted Plants
+  "block.gaiadimension.potted_thiscus": "Potted Thiscus",
+  "block.gaiadimension.potted_ouzium": "Potted Ouzium",
+  "block.gaiadimension.potted_agathum": "Potted Agathum",
+  "block.gaiadimension.potted_varloom": "Potted Varloom",
+  "block.gaiadimension.potted_corrupted_varloom": "Potted Corrupt Varloom",
+  "block.gaiadimension.potted_missingno_plant": "Potted Missing Texture Plant",
+  "block.gaiadimension.potted_spotted_kersei": "Potted Spotted Kersei",
+  "block.gaiadimension.potted_thorny_wiltha": "Potted Thorny Wiltha",
+  "block.gaiadimension.potted_roofed_agaric": "Potted Roofed Agaric",
+  "block.gaiadimension.potted_bulbous_hobina": "Potted Bulbous Hobina",
+  "block.gaiadimension.potted_stickly_cupsir": "Potted Stickly Cupsir",
+  "block.gaiadimension.potted_mystical_murgni": "Potted Mystial Murgni",
+  "block.gaiadimension.potted_corrupted_gaia_eye": "Potted Corrupted Gaia Eye",
+  "block.gaiadimension.potted_elder_imklia": "Potted Elder Imklia",
+  "block.gaiadimension.potted_gold_orb_tucher": "Potted Gold Orb Tucher",
+  "block.gaiadimension.potted_missingno_fungus": "Potted Missing Texture Fungus",
+  "block.gaiadimension.potted_pink_agate_sapling": "Potted Pink Agate Sapling",
+  "block.gaiadimension.potted_blue_agate_sapling": "Potted Blue Agate Sapling",
+  "block.gaiadimension.potted_green_agate_sapling": "Potted Green Agate Sapling",
+  "block.gaiadimension.potted_purple_agate_sapling": "Potted Purple Agate Sapling",
+  "block.gaiadimension.potted_fossilized_sapling": "Potted Fossilized Sapling",
+  "block.gaiadimension.potted_corrupted_sapling": "Potted Corrupted Sapling",
+  "block.gaiadimension.potted_burnt_sapling": "Potted Burnt Sapling",
+  "block.gaiadimension.potted_burning_sapling": "Potted Fire Agate Sapling",
+  "block.gaiadimension.potted_aura_sapling": "Potted Aura Sapling",
+
   //fluid.mineral_water=Mineral Water
   //fluid.superhot_magma=Superhot Magma
   //fluid.sweet_muck=Sweet Muck
