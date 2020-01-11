@@ -66,7 +66,15 @@ minecraft {
                 }
             }
         }
+
+        data {
+            args '--mod', 'gaiadimension', '--all', '--output', file('src/generated/resources/')
+        }
     }
+}
+
+sourceSets.main.resources {
+    srcDir 'src/generated/resources'
 }
 
 jar {
@@ -92,7 +100,6 @@ task sourcesJar(type: Jar, dependsOn: classes) {
 artifacts {
     archives sourcesJar
 }
-
 
 repositories {
     /*maven {
