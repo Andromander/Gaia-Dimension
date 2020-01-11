@@ -1,10 +1,7 @@
 package androsa.gaiadimension.particle;
 
-import androsa.gaiadimension.GaiaDimensionMod;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.*;
 import net.minecraft.particles.BasicParticleType;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -26,13 +23,11 @@ public class GaiaPortalParticle extends SpriteTexturedParticle {
         this.portalPosX = this.posX;
         this.portalPosY = this.posY;
         this.portalPosZ = this.posZ;
-        this.particleScale = 0.1F + (this.rand.nextFloat() * 0.2F + 0.5F);
         float f = this.rand.nextFloat() * 0.6F + 0.4F;
         this.particleRed = f * 0.9F;
         this.particleGreen = f * 0.3F;
         this.particleBlue = f;
         this.maxAge = (int)(Math.random() * 10.0D) + 40;
-        this.sprite = Minecraft.getInstance().getTextureMap().getAtlasSprite(new ResourceLocation(GaiaDimensionMod.MODID, "particle/portal_sparkle").toString());
     }
 
     @Override
@@ -77,15 +72,15 @@ public class GaiaPortalParticle extends SpriteTexturedParticle {
         this.prevPosX = this.posX;
         this.prevPosY = this.posY;
         this.prevPosZ = this.posZ;
-        float f = (float)this.age / (float)this.maxAge;
-        float f1 = -f + f * f * 2.0F;
-        float f2 = 1.0F - f1;
-        this.posX = this.portalPosX + this.motionX * (double)f2;
-        this.posY = this.portalPosY + this.motionY * (double)f2 + (double)(1.0F - f);
-        this.posZ = this.portalPosZ + this.motionZ * (double)f2;
-
         if (this.age++ >= this.maxAge) {
             this.setExpired();
+        } else {
+            float f = (float)this.age / (float)this.maxAge;
+            float f1 = -f + f * f * 2.0F;
+            float f2 = 1.0F - f1;
+            this.posX = this.portalPosX + this.motionX * (double)f2;
+            this.posY = this.portalPosY + this.motionY * (double)f2 + (double)(1.0F - f);
+            this.posZ = this.portalPosZ + this.motionZ * (double)f2;
         }
     }
 
