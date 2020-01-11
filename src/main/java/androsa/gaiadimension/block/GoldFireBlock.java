@@ -27,7 +27,7 @@ public class GoldFireBlock extends Block {
     public static final IntegerProperty AGE = BlockStateProperties.AGE_0_15;
 
     public GoldFireBlock() {
-        super(Properties.create(Material.FIRE, MaterialColor.GOLD).hardnessAndResistance(0.0F).doesNotBlockMovement().tickRandomly().lightValue(15));
+        super(Properties.create(Material.FIRE, MaterialColor.GOLD).hardnessAndResistance(0.0F).doesNotBlockMovement().tickRandomly().lightValue(15).noDrops());
         this.setDefaultState(this.stateContainer.getBaseState().with(AGE, 0));
     }
 

@@ -1,5 +1,6 @@
 package androsa.gaiadimension.block;
 
+import androsa.gaiadimension.registry.ModBlocks;
 import androsa.gaiadimension.registry.ModParticles;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.WallTorchBlock;
@@ -15,7 +16,7 @@ import java.util.Random;
 public class PyriteWallTorchBlock extends WallTorchBlock {
 
     public PyriteWallTorchBlock() {
-        super(Properties.create(Material.MISCELLANEOUS).hardnessAndResistance(0.0F).lightValue(14).doesNotBlockMovement());
+        super(Properties.create(Material.MISCELLANEOUS).hardnessAndResistance(0.0F).lightValue(14).doesNotBlockMovement().lootFrom(ModBlocks.pyrite_torch.get()));
     }
 
     @Override

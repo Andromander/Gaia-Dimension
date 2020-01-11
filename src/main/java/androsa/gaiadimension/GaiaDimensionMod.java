@@ -1,8 +1,10 @@
 package androsa.gaiadimension;
 
+import androsa.gaiadimension.data.GaiaLootTables;
 import androsa.gaiadimension.registry.*;
 import androsa.gaiadimension.world.GaiaTeleporter;
 import io.netty.buffer.Unpooled;
+import net.minecraft.data.DataGenerator;
 import net.minecraft.entity.CreatureAttribute;
 import net.minecraft.item.Item;
 import net.minecraft.network.PacketBuffer;
@@ -25,6 +27,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.minecraftforge.fml.event.lifecycle.GatherDataEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.commons.lang3.tuple.Pair;
 import org.apache.logging.log4j.LogManager;
@@ -57,6 +60,7 @@ public class GaiaDimensionMod {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
         modEventBus.addListener(this::setup);
         modEventBus.addListener(this::clientSetup);
+        modEventBus.addListener(this::gatherData);
 
         ModRecipes.registerRecipeTypes();
 
@@ -98,6 +102,13 @@ public class GaiaDimensionMod {
         DistExecutor.runWhenOn(Dist.CLIENT, () -> ModParticles::forgeClassLoadingIsFuckedThisShouldntBeHereButHereItIs);
         DistExecutor.runWhenOn(Dist.CLIENT, () -> ClientEvents::registerBlockColors);
         DistExecutor.runWhenOn(Dist.CLIENT, () -> ClientEvents::registerItemColors);
+    }
+
+    public void gatherData(GatherDataEvent event) {
+        DataGenerator generator = event.getGenerator();
+        if (event.includeServer()) {
+            generator.addProvider(new GaiaLootTables(generator));
+        }
     }
 
     @Mod.EventBusSubscriber(modid = MODID)
