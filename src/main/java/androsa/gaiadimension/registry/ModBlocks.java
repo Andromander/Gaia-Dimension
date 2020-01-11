@@ -3,9 +3,7 @@ package androsa.gaiadimension.registry;
 import androsa.gaiadimension.GaiaDimensionMod;
 import androsa.gaiadimension.block.*;
 import androsa.gaiadimension.world.gen.tree.*;
-import net.minecraft.block.Block;
-import net.minecraft.block.FlowingFluidBlock;
-import net.minecraft.block.SoundType;
+import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
 import net.minecraft.item.BlockItem;
@@ -293,6 +291,33 @@ public class ModBlocks {
     public static final RegistryObject<Block> coarse_rock = registerBlockGeneral("coarse_rock", () -> new GaiaOreBlock(MaterialColor.MAGENTA, 2));
     public static final RegistryObject<Block> precious_rock = registerBlockGeneral("precious_rock", () -> new GaiaOreBlock(MaterialColor.MAGENTA, 3));
 
+    //Flower Pots
+    public static final RegistryObject<Block> potted_thiscus = registerFlowerPot("potted_thiscus", thiscus);
+    public static final RegistryObject<Block> potted_ouzium = registerFlowerPot("potted_ouzium", ouzium);
+    public static final RegistryObject<Block> potted_agathum = registerFlowerPot("potted_agathum", agathum);
+    public static final RegistryObject<Block> potted_varloom = registerFlowerPot("potted_varloom", varloom);
+    public static final RegistryObject<Block> potted_corrupted_varloom = registerFlowerPot("potted_corrupted_varloom", corrupted_varloom);
+    public static final RegistryObject<Block> potted_missingno_plant = registerFlowerPot("potted_missingno_plant", missingno_plant);
+    public static final RegistryObject<Block> potted_spotted_kersei = registerFlowerPot("potted_spotted_kersei", spotted_kersei);
+    public static final RegistryObject<Block> potted_thorny_wiltha = registerFlowerPot("potted_thorny_wiltha", thorny_wiltha);
+    public static final RegistryObject<Block> potted_roofed_agaric = registerFlowerPot("potted_roofed_agaric", roofed_agaric);
+    public static final RegistryObject<Block> potted_bulbous_hobina = registerFlowerPot("potted_bulbous_hobina", bulbous_hobina);
+    public static final RegistryObject<Block> potted_stickly_cupsir = registerFlowerPot("potted_stickly_cupsir", stickly_cupsir);
+    public static final RegistryObject<Block> potted_mystical_murgni = registerFlowerPot("potted_mystical_murgni", mystical_murgni);
+    public static final RegistryObject<Block> potted_corrupted_gaia_eye = registerFlowerPot("potted_corrupted_gaia_eye", corrupted_gaia_eye);
+    public static final RegistryObject<Block> potted_elder_imklia = registerFlowerPot("potted_elder_imklia", elder_imklia);
+    public static final RegistryObject<Block> potted_gold_orb_tucher = registerFlowerPot("potted_gold_orb_tucher", gold_orb_tucher);
+    public static final RegistryObject<Block> potted_missingno_fungus = registerFlowerPot("potted_missingno_fungus", missingno_fungus);
+    public static final RegistryObject<Block> potted_pink_agate_sapling = registerFlowerPot("potted_pink_agate_sapling", pink_agate_sapling);
+    public static final RegistryObject<Block> potted_blue_agate_sapling = registerFlowerPot("potted_blue_agate_sapling", blue_agate_sapling);
+    public static final RegistryObject<Block> potted_green_agate_sapling = registerFlowerPot("potted_green_agate_sapling", green_agate_sapling);
+    public static final RegistryObject<Block> potted_purple_agate_sapling = registerFlowerPot("potted_purple_agate_sapling", purple_agate_sapling);
+    public static final RegistryObject<Block> potted_fossilized_sapling = registerFlowerPot("potted_fossilized_sapling", fossilized_sapling);
+    public static final RegistryObject<Block> potted_corrupted_sapling = registerFlowerPot("potted_corrupted_sapling", corrupted_sapling);
+    public static final RegistryObject<Block> potted_burnt_sapling = registerFlowerPot("potted_burnt_sapling", burnt_sapling);
+    public static final RegistryObject<Block> potted_burning_sapling = registerFlowerPot("potted_burning_sapling", burning_sapling);
+    public static final RegistryObject<Block> potted_aura_sapling = registerFlowerPot("potted_aura_sapling", aura_sapling);
+
     private static <T extends Block> RegistryObject<T> registerBlockGeneral(String name, Supplier<? extends T> block) {
         return registerBlock(name, block, 0, ModBlocks::registerBlockItem);
     }
@@ -318,5 +343,39 @@ public class ModBlocks {
                 return burnTime;
             }
         };
+    }
+
+    private static RegistryObject<Block> registerFlowerPot(String name, Supplier<Block> plant) {
+        return BLOCKS.register(name, () -> new FlowerPotBlock(() -> (FlowerPotBlock) Blocks.FLOWER_POT, plant, Block.Properties.create(Material.MISCELLANEOUS).hardnessAndResistance(0.0F)));
+    }
+
+    public static void addPlants() {
+        FlowerPotBlock block = (FlowerPotBlock) Blocks.FLOWER_POT;
+
+        block.addPlant(thiscus.getId(), potted_thiscus);
+        block.addPlant(ouzium.getId(), potted_ouzium);
+        block.addPlant(agathum.getId(), potted_agathum);
+        block.addPlant(varloom.getId(), potted_varloom);
+        block.addPlant(corrupted_varloom.getId(), potted_corrupted_varloom);
+        block.addPlant(missingno_plant.getId(), potted_missingno_plant);
+        block.addPlant(spotted_kersei.getId(), potted_spotted_kersei);
+        block.addPlant(thorny_wiltha.getId(), potted_thorny_wiltha);
+        block.addPlant(roofed_agaric.getId(), potted_roofed_agaric);
+        block.addPlant(bulbous_hobina.getId(), potted_bulbous_hobina);
+        block.addPlant(stickly_cupsir.getId(), potted_stickly_cupsir);
+        block.addPlant(mystical_murgni.getId(), potted_mystical_murgni);
+        block.addPlant(corrupted_gaia_eye.getId(), potted_corrupted_gaia_eye);
+        block.addPlant(elder_imklia.getId(), potted_elder_imklia);
+        block.addPlant(gold_orb_tucher.getId(), potted_gold_orb_tucher);
+        block.addPlant(missingno_fungus.getId(), potted_missingno_fungus);
+        block.addPlant(pink_agate_sapling.getId(), potted_pink_agate_sapling);
+        block.addPlant(blue_agate_sapling.getId(), potted_blue_agate_sapling);
+        block.addPlant(green_agate_sapling.getId(), potted_green_agate_sapling);
+        block.addPlant(purple_agate_sapling.getId(), potted_purple_agate_sapling);
+        block.addPlant(fossilized_sapling.getId(), potted_fossilized_sapling);
+        block.addPlant(corrupted_sapling.getId(), potted_corrupted_sapling);
+        block.addPlant(burnt_sapling.getId(), potted_burnt_sapling);
+        block.addPlant(burning_sapling.getId(), potted_burning_sapling);
+        block.addPlant(aura_sapling.getId(), potted_aura_sapling);
     }
 }

@@ -1,0 +1,13 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "textures": {
+      "plant": "gaiadimension:blocks/elder_imklia"
+    }
+  },
+  "variants": {
+    "": {
+      "model": "block/flower_pot_cross"
+    }
+  }
+}

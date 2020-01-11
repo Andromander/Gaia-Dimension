@@ -1,0 +1,13 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "textures": {
+      "plant": "gaiadimension:blocks/crusty_sapling"
+    }
+  },
+  "variants": {
+    "": {
+      "model": "block/flower_pot_cross"
+    }
+  }
+}

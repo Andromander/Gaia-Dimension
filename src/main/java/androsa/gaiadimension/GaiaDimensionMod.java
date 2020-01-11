@@ -86,6 +86,7 @@ public class GaiaDimensionMod {
     }
 
     public void setup(FMLCommonSetupEvent event) {
+        ModBlocks.addPlants();
         ModEntities.registerSpawnPlacement();
         ModBiomes.addBiomeTypes();
         ModBiomes.addBiomeFeatures();
