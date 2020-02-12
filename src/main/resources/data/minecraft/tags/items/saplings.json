@@ -1,0 +1,14 @@
+{
+  "replace": false,
+  "values": [
+    "gaiadimension:pink_agate_sapling",
+    "gaiadimension:blue_agate_sapling",
+    "gaiadimension:green_agate_sapling",
+    "gaiadimension:purple_agate_sapling",
+    "gaiadimension:fossilized_sapling",
+    "gaiadimension:corrupted_sapling",
+    "gaiadimension:burnt_sapling",
+    "gaiadimension:burning_sapling",
+    "gaiadimension:aura_sapling"
+  ]
+}

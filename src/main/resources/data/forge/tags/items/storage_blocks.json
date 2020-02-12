@@ -1,0 +1,27 @@
+{
+  "replace": false,
+  "values": [
+    "#forge:storage_blocks/sugilite",
+    "#forge:storage_blocks/hematite",
+    "#forge:storage_blocks/cinnabar",
+    "#forge:storage_blocks/labradorite",
+    "#forge:storage_blocks/moonstone",
+    "#forge:storage_blocks/red_opal",
+    "#forge:storage_blocks/blue_opal",
+    "#forge:storage_blocks/green_opal",
+    "#forge:storage_blocks/white_opal",
+    "#forge:storage_blocks/pyrite",
+    "#forge:storage_blocks/tektite",
+    "#forge:storage_blocks/goldstone",
+    "#forge:storage_blocks/aura",
+    "#forge:storage_blocks/bismuth",
+    "#forge:storage_blocks/ixiolite",
+    "#forge:storage_blocks/proustite",
+    "#forge:storage_blocks/euclase",
+    "#forge:storage_blocks/leucite",
+    "#forge:storage_blocks/carnelian",
+    "#forge:storage_blocks/benitoite",
+    "#forge:storage_blocks/diopside",
+    "#forge:storage_blocks/chalcedony"
+  ]
+}

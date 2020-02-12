@@ -1,0 +1,27 @@
+{
+  "replace": false,
+  "values": [
+    "#forge:gems/sugilite",
+    "#forge:gems/hematite",
+    "#forge:gems/cinnabar",
+    "#forge:gems/labradorite",
+    "#forge:gems/moonstone",
+    "#forge:gems/red_opal",
+    "#forge:gems/blue_opal",
+    "#forge:gems/green_opal",
+    "#forge:gems/white_opal",
+    "#forge:gems/ixiolite",
+    "#forge:gems/proustite",
+    "#forge:gems/euclase",
+    "#forge:gems/leucite",
+    "#forge:gems/carnelian",
+    "#forge:gems/benitoite",
+    "#forge:gems/diopside",
+    "#forge:gems/chalcedony",
+    "#forge:gems/pyrite",
+    "#forge:gems/tektite",
+    "#forge:gems/goldstone",
+    "#forge:gems/aura",
+    "#forge:gems/bismuth"
+  ]
+}
