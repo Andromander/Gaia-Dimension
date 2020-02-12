@@ -1,7 +1,0 @@
-{
-  "variants": {
-    "type=bottom": { "model": "gaiadimension:block/burnt_plank_slab" },
-    "type=top":    { "model": "gaiadimension:block/burnt_plank_slab_top" },
-    "type=double": { "model": "gaiadimension:block/burnt_planks" }
-  }
-}

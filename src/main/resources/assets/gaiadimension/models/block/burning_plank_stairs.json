@@ -1,8 +1,0 @@
-{
-  "parent": "block/stairs",
-  "textures": {
-    "bottom": "gaiadimension:blocks/heated_planks",
-    "top": "gaiadimension:blocks/heated_planks",
-    "side": "gaiadimension:blocks/heated_planks"
-  }
-}

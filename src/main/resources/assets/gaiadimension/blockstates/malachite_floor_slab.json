@@ -1,7 +1,0 @@
-{
-  "variants": {
-    "type=bottom": { "model": "gaiadimension:block/malachite_floor_slab" },
-    "type=top":    { "model": "gaiadimension:block/malachite_floor_slab_top" },
-    "type=double": { "model": "gaiadimension:block/malachite_floor_tiles" }
-  }
-}

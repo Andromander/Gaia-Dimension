@@ -1,6 +1,0 @@
-{
-  "parent": "block/leaves",
-  "textures": {
-    "all": "gaiadimension:blocks/aura_leaves"
-  }
-}

@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:smelting",
-  "ingredient": {
-    "item": "gaiadimension:lurmorus_meat"
-  },
-  "result": "gaiadimension:lurmorus_steak",
-  "experience": 0.2,
-  "cookingtime": 200
-}

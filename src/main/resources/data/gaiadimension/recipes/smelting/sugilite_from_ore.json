@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:smelting",
-  "ingredient": {
-    "item": "gaiadimension:sugilite_ore"
-  },
-  "result": "gaiadimension:sugilite",
-  "experience": 0.3,
-  "cookingtime": 200
-}

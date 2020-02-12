@@ -1,8 +1,0 @@
-{
-  "parent": "block/orientable",
-  "textures": {
-    "side": "gaiadimension:blocks/gaia_stone_furnace_side",
-    "top": "gaiadimension:blocks/gaia_stone_furnace_top",
-    "front": "gaiadimension:blocks/gaia_stone_furnace_front_lit"
-  }
-}

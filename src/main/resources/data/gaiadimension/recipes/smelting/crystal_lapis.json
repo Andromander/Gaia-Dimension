@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:smelting",
-  "ingredient": {
-    "item": "minecraft:lapis_lazuli"
-  },
-  "result": "gaiadimension:crystallized_lapis_lazuli",
-  "experience": 0.25,
-  "cookingtime": 200
-}

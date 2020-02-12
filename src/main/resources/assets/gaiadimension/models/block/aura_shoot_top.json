@@ -1,9 +1,9 @@
 {
   "parent": "block/block",
   "textures": {
-    "particle": "gaiadimension:blocks/aura_shoot",
-    "side": "gaiadimension:blocks/aura_shoot",
-    "end": "gaiadimension:blocks/aura_shoot_tip"
+    "particle": "gaiadimension:block/aura_shoot",
+    "side": "gaiadimension:block/aura_shoot",
+    "end": "gaiadimension:block/aura_shoot_tip"
   },
   "elements": [{
     "from": [ 5, 0, 5 ],

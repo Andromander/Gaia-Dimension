@@ -1,8 +1,0 @@
-{
-  "parent": "block/slab_top",
-  "textures": {
-    "bottom": "gaiadimension:blocks/crusty_planks",
-    "top":    "gaiadimension:blocks/crusty_planks",
-    "side":   "gaiadimension:blocks/crusty_planks"
-  }
-}

@@ -1,7 +1,7 @@
 {
   "textures": {
-    "particle": "gaiadimension:blocks/gaia_portal",
-    "portal": "gaiadimension:blocks/gaia_portal"
+    "particle": "gaiadimension:block/gaia_portal",
+    "portal": "gaiadimension:block/gaia_portal"
   },
   "elements": [
     {   "from": [ 0, 0, 6 ],

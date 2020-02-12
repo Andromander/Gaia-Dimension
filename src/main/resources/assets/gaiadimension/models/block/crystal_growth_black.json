@@ -1,6 +1,0 @@
-{
-  "parent": "block/cross",
-  "textures": {
-    "cross": "gaiadimension:blocks/crystal_growth_black"
-  }
-}

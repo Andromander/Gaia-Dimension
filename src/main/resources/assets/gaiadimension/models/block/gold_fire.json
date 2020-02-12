@@ -1,6 +1,0 @@
-{
-  "parent": "block/cross",
-  "textures": {
-    "cross": "gaiadimension:blocks/gold_fire_layer_0"
-  }
-}

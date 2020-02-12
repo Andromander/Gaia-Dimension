@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:smelting",
-  "ingredient": {
-    "item": "gaiadimension:hematite_ore"
-  },
-  "result": "gaiadimension:hematite",
-  "experience": 0.3,
-  "cookingtime": 200
-}

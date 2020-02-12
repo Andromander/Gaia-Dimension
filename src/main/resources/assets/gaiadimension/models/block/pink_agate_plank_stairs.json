@@ -1,8 +1,0 @@
-{
-  "parent": "block/stairs",
-  "textures": {
-    "bottom": "gaiadimension:blocks/pink_agate_planks",
-    "top": "gaiadimension:blocks/pink_agate_planks",
-    "side": "gaiadimension:blocks/pink_agate_planks"
-  }
-}

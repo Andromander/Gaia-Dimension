@@ -1,8 +1,0 @@
-{
-  "parent": "block/inner_stairs",
-  "textures": {
-    "bottom": "gaiadimension:blocks/malachite_pillar_end",
-    "top": "gaiadimension:blocks/malachite_pillar_end",
-    "side": "gaiadimension:blocks/malachite_pillar_side"
-  }
-}

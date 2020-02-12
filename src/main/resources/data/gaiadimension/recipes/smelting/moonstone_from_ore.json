@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:smelting",
-  "ingredient": {
-    "item": "gaiadimension:moonstone_ore"
-  },
-  "result": "gaiadimension:moonstone",
-  "experience": 0.3,
-  "cookingtime": 200
-}

@@ -1,7 +1,0 @@
-{
-  "variants": {
-    "axis=y": { "model": "gaiadimension:block/burnt_wood" },
-    "axis=z": { "model": "gaiadimension:block/burnt_wood", "x": 90 },
-    "axis=x": { "model": "gaiadimension:block/burnt_wood", "x": 90, "y": 90 }
-  }
-}

@@ -1,7 +1,0 @@
-{
-  "variants": {
-    "axis=y":  { "model": "gaiadimension:block/burnt_log" },
-    "axis=z":   { "model": "gaiadimension:block/burnt_log", "x": 90 },
-    "axis=x":   { "model": "gaiadimension:block/burnt_log", "x": 90, "y": 90 }
-  }
-}

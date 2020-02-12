@@ -1,7 +1,0 @@
-{
-  "variants": {
-    "type=bottom": { "model": "gaiadimension:block/aura_plank_slab" },
-    "type=top":    { "model": "gaiadimension:block/aura_plank_slab_top" },
-    "type=double": { "model": "gaiadimension:block/aura_planks" }
-  }
-}

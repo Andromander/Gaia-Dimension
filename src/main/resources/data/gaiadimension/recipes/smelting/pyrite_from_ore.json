@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:smelting",
-  "ingredient": {
-    "item": "gaiadimension:pyrite_ore"
-  },
-  "result": "gaiadimension:pyrite",
-  "experience": 0.3,
-  "cookingtime": 200
-}

@@ -1,7 +1,0 @@
-{
-  "parent": "gaiadimension:block/util/cube_all_2_layer",
-  "textures": {
-    "all": "gaiadimension:blocks/wasteland_stone",
-    "all2": "gaiadimension:blocks/static_stone"
-  }
-}
