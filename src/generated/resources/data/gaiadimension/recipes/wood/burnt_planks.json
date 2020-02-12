@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "gaiadimension:burnt_logs"
+    }
+  ],
+  "result": {
+    "item": "gaiadimension:burnt_planks",
+    "count": 4
+  }
+}

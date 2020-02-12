@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "gaiadimension:corrupted_varloom"
+    },
+    {
+      "item": "gaiadimension:thiscus"
+    }
+  ],
+  "result": {
+    "item": "gaiadimension:plagued_tiliey"
+  }
+}

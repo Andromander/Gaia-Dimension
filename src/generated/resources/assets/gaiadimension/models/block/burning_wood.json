@@ -1,0 +1,7 @@
+{
+  "parent": "block/cube_column",
+  "textures": {
+    "side": "gaiadimension:block/burning_log_side",
+    "end": "gaiadimension:block/burning_log_side"
+  }
+}

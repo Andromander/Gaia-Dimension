@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "stage=0": {
+      "model": "gaiadimension:block/corrupted_sapling"
+    },
+    "stage=1": {
+      "model": "gaiadimension:block/corrupted_sapling"
+    }
+  }
+}

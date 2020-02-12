@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "##",
+    "##"
+  ],
+  "key": {
+    "#": {
+      "item": "gaiadimension:blue_agate_log"
+    }
+  },
+  "result": {
+    "item": "gaiadimension:blue_agate_wood",
+    "count": 3
+  }
+}

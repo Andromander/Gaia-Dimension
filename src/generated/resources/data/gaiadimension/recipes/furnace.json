@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "# #",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "gaiadimension:gaia_cobblestone"
+    }
+  },
+  "result": {
+    "item": "gaiadimension:gaia_stone_furnace"
+  }
+}

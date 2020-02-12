@@ -1,0 +1,21 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "gaiadimension:block/boggy_soil"
+      },
+      {
+        "model": "gaiadimension:block/boggy_soil",
+        "y": 90
+      },
+      {
+        "model": "gaiadimension:block/boggy_soil",
+        "y": 180
+      },
+      {
+        "model": "gaiadimension:block/boggy_soil",
+        "y": 270
+      }
+    ]
+  }
+}

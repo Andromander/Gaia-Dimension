@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "gaiadimension:block/malachite_pillar",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "gaiadimension:block/malachite_pillar"
+    },
+    "axis=z": {
+      "model": "gaiadimension:block/malachite_pillar",
+      "x": 90
+    }
+  }
+}

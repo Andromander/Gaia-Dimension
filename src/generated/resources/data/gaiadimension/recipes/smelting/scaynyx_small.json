@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "gaiadimension:speckled_rock"
+  },
+  "result": "gaiadimension:scaynyx_ingot",
+  "experience": 0.2,
+  "cookingtime": 200
+}

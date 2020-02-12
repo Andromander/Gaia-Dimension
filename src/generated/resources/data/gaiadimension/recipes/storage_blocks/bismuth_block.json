@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "gaiadimension:bismuth_crystal"
+    }
+  },
+  "result": {
+    "item": "gaiadimension:bismuth_block",
+    "count": 3
+  }
+}

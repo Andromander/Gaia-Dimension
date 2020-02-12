@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "gaiadimension:blue_agate_planks"
+    }
+  },
+  "result": {
+    "item": "gaiadimension:blue_agate_plank_slab",
+    "count": 6
+  }
+}

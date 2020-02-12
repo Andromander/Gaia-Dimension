@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "*%*",
+    "%#%",
+    "*%*"
+  ],
+  "key": {
+    "*": {
+      "item": "gaiadimension:crystallized_lapis_lazuli"
+    },
+    "%": {
+      "item": "gaiadimension:crystallized_redstone"
+    },
+    "#": {
+      "item": "minecraft:gold_ingot"
+    }
+  },
+  "result": {
+    "item": "gaiadimension:keystone_block"
+  }
+}

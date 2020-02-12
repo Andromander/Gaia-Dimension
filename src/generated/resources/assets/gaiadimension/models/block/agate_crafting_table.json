@@ -1,0 +1,11 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "gaiadimension:block/agate_table_bottom",
+    "up": "gaiadimension:block/agate_table_top",
+    "north": "gaiadimension:block/agate_table_front",
+    "south": "gaiadimension:block/agate_table_side",
+    "east": "gaiadimension:block/agate_table_side",
+    "west": "gaiadimension:block/agate_table_side"
+  }
+}

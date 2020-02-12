@@ -1,0 +1,7 @@
+{
+  "parent": "block/cube_column",
+  "textures": {
+    "side": "gaiadimension:block/pink_agate_log_side",
+    "end": "gaiadimension:block/pink_agate_log_end"
+  }
+}

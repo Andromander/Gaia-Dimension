@@ -1,15 +1,15 @@
 package androsa.gaiadimension;
 
+import androsa.gaiadimension.data.GaiaBlockStates;
+import androsa.gaiadimension.data.GaiaItemModels;
 import androsa.gaiadimension.data.GaiaLootTables;
+import androsa.gaiadimension.data.GaiaRecipes;
 import androsa.gaiadimension.registry.*;
 import androsa.gaiadimension.world.GaiaTeleporter;
 import io.netty.buffer.Unpooled;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.entity.CreatureAttribute;
-import net.minecraft.item.Item;
 import net.minecraft.network.PacketBuffer;
-import net.minecraft.tags.ItemTags;
-import net.minecraft.tags.Tag;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.dimension.DimensionType;
@@ -52,9 +52,6 @@ public class GaiaDimensionMod {
     public static final CreatureAttribute CORRUPT = new CreatureAttribute();
 
     public static final DamageSource CORRUPTION = new DamageSource("corruption").setDamageBypassesArmor();
-
-    public static final Tag<Item> AGATE_PLANKS = new ItemTags.Wrapper(new ResourceLocation(MODID, "agate_planks"));
-    public static final Tag<Item> GEM_POUCH_ITEMS = new ItemTags.Wrapper(new ResourceLocation(MODID, "gem_pouch_items"));
 
     public GaiaDimensionMod() {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
@@ -106,8 +103,13 @@ public class GaiaDimensionMod {
 
     public void gatherData(GatherDataEvent event) {
         DataGenerator generator = event.getGenerator();
+        if (event.includeClient()) {
+            generator.addProvider(new GaiaBlockStates(generator, event.getExistingFileHelper()));
+            generator.addProvider(new GaiaItemModels(generator, event.getExistingFileHelper()));
+        }
         if (event.includeServer()) {
             generator.addProvider(new GaiaLootTables(generator));
+            generator.addProvider(new GaiaRecipes(generator));
         }
     }
 

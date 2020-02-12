@@ -1,0 +1,21 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "gaiadimension:block/corrupt_grass"
+      },
+      {
+        "model": "gaiadimension:block/corrupt_grass",
+        "y": 90
+      },
+      {
+        "model": "gaiadimension:block/corrupt_grass",
+        "y": 180
+      },
+      {
+        "model": "gaiadimension:block/corrupt_grass",
+        "y": 270
+      }
+    ]
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "parent": "block/outer_stairs",
+  "textures": {
+    "side": "gaiadimension:block/malachite_chisel_bricks",
+    "bottom": "gaiadimension:block/malachite_chisel_bricks",
+    "top": "gaiadimension:block/malachite_chisel_bricks"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "gaiadimension:cinnabar_block"
+    }
+  ],
+  "result": {
+    "item": "gaiadimension:cinnabar",
+    "count": 9
+  }
+}

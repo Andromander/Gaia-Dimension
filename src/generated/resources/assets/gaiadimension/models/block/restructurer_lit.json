@@ -1,0 +1,8 @@
+{
+  "parent": "block/orientable",
+  "textures": {
+    "side": "gaiadimension:block/restructurer_side",
+    "front": "gaiadimension:block/restructurer_front_lit",
+    "top": "gaiadimension:block/restructurer_side"
+  }
+}

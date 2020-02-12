@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "gaiadimension:benitoite"
+    }
+  },
+  "result": {
+    "item": "gaiadimension:benitoite_block",
+    "count": 3
+  }
+}

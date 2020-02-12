@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "gaiadimension:block/pyrite_wall_torch",
+      "y": 270
+    },
+    "facing=south": {
+      "model": "gaiadimension:block/pyrite_wall_torch",
+      "y": 90
+    },
+    "facing=west": {
+      "model": "gaiadimension:block/pyrite_wall_torch",
+      "y": 180
+    },
+    "facing=east": {
+      "model": "gaiadimension:block/pyrite_wall_torch"
+    }
+  }
+}

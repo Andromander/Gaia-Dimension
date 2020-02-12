@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "stage=0": {
+      "model": "gaiadimension:block/fossilized_sapling"
+    },
+    "stage=1": {
+      "model": "gaiadimension:block/fossilized_sapling"
+    }
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "gaiadimension:chalcedony"
+    }
+  },
+  "result": {
+    "item": "gaiadimension:chalcedony_block",
+    "count": 3
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "##",
+    "##"
+  ],
+  "key": {
+    "#": {
+      "item": "gaiadimension:sweet_muckball"
+    }
+  },
+  "result": {
+    "item": "gaiadimension:gummy_glitter_block"
+  }
+}

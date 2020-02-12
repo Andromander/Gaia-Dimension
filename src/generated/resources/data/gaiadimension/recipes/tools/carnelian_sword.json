@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#",
+    "#",
+    "/"
+  ],
+  "key": {
+    "#": {
+      "item": "gaiadimension:carnelian"
+    },
+    "/": {
+      "item": "gaiadimension:agate_stick"
+    }
+  },
+  "result": {
+    "item": "gaiadimension:carnelian_sword"
+  }
+}

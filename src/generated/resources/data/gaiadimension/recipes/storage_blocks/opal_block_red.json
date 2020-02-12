@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "gaiadimension:red_opal"
+    }
+  },
+  "result": {
+    "item": "gaiadimension:opal_block_red",
+    "count": 3
+  }
+}

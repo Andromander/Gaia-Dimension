@@ -1,0 +1,21 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "gaiadimension:block/gaia_stone"
+      },
+      {
+        "model": "gaiadimension:block/gaia_stone",
+        "y": 90
+      },
+      {
+        "model": "gaiadimension:block/gaia_stone",
+        "y": 180
+      },
+      {
+        "model": "gaiadimension:block/gaia_stone",
+        "y": 270
+      }
+    ]
+  }
+}

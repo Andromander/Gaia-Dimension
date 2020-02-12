@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "///",
+    "/#/",
+    "///"
+  ],
+  "key": {
+    "/": {
+      "item": "gaiadimension:reinforced_bricks"
+    },
+    "#": {
+      "item": "gaiadimension:gaia_stone_furnace"
+    }
+  },
+  "result": {
+    "item": "gaiadimension:restructurer"
+  }
+}

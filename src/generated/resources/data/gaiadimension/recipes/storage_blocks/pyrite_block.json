@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "gaiadimension:pyrite"
+    }
+  },
+  "result": {
+    "item": "gaiadimension:pyrite_block",
+    "count": 3
+  }
+}

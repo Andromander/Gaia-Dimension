@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "stage=0": {
+      "model": "gaiadimension:block/pink_agate_sapling"
+    },
+    "stage=1": {
+      "model": "gaiadimension:block/pink_agate_sapling"
+    }
+  }
+}

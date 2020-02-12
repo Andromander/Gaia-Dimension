@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "gaiadimension:opal_block_blue"
+    }
+  ],
+  "result": {
+    "item": "gaiadimension:blue_opal",
+    "count": 9
+  }
+}

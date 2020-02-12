@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "# #",
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "gaiadimension:diopside"
+    }
+  },
+  "result": {
+    "item": "gaiadimension:diopside_chestplate"
+  }
+}

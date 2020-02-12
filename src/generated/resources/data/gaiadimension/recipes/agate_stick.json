@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "gaiadimension:agate_planks"
+    }
+  ],
+  "result": {
+    "item": "gaiadimension:agate_stick",
+    "count": 4
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "gaiadimension:labradorite_block"
+    }
+  ],
+  "result": {
+    "item": "gaiadimension:labradorite",
+    "count": 9
+  }
+}

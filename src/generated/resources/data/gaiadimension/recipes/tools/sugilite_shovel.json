@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#",
+    "/",
+    "/"
+  ],
+  "key": {
+    "#": {
+      "item": "gaiadimension:sugilite"
+    },
+    "/": {
+      "item": "gaiadimension:agate_stick"
+    }
+  },
+  "result": {
+    "item": "gaiadimension:sugilite_shovel"
+  }
+}

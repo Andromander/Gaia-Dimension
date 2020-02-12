@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "gaiadimension:goldstone"
+    }
+  },
+  "result": {
+    "item": "gaiadimension:goldstone_block",
+    "count": 3
+  }
+}

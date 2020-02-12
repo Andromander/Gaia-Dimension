@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=top": {
+      "model": "gaiadimension:block/corrupted_plank_slab_top"
+    },
+    "type=bottom": {
+      "model": "gaiadimension:block/corrupted_plank_slab"
+    },
+    "type=double": {
+      "model": "gaiadimension:block/corrupted_planks"
+    }
+  }
+}

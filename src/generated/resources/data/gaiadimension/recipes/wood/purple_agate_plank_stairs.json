@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#  ",
+    "## ",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "gaiadimension:purple_agate_planks"
+    }
+  },
+  "result": {
+    "item": "gaiadimension:purple_agate_plank_stairs",
+    "count": 8
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "gaiadimension:sugilite"
+    }
+  },
+  "result": {
+    "item": "gaiadimension:sugilite_block",
+    "count": 3
+  }
+}

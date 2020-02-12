@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "gaiadimension:bismuth_block"
+    }
+  ],
+  "result": {
+    "item": "gaiadimension:bismuth_crystal",
+    "count": 9
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "gaiadimension:leucite_block"
+    }
+  ],
+  "result": {
+    "item": "gaiadimension:leucite",
+    "count": 9
+  }
+}

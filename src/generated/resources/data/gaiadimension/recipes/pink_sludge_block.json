@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "gaiadimension:pink_goo"
+    }
+  },
+  "result": {
+    "item": "gaiadimension:pink_sludge_block",
+    "count": 3
+  }
+}

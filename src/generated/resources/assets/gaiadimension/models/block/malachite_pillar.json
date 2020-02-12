@@ -1,0 +1,7 @@
+{
+  "parent": "block/cube_column",
+  "textures": {
+    "side": "gaiadimension:block/malachite_pillar_side",
+    "end": "gaiadimension:block/malachite_pillar_end"
+  }
+}

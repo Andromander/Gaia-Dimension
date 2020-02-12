@@ -1,0 +1,6 @@
+{
+  "parent": "block/cube_all",
+  "textures": {
+    "all": "gaiadimension:block/thick_glitter_block"
+  }
+}

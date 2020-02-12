@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "gaiadimension:carnelian_block"
+    }
+  ],
+  "result": {
+    "item": "gaiadimension:carnelian",
+    "count": 9
+  }
+}

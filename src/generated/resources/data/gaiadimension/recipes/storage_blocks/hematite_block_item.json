@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "gaiadimension:hematite_block"
+    }
+  ],
+  "result": {
+    "item": "gaiadimension:hematite",
+    "count": 9
+  }
+}

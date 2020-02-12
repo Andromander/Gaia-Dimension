@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "gaiadimension:sugilite_block"
+    }
+  ],
+  "result": {
+    "item": "gaiadimension:sugilite",
+    "count": 9
+  }
+}

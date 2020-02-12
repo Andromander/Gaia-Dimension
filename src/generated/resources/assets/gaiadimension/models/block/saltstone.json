@@ -1,0 +1,11 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "gaiadimension:block/salt_rock_bottom",
+    "up": "gaiadimension:block/salt_rock_top",
+    "north": "gaiadimension:block/salt_rock_side",
+    "south": "gaiadimension:block/salt_rock_side",
+    "east": "gaiadimension:block/salt_rock_side",
+    "west": "gaiadimension:block/salt_rock_side"
+  }
+}

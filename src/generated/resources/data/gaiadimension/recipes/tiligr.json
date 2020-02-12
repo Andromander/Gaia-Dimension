@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "gaiadimension:roofed_agaric"
+    },
+    {
+      "item": "gaiadimension:thiscus"
+    }
+  ],
+  "result": {
+    "item": "gaiadimension:tiligr"
+  }
+}

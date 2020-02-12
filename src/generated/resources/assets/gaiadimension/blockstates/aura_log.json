@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "gaiadimension:block/aura_log",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "gaiadimension:block/aura_log"
+    },
+    "axis=z": {
+      "model": "gaiadimension:block/aura_log",
+      "x": 90
+    }
+  }
+}

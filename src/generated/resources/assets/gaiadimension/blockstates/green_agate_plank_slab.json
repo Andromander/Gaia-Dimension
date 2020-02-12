@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=top": {
+      "model": "gaiadimension:block/green_agate_plank_slab_top"
+    },
+    "type=bottom": {
+      "model": "gaiadimension:block/green_agate_plank_slab"
+    },
+    "type=double": {
+      "model": "gaiadimension:block/green_agate_planks"
+    }
+  }
+}

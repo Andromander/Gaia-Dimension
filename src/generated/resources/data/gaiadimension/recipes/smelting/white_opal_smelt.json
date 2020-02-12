@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "gaiadimension:opal_ore_white"
+  },
+  "result": "gaiadimension:white_opal",
+  "experience": 1.0,
+  "cookingtime": 200
+}

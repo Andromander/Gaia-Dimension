@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "gaiadimension:moonstone"
+    }
+  },
+  "result": {
+    "item": "gaiadimension:moonstone_block",
+    "count": 3
+  }
+}

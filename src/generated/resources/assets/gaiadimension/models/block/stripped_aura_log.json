@@ -1,0 +1,7 @@
+{
+  "parent": "block/cube_column",
+  "textures": {
+    "side": "gaiadimension:block/stripped_aura_log_side",
+    "end": "gaiadimension:block/stripped_aura_log_end"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#/ ",
+    "# /",
+    "#/ "
+  ],
+  "key": {
+    "#": {
+      "item": "gaiadimension:twined_thread"
+    },
+    "/": {
+      "item": "gaiadimension:shiny_bone"
+    }
+  },
+  "result": {
+    "item": "gaiadimension:old_bow"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "gaiadimension:aura_logs"
+    }
+  ],
+  "result": {
+    "item": "gaiadimension:aura_planks",
+    "count": 4
+  }
+}

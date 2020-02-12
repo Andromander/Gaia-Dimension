@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "gaiadimension:tektite_block"
+    }
+  ],
+  "result": {
+    "item": "gaiadimension:tektite",
+    "count": 9
+  }
+}

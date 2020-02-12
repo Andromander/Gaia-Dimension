@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "gaiadimension:purple_agate_logs"
+    }
+  ],
+  "result": {
+    "item": "gaiadimension:purple_agate_planks",
+    "count": 4
+  }
+}

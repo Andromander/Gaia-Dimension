@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "*%*",
+    "%#%",
+    "*%*"
+  ],
+  "key": {
+    "*": {
+      "tag": "gaiadimension:agate_planks"
+    },
+    "%": {
+      "item": "gaiadimension:thick_glitter_block"
+    },
+    "#": {
+      "item": "gaiadimension:crude_storage_crate"
+    }
+  },
+  "result": {
+    "item": "gaiadimension:mega_storage_crate"
+  }
+}

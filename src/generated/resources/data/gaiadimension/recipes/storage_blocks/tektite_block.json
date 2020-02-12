@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "gaiadimension:tektite"
+    }
+  },
+  "result": {
+    "item": "gaiadimension:tektite_block",
+    "count": 3
+  }
+}

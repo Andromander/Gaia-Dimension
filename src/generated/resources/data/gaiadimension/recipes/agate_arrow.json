@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#",
+    "/",
+    "%"
+  ],
+  "key": {
+    "#": {
+      "item": "gaiadimension:sturdy_pebble"
+    },
+    "/": {
+      "item": "gaiadimension:agate_stick"
+    },
+    "%": {
+      "item": "gaiadimension:agate_fabric"
+    }
+  },
+  "result": {
+    "item": "gaiadimension:agate_arrow",
+    "count": 4
+  }
+}

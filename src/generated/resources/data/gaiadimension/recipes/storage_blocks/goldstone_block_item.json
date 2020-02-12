@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "gaiadimension:goldstone_block"
+    }
+  ],
+  "result": {
+    "item": "gaiadimension:goldstone",
+    "count": 9
+  }
+}

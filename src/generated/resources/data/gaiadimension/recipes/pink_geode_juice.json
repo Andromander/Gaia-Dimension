@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "gaiadimension:pink_geode_slice"
+    },
+    {
+      "item": "gaiadimension:sugar_crystals"
+    },
+    {
+      "item": "gaiadimension:agate_cup"
+    }
+  ],
+  "result": {
+    "item": "gaiadimension:pink_geode_juice"
+  }
+}
