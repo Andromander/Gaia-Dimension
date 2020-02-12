@@ -102,10 +102,10 @@ artifacts {
 }
 
 repositories {
-    /*maven {
+    maven {
         name = "tterrag maven"
         url = 'http://maven.tterrag.com/'
-    }*/
+    }
     maven {
         // location of the maven that hosts JEI files
         name = "Progwml6 maven"
