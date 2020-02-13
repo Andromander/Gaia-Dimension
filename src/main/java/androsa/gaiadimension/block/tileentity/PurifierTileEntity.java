@@ -3,7 +3,6 @@ package androsa.gaiadimension.block.tileentity;
 import androsa.gaiadimension.block.PurifierBlock;
 import androsa.gaiadimension.block.container.PurifierContainer;
 import androsa.gaiadimension.recipe.PurifierRecipe;
-import androsa.gaiadimension.recipe.PurifierRecipe;
 import androsa.gaiadimension.registry.*;
 import androsa.gaiadimension.registry.ModBlocks;
 import com.google.common.collect.Lists;
@@ -483,7 +482,7 @@ public class PurifierTileEntity extends LockableTileEntity implements ISidedInve
         while(amount > 0) {
             int j = ExperienceOrbEntity.getXPSplit(amount);
             amount -= j;
-            player.world.addEntity(new ExperienceOrbEntity(player.world, player.posX, player.posY + 0.5D, player.posZ + 0.5D, j));
+            player.world.addEntity(new ExperienceOrbEntity(player.world, player.getX(), player.getY() + 0.5D, player.getZ() + 0.5D, j));
         }
     }
 
