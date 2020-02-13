@@ -1,10 +1,7 @@
 package androsa.gaiadimension.particle;
 
-import androsa.gaiadimension.GaiaDimensionMod;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.*;
 import net.minecraft.particles.BasicParticleType;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
@@ -24,7 +21,7 @@ public class PurifierFireParticle extends SpriteTexturedParticle {
         this.particleGreen = 1.0F;
         this.particleBlue = 1.0F;
         this.maxAge = (int)(8.0D / (Math.random() * 0.8D + 0.2D)) + 4;
-        setSprite(Minecraft.getInstance().getTextureMap().getAtlasSprite(new ResourceLocation(GaiaDimensionMod.MODID, "particle/green_fire").toString()));
+        //setSprite(Minecraft.getInstance().getTextureMap().getAtlasSprite(new ResourceLocation(GaiaDimensionMod.MODID, "particle/green_fire").toString()));
     }
 
     @Override
