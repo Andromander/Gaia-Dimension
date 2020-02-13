@@ -15,6 +15,7 @@ import net.minecraft.inventory.container.Container;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
@@ -55,19 +56,19 @@ public class LargeCrateBlock extends BasicGaiaBlock {
 
     @Override
     @Deprecated
-    public boolean onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
+    public ActionResultType onUse(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
         if (worldIn.isRemote) {
-            return true;
+            return ActionResultType.SUCCESS;
         } else if (player.isSpectator()) {
-            return true;
+            return ActionResultType.SUCCESS;
         } else {
             TileEntity tileentity = worldIn.getTileEntity(pos);
             if (tileentity instanceof LargeCrateTileEntity) {
                 LargeCrateTileEntity largecratetileentity = (LargeCrateTileEntity)tileentity;
                 player.openContainer(largecratetileentity);
-                return true;
+                return ActionResultType.SUCCESS;
             } else {
-                return false;
+                return ActionResultType.PASS;
             }
         }
     }

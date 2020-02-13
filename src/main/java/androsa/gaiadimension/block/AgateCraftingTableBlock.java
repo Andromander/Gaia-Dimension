@@ -7,6 +7,7 @@ import net.minecraft.block.material.MaterialColor;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.container.INamedContainerProvider;
 import net.minecraft.inventory.container.SimpleNamedContainerProvider;
+import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
 import net.minecraft.util.IWorldPosCallable;
 import net.minecraft.util.math.BlockPos;
@@ -25,13 +26,14 @@ public class AgateCraftingTableBlock extends BasicGaiaBlock {
 
     @Override
     @Deprecated
-    public boolean onBlockActivated(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockRayTraceResult result) {
+    public ActionResultType onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockRayTraceResult result) {
         player.openContainer(state.getContainer(world, pos));
-        return true;
+        return ActionResultType.SUCCESS;
     }
 
     @Override
     @Deprecated
     public INamedContainerProvider getContainer(BlockState state, World worldIn, BlockPos pos) {
         return new SimpleNamedContainerProvider((id, inventory, worldPos) -> new AgateCraftingTableContainer(id, inventory, IWorldPosCallable.of(worldIn, pos)), NAME);
-    }}
+    }
+}

@@ -6,13 +6,10 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 
 public class GummyGlitterBlock extends BreakableBlock {
 
@@ -25,7 +22,7 @@ public class GummyGlitterBlock extends BreakableBlock {
         if (entityIn.isSneaking()) {
             super.onFallenUpon(worldIn, pos, entityIn, fallDistance);
         } else {
-            entityIn.fall(fallDistance, 0.0F);
+            entityIn.handleFallDamage(fallDistance, 0.0F);
         }
     }
 
@@ -54,9 +51,10 @@ public class GummyGlitterBlock extends BreakableBlock {
         super.onEntityWalk(worldIn, pos, entityIn);
     }
 
-    @Override
-    @OnlyIn(Dist.CLIENT)
-    public BlockRenderLayer getRenderLayer() {
-        return BlockRenderLayer.TRANSLUCENT;
-    }
+    //TODO: RenderTypeLookup
+//    @Override
+//    @OnlyIn(Dist.CLIENT)
+//    public BlockRenderLayer getRenderLayer() {
+//        return BlockRenderLayer.TRANSLUCENT;
+//    }
 }

@@ -18,7 +18,7 @@ import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReader;
-import net.minecraft.world.World;
+import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.common.PlantType;
@@ -95,7 +95,7 @@ public class AuraShootBlock extends Block implements IPlantable {
 
     @Override
     @Deprecated
-    public void tick(BlockState state, World worldIn, BlockPos pos, Random rand) {
+    public void scheduledTick(BlockState state, ServerWorld worldIn, BlockPos pos, Random rand) {
         if (!worldIn.isAreaLoaded(pos, 1)) return;
         BlockPos blockpos = pos.up();
 

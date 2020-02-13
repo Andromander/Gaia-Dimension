@@ -5,10 +5,10 @@ import androsa.gaiadimension.registry.ModBlocks;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.material.MaterialColor;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.ConfiguredFeature;
 import net.minecraft.world.gen.feature.DecoratedFeatureConfig;
 import net.minecraft.world.gen.feature.FlowersFeature;
+import net.minecraft.world.server.ServerWorld;
 
 import java.util.List;
 import java.util.Random;
@@ -20,7 +20,7 @@ public class GlitterGrassBlock extends AbstractGaiaGrassBlock {
     }
 
     @Override
-    public void grow(World worldIn, Random rand, BlockPos pos, BlockState state) {
+    public void grow(ServerWorld worldIn, Random rand, BlockPos pos, BlockState state) {
         BlockPos blockpos = pos.up();
         BlockState normalGrowth = ModBlocks.crystal_growth.get().getDefaultState();
         BlockState mutantGrowth = ModBlocks.crystal_growth_mutant.get().getDefaultState();
@@ -39,15 +39,17 @@ public class GlitterGrassBlock extends AbstractGaiaGrassBlock {
 
                     BlockState blockstate1;
                     if (rand.nextInt(8) == 0) {
-                        List<ConfiguredFeature<?>> list = worldIn.getBiome(blockpos1).getFlowers();
+                        List<ConfiguredFeature<?, ?>> list = worldIn.getBiome(blockpos1).getFlowers();
                         if (list.isEmpty()) {
                             break;
                         }
 
-                        blockstate1 = ((FlowersFeature)((DecoratedFeatureConfig)(list.get(0)).config).feature.feature).getRandomFlower(rand, blockpos1);
+                        ConfiguredFeature<?, ?> feature0 = ((DecoratedFeatureConfig)(list.get(0)).config).feature;
+                        blockstate1 = ((FlowersFeature)feature0.feature).getFlowerToPlace(rand, blockpos1, feature0.config);
 
                         if (list.get(1) != null && rand.nextInt(3) == 0) {
-                            blockstate1 = ((FlowersFeature)((DecoratedFeatureConfig)(list.get(1)).config).feature.feature).getRandomFlower(rand, blockpos1);
+                            ConfiguredFeature<?, ?> feature1 = ((DecoratedFeatureConfig)(list.get(1)).config).feature;
+                            blockstate1 = ((FlowersFeature)feature1.feature).getFlowerToPlace(rand, blockpos1, feature1.config);
                         }
                     } else {
                         if (worldIn.getBiome(pos) instanceof MutantAgateWildwoodBiome) {

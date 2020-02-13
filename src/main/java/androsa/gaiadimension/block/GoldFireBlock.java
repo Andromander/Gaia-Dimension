@@ -18,6 +18,7 @@ import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.world.*;
 import net.minecraft.world.dimension.DimensionType;
+import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
@@ -57,7 +58,7 @@ public class GoldFireBlock extends Block {
 
     @Override
     @Deprecated
-    public void tick(BlockState state, World worldIn, BlockPos pos, Random random) {
+    public void scheduledTick(BlockState state, ServerWorld worldIn, BlockPos pos, Random random) {
         if (worldIn.getGameRules().getBoolean(GameRules.DO_FIRE_TICK)) {
             if (!worldIn.isAreaLoaded(pos, 2)) return;
             if (!state.isValidPosition(worldIn, pos)) {
@@ -89,7 +90,7 @@ public class GoldFireBlock extends Block {
                     }
                 }
 
-                BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
+                BlockPos.Mutable blockpos$mutableblockpos = new BlockPos.Mutable();
 
                 for(int l = -1; l <= 1; ++l) {
                     for(int i1 = -1; i1 <= 1; ++i1) {
@@ -138,11 +139,12 @@ public class GoldFireBlock extends Block {
         }
     }
 
-    @Override
-    @OnlyIn(Dist.CLIENT)
-    public BlockRenderLayer getRenderLayer() {
-        return BlockRenderLayer.CUTOUT;
-    }
+    //TODO: RenderTypeLookup
+//    @Override
+//    @OnlyIn(Dist.CLIENT)
+//    public BlockRenderLayer getRenderLayer() {
+//        return BlockRenderLayer.CUTOUT;
+//    }
 
     @Override
     protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {

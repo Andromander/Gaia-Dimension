@@ -108,11 +108,12 @@ public class GaiaPortalBlock extends Block {
         return !flag && facingState.getBlock() != this && !(new GaiaPortalBlock.Size(worldIn, currentPos, directionAxis1)).canCreatePortal() ? Blocks.AIR.getDefaultState() : super.updatePostPlacement(stateIn, facing, facingState, worldIn, currentPos, facingPos);
     }
 
-    @Override
-    @OnlyIn(Dist.CLIENT)
-    public BlockRenderLayer getRenderLayer() {
-        return BlockRenderLayer.TRANSLUCENT;
-    }
+    //TODO: RenderTypeLookup
+//    @Override
+//    @OnlyIn(Dist.CLIENT)
+//    public BlockRenderLayer getRenderLayer() {
+//        return BlockRenderLayer.TRANSLUCENT;
+//    }
 
     @Override
     @Deprecated
@@ -153,15 +154,15 @@ public class GaiaPortalBlock extends Block {
         GaiaTeleporter gaiaTeleporter = new GaiaTeleporter(serverdest);
         WorldInfo worldinfo = entity.world.getWorldInfo();
         NetworkHooks.sendDimensionDataPacket(entity.connection.netManager, entity);
-        entity.connection.sendPacket(new SRespawnPacket(destination, worldinfo.getGenerator(), entity.interactionManager.getGameType()));
+        entity.connection.sendPacket(new SRespawnPacket(destination, WorldInfo.sha256Hash(worldinfo.getSeed()), worldinfo.getGenerator(), entity.interactionManager.getGameType()));
         entity.connection.sendPacket(new SServerDifficultyPacket(worldinfo.getDifficulty(), worldinfo.isDifficultyLocked()));
         PlayerList playerlist = entity.server.getPlayerList();
         playerlist.updatePermissionLevel(entity);
         serverworld.removeEntity(entity, true); //Forge: the player entity is moved to the new world, NOT cloned. So keep the data alive with no matching invalidate call.
         entity.revive();
-        double x = entity.posX;
-        double y = entity.posY;
-        double z = entity.posZ;
+        double x = entity.getX();
+        double y = entity.getY();
+        double z = entity.getZ();
         float rotate = entity.rotationPitch;
         float yaw = entity.rotationYaw;
 
@@ -189,7 +190,7 @@ public class GaiaPortalBlock extends Block {
         entity.setWorld(serverdest);
         serverdest.func_217447_b(entity);
         CriteriaTriggers.CHANGED_DIMENSION.trigger(entity, dimensiontype, destination);
-        entity.connection.setPlayerLocation(entity.posX + 0.5D, entity.posY - 2.0D, entity.posZ + 0.5D, yaw, rotate);
+        entity.connection.setPlayerLocation(entity.getX() + 0.5D, entity.getY() - 2.0D, entity.getZ() + 0.5D, yaw, rotate);
         entity.interactionManager.setWorld(serverdest);
         entity.connection.sendPacket(new SPlayerAbilitiesPacket(entity.abilities));
         playerlist.sendWorldInfo(entity, serverdest);

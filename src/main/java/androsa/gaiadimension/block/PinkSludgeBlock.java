@@ -21,7 +21,7 @@ public class PinkSludgeBlock extends BasicGaiaBlock {
         if (entityIn.isSneaking()) {
             super.onFallenUpon(worldIn, pos, entityIn, fallDistance);
         } else {
-            entityIn.fall(fallDistance, 0.0F);
+            entityIn.handleFallDamage(fallDistance, 0.0F);
         }
     }
 
