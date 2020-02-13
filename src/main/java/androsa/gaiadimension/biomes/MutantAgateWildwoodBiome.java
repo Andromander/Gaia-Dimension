@@ -41,13 +41,13 @@ public class MutantAgateWildwoodBiome extends BaseGaiaBiome {
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public int getGrassColor(BlockPos pos) {
+    public int getGrassColorAt(double p_225528_1_, double p_225528_3_) {
         return 0xD4D7B0;
     }
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public int getFoliageColor(BlockPos pos) {
+    public int getFoliageColor() {
         return 0xD4D7B0;
     }
 }

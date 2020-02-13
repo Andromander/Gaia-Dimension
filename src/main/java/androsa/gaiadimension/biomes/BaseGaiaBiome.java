@@ -5,7 +5,6 @@ import androsa.gaiadimension.registry.ModEntities;
 import androsa.gaiadimension.registry.GaiaSkyColors;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.surfacebuilders.SurfaceBuilder;
 import net.minecraft.world.gen.surfacebuilders.SurfaceBuilderConfig;
@@ -55,13 +54,13 @@ public abstract class BaseGaiaBiome extends Biome {
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public int getGrassColor(BlockPos pos) {
+    public int getGrassColorAt(double p_225528_1_, double p_225528_3_) {
         return 0xF2A3B4;
     }
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public int getFoliageColor(BlockPos pos) {
+    public int getFoliageColor() {
         return 0xF2A3B4;
     }
 }

@@ -3,7 +3,6 @@ package androsa.gaiadimension.biomes;
 import androsa.gaiadimension.registry.GaiaBiomeFeatures;
 import androsa.gaiadimension.registry.ModEntities;
 import net.minecraft.entity.EntityClassification;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.gen.surfacebuilders.SurfaceBuilder;
 import net.minecraft.world.gen.surfacebuilders.SurfaceBuilderConfig;
 import net.minecraftforge.api.distmarker.Dist;
@@ -36,13 +35,13 @@ public class FossilWoodlandBiome extends BaseGaiaBiome {
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public int getGrassColor(BlockPos pos) {
+    public int getGrassColorAt(double p_225528_1_, double p_225528_3_) {
         return 0xBBA779;
     }
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public int getFoliageColor(BlockPos pos) {
+    public int getFoliageColor() {
         return 0xBBA779;
     }
 }
