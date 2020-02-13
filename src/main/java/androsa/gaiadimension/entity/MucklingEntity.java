@@ -52,8 +52,8 @@ public class MucklingEntity extends SlimeEntity {
     }
 
     @Override
-    protected int getAttackStrength() {
-        return super.getAttackStrength() + 3;
+    protected float getDamageAmount() {
+        return super.getDamageAmount() + 3;
     }
 
     @Override
@@ -65,8 +65,8 @@ public class MucklingEntity extends SlimeEntity {
             float f2 = MathHelper.sin(f) * (float) i * 0.5F * f1;
             float f3 = MathHelper.cos(f) * (float) i * 0.5F * f1;
             World world = this.world;
-            double d0 = this.posX + (double) f2;
-            double d1 = this.posZ + (double) f3;
+            double d0 = this.getX() + (double) f2;
+            double d1 = this.getZ() + (double) f3;
             BlockState state = ModBlocks.gummy_glitter_block.get().getDefaultState();
             world.addParticle(new BlockParticleData(ParticleTypes.BLOCK, state), d0, this.getBoundingBox().minY, d1, 0.0D, 0.0D, 0.0D);
         }

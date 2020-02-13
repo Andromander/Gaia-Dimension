@@ -92,7 +92,7 @@ public class NomadicLagrahkEntity extends CreatureEntity {
 
     @Override
     public int getMaxSpawnedInChunk() {
-        Biome biome = world.getBiome(new BlockPos(posX, posY, posZ));
+        Biome biome = world.getBiome(new BlockPos(getX(), getY(), getZ()));
 
         if (biome instanceof SaltDunesBiome || biome instanceof StaticWastelandBiome || biome instanceof VolcaniclandsBiome) {
             return 4;
@@ -107,12 +107,12 @@ public class NomadicLagrahkEntity extends CreatureEntity {
                 || block == ModBlocks.wasteland_stone.get()
                 || block == ModBlocks.volcanic_rock.get()
                 || block == ModBlocks.salt.get())
-                && world.getLightSubtracted(pos, 0) > 8;
+                && world.getBaseLightLevel(pos, 0) > 8;
     }
 
     @Override
     public ILivingEntityData onInitialSpawn(IWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
-        Biome biome = worldIn.getBiome(new BlockPos(posX, posY, posZ));
+        Biome biome = worldIn.getBiome(new BlockPos(getX(), getY(), getZ()));
 
         if (biome instanceof SaltDunesBiome) {
             setLagrahkVariant(1);

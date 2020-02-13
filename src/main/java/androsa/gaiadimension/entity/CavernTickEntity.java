@@ -41,10 +41,10 @@ public class CavernTickEntity extends MonsterEntity {
         this.getAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(1.0D);
     }
 
-    @Override
-    protected boolean canTriggerWalking() {
-        return false;
-    }
+//    @Override
+//    protected boolean canTriggerWalking() {
+//        return false;
+//    }
 
     @Override
     protected SoundEvent getAmbientSound() {

@@ -52,10 +52,10 @@ public class ShallowArenthisEntity extends WaterMobEntity {
         this.getAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(15.0D);
     }
 
-    @Override
-    protected boolean canTriggerWalking() {
-        return false;
-    }
+//    @Override
+//    protected boolean canTriggerWalking() {
+//        return false;
+//    }
 
     @Override
     public void livingTick() {

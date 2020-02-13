@@ -53,10 +53,10 @@ public class MineralArenthisEntity extends WaterMobEntity {
         return this.getHeight() * 0.85F;
     }
 
-    @Override
-    protected boolean canTriggerWalking() {
-        return false;
-    }
+//    @Override
+//    protected boolean canTriggerWalking() {
+//        return false;
+//    }
 
     @Override
     public void livingTick() {

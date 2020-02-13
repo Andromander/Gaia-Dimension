@@ -13,8 +13,6 @@ import net.minecraft.world.Difficulty;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 
 import java.util.Random;
 
@@ -77,11 +75,11 @@ public class PrimalBeastEntity extends MonsterEntity {
         return 1.0F;
     }
 
-    @Override
-    @OnlyIn(Dist.CLIENT)
-    public int getBrightnessForRender() {
-        return 15728880;
-    }
+//    @Override
+//    @OnlyIn(Dist.CLIENT)
+//    public int getBrightnessForRender() {
+//        return 15728880;
+//    }
 
     @Override
     public float getBlockPathWeight(BlockPos pos) {
@@ -99,7 +97,7 @@ public class PrimalBeastEntity extends MonsterEntity {
 
     @Override
     public boolean isNotColliding(IWorldReader world) {
-        return world.checkNoEntityCollision(this);
+        return world.intersectsEntities(this);
     }
 
     @Override

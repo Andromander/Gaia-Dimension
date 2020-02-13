@@ -40,7 +40,7 @@ public class ShalurkerEntity extends MonsterEntity {
     public void livingTick() {
         if (this.world.isDaytime() && !this.world.isRemote) {
             float f = this.getBrightness();
-            BlockPos blockpos = this.getRidingEntity() instanceof BoatEntity ? (new BlockPos(this.posX, (double)Math.round(this.posY), this.posZ)).up() : new BlockPos(this.posX, (double)Math.round(this.posY), this.posZ);
+            BlockPos blockpos = this.getRidingEntity() instanceof BoatEntity ? (new BlockPos(this.getX(), (double)Math.round(this.getY()), this.getZ())).up() : new BlockPos(this.getX(), (double)Math.round(this.getY()), this.getZ());
 
             if (f > 0.5F && this.rand.nextFloat() * 30.0F < (f - 0.4F) * 2.0F && this.world.canBlockSeeSky(blockpos)) {
                 this.setFire(8);

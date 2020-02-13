@@ -42,7 +42,7 @@ public class ThrownPebbleEntity extends ProjectileItemEntity {
             IParticleData iparticledata = this.func_213887_n();
 
             for(int i = 0; i < 8; ++i) {
-                this.world.addParticle(iparticledata, this.posX, this.posY, this.posZ, 0.0D, 0.0D, 0.0D);
+                this.world.addParticle(iparticledata, this.getX(), this.getY(), this.getZ(), 0.0D, 0.0D, 0.0D);
             }
         }
 

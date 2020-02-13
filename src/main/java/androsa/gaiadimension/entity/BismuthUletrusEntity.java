@@ -81,7 +81,7 @@ public class BismuthUletrusEntity extends CreatureEntity {
     }
 
     public static boolean canSpawnHere(EntityType<BismuthUletrusEntity> entity, IWorld world, SpawnReason spawn, BlockPos pos, Random random) {
-        return world.getBlockState(pos.down()).getBlock() == ModBlocks.murky_grass.get() || world.getBlockState(pos.down()).getBlock() == ModBlocks.impure_sludge.get() && world.getLightSubtracted(pos, 0) > 8;
+        return world.getBlockState(pos.down()).getBlock() == ModBlocks.murky_grass.get() || world.getBlockState(pos.down()).getBlock() == ModBlocks.impure_sludge.get() && world.getBaseLightLevel(pos, 0) > 8;
     }
 
     @Override
