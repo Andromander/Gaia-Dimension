@@ -36,9 +36,9 @@ public class GaiaChampSwordItem extends SwordItem {
     public boolean onLeftClickEntity(ItemStack stack, PlayerEntity player, Entity entity) {
         if (player.world.isRemote) {
             for (int var1 = 0; var1 < 20; ++var1) {
-                double px = entity.posX + random.nextFloat() * entity.getWidth() * 2.0F - entity.getWidth();
-                double py = entity.posY + random.nextFloat() * entity.getHeight();
-                double pz = entity.posZ + random.nextFloat() * entity.getWidth() * 2.0F - entity.getWidth();
+                double px = entity.getX() + random.nextFloat() * entity.getWidth() * 2.0F - entity.getWidth();
+                double py = entity.getY() + random.nextFloat() * entity.getHeight();
+                double pz = entity.getZ() + random.nextFloat() * entity.getWidth() * 2.0F - entity.getWidth();
                 entity.world.addParticle(new BlockParticleData(ParticleTypes.BLOCK, ModBlocks.gaia_portal.get().getDefaultState()), px, py, pz, 1, 1, 1);
             }
         }
