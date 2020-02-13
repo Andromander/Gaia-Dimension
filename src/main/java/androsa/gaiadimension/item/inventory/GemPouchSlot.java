@@ -1,6 +1,7 @@
 package androsa.gaiadimension.item.inventory;
 
 import androsa.gaiadimension.GaiaDimensionMod;
+import androsa.gaiadimension.registry.GaiaTags;
 import androsa.gaiadimension.registry.ModItems;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.container.Slot;
@@ -15,6 +16,6 @@ public class GemPouchSlot extends Slot {
 
     @Override
     public boolean isItemValid(ItemStack stack) {
-        return (GaiaDimensionMod.GEM_POUCH_ITEMS.contains(stack.getItem()));
+        return (GaiaTags.GEM_POUCH_ITEMS.contains(stack.getItem()));
     }
 }
