@@ -1,6 +1,7 @@
 package androsa.gaiadimension.world.gen.feature;
 
 import androsa.gaiadimension.registry.ModBlocks;
+import androsa.gaiadimension.world.gen.config.FeatureHeightConfig;
 import com.mojang.datafixers.Dynamic;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -10,24 +11,20 @@ import net.minecraft.world.gen.ChunkGenerator;
 import net.minecraft.world.gen.GenerationSettings;
 import net.minecraft.world.gen.IWorldGenerationReader;
 import net.minecraft.world.gen.feature.Feature;
-import net.minecraft.world.gen.feature.NoFeatureConfig;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.Random;
 import java.util.function.Function;
 
 @ParametersAreNonnullByDefault
-public class BismuthSpireFeature extends Feature<NoFeatureConfig> {
+public class BismuthSpireFeature<T extends FeatureHeightConfig> extends Feature<T> {
 
-    private final int startHeight;
-
-    public BismuthSpireFeature(Function<Dynamic<?>, ? extends NoFeatureConfig> configIn, int startHeightIn) {
+    public BismuthSpireFeature(Function<Dynamic<?>, T> configIn) {
         super(configIn);
-        this.startHeight = startHeightIn;
     }
 
     @Override
-    public boolean place(IWorld worldIn, ChunkGenerator<? extends GenerationSettings> generator, Random rand, BlockPos position, NoFeatureConfig config) {
+    public boolean place(IWorld worldIn, ChunkGenerator<? extends GenerationSettings> generator, Random rand, BlockPos position, T config) {
         for (int cx = 0; cx < 3; cx++) {
             for (int cz = 0; cz < 3; cz++) {
                 BlockPos pos = position.add(cx - 1, 0, cz - 1);
@@ -42,7 +39,7 @@ public class BismuthSpireFeature extends Feature<NoFeatureConfig> {
             }
         }
 
-        int height = startHeight + rand.nextInt(4);
+        int height = config.startHeight + rand.nextInt(4);
         int heightA = height - rand.nextInt(4) - 2;
         int heightD = height / 2  - (rand.nextInt(5) - 2);
         int heightE = rand.nextInt(3);

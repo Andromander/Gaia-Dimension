@@ -15,16 +15,16 @@ import java.util.Random;
 import java.util.function.Function;
 
 @ParametersAreNonnullByDefault
-public class BismuthGeyserFeature extends Feature<NoFeatureConfig> {
+public class BismuthGeyserFeature<T extends NoFeatureConfig> extends Feature<T> {
 
     private static final Block GRASS = ModBlocks.murky_grass.get();
 
-    public BismuthGeyserFeature(Function<Dynamic<?>, ? extends NoFeatureConfig> configIn) {
+    public BismuthGeyserFeature(Function<Dynamic<?>, T> configIn) {
         super(configIn);
     }
 
     @Override
-    public boolean place(IWorld worldIn, ChunkGenerator<? extends GenerationSettings> generator, Random rand, BlockPos position, NoFeatureConfig config) {
+    public boolean place(IWorld worldIn, ChunkGenerator<? extends GenerationSettings> generator, Random rand, BlockPos position, T config) {
         for (int cx = 0; cx < 5; cx++) {
             for (int cz = 0; cz < 5; cz++) {
                 BlockPos pos = position.add(cx - 2, 0, cz - 2);

@@ -1,15 +1,13 @@
 package androsa.gaiadimension.world.gen.feature;
 
 import androsa.gaiadimension.registry.ModBlocks;
+import androsa.gaiadimension.world.gen.config.GaiaTreeFeatureConfig;
 import com.mojang.datafixers.Dynamic;
 import net.minecraft.block.BlockState;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MutableBoundingBox;
-import net.minecraft.world.IWorldWriter;
 import net.minecraft.world.gen.IWorldGenerationReader;
 import net.minecraft.world.gen.feature.AbstractTreeFeature;
-import net.minecraft.world.gen.feature.NoFeatureConfig;
-import net.minecraftforge.common.IPlantable;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.Random;
@@ -17,17 +15,16 @@ import java.util.Set;
 import java.util.function.Function;
 
 @ParametersAreNonnullByDefault
-public class FieryAgateTreeFeature extends AbstractTreeFeature<NoFeatureConfig> {
+public class FieryAgateTreeFeature<T extends GaiaTreeFeatureConfig> extends AbstractTreeFeature<T> {
     private static final BlockState TRUNK = ModBlocks.burning_log.get().getDefaultState();
     private static final BlockState LEAF = ModBlocks.burning_leaves.get().getDefaultState();
 
-    public FieryAgateTreeFeature(Function<Dynamic<?>, ? extends NoFeatureConfig> configIn, boolean flag) {
-        super(configIn, flag);
-        this.setSapling((IPlantable)ModBlocks.burning_sapling.get());
+    public FieryAgateTreeFeature(Function<Dynamic<?>, T> configIn) {
+        super(configIn);
     }
 
     @Override
-    public boolean place(Set<BlockPos> changedBlocks, IWorldGenerationReader worldIn, Random rand, BlockPos position, MutableBoundingBox boundingBox) {
+    protected boolean generate(IWorldGenerationReader worldIn, Random rand, BlockPos position, Set<BlockPos> logPos, Set<BlockPos> leavesPos, MutableBoundingBox boundingBox, T config) {
         int height = rand.nextInt(3) + rand.nextInt(3) + 5;
         boolean flag = true;
 
@@ -43,7 +40,7 @@ public class FieryAgateTreeFeature extends AbstractTreeFeature<NoFeatureConfig> 
                     k = 2;
                 }
 
-                BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
+                BlockPos.Mutable blockpos$mutableblockpos = new BlockPos.Mutable();
 
                 for (int cx = position.getX() - k; cx <= position.getX() + k && flag; ++cx) {
                     for (int cz = position.getZ() - k; cz <= position.getZ() + k && flag; ++cz) {
@@ -60,7 +57,7 @@ public class FieryAgateTreeFeature extends AbstractTreeFeature<NoFeatureConfig> 
 
             if (!flag) {
                 return false;
-            } else if (isSoil(worldIn, position.down(), getSapling()) && position.getY() < worldIn.getMaxHeight() - height - 1) {
+            } else if (isSoil(worldIn, position.down(), config.getSapling()) && position.getY() < worldIn.getMaxHeight() - height - 1) {
                 this.setDirtAt(worldIn, position.down(), position);
                 int posX = position.getX();
                 int posZ = position.getZ();
@@ -71,7 +68,7 @@ public class FieryAgateTreeFeature extends AbstractTreeFeature<NoFeatureConfig> 
 
                     BlockPos blockpos = new BlockPos(posX, i2, posZ);
                     if (isAirOrLeaves(worldIn, blockpos)) {
-                        this.placeLogAt(changedBlocks, worldIn, blockpos, boundingBox);
+                        this.setLogBlockState(worldIn, rand, blockpos, logPos, boundingBox, config);
                         k1 = i2;
                     }
                 }
@@ -80,7 +77,7 @@ public class FieryAgateTreeFeature extends AbstractTreeFeature<NoFeatureConfig> 
                 for (int j3 = -2; j3 <= 2; ++j3) {
                     for (int i4 = -2; i4 <= 2; ++i4) {
                         if (Math.abs(j3) != 2 || Math.abs(i4) != 2){
-                            this.placeLeafAt(changedBlocks, worldIn, blockpos2.add(j3, 0, i4), boundingBox);
+                            this.setLeavesBlockState(worldIn, rand, blockpos2.add(j3, 0, i4), leavesPos, boundingBox, config);
                         }
                     }
                 }
@@ -88,7 +85,7 @@ public class FieryAgateTreeFeature extends AbstractTreeFeature<NoFeatureConfig> 
                 blockpos2 = blockpos2.up();
                 for (int k3 = -1; k3 <= 1; ++k3) {
                     for (int j4 = -1; j4 <= 1; ++j4) {
-                        this.placeLeafAt(changedBlocks, worldIn, blockpos2.add(k3, 0, j4), boundingBox);
+                        this.setLeavesBlockState(worldIn, rand, blockpos2.add(k3, 0, j4), leavesPos, boundingBox, config);
                     }
                 }
 
@@ -98,16 +95,6 @@ public class FieryAgateTreeFeature extends AbstractTreeFeature<NoFeatureConfig> 
             }
         } else {
             return false;
-        }
-    }
-
-    private void placeLogAt(Set<BlockPos> setPos, IWorldWriter writer, BlockPos pos, MutableBoundingBox boundingBox) {
-        this.setLogState(setPos, writer, pos, TRUNK, boundingBox);
-    }
-
-    private void placeLeafAt(Set<BlockPos> worldIn, IWorldGenerationReader writer, BlockPos pos, MutableBoundingBox boundingBox) {
-        if (isAirOrLeaves(writer, pos)) {
-            this.setLogState(worldIn, writer, pos, LEAF, boundingBox);
         }
     }
 }

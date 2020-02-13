@@ -15,14 +15,14 @@ import java.util.Random;
 import java.util.function.Function;
 
 @ParametersAreNonnullByDefault
-public class BogPatchFeature extends Feature<SphereReplaceConfig> {
+public class BogPatchFeature<T extends SphereReplaceConfig> extends Feature<T> {
 
-    public BogPatchFeature(Function<Dynamic<?>, ? extends SphereReplaceConfig> configIn) {
+    public BogPatchFeature(Function<Dynamic<?>, T> configIn) {
         super(configIn);
     }
 
     @Override
-    public boolean place(IWorld world, ChunkGenerator<? extends GenerationSettings> generator, Random random, BlockPos pos, SphereReplaceConfig config) {
+    public boolean place(IWorld world, ChunkGenerator<? extends GenerationSettings> generator, Random random, BlockPos pos, T config) {
         int range = random.nextInt(4 - 2) + 2;
         int yRange = 1;
 

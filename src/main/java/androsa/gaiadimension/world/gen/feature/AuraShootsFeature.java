@@ -16,16 +16,16 @@ import java.util.Random;
 import java.util.function.Function;
 
 @ParametersAreNonnullByDefault
-public class AuraShootsFeature extends Feature<NoFeatureConfig> {
+public class AuraShootsFeature<T extends NoFeatureConfig> extends Feature<T> {
 
     private static final BlockState AURA_SHOOT = ModBlocks.aura_shoot.get().getDefaultState();
 
-    public AuraShootsFeature(Function<Dynamic<?>, ? extends NoFeatureConfig> configIn) {
+    public AuraShootsFeature(Function<Dynamic<?>, T> configIn) {
         super(configIn);
     }
 
     @Override
-    public boolean place(IWorld worldIn, ChunkGenerator<? extends GenerationSettings> generator, Random rand, BlockPos position, NoFeatureConfig config) {
+    public boolean place(IWorld worldIn, ChunkGenerator<? extends GenerationSettings> generator, Random rand, BlockPos position, T config) {
 
         for (int i = 0; i < 20; ++i) {
             BlockPos blockpos = position.add(rand.nextInt(4) - rand.nextInt(4), 0, rand.nextInt(4) - rand.nextInt(4));

@@ -1,6 +1,7 @@
 package androsa.gaiadimension.world.gen.feature;
 
 import androsa.gaiadimension.registry.ModBlocks;
+import androsa.gaiadimension.world.gen.config.GaiaTreeFeatureConfig;
 import com.mojang.datafixers.Dynamic;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.RotatedPillarBlock;
@@ -10,24 +11,22 @@ import net.minecraft.util.math.MutableBoundingBox;
 import net.minecraft.world.IWorldWriter;
 import net.minecraft.world.gen.IWorldGenerationReader;
 import net.minecraft.world.gen.feature.AbstractTreeFeature;
-import net.minecraft.world.gen.feature.NoFeatureConfig;
-import net.minecraftforge.common.IPlantable;
 
 import java.util.Random;
 import java.util.Set;
 import java.util.function.Function;
 
-public class PurpleAgateTreeFeature extends AbstractTreeFeature<NoFeatureConfig> {
+public class PurpleAgateTreeFeature<T extends GaiaTreeFeatureConfig> extends AbstractTreeFeature<T> {
+    //TODO: Move to Builder
     private static final BlockState TRUNK = ModBlocks.purple_agate_log.get().getDefaultState();
     private static final BlockState LEAF = ModBlocks.purple_agate_leaves.get().getDefaultState();
 
-    public PurpleAgateTreeFeature(Function<Dynamic<?>, ? extends NoFeatureConfig> configIn, boolean flag) {
-        super(configIn, flag);
-        this.setSapling((IPlantable)ModBlocks.purple_agate_sapling.get());
+    public PurpleAgateTreeFeature(Function<Dynamic<?>, T> configIn) {
+        super(configIn);
     }
 
     @Override
-    public boolean place(Set<BlockPos> changedBlocks, IWorldGenerationReader worldIn, Random rand, BlockPos position, MutableBoundingBox boundingBox) {
+    protected boolean generate(IWorldGenerationReader worldIn, Random rand, BlockPos position, Set<BlockPos> logPos, Set<BlockPos> leavesPos, MutableBoundingBox boundingBox, T config) {
         int height = rand.nextInt(3) + rand.nextInt(3) + 7;
         boolean canGrow = true;
 
@@ -43,7 +42,7 @@ public class PurpleAgateTreeFeature extends AbstractTreeFeature<NoFeatureConfig>
                     k = 2;
                 }
 
-                BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
+                BlockPos.Mutable blockpos$mutableblockpos = new BlockPos.Mutable();
 
                 for (int cx = position.getX() - k; cx <= position.getX() + k && canGrow; ++cx) {
                     for (int cz = position.getZ() - k; cz <= position.getZ() + k && canGrow; ++cz) {
@@ -60,7 +59,7 @@ public class PurpleAgateTreeFeature extends AbstractTreeFeature<NoFeatureConfig>
 
             if (!canGrow) {
                 return false;
-            } else if (isSoil(worldIn, position.down(), getSapling()) && position.getY() < worldIn.getMaxHeight() - height - 1) {
+            } else if (isSoil(worldIn, position.down(), config.getSapling()) && position.getY() < worldIn.getMaxHeight() - height - 1) {
                 this.setDirtAt(worldIn, position.down(), position);
                 int posX = position.getX();
                 int posZ = position.getZ();
@@ -73,20 +72,20 @@ public class PurpleAgateTreeFeature extends AbstractTreeFeature<NoFeatureConfig>
                     if (isAirOrLeaves(worldIn, blockpos)) {
                         if (base == height - 2) {
                             for (int length = 1; length <= 2; ++length) {
-                                this.placeLogAt(changedBlocks, worldIn, blockpos.north(length), Direction.Axis.Z, boundingBox);
-                                this.placeLogAt(changedBlocks, worldIn, blockpos.south(length), Direction.Axis.Z, boundingBox);
-                                this.placeLogAt(changedBlocks, worldIn, blockpos.east(length), Direction.Axis.X, boundingBox);
-                                this.placeLogAt(changedBlocks, worldIn, blockpos.west(length), Direction.Axis.X, boundingBox);
+                                this.placeLogAt(worldIn, rand, blockpos.north(length), Direction.Axis.Z, boundingBox, config);
+                                this.placeLogAt(worldIn, rand, blockpos.south(length), Direction.Axis.Z, boundingBox, config);
+                                this.placeLogAt(worldIn, rand, blockpos.east(length), Direction.Axis.X, boundingBox, config);
+                                this.placeLogAt(worldIn, rand, blockpos.west(length), Direction.Axis.X, boundingBox, config);
                             }
                         } else if (base == height - 1) {
                             for (int length = 3; length <= 4; ++length) {
-                                this.placeLogAt(changedBlocks, worldIn, blockpos.north(length), Direction.Axis.Z, boundingBox);
-                                this.placeLogAt(changedBlocks, worldIn, blockpos.south(length), Direction.Axis.Z, boundingBox);
-                                this.placeLogAt(changedBlocks, worldIn, blockpos.east(length), Direction.Axis.X, boundingBox);
-                                this.placeLogAt(changedBlocks, worldIn, blockpos.west(length), Direction.Axis.X, boundingBox);
+                                this.placeLogAt(worldIn, rand, blockpos.north(length), Direction.Axis.Z, boundingBox, config);
+                                this.placeLogAt(worldIn, rand, blockpos.south(length), Direction.Axis.Z, boundingBox, config);
+                                this.placeLogAt(worldIn, rand, blockpos.east(length), Direction.Axis.X, boundingBox, config);
+                                this.placeLogAt(worldIn, rand, blockpos.west(length), Direction.Axis.X, boundingBox, config);
                             }
                         } else {
-                            this.placeLogAt(changedBlocks, worldIn, blockpos, Direction.Axis.Y, boundingBox);
+                            this.placeLogAt(worldIn, rand, blockpos, Direction.Axis.Y, boundingBox, config);
                         }
                         posY = currentY;
                     }
@@ -97,20 +96,20 @@ public class PurpleAgateTreeFeature extends AbstractTreeFeature<NoFeatureConfig>
                     for (int j4 = -1; j4 <= 1; ++j4) {
                         for (int l5 = -1; l5 <= 1; ++l5) {
                             if (Math.abs(k3) != 1 || Math.abs(j4) != 1 || Math.abs(l5) != 1){
-                                this.placeLeafAt(changedBlocks, worldIn, blockpos2.add(k3 + 4, l5, j4), boundingBox);
-                                this.placeLeafAt(changedBlocks, worldIn, blockpos2.add(k3 - 4, l5, j4), boundingBox);
-                                this.placeLeafAt(changedBlocks, worldIn, blockpos2.add(k3 , l5, j4 + 4), boundingBox);
-                                this.placeLeafAt(changedBlocks, worldIn, blockpos2.add(k3, l5, j4 - 4), boundingBox);
+                                this.setLeavesBlockState(worldIn, rand, blockpos2.add(k3 + 4, l5, j4), leavesPos, boundingBox, config);
+                                this.setLeavesBlockState(worldIn, rand, blockpos2.add(k3 - 4, l5, j4), leavesPos, boundingBox, config);
+                                this.setLeavesBlockState(worldIn, rand, blockpos2.add(k3 , l5, j4 + 4), leavesPos, boundingBox, config);
+                                this.setLeavesBlockState(worldIn, rand, blockpos2.add(k3, l5, j4 - 4), leavesPos, boundingBox, config);
                             }
                         }
                     }
                 }
 
                 BlockPos blockpos3 = blockpos2.down(2);
-                this.placeLeafAt(changedBlocks, worldIn, blockpos3.north(1), boundingBox);
-                this.placeLeafAt(changedBlocks, worldIn, blockpos3.south(1), boundingBox);
-                this.placeLeafAt(changedBlocks, worldIn, blockpos3.east(1), boundingBox);
-                this.placeLeafAt(changedBlocks, worldIn, blockpos3.west(1), boundingBox);
+                this.setLeavesBlockState(worldIn, rand, blockpos3.north(1), leavesPos, boundingBox, config);
+                this.setLeavesBlockState(worldIn, rand, blockpos3.south(1), leavesPos, boundingBox, config);
+                this.setLeavesBlockState(worldIn, rand, blockpos3.east(1), leavesPos, boundingBox, config);
+                this.setLeavesBlockState(worldIn, rand, blockpos3.west(1), leavesPos, boundingBox, config);
 
                 return true;
             } else {
@@ -121,13 +120,7 @@ public class PurpleAgateTreeFeature extends AbstractTreeFeature<NoFeatureConfig>
         }
     }
 
-    private void placeLogAt(Set<BlockPos> setPos, IWorldWriter writer, BlockPos pos, Direction.Axis axis, MutableBoundingBox boundingBox) {
-        this.setLogState(setPos, writer, pos, TRUNK.with(RotatedPillarBlock.AXIS, axis), boundingBox);
-    }
-
-    private void placeLeafAt(Set<BlockPos> worldIn, IWorldGenerationReader writer, BlockPos pos, MutableBoundingBox boundingBox) {
-        if (isAirOrLeaves(writer, pos)) {
-            this.setLogState(worldIn, writer, pos, LEAF, boundingBox);
-        }
+    private void placeLogAt(IWorldWriter writer, Random rand, BlockPos pos, Direction.Axis axis, MutableBoundingBox boundingBox, T config) {
+        this.setBlockState(writer, pos, config.trunkProvider.getBlockState(rand, pos).with(RotatedPillarBlock.AXIS, axis), boundingBox);
     }
 }

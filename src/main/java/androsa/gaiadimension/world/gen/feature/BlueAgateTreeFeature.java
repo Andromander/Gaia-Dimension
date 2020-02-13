@@ -1,13 +1,11 @@
 package androsa.gaiadimension.world.gen.feature;
 
-import androsa.gaiadimension.registry.ModBlocks;
+import androsa.gaiadimension.world.gen.config.GaiaTreeFeatureConfig;
 import com.mojang.datafixers.Dynamic;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MutableBoundingBox;
 import net.minecraft.world.gen.IWorldGenerationReader;
 import net.minecraft.world.gen.feature.AbstractTreeFeature;
-import net.minecraft.world.gen.feature.NoFeatureConfig;
-import net.minecraftforge.common.IPlantable;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.Random;
@@ -15,15 +13,14 @@ import java.util.Set;
 import java.util.function.Function;
 
 @ParametersAreNonnullByDefault
-public class BlueAgateTreeFeature extends AbstractTreeFeature<NoFeatureConfig> {
+public class BlueAgateTreeFeature<T extends GaiaTreeFeatureConfig> extends AbstractTreeFeature<T> {
 
-    public BlueAgateTreeFeature(Function<Dynamic<?>, ? extends NoFeatureConfig> configIn, boolean flag) {
-        super(configIn, flag);
-        this.setSapling((IPlantable) ModBlocks.blue_agate_sapling.get());
+    public BlueAgateTreeFeature(Function<Dynamic<?>, T> configIn) {
+        super(configIn);
     }
 
     @Override
-    public boolean place(Set<BlockPos> changedBlocks, IWorldGenerationReader world, Random rand, BlockPos pos, MutableBoundingBox boundingBox) {
+    protected boolean generate(IWorldGenerationReader world, Random rand, BlockPos pos, Set<BlockPos> logPos, Set<BlockPos> leavesPos, MutableBoundingBox boundingBox, T config) {
         int height = rand.nextInt(4) + 6;
         int j = 1 + rand.nextInt(2);
         int k = height - j;
@@ -40,7 +37,7 @@ public class BlueAgateTreeFeature extends AbstractTreeFeature<NoFeatureConfig> {
                     j1 = l;
                 }
 
-                BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
+                BlockPos.Mutable blockpos$mutableblockpos = new BlockPos.Mutable();
 
                 for (int k1 = pos.getX() - j1; k1 <= pos.getX() + j1 && allClear; ++k1) {
                     for (int l1 = pos.getZ() - j1; l1 <= pos.getZ() + j1 && allClear; ++l1) {
@@ -57,7 +54,7 @@ public class BlueAgateTreeFeature extends AbstractTreeFeature<NoFeatureConfig> {
 
             if (!allClear) {
                 return false;
-            } else if (isSoil(world, pos.down(), getSapling()) && pos.getY() < world.getMaxHeight() - height - 1) {
+            } else if (isSoil(world, pos.down(), config.getSapling()) && pos.getY() < world.getMaxHeight() - height - 1) {
                 this.setDirtAt(world, pos.down(), pos);
                 int i3 = rand.nextInt(2);
                 int j3 = 1;
@@ -72,7 +69,7 @@ public class BlueAgateTreeFeature extends AbstractTreeFeature<NoFeatureConfig> {
                             if (Math.abs(j2) != i3 || Math.abs(l2) != i3 || i3 <= 0) {
                                 BlockPos blockpos = new BlockPos(i2, j4, k2);
                                 if (isAirOrLeaves(world, blockpos) || isTallPlants(world, blockpos)) {
-                                    this.setLogState(changedBlocks, world, blockpos, ModBlocks.blue_agate_leaves.get().getDefaultState(), boundingBox);
+                                    this.setLeavesBlockState(world, rand, blockpos, leavesPos, boundingBox, config);
                                 }
                             }
                         }
@@ -93,10 +90,10 @@ public class BlueAgateTreeFeature extends AbstractTreeFeature<NoFeatureConfig> {
 
                 int i4 = rand.nextInt(3);
 
-                for (int k4 = 0; k4 < height - i4; ++k4) {
-                    BlockPos upN = pos.up(k4);
+                for (int logY = 0; logY < height - i4; ++logY) {
+                    BlockPos upN = pos.up(logY);
                     if (isAirOrLeaves(world, upN)) {
-                        this.setLogState(changedBlocks, world, pos.up(k4), ModBlocks.blue_agate_log.get().getDefaultState(), boundingBox);
+                        this.setLogBlockState(world, rand, pos.up(logY), logPos, boundingBox, config);
                     }
                 }
 

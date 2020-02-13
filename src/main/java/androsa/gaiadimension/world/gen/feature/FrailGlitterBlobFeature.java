@@ -13,14 +13,14 @@ import net.minecraft.world.gen.feature.NoFeatureConfig;
 import java.util.Random;
 import java.util.function.Function;
 
-public class FrailGlitterBlobFeature extends Feature<NoFeatureConfig> {
+public class FrailGlitterBlobFeature<T extends NoFeatureConfig> extends Feature<T> {
 
-    public FrailGlitterBlobFeature(Function<Dynamic<?>, ? extends NoFeatureConfig> config) {
+    public FrailGlitterBlobFeature(Function<Dynamic<?>, T> config) {
         super(config);
     }
 
     @Override
-    public boolean place(IWorld worldIn, ChunkGenerator<? extends GenerationSettings> generator, Random rand, BlockPos pos, NoFeatureConfig config) {
+    public boolean place(IWorld worldIn, ChunkGenerator<? extends GenerationSettings> generator, Random rand, BlockPos pos, T config) {
         if (!worldIn.isAirBlock(pos)) {
             return false;
         } else if (worldIn.getBlockState(pos.up()).getBlock() != ModBlocks.gaia_stone.get() && worldIn.getBlockState(pos.down()).getBlock() != ModBlocks.gaia_stone.get()) {

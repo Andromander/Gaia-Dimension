@@ -14,23 +14,23 @@ import net.minecraft.world.biome.Biome;
 import net.minecraft.world.chunk.ChunkStatus;
 import net.minecraft.world.gen.ChunkGenerator;
 import net.minecraft.world.gen.GenerationSettings;
+import net.minecraft.world.gen.feature.BlockStateFeatureConfig;
 import net.minecraft.world.gen.feature.Feature;
-import net.minecraft.world.gen.feature.LakesConfig;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.Random;
 import java.util.function.Function;
 
 @ParametersAreNonnullByDefault
-public class GaiaLakesFeature extends Feature<LakesConfig> {
+public class GaiaLakesFeature<T extends BlockStateFeatureConfig> extends Feature<T> {
     private static final BlockState AIR = Blocks.CAVE_AIR.getDefaultState();
 
-    public GaiaLakesFeature(Function<Dynamic<?>, ? extends LakesConfig> config) {
+    public GaiaLakesFeature(Function<Dynamic<?>, T> config) {
         super(config);
     }
 
     @Override
-    public boolean place(IWorld worldIn, ChunkGenerator<? extends GenerationSettings> generator, Random rand, BlockPos pos, LakesConfig config) {
+    public boolean place(IWorld worldIn, ChunkGenerator<? extends GenerationSettings> generator, Random rand, BlockPos pos, T config) {
         while(pos.getY() > 5 && worldIn.isAirBlock(pos)) {
             pos = pos.down();
         }
@@ -102,7 +102,7 @@ public class GaiaLakesFeature extends Feature<LakesConfig> {
                         for(int j4 = 4; j4 < 8; ++j4) {
                             if (aboolean[(i2 * 16 + j3) * 8 + j4]) {
                                 BlockPos blockpos = pos.add(i2, j4 - 1, j3);
-                                if (worldIn.getBlockState(blockpos).getBlock() instanceof GaiaSoilBlock && worldIn.getLightFor(LightType.SKY, pos.add(i2, j4, j3)) > 0) {
+                                if (worldIn.getBlockState(blockpos).getBlock() instanceof GaiaSoilBlock && worldIn.getLightLevel(LightType.SKY, pos.add(i2, j4, j3)) > 0) {
                                     Biome biome = worldIn.getBiome(blockpos);
 
                                     if (biome.getSurfaceBuilderConfig().getTop().getBlock() == ModBlocks.murky_grass.get()) {

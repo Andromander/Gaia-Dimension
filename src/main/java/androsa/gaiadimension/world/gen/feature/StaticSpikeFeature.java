@@ -1,6 +1,7 @@
 package androsa.gaiadimension.world.gen.feature;
 
 import androsa.gaiadimension.registry.ModBlocks;
+import androsa.gaiadimension.world.gen.config.FeatureHeightConfig;
 import com.mojang.datafixers.Dynamic;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -9,26 +10,23 @@ import net.minecraft.world.IWorld;
 import net.minecraft.world.gen.ChunkGenerator;
 import net.minecraft.world.gen.GenerationSettings;
 import net.minecraft.world.gen.feature.Feature;
-import net.minecraft.world.gen.feature.NoFeatureConfig;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.Random;
 import java.util.function.Function;
 
 @ParametersAreNonnullByDefault
-public class StaticSpikeFeature extends Feature<NoFeatureConfig> {
+public class StaticSpikeFeature<T extends FeatureHeightConfig> extends Feature<T> {
 
     private final BlockState block = ModBlocks.charged_mineral.get().getDefaultState();
-    private final int startHeight;
 
-    public StaticSpikeFeature(Function<Dynamic<?>, ? extends NoFeatureConfig> configIn, int startHeightIn) {
+    public StaticSpikeFeature(Function<Dynamic<?>, T> configIn) {
         super(configIn);
-        this.startHeight = startHeightIn;
     }
 
     @Override
-    public boolean place(IWorld worldIn, ChunkGenerator<? extends GenerationSettings> generator, Random rand, BlockPos position, NoFeatureConfig config) {
-        int height = startHeight + rand.nextInt(4);
+    public boolean place(IWorld worldIn, ChunkGenerator<? extends GenerationSettings> generator, Random rand, BlockPos position, T config) {
+        int height = config.startHeight + rand.nextInt(4);
         boolean flag = true;
 
         for (int cx = 0; cx < 3; cx++) {

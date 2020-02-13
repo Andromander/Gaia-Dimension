@@ -13,14 +13,14 @@ import net.minecraft.world.gen.feature.Feature;
 import java.util.Random;
 import java.util.function.Function;
 
-public class GaiaBlobFeature extends Feature<BlockBlobConfig> {
+public class GaiaBlobFeature<T extends BlockBlobConfig> extends Feature<T> {
 
-    public GaiaBlobFeature(Function<Dynamic<?>, ? extends BlockBlobConfig> config) {
+    public GaiaBlobFeature(Function<Dynamic<?>, T> config) {
         super(config);
     }
 
     @Override
-    public boolean place(IWorld worldIn, ChunkGenerator<? extends GenerationSettings> generator, Random rand, BlockPos pos, BlockBlobConfig config) {
+    public boolean place(IWorld worldIn, ChunkGenerator<? extends GenerationSettings> generator, Random rand, BlockPos pos, T config) {
         while(true) {
             label50: {
                 if (pos.getY() > 3) {
@@ -29,7 +29,7 @@ public class GaiaBlobFeature extends Feature<BlockBlobConfig> {
                     }
 
                     Block block = worldIn.getBlockState(pos.down()).getBlock();
-                    if (!(block instanceof AbstractGaiaGrassBlock) && !Block.isDirt(block) && !Block.isRock(block)) {
+                    if (!(block instanceof AbstractGaiaGrassBlock) && !isDirt(block) && !isStone(block)) {
                         break label50;
                     }
                 }
