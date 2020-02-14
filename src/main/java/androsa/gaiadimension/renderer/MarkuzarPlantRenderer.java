@@ -10,16 +10,16 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
-public class MarkuzarPlantRenderer extends MobRenderer<MarkuzarPlantEntity, MarkuzarPlantModel> {
+public class MarkuzarPlantRenderer<T extends MarkuzarPlantEntity, M extends MarkuzarPlantModel<T>> extends MobRenderer<T, M> {
 
     private static final ResourceLocation textureLoc = new ResourceLocation(GaiaDimensionMod.MODEL_DIR + "markuzarplant.png");
 
-    public MarkuzarPlantRenderer(EntityRendererManager manager, MarkuzarPlantModel model, float shadowSize) {
+    public MarkuzarPlantRenderer(EntityRendererManager manager, M model, float shadowSize) {
         super(manager, model, shadowSize);
     }
 
     @Override
-    protected ResourceLocation getEntityTexture(MarkuzarPlantEntity entity) {
+    public ResourceLocation getEntityTexture(T entity) {
         return textureLoc;
     }
 }

@@ -10,15 +10,15 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
-public class CrystalGolemRenderer extends MobRenderer<CrystalGolemEntity, CrystalGolemModel> {
+public class CrystalGolemRenderer<T extends CrystalGolemEntity, M extends CrystalGolemModel<T>> extends MobRenderer<T, M> {
     private static final ResourceLocation textureLoc = new ResourceLocation(GaiaDimensionMod.MODEL_DIR + "crystalgolem.png");
 
-    public CrystalGolemRenderer(EntityRendererManager manager, CrystalGolemModel model, float shadowSize) {
+    public CrystalGolemRenderer(EntityRendererManager manager, M model, float shadowSize) {
         super(manager, model, shadowSize);
     }
 
     @Override
-    protected ResourceLocation getEntityTexture(CrystalGolemEntity entity) {
+    public ResourceLocation getEntityTexture(T entity) {
         return textureLoc;
     }
 }

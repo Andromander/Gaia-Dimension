@@ -10,15 +10,15 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
-public class RockyLuggerothRenderer extends MobRenderer<RockyLuggerothEntity, RockyLuggerothModel> {
+public class RockyLuggerothRenderer<T extends RockyLuggerothEntity, M extends RockyLuggerothModel<T>> extends MobRenderer<T, M> {
     private static final ResourceLocation textureLoc = new ResourceLocation(GaiaDimensionMod.MODEL_DIR + "rockyluggeroth.png");
 
-    public RockyLuggerothRenderer(EntityRendererManager manager, RockyLuggerothModel model, float shadowSize) {
+    public RockyLuggerothRenderer(EntityRendererManager manager, M model, float shadowSize) {
         super(manager, model, shadowSize);
     }
 
     @Override
-    protected ResourceLocation getEntityTexture(RockyLuggerothEntity entity) {
+    public ResourceLocation getEntityTexture(T entity) {
         return textureLoc;
     }
 }

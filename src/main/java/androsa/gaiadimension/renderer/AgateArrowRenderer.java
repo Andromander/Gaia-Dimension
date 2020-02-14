@@ -9,14 +9,14 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
-public class AgateArrowRenderer extends ArrowRenderer<AgateArrowEntity> {
+public class AgateArrowRenderer<T extends AgateArrowEntity> extends ArrowRenderer<T> {
     public static final ResourceLocation textureLoc = new ResourceLocation(GaiaDimensionMod.MODEL_DIR + "projectiles/agate_arrow.png");
 
     public AgateArrowRenderer(EntityRendererManager manager) {
         super(manager);
     }
 
-    protected ResourceLocation getEntityTexture(AgateArrowEntity entity) {
+    public ResourceLocation getEntityTexture(T entity) {
         return textureLoc;
     }
 }

@@ -10,18 +10,18 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
-public class GrowthSapperRenderer extends MobRenderer<GrowthSapperEntity, GrowthSapperModel<GrowthSapperEntity>> {
+public class GrowthSapperRenderer<T extends GrowthSapperEntity, M extends GrowthSapperModel<T>> extends MobRenderer<T, M> {
     private static final ResourceLocation pinkLoc = new ResourceLocation(GaiaDimensionMod.MODEL_DIR + "commongrowthsapper.png");
     private static final ResourceLocation blueLoc = new ResourceLocation(GaiaDimensionMod.MODEL_DIR + "chilledgrowthsapper.png");
     private static final ResourceLocation grenLoc = new ResourceLocation(GaiaDimensionMod.MODEL_DIR + "nutrientgrowthsapper.png");
     private static final ResourceLocation purpLoc = new ResourceLocation(GaiaDimensionMod.MODEL_DIR + "mystifiedgrowthsapper.png");
 
-    public GrowthSapperRenderer(EntityRendererManager manager, GrowthSapperModel<GrowthSapperEntity> model, float shadowSize) {
+    public GrowthSapperRenderer(EntityRendererManager manager, M model, float shadowSize) {
         super(manager, model, shadowSize);
     }
 
     @Override
-    protected ResourceLocation getEntityTexture(GrowthSapperEntity entity) {
+    public ResourceLocation getEntityTexture(T entity) {
         switch(entity.getEntityVariant()) {
             case 0:
                 return pinkLoc;

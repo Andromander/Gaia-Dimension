@@ -10,15 +10,15 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
-public class LesserSpitfireRenderer extends MobRenderer<LesserSpitfireEntity, LesserSpitfireModel> {
+public class LesserSpitfireRenderer<T extends LesserSpitfireEntity, M extends LesserSpitfireModel<T>> extends MobRenderer<T, M> {
     private static final ResourceLocation textureLoc = new ResourceLocation(GaiaDimensionMod.MODEL_DIR + "lesserspitfire.png");
 
-    public LesserSpitfireRenderer(EntityRendererManager manager, LesserSpitfireModel model, float shadowSize) {
+    public LesserSpitfireRenderer(EntityRendererManager manager, M model, float shadowSize) {
         super(manager, model, shadowSize);
     }
 
     @Override
-    protected ResourceLocation getEntityTexture(LesserSpitfireEntity entity) {
+    public ResourceLocation getEntityTexture(T entity) {
         return textureLoc;
     }
 }

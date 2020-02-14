@@ -10,15 +10,15 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
-public class SaltionRenderer extends MobRenderer<SaltionEntity, SaltionModel> {
+public class SaltionRenderer<T extends SaltionEntity, M extends SaltionModel<T>> extends MobRenderer<T, M> {
     private static final ResourceLocation textureLoc = new ResourceLocation(GaiaDimensionMod.MODEL_DIR + "saltion.png");
 
-    public SaltionRenderer(EntityRendererManager manager, SaltionModel model, float shadowSize) {
+    public SaltionRenderer(EntityRendererManager manager, M model, float shadowSize) {
         super(manager, model, shadowSize);
     }
 
     @Override
-    protected ResourceLocation getEntityTexture(SaltionEntity entity) {
+    public ResourceLocation getEntityTexture(T entity) {
         return textureLoc;
     }
 }

@@ -10,15 +10,15 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
-public class ShalurkerRenderer extends MobRenderer<ShalurkerEntity, ShalurkerModel> {
+public class ShalurkerRenderer<T extends ShalurkerEntity, M extends ShalurkerModel<T>> extends MobRenderer<T, M> {
     private static final ResourceLocation textureLoc = new ResourceLocation(GaiaDimensionMod.MODEL_DIR + "shalurker.png");
 
-    public ShalurkerRenderer(EntityRendererManager manager, ShalurkerModel model, float shadowSize) {
+    public ShalurkerRenderer(EntityRendererManager manager, M model, float shadowSize) {
         super(manager, model, shadowSize);
     }
 
     @Override
-    protected ResourceLocation getEntityTexture(ShalurkerEntity entity) {
+    public ResourceLocation getEntityTexture(T entity) {
         return textureLoc;
     }
 }

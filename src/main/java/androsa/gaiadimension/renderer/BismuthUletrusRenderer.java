@@ -10,15 +10,15 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
-public class BismuthUletrusRenderer extends MobRenderer<BismuthUletrusEntity, BismuthUletrusModel> {
+public class BismuthUletrusRenderer<T extends BismuthUletrusEntity, M extends BismuthUletrusModel<T>> extends MobRenderer<T, M> {
     private static final ResourceLocation textureLoc = new ResourceLocation(GaiaDimensionMod.MODEL_DIR + "bismuthuletrus.png");
 
-    public BismuthUletrusRenderer(EntityRendererManager manager, BismuthUletrusModel model, float shadowSize) {
+    public BismuthUletrusRenderer(EntityRendererManager manager, M model, float shadowSize) {
         super(manager, model, shadowSize);
     }
 
     @Override
-    protected ResourceLocation getEntityTexture(BismuthUletrusEntity entity) {
+    public ResourceLocation getEntityTexture(T entity) {
         return textureLoc;
     }
 }

@@ -10,15 +10,15 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
-public class CavernTickRenderer extends MobRenderer<CavernTickEntity, CavernTickModel> {
+public class CavernTickRenderer<T extends CavernTickEntity, M extends CavernTickModel<T>> extends MobRenderer<T, M> {
     private static final ResourceLocation textureLoc = new ResourceLocation(GaiaDimensionMod.MODEL_DIR + "caverntick.png");
 
-    public CavernTickRenderer(EntityRendererManager manager, CavernTickModel model, float shadowSize) {
+    public CavernTickRenderer(EntityRendererManager manager, M model, float shadowSize) {
         super(manager, model, shadowSize);
     }
 
     @Override
-    protected ResourceLocation getEntityTexture(CavernTickEntity entity) {
+    public ResourceLocation getEntityTexture(T entity) {
         return textureLoc;
     }
 }

@@ -10,15 +10,15 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
-public class ContortedNagaRenderer extends MobRenderer<ContortedNagaEntity, ContortedNagaModel> {
+public class ContortedNagaRenderer<T extends ContortedNagaEntity, M extends ContortedNagaModel<T>> extends MobRenderer<T, M> {
     private static final ResourceLocation textureLoc = new ResourceLocation(GaiaDimensionMod.MODEL_DIR + "contortednaga.png");
 
-    public ContortedNagaRenderer(EntityRendererManager manager, ContortedNagaModel model, float shadowSize) {
+    public ContortedNagaRenderer(EntityRendererManager manager, M model, float shadowSize) {
         super(manager, model, shadowSize);
     }
 
     @Override
-    protected ResourceLocation getEntityTexture(ContortedNagaEntity entity) {
+    public ResourceLocation getEntityTexture(T entity) {
         return textureLoc;
     }
 }

@@ -10,15 +10,15 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
-public class HowliteWolfRenderer extends MobRenderer<HowliteWolfEntity, HowliteWolfModel> {
+public class HowliteWolfRenderer<T extends HowliteWolfEntity, M extends HowliteWolfModel<T>> extends MobRenderer<T, M> {
     private static final ResourceLocation textureLoc = new ResourceLocation(GaiaDimensionMod.MODEL_DIR + "howlitewolf.png");
 
-    public HowliteWolfRenderer(EntityRendererManager manager, HowliteWolfModel model, float shadowSize) {
+    public HowliteWolfRenderer(EntityRendererManager manager, M model, float shadowSize) {
         super(manager, model, shadowSize);
     }
 
     @Override
-    protected ResourceLocation getEntityTexture(HowliteWolfEntity entity) {
+    public ResourceLocation getEntityTexture(T entity) {
         return textureLoc;
     }
 }
