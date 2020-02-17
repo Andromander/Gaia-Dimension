@@ -31,7 +31,7 @@ import javax.annotation.Nullable;
 public class GaiaDimension extends Dimension {
 
     public GaiaDimension(World worldIn, DimensionType typeIn) {
-        super(worldIn, typeIn);
+        super(worldIn, typeIn, 0.0F);
     }
 
     @Override
@@ -39,7 +39,7 @@ public class GaiaDimension extends Dimension {
         ChunkGeneratorType<GaiaGenerationSettings, GaiaChunkGenerator> chunkGen = ModDimensions.GAIA_GEN.get();
         GaiaGenerationSettings gaisSettings = chunkGen.createSettings();
         BiomeProviderType<GaiaBiomeProviderSettings, GaiaBiomeProvider> biomeProvider = ModDimensions.GAIA_DIMENSION.get();
-        return chunkGen.create(this.world, ModDimensions.GAIA_DIMENSION.get().create(biomeProvider.createSettings().setGeneratorSettings(gaisSettings).setWorldInfo(this.world.getWorldInfo())), gaisSettings);
+        return chunkGen.create(this.world, biomeProvider.create(biomeProvider.getConfig(this.world.getWorldInfo())), gaisSettings);
     }
 
     @Override
@@ -66,7 +66,7 @@ public class GaiaDimension extends Dimension {
     @Override
     @Nullable
     public BlockPos findSpawn(int posX, int posZ, boolean checkValid) {
-        BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos(posX, 0, posZ);
+        BlockPos.Mutable blockpos$mutableblockpos = new BlockPos.Mutable(posX, 0, posZ);
         Biome biome = this.world.getBiome(blockpos$mutableblockpos);
         BlockState blockstate = biome.getSurfaceBuilderConfig().getTop();
         if (checkValid && !blockstate.getBlock().isIn(BlockTags.VALID_SPAWN)) {
@@ -101,19 +101,20 @@ public class GaiaDimension extends Dimension {
         return true;
     }
 
-    @Override
-    @OnlyIn(Dist.CLIENT)
-    public float getStarBrightness(float par1) {
-        PlayerEntity player = Minecraft.getInstance().player;
-        Biome biome = world.getBiome(new BlockPos(player.posX, player.posY, player.posZ));
-
-        if (biome instanceof BaseGaiaBiome) {
-            if (ModGaiaConfig.skyColors.get() == GaiaSkyColors.PURPLE_AGATE || ((BaseGaiaBiome)biome).skyColor == GaiaSkyColors.PURPLE_AGATE) {
-                return 0.5F;
-            }
-        }
-        return world.getStarBrightnessBody(par1);
-    }
+    //TODO: We have to find how to get this working again
+//    @Override
+//    @OnlyIn(Dist.CLIENT)
+//    public float getStarBrightness(float par1) {
+//        PlayerEntity player = Minecraft.getInstance().player;
+//        Biome biome = world.getBiome(new BlockPos(player.posX, player.posY, player.posZ));
+//
+//        if (biome instanceof BaseGaiaBiome) {
+//            if (ModGaiaConfig.skyColors.get() == GaiaSkyColors.PURPLE_AGATE || ((BaseGaiaBiome)biome).skyColor == GaiaSkyColors.PURPLE_AGATE) {
+//                return 0.5F;
+//            }
+//        }
+//        return world.getStarBrightnessBody(par1);
+//    }
 
     @Override
     public float calculateCelestialAngle(long par1, float par3) {
@@ -121,7 +122,7 @@ public class GaiaDimension extends Dimension {
     }
 
     @Override
-    public double getHorizon() {
+    public int getSeaLevel() {
         return GaiaGenerationSettings.SEALEVEL;
     }
 
@@ -140,45 +141,46 @@ public class GaiaDimension extends Dimension {
         return true;
     }
 
-    @OnlyIn(Dist.CLIENT)
-    private double[] currentSkyColor;
-    @OnlyIn(Dist.CLIENT)
-    private short[] targetSkyColor;
-
-    //Sky colour render
-    @Override
-    @OnlyIn(Dist.CLIENT)
-    public Vec3d getSkyColor(BlockPos cameraEntity, float partialTicks) {
-        PlayerEntity player = Minecraft.getInstance().player;
-        Biome biome = world.getBiome(new BlockPos(player.posX, player.posY, player.posZ));
-        targetSkyColor = ModGaiaConfig.skyColors.get().getSkyColor();
-
-        if (ModGaiaConfig.enableSkyFog.get())
-            if (biome instanceof BaseGaiaBiome)
-                targetSkyColor = ((BaseGaiaBiome) biome).getSkyRGB();
-        else
-            targetSkyColor = ModGaiaConfig.skyColors.get().getSkyColor();
-
-        if (currentSkyColor == null) {
-            currentSkyColor = new double[3];
-            for (int a = 0; a < 3; a++)
-                currentSkyColor[a] = targetSkyColor[a];
-        }
-
-        for (int a = 0; a < 3; a++)
-            if (currentSkyColor[a] != targetSkyColor[a])
-                if (currentSkyColor[a] < targetSkyColor[a]) {
-                    currentSkyColor[a] += 2D;
-                    if (currentSkyColor[a] > targetSkyColor[a])
-                        currentSkyColor[a] = targetSkyColor[a];
-                } else if (currentSkyColor[a] > targetSkyColor[a]) {
-                    currentSkyColor[a] -= 2D;
-                    if (currentSkyColor[a] < targetSkyColor[a])
-                        currentSkyColor[a] = targetSkyColor[a];
-                }
-
-        return new Vec3d(currentSkyColor[0] / 255D, currentSkyColor[1] / 255D, currentSkyColor[2] / 255D);
-    }
+    //TODO: This may be done via Biome.getSkyColor
+//    @OnlyIn(Dist.CLIENT)
+//    private double[] currentSkyColor;
+//    @OnlyIn(Dist.CLIENT)
+//    private short[] targetSkyColor;
+//
+//    //Sky colour render
+//    @Override
+//    @OnlyIn(Dist.CLIENT)
+//    public Vec3d getSkyColor(BlockPos cameraEntity, float partialTicks) {
+//        PlayerEntity player = Minecraft.getInstance().player;
+//        Biome biome = world.getBiome(new BlockPos(player.posX, player.posY, player.posZ));
+//        targetSkyColor = ModGaiaConfig.skyColors.get().getSkyColor();
+//
+//        if (ModGaiaConfig.enableSkyFog.get())
+//            if (biome instanceof BaseGaiaBiome)
+//                targetSkyColor = ((BaseGaiaBiome) biome).getSkyRGB();
+//        else
+//            targetSkyColor = ModGaiaConfig.skyColors.get().getSkyColor();
+//
+//        if (currentSkyColor == null) {
+//            currentSkyColor = new double[3];
+//            for (int a = 0; a < 3; a++)
+//                currentSkyColor[a] = targetSkyColor[a];
+//        }
+//
+//        for (int a = 0; a < 3; a++)
+//            if (currentSkyColor[a] != targetSkyColor[a])
+//                if (currentSkyColor[a] < targetSkyColor[a]) {
+//                    currentSkyColor[a] += 2D;
+//                    if (currentSkyColor[a] > targetSkyColor[a])
+//                        currentSkyColor[a] = targetSkyColor[a];
+//                } else if (currentSkyColor[a] > targetSkyColor[a]) {
+//                    currentSkyColor[a] -= 2D;
+//                    if (currentSkyColor[a] < targetSkyColor[a])
+//                        currentSkyColor[a] = targetSkyColor[a];
+//                }
+//
+//        return new Vec3d(currentSkyColor[0] / 255D, currentSkyColor[1] / 255D, currentSkyColor[2] / 255D);
+//    }
 
     @OnlyIn(Dist.CLIENT)
     private double[] currentFogColor;
@@ -190,7 +192,7 @@ public class GaiaDimension extends Dimension {
     @OnlyIn(Dist.CLIENT)
     public Vec3d getFogColor(float f, float f1) {
         PlayerEntity player = Minecraft.getInstance().player;
-        Biome biome = world.getBiome(new BlockPos(player.posX, player.posY, player.posZ));
+        Biome biome = world.getBiome(new BlockPos(player.getX(), player.getY(), player.getZ()));
         targetFogColor = ModGaiaConfig.skyColors.get().getFogColor();
 
         if (ModGaiaConfig.enableSkyFog.get())
@@ -220,54 +222,56 @@ public class GaiaDimension extends Dimension {
         return new Vec3d(currentFogColor[0] / 255D, currentFogColor[1] / 255D, currentFogColor[2] / 255D);
     }
 
-    @OnlyIn(Dist.CLIENT)
-    private double[] currentCloudColor;
-    @OnlyIn(Dist.CLIENT)
-    private short[] targetCloudColor;
+    //TODO: Find out how to get this working again
+//    @OnlyIn(Dist.CLIENT)
+//    private double[] currentCloudColor;
+//    @OnlyIn(Dist.CLIENT)
+//    private short[] targetCloudColor;
+//
+//    //Cloud colour render
+//    @Override
+//    @OnlyIn(Dist.CLIENT)
+//    public Vec3d getCloudColor(float partialTicks) {
+//        PlayerEntity player = Minecraft.getInstance().player;
+//        Biome biome = world.getBiome(new BlockPos(player.posX, player.posY, player.posZ));
+//        targetCloudColor = new short[] { 234, 178, 224 };
+//
+//        if (ModGaiaConfig.enableSkyFog.get())
+//            if (biome instanceof BaseGaiaBiome)
+//                targetCloudColor = ((BaseGaiaBiome) biome).getFogRGB();
+//        else
+//            targetCloudColor = ModGaiaConfig.skyColors.get().getFogColor();
+//
+//        if (currentCloudColor == null) {
+//            currentCloudColor = new double[3];
+//            for (int a = 0; a < 3; a++)
+//                currentCloudColor[a] = targetCloudColor[a];
+//        }
+//
+//        for (int a = 0; a < 3; a++)
+//            if (currentCloudColor[a] != targetCloudColor[a])
+//                if (currentCloudColor[a] < targetCloudColor[a]) {
+//                    currentCloudColor[a] += 2D;
+//                    if (currentCloudColor[a] > targetCloudColor[a])
+//                        currentCloudColor[a] = targetCloudColor[a];
+//                } else if (currentCloudColor[a] > targetCloudColor[a]) {
+//                    currentCloudColor[a] -= 2D;
+//                    if (currentCloudColor[a] < targetCloudColor[a])
+//                        currentCloudColor[a] = targetCloudColor[a];
+//                }
+//
+//        return new Vec3d(currentFogColor[0] / 255D, currentFogColor[1] / 255D, currentFogColor[2] / 255D);
+//    }
 
-    //Cloud colour render
-    @Override
-    @OnlyIn(Dist.CLIENT)
-    public Vec3d getCloudColor(float partialTicks) {
-        PlayerEntity player = Minecraft.getInstance().player;
-        Biome biome = world.getBiome(new BlockPos(player.posX, player.posY, player.posZ));
-        targetCloudColor = new short[] { 234, 178, 224 };
-
-        if (ModGaiaConfig.enableSkyFog.get())
-            if (biome instanceof BaseGaiaBiome)
-                targetCloudColor = ((BaseGaiaBiome) biome).getFogRGB();
-        else
-            targetCloudColor = ModGaiaConfig.skyColors.get().getFogColor();
-
-        if (currentCloudColor == null) {
-            currentCloudColor = new double[3];
-            for (int a = 0; a < 3; a++)
-                currentCloudColor[a] = targetCloudColor[a];
-        }
-
-        for (int a = 0; a < 3; a++)
-            if (currentCloudColor[a] != targetCloudColor[a])
-                if (currentCloudColor[a] < targetCloudColor[a]) {
-                    currentCloudColor[a] += 2D;
-                    if (currentCloudColor[a] > targetCloudColor[a])
-                        currentCloudColor[a] = targetCloudColor[a];
-                } else if (currentCloudColor[a] > targetCloudColor[a]) {
-                    currentCloudColor[a] -= 2D;
-                    if (currentCloudColor[a] < targetCloudColor[a])
-                        currentCloudColor[a] = targetCloudColor[a];
-                }
-
-        return new Vec3d(currentFogColor[0] / 255D, currentFogColor[1] / 255D, currentFogColor[2] / 255D);
-    }
-
-    @Override
-    public Biome getBiome(BlockPos pos) {
-        Biome biome = super.getBiome(pos);
-        if (biome == null) {
-            biome = ModBiomes.pink_agate_forest.get();
-        }
-        return biome;
-    }
+    //TODO: See if we really need this
+//    @Override
+//    public Biome getBiome(BlockPos pos) {
+//        Biome biome = super.getBiome(pos);
+//        if (biome == null) {
+//            biome = ModBiomes.pink_agate_forest.get();
+//        }
+//        return biome;
+//    }
 
     //Clouds are *way* up there
     @Override

@@ -27,7 +27,7 @@ public class WastelandSurfaceBuilder extends SurfaceBuilder<SurfaceBuilderConfig
     public final void genWastelandTerrain(Random rand, IChunk chunk, Biome biome, int x, int z, int startHeight, double noiseVal, BlockState defaultBlock, BlockState defaultFluid, BlockState top, BlockState middle, BlockState bottom, int sealevel) {
         BlockState topBlock = top;
         BlockState middleBlock = middle;
-        BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
+        BlockPos.Mutable blockpos$mutableblockpos = new BlockPos.Mutable();
         int j = -1;
         int k = (int) (noiseVal / 3.0D + 3.0D + rand.nextDouble() * 0.25D);
         int posX = x & 15;

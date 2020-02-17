@@ -10,6 +10,7 @@ import net.minecraft.block.BlockState;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.world.biome.Biome;
 import net.minecraft.world.chunk.IChunk;
 import net.minecraft.world.gen.carver.WorldCarver;
 import net.minecraft.world.gen.feature.ProbabilityConfig;
@@ -32,7 +33,8 @@ public class CoatedCavesWorldCarver extends WorldCarver<ProbabilityConfig> {
         return rand.nextFloat() <= config.probability;
     }
 
-    public boolean carve(IChunk chunkIn, Random rand, int seaLevel, int chunkX, int chunkZ, int p_212867_6_, int p_212867_7_, BitSet carvingMask, ProbabilityConfig config) {
+    @Override
+    public boolean carve(IChunk chunkIn, Function<BlockPos, Biome> biomePos, Random rand, int seaLevel, int chunkX, int chunkZ, int p_212867_6_, int p_212867_7_, BitSet carvingMask, ProbabilityConfig config) {
         int i = (this.func_222704_c() * 2 - 1) * 16;
         int j = rand.nextInt(rand.nextInt(rand.nextInt(this.func_222724_a()) + 1) + 1);
 
@@ -43,7 +45,7 @@ public class CoatedCavesWorldCarver extends WorldCarver<ProbabilityConfig> {
             int l = 1;
             if (rand.nextInt(4) == 0) {
                 float f1 = 1.0F + rand.nextFloat() * 6.0F;
-                this.func_222723_a(chunkIn, rand.nextLong(), seaLevel, p_212867_6_, p_212867_7_, d0, d1, d2, f1, 0.5D, carvingMask);
+                this.carveCave(chunkIn, biomePos, rand.nextLong(), seaLevel, p_212867_6_, p_212867_7_, d0, d1, d2, f1, 0.5D, carvingMask);
                 l += rand.nextInt(4);
             }
 
@@ -52,7 +54,7 @@ public class CoatedCavesWorldCarver extends WorldCarver<ProbabilityConfig> {
                 float f3 = (rand.nextFloat() - 0.5F) / 4.0F;
                 float f2 = this.generateCaveRadius(rand);
                 int i1 = i - rand.nextInt(i / 4);
-                this.carveTunnel(chunkIn, rand.nextLong(), seaLevel, p_212867_6_, p_212867_7_, d0, d1, d2, f2, f, f3, 0, i1, this.func_222725_b(), carvingMask);
+                this.carveTunnels(chunkIn, biomePos, rand.nextLong(), seaLevel, p_212867_6_, p_212867_7_, d0, d1, d2, f2, f, f3, 0, i1, this.func_222725_b(), carvingMask);
             }
         }
 
@@ -80,13 +82,13 @@ public class CoatedCavesWorldCarver extends WorldCarver<ProbabilityConfig> {
         return rand.nextInt(rand.nextInt(120) + 8);
     }
 
-    protected void func_222723_a(IChunk chunkIn, long seed, int seaLevel, int p_222723_5_, int p_222723_6_, double chunkX, double chunkY, double chunkZ, float radius, double half, BitSet mask) {
+    protected void carveCave(IChunk chunkIn, Function<BlockPos, Biome> biomePos, long seed, int seaLevel, int p_227205_6_, int p_227205_7_, double chunkX, double chunkY, double chunkZ, float radius, double half, BitSet mask) {
         double d0 = 1.5D + (double)(MathHelper.sin(((float)Math.PI / 2F)) * radius);
         double d1 = d0 * half;
-        this.func_222705_a(chunkIn, seed, seaLevel, p_222723_5_, p_222723_6_, chunkX + 1.0D, chunkY, chunkZ, d0, d1, mask);
+        this.carveRegion(chunkIn, biomePos, seed, seaLevel, p_227205_6_, p_227205_7_, chunkX + 1.0D, chunkY, chunkZ, d0, d1, mask);
     }
 
-    protected void carveTunnel(IChunk chunkIn, long seed, int seaLevel, int centerX, int centerZ, double chunkX, double chunkY, double chunkZ, float radius, float p_222727_14_, float p_222727_15_, int baseSize, int maxSize, double diameter, BitSet mask) {
+    protected void carveTunnels(IChunk chunkIn, Function<BlockPos, Biome> biomePos, long seed, int seaLevel, int centerX, int centerZ, double chunkX, double chunkY, double chunkZ, float radius, float p_222727_14_, float p_222727_15_, int baseSize, int maxSize, double diameter, BitSet mask) {
         Random random = new Random(seed);
         int i = random.nextInt(maxSize / 2) + maxSize / 4;
         boolean flag = random.nextInt(6) == 0;
@@ -108,8 +110,8 @@ public class CoatedCavesWorldCarver extends WorldCarver<ProbabilityConfig> {
             f1 = f1 + (random.nextFloat() - random.nextFloat()) * random.nextFloat() * 2.0F;
             f = f + (random.nextFloat() - random.nextFloat()) * random.nextFloat() * 4.0F;
             if (j == i && radius > 1.0F) {
-                this.carveTunnel(chunkIn, random.nextLong(), seaLevel, centerX, centerZ, chunkX, chunkY, chunkZ, random.nextFloat() * 0.5F + 0.5F, p_222727_14_ - ((float)Math.PI / 2F), p_222727_15_ / 3.0F, j, maxSize, 1.0D, mask);
-                this.carveTunnel(chunkIn, random.nextLong(), seaLevel, centerX, centerZ, chunkX, chunkY, chunkZ, random.nextFloat() * 0.5F + 0.5F, p_222727_14_ + ((float)Math.PI / 2F), p_222727_15_ / 3.0F, j, maxSize, 1.0D, mask);
+                this.carveTunnels(chunkIn, biomePos, random.nextLong(), seaLevel, centerX, centerZ, chunkX, chunkY, chunkZ, random.nextFloat() * 0.5F + 0.5F, p_222727_14_ - ((float)Math.PI / 2F), p_222727_15_ / 3.0F, j, maxSize, 1.0D, mask);
+                this.carveTunnels(chunkIn, biomePos, random.nextLong(), seaLevel, centerX, centerZ, chunkX, chunkY, chunkZ, random.nextFloat() * 0.5F + 0.5F, p_222727_14_ + ((float)Math.PI / 2F), p_222727_15_ / 3.0F, j, maxSize, 1.0D, mask);
                 return;
             }
 
@@ -118,13 +120,13 @@ public class CoatedCavesWorldCarver extends WorldCarver<ProbabilityConfig> {
                     return;
                 }
 
-                this.func_222705_a(chunkIn, seed, seaLevel, centerX, centerZ, chunkX, chunkY, chunkZ, d0, d1, mask);
+                this.carveRegion(chunkIn, biomePos, seed, seaLevel, centerX, centerZ, chunkX, chunkY, chunkZ, d0, d1, mask);
             }
         }
     }
 
     @Override
-    protected boolean carveBlock(IChunk chunkIn, BitSet carvingMask, Random rand, BlockPos.MutableBlockPos mutablePos, BlockPos.MutableBlockPos mutablePosAbove, BlockPos.MutableBlockPos mutablePosBelow, int p_222703_7_, int p_222703_8_, int p_222703_9_, int posX, int posZ, int p_222703_12_, int posY, int p_222703_14_, AtomicBoolean flag) {
+    protected boolean carveAtPoint(IChunk chunkIn, Function<BlockPos, Biome> biomePos, BitSet carvingMask, Random rand, BlockPos.Mutable mutablePos, BlockPos.Mutable mutablePosAbove, BlockPos.Mutable mutablePosBelow, int p_225556_8_, int p_225556_9_, int p_225556_10_, int posX, int posY, int posZ, int p_222703_12_, int p_222703_14_, AtomicBoolean flag) {
         int i = p_222703_12_ | p_222703_14_ << 4 | posY << 8;
         if (carvingMask.get(i)) {
             return false;
@@ -147,7 +149,7 @@ public class CoatedCavesWorldCarver extends WorldCarver<ProbabilityConfig> {
                     if (flag.get()) {
                         mutablePosBelow.setPos(mutablePos).move(Direction.DOWN);
                         if (chunkIn.getBlockState(mutablePosBelow).getBlock() instanceof GaiaSoilBlock) {
-                            chunkIn.setBlockState(mutablePosBelow, chunkIn.getBiome(mutablePos).getSurfaceBuilderConfig().getTop(), false);
+                            chunkIn.setBlockState(mutablePosBelow, biomePos.apply(mutablePos).getSurfaceBuilderConfig().getTop(), false);
                         }
                     }
                 }

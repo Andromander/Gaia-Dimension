@@ -1,7 +1,6 @@
 package androsa.gaiadimension.world.layer;
 
 import androsa.gaiadimension.registry.ModBiomes;
-import com.google.common.collect.ImmutableList;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.IExtendedNoiseRandom;
@@ -17,7 +16,6 @@ import net.minecraftforge.fml.event.lifecycle.FMLModIdMappingEvent;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.LongFunction;
-
 
 public class GaiaLayerUtil {
 
@@ -39,7 +37,7 @@ public class GaiaLayerUtil {
         return lazyInt;
     }
 
-    public static <T extends IArea, C extends IExtendedNoiseRandom<T>> ImmutableList<IAreaFactory<T>> makeLayers(LongFunction<C> contextFactory) {
+    public static <T extends IArea, C extends IExtendedNoiseRandom<T>> IAreaFactory<T> makeLayers(LongFunction<C> contextFactory) {
         IAreaFactory<T> biomes = new GaiaBiomesLayer().apply(contextFactory.apply(1L));
 
         biomes = ZoomLayer.NORMAL.apply(contextFactory.apply(1000), biomes);
@@ -55,16 +53,20 @@ public class GaiaLayerUtil {
         riverLayer = SmoothLayer.INSTANCE.apply(contextFactory.apply(7000L), riverLayer);
         biomes = MineralRiverMixLayer.INSTANCE.apply(contextFactory.apply(100L), biomes, riverLayer);
 
-        IAreaFactory<T> genlayervoronoizoom = VoroniZoomLayer.INSTANCE.apply(contextFactory.apply(10L), biomes);
-        return ImmutableList.of(biomes, genlayervoronoizoom, biomes);
+        return biomes;
+
+//        IAreaFactory<T> genlayervoronoizoom = VoroniZoomLayer.INSTANCE.apply(contextFactory.apply(10L), biomes);
+//        return ImmutableList.of(biomes, genlayervoronoizoom, biomes);
     }
 
-    public static Layer[] makeLayers(long seed) {
-        ImmutableList<IAreaFactory<LazyArea>> immutablelist = makeLayers((context) -> new LazyAreaLayerContext(25, seed, context));
-        Layer layer = new Layer(immutablelist.get(0));
-        Layer layer1 = new Layer(immutablelist.get(1));
-        Layer layer2 = new Layer(immutablelist.get(2));
-        return new Layer[]{layer, layer1, layer2};
+    public static Layer makeLayers(long seed) {
+        IAreaFactory<LazyArea> areaFactory = makeLayers((contextSeed) -> new LazyAreaLayerContext(25, seed, contextSeed));
+        return new Layer(areaFactory);
+//        ImmutableList<IAreaFactory<LazyArea>> immutablelist = makeLayers((context) -> new LazyAreaLayerContext(25, seed, context));
+//        Layer layer = new Layer(immutablelist.get(0));
+//        Layer layer1 = new Layer(immutablelist.get(1));
+//        Layer layer2 = new Layer(immutablelist.get(2));
+//        return new Layer[]{layer, layer1, layer2};
     }
 
     @SubscribeEvent

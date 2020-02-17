@@ -1,16 +1,12 @@
 package androsa.gaiadimension.world;
 
-import net.minecraft.util.SharedSeedRandom;
 import net.minecraft.util.Util;
-import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.WorldType;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.provider.BiomeProvider;
-import net.minecraft.world.chunk.IChunk;
 import net.minecraft.world.gen.*;
-import net.minecraft.world.spawner.WorldEntitySpawner;
 
 public class GaiaChunkGenerator extends NoiseChunkGenerator<GaiaGenerationSettings> {
 
@@ -25,14 +21,14 @@ public class GaiaChunkGenerator extends NoiseChunkGenerator<GaiaGenerationSettin
     });
     private OctavesNoiseGenerator depthNoise;
     private final boolean amplified;
-    private final INoiseGenerator surfaceDepthNoise;
+    //private final INoiseGenerator surfaceDepthNoise;
 
     public GaiaChunkGenerator(IWorld worldIn, BiomeProvider provider, GaiaGenerationSettings settingsIn) {
         super(worldIn, provider, 4, 8, 256, settingsIn, true);
         this.randomSeed.skip(2620);
-        this.depthNoise = new OctavesNoiseGenerator(randomSeed, 16);
+        this.depthNoise = new OctavesNoiseGenerator(randomSeed, 15, 0);
         this.amplified = worldIn.getWorldInfo().getGenerator() == WorldType.AMPLIFIED;
-        this.surfaceDepthNoise = new PerlinNoiseGenerator(this.randomSeed, 4);
+        //this.surfaceDepthNoise = new PerlinNoiseGenerator(this.randomSeed, 4);
     }
 
     /*@Override
@@ -46,7 +42,7 @@ public class GaiaChunkGenerator extends NoiseChunkGenerator<GaiaGenerationSettin
     }*/
 
     @Override
-    protected void func_222548_a(double[] adouble, int noiseX, int noiseZ) {
+    protected void fillNoiseColumn(double[] adouble, int noiseX, int noiseZ) {
         double d0 = (double)684.412F;
         double d1 = (double)684.412F;
         double d2 = 8.555149841308594D;
@@ -66,16 +62,17 @@ public class GaiaChunkGenerator extends NoiseChunkGenerator<GaiaGenerationSettin
         return d1;
     }
 
-    protected double[] func_222549_a(int chunkX, int chunkZ) {
+    protected double[] getBiomeNoiseColumn(int chunkX, int chunkZ) {
         double[] adouble = new double[2];
         float f = 0.0F;
         float f1 = 0.0F;
         float f2 = 0.0F;
-        float f3 = this.biomeProvider.func_222366_b(chunkX, chunkZ).getDepth();
+        int sea = this.getSeaLevel();
+        float f3 = this.biomeProvider.getBiomeForNoiseGen(chunkX, sea, chunkZ).getDepth();
 
         for(int j = -2; j <= 2; ++j) {
             for(int k = -2; k <= 2; ++k) {
-                Biome biome = this.biomeProvider.func_222366_b(chunkX + j, chunkZ + k);
+                Biome biome = this.biomeProvider.getBiomeForNoiseGen(chunkX + j, sea, chunkZ + k);
                 float f4 = biome.getDepth();
                 float f5 = biome.getScale();
                 if (this.amplified && f4 > 0.0F) {
@@ -104,7 +101,7 @@ public class GaiaChunkGenerator extends NoiseChunkGenerator<GaiaGenerationSettin
     }
 
     private double getDepthNoise(int noiseX, int noiseZ) {
-        double d0 = this.depthNoise.func_215462_a((double)(noiseX * 200), 10.0D, (double)(noiseZ * 200), 1.0D, 0.0D, true) / 8000.0D;
+        double d0 = this.depthNoise.getValue((double)(noiseX * 200), 10.0D, (double)(noiseZ * 200), 1.0D, 0.0D, true) / 8000.0D;
         if (d0 < 0.0D) {
             d0 = -d0 * 0.3D;
         }
