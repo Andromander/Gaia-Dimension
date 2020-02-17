@@ -1,16 +1,17 @@
 package androsa.gaiadimension.world.gen.tree;
 
-import androsa.gaiadimension.world.gen.feature.PinkAgateTreeFeature;
-import net.minecraft.block.trees.Tree;
-import net.minecraft.world.gen.feature.AbstractTreeFeature;
-import net.minecraft.world.gen.feature.NoFeatureConfig;
+import androsa.gaiadimension.registry.GaiaBiomeFeatures;
+import androsa.gaiadimension.registry.ModWorldgen;
+import androsa.gaiadimension.world.gen.config.GaiaTreeFeatureConfig;
+import androsa.gaiadimension.world.gen.feature.GaiaTree;
+import net.minecraft.world.gen.feature.ConfiguredFeature;
 
 import java.util.Random;
 
-public class PinkAgateTree extends Tree {
+public class PinkAgateTree extends GaiaTree {
 
     @Override
-    protected AbstractTreeFeature<NoFeatureConfig> getTreeFeature(Random random) {
-        return new PinkAgateTreeFeature(NoFeatureConfig::deserialize, true);
+    public ConfiguredFeature<GaiaTreeFeatureConfig, ?> createTreeFeature(Random rand) {
+        return ModWorldgen.PINK_AGATE_TREE.get().configure(GaiaBiomeFeatures.PINK_AGATE_TREE_CONFIG);
     }
 }

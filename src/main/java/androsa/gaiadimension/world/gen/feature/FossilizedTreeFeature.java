@@ -15,17 +15,17 @@ import java.util.Set;
 import java.util.function.Function;
 
 @ParametersAreNonnullByDefault
-public class FossilizedTreeFeature<T extends GaiaTreeFeatureConfig> extends AbstractTreeFeature<T> {
+public class FossilizedTreeFeature extends AbstractTreeFeature<GaiaTreeFeatureConfig> {
     //TODO:
     private static final BlockState TRUNK = ModBlocks.fossilized_log.get().getDefaultState();
     private static final BlockState LEAF = ModBlocks.fossilized_leaves.get().getDefaultState();
 
-    public FossilizedTreeFeature(Function<Dynamic<?>, T> configIn) {
+    public FossilizedTreeFeature(Function<Dynamic<?>, GaiaTreeFeatureConfig> configIn) {
         super(configIn);
     }
 
     @Override
-    protected boolean generate(IWorldGenerationReader worldIn, Random rand, BlockPos position, Set<BlockPos> logPos, Set<BlockPos> leavesPos, MutableBoundingBox boundingBox, T config) {
+    protected boolean generate(IWorldGenerationReader worldIn, Random rand, BlockPos position, Set<BlockPos> logPos, Set<BlockPos> leavesPos, MutableBoundingBox boundingBox, GaiaTreeFeatureConfig config) {
         int height = rand.nextInt(3) + rand.nextInt(3) + 5;
         boolean flag = true;
 

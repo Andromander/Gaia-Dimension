@@ -13,14 +13,14 @@ import java.util.Set;
 import java.util.function.Function;
 
 @ParametersAreNonnullByDefault
-public class GoldstoneCorruptTreeFeature<T extends GaiaTreeFeatureConfig> extends AbstractTreeFeature<T> {
+public class GoldstoneCorruptTreeFeature extends AbstractTreeFeature<GaiaTreeFeatureConfig> {
 
-    public GoldstoneCorruptTreeFeature(Function<Dynamic<?>, T> configIn) {
+    public GoldstoneCorruptTreeFeature(Function<Dynamic<?>, GaiaTreeFeatureConfig> configIn) {
         super(configIn);
     }
 
     @Override
-    protected boolean generate(IWorldGenerationReader world, Random rand, BlockPos pos, Set<BlockPos> logPos, Set<BlockPos> leavesPos, MutableBoundingBox boundingBox, T config) {
+    protected boolean generate(IWorldGenerationReader world, Random rand, BlockPos pos, Set<BlockPos> logPos, Set<BlockPos> leavesPos, MutableBoundingBox boundingBox, GaiaTreeFeatureConfig config) {
         int height = rand.nextInt(5) + 7;
         int j = height - rand.nextInt(2) - 3;
         int k = height - j;

@@ -1,14 +1,17 @@
 package androsa.gaiadimension.registry;
 
 import androsa.gaiadimension.biomes.*;
+import androsa.gaiadimension.world.gen.config.GaiaTreeFeatureConfig;
 import com.google.common.collect.Lists;
 import net.minecraft.block.Block;
 import net.minecraft.block.pattern.BlockMatcher;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.GenerationStage;
+import net.minecraft.world.gen.blockstateprovider.SimpleBlockStateProvider;
 import net.minecraft.world.gen.feature.*;
 import net.minecraft.world.gen.placement.*;
 import net.minecraft.world.gen.surfacebuilders.SurfaceBuilderConfig;
+import net.minecraftforge.common.IPlantable;
 
 public class GaiaBiomeFeatures {
 
@@ -37,6 +40,16 @@ public class GaiaBiomeFeatures {
     public static final SurfaceBuilderConfig SALT_SURFACE_CONFIG = new SurfaceBuilderConfig(ModBlocks.salt.get().getDefaultState(), ModBlocks.salt.get().getDefaultState(), ModBlocks.salt.get().getDefaultState());
     public static final SurfaceBuilderConfig AURA_SURFACE_CONFIG = new SurfaceBuilderConfig(ModBlocks.soft_grass.get().getDefaultState(), ModBlocks.light_soil.get().getDefaultState(), ModBlocks.salt.get().getDefaultState());
     public static final SurfaceBuilderConfig BISMUTH_SURFACE_CONFIG = new SurfaceBuilderConfig(ModBlocks.murky_grass.get().getDefaultState(), ModBlocks.boggy_soil.get().getDefaultState(), ModBlocks.pebbles.get().getDefaultState());
+
+    public static final GaiaTreeFeatureConfig PINK_AGATE_TREE_CONFIG = (new GaiaTreeFeatureConfig.Builder(new SimpleBlockStateProvider(ModBlocks.pink_agate_log.get().getDefaultState()), new SimpleBlockStateProvider(ModBlocks.pink_agate_leaves.get().getDefaultState())).setSapling(ModBlocks.pink_agate_sapling.get())).build();
+    public static final GaiaTreeFeatureConfig BLUE_AGATE_TREE_CONFIG = (new GaiaTreeFeatureConfig.Builder(new SimpleBlockStateProvider(ModBlocks.blue_agate_log.get().getDefaultState()), new SimpleBlockStateProvider(ModBlocks.blue_agate_leaves.get().getDefaultState())).setSapling(ModBlocks.blue_agate_sapling.get())).build();
+    public static final GaiaTreeFeatureConfig GREEN_AGATE_TREE_CONFIG = (new GaiaTreeFeatureConfig.Builder(new SimpleBlockStateProvider(ModBlocks.green_agate_log.get().getDefaultState()), new SimpleBlockStateProvider(ModBlocks.green_agate_leaves.get().getDefaultState())).setSapling(ModBlocks.green_agate_sapling.get())).build();
+    public static final GaiaTreeFeatureConfig PURPLE_AGATE_TREE_CONFIG = (new GaiaTreeFeatureConfig.Builder(new SimpleBlockStateProvider(ModBlocks.purple_agate_log.get().getDefaultState()), new SimpleBlockStateProvider(ModBlocks.purple_agate_leaves.get().getDefaultState())).setSapling(ModBlocks.purple_agate_sapling.get())).build();
+    public static final GaiaTreeFeatureConfig FOSSILIZED_TREE_CONFIG = (new GaiaTreeFeatureConfig.Builder(new SimpleBlockStateProvider(ModBlocks.fossilized_log.get().getDefaultState()), new SimpleBlockStateProvider(ModBlocks.fossilized_leaves.get().getDefaultState())).setSapling(ModBlocks.fossilized_sapling.get())).build();
+    public static final GaiaTreeFeatureConfig CORRUPTED_TREE_CONFIG = (new GaiaTreeFeatureConfig.Builder(new SimpleBlockStateProvider(ModBlocks.corrupted_log.get().getDefaultState()), new SimpleBlockStateProvider(ModBlocks.corrupted_leaves.get().getDefaultState())).setSapling(ModBlocks.corrupted_sapling.get())).build();
+    public static final GaiaTreeFeatureConfig BURNT_TREE_CONFIG = (new GaiaTreeFeatureConfig.Builder(new SimpleBlockStateProvider(ModBlocks.burnt_log.get().getDefaultState()), new SimpleBlockStateProvider(ModBlocks.burnt_leaves.get().getDefaultState())).setSapling(ModBlocks.burnt_sapling.get())).build();
+    public static final GaiaTreeFeatureConfig BURNING_TREE_CONFIG = (new GaiaTreeFeatureConfig.Builder(new SimpleBlockStateProvider(ModBlocks.burning_log.get().getDefaultState()), new SimpleBlockStateProvider(ModBlocks.burning_leaves.get().getDefaultState())).setSapling(ModBlocks.burning_sapling.get())).build();
+    public static final GaiaTreeFeatureConfig AURA_TREE_CONFIG = (new GaiaTreeFeatureConfig.Builder(new SimpleBlockStateProvider(ModBlocks.aura_log.get().getDefaultState()), new SimpleBlockStateProvider(ModBlocks.aura_leaves.get().getDefaultState())).setSapling(ModBlocks.aura_sapling.get())).build();
 
     public static void addCarver(Biome biomeIn) {
         biomeIn.addCarver(GenerationStage.Carving.AIR, Biome.createCarver(ModWorldgen.CRYSTAL_CAVES.get(), new ProbabilityConfig(0.15F)));

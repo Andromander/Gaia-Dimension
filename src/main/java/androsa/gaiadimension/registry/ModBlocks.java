@@ -107,15 +107,15 @@ public class ModBlocks {
     public static final Block s_burning_wood = new AgateLogBlock(MaterialColor.ADOBE, MaterialColor.ADOBE, 3);
     public static final Block s_aura_wood = new AgateLogBlock(MaterialColor.IRON, MaterialColor.IRON);
 
-    public static final RegistryObject<Block> pink_agate_sapling = registerBlockGeneral("pink_agate_sapling", () -> new AgateSaplingBlock(MaterialColor.PINK, new PinkAgateTree()));
-    public static final RegistryObject<Block> blue_agate_sapling = registerBlockGeneral("blue_agate_sapling", () -> new AgateSaplingBlock(MaterialColor.LIGHT_BLUE, new BlueAgateTree()));
-    public static final RegistryObject<Block> green_agate_sapling = registerBlockGeneral("green_agate_sapling", () -> new AgateSaplingBlock(MaterialColor.LIME, new GreenAgateTree()));
-    public static final RegistryObject<Block> purple_agate_sapling = registerBlockGeneral("purple_agate_sapling", () -> new AgateSaplingBlock(MaterialColor.PURPLE_TERRACOTTA, new PurpleAgateTree()));
-    public static final RegistryObject<Block> fossilized_sapling = registerBlockGeneral("fossilized_sapling", () -> new AgateSaplingBlock(MaterialColor.YELLOW_TERRACOTTA, new FossilizedTree()));
-    public static final RegistryObject<Block> corrupted_sapling = registerBlockGeneral("corrupted_sapling", () -> new AgateSaplingBlock(MaterialColor.BLACK_TERRACOTTA, new GoldstoneCorruptTree()));
-    public static final RegistryObject<Block> burnt_sapling = registerBlockGeneral("burnt_sapling", () -> new AgateSaplingBlock(MaterialColor.BLACK, new BurntAgateTree()));
-    public static final RegistryObject<Block> burning_sapling = registerBlockWithFuel("burning_sapling", () -> new AgateSaplingBlock(MaterialColor.ORANGE_TERRACOTTA, new FieryAgateTree()), 100);
-    public static final RegistryObject<Block> aura_sapling = registerBlockGeneral("aura_sapling", () -> new AgateSaplingBlock(MaterialColor.SNOW, new AuraTree()));
+    public static final RegistryObject<SaplingBlock> pink_agate_sapling = registerBlockGeneral("pink_agate_sapling", () -> new AgateSaplingBlock(MaterialColor.PINK, new PinkAgateTree()));
+    public static final RegistryObject<SaplingBlock> blue_agate_sapling = registerBlockGeneral("blue_agate_sapling", () -> new AgateSaplingBlock(MaterialColor.LIGHT_BLUE, new BlueAgateTree()));
+    public static final RegistryObject<SaplingBlock> green_agate_sapling = registerBlockGeneral("green_agate_sapling", () -> new AgateSaplingBlock(MaterialColor.LIME, new GreenAgateTree()));
+    public static final RegistryObject<SaplingBlock> purple_agate_sapling = registerBlockGeneral("purple_agate_sapling", () -> new AgateSaplingBlock(MaterialColor.PURPLE_TERRACOTTA, new PurpleAgateTree()));
+    public static final RegistryObject<SaplingBlock> fossilized_sapling = registerBlockGeneral("fossilized_sapling", () -> new AgateSaplingBlock(MaterialColor.YELLOW_TERRACOTTA, new FossilizedTree()));
+    public static final RegistryObject<SaplingBlock> corrupted_sapling = registerBlockGeneral("corrupted_sapling", () -> new AgateSaplingBlock(MaterialColor.BLACK_TERRACOTTA, new GoldstoneCorruptTree()));
+    public static final RegistryObject<SaplingBlock> burnt_sapling = registerBlockGeneral("burnt_sapling", () -> new AgateSaplingBlock(MaterialColor.BLACK, new BurntAgateTree()));
+    public static final RegistryObject<SaplingBlock> burning_sapling = registerBlockWithFuel("burning_sapling", () -> new AgateSaplingBlock(MaterialColor.ORANGE_TERRACOTTA, new FieryAgateTree()), 100);
+    public static final RegistryObject<SaplingBlock> aura_sapling = registerBlockGeneral("aura_sapling", () -> new AgateSaplingBlock(MaterialColor.SNOW, new AuraTree()));
     public static final RegistryObject<Block> pink_agate_leaves = registerBlockGeneral("pink_agate_leaves", () -> new AgateLeavesBlock(MaterialColor.MAGENTA));
     public static final RegistryObject<Block> blue_agate_leaves = registerBlockGeneral("blue_agate_leaves", () -> new AgateLeavesBlock(MaterialColor.BLUE));
     public static final RegistryObject<Block> green_agate_leaves = registerBlockGeneral("green_agate_leaves", () -> new AgateLeavesBlock(MaterialColor.GREEN));
@@ -345,7 +345,7 @@ public class ModBlocks {
         };
     }
 
-    private static RegistryObject<Block> registerFlowerPot(String name, Supplier<Block> plant) {
+    private static RegistryObject<FlowerPotBlock> registerFlowerPot(String name, Supplier<? extends Block> plant) {
         return BLOCKS.register(name, () -> new FlowerPotBlock(() -> (FlowerPotBlock) Blocks.FLOWER_POT, plant, Block.Properties.create(Material.MISCELLANEOUS).hardnessAndResistance(0.0F)));
     }
 

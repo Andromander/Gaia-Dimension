@@ -12,13 +12,13 @@ import net.minecraft.world.gen.feature.SphereReplaceConfig;
 import java.util.Random;
 import java.util.function.Function;
 
-public class DiskNoWaterFeature<T extends SphereReplaceConfig> extends Feature<T> {
+public class DiskNoWaterFeature extends Feature<SphereReplaceConfig> {
 
-    public DiskNoWaterFeature(Function<Dynamic<?>, T> config) {
+    public DiskNoWaterFeature(Function<Dynamic<?>, SphereReplaceConfig> config) {
         super(config);
     }
 
-    public boolean place(IWorld worldIn, ChunkGenerator<? extends GenerationSettings> generator, Random rand, BlockPos pos, T config) {
+    public boolean place(IWorld worldIn, ChunkGenerator<? extends GenerationSettings> generator, Random rand, BlockPos pos, SphereReplaceConfig config) {
         int i = 0;
         int j = rand.nextInt(config.radius - 2) + 2;
 

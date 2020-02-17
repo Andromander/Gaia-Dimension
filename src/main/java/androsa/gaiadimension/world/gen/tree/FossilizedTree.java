@@ -1,17 +1,17 @@
 package androsa.gaiadimension.world.gen.tree;
 
-import androsa.gaiadimension.world.gen.feature.FossilizedTreeFeature;
-import androsa.gaiadimension.world.gen.feature.PinkAgateTreeFeature;
-import net.minecraft.block.trees.Tree;
-import net.minecraft.world.gen.feature.AbstractTreeFeature;
-import net.minecraft.world.gen.feature.NoFeatureConfig;
+import androsa.gaiadimension.registry.GaiaBiomeFeatures;
+import androsa.gaiadimension.registry.ModWorldgen;
+import androsa.gaiadimension.world.gen.config.GaiaTreeFeatureConfig;
+import androsa.gaiadimension.world.gen.feature.GaiaTree;
+import net.minecraft.world.gen.feature.ConfiguredFeature;
 
 import java.util.Random;
 
-public class FossilizedTree extends Tree {
+public class FossilizedTree extends GaiaTree {
 
     @Override
-    protected AbstractTreeFeature<NoFeatureConfig> getTreeFeature(Random random) {
-        return new FossilizedTreeFeature(NoFeatureConfig::deserialize, true);
+    public ConfiguredFeature<GaiaTreeFeatureConfig, ?> createTreeFeature(Random rand) {
+        return ModWorldgen.FOSSILIZED_TREE.get().configure(GaiaBiomeFeatures.FOSSILIZED_TREE_CONFIG);
     }
 }

@@ -1,17 +1,17 @@
 package androsa.gaiadimension.world.gen.tree;
 
-import androsa.gaiadimension.world.gen.feature.FossilizedTreeFeature;
-import androsa.gaiadimension.world.gen.feature.GoldstoneCorruptTreeFeature;
-import net.minecraft.block.trees.Tree;
-import net.minecraft.world.gen.feature.AbstractTreeFeature;
-import net.minecraft.world.gen.feature.NoFeatureConfig;
+import androsa.gaiadimension.registry.GaiaBiomeFeatures;
+import androsa.gaiadimension.registry.ModWorldgen;
+import androsa.gaiadimension.world.gen.config.GaiaTreeFeatureConfig;
+import androsa.gaiadimension.world.gen.feature.GaiaTree;
+import net.minecraft.world.gen.feature.ConfiguredFeature;
 
 import java.util.Random;
 
-public class GoldstoneCorruptTree extends Tree {
+public class GoldstoneCorruptTree extends GaiaTree {
 
     @Override
-    protected AbstractTreeFeature<NoFeatureConfig> getTreeFeature(Random random) {
-        return new GoldstoneCorruptTreeFeature(NoFeatureConfig::deserialize, true);
+    public ConfiguredFeature<GaiaTreeFeatureConfig, ?> createTreeFeature(Random rand) {
+        return ModWorldgen.GOLDSTONE_TREE.get().configure(GaiaBiomeFeatures.CORRUPTED_TREE_CONFIG);
     }
 }

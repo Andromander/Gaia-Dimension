@@ -13,14 +13,14 @@ import java.util.Set;
 import java.util.function.Function;
 
 @ParametersAreNonnullByDefault
-public class BlueAgateTreeFeature<T extends GaiaTreeFeatureConfig> extends AbstractTreeFeature<T> {
+public class BlueAgateTreeFeature extends AbstractTreeFeature<GaiaTreeFeatureConfig> {
 
-    public BlueAgateTreeFeature(Function<Dynamic<?>, T> configIn) {
+    public BlueAgateTreeFeature(Function<Dynamic<?>, GaiaTreeFeatureConfig> configIn) {
         super(configIn);
     }
 
     @Override
-    protected boolean generate(IWorldGenerationReader world, Random rand, BlockPos pos, Set<BlockPos> logPos, Set<BlockPos> leavesPos, MutableBoundingBox boundingBox, T config) {
+    protected boolean generate(IWorldGenerationReader world, Random rand, BlockPos pos, Set<BlockPos> logPos, Set<BlockPos> leavesPos, MutableBoundingBox boundingBox, GaiaTreeFeatureConfig config) {
         int height = rand.nextInt(4) + 6;
         int j = 1 + rand.nextInt(2);
         int k = height - j;

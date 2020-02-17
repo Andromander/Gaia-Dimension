@@ -8,6 +8,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MutableBoundingBox;
 import net.minecraft.world.gen.IWorldGenerationReader;
 import net.minecraft.world.gen.feature.AbstractTreeFeature;
+import net.minecraft.world.gen.feature.BaseTreeFeatureConfig;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.Random;
@@ -15,17 +16,17 @@ import java.util.Set;
 import java.util.function.Function;
 
 @ParametersAreNonnullByDefault
-public class AuraTreeFeature<T extends GaiaTreeFeatureConfig> extends AbstractTreeFeature<T> {
+public class AuraTreeFeature extends AbstractTreeFeature<GaiaTreeFeatureConfig> {
     //TODO: Move to Builder
     private static final BlockState TRUNK = ModBlocks.aura_log.get().getDefaultState();
     private static final BlockState LEAF = ModBlocks.aura_leaves.get().getDefaultState();
 
-    public AuraTreeFeature(Function<Dynamic<?>, T> configIn) {
+    public AuraTreeFeature(Function<Dynamic<?>, GaiaTreeFeatureConfig> configIn) {
         super(configIn);
     }
 
     @Override
-    protected boolean generate(IWorldGenerationReader worldIn, Random rand, BlockPos position, Set<BlockPos> logPos, Set<BlockPos> leavesPos, MutableBoundingBox boundingBox, T config) {
+    protected boolean generate(IWorldGenerationReader worldIn, Random rand, BlockPos position, Set<BlockPos> logPos, Set<BlockPos> leavesPos, MutableBoundingBox boundingBox, GaiaTreeFeatureConfig config) {
         int baseHeight = rand.nextInt(3) + rand.nextInt(3) + 10;
         boolean canGrow = true;
 

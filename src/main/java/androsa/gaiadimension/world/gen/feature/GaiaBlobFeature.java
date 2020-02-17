@@ -13,14 +13,14 @@ import net.minecraft.world.gen.feature.Feature;
 import java.util.Random;
 import java.util.function.Function;
 
-public class GaiaBlobFeature<T extends BlockBlobConfig> extends Feature<T> {
+public class GaiaBlobFeature extends Feature<BlockBlobConfig> {
 
-    public GaiaBlobFeature(Function<Dynamic<?>, T> config) {
+    public GaiaBlobFeature(Function<Dynamic<?>, BlockBlobConfig> config) {
         super(config);
     }
 
     @Override
-    public boolean place(IWorld worldIn, ChunkGenerator<? extends GenerationSettings> generator, Random rand, BlockPos pos, T config) {
+    public boolean place(IWorld worldIn, ChunkGenerator<? extends GenerationSettings> generator, Random rand, BlockPos pos, BlockBlobConfig config) {
         while(true) {
             label50: {
                 if (pos.getY() > 3) {

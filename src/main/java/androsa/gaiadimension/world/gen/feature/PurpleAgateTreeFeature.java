@@ -16,17 +16,17 @@ import java.util.Random;
 import java.util.Set;
 import java.util.function.Function;
 
-public class PurpleAgateTreeFeature<T extends GaiaTreeFeatureConfig> extends AbstractTreeFeature<T> {
+public class PurpleAgateTreeFeature extends AbstractTreeFeature<GaiaTreeFeatureConfig> {
     //TODO: Move to Builder
     private static final BlockState TRUNK = ModBlocks.purple_agate_log.get().getDefaultState();
     private static final BlockState LEAF = ModBlocks.purple_agate_leaves.get().getDefaultState();
 
-    public PurpleAgateTreeFeature(Function<Dynamic<?>, T> configIn) {
+    public PurpleAgateTreeFeature(Function<Dynamic<?>, GaiaTreeFeatureConfig> configIn) {
         super(configIn);
     }
 
     @Override
-    protected boolean generate(IWorldGenerationReader worldIn, Random rand, BlockPos position, Set<BlockPos> logPos, Set<BlockPos> leavesPos, MutableBoundingBox boundingBox, T config) {
+    protected boolean generate(IWorldGenerationReader worldIn, Random rand, BlockPos position, Set<BlockPos> logPos, Set<BlockPos> leavesPos, MutableBoundingBox boundingBox, GaiaTreeFeatureConfig config) {
         int height = rand.nextInt(3) + rand.nextInt(3) + 7;
         boolean canGrow = true;
 
@@ -120,7 +120,7 @@ public class PurpleAgateTreeFeature<T extends GaiaTreeFeatureConfig> extends Abs
         }
     }
 
-    private void placeLogAt(IWorldWriter writer, Random rand, BlockPos pos, Direction.Axis axis, MutableBoundingBox boundingBox, T config) {
+    private void placeLogAt(IWorldWriter writer, Random rand, BlockPos pos, Direction.Axis axis, MutableBoundingBox boundingBox, GaiaTreeFeatureConfig config) {
         this.setBlockState(writer, pos, config.trunkProvider.getBlockState(rand, pos).with(RotatedPillarBlock.AXIS, axis), boundingBox);
     }
 }

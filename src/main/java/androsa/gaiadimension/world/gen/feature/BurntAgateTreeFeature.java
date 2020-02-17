@@ -15,17 +15,17 @@ import java.util.Set;
 import java.util.function.Function;
 
 @ParametersAreNonnullByDefault
-public class BurntAgateTreeFeature<T extends GaiaTreeFeatureConfig> extends AbstractTreeFeature<T> {
+public class BurntAgateTreeFeature extends AbstractTreeFeature<GaiaTreeFeatureConfig> {
     //TODO: Move to Builder
     private static final BlockState TRUNK = ModBlocks.burnt_log.get().getDefaultState();
     private static final BlockState LEAF = ModBlocks.burnt_leaves.get().getDefaultState();
 
-    public BurntAgateTreeFeature(Function<Dynamic<?>, T> configIn) {
+    public BurntAgateTreeFeature(Function<Dynamic<?>, GaiaTreeFeatureConfig> configIn) {
         super(configIn);
     }
 
     @Override
-    protected boolean generate(IWorldGenerationReader worldIn, Random rand, BlockPos position, Set<BlockPos> logPos, Set<BlockPos> leavesPos, MutableBoundingBox boundingBox, T config) {
+    protected boolean generate(IWorldGenerationReader worldIn, Random rand, BlockPos position, Set<BlockPos> logPos, Set<BlockPos> leavesPos, MutableBoundingBox boundingBox, GaiaTreeFeatureConfig config) {
         int height = rand.nextInt(3) + rand.nextInt(3) + 5;
         boolean flag = true;
 
