@@ -47,8 +47,6 @@ public class GaiaLayerUtil {
         biomes = ZoomLayer.NORMAL.apply(contextFactory.apply(1004), biomes);
         biomes = ZoomLayer.NORMAL.apply(contextFactory.apply(1005), biomes);
 
-        biomes = LayerUtil.repeat(1000L, ZoomLayer.NORMAL, biomes, 1, contextFactory);
-
         IAreaFactory<T> riverLayer = MineralRiverLayer.INSTANCE.apply(contextFactory.apply(1L), biomes);
         riverLayer = SmoothLayer.INSTANCE.apply(contextFactory.apply(7000L), riverLayer);
         biomes = MineralRiverMixLayer.INSTANCE.apply(contextFactory.apply(100L), biomes, riverLayer);

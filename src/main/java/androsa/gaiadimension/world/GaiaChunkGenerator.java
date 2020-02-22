@@ -53,8 +53,8 @@ public class GaiaChunkGenerator extends NoiseChunkGenerator<GaiaGenerationSettin
     }
 
     @Override
-    protected double func_222545_a(double p_222545_1_, double p_222545_3_, int p_222545_5_) {
-        double d1 = ((double)p_222545_5_ - (8.5D + p_222545_1_ * 8.5D / 8.0D * 4.0D)) * 12.0D * 128.0D / 256.0D / p_222545_3_;
+    protected double func_222545_a(double xVal, double zVal, int yVal) {
+        double d1 = ((double)yVal - (8.5D + xVal * 8.5D / 8.0D * 4.0D)) * 12.0D * 128.0D / 256.0D / zVal;
         if (d1 < 0.0D) {
             d1 *= 4.0D;
         }

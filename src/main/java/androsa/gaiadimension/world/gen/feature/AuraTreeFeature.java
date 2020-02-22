@@ -16,17 +16,17 @@ import java.util.Set;
 import java.util.function.Function;
 
 @ParametersAreNonnullByDefault
-public class AuraTreeFeature extends AbstractTreeFeature<GaiaTreeFeatureConfig> {
+public class AuraTreeFeature<T extends GaiaTreeFeatureConfig> extends AbstractTreeFeature<T> {
     //TODO: Move to Builder
     private static final BlockState TRUNK = ModBlocks.aura_log.get().getDefaultState();
     private static final BlockState LEAF = ModBlocks.aura_leaves.get().getDefaultState();
 
-    public AuraTreeFeature(Function<Dynamic<?>, GaiaTreeFeatureConfig> configIn) {
+    public AuraTreeFeature(Function<Dynamic<?>, T> configIn) {
         super(configIn);
     }
 
     @Override
-    protected boolean generate(IWorldGenerationReader worldIn, Random rand, BlockPos position, Set<BlockPos> logPos, Set<BlockPos> leavesPos, MutableBoundingBox boundingBox, GaiaTreeFeatureConfig config) {
+    protected boolean generate(IWorldGenerationReader worldIn, Random rand, BlockPos position, Set<BlockPos> logPos, Set<BlockPos> leavesPos, MutableBoundingBox boundingBox, T config) {
         int baseHeight = rand.nextInt(3) + rand.nextInt(3) + 10;
         boolean canGrow = true;
 

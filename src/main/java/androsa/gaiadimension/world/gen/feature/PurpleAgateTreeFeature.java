@@ -12,21 +12,23 @@ import net.minecraft.world.IWorldWriter;
 import net.minecraft.world.gen.IWorldGenerationReader;
 import net.minecraft.world.gen.feature.AbstractTreeFeature;
 
+import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.Random;
 import java.util.Set;
 import java.util.function.Function;
 
-public class PurpleAgateTreeFeature extends AbstractTreeFeature<GaiaTreeFeatureConfig> {
+@ParametersAreNonnullByDefault
+public class PurpleAgateTreeFeature<T extends GaiaTreeFeatureConfig> extends AbstractTreeFeature<T> {
     //TODO: Move to Builder
     private static final BlockState TRUNK = ModBlocks.purple_agate_log.get().getDefaultState();
     private static final BlockState LEAF = ModBlocks.purple_agate_leaves.get().getDefaultState();
 
-    public PurpleAgateTreeFeature(Function<Dynamic<?>, GaiaTreeFeatureConfig> configIn) {
+    public PurpleAgateTreeFeature(Function<Dynamic<?>, T> configIn) {
         super(configIn);
     }
 
     @Override
-    protected boolean generate(IWorldGenerationReader worldIn, Random rand, BlockPos position, Set<BlockPos> logPos, Set<BlockPos> leavesPos, MutableBoundingBox boundingBox, GaiaTreeFeatureConfig config) {
+    protected boolean generate(IWorldGenerationReader worldIn, Random rand, BlockPos position, Set<BlockPos> logPos, Set<BlockPos> leavesPos, MutableBoundingBox boundingBox, T config) {
         int height = rand.nextInt(3) + rand.nextInt(3) + 7;
         boolean canGrow = true;
 
@@ -120,7 +122,7 @@ public class PurpleAgateTreeFeature extends AbstractTreeFeature<GaiaTreeFeatureC
         }
     }
 
-    private void placeLogAt(IWorldWriter writer, Random rand, BlockPos pos, Direction.Axis axis, MutableBoundingBox boundingBox, GaiaTreeFeatureConfig config) {
+    private void placeLogAt(IWorldWriter writer, Random rand, BlockPos pos, Direction.Axis axis, MutableBoundingBox boundingBox, T config) {
         this.setBlockState(writer, pos, config.trunkProvider.getBlockState(rand, pos).with(RotatedPillarBlock.AXIS, axis), boundingBox);
     }
 }

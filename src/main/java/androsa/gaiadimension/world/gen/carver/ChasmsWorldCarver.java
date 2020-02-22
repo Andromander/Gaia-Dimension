@@ -125,7 +125,7 @@ public class ChasmsWorldCarver extends WorldCarver<ProbabilityConfig> {
 
     @Override
     protected boolean carveAtPoint(IChunk chunkIn, Function<BlockPos, Biome> biomePos, BitSet carvingMask, Random rand, BlockPos.Mutable mutablePos, BlockPos.Mutable mutablePosAbove, BlockPos.Mutable mutablePosBelow, int p_225556_8_, int p_225556_9_, int p_225556_10_, int posX, int posY, int posZ, int p_222703_12_, int p_222703_14_, AtomicBoolean flag) {
-        int i = p_222703_12_ | p_222703_14_ << 4 | posY << 8;
+        int i = posZ | p_222703_14_ << 4 | p_222703_12_ << 8;
         if (carvingMask.get(i)) {
             return false;
         } else {

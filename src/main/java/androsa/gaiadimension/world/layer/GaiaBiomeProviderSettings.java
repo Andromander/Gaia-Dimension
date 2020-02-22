@@ -6,23 +6,25 @@ import net.minecraft.world.storage.WorldInfo;
 
 public class GaiaBiomeProviderSettings implements IBiomeProviderSettings {
 
-    private WorldInfo worldInfo;
+    private long seed;
     private GaiaGenerationSettings generatorSettings;
 
-    public GaiaBiomeProviderSettings() { }
-
-    public GaiaBiomeProviderSettings setWorldInfo(WorldInfo info) {
-        this.worldInfo = info;
-        return this;
+    public GaiaBiomeProviderSettings(WorldInfo info) {
+        this.seed = info.getSeed();
     }
+
+//    public GaiaBiomeProviderSettings setWorldInfo(WorldInfo info) {
+//        this.worldInfo = info;
+//        return this;
+//    }
 
     public GaiaBiomeProviderSettings setGeneratorSettings(GaiaGenerationSettings settings) {
         this.generatorSettings = settings;
         return this;
     }
 
-    public WorldInfo getWorldInfo() {
-        return this.worldInfo;
+    public long getSeed() {
+        return seed;
     }
 
     public GaiaGenerationSettings getGeneratorSettings() {

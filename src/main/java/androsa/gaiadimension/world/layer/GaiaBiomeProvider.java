@@ -7,7 +7,6 @@ import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.provider.BiomeProvider;
 import net.minecraft.world.gen.feature.structure.Structure;
 import net.minecraft.world.gen.layer.Layer;
-import net.minecraft.world.storage.WorldInfo;
 
 import java.util.Set;
 
@@ -37,8 +36,8 @@ public class GaiaBiomeProvider extends BiomeProvider {
 
     public GaiaBiomeProvider(GaiaBiomeProviderSettings settings) {
         super(biomes);
-        WorldInfo worldinfo = settings.getWorldInfo();
-        this.genBiomes = GaiaLayerUtil.makeLayers(worldinfo.getSeed());
+        //WorldInfo worldinfo = settings.getWorldInfo();
+        this.genBiomes = GaiaLayerUtil.makeLayers(settings.getSeed());
         //this.genBiomes = alayer[0];
         //this.biomeFactoryLayer = alayer[1];
 
@@ -52,7 +51,7 @@ public class GaiaBiomeProvider extends BiomeProvider {
 
     @Override
     public Biome getBiomeForNoiseGen(int x, int y, int z) {
-        return this.genBiomes.func_215738_a(x, y);
+        return this.genBiomes.func_215738_a(x, z);
     }
 
 //    @Override
