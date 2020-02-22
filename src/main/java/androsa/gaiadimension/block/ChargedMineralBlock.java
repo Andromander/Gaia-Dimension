@@ -18,13 +18,6 @@ public class ChargedMineralBlock extends AbstractGlassBlock {
         super(Properties.create(Material.IRON, MaterialColor.CYAN).hardnessAndResistance(4.0F, 15.0F).harvestTool(ToolType.PICKAXE).harvestLevel(1).sound(SoundType.GLASS));
     }
 
-    //TODO: RenderTypeLookup
-//    @Override
-//    @OnlyIn(Dist.CLIENT)
-//    public BlockRenderLayer getRenderLayer() {
-//        return BlockRenderLayer.TRANSLUCENT;
-//    }
-
     @Override
     @Deprecated
     public void onEntityCollision(BlockState state, World worldIn, BlockPos pos, Entity entityIn) {

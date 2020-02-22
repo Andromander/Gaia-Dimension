@@ -99,6 +99,7 @@ public class GaiaDimensionMod {
         DistExecutor.runWhenOn(Dist.CLIENT, () -> ModParticles::forgeClassLoadingIsFuckedThisShouldntBeHereButHereItIs);
         DistExecutor.runWhenOn(Dist.CLIENT, () -> ClientEvents::registerBlockColors);
         DistExecutor.runWhenOn(Dist.CLIENT, () -> ClientEvents::registerItemColors);
+        DistExecutor.runWhenOn(Dist.CLIENT, () -> ClientEvents::registerBlockRenderers);
     }
 
     public void gatherData(GatherDataEvent event) {

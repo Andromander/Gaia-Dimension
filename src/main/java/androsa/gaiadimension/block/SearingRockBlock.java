@@ -51,11 +51,4 @@ public class SearingRockBlock extends BasicGaiaBlock {
     public int tickRate(IWorldReader world) {
         return 20;
     }
-
-    //TODO: RenderTypeLookup
-//    @Override
-//    @OnlyIn(Dist.CLIENT)
-//    public BlockRenderLayer getRenderLayer() {
-//        return BlockRenderLayer.TRANSLUCENT;
-//    }
 }

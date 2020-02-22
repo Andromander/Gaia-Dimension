@@ -139,13 +139,6 @@ public class GoldFireBlock extends Block {
         }
     }
 
-    //TODO: RenderTypeLookup
-//    @Override
-//    @OnlyIn(Dist.CLIENT)
-//    public BlockRenderLayer getRenderLayer() {
-//        return BlockRenderLayer.CUTOUT;
-//    }
-
     @Override
     protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
         builder.add(AGE);

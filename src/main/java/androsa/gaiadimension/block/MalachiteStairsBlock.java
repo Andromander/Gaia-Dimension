@@ -13,15 +13,4 @@ public class MalachiteStairsBlock extends StairsBlock {
     public MalachiteStairsBlock(Supplier<? extends Block> state) {
         super(() -> state.get().getDefaultState(), Properties.create(Material.ROCK, MaterialColor.GREEN).hardnessAndResistance(20.0F, 100.0F).harvestTool(ToolType.PICKAXE).harvestLevel(2));
     }
-
-    //TODO: RenderTypeLookup
-//    @Override
-//    @OnlyIn(Dist.CLIENT)
-//    public BlockRenderLayer getRenderLayer() {
-//        if (isPulsing) {
-//            return BlockRenderLayer.CUTOUT;
-//        } else {
-//            return BlockRenderLayer.SOLID;
-//        }
-//    }
 }

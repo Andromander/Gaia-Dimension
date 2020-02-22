@@ -50,11 +50,4 @@ public class GummyGlitterBlock extends BreakableBlock {
 
         super.onEntityWalk(worldIn, pos, entityIn);
     }
-
-    //TODO: RenderTypeLookup
-//    @Override
-//    @OnlyIn(Dist.CLIENT)
-//    public BlockRenderLayer getRenderLayer() {
-//        return BlockRenderLayer.TRANSLUCENT;
-//    }
 }

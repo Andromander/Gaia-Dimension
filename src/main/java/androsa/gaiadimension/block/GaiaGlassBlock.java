@@ -10,11 +10,4 @@ public class GaiaGlassBlock extends AbstractGlassBlock {
     public GaiaGlassBlock(MaterialColor color, float hardness) {
         super(Properties.create(Material.GLASS, color).hardnessAndResistance(hardness, 0.0F).sound(SoundType.GLASS));
     }
-
-    //TODO: RenderTypeLookup
-//    @Override
-//    @OnlyIn(Dist.CLIENT)
-//    public BlockRenderLayer getRenderLayer() {
-//        return BlockRenderLayer.TRANSLUCENT;
-//    }
 }

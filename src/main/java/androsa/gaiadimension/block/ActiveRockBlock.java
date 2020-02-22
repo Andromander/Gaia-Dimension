@@ -24,11 +24,4 @@ public class ActiveRockBlock extends BasicGaiaBlock {
 
         super.onEntityWalk(worldIn, pos, entityIn);
     }
-
-    //TODO: RenderTypeLookup
-//    @Override
-//    @OnlyIn(Dist.CLIENT)
-//    public BlockRenderLayer getRenderLayer() {
-//        return BlockRenderLayer.CUTOUT;
-//    }
 }
