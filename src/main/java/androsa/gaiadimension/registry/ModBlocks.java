@@ -88,24 +88,24 @@ public class ModBlocks {
     public static final RegistryObject<Block> missingno_fungus = registerBlockGeneral("missingno_fungus", () -> new CrystalFungusBlock(MaterialColor.MAGENTA, false));
 
     //Tree Blocks
-    public static final Block s_pink_agate_log = new AgateLogBlock(MaterialColor.MAGENTA, MaterialColor.MAGENTA);
-    public static final Block s_blue_agate_log = new AgateLogBlock(MaterialColor.BLUE, MaterialColor.BLUE);
-    public static final Block s_green_agate_log = new AgateLogBlock(MaterialColor.GREEN, MaterialColor.GREEN);
-    public static final Block s_purple_agate_log = new AgateLogBlock(MaterialColor.PURPLE_TERRACOTTA, MaterialColor.PURPLE_TERRACOTTA);
-    public static final Block s_fossilized_log = new AgateLogBlock(MaterialColor.YELLOW, MaterialColor.YELLOW);
-    public static final Block s_corrupted_log = new AgateLogBlock(MaterialColor.TNT, MaterialColor.TNT);
-    public static final Block s_burnt_log = new AgateLogBlock(MaterialColor.GRAY, MaterialColor.GRAY);
-    public static final Block s_burning_log = new AgateLogBlock(MaterialColor.ADOBE, MaterialColor.ADOBE, 3);
-    public static final Block s_aura_log = new AgateLogBlock(MaterialColor.IRON, MaterialColor.IRON);
-    public static final Block s_pink_agate_wood = new AgateLogBlock(MaterialColor.MAGENTA, MaterialColor.MAGENTA);
-    public static final Block s_blue_agate_wood = new AgateLogBlock(MaterialColor.BLUE, MaterialColor.BLUE);
-    public static final Block s_green_agate_wood = new AgateLogBlock(MaterialColor.GREEN, MaterialColor.GREEN);
-    public static final Block s_purple_agate_wood = new AgateLogBlock(MaterialColor.PURPLE_TERRACOTTA, MaterialColor.PURPLE_TERRACOTTA);
-    public static final Block s_fossilized_wood = new AgateLogBlock(MaterialColor.YELLOW, MaterialColor.YELLOW);
-    public static final Block s_corrupted_wood = new AgateLogBlock(MaterialColor.TNT, MaterialColor.TNT);
-    public static final Block s_burnt_wood = new AgateLogBlock(MaterialColor.GRAY, MaterialColor.GRAY);
-    public static final Block s_burning_wood = new AgateLogBlock(MaterialColor.ADOBE, MaterialColor.ADOBE, 3);
-    public static final Block s_aura_wood = new AgateLogBlock(MaterialColor.IRON, MaterialColor.IRON);
+    public static final LogBlock s_pink_agate_log = new AgateLogBlock(MaterialColor.MAGENTA, MaterialColor.MAGENTA);
+    public static final LogBlock s_blue_agate_log = new AgateLogBlock(MaterialColor.BLUE, MaterialColor.BLUE);
+    public static final LogBlock s_green_agate_log = new AgateLogBlock(MaterialColor.GREEN, MaterialColor.GREEN);
+    public static final LogBlock s_purple_agate_log = new AgateLogBlock(MaterialColor.PURPLE_TERRACOTTA, MaterialColor.PURPLE_TERRACOTTA);
+    public static final LogBlock s_fossilized_log = new AgateLogBlock(MaterialColor.YELLOW, MaterialColor.YELLOW);
+    public static final LogBlock s_corrupted_log = new AgateLogBlock(MaterialColor.TNT, MaterialColor.TNT);
+    public static final LogBlock s_burnt_log = new AgateLogBlock(MaterialColor.GRAY, MaterialColor.GRAY);
+    public static final LogBlock s_burning_log = new AgateLogBlock(MaterialColor.ADOBE, MaterialColor.ADOBE, 3);
+    public static final LogBlock s_aura_log = new AgateLogBlock(MaterialColor.IRON, MaterialColor.IRON);
+    public static final LogBlock s_pink_agate_wood = new AgateLogBlock(MaterialColor.MAGENTA, MaterialColor.MAGENTA);
+    public static final LogBlock s_blue_agate_wood = new AgateLogBlock(MaterialColor.BLUE, MaterialColor.BLUE);
+    public static final LogBlock s_green_agate_wood = new AgateLogBlock(MaterialColor.GREEN, MaterialColor.GREEN);
+    public static final LogBlock s_purple_agate_wood = new AgateLogBlock(MaterialColor.PURPLE_TERRACOTTA, MaterialColor.PURPLE_TERRACOTTA);
+    public static final LogBlock s_fossilized_wood = new AgateLogBlock(MaterialColor.YELLOW, MaterialColor.YELLOW);
+    public static final LogBlock s_corrupted_wood = new AgateLogBlock(MaterialColor.TNT, MaterialColor.TNT);
+    public static final LogBlock s_burnt_wood = new AgateLogBlock(MaterialColor.GRAY, MaterialColor.GRAY);
+    public static final LogBlock s_burning_wood = new AgateLogBlock(MaterialColor.ADOBE, MaterialColor.ADOBE, 3);
+    public static final LogBlock s_aura_wood = new AgateLogBlock(MaterialColor.IRON, MaterialColor.IRON);
 
     public static final RegistryObject<SaplingBlock> pink_agate_sapling = registerBlockGeneral("pink_agate_sapling", () -> new AgateSaplingBlock(MaterialColor.PINK, new PinkAgateTree()));
     public static final RegistryObject<SaplingBlock> blue_agate_sapling = registerBlockGeneral("blue_agate_sapling", () -> new AgateSaplingBlock(MaterialColor.LIGHT_BLUE, new BlueAgateTree()));
@@ -125,42 +125,42 @@ public class ModBlocks {
     public static final RegistryObject<Block> burnt_leaves = registerBlockGeneral("burnt_leaves", () -> new AgateLeavesBlock(MaterialColor.GRAY));
     public static final RegistryObject<Block> burning_leaves = registerBlockWithFuel("burning_leaves", () -> new AgateLeavesBlock(MaterialColor.ORANGE_TERRACOTTA, 3), 200);
     public static final RegistryObject<Block> aura_leaves = registerBlockGeneral("aura_leaves", () -> new AgateLeavesBlock(MaterialColor.IRON));
-    public static final RegistryObject<Block> pink_agate_log = registerBlockGeneral("pink_agate_log", () -> new AgateLogBlock(() -> s_pink_agate_log, MaterialColor.MAGENTA, MaterialColor.PINK_TERRACOTTA));
-    public static final RegistryObject<Block> blue_agate_log = registerBlockGeneral("blue_agate_log", () -> new AgateLogBlock(() -> s_blue_agate_log, MaterialColor.BLUE, MaterialColor.BLUE_TERRACOTTA));
-    public static final RegistryObject<Block> green_agate_log = registerBlockGeneral("green_agate_log", () -> new AgateLogBlock(() -> s_green_agate_log, MaterialColor.GREEN, MaterialColor.LIME_TERRACOTTA));
-    public static final RegistryObject<Block> purple_agate_log = registerBlockGeneral("purple_agate_log", () -> new AgateLogBlock(() -> s_purple_agate_log, MaterialColor.PURPLE_TERRACOTTA, MaterialColor.PURPLE));
-    public static final RegistryObject<Block> fossilized_log = registerBlockGeneral("fossilized_log", () -> new AgateLogBlock(() -> s_fossilized_log, MaterialColor.YELLOW, MaterialColor.DIRT));
-    public static final RegistryObject<Block> corrupted_log = registerBlockGeneral("corrupted_log", () -> new AgateLogBlock(() -> s_corrupted_log, MaterialColor.TNT, MaterialColor.GRAY_TERRACOTTA));
-    public static final RegistryObject<Block> burnt_log = registerBlockGeneral("burnt_log", () -> new AgateLogBlock(() -> s_burnt_log, MaterialColor.GRAY, MaterialColor.BLACK_TERRACOTTA));
-    public static final RegistryObject<Block> burning_log = registerBlockWithFuel("burning_log", () -> new AgateLogBlock(() -> s_burning_log, MaterialColor.ADOBE, MaterialColor.ORANGE_TERRACOTTA, 3), 1600);
-    public static final RegistryObject<Block> aura_log = registerBlockGeneral("aura_log", () -> new AgateLogBlock(() -> s_aura_log, MaterialColor.IRON, MaterialColor.GRAY));
-    public static final RegistryObject<Block> stripped_pink_agate_log = registerBlockGeneral("stripped_pink_agate_log", () -> s_pink_agate_log);
-    public static final RegistryObject<Block> stripped_blue_agate_log = registerBlockGeneral("stripped_blue_agate_log", () -> s_blue_agate_log);
-    public static final RegistryObject<Block> stripped_green_agate_log = registerBlockGeneral("stripped_green_agate_log", () -> s_green_agate_log);
-    public static final RegistryObject<Block> stripped_purple_agate_log = registerBlockGeneral("stripped_purple_agate_log", () -> s_purple_agate_log);
-    public static final RegistryObject<Block> stripped_fossilized_log = registerBlockGeneral("stripped_fossilized_log", () -> s_fossilized_log);
-    public static final RegistryObject<Block> stripped_corrupted_log = registerBlockGeneral("stripped_corrupted_log", () -> s_corrupted_log);
-    public static final RegistryObject<Block> stripped_burnt_log = registerBlockGeneral("stripped_burnt_log", () -> s_burnt_log);
-    public static final RegistryObject<Block> stripped_burning_log = registerBlockWithFuel("stripped_burning_log", () -> s_burning_log, 1600);
-    public static final RegistryObject<Block> stripped_aura_log = registerBlockGeneral("stripped_aura_log", () -> s_aura_log);
-    public static final RegistryObject<Block> pink_agate_wood = registerBlockGeneral("pink_agate_wood", () -> new AgateLogBlock(() -> s_pink_agate_wood, MaterialColor.PINK_TERRACOTTA, MaterialColor.PINK_TERRACOTTA));
-    public static final RegistryObject<Block> blue_agate_wood = registerBlockGeneral("blue_agate_wood", () -> new AgateLogBlock(() -> s_blue_agate_wood, MaterialColor.BLUE_TERRACOTTA, MaterialColor.BLUE_TERRACOTTA));
-    public static final RegistryObject<Block> green_agate_wood = registerBlockGeneral("green_agate_wood", () -> new AgateLogBlock(() -> s_green_agate_wood, MaterialColor.LIME_TERRACOTTA, MaterialColor.LIME_TERRACOTTA));
-    public static final RegistryObject<Block> purple_agate_wood = registerBlockGeneral("purple_agate_wood", () -> new AgateLogBlock(() -> s_purple_agate_wood, MaterialColor.PURPLE, MaterialColor.PURPLE));
-    public static final RegistryObject<Block> fossilized_wood = registerBlockGeneral("fossilized_wood", () -> new AgateLogBlock(() -> s_fossilized_wood, MaterialColor.DIRT, MaterialColor.DIRT));
-    public static final RegistryObject<Block> corrupted_wood = registerBlockGeneral("corrupted_wood", () -> new AgateLogBlock(() -> s_corrupted_wood, MaterialColor.GRAY_TERRACOTTA, MaterialColor.GRAY_TERRACOTTA));
-    public static final RegistryObject<Block> burnt_wood = registerBlockGeneral("burnt_wood", () -> new AgateLogBlock(() -> s_burnt_wood, MaterialColor.BLACK_TERRACOTTA, MaterialColor.BLACK_TERRACOTTA));
-    public static final RegistryObject<Block> burning_wood = registerBlockWithFuel("burning_wood", () -> new AgateLogBlock(() -> s_burning_wood, MaterialColor.ORANGE_TERRACOTTA, MaterialColor.ORANGE_TERRACOTTA, 3), 1600);
-    public static final RegistryObject<Block> aura_wood = registerBlockGeneral("aura_wood", () -> new AgateLogBlock(() -> s_aura_wood, MaterialColor.GRAY, MaterialColor.GRAY));
-    public static final RegistryObject<Block> stripped_pink_agate_wood = registerBlockGeneral("stripped_pink_agate_wood", () -> s_pink_agate_wood);
-    public static final RegistryObject<Block> stripped_blue_agate_wood = registerBlockGeneral("stripped_blue_agate_wood", () -> s_blue_agate_wood);
-    public static final RegistryObject<Block> stripped_green_agate_wood = registerBlockGeneral("stripped_green_agate_wood", () -> s_green_agate_wood);
-    public static final RegistryObject<Block> stripped_purple_agate_wood = registerBlockGeneral("stripped_purple_agate_wood", () -> s_purple_agate_wood);
-    public static final RegistryObject<Block> stripped_fossilized_wood = registerBlockGeneral("stripped_fossilized_wood", () -> s_fossilized_wood);
-    public static final RegistryObject<Block> stripped_corrupted_wood = registerBlockGeneral("stripped_corrupted_wood", () -> s_corrupted_wood);
-    public static final RegistryObject<Block> stripped_burnt_wood = registerBlockGeneral("stripped_burnt_wood", () -> s_burnt_wood);
-    public static final RegistryObject<Block> stripped_burning_wood = registerBlockWithFuel("stripped_burning_wood", () -> s_burning_wood, 1600);
-    public static final RegistryObject<Block> stripped_aura_wood = registerBlockGeneral("stripped_aura_wood", () -> s_aura_wood);
+    public static final RegistryObject<LogBlock> pink_agate_log = registerBlockGeneral("pink_agate_log", () -> new AgateLogBlock(() -> s_pink_agate_log, MaterialColor.MAGENTA, MaterialColor.PINK_TERRACOTTA));
+    public static final RegistryObject<LogBlock> blue_agate_log = registerBlockGeneral("blue_agate_log", () -> new AgateLogBlock(() -> s_blue_agate_log, MaterialColor.BLUE, MaterialColor.BLUE_TERRACOTTA));
+    public static final RegistryObject<LogBlock> green_agate_log = registerBlockGeneral("green_agate_log", () -> new AgateLogBlock(() -> s_green_agate_log, MaterialColor.GREEN, MaterialColor.LIME_TERRACOTTA));
+    public static final RegistryObject<LogBlock> purple_agate_log = registerBlockGeneral("purple_agate_log", () -> new AgateLogBlock(() -> s_purple_agate_log, MaterialColor.PURPLE_TERRACOTTA, MaterialColor.PURPLE));
+    public static final RegistryObject<LogBlock> fossilized_log = registerBlockGeneral("fossilized_log", () -> new AgateLogBlock(() -> s_fossilized_log, MaterialColor.YELLOW, MaterialColor.DIRT));
+    public static final RegistryObject<LogBlock> corrupted_log = registerBlockGeneral("corrupted_log", () -> new AgateLogBlock(() -> s_corrupted_log, MaterialColor.TNT, MaterialColor.GRAY_TERRACOTTA));
+    public static final RegistryObject<LogBlock> burnt_log = registerBlockGeneral("burnt_log", () -> new AgateLogBlock(() -> s_burnt_log, MaterialColor.GRAY, MaterialColor.BLACK_TERRACOTTA));
+    public static final RegistryObject<LogBlock> burning_log = registerBlockWithFuel("burning_log", () -> new AgateLogBlock(() -> s_burning_log, MaterialColor.ADOBE, MaterialColor.ORANGE_TERRACOTTA, 3), 1600);
+    public static final RegistryObject<LogBlock> aura_log = registerBlockGeneral("aura_log", () -> new AgateLogBlock(() -> s_aura_log, MaterialColor.IRON, MaterialColor.GRAY));
+    public static final RegistryObject<LogBlock> stripped_pink_agate_log = registerBlockGeneral("stripped_pink_agate_log", () -> s_pink_agate_log);
+    public static final RegistryObject<LogBlock> stripped_blue_agate_log = registerBlockGeneral("stripped_blue_agate_log", () -> s_blue_agate_log);
+    public static final RegistryObject<LogBlock> stripped_green_agate_log = registerBlockGeneral("stripped_green_agate_log", () -> s_green_agate_log);
+    public static final RegistryObject<LogBlock> stripped_purple_agate_log = registerBlockGeneral("stripped_purple_agate_log", () -> s_purple_agate_log);
+    public static final RegistryObject<LogBlock> stripped_fossilized_log = registerBlockGeneral("stripped_fossilized_log", () -> s_fossilized_log);
+    public static final RegistryObject<LogBlock> stripped_corrupted_log = registerBlockGeneral("stripped_corrupted_log", () -> s_corrupted_log);
+    public static final RegistryObject<LogBlock> stripped_burnt_log = registerBlockGeneral("stripped_burnt_log", () -> s_burnt_log);
+    public static final RegistryObject<LogBlock> stripped_burning_log = registerBlockWithFuel("stripped_burning_log", () -> s_burning_log, 1600);
+    public static final RegistryObject<LogBlock> stripped_aura_log = registerBlockGeneral("stripped_aura_log", () -> s_aura_log);
+    public static final RegistryObject<LogBlock> pink_agate_wood = registerBlockGeneral("pink_agate_wood", () -> new AgateLogBlock(() -> s_pink_agate_wood, MaterialColor.PINK_TERRACOTTA, MaterialColor.PINK_TERRACOTTA));
+    public static final RegistryObject<LogBlock> blue_agate_wood = registerBlockGeneral("blue_agate_wood", () -> new AgateLogBlock(() -> s_blue_agate_wood, MaterialColor.BLUE_TERRACOTTA, MaterialColor.BLUE_TERRACOTTA));
+    public static final RegistryObject<LogBlock> green_agate_wood = registerBlockGeneral("green_agate_wood", () -> new AgateLogBlock(() -> s_green_agate_wood, MaterialColor.LIME_TERRACOTTA, MaterialColor.LIME_TERRACOTTA));
+    public static final RegistryObject<LogBlock> purple_agate_wood = registerBlockGeneral("purple_agate_wood", () -> new AgateLogBlock(() -> s_purple_agate_wood, MaterialColor.PURPLE, MaterialColor.PURPLE));
+    public static final RegistryObject<LogBlock> fossilized_wood = registerBlockGeneral("fossilized_wood", () -> new AgateLogBlock(() -> s_fossilized_wood, MaterialColor.DIRT, MaterialColor.DIRT));
+    public static final RegistryObject<LogBlock> corrupted_wood = registerBlockGeneral("corrupted_wood", () -> new AgateLogBlock(() -> s_corrupted_wood, MaterialColor.GRAY_TERRACOTTA, MaterialColor.GRAY_TERRACOTTA));
+    public static final RegistryObject<LogBlock> burnt_wood = registerBlockGeneral("burnt_wood", () -> new AgateLogBlock(() -> s_burnt_wood, MaterialColor.BLACK_TERRACOTTA, MaterialColor.BLACK_TERRACOTTA));
+    public static final RegistryObject<LogBlock> burning_wood = registerBlockWithFuel("burning_wood", () -> new AgateLogBlock(() -> s_burning_wood, MaterialColor.ORANGE_TERRACOTTA, MaterialColor.ORANGE_TERRACOTTA, 3), 1600);
+    public static final RegistryObject<LogBlock> aura_wood = registerBlockGeneral("aura_wood", () -> new AgateLogBlock(() -> s_aura_wood, MaterialColor.GRAY, MaterialColor.GRAY));
+    public static final RegistryObject<LogBlock> stripped_pink_agate_wood = registerBlockGeneral("stripped_pink_agate_wood", () -> s_pink_agate_wood);
+    public static final RegistryObject<LogBlock> stripped_blue_agate_wood = registerBlockGeneral("stripped_blue_agate_wood", () -> s_blue_agate_wood);
+    public static final RegistryObject<LogBlock> stripped_green_agate_wood = registerBlockGeneral("stripped_green_agate_wood", () -> s_green_agate_wood);
+    public static final RegistryObject<LogBlock> stripped_purple_agate_wood = registerBlockGeneral("stripped_purple_agate_wood", () -> s_purple_agate_wood);
+    public static final RegistryObject<LogBlock> stripped_fossilized_wood = registerBlockGeneral("stripped_fossilized_wood", () -> s_fossilized_wood);
+    public static final RegistryObject<LogBlock> stripped_corrupted_wood = registerBlockGeneral("stripped_corrupted_wood", () -> s_corrupted_wood);
+    public static final RegistryObject<LogBlock> stripped_burnt_wood = registerBlockGeneral("stripped_burnt_wood", () -> s_burnt_wood);
+    public static final RegistryObject<LogBlock> stripped_burning_wood = registerBlockWithFuel("stripped_burning_wood", () -> s_burning_wood, 1600);
+    public static final RegistryObject<LogBlock> stripped_aura_wood = registerBlockGeneral("stripped_aura_wood", () -> s_aura_wood);
 
     public static final RegistryObject<Block> salt = registerBlockGeneral("salt", () -> new GaiaFallingBlock(MaterialColor.SNOW, 0.9F, SoundType.SAND, 0xE0E0FF));
     public static final RegistryObject<Block> saltstone = registerBlockGeneral("saltstone", () -> new BasicGaiaBlock(Material.ROCK, MaterialColor.LIGHT_BLUE_TERRACOTTA, 1.5F, 10.0F, PICKAXE, 0));
@@ -190,32 +190,32 @@ public class ModBlocks {
     public static final RegistryObject<Block> burnt_planks = registerBlockGeneral("burnt_planks", () -> new AgatePlanksBlock(MaterialColor.BLACK));
     public static final RegistryObject<Block> burning_planks = registerBlockWithFuel("burning_planks", () -> new AgatePlanksBlock(MaterialColor.ORANGE_TERRACOTTA, 3), 400);
     public static final RegistryObject<Block> aura_planks = registerBlockGeneral("aura_planks", () -> new AgatePlanksBlock(MaterialColor.SNOW));
-    public static final RegistryObject<Block> pink_agate_plank_slab = registerBlockGeneral("pink_agate_plank_slab", () -> new AgatePlanksSlabBlock(MaterialColor.PINK));
-    public static final RegistryObject<Block> blue_agate_plank_slab = registerBlockGeneral("blue_agate_plank_slab", () -> new AgatePlanksSlabBlock(MaterialColor.LIGHT_BLUE));
-    public static final RegistryObject<Block> green_agate_plank_slab = registerBlockGeneral("green_agate_plank_slab", () -> new AgatePlanksSlabBlock(MaterialColor.LIME));
-    public static final RegistryObject<Block> purple_agate_plank_slab = registerBlockGeneral("purple_agate_plank_slab", () -> new AgatePlanksSlabBlock(MaterialColor.PURPLE_TERRACOTTA));
-    public static final RegistryObject<Block> fossilized_plank_slab = registerBlockGeneral("fossilized_plank_slab", () -> new AgatePlanksSlabBlock(MaterialColor.YELLOW_TERRACOTTA));
-    public static final RegistryObject<Block> corrupted_plank_slab = registerBlockGeneral("corrupted_plank_slab", () -> new AgatePlanksSlabBlock(MaterialColor.BLACK_TERRACOTTA));
-    public static final RegistryObject<Block> burnt_plank_slab = registerBlockGeneral("burnt_plank_slab", () -> new AgatePlanksSlabBlock(MaterialColor.BLACK));
-    public static final RegistryObject<Block> burning_plank_slab = registerBlockWithFuel("burning_plank_slab", () -> new AgatePlanksSlabBlock(MaterialColor.ORANGE_TERRACOTTA, 7), 200);
-    public static final RegistryObject<Block> aura_plank_slab = registerBlockGeneral("aura_plank_slab", () -> new AgatePlanksSlabBlock(MaterialColor.SNOW));
-    public static final RegistryObject<Block> pink_agate_plank_stairs = registerBlockGeneral("pink_agate_plank_stairs",
+    public static final RegistryObject<SlabBlock> pink_agate_plank_slab = registerBlockGeneral("pink_agate_plank_slab", () -> new AgatePlanksSlabBlock(MaterialColor.PINK));
+    public static final RegistryObject<SlabBlock> blue_agate_plank_slab = registerBlockGeneral("blue_agate_plank_slab", () -> new AgatePlanksSlabBlock(MaterialColor.LIGHT_BLUE));
+    public static final RegistryObject<SlabBlock> green_agate_plank_slab = registerBlockGeneral("green_agate_plank_slab", () -> new AgatePlanksSlabBlock(MaterialColor.LIME));
+    public static final RegistryObject<SlabBlock> purple_agate_plank_slab = registerBlockGeneral("purple_agate_plank_slab", () -> new AgatePlanksSlabBlock(MaterialColor.PURPLE_TERRACOTTA));
+    public static final RegistryObject<SlabBlock> fossilized_plank_slab = registerBlockGeneral("fossilized_plank_slab", () -> new AgatePlanksSlabBlock(MaterialColor.YELLOW_TERRACOTTA));
+    public static final RegistryObject<SlabBlock> corrupted_plank_slab = registerBlockGeneral("corrupted_plank_slab", () -> new AgatePlanksSlabBlock(MaterialColor.BLACK_TERRACOTTA));
+    public static final RegistryObject<SlabBlock> burnt_plank_slab = registerBlockGeneral("burnt_plank_slab", () -> new AgatePlanksSlabBlock(MaterialColor.BLACK));
+    public static final RegistryObject<SlabBlock> burning_plank_slab = registerBlockWithFuel("burning_plank_slab", () -> new AgatePlanksSlabBlock(MaterialColor.ORANGE_TERRACOTTA, 7), 200);
+    public static final RegistryObject<SlabBlock> aura_plank_slab = registerBlockGeneral("aura_plank_slab", () -> new AgatePlanksSlabBlock(MaterialColor.SNOW));
+    public static final RegistryObject<StairsBlock> pink_agate_plank_stairs = registerBlockGeneral("pink_agate_plank_stairs",
             () -> new AgatePlankStairsBlock(pink_agate_planks.get().getDefaultState(), MaterialColor.PINK));
-    public static final RegistryObject<Block> blue_agate_plank_stairs = registerBlockGeneral("blue_agate_plank_stairs",
+    public static final RegistryObject<StairsBlock> blue_agate_plank_stairs = registerBlockGeneral("blue_agate_plank_stairs",
             () -> new AgatePlankStairsBlock(blue_agate_planks.get().getDefaultState(), MaterialColor.LIGHT_BLUE));
-    public static final RegistryObject<Block> green_agate_plank_stairs = registerBlockGeneral("green_agate_plank_stairs",
+    public static final RegistryObject<StairsBlock> green_agate_plank_stairs = registerBlockGeneral("green_agate_plank_stairs",
             () -> new AgatePlankStairsBlock(green_agate_planks.get().getDefaultState(), MaterialColor.LIME));
-    public static final RegistryObject<Block> purple_agate_plank_stairs = registerBlockGeneral("purple_agate_plank_stairs",
+    public static final RegistryObject<StairsBlock> purple_agate_plank_stairs = registerBlockGeneral("purple_agate_plank_stairs",
             () -> new AgatePlankStairsBlock(purple_agate_planks.get().getDefaultState(), MaterialColor.PURPLE_TERRACOTTA));
-    public static final RegistryObject<Block> fossilized_plank_stairs = registerBlockGeneral("fossilized_plank_stairs",
+    public static final RegistryObject<StairsBlock> fossilized_plank_stairs = registerBlockGeneral("fossilized_plank_stairs",
             () -> new AgatePlankStairsBlock(fossilized_planks.get().getDefaultState(), MaterialColor.YELLOW_TERRACOTTA));
-    public static final RegistryObject<Block> corrupted_plank_stairs = registerBlockGeneral("corrupted_plank_stairs",
+    public static final RegistryObject<StairsBlock> corrupted_plank_stairs = registerBlockGeneral("corrupted_plank_stairs",
             () -> new AgatePlankStairsBlock(corrupted_planks.get().getDefaultState(), MaterialColor.BLACK_TERRACOTTA));
-    public static final RegistryObject<Block> burnt_plank_stairs = registerBlockGeneral("burnt_plank_stairs",
+    public static final RegistryObject<StairsBlock> burnt_plank_stairs = registerBlockGeneral("burnt_plank_stairs",
             () -> new AgatePlankStairsBlock(burnt_planks.get().getDefaultState(), MaterialColor.BLACK));
-    public static final RegistryObject<Block> burning_plank_stairs = registerBlockWithFuel("burning_plank_stairs",
+    public static final RegistryObject<StairsBlock> burning_plank_stairs = registerBlockWithFuel("burning_plank_stairs",
             () -> new AgatePlankStairsBlock(burning_planks.get().getDefaultState(), MaterialColor.ORANGE_TERRACOTTA, 7), 300);
-    public static final RegistryObject<Block> aura_plank_stairs = registerBlockGeneral("aura_plank_stairs",
+    public static final RegistryObject<StairsBlock> aura_plank_stairs = registerBlockGeneral("aura_plank_stairs",
             () -> new AgatePlankStairsBlock(aura_planks.get().getDefaultState(), MaterialColor.SNOW));
 
     //Manufactured
@@ -226,31 +226,24 @@ public class ModBlocks {
     public static final RegistryObject<Block> crusted_gaia_stone_bricks = registerBlockGeneral("crusted_gaia_stone_bricks", () -> new BasicGaiaBlock(Material.ROCK, MaterialColor.MAGENTA, 2.0F, 20.0F, PICKAXE, 1));
     public static final RegistryObject<Block> reinforced_bricks = registerBlockGeneral("reinforced_bricks", () -> new BasicGaiaBlock(Material.ROCK, MaterialColor.PURPLE, 10.0F, 100.0F, PICKAXE, 1));
     public static final RegistryObject<Block> bolstered_bricks = registerBlockGeneral("bolstered_bricks", () -> new BasicGaiaBlock(Material.ROCK, MaterialColor.SAND, 30.0F, 400.0F, PICKAXE, 2));
-    public static final RegistryObject<Block> malachite_bricks = registerBlockGeneral("malachite_bricks", () -> new MalachiteBricksBlock(false));
-    public static final RegistryObject<Block> malachite_cracked_bricks = registerBlockGeneral("malachite_cracked_bricks", () -> new MalachiteBricksBlock(false));
-    public static final RegistryObject<Block> malachite_crusted_bricks = registerBlockGeneral("malachite_crusted_bricks", () -> new MalachiteBricksBlock(false));
-    public static final RegistryObject<Block> malachite_floor_tiles = registerBlockGeneral("malachite_floor_tiles", () -> new MalachiteBricksBlock(false));
-    public static final RegistryObject<Block> malachite_chisel_bricks = registerBlockGeneral("malachite_chisel_bricks", () -> new MalachiteBricksBlock(false));
-    public static final RegistryObject<Block> malachite_pulsing_bricks = registerBlockGeneral("malachite_pulsing_bricks", () -> new MalachiteBricksBlock(true));
-    public static final RegistryObject<Block> malachite_pulsing_tiles = registerBlockGeneral("malachite_pulsing_tiles", () -> new MalachiteBricksBlock(true));
-    public static final RegistryObject<Block> malachite_pulsing_chisel = registerBlockGeneral("malachite_pulsing_chisel", () -> new MalachiteBricksBlock(true));
-    public static final RegistryObject<Block> malachite_brick_slab = registerBlockGeneral("malachite_brick_slab", MalachiteBrickSlabBlock::new);
-    public static final RegistryObject<Block> malachite_floor_slab = registerBlockGeneral("malachite_floor_slab", MalachiteBrickSlabBlock::new);
-    public static final RegistryObject<Block> malachite_pillar = registerBlockGeneral("malachite_pillar", MalachiteBrickPillarBlock::new);
-    public static final RegistryObject<Block> malachite_brick_stairs = registerBlockGeneral("malachite_brick_stairs",
-            () -> new MalachiteStairsBlock(malachite_bricks.get().getDefaultState(), false));
-    public static final RegistryObject<Block> malachite_floor_stairs = registerBlockGeneral("malachite_floor_stairs",
-            () -> new MalachiteStairsBlock(malachite_floor_tiles.get().getDefaultState(), false));
-    public static final RegistryObject<Block> malachite_chisel_stairs = registerBlockGeneral("malachite_chisel_stairs",
-            () -> new MalachiteStairsBlock(malachite_chisel_bricks.get().getDefaultState(), false));
-    public static final RegistryObject<Block> malachite_pulsing_brick_stairs = registerBlockGeneral("malachite_pulsing_brick_stairs",
-            () -> new MalachiteStairsBlock(malachite_bricks.get().getDefaultState(), true));
-    public static final RegistryObject<Block> malachite_pulsing_floor_stairs = registerBlockGeneral("malachite_pulsing_floor_stairs",
-            () -> new MalachiteStairsBlock(malachite_floor_tiles.get().getDefaultState(), true));
-    public static final RegistryObject<Block> malachite_pulsing_chisel_stairs = registerBlockGeneral("malachite_pulsing_chisel_stairs",
-            () -> new MalachiteStairsBlock(malachite_chisel_bricks.get().getDefaultState(), true));
-    public static final RegistryObject<Block> malachite_pillar_stairs = registerBlockGeneral("malachite_pillar_stairs",
-            () -> new MalachiteStairsBlock(malachite_pillar.get().getDefaultState(), false));
+    public static final RegistryObject<Block> malachite_bricks = registerBlockGeneral("malachite_bricks", MalachiteBricksBlock::new);
+    public static final RegistryObject<Block> malachite_cracked_bricks = registerBlockGeneral("malachite_cracked_bricks", MalachiteBricksBlock::new);
+    public static final RegistryObject<Block> malachite_crusted_bricks = registerBlockGeneral("malachite_crusted_bricks", MalachiteBricksBlock::new);
+    public static final RegistryObject<Block> malachite_floor_tiles = registerBlockGeneral("malachite_floor_tiles", MalachiteBricksBlock::new);
+    public static final RegistryObject<Block> malachite_chisel_bricks = registerBlockGeneral("malachite_chisel_bricks", MalachiteBricksBlock::new);
+    public static final RegistryObject<Block> malachite_pulsing_bricks = registerBlockGeneral("malachite_pulsing_bricks", MalachiteBricksBlock::new);
+    public static final RegistryObject<Block> malachite_pulsing_tiles = registerBlockGeneral("malachite_pulsing_tiles", MalachiteBricksBlock::new);
+    public static final RegistryObject<Block> malachite_pulsing_chisel = registerBlockGeneral("malachite_pulsing_chisel", MalachiteBricksBlock::new);
+    public static final RegistryObject<SlabBlock> malachite_brick_slab = registerBlockGeneral("malachite_brick_slab", MalachiteBrickSlabBlock::new);
+    public static final RegistryObject<SlabBlock> malachite_floor_slab = registerBlockGeneral("malachite_floor_slab", MalachiteBrickSlabBlock::new);
+    public static final RegistryObject<RotatedPillarBlock> malachite_pillar = registerBlockGeneral("malachite_pillar", MalachiteBrickPillarBlock::new);
+    public static final RegistryObject<StairsBlock> malachite_brick_stairs = registerBlockGeneral("malachite_brick_stairs", () -> new MalachiteStairsBlock(malachite_bricks));
+    public static final RegistryObject<StairsBlock> malachite_floor_stairs = registerBlockGeneral("malachite_floor_stairs", () -> new MalachiteStairsBlock(malachite_floor_tiles));
+    public static final RegistryObject<StairsBlock> malachite_chisel_stairs = registerBlockGeneral("malachite_chisel_stairs", () -> new MalachiteStairsBlock(malachite_chisel_bricks));
+    public static final RegistryObject<StairsBlock> malachite_pulsing_brick_stairs = registerBlockGeneral("malachite_pulsing_brick_stairs", () -> new MalachiteStairsBlock(malachite_bricks));
+    public static final RegistryObject<StairsBlock> malachite_pulsing_floor_stairs = registerBlockGeneral("malachite_pulsing_floor_stairs", () -> new MalachiteStairsBlock(malachite_floor_tiles));
+    public static final RegistryObject<StairsBlock> malachite_pulsing_chisel_stairs = registerBlockGeneral("malachite_pulsing_chisel_stairs", () -> new MalachiteStairsBlock(malachite_chisel_bricks));
+    public static final RegistryObject<StairsBlock> malachite_pillar_stairs = registerBlockGeneral("malachite_pillar_stairs", () -> new MalachiteStairsBlock(malachite_pillar));
 
     //Storage Blocks
     public static final RegistryObject<Block> sugilite_block = registerBlockGeneral("sugilite_block", () -> new StorageBlock(MaterialColor.PURPLE));
@@ -292,31 +285,31 @@ public class ModBlocks {
     public static final RegistryObject<Block> precious_rock = registerBlockGeneral("precious_rock", () -> new GaiaOreBlock(MaterialColor.MAGENTA, 3));
 
     //Flower Pots
-    public static final RegistryObject<Block> potted_thiscus = registerFlowerPot("potted_thiscus", thiscus);
-    public static final RegistryObject<Block> potted_ouzium = registerFlowerPot("potted_ouzium", ouzium);
-    public static final RegistryObject<Block> potted_agathum = registerFlowerPot("potted_agathum", agathum);
-    public static final RegistryObject<Block> potted_varloom = registerFlowerPot("potted_varloom", varloom);
-    public static final RegistryObject<Block> potted_corrupted_varloom = registerFlowerPot("potted_corrupted_varloom", corrupted_varloom);
-    public static final RegistryObject<Block> potted_missingno_plant = registerFlowerPot("potted_missingno_plant", missingno_plant);
-    public static final RegistryObject<Block> potted_spotted_kersei = registerFlowerPot("potted_spotted_kersei", spotted_kersei);
-    public static final RegistryObject<Block> potted_thorny_wiltha = registerFlowerPot("potted_thorny_wiltha", thorny_wiltha);
-    public static final RegistryObject<Block> potted_roofed_agaric = registerFlowerPot("potted_roofed_agaric", roofed_agaric);
-    public static final RegistryObject<Block> potted_bulbous_hobina = registerFlowerPot("potted_bulbous_hobina", bulbous_hobina);
-    public static final RegistryObject<Block> potted_stickly_cupsir = registerFlowerPot("potted_stickly_cupsir", stickly_cupsir);
-    public static final RegistryObject<Block> potted_mystical_murgni = registerFlowerPot("potted_mystical_murgni", mystical_murgni);
-    public static final RegistryObject<Block> potted_corrupted_gaia_eye = registerFlowerPot("potted_corrupted_gaia_eye", corrupted_gaia_eye);
-    public static final RegistryObject<Block> potted_elder_imklia = registerFlowerPot("potted_elder_imklia", elder_imklia);
-    public static final RegistryObject<Block> potted_gold_orb_tucher = registerFlowerPot("potted_gold_orb_tucher", gold_orb_tucher);
-    public static final RegistryObject<Block> potted_missingno_fungus = registerFlowerPot("potted_missingno_fungus", missingno_fungus);
-    public static final RegistryObject<Block> potted_pink_agate_sapling = registerFlowerPot("potted_pink_agate_sapling", pink_agate_sapling);
-    public static final RegistryObject<Block> potted_blue_agate_sapling = registerFlowerPot("potted_blue_agate_sapling", blue_agate_sapling);
-    public static final RegistryObject<Block> potted_green_agate_sapling = registerFlowerPot("potted_green_agate_sapling", green_agate_sapling);
-    public static final RegistryObject<Block> potted_purple_agate_sapling = registerFlowerPot("potted_purple_agate_sapling", purple_agate_sapling);
-    public static final RegistryObject<Block> potted_fossilized_sapling = registerFlowerPot("potted_fossilized_sapling", fossilized_sapling);
-    public static final RegistryObject<Block> potted_corrupted_sapling = registerFlowerPot("potted_corrupted_sapling", corrupted_sapling);
-    public static final RegistryObject<Block> potted_burnt_sapling = registerFlowerPot("potted_burnt_sapling", burnt_sapling);
-    public static final RegistryObject<Block> potted_burning_sapling = registerFlowerPot("potted_burning_sapling", burning_sapling);
-    public static final RegistryObject<Block> potted_aura_sapling = registerFlowerPot("potted_aura_sapling", aura_sapling);
+    public static final RegistryObject<FlowerPotBlock> potted_thiscus = registerFlowerPot("potted_thiscus", thiscus);
+    public static final RegistryObject<FlowerPotBlock> potted_ouzium = registerFlowerPot("potted_ouzium", ouzium);
+    public static final RegistryObject<FlowerPotBlock> potted_agathum = registerFlowerPot("potted_agathum", agathum);
+    public static final RegistryObject<FlowerPotBlock> potted_varloom = registerFlowerPot("potted_varloom", varloom);
+    public static final RegistryObject<FlowerPotBlock> potted_corrupted_varloom = registerFlowerPot("potted_corrupted_varloom", corrupted_varloom);
+    public static final RegistryObject<FlowerPotBlock> potted_missingno_plant = registerFlowerPot("potted_missingno_plant", missingno_plant);
+    public static final RegistryObject<FlowerPotBlock> potted_spotted_kersei = registerFlowerPot("potted_spotted_kersei", spotted_kersei);
+    public static final RegistryObject<FlowerPotBlock> potted_thorny_wiltha = registerFlowerPot("potted_thorny_wiltha", thorny_wiltha);
+    public static final RegistryObject<FlowerPotBlock> potted_roofed_agaric = registerFlowerPot("potted_roofed_agaric", roofed_agaric);
+    public static final RegistryObject<FlowerPotBlock> potted_bulbous_hobina = registerFlowerPot("potted_bulbous_hobina", bulbous_hobina);
+    public static final RegistryObject<FlowerPotBlock> potted_stickly_cupsir = registerFlowerPot("potted_stickly_cupsir", stickly_cupsir);
+    public static final RegistryObject<FlowerPotBlock> potted_mystical_murgni = registerFlowerPot("potted_mystical_murgni", mystical_murgni);
+    public static final RegistryObject<FlowerPotBlock> potted_corrupted_gaia_eye = registerFlowerPot("potted_corrupted_gaia_eye", corrupted_gaia_eye);
+    public static final RegistryObject<FlowerPotBlock> potted_elder_imklia = registerFlowerPot("potted_elder_imklia", elder_imklia);
+    public static final RegistryObject<FlowerPotBlock> potted_gold_orb_tucher = registerFlowerPot("potted_gold_orb_tucher", gold_orb_tucher);
+    public static final RegistryObject<FlowerPotBlock> potted_missingno_fungus = registerFlowerPot("potted_missingno_fungus", missingno_fungus);
+    public static final RegistryObject<FlowerPotBlock> potted_pink_agate_sapling = registerFlowerPot("potted_pink_agate_sapling", pink_agate_sapling);
+    public static final RegistryObject<FlowerPotBlock> potted_blue_agate_sapling = registerFlowerPot("potted_blue_agate_sapling", blue_agate_sapling);
+    public static final RegistryObject<FlowerPotBlock> potted_green_agate_sapling = registerFlowerPot("potted_green_agate_sapling", green_agate_sapling);
+    public static final RegistryObject<FlowerPotBlock> potted_purple_agate_sapling = registerFlowerPot("potted_purple_agate_sapling", purple_agate_sapling);
+    public static final RegistryObject<FlowerPotBlock> potted_fossilized_sapling = registerFlowerPot("potted_fossilized_sapling", fossilized_sapling);
+    public static final RegistryObject<FlowerPotBlock> potted_corrupted_sapling = registerFlowerPot("potted_corrupted_sapling", corrupted_sapling);
+    public static final RegistryObject<FlowerPotBlock> potted_burnt_sapling = registerFlowerPot("potted_burnt_sapling", burnt_sapling);
+    public static final RegistryObject<FlowerPotBlock> potted_burning_sapling = registerFlowerPot("potted_burning_sapling", burning_sapling);
+    public static final RegistryObject<FlowerPotBlock> potted_aura_sapling = registerFlowerPot("potted_aura_sapling", aura_sapling);
 
     private static <T extends Block> RegistryObject<T> registerBlockGeneral(String name, Supplier<? extends T> block) {
         return registerBlock(name, block, 0, ModBlocks::registerBlockItem);

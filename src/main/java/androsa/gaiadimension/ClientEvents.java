@@ -1,7 +1,7 @@
 package androsa.gaiadimension;
 
-import androsa.gaiadimension.biomes.BaseGaiaBiome;
 import androsa.gaiadimension.registry.ModBlocks;
+import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
@@ -14,20 +14,28 @@ import net.minecraft.world.biome.BiomeColors;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
+import java.util.function.Supplier;
+
 @OnlyIn(Dist.CLIENT)
 public class ClientEvents {
 
     public static void registerBlockColors() {
         BlockColors blocks = Minecraft.getInstance().getBlockColors();
 
-        blocks.register((state, worldIn, pos, tintIndex) -> worldIn != null && pos != null && worldIn.getBiome(pos) instanceof BaseGaiaBiome ? BiomeColors.getGrassColor(worldIn, pos) : 0xF2A3B4,
+        blocks.register((state, worldIn, pos, tintIndex) ->
+                        worldIn != null && pos != null ?
+                                /*worldIn.getColor(pos, (biome, x, z) -> biome instanceof BaseGaiaBiome ?*/ BiomeColors.getGrassColor(worldIn, pos): 0xF2A3B4,
                 ModBlocks.glitter_grass.get(),
                 ModBlocks.crystal_growth.get());
 
-        blocks.register((state, worldIn, pos, tintIndex) -> worldIn != null && pos != null && worldIn.getBiome(pos) instanceof BaseGaiaBiome ? BiomeColors.getGrassColor(worldIn, pos) : 0x606060,
+        blocks.register((state, worldIn, pos, tintIndex) ->
+                        worldIn != null && pos != null ?
+                                /*worldIn.getColor(pos, (biome, x, z) -> biome instanceof BaseGaiaBiome ?*/ BiomeColors.getGrassColor(worldIn, pos) : 0x606060,
                 ModBlocks.murky_grass.get());
 
-        blocks.register((state, worldIn, pos, tintIndex) -> worldIn != null && pos != null && worldIn.getBiome(pos) instanceof BaseGaiaBiome ? BiomeColors.getGrassColor(worldIn, pos) : 0xA0A0A0,
+        blocks.register((state, worldIn, pos, tintIndex) ->
+                        worldIn != null && pos != null ?
+                                /*worldIn.getColor(pos, (biome, x, z) -> biome instanceof BaseGaiaBiome ?*/ BiomeColors.getGrassColor(worldIn, pos) : 0xA0A0A0,
                 ModBlocks.soft_grass.get());
 
         blocks.register((state, worldIn, pos, tintIndex) -> {

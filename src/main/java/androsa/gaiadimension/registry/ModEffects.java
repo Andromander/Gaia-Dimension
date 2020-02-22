@@ -11,5 +11,7 @@ public class ModEffects {
 
     public static final DeferredRegister<Effect> POTIONS = new DeferredRegister<>(ForgeRegistries.POTIONS, GaiaDimensionMod.MODID);
 
-    public static final RegistryObject<Effect> goldstone_plague = POTIONS.register("goldstone_plague", () -> new CorruptionEffect(0xF68414, 4.0D));
+    public static final Effect corrupt = new CorruptionEffect(0xF68414, 4.0D);
+
+    public static final RegistryObject<Effect> goldstone_plague = POTIONS.register("goldstone_plague", () -> corrupt);
 }

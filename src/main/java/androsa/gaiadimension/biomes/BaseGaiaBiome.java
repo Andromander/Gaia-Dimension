@@ -42,8 +42,8 @@ public abstract class BaseGaiaBiome extends Biome {
         this.addSpawn(EntityClassification.MONSTER, new SpawnListEntry(ModEntities.PRIMAL_BEAST.get(), 15, 1, 2));
     }
 
-    @OnlyIn(Dist.CLIENT)
-    public final short[] getSkyRGB() {
+    @Override
+    public int getSkyColor() {
         return skyColor.getSkyColor();
     }
 

@@ -6,7 +6,6 @@ import androsa.gaiadimension.registry.ModGaiaConfig;
 import androsa.gaiadimension.registry.ModParticles;
 import androsa.gaiadimension.world.GaiaTeleporter;
 import com.google.common.cache.LoadingCache;
-import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -14,17 +13,12 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
 import net.minecraft.block.pattern.BlockPattern;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.network.play.server.*;
-import net.minecraft.potion.EffectInstance;
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.server.management.PlayerList;
 import net.minecraft.state.EnumProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
@@ -33,14 +27,10 @@ import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.dimension.DimensionType;
 import net.minecraft.world.server.ServerWorld;
-import net.minecraft.world.storage.WorldInfo;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.BiomeDictionary.Type;
-import net.minecraftforge.common.ForgeHooks;
-import net.minecraftforge.fml.hooks.BasicEventHooks;
-import net.minecraftforge.fml.network.NetworkHooks;
 
 import javax.annotation.Nullable;
 import java.util.Random;
@@ -111,9 +101,7 @@ public class GaiaPortalBlock extends Block {
     @Override
     @Deprecated
     public void onEntityCollision(BlockState state, World worldIn, BlockPos pos, Entity entityIn) {
-        //RANT: Oh piss off. I would appreciate the patch some day, but no, gotta complain about making changes and inconvenience everybody else.
-        //TODO: review some cleanups
-        if (!worldIn.isRemote && !entityIn.isPassenger() && !entityIn.isBeingRidden() && entityIn.isNonBoss() && entityIn.timeUntilPortal <= 0 && entityIn instanceof ServerPlayerEntity) {
+        if (!worldIn.isRemote && !entityIn.isPassenger() && !entityIn.isBeingRidden() && entityIn.isNonBoss() && entityIn.timeUntilPortal <= 0) {
             MinecraftServer server = worldIn.getServer();
             DimensionType dimType = worldIn.dimension.getType() == GaiaDimensionMod.gaia_dimension ? DimensionType.OVERWORLD : GaiaDimensionMod.gaia_dimension;
 
@@ -124,78 +112,12 @@ public class GaiaPortalBlock extends Block {
                     entityIn.timeUntilPortal = entityIn.getPortalCooldown() + 200;
                 }
 
-                if (entityIn instanceof ServerPlayerEntity) {
-                    this.changeDimension((ServerPlayerEntity)entityIn, dimType);
-
-                    entityIn.timeUntilPortal = entityIn.getPortalCooldown() + 200;
-                }
-            } else {
-                entityIn.timeUntilPortal = Math.max(entityIn.getPortalCooldown(), 200);
+                entityIn.changeDimension(dimType, new GaiaTeleporter((ServerWorld) worldIn));
+                entityIn.timeUntilPortal = entityIn.getPortalCooldown() + 200;
             }
+        } else {
+            entityIn.timeUntilPortal = Math.max(entityIn.getPortalCooldown(), 200);
         }
-    }
-
-    //Copy of ServerPlayerEntity.changeDimension, with relevant changes
-    public void changeDimension(ServerPlayerEntity entity, DimensionType destination) {
-        if (!ForgeHooks.onTravelToDimension(entity, destination))
-            return;
-        entity.invulnerableDimensionChange = true;
-        DimensionType dimensiontype = entity.dimension;
-        ServerWorld serverworld = entity.server.getWorld(dimensiontype);
-        entity.dimension = destination;
-        ServerWorld serverdest = entity.server.getWorld(destination);
-        GaiaTeleporter gaiaTeleporter = new GaiaTeleporter(serverdest);
-        WorldInfo worldinfo = entity.world.getWorldInfo();
-        NetworkHooks.sendDimensionDataPacket(entity.connection.netManager, entity);
-        entity.connection.sendPacket(new SRespawnPacket(destination, WorldInfo.sha256Hash(worldinfo.getSeed()), worldinfo.getGenerator(), entity.interactionManager.getGameType()));
-        entity.connection.sendPacket(new SServerDifficultyPacket(worldinfo.getDifficulty(), worldinfo.isDifficultyLocked()));
-        PlayerList playerlist = entity.server.getPlayerList();
-        playerlist.updatePermissionLevel(entity);
-        serverworld.removeEntity(entity, true); //Forge: the player entity is moved to the new world, NOT cloned. So keep the data alive with no matching invalidate call.
-        entity.revive();
-        double x = entity.getX();
-        double y = entity.getY();
-        double z = entity.getZ();
-        float rotate = entity.rotationPitch;
-        float yaw = entity.rotationYaw;
-
-        serverworld.getProfiler().startSection("moving");
-        double moveFactor = serverworld.getDimension().getMovementFactor() / serverdest.getDimension().getMovementFactor();
-        x *= moveFactor;
-        z *= moveFactor;
-        entity.setLocationAndAngles(x + 0.5D, y - 2.0D, z + 0.5D, yaw, rotate);
-        serverworld.getProfiler().endSection();
-
-        serverworld.getProfiler().startSection("placing");
-        double minX = Math.min(-2.9999872E7D, serverdest.getWorldBorder().minX() + 16.0D);
-        double minZ = Math.min(-2.9999872E7D, serverdest.getWorldBorder().minZ() + 16.0D);
-        double maxX = Math.min(2.9999872E7D, serverdest.getWorldBorder().maxX() - 16.0D);
-        double maxZ = Math.min(2.9999872E7D, serverdest.getWorldBorder().maxZ() - 16.0D);
-        x = MathHelper.clamp(x, minX, maxX);
-        z = MathHelper.clamp(z, minZ, maxZ);
-        entity.setLocationAndAngles(x + 0.5D, y - 2.0D, z + 0.5D, yaw, rotate);
-        entity.timeUntilPortal = entity.getPortalCooldown();
-        if (!gaiaTeleporter.placeInPortal(entity, yaw)) {
-            gaiaTeleporter.makePortal(entity);
-            gaiaTeleporter.placeInPortal(entity, yaw);
-        }
-        serverworld.getProfiler().endSection();
-        entity.setWorld(serverdest);
-        serverdest.func_217447_b(entity);
-        CriteriaTriggers.CHANGED_DIMENSION.trigger(entity, dimensiontype, destination);
-        entity.connection.setPlayerLocation(entity.getX() + 0.5D, entity.getY() - 2.0D, entity.getZ() + 0.5D, yaw, rotate);
-        entity.interactionManager.setWorld(serverdest);
-        entity.connection.sendPacket(new SPlayerAbilitiesPacket(entity.abilities));
-        playerlist.sendWorldInfo(entity, serverdest);
-        playerlist.sendInventory(entity);
-        for(EffectInstance effectinstance : entity.getActivePotionEffects()) {
-            entity.connection.sendPacket(new SPlayEntityEffectPacket(entity.getEntityId(), effectinstance));
-        }
-        entity.connection.sendPacket(new SPlaySoundEventPacket(1032, BlockPos.ZERO, 0, false));
-        //entity.lastExperience = -1;
-        //entity.lastHealth = -1.0F;
-        //entity.lastFoodLevel = -1;
-        BasicEventHooks.firePlayerChangedDimensionEvent(entity, dimensiontype, destination);
     }
 
     @Override
@@ -250,7 +172,7 @@ public class GaiaPortalBlock extends Block {
         builder.add(AXIS);
     }
 
-    public BlockPattern.PatternHelper createPatternHelper(IWorld worldIn, BlockPos pos) {
+    public static BlockPattern.PatternHelper createPatternHelper(IWorld worldIn, BlockPos pos) {
         Direction.Axis direction$axis = Direction.Axis.Z;
         GaiaPortalBlock.Size gaiaportalblock$size = new GaiaPortalBlock.Size(worldIn, pos, Direction.Axis.X);
         LoadingCache<BlockPos, CachedBlockInfo> loadingcache = BlockPattern.createLoadingCache(worldIn, true);

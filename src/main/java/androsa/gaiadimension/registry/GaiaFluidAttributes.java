@@ -3,10 +3,9 @@ package androsa.gaiadimension.registry;
 import androsa.gaiadimension.ClientEvents;
 import androsa.gaiadimension.GaiaDimensionMod;
 import net.minecraft.fluid.Fluid;
-import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.IEnviromentBlockReader;
+import net.minecraft.world.ILightReader;
 import net.minecraftforge.fluids.FluidAttributes;
 import net.minecraftforge.fluids.ForgeFlowingFluid;
 
@@ -60,7 +59,6 @@ public class GaiaFluidAttributes {
                     .block(ModBlocks.superhot_magma)
                     .bucket(ModItems.superhot_magma_bucket)
                     .explosionResistance(100.0F)
-                    .renderLayer(BlockRenderLayer.SOLID)
                     .slopeFindDistance(2);
     public static final ForgeFlowingFluid.Properties sweet_muck_properties =
             new ForgeFlowingFluid.Properties(() -> ModFluids.sweet_muck_s, () -> ModFluids.sweet_muck_f, sweet_muck_attrubutes)
@@ -74,14 +72,12 @@ public class GaiaFluidAttributes {
                     .block(ModBlocks.liquid_bismuth)
                     .bucket(ModItems.liquid_bismuth_bucket)
                     .explosionResistance(100.0F)
-                    .renderLayer(BlockRenderLayer.SOLID)
                     .slopeFindDistance(3);
     public static final ForgeFlowingFluid.Properties liquid_aura_properties =
             new ForgeFlowingFluid.Properties(() -> ModFluids.liquid_aura_s, () -> ModFluids.liquid_aura_f, liquid_aura_attributes)
                     .block(ModBlocks.liquid_aura)
                     .bucket(ModItems.liquid_aura_bucket)
-                    .explosionResistance(100.0F)
-                    .renderLayer(BlockRenderLayer.SOLID);
+                    .explosionResistance(100.0F);
 
     public static class LiquidBismuth extends FluidAttributes {
         protected LiquidBismuth(Builder builder, Fluid fluid) {
@@ -89,7 +85,7 @@ public class GaiaFluidAttributes {
         }
 
         @Override
-        public int getColor(IEnviromentBlockReader world, BlockPos pos) {
+        public int getColor(ILightReader world, BlockPos pos) {
             return ClientEvents.getBismuthColor(pos) | 0xFF000000;
         }
 
@@ -110,7 +106,7 @@ public class GaiaFluidAttributes {
         }
 
         @Override
-        public int getColor(IEnviromentBlockReader world, BlockPos pos) {
+        public int getColor(ILightReader world, BlockPos pos) {
             return ClientEvents.getAuraColor(pos) | 0xFF000000;
         }
 

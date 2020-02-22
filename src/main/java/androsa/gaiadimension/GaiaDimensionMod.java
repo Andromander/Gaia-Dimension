@@ -130,14 +130,14 @@ public class GaiaDimensionMod {
             GaiaDimensionMod.LOGGER.info("We are set for the world of Gaia.");
         }
 
-        @SubscribeEvent
-        public static void onWorldLoad(WorldEvent.Load e) {
-            if (!(e.getWorld() instanceof ServerWorld)) return;
-
-            ServerWorld world = (ServerWorld)e.getWorld();
-            if (world.dimension.getType() == DimensionType.OVERWORLD || world.dimension.getType() == GaiaDimensionMod.gaia_dimension) {
-                world.customTeleporters.add(gaiaTeleporter = new GaiaTeleporter(world));
-            }
-        }
+//        @SubscribeEvent
+//        public static void onWorldLoad(WorldEvent.Load e) {
+//            if (!(e.getWorld() instanceof ServerWorld)) return;
+//
+//            ServerWorld world = (ServerWorld)e.getWorld();
+//            if (world.dimension.getType() == DimensionType.OVERWORLD || world.dimension.getType() == GaiaDimensionMod.gaia_dimension) {
+//                world.customTeleporters.add(gaiaTeleporter = new GaiaTeleporter(world));
+//            }
+//        }
     }
 }

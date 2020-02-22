@@ -29,8 +29,8 @@ public enum GaiaSkyColors {
         fogBlue = (short) fogB;
     }
 
-    public final short[] getSkyColor() {
-        return new short[]{ skyRed, skyGreen, skyBlue };
+    public final int getSkyColor() {
+        return (skyRed << 16) | (skyGreen << 8) | skyBlue;
     }
 
     public final short[] getFogColor() {
