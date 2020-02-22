@@ -68,15 +68,6 @@ public class ShallowArenthisModel<T extends ShallowArenthisEntity> extends Segme
         return parts;
     }
 
-//    @Override
-//    public void render(ShallowArenthisEntity entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scale) {
-//        this.setRotationAngles(entityIn, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale);
-//        this.cap.render(scale);
-//        for (ModelRenderer modelrenderer : this.tentacles) {
-//            modelrenderer.render(scale);
-//        }
-//    }
-
     /**
      * This is a helper function from Tabula to set the rotation of model parts
      */
@@ -87,7 +78,7 @@ public class ShallowArenthisModel<T extends ShallowArenthisEntity> extends Segme
     }
 
     @Override
-    public void setAngles(T entityIn, float ageInTicks, float limbSwing, float limbSwingAmount, float netHeadYaw, float headPitch) {
+    public void setAngles(T entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
         this.body.rotateAngleX = MathHelper.sin(ageInTicks * (float)Math.PI * 0.025F) * 3.0F;
         this.tail.rotateAngleX = MathHelper.sin(ageInTicks * (float)Math.PI * 0.025F) * 3.0F;
 

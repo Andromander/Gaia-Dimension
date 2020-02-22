@@ -179,35 +179,35 @@ public class ModEntities {
     @OnlyIn(Dist.CLIENT)
     public static void registerEntityRender() {
         // RenderingRegistry.registerEntityRenderingHandler(GDShotGaianEnergy.class, m -> new RenderSnowball<>(m, Items.ENDER_PEARL, Minecraft.getMinecraft().getRenderItem()));
-        RenderingRegistry.registerEntityRenderingHandler(ThrownPebbleEntity.class, m -> new SpriteRenderer<>(m, Minecraft.getInstance().getItemRenderer()));
-        RenderingRegistry.registerEntityRenderingHandler(AgateArrowEntity.class, AgateArrowRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(THROWN_PEBBLE.get(), m -> new SpriteRenderer<>(m, Minecraft.getInstance().getItemRenderer()));
+        RenderingRegistry.registerEntityRenderingHandler(AGATE_ARROW.get(), AgateArrowRenderer::new);
 
-        RenderingRegistry.registerEntityRenderingHandler(AgateGolemEntity.class, m -> new AgateGolemRenderer(m, new AgateGolemModel(), 0.9F));
-        RenderingRegistry.registerEntityRenderingHandler(AncientLagrahkEntity.class, m -> new AncientLagrahkRenderer(m, new AncientLagrahkModel(), 2.0F));
-        RenderingRegistry.registerEntityRenderingHandler(ArchaicWarriorEntity.class, m -> new ArchaicWarriorRenderer(m, new ArchaicWarriorModel(), 0.5F));
-        RenderingRegistry.registerEntityRenderingHandler(BismuthUletrusEntity.class, m -> new BismuthUletrusRenderer(m, new BismuthUletrusModel(), 1.0F));
-        RenderingRegistry.registerEntityRenderingHandler(CavernTickEntity.class, m -> new CavernTickRenderer(m, new CavernTickModel(), 0.2F));
-        RenderingRegistry.registerEntityRenderingHandler(ContortedNagaEntity.class, m -> new ContortedNagaRenderer(m, new ContortedNagaModel(), 0.7F));
-        RenderingRegistry.registerEntityRenderingHandler(CorruptSapperEntity.class, m -> new CorruptSapperRenderer(m, new GrowthSapperModel<>(), 0.6F));
-        RenderingRegistry.registerEntityRenderingHandler(CrystalGolemEntity.class, m -> new CrystalGolemRenderer(m, new CrystalGolemModel(), 0.9F));
-        RenderingRegistry.registerEntityRenderingHandler(GrowthSapperEntity.class, m -> new GrowthSapperRenderer(m, new GrowthSapperModel<>(), 0.6F));
-        RenderingRegistry.registerEntityRenderingHandler(HowliteWolfEntity.class, m -> new HowliteWolfRenderer(m, new HowliteWolfModel(), 0.5F));
-        RenderingRegistry.registerEntityRenderingHandler(LesserShockshooterEntity.class, m -> new LesserShockshooterRenderer(m, new LesserShockshooterModel(), 0.5F));
-        RenderingRegistry.registerEntityRenderingHandler(LesserSpitfireEntity.class, m -> new LesserSpitfireRenderer(m, new LesserSpitfireModel(), 0.5F));
-        RenderingRegistry.registerEntityRenderingHandler(MarkuzarPlantEntity.class, m -> new MarkuzarPlantRenderer(m, new MarkuzarPlantModel(), 0.5F));
-        RenderingRegistry.registerEntityRenderingHandler(MineralArenthisEntity.class, m -> new MineralArenthisRenderer(m, new MineralArenthisModel(), 0.8F));
-        RenderingRegistry.registerEntityRenderingHandler(MucklingEntity.class, m -> new MucklingRenderer(m, 0.625F));
-        RenderingRegistry.registerEntityRenderingHandler(MutantGrowthExtractorEntity.class, m -> new GrowthExtractorRenderer(m, new GrowthExtractorModel(),0.8F));
-        RenderingRegistry.registerEntityRenderingHandler(NomadicLagrahkEntity.class, m -> new NomadicLagrahkRenderer(m, new NomadicLagrahkModel(), 1.0F));
-        RenderingRegistry.registerEntityRenderingHandler(PrimalBeastEntity.class, m -> new PrimalBeastRenderer(m, new PrimalBeastModel(), 0.5F));
-        RenderingRegistry.registerEntityRenderingHandler(RockyLuggerothEntity.class, m -> new RockyLuggerothRenderer(m, new RockyLuggerothModel(), 0.7F));
-        RenderingRegistry.registerEntityRenderingHandler(RuggedLurmorusEntity.class, m -> new RuggedLurmorusRenderer(m, new RuggedLurmorusModel(), 4.0F));
-        RenderingRegistry.registerEntityRenderingHandler(SaltionEntity.class, m -> new SaltionRenderer(m, new SaltionModel(), 0.7F));
-        RenderingRegistry.registerEntityRenderingHandler(ShallowArenthisEntity.class, m -> new ShallowArenthisRenderer(m, new ShallowArenthisModel(), 0.5F));
-        RenderingRegistry.registerEntityRenderingHandler(ShalurkerEntity.class, m -> new ShalurkerRenderer(m, new ShalurkerModel(), 0.5F));
-        RenderingRegistry.registerEntityRenderingHandler(SpellElementEntity.class, m -> new SpellElementRenderer(m, new SpellElementModel(), 0.4F));
+        RenderingRegistry.registerEntityRenderingHandler(AGATE_GOLEM.get(), m -> new AgateGolemRenderer<>(m, new AgateGolemModel<>(), 0.9F));
+        RenderingRegistry.registerEntityRenderingHandler(ANCIENT_LAGRAHK.get(), m -> new AncientLagrahkRenderer<>(m, new AncientLagrahkModel<>(), 2.0F));
+        RenderingRegistry.registerEntityRenderingHandler(ARCHAIC_WARRIOR.get(), m -> new ArchaicWarriorRenderer<>(m, new ArchaicWarriorModel<>(), 0.5F));
+        RenderingRegistry.registerEntityRenderingHandler(BISMUTH_ULETRUS.get(), m -> new BismuthUletrusRenderer<>(m, new BismuthUletrusModel<>(), 1.0F));
+        RenderingRegistry.registerEntityRenderingHandler(CAVERN_TICK.get(), m -> new CavernTickRenderer<>(m, new CavernTickModel<>(), 0.2F));
+        RenderingRegistry.registerEntityRenderingHandler(CONTORTED_NAGA.get(), m -> new ContortedNagaRenderer<>(m, new ContortedNagaModel<>(), 0.7F));
+        RenderingRegistry.registerEntityRenderingHandler(CORRUPT_SAPPER.get(), m -> new CorruptSapperRenderer<>(m, new GrowthSapperModel<>(), 0.6F));
+        RenderingRegistry.registerEntityRenderingHandler(CRYSTAL_GOLEM.get(), m -> new CrystalGolemRenderer<>(m, new CrystalGolemModel<>(), 0.9F));
+        RenderingRegistry.registerEntityRenderingHandler(GROWTH_SAPPER.get(), m -> new GrowthSapperRenderer<>(m, new GrowthSapperModel<>(), 0.6F));
+        RenderingRegistry.registerEntityRenderingHandler(HOWLITE_WOLF.get(), m -> new HowliteWolfRenderer<>(m, new HowliteWolfModel<>(), 0.5F));
+        RenderingRegistry.registerEntityRenderingHandler(LESSER_SHOCKSHOOTER.get(), m -> new LesserShockshooterRenderer<>(m, new LesserShockshooterModel<>(), 0.5F));
+        RenderingRegistry.registerEntityRenderingHandler(LESSER_SPITFIRE.get(), m -> new LesserSpitfireRenderer<>(m, new LesserSpitfireModel<>(), 0.5F));
+        RenderingRegistry.registerEntityRenderingHandler(MARKUZAR_PLANT.get(), m -> new MarkuzarPlantRenderer<>(m, new MarkuzarPlantModel<>(), 0.5F));
+        RenderingRegistry.registerEntityRenderingHandler(MINERAL_ARENTHIS.get(), m -> new MineralArenthisRenderer<>(m, new MineralArenthisModel<>(), 0.8F));
+        RenderingRegistry.registerEntityRenderingHandler(MUCKLING.get(), m -> new MucklingRenderer(m, 0.625F));
+        RenderingRegistry.registerEntityRenderingHandler(MUTANT_GROWTH_EXTRACTOR.get(), m -> new GrowthExtractorRenderer<>(m, new GrowthExtractorModel<>(),0.8F));
+        RenderingRegistry.registerEntityRenderingHandler(NOMADIC_LAGRAHK.get(), m -> new NomadicLagrahkRenderer<>(m, new NomadicLagrahkModel<>(), 1.0F));
+        RenderingRegistry.registerEntityRenderingHandler(PRIMAL_BEAST.get(), m -> new PrimalBeastRenderer<>(m, new PrimalBeastModel<>(), 0.5F));
+        RenderingRegistry.registerEntityRenderingHandler(ROCKY_LUGGEROTH.get(), m -> new RockyLuggerothRenderer<>(m, new RockyLuggerothModel<>(), 0.7F));
+        RenderingRegistry.registerEntityRenderingHandler(RUGGED_LURMORUS.get(), m -> new RuggedLurmorusRenderer<>(m, new RuggedLurmorusModel<>(), 3.0F));
+        RenderingRegistry.registerEntityRenderingHandler(SALTION.get(), m -> new SaltionRenderer<>(m, new SaltionModel<>(), 0.7F));
+        RenderingRegistry.registerEntityRenderingHandler(SHALLOW_ARENTHIS.get(), m -> new ShallowArenthisRenderer<>(m, new ShallowArenthisModel<>(), 0.5F));
+        RenderingRegistry.registerEntityRenderingHandler(SHALURKER.get(), m -> new ShalurkerRenderer<>(m, new ShalurkerModel<>(), 0.5F));
+        RenderingRegistry.registerEntityRenderingHandler(SPELLBOUND_ELEMENTAL.get(), m -> new SpellElementRenderer<>(m, new SpellElementModel<>(), 0.4F));
 
-        RenderingRegistry.registerEntityRenderingHandler(BlueHowliteWolfEntity.class, m -> new BlueHowliteWolfRenderer(m, new BlueHowliteWolfModel(), 1.0F));
-        RenderingRegistry.registerEntityRenderingHandler(MalachiteGuardEntity.class, m -> new MalachiteGuardRenderer(m, new MalachiteGuardModel(), 0.7F));
+        RenderingRegistry.registerEntityRenderingHandler(BLUE_HOWLITE_WOLF.get(), m -> new BlueHowliteWolfRenderer<>(m, new BlueHowliteWolfModel<>(), 1.0F));
+        RenderingRegistry.registerEntityRenderingHandler(MALACHITE_GUARD.get(), m -> new MalachiteGuardRenderer<>(m, new MalachiteGuardModel<>(), 0.7F));
     }
 }

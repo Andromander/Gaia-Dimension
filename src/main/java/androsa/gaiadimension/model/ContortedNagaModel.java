@@ -171,11 +171,6 @@ public class ContortedNagaModel<T extends ContortedNagaEntity> extends Segmented
         return ImmutableList.of(this.bodyTop);
     }
 
-//    @Override
-//    public void render(ContortedNagaEntity entity, float f, float f1, float f2, float f3, float f4, float f5) {
-//        this.bodyTop.render(f5);
-//    }
-
     /**
      * This is a helper function from Tabula to set the rotation of model parts
      */
@@ -186,7 +181,7 @@ public class ContortedNagaModel<T extends ContortedNagaEntity> extends Segmented
     }
 
     @Override
-    public void setAngles(T entity, float ageInTicks, float limbSwing, float limbSwingAmount, float netHeadYaw, float headPitch) {
+    public void setAngles(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
         this.head.rotateAngleY = netHeadYaw / (180F / (float) Math.PI);
         this.head.rotateAngleX = headPitch / (180F / (float) Math.PI) + -0.3141592653589793F;
 

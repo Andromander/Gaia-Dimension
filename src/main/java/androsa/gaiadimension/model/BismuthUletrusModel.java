@@ -186,16 +186,6 @@ public class BismuthUletrusModel<T extends BismuthUletrusEntity> extends Segment
         return ImmutableList.of(this.tail1, this.upperLegR, this.upperArmR, this.upperLegL, this.body, this.upperArmL);
     }
 
-//    @Override
-//    public void render(BismuthUletrusEntity entity, float f, float f1, float f2, float f3, float f4, float f5) {
-//        this.tail1.render(f5);
-//        this.upperLegR.render(f5);
-//        this.upperArmR.render(f5);
-//        this.upperLegL.render(f5);
-//        this.body.render(f5);
-//        this.upperArmL.render(f5);
-//    }
-
     /**
      * This is a helper function from Tabula to set the rotation of model parts
      */
@@ -206,7 +196,7 @@ public class BismuthUletrusModel<T extends BismuthUletrusEntity> extends Segment
     }
 
     @Override
-    public void setAngles(T entity, float ageInTicks, float limbSwing, float limbSwingAmount, float netHeadYaw, float headPitch) {
+    public void setAngles(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
         this.head.rotateAngleY = netHeadYaw / (180F / (float) Math.PI);
         this.head.rotateAngleX = headPitch / (180F / (float) Math.PI) + 0.4363323129985824F;
 
@@ -280,6 +270,5 @@ public class BismuthUletrusModel<T extends BismuthUletrusEntity> extends Segment
             this.tail4.rotateAngleY = MathHelper.cos(limbSwing * 0.6662F) * 0.5F * limbSwingAmount * 0.5F + -0.014660765716752367F;
             this.tail4.rotateAngleY -= MathHelper.sin(ageInTicks * 0.067F) * 0.05F + -0.014660765716752367F;
         }
-
     }
 }

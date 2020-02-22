@@ -146,15 +146,6 @@ public class SpellElementModel<T extends SpellElementEntity> extends SegmentedMo
         );
     }
 
-//    @Override
-//    public void render(SpellElementEntity entity, float f, float f1, float f2, float f3, float f4, float f5) {
-//        this.scytheR.render(f5);
-//        this.scytheL.render(f5);
-//        this.bodyA.render(f5);
-//        this.tip.render(f5);
-//        this.head.render(f5);
-//    }
-
     /**
      * This is a helper function from Tabula to set the rotation of model parts
      */
@@ -165,7 +156,7 @@ public class SpellElementModel<T extends SpellElementEntity> extends SegmentedMo
     }
 
     @Override
-    public void setAngles(T entity, float ageInTicks, float limbSwing, float limbSwingAmount, float netHeadYaw, float headPitch) {
+    public void setAngles(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
         this.head.rotateAngleY = netHeadYaw / (180F / (float) Math.PI);
         this.head.rotateAngleX = headPitch / (180F / (float) Math.PI);
 
@@ -173,6 +164,5 @@ public class SpellElementModel<T extends SpellElementEntity> extends SegmentedMo
         this.scytheL.rotateAngleZ = MathHelper.cos(limbSwing * 0.6662F) * 0.5F * limbSwingAmount * 0.5F;
         this.scytheR.rotateAngleZ += MathHelper.sin(ageInTicks * 0.067F) * 0.05F + -0.08726646259971647F;
         this.scytheL.rotateAngleZ -= MathHelper.sin(ageInTicks * 0.067F) * 0.05F + -0.08726646259971647F;
-
     }
 }

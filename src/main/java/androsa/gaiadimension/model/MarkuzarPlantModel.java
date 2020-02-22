@@ -91,11 +91,6 @@ public class MarkuzarPlantModel<T extends MarkuzarPlantEntity> extends Segmented
         return ImmutableList.of(this.stalkLow);
     }
 
-//    @Override
-//    public void render(MarkuzarPlantEntity entity, float f, float f1, float f2, float f3, float f4, float f5) {
-//        this.stalkLow.render(f5);
-//    }
-
     /**
      * This is a helper function from Tabula to set the rotation of model parts
      */
@@ -106,7 +101,7 @@ public class MarkuzarPlantModel<T extends MarkuzarPlantEntity> extends Segmented
     }
 
     @Override
-    public void setAngles(T entity, float ageInTicks, float limbSwing, float limbSwingAmount, float netHeadYaw, float headPitch) {
+    public void setAngles(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
 
         //Oh dear god, this is unsettling to watch
         this.stalkLow.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F) * 0.5F * limbSwingAmount * 0.5F;

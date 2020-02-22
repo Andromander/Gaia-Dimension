@@ -307,18 +307,6 @@ public class AncientLagrahkModel<T extends AncientLagrahkEntity> extends Segment
         return ImmutableList.of(this.upperLegR, this.upperArm3, this.upperLegL, this.upperArm2, this.lowerBody, this.upperArm4, upperArm1, this.tail1);
     }
 
-    //    @Override
-//    public void render(AncientLagrahkEntity entity, float f, float f1, float f2, float f3, float f4, float f5) {
-//        this.upperLegR.render(f5);
-//        this.upperArm3.render(f5);
-//        this.upperLegL.render(f5);
-//        this.upperArm2.render(f5);
-//        this.lowerBody.render(f5);
-//        this.upperArm4.render(f5);
-//        this.upperArm1.render(f5);
-//        this.tail1.render(f5);
-//    }
-
     /**
      * This is a helper function from Tabula to set the rotation of model parts
      */
@@ -329,7 +317,7 @@ public class AncientLagrahkModel<T extends AncientLagrahkEntity> extends Segment
     }
 
     @Override
-    public void setAngles(T entity, float ageInTicks, float limbSwing, float limbSwingAmount, float netHeadYaw, float headPitch) {
+    public void setAngles(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
         this.head.rotateAngleY = netHeadYaw / (180F / (float) Math.PI);
         this.head.rotateAngleX = headPitch / (180F / (float) Math.PI) - 0.5235987755982988F;
 

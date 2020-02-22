@@ -135,11 +135,6 @@ public class SaltionModel<T extends SaltionEntity> extends SegmentedModel<T> {
         return ImmutableList.of(this.body);
     }
 
-//    @Override
-//    public void render(SaltionEntity entity, float f, float f1, float f2, float f3, float f4, float f5) {
-//        this.body.render(f5);
-//    }
-
     /**
      * This is a helper function from Tabula to set the rotation of model parts
      */
@@ -149,7 +144,7 @@ public class SaltionModel<T extends SaltionEntity> extends SegmentedModel<T> {
         modelRenderer.rotateAngleZ = z;
     }
 
-    public void setAngles(T entity, float ageInTicks, float limbSwing, float limbSwingAmount, float netHeadYaw, float headPitch) {
+    public void setAngles(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
         this.head.rotateAngleY = netHeadYaw / (180F / (float) Math.PI);
 
         this.armR.rotateAngleY = MathHelper.cos(limbSwing * 0.6662F) * 0.4F * limbSwingAmount + 0.8377580409572781F;

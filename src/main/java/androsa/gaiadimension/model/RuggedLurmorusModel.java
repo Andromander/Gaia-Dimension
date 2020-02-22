@@ -164,16 +164,6 @@ public class RuggedLurmorusModel<T extends RuggedLurmorusEntity> extends Segment
         );
     }
 
-//    @Override
-//    public void render(RuggedLurmorusEntity entity, float f, float f1, float f2, float f3, float f4, float f5) {
-//        this.tailBase.render(f5);
-//        this.upperLegR.render(f5);
-//        this.shoulderL.render(f5);
-//        this.shoulderR.render(f5);
-//        this.body.render(f5);
-//        this.upperLegL.render(f5);
-//    }
-
     /**
      * This is a helper function from Tabula to set the rotation of model parts
      */
@@ -184,7 +174,7 @@ public class RuggedLurmorusModel<T extends RuggedLurmorusEntity> extends Segment
     }
 
     @Override
-    public void setAngles(T entity, float ageInTicks, float limbSwing, float limbSwingAmount, float netHeadYaw, float headPitch) {
+    public void setAngles(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
         this.head.rotateAngleY = netHeadYaw / (180F / (float) Math.PI);
         this.head.rotateAngleX = headPitch / (180F / (float) Math.PI);
 

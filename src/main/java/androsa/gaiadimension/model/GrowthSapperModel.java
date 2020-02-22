@@ -72,18 +72,6 @@ public class GrowthSapperModel<T extends MobEntity> extends SegmentedModel<T> {
         );
     }
 
-//    @Override
-//    public void render(T entity, float f, float f1, float f2, float f3, float f4, float f5) {
-//        this.leg2.render(f5);
-//        this.body.render(f5);
-//        this.head.render(f5);
-//        this.leg1.render(f5);
-//        this.leg3.render(f5);
-//        this.leg5.render(f5);
-//        this.leg4.render(f5);
-//        this.leg6.render(f5);
-//    }
-
     /**
      * This is a helper function from Tabula to set the rotation of model parts
      */
@@ -94,7 +82,7 @@ public class GrowthSapperModel<T extends MobEntity> extends SegmentedModel<T> {
     }
 
     @Override
-    public void setAngles(T entity, float ageInTicks, float limbSwing, float limbSwingAmount, float netHeadYaw, float headPitch) {
+    public void setAngles(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
         this.head.rotateAngleY = netHeadYaw / (180F / (float) Math.PI);
         this.head.rotateAngleX = headPitch / (180F / (float) Math.PI);
 

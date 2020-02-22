@@ -163,23 +163,6 @@ public class BlueHowliteWolfModel<T extends BlueHowliteWolfEntity> extends Segme
         );
     }
 
-//    @Override
-//    public void render(BlueHowliteWolfEntity entity, float f, float f1, float f2, float f3, float f4, float f5) {
-//        super.render(entity, f, f1, f2, f3, f4, f5);
-//        setRotationAngles(entity, f, f1, f2, f3, f4, f5);
-//
-//        this.head.render(f5);
-//        this.neck.render(f5);
-//        this.chestMane.render(f5);
-//        this.body.render(f5);
-//        this.frontUpperLeg1.render(f5);
-//        this.frontUpperLeg2.render(f5);
-//        this.backUpperLeg1.render(f5);
-//        this.backUpperLeg2.render(f5);
-//        this.tail1.render(f5);
-//        this.tail2.render(f5);
-//    }
-
     /**
      * This is a helper function from Tabula to set the rotation of model parts
      */
@@ -190,7 +173,7 @@ public class BlueHowliteWolfModel<T extends BlueHowliteWolfEntity> extends Segme
     }
 
     @Override
-    public void setAngles(T entity, float ageInTicks, float limbSwing, float limbSwingAmount, float netHeadYaw, float headPitch) {
+    public void setAngles(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
         this.head.rotateAngleY = netHeadYaw / (180F / (float) Math.PI);
         this.head.rotateAngleX = headPitch / (180F / (float) Math.PI);
 

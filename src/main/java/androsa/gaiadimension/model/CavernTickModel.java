@@ -58,13 +58,8 @@ public class CavernTickModel<T extends CavernTickEntity> extends SegmentedModel<
         return ImmutableList.of(this.body);
     }
 
-//    @Override
-//    public void render(CavernTickEntity entity, float f, float f1, float f2, float f3, float f4, float f5) {
-//        this.body.render(f5);
-//    }
-
     @Override
-    public void setAngles(T entity, float ageInTicks, float limbSwing, float limbSwingAmount, float netHeadYaw, float headPitch) {
+    public void setAngles(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
         this.spike1.rotateAngleX = MathHelper.sin(ageInTicks * (float)Math.PI * 0.05F) * 0.1F + 0.7853981633974483F;
         this.spike2.rotateAngleX = MathHelper.sin(ageInTicks * (float)Math.PI * 0.05F) * 0.1F + 0.7853981633974483F;
         this.spike3.rotateAngleX = MathHelper.sin(ageInTicks * (float)Math.PI * 0.05F) * 0.1F + 0.7853981633974483F;

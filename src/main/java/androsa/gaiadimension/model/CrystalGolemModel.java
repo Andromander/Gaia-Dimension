@@ -172,18 +172,6 @@ public class CrystalGolemModel<T extends CrystalGolemEntity> extends SegmentedMo
         );
     }
 
-//    @Override
-//    public void render(CrystalGolemEntity entity, float f, float f1, float f2, float f3, float f4, float f5) {
-//        this.face.render(f5);
-//        this.legR.render(f5);
-//        this.legL.render(f5);
-//        this.torso.render(f5);
-//        this.stomach.render(f5);
-//        this.neck.render(f5);
-//        this.upperArmR.render(f5);
-//        this.upperArmL.render(f5);
-//    }
-
     /**
      * This is a helper function from Tabula to set the rotation of model parts
      */
@@ -194,7 +182,7 @@ public class CrystalGolemModel<T extends CrystalGolemEntity> extends SegmentedMo
     }
 
     @Override
-    public void setAngles(T entity, float ageInTicks, float limbSwing, float limbSwingAmount, float netHeadYaw, float headPitch) {
+    public void setAngles(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
         this.face.rotateAngleY = netHeadYaw / (180F / (float) Math.PI);
         this.face.rotateAngleX = headPitch / (180F / (float) Math.PI);
 

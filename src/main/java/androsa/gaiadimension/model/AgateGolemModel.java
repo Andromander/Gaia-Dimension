@@ -207,18 +207,6 @@ public class AgateGolemModel<T extends AgateGolemEntity> extends SegmentedModel<
         return ImmutableList.of(this.face, this.neck, this.torso, this.upperArmL, this.upperArmR, this.stomach, this.upperLegL, this.upperLegR);
     }
 
-    //    @Override
-//    public void render(AgateGolemEntity entity, float f, float f1, float f2, float f3, float f4, float f5) {
-//        this.stomach.render(f5);
-//        this.upperArmL.render(f5);
-//        this.upperLegR.render(f5);
-//        this.upperLegL.render(f5);
-//        this.neck.render(f5);
-//        this.upperArmR.render(f5);
-//        this.face.render(f5);
-//        this.torso.render(f5);
-//    }
-
     /**
      * This is a helper function from Tabula to set the rotation of model parts
      */
@@ -247,24 +235,4 @@ public class AgateGolemModel<T extends AgateGolemEntity> extends SegmentedModel<
         this.upperLegL.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F) * 0.5F * limbSwingAmount + -0.3490658503988659F;
         this.upperLegR.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F + (float) Math.PI) * 0.5F * limbSwingAmount + -0.3490658503988659F;
     }
-
-//    @Override
-//    public void setAngles(T entity, float ageInTicks, float limbSwing, float limbSwingAmount, float netHeadYaw, float headPitch) {
-//        this.face.rotateAngleY = netHeadYaw / (180F / (float) Math.PI);
-//        this.face.rotateAngleX = headPitch / (180F / (float) Math.PI);
-//
-//        this.upperArmR.rotateAngleZ = 0.0F;
-//        this.upperArmL.rotateAngleZ = 0.0F;
-//        this.upperArmR.rotateAngleX = 0.0F;
-//        this.upperArmL.rotateAngleX = 0.0F;
-//        this.upperArmR.rotateAngleZ += MathHelper.cos(ageInTicks * 0.09F) * 0.05F + 0.3490658503988659F;
-//        this.upperArmL.rotateAngleZ -= MathHelper.cos(ageInTicks * 0.09F) * 0.05F + 0.3490658503988659F;
-//        this.upperArmR.rotateAngleX += MathHelper.sin(ageInTicks * 0.067F) * 0.05F;
-//        this.upperArmL.rotateAngleX -= MathHelper.sin(ageInTicks * 0.067F) * 0.05F;
-//        this.upperArmL.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F) * 1.0F * limbSwingAmount;
-//        this.upperArmR.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F + (float) Math.PI) * 1.0F * limbSwingAmount;
-//
-//        this.upperLegL.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F) * 0.5F * limbSwingAmount + -0.3490658503988659F;
-//        this.upperLegR.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F + (float) Math.PI) * 0.5F * limbSwingAmount + -0.3490658503988659F;
-//    }
 }

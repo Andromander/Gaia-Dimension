@@ -98,23 +98,6 @@ public class ArchaicWarriorModel<T extends ArchaicWarriorEntity> extends Segment
         );
     }
 
-    //    @Override
-//    public void render(ArchaicWarriorEntity entity, float f, float f1, float f2, float f3, float f4, float f5) {
-//        this.bipedRightArmwear.render(f5);
-//        this.shoulderPlateR.render(f5);
-//        this.bipedLeftLeg.render(f5);
-//        this.bipedLeftLegwear.render(f5);
-//        this.bipedRightArm.render(f5);
-//        this.bipedLeftArmwear.render(f5);
-//        this.bipedLeftArm.render(f5);
-//        this.bipedHead.render(f5);
-//        this.shoulderPlateL.render(f5);
-//        this.bipedRightLegwear.render(f5);
-//        this.bipedRightLeg.render(f5);
-//        this.bipedHeadwear.render(f5);
-//        this.bipedBody.render(f5);
-//    }
-
     /**
      * This is a helper function from Tabula to set the rotation of model parts
      */
@@ -125,7 +108,7 @@ public class ArchaicWarriorModel<T extends ArchaicWarriorEntity> extends Segment
     }
 
     @Override
-    public void setAngles(T entity, float ageInTicks, float limbSwing, float limbSwingAmount, float netHeadYaw, float headPitch) {
+    public void setAngles(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
         this.bipedHead.rotateAngleY = netHeadYaw / (180F / (float) Math.PI);
         this.bipedHead.rotateAngleX = headPitch / (180F / (float) Math.PI);
 
