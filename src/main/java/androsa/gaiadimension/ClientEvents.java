@@ -1,6 +1,7 @@
 package androsa.gaiadimension;
 
 import androsa.gaiadimension.registry.ModBlocks;
+import androsa.gaiadimension.registry.ModFluids;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.RenderType;
@@ -222,6 +223,11 @@ public class ClientEvents {
         renderBlock(ModBlocks.potted_burnt_sapling, cutout);
         renderBlock(ModBlocks.potted_burning_sapling, cutout);
         renderBlock(ModBlocks.potted_aura_sapling, cutout);
+
+        RenderTypeLookup.setRenderLayer(ModFluids.mineral_water_flow.get(), RenderType.getTranslucent());
+        RenderTypeLookup.setRenderLayer(ModFluids.mineral_water_still.get(), RenderType.getTranslucent());
+        RenderTypeLookup.setRenderLayer(ModFluids.sweet_muck_flow.get(), RenderType.getTranslucent());
+        RenderTypeLookup.setRenderLayer(ModFluids.sweet_muck_still.get(), RenderType.getTranslucent());
     }
 
     private static void renderBlock(Supplier<? extends Block> block, RenderType render) {

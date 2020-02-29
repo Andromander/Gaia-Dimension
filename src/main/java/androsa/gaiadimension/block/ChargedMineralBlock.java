@@ -15,7 +15,7 @@ public class ChargedMineralBlock extends AbstractGlassBlock {
 
     //TODO: Contact with this block on any side deals damage
     public ChargedMineralBlock() {
-        super(Properties.create(Material.IRON, MaterialColor.CYAN).hardnessAndResistance(4.0F, 15.0F).harvestTool(ToolType.PICKAXE).harvestLevel(1).sound(SoundType.GLASS));
+        super(Properties.create(Material.IRON, MaterialColor.CYAN).hardnessAndResistance(4.0F, 15.0F).harvestTool(ToolType.PICKAXE).harvestLevel(1).sound(SoundType.GLASS).nonOpaque());
     }
 
     @Override

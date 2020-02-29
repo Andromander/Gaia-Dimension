@@ -12,6 +12,6 @@ public class AgateLeavesBlock extends LeavesBlock {
     }
 
     public AgateLeavesBlock(MaterialColor color, int light) {
-        super(Properties.create(Material.LEAVES, color).hardnessAndResistance(0.3F, 0.0F).sound(SoundType.GLASS).lightValue(light));
+        super(Properties.create(Material.LEAVES, color).hardnessAndResistance(0.3F, 0.0F).sound(SoundType.GLASS).lightValue(light).nonOpaque());
     }
 }

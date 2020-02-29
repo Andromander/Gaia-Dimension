@@ -14,7 +14,7 @@ import net.minecraft.world.World;
 public class GummyGlitterBlock extends BreakableBlock {
 
     public GummyGlitterBlock() {
-        super(Properties.create(Material.CLAY, MaterialColor.PURPLE).sound(SoundType.SLIME));
+        super(Properties.create(Material.CLAY, MaterialColor.PURPLE).sound(SoundType.SLIME).nonOpaque());
     }
 
     @Override
