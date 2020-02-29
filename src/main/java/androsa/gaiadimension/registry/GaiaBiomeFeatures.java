@@ -4,8 +4,10 @@ import androsa.gaiadimension.biomes.*;
 import androsa.gaiadimension.world.gen.config.FeatureHeightConfig;
 import androsa.gaiadimension.world.gen.config.GaiaTreeFeatureConfig;
 import com.google.common.collect.ImmutableList;
+import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Lists;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
 import net.minecraft.block.pattern.BlockMatcher;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.GenerationStage;
@@ -16,7 +18,11 @@ import net.minecraft.world.gen.feature.*;
 import net.minecraft.world.gen.placement.*;
 import net.minecraft.world.gen.surfacebuilders.SurfaceBuilderConfig;
 
+import java.util.Set;
+
 public class GaiaBiomeFeatures {
+
+    public static final Set<BlockState> cave_blacklist = ImmutableSet.of(ModBlocks.glitter_grass.get().getDefaultState(), ModBlocks.heavy_soil.get().getDefaultState(), ModBlocks.corrupt_grass.get().getDefaultState(), ModBlocks.corrupt_soil.get().getDefaultState(), ModBlocks.murky_grass.get().getDefaultState(), ModBlocks.boggy_soil.get().getDefaultState(), ModBlocks.soft_grass.get().getDefaultState(), ModBlocks.light_soil.get().getDefaultState());
 
     public static final OreFeatureConfig.FillerBlockType GAIA_STONE = OreFeatureConfig.FillerBlockType.create("GAIA_STONE", "gaia_stone", new BlockMatcher(ModBlocks.gaia_stone.get()));
     public static final OreFeatureConfig.FillerBlockType STATIC = OreFeatureConfig.FillerBlockType.create("STATIC", "wasteland", (stone) -> {
@@ -61,19 +67,19 @@ public class GaiaBiomeFeatures {
     public static final BlockClusterFeatureConfig SEARED_GROWTH = (new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(ModBlocks.crystal_growth_seared.get().getDefaultState()), new SimpleBlockPlacer())).tries(32).build();
     public static final BlockClusterFeatureConfig AURA_GROWTH = (new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(ModBlocks.crystal_growth_aura.get().getDefaultState()), new SimpleBlockPlacer())).tries(32).build();
 
-    public static final BlockClusterFeatureConfig COMMON_BLOOM = (new BlockClusterFeatureConfig.Builder(new WeightedBlockStateProvider().addState(ModBlocks.thiscus.get().getDefaultState(), 4).addState(ModBlocks.ouzium.get().getDefaultState(), 1), new SimpleBlockPlacer())).tries(64).build();
-    public static final BlockClusterFeatureConfig RARE_BLOOM = (new BlockClusterFeatureConfig.Builder(new WeightedBlockStateProvider().addState(ModBlocks.ouzium.get().getDefaultState(), 4).addState(ModBlocks.thiscus.get().getDefaultState(), 1), new SimpleBlockPlacer())).tries(64).build();
-    public static final BlockClusterFeatureConfig MUTANT_BLOOM = (new BlockClusterFeatureConfig.Builder(new WeightedBlockStateProvider().addState(ModBlocks.ouzium.get().getDefaultState(), 4).addState(ModBlocks.agathum.get().getDefaultState(), 1), new SimpleBlockPlacer())).tries(64).build();
+    public static final BlockClusterFeatureConfig COMMON_BLOOM = (new BlockClusterFeatureConfig.Builder(new WeightedBlockStateProvider().addState(ModBlocks.thiscus.get().getDefaultState(), 4).addState(ModBlocks.ouzium.get().getDefaultState(), 1), new SimpleBlockPlacer())).tries(32).build();
+    public static final BlockClusterFeatureConfig RARE_BLOOM = (new BlockClusterFeatureConfig.Builder(new WeightedBlockStateProvider().addState(ModBlocks.ouzium.get().getDefaultState(), 4).addState(ModBlocks.thiscus.get().getDefaultState(), 1), new SimpleBlockPlacer())).tries(32).build();
+    public static final BlockClusterFeatureConfig MUTANT_BLOOM = (new BlockClusterFeatureConfig.Builder(new WeightedBlockStateProvider().addState(ModBlocks.ouzium.get().getDefaultState(), 4).addState(ModBlocks.agathum.get().getDefaultState(), 1), new SimpleBlockPlacer())).tries(32).build();
     public static final BlockClusterFeatureConfig CORRUPT_BLOOM = (new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(ModBlocks.corrupted_varloom.get().getDefaultState()), new SimpleBlockPlacer())).tries(64).build();
 
-    public static final BlockClusterFeatureConfig KERSEI = (new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(ModBlocks.spotted_kersei.get().getDefaultState()), new SimpleBlockPlacer())).tries(64).build();
-    public static final BlockClusterFeatureConfig WILTHA = (new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(ModBlocks.thorny_wiltha.get().getDefaultState()), new SimpleBlockPlacer())).tries(64).build();
-    public static final BlockClusterFeatureConfig AGARIC = (new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(ModBlocks.roofed_agaric.get().getDefaultState()), new SimpleBlockPlacer())).tries(64).build();
-    public static final BlockClusterFeatureConfig HOBINA = (new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(ModBlocks.bulbous_hobina.get().getDefaultState()), new SimpleBlockPlacer())).tries(64).build();
-    public static final BlockClusterFeatureConfig CUPSIR = (new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(ModBlocks.stickly_cupsir.get().getDefaultState()), new SimpleBlockPlacer())).tries(64).build();
-    public static final BlockClusterFeatureConfig MURGNI = (new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(ModBlocks.mystical_murgni.get().getDefaultState()), new SimpleBlockPlacer())).tries(64).build();
-    public static final BlockClusterFeatureConfig CORRUPT_EYE = (new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(ModBlocks.corrupted_gaia_eye.get().getDefaultState()), new SimpleBlockPlacer())).tries(64).build();
-    public static final BlockClusterFeatureConfig CAVE_FUNGI = (new BlockClusterFeatureConfig.Builder(new WeightedBlockStateProvider().addState(ModBlocks.elder_imklia.get().getDefaultState(), 2).addState(ModBlocks.gold_orb_tucher.get().getDefaultState(), 2), new SimpleBlockPlacer())).tries(32).build();
+    public static final BlockClusterFeatureConfig KERSEI = (new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(ModBlocks.spotted_kersei.get().getDefaultState()), new SimpleBlockPlacer())).tries(16).build();
+    public static final BlockClusterFeatureConfig WILTHA = (new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(ModBlocks.thorny_wiltha.get().getDefaultState()), new SimpleBlockPlacer())).tries(16).build();
+    public static final BlockClusterFeatureConfig AGARIC = (new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(ModBlocks.roofed_agaric.get().getDefaultState()), new SimpleBlockPlacer())).tries(16).build();
+    public static final BlockClusterFeatureConfig HOBINA = (new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(ModBlocks.bulbous_hobina.get().getDefaultState()), new SimpleBlockPlacer())).tries(16).build();
+    public static final BlockClusterFeatureConfig CUPSIR = (new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(ModBlocks.stickly_cupsir.get().getDefaultState()), new SimpleBlockPlacer())).tries(16).build();
+    public static final BlockClusterFeatureConfig MURGNI = (new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(ModBlocks.mystical_murgni.get().getDefaultState()), new SimpleBlockPlacer())).tries(16).build();
+    public static final BlockClusterFeatureConfig CORRUPT_EYE = (new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(ModBlocks.corrupted_gaia_eye.get().getDefaultState()), new SimpleBlockPlacer())).tries(16).build();
+    public static final BlockClusterFeatureConfig CAVE_FUNGI = (new BlockClusterFeatureConfig.Builder(new WeightedBlockStateProvider().addState(ModBlocks.elder_imklia.get().getDefaultState(), 2).addState(ModBlocks.gold_orb_tucher.get().getDefaultState(), 2), new SimpleBlockPlacer())).tries(32).blacklist(cave_blacklist).build();
 
     public static void addCarver(Biome biomeIn) {
         biomeIn.addCarver(GenerationStage.Carving.AIR, Biome.createCarver(ModWorldgen.CRYSTAL_CAVES.get(), new ProbabilityConfig(0.15F)));
