@@ -60,11 +60,6 @@ public class GaiaLayerUtil {
     public static Layer makeLayers(long seed) {
         IAreaFactory<LazyArea> areaFactory = makeLayers((contextSeed) -> new LazyAreaLayerContext(25, seed, contextSeed));
         return new Layer(areaFactory);
-//        ImmutableList<IAreaFactory<LazyArea>> immutablelist = makeLayers((context) -> new LazyAreaLayerContext(25, seed, context));
-//        Layer layer = new Layer(immutablelist.get(0));
-//        Layer layer1 = new Layer(immutablelist.get(1));
-//        Layer layer2 = new Layer(immutablelist.get(2));
-//        return new Layer[]{layer, layer1, layer2};
     }
 
     @SubscribeEvent
