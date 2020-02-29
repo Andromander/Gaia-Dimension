@@ -32,18 +32,18 @@ public class ChasmsWorldCarver extends WorldCarver<ProbabilityConfig> {
     }
 
     @Override
-    public boolean carve(IChunk chunkIn, Function<BlockPos, Biome> biomePos, Random rand, int seaLevel, int chunkX, int chunkZ, int p_212867_6_, int p_212867_7_, BitSet carvingMask, ProbabilityConfig config) {
+    public boolean carve(IChunk chunkIn, Function<BlockPos, Biome> biomePos, Random rand, int seaLevel, int posX, int posZ, int chunkX, int chunkZ, BitSet carvingMask, ProbabilityConfig config) {
         int i = (this.func_222704_c() * 2 - 1) * 16;
-        int j = rand.nextInt(rand.nextInt(rand.nextInt(this.func_222724_a()) + 1) + 1);
+        int j = rand.nextInt(rand.nextInt(rand.nextInt(this.getChunkSize()) + 1) + 1);
 
         for(int k = 0; k < j; ++k) {
-            double d0 = (double)(chunkX * 16 + rand.nextInt(16));
+            double d0 = (double)(posX * 16 + rand.nextInt(16));
             double d1 = (double)this.generateCaveStartY(rand);
-            double d2 = (double)(chunkZ * 16 + rand.nextInt(16));
+            double d2 = (double)(posZ * 16 + rand.nextInt(16));
             int l = 1;
             if (rand.nextInt(4) == 0) {
                 float f1 = 1.0F + rand.nextFloat() * 6.0F;
-                this.carveCave(chunkIn, biomePos, rand.nextLong(), seaLevel, p_212867_6_, p_212867_7_, d0, d1, d2, f1, 0.5D, carvingMask);
+                this.carveCave(chunkIn, biomePos, rand.nextLong(), seaLevel, chunkX, chunkZ, d0, d1, d2, f1, 0.5D, carvingMask);
                 l += rand.nextInt(4);
             }
 
@@ -52,14 +52,14 @@ public class ChasmsWorldCarver extends WorldCarver<ProbabilityConfig> {
                 float f3 = (rand.nextFloat() - 0.5F) / 4.0F;
                 float f2 = this.generateCaveRadius(rand);
                 int i1 = i - rand.nextInt(i / 4);
-                this.carveTunnels(chunkIn, biomePos, rand.nextLong(), seaLevel, p_212867_6_, p_212867_7_, d0, d1, d2, f2, f, f3, 0, i1, this.func_222725_b(), carvingMask);
+                this.carveTunnels(chunkIn, biomePos, rand.nextLong(), seaLevel, chunkX, chunkZ, d0, d1, d2, f2, f, f3, 0, i1, this.getDiameter(), carvingMask);
             }
         }
 
         return true;
     }
 
-    protected int func_222724_a() {
+    protected int getChunkSize() {
         return 15;
     }
 
@@ -72,7 +72,7 @@ public class ChasmsWorldCarver extends WorldCarver<ProbabilityConfig> {
         return f;
     }
 
-    protected double func_222725_b() {
+    protected double getDiameter() {
         return 1.0D;
     }
 
@@ -80,13 +80,13 @@ public class ChasmsWorldCarver extends WorldCarver<ProbabilityConfig> {
         return rand.nextInt(rand.nextInt(26) + 8);
     }
 
-    protected void carveCave(IChunk chunkIn, Function<BlockPos, Biome> biomePos, long seed, int seaLevel, int p_227205_6_, int p_227205_7_, double chunkX, double chunkY, double chunkZ, float radius, double half, BitSet mask) {
+    protected void carveCave(IChunk chunkIn, Function<BlockPos, Biome> biomePos, long seed, int seaLevel, int chunkX, int chunkZ, double x, double y, double z, float radius, double half, BitSet mask) {
         double d0 = 1.5D + (double)(MathHelper.sin(((float)Math.PI / 2F)) * radius);
         double d1 = d0 * half;
-        this.carveRegion(chunkIn, biomePos, seed, seaLevel, p_227205_6_, p_227205_7_, chunkX + 1.0D, chunkY, chunkZ, d0, d1, mask);
+        this.carveRegion(chunkIn, biomePos, seed, seaLevel, chunkX, chunkZ, x + 1.0D, y, z, d0 * 4, d1 * 2, mask);
     }
 
-    protected void carveTunnels(IChunk chunkIn, Function<BlockPos, Biome> biomePos, long seed, int seaLevel, int centerX, int centerZ, double chunkX, double chunkY, double chunkZ, float radius, float p_222727_14_, float p_222727_15_, int baseSize, int maxSize, double diameter, BitSet mask) {
+    protected void carveTunnels(IChunk chunkIn, Function<BlockPos, Biome> biomePos, long seed, int seaLevel, int centerX, int centerZ, double x, double y, double z, float radius, float yaw, float pitch, int baseSize, int maxSize, double diameter, BitSet mask) {
         Random random = new Random(seed);
         int i = random.nextInt(maxSize / 2) + maxSize / 4;
         boolean flag = random.nextInt(6) == 0;
@@ -96,41 +96,41 @@ public class ChasmsWorldCarver extends WorldCarver<ProbabilityConfig> {
         for (int j = baseSize; j < maxSize; ++j) {
             double d0 = 1.5D + (double)(MathHelper.sin((float)Math.PI * (float)j / (float)maxSize) * radius);
             double d1 = d0 * diameter;
-            float f2 = MathHelper.cos(p_222727_15_);
-            chunkX += (double)(MathHelper.cos(p_222727_14_) * f2);
-            chunkY += (double)MathHelper.sin(p_222727_15_);
-            chunkZ += (double)(MathHelper.sin(p_222727_14_) * f2);
-            p_222727_15_ = p_222727_15_ * (flag ? 0.92F : 0.7F);
-            p_222727_15_ = p_222727_15_ + f1 * 0.1F;
-            p_222727_14_ += f * 0.1F;
+            float f2 = MathHelper.cos(pitch);
+            x += (double)(MathHelper.cos(yaw) * f2);
+            y += (double)MathHelper.sin(pitch);
+            z += (double)(MathHelper.sin(yaw) * f2);
+            pitch = pitch * (flag ? 0.92F : 0.7F);
+            pitch = pitch + f1 * 0.1F;
+            yaw += f * 0.1F;
             f1 = f1 * 0.9F;
             f = f * 0.75F;
             f1 = f1 + (random.nextFloat() - random.nextFloat()) * random.nextFloat() * 2.0F;
             f = f + (random.nextFloat() - random.nextFloat()) * random.nextFloat() * 4.0F;
             if (j == i && radius > 1.0F) {
-                this.carveTunnels(chunkIn, biomePos, random.nextLong(), seaLevel, centerX, centerZ, chunkX, chunkY, chunkZ, random.nextFloat() * 0.5F + 0.5F, p_222727_14_ - ((float)Math.PI / 2F), p_222727_15_ / 3.0F, j, maxSize, 1.0D, mask);
-                this.carveTunnels(chunkIn, biomePos, random.nextLong(), seaLevel, centerX, centerZ, chunkX, chunkY, chunkZ, random.nextFloat() * 0.5F + 0.5F, p_222727_14_ + ((float)Math.PI / 2F), p_222727_15_ / 3.0F, j, maxSize, 1.0D, mask);
+                this.carveTunnels(chunkIn, biomePos, random.nextLong(), seaLevel, centerX, centerZ, x, y, z, random.nextFloat() * 0.5F + 0.5F, yaw - ((float)Math.PI / 2F), pitch / 3.0F, j, maxSize, 1.0D, mask);
+                this.carveTunnels(chunkIn, biomePos, random.nextLong(), seaLevel, centerX, centerZ, x, y, z, random.nextFloat() * 0.5F + 0.5F, yaw + ((float)Math.PI / 2F), pitch / 3.0F, j, maxSize, 1.0D, mask);
                 return;
             }
 
             if (random.nextInt(4) != 0) {
-                if (!this.func_222702_a(centerX, centerZ, chunkX, chunkZ, j, maxSize, radius)) {
+                if (!this.func_222702_a(centerX, centerZ, x, z, j, maxSize, radius)) {
                     return;
                 }
 
-                this.carveRegion(chunkIn, biomePos, seed, seaLevel, centerX, centerZ, chunkX, chunkY, chunkZ, d0 * 4, d1 * 2, mask);
+                this.carveRegion(chunkIn, biomePos, seed, seaLevel, centerX, centerZ, x, y, z, d0 * 4, d1 * 2, mask);
             }
         }
     }
 
     @Override
-    protected boolean carveAtPoint(IChunk chunkIn, Function<BlockPos, Biome> biomePos, BitSet carvingMask, Random rand, BlockPos.Mutable mutablePos, BlockPos.Mutable mutablePosAbove, BlockPos.Mutable mutablePosBelow, int p_225556_8_, int p_225556_9_, int p_225556_10_, int posX, int posY, int posZ, int p_222703_12_, int p_222703_14_, AtomicBoolean flag) {
-        int i = posZ | p_222703_14_ << 4 | p_222703_12_ << 8;
+    protected boolean carveAtPoint(IChunk chunkIn, Function<BlockPos, Biome> biomePos, BitSet carvingMask, Random rand, BlockPos.Mutable mutablePos, BlockPos.Mutable mutablePosAbove, BlockPos.Mutable mutablePosBelow, int seaLevel, int chunkX, int chunkZ, int posX, int posZ, int xVal, int yVal, int zVal, AtomicBoolean flag) {
+        int i = xVal | zVal << 4 | yVal << 8;
         if (carvingMask.get(i)) {
             return false;
         } else {
             carvingMask.set(i);
-            mutablePos.setPos(posX, posY, posZ);
+            mutablePos.setPos(posX, yVal, posZ);
             BlockState blockstate = chunkIn.getBlockState(mutablePos);
             BlockState blockstate1 = chunkIn.getBlockState(mutablePosAbove.setPos(mutablePos).move(Direction.UP));
             if (blockstate.getBlock() instanceof AbstractGaiaGrassBlock) {
@@ -140,7 +140,7 @@ public class ChasmsWorldCarver extends WorldCarver<ProbabilityConfig> {
             if (!this.canCarveBlock(blockstate, blockstate1)) {
                 return false;
             } else {
-                if (posY < 11) {
+                if (yVal < 11) {
                     chunkIn.setBlockState(mutablePos, ModBlocks.superhot_magma.get().getDefaultState(), false);
                 } else {
                     chunkIn.setBlockState(mutablePos, CAVE_AIR, false);
@@ -158,11 +158,7 @@ public class ChasmsWorldCarver extends WorldCarver<ProbabilityConfig> {
     }
 
     @Override
-    protected boolean func_222706_a(BlockState state) {
-        return this.carvableBlocks.contains(state.getBlock());
-    }
-
-    protected boolean func_222708_a(double p_222708_1_, double p_222708_3_, double p_222708_5_, int p_222708_7_) {
-        return p_222708_3_ <= -0.7D || p_222708_1_ * p_222708_1_ + p_222708_3_ * p_222708_3_ + p_222708_5_ * p_222708_5_ >= 1.0D;
+    protected boolean func_222708_a(double xPos, double yPos, double zPos, int yVal) {
+        return yPos <= -0.7D || xPos * xPos + yPos * yPos + zPos * zPos >= 1.0D;
     }
 }
