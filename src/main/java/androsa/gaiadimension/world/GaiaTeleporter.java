@@ -5,52 +5,21 @@ import androsa.gaiadimension.registry.ModBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
-import net.minecraft.block.pattern.BlockPattern;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.*;
-import net.minecraft.village.PointOfInterest;
-import net.minecraft.village.PointOfInterestManager;
-import net.minecraft.village.PointOfInterestType;
 import net.minecraft.world.Teleporter;
 import net.minecraft.world.server.ServerWorld;
-import net.minecraft.world.server.TicketType;
 
-import javax.annotation.Nullable;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
+import java.util.function.Function;
 
 public class GaiaTeleporter extends Teleporter {
 
     private static final Block BLOCK_GAIA_PORTAL = ModBlocks.gaia_portal.get();
     private static final Block BLOCK_KEYSTONE = ModBlocks.keystone_block.get();
-    //protected final Map<ColumnPos, PortalPosition> destinationCoordinateCache = Maps.newHashMapWithExpectedSize(4096);
-    //private final Object2LongMap<ColumnPos> columnMap = new Object2LongOpenHashMap<>();
 
     public GaiaTeleporter(ServerWorld serverWorld) {
         super(serverWorld);
-    }
-
-    @Override
-    public boolean placeInPortal(Entity entity, float yaw) {
-        return super.placeInPortal(entity, yaw);
-    }
-
-    @Nullable
-    @Override
-    public BlockPattern.PortalInfo placeInExistingPortal(BlockPos pos, Vec3d motion, Direction direction, double x, double y, boolean isPlayer) {
-        PointOfInterestManager pointofinterestmanager = this.world.getPointOfInterestManager();
-        pointofinterestmanager.func_226347_a_(this.world, pos, 128);
-        List<PointOfInterest> list = pointofinterestmanager.func_226353_b_((poiType) -> poiType == PointOfInterestType.field_226358_u_, pos, 128, PointOfInterestManager.Status.ANY).collect(Collectors.toList());
-        Optional<PointOfInterest> optional = list.stream().min(Comparator.<PointOfInterest>comparingDouble((poi) -> poi.getPos().distanceSq(pos)).thenComparingInt((poi) -> poi.getPos().getY()));
-        return optional.map((poi) -> {
-            BlockPos blockpos = poi.getPos();
-            this.world.getChunkProvider().registerTicket(TicketType.PORTAL, new ChunkPos(blockpos), 3, blockpos);
-            BlockPattern.PatternHelper blockpattern$patternhelper = GaiaPortalBlock.createPatternHelper(this.world, blockpos);
-            return blockpattern$patternhelper.getPortalInfo(direction, blockpos, y, motion, x);
-        }).orElse(null);
     }
 
     //    @Override
@@ -273,13 +242,11 @@ public class GaiaTeleporter extends Teleporter {
         return true;
     }
 
-//    static class PortalPosition {
-//        public final BlockPos pos;
-//        public long lastUpdateTime;
-//
-//        public PortalPosition(BlockPos pos, long time) {
-//            this.pos = pos;
-//            this.lastUpdateTime = time;
-//        }
-//    }
+    @Override
+    public Entity placeEntity(Entity entity, ServerWorld currentWorld, ServerWorld destWorld, float yaw, Function<Boolean, Entity> repositionEntity) {
+        Entity teleportEntity = repositionEntity.apply(false);
+        placeInPortal(teleportEntity, yaw);
+        makePortal(teleportEntity);
+        return teleportEntity;
+    }
 }
