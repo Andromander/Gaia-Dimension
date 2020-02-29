@@ -22,7 +22,7 @@ import java.util.Set;
 
 public class GaiaBiomeFeatures {
 
-    public static final Set<BlockState> cave_blacklist = ImmutableSet.of(ModBlocks.glitter_grass.get().getDefaultState(), ModBlocks.heavy_soil.get().getDefaultState(), ModBlocks.corrupt_grass.get().getDefaultState(), ModBlocks.corrupt_soil.get().getDefaultState(), ModBlocks.murky_grass.get().getDefaultState(), ModBlocks.boggy_soil.get().getDefaultState(), ModBlocks.soft_grass.get().getDefaultState(), ModBlocks.light_soil.get().getDefaultState());
+    public static final Set<BlockState> cave_blacklist = ImmutableSet.of(ModBlocks.glitter_grass.get().getDefaultState(), ModBlocks.heavy_soil.get().getDefaultState(), ModBlocks.corrupt_grass.get().getDefaultState(), ModBlocks.corrupt_soil.get().getDefaultState(), ModBlocks.murky_grass.get().getDefaultState(), ModBlocks.boggy_soil.get().getDefaultState(), ModBlocks.soft_grass.get().getDefaultState(), ModBlocks.light_soil.get().getDefaultState(), ModBlocks.salt.get().getDefaultState());
 
     public static final OreFeatureConfig.FillerBlockType GAIA_STONE = OreFeatureConfig.FillerBlockType.create("GAIA_STONE", "gaia_stone", new BlockMatcher(ModBlocks.gaia_stone.get()));
     public static final OreFeatureConfig.FillerBlockType STATIC = OreFeatureConfig.FillerBlockType.create("STATIC", "wasteland", (stone) -> {
@@ -79,7 +79,7 @@ public class GaiaBiomeFeatures {
     public static final BlockClusterFeatureConfig CUPSIR = (new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(ModBlocks.stickly_cupsir.get().getDefaultState()), new SimpleBlockPlacer())).tries(16).build();
     public static final BlockClusterFeatureConfig MURGNI = (new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(ModBlocks.mystical_murgni.get().getDefaultState()), new SimpleBlockPlacer())).tries(16).build();
     public static final BlockClusterFeatureConfig CORRUPT_EYE = (new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(ModBlocks.corrupted_gaia_eye.get().getDefaultState()), new SimpleBlockPlacer())).tries(16).build();
-    public static final BlockClusterFeatureConfig CAVE_FUNGI = (new BlockClusterFeatureConfig.Builder(new WeightedBlockStateProvider().addState(ModBlocks.elder_imklia.get().getDefaultState(), 2).addState(ModBlocks.gold_orb_tucher.get().getDefaultState(), 2), new SimpleBlockPlacer())).tries(32).blacklist(cave_blacklist).build();
+    public static final BlockClusterFeatureConfig CAVE_FUNGI = (new BlockClusterFeatureConfig.Builder(new WeightedBlockStateProvider().addState(ModBlocks.elder_imklia.get().getDefaultState(), 2).addState(ModBlocks.gold_orb_tucher.get().getDefaultState(), 2), new SimpleBlockPlacer())).tries(64).blacklist(cave_blacklist).cannotProject().build();
 
     public static void addCarver(Biome biomeIn) {
         biomeIn.addCarver(GenerationStage.Carving.AIR, Biome.createCarver(ModWorldgen.CRYSTAL_CAVES.get(), new ProbabilityConfig(0.15F)));
