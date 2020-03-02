@@ -224,12 +224,12 @@ public class BismuthUletrusModel<T extends BismuthUletrusEntity> extends Segment
 //            this.upperLegL.offsetY = 0.4F;
 //            this.upperLegR.offsetY = 0.4F;
 //            this.tail1.offsetY = 0.4F;
-            this.body.setRotationPoint(0.0F, -2.4F, -13.0F);
-            this.upperArmL.setRotationPoint(8.0F, 2.6F, -10.0F);
-            this.upperArmR.setRotationPoint(-8.0F, 2.6F, -10.0F);
-            this.upperLegL.setRotationPoint(8.0F, 1.1F, 15.0F);
-            this.upperLegR.setRotationPoint(-8.0F, 1.1F, 15.0F);
-            this.tail1.setRotationPoint(0.0F, -1.9F, 16.0F);
+            this.body.setRotationPoint(0.0F, 4.5F, -13.0F);
+            this.upperArmL.setRotationPoint(8.0F, 9.5F, -10.0F);
+            this.upperArmR.setRotationPoint(-8.0F, 9.5F, -10.0F);
+            this.upperLegL.setRotationPoint(8.0F, 8.0F, 15.0F);
+            this.upperLegR.setRotationPoint(-8.0F, 8.0F, 15.0F);
+            this.tail1.setRotationPoint(0.0F, 6.0F, 16.0F);
         } else {
             this.setRotateAngle(upperArmL, 0.33161255787892263F, 0.0F, 0.0F);
             this.setRotateAngle(upperArmR, 0.33161255787892263F, 0.0F, 0.0F);
