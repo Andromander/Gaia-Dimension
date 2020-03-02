@@ -230,7 +230,7 @@ public class GaiaBiomeFeatures {
                 ModWorldgen.BLUE_AGATE_TREE.get().configure(BLUE_AGATE_TREE_CONFIG).withChance(0.1F),
                 ModWorldgen.GREEN_AGATE_TREE.get().configure(GREEN_AGATE_TREE_CONFIG).withChance(0.1F),
                 ModWorldgen.PURPLE_AGATE_TREE.get().configure(PURPLE_AGATE_TREE_CONFIG).withChance(0.1F)
-        ), Feature.field_227248_z_.configure(MUTANT_GROWTH).createDecoratedFeature(Placement.COUNT_EXTRA_HEIGHTMAP.configure(new AtSurfaceWithExtraConfig(2, 0.1F, 1))))));
+        ), Feature.field_227248_z_.configure(MUTANT_GROWTH))).createDecoratedFeature(Placement.COUNT_EXTRA_HEIGHTMAP.configure(new AtSurfaceWithExtraConfig(2, 0.1F, 1))));
     }
 
     public static void addCrystalGrowthNormal(Biome biomeIn, int frequency) {
