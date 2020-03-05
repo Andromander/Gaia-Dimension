@@ -46,7 +46,6 @@ public class GaiaDimensionMod {
     public static ModGaiaConfig.ClientConfig clientConfig;
     public static ModGaiaConfig.ServerConfig serverConfig;
     public static DimensionType gaia_dimension;
-    public static GaiaTeleporter gaiaTeleporter;
 
     public static final CreatureAttribute GAIAN = new CreatureAttribute();
     public static final CreatureAttribute CORRUPT = new CreatureAttribute();
@@ -75,6 +74,7 @@ public class GaiaDimensionMod {
         ModRecipes.RECIPE_SERIALIZERS.register(modEventBus);
         ModTileEntities.TILE_ENTITIES.register(modEventBus);
         ModWorldgen.FEATURES.register(modEventBus);
+        ModWorldgen.POI_TYPES.register(modEventBus);
         ModWorldgen.SURFACE_BUILDERS.register(modEventBus);
         ModWorldgen.WORLD_CARVERS.register(modEventBus);
 
@@ -129,15 +129,5 @@ public class GaiaDimensionMod {
 
             GaiaDimensionMod.LOGGER.info("We are set for the world of Gaia.");
         }
-
-//        @SubscribeEvent
-//        public static void onWorldLoad(WorldEvent.Load e) {
-//            if (!(e.getWorld() instanceof ServerWorld)) return;
-//
-//            ServerWorld world = (ServerWorld)e.getWorld();
-//            if (world.dimension.getType() == DimensionType.OVERWORLD || world.dimension.getType() == GaiaDimensionMod.gaia_dimension) {
-//                world.customTeleporters.add(gaiaTeleporter = new GaiaTeleporter(world));
-//            }
-//        }
     }
 }

@@ -13,24 +13,35 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
 import net.minecraft.block.pattern.BlockPattern;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.network.play.server.*;
+import net.minecraft.potion.EffectInstance;
 import net.minecraft.server.MinecraftServer;
+import net.minecraft.server.management.PlayerList;
 import net.minecraft.state.EnumProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
+import net.minecraft.world.Teleporter;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.dimension.DimensionType;
 import net.minecraft.world.server.ServerWorld;
+import net.minecraft.world.storage.WorldInfo;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.BiomeDictionary.Type;
+import net.minecraftforge.common.util.Constants;
+import net.minecraftforge.fml.hooks.BasicEventHooks;
+import net.minecraftforge.fml.network.NetworkHooks;
 
 import javax.annotation.Nullable;
 import java.util.Random;
@@ -48,7 +59,7 @@ public class GaiaPortalBlock extends Block {
     @Override
     @Deprecated
     public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
-        switch(state.get(AXIS)) {
+        switch (state.get(AXIS)) {
             case Z:
                 return Z_AABB;
             case X:
@@ -101,60 +112,133 @@ public class GaiaPortalBlock extends Block {
     @Override
     @Deprecated
     public void onEntityCollision(BlockState state, World worldIn, BlockPos pos, Entity entityIn) {
-        if (!worldIn.isRemote && !entityIn.isPassenger() && !entityIn.isBeingRidden() && entityIn.isNonBoss() && entityIn.timeUntilPortal <= 0) {
-            MinecraftServer server = worldIn.getServer();
+        if (!worldIn.isRemote && !entityIn.isPassenger() && !entityIn.isBeingRidden() && entityIn.isNonBoss()) {
             DimensionType dimType = worldIn.dimension.getType() == GaiaDimensionMod.gaia_dimension ? DimensionType.OVERWORLD : GaiaDimensionMod.gaia_dimension;
 
-            if (server != null && entityIn.timeUntilPortal <= 0) {
-                entityIn.timeUntilPortal = entityIn.getPortalCooldown() + 200;
-
-                if (entityIn.timeUntilPortal > 0) {
-                    entityIn.timeUntilPortal = entityIn.getPortalCooldown() + 200;
+            if (entityIn.timeUntilPortal > 0) {
+                entityIn.timeUntilPortal = entityIn.getPortalCooldown();
+            } else {
+                if (!pos.equals(entityIn.lastPortalPos)) {
+                    entityIn.lastPortalPos = new BlockPos(pos);
+                    BlockPattern.PatternHelper helper = createPatternHelper(entityIn.world, entityIn.lastPortalPos);
+                    double axis = helper.getForwards().getAxis() == Direction.Axis.X ? (double) helper.getFrontTopLeft().getZ() : (double) helper.getFrontTopLeft().getX();
+                    double xz = Math.abs(MathHelper.pct((helper.getForwards().getAxis() == Direction.Axis.X ? entityIn.getZ() : entityIn.getX()) - (double) (helper.getForwards().rotateY().getAxisDirection() == Direction.AxisDirection.NEGATIVE ? 1 : 0), axis, axis - (double) helper.getWidth()));
+                    double y = MathHelper.pct(entityIn.getY() - 1.0D, (double) helper.getFrontTopLeft().getY(), (double) (helper.getFrontTopLeft().getY() - helper.getHeight()));
+                    entityIn.lastPortalVec = new Vec3d(xz, y, 0.0D);
+                    entityIn.teleportDirection = helper.getForwards();
                 }
-
                 entityIn.changeDimension(dimType, new GaiaTeleporter((ServerWorld) worldIn));
-                entityIn.timeUntilPortal = entityIn.getPortalCooldown() + 200;
             }
+            entityIn.timeUntilPortal = entityIn.getPortalCooldown();
         } else {
             entityIn.timeUntilPortal = Math.max(entityIn.getPortalCooldown(), 200);
         }
     }
 
+//    public void changeDimension(ServerPlayerEntity entity, DimensionType destination, Teleporter teleporter) {
+//        if (!net.minecraftforge.common.ForgeHooks.onTravelToDimension(entity, destination)) return;
+//        entity.invulnerableDimensionChange = true;
+//        DimensionType dimensiontype = entity.dimension;
+//        ServerWorld serverworld = entity.server.getWorld(dimensiontype);
+//        entity.dimension = destination;
+//        ServerWorld serverworld1 = entity.server.getWorld(destination);
+//        WorldInfo worldinfo = serverworld1.getWorldInfo();
+//
+//        NetworkHooks.sendDimensionDataPacket(entity.connection.netManager, entity);
+//        entity.connection.sendPacket(new SRespawnPacket(destination, WorldInfo.sha256Hash(worldinfo.getSeed()), worldinfo.getGenerator(), entity.interactionManager.getGameType()));
+//        entity.connection.sendPacket(new SServerDifficultyPacket(worldinfo.getDifficulty(), worldinfo.isDifficultyLocked()));
+//
+//        PlayerList playerlist = entity.server.getPlayerList();
+//
+//        playerlist.updatePermissionLevel(entity);
+//        serverworld.removeEntity(entity, true);
+//        entity.revive();
+//
+//        double xPos = entity.getX();
+//        double yPos = entity.getY();
+//        double zPos = entity.getZ();
+//        float pitch = entity.rotationPitch;
+//        float yaw = entity.rotationYaw;
+//
+//        serverworld.getProfiler().startSection("moving");
+//
+//        double moveFactor = serverworld.getDimension().getMovementFactor() / serverworld1.getDimension().getMovementFactor();
+//        xPos *= moveFactor;
+//        zPos *= moveFactor;
+//
+//        entity.setLocationAndAngles(xPos, yPos, zPos, yaw, pitch);
+//        serverworld.getProfiler().endSection();
+//        serverworld.getProfiler().startSection("placing");
+//
+//        double minX = Math.min(-2.9999872E7D, serverworld1.getWorldBorder().minX() + 16.0D);
+//        double minZ = Math.min(-2.9999872E7D, serverworld1.getWorldBorder().minZ() + 16.0D);
+//        double maxX = Math.min(2.9999872E7D, serverworld1.getWorldBorder().maxX() - 16.0D);
+//        double maxZ = Math.min(2.9999872E7D, serverworld1.getWorldBorder().maxZ() - 16.0D);
+//        xPos = MathHelper.clamp(xPos, minX, maxX);
+//        zPos = MathHelper.clamp(zPos, minZ, maxZ);
+//
+//        entity.setLocationAndAngles(xPos, yPos, zPos, yaw, pitch);
+//
+//        if (!teleporter.placeInPortal(entity, yaw)) {
+//            teleporter.makePortal(entity);
+//            teleporter.placeInPortal(entity, yaw);
+//        }
+//
+//        serverworld.getProfiler().endSection();
+//        entity.setWorld(serverworld1);
+//        serverworld1.func_217447_b(entity);
+//        entity.connection.setPlayerLocation(entity.getX(), entity.getY(), entity.getZ(), yaw, pitch);
+//        entity.interactionManager.setWorld(serverworld1);
+//        entity.connection.sendPacket(new SPlayerAbilitiesPacket(entity.abilities));
+//        playerlist.sendWorldInfo(entity, serverworld1);
+//        playerlist.sendInventory(entity);
+//
+//        for(EffectInstance effectinstance : entity.getActivePotionEffects()) {
+//            entity.connection.sendPacket(new SPlayEntityEffectPacket(entity.getEntityId(), effectinstance));
+//        }
+//
+//        entity.connection.sendPacket(new SPlaySoundEventPacket(Constants.WorldEvents.PORTAL_TRAVEL_SOUND, BlockPos.ZERO, 0, false));
+////        entity.lastExperience = -1;
+////        entity.lastHealth = -1.0F;
+////        entity.lastFoodLevel = -1;
+//        BasicEventHooks.firePlayerChangedDimensionEvent(entity, dimensiontype, destination);
+//    }
+
     @Override
     @OnlyIn(Dist.CLIENT)
     public void animateTick(BlockState stateIn, World worldIn, BlockPos pos, Random rand) {
         if (rand.nextInt(100) == 0) {
-            worldIn.playSound((double)pos.getX() + 0.5D, (double)pos.getY() + 0.5D, (double)pos.getZ() + 0.5D, SoundEvents.BLOCK_PORTAL_AMBIENT, SoundCategory.BLOCKS, 0.5F, rand.nextFloat() * 0.4F + 0.8F, false);
+            worldIn.playSound((double) pos.getX() + 0.5D, (double) pos.getY() + 0.5D, (double) pos.getZ() + 0.5D, SoundEvents.BLOCK_PORTAL_AMBIENT, SoundCategory.BLOCKS, 0.5F, rand.nextFloat() * 0.4F + 0.8F, false);
         }
 
         for (int i = 0; i < 4; ++i) {
-            double d0 = (double)((float)pos.getX() + rand.nextFloat());
-            double d1 = (double)((float)pos.getY() + rand.nextFloat());
-            double d2 = (double)((float)pos.getZ() + rand.nextFloat());
-            double d3 = ((double)rand.nextFloat() - 0.5D) * 0.5D;
-            double d4 = ((double)rand.nextFloat() - 0.5D) * 0.5D;
-            double d5 = ((double)rand.nextFloat() - 0.5D) * 0.5D;
-            int j = rand.nextInt(2) * 2 - 1;
+            double x = (double) ((float) pos.getX() + rand.nextFloat());
+            double y = (double) ((float) pos.getY() + rand.nextFloat());
+            double z = (double) ((float) pos.getZ() + rand.nextFloat());
+            double sX = ((double) rand.nextFloat() - 0.5D) * 0.5D;
+            double sY = ((double) rand.nextFloat() - 0.5D) * 0.5D;
+            double sZ = ((double) rand.nextFloat() - 0.5D) * 0.5D;
+            int mul = rand.nextInt(2) * 2 - 1;
 
             if (worldIn.getBlockState(pos.west()).getBlock() != this && worldIn.getBlockState(pos.east()).getBlock() != this) {
-                d0 = (double)pos.getX() + 0.5D + 0.25D * (double)j;
-                d3 = (double)(rand.nextFloat() * 2.0F * (float)j);
+                x = (double) pos.getX() + 0.5D + 0.25D * (double) mul;
+                sX = (double) (rand.nextFloat() * 2.0F * (float) mul);
             } else {
-                d2 = (double)pos.getZ() + 0.5D + 0.25D * (double)j;
-                d5 = (double)(rand.nextFloat() * 2.0F * (float)j);
+                z = (double) pos.getZ() + 0.5D + 0.25D * (double) mul;
+                sZ = (double) (rand.nextFloat() * 2.0F * (float) mul);
             }
 
-            worldIn.addParticle(ModParticles.PORTAL.get(), d0, d1, d2, d3, d4, d5);
+            worldIn.addParticle(ModParticles.PORTAL.get(), x, y, z, sX, sY, sZ);
         }
     }
 
     @Override
     @Deprecated
     public BlockState rotate(BlockState state, Rotation rot) {
-        switch(rot) {
+        switch (rot) {
             case COUNTERCLOCKWISE_90:
             case CLOCKWISE_90:
-                switch(state.get(AXIS)) {
+                switch (state.get(AXIS)) {
                     case Z:
                         return state.with(AXIS, Direction.Axis.X);
                     case X:
@@ -173,43 +257,43 @@ public class GaiaPortalBlock extends Block {
     }
 
     public static BlockPattern.PatternHelper createPatternHelper(IWorld worldIn, BlockPos pos) {
-        Direction.Axis direction$axis = Direction.Axis.Z;
-        GaiaPortalBlock.Size gaiaportalblock$size = new GaiaPortalBlock.Size(worldIn, pos, Direction.Axis.X);
-        LoadingCache<BlockPos, CachedBlockInfo> loadingcache = BlockPattern.createLoadingCache(worldIn, true);
-        if (!gaiaportalblock$size.isValid()) {
-            direction$axis = Direction.Axis.X;
-            gaiaportalblock$size = new GaiaPortalBlock.Size(worldIn, pos, Direction.Axis.Z);
+        Direction.Axis axis = Direction.Axis.Z;
+        GaiaPortalBlock.Size size = new GaiaPortalBlock.Size(worldIn, pos, Direction.Axis.X);
+        LoadingCache<BlockPos, CachedBlockInfo> cache = BlockPattern.createLoadingCache(worldIn, true);
+        if (!size.isValid()) {
+            axis = Direction.Axis.X;
+            size = new GaiaPortalBlock.Size(worldIn, pos, Direction.Axis.Z);
         }
 
-        if (!gaiaportalblock$size.isValid()) {
-            return new BlockPattern.PatternHelper(pos, Direction.NORTH, Direction.UP, loadingcache, 1, 1, 1);
+        if (!size.isValid()) {
+            return new BlockPattern.PatternHelper(pos, Direction.NORTH, Direction.UP, cache, 1, 1, 1);
         } else {
-            int[] aint = new int[Direction.AxisDirection.values().length];
-            Direction direction = gaiaportalblock$size.rightDir.rotateYCCW();
-            BlockPos blockpos = gaiaportalblock$size.bottomLeft.up(gaiaportalblock$size.getHeight() - 1);
+            int[] axes = new int[Direction.AxisDirection.values().length];
+            Direction direction = size.rightDir.rotateYCCW();
+            BlockPos blockpos = size.bottomLeft.up(size.getHeight() - 1);
 
-            for(Direction.AxisDirection direction$axisdirection : Direction.AxisDirection.values()) {
-                BlockPattern.PatternHelper blockpattern$patternhelper = new BlockPattern.PatternHelper(direction.getAxisDirection() == direction$axisdirection ? blockpos : blockpos.offset(gaiaportalblock$size.rightDir, gaiaportalblock$size.getWidth() - 1), Direction.getFacingFromAxis(direction$axisdirection, direction$axis), Direction.UP, loadingcache, gaiaportalblock$size.getWidth(), gaiaportalblock$size.getHeight(), 1);
+            for (Direction.AxisDirection axisDir : Direction.AxisDirection.values()) {
+                BlockPattern.PatternHelper helper = new BlockPattern.PatternHelper(direction.getAxisDirection() == axisDir ? blockpos : blockpos.offset(size.rightDir, size.getWidth() - 1), Direction.getFacingFromAxis(axisDir, axis), Direction.UP, cache, size.getWidth(), size.getHeight(), 1);
 
-                for(int i = 0; i < gaiaportalblock$size.getWidth(); ++i) {
-                    for(int j = 0; j < gaiaportalblock$size.getHeight(); ++j) {
-                        CachedBlockInfo cachedblockinfo = blockpattern$patternhelper.translateOffset(i, j, 1);
-                        if (!cachedblockinfo.getBlockState().isAir()) {
-                            ++aint[direction$axisdirection.ordinal()];
+                for (int i = 0; i < size.getWidth(); ++i) {
+                    for (int j = 0; j < size.getHeight(); ++j) {
+                        CachedBlockInfo cacheInfo = helper.translateOffset(i, j, 1);
+                        if (!cacheInfo.getBlockState().isAir()) {
+                            ++axes[axisDir.ordinal()];
                         }
                     }
                 }
             }
 
-            Direction.AxisDirection direction$axisdirection1 = Direction.AxisDirection.POSITIVE;
+            Direction.AxisDirection axisDirPos = Direction.AxisDirection.POSITIVE;
 
-            for(Direction.AxisDirection direction$axisdirection2 : Direction.AxisDirection.values()) {
-                if (aint[direction$axisdirection2.ordinal()] < aint[direction$axisdirection1.ordinal()]) {
-                    direction$axisdirection1 = direction$axisdirection2;
+            for (Direction.AxisDirection axisDir : Direction.AxisDirection.values()) {
+                if (axes[axisDir.ordinal()] < axes[axisDirPos.ordinal()]) {
+                    axisDirPos = axisDir;
                 }
             }
 
-            return new BlockPattern.PatternHelper(direction.getAxisDirection() == direction$axisdirection1 ? blockpos : blockpos.offset(gaiaportalblock$size.rightDir, gaiaportalblock$size.getWidth() - 1), Direction.getFacingFromAxis(direction$axisdirection1, direction$axis), Direction.UP, loadingcache, gaiaportalblock$size.getWidth(), gaiaportalblock$size.getHeight(), 1);
+            return new BlockPattern.PatternHelper(direction.getAxisDirection() == axisDirPos ? blockpos : blockpos.offset(size.rightDir, size.getWidth() - 1), Direction.getFacingFromAxis(axisDirPos, axis), Direction.UP, cache, size.getWidth(), size.getHeight(), 1);
         }
     }
 
