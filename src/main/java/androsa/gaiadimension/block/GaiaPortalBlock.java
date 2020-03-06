@@ -2,6 +2,7 @@ package androsa.gaiadimension.block;
 
 import androsa.gaiadimension.GaiaDimensionMod;
 import androsa.gaiadimension.registry.ModBlocks;
+import androsa.gaiadimension.registry.ModDimensions;
 import androsa.gaiadimension.registry.ModGaiaConfig;
 import androsa.gaiadimension.registry.ModParticles;
 import androsa.gaiadimension.world.GaiaTeleporter;
@@ -129,8 +130,8 @@ public class GaiaPortalBlock extends Block {
                 if (entity.world instanceof ServerWorld) {
                     if (entity.world.getServer().getAllowNether() && !entity.isPassenger()) {
                         entity.timeUntilPortal = entity.getPortalCooldown();
-                        entity.changeDimension(worldIn.dimension.getType() == GaiaDimensionMod.gaia_dimension ? DimensionType.OVERWORLD : GaiaDimensionMod.gaia_dimension, new GaiaTeleporter((ServerWorld)entity.world));
-                        entity.world.getProfiler().endSection();
+                        DimensionType type = worldIn.dimension.getType() == GaiaDimensionMod.gaia_dimension ? DimensionType.OVERWORLD : GaiaDimensionMod.gaia_dimension;
+                        entity.changeDimension(type, new GaiaTeleporter());
                     }
                 }
             }
