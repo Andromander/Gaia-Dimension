@@ -59,7 +59,7 @@ public class GaiaPortalBlock extends Block {
     @Override
     @Deprecated
     public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
-        switch (state.get(AXIS)) {
+        switch(state.get(AXIS)) {
             case Z:
                 return Z_AABB;
             case X:
@@ -111,27 +111,29 @@ public class GaiaPortalBlock extends Block {
 
     @Override
     @Deprecated
-    public void onEntityCollision(BlockState state, World worldIn, BlockPos pos, Entity entityIn) {
-        if (!worldIn.isRemote && !entityIn.isPassenger() && !entityIn.isBeingRidden() && entityIn.isNonBoss()) {
-            DimensionType dimType = worldIn.dimension.getType() == GaiaDimensionMod.gaia_dimension ? DimensionType.OVERWORLD : GaiaDimensionMod.gaia_dimension;
-
-            if (entityIn.timeUntilPortal > 0) {
-                entityIn.timeUntilPortal = entityIn.getPortalCooldown();
+    public void onEntityCollision(BlockState state, World worldIn, BlockPos pos, Entity entity) {
+        if (!entity.isPassenger() && !entity.isBeingRidden() && entity.isNonBoss()) {
+            if (entity.timeUntilPortal > 0) {
+                entity.timeUntilPortal = entity.getPortalCooldown();
             } else {
-                if (!pos.equals(entityIn.lastPortalPos)) {
-                    entityIn.lastPortalPos = new BlockPos(pos);
-                    BlockPattern.PatternHelper helper = createPatternHelper(entityIn.world, entityIn.lastPortalPos);
-                    double axis = helper.getForwards().getAxis() == Direction.Axis.X ? (double) helper.getFrontTopLeft().getZ() : (double) helper.getFrontTopLeft().getX();
-                    double xz = Math.abs(MathHelper.pct((helper.getForwards().getAxis() == Direction.Axis.X ? entityIn.getZ() : entityIn.getX()) - (double) (helper.getForwards().rotateY().getAxisDirection() == Direction.AxisDirection.NEGATIVE ? 1 : 0), axis, axis - (double) helper.getWidth()));
-                    double y = MathHelper.pct(entityIn.getY() - 1.0D, (double) helper.getFrontTopLeft().getY(), (double) (helper.getFrontTopLeft().getY() - helper.getHeight()));
-                    entityIn.lastPortalVec = new Vec3d(xz, y, 0.0D);
-                    entityIn.teleportDirection = helper.getForwards();
+                if (!entity.world.isRemote && !pos.equals(entity.lastPortalPos)) {
+                    entity.lastPortalPos = new BlockPos(pos);
+                    BlockPattern.PatternHelper helper = createPatternHelper(entity.world, entity.lastPortalPos);
+                    double axis = helper.getForwards().getAxis() == Direction.Axis.X ? (double)helper.getFrontTopLeft().getZ() : (double)helper.getFrontTopLeft().getX();
+                    double x = Math.abs(MathHelper.pct((helper.getForwards().getAxis() == Direction.Axis.X ? entity.getZ() : entity.getX()) - (double)(helper.getForwards().rotateY().getAxisDirection() == Direction.AxisDirection.NEGATIVE ? 1 : 0), axis, axis - (double)helper.getWidth()));
+                    double y = MathHelper.pct(entity.getY() - 1.0D, (double)helper.getFrontTopLeft().getY(), (double)(helper.getFrontTopLeft().getY() - helper.getHeight()));
+                    entity.lastPortalVec = new Vec3d(x, y, 0.0D);
+                    entity.teleportDirection = helper.getForwards();
                 }
-                entityIn.changeDimension(dimType, new GaiaTeleporter((ServerWorld) worldIn));
+
+                if (entity.world instanceof ServerWorld) {
+                    if (entity.world.getServer().getAllowNether() && !entity.isPassenger()) {
+                        entity.timeUntilPortal = entity.getPortalCooldown();
+                        entity.changeDimension(worldIn.dimension.getType() == GaiaDimensionMod.gaia_dimension ? DimensionType.OVERWORLD : GaiaDimensionMod.gaia_dimension, new GaiaTeleporter((ServerWorld)entity.world));
+                        entity.world.getProfiler().endSection();
+                    }
+                }
             }
-            entityIn.timeUntilPortal = entityIn.getPortalCooldown();
-        } else {
-            entityIn.timeUntilPortal = Math.max(entityIn.getPortalCooldown(), 200);
         }
     }
 
@@ -208,24 +210,24 @@ public class GaiaPortalBlock extends Block {
     @OnlyIn(Dist.CLIENT)
     public void animateTick(BlockState stateIn, World worldIn, BlockPos pos, Random rand) {
         if (rand.nextInt(100) == 0) {
-            worldIn.playSound((double) pos.getX() + 0.5D, (double) pos.getY() + 0.5D, (double) pos.getZ() + 0.5D, SoundEvents.BLOCK_PORTAL_AMBIENT, SoundCategory.BLOCKS, 0.5F, rand.nextFloat() * 0.4F + 0.8F, false);
+            worldIn.playSound((double)pos.getX() + 0.5D, (double)pos.getY() + 0.5D, (double)pos.getZ() + 0.5D, SoundEvents.BLOCK_PORTAL_AMBIENT, SoundCategory.BLOCKS, 0.5F, rand.nextFloat() * 0.4F + 0.8F, false);
         }
 
         for (int i = 0; i < 4; ++i) {
-            double x = (double) ((float) pos.getX() + rand.nextFloat());
-            double y = (double) ((float) pos.getY() + rand.nextFloat());
-            double z = (double) ((float) pos.getZ() + rand.nextFloat());
-            double sX = ((double) rand.nextFloat() - 0.5D) * 0.5D;
-            double sY = ((double) rand.nextFloat() - 0.5D) * 0.5D;
-            double sZ = ((double) rand.nextFloat() - 0.5D) * 0.5D;
+            double x = (double)((float)pos.getX() + rand.nextFloat());
+            double y = (double)((float)pos.getY() + rand.nextFloat());
+            double z = (double)((float)pos.getZ() + rand.nextFloat());
+            double sX = ((double)rand.nextFloat() - 0.5D) * 0.5D;
+            double sY = ((double)rand.nextFloat() - 0.5D) * 0.5D;
+            double sZ = ((double)rand.nextFloat() - 0.5D) * 0.5D;
             int mul = rand.nextInt(2) * 2 - 1;
 
             if (worldIn.getBlockState(pos.west()).getBlock() != this && worldIn.getBlockState(pos.east()).getBlock() != this) {
-                x = (double) pos.getX() + 0.5D + 0.25D * (double) mul;
-                sX = (double) (rand.nextFloat() * 2.0F * (float) mul);
+                x = (double)pos.getX() + 0.5D + 0.25D * (double)mul;
+                sX = (double)(rand.nextFloat() * 2.0F * (float)mul);
             } else {
-                z = (double) pos.getZ() + 0.5D + 0.25D * (double) mul;
-                sZ = (double) (rand.nextFloat() * 2.0F * (float) mul);
+                z = (double)pos.getZ() + 0.5D + 0.25D * (double)mul;
+                sZ = (double)(rand.nextFloat() * 2.0F * (float)mul);
             }
 
             worldIn.addParticle(ModParticles.PORTAL.get(), x, y, z, sX, sY, sZ);
@@ -235,10 +237,10 @@ public class GaiaPortalBlock extends Block {
     @Override
     @Deprecated
     public BlockState rotate(BlockState state, Rotation rot) {
-        switch (rot) {
+        switch(rot) {
             case COUNTERCLOCKWISE_90:
             case CLOCKWISE_90:
-                switch (state.get(AXIS)) {
+                switch(state.get(AXIS)) {
                     case Z:
                         return state.with(AXIS, Direction.Axis.X);
                     case X:
@@ -272,11 +274,11 @@ public class GaiaPortalBlock extends Block {
             Direction direction = size.rightDir.rotateYCCW();
             BlockPos blockpos = size.bottomLeft.up(size.getHeight() - 1);
 
-            for (Direction.AxisDirection axisDir : Direction.AxisDirection.values()) {
+            for(Direction.AxisDirection axisDir : Direction.AxisDirection.values()) {
                 BlockPattern.PatternHelper helper = new BlockPattern.PatternHelper(direction.getAxisDirection() == axisDir ? blockpos : blockpos.offset(size.rightDir, size.getWidth() - 1), Direction.getFacingFromAxis(axisDir, axis), Direction.UP, cache, size.getWidth(), size.getHeight(), 1);
 
-                for (int i = 0; i < size.getWidth(); ++i) {
-                    for (int j = 0; j < size.getHeight(); ++j) {
+                for(int i = 0; i < size.getWidth(); ++i) {
+                    for(int j = 0; j < size.getHeight(); ++j) {
                         CachedBlockInfo cacheInfo = helper.translateOffset(i, j, 1);
                         if (!cacheInfo.getBlockState().isAir()) {
                             ++axes[axisDir.ordinal()];
@@ -287,7 +289,7 @@ public class GaiaPortalBlock extends Block {
 
             Direction.AxisDirection axisDirPos = Direction.AxisDirection.POSITIVE;
 
-            for (Direction.AxisDirection axisDir : Direction.AxisDirection.values()) {
+            for(Direction.AxisDirection axisDir : Direction.AxisDirection.values()) {
                 if (axes[axisDir.ordinal()] < axes[axisDirPos.ordinal()]) {
                     axisDirPos = axisDir;
                 }
