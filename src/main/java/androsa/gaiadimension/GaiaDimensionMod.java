@@ -74,7 +74,6 @@ public class GaiaDimensionMod {
         ModRecipes.RECIPE_SERIALIZERS.register(modEventBus);
         ModTileEntities.TILE_ENTITIES.register(modEventBus);
         ModWorldgen.FEATURES.register(modEventBus);
-        ModWorldgen.POI_TYPES.register(modEventBus);
         ModWorldgen.SURFACE_BUILDERS.register(modEventBus);
         ModWorldgen.WORLD_CARVERS.register(modEventBus);
 

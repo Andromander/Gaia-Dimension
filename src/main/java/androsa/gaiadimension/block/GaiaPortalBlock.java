@@ -300,7 +300,7 @@ public class GaiaPortalBlock extends Block {
         }
     }
 
-    //TODO: Once porting is done, we're redoing this
+    //TODO: If ever the portal changes, update this. Hopefully even remove it
     public static class Size {
         private final IWorld world;
         private final Direction.Axis axis;

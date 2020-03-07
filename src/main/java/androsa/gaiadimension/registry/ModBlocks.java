@@ -24,7 +24,7 @@ public class ModBlocks {
     public static final DeferredRegister<Block> BLOCKS = new DeferredRegister<>(ForgeRegistries.BLOCKS, GaiaDimensionMod.MODID);
 
     //Utility Blocks
-    public static final RegistryObject<Block> gaia_portal = BLOCKS.register("gaia_portal", GaiaPortalBlock::new);
+    public static final RegistryObject<GaiaPortalBlock> gaia_portal = BLOCKS.register("gaia_portal", GaiaPortalBlock::new);
     public static final RegistryObject<Block> keystone_block = registerBlockGeneral("keystone_block", () -> new BasicGaiaBlock(Material.IRON, MaterialColor.GOLD, 5.0F, 10.0F,SoundType.METAL, PICKAXE, 2));
     public static final RegistryObject<Block> gold_fire = BLOCKS.register("gold_fire", GoldFireBlock::new);
     public static final RegistryObject<Block> pyrite_torch = BLOCKS.register("pyrite_torch", PyriteTorchBlock::new);

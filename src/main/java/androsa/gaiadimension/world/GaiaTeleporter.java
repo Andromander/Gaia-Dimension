@@ -2,61 +2,96 @@ package androsa.gaiadimension.world;
 
 import androsa.gaiadimension.block.GaiaPortalBlock;
 import androsa.gaiadimension.registry.ModBlocks;
-import androsa.gaiadimension.registry.ModWorldgen;
+import com.google.common.collect.Maps;
+import it.unimi.dsi.fastutil.objects.Object2LongMap;
+import it.unimi.dsi.fastutil.objects.Object2LongOpenHashMap;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.pattern.BlockPattern;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.*;
-import net.minecraft.village.PointOfInterest;
-import net.minecraft.village.PointOfInterestManager;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraft.world.server.TicketType;
 import net.minecraftforge.common.util.ITeleporter;
 
 import javax.annotation.Nullable;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Optional;
-import java.util.Random;
+import java.util.*;
 import java.util.function.Function;
-import java.util.stream.Collectors;
 
 public class GaiaTeleporter implements ITeleporter {
+
+    protected final Map<ColumnPos, PortalPosition> destinationCoordinateCache = Maps.newHashMapWithExpectedSize(4096);
+    private final Object2LongMap<ColumnPos> columnMap = new Object2LongOpenHashMap<>();
 
     public boolean placeInPortal(ServerWorld world, Entity entity, float yaw) {
         Vec3d vec3d = entity.getLastPortalVec();
         Direction direction = entity.getTeleportDirection();
-        BlockPattern.PortalInfo pattern = this.placeInExistingPortal(world, new BlockPos(entity.getX(), entity.getY(), entity.getZ()), entity.getMotion(), direction, vec3d.x, vec3d.y);
+        BlockPattern.PortalInfo pattern = this.placeInExistingPortal(world, new BlockPos(entity.getX(), entity.getY(), entity.getZ()), entity.getMotion(), direction, vec3d.x, vec3d.y, entity instanceof PlayerEntity);
         if (pattern == null) {
             return false;
         } else {
-            Vec3d vec3d1 = pattern.pos;
-            Vec3d vec3d2 = pattern.motion;
-            entity.setMotion(vec3d2);
+            Vec3d position = pattern.pos;
+            Vec3d motion = pattern.motion;
+            entity.setMotion(motion);
             entity.rotationYaw = yaw + (float) pattern.rotation;
-            entity.positAfterTeleport(vec3d1.x, vec3d1.y, vec3d1.z);
+            entity.positAfterTeleport(position.x, position.y, position.z);
             return true;
         }
     }
 
     @Nullable
-    public BlockPattern.PortalInfo placeInExistingPortal(ServerWorld world, BlockPos pos, Vec3d motion, Direction direction, double x, double y) {
-        PointOfInterestManager poiManager = world.getPointOfInterestManager();
-        poiManager.func_226347_a_(world, pos, 128);
-        List<PointOfInterest> points = poiManager.func_226353_b_((type) -> type == ModWorldgen.GAIA_PORTAL.get(),
-                pos, 128, PointOfInterestManager.Status.ANY).collect(Collectors.toList());
+    public BlockPattern.PortalInfo placeInExistingPortal(ServerWorld world, BlockPos pos, Vec3d motion, Direction direction, double x, double y, boolean isPlayer) {
+        boolean isFrame = true;
+        BlockPos blockpos = null;
+        ColumnPos columnpos = new ColumnPos(pos);
+        if (!isPlayer && this.columnMap.containsKey(columnpos)) {
+            return null;
+        } else {
+            GaiaTeleporter.PortalPosition position = this.destinationCoordinateCache.get(columnpos);
+            if (position != null) {
+                blockpos = position.pos;
+                position.lastUpdateTime = world.getGameTime();
+                isFrame = false;
+            } else {
+                double d0 = Double.MAX_VALUE;
 
-        Optional<PointOfInterest> optional = points.stream().min(Comparator.<PointOfInterest>comparingDouble((type) ->
-                type.getPos().distanceSq(pos)).thenComparingInt((type) -> type.getPos().getY()));
+                for(int eX = -128; eX <= 128; ++eX) {
+                    BlockPos blockpos2;
+                    for(int eZ = -128; eZ <= 128; ++eZ) {
+                        for(BlockPos blockpos1 = pos.add(eX, world.getActualHeight() - 1 - pos.getY(), eZ); blockpos1.getY() >= 0; blockpos1 = blockpos2) {
+                            blockpos2 = blockpos1.down();
+                            if (world.getBlockState(blockpos1).getBlock() == ModBlocks.gaia_portal.get()) {
+                                for(blockpos2 = blockpos1.down(); world.getBlockState(blockpos2).getBlock() == ModBlocks.gaia_portal.get(); blockpos2 = blockpos2.down()) {
+                                    blockpos1 = blockpos2;
+                                }
 
-        return optional.map((type) -> {
-            BlockPos blockpos = type.getPos();
-            world.getChunkProvider().registerTicket(TicketType.PORTAL, new ChunkPos(blockpos), 3, blockpos);
-            BlockPattern.PatternHelper pattern = GaiaPortalBlock.createPatternHelper(world, blockpos);
-            return pattern.getPortalInfo(direction, blockpos, y, motion, x);
-        }).orElse(null);
+                                double distance = blockpos1.distanceSq(pos);
+                                if (d0 < 0.0D || distance < d0) {
+                                    d0 = distance;
+                                    blockpos = blockpos1;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            if (blockpos == null) {
+                long factor = world.getGameTime() + 300L;
+                this.columnMap.put(columnpos, factor);
+                return null;
+            } else {
+                if (isFrame) {
+                    this.destinationCoordinateCache.put(columnpos, new GaiaTeleporter.PortalPosition(blockpos, world.getGameTime()));
+                    world.getChunkProvider().registerTicket(TicketType.PORTAL, new ChunkPos(blockpos), 3, new BlockPos(columnpos.x, blockpos.getY(), columnpos.z));
+                }
+
+                BlockPattern.PatternHelper helper = GaiaPortalBlock.createPatternHelper(world, blockpos);
+                return helper.getPortalInfo(direction, blockpos, y, motion, x);
+            }
+        }
     }
 
     /**
@@ -128,10 +163,10 @@ public class GaiaTeleporter implements ITeleporter {
 
         if (d0 < 0.0D) {
             for (int startX2 = entityX - 16; startX2 <= entityX + 16; ++startX2) {
-                double d3 = (double) startX2 + 0.5D - entity.getX();
+                double ePosX2 = (double) startX2 + 0.5D - entity.getX();
 
                 for (int startZ2 = entityZ - 16; startZ2 <= entityZ + 16; ++startZ2) {
-                    double d4 = (double) startZ2 + 0.5D - entity.getZ();
+                    double ePosZ2 = (double) startZ2 + 0.5D - entity.getZ();
 
                     label214:
                     for (int startY2 = world.getActualHeight() - 1; startY2 >= 0; --startY2) {
@@ -156,10 +191,10 @@ public class GaiaTeleporter implements ITeleporter {
                                     }
                                 }
 
-                                double d6 = (double) startY2 + 0.5D - entity.getY();
-                                double d8 = d3 * d3 + d6 * d6 + d4 * d4;
-                                if (d0 < 0.0D || d8 < d0) {
-                                    d0 = d8;
+                                double ePosY2 = (double) startY2 + 0.5D - entity.getY();
+                                double eArea2 = ePosX2 * ePosX2 + ePosY2 * ePosY2 + ePosZ2 * ePosZ2;
+                                if (d0 < 0.0D || eArea2 < d0) {
+                                    d0 = eArea2;
                                     xPos = startX2;
                                     yPos = startY2;
                                     zPos = startZ2;
@@ -232,22 +267,13 @@ public class GaiaTeleporter implements ITeleporter {
         return newEntity;
     }
 
-//    @Override
-//    public Entity placeEntity(Entity entity, ServerWorld currentWorld, ServerWorld destWorld, float yaw, Function<Boolean, Entity> repositionEntity) {
-//        Entity teleportEntity = repositionEntity.apply(false);
-//        BlockPos pos = teleportEntity.getPosition();
-//        BlockPattern.PatternHelper pattern = GaiaPortalBlock.createPatternHelper(teleportEntity.world, pos);
-//        double axis = pattern.getForwards().getAxis() == Direction.Axis.X ? (double)pattern.getFrontTopLeft().getZ() : (double)pattern.getFrontTopLeft().getX();
-//        double x = Math.abs(MathHelper.pct((pattern.getForwards().getAxis() == Direction.Axis.X ? teleportEntity.getZ() : teleportEntity.getX()) - (double)(pattern.getForwards().rotateY().getAxisDirection() == Direction.AxisDirection.NEGATIVE ? 1 : 0), axis, axis - (double)pattern.getWidth()));
-//        double y = MathHelper.pct(teleportEntity.getY() - 1.0D, (double)pattern.getFrontTopLeft().getY(), (double)(pattern.getFrontTopLeft().getY() - pattern.getHeight()));
-//
-//        teleportEntity.setPosition(x, y, 0.0D);
-//
-//        if (!placeInPortal(teleportEntity, yaw)) {
-//            makePortal(teleportEntity);
-//            placeInPortal(teleportEntity, yaw);
-//        }
-//
-//        return teleportEntity;
-//    }
+    static class PortalPosition {
+        public final BlockPos pos;
+        public long lastUpdateTime;
+
+        public PortalPosition(BlockPos pos, long time) {
+            this.pos = pos;
+            this.lastUpdateTime = time;
+        }
+    }
 }

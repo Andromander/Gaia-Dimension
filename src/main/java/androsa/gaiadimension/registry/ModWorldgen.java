@@ -9,7 +9,6 @@ import androsa.gaiadimension.world.gen.feature.*;
 import androsa.gaiadimension.world.surface.GaiaDefaultSurfaceBuilder;
 import androsa.gaiadimension.world.surface.VolcanicSurfaceBuilder;
 import androsa.gaiadimension.world.surface.WastelandSurfaceBuilder;
-import com.google.common.collect.ImmutableSet;
 import net.minecraft.village.PointOfInterestType;
 import net.minecraft.world.gen.carver.WorldCarver;
 import net.minecraft.world.gen.feature.*;
@@ -22,7 +21,6 @@ import net.minecraftforge.registries.ForgeRegistries;
 public class ModWorldgen {
 
     public static final DeferredRegister<Feature<?>> FEATURES = new DeferredRegister<>(ForgeRegistries.FEATURES, GaiaDimensionMod.MODID);
-    public static final DeferredRegister<PointOfInterestType> POI_TYPES = new DeferredRegister<>(ForgeRegistries.POI_TYPES, GaiaDimensionMod.MODID);
     public static final DeferredRegister<SurfaceBuilder<?>> SURFACE_BUILDERS = new DeferredRegister<>(ForgeRegistries.SURFACE_BUILDERS, GaiaDimensionMod.MODID);
     public static final DeferredRegister<WorldCarver<?>> WORLD_CARVERS = new DeferredRegister<>(ForgeRegistries.WORLD_CARVERS, GaiaDimensionMod.MODID);
 
@@ -69,10 +67,6 @@ public class ModWorldgen {
     public static final SurfaceBuilder<SurfaceBuilderConfig> s_gaia = new GaiaDefaultSurfaceBuilder(SurfaceBuilderConfig::deserialize);
     public static final SurfaceBuilder<SurfaceBuilderConfig> s_volcanic = new VolcanicSurfaceBuilder(SurfaceBuilderConfig::deserialize);
     public static final SurfaceBuilder<SurfaceBuilderConfig> s_static =  new WastelandSurfaceBuilder(SurfaceBuilderConfig::deserialize);
-
-    //PointOfInterest
-    public static final RegistryObject<PointOfInterestType> GAIA_PORTAL = POI_TYPES.register("gaia_portal_poi", () ->
-            new PointOfInterestType("gaia_portal", ImmutableSet.copyOf(ModBlocks.gaia_portal.get().getStateContainer().getValidStates()), 0, 1));
 
     //SurfaceBuilder
     public static final RegistryObject<SurfaceBuilder<SurfaceBuilderConfig>> DEFAULT_GAIA = SURFACE_BUILDERS.register("default_gaia", () -> s_gaia);
