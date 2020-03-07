@@ -28,7 +28,7 @@ public class GaiaTeleporter implements ITeleporter {
     public boolean placeInPortal(ServerWorld world, Entity entity, float yaw) {
         Vec3d vec3d = entity.getLastPortalVec();
         Direction direction = entity.getTeleportDirection();
-        BlockPattern.PortalInfo pattern = this.placeInExistingPortal(world, new BlockPos(entity), entity.getMotion(), direction, vec3d.x, vec3d.y);
+        BlockPattern.PortalInfo pattern = this.placeInExistingPortal(world, new BlockPos(entity.getX(), entity.getY(), entity.getZ()), entity.getMotion(), direction, vec3d.x, vec3d.y);
         if (pattern == null) {
             return false;
         } else {
@@ -45,13 +45,11 @@ public class GaiaTeleporter implements ITeleporter {
     public BlockPattern.PortalInfo placeInExistingPortal(ServerWorld world, BlockPos pos, Vec3d motion, Direction direction, double x, double y) {
         PointOfInterestManager poiManager = world.getPointOfInterestManager();
         poiManager.func_226347_a_(world, pos, 128);
-        List<PointOfInterest> points = poiManager.func_226353_b_((type) ->
-                type == ModWorldgen.GAIA_PORTAL.get(),
-                pos, 128, PointOfInterestManager.Status.ANY)
-                .collect(Collectors.toList());
+        List<PointOfInterest> points = poiManager.func_226353_b_((type) -> type == ModWorldgen.GAIA_PORTAL.get(),
+                pos, 128, PointOfInterestManager.Status.ANY).collect(Collectors.toList());
+
         Optional<PointOfInterest> optional = points.stream().min(Comparator.<PointOfInterest>comparingDouble((type) ->
-                type.getPos().distanceSq(pos)).thenComparingInt((type) ->
-                type.getPos().getY()));
+                type.getPos().distanceSq(pos)).thenComparingInt((type) -> type.getPos().getY()));
 
         return optional.map((type) -> {
             BlockPos blockpos = type.getPos();
@@ -228,9 +226,7 @@ public class GaiaTeleporter implements ITeleporter {
 
         if (!placeInPortal(destWorld, newEntity, newEntity.rotationYaw)) {
             makePortal(destWorld, newEntity);
-            while (!placeInPortal(destWorld, newEntity, newEntity.rotationYaw)) {
-
-            }
+            placeInPortal(destWorld, newEntity, newEntity.rotationYaw);
         }
 
         return newEntity;
