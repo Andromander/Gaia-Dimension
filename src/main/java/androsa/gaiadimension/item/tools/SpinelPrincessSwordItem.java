@@ -1,6 +1,7 @@
 package androsa.gaiadimension.item.tools;
 
 import androsa.gaiadimension.registry.GaiaItemGroups;
+import androsa.gaiadimension.registry.GaiaToolMaterials;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -16,8 +17,8 @@ import java.util.List;
 
 public class SpinelPrincessSwordItem extends SwordItem {
 
-    public SpinelPrincessSwordItem(IItemTier material) {
-        super(material, 3, -2.5F, new Properties().maxStackSize(1).defaultMaxDamage(material.getMaxUses()).rarity(Rarity.RARE).group(GaiaItemGroups.GAIA_TOOLS));
+    public SpinelPrincessSwordItem() {
+        super(GaiaToolMaterials.SPINEL, 3, -2.5F, new Properties().rarity(Rarity.RARE).group(GaiaItemGroups.GAIA_TOOLS));
     }
 
     @Override

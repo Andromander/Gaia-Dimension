@@ -1,6 +1,7 @@
 package androsa.gaiadimension.item.tools;
 
 import androsa.gaiadimension.registry.GaiaItemGroups;
+import androsa.gaiadimension.registry.GaiaToolMaterials;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.*;
 import net.minecraft.util.text.ITextComponent;
@@ -13,8 +14,8 @@ import java.util.List;
 
 public class ZirconPrinceSwordItem extends SwordItem {
 
-    public ZirconPrinceSwordItem(IItemTier material) {
-        super(material, 3, -2.3F, new Properties().maxStackSize(1).defaultMaxDamage(material.getMaxUses()).rarity(Rarity.RARE).group(GaiaItemGroups.GAIA_TOOLS));
+    public ZirconPrinceSwordItem() {
+        super(GaiaToolMaterials.ZIRCON, 3, -2.3F, new Properties().rarity(Rarity.RARE).group(GaiaItemGroups.GAIA_TOOLS));
     }
 
     @Override

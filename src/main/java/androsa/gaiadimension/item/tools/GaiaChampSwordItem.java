@@ -1,5 +1,6 @@
 package androsa.gaiadimension.item.tools;
 
+import androsa.gaiadimension.registry.GaiaToolMaterials;
 import androsa.gaiadimension.registry.ModBlocks;
 import androsa.gaiadimension.registry.GaiaItemGroups;
 import net.minecraft.client.util.ITooltipFlag;
@@ -18,8 +19,8 @@ import java.util.List;
 
 public class GaiaChampSwordItem extends SwordItem {
 
-    public GaiaChampSwordItem(IItemTier material) {
-        super(material, 3, -2.4F, new Properties().maxStackSize(1).defaultMaxDamage(material.getMaxUses()).rarity(Rarity.EPIC).group(GaiaItemGroups.GAIA_TOOLS));
+    public GaiaChampSwordItem() {
+        super(GaiaToolMaterials.GAIA_CHAMP, 3, -2.4F, new Properties().rarity(Rarity.EPIC).group(GaiaItemGroups.GAIA_TOOLS));
     }
 
     @Override

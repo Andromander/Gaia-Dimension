@@ -212,15 +212,15 @@ public class ModItems {
     public static final RegistryObject<Item> old_bow = ITEMS.register("old_bow", OldBowItem::new);
     public static final RegistryObject<Item> agate_arrow = ITEMS.register("agate_arrow", AgateArrowItem::new);
 
-    public static final RegistryObject<Item> malachite_guard_baton = ITEMS.register("malachite_guard_baton", () -> new MalachiteGuardSwordItem(GaiaToolMaterials.MALACHITE));
-    public static final RegistryObject<Item> apex_predator_mace = ITEMS.register("apex_predator_mace", () -> new ApexPredatorSwordItem(GaiaToolMaterials.TIGER_EYE));
-    public static final RegistryObject<Item> spinel_princess_flamberge = ITEMS.register("spinel_princess_flamberge", () -> new SpinelPrincessSwordItem(GaiaToolMaterials.SPINEL));
-    public static final RegistryObject<Item> zircon_prince_razor = ITEMS.register("zircon_prince_razor", () -> new ZirconPrinceSwordItem(GaiaToolMaterials.ZIRCON));
-    public static final RegistryObject<Item> corrupt_warrior_sword = ITEMS.register("corrupt_warrior_sword", () -> new CorruptWarriorSwordItem(GaiaToolMaterials.CORRUPT));
-    public static final RegistryObject<Item> gaia_duchess_khopesh = ITEMS.register("gaia_duchess_khopesh", () -> new GaiaDuchessSwordItem(GaiaToolMaterials.BIXBITE));
-    public static final RegistryObject<Item> gaia_baron_dagger = ITEMS.register("gaia_baron_dagger", () -> new GaiaBaronSwordItem(GaiaToolMaterials.TSAVORITE));
-    public static final RegistryObject<Item> gaia_duke_blade = ITEMS.register("gaia_duke_blade", () -> new GaiaDukeSwordItem(GaiaToolMaterials.LARVIKITE));
-    public static final RegistryObject<Item> gaia_champion_sword = ITEMS.register("gaia_champion_sword", () -> new GaiaChampSwordItem(GaiaToolMaterials.GAIA_CHAMP));
+    public static final RegistryObject<Item> malachite_guard_baton = ITEMS.register("malachite_guard_baton", MalachiteGuardSwordItem::new);
+    public static final RegistryObject<Item> apex_predator_mace = ITEMS.register("apex_predator_mace", ApexPredatorSwordItem::new);
+    public static final RegistryObject<Item> spinel_princess_flamberge = ITEMS.register("spinel_princess_flamberge", SpinelPrincessSwordItem::new);
+    public static final RegistryObject<Item> zircon_prince_razor = ITEMS.register("zircon_prince_razor", ZirconPrinceSwordItem::new);
+    public static final RegistryObject<Item> corrupt_warrior_sword = ITEMS.register("corrupt_warrior_sword", CorruptWarriorSwordItem::new);
+    public static final RegistryObject<Item> gaia_duchess_khopesh = ITEMS.register("gaia_duchess_khopesh", GaiaDuchessSwordItem::new);
+    public static final RegistryObject<Item> gaia_baron_dagger = ITEMS.register("gaia_baron_dagger", GaiaBaronSwordItem::new);
+    public static final RegistryObject<Item> gaia_duke_blade = ITEMS.register("gaia_duke_blade", GaiaDukeSwordItem::new);
+    public static final RegistryObject<Item> gaia_champion_sword = ITEMS.register("gaia_champion_sword", GaiaChampSwordItem::new);
 
     public static final RegistryObject<Item> growth_sapper_spawn_egg = registerSpawnEgg("growth_sapper_spawn_egg", ModEntities.growth_sapper, 0x5A4514, 0xFF00FF);
     public static final RegistryObject<Item> mutant_growth_extractor_spawn_egg = registerSpawnEgg("mutant_growth_extractor_spawn_egg", ModEntities.growth_extractor, 0x5A4514, 0xFFFFCC);
