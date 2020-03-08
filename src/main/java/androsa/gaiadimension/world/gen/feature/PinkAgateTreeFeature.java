@@ -22,7 +22,7 @@ public class PinkAgateTreeFeature<T extends GaiaTreeFeatureConfig> extends Abstr
     @Override
     protected boolean generate(IWorldGenerationReader worldIn, Random rand, BlockPos position, Set<BlockPos> logPos, Set<BlockPos> leavesPos, MutableBoundingBox boundingBox, T config) {
         int height = rand.nextInt(3) + rand.nextInt(3) + 5;
-        boolean flag = true;
+        boolean canGrow = true;
 
         if (position.getY() >= 1 && position.getY() + height + 1 <= 256) {
             for (int cy = position.getY(); cy <= position.getY() + 1 + height; ++cy) {
@@ -38,26 +38,26 @@ public class PinkAgateTreeFeature<T extends GaiaTreeFeatureConfig> extends Abstr
 
                 BlockPos.Mutable blockpos$mutableblockpos = new BlockPos.Mutable();
 
-                for (int cx = position.getX() - k; cx <= position.getX() + k && flag; ++cx) {
-                    for (int cz = position.getZ() - k; cz <= position.getZ() + k && flag; ++cz) {
+                for (int cx = position.getX() - k; cx <= position.getX() + k && canGrow; ++cx) {
+                    for (int cz = position.getZ() - k; cz <= position.getZ() + k && canGrow; ++cz) {
                         if (cy >= 0 && cy < 256) {
                             if (!func_214587_a(worldIn, blockpos$mutableblockpos.setPos(cx, cy, cz))) {
-                                flag = false;
+                                canGrow = false;
                             }
                         } else {
-                            flag = false;
+                            canGrow = false;
                         }
                     }
                 }
             }
 
-            if (!flag) {
+            if (!canGrow) {
                 return false;
             } else if (isSoil(worldIn, position.down(), config.getSapling()) && position.getY() < worldIn.getMaxHeight() - height - 1) {
                 this.setDirtAt(worldIn, position.down(), position);
                 int posX = position.getX();
                 int posZ = position.getZ();
-                int k1 = 0;
+                int posY = 0;
 
                 for (int base = 0; base < height; ++base) {
                     int i2 = position.getY() + base;
@@ -65,11 +65,11 @@ public class PinkAgateTreeFeature<T extends GaiaTreeFeatureConfig> extends Abstr
                     BlockPos blockpos = new BlockPos(posX, i2, posZ);
                     if (isAirOrLeaves(worldIn, blockpos)) {
                         this.setLogBlockState(worldIn, rand, blockpos, logPos, boundingBox, config);
-                        k1 = i2;
+                        posY = i2;
                     }
                 }
 
-                BlockPos blockpos2 = new BlockPos(posX, k1, posZ);
+                BlockPos blockpos2 = new BlockPos(posX, posY, posZ);
 
                 for (int j3 = -3; j3 <= 3; ++j3) {
                     for (int i4 = -3; i4 <= 3; ++i4) {
