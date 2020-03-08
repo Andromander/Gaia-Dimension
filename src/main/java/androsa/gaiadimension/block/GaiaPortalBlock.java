@@ -2,7 +2,6 @@ package androsa.gaiadimension.block;
 
 import androsa.gaiadimension.GaiaDimensionMod;
 import androsa.gaiadimension.registry.ModBlocks;
-import androsa.gaiadimension.registry.ModDimensions;
 import androsa.gaiadimension.registry.ModGaiaConfig;
 import androsa.gaiadimension.registry.ModParticles;
 import androsa.gaiadimension.world.GaiaTeleporter;
@@ -14,11 +13,6 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
 import net.minecraft.block.pattern.BlockPattern;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.network.play.server.*;
-import net.minecraft.potion.EffectInstance;
-import net.minecraft.server.MinecraftServer;
-import net.minecraft.server.management.PlayerList;
 import net.minecraft.state.EnumProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
@@ -30,19 +24,14 @@ import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
-import net.minecraft.world.Teleporter;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.dimension.DimensionType;
 import net.minecraft.world.server.ServerWorld;
-import net.minecraft.world.storage.WorldInfo;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.BiomeDictionary.Type;
-import net.minecraftforge.common.util.Constants;
-import net.minecraftforge.fml.hooks.BasicEventHooks;
-import net.minecraftforge.fml.network.NetworkHooks;
 
 import javax.annotation.Nullable;
 import java.util.Random;
@@ -137,75 +126,6 @@ public class GaiaPortalBlock extends Block {
             }
         }
     }
-
-//    public void changeDimension(ServerPlayerEntity entity, DimensionType destination, Teleporter teleporter) {
-//        if (!net.minecraftforge.common.ForgeHooks.onTravelToDimension(entity, destination)) return;
-//        entity.invulnerableDimensionChange = true;
-//        DimensionType dimensiontype = entity.dimension;
-//        ServerWorld serverworld = entity.server.getWorld(dimensiontype);
-//        entity.dimension = destination;
-//        ServerWorld serverworld1 = entity.server.getWorld(destination);
-//        WorldInfo worldinfo = serverworld1.getWorldInfo();
-//
-//        NetworkHooks.sendDimensionDataPacket(entity.connection.netManager, entity);
-//        entity.connection.sendPacket(new SRespawnPacket(destination, WorldInfo.sha256Hash(worldinfo.getSeed()), worldinfo.getGenerator(), entity.interactionManager.getGameType()));
-//        entity.connection.sendPacket(new SServerDifficultyPacket(worldinfo.getDifficulty(), worldinfo.isDifficultyLocked()));
-//
-//        PlayerList playerlist = entity.server.getPlayerList();
-//
-//        playerlist.updatePermissionLevel(entity);
-//        serverworld.removeEntity(entity, true);
-//        entity.revive();
-//
-//        double xPos = entity.getX();
-//        double yPos = entity.getY();
-//        double zPos = entity.getZ();
-//        float pitch = entity.rotationPitch;
-//        float yaw = entity.rotationYaw;
-//
-//        serverworld.getProfiler().startSection("moving");
-//
-//        double moveFactor = serverworld.getDimension().getMovementFactor() / serverworld1.getDimension().getMovementFactor();
-//        xPos *= moveFactor;
-//        zPos *= moveFactor;
-//
-//        entity.setLocationAndAngles(xPos, yPos, zPos, yaw, pitch);
-//        serverworld.getProfiler().endSection();
-//        serverworld.getProfiler().startSection("placing");
-//
-//        double minX = Math.min(-2.9999872E7D, serverworld1.getWorldBorder().minX() + 16.0D);
-//        double minZ = Math.min(-2.9999872E7D, serverworld1.getWorldBorder().minZ() + 16.0D);
-//        double maxX = Math.min(2.9999872E7D, serverworld1.getWorldBorder().maxX() - 16.0D);
-//        double maxZ = Math.min(2.9999872E7D, serverworld1.getWorldBorder().maxZ() - 16.0D);
-//        xPos = MathHelper.clamp(xPos, minX, maxX);
-//        zPos = MathHelper.clamp(zPos, minZ, maxZ);
-//
-//        entity.setLocationAndAngles(xPos, yPos, zPos, yaw, pitch);
-//
-//        if (!teleporter.placeInPortal(entity, yaw)) {
-//            teleporter.makePortal(entity);
-//            teleporter.placeInPortal(entity, yaw);
-//        }
-//
-//        serverworld.getProfiler().endSection();
-//        entity.setWorld(serverworld1);
-//        serverworld1.func_217447_b(entity);
-//        entity.connection.setPlayerLocation(entity.getX(), entity.getY(), entity.getZ(), yaw, pitch);
-//        entity.interactionManager.setWorld(serverworld1);
-//        entity.connection.sendPacket(new SPlayerAbilitiesPacket(entity.abilities));
-//        playerlist.sendWorldInfo(entity, serverworld1);
-//        playerlist.sendInventory(entity);
-//
-//        for(EffectInstance effectinstance : entity.getActivePotionEffects()) {
-//            entity.connection.sendPacket(new SPlayEntityEffectPacket(entity.getEntityId(), effectinstance));
-//        }
-//
-//        entity.connection.sendPacket(new SPlaySoundEventPacket(Constants.WorldEvents.PORTAL_TRAVEL_SOUND, BlockPos.ZERO, 0, false));
-////        entity.lastExperience = -1;
-////        entity.lastHealth = -1.0F;
-////        entity.lastFoodLevel = -1;
-//        BasicEventHooks.firePlayerChangedDimensionEvent(entity, dimensiontype, destination);
-//    }
 
     @Override
     @OnlyIn(Dist.CLIENT)
