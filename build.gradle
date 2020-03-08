@@ -68,7 +68,13 @@ minecraft {
         }
 
         data {
-            args '--mod', 'gaiadimension', '--all', '--output', file('src/generated/resources/')
+            args '--mod', 'gaiadimension', '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/'), '--existing', file('src/generated/resources/')
+
+            mods {
+                gaiadimension {
+                    source sourceSets.main
+                }
+            }
         }
     }
 }
