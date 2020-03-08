@@ -6,7 +6,6 @@ import net.minecraft.block.RotatedPillarBlock;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MutableBoundingBox;
-import net.minecraft.world.IWorldWriter;
 import net.minecraft.world.gen.IWorldGenerationReader;
 import net.minecraft.world.gen.feature.AbstractTreeFeature;
 
@@ -64,25 +63,25 @@ public class PurpleAgateTreeFeature<T extends GaiaTreeFeatureConfig> extends Abs
 
                 for (int base = 0; base < height; ++base) {
                     int currentY = position.getY() + base;
-
                     BlockPos blockpos = new BlockPos(posX, currentY, posZ);
+
                     if (isAirOrLeaves(worldIn, blockpos)) {
                         if (base == height - 2) {
                             for (int length = 1; length <= 2; ++length) {
-                                this.placeLogAt(worldIn, rand, blockpos.north(length), Direction.Axis.Z, boundingBox, config);
-                                this.placeLogAt(worldIn, rand, blockpos.south(length), Direction.Axis.Z, boundingBox, config);
-                                this.placeLogAt(worldIn, rand, blockpos.east(length), Direction.Axis.X, boundingBox, config);
-                                this.placeLogAt(worldIn, rand, blockpos.west(length), Direction.Axis.X, boundingBox, config);
+                                this.placeLogAt(worldIn, rand, blockpos.north(length), Direction.Axis.Z, logPos, boundingBox, config);
+                                this.placeLogAt(worldIn, rand, blockpos.south(length), Direction.Axis.Z, logPos, boundingBox, config);
+                                this.placeLogAt(worldIn, rand, blockpos.east(length), Direction.Axis.X, logPos, boundingBox, config);
+                                this.placeLogAt(worldIn, rand, blockpos.west(length), Direction.Axis.X, logPos, boundingBox, config);
                             }
                         } else if (base == height - 1) {
                             for (int length = 3; length <= 4; ++length) {
-                                this.placeLogAt(worldIn, rand, blockpos.north(length), Direction.Axis.Z, boundingBox, config);
-                                this.placeLogAt(worldIn, rand, blockpos.south(length), Direction.Axis.Z, boundingBox, config);
-                                this.placeLogAt(worldIn, rand, blockpos.east(length), Direction.Axis.X, boundingBox, config);
-                                this.placeLogAt(worldIn, rand, blockpos.west(length), Direction.Axis.X, boundingBox, config);
+                                this.placeLogAt(worldIn, rand, blockpos.north(length), Direction.Axis.Z, logPos, boundingBox, config);
+                                this.placeLogAt(worldIn, rand, blockpos.south(length), Direction.Axis.Z, logPos, boundingBox, config);
+                                this.placeLogAt(worldIn, rand, blockpos.east(length), Direction.Axis.X, logPos, boundingBox, config);
+                                this.placeLogAt(worldIn, rand, blockpos.west(length), Direction.Axis.X, logPos, boundingBox, config);
                             }
                         } else {
-                            this.placeLogAt(worldIn, rand, blockpos, Direction.Axis.Y, boundingBox, config);
+                            this.setLogBlockState(worldIn, rand, blockpos, logPos, boundingBox, config);
                         }
                         posY = currentY;
                     }
@@ -117,7 +116,8 @@ public class PurpleAgateTreeFeature<T extends GaiaTreeFeatureConfig> extends Abs
         }
     }
 
-    private void placeLogAt(IWorldWriter writer, Random rand, BlockPos pos, Direction.Axis axis, MutableBoundingBox boundingBox, T config) {
-        this.setBlockState(writer, pos, config.trunkProvider.getBlockState(rand, pos).with(RotatedPillarBlock.AXIS, axis), boundingBox);
+    private void placeLogAt(IWorldGenerationReader reader, Random rand, BlockPos pos, Direction.Axis axis, Set<BlockPos> logPos, MutableBoundingBox boundingBox, T config) {
+        this.setBlockState(reader, pos, config.trunkProvider.getBlockState(rand, pos).with(RotatedPillarBlock.AXIS, axis), boundingBox);
+        logPos.add(pos.toImmutable());
     }
 }
