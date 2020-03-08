@@ -1,9 +1,7 @@
 package androsa.gaiadimension.world.gen.feature;
 
-import androsa.gaiadimension.registry.ModBlocks;
 import androsa.gaiadimension.world.gen.config.GaiaTreeFeatureConfig;
 import com.mojang.datafixers.Dynamic;
-import net.minecraft.block.BlockState;
 import net.minecraft.block.RotatedPillarBlock;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
@@ -19,9 +17,6 @@ import java.util.function.Function;
 
 @ParametersAreNonnullByDefault
 public class PurpleAgateTreeFeature<T extends GaiaTreeFeatureConfig> extends AbstractTreeFeature<T> {
-    //TODO: Move to Builder
-    private static final BlockState TRUNK = ModBlocks.purple_agate_log.get().getDefaultState();
-    private static final BlockState LEAF = ModBlocks.purple_agate_leaves.get().getDefaultState();
 
     public PurpleAgateTreeFeature(Function<Dynamic<?>, T> configIn) {
         super(configIn);

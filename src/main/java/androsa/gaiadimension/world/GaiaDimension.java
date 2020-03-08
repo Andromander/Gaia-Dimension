@@ -101,7 +101,7 @@ public class GaiaDimension extends Dimension {
         return true;
     }
 
-    //TODO: We have to find how to get this working again
+    //TODO: Will have to wait until I can render my own sky
 //    @Override
 //    @OnlyIn(Dist.CLIENT)
 //    public float getStarBrightness(float par1) {
@@ -141,7 +141,7 @@ public class GaiaDimension extends Dimension {
         return true;
     }
 
-    //TODO: This may be done via Biome.getSkyColor
+    //TODO: Keep this for reference later when I can render my own sky
 //    @OnlyIn(Dist.CLIENT)
 //    private double[] currentSkyColor;
 //    @OnlyIn(Dist.CLIENT)
@@ -222,7 +222,7 @@ public class GaiaDimension extends Dimension {
         return new Vec3d(currentFogColor[0] / 255D, currentFogColor[1] / 255D, currentFogColor[2] / 255D);
     }
 
-    //TODO: Find out how to get this working again
+    //TODO: Will need to move into Cloud rendering
 //    @OnlyIn(Dist.CLIENT)
 //    private double[] currentCloudColor;
 //    @OnlyIn(Dist.CLIENT)
@@ -286,7 +286,7 @@ public class GaiaDimension extends Dimension {
         return false;
     }
 
-    //TODO: Change it so that it is only sunny?
+    //TODO: How might this be handled with custom weather? For now: prevents changing weather
     @Override
     public void updateWeather(Runnable defaultLogic) { }
 }

@@ -1,14 +1,11 @@
 package androsa.gaiadimension.world.gen.feature;
 
-import androsa.gaiadimension.registry.ModBlocks;
 import androsa.gaiadimension.world.gen.config.GaiaTreeFeatureConfig;
 import com.mojang.datafixers.Dynamic;
-import net.minecraft.block.BlockState;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MutableBoundingBox;
 import net.minecraft.world.gen.IWorldGenerationReader;
 import net.minecraft.world.gen.feature.AbstractTreeFeature;
-import net.minecraft.world.gen.feature.BaseTreeFeatureConfig;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.Random;
@@ -17,9 +14,6 @@ import java.util.function.Function;
 
 @ParametersAreNonnullByDefault
 public class AuraTreeFeature<T extends GaiaTreeFeatureConfig> extends AbstractTreeFeature<T> {
-    //TODO: Move to Builder
-    private static final BlockState TRUNK = ModBlocks.aura_log.get().getDefaultState();
-    private static final BlockState LEAF = ModBlocks.aura_leaves.get().getDefaultState();
 
     public AuraTreeFeature(Function<Dynamic<?>, T> configIn) {
         super(configIn);

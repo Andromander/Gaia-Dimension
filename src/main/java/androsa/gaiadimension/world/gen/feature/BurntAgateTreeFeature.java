@@ -1,9 +1,7 @@
 package androsa.gaiadimension.world.gen.feature;
 
-import androsa.gaiadimension.registry.ModBlocks;
 import androsa.gaiadimension.world.gen.config.GaiaTreeFeatureConfig;
 import com.mojang.datafixers.Dynamic;
-import net.minecraft.block.BlockState;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MutableBoundingBox;
 import net.minecraft.world.gen.IWorldGenerationReader;
@@ -16,9 +14,6 @@ import java.util.function.Function;
 
 @ParametersAreNonnullByDefault
 public class BurntAgateTreeFeature<T extends GaiaTreeFeatureConfig> extends AbstractTreeFeature<T> {
-    //TODO: Move to Builder
-    private static final BlockState TRUNK = ModBlocks.burnt_log.get().getDefaultState();
-    private static final BlockState LEAF = ModBlocks.burnt_leaves.get().getDefaultState();
 
     public BurntAgateTreeFeature(Function<Dynamic<?>, T> configIn) {
         super(configIn);
