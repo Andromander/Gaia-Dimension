@@ -222,37 +222,37 @@ public class ModItems {
     public static final RegistryObject<Item> gaia_duke_blade = ITEMS.register("gaia_duke_blade", GaiaDukeSwordItem::new);
     public static final RegistryObject<Item> gaia_champion_sword = ITEMS.register("gaia_champion_sword", GaiaChampSwordItem::new);
 
-    public static final RegistryObject<Item> growth_sapper_spawn_egg = registerSpawnEgg("growth_sapper_spawn_egg", ModEntities.growth_sapper, 0x5A4514, 0xFF00FF);
-    public static final RegistryObject<Item> mutant_growth_extractor_spawn_egg = registerSpawnEgg("mutant_growth_extractor_spawn_egg", ModEntities.growth_extractor, 0x5A4514, 0xFFFFCC);
-    public static final RegistryObject<Item> howlite_wolf_spawn_egg = registerSpawnEgg("howlite_wolf_spawn_egg", ModEntities.howlite_wolf, 0xDDDDDD, 0x3333FF);
-    public static final RegistryObject<Item> spellbound_elemental_spawn_egg = registerSpawnEgg("spellbound_elemental_spawn_egg", ModEntities.spell_elemental, 0x885555, 0xCC33CC);
-    public static final RegistryObject<Item> rocky_luggeroth_spawn_egg = registerSpawnEgg("rocky_luggeroth_spawn_egg", ModEntities.rocky_luggeroth, 0xB07700, 0xCC9900);
-    public static final RegistryObject<Item> shalurker_spawn_egg = registerSpawnEgg("shalurker_spawn_egg", ModEntities.shalurker, 0x771177, 0x000000);
-    public static final RegistryObject<Item> muckling_spawn_egg = registerSpawnEgg("muckling_spawn_egg", ModEntities.muckling, 0xFF00FF, 0xCC66CC);
-    public static final RegistryObject<Item> markuzar_plant_spawn_egg = registerSpawnEgg("markuzar_plant_spawn_egg", ModEntities.markuzar_plant, 0x00FF66, 0xCC00FF);
-    public static final RegistryObject<Item> rugged_lurmorus_spawn_egg = registerSpawnEgg("rugged_lurmorus_spawn_egg", ModEntities.rugged_lurmorus, 0xCC9933, 0xFF6600);
-    public static final RegistryObject<Item> agate_golem_spawn_egg = registerSpawnEgg("agate_golem_spawn_egg", ModEntities.agate_golem, 0x660000, 0xBB5555);
-    public static final RegistryObject<Item> ancient_lagrahk_spawn_egg = registerSpawnEgg("ancient_lagrahk_spawn_egg", ModEntities.ancient_lagrahk, 0x772200, 0xAA5500);
-    public static final RegistryObject<Item> crystal_golem_spawn_egg = registerSpawnEgg("crystal_golem_spawn_egg", ModEntities.crystal_golem, 0xFF66CC, 0xFF99CC);
-    public static final RegistryObject<Item> saltion_spawn_egg = registerSpawnEgg("saltion_spawn_egg", ModEntities.saltion, 0x6699FF, 0x6633FF);
-    public static final RegistryObject<Item> nomadic_lagrahk_spawn_egg = registerSpawnEgg("nomadic_lagrahk_spawn_egg", ModEntities.nomadic_lagrahk, 0x3366CC, 0x232323);
-    public static final RegistryObject<Item> shallow_arenthis_spawn_egg = registerSpawnEgg("shallow_arenthis_spawn_egg", ModEntities.shallow_arenthis, 0x6699CC, 0x003399);
-    public static final RegistryObject<Item> corrupt_sapper_spawn_egg = registerSpawnEgg("corrupt_sapper_spawn_egg", ModEntities.corrupt_sapper, 0x202020, 0xCC3300);
-    public static final RegistryObject<Item> contorted_naga_spawn_egg = registerSpawnEgg("contorted_naga_spawn_egg", ModEntities.contorted_naga, 0x202020, 0xCC3300);
-    public static final RegistryObject<Item> lesser_spitfire_spawn_egg = registerSpawnEgg("lesser_spitfire_spawn_egg", ModEntities.lesser_spitfire, 0xFF00FF, 0x202020);
-    public static final RegistryObject<Item> lesser_shockshooter_spawn_egg = registerSpawnEgg("lesser_shockshooter_spawn_egg", ModEntities.lesser_shockshooter, 0x00FFFF, 202020);
-    public static final RegistryObject<Item> mineral_arenthis_spawn_egg = registerSpawnEgg("mineral_arenthis_spawn_egg", ModEntities.mineral_arenthis, 0x0066CC, 0x000033);
-    public static final RegistryObject<Item> bismuth_uletrus_spawn_egg = registerSpawnEgg("bismuth_uletrus_spawn_egg", ModEntities.bismuth_uletrus, 0x4E3863, 0x303030);
-    public static final RegistryObject<Item> archaic_warrior_spawn_egg = registerSpawnEgg("archaic_warrior_spawn_egg", ModEntities.archaic_warrior, 0x996699, 0xCC3366);
-    public static final RegistryObject<Item> primal_beast_spawn_egg = registerSpawnEgg("primal_beast_spawn_egg", ModEntities.primal_beast, 0x006699, 0x66FFFF);
-    public static final RegistryObject<Item> cavern_tick_spawn_egg = registerSpawnEgg("cavern_tick_spawn_egg", ModEntities.cavern_tick, 0x9966CC, 0x666699);
-    public static final RegistryObject<Item> blue_howlite_wolf_spawn_egg = registerSpawnEgg("blue_howlite_wolf_spawn_egg", ModEntities.blue_howlite_wolf, 0x0099CC, 0xCC00FF);
-    public static final RegistryObject<Item> malachite_guard_spawn_egg = registerSpawnEgg("malachite_guard_spawn_egg", ModEntities.malachite_guard, 0x339900, 0x33CC99);
+    public static final RegistryObject<Item> growth_sapper_spawn_egg = registerSpawnEgg("growth_sapper", ModEntities.growth_sapper, 0x5A4514, 0xFF00FF);
+    public static final RegistryObject<Item> mutant_growth_extractor_spawn_egg = registerSpawnEgg("mutant_growth_extractor", ModEntities.growth_extractor, 0x5A4514, 0xFFFFCC);
+    public static final RegistryObject<Item> howlite_wolf_spawn_egg = registerSpawnEgg("howlite_wolf", ModEntities.howlite_wolf, 0xDDDDDD, 0x3333FF);
+    public static final RegistryObject<Item> spellbound_elemental_spawn_egg = registerSpawnEgg("spellbound_elemental", ModEntities.spell_elemental, 0x885555, 0xCC33CC);
+    public static final RegistryObject<Item> rocky_luggeroth_spawn_egg = registerSpawnEgg("rocky_luggeroth", ModEntities.rocky_luggeroth, 0xB07700, 0xCC9900);
+    public static final RegistryObject<Item> shalurker_spawn_egg = registerSpawnEgg("shalurker", ModEntities.shalurker, 0x771177, 0x000000);
+    public static final RegistryObject<Item> muckling_spawn_egg = registerSpawnEgg("muckling", ModEntities.muckling, 0xFF00FF, 0xCC66CC);
+    public static final RegistryObject<Item> markuzar_plant_spawn_egg = registerSpawnEgg("markuzar_plant", ModEntities.markuzar_plant, 0x00FF66, 0xCC00FF);
+    public static final RegistryObject<Item> rugged_lurmorus_spawn_egg = registerSpawnEgg("rugged_lurmorus", ModEntities.rugged_lurmorus, 0xCC9933, 0xFF6600);
+    public static final RegistryObject<Item> agate_golem_spawn_egg = registerSpawnEgg("agate_golem", ModEntities.agate_golem, 0x660000, 0xBB5555);
+    public static final RegistryObject<Item> ancient_lagrahk_spawn_egg = registerSpawnEgg("ancient_lagrahk", ModEntities.ancient_lagrahk, 0x772200, 0xAA5500);
+    public static final RegistryObject<Item> crystal_golem_spawn_egg = registerSpawnEgg("crystal_golem", ModEntities.crystal_golem, 0xFF66CC, 0xFF99CC);
+    public static final RegistryObject<Item> saltion_spawn_egg = registerSpawnEgg("saltion", ModEntities.saltion, 0x6699FF, 0x6633FF);
+    public static final RegistryObject<Item> nomadic_lagrahk_spawn_egg = registerSpawnEgg("nomadic_lagrahk", ModEntities.nomadic_lagrahk, 0x3366CC, 0x232323);
+    public static final RegistryObject<Item> shallow_arenthis_spawn_egg = registerSpawnEgg("shallow_arenthis", ModEntities.shallow_arenthis, 0x6699CC, 0x003399);
+    public static final RegistryObject<Item> corrupt_sapper_spawn_egg = registerSpawnEgg("corrupt_sapper", ModEntities.corrupt_sapper, 0x202020, 0xCC3300);
+    public static final RegistryObject<Item> contorted_naga_spawn_egg = registerSpawnEgg("contorted_naga", ModEntities.contorted_naga, 0x202020, 0xCC3300);
+    public static final RegistryObject<Item> lesser_spitfire_spawn_egg = registerSpawnEgg("lesser_spitfire", ModEntities.lesser_spitfire, 0xFF00FF, 0x202020);
+    public static final RegistryObject<Item> lesser_shockshooter_spawn_egg = registerSpawnEgg("lesser_shockshooter", ModEntities.lesser_shockshooter, 0x00FFFF, 0x202020);
+    public static final RegistryObject<Item> mineral_arenthis_spawn_egg = registerSpawnEgg("mineral_arenthis", ModEntities.mineral_arenthis, 0x0066CC, 0x000033);
+    public static final RegistryObject<Item> bismuth_uletrus_spawn_egg = registerSpawnEgg("bismuth_uletrus", ModEntities.bismuth_uletrus, 0x4E3863, 0x303030);
+    public static final RegistryObject<Item> archaic_warrior_spawn_egg = registerSpawnEgg("archaic_warrior", ModEntities.archaic_warrior, 0x996699, 0xCC3366);
+    public static final RegistryObject<Item> primal_beast_spawn_egg = registerSpawnEgg("primal_beast", ModEntities.primal_beast, 0x006699, 0x66FFFF);
+    public static final RegistryObject<Item> cavern_tick_spawn_egg = registerSpawnEgg("cavern_tick", ModEntities.cavern_tick, 0x9966CC, 0x666699);
+    public static final RegistryObject<Item> blue_howlite_wolf_spawn_egg = registerSpawnEgg("blue_howlite_wolf", ModEntities.blue_howlite_wolf, 0x0099CC, 0xCC00FF);
+    public static final RegistryObject<Item> malachite_guard_spawn_egg = registerSpawnEgg("malachite_guard", ModEntities.malachite_guard, 0x339900, 0x33CC99);
 
     public static final RegistryObject<Item> PYRITE_TORCH = ITEMS.register("pyrite_torch",
             () -> new WallOrFloorItem(ModBlocks.pyrite_torch.get(), ModBlocks.pyrite_wall_torch.get(), new Item.Properties().group(GaiaItemGroups.GAIA_BLOCKS)));
 
     private static RegistryObject<Item> registerSpawnEgg(String name, EntityType<?> entity, int back, int front) {
-        return ITEMS.register(name, () -> new GaiaSpawnEggItem(entity, back, front));
+        return ITEMS.register(name + "_spawn_egg", () -> new GaiaSpawnEggItem(entity, back, front));
     }
 }
