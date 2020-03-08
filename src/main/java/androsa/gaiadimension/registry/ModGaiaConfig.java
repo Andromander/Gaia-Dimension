@@ -19,7 +19,7 @@ public class ModGaiaConfig {
                     .define("enableSkyFog", true);
             skyColors = builder
                     .translation(config + "sky_option")
-                    .comment("Set the Sky, Fog, and Cloud color to any of the existing biome options. This config option does not work if Enable Sky Transitions is true")
+                    .comment("Set the Sky and Fog color to any of the existing biome options. This config option does not work if enableSkyFog is true")
                     .defineEnum("skyColors", GaiaSkyColors.values()[0]);
         }
     }

@@ -3,6 +3,7 @@ package androsa.gaiadimension.biomes;
 import androsa.gaiadimension.registry.GaiaBiomeFeatures;
 import androsa.gaiadimension.registry.ModEntities;
 import androsa.gaiadimension.registry.GaiaSkyColors;
+import androsa.gaiadimension.registry.ModGaiaConfig;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
 import net.minecraft.world.biome.Biome;
@@ -43,8 +44,13 @@ public abstract class BaseGaiaBiome extends Biome {
     }
 
     @Override
+    @OnlyIn(Dist.CLIENT)
     public int getSkyColor() {
-        return skyColor.getSkyColor();
+        if (ModGaiaConfig.enableSkyFog.get()) {
+            return skyColor.getSkyColor();
+        } else {
+            return ModGaiaConfig.skyColors.get().getSkyColor();
+        }
     }
 
     @OnlyIn(Dist.CLIENT)
