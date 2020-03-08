@@ -11,7 +11,7 @@ import net.minecraft.item.ItemStack;
 public class BasicGaiaArmorItem extends ArmorItem {
 
     public BasicGaiaArmorItem(IArmorMaterial material, EquipmentSlotType slot) {
-        super(material, slot, new Properties().maxDamage(1).defaultMaxDamage(material.getDurability(slot)).group(GaiaItemGroups.GAIA_ARMOR));
+        super(material, slot, new Properties().group(GaiaItemGroups.GAIA_ARMOR));
     }
 
     @Override

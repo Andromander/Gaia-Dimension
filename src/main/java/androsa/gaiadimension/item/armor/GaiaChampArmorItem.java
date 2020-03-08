@@ -1,12 +1,8 @@
 package androsa.gaiadimension.item.armor;
 
-import androsa.gaiadimension.GaiaDimensionMod;
-import androsa.gaiadimension.registry.GaiaItemGroups;
+import androsa.gaiadimension.registry.GaiaArmorMaterials;
 import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.entity.Entity;
 import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.ArmorItem;
-import net.minecraft.item.IArmorMaterial;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Rarity;
 import net.minecraft.util.text.ITextComponent;
@@ -17,27 +13,23 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 import java.util.List;
 
-public class GaiaChampArmorItem extends ArmorItem {
+public class GaiaChampArmorItem extends BasicGaiaArmorItem {
 
-    public GaiaChampArmorItem(IArmorMaterial material, EquipmentSlotType slot) {
-        super(material, slot, new Properties().maxStackSize(1).defaultMaxDamage(material.getDurability(slot)).rarity(Rarity.EPIC).group(GaiaItemGroups.GAIA_ARMOR));
+    public GaiaChampArmorItem(EquipmentSlotType slot) {
+        super(GaiaArmorMaterials.GAIA_CHAMP, slot);
     }
 
     //TODO: Half damage from Corrupt and Non-Gaian mobs
+
+    @Override
+    public Rarity getRarity(ItemStack stack) {
+        return Rarity.EPIC;
+    }
 
     @Override
     @OnlyIn(Dist.CLIENT)
     public void addInformation(ItemStack stack, World world, List<ITextComponent> tooltips, ITooltipFlag flags) {
         super.addInformation(stack, world, tooltips, flags);
         tooltips.add(new TranslationTextComponent("champion_armor.tooltip"));
-    }
-
-    @Override
-    public String getArmorTexture(ItemStack itemstack, Entity entity, EquipmentSlotType slot, String layer) {
-        if (slot == EquipmentSlotType.LEGS) {
-            return GaiaDimensionMod.ARMOR_DIR + "gaia_champion_2.png";
-        } else {
-            return GaiaDimensionMod.ARMOR_DIR + "gaia_champion_1.png";
-        }
     }
 }

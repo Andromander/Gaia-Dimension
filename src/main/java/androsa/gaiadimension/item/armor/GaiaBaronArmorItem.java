@@ -1,12 +1,8 @@
 package androsa.gaiadimension.item.armor;
 
-import androsa.gaiadimension.GaiaDimensionMod;
-import androsa.gaiadimension.registry.GaiaItemGroups;
+import androsa.gaiadimension.registry.GaiaArmorMaterials;
 import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.entity.Entity;
 import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.ArmorItem;
-import net.minecraft.item.IArmorMaterial;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Rarity;
 import net.minecraft.util.text.ITextComponent;
@@ -19,13 +15,18 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import javax.annotation.Nonnull;
 import java.util.List;
 
-public class GaiaBaronArmorItem extends ArmorItem {
+public class GaiaBaronArmorItem extends BasicGaiaArmorItem {
 
-    public GaiaBaronArmorItem(IArmorMaterial material, EquipmentSlotType slot) {
-        super(material, slot, new Properties().maxStackSize(1).defaultMaxDamage(material.getDurability(slot)).rarity(Rarity.RARE).group(GaiaItemGroups.GAIA_ARMOR));
+    public GaiaBaronArmorItem(EquipmentSlotType slot) {
+        super(GaiaArmorMaterials.TSAVORITE, slot);
     }
 
     //TODO: Small chance to not be dealt damage through melee
+
+    @Override
+    public Rarity getRarity(ItemStack stack) {
+        return Rarity.RARE;
+    }
 
     @Override
     @Nonnull
@@ -38,14 +39,5 @@ public class GaiaBaronArmorItem extends ArmorItem {
     public void addInformation(ItemStack stack, World world, List<ITextComponent> tooltips, ITooltipFlag flags) {
         super.addInformation(stack, world, tooltips, flags);
         tooltips.add(new TranslationTextComponent("tsavorite_armor.tooltip"));
-    }
-
-    @Override
-    public String getArmorTexture(ItemStack itemstack, Entity entity, EquipmentSlotType slot, String layer) {
-        if (slot == EquipmentSlotType.LEGS) {
-            return GaiaDimensionMod.ARMOR_DIR + "gaia_baron_2.png";
-        } else {
-            return GaiaDimensionMod.ARMOR_DIR + "gaia_baron_1.png";
-        }
     }
 }

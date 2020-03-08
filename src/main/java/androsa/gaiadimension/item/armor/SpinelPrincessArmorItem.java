@@ -1,9 +1,7 @@
 package androsa.gaiadimension.item.armor;
 
-import androsa.gaiadimension.GaiaDimensionMod;
-import androsa.gaiadimension.registry.GaiaItemGroups;
+import androsa.gaiadimension.registry.GaiaArmorMaterials;
 import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.entity.Entity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.*;
 import net.minecraft.util.text.ITextComponent;
@@ -14,29 +12,24 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 import java.util.List;
 
-public class SpinelPrincessArmorItem extends ArmorItem {
+public class SpinelPrincessArmorItem extends BasicGaiaArmorItem {
 
-    public SpinelPrincessArmorItem(IArmorMaterial material, EquipmentSlotType slot) {
-        super(material, slot, new Item.Properties().maxStackSize(1).defaultMaxDamage(material.getDurability(slot)).rarity(Rarity.RARE).group(GaiaItemGroups.GAIA_ARMOR));
+    public SpinelPrincessArmorItem(EquipmentSlotType slot) {
+        super(GaiaArmorMaterials.SPINEL, slot);
     }
 
     //TODO: Reduces damage from fire damage and sources
+
+    @Override
+    public Rarity getRarity(ItemStack stack) {
+        return Rarity.RARE;
+    }
 
     @Override
     @OnlyIn(Dist.CLIENT)
     public void addInformation(ItemStack stack, World world, List<ITextComponent> tooltips, ITooltipFlag flags) {
         super.addInformation(stack, world, tooltips, flags);
         tooltips.add(new TranslationTextComponent("spinel_armor.tooltip"));
-    }
-
-
-    @Override
-    public String getArmorTexture(ItemStack itemstack, Entity entity, EquipmentSlotType slot, String layer) {
-        if (slot == EquipmentSlotType.LEGS) {
-            return GaiaDimensionMod.ARMOR_DIR + "spinel_princess_2.png";
-        } else {
-            return GaiaDimensionMod.ARMOR_DIR + "spinel_princess_1.png";
-        }
     }
 }
 
