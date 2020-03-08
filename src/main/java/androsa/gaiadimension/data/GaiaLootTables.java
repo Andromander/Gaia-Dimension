@@ -1,7 +1,10 @@
 package androsa.gaiadimension.data;
 
+import androsa.gaiadimension.GaiaDimensionMod;
 import androsa.gaiadimension.data.provider.GaiaBlockLootTableProvider;
+import androsa.gaiadimension.data.provider.GaiaEntityLootTableProvider;
 import androsa.gaiadimension.registry.ModBlocks;
+import androsa.gaiadimension.registry.ModEntities;
 import androsa.gaiadimension.registry.ModItems;
 import com.google.common.collect.ImmutableList;
 import com.mojang.datafixers.util.Pair;
@@ -9,6 +12,7 @@ import net.minecraft.block.Block;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.LootTableProvider;
 import net.minecraft.data.loot.BlockLootTables;
+import net.minecraft.entity.EntityType;
 import net.minecraft.item.Items;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.storage.loot.LootParameterSet;
@@ -38,7 +42,7 @@ public class GaiaLootTables extends LootTableProvider {
 
     @Override
     protected List<Pair<Supplier<Consumer<BiConsumer<ResourceLocation, LootTable.Builder>>>, LootParameterSet>> getTables() {
-        return ImmutableList.of(Pair.of(Blocks::new, LootParameterSets.BLOCK));
+        return ImmutableList.of(Pair.of(Blocks::new, LootParameterSets.BLOCK), Pair.of(Entities::new, LootParameterSets.ENTITY));
     }
 
     @Override
@@ -295,6 +299,55 @@ public class GaiaLootTables extends LootTableProvider {
         @Override
         protected Iterable<Block> getKnownBlocks() {
             return ModBlocks.BLOCKS.getEntries().stream().map(Supplier::get).collect(Collectors.toList());
+        }
+    }
+
+    public static class Entities extends GaiaEntityLootTableProvider {
+        public static final ResourceLocation PINK_SAPPER_TABLE = new ResourceLocation(GaiaDimensionMod.MODID, "entities/common_sapper");
+        public static final ResourceLocation BLUE_SAPPER_TABLE = new ResourceLocation(GaiaDimensionMod.MODID, "entities/chilled_sapper");
+        public static final ResourceLocation GREEN_SAPPER_TABLE = new ResourceLocation(GaiaDimensionMod.MODID, "entities/nutrient_sapper");
+        public static final ResourceLocation PURPLE_SAPPER_TABLE = new ResourceLocation(GaiaDimensionMod.MODID, "entities/mystified_sapper");
+
+        @Override
+        protected void addTables() {
+
+            registerLootTable(ModEntities.AGATE_GOLEM, blankTable());
+            registerLootTable(ModEntities.ANCIENT_LAGRAHK, blankTable());
+            registerLootTable(ModEntities.ARCHAIC_WARRIOR, warriorTable());
+            registerLootTable(ModEntities.BISMUTH_ULETRUS, blankTable());
+            registerLootTable(ModEntities.CAVERN_TICK, singleDropTable(ModItems.fine_thread, 0.0F, 1.0F));
+            registerLootTable(ModEntities.CONTORTED_NAGA, singleDropTable(ModItems.goldstone, 0.0F, 2.0F));
+            registerLootTable(ModEntities.CORRUPT_SAPPER, singleDropTable(ModItems.goldstone_residue, 0.0F, 2.0F));
+            registerLootTable(ModEntities.CRYSTAL_GOLEM, blankTable());
+            registerLootTable(ModEntities.GROWTH_SAPPER, blankTable());
+            registerLootTable(PINK_SAPPER_TABLE, sapperTable(ModItems.pink_geode));
+            registerLootTable(BLUE_SAPPER_TABLE, sapperTable(ModItems.blue_geode));
+            registerLootTable(GREEN_SAPPER_TABLE, sapperTable(ModItems.green_geode));
+            registerLootTable(PURPLE_SAPPER_TABLE, sapperTable(ModItems.purple_geode));
+            registerLootTable(ModEntities.HOWLITE_WOLF, blankTable());
+            registerLootTable(ModEntities.LESSER_SHOCKSHOOTER, singleDropTable(ModItems.crystallized_lapis_lazuli, 0.0F, 2.0F));
+            registerLootTable(ModEntities.LESSER_SPITFIRE, singleDropTable(ModItems.crystallized_redstone, 0.0F, 2.0F));
+            registerLootTable(ModEntities.MARKUZAR_PLANT, singleDropTable(ModItems.markuzar_mint, 0.0F, 2.0F));
+            registerLootTable(ModEntities.MINERAL_ARENTHIS, cookableDoubleDropTable(ModItems.large_tentacle, ModItems.sugar_cluster, 0.0F, 3.0F, 0.0F, 2.0F));
+            registerLootTable(ModEntities.MUCKLING, singleDropTable(ModItems.sweet_muckball, 0.0F, 2.0F));
+            registerLootTable(ModEntities.MUTANT_GROWTH_EXTRACTOR, extractorTable());
+            registerLootTable(ModEntities.NOMADIC_LAGRAHK, blankTable());
+            registerLootTable(ModEntities.PRIMAL_BEAST, blankTable());
+            registerLootTable(ModEntities.ROCKY_LUGGEROTH, cookableSingleDropTable(ModItems.luggeroth_chop, 0.0F, 3.0F));
+            registerLootTable(ModEntities.RUGGED_LURMORUS, cookableSingleDropTable(ModItems.lurmorus_meat, 0.0F, 3.0F));
+            registerLootTable(ModEntities.SALTION, singleDropTable(ModItems.fine_thread, 0.0F, 2.0F));
+            registerLootTable(ModEntities.SHALLOW_ARENTHIS, cookableDoubleDropTable(ModItems.small_tentacle, ModItems.sugar_crystals, 0.0F, 3.0F, 0.0F, 2.0F));
+            registerLootTable(ModEntities.SHALURKER, blankTable());
+            registerLootTable(ModEntities.SPELLBOUND_ELEMENTAL, blankTable());
+
+            registerLootTable(ModEntities.BLUE_HOWLITE_WOLF, blankTable());
+
+            registerLootTable(ModEntities.MALACHITE_GUARD, blankTable());
+        }
+
+        @Override
+        protected Iterable<EntityType<?>> getKnownEntities() {
+            return ModEntities.ENTITIES.getEntries().stream().map(Supplier::get).collect(Collectors.toList());
         }
     }
 }
