@@ -53,7 +53,7 @@ public abstract class GaiaBlockModelProvider extends BlockModelProvider {
     }
 
     public BlockModelBuilder stairsInnerLayer(Block block, ResourceLocation bottom, ResourceLocation top, ResourceLocation side, ResourceLocation bottom2, ResourceLocation top2, ResourceLocation side2) {
-        return withExistingParent(block.getRegistryName().getPath(), modLoc("block/util/inner_stairs_2_layer"))
+        return withExistingParent(block.getRegistryName().getPath() + "_inner", modLoc("block/util/inner_stairs_2_layer"))
                 .texture("bottom", bottom)
                 .texture("top", top)
                 .texture("side", side)
@@ -67,7 +67,7 @@ public abstract class GaiaBlockModelProvider extends BlockModelProvider {
     }
 
     public BlockModelBuilder stairsOuterLayer(Block block, ResourceLocation bottom, ResourceLocation top, ResourceLocation side, ResourceLocation bottom2, ResourceLocation top2, ResourceLocation side2) {
-        return withExistingParent(block.getRegistryName().getPath(), modLoc("block/util/outer_stairs_2_layer"))
+        return withExistingParent(block.getRegistryName().getPath() + "_outer", modLoc("block/util/outer_stairs_2_layer"))
                 .texture("bottom", bottom)
                 .texture("top", top)
                 .texture("side", side)

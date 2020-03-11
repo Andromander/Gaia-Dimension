@@ -1,5 +1,5 @@
 {
-  "parent": "gaiadimension:block/util/outer_stairs_2_layer",
+  "parent": "gaiadimension:block/util/stairs_2_layer",
   "textures": {
     "bottom": "gaiadimension:block/malachite_chisel_bricks",
     "top": "gaiadimension:block/malachite_chisel_bricks",
