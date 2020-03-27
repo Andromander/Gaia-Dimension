@@ -1,0 +1,8 @@
+{
+  "parent": "block/inner_stairs",
+  "textures": {
+    "side": "gaiadimension:block/cracked_jet_bricks",
+    "bottom": "gaiadimension:block/cracked_jet_bricks",
+    "top": "gaiadimension:block/cracked_jet_bricks"
+  }
+}

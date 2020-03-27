@@ -1,0 +1,8 @@
+{
+  "parent": "block/outer_stairs",
+  "textures": {
+    "side": "gaiadimension:block/cracked_jade_bricks",
+    "bottom": "gaiadimension:block/cracked_jade_bricks",
+    "top": "gaiadimension:block/cracked_jade_bricks"
+  }
+}

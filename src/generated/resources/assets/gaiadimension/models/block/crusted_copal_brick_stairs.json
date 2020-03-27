@@ -1,0 +1,8 @@
+{
+  "parent": "block/stairs",
+  "textures": {
+    "side": "gaiadimension:block/crusted_copal_bricks",
+    "bottom": "gaiadimension:block/crusted_copal_bricks",
+    "top": "gaiadimension:block/crusted_copal_bricks"
+  }
+}

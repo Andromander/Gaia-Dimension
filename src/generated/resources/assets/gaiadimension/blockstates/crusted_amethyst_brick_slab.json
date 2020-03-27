@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=top": {
+      "model": "gaiadimension:block/crusted_amethyst_brick_slab_top"
+    },
+    "type=bottom": {
+      "model": "gaiadimension:block/crusted_amethyst_brick_slab"
+    },
+    "type=double": {
+      "model": "gaiadimension:block/crusted_amethyst_bricks"
+    }
+  }
+}
