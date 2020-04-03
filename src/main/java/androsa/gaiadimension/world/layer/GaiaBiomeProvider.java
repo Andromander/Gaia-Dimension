@@ -50,12 +50,6 @@ public class GaiaBiomeProvider extends BiomeProvider {
         return this.genBiomes.func_215738_a(x, z);
     }
 
-    //TODO: When we get Structures, make this conditionally true.
-    @Override
-    public boolean hasStructure(Structure<?> structureIn) {
-        return false;
-    }
-
     @Override
     public Set<BlockState> getSurfaceBlocks() {
         if (this.topBlocksCache.isEmpty()) {

@@ -3,6 +3,7 @@ package androsa.gaiadimension.data;
 import androsa.gaiadimension.GaiaDimensionMod;
 import androsa.gaiadimension.data.provider.GaiaBlockLootTableProvider;
 import androsa.gaiadimension.data.provider.GaiaEntityLootTableProvider;
+import androsa.gaiadimension.registry.GaiaChestTables;
 import androsa.gaiadimension.registry.ModBlocks;
 import androsa.gaiadimension.registry.ModEntities;
 import androsa.gaiadimension.registry.ModItems;
@@ -12,13 +13,12 @@ import net.minecraft.block.Block;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.LootTableProvider;
 import net.minecraft.data.loot.BlockLootTables;
+import net.minecraft.data.loot.ChestLootTables;
 import net.minecraft.entity.EntityType;
 import net.minecraft.item.Items;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.world.storage.loot.LootParameterSet;
-import net.minecraft.world.storage.loot.LootParameterSets;
-import net.minecraft.world.storage.loot.LootTable;
-import net.minecraft.world.storage.loot.ValidationTracker;
+import net.minecraft.world.storage.loot.*;
+import net.minecraft.world.storage.loot.functions.SetCount;
 
 import java.util.List;
 import java.util.Map;
@@ -42,7 +42,7 @@ public class GaiaLootTables extends LootTableProvider {
 
     @Override
     protected List<Pair<Supplier<Consumer<BiConsumer<ResourceLocation, LootTable.Builder>>>, LootParameterSet>> getTables() {
-        return ImmutableList.of(Pair.of(Blocks::new, LootParameterSets.BLOCK), Pair.of(Entities::new, LootParameterSets.ENTITY));
+        return ImmutableList.of(Pair.of(Blocks::new, LootParameterSets.BLOCK), Pair.of(Entities::new, LootParameterSets.ENTITY), Pair.of(Chests::new, LootParameterSets.CHEST));
     }
 
     @Override
@@ -391,6 +391,124 @@ public class GaiaLootTables extends LootTableProvider {
         @Override
         protected Iterable<EntityType<?>> getKnownEntities() {
             return ModEntities.ENTITIES.getEntries().stream().map(Supplier::get).collect(Collectors.toList());
+        }
+    }
+
+    public static class Chests extends ChestLootTables {
+        @Override
+        public void accept(BiConsumer<ResourceLocation, LootTable.Builder> consumer) {
+            consumer.accept(GaiaChestTables.CHESTS_MINITOWER_AMETHYST, LootTable.builder()
+                    .addLootPool(LootPool.builder()
+                            .rolls(RandomValueRange.of(2.0F, 8.0F))
+                            .addEntry(ItemLootEntry.builder(ModItems.purple_geode_slice.get())
+                                    .weight(15)
+                                    .acceptFunction(SetCount.builder(RandomValueRange.of(1.0F, 3.0F))))
+                            .addEntry(ItemLootEntry.builder(ModItems.pyrite.get())
+                                    .weight(15)
+                                    .acceptFunction(SetCount.builder(RandomValueRange.of(1.0F, 5.0F))))
+                            .addEntry(ItemLootEntry.builder(ModItems.scaynyx_ingot.get())
+                                    .weight(10)
+                                    .acceptFunction(SetCount.builder(RandomValueRange.of(1.0F, 3.0F))))
+                            .addEntry(ItemLootEntry.builder(ModItems.sugilite_axe.get())
+                                    .weight(2))
+                            .addEntry(ItemLootEntry.builder(ModItems.proustite.get())
+                                    .weight(10)
+                                    .acceptFunction(SetCount.builder(RandomValueRange.of(1.0F, 3.0F))))
+                            .addEntry(ItemLootEntry.builder(ModBlocks.amethyst_bricks.get())
+                                    .weight(15)
+                                    .acceptFunction(SetCount.builder(RandomValueRange.of(3.0F, 9.0F))))
+                            .addEntry(ItemLootEntry.builder(ModItems.old_bow.get())
+                                    .weight(2))
+                            .addEntry(ItemLootEntry.builder(ModItems.agate_arrow.get())
+                                    .weight(10)
+                                    .acceptFunction(SetCount.builder(RandomValueRange.of(3.0F, 6.0F)))))
+                    .addLootPool(LootPool.builder()
+                            .rolls(ConstantRange.of(1))
+                            .addEntry(ItemLootEntry.builder(ModItems.white_opal.get()))));
+            consumer.accept(GaiaChestTables.CHESTS_MINITOWER_COPAL, LootTable.builder()
+                    .addLootPool(LootPool.builder()
+                            .rolls(RandomValueRange.of(2.0F, 8.0F))
+                            .addEntry(ItemLootEntry.builder(ModItems.pink_geode_slice.get())
+                                    .weight(15)
+                                    .acceptFunction(SetCount.builder(RandomValueRange.of(1.0F, 3.0F))))
+                            .addEntry(ItemLootEntry.builder(ModItems.pyrite.get())
+                                    .weight(15)
+                                    .acceptFunction(SetCount.builder(RandomValueRange.of(1.0F, 5.0F))))
+                            .addEntry(ItemLootEntry.builder(ModItems.scaynyx_ingot.get())
+                                    .weight(10)
+                                    .acceptFunction(SetCount.builder(RandomValueRange.of(1.0F, 3.0F))))
+                            .addEntry(ItemLootEntry.builder(ModItems.sugilite_axe.get())
+                                    .weight(2))
+                            .addEntry(ItemLootEntry.builder(ModItems.leucite.get())
+                                    .weight(10)
+                                    .acceptFunction(SetCount.builder(RandomValueRange.of(1.0F, 3.0F))))
+                            .addEntry(ItemLootEntry.builder(ModBlocks.copal_bricks.get())
+                                    .weight(15)
+                                    .acceptFunction(SetCount.builder(RandomValueRange.of(3.0F, 9.0F))))
+                            .addEntry(ItemLootEntry.builder(ModItems.old_bow.get())
+                                    .weight(2))
+                            .addEntry(ItemLootEntry.builder(ModItems.agate_arrow.get())
+                                    .weight(10)
+                                    .acceptFunction(SetCount.builder(RandomValueRange.of(3.0F, 6.0F)))))
+                    .addLootPool(LootPool.builder()
+                            .rolls(ConstantRange.of(1))
+                            .addEntry(ItemLootEntry.builder(ModItems.white_opal.get()))));
+            consumer.accept(GaiaChestTables.CHESTS_MINITOWER_JADE, LootTable.builder()
+                    .addLootPool(LootPool.builder()
+                            .rolls(RandomValueRange.of(2.0F, 8.0F))
+                            .addEntry(ItemLootEntry.builder(ModItems.green_geode_slice.get())
+                                    .weight(15)
+                                    .acceptFunction(SetCount.builder(RandomValueRange.of(1.0F, 3.0F))))
+                            .addEntry(ItemLootEntry.builder(ModItems.pyrite.get())
+                                    .weight(15)
+                                    .acceptFunction(SetCount.builder(RandomValueRange.of(1.0F, 5.0F))))
+                            .addEntry(ItemLootEntry.builder(ModItems.scaynyx_ingot.get())
+                                    .weight(10)
+                                    .acceptFunction(SetCount.builder(RandomValueRange.of(1.0F, 3.0F))))
+                            .addEntry(ItemLootEntry.builder(ModItems.sugilite_axe.get())
+                                    .weight(2))
+                            .addEntry(ItemLootEntry.builder(ModItems.euclase.get())
+                                    .weight(10)
+                                    .acceptFunction(SetCount.builder(RandomValueRange.of(1.0F, 3.0F))))
+                            .addEntry(ItemLootEntry.builder(ModBlocks.jade_bricks.get())
+                                    .weight(15)
+                                    .acceptFunction(SetCount.builder(RandomValueRange.of(3.0F, 9.0F))))
+                            .addEntry(ItemLootEntry.builder(ModItems.old_bow.get())
+                                    .weight(2))
+                            .addEntry(ItemLootEntry.builder(ModItems.agate_arrow.get())
+                                    .weight(10)
+                                    .acceptFunction(SetCount.builder(RandomValueRange.of(3.0F, 6.0F)))))
+                    .addLootPool(LootPool.builder()
+                            .rolls(ConstantRange.of(1))
+                            .addEntry(ItemLootEntry.builder(ModItems.white_opal.get()))));
+            consumer.accept(GaiaChestTables.CHESTS_MINITOWER_JET, LootTable.builder()
+                    .addLootPool(LootPool.builder()
+                            .rolls(RandomValueRange.of(2.0F, 8.0F))
+                            .addEntry(ItemLootEntry.builder(ModItems.blue_geode_slice.get())
+                                    .weight(15)
+                                    .acceptFunction(SetCount.builder(RandomValueRange.of(1.0F, 3.0F))))
+                            .addEntry(ItemLootEntry.builder(ModItems.pyrite.get())
+                                    .weight(15)
+                                    .acceptFunction(SetCount.builder(RandomValueRange.of(1.0F, 5.0F))))
+                            .addEntry(ItemLootEntry.builder(ModItems.scaynyx_ingot.get())
+                                    .weight(10)
+                                    .acceptFunction(SetCount.builder(RandomValueRange.of(1.0F, 3.0F))))
+                            .addEntry(ItemLootEntry.builder(ModItems.sugilite_axe.get())
+                                    .weight(2))
+                            .addEntry(ItemLootEntry.builder(ModItems.ixiolite.get())
+                                    .weight(10)
+                                    .acceptFunction(SetCount.builder(RandomValueRange.of(1.0F, 3.0F))))
+                            .addEntry(ItemLootEntry.builder(ModBlocks.jet_bricks.get())
+                                    .weight(15)
+                                    .acceptFunction(SetCount.builder(RandomValueRange.of(3.0F, 9.0F))))
+                            .addEntry(ItemLootEntry.builder(ModItems.old_bow.get())
+                                    .weight(2))
+                            .addEntry(ItemLootEntry.builder(ModItems.agate_arrow.get())
+                                    .weight(10)
+                                    .acceptFunction(SetCount.builder(RandomValueRange.of(3.0F, 6.0F)))))
+                    .addLootPool(LootPool.builder()
+                            .rolls(ConstantRange.of(1))
+                            .addEntry(ItemLootEntry.builder(ModItems.white_opal.get()))));
         }
     }
 }

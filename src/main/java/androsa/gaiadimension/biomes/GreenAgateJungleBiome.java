@@ -3,7 +3,9 @@ package androsa.gaiadimension.biomes;
 import androsa.gaiadimension.registry.GaiaBiomeFeatures;
 import androsa.gaiadimension.registry.ModEntities;
 import androsa.gaiadimension.registry.GaiaSkyColors;
+import androsa.gaiadimension.registry.ModWorldgen;
 import net.minecraft.entity.EntityClassification;
+import net.minecraft.world.gen.feature.IFeatureConfig;
 import net.minecraft.world.gen.surfacebuilders.SurfaceBuilder;
 import net.minecraft.world.gen.surfacebuilders.SurfaceBuilderConfig;
 import net.minecraftforge.api.distmarker.Dist;
@@ -19,6 +21,8 @@ public class GreenAgateJungleBiome extends BaseGaiaBiome {
 
     @Override
     public void addFeatures() {
+        this.addStructureFeature(ModWorldgen.MINI_TOWER.get().configure(IFeatureConfig.NO_FEATURE_CONFIG));
+        GaiaBiomeFeatures.addStructures(this);
         super.addFeatures();
         GaiaBiomeFeatures.addGlitterBlobUnderground(this);
         GaiaBiomeFeatures.addMagmaLakes(this);

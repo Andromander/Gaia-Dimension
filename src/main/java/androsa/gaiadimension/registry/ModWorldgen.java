@@ -6,23 +6,36 @@ import androsa.gaiadimension.world.gen.carver.CoatedCavesWorldCarver;
 import androsa.gaiadimension.world.gen.config.FeatureHeightConfig;
 import androsa.gaiadimension.world.gen.config.GaiaTreeFeatureConfig;
 import androsa.gaiadimension.world.gen.feature.*;
+import androsa.gaiadimension.world.gen.structure.MiniTowerStructure;
+import androsa.gaiadimension.world.gen.structure.pieces.MiniTowerPieces;
+import androsa.gaiadimension.world.gen.structure.processor.BlockDegradeProcessor;
 import androsa.gaiadimension.world.surface.GaiaDefaultSurfaceBuilder;
 import androsa.gaiadimension.world.surface.VolcanicSurfaceBuilder;
 import androsa.gaiadimension.world.surface.WastelandSurfaceBuilder;
-import net.minecraft.village.PointOfInterestType;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.registry.Registry;
 import net.minecraft.world.gen.carver.WorldCarver;
 import net.minecraft.world.gen.feature.*;
+import net.minecraft.world.gen.feature.structure.IStructurePieceType;
+import net.minecraft.world.gen.feature.structure.Structure;
+import net.minecraft.world.gen.feature.template.IStructureProcessorType;
 import net.minecraft.world.gen.surfacebuilders.SurfaceBuilder;
 import net.minecraft.world.gen.surfacebuilders.SurfaceBuilderConfig;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 
+import java.util.Locale;
+
 public class ModWorldgen {
 
     public static final DeferredRegister<Feature<?>> FEATURES = new DeferredRegister<>(ForgeRegistries.FEATURES, GaiaDimensionMod.MODID);
     public static final DeferredRegister<SurfaceBuilder<?>> SURFACE_BUILDERS = new DeferredRegister<>(ForgeRegistries.SURFACE_BUILDERS, GaiaDimensionMod.MODID);
     public static final DeferredRegister<WorldCarver<?>> WORLD_CARVERS = new DeferredRegister<>(ForgeRegistries.WORLD_CARVERS, GaiaDimensionMod.MODID);
+
+    public static final IStructureProcessorType BLOCK_DEGRADE = registerProcessor("block_degrade", BlockDegradeProcessor::new);
+
+    public static final IStructurePieceType MITO = registerPiece("MITO", MiniTowerPieces.Piece::new);
 
     //Feature
     public static final RegistryObject<Feature<BlockStateFeatureConfig>> POOL = FEATURES.register(
@@ -63,6 +76,9 @@ public class ModWorldgen {
             "gaia_disk", () -> new DiskNoWaterFeature<>(SphereReplaceConfig::deserialize));
     public static final RegistryObject<Feature<BlockBlobConfig>> GAIA_BLOB = FEATURES.register(
             "gaia_blob", () -> new GaiaBlobFeature<>(BlockBlobConfig::deserialize));
+    //Structures
+    public static final RegistryObject<Structure<NoFeatureConfig>> MINI_TOWER = FEATURES.register(
+            "mini_tower", () -> new MiniTowerStructure<>(NoFeatureConfig::deserialize));
 
     public static final SurfaceBuilder<SurfaceBuilderConfig> s_gaia = new GaiaDefaultSurfaceBuilder(SurfaceBuilderConfig::deserialize);
     public static final SurfaceBuilder<SurfaceBuilderConfig> s_volcanic = new VolcanicSurfaceBuilder(SurfaceBuilderConfig::deserialize);
@@ -78,4 +94,12 @@ public class ModWorldgen {
             "crystal_caves", () -> new CoatedCavesWorldCarver(ProbabilityConfig::deserialize, 256));
     public static final RegistryObject<WorldCarver<ProbabilityConfig>> CHASMS = WORLD_CARVERS.register(
             "chasms", () -> new ChasmsWorldCarver(ProbabilityConfig::deserialize, 32));
+
+    public static IStructureProcessorType registerProcessor(String name, IStructureProcessorType processor) {
+        return Registry.register(Registry.STRUCTURE_PROCESSOR, new ResourceLocation(GaiaDimensionMod.MODID, name), processor);
+    }
+
+    public static IStructurePieceType registerPiece(String name, IStructurePieceType piece) {
+        return Registry.register(Registry.STRUCTURE_PIECE, new ResourceLocation(GaiaDimensionMod.MODID, name.toLowerCase(Locale.ROOT)), piece);
+    }
 }

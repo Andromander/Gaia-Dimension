@@ -81,6 +81,10 @@ public class GaiaBiomeFeatures {
     public static final BlockClusterFeatureConfig CORRUPT_EYE = (new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(ModBlocks.corrupted_gaia_eye.get().getDefaultState()), new SimpleBlockPlacer())).tries(16).build();
     public static final BlockClusterFeatureConfig CAVE_FUNGI = (new BlockClusterFeatureConfig.Builder(new WeightedBlockStateProvider().addState(ModBlocks.elder_imklia.get().getDefaultState(), 2).addState(ModBlocks.gold_orb_tucher.get().getDefaultState(), 2), new SimpleBlockPlacer())).tries(64).blacklist(cave_blacklist).cannotProject().build();
 
+    public static void addStructures(Biome biomeIn) {
+        biomeIn.addFeature(GenerationStage.Decoration.SURFACE_STRUCTURES, ModWorldgen.MINI_TOWER.get().configure(IFeatureConfig.NO_FEATURE_CONFIG).createDecoratedFeature(Placement.NOPE.configure(IPlacementConfig.NO_PLACEMENT_CONFIG)));
+    }
+
     public static void addCarver(Biome biomeIn) {
         biomeIn.addCarver(GenerationStage.Carving.AIR, Biome.createCarver(ModWorldgen.CRYSTAL_CAVES.get(), new ProbabilityConfig(0.15F)));
         biomeIn.addCarver(GenerationStage.Carving.AIR, Biome.createCarver(ModWorldgen.CHASMS.get(), new ProbabilityConfig(0.03F)));
