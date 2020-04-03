@@ -134,6 +134,48 @@
   "block.gaiadimension.gaia_stone_bricks": "Gaia Stone Bricks",
   "block.gaiadimension.cracked_gaia_stone_bricks": "Cracked Gaia Stone Bricks",
   "block.gaiadimension.crusted_gaia_stone_bricks": "Crystallized Gaia Stone Bricks",
+
+  "block.gaiadimension.raw_jade": "Raw Jade",
+  "block.gaiadimension.jade_bricks": "Jade Bricks",
+  "block.gaiadimension.jade_brick_slab": "Jade Brick Slab",
+  "block.gaiadimension.jade_brick_stairs": "Jade Brick Stairs",
+  "block.gaiadimension.cracked_jade_bricks": "Cracked Jade Bricks",
+  "block.gaiadimension.cracked_jade_brick_slab": "Cracked Jade Brick Slab",
+  "block.gaiadimension.cracked_jade_brick_stairs": "Cracked Jade Brick Stairs",
+  "block.gaiadimension.crusted_jade_bricks": "Crusted Jade Bricks",
+  "block.gaiadimension.crusted_jade_brick_slab": "Crusted Jade Brick Slab",
+  "block.gaiadimension.crusted_jade_brick_stairs": "Crusted Jade Brick Stairs",
+  "block.gaiadimension.raw_copal": "Raw Copal",
+  "block.gaiadimension.copal_bricks": "Copal Bricks",
+  "block.gaiadimension.copal_brick_slab": "Copal Brick Slab",
+  "block.gaiadimension.copal_brick_stairs": "Copal Brick Stairs",
+  "block.gaiadimension.cracked_copal_bricks": "Cracked Copal Bricks",
+  "block.gaiadimension.cracked_copal_brick_slab": "Cracked Copal Brick Slab",
+  "block.gaiadimension.cracked_copal_brick_stairs": "Cracked Copal Brick Stairs",
+  "block.gaiadimension.crusted_copal_bricks": "Crusted Copal Bricks",
+  "block.gaiadimension.crusted_copal_brick_slab": "Crusted Copal Brick Slab",
+  "block.gaiadimension.crusted_copal_brick_stairs": "Crusted Copal Brick Stairs",
+  "block.gaiadimension.raw_jet": "Raw Jet",
+  "block.gaiadimension.jet_bricks": "Jet Bricks",
+  "block.gaiadimension.jet_brick_slab": "Jet Brick Slab",
+  "block.gaiadimension.jet_brick_stairs": "Jet Brick Stairs",
+  "block.gaiadimension.cracked_jet_bricks": "Cracked Jet Bricks",
+  "block.gaiadimension.cracked_jet_brick_slab": "Cracked Jet Brick Slab",
+  "block.gaiadimension.cracked_jet_brick_stairs": "Cracked Jet Brick Stairs",
+  "block.gaiadimension.crusted_jet_bricks": "Crusted Jet Bricks",
+  "block.gaiadimension.crusted_jet_brick_slab": "Crusted Jet Brick Slab",
+  "block.gaiadimension.crusted_jet_brick_stairs": "Crusted Jet Brick Stairs",
+  "block.gaiadimension.raw_amethyst": "Raw Amethyst",
+  "block.gaiadimension.amethyst_bricks": "Amethyst Bricks",
+  "block.gaiadimension.amethyst_brick_slab": "Amethyst Brick Slab",
+  "block.gaiadimension.amethyst_brick_stairs": "Amethyst Brick Stairs",
+  "block.gaiadimension.cracked_amethyst_bricks": "Cracked Amethyst Bricks",
+  "block.gaiadimension.cracked_amethyst_brick_slab": "Cracked Amethyst Brick Slab",
+  "block.gaiadimension.cracked_amethyst_brick_stairs": "Cracked Amethyst Brick Stairs",
+  "block.gaiadimension.crusted_amethyst_bricks": "Crusted Amethyst Bricks",
+  "block.gaiadimension.crusted_amethyst_brick_slab": "Crusted Amethyst Brick Slab",
+  "block.gaiadimension.crusted_amethyst_brick_stairs": "Crusted Amethyst Brick Stairs",
+
   "block.gaiadimension.reinforced_bricks": "Reinforced Bricks",
   "block.gaiadimension.gaia_stone_furnace": "Gaia Stone Furnace",
   "block.gaiadimension.restructurer": "Restructurer",
@@ -205,7 +247,6 @@
   "block.gaiadimension.charged_mineral": "Charged Mineral",
   "block.gaiadimension.bolstered_bricks": "Bolstered Bricks",
 
-  //Potted Plants
   "block.gaiadimension.potted_thiscus": "Potted Thiscus",
   "block.gaiadimension.potted_ouzium": "Potted Ouzium",
   "block.gaiadimension.potted_agathum": "Potted Agathum",
@@ -232,11 +273,11 @@
   "block.gaiadimension.potted_burning_sapling": "Potted Fire Agate Sapling",
   "block.gaiadimension.potted_aura_sapling": "Potted Aura Sapling",
 
-  //fluid.mineral_water=Mineral Water
-  //fluid.superhot_magma=Superhot Magma
-  //fluid.sweet_muck=Sweet Muck
-  //fluid.liquid_bismuth=Liquid Bismuth
-  //fluid.liquid_aura=Liquid Aura
+  "fluid.gaiadimension.mineral_water_still": "Mineral Water",
+  "fluid.gaiadimension.superhot_magma_still": "Superhot Magma",
+  "fluid.gaiadimension.sweet_muck_still": "Sweet Muck",
+  "fluid.gaiadimension.liquid_bismuth_still": "Liquid Bismuth",
+  "fluid.gaiadimension.liquid_aura_still": "Liquid Aura",
   "block.gaiadimension.gold_fire": "Gold Fire",
   "block.gaiadimension.gaia_portal": "Gaia Portal",
 
