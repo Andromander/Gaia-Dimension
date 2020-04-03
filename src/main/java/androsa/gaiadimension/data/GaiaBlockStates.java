@@ -167,6 +167,51 @@ public class GaiaBlockStates extends GaiaBlockStateProvider {
         basicBlock(ModBlocks.gaia_stone_bricks);
         basicBlock(ModBlocks.cracked_gaia_stone_bricks);
         basicBlock(ModBlocks.crusted_gaia_stone_bricks);
+
+        basicBlock(ModBlocks.raw_jade);
+        basicBlock(ModBlocks.jade_bricks);
+        slabBlock(ModBlocks.jade_brick_slab, ModBlocks.jade_bricks);
+        stairsBlock(ModBlocks.jade_brick_stairs, "jade_bricks");
+        basicBlock(ModBlocks.cracked_jade_bricks);
+        slabBlock(ModBlocks.cracked_jade_brick_slab, ModBlocks.cracked_jade_bricks);
+        stairsBlock(ModBlocks.cracked_jade_brick_stairs, "cracked_jade_bricks");
+        basicBlock(ModBlocks.crusted_jade_bricks);
+        slabBlock(ModBlocks.crusted_jade_brick_slab, ModBlocks.crusted_jade_bricks);
+        stairsBlock(ModBlocks.crusted_jade_brick_stairs, "crusted_jade_bricks");
+
+        basicBlock(ModBlocks.raw_copal);
+        basicBlock(ModBlocks.copal_bricks);
+        slabBlock(ModBlocks.copal_brick_slab, ModBlocks.copal_bricks);
+        stairsBlock(ModBlocks.copal_brick_stairs, "copal_bricks");
+        basicBlock(ModBlocks.cracked_copal_bricks);
+        slabBlock(ModBlocks.cracked_copal_brick_slab, ModBlocks.cracked_copal_bricks);
+        stairsBlock(ModBlocks.cracked_copal_brick_stairs, "cracked_copal_bricks");
+        basicBlock(ModBlocks.crusted_copal_bricks);
+        slabBlock(ModBlocks.crusted_copal_brick_slab, ModBlocks.crusted_copal_bricks);
+        stairsBlock(ModBlocks.crusted_copal_brick_stairs, "crusted_copal_bricks");
+
+        basicBlock(ModBlocks.raw_jet);
+        basicBlock(ModBlocks.jet_bricks);
+        slabBlock(ModBlocks.jet_brick_slab, ModBlocks.jet_bricks);
+        stairsBlock(ModBlocks.jet_brick_stairs, "jet_bricks");
+        basicBlock(ModBlocks.cracked_jet_bricks);
+        slabBlock(ModBlocks.cracked_jet_brick_slab, ModBlocks.cracked_jet_bricks);
+        stairsBlock(ModBlocks.cracked_jet_brick_stairs, "cracked_jet_bricks");
+        basicBlock(ModBlocks.crusted_jet_bricks);
+        slabBlock(ModBlocks.crusted_jet_brick_slab, ModBlocks.crusted_jet_bricks);
+        stairsBlock(ModBlocks.crusted_jet_brick_stairs, "crusted_jet_bricks");
+
+        basicBlock(ModBlocks.raw_amethyst);
+        basicBlock(ModBlocks.amethyst_bricks);
+        slabBlock(ModBlocks.amethyst_brick_slab, ModBlocks.amethyst_bricks);
+        stairsBlock(ModBlocks.amethyst_brick_stairs, "amethyst_bricks");
+        basicBlock(ModBlocks.cracked_amethyst_bricks);
+        slabBlock(ModBlocks.cracked_amethyst_brick_slab, ModBlocks.cracked_amethyst_bricks);
+        stairsBlock(ModBlocks.cracked_amethyst_brick_stairs, "cracked_amethyst_bricks");
+        basicBlock(ModBlocks.crusted_amethyst_bricks);
+        slabBlock(ModBlocks.crusted_amethyst_brick_slab, ModBlocks.crusted_amethyst_bricks);
+        stairsBlock(ModBlocks.crusted_amethyst_brick_stairs, "crusted_amethyst_bricks");
+
         basicBlock(ModBlocks.reinforced_bricks);
         basicBlock(ModBlocks.bolstered_bricks);
         basicBlock(ModBlocks.malachite_bricks);

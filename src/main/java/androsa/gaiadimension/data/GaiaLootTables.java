@@ -46,7 +46,8 @@ public class GaiaLootTables extends LootTableProvider {
     }
 
     @Override
-    protected void validate(Map<ResourceLocation, LootTable> map, ValidationTracker validationresults) { }
+    protected void validate(Map<ResourceLocation, LootTable> map, ValidationTracker validationresults) {
+    }
 
     public static class Blocks extends GaiaBlockLootTableProvider {
         @Override
@@ -208,6 +209,48 @@ public class GaiaLootTables extends LootTableProvider {
             dropSelf(ModBlocks.gaia_stone_bricks);
             dropSelf(ModBlocks.cracked_gaia_stone_bricks);
             dropSelf(ModBlocks.crusted_gaia_stone_bricks);
+
+            dropSelf(ModBlocks.raw_jade);
+            dropSelf(ModBlocks.jade_bricks);
+            dropSlab(ModBlocks.jade_brick_slab);
+            dropSelf(ModBlocks.jade_brick_stairs);
+            dropSelf(ModBlocks.cracked_jade_bricks);
+            dropSlab(ModBlocks.cracked_jade_brick_slab);
+            dropSelf(ModBlocks.cracked_jade_brick_stairs);
+            dropSelf(ModBlocks.crusted_jade_bricks);
+            dropSlab(ModBlocks.crusted_jade_brick_slab);
+            dropSelf(ModBlocks.crusted_jade_brick_stairs);
+            dropSelf(ModBlocks.raw_copal);
+            dropSelf(ModBlocks.copal_bricks);
+            dropSlab(ModBlocks.copal_brick_slab);
+            dropSelf(ModBlocks.copal_brick_stairs);
+            dropSelf(ModBlocks.cracked_copal_bricks);
+            dropSlab(ModBlocks.cracked_copal_brick_slab);
+            dropSelf(ModBlocks.cracked_copal_brick_stairs);
+            dropSelf(ModBlocks.crusted_copal_bricks);
+            dropSlab(ModBlocks.crusted_copal_brick_slab);
+            dropSelf(ModBlocks.crusted_copal_brick_stairs);
+            dropSelf(ModBlocks.raw_jet);
+            dropSelf(ModBlocks.jet_bricks);
+            dropSlab(ModBlocks.jet_brick_slab);
+            dropSelf(ModBlocks.jet_brick_stairs);
+            dropSelf(ModBlocks.cracked_jet_bricks);
+            dropSlab(ModBlocks.cracked_jet_brick_slab);
+            dropSelf(ModBlocks.cracked_jet_brick_stairs);
+            dropSelf(ModBlocks.crusted_jet_bricks);
+            dropSlab(ModBlocks.crusted_jet_brick_slab);
+            dropSelf(ModBlocks.crusted_jet_brick_stairs);
+            dropSelf(ModBlocks.raw_amethyst);
+            dropSelf(ModBlocks.amethyst_bricks);
+            dropSlab(ModBlocks.amethyst_brick_slab);
+            dropSelf(ModBlocks.amethyst_brick_stairs);
+            dropSelf(ModBlocks.cracked_amethyst_bricks);
+            dropSlab(ModBlocks.cracked_amethyst_brick_slab);
+            dropSelf(ModBlocks.cracked_amethyst_brick_stairs);
+            dropSelf(ModBlocks.crusted_amethyst_bricks);
+            dropSlab(ModBlocks.crusted_amethyst_brick_slab);
+            dropSelf(ModBlocks.crusted_amethyst_brick_stairs);
+
             dropSelf(ModBlocks.reinforced_bricks);
             dropSelf(ModBlocks.bolstered_bricks);
             dropSelf(ModBlocks.malachite_bricks);

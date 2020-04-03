@@ -169,6 +169,18 @@ public class GaiaRecipes extends GaiaRecipeProvider {
         sliceRecipe(ModItems.purple_geode_slice, ModItems.purple_geode).build(consumer, loc("purple_geode_slice"));
         largeCompressRecipe(ModBlocks.cloudy_glass.get(), ModItems.cloudy_shard.get()).build(consumer, loc("cloudy_glass"));
         smallCompressRecipe(ModBlocks.gaia_stone_bricks.get(), ModBlocks.gaia_stone.get(), 4).build(consumer, loc("gaia_stone_bricks"));
+        smallCompressRecipe(ModBlocks.jade_bricks.get(), ModBlocks.raw_jade.get(), 4).build(consumer, loc("jade_bricks"));
+        slabRecipe(ModBlocks.jade_brick_slab, ModBlocks.jade_bricks);
+        stairsRecipe(ModBlocks.jade_brick_stairs, ModBlocks.jade_bricks);
+        smallCompressRecipe(ModBlocks.copal_bricks.get(), ModBlocks.raw_copal.get(), 4).build(consumer, loc("copal_bricks"));
+        slabRecipe(ModBlocks.copal_brick_slab, ModBlocks.copal_bricks);
+        stairsRecipe(ModBlocks.copal_brick_stairs, ModBlocks.copal_bricks);
+        smallCompressRecipe(ModBlocks.jet_bricks.get(), ModBlocks.raw_jet.get(), 4).build(consumer, loc("jet_bricks"));
+        slabRecipe(ModBlocks.jet_brick_slab, ModBlocks.jet_bricks);
+        stairsRecipe(ModBlocks.jet_brick_stairs, ModBlocks.jet_bricks);
+        smallCompressRecipe(ModBlocks.amethyst_bricks.get(), ModBlocks.raw_amethyst.get(), 4).build(consumer, loc("amethyst_bricks"));
+        slabRecipe(ModBlocks.amethyst_brick_slab, ModBlocks.amethyst_bricks);
+        stairsRecipe(ModBlocks.amethyst_brick_stairs, ModBlocks.amethyst_bricks);
         largeCompressRecipe(ModItems.goldstone.get(), ModItems.goldstone_residue.get()).build(consumer, loc("goldstone"));
         smallCompressRecipe(ModBlocks.gummy_glitter_block.get(), ModItems.sweet_muckball.get()).build(consumer, loc("gummy_glitter_block"));
         largeCompressRecipe(ModItems.pink_goo.get(), ModItems.pink_essence.get()).build(consumer, loc("pink_goo"));
