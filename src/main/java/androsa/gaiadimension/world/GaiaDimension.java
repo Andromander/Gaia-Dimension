@@ -263,16 +263,6 @@ public class GaiaDimension extends Dimension {
 //        return new Vec3d(currentFogColor[0] / 255D, currentFogColor[1] / 255D, currentFogColor[2] / 255D);
 //    }
 
-    //TODO: See if we really need this
-//    @Override
-//    public Biome getBiome(BlockPos pos) {
-//        Biome biome = super.getBiome(pos);
-//        if (biome == null) {
-//            biome = ModBiomes.pink_agate_forest.get();
-//        }
-//        return biome;
-//    }
-
     //Clouds are *way* up there
     @Override
     @OnlyIn(Dist.CLIENT)

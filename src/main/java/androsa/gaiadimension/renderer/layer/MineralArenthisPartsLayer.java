@@ -27,29 +27,4 @@ public class MineralArenthisPartsLayer<T extends MineralArenthisEntity, M extend
         IVertexBuilder builder = buffer.getBuffer(textureLoc);
         this.getEntityModel().render(matrixStack, builder, 15728640, OverlayTexture.DEFAULT_UV, 1.0F, 1.0F, 1.0F, 1.0F);
     }
-
-//    @Override
-//    public void render(MineralArenthisEntity entitylivingbaseIn, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch, float scale) {
-//        this.bindTexture(textureLoc);
-//        GlStateManager.enableBlend();
-//        GlStateManager.disableAlphaTest();
-//        GlStateManager.blendFunc(GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ONE);
-//        GlStateManager.disableLighting();
-//        GlStateManager.depthMask(!entitylivingbaseIn.isInvisible());
-//        GLX.glMultiTexCoord2f(GLX.GL_TEXTURE1, 61680.0F, 0.0F);
-//        GlStateManager.enableLighting();
-//        GlStateManager.color4f(1.0F, 1.0F, 1.0F, 1.0F);
-//        Minecraft.getInstance().gameRenderer.setupFogColor(true);
-//        this.getSegmentedModel().render(entitylivingbaseIn, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale);
-//        Minecraft.getInstance().gameRenderer.setupFogColor(false);
-//        this.func_215334_a(entitylivingbaseIn);
-//        GlStateManager.depthMask(true);
-//        GlStateManager.disableBlend();
-//        GlStateManager.enableAlphaTest();
-//    }
-
-//    @Override
-//    public boolean shouldCombineTextures() {
-//        return false;
-//    }
 }
