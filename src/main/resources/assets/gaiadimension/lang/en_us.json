@@ -420,7 +420,8 @@
   "item.gaiadimension.gaia_baron_dagger": "Gaia Baron Dagger",
   "item.gaiadimension.gaia_duke_blade": "Gaia Duke Blade",
   "item.gaiadimension.gaia_champion_sword": "Gaia Champion Sword",
-  "item.gaiadimension.malachite_guard_baton.tooltip": "That thick club could hurt someone's unprotected head",
+
+  "item.gaiadimension.malachite_guard_baton.tooltip": "A good swing could knock targets away",
   "item.gaiadimension.apex_predator_mace.tooltip": "Those claws could dig deep into skin",
   "item.gaiadimension.spinel_princess_flamberge.tooltip": "Every swing leaves an entrail of fire",
   "item.gaiadimension.zircon_prince_razor.tooltip": "Those two prongs channel electricity",
@@ -429,6 +430,7 @@
   "item.gaiadimension.gaia_baron_dagger.tooltip": "Though the blade is small, it could break armor",
   "item.gaiadimension.gaia_duke_blade.tooltip": "That blade could hurt at high velocity",
   "item.gaiadimension.gaia_champion_sword.tooltip": "She bestowed it upon you",
+
   "item.gaiadimension.sugilite_helmet": "Sugilite Helmet",
   "item.gaiadimension.sugilite_chestplate": "Sugilite Chestplate",
   "item.gaiadimension.sugilite_legs": "Sugilite Legs",
@@ -490,6 +492,8 @@
   "item.gaiadimension.gaia_champion_greaves": "Gaia Champion Greaves",
   "item.gaiadimension.gaia_champion_boots": "Gaia Champion Boots",
 
+  "item.gaiadimension.mock_malachite": "Mock Malachite",
+
   "item.gaiadimension.growth_sapper_spawn_egg": "Growth Sapper Spawn Egg",
   "item.gaiadimension.corrupt_sapper_spawn_egg": "Corrupted Growth Sapper Spawn Egg",
   "item.gaiadimension.mutant_growth_extractor_spawn_egg": "Mutant Growth Extractor Spawn Egg",
@@ -526,6 +530,8 @@
   "tsavorite_armor.tooltip": "So stylish, yet so mysterious",
   "larvikite_armor.tooltip": "It looks like it went through some intense battles",
   "champion_armor.tooltip": "Amazing! This armor feels so pure!",
+
+  "mock_gem.tooltip": "The only reward from forfeiting the battle",
 
   "itemGroup.gaia_blocks": "Gaia Blocks",
   "itemGroup.gaia_items": "Gaia Items",

@@ -208,6 +208,6 @@ public class ModEntities {
         RenderingRegistry.registerEntityRenderingHandler(SPELLBOUND_ELEMENTAL.get(), m -> new SpellElementRenderer<>(m, new SpellElementModel<>(), 0.4F));
 
         RenderingRegistry.registerEntityRenderingHandler(BLUE_HOWLITE_WOLF.get(), m -> new BlueHowliteWolfRenderer<>(m, new BlueHowliteWolfModel<>(), 1.0F));
-        RenderingRegistry.registerEntityRenderingHandler(MALACHITE_GUARD.get(), m -> new MalachiteGuardRenderer<>(m, new MalachiteGuardModel<>(), 0.7F));
+        RenderingRegistry.registerEntityRenderingHandler(MALACHITE_GUARD.get(), m -> new MalachiteGuardRenderer<>(m, new MalachiteGuardModel<>(0.0F), 0.7F));
     }
 }

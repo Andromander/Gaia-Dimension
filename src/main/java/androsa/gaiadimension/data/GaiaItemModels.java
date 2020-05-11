@@ -443,6 +443,7 @@ public class GaiaItemModels extends GaiaItemModelProvider {
         basicItem(ModItems.chalcedony_axe);
         basicItem(ModItems.chalcedony_shovel);
         basicItem(ModItems.agate_arrow);
+        basicItem(ModItems.mock_malachite);
 
         basicItem(ModItems.malachite_guard_baton);
         basicItem(ModItems.apex_predator_mace);

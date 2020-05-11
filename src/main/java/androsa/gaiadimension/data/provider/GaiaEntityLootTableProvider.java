@@ -111,4 +111,27 @@ public class GaiaEntityLootTableProvider extends EntityLootTables {
                                 .acceptFunction(SetCount.builder(RandomValueRange.of(0.0F, 1.0F)))
                                 .acceptFunction(LootingEnchantBonus.builder(RandomValueRange.of(0.0F, 1.0F)))));
     }
+
+    public LootTable.Builder malachiteGuardTable() {
+        return LootTable.builder()
+                .addLootPool(LootPool.builder()
+                        .rolls(ConstantRange.of(1))
+                        .addEntry(ItemLootEntry.builder(ModItems.malachite_guard_baton.get())))
+                .addLootPool(LootPool.builder()
+                        .rolls(ConstantRange.of(1))
+                        .addEntry(ItemLootEntry.builder(ModItems.malachite_guard_headgear.get())
+                                .acceptFunction(SetCount.builder(RandomValueRange.of(0.0F, 1.0F)))))
+                .addLootPool(LootPool.builder()
+                        .rolls(ConstantRange.of(1))
+                        .addEntry(ItemLootEntry.builder(ModItems.malachite_guard_brace.get())
+                                .acceptFunction(SetCount.builder(RandomValueRange.of(0.0F, 1.0F)))))
+                .addLootPool(LootPool.builder()
+                        .rolls(ConstantRange.of(1))
+                        .addEntry(ItemLootEntry.builder(ModItems.malachite_guard_gear.get())
+                                .acceptFunction(SetCount.builder(RandomValueRange.of(0.0F, 1.0F)))))
+                .addLootPool(LootPool.builder()
+                        .rolls(ConstantRange.of(1))
+                        .addEntry(ItemLootEntry.builder(ModItems.malachite_guard_boots.get())
+                                .acceptFunction(SetCount.builder(RandomValueRange.of(0.0F, 1.0F)))));
+    }
 }

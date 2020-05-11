@@ -385,7 +385,7 @@ public class GaiaLootTables extends LootTableProvider {
 
             registerLootTable(ModEntities.BLUE_HOWLITE_WOLF, blankTable());
 
-            registerLootTable(ModEntities.MALACHITE_GUARD, blankTable());
+            registerLootTable(ModEntities.MALACHITE_GUARD, malachiteGuardTable());
         }
 
         @Override

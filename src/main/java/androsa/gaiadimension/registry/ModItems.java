@@ -222,6 +222,8 @@ public class ModItems {
     public static final RegistryObject<Item> gaia_duke_blade = ITEMS.register("gaia_duke_blade", GaiaDukeSwordItem::new);
     public static final RegistryObject<Item> gaia_champion_sword = ITEMS.register("gaia_champion_sword", GaiaChampSwordItem::new);
 
+    public static final RegistryObject<Item> mock_malachite = ITEMS.register("mock_malachite", MockGemItem::new);
+
     public static final RegistryObject<Item> growth_sapper_spawn_egg = registerSpawnEgg("growth_sapper", ModEntities.growth_sapper, 0x5A4514, 0xFF00FF);
     public static final RegistryObject<Item> mutant_growth_extractor_spawn_egg = registerSpawnEgg("mutant_growth_extractor", ModEntities.growth_extractor, 0x5A4514, 0xFFFFCC);
     public static final RegistryObject<Item> howlite_wolf_spawn_egg = registerSpawnEgg("howlite_wolf", ModEntities.howlite_wolf, 0xDDDDDD, 0x3333FF);
