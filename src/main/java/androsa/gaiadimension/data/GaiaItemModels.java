@@ -217,9 +217,13 @@ public class GaiaItemModels extends GaiaItemModelProvider {
         blockItem(ModBlocks.malachite_pulsing_tiles);
         blockItem(ModBlocks.malachite_pulsing_chisel);
         blockItem(ModBlocks.malachite_brick_slab);
+        blockItem(ModBlocks.malachite_cracked_brick_slab);
+        blockItem(ModBlocks.malachite_crusted_brick_slab);
         blockItem(ModBlocks.malachite_floor_slab);
         blockItem(ModBlocks.malachite_pillar);
         blockItem(ModBlocks.malachite_brick_stairs);
+        blockItem(ModBlocks.malachite_cracked_brick_stairs);
+        blockItem(ModBlocks.malachite_crusted_brick_stairs);
         blockItem(ModBlocks.malachite_floor_stairs);
         blockItem(ModBlocks.malachite_chisel_stairs);
         blockItem(ModBlocks.malachite_pulsing_brick_stairs);

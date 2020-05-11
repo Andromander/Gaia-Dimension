@@ -223,9 +223,13 @@ public class GaiaBlockStates extends GaiaBlockStateProvider {
         basicBlockLayered(ModBlocks.malachite_pulsing_tiles, "malachite_floor_tiles", "malachite_blue_pulse_corner");
         basicBlockLayered(ModBlocks.malachite_pulsing_chisel, "malachite_chisel_bricks", "malachite_lime_pulse_corner");
         slabBlock(ModBlocks.malachite_brick_slab, ModBlocks.malachite_bricks);
+        slabBlock(ModBlocks.malachite_cracked_brick_slab, ModBlocks.malachite_cracked_bricks);
+        slabBlock(ModBlocks.malachite_crusted_brick_slab, ModBlocks.malachite_crusted_bricks);
         slabBlock(ModBlocks.malachite_floor_slab, ModBlocks.malachite_floor_tiles);
         axisBlock(ModBlocks.malachite_pillar.get());
         stairsBlock(ModBlocks.malachite_brick_stairs, "malachite_bricks");
+        stairsBlock(ModBlocks.malachite_cracked_brick_stairs, "malachite_cracked_bricks");
+        stairsBlock(ModBlocks.malachite_crusted_brick_stairs, "malachite_crusted_bricks");
         stairsBlock(ModBlocks.malachite_floor_stairs, "malachite_floor_tiles");
         stairsBlock(ModBlocks.malachite_chisel_stairs, "malachite_chisel_bricks");
         stairsBlockLayered(ModBlocks.malachite_pulsing_brick_stairs, "malachite_bricks", "malachite_green_pulse_corner");

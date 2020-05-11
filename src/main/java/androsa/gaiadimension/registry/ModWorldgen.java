@@ -6,9 +6,12 @@ import androsa.gaiadimension.world.gen.carver.CoatedCavesWorldCarver;
 import androsa.gaiadimension.world.gen.config.FeatureHeightConfig;
 import androsa.gaiadimension.world.gen.config.GaiaTreeFeatureConfig;
 import androsa.gaiadimension.world.gen.feature.*;
+import androsa.gaiadimension.world.gen.structure.MalachiteWatchtowerStructure;
 import androsa.gaiadimension.world.gen.structure.MiniTowerStructure;
+import androsa.gaiadimension.world.gen.structure.pieces.MalachiteWatchtowerPieces;
 import androsa.gaiadimension.world.gen.structure.pieces.MiniTowerPieces;
 import androsa.gaiadimension.world.gen.structure.processor.BlockDegradeProcessor;
+import androsa.gaiadimension.world.gen.structure.processor.MalachiteDegradeProcessor;
 import androsa.gaiadimension.world.surface.GaiaDefaultSurfaceBuilder;
 import androsa.gaiadimension.world.surface.VolcanicSurfaceBuilder;
 import androsa.gaiadimension.world.surface.WastelandSurfaceBuilder;
@@ -34,8 +37,10 @@ public class ModWorldgen {
     public static final DeferredRegister<WorldCarver<?>> WORLD_CARVERS = new DeferredRegister<>(ForgeRegistries.WORLD_CARVERS, GaiaDimensionMod.MODID);
 
     public static final IStructureProcessorType BLOCK_DEGRADE = registerProcessor("block_degrade", BlockDegradeProcessor::new);
+    public static final IStructureProcessorType MALACHITE_DEGRADE = registerProcessor("malachite_degrade", MalachiteDegradeProcessor::new);
 
     public static final IStructurePieceType MITO = registerPiece("MITO", MiniTowerPieces.Piece::new);
+    public static final IStructurePieceType MAWA = registerPiece("MAWA", MalachiteWatchtowerPieces.Piece::new);
 
     //Feature
     public static final RegistryObject<Feature<BlockStateFeatureConfig>> POOL = FEATURES.register(
@@ -79,6 +84,8 @@ public class ModWorldgen {
     //Structures
     public static final RegistryObject<Structure<NoFeatureConfig>> MINI_TOWER = FEATURES.register(
             "mini_tower", () -> new MiniTowerStructure<>(NoFeatureConfig::deserialize));
+    public static final RegistryObject<Structure<NoFeatureConfig>> MALACHITE_WATCHTOWER = FEATURES.register(
+            "malachite_watchtower", () -> new MalachiteWatchtowerStructure<>(NoFeatureConfig::deserialize));
 
     public static final SurfaceBuilder<SurfaceBuilderConfig> s_gaia = new GaiaDefaultSurfaceBuilder(SurfaceBuilderConfig::deserialize);
     public static final SurfaceBuilder<SurfaceBuilderConfig> s_volcanic = new VolcanicSurfaceBuilder(SurfaceBuilderConfig::deserialize);

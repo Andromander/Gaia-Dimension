@@ -2,6 +2,7 @@ package androsa.gaiadimension.registry;
 
 import androsa.gaiadimension.GaiaDimensionMod;
 import androsa.gaiadimension.block.tileentity.*;
+import androsa.gaiadimension.block.tileentity.boss.MalachiteGuardSpawnerTileEntity;
 import com.google.common.collect.Sets;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraftforge.fml.RegistryObject;
@@ -24,4 +25,8 @@ public class ModTileEntities {
             "restructurer", () -> new TileEntityType<>(RestructurerTileEntity::new, Sets.newHashSet(ModBlocks.restructurer.get()), null));
     public static final RegistryObject<TileEntityType<SmallCrateTileEntity>> SMALL_CRATE = TILE_ENTITIES.register(
             "small_crate", () -> new TileEntityType<>(SmallCrateTileEntity::new, Sets.newHashSet(ModBlocks.crude_storage_crate.get()), null));
+
+    public static final RegistryObject<TileEntityType<MalachiteGuardSpawnerTileEntity>> MALACHITE_SPAWNER = TILE_ENTITIES.register(
+            "malachite_spawner", () -> new TileEntityType<>(MalachiteGuardSpawnerTileEntity::new, Sets.newHashSet(ModBlocks.malachite_guard_spawner.get()), null)
+    );
 }

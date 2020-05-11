@@ -25,6 +25,7 @@ public class ModParticles {
     public static final BasicParticleType green_fire = new BasicParticleType(false);
     public static final BasicParticleType portal = new BasicParticleType(false);
     public static final BasicParticleType pyrite = new BasicParticleType(false);
+    public static final BasicParticleType spawner_core = new BasicParticleType(false);
 
     public static final RegistryObject<BasicParticleType> GEYSER_SMOKE = PARTICLE_TYPES.register("geyser_smoke", () -> geyser_smoke);
     public static final RegistryObject<BasicParticleType> RESTRUCTURER_FIRE = PARTICLE_TYPES.register("restructurer_fire", () -> yellow_fire);
@@ -32,6 +33,7 @@ public class ModParticles {
     public static final RegistryObject<BasicParticleType> PORTAL = PARTICLE_TYPES.register("portal", () -> portal);
     public static final RegistryObject<BasicParticleType> PYRITE = PARTICLE_TYPES.register("pyrite", () -> pyrite);
     public static final RegistryObject<BasicParticleType> ITEM_PEBBLE = PARTICLE_TYPES.register("item_pebble", () -> new BasicParticleType(false));
+    public static final RegistryObject<BasicParticleType> SPAWNER_CORE = PARTICLE_TYPES.register("spawner_core", () -> spawner_core);
 
     @SubscribeEvent
     public static void registerFactories(ParticleFactoryRegisterEvent e) {
@@ -42,11 +44,11 @@ public class ModParticles {
         particles.registerFactory(green_fire, PurifierFireParticle.Factory::new);
         particles.registerFactory(portal, GaiaPortalParticle.Factory::new);
         particles.registerFactory(pyrite, PyriteParticle.Factory::new);
+        particles.registerFactory(spawner_core, SpawnerCoreParticle.Factory::new);
     }
 
     @OnlyIn(Dist.CLIENT)
     public static void forgeClassLoadingIsFuckedThisShouldntBeHereButHereItIs() {
         Minecraft.getInstance().particles.registerFactory(ITEM_PEBBLE.get(), new GaiaBreakingParticle.PebbleFactory());
-
     }
 }

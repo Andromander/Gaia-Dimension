@@ -262,9 +262,13 @@ public class GaiaLootTables extends LootTableProvider {
             dropSelf(ModBlocks.malachite_pulsing_tiles);
             dropSelf(ModBlocks.malachite_pulsing_chisel);
             dropSlab(ModBlocks.malachite_brick_slab);
+            dropSlab(ModBlocks.malachite_cracked_brick_slab);
+            dropSlab(ModBlocks.malachite_crusted_brick_slab);
             dropSlab(ModBlocks.malachite_floor_slab);
             dropSelf(ModBlocks.malachite_pillar);
             dropSelf(ModBlocks.malachite_brick_stairs);
+            dropSelf(ModBlocks.malachite_cracked_brick_stairs);
+            dropSelf(ModBlocks.malachite_crusted_brick_stairs);
             dropSelf(ModBlocks.malachite_floor_stairs);
             dropSelf(ModBlocks.malachite_chisel_stairs);
             dropSelf(ModBlocks.malachite_pulsing_brick_stairs);
@@ -510,6 +514,52 @@ public class GaiaLootTables extends LootTableProvider {
                     .addLootPool(LootPool.builder()
                             .rolls(ConstantRange.of(1))
                             .addEntry(ItemLootEntry.builder(ModItems.white_opal.get()))));
+            consumer.accept(GaiaChestTables.CHESTS_MALACHITE_WATCHTOWER, LootTable.builder()
+                    .addLootPool(LootPool.builder()
+                            .rolls(RandomValueRange.of(2.0F, 8.0F))
+                            .addEntry(ItemLootEntry.builder(ModBlocks.malachite_bricks.get())
+                                    .weight(15)
+                                    .acceptFunction(SetCount.builder(RandomValueRange.of(3.0F, 5.0F))))
+                            .addEntry(ItemLootEntry.builder(ModBlocks.malachite_floor_tiles.get())
+                                    .weight(15)
+                                    .acceptFunction(SetCount.builder(RandomValueRange.of(3.0F, 5.0F))))
+                            .addEntry(ItemLootEntry.builder(ModBlocks.malachite_pillar.get())
+                                    .weight(15)
+                                    .acceptFunction(SetCount.builder(RandomValueRange.of(3.0F, 5.0F))))
+                            .addEntry(ItemLootEntry.builder(ModItems.pyrite.get())
+                                    .weight(15)
+                                    .acceptFunction(SetCount.builder(RandomValueRange.of(1.0F, 3.0F))))
+                            .addEntry(ItemLootEntry.builder(ModItems.ixiolite_sword.get())
+                                    .weight(5))
+                            .addEntry(ItemLootEntry.builder(ModItems.euclase_sword.get())
+                                    .weight(2))
+                            .addEntry(ItemLootEntry.builder(ModItems.tiligr.get())
+                                    .weight(10)
+                                    .acceptFunction(SetCount.builder(RandomValueRange.of(1.0F, 4.0F))))
+                            .addEntry(ItemLootEntry.builder(ModItems.proustite_helmet.get())
+                                    .weight(5))
+                            .addEntry(ItemLootEntry.builder(ModItems.leucite_helmet.get())
+                                    .weight(2)))
+                    .addLootPool(LootPool.builder()
+                            .rolls(RandomValueRange.of(1.0F, 3.0F))
+                            .addEntry(ItemLootEntry.builder(ModItems.ixiolite.get())
+                                    .weight(6)
+                                    .acceptFunction(SetCount.builder(RandomValueRange.of(1.0F, 2.0F))))
+                            .addEntry(ItemLootEntry.builder(ModItems.proustite.get())
+                                    .weight(6)
+                                    .acceptFunction(SetCount.builder(RandomValueRange.of(1.0F, 2.0F))))
+                            .addEntry(ItemLootEntry.builder(ModItems.euclase.get())
+                                    .weight(4)
+                                    .acceptFunction(SetCount.builder(RandomValueRange.of(1.0F, 2.0F))))
+                            .addEntry(ItemLootEntry.builder(ModItems.leucite.get())
+                                    .weight(4)
+                                    .acceptFunction(SetCount.builder(RandomValueRange.of(1.0F, 2.0F))))
+                            .addEntry(ItemLootEntry.builder(ModItems.green_opal.get())
+                                    .weight(4)
+                                    .acceptFunction(SetCount.builder(RandomValueRange.of(1.0F, 2.0F))))
+                            .addEntry(ItemLootEntry.builder(ModItems.white_opal.get())
+                                    .weight(2)
+                                    .acceptFunction(SetCount.builder(RandomValueRange.of(1.0F, 2.0F))))));
         }
     }
 }

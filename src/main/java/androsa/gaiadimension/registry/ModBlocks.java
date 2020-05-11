@@ -277,9 +277,13 @@ public class ModBlocks {
     public static final RegistryObject<Block> malachite_pulsing_tiles = registerBlockGeneral("malachite_pulsing_tiles", MalachiteBricksBlock::new);
     public static final RegistryObject<Block> malachite_pulsing_chisel = registerBlockGeneral("malachite_pulsing_chisel", MalachiteBricksBlock::new);
     public static final RegistryObject<SlabBlock> malachite_brick_slab = registerBlockGeneral("malachite_brick_slab", MalachiteBrickSlabBlock::new);
+    public static final RegistryObject<SlabBlock> malachite_cracked_brick_slab = registerBlockGeneral("malachite_cracked_brick_slab", MalachiteBrickSlabBlock::new);
+    public static final RegistryObject<SlabBlock> malachite_crusted_brick_slab = registerBlockGeneral("malachite_crusted_brick_slab", MalachiteBrickSlabBlock::new);
     public static final RegistryObject<SlabBlock> malachite_floor_slab = registerBlockGeneral("malachite_floor_slab", MalachiteBrickSlabBlock::new);
     public static final RegistryObject<RotatedPillarBlock> malachite_pillar = registerBlockGeneral("malachite_pillar", MalachiteBrickPillarBlock::new);
     public static final RegistryObject<StairsBlock> malachite_brick_stairs = registerBlockGeneral("malachite_brick_stairs", () -> new MalachiteStairsBlock(malachite_bricks));
+    public static final RegistryObject<StairsBlock> malachite_cracked_brick_stairs = registerBlockGeneral("malachite_cracked_brick_stairs", () -> new MalachiteStairsBlock(malachite_cracked_bricks));
+    public static final RegistryObject<StairsBlock> malachite_crusted_brick_stairs = registerBlockGeneral("malachite_crusted_brick_stairs", () -> new MalachiteStairsBlock(malachite_crusted_bricks));
     public static final RegistryObject<StairsBlock> malachite_floor_stairs = registerBlockGeneral("malachite_floor_stairs", () -> new MalachiteStairsBlock(malachite_floor_tiles));
     public static final RegistryObject<StairsBlock> malachite_chisel_stairs = registerBlockGeneral("malachite_chisel_stairs", () -> new MalachiteStairsBlock(malachite_chisel_bricks));
     public static final RegistryObject<StairsBlock> malachite_pulsing_brick_stairs = registerBlockGeneral("malachite_pulsing_brick_stairs", () -> new MalachiteStairsBlock(malachite_bricks));
@@ -352,6 +356,9 @@ public class ModBlocks {
     public static final RegistryObject<FlowerPotBlock> potted_burnt_sapling = registerFlowerPot("potted_burnt_sapling", burnt_sapling);
     public static final RegistryObject<FlowerPotBlock> potted_burning_sapling = registerFlowerPot("potted_burning_sapling", burning_sapling);
     public static final RegistryObject<FlowerPotBlock> potted_aura_sapling = registerFlowerPot("potted_aura_sapling", aura_sapling);
+
+    //Spawners
+    public static final RegistryObject<BossSpawnerBlock> malachite_guard_spawner = BLOCKS.register("malachite_guard_spawner", () -> new BossSpawnerBlock(BossSpawnerBlock.BossType.MALACHITE));
 
     private static <T extends Block> RegistryObject<T> registerBlockGeneral(String name, Supplier<? extends T> block) {
         return registerBlock(name, block, 0, ModBlocks::registerBlockItem);

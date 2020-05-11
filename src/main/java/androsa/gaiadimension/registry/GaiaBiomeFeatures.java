@@ -83,6 +83,7 @@ public class GaiaBiomeFeatures {
 
     public static void addStructures(Biome biomeIn) {
         biomeIn.addFeature(GenerationStage.Decoration.SURFACE_STRUCTURES, ModWorldgen.MINI_TOWER.get().configure(IFeatureConfig.NO_FEATURE_CONFIG).createDecoratedFeature(Placement.NOPE.configure(IPlacementConfig.NO_PLACEMENT_CONFIG)));
+        biomeIn.addFeature(GenerationStage.Decoration.SURFACE_STRUCTURES, ModWorldgen.MALACHITE_WATCHTOWER.get().configure(IFeatureConfig.NO_FEATURE_CONFIG).createDecoratedFeature(Placement.NOPE.configure(IPlacementConfig.NO_PLACEMENT_CONFIG)));
     }
 
     public static void addCarver(Biome biomeIn) {

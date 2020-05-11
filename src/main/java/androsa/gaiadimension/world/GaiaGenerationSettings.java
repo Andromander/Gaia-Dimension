@@ -12,7 +12,16 @@ public class GaiaGenerationSettings extends GenerationSettings {
         setDefaultFluid(ModBlocks.mineral_water.get().getDefaultState());
     }
 
+    @Override
     public int getBedrockFloorHeight() {
         return 0;
+    }
+
+    public int getWatchtowerFeatureDistance() {
+        return 32;
+    }
+
+    public int getWatchtowerFeatureSeparation() {
+        return 8;
     }
 }

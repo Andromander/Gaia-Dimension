@@ -1,0 +1,8 @@
+{
+  "parent": "block/slab",
+  "textures": {
+    "side": "gaiadimension:block/malachite_cracked_bricks",
+    "bottom": "gaiadimension:block/malachite_cracked_bricks",
+    "top": "gaiadimension:block/malachite_cracked_bricks"
+  }
+}

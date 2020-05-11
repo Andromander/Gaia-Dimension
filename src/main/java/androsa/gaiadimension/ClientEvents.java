@@ -91,6 +91,9 @@ public class ClientEvents {
 
             return hex;
         }, ModBlocks.aura_shoot.get());
+
+        blocks.register((state, worldIn, pos, tintindex) -> worldIn != null && pos != null ? 0x00AA00 : 0xFFFFFF,
+                ModBlocks.malachite_guard_spawner.get());
     }
 
     public static int getBismuthColor(BlockPos pos) {
@@ -223,6 +226,7 @@ public class ClientEvents {
         renderBlock(ModBlocks.potted_burnt_sapling, cutout);
         renderBlock(ModBlocks.potted_burning_sapling, cutout);
         renderBlock(ModBlocks.potted_aura_sapling, cutout);
+        renderBlock(ModBlocks.malachite_guard_spawner, cutout);
 
         RenderTypeLookup.setRenderLayer(ModFluids.mineral_water_flow.get(), RenderType.getTranslucent());
         RenderTypeLookup.setRenderLayer(ModFluids.mineral_water_still.get(), RenderType.getTranslucent());
