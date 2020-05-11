@@ -40,7 +40,7 @@ public abstract class GaiaRecipeProvider extends ForgeRecipeProvider implements 
     }
 
     public ShapedRecipeBuilder largeCompressRecipe(IItemProvider result, IItemProvider ingredient, int count) {
-        return ShapedRecipeBuilder.shapedRecipe(result, 3)
+        return ShapedRecipeBuilder.shapedRecipe(result, count)
                 .patternLine("###")
                 .patternLine("###")
                 .patternLine("###")
