@@ -519,6 +519,7 @@
   "item.gaiadimension.cavern_tick_spawn_egg": "Cavern Tick Spawn Egg",
   "item.gaiadimension.archaic_warrior_spawn_egg": "Archaic Warrior Spawn Egg",
   "item.gaiadimension.primal_beast_spawn_egg": "Primal Beast Spawn Egg",
+  "item.gaiadimension.malachite_drone_spawn_egg": "Malachite Drone Spawn Egg",
   "item.gaiadimension.malachite_guard_spawn_egg": "Malachite Guard Spawn Egg",
 
   "malachite_armor.tooltip": "Sturdy, heavy, and eerily polished",
@@ -562,6 +563,7 @@
   "entity.gaiadimension.shalurker": "Shalurker",
   "entity.gaiadimension.cavern_tick": "Cavern Tick",
   "entity.gaiadimension.archaic_warrior": "Archaic Warrior",
+  "entity.gaiadimension.malachite_drone": "Malachite Drone",
   "entity.gaiadimension.primal_beast": "Primal Beast",
   "entity.gaiadimension.malachite_guard": "Malachite Guard",
   "entity.gaiadimension.agate_arrow": "Agate Arrow",

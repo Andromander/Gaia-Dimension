@@ -382,6 +382,7 @@ public class GaiaLootTables extends LootTableProvider {
             registerLootTable(ModEntities.SHALLOW_ARENTHIS, cookableDoubleDropTable(ModItems.small_tentacle, ModItems.sugar_crystals, 0.0F, 3.0F, 0.0F, 2.0F));
             registerLootTable(ModEntities.SHALURKER, blankTable());
             registerLootTable(ModEntities.SPELLBOUND_ELEMENTAL, blankTable());
+            registerLootTable(ModEntities.MALACHITE_DRONE, blankTable());
 
             registerLootTable(ModEntities.BLUE_HOWLITE_WOLF, blankTable());
 

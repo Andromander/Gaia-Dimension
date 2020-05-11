@@ -248,6 +248,7 @@ public class ModItems {
     public static final RegistryObject<Item> archaic_warrior_spawn_egg = registerSpawnEgg("archaic_warrior", ModEntities.archaic_warrior, 0x996699, 0xCC3366);
     public static final RegistryObject<Item> primal_beast_spawn_egg = registerSpawnEgg("primal_beast", ModEntities.primal_beast, 0x006699, 0x66FFFF);
     public static final RegistryObject<Item> cavern_tick_spawn_egg = registerSpawnEgg("cavern_tick", ModEntities.cavern_tick, 0x9966CC, 0x666699);
+    public static final RegistryObject<Item> malachite_drone_spawn_egg = registerSpawnEgg("malachite_drone", ModEntities.malachite_drone, 0x00AA33, 0x33AA00);
     public static final RegistryObject<Item> blue_howlite_wolf_spawn_egg = registerSpawnEgg("blue_howlite_wolf", ModEntities.blue_howlite_wolf, 0x0099CC, 0xCC00FF);
     public static final RegistryObject<Item> malachite_guard_spawn_egg = registerSpawnEgg("malachite_guard", ModEntities.malachite_guard, 0x339900, 0x33CC99);
 

@@ -87,6 +87,8 @@ public class ModEntities {
             .size(0.6F, 1.9F).build("shalurker");
     public static final EntityType<SpellElementEntity> spell_elemental = EntityType.Builder.create(SpellElementEntity::new, EntityClassification.CREATURE)
             .size(0.5F, 2.0F).build("spellbound_elemental");
+    public static final EntityType<MalachiteDroneEntity> malachite_drone = EntityType.Builder.create(MalachiteDroneEntity::new, EntityClassification.MONSTER)
+            .size(1.0F, 2.0F).build("malachite_drone");
     public static final EntityType<BlueHowliteWolfEntity> blue_howlite_wolf = EntityType.Builder.create(BlueHowliteWolfEntity::new, EntityClassification.MONSTER)
             .size(1.2F, 2.2F).build("blue_howlite_wolf");
     public static final EntityType<MalachiteGuardEntity> malachite_guard = EntityType.Builder.create(MalachiteGuardEntity::new, EntityClassification.MONSTER)
@@ -121,6 +123,7 @@ public class ModEntities {
     public static final RegistryObject<EntityType<ShallowArenthisEntity>> SHALLOW_ARENTHIS = ENTITIES.register("shallow_arenthis", () -> shallow_arenthis);
     public static final RegistryObject<EntityType<ShalurkerEntity>> SHALURKER = ENTITIES.register("shalurker", () -> shalurker);
     public static final RegistryObject<EntityType<SpellElementEntity>> SPELLBOUND_ELEMENTAL = ENTITIES.register("spellbound_elemental", () -> spell_elemental);
+    public static final RegistryObject<EntityType<MalachiteDroneEntity>> MALACHITE_DRONE = ENTITIES.register("malachite_drone", () -> malachite_drone);
 
     //Mini Bosses
     public static final RegistryObject<EntityType<BlueHowliteWolfEntity>> BLUE_HOWLITE_WOLF = ENTITIES.register("blue_howlite_wolf", () -> blue_howlite_wolf);
@@ -174,6 +177,7 @@ public class ModEntities {
         register(SHALLOW_ARENTHIS.get(), PlacementType.IN_WATER, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, ShallowArenthisEntity::canSpawnHere);
         register(SHALURKER.get(), PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, MonsterEntity::func_223325_c);
         register(SPELLBOUND_ELEMENTAL.get(), PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, SpellElementEntity::canSpawnHere);
+        register(MALACHITE_DRONE.get(), PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, MalachiteDroneEntity::canSpawnHere);
     }
 
     @OnlyIn(Dist.CLIENT)
@@ -206,6 +210,7 @@ public class ModEntities {
         RenderingRegistry.registerEntityRenderingHandler(SHALLOW_ARENTHIS.get(), m -> new ShallowArenthisRenderer<>(m, new ShallowArenthisModel<>(), 0.5F));
         RenderingRegistry.registerEntityRenderingHandler(SHALURKER.get(), m -> new ShalurkerRenderer<>(m, new ShalurkerModel<>(), 0.5F));
         RenderingRegistry.registerEntityRenderingHandler(SPELLBOUND_ELEMENTAL.get(), m -> new SpellElementRenderer<>(m, new SpellElementModel<>(), 0.4F));
+        RenderingRegistry.registerEntityRenderingHandler(MALACHITE_DRONE.get(), m -> new MalachiteDroneRenderer<>(m, new MalachiteDroneModel<>(), 0.5F));
 
         RenderingRegistry.registerEntityRenderingHandler(BLUE_HOWLITE_WOLF.get(), m -> new BlueHowliteWolfRenderer<>(m, new BlueHowliteWolfModel<>(), 1.0F));
         RenderingRegistry.registerEntityRenderingHandler(MALACHITE_GUARD.get(), m -> new MalachiteGuardRenderer<>(m, new MalachiteGuardModel<>(0.0F), 0.7F));
