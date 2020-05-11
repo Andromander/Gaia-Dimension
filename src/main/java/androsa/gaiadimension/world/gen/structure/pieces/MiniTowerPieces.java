@@ -25,28 +25,27 @@ import net.minecraft.world.gen.feature.template.BlockIgnoreStructureProcessor;
 import net.minecraft.world.gen.feature.template.PlacementSettings;
 import net.minecraft.world.gen.feature.template.Template;
 import net.minecraft.world.gen.feature.template.TemplateManager;
-import net.minecraft.world.storage.loot.LootTables;
 
 import java.util.List;
 import java.util.Random;
 
 public class MiniTowerPieces {
-    private static final ResourceLocation am_base = new ResourceLocation(GaiaDimensionMod.MODID, "minitower/amethyst/base");
-    private static final ResourceLocation am_floor_1 = new ResourceLocation(GaiaDimensionMod.MODID, "minitower/amethyst/floor_1");
-    private static final ResourceLocation am_floor_2 = new ResourceLocation(GaiaDimensionMod.MODID, "minitower/amethyst/floor_2");
-    private static final ResourceLocation am_roof = new ResourceLocation(GaiaDimensionMod.MODID, "minitower/amethyst/roof");
-    private static final ResourceLocation co_base = new ResourceLocation(GaiaDimensionMod.MODID, "minitower/copal/base");
-    private static final ResourceLocation co_floor_1 = new ResourceLocation(GaiaDimensionMod.MODID, "minitower/copal/floor_1");
-    private static final ResourceLocation co_floor_2 = new ResourceLocation(GaiaDimensionMod.MODID, "minitower/copal/floor_2");
-    private static final ResourceLocation co_roof = new ResourceLocation(GaiaDimensionMod.MODID, "minitower/copal/roof");
-    private static final ResourceLocation ja_base = new ResourceLocation(GaiaDimensionMod.MODID, "minitower/jade/base");
-    private static final ResourceLocation ja_floor_1 = new ResourceLocation(GaiaDimensionMod.MODID, "minitower/jade/floor_1");
-    private static final ResourceLocation ja_floor_2 = new ResourceLocation(GaiaDimensionMod.MODID, "minitower/jade/floor_2");
-    private static final ResourceLocation ja_roof = new ResourceLocation(GaiaDimensionMod.MODID, "minitower/jade/roof");
-    private static final ResourceLocation je_base = new ResourceLocation(GaiaDimensionMod.MODID, "minitower/jet/base");
-    private static final ResourceLocation je_floor_1 = new ResourceLocation(GaiaDimensionMod.MODID, "minitower/jet/floor_1");
-    private static final ResourceLocation je_floor_2 = new ResourceLocation(GaiaDimensionMod.MODID, "minitower/jet/floor_2");
-    private static final ResourceLocation je_roof = new ResourceLocation(GaiaDimensionMod.MODID, "minitower/jet/roof");
+    private static final ResourceLocation am_base = makePiece("amethyst", "base");
+    private static final ResourceLocation am_floor_1 = makePiece("amethyst", "floor_1");
+    private static final ResourceLocation am_floor_2 = makePiece("amethyst", "floor_2");
+    private static final ResourceLocation am_roof = makePiece("amethyst", "roof");
+    private static final ResourceLocation co_base = makePiece("copal", "base");
+    private static final ResourceLocation co_floor_1 = makePiece("copal", "floor_1");
+    private static final ResourceLocation co_floor_2 = makePiece("copal", "floor_2");
+    private static final ResourceLocation co_roof = makePiece("copal", "roof");
+    private static final ResourceLocation ja_base = makePiece("jade", "base");
+    private static final ResourceLocation ja_floor_1 = makePiece("jade", "floor_1");
+    private static final ResourceLocation ja_floor_2 = makePiece("jade", "floor_2");
+    private static final ResourceLocation ja_roof = makePiece("jade", "roof");
+    private static final ResourceLocation je_base = makePiece("jet", "base");
+    private static final ResourceLocation je_floor_1 = makePiece("jet", "floor_1");
+    private static final ResourceLocation je_floor_2 = makePiece("jet", "floor_2");
+    private static final ResourceLocation je_roof = makePiece("jet", "roof");
 
     private static final ResourceLocation[] amethyst_pieces = new ResourceLocation[]{am_base, am_floor_1, am_floor_2, am_roof};
     private static final ResourceLocation[] copal_pieces = new ResourceLocation[]{co_base, co_floor_1, co_floor_2, co_roof};
@@ -104,6 +103,10 @@ public class MiniTowerPieces {
         pieces.add(new MiniTowerPieces.Piece(manager, piecearray[2], pos, rotation, type, i));
         i += 9;
         pieces.add(new MiniTowerPieces.Piece(manager, piecearray[3], pos, rotation, type, i));
+    }
+
+    public static ResourceLocation makePiece(String material, String part) {
+        return new ResourceLocation(GaiaDimensionMod.MODID, "minitower/" + material + "/" + part);
     }
 
     public static class Piece extends TemplateStructurePiece {

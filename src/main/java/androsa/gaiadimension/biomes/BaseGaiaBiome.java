@@ -32,6 +32,7 @@ public abstract class BaseGaiaBiome extends Biome {
     public void addFeatures() {
         GaiaBiomeFeatures.addPrimalMassUnderground(this);
         GaiaBiomeFeatures.addCarver(this);
+        GaiaBiomeFeatures.addStructures(this);
 
         this.addSpawn(EntityClassification.CREATURE, new SpawnListEntry(ModEntities.NOMADIC_LAGRAHK.get(), 15, 1, 2));
         this.addSpawn(EntityClassification.WATER_CREATURE, new SpawnListEntry(ModEntities.SHALLOW_ARENTHIS.get(), 10, 2, 4));

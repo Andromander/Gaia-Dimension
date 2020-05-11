@@ -19,7 +19,6 @@ public class FossilWoodlandBiome extends BaseGaiaBiome {
     @Override
     public void addFeatures() {
         this.addStructureFeature(ModWorldgen.MINI_TOWER.get().configure(IFeatureConfig.NO_FEATURE_CONFIG));
-        GaiaBiomeFeatures.addStructures(this);
         super.addFeatures();
         GaiaBiomeFeatures.addGlitterBlobUnderground(this);
         GaiaBiomeFeatures.addMagmaLakes(this);

@@ -17,7 +17,6 @@ public class CrystalPlainsBiome extends BaseGaiaBiome {
     @Override
     public void addFeatures() {
         this.addStructureFeature(ModWorldgen.MINI_TOWER.get().configure(IFeatureConfig.NO_FEATURE_CONFIG));
-        GaiaBiomeFeatures.addStructures(this);
         super.addFeatures();
         //TODO: Add Crystal Spires
         GaiaBiomeFeatures.addGlitterBlobUnderground(this);
