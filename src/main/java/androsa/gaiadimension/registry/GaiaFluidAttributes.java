@@ -1,6 +1,6 @@
 package androsa.gaiadimension.registry;
 
-import androsa.gaiadimension.ClientEvents;
+import androsa.gaiadimension.client.ClientEvents;
 import androsa.gaiadimension.GaiaDimensionMod;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.util.ResourceLocation;

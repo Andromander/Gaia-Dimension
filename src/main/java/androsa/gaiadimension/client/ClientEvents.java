@@ -1,31 +1,57 @@
-package androsa.gaiadimension;
+package androsa.gaiadimension.client;
 
+import androsa.gaiadimension.GaiaDimensionMod;
 import androsa.gaiadimension.registry.ModBlocks;
 import androsa.gaiadimension.registry.ModFluids;
+import com.google.common.collect.ImmutableList;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.StairsBlock;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
 import net.minecraft.client.renderer.color.BlockColors;
 import net.minecraft.client.renderer.color.ItemColors;
+import net.minecraft.client.renderer.model.IBakedModel;
+import net.minecraft.client.renderer.model.ModelResourceLocation;
 import net.minecraft.item.BlockItem;
+import net.minecraft.state.IProperty;
+import net.minecraft.state.StateHolder;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.biome.BiomeColors;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.client.event.ModelBakeEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 
+import java.util.Map;
+import java.util.Objects;
+import java.util.function.Function;
 import java.util.function.Supplier;
+import java.util.stream.Collectors;
 
+@Mod.EventBusSubscriber(value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.MOD, modid = GaiaDimensionMod.MODID)
 @OnlyIn(Dist.CLIENT)
 public class ClientEvents {
+
+    private static final ImmutableList<Supplier<? extends Block>> emissiveBlocks = ImmutableList.of(
+            ModBlocks.malachite_pulsing_bricks,
+            ModBlocks.malachite_pulsing_chisel,
+            ModBlocks.malachite_pulsing_tiles,
+            ModBlocks.malachite_pulsing_brick_stairs,
+            ModBlocks.malachite_pulsing_chisel_stairs,
+            ModBlocks.malachite_pulsing_floor_stairs
+    );
 
     public static void registerBlockColors() {
         BlockColors blocks = Minecraft.getInstance().getBlockColors();
 
         blocks.register((state, worldIn, pos, tintIndex) ->
                         worldIn != null && pos != null ?
-                                /*worldIn.getColor(pos, (biome, x, z) -> biome instanceof BaseGaiaBiome ?*/ BiomeColors.getGrassColor(worldIn, pos): 0xF2A3B4,
+                                /*worldIn.getColor(pos, (biome, x, z) -> biome instanceof BaseGaiaBiome ?*/ BiomeColors.getGrassColor(worldIn, pos) : 0xF2A3B4,
                 ModBlocks.glitter_grass.get(),
                 ModBlocks.crystal_growth.get());
 
@@ -124,12 +150,28 @@ public class ClientEvents {
         BlockColors blocks = Minecraft.getInstance().getBlockColors();
         ItemColors items = Minecraft.getInstance().getItemColors();
 
-        items.register((stack, tintIndex) -> blocks.getColor(((BlockItem)stack.getItem()).getBlock().getDefaultState(), null, null, tintIndex),
+        items.register((stack, tintIndex) -> blocks.getColor(((BlockItem) stack.getItem()).getBlock().getDefaultState(), null, null, tintIndex),
                 ModBlocks.glitter_grass.get(),
                 ModBlocks.crystal_growth.get(),
                 ModBlocks.murky_grass.get(),
                 ModBlocks.aura_shoot.get(),
                 ModBlocks.soft_grass.get());
+    }
+
+    @SubscribeEvent
+    public static void bakeModels(ModelBakeEvent event) {
+        Function<Map.Entry<IProperty<?>, Comparable<?>>, String> MAP_ENTRY_TO_STRING = ObfuscationReflectionHelper.getPrivateValue(StateHolder.class, null, "field_177233_b");
+
+        for (Supplier<? extends Block> block : emissiveBlocks) {
+            for (int i = 0; i <= 1; i++) {
+                for (BlockState state : block.get().getStateContainer().getValidStates()) {
+                    String variant = state.getValues().entrySet().stream().map(MAP_ENTRY_TO_STRING).collect(Collectors.joining(","));
+                    ModelResourceLocation modelLoc = new ModelResourceLocation(Objects.requireNonNull(block.get().getRegistryName()), i == 0 ? variant : "inventory");
+                    final IBakedModel model = event.getModelRegistry().get(modelLoc);
+                    event.getModelRegistry().put(modelLoc, new EmissiveModel(model));
+                }
+            }
+        }
     }
 
     public static void registerBlockRenderers() {
@@ -138,7 +180,7 @@ public class ClientEvents {
         RenderType translucent = RenderType.getTranslucent();
 
         renderBlock(ModBlocks.gaia_portal, translucent);
-        renderBlock(ModBlocks.gold_fire , cutout);
+        renderBlock(ModBlocks.gold_fire, cutout);
         renderBlock(ModBlocks.pyrite_torch, cutout);
         renderBlock(ModBlocks.pyrite_wall_torch, cutout);
         renderBlock(ModBlocks.mineral_water, translucent);

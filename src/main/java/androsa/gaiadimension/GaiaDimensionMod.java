@@ -1,11 +1,11 @@
 package androsa.gaiadimension;
 
+import androsa.gaiadimension.client.ClientEvents;
 import androsa.gaiadimension.data.GaiaBlockStates;
 import androsa.gaiadimension.data.GaiaItemModels;
 import androsa.gaiadimension.data.GaiaLootTables;
 import androsa.gaiadimension.data.GaiaRecipes;
 import androsa.gaiadimension.registry.*;
-import androsa.gaiadimension.world.GaiaTeleporter;
 import io.netty.buffer.Unpooled;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.entity.CreatureAttribute;
@@ -13,12 +13,10 @@ import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.dimension.DimensionType;
-import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.event.world.RegisterDimensionsEvent;
-import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.DistExecutor;
