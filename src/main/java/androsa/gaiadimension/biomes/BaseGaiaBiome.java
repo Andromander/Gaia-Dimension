@@ -54,6 +54,11 @@ public abstract class BaseGaiaBiome extends Biome {
         }
     }
 
+    //TODO: Bring back when we can get the sky renderer
+//    public final short[] getSkyRGB() {
+//        return skyColor.getSkyColorRGB();
+//    }
+
     @OnlyIn(Dist.CLIENT)
     public final short[] getFogRGB() {
         return skyColor.getFogColor();
