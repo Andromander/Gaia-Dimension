@@ -14,6 +14,7 @@ import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
+import net.minecraft.potion.EffectInstance;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.SoundEvent;
@@ -358,6 +359,11 @@ public class MalachiteGuardEntity extends MonsterEntity {
                 //We aren't here in Peaceful, but fall onto this
                 return base;
         }
+    }
+
+    @Override
+    public boolean isPotionApplicable(EffectInstance effectInstance) {
+        return world.getDifficulty() == Difficulty.HARD && effectInstance.getPotion().isBeneficial();
     }
 
     @Override
