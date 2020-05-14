@@ -27,6 +27,8 @@ public class BlueAgateTaigaBiome extends BaseGaiaBiome {
         GaiaBiomeFeatures.addMagmaLakes(this);
         GaiaBiomeFeatures.addMineralLakes(this);
         GaiaBiomeFeatures.addPocketsUnderground(this);
+        GaiaBiomeFeatures.addAmethystOre(this);
+        GaiaBiomeFeatures.addJetOre(this);
         GaiaBiomeFeatures.addBasicOres(this);
         GaiaBiomeFeatures.addBlueOpals(this);
         GaiaBiomeFeatures.addWhiteOpals(this);

@@ -21,6 +21,8 @@ public class SaltDunesBiome extends BaseGaiaBiome {
         GaiaBiomeFeatures.addGlitterBlobUnderground(this);
         GaiaBiomeFeatures.addMineralLakes(this);
         GaiaBiomeFeatures.addPocketsUnderground(this);
+        GaiaBiomeFeatures.addAmethystOre(this);
+        GaiaBiomeFeatures.addJetOre(this);
         GaiaBiomeFeatures.addBasicOres(this);
         GaiaBiomeFeatures.addUndergroundMushrooms(this);
 

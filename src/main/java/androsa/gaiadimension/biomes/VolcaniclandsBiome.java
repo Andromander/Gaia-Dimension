@@ -25,6 +25,7 @@ public class VolcaniclandsBiome extends BaseGaiaBiome implements IDryBiome {
         GaiaBiomeFeatures.addMineralLakes(this);
         GaiaBiomeFeatures.addSearingRockUnderground(this);
         GaiaBiomeFeatures.addPocketsUnderground(this);
+        GaiaBiomeFeatures.addCopalOre(this);
         GaiaBiomeFeatures.addBasicOres(this);
         GaiaBiomeFeatures.addBurningTrees(this);
         GaiaBiomeFeatures.addBurntTrees(this);

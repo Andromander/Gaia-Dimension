@@ -25,6 +25,7 @@ public class GoldstonelandsBiome extends BaseGaiaBiome {
         GaiaBiomeFeatures.addMagmaLakes(this);
         GaiaBiomeFeatures.addMineralLakes(this);
         GaiaBiomeFeatures.addPocketsUnderground(this);
+        GaiaBiomeFeatures.addJetOre(this);
         GaiaBiomeFeatures.addBasicOres(this);
         GaiaBiomeFeatures.addGoldstoneTrees(this);
         GaiaBiomeFeatures.addCrystalGrowthCorrupt(this);

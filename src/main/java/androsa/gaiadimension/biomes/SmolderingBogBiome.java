@@ -22,6 +22,8 @@ public class SmolderingBogBiome extends BaseGaiaBiome implements IDryBiome {
         super.addFeatures();
         GaiaBiomeFeatures.addBismuthLakes(this);
         GaiaBiomeFeatures.addPocketsUnderground(this);
+        GaiaBiomeFeatures.addAmethystOre(this);
+        GaiaBiomeFeatures.addJetOre(this);
         GaiaBiomeFeatures.addBasicOres(this);
         GaiaBiomeFeatures.addBogPatches(this);
         GaiaBiomeFeatures.addBismuthSpires(this);

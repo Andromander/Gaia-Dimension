@@ -132,6 +132,22 @@ public class GaiaBiomeFeatures {
         biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.configure(new OreFeatureConfig(GAIA_STONE, ModBlocks.precious_rock.get().getDefaultState(), 8)).createDecoratedFeature(Placement.COUNT_RANGE.configure(new CountRangeConfig(10, 0, 0, 30))));
     }
 
+    public static void addAmethystOre(Biome biomeIn) {
+        biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.configure(new OreFeatureConfig(GAIA_STONE, ModBlocks.raw_amethyst.get().getDefaultState(), 12)).createDecoratedFeature(Placement.COUNT_RANGE.configure(new CountRangeConfig(15, 0, 0, 120))));
+    }
+
+    public static void addCopalOre(Biome biomeIn) {
+        biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.configure(new OreFeatureConfig(GAIA_STONE, ModBlocks.raw_copal.get().getDefaultState(), 12)).createDecoratedFeature(Placement.COUNT_RANGE.configure(new CountRangeConfig(15, 0, 0, 120))));
+    }
+
+    public static void addJadeOre(Biome biomeIn) {
+        biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.configure(new OreFeatureConfig(GAIA_STONE, ModBlocks.raw_jade.get().getDefaultState(), 12)).createDecoratedFeature(Placement.COUNT_RANGE.configure(new CountRangeConfig(15, 0, 0, 120))));
+    }
+
+    public static void addJetOre(Biome biomeIn) {
+        biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.configure(new OreFeatureConfig(GAIA_STONE, ModBlocks.raw_jet.get().getDefaultState(), 12)).createDecoratedFeature(Placement.COUNT_RANGE.configure(new CountRangeConfig(15, 0, 0, 120))));
+    }
+
     public static void addPrimalMassUnderground(Biome biomeIn) {
         biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.configure(new OreFeatureConfig(GAIA_STONE, ModBlocks.primal_mass.get().getDefaultState(), 33)).createDecoratedFeature(Placement.COUNT_RANGE.configure(new CountRangeConfig(33, 0, 0, 25))));
     }

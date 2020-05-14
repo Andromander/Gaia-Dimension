@@ -28,6 +28,8 @@ public class GreenAgateJungleBiome extends BaseGaiaBiome {
         GaiaBiomeFeatures.addMagmaLakes(this);
         GaiaBiomeFeatures.addMineralLakes(this);
         GaiaBiomeFeatures.addPocketsUnderground(this);
+        GaiaBiomeFeatures.addCopalOre(this);
+        GaiaBiomeFeatures.addJadeOre(this);
         GaiaBiomeFeatures.addBasicOres(this);
         GaiaBiomeFeatures.addGreenOpals(this);
         GaiaBiomeFeatures.addWhiteOpals(this);

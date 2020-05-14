@@ -21,6 +21,8 @@ public class ShiningGroveBiome extends BaseGaiaBiome {
         GaiaBiomeFeatures.addGlitterBlobUnderground(this);
         GaiaBiomeFeatures.addAuraLake(this);
         GaiaBiomeFeatures.addPocketsUnderground(this);
+        GaiaBiomeFeatures.addCopalOre(this);
+        GaiaBiomeFeatures.addJadeOre(this);
         GaiaBiomeFeatures.addBasicOres(this);
         GaiaBiomeFeatures.addAuraTrees(this);
         GaiaBiomeFeatures.addAuraShoots(this);

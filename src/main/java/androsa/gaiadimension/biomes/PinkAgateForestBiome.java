@@ -23,6 +23,8 @@ public class PinkAgateForestBiome extends BaseGaiaBiome {
         GaiaBiomeFeatures.addMagmaLakes(this);
         GaiaBiomeFeatures.addMineralLakes(this);
         GaiaBiomeFeatures.addPocketsUnderground(this);
+        GaiaBiomeFeatures.addAmethystOre(this);
+        GaiaBiomeFeatures.addCopalOre(this);
         GaiaBiomeFeatures.addBasicOres(this);
         GaiaBiomeFeatures.addRedOpals(this);
         GaiaBiomeFeatures.addWhiteOpals(this);

@@ -28,6 +28,8 @@ public class MutantAgateWildwoodBiome extends BaseGaiaBiome {
         GaiaBiomeFeatures.addMagmaLakes(this);
         GaiaBiomeFeatures.addMineralLakes(this);
         GaiaBiomeFeatures.addPocketsUnderground(this);
+        GaiaBiomeFeatures.addCopalOre(this);
+        GaiaBiomeFeatures.addJadeOre(this);
         GaiaBiomeFeatures.addBasicOres(this);
         GaiaBiomeFeatures.addRedOpals(this);
         GaiaBiomeFeatures.addBlueOpals(this);

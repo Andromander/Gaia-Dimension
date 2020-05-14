@@ -22,6 +22,7 @@ public class StaticWastelandBiome extends BaseGaiaBiome implements IDryBiome {
         super.addFeatures();
         GaiaBiomeFeatures.addStaticStoneUnderground(this);
         GaiaBiomeFeatures.addPocketsUnderground(this);
+        GaiaBiomeFeatures.addAmethystOre(this);
         GaiaBiomeFeatures.addBasicOres(this);
         GaiaBiomeFeatures.addStaticPatches(this);
         GaiaBiomeFeatures.addStaticSpikes(this);

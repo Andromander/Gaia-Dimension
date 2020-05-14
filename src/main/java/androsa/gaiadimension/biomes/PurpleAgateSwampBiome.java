@@ -29,6 +29,8 @@ public class PurpleAgateSwampBiome extends BaseGaiaBiome {
         GaiaBiomeFeatures.addMineralLakes(this);
         GaiaBiomeFeatures.addThickGlitterUnderground(this);
         GaiaBiomeFeatures.addPocketsUnderground(this);
+        GaiaBiomeFeatures.addAmethystOre(this);
+        GaiaBiomeFeatures.addJadeOre(this);
         GaiaBiomeFeatures.addBasicOres(this);
         GaiaBiomeFeatures.addWhiteOpals(this);
         GaiaBiomeFeatures.addPurpleAgateTrees(this);

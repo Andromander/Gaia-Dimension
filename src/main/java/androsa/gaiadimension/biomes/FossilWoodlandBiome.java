@@ -24,6 +24,8 @@ public class FossilWoodlandBiome extends BaseGaiaBiome {
         GaiaBiomeFeatures.addMagmaLakes(this);
         GaiaBiomeFeatures.addMineralLakes(this);
         GaiaBiomeFeatures.addPocketsUnderground(this);
+        GaiaBiomeFeatures.addCopalOre(this);
+        GaiaBiomeFeatures.addJetOre(this);
         GaiaBiomeFeatures.addBasicOres(this);
         GaiaBiomeFeatures.addFossilTrees(this);
         GaiaBiomeFeatures.addCrystalGrowthNormal(this, 2);

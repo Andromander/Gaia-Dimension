@@ -24,6 +24,8 @@ public class CrystalPlainsBiome extends BaseGaiaBiome {
         GaiaBiomeFeatures.addMagmaLakes(this);
         GaiaBiomeFeatures.addMineralLakes(this);
         GaiaBiomeFeatures.addPocketsUnderground(this);
+        GaiaBiomeFeatures.addAmethystOre(this);
+        GaiaBiomeFeatures.addJadeOre(this);
         GaiaBiomeFeatures.addBasicOres(this);
         GaiaBiomeFeatures.addPinkAgateTreesSparse(this);
         GaiaBiomeFeatures.addCrystalGrowthNormal(this, 5);
