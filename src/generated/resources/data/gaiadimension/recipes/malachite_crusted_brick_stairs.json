@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#  ",
+    "## ",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "gaiadimension:malachite_crusted_bricks"
+    }
+  },
+  "result": {
+    "item": "gaiadimension:malachite_crusted_brick_stairs",
+    "count": 8
+  }
+}

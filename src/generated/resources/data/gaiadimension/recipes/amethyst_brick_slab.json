@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "gaiadimension:amethyst_bricks"
+    }
+  },
+  "result": {
+    "item": "gaiadimension:amethyst_brick_slab",
+    "count": 6
+  }
+}

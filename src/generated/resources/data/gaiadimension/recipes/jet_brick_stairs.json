@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#  ",
+    "## ",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "gaiadimension:jet_bricks"
+    }
+  },
+  "result": {
+    "item": "gaiadimension:jet_brick_stairs",
+    "count": 8
+  }
+}

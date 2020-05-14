@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#  ",
+    "## ",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "gaiadimension:malachite_floor_tiles"
+    }
+  },
+  "result": {
+    "item": "gaiadimension:malachite_floor_stairs",
+    "count": 8
+  }
+}
