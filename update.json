@@ -14,13 +14,15 @@
     "1.1.2": "+ Added more Tags. Now certain items can now be compatible with each other in mods.\n • Fixed some loot table issues with some items inadvertently becoming unobtainable, those being Hot Dust, Goldstone Dust, and Fine Dust. This has now been corrected.\n • Generated more things. Most Blockstates, Block Models, Item Models, and Recipes are now generated."
   },
   "1.15.2": {
-    "1.2.0": "Gaia Dimension is now out for 1.15.2! No new features have been implemented, however some features have been omitted due to changes introduced in 1.15. Namely speaking, sky rendering has been altered, so stars that appeared in Purple Agate skies no longer render, clouds are white instead of being coloured per biome, and skies don't smoothly change colour. There may be some other bugs, however it is in a playable state, so feel free to test it out and report any issues."
+    "1.2.0": "Gaia Dimension is now out for 1.15.2! No new features have been implemented, however some features have been omitted due to changes introduced in 1.15. Namely speaking, sky rendering has been altered, so stars that appeared in Purple Agate skies no longer render, clouds are white instead of being coloured per biome, and skies don't smoothly change colour. There may be some other bugs, however it is in a playable state, so feel free to test it out and report any issues.",
+    "1.2.1": "Introducing the Malachite Update. This update adds in a long-awaited feature that has been waiting to be implemented since the start.\n + Add Amethyst, Copal, Jade, and Jet. They generate in raw clusters but can be made into bricks.\n + Add Gaia Mini Towers. These abandoned structures come in 4 types, and generate in all Agate biomes, Crystal Plains, and Fossil Woodlands.\n + Add some more Malachite Brick Stairs and Slabs.\n + Add Malachite Watchtower. These large towers vary in height and generate in Green Agate Jungles, Pink Agate Forests, and Crystal Plains.\n + The Malachite Guard is vastly improved and implemented. Has 3 phases, various defences, and drops Malachite tools.\n + Malachite Guard armor and Malachite Guard Baton are officially implemented.\n • Gave the Malachite Bricks some crafting recipes now that they are obtainable.\n • Pulsing Malachite Bricks are now emissive. Glow in the dark fanciness.\n • Fixed infinite resource duplication via incorrect recipe output.\n • Fixed small_flowers Tag having an extra comma.\n - Removed supports_beacon Tag. Blocks that were in the Tag now natively support Beacons."
   },
   "promos": {
     "1.12.2-latest": "1.0.5",
     "1.12.2-recommended": "1.0.5",
     "1.14.4-latest": "1.1.2",
     "1.14.4-recommended": "1.1.2",
-    "1.15.2-latest": "1.2.0"
+    "1.15.2-latest": "1.2.1",
+    "1.15.2-recommended": "1.2.1"
   }
 }
