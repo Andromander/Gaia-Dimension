@@ -11,7 +11,8 @@
   "1.14.4": {
     "1.1.0": "Gaia Dimension is now out for 1.14.4! In celebration, there's some new features not present in 1.0.5. First, there are now Stripped Logs, Wood, and Stripped Wood of all Agate Logs. Then, there's now a config option to let the portal be created anywhere, not just Hot, Dry, or Mountain biomes. Lastly, the option to change dimension ID has been removed, as these are now automatically assigned by Forge. Along with this, all Ore Dictionary entries have been removed in exchange for Tags. Some entries still exist, but most have been removed due to lack of use (if you wish to have blocks or items in tags by default in Minecraft or Forge, let me know via GitHub or Discord).",
     "1.1.1": "• Gave plants the ability to be potted, barring Crystal Growths. Now you can have a little Gaia in your home.\n • Planks are now Tiles. This makes sense because you are making these from stone trees after all.\n • Fixed errors in one of the Tags. Not sure how this got through, it does print an error in the log.\n • Fixed a crash that would occur if another mod or config errors. This is more of a patch on another issue than a fix.\n • Fixed portal particles being way too big in size. Nope, wasn't a feature.\n • Block Loot Tables are now generated. This doesn't affect anything for the user.",
-    "1.1.2": "+ Added more Tags. Now certain items can now be compatible with each other in mods.\n • Fixed some loot table issues with some items inadvertently becoming unobtainable, those being Hot Dust, Goldstone Dust, and Fine Dust. This has now been corrected.\n • Generated more things. Most Blockstates, Block Models, Item Models, and Recipes are now generated."
+    "1.1.2": "+ Added more Tags. Now certain items can now be compatible with each other in mods.\n • Fixed some loot table issues with some items inadvertently becoming unobtainable, those being Hot Dust, Goldstone Dust, and Fine Dust. This has now been corrected.\n • Generated more things. Most Blockstates, Block Models, Item Models, and Recipes are now generated.",
+    "1.1.3": "Hotfix version for teleporting into the dimension. Apparently telling your users a certain feature has been fundamentally changed or having bugs reported are hard tasks, but then setting up a second environment just to rename a file and make another jar is hard, so fair's fair."
   },
   "1.15.2": {
     "1.2.0": "Gaia Dimension is now out for 1.15.2! No new features have been implemented, however some features have been omitted due to changes introduced in 1.15. Namely speaking, sky rendering has been altered, so stars that appeared in Purple Agate skies no longer render, clouds are white instead of being coloured per biome, and skies don't smoothly change colour. There may be some other bugs, however it is in a playable state, so feel free to test it out and report any issues.",
@@ -20,8 +21,8 @@
   "promos": {
     "1.12.2-latest": "1.0.5",
     "1.12.2-recommended": "1.0.5",
-    "1.14.4-latest": "1.1.2",
-    "1.14.4-recommended": "1.1.2",
+    "1.14.4-latest": "1.1.3",
+    "1.14.4-recommended": "1.1.3",
     "1.15.2-latest": "1.2.1",
     "1.15.2-recommended": "1.2.1"
   }
