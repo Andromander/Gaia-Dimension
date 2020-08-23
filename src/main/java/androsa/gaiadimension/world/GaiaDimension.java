@@ -1,6 +1,7 @@
 package androsa.gaiadimension.world;
 
 import androsa.gaiadimension.biomes.BaseGaiaBiome;
+import androsa.gaiadimension.client.GaiaSkyRender;
 import androsa.gaiadimension.registry.GaiaSkyColors;
 import androsa.gaiadimension.registry.ModBiomes;
 import androsa.gaiadimension.registry.ModDimensions;
@@ -25,6 +26,7 @@ import net.minecraft.world.gen.ChunkGeneratorType;
 import net.minecraft.world.gen.Heightmap;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.client.IRenderHandler;
 
 import javax.annotation.Nullable;
 
@@ -40,6 +42,12 @@ public class GaiaDimension extends Dimension {
         GaiaGenerationSettings gaisSettings = chunkGen.createSettings();
         BiomeProviderType<GaiaBiomeProviderSettings, GaiaBiomeProvider> biomeProvider = ModDimensions.GAIA_DIMENSION.get();
         return chunkGen.create(this.world, biomeProvider.create(biomeProvider.getConfig(this.world.getWorldInfo())), gaisSettings);
+    }
+
+    @Nullable
+    @Override
+    public IRenderHandler getSkyRenderer() {
+        return new GaiaSkyRender();
     }
 
     @Override
@@ -100,21 +108,6 @@ public class GaiaDimension extends Dimension {
     public boolean isSurfaceWorld() {
         return true;
     }
-
-    //TODO: Will have to wait until I can render my own sky
-//    @Override
-//    @OnlyIn(Dist.CLIENT)
-//    public float getStarBrightness(float par1) {
-//        PlayerEntity player = Minecraft.getInstance().player;
-//        Biome biome = world.getBiome(new BlockPos(player.posX, player.posY, player.posZ));
-//
-//        if (biome instanceof BaseGaiaBiome) {
-//            if (ModGaiaConfig.skyColors.get() == GaiaSkyColors.PURPLE_AGATE || ((BaseGaiaBiome)biome).skyColor == GaiaSkyColors.PURPLE_AGATE) {
-//                return 0.5F;
-//            }
-//        }
-//        return world.getStarBrightnessBody(par1);
-//    }
 
     @Override
     public float calculateCelestialAngle(long par1, float par3) {

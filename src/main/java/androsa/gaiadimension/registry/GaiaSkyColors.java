@@ -33,10 +33,9 @@ public enum GaiaSkyColors {
         return (skyRed << 16) | (skyGreen << 8) | skyBlue;
     }
 
-    //TODO: Bring back when we can get our own sky renderer
-//    public final short[] getSkyColorRGB() {
-//        return new short[] { skyRed, skyGreen, skyBlue };
-//    }
+    public final short[] getSkyColorRGB() {
+        return new short[] { skyRed, skyGreen, skyBlue };
+    }
 
     public final short[] getFogColor() {
         return new short[] { fogRed, fogGreen, fogBlue };

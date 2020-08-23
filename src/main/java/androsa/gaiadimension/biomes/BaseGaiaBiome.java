@@ -44,20 +44,19 @@ public abstract class BaseGaiaBiome extends Biome {
         this.addSpawn(EntityClassification.MONSTER, new SpawnListEntry(ModEntities.PRIMAL_BEAST.get(), 15, 1, 2));
     }
 
-    @Override
-    @OnlyIn(Dist.CLIENT)
-    public int getSkyColor() {
-        if (ModGaiaConfig.enableSkyFog.get()) {
-            return skyColor.getSkyColor();
-        } else {
-            return ModGaiaConfig.skyColors.get().getSkyColor();
-        }
-    }
-
-    //TODO: Bring back when we can get the sky renderer
-//    public final short[] getSkyRGB() {
-//        return skyColor.getSkyColorRGB();
+//    @Override
+//    @OnlyIn(Dist.CLIENT)
+//    public int getSkyColor() {
+//        if (ModGaiaConfig.enableSkyFog.get()) {
+//            return skyColor.getSkyColor();
+//        } else {
+//            return ModGaiaConfig.skyColors.get().getSkyColor();
+//        }
 //    }
+
+    public final short[] getSkyRGB() {
+        return skyColor.getSkyColorRGB();
+    }
 
     @OnlyIn(Dist.CLIENT)
     public final short[] getFogRGB() {
