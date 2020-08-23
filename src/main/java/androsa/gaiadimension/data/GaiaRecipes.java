@@ -170,17 +170,17 @@ public class GaiaRecipes extends GaiaRecipeProvider {
         largeCompressRecipe(ModBlocks.cloudy_glass.get(), ModItems.cloudy_shard.get()).build(consumer, loc("cloudy_glass"));
         smallCompressRecipe(ModBlocks.gaia_stone_bricks.get(), ModBlocks.gaia_stone.get(), 4).build(consumer, loc("gaia_stone_bricks"));
         smallCompressRecipe(ModBlocks.jade_bricks.get(), ModBlocks.raw_jade.get(), 4).build(consumer, loc("jade_bricks"));
-        slabRecipe(ModBlocks.jade_brick_slab, ModBlocks.jade_bricks);
-        stairsRecipe(ModBlocks.jade_brick_stairs, ModBlocks.jade_bricks);
+        slabRecipe(ModBlocks.jade_brick_slab, ModBlocks.jade_bricks).build(consumer, loc("jade_brick_slab"));
+        stairsRecipe(ModBlocks.jade_brick_stairs, ModBlocks.jade_bricks).build(consumer, loc("jade_brick_stairs"));
         smallCompressRecipe(ModBlocks.copal_bricks.get(), ModBlocks.raw_copal.get(), 4).build(consumer, loc("copal_bricks"));
-        slabRecipe(ModBlocks.copal_brick_slab, ModBlocks.copal_bricks);
-        stairsRecipe(ModBlocks.copal_brick_stairs, ModBlocks.copal_bricks);
+        slabRecipe(ModBlocks.copal_brick_slab, ModBlocks.copal_bricks).build(consumer, loc("copal_brick_slab"));
+        stairsRecipe(ModBlocks.copal_brick_stairs, ModBlocks.copal_bricks).build(consumer, loc("copal_brick_stairs"));
         smallCompressRecipe(ModBlocks.jet_bricks.get(), ModBlocks.raw_jet.get(), 4).build(consumer, loc("jet_bricks"));
-        slabRecipe(ModBlocks.jet_brick_slab, ModBlocks.jet_bricks);
-        stairsRecipe(ModBlocks.jet_brick_stairs, ModBlocks.jet_bricks);
+        slabRecipe(ModBlocks.jet_brick_slab, ModBlocks.jet_bricks).build(consumer, loc("jet_brick_slab"));
+        stairsRecipe(ModBlocks.jet_brick_stairs, ModBlocks.jet_bricks).build(consumer, loc("jet_brick_stairs"));
         smallCompressRecipe(ModBlocks.amethyst_bricks.get(), ModBlocks.raw_amethyst.get(), 4).build(consumer, loc("amethyst_bricks"));
-        slabRecipe(ModBlocks.amethyst_brick_slab, ModBlocks.amethyst_bricks);
-        stairsRecipe(ModBlocks.amethyst_brick_stairs, ModBlocks.amethyst_bricks);
+        slabRecipe(ModBlocks.amethyst_brick_slab, ModBlocks.amethyst_bricks).build(consumer, loc("amethyst_brick_slab"));
+        stairsRecipe(ModBlocks.amethyst_brick_stairs, ModBlocks.amethyst_bricks).build(consumer, loc("amethyst_brick_stairs"));
         largeCompressRecipe(ModItems.goldstone.get(), ModItems.goldstone_residue.get()).build(consumer, loc("goldstone"));
         smallCompressRecipe(ModBlocks.gummy_glitter_block.get(), ModItems.sweet_muckball.get()).build(consumer, loc("gummy_glitter_block"));
         largeCompressRecipe(ModItems.pink_goo.get(), ModItems.pink_essence.get()).build(consumer, loc("pink_goo"));
@@ -196,6 +196,19 @@ public class GaiaRecipes extends GaiaRecipeProvider {
         smallCompressRecipe(ModBlocks.saltstone.get(), ModBlocks.salt.get()).build(consumer, loc("saltstone"));
         smallCompressRecipe(ModItems.sugar_cluster.get(), ModItems.sugar_crystals.get()).build(consumer, loc("sugar_cluster"));
         largeCompressRecipe(ModItems.tektite.get(), ModItems.black_residue.get()).build(consumer, loc("tektite"));
+        stairsRecipe(ModBlocks.malachite_brick_stairs, ModBlocks.malachite_bricks).build(consumer, loc("malachite_brick_stairs"));
+        stairsRecipe(ModBlocks.malachite_cracked_brick_stairs, ModBlocks.malachite_cracked_bricks).build(consumer, loc("malachite_cracked_brick_stairs"));
+        stairsRecipe(ModBlocks.malachite_crusted_brick_stairs, ModBlocks.malachite_crusted_bricks).build(consumer, loc("malachite_crusted_brick_stairs"));
+        stairsRecipe(ModBlocks.malachite_chisel_stairs, ModBlocks.malachite_chisel_bricks).build(consumer, loc("malachite_chisel_stairs"));
+        stairsRecipe(ModBlocks.malachite_floor_stairs, ModBlocks.malachite_floor_tiles).build(consumer, loc("malachite_floor_stairs"));
+        stairsRecipe(ModBlocks.malachite_pillar_stairs, ModBlocks.malachite_pillar).build(consumer, loc("malachite_pillar_stairs"));
+        stairsRecipe(ModBlocks.malachite_pulsing_brick_stairs, ModBlocks.malachite_pulsing_bricks).build(consumer, loc("malachite_pulsing_brick_stairs"));
+        stairsRecipe(ModBlocks.malachite_pulsing_floor_stairs, ModBlocks.malachite_pulsing_tiles).build(consumer, loc("malachite_pulsing_floor_stairs"));
+        stairsRecipe(ModBlocks.malachite_pulsing_chisel_stairs, ModBlocks.malachite_pulsing_chisel).build(consumer, loc("malachite_pulsing_chisel_stairs"));
+        slabRecipe(ModBlocks.malachite_brick_slab, ModBlocks.malachite_bricks).build(consumer, loc("malachite_brick_slab"));
+        slabRecipe(ModBlocks.malachite_cracked_brick_slab, ModBlocks.malachite_cracked_bricks).build(consumer, loc("malachite_cracked_brick_slab"));
+        slabRecipe(ModBlocks.malachite_crusted_brick_slab, ModBlocks.malachite_crusted_bricks).build(consumer, loc("malachite_crusted_brick_slab"));
+        slabRecipe(ModBlocks.malachite_floor_slab, ModBlocks.malachite_floor_tiles).build(consumer, loc("malachite_floor_slab"));
 
         ShapedRecipeBuilder.shapedRecipe(ModItems.agate_arrow.get(), 4)
                 .patternLine("#")
@@ -390,6 +403,12 @@ public class GaiaRecipes extends GaiaRecipeProvider {
                 .addIngredient(ModItems.fine_thread.get())
                 .addCriterion("has_thread", hasItem(ModItems.fine_thread.get()))
                 .build(consumer, loc("twined_thread"));
+        ShapedRecipeBuilder.shapedRecipe(ModBlocks.malachite_chisel_bricks.get())
+                .patternLine("#")
+                .patternLine("#")
+                .key('#', ModBlocks.malachite_brick_slab.get())
+                .addCriterion("has_malachite_slab", hasItem(ModBlocks.malachite_brick_slab.get()))
+                .build(consumer, loc("malachite_chisel_bricks"));
 
         smeltingRecipe(ModItems.blue_opal.get(), ModBlocks.opal_ore_blue.get(), 0.3F).build(consumer, locSmelt("blue_opal_smelt"));
         smeltingRecipe(ModBlocks.burning_sapling.get(), ModBlocks.burnt_sapling.get(), 0.1F).build(consumer, locSmelt("burning_sapling"));
