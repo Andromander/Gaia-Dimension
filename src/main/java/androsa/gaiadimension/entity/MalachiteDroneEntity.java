@@ -14,8 +14,6 @@ import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.pathfinding.*;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.Difficulty;
-import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
@@ -24,7 +22,6 @@ import net.minecraftforge.common.ForgeHooks;
 import javax.annotation.Nullable;
 import java.util.EnumSet;
 import java.util.Optional;
-import java.util.Random;
 import java.util.UUID;
 
 public class MalachiteDroneEntity extends MonsterEntity {
@@ -119,10 +116,6 @@ public class MalachiteDroneEntity extends MonsterEntity {
         }
 
         super.onDeath(source);
-    }
-
-    public static boolean canSpawnHere(EntityType<MalachiteDroneEntity> entity, IWorld world, SpawnReason spawn, BlockPos pos, Random random) {
-        return world.getDifficulty() != Difficulty.PEACEFUL;
     }
 
     class FollowGuardGoal extends Goal {

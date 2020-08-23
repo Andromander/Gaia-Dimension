@@ -13,6 +13,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.IWorld;
+import net.minecraft.world.LightType;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 
@@ -32,9 +33,13 @@ public class MucklingEntity extends SlimeEntity {
 
     public static boolean canSpawnHere(EntityType<MucklingEntity> entity, IWorld world, SpawnReason spawn, BlockPos pos, Random random) {
         if (world.getDifficulty() != Difficulty.PEACEFUL) {
-            Biome biome = world.getBiome(pos);
-            if (biome == ModBiomes.purple_agate_swamp.get() || pos.getY() < 40 && random.nextFloat() < 0.5F) {
-                return canSpawnOn(entity, world, spawn, pos, random);
+            if (spawn == SpawnReason.SPAWNER && world.getLightLevel(LightType.SKY, pos) < 8) {
+                return true;
+            } else {
+                Biome biome = world.getBiome(pos);
+                if (biome == ModBiomes.purple_agate_swamp.get() || pos.getY() < 40 && random.nextFloat() < 0.5F) {
+                    return canSpawnOn(entity, world, spawn, pos, random);
+                }
             }
         }
         return false;

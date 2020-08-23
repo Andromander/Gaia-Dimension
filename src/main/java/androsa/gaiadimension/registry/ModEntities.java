@@ -177,7 +177,7 @@ public class ModEntities {
         register(SHALLOW_ARENTHIS.get(), PlacementType.IN_WATER, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, ShallowArenthisEntity::canSpawnHere);
         register(SHALURKER.get(), PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, MonsterEntity::func_223325_c);
         register(SPELLBOUND_ELEMENTAL.get(), PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, SpellElementEntity::canSpawnHere);
-        register(MALACHITE_DRONE.get(), PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, MalachiteDroneEntity::canSpawnHere);
+        register(MALACHITE_DRONE.get(), PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, MonsterEntity::func_223324_d);
     }
 
     @OnlyIn(Dist.CLIENT)

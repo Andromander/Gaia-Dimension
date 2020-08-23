@@ -1,8 +1,6 @@
 package androsa.gaiadimension.entity.boss;
 
 import androsa.gaiadimension.entity.HowliteWolfEntity;
-import androsa.gaiadimension.registry.ModBiomes;
-import androsa.gaiadimension.registry.ModBlocks;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.monster.MonsterEntity;
@@ -10,12 +8,14 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.IWorld;
+import net.minecraft.world.LightType;
 import net.minecraft.world.World;
 
 import java.util.Random;
 
 public class BlueHowliteWolfEntity extends MonsterEntity {
 
+    //TODO: Flesh out and revise
     public BlueHowliteWolfEntity(EntityType<? extends BlueHowliteWolfEntity> entity, World world) {
         super(entity, world);
         this.experienceValue = 30;
@@ -58,7 +58,14 @@ public class BlueHowliteWolfEntity extends MonsterEntity {
     }
 
     public static boolean canSpawnHere(EntityType<BlueHowliteWolfEntity> entity, IWorld world, SpawnReason spawn, BlockPos pos, Random random) {
-        return world.getDifficulty() != Difficulty.PEACEFUL && world.getBlockState(pos.down()).getBlock() == ModBlocks.glitter_grass.get();
+        if (world.getDifficulty() != Difficulty.PEACEFUL) {
+            if (spawn == SpawnReason.SPAWNER) {
+                return isValidLightLevel(world, pos, random);
+            } else {
+                return world.getBlockState(pos.down()).canEntitySpawn(world, pos.down(), entity) && world.getLightLevel(LightType.SKY, pos) > 8;
+            }
+        }
+        return false;
     }
 
     //Keep this commented out until later

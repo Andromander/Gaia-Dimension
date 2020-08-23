@@ -2,7 +2,6 @@ package androsa.gaiadimension.entity;
 
 import androsa.gaiadimension.GaiaDimensionMod;
 import androsa.gaiadimension.biomes.*;
-import androsa.gaiadimension.registry.ModBlocks;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.LookAtGoal;
 import net.minecraft.entity.ai.goal.LookRandomlyGoal;
@@ -106,7 +105,7 @@ public class GrowthSapperEntity extends CreatureEntity {
     }
 
     public static boolean canSpawnHere(EntityType<GrowthSapperEntity> entity, IWorld world, SpawnReason spawn, BlockPos pos, Random random) {
-        return world.getBlockState(pos.down()).getBlock() == ModBlocks.glitter_grass.get() && world.getBaseLightLevel(pos, 0) > 8;
+        return spawn == SpawnReason.SPAWNER || world.getBlockState(pos.down()).canEntitySpawn(world, pos.down(), entity) && world.getBaseLightLevel(pos, 0) > 8;
     }
 
     @Override

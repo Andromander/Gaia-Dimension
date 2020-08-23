@@ -1,13 +1,13 @@
 package androsa.gaiadimension.entity;
 
 import androsa.gaiadimension.entity.boss.BlueHowliteWolfEntity;
-import androsa.gaiadimension.registry.ModBlocks;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.IWorld;
+import net.minecraft.world.LightType;
 import net.minecraft.world.World;
 
 import java.util.Random;
@@ -48,6 +48,13 @@ public class HowliteWolfEntity extends MonsterEntity {
     }
 
     public static boolean canSpawnHere(EntityType<HowliteWolfEntity> entity, IWorld world, SpawnReason spawn, BlockPos pos, Random random) {
-        return world.getDifficulty() != Difficulty.PEACEFUL && world.getBlockState(pos.down()).getBlock() == ModBlocks.glitter_grass.get() /*&& world.getLightSubtracted(pos.down(), 0) > 8*/;
+        if (world.getDifficulty() != Difficulty.PEACEFUL) {
+            if (spawn == SpawnReason.SPAWNER) {
+                return isValidLightLevel(world, pos, random);
+            } else {
+                return world.getBlockState(pos.down()).canEntitySpawn(world, pos.down(), entity) && world.getLightLevel(LightType.SKY, pos) > 8;
+            }
+        }
+        return false;
     }
 }

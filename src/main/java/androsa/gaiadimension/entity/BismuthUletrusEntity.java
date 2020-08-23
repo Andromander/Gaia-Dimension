@@ -1,6 +1,5 @@
 package androsa.gaiadimension.entity;
 
-import androsa.gaiadimension.registry.ModBlocks;
 import net.minecraft.entity.CreatureEntity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -17,6 +16,7 @@ import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IWorld;
+import net.minecraft.world.LightType;
 import net.minecraft.world.World;
 
 import java.util.Random;
@@ -81,7 +81,7 @@ public class BismuthUletrusEntity extends CreatureEntity {
     }
 
     public static boolean canSpawnHere(EntityType<BismuthUletrusEntity> entity, IWorld world, SpawnReason spawn, BlockPos pos, Random random) {
-        return world.getBlockState(pos.down()).getBlock() == ModBlocks.murky_grass.get() || world.getBlockState(pos.down()).getBlock() == ModBlocks.impure_sludge.get() && world.getBaseLightLevel(pos, 0) > 8;
+        return spawn == SpawnReason.SPAWNER || world.getBlockState(pos.down()).canEntitySpawn(world, pos.down(), entity) && world.getLightLevel(LightType.SKY, pos) > 8;
     }
 
     @Override

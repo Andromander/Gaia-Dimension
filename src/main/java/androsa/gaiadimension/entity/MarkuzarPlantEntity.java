@@ -1,10 +1,10 @@
 package androsa.gaiadimension.entity;
 
-import androsa.gaiadimension.registry.ModBlocks;
 import net.minecraft.entity.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.IWorld;
+import net.minecraft.world.LightType;
 import net.minecraft.world.World;
 
 import java.util.Random;
@@ -41,7 +41,6 @@ public class MarkuzarPlantEntity extends CreatureEntity {
 
     public static boolean canSpawnHere(EntityType<MarkuzarPlantEntity> entity, IWorld world, SpawnReason spawn, BlockPos pos, Random random) {
         BlockPos blockpos = pos.down();
-        return spawn == SpawnReason.SPAWNER ||
-                world.getBlockState(blockpos).getBlock() == ModBlocks.glitter_grass.get() /*&& world.getLight(blockpos) > 8*/;
+        return world.getBlockState(blockpos).canEntitySpawn(world, blockpos, entity) && world.getLightLevel(LightType.SKY, blockpos) > 8;
     }
 }

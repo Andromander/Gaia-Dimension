@@ -1,6 +1,5 @@
 package androsa.gaiadimension.entity;
 
-import androsa.gaiadimension.registry.ModBlocks;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.monster.CreeperEntity;
@@ -67,6 +66,6 @@ public class CrystalGolemEntity extends GolemEntity {
     }
 
     public static boolean canSpawnHere(EntityType<CrystalGolemEntity> entity, IWorld world, SpawnReason spawn, BlockPos pos, Random random) {
-        return world.getBlockState(pos.down()).getBlock() == ModBlocks.glitter_grass.get() && world.getBaseLightLevel(pos, 0) > 8;
+        return spawn == SpawnReason.SPAWNER || world.getBlockState(pos.down()).canEntitySpawn(world, pos.down(), entity) && world.getBaseLightLevel(pos, 0) > 8;
     }
 }
