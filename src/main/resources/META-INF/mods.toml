@@ -5,9 +5,9 @@ issueTrackerURL="https://github.com/Andromander/Gaia-Dimension/issues" #optional
 # A list of mods - how many allowed here is determined by the individual mod loader
 [[mods]] #mandatory
 modId="gaiadimension" #mandatory
-version="1.2.1" #mandatory
+version="1.2.2" #mandatory
 displayName="The Gaia Dimension" #mandatory
-updateJSONURL="https://raw.githubusercontent.com/Andromander/Gaia-Dimension/master/update.json" #optional
+updateJSONURL="https://raw.githubusercontent.com/Andromander/Gaia-Dimension/1.15.x/update.json" #optional
 displayURL="https://www.curseforge.com/minecraft/mc-mods/gaia-dimension" #optional
 #logoFile="" #optional
 credits="Androsa, and the Gaia Dimension contributors." #optional
@@ -17,7 +17,7 @@ description="Explore the fantastical land of Gaia and uncover the secrets within
 [[dependencies.gaiadimension]] #optional
     modId="forge" #mandatory
     mandatory=true #mandatory
-    versionRange="[31.1.0,)" #mandatory
+    versionRange="[31.2.13,)" #mandatory
     ordering="NONE"
     side="BOTH"
 [[dependencies.gaiadimension]]
