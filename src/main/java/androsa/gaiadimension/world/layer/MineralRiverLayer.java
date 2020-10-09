@@ -1,5 +1,6 @@
 package androsa.gaiadimension.world.layer;
 
+import androsa.gaiadimension.registry.ModBiomes;
 import com.google.common.collect.ImmutableList;
 import net.minecraft.world.gen.INoiseRandom;
 import net.minecraft.world.gen.layer.traits.ICastleTransformer;
@@ -11,21 +12,21 @@ public enum MineralRiverLayer implements ICastleTransformer {
     INSTANCE;
 
     private List<Integer> agateBiomes = ImmutableList.of(
-            GaiaLayerUtil.PINK_FOREST.getAsInt(),
-            GaiaLayerUtil.BLUE_FOREST.getAsInt(),
-            GaiaLayerUtil.GREEN_FOREST.getAsInt(),
-            GaiaLayerUtil.PURPLE_FOREST.getAsInt());
+            GaiaLayerUtil.getBiomeId(ModBiomes.pink_agate_forest),
+            GaiaLayerUtil.getBiomeId(ModBiomes.blue_agate_taiga),
+            GaiaLayerUtil.getBiomeId(ModBiomes.green_agate_jungle),
+            GaiaLayerUtil.getBiomeId(ModBiomes.purple_agate_swamp));
     private List<Integer> dryBiomes = ImmutableList.of(
-            GaiaLayerUtil.BOG.getAsInt(),
-            GaiaLayerUtil.STATIC.getAsInt(),
-            GaiaLayerUtil.VOLCANIC.getAsInt());
+            GaiaLayerUtil.getBiomeId(ModBiomes.smoldering_bog),
+            GaiaLayerUtil.getBiomeId(ModBiomes.static_wasteland),
+            GaiaLayerUtil.getBiomeId(ModBiomes.volcanic_lands));
 
     MineralRiverLayer() { }
 
     @Override
     public int apply(INoiseRandom random, int north, int west, int south, int east, int center) {
         if (shouldRiver(center, west, south, east, north)) {
-            return GaiaLayerUtil.RIVER.getAsInt();
+            return GaiaLayerUtil.getBiomeId(ModBiomes.mineral_river);
         } else {
             return -1;
         }
@@ -47,19 +48,19 @@ public enum MineralRiverLayer implements ICastleTransformer {
         }
 
         //Crystal Plains and Pink Agate Forest are too similar for rivers
-        if ((id1 == GaiaLayerUtil.PINK_FOREST.getAsInt() && id2 == GaiaLayerUtil.PLAINS.getAsInt()) || (id1 == GaiaLayerUtil.PLAINS.getAsInt() && id2 == GaiaLayerUtil.PINK_FOREST.getAsInt()))
+        if ((id1 == GaiaLayerUtil.getBiomeId(ModBiomes.pink_agate_forest) && id2 == GaiaLayerUtil.getBiomeId(ModBiomes.crystal_plains)) || (id1 == GaiaLayerUtil.getBiomeId(ModBiomes.crystal_plains) && id2 == GaiaLayerUtil.getBiomeId(ModBiomes.pink_agate_forest)))
             return false;
 
         //If a reservoir gens near another reservoir, remove the river because it would look goofy
-        if (id1 == GaiaLayerUtil.RESERVOIR.getAsInt() && id2 == GaiaLayerUtil.RESERVOIR.getAsInt())
+        if (id1 == GaiaLayerUtil.getBiomeId(ModBiomes.mineral_reservoir) && id2 == GaiaLayerUtil.getBiomeId(ModBiomes.mineral_reservoir))
             return false;
 
         //Salt Dunes and Mineral Reservoirs are similar, no need for river
-        if ((id1 == GaiaLayerUtil.DUNES.getAsInt() && id2 == GaiaLayerUtil.RESERVOIR.getAsInt()) || (id1 == GaiaLayerUtil.RESERVOIR.getAsInt() && id2 == GaiaLayerUtil.DUNES.getAsInt()))
+        if ((id1 == GaiaLayerUtil.getBiomeId(ModBiomes.salt_dunes) && id2 == GaiaLayerUtil.getBiomeId(ModBiomes.mineral_reservoir)) || (id1 == GaiaLayerUtil.getBiomeId(ModBiomes.mineral_reservoir) && id2 == GaiaLayerUtil.getBiomeId(ModBiomes.salt_dunes)))
             return false;
 
         //Mutated Agate Wildwoods should look like they were any Agate Forest, but with strange growth patterns
-        if ((id1 == GaiaLayerUtil.WILDWOOD.getAsInt() && agateBiomes.contains(id2)) || (agateBiomes.contains(id1) && id2 == GaiaLayerUtil.WILDWOOD.getAsInt()))
+        if ((id1 == GaiaLayerUtil.getBiomeId(ModBiomes.mutant_agate_wildwood) && agateBiomes.contains(id2)) || (agateBiomes.contains(id1) && id2 == GaiaLayerUtil.getBiomeId(ModBiomes.mutant_agate_wildwood)))
             return false;
 
         return true;

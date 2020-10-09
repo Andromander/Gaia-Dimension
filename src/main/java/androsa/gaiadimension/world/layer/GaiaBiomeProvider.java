@@ -46,7 +46,7 @@ public class GaiaBiomeProvider extends BiomeProvider {
         super(biomes.stream().map(key -> () -> registry.getOrThrow(key)));
         this.seed = seed;
         this.registry = registry;
-        this.genBiomes = GaiaLayerUtil.makeLayers(seed);
+        this.genBiomes = GaiaLayerUtil.makeLayers(seed, registry);
 
 //        getBiomesToSpawnIn().clear();
 //        getBiomesToSpawnIn().add(ModBiomes.pink_agate_forest.get());
