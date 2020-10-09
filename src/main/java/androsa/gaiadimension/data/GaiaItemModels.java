@@ -4,7 +4,7 @@ import androsa.gaiadimension.data.provider.GaiaItemModelProvider;
 import androsa.gaiadimension.registry.ModBlocks;
 import androsa.gaiadimension.registry.ModItems;
 import net.minecraft.data.DataGenerator;
-import net.minecraftforge.client.model.generators.ExistingFileHelper;
+import net.minecraftforge.common.data.ExistingFileHelper;
 
 public class GaiaItemModels extends GaiaItemModelProvider {
 

@@ -1,19 +1,17 @@
 package androsa.gaiadimension.block;
 
 import androsa.gaiadimension.block.tileentity.GeyserTileEntity;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.material.Material;
-import net.minecraft.block.material.MaterialColor;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.IBlockReader;
-import net.minecraftforge.common.ToolType;
 
 import javax.annotation.Nullable;
 
-public class GeyserBlock extends BasicGaiaBlock {
+public class GeyserBlock extends Block {
 
-    public GeyserBlock() {
-        super(Material.ROCK, MaterialColor.IRON, 5.0F, 10.0F, ToolType.PICKAXE, 1);
+    public GeyserBlock(Properties props) {
+        super(props);
     }
 
     @Override

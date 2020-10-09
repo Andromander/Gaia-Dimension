@@ -1,25 +1,19 @@
 package androsa.gaiadimension.world.gen.config;
 
-import com.google.common.collect.ImmutableMap;
-import com.mojang.datafixers.Dynamic;
-import com.mojang.datafixers.types.DynamicOps;
+import com.mojang.serialization.Codec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.world.gen.feature.IFeatureConfig;
 
 public class FeatureHeightConfig implements IFeatureConfig {
+
+    public static final Codec<FeatureHeightConfig> CODEC = RecordCodecBuilder.create((instance) ->
+            instance.group(
+                    Codec.INT.fieldOf("start_height").orElse(0).forGetter((obj) -> obj.startHeight)
+            ).apply(instance, FeatureHeightConfig::new));
 
     public final int startHeight;
 
     public FeatureHeightConfig(int height) {
         this.startHeight = height;
-    }
-
-    @Override
-    public <T> Dynamic<T> serialize(DynamicOps<T> dynamicOps) {
-        return new Dynamic<>(dynamicOps, dynamicOps.createMap(ImmutableMap.of(dynamicOps.createString("start_height"), dynamicOps.createInt(startHeight))));
-    }
-
-    public static <T> FeatureHeightConfig deserialize(Dynamic<T> dynamic) {
-        int height = dynamic.get("start_height").asInt(0);
-        return new FeatureHeightConfig(height);
     }
 }

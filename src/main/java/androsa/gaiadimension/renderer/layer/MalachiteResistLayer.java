@@ -27,10 +27,10 @@ public class MalachiteResistLayer<T extends MalachiteGuardEntity, M extends Mala
             float ticks = (float)entity.ticksExisted + partialTicks;
             EntityModel<T> model = this.getEnergySwirlModel();
             model.setLivingAnimations(entity, limbSwing, limbSwingAmount, partialTicks);
-            this.getEntityModel().setModelAttributes(model);
+            this.getEntityModel().copyModelAttributesTo(model);
             IVertexBuilder builder = buffer.getBuffer(RenderType.getEnergySwirl(this.getEnergySwirlTexture(), this.getEnergySwirlX(ticks), ticks * 0.01F));
-            model.setAngles(entity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
-            model.render(matrix, builder, light, OverlayTexture.DEFAULT_UV, 0.5F, 0.5F, 0.5F, 1.0F);
+            model.setRotationAngles(entity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
+            model.render(matrix, builder, light, OverlayTexture.NO_OVERLAY, 0.5F, 0.5F, 0.5F, 1.0F);
         }
     }
 

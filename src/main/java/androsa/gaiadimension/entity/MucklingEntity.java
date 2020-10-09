@@ -4,11 +4,14 @@ import androsa.gaiadimension.registry.ModBiomes;
 import androsa.gaiadimension.registry.ModBlocks;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.EntityType;
-import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.MobEntity;
+import net.minecraft.entity.ai.attributes.AttributeModifierMap;
+import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.monster.SlimeEntity;
 import net.minecraft.particles.BlockParticleData;
 import net.minecraft.particles.ParticleTypes;
+import net.minecraft.util.RegistryKey;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.Difficulty;
@@ -17,6 +20,8 @@ import net.minecraft.world.LightType;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 
+import java.util.Objects;
+import java.util.Optional;
 import java.util.Random;
 
 public class MucklingEntity extends SlimeEntity {
@@ -28,16 +33,17 @@ public class MucklingEntity extends SlimeEntity {
     @Override
     public void setSlimeSize(int size, boolean resetHealth) {
         super.setSlimeSize(size, resetHealth);
+        this.getAttribute(Attributes.ATTACK_DAMAGE).setBaseValue((double)size + 3);
         this.experienceValue += 3;
     }
 
     public static boolean canSpawnHere(EntityType<MucklingEntity> entity, IWorld world, SpawnReason spawn, BlockPos pos, Random random) {
         if (world.getDifficulty() != Difficulty.PEACEFUL) {
-            if (spawn == SpawnReason.SPAWNER && world.getLightLevel(LightType.SKY, pos) < 8) {
+            if (spawn == SpawnReason.SPAWNER && world.getLightFor(LightType.SKY, pos) < 8) {
                 return true;
             } else {
-                Biome biome = world.getBiome(pos);
-                if (biome == ModBiomes.purple_agate_swamp.get() || pos.getY() < 40 && random.nextFloat() < 0.5F) {
+                Optional<RegistryKey<Biome>> biome = world.func_242406_i(pos);
+                if (Objects.equals(biome, Optional.of(ModBiomes.purple_agate_swamp)) || pos.getY() < 40 && random.nextFloat() < 0.5F) {
                     return canSpawnOn(entity, world, spawn, pos, random);
                 }
             }
@@ -45,20 +51,14 @@ public class MucklingEntity extends SlimeEntity {
         return false;
     }
 
-    @Override
-    protected void registerAttributes() {
-        super.registerAttributes();
-        this.getAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(40.0D);
+    public static AttributeModifierMap.MutableAttribute registerAttributes() {
+        return MobEntity.func_233666_p_()
+                .createMutableAttribute(Attributes.MAX_HEALTH, 40.0D);
     }
 
     @Override
     protected boolean canDamagePlayer() {
         return true;
-    }
-
-    @Override
-    protected float getDamageAmount() {
-        return super.getDamageAmount() + 3;
     }
 
     @Override
@@ -70,8 +70,8 @@ public class MucklingEntity extends SlimeEntity {
             float f2 = MathHelper.sin(f) * (float) i * 0.5F * f1;
             float f3 = MathHelper.cos(f) * (float) i * 0.5F * f1;
             World world = this.world;
-            double d0 = this.getX() + (double) f2;
-            double d1 = this.getZ() + (double) f3;
+            double d0 = this.getPosX() + (double) f2;
+            double d1 = this.getPosZ() + (double) f3;
             BlockState state = ModBlocks.gummy_glitter_block.get().getDefaultState();
             world.addParticle(new BlockParticleData(ParticleTypes.BLOCK, state), d0, this.getBoundingBox().minY, d1, 0.0D, 0.0D, 0.0D);
         }

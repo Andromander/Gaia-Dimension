@@ -1,26 +1,24 @@
 package androsa.gaiadimension.world.gen.feature;
 
 import androsa.gaiadimension.block.AbstractGaiaGrassBlock;
-import com.mojang.datafixers.Dynamic;
+import com.mojang.serialization.Codec;
 import net.minecraft.block.Block;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.IWorld;
+import net.minecraft.world.ISeedReader;
 import net.minecraft.world.gen.ChunkGenerator;
-import net.minecraft.world.gen.GenerationSettings;
-import net.minecraft.world.gen.feature.BlockBlobConfig;
+import net.minecraft.world.gen.feature.BlockStateFeatureConfig;
 import net.minecraft.world.gen.feature.Feature;
 
 import java.util.Random;
-import java.util.function.Function;
 
-public class GaiaBlobFeature<T extends BlockBlobConfig> extends Feature<T> {
+public class GaiaBlobFeature<T extends BlockStateFeatureConfig> extends Feature<T> {
 
-    public GaiaBlobFeature(Function<Dynamic<?>, T> config) {
+    public GaiaBlobFeature(Codec<T> config) {
         super(config);
     }
 
     @Override
-    public boolean place(IWorld worldIn, ChunkGenerator<? extends GenerationSettings> generator, Random rand, BlockPos pos, T config) {
+    public boolean func_241855_a(ISeedReader worldIn, ChunkGenerator generator, Random rand, BlockPos pos, T config) {
         while(true) {
             label50: {
                 if (pos.getY() > 3) {
@@ -38,12 +36,10 @@ public class GaiaBlobFeature<T extends BlockBlobConfig> extends Feature<T> {
                     return false;
                 }
 
-                int rad = config.startRadius;
-
-                for(int i = 0; rad >= 0 && i < 3; ++i) {
-                    int x = rad + rand.nextInt(2);
-                    int y = rad + rand.nextInt(2);
-                    int z = rad + rand.nextInt(2);
+                for(int i = 0; i < 3; ++i) {
+                    int x = rand.nextInt(2);
+                    int y = rand.nextInt(2);
+                    int z = rand.nextInt(2);
                     float f = (float)(x + y + z) * 0.333F + 0.5F;
 
                     for(BlockPos blockpos : BlockPos.getAllInBoxMutable(pos.add(-x, -y, -z), pos.add(x, y, z))) {
@@ -52,7 +48,7 @@ public class GaiaBlobFeature<T extends BlockBlobConfig> extends Feature<T> {
                         }
                     }
 
-                    pos = pos.add(-(rad + 1) + rand.nextInt(2 + rad * 2), 0 - rand.nextInt(2), -(rad + 1) + rand.nextInt(2 + rad * 2));
+                    pos = pos.add(-1 + rand.nextInt(2), 0 - rand.nextInt(2), -1 + rand.nextInt(2));
                 }
 
                 return true;

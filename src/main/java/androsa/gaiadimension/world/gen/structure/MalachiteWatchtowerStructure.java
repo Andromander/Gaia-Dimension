@@ -1,123 +1,117 @@
 package androsa.gaiadimension.world.gen.structure;
 
-import androsa.gaiadimension.GaiaDimensionMod;
 import androsa.gaiadimension.registry.ModEntities;
-import androsa.gaiadimension.world.GaiaGenerationSettings;
 import androsa.gaiadimension.world.gen.structure.pieces.MalachiteWatchtowerPieces;
 import com.google.common.collect.Lists;
-import com.mojang.datafixers.Dynamic;
+import com.mojang.serialization.Codec;
 import net.minecraft.util.Rotation;
 import net.minecraft.util.SharedSeedRandom;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.math.MutableBoundingBox;
-import net.minecraft.world.IWorld;
+import net.minecraft.util.registry.DynamicRegistries;
+import net.minecraft.world.ISeedReader;
 import net.minecraft.world.biome.Biome;
-import net.minecraft.world.biome.BiomeManager;
+import net.minecraft.world.biome.MobSpawnInfo;
+import net.minecraft.world.biome.provider.BiomeProvider;
 import net.minecraft.world.gen.ChunkGenerator;
-import net.minecraft.world.gen.GenerationSettings;
+import net.minecraft.world.gen.GenerationStage;
 import net.minecraft.world.gen.feature.NoFeatureConfig;
 import net.minecraft.world.gen.feature.structure.Structure;
+import net.minecraft.world.gen.feature.structure.StructureManager;
 import net.minecraft.world.gen.feature.structure.StructurePiece;
 import net.minecraft.world.gen.feature.structure.StructureStart;
 import net.minecraft.world.gen.feature.template.TemplateManager;
 
 import java.util.List;
 import java.util.Random;
-import java.util.function.Function;
 
 public class MalachiteWatchtowerStructure<T extends NoFeatureConfig> extends Structure<T> {
 
-    private static final List<Biome.SpawnListEntry> spawnList = Lists.newArrayList(
-            new Biome.SpawnListEntry(ModEntities.MALACHITE_DRONE.get(), 10, 1, 1),
-            new Biome.SpawnListEntry(ModEntities.SHALURKER.get(), 5, 1, 2),
-            new Biome.SpawnListEntry(ModEntities.ARCHAIC_WARRIOR.get(), 8, 1, 2),
-            new Biome.SpawnListEntry(ModEntities.CAVERN_TICK.get(), 3, 2, 3));
-
-    public MalachiteWatchtowerStructure(Function<Dynamic<?>, T> config) {
+    public MalachiteWatchtowerStructure(Codec<T> config) {
         super(config);
     }
 
+//    @Override
+//    public String getStructureName() {
+//        return GaiaDimensionMod.MODID + ":MalachiteWatchtower";
+//    }
+
     @Override
-    public String getStructureName() {
-        return GaiaDimensionMod.MODID + ":MalachiteWatchtower";
+    public List<MobSpawnInfo.Spawners> getCreatureSpawnList() {
+        return Lists.newArrayList(
+                new MobSpawnInfo.Spawners(ModEntities.MALACHITE_DRONE.get(), 10, 1, 1),
+                new MobSpawnInfo.Spawners(ModEntities.SHALURKER.get(), 5, 1, 2),
+                new MobSpawnInfo.Spawners(ModEntities.ARCHAIC_WARRIOR.get(), 8, 1, 2),
+                new MobSpawnInfo.Spawners(ModEntities.CAVERN_TICK.get(), 3, 2, 3));
     }
 
     @Override
-    public int getSize() {
-        return 8;
-    }
-
-    @Override
-    public List<Biome.SpawnListEntry> getCreatureSpawnList() {
-        return spawnList;
-    }
-
-    @Override
-    public IStartFactory getStartFactory() {
+    public IStartFactory<T> getStartFactory() {
         return MalachiteWatchtowerStructure.Start::new;
     }
 
     @Override
-    protected ChunkPos getStartPositionForPosition(ChunkGenerator<?> generator, Random random, int minX, int minZ, int maxX, int maxZ) {
-        int dist = this.getBiomeFeatureDistance(generator);
-        int sep = this.getBiomeFeatureSeparation(generator);
-        int k = minX + dist * maxX;
-        int l = minZ + dist * maxZ;
-        int i1 = k < 0 ? k - dist + 1 : k;
-        int j1 = l < 0 ? l - dist + 1 : l;
-        int k1 = i1 / dist;
-        int l1 = j1 / dist;
-        ((SharedSeedRandom)random).setLargeFeatureSeedWithSalt(generator.getSeed(), k1, l1, 1294754);
-        k1 = k1 * dist;
-        l1 = l1 * dist;
-        k1 = k1 + random.nextInt(dist - sep);
-        l1 = l1 + random.nextInt(dist - sep);
-        return new ChunkPos(k1, l1);
+    public GenerationStage.Decoration func_236396_f_() {
+        return GenerationStage.Decoration.SURFACE_STRUCTURES;
     }
+
+    //TODO
+//    @Override
+//    protected ChunkPos getStartPositionForPosition(ChunkGenerator<?> generator, Random random, int minX, int minZ, int maxX, int maxZ) {
+//        int dist = this.getBiomeFeatureDistance(generator);
+//        int sep = this.getBiomeFeatureSeparation(generator);
+//        int k = minX + dist * maxX;
+//        int l = minZ + dist * maxZ;
+//        int i1 = k < 0 ? k - dist + 1 : k;
+//        int j1 = l < 0 ? l - dist + 1 : l;
+//        int k1 = i1 / dist;
+//        int l1 = j1 / dist;
+//        ((SharedSeedRandom)random).setLargeFeatureSeedWithSalt(generator.getSeed(), k1, l1, 1294754);
+//        k1 = k1 * dist;
+//        l1 = l1 * dist;
+//        k1 = k1 + random.nextInt(dist - sep);
+//        l1 = l1 + random.nextInt(dist - sep);
+//        return new ChunkPos(k1, l1);
+//    }
 
     @Override
-    public boolean shouldStartAt(BiomeManager manager, ChunkGenerator<?> generator, Random random, int chunkX, int chunkZ, Biome biomeIn) {
-        ChunkPos chunkpos = this.getStartPositionForPosition(generator, random, chunkX, chunkZ, 0, 0);
-        if (chunkX == chunkpos.x && chunkZ == chunkpos.z) {
-            for(Biome biome : generator.getBiomeProvider().getBiomesInArea(chunkX * 16 + 9, generator.getSeaLevel(), chunkZ * 16 + 9, 16)) {
-                if (!generator.hasStructure(biome, this)) {
-                    return false;
-                }
+    protected boolean func_230363_a_(ChunkGenerator generator, BiomeProvider provider, long seed, SharedSeedRandom random, int chunkX, int chunkZ, Biome biomeIn, ChunkPos chunkpos, T config) {
+        for(Biome biome : provider.getBiomes(chunkX * 16 + 9, generator.func_230356_f_(), chunkZ * 16 + 9, 16)) {
+            if (!biome.getGenerationSettings().hasStructure(this)) {
+                return false;
             }
-
-            return true;
-        } else {
-            return false;
         }
+
+        return true;
     }
 
-    protected int getBiomeFeatureDistance(ChunkGenerator<?> generator) {
-        GenerationSettings settings = generator.getSettings();
+//    protected int getBiomeFeatureDistance(ChunkGenerator<?> generator) {
+//        GenerationSettings settings = generator.getSettings();
+//
+//        if (settings instanceof GaiaGenerationSettings)
+//            return ((GaiaGenerationSettings) settings).getWatchtowerFeatureDistance();
+//        else
+//            return settings.getBiomeFeatureDistance();
+//    }
 
-        if (settings instanceof GaiaGenerationSettings)
-            return ((GaiaGenerationSettings) settings).getWatchtowerFeatureDistance();
-        else
-            return settings.getBiomeFeatureDistance();
-    }
+//    protected int getBiomeFeatureSeparation(ChunkGenerator<?> generator) {
+//        GenerationSettings settings = generator.getSettings();
+//
+//        if (settings instanceof GaiaGenerationSettings)
+//            return ((GaiaGenerationSettings) settings).getWatchtowerFeatureSeparation();
+//        else
+//            return settings.getBiomeFeatureSeparation();
+//    }
 
-    protected int getBiomeFeatureSeparation(ChunkGenerator<?> generator) {
-        GenerationSettings settings = generator.getSettings();
+    public static class Start<T extends NoFeatureConfig> extends StructureStart<T> {
 
-        if (settings instanceof GaiaGenerationSettings)
-            return ((GaiaGenerationSettings) settings).getWatchtowerFeatureSeparation();
-        else
-            return settings.getBiomeFeatureSeparation();
-    }
-
-    public static class Start extends StructureStart {
-
-        public Start(Structure<?> structure, int chunkX, int chunkZ, MutableBoundingBox mbb, int ref, long seed) {
+        public Start(Structure<T> structure, int chunkX, int chunkZ, MutableBoundingBox mbb, int ref, long seed) {
             super(structure, chunkX, chunkZ, mbb, ref, seed);
         }
 
         @Override
-        public void init(ChunkGenerator<?> generator, TemplateManager manager, int chunkX, int chunkZ, Biome biome) {
+        public void func_230364_a_(DynamicRegistries registries, ChunkGenerator generator, TemplateManager manager, int chunkX, int chunkZ, Biome biome, T config) {
             int x = chunkX * 16;
             int z = chunkZ * 16;
             BlockPos blockpos = new BlockPos(x, 90, z);
@@ -127,8 +121,8 @@ public class MalachiteWatchtowerStructure<T extends NoFeatureConfig> extends Str
         }
 
         @Override
-        public void generateStructure(IWorld world, ChunkGenerator<?> generator, Random random, MutableBoundingBox mbb, ChunkPos chunkpos) {
-            super.generateStructure(world, generator, random, mbb, chunkpos);
+        public void func_230366_a_(ISeedReader world, StructureManager manager, ChunkGenerator generator, Random random, MutableBoundingBox mbb, ChunkPos chunkpos) {
+            super.func_230366_a_(world, manager, generator, random, mbb, chunkpos);
             int minY = this.bounds.minY;
 
             //Let me ask: do towers overhang cliffs? I didn't think so
@@ -152,7 +146,7 @@ public class MalachiteWatchtowerStructure<T extends NoFeatureConfig> extends Str
                                     break;
                                 }
 
-                                world.setBlockState(blockpos1, world.getBiome(blockpos1).getSurfaceBuilderConfig().getUnder(), 2);
+                                world.setBlockState(blockpos1, world.getBiome(blockpos1).getGenerationSettings().getSurfaceBuilderConfig().getUnder(), 2);
                             }
                         }
                     }

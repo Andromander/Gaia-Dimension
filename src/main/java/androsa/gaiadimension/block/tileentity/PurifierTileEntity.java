@@ -7,6 +7,7 @@ import androsa.gaiadimension.registry.*;
 import androsa.gaiadimension.registry.ModBlocks;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
+import net.minecraft.block.BlockState;
 import net.minecraft.entity.item.ExperienceOrbEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
@@ -128,8 +129,8 @@ public class PurifierTileEntity extends LockableTileEntity implements ISidedInve
     }
 
     @Override
-    public void read(CompoundNBT compound) {
-        super.read(compound);
+    public void read(BlockState state, CompoundNBT compound) {
+        super.read(state, compound);
         this.purifyingItemStacks = NonNullList.withSize(this.getSizeInventory(), ItemStack.EMPTY);
         ItemStackHelper.loadAllItems(compound, this.purifyingItemStacks);
         this.burnTime = compound.getInt("BurnTime");
@@ -482,7 +483,7 @@ public class PurifierTileEntity extends LockableTileEntity implements ISidedInve
         while(amount > 0) {
             int j = ExperienceOrbEntity.getXPSplit(amount);
             amount -= j;
-            player.world.addEntity(new ExperienceOrbEntity(player.world, player.getX(), player.getY() + 0.5D, player.getZ() + 0.5D, j));
+            player.world.addEntity(new ExperienceOrbEntity(player.world, player.getPosX(), player.getPosY() + 0.5D, player.getPosZ() + 0.5D, j));
         }
     }
 

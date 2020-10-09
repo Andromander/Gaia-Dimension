@@ -7,7 +7,7 @@ import java.util.function.Supplier;
 
 public class GaiaStairsBlock extends StairsBlock {
 
-    public GaiaStairsBlock(Supplier<Block> state) {
+    public GaiaStairsBlock(Supplier<? extends Block> state) {
         super(() -> state.get().getDefaultState(), Properties.from(state.get()));
     }
 }

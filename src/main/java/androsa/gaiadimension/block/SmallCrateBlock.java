@@ -1,9 +1,8 @@
 package androsa.gaiadimension.block;
 
 import androsa.gaiadimension.block.tileentity.SmallCrateTileEntity;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.material.Material;
-import net.minecraft.block.material.MaterialColor;
 import net.minecraft.block.material.PushReaction;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.LivingEntity;
@@ -13,6 +12,8 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.ItemStackHelper;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.item.ItemStack;
+import net.minecraft.loot.LootContext;
+import net.minecraft.loot.LootParameters;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ActionResultType;
@@ -21,27 +22,21 @@ import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.StringTextComponent;
-import net.minecraft.util.text.TextFormatting;
-import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraft.util.text.*;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
-import net.minecraft.world.storage.loot.LootContext;
-import net.minecraft.world.storage.loot.LootParameters;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.common.ToolType;
 
 import javax.annotation.Nullable;
 import java.util.List;
 
-public class SmallCrateBlock extends BasicGaiaBlock {
+public class SmallCrateBlock extends Block {
 
     public static final ResourceLocation NAME = new ResourceLocation("contents");
 
-    public SmallCrateBlock() {
-        super(Material.ROCK, MaterialColor.PINK_TERRACOTTA, 10.0F, 150.0F, ToolType.AXE, 0);
+    public SmallCrateBlock(Properties props) {
+        super(props);
     }
 
     @Override
@@ -56,7 +51,7 @@ public class SmallCrateBlock extends BasicGaiaBlock {
 
     @Override
     @Deprecated
-    public ActionResultType onUse(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
+    public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
         if (worldIn.isRemote) {
             return ActionResultType.SUCCESS;
         } else if (player.isSpectator()) {
@@ -160,15 +155,15 @@ public class SmallCrateBlock extends BasicGaiaBlock {
                         ++j;
                         if (i <= 4) {
                             ++i;
-                            ITextComponent itextcomponent = itemstack.getDisplayName().deepCopy();
-                            itextcomponent.appendText(" x").appendText(String.valueOf(itemstack.getCount()));
+                            IFormattableTextComponent itextcomponent = itemstack.getDisplayName().deepCopy();
+                            itextcomponent.appendString(" x").appendString(String.valueOf(itemstack.getCount()));
                             tooltip.add(itextcomponent);
                         }
                     }
                 }
 
                 if (j - i > 0) {
-                    tooltip.add((new TranslationTextComponent("container.shulkerBox.more", j - i)).applyTextStyle(TextFormatting.ITALIC));
+                    tooltip.add((new TranslationTextComponent("container.shulkerBox.more", j - i)).mergeStyle(TextFormatting.ITALIC));
                 }
             }
         }

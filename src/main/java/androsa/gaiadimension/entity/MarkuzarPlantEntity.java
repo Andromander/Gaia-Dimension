@@ -1,8 +1,10 @@
 package androsa.gaiadimension.entity;
 
 import net.minecraft.entity.*;
+import net.minecraft.entity.ai.attributes.AttributeModifierMap;
+import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.LightType;
 import net.minecraft.world.World;
@@ -17,18 +19,17 @@ public class MarkuzarPlantEntity extends CreatureEntity {
         this.experienceValue = 1 + rand.nextInt(3);
     }
 
-    @Override
-    protected final void registerAttributes() {
-        super.registerAttributes();
-        this.getAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(40.0D);
-        this.getAttribute(SharedMonsterAttributes.KNOCKBACK_RESISTANCE).setBaseValue(1.0D);
+    public static AttributeModifierMap.MutableAttribute registerAttributes() {
+        return MobEntity.func_233666_p_()
+                .createMutableAttribute(Attributes.MAX_HEALTH, 40.0D)
+                .createMutableAttribute(Attributes.KNOCKBACK_RESISTANCE, 1.0D);
     }
 
     @Override
-    public void knockBack(Entity entity, float distance, double x, double y) { }
+    public void applyKnockback(float distance, double x, double y) { }
 
     @Override
-    public void move(MoverType type, Vec3d pos) {
+    public void move(MoverType type, Vector3d pos) {
         if (type == MoverType.PISTON) {
             super.move(type, pos);
         }
@@ -41,6 +42,6 @@ public class MarkuzarPlantEntity extends CreatureEntity {
 
     public static boolean canSpawnHere(EntityType<MarkuzarPlantEntity> entity, IWorld world, SpawnReason spawn, BlockPos pos, Random random) {
         BlockPos blockpos = pos.down();
-        return world.getBlockState(blockpos).canEntitySpawn(world, blockpos, entity) && world.getLightLevel(LightType.SKY, blockpos) > 8;
+        return world.getBlockState(blockpos).canEntitySpawn(world, blockpos, entity) && world.getLightFor(LightType.SKY, blockpos) > 8;
     }
 }

@@ -2,7 +2,7 @@ package androsa.gaiadimension.fluids;
 
 import net.minecraft.block.BlockState;
 import net.minecraft.fluid.Fluid;
-import net.minecraft.fluid.IFluidState;
+import net.minecraft.fluid.FluidState;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
@@ -23,7 +23,7 @@ public abstract class LiquidBismuthFluid extends ForgeFlowingFluid {
     }
 
     @Override
-    protected boolean canDisplace(IFluidState fluidstate, IBlockReader reader, BlockPos pos, Fluid fluid, Direction direction) {
+    protected boolean canDisplace(FluidState fluidstate, IBlockReader reader, BlockPos pos, Fluid fluid, Direction direction) {
         return fluidstate.getActualHeight(reader, pos) >= 0.44444445F && fluid.isIn(FluidTags.WATER);
     }
 

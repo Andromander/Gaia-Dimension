@@ -2,7 +2,6 @@ package androsa.gaiadimension.block;
 
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
-import net.minecraft.block.material.MaterialColor;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
@@ -13,7 +12,6 @@ import net.minecraft.world.lighting.LightEngine;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.common.PlantType;
-import net.minecraftforge.common.ToolType;
 
 import java.util.Random;
 
@@ -21,15 +19,15 @@ public abstract class AbstractGaiaGrassBlock extends Block implements IGrowable 
 
     private final Block dirt;
 
-    public AbstractGaiaGrassBlock(MaterialColor color, Block dirtblock) {
-        super(Properties.create(Material.ORGANIC, color).hardnessAndResistance(0.9F, 0.0F).sound(SoundType.PLANT).harvestTool(ToolType.SHOVEL).harvestLevel(0).tickRandomly());
+    public AbstractGaiaGrassBlock(Properties props, Block dirtblock) {
+        super(props);
 
         dirt = dirtblock;
     }
 
     @Override
     @Deprecated
-    public void scheduledTick(BlockState state, ServerWorld worldIn, BlockPos pos, Random random) {
+    public void tick(BlockState state, ServerWorld worldIn, BlockPos pos, Random random) {
         if (!worldIn.isRemote) {
             if (!worldIn.isAreaLoaded(pos, 3)) return;
             if (!isLightEnough(state, worldIn, pos)) {
@@ -45,7 +43,6 @@ public abstract class AbstractGaiaGrassBlock extends Block implements IGrowable 
                         }
                     }
                 }
-
             }
         }
     }
@@ -69,8 +66,8 @@ public abstract class AbstractGaiaGrassBlock extends Block implements IGrowable 
                 world.getBlockState(pos.west()).getMaterial() == Material.WATER ||
                 world.getBlockState(pos.north()).getMaterial() == Material.WATER ||
                 world.getBlockState(pos.south()).getMaterial() == Material.WATER;
-        return plantable.getPlantType(world, pos.offset(facing)) == PlantType.Plains ||
-                plantable.getPlantType(world, pos.offset(facing)) == PlantType.Beach && hasWater;
+        return plantable.getPlantType(world, pos.offset(facing)) == PlantType.PLAINS ||
+                plantable.getPlantType(world, pos.offset(facing)) == PlantType.BEACH && hasWater;
     }
 
     @Override

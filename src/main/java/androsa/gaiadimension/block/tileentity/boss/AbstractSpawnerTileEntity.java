@@ -4,12 +4,12 @@ import androsa.gaiadimension.registry.ModParticles;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.MobEntity;
 import net.minecraft.entity.SpawnReason;
-import net.minecraft.particles.ParticleTypes;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.World;
+import net.minecraft.world.server.ServerWorld;
 
 import java.util.Random;
 
@@ -43,7 +43,7 @@ public abstract class AbstractSpawnerTileEntity<T extends MobEntity> extends Til
             } else {
                 //SERVER: Spawning logic
                 if (world.getDifficulty() != Difficulty.PEACEFUL) {
-                    if (canSpawnBoss(world)) {
+                    if (canSpawnBoss((ServerWorld)world)) {
                         world.destroyBlock(getPos(), false);
                         spawnedBoss = true;
                     }
@@ -60,7 +60,7 @@ public abstract class AbstractSpawnerTileEntity<T extends MobEntity> extends Til
 
     public abstract int getColor();
 
-    private boolean canSpawnBoss(World world) {
+    private boolean canSpawnBoss(ServerWorld world) {
         MobEntity entity = bossEntity.create(world);
 
         entity.moveToBlockPosAndAngles(getPos(), 0.0F, 0.0F);

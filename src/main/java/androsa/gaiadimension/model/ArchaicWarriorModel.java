@@ -34,49 +34,49 @@ public class ArchaicWarriorModel<T extends ArchaicWarriorEntity> extends Segment
         this.bipedRightArmwear = new ModelRenderer(this, 8, 30);
         this.bipedRightArmwear.mirror = true;
         this.bipedRightArmwear.setRotationPoint(-5.0F, 2.0F, 0.0F);
-        this.bipedRightArmwear.addCuboid(-1.0F, -2.0F, -1.0F, 2, 12, 2, 0.5F);
+        this.bipedRightArmwear.addBox(-1.0F, -2.0F, -1.0F, 2, 12, 2, 0.5F);
         this.setRotateAngle(bipedRightArmwear, 0.0F, 0.0F, 0.10000736613927509F);
         this.shoulderPlateR = new ModelRenderer(this, 52, 28);
         this.shoulderPlateR.setRotationPoint(-4.5F, -1.5F, 0.0F);
-        this.shoulderPlateR.addCuboid(-4.0F, 0.0F, -2.0F, 4, 2, 4, 0.0F);
+        this.shoulderPlateR.addBox(-4.0F, 0.0F, -2.0F, 4, 2, 4, 0.0F);
         this.bipedLeftLeg = new ModelRenderer(this, 16, 0);
         this.bipedLeftLeg.setRotationPoint(2.0F, 12.0F, 0.1F);
-        this.bipedLeftLeg.addCuboid(-1.0F, 0.0F, -1.0F, 2, 12, 2, 0.0F);
+        this.bipedLeftLeg.addBox(-1.0F, 0.0F, -1.0F, 2, 12, 2, 0.0F);
         this.bipedLeftLegwear = new ModelRenderer(this, 24, 32);
         this.bipedLeftLegwear.setRotationPoint(2.0F, 12.0F, 0.1F);
-        this.bipedLeftLegwear.addCuboid(-1.0F, 0.0F, -1.0F, 2, 12, 2, 0.5F);
+        this.bipedLeftLegwear.addBox(-1.0F, 0.0F, -1.0F, 2, 12, 2, 0.5F);
         this.bipedRightArm = new ModelRenderer(this, 0, 0);
         this.bipedRightArm.setRotationPoint(-5.0F, 2.0F, 0.0F);
-        this.bipedRightArm.addCuboid(-1.0F, -2.0F, -1.0F, 2, 12, 2, 0.0F);
+        this.bipedRightArm.addBox(-1.0F, -2.0F, -1.0F, 2, 12, 2, 0.0F);
         this.setRotateAngle(bipedRightArm, 0.0F, 0.0F, 0.10000736613927509F);
         this.bipedLeftArmwear = new ModelRenderer(this, 8, 0);
         this.bipedLeftArmwear.mirror = true;
         this.bipedLeftArmwear.setRotationPoint(5.0F, 2.0F, 0.0F);
-        this.bipedLeftArmwear.addCuboid(-1.0F, -2.0F, -1.0F, 2, 12, 2, 0.5F);
+        this.bipedLeftArmwear.addBox(-1.0F, -2.0F, -1.0F, 2, 12, 2, 0.5F);
         this.setRotateAngle(bipedLeftArmwear, 0.0F, 0.0F, -0.10000736613927509F);
         this.bipedLeftArm = new ModelRenderer(this, 56, 0);
         this.bipedLeftArm.mirror = true;
         this.bipedLeftArm.setRotationPoint(5.0F, 2.0F, 0.0F);
-        this.bipedLeftArm.addCuboid(-1.0F, -2.0F, -1.0F, 2, 12, 2, 0.0F);
+        this.bipedLeftArm.addBox(-1.0F, -2.0F, -1.0F, 2, 12, 2, 0.0F);
         this.setRotateAngle(bipedLeftArm, 0.0F, 0.0F, -0.10000736613927509F);
         this.bipedHead = new ModelRenderer(this, 24, 16);
         this.bipedHead.setRotationPoint(0.0F, 0.0F, 0.0F);
-        this.bipedHead.addCuboid(-4.0F, -8.0F, -4.0F, 8, 8, 8, 0.0F);
+        this.bipedHead.addBox(-4.0F, -8.0F, -4.0F, 8, 8, 8, 0.0F);
         this.shoulderPlateL = new ModelRenderer(this, 52, 14);
         this.shoulderPlateL.setRotationPoint(4.5F, -1.5F, 0.0F);
-        this.shoulderPlateL.addCuboid(0.0F, 0.0F, -2.0F, 4, 2, 4, 0.0F);
+        this.shoulderPlateL.addBox(0.0F, 0.0F, -2.0F, 4, 2, 4, 0.0F);
         this.bipedRightLegwear = new ModelRenderer(this, 0, 30);
         this.bipedRightLegwear.setRotationPoint(-2.0F, 12.0F, 0.1F);
-        this.bipedRightLegwear.addCuboid(-1.0F, 0.0F, -1.0F, 2, 12, 2, 0.5F);
+        this.bipedRightLegwear.addBox(-1.0F, 0.0F, -1.0F, 2, 12, 2, 0.5F);
         this.bipedRightLeg = new ModelRenderer(this, 16, 30);
         this.bipedRightLeg.setRotationPoint(-2.0F, 12.0F, 0.1F);
-        this.bipedRightLeg.addCuboid(-1.0F, 0.0F, -1.0F, 2, 12, 2, 0.0F);
+        this.bipedRightLeg.addBox(-1.0F, 0.0F, -1.0F, 2, 12, 2, 0.0F);
         this.bipedHeadwear = new ModelRenderer(this, 24, 0);
         this.bipedHeadwear.setRotationPoint(0.0F, 0.0F, 0.0F);
-        this.bipedHeadwear.addCuboid(-4.0F, -8.0F, -4.0F, 8, 8, 8, 0.5F);
+        this.bipedHeadwear.addBox(-4.0F, -8.0F, -4.0F, 8, 8, 8, 0.5F);
         this.bipedBody = new ModelRenderer(this, 0, 14);
         this.bipedBody.setRotationPoint(0.0F, 0.0F, 0.0F);
-        this.bipedBody.addCuboid(-4.0F, 0.0F, -2.0F, 8, 12, 4, 0.0F);
+        this.bipedBody.addBox(-4.0F, 0.0F, -2.0F, 8, 12, 4, 0.0F);
     }
 
     @Override
@@ -108,7 +108,7 @@ public class ArchaicWarriorModel<T extends ArchaicWarriorEntity> extends Segment
     }
 
     @Override
-    public void setAngles(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
+    public void setRotationAngles(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
         this.bipedHead.rotateAngleY = netHeadYaw / (180F / (float) Math.PI);
         this.bipedHead.rotateAngleX = headPitch / (180F / (float) Math.PI);
 

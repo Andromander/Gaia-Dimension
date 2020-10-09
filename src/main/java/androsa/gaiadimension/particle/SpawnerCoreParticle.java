@@ -1,6 +1,7 @@
 package androsa.gaiadimension.particle;
 
 import net.minecraft.client.particle.*;
+import net.minecraft.client.world.ClientWorld;
 import net.minecraft.particles.BasicParticleType;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
@@ -13,7 +14,7 @@ public class SpawnerCoreParticle extends SpriteTexturedParticle {
 
     private static final Random RANDOM = new Random();
 
-    public SpawnerCoreParticle(World world, double posX, double posY, double posZ, double motionX, double motionY, double motionZ, IAnimatedSprite sprite) {
+    public SpawnerCoreParticle(ClientWorld world, double posX, double posY, double posZ, double motionX, double motionY, double motionZ, IAnimatedSprite sprite) {
         super(world, posX, posY, posZ, 0.5D - RANDOM.nextDouble(), motionY, 0.5D - RANDOM.nextDouble());
 //        this.motionY *= (double)0.1F;
         if (motionX == 0.0D && motionZ == 0.0D) {
@@ -69,7 +70,7 @@ public class SpawnerCoreParticle extends SpriteTexturedParticle {
             this.spriteSet = sprite;
         }
 
-        public Particle makeParticle(BasicParticleType type, World world, double posX, double posY, double posZ, double r, double g, double b) {
+        public Particle makeParticle(BasicParticleType type, ClientWorld world, double posX, double posY, double posZ, double r, double g, double b) {
             Particle particle = new SpawnerCoreParticle(world, posX, posY, posZ, r, g, b, this.spriteSet);
             particle.setColor((float)r, (float)g, (float)b);
             return particle;

@@ -5,7 +5,7 @@ import androsa.gaiadimension.registry.ModEffects;
 import androsa.gaiadimension.registry.ModEntities;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.potion.Effect;
 import net.minecraft.potion.EffectType;
@@ -24,7 +24,7 @@ public class CorruptionEffect extends Effect {
         super(EffectType.HARMFUL, color);
         this.bonusPerLevel = damage;
         //this.setPotionName(GaiaDimension.MODID + ".effect.goldstone_plague");
-        this.addAttributesModifier(SharedMonsterAttributes.ATTACK_DAMAGE, "ED1B7821-E928-4EC7-8CD7-0FF2DE5E378A", 0.0D, AttributeModifier.Operation.ADDITION);
+        this.addAttributesModifier(Attributes.ATTACK_DAMAGE, "ED1B7821-E928-4EC7-8CD7-0FF2DE5E378A", 0.0D, AttributeModifier.Operation.ADDITION);
     }
 
     @Override

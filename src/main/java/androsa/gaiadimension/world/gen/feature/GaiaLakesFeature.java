@@ -2,35 +2,33 @@ package androsa.gaiadimension.world.gen.feature;
 
 import androsa.gaiadimension.block.GaiaSoilBlock;
 import androsa.gaiadimension.registry.ModBlocks;
-import com.mojang.datafixers.Dynamic;
+import com.mojang.serialization.Codec;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.material.Material;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.ChunkPos;
-import net.minecraft.world.IWorld;
+import net.minecraft.util.math.SectionPos;
+import net.minecraft.world.ISeedReader;
 import net.minecraft.world.LightType;
 import net.minecraft.world.biome.Biome;
-import net.minecraft.world.chunk.ChunkStatus;
 import net.minecraft.world.gen.ChunkGenerator;
-import net.minecraft.world.gen.GenerationSettings;
 import net.minecraft.world.gen.feature.BlockStateFeatureConfig;
 import net.minecraft.world.gen.feature.Feature;
+import net.minecraft.world.gen.feature.structure.Structure;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.Random;
-import java.util.function.Function;
 
 @ParametersAreNonnullByDefault
 public class GaiaLakesFeature<T extends BlockStateFeatureConfig> extends Feature<T> {
     private static final BlockState AIR = Blocks.CAVE_AIR.getDefaultState();
 
-    public GaiaLakesFeature(Function<Dynamic<?>, T> config) {
+    public GaiaLakesFeature(Codec<T> config) {
         super(config);
     }
 
     @Override
-    public boolean place(IWorld worldIn, ChunkGenerator<? extends GenerationSettings> generator, Random rand, BlockPos pos, T config) {
+    public boolean func_241855_a(ISeedReader worldIn, ChunkGenerator generator, Random rand, BlockPos pos, T config) {
         while(pos.getY() > 5 && worldIn.isAirBlock(pos)) {
             pos = pos.down();
         }
@@ -39,8 +37,7 @@ public class GaiaLakesFeature<T extends BlockStateFeatureConfig> extends Feature
             return false;
         } else {
             pos = pos.down(4);
-            ChunkPos chunkpos = new ChunkPos(pos);
-            if (!worldIn.getChunk(chunkpos.x, chunkpos.z, ChunkStatus.STRUCTURE_REFERENCES).getStructureReferences(Feature.VILLAGE.getStructureName()).isEmpty()) {
+            if (!worldIn.func_241827_a(SectionPos.from(pos), Structure.field_236381_q_).findAny().isPresent()) {
                 return false;
             } else {
                 boolean[] aboolean = new boolean[2048];
@@ -102,14 +99,14 @@ public class GaiaLakesFeature<T extends BlockStateFeatureConfig> extends Feature
                         for(int j4 = 4; j4 < 8; ++j4) {
                             if (aboolean[(i2 * 16 + j3) * 8 + j4]) {
                                 BlockPos blockpos = pos.add(i2, j4 - 1, j3);
-                                if (worldIn.getBlockState(blockpos).getBlock() instanceof GaiaSoilBlock && worldIn.getLightLevel(LightType.SKY, pos.add(i2, j4, j3)) > 0) {
+                                if (worldIn.getBlockState(blockpos).getBlock() instanceof GaiaSoilBlock && worldIn.getLightFor(LightType.SKY, pos.add(i2, j4, j3)) > 0) {
                                     Biome biome = worldIn.getBiome(blockpos);
 
-                                    if (biome.getSurfaceBuilderConfig().getTop().getBlock() == ModBlocks.murky_grass.get()) {
+                                    if (biome.getGenerationSettings().getSurfaceBuilderConfig().getTop().getBlock() == ModBlocks.murky_grass.get()) {
                                         worldIn.setBlockState(blockpos, ModBlocks.murky_grass.get().getDefaultState(), 2);
-                                    } else if (biome.getSurfaceBuilderConfig().getTop().getBlock() == ModBlocks.soft_grass.get()) {
+                                    } else if (biome.getGenerationSettings().getSurfaceBuilderConfig().getTop().getBlock() == ModBlocks.soft_grass.get()) {
                                         worldIn.setBlockState(blockpos, ModBlocks.soft_grass.get().getDefaultState(), 2);
-                                    } else if (biome.getSurfaceBuilderConfig().getTop().getBlock() == ModBlocks.corrupt_grass.get()) {
+                                    } else if (biome.getGenerationSettings().getSurfaceBuilderConfig().getTop().getBlock() == ModBlocks.corrupt_grass.get()) {
                                         worldIn.setBlockState(blockpos, ModBlocks.corrupt_grass.get().getDefaultState(), 2);
                                     } else {
                                         worldIn.setBlockState(blockpos, ModBlocks.glitter_grass.get().getDefaultState(), 2);

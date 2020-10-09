@@ -1,20 +1,18 @@
 package androsa.gaiadimension.block;
 
 import androsa.gaiadimension.entity.IShockshooterMob;
-import net.minecraft.block.material.Material;
-import net.minecraft.block.material.MaterialColor;
+import net.minecraft.block.Block;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraftforge.common.ToolType;
 
-public class StaticStoneBlock extends BasicGaiaBlock {
+public class StaticStoneBlock extends Block {
 
-    public StaticStoneBlock() {
-        super(Material.ROCK, MaterialColor.BLUE_TERRACOTTA, 50.0F, 200.0F, ToolType.PICKAXE, 2);
+    public StaticStoneBlock(Properties props) {
+        super(props);
     }
 
     @Override

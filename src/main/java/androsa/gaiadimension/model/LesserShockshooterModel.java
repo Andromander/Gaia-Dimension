@@ -33,49 +33,49 @@ public class LesserShockshooterModel<T extends LesserShockshooterEntity> extends
         this.textureHeight = 64;
         this.legL = new ModelRenderer(this, 52, 0);
         this.legL.setRotationPoint(2.0F, 12.0F, 0.0F);
-        this.legL.addCuboid(-1.5F, 0.0F, -1.5F, 3, 12, 3, 0.0F);
+        this.legL.addBox(-1.5F, 0.0F, -1.5F, 3, 12, 3, 0.0F);
         this.armL = new ModelRenderer(this, 14, 14);
         this.armL.setRotationPoint(3.5F, 0.5F, 0.0F);
-        this.armL.addCuboid(0.0F, 0.0F, -2.0F, 3, 11, 4, 0.0F);
+        this.armL.addBox(0.0F, 0.0F, -2.0F, 3, 11, 4, 0.0F);
         this.neck = new ModelRenderer(this, 0, 14);
         this.neck.setRotationPoint(0.0F, 0.0F, 0.0F);
-        this.neck.addCuboid(-2.0F, -2.0F, -1.5F, 4, 2, 3, 0.0F);
+        this.neck.addBox(-2.0F, -2.0F, -1.5F, 4, 2, 3, 0.0F);
         this.headpart = new ModelRenderer(this, 18, 19);
         this.headpart.setRotationPoint(0.0F, -4.3F, -3.0F);
-        this.headpart.addCuboid(-2.5F, -2.0F, 0.0F, 5, 2, 10, 0.0F);
+        this.headpart.addBox(-2.5F, -2.0F, 0.0F, 5, 2, 10, 0.0F);
         this.setRotateAngle(headpart, 1.3089969389957472F, 0.0F, 0.017453292519943295F);
         this.armR = new ModelRenderer(this, 48, 15);
         this.armR.setRotationPoint(-3.5F, 0.5F, 0.0F);
-        this.armR.addCuboid(-3.0F, 0.0F, -2.0F, 3, 11, 4, 0.0F);
+        this.armR.addBox(-3.0F, 0.0F, -2.0F, 3, 11, 4, 0.0F);
         this.head = new ModelRenderer(this, 0, 0);
         this.head.setRotationPoint(0.0F, -1.0F, 0.0F);
-        this.head.addCuboid(-3.5F, -7.0F, -3.5F, 7, 7, 7, 0.0F);
+        this.head.addBox(-3.5F, -7.0F, -3.5F, 7, 7, 7, 0.0F);
         this.capeM = new ModelRenderer(this, 0, 31);
         this.capeM.setRotationPoint(0.0F, 1.5F, 2.5F);
-        this.capeM.addCuboid(-3.5F, 0.0F, 0.0F, 7, 1, 17, 0.0F);
+        this.capeM.addBox(-3.5F, 0.0F, 0.0F, 7, 1, 17, 0.0F);
         this.setRotateAngle(capeM, -1.3089969389957472F, 0.0F, 0.0F);
         this.legR = new ModelRenderer(this, 64, 0);
         this.legR.setRotationPoint(-2.0F, 12.0F, 0.0F);
-        this.legR.addCuboid(-1.5F, 0.0F, -1.5F, 3, 12, 3, 0.0F);
+        this.legR.addBox(-1.5F, 0.0F, -1.5F, 3, 12, 3, 0.0F);
         this.earL = new ModelRenderer(this, 62, 15);
         this.earL.setRotationPoint(3.5F, -1.9F, 0.0F);
-        this.earL.addCuboid(-0.5F, 0.0F, 0.0F, 1, 8, 3, 0.0F);
+        this.earL.addBox(-0.5F, 0.0F, 0.0F, 1, 8, 3, 0.0F);
         this.setRotateAngle(earL, 2.356194490192345F, 0.3665191429188092F, 0.0F);
         this.capeL = new ModelRenderer(this, 34, 30);
         this.capeL.setRotationPoint(2.0F, 1.5F, 2.0F);
-        this.capeL.addCuboid(-2.0F, 0.0F, 0.0F, 4, 1, 14, 0.0F);
+        this.capeL.addBox(-2.0F, 0.0F, 0.0F, 4, 1, 14, 0.0F);
         this.setRotateAngle(capeL, 0.7853981633974483F, 0.7853981633974483F, 0.0F);
         this.earR = new ModelRenderer(this, 70, 15);
         this.earR.setRotationPoint(-3.9F, -1.9F, 0.0F);
-        this.earR.addCuboid(0.0F, 0.0F, 0.0F, 1, 8, 3, 0.0F);
+        this.earR.addBox(0.0F, 0.0F, 0.0F, 1, 8, 3, 0.0F);
         this.setRotateAngle(earR, 2.356194490192345F, -0.3665191429188092F, 0.0F);
         this.capeR = new ModelRenderer(this, 34, 45);
         this.capeR.setRotationPoint(-2.0F, 1.5F, 2.0F);
-        this.capeR.addCuboid(-2.0F, 0.0F, 0.0F, 4, 1, 14, 0.0F);
+        this.capeR.addBox(-2.0F, 0.0F, 0.0F, 4, 1, 14, 0.0F);
         this.setRotateAngle(capeR, 0.7853981633974483F, -0.7853981633974483F, 0.0F);
         this.body = new ModelRenderer(this, 28, 0);
         this.body.setRotationPoint(0.0F, 0.0F, 0.0F);
-        this.body.addCuboid(-3.5F, 0.0F, -2.5F, 7, 12, 5, 0.0F);
+        this.body.addBox(-3.5F, 0.0F, -2.5F, 7, 12, 5, 0.0F);
         this.head.addChild(this.headpart);
         this.body.addChild(this.capeM);
         this.head.addChild(this.earL);
@@ -107,7 +107,7 @@ public class LesserShockshooterModel<T extends LesserShockshooterEntity> extends
     }
 
     @Override
-    public void setAngles(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
+    public void setRotationAngles(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
         this.head.rotateAngleY = netHeadYaw / (180F / (float) Math.PI);
         this.head.rotateAngleX = headPitch / (180F / (float) Math.PI);
 

@@ -1,7 +1,7 @@
 package androsa.gaiadimension.world.surface;
 
 import androsa.gaiadimension.registry.ModBlocks;
-import com.mojang.datafixers.Dynamic;
+import com.mojang.serialization.Codec;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.util.math.BlockPos;
@@ -11,16 +11,15 @@ import net.minecraft.world.gen.surfacebuilders.SurfaceBuilder;
 import net.minecraft.world.gen.surfacebuilders.SurfaceBuilderConfig;
 
 import java.util.Random;
-import java.util.function.Function;
 
-public class WastelandSurfaceBuilder extends SurfaceBuilder<SurfaceBuilderConfig> {
+public class WastelandSurfaceBuilder<T extends SurfaceBuilderConfig> extends SurfaceBuilder<T> {
 
-    public WastelandSurfaceBuilder(Function<Dynamic<?>, ? extends SurfaceBuilderConfig> config) {
+    public WastelandSurfaceBuilder(Codec<T> config) {
         super(config);
     }
 
     @Override
-    public void buildSurface(Random random, IChunk chunkIn, Biome biomeIn, int x, int z, int startHeight, double noise, BlockState defaultBlock, BlockState defaultFluid, int sealevel, long seed, SurfaceBuilderConfig config) {
+    public void buildSurface(Random random, IChunk chunkIn, Biome biomeIn, int x, int z, int startHeight, double noise, BlockState defaultBlock, BlockState defaultFluid, int sealevel, long seed, T config) {
         this.genWastelandTerrain(random, chunkIn, biomeIn, x, z, startHeight, noise, defaultBlock, defaultFluid, config.getTop(), config.getUnder(), config.getUnderWaterMaterial(), sealevel);
     }
 
@@ -44,7 +43,7 @@ public class WastelandSurfaceBuilder extends SurfaceBuilder<SurfaceBuilderConfig
                 }
                 if (j == -1) {
                     if (k <= 0) {
-                        topBlock = AIR;
+                        topBlock = Blocks.AIR.getDefaultState();
                         middleBlock = defaultBlock;
                     } else if (posY >= sealevel - 4 && posY <= sealevel + 1) {
                         topBlock = top;
@@ -65,7 +64,7 @@ public class WastelandSurfaceBuilder extends SurfaceBuilder<SurfaceBuilderConfig
                     if (posY >= sealevel - 1) {
                         chunk.setBlockState(blockpos$mutableblockpos, topBlock, false);
                     } else if (posY < sealevel - 7 - k) {
-                        topBlock = AIR;
+                        topBlock = Blocks.AIR.getDefaultState();
                         middleBlock = defaultBlock;
                         chunk.setBlockState(blockpos$mutableblockpos, bottom, false);
                     } else if (posY > sealevel + 10) {

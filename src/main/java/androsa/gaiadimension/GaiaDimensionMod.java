@@ -1,24 +1,18 @@
 package androsa.gaiadimension;
 
 import androsa.gaiadimension.client.ClientEvents;
-import androsa.gaiadimension.data.GaiaBlockStates;
-import androsa.gaiadimension.data.GaiaItemModels;
-import androsa.gaiadimension.data.GaiaLootTables;
-import androsa.gaiadimension.data.GaiaRecipes;
+import androsa.gaiadimension.data.*;
 import androsa.gaiadimension.registry.*;
-import io.netty.buffer.Unpooled;
+import net.minecraft.block.Block;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.entity.CreatureAttribute;
-import net.minecraft.network.PacketBuffer;
+import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.ITag;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.world.dimension.DimensionType;
 import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.common.ForgeConfigSpec;
-import net.minecraftforge.event.world.RegisterDimensionsEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
@@ -31,8 +25,6 @@ import org.apache.commons.lang3.tuple.Pair;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import static androsa.gaiadimension.registry.ModDimensions.GAIA;
-
 @Mod(GaiaDimensionMod.MODID)
 public class GaiaDimensionMod {
     public static final String MODID = "gaiadimension";
@@ -43,12 +35,15 @@ public class GaiaDimensionMod {
     public static final Logger LOGGER = LogManager.getLogger(MODID);
     public static ModGaiaConfig.ClientConfig clientConfig;
     public static ModGaiaConfig.ServerConfig serverConfig;
-    public static DimensionType gaia_dimension;
+//    public static DimensionType gaia_dimension;
 
     public static final CreatureAttribute GAIAN = new CreatureAttribute();
     public static final CreatureAttribute CORRUPT = new CreatureAttribute();
 
     public static final DamageSource CORRUPTION = new DamageSource("corruption").setDamageBypassesArmor();
+
+    public static final ITag.INamedTag<Block> VOLCANIC = BlockTags.makeWrapperTag(new ResourceLocation(MODID, "base_stone_volcanic").toString());
+    public static final ITag.INamedTag<Block> STATIC = BlockTags.makeWrapperTag(new ResourceLocation(MODID, "base_stone_static").toString());
 
     public GaiaDimensionMod() {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
@@ -58,12 +53,12 @@ public class GaiaDimensionMod {
 
         ModRecipes.registerRecipeTypes();
 
-        ModBiomes.BIOMES.register(modEventBus);
+//      ModBiomes.BIOMES.register(modEventBus);
         ModBlocks.BLOCKS.register(modEventBus);
         ModContainers.CONTAINERS.register(modEventBus);
-        ModDimensions.BIOME_PROVIDER_TYPES.register(modEventBus);
-        ModDimensions.CHUNK_GENERATOR_TYPES.register(modEventBus);
-        ModDimensions.MOD_DIMENSIONS.register(modEventBus);
+//      ModDimensions.BIOME_PROVIDER_TYPES.register(modEventBus);
+//      ModDimensions.CHUNK_GENERATOR_TYPES.register(modEventBus);
+//      ModDimensions.MOD_DIMENSIONS.register(modEventBus);
         ModEffects.POTIONS.register(modEventBus);
         ModEntities.ENTITIES.register(modEventBus);
         ModFluids.FLUIDS.register(modEventBus);
@@ -72,6 +67,7 @@ public class GaiaDimensionMod {
         ModRecipes.RECIPE_SERIALIZERS.register(modEventBus);
         ModTileEntities.TILE_ENTITIES.register(modEventBus);
         ModWorldgen.FEATURES.register(modEventBus);
+        ModWorldgen.STRUCTURE_FEATURES.register(modEventBus);
         ModWorldgen.SURFACE_BUILDERS.register(modEventBus);
         ModWorldgen.WORLD_CARVERS.register(modEventBus);
 
@@ -86,17 +82,18 @@ public class GaiaDimensionMod {
     public void setup(FMLCommonSetupEvent event) {
         ModBlocks.addPlants();
         ModEntities.registerSpawnPlacement();
-        ModBiomes.addBiomeTypes();
-        ModBiomes.addBiomeFeatures();
+        ModEntities.registerAttributes();
+        ModItems.addItemProperties();
+        ModDimensions.initDimension();
     }
 
     public void clientSetup(FMLClientSetupEvent event) {
-        DistExecutor.runWhenOn(Dist.CLIENT, () -> ModContainers::registerScreens);
-        DistExecutor.runWhenOn(Dist.CLIENT, () -> ModEntities::registerEntityRender);
-        DistExecutor.runWhenOn(Dist.CLIENT, () -> ModParticles::forgeClassLoadingIsFuckedThisShouldntBeHereButHereItIs);
-        DistExecutor.runWhenOn(Dist.CLIENT, () -> ClientEvents::registerBlockColors);
-        DistExecutor.runWhenOn(Dist.CLIENT, () -> ClientEvents::registerItemColors);
-        DistExecutor.runWhenOn(Dist.CLIENT, () -> ClientEvents::registerBlockRenderers);
+        DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> ModContainers::registerScreens);
+        DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> ModEntities::registerEntityRender);
+        DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> ModParticles::forgeClassLoadingIsFuckedThisShouldntBeHereButHereItIs);
+        DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> ClientEvents::registerBlockColors);
+        DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> ClientEvents::registerItemColors);
+        DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> ClientEvents::registerBlockRenderers);
     }
 
     public void gatherData(GatherDataEvent event) {
@@ -108,23 +105,24 @@ public class GaiaDimensionMod {
         if (event.includeServer()) {
             generator.addProvider(new GaiaLootTables(generator));
             generator.addProvider(new GaiaRecipes(generator));
+            generator.addProvider(new GaiaBiomes(generator));
         }
     }
 
-    @Mod.EventBusSubscriber(modid = MODID)
-    public static class ForgeEventBus {
-        @SubscribeEvent
-        public static void registerModDimension(final RegisterDimensionsEvent e) {
-            ResourceLocation gaia = new ResourceLocation(GaiaDimensionMod.MODID, "gaia");
-
-            if (DimensionType.byName(gaia) == null) {
-                gaia_dimension = DimensionManager.registerDimension(gaia, GAIA.get(), new PacketBuffer(Unpooled.buffer()), true);
-                DimensionManager.keepLoaded(gaia_dimension, false);
-            } else {
-                gaia_dimension = DimensionType.byName(gaia);
-            }
-
-            GaiaDimensionMod.LOGGER.info("We are set for the world of Gaia.");
-        }
-    }
+//    @Mod.EventBusSubscriber(modid = MODID)
+//    public static class ForgeEventBus {
+//        @SubscribeEvent
+//        public static void registerModDimension(final RegisterDimensionsEvent e) {
+//            ResourceLocation gaia = new ResourceLocation(GaiaDimensionMod.MODID, "gaia");
+//
+//            if (DimensionType.byName(gaia) == null) {
+//                gaia_dimension = DimensionManager.registerDimension(gaia, GAIA.get(), new PacketBuffer(Unpooled.buffer()), true);
+//                DimensionManager.keepLoaded(gaia_dimension, false);
+//            } else {
+//                gaia_dimension = DimensionType.byName(gaia);
+//            }
+//
+//            GaiaDimensionMod.LOGGER.info("We are set for the world of Gaia.");
+//        }
+//    }
 }

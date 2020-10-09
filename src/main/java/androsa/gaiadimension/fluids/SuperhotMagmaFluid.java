@@ -3,7 +3,7 @@ package androsa.gaiadimension.fluids;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.fluid.Fluid;
-import net.minecraft.fluid.IFluidState;
+import net.minecraft.fluid.FluidState;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.util.*;
@@ -28,7 +28,7 @@ public abstract class SuperhotMagmaFluid extends ForgeFlowingFluid {
     }
 
     @Override
-    protected boolean canDisplace(IFluidState fluidstate, IBlockReader reader, BlockPos pos, Fluid fluid, Direction direction) {
+    protected boolean canDisplace(FluidState fluidstate, IBlockReader reader, BlockPos pos, Fluid fluid, Direction direction) {
         return fluidstate.getActualHeight(reader, pos) >= 0.44444445F && fluid.isIn(FluidTags.WATER);
     }
 
@@ -39,7 +39,7 @@ public abstract class SuperhotMagmaFluid extends ForgeFlowingFluid {
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public void animateTick(World worldIn, BlockPos pos, IFluidState state, Random random) {
+    public void animateTick(World worldIn, BlockPos pos, FluidState state, Random random) {
         BlockPos blockpos = pos.up();
         if (worldIn.getBlockState(blockpos).isAir() && !worldIn.getBlockState(blockpos).isOpaqueCube(worldIn, blockpos)) {
             if (random.nextInt(100) == 0) {
@@ -57,7 +57,7 @@ public abstract class SuperhotMagmaFluid extends ForgeFlowingFluid {
     }
 
     @Override
-    public void randomTick(World world, BlockPos pos, IFluidState state, Random random) {
+    public void randomTick(World world, BlockPos pos, FluidState state, Random random) {
         if (world.getGameRules().getBoolean(GameRules.DO_FIRE_TICK)) {
             int i = random.nextInt(3);
             if (i > 0) {

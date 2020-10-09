@@ -2,30 +2,28 @@ package androsa.gaiadimension.world.gen.feature;
 
 import androsa.gaiadimension.registry.ModBlocks;
 import androsa.gaiadimension.world.gen.config.FeatureHeightConfig;
-import com.mojang.datafixers.Dynamic;
+import com.mojang.serialization.Codec;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.IWorld;
+import net.minecraft.world.ISeedReader;
 import net.minecraft.world.gen.ChunkGenerator;
-import net.minecraft.world.gen.GenerationSettings;
 import net.minecraft.world.gen.feature.Feature;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.Random;
-import java.util.function.Function;
 
 @ParametersAreNonnullByDefault
 public class StaticSpikeFeature<T extends FeatureHeightConfig> extends Feature<T> {
 
     private final BlockState block = ModBlocks.charged_mineral.get().getDefaultState();
 
-    public StaticSpikeFeature(Function<Dynamic<?>, T> configIn) {
+    public StaticSpikeFeature(Codec<T> configIn) {
         super(configIn);
     }
 
     @Override
-    public boolean place(IWorld worldIn, ChunkGenerator<? extends GenerationSettings> generator, Random rand, BlockPos position, T config) {
+    public boolean func_241855_a(ISeedReader worldIn, ChunkGenerator generator, Random rand, BlockPos position, T config) {
         int height = config.startHeight + rand.nextInt(4);
         boolean flag = true;
 

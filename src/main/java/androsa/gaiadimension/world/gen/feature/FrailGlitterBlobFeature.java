@@ -1,26 +1,24 @@
 package androsa.gaiadimension.world.gen.feature;
 
 import androsa.gaiadimension.registry.ModBlocks;
-import com.mojang.datafixers.Dynamic;
+import com.mojang.serialization.Codec;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.IWorld;
+import net.minecraft.world.ISeedReader;
 import net.minecraft.world.gen.ChunkGenerator;
-import net.minecraft.world.gen.GenerationSettings;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.NoFeatureConfig;
 
 import java.util.Random;
-import java.util.function.Function;
 
 public class FrailGlitterBlobFeature<T extends NoFeatureConfig> extends Feature<T> {
 
-    public FrailGlitterBlobFeature(Function<Dynamic<?>, T> config) {
+    public FrailGlitterBlobFeature(Codec<T> config) {
         super(config);
     }
 
     @Override
-    public boolean place(IWorld worldIn, ChunkGenerator<? extends GenerationSettings> generator, Random rand, BlockPos pos, T config) {
+    public boolean func_241855_a(ISeedReader worldIn, ChunkGenerator generator, Random rand, BlockPos pos, T config) {
         if (!worldIn.isAirBlock(pos)) {
             return false;
         } else if (worldIn.getBlockState(pos.up()).getBlock() != ModBlocks.gaia_stone.get() && worldIn.getBlockState(pos.down()).getBlock() != ModBlocks.gaia_stone.get()) {

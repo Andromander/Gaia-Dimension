@@ -1,12 +1,10 @@
 package androsa.gaiadimension.block;
 
-import androsa.gaiadimension.GaiaDimensionMod;
 import androsa.gaiadimension.registry.ModBlocks;
+import androsa.gaiadimension.registry.ModDimensions;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
-import net.minecraft.block.material.Material;
-import net.minecraft.block.material.MaterialColor;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.state.IntegerProperty;
 import net.minecraft.state.StateContainer;
@@ -17,7 +15,6 @@ import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.world.*;
-import net.minecraft.world.dimension.DimensionType;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -27,8 +24,8 @@ import java.util.Random;
 public class GoldFireBlock extends Block {
     public static final IntegerProperty AGE = BlockStateProperties.AGE_0_15;
 
-    public GoldFireBlock() {
-        super(Properties.create(Material.FIRE, MaterialColor.GOLD).hardnessAndResistance(0.0F).doesNotBlockMovement().tickRandomly().lightValue(15).noDrops());
+    public GoldFireBlock(Properties props) {
+        super(props);
         this.setDefaultState(this.stateContainer.getBaseState().with(AGE, 0));
     }
 
@@ -48,17 +45,16 @@ public class GoldFireBlock extends Block {
     @Deprecated
     public boolean isValidPosition(BlockState state, IWorldReader worldIn, BlockPos pos) {
         BlockPos blockpos = pos.down();
-        return Block.hasSolidSide(worldIn.getBlockState(blockpos), worldIn, blockpos, Direction.UP);
+        return worldIn.getBlockState(blockpos).isSolidSide(worldIn, blockpos, Direction.UP);
     }
 
-    @Override
-    public int tickRate(IWorldReader worldIn) {
+    public int tickRate() {
         return 30;
     }
 
     @Override
     @Deprecated
-    public void scheduledTick(BlockState state, ServerWorld worldIn, BlockPos pos, Random random) {
+    public void tick(BlockState state, ServerWorld worldIn, BlockPos pos, Random random) {
         if (worldIn.getGameRules().getBoolean(GameRules.DO_FIRE_TICK)) {
             if (!worldIn.isAreaLoaded(pos, 2)) return;
             if (!state.isValidPosition(worldIn, pos)) {
@@ -78,9 +74,9 @@ public class GoldFireBlock extends Block {
                 }
 
                 if (!flag) {
-                    worldIn.getPendingBlockTicks().scheduleTick(pos, this, this.tickRate(worldIn) + random.nextInt(10));
+                    worldIn.getPendingBlockTicks().scheduleTick(pos, this, this.tickRate() + random.nextInt(10));
                     BlockPos blockpos = pos.down();
-                    if (!Block.hasSolidSide(worldIn.getBlockState(blockpos), worldIn, blockpos, Direction.UP) || i > 3) {
+                    if (!worldIn.getBlockState(blockpos).isSolidSide(worldIn, blockpos, Direction.UP) || i > 3) {
                         worldIn.removeBlock(pos, false);
                     }
 
@@ -114,11 +110,11 @@ public class GoldFireBlock extends Block {
     @Deprecated
     public void onBlockAdded(BlockState state1, World worldIn, BlockPos pos, BlockState state2, boolean flag) {
         if (state2.getBlock() != state1.getBlock()) {
-            if (worldIn.dimension.getType() != DimensionType.OVERWORLD && worldIn.dimension.getType() != GaiaDimensionMod.gaia_dimension || !((GaiaPortalBlock)ModBlocks.gaia_portal.get()).tryToCreatePortal(worldIn, pos)) {
+            if (worldIn.getDimensionKey() != World.OVERWORLD && worldIn.getDimensionKey() != ModDimensions.gaia_world || !ModBlocks.gaia_portal.get().tryToCreatePortal(worldIn, pos)) {
                 if (!state1.isValidPosition(worldIn, pos)) {
                     worldIn.removeBlock(pos, false);
                 } else {
-                    worldIn.getPendingBlockTicks().scheduleTick(pos, this, this.tickRate(worldIn) + worldIn.rand.nextInt(10));
+                    worldIn.getPendingBlockTicks().scheduleTick(pos, this, this.tickRate() + worldIn.rand.nextInt(10));
                 }
             }
         }

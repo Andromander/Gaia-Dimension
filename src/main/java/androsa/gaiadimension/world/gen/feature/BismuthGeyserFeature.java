@@ -1,30 +1,28 @@
 package androsa.gaiadimension.world.gen.feature;
 
 import androsa.gaiadimension.registry.ModBlocks;
-import com.mojang.datafixers.Dynamic;
+import com.mojang.serialization.Codec;
 import net.minecraft.block.Block;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.IWorld;
+import net.minecraft.world.ISeedReader;
 import net.minecraft.world.gen.ChunkGenerator;
-import net.minecraft.world.gen.GenerationSettings;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.NoFeatureConfig;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.Random;
-import java.util.function.Function;
 
 @ParametersAreNonnullByDefault
 public class BismuthGeyserFeature<T extends NoFeatureConfig> extends Feature<T> {
 
     private static final Block GRASS = ModBlocks.murky_grass.get();
 
-    public BismuthGeyserFeature(Function<Dynamic<?>, T> configIn) {
+    public BismuthGeyserFeature(Codec<T> configIn) {
         super(configIn);
     }
 
     @Override
-    public boolean place(IWorld worldIn, ChunkGenerator<? extends GenerationSettings> generator, Random rand, BlockPos position, T config) {
+    public boolean func_241855_a(ISeedReader worldIn, ChunkGenerator generator, Random rand, BlockPos position, T config) {
         for (int cx = 0; cx < 5; cx++) {
             for (int cz = 0; cz < 5; cz++) {
                 BlockPos pos = position.add(cx - 2, 0, cz - 2);

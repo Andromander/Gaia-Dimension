@@ -4,11 +4,11 @@ import androsa.gaiadimension.GaiaDimensionMod;
 import androsa.gaiadimension.entity.ShallowArenthisEntity;
 import androsa.gaiadimension.model.ShallowArenthisModel;
 import com.mojang.blaze3d.matrix.MatrixStack;
-import net.minecraft.client.renderer.Vector3f;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.vector.Vector3f;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
@@ -21,13 +21,13 @@ public class ShallowArenthisRenderer<T extends ShallowArenthisEntity, M extends 
     }
 
     @Override
-    protected void setupTransforms(T entityLiving, MatrixStack matrixStack, float rotationPitch, float rotationYaw, float partialTicks) {
+    protected void applyRotations(T entityLiving, MatrixStack matrixStack, float rotationPitch, float rotationYaw, float partialTicks) {
         float f = MathHelper.lerp(partialTicks, entityLiving.prevArenthisPitch, entityLiving.arenthisPitch);
         float f1 = MathHelper.lerp(partialTicks, entityLiving.prevArenthisYaw, entityLiving.arenthisYaw);
         matrixStack.translate(0.0F, 0.5F, 0.0F);
-        matrixStack.multiply(Vector3f.POSITIVE_Y.getDegreesQuaternion(180.0F - rotationYaw));
-        matrixStack.multiply(Vector3f.POSITIVE_X.getDegreesQuaternion(f));
-        matrixStack.multiply(Vector3f.POSITIVE_Y.getDegreesQuaternion(f1));
+        matrixStack.rotate(Vector3f.YP.rotationDegrees(180.0F - rotationYaw));
+        matrixStack.rotate(Vector3f.XP.rotationDegrees(f));
+        matrixStack.rotate(Vector3f.YP.rotationDegrees(f1));
         matrixStack.translate(0.0F, -1.2F, 0.0F);
     }
 

@@ -4,6 +4,8 @@ import androsa.gaiadimension.entity.boss.MalachiteGuardEntity;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.LeavesBlock;
 import net.minecraft.entity.*;
+import net.minecraft.entity.ai.attributes.AttributeModifierMap;
+import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -33,12 +35,11 @@ public class MalachiteDroneEntity extends MonsterEntity {
         super(entity, world);
     }
 
-    @Override
-    protected void registerAttributes() {
-        super.registerAttributes();
-        this.getAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(30.0D);
-        this.getAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(4.0D);
-        this.getAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.6D);
+    public static AttributeModifierMap.MutableAttribute registerAttributes() {
+        return MonsterEntity.func_234295_eP_()
+                .createMutableAttribute(Attributes.MAX_HEALTH, 30.0D)
+                .createMutableAttribute(Attributes.ATTACK_DAMAGE, 4.0D)
+                .createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.6D);
     }
 
     @Override
@@ -184,7 +185,7 @@ public class MalachiteDroneEntity extends MonsterEntity {
         }
 
         private void tryTeleport() {
-            BlockPos guardpos = new BlockPos(this.guard);
+            BlockPos guardpos = new BlockPos(guard.getPosition());
 
             for(int chance = 0; chance < 10; ++chance) {
                 int rx = this.getRandomInt(-3, 3);
@@ -198,7 +199,7 @@ public class MalachiteDroneEntity extends MonsterEntity {
         }
 
         private boolean tryTeleportTo(int x, int y, int z) {
-            if (Math.abs((double)x - this.guard.getX()) < 2.0D && Math.abs((double)z - this.guard.getZ()) < 2.0D) {
+            if (Math.abs((double)x - this.guard.getPosX()) < 2.0D && Math.abs((double)z - this.guard.getPosZ()) < 2.0D) {
                 return false;
             } else if (!this.canTeleportTo(new BlockPos(x, y, z))) {
                 return false;
@@ -210,7 +211,7 @@ public class MalachiteDroneEntity extends MonsterEntity {
         }
 
         private boolean canTeleportTo(BlockPos pos) {
-            PathNodeType nodeType = WalkNodeProcessor.findPathNodeType(this.world, pos.getX(), pos.getY(), pos.getZ());
+            PathNodeType nodeType = WalkNodeProcessor.func_237231_a_(this.world, pos.toMutable());
             if (nodeType != PathNodeType.WALKABLE) {
                 return false;
             } else {
@@ -218,8 +219,8 @@ public class MalachiteDroneEntity extends MonsterEntity {
                 if (state.getBlock() instanceof LeavesBlock) {
                     return false;
                 } else {
-                    BlockPos posDown = pos.subtract(new BlockPos(this.drone));
-                    return this.world.doesNotCollide(this.drone, this.drone.getBoundingBox().offset(posDown));
+                    BlockPos posDown = pos.subtract(this.drone.getPosition());
+                    return this.world.hasNoCollisions(this.drone, this.drone.getBoundingBox().offset(posDown));
                 }
             }
         }

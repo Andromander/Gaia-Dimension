@@ -4,6 +4,7 @@ import net.minecraft.client.particle.IAnimatedSprite;
 import net.minecraft.client.particle.IParticleFactory;
 import net.minecraft.client.particle.Particle;
 import net.minecraft.client.particle.SmokeParticle;
+import net.minecraft.client.world.ClientWorld;
 import net.minecraft.particles.BasicParticleType;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
@@ -11,7 +12,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 public class GeyserSmokeParticle extends SmokeParticle {
 
-    public GeyserSmokeParticle(World world, double x, double y, double z, double vX, double vY, double vZ, IAnimatedSprite sprite) {
+    public GeyserSmokeParticle(ClientWorld world, double x, double y, double z, double vX, double vY, double vZ, IAnimatedSprite sprite) {
         super(world, x, y, z, vX, vY, vZ, 4.0F, sprite);
     }
 
@@ -24,7 +25,7 @@ public class GeyserSmokeParticle extends SmokeParticle {
         }
 
         @Override
-        public Particle makeParticle(BasicParticleType typeIn, World worldIn, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
+        public Particle makeParticle(BasicParticleType typeIn, ClientWorld worldIn, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
             return new GeyserSmokeParticle(worldIn, x, y, z, xSpeed, ySpeed, zSpeed, this.spriteSet);
         }
     }

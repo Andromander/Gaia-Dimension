@@ -1,90 +1,67 @@
 package androsa.gaiadimension.world.gen.config;
 
 import androsa.gaiadimension.registry.ModBlocks;
-import com.google.common.collect.ImmutableList;
-import com.mojang.datafixers.Dynamic;
+import com.mojang.serialization.Codec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
+import net.minecraft.block.SaplingBlock;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.gen.blockstateprovider.BlockStateProvider;
-import net.minecraft.world.gen.feature.BaseTreeFeatureConfig;
-import net.minecraft.world.gen.treedecorator.TreeDecorator;
+import net.minecraft.world.gen.blockstateprovider.SimpleBlockStateProvider;
+import net.minecraft.world.gen.feature.IFeatureConfig;
 import net.minecraftforge.common.IPlantable;
 
-import java.util.List;
+import java.util.Random;
 
-public class GaiaTreeFeatureConfig extends BaseTreeFeatureConfig {
+public class GaiaTreeFeatureConfig implements IFeatureConfig {
 
-    public GaiaTreeFeatureConfig(BlockStateProvider trunk, BlockStateProvider leaves, List<TreeDecorator> decorators, int height) {
-        super(trunk, leaves, decorators, height);
+    public static final Codec<GaiaTreeFeatureConfig> CODEC = RecordCodecBuilder.create((instance) ->
+            instance.group(
+                    BlockStateProvider.CODEC.fieldOf("trunk_provider").forGetter((obj) -> obj.trunkProvider),
+                    BlockStateProvider.CODEC.fieldOf("leaves_provider").forGetter((obj) -> obj.leavesProvider),
+                    Codec.INT.fieldOf("height").forGetter((obj) -> obj.minHeight),
+                    BlockStateProvider.CODEC.fieldOf("sapling").orElse(new SimpleBlockStateProvider(ModBlocks.pink_agate_sapling.get().getDefaultState())).forGetter((obj) -> obj.sapling)
+            ).apply(instance, GaiaTreeFeatureConfig::new));
+
+    public final BlockStateProvider trunkProvider;
+    public final BlockStateProvider leavesProvider;
+    public final int minHeight;
+    public final BlockStateProvider sapling;
+    public transient boolean forcePlacement;
+
+    public GaiaTreeFeatureConfig(BlockStateProvider trunk, BlockStateProvider leaves, int height, BlockStateProvider sapling) {
+        this.trunkProvider = trunk;
+        this.leavesProvider = leaves;
+        this.minHeight = height;
+        this.sapling = sapling;
     }
 
-    @Override
-    protected GaiaTreeFeatureConfig setSapling(IPlantable sapling) {
-        super.setSapling(sapling);
-        return this;
+    public IPlantable getSapling(Random rand, BlockPos pos) {
+        return (IPlantable) sapling.getBlockState(rand, pos).getBlock();
     }
 
-    public static <T> GaiaTreeFeatureConfig deserialize(Dynamic<T> data) {
-        BaseTreeFeatureConfig config = BaseTreeFeatureConfig.deserialize(data);
-        return new GaiaTreeFeatureConfig(config.trunkProvider, config.leavesProvider, config.decorators, config.baseHeight);
+    public void forcePlacement() {
+        this.forcePlacement = true;
     }
 
-    public static <T> GaiaTreeFeatureConfig deserializePinkAgate(Dynamic<T> data) {
-        return deserialize(data).setSapling(ModBlocks.pink_agate_sapling.get());
-    }
-
-    public static <T> GaiaTreeFeatureConfig deserializeBlueAgate(Dynamic<T> data) {
-        return deserialize(data).setSapling(ModBlocks.blue_agate_sapling.get());
-    }
-
-    public static <T> GaiaTreeFeatureConfig deserializeGreenAgate(Dynamic<T> data) {
-        return deserialize(data).setSapling(ModBlocks.green_agate_sapling.get());
-    }
-
-    public static <T> GaiaTreeFeatureConfig deserializePurpleAgate(Dynamic<T> data) {
-        return deserialize(data).setSapling(ModBlocks.purple_agate_sapling.get());
-    }
-
-    public static <T> GaiaTreeFeatureConfig deserializeFossilized(Dynamic<T> data) {
-        return deserialize(data).setSapling(ModBlocks.fossilized_sapling.get());
-    }
-
-    public static <T> GaiaTreeFeatureConfig deserializeCorrupted(Dynamic<T> data) {
-        return deserialize(data).setSapling(ModBlocks.corrupted_sapling.get());
-    }
-
-    public static <T> GaiaTreeFeatureConfig deserializeBurnt(Dynamic<T> data) {
-        return deserialize(data).setSapling(ModBlocks.burnt_sapling.get());
-    }
-
-    public static <T> GaiaTreeFeatureConfig deserializeBurning(Dynamic<T> data) {
-        return deserialize(data).setSapling(ModBlocks.burning_sapling.get());
-    }
-
-    public static <T> GaiaTreeFeatureConfig deserializeAura(Dynamic<T> data) {
-        return deserialize(data).setSapling(ModBlocks.aura_sapling.get());
-    }
-
-    public static class Builder extends BaseTreeFeatureConfig.Builder {
-        private List<TreeDecorator> decorators = ImmutableList.of();
+    public static class Builder {
+        private BlockStateProvider trunkProvider;
+        private BlockStateProvider leavesProvider;
         private int baseHeight;
+        private BlockStateProvider sapling;
 
-        public Builder(BlockStateProvider trunk, BlockStateProvider leaves) {
-            super(trunk, leaves);
-        }
-
-        public GaiaTreeFeatureConfig.Builder baseHeight(int height) {
+        public Builder(BlockStateProvider trunk, BlockStateProvider leaves, int height) {
+            this.trunkProvider = trunk;
+            this.leavesProvider = leaves;
             this.baseHeight = height;
+        }
+
+        public GaiaTreeFeatureConfig.Builder setSapling(SaplingBlock sapling) {
+            this.sapling = new SimpleBlockStateProvider(sapling.getDefaultState());
             return this;
         }
 
-        @Override
-        public GaiaTreeFeatureConfig.Builder setSapling(IPlantable sapling) {
-            super.setSapling(sapling);
-            return this;
-        }
-
-        @Override
         public GaiaTreeFeatureConfig build() {
-            return new GaiaTreeFeatureConfig(trunkProvider, leavesProvider, decorators, baseHeight);
+            return new GaiaTreeFeatureConfig(trunkProvider, leavesProvider, baseHeight, sapling);
         }
     }
 }

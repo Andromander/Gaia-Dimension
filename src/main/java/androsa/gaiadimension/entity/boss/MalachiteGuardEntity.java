@@ -4,6 +4,8 @@ import androsa.gaiadimension.entity.MalachiteDroneEntity;
 import androsa.gaiadimension.registry.ModEntities;
 import androsa.gaiadimension.registry.ModItems;
 import net.minecraft.entity.*;
+import net.minecraft.entity.ai.attributes.AttributeModifierMap;
+import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -20,10 +22,11 @@ import net.minecraft.util.NonNullList;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.BossInfo;
 import net.minecraft.world.Difficulty;
+import net.minecraft.world.IServerWorld;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerBossInfo;
 
@@ -42,13 +45,12 @@ public class MalachiteGuardEntity extends MonsterEntity {
         this.experienceValue = 75;
     }
 
-    @Override
-    protected final void registerAttributes() {
-        super.registerAttributes();
-        this.getAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(200.0D);
-        this.getAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(5.0D);
-        this.getAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.6D);
-        this.getAttribute(SharedMonsterAttributes.ATTACK_KNOCKBACK).setBaseValue(2.0F);
+    public static AttributeModifierMap.MutableAttribute registerAttributes() {
+        return MonsterEntity.func_234295_eP_()
+                .createMutableAttribute(Attributes.MAX_HEALTH, 200.0D)
+                .createMutableAttribute(Attributes.ATTACK_DAMAGE, 5.0D)
+                .createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.6D)
+                .createMutableAttribute(Attributes.ATTACK_KNOCKBACK, 2.0D);
     }
 
     /**
@@ -139,16 +141,16 @@ public class MalachiteGuardEntity extends MonsterEntity {
     }
 
     @Override
-    public void move(MoverType type, Vec3d motion) {
+    public void move(MoverType type, Vector3d motion) {
         if (getPhase() != 0) {
             super.move(type, motion);
         }
     }
 
     @Override
-    public void knockBack(Entity entity, float amount, double x, double z) {
+    public void applyKnockback(float amount, double x, double z) {
         if (getPhase() == 1) {
-            super.knockBack(entity, amount, x, z);
+            super.applyKnockback(amount, x, z);
         }
     }
 
@@ -173,7 +175,7 @@ public class MalachiteGuardEntity extends MonsterEntity {
 
         if (getPhase() == 0) {
             //Don't move, except falling
-            Vec3d motion = this.getMotion();
+            Vector3d motion = this.getMotion();
             this.setMotion(0.0D, motion.getY(), 0.0D);
 
             //Check if we spawned drones in this phase
@@ -194,7 +196,7 @@ public class MalachiteGuardEntity extends MonsterEntity {
         }
 
         //Half speed at Phase 3. Phase 1 doesn't move, anyway
-        float movespeed = (float) this.getAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).getValue();
+        float movespeed = (float) this.getAttribute(Attributes.MOVEMENT_SPEED).getValue();
         if (getPhase() == 2) {
             //Move at half the speed in this phase
             movespeed *= 0.35F;
@@ -255,7 +257,9 @@ public class MalachiteGuardEntity extends MonsterEntity {
     private void createDrone(BlockPos pos) {
         MalachiteDroneEntity drone = new MalachiteDroneEntity(ModEntities.MALACHITE_DRONE.get(), this.world);
         drone.moveToBlockPosAndAngles(pos, 0.0F, 0.0F);
-        drone.onInitialSpawn(this.world, this.world.getDifficultyForLocation(pos), SpawnReason.MOB_SUMMONED, null, null);
+        if (!world.isRemote()) {
+            drone.onInitialSpawn((IServerWorld)this.world, this.world.getDifficultyForLocation(pos), SpawnReason.MOB_SUMMONED, null, null);
+        }
         drone.setOwner(this);
         this.world.addEntity(drone);
     }
@@ -379,7 +383,7 @@ public class MalachiteGuardEntity extends MonsterEntity {
 
     @Override
     public void checkDespawn() {
-        if (this.world.getDifficulty() == Difficulty.PEACEFUL && this.func_225511_J_()) {
+        if (this.world.getDifficulty() == Difficulty.PEACEFUL && this.isDespawnPeaceful()) {
             this.entityDropItem(ModItems.mock_malachite.get(), 1);
             this.remove();
         }

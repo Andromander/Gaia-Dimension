@@ -1,9 +1,9 @@
 package androsa.gaiadimension.entity;
 
-import androsa.gaiadimension.biomes.SaltDunesBiome;
-import androsa.gaiadimension.biomes.StaticWastelandBiome;
-import androsa.gaiadimension.biomes.VolcaniclandsBiome;
+import androsa.gaiadimension.registry.ModBiomes;
 import net.minecraft.entity.*;
+import net.minecraft.entity.ai.attributes.AttributeModifierMap;
+import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.LookAtGoal;
 import net.minecraft.entity.ai.goal.LookRandomlyGoal;
 import net.minecraft.entity.ai.goal.SwimGoal;
@@ -13,14 +13,18 @@ import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
+import net.minecraft.util.RegistryKey;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.DifficultyInstance;
+import net.minecraft.world.IServerWorld;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 
 import javax.annotation.Nullable;
+import java.util.Objects;
+import java.util.Optional;
 import java.util.Random;
 
 public class NomadicLagrahkEntity extends CreatureEntity {
@@ -31,13 +35,12 @@ public class NomadicLagrahkEntity extends CreatureEntity {
         this.experienceValue = 10;
     }
 
-    @Override
-    protected final void registerAttributes() {
-        super.registerAttributes();
-        this.getAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(120.0D);
-        this.getAttribute(SharedMonsterAttributes.KNOCKBACK_RESISTANCE).setBaseValue(1.0D);
-        this.getAttribute(SharedMonsterAttributes.ARMOR).setBaseValue(2.0D);
-        this.getAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.6D);
+    public static AttributeModifierMap.MutableAttribute registerAttributes() {
+        return MobEntity.func_233666_p_()
+                .createMutableAttribute(Attributes.MAX_HEALTH, 120.0D)
+                .createMutableAttribute(Attributes.KNOCKBACK_RESISTANCE, 1.0D)
+                .createMutableAttribute(Attributes.ARMOR, 2.0D)
+                .createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.6D);
     }
 
     @Override
@@ -89,9 +92,9 @@ public class NomadicLagrahkEntity extends CreatureEntity {
 
     @Override
     public int getMaxSpawnedInChunk() {
-        Biome biome = world.getBiome(new BlockPos(getX(), getY(), getZ()));
+        Optional<RegistryKey<Biome>> biome = world.func_242406_i(new BlockPos(getPosX(), getPosY(), getPosZ()));
 
-        if (biome instanceof SaltDunesBiome || biome instanceof StaticWastelandBiome || biome instanceof VolcaniclandsBiome) {
+        if (Objects.equals(biome, Optional.of(ModBiomes.salt_dunes)) || Objects.equals(biome, Optional.of(ModBiomes.static_wasteland)) || Objects.equals(biome, Optional.of(ModBiomes.volcanic_lands))) {
             return 4;
         } else {
             return 1;
@@ -99,18 +102,18 @@ public class NomadicLagrahkEntity extends CreatureEntity {
     }
 
     public static boolean canSpawnHere(EntityType<NomadicLagrahkEntity> entity, IWorld world, SpawnReason spawn, BlockPos pos, Random random) {
-        return world.getBlockState(pos.down()).canEntitySpawn(world, pos.down(), entity) && world.getBaseLightLevel(pos, 0) > 8;
+        return world.getBlockState(pos.down()).canEntitySpawn(world, pos.down(), entity) && world.getLightSubtracted(pos, 0) > 8;
     }
 
     @Override
-    public ILivingEntityData onInitialSpawn(IWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
-        Biome biome = worldIn.getBiome(new BlockPos(getX(), getY(), getZ()));
+    public ILivingEntityData onInitialSpawn(IServerWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
+        Optional<RegistryKey<Biome>> biome = worldIn.func_242406_i(new BlockPos(getPosX(), getPosY(), getPosZ()));
 
-        if (biome instanceof SaltDunesBiome) {
+        if (Objects.equals(biome, Optional.of(ModBiomes.salt_dunes))) {
             setLagrahkVariant(1);
-        } else if (biome instanceof StaticWastelandBiome) {
+        } else if (Objects.equals(biome, Optional.of(ModBiomes.static_wasteland))) {
             setLagrahkVariant(2);
-        } else if (biome instanceof VolcaniclandsBiome) {
+        } else if (Objects.equals(biome, Optional.of(ModBiomes.volcanic_lands))) {
             setLagrahkVariant(3);
         } else {
             setLagrahkVariant(0);

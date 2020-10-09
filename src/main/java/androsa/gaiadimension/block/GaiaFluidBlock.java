@@ -7,7 +7,7 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.FlowingFluidBlock;
 import net.minecraft.entity.Entity;
 import net.minecraft.fluid.FlowingFluid;
-import net.minecraft.fluid.IFluidState;
+import net.minecraft.fluid.FluidState;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.Direction;
@@ -30,7 +30,7 @@ public class GaiaFluidBlock extends FlowingFluidBlock {
 
             for (Direction side : Direction.values()) {
                 if (side != Direction.DOWN) {
-                    IFluidState offset = world.getFluidState(pos.offset(side));
+                    FluidState offset = world.getFluidState(pos.offset(side));
 
                     if (offset.getFluid().isIn(FluidTags.LAVA) && (!(offset.getFluid() instanceof SuperhotMagmaFluid) || !(offset.getFluid() instanceof LiquidBismuthFluid))) {
                         world.setBlockState(pos, ModBlocks.sparkling_rock.get().getDefaultState());
@@ -44,7 +44,7 @@ public class GaiaFluidBlock extends FlowingFluidBlock {
 
             for (Direction side : Direction.values()) {
                 if (side != Direction.DOWN) {
-                    IFluidState offset = world.getFluidState(pos.offset(side));
+                    FluidState offset = world.getFluidState(pos.offset(side));
 
                     if (offset.getFluid() instanceof SweetMuckFluid) {
                         world.setBlockState(pos, ModBlocks.primal_mass.get().getDefaultState());
@@ -66,7 +66,7 @@ public class GaiaFluidBlock extends FlowingFluidBlock {
 
             for (Direction side : Direction.values()) {
                 if (side != Direction.DOWN) {
-                    IFluidState offset = world.getFluidState(pos.offset(side));
+                    FluidState offset = world.getFluidState(pos.offset(side));
 
                     if (offset.getFluid() instanceof SweetMuckFluid || offset.getFluid() instanceof SuperhotMagmaFluid) {
                         world.setBlockState(pos, ModBlocks.active_rock.get().getDefaultState());
@@ -99,7 +99,7 @@ public class GaiaFluidBlock extends FlowingFluidBlock {
             if (this.getFluid() instanceof SuperhotMagmaFluid && !entityIn.isImmuneToFire()) {
                 entityIn.attackEntityFrom(DamageSource.IN_FIRE, 5.0F);
             }
-            entityIn.setInLava();
+            entityIn.setFire(15);
         }
     }
 }

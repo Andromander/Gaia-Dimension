@@ -28,28 +28,28 @@ public class RockyLuggerothModel<T extends RockyLuggerothEntity> extends Segment
         this.textureHeight = 64;
         this.head = new ModelRenderer(this, 32, 0);
         this.head.setRotationPoint(0.0F, 18.8F, -8.0F);
-        this.head.addCuboid(-2.5F, -2.0F, -5.0F, 5, 4, 5, 0.0F);
+        this.head.addBox(-2.5F, -2.0F, -5.0F, 5, 4, 5, 0.0F);
         this.body = new ModelRenderer(this, 0, 0);
         this.body.setRotationPoint(0.0F, 16.0F, -3.0F);
-        this.body.addCuboid(-4.0F, 0.0F, -5.0F, 8, 3, 16, 0.0F);
+        this.body.addBox(-4.0F, 0.0F, -5.0F, 8, 3, 16, 0.0F);
         this.foot3 = new ModelRenderer(this, 64, 0);
         this.foot3.setRotationPoint(-2.5F, 18.0F, 6.0F);
-        this.foot3.addCuboid(-3.0F, 0.0F, 0.0F, 3, 6, 3, 0.0F);
+        this.foot3.addBox(-3.0F, 0.0F, 0.0F, 3, 6, 3, 0.0F);
         this.foot4 = new ModelRenderer(this, 76, 0);
         this.foot4.setRotationPoint(2.5F, 18.0F, 6.0F);
-        this.foot4.addCuboid(0.0F, 0.0F, 0.0F, 3, 6, 3, 0.0F);
+        this.foot4.addBox(0.0F, 0.0F, 0.0F, 3, 6, 3, 0.0F);
         this.shell = new ModelRenderer(this, 46, 9);
         this.shell.setRotationPoint(0.0F, 0.0F, 3.0F);
-        this.shell.addCuboid(-5.0F, -18.0F, -10.0F, 10, 18, 20, 0.0F);
+        this.shell.addBox(-5.0F, -18.0F, -10.0F, 10, 18, 20, 0.0F);
         this.ridge = new ModelRenderer(this, 0, 41);
         this.ridge.setRotationPoint(0.0F, 0.0F, 0.0F);
-        this.ridge.addCuboid(-6.0F, 0.0F, -11.0F, 12, 1, 22, 0.0F);
+        this.ridge.addBox(-6.0F, 0.0F, -11.0F, 12, 1, 22, 0.0F);
         this.foot1 = new ModelRenderer(this, 0, 0);
         this.foot1.setRotationPoint(-2.5F, 18.0F, -6.0F);
-        this.foot1.addCuboid(-3.0F, 0.0F, 0.0F, 3, 6, 3, 0.0F);
+        this.foot1.addBox(-3.0F, 0.0F, 0.0F, 3, 6, 3, 0.0F);
         this.foot2 = new ModelRenderer(this, 52, 0);
         this.foot2.setRotationPoint(2.5F, 18.0F, -6.0F);
-        this.foot2.addCuboid(0.0F, 0.0F, 0.0F, 3, 6, 3, 0.0F);
+        this.foot2.addBox(0.0F, 0.0F, 0.0F, 3, 6, 3, 0.0F);
         this.body.addChild(this.shell);
         this.shell.addChild(this.ridge);
     }
@@ -76,7 +76,7 @@ public class RockyLuggerothModel<T extends RockyLuggerothEntity> extends Segment
     }
 
     @Override
-    public void setAngles(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
+    public void setRotationAngles(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
         this.head.rotateAngleY = netHeadYaw / (180F / (float) Math.PI);
         this.head.rotateAngleX = headPitch / (180F / (float) Math.PI);
 

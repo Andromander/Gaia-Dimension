@@ -1,27 +1,26 @@
 package androsa.gaiadimension.world.gen.feature;
 
+import androsa.gaiadimension.registry.ModBlocks;
 import androsa.gaiadimension.world.gen.config.GaiaTreeFeatureConfig;
-import com.mojang.datafixers.Dynamic;
+import com.mojang.serialization.Codec;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MutableBoundingBox;
-import net.minecraft.world.gen.IWorldGenerationReader;
-import net.minecraft.world.gen.feature.AbstractTreeFeature;
+import net.minecraft.world.ISeedReader;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.Random;
 import java.util.Set;
-import java.util.function.Function;
 
 @ParametersAreNonnullByDefault
-public class GoldstoneCorruptTreeFeature<T extends GaiaTreeFeatureConfig> extends AbstractTreeFeature<T> {
+public class GoldstoneCorruptTreeFeature<T extends GaiaTreeFeatureConfig> extends GaiaTreeFeature<T> {
 
-    public GoldstoneCorruptTreeFeature(Function<Dynamic<?>, T> configIn) {
+    public GoldstoneCorruptTreeFeature(Codec<T> configIn) {
         super(configIn);
     }
 
     @Override
-    protected boolean generate(IWorldGenerationReader world, Random rand, BlockPos pos, Set<BlockPos> logPos, Set<BlockPos> leavesPos, MutableBoundingBox boundingBox, T config) {
-        int height = rand.nextInt(5) + 7;
+    public boolean generate(ISeedReader world, Random rand, BlockPos pos, Set<BlockPos> logPos, Set<BlockPos> leavesPos, MutableBoundingBox boundingBox, T config) {
+        int height = rand.nextInt(5) + config.minHeight;
         int j = height - rand.nextInt(2) - 3;
         int k = height - j;
         int l = 1 + rand.nextInt(k + 1);
@@ -42,7 +41,7 @@ public class GoldstoneCorruptTreeFeature<T extends GaiaTreeFeatureConfig> extend
                         if (cy >= 0 && cy < 256) {
                             BlockPos cPos = new BlockPos(cx, cy, cz);
 
-                            if (!func_214587_a(world, cPos)) {
+                            if (!isReplaceableAt(world, cPos)) {
                                 allClear = false;
                             }
                         } else {
@@ -54,8 +53,8 @@ public class GoldstoneCorruptTreeFeature<T extends GaiaTreeFeatureConfig> extend
 
             if (!allClear) {
                 return false;
-            } else if (isSoil(world, pos.down(), config.getSapling()) && pos.getY() < world.getMaxHeight() - height - 1) {
-                this.setDirtAt(world, pos.down(), pos);
+            } else if (isSoil(world, pos.down(), config.getSapling(rand, pos)) && pos.getY() < world.getHeight() - height - 1) {
+                this.setBlockState(world, pos.down(), ModBlocks.corrupt_soil.get().getDefaultState(), boundingBox);
                 int k2 = 0;
 
                 for (int l2 = pos.getY() + height; l2 >= pos.getY() + j; --l2) {

@@ -3,9 +3,6 @@ package androsa.gaiadimension.block;
 import androsa.gaiadimension.block.tileentity.boss.MalachiteGuardSpawnerTileEntity;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.SoundType;
-import net.minecraft.block.material.Material;
-import net.minecraft.block.material.MaterialColor;
 import net.minecraft.inventory.container.INamedContainerProvider;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
@@ -23,8 +20,8 @@ public class BossSpawnerBlock extends Block {
     private static final VoxelShape SHAPE = Block.makeCuboidShape(2.0D, 1.0D, 2.0D, 14.0D, 15.0D, 14.0D);
     private BossType bossType;
 
-    public BossSpawnerBlock(BossType type) {
-        super(Properties.create(Material.IRON, MaterialColor.IRON).hardnessAndResistance(-1F).sound(SoundType.METAL).nonOpaque().noDrops());
+    public BossSpawnerBlock(BossType type, Properties props) {
+        super(props);
         this.bossType = type;
     }
 

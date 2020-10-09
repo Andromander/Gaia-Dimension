@@ -3,7 +3,6 @@ package androsa.gaiadimension.block;
 import androsa.gaiadimension.registry.ModParticles;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.TorchBlock;
-import net.minecraft.block.material.Material;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
@@ -13,8 +12,8 @@ import java.util.Random;
 
 public class PyriteTorchBlock extends TorchBlock {
 
-    public PyriteTorchBlock() {
-        super(Properties.create(Material.MISCELLANEOUS).hardnessAndResistance(0.0F).lightValue(14));
+    public PyriteTorchBlock(Properties props) {
+        super(props, null);
     }
 
     @Override

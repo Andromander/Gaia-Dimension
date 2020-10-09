@@ -1,0 +1,65 @@
+{
+  "type": "gaiadimension:gaia_dimension",
+  "generator": {
+    "type": "gaiadimension:gaia_gen",
+    "settings": {
+      "bedrock_roof_position": -10,
+      "bedrock_floor_position": 0,
+      "sea_level": 63,
+      "disable_mob_generation": false,
+      "structures": {
+        "stronghold": { "distance": 0, "count": 0, "spread": 0 },
+        "structures": {
+          "gaiadimension:mini_tower": {
+            "spacing": 40,
+            "separation": 15,
+            "salt": 420
+          },
+          "gaiadimension:malachite_watchtower": {
+            "spacing": 40,
+            "separation": 15,
+            "salt": 621
+          }
+        }
+      },
+      "noise": {
+        "top_slide": {
+          "target": -10,
+          "size": 3,
+          "offset": 0
+        },
+        "bottom_slide": {
+          "target": -30,
+          "size": 0,
+          "offset": 0
+        },
+        "sampling": {
+          "xz_scale": 0.9999999814507745,
+          "y_scale": 0.9999999814507745,
+          "xz_factor": 80.0,
+          "y_factor": 160.0
+        },
+        "size_vertical": 2,
+        "size_horizontal": 1,
+        "height": 256,
+        "density_factor": 1.0,
+        "density_offset": -0.46875,
+        "random_density_offset": true,
+        "simplex_surface_noise": false,
+        "island_noise_override": false
+      },
+      "default_block": {
+        "Name": "gaiadimension:glitter_grass"
+      },
+      "default_fluid": {
+        "Name": "gaiadimension:mineral_water",
+        "Properties": {
+          "level": "0"
+        }
+      }
+    },
+    "biome_source": {
+      "type": "gaiadimension:gaia_dimension"
+    }
+  }
+}

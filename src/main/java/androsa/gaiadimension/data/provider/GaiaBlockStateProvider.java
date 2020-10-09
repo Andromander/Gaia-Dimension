@@ -5,6 +5,7 @@ import net.minecraft.data.DataGenerator;
 import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.generators.*;
+import net.minecraftforge.common.data.ExistingFileHelper;
 
 import java.util.function.Supplier;
 
@@ -64,11 +65,13 @@ public abstract class GaiaBlockStateProvider extends BlockStateProvider {
     }
 
     public void strippedWoodBlock(Supplier<? extends RotatedPillarBlock> block, String name) {
-        axisBlock(block.get(), models().cubeColumn(blockName(block), tLocGaia("stripped_" + name + "_log_side"), tLocGaia("stripped_" + name + "_log_side")));
+        ModelFile model = models().cubeColumn(blockName(block), tLocGaia("stripped_" + name + "_log_side"), tLocGaia("stripped_" + name + "_log_side"));
+        axisBlock(block.get(), model, model);
     }
 
     public void woodBlock(Supplier<? extends RotatedPillarBlock> block, String name) {
-        axisBlock(block.get(), models().cubeColumn(blockName(block), tLocGaia(name + "_side"), tLocGaia(name + "_side")));
+        ModelFile model = models().cubeColumn(blockName(block), tLocGaia(name + "_side"), tLocGaia(name + "_side"));
+        axisBlock(block.get(), model, model);
     }
 
     public void stairsBlock(Supplier<? extends StairsBlock> block, String name) {

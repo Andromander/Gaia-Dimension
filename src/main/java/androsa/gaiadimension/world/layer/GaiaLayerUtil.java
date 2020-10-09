@@ -1,7 +1,8 @@
 package androsa.gaiadimension.world.layer;
 
 import androsa.gaiadimension.registry.ModBiomes;
-import net.minecraft.util.registry.Registry;
+import net.minecraft.util.RegistryKey;
+import net.minecraft.util.registry.WorldGenRegistries;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.IExtendedNoiseRandom;
 import net.minecraft.world.gen.LazyAreaLayerContext;
@@ -10,7 +11,6 @@ import net.minecraft.world.gen.area.IAreaFactory;
 import net.minecraft.world.gen.area.LazyArea;
 import net.minecraft.world.gen.layer.*;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.fml.event.lifecycle.FMLModIdMappingEvent;
 
 import java.util.ArrayList;
@@ -30,9 +30,13 @@ public class GaiaLayerUtil {
     protected static final LazyInt PLAINS = lazyId(ModBiomes.crystal_plains);
     protected static final LazyInt DUNES = lazyId(ModBiomes.salt_dunes);
     protected static final LazyInt WILDWOOD = lazyId(ModBiomes.mutant_agate_wildwood);
+    protected static final LazyInt BOG = lazyId(ModBiomes.smoldering_bog);
+    protected static final LazyInt STATIC = lazyId(ModBiomes.static_wasteland);
+    protected static final LazyInt VOLCANIC = lazyId(ModBiomes.volcanic_lands);
 
-    static LazyInt lazyId(RegistryObject<Biome> biome) {
-        LazyInt lazyInt = new LazyInt(biome.lazyMap(Registry.BIOME::getId));
+    static LazyInt lazyId(RegistryKey<Biome> key) {
+        Biome biome = WorldGenRegistries.BIOME.getValueForKey(key);
+        LazyInt lazyInt = new LazyInt(() -> WorldGenRegistries.BIOME.getId(biome));
         CACHES.add(lazyInt);
         return lazyInt;
     }
@@ -54,9 +58,6 @@ public class GaiaLayerUtil {
         biomes = MineralRiverMixLayer.INSTANCE.apply(contextFactory.apply(100L), biomes, riverLayer);
 
         return biomes;
-
-//        IAreaFactory<T> genlayervoronoizoom = VoroniZoomLayer.INSTANCE.apply(contextFactory.apply(10L), biomes);
-//        return ImmutableList.of(biomes, genlayervoronoizoom, biomes);
     }
 
     public static Layer makeLayers(long seed) {

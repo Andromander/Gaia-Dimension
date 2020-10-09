@@ -1,27 +1,26 @@
 package androsa.gaiadimension.world.gen.feature;
 
+import androsa.gaiadimension.registry.ModBlocks;
 import androsa.gaiadimension.world.gen.config.GaiaTreeFeatureConfig;
-import com.mojang.datafixers.Dynamic;
+import com.mojang.serialization.Codec;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MutableBoundingBox;
-import net.minecraft.world.gen.IWorldGenerationReader;
-import net.minecraft.world.gen.feature.AbstractTreeFeature;
+import net.minecraft.world.ISeedReader;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.Random;
 import java.util.Set;
-import java.util.function.Function;
 
 @ParametersAreNonnullByDefault
-public class AuraTreeFeature<T extends GaiaTreeFeatureConfig> extends AbstractTreeFeature<T> {
+public class AuraTreeFeature<T extends GaiaTreeFeatureConfig> extends GaiaTreeFeature<T> {
 
-    public AuraTreeFeature(Function<Dynamic<?>, T> configIn) {
+    public AuraTreeFeature(Codec<T> configIn) {
         super(configIn);
     }
 
     @Override
-    protected boolean generate(IWorldGenerationReader worldIn, Random rand, BlockPos position, Set<BlockPos> logPos, Set<BlockPos> leavesPos, MutableBoundingBox boundingBox, T config) {
-        int baseHeight = rand.nextInt(3) + rand.nextInt(3) + 10;
+    public boolean generate(ISeedReader worldIn, Random rand, BlockPos position, Set<BlockPos> logPos, Set<BlockPos> leavesPos, MutableBoundingBox boundingBox, T config) {
+        int baseHeight = rand.nextInt(3) + rand.nextInt(3) + config.minHeight;
         boolean canGrow = true;
 
         if (position.getY() >= 1 && position.getY() + baseHeight + 1 <= 256) {
@@ -41,7 +40,7 @@ public class AuraTreeFeature<T extends GaiaTreeFeatureConfig> extends AbstractTr
                 for (int xMark = position.getX() - offset; xMark <= position.getX() + offset && canGrow; ++xMark) {
                     for (int zMark = position.getZ() - offset; zMark <= position.getZ() + offset && canGrow; ++zMark) {
                         if (yMark >= 0 && yMark < 256) {
-                            if (!func_214587_a(worldIn,mutablePos.setPos(xMark, yMark, zMark))) {
+                            if (!isReplaceableAt(worldIn,mutablePos.setPos(xMark, yMark, zMark))) {
                                 canGrow = false;
                             }
                         } else {
@@ -53,8 +52,8 @@ public class AuraTreeFeature<T extends GaiaTreeFeatureConfig> extends AbstractTr
 
             if (!canGrow) {
                 return false;
-            } else if (isSoil(worldIn, position.down(), config.getSapling()) && position.getY() < worldIn.getMaxHeight() - baseHeight - 1) {
-                this.setDirtAt(worldIn, position.down(), position);
+            } else if (isSoil(worldIn, position.down(), config.getSapling(rand, position)) && position.getY() < worldIn.getHeight() - baseHeight - 1) {
+                this.setBlockState(worldIn, position.down(), ModBlocks.light_soil.get().getDefaultState(), boundingBox);
                 int posX = position.getX();
                 int posZ = position.getZ();
                 int k1 = 0;

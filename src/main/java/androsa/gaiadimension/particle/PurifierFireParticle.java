@@ -1,6 +1,7 @@
 package androsa.gaiadimension.particle;
 
 import net.minecraft.client.particle.*;
+import net.minecraft.client.world.ClientWorld;
 import net.minecraft.particles.BasicParticleType;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
@@ -9,7 +10,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 public class PurifierFireParticle extends SpriteTexturedParticle {
 
-    public PurifierFireParticle(World worldIn, double xCoordIn, double yCoordIn, double zCoordIn, double xSpeedIn, double ySpeedIn, double zSpeedIn) {
+    public PurifierFireParticle(ClientWorld worldIn, double xCoordIn, double yCoordIn, double zCoordIn, double xSpeedIn, double ySpeedIn, double zSpeedIn) {
         super(worldIn, xCoordIn, yCoordIn, zCoordIn, xSpeedIn, ySpeedIn, zSpeedIn);
         this.motionX = this.motionX * 0.009999999776482582D + xSpeedIn;
         this.motionY = this.motionY * 0.009999999776482582D + ySpeedIn;
@@ -21,7 +22,6 @@ public class PurifierFireParticle extends SpriteTexturedParticle {
         this.particleGreen = 1.0F;
         this.particleBlue = 1.0F;
         this.maxAge = (int)(8.0D / (Math.random() * 0.8D + 0.2D)) + 4;
-        //setSprite(Minecraft.getInstance().getTextureMap().getAtlasSprite(new ResourceLocation(GaiaDimensionMod.MODID, "particle/green_fire").toString()));
     }
 
     @Override
@@ -81,7 +81,7 @@ public class PurifierFireParticle extends SpriteTexturedParticle {
         }
 
         @Override
-        public Particle makeParticle(BasicParticleType typeIn, World worldIn, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
+        public Particle makeParticle(BasicParticleType typeIn, ClientWorld worldIn, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
             PurifierFireParticle flameparticle = new PurifierFireParticle(worldIn, x, y, z, xSpeed, ySpeed, zSpeed);
             flameparticle.selectSpriteRandomly(this.spriteSet);
             return flameparticle;

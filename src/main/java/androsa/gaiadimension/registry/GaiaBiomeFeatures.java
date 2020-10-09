@@ -1,340 +1,274 @@
 package androsa.gaiadimension.registry;
 
-import androsa.gaiadimension.biomes.*;
+import androsa.gaiadimension.GaiaDimensionMod;
 import androsa.gaiadimension.world.gen.config.FeatureHeightConfig;
 import androsa.gaiadimension.world.gen.config.GaiaTreeFeatureConfig;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Lists;
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.pattern.BlockMatcher;
-import net.minecraft.world.biome.Biome;
-import net.minecraft.world.gen.GenerationStage;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.registry.Registry;
+import net.minecraft.util.registry.WorldGenRegistries;
+import net.minecraft.world.gen.Heightmap;
 import net.minecraft.world.gen.blockplacer.SimpleBlockPlacer;
 import net.minecraft.world.gen.blockstateprovider.SimpleBlockStateProvider;
 import net.minecraft.world.gen.blockstateprovider.WeightedBlockStateProvider;
+import net.minecraft.world.gen.carver.ConfiguredCarver;
+import net.minecraft.world.gen.carver.ICarverConfig;
 import net.minecraft.world.gen.feature.*;
+import net.minecraft.world.gen.feature.structure.Structure;
+import net.minecraft.world.gen.feature.template.BlockMatchRuleTest;
+import net.minecraft.world.gen.feature.template.RuleTest;
+import net.minecraft.world.gen.feature.template.TagMatchRuleTest;
+import net.minecraft.world.gen.foliageplacer.BushFoliagePlacer;
 import net.minecraft.world.gen.placement.*;
+import net.minecraft.world.gen.surfacebuilders.ConfiguredSurfaceBuilder;
+import net.minecraft.world.gen.surfacebuilders.ISurfaceBuilderConfig;
 import net.minecraft.world.gen.surfacebuilders.SurfaceBuilderConfig;
+import net.minecraft.world.gen.trunkplacer.StraightTrunkPlacer;
 
 import java.util.Set;
 
-public class GaiaBiomeFeatures {
+public final class GaiaBiomeFeatures {
+
+    public static final RuleTest GAIA_STONE = new BlockMatchRuleTest(ModBlocks.gaia_stone.get());
+    public static final RuleTest VOLCANIC = new TagMatchRuleTest(GaiaDimensionMod.VOLCANIC);
+    public static final RuleTest STATIC = new TagMatchRuleTest(GaiaDimensionMod.STATIC);
 
     public static final Set<BlockState> cave_blacklist = ImmutableSet.of(ModBlocks.glitter_grass.get().getDefaultState(), ModBlocks.heavy_soil.get().getDefaultState(), ModBlocks.corrupt_grass.get().getDefaultState(), ModBlocks.corrupt_soil.get().getDefaultState(), ModBlocks.murky_grass.get().getDefaultState(), ModBlocks.boggy_soil.get().getDefaultState(), ModBlocks.soft_grass.get().getDefaultState(), ModBlocks.light_soil.get().getDefaultState(), ModBlocks.salt.get().getDefaultState());
 
-    public static final OreFeatureConfig.FillerBlockType GAIA_STONE = OreFeatureConfig.FillerBlockType.create("GAIA_STONE", "gaia_stone", new BlockMatcher(ModBlocks.gaia_stone.get()));
-    public static final OreFeatureConfig.FillerBlockType STATIC = OreFeatureConfig.FillerBlockType.create("STATIC", "wasteland", (stone) -> {
-        if (stone == null) {
-            return false;
-        } else {
-            Block block = stone.getBlock();
-            return block == ModBlocks.gaia_stone.get() || block == ModBlocks.wasteland_stone.get();
-        }
-    });
-    public static final OreFeatureConfig.FillerBlockType VOLCANIC = OreFeatureConfig.FillerBlockType.create("VOLCANIC", "volcanic", (stone) -> {
-        if (stone == null) {
-            return false;
-        } else {
-            Block block = stone.getBlock();
-            return block == ModBlocks.gaia_stone.get() || block == ModBlocks.volcanic_rock.get();
-        }
-    });
+    public static final BlockState GLITTER_GRASS = ModBlocks.glitter_grass.get().getDefaultState();
+    public static final BlockState CORRUPT_GRASS = ModBlocks.corrupt_grass.get().getDefaultState();
+    public static final BlockState MURKY_GRASS = ModBlocks.murky_grass.get().getDefaultState();
+    public static final BlockState SOFT_GRASS = ModBlocks.soft_grass.get().getDefaultState();
+    public static final BlockState HEAVY_SOIL = ModBlocks.heavy_soil.get().getDefaultState();
+    public static final BlockState CORRUPT_SOIL = ModBlocks.corrupt_soil.get().getDefaultState();
+    public static final BlockState BOGGY_SOIL = ModBlocks.boggy_soil.get().getDefaultState();
+    public static final BlockState LIGHT_SOIL = ModBlocks.light_soil.get().getDefaultState();
+    public static final BlockState SALT = ModBlocks.salt.get().getDefaultState();
+    public static final BlockState WASTELAND_STONE = ModBlocks.wasteland_stone.get().getDefaultState();
+    public static final BlockState VOLCANIC_ROCK = ModBlocks.volcanic_rock.get().getDefaultState();
+    public static final BlockState SUPERHOT_MAGMA = ModBlocks.superhot_magma.get().getDefaultState();
+    public static final BlockState MINERAL_WATER = ModBlocks.mineral_water.get().getDefaultState();
+    public static final BlockState SWEET_MUCK = ModBlocks.sweet_muck.get().getDefaultState();
+    public static final BlockState LIQUID_AURA = ModBlocks.liquid_aura.get().getDefaultState();
+    public static final BlockState LIQUID_BISMUTH = ModBlocks.liquid_bismuth.get().getDefaultState();
+    public static final BlockState GUMMY_GLITTER = ModBlocks.gummy_glitter_block.get().getDefaultState();
+    public static final BlockState PRIMAL_MASS = ModBlocks.primal_mass.get().getDefaultState();
+    public static final BlockState THICK_GLITTER = ModBlocks.thick_glitter_block.get().getDefaultState();
+    public static final BlockState SEARING_ROCK = ModBlocks.searing_rock.get().getDefaultState();
+    public static final BlockState STATIC_STONE = ModBlocks.static_stone.get().getDefaultState();
+    public static final BlockState PEBBLES = ModBlocks.pebbles.get().getDefaultState();
+    public static final BlockState SPECKLED_ROCK = ModBlocks.speckled_rock.get().getDefaultState();
+    public static final BlockState COARSE_ROCK = ModBlocks.coarse_rock.get().getDefaultState();
+    public static final BlockState PRECIOUS_ROCK = ModBlocks.precious_rock.get().getDefaultState();
+    public static final BlockState RAW_AMETHYST = ModBlocks.raw_amethyst.get().getDefaultState();
+    public static final BlockState RAW_COPAL = ModBlocks.raw_copal.get().getDefaultState();
+    public static final BlockState RAW_JADE = ModBlocks.raw_jade.get().getDefaultState();
+    public static final BlockState RAW_JET = ModBlocks.raw_jet.get().getDefaultState();
+    public static final BlockState SUGILITE_ORE = ModBlocks.sugilite_ore.get().getDefaultState();
+    public static final BlockState HEMATITE_ORE = ModBlocks.hematite_ore.get().getDefaultState();
+    public static final BlockState PYRITE_ORE = ModBlocks.pyrite_ore.get().getDefaultState();
+    public static final BlockState CINNABAR_ORE = ModBlocks.cinnabar_ore.get().getDefaultState();
+    public static final BlockState LABRADORITE_ORE = ModBlocks.labradorite_ore.get().getDefaultState();
+    public static final BlockState MOONSTONE_ORE = ModBlocks.moonstone_ore.get().getDefaultState();
+    public static final BlockState RED_OPAL_ORE = ModBlocks.opal_ore_red.get().getDefaultState();
+    public static final BlockState BLUE_OPAL_ORE = ModBlocks.opal_ore_blue.get().getDefaultState();
+    public static final BlockState GREEN_OPAL_ORE = ModBlocks.opal_ore_green.get().getDefaultState();
+    public static final BlockState WHITE_OAL_ORE = ModBlocks.opal_ore_white.get().getDefaultState();
+    public static final BlockState PINK_AGATE_LOG = ModBlocks.pink_agate_log.get().getDefaultState();
+    public static final BlockState PINK_AGATE_LEAVES = ModBlocks.pink_agate_leaves.get().getDefaultState();
+    public static final BlockState BLUE_AGATE_LOG = ModBlocks.blue_agate_log.get().getDefaultState();
+    public static final BlockState BLUE_AGATE_LEAVES = ModBlocks.blue_agate_leaves.get().getDefaultState();
+    public static final BlockState GREEN_AGATE_LOG = ModBlocks.green_agate_log.get().getDefaultState();
+    public static final BlockState GREEN_AGATE_LEAVES = ModBlocks.green_agate_leaves.get().getDefaultState();
+    public static final BlockState PURPLE_AGATE_LOG = ModBlocks.purple_agate_log.get().getDefaultState();
+    public static final BlockState PURPLE_AGATE_LEAVES = ModBlocks.purple_agate_leaves.get().getDefaultState();
+    public static final BlockState FOSSIL_LOG = ModBlocks.fossilized_log.get().getDefaultState();
+    public static final BlockState FOSSIL_LEAVES = ModBlocks.fossilized_leaves.get().getDefaultState();
+    public static final BlockState CORRUPTED_LOG = ModBlocks.corrupted_log.get().getDefaultState();
+    public static final BlockState CORRUPTED_LEAVES = ModBlocks.corrupted_leaves.get().getDefaultState();
+    public static final BlockState BURNT_LOG = ModBlocks.burnt_log.get().getDefaultState();
+    public static final BlockState BURNT_LEAVES = ModBlocks.burnt_leaves.get().getDefaultState();
+    public static final BlockState BURNING_LOG = ModBlocks.burning_log.get().getDefaultState();
+    public static final BlockState BURNING_LEAVES = ModBlocks.burning_leaves.get().getDefaultState();
+    public static final BlockState AURA_LOG = ModBlocks.aura_log.get().getDefaultState();
+    public static final BlockState AURA_LEAVES = ModBlocks.aura_leaves.get().getDefaultState();
+    public static final BlockState CRYSTAL_GROWTH = ModBlocks.crystal_growth.get().getDefaultState();
+    public static final BlockState CRYSTAL_GROWTH_MUTANT = ModBlocks.crystal_growth_mutant.get().getDefaultState();
+    public static final BlockState CRYSTAL_GROWTH_SEARED = ModBlocks.crystal_growth_seared.get().getDefaultState();
+    public static final BlockState CRYSTAL_GROWTH_RED = ModBlocks.crystal_growth_red.get().getDefaultState();
+    public static final BlockState CRYSTAL_GROWTH_BLACK = ModBlocks.crystal_growth_black.get().getDefaultState();
+    public static final BlockState CRYSTAL_GROWTH_AURA = ModBlocks.crystal_growth_aura.get().getDefaultState();
+    public static final BlockState THISCUS = ModBlocks.thiscus.get().getDefaultState();
+    public static final BlockState OUZIUM = ModBlocks.ouzium.get().getDefaultState();
+    public static final BlockState AGATHUM = ModBlocks.agathum.get().getDefaultState();
+    public static final BlockState CORRUPTED_VARLOOM = ModBlocks.corrupted_varloom.get().getDefaultState();
+    public static final BlockState SPOTTED_KERSEI = ModBlocks.spotted_kersei.get().getDefaultState();
+    public static final BlockState THORNY_WILTHA = ModBlocks.thorny_wiltha.get().getDefaultState();
+    public static final BlockState ROOFED_AGARIC = ModBlocks.roofed_agaric.get().getDefaultState();
+    public static final BlockState BULBOUS_HOBINA = ModBlocks.bulbous_hobina.get().getDefaultState();
+    public static final BlockState STICKLY_CUPSIR = ModBlocks.stickly_cupsir.get().getDefaultState();
+    public static final BlockState MYSTICAL_MURGNI = ModBlocks.mystical_murgni.get().getDefaultState();
+    public static final BlockState CORRUPTED_GAIA_EYE = ModBlocks.corrupted_gaia_eye.get().getDefaultState();
+    public static final BlockState ELDER_IMKLIA = ModBlocks.elder_imklia.get().getDefaultState();
+    public static final BlockState GOLD_ORB_TUCHER = ModBlocks.gold_orb_tucher.get().getDefaultState();
 
-    public static final SurfaceBuilderConfig GENERIC_SURFACE_CONFIG = new SurfaceBuilderConfig(ModBlocks.glitter_grass.get().getDefaultState(), ModBlocks.heavy_soil.get().getDefaultState(), ModBlocks.salt.get().getDefaultState());
-    public static final SurfaceBuilderConfig VOLCANIC_SURFACE_CONFIG = new SurfaceBuilderConfig(ModBlocks.glitter_grass.get().getDefaultState(), ModBlocks.heavy_soil.get().getDefaultState(), ModBlocks.volcanic_rock.get().getDefaultState());
-    public static final SurfaceBuilderConfig WASTELAND_SURFACE_CONFIG = new SurfaceBuilderConfig(ModBlocks.wasteland_stone.get().getDefaultState(), ModBlocks.wasteland_stone.get().getDefaultState(), ModBlocks.wasteland_stone.get().getDefaultState());
-    public static final SurfaceBuilderConfig CORRUPT_SURFACE_CONFIG = new SurfaceBuilderConfig(ModBlocks.corrupt_grass.get().getDefaultState(), ModBlocks.corrupt_soil.get().getDefaultState(), ModBlocks.salt.get().getDefaultState());
-    public static final SurfaceBuilderConfig SALT_SURFACE_CONFIG = new SurfaceBuilderConfig(ModBlocks.salt.get().getDefaultState(), ModBlocks.salt.get().getDefaultState(), ModBlocks.salt.get().getDefaultState());
-    public static final SurfaceBuilderConfig AURA_SURFACE_CONFIG = new SurfaceBuilderConfig(ModBlocks.soft_grass.get().getDefaultState(), ModBlocks.light_soil.get().getDefaultState(), ModBlocks.salt.get().getDefaultState());
-    public static final SurfaceBuilderConfig BISMUTH_SURFACE_CONFIG = new SurfaceBuilderConfig(ModBlocks.murky_grass.get().getDefaultState(), ModBlocks.boggy_soil.get().getDefaultState(), ModBlocks.pebbles.get().getDefaultState());
+    public static final SurfaceBuilderConfig GLITTER_HEAVY_SALT = new SurfaceBuilderConfig(GLITTER_GRASS, HEAVY_SOIL, SALT);
+    public static final SurfaceBuilderConfig CORRUPT_SALT = new SurfaceBuilderConfig(CORRUPT_GRASS, CORRUPT_SOIL, SALT);
+    public static final SurfaceBuilderConfig SALTY_SURFACE = new SurfaceBuilderConfig(SALT, SALT, SALT);
+    public static final SurfaceBuilderConfig MURKY_BOGGY_PEBBLES = new SurfaceBuilderConfig(MURKY_GRASS, BOGGY_SOIL, PEBBLES);
+    public static final SurfaceBuilderConfig SOFT_LIGHT_SALT = new SurfaceBuilderConfig(SOFT_GRASS, LIGHT_SOIL, PEBBLES);
+    public static final SurfaceBuilderConfig WASTELAND_STONE_SURFACE = new SurfaceBuilderConfig(WASTELAND_STONE, WASTELAND_STONE, WASTELAND_STONE);
+    public static final SurfaceBuilderConfig GLITTER_HEAVY_VOLROCK = new SurfaceBuilderConfig(GLITTER_GRASS, HEAVY_SOIL, VOLCANIC_ROCK);
 
-    public static final GaiaTreeFeatureConfig PINK_AGATE_TREE_CONFIG = (new GaiaTreeFeatureConfig.Builder(new SimpleBlockStateProvider(ModBlocks.pink_agate_log.get().getDefaultState()), new SimpleBlockStateProvider(ModBlocks.pink_agate_leaves.get().getDefaultState())).setSapling(ModBlocks.pink_agate_sapling.get())).build();
-    public static final GaiaTreeFeatureConfig BLUE_AGATE_TREE_CONFIG = (new GaiaTreeFeatureConfig.Builder(new SimpleBlockStateProvider(ModBlocks.blue_agate_log.get().getDefaultState()), new SimpleBlockStateProvider(ModBlocks.blue_agate_leaves.get().getDefaultState())).setSapling(ModBlocks.blue_agate_sapling.get())).build();
-    public static final GaiaTreeFeatureConfig GREEN_AGATE_TREE_CONFIG = (new GaiaTreeFeatureConfig.Builder(new SimpleBlockStateProvider(ModBlocks.green_agate_log.get().getDefaultState()), new SimpleBlockStateProvider(ModBlocks.green_agate_leaves.get().getDefaultState())).setSapling(ModBlocks.green_agate_sapling.get())).build();
-    public static final GaiaTreeFeatureConfig PURPLE_AGATE_TREE_CONFIG = (new GaiaTreeFeatureConfig.Builder(new SimpleBlockStateProvider(ModBlocks.purple_agate_log.get().getDefaultState()), new SimpleBlockStateProvider(ModBlocks.purple_agate_leaves.get().getDefaultState())).setSapling(ModBlocks.purple_agate_sapling.get())).build();
-    public static final GaiaTreeFeatureConfig FOSSILIZED_TREE_CONFIG = (new GaiaTreeFeatureConfig.Builder(new SimpleBlockStateProvider(ModBlocks.fossilized_log.get().getDefaultState()), new SimpleBlockStateProvider(ModBlocks.fossilized_leaves.get().getDefaultState())).setSapling(ModBlocks.fossilized_sapling.get())).build();
-    public static final GaiaTreeFeatureConfig CORRUPTED_TREE_CONFIG = (new GaiaTreeFeatureConfig.Builder(new SimpleBlockStateProvider(ModBlocks.corrupted_log.get().getDefaultState()), new SimpleBlockStateProvider(ModBlocks.corrupted_leaves.get().getDefaultState())).setSapling(ModBlocks.corrupted_sapling.get())).build();
-    public static final GaiaTreeFeatureConfig BURNT_TREE_CONFIG = (new GaiaTreeFeatureConfig.Builder(new SimpleBlockStateProvider(ModBlocks.burnt_log.get().getDefaultState()), new SimpleBlockStateProvider(ModBlocks.burnt_leaves.get().getDefaultState())).setSapling(ModBlocks.burnt_sapling.get())).build();
-    public static final GaiaTreeFeatureConfig BURNING_TREE_CONFIG = (new GaiaTreeFeatureConfig.Builder(new SimpleBlockStateProvider(ModBlocks.burning_log.get().getDefaultState()), new SimpleBlockStateProvider(ModBlocks.burning_leaves.get().getDefaultState())).setSapling(ModBlocks.burning_sapling.get())).build();
-    public static final GaiaTreeFeatureConfig AURA_TREE_CONFIG = (new GaiaTreeFeatureConfig.Builder(new SimpleBlockStateProvider(ModBlocks.aura_log.get().getDefaultState()), new SimpleBlockStateProvider(ModBlocks.aura_leaves.get().getDefaultState())).setSapling(ModBlocks.aura_sapling.get())).build();
-    public static final BaseTreeFeatureConfig GREEN_AGATE_BUSH_CONFIG = (new BaseTreeFeatureConfig.Builder(new SimpleBlockStateProvider(ModBlocks.green_agate_log.get().getDefaultState()), new SimpleBlockStateProvider(ModBlocks.green_agate_leaves.get().getDefaultState()))).build();
+    public static final GaiaTreeFeatureConfig PINK_AGATE_TREE_CONFIG = (new GaiaTreeFeatureConfig.Builder(new SimpleBlockStateProvider(PINK_AGATE_LOG), new SimpleBlockStateProvider(PINK_AGATE_LEAVES), 5).setSapling(ModBlocks.pink_agate_sapling.get())).build();
+    public static final GaiaTreeFeatureConfig BLUE_AGATE_TREE_CONFIG = (new GaiaTreeFeatureConfig.Builder(new SimpleBlockStateProvider(BLUE_AGATE_LOG), new SimpleBlockStateProvider(BLUE_AGATE_LEAVES), 6).setSapling(ModBlocks.blue_agate_sapling.get())).build();
+    public static final GaiaTreeFeatureConfig GREEN_AGATE_TREE_CONFIG = (new GaiaTreeFeatureConfig.Builder(new SimpleBlockStateProvider(GREEN_AGATE_LOG), new SimpleBlockStateProvider(GREEN_AGATE_LEAVES), 10).setSapling(ModBlocks.green_agate_sapling.get())).build();
+    public static final BaseTreeFeatureConfig GREEN_AGATE_BUSH_CONFIG = (new BaseTreeFeatureConfig.Builder(new SimpleBlockStateProvider(GREEN_AGATE_LOG), new SimpleBlockStateProvider(GREEN_AGATE_LEAVES), new BushFoliagePlacer(FeatureSpread.func_242252_a(2), FeatureSpread.func_242252_a(1), 2), new StraightTrunkPlacer(1, 0, 0), new TwoLayerFeature(0, 0, 0))).func_236702_a_(Heightmap.Type.MOTION_BLOCKING_NO_LEAVES).build();
+    public static final GaiaTreeFeatureConfig PURPLE_AGATE_TREE_CONFIG = (new GaiaTreeFeatureConfig.Builder(new SimpleBlockStateProvider(PURPLE_AGATE_LOG), new SimpleBlockStateProvider(PURPLE_AGATE_LEAVES), 7).setSapling(ModBlocks.purple_agate_sapling.get())).build();
+    public static final GaiaTreeFeatureConfig FOSSILIZED_TREE_CONFIG = (new GaiaTreeFeatureConfig.Builder(new SimpleBlockStateProvider(FOSSIL_LOG), new SimpleBlockStateProvider(FOSSIL_LEAVES), 5).setSapling(ModBlocks.fossilized_sapling.get())).build();
+    public static final GaiaTreeFeatureConfig CORRUPTED_TREE_CONFIG = (new GaiaTreeFeatureConfig.Builder(new SimpleBlockStateProvider(CORRUPTED_LOG), new SimpleBlockStateProvider(CORRUPTED_LEAVES), 7).setSapling(ModBlocks.corrupted_sapling.get())).build();
+    public static final GaiaTreeFeatureConfig BURNT_TREE_CONFIG = (new GaiaTreeFeatureConfig.Builder(new SimpleBlockStateProvider(BURNT_LOG), new SimpleBlockStateProvider(BURNT_LEAVES), 5).setSapling(ModBlocks.burnt_sapling.get())).build();
+    public static final GaiaTreeFeatureConfig BURNING_TREE_CONFIG = (new GaiaTreeFeatureConfig.Builder(new SimpleBlockStateProvider(BURNING_LOG), new SimpleBlockStateProvider(BURNING_LEAVES), 5).setSapling(ModBlocks.burning_sapling.get())).build();
+    public static final GaiaTreeFeatureConfig AURA_TREE_CONFIG = (new GaiaTreeFeatureConfig.Builder(new SimpleBlockStateProvider(AURA_LOG), new SimpleBlockStateProvider(AURA_LEAVES), 10).setSapling(ModBlocks.aura_sapling.get())).build();
 
-    public static final BlockClusterFeatureConfig NORMAL_GROWTH = (new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(ModBlocks.crystal_growth.get().getDefaultState()), new SimpleBlockPlacer())).tries(32).build();
-    public static final BlockClusterFeatureConfig CORRUPT_GROWTH = (new BlockClusterFeatureConfig.Builder(new WeightedBlockStateProvider().addState(ModBlocks.crystal_growth_red.get().getDefaultState(), 2).addState(ModBlocks.crystal_growth_black.get().getDefaultState(), 2), new SimpleBlockPlacer())).tries(32).build();
-    public static final BlockClusterFeatureConfig MUTANT_GROWTH = (new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(ModBlocks.crystal_growth_mutant.get().getDefaultState()), new SimpleBlockPlacer())).tries(32).build();
-    public static final BlockClusterFeatureConfig SEARED_GROWTH = (new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(ModBlocks.crystal_growth_seared.get().getDefaultState()), new SimpleBlockPlacer())).tries(32).build();
-    public static final BlockClusterFeatureConfig AURA_GROWTH = (new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(ModBlocks.crystal_growth_aura.get().getDefaultState()), new SimpleBlockPlacer())).tries(32).build();
+    public static final BlockClusterFeatureConfig NORMAL_GROWTH = (new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(CRYSTAL_GROWTH), new SimpleBlockPlacer())).tries(32).build();
+    public static final BlockClusterFeatureConfig MUTANT_GROWTH = (new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(CRYSTAL_GROWTH_MUTANT), new SimpleBlockPlacer())).tries(32).build();
+    public static final BlockClusterFeatureConfig SEARED_GROWTH = (new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(CRYSTAL_GROWTH_SEARED), new SimpleBlockPlacer())).tries(32).build();
+    public static final BlockClusterFeatureConfig CORRUPT_GROWTH = (new BlockClusterFeatureConfig.Builder(new WeightedBlockStateProvider().addWeightedBlockstate(CRYSTAL_GROWTH_RED, 2).addWeightedBlockstate(CRYSTAL_GROWTH_BLACK, 2), new SimpleBlockPlacer())).tries(32).build();
+    public static final BlockClusterFeatureConfig AURA_GROWTH = (new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(CRYSTAL_GROWTH_AURA), new SimpleBlockPlacer())).tries(32).build();
 
-    public static final BlockClusterFeatureConfig COMMON_BLOOM = (new BlockClusterFeatureConfig.Builder(new WeightedBlockStateProvider().addState(ModBlocks.thiscus.get().getDefaultState(), 4).addState(ModBlocks.ouzium.get().getDefaultState(), 1), new SimpleBlockPlacer())).tries(32).build();
-    public static final BlockClusterFeatureConfig RARE_BLOOM = (new BlockClusterFeatureConfig.Builder(new WeightedBlockStateProvider().addState(ModBlocks.ouzium.get().getDefaultState(), 4).addState(ModBlocks.thiscus.get().getDefaultState(), 1), new SimpleBlockPlacer())).tries(32).build();
-    public static final BlockClusterFeatureConfig MUTANT_BLOOM = (new BlockClusterFeatureConfig.Builder(new WeightedBlockStateProvider().addState(ModBlocks.ouzium.get().getDefaultState(), 4).addState(ModBlocks.agathum.get().getDefaultState(), 1), new SimpleBlockPlacer())).tries(32).build();
-    public static final BlockClusterFeatureConfig CORRUPT_BLOOM = (new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(ModBlocks.corrupted_varloom.get().getDefaultState()), new SimpleBlockPlacer())).tries(64).build();
+    public static final BlockClusterFeatureConfig COMMON_BLOOM = (new BlockClusterFeatureConfig.Builder(new WeightedBlockStateProvider().addWeightedBlockstate(THISCUS, 4).addWeightedBlockstate(OUZIUM, 1), new SimpleBlockPlacer())).tries(32).build();
+    public static final BlockClusterFeatureConfig RARE_BLOOM = (new BlockClusterFeatureConfig.Builder(new WeightedBlockStateProvider().addWeightedBlockstate(OUZIUM, 4).addWeightedBlockstate(THISCUS, 1), new SimpleBlockPlacer())).tries(32).build();
+    public static final BlockClusterFeatureConfig MUTANT_BLOOM = (new BlockClusterFeatureConfig.Builder(new WeightedBlockStateProvider().addWeightedBlockstate(OUZIUM, 4).addWeightedBlockstate(AGATHUM, 1), new SimpleBlockPlacer())).tries(32).build();
+    public static final BlockClusterFeatureConfig CORRUPT_BLOOM = (new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(CORRUPTED_VARLOOM), new SimpleBlockPlacer())).tries(64).build();
 
-    public static final BlockClusterFeatureConfig KERSEI = (new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(ModBlocks.spotted_kersei.get().getDefaultState()), new SimpleBlockPlacer())).tries(16).build();
-    public static final BlockClusterFeatureConfig WILTHA = (new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(ModBlocks.thorny_wiltha.get().getDefaultState()), new SimpleBlockPlacer())).tries(16).build();
-    public static final BlockClusterFeatureConfig AGARIC = (new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(ModBlocks.roofed_agaric.get().getDefaultState()), new SimpleBlockPlacer())).tries(16).build();
-    public static final BlockClusterFeatureConfig HOBINA = (new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(ModBlocks.bulbous_hobina.get().getDefaultState()), new SimpleBlockPlacer())).tries(16).build();
-    public static final BlockClusterFeatureConfig CUPSIR = (new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(ModBlocks.stickly_cupsir.get().getDefaultState()), new SimpleBlockPlacer())).tries(16).build();
-    public static final BlockClusterFeatureConfig MURGNI = (new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(ModBlocks.mystical_murgni.get().getDefaultState()), new SimpleBlockPlacer())).tries(16).build();
-    public static final BlockClusterFeatureConfig CORRUPT_EYE = (new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(ModBlocks.corrupted_gaia_eye.get().getDefaultState()), new SimpleBlockPlacer())).tries(16).build();
-    public static final BlockClusterFeatureConfig CAVE_FUNGI = (new BlockClusterFeatureConfig.Builder(new WeightedBlockStateProvider().addState(ModBlocks.elder_imklia.get().getDefaultState(), 2).addState(ModBlocks.gold_orb_tucher.get().getDefaultState(), 2), new SimpleBlockPlacer())).tries(64).blacklist(cave_blacklist).cannotProject().build();
+    public static final BlockClusterFeatureConfig KERSEI = (new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(SPOTTED_KERSEI), new SimpleBlockPlacer())).tries(16).build();
+    public static final BlockClusterFeatureConfig WILTHA = (new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(THORNY_WILTHA), new SimpleBlockPlacer())).tries(16).build();
+    public static final BlockClusterFeatureConfig AGARIC = (new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(ROOFED_AGARIC), new SimpleBlockPlacer())).tries(16).build();
+    public static final BlockClusterFeatureConfig HOBINA = (new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(BULBOUS_HOBINA), new SimpleBlockPlacer())).tries(16).build();
+    public static final BlockClusterFeatureConfig CUPSIR = (new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(STICKLY_CUPSIR), new SimpleBlockPlacer())).tries(16).build();
+    public static final BlockClusterFeatureConfig MURGNI = (new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(MYSTICAL_MURGNI), new SimpleBlockPlacer())).tries(16).build();
+    public static final BlockClusterFeatureConfig CORRUPT_EYE = (new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(CORRUPTED_GAIA_EYE), new SimpleBlockPlacer())).tries(16).build();
+    public static final BlockClusterFeatureConfig CAVE_FUNGI = (new BlockClusterFeatureConfig.Builder(new WeightedBlockStateProvider().addWeightedBlockstate(ELDER_IMKLIA, 2).addWeightedBlockstate(GOLD_ORB_TUCHER, 2), new SimpleBlockPlacer())).tries(64).blacklist(cave_blacklist).func_227317_b_().build();
 
-    public static void addStructures(Biome biomeIn) {
-        biomeIn.addFeature(GenerationStage.Decoration.SURFACE_STRUCTURES, ModWorldgen.MINI_TOWER.get().configure(IFeatureConfig.NO_FEATURE_CONFIG).createDecoratedFeature(Placement.NOPE.configure(IPlacementConfig.NO_PLACEMENT_CONFIG)));
-        biomeIn.addFeature(GenerationStage.Decoration.SURFACE_STRUCTURES, ModWorldgen.MALACHITE_WATCHTOWER.get().configure(IFeatureConfig.NO_FEATURE_CONFIG).createDecoratedFeature(Placement.NOPE.configure(IPlacementConfig.NO_PLACEMENT_CONFIG)));
+    //SurfaceBuilders
+    public static final ConfiguredSurfaceBuilder<SurfaceBuilderConfig> d_glitter_heavy_salt = registerSurfaceBuilder("glitter_grass", ModWorldgen.DEFAULT_GAIA.get().func_242929_a(GLITTER_HEAVY_SALT));
+    public static final ConfiguredSurfaceBuilder<SurfaceBuilderConfig> d_corrupt_salt = registerSurfaceBuilder("corrupt_grass", ModWorldgen.DEFAULT_GAIA.get().func_242929_a(CORRUPT_SALT));
+    public static final ConfiguredSurfaceBuilder<SurfaceBuilderConfig> d_salty = registerSurfaceBuilder("salty", ModWorldgen.DEFAULT_GAIA.get().func_242929_a(SALTY_SURFACE));
+    public static final ConfiguredSurfaceBuilder<SurfaceBuilderConfig> d_murky_boggy_pebble = registerSurfaceBuilder("murky_grass", ModWorldgen.DEFAULT_GAIA.get().func_242929_a(MURKY_BOGGY_PEBBLES));
+    public static final ConfiguredSurfaceBuilder<SurfaceBuilderConfig> d_soft_light_salt = registerSurfaceBuilder("soft_grass", ModWorldgen.DEFAULT_GAIA.get().func_242929_a(SOFT_LIGHT_SALT));
+    public static final ConfiguredSurfaceBuilder<SurfaceBuilderConfig> s_wasteland_stone = registerSurfaceBuilder("wasteland_stone", ModWorldgen.STATIC.get().func_242929_a(WASTELAND_STONE_SURFACE));
+    public static final ConfiguredSurfaceBuilder<SurfaceBuilderConfig> v_glitter_heavy_volrock = registerSurfaceBuilder("volcanic_grass", ModWorldgen.VOLCANIC.get().func_242929_a(GLITTER_HEAVY_VOLROCK));
+
+    //Carvers
+    public static final ConfiguredCarver<ProbabilityConfig> crystal_caves = registerCarver("crystal_caves", ModWorldgen.CRYSTAL_CAVES.get().func_242761_a(new ProbabilityConfig(0.15F)));
+    public static final ConfiguredCarver<ProbabilityConfig> chasms = registerCarver("chasms", ModWorldgen.CHASMS.get().func_242761_a(new ProbabilityConfig(0.03F)));
+
+    //StructureFeatures
+    public static final StructureFeature<NoFeatureConfig, ? extends Structure<NoFeatureConfig>> mini_tower = registerStructureFeature("mini_tower", ModWorldgen.MINI_TOWER.get().func_236391_a_(NoFeatureConfig.field_236559_b_));
+    public static final StructureFeature<NoFeatureConfig, ? extends Structure<NoFeatureConfig>> malachite_watchtower = registerStructureFeature("malachite_watchtower", ModWorldgen.MALACHITE_WATCHTOWER.get().func_236391_a_(NoFeatureConfig.field_236559_b_));
+
+    //Lakes
+    public static final ConfiguredFeature<?, ?> lake_superhot_magma_common = registerFeature("lake_superhot_magma_common", ModWorldgen.POOL.get().withConfiguration(new BlockStateFeatureConfig(SUPERHOT_MAGMA)).withPlacement(Placement.LAVA_LAKE.configure(new ChanceConfig(15))));
+    public static final ConfiguredFeature<?, ?> lake_superhot_magma_rare = registerFeature("lake_superhot_magma_rare", ModWorldgen.POOL.get().withConfiguration(new BlockStateFeatureConfig(SUPERHOT_MAGMA)).withPlacement(Placement.LAVA_LAKE.configure(new ChanceConfig(80))));
+    public static final ConfiguredFeature<?, ?> lake_mineral_water_common = registerFeature("lake_mineral_water_common", ModWorldgen.POOL.get().withConfiguration(new BlockStateFeatureConfig(MINERAL_WATER)).withPlacement(Placement.WATER_LAKE.configure(new ChanceConfig(4))));
+    public static final ConfiguredFeature<?, ?> lake_mineral_water_uncommon = registerFeature("lake_mineral_water_uncommon", ModWorldgen.POOL.get().withConfiguration(new BlockStateFeatureConfig(MINERAL_WATER)).withPlacement(Placement.WATER_LAKE.configure(new ChanceConfig(40))));
+    public static final ConfiguredFeature<?, ?> lake_mineral_water_rare = registerFeature("lake_mineral_water_rare", ModWorldgen.POOL.get().withConfiguration(new BlockStateFeatureConfig(MINERAL_WATER)).withPlacement(Placement.WATER_LAKE.configure(new ChanceConfig(50))));
+    public static final ConfiguredFeature<?, ?> lake_sweet_muck = registerFeature("lake_sweet_muck", ModWorldgen.POOL.get().withConfiguration(new BlockStateFeatureConfig(SWEET_MUCK)).withPlacement(Placement.LAVA_LAKE.configure(new ChanceConfig(10))));
+    public static final ConfiguredFeature<?, ?> lake_liquid_aura = registerFeature("lake_liquid_aura", ModWorldgen.POOL.get().withConfiguration(new BlockStateFeatureConfig(LIQUID_AURA)).withPlacement(Placement.LAVA_LAKE.configure(new ChanceConfig(20))));
+    public static final ConfiguredFeature<?, ?> lake_liquid_bismuth = registerFeature("lake_liquid_bismuth", ModWorldgen.POOL.get().withConfiguration(new BlockStateFeatureConfig(LIQUID_BISMUTH)).withPlacement(Placement.LAVA_LAKE.configure(new ChanceConfig(20))));
+
+    //Local Modifications
+    public static final ConfiguredFeature<?, ?> gummy_glitter_blob = registerFeature("gummy_glitter_blob", ModWorldgen.GAIA_BLOB.get().withConfiguration(new BlockStateFeatureConfig(GUMMY_GLITTER)).withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).func_242732_c(2));
+    public static final ConfiguredFeature<?, ?> static_spikes = registerFeature("static_spikes", ModWorldgen.STATIC_SPIKE.get().withConfiguration(new FeatureHeightConfig(8)).withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).func_242732_c(2));
+    public static final ConfiguredFeature<?, ?> bismuth_spires = registerFeature("bismuth_spires", ModWorldgen.BISMUTH_SPIRE.get().withConfiguration(new FeatureHeightConfig(7)).withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).func_242732_c(2));
+    public static final ConfiguredFeature<?, ?> bismuth_geysers = registerFeature("bismuth_geysers", ModWorldgen.BISMUTH_GEYSER.get().withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG).withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).func_242732_c(2));
+
+    //Underground Ores
+    public static final ConfiguredFeature<?, ?> ore_primal_mass = registerFeature("ore_primal_mass", Feature.ORE.withConfiguration(new OreFeatureConfig(GAIA_STONE, PRIMAL_MASS, 33)).func_242733_d(25).func_242728_a().func_242731_b(33));
+    public static final ConfiguredFeature<?, ?> ore_thick_glitter = registerFeature("ore_thick_glitter", Feature.ORE.withConfiguration(new OreFeatureConfig(GAIA_STONE, THICK_GLITTER, 33)).func_242733_d(100).func_242728_a().func_242731_b(9));
+    public static final ConfiguredFeature<?, ?> ore_searing_rock = registerFeature("ore_searing_rock", Feature.ORE.withConfiguration(new OreFeatureConfig(VOLCANIC, SEARING_ROCK, 33)).func_242733_d(100).func_242728_a().func_242733_d(9));
+    public static final ConfiguredFeature<?, ?> ore_static_stone = registerFeature("ore_static_stone", Feature.ORE.withConfiguration(new OreFeatureConfig(STATIC, STATIC_STONE, 33)).func_242733_d(100).func_242728_a().func_242731_b(9));
+    public static final ConfiguredFeature<?, ?> ore_pebbles = registerFeature("ore_pebbles", Feature.ORE.withConfiguration(new OreFeatureConfig(GAIA_STONE, PEBBLES, 25)).func_242733_d(128).func_242728_a().func_242731_b(25));
+    public static final ConfiguredFeature<?, ?> ore_speckled_rock = registerFeature("ore_speckled_rock", Feature.ORE.withConfiguration(new OreFeatureConfig(GAIA_STONE, SPECKLED_ROCK, 8)).func_242733_d(120).func_242728_a().func_242731_b(10));
+    public static final ConfiguredFeature<?, ?> ore_coarse_rock = registerFeature("ore_coarse_rock", Feature.ORE.withConfiguration(new OreFeatureConfig(GAIA_STONE, COARSE_ROCK, 8)).func_242733_d(60).func_242728_a().func_242731_b(10));
+    public static final ConfiguredFeature<?, ?> ore_precious_rock = registerFeature("ore_precious_rock", Feature.ORE.withConfiguration(new OreFeatureConfig(GAIA_STONE, PRECIOUS_ROCK, 8)).func_242733_d(30).func_242728_a().func_242731_b(10));
+    public static final ConfiguredFeature<?, ?> ore_raw_amethyst = registerFeature("ore_raw_amethyst", Feature.ORE.withConfiguration(new OreFeatureConfig(GAIA_STONE, RAW_AMETHYST, 12)).func_242733_d(120).func_242728_a().func_242731_b(15));
+    public static final ConfiguredFeature<?, ?> ore_raw_copal = registerFeature("ore_raw_copal", Feature.ORE.withConfiguration(new OreFeatureConfig(GAIA_STONE, RAW_COPAL, 12)).func_242733_d(120).func_242728_a().func_242731_b(15));
+    public static final ConfiguredFeature<?, ?> ore_raw_jade = registerFeature("ore_raw_jade", Feature.ORE.withConfiguration(new OreFeatureConfig(GAIA_STONE, RAW_JADE, 12)).func_242733_d(120).func_242728_a().func_242731_b(15));
+    public static final ConfiguredFeature<?, ?> ore_raw_jet = registerFeature("ore_raw_jet", Feature.ORE.withConfiguration(new OreFeatureConfig(GAIA_STONE, RAW_JET, 12)).func_242733_d(120).func_242728_a().func_242731_b(15));
+    public static final ConfiguredFeature<?, ?> ore_sugilite = registerFeature("ore_sugilite", Feature.ORE.withConfiguration(new OreFeatureConfig(GAIA_STONE, SUGILITE_ORE, 17)).func_242733_d(100).func_242728_a().func_242731_b(8));
+    public static final ConfiguredFeature<?, ?> ore_hematite = registerFeature("ore_hematite", Feature.ORE.withConfiguration(new OreFeatureConfig(GAIA_STONE, HEMATITE_ORE, 17)).func_242733_d(100).func_242728_a().func_242731_b(8));
+    public static final ConfiguredFeature<?, ?> ore_pyrite = registerFeature("ore_pyrite", Feature.ORE.withConfiguration(new OreFeatureConfig(GAIA_STONE, PYRITE_ORE, 9)).func_242733_d(80).func_242728_a().func_242731_b(8));
+    public static final ConfiguredFeature<?, ?> ore_cinnabar = registerFeature("ore_cinnabar", Feature.ORE.withConfiguration(new OreFeatureConfig(GAIA_STONE, CINNABAR_ORE, 9)).func_242733_d(60).func_242728_a().func_242731_b(7));
+    public static final ConfiguredFeature<?, ?> ore_labradorite = registerFeature("ore_labradorite", Feature.ORE.withConfiguration(new OreFeatureConfig(GAIA_STONE, LABRADORITE_ORE, 9)).func_242733_d(40).func_242728_a().func_242731_b(6));
+    public static final ConfiguredFeature<?, ?> ore_moonstone = registerFeature("ore_moonstone", Feature.ORE.withConfiguration(new OreFeatureConfig(GAIA_STONE, MOONSTONE_ORE, 9)).func_242733_d(40).func_242728_a().func_242731_b(6));
+    public static final ConfiguredFeature<?, ?> ore_red_opal = registerFeature("ore_red_opal", Feature.ORE.withConfiguration(new OreFeatureConfig(GAIA_STONE, RED_OPAL_ORE, 8)).func_242733_d(30).func_242728_a().func_242731_b(4));
+    public static final ConfiguredFeature<?, ?> ore_blue_opal = registerFeature("ore_blue_opal", Feature.ORE.withConfiguration(new OreFeatureConfig(GAIA_STONE, BLUE_OPAL_ORE, 8)).func_242733_d(30).func_242728_a().func_242731_b(4));
+    public static final ConfiguredFeature<?, ?> ore_green_opal = registerFeature("ore_green_opal", Feature.ORE.withConfiguration(new OreFeatureConfig(GAIA_STONE, GREEN_OPAL_ORE, 8)).func_242733_d(30).func_242728_a().func_242731_b(4));
+    public static final ConfiguredFeature<?, ?> ore_white_opal_common = registerFeature("ore_white_opal_common", Feature.ORE.withConfiguration(new OreFeatureConfig(GAIA_STONE, WHITE_OAL_ORE, 8)).func_242733_d(25).func_242728_a().func_242731_b(4));
+    public static final ConfiguredFeature<?, ?> ore_white_opal_rare = registerFeature("ore_white_opal_rare", Feature.ORE.withConfiguration(new OreFeatureConfig(GAIA_STONE, WHITE_OAL_ORE, 8)).func_242733_d(20).func_242728_a().func_242731_b(3));
+    public static final ConfiguredFeature<?, ?> disk_static_stone = registerFeature("disk_static_stone", Feature.DISK.withConfiguration(new SphereReplaceConfig(STATIC_STONE, FeatureSpread.func_242253_a(4, 2), 3, ImmutableList.of(WASTELAND_STONE))).withPlacement(Features.Placements.SEAGRASS_DISK_PLACEMENT));
+    public static final ConfiguredFeature<?, ?> disk_bog_patch = registerFeature("disk_bog_patch", ModWorldgen.BOG_PATCH.get().withConfiguration(new SphereReplaceConfig(ModBlocks.impure_sludge.get().getDefaultState(), FeatureSpread.func_242253_a(4, 1), 2, Lists.newArrayList(ModBlocks.murky_grass.get().getDefaultState(), ModBlocks.boggy_soil.get().getDefaultState()))).withPlacement(Features.Placements.SEAGRASS_DISK_PLACEMENT));
+
+    //Underground Decoration
+    public static final ConfiguredFeature<?, ?> underground_glitter_blob = registerFeature("underground_glitter_blob", ModWorldgen.FRAIL_BLOB.get().withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG).func_242733_d(64).func_242728_a().func_242731_b(100));
+    public static final ConfiguredFeature<?, ?> crystal_fungi_caves = registerFeature("crystal_fungi_caves", Feature.RANDOM_PATCH.withConfiguration(CAVE_FUNGI).withPlacement(Features.Placements.PATCH_PLACEMENT).func_242729_a(2));
+
+    //Vegetal Decoration
+    public static final ConfiguredFeature<?, ?> pink_agate_tree_common = registerFeature("pink_agate_tree_common", ModWorldgen.PINK_AGATE_TREE.get().withConfiguration(PINK_AGATE_TREE_CONFIG).withPlacement(Placement.field_242902_f.configure(new AtSurfaceWithExtraConfig(4, 0.3F, 1))));
+    public static final ConfiguredFeature<?, ?> pink_agate_tree_rare = registerFeature("pink_agate_tree_rare", ModWorldgen.PINK_AGATE_TREE.get().withConfiguration(PINK_AGATE_TREE_CONFIG).withPlacement(Placement.field_242902_f.configure(new AtSurfaceWithExtraConfig(0, 0.1F, 1))));
+    public static final ConfiguredFeature<?, ?> blue_agate_tree = registerFeature("blue_agate_tree", ModWorldgen.BLUE_AGATE_TREE.get().withConfiguration(BLUE_AGATE_TREE_CONFIG).withPlacement(Placement.field_242902_f.configure(new AtSurfaceWithExtraConfig(1, 0.3F, 1))));
+    public static final ConfiguredFeature<?, ?> green_agate_tree = registerFeature("green_agate_tree", ModWorldgen.GREEN_AGATE_TREE.get().withConfiguration(GREEN_AGATE_TREE_CONFIG).withPlacement(Placement.field_242902_f.configure(new AtSurfaceWithExtraConfig(5, 0.3F, 1))));
+    public static final ConfiguredFeature<?, ?> green_agate_bush = registerFeature("green_agate_bush", Feature.TREE.withConfiguration(GREEN_AGATE_BUSH_CONFIG)).withPlacement(Placement.field_242902_f.configure(new AtSurfaceWithExtraConfig(2, 0.1F, 3)));
+    public static final ConfiguredFeature<?, ?> purple_agate_tree = registerFeature("purple_agate_tree", ModWorldgen.PURPLE_AGATE_TREE.get().withConfiguration(PURPLE_AGATE_TREE_CONFIG).withPlacement(Placement.field_242902_f.configure(new AtSurfaceWithExtraConfig(1, 0.1F, 2))));
+    public static final ConfiguredFeature<?, ?> various_agate_trees = registerFeature("various_agate_trees", Feature.RANDOM_SELECTOR.withConfiguration(new MultipleRandomFeatureConfig(ImmutableList.of(
+            ModWorldgen.PINK_AGATE_TREE.get().withConfiguration(PINK_AGATE_TREE_CONFIG).withChance(0.1F),
+                ModWorldgen.BLUE_AGATE_TREE.get().withConfiguration(BLUE_AGATE_TREE_CONFIG).withChance(0.1F),
+                ModWorldgen.GREEN_AGATE_TREE.get().withConfiguration(GREEN_AGATE_TREE_CONFIG).withChance(0.1F),
+                ModWorldgen.PURPLE_AGATE_TREE.get().withConfiguration(PURPLE_AGATE_TREE_CONFIG).withChance(0.1F)
+        ), Feature.RANDOM_PATCH.withConfiguration(MUTANT_GROWTH))).withPlacement(Placement.field_242902_f.configure(new AtSurfaceWithExtraConfig(2, 0.1F, 1))));
+    public static final ConfiguredFeature<?, ?> fossilized_tree = registerFeature("fossilized_tree", ModWorldgen.FOSSILIZED_TREE.get().withConfiguration(FOSSILIZED_TREE_CONFIG).withPlacement(Placement.field_242902_f.configure(new AtSurfaceWithExtraConfig(1, 0.3F, 1))));
+    public static final ConfiguredFeature<?, ?> goldstone_tree = registerFeature("goldstone_tree", ModWorldgen.GOLDSTONE_TREE.get().withConfiguration(CORRUPTED_TREE_CONFIG).withPlacement(Placement.field_242902_f.configure(new AtSurfaceWithExtraConfig(1, 0.1F, 1))));
+    public static final ConfiguredFeature<?, ?> burnt_agate_tree = registerFeature("burnt_agate_tree", ModWorldgen.BURNT_AGATE_TREE.get().withConfiguration(BURNT_TREE_CONFIG).withPlacement(Placement.field_242902_f.configure(new AtSurfaceWithExtraConfig(0, 0.1F, 1))));
+    public static final ConfiguredFeature<?, ?> fiery_agate_tree = registerFeature("fiery_agate_tree", ModWorldgen.FIERY_AGATE_TREE.get().withConfiguration(BURNING_TREE_CONFIG).withPlacement(Placement.field_242902_f.configure(new AtSurfaceWithExtraConfig(0, 0.1F, 1))));
+    public static final ConfiguredFeature<?, ?> aura_tree = registerFeature("aura_tree", ModWorldgen.AURA_TREE.get().withConfiguration(AURA_TREE_CONFIG).withPlacement(Placement.field_242902_f.configure(new AtSurfaceWithExtraConfig(2, 0.1F, 1))));
+    public static final ConfiguredFeature<?, ?> aura_shoots = registerFeature("aura_shoots", ModWorldgen.AURA_SHOOT.get().withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG).withPlacement(Features.Placements.PATCH_PLACEMENT).func_242729_a(6));
+    public static final ConfiguredFeature<?, ?> crystal_growth_02 = registerFeature("crystal_growth_02", Feature.RANDOM_PATCH.withConfiguration(NORMAL_GROWTH).withPlacement(Features.Placements.PATCH_PLACEMENT).func_242729_a(2));
+    public static final ConfiguredFeature<?, ?> crystal_growth_03 = registerFeature("crystal_growth_03", Feature.RANDOM_PATCH.withConfiguration(NORMAL_GROWTH).withPlacement(Features.Placements.PATCH_PLACEMENT).func_242729_a(3));
+    public static final ConfiguredFeature<?, ?> crystal_growth_04 = registerFeature("crystal_growth_04", Feature.RANDOM_PATCH.withConfiguration(NORMAL_GROWTH).withPlacement(Features.Placements.PATCH_PLACEMENT).func_242729_a(4));
+    public static final ConfiguredFeature<?, ?> crystal_growth_05 = registerFeature("crystal_growth_05", Feature.RANDOM_PATCH.withConfiguration(NORMAL_GROWTH).withPlacement(Features.Placements.PATCH_PLACEMENT).func_242729_a(5));
+    public static final ConfiguredFeature<?, ?> crystal_growth_seared = registerFeature("crystal_growth_seared", Feature.RANDOM_PATCH.withConfiguration(SEARED_GROWTH).withPlacement(Features.Placements.PATCH_PLACEMENT).func_242729_a(1));
+    public static final ConfiguredFeature<?, ?> crystal_growth_corrupt = registerFeature("crystal_growth_corrupt", Feature.RANDOM_PATCH.withConfiguration(CORRUPT_GROWTH).withPlacement(Features.Placements.PATCH_PLACEMENT).func_242729_a(1));
+    public static final ConfiguredFeature<?, ?> crystal_growth_aura = registerFeature("crystal_growth_aura", Feature.RANDOM_PATCH.withConfiguration(AURA_GROWTH).withPlacement(Features.Placements.PATCH_PLACEMENT).func_242729_a(2));
+    public static final ConfiguredFeature<?, ?> crystal_blooms_common = registerFeature("crystal_blooms_common", Feature.RANDOM_PATCH.withConfiguration(COMMON_BLOOM).withPlacement(Features.Placements.VEGETATION_PLACEMENT).withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).func_242731_b(2));
+    public static final ConfiguredFeature<?, ?> crystal_blooms_rare = registerFeature("crystal_blooms_rare", Feature.RANDOM_PATCH.withConfiguration(RARE_BLOOM).withPlacement(Features.Placements.VEGETATION_PLACEMENT).withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).func_242731_b(2));
+    public static final ConfiguredFeature<?, ?> crystal_blooms_mutant = registerFeature("crystal_blooms_mutant", Feature.RANDOM_PATCH.withConfiguration(MUTANT_BLOOM).withPlacement(Features.Placements.VEGETATION_PLACEMENT).withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).func_242731_b(2));
+    public static final ConfiguredFeature<?, ?> crystal_blooms_corrupt = registerFeature("crystal_blooms_corrupt", Feature.RANDOM_PATCH.withConfiguration(CORRUPT_BLOOM).withPlacement(Features.Placements.VEGETATION_PLACEMENT).withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).func_242731_b(1));
+    public static final ConfiguredFeature<?, ?> spotted_kersei = registerFeature("spotted_kersei", Feature.RANDOM_PATCH.withConfiguration(KERSEI).withPlacement(Features.Placements.VEGETATION_PLACEMENT).withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).func_242731_b(1));
+    public static final ConfiguredFeature<?, ?> thorny_wiltha = registerFeature("thorny_wiltha", Feature.RANDOM_PATCH.withConfiguration(WILTHA).withPlacement(Features.Placements.VEGETATION_PLACEMENT).withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).func_242731_b(1));
+    public static final ConfiguredFeature<?, ?> roofed_agaric = registerFeature("roofed_agaric", Feature.RANDOM_PATCH.withConfiguration(AGARIC).withPlacement(Features.Placements.VEGETATION_PLACEMENT).withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).func_242731_b(1));
+    public static final ConfiguredFeature<?, ?> bulbous_hobina = registerFeature("bulbous_hobina", Feature.RANDOM_PATCH.withConfiguration(HOBINA).withPlacement(Features.Placements.VEGETATION_PLACEMENT).withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).func_242731_b(1));
+    public static final ConfiguredFeature<?, ?> stickly_cupsir = registerFeature("stickly_cupsir", Feature.RANDOM_PATCH.withConfiguration(CUPSIR).withPlacement(Features.Placements.VEGETATION_PLACEMENT).withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).func_242731_b(1));
+    public static final ConfiguredFeature<?, ?> mystical_murgni = registerFeature("mystical_murgni", Feature.RANDOM_PATCH.withConfiguration(MURGNI).withPlacement(Features.Placements.VEGETATION_PLACEMENT).withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).func_242731_b(1));
+    public static final ConfiguredFeature<?, ?> corrupted_gaia_eye = registerFeature("corrupted_gaia_eye", Feature.RANDOM_PATCH.withConfiguration(CORRUPT_EYE).withPlacement(Features.Placements.VEGETATION_PLACEMENT).withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).func_242731_b(1));
+
+    private static <SC extends ISurfaceBuilderConfig> ConfiguredSurfaceBuilder<SC> registerSurfaceBuilder(String name, ConfiguredSurfaceBuilder<SC> surface) {
+        return WorldGenRegistries.register(WorldGenRegistries.CONFIGURED_SURFACE_BUILDER, new ResourceLocation(GaiaDimensionMod.MODID, name), surface);
     }
 
-    public static void addCarver(Biome biomeIn) {
-        biomeIn.addCarver(GenerationStage.Carving.AIR, Biome.createCarver(ModWorldgen.CRYSTAL_CAVES.get(), new ProbabilityConfig(0.15F)));
-        biomeIn.addCarver(GenerationStage.Carving.AIR, Biome.createCarver(ModWorldgen.CHASMS.get(), new ProbabilityConfig(0.03F)));
+    private static <FC extends IFeatureConfig, F extends Structure<FC>> StructureFeature<FC, F> registerStructureFeature(String name, StructureFeature<FC, F> structure) {
+        return WorldGenRegistries.register(WorldGenRegistries.CONFIGURED_STRUCTURE_FEATURE, new ResourceLocation(GaiaDimensionMod.MODID, name), structure);
     }
 
-    public static void addMuckLakes(Biome biomeIn) {
-        biomeIn.addFeature(GenerationStage.Decoration.LOCAL_MODIFICATIONS, ModWorldgen.POOL.get().configure(new BlockStateFeatureConfig(ModBlocks.sweet_muck.get().getDefaultState())).createDecoratedFeature(Placement.LAVA_LAKE.configure(new ChanceConfig(10))));
+    private static <WC extends ICarverConfig> ConfiguredCarver<WC> registerCarver(String name, ConfiguredCarver<WC> carver) {
+        return WorldGenRegistries.register(WorldGenRegistries.CONFIGURED_CARVER, new ResourceLocation(GaiaDimensionMod.MODID, name), carver);
     }
 
-    public static void addBismuthLakes(Biome biomeIn) {
-        biomeIn.addFeature(GenerationStage.Decoration.LOCAL_MODIFICATIONS, ModWorldgen.POOL.get().configure(new BlockStateFeatureConfig(ModBlocks.liquid_bismuth.get().getDefaultState())).createDecoratedFeature(Placement.LAVA_LAKE.configure(new ChanceConfig(20))));
-    }
-
-    public static void addAuraLake(Biome biomeIn) {
-        biomeIn.addFeature(GenerationStage.Decoration.LOCAL_MODIFICATIONS, ModWorldgen.POOL.get().configure(new BlockStateFeatureConfig(ModBlocks.liquid_aura.get().getDefaultState())).createDecoratedFeature(Placement.LAVA_LAKE.configure(new ChanceConfig(20))));
-    }
-
-    public static void addMagmaLakes(Biome biomeIn) {
-        if (biomeIn instanceof VolcaniclandsBiome) {
-            biomeIn.addFeature(GenerationStage.Decoration.LOCAL_MODIFICATIONS, ModWorldgen.POOL.get().configure(new BlockStateFeatureConfig(ModBlocks.superhot_magma.get().getDefaultState())).createDecoratedFeature(Placement.LAVA_LAKE.configure(new ChanceConfig(15))));
-        } else {
-            biomeIn.addFeature(GenerationStage.Decoration.LOCAL_MODIFICATIONS, ModWorldgen.POOL.get().configure(new BlockStateFeatureConfig(ModBlocks.superhot_magma.get().getDefaultState())).createDecoratedFeature(Placement.LAVA_LAKE.configure(new ChanceConfig(80))));
-        }
-    }
-
-    public static void addMineralLakes(Biome biomeIn) {
-        if (biomeIn instanceof PurpleAgateSwampBiome) {
-            biomeIn.addFeature(GenerationStage.Decoration.LOCAL_MODIFICATIONS, ModWorldgen.POOL.get().configure(new BlockStateFeatureConfig(ModBlocks.mineral_water.get().getDefaultState())).createDecoratedFeature(Placement.WATER_LAKE.configure(new ChanceConfig(40))));
-        } else if (biomeIn instanceof SaltDunesBiome) {
-            biomeIn.addFeature(GenerationStage.Decoration.LOCAL_MODIFICATIONS, ModWorldgen.POOL.get().configure(new BlockStateFeatureConfig(ModBlocks.mineral_water.get().getDefaultState())).createDecoratedFeature(Placement.WATER_LAKE.configure(new ChanceConfig(50))));
-        } else {
-            biomeIn.addFeature(GenerationStage.Decoration.LOCAL_MODIFICATIONS, ModWorldgen.POOL.get().configure(new BlockStateFeatureConfig(ModBlocks.mineral_water.get().getDefaultState())).createDecoratedFeature(Placement.WATER_LAKE.configure(new ChanceConfig(4))));
-        }
-    }
-
-    public static void addGlitterBlobUnderground(Biome biomeIn) {
-        biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, ModWorldgen.FRAIL_BLOB.get().configure(IFeatureConfig.NO_FEATURE_CONFIG).createDecoratedFeature(Placement.LIGHT_GEM_CHANCE.configure(new FrequencyConfig(200))));
-    }
-
-    public static void addPocketsUnderground(Biome biomeIn) {
-        biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.configure(new OreFeatureConfig(GAIA_STONE, ModBlocks.pebbles.get().getDefaultState(), 25)).createDecoratedFeature(Placement.COUNT_RANGE.configure(new CountRangeConfig(25, 0, 0, 128))));
-        biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.configure(new OreFeatureConfig(GAIA_STONE, ModBlocks.speckled_rock.get().getDefaultState(), 8)).createDecoratedFeature(Placement.COUNT_RANGE.configure(new CountRangeConfig(10, 0, 0, 120))));
-        biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.configure(new OreFeatureConfig(GAIA_STONE, ModBlocks.coarse_rock.get().getDefaultState(), 8)).createDecoratedFeature(Placement.COUNT_RANGE.configure(new CountRangeConfig(10, 0, 0, 60))));
-        biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.configure(new OreFeatureConfig(GAIA_STONE, ModBlocks.precious_rock.get().getDefaultState(), 8)).createDecoratedFeature(Placement.COUNT_RANGE.configure(new CountRangeConfig(10, 0, 0, 30))));
-    }
-
-    public static void addAmethystOre(Biome biomeIn) {
-        biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.configure(new OreFeatureConfig(GAIA_STONE, ModBlocks.raw_amethyst.get().getDefaultState(), 12)).createDecoratedFeature(Placement.COUNT_RANGE.configure(new CountRangeConfig(15, 0, 0, 120))));
-    }
-
-    public static void addCopalOre(Biome biomeIn) {
-        biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.configure(new OreFeatureConfig(GAIA_STONE, ModBlocks.raw_copal.get().getDefaultState(), 12)).createDecoratedFeature(Placement.COUNT_RANGE.configure(new CountRangeConfig(15, 0, 0, 120))));
-    }
-
-    public static void addJadeOre(Biome biomeIn) {
-        biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.configure(new OreFeatureConfig(GAIA_STONE, ModBlocks.raw_jade.get().getDefaultState(), 12)).createDecoratedFeature(Placement.COUNT_RANGE.configure(new CountRangeConfig(15, 0, 0, 120))));
-    }
-
-    public static void addJetOre(Biome biomeIn) {
-        biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.configure(new OreFeatureConfig(GAIA_STONE, ModBlocks.raw_jet.get().getDefaultState(), 12)).createDecoratedFeature(Placement.COUNT_RANGE.configure(new CountRangeConfig(15, 0, 0, 120))));
-    }
-
-    public static void addPrimalMassUnderground(Biome biomeIn) {
-        biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.configure(new OreFeatureConfig(GAIA_STONE, ModBlocks.primal_mass.get().getDefaultState(), 33)).createDecoratedFeature(Placement.COUNT_RANGE.configure(new CountRangeConfig(33, 0, 0, 25))));
-    }
-
-    public static void addThickGlitterUnderground(Biome biomeIn) {
-        biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.configure(new OreFeatureConfig(GAIA_STONE, ModBlocks.thick_glitter_block.get().getDefaultState(), 33)).createDecoratedFeature(Placement.COUNT_RANGE.configure(new CountRangeConfig(9, 0, 0, 100))));
-    }
-
-    public static void addStaticStoneUnderground(Biome biomeIn) {
-        biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.configure(new OreFeatureConfig(STATIC, ModBlocks.static_stone.get().getDefaultState(), 33)).createDecoratedFeature(Placement.COUNT_RANGE.configure(new CountRangeConfig(9, 0, 0, 100))));
-    }
-
-    public static void addSearingRockUnderground(Biome biomeIn) {
-        biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.configure(new OreFeatureConfig(VOLCANIC, ModBlocks.searing_rock.get().getDefaultState(), 33)).createDecoratedFeature(Placement.COUNT_RANGE.configure(new CountRangeConfig(9, 0, 0, 100))));
-    }
-
-    public static void addBasicOres(Biome biomeIn) {
-        biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.configure(new OreFeatureConfig(GAIA_STONE, ModBlocks.sugilite_ore.get().getDefaultState(), 17)).createDecoratedFeature(Placement.COUNT_RANGE.configure(new CountRangeConfig(8, 0, 0, 100))));
-        biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.configure(new OreFeatureConfig(GAIA_STONE, ModBlocks.hematite_ore.get().getDefaultState(), 17)).createDecoratedFeature(Placement.COUNT_RANGE.configure(new CountRangeConfig(8, 0, 0, 100))));
-        biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.configure(new OreFeatureConfig(GAIA_STONE, ModBlocks.pyrite_ore.get().getDefaultState(), 9)).createDecoratedFeature(Placement.COUNT_RANGE.configure(new CountRangeConfig(8, 0, 0, 80))));
-        biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.configure(new OreFeatureConfig(GAIA_STONE, ModBlocks.cinnabar_ore.get().getDefaultState(), 9)).createDecoratedFeature(Placement.COUNT_RANGE.configure(new CountRangeConfig(7, 0, 0, 60))));
-        biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.configure(new OreFeatureConfig(GAIA_STONE, ModBlocks.labradorite_ore.get().getDefaultState(), 9)).createDecoratedFeature(Placement.COUNT_RANGE.configure(new CountRangeConfig(6, 0, 0, 40))));
-        biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.configure(new OreFeatureConfig(GAIA_STONE, ModBlocks.moonstone_ore.get().getDefaultState(), 9)).createDecoratedFeature(Placement.COUNT_RANGE.configure(new CountRangeConfig(6, 0, 0, 40))));
-    }
-
-    public static void addRedOpals(Biome biomeIn) {
-        biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.configure(new OreFeatureConfig(GAIA_STONE, ModBlocks.opal_ore_red.get().getDefaultState(), 8)).createDecoratedFeature(Placement.COUNT_RANGE.configure(new CountRangeConfig(4, 0, 0, 30))));
-    }
-
-    public static void addBlueOpals(Biome biomeIn) {
-        biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.configure(new OreFeatureConfig(GAIA_STONE, ModBlocks.opal_ore_blue.get().getDefaultState(), 8)).createDecoratedFeature(Placement.COUNT_RANGE.configure(new CountRangeConfig(4, 0, 0, 30))));
-    }
-
-    public static void addGreenOpals(Biome biomeIn) {
-        biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.configure(new OreFeatureConfig(GAIA_STONE, ModBlocks.opal_ore_green.get().getDefaultState(), 8)).createDecoratedFeature(Placement.COUNT_RANGE.configure(new CountRangeConfig(4, 0, 0, 30))));
-    }
-
-    public static void addWhiteOpals(Biome biomeIn) {
-        if (biomeIn instanceof MutantAgateWildwoodBiome) {
-            biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.configure(new OreFeatureConfig(GAIA_STONE, ModBlocks.opal_ore_white.get().getDefaultState(), 8)).createDecoratedFeature(Placement.COUNT_RANGE.configure(new CountRangeConfig(4, 0, 0, 25))));
-        } else {
-            biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.configure(new OreFeatureConfig(GAIA_STONE, ModBlocks.opal_ore_white.get().getDefaultState(), 8)).createDecoratedFeature(Placement.COUNT_RANGE.configure(new CountRangeConfig(3, 0, 0, 20))));
-        }
-    }
-
-    public static void addPinkAgateTreesSparse(Biome biomeIn) {
-        biomeIn.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, ModWorldgen.PINK_AGATE_TREE.get().configure(PINK_AGATE_TREE_CONFIG).createDecoratedFeature(Placement.COUNT_EXTRA_HEIGHTMAP.configure(new AtSurfaceWithExtraConfig(0, 0.1F, 1))));
-    }
-
-    public static void addPinkAgateTrees(Biome biomeIn) {
-        biomeIn.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, ModWorldgen.PINK_AGATE_TREE.get().configure(PINK_AGATE_TREE_CONFIG).createDecoratedFeature(Placement.COUNT_EXTRA_HEIGHTMAP.configure(new AtSurfaceWithExtraConfig(4, 0.3F, 1))));
-    }
-
-    public static void addBlueAgateTrees(Biome biomeIn) {
-        biomeIn.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, ModWorldgen.BLUE_AGATE_TREE.get().configure(BLUE_AGATE_TREE_CONFIG).createDecoratedFeature(Placement.COUNT_EXTRA_HEIGHTMAP.configure(new AtSurfaceWithExtraConfig(1, 0.3F, 1))));
-    }
-
-    public static void addGreenAgateTrees(Biome biomeIn) {
-        biomeIn.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, ModWorldgen.GREEN_AGATE_TREE.get().configure(GREEN_AGATE_TREE_CONFIG).createDecoratedFeature(Placement.COUNT_EXTRA_HEIGHTMAP.configure(new AtSurfaceWithExtraConfig(5, 0.3F, 1))));
-    }
-
-    public static void addGreenAgateBushes(Biome biomeIn) {
-        biomeIn.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, ModWorldgen.GREEN_AGATE_BUSH.get().configure(GREEN_AGATE_BUSH_CONFIG).createDecoratedFeature(Placement.COUNT_EXTRA_HEIGHTMAP.configure(new AtSurfaceWithExtraConfig(2, 0.1F, 3))));
-    }
-
-    public static void addPurpleAgateTrees(Biome biomeIn) {
-        biomeIn.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, ModWorldgen.PURPLE_AGATE_TREE.get().configure(PURPLE_AGATE_TREE_CONFIG).createDecoratedFeature(Placement.COUNT_EXTRA_HEIGHTMAP.configure(new AtSurfaceWithExtraConfig(1, 0.1F, 2))));
-    }
-
-    public static void addGummyBlobs(Biome biomeIn) {
-        biomeIn.addFeature(GenerationStage.Decoration.LOCAL_MODIFICATIONS, ModWorldgen.GAIA_BLOB.get().configure(new BlockBlobConfig(ModBlocks.gummy_glitter_block.get().getDefaultState(), 0)).createDecoratedFeature(Placement.COUNT_HEIGHTMAP.configure(new FrequencyConfig(2))));
-    }
-
-    public static void addFossilTrees(Biome biomeIn) {
-        biomeIn.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, ModWorldgen.FOSSILIZED_TREE.get().configure(FOSSILIZED_TREE_CONFIG).createDecoratedFeature(Placement.COUNT_EXTRA_HEIGHTMAP.configure(new AtSurfaceWithExtraConfig(1, 0.3F, 1))));
-    }
-
-    public static void addGoldstoneTrees(Biome biomeIn) {
-        biomeIn.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, ModWorldgen.GOLDSTONE_TREE.get().configure(CORRUPTED_TREE_CONFIG).createDecoratedFeature(Placement.COUNT_EXTRA_HEIGHTMAP.configure(new AtSurfaceWithExtraConfig(1, 0.1F, 1))));
-    }
-
-    public static void addBurntTrees(Biome biomeIn) {
-        biomeIn.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, ModWorldgen.BURNT_AGATE_TREE.get().configure(BURNT_TREE_CONFIG).createDecoratedFeature(Placement.COUNT_EXTRA_HEIGHTMAP.configure(new AtSurfaceWithExtraConfig(0, 0.1F, 1))));
-    }
-
-    public static void addBurningTrees(Biome biomeIn) {
-        biomeIn.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, ModWorldgen.FIERY_AGATE_TREE.get().configure(BURNING_TREE_CONFIG).createDecoratedFeature(Placement.COUNT_EXTRA_HEIGHTMAP.configure(new AtSurfaceWithExtraConfig(0, 0.1F, 1))));
-    }
-
-    public static void addAuraTrees(Biome biomeIn) {
-        biomeIn.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, ModWorldgen.AURA_TREE.get().configure(AURA_TREE_CONFIG).createDecoratedFeature(Placement.COUNT_EXTRA_HEIGHTMAP.configure(new AtSurfaceWithExtraConfig(2, 0.1F, 1))));
-    }
-
-    public static void addAuraShoots(Biome biomeIn) {
-        biomeIn.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, ModWorldgen.AURA_SHOOT.get().configure(IFeatureConfig.NO_FEATURE_CONFIG).createDecoratedFeature(Placement.COUNT_HEIGHTMAP_DOUBLE.configure(new FrequencyConfig(6))));
-    }
-
-    public static void addVariousTrees(Biome biomeIn) {
-        biomeIn.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Feature.RANDOM_SELECTOR.configure(new MultipleRandomFeatureConfig(ImmutableList.of(
-                ModWorldgen.PINK_AGATE_TREE.get().configure(PINK_AGATE_TREE_CONFIG).withChance(0.1F),
-                ModWorldgen.BLUE_AGATE_TREE.get().configure(BLUE_AGATE_TREE_CONFIG).withChance(0.1F),
-                ModWorldgen.GREEN_AGATE_TREE.get().configure(GREEN_AGATE_TREE_CONFIG).withChance(0.1F),
-                ModWorldgen.PURPLE_AGATE_TREE.get().configure(PURPLE_AGATE_TREE_CONFIG).withChance(0.1F)
-        ), Feature.field_227248_z_.configure(MUTANT_GROWTH))).createDecoratedFeature(Placement.COUNT_EXTRA_HEIGHTMAP.configure(new AtSurfaceWithExtraConfig(2, 0.1F, 1))));
-    }
-
-    public static void addCrystalGrowthNormal(Biome biomeIn, int frequency) {
-        biomeIn.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Feature.field_227248_z_.configure(NORMAL_GROWTH).createDecoratedFeature(Placement.COUNT_HEIGHTMAP_DOUBLE.configure(new FrequencyConfig(frequency))));
-    }
-
-    public static void addCrystalGrowthCorrupt(Biome biomeIn) {
-        biomeIn.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Feature.field_227248_z_.configure(CORRUPT_GROWTH).createDecoratedFeature(Placement.COUNT_HEIGHTMAP_DOUBLE.configure(new FrequencyConfig(1))));
-    }
-
-    public static void addCrystalGrowthBurnt(Biome biomeIn) {
-        biomeIn.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Feature.field_227248_z_.configure(SEARED_GROWTH).createDecoratedFeature(Placement.COUNT_HEIGHTMAP_DOUBLE.configure(new FrequencyConfig(1))));
-    }
-
-    public static void addCrystalGrowthAura(Biome biomeIn) {
-        biomeIn.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Feature.field_227248_z_.configure(AURA_GROWTH).createDecoratedFeature(Placement.COUNT_HEIGHTMAP_DOUBLE.configure(new FrequencyConfig(2))));
-    }
-
-    public static void addBloomsNormal(Biome biomeIn) {
-        biomeIn.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Feature.field_227248_z_.configure(COMMON_BLOOM).createDecoratedFeature(Placement.COUNT_HEIGHTMAP_32.configure(new FrequencyConfig(2))));
-    }
-
-    public static void addBloomsRare(Biome biomeIn) {
-        biomeIn.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Feature.field_227248_z_.configure(RARE_BLOOM).createDecoratedFeature(Placement.COUNT_HEIGHTMAP_32.configure(new FrequencyConfig(2))));
-    }
-
-    public static void addBloomsMutant(Biome biomeIn) {
-        biomeIn.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Feature.field_227248_z_.configure(MUTANT_BLOOM).createDecoratedFeature(Placement.COUNT_HEIGHTMAP_32.configure(new FrequencyConfig(2))));
-    }
-
-    public static void addBloomsCorrupt(Biome biomeIn) {
-        biomeIn.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Feature.field_227248_z_.configure(CORRUPT_BLOOM).createDecoratedFeature(Placement.COUNT_HEIGHTMAP_32.configure(new FrequencyConfig(1))));
-    }
-
-    public static void addPinkMushrooms(Biome biomeIn) {
-        biomeIn.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Feature.field_227248_z_.configure(KERSEI).createDecoratedFeature(Placement.COUNT_HEIGHTMAP_32.configure(new FrequencyConfig(1))));
-    }
-
-    public static void addBlueMushrooms(Biome biomeIn) {
-        biomeIn.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Feature.field_227248_z_.configure(WILTHA).createDecoratedFeature(Placement.COUNT_HEIGHTMAP_32.configure(new FrequencyConfig(1))));
-    }
-
-    public static void addGreenMushrooms(Biome biomeIn) {
-        biomeIn.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Feature.field_227248_z_.configure(AGARIC).createDecoratedFeature(Placement.COUNT_HEIGHTMAP_32.configure(new FrequencyConfig(1))));
-    }
-
-    public static void addPurpleMushrooms(Biome biomeIn) {
-        biomeIn.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Feature.field_227248_z_.configure(HOBINA).createDecoratedFeature(Placement.COUNT_HEIGHTMAP_32.configure(new FrequencyConfig(1))));
-    }
-
-    public static void addFossilMushrooms(Biome biomeIn) {
-        biomeIn.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Feature.field_227248_z_.configure(CUPSIR).createDecoratedFeature(Placement.COUNT_HEIGHTMAP_32.configure(new FrequencyConfig(1))));
-    }
-
-    public static void addMysteryMushrooms(Biome biomeIn) {
-        biomeIn.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Feature.field_227248_z_.configure(MURGNI).createDecoratedFeature(Placement.COUNT_HEIGHTMAP_32.configure(new FrequencyConfig(1))));
-    }
-
-    public static void addCorruptMushrooms(Biome biomeIn) {
-        biomeIn.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Feature.field_227248_z_.configure(CORRUPT_EYE).createDecoratedFeature(Placement.COUNT_HEIGHTMAP_32.configure(new FrequencyConfig(1))));
-    }
-
-    public static void addUndergroundMushrooms(Biome biomeIn) {
-        biomeIn.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Feature.field_227248_z_.configure(CAVE_FUNGI).createDecoratedFeature(Placement.CHANCE_HEIGHTMAP_DOUBLE.configure(new ChanceConfig(2))));
-    }
-
-    public static void addBogPatches(Biome biomeIn) {
-        biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, ModWorldgen.BOG_PATCH.get().configure(new SphereReplaceConfig(ModBlocks.impure_sludge.get().getDefaultState(), 4, 2, Lists.newArrayList(ModBlocks.murky_grass.get().getDefaultState(), ModBlocks.boggy_soil.get().getDefaultState()))).createDecoratedFeature(Placement.COUNT_TOP_SOLID.configure(new FrequencyConfig(1))));
-    }
-
-    public static void addBismuthSpires(Biome biomeIn) {
-        biomeIn.addFeature(GenerationStage.Decoration.SURFACE_STRUCTURES, ModWorldgen.BISMUTH_SPIRE.get().configure(new FeatureHeightConfig(7)).createDecoratedFeature(Placement.COUNT_HEIGHTMAP.configure(new FrequencyConfig(1))));
-    }
-
-    public static void addBismuthGeysers(Biome biomeIn) {
-        biomeIn.addFeature(GenerationStage.Decoration.SURFACE_STRUCTURES, ModWorldgen.BISMUTH_GEYSER.get().configure(IFeatureConfig.NO_FEATURE_CONFIG).createDecoratedFeature(Placement.COUNT_HEIGHTMAP.configure(new FrequencyConfig(1))));
-    }
-
-    public static void addStaticPatches(Biome biomeIn) {
-        biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, ModWorldgen.GAIA_DISK.get().configure(new SphereReplaceConfig(ModBlocks.static_stone.get().getDefaultState(), 6, 2, Lists.newArrayList(ModBlocks.wasteland_stone.get().getDefaultState()))).createDecoratedFeature(Placement.COUNT_TOP_SOLID.configure(new FrequencyConfig(2))));
-    }
-
-    public static void addStaticSpikes(Biome biomeIn) {
-        biomeIn.addFeature(GenerationStage.Decoration.SURFACE_STRUCTURES, ModWorldgen.STATIC_SPIKE.get().configure(new FeatureHeightConfig(8)).createDecoratedFeature(Placement.COUNT_HEIGHTMAP.configure(new FrequencyConfig(1))));
+    private static <FC extends IFeatureConfig> ConfiguredFeature<FC, ?> registerFeature(String name, ConfiguredFeature<FC, ?> feature) {
+        return Registry.register(WorldGenRegistries.CONFIGURED_FEATURE, new ResourceLocation(GaiaDimensionMod.MODID, name), feature);
     }
 }

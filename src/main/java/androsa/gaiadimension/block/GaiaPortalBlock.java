@@ -1,7 +1,7 @@
 package androsa.gaiadimension.block;
 
-import androsa.gaiadimension.GaiaDimensionMod;
 import androsa.gaiadimension.registry.ModBlocks;
+import androsa.gaiadimension.registry.ModDimensions;
 import androsa.gaiadimension.registry.ModGaiaConfig;
 import androsa.gaiadimension.registry.ModParticles;
 import androsa.gaiadimension.world.GaiaTeleporter;
@@ -9,29 +9,23 @@ import com.google.common.cache.LoadingCache;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
-import net.minecraft.block.material.Material;
-import net.minecraft.block.material.MaterialColor;
 import net.minecraft.block.pattern.BlockPattern;
 import net.minecraft.entity.Entity;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.state.EnumProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
-import net.minecraft.world.dimension.DimensionType;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.common.BiomeDictionary;
-import net.minecraftforge.common.BiomeDictionary.Type;
 
 import javax.annotation.Nullable;
 import java.util.Random;
@@ -41,8 +35,8 @@ public class GaiaPortalBlock extends Block {
     protected static final VoxelShape X_AABB = Block.makeCuboidShape(0.0D, 0.0D, 6.0D, 16.0D, 16.0D, 10.0D);
     protected static final VoxelShape Z_AABB = Block.makeCuboidShape(6.0D, 0.0D, 0.0D, 10.0D, 16.0D, 16.0D);
 
-    public GaiaPortalBlock() {
-        super(Properties.create(Material.PORTAL, MaterialColor.PINK_TERRACOTTA).hardnessAndResistance(-1.0F).doesNotBlockMovement().tickRandomly().lightValue(15).noDrops());
+    public GaiaPortalBlock(Properties props) {
+        super(props);
         this.setDefaultState(this.stateContainer.getBaseState().with(AXIS, Direction.Axis.X));
     }
 
@@ -72,10 +66,11 @@ public class GaiaPortalBlock extends Block {
     private boolean canCreatePortalByWorld(World world, BlockPos pos) {
         Biome biome = world.getBiome(pos);
 
-        if (world.dimension.getType() == DimensionType.OVERWORLD) {
-            return !ModGaiaConfig.portalCheck.get() || BiomeDictionary.hasType(biome, Type.HOT) || BiomeDictionary.hasType(biome, Type.MOUNTAIN) || BiomeDictionary.hasType(biome, Type.DRY);
+        if (world.getDimensionKey() == World.OVERWORLD) {
+//          return !ModGaiaConfig.portalCheck.get() || BiomeDictionary.hasType(biome, Type.HOT) || BiomeDictionary.hasType(biome, Type.MOUNTAIN) || BiomeDictionary.hasType(biome, Type.DRY);
+            return !ModGaiaConfig.portalCheck.get() || world.getBiome(pos).getCategory() == Biome.Category.DESERT || world.getBiome(pos).getCategory() == Biome.Category.EXTREME_HILLS;
         } else {
-            return world.dimension.getType() == GaiaDimensionMod.gaia_dimension;
+            return world.getDimensionKey() == ModDimensions.gaia_world;
         }
     }
 
@@ -99,28 +94,53 @@ public class GaiaPortalBlock extends Block {
         return !flag && facingState.getBlock() != this && !(new GaiaPortalBlock.Size(worldIn, currentPos, directionAxis1)).canCreatePortal() ? Blocks.AIR.getDefaultState() : super.updatePostPlacement(stateIn, facing, facingState, worldIn, currentPos, facingPos);
     }
 
+//    @Override
+//    @Deprecated
+//    public void onEntityCollision(BlockState state, World worldIn, BlockPos pos, Entity entity) {
+//        if (!entity.isPassenger() && !entity.isBeingRidden() && entity.isNonBoss()) {
+//            if (entity.timeUntilPortal > 0) {
+//                entity.timeUntilPortal = entity.getPortalCooldown();
+//            } else {
+//                if (!entity.world.isRemote && !pos.equals(entity.lastPortalPos)) {
+//                    entity.lastPortalPos = new BlockPos(pos);
+//                    BlockPattern.PatternHelper helper = createPatternHelper(entity.world, entity.lastPortalPos);
+//                    double axis = helper.getForwards().getAxis() == Direction.Axis.X ? (double)helper.getFrontTopLeft().getZ() : (double)helper.getFrontTopLeft().getX();
+//                    double x = Math.abs(MathHelper.pct((helper.getForwards().getAxis() == Direction.Axis.X ? entity.getPosZ() : entity.getPosX()) - (double)(helper.getForwards().rotateY().getAxisDirection() == Direction.AxisDirection.NEGATIVE ? 1 : 0), axis, axis - (double)helper.getWidth()));
+//                    double y = MathHelper.pct(entity.getPosY() - 1.0D, (double)helper.getFrontTopLeft().getY(), (double)(helper.getFrontTopLeft().getY() - helper.getHeight()));
+//                    entity.lastPortalVec = new Vector3d(x, y, 0.0D);
+//                    entity.teleportDirection = helper.getForwards();
+//                }
+//
+//                if (entity.world instanceof ServerWorld) {
+//                    if (entity.world.getServer().getAllowNether() && !entity.isPassenger()) {
+//                        entity.timeUntilPortal = entity.getPortalCooldown();
+//                        DimensionType type = worldIn.dimension.getType() == GaiaDimensionMod.gaia_dimension ? DimensionType.OVERWORLD : GaiaDimensionMod.gaia_dimension;
+//                        entity.changeDimension(type, new GaiaTeleporter());
+//                    }
+//                }
+//            }
+//        }
+//    }
+
+
     @Override
-    @Deprecated
-    public void onEntityCollision(BlockState state, World worldIn, BlockPos pos, Entity entity) {
+    public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
         if (!entity.isPassenger() && !entity.isBeingRidden() && entity.isNonBoss()) {
-            if (entity.timeUntilPortal > 0) {
-                entity.timeUntilPortal = entity.getPortalCooldown();
+            if (entity.func_242280_ah()) { //timeUntilPortal > 0
+                entity.func_242279_ag(); // timeUntilPortal = getPortalCooldown
             } else {
-                if (!entity.world.isRemote && !pos.equals(entity.lastPortalPos)) {
-                    entity.lastPortalPos = new BlockPos(pos);
-                    BlockPattern.PatternHelper helper = createPatternHelper(entity.world, entity.lastPortalPos);
-                    double axis = helper.getForwards().getAxis() == Direction.Axis.X ? (double)helper.getFrontTopLeft().getZ() : (double)helper.getFrontTopLeft().getX();
-                    double x = Math.abs(MathHelper.pct((helper.getForwards().getAxis() == Direction.Axis.X ? entity.getZ() : entity.getX()) - (double)(helper.getForwards().rotateY().getAxisDirection() == Direction.AxisDirection.NEGATIVE ? 1 : 0), axis, axis - (double)helper.getWidth()));
-                    double y = MathHelper.pct(entity.getY() - 1.0D, (double)helper.getFrontTopLeft().getY(), (double)(helper.getFrontTopLeft().getY() - helper.getHeight()));
-                    entity.lastPortalVec = new Vec3d(x, y, 0.0D);
-                    entity.teleportDirection = helper.getForwards();
+                if (!entity.world.isRemote && !pos.equals(entity.field_242271_ac)) { //lastPortalPos
+                    entity.field_242271_ac = pos.toImmutable();
                 }
 
                 if (entity.world instanceof ServerWorld) {
-                    if (entity.world.getServer().getAllowNether() && !entity.isPassenger()) {
-                        entity.timeUntilPortal = entity.getPortalCooldown();
-                        DimensionType type = worldIn.dimension.getType() == GaiaDimensionMod.gaia_dimension ? DimensionType.OVERWORLD : GaiaDimensionMod.gaia_dimension;
-                        entity.changeDimension(type, new GaiaTeleporter());
+                    ServerWorld serverworld = (ServerWorld)entity.world;
+                    MinecraftServer minecraftserver = serverworld.getServer();
+                    RegistryKey<World> registrykey = entity.world.getDimensionKey() == ModDimensions.gaia_world ? World.OVERWORLD : ModDimensions.gaia_world;
+                    ServerWorld serverworld1 = minecraftserver.getWorld(registrykey);
+                    if (serverworld1 != null && !entity.isPassenger()) {
+                        entity.func_242279_ag();
+                        entity.changeDimension(serverworld1, new GaiaTeleporter());
                     }
                 }
             }

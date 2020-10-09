@@ -10,7 +10,7 @@ import net.minecraft.data.ShapelessRecipeBuilder;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.tags.Tag;
+import net.minecraft.tags.ITag;
 import net.minecraft.util.IItemProvider;
 import net.minecraftforge.common.crafting.conditions.IConditionBuilder;
 import net.minecraftforge.common.data.ForgeRecipeProvider;
@@ -48,10 +48,10 @@ public abstract class GaiaRecipeProvider extends ForgeRecipeProvider implements 
                 .addCriterion("has_" + ingredient.asItem().toString(), hasItem(ingredient));
     }
 
-    public ShapelessRecipeBuilder planksRecipe(Supplier<? extends Block> result, Tag<Item> ingredient) {
+    public ShapelessRecipeBuilder planksRecipe(Supplier<? extends Block> result, ITag.INamedTag<Item> ingredient) {
         return ShapelessRecipeBuilder.shapelessRecipe(result.get(), 4)
                 .addIngredient(ingredient)
-                .addCriterion("has_" + ingredient.getId().getPath(), hasItem(ingredient));
+                .addCriterion("has_" + ingredient.getName().getPath(), hasItem(ingredient));
     }
 
     public ShapedRecipeBuilder slabRecipe(Supplier<? extends Block> result, Supplier<? extends Block> ingredient) {
@@ -120,14 +120,14 @@ public abstract class GaiaRecipeProvider extends ForgeRecipeProvider implements 
                 .addCriterion("has_" + ingredient.get().getRegistryName().getPath(), hasItem(ingredient.get()));
     }
 
-    public ShapedRecipeBuilder axeRecipeTag(Supplier<? extends Item> result, Tag<Item> ingredient) {
+    public ShapedRecipeBuilder axeRecipeTag(Supplier<? extends Item> result, ITag.INamedTag<Item> ingredient) {
         return ShapedRecipeBuilder.shapedRecipe(result.get())
                 .patternLine("##")
                 .patternLine("#/")
                 .patternLine(" /")
                 .key('#', ingredient)
                 .key('/', ModItems.agate_stick.get())
-                .addCriterion("has_" + ingredient.getId().getPath(), hasItem(ingredient));
+                .addCriterion("has_" + ingredient.getName().getPath(), hasItem(ingredient));
     }
 
     public ShapedRecipeBuilder pickaxeRecipe(Supplier<? extends Item> result, Supplier<? extends Item> ingredient) {
@@ -140,14 +140,14 @@ public abstract class GaiaRecipeProvider extends ForgeRecipeProvider implements 
                 .addCriterion("has_" + ingredient.get().getRegistryName().getPath(), hasItem(ingredient.get()));
     }
 
-    public ShapedRecipeBuilder pickaxeRecipeTag(Supplier<? extends Item> result, Tag<Item> ingredient) {
+    public ShapedRecipeBuilder pickaxeRecipeTag(Supplier<? extends Item> result, ITag.INamedTag<Item> ingredient) {
         return ShapedRecipeBuilder.shapedRecipe(result.get())
                 .patternLine("###")
                 .patternLine(" / ")
                 .patternLine(" / ")
                 .key('#', ingredient)
                 .key('/', ModItems.agate_stick.get())
-                .addCriterion("has_" + ingredient.getId().getPath(), hasItem(ingredient));
+                .addCriterion("has_" + ingredient.getName().getPath(), hasItem(ingredient));
     }
 
     public ShapedRecipeBuilder shovelRecipe(Supplier<? extends Item> result, Supplier<? extends Item> ingredient) {
@@ -160,14 +160,14 @@ public abstract class GaiaRecipeProvider extends ForgeRecipeProvider implements 
                 .addCriterion("has_" + ingredient.get().getRegistryName().getPath(), hasItem(ingredient.get()));
     }
 
-    public ShapedRecipeBuilder shovelRecipeTag(Supplier<? extends Item> result, Tag<Item> ingredient) {
+    public ShapedRecipeBuilder shovelRecipeTag(Supplier<? extends Item> result, ITag.INamedTag<Item> ingredient) {
         return ShapedRecipeBuilder.shapedRecipe(result.get())
                 .patternLine("#")
                 .patternLine("/")
                 .patternLine("/")
                 .key('#', ingredient)
                 .key('/', ModItems.agate_stick.get())
-                .addCriterion("has_" + ingredient.getId().getPath(), hasItem(ingredient));
+                .addCriterion("has_" + ingredient.getName().getPath(), hasItem(ingredient));
     }
 
     public ShapedRecipeBuilder swordRecipe(Supplier<? extends Item> result, Supplier<? extends Item> ingredient) {
@@ -180,14 +180,14 @@ public abstract class GaiaRecipeProvider extends ForgeRecipeProvider implements 
                 .addCriterion("has_" + ingredient.get().getRegistryName().getPath(), hasItem(ingredient.get()));
     }
 
-    public ShapedRecipeBuilder swordRecipeTag(Supplier<? extends Item> result, Tag<Item> ingredient) {
+    public ShapedRecipeBuilder swordRecipeTag(Supplier<? extends Item> result, ITag.INamedTag<Item> ingredient) {
         return ShapedRecipeBuilder.shapedRecipe(result.get())
                 .patternLine("#")
                 .patternLine("#")
                 .patternLine("/")
                 .key('#', ingredient)
                 .key('/', ModItems.agate_stick.get())
-                .addCriterion("has_" + ingredient.getId().getPath(), hasItem(ingredient));
+                .addCriterion("has_" + ingredient.getName().getPath(), hasItem(ingredient));
     }
 
     public ShapelessRecipeBuilder drinkRecipe(Supplier<? extends Item> result, Supplier<? extends Item> geode) {

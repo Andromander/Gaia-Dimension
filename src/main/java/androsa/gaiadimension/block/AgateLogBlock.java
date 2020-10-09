@@ -1,46 +1,34 @@
 package androsa.gaiadimension.block;
 
 import net.minecraft.block.*;
-import net.minecraft.block.material.Material;
-import net.minecraft.block.material.MaterialColor;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.AxeItem;
-import net.minecraft.util.ActionResultType;
-import net.minecraft.util.Hand;
-import net.minecraft.util.SoundCategory;
-import net.minecraft.util.SoundEvents;
+import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.world.World;
-import net.minecraftforge.common.ToolType;
 
 import java.util.function.Supplier;
 
-public class AgateLogBlock extends LogBlock {
+public class AgateLogBlock extends RotatedPillarBlock {
 
     private final Supplier<Block> strippedBlock;
 
-    public AgateLogBlock(Supplier<Block> stripped, MaterialColor topColor, MaterialColor baseColor) {
-        this(stripped, topColor, baseColor, 0);
-    }
+    public AgateLogBlock(Properties props) {
+        super(props);
 
-    public AgateLogBlock(Supplier<Block> stripped, MaterialColor topColor, MaterialColor baseColor, int light) {
-        super(topColor, Properties.create(Material.WOOD, baseColor).hardnessAndResistance(1.5F, 2.0F).sound(SoundType.STONE).harvestTool(ToolType.AXE).harvestLevel(0).lightValue(light));
-        strippedBlock = stripped;
-    }
-
-    public AgateLogBlock(MaterialColor topColor, MaterialColor baseColor) {
-        this(topColor, baseColor, 0);
-    }
-
-    public AgateLogBlock(MaterialColor topColor, MaterialColor baseColor, int light) {
-        super(topColor, Properties.create(Material.WOOD, baseColor).hardnessAndResistance(1.5F, 2.0F).sound(SoundType.STONE).harvestTool(ToolType.AXE).harvestLevel(0).lightValue(light));
         strippedBlock = null;
+    }
+
+    public AgateLogBlock(Supplier<Block> stripped, Properties props) {
+        super(props);
+
+        strippedBlock = stripped;
     }
 
     @Override
     @Deprecated
-    public ActionResultType onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockRayTraceResult result) {
+    public ActionResultType onBlockActivated(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockRayTraceResult result) {
         if (strippedBlock != null) {
             if (player.getHeldItem(hand).getItem() instanceof AxeItem) {
                 if (!world.isRemote) {

@@ -27,6 +27,6 @@ public class MalachiteGuardGlowLayer<T extends MalachiteGuardEntity, M extends M
     @Override
     public void render(MatrixStack matrixStack, IRenderTypeBuffer buffer, int i, T entity, float v, float v1, float v2, float v3, float v4, float v5) {
         IVertexBuilder builder = buffer.getBuffer(textureLoc);
-        this.getEntityModel().render(matrixStack, builder, 15728640, OverlayTexture.DEFAULT_UV, 1.0F, 1.0F, 1.0F, 1.0F);
+        this.getEntityModel().render(matrixStack, builder, 15728640, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);
     }
 }

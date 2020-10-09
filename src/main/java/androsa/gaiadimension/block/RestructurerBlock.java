@@ -3,7 +3,6 @@ package androsa.gaiadimension.block;
 import androsa.gaiadimension.block.tileentity.RestructurerTileEntity;
 import androsa.gaiadimension.registry.ModParticles;
 import net.minecraft.block.*;
-import net.minecraft.block.material.Material;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.InventoryHelper;
@@ -22,7 +21,6 @@ import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.common.ToolType;
 
 import java.util.Random;
 
@@ -31,15 +29,9 @@ public class RestructurerBlock extends Block {
     public static final DirectionProperty FACING = HorizontalBlock.HORIZONTAL_FACING;
     public static final BooleanProperty LIT = RedstoneTorchBlock.LIT;
 
-    public RestructurerBlock() {
-        super(Properties.create(Material.ROCK).hardnessAndResistance(20.0F, 300.0F).harvestTool(ToolType.PICKAXE).harvestLevel(1).lightValue(14));
+    public RestructurerBlock(Properties props) {
+        super(props);
         this.setDefaultState(this.stateContainer.getBaseState().with(FACING, Direction.NORTH).with(LIT, Boolean.FALSE));
-    }
-
-    @Override
-    @Deprecated
-    public int getLightValue(BlockState state) {
-        return state.get(LIT) ? super.getLightValue(state) : 0;
     }
 
     @Override
@@ -59,7 +51,7 @@ public class RestructurerBlock extends Block {
 
     @Override
     @Deprecated
-    public ActionResultType onUse(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
+    public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
         if (!worldIn.isRemote) {
             TileEntity tileentity = worldIn.getTileEntity(pos);
             if (tileentity instanceof RestructurerTileEntity) {

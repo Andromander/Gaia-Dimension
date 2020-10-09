@@ -9,7 +9,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 
 public class ModEffects {
 
-    public static final DeferredRegister<Effect> POTIONS = new DeferredRegister<>(ForgeRegistries.POTIONS, GaiaDimensionMod.MODID);
+    public static final DeferredRegister<Effect> POTIONS = DeferredRegister.create(ForgeRegistries.POTIONS, GaiaDimensionMod.MODID);
 
     public static final Effect corrupt = new CorruptionEffect(0xF68414, 4.0D);
 

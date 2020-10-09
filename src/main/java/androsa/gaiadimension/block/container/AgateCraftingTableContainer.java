@@ -9,10 +9,7 @@ import net.minecraft.inventory.CraftingInventory;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.container.*;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.ICraftingRecipe;
-import net.minecraft.item.crafting.IRecipe;
-import net.minecraft.item.crafting.IRecipeType;
-import net.minecraft.item.crafting.RecipeItemHelper;
+import net.minecraft.item.crafting.*;
 import net.minecraft.network.play.server.SSetSlotPacket;
 import net.minecraft.util.IWorldPosCallable;
 import net.minecraft.world.World;
@@ -79,7 +76,7 @@ public class AgateCraftingTableContainer extends RecipeBookContainer<CraftingInv
     }
 
     @Override
-    public void func_201771_a(RecipeItemHelper helper) {
+    public void fillStackedContents(RecipeItemHelper helper) {
         this.invCrafting.fillStackedContents(helper);
     }
 
@@ -174,5 +171,10 @@ public class AgateCraftingTableContainer extends RecipeBookContainer<CraftingInv
     @OnlyIn(Dist.CLIENT)
     public int getSize() {
         return 10;
+    }
+
+    @Override
+    public RecipeBookCategory func_241850_m() {
+        return RecipeBookCategory.CRAFTING;
     }
 }

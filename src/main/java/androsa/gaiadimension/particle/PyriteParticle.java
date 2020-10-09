@@ -1,6 +1,7 @@
 package androsa.gaiadimension.particle;
 
 import net.minecraft.client.particle.*;
+import net.minecraft.client.world.ClientWorld;
 import net.minecraft.particles.BasicParticleType;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
@@ -8,7 +9,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 public class PyriteParticle extends SpriteTexturedParticle {
 
-    public PyriteParticle(World worldIn, double xCoordIn, double yCoordIn, double zCoordIn, double xSpeedIn, double ySpeedIn, double speedIn) {
+    public PyriteParticle(ClientWorld worldIn, double xCoordIn, double yCoordIn, double zCoordIn, double xSpeedIn, double ySpeedIn, double speedIn) {
         super(worldIn, xCoordIn, yCoordIn, zCoordIn, xSpeedIn, ySpeedIn, speedIn);
         this.particleRed = 1.0F;
         this.particleGreen = 0.8F;
@@ -55,7 +56,7 @@ public class PyriteParticle extends SpriteTexturedParticle {
             this.spriteSet = sprite;
         }
 
-        public Particle makeParticle(BasicParticleType typeIn, World worldIn, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
+        public Particle makeParticle(BasicParticleType typeIn, ClientWorld worldIn, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
             PyriteParticle pyriteparticle = new PyriteParticle(worldIn, x, y, z, xSpeed, ySpeed, zSpeed);
             pyriteparticle.selectSpriteRandomly(this.spriteSet);
             pyriteparticle.setColor(1.0F, 0.8F, 0.0F);

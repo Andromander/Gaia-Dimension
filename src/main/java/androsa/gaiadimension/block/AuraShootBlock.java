@@ -2,9 +2,6 @@ package androsa.gaiadimension.block;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.SoundType;
-import net.minecraft.block.material.Material;
-import net.minecraft.block.material.MaterialColor;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.IntegerProperty;
@@ -22,7 +19,6 @@ import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.common.PlantType;
-import net.minecraftforge.common.ToolType;
 
 import java.util.Random;
 
@@ -36,8 +32,8 @@ public class AuraShootBlock extends Block implements IPlantable {
     private static final VoxelShape TOP_SHOOT_SHAPE_3 = Block.makeCuboidShape(7.0D, 13.0D, 7.0D, 9.0D, 16.0D, 9.0D);
     private static final VoxelShape TOP_SHOOT_SHAPE = VoxelShapes.or(TOP_SHOOT_SHAPE_1, TOP_SHOOT_SHAPE_2, TOP_SHOOT_SHAPE_3);
 
-    public AuraShootBlock() {
-        super(Properties.create(Material.GLASS, MaterialColor.BLUE).sound(SoundType.GLASS).harvestTool(ToolType.PICKAXE).harvestLevel(1).tickRandomly());
+    public AuraShootBlock(Properties props) {
+        super(props);
         this.setDefaultState(this.stateContainer.getBaseState().with(AGE, 0).with(IS_TOP, true));
     }
 
@@ -85,7 +81,7 @@ public class AuraShootBlock extends Block implements IPlantable {
 
     @Override
     public PlantType getPlantType(IBlockReader reader, BlockPos pos) {
-        return PlantType.Plains;
+        return PlantType.PLAINS;
     }
 
     @Override
@@ -95,7 +91,7 @@ public class AuraShootBlock extends Block implements IPlantable {
 
     @Override
     @Deprecated
-    public void scheduledTick(BlockState state, ServerWorld worldIn, BlockPos pos, Random rand) {
+    public void tick(BlockState state, ServerWorld worldIn, BlockPos pos, Random rand) {
         if (!worldIn.isAreaLoaded(pos, 1)) return;
         BlockPos blockpos = pos.up();
 

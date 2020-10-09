@@ -2,14 +2,8 @@ package androsa.gaiadimension.item.tools;
 
 import androsa.gaiadimension.registry.GaiaItemGroups;
 import androsa.gaiadimension.registry.GaiaToolMaterials;
-import androsa.gaiadimension.registry.ModItems;
-import com.google.common.collect.Multimap;
 import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.entity.ai.attributes.AttributeModifier;
-import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.*;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.ITextComponent;
@@ -38,7 +32,7 @@ public class MalachiteGuardSwordItem extends SwordItem {
         boolean hit = super.hitEntity(stack, target, attacker);
 
         if (hit) {
-            target.knockBack(attacker, 1.0F,
+            target.applyKnockback(1.0F,
                     (double) MathHelper.sin(attacker.rotationYaw * ((float)Math.PI / 180F)),
                     (double)(-MathHelper.cos(attacker.rotationYaw * ((float)Math.PI / 180F))));
         }

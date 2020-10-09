@@ -7,6 +7,7 @@ import androsa.gaiadimension.item.tools.*;
 import net.minecraft.entity.EntityType;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.item.*;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -16,7 +17,7 @@ import static net.minecraft.inventory.EquipmentSlotType.*;
 @SuppressWarnings("unused")
 public class ModItems {
 
-    public static final DeferredRegister<Item> ITEMS = new DeferredRegister<>(ForgeRegistries.ITEMS, GaiaDimensionMod.MODID);
+    public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, GaiaDimensionMod.MODID);
 
     public static final RegistryObject<Item> crystallized_redstone = ITEMS.register("crystallized_redstone", BasicGaiaItem::new);
     public static final RegistryObject<Item> crystallized_lapis_lazuli = ITEMS.register("crystallized_lapis_lazuli", BasicGaiaItem::new);
@@ -257,5 +258,17 @@ public class ModItems {
 
     private static RegistryObject<Item> registerSpawnEgg(String name, EntityType<?> entity, int back, int front) {
         return ITEMS.register(name + "_spawn_egg", () -> new GaiaSpawnEggItem(entity, back, front));
+    }
+
+    public static void addItemProperties() {
+        ItemModelsProperties.registerProperty(old_bow.get(), new ResourceLocation("pull"), ((stack, world, entity) -> {
+            if (entity == null) {
+                return 0.0F;
+            } else {
+                return !(entity.getActiveItemStack().getItem() instanceof BowItem) ? 0.0F : (float)(stack.getUseDuration() - entity.getItemInUseCount()) / 20.0F;
+            }
+        }));
+        ItemModelsProperties.registerProperty(old_bow.get(), new ResourceLocation("pulling"), (stack, world, entity) ->
+                entity != null && entity.isHandActive() && entity.getActiveItemStack() == stack ? 1.0F : 0.0F);
     }
 }

@@ -24,7 +24,7 @@ public class RuggedLurmorusRenderer<T extends RuggedLurmorusEntity, M extends Ru
     }
 
     @Override
-    protected void scale(T entity, MatrixStack stack, float p_225620_3_) {
+    protected void preRenderCallback(T entity, MatrixStack stack, float p_225620_3_) {
         float scale = 2.5F;
         stack.scale(scale, scale, scale);
     }

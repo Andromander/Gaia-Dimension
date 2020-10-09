@@ -13,8 +13,8 @@ public enum MineralRiverMixLayer implements IAreaTransformer2, IDimOffset0Transf
 
     @Override
     public int apply(INoiseRandom random, IArea area1, IArea area2, int val1, int val2) {
-        int i = area1.getValue(this.func_215721_a(val1), this.func_215722_b(val2));
-        int j = area2.getValue(this.func_215721_a(val1), this.func_215722_b(val2));
+        int i = area1.getValue(this.getOffsetX(val1), this.getOffsetZ(val2));
+        int j = area2.getValue(this.getOffsetX(val1), this.getOffsetZ(val2));
 
         if (i == GaiaLayerUtil.RESERVOIR.getAsInt()) {
             return i;

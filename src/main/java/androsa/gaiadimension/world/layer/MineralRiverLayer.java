@@ -1,14 +1,24 @@
 package androsa.gaiadimension.world.layer;
 
-import androsa.gaiadimension.biomes.IDryBiome;
-import net.minecraft.util.registry.Registry;
-import net.minecraft.world.biome.Biome;
+import com.google.common.collect.ImmutableList;
 import net.minecraft.world.gen.INoiseRandom;
 import net.minecraft.world.gen.layer.traits.ICastleTransformer;
+
+import java.util.List;
 
 public enum MineralRiverLayer implements ICastleTransformer {
 
     INSTANCE;
+
+    private List<Integer> agateBiomes = ImmutableList.of(
+            GaiaLayerUtil.PINK_FOREST.getAsInt(),
+            GaiaLayerUtil.BLUE_FOREST.getAsInt(),
+            GaiaLayerUtil.GREEN_FOREST.getAsInt(),
+            GaiaLayerUtil.PURPLE_FOREST.getAsInt());
+    private List<Integer> dryBiomes = ImmutableList.of(
+            GaiaLayerUtil.BOG.getAsInt(),
+            GaiaLayerUtil.STATIC.getAsInt(),
+            GaiaLayerUtil.VOLCANIC.getAsInt());
 
     MineralRiverLayer() { }
 
@@ -26,17 +36,15 @@ public enum MineralRiverLayer implements ICastleTransformer {
     }
 
     boolean shouldRiver(int id1, int id2) {
-        Biome biome1 = Registry.BIOME.getByValue(id1);
-        Biome biome2 = Registry.BIOME.getByValue(id2);
-
         if (id1 == id2)
             return false;
         if (id1 == -id2)
             return false;
 
         //Biomes not allowed rivers are omitted entirely
-        if (biome1 instanceof IDryBiome || biome2 instanceof IDryBiome)
+        if (dryBiomes.contains(id1) || dryBiomes.contains(id2)) {
             return false;
+        }
 
         //Crystal Plains and Pink Agate Forest are too similar for rivers
         if ((id1 == GaiaLayerUtil.PINK_FOREST.getAsInt() && id2 == GaiaLayerUtil.PLAINS.getAsInt()) || (id1 == GaiaLayerUtil.PLAINS.getAsInt() && id2 == GaiaLayerUtil.PINK_FOREST.getAsInt()))
@@ -51,13 +59,7 @@ public enum MineralRiverLayer implements ICastleTransformer {
             return false;
 
         //Mutated Agate Wildwoods should look like they were any Agate Forest, but with strange growth patterns
-        if ((id1 == GaiaLayerUtil.WILDWOOD.getAsInt() && id2 == GaiaLayerUtil.PINK_FOREST.getAsInt()) || (id1 == GaiaLayerUtil.PINK_FOREST.getAsInt() && id2 == GaiaLayerUtil.WILDWOOD.getAsInt()))
-            return false;
-        if ((id1 == GaiaLayerUtil.WILDWOOD.getAsInt() && id2 == GaiaLayerUtil.BLUE_FOREST.getAsInt()) || (id1 == GaiaLayerUtil.BLUE_FOREST.getAsInt() && id2 == GaiaLayerUtil.WILDWOOD.getAsInt()))
-            return false;
-        if ((id1 == GaiaLayerUtil.WILDWOOD.getAsInt() && id2 == GaiaLayerUtil.GREEN_FOREST.getAsInt()) || (id1 == GaiaLayerUtil.GREEN_FOREST.getAsInt() && id2 == GaiaLayerUtil.WILDWOOD.getAsInt()))
-            return false;
-        if ((id1 == GaiaLayerUtil.WILDWOOD.getAsInt() && id2 == GaiaLayerUtil.PURPLE_FOREST.getAsInt()) || (id1 == GaiaLayerUtil.PURPLE_FOREST.getAsInt() && id2 == GaiaLayerUtil.WILDWOOD.getAsInt()))
+        if ((id1 == GaiaLayerUtil.WILDWOOD.getAsInt() && agateBiomes.contains(id2)) || (agateBiomes.contains(id1) && id2 == GaiaLayerUtil.WILDWOOD.getAsInt()))
             return false;
 
         return true;

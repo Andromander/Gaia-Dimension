@@ -4,6 +4,7 @@ import androsa.gaiadimension.block.SmallCrateBlock;
 import androsa.gaiadimension.block.container.SmallCrateContainer;
 import androsa.gaiadimension.registry.ModTileEntities;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.ISidedInventory;
@@ -48,8 +49,8 @@ public class SmallCrateTileEntity extends LockableLootTileEntity implements ISid
     }
 
     @Override
-    public void read(CompoundNBT compound) {
-        super.read(compound);
+    public void read(BlockState state, CompoundNBT compound) {
+        super.read(state, compound);
         this.loadFromNbt(compound);
     }
 

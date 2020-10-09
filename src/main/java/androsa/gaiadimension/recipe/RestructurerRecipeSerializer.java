@@ -36,7 +36,7 @@ public class RestructurerRecipeSerializer<T extends RestructurerRecipe> extends 
         else {
             String s1 = JSONUtils.getString(json, "result");
             ResourceLocation resourcelocation = new ResourceLocation(s1);
-            resultStack = new ItemStack(Registry.ITEM.getValue(resourcelocation).orElseThrow(() -> new IllegalStateException("Item: " + s1 + " does not exist")));
+            resultStack = new ItemStack(Registry.ITEM.getOptional(resourcelocation).orElseThrow(() -> new IllegalStateException("Item: " + s1 + " does not exist")));
         }
 
         //BYPRODUCT
@@ -48,7 +48,7 @@ public class RestructurerRecipeSerializer<T extends RestructurerRecipe> extends 
         else {
             String s2 = JSONUtils.getString(json, "byproduct");
             ResourceLocation resourcelocation = new ResourceLocation(s2);
-            byStack = new ItemStack(Registry.ITEM.getValue(resourcelocation).orElseThrow(() -> new IllegalStateException("Item: " + s2 + " does not exist")));
+            byStack = new ItemStack(Registry.ITEM.getOptional(resourcelocation).orElseThrow(() -> new IllegalStateException("Item: " + s2 + " does not exist")));
         }
 
         float f = JSONUtils.getFloat(json, "experience", 0.0F);

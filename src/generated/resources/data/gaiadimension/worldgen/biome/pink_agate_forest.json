@@ -1,0 +1,1244 @@
+{
+  "scale": 0.1,
+  "effects": {
+    "mood_sound": {
+      "sound": "minecraft:ambient.cave",
+      "tick_delay": 6000,
+      "block_search_extent": 8,
+      "offset": 2.0
+    },
+    "sky_color": 13016408,
+    "foliage_color": 15901620,
+    "grass_color": 15901620,
+    "fog_color": 15381216,
+    "water_color": 7117233,
+    "water_fog_color": 9617108
+  },
+  "surface_builder": {
+    "config": {
+      "top_material": {
+        "Name": "gaiadimension:glitter_grass"
+      },
+      "under_material": {
+        "Name": "gaiadimension:heavy_soil"
+      },
+      "underwater_material": {
+        "Name": "gaiadimension:salt"
+      }
+    },
+    "type": "gaiadimension:default_gaia"
+  },
+  "carvers": {
+    "air": [
+      {
+        "config": {
+          "probability": 0.15
+        },
+        "type": "gaiadimension:crystal_caves"
+      },
+      {
+        "config": {
+          "probability": 0.03
+        },
+        "type": "gaiadimension:chasms"
+      }
+    ]
+  },
+  "features": [
+    [],
+    [
+      {
+        "config": {
+          "feature": {
+            "config": {
+              "state": {
+                "Properties": {
+                  "level": "0"
+                },
+                "Name": "gaiadimension:superhot_magma"
+              }
+            },
+            "type": "gaiadimension:pool"
+          },
+          "decorator": {
+            "config": {
+              "chance": 80
+            },
+            "type": "minecraft:lava_lake"
+          }
+        },
+        "type": "minecraft:decorated"
+      },
+      {
+        "config": {
+          "feature": {
+            "config": {
+              "state": {
+                "Properties": {
+                  "level": "0"
+                },
+                "Name": "gaiadimension:mineral_water"
+              }
+            },
+            "type": "gaiadimension:pool"
+          },
+          "decorator": {
+            "config": {
+              "chance": 4
+            },
+            "type": "minecraft:water_lake"
+          }
+        },
+        "type": "minecraft:decorated"
+      }
+    ],
+    [],
+    [],
+    [],
+    [],
+    [
+      {
+        "config": {
+          "feature": {
+            "config": {
+              "feature": {
+                "config": {
+                  "feature": {
+                    "config": {
+                      "target": {
+                        "block": "gaiadimension:gaia_stone",
+                        "predicate_type": "minecraft:block_match"
+                      },
+                      "state": {
+                        "Name": "gaiadimension:primal_mass"
+                      },
+                      "size": 33
+                    },
+                    "type": "minecraft:ore"
+                  },
+                  "decorator": {
+                    "config": {
+                      "bottom_offset": 0,
+                      "top_offset": 0,
+                      "maximum": 25
+                    },
+                    "type": "minecraft:range"
+                  }
+                },
+                "type": "minecraft:decorated"
+              },
+              "decorator": {
+                "config": {},
+                "type": "minecraft:square"
+              }
+            },
+            "type": "minecraft:decorated"
+          },
+          "decorator": {
+            "config": {
+              "count": 33
+            },
+            "type": "minecraft:count"
+          }
+        },
+        "type": "minecraft:decorated"
+      },
+      {
+        "config": {
+          "feature": {
+            "config": {
+              "feature": {
+                "config": {
+                  "feature": {
+                    "config": {
+                      "target": {
+                        "block": "gaiadimension:gaia_stone",
+                        "predicate_type": "minecraft:block_match"
+                      },
+                      "state": {
+                        "Name": "gaiadimension:pebbles"
+                      },
+                      "size": 25
+                    },
+                    "type": "minecraft:ore"
+                  },
+                  "decorator": {
+                    "config": {
+                      "bottom_offset": 0,
+                      "top_offset": 0,
+                      "maximum": 128
+                    },
+                    "type": "minecraft:range"
+                  }
+                },
+                "type": "minecraft:decorated"
+              },
+              "decorator": {
+                "config": {},
+                "type": "minecraft:square"
+              }
+            },
+            "type": "minecraft:decorated"
+          },
+          "decorator": {
+            "config": {
+              "count": 25
+            },
+            "type": "minecraft:count"
+          }
+        },
+        "type": "minecraft:decorated"
+      },
+      {
+        "config": {
+          "feature": {
+            "config": {
+              "feature": {
+                "config": {
+                  "feature": {
+                    "config": {
+                      "target": {
+                        "block": "gaiadimension:gaia_stone",
+                        "predicate_type": "minecraft:block_match"
+                      },
+                      "state": {
+                        "Name": "gaiadimension:speckled_rock"
+                      },
+                      "size": 8
+                    },
+                    "type": "minecraft:ore"
+                  },
+                  "decorator": {
+                    "config": {
+                      "bottom_offset": 0,
+                      "top_offset": 0,
+                      "maximum": 120
+                    },
+                    "type": "minecraft:range"
+                  }
+                },
+                "type": "minecraft:decorated"
+              },
+              "decorator": {
+                "config": {},
+                "type": "minecraft:square"
+              }
+            },
+            "type": "minecraft:decorated"
+          },
+          "decorator": {
+            "config": {
+              "count": 10
+            },
+            "type": "minecraft:count"
+          }
+        },
+        "type": "minecraft:decorated"
+      },
+      {
+        "config": {
+          "feature": {
+            "config": {
+              "feature": {
+                "config": {
+                  "feature": {
+                    "config": {
+                      "target": {
+                        "block": "gaiadimension:gaia_stone",
+                        "predicate_type": "minecraft:block_match"
+                      },
+                      "state": {
+                        "Name": "gaiadimension:coarse_rock"
+                      },
+                      "size": 8
+                    },
+                    "type": "minecraft:ore"
+                  },
+                  "decorator": {
+                    "config": {
+                      "bottom_offset": 0,
+                      "top_offset": 0,
+                      "maximum": 60
+                    },
+                    "type": "minecraft:range"
+                  }
+                },
+                "type": "minecraft:decorated"
+              },
+              "decorator": {
+                "config": {},
+                "type": "minecraft:square"
+              }
+            },
+            "type": "minecraft:decorated"
+          },
+          "decorator": {
+            "config": {
+              "count": 10
+            },
+            "type": "minecraft:count"
+          }
+        },
+        "type": "minecraft:decorated"
+      },
+      {
+        "config": {
+          "feature": {
+            "config": {
+              "feature": {
+                "config": {
+                  "feature": {
+                    "config": {
+                      "target": {
+                        "block": "gaiadimension:gaia_stone",
+                        "predicate_type": "minecraft:block_match"
+                      },
+                      "state": {
+                        "Name": "gaiadimension:precious_rock"
+                      },
+                      "size": 8
+                    },
+                    "type": "minecraft:ore"
+                  },
+                  "decorator": {
+                    "config": {
+                      "bottom_offset": 0,
+                      "top_offset": 0,
+                      "maximum": 30
+                    },
+                    "type": "minecraft:range"
+                  }
+                },
+                "type": "minecraft:decorated"
+              },
+              "decorator": {
+                "config": {},
+                "type": "minecraft:square"
+              }
+            },
+            "type": "minecraft:decorated"
+          },
+          "decorator": {
+            "config": {
+              "count": 10
+            },
+            "type": "minecraft:count"
+          }
+        },
+        "type": "minecraft:decorated"
+      },
+      {
+        "config": {
+          "feature": {
+            "config": {
+              "feature": {
+                "config": {
+                  "feature": {
+                    "config": {
+                      "target": {
+                        "block": "gaiadimension:gaia_stone",
+                        "predicate_type": "minecraft:block_match"
+                      },
+                      "state": {
+                        "Name": "gaiadimension:sugilite_ore"
+                      },
+                      "size": 17
+                    },
+                    "type": "minecraft:ore"
+                  },
+                  "decorator": {
+                    "config": {
+                      "bottom_offset": 0,
+                      "top_offset": 0,
+                      "maximum": 100
+                    },
+                    "type": "minecraft:range"
+                  }
+                },
+                "type": "minecraft:decorated"
+              },
+              "decorator": {
+                "config": {},
+                "type": "minecraft:square"
+              }
+            },
+            "type": "minecraft:decorated"
+          },
+          "decorator": {
+            "config": {
+              "count": 8
+            },
+            "type": "minecraft:count"
+          }
+        },
+        "type": "minecraft:decorated"
+      },
+      {
+        "config": {
+          "feature": {
+            "config": {
+              "feature": {
+                "config": {
+                  "feature": {
+                    "config": {
+                      "target": {
+                        "block": "gaiadimension:gaia_stone",
+                        "predicate_type": "minecraft:block_match"
+                      },
+                      "state": {
+                        "Name": "gaiadimension:hematite_ore"
+                      },
+                      "size": 17
+                    },
+                    "type": "minecraft:ore"
+                  },
+                  "decorator": {
+                    "config": {
+                      "bottom_offset": 0,
+                      "top_offset": 0,
+                      "maximum": 100
+                    },
+                    "type": "minecraft:range"
+                  }
+                },
+                "type": "minecraft:decorated"
+              },
+              "decorator": {
+                "config": {},
+                "type": "minecraft:square"
+              }
+            },
+            "type": "minecraft:decorated"
+          },
+          "decorator": {
+            "config": {
+              "count": 8
+            },
+            "type": "minecraft:count"
+          }
+        },
+        "type": "minecraft:decorated"
+      },
+      {
+        "config": {
+          "feature": {
+            "config": {
+              "feature": {
+                "config": {
+                  "feature": {
+                    "config": {
+                      "target": {
+                        "block": "gaiadimension:gaia_stone",
+                        "predicate_type": "minecraft:block_match"
+                      },
+                      "state": {
+                        "Name": "gaiadimension:pyrite_ore"
+                      },
+                      "size": 9
+                    },
+                    "type": "minecraft:ore"
+                  },
+                  "decorator": {
+                    "config": {
+                      "bottom_offset": 0,
+                      "top_offset": 0,
+                      "maximum": 80
+                    },
+                    "type": "minecraft:range"
+                  }
+                },
+                "type": "minecraft:decorated"
+              },
+              "decorator": {
+                "config": {},
+                "type": "minecraft:square"
+              }
+            },
+            "type": "minecraft:decorated"
+          },
+          "decorator": {
+            "config": {
+              "count": 8
+            },
+            "type": "minecraft:count"
+          }
+        },
+        "type": "minecraft:decorated"
+      },
+      {
+        "config": {
+          "feature": {
+            "config": {
+              "feature": {
+                "config": {
+                  "feature": {
+                    "config": {
+                      "target": {
+                        "block": "gaiadimension:gaia_stone",
+                        "predicate_type": "minecraft:block_match"
+                      },
+                      "state": {
+                        "Name": "gaiadimension:cinnabar_ore"
+                      },
+                      "size": 9
+                    },
+                    "type": "minecraft:ore"
+                  },
+                  "decorator": {
+                    "config": {
+                      "bottom_offset": 0,
+                      "top_offset": 0,
+                      "maximum": 60
+                    },
+                    "type": "minecraft:range"
+                  }
+                },
+                "type": "minecraft:decorated"
+              },
+              "decorator": {
+                "config": {},
+                "type": "minecraft:square"
+              }
+            },
+            "type": "minecraft:decorated"
+          },
+          "decorator": {
+            "config": {
+              "count": 7
+            },
+            "type": "minecraft:count"
+          }
+        },
+        "type": "minecraft:decorated"
+      },
+      {
+        "config": {
+          "feature": {
+            "config": {
+              "feature": {
+                "config": {
+                  "feature": {
+                    "config": {
+                      "target": {
+                        "block": "gaiadimension:gaia_stone",
+                        "predicate_type": "minecraft:block_match"
+                      },
+                      "state": {
+                        "Name": "gaiadimension:labradorite_ore"
+                      },
+                      "size": 9
+                    },
+                    "type": "minecraft:ore"
+                  },
+                  "decorator": {
+                    "config": {
+                      "bottom_offset": 0,
+                      "top_offset": 0,
+                      "maximum": 40
+                    },
+                    "type": "minecraft:range"
+                  }
+                },
+                "type": "minecraft:decorated"
+              },
+              "decorator": {
+                "config": {},
+                "type": "minecraft:square"
+              }
+            },
+            "type": "minecraft:decorated"
+          },
+          "decorator": {
+            "config": {
+              "count": 6
+            },
+            "type": "minecraft:count"
+          }
+        },
+        "type": "minecraft:decorated"
+      },
+      {
+        "config": {
+          "feature": {
+            "config": {
+              "feature": {
+                "config": {
+                  "feature": {
+                    "config": {
+                      "target": {
+                        "block": "gaiadimension:gaia_stone",
+                        "predicate_type": "minecraft:block_match"
+                      },
+                      "state": {
+                        "Name": "gaiadimension:moonstone_ore"
+                      },
+                      "size": 9
+                    },
+                    "type": "minecraft:ore"
+                  },
+                  "decorator": {
+                    "config": {
+                      "bottom_offset": 0,
+                      "top_offset": 0,
+                      "maximum": 40
+                    },
+                    "type": "minecraft:range"
+                  }
+                },
+                "type": "minecraft:decorated"
+              },
+              "decorator": {
+                "config": {},
+                "type": "minecraft:square"
+              }
+            },
+            "type": "minecraft:decorated"
+          },
+          "decorator": {
+            "config": {
+              "count": 6
+            },
+            "type": "minecraft:count"
+          }
+        },
+        "type": "minecraft:decorated"
+      },
+      {
+        "config": {
+          "feature": {
+            "config": {
+              "feature": {
+                "config": {
+                  "feature": {
+                    "config": {
+                      "target": {
+                        "block": "gaiadimension:gaia_stone",
+                        "predicate_type": "minecraft:block_match"
+                      },
+                      "state": {
+                        "Name": "gaiadimension:raw_amethyst"
+                      },
+                      "size": 12
+                    },
+                    "type": "minecraft:ore"
+                  },
+                  "decorator": {
+                    "config": {
+                      "bottom_offset": 0,
+                      "top_offset": 0,
+                      "maximum": 120
+                    },
+                    "type": "minecraft:range"
+                  }
+                },
+                "type": "minecraft:decorated"
+              },
+              "decorator": {
+                "config": {},
+                "type": "minecraft:square"
+              }
+            },
+            "type": "minecraft:decorated"
+          },
+          "decorator": {
+            "config": {
+              "count": 15
+            },
+            "type": "minecraft:count"
+          }
+        },
+        "type": "minecraft:decorated"
+      },
+      {
+        "config": {
+          "feature": {
+            "config": {
+              "feature": {
+                "config": {
+                  "feature": {
+                    "config": {
+                      "target": {
+                        "block": "gaiadimension:gaia_stone",
+                        "predicate_type": "minecraft:block_match"
+                      },
+                      "state": {
+                        "Name": "gaiadimension:raw_copal"
+                      },
+                      "size": 12
+                    },
+                    "type": "minecraft:ore"
+                  },
+                  "decorator": {
+                    "config": {
+                      "bottom_offset": 0,
+                      "top_offset": 0,
+                      "maximum": 120
+                    },
+                    "type": "minecraft:range"
+                  }
+                },
+                "type": "minecraft:decorated"
+              },
+              "decorator": {
+                "config": {},
+                "type": "minecraft:square"
+              }
+            },
+            "type": "minecraft:decorated"
+          },
+          "decorator": {
+            "config": {
+              "count": 15
+            },
+            "type": "minecraft:count"
+          }
+        },
+        "type": "minecraft:decorated"
+      },
+      {
+        "config": {
+          "feature": {
+            "config": {
+              "feature": {
+                "config": {
+                  "feature": {
+                    "config": {
+                      "target": {
+                        "block": "gaiadimension:gaia_stone",
+                        "predicate_type": "minecraft:block_match"
+                      },
+                      "state": {
+                        "Name": "gaiadimension:opal_ore_red"
+                      },
+                      "size": 8
+                    },
+                    "type": "minecraft:ore"
+                  },
+                  "decorator": {
+                    "config": {
+                      "bottom_offset": 0,
+                      "top_offset": 0,
+                      "maximum": 30
+                    },
+                    "type": "minecraft:range"
+                  }
+                },
+                "type": "minecraft:decorated"
+              },
+              "decorator": {
+                "config": {},
+                "type": "minecraft:square"
+              }
+            },
+            "type": "minecraft:decorated"
+          },
+          "decorator": {
+            "config": {
+              "count": 4
+            },
+            "type": "minecraft:count"
+          }
+        },
+        "type": "minecraft:decorated"
+      },
+      {
+        "config": {
+          "feature": {
+            "config": {
+              "feature": {
+                "config": {
+                  "feature": {
+                    "config": {
+                      "target": {
+                        "block": "gaiadimension:gaia_stone",
+                        "predicate_type": "minecraft:block_match"
+                      },
+                      "state": {
+                        "Name": "gaiadimension:opal_ore_white"
+                      },
+                      "size": 8
+                    },
+                    "type": "minecraft:ore"
+                  },
+                  "decorator": {
+                    "config": {
+                      "bottom_offset": 0,
+                      "top_offset": 0,
+                      "maximum": 20
+                    },
+                    "type": "minecraft:range"
+                  }
+                },
+                "type": "minecraft:decorated"
+              },
+              "decorator": {
+                "config": {},
+                "type": "minecraft:square"
+              }
+            },
+            "type": "minecraft:decorated"
+          },
+          "decorator": {
+            "config": {
+              "count": 3
+            },
+            "type": "minecraft:count"
+          }
+        },
+        "type": "minecraft:decorated"
+      }
+    ],
+    [
+      {
+        "config": {
+          "feature": {
+            "config": {
+              "feature": {
+                "config": {
+                  "can_replace": false,
+                  "project": false,
+                  "need_water": false,
+                  "xspread": 7,
+                  "yspread": 3,
+                  "zspread": 7,
+                  "whitelist": [],
+                  "blacklist": [
+                    {
+                      "Name": "gaiadimension:glitter_grass"
+                    },
+                    {
+                      "Name": "gaiadimension:heavy_soil"
+                    },
+                    {
+                      "Name": "gaiadimension:corrupt_grass"
+                    },
+                    {
+                      "Name": "gaiadimension:corrupt_soil"
+                    },
+                    {
+                      "Name": "gaiadimension:murky_grass"
+                    },
+                    {
+                      "Name": "gaiadimension:boggy_soil"
+                    },
+                    {
+                      "Name": "gaiadimension:soft_grass"
+                    },
+                    {
+                      "Name": "gaiadimension:light_soil"
+                    },
+                    {
+                      "Name": "gaiadimension:salt"
+                    }
+                  ],
+                  "tries": 64,
+                  "state_provider": {
+                    "entries": [
+                      {
+                        "weight": 2,
+                        "data": {
+                          "Name": "gaiadimension:elder_imklia"
+                        }
+                      },
+                      {
+                        "weight": 2,
+                        "data": {
+                          "Name": "gaiadimension:gold_orb_tucher"
+                        }
+                      }
+                    ],
+                    "type": "minecraft:weighted_state_provider"
+                  },
+                  "block_placer": {
+                    "type": "minecraft:simple_block_placer"
+                  }
+                },
+                "type": "minecraft:random_patch"
+              },
+              "decorator": {
+                "config": {
+                  "outer": {
+                    "config": {},
+                    "type": "minecraft:square"
+                  },
+                  "inner": {
+                    "config": {},
+                    "type": "minecraft:heightmap_spread_double"
+                  }
+                },
+                "type": "minecraft:decorated"
+              }
+            },
+            "type": "minecraft:decorated"
+          },
+          "decorator": {
+            "config": {
+              "chance": 2
+            },
+            "type": "minecraft:chance"
+          }
+        },
+        "type": "minecraft:decorated"
+      },
+      {
+        "config": {
+          "feature": {
+            "config": {
+              "feature": {
+                "config": {
+                  "feature": {
+                    "config": {},
+                    "type": "gaiadimension:frail_blob"
+                  },
+                  "decorator": {
+                    "config": {
+                      "bottom_offset": 0,
+                      "top_offset": 0,
+                      "maximum": 64
+                    },
+                    "type": "minecraft:range"
+                  }
+                },
+                "type": "minecraft:decorated"
+              },
+              "decorator": {
+                "config": {},
+                "type": "minecraft:square"
+              }
+            },
+            "type": "minecraft:decorated"
+          },
+          "decorator": {
+            "config": {
+              "count": 100
+            },
+            "type": "minecraft:count"
+          }
+        },
+        "type": "minecraft:decorated"
+      }
+    ],
+    [
+      {
+        "config": {
+          "feature": {
+            "config": {
+              "trunk_provider": {
+                "state": {
+                  "Properties": {
+                    "axis": "y"
+                  },
+                  "Name": "gaiadimension:pink_agate_log"
+                },
+                "type": "minecraft:simple_state_provider"
+              },
+              "leaves_provider": {
+                "state": {
+                  "Properties": {
+                    "persistent": "false",
+                    "distance": "7"
+                  },
+                  "Name": "gaiadimension:pink_agate_leaves"
+                },
+                "type": "minecraft:simple_state_provider"
+              },
+              "height": 5,
+              "sapling": {
+                "state": {
+                  "Properties": {
+                    "stage": "0"
+                  },
+                  "Name": "gaiadimension:pink_agate_sapling"
+                },
+                "type": "minecraft:simple_state_provider"
+              }
+            },
+            "type": "gaiadimension:pink_agate_tree"
+          },
+          "decorator": {
+            "config": {
+              "count": 4,
+              "extra_chance": 0.3,
+              "extra_count": 1
+            },
+            "type": "minecraft:count_extra"
+          }
+        },
+        "type": "minecraft:decorated"
+      },
+      {
+        "config": {
+          "feature": {
+            "config": {
+              "feature": {
+                "config": {
+                  "can_replace": false,
+                  "project": true,
+                  "need_water": false,
+                  "xspread": 7,
+                  "yspread": 3,
+                  "zspread": 7,
+                  "whitelist": [],
+                  "blacklist": [],
+                  "tries": 32,
+                  "state_provider": {
+                    "state": {
+                      "Name": "gaiadimension:crystal_growth"
+                    },
+                    "type": "minecraft:simple_state_provider"
+                  },
+                  "block_placer": {
+                    "type": "minecraft:simple_block_placer"
+                  }
+                },
+                "type": "minecraft:random_patch"
+              },
+              "decorator": {
+                "config": {
+                  "outer": {
+                    "config": {},
+                    "type": "minecraft:square"
+                  },
+                  "inner": {
+                    "config": {},
+                    "type": "minecraft:heightmap_spread_double"
+                  }
+                },
+                "type": "minecraft:decorated"
+              }
+            },
+            "type": "minecraft:decorated"
+          },
+          "decorator": {
+            "config": {
+              "chance": 3
+            },
+            "type": "minecraft:chance"
+          }
+        },
+        "type": "minecraft:decorated"
+      },
+      {
+        "config": {
+          "feature": {
+            "config": {
+              "feature": {
+                "config": {
+                  "feature": {
+                    "config": {
+                      "can_replace": false,
+                      "project": true,
+                      "need_water": false,
+                      "xspread": 7,
+                      "yspread": 3,
+                      "zspread": 7,
+                      "whitelist": [],
+                      "blacklist": [],
+                      "tries": 32,
+                      "state_provider": {
+                        "entries": [
+                          {
+                            "weight": 4,
+                            "data": {
+                              "Name": "gaiadimension:thiscus"
+                            }
+                          },
+                          {
+                            "weight": 1,
+                            "data": {
+                              "Name": "gaiadimension:ouzium"
+                            }
+                          }
+                        ],
+                        "type": "minecraft:weighted_state_provider"
+                      },
+                      "block_placer": {
+                        "type": "minecraft:simple_block_placer"
+                      }
+                    },
+                    "type": "minecraft:random_patch"
+                  },
+                  "decorator": {
+                    "config": {},
+                    "type": "minecraft:spread_32_above"
+                  }
+                },
+                "type": "minecraft:decorated"
+              },
+              "decorator": {
+                "config": {
+                  "outer": {
+                    "config": {},
+                    "type": "minecraft:square"
+                  },
+                  "inner": {
+                    "config": {},
+                    "type": "minecraft:heightmap"
+                  }
+                },
+                "type": "minecraft:decorated"
+              }
+            },
+            "type": "minecraft:decorated"
+          },
+          "decorator": {
+            "config": {
+              "count": 2
+            },
+            "type": "minecraft:count"
+          }
+        },
+        "type": "minecraft:decorated"
+      },
+      {
+        "config": {
+          "feature": {
+            "config": {
+              "feature": {
+                "config": {
+                  "feature": {
+                    "config": {
+                      "can_replace": false,
+                      "project": true,
+                      "need_water": false,
+                      "xspread": 7,
+                      "yspread": 3,
+                      "zspread": 7,
+                      "whitelist": [],
+                      "blacklist": [],
+                      "tries": 16,
+                      "state_provider": {
+                        "state": {
+                          "Name": "gaiadimension:spotted_kersei"
+                        },
+                        "type": "minecraft:simple_state_provider"
+                      },
+                      "block_placer": {
+                        "type": "minecraft:simple_block_placer"
+                      }
+                    },
+                    "type": "minecraft:random_patch"
+                  },
+                  "decorator": {
+                    "config": {},
+                    "type": "minecraft:spread_32_above"
+                  }
+                },
+                "type": "minecraft:decorated"
+              },
+              "decorator": {
+                "config": {
+                  "outer": {
+                    "config": {},
+                    "type": "minecraft:square"
+                  },
+                  "inner": {
+                    "config": {},
+                    "type": "minecraft:heightmap"
+                  }
+                },
+                "type": "minecraft:decorated"
+              }
+            },
+            "type": "minecraft:decorated"
+          },
+          "decorator": {
+            "config": {
+              "count": 1
+            },
+            "type": "minecraft:count"
+          }
+        },
+        "type": "minecraft:decorated"
+      }
+    ]
+  ],
+  "starts": [
+    {
+      "config": {},
+      "type": "gaiadimension:mini_tower"
+    },
+    {
+      "config": {},
+      "type": "gaiadimension:malachite_watchtower"
+    }
+  ],
+  "spawners": {
+    "monster": [
+      {
+        "type": "gaiadimension:cavern_tick",
+        "weight": 65,
+        "minCount": 2,
+        "maxCount": 4
+      },
+      {
+        "type": "gaiadimension:shalurker",
+        "weight": 65,
+        "minCount": 2,
+        "maxCount": 4
+      },
+      {
+        "type": "gaiadimension:archaic_warrior",
+        "weight": 65,
+        "minCount": 2,
+        "maxCount": 4
+      },
+      {
+        "type": "gaiadimension:muckling",
+        "weight": 65,
+        "minCount": 2,
+        "maxCount": 4
+      },
+      {
+        "type": "minecraft:enderman",
+        "weight": 5,
+        "minCount": 1,
+        "maxCount": 2
+      },
+      {
+        "type": "gaiadimension:primal_beast",
+        "weight": 15,
+        "minCount": 1,
+        "maxCount": 2
+      }
+    ],
+    "creature": [
+      {
+        "type": "gaiadimension:nomadic_lagrahk",
+        "weight": 15,
+        "minCount": 1,
+        "maxCount": 1
+      },
+      {
+        "type": "gaiadimension:growth_sapper",
+        "weight": 20,
+        "minCount": 3,
+        "maxCount": 5
+      },
+      {
+        "type": "gaiadimension:agate_golem",
+        "weight": 15,
+        "minCount": 1,
+        "maxCount": 3
+      }
+    ],
+    "ambient": [],
+    "water_creature": [
+      {
+        "type": "gaiadimension:shallow_arenthis",
+        "weight": 10,
+        "minCount": 2,
+        "maxCount": 4
+      }
+    ],
+    "water_ambient": [],
+    "misc": []
+  },
+  "spawn_costs": {},
+  "player_spawn_friendly": false,
+  "precipitation": "none",
+  "temperature": 0.66,
+  "downfall": 0.0,
+  "category": "none",
+  "depth": 0.1
+}

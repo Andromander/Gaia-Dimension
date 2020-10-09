@@ -1,63 +1,73 @@
 package androsa.gaiadimension.world.layer;
 
-import androsa.gaiadimension.registry.ModBiomes;
-import com.google.common.collect.ImmutableSet;
-import net.minecraft.block.BlockState;
+import com.google.common.collect.ImmutableList;
+import com.mojang.serialization.Codec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
+import net.minecraft.util.RegistryKey;
+import net.minecraft.util.registry.Registry;
+import net.minecraft.util.registry.RegistryLookupCodec;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.provider.BiomeProvider;
-import net.minecraft.world.gen.feature.structure.Structure;
 import net.minecraft.world.gen.layer.Layer;
 
-import java.util.Set;
+import java.util.List;
+import java.util.Random;
 
 import static androsa.gaiadimension.registry.ModBiomes.*;
 
 public class GaiaBiomeProvider extends BiomeProvider {
 
+    public static final Codec<GaiaBiomeProvider> CODEC = RecordCodecBuilder.create((instance) -> instance.group(
+            Codec.LONG.fieldOf("seed").orElse(new Random().nextLong()).forGetter((obj) -> obj.seed),
+            RegistryLookupCodec.getLookUpCodec(Registry.BIOME_KEY).forGetter((obj) -> obj.registry)
+    ).apply(instance, instance.stable(GaiaBiomeProvider::new)));
+
+    private final long seed;
+    private final Registry<Biome> registry;
     private final Layer genBiomes;
-    private static final Set<Biome> biomes = ImmutableSet.of(
-            pink_agate_forest.get(),
-            blue_agate_taiga.get(),
-            green_agate_jungle.get(),
-            purple_agate_swamp.get(),
-            fossil_woodland.get(),
-            mutant_agate_wildwood.get(),
-            volcanic_lands.get(),
-            static_wasteland.get(),
-            goldstone_lands.get(),
-            crystal_plains.get(),
-            salt_dunes.get(),
-            shining_grove.get(),
-            smoldering_bog.get(),
-            mineral_reservoir.get(),
-            mineral_river.get());
+    private static final List<RegistryKey<Biome>> biomes = ImmutableList.of(
+            pink_agate_forest,
+            blue_agate_taiga,
+            green_agate_jungle,
+            purple_agate_swamp,
+            fossil_woodland,
+            mutant_agate_wildwood,
+            volcanic_lands,
+            static_wasteland,
+            goldstone_lands,
+            crystal_plains,
+            salt_dunes,
+            shining_grove,
+            smoldering_bog,
+            mineral_reservoir,
+            mineral_river);
 
+    public GaiaBiomeProvider(long seed, Registry<Biome> registry) {
+        super(biomes.stream().map(key -> () -> registry.getOrThrow(key)));
+        this.seed = seed;
+        this.registry = registry;
+        this.genBiomes = GaiaLayerUtil.makeLayers(seed);
 
-    public GaiaBiomeProvider(GaiaBiomeProviderSettings settings) {
-        super(biomes);
-        this.genBiomes = GaiaLayerUtil.makeLayers(settings.getSeed());
-
-        getBiomesToSpawnIn().clear();
-        getBiomesToSpawnIn().add(ModBiomes.pink_agate_forest.get());
-        getBiomesToSpawnIn().add(ModBiomes.blue_agate_taiga.get());
-        getBiomesToSpawnIn().add(ModBiomes.green_agate_jungle.get());
-        getBiomesToSpawnIn().add(ModBiomes.purple_agate_swamp.get());
-        getBiomesToSpawnIn().add(ModBiomes.crystal_plains.get());
+//        getBiomesToSpawnIn().clear();
+//        getBiomesToSpawnIn().add(ModBiomes.pink_agate_forest.get());
+//        getBiomesToSpawnIn().add(ModBiomes.blue_agate_taiga.get());
+//        getBiomesToSpawnIn().add(ModBiomes.green_agate_jungle.get());
+//        getBiomesToSpawnIn().add(ModBiomes.purple_agate_swamp.get());
+//        getBiomesToSpawnIn().add(ModBiomes.crystal_plains.get());
     }
 
     @Override
-    public Biome getBiomeForNoiseGen(int x, int y, int z) {
-        return this.genBiomes.func_215738_a(x, z);
+    public BiomeProvider getBiomeProvider(long s) {
+        return new GaiaBiomeProvider(s, registry);
     }
 
     @Override
-    public Set<BlockState> getSurfaceBlocks() {
-        if (this.topBlocksCache.isEmpty()) {
-            for(Biome biome : biomes) {
-                this.topBlocksCache.add(biome.getSurfaceBuilderConfig().getTop());
-            }
-        }
+    protected Codec<? extends BiomeProvider> getBiomeProviderCodec() {
+        return CODEC;
+    }
 
-        return this.topBlocksCache;
+    @Override
+    public Biome getNoiseBiome(int x, int y, int z) {
+        return this.genBiomes.func_242936_a(registry, x, z);
     }
 }

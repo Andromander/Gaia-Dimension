@@ -32,9 +32,9 @@ public class SpinelPrincessSwordItem extends SwordItem {
     public boolean onLeftClickEntity(ItemStack stack, PlayerEntity player, Entity entity) {
         if (player.world.isRemote) {
             for (int var1 = 0; var1 < 20; ++var1) {
-                double px = entity.getX() + random.nextFloat() * entity.getWidth() * 2.0F - entity.getWidth();
-                double py = entity.getY() + random.nextFloat() * entity.getHeight();
-                double pz = entity.getZ() + random.nextFloat() * entity.getWidth() * 2.0F - entity.getWidth();
+                double px = entity.getPosX() + random.nextFloat() * entity.getWidth() * 2.0F - entity.getWidth();
+                double py = entity.getPosY() + random.nextFloat() * entity.getHeight();
+                double pz = entity.getPosZ() + random.nextFloat() * entity.getWidth() * 2.0F - entity.getWidth();
                 entity.world.addParticle(ParticleTypes.FLAME, px, py, pz, 0, 0, 0);
             }
         }

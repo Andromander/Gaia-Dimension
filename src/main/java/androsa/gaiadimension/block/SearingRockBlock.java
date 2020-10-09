@@ -1,6 +1,7 @@
 package androsa.gaiadimension.block;
 
 import androsa.gaiadimension.entity.ISpitfireMob;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -14,17 +15,16 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.common.ToolType;
 
 import java.util.Random;
 
-public class SearingRockBlock extends BasicGaiaBlock {
+public class SearingRockBlock extends Block {
 
-    public SearingRockBlock() {
-        super(Material.ROCK, MaterialColor.GRAY_TERRACOTTA, 20.0F, 600.0F, SoundType.STONE, ToolType.PICKAXE, 2, 7);
+    public SearingRockBlock(Properties props) {
+        super(props);
     }
 
     public void onEntityWalk(World worldIn, BlockPos pos, Entity entityIn) {
@@ -48,7 +48,8 @@ public class SearingRockBlock extends BasicGaiaBlock {
     }
 
     @Override
-    public int tickRate(IWorldReader world) {
-        return 20;
+    @Deprecated
+    public void onBlockAdded(BlockState state, World worldIn, BlockPos pos, BlockState oldState, boolean isMoving) {
+        worldIn.getPendingBlockTicks().scheduleTick(pos, this, 20);
     }
 }

@@ -1,8 +1,10 @@
 package androsa.gaiadimension.entity;
 
 import androsa.gaiadimension.GaiaDimensionMod;
-import androsa.gaiadimension.biomes.*;
+import androsa.gaiadimension.registry.ModBiomes;
 import net.minecraft.entity.*;
+import net.minecraft.entity.ai.attributes.AttributeModifierMap;
+import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.LookAtGoal;
 import net.minecraft.entity.ai.goal.LookRandomlyGoal;
 import net.minecraft.entity.ai.goal.RandomWalkingGoal;
@@ -12,15 +14,19 @@ import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
+import net.minecraft.util.RegistryKey;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.DifficultyInstance;
+import net.minecraft.world.IServerWorld;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 
 import javax.annotation.Nullable;
+import java.util.Objects;
+import java.util.Optional;
 import java.util.Random;
 
 public class GrowthSapperEntity extends CreatureEntity {
@@ -37,10 +43,9 @@ public class GrowthSapperEntity extends CreatureEntity {
         this.dataManager.register(SAPPER_VARIANT, 0);
     }
 
-    @Override
-    protected final void registerAttributes() {
-        super.registerAttributes();
-        this.getAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(15.0D);
+    public static AttributeModifierMap.MutableAttribute registerAttributes() {
+        return MobEntity.func_233666_p_()
+                .createMutableAttribute(Attributes.MAX_HEALTH, 15.0D);
     }
 
     @Override
@@ -105,20 +110,20 @@ public class GrowthSapperEntity extends CreatureEntity {
     }
 
     public static boolean canSpawnHere(EntityType<GrowthSapperEntity> entity, IWorld world, SpawnReason spawn, BlockPos pos, Random random) {
-        return spawn == SpawnReason.SPAWNER || world.getBlockState(pos.down()).canEntitySpawn(world, pos.down(), entity) && world.getBaseLightLevel(pos, 0) > 8;
+        return spawn == SpawnReason.SPAWNER || world.getBlockState(pos.down()).canEntitySpawn(world, pos.down(), entity) && world.getLightSubtracted(pos, 0) > 8;
     }
 
     @Override
-    public ILivingEntityData onInitialSpawn(IWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
-        Biome biome = worldIn.getBiome(new BlockPos(this));
+    public ILivingEntityData onInitialSpawn(IServerWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
+        Optional<RegistryKey<Biome>> biome = worldIn.func_242406_i(this.getPosition());
 
-        if (biome instanceof PinkAgateForestBiome || biome instanceof CrystalPlainsBiome) {
+        if (Objects.equals(biome, Optional.of(ModBiomes.pink_agate_forest)) || Objects.equals(biome, Optional.of(ModBiomes.crystal_plains))) {
             setSapperVariant(0);
-        } else if (biome instanceof BlueAgateTaigaBiome) {
+        } else if (Objects.equals(biome, Optional.of(ModBiomes.blue_agate_taiga))) {
             setSapperVariant(1);
-        } else if (biome instanceof GreenAgateJungleBiome) {
+        } else if (Objects.equals(biome, Optional.of(ModBiomes.green_agate_jungle))) {
             setSapperVariant(2);
-        } else if (biome instanceof PurpleAgateSwampBiome) {
+        } else if (Objects.equals(biome, Optional.of(ModBiomes.pink_agate_forest))) {
             setSapperVariant(3);
         } else {
             Random rand = new Random();

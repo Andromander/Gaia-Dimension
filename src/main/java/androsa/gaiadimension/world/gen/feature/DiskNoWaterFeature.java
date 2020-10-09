@@ -1,33 +1,31 @@
 package androsa.gaiadimension.world.gen.feature;
 
-import com.mojang.datafixers.Dynamic;
+import com.mojang.serialization.Codec;
 import net.minecraft.block.BlockState;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.IWorld;
+import net.minecraft.world.ISeedReader;
 import net.minecraft.world.gen.ChunkGenerator;
-import net.minecraft.world.gen.GenerationSettings;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.SphereReplaceConfig;
 
 import java.util.Random;
-import java.util.function.Function;
 
 public class DiskNoWaterFeature<T extends SphereReplaceConfig> extends Feature<T> {
 
-    public DiskNoWaterFeature(Function<Dynamic<?>, T> config) {
+    public DiskNoWaterFeature(Codec<T> config) {
         super(config);
     }
 
-    public boolean place(IWorld worldIn, ChunkGenerator<? extends GenerationSettings> generator, Random rand, BlockPos pos, T config) {
+    public boolean func_241855_a(ISeedReader worldIn, ChunkGenerator generator, Random rand, BlockPos pos, T config) {
         int i = 0;
-        int j = rand.nextInt(config.radius - 2) + 2;
+        int j = (config.radius.func_242259_a(rand) - 2) + 2;
 
         for(int k = pos.getX() - j; k <= pos.getX() + j; ++k) {
             for(int l = pos.getZ() - j; l <= pos.getZ() + j; ++l) {
                 int i1 = k - pos.getX();
                 int j1 = l - pos.getZ();
                 if (i1 * i1 + j1 * j1 <= j * j) {
-                    for(int k1 = pos.getY() - config.ySize; k1 <= pos.getY() + config.ySize; ++k1) {
+                    for(int k1 = pos.getY() - config.field_242809_d; k1 <= pos.getY() + config.field_242809_d; ++k1) {
                         BlockPos blockpos = new BlockPos(k, k1, l);
                         BlockState blockstate = worldIn.getBlockState(blockpos);
 

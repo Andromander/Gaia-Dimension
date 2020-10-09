@@ -1,27 +1,26 @@
 package androsa.gaiadimension.world.gen.feature;
 
+import androsa.gaiadimension.registry.ModBlocks;
 import androsa.gaiadimension.world.gen.config.GaiaTreeFeatureConfig;
-import com.mojang.datafixers.Dynamic;
+import com.mojang.serialization.Codec;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MutableBoundingBox;
-import net.minecraft.world.gen.IWorldGenerationReader;
-import net.minecraft.world.gen.feature.AbstractTreeFeature;
+import net.minecraft.world.ISeedReader;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.Random;
 import java.util.Set;
-import java.util.function.Function;
 
 @ParametersAreNonnullByDefault
-public class FossilizedTreeFeature<T extends GaiaTreeFeatureConfig> extends AbstractTreeFeature<T> {
+public class FossilizedTreeFeature<T extends GaiaTreeFeatureConfig> extends GaiaTreeFeature<T> {
 
-    public FossilizedTreeFeature(Function<Dynamic<?>, T> configIn) {
+    public FossilizedTreeFeature(Codec<T> configIn) {
         super(configIn);
     }
 
     @Override
-    protected boolean generate(IWorldGenerationReader worldIn, Random rand, BlockPos position, Set<BlockPos> logPos, Set<BlockPos> leavesPos, MutableBoundingBox boundingBox, T config) {
-        int height = rand.nextInt(3) + rand.nextInt(3) + 5;
+    public boolean generate(ISeedReader worldIn, Random rand, BlockPos position, Set<BlockPos> logPos, Set<BlockPos> leavesPos, MutableBoundingBox boundingBox, T config) {
+        int height = rand.nextInt(3) + rand.nextInt(3) + config.minHeight;
         boolean flag = true;
 
         if (position.getY() >= 1 && position.getY() + height + 1 <= 256) {
@@ -41,7 +40,7 @@ public class FossilizedTreeFeature<T extends GaiaTreeFeatureConfig> extends Abst
                 for (int cx = position.getX() - k; cx <= position.getX() + k && flag; ++cx) {
                     for (int cz = position.getZ() - k; cz <= position.getZ() + k && flag; ++cz) {
                         if (cy >= 0 && cy < 256) {
-                            if (!func_214587_a(worldIn, blockpos$mutableblockpos.setPos(cx, cy, cz))) {
+                            if (!isReplaceableAt(worldIn, blockpos$mutableblockpos.setPos(cx, cy, cz))) {
                                 flag = false;
                             }
                         } else {
@@ -53,8 +52,8 @@ public class FossilizedTreeFeature<T extends GaiaTreeFeatureConfig> extends Abst
 
             if (!flag) {
                 return false;
-            } else if (isSoil(worldIn, position.down(), config.getSapling()) && position.getY() < worldIn.getMaxHeight() - height - 1) {
-                this.setDirtAt(worldIn, position.down(), position);
+            } else if (isSoil(worldIn, position.down(), config.getSapling(rand, position)) && position.getY() < worldIn.getHeight() - height - 1) {
+                this.setBlockState(worldIn, position.down(), ModBlocks.heavy_soil.get().getDefaultState(), boundingBox);
                 int posX = position.getX();
                 int posZ = position.getZ();
                 int k1 = 0;

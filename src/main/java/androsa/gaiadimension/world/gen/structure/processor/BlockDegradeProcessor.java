@@ -1,14 +1,13 @@
 package androsa.gaiadimension.world.gen.structure.processor;
 
 import androsa.gaiadimension.registry.ModWorldgen;
-import com.google.common.collect.ImmutableMap;
-import com.mojang.datafixers.Dynamic;
-import com.mojang.datafixers.types.DynamicOps;
+import com.mojang.serialization.Codec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.SlabBlock;
 import net.minecraft.block.StairsBlock;
-import net.minecraft.state.IProperty;
+import net.minecraft.state.Property;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.gen.feature.template.IStructureProcessorType;
@@ -26,6 +25,12 @@ public class BlockDegradeProcessor extends StructureProcessor {
     public static final BlockDegradeProcessor JADE_DECAY = new BlockDegradeProcessor(MiniTowerType.JADE, 0.55F);
     public static final BlockDegradeProcessor JET_DECAY = new BlockDegradeProcessor(MiniTowerType.JET, 0.55F);
 
+    public static final Codec<BlockDegradeProcessor> CODEC = RecordCodecBuilder.create((instance) ->
+            instance.group(
+                    MiniTowerType.CODEC.fieldOf("towertype").orElse(MiniTowerType.AMETHYST).forGetter((obj) -> obj.towertype),
+                    Codec.FLOAT.fieldOf("integrity").orElse(1.0F).forGetter((obj) -> obj.integrity)
+            ).apply(instance, BlockDegradeProcessor::new));
+
     private final MiniTowerType towertype;
     private final float integrity;
     private static final Random random = new Random();
@@ -35,28 +40,14 @@ public class BlockDegradeProcessor extends StructureProcessor {
         this.integrity = integrity;
     }
 
-    public BlockDegradeProcessor(Dynamic<?> dyn) {
-        this(
-                MiniTowerType.getType(dyn.get("towertype").asString(MiniTowerType.AMETHYST.getName())),
-                dyn.get("integrity").asFloat(1.0F)
-        );
-    }
-
     @Override
     protected IStructureProcessorType getType() {
         return ModWorldgen.BLOCK_DEGRADE;
     }
 
-    @Override
-    protected <T> Dynamic<T> serialize0(DynamicOps<T> dynOps) {
-        return new Dynamic<>(dynOps, dynOps.createMap(ImmutableMap.of(
-                dynOps.createString("towertype"), dynOps.createString(this.towertype.getName()),
-                dynOps.createString("integrity"), dynOps.createFloat(this.integrity))));
-    }
-
     @Nullable
     @Override
-    public Template.BlockInfo process(IWorldReader world, BlockPos pos, Template.BlockInfo oldInfo, Template.BlockInfo newInfo, PlacementSettings settings, @Nullable Template template) {
+    public Template.BlockInfo process(IWorldReader world, BlockPos pos, BlockPos tpos, Template.BlockInfo oldInfo, Template.BlockInfo newInfo, PlacementSettings settings, @Nullable Template template) {
         BlockState state = newInfo.state;
 
         if (state == towertype.getBrick())
@@ -69,14 +60,14 @@ public class BlockDegradeProcessor extends StructureProcessor {
         return newInfo;
     }
 
-    protected static BlockState translateState(BlockState stateIn, Block blockOut, IProperty<?>... properties) {
+    protected static BlockState translateState(BlockState stateIn, Block blockOut, Property<?>... properties) {
         BlockState stateOut = blockOut.getDefaultState();
-        for (IProperty<?> property : properties)
+        for (Property<?> property : properties)
             stateOut = copyValue(stateIn, stateOut, property);
         return stateOut;
     }
 
-    private static <T extends Comparable<T>> BlockState copyValue(BlockState from, BlockState to, IProperty<T> property) {
+    private static <T extends Comparable<T>> BlockState copyValue(BlockState from, BlockState to, Property<T> property) {
         return to.with(property, from.get(property));
     }
 }

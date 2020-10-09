@@ -15,7 +15,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 
 public class ModContainers {
 
-    public static final DeferredRegister<ContainerType<?>> CONTAINERS = new DeferredRegister<>(ForgeRegistries.CONTAINERS, GaiaDimensionMod.MODID);
+    public static final DeferredRegister<ContainerType<?>> CONTAINERS = DeferredRegister.create(ForgeRegistries.CONTAINERS, GaiaDimensionMod.MODID);
 
     public static final RegistryObject<ContainerType<AgateCraftingTableContainer>> AGATE_CRAFTING_TABLE = CONTAINERS.register(
             "agate_crafting_table", () -> new ContainerType<>(AgateCraftingTableContainer::new));

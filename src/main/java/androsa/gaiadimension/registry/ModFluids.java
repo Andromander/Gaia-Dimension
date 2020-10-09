@@ -11,7 +11,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 
 public class ModFluids {
 
-    public static final DeferredRegister<Fluid> FLUIDS = new DeferredRegister<>(ForgeRegistries.FLUIDS, GaiaDimensionMod.MODID);
+    public static final DeferredRegister<Fluid> FLUIDS = DeferredRegister.create(ForgeRegistries.FLUIDS, GaiaDimensionMod.MODID);
 
     public static final FlowingFluid mineral_water_s = new ForgeFlowingFluid.Source(GaiaFluidAttributes.mineral_water_properties);
     public static final FlowingFluid mineral_water_f = new ForgeFlowingFluid.Flowing(GaiaFluidAttributes.mineral_water_properties);

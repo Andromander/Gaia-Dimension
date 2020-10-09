@@ -3,7 +3,6 @@ package androsa.gaiadimension.world.gen.tree;
 import androsa.gaiadimension.registry.GaiaBiomeFeatures;
 import androsa.gaiadimension.registry.ModWorldgen;
 import androsa.gaiadimension.world.gen.config.GaiaTreeFeatureConfig;
-import androsa.gaiadimension.world.gen.feature.GaiaTree;
 import net.minecraft.world.gen.feature.ConfiguredFeature;
 
 import java.util.Random;
@@ -12,6 +11,6 @@ public class PinkAgateTree extends GaiaTree {
 
     @Override
     public ConfiguredFeature<GaiaTreeFeatureConfig, ?> createTreeFeature(Random rand) {
-        return ModWorldgen.PINK_AGATE_TREE.get().configure(GaiaBiomeFeatures.PINK_AGATE_TREE_CONFIG);
+        return ModWorldgen.PINK_AGATE_TREE.get().withConfiguration(GaiaBiomeFeatures.PINK_AGATE_TREE_CONFIG);
     }
 }

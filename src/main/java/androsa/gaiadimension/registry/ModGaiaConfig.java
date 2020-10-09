@@ -1,26 +1,27 @@
 package androsa.gaiadimension.registry;
 
 import androsa.gaiadimension.GaiaDimensionMod;
-import net.minecraftforge.fml.common.Mod;
+import net.minecraft.util.RegistryKey;
+import net.minecraft.world.biome.Biome;
+
+import java.util.Collections;
+import java.util.List;
 
 import static net.minecraftforge.common.ForgeConfigSpec.*;
 
 public class ModGaiaConfig {
     private static final String config = GaiaDimensionMod.MODID + ".config.";
 
-    public static BooleanValue enableSkyFog;
-    public static EnumValue<GaiaSkyColors> skyColors;
+    public static ConfigValue<List<? extends String>> starsInSky;
+
+    public static List<? extends String> starBiomes = Collections.singletonList("gaiadimension:purple_agate_swamp");
 
     public static class ClientConfig {
         public ClientConfig(Builder builder) {
-            enableSkyFog = builder
-                    .translation(config + "enable_sky_fog")
-                    .comment("For those bothered by the sky transtions or using shaders. Disables the differing sky and fog colour to the default preset.")
-                    .define("enableSkyFog", true);
-            skyColors = builder
-                    .translation(config + "sky_option")
-                    .comment("Set the Sky and Fog color to any of the existing biome options. This config option does not work if enableSkyFog is true")
-                    .defineEnum("skyColors", GaiaSkyColors.values()[0]);
+            starsInSky = builder
+                    .translation(config + "stars_in_sky")
+                    .comment("A list of biomes to always display stars. This will only work in the dimension as this is where stars are rendered per biome")
+                    .defineList("starsInSky", starBiomes, p -> true);
         }
     }
 
@@ -33,5 +34,18 @@ public class ModGaiaConfig {
                     .comment("Change how the portal can be created. If true, the portal will only be created in Dry, Mountainous, or Hot biomes, or anywhere in Gaia.")
                     .define("portalCheck", true);
         }
+    }
+
+    public static boolean canDisplayStars(RegistryKey<Biome> key) {
+        starBiomes = starsInSky.get();
+
+        if (starBiomes != null) {
+            for (String biome : starBiomes) {
+                if (biome.equals(key.toString())) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 }

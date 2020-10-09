@@ -7,11 +7,13 @@ import it.unimi.dsi.fastutil.objects.Object2LongMap;
 import it.unimi.dsi.fastutil.objects.Object2LongOpenHashMap;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.block.PortalInfo;
 import net.minecraft.block.pattern.BlockPattern;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.*;
+import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraft.world.server.TicketType;
 import net.minecraftforge.common.util.ITeleporter;
@@ -26,27 +28,25 @@ public class GaiaTeleporter implements ITeleporter {
     private final Object2LongMap<ColumnPos> columnMap = new Object2LongOpenHashMap<>();
 
     public boolean placeInPortal(ServerWorld world, Entity entity, float yaw) {
-        Vec3d vec3d = entity.getLastPortalVec();
-        Direction direction = entity.getTeleportDirection();
-        BlockPattern.PortalInfo pattern = this.placeInExistingPortal(world, new BlockPos(entity.getX(), entity.getY(), entity.getZ()), entity.getMotion(), direction, vec3d.x, vec3d.y, entity instanceof PlayerEntity);
+        PortalInfo pattern = this.placeInExistingPortal(world, entity, new BlockPos(entity.getPosition()));
         if (pattern == null) {
             return false;
         } else {
-            Vec3d position = pattern.pos;
-            Vec3d motion = pattern.motion;
+            Vector3d position = pattern.pos;
+            Vector3d motion = pattern.motion;
             entity.setMotion(motion);
-            entity.rotationYaw = yaw + (float) pattern.rotation;
-            entity.positAfterTeleport(position.x, position.y, position.z);
+            entity.rotationYaw = yaw + pattern.rotationYaw;
+            entity.setPositionAndUpdate(position.x, position.y, position.z);
             return true;
         }
     }
 
     @Nullable
-    public BlockPattern.PortalInfo placeInExistingPortal(ServerWorld world, BlockPos pos, Vec3d motion, Direction direction, double x, double y, boolean isPlayer) {
+    public PortalInfo placeInExistingPortal(ServerWorld world, Entity entity, BlockPos pos) {
         boolean isFrame = true;
         BlockPos blockpos = null;
         ColumnPos columnpos = new ColumnPos(pos);
-        if (!isPlayer && this.columnMap.containsKey(columnpos)) {
+        if (!(entity instanceof PlayerEntity) && this.columnMap.containsKey(columnpos)) {
             return null;
         } else {
             GaiaTeleporter.PortalPosition position = this.destinationCoordinateCache.get(columnpos);
@@ -60,7 +60,7 @@ public class GaiaTeleporter implements ITeleporter {
                 for(int eX = -128; eX <= 128; ++eX) {
                     BlockPos blockpos2;
                     for(int eZ = -128; eZ <= 128; ++eZ) {
-                        for(BlockPos blockpos1 = pos.add(eX, world.getActualHeight() - 1 - pos.getY(), eZ); blockpos1.getY() >= 0; blockpos1 = blockpos2) {
+                        for(BlockPos blockpos1 = pos.add(eX, world.getHeight() - 1 - pos.getY(), eZ); blockpos1.getY() >= 0; blockpos1 = blockpos2) {
                             blockpos2 = blockpos1.down();
                             if (world.getBlockState(blockpos1).getBlock() == ModBlocks.gaia_portal.get()) {
                                 for(blockpos2 = blockpos1.down(); world.getBlockState(blockpos2).getBlock() == ModBlocks.gaia_portal.get(); blockpos2 = blockpos2.down()) {
@@ -89,7 +89,8 @@ public class GaiaTeleporter implements ITeleporter {
                 }
 
                 BlockPattern.PatternHelper helper = GaiaPortalBlock.createPatternHelper(world, blockpos);
-                return helper.getPortalInfo(direction, blockpos, y, motion, x);
+//                return helper.getPortalInfo(direction, blockpos, y, motion, x);
+                return new PortalInfo(entity.getPositionVec(), entity.getMotion(), entity.rotationYaw, entity.rotationPitch);
             }
         }
     }
@@ -100,9 +101,9 @@ public class GaiaTeleporter implements ITeleporter {
     public void makePortal(ServerWorld world, Entity entity) {
         Random random = new Random(world.getSeed());
         double d0 = -1.0D;
-        int entityX = MathHelper.floor(entity.getX());
-        int entityY = MathHelper.floor(entity.getY());
-        int entityZ = MathHelper.floor(entity.getZ());
+        int entityX = MathHelper.floor(entity.getPosX());
+        int entityY = MathHelper.floor(entity.getPosY());
+        int entityZ = MathHelper.floor(entity.getPosZ());
         int xPos = entityX;
         int yPos = entityY;
         int zPos = entityZ;
@@ -111,13 +112,13 @@ public class GaiaTeleporter implements ITeleporter {
         BlockPos.Mutable mutable = new BlockPos.Mutable();
 
         for (int startX = entityX - 16; startX <= entityX + 16; ++startX) {
-            double ePosX = (double) startX + 0.5D - entity.getX();
+            double ePosX = (double) startX + 0.5D - entity.getPosX();
 
             for (int startZ = entityZ - 16; startZ <= entityZ + 16; ++startZ) {
-                double ePosZ = (double) startZ + 0.5D - entity.getZ();
+                double ePosZ = (double) startZ + 0.5D - entity.getPosZ();
 
                 searchpos:
-                for (int startY = world.getActualHeight() - 1; startY >= 0; --startY) {
+                for (int startY = world.getHeight() - 1; startY >= 0; --startY) {
                     if (world.isAirBlock(mutable.setPos(startX, startY, startZ))) {
                         while (startY > 0 && world.isAirBlock(mutable.setPos(startX, startY - 1, startZ))) {
                             --startY;
@@ -146,7 +147,7 @@ public class GaiaTeleporter implements ITeleporter {
                                 }
                             }
 
-                            double ePosY = (double) startY + 0.5D - entity.getY();
+                            double ePosY = (double) startY + 0.5D - entity.getPosY();
                             double eArea = ePosX * ePosX + ePosY * ePosY + ePosZ * ePosZ;
                             if (d0 < 0.0D || eArea < d0) {
                                 d0 = eArea;
@@ -163,13 +164,13 @@ public class GaiaTeleporter implements ITeleporter {
 
         if (d0 < 0.0D) {
             for (int startX2 = entityX - 16; startX2 <= entityX + 16; ++startX2) {
-                double ePosX2 = (double) startX2 + 0.5D - entity.getX();
+                double ePosX2 = (double) startX2 + 0.5D - entity.getPosX();
 
                 for (int startZ2 = entityZ - 16; startZ2 <= entityZ + 16; ++startZ2) {
-                    double ePosZ2 = (double) startZ2 + 0.5D - entity.getZ();
+                    double ePosZ2 = (double) startZ2 + 0.5D - entity.getPosZ();
 
                     label214:
-                    for (int startY2 = world.getActualHeight() - 1; startY2 >= 0; --startY2) {
+                    for (int startY2 = world.getHeight() - 1; startY2 >= 0; --startY2) {
                         if (world.isAirBlock(mutable.setPos(startX2, startY2, startZ2))) {
                             while (startY2 > 0 && world.isAirBlock(mutable.setPos(startX2, startY2 - 1, startZ2))) {
                                 --startY2;
@@ -191,7 +192,7 @@ public class GaiaTeleporter implements ITeleporter {
                                     }
                                 }
 
-                                double ePosY2 = (double) startY2 + 0.5D - entity.getY();
+                                double ePosY2 = (double) startY2 + 0.5D - entity.getPosY();
                                 double eArea2 = ePosX2 * ePosX2 + ePosY2 * ePosY2 + ePosZ2 * ePosZ2;
                                 if (d0 < 0.0D || eArea2 < d0) {
                                     d0 = eArea2;
@@ -218,7 +219,7 @@ public class GaiaTeleporter implements ITeleporter {
         }
 
         if (d0 < 0.0D) {
-            yPos = MathHelper.clamp(yPos, 70, world.getActualHeight() - 10);
+            yPos = MathHelper.clamp(yPos, 70, world.getHeight() - 10);
             baseY = yPos;
 
             for (int j7 = -1; j7 <= 1; ++j7) {
@@ -265,6 +266,11 @@ public class GaiaTeleporter implements ITeleporter {
         }
 
         return newEntity;
+    }
+
+    @Override
+    public boolean isVanilla() {
+        return true;
     }
 
     static class PortalPosition {

@@ -26,6 +26,6 @@ public class MalachiteDroneGlowLayer<T extends MalachiteDroneEntity, M extends M
     @Override
     public void render(MatrixStack matrixStack, IRenderTypeBuffer buffer, int i, T entity, float v, float v1, float v2, float v3, float v4, float v5) {
         IVertexBuilder builder = entity.getOwnerUniqueId() != null ? buffer.getBuffer(followLoc) : buffer.getBuffer(normalLoc);
-        this.getEntityModel().render(matrixStack, builder, 15728640, OverlayTexture.DEFAULT_UV, 1.0F, 1.0F, 1.0F, 1.0F);
+        this.getEntityModel().render(matrixStack, builder, 15728640, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);
     }
 }

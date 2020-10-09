@@ -10,15 +10,15 @@ import net.minecraft.data.loot.BlockLootTables;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
+import net.minecraft.loot.*;
+import net.minecraft.loot.conditions.ILootCondition;
+import net.minecraft.loot.conditions.MatchTool;
+import net.minecraft.loot.conditions.TableBonus;
+import net.minecraft.loot.functions.CopyName;
+import net.minecraft.loot.functions.CopyNbt;
+import net.minecraft.loot.functions.SetContents;
+import net.minecraft.loot.functions.SetCount;
 import net.minecraft.util.IItemProvider;
-import net.minecraft.world.storage.loot.*;
-import net.minecraft.world.storage.loot.conditions.ILootCondition;
-import net.minecraft.world.storage.loot.conditions.MatchTool;
-import net.minecraft.world.storage.loot.conditions.TableBonus;
-import net.minecraft.world.storage.loot.functions.CopyName;
-import net.minecraft.world.storage.loot.functions.CopyNbt;
-import net.minecraft.world.storage.loot.functions.SetContents;
-import net.minecraft.world.storage.loot.functions.SetCount;
 
 import java.util.function.Function;
 import java.util.function.Supplier;
@@ -79,12 +79,12 @@ public abstract class GaiaBlockLootTableProvider extends BlockLootTables {
                         .rolls(ConstantRange.of(1))
                         .addEntry(ItemLootEntry.builder(block)
                                 .acceptFunction(CopyName.builder(CopyName.Source.BLOCK_ENTITY))
-                                .acceptFunction(CopyNbt.func_215881_a(CopyNbt.Source.BLOCK_ENTITY)
-                                        .func_216056_a("Lock", "BlockEntityTag.Lock")
-                                        .func_216056_a("LootTable", "BlockEntityTag.LootTable")
-                                        .func_216056_a("LootTableSeed", "BlockEntityTag.LootTableSeed"))
-                                .acceptFunction(SetContents.func_215920_b()
-                                        .func_216075_a(DynamicLootEntry.func_216162_a(SmallCrateBlock.NAME))))));
+                                .acceptFunction(CopyNbt.builder(CopyNbt.Source.BLOCK_ENTITY)
+                                        .replaceOperation("Lock", "BlockEntityTag.Lock")
+                                        .replaceOperation("LootTable", "BlockEntityTag.LootTable")
+                                        .replaceOperation("LootTableSeed", "BlockEntityTag.LootTableSeed"))
+                                .acceptFunction(SetContents.builderIn()
+                                        .addLootEntry(DynamicLootEntry.func_216162_a(SmallCrateBlock.NAME))))));
     }
 
     protected static LootTable.Builder largeCrate(Block block) {
@@ -93,12 +93,12 @@ public abstract class GaiaBlockLootTableProvider extends BlockLootTables {
                         .rolls(ConstantRange.of(1))
                         .addEntry(ItemLootEntry.builder(block)
                                 .acceptFunction(CopyName.builder(CopyName.Source.BLOCK_ENTITY))
-                                .acceptFunction(CopyNbt.func_215881_a(CopyNbt.Source.BLOCK_ENTITY)
-                                        .func_216056_a("Lock", "BlockEntityTag.Lock")
-                                        .func_216056_a("LootTable", "BlockEntityTag.LootTable")
-                                        .func_216056_a("LootTableSeed", "BlockEntityTag.LootTableSeed"))
-                                .acceptFunction(SetContents.func_215920_b()
-                                        .func_216075_a(DynamicLootEntry.func_216162_a(LargeCrateBlock.NAME))))));
+                                .acceptFunction(CopyNbt.builder(CopyNbt.Source.BLOCK_ENTITY)
+                                        .replaceOperation("Lock", "BlockEntityTag.Lock")
+                                        .replaceOperation("LootTable", "BlockEntityTag.LootTable")
+                                        .replaceOperation("LootTableSeed", "BlockEntityTag.LootTableSeed"))
+                                .acceptFunction(SetContents.builderIn()
+                                        .addLootEntry(DynamicLootEntry.func_216162_a(LargeCrateBlock.NAME))))));
     }
 
     protected static LootTable.Builder withName(Block block) {
@@ -123,5 +123,4 @@ public abstract class GaiaBlockLootTableProvider extends BlockLootTables {
                                 .acceptFunction(SetCount.builder(RandomValueRange.of(1.0F, 2.0F))))
                                 .acceptCondition(TableBonus.builder(Enchantments.FORTUNE, 0.02F, 0.022222223F, 0.025F, 0.033333335F, 0.1F))));
     }
-
 }

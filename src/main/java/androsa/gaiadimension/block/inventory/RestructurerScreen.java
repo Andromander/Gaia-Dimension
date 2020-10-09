@@ -1,6 +1,7 @@
 package androsa.gaiadimension.block.inventory;
 
 import androsa.gaiadimension.block.container.RestructurerContainer;
+import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.platform.GlStateManager;
 import net.minecraft.client.gui.IHasContainer;
 import net.minecraft.client.gui.screen.inventory.ContainerScreen;
@@ -23,33 +24,33 @@ public class RestructurerScreen extends ContainerScreen<RestructurerContainer> i
     }
 
     @Override
-    public void render(int mouseX, int mouseY, float partialTicks) {
-        renderBackground();
-        super.render(mouseX, mouseY, partialTicks);
-        renderHoveredToolTip(mouseX, mouseY);
+    public void render(MatrixStack stack, int mouseX, int mouseY, float partialTicks) {
+        renderBackground(stack);
+        super.render(stack, mouseX, mouseY, partialTicks);
+        renderHoveredTooltip(stack, mouseX, mouseY);
     }
 
     @Override
-    protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
-        font.drawString(title.getFormattedText(), (float)(xSize / 2 - font.getStringWidth(title.getFormattedText()) / 2), 6.0F, 0xF0F0F0);
-        font.drawString(playerInventory.getDisplayName().getFormattedText(), 8.0F, (float)(ySize -96 + 2), 0xF0F0F0);
+    protected void drawGuiContainerForegroundLayer(MatrixStack stack, int mouseX, int mouseY) {
+        font.func_243248_b(stack, title, (float)(xSize / 2 - font.getStringWidth(title.getString()) / 2), 6.0F, 0xF0F0F0);
+        font.func_243248_b(stack, playerInventory.getDisplayName(), 8.0F, (float)(ySize -96 + 2), 0xF0F0F0);
     }
 
     @Override
-    protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY) {
+    protected void drawGuiContainerBackgroundLayer(MatrixStack stack, float partialTicks, int mouseX, int mouseY) {
         GlStateManager.color4f(1.0F, 1.0F, 1.0F, 1.0F);
         minecraft.getTextureManager().bindTexture(textureLoc);
         int k = (width - xSize) / 2;
         int l = (height - ySize) / 2;
-        blit(k, l, 0, 0, xSize, ySize);
+        blit(stack, k, l, 0, 0, xSize, ySize);
         int i1;
 
         if (container.isBurning()) {
             i1 = container.getTimeLeft();
-            blit(k + 68, l + 19 + 12 - i1, 176, 14 - i1, 38, i1 + 2);
+            blit(stack, k + 68, l + 19 + 12 - i1, 176, 14 - i1, 38, i1 + 2);
         }
 
         i1 = container.getTimeLeftScaled();
-        blit(k + 80, l + 51, 176, 16, 16, i1);
+        blit(stack, k + 80, l + 51, 176, 16, 16, i1);
     }
 }

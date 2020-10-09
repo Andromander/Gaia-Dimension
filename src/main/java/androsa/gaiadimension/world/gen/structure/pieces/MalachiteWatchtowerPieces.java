@@ -16,9 +16,11 @@ import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.math.MutableBoundingBox;
-import net.minecraft.world.IWorld;
+import net.minecraft.world.ISeedReader;
+import net.minecraft.world.IServerWorld;
 import net.minecraft.world.gen.ChunkGenerator;
 import net.minecraft.world.gen.Heightmap;
+import net.minecraft.world.gen.feature.structure.StructureManager;
 import net.minecraft.world.gen.feature.structure.StructurePiece;
 import net.minecraft.world.gen.feature.structure.TemplateStructurePiece;
 import net.minecraft.world.gen.feature.template.BlockIgnoreStructureProcessor;
@@ -144,7 +146,7 @@ public class MalachiteWatchtowerPieces {
         }
 
         @Override
-        protected void handleDataMarker(String name, BlockPos pos, IWorld world, Random random, MutableBoundingBox mbb) {
+        protected void handleDataMarker(String name, BlockPos pos, IServerWorld world, Random random, MutableBoundingBox mbb) {
             if ("ChestChance".equals(name)) {
                 if (random.nextDouble() > 0.5D) {
                     world.setBlockState(pos, ModBlocks.crude_storage_crate.get().getDefaultState(), 3);
@@ -169,7 +171,7 @@ public class MalachiteWatchtowerPieces {
         }
 
         @Override
-        public boolean generate(IWorld world, ChunkGenerator<?> generator, Random random, MutableBoundingBox mbb, ChunkPos chunkpos) {
+        public boolean func_230383_a_(ISeedReader world, StructureManager manager, ChunkGenerator generator, Random random, MutableBoundingBox mbb, ChunkPos chunkpos, BlockPos pos) {
             this.placeSettings
                     .setRotation(this.rotation)
                     .setMirror(Mirror.NONE)
@@ -182,7 +184,7 @@ public class MalachiteWatchtowerPieces {
             int height = world.getHeight(Heightmap.Type.WORLD_SURFACE_WG, blockpos1.getX(), blockpos1.getZ());
             BlockPos blockpos2 = this.templatePosition;
             this.templatePosition = this.templatePosition.add(0, height - 90 - 1, 0);
-            boolean flag = super.generate(world, generator, random, mbb, chunkpos);
+            boolean flag = super.func_230383_a_(world, manager, generator, random, mbb, chunkpos, pos);
             this.templatePosition = blockpos2;
             return flag;
         }

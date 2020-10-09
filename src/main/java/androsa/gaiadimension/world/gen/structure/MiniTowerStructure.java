@@ -1,59 +1,54 @@
 package androsa.gaiadimension.world.gen.structure;
 
-import androsa.gaiadimension.GaiaDimensionMod;
 import androsa.gaiadimension.world.gen.structure.pieces.MiniTowerPieces;
-import com.mojang.datafixers.Dynamic;
+import com.mojang.serialization.Codec;
 import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.math.MutableBoundingBox;
-import net.minecraft.world.IWorld;
+import net.minecraft.util.registry.DynamicRegistries;
+import net.minecraft.world.ISeedReader;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.ChunkGenerator;
+import net.minecraft.world.gen.GenerationStage;
 import net.minecraft.world.gen.feature.NoFeatureConfig;
-import net.minecraft.world.gen.feature.structure.ScatteredStructure;
 import net.minecraft.world.gen.feature.structure.Structure;
+import net.minecraft.world.gen.feature.structure.StructureManager;
 import net.minecraft.world.gen.feature.structure.StructurePiece;
 import net.minecraft.world.gen.feature.structure.StructureStart;
 import net.minecraft.world.gen.feature.template.TemplateManager;
 
 import java.util.Random;
-import java.util.function.Function;
 
-public class MiniTowerStructure<T extends NoFeatureConfig> extends ScatteredStructure<T> {
+public class MiniTowerStructure<T extends NoFeatureConfig> extends Structure<T> {
 
-    public MiniTowerStructure(Function<Dynamic<?>, T> config) {
+    public MiniTowerStructure(Codec<T> config) {
         super(config);
     }
 
-    @Override
-    public String getStructureName() {
-        return GaiaDimensionMod.MODID + ":GaiaMiniTower";
-    }
+//    @Override
+//    public String getStructureName() {
+//        return GaiaDimensionMod.MODID + ":GaiaMiniTower";
+//    }
 
     @Override
-    public int getSize() {
-        return 3;
-    }
-
-    @Override
-    public IStartFactory getStartFactory() {
+    public IStartFactory<T> getStartFactory() {
         return MiniTowerStructure.Start::new;
     }
 
     @Override
-    protected int getSeedModifier() {
-        return 19348230;
+    public GenerationStage.Decoration func_236396_f_() {
+        return GenerationStage.Decoration.SURFACE_STRUCTURES;
     }
 
-    public static class Start extends StructureStart {
+    public static class Start<T extends NoFeatureConfig> extends StructureStart<T> {
 
-        public Start(Structure<?> structure, int chunkX, int chunkZ, MutableBoundingBox mbb, int ref, long seed) {
+        public Start(Structure<T> structure, int chunkX, int chunkZ, MutableBoundingBox mbb, int ref, long seed) {
             super(structure, chunkX, chunkZ, mbb, ref, seed);
         }
 
         @Override
-        public void init(ChunkGenerator<?> generator, TemplateManager manager, int chunkX, int chunkZ, Biome biome) {
+        public void func_230364_a_(DynamicRegistries registries, ChunkGenerator generator, TemplateManager manager, int chunkX, int chunkZ, Biome biome, T config) {
             int x = chunkX * 16;
             int z = chunkZ * 16;
             BlockPos blockpos = new BlockPos(x, 90, z);
@@ -63,8 +58,8 @@ public class MiniTowerStructure<T extends NoFeatureConfig> extends ScatteredStru
         }
 
         @Override
-        public void generateStructure(IWorld world, ChunkGenerator<?> generator, Random random, MutableBoundingBox mbb, ChunkPos chunkpos) {
-            super.generateStructure(world, generator, random, mbb, chunkpos);
+        public void func_230366_a_(ISeedReader world, StructureManager manager, ChunkGenerator generator, Random random, MutableBoundingBox mbb, ChunkPos chunkpos) {
+            super.func_230366_a_(world, manager, generator, random, mbb, chunkpos);
             int minY = this.bounds.minY;
 
             //Let me ask: do towers overhang cliffs? I didn't think so
@@ -88,7 +83,7 @@ public class MiniTowerStructure<T extends NoFeatureConfig> extends ScatteredStru
                                     break;
                                 }
 
-                                world.setBlockState(blockpos1, world.getBiome(blockpos1).getSurfaceBuilderConfig().getUnder(), 2);
+                                world.setBlockState(blockpos1, world.getBiome(blockpos1).getGenerationSettings().getSurfaceBuilderConfig().getUnder(), 2);
                             }
                         }
                     }

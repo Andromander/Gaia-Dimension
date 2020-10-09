@@ -4,9 +4,6 @@ import androsa.gaiadimension.registry.ModBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.BushBlock;
-import net.minecraft.block.SoundType;
-import net.minecraft.block.material.Material;
-import net.minecraft.block.material.MaterialColor;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.shapes.ISelectionContext;
@@ -22,8 +19,8 @@ public class CrystalFungusBlock extends BushBlock {
     protected static final VoxelShape SHAPE = Block.makeCuboidShape(2.0D, 0.0D, 2.0D, 14.0D, 13.0D, 14.0D);
     private boolean cavernous;
 
-    public CrystalFungusBlock(MaterialColor color, boolean isCave) {
-        super(Properties.create(Material.PLANTS, color).hardnessAndResistance(0.0F).sound(SoundType.PLANT).doesNotBlockMovement());
+    public CrystalFungusBlock(Properties props, boolean isCave) {
+        super(props);
 
         cavernous = isCave;
     }

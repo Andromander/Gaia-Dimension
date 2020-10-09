@@ -2,14 +2,16 @@ package androsa.gaiadimension.entity;
 
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.MoverType;
-import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.ai.attributes.AttributeModifierMap;
+import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.ai.goal.Goal;
+import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.entity.passive.WaterMobEntity;
 import net.minecraft.potion.Effects;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
@@ -46,10 +48,9 @@ public class ShallowArenthisEntity extends WaterMobEntity {
         this.goalSelector.addGoal(0, new ShallowArenthisEntity.AIMoveRandom(this));
     }
 
-    @Override
-    protected void registerAttributes() {
-        super.registerAttributes();
-        this.getAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(15.0D);
+    public static AttributeModifierMap.MutableAttribute registerAttributes() {
+        return MonsterEntity.func_234295_eP_()
+                .createMutableAttribute(Attributes.MAX_HEALTH, 15.0D);
     }
 
 //    @Override
@@ -98,7 +99,7 @@ public class ShallowArenthisEntity extends WaterMobEntity {
                 this.setMotion((double)(this.randomMotionVecX * this.randomMotionSpeed), (double)(this.randomMotionVecY * this.randomMotionSpeed), (double)(this.randomMotionVecZ * this.randomMotionSpeed));
             }
 
-            Vec3d vec3d = this.getMotion();
+            Vector3d vec3d = this.getMotion();
             float f1 = MathHelper.sqrt(horizontalMag(vec3d));
             this.renderYawOffset += (-((float)MathHelper.atan2(vec3d.x, vec3d.z)) * (180F / (float)Math.PI) - this.renderYawOffset) * 0.1F;
             this.rotationYaw = this.renderYawOffset;
@@ -126,7 +127,7 @@ public class ShallowArenthisEntity extends WaterMobEntity {
     }
 
     @Override
-    public void travel(Vec3d motion) {
+    public void travel(Vector3d motion) {
         this.move(MoverType.SELF, this.getMotion());
     }
 

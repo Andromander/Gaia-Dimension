@@ -6,7 +6,6 @@ import androsa.gaiadimension.registry.ModFluids;
 import com.google.common.collect.ImmutableList;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.StairsBlock;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
@@ -15,7 +14,7 @@ import net.minecraft.client.renderer.color.ItemColors;
 import net.minecraft.client.renderer.model.IBakedModel;
 import net.minecraft.client.renderer.model.ModelResourceLocation;
 import net.minecraft.item.BlockItem;
-import net.minecraft.state.IProperty;
+import net.minecraft.state.Property;
 import net.minecraft.state.StateHolder;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
@@ -43,7 +42,8 @@ public class ClientEvents {
             ModBlocks.malachite_pulsing_tiles,
             ModBlocks.malachite_pulsing_brick_stairs,
             ModBlocks.malachite_pulsing_chisel_stairs,
-            ModBlocks.malachite_pulsing_floor_stairs
+            ModBlocks.malachite_pulsing_floor_stairs,
+            ModBlocks.active_rock
     );
 
     public static void registerBlockColors() {
@@ -160,7 +160,7 @@ public class ClientEvents {
 
     @SubscribeEvent
     public static void bakeModels(ModelBakeEvent event) {
-        Function<Map.Entry<IProperty<?>, Comparable<?>>, String> MAP_ENTRY_TO_STRING = ObfuscationReflectionHelper.getPrivateValue(StateHolder.class, null, "field_177233_b");
+        Function<Map.Entry<Property<?>, Comparable<?>>, String> MAP_ENTRY_TO_STRING = ObfuscationReflectionHelper.getPrivateValue(StateHolder.class, null, "field_235890_a_");
 
         for (Supplier<? extends Block> block : emissiveBlocks) {
             for (int i = 0; i <= 1; i++) {

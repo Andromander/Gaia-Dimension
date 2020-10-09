@@ -1,6 +1,8 @@
 package androsa.gaiadimension.entity;
 
 import net.minecraft.entity.*;
+import net.minecraft.entity.ai.attributes.AttributeModifierMap;
+import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -26,12 +28,11 @@ public class PrimalBeastEntity extends MonsterEntity {
         this.experienceValue = 15;
     }
 
-    @Override
-    protected final void registerAttributes() {
-        super.registerAttributes();
-        this.getAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(150.0D);
-        this.getAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(8);
-        this.getAttribute(SharedMonsterAttributes.KNOCKBACK_RESISTANCE).setBaseValue(1.0D);
+    public static AttributeModifierMap.MutableAttribute registerAttributes() {
+        return MonsterEntity.func_234295_eP_()
+                .createMutableAttribute(Attributes.MAX_HEALTH, 150.0D)
+                .createMutableAttribute(Attributes.ATTACK_DAMAGE, 8.0D)
+                .createMutableAttribute(Attributes.KNOCKBACK_RESISTANCE, 1.0D);
     }
 
     @Override
@@ -97,7 +98,7 @@ public class PrimalBeastEntity extends MonsterEntity {
 
     @Override
     public boolean isNotColliding(IWorldReader world) {
-        return world.intersectsEntities(this);
+        return world.checkNoEntityCollision(this);
     }
 
     @Override
@@ -105,7 +106,7 @@ public class PrimalBeastEntity extends MonsterEntity {
         boolean attacked = super.attackEntityAsMob(entityIn);
 
         if (attacked) {
-            float diff = this.world.getDifficultyForLocation(new BlockPos(this)).getAdditionalDifficulty();
+            float diff = this.world.getDifficultyForLocation(this.getPosition()).getAdditionalDifficulty();
             entityIn.setFire(2 * (int)diff);
         }
         return attacked;

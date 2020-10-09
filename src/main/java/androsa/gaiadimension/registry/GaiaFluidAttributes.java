@@ -5,7 +5,7 @@ import androsa.gaiadimension.GaiaDimensionMod;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.ILightReader;
+import net.minecraft.world.IBlockDisplayReader;
 import net.minecraftforge.fluids.FluidAttributes;
 import net.minecraftforge.fluids.ForgeFlowingFluid;
 
@@ -85,7 +85,7 @@ public class GaiaFluidAttributes {
         }
 
         @Override
-        public int getColor(ILightReader world, BlockPos pos) {
+        public int getColor(IBlockDisplayReader world, BlockPos pos) {
             return ClientEvents.getBismuthColor(pos) | 0xFF000000;
         }
 
@@ -106,7 +106,7 @@ public class GaiaFluidAttributes {
         }
 
         @Override
-        public int getColor(ILightReader world, BlockPos pos) {
+        public int getColor(IBlockDisplayReader world, BlockPos pos) {
             return ClientEvents.getAuraColor(pos) | 0xFF000000;
         }
 

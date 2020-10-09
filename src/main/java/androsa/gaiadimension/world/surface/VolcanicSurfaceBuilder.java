@@ -1,7 +1,7 @@
 package androsa.gaiadimension.world.surface;
 
 import androsa.gaiadimension.registry.ModBlocks;
-import com.mojang.datafixers.Dynamic;
+import com.mojang.serialization.Codec;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.util.math.BlockPos;
@@ -11,11 +11,10 @@ import net.minecraft.world.gen.surfacebuilders.SurfaceBuilder;
 import net.minecraft.world.gen.surfacebuilders.SurfaceBuilderConfig;
 
 import java.util.Random;
-import java.util.function.Function;
 
-public class VolcanicSurfaceBuilder extends SurfaceBuilder<SurfaceBuilderConfig> {
+public class VolcanicSurfaceBuilder<T extends SurfaceBuilderConfig> extends SurfaceBuilder<T> {
 
-    public VolcanicSurfaceBuilder(Function<Dynamic<?>, ? extends SurfaceBuilderConfig> config) {
+    public VolcanicSurfaceBuilder(Codec<T> config) {
         super(config);
     }
 
@@ -44,7 +43,7 @@ public class VolcanicSurfaceBuilder extends SurfaceBuilder<SurfaceBuilderConfig>
                 }
                 if (j == -1) {
                     if (k <= 0) {
-                        topBlock = AIR;
+                        topBlock = Blocks.AIR.getDefaultState();
                         middleBlock = defaultBlock;
                     } else if (posY >= sealevel - 4 && posY <= sealevel + 1) {
                         topBlock = top;
@@ -65,7 +64,7 @@ public class VolcanicSurfaceBuilder extends SurfaceBuilder<SurfaceBuilderConfig>
                     if (posY >= sealevel - 1) {
                         chunk.setBlockState(blockpos$mutableblockpos, topBlock, false);
                     } else if (posY < sealevel - 7 - k) {
-                        topBlock = AIR;
+                        topBlock = Blocks.AIR.getDefaultState();
                         middleBlock = defaultBlock;
                         chunk.setBlockState(blockpos$mutableblockpos, bottom, false);
                     } else if (posY > sealevel + 10) {

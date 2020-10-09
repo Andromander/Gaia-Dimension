@@ -4,7 +4,7 @@ import androsa.gaiadimension.block.AbstractGaiaGrassBlock;
 import androsa.gaiadimension.block.GaiaSoilBlock;
 import androsa.gaiadimension.registry.ModBlocks;
 import com.google.common.collect.ImmutableSet;
-import com.mojang.datafixers.Dynamic;
+import com.mojang.serialization.Codec;
 import net.minecraft.block.BlockState;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
@@ -13,26 +13,26 @@ import net.minecraft.world.biome.Biome;
 import net.minecraft.world.chunk.IChunk;
 import net.minecraft.world.gen.carver.WorldCarver;
 import net.minecraft.world.gen.feature.ProbabilityConfig;
+import org.apache.commons.lang3.mutable.MutableBoolean;
 
 import java.util.BitSet;
 import java.util.Random;
-import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.function.Function;
 
-public class ChasmsWorldCarver extends WorldCarver<ProbabilityConfig> {
+public class ChasmsWorldCarver<T extends ProbabilityConfig> extends WorldCarver<T> {
 
-    public ChasmsWorldCarver(Function<Dynamic<?>, ? extends ProbabilityConfig> config, int height) {
+    public ChasmsWorldCarver(Codec<T> config, int height) {
         super(config, height);
         carvableBlocks = ImmutableSet.of(ModBlocks.glitter_grass.get(), ModBlocks.corrupt_grass.get(), ModBlocks.murky_grass.get(), ModBlocks.soft_grass.get(), ModBlocks.heavy_soil.get(), ModBlocks.corrupt_soil.get(), ModBlocks.boggy_soil.get(), ModBlocks.light_soil.get(), ModBlocks.saltstone.get(), ModBlocks.gaia_stone.get(), ModBlocks.wasteland_stone.get(), ModBlocks.volcanic_rock.get(), ModBlocks.primal_mass.get());
     }
 
     @Override
-    public boolean shouldCarve(Random rand, int chunkX, int chunkZ, ProbabilityConfig config) {
+    public boolean shouldCarve(Random rand, int chunkX, int chunkZ, T config) {
         return rand.nextFloat() <= config.probability;
     }
 
     @Override
-    public boolean carve(IChunk chunkIn, Function<BlockPos, Biome> biomePos, Random rand, int seaLevel, int posX, int posZ, int chunkX, int chunkZ, BitSet carvingMask, ProbabilityConfig config) {
+    public boolean carveRegion(IChunk chunkIn, Function<BlockPos, Biome> biomePos, Random rand, int seaLevel, int posX, int posZ, int chunkX, int chunkZ, BitSet carvingMask, T config) {
         int i = (this.func_222704_c() * 2 - 1) * 16;
         int j = rand.nextInt(rand.nextInt(rand.nextInt(this.getChunkSize()) + 1) + 1);
 
@@ -83,7 +83,7 @@ public class ChasmsWorldCarver extends WorldCarver<ProbabilityConfig> {
     protected void carveCave(IChunk chunkIn, Function<BlockPos, Biome> biomePos, long seed, int seaLevel, int chunkX, int chunkZ, double x, double y, double z, float radius, double half, BitSet mask) {
         double d0 = 1.5D + (double)(MathHelper.sin(((float)Math.PI / 2F)) * radius);
         double d1 = d0 * half;
-        this.carveRegion(chunkIn, biomePos, seed, seaLevel, chunkX, chunkZ, x + 1.0D, y, z, d0 * 4, d1 * 2, mask);
+        this.func_227208_a_(chunkIn, biomePos, seed, seaLevel, chunkX, chunkZ, x + 1.0D, y, z, d0 * 4, d1 * 2, mask);
     }
 
     protected void carveTunnels(IChunk chunkIn, Function<BlockPos, Biome> biomePos, long seed, int seaLevel, int centerX, int centerZ, double x, double y, double z, float radius, float yaw, float pitch, int baseSize, int maxSize, double diameter, BitSet mask) {
@@ -118,13 +118,13 @@ public class ChasmsWorldCarver extends WorldCarver<ProbabilityConfig> {
                     return;
                 }
 
-                this.carveRegion(chunkIn, biomePos, seed, seaLevel, centerX, centerZ, x, y, z, d0 * 4, d1 * 2, mask);
+                this.func_227208_a_(chunkIn, biomePos, seed, seaLevel, centerX, centerZ, x, y, z, d0 * 4, d1 * 2, mask);
             }
         }
     }
 
     @Override
-    protected boolean carveAtPoint(IChunk chunkIn, Function<BlockPos, Biome> biomePos, BitSet carvingMask, Random rand, BlockPos.Mutable mutablePos, BlockPos.Mutable mutablePosAbove, BlockPos.Mutable mutablePosBelow, int seaLevel, int chunkX, int chunkZ, int posX, int posZ, int xVal, int yVal, int zVal, AtomicBoolean flag) {
+    protected boolean func_230358_a_(IChunk chunkIn, Function<BlockPos, Biome> biomePos, BitSet carvingMask, Random rand, BlockPos.Mutable mutablePos, BlockPos.Mutable mutablePosAbove, BlockPos.Mutable mutablePosBelow, int seaLevel, int chunkX, int chunkZ, int posX, int posZ, int xVal, int yVal, int zVal, MutableBoolean flag) {
         int i = xVal | zVal << 4 | yVal << 8;
         if (carvingMask.get(i)) {
             return false;
@@ -134,7 +134,7 @@ public class ChasmsWorldCarver extends WorldCarver<ProbabilityConfig> {
             BlockState blockstate = chunkIn.getBlockState(mutablePos);
             BlockState blockstate1 = chunkIn.getBlockState(mutablePosAbove.setPos(mutablePos).move(Direction.UP));
             if (blockstate.getBlock() instanceof AbstractGaiaGrassBlock) {
-                flag.set(true);
+                flag.setTrue();
             }
 
             if (!this.canCarveBlock(blockstate, blockstate1)) {
@@ -144,10 +144,10 @@ public class ChasmsWorldCarver extends WorldCarver<ProbabilityConfig> {
                     chunkIn.setBlockState(mutablePos, ModBlocks.superhot_magma.get().getDefaultState(), false);
                 } else {
                     chunkIn.setBlockState(mutablePos, CAVE_AIR, false);
-                    if (flag.get()) {
+                    if (flag.isTrue()) {
                         mutablePosBelow.setPos(mutablePos).move(Direction.DOWN);
                         if (chunkIn.getBlockState(mutablePosBelow).getBlock() instanceof GaiaSoilBlock) {
-                            chunkIn.setBlockState(mutablePosBelow, biomePos.apply(mutablePos).getSurfaceBuilderConfig().getTop(), false);
+                            chunkIn.setBlockState(mutablePosBelow, biomePos.apply(mutablePos).getGenerationSettings().getSurfaceBuilderConfig().getTop(), false);
                         }
                     }
                 }

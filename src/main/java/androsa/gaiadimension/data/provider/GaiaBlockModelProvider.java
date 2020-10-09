@@ -7,7 +7,7 @@ import net.minecraft.data.DataGenerator;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.generators.BlockModelBuilder;
 import net.minecraftforge.client.model.generators.BlockModelProvider;
-import net.minecraftforge.client.model.generators.ExistingFileHelper;
+import net.minecraftforge.common.data.ExistingFileHelper;
 
 public abstract class GaiaBlockModelProvider extends BlockModelProvider {
 
@@ -25,7 +25,7 @@ public abstract class GaiaBlockModelProvider extends BlockModelProvider {
 
     public BlockModelBuilder flowerPot(FlowerPotBlock plant) {
         return withExistingParent("potted_" + plant.getRegistryName().getPath(), mcLoc("block/flower_pot_cross"))
-                .texture("plant", "block/" + plant.func_220276_d().getRegistryName().getPath());
+                .texture("plant", "block/" + plant.getFlower().getRegistryName().getPath());
     }
 
     public BlockModelBuilder basicLayered(Block block, ResourceLocation bottom, ResourceLocation top) {
