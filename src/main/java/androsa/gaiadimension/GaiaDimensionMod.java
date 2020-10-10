@@ -53,15 +53,15 @@ public class GaiaDimensionMod {
 
         ModRecipes.registerRecipeTypes();
 
-//        ModBlocks.BLOCKS.register(modEventBus);
-        ModContainers.CONTAINERS.register(modEventBus);
+//      ModBlocks.BLOCKS.register(modEventBus);
+//      ModContainers.CONTAINERS.register(modEventBus);
 //      ModDimensions.BIOME_PROVIDER_TYPES.register(modEventBus);
 //      ModDimensions.CHUNK_GENERATOR_TYPES.register(modEventBus);
 //      ModDimensions.MOD_DIMENSIONS.register(modEventBus);
         ModEffects.POTIONS.register(modEventBus);
         ModEntities.ENTITIES.register(modEventBus);
         ModFluids.FLUIDS.register(modEventBus);
-//        ModItems.ITEMS.register(modEventBus);
+//      ModItems.ITEMS.register(modEventBus);
         ModParticles.PARTICLE_TYPES.register(modEventBus);
         ModRecipes.RECIPE_SERIALIZERS.register(modEventBus);
         ModTileEntities.TILE_ENTITIES.register(modEventBus);

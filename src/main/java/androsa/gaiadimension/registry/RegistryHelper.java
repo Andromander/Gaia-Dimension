@@ -3,6 +3,8 @@ package androsa.gaiadimension.registry;
 import androsa.gaiadimension.GaiaDimensionMod;
 import com.google.common.collect.Lists;
 import net.minecraft.block.Block;
+import net.minecraft.inventory.container.Container;
+import net.minecraft.inventory.container.ContainerType;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -19,6 +21,7 @@ public class RegistryHelper {
 
     public static final List<Block> BLOCKS = Lists.newArrayList();
     public static final List<Item> ITEMS = Lists.newArrayList();
+    public static final List<ContainerType<?>> CONTAINER_TYPES = Lists.newArrayList();
 
     public static <T extends Block> T registerBlockOnly(String name, T block) {
         block.setRegistryName(name);
@@ -64,6 +67,13 @@ public class RegistryHelper {
         return item;
     }
 
+    public static <C extends Container> ContainerType<C> registerContainer(String name, ContainerType.IFactory<C> container) {
+        ContainerType<C> type = new ContainerType<>(container);
+        type.setRegistryName(name);
+        CONTAINER_TYPES.add(type);
+        return type;
+    }
+
     @SubscribeEvent
     public static void registerBlocks(RegistryEvent.Register<Block> event) {
         IForgeRegistry<Block> registry = event.getRegistry();
@@ -77,6 +87,14 @@ public class RegistryHelper {
         IForgeRegistry<Item> registry = event.getRegistry();
         for (Item item : ITEMS) {
             registry.register(item);
+        }
+    }
+
+    @SubscribeEvent
+    public static void registerContainerTypes(RegistryEvent.Register<ContainerType<?>> event) {
+        IForgeRegistry<ContainerType<?>> registry = event.getRegistry();
+        for (ContainerType<?> container : CONTAINER_TYPES) {
+            registry.register(container);
         }
     }
 }

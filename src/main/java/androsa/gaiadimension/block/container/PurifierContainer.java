@@ -34,16 +34,16 @@ public class PurifierContainer extends Container {
     }
 
     public PurifierContainer(int id, PlayerInventory invPlayer, IInventory purifier, IIntArray slots) {
-        super(ModContainers.PURIFIER.get(), id);
+        super(ModContainers.PURIFIER, id);
         assertInventorySize(purifier, 6);
         assertIntArraySize(slots, 4);
         tilePurifier = purifier;
         slotsArray = slots;
         world = invPlayer.player.world;
-        addSlot(new Slot(purifier, 0, 80, 17));       //Input
-        addSlot(new GoldSlot(purifier, 1, 59, 63));   //Fuel 1
-        addSlot(new ShineSlot(purifier, 2, 101, 63)); //Fuel 2
-        addSlot(new NullSlot(purifier, 3, 80, 35));   //Fuel 3
+        addSlot(new Slot(purifier, 0, 80, 17)); //Input
+        addSlot(new GoldSlot(purifier, 1, 59, 63));    //Fuel 1
+        addSlot(new ShineSlot(purifier, 2, 101, 63));  //Fuel 2
+        addSlot(new NullSlot(purifier, 3, 80, 35));    //Fuel 3
         addSlot(new PurifyOutputSlot(invPlayer.player, purifier, 4, 46, 91));  //Output 1
         addSlot(new PurifyOutputSlot(invPlayer.player, purifier, 5, 114, 91)); //Output 2
 

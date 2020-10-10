@@ -30,7 +30,7 @@ public class AgateCraftingTableContainer extends RecipeBookContainer<CraftingInv
     }
 
     public AgateCraftingTableContainer(int id, PlayerInventory player, IWorldPosCallable world) {
-        super(ModContainers.AGATE_CRAFTING_TABLE.get(), id);
+        super(ModContainers.AGATE_CRAFTING_TABLE, id);
 
         this.worldPos = world;
         this.player = player.player;

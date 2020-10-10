@@ -19,7 +19,7 @@ public class LargeCrateContainer extends Container {
     }
 
     public LargeCrateContainer(int id, PlayerInventory playerInventoryIn, IInventory inventory) {
-        super(ModContainers.LARGE_CRATE.get(), id);
+        super(ModContainers.LARGE_CRATE, id);
         assertInventorySize(inventory, 27);
         largeCrate = inventory;
         inventory.openInventory(playerInventoryIn.player);

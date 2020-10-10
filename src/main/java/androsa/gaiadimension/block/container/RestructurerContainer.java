@@ -33,15 +33,15 @@ public class RestructurerContainer extends Container {
     }
 
     public RestructurerContainer(int id, PlayerInventory invPlayer, IInventory restructurer, IIntArray slots) {
-        super(ModContainers.RESTRUCTURER.get(), id);
+        super(ModContainers.RESTRUCTURER, id);
         assertInventorySize(restructurer, 5);
         assertIntArraySize(slots, 4);
         tileRestructurer = restructurer;
         slotsArray = slots;
         world = invPlayer.player.world;
-        addSlot(new Slot(restructurer, 0, 80, 34));       //Input
-        addSlot(new GoldSlot(restructurer, 1, 51, 17));   //Fuel 1
-        addSlot(new ShineSlot(restructurer, 2, 109, 17)); //Fuel 2
+        addSlot(new Slot(restructurer, 0, 80, 34)); //Input
+        addSlot(new GoldSlot(restructurer, 1, 51, 17));    //Fuel 1
+        addSlot(new ShineSlot(restructurer, 2, 109, 17));  //Fuel 2
         addSlot(new GlitterOutputSlot(invPlayer.player, restructurer, 3, 70, 80)); //Output 1
         addSlot(new GlitterOutputSlot(invPlayer.player, restructurer, 4, 90, 80)); //Output 2
 

@@ -28,7 +28,7 @@ public class GaiaStoneFurnaceContainer extends Container {
     }
 
     public GaiaStoneFurnaceContainer(int id, PlayerInventory playerinv, IInventory inventory, IIntArray array) {
-        super(ModContainers.GAIA_STONE_FURNACE.get(), id);
+        super(ModContainers.GAIA_STONE_FURNACE, id);
         assertInventorySize(inventory, 3);
         assertIntArraySize(array, 4);
         this.tileFurnace = inventory;
