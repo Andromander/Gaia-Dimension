@@ -33,7 +33,7 @@ public class GaiaFluidBlock extends FlowingFluidBlock {
                     FluidState offset = world.getFluidState(pos.offset(side));
 
                     if (offset.getFluid().isIn(FluidTags.LAVA) && (!(offset.getFluid() instanceof SuperhotMagmaFluid) || !(offset.getFluid() instanceof LiquidBismuthFluid))) {
-                        world.setBlockState(pos, ModBlocks.sparkling_rock.get().getDefaultState());
+                        world.setBlockState(pos, ModBlocks.sparkling_rock.getDefaultState());
                         this.triggerMixEffects(world, pos);
                         return false;
                     }
@@ -47,15 +47,15 @@ public class GaiaFluidBlock extends FlowingFluidBlock {
                     FluidState offset = world.getFluidState(pos.offset(side));
 
                     if (offset.getFluid() instanceof SweetMuckFluid) {
-                        world.setBlockState(pos, ModBlocks.primal_mass.get().getDefaultState());
+                        world.setBlockState(pos, ModBlocks.primal_mass.getDefaultState());
                         this.triggerMixEffects(world, pos);
                         return false;
                     } else if (offset.getFluid() == ModFluids.liquid_aura_still.get() || offset.getFluid() == ModFluids.liquid_aura_flow.get()) {
-                        world.setBlockState(pos, ModBlocks.aura_block.get().getDefaultState());
+                        world.setBlockState(pos, ModBlocks.aura_block.getDefaultState());
                         this.triggerMixEffects(world, pos);
                         return false;
                     } else if (offset.isTagged(FluidTags.WATER)) {
-                        world.setBlockState(pos, ModBlocks.gaia_cobblestone.get().getDefaultState());
+                        world.setBlockState(pos, ModBlocks.gaia_cobblestone.getDefaultState());
                         this.triggerMixEffects(world, pos);
                         return false;
                     }
@@ -69,15 +69,15 @@ public class GaiaFluidBlock extends FlowingFluidBlock {
                     FluidState offset = world.getFluidState(pos.offset(side));
 
                     if (offset.getFluid() instanceof SweetMuckFluid || offset.getFluid() instanceof SuperhotMagmaFluid) {
-                        world.setBlockState(pos, ModBlocks.active_rock.get().getDefaultState());
+                        world.setBlockState(pos, ModBlocks.active_rock.getDefaultState());
                         this.triggerMixEffects(world, pos);
                         return false;
                     } else if (offset.getFluid() == ModFluids.liquid_aura_still.get() || offset.getFluid() == ModFluids.liquid_aura_flow.get()) {
-                        world.setBlockState(pos, ModBlocks.tektite_block.get().getDefaultState());
+                        world.setBlockState(pos, ModBlocks.tektite_block.getDefaultState());
                         this.triggerMixEffects(world, pos);
                         return false;
                     } else if (offset.isTagged(FluidTags.WATER)) {
-                        world.setBlockState(pos, ModBlocks.impure_rock.get().getDefaultState());
+                        world.setBlockState(pos, ModBlocks.impure_rock.getDefaultState());
                         this.triggerMixEffects(world, pos);
                         return false;
                     }

@@ -21,13 +21,13 @@ public class FrailGlitterBlobFeature<T extends NoFeatureConfig> extends Feature<
     public boolean func_241855_a(ISeedReader worldIn, ChunkGenerator generator, Random rand, BlockPos pos, T config) {
         if (!worldIn.isAirBlock(pos)) {
             return false;
-        } else if (worldIn.getBlockState(pos.up()).getBlock() != ModBlocks.gaia_stone.get() && worldIn.getBlockState(pos.down()).getBlock() != ModBlocks.gaia_stone.get()) {
+        } else if (worldIn.getBlockState(pos.up()).getBlock() != ModBlocks.gaia_stone && worldIn.getBlockState(pos.down()).getBlock() != ModBlocks.gaia_stone) {
             return false;
         } else {
             if (pos.getY() > worldIn.getSeaLevel() || pos.getY() < 15)
                 return false;
 
-            worldIn.setBlockState(pos, ModBlocks.frail_glitter_block.get().getDefaultState(), 2);
+            worldIn.setBlockState(pos, ModBlocks.frail_glitter_block.getDefaultState(), 2);
 
             for(int i = 0; i < 1500; ++i) {
                 BlockPos blockpos = pos.add(rand.nextInt(8) - rand.nextInt(8), -rand.nextInt(12), rand.nextInt(8) - rand.nextInt(8));
@@ -35,7 +35,7 @@ public class FrailGlitterBlobFeature<T extends NoFeatureConfig> extends Feature<
                     int j = 0;
 
                     for(Direction direction : Direction.values()) {
-                        if (worldIn.getBlockState(blockpos.offset(direction)).getBlock() == ModBlocks.frail_glitter_block.get()) {
+                        if (worldIn.getBlockState(blockpos.offset(direction)).getBlock() == ModBlocks.frail_glitter_block) {
                             ++j;
                         }
 
@@ -45,7 +45,7 @@ public class FrailGlitterBlobFeature<T extends NoFeatureConfig> extends Feature<
                     }
 
                     if (j == 1) {
-                        worldIn.setBlockState(blockpos, ModBlocks.frail_glitter_block.get().getDefaultState(), 2);
+                        worldIn.setBlockState(blockpos, ModBlocks.frail_glitter_block.getDefaultState(), 2);
                     }
                 }
             }

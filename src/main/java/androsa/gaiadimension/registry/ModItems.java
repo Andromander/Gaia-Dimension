@@ -9,17 +9,13 @@ import net.minecraft.fluid.Fluids;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.*;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.fml.RegistryObject;
-import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.ObjectHolder;
 
 import static net.minecraft.inventory.EquipmentSlotType.*;
 
+@ObjectHolder(value = GaiaDimensionMod.MODID)
 @SuppressWarnings("unused")
 public class ModItems {
-
-    @Deprecated
-    public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, GaiaDimensionMod.MODID);
 
     public static final Item crystallized_redstone = registerBasicItem("crystallized_redstone");
     public static final Item crystallized_lapis_lazuli = registerBasicItem("crystallized_lapis_lazuli");
@@ -255,8 +251,7 @@ public class ModItems {
     public static final Item blue_howlite_wolf_spawn_egg = registerSpawnEgg("blue_howlite_wolf", ModEntities.blue_howlite_wolf, 0x0099CC, 0xCC00FF);
     public static final Item malachite_guard_spawn_egg = registerSpawnEgg("malachite_guard", ModEntities.malachite_guard, 0x339900, 0x33CC99);
 
-    public static final RegistryObject<Item> PYRITE_TORCH = ITEMS.register("pyrite_torch",
-            () -> new WallOrFloorItem(ModBlocks.pyrite_torch.get(), ModBlocks.pyrite_wall_torch.get(), new Item.Properties().group(GaiaItemGroups.GAIA_BLOCKS)));
+    public static final Item PYRITE_TORCH = RegistryHelper.registerWallOrFloorItem("pyrite_torch", ModBlocks.pyrite_torch, ModBlocks.pyrite_wall_torch);
 
     private static Item registerBasicItem(String name) {
         return RegistryHelper.registerItem(name, new BasicGaiaItem());

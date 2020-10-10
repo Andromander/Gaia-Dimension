@@ -53,7 +53,7 @@ public class AuraTreeFeature<T extends GaiaTreeFeatureConfig> extends GaiaTreeFe
             if (!canGrow) {
                 return false;
             } else if (isSoil(worldIn, position.down(), config.getSapling(rand, position)) && position.getY() < worldIn.getHeight() - baseHeight - 1) {
-                this.setBlockState(worldIn, position.down(), ModBlocks.light_soil.get().getDefaultState(), boundingBox);
+                this.setBlockState(worldIn, position.down(), ModBlocks.light_soil.getDefaultState(), boundingBox);
                 int posX = position.getX();
                 int posZ = position.getZ();
                 int k1 = 0;

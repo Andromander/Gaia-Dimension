@@ -15,7 +15,6 @@ import net.minecraft.util.Util;
 
 import java.util.Map;
 import java.util.Random;
-import java.util.function.Supplier;
 
 public enum MiniTowerType implements IStringSerializable {
     AMETHYST("AMETHYST", GaiaChestTables.CHESTS_MINITOWER_AMETHYST,
@@ -43,12 +42,12 @@ public enum MiniTowerType implements IStringSerializable {
 
     private final String name;
     private final ResourceLocation chestLoot;
-    private final Supplier<Block> brickBlock;
-    private final ImmutableList<Supplier<Block>> brickDegrades;
-    private final Supplier<StairsBlock> stairsBlock;
-    private final ImmutableList<Supplier<StairsBlock>> stairsDegrades;
-    private final Supplier<SlabBlock> slabBlock;
-    private final ImmutableList<Supplier<SlabBlock>> slabDegrades;
+    private final Block brickBlock;
+    private final ImmutableList<Block> brickDegrades;
+    private final StairsBlock stairsBlock;
+    private final ImmutableList<StairsBlock> stairsDegrades;
+    private final SlabBlock slabBlock;
+    private final ImmutableList<SlabBlock> slabDegrades;
 
     private static final Map<String, MiniTowerType> typeid = Util.make(Maps.newHashMap(), (hashmap) -> {
         for(MiniTowerType type : values()) {
@@ -56,7 +55,7 @@ public enum MiniTowerType implements IStringSerializable {
         }
     });
 
-    MiniTowerType(String name, ResourceLocation loot, Supplier<Block> brick, ImmutableList<Supplier<Block>> breakbricks, Supplier<StairsBlock> stairs, ImmutableList<Supplier<StairsBlock>> breakstairs, Supplier<SlabBlock> slab, ImmutableList<Supplier<SlabBlock>> breakslab) {
+    MiniTowerType(String name, ResourceLocation loot, Block brick, ImmutableList<Block> breakbricks, StairsBlock stairs, ImmutableList<StairsBlock> breakstairs, SlabBlock slab, ImmutableList<SlabBlock> breakslab) {
         this.name = name;
         chestLoot = loot;
         brickBlock = brick;
@@ -81,26 +80,26 @@ public enum MiniTowerType implements IStringSerializable {
     }
 
     public BlockState getBrick() {
-        return brickBlock.get().getDefaultState();
+        return brickBlock.getDefaultState();
     }
 
     public BlockState getBrickDecay(Random rand) {
-        return brickDegrades.get(rand.nextInt(brickDegrades.size())).get().getDefaultState();
+        return brickDegrades.get(rand.nextInt(brickDegrades.size())).getDefaultState();
     }
 
     public BlockState getStairs() {
-        return stairsBlock.get().getDefaultState();
+        return stairsBlock.getDefaultState();
     }
 
     public BlockState getStairsDecay(Random rand) {
-        return stairsDegrades.get(rand.nextInt(stairsDegrades.size())).get().getDefaultState();
+        return stairsDegrades.get(rand.nextInt(stairsDegrades.size())).getDefaultState();
     }
 
     public BlockState getSlab() {
-        return slabBlock.get().getDefaultState();
+        return slabBlock.getDefaultState();
     }
 
     public BlockState getSlabDecay(Random rand) {
-        return slabDegrades.get(rand.nextInt(slabDegrades.size())).get().getDefaultState();
+        return slabDegrades.get(rand.nextInt(slabDegrades.size())).getDefaultState();
     }
 }

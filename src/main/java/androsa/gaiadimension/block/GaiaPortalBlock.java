@@ -250,7 +250,7 @@ public class GaiaPortalBlock extends Block {
         private BlockPos bottomLeft;
         private int height;
         private int width;
-        private final Block KEYSTONE = ModBlocks.keystone_block.get();
+        private final Block KEYSTONE = ModBlocks.keystone_block;
 
         public Size(IWorld worldIn, BlockPos pos, Direction.Axis facing) {
             world = worldIn;
@@ -321,7 +321,7 @@ public class GaiaPortalBlock extends Block {
                         break label56;
                     }
 
-                    if (blockstate.getBlock() == ModBlocks.gaia_portal.get()) {
+                    if (blockstate.getBlock() == ModBlocks.gaia_portal) {
                         ++this.portalBlockCount;
                     }
 
@@ -361,7 +361,7 @@ public class GaiaPortalBlock extends Block {
         boolean isEmptyBlock(BlockState state) {
             Block block = state.getBlock();
 
-            return state.isAir() || block == ModBlocks.gold_fire.get() || block == ModBlocks.gaia_portal.get();
+            return state.isAir() || block == ModBlocks.gold_fire || block == ModBlocks.gaia_portal;
         }
 
         public boolean isValid() {
@@ -373,7 +373,7 @@ public class GaiaPortalBlock extends Block {
                 BlockPos blockpos = bottomLeft.offset(rightDir, i);
 
                 for (int j = 0; j < height; ++j) {
-                    world.setBlockState(blockpos.up(j), ModBlocks.gaia_portal.get().getDefaultState().with(AXIS, axis), 2);
+                    world.setBlockState(blockpos.up(j), ModBlocks.gaia_portal.getDefaultState().with(AXIS, axis), 2);
                 }
             }
         }

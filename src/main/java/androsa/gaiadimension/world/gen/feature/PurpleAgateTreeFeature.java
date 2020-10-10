@@ -56,7 +56,7 @@ public class PurpleAgateTreeFeature<T extends GaiaTreeFeatureConfig> extends Gai
             if (!canGrow) {
                 return false;
             } else if (isSoil(worldIn, position.down(), config.getSapling(rand, position)) && position.getY() < worldIn.getHeight() - height - 1) {
-                this.setBlockState(worldIn, position.down(), ModBlocks.heavy_soil.get().getDefaultState(), boundingBox);
+                this.setBlockState(worldIn, position.down(), ModBlocks.heavy_soil.getDefaultState(), boundingBox);
                 int posX = position.getX();
                 int posZ = position.getZ();
                 int posY = 0;

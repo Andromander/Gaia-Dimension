@@ -15,8 +15,6 @@ import net.minecraft.util.IItemProvider;
 import net.minecraftforge.common.crafting.conditions.IConditionBuilder;
 import net.minecraftforge.common.data.ForgeRecipeProvider;
 
-import java.util.function.Supplier;
-
 public abstract class GaiaRecipeProvider extends ForgeRecipeProvider implements IConditionBuilder {
 
     public GaiaRecipeProvider(DataGenerator generator) {
@@ -48,32 +46,32 @@ public abstract class GaiaRecipeProvider extends ForgeRecipeProvider implements 
                 .addCriterion("has_" + ingredient.asItem().toString(), hasItem(ingredient));
     }
 
-    public ShapelessRecipeBuilder planksRecipe(Supplier<? extends Block> result, ITag.INamedTag<Item> ingredient) {
-        return ShapelessRecipeBuilder.shapelessRecipe(result.get(), 4)
+    public ShapelessRecipeBuilder planksRecipe(Block result, ITag.INamedTag<Item> ingredient) {
+        return ShapelessRecipeBuilder.shapelessRecipe(result, 4)
                 .addIngredient(ingredient)
                 .addCriterion("has_" + ingredient.getName().getPath(), hasItem(ingredient));
     }
 
-    public ShapedRecipeBuilder slabRecipe(Supplier<? extends Block> result, Supplier<? extends Block> ingredient) {
-        return ShapedRecipeBuilder.shapedRecipe(result.get(), 6)
+    public ShapedRecipeBuilder slabRecipe(Block result, Block ingredient) {
+        return ShapedRecipeBuilder.shapedRecipe(result, 6)
                 .patternLine("###")
-                .key('#', ingredient.get())
-                .addCriterion("has_" + ingredient.get().getRegistryName().getPath(), hasItem(ingredient.get()));
+                .key('#', ingredient)
+                .addCriterion("has_" + ingredient.getRegistryName().getPath(), hasItem(ingredient));
     }
 
-    public ShapedRecipeBuilder stairsRecipe(Supplier<? extends Block> result, Supplier<? extends Block> ingredient) {
-        return ShapedRecipeBuilder.shapedRecipe(result.get(), 8)
+    public ShapedRecipeBuilder stairsRecipe(Block result, Block ingredient) {
+        return ShapedRecipeBuilder.shapedRecipe(result, 8)
                 .patternLine("#  ")
                 .patternLine("## ")
                 .patternLine("###")
-                .key('#', ingredient.get())
-                .addCriterion("has_" + ingredient.get().getRegistryName().getPath(), hasItem(ingredient.get()));
+                .key('#', ingredient)
+                .addCriterion("has_" + ingredient.getRegistryName().getPath(), hasItem(ingredient));
     }
 
-    public ShapelessRecipeBuilder blockToItemRecipe(Item result, Supplier<? extends Block> ingredient) {
+    public ShapelessRecipeBuilder blockToItemRecipe(Item result, Block ingredient) {
         return ShapelessRecipeBuilder.shapelessRecipe(result, 9)
-                .addIngredient(ingredient.get())
-                .addCriterion("has_" + ingredient.get().getRegistryName().getPath(), hasItem(ingredient.get()));
+                .addIngredient(ingredient)
+                .addCriterion("has_" + ingredient.getRegistryName().getPath(), hasItem(ingredient));
     }
 
     public ShapedRecipeBuilder helmetRecipe(Item result, Item ingredient) {
@@ -204,11 +202,11 @@ public abstract class GaiaRecipeProvider extends ForgeRecipeProvider implements 
                 .addCriterion("has_geode", hasItem(geode));
     }
 
-    public ShapelessRecipeBuilder tiliRecipe(Item result, Supplier<? extends Block> ingredient) {
+    public ShapelessRecipeBuilder tiliRecipe(Item result, Block ingredient) {
         return ShapelessRecipeBuilder.shapelessRecipe(result)
-                .addIngredient(ingredient.get())
-                .addIngredient(ModBlocks.thiscus.get())
-                .addCriterion("has_thiscus", hasItem(ModBlocks.thiscus.get()));
+                .addIngredient(ingredient)
+                .addIngredient(ModBlocks.thiscus)
+                .addCriterion("has_thiscus", hasItem(ModBlocks.thiscus));
     }
 
     public CookingRecipeBuilder smeltingRecipe(IItemProvider result, IItemProvider ingredient, float exp) {

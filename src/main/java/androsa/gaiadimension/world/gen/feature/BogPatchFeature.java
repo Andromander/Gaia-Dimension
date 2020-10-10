@@ -36,9 +36,9 @@ public class BogPatchFeature<T extends SphereReplaceConfig> extends Feature<T> {
                 for (int dy = pos.getY() - yRange; dy <= pos.getY() + yRange; dy++) {
                     BlockPos dPos = new BlockPos(dx, dy, dz);
                     Block blockThere = world.getBlockState(dPos).getBlock();
-                    if (blockThere == ModBlocks.murky_grass.get()) {
+                    if (blockThere == ModBlocks.murky_grass) {
                         if (random.nextInt(6) != 0) {
-                            world.setBlockState(dPos, ModBlocks.impure_sludge.get().getDefaultState(), 2);
+                            world.setBlockState(dPos, ModBlocks.impure_sludge.getDefaultState(), 2);
                         }
                     }
                 }

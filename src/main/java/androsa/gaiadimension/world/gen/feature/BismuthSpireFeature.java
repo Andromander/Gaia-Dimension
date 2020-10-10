@@ -30,7 +30,7 @@ public class BismuthSpireFeature<T extends FeatureHeightConfig> extends Feature<
                 if (worldIn.isBlockLoaded(pos)) {
                     Block blockBelow = worldIn.getBlockState(pos.down()).getBlock();
 
-                    if (blockBelow != ModBlocks.murky_grass.get()) {
+                    if (blockBelow != ModBlocks.murky_grass) {
                         return false;
                     }
                 }
@@ -75,11 +75,11 @@ public class BismuthSpireFeature<T extends FeatureHeightConfig> extends Feature<
         BlockState state;
 
         if (random.nextInt(30) == 0) {
-            state = ModBlocks.bismuth_block.get().getDefaultState();
+            state = ModBlocks.bismuth_block.getDefaultState();
         } else if (random.nextInt(15) == 0) {
-            state = ModBlocks.active_rock.get().getDefaultState();
+            state = ModBlocks.active_rock.getDefaultState();
         } else {
-            state = ModBlocks.impure_rock.get().getDefaultState();
+            state = ModBlocks.impure_rock.getDefaultState();
         }
         world.setBlockState(pos, state, 2);
     }

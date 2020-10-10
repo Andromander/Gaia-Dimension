@@ -62,8 +62,8 @@ public class GaiaTeleporter implements ITeleporter {
                     for(int eZ = -128; eZ <= 128; ++eZ) {
                         for(BlockPos blockpos1 = pos.add(eX, world.getHeight() - 1 - pos.getY(), eZ); blockpos1.getY() >= 0; blockpos1 = blockpos2) {
                             blockpos2 = blockpos1.down();
-                            if (world.getBlockState(blockpos1).getBlock() == ModBlocks.gaia_portal.get()) {
-                                for(blockpos2 = blockpos1.down(); world.getBlockState(blockpos2).getBlock() == ModBlocks.gaia_portal.get(); blockpos2 = blockpos2.down()) {
+                            if (world.getBlockState(blockpos1).getBlock() == ModBlocks.gaia_portal) {
+                                for(blockpos2 = blockpos1.down(); world.getBlockState(blockpos2).getBlock() == ModBlocks.gaia_portal; blockpos2 = blockpos2.down()) {
                                     blockpos1 = blockpos2;
                                 }
 
@@ -230,7 +230,7 @@ public class GaiaTeleporter implements ITeleporter {
                         int frameZ = baseZ + (i8 - 1) * zAxis - j7 * xAxis;
                         boolean flag = i9 < 0;
                         mutable.setPos(frameX, frameY, frameZ);
-                        world.setBlockState(mutable, flag ? ModBlocks.keystone_block.get().getDefaultState() : Blocks.AIR.getDefaultState());
+                        world.setBlockState(mutable, flag ? ModBlocks.keystone_block.getDefaultState() : Blocks.AIR.getDefaultState());
                     }
                 }
             }
@@ -240,12 +240,12 @@ public class GaiaTeleporter implements ITeleporter {
             for (int fHeight = -1; fHeight < 4; ++fHeight) {
                 if (fWidth == -1 || fWidth == 2 || fHeight == -1 || fHeight == 3) {
                     mutable.setPos(baseX + fWidth * xAxis, baseY + fHeight, baseZ + fWidth * zAxis);
-                    world.setBlockState(mutable, ModBlocks.keystone_block.get().getDefaultState(), 3);
+                    world.setBlockState(mutable, ModBlocks.keystone_block.getDefaultState(), 3);
                 }
             }
         }
 
-        BlockState portal = ModBlocks.gaia_portal.get().getDefaultState().with(GaiaPortalBlock.AXIS, xAxis == 0 ? Direction.Axis.Z : Direction.Axis.X);
+        BlockState portal = ModBlocks.gaia_portal.getDefaultState().with(GaiaPortalBlock.AXIS, xAxis == 0 ? Direction.Axis.Z : Direction.Axis.X);
 
         for (int pWidth = 0; pWidth < 2; ++pWidth) {
             for (int pHeight = 0; pHeight < 3; ++pHeight) {

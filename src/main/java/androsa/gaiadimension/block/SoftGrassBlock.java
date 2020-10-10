@@ -14,13 +14,13 @@ import java.util.Random;
 public class SoftGrassBlock extends AbstractGaiaGrassBlock {
 
     public SoftGrassBlock(Properties props) {
-        super(props, ModBlocks.light_soil.get());
+        super(props, ModBlocks.light_soil);
     }
 
     @Override
     public void grow(ServerWorld worldIn, Random rand, BlockPos pos, BlockState state) {
         BlockPos blockpos = pos.up();
-        BlockState growth = ModBlocks.crystal_growth_aura.get().getDefaultState();
+        BlockState growth = ModBlocks.crystal_growth_aura.getDefaultState();
 
         label48:
         for(int i = 0; i < 128; ++i) {

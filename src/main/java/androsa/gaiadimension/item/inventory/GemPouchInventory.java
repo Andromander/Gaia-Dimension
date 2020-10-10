@@ -104,7 +104,7 @@ public class GemPouchInventory implements IInventory, INamedContainerProvider {
     @Override
     public boolean isItemValidForSlot(int index, ItemStack stack) {
         Item item = stack.getItem();
-        return item != ModItems.gemstone_pouch || Block.getBlockFromItem(item) != ModBlocks.crude_storage_crate.get() || Block.getBlockFromItem(item) != ModBlocks.mega_storage_crate.get();
+        return item != ModItems.gemstone_pouch || Block.getBlockFromItem(item) != ModBlocks.crude_storage_crate || Block.getBlockFromItem(item) != ModBlocks.mega_storage_crate;
     }
 
     @Override

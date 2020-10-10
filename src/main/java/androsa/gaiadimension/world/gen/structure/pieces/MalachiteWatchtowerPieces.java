@@ -149,7 +149,7 @@ public class MalachiteWatchtowerPieces {
         protected void handleDataMarker(String name, BlockPos pos, IServerWorld world, Random random, MutableBoundingBox mbb) {
             if ("ChestChance".equals(name)) {
                 if (random.nextDouble() > 0.5D) {
-                    world.setBlockState(pos, ModBlocks.crude_storage_crate.get().getDefaultState(), 3);
+                    world.setBlockState(pos, ModBlocks.crude_storage_crate.getDefaultState(), 3);
                     TileEntity tileentity = world.getTileEntity(pos);
                     if (tileentity instanceof SmallCrateTileEntity) {
                         ((SmallCrateTileEntity) tileentity).setLootTable(GaiaChestTables.CHESTS_MALACHITE_WATCHTOWER, random.nextLong());
@@ -159,14 +159,14 @@ public class MalachiteWatchtowerPieces {
                 }
             }
             if ("Chest".equals(name)) {
-                world.setBlockState(pos, ModBlocks.crude_storage_crate.get().getDefaultState(), 3);
+                world.setBlockState(pos, ModBlocks.crude_storage_crate.getDefaultState(), 3);
                 TileEntity tileentity = world.getTileEntity(pos);
                 if (tileentity instanceof SmallCrateTileEntity) {
                     ((SmallCrateTileEntity) tileentity).setLootTable(GaiaChestTables.CHESTS_MALACHITE_WATCHTOWER, random.nextLong());
                 }
             }
             if ("Boss".equals(name)) {
-                world.setBlockState(pos, ModBlocks.malachite_guard_spawner.get().getDefaultState(), 3);
+                world.setBlockState(pos, ModBlocks.malachite_guard_spawner.getDefaultState(), 3);
             }
         }
 

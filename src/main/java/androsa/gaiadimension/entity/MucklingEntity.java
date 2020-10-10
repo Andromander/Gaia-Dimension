@@ -72,7 +72,7 @@ public class MucklingEntity extends SlimeEntity {
             World world = this.world;
             double d0 = this.getPosX() + (double) f2;
             double d1 = this.getPosZ() + (double) f3;
-            BlockState state = ModBlocks.gummy_glitter_block.get().getDefaultState();
+            BlockState state = ModBlocks.gummy_glitter_block.getDefaultState();
             world.addParticle(new BlockParticleData(ParticleTypes.BLOCK, state), d0, this.getBoundingBox().minY, d1, 0.0D, 0.0D, 0.0D);
         }
         return true;
