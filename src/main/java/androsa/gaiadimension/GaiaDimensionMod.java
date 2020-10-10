@@ -58,7 +58,7 @@ public class GaiaDimensionMod {
 //      ModDimensions.BIOME_PROVIDER_TYPES.register(modEventBus);
 //      ModDimensions.CHUNK_GENERATOR_TYPES.register(modEventBus);
 //      ModDimensions.MOD_DIMENSIONS.register(modEventBus);
-        ModEffects.POTIONS.register(modEventBus);
+//      ModEffects.POTIONS.register(modEventBus);
         ModEntities.ENTITIES.register(modEventBus);
         ModFluids.FLUIDS.register(modEventBus);
 //      ModItems.ITEMS.register(modEventBus);
