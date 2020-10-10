@@ -27,7 +27,7 @@ public class AgateArrowEntity extends AbstractArrowEntity {
 
     @Override
     protected ItemStack getArrowStack() {
-        return new ItemStack(ModItems.agate_arrow.get());
+        return new ItemStack(ModItems.agate_arrow);
     }
 
     @Override

@@ -25,11 +25,11 @@ public class GaiaEntityLootTableProvider extends EntityLootTables {
         return LootTable.builder();
     }
 
-    public LootTable.Builder sapperTable(Supplier<? extends Item> geode) {
+    public LootTable.Builder sapperTable(Item geode) {
         return LootTable.builder()
                 .addLootPool(LootPool.builder()
                         .rolls(ConstantRange.of(1))
-                        .addEntry(ItemLootEntry.builder(geode.get())
+                        .addEntry(ItemLootEntry.builder(geode)
                                 .acceptFunction(SetCount.builder(RandomValueRange.of(1.0F, 3.0F)))
                                 .acceptFunction(LootingEnchantBonus.builder(RandomValueRange.of(0.0F, 1.0F)))))
                 .addLootPool(LootPool.builder()
@@ -37,38 +37,38 @@ public class GaiaEntityLootTableProvider extends EntityLootTables {
                         .addEntry(TableLootEntry.builder(ModEntities.GROWTH_SAPPER.get().getLootTable())));
     }
 
-    public LootTable.Builder singleDropTable(Supplier<? extends Item> drop, float minCount, float maxCount) {
+    public LootTable.Builder singleDropTable(Item drop, float minCount, float maxCount) {
         return LootTable.builder()
                 .addLootPool(LootPool.builder()
                         .rolls(ConstantRange.of(1))
-                        .addEntry(ItemLootEntry.builder(drop.get())
+                        .addEntry(ItemLootEntry.builder(drop)
                                 .acceptFunction(SetCount.builder(RandomValueRange.of(minCount, maxCount)))
                                 .acceptFunction(LootingEnchantBonus.builder(RandomValueRange.of(0.0F, 1.0F)))));
     }
 
-    public LootTable.Builder cookableSingleDropTable(Supplier<? extends Item> raw, float minCount, float maxCount) {
+    public LootTable.Builder cookableSingleDropTable(Item raw, float minCount, float maxCount) {
         return LootTable.builder()
                 .addLootPool(LootPool.builder()
                         .rolls(ConstantRange.of(1))
-                        .addEntry(ItemLootEntry.builder(raw.get())
+                        .addEntry(ItemLootEntry.builder(raw)
                                 .acceptFunction(SetCount.builder(RandomValueRange.of(minCount, maxCount)))
                                 .acceptFunction(Smelt.func_215953_b()
                                         .acceptCondition(EntityHasProperty.builder(LootContext.EntityTarget.THIS, ON_FIRE)))
                                 .acceptFunction(LootingEnchantBonus.builder(RandomValueRange.of(0.0F, 1.0F)))));
     }
 
-    public LootTable.Builder cookableDoubleDropTable(Supplier<? extends Item> cookable, Supplier<? extends Item> drop, float minCount1, float maxCount1, float minCount2, float maxCount2) {
+    public LootTable.Builder cookableDoubleDropTable(Item cookable, Item drop, float minCount1, float maxCount1, float minCount2, float maxCount2) {
         return LootTable.builder()
                 .addLootPool(LootPool.builder()
                         .rolls(ConstantRange.of(1))
-                        .addEntry(ItemLootEntry.builder(cookable.get())
+                        .addEntry(ItemLootEntry.builder(cookable)
                                 .acceptFunction(SetCount.builder(RandomValueRange.of(minCount1, maxCount1)))
                                 .acceptFunction(Smelt.func_215953_b()
                                         .acceptCondition(EntityHasProperty.builder(LootContext.EntityTarget.THIS, ON_FIRE)))
                                 .acceptFunction(LootingEnchantBonus.builder(RandomValueRange.of(0.0F, 1.0F)))))
                 .addLootPool(LootPool.builder()
                         .rolls(ConstantRange.of(1))
-                        .addEntry(ItemLootEntry.builder(drop.get())
+                        .addEntry(ItemLootEntry.builder(drop)
                                 .acceptFunction(SetCount.builder(RandomValueRange.of(minCount2, maxCount2)))
                                 .acceptFunction(LootingEnchantBonus.builder(RandomValueRange.of(0.0F, 1.0F)))));
     }
@@ -77,12 +77,12 @@ public class GaiaEntityLootTableProvider extends EntityLootTables {
         return LootTable.builder()
                 .addLootPool(LootPool.builder()
                         .rolls(ConstantRange.of(1))
-                        .addEntry(ItemLootEntry.builder(ModItems.scaynyx_ingot.get()))
+                        .addEntry(ItemLootEntry.builder(ModItems.scaynyx_ingot))
                         .acceptCondition(KilledByPlayer.builder())
                         .acceptCondition(RandomChanceWithLooting.builder(0.025F, 0.01F)))
                 .addLootPool(LootPool.builder()
                         .rolls(ConstantRange.of(1))
-                        .addEntry(ItemLootEntry.builder(ModItems.shiny_bone.get())
+                        .addEntry(ItemLootEntry.builder(ModItems.shiny_bone)
                                 .acceptFunction(SetCount.builder(RandomValueRange.of(0.0F, 2.0F)))
                                 .acceptFunction(LootingEnchantBonus.builder(RandomValueRange.of(0.0F, 1.0F)))));
     }
@@ -91,22 +91,22 @@ public class GaiaEntityLootTableProvider extends EntityLootTables {
         return LootTable.builder()
                 .addLootPool(LootPool.builder()
                         .rolls(ConstantRange.of(1))
-                        .addEntry(ItemLootEntry.builder(ModItems.pink_geode.get())
+                        .addEntry(ItemLootEntry.builder(ModItems.pink_geode)
                                 .acceptFunction(SetCount.builder(RandomValueRange.of(0.0F, 1.0F)))
                                 .acceptFunction(LootingEnchantBonus.builder(RandomValueRange.of(0.0F, 1.0F)))))
                 .addLootPool(LootPool.builder()
                         .rolls(ConstantRange.of(1))
-                        .addEntry(ItemLootEntry.builder(ModItems.blue_geode.get())
+                        .addEntry(ItemLootEntry.builder(ModItems.blue_geode)
                                 .acceptFunction(SetCount.builder(RandomValueRange.of(0.0F, 1.0F)))
                                 .acceptFunction(LootingEnchantBonus.builder(RandomValueRange.of(0.0F, 1.0F)))))
                 .addLootPool(LootPool.builder()
                         .rolls(ConstantRange.of(1))
-                        .addEntry(ItemLootEntry.builder(ModItems.green_geode.get())
+                        .addEntry(ItemLootEntry.builder(ModItems.green_geode)
                                 .acceptFunction(SetCount.builder(RandomValueRange.of(0.0F, 1.0F)))
                                 .acceptFunction(LootingEnchantBonus.builder(RandomValueRange.of(0.0F, 1.0F)))))
                 .addLootPool(LootPool.builder()
                         .rolls(ConstantRange.of(1))
-                        .addEntry(ItemLootEntry.builder(ModItems.purple_geode.get())
+                        .addEntry(ItemLootEntry.builder(ModItems.purple_geode)
                                 .acceptFunction(SetCount.builder(RandomValueRange.of(0.0F, 1.0F)))
                                 .acceptFunction(LootingEnchantBonus.builder(RandomValueRange.of(0.0F, 1.0F)))));
     }
@@ -115,22 +115,22 @@ public class GaiaEntityLootTableProvider extends EntityLootTables {
         return LootTable.builder()
                 .addLootPool(LootPool.builder()
                         .rolls(ConstantRange.of(1))
-                        .addEntry(ItemLootEntry.builder(ModItems.malachite_guard_baton.get())))
+                        .addEntry(ItemLootEntry.builder(ModItems.malachite_guard_baton)))
                 .addLootPool(LootPool.builder()
                         .rolls(ConstantRange.of(1))
-                        .addEntry(ItemLootEntry.builder(ModItems.malachite_guard_headgear.get())
+                        .addEntry(ItemLootEntry.builder(ModItems.malachite_guard_headgear)
                                 .acceptFunction(SetCount.builder(RandomValueRange.of(0.0F, 1.0F)))))
                 .addLootPool(LootPool.builder()
                         .rolls(ConstantRange.of(1))
-                        .addEntry(ItemLootEntry.builder(ModItems.malachite_guard_brace.get())
+                        .addEntry(ItemLootEntry.builder(ModItems.malachite_guard_brace)
                                 .acceptFunction(SetCount.builder(RandomValueRange.of(0.0F, 1.0F)))))
                 .addLootPool(LootPool.builder()
                         .rolls(ConstantRange.of(1))
-                        .addEntry(ItemLootEntry.builder(ModItems.malachite_guard_gear.get())
+                        .addEntry(ItemLootEntry.builder(ModItems.malachite_guard_gear)
                                 .acceptFunction(SetCount.builder(RandomValueRange.of(0.0F, 1.0F)))))
                 .addLootPool(LootPool.builder()
                         .rolls(ConstantRange.of(1))
-                        .addEntry(ItemLootEntry.builder(ModItems.malachite_guard_boots.get())
+                        .addEntry(ItemLootEntry.builder(ModItems.malachite_guard_boots)
                                 .acceptFunction(SetCount.builder(RandomValueRange.of(0.0F, 1.0F)))));
     }
 }

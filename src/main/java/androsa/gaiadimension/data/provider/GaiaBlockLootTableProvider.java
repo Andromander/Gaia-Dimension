@@ -45,8 +45,8 @@ public abstract class GaiaBlockLootTableProvider extends BlockLootTables {
         super.registerFlowerPot(block.get());
     }
 
-    public void dropWithFortune(Supplier<? extends Block> block, Supplier<? extends Item> drop) {
-        super.registerLootTable(block.get(), (result) -> droppingItemWithFortune(result, drop.get()));
+    public void dropWithFortune(Supplier<? extends Block> block, Item drop) {
+        super.registerLootTable(block.get(), (result) -> droppingItemWithFortune(result, drop));
     }
 
     public void dropAsSilk(Supplier<? extends Block> block) {
@@ -61,16 +61,12 @@ public abstract class GaiaBlockLootTableProvider extends BlockLootTables {
         registerLootTable(block.get(), (result) -> withChance(block.get(), drop.get(), chances));
     }
 
-    public void dropChanceAlternative(Supplier<? extends Block> block, Supplier<? extends Block> drop, Supplier<? extends Item> item, float... chances) {
-        registerLootTable(block.get(), (result) -> withChanceAdditional(block.get(), drop.get(), item.get(), chances));
-    }
-
     public void dropChanceAlternative(Supplier<? extends Block> block, Supplier<? extends Block> drop, Item item, float... chances) {
         registerLootTable(block.get(), (result) -> withChanceAdditional(block.get(), drop.get(), item, chances));
     }
 
-    public void dropAlternative(Supplier<? extends Block> block, Supplier<? extends IItemProvider> drop) {
-        registerLootTable(block.get(), (result) -> droppingWithSilkTouch(result, withSurvivesExplosion(result, ItemLootEntry.builder(drop.get()).acceptCondition(TableBonus.builder(Enchantments.FORTUNE, 0.1F, 0.14285715F, 0.25F, 1.0F)).alternatively(ItemLootEntry.builder(result)))));
+    public void dropAlternative(Supplier<? extends Block> block, Item drop) {
+        registerLootTable(block.get(), (result) -> droppingWithSilkTouch(result, withSurvivesExplosion(result, ItemLootEntry.builder(drop).acceptCondition(TableBonus.builder(Enchantments.FORTUNE, 0.1F, 0.14285715F, 0.25F, 1.0F)).alternatively(ItemLootEntry.builder(result)))));
     }
 
     protected static LootTable.Builder smallCrate(Block block) {

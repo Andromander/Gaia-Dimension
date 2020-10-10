@@ -127,9 +127,9 @@ public class RestructurerTileEntity extends LockableTileEntity implements ISided
         addItemToMap(map, Items.GOLDEN_HORSE_ARMOR, 1000);
         addItemToMap(map, Blocks.GOLD_BLOCK, 2000);
         addItemToMap(map, Blocks.GOLD_ORE, 150);
-        addItemToMap(map, ModItems.pyrite.get(), 500);
+        addItemToMap(map, ModItems.pyrite, 500);
         addItemToMap(map, ModBlocks.pyrite_block.get(), 5000);
-        addItemToMap(map, ModItems.sweet_muckball.get(), 250);
+        addItemToMap(map, ModItems.sweet_muckball, 250);
         addItemToMap(map, ModBlocks.frail_glitter_block.get(), 1000);
         addItemToMap(map, ModBlocks.thick_glitter_block.get(), 2000);
         addItemToMap(map, ModBlocks.gummy_glitter_block.get(), 4000);
@@ -141,11 +141,11 @@ public class RestructurerTileEntity extends LockableTileEntity implements ISided
     /** Burn times for the second slot */
     public static Map<Item, Integer> getSecondFuelBurnTime() {
         Map<Item, Integer> map = Maps.newLinkedHashMap();
-        addItemToMap(map, ModItems.pink_essence.get(), 100);
-        addItemToMap(map, ModItems.pink_goo.get(), 900);
+        addItemToMap(map, ModItems.pink_essence, 100);
+        addItemToMap(map, ModItems.pink_goo, 900);
         addItemToMap(map, ModBlocks.pink_sludge_block.get(), 8100);
-        addItemToMap(map, ModItems.aura_residue.get(), 200);
-        addItemToMap(map, ModItems.aura_cluster.get(), 1800);
+        addItemToMap(map, ModItems.aura_residue, 200);
+        addItemToMap(map, ModItems.aura_cluster, 1800);
         addItemToMap(map, ModBlocks.aura_block.get(), 16200);
         return map;
     }

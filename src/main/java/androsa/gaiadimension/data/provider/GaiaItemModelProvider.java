@@ -33,17 +33,17 @@ public abstract class GaiaItemModelProvider extends ItemModelProvider {
                 .texture("layer0", modLoc("block/" + blockName(block)));
     }
 
-    public ItemModelBuilder basicItem(Supplier<? extends Item> item) {
-        return withExistingParent(item.get().getRegistryName().getPath(), mcLoc("item/generated"))
-                .texture("layer0", modLoc("item/" + item.get().getRegistryName().getPath()));
+    public ItemModelBuilder basicItem(Item item) {
+        return withExistingParent(item.getRegistryName().getPath(), mcLoc("item/generated"))
+                .texture("layer0", modLoc("item/" + item.getRegistryName().getPath()));
     }
 
-    public ItemModelBuilder eggItem(Supplier<? extends Item> item) {
-        return withExistingParent(item.get().getRegistryName().getPath(), mcLoc("item/template_spawn_egg"));
+    public ItemModelBuilder eggItem(Item item) {
+        return withExistingParent(item.getRegistryName().getPath(), mcLoc("item/template_spawn_egg"));
     }
 
-    public ItemModelBuilder geodeItem(Supplier<? extends Item> item) {
-        return withExistingParent(item.get().getRegistryName().getPath(), mcLoc("item/generated"))
+    public ItemModelBuilder geodeItem(Item item) {
+        return withExistingParent(item.getRegistryName().getPath(), mcLoc("item/generated"))
                 .texture("layer0", modLoc("item/geode"));
     }
 }

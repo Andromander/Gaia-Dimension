@@ -6,8 +6,6 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.item.BucketItem;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraftforge.fluids.*;
 
 import java.util.function.Supplier;
 
@@ -19,7 +17,7 @@ public class ScaynyxBucketItem extends BucketItem {
 
     @Override
     protected ItemStack emptyBucket(ItemStack stack, PlayerEntity entity) {
-        return !entity.abilities.isCreativeMode ? new ItemStack(ModItems.scaynyx_bucket.get()) : stack;
+        return !entity.abilities.isCreativeMode ? new ItemStack(ModItems.scaynyx_bucket) : stack;
     }
 
     /*

@@ -69,7 +69,7 @@ public class ThrownPebbleEntity extends ProjectileItemEntity {
 
     @Override
     protected Item getDefaultItem() {
-        return ModItems.sturdy_pebble.get();
+        return ModItems.sturdy_pebble;
     }
 
     @Override
