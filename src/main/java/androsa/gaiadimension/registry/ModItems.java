@@ -44,11 +44,11 @@ public class ModItems {
     public static final Item agate_fabric = registerBasicItem("agate_fabric");
     public static final Item sturdy_pebble = RegistryHelper.registerItem("sturdy_pebble", new SturdyPebbleItem());
     public static final Item scaynyx_bucket = RegistryHelper.registerItem("scaynyx_bucket", new ScaynyxBucketItem(() -> Fluids.EMPTY));
-    public static final Item mineral_water_bucket = RegistryHelper.registerItem("mineral_water_bucket", new ScaynyxBucketItem(ModFluids.mineral_water_still::get));
-    public static final Item superhot_magma_bucket = RegistryHelper.registerItem("superhot_magma_bucket", new ScaynyxBucketItem(ModFluids.superhot_magma_still::get));
-    public static final Item sweet_muck_bucket = RegistryHelper.registerItem("sweet_muck_bucket", new ScaynyxBucketItem(ModFluids.sweet_muck_still::get));
-    public static final Item liquid_bismuth_bucket = RegistryHelper.registerItem("liquid_bismuth_bucket", new ScaynyxBucketItem(ModFluids.liquid_bismuth_still::get));
-    public static final Item liquid_aura_bucket = RegistryHelper.registerItem("liquid_aura_bucket", new ScaynyxBucketItem(ModFluids.liquid_aura_still::get));
+    public static final Item mineral_water_bucket = RegistryHelper.registerItem("mineral_water_bucket", new ScaynyxBucketItem(() -> ModFluids.mineral_water_still));
+    public static final Item superhot_magma_bucket = RegistryHelper.registerItem("superhot_magma_bucket", new ScaynyxBucketItem(() -> ModFluids.superhot_magma_still));
+    public static final Item sweet_muck_bucket = RegistryHelper.registerItem("sweet_muck_bucket", new ScaynyxBucketItem(() -> ModFluids.sweet_muck_still));
+    public static final Item liquid_bismuth_bucket = RegistryHelper.registerItem("liquid_bismuth_bucket", new ScaynyxBucketItem(() -> ModFluids.liquid_bismuth_still));
+    public static final Item liquid_aura_bucket = RegistryHelper.registerItem("liquid_aura_bucket", new ScaynyxBucketItem(() -> ModFluids.liquid_aura_still));
 
     public static final Item pink_geode = registerBasicItem("pink_geode");
     public static final Item blue_geode = registerBasicItem("blue_geode");

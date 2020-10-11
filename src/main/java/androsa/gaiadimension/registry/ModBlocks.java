@@ -31,15 +31,15 @@ public class ModBlocks {
 
     //Fluids
     public static final FlowingFluidBlock mineral_water = RegistryHelper.registerBlockOnly("mineral_water",
-            new GaiaFluidBlock(ModFluids.mineral_water_still, Block.Properties.create(Material.WATER, MaterialColor.LIGHT_BLUE_TERRACOTTA)));
+            new GaiaFluidBlock(() -> ModFluids.mineral_water_still, Block.Properties.create(Material.WATER, MaterialColor.LIGHT_BLUE_TERRACOTTA)));
     public static final FlowingFluidBlock superhot_magma = RegistryHelper.registerBlockOnly("superhot_magma",
-            new GaiaFluidBlock(ModFluids.superhot_magma_still, Block.Properties.create(Material.LAVA, MaterialColor.BLUE).tickRandomly().setLightLevel((state) -> 15)));
+            new GaiaFluidBlock(() -> ModFluids.superhot_magma_still, Block.Properties.create(Material.LAVA, MaterialColor.BLUE).tickRandomly().setLightLevel((state) -> 15)));
     public static final FlowingFluidBlock sweet_muck = RegistryHelper.registerBlockOnly("sweet_muck",
-            new GaiaFluidBlock(ModFluids.sweet_muck_still, Block.Properties.create(Material.WATER, MaterialColor.PURPLE)));
+            new GaiaFluidBlock(() -> ModFluids.sweet_muck_still, Block.Properties.create(Material.WATER, MaterialColor.PURPLE)));
     public static final FlowingFluidBlock liquid_bismuth = RegistryHelper.registerBlockOnly("liquid_bismuth",
-            new GaiaFluidBlock(ModFluids.liquid_bismuth_still, Block.Properties.create(Material.LAVA).tickRandomly().setLightLevel((state) -> 3)));
+            new GaiaFluidBlock(() -> ModFluids.liquid_bismuth_still, Block.Properties.create(Material.LAVA).tickRandomly().setLightLevel((state) -> 3)));
     public static final FlowingFluidBlock liquid_aura = RegistryHelper.registerBlockOnly("liquid_aura",
-            new GaiaFluidBlock(ModFluids.liquid_aura_still, Block.Properties.create(Material.WATER)));
+            new GaiaFluidBlock(() -> ModFluids.liquid_aura_still, Block.Properties.create(Material.WATER)));
 
     //Natural Blocks
     public static final Block heavy_soil = RegistryHelper.registerBlock("heavy_soil", new GaiaSoilBlock(GaiaBlockProperties.soilProps(MaterialColor.PURPLE_TERRACOTTA)));

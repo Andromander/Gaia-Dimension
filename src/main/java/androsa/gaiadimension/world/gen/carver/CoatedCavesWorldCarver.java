@@ -25,7 +25,7 @@ public class CoatedCavesWorldCarver<T extends ProbabilityConfig> extends WorldCa
     public CoatedCavesWorldCarver(Codec<T> config, int height) {
         super(config, height);
         carvableBlocks = ImmutableSet.of(ModBlocks.glitter_grass, ModBlocks.corrupt_grass, ModBlocks.murky_grass, ModBlocks.soft_grass, ModBlocks.heavy_soil, ModBlocks.corrupt_soil, ModBlocks.boggy_soil, ModBlocks.light_soil, ModBlocks.saltstone, ModBlocks.gaia_stone, ModBlocks.wasteland_stone, ModBlocks.volcanic_rock, ModBlocks.primal_mass);
-        carvableFluids = ImmutableSet.of(ModFluids.mineral_water_s);
+        carvableFluids = ImmutableSet.of(ModFluids.mineral_water_still);
     }
 
     @Override

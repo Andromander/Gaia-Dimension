@@ -5,6 +5,7 @@ import com.google.common.collect.Lists;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
+import net.minecraft.fluid.Fluid;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.ContainerType;
 import net.minecraft.item.BlockItem;
@@ -25,6 +26,7 @@ public class RegistryHelper {
     public static final List<Item> ITEMS = Lists.newArrayList();
     public static final List<ContainerType<?>> CONTAINER_TYPES = Lists.newArrayList();
     public static final List<EntityType<?>> ENTITY_TYPES = Lists.newArrayList();
+    public static final List<Fluid> FLUIDS = Lists.newArrayList();
 
     public static <T extends Block> T registerBlockOnly(String name, T block) {
         block.setRegistryName(name);
@@ -83,6 +85,12 @@ public class RegistryHelper {
         return entity;
     }
 
+    public static <T extends Fluid> T registerFluid(String name, T fluid) {
+        fluid.setRegistryName(name);
+        FLUIDS.add(fluid);
+        return fluid;
+    }
+
     @SubscribeEvent
     public static void registerBlocks(RegistryEvent.Register<Block> event) {
         IForgeRegistry<Block> registry = event.getRegistry();
@@ -104,6 +112,14 @@ public class RegistryHelper {
         IForgeRegistry<ContainerType<?>> registry = event.getRegistry();
         for (ContainerType<?> container : CONTAINER_TYPES) {
             registry.register(container);
+        }
+    }
+
+    @SubscribeEvent
+    public static void registerFluids(RegistryEvent.Register<Fluid> event) {
+        IForgeRegistry<Fluid> registry = event.getRegistry();
+        for (Fluid fluid : FLUIDS) {
+            registry.register(fluid);
         }
     }
 }

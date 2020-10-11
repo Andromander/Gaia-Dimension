@@ -269,10 +269,10 @@ public class ClientEvents {
         renderBlock(ModBlocks.potted_aura_sapling, cutout);
         renderBlock(ModBlocks.malachite_guard_spawner, cutout);
 
-        RenderTypeLookup.setRenderLayer(ModFluids.mineral_water_flow.get(), RenderType.getTranslucent());
-        RenderTypeLookup.setRenderLayer(ModFluids.mineral_water_still.get(), RenderType.getTranslucent());
-        RenderTypeLookup.setRenderLayer(ModFluids.sweet_muck_flow.get(), RenderType.getTranslucent());
-        RenderTypeLookup.setRenderLayer(ModFluids.sweet_muck_still.get(), RenderType.getTranslucent());
+        RenderTypeLookup.setRenderLayer(ModFluids.mineral_water_flow, RenderType.getTranslucent());
+        RenderTypeLookup.setRenderLayer(ModFluids.mineral_water_still, RenderType.getTranslucent());
+        RenderTypeLookup.setRenderLayer(ModFluids.sweet_muck_flow, RenderType.getTranslucent());
+        RenderTypeLookup.setRenderLayer(ModFluids.sweet_muck_still, RenderType.getTranslucent());
     }
 
     private static void renderBlock(Block block, RenderType render) {
