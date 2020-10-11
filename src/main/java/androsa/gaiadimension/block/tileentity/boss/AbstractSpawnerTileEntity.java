@@ -39,7 +39,7 @@ public abstract class AbstractSpawnerTileEntity<T extends MobEntity> extends Til
                 double yPos = (double)pos.getY() + 0.5D + (random.nextDouble() - 0.5D);
                 double zPos = (double)pos.getZ() + 0.5D + (random.nextDouble() - 0.5D);
 
-                world.addParticle(ModParticles.SPAWNER_CORE.get(), xPos, yPos, zPos, r, g, b);
+                world.addParticle(ModParticles.SPAWNER_CORE, xPos, yPos, zPos, r, g, b);
             } else {
                 //SERVER: Spawning logic
                 if (world.getDifficulty() != Difficulty.PEACEFUL) {

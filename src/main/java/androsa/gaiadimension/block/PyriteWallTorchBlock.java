@@ -27,6 +27,6 @@ public class PyriteWallTorchBlock extends WallTorchBlock {
         double d0 = 0.22D;
         double d1 = 0.27D;
         Direction opposite = direction.getOpposite();
-        world.addParticle(ModParticles.PYRITE.get(), dx + d1 * (double)opposite.getXOffset(), dy + d0, dz + d1 * (double)opposite.getZOffset(), 0.0D, 0.0D, 0.0D);
+        world.addParticle(ModParticles.PYRITE, dx + d1 * (double)opposite.getXOffset(), dy + d0, dz + d1 * (double)opposite.getZOffset(), 0.0D, 0.0D, 0.0D);
     }
 }

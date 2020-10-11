@@ -12,6 +12,7 @@ import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.WallOrFloorItem;
+import net.minecraft.particles.ParticleType;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -27,6 +28,7 @@ public class RegistryHelper {
     public static final List<ContainerType<?>> CONTAINER_TYPES = Lists.newArrayList();
     public static final List<EntityType<?>> ENTITY_TYPES = Lists.newArrayList();
     public static final List<Fluid> FLUIDS = Lists.newArrayList();
+    public static final List<ParticleType<?>> PARTICLE_TYPES = Lists.newArrayList();
 
     public static <T extends Block> T registerBlockOnly(String name, T block) {
         block.setRegistryName(name);
@@ -85,6 +87,12 @@ public class RegistryHelper {
         return entity;
     }
 
+    public static <T extends ParticleType<?>> T registerParticle(String name, T particle) {
+        particle.setRegistryName(name);
+        PARTICLE_TYPES.add(particle);
+        return particle;
+    }
+
     public static <T extends Fluid> T registerFluid(String name, T fluid) {
         fluid.setRegistryName(name);
         FLUIDS.add(fluid);
@@ -128,6 +136,14 @@ public class RegistryHelper {
         IForgeRegistry<Fluid> registry = event.getRegistry();
         for (Fluid fluid : FLUIDS) {
             registry.register(fluid);
+        }
+    }
+
+    @SubscribeEvent
+    public static void registerParticles(RegistryEvent.Register<ParticleType<?>> event) {
+        IForgeRegistry<ParticleType<?>> registry = event.getRegistry();
+        for (ParticleType<?> particle : PARTICLE_TYPES) {
+            registry.register(particle);
         }
     }
 }

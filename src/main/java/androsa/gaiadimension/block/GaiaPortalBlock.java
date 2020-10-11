@@ -171,7 +171,7 @@ public class GaiaPortalBlock extends Block {
                 sZ = (double)(rand.nextFloat() * 2.0F * (float)mul);
             }
 
-            worldIn.addParticle(ModParticles.PORTAL.get(), x, y, z, sX, sY, sZ);
+            worldIn.addParticle(ModParticles.PORTAL, x, y, z, sX, sY, sZ);
         }
     }
 

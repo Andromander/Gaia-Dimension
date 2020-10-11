@@ -51,7 +51,7 @@ public class ThrownPebbleEntity extends ProjectileItemEntity {
     @OnlyIn(Dist.CLIENT)
     private IParticleData func_213887_n() {
         ItemStack itemstack = this.func_213882_k();
-        return itemstack.isEmpty() ? ModParticles.ITEM_PEBBLE.get() : new ItemParticleData(ParticleTypes.ITEM, itemstack);
+        return itemstack.isEmpty() ? ModParticles.ITEM_PEBBLE : new ItemParticleData(ParticleTypes.ITEM, itemstack);
     }
 
     @Override
