@@ -27,16 +27,12 @@ import net.minecraft.world.gen.feature.template.StructureProcessor;
 import net.minecraft.world.gen.surfacebuilders.SurfaceBuilder;
 import net.minecraft.world.gen.surfacebuilders.SurfaceBuilderConfig;
 import net.minecraftforge.fml.RegistryObject;
-import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.ObjectHolder;
 
 import java.util.Locale;
 
 @ObjectHolder(GaiaDimensionMod.MODID)
 public class ModWorldgen {
-
-    public static final DeferredRegister<WorldCarver<?>> WORLD_CARVERS = DeferredRegister.create(ForgeRegistries.WORLD_CARVERS, GaiaDimensionMod.MODID);
 
     public static final IStructureProcessorType BLOCK_DEGRADE = registerProcessor("block_degrade", BlockDegradeProcessor.CODEC);
     public static final IStructureProcessorType MALACHITE_DEGRADE = registerProcessor("malachite_degrade", MalachiteDegradeProcessor.CODEC);
@@ -75,10 +71,8 @@ public class ModWorldgen {
     public static final SurfaceBuilder<SurfaceBuilderConfig> STATIC = RegistryHelper.registerSurfaceBuilder("static", new WastelandSurfaceBuilder<>(SurfaceBuilderConfig.field_237203_a_));
 
     //WorldCarver
-    public static final RegistryObject<WorldCarver<ProbabilityConfig>> CRYSTAL_CAVES = WORLD_CARVERS.register(
-            "crystal_caves", () -> new CoatedCavesWorldCarver<>(ProbabilityConfig.field_236576_b_, 256));
-    public static final RegistryObject<WorldCarver<ProbabilityConfig>> CHASMS = WORLD_CARVERS.register(
-            "chasms", () -> new ChasmsWorldCarver<>(ProbabilityConfig.field_236576_b_, 32));
+    public static final WorldCarver<ProbabilityConfig> CRYSTAL_CAVES = RegistryHelper.registerWorldCarver("crystal_caves", new CoatedCavesWorldCarver<>(ProbabilityConfig.field_236576_b_, 256));
+    public static final WorldCarver<ProbabilityConfig> CHASMS = RegistryHelper.registerWorldCarver("chasms", new ChasmsWorldCarver<>(ProbabilityConfig.field_236576_b_, 32));
 
     private static <P extends StructureProcessor> IStructureProcessorType<P> registerProcessor(String name, Codec<P> processor) {
         return Registry.register(Registry.STRUCTURE_PROCESSOR, new ResourceLocation(GaiaDimensionMod.MODID, name), () -> processor);

@@ -164,8 +164,8 @@ public final class GaiaBiomeFeatures {
     public static final ConfiguredSurfaceBuilder<SurfaceBuilderConfig> v_glitter_heavy_volrock = registerSurfaceBuilder("volcanic_grass", ModWorldgen.VOLCANIC.func_242929_a(GLITTER_HEAVY_VOLROCK));
 
     //Carvers
-    public static final ConfiguredCarver<ProbabilityConfig> crystal_caves = registerCarver("crystal_caves", ModWorldgen.CRYSTAL_CAVES.get().func_242761_a(new ProbabilityConfig(0.15F)));
-    public static final ConfiguredCarver<ProbabilityConfig> chasms = registerCarver("chasms", ModWorldgen.CHASMS.get().func_242761_a(new ProbabilityConfig(0.03F)));
+    public static final ConfiguredCarver<ProbabilityConfig> crystal_caves = registerCarver("crystal_caves", ModWorldgen.CRYSTAL_CAVES.func_242761_a(new ProbabilityConfig(0.15F)));
+    public static final ConfiguredCarver<ProbabilityConfig> chasms = registerCarver("chasms", ModWorldgen.CHASMS.func_242761_a(new ProbabilityConfig(0.03F)));
 
     //StructureFeatures
     public static final StructureFeature<NoFeatureConfig, ? extends Structure<NoFeatureConfig>> mini_tower = registerStructureFeature("mini_tower", ModWorldgen.MINI_TOWER.func_236391_a_(NoFeatureConfig.field_236559_b_));

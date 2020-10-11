@@ -66,9 +66,9 @@ public class GaiaDimensionMod {
 //      ModRecipes.RECIPE_SERIALIZERS.register(modEventBus);
 //      ModTileEntities.TILE_ENTITIES.register(modEventBus);
 //      ModWorldgen.FEATURES.register(modEventBus);
-        ModWorldgen.WORLD_CARVERS.register(modEventBus);
 //      ModWorldgen.STRUCTURE_FEATURES.register(modEventBus);
 //      ModWorldgen.SURFACE_BUILDERS.register(modEventBus);
+//      ModWorldgen.WORLD_CARVERS.register(modEventBus);
 
         final Pair<ModGaiaConfig.ClientConfig, ForgeConfigSpec> specPairC = new ForgeConfigSpec.Builder().configure(ModGaiaConfig.ClientConfig::new);
         final Pair<ModGaiaConfig.ServerConfig, ForgeConfigSpec> specPairS = new ForgeConfigSpec.Builder().configure(ModGaiaConfig.ServerConfig::new);

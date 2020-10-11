@@ -15,9 +15,11 @@ import net.minecraft.item.WallOrFloorItem;
 import net.minecraft.particles.ParticleType;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityType;
+import net.minecraft.world.gen.carver.WorldCarver;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.IFeatureConfig;
 import net.minecraft.world.gen.feature.NoFeatureConfig;
+import net.minecraft.world.gen.feature.ProbabilityConfig;
 import net.minecraft.world.gen.feature.structure.Structure;
 import net.minecraft.world.gen.surfacebuilders.SurfaceBuilder;
 import net.minecraft.world.gen.surfacebuilders.SurfaceBuilderConfig;
@@ -42,6 +44,7 @@ public class RegistryHelper {
     public static final List<Feature<?>> FEATURES = Lists.newArrayList();
     public static final List<Structure<?>> STRUCTURES = Lists.newArrayList();
     public static final List<SurfaceBuilder<?>> SURFACE_BUILDERS = Lists.newArrayList();
+    public static final List<WorldCarver<?>> WORLD_CARVERS = Lists.newArrayList();
 
     public static <T extends Block> T registerBlockOnly(String name, T block) {
         block.setRegistryName(name);
@@ -137,6 +140,13 @@ public class RegistryHelper {
         SURFACE_BUILDERS.add(surface);
         return surface;
     }
+
+    public static WorldCarver<ProbabilityConfig> registerWorldCarver(String name, WorldCarver<ProbabilityConfig> surface) {
+        surface.setRegistryName(name);
+        WORLD_CARVERS.add(surface);
+        return surface;
+    }
+
     @SubscribeEvent
     public static void registerBlocks(RegistryEvent.Register<Block> event) {
         IForgeRegistry<Block> registry = event.getRegistry();
@@ -214,6 +224,14 @@ public class RegistryHelper {
         IForgeRegistry<SurfaceBuilder<?>> registry = event.getRegistry();
         for (SurfaceBuilder<?> surface : SURFACE_BUILDERS) {
             registry.register(surface);
+        }
+    }
+
+    @SubscribeEvent
+    public static void registerWorldCarvers(RegistryEvent.Register<WorldCarver<?>> event) {
+        IForgeRegistry<WorldCarver<?>> registry = event.getRegistry();
+        for (WorldCarver<?> carvers : WORLD_CARVERS) {
+            registry.register(carvers);
         }
     }
 }
