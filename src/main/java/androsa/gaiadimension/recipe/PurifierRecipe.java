@@ -37,6 +37,11 @@ public class PurifierRecipe implements IRecipe<IInventory> {
     }
 
     @Override
+    public boolean isDynamic() {
+        return false;
+    }
+
+    @Override
     public boolean matches(IInventory inv, World worldIn) {
         return this.ingredient.test(inv.getStackInSlot(0));
     }
@@ -95,6 +100,6 @@ public class PurifierRecipe implements IRecipe<IInventory> {
 
     @Override
     public IRecipeSerializer<?> getSerializer() {
-        return ModRecipes.PURIFYING_SERIALIZER.get();
+        return ModRecipes.PURIFYING_SERIALIZER;
     }
 }
