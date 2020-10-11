@@ -18,7 +18,6 @@ import androsa.gaiadimension.world.surface.WastelandSurfaceBuilder;
 import com.mojang.serialization.Codec;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.registry.Registry;
-import net.minecraft.util.registry.WorldGenRegistries;
 import net.minecraft.world.gen.carver.WorldCarver;
 import net.minecraft.world.gen.feature.*;
 import net.minecraft.world.gen.feature.structure.IStructurePieceType;
@@ -48,44 +47,25 @@ public class ModWorldgen {
     public static final IStructurePieceType MAWA = registerPiece("MAWA", MalachiteWatchtowerPieces.Piece::new);
 
     //Feature
-    public static final RegistryObject<Feature<BlockStateFeatureConfig>> POOL = FEATURES.register(
-            "pool", () -> new GaiaLakesFeature<>(BlockStateFeatureConfig.field_236455_a_));
-    public static final RegistryObject<Feature<GaiaTreeFeatureConfig>> PINK_AGATE_TREE = FEATURES.register(
-            "pink_agate_tree", () -> new PinkAgateTreeFeature<>(GaiaTreeFeatureConfig.CODEC));
-    public static final RegistryObject<Feature<GaiaTreeFeatureConfig>> BLUE_AGATE_TREE = FEATURES.register(
-            "blue_agate_tree", () -> new BlueAgateTreeFeature<>(GaiaTreeFeatureConfig.CODEC));
-    public static final RegistryObject<Feature<GaiaTreeFeatureConfig>> GREEN_AGATE_TREE = FEATURES.register(
-            "green_agate_tree", () -> new GreenAgateTreeFeature<>(GaiaTreeFeatureConfig.CODEC));
-    public static final RegistryObject<Feature<GaiaTreeFeatureConfig>> PURPLE_AGATE_TREE = FEATURES.register(
-            "purple_agate_tree", () -> new PurpleAgateTreeFeature<>(GaiaTreeFeatureConfig.CODEC));
-    public static final RegistryObject<Feature<GaiaTreeFeatureConfig>> FOSSILIZED_TREE = FEATURES.register(
-            "fossilized_tree", () -> new FossilizedTreeFeature<>(GaiaTreeFeatureConfig.CODEC));
-    public static final RegistryObject<Feature<GaiaTreeFeatureConfig>> GOLDSTONE_TREE = FEATURES.register(
-            "goldstone_tree", () -> new GoldstoneCorruptTreeFeature<>(GaiaTreeFeatureConfig.CODEC));
-    public static final RegistryObject<Feature<GaiaTreeFeatureConfig>> BURNT_AGATE_TREE = FEATURES.register(
-            "burnt_agate_tree", () -> new BurntAgateTreeFeature<>(GaiaTreeFeatureConfig.CODEC));
-    public static final RegistryObject<Feature<GaiaTreeFeatureConfig>> FIERY_AGATE_TREE = FEATURES.register(
-            "fiery_agate_tree", () -> new FieryAgateTreeFeature<>(GaiaTreeFeatureConfig.CODEC));
-    public static final RegistryObject<Feature<GaiaTreeFeatureConfig>> AURA_TREE = FEATURES.register(
-            "aura_tree", () -> new AuraTreeFeature<>(GaiaTreeFeatureConfig.CODEC));
-//    public static final RegistryObject<Feature<BaseTreeFeatureConfig>> GREEN_AGATE_BUSH = FEATURES.register(
-//            "green_agate_bush", () -> new ShrubFeature(BaseTreeFeatureConfig::deserialize));
-    public static final RegistryObject<Feature<NoFeatureConfig>> AURA_SHOOT = FEATURES.register(
-            "aura_shoot", () -> new AuraShootsFeature<>(NoFeatureConfig.field_236558_a_));
-    public static final RegistryObject<Feature<SphereReplaceConfig>> BOG_PATCH = FEATURES.register(
-            "bog_patch", () -> new BogPatchFeature<>(SphereReplaceConfig.field_236516_a_));
-    public static final RegistryObject<Feature<FeatureHeightConfig>> BISMUTH_SPIRE = FEATURES.register(
-            "bismuth_spire", () -> new BismuthSpireFeature<>(FeatureHeightConfig.CODEC));
-    public static final RegistryObject<Feature<NoFeatureConfig>> BISMUTH_GEYSER = FEATURES.register(
-            "bismuth_geyser", () -> new BismuthGeyserFeature<>(NoFeatureConfig.field_236558_a_));
-    public static final RegistryObject<Feature<FeatureHeightConfig>> STATIC_SPIKE = FEATURES.register(
-            "static_spike", () -> new StaticSpikeFeature<>(FeatureHeightConfig.CODEC));
-    public static final RegistryObject<Feature<NoFeatureConfig>> FRAIL_BLOB = FEATURES.register(
-            "frail_blob", () -> new FrailGlitterBlobFeature<>(NoFeatureConfig.field_236558_a_));
-    public static final RegistryObject<Feature<SphereReplaceConfig>> GAIA_DISK = FEATURES.register(
-            "gaia_disk", () -> new DiskNoWaterFeature<>(SphereReplaceConfig.field_236516_a_));
-    public static final RegistryObject<Feature<BlockStateFeatureConfig>> GAIA_BLOB = FEATURES.register(
-            "gaia_blob", () -> new GaiaBlobFeature<>(BlockStateFeatureConfig.field_236455_a_));
+    public static final Feature<BlockStateFeatureConfig> POOL = RegistryHelper.registerFeature("pool", new GaiaLakesFeature<>(BlockStateFeatureConfig.field_236455_a_));
+    public static final Feature<GaiaTreeFeatureConfig> PINK_AGATE_TREE = RegistryHelper.registerFeature("pink_agate_tree", new PinkAgateTreeFeature<>(GaiaTreeFeatureConfig.CODEC));
+    public static final Feature<GaiaTreeFeatureConfig> BLUE_AGATE_TREE = RegistryHelper.registerFeature("blue_agate_tree", new BlueAgateTreeFeature<>(GaiaTreeFeatureConfig.CODEC));
+    public static final Feature<GaiaTreeFeatureConfig> GREEN_AGATE_TREE = RegistryHelper.registerFeature("green_agate_tree", new GreenAgateTreeFeature<>(GaiaTreeFeatureConfig.CODEC));
+    public static final Feature<GaiaTreeFeatureConfig> PURPLE_AGATE_TREE = RegistryHelper.registerFeature("purple_agate_tree", new PurpleAgateTreeFeature<>(GaiaTreeFeatureConfig.CODEC));
+    public static final Feature<GaiaTreeFeatureConfig> FOSSILIZED_TREE = RegistryHelper.registerFeature("fossilized_tree", new FossilizedTreeFeature<>(GaiaTreeFeatureConfig.CODEC));
+    public static final Feature<GaiaTreeFeatureConfig> GOLDSTONE_TREE = RegistryHelper.registerFeature("goldstone_tree", new GoldstoneCorruptTreeFeature<>(GaiaTreeFeatureConfig.CODEC));
+    public static final Feature<GaiaTreeFeatureConfig> BURNT_AGATE_TREE = RegistryHelper.registerFeature("burnt_agate_tree", new BurntAgateTreeFeature<>(GaiaTreeFeatureConfig.CODEC));
+    public static final Feature<GaiaTreeFeatureConfig> FIERY_AGATE_TREE = RegistryHelper.registerFeature("fiery_agate_tree", new FieryAgateTreeFeature<>(GaiaTreeFeatureConfig.CODEC));
+    public static final Feature<GaiaTreeFeatureConfig> AURA_TREE = RegistryHelper.registerFeature("aura_tree", new AuraTreeFeature<>(GaiaTreeFeatureConfig.CODEC));
+//  public static final Feature<BaseTreeFeatureConfig> GREEN_AGATE_BUSH = RegistryHelper.registerFeature()("green_agate_bush", new ShrubFeature(BaseTreeFeatureConfig::deserialize));
+    public static final Feature<NoFeatureConfig> AURA_SHOOT = RegistryHelper.registerFeature("aura_shoot", new AuraShootsFeature<>(NoFeatureConfig.field_236558_a_));
+    public static final Feature<SphereReplaceConfig> BOG_PATCH = RegistryHelper.registerFeature("bog_patch", new BogPatchFeature<>(SphereReplaceConfig.field_236516_a_));
+    public static final Feature<FeatureHeightConfig> BISMUTH_SPIRE = RegistryHelper.registerFeature("bismuth_spire", new BismuthSpireFeature<>(FeatureHeightConfig.CODEC));
+    public static final Feature<NoFeatureConfig> BISMUTH_GEYSER = RegistryHelper.registerFeature("bismuth_geyser", new BismuthGeyserFeature<>(NoFeatureConfig.field_236558_a_));
+    public static final Feature<FeatureHeightConfig> STATIC_SPIKE = RegistryHelper.registerFeature("static_spike", new StaticSpikeFeature<>(FeatureHeightConfig.CODEC));
+    public static final Feature<NoFeatureConfig> FRAIL_BLOB = RegistryHelper.registerFeature("frail_blob", new FrailGlitterBlobFeature<>(NoFeatureConfig.field_236558_a_));
+    public static final Feature<SphereReplaceConfig> GAIA_DISK = RegistryHelper.registerFeature("gaia_disk", new DiskNoWaterFeature<>(SphereReplaceConfig.field_236516_a_));
+    public static final Feature<BlockStateFeatureConfig> GAIA_BLOB = RegistryHelper.registerFeature("gaia_blob", new GaiaBlobFeature<>(BlockStateFeatureConfig.field_236455_a_));
 
     //Structures
     public static final Structure<NoFeatureConfig> MINI_TOWER = RegistryHelper.registerStructure("mini_tower", new MiniTowerStructure<>(NoFeatureConfig.field_236558_a_));
