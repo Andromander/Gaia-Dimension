@@ -48,7 +48,7 @@ public class CorruptionEffect extends Effect {
 
     @SubscribeEvent
     public static void onEntityHurt(LivingDamageEvent e) {
-        if (e.getEntityLiving().isPotionActive(ModEffects.goldstone_plague.get()) &&
+        if (e.getEntityLiving().isPotionActive(ModEffects.goldstone_plague) &&
                 e.getSource() == DamageSource.causeMobDamage((LivingEntity)e.getSource().getTrueSource())) {
 
             if (e.getEntityLiving().getCreatureAttribute() != GaiaDimensionMod.CORRUPT &&

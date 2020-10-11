@@ -12,10 +12,10 @@ import net.minecraftforge.registries.ObjectHolder;
 @ObjectHolder(value = GaiaDimensionMod.MODID)
 public class ModEffects {
 
-    public static final Effect corrupt = new CorruptionEffect(0xF68414, 4.0D);
+    public static final Effect goldstone_plague = new CorruptionEffect(0xF68414, 4.0D);
 
     @SubscribeEvent
     public static void registerEffects(RegistryEvent.Register<Effect> event) {
-        event.getRegistry().register(corrupt.setRegistryName("goldstone_plague"));
+        event.getRegistry().register(goldstone_plague.setRegistryName("goldstone_plague"));
     }
 }
