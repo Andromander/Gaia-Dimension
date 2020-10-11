@@ -116,6 +116,14 @@ public class RegistryHelper {
     }
 
     @SubscribeEvent
+    public static void registerEntityTypes(RegistryEvent.Register<EntityType<?>> event) {
+        IForgeRegistry<EntityType<?>> registry = event.getRegistry();
+        for (EntityType<?> entity : ENTITY_TYPES) {
+            registry.register(entity);
+        }
+    }
+
+    @SubscribeEvent
     public static void registerFluids(RegistryEvent.Register<Fluid> event) {
         IForgeRegistry<Fluid> registry = event.getRegistry();
         for (Fluid fluid : FLUIDS) {
