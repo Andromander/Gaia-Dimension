@@ -97,7 +97,7 @@ public class RestructurerTileEntity extends LockableTileEntity implements ISided
     private final Map<ResourceLocation, Integer> recipeMap = Maps.newHashMap();
 
     public RestructurerTileEntity() {
-        super(ModTileEntities.RESTRUCTURER.get());
+        super(ModTileEntities.RESTRUCTURER);
     }
 
     @Override

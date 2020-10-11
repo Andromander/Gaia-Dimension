@@ -12,7 +12,7 @@ import net.minecraft.util.text.TranslationTextComponent;
 public class GaiaStoneFurnaceTileEntity extends AbstractFurnaceTileEntity {
 
     public GaiaStoneFurnaceTileEntity() {
-        super(ModTileEntities.GAIA_STONE_FURNACE.get(), IRecipeType.SMELTING);
+        super(ModTileEntities.GAIA_STONE_FURNACE, IRecipeType.SMELTING);
     }
 
     protected ITextComponent getDefaultName() {

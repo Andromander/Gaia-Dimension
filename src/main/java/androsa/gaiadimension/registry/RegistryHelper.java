@@ -13,12 +13,15 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.WallOrFloorItem;
 import net.minecraft.particles.ParticleType;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.tileentity.TileEntityType;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.IForgeRegistry;
 
 import java.util.List;
+import java.util.Set;
 
 @Mod.EventBusSubscriber(modid = GaiaDimensionMod.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class RegistryHelper {
@@ -29,6 +32,7 @@ public class RegistryHelper {
     public static final List<EntityType<?>> ENTITY_TYPES = Lists.newArrayList();
     public static final List<Fluid> FLUIDS = Lists.newArrayList();
     public static final List<ParticleType<?>> PARTICLE_TYPES = Lists.newArrayList();
+    public static final List<TileEntityType<?>> TILE_ENTITY_TYPES = Lists.newArrayList();
 
     public static <T extends Block> T registerBlockOnly(String name, T block) {
         block.setRegistryName(name);
@@ -99,6 +103,13 @@ public class RegistryHelper {
         return fluid;
     }
 
+    public static <T extends TileEntity> TileEntityType<T> registerTileEntity(String name, T tile, Set<Block> blocks) {
+        TileEntityType<T> type = new TileEntityType<>(() -> tile, blocks, null);
+        type.setRegistryName(name);
+        TILE_ENTITY_TYPES.add(type);
+        return type;
+    }
+
     @SubscribeEvent
     public static void registerBlocks(RegistryEvent.Register<Block> event) {
         IForgeRegistry<Block> registry = event.getRegistry();
@@ -144,6 +155,14 @@ public class RegistryHelper {
         IForgeRegistry<ParticleType<?>> registry = event.getRegistry();
         for (ParticleType<?> particle : PARTICLE_TYPES) {
             registry.register(particle);
+        }
+    }
+
+    @SubscribeEvent
+    public static void registerTileEntityTypes(RegistryEvent.Register<TileEntityType<?>> event) {
+        IForgeRegistry<TileEntityType<?>> registry = event.getRegistry();
+        for (TileEntityType<?> tileentity: TILE_ENTITY_TYPES) {
+            registry.register(tileentity);
         }
     }
 }

@@ -95,7 +95,7 @@ public class PurifierTileEntity extends LockableTileEntity implements ISidedInve
     private final Map<ResourceLocation, Integer> recipeMap = Maps.newHashMap();
 
     public PurifierTileEntity() {
-        super(ModTileEntities.PURIFIER.get());
+        super(ModTileEntities.PURIFIER);
     }
 
     @Override

@@ -7,7 +7,7 @@ import androsa.gaiadimension.registry.ModTileEntities;
 public class MalachiteGuardSpawnerTileEntity extends AbstractSpawnerTileEntity<MalachiteGuardEntity> {
 
     public MalachiteGuardSpawnerTileEntity() {
-        super(ModTileEntities.MALACHITE_SPAWNER.get(), ModEntities.MALACHITE_GUARD);
+        super(ModTileEntities.MALACHITE_SPAWNER, ModEntities.MALACHITE_GUARD);
     }
 
     @Override
