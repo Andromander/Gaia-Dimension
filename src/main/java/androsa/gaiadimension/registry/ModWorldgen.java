@@ -88,8 +88,8 @@ public class ModWorldgen {
             "gaia_blob", () -> new GaiaBlobFeature<>(BlockStateFeatureConfig.field_236455_a_));
 
     //Structures
-    public static final RegistryObject<Structure<NoFeatureConfig>> MINI_TOWER = registerStructure("mini_tower", new MiniTowerStructure<>(NoFeatureConfig.field_236558_a_));
-    public static final RegistryObject<Structure<NoFeatureConfig>> MALACHITE_WATCHTOWER = registerStructure("malachite_watchtower", new MalachiteWatchtowerStructure<>(NoFeatureConfig.field_236558_a_));
+    public static final Structure<NoFeatureConfig> MINI_TOWER = RegistryHelper.registerStructure("mini_tower", new MiniTowerStructure<>(NoFeatureConfig.field_236558_a_));
+    public static final Structure<NoFeatureConfig> MALACHITE_WATCHTOWER = RegistryHelper.registerStructure("malachite_watchtower", new MalachiteWatchtowerStructure<>(NoFeatureConfig.field_236558_a_));
 
     //SurfaceBuilder
     public static final RegistryObject<SurfaceBuilder<SurfaceBuilderConfig>> DEFAULT_GAIA = SURFACE_BUILDERS.register("default_gaia", () -> new GaiaDefaultSurfaceBuilder<>(SurfaceBuilderConfig.field_237203_a_));
@@ -108,10 +108,5 @@ public class ModWorldgen {
 
     public static IStructurePieceType registerPiece(String name, IStructurePieceType piece) {
         return Registry.register(Registry.STRUCTURE_PIECE, new ResourceLocation(GaiaDimensionMod.MODID, name.toLowerCase(Locale.ROOT)), piece);
-    }
-
-    private static <T extends Structure<?>> RegistryObject<T> registerStructure(String name, T structure) {
-        Structure.field_236365_a_.put(name, structure);
-        return STRUCTURE_FEATURES.register(name, () -> structure);
     }
 }
