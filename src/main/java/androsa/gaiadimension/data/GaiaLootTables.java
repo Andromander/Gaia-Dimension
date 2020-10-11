@@ -23,7 +23,6 @@ import java.util.Map;
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
-import java.util.stream.Collectors;
 
 public class GaiaLootTables extends LootTableProvider {
 
@@ -393,7 +392,7 @@ public class GaiaLootTables extends LootTableProvider {
 
         @Override
         protected Iterable<EntityType<?>> getKnownEntities() {
-            return ModEntities.ENTITIES.getEntries().stream().map(Supplier::get).collect(Collectors.toList());
+            return new ArrayList<>(RegistryHelper.ENTITY_TYPES);
         }
     }
 

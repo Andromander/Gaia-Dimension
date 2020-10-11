@@ -129,7 +129,7 @@ public class GaiaBlockProperties {
         return AbstractBlock.Properties.create(Material.EARTH, MaterialColor.YELLOW_TERRACOTTA)
                 .hardnessAndResistance(0.6F, 0.0F)
                 .sound(SoundType.GROUND)
-                .setAllowsSpawn((state, reader, pos, entity) -> entity == ModEntities.BISMUTH_ULETRUS.get());
+                .setAllowsSpawn((state, reader, pos, entity) -> entity == ModEntities.BISMUTH_ULETRUS);
     }
 
     public static AbstractBlock.Properties gaiaBrickProps() {

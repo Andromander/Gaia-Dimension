@@ -3,6 +3,8 @@ package androsa.gaiadimension.registry;
 import androsa.gaiadimension.GaiaDimensionMod;
 import com.google.common.collect.Lists;
 import net.minecraft.block.Block;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityType;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.ContainerType;
 import net.minecraft.item.BlockItem;
@@ -22,6 +24,7 @@ public class RegistryHelper {
     public static final List<Block> BLOCKS = Lists.newArrayList();
     public static final List<Item> ITEMS = Lists.newArrayList();
     public static final List<ContainerType<?>> CONTAINER_TYPES = Lists.newArrayList();
+    public static final List<EntityType<?>> ENTITY_TYPES = Lists.newArrayList();
 
     public static <T extends Block> T registerBlockOnly(String name, T block) {
         block.setRegistryName(name);
@@ -72,6 +75,12 @@ public class RegistryHelper {
         type.setRegistryName(name);
         CONTAINER_TYPES.add(type);
         return type;
+    }
+
+    public static <E extends Entity> EntityType<E> registerEntity(String name, EntityType<E> entity) {
+        entity.setRegistryName(name);
+        ENTITY_TYPES.add(entity);
+        return entity;
     }
 
     @SubscribeEvent
