@@ -36,7 +36,6 @@ import java.util.Locale;
 @ObjectHolder(GaiaDimensionMod.MODID)
 public class ModWorldgen {
 
-    public static final DeferredRegister<SurfaceBuilder<?>> SURFACE_BUILDERS = DeferredRegister.create(ForgeRegistries.SURFACE_BUILDERS, GaiaDimensionMod.MODID);
     public static final DeferredRegister<WorldCarver<?>> WORLD_CARVERS = DeferredRegister.create(ForgeRegistries.WORLD_CARVERS, GaiaDimensionMod.MODID);
 
     public static final IStructureProcessorType BLOCK_DEGRADE = registerProcessor("block_degrade", BlockDegradeProcessor.CODEC);
@@ -71,9 +70,9 @@ public class ModWorldgen {
     public static final Structure<NoFeatureConfig> MALACHITE_WATCHTOWER = RegistryHelper.registerStructure("malachite_watchtower", new MalachiteWatchtowerStructure<>(NoFeatureConfig.field_236558_a_));
 
     //SurfaceBuilder
-    public static final RegistryObject<SurfaceBuilder<SurfaceBuilderConfig>> DEFAULT_GAIA = SURFACE_BUILDERS.register("default_gaia", () -> new GaiaDefaultSurfaceBuilder<>(SurfaceBuilderConfig.field_237203_a_));
-    public static final RegistryObject<SurfaceBuilder<SurfaceBuilderConfig>> VOLCANIC = SURFACE_BUILDERS.register("volcanic", () -> new VolcanicSurfaceBuilder<>(SurfaceBuilderConfig.field_237203_a_));
-    public static final RegistryObject<SurfaceBuilder<SurfaceBuilderConfig>> STATIC = SURFACE_BUILDERS.register("static", () -> new WastelandSurfaceBuilder<>(SurfaceBuilderConfig.field_237203_a_));
+    public static final SurfaceBuilder<SurfaceBuilderConfig> DEFAULT_GAIA = RegistryHelper.registerSurfaceBuilder("default_gaia", new GaiaDefaultSurfaceBuilder<>(SurfaceBuilderConfig.field_237203_a_));
+    public static final SurfaceBuilder<SurfaceBuilderConfig> VOLCANIC = RegistryHelper.registerSurfaceBuilder("volcanic", new VolcanicSurfaceBuilder<>(SurfaceBuilderConfig.field_237203_a_));
+    public static final SurfaceBuilder<SurfaceBuilderConfig> STATIC = RegistryHelper.registerSurfaceBuilder("static", new WastelandSurfaceBuilder<>(SurfaceBuilderConfig.field_237203_a_));
 
     //WorldCarver
     public static final RegistryObject<WorldCarver<ProbabilityConfig>> CRYSTAL_CAVES = WORLD_CARVERS.register(

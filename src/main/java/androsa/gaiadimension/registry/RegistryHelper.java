@@ -19,6 +19,8 @@ import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.IFeatureConfig;
 import net.minecraft.world.gen.feature.NoFeatureConfig;
 import net.minecraft.world.gen.feature.structure.Structure;
+import net.minecraft.world.gen.surfacebuilders.SurfaceBuilder;
+import net.minecraft.world.gen.surfacebuilders.SurfaceBuilderConfig;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -39,6 +41,7 @@ public class RegistryHelper {
     public static final List<TileEntityType<?>> TILE_ENTITY_TYPES = Lists.newArrayList();
     public static final List<Feature<?>> FEATURES = Lists.newArrayList();
     public static final List<Structure<?>> STRUCTURES = Lists.newArrayList();
+    public static final List<SurfaceBuilder<?>> SURFACE_BUILDERS = Lists.newArrayList();
 
     public static <T extends Block> T registerBlockOnly(String name, T block) {
         block.setRegistryName(name);
@@ -129,6 +132,11 @@ public class RegistryHelper {
         return structure;
     }
 
+    public static SurfaceBuilder<SurfaceBuilderConfig> registerSurfaceBuilder(String name, SurfaceBuilder<SurfaceBuilderConfig> surface) {
+        surface.setRegistryName(name);
+        SURFACE_BUILDERS.add(surface);
+        return surface;
+    }
     @SubscribeEvent
     public static void registerBlocks(RegistryEvent.Register<Block> event) {
         IForgeRegistry<Block> registry = event.getRegistry();
@@ -198,6 +206,14 @@ public class RegistryHelper {
         IForgeRegistry<Structure<?>> registry = event.getRegistry();
         for (Structure<?> structures : STRUCTURES) {
             registry.register(structures);
+        }
+    }
+
+    @SubscribeEvent
+    public static void registerSurfaceBuilders(RegistryEvent.Register<SurfaceBuilder<?>> event) {
+        IForgeRegistry<SurfaceBuilder<?>> registry = event.getRegistry();
+        for (SurfaceBuilder<?> surface : SURFACE_BUILDERS) {
+            registry.register(surface);
         }
     }
 }

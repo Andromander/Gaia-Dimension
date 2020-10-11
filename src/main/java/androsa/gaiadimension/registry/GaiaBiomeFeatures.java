@@ -155,13 +155,13 @@ public final class GaiaBiomeFeatures {
     public static final BlockClusterFeatureConfig CAVE_FUNGI = (new BlockClusterFeatureConfig.Builder(new WeightedBlockStateProvider().addWeightedBlockstate(ELDER_IMKLIA, 2).addWeightedBlockstate(GOLD_ORB_TUCHER, 2), new SimpleBlockPlacer())).tries(64).blacklist(cave_blacklist).func_227317_b_().build();
 
     //SurfaceBuilders
-    public static final ConfiguredSurfaceBuilder<SurfaceBuilderConfig> d_glitter_heavy_salt = registerSurfaceBuilder("glitter_grass", ModWorldgen.DEFAULT_GAIA.get().func_242929_a(GLITTER_HEAVY_SALT));
-    public static final ConfiguredSurfaceBuilder<SurfaceBuilderConfig> d_corrupt_salt = registerSurfaceBuilder("corrupt_grass", ModWorldgen.DEFAULT_GAIA.get().func_242929_a(CORRUPT_SALT));
-    public static final ConfiguredSurfaceBuilder<SurfaceBuilderConfig> d_salty = registerSurfaceBuilder("salty", ModWorldgen.DEFAULT_GAIA.get().func_242929_a(SALTY_SURFACE));
-    public static final ConfiguredSurfaceBuilder<SurfaceBuilderConfig> d_murky_boggy_pebble = registerSurfaceBuilder("murky_grass", ModWorldgen.DEFAULT_GAIA.get().func_242929_a(MURKY_BOGGY_PEBBLES));
-    public static final ConfiguredSurfaceBuilder<SurfaceBuilderConfig> d_soft_light_salt = registerSurfaceBuilder("soft_grass", ModWorldgen.DEFAULT_GAIA.get().func_242929_a(SOFT_LIGHT_SALT));
-    public static final ConfiguredSurfaceBuilder<SurfaceBuilderConfig> s_wasteland_stone = registerSurfaceBuilder("wasteland_stone", ModWorldgen.STATIC.get().func_242929_a(WASTELAND_STONE_SURFACE));
-    public static final ConfiguredSurfaceBuilder<SurfaceBuilderConfig> v_glitter_heavy_volrock = registerSurfaceBuilder("volcanic_grass", ModWorldgen.VOLCANIC.get().func_242929_a(GLITTER_HEAVY_VOLROCK));
+    public static final ConfiguredSurfaceBuilder<SurfaceBuilderConfig> d_glitter_heavy_salt = registerSurfaceBuilder("glitter_grass", ModWorldgen.DEFAULT_GAIA.func_242929_a(GLITTER_HEAVY_SALT));
+    public static final ConfiguredSurfaceBuilder<SurfaceBuilderConfig> d_corrupt_salt = registerSurfaceBuilder("corrupt_grass", ModWorldgen.DEFAULT_GAIA.func_242929_a(CORRUPT_SALT));
+    public static final ConfiguredSurfaceBuilder<SurfaceBuilderConfig> d_salty = registerSurfaceBuilder("salty", ModWorldgen.DEFAULT_GAIA.func_242929_a(SALTY_SURFACE));
+    public static final ConfiguredSurfaceBuilder<SurfaceBuilderConfig> d_murky_boggy_pebble = registerSurfaceBuilder("murky_grass", ModWorldgen.DEFAULT_GAIA.func_242929_a(MURKY_BOGGY_PEBBLES));
+    public static final ConfiguredSurfaceBuilder<SurfaceBuilderConfig> d_soft_light_salt = registerSurfaceBuilder("soft_grass", ModWorldgen.DEFAULT_GAIA.func_242929_a(SOFT_LIGHT_SALT));
+    public static final ConfiguredSurfaceBuilder<SurfaceBuilderConfig> s_wasteland_stone = registerSurfaceBuilder("wasteland_stone", ModWorldgen.STATIC.func_242929_a(WASTELAND_STONE_SURFACE));
+    public static final ConfiguredSurfaceBuilder<SurfaceBuilderConfig> v_glitter_heavy_volrock = registerSurfaceBuilder("volcanic_grass", ModWorldgen.VOLCANIC.func_242929_a(GLITTER_HEAVY_VOLROCK));
 
     //Carvers
     public static final ConfiguredCarver<ProbabilityConfig> crystal_caves = registerCarver("crystal_caves", ModWorldgen.CRYSTAL_CAVES.get().func_242761_a(new ProbabilityConfig(0.15F)));
