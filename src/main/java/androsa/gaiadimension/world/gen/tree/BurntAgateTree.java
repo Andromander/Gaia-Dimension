@@ -11,6 +11,6 @@ public class BurntAgateTree extends GaiaTree {
 
     @Override
     public ConfiguredFeature<GaiaTreeFeatureConfig, ?> createTreeFeature(Random rand) {
-        return ModWorldgen.BURNT_AGATE_TREE.get().withConfiguration(GaiaBiomeFeatures.BURNT_TREE_CONFIG);
+        return ModWorldgen.BURNT_AGATE_TREE.withConfiguration(GaiaBiomeFeatures.BURNT_TREE_CONFIG);
     }
 }

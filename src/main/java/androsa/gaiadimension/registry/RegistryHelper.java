@@ -15,6 +15,8 @@ import net.minecraft.item.WallOrFloorItem;
 import net.minecraft.particles.ParticleType;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityType;
+import net.minecraft.world.gen.feature.Feature;
+import net.minecraft.world.gen.feature.IFeatureConfig;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -33,6 +35,7 @@ public class RegistryHelper {
     public static final List<Fluid> FLUIDS = Lists.newArrayList();
     public static final List<ParticleType<?>> PARTICLE_TYPES = Lists.newArrayList();
     public static final List<TileEntityType<?>> TILE_ENTITY_TYPES = Lists.newArrayList();
+    public static final List<Feature<?>> FEATURES = Lists.newArrayList();
 
     public static <T extends Block> T registerBlockOnly(String name, T block) {
         block.setRegistryName(name);
@@ -110,6 +113,12 @@ public class RegistryHelper {
         return type;
     }
 
+    public static <C extends IFeatureConfig, T extends Feature<C>> T registerFeature(String name, T feature) {
+        feature.setRegistryName(name);
+        FEATURES.add(feature);
+        return feature;
+    }
+
     @SubscribeEvent
     public static void registerBlocks(RegistryEvent.Register<Block> event) {
         IForgeRegistry<Block> registry = event.getRegistry();
@@ -161,8 +170,16 @@ public class RegistryHelper {
     @SubscribeEvent
     public static void registerTileEntityTypes(RegistryEvent.Register<TileEntityType<?>> event) {
         IForgeRegistry<TileEntityType<?>> registry = event.getRegistry();
-        for (TileEntityType<?> tileentity: TILE_ENTITY_TYPES) {
+        for (TileEntityType<?> tileentity : TILE_ENTITY_TYPES) {
             registry.register(tileentity);
+        }
+    }
+
+    @SubscribeEvent
+    public static void registerFeatures(RegistryEvent.Register<Feature<?>> event) {
+        IForgeRegistry<Feature<?>> registry = event.getRegistry();
+        for (Feature<?> feature : FEATURES) {
+            registry.register(feature);
         }
     }
 }
