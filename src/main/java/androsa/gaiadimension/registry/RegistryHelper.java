@@ -15,6 +15,7 @@ import net.minecraft.item.WallOrFloorItem;
 import net.minecraft.particles.ParticleType;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityType;
+import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.carver.WorldCarver;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.IFeatureConfig;
@@ -45,6 +46,7 @@ public class RegistryHelper {
     public static final List<Structure<?>> STRUCTURES = Lists.newArrayList();
     public static final List<SurfaceBuilder<?>> SURFACE_BUILDERS = Lists.newArrayList();
     public static final List<WorldCarver<?>> WORLD_CARVERS = Lists.newArrayList();
+    public static final List<Biome> BIOMES = Lists.newArrayList();
 
     public static <T extends Block> T registerBlockOnly(String name, T block) {
         block.setRegistryName(name);
@@ -145,6 +147,12 @@ public class RegistryHelper {
         surface.setRegistryName(name);
         WORLD_CARVERS.add(surface);
         return surface;
+    }
+
+    public static Biome registerBiome(String name, Biome biome) {
+        biome.setRegistryName(name);
+        BIOMES.add(biome);
+        return biome;
     }
 
     @SubscribeEvent
