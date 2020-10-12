@@ -53,7 +53,7 @@ public class GaiaDimensionMod {
 
         ModRecipes.registerRecipeTypes();
 
-//      ModBiomes.BIOMES.register(modEventBus);
+        ModBiomes.BIOMES.register(modEventBus);
         ModBlocks.BLOCKS.register(modEventBus);
         ModContainers.CONTAINERS.register(modEventBus);
 //      ModDimensions.BIOME_PROVIDER_TYPES.register(modEventBus);
