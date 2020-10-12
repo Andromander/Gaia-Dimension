@@ -18,7 +18,6 @@ import androsa.gaiadimension.world.surface.WastelandSurfaceBuilder;
 import com.mojang.serialization.Codec;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.registry.Registry;
-import net.minecraft.util.registry.WorldGenRegistries;
 import net.minecraft.world.gen.carver.WorldCarver;
 import net.minecraft.world.gen.feature.*;
 import net.minecraft.world.gen.feature.structure.IStructurePieceType;
@@ -32,6 +31,7 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.Locale;
+import java.util.function.Supplier;
 
 public class ModWorldgen {
 
@@ -91,15 +91,20 @@ public class ModWorldgen {
     public static final RegistryObject<Structure<NoFeatureConfig>> MALACHITE_WATCHTOWER = registerStructure("malachite_watchtower", new MalachiteWatchtowerStructure<>(NoFeatureConfig.field_236558_a_));
 
     //SurfaceBuilder
-    public static final RegistryObject<SurfaceBuilder<SurfaceBuilderConfig>> DEFAULT_GAIA = SURFACE_BUILDERS.register("default_gaia", () -> new GaiaDefaultSurfaceBuilder<>(SurfaceBuilderConfig.field_237203_a_));
-    public static final RegistryObject<SurfaceBuilder<SurfaceBuilderConfig>> VOLCANIC = SURFACE_BUILDERS.register("volcanic", () -> new VolcanicSurfaceBuilder<>(SurfaceBuilderConfig.field_237203_a_));
-    public static final RegistryObject<SurfaceBuilder<SurfaceBuilderConfig>> STATIC = SURFACE_BUILDERS.register("static", () -> new WastelandSurfaceBuilder<>(SurfaceBuilderConfig.field_237203_a_));
+    public static final SurfaceBuilder<SurfaceBuilderConfig> s_default_gaia = new GaiaDefaultSurfaceBuilder<>(SurfaceBuilderConfig.field_237203_a_);
+    public static final SurfaceBuilder<SurfaceBuilderConfig> s_volcanic = new VolcanicSurfaceBuilder<>(SurfaceBuilderConfig.field_237203_a_);
+    public static final SurfaceBuilder<SurfaceBuilderConfig> s_static = new WastelandSurfaceBuilder<>(SurfaceBuilderConfig.field_237203_a_);
+
+    public static final RegistryObject<SurfaceBuilder<SurfaceBuilderConfig>> DEFAULT_GAIA = SURFACE_BUILDERS.register("default_gaia", () -> s_default_gaia);
+    public static final RegistryObject<SurfaceBuilder<SurfaceBuilderConfig>> VOLCANIC = SURFACE_BUILDERS.register("volcanic", () -> s_volcanic);
+    public static final RegistryObject<SurfaceBuilder<SurfaceBuilderConfig>> STATIC = SURFACE_BUILDERS.register("static", () -> s_static);
 
     //WorldCarver
-    public static final RegistryObject<WorldCarver<ProbabilityConfig>> CRYSTAL_CAVES = WORLD_CARVERS.register(
-            "crystal_caves", () -> new CoatedCavesWorldCarver<>(ProbabilityConfig.field_236576_b_, 256));
-    public static final RegistryObject<WorldCarver<ProbabilityConfig>> CHASMS = WORLD_CARVERS.register(
-            "chasms", () -> new ChasmsWorldCarver<>(ProbabilityConfig.field_236576_b_, 32));
+    public static final Supplier<WorldCarver<ProbabilityConfig>> crystal_caves = () -> new CoatedCavesWorldCarver<>(ProbabilityConfig.field_236576_b_, 256);
+    public static final Supplier<WorldCarver<ProbabilityConfig>> chasms = () -> new ChasmsWorldCarver<>(ProbabilityConfig.field_236576_b_, 32);
+
+    public static final RegistryObject<WorldCarver<ProbabilityConfig>> CRYSTAL_CAVES = WORLD_CARVERS.register("crystal_caves", crystal_caves);
+    public static final RegistryObject<WorldCarver<ProbabilityConfig>> CHASMS = WORLD_CARVERS.register("chasms", chasms);
 
     private static <P extends StructureProcessor> IStructureProcessorType<P> registerProcessor(String name, Codec<P> processor) {
         return Registry.register(Registry.STRUCTURE_PROCESSOR, new ResourceLocation(GaiaDimensionMod.MODID, name), () -> processor);
