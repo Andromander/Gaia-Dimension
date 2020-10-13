@@ -15,6 +15,7 @@ import net.minecraft.item.WallOrFloorItem;
 import net.minecraft.particles.ParticleType;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityType;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.carver.WorldCarver;
 import net.minecraft.world.gen.feature.Feature;
@@ -150,7 +151,7 @@ public class RegistryHelper {
     }
 
     public static Biome registerBiome(String name, Biome biome) {
-        biome.setRegistryName(name);
+        biome.setRegistryName("minecraft", name);
         BIOMES.add(biome);
         return biome;
     }

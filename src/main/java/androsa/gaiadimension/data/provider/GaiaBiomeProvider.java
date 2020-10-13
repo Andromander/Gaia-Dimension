@@ -38,10 +38,12 @@ public abstract class GaiaBiomeProvider extends BiomeProvider {
 
         for(Map.Entry<RegistryKey<Biome>, Biome> biome : registerBiomes().entrySet()) {
             Path path = getPath(out, biome.getKey().getLocation());
+            Biome b = biome.getValue();
+            b.setRegistryName(biome.getKey().getLocation().getPath());
             Function<Supplier<Biome>, DataResult<JsonElement>> biomedata = JsonOps.INSTANCE.withEncoder(Biome.BIOME_CODEC);
 
             try {
-                Optional<JsonElement> element = biomedata.apply(biome::getValue).result();
+                 Optional<JsonElement> element = biomedata.apply(() -> b).result();
                 if (element.isPresent()) {
                     IDataProvider.save(GSON, dir, element.get(), path);
                 } else {
