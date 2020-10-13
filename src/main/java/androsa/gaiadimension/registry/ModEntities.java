@@ -88,7 +88,7 @@ public class ModEntities {
     }
 
     /* Spawn Placements */
-    public static final PlacementType IN_LAVA = PlacementType.create("GD_IN_LAVA", (reader, pos, entity) -> {
+    public static PlacementType IN_LAVA = PlacementType.create("GD_IN_LAVA", (reader, pos, entity) -> {
         BlockState blockState = reader.getBlockState(pos);
         FluidState fluidState = reader.getFluidState(pos);
         BlockPos posUp = pos.up();

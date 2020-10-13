@@ -33,12 +33,6 @@ import java.util.Locale;
 @ObjectHolder(GaiaDimensionMod.MODID)
 public class ModWorldgen {
 
-    public static final IStructureProcessorType BLOCK_DEGRADE = registerProcessor("block_degrade", BlockDegradeProcessor.CODEC);
-    public static final IStructureProcessorType MALACHITE_DEGRADE = registerProcessor("malachite_degrade", MalachiteDegradeProcessor.CODEC);
-
-    public static final IStructurePieceType MITO = registerPiece("MITO", MiniTowerPieces.Piece::new);
-    public static final IStructurePieceType MAWA = registerPiece("MAWA", MalachiteWatchtowerPieces.Piece::new);
-
     //Feature
     public static final Feature<BlockStateFeatureConfig> POOL = RegistryHelper.registerFeature("pool", new GaiaLakesFeature<>(BlockStateFeatureConfig.field_236455_a_));
     public static final Feature<GaiaTreeFeatureConfig> PINK_AGATE_TREE = RegistryHelper.registerFeature("pink_agate_tree", new PinkAgateTreeFeature<>(GaiaTreeFeatureConfig.CODEC));
@@ -79,5 +73,13 @@ public class ModWorldgen {
 
     public static IStructurePieceType registerPiece(String name, IStructurePieceType piece) {
         return Registry.register(Registry.STRUCTURE_PIECE, new ResourceLocation(GaiaDimensionMod.MODID, name.toLowerCase(Locale.ROOT)), piece);
+    }
+
+    public static class StructureTypes {
+        public static final IStructureProcessorType BLOCK_DEGRADE = registerProcessor("block_degrade", BlockDegradeProcessor.CODEC);
+        public static final IStructureProcessorType MALACHITE_DEGRADE = registerProcessor("malachite_degrade", MalachiteDegradeProcessor.CODEC);
+
+        public static final IStructurePieceType MITO = registerPiece("MITO", MiniTowerPieces.Piece::new);
+        public static final IStructurePieceType MAWA = registerPiece("MAWA", MalachiteWatchtowerPieces.Piece::new);
     }
 }

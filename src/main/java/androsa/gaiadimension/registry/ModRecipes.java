@@ -32,9 +32,9 @@ public class ModRecipes {
     };
 
     //RecipeSerializer
-    @ObjectHolder(value = GaiaDimensionMod.MODID)
+    @ObjectHolder("gaiadimension:restructuring")
     public static final RestructurerRecipeSerializer<RestructurerRecipe> RESTRUCTURING_SERIALIZER = new RestructurerRecipeSerializer<>(RestructurerRecipe::new, 200);
-    @ObjectHolder(value = GaiaDimensionMod.MODID)
+    @ObjectHolder("gaiadimension:purifying")
     public static final PurifierRecipeSerializer<PurifierRecipe> PURIFYING_SERIALIZER = new PurifierRecipeSerializer<>(PurifierRecipe::new, 200);
 
     @SubscribeEvent

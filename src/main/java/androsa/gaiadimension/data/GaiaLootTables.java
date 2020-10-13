@@ -16,6 +16,7 @@ import net.minecraft.item.Items;
 import net.minecraft.loot.*;
 import net.minecraft.loot.functions.SetCount;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,6 +24,7 @@ import java.util.Map;
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
+import java.util.stream.Collectors;
 
 public class GaiaLootTables extends LootTableProvider {
 
@@ -392,7 +394,9 @@ public class GaiaLootTables extends LootTableProvider {
 
         @Override
         protected Iterable<EntityType<?>> getKnownEntities() {
-            return new ArrayList<>(RegistryHelper.ENTITY_TYPES);
+            return ForgeRegistries.ENTITIES.getValues().stream()
+                    .filter(entity -> GaiaDimensionMod.MODID.equals(entity.getRegistryName().getNamespace()))
+                    .collect(Collectors.toList());
         }
     }
 

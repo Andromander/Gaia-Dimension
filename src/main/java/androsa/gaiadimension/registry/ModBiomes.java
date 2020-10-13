@@ -8,7 +8,6 @@ import net.minecraft.util.registry.Registry;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.registries.ObjectHolder;
 
-@ObjectHolder(GaiaDimensionMod.MODID)
 public class ModBiomes {
 
     public static final RegistryKey<Biome> pink_agate_forest = registerBiome("pink_agate_forest", GaiaBiomes.makePinkAgateForest());

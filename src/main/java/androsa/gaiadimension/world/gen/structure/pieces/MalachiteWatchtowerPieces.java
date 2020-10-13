@@ -112,7 +112,7 @@ public class MalachiteWatchtowerPieces {
         private final Rotation rotation;
 
         public Piece(TemplateManager manager, ResourceLocation pieceloc, BlockPos pos, Rotation rot, int offset) {
-            super(ModWorldgen.MAWA, 0);
+            super(ModWorldgen.StructureTypes.MAWA, 0);
             this.pieceLocation = pieceloc;
             BlockPos blockpos = MalachiteWatchtowerPieces.piecePos.get(pieceloc);
             this.templatePosition = pos.add(blockpos.getX(), blockpos.getY() + offset, blockpos.getZ());
@@ -121,7 +121,7 @@ public class MalachiteWatchtowerPieces {
         }
 
         public Piece(TemplateManager manager, CompoundNBT nbt) {
-            super(ModWorldgen.MAWA, nbt);
+            super(ModWorldgen.StructureTypes.MAWA, nbt);
             this.pieceLocation = new ResourceLocation(nbt.getString("Template"));
             this.rotation = Rotation.valueOf(nbt.getString("Rot"));
             this.loadTemplate(manager);

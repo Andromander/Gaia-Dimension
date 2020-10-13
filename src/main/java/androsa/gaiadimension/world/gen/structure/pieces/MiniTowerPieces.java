@@ -117,7 +117,7 @@ public class MiniTowerPieces {
         private final MiniTowerType towerType;
 
         public Piece(TemplateManager manager, ResourceLocation pieceloc, BlockPos pos, Rotation rot, MiniTowerType type, int offset) {
-            super(ModWorldgen.MITO, 0);
+            super(ModWorldgen.StructureTypes.MITO, 0);
             this.pieceLocation = pieceloc;
             BlockPos blockpos = MiniTowerPieces.piecePos.get(pieceloc);
             this.templatePosition = pos.add(blockpos.getX(), blockpos.getY() + offset, blockpos.getZ());
@@ -127,7 +127,7 @@ public class MiniTowerPieces {
         }
 
         public Piece(TemplateManager manager, CompoundNBT nbt) {
-            super(ModWorldgen.MITO, nbt);
+            super(ModWorldgen.StructureTypes.MITO, nbt);
             this.pieceLocation = new ResourceLocation(nbt.getString("Template"));
             this.rotation = Rotation.valueOf(nbt.getString("Rot"));
             this.towerType = MiniTowerType.valueOf(nbt.getString("TowerType"));

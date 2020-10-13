@@ -38,7 +38,7 @@ public class MalachiteDegradeProcessor extends StructureProcessor {
 
     @Override
     protected IStructureProcessorType getType() {
-        return ModWorldgen.MALACHITE_DEGRADE;
+        return ModWorldgen.StructureTypes.MALACHITE_DEGRADE;
     }
 
     @Nullable

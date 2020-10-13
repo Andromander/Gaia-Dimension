@@ -352,7 +352,7 @@ public class GaiaRecipes extends GaiaRecipeProvider {
                 .key('#', ModBlocks.restructurer)
                 .addCriterion("has_bricks", hasItem(ModBlocks.reinforced_bricks))
                 .build(consumer, loc("purifier"));
-        ShapedRecipeBuilder.shapedRecipe(ModBlocks.pyrite_torch, 4)
+        ShapedRecipeBuilder.shapedRecipe(ModItems.PYRITE_TORCH, 4)
                 .patternLine("#")
                 .patternLine("/")
                 .key('#', ModItems.pyrite)
