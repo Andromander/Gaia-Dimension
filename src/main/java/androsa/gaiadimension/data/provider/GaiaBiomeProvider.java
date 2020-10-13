@@ -38,12 +38,10 @@ public abstract class GaiaBiomeProvider extends BiomeProvider {
 
         for(Map.Entry<RegistryKey<Biome>, Biome> biome : registerBiomes().entrySet()) {
             Path path = getPath(out, biome.getKey().getLocation());
-            Biome b = biome.getValue();
-            b.setRegistryName(biome.getKey().getLocation().getPath());
             Function<Supplier<Biome>, DataResult<JsonElement>> biomedata = JsonOps.INSTANCE.withEncoder(Biome.BIOME_CODEC);
 
             try {
-                 Optional<JsonElement> element = biomedata.apply(() -> b).result();
+                 Optional<JsonElement> element = biomedata.apply(biome::getValue).result();
                 if (element.isPresent()) {
                     IDataProvider.save(GSON, dir, element.get(), path);
                 } else {
@@ -63,8 +61,8 @@ public abstract class GaiaBiomeProvider extends BiomeProvider {
 
     protected abstract Map<RegistryKey<Biome>, Biome> registerBiomes();
 
-    public static Biome buildBiome(Biome.Builder builder) {
-        return builder.build();
+    public static Biome buildBiome(Biome.Builder builder, String name) {
+        return builder.build().setRegistryName(GaiaDimensionMod.MODID, name);
     }
 
     public static Biome.Builder createBuilder(BiomeAmbience ambience, BiomeGenerationSettings settings, MobSpawnInfo info) {

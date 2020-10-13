@@ -46,6 +46,9 @@ public class GaiaDimensionMod {
     public static final ITag.INamedTag<Block> STATIC = BlockTags.makeWrapperTag(new ResourceLocation(MODID, "base_stone_static").toString());
 
     public GaiaDimensionMod() {
+        new ModWorldgen(); //Stop looking at me
+        new GaiaBiomeFeatures(); //Maybe you should fix the registries, then I'll stop
+
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
         modEventBus.addListener(this::setup);
         modEventBus.addListener(this::clientSetup);

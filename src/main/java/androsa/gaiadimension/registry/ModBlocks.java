@@ -12,7 +12,7 @@ import net.minecraftforge.registries.ObjectHolder;
 import static net.minecraft.block.AbstractBlock.*;
 import static net.minecraftforge.common.ToolType.*;
 
-@ObjectHolder(value = GaiaDimensionMod.MODID)
+@ObjectHolder(GaiaDimensionMod.MODID)
 @SuppressWarnings("unused")
 public class ModBlocks {
 
@@ -351,8 +351,6 @@ public class ModBlocks {
     private static Block registerPlain(String name, Properties props, int burn) {
         return RegistryHelper.registerBlock(name, new Block(props), burn);
     }
-
-
 
     private static StairsBlock registerStairs(String name, Block base) {
         return RegistryHelper.registerBlock(name, new GaiaStairsBlock(() -> base));

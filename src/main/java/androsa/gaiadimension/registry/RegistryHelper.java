@@ -55,6 +55,10 @@ public class RegistryHelper {
         return block;
     }
 
+    private static ResourceLocation loc(String name) {
+        return new ResourceLocation(GaiaDimensionMod.MODID, name);
+    }
+
     public static <T extends Block> T registerBlock(String name, T block) {
         return registerBlock(name, block, 0);
     }
@@ -69,45 +73,43 @@ public class RegistryHelper {
     }
 
     public static <T extends Block> T registerBlock(String name, T block, Item item) {
-        block.setRegistryName(name);
+        block.setRegistryName(loc(name));
         BLOCKS.add(block);
         ITEMS.add(registerBlockItem(name, item));
         return block;
     }
 
     public static Item registerBlockItem(String name, Item item) {
-        item.setRegistryName(name);
-        return item;
-    }
-
-    public static Item registerItem(String name, Item item) {
-        item.setRegistryName(name);
-        ITEMS.add(item);
+        item.setRegistryName(loc(name));
         return item;
     }
 
     public static Item registerWallOrFloorItem(String name, Block floor, Block wall) {
         Item item = new WallOrFloorItem(wall, floor, new Item.Properties().group(GaiaItemGroups.GAIA_BLOCKS));
-        item.setRegistryName(name);
+        return registerItem(name, item);
+    }
+
+    public static Item registerItem(String name, Item item) {
+        item.setRegistryName(loc(name));
         ITEMS.add(item);
         return item;
     }
 
     public static <C extends Container> ContainerType<C> registerContainer(String name, ContainerType.IFactory<C> container) {
         ContainerType<C> type = new ContainerType<>(container);
-        type.setRegistryName(name);
+        type.setRegistryName(loc(name));
         CONTAINER_TYPES.add(type);
         return type;
     }
 
     public static <E extends Entity> EntityType<E> registerEntity(String name, EntityType<E> entity) {
-        entity.setRegistryName(name);
+        entity.setRegistryName(loc(name));
         ENTITY_TYPES.add(entity);
         return entity;
     }
 
     public static <T extends ParticleType<?>> T registerParticle(String name, T particle) {
-        particle.setRegistryName(name);
+        particle.setRegistryName(loc(name));
         PARTICLE_TYPES.add(particle);
         return particle;
     }
@@ -126,7 +128,7 @@ public class RegistryHelper {
     }
 
     public static <C extends IFeatureConfig, T extends Feature<C>> T registerFeature(String name, T feature) {
-        feature.setRegistryName(name);
+        feature.setRegistryName("gaiadimension", name);
         FEATURES.add(feature);
         return feature;
     }
@@ -150,8 +152,7 @@ public class RegistryHelper {
         return surface;
     }
 
-    public static Biome registerBiome(String name, Biome biome) {
-        biome.setRegistryName("minecraft", name);
+    public static Biome registerBiome(Biome biome) {
         BIOMES.add(biome);
         return biome;
     }
@@ -241,6 +242,14 @@ public class RegistryHelper {
         IForgeRegistry<WorldCarver<?>> registry = event.getRegistry();
         for (WorldCarver<?> carvers : WORLD_CARVERS) {
             registry.register(carvers);
+        }
+    }
+
+    @SubscribeEvent
+    public static void registerBiomes(RegistryEvent.Register<Biome> event) {
+        IForgeRegistry<Biome> registry = event.getRegistry();
+        for (Biome biome : BIOMES) {
+            registry.register(biome);
         }
     }
 }
