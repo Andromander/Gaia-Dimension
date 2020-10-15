@@ -34,7 +34,7 @@ public class PurifierContainer extends Container {
     }
 
     public PurifierContainer(int id, PlayerInventory invPlayer, IInventory purifier, IIntArray slots) {
-        super(ModContainers.PURIFIER, id);
+        super(ModContainers.PURIFIER.get(), id);
         assertInventorySize(purifier, 6);
         assertIntArraySize(slots, 4);
         tilePurifier = purifier;

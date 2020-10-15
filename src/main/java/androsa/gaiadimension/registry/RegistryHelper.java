@@ -6,8 +6,6 @@ import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.fluid.Fluid;
-import net.minecraft.inventory.container.Container;
-import net.minecraft.inventory.container.ContainerType;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -38,7 +36,6 @@ public class RegistryHelper {
 
     public static final List<Block> BLOCKS = Lists.newArrayList();
     public static final List<Item> ITEMS = Lists.newArrayList();
-    public static final List<ContainerType<?>> CONTAINER_TYPES = Lists.newArrayList();
     public static final List<EntityType<?>> ENTITY_TYPES = Lists.newArrayList();
     public static final List<Fluid> FLUIDS = Lists.newArrayList();
     public static final List<ParticleType<?>> PARTICLE_TYPES = Lists.newArrayList();
@@ -93,13 +90,6 @@ public class RegistryHelper {
         item.setRegistryName(loc(name));
         ITEMS.add(item);
         return item;
-    }
-
-    public static <C extends Container> ContainerType<C> registerContainer(String name, ContainerType.IFactory<C> container) {
-        ContainerType<C> type = new ContainerType<>(container);
-        type.setRegistryName(loc(name));
-        CONTAINER_TYPES.add(type);
-        return type;
     }
 
     public static <E extends Entity> EntityType<E> registerEntity(String name, EntityType<E> entity) {
@@ -171,13 +161,6 @@ public class RegistryHelper {
         for (Item item : ITEMS) {
             registry.register(item);
         }
-    }
-
-    @SubscribeEvent
-    public static void registerContainerTypes(RegistryEvent.Register<ContainerType<?>> event) {
-        IForgeRegistry<ContainerType<?>> registry = event.getRegistry();
-        for (ContainerType<?> container : CONTAINER_TYPES) {
-            registry.register(container);
         }
     }
 
