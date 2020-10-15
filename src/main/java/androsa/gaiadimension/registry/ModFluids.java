@@ -1,12 +1,9 @@
 package androsa.gaiadimension.registry;
 
-import androsa.gaiadimension.GaiaDimensionMod;
 import androsa.gaiadimension.fluids.*;
 import net.minecraft.fluid.FlowingFluid;
 import net.minecraftforge.fluids.ForgeFlowingFluid;
-import net.minecraftforge.registries.ObjectHolder;
 
-@ObjectHolder(value = GaiaDimensionMod.MODID)
 public class ModFluids {
 
     public static final FlowingFluid mineral_water_still = RegistryHelper.registerFluid("mineral_water_still", new ForgeFlowingFluid.Source(GaiaFluidAttributes.mineral_water_properties));

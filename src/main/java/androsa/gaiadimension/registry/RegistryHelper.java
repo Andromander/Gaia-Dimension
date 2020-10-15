@@ -206,8 +206,8 @@ public class RegistryHelper {
     @SubscribeEvent
     public static void registerWorldCarvers(RegistryEvent.Register<WorldCarver<?>> event) {
         IForgeRegistry<WorldCarver<?>> registry = event.getRegistry();
-        for (WorldCarver<?> carvers : WORLD_CARVERS) {
-            registry.register(carvers);
+        for (WorldCarver<?> carver : WORLD_CARVERS) {
+            registry.register(carver);
         }
     }
 

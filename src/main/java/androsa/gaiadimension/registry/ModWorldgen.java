@@ -26,11 +26,9 @@ import net.minecraft.world.gen.feature.template.IStructureProcessorType;
 import net.minecraft.world.gen.feature.template.StructureProcessor;
 import net.minecraft.world.gen.surfacebuilders.SurfaceBuilder;
 import net.minecraft.world.gen.surfacebuilders.SurfaceBuilderConfig;
-import net.minecraftforge.registries.ObjectHolder;
 
 import java.util.Locale;
 
-@ObjectHolder(GaiaDimensionMod.MODID)
 public class ModWorldgen {
 
     //Feature

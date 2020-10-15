@@ -1,6 +1,5 @@
 package androsa.gaiadimension.registry;
 
-import androsa.gaiadimension.GaiaDimensionMod;
 import androsa.gaiadimension.entity.*;
 import androsa.gaiadimension.entity.boss.BlueHowliteWolfEntity;
 import androsa.gaiadimension.entity.boss.MalachiteGuardEntity;
@@ -23,11 +22,9 @@ import net.minecraft.world.spawner.WorldEntitySpawner;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
-import net.minecraftforge.registries.ObjectHolder;
 
 import static net.minecraft.entity.EntitySpawnPlacementRegistry.register;
 
-@ObjectHolder(value = GaiaDimensionMod.MODID)
 public class ModEntities {
 
     //Projectiles

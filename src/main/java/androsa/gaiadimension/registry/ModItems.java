@@ -1,6 +1,5 @@
 package androsa.gaiadimension.registry;
 
-import androsa.gaiadimension.GaiaDimensionMod;
 import androsa.gaiadimension.item.*;
 import androsa.gaiadimension.item.armor.*;
 import androsa.gaiadimension.item.tools.*;
@@ -9,11 +8,9 @@ import net.minecraft.fluid.Fluids;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.*;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.registries.ObjectHolder;
 
 import static net.minecraft.inventory.EquipmentSlotType.*;
 
-@ObjectHolder(value = GaiaDimensionMod.MODID)
 @SuppressWarnings("unused")
 public class ModItems {
 

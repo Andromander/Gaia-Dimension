@@ -12,7 +12,6 @@ import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.IForgeRegistry;
-import net.minecraftforge.registries.ObjectHolder;
 
 @Mod.EventBusSubscriber(modid = GaiaDimensionMod.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ModRecipes {
@@ -32,9 +31,7 @@ public class ModRecipes {
     };
 
     //RecipeSerializer
-    @ObjectHolder("gaiadimension:restructuring")
     public static final RestructurerRecipeSerializer<RestructurerRecipe> RESTRUCTURING_SERIALIZER = new RestructurerRecipeSerializer<>(RestructurerRecipe::new, 200);
-    @ObjectHolder("gaiadimension:purifying")
     public static final PurifierRecipeSerializer<PurifierRecipe> PURIFYING_SERIALIZER = new PurifierRecipeSerializer<>(PurifierRecipe::new, 200);
 
     @SubscribeEvent
