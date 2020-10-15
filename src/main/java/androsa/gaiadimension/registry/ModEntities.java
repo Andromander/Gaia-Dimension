@@ -73,14 +73,16 @@ public class ModEntities {
                 .setTrackingRange(range)
                 .setUpdateInterval(interval)
                 .build(name);
-        return RegistryHelper.registerEntity(name, entitytype);
+        entitytype.setRegistryName(name);
+        return RegistryHelper.registerEntity(entitytype);
     }
 
     public static <E extends Entity> EntityType<E> registerEntity(String name, EntityType.IFactory<E> entity, EntityClassification classification, float width, float height, boolean fireproof) {
         EntityType.Builder<E> type = EntityType.Builder.create(entity, classification).size(width, height);
         if (fireproof) type.immuneToFire();
         EntityType<E> entitytype = type.build(name);
-        return RegistryHelper.registerEntity(name, entitytype);
+        entitytype.setRegistryName(name);
+        return RegistryHelper.registerEntity(entitytype);
     }
 
     private static <E extends Entity> EntityType.Builder<E> makeBuilder(EntityType.IFactory<E> entity, EntityClassification classification, float width, float height) {

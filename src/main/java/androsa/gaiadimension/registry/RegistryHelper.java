@@ -32,6 +32,7 @@ import java.util.List;
 public class RegistryHelper {
 
     public static final List<Block> BLOCKS = Lists.newArrayList();
+    public static final List<Item> BLOCK_ITEMS = Lists.newArrayList();
     public static final List<Item> ITEMS = Lists.newArrayList();
     public static final List<EntityType<?>> ENTITY_TYPES = Lists.newArrayList();
     public static final List<Fluid> FLUIDS = Lists.newArrayList();
@@ -68,34 +69,33 @@ public class RegistryHelper {
     public static <T extends Block> T registerBlock(String name, T block, Item item) {
         block.setRegistryName(loc(name));
         BLOCKS.add(block);
-        ITEMS.add(registerBlockItem(name, item));
+        BLOCK_ITEMS.add(registerBlockItem(name, item));
         return block;
     }
 
     public static Item registerBlockItem(String name, Item item) {
-        item.setRegistryName(loc(name));
+        item.setRegistryName(name);
         return item;
     }
 
     public static Item registerWallOrFloorItem(String name, Block floor, Block wall) {
         Item item = new WallOrFloorItem(wall, floor, new Item.Properties().group(GaiaItemGroups.GAIA_BLOCKS));
-        return registerItem(name, item);
+        return registerBlockItem(name, item);
     }
 
     public static Item registerItem(String name, Item item) {
-        item.setRegistryName(loc(name));
+        item.setRegistryName(name);
         ITEMS.add(item);
         return item;
     }
 
-    public static <E extends Entity> EntityType<E> registerEntity(String name, EntityType<E> entity) {
-        entity.setRegistryName(loc(name));
+    public static <E extends Entity> EntityType<E> registerEntity(EntityType<E> entity) {
         ENTITY_TYPES.add(entity);
         return entity;
     }
 
     public static <T extends ParticleType<?>> T registerParticle(String name, T particle) {
-        particle.setRegistryName(loc(name));
+        particle.setRegistryName(name);
         PARTICLE_TYPES.add(particle);
         return particle;
     }
@@ -107,7 +107,7 @@ public class RegistryHelper {
     }
 
     public static <C extends IFeatureConfig, T extends Feature<C>> T registerFeature(String name, T feature) {
-        feature.setRegistryName("gaiadimension", name);
+        feature.setRegistryName(name);
         FEATURES.add(feature);
         return feature;
     }
@@ -150,6 +150,8 @@ public class RegistryHelper {
         for (Item item : ITEMS) {
             registry.register(item);
         }
+        for (Item item: BLOCK_ITEMS) {
+            registry.register(item);
         }
     }
 

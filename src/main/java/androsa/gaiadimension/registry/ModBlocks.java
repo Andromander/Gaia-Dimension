@@ -1,18 +1,15 @@
 package androsa.gaiadimension.registry;
 
-import androsa.gaiadimension.GaiaDimensionMod;
 import androsa.gaiadimension.block.*;
 import androsa.gaiadimension.world.gen.tree.*;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
 import net.minecraftforge.common.ToolType;
-import net.minecraftforge.registries.ObjectHolder;
 
 import static net.minecraft.block.AbstractBlock.*;
 import static net.minecraftforge.common.ToolType.*;
 
-@ObjectHolder(GaiaDimensionMod.MODID)
 @SuppressWarnings("unused")
 public class ModBlocks {
 
@@ -81,24 +78,24 @@ public class ModBlocks {
     public static final Block missingno_fungus = RegistryHelper.registerBlock("missingno_fungus", new CrystalFungusBlock(GaiaBlockProperties.plantProps(MaterialColor.MAGENTA), false));
 
     //Tree Blocks
-    public static final RotatedPillarBlock s_pink_agate_log = new AgateLogBlock(GaiaBlockProperties.logProps(MaterialColor.MAGENTA));
-    public static final RotatedPillarBlock s_blue_agate_log = new AgateLogBlock(GaiaBlockProperties.logProps(MaterialColor.BLUE));
-    public static final RotatedPillarBlock s_green_agate_log = new AgateLogBlock(GaiaBlockProperties.logProps(MaterialColor.GREEN));
-    public static final RotatedPillarBlock s_purple_agate_log = new AgateLogBlock(GaiaBlockProperties.logProps(MaterialColor.PURPLE_TERRACOTTA));
-    public static final RotatedPillarBlock s_fossilized_log = new AgateLogBlock(GaiaBlockProperties.logProps(MaterialColor.YELLOW));
-    public static final RotatedPillarBlock s_corrupted_log = new AgateLogBlock(GaiaBlockProperties.logProps(MaterialColor.TNT));
-    public static final RotatedPillarBlock s_burnt_log = new AgateLogBlock(GaiaBlockProperties.logProps(MaterialColor.GRAY));
-    public static final RotatedPillarBlock s_burning_log = new AgateLogBlock(GaiaBlockProperties.logProps(MaterialColor.ADOBE).setLightLevel((state) -> 3));
-    public static final RotatedPillarBlock s_aura_log = new AgateLogBlock(GaiaBlockProperties.logProps(MaterialColor.IRON));
-    public static final RotatedPillarBlock s_pink_agate_wood = new AgateLogBlock(GaiaBlockProperties.logProps(MaterialColor.MAGENTA));
-    public static final RotatedPillarBlock s_blue_agate_wood = new AgateLogBlock(GaiaBlockProperties.logProps(MaterialColor.BLUE));
-    public static final RotatedPillarBlock s_green_agate_wood = new AgateLogBlock(GaiaBlockProperties.logProps(MaterialColor.GREEN));
-    public static final RotatedPillarBlock s_purple_agate_wood = new AgateLogBlock(GaiaBlockProperties.logProps(MaterialColor.PURPLE_TERRACOTTA));
-    public static final RotatedPillarBlock s_fossilized_wood = new AgateLogBlock(GaiaBlockProperties.logProps(MaterialColor.YELLOW));
-    public static final RotatedPillarBlock s_corrupted_wood = new AgateLogBlock(GaiaBlockProperties.logProps(MaterialColor.TNT));
-    public static final RotatedPillarBlock s_burnt_wood = new AgateLogBlock(GaiaBlockProperties.logProps(MaterialColor.GRAY));
-    public static final RotatedPillarBlock s_burning_wood = new AgateLogBlock(GaiaBlockProperties.logProps(MaterialColor.ADOBE).setLightLevel((state) -> 3));
-    public static final RotatedPillarBlock s_aura_wood = new AgateLogBlock(GaiaBlockProperties.logProps(MaterialColor.IRON));
+    public static RotatedPillarBlock s_pink_agate_log = new AgateLogBlock(GaiaBlockProperties.logProps(MaterialColor.MAGENTA));
+    public static RotatedPillarBlock s_blue_agate_log = new AgateLogBlock(GaiaBlockProperties.logProps(MaterialColor.BLUE));
+    public static RotatedPillarBlock s_green_agate_log = new AgateLogBlock(GaiaBlockProperties.logProps(MaterialColor.GREEN));
+    public static RotatedPillarBlock s_purple_agate_log = new AgateLogBlock(GaiaBlockProperties.logProps(MaterialColor.PURPLE_TERRACOTTA));
+    public static RotatedPillarBlock s_fossilized_log = new AgateLogBlock(GaiaBlockProperties.logProps(MaterialColor.YELLOW));
+    public static RotatedPillarBlock s_corrupted_log = new AgateLogBlock(GaiaBlockProperties.logProps(MaterialColor.TNT));
+    public static RotatedPillarBlock s_burnt_log = new AgateLogBlock(GaiaBlockProperties.logProps(MaterialColor.GRAY));
+    public static RotatedPillarBlock s_burning_log = new AgateLogBlock(GaiaBlockProperties.logProps(MaterialColor.ADOBE).setLightLevel((state) -> 3));
+    public static RotatedPillarBlock s_aura_log = new AgateLogBlock(GaiaBlockProperties.logProps(MaterialColor.IRON));
+    public static RotatedPillarBlock s_pink_agate_wood = new AgateLogBlock(GaiaBlockProperties.logProps(MaterialColor.MAGENTA));
+    public static RotatedPillarBlock s_blue_agate_wood = new AgateLogBlock(GaiaBlockProperties.logProps(MaterialColor.BLUE));
+    public static RotatedPillarBlock s_green_agate_wood = new AgateLogBlock(GaiaBlockProperties.logProps(MaterialColor.GREEN));
+    public static RotatedPillarBlock s_purple_agate_wood = new AgateLogBlock(GaiaBlockProperties.logProps(MaterialColor.PURPLE_TERRACOTTA));
+    public static RotatedPillarBlock s_fossilized_wood = new AgateLogBlock(GaiaBlockProperties.logProps(MaterialColor.YELLOW));
+    public static RotatedPillarBlock s_corrupted_wood = new AgateLogBlock(GaiaBlockProperties.logProps(MaterialColor.TNT));
+    public static RotatedPillarBlock s_burnt_wood = new AgateLogBlock(GaiaBlockProperties.logProps(MaterialColor.GRAY));
+    public static RotatedPillarBlock s_burning_wood = new AgateLogBlock(GaiaBlockProperties.logProps(MaterialColor.ADOBE).setLightLevel((state) -> 3));
+    public static RotatedPillarBlock s_aura_wood = new AgateLogBlock(GaiaBlockProperties.logProps(MaterialColor.IRON));
 
     public static final SaplingBlock pink_agate_sapling = RegistryHelper.registerBlock("pink_agate_sapling", new SaplingBlock(new PinkAgateTree(), GaiaBlockProperties.saplingProps(MaterialColor.PINK)));
     public static final SaplingBlock blue_agate_sapling = RegistryHelper.registerBlock("blue_agate_sapling", new SaplingBlock(new BlueAgateTree(), GaiaBlockProperties.saplingProps(MaterialColor.LIGHT_BLUE)));
@@ -357,7 +354,7 @@ public class ModBlocks {
     }
 
     private static FlowerPotBlock registerFlowerPot(Block plant) {
-        return RegistryHelper.registerBlock("potted_" + plant.getRegistryName().getPath(), new FlowerPotBlock(() -> (FlowerPotBlock) Blocks.FLOWER_POT, () -> plant, Block.Properties.create(Material.MISCELLANEOUS).hardnessAndResistance(0.0F)));
+        return RegistryHelper.registerBlockOnly("potted_" + plant.getRegistryName().getPath(), new FlowerPotBlock(() -> (FlowerPotBlock) Blocks.FLOWER_POT, () -> plant, Block.Properties.create(Material.MISCELLANEOUS).hardnessAndResistance(0.0F)));
     }
 
     public static void addPlants() {
