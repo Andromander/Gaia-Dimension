@@ -5,17 +5,27 @@ import androsa.gaiadimension.block.tileentity.*;
 import androsa.gaiadimension.block.tileentity.boss.MalachiteGuardSpawnerTileEntity;
 import com.google.common.collect.Sets;
 import net.minecraft.tileentity.TileEntityType;
-import net.minecraftforge.registries.ObjectHolder;
+import net.minecraftforge.fml.RegistryObject;
+import net.minecraftforge.registries.DeferredRegister;
+import net.minecraftforge.registries.ForgeRegistries;
 
-@ObjectHolder(value = GaiaDimensionMod.MODID)
 public class ModTileEntities {
 
-    public static final TileEntityType<GaiaStoneFurnaceTileEntity> GAIA_STONE_FURNACE = RegistryHelper.registerTileEntity("gaia_stone_furnace", new GaiaStoneFurnaceTileEntity(), Sets.newHashSet(ModBlocks.gaia_stone_furnace));
-    public static final TileEntityType<GeyserTileEntity> GEYSER = RegistryHelper.registerTileEntity("geyser", new GeyserTileEntity(), Sets.newHashSet(ModBlocks.geyser_block));
-    public static final TileEntityType<LargeCrateTileEntity> LARGE_CRATE = RegistryHelper.registerTileEntity("large_crate", new LargeCrateTileEntity(), Sets.newHashSet(ModBlocks.mega_storage_crate));
-    public static final TileEntityType<PurifierTileEntity> PURIFIER = RegistryHelper.registerTileEntity("purifier", new PurifierTileEntity(), Sets.newHashSet(ModBlocks.purifier));
-    public static final TileEntityType<RestructurerTileEntity> RESTRUCTURER = RegistryHelper.registerTileEntity("restructurer", new RestructurerTileEntity(), Sets.newHashSet(ModBlocks.restructurer));
-    public static final TileEntityType<SmallCrateTileEntity> SMALL_CRATE = RegistryHelper.registerTileEntity("small_crate", new SmallCrateTileEntity(), Sets.newHashSet(ModBlocks.crude_storage_crate));
+    public static final DeferredRegister<TileEntityType<?>> TILE_ENTITIES = DeferredRegister.create(ForgeRegistries.TILE_ENTITIES, GaiaDimensionMod.MODID);
 
-    public static final TileEntityType<MalachiteGuardSpawnerTileEntity> MALACHITE_SPAWNER = RegistryHelper.registerTileEntity("malachite_spawner", new MalachiteGuardSpawnerTileEntity(), Sets.newHashSet(ModBlocks.malachite_guard_spawner));
+    public static final RegistryObject<TileEntityType<GaiaStoneFurnaceTileEntity>> GAIA_STONE_FURNACE =  TILE_ENTITIES.register(
+            "gaia_stone_furnace", () -> new TileEntityType<>(GaiaStoneFurnaceTileEntity::new, Sets.newHashSet(ModBlocks.gaia_stone_furnace), null));
+    public static final RegistryObject<TileEntityType<GeyserTileEntity>> GEYSER = TILE_ENTITIES.register(
+            "geyser", () -> new TileEntityType<>(GeyserTileEntity::new, Sets.newHashSet(ModBlocks.geyser_block), null));
+    public static final RegistryObject<TileEntityType<LargeCrateTileEntity>> LARGE_CRATE = TILE_ENTITIES.register(
+            "large_crate", () -> new TileEntityType<>(LargeCrateTileEntity::new, Sets.newHashSet(ModBlocks.mega_storage_crate), null));
+    public static final RegistryObject<TileEntityType<PurifierTileEntity>> PURIFIER = TILE_ENTITIES.register(
+            "purifier", () -> new TileEntityType<>(PurifierTileEntity::new, Sets.newHashSet(ModBlocks.purifier), null));
+    public static final RegistryObject<TileEntityType<RestructurerTileEntity>> RESTRUCTURER = TILE_ENTITIES.register(
+            "restructurer", () -> new TileEntityType<>(RestructurerTileEntity::new, Sets.newHashSet(ModBlocks.restructurer), null));
+    public static final RegistryObject<TileEntityType<SmallCrateTileEntity>> SMALL_CRATE = TILE_ENTITIES.register(
+            "small_crate", () -> new TileEntityType<>(SmallCrateTileEntity::new, Sets.newHashSet(ModBlocks.crude_storage_crate), null));
+
+    public static final RegistryObject<TileEntityType<MalachiteGuardSpawnerTileEntity>> MALACHITE_SPAWNER = TILE_ENTITIES.register(
+            "malachite_spawner", () -> new TileEntityType<>(MalachiteGuardSpawnerTileEntity::new, Sets.newHashSet(ModBlocks.malachite_guard_spawner), null));
 }

@@ -14,7 +14,7 @@ public class GeyserTileEntity extends TileEntity implements ITickableTileEntity 
     private Random random = new Random();
 
     public GeyserTileEntity() {
-        super(ModTileEntities.GEYSER);
+        super(ModTileEntities.GEYSER.get());
     }
 
     @Override

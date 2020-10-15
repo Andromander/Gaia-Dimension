@@ -27,7 +27,7 @@ public class LargeCrateTileEntity extends LockableLootTileEntity implements ISid
     private NonNullList<ItemStack> items = NonNullList.withSize(54, ItemStack.EMPTY);
 
     public LargeCrateTileEntity() {
-        super(ModTileEntities.LARGE_CRATE);
+        super(ModTileEntities.LARGE_CRATE.get());
     }
 
     @Override

@@ -11,8 +11,6 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.WallOrFloorItem;
 import net.minecraft.particles.ParticleType;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.carver.WorldCarver;
@@ -29,7 +27,6 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.IForgeRegistry;
 
 import java.util.List;
-import java.util.Set;
 
 @Mod.EventBusSubscriber(modid = GaiaDimensionMod.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class RegistryHelper {
@@ -39,7 +36,6 @@ public class RegistryHelper {
     public static final List<EntityType<?>> ENTITY_TYPES = Lists.newArrayList();
     public static final List<Fluid> FLUIDS = Lists.newArrayList();
     public static final List<ParticleType<?>> PARTICLE_TYPES = Lists.newArrayList();
-    public static final List<TileEntityType<?>> TILE_ENTITY_TYPES = Lists.newArrayList();
     public static final List<Feature<?>> FEATURES = Lists.newArrayList();
     public static final List<Structure<?>> STRUCTURES = Lists.newArrayList();
     public static final List<SurfaceBuilder<?>> SURFACE_BUILDERS = Lists.newArrayList();
@@ -110,13 +106,6 @@ public class RegistryHelper {
         return fluid;
     }
 
-    public static <T extends TileEntity> TileEntityType<T> registerTileEntity(String name, T tile, Set<Block> blocks) {
-        TileEntityType<T> type = new TileEntityType<>(() -> tile, blocks, null);
-        type.setRegistryName(name);
-        TILE_ENTITY_TYPES.add(type);
-        return type;
-    }
-
     public static <C extends IFeatureConfig, T extends Feature<C>> T registerFeature(String name, T feature) {
         feature.setRegistryName("gaiadimension", name);
         FEATURES.add(feature);
@@ -185,14 +174,6 @@ public class RegistryHelper {
         IForgeRegistry<ParticleType<?>> registry = event.getRegistry();
         for (ParticleType<?> particle : PARTICLE_TYPES) {
             registry.register(particle);
-        }
-    }
-
-    @SubscribeEvent
-    public static void registerTileEntityTypes(RegistryEvent.Register<TileEntityType<?>> event) {
-        IForgeRegistry<TileEntityType<?>> registry = event.getRegistry();
-        for (TileEntityType<?> tileentity : TILE_ENTITY_TYPES) {
-            registry.register(tileentity);
         }
     }
 
