@@ -12,7 +12,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.WallOrFloorItem;
 import net.minecraft.particles.ParticleType;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.carver.WorldCarver;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.IFeatureConfig;
@@ -41,7 +40,6 @@ public class RegistryHelper {
     public static final List<Structure<?>> STRUCTURES = Lists.newArrayList();
     public static final List<SurfaceBuilder<?>> SURFACE_BUILDERS = Lists.newArrayList();
     public static final List<WorldCarver<?>> WORLD_CARVERS = Lists.newArrayList();
-    public static final List<Biome> BIOMES = Lists.newArrayList();
 
     public static <T extends Block> T registerBlockOnly(String name, T block) {
         block.setRegistryName(name);
@@ -131,11 +129,6 @@ public class RegistryHelper {
         return surface;
     }
 
-    public static Biome registerBiome(Biome biome) {
-        BIOMES.add(biome);
-        return biome;
-    }
-
     @SubscribeEvent
     public static void registerBlocks(RegistryEvent.Register<Block> event) {
         IForgeRegistry<Block> registry = event.getRegistry();
@@ -208,14 +201,6 @@ public class RegistryHelper {
         IForgeRegistry<WorldCarver<?>> registry = event.getRegistry();
         for (WorldCarver<?> carver : WORLD_CARVERS) {
             registry.register(carver);
-        }
-    }
-
-    @SubscribeEvent
-    public static void registerBiomes(RegistryEvent.Register<Biome> event) {
-        IForgeRegistry<Biome> registry = event.getRegistry();
-        for (Biome biome : BIOMES) {
-            registry.register(biome);
         }
     }
 }

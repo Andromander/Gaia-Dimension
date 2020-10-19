@@ -49,7 +49,7 @@ public class GaiaDimensionMod {
         new ModItems(); //None of your business
         new ModWorldgen(); //Stop looking at me
         new ModBiomes(); //It didn't need to be this way
-        new GaiaBiomeFeatures(); //Maybe you should fix the registries, then I'll stop
+        new GaiaBiomeFeatures(); //This just works
 
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
         modEventBus.addListener(this::setup);
@@ -58,7 +58,7 @@ public class GaiaDimensionMod {
 
 //      ModRecipes.registerRecipeTypes();
 
-//      ModBiomes.BIOMES.register(modEventBus);
+        ModBiomes.BIOMES.register(modEventBus);
 //      ModBlocks.BLOCKS.register(modEventBus);
         ModContainers.CONTAINERS.register(modEventBus);
 //      ModDimensions.BIOME_PROVIDER_TYPES.register(modEventBus);
@@ -113,21 +113,4 @@ public class GaiaDimensionMod {
             generator.addProvider(new GaiaBiomes(generator));
         }
     }
-
-//    @Mod.EventBusSubscriber(modid = MODID)
-//    public static class ForgeEventBus {
-//        @SubscribeEvent
-//        public static void registerModDimension(final RegisterDimensionsEvent e) {
-//            ResourceLocation gaia = new ResourceLocation(GaiaDimensionMod.MODID, "gaia");
-//
-//            if (DimensionType.byName(gaia) == null) {
-//                gaia_dimension = DimensionManager.registerDimension(gaia, GAIA.get(), new PacketBuffer(Unpooled.buffer()), true);
-//                DimensionManager.keepLoaded(gaia_dimension, false);
-//            } else {
-//                gaia_dimension = DimensionType.byName(gaia);
-//            }
-//
-//            GaiaDimensionMod.LOGGER.info("We are set for the world of Gaia.");
-//        }
-//    }
 }
