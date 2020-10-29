@@ -56,7 +56,7 @@ public class GaiaDimensionMod {
         modEventBus.addListener(this::clientSetup);
         modEventBus.addListener(this::gatherData);
 
-//      ModRecipes.registerRecipeTypes();
+        ModRecipes.registerRecipeTypes();
 
         ModBiomes.BIOMES.register(modEventBus);
 //      ModBlocks.BLOCKS.register(modEventBus);
@@ -69,7 +69,7 @@ public class GaiaDimensionMod {
 //      ModFluids.FLUIDS.register(modEventBus);
 //      ModItems.ITEMS.register(modEventBus);
 //      ModParticles.PARTICLE_TYPES.register(modEventBus);
-//      ModRecipes.RECIPE_SERIALIZERS.register(modEventBus);
+        ModRecipes.RECIPE_SERIALIZERS.register(modEventBus);
         ModTileEntities.TILE_ENTITIES.register(modEventBus);
 //      ModWorldgen.FEATURES.register(modEventBus);
 //      ModWorldgen.STRUCTURE_FEATURES.register(modEventBus);

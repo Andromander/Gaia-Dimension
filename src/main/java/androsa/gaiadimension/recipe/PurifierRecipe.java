@@ -100,6 +100,6 @@ public class PurifierRecipe implements IRecipe<IInventory> {
 
     @Override
     public IRecipeSerializer<?> getSerializer() {
-        return ModRecipes.PURIFYING_SERIALIZER;
+        return ModRecipes.PURIFYING_SERIALIZER.get();
     }
 }

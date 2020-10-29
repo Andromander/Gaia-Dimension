@@ -100,6 +100,6 @@ public class RestructurerRecipe implements IRecipe<IInventory> {
 
     @Override
     public IRecipeSerializer<?> getSerializer() {
-        return ModRecipes.RESTRUCTURING_SERIALIZER;
+        return ModRecipes.RESTRUCTURING_SERIALIZER.get();
     }
 }
