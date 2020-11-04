@@ -16,6 +16,7 @@ import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeManager;
 import net.minecraft.world.gen.ChunkGenerator;
 import net.minecraft.world.gen.GenerationSettings;
+import net.minecraft.world.gen.Heightmap;
 import net.minecraft.world.gen.feature.NoFeatureConfig;
 import net.minecraft.world.gen.feature.structure.Structure;
 import net.minecraft.world.gen.feature.structure.StructurePiece;
@@ -118,12 +119,33 @@ public class MalachiteWatchtowerStructure<T extends NoFeatureConfig> extends Str
 
         @Override
         public void init(ChunkGenerator<?> generator, TemplateManager manager, int chunkX, int chunkZ, Biome biome) {
-            int x = chunkX * 16;
-            int z = chunkZ * 16;
-            BlockPos blockpos = new BlockPos(x, 90, z);
-            Rotation rotation = Rotation.values()[this.rand.nextInt(Rotation.values().length)];
-            MalachiteWatchtowerPieces.buildStructure(manager, blockpos, rotation, this.components, this.rand);
-            this.recalculateStructureSize();
+            Rotation rotation = Rotation.randomRotation(this.rand);
+            int oX = 5;
+            int oZ = 5;
+            if (rotation == Rotation.CLOCKWISE_90) {
+                oX = -5;
+            } else if (rotation == Rotation.CLOCKWISE_180) {
+                oX = -5;
+                oZ = -5;
+            } else if (rotation == Rotation.COUNTERCLOCKWISE_90) {
+                oZ = -5;
+            }
+
+            int cX = (chunkX << 4) + 7;
+            int cZ = (chunkZ << 4) + 7;
+            int c1 = generator.func_222531_c(cX, cZ, Heightmap.Type.WORLD_SURFACE_WG);
+            int c2 = generator.func_222531_c(cX, cZ + oZ, Heightmap.Type.WORLD_SURFACE_WG);
+            int c3 = generator.func_222531_c(cX + oX, cZ, Heightmap.Type.WORLD_SURFACE_WG);
+            int c4 = generator.func_222531_c(cX + oX, cZ + oZ, Heightmap.Type.WORLD_SURFACE_WG);
+            int height = Math.min(Math.min(c1, c2), Math.min(c3, c4));
+
+            if (height >= 60) {
+                int x = chunkX * 16;
+                int z = chunkZ * 16;
+                BlockPos blockpos = new BlockPos(x + 8, height + 1, z + 8);
+                MalachiteWatchtowerPieces.buildStructure(manager, blockpos, rotation, this.components, this.rand);
+                this.recalculateStructureSize();
+            }
         }
 
         @Override
