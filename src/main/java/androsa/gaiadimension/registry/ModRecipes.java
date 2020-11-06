@@ -31,10 +31,10 @@ public class ModRecipes {
     };
 
     //RecipeSerializer
-    public static final RegistryObject<RestructurerRecipeSerializer<RestructurerRecipe>> RESTRUCTURING_SERIALIZER = RECIPE_SERIALIZERS.register(
-            "restructuring", () -> new RestructurerRecipeSerializer<>(RestructurerRecipe::new, 200));
-    public static final RegistryObject<PurifierRecipeSerializer<PurifierRecipe>> PURIFYING_SERIALIZER = RECIPE_SERIALIZERS.register(
-            "purifying", () -> new PurifierRecipeSerializer<>(PurifierRecipe::new, 200));
+    public static final RegistryObject<RestructurerRecipeSerializer<RestructurerRecipe>> RESTRUCTURING_SERIALIZER = RECIPE_SERIALIZERS.register("restructuring",
+            () -> new RestructurerRecipeSerializer<>(RestructurerRecipe::new, 200));
+    public static final RegistryObject<PurifierRecipeSerializer<PurifierRecipe>> PURIFYING_SERIALIZER = RECIPE_SERIALIZERS.register("purifying",
+            () -> new PurifierRecipeSerializer<>(PurifierRecipe::new, 200));
 
     public static void registerRecipeTypes() {
         Registry.register(Registry.RECIPE_TYPE, RESTRUCTURING.toString(), RESTRUCTURING);

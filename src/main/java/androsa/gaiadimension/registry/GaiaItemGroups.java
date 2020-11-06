@@ -12,7 +12,7 @@ public class GaiaItemGroups {
         @Override
         @OnlyIn(Dist.CLIENT)
         public ItemStack createIcon() {
-            return new ItemStack(ModBlocks.glitter_grass.get());
+            return new ItemStack(ModBlocks.glitter_grass);
         }
     };
 
@@ -21,7 +21,7 @@ public class GaiaItemGroups {
         @Override
         @OnlyIn(Dist.CLIENT)
         public ItemStack createIcon() {
-            return new ItemStack(ModItems.hematite.get());
+            return new ItemStack(ModItems.hematite);
         }
     };
 
@@ -31,7 +31,7 @@ public class GaiaItemGroups {
         @Override
         @OnlyIn(Dist.CLIENT)
         public ItemStack createIcon() {
-            return new ItemStack(ModItems.gaia_champion_sword.get());
+            return new ItemStack(ModItems.gaia_champion_sword);
         }
     };
 
@@ -41,7 +41,7 @@ public class GaiaItemGroups {
         @Override
         @OnlyIn(Dist.CLIENT)
         public ItemStack createIcon() {
-            return new ItemStack(ModItems.gaia_champion_helm.get());
+            return new ItemStack(ModItems.gaia_champion_helm);
         }
     };
 }

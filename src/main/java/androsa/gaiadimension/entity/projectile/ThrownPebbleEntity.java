@@ -28,11 +28,11 @@ public class ThrownPebbleEntity extends ProjectileItemEntity {
     }
 
     public ThrownPebbleEntity(World worldIn, LivingEntity throwerIn) {
-        super(ModEntities.THROWN_PEBBLE.get(), throwerIn, worldIn);
+        super(ModEntities.THROWN_PEBBLE, throwerIn, worldIn);
     }
 
     public ThrownPebbleEntity(World worldIn, double x, double y, double z) {
-        super(ModEntities.THROWN_PEBBLE.get(), x, y, z, worldIn);
+        super(ModEntities.THROWN_PEBBLE, x, y, z, worldIn);
     }
 
     @Override
@@ -51,7 +51,7 @@ public class ThrownPebbleEntity extends ProjectileItemEntity {
     @OnlyIn(Dist.CLIENT)
     private IParticleData func_213887_n() {
         ItemStack itemstack = this.func_213882_k();
-        return itemstack.isEmpty() ? ModParticles.ITEM_PEBBLE.get() : new ItemParticleData(ParticleTypes.ITEM, itemstack);
+        return itemstack.isEmpty() ? ModParticles.ITEM_PEBBLE : new ItemParticleData(ParticleTypes.ITEM, itemstack);
     }
 
     @Override
@@ -69,7 +69,7 @@ public class ThrownPebbleEntity extends ProjectileItemEntity {
 
     @Override
     protected Item getDefaultItem() {
-        return ModItems.sturdy_pebble.get();
+        return ModItems.sturdy_pebble;
     }
 
     @Override

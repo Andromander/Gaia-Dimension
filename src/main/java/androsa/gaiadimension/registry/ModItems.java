@@ -1,274 +1,292 @@
 package androsa.gaiadimension.registry;
 
-import androsa.gaiadimension.GaiaDimensionMod;
 import androsa.gaiadimension.item.*;
 import androsa.gaiadimension.item.armor.*;
 import androsa.gaiadimension.item.tools.*;
 import net.minecraft.entity.EntityType;
 import net.minecraft.fluid.Fluids;
+import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.*;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.fml.RegistryObject;
-import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.ForgeRegistries;
 
 import static net.minecraft.inventory.EquipmentSlotType.*;
 
 @SuppressWarnings("unused")
 public class ModItems {
 
-    public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, GaiaDimensionMod.MODID);
-
-    public static final RegistryObject<Item> crystallized_redstone = ITEMS.register("crystallized_redstone", BasicGaiaItem::new);
-    public static final RegistryObject<Item> crystallized_lapis_lazuli = ITEMS.register("crystallized_lapis_lazuli", BasicGaiaItem::new);
-    public static final RegistryObject<Item> glint_and_gold = ITEMS.register("glint_and_gold", GlintAndGoldItem::new);
-    public static final RegistryObject<Item> agate_stick = ITEMS.register("agate_stick", BasicGaiaItem::new);
-    public static final RegistryObject<Item> hot_dust = ITEMS.register("hot_dust", () -> new BasicGaiaItem() {
+    public static final Item crystallized_redstone = registerBasicItem("crystallized_redstone");
+    public static final Item crystallized_lapis_lazuli = registerBasicItem("crystallized_lapis_lazuli");
+    public static final Item glint_and_gold = RegistryHelper.registerItem("glint_and_gold", new GlintAndGoldItem());
+    public static final Item agate_stick = registerBasicItem("agate_stick");
+    public static final Item hot_dust = RegistryHelper.registerItem("hot_dust", new BasicGaiaItem() {
         @Override
         public int getBurnTime(ItemStack stack) {
             return 100;
         }
     });
-    public static final RegistryObject<Item> goldstone_dust = ITEMS.register("goldstone_dust", BasicGaiaItem::new);
-    public static final RegistryObject<Item> fine_dust = ITEMS.register("fine_dust", BasicGaiaItem::new);
-    public static final RegistryObject<Item> cloudy_shard = ITEMS.register("cloudy_shard", BasicGaiaItem::new);
-    public static final RegistryObject<Item> agate_cup = ITEMS.register("agate_cup", BasicGaiaItem::new);
-    public static final RegistryObject<Item> scaynyx_ingot = ITEMS.register("scaynyx_ingot", BasicGaiaItem::new);
-    public static final RegistryObject<Item> sweet_muckball = ITEMS.register("sweet_muckball", BasicGaiaItem::new);
-    public static final RegistryObject<Item> sugar_crystals = ITEMS.register("sugar_crystals", BasicGaiaItem::new);
-    public static final RegistryObject<Item> sugar_cluster = ITEMS.register("sugar_cluster", BasicGaiaItem::new);
-    public static final RegistryObject<Item> shiny_bone = ITEMS.register("shiny_bone", BasicGaiaItem::new);
-    public static final RegistryObject<Item> fine_thread = ITEMS.register("fine_thread", BasicGaiaItem::new);
-    public static final RegistryObject<Item> twined_thread = ITEMS.register("twined_thread", BasicGaiaItem::new);
-    public static final RegistryObject<Item> pink_essence = ITEMS.register("pink_essence", BasicGaiaItem::new);
-    public static final RegistryObject<Item> pink_goo = ITEMS.register("pink_goo", BasicGaiaItem::new);
-    public static final RegistryObject<Item> gemstone_pouch = ITEMS.register("gemstone_pouch", GemstonePouchItem::new);
-    public static final RegistryObject<Item> agate_fabric = ITEMS.register("agate_fabric", BasicGaiaItem::new);
-    public static final RegistryObject<Item> sturdy_pebble = ITEMS.register("sturdy_pebble", SturdyPebbleItem::new);
-    public static final RegistryObject<Item> scaynyx_bucket = ITEMS.register("scaynyx_bucket", () -> new ScaynyxBucketItem(() -> Fluids.EMPTY));
-    public static final RegistryObject<Item> mineral_water_bucket = ITEMS.register("mineral_water_bucket", () -> new ScaynyxBucketItem(ModFluids.mineral_water_still::get));
-    public static final RegistryObject<Item> superhot_magma_bucket = ITEMS.register("superhot_magma_bucket", () -> new ScaynyxBucketItem(ModFluids.superhot_magma_still::get));
-    public static final RegistryObject<Item> sweet_muck_bucket = ITEMS.register("sweet_muck_bucket", () -> new ScaynyxBucketItem(ModFluids.sweet_muck_still::get));
-    public static final RegistryObject<Item> liquid_bismuth_bucket = ITEMS.register("liquid_bismuth_bucket", () -> new ScaynyxBucketItem(ModFluids.liquid_bismuth_still::get));
-    public static final RegistryObject<Item> liquid_aura_bucket = ITEMS.register("liquid_aura_bucket", () -> new ScaynyxBucketItem(ModFluids.liquid_aura_still::get));
+    public static final Item goldstone_dust = registerBasicItem("goldstone_dust");
+    public static final Item fine_dust = registerBasicItem("fine_dust");
+    public static final Item cloudy_shard = registerBasicItem("cloudy_shard");
+    public static final Item agate_cup = registerBasicItem("agate_cup");
+    public static final Item scaynyx_ingot = registerBasicItem("scaynyx_ingot");
+    public static final Item sweet_muckball = registerBasicItem("sweet_muckball");
+    public static final Item sugar_crystals = registerBasicItem("sugar_crystals");
+    public static final Item sugar_cluster = registerBasicItem("sugar_cluster");
+    public static final Item shiny_bone = registerBasicItem("shiny_bone");
+    public static final Item fine_thread = registerBasicItem("fine_thread");
+    public static final Item twined_thread = registerBasicItem("twined_thread");
+    public static final Item pink_essence = registerBasicItem("pink_essence");
+    public static final Item pink_goo = registerBasicItem("pink_goo");
+    public static final Item gemstone_pouch = RegistryHelper.registerItem("gemstone_pouch", new GemstonePouchItem());
+    public static final Item agate_fabric = registerBasicItem("agate_fabric");
+    public static final Item sturdy_pebble = RegistryHelper.registerItem("sturdy_pebble", new SturdyPebbleItem());
+    public static final Item scaynyx_bucket = RegistryHelper.registerItem("scaynyx_bucket", new ScaynyxBucketItem(() -> Fluids.EMPTY));
+    public static final Item mineral_water_bucket = RegistryHelper.registerItem("mineral_water_bucket", new ScaynyxBucketItem(() -> ModFluids.mineral_water_still));
+    public static final Item superhot_magma_bucket = RegistryHelper.registerItem("superhot_magma_bucket", new ScaynyxBucketItem(() -> ModFluids.superhot_magma_still));
+    public static final Item sweet_muck_bucket = RegistryHelper.registerItem("sweet_muck_bucket", new ScaynyxBucketItem(() -> ModFluids.sweet_muck_still));
+    public static final Item liquid_bismuth_bucket = RegistryHelper.registerItem("liquid_bismuth_bucket", new ScaynyxBucketItem(() -> ModFluids.liquid_bismuth_still));
+    public static final Item liquid_aura_bucket = RegistryHelper.registerItem("liquid_aura_bucket", new ScaynyxBucketItem(() -> ModFluids.liquid_aura_still));
 
-    public static final RegistryObject<Item> pink_geode = ITEMS.register("pink_geode", BasicGaiaItem::new);
-    public static final RegistryObject<Item> blue_geode = ITEMS.register("blue_geode", BasicGaiaItem::new);
-    public static final RegistryObject<Item> green_geode = ITEMS.register("green_geode", BasicGaiaItem::new);
-    public static final RegistryObject<Item> purple_geode = ITEMS.register("purple_geode", BasicGaiaItem::new);
-    public static final RegistryObject<Item> pink_geode_slice = ITEMS.register("pink_geode_slice", () -> new GeodeSliceItem(GaiaFoods.PINK_SLICE));
-    public static final RegistryObject<Item> blue_geode_slice = ITEMS.register("blue_geode_slice", () -> new GeodeSliceItem(GaiaFoods.BLUE_SLICE));
-    public static final RegistryObject<Item> green_geode_slice = ITEMS.register("green_geode_slice", () -> new GeodeSliceItem(GaiaFoods.GREEN_SLICE));
-    public static final RegistryObject<Item> purple_geode_slice = ITEMS.register("purple_geode_slice", () -> new GeodeSliceItem(GaiaFoods.PURPLE_SLICE));
-    public static final RegistryObject<Item> pink_geode_juice = ITEMS.register("pink_geode_juice", () -> new GeodeJuiceItem(GaiaFoods.PINK_JUICE));
-    public static final RegistryObject<Item> blue_geode_tea = ITEMS.register("blue_geode_tea", () -> new GeodeJuiceItem(GaiaFoods.BLUE_TEA));
-    public static final RegistryObject<Item> green_geode_ale = ITEMS.register("green_geode_ale", () -> new GeodeJuiceItem(GaiaFoods.GREEN_ALE));
-    public static final RegistryObject<Item> purple_geode_soda = ITEMS.register("purple_geode_soda", () -> new GeodeJuiceItem(GaiaFoods.PURPLE_SODA));
-    public static final RegistryObject<Item> pearly_geode_elixir = ITEMS.register("pearly_geode_elixir", () -> new GeodeJuiceItem(GaiaFoods.PEARLY_ELIXIR));
-    public static final RegistryObject<Item> lurmorus_meat = ITEMS.register("lurmorus_meat", () -> new BasicGaiaItem(GaiaFoods.LURMORUS_MEAT));
-    public static final RegistryObject<Item> lurmorus_steak = ITEMS.register("lurmorus_steak", () -> new BasicGaiaItem(GaiaFoods.LURMORUS_STEAK));
-    public static final RegistryObject<Item> small_tentacle = ITEMS.register("small_tentacle", () -> new BasicGaiaItem(GaiaFoods.SMALL_TENTACLE));
-    public static final RegistryObject<Item> small_calamari = ITEMS.register("small_calamari", () -> new BasicGaiaItem(GaiaFoods.SMALL_CALAMARI));
-    public static final RegistryObject<Item> large_tentacle = ITEMS.register("large_tentacle", () -> new BasicGaiaItem(GaiaFoods.LARGE_TENTACLE));
-    public static final RegistryObject<Item> large_calamari = ITEMS.register("large_calamari", () -> new BasicGaiaItem(GaiaFoods.LARGE_CALAMARI));
-    public static final RegistryObject<Item> markuzar_mint = ITEMS.register("markuzar_mint", () -> new BasicGaiaItem(GaiaFoods.MARKUZAR_MINT));
-    public static final RegistryObject<Item> luggeroth_chop = ITEMS.register("luggeroth_chop", () -> new BasicGaiaItem(GaiaFoods.LUGGEROTH_CHOP));
-    public static final RegistryObject<Item> cooked_luggeroth_chop = ITEMS.register("cooked_luggeroth_chop", () -> new BasicGaiaItem(GaiaFoods.COOKED_LUGGEROTH_CHOP));
-    public static final RegistryObject<Item> tilipi = ITEMS.register("tilipi", () -> new BasicGaiaItem(GaiaFoods.TILIPI));
-    public static final RegistryObject<Item> tilibl = ITEMS.register("tilibl", () -> new BasicGaiaItem(GaiaFoods.TILIBL));
-    public static final RegistryObject<Item> tiligr = ITEMS.register("tiligr", () -> new BasicGaiaItem(GaiaFoods.TILIGR));
-    public static final RegistryObject<Item> tilipu = ITEMS.register("tilipu", () -> new BasicGaiaItem(GaiaFoods.TILIPU));
-    public static final RegistryObject<Item> tiliol = ITEMS.register("tiliol", () -> new BasicGaiaItem(GaiaFoods.TILIOL));
-    public static final RegistryObject<Item> tilimy = ITEMS.register("tilimy", () -> new BasicGaiaItem(GaiaFoods.TILIMY));
-    public static final RegistryObject<Item> plagued_tiliey = ITEMS.register("plagued_tiliey", () -> new BasicGaiaItem(GaiaFoods.PLAGUED_TILIEY));
-    public static final RegistryObject<Item> tiliou = ITEMS.register("tiliou", () -> new BasicGaiaItem(GaiaFoods.TILIOU));
+    public static final Item pink_geode = registerBasicItem("pink_geode");
+    public static final Item blue_geode = registerBasicItem("blue_geode");
+    public static final Item green_geode = registerBasicItem("green_geode");
+    public static final Item purple_geode = registerBasicItem("purple_geode");
+    public static final Item pink_geode_slice = RegistryHelper.registerItem("pink_geode_slice", new GeodeSliceItem(GaiaFoods.PINK_SLICE));
+    public static final Item blue_geode_slice = RegistryHelper.registerItem("blue_geode_slice", new GeodeSliceItem(GaiaFoods.BLUE_SLICE));
+    public static final Item green_geode_slice = RegistryHelper.registerItem("green_geode_slice", new GeodeSliceItem(GaiaFoods.GREEN_SLICE));
+    public static final Item purple_geode_slice = RegistryHelper.registerItem("purple_geode_slice", new GeodeSliceItem(GaiaFoods.PURPLE_SLICE));
+    public static final Item pink_geode_juice = RegistryHelper.registerItem("pink_geode_juice", new GeodeJuiceItem(GaiaFoods.PINK_JUICE));
+    public static final Item blue_geode_tea = RegistryHelper.registerItem("blue_geode_tea", new GeodeJuiceItem(GaiaFoods.BLUE_TEA));
+    public static final Item green_geode_ale = RegistryHelper.registerItem("green_geode_ale", new GeodeJuiceItem(GaiaFoods.GREEN_ALE));
+    public static final Item purple_geode_soda = RegistryHelper.registerItem("purple_geode_soda", new GeodeJuiceItem(GaiaFoods.PURPLE_SODA));
+    public static final Item pearly_geode_elixir = RegistryHelper.registerItem("pearly_geode_elixir", new GeodeJuiceItem(GaiaFoods.PEARLY_ELIXIR));
+    public static final Item lurmorus_meat = RegistryHelper.registerItem("lurmorus_meat", new BasicGaiaItem(GaiaFoods.LURMORUS_MEAT));
+    public static final Item lurmorus_steak = RegistryHelper.registerItem("lurmorus_steak", new BasicGaiaItem(GaiaFoods.LURMORUS_STEAK));
+    public static final Item small_tentacle = RegistryHelper.registerItem("small_tentacle", new BasicGaiaItem(GaiaFoods.SMALL_TENTACLE));
+    public static final Item small_calamari = RegistryHelper.registerItem("small_calamari", new BasicGaiaItem(GaiaFoods.SMALL_CALAMARI));
+    public static final Item large_tentacle = RegistryHelper.registerItem("large_tentacle", new BasicGaiaItem(GaiaFoods.LARGE_TENTACLE));
+    public static final Item large_calamari = RegistryHelper.registerItem("large_calamari", new BasicGaiaItem(GaiaFoods.LARGE_CALAMARI));
+    public static final Item markuzar_mint = RegistryHelper.registerItem("markuzar_mint", new BasicGaiaItem(GaiaFoods.MARKUZAR_MINT));
+    public static final Item luggeroth_chop = RegistryHelper.registerItem("luggeroth_chop", new BasicGaiaItem(GaiaFoods.LUGGEROTH_CHOP));
+    public static final Item cooked_luggeroth_chop = RegistryHelper.registerItem("cooked_luggeroth_chop", new BasicGaiaItem(GaiaFoods.COOKED_LUGGEROTH_CHOP));
+    public static final Item tilipi = RegistryHelper.registerItem("tilipi", new BasicGaiaItem(GaiaFoods.TILIPI));
+    public static final Item tilibl = RegistryHelper.registerItem("tilibl", new BasicGaiaItem(GaiaFoods.TILIBL));
+    public static final Item tiligr = RegistryHelper.registerItem("tiligr", new BasicGaiaItem(GaiaFoods.TILIGR));
+    public static final Item tilipu = RegistryHelper.registerItem("tilipu", new BasicGaiaItem(GaiaFoods.TILIPU));
+    public static final Item tiliol = RegistryHelper.registerItem("tiliol", new BasicGaiaItem(GaiaFoods.TILIOL));
+    public static final Item tilimy = RegistryHelper.registerItem("tilimy", new BasicGaiaItem(GaiaFoods.TILIMY));
+    public static final Item plagued_tiliey = RegistryHelper.registerItem("plagued_tiliey", new BasicGaiaItem(GaiaFoods.PLAGUED_TILIEY));
+    public static final Item tiliou = RegistryHelper.registerItem("tiliou", new BasicGaiaItem(GaiaFoods.TILIOU));
 
-    public static final RegistryObject<Item> hematite_powder = ITEMS.register("hematite_powder", GroundGemItem::new);
-    public static final RegistryObject<Item> cinnabar_powder = ITEMS.register("cinnabar_powder", GroundGemItem::new);
-    public static final RegistryObject<Item> labradorite_powder = ITEMS.register("labradorite_powder", GroundGemItem::new);
-    public static final RegistryObject<Item> moonstone_powder = ITEMS.register("moonstone_powder", GroundGemItem::new);
-    public static final RegistryObject<Item> red_opal_powder = ITEMS.register("red_opal_powder", GroundGemItem::new);
-    public static final RegistryObject<Item> blue_opal_powder = ITEMS.register("blue_opal_powder", GroundGemItem::new);
-    public static final RegistryObject<Item> green_opal_powder = ITEMS.register("green_opal_powder", GroundGemItem::new);
-    public static final RegistryObject<Item> white_opal_grit = ITEMS.register("white_opal_grit", GroundGemItem::new);
-    public static final RegistryObject<Item> pyrite_powder = ITEMS.register("pyrite_powder", GroundGemItem::new);
+    public static final Item hematite_powder = RegistryHelper.registerItem("hematite_powder", new GroundGemItem());
+    public static final Item cinnabar_powder = RegistryHelper.registerItem("cinnabar_powder", new GroundGemItem());
+    public static final Item labradorite_powder = RegistryHelper.registerItem("labradorite_powder", new GroundGemItem());
+    public static final Item moonstone_powder = RegistryHelper.registerItem("moonstone_powder", new GroundGemItem());
+    public static final Item red_opal_powder = RegistryHelper.registerItem("red_opal_powder", new GroundGemItem());
+    public static final Item blue_opal_powder = RegistryHelper.registerItem("blue_opal_powder", new GroundGemItem());
+    public static final Item green_opal_powder = RegistryHelper.registerItem("green_opal_powder", new GroundGemItem());
+    public static final Item white_opal_grit = RegistryHelper.registerItem("white_opal_grit", new GroundGemItem());
+    public static final Item pyrite_powder = RegistryHelper.registerItem("pyrite_powder", new GroundGemItem());
 
-    public static final RegistryObject<Item> sugilite = ITEMS.register("sugilite", BasicGaiaItem::new);
-    public static final RegistryObject<Item> hematite = ITEMS.register("hematite", BasicGaiaItem::new);
-    public static final RegistryObject<Item> cinnabar = ITEMS.register("cinnabar", BasicGaiaItem::new);
-    public static final RegistryObject<Item> labradorite = ITEMS.register("labradorite", BasicGaiaItem::new);
-    public static final RegistryObject<Item> moonstone = ITEMS.register("moonstone", BasicGaiaItem::new);
-    public static final RegistryObject<Item> red_opal = ITEMS.register("red_opal", BasicGaiaItem::new);
-    public static final RegistryObject<Item> blue_opal = ITEMS.register("blue_opal", BasicGaiaItem::new);
-    public static final RegistryObject<Item> green_opal = ITEMS.register("green_opal", BasicGaiaItem::new);
-    public static final RegistryObject<Item> white_opal = ITEMS.register("white_opal", BasicGaiaItem::new);
-    public static final RegistryObject<Item> ixiolite = ITEMS.register("ixiolite", BasicGaiaItem::new);
-    public static final RegistryObject<Item> proustite = ITEMS.register("proustite", BasicGaiaItem::new);
-    public static final RegistryObject<Item> euclase = ITEMS.register("euclase", BasicGaiaItem::new);
-    public static final RegistryObject<Item> leucite = ITEMS.register("leucite", BasicGaiaItem::new);
-    public static final RegistryObject<Item> carnelian = ITEMS.register("carnelian", BasicGaiaItem::new);
-    public static final RegistryObject<Item> benitoite = ITEMS.register("benitoite", BasicGaiaItem::new);
-    public static final RegistryObject<Item> diopside = ITEMS.register("diopside", BasicGaiaItem::new);
-    public static final RegistryObject<Item> chalcedony = ITEMS.register("chalcedony", BasicGaiaItem::new);
-    public static final RegistryObject<Item> pyrite = ITEMS.register("pyrite", BasicGaiaItem::new);
-    public static final RegistryObject<Item> black_residue = ITEMS.register("black_residue", BasicGaiaItem::new);
-    public static final RegistryObject<Item> tektite = ITEMS.register("tektite", BasicGaiaItem::new);
-    public static final RegistryObject<Item> goldstone_residue = ITEMS.register("goldstone_residue", BasicGaiaItem::new);
-    public static final RegistryObject<Item> goldstone = ITEMS.register("goldstone", BasicGaiaItem::new);
-    public static final RegistryObject<Item> aura_residue = ITEMS.register("aura_residue", BasicGaiaItem::new);
-    public static final RegistryObject<Item> aura_cluster = ITEMS.register("aura_cluster", BasicGaiaItem::new);
-    public static final RegistryObject<Item> bismuth_residue = ITEMS.register("bismuth_residue", BasicGaiaItem::new);
-    public static final RegistryObject<Item> bismuth_crystal = ITEMS.register("bismuth_crystal", BasicGaiaItem::new);
+    public static final Item sugilite = registerBasicItem("sugilite");
+    public static final Item hematite = registerBasicItem("hematite");
+    public static final Item cinnabar = registerBasicItem("cinnabar");
+    public static final Item labradorite = registerBasicItem("labradorite");
+    public static final Item moonstone = registerBasicItem("moonstone");
+    public static final Item red_opal = registerBasicItem("red_opal");
+    public static final Item blue_opal = registerBasicItem("blue_opal");
+    public static final Item green_opal = registerBasicItem("green_opal");
+    public static final Item white_opal = registerBasicItem("white_opal");
+    public static final Item ixiolite = registerBasicItem("ixiolite");
+    public static final Item proustite = registerBasicItem("proustite");
+    public static final Item euclase = registerBasicItem("euclase");
+    public static final Item leucite = registerBasicItem("leucite");
+    public static final Item carnelian = registerBasicItem("carnelian");
+    public static final Item benitoite = registerBasicItem("benitoite");
+    public static final Item diopside = registerBasicItem("diopside");
+    public static final Item chalcedony = registerBasicItem("chalcedony");
+    public static final Item pyrite = registerBasicItem("pyrite");
+    public static final Item black_residue = registerBasicItem("black_residue");
+    public static final Item tektite = registerBasicItem("tektite");
+    public static final Item goldstone_residue = registerBasicItem("goldstone_residue");
+    public static final Item goldstone = registerBasicItem("goldstone");
+    public static final Item aura_residue = registerBasicItem("aura_residue");
+    public static final Item aura_cluster = registerBasicItem("aura_cluster");
+    public static final Item bismuth_residue = registerBasicItem("bismuth_residue");
+    public static final Item bismuth_crystal = registerBasicItem("bismuth_crystal");
 
-    public static final RegistryObject<Item> sugilite_helmet = ITEMS.register("sugilite_helmet", () -> new BasicGaiaArmorItem(GaiaArmorMaterials.SUGILITE, HEAD));
-    public static final RegistryObject<Item> sugilite_chestplate = ITEMS.register("sugilite_chestplate", () -> new BasicGaiaArmorItem(GaiaArmorMaterials.SUGILITE, CHEST));
-    public static final RegistryObject<Item> sugilite_legs = ITEMS.register("sugilite_legs", () -> new BasicGaiaArmorItem(GaiaArmorMaterials.SUGILITE, LEGS));
-    public static final RegistryObject<Item> sugilite_boots = ITEMS.register("sugilite_boots", () -> new BasicGaiaArmorItem(GaiaArmorMaterials.SUGILITE, FEET));
-    public static final RegistryObject<Item> proustite_helmet = ITEMS.register("proustite_helmet", () -> new BasicGaiaArmorItem(GaiaArmorMaterials.PROUSTITE, HEAD));
-    public static final RegistryObject<Item> proustite_chestplate = ITEMS.register("proustite_chestplate", () -> new BasicGaiaArmorItem(GaiaArmorMaterials.PROUSTITE, CHEST));
-    public static final RegistryObject<Item> proustite_legs = ITEMS.register("proustite_legs", () -> new BasicGaiaArmorItem(GaiaArmorMaterials.PROUSTITE, LEGS));
-    public static final RegistryObject<Item> proustite_boots = ITEMS.register("proustite_boots", () -> new BasicGaiaArmorItem(GaiaArmorMaterials.PROUSTITE, FEET));
-    public static final RegistryObject<Item> leucite_helmet = ITEMS.register("leucite_helmet", () -> new BasicGaiaArmorItem(GaiaArmorMaterials.LEUCITE, HEAD));
-    public static final RegistryObject<Item> leucite_chestplate = ITEMS.register("leucite_chestplate", () -> new BasicGaiaArmorItem(GaiaArmorMaterials.LEUCITE, CHEST));
-    public static final RegistryObject<Item> leucite_legs = ITEMS.register("leucite_legs", () -> new BasicGaiaArmorItem(GaiaArmorMaterials.LEUCITE, LEGS));
-    public static final RegistryObject<Item> leucite_boots = ITEMS.register("leucite_boots", () -> new BasicGaiaArmorItem(GaiaArmorMaterials.LEUCITE, FEET));
-    public static final RegistryObject<Item> carnelian_helmet = ITEMS.register("carnelian_helmet", () -> new BasicGaiaArmorItem(GaiaArmorMaterials.CARNELIAN, HEAD));
-    public static final RegistryObject<Item> carnelian_chestplate = ITEMS.register("carnelian_chestplate", () -> new BasicGaiaArmorItem(GaiaArmorMaterials.CARNELIAN, CHEST));
-    public static final RegistryObject<Item> carnelian_legs = ITEMS.register("carnelian_legs", () -> new BasicGaiaArmorItem(GaiaArmorMaterials.CARNELIAN, LEGS));
-    public static final RegistryObject<Item> carnelian_boots = ITEMS.register("carnelian_boots", () -> new BasicGaiaArmorItem(GaiaArmorMaterials.CARNELIAN, FEET));
-    public static final RegistryObject<Item> diopside_helmet = ITEMS.register("diopside_helmet", () -> new BasicGaiaArmorItem(GaiaArmorMaterials.DIOPSIDE, HEAD));
-    public static final RegistryObject<Item> diopside_chestplate = ITEMS.register("diopside_chestplate", () -> new BasicGaiaArmorItem(GaiaArmorMaterials.DIOPSIDE, CHEST));
-    public static final RegistryObject<Item> diopside_legs = ITEMS.register("diopside_legs", () -> new BasicGaiaArmorItem(GaiaArmorMaterials.DIOPSIDE, LEGS));
-    public static final RegistryObject<Item> diopside_boots = ITEMS.register("diopside_boots", () -> new BasicGaiaArmorItem(GaiaArmorMaterials.DIOPSIDE, FEET));
-    public static final RegistryObject<Item> chalcedony_helmet = ITEMS.register("chalcedony_helmet", () -> new BasicGaiaArmorItem(GaiaArmorMaterials.CHALCEDONY, HEAD));
-    public static final RegistryObject<Item> chalcedony_chestplate = ITEMS.register("chalcedony_chestplate", () -> new BasicGaiaArmorItem(GaiaArmorMaterials.CHALCEDONY, CHEST));
-    public static final RegistryObject<Item> chalcedony_legs = ITEMS.register("chalcedony_legs", () -> new BasicGaiaArmorItem(GaiaArmorMaterials.CHALCEDONY, LEGS));
-    public static final RegistryObject<Item> chalcedony_boots = ITEMS.register("chalcedony_boots", () -> new BasicGaiaArmorItem(GaiaArmorMaterials.CHALCEDONY, FEET));
+    public static final Item sugilite_helmet = registerArmorItem("sugilite_helmet", GaiaArmorMaterials.SUGILITE, HEAD);
+    public static final Item sugilite_chestplate = registerArmorItem("sugilite_chestplate", GaiaArmorMaterials.SUGILITE, CHEST);
+    public static final Item sugilite_legs = registerArmorItem("sugilite_legs", GaiaArmorMaterials.SUGILITE, LEGS);
+    public static final Item sugilite_boots = registerArmorItem("sugilite_boots", GaiaArmorMaterials.SUGILITE, FEET);
+    public static final Item proustite_helmet = registerArmorItem("proustite_helmet", GaiaArmorMaterials.PROUSTITE, HEAD);
+    public static final Item proustite_chestplate = registerArmorItem("proustite_chestplate", GaiaArmorMaterials.PROUSTITE, CHEST);
+    public static final Item proustite_legs = registerArmorItem("proustite_legs", GaiaArmorMaterials.PROUSTITE, LEGS);
+    public static final Item proustite_boots = registerArmorItem("proustite_boots", GaiaArmorMaterials.PROUSTITE, FEET);
+    public static final Item leucite_helmet = registerArmorItem("leucite_helmet", GaiaArmorMaterials.LEUCITE, HEAD);
+    public static final Item leucite_chestplate = registerArmorItem("leucite_chestplate", GaiaArmorMaterials.LEUCITE, CHEST);
+    public static final Item leucite_legs = registerArmorItem("leucite_legs", GaiaArmorMaterials.LEUCITE, LEGS);
+    public static final Item leucite_boots = registerArmorItem("leucite_boots", GaiaArmorMaterials.LEUCITE, FEET);
+    public static final Item carnelian_helmet = registerArmorItem("carnelian_helmet", GaiaArmorMaterials.CARNELIAN, HEAD);
+    public static final Item carnelian_chestplate = registerArmorItem("carnelian_chestplate", GaiaArmorMaterials.CARNELIAN, CHEST);
+    public static final Item carnelian_legs = registerArmorItem("carnelian_legs", GaiaArmorMaterials.CARNELIAN, LEGS);
+    public static final Item carnelian_boots = registerArmorItem("carnelian_boots", GaiaArmorMaterials.CARNELIAN, FEET);
+    public static final Item diopside_helmet = registerArmorItem("diopside_helmet", GaiaArmorMaterials.DIOPSIDE, HEAD);
+    public static final Item diopside_chestplate = registerArmorItem("diopside_chestplate", GaiaArmorMaterials.DIOPSIDE, CHEST);
+    public static final Item diopside_legs = registerArmorItem("diopside_legs", GaiaArmorMaterials.DIOPSIDE, LEGS);
+    public static final Item diopside_boots = registerArmorItem("diopside_boots", GaiaArmorMaterials.DIOPSIDE, FEET);
+    public static final Item chalcedony_helmet = registerArmorItem("chalcedony_helmet", GaiaArmorMaterials.CHALCEDONY, HEAD);
+    public static final Item chalcedony_chestplate = registerArmorItem("chalcedony_chestplate", GaiaArmorMaterials.CHALCEDONY, CHEST);
+    public static final Item chalcedony_legs = registerArmorItem("chalcedony_legs", GaiaArmorMaterials.CHALCEDONY, LEGS);
+    public static final Item chalcedony_boots = registerArmorItem("chalcedony_boots", GaiaArmorMaterials.CHALCEDONY, FEET);
 
-    public static final RegistryObject<Item> malachite_guard_headgear = ITEMS.register("malachite_guard_headgear", () -> new MalachiteGuardArmorItem(HEAD));
-    public static final RegistryObject<Item> malachite_guard_brace = ITEMS.register("malachite_guard_brace", () -> new MalachiteGuardArmorItem(CHEST));
-    public static final RegistryObject<Item> malachite_guard_gear = ITEMS.register("malachite_guard_gear", () -> new MalachiteGuardArmorItem(LEGS));
-    public static final RegistryObject<Item> malachite_guard_boots = ITEMS.register("malachite_guard_boots", () -> new MalachiteGuardArmorItem(FEET));
-    public static final RegistryObject<Item> apex_predator_hood = ITEMS.register("apex_predator_hood", () -> new ApexPredatorArmorItem(HEAD));
-    public static final RegistryObject<Item> apex_predator_jacket = ITEMS.register("apex_predator_jacket", () -> new ApexPredatorArmorItem(CHEST));
-    public static final RegistryObject<Item> apex_predator_trousers = ITEMS.register("apex_predator_trousers", () -> new ApexPredatorArmorItem(LEGS));
-    public static final RegistryObject<Item> apex_predator_boots = ITEMS.register("apex_predator_boots", () -> new ApexPredatorArmorItem(FEET));
-    public static final RegistryObject<Item> spinel_princess_cowl = ITEMS.register("spinel_princess_cowl", () -> new SpinelPrincessArmorItem(HEAD));
-    public static final RegistryObject<Item> spinel_princess_cloak = ITEMS.register("spinel_princess_cloak", () -> new SpinelPrincessArmorItem(CHEST));
-    public static final RegistryObject<Item> spinel_princess_dress = ITEMS.register("spinel_princess_dress", () -> new SpinelPrincessArmorItem(LEGS));
-    public static final RegistryObject<Item> spinel_princess_heels = ITEMS.register("spinel_princess_heels", () -> new SpinelPrincessArmorItem(FEET));
-    public static final RegistryObject<Item> zircon_prince_crown = ITEMS.register("zircon_prince_crown", () -> new ZirconPrinceArmorItem(HEAD));
-    public static final RegistryObject<Item> zircon_prince_chestpiece = ITEMS.register("zircon_prince_chestpiece", () -> new ZirconPrinceArmorItem(CHEST));
-    public static final RegistryObject<Item> zircon_prince_gear = ITEMS.register("zircon_prince_gear", () -> new ZirconPrinceArmorItem(LEGS));
-    public static final RegistryObject<Item> zircon_prince_boots = ITEMS.register("zircon_prince_boots", () -> new ZirconPrinceArmorItem(FEET));
-    public static final RegistryObject<Item> corrupt_warrior_helm = ITEMS.register("corrupt_warrior_helm", () -> new CorruptWarriorArmorItem(HEAD));
-    public static final RegistryObject<Item> corrupt_warrior_guard = ITEMS.register("corrupt_warrior_guard", () -> new CorruptWarriorArmorItem(CHEST));
-    public static final RegistryObject<Item> corrupt_warrior_greaves = ITEMS.register("corrupt_warrior_greaves", () -> new CorruptWarriorArmorItem(LEGS));
-    public static final RegistryObject<Item> corrupt_warrior_boots = ITEMS.register("corrupt_warrior_boots", () -> new CorruptWarriorArmorItem(FEET));
-    public static final RegistryObject<Item> gaia_duchess_helm = ITEMS.register("gaia_duchess_helm", () -> new GaiaDuchessArmorItem(HEAD));
-    public static final RegistryObject<Item> gaia_duchess_guard = ITEMS.register("gaia_duchess_guard", () -> new GaiaDuchessArmorItem(CHEST));
-    public static final RegistryObject<Item> gaia_duchess_greaves = ITEMS.register("gaia_duchess_greaves", () -> new GaiaDuchessArmorItem(LEGS));
-    public static final RegistryObject<Item> gaia_duchess_boots = ITEMS.register("gaia_duchess_boots", () -> new GaiaDuchessArmorItem(FEET));
-    public static final RegistryObject<Item> gaia_baron_mask = ITEMS.register("gaia_baron_mask", () -> new GaiaBaronArmorItem(HEAD));
-    public static final RegistryObject<Item> gaia_baron_tuxedo = ITEMS.register("gaia_baron_tuxedo", () -> new GaiaBaronArmorItem(CHEST));
-    public static final RegistryObject<Item> gaia_baron_pants = ITEMS.register("gaia_baron_pants", () -> new GaiaBaronArmorItem(LEGS));
-    public static final RegistryObject<Item> gaia_baron_shoes = ITEMS.register("gaia_baron_shoes", () -> new GaiaBaronArmorItem(FEET));
-    public static final RegistryObject<Item> gaia_duke_helm = ITEMS.register("gaia_duke_helm", () -> new GaiaDukeArmorItem(HEAD));
-    public static final RegistryObject<Item> gaia_duke_guard = ITEMS.register("gaia_duke_guard", () -> new GaiaDukeArmorItem(CHEST));
-    public static final RegistryObject<Item> gaia_duke_greaves = ITEMS.register("gaia_duke_greaves", () -> new GaiaDukeArmorItem(LEGS));
-    public static final RegistryObject<Item> gaia_duke_boots = ITEMS.register("gaia_duke_boots", () -> new GaiaDukeArmorItem(FEET));
-    public static final RegistryObject<Item> gaia_champion_helm = ITEMS.register("gaia_champion_helm", () -> new GaiaChampArmorItem(HEAD));
-    public static final RegistryObject<Item> gaia_champion_guard = ITEMS.register("gaia_champion_guard", () -> new GaiaChampArmorItem(CHEST));
-    public static final RegistryObject<Item> gaia_champion_greaves = ITEMS.register("gaia_champion_greaves", () -> new GaiaChampArmorItem(LEGS));
-    public static final RegistryObject<Item> gaia_champion_boots = ITEMS.register("gaia_champion_boots", () -> new GaiaChampArmorItem(FEET));
+    public static final Item malachite_guard_headgear = RegistryHelper.registerItem("malachite_guard_headgear", new MalachiteGuardArmorItem(HEAD));
+    public static final Item malachite_guard_brace = RegistryHelper.registerItem("malachite_guard_brace", new MalachiteGuardArmorItem(CHEST));
+    public static final Item malachite_guard_gear = RegistryHelper.registerItem("malachite_guard_gear", new MalachiteGuardArmorItem(LEGS));
+    public static final Item malachite_guard_boots = RegistryHelper.registerItem("malachite_guard_boots", new MalachiteGuardArmorItem(FEET));
+    public static final Item apex_predator_hood = RegistryHelper.registerItem("apex_predator_hood", new ApexPredatorArmorItem(HEAD));
+    public static final Item apex_predator_jacket = RegistryHelper.registerItem("apex_predator_jacket", new ApexPredatorArmorItem(CHEST));
+    public static final Item apex_predator_trousers = RegistryHelper.registerItem("apex_predator_trousers", new ApexPredatorArmorItem(LEGS));
+    public static final Item apex_predator_boots = RegistryHelper.registerItem("apex_predator_boots", new ApexPredatorArmorItem(FEET));
+    public static final Item spinel_princess_cowl = RegistryHelper.registerItem("spinel_princess_cowl", new SpinelPrincessArmorItem(HEAD));
+    public static final Item spinel_princess_cloak = RegistryHelper.registerItem("spinel_princess_cloak", new SpinelPrincessArmorItem(CHEST));
+    public static final Item spinel_princess_dress = RegistryHelper.registerItem("spinel_princess_dress", new SpinelPrincessArmorItem(LEGS));
+    public static final Item spinel_princess_heels = RegistryHelper.registerItem("spinel_princess_heels", new SpinelPrincessArmorItem(FEET));
+    public static final Item zircon_prince_crown = RegistryHelper.registerItem("zircon_prince_crown", new ZirconPrinceArmorItem(HEAD));
+    public static final Item zircon_prince_chestpiece = RegistryHelper.registerItem("zircon_prince_chestpiece", new ZirconPrinceArmorItem(CHEST));
+    public static final Item zircon_prince_gear = RegistryHelper.registerItem("zircon_prince_gear", new ZirconPrinceArmorItem(LEGS));
+    public static final Item zircon_prince_boots = RegistryHelper.registerItem("zircon_prince_boots", new ZirconPrinceArmorItem(FEET));
+    public static final Item corrupt_warrior_helm = RegistryHelper.registerItem("corrupt_warrior_helm", new CorruptWarriorArmorItem(HEAD));
+    public static final Item corrupt_warrior_guard = RegistryHelper.registerItem("corrupt_warrior_guard", new CorruptWarriorArmorItem(CHEST));
+    public static final Item corrupt_warrior_greaves = RegistryHelper.registerItem("corrupt_warrior_greaves", new CorruptWarriorArmorItem(LEGS));
+    public static final Item corrupt_warrior_boots = RegistryHelper.registerItem("corrupt_warrior_boots", new CorruptWarriorArmorItem(FEET));
+    public static final Item gaia_duchess_helm = RegistryHelper.registerItem("gaia_duchess_helm", new GaiaDuchessArmorItem(HEAD));
+    public static final Item gaia_duchess_guard = RegistryHelper.registerItem("gaia_duchess_guard", new GaiaDuchessArmorItem(CHEST));
+    public static final Item gaia_duchess_greaves = RegistryHelper.registerItem("gaia_duchess_greaves", new GaiaDuchessArmorItem(LEGS));
+    public static final Item gaia_duchess_boots = RegistryHelper.registerItem("gaia_duchess_boots", new GaiaDuchessArmorItem(FEET));
+    public static final Item gaia_baron_mask = RegistryHelper.registerItem("gaia_baron_mask", new GaiaBaronArmorItem(HEAD));
+    public static final Item gaia_baron_tuxedo = RegistryHelper.registerItem("gaia_baron_tuxedo", new GaiaBaronArmorItem(CHEST));
+    public static final Item gaia_baron_pants = RegistryHelper.registerItem("gaia_baron_pants", new GaiaBaronArmorItem(LEGS));
+    public static final Item gaia_baron_shoes = RegistryHelper.registerItem("gaia_baron_shoes", new GaiaBaronArmorItem(FEET));
+    public static final Item gaia_duke_helm = RegistryHelper.registerItem("gaia_duke_helm", new GaiaDukeArmorItem(HEAD));
+    public static final Item gaia_duke_guard = RegistryHelper.registerItem("gaia_duke_guard", new GaiaDukeArmorItem(CHEST));
+    public static final Item gaia_duke_greaves = RegistryHelper.registerItem("gaia_duke_greaves", new GaiaDukeArmorItem(LEGS));
+    public static final Item gaia_duke_boots = RegistryHelper.registerItem("gaia_duke_boots", new GaiaDukeArmorItem(FEET));
+    public static final Item gaia_champion_helm = RegistryHelper.registerItem("gaia_champion_helm", new GaiaChampArmorItem(HEAD));
+    public static final Item gaia_champion_guard = RegistryHelper.registerItem("gaia_champion_guard", new GaiaChampArmorItem(CHEST));
+    public static final Item gaia_champion_greaves = RegistryHelper.registerItem("gaia_champion_greaves", new GaiaChampArmorItem(LEGS));
+    public static final Item gaia_champion_boots = RegistryHelper.registerItem("gaia_champion_boots", new GaiaChampArmorItem(FEET));
 
-    public static final RegistryObject<Item> agate_sword = ITEMS.register("agate_sword", () -> new BasicGaiaSwordItem(GaiaToolMaterials.AGATE));
-    public static final RegistryObject<Item> agate_pickaxe = ITEMS.register("agate_pickaxe", () -> new BasicGaiaPickaxeItem(GaiaToolMaterials.AGATE));
-    public static final RegistryObject<Item> agate_axe = ITEMS.register("agate_axe", () -> new BasicGaiaAxeItem(GaiaToolMaterials.AGATE));
-    public static final RegistryObject<Item> agate_shovel = ITEMS.register("agate_shovel", () -> new BasicGaiaShovelItem(GaiaToolMaterials.AGATE));
-    public static final RegistryObject<Item> sugilite_sword = ITEMS.register("sugilite_sword", () -> new BasicGaiaSwordItem(GaiaToolMaterials.SUGILITE));
-    public static final RegistryObject<Item> sugilite_pickaxe = ITEMS.register("sugilite_pickaxe", () -> new BasicGaiaPickaxeItem(GaiaToolMaterials.SUGILITE));
-    public static final RegistryObject<Item> sugilite_axe = ITEMS.register("sugilite_axe", () -> new BasicGaiaAxeItem(GaiaToolMaterials.SUGILITE));
-    public static final RegistryObject<Item> sugilite_shovel = ITEMS.register("sugilite_shovel", () -> new BasicGaiaShovelItem(GaiaToolMaterials.SUGILITE));
-    public static final RegistryObject<Item> ixiolite_sword = ITEMS.register("ixiolite_sword", () -> new BasicGaiaSwordItem(GaiaToolMaterials.IXIOLITE));
-    public static final RegistryObject<Item> ixiolite_pickaxe = ITEMS.register("ixiolite_pickaxe", () -> new BasicGaiaPickaxeItem(GaiaToolMaterials.IXIOLITE));
-    public static final RegistryObject<Item> ixiolite_axe = ITEMS.register("ixiolite_axe", () -> new BasicGaiaAxeItem(GaiaToolMaterials.IXIOLITE));
-    public static final RegistryObject<Item> ixiolite_shovel = ITEMS.register("ixiolite_shovel", () -> new BasicGaiaShovelItem(GaiaToolMaterials.IXIOLITE));
-    public static final RegistryObject<Item> euclase_sword = ITEMS.register("euclase_sword", () -> new BasicGaiaSwordItem(GaiaToolMaterials.EUCLASE));
-    public static final RegistryObject<Item> euclase_pickaxe = ITEMS.register("euclase_pickaxe", () -> new BasicGaiaPickaxeItem(GaiaToolMaterials.EUCLASE));
-    public static final RegistryObject<Item> euclase_axe = ITEMS.register("euclase_axe", () -> new BasicGaiaAxeItem(GaiaToolMaterials.EUCLASE));
-    public static final RegistryObject<Item> euclase_shovel = ITEMS.register("euclase_shovel", () -> new BasicGaiaShovelItem(GaiaToolMaterials.EUCLASE));
-    public static final RegistryObject<Item> carnelian_sword = ITEMS.register("carnelian_sword", () -> new BasicGaiaSwordItem(GaiaToolMaterials.CARNELIAN));
-    public static final RegistryObject<Item> carnelian_pickaxe = ITEMS.register("carnelian_pickaxe", () -> new BasicGaiaPickaxeItem(GaiaToolMaterials.CARNELIAN));
-    public static final RegistryObject<Item> carnelian_axe = ITEMS.register("carnelian_axe", () -> new BasicGaiaAxeItem(GaiaToolMaterials.CARNELIAN));
-    public static final RegistryObject<Item> carnelian_shovel = ITEMS.register("carnelian_shovel", () -> new BasicGaiaShovelItem(GaiaToolMaterials.CARNELIAN));
-    public static final RegistryObject<Item> benitoite_sword = ITEMS.register("benitoite_sword", () -> new BasicGaiaSwordItem(GaiaToolMaterials.BENITOITE));
-    public static final RegistryObject<Item> benitoite_pickaxe = ITEMS.register("benitoite_pickaxe", () -> new BasicGaiaPickaxeItem(GaiaToolMaterials.BENITOITE));
-    public static final RegistryObject<Item> benitoite_axe = ITEMS.register("benitoite_axe", () -> new BasicGaiaAxeItem(GaiaToolMaterials.BENITOITE));
-    public static final RegistryObject<Item> benitoite_shovel = ITEMS.register("benitoite_shovel", () -> new BasicGaiaShovelItem(GaiaToolMaterials.BENITOITE));
-    public static final RegistryObject<Item> chalcedony_sword = ITEMS.register("chalcedony_sword", () -> new BasicGaiaSwordItem(GaiaToolMaterials.CHALCEDONY));
-    public static final RegistryObject<Item> chalcedony_pickaxe = ITEMS.register("chalcedony_pickaxe", () -> new BasicGaiaPickaxeItem(GaiaToolMaterials.CHALCEDONY));
-    public static final RegistryObject<Item> chalcedony_axe = ITEMS.register("chalcedony_axe", () -> new BasicGaiaAxeItem(GaiaToolMaterials.CHALCEDONY));
-    public static final RegistryObject<Item> chalcedony_shovel = ITEMS.register("chalcedony_shovel", () -> new BasicGaiaShovelItem(GaiaToolMaterials.CHALCEDONY));
-    public static final RegistryObject<Item> old_bow = ITEMS.register("old_bow", OldBowItem::new);
-    public static final RegistryObject<Item> agate_arrow = ITEMS.register("agate_arrow", AgateArrowItem::new);
+    public static final Item agate_sword = registerSwordItem("agate_sword", GaiaToolMaterials.AGATE);
+    public static final Item agate_pickaxe = registerPickaxeItem("agate_pickaxe", GaiaToolMaterials.AGATE);
+    public static final Item agate_axe = registerAxeItem("agate_axe", GaiaToolMaterials.AGATE);
+    public static final Item agate_shovel = registerShovelItem("agate_shovel", GaiaToolMaterials.AGATE);
+    public static final Item sugilite_sword = registerSwordItem("sugilite_sword", GaiaToolMaterials.SUGILITE);
+    public static final Item sugilite_pickaxe = registerPickaxeItem("sugilite_pickaxe", GaiaToolMaterials.SUGILITE);
+    public static final Item sugilite_axe = registerAxeItem("sugilite_axe", GaiaToolMaterials.SUGILITE);
+    public static final Item sugilite_shovel = registerShovelItem("sugilite_shovel", GaiaToolMaterials.SUGILITE);
+    public static final Item ixiolite_sword = registerSwordItem("ixiolite_sword", GaiaToolMaterials.IXIOLITE);
+    public static final Item ixiolite_pickaxe = registerPickaxeItem("ixiolite_pickaxe", GaiaToolMaterials.IXIOLITE);
+    public static final Item ixiolite_axe = registerAxeItem("ixiolite_axe", GaiaToolMaterials.IXIOLITE);
+    public static final Item ixiolite_shovel = registerShovelItem("ixiolite_shovel", GaiaToolMaterials.IXIOLITE);
+    public static final Item euclase_sword = registerSwordItem("euclase_sword", GaiaToolMaterials.EUCLASE);
+    public static final Item euclase_pickaxe = registerPickaxeItem("euclase_pickaxe", GaiaToolMaterials.EUCLASE);
+    public static final Item euclase_axe = registerAxeItem("euclase_axe", GaiaToolMaterials.EUCLASE);
+    public static final Item euclase_shovel = registerShovelItem("euclase_shovel", GaiaToolMaterials.EUCLASE);
+    public static final Item carnelian_sword = registerSwordItem("carnelian_sword", GaiaToolMaterials.CARNELIAN);
+    public static final Item carnelian_pickaxe = registerPickaxeItem("carnelian_pickaxe", GaiaToolMaterials.CARNELIAN);
+    public static final Item carnelian_axe = registerAxeItem("carnelian_axe", GaiaToolMaterials.CARNELIAN);
+    public static final Item carnelian_shovel = registerShovelItem("carnelian_shovel", GaiaToolMaterials.CARNELIAN);
+    public static final Item benitoite_sword = registerSwordItem("benitoite_sword", GaiaToolMaterials.BENITOITE);
+    public static final Item benitoite_pickaxe = registerPickaxeItem("benitoite_pickaxe", GaiaToolMaterials.BENITOITE);
+    public static final Item benitoite_axe = registerAxeItem("benitoite_axe", GaiaToolMaterials.BENITOITE);
+    public static final Item benitoite_shovel = registerShovelItem("benitoite_shovel", GaiaToolMaterials.BENITOITE);
+    public static final Item chalcedony_sword = registerSwordItem("chalcedony_sword", GaiaToolMaterials.CHALCEDONY);
+    public static final Item chalcedony_pickaxe = registerPickaxeItem("chalcedony_pickaxe", GaiaToolMaterials.CHALCEDONY);
+    public static final Item chalcedony_axe = registerAxeItem("chalcedony_axe", GaiaToolMaterials.CHALCEDONY);
+    public static final Item chalcedony_shovel = registerShovelItem("chalcedony_shovel", GaiaToolMaterials.CHALCEDONY);
+    public static final Item old_bow = RegistryHelper.registerItem("old_bow", new OldBowItem());
+    public static final Item agate_arrow = RegistryHelper.registerItem("agate_arrow", new AgateArrowItem());
 
-    public static final RegistryObject<Item> malachite_guard_baton = ITEMS.register("malachite_guard_baton", MalachiteGuardSwordItem::new);
-    public static final RegistryObject<Item> apex_predator_mace = ITEMS.register("apex_predator_mace", ApexPredatorSwordItem::new);
-    public static final RegistryObject<Item> spinel_princess_flamberge = ITEMS.register("spinel_princess_flamberge", SpinelPrincessSwordItem::new);
-    public static final RegistryObject<Item> zircon_prince_razor = ITEMS.register("zircon_prince_razor", ZirconPrinceSwordItem::new);
-    public static final RegistryObject<Item> corrupt_warrior_sword = ITEMS.register("corrupt_warrior_sword", CorruptWarriorSwordItem::new);
-    public static final RegistryObject<Item> gaia_duchess_khopesh = ITEMS.register("gaia_duchess_khopesh", GaiaDuchessSwordItem::new);
-    public static final RegistryObject<Item> gaia_baron_dagger = ITEMS.register("gaia_baron_dagger", GaiaBaronSwordItem::new);
-    public static final RegistryObject<Item> gaia_duke_blade = ITEMS.register("gaia_duke_blade", GaiaDukeSwordItem::new);
-    public static final RegistryObject<Item> gaia_champion_sword = ITEMS.register("gaia_champion_sword", GaiaChampSwordItem::new);
+    public static final Item malachite_guard_baton = RegistryHelper.registerItem("malachite_guard_baton", new MalachiteGuardSwordItem());
+    public static final Item apex_predator_mace = RegistryHelper.registerItem("apex_predator_mace", new ApexPredatorSwordItem());
+    public static final Item spinel_princess_flamberge = RegistryHelper.registerItem("spinel_princess_flamberge", new SpinelPrincessSwordItem());
+    public static final Item zircon_prince_razor = RegistryHelper.registerItem("zircon_prince_razor", new ZirconPrinceSwordItem());
+    public static final Item corrupt_warrior_sword = RegistryHelper.registerItem("corrupt_warrior_sword", new CorruptWarriorSwordItem());
+    public static final Item gaia_duchess_khopesh = RegistryHelper.registerItem("gaia_duchess_khopesh", new GaiaDuchessSwordItem());
+    public static final Item gaia_baron_dagger = RegistryHelper.registerItem("gaia_baron_dagger", new GaiaBaronSwordItem());
+    public static final Item gaia_duke_blade = RegistryHelper.registerItem("gaia_duke_blade", new GaiaDukeSwordItem());
+    public static final Item gaia_champion_sword = RegistryHelper.registerItem("gaia_champion_sword", new GaiaChampSwordItem());
 
-    public static final RegistryObject<Item> mock_malachite = ITEMS.register("mock_malachite", MockGemItem::new);
+    public static final Item mock_malachite = RegistryHelper.registerItem("mock_malachite", new MockGemItem());
 
-    public static final RegistryObject<Item> growth_sapper_spawn_egg = registerSpawnEgg("growth_sapper", ModEntities.growth_sapper, 0x5A4514, 0xFF00FF);
-    public static final RegistryObject<Item> mutant_growth_extractor_spawn_egg = registerSpawnEgg("mutant_growth_extractor", ModEntities.growth_extractor, 0x5A4514, 0xFFFFCC);
-    public static final RegistryObject<Item> howlite_wolf_spawn_egg = registerSpawnEgg("howlite_wolf", ModEntities.howlite_wolf, 0xDDDDDD, 0x3333FF);
-    public static final RegistryObject<Item> spellbound_elemental_spawn_egg = registerSpawnEgg("spellbound_elemental", ModEntities.spell_elemental, 0x885555, 0xCC33CC);
-    public static final RegistryObject<Item> rocky_luggeroth_spawn_egg = registerSpawnEgg("rocky_luggeroth", ModEntities.rocky_luggeroth, 0xB07700, 0xCC9900);
-    public static final RegistryObject<Item> shalurker_spawn_egg = registerSpawnEgg("shalurker", ModEntities.shalurker, 0x771177, 0x000000);
-    public static final RegistryObject<Item> muckling_spawn_egg = registerSpawnEgg("muckling", ModEntities.muckling, 0xFF00FF, 0xCC66CC);
-    public static final RegistryObject<Item> markuzar_plant_spawn_egg = registerSpawnEgg("markuzar_plant", ModEntities.markuzar_plant, 0x00FF66, 0xCC00FF);
-    public static final RegistryObject<Item> rugged_lurmorus_spawn_egg = registerSpawnEgg("rugged_lurmorus", ModEntities.rugged_lurmorus, 0xCC9933, 0xFF6600);
-    public static final RegistryObject<Item> agate_golem_spawn_egg = registerSpawnEgg("agate_golem", ModEntities.agate_golem, 0x660000, 0xBB5555);
-    public static final RegistryObject<Item> ancient_lagrahk_spawn_egg = registerSpawnEgg("ancient_lagrahk", ModEntities.ancient_lagrahk, 0x772200, 0xAA5500);
-    public static final RegistryObject<Item> crystal_golem_spawn_egg = registerSpawnEgg("crystal_golem", ModEntities.crystal_golem, 0xFF66CC, 0xFF99CC);
-    public static final RegistryObject<Item> saltion_spawn_egg = registerSpawnEgg("saltion", ModEntities.saltion, 0x6699FF, 0x6633FF);
-    public static final RegistryObject<Item> nomadic_lagrahk_spawn_egg = registerSpawnEgg("nomadic_lagrahk", ModEntities.nomadic_lagrahk, 0x3366CC, 0x232323);
-    public static final RegistryObject<Item> shallow_arenthis_spawn_egg = registerSpawnEgg("shallow_arenthis", ModEntities.shallow_arenthis, 0x6699CC, 0x003399);
-    public static final RegistryObject<Item> corrupt_sapper_spawn_egg = registerSpawnEgg("corrupt_sapper", ModEntities.corrupt_sapper, 0x202020, 0xCC3300);
-    public static final RegistryObject<Item> contorted_naga_spawn_egg = registerSpawnEgg("contorted_naga", ModEntities.contorted_naga, 0x202020, 0xCC3300);
-    public static final RegistryObject<Item> lesser_spitfire_spawn_egg = registerSpawnEgg("lesser_spitfire", ModEntities.lesser_spitfire, 0xFF00FF, 0x202020);
-    public static final RegistryObject<Item> lesser_shockshooter_spawn_egg = registerSpawnEgg("lesser_shockshooter", ModEntities.lesser_shockshooter, 0x00FFFF, 0x202020);
-    public static final RegistryObject<Item> mineral_arenthis_spawn_egg = registerSpawnEgg("mineral_arenthis", ModEntities.mineral_arenthis, 0x0066CC, 0x000033);
-    public static final RegistryObject<Item> bismuth_uletrus_spawn_egg = registerSpawnEgg("bismuth_uletrus", ModEntities.bismuth_uletrus, 0x4E3863, 0x303030);
-    public static final RegistryObject<Item> archaic_warrior_spawn_egg = registerSpawnEgg("archaic_warrior", ModEntities.archaic_warrior, 0x996699, 0xCC3366);
-    public static final RegistryObject<Item> primal_beast_spawn_egg = registerSpawnEgg("primal_beast", ModEntities.primal_beast, 0x006699, 0x66FFFF);
-    public static final RegistryObject<Item> cavern_tick_spawn_egg = registerSpawnEgg("cavern_tick", ModEntities.cavern_tick, 0x9966CC, 0x666699);
-    public static final RegistryObject<Item> malachite_drone_spawn_egg = registerSpawnEgg("malachite_drone", ModEntities.malachite_drone, 0x00AA33, 0x33AA00);
-    public static final RegistryObject<Item> blue_howlite_wolf_spawn_egg = registerSpawnEgg("blue_howlite_wolf", ModEntities.blue_howlite_wolf, 0x0099CC, 0xCC00FF);
-    public static final RegistryObject<Item> malachite_guard_spawn_egg = registerSpawnEgg("malachite_guard", ModEntities.malachite_guard, 0x339900, 0x33CC99);
+    public static final Item growth_sapper_spawn_egg = registerSpawnEgg("growth_sapper", ModEntities.GROWTH_SAPPER, 0x5A4514, 0xFF00FF);
+    public static final Item mutant_growth_extractor_spawn_egg = registerSpawnEgg("mutant_growth_extractor", ModEntities.MUTANT_GROWTH_EXTRACTOR, 0x5A4514, 0xFFFFCC);
+    public static final Item howlite_wolf_spawn_egg = registerSpawnEgg("howlite_wolf", ModEntities.HOWLITE_WOLF, 0xDDDDDD, 0x3333FF);
+    public static final Item spellbound_elemental_spawn_egg = registerSpawnEgg("spellbound_elemental", ModEntities.SPELLBOUND_ELEMENTAL, 0x885555, 0xCC33CC);
+    public static final Item rocky_luggeroth_spawn_egg = registerSpawnEgg("rocky_luggeroth", ModEntities.ROCKY_LUGGEROTH, 0xB07700, 0xCC9900);
+    public static final Item shalurker_spawn_egg = registerSpawnEgg("shalurker", ModEntities.SHALURKER, 0x771177, 0x000000);
+    public static final Item muckling_spawn_egg = registerSpawnEgg("muckling", ModEntities.MUCKLING, 0xFF00FF, 0xCC66CC);
+    public static final Item markuzar_plant_spawn_egg = registerSpawnEgg("markuzar_plant", ModEntities.MARKUZAR_PLANT, 0x00FF66, 0xCC00FF);
+    public static final Item rugged_lurmorus_spawn_egg = registerSpawnEgg("rugged_lurmorus", ModEntities.RUGGED_LURMORUS, 0xCC9933, 0xFF6600);
+    public static final Item agate_golem_spawn_egg = registerSpawnEgg("agate_golem", ModEntities.AGATE_GOLEM, 0x660000, 0xBB5555);
+    public static final Item ancient_lagrahk_spawn_egg = registerSpawnEgg("ancient_lagrahk", ModEntities.ANCIENT_LAGRAHK, 0x772200, 0xAA5500);
+    public static final Item crystal_golem_spawn_egg = registerSpawnEgg("crystal_golem", ModEntities.CRYSTAL_GOLEM, 0xFF66CC, 0xFF99CC);
+    public static final Item saltion_spawn_egg = registerSpawnEgg("saltion", ModEntities.SALTION, 0x6699FF, 0x6633FF);
+    public static final Item nomadic_lagrahk_spawn_egg = registerSpawnEgg("nomadic_lagrahk", ModEntities.NOMADIC_LAGRAHK, 0x3366CC, 0x232323);
+    public static final Item shallow_arenthis_spawn_egg = registerSpawnEgg("shallow_arenthis", ModEntities.SHALLOW_ARENTHIS, 0x6699CC, 0x003399);
+    public static final Item corrupt_sapper_spawn_egg = registerSpawnEgg("corrupt_sapper", ModEntities.CORRUPT_SAPPER, 0x202020, 0xCC3300);
+    public static final Item contorted_naga_spawn_egg = registerSpawnEgg("contorted_naga", ModEntities.CONTORTED_NAGA, 0x202020, 0xCC3300);
+    public static final Item lesser_spitfire_spawn_egg = registerSpawnEgg("lesser_spitfire", ModEntities.LESSER_SPITFIRE, 0xFF00FF, 0x202020);
+    public static final Item lesser_shockshooter_spawn_egg = registerSpawnEgg("lesser_shockshooter", ModEntities.LESSER_SHOCKSHOOTER, 0x00FFFF, 0x202020);
+    public static final Item mineral_arenthis_spawn_egg = registerSpawnEgg("mineral_arenthis", ModEntities.MINERAL_ARENTHIS, 0x0066CC, 0x000033);
+    public static final Item bismuth_uletrus_spawn_egg = registerSpawnEgg("bismuth_uletrus", ModEntities.BISMUTH_ULETRUS, 0x4E3863, 0x303030);
+    public static final Item archaic_warrior_spawn_egg = registerSpawnEgg("archaic_warrior", ModEntities.ARCHAIC_WARRIOR, 0x996699, 0xCC3366);
+    public static final Item primal_beast_spawn_egg = registerSpawnEgg("primal_beast", ModEntities.PRIMAL_BEAST, 0x006699, 0x66FFFF);
+    public static final Item cavern_tick_spawn_egg = registerSpawnEgg("cavern_tick", ModEntities.CAVERN_TICK, 0x9966CC, 0x666699);
+    public static final Item malachite_drone_spawn_egg = registerSpawnEgg("malachite_drone", ModEntities.MALACHITE_DRONE, 0x00AA33, 0x33AA00);
+    public static final Item blue_howlite_wolf_spawn_egg = registerSpawnEgg("blue_howlite_wolf", ModEntities.BLUE_HOWLITE_WOLF, 0x0099CC, 0xCC00FF);
+    public static final Item malachite_guard_spawn_egg = registerSpawnEgg("malachite_guard", ModEntities.MALACHITE_GUARD, 0x339900, 0x33CC99);
 
-    public static final RegistryObject<Item> PYRITE_TORCH = ITEMS.register("pyrite_torch",
-            () -> new WallOrFloorItem(ModBlocks.pyrite_torch.get(), ModBlocks.pyrite_wall_torch.get(), new Item.Properties().group(GaiaItemGroups.GAIA_BLOCKS)));
+    public static final Item PYRITE_TORCH = RegistryHelper.registerWallOrFloorItem("pyrite_torch", ModBlocks.pyrite_torch, ModBlocks.pyrite_wall_torch);
 
-    private static RegistryObject<Item> registerSpawnEgg(String name, EntityType<?> entity, int back, int front) {
-        return ITEMS.register(name + "_spawn_egg", () -> new GaiaSpawnEggItem(entity, back, front));
+    private static Item registerBasicItem(String name) {
+        return RegistryHelper.registerItem(name, new BasicGaiaItem());
+    }
+
+    private static Item registerArmorItem(String name, IArmorMaterial material, EquipmentSlotType slot) {
+        return RegistryHelper.registerItem(name, new BasicGaiaArmorItem(material, slot));
+    }
+
+    private static Item registerSwordItem(String name, IItemTier tier) {
+        return RegistryHelper.registerItem(name, new BasicGaiaSwordItem(tier));
+    }
+
+    private static Item registerPickaxeItem(String name, IItemTier tier) {
+        return RegistryHelper.registerItem(name, new BasicGaiaPickaxeItem(tier));
+    }
+
+    private static Item registerAxeItem(String name, IItemTier tier) {
+        return RegistryHelper.registerItem(name, new BasicGaiaAxeItem(tier));
+    }
+
+    private static Item registerShovelItem(String name, IItemTier tier) {
+        return RegistryHelper.registerItem(name, new BasicGaiaShovelItem(tier));
+    }
+
+    private static Item registerSpawnEgg(String name, EntityType<?> entity, int back, int front) {
+        return RegistryHelper.registerItem(name + "_spawn_egg", new GaiaSpawnEggItem(entity, back, front));
     }
 
     public static void addItemProperties() {
-        ItemModelsProperties.registerProperty(old_bow.get(), new ResourceLocation("pull"), ((stack, world, entity) -> {
+        ItemModelsProperties.registerProperty(old_bow, new ResourceLocation("pull"), ((stack, world, entity) -> {
             if (entity == null) {
                 return 0.0F;
             } else {
                 return !(entity.getActiveItemStack().getItem() instanceof BowItem) ? 0.0F : (float)(stack.getUseDuration() - entity.getItemInUseCount()) / 20.0F;
             }
         }));
-        ItemModelsProperties.registerProperty(old_bow.get(), new ResourceLocation("pulling"), (stack, world, entity) ->
+        ItemModelsProperties.registerProperty(old_bow, new ResourceLocation("pulling"), (stack, world, entity) ->
                 entity != null && entity.isHandActive() && entity.getActiveItemStack() == stack ? 1.0F : 0.0F);
     }
 }

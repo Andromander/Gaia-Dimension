@@ -46,6 +46,11 @@ public class GaiaDimensionMod {
     public static final ITag.INamedTag<Block> STATIC = BlockTags.makeWrapperTag(new ResourceLocation(MODID, "base_stone_static").toString());
 
     public GaiaDimensionMod() {
+        new ModItems(); //None of your business
+        new ModWorldgen(); //Stop looking at me
+        new ModBiomes(); //It didn't need to be this way
+        new GaiaBiomeFeatures(); //This just works
+
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
         modEventBus.addListener(this::setup);
         modEventBus.addListener(this::clientSetup);
@@ -54,22 +59,19 @@ public class GaiaDimensionMod {
         ModRecipes.registerRecipeTypes();
 
         ModBiomes.BIOMES.register(modEventBus);
-        ModBlocks.BLOCKS.register(modEventBus);
+//      ModBlocks.BLOCKS.register(modEventBus);
         ModContainers.CONTAINERS.register(modEventBus);
-//      ModDimensions.BIOME_PROVIDER_TYPES.register(modEventBus);
-//      ModDimensions.CHUNK_GENERATOR_TYPES.register(modEventBus);
-//      ModDimensions.MOD_DIMENSIONS.register(modEventBus);
-        ModEffects.POTIONS.register(modEventBus);
-        ModEntities.ENTITIES.register(modEventBus);
-        ModFluids.FLUIDS.register(modEventBus);
-        ModItems.ITEMS.register(modEventBus);
-        ModParticles.PARTICLE_TYPES.register(modEventBus);
+//      ModEffects.POTIONS.register(modEventBus);
+//      ModEntities.ENTITIES.register(modEventBus);
+//      ModFluids.FLUIDS.register(modEventBus);
+//      ModItems.ITEMS.register(modEventBus);
+//      ModParticles.PARTICLE_TYPES.register(modEventBus);
         ModRecipes.RECIPE_SERIALIZERS.register(modEventBus);
         ModTileEntities.TILE_ENTITIES.register(modEventBus);
-        ModWorldgen.FEATURES.register(modEventBus);
-        ModWorldgen.STRUCTURE_FEATURES.register(modEventBus);
-        ModWorldgen.SURFACE_BUILDERS.register(modEventBus);
-        ModWorldgen.WORLD_CARVERS.register(modEventBus);
+//      ModWorldgen.FEATURES.register(modEventBus);
+//      ModWorldgen.STRUCTURE_FEATURES.register(modEventBus);
+//      ModWorldgen.SURFACE_BUILDERS.register(modEventBus);
+//      ModWorldgen.WORLD_CARVERS.register(modEventBus);
 
         final Pair<ModGaiaConfig.ClientConfig, ForgeConfigSpec> specPairC = new ForgeConfigSpec.Builder().configure(ModGaiaConfig.ClientConfig::new);
         final Pair<ModGaiaConfig.ServerConfig, ForgeConfigSpec> specPairS = new ForgeConfigSpec.Builder().configure(ModGaiaConfig.ServerConfig::new);
@@ -108,21 +110,4 @@ public class GaiaDimensionMod {
             generator.addProvider(new GaiaBiomes(generator));
         }
     }
-
-//    @Mod.EventBusSubscriber(modid = MODID)
-//    public static class ForgeEventBus {
-//        @SubscribeEvent
-//        public static void registerModDimension(final RegisterDimensionsEvent e) {
-//            ResourceLocation gaia = new ResourceLocation(GaiaDimensionMod.MODID, "gaia");
-//
-//            if (DimensionType.byName(gaia) == null) {
-//                gaia_dimension = DimensionManager.registerDimension(gaia, GAIA.get(), new PacketBuffer(Unpooled.buffer()), true);
-//                DimensionManager.keepLoaded(gaia_dimension, false);
-//            } else {
-//                gaia_dimension = DimensionType.byName(gaia);
-//            }
-//
-//            GaiaDimensionMod.LOGGER.info("We are set for the world of Gaia.");
-//        }
-//    }
 }

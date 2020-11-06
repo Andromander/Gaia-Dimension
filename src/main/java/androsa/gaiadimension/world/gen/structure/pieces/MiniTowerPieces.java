@@ -117,7 +117,7 @@ public class MiniTowerPieces {
         private final MiniTowerType towerType;
 
         public Piece(TemplateManager manager, ResourceLocation pieceloc, BlockPos pos, Rotation rot, MiniTowerType type, int offset) {
-            super(ModWorldgen.MITO, 0);
+            super(ModWorldgen.StructureTypes.MITO, 0);
             this.pieceLocation = pieceloc;
             BlockPos blockpos = MiniTowerPieces.piecePos.get(pieceloc);
             this.templatePosition = pos.add(blockpos.getX(), blockpos.getY() + offset, blockpos.getZ());
@@ -127,7 +127,7 @@ public class MiniTowerPieces {
         }
 
         public Piece(TemplateManager manager, CompoundNBT nbt) {
-            super(ModWorldgen.MITO, nbt);
+            super(ModWorldgen.StructureTypes.MITO, nbt);
             this.pieceLocation = new ResourceLocation(nbt.getString("Template"));
             this.rotation = Rotation.valueOf(nbt.getString("Rot"));
             this.towerType = MiniTowerType.valueOf(nbt.getString("TowerType"));
@@ -172,7 +172,7 @@ public class MiniTowerPieces {
         protected void handleDataMarker(String name, BlockPos pos, IServerWorld world, Random random, MutableBoundingBox mbb) {
             if ("Chest".equals(name)) {
                 if (random.nextDouble() > 0.5D) {
-                    world.setBlockState(pos, ModBlocks.crude_storage_crate.get().getDefaultState(), 3);
+                    world.setBlockState(pos, ModBlocks.crude_storage_crate.getDefaultState(), 3);
                     TileEntity tileentity = world.getTileEntity(pos);
                     if (tileentity instanceof SmallCrateTileEntity) {
                         ((SmallCrateTileEntity) tileentity).setLootTable(towerType.getChestLoot(), random.nextLong());

@@ -54,7 +54,7 @@ public class GoldstoneCorruptTreeFeature<T extends GaiaTreeFeatureConfig> extend
             if (!allClear) {
                 return false;
             } else if (isSoil(world, pos.down(), config.getSapling(rand, pos)) && pos.getY() < world.getHeight() - height - 1) {
-                this.setBlockState(world, pos.down(), ModBlocks.corrupt_soil.get().getDefaultState(), boundingBox);
+                this.setBlockState(world, pos.down(), ModBlocks.corrupt_soil.getDefaultState(), boundingBox);
                 int k2 = 0;
 
                 for (int l2 = pos.getY() + height; l2 >= pos.getY() + j; --l2) {

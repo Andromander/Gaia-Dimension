@@ -42,7 +42,7 @@ public class BlockDegradeProcessor extends StructureProcessor {
 
     @Override
     protected IStructureProcessorType getType() {
-        return ModWorldgen.BLOCK_DEGRADE;
+        return ModWorldgen.StructureTypes.BLOCK_DEGRADE;
     }
 
     @Nullable

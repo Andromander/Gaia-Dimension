@@ -144,7 +144,7 @@ public class PurifierBlock extends Block {
             double d5 = direction$axis == Direction.Axis.X ? (double)direction.getXOffset() * 0.52D : d4;
             double d6 = rand.nextDouble() * 6.0D / 16.0D;
             double d7 = direction$axis == Direction.Axis.Z ? (double)direction.getZOffset() * 0.52D : d4;
-            worldIn.addParticle(ModParticles.PURIFIER_FIRE.get(), d0 + d5, d1 + d6, d2 + d7, 0.0D, 0.0D, 0.0D);
+            worldIn.addParticle(ModParticles.PURIFIER_FIRE, d0 + d5, d1 + d6, d2 + d7, 0.0D, 0.0D, 0.0D);
         }
     }
 }

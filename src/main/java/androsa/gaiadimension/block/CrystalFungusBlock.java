@@ -28,10 +28,10 @@ public class CrystalFungusBlock extends BushBlock {
     @Override
     protected boolean isValidGround(BlockState state, IBlockReader worldIn, BlockPos pos){
         if (cavernous) {
-            return state.getBlock() == ModBlocks.gaia_stone.get() ||
-                    state.getBlock() == ModBlocks.primal_mass.get() ||
-                    state.getBlock() == ModBlocks.wasteland_stone.get() ||
-                    state.getBlock() == ModBlocks.volcanic_rock.get();
+            return state.getBlock() == ModBlocks.gaia_stone ||
+                    state.getBlock() == ModBlocks.primal_mass ||
+                    state.getBlock() == ModBlocks.wasteland_stone ||
+                    state.getBlock() == ModBlocks.volcanic_rock;
         } else {
             return state.getBlock() instanceof AbstractGaiaGrassBlock;
         }

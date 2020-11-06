@@ -14,14 +14,14 @@ import java.util.Random;
 public class CorruptGrassBlock extends AbstractGaiaGrassBlock {
 
     public CorruptGrassBlock(Properties props) {
-        super(props, ModBlocks.corrupt_soil.get());
+        super(props, ModBlocks.corrupt_soil);
     }
 
     @Override
     public void grow(ServerWorld worldIn, Random rand, BlockPos pos, BlockState state) {
         BlockPos blockpos = pos.up();
-        BlockState blackGrowth = ModBlocks.crystal_growth_black.get().getDefaultState();
-        BlockState redGrowth = ModBlocks.crystal_growth_red.get().getDefaultState();
+        BlockState blackGrowth = ModBlocks.crystal_growth_black.getDefaultState();
+        BlockState redGrowth = ModBlocks.crystal_growth_red.getDefaultState();
 
         label48:
         for(int i = 0; i < 128; ++i) {

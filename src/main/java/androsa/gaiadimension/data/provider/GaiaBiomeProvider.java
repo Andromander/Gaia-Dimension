@@ -38,10 +38,12 @@ public abstract class GaiaBiomeProvider extends BiomeProvider {
 
         for(Map.Entry<RegistryKey<Biome>, Biome> biome : registerBiomes().entrySet()) {
             Path path = getPath(out, biome.getKey().getLocation());
+            Biome obj = biome.getValue();
+            obj.setRegistryName(biome.getKey().getLocation());
             Function<Supplier<Biome>, DataResult<JsonElement>> biomedata = JsonOps.INSTANCE.withEncoder(Biome.BIOME_CODEC);
 
             try {
-                Optional<JsonElement> element = biomedata.apply(biome::getValue).result();
+                 Optional<JsonElement> element = biomedata.apply(biome::getValue).result();
                 if (element.isPresent()) {
                     IDataProvider.save(GSON, dir, element.get(), path);
                 } else {
@@ -116,13 +118,13 @@ public abstract class GaiaBiomeProvider extends BiomeProvider {
 
     public static MobSpawnInfo.Builder createSpawns() {
         return new MobSpawnInfo.Builder()
-                .withSpawner(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(ModEntities.CAVERN_TICK.get(), 65, 2, 4))
-                .withSpawner(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(ModEntities.SHALURKER.get(), 65, 2, 4))
-                .withSpawner(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(ModEntities.ARCHAIC_WARRIOR.get(), 65, 2, 4))
-                .withSpawner(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(ModEntities.MUCKLING.get(), 65, 2, 4))
+                .withSpawner(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(ModEntities.CAVERN_TICK, 65, 2, 4))
+                .withSpawner(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(ModEntities.SHALURKER, 65, 2, 4))
+                .withSpawner(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(ModEntities.ARCHAIC_WARRIOR, 65, 2, 4))
+                .withSpawner(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(ModEntities.MUCKLING, 65, 2, 4))
                 .withSpawner(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(EntityType.ENDERMAN, 5, 1, 2))
-                .withSpawner(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(ModEntities.PRIMAL_BEAST.get(), 15, 1, 2))
-                .withSpawner(EntityClassification.WATER_CREATURE, new MobSpawnInfo.Spawners(ModEntities.SHALLOW_ARENTHIS.get(), 10, 2, 4));
+                .withSpawner(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(ModEntities.PRIMAL_BEAST, 15, 1, 2))
+                .withSpawner(EntityClassification.WATER_CREATURE, new MobSpawnInfo.Spawners(ModEntities.SHALLOW_ARENTHIS, 10, 2, 4));
     }
 
     public static BiomeGenerationSettings pinkAgateForest() {

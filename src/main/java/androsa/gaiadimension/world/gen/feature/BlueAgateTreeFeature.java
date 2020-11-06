@@ -54,7 +54,7 @@ public class BlueAgateTreeFeature<T extends GaiaTreeFeatureConfig> extends GaiaT
             if (!allClear) {
                 return false;
             } else if (isSoil(world, pos.down(), config.getSapling(rand, pos)) && pos.getY() < world.getHeight() - height - 1) {
-                this.setBlockState(world, pos.down(), ModBlocks.heavy_soil.get().getDefaultState(), boundingBox);
+                this.setBlockState(world, pos.down(), ModBlocks.heavy_soil.getDefaultState(), boundingBox);
                 int i3 = rand.nextInt(2);
                 int j3 = 1;
                 int k3 = 0;

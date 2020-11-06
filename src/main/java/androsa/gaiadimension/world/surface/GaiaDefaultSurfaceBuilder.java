@@ -71,9 +71,9 @@ public class GaiaDefaultSurfaceBuilder<T extends SurfaceBuilderConfig> extends S
                     --j;
                     chunk.setBlockState(blockpos$mutableblockpos, middleBlock, false);
 
-                    if (j == 0 && middleBlock.getBlock() == ModBlocks.salt.get() && k > 1) {
+                    if (j == 0 && middleBlock.getBlock() == ModBlocks.salt && k > 1) {
                         j = rand.nextInt(4) + Math.max(0, posY - 63);
-                        middleBlock = ModBlocks.saltstone.get().getDefaultState();
+                        middleBlock = ModBlocks.saltstone.getDefaultState();
                     }
                 }
             }

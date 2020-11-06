@@ -33,7 +33,12 @@ public class PurifierRecipe implements IRecipe<IInventory> {
 
     @Override
     public ItemStack getIcon() {
-        return new ItemStack(ModBlocks.purifier.get());
+        return new ItemStack(ModBlocks.purifier);
+    }
+
+    @Override
+    public boolean isDynamic() {
+        return false;
     }
 
     @Override

@@ -255,7 +255,7 @@ public class MalachiteGuardEntity extends MonsterEntity {
     }
 
     private void createDrone(BlockPos pos) {
-        MalachiteDroneEntity drone = new MalachiteDroneEntity(ModEntities.MALACHITE_DRONE.get(), this.world);
+        MalachiteDroneEntity drone = new MalachiteDroneEntity(ModEntities.MALACHITE_DRONE, this.world);
         drone.moveToBlockPosAndAngles(pos, 0.0F, 0.0F);
         if (!world.isRemote()) {
             drone.onInitialSpawn((IServerWorld)this.world, this.world.getDifficultyForLocation(pos), SpawnReason.MOB_SUMMONED, null, null);
@@ -384,7 +384,7 @@ public class MalachiteGuardEntity extends MonsterEntity {
     @Override
     public void checkDespawn() {
         if (this.world.getDifficulty() == Difficulty.PEACEFUL && this.isDespawnPeaceful()) {
-            this.entityDropItem(ModItems.mock_malachite.get(), 1);
+            this.entityDropItem(ModItems.mock_malachite, 1);
             this.remove();
         }
         super.checkDespawn();

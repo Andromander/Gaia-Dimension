@@ -67,7 +67,7 @@ public class ContortedNagaEntity extends MonsterEntity {
                 }
 
                 if (i > 0) {
-                    ((LivingEntity)entityIn).addPotionEffect(new EffectInstance(ModEffects.goldstone_plague.get(), i * 20, 0));
+                    ((LivingEntity)entityIn).addPotionEffect(new EffectInstance(ModEffects.goldstone_plague, i * 20, 0));
                 }
             }
             return true;

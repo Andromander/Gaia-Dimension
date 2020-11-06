@@ -87,7 +87,7 @@ public class ArchaicWarriorEntity extends MonsterEntity {
         super.setEquipmentBasedOnDifficulty(difficulty);
 
         if (this.rand.nextFloat() < (this.world.getDifficulty() == Difficulty.NORMAL ? 0.05F : 0.01F)) {
-            this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(ModItems.sugilite_sword.get()));
+            this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(ModItems.sugilite_sword));
         }
     }
 

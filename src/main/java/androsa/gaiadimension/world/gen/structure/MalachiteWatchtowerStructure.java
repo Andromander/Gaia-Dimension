@@ -40,10 +40,10 @@ public class MalachiteWatchtowerStructure<T extends NoFeatureConfig> extends Str
     @Override
     public List<MobSpawnInfo.Spawners> getCreatureSpawnList() {
         return Lists.newArrayList(
-                new MobSpawnInfo.Spawners(ModEntities.MALACHITE_DRONE.get(), 10, 1, 1),
-                new MobSpawnInfo.Spawners(ModEntities.SHALURKER.get(), 5, 1, 2),
-                new MobSpawnInfo.Spawners(ModEntities.ARCHAIC_WARRIOR.get(), 8, 1, 2),
-                new MobSpawnInfo.Spawners(ModEntities.CAVERN_TICK.get(), 3, 2, 3));
+                new MobSpawnInfo.Spawners(ModEntities.MALACHITE_DRONE, 10, 1, 1),
+                new MobSpawnInfo.Spawners(ModEntities.SHALURKER, 5, 1, 2),
+                new MobSpawnInfo.Spawners(ModEntities.ARCHAIC_WARRIOR, 8, 1, 2),
+                new MobSpawnInfo.Spawners(ModEntities.CAVERN_TICK, 3, 2, 3));
     }
 
     @Override

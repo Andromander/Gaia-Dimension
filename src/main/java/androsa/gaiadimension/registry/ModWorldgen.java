@@ -26,85 +26,45 @@ import net.minecraft.world.gen.feature.template.IStructureProcessorType;
 import net.minecraft.world.gen.feature.template.StructureProcessor;
 import net.minecraft.world.gen.surfacebuilders.SurfaceBuilder;
 import net.minecraft.world.gen.surfacebuilders.SurfaceBuilderConfig;
-import net.minecraftforge.fml.RegistryObject;
-import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.Locale;
 import java.util.function.Supplier;
 
 public class ModWorldgen {
 
-    public static final DeferredRegister<Feature<?>> FEATURES = DeferredRegister.create(ForgeRegistries.FEATURES, GaiaDimensionMod.MODID);
-    public static final DeferredRegister<Structure<?>> STRUCTURE_FEATURES = DeferredRegister.create(ForgeRegistries.STRUCTURE_FEATURES, GaiaDimensionMod.MODID);
-    public static final DeferredRegister<SurfaceBuilder<?>> SURFACE_BUILDERS = DeferredRegister.create(ForgeRegistries.SURFACE_BUILDERS, GaiaDimensionMod.MODID);
-    public static final DeferredRegister<WorldCarver<?>> WORLD_CARVERS = DeferredRegister.create(ForgeRegistries.WORLD_CARVERS, GaiaDimensionMod.MODID);
-
-    public static final IStructureProcessorType BLOCK_DEGRADE = registerProcessor("block_degrade", BlockDegradeProcessor.CODEC);
-    public static final IStructureProcessorType MALACHITE_DEGRADE = registerProcessor("malachite_degrade", MalachiteDegradeProcessor.CODEC);
-
-    public static final IStructurePieceType MITO = registerPiece("MITO", MiniTowerPieces.Piece::new);
-    public static final IStructurePieceType MAWA = registerPiece("MAWA", MalachiteWatchtowerPieces.Piece::new);
-
     //Feature
-    public static final RegistryObject<Feature<BlockStateFeatureConfig>> POOL = FEATURES.register(
-            "pool", () -> new GaiaLakesFeature<>(BlockStateFeatureConfig.field_236455_a_));
-    public static final RegistryObject<Feature<GaiaTreeFeatureConfig>> PINK_AGATE_TREE = FEATURES.register(
-            "pink_agate_tree", () -> new PinkAgateTreeFeature<>(GaiaTreeFeatureConfig.CODEC));
-    public static final RegistryObject<Feature<GaiaTreeFeatureConfig>> BLUE_AGATE_TREE = FEATURES.register(
-            "blue_agate_tree", () -> new BlueAgateTreeFeature<>(GaiaTreeFeatureConfig.CODEC));
-    public static final RegistryObject<Feature<GaiaTreeFeatureConfig>> GREEN_AGATE_TREE = FEATURES.register(
-            "green_agate_tree", () -> new GreenAgateTreeFeature<>(GaiaTreeFeatureConfig.CODEC));
-    public static final RegistryObject<Feature<GaiaTreeFeatureConfig>> PURPLE_AGATE_TREE = FEATURES.register(
-            "purple_agate_tree", () -> new PurpleAgateTreeFeature<>(GaiaTreeFeatureConfig.CODEC));
-    public static final RegistryObject<Feature<GaiaTreeFeatureConfig>> FOSSILIZED_TREE = FEATURES.register(
-            "fossilized_tree", () -> new FossilizedTreeFeature<>(GaiaTreeFeatureConfig.CODEC));
-    public static final RegistryObject<Feature<GaiaTreeFeatureConfig>> GOLDSTONE_TREE = FEATURES.register(
-            "goldstone_tree", () -> new GoldstoneCorruptTreeFeature<>(GaiaTreeFeatureConfig.CODEC));
-    public static final RegistryObject<Feature<GaiaTreeFeatureConfig>> BURNT_AGATE_TREE = FEATURES.register(
-            "burnt_agate_tree", () -> new BurntAgateTreeFeature<>(GaiaTreeFeatureConfig.CODEC));
-    public static final RegistryObject<Feature<GaiaTreeFeatureConfig>> FIERY_AGATE_TREE = FEATURES.register(
-            "fiery_agate_tree", () -> new FieryAgateTreeFeature<>(GaiaTreeFeatureConfig.CODEC));
-    public static final RegistryObject<Feature<GaiaTreeFeatureConfig>> AURA_TREE = FEATURES.register(
-            "aura_tree", () -> new AuraTreeFeature<>(GaiaTreeFeatureConfig.CODEC));
-//    public static final RegistryObject<Feature<BaseTreeFeatureConfig>> GREEN_AGATE_BUSH = FEATURES.register(
-//            "green_agate_bush", () -> new ShrubFeature(BaseTreeFeatureConfig::deserialize));
-    public static final RegistryObject<Feature<NoFeatureConfig>> AURA_SHOOT = FEATURES.register(
-            "aura_shoot", () -> new AuraShootsFeature<>(NoFeatureConfig.field_236558_a_));
-    public static final RegistryObject<Feature<SphereReplaceConfig>> BOG_PATCH = FEATURES.register(
-            "bog_patch", () -> new BogPatchFeature<>(SphereReplaceConfig.field_236516_a_));
-    public static final RegistryObject<Feature<FeatureHeightConfig>> BISMUTH_SPIRE = FEATURES.register(
-            "bismuth_spire", () -> new BismuthSpireFeature<>(FeatureHeightConfig.CODEC));
-    public static final RegistryObject<Feature<NoFeatureConfig>> BISMUTH_GEYSER = FEATURES.register(
-            "bismuth_geyser", () -> new BismuthGeyserFeature<>(NoFeatureConfig.field_236558_a_));
-    public static final RegistryObject<Feature<FeatureHeightConfig>> STATIC_SPIKE = FEATURES.register(
-            "static_spike", () -> new StaticSpikeFeature<>(FeatureHeightConfig.CODEC));
-    public static final RegistryObject<Feature<NoFeatureConfig>> FRAIL_BLOB = FEATURES.register(
-            "frail_blob", () -> new FrailGlitterBlobFeature<>(NoFeatureConfig.field_236558_a_));
-    public static final RegistryObject<Feature<SphereReplaceConfig>> GAIA_DISK = FEATURES.register(
-            "gaia_disk", () -> new DiskNoWaterFeature<>(SphereReplaceConfig.field_236516_a_));
-    public static final RegistryObject<Feature<BlockStateFeatureConfig>> GAIA_BLOB = FEATURES.register(
-            "gaia_blob", () -> new GaiaBlobFeature<>(BlockStateFeatureConfig.field_236455_a_));
+    public static final Feature<BlockStateFeatureConfig> POOL = RegistryHelper.registerFeature("pool", new GaiaLakesFeature<>(BlockStateFeatureConfig.field_236455_a_));
+    public static final Feature<GaiaTreeFeatureConfig> PINK_AGATE_TREE = RegistryHelper.registerFeature("pink_agate_tree", new PinkAgateTreeFeature<>(GaiaTreeFeatureConfig.CODEC));
+    public static final Feature<GaiaTreeFeatureConfig> BLUE_AGATE_TREE = RegistryHelper.registerFeature("blue_agate_tree", new BlueAgateTreeFeature<>(GaiaTreeFeatureConfig.CODEC));
+    public static final Feature<GaiaTreeFeatureConfig> GREEN_AGATE_TREE = RegistryHelper.registerFeature("green_agate_tree", new GreenAgateTreeFeature<>(GaiaTreeFeatureConfig.CODEC));
+    public static final Feature<GaiaTreeFeatureConfig> PURPLE_AGATE_TREE = RegistryHelper.registerFeature("purple_agate_tree", new PurpleAgateTreeFeature<>(GaiaTreeFeatureConfig.CODEC));
+    public static final Feature<GaiaTreeFeatureConfig> FOSSILIZED_TREE = RegistryHelper.registerFeature("fossilized_tree", new FossilizedTreeFeature<>(GaiaTreeFeatureConfig.CODEC));
+    public static final Feature<GaiaTreeFeatureConfig> GOLDSTONE_TREE = RegistryHelper.registerFeature("goldstone_tree", new GoldstoneCorruptTreeFeature<>(GaiaTreeFeatureConfig.CODEC));
+    public static final Feature<GaiaTreeFeatureConfig> BURNT_AGATE_TREE = RegistryHelper.registerFeature("burnt_agate_tree", new BurntAgateTreeFeature<>(GaiaTreeFeatureConfig.CODEC));
+    public static final Feature<GaiaTreeFeatureConfig> FIERY_AGATE_TREE = RegistryHelper.registerFeature("fiery_agate_tree", new FieryAgateTreeFeature<>(GaiaTreeFeatureConfig.CODEC));
+    public static final Feature<GaiaTreeFeatureConfig> AURA_TREE = RegistryHelper.registerFeature("aura_tree", new AuraTreeFeature<>(GaiaTreeFeatureConfig.CODEC));
+//  public static final Feature<BaseTreeFeatureConfig> GREEN_AGATE_BUSH = RegistryHelper.registerFeature()("green_agate_bush", new ShrubFeature(BaseTreeFeatureConfig::deserialize));
+    public static final Feature<NoFeatureConfig> AURA_SHOOT = RegistryHelper.registerFeature("aura_shoot", new AuraShootsFeature<>(NoFeatureConfig.field_236558_a_));
+    public static final Feature<SphereReplaceConfig> BOG_PATCH = RegistryHelper.registerFeature("bog_patch", new BogPatchFeature<>(SphereReplaceConfig.field_236516_a_));
+    public static final Feature<FeatureHeightConfig> BISMUTH_SPIRE = RegistryHelper.registerFeature("bismuth_spire", new BismuthSpireFeature<>(FeatureHeightConfig.CODEC));
+    public static final Feature<NoFeatureConfig> BISMUTH_GEYSER = RegistryHelper.registerFeature("bismuth_geyser", new BismuthGeyserFeature<>(NoFeatureConfig.field_236558_a_));
+    public static final Feature<FeatureHeightConfig> STATIC_SPIKE = RegistryHelper.registerFeature("static_spike", new StaticSpikeFeature<>(FeatureHeightConfig.CODEC));
+    public static final Feature<NoFeatureConfig> FRAIL_BLOB = RegistryHelper.registerFeature("frail_blob", new FrailGlitterBlobFeature<>(NoFeatureConfig.field_236558_a_));
+    public static final Feature<SphereReplaceConfig> GAIA_DISK = RegistryHelper.registerFeature("gaia_disk", new DiskNoWaterFeature<>(SphereReplaceConfig.field_236516_a_));
+    public static final Feature<BlockStateFeatureConfig> GAIA_BLOB = RegistryHelper.registerFeature("gaia_blob", new GaiaBlobFeature<>(BlockStateFeatureConfig.field_236455_a_));
 
     //Structures
-    public static final RegistryObject<Structure<NoFeatureConfig>> MINI_TOWER = registerStructure("mini_tower", new MiniTowerStructure<>(NoFeatureConfig.field_236558_a_));
-    public static final RegistryObject<Structure<NoFeatureConfig>> MALACHITE_WATCHTOWER = registerStructure("malachite_watchtower", new MalachiteWatchtowerStructure<>(NoFeatureConfig.field_236558_a_));
+    public static final Structure<NoFeatureConfig> MINI_TOWER = RegistryHelper.registerStructure("mini_tower", new MiniTowerStructure<>(NoFeatureConfig.field_236558_a_));
+    public static final Structure<NoFeatureConfig> MALACHITE_WATCHTOWER = RegistryHelper.registerStructure("malachite_watchtower", new MalachiteWatchtowerStructure<>(NoFeatureConfig.field_236558_a_));
 
     //SurfaceBuilder
-    public static final SurfaceBuilder<SurfaceBuilderConfig> s_default_gaia = new GaiaDefaultSurfaceBuilder<>(SurfaceBuilderConfig.field_237203_a_);
-    public static final SurfaceBuilder<SurfaceBuilderConfig> s_volcanic = new VolcanicSurfaceBuilder<>(SurfaceBuilderConfig.field_237203_a_);
-    public static final SurfaceBuilder<SurfaceBuilderConfig> s_static = new WastelandSurfaceBuilder<>(SurfaceBuilderConfig.field_237203_a_);
-
-    public static final RegistryObject<SurfaceBuilder<SurfaceBuilderConfig>> DEFAULT_GAIA = SURFACE_BUILDERS.register("default_gaia", () -> s_default_gaia);
-    public static final RegistryObject<SurfaceBuilder<SurfaceBuilderConfig>> VOLCANIC = SURFACE_BUILDERS.register("volcanic", () -> s_volcanic);
-    public static final RegistryObject<SurfaceBuilder<SurfaceBuilderConfig>> STATIC = SURFACE_BUILDERS.register("static", () -> s_static);
+    public static final SurfaceBuilder<SurfaceBuilderConfig> DEFAULT_GAIA = RegistryHelper.registerSurfaceBuilder("default_gaia", new GaiaDefaultSurfaceBuilder<>(SurfaceBuilderConfig.field_237203_a_));
+    public static final SurfaceBuilder<SurfaceBuilderConfig> VOLCANIC = RegistryHelper.registerSurfaceBuilder("volcanic", new VolcanicSurfaceBuilder<>(SurfaceBuilderConfig.field_237203_a_));
+    public static final SurfaceBuilder<SurfaceBuilderConfig> STATIC = RegistryHelper.registerSurfaceBuilder("static", new WastelandSurfaceBuilder<>(SurfaceBuilderConfig.field_237203_a_));
 
     //WorldCarver
-    public static final Supplier<WorldCarver<ProbabilityConfig>> crystal_caves = () -> new CoatedCavesWorldCarver<>(ProbabilityConfig.field_236576_b_, 256);
-    public static final Supplier<WorldCarver<ProbabilityConfig>> chasms = () -> new ChasmsWorldCarver<>(ProbabilityConfig.field_236576_b_, 32);
-
-    public static final RegistryObject<WorldCarver<ProbabilityConfig>> CRYSTAL_CAVES = WORLD_CARVERS.register("crystal_caves", crystal_caves);
-    public static final RegistryObject<WorldCarver<ProbabilityConfig>> CHASMS = WORLD_CARVERS.register("chasms", chasms);
+    public static final WorldCarver<ProbabilityConfig> CRYSTAL_CAVES = RegistryHelper.registerWorldCarver("crystal_caves", new CoatedCavesWorldCarver<>(ProbabilityConfig.field_236576_b_, 256));
+    public static final WorldCarver<ProbabilityConfig> CHASMS = RegistryHelper.registerWorldCarver("chasms", new ChasmsWorldCarver<>(ProbabilityConfig.field_236576_b_, 32));
 
     private static <P extends StructureProcessor> IStructureProcessorType<P> registerProcessor(String name, Codec<P> processor) {
         return Registry.register(Registry.STRUCTURE_PROCESSOR, new ResourceLocation(GaiaDimensionMod.MODID, name), () -> processor);
@@ -114,8 +74,11 @@ public class ModWorldgen {
         return Registry.register(Registry.STRUCTURE_PIECE, new ResourceLocation(GaiaDimensionMod.MODID, name.toLowerCase(Locale.ROOT)), piece);
     }
 
-    private static <T extends Structure<?>> RegistryObject<T> registerStructure(String name, T structure) {
-        Structure.field_236365_a_.put(name, structure);
-        return STRUCTURE_FEATURES.register(name, () -> structure);
+    public static class StructureTypes {
+        public static final IStructureProcessorType BLOCK_DEGRADE = registerProcessor("block_degrade", BlockDegradeProcessor.CODEC);
+        public static final IStructureProcessorType MALACHITE_DEGRADE = registerProcessor("malachite_degrade", MalachiteDegradeProcessor.CODEC);
+
+        public static final IStructurePieceType MITO = registerPiece("MITO", MiniTowerPieces.Piece::new);
+        public static final IStructurePieceType MAWA = registerPiece("MAWA", MalachiteWatchtowerPieces.Piece::new);
     }
 }

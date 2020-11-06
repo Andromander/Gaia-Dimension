@@ -15,7 +15,7 @@ import java.util.Random;
 @ParametersAreNonnullByDefault
 public class BismuthGeyserFeature<T extends NoFeatureConfig> extends Feature<T> {
 
-    private static final Block GRASS = ModBlocks.murky_grass.get();
+    private static final Block GRASS = ModBlocks.murky_grass;
 
     public BismuthGeyserFeature(Codec<T> configIn) {
         super(configIn);
@@ -41,10 +41,10 @@ public class BismuthGeyserFeature<T extends NoFeatureConfig> extends Feature<T> 
             for (int bz = -2; bz <= 2; bz++) {
                 if (Math.abs(bx) != 2 || Math.abs(bz) != 2) {
                     if (bx == 0 && bz == 0) {
-                        worldIn.setBlockState(position.add(bx, 0, bz), ModBlocks.geyser_block.get().getDefaultState(), 2);
+                        worldIn.setBlockState(position.add(bx, 0, bz), ModBlocks.geyser_block.getDefaultState(), 2);
                     } else {
                         if (bx < 2 && bz < 2 && bx > -2 && bz > -2) {
-                            worldIn.setBlockState(position.add(bx, 0, bz), ModBlocks.boggy_soil.get().getDefaultState(), 2);
+                            worldIn.setBlockState(position.add(bx, 0, bz), ModBlocks.boggy_soil.getDefaultState(), 2);
                         } else {
                             worldIn.setBlockState(position.add(bx, 0, bz), GRASS.getDefaultState(), 2);
                         }
