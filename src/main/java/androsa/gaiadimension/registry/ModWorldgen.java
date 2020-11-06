@@ -28,6 +28,7 @@ import net.minecraft.world.gen.surfacebuilders.SurfaceBuilder;
 import net.minecraft.world.gen.surfacebuilders.SurfaceBuilderConfig;
 
 import java.util.Locale;
+import java.util.function.Supplier;
 
 public class ModWorldgen {
 

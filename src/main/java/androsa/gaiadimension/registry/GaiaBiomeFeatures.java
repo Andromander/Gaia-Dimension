@@ -6,6 +6,7 @@ import androsa.gaiadimension.world.gen.config.GaiaTreeFeatureConfig;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Lists;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.registry.Registry;
@@ -29,6 +30,7 @@ import net.minecraft.world.gen.surfacebuilders.SurfaceBuilderConfig;
 import net.minecraft.world.gen.trunkplacer.StraightTrunkPlacer;
 
 import java.util.Set;
+import java.util.function.Supplier;
 
 public final class GaiaBiomeFeatures {
 
@@ -115,13 +117,13 @@ public final class GaiaBiomeFeatures {
     public static final BlockState ELDER_IMKLIA = ModBlocks.elder_imklia.getDefaultState();
     public static final BlockState GOLD_ORB_TUCHER = ModBlocks.gold_orb_tucher.getDefaultState();
 
-    public static final SurfaceBuilderConfig GLITTER_HEAVY_SALT = new SurfaceBuilderConfig(GLITTER_GRASS, HEAVY_SOIL, SALT);
-    public static final SurfaceBuilderConfig CORRUPT_SALT = new SurfaceBuilderConfig(CORRUPT_GRASS, CORRUPT_SOIL, SALT);
+    public static final SurfaceBuilderConfig GLITTER_HEAVY_SALT = new SurfaceBuilderConfig(getState(ModBlocks.glitter_grass), HEAVY_SOIL, SALT);
+    public static final SurfaceBuilderConfig CORRUPT_SALT = new SurfaceBuilderConfig(getState(ModBlocks.corrupt_grass), CORRUPT_SOIL, SALT);
     public static final SurfaceBuilderConfig SALTY_SURFACE = new SurfaceBuilderConfig(SALT, SALT, SALT);
     public static final SurfaceBuilderConfig MURKY_BOGGY_PEBBLES = new SurfaceBuilderConfig(MURKY_GRASS, BOGGY_SOIL, PEBBLES);
     public static final SurfaceBuilderConfig SOFT_LIGHT_SALT = new SurfaceBuilderConfig(SOFT_GRASS, LIGHT_SOIL, PEBBLES);
     public static final SurfaceBuilderConfig WASTELAND_STONE_SURFACE = new SurfaceBuilderConfig(WASTELAND_STONE, WASTELAND_STONE, WASTELAND_STONE);
-    public static final SurfaceBuilderConfig GLITTER_HEAVY_VOLROCK = new SurfaceBuilderConfig(GLITTER_GRASS, HEAVY_SOIL, VOLCANIC_ROCK);
+    public static final SurfaceBuilderConfig GLITTER_HEAVY_VOLROCK = new SurfaceBuilderConfig(getState(ModBlocks.glitter_grass), HEAVY_SOIL, VOLCANIC_ROCK);
 
     public static final GaiaTreeFeatureConfig PINK_AGATE_TREE_CONFIG = (new GaiaTreeFeatureConfig.Builder(new SimpleBlockStateProvider(PINK_AGATE_LOG), new SimpleBlockStateProvider(PINK_AGATE_LEAVES), 5).setSapling(ModBlocks.pink_agate_sapling)).build();
     public static final GaiaTreeFeatureConfig BLUE_AGATE_TREE_CONFIG = (new GaiaTreeFeatureConfig.Builder(new SimpleBlockStateProvider(BLUE_AGATE_LOG), new SimpleBlockStateProvider(BLUE_AGATE_LEAVES), 6).setSapling(ModBlocks.blue_agate_sapling)).build();
