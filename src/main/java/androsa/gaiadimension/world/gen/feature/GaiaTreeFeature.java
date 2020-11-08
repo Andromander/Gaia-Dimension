@@ -35,7 +35,7 @@ public abstract class GaiaTreeFeature<T extends GaiaTreeFeatureConfig> extends F
     }
 
     @Override
-    public boolean func_241855_a(ISeedReader world, ChunkGenerator generator, Random random, BlockPos pos, T config) {
+    public boolean generate(ISeedReader world, ChunkGenerator generator, Random random, BlockPos pos, T config) {
         Set<BlockPos> logs = Sets.newHashSet();
         Set<BlockPos> leaves = Sets.newHashSet();
         MutableBoundingBox mutableboundingbox = MutableBoundingBox.getNewBoundingBox();

@@ -22,7 +22,7 @@ public class BismuthSpireFeature<T extends FeatureHeightConfig> extends Feature<
     }
 
     @Override
-    public boolean func_241855_a(ISeedReader worldIn, ChunkGenerator generator, Random rand, BlockPos position, T config) {
+    public boolean generate(ISeedReader worldIn, ChunkGenerator generator, Random rand, BlockPos position, T config) {
         for (int cx = 0; cx < 3; cx++) {
             for (int cz = 0; cz < 3; cz++) {
                 BlockPos pos = position.add(cx - 1, 0, cz - 1);

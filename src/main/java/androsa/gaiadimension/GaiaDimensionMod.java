@@ -35,7 +35,6 @@ public class GaiaDimensionMod {
     public static final Logger LOGGER = LogManager.getLogger(MODID);
     public static ModGaiaConfig.ClientConfig clientConfig;
     public static ModGaiaConfig.ServerConfig serverConfig;
-//    public static DimensionType gaia_dimension;
 
     public static final CreatureAttribute GAIAN = new CreatureAttribute();
     public static final CreatureAttribute CORRUPT = new CreatureAttribute();

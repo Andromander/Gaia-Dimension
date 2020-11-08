@@ -18,7 +18,7 @@ public class FrailGlitterBlobFeature<T extends NoFeatureConfig> extends Feature<
     }
 
     @Override
-    public boolean func_241855_a(ISeedReader worldIn, ChunkGenerator generator, Random rand, BlockPos pos, T config) {
+    public boolean generate(ISeedReader worldIn, ChunkGenerator generator, Random rand, BlockPos pos, T config) {
         if (!worldIn.isAirBlock(pos)) {
             return false;
         } else if (worldIn.getBlockState(pos.up()).getBlock() != ModBlocks.gaia_stone && worldIn.getBlockState(pos.down()).getBlock() != ModBlocks.gaia_stone) {

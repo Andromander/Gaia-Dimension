@@ -124,7 +124,7 @@ public class ChasmsWorldCarver<T extends ProbabilityConfig> extends WorldCarver<
     }
 
     @Override
-    protected boolean func_230358_a_(IChunk chunkIn, Function<BlockPos, Biome> biomePos, BitSet carvingMask, Random rand, BlockPos.Mutable mutablePos, BlockPos.Mutable mutablePosAbove, BlockPos.Mutable mutablePosBelow, int seaLevel, int chunkX, int chunkZ, int posX, int posZ, int xVal, int yVal, int zVal, MutableBoolean flag) {
+    protected boolean carveBlock(IChunk chunkIn, Function<BlockPos, Biome> biomePos, BitSet carvingMask, Random rand, BlockPos.Mutable mutablePos, BlockPos.Mutable mutablePosAbove, BlockPos.Mutable mutablePosBelow, int seaLevel, int chunkX, int chunkZ, int posX, int posZ, int xVal, int yVal, int zVal, MutableBoolean flag) {
         int i = xVal | zVal << 4 | yVal << 8;
         if (carvingMask.get(i)) {
             return false;

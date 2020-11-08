@@ -51,7 +51,7 @@ public class GlitterGrassBlock extends AbstractGaiaGrassBlock {
 
                     ConfiguredFeature<?, ?> configuredfeature = list.get(0);
                     FlowersFeature flowersfeature = (FlowersFeature)configuredfeature.feature;
-                    blockstate1 = flowersfeature.getFlowerToPlace(rand, blockpos1, configuredfeature.func_242767_c());
+                    blockstate1 = flowersfeature.getFlowerToPlace(rand, blockpos1, configuredfeature.getConfig());
                 } else {
                     blockstate1 = worldIn.func_242406_i(blockpos1) == Optional.of(ModBiomes.mutant_agate_wildwood) ? mutantGrowth : normalGrowth;
                 }

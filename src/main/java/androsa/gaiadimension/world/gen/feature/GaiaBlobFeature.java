@@ -18,7 +18,7 @@ public class GaiaBlobFeature<T extends BlockStateFeatureConfig> extends Feature<
     }
 
     @Override
-    public boolean func_241855_a(ISeedReader worldIn, ChunkGenerator generator, Random rand, BlockPos pos, T config) {
+    public boolean generate(ISeedReader worldIn, ChunkGenerator generator, Random rand, BlockPos pos, T config) {
         while(true) {
             label50: {
                 if (pos.getY() > 3) {

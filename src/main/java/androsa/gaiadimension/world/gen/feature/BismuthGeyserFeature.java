@@ -22,7 +22,7 @@ public class BismuthGeyserFeature<T extends NoFeatureConfig> extends Feature<T> 
     }
 
     @Override
-    public boolean func_241855_a(ISeedReader worldIn, ChunkGenerator generator, Random rand, BlockPos position, T config) {
+    public boolean generate(ISeedReader worldIn, ChunkGenerator generator, Random rand, BlockPos position, T config) {
         for (int cx = 0; cx < 5; cx++) {
             for (int cz = 0; cz < 5; cz++) {
                 BlockPos pos = position.add(cx - 2, 0, cz - 2);

@@ -52,32 +52,13 @@ public class MalachiteWatchtowerStructure<T extends NoFeatureConfig> extends Str
     }
 
     @Override
-    public GenerationStage.Decoration func_236396_f_() {
+    public GenerationStage.Decoration getDecorationStage() {
         return GenerationStage.Decoration.SURFACE_STRUCTURES;
     }
 
-    //TODO
-//    @Override
-//    protected ChunkPos getStartPositionForPosition(ChunkGenerator<?> generator, Random random, int minX, int minZ, int maxX, int maxZ) {
-//        int dist = this.getBiomeFeatureDistance(generator);
-//        int sep = this.getBiomeFeatureSeparation(generator);
-//        int k = minX + dist * maxX;
-//        int l = minZ + dist * maxZ;
-//        int i1 = k < 0 ? k - dist + 1 : k;
-//        int j1 = l < 0 ? l - dist + 1 : l;
-//        int k1 = i1 / dist;
-//        int l1 = j1 / dist;
-//        ((SharedSeedRandom)random).setLargeFeatureSeedWithSalt(generator.getSeed(), k1, l1, 1294754);
-//        k1 = k1 * dist;
-//        l1 = l1 * dist;
-//        k1 = k1 + random.nextInt(dist - sep);
-//        l1 = l1 + random.nextInt(dist - sep);
-//        return new ChunkPos(k1, l1);
-//    }
-
     @Override
     protected boolean func_230363_a_(ChunkGenerator generator, BiomeProvider provider, long seed, SharedSeedRandom random, int chunkX, int chunkZ, Biome biomeIn, ChunkPos chunkpos, T config) {
-        for(Biome biome : provider.getBiomes(chunkX * 16 + 9, generator.func_230356_f_(), chunkZ * 16 + 9, 16)) {
+        for(Biome biome : provider.getBiomes(chunkX * 16 + 9, generator.getSeaLevel(), chunkZ * 16 + 9, 16)) {
             if (!biome.getGenerationSettings().hasStructure(this)) {
                 return false;
             }
@@ -85,24 +66,6 @@ public class MalachiteWatchtowerStructure<T extends NoFeatureConfig> extends Str
 
         return true;
     }
-
-//    protected int getBiomeFeatureDistance(ChunkGenerator<?> generator) {
-//        GenerationSettings settings = generator.getSettings();
-//
-//        if (settings instanceof GaiaGenerationSettings)
-//            return ((GaiaGenerationSettings) settings).getWatchtowerFeatureDistance();
-//        else
-//            return settings.getBiomeFeatureDistance();
-//    }
-
-//    protected int getBiomeFeatureSeparation(ChunkGenerator<?> generator) {
-//        GenerationSettings settings = generator.getSettings();
-//
-//        if (settings instanceof GaiaGenerationSettings)
-//            return ((GaiaGenerationSettings) settings).getWatchtowerFeatureSeparation();
-//        else
-//            return settings.getBiomeFeatureSeparation();
-//    }
 
     public static class Start<T extends NoFeatureConfig> extends StructureStart<T> {
 

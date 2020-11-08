@@ -28,7 +28,7 @@ public class GaiaLakesFeature<T extends BlockStateFeatureConfig> extends Feature
     }
 
     @Override
-    public boolean func_241855_a(ISeedReader worldIn, ChunkGenerator generator, Random rand, BlockPos pos, T config) {
+    public boolean generate(ISeedReader worldIn, ChunkGenerator generator, Random rand, BlockPos pos, T config) {
         while(pos.getY() > 5 && worldIn.isAirBlock(pos)) {
             pos = pos.down();
         }
@@ -37,7 +37,7 @@ public class GaiaLakesFeature<T extends BlockStateFeatureConfig> extends Feature
             return false;
         } else {
             pos = pos.down(4);
-            if (!worldIn.func_241827_a(SectionPos.from(pos), Structure.field_236381_q_).findAny().isPresent()) {
+            if (!worldIn.func_241827_a(SectionPos.from(pos), Structure.VILLAGE).findAny().isPresent()) {
                 return false;
             } else {
                 boolean[] aboolean = new boolean[2048];

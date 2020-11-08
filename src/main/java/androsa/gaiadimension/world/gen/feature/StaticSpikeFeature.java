@@ -23,7 +23,7 @@ public class StaticSpikeFeature<T extends FeatureHeightConfig> extends Feature<T
     }
 
     @Override
-    public boolean func_241855_a(ISeedReader worldIn, ChunkGenerator generator, Random rand, BlockPos position, T config) {
+    public boolean generate(ISeedReader worldIn, ChunkGenerator generator, Random rand, BlockPos position, T config) {
         int height = config.startHeight + rand.nextInt(4);
         boolean flag = true;
 

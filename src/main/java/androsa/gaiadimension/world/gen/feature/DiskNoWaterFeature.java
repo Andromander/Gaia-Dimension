@@ -16,7 +16,7 @@ public class DiskNoWaterFeature<T extends SphereReplaceConfig> extends Feature<T
         super(config);
     }
 
-    public boolean func_241855_a(ISeedReader worldIn, ChunkGenerator generator, Random rand, BlockPos pos, T config) {
+    public boolean generate(ISeedReader worldIn, ChunkGenerator generator, Random rand, BlockPos pos, T config) {
         int i = 0;
         int j = (config.radius.func_242259_a(rand) - 2) + 2;
 

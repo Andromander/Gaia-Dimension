@@ -20,7 +20,7 @@ public class BogPatchFeature<T extends SphereReplaceConfig> extends Feature<T> {
     }
 
     @Override
-    public boolean func_241855_a(ISeedReader world, ChunkGenerator generator, Random random, BlockPos pos, T config) {
+    public boolean generate(ISeedReader world, ChunkGenerator generator, Random random, BlockPos pos, T config) {
         int range = random.nextInt(4 - 2) + 2;
         int yRange = 1;
 

@@ -111,7 +111,7 @@ public class RegistryHelper {
     }
 
     public static <T extends Structure<NoFeatureConfig>> T registerStructure(String name, T structure) {
-        Structure.field_236365_a_.put(name, structure);
+        Structure.NAME_STRUCTURE_BIMAP.put(name, structure);
         structure.setRegistryName(name);
         STRUCTURES.add(structure);
         return structure;
