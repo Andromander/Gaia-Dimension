@@ -186,7 +186,7 @@ public class ModEntities {
         GlobalEntityTypeAttributes.put(LESSER_SPITFIRE, LesserSpitfireEntity.registerAttributes().create());
         GlobalEntityTypeAttributes.put(MARKUZAR_PLANT, MarkuzarPlantEntity.registerAttributes().create());
         GlobalEntityTypeAttributes.put(MINERAL_ARENTHIS, MineralArenthisEntity.registerAttributes().create());
-        GlobalEntityTypeAttributes.put(MUCKLING, MucklingEntity.registerAttributes().create());
+        GlobalEntityTypeAttributes.put(MUCKLING, MonsterEntity.func_234295_eP_().create());
         GlobalEntityTypeAttributes.put(MUTANT_GROWTH_EXTRACTOR, MutantGrowthExtractorEntity.registerAttributes().create());
         GlobalEntityTypeAttributes.put(NOMADIC_LAGRAHK, NomadicLagrahkEntity.registerAttributes().create());
         GlobalEntityTypeAttributes.put(PRIMAL_BEAST, PrimalBeastEntity.registerAttributes().create());
