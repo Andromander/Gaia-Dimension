@@ -91,7 +91,7 @@ public class GaiaBiomes extends GaiaBiomeProvider {
                                         .withSpawner(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(ModEntities.NOMADIC_LAGRAHK, 15, 1, 1))
                                         .withSpawner(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(ModEntities.GROWTH_SAPPER, 20, 3, 5))
                                         .withSpawner(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(ModEntities.SPELLBOUND_ELEMENTAL, 10, 2, 4)))
-                ).depth(0.0F).scale(0.5F).temperature(0.66F));
+                ).depth(0.0F).scale(0.05F).temperature(0.66F));
     }
 
     public static Biome makeFossilWoodland() {
