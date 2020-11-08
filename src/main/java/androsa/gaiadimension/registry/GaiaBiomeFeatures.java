@@ -6,8 +6,8 @@ import androsa.gaiadimension.world.gen.config.GaiaTreeFeatureConfig;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Lists;
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.SaplingBlock;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.util.registry.WorldGenRegistries;
@@ -30,15 +30,12 @@ import net.minecraft.world.gen.surfacebuilders.SurfaceBuilderConfig;
 import net.minecraft.world.gen.trunkplacer.StraightTrunkPlacer;
 
 import java.util.Set;
-import java.util.function.Supplier;
 
 public final class GaiaBiomeFeatures {
 
     public static final RuleTest GAIA_STONE = new BlockMatchRuleTest(ModBlocks.gaia_stone);
     public static final RuleTest VOLCANIC = new TagMatchRuleTest(GaiaDimensionMod.VOLCANIC);
     public static final RuleTest STATIC = new TagMatchRuleTest(GaiaDimensionMod.STATIC);
-
-    public static final Set<BlockState> cave_blacklist = ImmutableSet.of(ModBlocks.glitter_grass.getDefaultState(), ModBlocks.heavy_soil.getDefaultState(), ModBlocks.corrupt_grass.getDefaultState(), ModBlocks.corrupt_soil.getDefaultState(), ModBlocks.murky_grass.getDefaultState(), ModBlocks.boggy_soil.getDefaultState(), ModBlocks.soft_grass.getDefaultState(), ModBlocks.light_soil.getDefaultState(), ModBlocks.salt.getDefaultState());
 
     public static final BlockState GLITTER_GRASS = ModBlocks.glitter_grass.getDefaultState();
     public static final BlockState CORRUPT_GRASS = ModBlocks.corrupt_grass.getDefaultState();
@@ -117,24 +114,26 @@ public final class GaiaBiomeFeatures {
     public static final BlockState ELDER_IMKLIA = ModBlocks.elder_imklia.getDefaultState();
     public static final BlockState GOLD_ORB_TUCHER = ModBlocks.gold_orb_tucher.getDefaultState();
 
-    public static final SurfaceBuilderConfig GLITTER_HEAVY_SALT = new SurfaceBuilderConfig(getState(ModBlocks.glitter_grass), HEAVY_SOIL, SALT);
-    public static final SurfaceBuilderConfig CORRUPT_SALT = new SurfaceBuilderConfig(getState(ModBlocks.corrupt_grass), CORRUPT_SOIL, SALT);
+    public static final Set<BlockState> cave_blacklist = ImmutableSet.of(GLITTER_GRASS, HEAVY_SOIL, CORRUPT_GRASS, CORRUPT_SOIL, MURKY_GRASS, BOGGY_SOIL, SOFT_GRASS, LIGHT_SOIL, SALT);
+
+    public static final SurfaceBuilderConfig GLITTER_HEAVY_SALT = new SurfaceBuilderConfig(GLITTER_GRASS, HEAVY_SOIL, SALT);
+    public static final SurfaceBuilderConfig CORRUPT_SALT = new SurfaceBuilderConfig(CORRUPT_GRASS, CORRUPT_SOIL, SALT);
     public static final SurfaceBuilderConfig SALTY_SURFACE = new SurfaceBuilderConfig(SALT, SALT, SALT);
     public static final SurfaceBuilderConfig MURKY_BOGGY_PEBBLES = new SurfaceBuilderConfig(MURKY_GRASS, BOGGY_SOIL, PEBBLES);
     public static final SurfaceBuilderConfig SOFT_LIGHT_SALT = new SurfaceBuilderConfig(SOFT_GRASS, LIGHT_SOIL, PEBBLES);
     public static final SurfaceBuilderConfig WASTELAND_STONE_SURFACE = new SurfaceBuilderConfig(WASTELAND_STONE, WASTELAND_STONE, WASTELAND_STONE);
-    public static final SurfaceBuilderConfig GLITTER_HEAVY_VOLROCK = new SurfaceBuilderConfig(getState(ModBlocks.glitter_grass), HEAVY_SOIL, VOLCANIC_ROCK);
+    public static final SurfaceBuilderConfig GLITTER_HEAVY_VOLROCK = new SurfaceBuilderConfig(GLITTER_GRASS, HEAVY_SOIL, VOLCANIC_ROCK);
 
-    public static final GaiaTreeFeatureConfig PINK_AGATE_TREE_CONFIG = (new GaiaTreeFeatureConfig.Builder(new SimpleBlockStateProvider(PINK_AGATE_LOG), new SimpleBlockStateProvider(PINK_AGATE_LEAVES), 5).setSapling(ModBlocks.pink_agate_sapling)).build();
-    public static final GaiaTreeFeatureConfig BLUE_AGATE_TREE_CONFIG = (new GaiaTreeFeatureConfig.Builder(new SimpleBlockStateProvider(BLUE_AGATE_LOG), new SimpleBlockStateProvider(BLUE_AGATE_LEAVES), 6).setSapling(ModBlocks.blue_agate_sapling)).build();
-    public static final GaiaTreeFeatureConfig GREEN_AGATE_TREE_CONFIG = (new GaiaTreeFeatureConfig.Builder(new SimpleBlockStateProvider(GREEN_AGATE_LOG), new SimpleBlockStateProvider(GREEN_AGATE_LEAVES), 10).setSapling(ModBlocks.green_agate_sapling)).build();
+    public static final GaiaTreeFeatureConfig PINK_AGATE_TREE_CONFIG = configureTree(PINK_AGATE_LOG, PINK_AGATE_LEAVES, 5, ModBlocks.pink_agate_sapling);
+    public static final GaiaTreeFeatureConfig BLUE_AGATE_TREE_CONFIG = configureTree(BLUE_AGATE_LOG, BLUE_AGATE_LEAVES, 6, ModBlocks.blue_agate_sapling);
+    public static final GaiaTreeFeatureConfig GREEN_AGATE_TREE_CONFIG = configureTree(GREEN_AGATE_LOG, GREEN_AGATE_LEAVES, 10, ModBlocks.green_agate_sapling);
     public static final BaseTreeFeatureConfig GREEN_AGATE_BUSH_CONFIG = (new BaseTreeFeatureConfig.Builder(new SimpleBlockStateProvider(GREEN_AGATE_LOG), new SimpleBlockStateProvider(GREEN_AGATE_LEAVES), new BushFoliagePlacer(FeatureSpread.func_242252_a(2), FeatureSpread.func_242252_a(1), 2), new StraightTrunkPlacer(1, 0, 0), new TwoLayerFeature(0, 0, 0))).func_236702_a_(Heightmap.Type.MOTION_BLOCKING_NO_LEAVES).build();
-    public static final GaiaTreeFeatureConfig PURPLE_AGATE_TREE_CONFIG = (new GaiaTreeFeatureConfig.Builder(new SimpleBlockStateProvider(PURPLE_AGATE_LOG), new SimpleBlockStateProvider(PURPLE_AGATE_LEAVES), 7).setSapling(ModBlocks.purple_agate_sapling)).build();
-    public static final GaiaTreeFeatureConfig FOSSILIZED_TREE_CONFIG = (new GaiaTreeFeatureConfig.Builder(new SimpleBlockStateProvider(FOSSIL_LOG), new SimpleBlockStateProvider(FOSSIL_LEAVES), 5).setSapling(ModBlocks.fossilized_sapling)).build();
-    public static final GaiaTreeFeatureConfig CORRUPTED_TREE_CONFIG = (new GaiaTreeFeatureConfig.Builder(new SimpleBlockStateProvider(CORRUPTED_LOG), new SimpleBlockStateProvider(CORRUPTED_LEAVES), 7).setSapling(ModBlocks.corrupted_sapling)).build();
-    public static final GaiaTreeFeatureConfig BURNT_TREE_CONFIG = (new GaiaTreeFeatureConfig.Builder(new SimpleBlockStateProvider(BURNT_LOG), new SimpleBlockStateProvider(BURNT_LEAVES), 5).setSapling(ModBlocks.burnt_sapling)).build();
-    public static final GaiaTreeFeatureConfig BURNING_TREE_CONFIG = (new GaiaTreeFeatureConfig.Builder(new SimpleBlockStateProvider(BURNING_LOG), new SimpleBlockStateProvider(BURNING_LEAVES), 5).setSapling(ModBlocks.burning_sapling)).build();
-    public static final GaiaTreeFeatureConfig AURA_TREE_CONFIG = (new GaiaTreeFeatureConfig.Builder(new SimpleBlockStateProvider(AURA_LOG), new SimpleBlockStateProvider(AURA_LEAVES), 10).setSapling(ModBlocks.aura_sapling)).build();
+    public static final GaiaTreeFeatureConfig PURPLE_AGATE_TREE_CONFIG = configureTree(PURPLE_AGATE_LOG, PURPLE_AGATE_LEAVES, 7, ModBlocks.purple_agate_sapling);
+    public static final GaiaTreeFeatureConfig FOSSILIZED_TREE_CONFIG = configureTree(FOSSIL_LOG, FOSSIL_LEAVES, 5, ModBlocks.fossilized_sapling);
+    public static final GaiaTreeFeatureConfig CORRUPTED_TREE_CONFIG = configureTree(CORRUPTED_LOG, CORRUPTED_LEAVES, 7, ModBlocks.corrupted_sapling);
+    public static final GaiaTreeFeatureConfig BURNT_TREE_CONFIG = configureTree(BURNT_LOG, BURNT_LEAVES, 5, ModBlocks.burnt_sapling);
+    public static final GaiaTreeFeatureConfig BURNING_TREE_CONFIG = configureTree(BURNING_LOG, BURNING_LEAVES, 5, ModBlocks.burning_sapling);
+    public static final GaiaTreeFeatureConfig AURA_TREE_CONFIG = configureTree(AURA_LOG, AURA_LEAVES, 10, ModBlocks.aura_sapling);
 
     public static final BlockClusterFeatureConfig NORMAL_GROWTH = (new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(CRYSTAL_GROWTH), new SimpleBlockPlacer())).tries(32).build();
     public static final BlockClusterFeatureConfig MUTANT_GROWTH = (new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(CRYSTAL_GROWTH_MUTANT), new SimpleBlockPlacer())).tries(32).build();
@@ -170,8 +169,8 @@ public final class GaiaBiomeFeatures {
     public static final ConfiguredCarver<ProbabilityConfig> chasms = registerCarver("chasms", ModWorldgen.CHASMS.func_242761_a(new ProbabilityConfig(0.03F)));
 
     //StructureFeatures
-    public static final StructureFeature<NoFeatureConfig, ? extends Structure<NoFeatureConfig>> mini_tower = registerStructureFeature("mini_tower", ModWorldgen.MINI_TOWER.func_236391_a_(NoFeatureConfig.field_236559_b_));
-    public static final StructureFeature<NoFeatureConfig, ? extends Structure<NoFeatureConfig>> malachite_watchtower = registerStructureFeature("malachite_watchtower", ModWorldgen.MALACHITE_WATCHTOWER.func_236391_a_(NoFeatureConfig.field_236559_b_));
+    public static final StructureFeature<NoFeatureConfig, ? extends Structure<NoFeatureConfig>> mini_tower = registerStructureFeature("mini_tower", ModWorldgen.MINI_TOWER.withConfiguration(NoFeatureConfig.field_236559_b_));
+    public static final StructureFeature<NoFeatureConfig, ? extends Structure<NoFeatureConfig>> malachite_watchtower = registerStructureFeature("malachite_watchtower", ModWorldgen.MALACHITE_WATCHTOWER.withConfiguration(NoFeatureConfig.field_236559_b_));
 
     //Lakes
     public static final ConfiguredFeature<?, ?> lake_superhot_magma_common = registerFeature("lake_superhot_magma_common", ModWorldgen.POOL.withConfiguration(new BlockStateFeatureConfig(SUPERHOT_MAGMA)).withPlacement(Placement.LAVA_LAKE.configure(new ChanceConfig(15))));
@@ -190,73 +189,103 @@ public final class GaiaBiomeFeatures {
     public static final ConfiguredFeature<?, ?> bismuth_geysers = registerFeature("bismuth_geysers", ModWorldgen.BISMUTH_GEYSER.withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG).withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).func_242732_c(2));
 
     //Underground Ores
-    public static final ConfiguredFeature<?, ?> ore_primal_mass = registerFeature("ore_primal_mass", Feature.ORE.withConfiguration(new OreFeatureConfig(GAIA_STONE, PRIMAL_MASS, 33)).func_242733_d(25).func_242728_a().func_242731_b(33));
-    public static final ConfiguredFeature<?, ?> ore_thick_glitter = registerFeature("ore_thick_glitter", Feature.ORE.withConfiguration(new OreFeatureConfig(GAIA_STONE, THICK_GLITTER, 33)).func_242733_d(100).func_242728_a().func_242731_b(9));
-    public static final ConfiguredFeature<?, ?> ore_searing_rock = registerFeature("ore_searing_rock", Feature.ORE.withConfiguration(new OreFeatureConfig(VOLCANIC, SEARING_ROCK, 33)).func_242733_d(100).func_242728_a().func_242733_d(9));
-    public static final ConfiguredFeature<?, ?> ore_static_stone = registerFeature("ore_static_stone", Feature.ORE.withConfiguration(new OreFeatureConfig(STATIC, STATIC_STONE, 33)).func_242733_d(100).func_242728_a().func_242731_b(9));
-    public static final ConfiguredFeature<?, ?> ore_pebbles = registerFeature("ore_pebbles", Feature.ORE.withConfiguration(new OreFeatureConfig(GAIA_STONE, PEBBLES, 25)).func_242733_d(128).func_242728_a().func_242731_b(25));
-    public static final ConfiguredFeature<?, ?> ore_speckled_rock = registerFeature("ore_speckled_rock", Feature.ORE.withConfiguration(new OreFeatureConfig(GAIA_STONE, SPECKLED_ROCK, 8)).func_242733_d(120).func_242728_a().func_242731_b(10));
-    public static final ConfiguredFeature<?, ?> ore_coarse_rock = registerFeature("ore_coarse_rock", Feature.ORE.withConfiguration(new OreFeatureConfig(GAIA_STONE, COARSE_ROCK, 8)).func_242733_d(60).func_242728_a().func_242731_b(10));
-    public static final ConfiguredFeature<?, ?> ore_precious_rock = registerFeature("ore_precious_rock", Feature.ORE.withConfiguration(new OreFeatureConfig(GAIA_STONE, PRECIOUS_ROCK, 8)).func_242733_d(30).func_242728_a().func_242731_b(10));
-    public static final ConfiguredFeature<?, ?> ore_raw_amethyst = registerFeature("ore_raw_amethyst", Feature.ORE.withConfiguration(new OreFeatureConfig(GAIA_STONE, RAW_AMETHYST, 12)).func_242733_d(120).func_242728_a().func_242731_b(15));
-    public static final ConfiguredFeature<?, ?> ore_raw_copal = registerFeature("ore_raw_copal", Feature.ORE.withConfiguration(new OreFeatureConfig(GAIA_STONE, RAW_COPAL, 12)).func_242733_d(120).func_242728_a().func_242731_b(15));
-    public static final ConfiguredFeature<?, ?> ore_raw_jade = registerFeature("ore_raw_jade", Feature.ORE.withConfiguration(new OreFeatureConfig(GAIA_STONE, RAW_JADE, 12)).func_242733_d(120).func_242728_a().func_242731_b(15));
-    public static final ConfiguredFeature<?, ?> ore_raw_jet = registerFeature("ore_raw_jet", Feature.ORE.withConfiguration(new OreFeatureConfig(GAIA_STONE, RAW_JET, 12)).func_242733_d(120).func_242728_a().func_242731_b(15));
-    public static final ConfiguredFeature<?, ?> ore_sugilite = registerFeature("ore_sugilite", Feature.ORE.withConfiguration(new OreFeatureConfig(GAIA_STONE, SUGILITE_ORE, 17)).func_242733_d(100).func_242728_a().func_242731_b(8));
-    public static final ConfiguredFeature<?, ?> ore_hematite = registerFeature("ore_hematite", Feature.ORE.withConfiguration(new OreFeatureConfig(GAIA_STONE, HEMATITE_ORE, 17)).func_242733_d(100).func_242728_a().func_242731_b(8));
-    public static final ConfiguredFeature<?, ?> ore_pyrite = registerFeature("ore_pyrite", Feature.ORE.withConfiguration(new OreFeatureConfig(GAIA_STONE, PYRITE_ORE, 9)).func_242733_d(80).func_242728_a().func_242731_b(8));
-    public static final ConfiguredFeature<?, ?> ore_cinnabar = registerFeature("ore_cinnabar", Feature.ORE.withConfiguration(new OreFeatureConfig(GAIA_STONE, CINNABAR_ORE, 9)).func_242733_d(60).func_242728_a().func_242731_b(7));
-    public static final ConfiguredFeature<?, ?> ore_labradorite = registerFeature("ore_labradorite", Feature.ORE.withConfiguration(new OreFeatureConfig(GAIA_STONE, LABRADORITE_ORE, 9)).func_242733_d(40).func_242728_a().func_242731_b(6));
-    public static final ConfiguredFeature<?, ?> ore_moonstone = registerFeature("ore_moonstone", Feature.ORE.withConfiguration(new OreFeatureConfig(GAIA_STONE, MOONSTONE_ORE, 9)).func_242733_d(40).func_242728_a().func_242731_b(6));
-    public static final ConfiguredFeature<?, ?> ore_red_opal = registerFeature("ore_red_opal", Feature.ORE.withConfiguration(new OreFeatureConfig(GAIA_STONE, RED_OPAL_ORE, 8)).func_242733_d(30).func_242728_a().func_242731_b(4));
-    public static final ConfiguredFeature<?, ?> ore_blue_opal = registerFeature("ore_blue_opal", Feature.ORE.withConfiguration(new OreFeatureConfig(GAIA_STONE, BLUE_OPAL_ORE, 8)).func_242733_d(30).func_242728_a().func_242731_b(4));
-    public static final ConfiguredFeature<?, ?> ore_green_opal = registerFeature("ore_green_opal", Feature.ORE.withConfiguration(new OreFeatureConfig(GAIA_STONE, GREEN_OPAL_ORE, 8)).func_242733_d(30).func_242728_a().func_242731_b(4));
-    public static final ConfiguredFeature<?, ?> ore_white_opal_common = registerFeature("ore_white_opal_common", Feature.ORE.withConfiguration(new OreFeatureConfig(GAIA_STONE, WHITE_OAL_ORE, 8)).func_242733_d(25).func_242728_a().func_242731_b(4));
-    public static final ConfiguredFeature<?, ?> ore_white_opal_rare = registerFeature("ore_white_opal_rare", Feature.ORE.withConfiguration(new OreFeatureConfig(GAIA_STONE, WHITE_OAL_ORE, 8)).func_242733_d(20).func_242728_a().func_242731_b(3));
+    public static final ConfiguredFeature<?, ?> ore_primal_mass = registerFeature("ore_primal_mass", makeOreFeature(GAIA_STONE, PRIMAL_MASS, 33, 25, 33));
+    public static final ConfiguredFeature<?, ?> ore_thick_glitter = registerFeature("ore_thick_glitter", makeOreFeature(GAIA_STONE, THICK_GLITTER, 33, 100, 9));
+    public static final ConfiguredFeature<?, ?> ore_searing_rock = registerFeature("ore_searing_rock", makeOreFeature(VOLCANIC, SEARING_ROCK, 33, 100, 9));
+    public static final ConfiguredFeature<?, ?> ore_static_stone = registerFeature("ore_static_stone", makeOreFeature(STATIC, STATIC_STONE, 33, 100, 9));
+    public static final ConfiguredFeature<?, ?> ore_pebbles = registerFeature("ore_pebbles", makeOreFeature(GAIA_STONE, PEBBLES, 25, 128, 25));
+    public static final ConfiguredFeature<?, ?> ore_speckled_rock = registerFeature("ore_speckled_rock", makeOreFeature(GAIA_STONE, SPECKLED_ROCK, 8, 120, 10));
+    public static final ConfiguredFeature<?, ?> ore_coarse_rock = registerFeature("ore_coarse_rock", makeOreFeature(GAIA_STONE, COARSE_ROCK, 8, 60, 10));
+    public static final ConfiguredFeature<?, ?> ore_precious_rock = registerFeature("ore_precious_rock", makeOreFeature(GAIA_STONE, PRECIOUS_ROCK, 8, 30, 10));
+    public static final ConfiguredFeature<?, ?> ore_raw_amethyst = registerFeature("ore_raw_amethyst", makeOreFeature(GAIA_STONE, RAW_AMETHYST, 12, 120, 15));
+    public static final ConfiguredFeature<?, ?> ore_raw_copal = registerFeature("ore_raw_copal", makeOreFeature(GAIA_STONE, RAW_COPAL, 12, 120, 15));
+    public static final ConfiguredFeature<?, ?> ore_raw_jade = registerFeature("ore_raw_jade", makeOreFeature(GAIA_STONE, RAW_JADE, 12, 120, 15));
+    public static final ConfiguredFeature<?, ?> ore_raw_jet = registerFeature("ore_raw_jet", makeOreFeature(GAIA_STONE, RAW_JET, 12, 120, 15));
+    public static final ConfiguredFeature<?, ?> ore_sugilite = registerFeature("ore_sugilite", makeOreFeature(GAIA_STONE, SUGILITE_ORE, 17, 100, 8));
+    public static final ConfiguredFeature<?, ?> ore_hematite = registerFeature("ore_hematite", makeOreFeature(GAIA_STONE, HEMATITE_ORE, 17, 100, 8));
+    public static final ConfiguredFeature<?, ?> ore_pyrite = registerFeature("ore_pyrite", makeOreFeature(GAIA_STONE, PYRITE_ORE, 9, 80, 8));
+    public static final ConfiguredFeature<?, ?> ore_cinnabar = registerFeature("ore_cinnabar", makeOreFeature(GAIA_STONE, CINNABAR_ORE, 9, 60, 7));
+    public static final ConfiguredFeature<?, ?> ore_labradorite = registerFeature("ore_labradorite", makeOreFeature(GAIA_STONE, LABRADORITE_ORE, 9, 40, 6));
+    public static final ConfiguredFeature<?, ?> ore_moonstone = registerFeature("ore_moonstone", makeOreFeature(GAIA_STONE, MOONSTONE_ORE, 9, 40, 6));
+    public static final ConfiguredFeature<?, ?> ore_red_opal = registerFeature("ore_red_opal", makeOreFeature(GAIA_STONE, RED_OPAL_ORE, 8, 30, 4));
+    public static final ConfiguredFeature<?, ?> ore_blue_opal = registerFeature("ore_blue_opal", makeOreFeature(GAIA_STONE, BLUE_OPAL_ORE, 8, 30, 4));
+    public static final ConfiguredFeature<?, ?> ore_green_opal = registerFeature("ore_green_opal", makeOreFeature(GAIA_STONE, GREEN_OPAL_ORE, 8, 30, 4));
+    public static final ConfiguredFeature<?, ?> ore_white_opal_common = registerFeature("ore_white_opal_common", makeOreFeature(GAIA_STONE, WHITE_OAL_ORE, 8, 25, 4));
+    public static final ConfiguredFeature<?, ?> ore_white_opal_rare = registerFeature("ore_white_opal_rare", makeOreFeature(GAIA_STONE, WHITE_OAL_ORE, 8, 20, 3));
     public static final ConfiguredFeature<?, ?> disk_static_stone = registerFeature("disk_static_stone", ModWorldgen.GAIA_DISK.withConfiguration(new SphereReplaceConfig(STATIC_STONE, FeatureSpread.func_242253_a(4, 2), 3, ImmutableList.of(WASTELAND_STONE))).withPlacement(Features.Placements.SEAGRASS_DISK_PLACEMENT));
     public static final ConfiguredFeature<?, ?> disk_bog_patch = registerFeature("disk_bog_patch", ModWorldgen.BOG_PATCH.withConfiguration(new SphereReplaceConfig(ModBlocks.impure_sludge.getDefaultState(), FeatureSpread.func_242253_a(4, 1), 2, Lists.newArrayList(ModBlocks.murky_grass.getDefaultState(), ModBlocks.boggy_soil.getDefaultState()))).withPlacement(Features.Placements.SEAGRASS_DISK_PLACEMENT));
 
     //Underground Decoration
-    public static final ConfiguredFeature<?, ?> underground_glitter_blob = registerFeature("underground_glitter_blob", ModWorldgen.FRAIL_BLOB.withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG).func_242733_d(64).func_242728_a().func_242731_b(100));
-    public static final ConfiguredFeature<?, ?> crystal_fungi_caves = registerFeature("crystal_fungi_caves", Feature.RANDOM_PATCH.withConfiguration(CAVE_FUNGI).withPlacement(Features.Placements.PATCH_PLACEMENT).func_242729_a(2));
+    public static final ConfiguredFeature<?, ?> underground_glitter_blob = registerFeature("underground_glitter_blob", ModWorldgen.FRAIL_BLOB.withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG).range(64).square().func_242731_b(100));
+    public static final ConfiguredFeature<?, ?> crystal_fungi_caves = registerFeature("crystal_fungi_caves", Feature.RANDOM_PATCH.withConfiguration(CAVE_FUNGI).withPlacement(Features.Placements.PATCH_PLACEMENT).chance(2));
 
     //Vegetal Decoration
-    public static final ConfiguredFeature<?, ?> pink_agate_tree_common = registerFeature("pink_agate_tree_common", ModWorldgen.PINK_AGATE_TREE.withConfiguration(PINK_AGATE_TREE_CONFIG).withPlacement(Placement.field_242902_f.configure(new AtSurfaceWithExtraConfig(4, 0.3F, 1))));
-    public static final ConfiguredFeature<?, ?> pink_agate_tree_rare = registerFeature("pink_agate_tree_rare", ModWorldgen.PINK_AGATE_TREE.withConfiguration(PINK_AGATE_TREE_CONFIG).withPlacement(Placement.field_242902_f.configure(new AtSurfaceWithExtraConfig(0, 0.1F, 1))));
-    public static final ConfiguredFeature<?, ?> blue_agate_tree = registerFeature("blue_agate_tree", ModWorldgen.BLUE_AGATE_TREE.withConfiguration(BLUE_AGATE_TREE_CONFIG).withPlacement(Placement.field_242902_f.configure(new AtSurfaceWithExtraConfig(1, 0.3F, 1))));
-    public static final ConfiguredFeature<?, ?> green_agate_tree = registerFeature("green_agate_tree", ModWorldgen.GREEN_AGATE_TREE.withConfiguration(GREEN_AGATE_TREE_CONFIG).withPlacement(Placement.field_242902_f.configure(new AtSurfaceWithExtraConfig(5, 0.3F, 1))));
-    public static final ConfiguredFeature<?, ?> green_agate_bush = registerFeature("green_agate_bush", Feature.TREE.withConfiguration(GREEN_AGATE_BUSH_CONFIG)).withPlacement(Placement.field_242902_f.configure(new AtSurfaceWithExtraConfig(2, 0.1F, 3)));
-    public static final ConfiguredFeature<?, ?> purple_agate_tree = registerFeature("purple_agate_tree", ModWorldgen.PURPLE_AGATE_TREE.withConfiguration(PURPLE_AGATE_TREE_CONFIG).withPlacement(Placement.field_242902_f.configure(new AtSurfaceWithExtraConfig(1, 0.1F, 2))));
+    public static final ConfiguredFeature<?, ?> pink_agate_tree_common = registerFeature("pink_agate_tree_common", makeTreeFeature(ModWorldgen.PINK_AGATE_TREE, PINK_AGATE_TREE_CONFIG, 4, 0.3F, 1));
+    public static final ConfiguredFeature<?, ?> pink_agate_tree_rare = registerFeature("pink_agate_tree_rare", makeTreeFeature(ModWorldgen.PINK_AGATE_TREE, PINK_AGATE_TREE_CONFIG, 0, 0.1F, 1));
+    public static final ConfiguredFeature<?, ?> blue_agate_tree = registerFeature("blue_agate_tree", makeTreeFeature(ModWorldgen.BLUE_AGATE_TREE, BLUE_AGATE_TREE_CONFIG, 1, 0.3F, 1));
+    public static final ConfiguredFeature<?, ?> green_agate_tree = registerFeature("green_agate_tree", makeTreeFeature(ModWorldgen.GREEN_AGATE_TREE, GREEN_AGATE_TREE_CONFIG, 5, 0.3F, 1));
+    public static final ConfiguredFeature<?, ?> green_agate_bush = registerFeature("green_agate_bush", Feature.TREE.withConfiguration(GREEN_AGATE_BUSH_CONFIG)).withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.COUNT_EXTRA.configure(new AtSurfaceWithExtraConfig(2, 0.1F, 3)));
+    public static final ConfiguredFeature<?, ?> purple_agate_tree = registerFeature("purple_agate_tree", makeTreeFeature(ModWorldgen.PURPLE_AGATE_TREE, PURPLE_AGATE_TREE_CONFIG, 1, 0.1F, 2));
     public static final ConfiguredFeature<?, ?> various_agate_trees = registerFeature("various_agate_trees", Feature.RANDOM_SELECTOR.withConfiguration(new MultipleRandomFeatureConfig(ImmutableList.of(
             ModWorldgen.PINK_AGATE_TREE.withConfiguration(PINK_AGATE_TREE_CONFIG).withChance(0.1F),
                 ModWorldgen.BLUE_AGATE_TREE.withConfiguration(BLUE_AGATE_TREE_CONFIG).withChance(0.1F),
                 ModWorldgen.GREEN_AGATE_TREE.withConfiguration(GREEN_AGATE_TREE_CONFIG).withChance(0.1F),
                 ModWorldgen.PURPLE_AGATE_TREE.withConfiguration(PURPLE_AGATE_TREE_CONFIG).withChance(0.1F)
-        ), Feature.RANDOM_PATCH.withConfiguration(MUTANT_GROWTH))).withPlacement(Placement.field_242902_f.configure(new AtSurfaceWithExtraConfig(2, 0.1F, 1))));
-    public static final ConfiguredFeature<?, ?> fossilized_tree = registerFeature("fossilized_tree", ModWorldgen.FOSSILIZED_TREE.withConfiguration(FOSSILIZED_TREE_CONFIG).withPlacement(Placement.field_242902_f.configure(new AtSurfaceWithExtraConfig(1, 0.3F, 1))));
-    public static final ConfiguredFeature<?, ?> goldstone_tree = registerFeature("goldstone_tree", ModWorldgen.GOLDSTONE_TREE.withConfiguration(CORRUPTED_TREE_CONFIG).withPlacement(Placement.field_242902_f.configure(new AtSurfaceWithExtraConfig(1, 0.1F, 1))));
-    public static final ConfiguredFeature<?, ?> burnt_agate_tree = registerFeature("burnt_agate_tree", ModWorldgen.BURNT_AGATE_TREE.withConfiguration(BURNT_TREE_CONFIG).withPlacement(Placement.field_242902_f.configure(new AtSurfaceWithExtraConfig(0, 0.1F, 1))));
-    public static final ConfiguredFeature<?, ?> fiery_agate_tree = registerFeature("fiery_agate_tree", ModWorldgen.FIERY_AGATE_TREE.withConfiguration(BURNING_TREE_CONFIG).withPlacement(Placement.field_242902_f.configure(new AtSurfaceWithExtraConfig(0, 0.1F, 1))));
-    public static final ConfiguredFeature<?, ?> aura_tree = registerFeature("aura_tree", ModWorldgen.AURA_TREE.withConfiguration(AURA_TREE_CONFIG).withPlacement(Placement.field_242902_f.configure(new AtSurfaceWithExtraConfig(2, 0.1F, 1))));
-    public static final ConfiguredFeature<?, ?> aura_shoots = registerFeature("aura_shoots", ModWorldgen.AURA_SHOOT.withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG).withPlacement(Features.Placements.PATCH_PLACEMENT).func_242729_a(6));
-    public static final ConfiguredFeature<?, ?> crystal_growth_02 = registerFeature("crystal_growth_02", Feature.RANDOM_PATCH.withConfiguration(NORMAL_GROWTH).withPlacement(Features.Placements.PATCH_PLACEMENT).func_242729_a(2));
-    public static final ConfiguredFeature<?, ?> crystal_growth_03 = registerFeature("crystal_growth_03", Feature.RANDOM_PATCH.withConfiguration(NORMAL_GROWTH).withPlacement(Features.Placements.PATCH_PLACEMENT).func_242729_a(3));
-    public static final ConfiguredFeature<?, ?> crystal_growth_04 = registerFeature("crystal_growth_04", Feature.RANDOM_PATCH.withConfiguration(NORMAL_GROWTH).withPlacement(Features.Placements.PATCH_PLACEMENT).func_242729_a(4));
-    public static final ConfiguredFeature<?, ?> crystal_growth_05 = registerFeature("crystal_growth_05", Feature.RANDOM_PATCH.withConfiguration(NORMAL_GROWTH).withPlacement(Features.Placements.PATCH_PLACEMENT).func_242729_a(5));
-    public static final ConfiguredFeature<?, ?> crystal_growth_seared = registerFeature("crystal_growth_seared", Feature.RANDOM_PATCH.withConfiguration(SEARED_GROWTH).withPlacement(Features.Placements.PATCH_PLACEMENT).func_242729_a(1));
-    public static final ConfiguredFeature<?, ?> crystal_growth_corrupt = registerFeature("crystal_growth_corrupt", Feature.RANDOM_PATCH.withConfiguration(CORRUPT_GROWTH).withPlacement(Features.Placements.PATCH_PLACEMENT).func_242729_a(1));
-    public static final ConfiguredFeature<?, ?> crystal_growth_aura = registerFeature("crystal_growth_aura", Feature.RANDOM_PATCH.withConfiguration(AURA_GROWTH).withPlacement(Features.Placements.PATCH_PLACEMENT).func_242729_a(2));
-    public static final ConfiguredFeature<?, ?> crystal_blooms_common = registerFeature("crystal_blooms_common", Feature.RANDOM_PATCH.withConfiguration(COMMON_BLOOM).withPlacement(Features.Placements.VEGETATION_PLACEMENT).withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).func_242731_b(2));
-    public static final ConfiguredFeature<?, ?> crystal_blooms_rare = registerFeature("crystal_blooms_rare", Feature.RANDOM_PATCH.withConfiguration(RARE_BLOOM).withPlacement(Features.Placements.VEGETATION_PLACEMENT).withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).func_242731_b(2));
-    public static final ConfiguredFeature<?, ?> crystal_blooms_mutant = registerFeature("crystal_blooms_mutant", Feature.RANDOM_PATCH.withConfiguration(MUTANT_BLOOM).withPlacement(Features.Placements.VEGETATION_PLACEMENT).withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).func_242731_b(2));
-    public static final ConfiguredFeature<?, ?> crystal_blooms_corrupt = registerFeature("crystal_blooms_corrupt", Feature.RANDOM_PATCH.withConfiguration(CORRUPT_BLOOM).withPlacement(Features.Placements.VEGETATION_PLACEMENT).withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).func_242731_b(1));
-    public static final ConfiguredFeature<?, ?> spotted_kersei = registerFeature("spotted_kersei", Feature.RANDOM_PATCH.withConfiguration(KERSEI).withPlacement(Features.Placements.VEGETATION_PLACEMENT).withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).func_242731_b(1));
-    public static final ConfiguredFeature<?, ?> thorny_wiltha = registerFeature("thorny_wiltha", Feature.RANDOM_PATCH.withConfiguration(WILTHA).withPlacement(Features.Placements.VEGETATION_PLACEMENT).withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).func_242731_b(1));
-    public static final ConfiguredFeature<?, ?> roofed_agaric = registerFeature("roofed_agaric", Feature.RANDOM_PATCH.withConfiguration(AGARIC).withPlacement(Features.Placements.VEGETATION_PLACEMENT).withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).func_242731_b(1));
-    public static final ConfiguredFeature<?, ?> bulbous_hobina = registerFeature("bulbous_hobina", Feature.RANDOM_PATCH.withConfiguration(HOBINA).withPlacement(Features.Placements.VEGETATION_PLACEMENT).withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).func_242731_b(1));
-    public static final ConfiguredFeature<?, ?> stickly_cupsir = registerFeature("stickly_cupsir", Feature.RANDOM_PATCH.withConfiguration(CUPSIR).withPlacement(Features.Placements.VEGETATION_PLACEMENT).withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).func_242731_b(1));
-    public static final ConfiguredFeature<?, ?> mystical_murgni = registerFeature("mystical_murgni", Feature.RANDOM_PATCH.withConfiguration(MURGNI).withPlacement(Features.Placements.VEGETATION_PLACEMENT).withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).func_242731_b(1));
-    public static final ConfiguredFeature<?, ?> corrupted_gaia_eye = registerFeature("corrupted_gaia_eye", Feature.RANDOM_PATCH.withConfiguration(CORRUPT_EYE).withPlacement(Features.Placements.VEGETATION_PLACEMENT).withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).func_242731_b(1));
+        ), Feature.RANDOM_PATCH.withConfiguration(MUTANT_GROWTH))).withPlacement(Placement.COUNT_EXTRA.configure(new AtSurfaceWithExtraConfig(2, 0.1F, 1))));
+    public static final ConfiguredFeature<?, ?> fossilized_tree = registerFeature("fossilized_tree", makeTreeFeature(ModWorldgen.FOSSILIZED_TREE, FOSSILIZED_TREE_CONFIG, 1, 0.3F, 1));
+    public static final ConfiguredFeature<?, ?> goldstone_tree = registerFeature("goldstone_tree", makeTreeFeature(ModWorldgen.GOLDSTONE_TREE, CORRUPTED_TREE_CONFIG, 1, 0.1F, 1));
+    public static final ConfiguredFeature<?, ?> burnt_agate_tree = registerFeature("burnt_agate_tree", makeTreeFeature(ModWorldgen.BURNT_AGATE_TREE, BURNT_TREE_CONFIG, 0, 0.1F, 1));
+    public static final ConfiguredFeature<?, ?> fiery_agate_tree = registerFeature("fiery_agate_tree", makeTreeFeature(ModWorldgen.FIERY_AGATE_TREE, BURNING_TREE_CONFIG, 0, 0.1F, 1));
+    public static final ConfiguredFeature<?, ?> aura_tree = registerFeature("aura_tree", makeTreeFeature(ModWorldgen.AURA_TREE, AURA_TREE_CONFIG, 2, 0.1F, 1));
+    public static final ConfiguredFeature<?, ?> aura_shoots = registerFeature("aura_shoots", ModWorldgen.AURA_SHOOT.withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG).withPlacement(Features.Placements.PATCH_PLACEMENT).chance(6));
+    public static final ConfiguredFeature<?, ?> crystal_growth_02 = registerFeature("crystal_growth_02", makeGrowthFeature(NORMAL_GROWTH, 2));
+    public static final ConfiguredFeature<?, ?> crystal_growth_03 = registerFeature("crystal_growth_03", makeGrowthFeature(NORMAL_GROWTH, 3));
+    public static final ConfiguredFeature<?, ?> crystal_growth_04 = registerFeature("crystal_growth_04", makeGrowthFeature(NORMAL_GROWTH, 4));
+    public static final ConfiguredFeature<?, ?> crystal_growth_05 = registerFeature("crystal_growth_05", makeGrowthFeature(NORMAL_GROWTH, 5));
+    public static final ConfiguredFeature<?, ?> crystal_growth_seared = registerFeature("crystal_growth_seared", makeGrowthFeature(SEARED_GROWTH, 1));
+    public static final ConfiguredFeature<?, ?> crystal_growth_corrupt = registerFeature("crystal_growth_corrupt", makeGrowthFeature(CORRUPT_GROWTH, 1));
+    public static final ConfiguredFeature<?, ?> crystal_growth_aura = registerFeature("crystal_growth_aura", makeGrowthFeature(AURA_GROWTH, 2));
+    public static final ConfiguredFeature<?, ?> crystal_blooms_common = registerFeature("crystal_blooms_common", makePlantFeature(COMMON_BLOOM, 2));
+    public static final ConfiguredFeature<?, ?> crystal_blooms_rare = registerFeature("crystal_blooms_rare", makePlantFeature(RARE_BLOOM, 2));
+    public static final ConfiguredFeature<?, ?> crystal_blooms_mutant = registerFeature("crystal_blooms_mutant", makePlantFeature(MUTANT_BLOOM, 2));
+    public static final ConfiguredFeature<?, ?> crystal_blooms_corrupt = registerFeature("crystal_blooms_corrupt", makePlantFeature(CORRUPT_BLOOM, 1));
+    public static final ConfiguredFeature<?, ?> spotted_kersei = registerFeature("spotted_kersei", makePlantFeature(KERSEI, 1));
+    public static final ConfiguredFeature<?, ?> thorny_wiltha = registerFeature("thorny_wiltha", makePlantFeature(WILTHA, 1));
+    public static final ConfiguredFeature<?, ?> roofed_agaric = registerFeature("roofed_agaric", makePlantFeature(AGARIC, 1));
+    public static final ConfiguredFeature<?, ?> bulbous_hobina = registerFeature("bulbous_hobina", makePlantFeature(HOBINA, 1));
+    public static final ConfiguredFeature<?, ?> stickly_cupsir = registerFeature("stickly_cupsir", makePlantFeature(CUPSIR, 1));
+    public static final ConfiguredFeature<?, ?> mystical_murgni = registerFeature("mystical_murgni", makePlantFeature(MURGNI, 1));
+    public static final ConfiguredFeature<?, ?> corrupted_gaia_eye = registerFeature("corrupted_gaia_eye", makePlantFeature(CORRUPT_EYE, 1));
+
+    public static GaiaTreeFeatureConfig configureTree(BlockState log, BlockState leaves, int height, SaplingBlock sapling) {
+        return (new GaiaTreeFeatureConfig.Builder(new SimpleBlockStateProvider(log), new SimpleBlockStateProvider(leaves), height).setSapling(sapling)).build();
+    }
+
+    public static ConfiguredFeature<?, ?> makeOreFeature(RuleTest test, BlockState ore, int size, int height, int count) {
+        return Feature.ORE.withConfiguration(new OreFeatureConfig(test, ore, size))
+                .range(height)
+                .square()
+                .func_242731_b(count); //count per chunk
+    }
+
+    public static ConfiguredFeature<?, ?> makeTreeFeature(Feature<GaiaTreeFeatureConfig> feature, GaiaTreeFeatureConfig config, int count, float chance, int extra) {
+        return feature.withConfiguration(config)
+                .withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT)
+                .withPlacement(Placement.COUNT_EXTRA.configure(new AtSurfaceWithExtraConfig(count, chance, extra)));
+    }
+
+    public static ConfiguredFeature<?, ?> makeGrowthFeature(BlockClusterFeatureConfig config, int count) {
+        return Feature.RANDOM_PATCH.withConfiguration(config)
+                .withPlacement(Features.Placements.PATCH_PLACEMENT)
+                .func_242731_b(count); //count per chunk
+    }
+
+    public static ConfiguredFeature<?, ?> makePlantFeature(BlockClusterFeatureConfig config, int count) {
+        return Feature.RANDOM_PATCH.withConfiguration(config)
+                .withPlacement(Features.Placements.VEGETATION_PLACEMENT)
+                .withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT)
+                .func_242731_b(count); //count per chunk
+    }
 
     private static <SC extends ISurfaceBuilderConfig> ConfiguredSurfaceBuilder<SC> registerSurfaceBuilder(String name, ConfiguredSurfaceBuilder<SC> surface) {
         return WorldGenRegistries.register(WorldGenRegistries.CONFIGURED_SURFACE_BUILDER, new ResourceLocation(GaiaDimensionMod.MODID, name), surface);

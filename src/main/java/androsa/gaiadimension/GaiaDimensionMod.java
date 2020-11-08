@@ -86,6 +86,7 @@ public class GaiaDimensionMod {
         ModEntities.registerAttributes();
         ModItems.addItemProperties();
         ModDimensions.initDimension();
+        ModWorldgen.StructureTypes.init();
     }
 
     public void clientSetup(FMLClientSetupEvent event) {

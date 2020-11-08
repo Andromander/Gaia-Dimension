@@ -28,7 +28,6 @@ import net.minecraft.world.gen.surfacebuilders.SurfaceBuilder;
 import net.minecraft.world.gen.surfacebuilders.SurfaceBuilderConfig;
 
 import java.util.Locale;
-import java.util.function.Supplier;
 
 public class ModWorldgen {
 
@@ -63,14 +62,6 @@ public class ModWorldgen {
     public static final SurfaceBuilder<SurfaceBuilderConfig> STATIC = RegistryHelper.registerSurfaceBuilder("static", new WastelandSurfaceBuilder<>(SurfaceBuilderConfig.field_237203_a_));
 
     //WorldCarver
-
-    private static <P extends StructureProcessor> IStructureProcessorType<P> registerProcessor(String name, Codec<P> processor) {
-        return Registry.register(Registry.STRUCTURE_PROCESSOR, new ResourceLocation(GaiaDimensionMod.MODID, name), () -> processor);
-    }
-
-    public static IStructurePieceType registerPiece(String name, IStructurePieceType piece) {
-        return Registry.register(Registry.STRUCTURE_PIECE, new ResourceLocation(GaiaDimensionMod.MODID, name.toLowerCase(Locale.ROOT)), piece);
-    }
     public static final WorldCarver<ProbabilityConfig> CRYSTAL_CAVES = RegistryHelper.registerWorldCarver("crystal_caves", new CoatedCavesWorldCarver<>(ProbabilityConfig.CODEC, 256));
     public static final WorldCarver<ProbabilityConfig> CHASMS = RegistryHelper.registerWorldCarver("chasms", new ChasmsWorldCarver<>(ProbabilityConfig.CODEC, 32));
 
@@ -78,7 +69,20 @@ public class ModWorldgen {
         public static final IStructureProcessorType BLOCK_DEGRADE = registerProcessor("block_degrade", BlockDegradeProcessor.CODEC);
         public static final IStructureProcessorType MALACHITE_DEGRADE = registerProcessor("malachite_degrade", MalachiteDegradeProcessor.CODEC);
 
-        public static final IStructurePieceType MITO = registerPiece("MITO", MiniTowerPieces.Piece::new);
-        public static final IStructurePieceType MAWA = registerPiece("MAWA", MalachiteWatchtowerPieces.Piece::new);
+        public static final IStructurePieceType MITO = MiniTowerPieces.Piece::new;
+        public static final IStructurePieceType MAWA = MalachiteWatchtowerPieces.Piece::new;
+
+        private static IStructurePieceType registerPiece(String name, IStructurePieceType piece) {
+            return Registry.register(Registry.STRUCTURE_PIECE, new ResourceLocation(GaiaDimensionMod.MODID, name.toLowerCase(Locale.ROOT)), piece);
+        }
+
+        private static <P extends StructureProcessor> IStructureProcessorType<P> registerProcessor(String name, Codec<P> processor) {
+            return Registry.register(Registry.STRUCTURE_PROCESSOR, new ResourceLocation(GaiaDimensionMod.MODID, name), () -> processor);
+        }
+
+        public static void init() {
+            Registry.register(Registry.STRUCTURE_PIECE, new ResourceLocation(GaiaDimensionMod.MODID, "mito"), MITO);
+            Registry.register(Registry.STRUCTURE_PIECE, new ResourceLocation(GaiaDimensionMod.MODID, "mawa"), MAWA);
+        }
     }
 }
