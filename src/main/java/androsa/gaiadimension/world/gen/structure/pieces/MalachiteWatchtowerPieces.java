@@ -14,13 +14,8 @@ import net.minecraft.util.Mirror;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.math.MutableBoundingBox;
-import net.minecraft.world.ISeedReader;
 import net.minecraft.world.IServerWorld;
-import net.minecraft.world.gen.ChunkGenerator;
-import net.minecraft.world.gen.Heightmap;
-import net.minecraft.world.gen.feature.structure.StructureManager;
 import net.minecraft.world.gen.feature.structure.StructurePiece;
 import net.minecraft.world.gen.feature.structure.TemplateStructurePiece;
 import net.minecraft.world.gen.feature.template.BlockIgnoreStructureProcessor;
@@ -57,9 +52,30 @@ public class MalachiteWatchtowerPieces {
     private static final BlockPos baseCenter = new BlockPos(15, 15, 15);
     private static final BlockPos f1Center = new BlockPos(12, 11, 12);
     private static final BlockPos roofCenter = new BlockPos(16, 23, 16);
-    private static final BlockPos blockpos_1 = new BlockPos(0, 0, 0);
-    private static final BlockPos blockpos_2 = new BlockPos(1, 0, 0);
-    private static final BlockPos blockpos_3 = new BlockPos(-2, 0, -3);
+
+    private static final BlockPos offsetNoneBig = new BlockPos(5, 0, 6);
+    private static final BlockPos offsetC90Big = new BlockPos(0, 0, 5);
+    private static final BlockPos offsetC180Big = new BlockPos(1, 0, 0);
+    private static final BlockPos offsetCC90Big = new BlockPos(6, 0, 1);
+
+    private static final BlockPos offsetNoneSmall = new BlockPos(0, 0, 1);
+    private static final BlockPos offsetC90Small = new BlockPos(-3, 0, 0);
+    private static final BlockPos offsetC180Small = new BlockPos(-2, 0, -3);
+    private static final BlockPos offsetCC90Small = new BlockPos(1, 0, -2);
+
+    private static final ImmutableMap<Rotation, BlockPos> offsetBig = ImmutableMap.of(
+            Rotation.NONE, offsetNoneBig,
+            Rotation.CLOCKWISE_90, offsetC90Big,
+            Rotation.CLOCKWISE_180, offsetC180Big,
+            Rotation.COUNTERCLOCKWISE_90, offsetCC90Big
+    );
+
+    private static final ImmutableMap<Rotation, BlockPos> offsetSmall = ImmutableMap.of(
+            Rotation.NONE, offsetNoneSmall,
+            Rotation.CLOCKWISE_90, offsetC90Small,
+            Rotation.CLOCKWISE_180, offsetC180Small,
+            Rotation.COUNTERCLOCKWISE_90, offsetCC90Small
+    );
 
     protected static final ImmutableMap<ResourceLocation, BlockPos> centerList = ImmutableMap.<ResourceLocation, BlockPos>builder()
             .put(foyer, baseCenter)
@@ -69,35 +85,27 @@ public class MalachiteWatchtowerPieces {
             .put(roof, roofCenter)
             .put(roof_m, roofCenter)
             .build();
-    private static final ImmutableMap<ResourceLocation, BlockPos> piecePos = ImmutableMap.<ResourceLocation, BlockPos>builder()
-            .put(foyer, blockpos_1)
-            .put(floor1_1, blockpos_2).put(floor1_2, blockpos_2).put(floor1_3, blockpos_2)
-            .put(floor_random1, blockpos_2).put(floor_random2, blockpos_2).put(floor_random3, blockpos_2).put(floor_random4, blockpos_2).put(floor_random5, blockpos_2)
-            .put(floor_random1_m, blockpos_2).put(floor_random2_m, blockpos_2).put(floor_random3_m, blockpos_2).put(floor_random4_m, blockpos_2).put(floor_random5_m, blockpos_2)
-            .put(roof, blockpos_3)
-            .put(roof_m, blockpos_3)
-            .build();
 
     public static void buildStructure(TemplateManager manager, BlockPos pos, Rotation rotation, List<StructurePiece> pieces, Random random) {
         int i = 0;
         pieces.add(new MalachiteWatchtowerPieces.Piece(manager, foyer, pos, rotation, i));
-        i += 12;
-        pieces.add(new MalachiteWatchtowerPieces.Piece(manager, first_floors[random.nextInt(first_floors.length)], pos, rotation, i));
+        i += 14;
+        pieces.add(new MalachiteWatchtowerPieces.Piece(manager, first_floors[random.nextInt(first_floors.length)], pos.add(offsetBig.get(rotation)), rotation, i));
 
         int r = random.nextInt(2) + 4;
         for (int f = 0; f < r; f++) {
             i += 10;
             if (f == r - 1) {
                 if (f % 2 == 0) {
-                    pieces.add(new MalachiteWatchtowerPieces.Piece(manager, roof_m, pos, rotation, i));
+                    pieces.add(new MalachiteWatchtowerPieces.Piece(manager, roof_m, pos.add(offsetSmall.get(rotation)), rotation, i));
                 } else {
-                    pieces.add(new MalachiteWatchtowerPieces.Piece(manager, roof, pos, rotation, i));
+                    pieces.add(new MalachiteWatchtowerPieces.Piece(manager, roof, pos.add(offsetSmall.get(rotation)), rotation, i));
                 }
             } else {
                 if (f % 2 == 0) {
-                    pieces.add(new MalachiteWatchtowerPieces.Piece(manager, next_floors[random.nextInt(next_floors.length)], pos, rotation, i));
+                    pieces.add(new MalachiteWatchtowerPieces.Piece(manager, next_floors[random.nextInt(next_floors.length)], pos.add(offsetBig.get(rotation)), rotation, i));
                 } else {
-                    pieces.add(new MalachiteWatchtowerPieces.Piece(manager, next_floors_m[random.nextInt(next_floors_m.length)], pos, rotation, i));
+                    pieces.add(new MalachiteWatchtowerPieces.Piece(manager, next_floors_m[random.nextInt(next_floors_m.length)], pos.add(offsetBig.get(rotation)), rotation, i));
                 }
             }
         }
@@ -108,31 +116,30 @@ public class MalachiteWatchtowerPieces {
     }
 
     public static class Piece extends TemplateStructurePiece {
-        private final ResourceLocation pieceLocation;
+        private final ResourceLocation pieceName;
         private final Rotation rotation;
 
         public Piece(TemplateManager manager, ResourceLocation pieceloc, BlockPos pos, Rotation rot, int offset) {
             super(ModWorldgen.StructureTypes.MAWA, 0);
-            this.pieceLocation = pieceloc;
-            BlockPos blockpos = MalachiteWatchtowerPieces.piecePos.get(pieceloc);
-            this.templatePosition = pos.add(blockpos.getX(), blockpos.getY() + offset, blockpos.getZ());
+            this.pieceName = pieceloc;
+            this.templatePosition = pos.add(0, offset, 0);
             this.rotation = rot;
             this.loadTemplate(manager);
         }
 
         public Piece(TemplateManager manager, CompoundNBT nbt) {
             super(ModWorldgen.StructureTypes.MAWA, nbt);
-            this.pieceLocation = new ResourceLocation(nbt.getString("Template"));
+            this.pieceName = new ResourceLocation(nbt.getString("Template"));
             this.rotation = Rotation.valueOf(nbt.getString("Rot"));
             this.loadTemplate(manager);
         }
 
         private void loadTemplate(TemplateManager manager) {
-            Template template = manager.getTemplateDefaulted(this.pieceLocation);
+            Template template = manager.getTemplateDefaulted(this.pieceName);
             PlacementSettings settings = (new PlacementSettings())
                     .setRotation(this.rotation)
                     .setMirror(Mirror.NONE)
-                    .setCenterOffset(MalachiteWatchtowerPieces.centerList.get(this.pieceLocation))
+                    .setCenterOffset(MalachiteWatchtowerPieces.centerList.get(this.pieceName))
                     .addProcessor(BlockIgnoreStructureProcessor.STRUCTURE_BLOCK)
                     .addProcessor(new MalachiteDegradeProcessor(0.2F));
             this.setup(template, this.templatePosition, settings);
@@ -141,7 +148,7 @@ public class MalachiteWatchtowerPieces {
         @Override
         protected void readAdditional(CompoundNBT nbt) {
             super.readAdditional(nbt);
-            nbt.putString("Template", this.pieceLocation.toString());
+            nbt.putString("Template", this.pieceName.toString());
             nbt.putString("Rot", this.rotation.name());
         }
 
@@ -168,25 +175,6 @@ public class MalachiteWatchtowerPieces {
             if ("Boss".equals(name)) {
                 world.setBlockState(pos, ModBlocks.malachite_guard_spawner.getDefaultState(), 3);
             }
-        }
-
-        @Override
-        public boolean func_230383_a_(ISeedReader world, StructureManager manager, ChunkGenerator generator, Random random, MutableBoundingBox mbb, ChunkPos chunkpos, BlockPos pos) {
-            this.placeSettings
-                    .setRotation(this.rotation)
-                    .setMirror(Mirror.NONE)
-                    .setCenterOffset(MalachiteWatchtowerPieces.centerList.get(this.pieceLocation))
-                    .addProcessor(BlockIgnoreStructureProcessor.STRUCTURE_BLOCK)
-                    .addProcessor(new MalachiteDegradeProcessor(0.2F));
-
-            BlockPos blockpos = MalachiteWatchtowerPieces.piecePos.get(this.pieceLocation);
-            BlockPos blockpos1 = this.templatePosition.add(Template.transformedBlockPos(placeSettings, new BlockPos(3 - blockpos.getX(), 0, 0 - blockpos.getZ())));
-            int height = world.getHeight(Heightmap.Type.WORLD_SURFACE_WG, blockpos1.getX(), blockpos1.getZ());
-            BlockPos blockpos2 = this.templatePosition;
-            this.templatePosition = this.templatePosition.add(0, height - 90 - 1, 0);
-            boolean flag = super.func_230383_a_(world, manager, generator, random, mbb, chunkpos, pos);
-            this.templatePosition = blockpos2;
-            return flag;
         }
     }
 }
