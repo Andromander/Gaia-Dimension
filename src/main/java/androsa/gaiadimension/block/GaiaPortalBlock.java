@@ -140,7 +140,7 @@ public class GaiaPortalBlock extends Block {
                     ServerWorld serverworld1 = minecraftserver.getWorld(registrykey);
                     if (serverworld1 != null && !entity.isPassenger()) {
                         entity.func_242279_ag();
-                        entity.changeDimension(serverworld1, new GaiaTeleporter());
+                        entity.changeDimension(serverworld1, new GaiaTeleporter(serverworld1));
                     }
                 }
             }

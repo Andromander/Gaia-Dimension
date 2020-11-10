@@ -9,14 +9,17 @@ import net.minecraft.util.RegistryKey;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.util.registry.Registry;
+import net.minecraft.village.PointOfInterestType;
 import net.minecraft.world.DimensionType;
 import net.minecraft.world.World;
 import net.minecraftforge.client.ISkyRenderHandler;
+import net.minecraftforge.fml.common.Mod;
 
 import javax.annotation.Nullable;
 
 public class ModDimensions {
 
+    public static final PointOfInterestType GAIA_PORTAL = RegistryHelper.registerPOI("gaia_portal", PointOfInterestType.getAllStates(ModBlocks.gaia_portal), 0, 1);
     public static final RegistryKey<World> gaia_world = RegistryKey.getOrCreateKey(Registry.WORLD_KEY, new ResourceLocation(GaiaDimensionMod.MODID, "gaia_dimension"));
     public static final RegistryKey<DimensionType> gaia_dimension = RegistryKey.getOrCreateKey(Registry.DIMENSION_TYPE_KEY, new ResourceLocation(GaiaDimensionMod.MODID, "gaia_dimension"));
     public static final DimensionRenderInfo gaia = new DimensionRenderInfo(255.0F, true, DimensionRenderInfo.FogType.NORMAL, false, false) {

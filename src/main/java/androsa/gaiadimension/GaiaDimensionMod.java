@@ -10,6 +10,7 @@ import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ITag;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.village.PointOfInterestType;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -81,6 +82,10 @@ public class GaiaDimensionMod {
     }
 
     public void setup(FMLCommonSetupEvent event) {
+        event.enqueueWork(() -> {
+            PointOfInterestType.registerBlockStates(ModDimensions.GAIA_PORTAL);
+            PointOfInterestType.BLOCKS_OF_INTEREST.addAll(ModDimensions.GAIA_PORTAL.blockStates);
+        });
         ModBlocks.addPlants();
         ModEntities.registerSpawnPlacement();
         ModEntities.registerAttributes();

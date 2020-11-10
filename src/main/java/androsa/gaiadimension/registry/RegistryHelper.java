@@ -3,6 +3,7 @@ package androsa.gaiadimension.registry;
 import androsa.gaiadimension.GaiaDimensionMod;
 import com.google.common.collect.Lists;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.fluid.Fluid;
@@ -12,6 +13,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.WallOrFloorItem;
 import net.minecraft.particles.ParticleType;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.village.PointOfInterestType;
 import net.minecraft.world.gen.carver.WorldCarver;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.IFeatureConfig;
@@ -26,6 +28,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.IForgeRegistry;
 
 import java.util.List;
+import java.util.Set;
 
 @Mod.EventBusSubscriber(modid = GaiaDimensionMod.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class RegistryHelper {
@@ -40,6 +43,7 @@ public class RegistryHelper {
     public static final List<Structure<?>> STRUCTURES = Lists.newArrayList();
     public static final List<SurfaceBuilder<?>> SURFACE_BUILDERS = Lists.newArrayList();
     public static final List<WorldCarver<?>> WORLD_CARVERS = Lists.newArrayList();
+    public static final List<PointOfInterestType> POI_TYPES = Lists.newArrayList();
 
     public static <T extends Block> T registerBlockOnly(String name, T block) {
         block.setRegistryName(name);
@@ -129,6 +133,13 @@ public class RegistryHelper {
         return surface;
     }
 
+    public static PointOfInterestType registerPOI(String name, Set<BlockState> states, int free, int range) {
+        PointOfInterestType poi = new PointOfInterestType(name, states, free, range);
+        poi.setRegistryName(name);
+        POI_TYPES.add(poi);
+        return poi;
+    }
+
     @SubscribeEvent
     public static void registerBlocks(RegistryEvent.Register<Block> event) {
         IForgeRegistry<Block> registry = event.getRegistry();
@@ -201,6 +212,14 @@ public class RegistryHelper {
         IForgeRegistry<WorldCarver<?>> registry = event.getRegistry();
         for (WorldCarver<?> carver : WORLD_CARVERS) {
             registry.register(carver);
+        }
+    }
+
+    @SubscribeEvent
+    public static void registerPOIs(RegistryEvent.Register<PointOfInterestType> event) {
+        IForgeRegistry<PointOfInterestType> registry = event.getRegistry();
+        for (PointOfInterestType poi : POI_TYPES) {
+            registry.register(poi);
         }
     }
 }
