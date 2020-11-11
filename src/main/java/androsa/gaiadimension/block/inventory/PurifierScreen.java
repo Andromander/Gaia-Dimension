@@ -32,8 +32,8 @@ public class PurifierScreen extends ContainerScreen<PurifierContainer> implement
 
     @Override
     protected void drawGuiContainerForegroundLayer(MatrixStack stack, int mouseX, int mouseY) {
-        font.func_243246_a(stack, title, (float)(xSize / 2 - font.getStringWidth(title.getString()) / 2), 6, 0x000000);
-        font.func_243246_a(stack, playerInventory.getDisplayName(), 8.0F, (float)(ySize - 96 + 2), 0x000000);
+        font.func_243246_a(stack, title, (float)(xSize / 2 - font.getStringWidth(title.getString()) / 2), 6, 0xF0F0F0);
+        font.func_243246_a(stack, playerInventory.getDisplayName(), 8.0F, (float)(ySize - 96 + 2), 0xF0F0F0);
     }
 
     @Override

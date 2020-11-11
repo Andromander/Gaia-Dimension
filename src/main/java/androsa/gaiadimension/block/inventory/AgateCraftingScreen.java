@@ -33,8 +33,8 @@ public class AgateCraftingScreen extends ContainerScreen<AgateCraftingTableConta
 
     @Override
     protected void drawGuiContainerForegroundLayer(MatrixStack stack, int x, int y) {
-        font.func_243246_a(stack, title, 28.0F, 6.0F, 0x000000);
-        font.func_243246_a(stack, playerInventory.getDisplayName(), 8.0F, (float)(ySize - 96 + 3), 0x000000);
+        font.func_243246_a(stack, title, 28.0F, 6.0F, 0xF0F0F0);
+        font.func_243246_a(stack, playerInventory.getDisplayName(), 8.0F, (float)(ySize - 96 + 3), 0xF0F0F0);
     }
 
     @Override
