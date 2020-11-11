@@ -37,15 +37,6 @@ public class ModGaiaConfig {
     }
 
     public static boolean canDisplayStars(RegistryKey<Biome> key) {
-        starBiomes = starsInSky.get();
-
-        if (starBiomes != null) {
-            for (String biome : starBiomes) {
-                if (biome.equals(key.toString())) {
-                    return true;
-                }
-            }
-        }
-        return false;
+        return starsInSky.get().contains(key.getLocation().toString());
     }
 }
