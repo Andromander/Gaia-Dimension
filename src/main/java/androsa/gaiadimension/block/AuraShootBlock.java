@@ -92,10 +92,15 @@ public class AuraShootBlock extends Block implements IPlantable {
     @Override
     @Deprecated
     public void tick(BlockState state, ServerWorld worldIn, BlockPos pos, Random rand) {
-        if (!worldIn.isAreaLoaded(pos, 1)) return;
-        BlockPos blockpos = pos.up();
+        if (!state.isValidPosition(worldIn, pos)) {
+            worldIn.destroyBlock(pos, true);
+        }
+    }
 
-        if (worldIn.isAirBlock(blockpos)) {
+    @Override
+    @Deprecated
+    public void randomTick(BlockState state, ServerWorld worldIn, BlockPos pos, Random random) {
+        if (worldIn.isAirBlock(pos.up())) {
             int i;
             i = 1;
 
@@ -106,9 +111,9 @@ public class AuraShootBlock extends Block implements IPlantable {
             if (i < 15) {
                 int j = state.get(AGE);
 
-                if (ForgeHooks.onCropsGrowPre(worldIn, blockpos, state, true)) {
+                if (ForgeHooks.onCropsGrowPre(worldIn, pos, state, true)) {
                     if (j == 5) {
-                        worldIn.setBlockState(blockpos, this.getDefaultState());
+                        worldIn.setBlockState(pos.up(), this.getDefaultState());
                         worldIn.setBlockState(pos, state.with(AGE, 0).with(IS_TOP, false), 3);
                     } else {
                         worldIn.setBlockState(pos, state.with(AGE, j + 1), 3);
