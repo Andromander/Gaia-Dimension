@@ -1,5 +1,4 @@
 {
-  "scale": 0.0,
   "effects": {
     "mood_sound": {
       "sound": "minecraft:ambient.cave",
@@ -790,9 +789,11 @@
   },
   "spawn_costs": {},
   "player_spawn_friendly": false,
+  "forge:registry_name": "gaiadimension:mineral_river",
   "precipitation": "none",
   "temperature": 0.66,
   "downfall": 0.0,
   "category": "none",
-  "depth": -0.5
+  "depth": -0.5,
+  "scale": 0.0
 }

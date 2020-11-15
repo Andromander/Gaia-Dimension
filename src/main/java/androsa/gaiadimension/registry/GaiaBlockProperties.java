@@ -115,13 +115,13 @@ public class GaiaBlockProperties {
     }
 
     public static AbstractBlock.Properties bloomProps() {
-        return plantProps(MaterialColor.MAGENTA_TERRACOTTA);
+        return plantProps(MaterialColor.MAGENTA_TERRACOTTA, false);
     }
 
-    public static AbstractBlock.Properties plantProps(MaterialColor color) {
+    public static AbstractBlock.Properties plantProps(MaterialColor color, boolean isGlass) {
         return AbstractBlock.Properties.create(Material.PLANTS, color)
                 .hardnessAndResistance(0.0F)
-                .sound(SoundType.PLANT)
+                .sound(isGlass ? SoundType.GLASS : SoundType.PLANT)
                 .doesNotBlockMovement();
     }
 

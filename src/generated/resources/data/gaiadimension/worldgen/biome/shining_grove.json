@@ -1,5 +1,4 @@
 {
-  "scale": 0.05,
   "effects": {
     "mood_sound": {
       "sound": "minecraft:ambient.cave",
@@ -923,37 +922,55 @@
         "config": {
           "feature": {
             "config": {
-              "trunk_provider": {
-                "state": {
-                  "Properties": {
-                    "axis": "y"
+              "feature": {
+                "config": {
+                  "trunk_provider": {
+                    "state": {
+                      "Properties": {
+                        "axis": "y"
+                      },
+                      "Name": "gaiadimension:aura_log"
+                    },
+                    "type": "minecraft:simple_state_provider"
                   },
-                  "Name": "gaiadimension:aura_log"
+                  "leaves_provider": {
+                    "state": {
+                      "Properties": {
+                        "persistent": "false",
+                        "distance": "7"
+                      },
+                      "Name": "gaiadimension:aura_leaves"
+                    },
+                    "type": "minecraft:simple_state_provider"
+                  },
+                  "height": 10,
+                  "sapling": {
+                    "state": {
+                      "Properties": {
+                        "stage": "0"
+                      },
+                      "Name": "gaiadimension:aura_sapling"
+                    },
+                    "type": "minecraft:simple_state_provider"
+                  }
                 },
-                "type": "minecraft:simple_state_provider"
+                "type": "gaiadimension:aura_tree"
               },
-              "leaves_provider": {
-                "state": {
-                  "Properties": {
-                    "persistent": "false",
-                    "distance": "7"
+              "decorator": {
+                "config": {
+                  "outer": {
+                    "config": {},
+                    "type": "minecraft:square"
                   },
-                  "Name": "gaiadimension:aura_leaves"
+                  "inner": {
+                    "config": {},
+                    "type": "minecraft:heightmap"
+                  }
                 },
-                "type": "minecraft:simple_state_provider"
-              },
-              "height": 10,
-              "sapling": {
-                "state": {
-                  "Properties": {
-                    "stage": "0"
-                  },
-                  "Name": "gaiadimension:aura_sapling"
-                },
-                "type": "minecraft:simple_state_provider"
+                "type": "minecraft:decorated"
               }
             },
-            "type": "gaiadimension:aura_tree"
+            "type": "minecraft:decorated"
           },
           "decorator": {
             "config": {
@@ -971,8 +988,17 @@
           "feature": {
             "config": {
               "feature": {
-                "config": {},
-                "type": "gaiadimension:aura_shoot"
+                "config": {
+                  "feature": {
+                    "config": {},
+                    "type": "gaiadimension:aura_shoot"
+                  },
+                  "decorator": {
+                    "config": {},
+                    "type": "minecraft:spread_32_above"
+                  }
+                },
+                "type": "minecraft:decorated"
               },
               "decorator": {
                 "config": {
@@ -982,7 +1008,7 @@
                   },
                   "inner": {
                     "config": {},
-                    "type": "minecraft:heightmap_spread_double"
+                    "type": "minecraft:heightmap"
                   }
                 },
                 "type": "minecraft:decorated"
@@ -992,9 +1018,9 @@
           },
           "decorator": {
             "config": {
-              "chance": 6
+              "count": 6
             },
-            "type": "minecraft:chance"
+            "type": "minecraft:count"
           }
         },
         "type": "minecraft:decorated"
@@ -1044,9 +1070,9 @@
           },
           "decorator": {
             "config": {
-              "chance": 2
+              "count": 2
             },
-            "type": "minecraft:chance"
+            "type": "minecraft:count"
           }
         },
         "type": "minecraft:decorated"
@@ -1187,9 +1213,11 @@
   },
   "spawn_costs": {},
   "player_spawn_friendly": false,
+  "forge:registry_name": "gaiadimension:shining_grove",
   "precipitation": "none",
   "temperature": 0.5,
   "downfall": 0.0,
   "category": "none",
-  "depth": 0.4
+  "depth": 0.4,
+  "scale": 0.05
 }

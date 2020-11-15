@@ -1,5 +1,4 @@
 {
-  "scale": 0.05,
   "effects": {
     "mood_sound": {
       "sound": "minecraft:ambient.cave",
@@ -831,37 +830,55 @@
         "config": {
           "feature": {
             "config": {
-              "trunk_provider": {
-                "state": {
-                  "Properties": {
-                    "axis": "y"
+              "feature": {
+                "config": {
+                  "trunk_provider": {
+                    "state": {
+                      "Properties": {
+                        "axis": "y"
+                      },
+                      "Name": "gaiadimension:fossilized_log"
+                    },
+                    "type": "minecraft:simple_state_provider"
                   },
-                  "Name": "gaiadimension:fossilized_log"
+                  "leaves_provider": {
+                    "state": {
+                      "Properties": {
+                        "persistent": "false",
+                        "distance": "7"
+                      },
+                      "Name": "gaiadimension:fossilized_leaves"
+                    },
+                    "type": "minecraft:simple_state_provider"
+                  },
+                  "height": 5,
+                  "sapling": {
+                    "state": {
+                      "Properties": {
+                        "stage": "0"
+                      },
+                      "Name": "gaiadimension:fossilized_sapling"
+                    },
+                    "type": "minecraft:simple_state_provider"
+                  }
                 },
-                "type": "minecraft:simple_state_provider"
+                "type": "gaiadimension:fossilized_tree"
               },
-              "leaves_provider": {
-                "state": {
-                  "Properties": {
-                    "persistent": "false",
-                    "distance": "7"
+              "decorator": {
+                "config": {
+                  "outer": {
+                    "config": {},
+                    "type": "minecraft:square"
                   },
-                  "Name": "gaiadimension:fossilized_leaves"
+                  "inner": {
+                    "config": {},
+                    "type": "minecraft:heightmap"
+                  }
                 },
-                "type": "minecraft:simple_state_provider"
-              },
-              "height": 5,
-              "sapling": {
-                "state": {
-                  "Properties": {
-                    "stage": "0"
-                  },
-                  "Name": "gaiadimension:fossilized_sapling"
-                },
-                "type": "minecraft:simple_state_provider"
+                "type": "minecraft:decorated"
               }
             },
-            "type": "gaiadimension:fossilized_tree"
+            "type": "minecraft:decorated"
           },
           "decorator": {
             "config": {
@@ -919,9 +936,9 @@
           },
           "decorator": {
             "config": {
-              "chance": 2
+              "count": 2
             },
-            "type": "minecraft:chance"
+            "type": "minecraft:count"
           }
         },
         "type": "minecraft:decorated"
@@ -1146,9 +1163,11 @@
   },
   "spawn_costs": {},
   "player_spawn_friendly": false,
+  "forge:registry_name": "gaiadimension:fossil_woodland",
   "precipitation": "none",
   "temperature": 0.66,
   "downfall": 0.0,
   "category": "none",
-  "depth": 0.1
+  "depth": 0.1,
+  "scale": 0.05
 }

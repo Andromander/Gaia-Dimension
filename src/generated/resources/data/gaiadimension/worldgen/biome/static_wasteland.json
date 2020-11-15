@@ -1,5 +1,4 @@
 {
-  "scale": 0.05,
   "effects": {
     "mood_sound": {
       "sound": "minecraft:ambient.cave",
@@ -707,7 +706,7 @@
                 }
               ]
             },
-            "type": "minecraft:disk"
+            "type": "gaiadimension:gaia_disk"
           },
           "decorator": {
             "config": {
@@ -888,9 +887,11 @@
   },
   "spawn_costs": {},
   "player_spawn_friendly": false,
+  "forge:registry_name": "gaiadimension:static_wasteland",
   "precipitation": "none",
   "temperature": 0.4,
   "downfall": 0.0,
   "category": "none",
-  "depth": 3.0
+  "depth": 3.0,
+  "scale": 0.05
 }

@@ -1,5 +1,4 @@
 {
-  "scale": 0.05,
   "effects": {
     "mood_sound": {
       "sound": "minecraft:ambient.cave",
@@ -873,9 +872,11 @@
   },
   "spawn_costs": {},
   "player_spawn_friendly": false,
+  "forge:registry_name": "gaiadimension:salt_dunes",
   "precipitation": "none",
   "temperature": 0.8,
   "downfall": 0.0,
   "category": "none",
-  "depth": 0.2
+  "depth": 0.2,
+  "scale": 0.05
 }

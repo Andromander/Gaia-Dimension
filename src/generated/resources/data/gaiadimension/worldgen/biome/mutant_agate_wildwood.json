@@ -1,5 +1,4 @@
 {
-  "scale": 0.1,
   "effects": {
     "mood_sound": {
       "sound": "minecraft:ambient.cave",
@@ -1015,181 +1014,199 @@
         "config": {
           "feature": {
             "config": {
-              "features": [
-                {
-                  "feature": {
-                    "config": {
-                      "trunk_provider": {
-                        "state": {
-                          "Properties": {
-                            "axis": "y"
-                          },
-                          "Name": "gaiadimension:pink_agate_log"
-                        },
-                        "type": "minecraft:simple_state_provider"
-                      },
-                      "leaves_provider": {
-                        "state": {
-                          "Properties": {
-                            "persistent": "false",
-                            "distance": "7"
-                          },
-                          "Name": "gaiadimension:pink_agate_leaves"
-                        },
-                        "type": "minecraft:simple_state_provider"
-                      },
-                      "height": 5,
-                      "sapling": {
-                        "state": {
-                          "Properties": {
-                            "stage": "0"
-                          },
-                          "Name": "gaiadimension:pink_agate_sapling"
-                        },
-                        "type": "minecraft:simple_state_provider"
-                      }
-                    },
-                    "type": "gaiadimension:pink_agate_tree"
-                  },
-                  "chance": 0.1
-                },
-                {
-                  "feature": {
-                    "config": {
-                      "trunk_provider": {
-                        "state": {
-                          "Properties": {
-                            "axis": "y"
-                          },
-                          "Name": "gaiadimension:blue_agate_log"
-                        },
-                        "type": "minecraft:simple_state_provider"
-                      },
-                      "leaves_provider": {
-                        "state": {
-                          "Properties": {
-                            "persistent": "false",
-                            "distance": "7"
-                          },
-                          "Name": "gaiadimension:blue_agate_leaves"
-                        },
-                        "type": "minecraft:simple_state_provider"
-                      },
-                      "height": 6,
-                      "sapling": {
-                        "state": {
-                          "Properties": {
-                            "stage": "0"
-                          },
-                          "Name": "gaiadimension:blue_agate_sapling"
-                        },
-                        "type": "minecraft:simple_state_provider"
-                      }
-                    },
-                    "type": "gaiadimension:blue_agate_tree"
-                  },
-                  "chance": 0.1
-                },
-                {
-                  "feature": {
-                    "config": {
-                      "trunk_provider": {
-                        "state": {
-                          "Properties": {
-                            "axis": "y"
-                          },
-                          "Name": "gaiadimension:green_agate_log"
-                        },
-                        "type": "minecraft:simple_state_provider"
-                      },
-                      "leaves_provider": {
-                        "state": {
-                          "Properties": {
-                            "persistent": "false",
-                            "distance": "7"
-                          },
-                          "Name": "gaiadimension:green_agate_leaves"
-                        },
-                        "type": "minecraft:simple_state_provider"
-                      },
-                      "height": 10,
-                      "sapling": {
-                        "state": {
-                          "Properties": {
-                            "stage": "0"
-                          },
-                          "Name": "gaiadimension:green_agate_sapling"
-                        },
-                        "type": "minecraft:simple_state_provider"
-                      }
-                    },
-                    "type": "gaiadimension:green_agate_tree"
-                  },
-                  "chance": 0.1
-                },
-                {
-                  "feature": {
-                    "config": {
-                      "trunk_provider": {
-                        "state": {
-                          "Properties": {
-                            "axis": "y"
-                          },
-                          "Name": "gaiadimension:purple_agate_log"
-                        },
-                        "type": "minecraft:simple_state_provider"
-                      },
-                      "leaves_provider": {
-                        "state": {
-                          "Properties": {
-                            "persistent": "false",
-                            "distance": "7"
-                          },
-                          "Name": "gaiadimension:purple_agate_leaves"
-                        },
-                        "type": "minecraft:simple_state_provider"
-                      },
-                      "height": 7,
-                      "sapling": {
-                        "state": {
-                          "Properties": {
-                            "stage": "0"
-                          },
-                          "Name": "gaiadimension:purple_agate_sapling"
-                        },
-                        "type": "minecraft:simple_state_provider"
-                      }
-                    },
-                    "type": "gaiadimension:purple_agate_tree"
-                  },
-                  "chance": 0.1
-                }
-              ],
-              "default": {
+              "feature": {
                 "config": {
-                  "can_replace": false,
-                  "project": true,
-                  "need_water": false,
-                  "xspread": 7,
-                  "yspread": 3,
-                  "zspread": 7,
-                  "whitelist": [],
-                  "blacklist": [],
-                  "tries": 32,
-                  "state_provider": {
-                    "state": {
-                      "Name": "gaiadimension:crystal_growth_mutant"
+                  "features": [
+                    {
+                      "feature": {
+                        "config": {
+                          "trunk_provider": {
+                            "state": {
+                              "Properties": {
+                                "axis": "y"
+                              },
+                              "Name": "gaiadimension:pink_agate_log"
+                            },
+                            "type": "minecraft:simple_state_provider"
+                          },
+                          "leaves_provider": {
+                            "state": {
+                              "Properties": {
+                                "persistent": "false",
+                                "distance": "7"
+                              },
+                              "Name": "gaiadimension:pink_agate_leaves"
+                            },
+                            "type": "minecraft:simple_state_provider"
+                          },
+                          "height": 5,
+                          "sapling": {
+                            "state": {
+                              "Properties": {
+                                "stage": "0"
+                              },
+                              "Name": "gaiadimension:pink_agate_sapling"
+                            },
+                            "type": "minecraft:simple_state_provider"
+                          }
+                        },
+                        "type": "gaiadimension:pink_agate_tree"
+                      },
+                      "chance": 0.1
                     },
-                    "type": "minecraft:simple_state_provider"
-                  },
-                  "block_placer": {
-                    "type": "minecraft:simple_block_placer"
+                    {
+                      "feature": {
+                        "config": {
+                          "trunk_provider": {
+                            "state": {
+                              "Properties": {
+                                "axis": "y"
+                              },
+                              "Name": "gaiadimension:blue_agate_log"
+                            },
+                            "type": "minecraft:simple_state_provider"
+                          },
+                          "leaves_provider": {
+                            "state": {
+                              "Properties": {
+                                "persistent": "false",
+                                "distance": "7"
+                              },
+                              "Name": "gaiadimension:blue_agate_leaves"
+                            },
+                            "type": "minecraft:simple_state_provider"
+                          },
+                          "height": 6,
+                          "sapling": {
+                            "state": {
+                              "Properties": {
+                                "stage": "0"
+                              },
+                              "Name": "gaiadimension:blue_agate_sapling"
+                            },
+                            "type": "minecraft:simple_state_provider"
+                          }
+                        },
+                        "type": "gaiadimension:blue_agate_tree"
+                      },
+                      "chance": 0.1
+                    },
+                    {
+                      "feature": {
+                        "config": {
+                          "trunk_provider": {
+                            "state": {
+                              "Properties": {
+                                "axis": "y"
+                              },
+                              "Name": "gaiadimension:green_agate_log"
+                            },
+                            "type": "minecraft:simple_state_provider"
+                          },
+                          "leaves_provider": {
+                            "state": {
+                              "Properties": {
+                                "persistent": "false",
+                                "distance": "7"
+                              },
+                              "Name": "gaiadimension:green_agate_leaves"
+                            },
+                            "type": "minecraft:simple_state_provider"
+                          },
+                          "height": 10,
+                          "sapling": {
+                            "state": {
+                              "Properties": {
+                                "stage": "0"
+                              },
+                              "Name": "gaiadimension:green_agate_sapling"
+                            },
+                            "type": "minecraft:simple_state_provider"
+                          }
+                        },
+                        "type": "gaiadimension:green_agate_tree"
+                      },
+                      "chance": 0.1
+                    },
+                    {
+                      "feature": {
+                        "config": {
+                          "trunk_provider": {
+                            "state": {
+                              "Properties": {
+                                "axis": "y"
+                              },
+                              "Name": "gaiadimension:purple_agate_log"
+                            },
+                            "type": "minecraft:simple_state_provider"
+                          },
+                          "leaves_provider": {
+                            "state": {
+                              "Properties": {
+                                "persistent": "false",
+                                "distance": "7"
+                              },
+                              "Name": "gaiadimension:purple_agate_leaves"
+                            },
+                            "type": "minecraft:simple_state_provider"
+                          },
+                          "height": 7,
+                          "sapling": {
+                            "state": {
+                              "Properties": {
+                                "stage": "0"
+                              },
+                              "Name": "gaiadimension:purple_agate_sapling"
+                            },
+                            "type": "minecraft:simple_state_provider"
+                          }
+                        },
+                        "type": "gaiadimension:purple_agate_tree"
+                      },
+                      "chance": 0.1
+                    }
+                  ],
+                  "default": {
+                    "config": {
+                      "can_replace": false,
+                      "project": true,
+                      "need_water": false,
+                      "xspread": 7,
+                      "yspread": 3,
+                      "zspread": 7,
+                      "whitelist": [],
+                      "blacklist": [],
+                      "tries": 32,
+                      "state_provider": {
+                        "state": {
+                          "Name": "gaiadimension:crystal_growth_mutant"
+                        },
+                        "type": "minecraft:simple_state_provider"
+                      },
+                      "block_placer": {
+                        "type": "minecraft:simple_block_placer"
+                      }
+                    },
+                    "type": "minecraft:random_patch"
                   }
                 },
-                "type": "minecraft:random_patch"
+                "type": "minecraft:random_selector"
+              },
+              "decorator": {
+                "config": {
+                  "outer": {
+                    "config": {},
+                    "type": "minecraft:square"
+                  },
+                  "inner": {
+                    "config": {},
+                    "type": "minecraft:heightmap"
+                  }
+                },
+                "type": "minecraft:decorated"
               }
             },
-            "type": "minecraft:random_selector"
+            "type": "minecraft:decorated"
           },
           "decorator": {
             "config": {
@@ -1416,9 +1433,11 @@
   },
   "spawn_costs": {},
   "player_spawn_friendly": false,
+  "forge:registry_name": "gaiadimension:mutant_agate_wildwood",
   "precipitation": "none",
   "temperature": 0.66,
   "downfall": 0.0,
   "category": "none",
-  "depth": 0.1
+  "depth": 0.1,
+  "scale": 0.1
 }

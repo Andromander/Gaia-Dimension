@@ -53,29 +53,29 @@ public class ModBlocks {
     public static final Block pink_sludge_block = RegistryHelper.registerBlock("pink_sludge_block", new SlimeBlock(Properties.create(Material.CLAY, MaterialColor.PINK).sound(SoundType.SLIME)));
 
     //Plants
-    public static final Block crystal_growth = RegistryHelper.registerBlock("crystal_growth", new CrystalGrowthBlock(GaiaBlockProperties.plantProps(MaterialColor.SNOW)));
-    public static final Block crystal_growth_red = RegistryHelper.registerBlock("crystal_growth_red", new CrystalGrowthBlock(GaiaBlockProperties.plantProps(MaterialColor.RED)));
-    public static final Block crystal_growth_black = RegistryHelper.registerBlock("crystal_growth_black", new CrystalGrowthBlock(GaiaBlockProperties.plantProps(MaterialColor.BLACK)));
-    public static final Block crystal_growth_seared = RegistryHelper.registerBlock("crystal_growth_seared", new CrystalGrowthBlock(GaiaBlockProperties.plantProps(MaterialColor.BLACK)));
-    public static final Block crystal_growth_mutant = RegistryHelper.registerBlock("crystal_growth_mutant", new CrystalGrowthBlock(GaiaBlockProperties.plantProps(MaterialColor.WHITE_TERRACOTTA)));
-    public static final Block crystal_growth_aura = RegistryHelper.registerBlock("crystal_growth_aura", new CrystalGrowthBlock(GaiaBlockProperties.plantProps(MaterialColor.LIGHT_BLUE_TERRACOTTA)));
+    public static final Block crystal_growth = RegistryHelper.registerBlock("crystal_growth", new CrystalGrowthBlock(GaiaBlockProperties.plantProps(MaterialColor.SNOW, true)));
+    public static final Block crystal_growth_red = RegistryHelper.registerBlock("crystal_growth_red", new CrystalGrowthBlock(GaiaBlockProperties.plantProps(MaterialColor.RED, true)));
+    public static final Block crystal_growth_black = RegistryHelper.registerBlock("crystal_growth_black", new CrystalGrowthBlock(GaiaBlockProperties.plantProps(MaterialColor.BLACK, true)));
+    public static final Block crystal_growth_seared = RegistryHelper.registerBlock("crystal_growth_seared", new CrystalGrowthBlock(GaiaBlockProperties.plantProps(MaterialColor.BLACK, true)));
+    public static final Block crystal_growth_mutant = RegistryHelper.registerBlock("crystal_growth_mutant", new CrystalGrowthBlock(GaiaBlockProperties.plantProps(MaterialColor.WHITE_TERRACOTTA, true)));
+    public static final Block crystal_growth_aura = RegistryHelper.registerBlock("crystal_growth_aura", new CrystalGrowthBlock(GaiaBlockProperties.plantProps(MaterialColor.LIGHT_BLUE_TERRACOTTA, true)));
     public static final Block thiscus = RegistryHelper.registerBlock("thiscus", new CrystalBloomBlock(GaiaBlockProperties.bloomProps()));
     public static final Block ouzium = RegistryHelper.registerBlock("ouzium", new CrystalBloomBlock(GaiaBlockProperties.bloomProps()));
     public static final Block agathum = RegistryHelper.registerBlock("agathum", new CrystalBloomBlock(GaiaBlockProperties.bloomProps()));
     public static final Block varloom = RegistryHelper.registerBlock("varloom", new CrystalBloomBlock(GaiaBlockProperties.bloomProps()));
     public static final Block corrupted_varloom = RegistryHelper.registerBlock("corrupted_varloom", new CrystalBloomBlock(GaiaBlockProperties.bloomProps()));
     public static final Block missingno_plant = RegistryHelper.registerBlock("missingno_plant", new CrystalBloomBlock(GaiaBlockProperties.bloomProps()));
-    public static final Block spotted_kersei = RegistryHelper.registerBlock("spotted_kersei", new CrystalFungusBlock(GaiaBlockProperties.plantProps(MaterialColor.PINK), false));
-    public static final Block thorny_wiltha = RegistryHelper.registerBlock("thorny_wiltha", new CrystalFungusBlock(GaiaBlockProperties.plantProps(MaterialColor.LIGHT_BLUE), false));
-    public static final Block roofed_agaric = RegistryHelper.registerBlock("roofed_agaric", new CrystalFungusBlock(GaiaBlockProperties.plantProps(MaterialColor.LIME), false));
-    public static final Block bulbous_hobina = RegistryHelper.registerBlock("bulbous_hobina", new CrystalFungusBlock(GaiaBlockProperties.plantProps(MaterialColor.PINK_TERRACOTTA), false));
-    public static final Block stickly_cupsir = RegistryHelper.registerBlock("stickly_cupsir", new CrystalFungusBlock(GaiaBlockProperties.plantProps(MaterialColor.YELLOW_TERRACOTTA), false));
-    public static final Block mystical_murgni = RegistryHelper.registerBlock("mystical_murgni", new CrystalFungusBlock(GaiaBlockProperties.plantProps(MaterialColor.GOLD), false));
-    public static final Block corrupted_gaia_eye = RegistryHelper.registerBlock("corrupted_gaia_eye", new CrystalFungusBlock(GaiaBlockProperties.plantProps(MaterialColor.TNT), false));
+    public static final Block spotted_kersei = RegistryHelper.registerBlock("spotted_kersei", new CrystalFungusBlock(GaiaBlockProperties.plantProps(MaterialColor.PINK, false), false));
+    public static final Block thorny_wiltha = RegistryHelper.registerBlock("thorny_wiltha", new CrystalFungusBlock(GaiaBlockProperties.plantProps(MaterialColor.LIGHT_BLUE, false), false));
+    public static final Block roofed_agaric = RegistryHelper.registerBlock("roofed_agaric", new CrystalFungusBlock(GaiaBlockProperties.plantProps(MaterialColor.LIME, false), false));
+    public static final Block bulbous_hobina = RegistryHelper.registerBlock("bulbous_hobina", new CrystalFungusBlock(GaiaBlockProperties.plantProps(MaterialColor.PINK_TERRACOTTA, false), false));
+    public static final Block stickly_cupsir = RegistryHelper.registerBlock("stickly_cupsir", new CrystalFungusBlock(GaiaBlockProperties.plantProps(MaterialColor.YELLOW_TERRACOTTA, false), false));
+    public static final Block mystical_murgni = RegistryHelper.registerBlock("mystical_murgni", new CrystalFungusBlock(GaiaBlockProperties.plantProps(MaterialColor.GOLD, false), false));
+    public static final Block corrupted_gaia_eye = RegistryHelper.registerBlock("corrupted_gaia_eye", new CrystalFungusBlock(GaiaBlockProperties.plantProps(MaterialColor.TNT, false), false));
     //public static final Block sacred_gaia_eye = RegistryHelper.registerBlock()("sacred_gaia_eye", new CrystalFungusBlock(false));
-    public static final Block elder_imklia = RegistryHelper.registerBlock("elder_imklia", new CrystalFungusBlock(GaiaBlockProperties.plantProps(MaterialColor.PURPLE), true));
-    public static final Block gold_orb_tucher = RegistryHelper.registerBlock("gold_orb_tucher", new CrystalFungusBlock(GaiaBlockProperties.plantProps(MaterialColor.GOLD), true));
-    public static final Block missingno_fungus = RegistryHelper.registerBlock("missingno_fungus", new CrystalFungusBlock(GaiaBlockProperties.plantProps(MaterialColor.MAGENTA), false));
+    public static final Block elder_imklia = RegistryHelper.registerBlock("elder_imklia", new CrystalFungusBlock(GaiaBlockProperties.plantProps(MaterialColor.PURPLE, false), true));
+    public static final Block gold_orb_tucher = RegistryHelper.registerBlock("gold_orb_tucher", new CrystalFungusBlock(GaiaBlockProperties.plantProps(MaterialColor.GOLD, false), true));
+    public static final Block missingno_fungus = RegistryHelper.registerBlock("missingno_fungus", new CrystalFungusBlock(GaiaBlockProperties.plantProps(MaterialColor.MAGENTA, false), false));
 
     //Tree Blocks
     public static RotatedPillarBlock s_pink_agate_log = new AgateLogBlock(GaiaBlockProperties.logProps(MaterialColor.MAGENTA));

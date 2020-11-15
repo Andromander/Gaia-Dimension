@@ -37,7 +37,7 @@ public class GaiaLakesFeature<T extends BlockStateFeatureConfig> extends Feature
             return false;
         } else {
             pos = pos.down(4);
-            if (!worldIn.func_241827_a(SectionPos.from(pos), Structure.VILLAGE).findAny().isPresent()) {
+            if (worldIn.func_241827_a(SectionPos.from(pos), Structure.VILLAGE).findAny().isPresent()) {
                 return false;
             } else {
                 boolean[] aboolean = new boolean[2048];

@@ -1,5 +1,4 @@
 {
-  "scale": 0.02,
   "effects": {
     "mood_sound": {
       "sound": "minecraft:ambient.cave",
@@ -950,9 +949,11 @@
   },
   "spawn_costs": {},
   "player_spawn_friendly": false,
+  "forge:registry_name": "gaiadimension:smoldering_bog",
   "precipitation": "none",
   "temperature": 0.9,
   "downfall": 0.0,
   "category": "none",
-  "depth": 0.2
+  "depth": 0.2,
+  "scale": 0.02
 }
