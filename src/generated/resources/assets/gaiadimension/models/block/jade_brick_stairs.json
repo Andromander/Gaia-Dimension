@@ -1,5 +1,5 @@
 {
-  "parent": "block/stairs",
+  "parent": "minecraft:block/stairs",
   "textures": {
     "side": "gaiadimension:block/jade_bricks",
     "bottom": "gaiadimension:block/jade_bricks",

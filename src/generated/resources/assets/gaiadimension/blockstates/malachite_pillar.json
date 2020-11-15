@@ -1,7 +1,7 @@
 {
   "variants": {
     "axis=x": {
-      "model": "gaiadimension:block/malachite_pillar",
+      "model": "gaiadimension:block/malachite_pillar_horizontal",
       "x": 90,
       "y": 90
     },
@@ -9,7 +9,7 @@
       "model": "gaiadimension:block/malachite_pillar"
     },
     "axis=z": {
-      "model": "gaiadimension:block/malachite_pillar",
+      "model": "gaiadimension:block/malachite_pillar_horizontal",
       "x": 90
     }
   }

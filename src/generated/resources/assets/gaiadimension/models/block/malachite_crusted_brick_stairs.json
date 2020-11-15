@@ -1,5 +1,5 @@
 {
-  "parent": "block/stairs",
+  "parent": "minecraft:block/stairs",
   "textures": {
     "side": "gaiadimension:block/malachite_crusted_bricks",
     "bottom": "gaiadimension:block/malachite_crusted_bricks",

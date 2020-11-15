@@ -1,5 +1,5 @@
 {
-  "parent": "block/cube",
+  "parent": "minecraft:block/cube",
   "textures": {
     "down": "gaiadimension:block/salt_rock_bottom",
     "up": "gaiadimension:block/salt_rock_top",

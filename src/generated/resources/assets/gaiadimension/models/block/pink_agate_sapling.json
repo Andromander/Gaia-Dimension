@@ -1,5 +1,5 @@
 {
-  "parent": "block/cross",
+  "parent": "minecraft:block/cross",
   "textures": {
     "cross": "gaiadimension:block/pink_agate_sapling"
   }

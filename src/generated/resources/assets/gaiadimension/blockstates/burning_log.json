@@ -1,7 +1,7 @@
 {
   "variants": {
     "axis=x": {
-      "model": "gaiadimension:block/burning_log",
+      "model": "gaiadimension:block/burning_log_horizontal",
       "x": 90,
       "y": 90
     },
@@ -9,7 +9,7 @@
       "model": "gaiadimension:block/burning_log"
     },
     "axis=z": {
-      "model": "gaiadimension:block/burning_log",
+      "model": "gaiadimension:block/burning_log_horizontal",
       "x": 90
     }
   }

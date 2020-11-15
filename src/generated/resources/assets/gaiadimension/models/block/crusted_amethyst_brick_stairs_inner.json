@@ -1,5 +1,5 @@
 {
-  "parent": "block/inner_stairs",
+  "parent": "minecraft:block/inner_stairs",
   "textures": {
     "side": "gaiadimension:block/crusted_amethyst_bricks",
     "bottom": "gaiadimension:block/crusted_amethyst_bricks",

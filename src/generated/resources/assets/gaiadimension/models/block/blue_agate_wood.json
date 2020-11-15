@@ -1,5 +1,5 @@
 {
-  "parent": "block/cube_column",
+  "parent": "minecraft:block/cube_column",
   "textures": {
     "side": "gaiadimension:block/blue_agate_log_side",
     "end": "gaiadimension:block/blue_agate_log_side"
