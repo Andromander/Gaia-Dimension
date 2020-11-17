@@ -1,17 +1,21 @@
 package androsa.gaiadimension;
 
 import androsa.gaiadimension.client.ClientEvents;
+import androsa.gaiadimension.client.GaiaSkyRender;
 import androsa.gaiadimension.data.*;
 import androsa.gaiadimension.registry.*;
 import net.minecraft.block.Block;
+import net.minecraft.client.world.DimensionRenderInfo;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.entity.CreatureAttribute;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ITag;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.village.PointOfInterestType;
 import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.client.ISkyRenderHandler;
 import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.DistExecutor;
@@ -25,6 +29,8 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.commons.lang3.tuple.Pair;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
+import javax.annotation.Nullable;
 
 @Mod(GaiaDimensionMod.MODID)
 public class GaiaDimensionMod {
@@ -89,18 +95,37 @@ public class GaiaDimensionMod {
         ModBlocks.addPlants();
         ModEntities.registerSpawnPlacement();
         ModEntities.registerAttributes();
-        ModItems.addItemProperties();
         ModDimensions.initDimension();
         ModWorldgen.StructureTypes.init();
     }
 
     public void clientSetup(FMLClientSetupEvent event) {
+        DimensionRenderInfo gaia = new DimensionRenderInfo(255.0F, true, DimensionRenderInfo.FogType.NORMAL, false, false) {
+            @Override
+            public Vector3d func_230494_a_(Vector3d vector3d, float v) {
+                return vector3d;
+            }
+
+            @Override
+            public boolean func_230493_a_(int i, int i1) {
+                return false;
+            }
+
+            @Nullable
+            @Override
+            public ISkyRenderHandler getSkyRenderHandler() {
+                return new GaiaSkyRender();
+            }
+        };
+        DimensionRenderInfo.field_239208_a_.put(new ResourceLocation(GaiaDimensionMod.MODID, "gaia"), gaia);
+
         DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> ModContainers::registerScreens);
         DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> ModEntities::registerEntityRender);
         DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> ModParticles::forgeClassLoadingIsFuckedThisShouldntBeHereButHereItIs);
         DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> ClientEvents::registerBlockColors);
         DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> ClientEvents::registerItemColors);
         DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> ClientEvents::registerBlockRenderers);
+        DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> ModItems::addItemProperties);
     }
 
     public void gatherData(GatherDataEvent event) {
