@@ -11,12 +11,12 @@
         "stronghold": { "distance": 0, "count": 0, "spread": 0 },
         "structures": {
           "gaiadimension:mini_tower": {
-            "spacing": 40,
-            "separation": 15,
+            "spacing": 30,
+            "separation": 10,
             "salt": 420
           },
           "gaiadimension:malachite_watchtower": {
-            "spacing": 40,
+            "spacing": 35,
             "separation": 15,
             "salt": 621
           }

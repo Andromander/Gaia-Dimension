@@ -1,0 +1,13 @@
+{
+  "replace": false,
+  "values": [
+    "gaiadimension:heavy_soil",
+    "gaiadimension:glitter_grass",
+    "gaiadimension:corrupt_soil",
+    "gaiadimension:corrupt_grass",
+    "gaiadimension:boggy_soil",
+    "gaiadimension:murky_grass",
+    "gaiadimension:light_soil",
+    "gaiadimension:soft_grass"
+  ]
+}
