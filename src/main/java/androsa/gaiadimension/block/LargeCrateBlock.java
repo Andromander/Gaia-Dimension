@@ -145,7 +145,7 @@ public class LargeCrateBlock extends Block {
             }
 
             if (compoundnbt.contains("Items", 9)) {
-                NonNullList<ItemStack> nonnulllist = NonNullList.withSize(27, ItemStack.EMPTY);
+                NonNullList<ItemStack> nonnulllist = NonNullList.withSize(54, ItemStack.EMPTY);
                 ItemStackHelper.loadAllItems(compoundnbt, nonnulllist);
                 int i = 0;
                 int j = 0;
