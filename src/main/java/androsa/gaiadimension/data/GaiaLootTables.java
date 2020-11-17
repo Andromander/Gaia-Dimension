@@ -344,7 +344,7 @@ public class GaiaLootTables extends LootTableProvider {
 
         @Override
         protected Iterable<Block> getKnownBlocks() {
-            return new ArrayList<>(RegistryHelper.BLOCKS); //TODO
+            return new ArrayList<>(RegistryHelper.BLOCKS);
         }
     }
 

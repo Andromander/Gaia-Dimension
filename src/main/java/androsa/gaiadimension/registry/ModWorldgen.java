@@ -38,7 +38,6 @@ public class ModWorldgen {
     public static final Feature<GaiaTreeFeatureConfig> BURNT_AGATE_TREE = RegistryHelper.registerFeature("burnt_agate_tree", new BurntAgateTreeFeature<>(GaiaTreeFeatureConfig.CODEC));
     public static final Feature<GaiaTreeFeatureConfig> FIERY_AGATE_TREE = RegistryHelper.registerFeature("fiery_agate_tree", new FieryAgateTreeFeature<>(GaiaTreeFeatureConfig.CODEC));
     public static final Feature<GaiaTreeFeatureConfig> AURA_TREE = RegistryHelper.registerFeature("aura_tree", new AuraTreeFeature<>(GaiaTreeFeatureConfig.CODEC));
-//  public static final Feature<BaseTreeFeatureConfig> GREEN_AGATE_BUSH = RegistryHelper.registerFeature()("green_agate_bush", new ShrubFeature(BaseTreeFeatureConfig::deserialize));
     public static final Feature<NoFeatureConfig> AURA_SHOOT = RegistryHelper.registerFeature("aura_shoot", new AuraShootsFeature<>(NoFeatureConfig.field_236558_a_));
     public static final Feature<SphereReplaceConfig> BOG_PATCH = RegistryHelper.registerFeature("bog_patch", new BogPatchFeature<>(SphereReplaceConfig.field_236516_a_));
     public static final Feature<FeatureHeightConfig> BISMUTH_SPIRE = RegistryHelper.registerFeature("bismuth_spire", new BismuthSpireFeature<>(FeatureHeightConfig.CODEC));
