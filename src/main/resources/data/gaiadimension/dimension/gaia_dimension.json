@@ -49,7 +49,7 @@
         "island_noise_override": false
       },
       "default_block": {
-        "Name": "gaiadimension:glitter_grass"
+        "Name": "gaiadimension:gaia_stone"
       },
       "default_fluid": {
         "Name": "gaiadimension:mineral_water",
