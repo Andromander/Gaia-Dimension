@@ -81,8 +81,9 @@ public class RegistryHelper {
     }
 
     public static Item registerWallOrFloorItem(String name, Block floor, Block wall) {
-        Item item = new WallOrFloorItem(wall, floor, new Item.Properties().group(GaiaItemGroups.GAIA_BLOCKS));
-        return registerBlockItem(name, item);
+        Item item = new WallOrFloorItem(floor, wall, new Item.Properties().group(GaiaItemGroups.GAIA_BLOCKS));
+        BLOCK_ITEMS.add(registerBlockItem(name, item));
+        return item;
     }
 
     public static Item registerItem(String name, Item item) {
