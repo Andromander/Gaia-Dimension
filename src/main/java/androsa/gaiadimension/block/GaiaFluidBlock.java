@@ -15,6 +15,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.Constants;
+import net.minecraftforge.event.ForgeEventFactory;
 
 import java.util.function.Supplier;
 
@@ -32,8 +33,8 @@ public class GaiaFluidBlock extends FlowingFluidBlock {
                 if (side != Direction.DOWN) {
                     FluidState offset = world.getFluidState(pos.offset(side));
 
-                    if (offset.getFluid().isIn(FluidTags.LAVA) && (!(offset.getFluid() instanceof SuperhotMagmaFluid) || !(offset.getFluid() instanceof LiquidBismuthFluid))) {
-                        world.setBlockState(pos, ModBlocks.sparkling_rock.getDefaultState());
+                    if (offset.isTagged(FluidTags.LAVA) && (!(offset.getFluid() instanceof SuperhotMagmaFluid) && !(offset.getFluid() instanceof LiquidBismuthFluid))) {
+                        world.setBlockState(pos, ForgeEventFactory.fireFluidPlaceBlockEvent(world, pos, pos, ModBlocks.sparkling_rock.getDefaultState()));
                         this.triggerMixEffects(world, pos);
                         return false;
                     }
@@ -47,15 +48,15 @@ public class GaiaFluidBlock extends FlowingFluidBlock {
                     FluidState offset = world.getFluidState(pos.offset(side));
 
                     if (offset.getFluid() instanceof SweetMuckFluid) {
-                        world.setBlockState(pos, ModBlocks.primal_mass.getDefaultState());
+                        world.setBlockState(pos, ForgeEventFactory.fireFluidPlaceBlockEvent(world, pos, pos, ModBlocks.primal_mass.getDefaultState()));
                         this.triggerMixEffects(world, pos);
                         return false;
                     } else if (offset.getFluid() == ModFluids.liquid_aura_still || offset.getFluid() == ModFluids.liquid_aura_flow) {
-                        world.setBlockState(pos, ModBlocks.aura_block.getDefaultState());
+                        world.setBlockState(pos, ForgeEventFactory.fireFluidPlaceBlockEvent(world, pos, pos, ModBlocks.aura_block.getDefaultState()));
                         this.triggerMixEffects(world, pos);
                         return false;
                     } else if (offset.isTagged(FluidTags.WATER)) {
-                        world.setBlockState(pos, ModBlocks.gaia_cobblestone.getDefaultState());
+                        world.setBlockState(pos, ForgeEventFactory.fireFluidPlaceBlockEvent(world, pos, pos, ModBlocks.gaia_cobblestone.getDefaultState()));
                         this.triggerMixEffects(world, pos);
                         return false;
                     }
@@ -69,15 +70,15 @@ public class GaiaFluidBlock extends FlowingFluidBlock {
                     FluidState offset = world.getFluidState(pos.offset(side));
 
                     if (offset.getFluid() instanceof SweetMuckFluid || offset.getFluid() instanceof SuperhotMagmaFluid) {
-                        world.setBlockState(pos, ModBlocks.active_rock.getDefaultState());
+                        world.setBlockState(pos, ForgeEventFactory.fireFluidPlaceBlockEvent(world, pos, pos, ModBlocks.active_rock.getDefaultState()));
                         this.triggerMixEffects(world, pos);
                         return false;
                     } else if (offset.getFluid() == ModFluids.liquid_aura_still || offset.getFluid() == ModFluids.liquid_aura_flow) {
-                        world.setBlockState(pos, ModBlocks.tektite_block.getDefaultState());
+                        world.setBlockState(pos, ForgeEventFactory.fireFluidPlaceBlockEvent(world, pos, pos, ModBlocks.tektite_block.getDefaultState()));
                         this.triggerMixEffects(world, pos);
                         return false;
                     } else if (offset.isTagged(FluidTags.WATER)) {
-                        world.setBlockState(pos, ModBlocks.impure_rock.getDefaultState());
+                        world.setBlockState(pos, ForgeEventFactory.fireFluidPlaceBlockEvent(world, pos, pos, ModBlocks.impure_rock.getDefaultState()));
                         this.triggerMixEffects(world, pos);
                         return false;
                     }
