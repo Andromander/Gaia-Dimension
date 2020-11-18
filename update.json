@@ -17,14 +17,20 @@
   "1.15.2": {
     "1.2.0": "Gaia Dimension is now out for 1.15.2! No new features have been implemented, however some features have been omitted due to changes introduced in 1.15. Namely speaking, sky rendering has been altered, so stars that appeared in Purple Agate skies no longer render, clouds are white instead of being coloured per biome, and skies don't smoothly change colour. There may be some other bugs, however it is in a playable state, so feel free to test it out and report any issues.",
     "1.2.1": "Introducing the Malachite Update. This update adds in a long-awaited feature that has been waiting to be implemented since the start.\n + Add Amethyst, Copal, Jade, and Jet. They generate in raw clusters but can be made into bricks.\n + Add Gaia Mini Towers. These abandoned structures come in 4 types, and generate in all Agate biomes, Crystal Plains, and Fossil Woodlands.\n + Add some more Malachite Brick Stairs and Slabs.\n + Add Malachite Watchtower. These large towers vary in height and generate in Green Agate Jungles, Pink Agate Forests, and Crystal Plains.\n + The Malachite Guard is vastly improved and implemented. Has 3 phases, various defences, and drops Malachite tools.\n + Malachite Guard armor and Malachite Guard Baton are officially implemented.\n • Gave the Malachite Bricks some crafting recipes now that they are obtainable.\n • Pulsing Malachite Bricks are now emissive. Glow in the dark fanciness.\n • Fixed infinite resource duplication via incorrect recipe output.\n • Fixed small_flowers Tag having an extra comma.\n - Removed supports_beacon Tag. Blocks that were in the Tag now natively support Beacons.",
-    "1.2.2": "Just a quick update.\n • Tweaked some entity spawning logic. This means that some entities will now spawn from Spawners and the logic for where entities are allowed to spawn is less restrictive.\n • Impure Sludge now allows for Bismuth Uletrus to spawn on naturally.\n • Brought back the stars in Purple Agate skies.\n - Removed the Moon. Did you ever notice there was a Moon?"
+    "1.2.2": "Just a quick update.\n • Tweaked some entity spawning logic. This means that some entities will now spawn from Spawners and the logic for where entities are allowed to spawn is less restrictive.\n • Impure Sludge now allows for Bismuth Uletrus to spawn on naturally.\n • Brought back the stars in Purple Agate skies.\n - Removed the Moon. Did you ever notice there was a Moon?",
+    "1.2.3": "I made a breakthrough, so here's a surprise update.\n • Fixed Malachite Watchtowers sometimes looking terribly broken. Hopefully now, these towers should be mostly fixed, though this will only apply to new towers."
+  },
+  "1.16.4": {
+    "1.3.0": "Gaia Dimension is now out for 1.16.4! With all the changes that happened, there are a few changes that have been made. First, as biomes are now fully customisable, the option to toggle sky transitions is now removed. This also means preset options for sky colours are also gone. However, there is a new option: displaying stars in biomes of your choice, an example is already given to you. Next: teleporting to and from Gaia should no longer have much issue, all thanks to some refined teleporting logic. Finally, the fix to Malachite Watchtowers has also been implemented here. While it looked like this should have just come from the last update, it actually happened while I was porting, so have fun with that. There may also be a few bug fixes around the place, such as all contents in a Mega Storage Crate are now seen for the tooltip, and Aura Shoots drop if the ground is invalid for placement.\n If any bugs occur, please report them to the Gaia Dimension issue tracker."
   },
   "promos": {
     "1.12.2-latest": "1.0.5",
     "1.12.2-recommended": "1.0.5",
     "1.14.4-latest": "1.1.3",
     "1.14.4-recommended": "1.1.3",
-    "1.15.2-latest": "1.2.1",
-    "1.15.2-recommended": "1.2.1"
+    "1.15.2-latest": "1.2.3",
+    "1.15.2-recommended": "1.2.3",
+    "1.16.4-latest": "1.3.0",
+    "1.16.4-recommended": "1.3.0"
   }
 }
