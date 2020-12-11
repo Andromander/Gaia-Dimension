@@ -1,12 +1,16 @@
 package androsa.gaiadimension.world.layer;
 
+import androsa.gaiadimension.GaiaDimensionMod;
 import com.google.common.collect.ImmutableList;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.util.RegistryKey;
+import net.minecraft.util.SharedConstants;
+import net.minecraft.util.Util;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.util.registry.RegistryLookupCodec;
 import net.minecraft.world.biome.Biome;
+import net.minecraft.world.biome.BiomeRegistry;
 import net.minecraft.world.biome.provider.BiomeProvider;
 import net.minecraft.world.gen.layer.Layer;
 
@@ -68,6 +72,21 @@ public class GaiaBiomeProvider extends BiomeProvider {
 
     @Override
     public Biome getNoiseBiome(int x, int y, int z) {
-        return this.genBiomes.func_242936_a(registry, x, z);
+        return this.getBiomeFromPos(registry, x, z);
+    }
+
+    public Biome getBiomeFromPos(Registry<Biome> registry, int x, int z) {
+        int i = genBiomes.field_215742_b.getValue(x, z);
+        Biome biome = registry.getByValue(i);
+        if (biome == null) {
+            if (SharedConstants.developmentMode) {
+                throw Util.pauseDevMode(new IllegalStateException("Unknown biome id: " + i));
+            } else {
+                GaiaDimensionMod.LOGGER.warn("Unknown biome id: ", i);
+                return registry.getValueForKey(BiomeRegistry.getKeyFromID(0));
+            }
+        } else {
+            return biome;
+        }
     }
 }
