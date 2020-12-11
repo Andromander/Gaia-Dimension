@@ -36,5 +36,5 @@ deploy:
   file: "{$RELEASE_FILE_LIST}"
   on:
     repo: Andromander/Gaia-Dimension
-    branch: 1.15.x
+    branch: 1.16.x
     tags: false
