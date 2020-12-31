@@ -150,17 +150,6 @@ public class RegistryHelper {
     }
 
     @SubscribeEvent
-    public static void registerItems(RegistryEvent.Register<Item> event) {
-        IForgeRegistry<Item> registry = event.getRegistry();
-        for (Item item : ITEMS) {
-            registry.register(item);
-        }
-        for (Item item: BLOCK_ITEMS) {
-            registry.register(item);
-        }
-    }
-
-    @SubscribeEvent
     public static void registerEntityTypes(RegistryEvent.Register<EntityType<?>> event) {
         IForgeRegistry<EntityType<?>> registry = event.getRegistry();
         for (EntityType<?> entity : ENTITY_TYPES) {
@@ -181,38 +170,6 @@ public class RegistryHelper {
         IForgeRegistry<ParticleType<?>> registry = event.getRegistry();
         for (ParticleType<?> particle : PARTICLE_TYPES) {
             registry.register(particle);
-        }
-    }
-
-    @SubscribeEvent
-    public static void registerFeatures(RegistryEvent.Register<Feature<?>> event) {
-        IForgeRegistry<Feature<?>> registry = event.getRegistry();
-        for (Feature<?> feature : FEATURES) {
-            registry.register(feature);
-        }
-    }
-
-    @SubscribeEvent
-    public static void registerStructures(RegistryEvent.Register<Structure<?>> event) {
-        IForgeRegistry<Structure<?>> registry = event.getRegistry();
-        for (Structure<?> structures : STRUCTURES) {
-            registry.register(structures);
-        }
-    }
-
-    @SubscribeEvent
-    public static void registerSurfaceBuilders(RegistryEvent.Register<SurfaceBuilder<?>> event) {
-        IForgeRegistry<SurfaceBuilder<?>> registry = event.getRegistry();
-        for (SurfaceBuilder<?> surface : SURFACE_BUILDERS) {
-            registry.register(surface);
-        }
-    }
-
-    @SubscribeEvent
-    public static void registerWorldCarvers(RegistryEvent.Register<WorldCarver<?>> event) {
-        IForgeRegistry<WorldCarver<?>> registry = event.getRegistry();
-        for (WorldCarver<?> carver : WORLD_CARVERS) {
-            registry.register(carver);
         }
     }
 

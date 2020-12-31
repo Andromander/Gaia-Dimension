@@ -24,7 +24,12 @@ import net.minecraft.world.gen.feature.structure.Structure;
 import net.minecraft.world.gen.feature.template.IStructureProcessorType;
 import net.minecraft.world.gen.surfacebuilders.SurfaceBuilder;
 import net.minecraft.world.gen.surfacebuilders.SurfaceBuilderConfig;
+import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.registries.IForgeRegistry;
 
+@Mod.EventBusSubscriber(modid = GaiaDimensionMod.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ModWorldgen {
 
     //Feature
@@ -59,6 +64,38 @@ public class ModWorldgen {
     //WorldCarver
     public static final WorldCarver<ProbabilityConfig> CRYSTAL_CAVES = RegistryHelper.registerWorldCarver("crystal_caves", new CoatedCavesWorldCarver<>(ProbabilityConfig.CODEC, 256));
     public static final WorldCarver<ProbabilityConfig> CHASMS = RegistryHelper.registerWorldCarver("chasms", new ChasmsWorldCarver<>(ProbabilityConfig.CODEC, 32));
+
+    @SubscribeEvent
+    public static void registerFeatures(RegistryEvent.Register<Feature<?>> event) {
+        IForgeRegistry<Feature<?>> registry = event.getRegistry();
+        for (Feature<?> feature : RegistryHelper.FEATURES) {
+            registry.register(feature);
+        }
+    }
+
+    @SubscribeEvent
+    public static void registerStructures(RegistryEvent.Register<Structure<?>> event) {
+        IForgeRegistry<Structure<?>> registry = event.getRegistry();
+        for (Structure<?> structures : RegistryHelper.STRUCTURES) {
+            registry.register(structures);
+        }
+    }
+
+    @SubscribeEvent
+    public static void registerSurfaceBuilders(RegistryEvent.Register<SurfaceBuilder<?>> event) {
+        IForgeRegistry<SurfaceBuilder<?>> registry = event.getRegistry();
+        for (SurfaceBuilder<?> surface : RegistryHelper.SURFACE_BUILDERS) {
+            registry.register(surface);
+        }
+    }
+
+    @SubscribeEvent
+    public static void registerWorldCarvers(RegistryEvent.Register<WorldCarver<?>> event) {
+        IForgeRegistry<WorldCarver<?>> registry = event.getRegistry();
+        for (WorldCarver<?> carver : RegistryHelper.WORLD_CARVERS) {
+            registry.register(carver);
+        }
+    }
 
     public static class StructureTypes {
         public static final IStructureProcessorType BLOCK_DEGRADE = () -> BlockDegradeProcessor.CODEC;
