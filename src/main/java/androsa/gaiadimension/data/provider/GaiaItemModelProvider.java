@@ -38,6 +38,11 @@ public abstract class GaiaItemModelProvider extends ItemModelProvider {
                 .texture("layer0", modLoc("item/" + item.getRegistryName().getPath()));
     }
 
+    public ItemModelBuilder heldItem(Item item) {
+        return withExistingParent(item.getRegistryName().getPath(), mcLoc("item/handheld"))
+                .texture("layer0", modLoc("item/" + item.getRegistryName().getPath()));
+    }
+
     public ItemModelBuilder eggItem(Item item) {
         return withExistingParent(item.getRegistryName().getPath(), mcLoc("item/template_spawn_egg"));
     }
