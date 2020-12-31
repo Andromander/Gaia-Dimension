@@ -9,6 +9,8 @@ import net.minecraft.world.biome.Biome;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 
+import static net.minecraftforge.common.BiomeDictionary.*;
+
 public class ModBiomes {
 
     public static final DeferredRegister<Biome> BIOMES = DeferredRegister.create(ForgeRegistries.BIOMES, GaiaDimensionMod.MODID);
@@ -34,21 +36,21 @@ public class ModBiomes {
         return RegistryKey.getOrCreateKey(Registry.BIOME_KEY, new ResourceLocation(GaiaDimensionMod.MODID, name));
     }
 
-//    public static void addBiomeTypes() {
-//        addTypes(pink_agate_forest.get(), Type.FOREST);
-//        addTypes(blue_agate_taiga.get(), Type.CONIFEROUS);
-//        addTypes(green_agate_jungle.get(), Type.JUNGLE);
-//        addTypes(purple_agate_swamp.get(), Type.SWAMP, Type.MAGICAL);
-//        addTypes(mutant_agate_wildwood.get(), Type.FOREST, Type.LUSH, Type.MAGICAL);
-//        addTypes(fossil_woodland.get(), Type.SAVANNA);
-//        addTypes(crystal_plains.get(), Type.PLAINS);
-//        addTypes(salt_dunes.get(), Type.DRY, Type.HOT, Type.SANDY, Type.SPARSE);
-//        addTypes(smoldering_bog.get(), Type.HOT, Type.WASTELAND, Type.DEAD);
-//        addTypes(shining_grove.get(), Type.LUSH, Type.FOREST, Type.MAGICAL);
-//        addTypes(volcanic_lands.get(), Type.HOT, Type.SPARSE, Type.DRY, Type.MOUNTAIN);
-//        addTypes(static_wasteland.get(), Type.WASTELAND, Type.MOUNTAIN);
-//        addTypes(goldstone_lands.get(), Type.WASTELAND, Type.PLAINS);
-//        addTypes(mineral_reservoir.get(), Type.OCEAN);
-//        addTypes(mineral_river.get(), Type.RIVER);
-//    }
+    public static void addBiomeTypes() {
+        addTypes(pink_agate_forest, Type.FOREST);
+        addTypes(blue_agate_taiga, Type.CONIFEROUS);
+        addTypes(green_agate_jungle, Type.JUNGLE);
+        addTypes(purple_agate_swamp, Type.SWAMP, Type.MAGICAL);
+        addTypes(mutant_agate_wildwood, Type.FOREST, Type.LUSH, Type.MAGICAL);
+        addTypes(fossil_woodland, Type.SAVANNA);
+        addTypes(crystal_plains, Type.PLAINS);
+        addTypes(salt_dunes, Type.DRY, Type.HOT, Type.SANDY, Type.SPARSE);
+        addTypes(smoldering_bog, Type.HOT, Type.WASTELAND, Type.DEAD);
+        addTypes(shining_grove, Type.LUSH, Type.FOREST, Type.MAGICAL);
+        addTypes(volcanic_lands, Type.HOT, Type.SPARSE, Type.DRY, Type.MOUNTAIN);
+        addTypes(static_wasteland, Type.WASTELAND, Type.MOUNTAIN);
+        addTypes(goldstone_lands, Type.WASTELAND, Type.PLAINS);
+        addTypes(mineral_reservoir, Type.OCEAN);
+        addTypes(mineral_river, Type.RIVER);
+    }
 }
