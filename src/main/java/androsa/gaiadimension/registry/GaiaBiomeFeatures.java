@@ -9,7 +9,6 @@ import com.google.common.collect.Lists;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.SaplingBlock;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.registry.Registry;
 import net.minecraft.util.registry.WorldGenRegistries;
 import net.minecraft.world.gen.Heightmap;
 import net.minecraft.world.gen.blockplacer.SimpleBlockPlacer;
@@ -29,7 +28,9 @@ import net.minecraft.world.gen.surfacebuilders.ISurfaceBuilderConfig;
 import net.minecraft.world.gen.surfacebuilders.SurfaceBuilderConfig;
 import net.minecraft.world.gen.trunkplacer.StraightTrunkPlacer;
 
+import java.util.Map;
 import java.util.Set;
+import java.util.function.Supplier;
 
 public final class GaiaBiomeFeatures {
 
@@ -127,7 +128,18 @@ public final class GaiaBiomeFeatures {
     public static final GaiaTreeFeatureConfig PINK_AGATE_TREE_CONFIG = configureTree(PINK_AGATE_LOG, PINK_AGATE_LEAVES, 5, ModBlocks.pink_agate_sapling);
     public static final GaiaTreeFeatureConfig BLUE_AGATE_TREE_CONFIG = configureTree(BLUE_AGATE_LOG, BLUE_AGATE_LEAVES, 6, ModBlocks.blue_agate_sapling);
     public static final GaiaTreeFeatureConfig GREEN_AGATE_TREE_CONFIG = configureTree(GREEN_AGATE_LOG, GREEN_AGATE_LEAVES, 10, ModBlocks.green_agate_sapling);
-    public static final BaseTreeFeatureConfig GREEN_AGATE_BUSH_CONFIG = (new BaseTreeFeatureConfig.Builder(new SimpleBlockStateProvider(GREEN_AGATE_LOG), new SimpleBlockStateProvider(GREEN_AGATE_LEAVES), new BushFoliagePlacer(FeatureSpread.func_242252_a(2), FeatureSpread.func_242252_a(1), 2), new StraightTrunkPlacer(1, 0, 0), new TwoLayerFeature(0, 0, 0))).func_236702_a_(Heightmap.Type.MOTION_BLOCKING_NO_LEAVES).build();
+    public static final BaseTreeFeatureConfig GREEN_AGATE_BUSH_CONFIG = (
+            new BaseTreeFeatureConfig.Builder(
+                    new SimpleBlockStateProvider(GREEN_AGATE_LOG),
+                    new SimpleBlockStateProvider(GREEN_AGATE_LEAVES),
+                    new BushFoliagePlacer(
+                            FeatureSpread.func_242252_a(2),
+                            FeatureSpread.func_242252_a(1),
+                            2),
+                    new StraightTrunkPlacer(1, 0, 0),
+                    new TwoLayerFeature(0, 0, 0)))
+            .func_236702_a_(Heightmap.Type.MOTION_BLOCKING_NO_LEAVES)
+            .build();
     public static final GaiaTreeFeatureConfig PURPLE_AGATE_TREE_CONFIG = configureTree(PURPLE_AGATE_LOG, PURPLE_AGATE_LEAVES, 7, ModBlocks.purple_agate_sapling);
     public static final GaiaTreeFeatureConfig FOSSILIZED_TREE_CONFIG = configureTree(FOSSIL_LOG, FOSSIL_LEAVES, 5, ModBlocks.fossilized_sapling);
     public static final GaiaTreeFeatureConfig CORRUPTED_TREE_CONFIG = configureTree(CORRUPTED_LOG, CORRUPTED_LEAVES, 7, ModBlocks.corrupted_sapling);
@@ -154,6 +166,10 @@ public final class GaiaBiomeFeatures {
     public static final BlockClusterFeatureConfig MURGNI = (new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(MYSTICAL_MURGNI), new SimpleBlockPlacer())).tries(16).build();
     public static final BlockClusterFeatureConfig CORRUPT_EYE = (new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(CORRUPTED_GAIA_EYE), new SimpleBlockPlacer())).tries(16).build();
     public static final BlockClusterFeatureConfig CAVE_FUNGI = (new BlockClusterFeatureConfig.Builder(new WeightedBlockStateProvider().addWeightedBlockstate(ELDER_IMKLIA, 2).addWeightedBlockstate(GOLD_ORB_TUCHER, 2), new SimpleBlockPlacer())).tries(64).blacklist(cave_blacklist).func_227317_b_().build();
+
+    public static final ImmutableList<Supplier<ConfiguredFeature<?,?>>> BUSH_WORKAROUND = ImmutableList.of(
+            () -> Feature.TREE.withConfiguration(GREEN_AGATE_BUSH_CONFIG)
+    );
 
     //SurfaceBuilders
     public static final ConfiguredSurfaceBuilder<SurfaceBuilderConfig> d_glitter_heavy_salt = registerSurfaceBuilder("glitter_grass", ModWorldgen.DEFAULT_GAIA.func_242929_a(GLITTER_HEAVY_SALT));
@@ -224,7 +240,7 @@ public final class GaiaBiomeFeatures {
     public static final ConfiguredFeature<?, ?> pink_agate_tree_rare = registerFeature("pink_agate_tree_rare", makeTreeFeature(ModWorldgen.PINK_AGATE_TREE, PINK_AGATE_TREE_CONFIG, 0, 0.1F, 1));
     public static final ConfiguredFeature<?, ?> blue_agate_tree = registerFeature("blue_agate_tree", makeTreeFeature(ModWorldgen.BLUE_AGATE_TREE, BLUE_AGATE_TREE_CONFIG, 1, 0.3F, 1));
     public static final ConfiguredFeature<?, ?> green_agate_tree = registerFeature("green_agate_tree", makeTreeFeature(ModWorldgen.GREEN_AGATE_TREE, GREEN_AGATE_TREE_CONFIG, 5, 0.3F, 1));
-    public static final ConfiguredFeature<?, ?> green_agate_bush = registerFeature("green_agate_bush", Feature.TREE.withConfiguration(GREEN_AGATE_BUSH_CONFIG)).withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.COUNT_EXTRA.configure(new AtSurfaceWithExtraConfig(2, 0.1F, 3)));
+    public static final ConfiguredFeature<?, ?> green_agate_bush = registerFeature("green_agate_bush", Feature.SIMPLE_RANDOM_SELECTOR.withConfiguration(new SingleRandomFeature(BUSH_WORKAROUND)));
     public static final ConfiguredFeature<?, ?> purple_agate_tree = registerFeature("purple_agate_tree", makeTreeFeature(ModWorldgen.PURPLE_AGATE_TREE, PURPLE_AGATE_TREE_CONFIG, 1, 0.1F, 2));
     public static final ConfiguredFeature<?, ?> various_agate_trees = registerFeature("various_agate_trees", Feature.RANDOM_SELECTOR.withConfiguration(new MultipleRandomFeatureConfig(ImmutableList.of(
             ModWorldgen.PINK_AGATE_TREE.withConfiguration(PINK_AGATE_TREE_CONFIG).withChance(0.1F),
@@ -288,18 +304,39 @@ public final class GaiaBiomeFeatures {
     }
 
     private static <SC extends ISurfaceBuilderConfig> ConfiguredSurfaceBuilder<SC> registerSurfaceBuilder(String name, ConfiguredSurfaceBuilder<SC> surface) {
-        return WorldGenRegistries.register(WorldGenRegistries.CONFIGURED_SURFACE_BUILDER, new ResourceLocation(GaiaDimensionMod.MODID, name), surface);
+        RegistryHelper.CONFIGURED_SURFACE_BUILDERS.put(surface, name);
+        return surface;
     }
 
     private static <FC extends IFeatureConfig, F extends Structure<FC>> StructureFeature<FC, F> registerStructureFeature(String name, StructureFeature<FC, F> structure) {
-        return WorldGenRegistries.register(WorldGenRegistries.CONFIGURED_STRUCTURE_FEATURE, new ResourceLocation(GaiaDimensionMod.MODID, name), structure);
+        RegistryHelper.CONFIGURED_STRUCTURE_FEATURES.put(structure, name);
+        return structure;
     }
 
     private static <WC extends ICarverConfig> ConfiguredCarver<WC> registerCarver(String name, ConfiguredCarver<WC> carver) {
-        return WorldGenRegistries.register(WorldGenRegistries.CONFIGURED_CARVER, new ResourceLocation(GaiaDimensionMod.MODID, name), carver);
+        RegistryHelper.CONFIGURED_WORLD_CARVERS.put(carver, name);
+        return carver;
     }
 
     private static <FC extends IFeatureConfig> ConfiguredFeature<FC, ?> registerFeature(String name, ConfiguredFeature<FC, ?> feature) {
-        return Registry.register(WorldGenRegistries.CONFIGURED_FEATURE, new ResourceLocation(GaiaDimensionMod.MODID, name), feature);
+        RegistryHelper.CONFIGURED_FEATURES.put(feature, name);
+        return feature;
+    }
+
+    public static void registerConfiguredWorldgen() {
+        System.out.println(RegistryHelper.CONFIGURED_FEATURES);
+        for (Map.Entry<ConfiguredSurfaceBuilder<?>, String> entry : RegistryHelper.CONFIGURED_SURFACE_BUILDERS.entrySet()) {
+            WorldGenRegistries.register(WorldGenRegistries.CONFIGURED_SURFACE_BUILDER, new ResourceLocation(GaiaDimensionMod.MODID, entry.getValue()), entry.getKey());
+        }
+        for (Map.Entry<StructureFeature<?,?>, String> entry : RegistryHelper.CONFIGURED_STRUCTURE_FEATURES.entrySet()) {
+            WorldGenRegistries.register(WorldGenRegistries.CONFIGURED_STRUCTURE_FEATURE, new ResourceLocation(GaiaDimensionMod.MODID, entry.getValue()), entry.getKey());
+        }
+        for (Map.Entry<ConfiguredCarver<?>, String> entry : RegistryHelper.CONFIGURED_WORLD_CARVERS.entrySet()) {
+            WorldGenRegistries.register(WorldGenRegistries.CONFIGURED_CARVER, new ResourceLocation(GaiaDimensionMod.MODID, entry.getValue()), entry.getKey());
+        }
+        for (Map.Entry<ConfiguredFeature<?,?>, String> entry : RegistryHelper.CONFIGURED_FEATURES.entrySet()) {
+            System.out.println(entry);
+            WorldGenRegistries.register(WorldGenRegistries.CONFIGURED_FEATURE, new ResourceLocation(GaiaDimensionMod.MODID, entry.getValue()), entry.getKey());
+        }
     }
 }

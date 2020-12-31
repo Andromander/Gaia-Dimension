@@ -30,6 +30,7 @@ import org.apache.commons.lang3.tuple.Pair;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 @Mod(GaiaDimensionMod.MODID)
@@ -89,6 +90,7 @@ public class GaiaDimensionMod {
             PointOfInterestType.registerBlockStates(ModDimensions.GAIA_PORTAL);
             PointOfInterestType.BLOCKS_OF_INTEREST.addAll(ModDimensions.GAIA_PORTAL.blockStates);
         });
+        GaiaBiomeFeatures.registerConfiguredWorldgen();
         ModBlocks.addPlants();
         ModEntities.registerSpawnPlacement();
         ModEntities.registerAttributes();
@@ -109,7 +111,7 @@ public class GaiaDimensionMod {
                 return false;
             }
 
-            @Nullable
+            @Nonnull
             @Override
             public ISkyRenderHandler getSkyRenderHandler() {
                 return new GaiaSkyRender();
