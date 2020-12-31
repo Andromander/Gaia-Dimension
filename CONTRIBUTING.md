@@ -35,7 +35,7 @@ This might be a mod, but it needs to stay true to Minecraft's art style. Do not 
 I cannot understand languages outside of English, so if you are ready to have your lang file pulled, please ping the author that you are ready to do so. Lang files should also be formatted as `xx_xx`, as it is the current format.
 
 ### It needs to look good
-This is a no-brainer. To filter out random "contributors" from the mod, the texture needs at least *some* effort put into it. Try not to use third-party editors like Novaskin, as they are limited in tools. Recommended tools are Paint.NET, GIMP and Photoshop.
+This is a no-brainer. To filter out random "contributors" from the mod, the texture needs at least *some* effort put into it. Try not to use third-party editors, such as [Novaskin](https://novaskin.me/), as they are limited in tools. Recommended tools are [Paint.NET](https://www.getpaint.net/), [GIMP](https://www.gimp.org/) and [Photoshop](https://photoshop.com/).
 
 ## Testing
-Testing the mod is essential to making sure that the mod is functional outside of the test environment. There aren't as many major guidelines to follow, but if you come across a bug, try to use the Issue template provided. Suggestions are best directed to Gaia Dimension's Discord
+Testing the mod is essential to making sure that the mod is functional outside of the test environment. There aren't as many major guidelines to follow, but if you come across a bug, try to use the Issue Templates provided. Suggestions are best directed to [Gaia Dimension's Discord](https://discord.gg/g7BBHB6).
