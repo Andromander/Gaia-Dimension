@@ -36,8 +36,7 @@ This might be a mod, but it needs to stay true to Minecraft's art style. Do not 
 This is a no-brainer. To filter out random "contributors" from the mod, the texture needs at least *some* effort put into it. Try not to use third-party editors, such as [Novaskin](https://novaskin.me/), as they are limited in tools. Recommended tools are [Paint.NET](https://www.getpaint.net/), [GIMP](https://www.gimp.org/) and [Photoshop](https://photoshop.com/).
 
 ## Localization and Translating
-
-Most contributors cannot understand languages outside of English, so if you are ready to have your `.lang` file pulled, please notify the author that you are ready to do so.
+Most contributors cannot understand languages outside of English, so if you are ready to have your `.json` file pulled, please notify the author that you are ready to do so.
 
 ### Naming conventions
 `.json` language files should be formatted as `xx_xx.json`, as it is the current and recommended format. (Example: `en_US.json`)
