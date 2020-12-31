@@ -3,5 +3,6 @@
 [![Discord](https://img.shields.io/discord/404597598633328643.svg)](https://discord.gg/g7BBHB6)
 [![License](https://img.shields.io/github/license/Andromander/Gaia-Dimension)](LICENSE)
 [![Issues](https://img.shields.io/github/issues/Andromander/Gaia-Dimension)](https://github.com/Andromander/Gaia-Dimension/issues)
+[![CurseForge](https://img.shields.io/badge/Project-on%20CurseForge-orange)](https://www.curseforge.com/minecraft/mc-mods/gaia-dimension)
 
 This is a mod that revolves around a dimension made from gemstones and crystals. There is lore too.
