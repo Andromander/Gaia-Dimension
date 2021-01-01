@@ -3,7 +3,6 @@ package androsa.gaiadimension.block;
 import androsa.gaiadimension.registry.ModBiomes;
 import androsa.gaiadimension.registry.ModBlocks;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.IGrowable;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.gen.feature.ConfiguredFeature;
 import net.minecraft.world.gen.feature.FlowersFeature;
@@ -37,10 +36,6 @@ public class GlitterGrassBlock extends AbstractGaiaGrassBlock {
             }
 
             BlockState blockstate2 = worldIn.getBlockState(blockpos1);
-            if (blockstate2.isIn(normalGrowth.getBlock()) && rand.nextInt(10) == 0) {
-                ((IGrowable)normalGrowth.getBlock()).grow(worldIn, rand, blockpos1, blockstate2);
-            }
-
             if (blockstate2.isAir()) {
                 BlockState blockstate1;
                 if (rand.nextInt(8) == 0) {
