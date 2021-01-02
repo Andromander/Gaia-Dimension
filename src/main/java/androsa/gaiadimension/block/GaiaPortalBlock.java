@@ -1,5 +1,6 @@
 package androsa.gaiadimension.block;
 
+import androsa.gaiadimension.GaiaDimensionMod;
 import androsa.gaiadimension.registry.ModBlocks;
 import androsa.gaiadimension.registry.ModDimensions;
 import androsa.gaiadimension.registry.ModGaiaConfig;
@@ -26,8 +27,10 @@ import net.minecraft.world.biome.Biome;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.common.BiomeDictionary;
 
 import javax.annotation.Nullable;
+import java.util.Optional;
 import java.util.Random;
 
 public class GaiaPortalBlock extends Block {
@@ -64,12 +67,21 @@ public class GaiaPortalBlock extends Block {
 
     // This will check for creation conditions in the Overworld or Gaia
     private boolean canCreatePortalByWorld(World world, BlockPos pos) {
-        Biome biome = world.getBiome(pos);
-
         if (world.getDimensionKey() == World.OVERWORLD) {
-//          return !ModGaiaConfig.portalCheck.get() || BiomeDictionary.hasType(biome, Type.HOT) || BiomeDictionary.hasType(biome, Type.MOUNTAIN) || BiomeDictionary.hasType(biome, Type.DRY);
-            return !ModGaiaConfig.portalCheck.get() || world.getBiome(pos).getCategory() == Biome.Category.DESERT || world.getBiome(pos).getCategory() == Biome.Category.EXTREME_HILLS;
+            if (ModGaiaConfig.portalCheck.get()) {
+                Optional<RegistryKey<Biome>> biome = world.func_242406_i(pos);
+                //Check for biome. Since RegistryKeys are optional, we need a case for empty keys.
+                if (biome.isPresent()) {
+                    return BiomeDictionary.hasType(biome.get(), BiomeDictionary.Type.HOT) || BiomeDictionary.hasType(biome.get(), BiomeDictionary.Type.MOUNTAIN) || BiomeDictionary.hasType(biome.get(), BiomeDictionary.Type.DRY);
+                }
+                //Somehow checking the biome failed
+                GaiaDimensionMod.LOGGER.warn("The biome doesn't appear to exist. Portal could not be created. If this issue persists, disable biome checking in the world's config.");
+                return false;
+            }
+            //Clearly, the option is false, we should be returning true anyway
+            return true;
         } else {
+            //Gaia is pro-portal
             return world.getDimensionKey() == ModDimensions.gaia_world;
         }
     }
