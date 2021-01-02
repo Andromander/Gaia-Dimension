@@ -12,6 +12,7 @@ Example:
 public void() {
 }
 ```
+
 ### Spacing must use four spaces, not tabs
 Spacing must be 4 spaces: It seems trivial to bring this up, but please stick to 4 spaces per indentation as this is the project default. It helps when reviewing changes made to the source, as changes to indentations makes it appear like the entire file has been replaced.
 
