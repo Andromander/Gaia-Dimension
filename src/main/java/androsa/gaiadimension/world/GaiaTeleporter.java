@@ -27,6 +27,7 @@ import net.minecraftforge.common.util.ITeleporter;
 import javax.annotation.Nullable;
 import java.util.*;
 import java.util.function.Function;
+import java.util.function.ToDoubleFunction;
 
 public class GaiaTeleporter implements ITeleporter {
 
@@ -38,13 +39,17 @@ public class GaiaTeleporter implements ITeleporter {
 
     public Optional<TeleportationRepositioner.Result> getExistingPortal(BlockPos pos) {
         PointOfInterestManager poimanager = this.world.getPointOfInterestManager();
-        int i = 16; //TODO: correct?
+        int i = 64; //TODO: correct?
         poimanager.ensureLoadedAndValid(this.world, pos, i);
-        Optional<PointOfInterest> optional = poimanager.getInSquare((poiType) ->
-                poiType == ModDimensions.GAIA_PORTAL, pos, i, PointOfInterestManager.Status.ANY).sorted(Comparator.<PointOfInterest>comparingDouble((poi) ->
-                    poi.getPos().distanceSq(pos)).thenComparingInt((poi) ->
-                    poi.getPos().getY())).filter((poi) ->
-                this.world.getBlockState(poi.getPos()).hasProperty(BlockStateProperties.HORIZONTAL_AXIS)).findFirst();
+        Optional<PointOfInterest> optional = poimanager.getInSquare(poiType ->
+                poiType == ModDimensions.GAIA_PORTAL, pos, i, PointOfInterestManager.Status.ANY)
+                .sorted(Comparator.comparingDouble((ToDoubleFunction<PointOfInterest>) poi ->
+                        poi.getPos().distanceSq(pos))
+                        .thenComparingInt(poi ->
+                                poi.getPos().getY()))
+                .filter(poi ->
+                        GaiaTeleporter.this.world.getBlockState(poi.getPos()).hasProperty(BlockStateProperties.HORIZONTAL_AXIS))
+                .findFirst();
         return optional.map((poi) -> {
             BlockPos blockpos = poi.getPos();
             this.world.getChunkProvider().registerTicket(TicketType.PORTAL, new ChunkPos(blockpos), 3, blockpos);

@@ -178,12 +178,4 @@ public class RegistryHelper {
             registry.register(particle);
         }
     }
-
-    @SubscribeEvent
-    public static void registerPOIs(RegistryEvent.Register<PointOfInterestType> event) {
-        IForgeRegistry<PointOfInterestType> registry = event.getRegistry();
-        for (PointOfInterestType poi : POI_TYPES) {
-            registry.register(poi);
-        }
-    }
 }
