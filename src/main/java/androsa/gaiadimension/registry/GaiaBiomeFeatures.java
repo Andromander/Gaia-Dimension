@@ -324,7 +324,6 @@ public final class GaiaBiomeFeatures {
     }
 
     public static void registerConfiguredWorldgen() {
-        System.out.println(RegistryHelper.CONFIGURED_FEATURES);
         for (Map.Entry<ConfiguredSurfaceBuilder<?>, String> entry : RegistryHelper.CONFIGURED_SURFACE_BUILDERS.entrySet()) {
             WorldGenRegistries.register(WorldGenRegistries.CONFIGURED_SURFACE_BUILDER, new ResourceLocation(GaiaDimensionMod.MODID, entry.getValue()), entry.getKey());
         }
@@ -335,7 +334,6 @@ public final class GaiaBiomeFeatures {
             WorldGenRegistries.register(WorldGenRegistries.CONFIGURED_CARVER, new ResourceLocation(GaiaDimensionMod.MODID, entry.getValue()), entry.getKey());
         }
         for (Map.Entry<ConfiguredFeature<?,?>, String> entry : RegistryHelper.CONFIGURED_FEATURES.entrySet()) {
-            System.out.println(entry);
             WorldGenRegistries.register(WorldGenRegistries.CONFIGURED_FEATURE, new ResourceLocation(GaiaDimensionMod.MODID, entry.getValue()), entry.getKey());
         }
     }
