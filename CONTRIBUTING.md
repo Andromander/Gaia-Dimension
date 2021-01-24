@@ -32,7 +32,7 @@ If you are submitting a PR for a block alongside a JSON, please be sure to use t
 This might be a mod, but it needs to stay true to Minecraft's art style. Do not exceed 16*16 unless specified by the author.
 
 ### Regarding Translations, make sure that it is sound quality
-I cannot understand languages outside of English, so if you are ready to have your lang file pulled, please ping the author that you are ready to do so. Lang files should also be formatted as `xx_xx`, as it is the current format.
+The developers cannot understand languages outside of English, so if you are ready to have your lang file pulled, please ping the author that you are ready to do so. Lang files should also be formatted as `xx_xx`, as it is the current format.
 
 ### It needs to look good
 This is a no-brainer. To filter out random "contributors" from the mod, the texture needs at least *some* effort put into it. Try not to use third-party editors like Novaskin, as they are limited in tools. Recommended tools are Paint.NET, GIMP and Photoshop.

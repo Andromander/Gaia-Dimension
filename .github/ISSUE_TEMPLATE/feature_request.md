@@ -14,7 +14,7 @@ assignees: ''
 PLEASE DO NOT SUBMIT A FEATURE REQUEST FOR THE FOLLOWING:
 - Implement the unused equipment. Yes, they will be added eventually.
 - Guide book. The developers are trying to figure out a solution that doesn't require a dependency.
-- New boss <insert structure, mob, or loot>. Don't worry, I do have plans.
+- New boss <insert structure, mob, or loot>. Don't worry, the developers do have plans.
 - Duplicate ideas. No, it won't boost its chance of being added. Instead, add a thumbs up to ideas that you like.
 - Bug/Crash fixes. Use the Bug or Crash report templates, not this.
 - Questions. There is a Discord for a reason. -->
