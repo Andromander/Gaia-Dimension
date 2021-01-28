@@ -4,6 +4,7 @@ import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.world.biome.provider.BiomeProvider;
 import net.minecraft.world.gen.*;
+import net.minecraftforge.fml.server.ServerLifecycleHooks;
 
 import java.util.Random;
 import java.util.function.Supplier;
@@ -13,12 +14,15 @@ public class GaiaChunkGenerator extends NoiseChunkGenerator {
     public static final Codec<GaiaChunkGenerator> CODEC = RecordCodecBuilder.create((instance) ->
             instance.group(
                     BiomeProvider.CODEC.fieldOf("biome_source").forGetter(ChunkGenerator::getBiomeProvider),
-                    Codec.LONG.fieldOf("seed").orElse(new Random().nextLong()).forGetter((obj) -> obj.seed),
-                    DimensionSettings.field_236098_b_.fieldOf("settings").forGetter(GaiaChunkGenerator::getSettings)
+                    Codec.LONG.fieldOf("seed")
+                            .orElseGet(() -> GaiaChunkGenerator.hackSeed)
+                            .forGetter((obj) -> obj.seed),
+                    DimensionSettings.field_236098_b_.fieldOf("settings")
+                            .forGetter(GaiaChunkGenerator::getSettings)
             ).apply(instance, instance.stable(GaiaChunkGenerator::new)));
 
     private long seed;
-    //private final INoiseGenerator surfaceDepthNoise;
+    public static long hackSeed; //DON'T TOUCH
 
     public GaiaChunkGenerator(BiomeProvider provider, long seed, Supplier<DimensionSettings> settingsIn) {
 //        super(worldIn, provider, 4, 8, 256, settingsIn, true);

@@ -1,6 +1,7 @@
 package androsa.gaiadimension.world.layer;
 
 import androsa.gaiadimension.GaiaDimensionMod;
+import androsa.gaiadimension.world.GaiaChunkGenerator;
 import com.google.common.collect.ImmutableList;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
@@ -22,8 +23,11 @@ import static androsa.gaiadimension.registry.ModBiomes.*;
 public class GaiaBiomeProvider extends BiomeProvider {
 
     public static final Codec<GaiaBiomeProvider> CODEC = RecordCodecBuilder.create((instance) -> instance.group(
-            Codec.LONG.fieldOf("seed").orElse(new Random().nextLong()).forGetter((obj) -> obj.seed),
-            RegistryLookupCodec.getLookUpCodec(Registry.BIOME_KEY).forGetter((obj) -> obj.registry)
+            Codec.LONG.fieldOf("seed")
+                    .orElse(GaiaChunkGenerator.hackSeed)
+                    .forGetter((obj) -> obj.seed),
+            RegistryLookupCodec.getLookUpCodec(Registry.BIOME_KEY)
+                    .forGetter((obj) -> obj.registry)
     ).apply(instance, instance.stable(GaiaBiomeProvider::new)));
 
     private final long seed;
