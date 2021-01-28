@@ -53,7 +53,6 @@ public class GaiaDimensionMod {
     public static final ITag.INamedTag<Block> STATIC = BlockTags.makeWrapperTag(new ResourceLocation(MODID, "base_stone_static").toString());
 
     public GaiaDimensionMod() {
-        new GaiaBiomeFeatures(); //This just works
 
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
         modEventBus.addListener(this::setup);
@@ -72,7 +71,6 @@ public class GaiaDimensionMod {
 //      ModParticles.PARTICLE_TYPES.register(modEventBus);
         ModRecipes.RECIPE_SERIALIZERS.register(modEventBus);
         ModTileEntities.TILE_ENTITIES.register(modEventBus);
-//      ModWorldgen.FEATURES.register(modEventBus);
 //      ModWorldgen.STRUCTURE_FEATURES.register(modEventBus);
 //      ModWorldgen.SURFACE_BUILDERS.register(modEventBus);
 //      ModWorldgen.WORLD_CARVERS.register(modEventBus);
@@ -89,13 +87,15 @@ public class GaiaDimensionMod {
         event.enqueueWork(() -> {
             PointOfInterestType.registerBlockStates(ModDimensions.GAIA_PORTAL);
             PointOfInterestType.BLOCKS_OF_INTEREST.addAll(ModDimensions.GAIA_PORTAL.blockStates);
+
+            // needs to be in enqueue as vanilla WorldGen registry maps arent threadsafe.
+            GaiaBiomeFeatures.registerConfiguredWorldgen();
+            ModDimensions.initDimension();
+            ModWorldgen.StructureTypes.init();
         });
-        GaiaBiomeFeatures.registerConfiguredWorldgen();
         ModBlocks.addPlants();
         ModEntities.registerSpawnPlacement();
         ModEntities.registerAttributes();
-        ModDimensions.initDimension();
-        ModWorldgen.StructureTypes.init();
         ModBiomes.addBiomeTypes();
     }
 
