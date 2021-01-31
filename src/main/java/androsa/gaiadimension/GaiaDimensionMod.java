@@ -137,6 +137,7 @@ public class GaiaDimensionMod {
         if (event.includeServer()) {
             generator.addProvider(new GaiaLootTables(generator));
             generator.addProvider(new GaiaRecipes(generator));
+            generator.addProvider(new GaiaConfiguredFeatures(generator));
             generator.addProvider(new GaiaBiomes(generator));
         }
     }

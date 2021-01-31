@@ -1,0 +1,36 @@
+{
+  "config": {
+    "feature": {
+      "config": {
+        "state": {
+          "Name": "gaiadimension:static_stone"
+        },
+        "radius": {
+          "base": 4,
+          "spread": 2
+        },
+        "half_height": 3,
+        "targets": [
+          {
+            "Name": "gaiadimension:wasteland_stone"
+          }
+        ]
+      },
+      "type": "gaiadimension:gaia_disk"
+    },
+    "decorator": {
+      "config": {
+        "outer": {
+          "config": {},
+          "type": "minecraft:square"
+        },
+        "inner": {
+          "config": {},
+          "type": "minecraft:top_solid_heightmap"
+        }
+      },
+      "type": "minecraft:decorated"
+    }
+  },
+  "type": "minecraft:decorated"
+}
