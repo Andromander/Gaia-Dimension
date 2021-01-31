@@ -69,82 +69,7 @@
         "type": "minecraft:decorated"
       }
     ],
-    [
-      {
-        "config": {
-          "feature": {
-            "config": {
-              "feature": {
-                "config": {
-                  "start_height": 7
-                },
-                "type": "gaiadimension:bismuth_spire"
-              },
-              "decorator": {
-                "config": {
-                  "outer": {
-                    "config": {},
-                    "type": "minecraft:square"
-                  },
-                  "inner": {
-                    "config": {},
-                    "type": "minecraft:heightmap"
-                  }
-                },
-                "type": "minecraft:decorated"
-              }
-            },
-            "type": "minecraft:decorated"
-          },
-          "decorator": {
-            "config": {
-              "count": {
-                "base": 0,
-                "spread": 2
-              }
-            },
-            "type": "minecraft:count"
-          }
-        },
-        "type": "minecraft:decorated"
-      },
-      {
-        "config": {
-          "feature": {
-            "config": {
-              "feature": {
-                "config": {},
-                "type": "gaiadimension:bismuth_geyser"
-              },
-              "decorator": {
-                "config": {
-                  "outer": {
-                    "config": {},
-                    "type": "minecraft:square"
-                  },
-                  "inner": {
-                    "config": {},
-                    "type": "minecraft:heightmap"
-                  }
-                },
-                "type": "minecraft:decorated"
-              }
-            },
-            "type": "minecraft:decorated"
-          },
-          "decorator": {
-            "config": {
-              "count": {
-                "base": 0,
-                "spread": 2
-              }
-            },
-            "type": "minecraft:count"
-          }
-        },
-        "type": "minecraft:decorated"
-      }
-    ],
+    [],
     [],
     [],
     [],
@@ -743,45 +668,6 @@
               "count": 15
             },
             "type": "minecraft:count"
-          }
-        },
-        "type": "minecraft:decorated"
-      },
-      {
-        "config": {
-          "feature": {
-            "config": {
-              "state": {
-                "Name": "gaiadimension:impure_sludge"
-              },
-              "radius": {
-                "base": 4,
-                "spread": 1
-              },
-              "half_height": 2,
-              "targets": [
-                {
-                  "Name": "gaiadimension:murky_grass"
-                },
-                {
-                  "Name": "gaiadimension:boggy_soil"
-                }
-              ]
-            },
-            "type": "gaiadimension:bog_patch"
-          },
-          "decorator": {
-            "config": {
-              "outer": {
-                "config": {},
-                "type": "minecraft:square"
-              },
-              "inner": {
-                "config": {},
-                "type": "minecraft:top_solid_heightmap"
-              }
-            },
-            "type": "minecraft:decorated"
           }
         },
         "type": "minecraft:decorated"
