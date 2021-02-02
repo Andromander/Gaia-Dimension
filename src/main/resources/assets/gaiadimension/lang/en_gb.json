@@ -224,10 +224,10 @@
   "block.gaiadimension.malachite_floor_slab": "Malachite Tile Slab",
   "block.gaiadimension.malachite_pulsing_tiles": "Pulsing Malachite Tiles",
   "block.gaiadimension.malachite_pulsing_floor_stairs": "Pulsing Malachite Tile Stairs",
-  "block.gaiadimension.malachite_chisel_bricks": "Chiseled Malachite Bricks",
-  "block.gaiadimension.malachite_chisel_stairs": "Chiseled Malachite Brick Stairs",
-  "block.gaiadimension.malachite_pulsing_chisel": "Pulsing Chiseled Malachite Bricks",
-  "block.gaiadimension.malachite_pulsing_chisel_stairs": "Pulsing Chiseled Malachite Brick Stairs",
+  "block.gaiadimension.malachite_chisel_bricks": "Chiselled Malachite Bricks",
+  "block.gaiadimension.malachite_chisel_stairs": "Chiselled Malachite Brick Stairs",
+  "block.gaiadimension.malachite_pulsing_chisel": "Pulsing Chiselled Malachite Bricks",
+  "block.gaiadimension.malachite_pulsing_chisel_stairs": "Pulsing Chiselled Malachite Brick Stairs",
   "block.gaiadimension.malachite_cracked_bricks": "Cracked Malachite Bricks",
   "block.gaiadimension.malachite_cracked_brick_slab": "Cracked Malachite Brick Stairs",
   "block.gaiadimension.malachite_cracked_brick_stairs": "Cracked Malachite Brick Slab",
@@ -596,7 +596,7 @@
   "biome.gaiadimension.crystal_plains": "Crystal Plains",
   "biome.gaiadimension.salt_dunes": "Salt Dunes",
   "biome.gaiadimension.shining_grove": "Shining Grove",
-  "biome.gaiadimension.smoldering_bog": "Smoldering Bog",
+  "biome.gaiadimension.smoldering_bog": "Smouldering Bog",
   "biome.gaiadimension.mineral_reservoir": "Mineral Reservoir",
   "biome.gaiadimension.mineral_river": "Mineral River"
 }
