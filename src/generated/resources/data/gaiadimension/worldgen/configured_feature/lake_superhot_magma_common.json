@@ -1,0 +1,22 @@
+{
+  "config": {
+    "feature": {
+      "config": {
+        "state": {
+          "Properties": {
+            "level": "0"
+          },
+          "Name": "gaiadimension:superhot_magma"
+        }
+      },
+      "type": "gaiadimension:pool"
+    },
+    "decorator": {
+      "config": {
+        "chance": 15
+      },
+      "type": "minecraft:lava_lake"
+    }
+  },
+  "type": "minecraft:decorated"
+}
