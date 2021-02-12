@@ -40,7 +40,7 @@ This is a no-brainer. To filter out random "contributors" from the mod, the text
 Most contributors cannot understand languages outside of English, so if you are ready to have your `.json` file pulled, please notify the author that you are ready to do so.
 
 ### Naming conventions
-`.json` language files should be formatted as `xx_xx.json`, as it is the current and recommended format. (Example: `en_US.json`)
+`.json` language files should be formatted as `xx_xx.json`, as it is the current and recommended format. (Example: `en_us.json`)
 
 ## Other Assets Not Yet Covered By This Document
 
