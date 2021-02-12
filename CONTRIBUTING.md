@@ -23,10 +23,7 @@ That being said, it also needs to be functional in-game. You could submit a PR b
 ## Textures and Models
 Though they are fundamental, contributing to these isn't as desired by developers due to how easy it is to contribute this way. Just like coding, however, there are a few guidelines that need to be followed.
 
-### Please try to submit the JSON for the texture you wish to add
-If something is implemented but untextured, you may wish to add a texture to those. However, it is most desirable if a JSON is submitted this way too. Unless specified, a PR is unlikely to be pulled if a texture is added but no JSON is attached.
-
-# Use Data Generators for Blockstates and Models where possible
+### Use Data Generators for Blockstates and Models where possible
 To save on time and energy, most blocks and items have generated files where they are output to src/generated. Unless the block or item has a unique model that would take more time to write a generator for, please use the Data Generators provided in src/main/java/androsa/gaiadimension/data/.
 
 ### Only make 16x16 pixel textures
