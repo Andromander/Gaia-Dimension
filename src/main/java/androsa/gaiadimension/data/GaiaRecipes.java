@@ -415,6 +415,11 @@ public class GaiaRecipes extends GaiaRecipeProvider {
                 .key('#', ModBlocks.malachite_brick_slab)
                 .addCriterion("has_malachite_slab", hasItem(ModBlocks.malachite_brick_slab))
                 .build(consumer, loc("malachite_chisel_bricks"));
+        ShapelessRecipeBuilder.shapelessRecipe(Items.BONE_MEAL, 3)
+                .addIngredient(ModItems.shiny_bone)
+                .setGroup("bonemeal")
+                .addCriterion("has_bone", hasItem(ModItems.shiny_bone)).build(consumer);
+
 
         smeltingRecipe(ModItems.blue_opal, ModBlocks.opal_ore_blue, 0.3F).build(consumer, locSmelt("blue_opal_smelt"));
         smeltingRecipe(ModBlocks.burning_sapling, ModBlocks.burnt_sapling, 0.1F).build(consumer, locSmelt("burning_sapling"));
