@@ -1,0 +1,33 @@
+{
+  "parent": "gaiadimension:gaia/root",
+  "display": {
+    "icon": {
+      "item": "gaiadimension:amethyst_bricks"
+    },
+    "title": {
+      "translate": "advancements.gaia.find_mini_tower.title"
+    },
+    "description": {
+      "translate": "advancements.gaia.find_mini_tower.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "mini_tower": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "feature": "mini_tower"
+        }
+      }
+    }
+  },
+  "requirements": [
+    [
+      "mini_tower"
+    ]
+  ]
+}

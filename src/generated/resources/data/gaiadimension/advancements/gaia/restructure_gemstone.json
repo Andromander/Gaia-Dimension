@@ -1,0 +1,123 @@
+{
+  "parent": "gaiadimension:gaia/collect_gemstone",
+  "display": {
+    "icon": {
+      "item": "gaiadimension:ixiolite"
+    },
+    "title": {
+      "translate": "advancements.gaia.restructure_gemstone.title"
+    },
+    "description": {
+      "translate": "advancements.gaia.restructure_gemstone.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "get_ixiolite": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "gaiadimension:ixiolite"
+          }
+        ]
+      }
+    },
+    "get_proustite": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "gaiadimension:proustite"
+          }
+        ]
+      }
+    },
+    "get_euclase": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "gaiadimension:euclase"
+          }
+        ]
+      }
+    },
+    "get_leucite": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "gaiadimension:leucite"
+          }
+        ]
+      }
+    },
+    "get_carnelian": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "gaiadimension:carnelian"
+          }
+        ]
+      }
+    },
+    "get_benitoite": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "gaiadimension:benitoite"
+          }
+        ]
+      }
+    },
+    "get_diopside": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "gaiadimension:diopside"
+          }
+        ]
+      }
+    },
+    "get_chalcedony": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "gaiadimension:chalcedony"
+          }
+        ]
+      }
+    },
+    "get_tektite": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "gaiadimension:tektite"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "get_ixiolite",
+      "get_proustite",
+      "get_euclase",
+      "get_leucite",
+      "get_carnelian",
+      "get_benitoite",
+      "get_diopside",
+      "get_chalcedony",
+      "get_tektite"
+    ]
+  ]
+}

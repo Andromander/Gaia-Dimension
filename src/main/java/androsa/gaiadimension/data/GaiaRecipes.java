@@ -418,7 +418,8 @@ public class GaiaRecipes extends GaiaRecipeProvider {
         ShapelessRecipeBuilder.shapelessRecipe(Items.BONE_MEAL, 3)
                 .addIngredient(ModItems.shiny_bone)
                 .setGroup("bonemeal")
-                .addCriterion("has_bone", hasItem(ModItems.shiny_bone)).build(consumer);
+                .addCriterion("has_bone", hasItem(ModItems.shiny_bone))
+                .build(consumer, loc("bone_meal"));
 
 
         smeltingRecipe(ModItems.blue_opal, ModBlocks.opal_ore_blue, 0.3F).build(consumer, locSmelt("blue_opal_smelt"));

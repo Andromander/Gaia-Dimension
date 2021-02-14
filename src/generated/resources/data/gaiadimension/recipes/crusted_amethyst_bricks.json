@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "gaiadimension:amethyst_bricks"
+    },
+    {
+      "item": "gaiadimension:crystal_shard"
+    }
+  ],
+  "result": {
+    "item": "gaiadimension:crusted_amethyst_bricks"
+  }
+}

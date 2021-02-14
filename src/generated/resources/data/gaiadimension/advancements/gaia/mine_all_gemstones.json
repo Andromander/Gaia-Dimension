@@ -1,0 +1,139 @@
+{
+  "parent": "gaiadimension:gaia/restructure_gemstone",
+  "display": {
+    "icon": {
+      "item": "gaiadimension:white_opal"
+    },
+    "title": {
+      "translate": "advancements.gaia.mine_all_gemstones.title"
+    },
+    "description": {
+      "translate": "advancements.gaia.mine_all_gemstones.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "get_sugilite": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "gaiadimension:sugilite"
+          }
+        ]
+      }
+    },
+    "get_hematite": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "gaiadimension:hematite"
+          }
+        ]
+      }
+    },
+    "get_cinnabar": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "gaiadimension:cinnabar"
+          }
+        ]
+      }
+    },
+    "get_labradorite": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "gaiadimension:labradorite"
+          }
+        ]
+      }
+    },
+    "get_moonstone": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "gaiadimension:moonstone"
+          }
+        ]
+      }
+    },
+    "get_red_opal": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "gaiadimension:red_opal"
+          }
+        ]
+      }
+    },
+    "get_blue_opal": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "gaiadimension:blue_opal"
+          }
+        ]
+      }
+    },
+    "get_green_opal": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "gaiadimension:green_opal"
+          }
+        ]
+      }
+    },
+    "get_white_opal": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "gaiadimension:white_opal"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "get_sugilite"
+    ],
+    [
+      "get_hematite"
+    ],
+    [
+      "get_cinnabar"
+    ],
+    [
+      "get_labradorite"
+    ],
+    [
+      "get_moonstone"
+    ],
+    [
+      "get_red_opal"
+    ],
+    [
+      "get_blue_opal"
+    ],
+    [
+      "get_green_opal"
+    ],
+    [
+      "get_white_opal"
+    ]
+  ]
+}

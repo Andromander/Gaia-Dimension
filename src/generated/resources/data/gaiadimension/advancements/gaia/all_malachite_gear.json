@@ -1,0 +1,88 @@
+{
+  "parent": "gaiadimension:gaia/slay_malachite_guard",
+  "display": {
+    "icon": {
+      "item": "gaiadimension:malachite_guard_headgear",
+      "nbt": "{Damage:0}"
+    },
+    "title": {
+      "translate": "advancements.gaia.all_malachite_gear.title"
+    },
+    "description": {
+      "translate": "advancements.gaia.all_malachite_gear.description"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "malachite_guard_headgear": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "gaiadimension:malachite_guard_headgear"
+          }
+        ]
+      }
+    },
+    "malachite_guard_brace": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "gaiadimension:malachite_guard_brace"
+          }
+        ]
+      }
+    },
+    "malachite_guard_gear": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "gaiadimension:malachite_guard_gear"
+          }
+        ]
+      }
+    },
+    "malachite_guard_boots": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "gaiadimension:malachite_guard_boots"
+          }
+        ]
+      }
+    },
+    "malachite_guard_baton": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "gaiadimension:malachite_guard_baton"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "malachite_guard_headgear"
+    ],
+    [
+      "malachite_guard_brace"
+    ],
+    [
+      "malachite_guard_gear"
+    ],
+    [
+      "malachite_guard_boots"
+    ],
+    [
+      "malachite_guard_baton"
+    ]
+  ]
+}

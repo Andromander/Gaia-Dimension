@@ -1,0 +1,190 @@
+{
+  "parent": "gaiadimension:gaia/root",
+  "display": {
+    "icon": {
+      "item": "gaiadimension:glitter_grass"
+    },
+    "title": {
+      "translate": "advancements.gaia.explore_gaia.title"
+    },
+    "description": {
+      "translate": "advancements.gaia.explore_gaia.description"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "rewards": {
+    "experience": 1000
+  },
+  "criteria": {
+    "pink_agate_forest": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "gaiadimension:pink_agate_forest"
+        }
+      }
+    },
+    "blue_agate_taiga": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "gaiadimension:blue_agate_taiga"
+        }
+      }
+    },
+    "green_agate_jungle": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "gaiadimension:green_agate_jungle"
+        }
+      }
+    },
+    "purple_agate_swamp": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "gaiadimension:purple_agate_swamp"
+        }
+      }
+    },
+    "fossil_woodland": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "gaiadimension:fossil_woodland"
+        }
+      }
+    },
+    "mutant_agate_wildwood": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "gaiadimension:mutant_agate_wildwood"
+        }
+      }
+    },
+    "volcanic_lands": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "gaiadimension:volcanic_lands"
+        }
+      }
+    },
+    "static_wasteland": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "gaiadimension:static_wasteland"
+        }
+      }
+    },
+    "goldstone_lands": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "gaiadimension:goldstone_lands"
+        }
+      }
+    },
+    "crystal_plains": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "gaiadimension:crystal_plains"
+        }
+      }
+    },
+    "salt_dunes": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "gaiadimension:salt_dunes"
+        }
+      }
+    },
+    "shining_grove": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "gaiadimension:shining_grove"
+        }
+      }
+    },
+    "smoldering_bog": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "gaiadimension:smoldering_bog"
+        }
+      }
+    },
+    "mineral_reservoir": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "gaiadimension:mineral_reservoir"
+        }
+      }
+    },
+    "mineral_river": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "gaiadimension:mineral_river"
+        }
+      }
+    }
+  },
+  "requirements": [
+    [
+      "pink_agate_forest"
+    ],
+    [
+      "blue_agate_taiga"
+    ],
+    [
+      "green_agate_jungle"
+    ],
+    [
+      "purple_agate_swamp"
+    ],
+    [
+      "fossil_woodland"
+    ],
+    [
+      "mutant_agate_wildwood"
+    ],
+    [
+      "volcanic_lands"
+    ],
+    [
+      "static_wasteland"
+    ],
+    [
+      "goldstone_lands"
+    ],
+    [
+      "crystal_plains"
+    ],
+    [
+      "salt_dunes"
+    ],
+    [
+      "shining_grove"
+    ],
+    [
+      "smoldering_bog"
+    ],
+    [
+      "mineral_reservoir"
+    ],
+    [
+      "mineral_river"
+    ]
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "display": {
+    "icon": {
+      "item": "gaiadimension:keystone_block"
+    },
+    "title": {
+      "translate": "advancements.gaia.root.title"
+    },
+    "description": {
+      "translate": "advancements.gaia.root.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false,
+    "background": "gaiadimension:textures/block/gaia_stone.png"
+  },
+  "criteria": {
+    "entered_gaia": {
+      "trigger": "minecraft:changed_dimension",
+      "conditions": {
+        "to": "gaiadimension:gaia_dimension"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "entered_gaia"
+    ]
+  ]
+}
