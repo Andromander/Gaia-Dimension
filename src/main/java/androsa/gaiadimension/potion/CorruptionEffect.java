@@ -23,7 +23,6 @@ public class CorruptionEffect extends Effect {
     public CorruptionEffect(int color, double damage) {
         super(EffectType.HARMFUL, color);
         this.bonusPerLevel = damage;
-        //this.setPotionName(GaiaDimension.MODID + ".effect.goldstone_plague");
         this.addAttributesModifier(Attributes.ATTACK_DAMAGE, "ED1B7821-E928-4EC7-8CD7-0FF2DE5E378A", 0.0D, AttributeModifier.Operation.ADDITION);
     }
 
