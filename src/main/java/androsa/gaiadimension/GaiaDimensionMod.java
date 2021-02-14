@@ -4,6 +4,7 @@ import androsa.gaiadimension.client.ClientEvents;
 import androsa.gaiadimension.client.GaiaDimensionRenderInfo;
 import androsa.gaiadimension.client.GaiaSkyRender;
 import androsa.gaiadimension.data.*;
+import androsa.gaiadimension.data.provider.GaiaAdvancementProvider;
 import androsa.gaiadimension.registry.*;
 import net.minecraft.block.Block;
 import net.minecraft.client.world.DimensionRenderInfo;
@@ -124,6 +125,7 @@ public class GaiaDimensionMod {
             generator.addProvider(new GaiaRecipes(generator));
             generator.addProvider(new GaiaConfiguredFeatures(generator));
             generator.addProvider(new GaiaBiomes(generator));
+            generator.addProvider(new GaiaAdvancements(generator));
         }
     }
 }
