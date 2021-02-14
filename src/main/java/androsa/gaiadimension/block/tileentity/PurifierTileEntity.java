@@ -34,6 +34,7 @@ import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.wrapper.SidedInvWrapper;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.List;
 import java.util.Map;
@@ -497,11 +498,12 @@ public class PurifierTileEntity extends LockableTileEntity implements ISidedInve
     private LazyOptional<? extends IItemHandler>[] handlers = SidedInvWrapper.create(this, Direction.UP, Direction.DOWN, Direction.NORTH);
 
     @Override
+    @Nonnull
     public <T> LazyOptional<T> getCapability(Capability<T> capability, @Nullable Direction facing) {
         if (facing != null && capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY)
-            if (facing == Direction.DOWN)
+            if (facing == Direction.UP)
                 return handlers[0].cast();
-            else if (facing == Direction.UP)
+            else if (facing == Direction.DOWN)
                 return handlers[1].cast();
             else
                 return handlers[2].cast();
