@@ -209,6 +209,13 @@ public abstract class GaiaRecipeProvider extends ForgeRecipeProvider implements 
                 .addCriterion("has_thiscus", hasItem(ModBlocks.thiscus));
     }
 
+    public ShapelessRecipeBuilder crustBricks(Block result, Block ingredient) {
+        return ShapelessRecipeBuilder.shapelessRecipe(result)
+                .addIngredient(ingredient)
+                .addIngredient(ModItems.crystal_shard)
+                .addCriterion("has_shard", hasItem(ModItems.crystal_shard));
+    }
+
     public CookingRecipeBuilder smeltingRecipe(IItemProvider result, IItemProvider ingredient, float exp) {
         return smeltingRecipe(result, ingredient, exp, 1);
     }

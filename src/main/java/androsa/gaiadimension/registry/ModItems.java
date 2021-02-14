@@ -51,6 +51,7 @@ public class ModItems {
     public static final Item sweet_muck_bucket = RegistryHelper.registerItem("sweet_muck_bucket", new ScaynyxBucketItem(() -> ModFluids.sweet_muck_still));
     public static final Item liquid_bismuth_bucket = RegistryHelper.registerItem("liquid_bismuth_bucket", new ScaynyxBucketItem(() -> ModFluids.liquid_bismuth_still));
     public static final Item liquid_aura_bucket = RegistryHelper.registerItem("liquid_aura_bucket", new ScaynyxBucketItem(() -> ModFluids.liquid_aura_still));
+    public static final Item crystal_shard = registerBasicItem("crystal_shard");
 
     public static final Item pink_geode = registerBasicItem("pink_geode");
     public static final Item blue_geode = registerBasicItem("blue_geode");

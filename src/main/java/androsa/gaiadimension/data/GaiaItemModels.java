@@ -293,6 +293,7 @@ public class GaiaItemModels extends GaiaItemModelProvider {
         basicItem(ModItems.sweet_muck_bucket);
         basicItem(ModItems.liquid_bismuth_bucket);
         basicItem(ModItems.liquid_aura_bucket);
+        basicItem(ModItems.crystal_shard);
         geodeItem(ModItems.pink_geode);
         geodeItem(ModItems.blue_geode);
         geodeItem(ModItems.green_geode);

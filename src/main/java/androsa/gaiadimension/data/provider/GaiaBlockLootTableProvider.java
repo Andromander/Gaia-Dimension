@@ -2,6 +2,7 @@ package androsa.gaiadimension.data.provider;
 
 import androsa.gaiadimension.block.LargeCrateBlock;
 import androsa.gaiadimension.block.SmallCrateBlock;
+import androsa.gaiadimension.registry.ModItems;
 import net.minecraft.advancements.criterion.EnchantmentPredicate;
 import net.minecraft.advancements.criterion.ItemPredicate;
 import net.minecraft.advancements.criterion.MinMaxBounds;
@@ -13,11 +14,9 @@ import net.minecraft.item.Items;
 import net.minecraft.loot.*;
 import net.minecraft.loot.conditions.ILootCondition;
 import net.minecraft.loot.conditions.MatchTool;
+import net.minecraft.loot.conditions.RandomChance;
 import net.minecraft.loot.conditions.TableBonus;
-import net.minecraft.loot.functions.CopyName;
-import net.minecraft.loot.functions.CopyNbt;
-import net.minecraft.loot.functions.SetContents;
-import net.minecraft.loot.functions.SetCount;
+import net.minecraft.loot.functions.*;
 import net.minecraft.util.IItemProvider;
 
 public abstract class GaiaBlockLootTableProvider extends BlockLootTables {
@@ -99,5 +98,11 @@ public abstract class GaiaBlockLootTableProvider extends BlockLootTables {
                         .addEntry(withExplosionDecay(block, ItemLootEntry.builder(item)
                                 .acceptFunction(SetCount.builder(RandomValueRange.of(1.0F, 2.0F))))
                                 .acceptCondition(TableBonus.builder(Enchantments.FORTUNE, 0.02F, 0.022222223F, 0.025F, 0.033333335F, 0.1F))));
+    }
+
+    protected static LootTable.Builder withShards(Block block) {
+        return droppingWithShears(block, withExplosionDecay(block, ItemLootEntry.builder(ModItems.crystal_shard)
+                .acceptCondition(RandomChance.builder(0.125F))
+                .acceptFunction(ApplyBonus.uniformBonusCount(Enchantments.FORTUNE, 2))));
     }
 }

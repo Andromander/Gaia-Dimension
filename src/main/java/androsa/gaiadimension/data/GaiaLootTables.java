@@ -76,12 +76,12 @@ public class GaiaLootTables extends LootTableProvider {
             registerDropSelfLootTable(ModBlocks.pink_sludge_block);
 
             //Plants
-            registerLootTable(ModBlocks.crystal_growth, BlockLootTables::onlyWithShears);
-            registerLootTable(ModBlocks.crystal_growth_red, BlockLootTables::onlyWithShears);
-            registerLootTable(ModBlocks.crystal_growth_black, BlockLootTables::onlyWithShears);
-            registerLootTable(ModBlocks.crystal_growth_seared, BlockLootTables::onlyWithShears);
-            registerLootTable(ModBlocks.crystal_growth_mutant, BlockLootTables::onlyWithShears);
-            registerLootTable(ModBlocks.crystal_growth_aura, BlockLootTables::onlyWithShears);
+            registerLootTable(ModBlocks.crystal_growth, GaiaBlockLootTableProvider::withShards);
+            registerLootTable(ModBlocks.crystal_growth_red, GaiaBlockLootTableProvider::withShards);
+            registerLootTable(ModBlocks.crystal_growth_black, GaiaBlockLootTableProvider::withShards);
+            registerLootTable(ModBlocks.crystal_growth_seared, GaiaBlockLootTableProvider::withShards);
+            registerLootTable(ModBlocks.crystal_growth_mutant, GaiaBlockLootTableProvider::withShards);
+            registerLootTable(ModBlocks.crystal_growth_aura, GaiaBlockLootTableProvider::withShards);
             registerDropSelfLootTable(ModBlocks.thiscus);
             registerDropSelfLootTable(ModBlocks.ouzium);
             registerDropSelfLootTable(ModBlocks.agathum);
