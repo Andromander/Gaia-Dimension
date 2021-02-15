@@ -44,10 +44,6 @@ Testing the mod is essential to making sure that the mod is functional outside o
 
 ## Other Assets Not Yet Covered By This Document
 
-### It needs to work
-You can submit a PR that's got a solution to a problem or a new feature, but it needs to build. This can be checked by submitting the PR's and looking at the mergability. This repo uses [Travis-CI](https://travis-ci.org/), so builds are often checked.
-That being said, it also needs to be functional in-game. You could submit a PR based on the grounds that it works, but thorough testing is required to make sure that it doesn't break any other feature.
-
 ### It Needs to Fit With the Mod's Theme
 
 It has to fit with the scope of the mod and its theme.
