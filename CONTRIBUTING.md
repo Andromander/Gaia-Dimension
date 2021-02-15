@@ -39,15 +39,15 @@ Most contributors cannot understand languages outside of English, so if you are 
 ### Naming conventions
 `.json` language files should be formatted as `xx_xx.json`, as it is the current and recommended format. (Example: `en_us.json`)
 
+# Testing
+Testing the mod is essential to making sure that the mod is functional outside of the test environment. There aren't as many major guidelines to follow, but if you come across a bug, try to use the issue templates provided. Suggestions are best directed to [Gaia Dimension's Discord](https://discord.gg/g7BBHB6).
+
 ## Other Assets Not Yet Covered By This Document
 
 ### It needs to work
 You can submit a PR that's got a solution to a problem or a new feature, but it needs to build. This can be checked by submitting the PR's and looking at the mergability. This repo uses [Travis-CI](https://travis-ci.org/), so builds are often checked.
 That being said, it also needs to be functional in-game. You could submit a PR based on the grounds that it works, but thorough testing is required to make sure that it doesn't break any other feature.
 
-## It Needs to Fit With the Mod's Theme
+### It Needs to Fit With the Mod's Theme
 
 It has to fit with the scope of the mod and its theme.
-
-# Testing
-Testing the mod is essential to making sure that the mod is functional outside of the test environment. There aren't as many major guidelines to follow, but if you come across a bug, try to use the issue templates provided. Suggestions are best directed to [Gaia Dimension's Discord](https://discord.gg/g7BBHB6).
