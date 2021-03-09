@@ -176,33 +176,33 @@ public class ModEntities {
     }
 
     @SubscribeEvent
-	public static void registerAttributes(EntityAttributeCreationEvent evt) {
-		evt.put(AGATE_GOLEM, AgateGolemEntity.registerAttributes().create());
-		evt.put(ANCIENT_LAGRAHK, AncientLagrahkEntity.registerAttributes().create());
-		evt.put(ARCHAIC_WARRIOR, ArchaicWarriorEntity.registerAttributes().create());
-		evt.put(BISMUTH_ULETRUS, BismuthUletrusEntity.registerAttributes().create());
-		evt.put(CAVERN_TICK, CavernTickEntity.registerAttributes().create());
-		evt.put(CONTORTED_NAGA, ContortedNagaEntity.registerAttributes().create());
-		evt.put(CORRUPT_SAPPER, CorruptSapperEntity.registerAttributes().create());
-		evt.put(CRYSTAL_GOLEM, CrystalGolemEntity.registerAttributes().create());
-		evt.put(GROWTH_SAPPER, GrowthSapperEntity.registerAttributes().create());
-		evt.put(HOWLITE_WOLF, HowliteWolfEntity.registerAttributes().create());
-		evt.put(LESSER_SHOCKSHOOTER, LesserShockshooterEntity.registerAttributes().create());
-		evt.put(LESSER_SPITFIRE, LesserSpitfireEntity.registerAttributes().create());
-		evt.put(MARKUZAR_PLANT, MarkuzarPlantEntity.registerAttributes().create());
-		evt.put(MINERAL_ARENTHIS, MineralArenthisEntity.registerAttributes().create());
-		evt.put(MUCKLING, MonsterEntity.func_234295_eP_().create());
-		evt.put(MUTANT_GROWTH_EXTRACTOR, MutantGrowthExtractorEntity.registerAttributes().create());
-		evt.put(NOMADIC_LAGRAHK, NomadicLagrahkEntity.registerAttributes().create());
-		evt.put(PRIMAL_BEAST, PrimalBeastEntity.registerAttributes().create());
-		evt.put(ROCKY_LUGGEROTH, RockyLuggerothEntity.registerAttributes().create());
-		evt.put(RUGGED_LURMORUS, RuggedLurmorusEntity.registerAttributes().create());
-		evt.put(SALTION, SaltionEntity.registerAttributes().create());
-		evt.put(SHALLOW_ARENTHIS, ShallowArenthisEntity.registerAttributes().create());
-		evt.put(SHALURKER, ShalurkerEntity.registerAttributes().create());
-		evt.put(SPELLBOUND_ELEMENTAL, SpellElementEntity.registerAttributes().create());
-		evt.put(MALACHITE_DRONE, MalachiteDroneEntity.registerAttributes().create());
-		evt.put(BLUE_HOWLITE_WOLF, BlueHowliteWolfEntity.registerAttributes().create());
-		evt.put(MALACHITE_GUARD, MalachiteGuardEntity.registerAttributes().create());
-	}
+    public static void registerAttributes(EntityAttributeCreationEvent evt) {
+        evt.put(AGATE_GOLEM, AgateGolemEntity.registerAttributes().create());
+        evt.put(ANCIENT_LAGRAHK, AncientLagrahkEntity.registerAttributes().create());
+        evt.put(ARCHAIC_WARRIOR, ArchaicWarriorEntity.registerAttributes().create());
+        evt.put(BISMUTH_ULETRUS, BismuthUletrusEntity.registerAttributes().create());
+        evt.put(CAVERN_TICK, CavernTickEntity.registerAttributes().create());
+        evt.put(CONTORTED_NAGA, ContortedNagaEntity.registerAttributes().create());
+        evt.put(CORRUPT_SAPPER, CorruptSapperEntity.registerAttributes().create());
+        evt.put(CRYSTAL_GOLEM, CrystalGolemEntity.registerAttributes().create());
+        evt.put(GROWTH_SAPPER, GrowthSapperEntity.registerAttributes().create());
+        evt.put(HOWLITE_WOLF, HowliteWolfEntity.registerAttributes().create());
+        evt.put(LESSER_SHOCKSHOOTER, LesserShockshooterEntity.registerAttributes().create());
+        evt.put(LESSER_SPITFIRE, LesserSpitfireEntity.registerAttributes().create());
+        evt.put(MARKUZAR_PLANT, MarkuzarPlantEntity.registerAttributes().create());
+        evt.put(MINERAL_ARENTHIS, MineralArenthisEntity.registerAttributes().create());
+        evt.put(MUCKLING, MonsterEntity.func_234295_eP_().create());
+        evt.put(MUTANT_GROWTH_EXTRACTOR, MutantGrowthExtractorEntity.registerAttributes().create());
+        evt.put(NOMADIC_LAGRAHK, NomadicLagrahkEntity.registerAttributes().create());
+        evt.put(PRIMAL_BEAST, PrimalBeastEntity.registerAttributes().create());
+        evt.put(ROCKY_LUGGEROTH, RockyLuggerothEntity.registerAttributes().create());
+        evt.put(RUGGED_LURMORUS, RuggedLurmorusEntity.registerAttributes().create());
+        evt.put(SALTION, SaltionEntity.registerAttributes().create());
+        evt.put(SHALLOW_ARENTHIS, ShallowArenthisEntity.registerAttributes().create());
+        evt.put(SHALURKER, ShalurkerEntity.registerAttributes().create());
+        evt.put(SPELLBOUND_ELEMENTAL, SpellElementEntity.registerAttributes().create());
+        evt.put(MALACHITE_DRONE, MalachiteDroneEntity.registerAttributes().create());
+        evt.put(BLUE_HOWLITE_WOLF, BlueHowliteWolfEntity.registerAttributes().create());
+        evt.put(MALACHITE_GUARD, MalachiteGuardEntity.registerAttributes().create());
+    }
 }
