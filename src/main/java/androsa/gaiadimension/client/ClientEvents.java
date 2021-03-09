@@ -13,6 +13,7 @@ import net.minecraft.client.renderer.color.BlockColors;
 import net.minecraft.client.renderer.color.ItemColors;
 import net.minecraft.client.renderer.model.IBakedModel;
 import net.minecraft.client.renderer.model.ModelResourceLocation;
+import net.minecraft.fluid.Fluid;
 import net.minecraft.item.BlockItem;
 import net.minecraft.state.Property;
 import net.minecraft.state.StateHolder;
@@ -29,6 +30,7 @@ import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
+import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
 @Mod.EventBusSubscriber(value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.MOD, modid = GaiaDimensionMod.MODID)
@@ -269,13 +271,17 @@ public class ClientEvents {
         renderBlock(ModBlocks.potted_aura_sapling, cutout);
         renderBlock(ModBlocks.malachite_guard_spawner, cutout);
 
-        RenderTypeLookup.setRenderLayer(ModFluids.mineral_water_flow, RenderType.getTranslucent());
-        RenderTypeLookup.setRenderLayer(ModFluids.mineral_water_still, RenderType.getTranslucent());
-        RenderTypeLookup.setRenderLayer(ModFluids.sweet_muck_flow, RenderType.getTranslucent());
-        RenderTypeLookup.setRenderLayer(ModFluids.sweet_muck_still, RenderType.getTranslucent());
+        renderFluid(ModFluids.mineral_water_flow);
+        renderFluid(ModFluids.mineral_water_still);
+        renderFluid(ModFluids.sweet_muck_flow);
+        renderFluid(ModFluids.sweet_muck_still);
     }
 
     private static void renderBlock(Block block, RenderType render) {
         RenderTypeLookup.setRenderLayer(block, render);
+    }
+
+    private static void renderFluid(Supplier<? extends Fluid> fluid) {
+        RenderTypeLookup.setRenderLayer(fluid.get(), RenderType.getTranslucent());
     }
 }

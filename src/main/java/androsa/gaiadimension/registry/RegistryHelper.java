@@ -34,7 +34,6 @@ public class RegistryHelper {
     public static final List<Item> BLOCK_ITEMS = Lists.newArrayList();
     public static final List<Item> ITEMS = Lists.newArrayList();
     public static final List<EntityType<?>> ENTITY_TYPES = Lists.newArrayList();
-    public static final List<Fluid> FLUIDS = Lists.newArrayList();
     public static final List<ParticleType<?>> PARTICLE_TYPES = Lists.newArrayList();
     public static final List<PointOfInterestType> POI_TYPES = Lists.newArrayList();
     public static final Map<ConfiguredSurfaceBuilder<?>, String> CONFIGURED_SURFACE_BUILDERS = Maps.newHashMap();
@@ -100,12 +99,6 @@ public class RegistryHelper {
         return particle;
     }
 
-    public static <T extends Fluid> T registerFluid(String name, T fluid) {
-        fluid.setRegistryName(name);
-        FLUIDS.add(fluid);
-        return fluid;
-    }
-
     public static PointOfInterestType registerPOI(String name, Set<BlockState> states, int free, int range) {
         PointOfInterestType poi = new PointOfInterestType(name, states, free, range);
         poi.setRegistryName(name);
@@ -126,14 +119,6 @@ public class RegistryHelper {
         IForgeRegistry<EntityType<?>> registry = event.getRegistry();
         for (EntityType<?> entity : ENTITY_TYPES) {
             registry.register(entity);
-        }
-    }
-
-    @SubscribeEvent
-    public static void registerFluids(RegistryEvent.Register<Fluid> event) {
-        IForgeRegistry<Fluid> registry = event.getRegistry();
-        for (Fluid fluid : FLUIDS) {
-            registry.register(fluid);
         }
     }
 
