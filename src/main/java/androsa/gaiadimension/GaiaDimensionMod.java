@@ -98,7 +98,6 @@ public class GaiaDimensionMod {
         });
         ModBlocks.addPlants();
         ModEntities.registerSpawnPlacement();
-        ModEntities.registerAttributes();
         ModBiomes.addBiomeTypes();
     }
 

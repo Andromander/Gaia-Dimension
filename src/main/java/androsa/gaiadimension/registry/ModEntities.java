@@ -1,5 +1,6 @@
 package androsa.gaiadimension.registry;
 
+import androsa.gaiadimension.GaiaDimensionMod;
 import androsa.gaiadimension.entity.*;
 import androsa.gaiadimension.entity.boss.BlueHowliteWolfEntity;
 import androsa.gaiadimension.entity.boss.MalachiteGuardEntity;
@@ -12,7 +13,6 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.entity.SpriteRenderer;
 import net.minecraft.entity.*;
 import net.minecraft.entity.EntitySpawnPlacementRegistry.PlacementType;
-import net.minecraft.entity.ai.attributes.GlobalEntityTypeAttributes;
 import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.tags.FluidTags;
@@ -21,10 +21,14 @@ import net.minecraft.world.gen.Heightmap;
 import net.minecraft.world.spawner.WorldEntitySpawner;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
+import net.minecraftforge.fml.common.Mod;
 
 import static net.minecraft.entity.EntitySpawnPlacementRegistry.register;
 
+@Mod.EventBusSubscriber(modid = GaiaDimensionMod.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ModEntities {
 
     //Projectiles
@@ -75,7 +79,7 @@ public class ModEntities {
     }
 
     public static <E extends Entity> EntityType<E> registerEntity(String name, EntityType.IFactory<E> entity, EntityClassification classification, float width, float height, boolean fireproof) {
-        EntityType.Builder<E> type = EntityType.Builder.create(entity, classification).size(width, height);
+        EntityType.Builder<E> type = makeBuilder(entity, classification, width, height);
         if (fireproof) type.immuneToFire();
         EntityType<E> entitytype = type.build(name);
         entitytype.setRegistryName(name);
@@ -171,33 +175,34 @@ public class ModEntities {
         RenderingRegistry.registerEntityRenderingHandler(MALACHITE_GUARD, m -> new MalachiteGuardRenderer<>(m, new MalachiteGuardModel<>(0.0F), 0.7F));
     }
 
-    public static void registerAttributes() {
-        GlobalEntityTypeAttributes.put(AGATE_GOLEM, AgateGolemEntity.registerAttributes().create());
-        GlobalEntityTypeAttributes.put(ANCIENT_LAGRAHK, AncientLagrahkEntity.registerAttributes().create());
-        GlobalEntityTypeAttributes.put(ARCHAIC_WARRIOR, ArchaicWarriorEntity.registerAttributes().create());
-        GlobalEntityTypeAttributes.put(BISMUTH_ULETRUS, BismuthUletrusEntity.registerAttributes().create());
-        GlobalEntityTypeAttributes.put(CAVERN_TICK, CavernTickEntity.registerAttributes().create());
-        GlobalEntityTypeAttributes.put(CONTORTED_NAGA, ContortedNagaEntity.registerAttributes().create());
-        GlobalEntityTypeAttributes.put(CORRUPT_SAPPER, CorruptSapperEntity.registerAttributes().create());
-        GlobalEntityTypeAttributes.put(CRYSTAL_GOLEM, CrystalGolemEntity.registerAttributes().create());
-        GlobalEntityTypeAttributes.put(GROWTH_SAPPER, GrowthSapperEntity.registerAttributes().create());
-        GlobalEntityTypeAttributes.put(HOWLITE_WOLF, HowliteWolfEntity.registerAttributes().create());
-        GlobalEntityTypeAttributes.put(LESSER_SHOCKSHOOTER, LesserShockshooterEntity.registerAttributes().create());
-        GlobalEntityTypeAttributes.put(LESSER_SPITFIRE, LesserSpitfireEntity.registerAttributes().create());
-        GlobalEntityTypeAttributes.put(MARKUZAR_PLANT, MarkuzarPlantEntity.registerAttributes().create());
-        GlobalEntityTypeAttributes.put(MINERAL_ARENTHIS, MineralArenthisEntity.registerAttributes().create());
-        GlobalEntityTypeAttributes.put(MUCKLING, MonsterEntity.func_234295_eP_().create());
-        GlobalEntityTypeAttributes.put(MUTANT_GROWTH_EXTRACTOR, MutantGrowthExtractorEntity.registerAttributes().create());
-        GlobalEntityTypeAttributes.put(NOMADIC_LAGRAHK, NomadicLagrahkEntity.registerAttributes().create());
-        GlobalEntityTypeAttributes.put(PRIMAL_BEAST, PrimalBeastEntity.registerAttributes().create());
-        GlobalEntityTypeAttributes.put(ROCKY_LUGGEROTH, RockyLuggerothEntity.registerAttributes().create());
-        GlobalEntityTypeAttributes.put(RUGGED_LURMORUS, RuggedLurmorusEntity.registerAttributes().create());
-        GlobalEntityTypeAttributes.put(SALTION, SaltionEntity.registerAttributes().create());
-        GlobalEntityTypeAttributes.put(SHALLOW_ARENTHIS, ShallowArenthisEntity.registerAttributes().create());
-        GlobalEntityTypeAttributes.put(SHALURKER, ShalurkerEntity.registerAttributes().create());
-        GlobalEntityTypeAttributes.put(SPELLBOUND_ELEMENTAL, SpellElementEntity.registerAttributes().create());
-        GlobalEntityTypeAttributes.put(MALACHITE_DRONE, MalachiteDroneEntity.registerAttributes().create());
-        GlobalEntityTypeAttributes.put(BLUE_HOWLITE_WOLF, BlueHowliteWolfEntity.registerAttributes().create());
-        GlobalEntityTypeAttributes.put(MALACHITE_GUARD, MalachiteGuardEntity.registerAttributes().create());
-    }
+    @SubscribeEvent
+	public static void registerAttributes(EntityAttributeCreationEvent evt) {
+		evt.put(AGATE_GOLEM, AgateGolemEntity.registerAttributes().create());
+		evt.put(ANCIENT_LAGRAHK, AncientLagrahkEntity.registerAttributes().create());
+		evt.put(ARCHAIC_WARRIOR, ArchaicWarriorEntity.registerAttributes().create());
+		evt.put(BISMUTH_ULETRUS, BismuthUletrusEntity.registerAttributes().create());
+		evt.put(CAVERN_TICK, CavernTickEntity.registerAttributes().create());
+		evt.put(CONTORTED_NAGA, ContortedNagaEntity.registerAttributes().create());
+		evt.put(CORRUPT_SAPPER, CorruptSapperEntity.registerAttributes().create());
+		evt.put(CRYSTAL_GOLEM, CrystalGolemEntity.registerAttributes().create());
+		evt.put(GROWTH_SAPPER, GrowthSapperEntity.registerAttributes().create());
+		evt.put(HOWLITE_WOLF, HowliteWolfEntity.registerAttributes().create());
+		evt.put(LESSER_SHOCKSHOOTER, LesserShockshooterEntity.registerAttributes().create());
+		evt.put(LESSER_SPITFIRE, LesserSpitfireEntity.registerAttributes().create());
+		evt.put(MARKUZAR_PLANT, MarkuzarPlantEntity.registerAttributes().create());
+		evt.put(MINERAL_ARENTHIS, MineralArenthisEntity.registerAttributes().create());
+		evt.put(MUCKLING, MonsterEntity.func_234295_eP_().create());
+		evt.put(MUTANT_GROWTH_EXTRACTOR, MutantGrowthExtractorEntity.registerAttributes().create());
+		evt.put(NOMADIC_LAGRAHK, NomadicLagrahkEntity.registerAttributes().create());
+		evt.put(PRIMAL_BEAST, PrimalBeastEntity.registerAttributes().create());
+		evt.put(ROCKY_LUGGEROTH, RockyLuggerothEntity.registerAttributes().create());
+		evt.put(RUGGED_LURMORUS, RuggedLurmorusEntity.registerAttributes().create());
+		evt.put(SALTION, SaltionEntity.registerAttributes().create());
+		evt.put(SHALLOW_ARENTHIS, ShallowArenthisEntity.registerAttributes().create());
+		evt.put(SHALURKER, ShalurkerEntity.registerAttributes().create());
+		evt.put(SPELLBOUND_ELEMENTAL, SpellElementEntity.registerAttributes().create());
+		evt.put(MALACHITE_DRONE, MalachiteDroneEntity.registerAttributes().create());
+		evt.put(BLUE_HOWLITE_WOLF, BlueHowliteWolfEntity.registerAttributes().create());
+		evt.put(MALACHITE_GUARD, MalachiteGuardEntity.registerAttributes().create());
+	}
 }
