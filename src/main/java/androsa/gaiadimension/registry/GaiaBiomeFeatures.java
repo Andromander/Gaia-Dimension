@@ -172,37 +172,37 @@ public final class GaiaBiomeFeatures {
     );
 
     //SurfaceBuilders
-    public static final ConfiguredSurfaceBuilder<SurfaceBuilderConfig> d_glitter_heavy_salt = registerSurfaceBuilder("glitter_grass", ModWorldgen.DEFAULT_GAIA.func_242929_a(GLITTER_HEAVY_SALT));
-    public static final ConfiguredSurfaceBuilder<SurfaceBuilderConfig> d_corrupt_salt = registerSurfaceBuilder("corrupt_grass", ModWorldgen.DEFAULT_GAIA.func_242929_a(CORRUPT_SALT));
-    public static final ConfiguredSurfaceBuilder<SurfaceBuilderConfig> d_salty = registerSurfaceBuilder("salty", ModWorldgen.DEFAULT_GAIA.func_242929_a(SALTY_SURFACE));
-    public static final ConfiguredSurfaceBuilder<SurfaceBuilderConfig> d_murky_boggy_pebble = registerSurfaceBuilder("murky_grass", ModWorldgen.DEFAULT_GAIA.func_242929_a(MURKY_BOGGY_PEBBLES));
-    public static final ConfiguredSurfaceBuilder<SurfaceBuilderConfig> d_soft_light_salt = registerSurfaceBuilder("soft_grass", ModWorldgen.DEFAULT_GAIA.func_242929_a(SOFT_LIGHT_SALT));
-    public static final ConfiguredSurfaceBuilder<SurfaceBuilderConfig> s_wasteland_stone = registerSurfaceBuilder("wasteland_stone", ModWorldgen.STATIC.func_242929_a(WASTELAND_STONE_SURFACE));
-    public static final ConfiguredSurfaceBuilder<SurfaceBuilderConfig> v_glitter_heavy_volrock = registerSurfaceBuilder("volcanic_grass", ModWorldgen.VOLCANIC.func_242929_a(GLITTER_HEAVY_VOLROCK));
+    public static final ConfiguredSurfaceBuilder<SurfaceBuilderConfig> d_glitter_heavy_salt = registerSurfaceBuilder("glitter_grass", ModWorldgen.DEFAULT_GAIA.get().func_242929_a(GLITTER_HEAVY_SALT));
+    public static final ConfiguredSurfaceBuilder<SurfaceBuilderConfig> d_corrupt_salt = registerSurfaceBuilder("corrupt_grass", ModWorldgen.DEFAULT_GAIA.get().func_242929_a(CORRUPT_SALT));
+    public static final ConfiguredSurfaceBuilder<SurfaceBuilderConfig> d_salty = registerSurfaceBuilder("salty", ModWorldgen.DEFAULT_GAIA.get().func_242929_a(SALTY_SURFACE));
+    public static final ConfiguredSurfaceBuilder<SurfaceBuilderConfig> d_murky_boggy_pebble = registerSurfaceBuilder("murky_grass", ModWorldgen.DEFAULT_GAIA.get().func_242929_a(MURKY_BOGGY_PEBBLES));
+    public static final ConfiguredSurfaceBuilder<SurfaceBuilderConfig> d_soft_light_salt = registerSurfaceBuilder("soft_grass", ModWorldgen.DEFAULT_GAIA.get().func_242929_a(SOFT_LIGHT_SALT));
+    public static final ConfiguredSurfaceBuilder<SurfaceBuilderConfig> s_wasteland_stone = registerSurfaceBuilder("wasteland_stone", ModWorldgen.STATIC.get().func_242929_a(WASTELAND_STONE_SURFACE));
+    public static final ConfiguredSurfaceBuilder<SurfaceBuilderConfig> v_glitter_heavy_volrock = registerSurfaceBuilder("volcanic_grass", ModWorldgen.VOLCANIC.get().func_242929_a(GLITTER_HEAVY_VOLROCK));
 
     //Carvers
-    public static final ConfiguredCarver<ProbabilityConfig> crystal_caves = registerCarver("crystal_caves", ModWorldgen.CRYSTAL_CAVES.func_242761_a(new ProbabilityConfig(0.15F)));
-    public static final ConfiguredCarver<ProbabilityConfig> chasms = registerCarver("chasms", ModWorldgen.CHASMS.func_242761_a(new ProbabilityConfig(0.03F)));
+    public static final ConfiguredCarver<ProbabilityConfig> crystal_caves = registerCarver("crystal_caves", ModWorldgen.CRYSTAL_CAVES.get().func_242761_a(new ProbabilityConfig(0.15F)));
+    public static final ConfiguredCarver<ProbabilityConfig> chasms = registerCarver("chasms", ModWorldgen.CHASMS.get().func_242761_a(new ProbabilityConfig(0.03F)));
 
     //StructureFeatures
-    public static final StructureFeature<NoFeatureConfig, ? extends Structure<NoFeatureConfig>> mini_tower = registerStructureFeature("mini_tower", ModWorldgen.MINI_TOWER.withConfiguration(NoFeatureConfig.field_236559_b_));
-    public static final StructureFeature<NoFeatureConfig, ? extends Structure<NoFeatureConfig>> malachite_watchtower = registerStructureFeature("malachite_watchtower", ModWorldgen.MALACHITE_WATCHTOWER.withConfiguration(NoFeatureConfig.field_236559_b_));
+    public static final StructureFeature<NoFeatureConfig, ? extends Structure<NoFeatureConfig>> mini_tower = registerStructureFeature("mini_tower", ModWorldgen.MINI_TOWER.get().withConfiguration(NoFeatureConfig.field_236559_b_));
+    public static final StructureFeature<NoFeatureConfig, ? extends Structure<NoFeatureConfig>> malachite_watchtower = registerStructureFeature("malachite_watchtower", ModWorldgen.MALACHITE_WATCHTOWER.get().withConfiguration(NoFeatureConfig.field_236559_b_));
 
     //Lakes
-    public static final ConfiguredFeature<?, ?> lake_superhot_magma_common = registerFeature("lake_superhot_magma_common", ModWorldgen.POOL.withConfiguration(new BlockStateFeatureConfig(SUPERHOT_MAGMA)).withPlacement(Placement.LAVA_LAKE.configure(new ChanceConfig(15))));
-    public static final ConfiguredFeature<?, ?> lake_superhot_magma_rare = registerFeature("lake_superhot_magma_rare", ModWorldgen.POOL.withConfiguration(new BlockStateFeatureConfig(SUPERHOT_MAGMA)).withPlacement(Placement.LAVA_LAKE.configure(new ChanceConfig(80))));
-    public static final ConfiguredFeature<?, ?> lake_mineral_water_common = registerFeature("lake_mineral_water_common", ModWorldgen.POOL.withConfiguration(new BlockStateFeatureConfig(MINERAL_WATER)).withPlacement(Placement.WATER_LAKE.configure(new ChanceConfig(4))));
-    public static final ConfiguredFeature<?, ?> lake_mineral_water_uncommon = registerFeature("lake_mineral_water_uncommon", ModWorldgen.POOL.withConfiguration(new BlockStateFeatureConfig(MINERAL_WATER)).withPlacement(Placement.WATER_LAKE.configure(new ChanceConfig(40))));
-    public static final ConfiguredFeature<?, ?> lake_mineral_water_rare = registerFeature("lake_mineral_water_rare", ModWorldgen.POOL.withConfiguration(new BlockStateFeatureConfig(MINERAL_WATER)).withPlacement(Placement.WATER_LAKE.configure(new ChanceConfig(50))));
-    public static final ConfiguredFeature<?, ?> lake_sweet_muck = registerFeature("lake_sweet_muck", ModWorldgen.POOL.withConfiguration(new BlockStateFeatureConfig(SWEET_MUCK)).withPlacement(Placement.LAVA_LAKE.configure(new ChanceConfig(10))));
-    public static final ConfiguredFeature<?, ?> lake_liquid_aura = registerFeature("lake_liquid_aura", ModWorldgen.POOL.withConfiguration(new BlockStateFeatureConfig(LIQUID_AURA)).withPlacement(Placement.LAVA_LAKE.configure(new ChanceConfig(20))));
-    public static final ConfiguredFeature<?, ?> lake_liquid_bismuth = registerFeature("lake_liquid_bismuth", ModWorldgen.POOL.withConfiguration(new BlockStateFeatureConfig(LIQUID_BISMUTH)).withPlacement(Placement.LAVA_LAKE.configure(new ChanceConfig(20))));
+    public static final ConfiguredFeature<?, ?> lake_superhot_magma_common = registerFeature("lake_superhot_magma_common", ModWorldgen.POOL.get().withConfiguration(new BlockStateFeatureConfig(SUPERHOT_MAGMA)).withPlacement(Placement.LAVA_LAKE.configure(new ChanceConfig(15))));
+    public static final ConfiguredFeature<?, ?> lake_superhot_magma_rare = registerFeature("lake_superhot_magma_rare", ModWorldgen.POOL.get().withConfiguration(new BlockStateFeatureConfig(SUPERHOT_MAGMA)).withPlacement(Placement.LAVA_LAKE.configure(new ChanceConfig(80))));
+    public static final ConfiguredFeature<?, ?> lake_mineral_water_common = registerFeature("lake_mineral_water_common", ModWorldgen.POOL.get().withConfiguration(new BlockStateFeatureConfig(MINERAL_WATER)).withPlacement(Placement.WATER_LAKE.configure(new ChanceConfig(4))));
+    public static final ConfiguredFeature<?, ?> lake_mineral_water_uncommon = registerFeature("lake_mineral_water_uncommon", ModWorldgen.POOL.get().withConfiguration(new BlockStateFeatureConfig(MINERAL_WATER)).withPlacement(Placement.WATER_LAKE.configure(new ChanceConfig(40))));
+    public static final ConfiguredFeature<?, ?> lake_mineral_water_rare = registerFeature("lake_mineral_water_rare", ModWorldgen.POOL.get().withConfiguration(new BlockStateFeatureConfig(MINERAL_WATER)).withPlacement(Placement.WATER_LAKE.configure(new ChanceConfig(50))));
+    public static final ConfiguredFeature<?, ?> lake_sweet_muck = registerFeature("lake_sweet_muck", ModWorldgen.POOL.get().withConfiguration(new BlockStateFeatureConfig(SWEET_MUCK)).withPlacement(Placement.LAVA_LAKE.configure(new ChanceConfig(10))));
+    public static final ConfiguredFeature<?, ?> lake_liquid_aura = registerFeature("lake_liquid_aura", ModWorldgen.POOL.get().withConfiguration(new BlockStateFeatureConfig(LIQUID_AURA)).withPlacement(Placement.LAVA_LAKE.configure(new ChanceConfig(20))));
+    public static final ConfiguredFeature<?, ?> lake_liquid_bismuth = registerFeature("lake_liquid_bismuth", ModWorldgen.POOL.get().withConfiguration(new BlockStateFeatureConfig(LIQUID_BISMUTH)).withPlacement(Placement.LAVA_LAKE.configure(new ChanceConfig(20))));
 
     //Local Modifications
-    public static final ConfiguredFeature<?, ?> gummy_glitter_blob = registerFeature("gummy_glitter_blob", ModWorldgen.GAIA_BLOB.withConfiguration(new BlockStateFeatureConfig(GUMMY_GLITTER)).withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).func_242732_c(2));
-    public static final ConfiguredFeature<?, ?> static_spikes = registerFeature("static_spikes", ModWorldgen.STATIC_SPIKE.withConfiguration(new FeatureHeightConfig(8)).withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).func_242732_c(2));
-    public static final ConfiguredFeature<?, ?> bismuth_spires = registerFeature("bismuth_spires", ModWorldgen.BISMUTH_SPIRE.withConfiguration(new FeatureHeightConfig(7)).withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).func_242732_c(2));
-    public static final ConfiguredFeature<?, ?> bismuth_geysers = registerFeature("bismuth_geysers", ModWorldgen.BISMUTH_GEYSER.withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG).withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).func_242732_c(2));
+    public static final ConfiguredFeature<?, ?> gummy_glitter_blob = registerFeature("gummy_glitter_blob", ModWorldgen.GAIA_BLOB.get().withConfiguration(new BlockStateFeatureConfig(GUMMY_GLITTER)).withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).func_242732_c(2));
+    public static final ConfiguredFeature<?, ?> static_spikes = registerFeature("static_spikes", ModWorldgen.STATIC_SPIKE.get().withConfiguration(new FeatureHeightConfig(8)).withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).func_242732_c(2));
+    public static final ConfiguredFeature<?, ?> bismuth_spires = registerFeature("bismuth_spires", ModWorldgen.BISMUTH_SPIRE.get().withConfiguration(new FeatureHeightConfig(7)).withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).func_242732_c(2));
+    public static final ConfiguredFeature<?, ?> bismuth_geysers = registerFeature("bismuth_geysers", ModWorldgen.BISMUTH_GEYSER.get().withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG).withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).func_242732_c(2));
 
     //Underground Ores
     public static final ConfiguredFeature<?, ?> ore_primal_mass = registerFeature("ore_primal_mass", makeOreFeature(GAIA_STONE, PRIMAL_MASS, 33, 25, 33));
@@ -228,11 +228,11 @@ public final class GaiaBiomeFeatures {
     public static final ConfiguredFeature<?, ?> ore_green_opal = registerFeature("ore_green_opal", makeOreFeature(GAIA_STONE, GREEN_OPAL_ORE, 8, 30, 4));
     public static final ConfiguredFeature<?, ?> ore_white_opal_common = registerFeature("ore_white_opal_common", makeOreFeature(GAIA_STONE, WHITE_OAL_ORE, 8, 25, 4));
     public static final ConfiguredFeature<?, ?> ore_white_opal_rare = registerFeature("ore_white_opal_rare", makeOreFeature(GAIA_STONE, WHITE_OAL_ORE, 8, 20, 3));
-    public static final ConfiguredFeature<?, ?> disk_static_stone = registerFeature("disk_static_stone", ModWorldgen.GAIA_DISK.withConfiguration(new SphereReplaceConfig(STATIC_STONE, FeatureSpread.func_242253_a(4, 2), 3, ImmutableList.of(WASTELAND_STONE))).withPlacement(Features.Placements.SEAGRASS_DISK_PLACEMENT));
-    public static final ConfiguredFeature<?, ?> disk_bog_patch = registerFeature("disk_bog_patch", ModWorldgen.BOG_PATCH.withConfiguration(new SphereReplaceConfig(ModBlocks.impure_sludge.getDefaultState(), FeatureSpread.func_242253_a(4, 1), 2, Lists.newArrayList(ModBlocks.murky_grass.getDefaultState(), ModBlocks.boggy_soil.getDefaultState()))).withPlacement(Features.Placements.SEAGRASS_DISK_PLACEMENT));
+    public static final ConfiguredFeature<?, ?> disk_static_stone = registerFeature("disk_static_stone", ModWorldgen.GAIA_DISK.get().withConfiguration(new SphereReplaceConfig(STATIC_STONE, FeatureSpread.func_242253_a(4, 2), 3, ImmutableList.of(WASTELAND_STONE))).withPlacement(Features.Placements.SEAGRASS_DISK_PLACEMENT));
+    public static final ConfiguredFeature<?, ?> disk_bog_patch = registerFeature("disk_bog_patch", ModWorldgen.BOG_PATCH.get().withConfiguration(new SphereReplaceConfig(ModBlocks.impure_sludge.getDefaultState(), FeatureSpread.func_242253_a(4, 1), 2, Lists.newArrayList(ModBlocks.murky_grass.getDefaultState(), ModBlocks.boggy_soil.getDefaultState()))).withPlacement(Features.Placements.SEAGRASS_DISK_PLACEMENT));
 
     //Underground Decoration
-    public static final ConfiguredFeature<?, ?> underground_glitter_blob = registerFeature("underground_glitter_blob", ModWorldgen.FRAIL_BLOB.withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG).range(64).square().func_242731_b(100));
+    public static final ConfiguredFeature<?, ?> underground_glitter_blob = registerFeature("underground_glitter_blob", ModWorldgen.FRAIL_BLOB.get().withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG).range(64).square().func_242731_b(100));
     public static final ConfiguredFeature<?, ?> crystal_fungi_caves = registerFeature("crystal_fungi_caves", Feature.RANDOM_PATCH.withConfiguration(CAVE_FUNGI).withPlacement(Features.Placements.PATCH_PLACEMENT).chance(2));
 
     //Vegetal Decoration
@@ -243,17 +243,17 @@ public final class GaiaBiomeFeatures {
     public static final ConfiguredFeature<?, ?> green_agate_bush = registerFeature("green_agate_bush", Feature.SIMPLE_RANDOM_SELECTOR.withConfiguration(new SingleRandomFeature(BUSH_WORKAROUND)));
     public static final ConfiguredFeature<?, ?> purple_agate_tree = registerFeature("purple_agate_tree", makeTreeFeature(ModWorldgen.PURPLE_AGATE_TREE, PURPLE_AGATE_TREE_CONFIG, 1, 0.1F, 2));
     public static final ConfiguredFeature<?, ?> various_agate_trees = registerFeature("various_agate_trees", Feature.RANDOM_SELECTOR.withConfiguration(new MultipleRandomFeatureConfig(ImmutableList.of(
-            ModWorldgen.PINK_AGATE_TREE.withConfiguration(PINK_AGATE_TREE_CONFIG).withChance(0.1F),
-                ModWorldgen.BLUE_AGATE_TREE.withConfiguration(BLUE_AGATE_TREE_CONFIG).withChance(0.1F),
-                ModWorldgen.GREEN_AGATE_TREE.withConfiguration(GREEN_AGATE_TREE_CONFIG).withChance(0.1F),
-                ModWorldgen.PURPLE_AGATE_TREE.withConfiguration(PURPLE_AGATE_TREE_CONFIG).withChance(0.1F)
+            ModWorldgen.PINK_AGATE_TREE.get().withConfiguration(PINK_AGATE_TREE_CONFIG).withChance(0.1F),
+                ModWorldgen.BLUE_AGATE_TREE.get().withConfiguration(BLUE_AGATE_TREE_CONFIG).withChance(0.1F),
+                ModWorldgen.GREEN_AGATE_TREE.get().withConfiguration(GREEN_AGATE_TREE_CONFIG).withChance(0.1F),
+                ModWorldgen.PURPLE_AGATE_TREE.get().withConfiguration(PURPLE_AGATE_TREE_CONFIG).withChance(0.1F)
         ), Feature.RANDOM_PATCH.withConfiguration(MUTANT_GROWTH))).withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.COUNT_EXTRA.configure(new AtSurfaceWithExtraConfig(2, 0.1F, 1))));
     public static final ConfiguredFeature<?, ?> fossilized_tree = registerFeature("fossilized_tree", makeTreeFeature(ModWorldgen.FOSSILIZED_TREE, FOSSILIZED_TREE_CONFIG, 1, 0.3F, 1));
     public static final ConfiguredFeature<?, ?> goldstone_tree = registerFeature("goldstone_tree", makeTreeFeature(ModWorldgen.GOLDSTONE_TREE, CORRUPTED_TREE_CONFIG, 1, 0.1F, 1));
     public static final ConfiguredFeature<?, ?> burnt_agate_tree = registerFeature("burnt_agate_tree", makeTreeFeature(ModWorldgen.BURNT_AGATE_TREE, BURNT_TREE_CONFIG, 0, 0.1F, 1));
     public static final ConfiguredFeature<?, ?> fiery_agate_tree = registerFeature("fiery_agate_tree", makeTreeFeature(ModWorldgen.FIERY_AGATE_TREE, BURNING_TREE_CONFIG, 0, 0.1F, 1));
     public static final ConfiguredFeature<?, ?> aura_tree = registerFeature("aura_tree", makeTreeFeature(ModWorldgen.AURA_TREE, AURA_TREE_CONFIG, 2, 0.1F, 1));
-    public static final ConfiguredFeature<?, ?> aura_shoots = registerFeature("aura_shoots", ModWorldgen.AURA_SHOOT.withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG).withPlacement(Features.Placements.VEGETATION_PLACEMENT).withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).func_242731_b(6));
+    public static final ConfiguredFeature<?, ?> aura_shoots = registerFeature("aura_shoots", ModWorldgen.AURA_SHOOT.get().withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG).withPlacement(Features.Placements.VEGETATION_PLACEMENT).withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).func_242731_b(6));
     public static final ConfiguredFeature<?, ?> crystal_growth_02 = registerFeature("crystal_growth_02", makeGrowthFeature(NORMAL_GROWTH, 2));
     public static final ConfiguredFeature<?, ?> crystal_growth_03 = registerFeature("crystal_growth_03", makeGrowthFeature(NORMAL_GROWTH, 3));
     public static final ConfiguredFeature<?, ?> crystal_growth_04 = registerFeature("crystal_growth_04", makeGrowthFeature(NORMAL_GROWTH, 4));
@@ -284,8 +284,8 @@ public final class GaiaBiomeFeatures {
                 .func_242731_b(count); //count per chunk
     }
 
-    public static ConfiguredFeature<?, ?> makeTreeFeature(Feature<GaiaTreeFeatureConfig> feature, GaiaTreeFeatureConfig config, int count, float chance, int extra) {
-        return feature.withConfiguration(config)
+    public static ConfiguredFeature<?, ?> makeTreeFeature(Supplier<Feature<GaiaTreeFeatureConfig>> feature, GaiaTreeFeatureConfig config, int count, float chance, int extra) {
+        return feature.get().withConfiguration(config)
                 .withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT)
                 .withPlacement(Placement.COUNT_EXTRA.configure(new AtSurfaceWithExtraConfig(count, chance, extra)));
     }

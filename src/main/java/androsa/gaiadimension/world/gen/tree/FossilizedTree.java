@@ -11,6 +11,6 @@ public class FossilizedTree extends GaiaTree {
 
     @Override
     public ConfiguredFeature<GaiaTreeFeatureConfig, ?> createTreeFeature(Random rand) {
-        return ModWorldgen.FOSSILIZED_TREE.withConfiguration(GaiaBiomeFeatures.FOSSILIZED_TREE_CONFIG);
+        return ModWorldgen.FOSSILIZED_TREE.get().withConfiguration(GaiaBiomeFeatures.FOSSILIZED_TREE_CONFIG);
     }
 }

@@ -16,18 +16,13 @@ import net.minecraft.particles.ParticleType;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.village.PointOfInterestType;
 import net.minecraft.world.gen.carver.ConfiguredCarver;
-import net.minecraft.world.gen.carver.WorldCarver;
 import net.minecraft.world.gen.feature.*;
-import net.minecraft.world.gen.feature.structure.Structure;
 import net.minecraft.world.gen.surfacebuilders.ConfiguredSurfaceBuilder;
-import net.minecraft.world.gen.surfacebuilders.SurfaceBuilder;
-import net.minecraft.world.gen.surfacebuilders.SurfaceBuilderConfig;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.IForgeRegistry;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -41,10 +36,6 @@ public class RegistryHelper {
     public static final List<EntityType<?>> ENTITY_TYPES = Lists.newArrayList();
     public static final List<Fluid> FLUIDS = Lists.newArrayList();
     public static final List<ParticleType<?>> PARTICLE_TYPES = Lists.newArrayList();
-    public static final List<Feature<?>> FEATURES = Lists.newArrayList();
-    public static final List<Structure<?>> STRUCTURES = Lists.newArrayList();
-    public static final List<SurfaceBuilder<?>> SURFACE_BUILDERS = Lists.newArrayList();
-    public static final List<WorldCarver<?>> WORLD_CARVERS = Lists.newArrayList();
     public static final List<PointOfInterestType> POI_TYPES = Lists.newArrayList();
     public static final Map<ConfiguredSurfaceBuilder<?>, String> CONFIGURED_SURFACE_BUILDERS = Maps.newHashMap();
     public static final Map<StructureFeature<?,?>, String> CONFIGURED_STRUCTURE_FEATURES = Maps.newHashMap();
@@ -113,31 +104,6 @@ public class RegistryHelper {
         fluid.setRegistryName(name);
         FLUIDS.add(fluid);
         return fluid;
-    }
-
-    public static <C extends IFeatureConfig, T extends Feature<C>> T registerFeature(String name, T feature) {
-        feature.setRegistryName(name);
-        FEATURES.add(feature);
-        return feature;
-    }
-
-    public static <T extends Structure<NoFeatureConfig>> T registerStructure(String name, T structure) {
-        Structure.NAME_STRUCTURE_BIMAP.put(name, structure);
-        structure.setRegistryName(name);
-        STRUCTURES.add(structure);
-        return structure;
-    }
-
-    public static SurfaceBuilder<SurfaceBuilderConfig> registerSurfaceBuilder(String name, SurfaceBuilder<SurfaceBuilderConfig> surface) {
-        surface.setRegistryName(name);
-        SURFACE_BUILDERS.add(surface);
-        return surface;
-    }
-
-    public static WorldCarver<ProbabilityConfig> registerWorldCarver(String name, WorldCarver<ProbabilityConfig> surface) {
-        surface.setRegistryName(name);
-        WORLD_CARVERS.add(surface);
-        return surface;
     }
 
     public static PointOfInterestType registerPOI(String name, Set<BlockState> states, int free, int range) {

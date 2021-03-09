@@ -11,6 +11,6 @@ public class AuraTree extends GaiaTree {
 
     @Override
     public ConfiguredFeature<GaiaTreeFeatureConfig, ?> createTreeFeature(Random random) {
-        return ModWorldgen.AURA_TREE.withConfiguration(GaiaBiomeFeatures.AURA_TREE_CONFIG);
+        return ModWorldgen.AURA_TREE.get().withConfiguration(GaiaBiomeFeatures.AURA_TREE_CONFIG);
     }
 }
