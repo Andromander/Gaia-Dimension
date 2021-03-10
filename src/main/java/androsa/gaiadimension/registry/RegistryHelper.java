@@ -32,7 +32,6 @@ public class RegistryHelper {
 
     public static final List<Block> BLOCKS = Lists.newArrayList();
     public static final List<Item> BLOCK_ITEMS = Lists.newArrayList();
-    public static final List<Item> ITEMS = Lists.newArrayList();
     public static final List<EntityType<?>> ENTITY_TYPES = Lists.newArrayList();
     public static final List<ParticleType<?>> PARTICLE_TYPES = Lists.newArrayList();
     public static final List<PointOfInterestType> POI_TYPES = Lists.newArrayList();
@@ -73,18 +72,6 @@ public class RegistryHelper {
 
     public static Item registerBlockItem(String name, Item item) {
         item.setRegistryName(name);
-        return item;
-    }
-
-    public static Item registerWallOrFloorItem(String name, Block floor, Block wall) {
-        Item item = new WallOrFloorItem(floor, wall, new Item.Properties().group(GaiaItemGroups.GAIA_BLOCKS));
-        BLOCK_ITEMS.add(registerBlockItem(name, item));
-        return item;
-    }
-
-    public static Item registerItem(String name, Item item) {
-        item.setRegistryName(name);
-        ITEMS.add(item);
         return item;
     }
 

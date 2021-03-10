@@ -16,7 +16,7 @@ public class GeodeSliceItem extends BasicGaiaItem {
     @Override
     public ItemStack onItemUseFinish(ItemStack stack, World worldIn, LivingEntity entityLiving) {
         PlayerEntity player = (PlayerEntity)entityLiving;
-        ItemStack item = new ItemStack(ModItems.agate_fabric);
+        ItemStack item = new ItemStack(ModItems.agate_fabric.get());
 
         super.onItemUseFinish(stack, worldIn, entityLiving);
 

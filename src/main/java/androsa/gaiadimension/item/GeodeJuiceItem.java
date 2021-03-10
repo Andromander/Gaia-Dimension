@@ -17,7 +17,7 @@ public class GeodeJuiceItem extends BasicGaiaItem {
     @Override
     public ItemStack onItemUseFinish(ItemStack stack, World worldIn, LivingEntity entityLiving) {
         PlayerEntity player = (PlayerEntity)entityLiving;
-        ItemStack cup = new ItemStack(ModItems.agate_cup);
+        ItemStack cup = new ItemStack(ModItems.agate_cup.get());
 
         super.onItemUseFinish(stack, worldIn, entityLiving);
 

@@ -17,7 +17,7 @@ public class ScaynyxBucketItem extends BucketItem {
 
     @Override
     protected ItemStack emptyBucket(ItemStack stack, PlayerEntity entity) {
-        return !entity.abilities.isCreativeMode ? new ItemStack(ModItems.scaynyx_bucket) : stack;
+        return !entity.abilities.isCreativeMode ? new ItemStack(ModItems.scaynyx_bucket.get()) : stack;
     }
 
     /*

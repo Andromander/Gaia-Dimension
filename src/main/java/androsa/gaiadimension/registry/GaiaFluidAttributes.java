@@ -51,32 +51,32 @@ public class GaiaFluidAttributes {
     public static final ForgeFlowingFluid.Properties mineral_water_properties =
             new ForgeFlowingFluid.Properties(ModFluids.mineral_water_still, ModFluids.mineral_water_flow, mineral_water_attributes)
                     .block(() -> ModBlocks.mineral_water)
-                    .bucket(() -> ModItems.mineral_water_bucket)
+                    .bucket(ModItems.mineral_water_bucket)
                     .canMultiply()
                     .explosionResistance(100.0F);
     public static final ForgeFlowingFluid.Properties superhot_magma_properties =
             new ForgeFlowingFluid.Properties(ModFluids.superhot_magma_still, ModFluids.superhot_magma_flow, superhot_magma_attributes)
                     .block(() -> ModBlocks.superhot_magma)
-                    .bucket(() -> ModItems.superhot_magma_bucket)
+                    .bucket(ModItems.superhot_magma_bucket)
                     .explosionResistance(100.0F)
                     .slopeFindDistance(2);
     public static final ForgeFlowingFluid.Properties sweet_muck_properties =
             new ForgeFlowingFluid.Properties(ModFluids.sweet_muck_still, ModFluids.sweet_muck_flow, sweet_muck_attrubutes)
                     .block(() -> ModBlocks.sweet_muck)
-                    .bucket(() -> ModItems.sweet_muck_bucket)
+                    .bucket(ModItems.sweet_muck_bucket)
                     .canMultiply()
                     .explosionResistance(100.0F)
                     .slopeFindDistance(2);
     public static final ForgeFlowingFluid.Properties liquid_bismuth_properties =
             new ForgeFlowingFluid.Properties(ModFluids.liquid_bismuth_still, ModFluids.liquid_bismuth_flow, liquid_bismuth_attributes)
                     .block(() -> ModBlocks.liquid_bismuth)
-                    .bucket(() -> ModItems.liquid_bismuth_bucket)
+                    .bucket(ModItems.liquid_bismuth_bucket)
                     .explosionResistance(100.0F)
                     .slopeFindDistance(3);
     public static final ForgeFlowingFluid.Properties liquid_aura_properties =
             new ForgeFlowingFluid.Properties(ModFluids.liquid_aura_still, ModFluids.liquid_aura_flow, liquid_aura_attributes)
                     .block(() -> ModBlocks.liquid_aura)
-                    .bucket(() -> ModItems.liquid_aura_bucket)
+                    .bucket(ModItems.liquid_aura_bucket)
                     .explosionResistance(100.0F);
 
     public static class LiquidBismuth extends FluidAttributes {

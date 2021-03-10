@@ -7,8 +7,7 @@ import net.minecraft.item.Item;
 import net.minecraftforge.client.model.generators.ItemModelBuilder;
 import net.minecraftforge.client.model.generators.ItemModelProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
-
-import java.util.function.Supplier;
+import net.minecraftforge.fml.RegistryObject;
 
 public abstract class GaiaItemModelProvider extends ItemModelProvider {
 
@@ -33,22 +32,22 @@ public abstract class GaiaItemModelProvider extends ItemModelProvider {
                 .texture("layer0", modLoc("block/" + blockName(block)));
     }
 
-    public ItemModelBuilder basicItem(Item item) {
-        return withExistingParent(item.getRegistryName().getPath(), mcLoc("item/generated"))
-                .texture("layer0", modLoc("item/" + item.getRegistryName().getPath()));
+    public ItemModelBuilder basicItem(RegistryObject<Item> item) {
+        return withExistingParent(item.getId().getPath(), mcLoc("item/generated"))
+                .texture("layer0", modLoc("item/" + item.getId().getPath()));
     }
 
-    public ItemModelBuilder heldItem(Item item) {
-        return withExistingParent(item.getRegistryName().getPath(), mcLoc("item/handheld"))
-                .texture("layer0", modLoc("item/" + item.getRegistryName().getPath()));
+    public ItemModelBuilder heldItem(RegistryObject<Item> item) {
+        return withExistingParent(item.getId().getPath(), mcLoc("item/handheld"))
+                .texture("layer0", modLoc("item/" + item.getId().getPath()));
     }
 
-    public ItemModelBuilder eggItem(Item item) {
-        return withExistingParent(item.getRegistryName().getPath(), mcLoc("item/template_spawn_egg"));
+    public ItemModelBuilder eggItem(RegistryObject<Item> item) {
+        return withExistingParent(item.getId().getPath(), mcLoc("item/template_spawn_egg"));
     }
 
-    public ItemModelBuilder geodeItem(Item item) {
-        return withExistingParent(item.getRegistryName().getPath(), mcLoc("item/generated"))
+    public ItemModelBuilder geodeItem(RegistryObject<Item> item) {
+        return withExistingParent(item.getId().getPath(), mcLoc("item/generated"))
                 .texture("layer0", modLoc("item/geode"));
     }
 }

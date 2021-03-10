@@ -384,7 +384,7 @@ public class MalachiteGuardEntity extends MonsterEntity {
     @Override
     public void checkDespawn() {
         if (this.world.getDifficulty() == Difficulty.PEACEFUL && this.isDespawnPeaceful()) {
-            this.entityDropItem(ModItems.mock_malachite, 1);
+            this.entityDropItem(ModItems.mock_malachite.get(), 1);
             this.remove();
         }
         super.checkDespawn();

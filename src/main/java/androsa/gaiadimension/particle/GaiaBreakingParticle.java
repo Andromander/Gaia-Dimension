@@ -20,7 +20,7 @@ public class GaiaBreakingParticle extends BreakingParticle {
     @OnlyIn(Dist.CLIENT)
     public static class PebbleFactory implements IParticleFactory<BasicParticleType> {
         public Particle makeParticle(BasicParticleType particle, ClientWorld world, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
-            return new GaiaBreakingParticle(world, x, y, z, new ItemStack(ModItems.sturdy_pebble));
+            return new GaiaBreakingParticle(world, x, y, z, new ItemStack(ModItems.sturdy_pebble.get()));
         }
     }
 }

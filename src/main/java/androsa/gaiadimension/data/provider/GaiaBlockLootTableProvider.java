@@ -19,6 +19,8 @@ import net.minecraft.loot.conditions.TableBonus;
 import net.minecraft.loot.functions.*;
 import net.minecraft.util.IItemProvider;
 
+import java.util.function.Supplier;
+
 public abstract class GaiaBlockLootTableProvider extends BlockLootTables {
     private static final ILootCondition.IBuilder has_silk_touch = MatchTool.builder(ItemPredicate.Builder.create().enchantment(new EnchantmentPredicate(Enchantments.SILK_TOUCH, MinMaxBounds.IntBound.atLeast(1))));
     private static final ILootCondition.IBuilder has_shears = MatchTool.builder(ItemPredicate.Builder.create().item(Items.SHEARS));
@@ -29,8 +31,8 @@ public abstract class GaiaBlockLootTableProvider extends BlockLootTables {
         super.registerLootTable(block, BlockLootTables::droppingSlab);
     }
 
-    public void dropWithFortune(Block block, Item drop) {
-        super.registerLootTable(block, (result) -> droppingItemWithFortune(result, drop));
+    public void dropWithFortune(Block block, Supplier<Item> drop) {
+        super.registerLootTable(block, (result) -> droppingItemWithFortune(result, drop.get()));
     }
 
     public void dropWithSilk(Block block, IItemProvider drop) {
@@ -41,12 +43,12 @@ public abstract class GaiaBlockLootTableProvider extends BlockLootTables {
         registerLootTable(block, (result) -> withChance(block, drop, chances));
     }
 
-    public void dropChanceAlternative(Block block, Block drop, Item item, float... chances) {
-        registerLootTable(block, (result) -> withChanceAdditional(block, drop, item, chances));
+    public void dropChanceAlternative(Block block, Block drop, Supplier<Item> item, float... chances) {
+        registerLootTable(block, (result) -> withChanceAdditional(block, drop, item.get(), chances));
     }
 
-    public void dropAlternative(Block block, Item drop) {
-        registerLootTable(block, (result) -> droppingWithSilkTouch(result, withSurvivesExplosion(result, ItemLootEntry.builder(drop).acceptCondition(TableBonus.builder(Enchantments.FORTUNE, 0.1F, 0.14285715F, 0.25F, 1.0F)).alternatively(ItemLootEntry.builder(result)))));
+    public void dropAlternative(Block block, Supplier<Item> drop) {
+        registerLootTable(block, (result) -> droppingWithSilkTouch(result, withSurvivesExplosion(result, ItemLootEntry.builder(drop.get()).acceptCondition(TableBonus.builder(Enchantments.FORTUNE, 0.1F, 0.14285715F, 0.25F, 1.0F)).alternatively(ItemLootEntry.builder(result)))));
     }
 
     protected static LootTable.Builder smallCrate(Block block) {
@@ -101,7 +103,7 @@ public abstract class GaiaBlockLootTableProvider extends BlockLootTables {
     }
 
     protected static LootTable.Builder withShards(Block block) {
-        return droppingWithShears(block, withExplosionDecay(block, ItemLootEntry.builder(ModItems.crystal_shard)
+        return droppingWithShears(block, withExplosionDecay(block, ItemLootEntry.builder(ModItems.crystal_shard.get())
                 .acceptCondition(RandomChance.builder(0.125F))
                 .acceptFunction(ApplyBonus.uniformBonusCount(Enchantments.FORTUNE, 2))));
     }
