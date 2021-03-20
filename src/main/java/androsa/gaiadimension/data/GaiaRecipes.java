@@ -20,15 +20,15 @@ public class GaiaRecipes extends GaiaRecipeProvider {
 
     @Override
     protected void registerRecipes(Consumer<IFinishedRecipe> consumer) {
-        planksRecipe(ModBlocks.pink_agate_planks, GaiaTags.PINK_AGATE_LOGS).build(consumer, locWood("pink_agate_planks"));
-        planksRecipe(ModBlocks.blue_agate_planks, GaiaTags.BLUE_AGATE_LOGS).build(consumer, locWood("blue_agate_planks"));
-        planksRecipe(ModBlocks.green_agate_planks, GaiaTags.GREEN_AGATE_LOGS).build(consumer, locWood("green_agate_planks"));
-        planksRecipe(ModBlocks.purple_agate_planks, GaiaTags.PURPLE_AGATE_LOGS).build(consumer, locWood("purple_agate_planks"));
-        planksRecipe(ModBlocks.fossilized_planks, GaiaTags.FOSSILIZED_LOGS).build(consumer, locWood("fossilized_planks"));
-        planksRecipe(ModBlocks.corrupted_planks, GaiaTags.CORRUPTED_LOGS).build(consumer, locWood("corrupted_planks"));
-        planksRecipe(ModBlocks.burnt_planks, GaiaTags.BURNT_LOGS).build(consumer, locWood("burnt_planks"));
-        planksRecipe(ModBlocks.burning_planks, GaiaTags.BURNING_LOGS).build(consumer, locWood("burning_planks"));
-        planksRecipe(ModBlocks.aura_planks, GaiaTags.AURA_LOGS).build(consumer, locWood("aura_planks"));
+        planksRecipe(ModBlocks.pink_agate_planks, GaiaTags.Items.PINK_AGATE_LOGS).build(consumer, locWood("pink_agate_planks"));
+        planksRecipe(ModBlocks.blue_agate_planks, GaiaTags.Items.BLUE_AGATE_LOGS).build(consumer, locWood("blue_agate_planks"));
+        planksRecipe(ModBlocks.green_agate_planks, GaiaTags.Items.GREEN_AGATE_LOGS).build(consumer, locWood("green_agate_planks"));
+        planksRecipe(ModBlocks.purple_agate_planks, GaiaTags.Items.PURPLE_AGATE_LOGS).build(consumer, locWood("purple_agate_planks"));
+        planksRecipe(ModBlocks.fossilized_planks, GaiaTags.Items.FOSSILIZED_LOGS).build(consumer, locWood("fossilized_planks"));
+        planksRecipe(ModBlocks.corrupted_planks, GaiaTags.Items.CORRUPTED_LOGS).build(consumer, locWood("corrupted_planks"));
+        planksRecipe(ModBlocks.burnt_planks, GaiaTags.Items.BURNT_LOGS).build(consumer, locWood("burnt_planks"));
+        planksRecipe(ModBlocks.burning_planks, GaiaTags.Items.BURNING_LOGS).build(consumer, locWood("burning_planks"));
+        planksRecipe(ModBlocks.aura_planks, GaiaTags.Items.AURA_LOGS).build(consumer, locWood("aura_planks"));
         slabRecipe(ModBlocks.pink_agate_plank_slab, ModBlocks.pink_agate_planks).build(consumer, locWood("pink_agate_plank_slab"));
         slabRecipe(ModBlocks.blue_agate_plank_slab, ModBlocks.blue_agate_planks).build(consumer, locWood("blue_agate_plank_slab"));
         slabRecipe(ModBlocks.green_agate_plank_slab, ModBlocks.green_agate_planks).build(consumer, locWood("green_agate_plank_slab"));
@@ -128,10 +128,10 @@ public class GaiaRecipes extends GaiaRecipeProvider {
         legsRecipe(ModItems.chalcedony_legs, ModItems.chalcedony).build(consumer, locArmor("chalcedony_legs"));
         bootsRecipe(ModItems.chalcedony_boots, ModItems.chalcedony).build(consumer, locArmor("chalcedony_boots"));
 
-        swordRecipeTag(ModItems.agate_sword, GaiaTags.AGATE_PLANKS).build(consumer, locTools("agate_sword"));
-        pickaxeRecipeTag(ModItems.agate_pickaxe, GaiaTags.AGATE_PLANKS).build(consumer, locTools("agate_pickaxe"));
-        axeRecipeTag(ModItems.agate_axe, GaiaTags.AGATE_PLANKS).build(consumer, locTools("agate_axe"));
-        shovelRecipeTag(ModItems.agate_shovel, GaiaTags.AGATE_PLANKS).build(consumer, locTools("agate_shovel"));
+        swordRecipeTag(ModItems.agate_sword, GaiaTags.Items.AGATE_PLANKS).build(consumer, locTools("agate_sword"));
+        pickaxeRecipeTag(ModItems.agate_pickaxe, GaiaTags.Items.AGATE_PLANKS).build(consumer, locTools("agate_pickaxe"));
+        axeRecipeTag(ModItems.agate_axe, GaiaTags.Items.AGATE_PLANKS).build(consumer, locTools("agate_axe"));
+        shovelRecipeTag(ModItems.agate_shovel, GaiaTags.Items.AGATE_PLANKS).build(consumer, locTools("agate_shovel"));
         swordRecipe(ModItems.sugilite_sword, ModItems.sugilite).build(consumer, locTools("sugilite_sword"));
         pickaxeRecipe(ModItems.sugilite_pickaxe, ModItems.sugilite).build(consumer, locTools("sugilite_pickaxe"));
         axeRecipe(ModItems.sugilite_axe, ModItems.sugilite).build(consumer, locTools("sugilite_axe"));
@@ -229,12 +229,12 @@ public class GaiaRecipes extends GaiaRecipeProvider {
         ShapedRecipeBuilder.shapedRecipe(ModItems.agate_cup.get(), 8)
                 .patternLine("# #")
                 .patternLine(" # ")
-                .key('#', GaiaTags.AGATE_PLANKS)
-                .addCriterion("has_planks", hasItem(GaiaTags.AGATE_PLANKS))
+                .key('#', GaiaTags.Items.AGATE_PLANKS)
+                .addCriterion("has_planks", hasItem(GaiaTags.Items.AGATE_PLANKS))
                 .build(consumer, loc("agate_cup"));
         ShapelessRecipeBuilder.shapelessRecipe(ModItems.agate_stick.get(), 4)
-                .addIngredient(GaiaTags.AGATE_PLANKS)
-                .addCriterion("has_planks", hasItem(GaiaTags.AGATE_PLANKS))
+                .addIngredient(GaiaTags.Items.AGATE_PLANKS)
+                .addCriterion("has_planks", hasItem(GaiaTags.Items.AGATE_PLANKS))
                 .build(consumer, loc("agate_stick"));
         ShapedRecipeBuilder.shapedRecipe(ModBlocks.bolstered_bricks, 2)
                 .patternLine("%#")
@@ -279,8 +279,8 @@ public class GaiaRecipes extends GaiaRecipeProvider {
         ShapedRecipeBuilder.shapedRecipe(ModBlocks.agate_crafting_table)
                 .patternLine("##")
                 .patternLine("##")
-                .key('#', GaiaTags.AGATE_PLANKS)
-                .addCriterion("has_planks", hasItem(GaiaTags.AGATE_PLANKS))
+                .key('#', GaiaTags.Items.AGATE_PLANKS)
+                .addCriterion("has_planks", hasItem(GaiaTags.Items.AGATE_PLANKS))
                 .build(consumer, loc("crafting_table"));
         ShapelessRecipeBuilder.shapelessRecipe(ModItems.pearly_geode_elixir.get())
                 .addIngredient(ModItems.pink_geode_slice.get())
@@ -328,7 +328,7 @@ public class GaiaRecipes extends GaiaRecipeProvider {
                 .patternLine("*%*")
                 .patternLine("%#%")
                 .patternLine("*%*")
-                .key('*', GaiaTags.AGATE_PLANKS)
+                .key('*', GaiaTags.Items.AGATE_PLANKS)
                 .key('%', ModBlocks.thick_glitter_block)
                 .key('#', ModBlocks.crude_storage_crate)
                 .addCriterion("has_crate", hasItem(ModBlocks.crude_storage_crate))
@@ -337,7 +337,7 @@ public class GaiaRecipes extends GaiaRecipeProvider {
                 .patternLine("*%*")
                 .patternLine("%#%")
                 .patternLine("*%*")
-                .key('%', GaiaTags.AGATE_PLANKS)
+                .key('%', GaiaTags.Items.AGATE_PLANKS)
                 .key('*', ModBlocks.thick_glitter_block)
                 .key('#', ModBlocks.crude_storage_crate)
                 .addCriterion("has_crate", hasItem(ModBlocks.crude_storage_crate))
@@ -368,17 +368,17 @@ public class GaiaRecipes extends GaiaRecipeProvider {
         ShapedRecipeBuilder.shapedRecipe(ModBlocks.reinforced_bricks, 2)
                 .patternLine("%#")
                 .patternLine("#%")
-                .key('#', GaiaTags.GAIA_BRICKS)
+                .key('#', GaiaTags.Items.GAIA_BRICKS)
                 .key('%', ModBlocks.thick_glitter_block)
-                .addCriterion("has_brick", hasItem(GaiaTags.GAIA_BRICKS))
+                .addCriterion("has_brick", hasItem(GaiaTags.Items.GAIA_BRICKS))
                 .addCriterion("has_goldstone", hasItem(ModBlocks.thick_glitter_block))
                 .build(consumer, loc("reinforced_bricks"));
         ShapedRecipeBuilder.shapedRecipe(ModBlocks.reinforced_bricks, 2)
                 .patternLine("#%")
                 .patternLine("%#")
-                .key('#', GaiaTags.GAIA_BRICKS)
+                .key('#', GaiaTags.Items.GAIA_BRICKS)
                 .key('%', ModBlocks.thick_glitter_block)
-                .addCriterion("has_brick", hasItem(GaiaTags.GAIA_BRICKS))
+                .addCriterion("has_brick", hasItem(GaiaTags.Items.GAIA_BRICKS))
                 .addCriterion("has_goldstone", hasItem(ModBlocks.thick_glitter_block))
                 .build(consumer, loc("reinforced_bricks_2"));
         ShapedRecipeBuilder.shapedRecipe(ModBlocks.restructurer)
@@ -399,8 +399,8 @@ public class GaiaRecipes extends GaiaRecipeProvider {
                 .patternLine("###")
                 .patternLine("# #")
                 .patternLine("###")
-                .key('#', GaiaTags.AGATE_PLANKS)
-                .addCriterion("has_planks", hasItem(GaiaTags.AGATE_PLANKS))
+                .key('#', GaiaTags.Items.AGATE_PLANKS)
+                .addCriterion("has_planks", hasItem(GaiaTags.Items.AGATE_PLANKS))
                 .build(consumer, loc("small_chest"));
         ShapelessRecipeBuilder.shapelessRecipe(ModItems.twined_thread.get())
                 .addIngredient(ModItems.fine_thread.get())

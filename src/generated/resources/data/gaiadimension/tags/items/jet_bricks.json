@@ -1,0 +1,8 @@
+{
+  "replace": false,
+  "values": [
+    "gaiadimension:jet_bricks",
+    "gaiadimension:cracked_jet_bricks",
+    "gaiadimension:crusted_jet_bricks"
+  ]
+}

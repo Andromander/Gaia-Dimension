@@ -1,0 +1,14 @@
+{
+  "replace": false,
+  "values": [
+    "#gaiadimension:pink_agate_logs",
+    "#gaiadimension:blue_agate_logs",
+    "#gaiadimension:green_agate_logs",
+    "#gaiadimension:purple_agate_logs",
+    "#gaiadimension:fossilized_logs",
+    "#gaiadimension:corrupted_logs",
+    "#gaiadimension:burnt_logs",
+    "#gaiadimension:burning_logs",
+    "#gaiadimension:aura_logs"
+  ]
+}

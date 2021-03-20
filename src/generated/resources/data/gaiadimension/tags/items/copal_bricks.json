@@ -1,0 +1,8 @@
+{
+  "replace": false,
+  "values": [
+    "gaiadimension:copal_bricks",
+    "gaiadimension:cracked_copal_bricks",
+    "gaiadimension:crusted_copal_bricks"
+  ]
+}

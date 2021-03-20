@@ -7,7 +7,7 @@ import net.minecraft.util.LazyValue;
 import java.util.function.Supplier;
 
 public enum GaiaToolMaterials implements IItemTier {
-    AGATE(1, 150, 2.5F, 1.0F, 5, () -> Ingredient.fromTag(GaiaTags.AGATE_PLANKS)),
+    AGATE(1, 150, 2.5F, 1.0F, 5, () -> Ingredient.fromTag(GaiaTags.Items.AGATE_PLANKS)),
     SUGILITE(2, 800, 3.0F, 1.5F, 10, () -> Ingredient.fromItems(ModItems.sugilite.get())),
     IXIOLITE(2, 1500, 4.0F, 2.0F, 10, () -> Ingredient.fromItems(ModItems.ixiolite.get())),
     EUCLASE(2, 3000, 4.0F, 2.0F, 10, () -> Ingredient.fromItems(ModItems.euclase.get())),

@@ -1,9 +1,0 @@
-{
-  "replace": false,
-  "values": [
-    "gaiadimension:corrupted_log",
-    "gaiadimension:corrupted_wood",
-    "gaiadimension:stripped_corrupted_log",
-    "gaiadimension:stripped_corrupted_wood"
-  ]
-}

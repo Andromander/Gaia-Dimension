@@ -5,6 +5,7 @@ import androsa.gaiadimension.client.GaiaDimensionRenderInfo;
 import androsa.gaiadimension.client.GaiaSkyRender;
 import androsa.gaiadimension.data.*;
 import androsa.gaiadimension.data.provider.GaiaAdvancementProvider;
+import androsa.gaiadimension.data.provider.GaiaItemTagsProvider;
 import androsa.gaiadimension.registry.*;
 import net.minecraft.block.Block;
 import net.minecraft.client.world.DimensionRenderInfo;
@@ -50,9 +51,6 @@ public class GaiaDimensionMod {
     public static final CreatureAttribute CORRUPT = new CreatureAttribute();
 
     public static final DamageSource CORRUPTION = new DamageSource("corruption").setDamageBypassesArmor();
-
-    public static final ITag.INamedTag<Block> VOLCANIC = BlockTags.makeWrapperTag(new ResourceLocation(MODID, "base_stone_volcanic").toString());
-    public static final ITag.INamedTag<Block> STATIC = BlockTags.makeWrapperTag(new ResourceLocation(MODID, "base_stone_static").toString());
 
     public GaiaDimensionMod() {
 
@@ -116,6 +114,7 @@ public class GaiaDimensionMod {
 
     public void gatherData(GatherDataEvent event) {
         DataGenerator generator = event.getGenerator();
+        GaiaBlockTags blocktags = new GaiaBlockTags(generator, event.getExistingFileHelper());
         if (event.includeClient()) {
             generator.addProvider(new GaiaBlockStates(generator, event.getExistingFileHelper()));
             generator.addProvider(new GaiaItemModels(generator, event.getExistingFileHelper()));
@@ -126,6 +125,8 @@ public class GaiaDimensionMod {
             generator.addProvider(new GaiaConfiguredFeatures(generator));
             generator.addProvider(new GaiaBiomes(generator));
             generator.addProvider(new GaiaAdvancements(generator));
+            generator.addProvider(blocktags);
+            generator.addProvider(new GaiaItemTags(generator, blocktags, event.getExistingFileHelper()));
         }
     }
 }

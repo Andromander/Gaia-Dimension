@@ -1,0 +1,30 @@
+{
+  "replace": false,
+  "values": [
+    "gaiadimension:pink_agate_plank_slab",
+    "gaiadimension:blue_agate_plank_slab",
+    "gaiadimension:green_agate_plank_slab",
+    "gaiadimension:purple_agate_plank_slab",
+    "gaiadimension:fossilized_plank_slab",
+    "gaiadimension:corrupted_plank_slab",
+    "gaiadimension:burnt_plank_slab",
+    "gaiadimension:burning_plank_slab",
+    "gaiadimension:aura_plank_slab",
+    "gaiadimension:jade_brick_slab",
+    "gaiadimension:cracked_jade_brick_slab",
+    "gaiadimension:crusted_jade_brick_slab",
+    "gaiadimension:copal_brick_slab",
+    "gaiadimension:cracked_copal_brick_slab",
+    "gaiadimension:crusted_copal_brick_slab",
+    "gaiadimension:jet_brick_slab",
+    "gaiadimension:cracked_jet_brick_slab",
+    "gaiadimension:crusted_jet_brick_slab",
+    "gaiadimension:amethyst_brick_slab",
+    "gaiadimension:cracked_amethyst_brick_slab",
+    "gaiadimension:crusted_amethyst_brick_slab",
+    "gaiadimension:malachite_brick_slab",
+    "gaiadimension:malachite_cracked_brick_slab",
+    "gaiadimension:malachite_crusted_brick_slab",
+    "gaiadimension:malachite_floor_slab"
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "replace": false,
+  "values": [
+    "gaiadimension:pink_agate_leaves",
+    "gaiadimension:blue_agate_leaves",
+    "gaiadimension:green_agate_leaves",
+    "gaiadimension:purple_agate_leaves",
+    "gaiadimension:fossilized_leaves",
+    "gaiadimension:corrupted_leaves",
+    "gaiadimension:burnt_leaves",
+    "gaiadimension:burning_leaves",
+    "gaiadimension:aura_leaves"
+  ]
+}

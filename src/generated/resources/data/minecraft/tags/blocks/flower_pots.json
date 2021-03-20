@@ -1,0 +1,30 @@
+{
+  "replace": false,
+  "values": [
+    "gaiadimension:potted_thiscus",
+    "gaiadimension:potted_ouzium",
+    "gaiadimension:potted_agathum",
+    "gaiadimension:potted_varloom",
+    "gaiadimension:potted_corrupted_varloom",
+    "gaiadimension:potted_missingno_plant",
+    "gaiadimension:potted_spotted_kersei",
+    "gaiadimension:potted_thorny_wiltha",
+    "gaiadimension:potted_roofed_agaric",
+    "gaiadimension:potted_bulbous_hobina",
+    "gaiadimension:potted_stickly_cupsir",
+    "gaiadimension:potted_mystical_murgni",
+    "gaiadimension:potted_corrupted_gaia_eye",
+    "gaiadimension:potted_elder_imklia",
+    "gaiadimension:potted_gold_orb_tucher",
+    "gaiadimension:potted_missingno_fungus",
+    "gaiadimension:potted_pink_agate_sapling",
+    "gaiadimension:potted_blue_agate_sapling",
+    "gaiadimension:potted_green_agate_sapling",
+    "gaiadimension:potted_purple_agate_sapling",
+    "gaiadimension:potted_fossilized_sapling",
+    "gaiadimension:potted_corrupted_sapling",
+    "gaiadimension:potted_burnt_sapling",
+    "gaiadimension:potted_burning_sapling",
+    "gaiadimension:potted_aura_sapling"
+  ]
+}

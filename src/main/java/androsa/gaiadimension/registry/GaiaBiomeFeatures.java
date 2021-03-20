@@ -35,8 +35,8 @@ import java.util.function.Supplier;
 public final class GaiaBiomeFeatures {
 
     public static final RuleTest GAIA_STONE = new BlockMatchRuleTest(ModBlocks.gaia_stone);
-    public static final RuleTest VOLCANIC = new TagMatchRuleTest(GaiaDimensionMod.VOLCANIC);
-    public static final RuleTest STATIC = new TagMatchRuleTest(GaiaDimensionMod.STATIC);
+    public static final RuleTest VOLCANIC = new TagMatchRuleTest(GaiaTags.Blocks.VOLCANIC);
+    public static final RuleTest STATIC = new TagMatchRuleTest(GaiaTags.Blocks.STATIC);
 
     public static final BlockState GLITTER_GRASS = ModBlocks.glitter_grass.getDefaultState();
     public static final BlockState CORRUPT_GRASS = ModBlocks.corrupt_grass.getDefaultState();
