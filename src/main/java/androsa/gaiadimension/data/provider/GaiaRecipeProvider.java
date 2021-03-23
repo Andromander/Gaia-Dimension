@@ -3,6 +3,8 @@ package androsa.gaiadimension.data.provider;
 import androsa.gaiadimension.registry.ModBlocks;
 import androsa.gaiadimension.registry.ModItems;
 import net.minecraft.block.Block;
+import net.minecraft.block.SlabBlock;
+import net.minecraft.block.StairsBlock;
 import net.minecraft.data.CookingRecipeBuilder;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.ShapedRecipeBuilder;
@@ -49,32 +51,32 @@ public abstract class GaiaRecipeProvider extends ForgeRecipeProvider implements 
                 .addCriterion("has_" + ingredient.asItem().toString(), hasItem(ingredient));
     }
 
-    public ShapelessRecipeBuilder planksRecipe(Block result, ITag.INamedTag<Item> ingredient) {
-        return ShapelessRecipeBuilder.shapelessRecipe(result, 4)
+    public ShapelessRecipeBuilder planksRecipe(Supplier<Block> result, ITag.INamedTag<Item> ingredient) {
+        return ShapelessRecipeBuilder.shapelessRecipe(result.get(), 4)
                 .addIngredient(ingredient)
                 .addCriterion("has_" + ingredient.getName().getPath(), hasItem(ingredient));
     }
 
-    public ShapedRecipeBuilder slabRecipe(Block result, Block ingredient) {
-        return ShapedRecipeBuilder.shapedRecipe(result, 6)
+    public ShapedRecipeBuilder slabRecipe(RegistryObject<SlabBlock> result, RegistryObject<Block> ingredient) {
+        return ShapedRecipeBuilder.shapedRecipe(result.get(), 6)
                 .patternLine("###")
-                .key('#', ingredient)
-                .addCriterion("has_" + ingredient.getRegistryName().getPath(), hasItem(ingredient));
+                .key('#', ingredient.get())
+                .addCriterion("has_" + ingredient.getId().getPath(), hasItem(ingredient.get()));
     }
 
-    public ShapedRecipeBuilder stairsRecipe(Block result, Block ingredient) {
-        return ShapedRecipeBuilder.shapedRecipe(result, 8)
+    public ShapedRecipeBuilder stairsRecipe(Supplier<StairsBlock> result, RegistryObject<? extends Block> ingredient) {
+        return ShapedRecipeBuilder.shapedRecipe(result.get(), 8)
                 .patternLine("#  ")
                 .patternLine("## ")
                 .patternLine("###")
-                .key('#', ingredient)
-                .addCriterion("has_" + ingredient.getRegistryName().getPath(), hasItem(ingredient));
+                .key('#', ingredient.get())
+                .addCriterion("has_" + ingredient.getId().getPath(), hasItem(ingredient.get()));
     }
 
-    public ShapelessRecipeBuilder blockToItemRecipe(RegistryObject<Item> result, Block ingredient) {
+    public ShapelessRecipeBuilder blockToItemRecipe(RegistryObject<Item> result, RegistryObject<Block> ingredient) {
         return ShapelessRecipeBuilder.shapelessRecipe(result.get(), 9)
-                .addIngredient(ingredient)
-                .addCriterion("has_" + ingredient.getRegistryName().getPath(), hasItem(ingredient));
+                .addIngredient(ingredient.get())
+                .addCriterion("has_" + ingredient.getId().getPath(), hasItem(ingredient.get()));
     }
 
     public ShapedRecipeBuilder helmetRecipe(RegistryObject<Item> result, RegistryObject<Item> ingredient) {
@@ -208,13 +210,20 @@ public abstract class GaiaRecipeProvider extends ForgeRecipeProvider implements 
     public ShapelessRecipeBuilder tiliRecipe(RegistryObject<Item> result, Block ingredient) {
         return ShapelessRecipeBuilder.shapelessRecipe(result.get())
                 .addIngredient(ingredient)
-                .addIngredient(ModBlocks.thiscus)
-                .addCriterion("has_thiscus", hasItem(ModBlocks.thiscus));
+                .addIngredient(ModBlocks.thiscus.get())
+                .addCriterion("has_thiscus", hasItem(ModBlocks.thiscus.get()));
     }
 
-    public ShapelessRecipeBuilder crustBricks(Block result, Block ingredient) {
-        return ShapelessRecipeBuilder.shapelessRecipe(result)
-                .addIngredient(ingredient)
+    public ShapelessRecipeBuilder tiliRecipe(RegistryObject<Item> result, Supplier<Block> ingredient) {
+        return ShapelessRecipeBuilder.shapelessRecipe(result.get())
+                .addIngredient(ingredient.get())
+                .addIngredient(ModBlocks.thiscus.get())
+                .addCriterion("has_thiscus", hasItem(ModBlocks.thiscus.get()));
+    }
+
+    public ShapelessRecipeBuilder crustBricks(Supplier<Block> result, Supplier<Block> ingredient) {
+        return ShapelessRecipeBuilder.shapelessRecipe(result.get())
+                .addIngredient(ingredient.get())
                 .addIngredient(ModItems.crystal_shard.get())
                 .addCriterion("has_shard", hasItem(ModItems.crystal_shard.get()));
     }

@@ -12,7 +12,7 @@ public class GaiaItemGroups {
         @Override
         @OnlyIn(Dist.CLIENT)
         public ItemStack createIcon() {
-            return new ItemStack(ModBlocks.glitter_grass);
+            return new ItemStack(ModBlocks.glitter_grass.get());
         }
     };
 

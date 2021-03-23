@@ -31,7 +31,7 @@ public class GaiaAdvancements extends GaiaAdvancementProvider {
         public void accept(Consumer<Advancement> consumer) {
             //Enter Gaia
             Advancement root = Advancement.Builder.builder()
-                    .withDisplay(ModBlocks.keystone_block, title("root"), description("root"), new ResourceLocation(GaiaDimensionMod.MODID, "textures/block/gaia_stone.png"), FrameType.TASK, true, true, false)
+                    .withDisplay(ModBlocks.keystone_block.get(), title("root"), description("root"), new ResourceLocation(GaiaDimensionMod.MODID, "textures/block/gaia_stone.png"), FrameType.TASK, true, true, false)
                     .withCriterion("entered_gaia", ChangeDimensionTrigger.Instance.toWorld(ModDimensions.gaia_world))
                     .register(consumer, loc("root"));
             //Collect a Gemstone
@@ -247,7 +247,7 @@ public class GaiaAdvancements extends GaiaAdvancementProvider {
             //Explore all of Gaia
             Advancement.Builder.builder()
                     .withParent(root)
-                    .withDisplay(ModBlocks.glitter_grass, title("explore_gaia"), description("explore_gaia"), null, FrameType.CHALLENGE, true, true, false)
+                    .withDisplay(ModBlocks.glitter_grass.get(), title("explore_gaia"), description("explore_gaia"), null, FrameType.CHALLENGE, true, true, false)
                     .withRewards(AdvancementRewards.Builder.experience(1000))
                     .withCriterion("pink_agate_forest", biome(ModBiomes.pink_agate_forest))
                     .withCriterion("blue_agate_taiga", biome(ModBiomes.blue_agate_taiga))
@@ -268,13 +268,13 @@ public class GaiaAdvancements extends GaiaAdvancementProvider {
             //Find a Gaia Mini Tower
             Advancement progress1 = Advancement.Builder.builder()
                     .withParent(root)
-                    .withDisplay(ModBlocks.amethyst_bricks, title("find_mini_tower"), description("find_mini_tower"), null, FrameType.TASK, true, true, false)
+                    .withDisplay(ModBlocks.amethyst_bricks.get(), title("find_mini_tower"), description("find_mini_tower"), null, FrameType.TASK, true, true, false)
                     .withCriterion("mini_tower", PositionTrigger.Instance.forLocation(LocationPredicate.forFeature(ModWorldgen.MINI_TOWER.get())))
                     .register(consumer, loc("find_mini_tower"));
             //Find a Malachite Watchtower
             Advancement progress2 = Advancement.Builder.builder()
                     .withParent(progress1)
-                    .withDisplay(ModBlocks.malachite_bricks, title("find_malachite_watchtower"), description("find_malachite_watchtower"), null, FrameType.TASK, true, true, false)
+                    .withDisplay(ModBlocks.malachite_bricks.get(), title("find_malachite_watchtower"), description("find_malachite_watchtower"), null, FrameType.TASK, true, true, false)
                     .withCriterion("malachite_watchtower", PositionTrigger.Instance.forLocation(LocationPredicate.forFeature(ModWorldgen.MALACHITE_WATCHTOWER.get())))
                     .register(consumer, loc("find_malachite_watchtower"));
             //Slay the Malachite Guard

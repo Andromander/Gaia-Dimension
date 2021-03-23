@@ -15,7 +15,10 @@ import net.minecraft.world.World;
 import net.minecraftforge.client.ISkyRenderHandler;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.registries.DeferredRegister;
+import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.IForgeRegistry;
 
 import javax.annotation.Nullable;
@@ -23,7 +26,9 @@ import javax.annotation.Nullable;
 @Mod.EventBusSubscriber(modid = GaiaDimensionMod.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ModDimensions {
 
-    public static final PointOfInterestType GAIA_PORTAL = RegistryHelper.registerPOI("gaia_portal", PointOfInterestType.getAllStates(ModBlocks.gaia_portal), 0, 1);
+    public static final DeferredRegister<PointOfInterestType> POI_TYPES = DeferredRegister.create(ForgeRegistries.POI_TYPES, GaiaDimensionMod.MODID);
+
+    public static final RegistryObject<PointOfInterestType> GAIA_PORTAL = POI_TYPES.register("gaia_portal", () -> new PointOfInterestType("gaia_portal",PointOfInterestType.getAllStates(ModBlocks.gaia_portal.get()), 0, 1));
     public static final RegistryKey<World> gaia_world = RegistryKey.getOrCreateKey(Registry.WORLD_KEY, new ResourceLocation(GaiaDimensionMod.MODID, "gaia_dimension"));
     public static final RegistryKey<DimensionType> gaia_dimension = RegistryKey.getOrCreateKey(Registry.DIMENSION_TYPE_KEY, new ResourceLocation(GaiaDimensionMod.MODID, "gaia_dimension"));
 

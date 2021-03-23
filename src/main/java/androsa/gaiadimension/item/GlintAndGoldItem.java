@@ -28,7 +28,7 @@ public class GlintAndGoldItem extends Item {
 
         if (canCreatePortal(iworld.getBlockState(blockpos1), iworld, blockpos1)) {
             iworld.playSound(playerentity, blockpos1, SoundEvents.ITEM_FLINTANDSTEEL_USE, SoundCategory.BLOCKS, 1.0F, random.nextFloat() * 0.4F + 0.8F);
-            BlockState blockstate1 = ModBlocks.gold_fire.getDefaultState();
+            BlockState blockstate1 = ModBlocks.gold_fire.get().getDefaultState();
             iworld.setBlockState(blockpos1, blockstate1, 11);
             ItemStack itemstack = context.getItem();
 
@@ -45,11 +45,11 @@ public class GlintAndGoldItem extends Item {
 
     //TODO: Remove on new portal
     public static boolean canCreatePortal(BlockState state, IWorld world, BlockPos pos) {
-        BlockState blockstate = ModBlocks.gold_fire.getDefaultState();
+        BlockState blockstate = ModBlocks.gold_fire.get().getDefaultState();
         boolean flag = false;
 
         for(Direction direction : Direction.Plane.HORIZONTAL) {
-            if (world.getBlockState(pos.offset(direction)).getBlock() == ModBlocks.keystone_block && ModBlocks.gaia_portal.isPortal(world, pos) != null) {
+            if (world.getBlockState(pos.offset(direction)).getBlock() == ModBlocks.keystone_block.get() && ModBlocks.gaia_portal.get().isPortal(world, pos) != null) {
                 flag = true;
             }
         }

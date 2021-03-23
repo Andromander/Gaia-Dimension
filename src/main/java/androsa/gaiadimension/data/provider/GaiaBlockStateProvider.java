@@ -6,6 +6,9 @@ import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.generators.*;
 import net.minecraftforge.common.data.ExistingFileHelper;
+import net.minecraftforge.fml.RegistryObject;
+
+import java.util.function.Supplier;
 
 public abstract class GaiaBlockStateProvider extends BlockStateProvider {
 
@@ -34,76 +37,80 @@ public abstract class GaiaBlockStateProvider extends BlockStateProvider {
         return modLoc("block/" + name);
     }
 
-    protected String blockName(Block block) {
-        return block.getRegistryName().getPath();
+    protected String blockName(RegistryObject<? extends Block> block) {
+        return block.getId().getPath();
     }
 
-    public void sidedBlock(Block block, String top, String bottom, String north, String south, String east, String west) {
-        simpleBlock(block, models().cube(blockName(block), tLocGaia(bottom), tLocGaia(top), tLocGaia(north), tLocGaia(south), tLocGaia(east), tLocGaia(west)));
+    public void basicBlock(Supplier<? extends Block> block) {
+        simpleBlock(block.get());
     }
 
-    public void basicBlockRotated(Block block) {
-        simpleBlock(block, model -> ConfiguredModel.allYRotations(model, 0, false));
+    public void sidedBlock(RegistryObject<Block> block, String top, String bottom, String north, String south, String east, String west) {
+        simpleBlock(block.get(), models().cube(blockName(block), tLocGaia(bottom), tLocGaia(top), tLocGaia(north), tLocGaia(south), tLocGaia(east), tLocGaia(west)));
     }
 
-    public void basicBlockLayered(Block block, String bottom, String top) {
-        simpleBlock(block, models().basicLayered(block, tLocGaia(bottom), tLocGaia(top)));
+    public void basicBlockRotated(Supplier<Block> block) {
+        simpleBlock(block.get(), model -> ConfiguredModel.allYRotations(model, 0, false));
     }
 
-    public void logBlock(RotatedPillarBlock block, String name) {
-        axisBlock(block, tLocGaia(name));
+    public void basicBlockLayered(RegistryObject<Block> block, String bottom, String top) {
+        simpleBlock(block.get(), models().basicLayered(block, tLocGaia(bottom), tLocGaia(top)));
     }
 
-    public void strippedLogBlock(RotatedPillarBlock block, String name) {
-        axisBlock(block, tLocGaia("stripped_" + name));
+    public void logBlock(Supplier<RotatedPillarBlock> block, String name) {
+        axisBlock(block.get(), tLocGaia(name));
     }
 
-    public void strippedWoodBlock(RotatedPillarBlock block, String name) {
+    public void strippedLogBlock(Supplier<RotatedPillarBlock> block, String name) {
+        axisBlock(block.get(), tLocGaia("stripped_" + name));
+    }
+
+    public void strippedWoodBlock(RegistryObject<RotatedPillarBlock> block, String name) {
         ModelFile model = models().cubeColumn(blockName(block), tLocGaia("stripped_" + name + "_log_side"), tLocGaia("stripped_" + name + "_log_side"));
-        axisBlock(block, model, model);
+        axisBlock(block.get(), model, model);
     }
 
-    public void woodBlock(RotatedPillarBlock block, String name) {
+    public void woodBlock(RegistryObject<RotatedPillarBlock> block, String name) {
         ModelFile model = models().cubeColumn(blockName(block), tLocGaia(name + "_side"), tLocGaia(name + "_side"));
-        axisBlock(block, model, model);
+        axisBlock(block.get(), model, model);
     }
 
-    public void stairsBlock(StairsBlock block, String name) {
-        stairsBlock(block, tLocGaia(name));
+    public void stairsBlock(RegistryObject<StairsBlock> block, String name) {
+        stairsBlock(block.get(), tLocGaia(name));
     }
 
-    public void stairsBlockLayered(StairsBlock block, String inner, String outer) {
+    public void stairsBlockLayered(RegistryObject<StairsBlock> block, String inner, String outer) {
         ModelFile stairs = models().stairsBasicLayer(block, tLocGaia(inner), tLocGaia(outer));
         ModelFile stairsInner = models().stairsInnerBasicLayer(block, tLocGaia(inner), tLocGaia(outer));
         ModelFile stairsOuter = models().stairsOuterBasicLayer(block, tLocGaia(inner), tLocGaia(outer));
-        stairsBlock(block, stairs, stairsInner, stairsOuter);
+        stairsBlock(block.get(), stairs, stairsInner, stairsOuter);
     }
 
-    public void slabBlock(SlabBlock block, Block doubleBlock) {
-        slabBlock(block, tLocGaia(blockName(doubleBlock)), tLocGaia(blockName(doubleBlock)));
+    public void slabBlock(RegistryObject<SlabBlock> block, RegistryObject<Block> doubleBlock) {
+        slabBlock(block.get(), tLocGaia(blockName(doubleBlock)), tLocGaia(blockName(doubleBlock)));
     }
 
-    public void crossBlock(Block block) {
+    public void crossBlock(RegistryObject<? extends Block> block) {
         crossBlock(block, models().cross(blockName(block), tLocGaia(blockName(block))));
     }
 
-    public void crossBlockTinted(Block block) {
+    public void crossBlockTinted(RegistryObject<Block> block) {
         crossBlock(block, models().tintedCross(blockName(block), tLocGaia(blockName(block))));
     }
 
-    public void orientableBlockLit(Block block) {
+    public void orientableBlockLit(RegistryObject<Block> block) {
         ModelFile off = models().orientable(blockName(block), tLocGaia(blockName(block) + "_side"), tLocGaia(blockName(block) + "_front"), tLocGaia(blockName(block) + "_top"));
         ModelFile on = models().orientable(blockName(block) + "_lit", tLocGaia(blockName(block) + "_side"), tLocGaia(blockName(block) + "_front_lit"), tLocGaia(blockName(block) + "_top"));
         orientableBlock(block, off, on);
     }
 
-    public void orientableBlockBasicLit(Block block) {
+    public void orientableBlockBasicLit(RegistryObject<Block> block) {
         ModelFile off = models().orientable(blockName(block), tLocGaia(blockName(block) + "_side"), tLocGaia(blockName(block) + "_front"), tLocGaia(blockName(block) + "_side"));
         ModelFile on = models().orientable(blockName(block) + "_lit", tLocGaia(blockName(block) + "_side"), tLocGaia(blockName(block) + "_front_lit"), tLocGaia(blockName(block) + "_side"));
         orientableBlock(block, off, on);
     }
 
-    public void grassBlock(Block block, String bottom) {
+    public void grassBlock(RegistryObject<Block> block, String bottom) {
         String baseName = blockName(block);
         ModelFile model = models().grass(
                 block,
@@ -114,15 +121,15 @@ public abstract class GaiaBlockStateProvider extends BlockStateProvider {
         grassBlock(block, model);
     }
 
-    public void pottedPlantBlock(FlowerPotBlock block) {
-        simpleBlock(block, models().flowerPot(block));
+    public void pottedPlantBlock(RegistryObject<FlowerPotBlock> block) {
+        simpleBlock(block.get(), models().flowerPot(block));
     }
 
-    public void torchBlock(Block block, Block wall) {
+    public void torchBlock(RegistryObject<Block> block, RegistryObject<Block> wall) {
         ModelFile torch = models().torch(blockName(block), tLocGaia(blockName(block)));
         ModelFile torchwall = models().torchWall(blockName(wall), tLocGaia(blockName(block)));
-        simpleBlock(block, torch);
-        getVariantBuilder(wall).forAllStates(state ->
+        simpleBlock(block.get(), torch);
+        getVariantBuilder(wall.get()).forAllStates(state ->
                 ConfiguredModel.builder()
                 .modelFile(torchwall)
                 .rotationY(((int) state.get(BlockStateProperties.HORIZONTAL_FACING).getHorizontalAngle() + 90) % 360)
@@ -140,6 +147,17 @@ public abstract class GaiaBlockStateProvider extends BlockStateProvider {
         });
     }
 
+    private void orientableBlock(RegistryObject<Block> block, ModelFile off, ModelFile on) {
+        getVariantBuilder(block.get()).forAllStates(state -> {
+            ModelFile model = state.get(BlockStateProperties.LIT) ? on : off;
+
+            return ConfiguredModel.builder()
+                    .modelFile(model)
+                    .rotationY(((int) state.get(BlockStateProperties.HORIZONTAL_FACING).getHorizontalAngle() + 180) % 360)
+                    .build();
+        });
+    }
+
     private void crossBlock(Block block, ModelFile model) {
         getVariantBuilder(block).forAllStates(state ->
                 ConfiguredModel.builder()
@@ -147,7 +165,14 @@ public abstract class GaiaBlockStateProvider extends BlockStateProvider {
                 .build());
     }
 
-    private void grassBlock(Block block, ModelFile model) {
-        getVariantBuilder(block).forAllStates(state -> ConfiguredModel.allYRotations(model, 0, false));
+    private void crossBlock(Supplier<? extends Block> block, ModelFile model) {
+        getVariantBuilder(block.get()).forAllStates(state ->
+                ConfiguredModel.builder()
+                .modelFile(model)
+                .build());
+    }
+
+    private void grassBlock(Supplier<Block> block, ModelFile model) {
+        getVariantBuilder(block.get()).forAllStates(state -> ConfiguredModel.allYRotations(model, 0, false));
     }
 }

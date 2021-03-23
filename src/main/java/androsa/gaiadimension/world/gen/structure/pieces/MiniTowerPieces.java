@@ -172,7 +172,7 @@ public class MiniTowerPieces {
         protected void handleDataMarker(String name, BlockPos pos, IServerWorld world, Random random, MutableBoundingBox mbb) {
             if ("Chest".equals(name)) {
                 if (random.nextDouble() > 0.5D) {
-                    world.setBlockState(pos, ModBlocks.crude_storage_crate.getDefaultState(), 3);
+                    world.setBlockState(pos, ModBlocks.crude_storage_crate.get().getDefaultState(), 3);
                     TileEntity tileentity = world.getTileEntity(pos);
                     if (tileentity instanceof SmallCrateTileEntity) {
                         ((SmallCrateTileEntity) tileentity).setLootTable(towerType.getChestLoot(), random.nextLong());

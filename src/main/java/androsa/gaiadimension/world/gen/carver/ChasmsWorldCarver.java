@@ -23,7 +23,10 @@ public class ChasmsWorldCarver<T extends ProbabilityConfig> extends WorldCarver<
 
     public ChasmsWorldCarver(Codec<T> config, int height) {
         super(config, height);
-        carvableBlocks = ImmutableSet.of(ModBlocks.glitter_grass, ModBlocks.corrupt_grass, ModBlocks.murky_grass, ModBlocks.soft_grass, ModBlocks.heavy_soil, ModBlocks.corrupt_soil, ModBlocks.boggy_soil, ModBlocks.light_soil, ModBlocks.saltstone, ModBlocks.gaia_stone, ModBlocks.wasteland_stone, ModBlocks.volcanic_rock, ModBlocks.primal_mass);
+        carvableBlocks = ImmutableSet.of(
+                ModBlocks.glitter_grass.get(), ModBlocks.corrupt_grass.get(), ModBlocks.murky_grass.get(), ModBlocks.soft_grass.get(), ModBlocks.heavy_soil.get(),
+                ModBlocks.corrupt_soil.get(), ModBlocks.boggy_soil.get(), ModBlocks.light_soil.get(), ModBlocks.saltstone.get(), ModBlocks.gaia_stone.get(), ModBlocks.wasteland_stone.get(),
+                ModBlocks.volcanic_rock.get(), ModBlocks.primal_mass.get());
     }
 
     @Override
@@ -141,7 +144,7 @@ public class ChasmsWorldCarver<T extends ProbabilityConfig> extends WorldCarver<
                 return false;
             } else {
                 if (yVal < 11) {
-                    chunkIn.setBlockState(mutablePos, ModBlocks.superhot_magma.getDefaultState(), false);
+                    chunkIn.setBlockState(mutablePos, ModBlocks.superhot_magma.get().getDefaultState(), false);
                 } else {
                     chunkIn.setBlockState(mutablePos, CAVE_AIR, false);
                     if (flag.isTrue()) {

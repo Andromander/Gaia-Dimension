@@ -129,11 +129,11 @@ public class RestructurerTileEntity extends LockableTileEntity implements ISided
         addItemToMap(map, Blocks.GOLD_BLOCK, 2000);
         addItemToMap(map, Blocks.GOLD_ORE, 150);
         addItemToMap(map, ModItems.pyrite.get(), 500);
-        addItemToMap(map, ModBlocks.pyrite_block, 5000);
+        addItemToMap(map, ModBlocks.pyrite_block.get(), 5000);
         addItemToMap(map, ModItems.sweet_muckball.get(), 250);
-        addItemToMap(map, ModBlocks.frail_glitter_block, 1000);
-        addItemToMap(map, ModBlocks.thick_glitter_block, 2000);
-        addItemToMap(map, ModBlocks.gummy_glitter_block, 4000);
+        addItemToMap(map, ModBlocks.frail_glitter_block.get(), 1000);
+        addItemToMap(map, ModBlocks.thick_glitter_block.get(), 2000);
+        addItemToMap(map, ModBlocks.gummy_glitter_block.get(), 4000);
         addItemToMap(map, Items.BLAZE_POWDER, 1200);
         addItemToMap(map, Items.BLAZE_ROD, 2400);
         return map;
@@ -144,10 +144,10 @@ public class RestructurerTileEntity extends LockableTileEntity implements ISided
         Map<Item, Integer> map = Maps.newLinkedHashMap();
         addItemToMap(map, ModItems.pink_essence.get(), 100);
         addItemToMap(map, ModItems.pink_goo.get(), 900);
-        addItemToMap(map, ModBlocks.pink_sludge_block, 8100);
+        addItemToMap(map, ModBlocks.pink_sludge_block.get(), 8100);
         addItemToMap(map, ModItems.aura_residue.get(), 200);
         addItemToMap(map, ModItems.aura_cluster.get(), 1800);
-        addItemToMap(map, ModBlocks.aura_block, 16200);
+        addItemToMap(map, ModBlocks.aura_block.get(), 16200);
         return map;
     }
 

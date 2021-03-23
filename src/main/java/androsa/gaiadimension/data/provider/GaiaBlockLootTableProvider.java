@@ -7,6 +7,8 @@ import net.minecraft.advancements.criterion.EnchantmentPredicate;
 import net.minecraft.advancements.criterion.ItemPredicate;
 import net.minecraft.advancements.criterion.MinMaxBounds;
 import net.minecraft.block.Block;
+import net.minecraft.block.FlowerPotBlock;
+import net.minecraft.block.SlabBlock;
 import net.minecraft.data.loot.BlockLootTables;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.item.Item;
@@ -17,8 +19,9 @@ import net.minecraft.loot.conditions.MatchTool;
 import net.minecraft.loot.conditions.RandomChance;
 import net.minecraft.loot.conditions.TableBonus;
 import net.minecraft.loot.functions.*;
-import net.minecraft.util.IItemProvider;
+import net.minecraftforge.fml.RegistryObject;
 
+import java.util.function.Function;
 import java.util.function.Supplier;
 
 public abstract class GaiaBlockLootTableProvider extends BlockLootTables {
@@ -27,28 +30,44 @@ public abstract class GaiaBlockLootTableProvider extends BlockLootTables {
     private static final ILootCondition.IBuilder shears_or_silk = has_shears.alternative(has_silk_touch);
     private static final ILootCondition.IBuilder silk_or_shears = shears_or_silk.inverted();
 
-    public void dropSlab(Block block) {
-        super.registerLootTable(block, BlockLootTables::droppingSlab);
+    public <T extends Block> void dropSelf(Supplier<T> block) {
+        registerDropSelfLootTable(block.get());
     }
 
-    public void dropWithFortune(Block block, Supplier<Item> drop) {
-        super.registerLootTable(block, (result) -> droppingItemWithFortune(result, drop.get()));
+    public void dropTable(Supplier<Block> block, Function<Block, LootTable.Builder> table) {
+        registerLootTable(block.get(), table.apply(block.get()));
     }
 
-    public void dropWithSilk(Block block, IItemProvider drop) {
-        registerLootTable(block, (result) -> droppingWithSilkTouch(result, drop));
+    public void dropSlab(Supplier<SlabBlock> block) {
+        super.registerLootTable(block.get(), BlockLootTables::droppingSlab);
     }
 
-    public void dropChance(Block block, Block drop, float... chances) {
-        registerLootTable(block, (result) -> withChance(block, drop, chances));
+    public void dropWithFortune(Supplier<Block> block, Supplier<Item> drop) {
+        super.registerLootTable(block.get(), (result) -> droppingItemWithFortune(result, drop.get()));
     }
 
-    public void dropChanceAlternative(Block block, Block drop, Supplier<Item> item, float... chances) {
-        registerLootTable(block, (result) -> withChanceAdditional(block, drop, item.get(), chances));
+    public void dropOnlySilk(Supplier<Block> block) {
+        registerSilkTouch(block.get());
     }
 
-    public void dropAlternative(Block block, Supplier<Item> drop) {
-        registerLootTable(block, (result) -> droppingWithSilkTouch(result, withSurvivesExplosion(result, ItemLootEntry.builder(drop.get()).acceptCondition(TableBonus.builder(Enchantments.FORTUNE, 0.1F, 0.14285715F, 0.25F, 1.0F)).alternatively(ItemLootEntry.builder(result)))));
+    public void dropWithSilk(Supplier<Block> block, Supplier<Block> drop) {
+        registerLootTable(block.get(), (result) -> droppingWithSilkTouch(result, drop.get()));
+    }
+
+    public void dropChance(Supplier<? extends Block> block, Supplier<? extends Block> drop, float... chances) {
+        registerLootTable(block.get(), (result) -> withChance(block.get(), drop.get(), chances));
+    }
+
+    public void dropChanceAlternative(Supplier<? extends Block> block, Supplier<? extends Block> drop, Supplier<Item> item, float... chances) {
+        registerLootTable(block.get(), (result) -> withChanceAdditional(block.get(), drop.get(), item.get(), chances));
+    }
+
+    public void dropAlternative(Supplier<Block> block, Supplier<Item> drop) {
+        registerLootTable(block.get(), (result) -> droppingWithSilkTouch(result, withSurvivesExplosion(result, ItemLootEntry.builder(drop.get()).acceptCondition(TableBonus.builder(Enchantments.FORTUNE, 0.1F, 0.14285715F, 0.25F, 1.0F)).alternatively(ItemLootEntry.builder(result)))));
+    }
+
+    public void dropPot(RegistryObject<FlowerPotBlock> flowerpot) {
+        this.registerLootTable(flowerpot.get(), (pot) -> droppingAndFlowerPot(((FlowerPotBlock)pot).getFlower()));
     }
 
     protected static LootTable.Builder smallCrate(Block block) {
@@ -56,6 +75,20 @@ public abstract class GaiaBlockLootTableProvider extends BlockLootTables {
                 .addLootPool(withSurvivesExplosion(block, LootPool.builder()
                         .rolls(ConstantRange.of(1))
                         .addEntry(ItemLootEntry.builder(block)
+                                .acceptFunction(CopyName.builder(CopyName.Source.BLOCK_ENTITY))
+                                .acceptFunction(CopyNbt.builder(CopyNbt.Source.BLOCK_ENTITY)
+                                        .replaceOperation("Lock", "BlockEntityTag.Lock")
+                                        .replaceOperation("LootTable", "BlockEntityTag.LootTable")
+                                        .replaceOperation("LootTableSeed", "BlockEntityTag.LootTableSeed"))
+                                .acceptFunction(SetContents.builderIn()
+                                        .addLootEntry(DynamicLootEntry.func_216162_a(SmallCrateBlock.NAME))))));
+    }
+
+    protected static LootTable.Builder smallCrate(RegistryObject<Block> block) {
+        return LootTable.builder()
+                .addLootPool(withSurvivesExplosion(block.get(), LootPool.builder()
+                        .rolls(ConstantRange.of(1))
+                        .addEntry(ItemLootEntry.builder(block.get())
                                 .acceptFunction(CopyName.builder(CopyName.Source.BLOCK_ENTITY))
                                 .acceptFunction(CopyNbt.builder(CopyNbt.Source.BLOCK_ENTITY)
                                         .replaceOperation("Lock", "BlockEntityTag.Lock")

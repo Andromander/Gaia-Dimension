@@ -18,6 +18,7 @@ import net.minecraft.world.gen.feature.template.Template;
 
 import javax.annotation.Nullable;
 import java.util.Random;
+import java.util.function.Supplier;
 
 public class MalachiteDegradeProcessor extends StructureProcessor {
 
@@ -25,19 +26,19 @@ public class MalachiteDegradeProcessor extends StructureProcessor {
 
     private final float integrity;
     private static final Random random = new Random();
-    private static final Block BRICKS = ModBlocks.malachite_bricks;
-    private static final Block SLAB = ModBlocks.malachite_brick_slab;
-    private static final Block STAIRS = ModBlocks.malachite_brick_stairs;
-    private static final ImmutableList<Block> BRICK_DECAY = ImmutableList.of(ModBlocks.malachite_cracked_bricks, ModBlocks.malachite_crusted_bricks);
-    private static final ImmutableList<SlabBlock> SLAB_DECAY = ImmutableList.of(ModBlocks.malachite_cracked_brick_slab, ModBlocks.malachite_crusted_brick_slab);
-    private static final ImmutableList<StairsBlock> STAIRS_DECAY = ImmutableList.of(ModBlocks.malachite_cracked_brick_stairs, ModBlocks.malachite_crusted_brick_stairs);
+    private static final Block BRICKS = ModBlocks.malachite_bricks.get();
+    private static final Block SLAB = ModBlocks.malachite_brick_slab.get();
+    private static final Block STAIRS = ModBlocks.malachite_brick_stairs.get();
+    private static final ImmutableList<Supplier<Block>> BRICK_DECAY = ImmutableList.of(ModBlocks.malachite_cracked_bricks, ModBlocks.malachite_crusted_bricks);
+    private static final ImmutableList<Supplier<SlabBlock>> SLAB_DECAY = ImmutableList.of(ModBlocks.malachite_cracked_brick_slab, ModBlocks.malachite_crusted_brick_slab);
+    private static final ImmutableList<Supplier<StairsBlock>> STAIRS_DECAY = ImmutableList.of(ModBlocks.malachite_cracked_brick_stairs, ModBlocks.malachite_crusted_brick_stairs);
 
     public MalachiteDegradeProcessor(float integrity) {
         this.integrity = integrity;
     }
 
     @Override
-    protected IStructureProcessorType getType() {
+    protected IStructureProcessorType<?> getType() {
         return ModWorldgen.StructureTypes.MALACHITE_DEGRADE;
     }
 
@@ -48,11 +49,11 @@ public class MalachiteDegradeProcessor extends StructureProcessor {
         Block block = state.getBlock();
 
         if (block == BRICKS)
-            return random.nextFloat() > integrity ? newInfo : new Template.BlockInfo(newInfo.pos, BRICK_DECAY.get(random.nextInt(BRICK_DECAY.size())).getDefaultState(), null);
+            return random.nextFloat() > integrity ? newInfo : new Template.BlockInfo(newInfo.pos, BRICK_DECAY.get(random.nextInt(BRICK_DECAY.size())).get().getDefaultState(), null);
         if (block == SLAB)
-            return random.nextFloat() > integrity ? newInfo : new Template.BlockInfo(newInfo.pos, translateState(state, SLAB_DECAY.get(random.nextInt(SLAB_DECAY.size())), SlabBlock.TYPE, SlabBlock.WATERLOGGED), null);
+            return random.nextFloat() > integrity ? newInfo : new Template.BlockInfo(newInfo.pos, translateState(state, SLAB_DECAY.get(random.nextInt(SLAB_DECAY.size())).get(), SlabBlock.TYPE, SlabBlock.WATERLOGGED), null);
         if (block == STAIRS)
-            return random.nextFloat() > integrity ? newInfo : new Template.BlockInfo(newInfo.pos, translateState(state, STAIRS_DECAY.get(random.nextInt(STAIRS_DECAY.size())), StairsBlock.FACING, StairsBlock.HALF, StairsBlock.SHAPE, StairsBlock.WATERLOGGED), null);
+            return random.nextFloat() > integrity ? newInfo : new Template.BlockInfo(newInfo.pos, translateState(state, STAIRS_DECAY.get(random.nextInt(STAIRS_DECAY.size())).get(), StairsBlock.FACING, StairsBlock.HALF, StairsBlock.SHAPE, StairsBlock.WATERLOGGED), null);
 
         return newInfo;
     }

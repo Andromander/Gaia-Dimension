@@ -32,7 +32,7 @@ public class RestructuringCategory extends RestructurerRecipeCategory<Restructur
         background = guiHelper.drawableBuilder(backgroundimage, 0, 0, 75, 55)
                 .setTextureSize(76, 56).addPadding(0, 0, 0, 10)
                 .build();
-        icon = guiHelper.createDrawableIngredient(new ItemStack(ModBlocks.restructurer));
+        icon = guiHelper.createDrawableIngredient(new ItemStack(ModBlocks.restructurer.get()));
         localizedName = I18n.format("gui.gaiadimension.category.restructuring");
     }
 

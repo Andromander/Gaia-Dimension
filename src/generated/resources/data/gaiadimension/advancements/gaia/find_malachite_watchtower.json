@@ -20,7 +20,7 @@
       "trigger": "minecraft:location",
       "conditions": {
         "location": {
-          "feature": "malachite_watchtower"
+          "feature": "gaiadimension:malachite_watchtower"
         }
       }
     }

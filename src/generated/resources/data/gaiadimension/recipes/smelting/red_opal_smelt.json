@@ -1,7 +1,7 @@
 {
   "type": "minecraft:smelting",
   "ingredient": {
-    "item": "gaiadimension:opal_block_red"
+    "item": "gaiadimension:opal_ore_red"
   },
   "result": "gaiadimension:red_opal",
   "experience": 0.3,

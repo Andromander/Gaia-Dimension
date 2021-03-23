@@ -33,7 +33,7 @@ public class PurifierRecipe implements IRecipe<IInventory> {
 
     @Override
     public ItemStack getIcon() {
-        return new ItemStack(ModBlocks.purifier);
+        return new ItemStack(ModBlocks.purifier.get());
     }
 
     @Override

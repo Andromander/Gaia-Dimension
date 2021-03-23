@@ -32,7 +32,7 @@ public class PurifierCategory extends PurifierRecipeCategory<PurifierRecipe> {
         background = guiHelper.drawableBuilder(backgroundimage, 0, 0, 75, 55)
                 .setTextureSize(76, 56).addPadding(0, 0, 0, 10)
                 .build();
-        icon = guiHelper.createDrawableIngredient(new ItemStack(ModBlocks.purifier));
+        icon = guiHelper.createDrawableIngredient(new ItemStack(ModBlocks.purifier.get()));
         localizedName = I18n.format("gui.gaiadimension.category.purifying");
     }
 

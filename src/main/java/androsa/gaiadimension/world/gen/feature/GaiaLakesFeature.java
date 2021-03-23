@@ -102,14 +102,14 @@ public class GaiaLakesFeature<T extends BlockStateFeatureConfig> extends Feature
                                 if (worldIn.getBlockState(blockpos).getBlock() instanceof GaiaSoilBlock && worldIn.getLightFor(LightType.SKY, pos.add(i2, j4, j3)) > 0) {
                                     Biome biome = worldIn.getBiome(blockpos);
 
-                                    if (biome.getGenerationSettings().getSurfaceBuilderConfig().getTop().getBlock() == ModBlocks.murky_grass) {
-                                        worldIn.setBlockState(blockpos, ModBlocks.murky_grass.getDefaultState(), 2);
-                                    } else if (biome.getGenerationSettings().getSurfaceBuilderConfig().getTop().getBlock() == ModBlocks.soft_grass) {
-                                        worldIn.setBlockState(blockpos, ModBlocks.soft_grass.getDefaultState(), 2);
-                                    } else if (biome.getGenerationSettings().getSurfaceBuilderConfig().getTop().getBlock() == ModBlocks.corrupt_grass) {
-                                        worldIn.setBlockState(blockpos, ModBlocks.corrupt_grass.getDefaultState(), 2);
+                                    if (biome.getGenerationSettings().getSurfaceBuilderConfig().getTop().getBlock() == ModBlocks.murky_grass.get()) {
+                                        worldIn.setBlockState(blockpos, ModBlocks.murky_grass.get().getDefaultState(), 2);
+                                    } else if (biome.getGenerationSettings().getSurfaceBuilderConfig().getTop().getBlock() == ModBlocks.soft_grass.get()) {
+                                        worldIn.setBlockState(blockpos, ModBlocks.soft_grass.get().getDefaultState(), 2);
+                                    } else if (biome.getGenerationSettings().getSurfaceBuilderConfig().getTop().getBlock() == ModBlocks.corrupt_grass.get()) {
+                                        worldIn.setBlockState(blockpos, ModBlocks.corrupt_grass.get().getDefaultState(), 2);
                                     } else {
-                                        worldIn.setBlockState(blockpos, ModBlocks.glitter_grass.getDefaultState(), 2);
+                                        worldIn.setBlockState(blockpos, ModBlocks.glitter_grass.get().getDefaultState(), 2);
                                     }
                                 }
                             }
@@ -117,25 +117,25 @@ public class GaiaLakesFeature<T extends BlockStateFeatureConfig> extends Feature
                     }
                 }
 
-                if (config.state.getBlock() != ModBlocks.mineral_water) {
+                if (config.state.getBlock() != ModBlocks.mineral_water.get()) {
                     for(int x = 0; x < 16; ++x) {
                         for(int z = 0; z < 16; ++z) {
                             for(int y = 0; y < 8; ++y) {
                                 boolean flag1 = !aboolean[(x * 16 + z) * 8 + y] && (x < 15 && aboolean[((x + 1) * 16 + z) * 8 + y] || x > 0 && aboolean[((x - 1) * 16 + z) * 8 + y] || z < 15 && aboolean[(x * 16 + z + 1) * 8 + y] || z > 0 && aboolean[(x * 16 + (z - 1)) * 8 + y] || y < 7 && aboolean[(x * 16 + z) * 8 + y + 1] || y > 0 && aboolean[(x * 16 + z) * 8 + (y - 1)]);
                                 if (flag1 && (y < 4 || rand.nextInt(2) != 0) && worldIn.getBlockState(pos.add(x, y, z)).getMaterial().isSolid()) {
 
-                                    if (config.state.getBlock() == ModBlocks.liquid_bismuth) {
+                                    if (config.state.getBlock() == ModBlocks.liquid_bismuth.get()) {
                                         if (rand.nextInt(4) == 0) {
-                                            worldIn.setBlockState(pos.add(x, y, z), ModBlocks.active_rock.getDefaultState(), 2);
+                                            worldIn.setBlockState(pos.add(x, y, z), ModBlocks.active_rock.get().getDefaultState(), 2);
                                         } else {
-                                            worldIn.setBlockState(pos.add(x, y, z), ModBlocks.impure_rock.getDefaultState(), 2);
+                                            worldIn.setBlockState(pos.add(x, y, z), ModBlocks.impure_rock.get().getDefaultState(), 2);
                                         }
-                                    } else if (config.state.getBlock() == ModBlocks.liquid_aura) {
-                                        worldIn.setBlockState(pos.add(x, y, z), ModBlocks.sparkling_rock.getDefaultState(), 2);
-                                    } else if (config.state.getBlock() == ModBlocks.sweet_muck) {
-                                        worldIn.setBlockState(pos.add(x, y, z), ModBlocks.thick_glitter_block.getDefaultState(), 2);
+                                    } else if (config.state.getBlock() == ModBlocks.liquid_aura.get()) {
+                                        worldIn.setBlockState(pos.add(x, y, z), ModBlocks.sparkling_rock.get().getDefaultState(), 2);
+                                    } else if (config.state.getBlock() == ModBlocks.sweet_muck.get()) {
+                                        worldIn.setBlockState(pos.add(x, y, z), ModBlocks.thick_glitter_block.get().getDefaultState(), 2);
                                     } else {
-                                        worldIn.setBlockState(pos.add(x, y, z), ModBlocks.volcanic_rock.getDefaultState(), 2);
+                                        worldIn.setBlockState(pos.add(x, y, z), ModBlocks.volcanic_rock.get().getDefaultState(), 2);
                                     }
                                 }
                             }

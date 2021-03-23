@@ -15,14 +15,14 @@ import java.util.Random;
 public class GlitterGrassBlock extends AbstractGaiaGrassBlock {
 
     public GlitterGrassBlock(Properties props) {
-        super(props, ModBlocks.heavy_soil);
+        super(props, ModBlocks.heavy_soil.get());
     }
 
     @Override
     public void grow(ServerWorld worldIn, Random rand, BlockPos pos, BlockState state) {
         BlockPos blockpos = pos.up();
-        BlockState normalGrowth = ModBlocks.crystal_growth.getDefaultState();
-        BlockState mutantGrowth = ModBlocks.crystal_growth_mutant.getDefaultState();
+        BlockState normalGrowth = ModBlocks.crystal_growth.get().getDefaultState();
+        BlockState mutantGrowth = ModBlocks.crystal_growth_mutant.get().getDefaultState();
 
         label48:
         for(int i = 0; i < 128; ++i) {

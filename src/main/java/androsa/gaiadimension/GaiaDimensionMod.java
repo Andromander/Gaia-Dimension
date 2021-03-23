@@ -62,8 +62,9 @@ public class GaiaDimensionMod {
         ModRecipes.registerRecipeTypes();
 
         ModBiomes.BIOMES.register(modEventBus);
-//      ModBlocks.BLOCKS.register(modEventBus);
+        ModBlocks.BLOCKS.register(modEventBus);
         ModContainers.CONTAINERS.register(modEventBus);
+        ModDimensions.POI_TYPES.register(modEventBus);
 //      ModEffects.POTIONS.register(modEventBus);
 //      ModEntities.ENTITIES.register(modEventBus);
 		ModFluids.FLUIDS.register(modEventBus);
@@ -86,8 +87,8 @@ public class GaiaDimensionMod {
 
     public void setup(FMLCommonSetupEvent event) {
         event.enqueueWork(() -> {
-            PointOfInterestType.registerBlockStates(ModDimensions.GAIA_PORTAL);
-            PointOfInterestType.BLOCKS_OF_INTEREST.addAll(ModDimensions.GAIA_PORTAL.blockStates);
+            PointOfInterestType.registerBlockStates(ModDimensions.GAIA_PORTAL.get());
+            PointOfInterestType.BLOCKS_OF_INTEREST.addAll(ModDimensions.GAIA_PORTAL.get().blockStates);
 
             // needs to be in enqueue as vanilla WorldGen registry maps arent threadsafe.
             GaiaBiomeFeatures.registerConfiguredWorldgen();

@@ -17,7 +17,6 @@ import net.minecraft.loot.functions.SetCount;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.registries.ForgeRegistries;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.function.BiConsumer;
@@ -51,63 +50,63 @@ public class GaiaLootTables extends LootTableProvider {
         @Override
         protected void addTables() {
             //Utility Blocks
-            registerDropSelfLootTable(ModBlocks.keystone_block);
-            registerDropSelfLootTable(ModBlocks.pyrite_torch);
-            registerDropSelfLootTable(ModBlocks.agate_crafting_table);
-            registerLootTable(ModBlocks.crude_storage_crate, GaiaBlockLootTableProvider::smallCrate);
-            registerLootTable(ModBlocks.mega_storage_crate, GaiaBlockLootTableProvider::largeCrate);
-            registerLootTable(ModBlocks.gaia_stone_furnace, GaiaBlockLootTableProvider::withName);
-            registerLootTable(ModBlocks.restructurer, GaiaBlockLootTableProvider::withName);
-            registerLootTable(ModBlocks.purifier, GaiaBlockLootTableProvider::withName);
+            dropSelf(ModBlocks.keystone_block);
+            dropSelf(ModBlocks.pyrite_torch);
+            dropSelf(ModBlocks.agate_crafting_table);
+            dropTable(ModBlocks.crude_storage_crate, GaiaBlockLootTableProvider::smallCrate);
+            dropTable(ModBlocks.mega_storage_crate, GaiaBlockLootTableProvider::largeCrate);
+            dropTable(ModBlocks.gaia_stone_furnace, GaiaBlockLootTableProvider::withName);
+            dropTable(ModBlocks.restructurer, GaiaBlockLootTableProvider::withName);
+            dropTable(ModBlocks.purifier, GaiaBlockLootTableProvider::withName);
 
             //Natural Blocks
-            registerDropSelfLootTable(ModBlocks.heavy_soil);
-            registerDropSelfLootTable(ModBlocks.corrupt_soil);
-            registerDropSelfLootTable(ModBlocks.boggy_soil);
-            registerDropSelfLootTable(ModBlocks.light_soil);
+            dropSelf(ModBlocks.heavy_soil);
+            dropSelf(ModBlocks.corrupt_soil);
+            dropSelf(ModBlocks.boggy_soil);
+            dropSelf(ModBlocks.light_soil);
             dropWithSilk(ModBlocks.glitter_grass, ModBlocks.heavy_soil);
             dropWithSilk(ModBlocks.corrupt_grass, ModBlocks.corrupt_soil);
             dropWithSilk(ModBlocks.murky_grass, ModBlocks.boggy_soil);
             dropWithSilk(ModBlocks.soft_grass, ModBlocks.light_soil);
-            registerSilkTouch(ModBlocks.frail_glitter_block);
-            registerDropSelfLootTable(ModBlocks.thick_glitter_block);
-            registerDropSelfLootTable(ModBlocks.gummy_glitter_block);
-            registerDropSelfLootTable(ModBlocks.pink_sludge_block);
+            dropOnlySilk(ModBlocks.frail_glitter_block);
+            dropSelf(ModBlocks.thick_glitter_block);
+            dropSelf(ModBlocks.gummy_glitter_block);
+            dropSelf(ModBlocks.pink_sludge_block);
 
             //Plants
-            registerLootTable(ModBlocks.crystal_growth, GaiaBlockLootTableProvider::withShards);
-            registerLootTable(ModBlocks.crystal_growth_red, GaiaBlockLootTableProvider::withShards);
-            registerLootTable(ModBlocks.crystal_growth_black, GaiaBlockLootTableProvider::withShards);
-            registerLootTable(ModBlocks.crystal_growth_seared, GaiaBlockLootTableProvider::withShards);
-            registerLootTable(ModBlocks.crystal_growth_mutant, GaiaBlockLootTableProvider::withShards);
-            registerLootTable(ModBlocks.crystal_growth_aura, GaiaBlockLootTableProvider::withShards);
-            registerDropSelfLootTable(ModBlocks.thiscus);
-            registerDropSelfLootTable(ModBlocks.ouzium);
-            registerDropSelfLootTable(ModBlocks.agathum);
-            registerDropSelfLootTable(ModBlocks.varloom);
-            registerDropSelfLootTable(ModBlocks.corrupted_varloom);
-            registerDropSelfLootTable(ModBlocks.missingno_plant);
-            registerDropSelfLootTable(ModBlocks.spotted_kersei);
-            registerDropSelfLootTable(ModBlocks.thorny_wiltha);
-            registerDropSelfLootTable(ModBlocks.roofed_agaric);
-            registerDropSelfLootTable(ModBlocks.bulbous_hobina);
-            registerDropSelfLootTable(ModBlocks.stickly_cupsir);
-            registerDropSelfLootTable(ModBlocks.mystical_murgni);
-            registerDropSelfLootTable(ModBlocks.corrupted_gaia_eye);
-            registerDropSelfLootTable(ModBlocks.elder_imklia);
-            registerDropSelfLootTable(ModBlocks.gold_orb_tucher);
-            registerDropSelfLootTable(ModBlocks.missingno_fungus);
+            dropTable(ModBlocks.crystal_growth, GaiaBlockLootTableProvider::withShards);
+            dropTable(ModBlocks.crystal_growth_red, GaiaBlockLootTableProvider::withShards);
+            dropTable(ModBlocks.crystal_growth_black, GaiaBlockLootTableProvider::withShards);
+            dropTable(ModBlocks.crystal_growth_seared, GaiaBlockLootTableProvider::withShards);
+            dropTable(ModBlocks.crystal_growth_mutant, GaiaBlockLootTableProvider::withShards);
+            dropTable(ModBlocks.crystal_growth_aura, GaiaBlockLootTableProvider::withShards);
+            dropSelf(ModBlocks.thiscus);
+            dropSelf(ModBlocks.ouzium);
+            dropSelf(ModBlocks.agathum);
+            dropSelf(ModBlocks.varloom);
+            dropSelf(ModBlocks.corrupted_varloom);
+            dropSelf(ModBlocks.missingno_plant);
+            dropSelf(ModBlocks.spotted_kersei);
+            dropSelf(ModBlocks.thorny_wiltha);
+            dropSelf(ModBlocks.roofed_agaric);
+            dropSelf(ModBlocks.bulbous_hobina);
+            dropSelf(ModBlocks.stickly_cupsir);
+            dropSelf(ModBlocks.mystical_murgni);
+            dropSelf(ModBlocks.corrupted_gaia_eye);
+            dropSelf(ModBlocks.elder_imklia);
+            dropSelf(ModBlocks.gold_orb_tucher);
+            dropSelf(ModBlocks.missingno_fungus);
 
             //Tree Blocks
-            registerDropSelfLootTable(ModBlocks.pink_agate_sapling);
-            registerDropSelfLootTable(ModBlocks.blue_agate_sapling);
-            registerDropSelfLootTable(ModBlocks.green_agate_sapling);
-            registerDropSelfLootTable(ModBlocks.purple_agate_sapling);
-            registerDropSelfLootTable(ModBlocks.fossilized_sapling);
-            registerDropSelfLootTable(ModBlocks.corrupted_sapling);
-            registerDropSelfLootTable(ModBlocks.burnt_sapling);
-            registerDropSelfLootTable(ModBlocks.burning_sapling);
-            registerDropSelfLootTable(ModBlocks.aura_sapling);
+            dropSelf(ModBlocks.pink_agate_sapling);
+            dropSelf(ModBlocks.blue_agate_sapling);
+            dropSelf(ModBlocks.green_agate_sapling);
+            dropSelf(ModBlocks.purple_agate_sapling);
+            dropSelf(ModBlocks.fossilized_sapling);
+            dropSelf(ModBlocks.corrupted_sapling);
+            dropSelf(ModBlocks.burnt_sapling);
+            dropSelf(ModBlocks.burning_sapling);
+            dropSelf(ModBlocks.aura_sapling);
             dropChance(ModBlocks.pink_agate_leaves, ModBlocks.pink_agate_sapling, leaf_chances);
             dropChance(ModBlocks.blue_agate_leaves, ModBlocks.blue_agate_sapling, leaf_chances);
             dropChance(ModBlocks.green_agate_leaves, ModBlocks.green_agate_sapling, leaf_chances);
@@ -117,71 +116,71 @@ public class GaiaLootTables extends LootTableProvider {
             dropChanceAlternative(ModBlocks.burnt_leaves, ModBlocks.burnt_sapling, () -> Items.GUNPOWDER, leaf_chances);
             dropChanceAlternative(ModBlocks.burning_leaves, ModBlocks.burning_sapling, ModItems.hot_dust, leaf_chances);
             dropChance(ModBlocks.aura_leaves, ModBlocks.aura_sapling, leaf_chances);
-            registerDropSelfLootTable(ModBlocks.pink_agate_log);
-            registerDropSelfLootTable(ModBlocks.blue_agate_log);
-            registerDropSelfLootTable(ModBlocks.green_agate_log);
-            registerDropSelfLootTable(ModBlocks.purple_agate_log);
-            registerDropSelfLootTable(ModBlocks.fossilized_log);
-            registerDropSelfLootTable(ModBlocks.corrupted_log);
-            registerDropSelfLootTable(ModBlocks.burnt_log);
-            registerDropSelfLootTable(ModBlocks.burning_log);
-            registerDropSelfLootTable(ModBlocks.aura_log);
-            registerDropSelfLootTable(ModBlocks.stripped_pink_agate_log);
-            registerDropSelfLootTable(ModBlocks.stripped_blue_agate_log);
-            registerDropSelfLootTable(ModBlocks.stripped_green_agate_log);
-            registerDropSelfLootTable(ModBlocks.stripped_purple_agate_log);
-            registerDropSelfLootTable(ModBlocks.stripped_fossilized_log);
-            registerDropSelfLootTable(ModBlocks.stripped_corrupted_log);
-            registerDropSelfLootTable(ModBlocks.stripped_burnt_log);
-            registerDropSelfLootTable(ModBlocks.stripped_burning_log);
-            registerDropSelfLootTable(ModBlocks.stripped_aura_log);
-            registerDropSelfLootTable(ModBlocks.pink_agate_wood);
-            registerDropSelfLootTable(ModBlocks.blue_agate_wood);
-            registerDropSelfLootTable(ModBlocks.green_agate_wood);
-            registerDropSelfLootTable(ModBlocks.purple_agate_wood);
-            registerDropSelfLootTable(ModBlocks.fossilized_wood);
-            registerDropSelfLootTable(ModBlocks.corrupted_wood);
-            registerDropSelfLootTable(ModBlocks.burnt_wood);
-            registerDropSelfLootTable(ModBlocks.burning_wood);
-            registerDropSelfLootTable(ModBlocks.aura_wood);
-            registerDropSelfLootTable(ModBlocks.stripped_pink_agate_wood);
-            registerDropSelfLootTable(ModBlocks.stripped_blue_agate_wood);
-            registerDropSelfLootTable(ModBlocks.stripped_green_agate_wood);
-            registerDropSelfLootTable(ModBlocks.stripped_purple_agate_wood);
-            registerDropSelfLootTable(ModBlocks.stripped_fossilized_wood);
-            registerDropSelfLootTable(ModBlocks.stripped_corrupted_wood);
-            registerDropSelfLootTable(ModBlocks.stripped_burnt_wood);
-            registerDropSelfLootTable(ModBlocks.stripped_burning_wood);
-            registerDropSelfLootTable(ModBlocks.stripped_aura_wood);
+            dropSelf(ModBlocks.pink_agate_log);
+            dropSelf(ModBlocks.blue_agate_log);
+            dropSelf(ModBlocks.green_agate_log);
+            dropSelf(ModBlocks.purple_agate_log);
+            dropSelf(ModBlocks.fossilized_log);
+            dropSelf(ModBlocks.corrupted_log);
+            dropSelf(ModBlocks.burnt_log);
+            dropSelf(ModBlocks.burning_log);
+            dropSelf(ModBlocks.aura_log);
+            dropSelf(ModBlocks.stripped_pink_agate_log);
+            dropSelf(ModBlocks.stripped_blue_agate_log);
+            dropSelf(ModBlocks.stripped_green_agate_log);
+            dropSelf(ModBlocks.stripped_purple_agate_log);
+            dropSelf(ModBlocks.stripped_fossilized_log);
+            dropSelf(ModBlocks.stripped_corrupted_log);
+            dropSelf(ModBlocks.stripped_burnt_log);
+            dropSelf(ModBlocks.stripped_burning_log);
+            dropSelf(ModBlocks.stripped_aura_log);
+            dropSelf(ModBlocks.pink_agate_wood);
+            dropSelf(ModBlocks.blue_agate_wood);
+            dropSelf(ModBlocks.green_agate_wood);
+            dropSelf(ModBlocks.purple_agate_wood);
+            dropSelf(ModBlocks.fossilized_wood);
+            dropSelf(ModBlocks.corrupted_wood);
+            dropSelf(ModBlocks.burnt_wood);
+            dropSelf(ModBlocks.burning_wood);
+            dropSelf(ModBlocks.aura_wood);
+            dropSelf(ModBlocks.stripped_pink_agate_wood);
+            dropSelf(ModBlocks.stripped_blue_agate_wood);
+            dropSelf(ModBlocks.stripped_green_agate_wood);
+            dropSelf(ModBlocks.stripped_purple_agate_wood);
+            dropSelf(ModBlocks.stripped_fossilized_wood);
+            dropSelf(ModBlocks.stripped_corrupted_wood);
+            dropSelf(ModBlocks.stripped_burnt_wood);
+            dropSelf(ModBlocks.stripped_burning_wood);
+            dropSelf(ModBlocks.stripped_aura_wood);
 
-            registerDropSelfLootTable(ModBlocks.salt);
-            registerDropSelfLootTable(ModBlocks.saltstone);
+            dropSelf(ModBlocks.salt);
+            dropSelf(ModBlocks.saltstone);
             dropAlternative(ModBlocks.pebbles, ModItems.sturdy_pebble);
             dropWithSilk(ModBlocks.gaia_stone, ModBlocks.gaia_cobblestone);
-            registerDropSelfLootTable(ModBlocks.gaia_cobblestone);
-            registerDropSelfLootTable(ModBlocks.wasteland_stone);
-            registerDropSelfLootTable(ModBlocks.static_stone);
-            registerSilkTouch(ModBlocks.charged_mineral);
-            registerDropSelfLootTable(ModBlocks.volcanic_rock);
-            registerDropSelfLootTable(ModBlocks.searing_rock);
-            registerDropSelfLootTable(ModBlocks.primal_mass);
-            registerDropSelfLootTable(ModBlocks.impure_rock);
-            registerDropSelfLootTable(ModBlocks.active_rock);
-            registerDropSelfLootTable(ModBlocks.impure_sludge);
-            registerDropSelfLootTable(ModBlocks.geyser_block);
-            registerSilkTouch(ModBlocks.sparkling_rock);
-            registerDropSelfLootTable(ModBlocks.aura_shoot);
+            dropSelf(ModBlocks.gaia_cobblestone);
+            dropSelf(ModBlocks.wasteland_stone);
+            dropSelf(ModBlocks.static_stone);
+            dropOnlySilk(ModBlocks.charged_mineral);
+            dropSelf(ModBlocks.volcanic_rock);
+            dropSelf(ModBlocks.searing_rock);
+            dropSelf(ModBlocks.primal_mass);
+            dropSelf(ModBlocks.impure_rock);
+            dropSelf(ModBlocks.active_rock);
+            dropSelf(ModBlocks.impure_sludge);
+            dropSelf(ModBlocks.geyser_block);
+            dropOnlySilk(ModBlocks.sparkling_rock);
+            dropSelf(ModBlocks.aura_shoot);
 
             //Planks (Tiles)
-            registerDropSelfLootTable(ModBlocks.pink_agate_planks);
-            registerDropSelfLootTable(ModBlocks.blue_agate_planks);
-            registerDropSelfLootTable(ModBlocks.green_agate_planks);
-            registerDropSelfLootTable(ModBlocks.purple_agate_planks);
-            registerDropSelfLootTable(ModBlocks.fossilized_planks);
-            registerDropSelfLootTable(ModBlocks.corrupted_planks);
-            registerDropSelfLootTable(ModBlocks.burnt_planks);
-            registerDropSelfLootTable(ModBlocks.burning_planks);
-            registerDropSelfLootTable(ModBlocks.aura_planks);
+            dropSelf(ModBlocks.pink_agate_planks);
+            dropSelf(ModBlocks.blue_agate_planks);
+            dropSelf(ModBlocks.green_agate_planks);
+            dropSelf(ModBlocks.purple_agate_planks);
+            dropSelf(ModBlocks.fossilized_planks);
+            dropSelf(ModBlocks.corrupted_planks);
+            dropSelf(ModBlocks.burnt_planks);
+            dropSelf(ModBlocks.burning_planks);
+            dropSelf(ModBlocks.aura_planks);
             dropSlab(ModBlocks.pink_agate_plank_slab);
             dropSlab(ModBlocks.blue_agate_plank_slab);
             dropSlab(ModBlocks.green_agate_plank_slab);
@@ -191,112 +190,112 @@ public class GaiaLootTables extends LootTableProvider {
             dropSlab(ModBlocks.burnt_plank_slab);
             dropSlab(ModBlocks.burning_plank_slab);
             dropSlab(ModBlocks.aura_plank_slab);
-            registerDropSelfLootTable(ModBlocks.pink_agate_plank_stairs);
-            registerDropSelfLootTable(ModBlocks.blue_agate_plank_stairs);
-            registerDropSelfLootTable(ModBlocks.green_agate_plank_stairs);
-            registerDropSelfLootTable(ModBlocks.purple_agate_plank_stairs);
-            registerDropSelfLootTable(ModBlocks.fossilized_plank_stairs);
-            registerDropSelfLootTable(ModBlocks.corrupted_plank_stairs);
-            registerDropSelfLootTable(ModBlocks.burnt_plank_stairs);
-            registerDropSelfLootTable(ModBlocks.burning_plank_stairs);
-            registerDropSelfLootTable(ModBlocks.aura_plank_stairs);
+            dropSelf(ModBlocks.pink_agate_plank_stairs);
+            dropSelf(ModBlocks.blue_agate_plank_stairs);
+            dropSelf(ModBlocks.green_agate_plank_stairs);
+            dropSelf(ModBlocks.purple_agate_plank_stairs);
+            dropSelf(ModBlocks.fossilized_plank_stairs);
+            dropSelf(ModBlocks.corrupted_plank_stairs);
+            dropSelf(ModBlocks.burnt_plank_stairs);
+            dropSelf(ModBlocks.burning_plank_stairs);
+            dropSelf(ModBlocks.aura_plank_stairs);
 
             //Manufactured
-            registerSilkTouch(ModBlocks.cloudy_glass);
-            registerSilkTouch(ModBlocks.foggy_glass);
-            registerDropSelfLootTable(ModBlocks.gaia_stone_bricks);
-            registerDropSelfLootTable(ModBlocks.cracked_gaia_stone_bricks);
-            registerDropSelfLootTable(ModBlocks.crusted_gaia_stone_bricks);
+            dropOnlySilk(ModBlocks.cloudy_glass);
+            dropOnlySilk(ModBlocks.foggy_glass);
+            dropSelf(ModBlocks.gaia_stone_bricks);
+            dropSelf(ModBlocks.cracked_gaia_stone_bricks);
+            dropSelf(ModBlocks.crusted_gaia_stone_bricks);
 
-            registerDropSelfLootTable(ModBlocks.raw_jade);
-            registerDropSelfLootTable(ModBlocks.jade_bricks);
+            dropSelf(ModBlocks.raw_jade);
+            dropSelf(ModBlocks.jade_bricks);
             dropSlab(ModBlocks.jade_brick_slab);
-            registerDropSelfLootTable(ModBlocks.jade_brick_stairs);
-            registerDropSelfLootTable(ModBlocks.cracked_jade_bricks);
+            dropSelf(ModBlocks.jade_brick_stairs);
+            dropSelf(ModBlocks.cracked_jade_bricks);
             dropSlab(ModBlocks.cracked_jade_brick_slab);
-            registerDropSelfLootTable(ModBlocks.cracked_jade_brick_stairs);
-            registerDropSelfLootTable(ModBlocks.crusted_jade_bricks);
+            dropSelf(ModBlocks.cracked_jade_brick_stairs);
+            dropSelf(ModBlocks.crusted_jade_bricks);
             dropSlab(ModBlocks.crusted_jade_brick_slab);
-            registerDropSelfLootTable(ModBlocks.crusted_jade_brick_stairs);
-            registerDropSelfLootTable(ModBlocks.raw_copal);
-            registerDropSelfLootTable(ModBlocks.copal_bricks);
+            dropSelf(ModBlocks.crusted_jade_brick_stairs);
+            dropSelf(ModBlocks.raw_copal);
+            dropSelf(ModBlocks.copal_bricks);
             dropSlab(ModBlocks.copal_brick_slab);
-            registerDropSelfLootTable(ModBlocks.copal_brick_stairs);
-            registerDropSelfLootTable(ModBlocks.cracked_copal_bricks);
+            dropSelf(ModBlocks.copal_brick_stairs);
+            dropSelf(ModBlocks.cracked_copal_bricks);
             dropSlab(ModBlocks.cracked_copal_brick_slab);
-            registerDropSelfLootTable(ModBlocks.cracked_copal_brick_stairs);
-            registerDropSelfLootTable(ModBlocks.crusted_copal_bricks);
+            dropSelf(ModBlocks.cracked_copal_brick_stairs);
+            dropSelf(ModBlocks.crusted_copal_bricks);
             dropSlab(ModBlocks.crusted_copal_brick_slab);
-            registerDropSelfLootTable(ModBlocks.crusted_copal_brick_stairs);
-            registerDropSelfLootTable(ModBlocks.raw_jet);
-            registerDropSelfLootTable(ModBlocks.jet_bricks);
+            dropSelf(ModBlocks.crusted_copal_brick_stairs);
+            dropSelf(ModBlocks.raw_jet);
+            dropSelf(ModBlocks.jet_bricks);
             dropSlab(ModBlocks.jet_brick_slab);
-            registerDropSelfLootTable(ModBlocks.jet_brick_stairs);
-            registerDropSelfLootTable(ModBlocks.cracked_jet_bricks);
+            dropSelf(ModBlocks.jet_brick_stairs);
+            dropSelf(ModBlocks.cracked_jet_bricks);
             dropSlab(ModBlocks.cracked_jet_brick_slab);
-            registerDropSelfLootTable(ModBlocks.cracked_jet_brick_stairs);
-            registerDropSelfLootTable(ModBlocks.crusted_jet_bricks);
+            dropSelf(ModBlocks.cracked_jet_brick_stairs);
+            dropSelf(ModBlocks.crusted_jet_bricks);
             dropSlab(ModBlocks.crusted_jet_brick_slab);
-            registerDropSelfLootTable(ModBlocks.crusted_jet_brick_stairs);
-            registerDropSelfLootTable(ModBlocks.raw_amethyst);
-            registerDropSelfLootTable(ModBlocks.amethyst_bricks);
+            dropSelf(ModBlocks.crusted_jet_brick_stairs);
+            dropSelf(ModBlocks.raw_amethyst);
+            dropSelf(ModBlocks.amethyst_bricks);
             dropSlab(ModBlocks.amethyst_brick_slab);
-            registerDropSelfLootTable(ModBlocks.amethyst_brick_stairs);
-            registerDropSelfLootTable(ModBlocks.cracked_amethyst_bricks);
+            dropSelf(ModBlocks.amethyst_brick_stairs);
+            dropSelf(ModBlocks.cracked_amethyst_bricks);
             dropSlab(ModBlocks.cracked_amethyst_brick_slab);
-            registerDropSelfLootTable(ModBlocks.cracked_amethyst_brick_stairs);
-            registerDropSelfLootTable(ModBlocks.crusted_amethyst_bricks);
+            dropSelf(ModBlocks.cracked_amethyst_brick_stairs);
+            dropSelf(ModBlocks.crusted_amethyst_bricks);
             dropSlab(ModBlocks.crusted_amethyst_brick_slab);
-            registerDropSelfLootTable(ModBlocks.crusted_amethyst_brick_stairs);
+            dropSelf(ModBlocks.crusted_amethyst_brick_stairs);
 
-            registerDropSelfLootTable(ModBlocks.reinforced_bricks);
-            registerDropSelfLootTable(ModBlocks.bolstered_bricks);
-            registerDropSelfLootTable(ModBlocks.malachite_bricks);
-            registerDropSelfLootTable(ModBlocks.malachite_cracked_bricks);
-            registerDropSelfLootTable(ModBlocks.malachite_crusted_bricks);
-            registerDropSelfLootTable(ModBlocks.malachite_floor_tiles);
-            registerDropSelfLootTable(ModBlocks.malachite_chisel_bricks);
-            registerDropSelfLootTable(ModBlocks.malachite_pulsing_bricks);
-            registerDropSelfLootTable(ModBlocks.malachite_pulsing_tiles);
-            registerDropSelfLootTable(ModBlocks.malachite_pulsing_chisel);
+            dropSelf(ModBlocks.reinforced_bricks);
+            dropSelf(ModBlocks.bolstered_bricks);
+            dropSelf(ModBlocks.malachite_bricks);
+            dropSelf(ModBlocks.malachite_cracked_bricks);
+            dropSelf(ModBlocks.malachite_crusted_bricks);
+            dropSelf(ModBlocks.malachite_floor_tiles);
+            dropSelf(ModBlocks.malachite_chisel_bricks);
+            dropSelf(ModBlocks.malachite_pulsing_bricks);
+            dropSelf(ModBlocks.malachite_pulsing_tiles);
+            dropSelf(ModBlocks.malachite_pulsing_chisel);
             dropSlab(ModBlocks.malachite_brick_slab);
             dropSlab(ModBlocks.malachite_cracked_brick_slab);
             dropSlab(ModBlocks.malachite_crusted_brick_slab);
             dropSlab(ModBlocks.malachite_floor_slab);
-            registerDropSelfLootTable(ModBlocks.malachite_pillar);
-            registerDropSelfLootTable(ModBlocks.malachite_brick_stairs);
-            registerDropSelfLootTable(ModBlocks.malachite_cracked_brick_stairs);
-            registerDropSelfLootTable(ModBlocks.malachite_crusted_brick_stairs);
-            registerDropSelfLootTable(ModBlocks.malachite_floor_stairs);
-            registerDropSelfLootTable(ModBlocks.malachite_chisel_stairs);
-            registerDropSelfLootTable(ModBlocks.malachite_pulsing_brick_stairs);
-            registerDropSelfLootTable(ModBlocks.malachite_pulsing_floor_stairs);
-            registerDropSelfLootTable(ModBlocks.malachite_pulsing_chisel_stairs);
-            registerDropSelfLootTable(ModBlocks.malachite_pillar_stairs);
+            dropSelf(ModBlocks.malachite_pillar);
+            dropSelf(ModBlocks.malachite_brick_stairs);
+            dropSelf(ModBlocks.malachite_cracked_brick_stairs);
+            dropSelf(ModBlocks.malachite_crusted_brick_stairs);
+            dropSelf(ModBlocks.malachite_floor_stairs);
+            dropSelf(ModBlocks.malachite_chisel_stairs);
+            dropSelf(ModBlocks.malachite_pulsing_brick_stairs);
+            dropSelf(ModBlocks.malachite_pulsing_floor_stairs);
+            dropSelf(ModBlocks.malachite_pulsing_chisel_stairs);
+            dropSelf(ModBlocks.malachite_pillar_stairs);
 
             //Storage Blocks
-            registerDropSelfLootTable(ModBlocks.sugilite_block);
-            registerDropSelfLootTable(ModBlocks.hematite_block);
-            registerDropSelfLootTable(ModBlocks.cinnabar_block);
-            registerDropSelfLootTable(ModBlocks.labradorite_block);
-            registerDropSelfLootTable(ModBlocks.moonstone_block);
-            registerDropSelfLootTable(ModBlocks.opal_block_red);
-            registerDropSelfLootTable(ModBlocks.opal_block_blue);
-            registerDropSelfLootTable(ModBlocks.opal_block_green);
-            registerDropSelfLootTable(ModBlocks.opal_block_white);
-            registerDropSelfLootTable(ModBlocks.pyrite_block);
-            registerDropSelfLootTable(ModBlocks.tektite_block);
-            registerDropSelfLootTable(ModBlocks.goldstone_block);
-            registerDropSelfLootTable(ModBlocks.aura_block);
-            registerDropSelfLootTable(ModBlocks.bismuth_block);
-            registerDropSelfLootTable(ModBlocks.ixiolite_block);
-            registerDropSelfLootTable(ModBlocks.proustite_block);
-            registerDropSelfLootTable(ModBlocks.euclase_block);
-            registerDropSelfLootTable(ModBlocks.leucite_block);
-            registerDropSelfLootTable(ModBlocks.carnelian_block);
-            registerDropSelfLootTable(ModBlocks.benitoite_block);
-            registerDropSelfLootTable(ModBlocks.diopside_block);
-            registerDropSelfLootTable(ModBlocks.chalcedony_block);
+            dropSelf(ModBlocks.sugilite_block);
+            dropSelf(ModBlocks.hematite_block);
+            dropSelf(ModBlocks.cinnabar_block);
+            dropSelf(ModBlocks.labradorite_block);
+            dropSelf(ModBlocks.moonstone_block);
+            dropSelf(ModBlocks.opal_block_red);
+            dropSelf(ModBlocks.opal_block_blue);
+            dropSelf(ModBlocks.opal_block_green);
+            dropSelf(ModBlocks.opal_block_white);
+            dropSelf(ModBlocks.pyrite_block);
+            dropSelf(ModBlocks.tektite_block);
+            dropSelf(ModBlocks.goldstone_block);
+            dropSelf(ModBlocks.aura_block);
+            dropSelf(ModBlocks.bismuth_block);
+            dropSelf(ModBlocks.ixiolite_block);
+            dropSelf(ModBlocks.proustite_block);
+            dropSelf(ModBlocks.euclase_block);
+            dropSelf(ModBlocks.leucite_block);
+            dropSelf(ModBlocks.carnelian_block);
+            dropSelf(ModBlocks.benitoite_block);
+            dropSelf(ModBlocks.diopside_block);
+            dropSelf(ModBlocks.chalcedony_block);
 
             //Ores
             dropWithFortune(ModBlocks.sugilite_ore, ModItems.sugilite);
@@ -309,41 +308,41 @@ public class GaiaLootTables extends LootTableProvider {
             dropWithFortune(ModBlocks.opal_ore_green, ModItems.green_opal);
             dropWithFortune(ModBlocks.opal_ore_white, ModItems.white_opal);
             dropWithFortune(ModBlocks.pyrite_ore, ModItems.pyrite);
-            registerDropSelfLootTable(ModBlocks.speckled_rock);
-            registerDropSelfLootTable(ModBlocks.coarse_rock);
-            registerDropSelfLootTable(ModBlocks.precious_rock);
+            dropSelf(ModBlocks.speckled_rock);
+            dropSelf(ModBlocks.coarse_rock);
+            dropSelf(ModBlocks.precious_rock);
 
             //Flower Pots
-            registerFlowerPot(ModBlocks.potted_thiscus);
-            registerFlowerPot(ModBlocks.potted_ouzium);
-            registerFlowerPot(ModBlocks.potted_agathum);
-            registerFlowerPot(ModBlocks.potted_varloom);
-            registerFlowerPot(ModBlocks.potted_corrupted_varloom);
-            registerFlowerPot(ModBlocks.potted_missingno_plant);
-            registerFlowerPot(ModBlocks.potted_spotted_kersei);
-            registerFlowerPot(ModBlocks.potted_thorny_wiltha);
-            registerFlowerPot(ModBlocks.potted_roofed_agaric);
-            registerFlowerPot(ModBlocks.potted_bulbous_hobina);
-            registerFlowerPot(ModBlocks.potted_stickly_cupsir);
-            registerFlowerPot(ModBlocks.potted_mystical_murgni);
-            registerFlowerPot(ModBlocks.potted_corrupted_gaia_eye);
-            registerFlowerPot(ModBlocks.potted_elder_imklia);
-            registerFlowerPot(ModBlocks.potted_gold_orb_tucher);
-            registerFlowerPot(ModBlocks.potted_missingno_fungus);
-            registerFlowerPot(ModBlocks.potted_pink_agate_sapling);
-            registerFlowerPot(ModBlocks.potted_blue_agate_sapling);
-            registerFlowerPot(ModBlocks.potted_green_agate_sapling);
-            registerFlowerPot(ModBlocks.potted_purple_agate_sapling);
-            registerFlowerPot(ModBlocks.potted_fossilized_sapling);
-            registerFlowerPot(ModBlocks.potted_corrupted_sapling);
-            registerFlowerPot(ModBlocks.potted_burnt_sapling);
-            registerFlowerPot(ModBlocks.potted_burning_sapling);
-            registerFlowerPot(ModBlocks.potted_aura_sapling);
+            dropPot(ModBlocks.potted_thiscus);
+            dropPot(ModBlocks.potted_ouzium);
+            dropPot(ModBlocks.potted_agathum);
+            dropPot(ModBlocks.potted_varloom);
+            dropPot(ModBlocks.potted_corrupted_varloom);
+            dropPot(ModBlocks.potted_missingno_plant);
+            dropPot(ModBlocks.potted_spotted_kersei);
+            dropPot(ModBlocks.potted_thorny_wiltha);
+            dropPot(ModBlocks.potted_roofed_agaric);
+            dropPot(ModBlocks.potted_bulbous_hobina);
+            dropPot(ModBlocks.potted_stickly_cupsir);
+            dropPot(ModBlocks.potted_mystical_murgni);
+            dropPot(ModBlocks.potted_corrupted_gaia_eye);
+            dropPot(ModBlocks.potted_elder_imklia);
+            dropPot(ModBlocks.potted_gold_orb_tucher);
+            dropPot(ModBlocks.potted_missingno_fungus);
+            dropPot(ModBlocks.potted_pink_agate_sapling);
+            dropPot(ModBlocks.potted_blue_agate_sapling);
+            dropPot(ModBlocks.potted_green_agate_sapling);
+            dropPot(ModBlocks.potted_purple_agate_sapling);
+            dropPot(ModBlocks.potted_fossilized_sapling);
+            dropPot(ModBlocks.potted_corrupted_sapling);
+            dropPot(ModBlocks.potted_burnt_sapling);
+            dropPot(ModBlocks.potted_burning_sapling);
+            dropPot(ModBlocks.potted_aura_sapling);
         }
 
         @Override
         protected Iterable<Block> getKnownBlocks() {
-            return new ArrayList<>(RegistryHelper.BLOCKS);
+            return ModBlocks.BLOCKS.getEntries().stream().map(Supplier::get).collect(Collectors.toList());
         }
     }
 
@@ -419,7 +418,7 @@ public class GaiaLootTables extends LootTableProvider {
                             .addEntry(ItemLootEntry.builder(ModItems.proustite.get())
                                     .weight(10)
                                     .acceptFunction(SetCount.builder(RandomValueRange.of(1.0F, 3.0F))))
-                            .addEntry(ItemLootEntry.builder(ModBlocks.amethyst_bricks)
+                            .addEntry(ItemLootEntry.builder(ModBlocks.amethyst_bricks.get())
                                     .weight(15)
                                     .acceptFunction(SetCount.builder(RandomValueRange.of(3.0F, 9.0F))))
                             .addEntry(ItemLootEntry.builder(ModItems.old_bow.get())
@@ -447,7 +446,7 @@ public class GaiaLootTables extends LootTableProvider {
                             .addEntry(ItemLootEntry.builder(ModItems.leucite.get())
                                     .weight(10)
                                     .acceptFunction(SetCount.builder(RandomValueRange.of(1.0F, 3.0F))))
-                            .addEntry(ItemLootEntry.builder(ModBlocks.copal_bricks)
+                            .addEntry(ItemLootEntry.builder(ModBlocks.copal_bricks.get())
                                     .weight(15)
                                     .acceptFunction(SetCount.builder(RandomValueRange.of(3.0F, 9.0F))))
                             .addEntry(ItemLootEntry.builder(ModItems.old_bow.get())
@@ -475,7 +474,7 @@ public class GaiaLootTables extends LootTableProvider {
                             .addEntry(ItemLootEntry.builder(ModItems.euclase.get())
                                     .weight(10)
                                     .acceptFunction(SetCount.builder(RandomValueRange.of(1.0F, 3.0F))))
-                            .addEntry(ItemLootEntry.builder(ModBlocks.jade_bricks)
+                            .addEntry(ItemLootEntry.builder(ModBlocks.jade_bricks.get())
                                     .weight(15)
                                     .acceptFunction(SetCount.builder(RandomValueRange.of(3.0F, 9.0F))))
                             .addEntry(ItemLootEntry.builder(ModItems.old_bow.get())
@@ -503,7 +502,7 @@ public class GaiaLootTables extends LootTableProvider {
                             .addEntry(ItemLootEntry.builder(ModItems.ixiolite.get())
                                     .weight(10)
                                     .acceptFunction(SetCount.builder(RandomValueRange.of(1.0F, 3.0F))))
-                            .addEntry(ItemLootEntry.builder(ModBlocks.jet_bricks)
+                            .addEntry(ItemLootEntry.builder(ModBlocks.jet_bricks.get())
                                     .weight(15)
                                     .acceptFunction(SetCount.builder(RandomValueRange.of(3.0F, 9.0F))))
                             .addEntry(ItemLootEntry.builder(ModItems.old_bow.get())
@@ -517,13 +516,13 @@ public class GaiaLootTables extends LootTableProvider {
             consumer.accept(GaiaChestTables.CHESTS_MALACHITE_WATCHTOWER, LootTable.builder()
                     .addLootPool(LootPool.builder()
                             .rolls(RandomValueRange.of(2.0F, 8.0F))
-                            .addEntry(ItemLootEntry.builder(ModBlocks.malachite_bricks)
+                            .addEntry(ItemLootEntry.builder(ModBlocks.malachite_bricks.get())
                                     .weight(15)
                                     .acceptFunction(SetCount.builder(RandomValueRange.of(3.0F, 5.0F))))
-                            .addEntry(ItemLootEntry.builder(ModBlocks.malachite_floor_tiles)
+                            .addEntry(ItemLootEntry.builder(ModBlocks.malachite_floor_tiles.get())
                                     .weight(15)
                                     .acceptFunction(SetCount.builder(RandomValueRange.of(3.0F, 5.0F))))
-                            .addEntry(ItemLootEntry.builder(ModBlocks.malachite_pillar)
+                            .addEntry(ItemLootEntry.builder(ModBlocks.malachite_pillar.get())
                                     .weight(15)
                                     .acceptFunction(SetCount.builder(RandomValueRange.of(3.0F, 5.0F))))
                             .addEntry(ItemLootEntry.builder(ModItems.pyrite.get())

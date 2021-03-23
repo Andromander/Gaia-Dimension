@@ -261,7 +261,7 @@ public class ModItems {
     public static final RegistryObject<Item> blue_howlite_wolf_spawn_egg = registerEgg("blue_howlite_wolf", ModEntities.BLUE_HOWLITE_WOLF, 0x0099CC, 0xCC00FF);
     public static final RegistryObject<Item> malachite_guard_spawn_egg = registerEgg("malachite_guard", ModEntities.MALACHITE_GUARD, 0x339900, 0x33CC99);
 
-    public static final RegistryObject<Item> PYRITE_TORCH = ITEMS.register("pyrite_torch", () -> new WallOrFloorItem(ModBlocks.pyrite_torch, ModBlocks.pyrite_wall_torch, new Item.Properties().group(GaiaItemGroups.GAIA_BLOCKS)));
+    public static final RegistryObject<Item> PYRITE_TORCH = ITEMS.register("pyrite_torch", () -> new WallOrFloorItem(ModBlocks.pyrite_torch.get(), ModBlocks.pyrite_wall_torch.get(), new Item.Properties().group(GaiaItemGroups.GAIA_BLOCKS)));
 
     private static RegistryObject<Item> register(String name) {
         return register(name, BasicGaiaItem::new);

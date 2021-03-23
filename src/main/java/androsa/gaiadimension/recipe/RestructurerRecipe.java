@@ -33,7 +33,7 @@ public class RestructurerRecipe implements IRecipe<IInventory> {
 
     @Override
     public ItemStack getIcon() {
-        return new ItemStack(ModBlocks.restructurer);
+        return new ItemStack(ModBlocks.restructurer.get());
     }
 
     @Override

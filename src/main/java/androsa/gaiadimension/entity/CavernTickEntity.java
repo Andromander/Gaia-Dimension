@@ -69,6 +69,6 @@ public class CavernTickEntity extends MonsterEntity {
 
     @Override
     public float getBlockPathWeight(BlockPos pos) {
-        return this.world.getBlockState(pos.down()).getBlock() == ModBlocks.gaia_stone ? 10.0F : super.getBlockPathWeight(pos);
+        return this.world.getBlockState(pos.down()).getBlock() == ModBlocks.gaia_stone.get() ? 10.0F : super.getBlockPathWeight(pos);
     }
 }

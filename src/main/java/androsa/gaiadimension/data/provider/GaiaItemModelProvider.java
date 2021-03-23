@@ -15,19 +15,19 @@ public abstract class GaiaItemModelProvider extends ItemModelProvider {
         super(generator, GaiaDimensionMod.MODID, helper);
     }
 
-    public String blockName(Block block) {
-        return block.getRegistryName().getPath();
+    public String blockName(RegistryObject<? extends Block> block) {
+        return block.getId().getPath();
     }
 
-    public ItemModelBuilder blockItem(Block block) {
+    public ItemModelBuilder blockItem(RegistryObject<? extends Block> block) {
         return blockItem(block, blockName(block));
     }
 
-    public ItemModelBuilder blockItem(Block block, String model) {
+    public ItemModelBuilder blockItem(RegistryObject<? extends Block> block, String model) {
         return withExistingParent(blockName(block), modLoc("block/" + model));
     }
 
-    public ItemModelBuilder blockItemTexture(Block block) {
+    public ItemModelBuilder blockItemTexture(RegistryObject<? extends Block> block) {
         return withExistingParent(blockName(block), mcLoc("item/generated"))
                 .texture("layer0", modLoc("block/" + blockName(block)));
     }

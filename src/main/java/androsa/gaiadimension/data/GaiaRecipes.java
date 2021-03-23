@@ -47,38 +47,38 @@ public class GaiaRecipes extends GaiaRecipeProvider {
         stairsRecipe(ModBlocks.burnt_plank_stairs, ModBlocks.burnt_planks).build(consumer, locWood("burnt_plank_stairs"));
         stairsRecipe(ModBlocks.burning_plank_stairs, ModBlocks.burning_planks).build(consumer, locWood("burning_plank_stairs"));
         stairsRecipe(ModBlocks.aura_plank_stairs, ModBlocks.aura_planks).build(consumer, locWood("aura_plank_stairs"));
-        smallCompressRecipe(ModBlocks.pink_agate_wood, ModBlocks.pink_agate_log, 3).build(consumer, locWood("pink_agate_wood"));
-        smallCompressRecipe(ModBlocks.blue_agate_wood, ModBlocks.blue_agate_log, 3).build(consumer, locWood("blue_agate_wood"));
-        smallCompressRecipe(ModBlocks.green_agate_wood, ModBlocks.green_agate_log, 3).build(consumer, locWood("green_agate_wood"));
-        smallCompressRecipe(ModBlocks.purple_agate_wood, ModBlocks.purple_agate_log, 3).build(consumer, locWood("purple_agate_wood"));
-        smallCompressRecipe(ModBlocks.fossilized_wood, ModBlocks.fossilized_log, 3).build(consumer, locWood("fossilized_wood"));
-        smallCompressRecipe(ModBlocks.corrupted_wood, ModBlocks.corrupted_log, 3).build(consumer, locWood("corrupted_wood"));
-        smallCompressRecipe(ModBlocks.burnt_wood, ModBlocks.burnt_log, 3).build(consumer, locWood("burnt_wood"));
-        smallCompressRecipe(ModBlocks.burning_wood, ModBlocks.burning_log, 3).build(consumer, locWood("burning_wood"));
-        smallCompressRecipe(ModBlocks.aura_wood, ModBlocks.aura_log, 3).build(consumer, locWood("aura_wood"));
+        smallCompressRecipe(ModBlocks.pink_agate_wood.get(), ModBlocks.pink_agate_log.get(), 3).build(consumer, locWood("pink_agate_wood"));
+        smallCompressRecipe(ModBlocks.blue_agate_wood.get(), ModBlocks.blue_agate_log.get(), 3).build(consumer, locWood("blue_agate_wood"));
+        smallCompressRecipe(ModBlocks.green_agate_wood.get(), ModBlocks.green_agate_log.get(), 3).build(consumer, locWood("green_agate_wood"));
+        smallCompressRecipe(ModBlocks.purple_agate_wood.get(), ModBlocks.purple_agate_log.get(), 3).build(consumer, locWood("purple_agate_wood"));
+        smallCompressRecipe(ModBlocks.fossilized_wood.get(), ModBlocks.fossilized_log.get(), 3).build(consumer, locWood("fossilized_wood"));
+        smallCompressRecipe(ModBlocks.corrupted_wood.get(), ModBlocks.corrupted_log.get(), 3).build(consumer, locWood("corrupted_wood"));
+        smallCompressRecipe(ModBlocks.burnt_wood.get(), ModBlocks.burnt_log.get(), 3).build(consumer, locWood("burnt_wood"));
+        smallCompressRecipe(ModBlocks.burning_wood.get(), ModBlocks.burning_log.get(), 3).build(consumer, locWood("burning_wood"));
+        smallCompressRecipe(ModBlocks.aura_wood.get(), ModBlocks.aura_log.get(), 3).build(consumer, locWood("aura_wood"));
 
-        largeCompressRecipe(ModBlocks.sugilite_block, ModItems.sugilite.get()).build(consumer, locStorage("sugilite_block"));
-        largeCompressRecipe(ModBlocks.hematite_block, ModItems.hematite.get()).build(consumer, locStorage("hematite_block"));
-        largeCompressRecipe(ModBlocks.cinnabar_block, ModItems.cinnabar.get()).build(consumer, locStorage("cinnabar_block"));
-        largeCompressRecipe(ModBlocks.labradorite_block, ModItems.labradorite.get()).build(consumer, locStorage("labradorite_block"));
-        largeCompressRecipe(ModBlocks.moonstone_block, ModItems.moonstone.get()).build(consumer, locStorage("moonstone_block"));
-        largeCompressRecipe(ModBlocks.opal_block_red, ModItems.red_opal.get()).build(consumer, locStorage("opal_block_red"));
-        largeCompressRecipe(ModBlocks.opal_block_blue, ModItems.blue_opal.get()).build(consumer, locStorage("opal_block_blue"));
-        largeCompressRecipe(ModBlocks.opal_block_green, ModItems.green_opal.get()).build(consumer, locStorage("opal_block_green"));
-        largeCompressRecipe(ModBlocks.opal_block_white, ModItems.white_opal.get()).build(consumer, locStorage("opal_block_white"));
-        largeCompressRecipe(ModBlocks.pyrite_block, ModItems.pyrite.get()).build(consumer, locStorage("pyrite_block"));
-        largeCompressRecipe(ModBlocks.tektite_block, ModItems.tektite.get()).build(consumer, locStorage("tektite_block"));
-        largeCompressRecipe(ModBlocks.goldstone_block, ModItems.goldstone.get()).build(consumer, locStorage("goldstone_block"));
-        largeCompressRecipe(ModBlocks.aura_block, ModItems.aura_cluster.get()).build(consumer, locStorage("aura_block"));
-        largeCompressRecipe(ModBlocks.bismuth_block, ModItems.bismuth_crystal.get()).build(consumer, locStorage("bismuth_block"));
-        largeCompressRecipe(ModBlocks.ixiolite_block, ModItems.ixiolite.get()).build(consumer, locStorage("ixiolite_block"));
-        largeCompressRecipe(ModBlocks.proustite_block, ModItems.proustite.get()).build(consumer, locStorage("proustite_block"));
-        largeCompressRecipe(ModBlocks.euclase_block, ModItems.euclase.get()).build(consumer, locStorage("euclase_block"));
-        largeCompressRecipe(ModBlocks.leucite_block, ModItems.leucite.get()).build(consumer, locStorage("leucite_block"));
-        largeCompressRecipe(ModBlocks.carnelian_block, ModItems.carnelian.get()).build(consumer, locStorage("carnelian_block"));
-        largeCompressRecipe(ModBlocks.benitoite_block, ModItems.benitoite.get()).build(consumer, locStorage("benitoite_block"));
-        largeCompressRecipe(ModBlocks.diopside_block, ModItems.diopside.get()).build(consumer, locStorage("diopside_block"));
-        largeCompressRecipe(ModBlocks.chalcedony_block, ModItems.chalcedony.get()).build(consumer, locStorage("chalcedony_block"));
+        largeCompressRecipe(ModBlocks.sugilite_block.get(), ModItems.sugilite.get()).build(consumer, locStorage("sugilite_block"));
+        largeCompressRecipe(ModBlocks.hematite_block.get(), ModItems.hematite.get()).build(consumer, locStorage("hematite_block"));
+        largeCompressRecipe(ModBlocks.cinnabar_block.get(), ModItems.cinnabar.get()).build(consumer, locStorage("cinnabar_block"));
+        largeCompressRecipe(ModBlocks.labradorite_block.get(), ModItems.labradorite.get()).build(consumer, locStorage("labradorite_block"));
+        largeCompressRecipe(ModBlocks.moonstone_block.get(), ModItems.moonstone.get()).build(consumer, locStorage("moonstone_block"));
+        largeCompressRecipe(ModBlocks.opal_block_red.get(), ModItems.red_opal.get()).build(consumer, locStorage("opal_block_red"));
+        largeCompressRecipe(ModBlocks.opal_block_blue.get(), ModItems.blue_opal.get()).build(consumer, locStorage("opal_block_blue"));
+        largeCompressRecipe(ModBlocks.opal_block_green.get(), ModItems.green_opal.get()).build(consumer, locStorage("opal_block_green"));
+        largeCompressRecipe(ModBlocks.opal_block_white.get(), ModItems.white_opal.get()).build(consumer, locStorage("opal_block_white"));
+        largeCompressRecipe(ModBlocks.pyrite_block.get(), ModItems.pyrite.get()).build(consumer, locStorage("pyrite_block"));
+        largeCompressRecipe(ModBlocks.tektite_block.get(), ModItems.tektite.get()).build(consumer, locStorage("tektite_block"));
+        largeCompressRecipe(ModBlocks.goldstone_block.get(), ModItems.goldstone.get()).build(consumer, locStorage("goldstone_block"));
+        largeCompressRecipe(ModBlocks.aura_block.get(), ModItems.aura_cluster.get()).build(consumer, locStorage("aura_block"));
+        largeCompressRecipe(ModBlocks.bismuth_block.get(), ModItems.bismuth_crystal.get()).build(consumer, locStorage("bismuth_block"));
+        largeCompressRecipe(ModBlocks.ixiolite_block.get(), ModItems.ixiolite.get()).build(consumer, locStorage("ixiolite_block"));
+        largeCompressRecipe(ModBlocks.proustite_block.get(), ModItems.proustite.get()).build(consumer, locStorage("proustite_block"));
+        largeCompressRecipe(ModBlocks.euclase_block.get(), ModItems.euclase.get()).build(consumer, locStorage("euclase_block"));
+        largeCompressRecipe(ModBlocks.leucite_block.get(), ModItems.leucite.get()).build(consumer, locStorage("leucite_block"));
+        largeCompressRecipe(ModBlocks.carnelian_block.get(), ModItems.carnelian.get()).build(consumer, locStorage("carnelian_block"));
+        largeCompressRecipe(ModBlocks.benitoite_block.get(), ModItems.benitoite.get()).build(consumer, locStorage("benitoite_block"));
+        largeCompressRecipe(ModBlocks.diopside_block.get(), ModItems.diopside.get()).build(consumer, locStorage("diopside_block"));
+        largeCompressRecipe(ModBlocks.chalcedony_block.get(), ModItems.chalcedony.get()).build(consumer, locStorage("chalcedony_block"));
 
         blockToItemRecipe(ModItems.sugilite, ModBlocks.sugilite_block).build(consumer, locStorage("sugilite_block_item"));
         blockToItemRecipe(ModItems.hematite, ModBlocks.hematite_block).build(consumer, locStorage("hematite_block_item"));
@@ -167,29 +167,29 @@ public class GaiaRecipes extends GaiaRecipeProvider {
         sliceRecipe(ModItems.blue_geode_slice, ModItems.blue_geode).build(consumer, loc("blue_geode_slice"));
         sliceRecipe(ModItems.green_geode_slice, ModItems.green_geode).build(consumer, loc("green_geode_slice"));
         sliceRecipe(ModItems.purple_geode_slice, ModItems.purple_geode).build(consumer, loc("purple_geode_slice"));
-        largeCompressRecipe(ModBlocks.cloudy_glass, ModItems.cloudy_shard.get()).build(consumer, loc("cloudy_glass"));
-        smallCompressRecipe(ModBlocks.gaia_stone_bricks, ModBlocks.gaia_stone, 4).build(consumer, loc("gaia_stone_bricks"));
+        largeCompressRecipe(ModBlocks.cloudy_glass.get(), ModItems.cloudy_shard.get()).build(consumer, loc("cloudy_glass"));
+        smallCompressRecipe(ModBlocks.gaia_stone_bricks.get(), ModBlocks.gaia_stone.get(), 4).build(consumer, loc("gaia_stone_bricks"));
         crustBricks(ModBlocks.crusted_gaia_stone_bricks, ModBlocks.gaia_stone_bricks).build(consumer, loc("crusted_gaia_stone_bricks"));
-        smallCompressRecipe(ModBlocks.jade_bricks, ModBlocks.raw_jade, 4).build(consumer, loc("jade_bricks"));
+        smallCompressRecipe(ModBlocks.jade_bricks.get(), ModBlocks.raw_jade.get(), 4).build(consumer, loc("jade_bricks"));
         crustBricks(ModBlocks.crusted_jade_bricks, ModBlocks.jade_bricks).build(consumer, loc("crusted_jade_bricks"));
         slabRecipe(ModBlocks.jade_brick_slab, ModBlocks.jade_bricks).build(consumer, loc("jade_brick_slab"));
         stairsRecipe(ModBlocks.jade_brick_stairs, ModBlocks.jade_bricks).build(consumer, loc("jade_brick_stairs"));
-        smallCompressRecipe(ModBlocks.copal_bricks, ModBlocks.raw_copal, 4).build(consumer, loc("copal_bricks"));
+        smallCompressRecipe(ModBlocks.copal_bricks.get(), ModBlocks.raw_copal.get(), 4).build(consumer, loc("copal_bricks"));
         crustBricks(ModBlocks.crusted_copal_bricks, ModBlocks.copal_bricks).build(consumer, loc("crusted_copal_bricks"));
         slabRecipe(ModBlocks.copal_brick_slab, ModBlocks.copal_bricks).build(consumer, loc("copal_brick_slab"));
         stairsRecipe(ModBlocks.copal_brick_stairs, ModBlocks.copal_bricks).build(consumer, loc("copal_brick_stairs"));
-        smallCompressRecipe(ModBlocks.jet_bricks, ModBlocks.raw_jet, 4).build(consumer, loc("jet_bricks"));
+        smallCompressRecipe(ModBlocks.jet_bricks.get(), ModBlocks.raw_jet.get(), 4).build(consumer, loc("jet_bricks"));
         crustBricks(ModBlocks.crusted_jet_bricks, ModBlocks.jet_bricks).build(consumer, loc("crusted_jet_bricks"));
         slabRecipe(ModBlocks.jet_brick_slab, ModBlocks.jet_bricks).build(consumer, loc("jet_brick_slab"));
         stairsRecipe(ModBlocks.jet_brick_stairs, ModBlocks.jet_bricks).build(consumer, loc("jet_brick_stairs"));
-        smallCompressRecipe(ModBlocks.amethyst_bricks, ModBlocks.raw_amethyst, 4).build(consumer, loc("amethyst_bricks"));
+        smallCompressRecipe(ModBlocks.amethyst_bricks.get(), ModBlocks.raw_amethyst.get(), 4).build(consumer, loc("amethyst_bricks"));
         crustBricks(ModBlocks.crusted_amethyst_bricks, ModBlocks.amethyst_bricks).build(consumer, loc("crusted_amethyst_bricks"));
         slabRecipe(ModBlocks.amethyst_brick_slab, ModBlocks.amethyst_bricks).build(consumer, loc("amethyst_brick_slab"));
         stairsRecipe(ModBlocks.amethyst_brick_stairs, ModBlocks.amethyst_bricks).build(consumer, loc("amethyst_brick_stairs"));
         largeCompressRecipe(ModItems.goldstone.get(), ModItems.goldstone_residue.get()).build(consumer, loc("goldstone"));
-        smallCompressRecipe(ModBlocks.gummy_glitter_block, ModItems.sweet_muckball.get()).build(consumer, loc("gummy_glitter_block"));
+        smallCompressRecipe(ModBlocks.gummy_glitter_block.get(), ModItems.sweet_muckball.get()).build(consumer, loc("gummy_glitter_block"));
         largeCompressRecipe(ModItems.pink_goo.get(), ModItems.pink_essence.get()).build(consumer, loc("pink_goo"));
-        largeCompressRecipe(ModBlocks.pink_sludge_block, ModItems.pink_goo.get()).build(consumer, loc("pink_sludge_block"));
+        largeCompressRecipe(ModBlocks.pink_sludge_block.get(), ModItems.pink_goo.get()).build(consumer, loc("pink_sludge_block"));
         tiliRecipe(ModItems.tilipi, ModBlocks.spotted_kersei).build(consumer, loc("tilipi"));
         tiliRecipe(ModItems.tilibl, ModBlocks.thorny_wiltha).build(consumer, loc("tilibl"));
         tiliRecipe(ModItems.tiligr, ModBlocks.roofed_agaric).build(consumer, loc("tiligr"));
@@ -198,7 +198,7 @@ public class GaiaRecipes extends GaiaRecipeProvider {
         tiliRecipe(ModItems.tilimy, ModBlocks.mystical_murgni).build(consumer, loc("tilimy"));
         tiliRecipe(ModItems.plagued_tiliey, ModBlocks.corrupted_varloom).build(consumer, loc("plagued_tiliey"));
         tiliRecipe(ModItems.tiliou, ModBlocks.ouzium).build(consumer, loc("tiliou"));
-        smallCompressRecipe(ModBlocks.saltstone, ModBlocks.salt).build(consumer, loc("saltstone"));
+        smallCompressRecipe(ModBlocks.saltstone.get(), ModBlocks.salt.get()).build(consumer, loc("saltstone"));
         smallCompressRecipe(ModItems.sugar_cluster.get(), ModItems.sugar_crystals.get()).build(consumer, loc("sugar_cluster"));
         largeCompressRecipe(ModItems.tektite.get(), ModItems.black_residue.get()).build(consumer, loc("tektite"));
         crustBricks(ModBlocks.malachite_crusted_bricks, ModBlocks.malachite_bricks).build(consumer, loc("malachite_crusted_bricks"));
@@ -236,47 +236,47 @@ public class GaiaRecipes extends GaiaRecipeProvider {
                 .addIngredient(GaiaTags.Items.AGATE_PLANKS)
                 .addCriterion("has_planks", hasItem(GaiaTags.Items.AGATE_PLANKS))
                 .build(consumer, loc("agate_stick"));
-        ShapedRecipeBuilder.shapedRecipe(ModBlocks.bolstered_bricks, 2)
+        ShapedRecipeBuilder.shapedRecipe(ModBlocks.bolstered_bricks.get(), 2)
                 .patternLine("%#")
                 .patternLine("#%")
-                .key('#', ModBlocks.reinforced_bricks)
-                .key('%', ModBlocks.goldstone_block)
-                .addCriterion("has_brick", hasItem(ModBlocks.reinforced_bricks))
-                .addCriterion("has_goldstone", hasItem(ModBlocks.goldstone_block))
+                .key('#', ModBlocks.reinforced_bricks.get())
+                .key('%', ModBlocks.goldstone_block.get())
+                .addCriterion("has_brick", hasItem(ModBlocks.reinforced_bricks.get()))
+                .addCriterion("has_goldstone", hasItem(ModBlocks.goldstone_block.get()))
                 .build(consumer, loc("bolstered_bricks"));
-        ShapedRecipeBuilder.shapedRecipe(ModBlocks.bolstered_bricks, 2)
+        ShapedRecipeBuilder.shapedRecipe(ModBlocks.bolstered_bricks.get(), 2)
                 .patternLine("#%")
                 .patternLine("%#")
-                .key('#', ModBlocks.reinforced_bricks)
-                .key('%', ModBlocks.goldstone_block)
-                .addCriterion("has_brick", hasItem(ModBlocks.reinforced_bricks))
-                .addCriterion("has_goldstone", hasItem(ModBlocks.goldstone_block))
+                .key('#', ModBlocks.reinforced_bricks.get())
+                .key('%', ModBlocks.goldstone_block.get())
+                .addCriterion("has_brick", hasItem(ModBlocks.reinforced_bricks.get()))
+                .addCriterion("has_goldstone", hasItem(ModBlocks.goldstone_block.get()))
                 .build(consumer, loc("bolstered_bricks_2"));
-        ShapedRecipeBuilder.shapedRecipe(ModBlocks.corrupt_grass)
+        ShapedRecipeBuilder.shapedRecipe(ModBlocks.corrupt_grass.get())
                 .patternLine("///")
                 .patternLine("/#/")
                 .patternLine("///")
                 .key('/', ModItems.goldstone_residue.get())
-                .key('#', ModBlocks.glitter_grass)
+                .key('#', ModBlocks.glitter_grass.get())
                 .addCriterion("has_residue", hasItem(ModItems.goldstone_residue.get()))
                 .build(consumer, loc("corrupt_grass"));
-        ShapedRecipeBuilder.shapedRecipe(ModBlocks.corrupt_soil)
+        ShapedRecipeBuilder.shapedRecipe(ModBlocks.corrupt_soil.get())
                 .patternLine("///")
                 .patternLine("/#/")
                 .patternLine("///")
                 .key('/', ModItems.goldstone_residue.get())
-                .key('#', ModBlocks.heavy_soil)
+                .key('#', ModBlocks.heavy_soil.get())
                 .addCriterion("has_residue", hasItem(ModItems.goldstone_residue.get()))
                 .build(consumer, loc("corrupt_soil"));
-        ShapedRecipeBuilder.shapedRecipe(ModBlocks.corrupted_sapling)
+        ShapedRecipeBuilder.shapedRecipe(ModBlocks.corrupted_sapling.get())
                 .patternLine(" / ")
                 .patternLine("/#/")
                 .patternLine(" / ")
                 .key('/', ModItems.goldstone_residue.get())
-                .key('#', Ingredient.fromItems(ModBlocks.pink_agate_sapling, ModBlocks.blue_agate_sapling, ModBlocks.green_agate_sapling, ModBlocks.purple_agate_sapling))
+                .key('#', Ingredient.fromItems(ModBlocks.pink_agate_sapling.get(), ModBlocks.blue_agate_sapling.get(), ModBlocks.green_agate_sapling.get(), ModBlocks.purple_agate_sapling.get()))
                 .addCriterion("has_residue", hasItem(ModItems.goldstone_residue.get()))
                 .build(consumer, loc("corrupted_sapling"));
-        ShapedRecipeBuilder.shapedRecipe(ModBlocks.agate_crafting_table)
+        ShapedRecipeBuilder.shapedRecipe(ModBlocks.agate_crafting_table.get())
                 .patternLine("##")
                 .patternLine("##")
                 .key('#', GaiaTags.Items.AGATE_PLANKS)
@@ -291,16 +291,16 @@ public class GaiaRecipes extends GaiaRecipeProvider {
                 .addIngredient(ModItems.agate_cup.get())
                 .addCriterion("has_cup", hasItem(ModItems.agate_cup.get()))
                 .build(consumer, loc("elixir_drink"));
-        ShapelessRecipeBuilder.shapelessRecipe(ModBlocks.frail_glitter_block, 4)
-                .addIngredient(ModBlocks.thick_glitter_block)
-                .addCriterion("has_glitter", hasItem(ModBlocks.frail_glitter_block))
+        ShapelessRecipeBuilder.shapelessRecipe(ModBlocks.frail_glitter_block.get(), 4)
+                .addIngredient(ModBlocks.thick_glitter_block.get())
+                .addCriterion("has_glitter", hasItem(ModBlocks.frail_glitter_block.get()))
                 .build(consumer, loc("frail_glitter_block"));
-        ShapedRecipeBuilder.shapedRecipe(ModBlocks.gaia_stone_furnace)
+        ShapedRecipeBuilder.shapedRecipe(ModBlocks.gaia_stone_furnace.get())
                 .patternLine("###")
                 .patternLine("# #")
                 .patternLine("###")
-                .key('#', ModBlocks.gaia_cobblestone)
-                .addCriterion("has_stone", hasItem(ModBlocks.gaia_stone))
+                .key('#', ModBlocks.gaia_cobblestone.get())
+                .addCriterion("has_stone", hasItem(ModBlocks.gaia_stone.get()))
                 .build(consumer, loc("furnace"));
         ShapelessRecipeBuilder.shapelessRecipe(ModItems.gemstone_pouch.get())
                 .addIngredient(ModItems.agate_fabric.get())
@@ -314,7 +314,7 @@ public class GaiaRecipes extends GaiaRecipeProvider {
                 .addIngredient(Items.GOLD_INGOT)
                 .addCriterion("has_diamond", hasItem(Items.DIAMOND))
                 .build(consumer, loc("glint_and_gold"));
-        ShapedRecipeBuilder.shapedRecipe(ModBlocks.keystone_block)
+        ShapedRecipeBuilder.shapedRecipe(ModBlocks.keystone_block.get())
                 .patternLine("*%*")
                 .patternLine("%#%")
                 .patternLine("*%*")
@@ -324,23 +324,23 @@ public class GaiaRecipes extends GaiaRecipeProvider {
                 .addCriterion("has_lapis", hasItem(ModItems.crystallized_lapis_lazuli.get()))
                 .addCriterion("has_redstone", hasItem(ModItems.crystallized_redstone.get()))
                 .build(consumer, loc("keystone_block"));
-        ShapedRecipeBuilder.shapedRecipe(ModBlocks.mega_storage_crate)
+        ShapedRecipeBuilder.shapedRecipe(ModBlocks.mega_storage_crate.get())
                 .patternLine("*%*")
                 .patternLine("%#%")
                 .patternLine("*%*")
                 .key('*', GaiaTags.Items.AGATE_PLANKS)
-                .key('%', ModBlocks.thick_glitter_block)
-                .key('#', ModBlocks.crude_storage_crate)
-                .addCriterion("has_crate", hasItem(ModBlocks.crude_storage_crate))
+                .key('%', ModBlocks.thick_glitter_block.get())
+                .key('#', ModBlocks.crude_storage_crate.get())
+                .addCriterion("has_crate", hasItem(ModBlocks.crude_storage_crate.get()))
                 .build(consumer, loc("large_chest"));
-        ShapedRecipeBuilder.shapedRecipe(ModBlocks.mega_storage_crate)
+        ShapedRecipeBuilder.shapedRecipe(ModBlocks.mega_storage_crate.get())
                 .patternLine("*%*")
                 .patternLine("%#%")
                 .patternLine("*%*")
                 .key('%', GaiaTags.Items.AGATE_PLANKS)
-                .key('*', ModBlocks.thick_glitter_block)
-                .key('#', ModBlocks.crude_storage_crate)
-                .addCriterion("has_crate", hasItem(ModBlocks.crude_storage_crate))
+                .key('*', ModBlocks.thick_glitter_block.get())
+                .key('#', ModBlocks.crude_storage_crate.get())
+                .addCriterion("has_crate", hasItem(ModBlocks.crude_storage_crate.get()))
                 .build(consumer, loc("large_chest_2"));
         ShapedRecipeBuilder.shapedRecipe(ModItems.old_bow.get())
                 .patternLine("#/ ")
@@ -350,13 +350,13 @@ public class GaiaRecipes extends GaiaRecipeProvider {
                 .key('/', ModItems.shiny_bone.get())
                 .addCriterion("has_bone", hasItem(ModItems.shiny_bone.get()))
                 .build(consumer, locTools("old_bow"));
-        ShapedRecipeBuilder.shapedRecipe(ModBlocks.purifier)
+        ShapedRecipeBuilder.shapedRecipe(ModBlocks.purifier.get())
                 .patternLine("///")
                 .patternLine("/#/")
                 .patternLine("///")
-                .key('/', ModBlocks.reinforced_bricks)
-                .key('#', ModBlocks.restructurer)
-                .addCriterion("has_bricks", hasItem(ModBlocks.reinforced_bricks))
+                .key('/', ModBlocks.reinforced_bricks.get())
+                .key('#', ModBlocks.restructurer.get())
+                .addCriterion("has_bricks", hasItem(ModBlocks.reinforced_bricks.get()))
                 .build(consumer, loc("purifier"));
         ShapedRecipeBuilder.shapedRecipe(ModItems.PYRITE_TORCH.get(), 4)
                 .patternLine("#")
@@ -365,29 +365,29 @@ public class GaiaRecipes extends GaiaRecipeProvider {
                 .key('/', ModItems.agate_stick.get())
                 .addCriterion("has_pyrite", hasItem(ModItems.pyrite.get()))
                 .build(consumer, loc("pyrite_torch"));
-        ShapedRecipeBuilder.shapedRecipe(ModBlocks.reinforced_bricks, 2)
+        ShapedRecipeBuilder.shapedRecipe(ModBlocks.reinforced_bricks.get(), 2)
                 .patternLine("%#")
                 .patternLine("#%")
                 .key('#', GaiaTags.Items.GAIA_BRICKS)
-                .key('%', ModBlocks.thick_glitter_block)
+                .key('%', ModBlocks.thick_glitter_block.get())
                 .addCriterion("has_brick", hasItem(GaiaTags.Items.GAIA_BRICKS))
-                .addCriterion("has_goldstone", hasItem(ModBlocks.thick_glitter_block))
+                .addCriterion("has_goldstone", hasItem(ModBlocks.thick_glitter_block.get()))
                 .build(consumer, loc("reinforced_bricks"));
-        ShapedRecipeBuilder.shapedRecipe(ModBlocks.reinforced_bricks, 2)
+        ShapedRecipeBuilder.shapedRecipe(ModBlocks.reinforced_bricks.get(), 2)
                 .patternLine("#%")
                 .patternLine("%#")
                 .key('#', GaiaTags.Items.GAIA_BRICKS)
-                .key('%', ModBlocks.thick_glitter_block)
+                .key('%', ModBlocks.thick_glitter_block.get())
                 .addCriterion("has_brick", hasItem(GaiaTags.Items.GAIA_BRICKS))
-                .addCriterion("has_goldstone", hasItem(ModBlocks.thick_glitter_block))
+                .addCriterion("has_goldstone", hasItem(ModBlocks.thick_glitter_block.get()))
                 .build(consumer, loc("reinforced_bricks_2"));
-        ShapedRecipeBuilder.shapedRecipe(ModBlocks.restructurer)
+        ShapedRecipeBuilder.shapedRecipe(ModBlocks.restructurer.get())
                 .patternLine("///")
                 .patternLine("/#/")
                 .patternLine("///")
-                .key('/', ModBlocks.reinforced_bricks)
-                .key('#', ModBlocks.gaia_stone_furnace)
-                .addCriterion("has_bricks", hasItem(ModBlocks.reinforced_bricks))
+                .key('/', ModBlocks.reinforced_bricks.get())
+                .key('#', ModBlocks.gaia_stone_furnace.get())
+                .addCriterion("has_bricks", hasItem(ModBlocks.reinforced_bricks.get()))
                 .build(consumer, loc("restructurer"));
         ShapedRecipeBuilder.shapedRecipe(ModItems.scaynyx_bucket.get())
                 .patternLine("# #")
@@ -395,7 +395,7 @@ public class GaiaRecipes extends GaiaRecipeProvider {
                 .key('#', ModItems.scaynyx_ingot.get())
                 .addCriterion("has_ingot", hasItem(ModItems.scaynyx_ingot.get()))
                 .build(consumer, loc("scaynyx_bucket"));
-        ShapedRecipeBuilder.shapedRecipe(ModBlocks.crude_storage_crate)
+        ShapedRecipeBuilder.shapedRecipe(ModBlocks.crude_storage_crate.get())
                 .patternLine("###")
                 .patternLine("# #")
                 .patternLine("###")
@@ -409,11 +409,11 @@ public class GaiaRecipes extends GaiaRecipeProvider {
                 .addIngredient(ModItems.fine_thread.get())
                 .addCriterion("has_thread", hasItem(ModItems.fine_thread.get()))
                 .build(consumer, loc("twined_thread"));
-        ShapedRecipeBuilder.shapedRecipe(ModBlocks.malachite_chisel_bricks)
+        ShapedRecipeBuilder.shapedRecipe(ModBlocks.malachite_chisel_bricks.get())
                 .patternLine("#")
                 .patternLine("#")
-                .key('#', ModBlocks.malachite_brick_slab)
-                .addCriterion("has_malachite_slab", hasItem(ModBlocks.malachite_brick_slab))
+                .key('#', ModBlocks.malachite_brick_slab.get())
+                .addCriterion("has_malachite_slab", hasItem(ModBlocks.malachite_brick_slab.get()))
                 .build(consumer, loc("malachite_chisel_bricks"));
         ShapelessRecipeBuilder.shapelessRecipe(Items.BONE_MEAL, 3)
                 .addIngredient(ModItems.shiny_bone.get())
@@ -422,35 +422,35 @@ public class GaiaRecipes extends GaiaRecipeProvider {
                 .build(consumer, loc("bone_meal"));
 
 
-        smeltingRecipe(ModItems.blue_opal.get(), ModBlocks.opal_ore_blue, 0.3F).build(consumer, locSmelt("blue_opal_smelt"));
-        smeltingRecipe(ModBlocks.burning_sapling, ModBlocks.burnt_sapling, 0.1F).build(consumer, locSmelt("burning_sapling"));
-        CookingRecipeBuilder.smeltingRecipe(Ingredient.fromItems(ModBlocks.pink_agate_sapling, ModBlocks.blue_agate_sapling, ModBlocks.green_agate_sapling, ModBlocks.purple_agate_sapling), ModBlocks.burnt_sapling, 0.1F, 200)
-                .addCriterion("has_sapling", hasItem(ModBlocks.pink_agate_sapling))
+        smeltingRecipe(ModItems.blue_opal.get(), ModBlocks.opal_ore_blue.get(), 0.3F).build(consumer, locSmelt("blue_opal_smelt"));
+        smeltingRecipe(ModBlocks.burning_sapling.get(), ModBlocks.burnt_sapling.get(), 0.1F).build(consumer, locSmelt("burning_sapling"));
+        CookingRecipeBuilder.smeltingRecipe(Ingredient.fromItems(ModBlocks.pink_agate_sapling.get(), ModBlocks.blue_agate_sapling.get(), ModBlocks.green_agate_sapling.get(), ModBlocks.purple_agate_sapling.get()), ModBlocks.burnt_sapling.get(), 0.1F, 200)
+                .addCriterion("has_sapling", hasItem(ModBlocks.pink_agate_sapling.get()))
                 .build(consumer, locSmelt("burnt_sapling"));
-        smeltingRecipe(ModItems.cinnabar.get(), ModBlocks.cinnabar_ore, 0.3F).build(consumer, locSmelt("cinnabar_smelt"));
+        smeltingRecipe(ModItems.cinnabar.get(), ModBlocks.cinnabar_ore.get(), 0.3F).build(consumer, locSmelt("cinnabar_smelt"));
         smeltingRecipe(ModItems.cloudy_shard.get(), ModItems.fine_dust.get(), 0.1F).build(consumer, locSmelt("cloudy_shard"));
         smeltingRecipe(ModItems.cooked_luggeroth_chop.get(), ModItems.luggeroth_chop.get(), 0.2F).build(consumer, locSmelt("cooked_luggeroth_chop"));
         smeltingRecipe(ModItems.crystallized_lapis_lazuli.get(), Items.LAPIS_LAZULI, 0.25F).build(consumer, locSmelt("crystal_lapis"));
         smeltingRecipe(ModItems.crystallized_redstone.get(), Items.REDSTONE, 0.25F).build(consumer, locSmelt("crystal_redstone"));
-        smeltingRecipe(ModBlocks.foggy_glass, ModBlocks.salt, 0.1F).build(consumer, locSmelt("foggy_glass"));
-        smeltingRecipe(ModBlocks.gaia_stone, ModBlocks.gaia_cobblestone, 0.1F).build(consumer, locSmelt("gaia_stone"));
+        smeltingRecipe(ModBlocks.foggy_glass.get(), ModBlocks.salt.get(), 0.1F).build(consumer, locSmelt("foggy_glass"));
+        smeltingRecipe(ModBlocks.gaia_stone.get(), ModBlocks.gaia_cobblestone.get(), 0.1F).build(consumer, locSmelt("gaia_stone"));
         smeltingRecipe(ModItems.goldstone_residue.get(), ModItems.goldstone_dust.get(), 0.1F).build(consumer, locSmelt("golstone_residue"));
-        smeltingRecipe(ModItems.green_opal.get(), ModBlocks.opal_block_green, 0.3F).build(consumer, locSmelt("green_opal_smelt"));
-        smeltingRecipe(ModItems.hematite.get(), ModBlocks.hematite_ore, 0.3F).build(consumer, locSmelt("hematite_smelt"));
-        smeltingRecipe(ModItems.labradorite.get(), ModBlocks.labradorite_ore, 0.3F).build(consumer, locSmelt("labradorite_smelt"));
+        smeltingRecipe(ModItems.green_opal.get(), ModBlocks.opal_ore_green.get(), 0.3F).build(consumer, locSmelt("green_opal_smelt"));
+        smeltingRecipe(ModItems.hematite.get(), ModBlocks.hematite_ore.get(), 0.3F).build(consumer, locSmelt("hematite_smelt"));
+        smeltingRecipe(ModItems.labradorite.get(), ModBlocks.labradorite_ore.get(), 0.3F).build(consumer, locSmelt("labradorite_smelt"));
         smeltingRecipe(ModItems.large_calamari.get(), ModItems.large_tentacle.get(), 0.2F).build(consumer, locSmelt("large_calamari"));
         smeltingRecipe(ModItems.lurmorus_steak.get(), ModItems.lurmorus_meat.get(), 0.2F).build(consumer, locSmelt("lurmorus_steak"));
-        smeltingRecipe(ModItems.moonstone.get(), ModBlocks.moonstone_ore, 0.3F).build(consumer, locSmelt("moonstone_smelt"));
-        smeltingRecipe(ModItems.pink_essence.get(), ModBlocks.gaia_stone, 0.1F).build(consumer, locSmelt("pink_essence"));
-        smeltingRecipe(ModItems.pyrite.get(), ModBlocks.pyrite_ore, 0.3F).build(consumer, locSmelt("pyrite_smelt"));
-        smeltingRecipe(ModItems.red_opal.get(), ModBlocks.opal_block_red, 0.3F).build(consumer, locSmelt("red_opal_smelt"));
-        smeltingRecipe(ModItems.scaynyx_ingot.get(), ModBlocks.precious_rock, 0.8F, 4).build(consumer, locSmelt("scaynyx_large"));
-        smeltingRecipe(ModItems.scaynyx_ingot.get(), ModBlocks.coarse_rock, 0.4F, 2).build(consumer, locSmelt("scaynyx_medium"));
-        smeltingRecipe(ModItems.scaynyx_ingot.get(), ModBlocks.speckled_rock, 0.2F).build(consumer, locSmelt("scaynyx_small"));
+        smeltingRecipe(ModItems.moonstone.get(), ModBlocks.moonstone_ore.get(), 0.3F).build(consumer, locSmelt("moonstone_smelt"));
+        smeltingRecipe(ModItems.pink_essence.get(), ModBlocks.gaia_stone.get(), 0.1F).build(consumer, locSmelt("pink_essence"));
+        smeltingRecipe(ModItems.pyrite.get(), ModBlocks.pyrite_ore.get(), 0.3F).build(consumer, locSmelt("pyrite_smelt"));
+        smeltingRecipe(ModItems.red_opal.get(), ModBlocks.opal_ore_red.get(), 0.3F).build(consumer, locSmelt("red_opal_smelt"));
+        smeltingRecipe(ModItems.scaynyx_ingot.get(), ModBlocks.precious_rock.get(), 0.8F, 4).build(consumer, locSmelt("scaynyx_large"));
+        smeltingRecipe(ModItems.scaynyx_ingot.get(), ModBlocks.coarse_rock.get(), 0.4F, 2).build(consumer, locSmelt("scaynyx_medium"));
+        smeltingRecipe(ModItems.scaynyx_ingot.get(), ModBlocks.speckled_rock.get(), 0.2F).build(consumer, locSmelt("scaynyx_small"));
         smeltingRecipe(ModItems.small_calamari.get(), ModItems.small_tentacle.get(), 0.2F).build(consumer, locSmelt("small_calamari"));
-        smeltingRecipe(ModItems.sugilite.get(), ModBlocks.sugilite_ore, 0.3F).build(consumer, locSmelt("sugilite_smelt"));
-        smeltingRecipe(ModBlocks.thick_glitter_block, ModBlocks.gummy_glitter_block, 0.1F).build(consumer, locSmelt("thick_glitter_block"));
-        smeltingRecipe(ModItems.white_opal.get(), ModBlocks.opal_ore_white, 1.0F).build(consumer, locSmelt("white_opal_smelt"));
+        smeltingRecipe(ModItems.sugilite.get(), ModBlocks.sugilite_ore.get(), 0.3F).build(consumer, locSmelt("sugilite_smelt"));
+        smeltingRecipe(ModBlocks.thick_glitter_block.get(), ModBlocks.gummy_glitter_block.get(), 0.1F).build(consumer, locSmelt("thick_glitter_block"));
+        smeltingRecipe(ModItems.white_opal.get(), ModBlocks.opal_ore_white.get(), 1.0F).build(consumer, locSmelt("white_opal_smelt"));
     }
 
     private ResourceLocation loc(String name) {

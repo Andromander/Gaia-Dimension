@@ -39,7 +39,7 @@ public class VolcanicSurfaceBuilder<T extends SurfaceBuilderConfig> extends Surf
                 j = -1;
             } else if (blockstate2.getBlock() == defaultBlock.getBlock()) {
                 if (posY > sealevel + 10) {
-                    chunk.setBlockState(blockpos$mutableblockpos, ModBlocks.volcanic_rock.getDefaultState(), false);
+                    chunk.setBlockState(blockpos$mutableblockpos, ModBlocks.volcanic_rock.get().getDefaultState(), false);
                 }
                 if (j == -1) {
                     if (k <= 0) {
@@ -68,7 +68,7 @@ public class VolcanicSurfaceBuilder<T extends SurfaceBuilderConfig> extends Surf
                         middleBlock = defaultBlock;
                         chunk.setBlockState(blockpos$mutableblockpos, bottom, false);
                     } else if (posY > sealevel + 10) {
-                        chunk.setBlockState(blockpos$mutableblockpos, ModBlocks.volcanic_rock.getDefaultState(), false);
+                        chunk.setBlockState(blockpos$mutableblockpos, ModBlocks.volcanic_rock.get().getDefaultState(), false);
                     } else {
                         chunk.setBlockState(blockpos$mutableblockpos, middleBlock, false);
                     }
@@ -76,9 +76,9 @@ public class VolcanicSurfaceBuilder<T extends SurfaceBuilderConfig> extends Surf
                     --j;
                     chunk.setBlockState(blockpos$mutableblockpos, middleBlock, false);
 
-                    if (j == 0 && middleBlock.getBlock() == ModBlocks.salt && k > 1) {
+                    if (j == 0 && middleBlock.getBlock() == ModBlocks.salt.get() && k > 1) {
                         j = rand.nextInt(4) + Math.max(0, posY - 63);
-                        middleBlock = ModBlocks.saltstone.getDefaultState();
+                        middleBlock = ModBlocks.saltstone.get().getDefaultState();
                     }
                 }
             }

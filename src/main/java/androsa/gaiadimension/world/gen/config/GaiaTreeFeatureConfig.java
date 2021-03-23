@@ -19,7 +19,7 @@ public class GaiaTreeFeatureConfig implements IFeatureConfig {
                     BlockStateProvider.CODEC.fieldOf("trunk_provider").forGetter((obj) -> obj.trunkProvider),
                     BlockStateProvider.CODEC.fieldOf("leaves_provider").forGetter((obj) -> obj.leavesProvider),
                     Codec.INT.fieldOf("height").forGetter((obj) -> obj.minHeight),
-                    BlockStateProvider.CODEC.fieldOf("sapling").orElse(new SimpleBlockStateProvider(ModBlocks.pink_agate_sapling.getDefaultState())).forGetter((obj) -> obj.sapling)
+                    BlockStateProvider.CODEC.fieldOf("sapling").orElse(new SimpleBlockStateProvider(ModBlocks.pink_agate_sapling.get().getDefaultState())).forGetter((obj) -> obj.sapling)
             ).apply(instance, GaiaTreeFeatureConfig::new));
 
     public final BlockStateProvider trunkProvider;

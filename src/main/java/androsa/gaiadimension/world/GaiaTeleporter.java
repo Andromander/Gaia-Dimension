@@ -4,10 +4,7 @@ import androsa.gaiadimension.GaiaDimensionMod;
 import androsa.gaiadimension.block.GaiaPortalBlock;
 import androsa.gaiadimension.registry.ModBlocks;
 import androsa.gaiadimension.registry.ModDimensions;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.PortalInfo;
-import net.minecraft.block.PortalSize;
+import net.minecraft.block.*;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.state.properties.BlockStateProperties;
@@ -31,6 +28,7 @@ import java.util.function.ToDoubleFunction;
 
 public class GaiaTeleporter implements ITeleporter {
 
+    private static final Block KEYSTONE = ModBlocks.keystone_block.get();
     private final ServerWorld world;
 
     public GaiaTeleporter(ServerWorld world) {
@@ -42,7 +40,7 @@ public class GaiaTeleporter implements ITeleporter {
         int i = 64; //TODO: correct?
         poimanager.ensureLoadedAndValid(this.world, pos, i);
         Optional<PointOfInterest> optional = poimanager.getInSquare(poiType ->
-                poiType == ModDimensions.GAIA_PORTAL, pos, i, PointOfInterestManager.Status.ANY)
+                poiType == ModDimensions.GAIA_PORTAL.get(), pos, i, PointOfInterestManager.Status.ANY)
                 .sorted(Comparator.comparingDouble((ToDoubleFunction<PointOfInterest>) poi ->
                         poi.getPos().distanceSq(pos))
                         .thenComparingInt(poi ->
@@ -124,7 +122,7 @@ public class GaiaTeleporter implements ITeleporter {
                     for (int fHeight = -1; fHeight < 3; ++fHeight) {
                         boolean flag = fHeight < 0;
                         mutable.setAndOffset(blockpos, fWidth * direction.getXOffset() + fOffset * drotated.getXOffset(), fHeight, fWidth * direction.getZOffset() + fOffset * direction.getZOffset());
-                        world.setBlockState(mutable, flag ? ModBlocks.keystone_block.getDefaultState() : Blocks.AIR.getDefaultState());
+                        world.setBlockState(mutable, flag ? KEYSTONE.getDefaultState() : Blocks.AIR.getDefaultState());
                     }
                 }
             }
@@ -134,13 +132,13 @@ public class GaiaTeleporter implements ITeleporter {
             for (int fHeight = -1; fHeight < 4; ++fHeight) {
                 if (fWidth == -1 || fWidth == 2 || fHeight == -1 || fHeight == 3) {
                     mutable.setAndOffset(blockpos, fWidth * direction.getXOffset(), fHeight, fWidth * direction.getZOffset());
-                    world.setBlockState(mutable, ModBlocks.keystone_block.getDefaultState(), 3);
+                    world.setBlockState(mutable, KEYSTONE.getDefaultState(), 3);
                 }
             }
         }
 
         //Place the portal blocks
-        BlockState portal = ModBlocks.gaia_portal.getDefaultState().with(GaiaPortalBlock.AXIS, axis);
+        BlockState portal = ModBlocks.gaia_portal.get().getDefaultState().with(GaiaPortalBlock.AXIS, axis);
         for (int pWidth = 0; pWidth < 2; ++pWidth) {
             for (int pHeight = 0; pHeight < 3; ++pHeight) {
                 mutable.setAndOffset(blockpos, pWidth * direction.getXOffset(), pHeight, pWidth * direction.getZOffset());

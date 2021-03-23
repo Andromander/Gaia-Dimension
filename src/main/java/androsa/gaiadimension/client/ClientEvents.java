@@ -24,6 +24,7 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.ModelBakeEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 
@@ -37,7 +38,7 @@ import java.util.stream.Collectors;
 @OnlyIn(Dist.CLIENT)
 public class ClientEvents {
 
-    private static final ImmutableList<? extends Block> emissiveBlocks = ImmutableList.of(
+    private static final ImmutableList<RegistryObject<? extends Block>> emissiveBlocks = ImmutableList.of(
             ModBlocks.malachite_pulsing_bricks,
             ModBlocks.malachite_pulsing_chisel,
             ModBlocks.malachite_pulsing_tiles,
@@ -53,18 +54,18 @@ public class ClientEvents {
         blocks.register((state, worldIn, pos, tintIndex) ->
                         worldIn != null && pos != null ?
                                 /*worldIn.getColor(pos, (biome, x, z) -> biome instanceof BaseGaiaBiome ?*/ BiomeColors.getGrassColor(worldIn, pos) : 0xF2A3B4,
-                ModBlocks.glitter_grass,
-                ModBlocks.crystal_growth);
+                ModBlocks.glitter_grass.get(),
+                ModBlocks.crystal_growth.get());
 
         blocks.register((state, worldIn, pos, tintIndex) ->
                         worldIn != null && pos != null ?
                                 /*worldIn.getColor(pos, (biome, x, z) -> biome instanceof BaseGaiaBiome ?*/ BiomeColors.getGrassColor(worldIn, pos) : 0x606060,
-                ModBlocks.murky_grass);
+                ModBlocks.murky_grass.get());
 
         blocks.register((state, worldIn, pos, tintIndex) ->
                         worldIn != null && pos != null ?
                                 /*worldIn.getColor(pos, (biome, x, z) -> biome instanceof BaseGaiaBiome ?*/ BiomeColors.getGrassColor(worldIn, pos) : 0xA0A0A0,
-                ModBlocks.soft_grass);
+                ModBlocks.soft_grass.get());
 
         blocks.register((state, worldIn, pos, tintIndex) -> {
             if (worldIn != null && pos != null) {
@@ -73,7 +74,7 @@ public class ClientEvents {
                 return 0xFFFFFF;
             }
 
-        }, ModBlocks.aura_leaves);
+        }, ModBlocks.aura_leaves.get());
 
         blocks.register((state, worldIn, pos, tintIndex) -> {
             int hex;
@@ -117,10 +118,10 @@ public class ClientEvents {
             }
 
             return hex;
-        }, ModBlocks.aura_shoot);
+        }, ModBlocks.aura_shoot.get());
 
         blocks.register((state, worldIn, pos, tintindex) -> worldIn != null && pos != null ? 0x00AA00 : 0xFFFFFF,
-                ModBlocks.malachite_guard_spawner);
+                ModBlocks.malachite_guard_spawner.get());
     }
 
     public static int getBismuthColor(BlockPos pos) {
@@ -152,22 +153,22 @@ public class ClientEvents {
         ItemColors items = Minecraft.getInstance().getItemColors();
 
         items.register((stack, tintIndex) -> blocks.getColor(((BlockItem) stack.getItem()).getBlock().getDefaultState(), null, null, tintIndex),
-                ModBlocks.glitter_grass,
-                ModBlocks.crystal_growth,
-                ModBlocks.murky_grass,
-                ModBlocks.aura_shoot,
-                ModBlocks.soft_grass);
+                ModBlocks.glitter_grass.get(),
+                ModBlocks.crystal_growth.get(),
+                ModBlocks.murky_grass.get(),
+                ModBlocks.aura_shoot.get(),
+                ModBlocks.soft_grass.get());
     }
 
     @SubscribeEvent
     public static void bakeModels(ModelBakeEvent event) {
         Function<Map.Entry<Property<?>, Comparable<?>>, String> MAP_ENTRY_TO_STRING = ObfuscationReflectionHelper.getPrivateValue(StateHolder.class, null, "field_235890_a_");
 
-        for (Block block : emissiveBlocks) {
+        for (RegistryObject<? extends Block> block : emissiveBlocks) {
             for (int i = 0; i <= 1; i++) {
-                for (BlockState state : block.getStateContainer().getValidStates()) {
+                for (BlockState state : block.get().getStateContainer().getValidStates()) {
                     String variant = state.getValues().entrySet().stream().map(MAP_ENTRY_TO_STRING).collect(Collectors.joining(","));
-                    ModelResourceLocation modelLoc = new ModelResourceLocation(Objects.requireNonNull(block.getRegistryName()), i == 0 ? variant : "inventory");
+                    ModelResourceLocation modelLoc = new ModelResourceLocation(Objects.requireNonNull(block.getId()), i == 0 ? variant : "inventory");
                     final IBakedModel model = event.getModelRegistry().get(modelLoc);
                     event.getModelRegistry().put(modelLoc, new EmissiveModel(model));
                 }
@@ -277,8 +278,8 @@ public class ClientEvents {
         renderFluid(ModFluids.sweet_muck_still);
     }
 
-    private static void renderBlock(Block block, RenderType render) {
-        RenderTypeLookup.setRenderLayer(block, render);
+    private static void renderBlock(Supplier<? extends Block> block, RenderType render) {
+        RenderTypeLookup.setRenderLayer(block.get(), render);
     }
 
     private static void renderFluid(Supplier<? extends Fluid> fluid) {

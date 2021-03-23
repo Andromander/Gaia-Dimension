@@ -79,13 +79,13 @@ public class GaiaItemTags extends GaiaItemTagsProvider {
                 Items.SHULKER_BOX, Items.BLACK_SHULKER_BOX, Items.BLUE_SHULKER_BOX, Items.BROWN_SHULKER_BOX, Items.CYAN_SHULKER_BOX, Items.GRAY_SHULKER_BOX, Items.GREEN_SHULKER_BOX,
                 Items.LIGHT_BLUE_SHULKER_BOX, Items.LIGHT_GRAY_SHULKER_BOX, Items.LIME_SHULKER_BOX, Items.MAGENTA_SHULKER_BOX, Items.ORANGE_SHULKER_BOX, Items.PINK_SHULKER_BOX,
                 Items.PURPLE_SHULKER_BOX, Items.RED_SHULKER_BOX, Items.WHITE_SHULKER_BOX, Items.YELLOW_SHULKER_BOX
-        ).add(ModBlocks.crude_storage_crate.asItem(), ModBlocks.mega_storage_crate.asItem());
+        ).add(ModBlocks.crude_storage_crate.get().asItem(), ModBlocks.mega_storage_crate.get().asItem());
         getOrCreateBuilder(GaiaTags.Items.CRUDE_STORAGE_BLACKLIST).add(
                 //Repeat above. Quit the excuse game, you aren't a bunch of tiny modders anymore.
                 Items.SHULKER_BOX, Items.BLACK_SHULKER_BOX, Items.BLUE_SHULKER_BOX, Items.BROWN_SHULKER_BOX, Items.CYAN_SHULKER_BOX, Items.GRAY_SHULKER_BOX, Items.GREEN_SHULKER_BOX,
                 Items.LIGHT_BLUE_SHULKER_BOX, Items.LIGHT_GRAY_SHULKER_BOX, Items.LIME_SHULKER_BOX, Items.MAGENTA_SHULKER_BOX, Items.ORANGE_SHULKER_BOX, Items.PINK_SHULKER_BOX,
                 Items.PURPLE_SHULKER_BOX, Items.RED_SHULKER_BOX, Items.WHITE_SHULKER_BOX, Items.YELLOW_SHULKER_BOX
-        ).add(ModBlocks.mega_storage_crate.asItem());
+        ).add(ModBlocks.mega_storage_crate.get().asItem());
 
         getOrCreateBuilder(GaiaTags.Items.DUSTS_FINE).add(ModItems.fine_dust.get());
         getOrCreateBuilder(GaiaTags.Items.DUSTS_GOLDSTONE).add(ModItems.goldstone_dust.get());

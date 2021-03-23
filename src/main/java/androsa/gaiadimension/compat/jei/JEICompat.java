@@ -83,7 +83,7 @@ public class JEICompat implements IModPlugin {
 
     @Override
     public void registerRecipeCatalysts(IRecipeCatalystRegistration registry) {
-        registry.addRecipeCatalyst(new ItemStack(ModBlocks.agate_crafting_table), VanillaRecipeCategoryUid.CRAFTING);
-        registry.addRecipeCatalyst(new ItemStack(ModBlocks.gaia_stone_furnace), VanillaRecipeCategoryUid.FURNACE);
+        registry.addRecipeCatalyst(new ItemStack(ModBlocks.agate_crafting_table.get()), VanillaRecipeCategoryUid.CRAFTING);
+        registry.addRecipeCatalyst(new ItemStack(ModBlocks.gaia_stone_furnace.get()), VanillaRecipeCategoryUid.FURNACE);
     }
 }

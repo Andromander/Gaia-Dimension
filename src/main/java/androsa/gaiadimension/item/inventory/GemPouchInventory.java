@@ -1,5 +1,6 @@
 package androsa.gaiadimension.item.inventory;
 
+import androsa.gaiadimension.registry.GaiaTags;
 import androsa.gaiadimension.registry.ModBlocks;
 import androsa.gaiadimension.registry.ModItems;
 import net.minecraft.block.Block;
@@ -104,7 +105,7 @@ public class GemPouchInventory implements IInventory, INamedContainerProvider {
     @Override
     public boolean isItemValidForSlot(int index, ItemStack stack) {
         Item item = stack.getItem();
-        return item != ModItems.gemstone_pouch.get() || Block.getBlockFromItem(item) != ModBlocks.crude_storage_crate || Block.getBlockFromItem(item) != ModBlocks.mega_storage_crate;
+        return GaiaTags.Items.GEM_POUCH_ITEMS.contains(item);
     }
 
     @Override

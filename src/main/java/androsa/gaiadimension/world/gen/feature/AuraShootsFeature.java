@@ -16,7 +16,7 @@ import java.util.Random;
 @ParametersAreNonnullByDefault
 public class AuraShootsFeature<T extends NoFeatureConfig> extends Feature<T> {
 
-    private static final BlockState AURA_SHOOT = ModBlocks.aura_shoot.getDefaultState();
+    private static final BlockState AURA_SHOOT = ModBlocks.aura_shoot.get().getDefaultState();
 
     public AuraShootsFeature(Codec<T> configIn) {
         super(configIn);
