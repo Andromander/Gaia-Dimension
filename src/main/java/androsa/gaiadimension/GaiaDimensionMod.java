@@ -2,23 +2,15 @@ package androsa.gaiadimension;
 
 import androsa.gaiadimension.client.ClientEvents;
 import androsa.gaiadimension.client.GaiaDimensionRenderInfo;
-import androsa.gaiadimension.client.GaiaSkyRender;
 import androsa.gaiadimension.data.*;
-import androsa.gaiadimension.data.provider.GaiaAdvancementProvider;
-import androsa.gaiadimension.data.provider.GaiaItemTagsProvider;
 import androsa.gaiadimension.registry.*;
-import net.minecraft.block.Block;
 import net.minecraft.client.world.DimensionRenderInfo;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.entity.CreatureAttribute;
-import net.minecraft.tags.BlockTags;
-import net.minecraft.tags.ITag;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.village.PointOfInterestType;
 import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.client.ISkyRenderHandler;
 import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.DistExecutor;
@@ -32,9 +24,6 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.commons.lang3.tuple.Pair;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 
 @Mod(GaiaDimensionMod.MODID)
 public class GaiaDimensionMod {
@@ -78,11 +67,11 @@ public class GaiaDimensionMod {
         ModWorldgen.WORLD_CARVERS.register(modEventBus);
 
         final Pair<ModGaiaConfig.ClientConfig, ForgeConfigSpec> specPairC = new ForgeConfigSpec.Builder().configure(ModGaiaConfig.ClientConfig::new);
-        final Pair<ModGaiaConfig.ServerConfig, ForgeConfigSpec> specPairS = new ForgeConfigSpec.Builder().configure(ModGaiaConfig.ServerConfig::new);
+        final Pair<ModGaiaConfig.CommonConfig, ForgeConfigSpec> specPairB = new ForgeConfigSpec.Builder().configure(ModGaiaConfig.CommonConfig::new);
         ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, specPairC.getRight());
-        ModLoadingContext.get().registerConfig(ModConfig.Type.SERVER, specPairS.getRight());
+        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, specPairB.getRight());
         clientConfig = specPairC.getLeft();
-        serverConfig = specPairS.getLeft();
+        commonConfig = specPairB.getLeft();
     }
 
     public void setup(FMLCommonSetupEvent event) {

@@ -27,8 +27,8 @@ public class ModGaiaConfig {
 
     public static BooleanValue portalCheck;
 
-    public static class ServerConfig {
-        public ServerConfig(Builder builder) {
+    public static class CommonConfig {
+        public CommonConfig(Builder builder) {
             portalCheck = builder
                     .translation(config + "portal_creation")
                     .comment("Change how the portal can be created. If true, the portal will only be created in Dry, Mountainous, or Hot biomes, or anywhere in Gaia.")
