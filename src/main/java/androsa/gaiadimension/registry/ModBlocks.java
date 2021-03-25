@@ -39,15 +39,15 @@ public class ModBlocks {
     public static final RegistryObject<Block> purifier = register("purifier", () -> new PurifierBlock(GaiaBlockProperties.stoneToolProps(MaterialColor.SAND, 20.0F, 300.0F, ToolType.PICKAXE, 2).setLightLevel((state) -> state.get(PurifierBlock.LIT) ? 14 : 0)));
 
     //Fluids
-    public static final RegistryObject<FlowingFluidBlock> mineral_water = register("mineral_water", () ->
+    public static final RegistryObject<FlowingFluidBlock> mineral_water = registerNoItem("mineral_water", () ->
             new GaiaFluidBlock(ModFluids.mineral_water_still, Block.Properties.create(Material.WATER, MaterialColor.LIGHT_BLUE_TERRACOTTA)));
-    public static final RegistryObject<FlowingFluidBlock> superhot_magma = register("superhot_magma", () ->
+    public static final RegistryObject<FlowingFluidBlock> superhot_magma = registerNoItem("superhot_magma", () ->
             new GaiaFluidBlock(ModFluids.superhot_magma_still, Block.Properties.create(Material.LAVA, MaterialColor.BLUE).tickRandomly().setLightLevel((state) -> 15)));
-    public static final RegistryObject<FlowingFluidBlock> sweet_muck = register("sweet_muck", () ->
+    public static final RegistryObject<FlowingFluidBlock> sweet_muck = registerNoItem("sweet_muck", () ->
             new GaiaFluidBlock(ModFluids.sweet_muck_still, Block.Properties.create(Material.WATER, MaterialColor.PURPLE)));
-    public static final RegistryObject<FlowingFluidBlock> liquid_bismuth = register("liquid_bismuth", () ->
+    public static final RegistryObject<FlowingFluidBlock> liquid_bismuth = registerNoItem("liquid_bismuth", () ->
             new GaiaFluidBlock(ModFluids.liquid_bismuth_still, Block.Properties.create(Material.LAVA).tickRandomly().setLightLevel((state) -> 3)));
-    public static final RegistryObject<FlowingFluidBlock> liquid_aura = register("liquid_aura", () ->
+    public static final RegistryObject<FlowingFluidBlock> liquid_aura = registerNoItem("liquid_aura", () ->
             new GaiaFluidBlock(ModFluids.liquid_aura_still, Block.Properties.create(Material.WATER)));
 
     //Natural Blocks

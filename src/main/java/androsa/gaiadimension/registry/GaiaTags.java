@@ -2,8 +2,10 @@ package androsa.gaiadimension.registry;
 
 import androsa.gaiadimension.GaiaDimensionMod;
 import net.minecraft.block.Block;
+import net.minecraft.fluid.Fluid;
 import net.minecraft.item.Item;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.FluidTags;
 import net.minecraft.tags.ITag;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.util.ResourceLocation;
@@ -27,6 +29,10 @@ public class GaiaTags {
 
     private static ITag.INamedTag<Block> tagBlockForge(String name) {
         return BlockTags.makeWrapperTag(new ResourceLocation(ForgeVersion.MOD_ID, name).toString());
+    }
+
+    private static ITag.INamedTag<Fluid> tagFluidForge(String name) {
+        return FluidTags.makeWrapperTag(new ResourceLocation(ForgeVersion.MOD_ID, name).toString());
     }
 
     public static class Items {
@@ -163,5 +169,13 @@ public class GaiaTags {
         public static final ITag.INamedTag<Block> STORAGE_BLOCKS_BENITOITE = tagBlockForge("storage_blocks/benitoite");
         public static final ITag.INamedTag<Block> STORAGE_BLOCKS_DIOPSIDE = tagBlockForge("storage_blocks/diopside");
         public static final ITag.INamedTag<Block> STORAGE_BLOCKS_CHALCEDONY = tagBlockForge("storage_blocks/chalcedony");
+    }
+
+    public static class Fluids {
+        public static final ITag.INamedTag<Fluid> MINERAL_WATER = tagFluidForge("mineral_water");
+        public static final ITag.INamedTag<Fluid> SUPERHOT_MAGMA = tagFluidForge("superhot_magma");
+        public static final ITag.INamedTag<Fluid> SWEET_MUCK = tagFluidForge("sweet_muck");
+        public static final ITag.INamedTag<Fluid> LIQUID_BISMUTH = tagFluidForge("liquid_bismuth");
+        public static final ITag.INamedTag<Fluid> LIQUID_AURA = tagFluidForge("liquid_aura");
     }
 }

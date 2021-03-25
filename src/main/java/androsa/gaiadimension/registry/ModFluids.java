@@ -23,9 +23,9 @@ public class ModFluids {
     public static final RegistryObject<FlowingFluid> superhot_magma_flow = FLUIDS.register("superhot_magma_flow",
 			() -> new SuperhotMagmaFluid.Flowing(GaiaFluidAttributes.superhot_magma_properties));
     public static final RegistryObject<FlowingFluid> sweet_muck_still = FLUIDS.register("sweet_muck_still",
-			() -> new SweetMuckFluid.Source(GaiaFluidAttributes.sweet_muck_properties));
+			() -> new ForgeFlowingFluid.Source(GaiaFluidAttributes.sweet_muck_properties));
     public static final RegistryObject<FlowingFluid> sweet_muck_flow = FLUIDS.register("sweet_muck_flow",
-			() -> new SweetMuckFluid.Flowing(GaiaFluidAttributes.sweet_muck_properties));
+			() -> new ForgeFlowingFluid.Flowing(GaiaFluidAttributes.sweet_muck_properties));
     public static final RegistryObject<FlowingFluid> liquid_bismuth_still = FLUIDS.register("liquid_bismuth_still",
 			() -> new LiquidBismuthFluid.Source(GaiaFluidAttributes.liquid_bismuth_properties));
     public static final RegistryObject<FlowingFluid> liquid_bismuth_flow = FLUIDS.register("liquid_bismuth_flow",

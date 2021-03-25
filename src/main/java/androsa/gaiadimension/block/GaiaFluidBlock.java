@@ -1,8 +1,9 @@
 package androsa.gaiadimension.block;
 
 import androsa.gaiadimension.fluids.*;
+import androsa.gaiadimension.registry.GaiaTags;
 import androsa.gaiadimension.registry.ModBlocks;
-import androsa.gaiadimension.registry.ModFluids;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.FlowingFluidBlock;
 import net.minecraft.entity.Entity;
@@ -27,67 +28,47 @@ public class GaiaFluidBlock extends FlowingFluidBlock {
 
     @Override
     public boolean reactWithNeighbors(World world, BlockPos pos, BlockState state) {
-        if (this.getFluid() == ModFluids.liquid_aura_still.get() || this.getFluid() == ModFluids.liquid_aura_flow.get()) {
+        for (Direction side : Direction.values()) {
+            if (side != Direction.DOWN) {
+                FluidState offset = world.getFluidState(pos.offset(side));
 
-            for (Direction side : Direction.values()) {
-                if (side != Direction.DOWN) {
-                    FluidState offset = world.getFluidState(pos.offset(side));
-
-                    if (offset.isTagged(FluidTags.LAVA) && (!(offset.getFluid() instanceof SuperhotMagmaFluid) && !(offset.getFluid() instanceof LiquidBismuthFluid))) {
-                        world.setBlockState(pos, ForgeEventFactory.fireFluidPlaceBlockEvent(world, pos, pos, ModBlocks.sparkling_rock.get().getDefaultState()));
-                        this.triggerMixEffects(world, pos);
+                if (this.getFluid().isIn(GaiaTags.Fluids.LIQUID_AURA)) {
+                    if (offset.isTagged(FluidTags.LAVA) && (!offset.isTagged(GaiaTags.Fluids.SUPERHOT_MAGMA) && !offset.isTagged(GaiaTags.Fluids.LIQUID_BISMUTH))) {
+                        this.setMixedBlock(world, pos, ModBlocks.sparkling_rock);
                         return false;
                     }
-                }
-            }
-
-        } else if (this.getFluid() instanceof SuperhotMagmaFluid) {
-
-            for (Direction side : Direction.values()) {
-                if (side != Direction.DOWN) {
-                    FluidState offset = world.getFluidState(pos.offset(side));
-
-                    if (offset.getFluid() instanceof SweetMuckFluid) {
-                        world.setBlockState(pos, ForgeEventFactory.fireFluidPlaceBlockEvent(world, pos, pos, ModBlocks.primal_mass.get().getDefaultState()));
-                        this.triggerMixEffects(world, pos);
+                } else if (this.getFluid().isIn(GaiaTags.Fluids.SUPERHOT_MAGMA)) {
+                    if (offset.isTagged(GaiaTags.Fluids.SWEET_MUCK)) {
+                        this.setMixedBlock(world, pos, ModBlocks.primal_mass);
                         return false;
-                    } else if (offset.getFluid() == ModFluids.liquid_aura_still.get() || offset.getFluid() == ModFluids.liquid_aura_flow.get()) {
-                        world.setBlockState(pos, ForgeEventFactory.fireFluidPlaceBlockEvent(world, pos, pos, ModBlocks.aura_block.get().getDefaultState()));
-                        this.triggerMixEffects(world, pos);
+                    } else if (offset.isTagged(GaiaTags.Fluids.LIQUID_AURA)) {
+                        this.setMixedBlock(world, pos, ModBlocks.aura_block);
                         return false;
                     } else if (offset.isTagged(FluidTags.WATER)) {
-                        world.setBlockState(pos, ForgeEventFactory.fireFluidPlaceBlockEvent(world, pos, pos, ModBlocks.gaia_cobblestone.get().getDefaultState()));
-                        this.triggerMixEffects(world, pos);
+                        this.setMixedBlock(world, pos, ModBlocks.gaia_cobblestone);
                         return false;
                     }
-                }
-            }
-
-        } else if (this.getFluid() instanceof LiquidBismuthFluid) {
-
-            for (Direction side : Direction.values()) {
-                if (side != Direction.DOWN) {
-                    FluidState offset = world.getFluidState(pos.offset(side));
-
-                    if (offset.getFluid() instanceof SweetMuckFluid || offset.getFluid() instanceof SuperhotMagmaFluid) {
-                        world.setBlockState(pos, ForgeEventFactory.fireFluidPlaceBlockEvent(world, pos, pos, ModBlocks.active_rock.get().getDefaultState()));
-                        this.triggerMixEffects(world, pos);
+                } else if (this.getFluid().isIn(GaiaTags.Fluids.LIQUID_BISMUTH)) {
+                    if (offset.isTagged(GaiaTags.Fluids.SWEET_MUCK) || offset.isTagged(GaiaTags.Fluids.SUPERHOT_MAGMA)) {
+                        this.setMixedBlock(world, pos, ModBlocks.active_rock);
                         return false;
-                    } else if (offset.getFluid() == ModFluids.liquid_aura_still.get() || offset.getFluid() == ModFluids.liquid_aura_flow.get()) {
-                        world.setBlockState(pos, ForgeEventFactory.fireFluidPlaceBlockEvent(world, pos, pos, ModBlocks.tektite_block.get().getDefaultState()));
-                        this.triggerMixEffects(world, pos);
+                    } else if (offset.isTagged(GaiaTags.Fluids.LIQUID_AURA)) {
+                        this.setMixedBlock(world, pos, ModBlocks.tektite_block);
                         return false;
                     } else if (offset.isTagged(FluidTags.WATER)) {
-                        world.setBlockState(pos, ForgeEventFactory.fireFluidPlaceBlockEvent(world, pos, pos, ModBlocks.impure_rock.get().getDefaultState()));
-                        this.triggerMixEffects(world, pos);
+                        this.setMixedBlock(world, pos, ModBlocks.impure_rock);
                         return false;
                     }
                 }
             }
-
         }
 
-        return true;
+        return super.reactWithNeighbors(world, pos, state);
+    }
+
+    private void setMixedBlock(World world, BlockPos pos, Supplier<Block> block) {
+        world.setBlockState(pos, ForgeEventFactory.fireFluidPlaceBlockEvent(world, pos, pos, block.get().getDefaultState()));
+        this.triggerMixEffects(world, pos);
     }
 
     private void triggerMixEffects(IWorld worldIn, BlockPos pos) {
@@ -95,6 +76,7 @@ public class GaiaFluidBlock extends FlowingFluidBlock {
     }
 
     @Override
+    @Deprecated
     public void onEntityCollision(BlockState state, World worldIn, BlockPos pos, Entity entityIn) {
         if (this.getFluid().isIn(FluidTags.LAVA)) {
             if (this.getFluid() instanceof SuperhotMagmaFluid && !entityIn.isImmuneToFire()) {

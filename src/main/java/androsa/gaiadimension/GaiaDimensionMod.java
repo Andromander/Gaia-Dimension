@@ -45,7 +45,7 @@ public class GaiaDimensionMod {
 
     public static final Logger LOGGER = LogManager.getLogger(MODID);
     public static ModGaiaConfig.ClientConfig clientConfig;
-    public static ModGaiaConfig.ServerConfig serverConfig;
+    public static ModGaiaConfig.CommonConfig commonConfig;
 
     public static final CreatureAttribute GAIAN = new CreatureAttribute();
     public static final CreatureAttribute CORRUPT = new CreatureAttribute();
@@ -128,6 +128,7 @@ public class GaiaDimensionMod {
             generator.addProvider(new GaiaAdvancements(generator));
             generator.addProvider(blocktags);
             generator.addProvider(new GaiaItemTags(generator, blocktags, event.getExistingFileHelper()));
+            generator.addProvider(new GaiaFluidTags(generator, event.getExistingFileHelper()));
         }
     }
 }

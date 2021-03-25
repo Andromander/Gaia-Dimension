@@ -1,7 +1,9 @@
 package androsa.gaiadimension.fluids;
 
+import androsa.gaiadimension.registry.ModBlocks;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.block.FlowingFluidBlock;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.particles.ParticleTypes;
@@ -12,6 +14,7 @@ import net.minecraft.world.*;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.util.Constants;
+import net.minecraftforge.event.ForgeEventFactory;
 import net.minecraftforge.fluids.ForgeFlowingFluid;
 
 import java.util.Random;
@@ -33,8 +36,19 @@ public abstract class SuperhotMagmaFluid extends ForgeFlowingFluid {
     }
 
     @Override
-    public int getTickRate(IWorldReader p_205569_1_) {
-        return 30;
+    protected void flowInto(IWorld worldIn, BlockPos pos, BlockState blockStateIn, Direction direction, FluidState fluidStateIn) {
+        if (direction == Direction.DOWN) {
+            FluidState fluidstate = worldIn.getFluidState(pos);
+            if (this.isIn(FluidTags.LAVA) && fluidstate.isTagged(FluidTags.WATER)) {
+                if (blockStateIn.getBlock() instanceof FlowingFluidBlock) {
+                    worldIn.setBlockState(pos, ForgeEventFactory.fireFluidPlaceBlockEvent(worldIn, pos, pos, ModBlocks.primal_mass.get().getDefaultState()), 3);
+                    this.triggerEffects(worldIn, pos);
+                }
+                return;
+            }
+        }
+
+        super.flowInto(worldIn, pos, blockStateIn, direction, fluidStateIn);
     }
 
     @Override
@@ -43,15 +57,15 @@ public abstract class SuperhotMagmaFluid extends ForgeFlowingFluid {
         BlockPos blockpos = pos.up();
         if (worldIn.getBlockState(blockpos).isAir() && !worldIn.getBlockState(blockpos).isOpaqueCube(worldIn, blockpos)) {
             if (random.nextInt(100) == 0) {
-                double d0 = (double)((float)pos.getX() + random.nextFloat());
-                double d1 = (double)(pos.getY() + 1);
-                double d2 = (double)((float)pos.getZ() + random.nextFloat());
+                double d0 = (float)pos.getX() + random.nextFloat();
+                double d1 = pos.getY() + 1;
+                double d2 = (float)pos.getZ() + random.nextFloat();
                 worldIn.addParticle(ParticleTypes.LAVA, d0, d1, d2, 0.0D, 0.0D, 0.0D); //TODO: Make this Superhot Magma particle
                 worldIn.playSound(d0, d1, d2, SoundEvents.BLOCK_LAVA_POP, SoundCategory.BLOCKS, 0.2F + random.nextFloat() * 0.2F, 0.9F + random.nextFloat() * 0.15F, false);
             }
 
             if (random.nextInt(200) == 0) {
-                worldIn.playSound((double)pos.getX(), (double)pos.getY(), (double)pos.getZ(), SoundEvents.BLOCK_LAVA_AMBIENT, SoundCategory.BLOCKS, 0.2F + random.nextFloat() * 0.2F, 0.9F + random.nextFloat() * 0.15F, false);
+                worldIn.playSound(pos.getX(), pos.getY(), pos.getZ(), SoundEvents.BLOCK_LAVA_AMBIENT, SoundCategory.BLOCKS, 0.2F + random.nextFloat() * 0.2F, 0.9F + random.nextFloat() * 0.15F, false);
             }
         }
     }
