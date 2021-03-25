@@ -7,7 +7,7 @@
   ],
   "key": {
     "*": {
-      "tag": "gaiadimension:agate_planks"
+      "tag": "gaiadimension:agate_tiles"
     },
     "%": {
       "item": "gaiadimension:thick_glitter_block"

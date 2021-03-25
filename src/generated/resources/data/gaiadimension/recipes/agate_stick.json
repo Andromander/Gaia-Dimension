@@ -2,7 +2,7 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
-      "tag": "gaiadimension:agate_planks"
+      "tag": "gaiadimension:agate_tiles"
     }
   ],
   "result": {

@@ -107,7 +107,6 @@ public class GaiaTags {
         public static final ITag.INamedTag<Item> BURNT_LOGS = tagItem("burnt_logs");
         public static final ITag.INamedTag<Item> BURNING_LOGS = tagItem("burning_logs");
         public static final ITag.INamedTag<Item> AURA_LOGS = tagItem("aura_logs");
-        public static final ITag.INamedTag<Item> AGATE_PLANKS = tagItem("agate_planks");
         public static final ITag.INamedTag<Item> GAIA_BRICKS = tagItem("gaia_bricks");
         public static final ITag.INamedTag<Item> AMETHYST_BRICKS = tagItem("amethyst_bricks");
         public static final ITag.INamedTag<Item> COPAL_BRICKS = tagItem("copal_bricks");
