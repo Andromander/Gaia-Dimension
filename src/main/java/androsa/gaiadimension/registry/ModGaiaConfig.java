@@ -1,8 +1,10 @@
 package androsa.gaiadimension.registry;
 
 import androsa.gaiadimension.GaiaDimensionMod;
+import com.google.common.collect.ImmutableList;
 import net.minecraft.util.RegistryKey;
 import net.minecraft.world.biome.Biome;
+import net.minecraftforge.common.BiomeDictionary;
 
 import java.util.Collections;
 import java.util.List;
@@ -26,17 +28,63 @@ public class ModGaiaConfig {
     }
 
     public static BooleanValue portalCheck;
+    public static EnumValue<ListType> listType;
+    public static EnumValue<BiomeType> biomeType;
+    public static ConfigValue<List<? extends String>> biomeList;
+    public static ConfigValue<List<? extends String>> categoryList;
+    public static ConfigValue<List<? extends String>> typeList;
+
+    public static List<? extends String> biomes = ImmutableList.of(
+            "minecraft:desert", "minecraft:desert_hills", "minecraft:jungle", "minecraft:jungle_hills", "minecraft:jungle_edge", "minecraft:savanna", "minecraft:savanna_plateau",
+            "minecraft:warm_ocean", "minecraft:deep_warm_ocean", "minecraft:desert_lakes", "minecraft:modified_jungle", "minecraft:modified_jungle_edge", "minecraft:shattered_savanna",
+            "minecraft:shattered_savanna_plateau", "minecraft:eroded_badlands", "minecraft:modified_wooded_badlands_plateau", "minecraft:modified_badlands_plateau",
+            "minecraft:bamboo_jungle", "minecraft:bamboo_jungle_hills", "minecraft:badlands", "minecraft:wooded_badlands_plateau", "minecraft:badlands_plateau", "minecraft:mountains",
+            "minecraft:snowy_mountains", "minecraft:mountain_edge", "minecraft:wooded_mountains", "minecraft:gravelly_mountains", "minecraft:taiga_mountains", "minecraft:tall_birch_hills",
+            "minecraft:dark_forest_hills", "minecraft:snowy_taiga_mountains", "minecraft:modified_gravelly_mountains");
+    public static List<? extends String> categories = ImmutableList.of(Biome.Category.DESERT.getName(), Biome.Category.EXTREME_HILLS.getName(), Biome.Category.MESA.getName(), Biome.Category.SAVANNA.getName(), Biome.Category.JUNGLE.getName());
+    public static List<? extends String> types = ImmutableList.of(BiomeDictionary.Type.HOT.getName(), BiomeDictionary.Type.DRY.getName(), BiomeDictionary.Type.MOUNTAIN.getName());
 
     public static class CommonConfig {
         public CommonConfig(Builder builder) {
             portalCheck = builder
                     .translation(config + "portal_creation")
-                    .comment("Change how the portal can be created. If true, the portal will only be created in Dry, Mountainous, or Hot biomes, or anywhere in Gaia.")
+                    .comment("Change how the portal can be created. If true, the portal will check where it is allowed to spawn based on the type of list and what contents are in the list.")
                     .define("portalCheck", true);
+            listType = builder
+                    .translation(config + "list_type")
+                    .comment("Changes whether the list to check is a blacklist or a whitelist. A blacklist will exclude biomes from the portal, anything not on the list is allowed. A whitelist will allow biomes for the portal, anything on the list is allowed. If portalCheck is false, this value is unused.")
+                    .defineEnum("listType", ListType.WHITELIST);
+            biomeType = builder
+                    .translation(config + "biome_type")
+                    .comment("Determines what list the biome checker should use. If set to BIOME, the list will check entries based on the individual biome. If set to CATEGORY, the list will check entries based on the biome's Category. If set to Type, the list will check entries based on the biome's BiomeDictionary Type. If portalCheck is false, this value is unused.")
+                    .defineEnum("biomeType", BiomeType.TYPE);
+            biomeList = builder
+                    .translation(config + "biome_list")
+                    .comment("A list of biomes to be used by the check list. Blacklists will ignore the biomes while whitelists will allow the biomes. This value is only checked if biomeType is set to BIOME.")
+                    .defineList("biomeList", biomes, p -> true);
+            categoryList = builder
+                    .translation(config + "category_list")
+                    .comment("A list of biome Categories to be used by the check list. A Category is a single value assigned to a biome and is a vanilla system. Blacklists will ignore the Categories while whitelists will allow the Categories. This value is only checked if biomeType is set to CATEGORY.")
+                    .defineList("categoryList", categories, p -> true);
+            typeList = builder
+                    .translation(config + "type_list")
+                    .comment("A list of biome Types to be used by the check list. A Type is a value that is assigned to a biome by Forge's BiomeDictionary system; one biome can have multiple Types. Blacklists will ignore biomes with the Tag while whitelists will allow biomes with the Tag. This value is only checked if biomeType is set to TYPE.")
+                    .defineList("typeList", types, p -> true);
         }
     }
 
     public static boolean canDisplayStars(RegistryKey<Biome> key) {
         return starsInSky.get().contains(key.getLocation().toString());
+    }
+
+    public enum ListType {
+        BLACKLIST,
+        WHITELIST
+    }
+
+    public enum BiomeType {
+        BIOME,
+        CATEGORY,
+        TYPE,
     }
 }

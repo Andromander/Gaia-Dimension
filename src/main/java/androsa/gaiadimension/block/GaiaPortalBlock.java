@@ -68,11 +68,27 @@ public class GaiaPortalBlock extends Block {
     // This will check for creation conditions in the Overworld or Gaia
     private boolean canCreatePortalByWorld(World world, BlockPos pos) {
         if (world.getDimensionKey() == World.OVERWORLD) {
+            //Check if the portal needs to be checking
             if (ModGaiaConfig.portalCheck.get()) {
                 Optional<RegistryKey<Biome>> biome = world.func_242406_i(pos);
-                //Check for biome. Since RegistryKeys are optional, we need a case for empty keys.
+                ModGaiaConfig.ListType listtype = ModGaiaConfig.listType.get();
+                ModGaiaConfig.BiomeType biometype = ModGaiaConfig.biomeType.get();
+
+                //Check the type of list we are looking for
                 if (biome.isPresent()) {
-                    return BiomeDictionary.hasType(biome.get(), BiomeDictionary.Type.HOT) || BiomeDictionary.hasType(biome.get(), BiomeDictionary.Type.MOUNTAIN) || BiomeDictionary.hasType(biome.get(), BiomeDictionary.Type.DRY);
+                    switch (biometype) {
+                        case BIOME:
+                            return (listtype == ModGaiaConfig.ListType.WHITELIST) == ModGaiaConfig.biomeList.get().contains(biome.get().getLocation().toString());
+                        case CATEGORY:
+                            return (listtype == ModGaiaConfig.ListType.WHITELIST) == ModGaiaConfig.categoryList.get().contains(world.getBiome(pos).getCategory().toString());
+                        case TYPE:
+                            for (String type : ModGaiaConfig.typeList.get()) {
+                                if (BiomeDictionary.hasType(biome.get(), BiomeDictionary.Type.getType(type))) {
+                                    return listtype == ModGaiaConfig.ListType.WHITELIST;
+                                }
+                            }
+                            return listtype == ModGaiaConfig.ListType.BLACKLIST;
+                    }
                 }
                 //Somehow checking the biome failed
                 GaiaDimensionMod.LOGGER.warn("The biome doesn't appear to exist. Portal could not be created. If this issue persists, disable biome checking in the world's config.");
@@ -106,36 +122,8 @@ public class GaiaPortalBlock extends Block {
         return !flag && facingState.getBlock() != this && !(new GaiaPortalBlock.Size(worldIn, currentPos, directionAxis1)).canCreatePortal() ? Blocks.AIR.getDefaultState() : super.updatePostPlacement(stateIn, facing, facingState, worldIn, currentPos, facingPos);
     }
 
-//    @Override
-//    @Deprecated
-//    public void onEntityCollision(BlockState state, World worldIn, BlockPos pos, Entity entity) {
-//        if (!entity.isPassenger() && !entity.isBeingRidden() && entity.isNonBoss()) {
-//            if (entity.timeUntilPortal > 0) {
-//                entity.timeUntilPortal = entity.getPortalCooldown();
-//            } else {
-//                if (!entity.world.isRemote && !pos.equals(entity.lastPortalPos)) {
-//                    entity.lastPortalPos = new BlockPos(pos);
-//                    BlockPattern.PatternHelper helper = createPatternHelper(entity.world, entity.lastPortalPos);
-//                    double axis = helper.getForwards().getAxis() == Direction.Axis.X ? (double)helper.getFrontTopLeft().getZ() : (double)helper.getFrontTopLeft().getX();
-//                    double x = Math.abs(MathHelper.pct((helper.getForwards().getAxis() == Direction.Axis.X ? entity.getPosZ() : entity.getPosX()) - (double)(helper.getForwards().rotateY().getAxisDirection() == Direction.AxisDirection.NEGATIVE ? 1 : 0), axis, axis - (double)helper.getWidth()));
-//                    double y = MathHelper.pct(entity.getPosY() - 1.0D, (double)helper.getFrontTopLeft().getY(), (double)(helper.getFrontTopLeft().getY() - helper.getHeight()));
-//                    entity.lastPortalVec = new Vector3d(x, y, 0.0D);
-//                    entity.teleportDirection = helper.getForwards();
-//                }
-//
-//                if (entity.world instanceof ServerWorld) {
-//                    if (entity.world.getServer().getAllowNether() && !entity.isPassenger()) {
-//                        entity.timeUntilPortal = entity.getPortalCooldown();
-//                        DimensionType type = worldIn.dimension.getType() == GaiaDimensionMod.gaia_dimension ? DimensionType.OVERWORLD : GaiaDimensionMod.gaia_dimension;
-//                        entity.changeDimension(type, new GaiaTeleporter());
-//                    }
-//                }
-//            }
-//        }
-//    }
-
-
     @Override
+    @Deprecated
     public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
         if (!entity.isPassenger() && !entity.isBeingRidden() && entity.isNonBoss()) {
             if (entity.func_242280_ah()) { //timeUntilPortal > 0
