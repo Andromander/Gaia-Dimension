@@ -1,6 +1,8 @@
 package androsa.gaiadimension.entity;
 
 import androsa.gaiadimension.entity.boss.MalachiteGuardEntity;
+import androsa.gaiadimension.registry.ModBlocks;
+import androsa.gaiadimension.registry.ModParticles;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.LeavesBlock;
 import net.minecraft.entity.*;
@@ -13,8 +15,12 @@ import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
+import net.minecraft.particles.BlockParticleData;
+import net.minecraft.particles.ParticleTypes;
 import net.minecraft.pathfinding.*;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.SoundCategory;
+import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
@@ -101,8 +107,44 @@ public class MalachiteDroneEntity extends MonsterEntity {
     }
 
     @Override
+    public void tick() {
+        super.tick();
+
+        if (getOwnerUniqueId() != null) {
+            //Check if we have been removed too far away from the Guard.
+            Entity entity = ((ServerWorld) world).getEntityByUuid(getOwnerUniqueId());
+
+            //Wrong dimension, sever the link
+            if (this.getEntityWorld().getDimensionKey() != entity.getEntityWorld().getDimensionKey()) {
+                ownerRemoved(entity);
+            }
+
+            //Too far away, and we can't go back
+            if (this.getDistanceSq(entity) > 500.0D && (this.getLeashed() || this.isPassenger())) {
+                ownerRemoved(entity);
+            }
+        }
+    }
+
+    private void ownerRemoved(Entity owner) {
+        if (owner instanceof MalachiteGuardEntity) {
+            ((MalachiteGuardEntity) owner).onDroneKilled();
+        }
+        this.setOwnerUniqueId(null);
+
+        if (world.isRemote()) {
+            double px = this.getPosX() + this.rand.nextFloat() * this.getWidth() * 2.0F - this.getWidth();
+            double py = this.getPosY() + this.rand.nextFloat() * this.getHeight();
+            double pz = this.getPosZ() + this.rand.nextFloat() * this.getWidth() * 2.0F - this.getWidth();
+            this.world.addParticle(ModParticles.SPAWNER_CORE, px, py, pz, 0, 128, 0);
+        }
+
+        world.playSound(null, this.getPosX(), this.getPosY(), this.getPosZ(), SoundEvents.ITEM_TOTEM_USE, SoundCategory.HOSTILE, 1.0F, 1.0F);
+    }
+
+    @Override
     public void onDeath(DamageSource source) {
-        if (ForgeHooks.onLivingDeath(this,  source)) //Since we need this to run first, we'll have this
+        if (ForgeHooks.onLivingDeath(this,  source)) //The event was cancelled, therefore do not decrease the Guard's tracker.
             return;
 
         if (world instanceof ServerWorld) {
@@ -119,7 +161,28 @@ public class MalachiteDroneEntity extends MonsterEntity {
         super.onDeath(source);
     }
 
-    class FollowGuardGoal extends Goal {
+    @Override
+    public boolean canDespawn(double dist) {
+        //Don't despawn if we have an owner. Disregard whether it's a Guard because we don't want to disappear in general.
+        return ((ServerWorld) world).getEntityByUuid(getOwnerUniqueId()) != null;
+    }
+
+    @Override
+    public void remove(boolean keepData) {
+        //If you are a mod that removes an entity with this, be ashamed of yourself. Just kill or despawn it.
+        if (world instanceof ServerWorld) {
+            @Nullable Entity entity = ((ServerWorld) world).getEntityByUuid(getOwnerUniqueId());
+
+            if (entity != null) {
+                if (entity instanceof MalachiteGuardEntity) {
+                    ((MalachiteGuardEntity) entity).onDroneKilled();
+                }
+            }
+        }
+        super.remove(keepData);
+    }
+
+    static class FollowGuardGoal extends Goal {
         private final MalachiteDroneEntity drone;
         private MalachiteGuardEntity guard;
         private final IWorldReader world;

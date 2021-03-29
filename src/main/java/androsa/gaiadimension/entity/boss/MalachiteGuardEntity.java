@@ -140,6 +140,9 @@ public class MalachiteGuardEntity extends MonsterEntity {
         this.dataManager.set(IS_SPAWNED, spawned);
     }
 
+    /**
+     * Do not move if we are in Phase 1.
+     */
     @Override
     public void move(MoverType type, Vector3d motion) {
         if (getPhase() != 0) {
@@ -147,6 +150,10 @@ public class MalachiteGuardEntity extends MonsterEntity {
         }
     }
 
+    /**
+     * Do not apply knockback in Phase 1 as we are unmoving
+     * Do not apply knockback in Phase 3 as we are enraged
+     */
     @Override
     public void applyKnockback(float amount, double x, double z) {
         if (getPhase() == 1) {
@@ -154,16 +161,19 @@ public class MalachiteGuardEntity extends MonsterEntity {
         }
     }
 
+    //TODO: Make hurt sound
     @Override
     protected SoundEvent getHurtSound(DamageSource source) {
         return SoundEvents.ENTITY_BLAZE_HURT;
     }
 
+    //TODO: Made damage sound
     @Override
     protected SoundEvent getDeathSound() {
         return SoundEvents.ENTITY_IRON_GOLEM_DEATH;
     }
 
+    //TODO: Keep if we make new sounds?
     @Override
     protected float getSoundPitch() {
         return (this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F + 0.6F;
