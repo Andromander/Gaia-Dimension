@@ -132,37 +132,19 @@ public abstract class GaiaBlockStateProvider extends BlockStateProvider {
         getVariantBuilder(wall.get()).forAllStates(state ->
                 ConfiguredModel.builder()
                 .modelFile(torchwall)
-                .rotationY(((int) state.get(BlockStateProperties.HORIZONTAL_FACING).getHorizontalAngle() + 90) % 360)
+                .rotationY(((int) state.getValue(BlockStateProperties.HORIZONTAL_FACING).toYRot() + 90) % 360)
                 .build());
-    }
-
-    private void orientableBlock(Block block, ModelFile off, ModelFile on) {
-        getVariantBuilder(block).forAllStates(state -> {
-            ModelFile model = state.get(BlockStateProperties.LIT) ? on : off;
-
-            return ConfiguredModel.builder()
-                    .modelFile(model)
-                    .rotationY(((int) state.get(BlockStateProperties.HORIZONTAL_FACING).getHorizontalAngle() + 180) % 360)
-                    .build();
-        });
     }
 
     private void orientableBlock(RegistryObject<Block> block, ModelFile off, ModelFile on) {
         getVariantBuilder(block.get()).forAllStates(state -> {
-            ModelFile model = state.get(BlockStateProperties.LIT) ? on : off;
+            ModelFile model = state.getValue(BlockStateProperties.LIT) ? on : off;
 
             return ConfiguredModel.builder()
                     .modelFile(model)
-                    .rotationY(((int) state.get(BlockStateProperties.HORIZONTAL_FACING).getHorizontalAngle() + 180) % 360)
+                    .rotationY(((int) state.getValue(BlockStateProperties.HORIZONTAL_FACING).toYRot() + 180) % 360)
                     .build();
         });
-    }
-
-    private void crossBlock(Block block, ModelFile model) {
-        getVariantBuilder(block).forAllStates(state ->
-                ConfiguredModel.builder()
-                .modelFile(model)
-                .build());
     }
 
     private void crossBlock(Supplier<? extends Block> block, ModelFile model) {

@@ -17,17 +17,17 @@ public class SoftGrassBlock extends AbstractGaiaGrassBlock {
     }
 
     @Override
-    public void grow(ServerWorld worldIn, Random rand, BlockPos pos, BlockState state) {
-        BlockPos blockpos = pos.up();
-        BlockState growth = ModBlocks.crystal_growth_aura.get().getDefaultState();
+    public void performBonemeal(ServerWorld worldIn, Random rand, BlockPos pos, BlockState state) {
+        BlockPos blockpos = pos.above();
+        BlockState growth = ModBlocks.crystal_growth_aura.get().defaultBlockState();
 
         label48:
         for(int i = 0; i < 128; ++i) {
             BlockPos blockpos1 = blockpos;
 
             for(int j = 0; j < i / 16; ++j) {
-                blockpos1 = blockpos1.add(rand.nextInt(3) - 1, (rand.nextInt(3) - 1) * rand.nextInt(3) / 2, rand.nextInt(3) - 1);
-                if (!worldIn.getBlockState(blockpos1.down()).isIn(this) || worldIn.getBlockState(blockpos1).hasOpaqueCollisionShape(worldIn, blockpos1)) {
+                blockpos1 = blockpos1.offset(rand.nextInt(3) - 1, (rand.nextInt(3) - 1) * rand.nextInt(3) / 2, rand.nextInt(3) - 1);
+                if (!worldIn.getBlockState(blockpos1.below()).is(this) || worldIn.getBlockState(blockpos1).isCollisionShapeFullBlock(worldIn, blockpos1)) {
                     continue label48;
                 }
             }
@@ -43,13 +43,13 @@ public class SoftGrassBlock extends AbstractGaiaGrassBlock {
 
                     ConfiguredFeature<?, ?> configuredfeature = list.get(0);
                     FlowersFeature flowersfeature = (FlowersFeature)configuredfeature.feature;
-                    blockstate1 = flowersfeature.getFlowerToPlace(rand, blockpos1, configuredfeature.getConfig());
+                    blockstate1 = flowersfeature.getRandomFlower(rand, blockpos1, configuredfeature.config());
                 } else {
                     blockstate1 = growth;
                 }
 
-                if (blockstate1.isValidPosition(worldIn, blockpos1)) {
-                    worldIn.setBlockState(blockpos1, blockstate1, 3);
+                if (blockstate1.canSurvive(worldIn, blockpos1)) {
+                    worldIn.setBlockAndUpdate(blockpos1, blockstate1);
                 }
             }
         }

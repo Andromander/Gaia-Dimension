@@ -90,22 +90,22 @@ public class MalachiteWatchtowerPieces {
         int i = 0;
         pieces.add(new MalachiteWatchtowerPieces.Piece(manager, foyer, pos, rotation, i));
         i += 14;
-        pieces.add(new MalachiteWatchtowerPieces.Piece(manager, first_floors[random.nextInt(first_floors.length)], pos.add(offsetBig.get(rotation)), rotation, i));
+        pieces.add(new MalachiteWatchtowerPieces.Piece(manager, first_floors[random.nextInt(first_floors.length)], pos.offset(offsetBig.get(rotation)), rotation, i));
 
         int r = random.nextInt(2) + 4;
         for (int f = 0; f < r; f++) {
             i += 10;
             if (f == r - 1) {
                 if (f % 2 == 0) {
-                    pieces.add(new MalachiteWatchtowerPieces.Piece(manager, roof_m, pos.add(offsetSmall.get(rotation)), rotation, i));
+                    pieces.add(new MalachiteWatchtowerPieces.Piece(manager, roof_m, pos.offset(offsetSmall.get(rotation)), rotation, i));
                 } else {
-                    pieces.add(new MalachiteWatchtowerPieces.Piece(manager, roof, pos.add(offsetSmall.get(rotation)), rotation, i));
+                    pieces.add(new MalachiteWatchtowerPieces.Piece(manager, roof, pos.offset(offsetSmall.get(rotation)), rotation, i));
                 }
             } else {
                 if (f % 2 == 0) {
-                    pieces.add(new MalachiteWatchtowerPieces.Piece(manager, next_floors[random.nextInt(next_floors.length)], pos.add(offsetBig.get(rotation)), rotation, i));
+                    pieces.add(new MalachiteWatchtowerPieces.Piece(manager, next_floors[random.nextInt(next_floors.length)], pos.offset(offsetBig.get(rotation)), rotation, i));
                 } else {
-                    pieces.add(new MalachiteWatchtowerPieces.Piece(manager, next_floors_m[random.nextInt(next_floors_m.length)], pos.add(offsetBig.get(rotation)), rotation, i));
+                    pieces.add(new MalachiteWatchtowerPieces.Piece(manager, next_floors_m[random.nextInt(next_floors_m.length)], pos.offset(offsetBig.get(rotation)), rotation, i));
                 }
             }
         }
@@ -122,7 +122,7 @@ public class MalachiteWatchtowerPieces {
         public Piece(TemplateManager manager, ResourceLocation pieceloc, BlockPos pos, Rotation rot, int offset) {
             super(ModWorldgen.StructureTypes.MAWA, 0);
             this.pieceName = pieceloc;
-            this.templatePosition = pos.add(0, offset, 0);
+            this.templatePosition = pos.offset(0, offset, 0);
             this.rotation = rot;
             this.loadTemplate(manager);
         }
@@ -135,19 +135,19 @@ public class MalachiteWatchtowerPieces {
         }
 
         private void loadTemplate(TemplateManager manager) {
-            Template template = manager.getTemplateDefaulted(this.pieceName);
+            Template template = manager.getOrCreate(this.pieceName);
             PlacementSettings settings = (new PlacementSettings())
                     .setRotation(this.rotation)
                     .setMirror(Mirror.NONE)
-                    .setCenterOffset(MalachiteWatchtowerPieces.centerList.get(this.pieceName))
+                    .setRotationPivot(MalachiteWatchtowerPieces.centerList.get(this.pieceName))
                     .addProcessor(BlockIgnoreStructureProcessor.STRUCTURE_BLOCK)
                     .addProcessor(new MalachiteDegradeProcessor(0.2F));
             this.setup(template, this.templatePosition, settings);
         }
 
         @Override
-        protected void readAdditional(CompoundNBT nbt) {
-            super.readAdditional(nbt);
+        protected void addAdditionalSaveData(CompoundNBT nbt) {
+            super.addAdditionalSaveData(nbt);
             nbt.putString("Template", this.pieceName.toString());
             nbt.putString("Rot", this.rotation.name());
         }
@@ -156,24 +156,24 @@ public class MalachiteWatchtowerPieces {
         protected void handleDataMarker(String name, BlockPos pos, IServerWorld world, Random random, MutableBoundingBox mbb) {
             if ("ChestChance".equals(name)) {
                 if (random.nextDouble() > 0.5D) {
-                    world.setBlockState(pos, ModBlocks.crude_storage_crate.get().getDefaultState(), 3);
-                    TileEntity tileentity = world.getTileEntity(pos);
+                    world.setBlock(pos, ModBlocks.crude_storage_crate.get().defaultBlockState(), 3);
+                    TileEntity tileentity = world.getBlockEntity(pos);
                     if (tileentity instanceof SmallCrateTileEntity) {
                         ((SmallCrateTileEntity) tileentity).setLootTable(GaiaChestTables.CHESTS_MALACHITE_WATCHTOWER, random.nextLong());
                     }
                 } else {
-                    world.setBlockState(pos, Blocks.AIR.getDefaultState(), 3);
+                    world.setBlock(pos, Blocks.AIR.defaultBlockState(), 3);
                 }
             }
             if ("Chest".equals(name)) {
-                world.setBlockState(pos, ModBlocks.crude_storage_crate.get().getDefaultState(), 3);
-                TileEntity tileentity = world.getTileEntity(pos);
+                world.setBlock(pos, ModBlocks.crude_storage_crate.get().defaultBlockState(), 3);
+                TileEntity tileentity = world.getBlockEntity(pos);
                 if (tileentity instanceof SmallCrateTileEntity) {
                     ((SmallCrateTileEntity) tileentity).setLootTable(GaiaChestTables.CHESTS_MALACHITE_WATCHTOWER, random.nextLong());
                 }
             }
             if ("Boss".equals(name)) {
-                world.setBlockState(pos, ModBlocks.malachite_guard_spawner.get().getDefaultState(), 3);
+                world.setBlock(pos, ModBlocks.malachite_guard_spawner.get().defaultBlockState(), 3);
             }
         }
     }

@@ -19,10 +19,10 @@ public class GeyserTileEntity extends TileEntity implements ITickableTileEntity 
 
     @Override
     public void tick() {
-        if (world.isRemote && ++counter % 2 == 0) {
-            double xPos = (double)pos.getX() + 0.5D;
-            double yPos = (double)pos.getY() + 1.0D;
-            double zPos = (double)pos.getZ() + 0.5D;
+        if (level.isClientSide() && ++counter % 2 == 0) {
+            double xPos = (double)worldPosition.getX() + 0.5D;
+            double yPos = (double)worldPosition.getY() + 1.0D;
+            double zPos = (double)worldPosition.getZ() + 0.5D;
 
             double xVel = 0.0D + random.nextDouble() - 0.5D;
             double zVel = 0.0D + random.nextDouble() - 0.5D;
@@ -30,7 +30,7 @@ public class GeyserTileEntity extends TileEntity implements ITickableTileEntity 
             xVel = MathHelper.clamp(xVel, -0.02D, 0.02D);
             zVel = MathHelper.clamp(zVel, -0.02D, 0.02D);
 
-            world.addParticle(ModParticles.GEYSER_SMOKE, xPos, yPos, zPos, xVel, 0.3D, zVel);
+            level.addParticle(ModParticles.GEYSER_SMOKE, xPos, yPos, zPos, xVel, 0.3D, zVel);
         }
     }
 }

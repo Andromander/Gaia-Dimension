@@ -15,14 +15,14 @@ import java.util.List;
 public class ZirconPrinceSwordItem extends SwordItem {
 
     public ZirconPrinceSwordItem() {
-        super(GaiaToolMaterials.ZIRCON, 3, -2.3F, new Properties().rarity(Rarity.RARE).group(GaiaItemGroups.GAIA_TOOLS));
+        super(GaiaToolMaterials.ZIRCON, 3, -2.3F, new Properties().rarity(Rarity.RARE).tab(GaiaItemGroups.GAIA_TOOLS));
     }
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public void addInformation(ItemStack stack, World world, List<ITextComponent> tooltips, ITooltipFlag flags) {
-        super.addInformation(stack, world, tooltips, flags);
-        tooltips.add(new TranslationTextComponent(getTranslationKey() + ".tooltip"));
+    public void appendHoverText(ItemStack stack, World world, List<ITextComponent> tooltips, ITooltipFlag flags) {
+        super.appendHoverText(stack, world, tooltips, flags);
+        tooltips.add(new TranslationTextComponent(getDescriptionId() + ".tooltip"));
     }
 
     //TODO: Deals lightning damage to those hit

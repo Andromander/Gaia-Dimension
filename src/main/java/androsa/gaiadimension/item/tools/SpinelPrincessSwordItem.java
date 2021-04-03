@@ -18,28 +18,28 @@ import java.util.List;
 public class SpinelPrincessSwordItem extends SwordItem {
 
     public SpinelPrincessSwordItem() {
-        super(GaiaToolMaterials.SPINEL, 3, -2.5F, new Properties().rarity(Rarity.RARE).group(GaiaItemGroups.GAIA_TOOLS));
+        super(GaiaToolMaterials.SPINEL, 3, -2.5F, new Properties().rarity(Rarity.RARE).tab(GaiaItemGroups.GAIA_TOOLS));
     }
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public void addInformation(ItemStack stack, World world, List<ITextComponent> tooltips, ITooltipFlag flags) {
-        super.addInformation(stack, world, tooltips, flags);
-        tooltips.add(new TranslationTextComponent(getTranslationKey() + ".tooltip"));
+    public void appendHoverText(ItemStack stack, World world, List<ITextComponent> tooltips, ITooltipFlag flags) {
+        super.appendHoverText(stack, world, tooltips, flags);
+        tooltips.add(new TranslationTextComponent(getDescriptionId() + ".tooltip"));
     }
 
     @Override
     public boolean onLeftClickEntity(ItemStack stack, PlayerEntity player, Entity entity) {
-        if (player.world.isRemote) {
+        if (player.level.isClientSide()) {
             for (int var1 = 0; var1 < 20; ++var1) {
-                double px = entity.getPosX() + random.nextFloat() * entity.getWidth() * 2.0F - entity.getWidth();
-                double py = entity.getPosY() + random.nextFloat() * entity.getHeight();
-                double pz = entity.getPosZ() + random.nextFloat() * entity.getWidth() * 2.0F - entity.getWidth();
-                entity.world.addParticle(ParticleTypes.FLAME, px, py, pz, 0, 0, 0);
+                double px = entity.getX() + random.nextFloat() * entity.getBbWidth() * 2.0F - entity.getBbWidth();
+                double py = entity.getY() + random.nextFloat() * entity.getBbHeight();
+                double pz = entity.getZ() + random.nextFloat() * entity.getBbWidth() * 2.0F - entity.getBbWidth();
+                entity.level.addParticle(ParticleTypes.FLAME, px, py, pz, 0, 0, 0);
             }
         }
 
-        entity.setFire(10);
+        entity.setSecondsOnFire(10);
 
         return false;
     }

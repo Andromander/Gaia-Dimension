@@ -16,7 +16,7 @@ public class ShalurkerEntity extends MonsterEntity {
 
     public ShalurkerEntity(EntityType<? extends ShalurkerEntity> entity, World worldIn) {
         super(entity, worldIn);
-        this.experienceValue = 10;
+        this.xpReward = 10;
     }
 
     protected void registerGoals() {
@@ -32,23 +32,23 @@ public class ShalurkerEntity extends MonsterEntity {
     }
 
     public static AttributeModifierMap.MutableAttribute registerAttributes() {
-        return MonsterEntity.func_234295_eP_()
-                .createMutableAttribute(Attributes.FOLLOW_RANGE, 35.0D)
-                .createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.2D)
-                .createMutableAttribute(Attributes.ATTACK_DAMAGE, 3.0D);
+        return MonsterEntity.createMonsterAttributes()
+                .add(Attributes.FOLLOW_RANGE, 35.0D)
+                .add(Attributes.MOVEMENT_SPEED, 0.2D)
+                .add(Attributes.ATTACK_DAMAGE, 3.0D);
     }
 
-    public void livingTick() {
-        if (this.world.isDaytime() && !this.world.isRemote) {
+    public void aiStep() {
+        if (this.level.isDay() && !this.level.isClientSide()) {
             float f = this.getBrightness();
-            BlockPos blockpos = this.getRidingEntity() instanceof BoatEntity ? (new BlockPos(this.getPosX(), (double)Math.round(this.getPosY()), this.getPosZ())).up() : new BlockPos(this.getPosX(), (double)Math.round(this.getPosY()), this.getPosZ());
+            BlockPos blockpos = this.getVehicle() instanceof BoatEntity ? (new BlockPos(this.getX(), (double)Math.round(this.getY()), this.getZ())).above() : new BlockPos(this.getX(), (double)Math.round(this.getY()), this.getZ());
 
-            if (f > 0.5F && this.rand.nextFloat() * 30.0F < (f - 0.4F) * 2.0F && this.world.canBlockSeeSky(blockpos)) {
-                this.setFire(8);
+            if (f > 0.5F && this.random.nextFloat() * 30.0F < (f - 0.4F) * 2.0F && this.level.canSeeSky(blockpos)) {
+                this.setSecondsOnFire(8);
             }
         }
 
-        super.livingTick();
+        super.aiStep();
     }
 
     @Override

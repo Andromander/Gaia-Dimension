@@ -16,11 +16,11 @@ public class StaticStoneBlock extends Block {
     }
 
     @Override
-    public void onEntityWalk(World worldIn, BlockPos pos, Entity entityIn) {
+    public void stepOn(World worldIn, BlockPos pos, Entity entityIn) {
         if (entityIn instanceof LivingEntity && !EnchantmentHelper.hasFrostWalker((LivingEntity)entityIn) || !(entityIn instanceof IShockshooterMob)) {
-            entityIn.attackEntityFrom(DamageSource.LIGHTNING_BOLT, 2.0F);
+            entityIn.hurt(DamageSource.LIGHTNING_BOLT, 2.0F);
         }
 
-        super.onEntityWalk(worldIn, pos, entityIn);
+        super.stepOn(worldIn, pos, entityIn);
     }
 }

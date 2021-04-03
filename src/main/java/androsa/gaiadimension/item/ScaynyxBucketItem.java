@@ -12,12 +12,12 @@ import java.util.function.Supplier;
 public class ScaynyxBucketItem extends BucketItem {
 
     public ScaynyxBucketItem(Supplier<? extends Fluid> fluid) {
-        super(fluid, new Properties().maxStackSize(1).group(GaiaItemGroups.GAIA_ITEMS));
+        super(fluid, new Properties().stacksTo(1).tab(GaiaItemGroups.GAIA_ITEMS));
     }
 
     @Override
-    protected ItemStack emptyBucket(ItemStack stack, PlayerEntity entity) {
-        return !entity.abilities.isCreativeMode ? new ItemStack(ModItems.scaynyx_bucket.get()) : stack;
+    protected ItemStack getEmptySuccessItem(ItemStack stack, PlayerEntity entity) {
+        return !entity.abilities.instabuild ? new ItemStack(ModItems.scaynyx_bucket.get()) : stack;
     }
 
     /*
@@ -35,20 +35,20 @@ public class ScaynyxBucketItem extends BucketItem {
             final IFluidHandlerItem fluidHandler = stack.getCapability(CapabilityFluidHandler.FLUID_HANDLER_ITEM_CAPABILITY, null);
 
             if (fluidHandler != null && fluidHandler.fill(fStack, true) == fStack.amount) {
-                final ItemStack filled = fluidHandler.getContainer();
+                final ItemStack filled = fluidHandler.getMenuProvider();
                 subItems.add(filled);
             }
         }
     }
 
     @Override
-    public ActionResult<ItemStack> onItemRightClick(World world, PlayerEntity player, Hand hand) {
-        final ItemStack heldItem = player.getHeldItem(hand);
+    public ActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand) {
+        final ItemStack heldItem = player.getItemInHand(hand);
         final FluidStack fluidStack = getFluid(heldItem);
 
         // If the bucket is full, call the super method to try and empty it
         if (fluidStack != null)
-            return super.onItemRightClick(world, player, hand);
+            return super.use(world, player, hand);
 
         // If the bucket is empty, try and fill it
         final RayTraceResult target = this.rayTrace(world, player, true);

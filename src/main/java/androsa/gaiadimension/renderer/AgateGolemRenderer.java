@@ -19,7 +19,7 @@ public class AgateGolemRenderer<T extends AgateGolemEntity, M extends AgateGolem
     }
 
     @Override
-    public ResourceLocation getEntityTexture(T entity) {
+    public ResourceLocation getTextureLocation(T entity) {
         return textureLoc;
     }
 }

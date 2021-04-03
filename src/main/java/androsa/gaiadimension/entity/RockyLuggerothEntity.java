@@ -18,12 +18,12 @@ public class RockyLuggerothEntity extends CreatureEntity {
 
     public RockyLuggerothEntity(EntityType<? extends RockyLuggerothEntity> entity, World world) {
         super(entity, world);
-        this.experienceValue = 1 + rand.nextInt(3);
+        this.xpReward = 1 + random.nextInt(3);
     }
 
     public static AttributeModifierMap.MutableAttribute registerAttributes() {
-        return MobEntity.func_233666_p_()
-                .createMutableAttribute(Attributes.MAX_HEALTH, 50.0D);
+        return MobEntity.createMobAttributes()
+                .add(Attributes.MAX_HEALTH, 50.0D);
     }
 
     @Override
@@ -41,6 +41,6 @@ public class RockyLuggerothEntity extends CreatureEntity {
     }
 
     public static boolean canSpawnHere(EntityType<RockyLuggerothEntity> entity, IWorld world, SpawnReason spawn, BlockPos pos, Random random) {
-        return world.getBlockState(pos.down()).canEntitySpawn(world, pos.down(), entity) && world.getLightSubtracted(pos, 0) > 8;
+        return world.getBlockState(pos.below()).isValidSpawn(world, pos.below(), entity) && world.getRawBrightness(pos, 0) > 8;
     }
 }

@@ -17,15 +17,15 @@ public class AgateGolemEntity extends MonsterEntity {
 
     public AgateGolemEntity(EntityType<? extends AgateGolemEntity> entity, World world) {
         super(entity, world);
-        this.experienceValue = 15;
+        this.xpReward = 15;
     }
 
     public static AttributeModifierMap.MutableAttribute registerAttributes() {
-        return MonsterEntity.func_234295_eP_()
-                .createMutableAttribute(Attributes.MAX_HEALTH, 150.0D)
-                .createMutableAttribute(Attributes.ATTACK_DAMAGE, 6.0D)
-                .createMutableAttribute(Attributes.KNOCKBACK_RESISTANCE, 1.0D)
-                .createMutableAttribute(Attributes.ARMOR, 3.0D);
+        return MonsterEntity.createMonsterAttributes()
+                .add(Attributes.MAX_HEALTH, 150.0D)
+                .add(Attributes.ATTACK_DAMAGE, 6.0D)
+                .add(Attributes.KNOCKBACK_RESISTANCE, 1.0D)
+                .add(Attributes.ARMOR, 3.0D);
     }
 
     @Override
@@ -40,29 +40,29 @@ public class AgateGolemEntity extends MonsterEntity {
     }
 
     @Override
-    public boolean attackEntityAsMob(Entity entityIn) {
-        this.world.setEntityState(this, (byte)4);
-        boolean flag = entityIn.attackEntityFrom(DamageSource.causeMobDamage(this), (float)(6 + this.rand.nextInt(15)));
+    public boolean doHurtTarget(Entity entityIn) {
+        this.level.broadcastEntityEvent(this, (byte)4);
+        boolean flag = entityIn.hurt(DamageSource.mobAttack(this), (float)(6 + this.random.nextInt(15)));
 
         if (flag) {
-            entityIn.setMotion(entityIn.getMotion().add(0.0D, 0.4D, 0.0D));
-            this.applyEnchantments(this, entityIn);
+            entityIn.setDeltaMovement(entityIn.getDeltaMovement().add(0.0D, 0.4D, 0.0D));
+            this.doEnchantDamageEffects(this, entityIn);
         }
 
         return flag;
     }
 
     @Override
-    public boolean canSpawn(IWorld world, SpawnReason reason) {
+    public boolean checkSpawnRules(IWorld world, SpawnReason reason) {
         return true;
     }
 
     public static boolean canSpawnHere(EntityType<AgateGolemEntity> entity, IServerWorld world, SpawnReason spawn, BlockPos pos, Random random) {
         if (world.getDifficulty() != Difficulty.PEACEFUL) {
             if (spawn == SpawnReason.SPAWNER) {
-                return isValidLightLevel(world, pos, random);
+                return isDarkEnoughToSpawn(world, pos, random);
             } else {
-                return world.getBlockState(pos.down()).canEntitySpawn(world, pos.down(), entity) && world.getLightFor(LightType.SKY, pos) > 8;
+                return world.getBlockState(pos.below()).isValidSpawn(world, pos.below(), entity) && world.getBrightness(LightType.SKY, pos) > 8;
             }
         }
         return false;

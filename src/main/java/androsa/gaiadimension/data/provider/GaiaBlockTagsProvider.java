@@ -19,7 +19,7 @@ public class GaiaBlockTagsProvider extends BlockTagsProvider {
     }
 
     protected void addTag(ITag.INamedTag<Block> tag, ImmutableList<Supplier<? extends Block>> list) {
-        TagsProvider.Builder<Block> builder = this.getOrCreateBuilder(tag);
+        TagsProvider.Builder<Block> builder = this.tag(tag);
         for (Supplier<? extends Block> block : list) {
             builder.add(block.get());
         }

@@ -8,6 +8,6 @@ import net.minecraft.item.SpawnEggItem;
 public class GaiaSpawnEggItem extends SpawnEggItem {
 
     public GaiaSpawnEggItem(EntityType<?> entity, int back, int front) {
-        super(entity, back, front, new Item.Properties().group(ItemGroup.MISC));
+        super(entity, back, front, new Item.Properties().tab(ItemGroup.TAB_MISC));
     }
 }

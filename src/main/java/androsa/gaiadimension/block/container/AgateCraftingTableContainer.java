@@ -26,7 +26,7 @@ public class AgateCraftingTableContainer extends RecipeBookContainer<CraftingInv
     private final PlayerEntity player;
 
     public AgateCraftingTableContainer(int id, PlayerInventory player) {
-        this(id, player, IWorldPosCallable.DUMMY);
+        this(id, player, IWorldPosCallable.NULL);
     }
 
     public AgateCraftingTableContainer(int id, PlayerInventory player, IWorldPosCallable world) {
@@ -54,84 +54,84 @@ public class AgateCraftingTableContainer extends RecipeBookContainer<CraftingInv
     }
 
     @Override
-    public void onCraftMatrixChanged(IInventory inventoryIn) {
-        this.worldPos.consume((world, pos) -> updateSlots(this.windowId, world, this.player, this.invCrafting, this.invResult));
+    public void slotsChanged(IInventory inventoryIn) {
+        this.worldPos.execute((world, pos) -> updateSlots(this.containerId, world, this.player, this.invCrafting, this.invResult));
     }
 
     protected static void updateSlots(int id, World world, PlayerEntity playerentity, CraftingInventory craft, CraftResultInventory result) {
-        if (!world.isRemote) {
+        if (!world.isClientSide()) {
             ServerPlayerEntity serverplayerentity = (ServerPlayerEntity)playerentity;
             ItemStack itemstack = ItemStack.EMPTY;
-            Optional<ICraftingRecipe> optional = world.getServer().getRecipeManager().getRecipe(IRecipeType.CRAFTING, craft, world);
+            Optional<ICraftingRecipe> optional = world.getServer().getRecipeManager().getRecipeFor(IRecipeType.CRAFTING, craft, world);
             if (optional.isPresent()) {
                 ICraftingRecipe icraftingrecipe = optional.get();
-                if (result.canUseRecipe(world, serverplayerentity, icraftingrecipe)) {
-                    itemstack = icraftingrecipe.getCraftingResult(craft);
+                if (result.setRecipeUsed(world, serverplayerentity, icraftingrecipe)) {
+                    itemstack = icraftingrecipe.assemble(craft);
                 }
             }
 
-            result.setInventorySlotContents(0, itemstack);
-            serverplayerentity.connection.sendPacket(new SSetSlotPacket(id, 0, itemstack));
+            result.setItem(0, itemstack);
+            serverplayerentity.connection.send(new SSetSlotPacket(id, 0, itemstack));
         }
     }
 
     @Override
-    public void fillStackedContents(RecipeItemHelper helper) {
+    public void fillCraftSlotsStackedContents(RecipeItemHelper helper) {
         this.invCrafting.fillStackedContents(helper);
     }
 
     @Override
-    public void clear() {
-        this.invCrafting.clear();
-        this.invResult.clear();
+    public void clearCraftingContent() {
+        this.invCrafting.clearContent();
+        this.invResult.clearContent();
     }
 
     @Override
-    public boolean matches(IRecipe<? super CraftingInventory> recipeIn) {
-        return recipeIn.matches(this.invCrafting, this.player.world);
+    public boolean recipeMatches(IRecipe<? super CraftingInventory> recipeIn) {
+        return recipeIn.matches(this.invCrafting, this.player.level);
     }
 
     @Override
-    public void onContainerClosed(PlayerEntity playerIn) {
-        super.onContainerClosed(playerIn);
-        this.worldPos.consume((world, pos) -> this.clearContainer(playerIn, world, this.invCrafting));
+    public void removed(PlayerEntity playerIn) {
+        super.removed(playerIn);
+        this.worldPos.execute((world, pos) -> this.clearContainer(playerIn, world, this.invCrafting));
     }
 
     @Override
-    public boolean canInteractWith(PlayerEntity playerIn) {
+    public boolean stillValid(PlayerEntity playerIn) {
         return true;
     }
 
     @Override
-    public ItemStack transferStackInSlot(PlayerEntity playerIn, int index) {
+    public ItemStack quickMoveStack(PlayerEntity playerIn, int index) {
         ItemStack itemstack = ItemStack.EMPTY;
-        Slot slot = this.inventorySlots.get(index);
-        if (slot != null && slot.getHasStack()) {
-            ItemStack itemstack1 = slot.getStack();
+        Slot slot = this.slots.get(index);
+        if (slot != null && slot.hasItem()) {
+            ItemStack itemstack1 = slot.getItem();
             itemstack = itemstack1.copy();
             if (index == 0) {
-                this.worldPos.consume((world, pos) -> itemstack1.getItem().onCreated(itemstack1, world, playerIn));
-                if (!this.mergeItemStack(itemstack1, 10, 46, true)) {
+                this.worldPos.execute((world, pos) -> itemstack1.getItem().onCraftedBy(itemstack1, world, playerIn));
+                if (!this.moveItemStackTo(itemstack1, 10, 46, true)) {
                     return ItemStack.EMPTY;
                 }
 
-                slot.onSlotChange(itemstack1, itemstack);
+                slot.onQuickCraft(itemstack1, itemstack);
             } else if (index >= 10 && index < 37) {
-                if (!this.mergeItemStack(itemstack1, 37, 46, false)) {
+                if (!this.moveItemStackTo(itemstack1, 37, 46, false)) {
                     return ItemStack.EMPTY;
                 }
             } else if (index >= 37 && index < 46) {
-                if (!this.mergeItemStack(itemstack1, 10, 37, false)) {
+                if (!this.moveItemStackTo(itemstack1, 10, 37, false)) {
                     return ItemStack.EMPTY;
                 }
-            } else if (!this.mergeItemStack(itemstack1, 10, 46, false)) {
+            } else if (!this.moveItemStackTo(itemstack1, 10, 46, false)) {
                 return ItemStack.EMPTY;
             }
 
             if (itemstack1.isEmpty()) {
-                slot.putStack(ItemStack.EMPTY);
+                slot.set(ItemStack.EMPTY);
             } else {
-                slot.onSlotChanged();
+                slot.setChanged();
             }
 
             if (itemstack1.getCount() == itemstack.getCount()) {
@@ -140,7 +140,7 @@ public class AgateCraftingTableContainer extends RecipeBookContainer<CraftingInv
 
             ItemStack itemstack2 = slot.onTake(playerIn, itemstack1);
             if (index == 0) {
-                playerIn.dropItem(itemstack2, false);
+                playerIn.drop(itemstack2, false);
             }
         }
 
@@ -148,22 +148,22 @@ public class AgateCraftingTableContainer extends RecipeBookContainer<CraftingInv
     }
 
     @Override
-    public boolean canMergeSlot(ItemStack stack, Slot slotIn) {
-        return slotIn.inventory != this.invResult && super.canMergeSlot(stack, slotIn);
+    public boolean canTakeItemForPickAll(ItemStack stack, Slot slotIn) {
+        return slotIn.container != this.invResult && super.canTakeItemForPickAll(stack, slotIn);
     }
 
     @Override
-    public int getOutputSlot() {
+    public int getResultSlotIndex() {
         return 0;
     }
 
     @Override
-    public int getWidth() {
+    public int getGridWidth() {
         return this.invCrafting.getWidth();
     }
 
     @Override
-    public int getHeight() {
+    public int getGridHeight() {
         return this.invCrafting.getHeight();
     }
 
@@ -174,7 +174,7 @@ public class AgateCraftingTableContainer extends RecipeBookContainer<CraftingInv
     }
 
     @Override
-    public RecipeBookCategory func_241850_m() {
+    public RecipeBookCategory getRecipeBookType() {
         return RecipeBookCategory.CRAFTING;
     }
 }

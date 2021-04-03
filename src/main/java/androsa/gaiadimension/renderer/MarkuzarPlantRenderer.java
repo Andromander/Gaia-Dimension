@@ -19,7 +19,7 @@ public class MarkuzarPlantRenderer<T extends MarkuzarPlantEntity, M extends Mark
     }
 
     @Override
-    public ResourceLocation getEntityTexture(T entity) {
+    public ResourceLocation getTextureLocation(T entity) {
         return textureLoc;
     }
 }

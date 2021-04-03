@@ -11,7 +11,7 @@ public class GroundGemItem extends BasicGaiaItem {
 
     @Override
     @Nonnull
-    public ITextComponent getDisplayName(ItemStack stack) {
-        return new TranslationTextComponent(super.getDisplayName(stack).getString(), TextFormatting.GRAY);
+    public ITextComponent getName(ItemStack stack) {
+        return new TranslationTextComponent(super.getName(stack).getString(), TextFormatting.GRAY);
     }
 }

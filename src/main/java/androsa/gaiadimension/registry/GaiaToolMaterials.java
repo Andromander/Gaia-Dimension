@@ -7,13 +7,13 @@ import net.minecraft.util.LazyValue;
 import java.util.function.Supplier;
 
 public enum GaiaToolMaterials implements IItemTier {
-    AGATE(1, 150, 2.5F, 1.0F, 5, () -> Ingredient.fromTag(GaiaTags.Items.TILES)),
-    SUGILITE(2, 800, 3.0F, 1.5F, 10, () -> Ingredient.fromItems(ModItems.sugilite.get())),
-    IXIOLITE(2, 1500, 4.0F, 2.0F, 10, () -> Ingredient.fromItems(ModItems.ixiolite.get())),
-    EUCLASE(2, 3000, 4.0F, 2.0F, 10, () -> Ingredient.fromItems(ModItems.euclase.get())),
-    CARNELIAN(3, 2500, 5.0F, 3.0F, 10, () -> Ingredient.fromItems(ModItems.carnelian.get())),
-    BENITOITE(3, 3500, 5.0F, 3.0F, 10, () -> Ingredient.fromItems(ModItems.benitoite.get())),
-    CHALCEDONY(4, 4000, 6.0F, 4.0F, 10, () -> Ingredient.fromItems(ModItems.chalcedony.get())),
+    AGATE(1, 150, 2.5F, 1.0F, 5, () -> Ingredient.of(GaiaTags.Items.TILES)),
+    SUGILITE(2, 800, 3.0F, 1.5F, 10, () -> Ingredient.of(ModItems.sugilite.get())),
+    IXIOLITE(2, 1500, 4.0F, 2.0F, 10, () -> Ingredient.of(ModItems.ixiolite.get())),
+    EUCLASE(2, 3000, 4.0F, 2.0F, 10, () -> Ingredient.of(ModItems.euclase.get())),
+    CARNELIAN(3, 2500, 5.0F, 3.0F, 10, () -> Ingredient.of(ModItems.carnelian.get())),
+    BENITOITE(3, 3500, 5.0F, 3.0F, 10, () -> Ingredient.of(ModItems.benitoite.get())),
+    CHALCEDONY(4, 4000, 6.0F, 4.0F, 10, () -> Ingredient.of(ModItems.chalcedony.get())),
 
     MALACHITE(3, 5120, 8.0F, 4.0F, 10, () -> Ingredient.EMPTY),
     TIGER_EYE(3, 4096, 8.0F, 5.0F, 10, () -> Ingredient.EMPTY),
@@ -42,32 +42,32 @@ public enum GaiaToolMaterials implements IItemTier {
     }
 
     @Override
-    public int getMaxUses() {
+    public int getUses() {
         return maximumUse;
     }
 
     @Override
-    public float getEfficiency() {
+    public float getSpeed() {
         return toolEfficiency;
     }
 
     @Override
-    public float getAttackDamage() {
+    public float getAttackDamageBonus() {
         return attackDamage;
     }
 
     @Override
-    public int getHarvestLevel() {
+    public int getLevel() {
         return harvestLevel;
     }
 
     @Override
-    public int getEnchantability() {
+    public int getEnchantmentValue() {
         return enchantability;
     }
 
     @Override
-    public Ingredient getRepairMaterial() {
-        return repairMaterial.getValue();
+    public Ingredient getRepairIngredient() {
+        return repairMaterial.get();
     }
 }

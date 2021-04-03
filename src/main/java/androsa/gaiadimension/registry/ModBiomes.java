@@ -38,17 +38,17 @@ public class ModBiomes {
     	//Supply a dummy biome, as Biome are only required for IDs. They do not save generations
         BIOMES.register(name, () -> new Biome.Builder()
 				.precipitation(Biome.RainType.NONE)
-				.category(Biome.Category.NONE)
+				.biomeCategory(Biome.Category.NONE)
 				.depth(0)
 				.downfall(0)
 				.scale(0)
 				.temperature(0)
-				.setEffects(new BiomeAmbience.Builder().setFogColor(0).setWaterColor(0).setWaterFogColor(0).withSkyColor(0).build())
-				.withGenerationSettings(new BiomeGenerationSettings.Builder().withSurfaceBuilder(ConfiguredSurfaceBuilders.field_244178_j).build())
-				.withMobSpawnSettings(new MobSpawnInfo.Builder().copy())
-				.withTemperatureModifier(Biome.TemperatureModifier.NONE)
+				.specialEffects(new BiomeAmbience.Builder().fogColor(0).waterColor(0).waterFogColor(0).skyColor(0).build())
+				.generationSettings(new BiomeGenerationSettings.Builder().surfaceBuilder(ConfiguredSurfaceBuilders.GRASS).build())
+				.mobSpawnSettings(new MobSpawnInfo.Builder().build())
+				.temperatureAdjustment(Biome.TemperatureModifier.NONE)
 				.build());
-        return RegistryKey.getOrCreateKey(Registry.BIOME_KEY, new ResourceLocation(GaiaDimensionMod.MODID, name));
+        return RegistryKey.create(Registry.BIOME_REGISTRY, new ResourceLocation(GaiaDimensionMod.MODID, name));
     }
 
     public static void addBiomeTypes() {

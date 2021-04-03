@@ -21,7 +21,7 @@ public class GrowthSapperRenderer<T extends GrowthSapperEntity, M extends Growth
     }
 
     @Override
-    public ResourceLocation getEntityTexture(T entity) {
+    public ResourceLocation getTextureLocation(T entity) {
         switch(entity.getEntityVariant()) {
             case 0:
                 return pinkLoc;

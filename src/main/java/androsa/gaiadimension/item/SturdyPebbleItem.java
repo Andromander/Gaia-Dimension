@@ -12,27 +12,27 @@ import net.minecraft.world.World;
 public class SturdyPebbleItem extends Item {
 
     public SturdyPebbleItem() {
-        super(new Properties().maxStackSize(16).group(GaiaItemGroups.GAIA_ITEMS));
+        super(new Properties().stacksTo(16).tab(GaiaItemGroups.GAIA_ITEMS));
     }
 
     @Override
-    public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity playerIn, Hand handIn) {
-        ItemStack itemstack = playerIn.getHeldItem(handIn);
+    public ActionResult<ItemStack> use(World worldIn, PlayerEntity playerIn, Hand handIn) {
+        ItemStack itemstack = playerIn.getItemInHand(handIn);
 
         if (!playerIn.isCreative()) {
             itemstack.shrink(1);
         }
 
-        worldIn.playSound(null, playerIn.getPosX(), playerIn.getPosY(), playerIn.getPosZ(), SoundEvents.ENTITY_SNOWBALL_THROW, SoundCategory.NEUTRAL, 0.5F, 0.4F / (random.nextFloat() * 0.4F + 0.8F));
+        worldIn.playSound(null, playerIn.getX(), playerIn.getY(), playerIn.getZ(), SoundEvents.SNOWBALL_THROW, SoundCategory.NEUTRAL, 0.5F, 0.4F / (random.nextFloat() * 0.4F + 0.8F));
 
-        if (!worldIn.isRemote) {
+        if (!worldIn.isClientSide()) {
             ThrownPebbleEntity pebble = new ThrownPebbleEntity(worldIn, playerIn);
             pebble.setItem(itemstack);
-            pebble.func_234612_a_(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, 1.5F, 1.0F); //"shoot"
-            worldIn.addEntity(pebble);
+            pebble.shootFromRotation(playerIn, playerIn.xRot, playerIn.yRot, 0.0F, 1.5F, 1.0F);
+            worldIn.addFreshEntity(pebble);
         }
 
-        playerIn.addStat(Stats.ITEM_USED.get(this));
+        playerIn.awardStat(Stats.ITEM_USED.get(this));
         return new ActionResult<>(ActionResultType.SUCCESS, itemstack);
     }
 }

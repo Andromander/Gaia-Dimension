@@ -24,13 +24,13 @@ public class MalachiteDefenceLayer<T extends MalachiteGuardEntity, M extends Mal
     @Override
     public void render(MatrixStack matrix, IRenderTypeBuffer buffer, int light, T entity, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch) {
         if (entity.displayDefenceLayer()) {
-            float ticks = (float)entity.ticksExisted + partialTicks;
+            float ticks = (float)entity.tickCount + partialTicks;
             EntityModel<T> model = this.getEnergySwirlModel();
-            model.setLivingAnimations(entity, limbSwing, limbSwingAmount, partialTicks);
-            this.getEntityModel().copyModelAttributesTo(model);
-            IVertexBuilder builder = buffer.getBuffer(RenderType.getEnergySwirl(this.getEnergySwirlTexture(), this.getEnergySwirlX(ticks), ticks * 0.01F));
-            model.setRotationAngles(entity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
-            model.render(matrix, builder, light, OverlayTexture.NO_OVERLAY, 0.5F, 0.5F, 0.5F, 1.0F);
+            model.prepareMobModel(entity, limbSwing, limbSwingAmount, partialTicks);
+            this.getParentModel().copyPropertiesTo(model);
+            IVertexBuilder builder = buffer.getBuffer(RenderType.energySwirl(this.getEnergySwirlTexture(), this.getEnergySwirlX(ticks), ticks * 0.01F));
+            model.setupAnim(entity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
+            model.renderToBuffer(matrix, builder, light, OverlayTexture.NO_OVERLAY, 0.5F, 0.5F, 0.5F, 1.0F);
         }
     }
 

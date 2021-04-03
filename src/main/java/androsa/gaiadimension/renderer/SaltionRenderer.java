@@ -18,7 +18,7 @@ public class SaltionRenderer<T extends SaltionEntity, M extends SaltionModel<T>>
     }
 
     @Override
-    public ResourceLocation getEntityTexture(T entity) {
+    public ResourceLocation getTextureLocation(T entity) {
         return textureLoc;
     }
 }

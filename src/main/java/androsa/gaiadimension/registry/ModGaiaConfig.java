@@ -73,8 +73,8 @@ public class ModGaiaConfig {
         }
     }
 
-    public static boolean canDisplayStars(RegistryKey<Biome> key) {
-        return starsInSky.get().contains(key.getLocation().toString());
+    public static boolean canDisplayStars(RegistryKey<Biome> define) {
+        return starsInSky.get().contains(define.location().toString());
     }
 
     public enum ListType {

@@ -14,7 +14,7 @@ import net.minecraft.world.World;
 public class AgateArrowItem extends ArrowItem {
 
     public AgateArrowItem() {
-        super(new Properties().group(GaiaItemGroups.GAIA_TOOLS));
+        super(new Properties().tab(GaiaItemGroups.GAIA_TOOLS));
     }
 
     public AbstractArrowEntity createArrow(World worldIn, ItemStack stack, LivingEntity entity) {
@@ -23,7 +23,7 @@ public class AgateArrowItem extends ArrowItem {
 
     @Override
     public boolean isInfinite(ItemStack stack, ItemStack bow, PlayerEntity player) {
-        int enchant = EnchantmentHelper.getEnchantmentLevel(Enchantments.INFINITY, bow);
+        int enchant = EnchantmentHelper.getItemEnchantmentLevel(Enchantments.INFINITY_ARROWS, bow);
         return enchant > 0 && this.getClass() == AgateArrowItem.class;
     }
 }

@@ -21,7 +21,7 @@ public class GaiaSoilBlock extends Block {
                 world.getBlockState(pos.west()).getMaterial() == Material.WATER ||
                 world.getBlockState(pos.north()).getMaterial() == Material.WATER ||
                 world.getBlockState(pos.south()).getMaterial() == Material.WATER;
-        return plantable.getPlantType(world, pos.offset(facing)) == PlantType.PLAINS ||
-                plantable.getPlantType(world, pos.offset(facing)) == PlantType.BEACH && hasWater;
+        return plantable.getPlantType(world, pos.relative(facing)) == PlantType.PLAINS ||
+                plantable.getPlantType(world, pos.relative(facing)) == PlantType.BEACH && hasWater;
     }
 }

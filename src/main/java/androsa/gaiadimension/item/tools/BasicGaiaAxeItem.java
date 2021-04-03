@@ -7,6 +7,6 @@ import net.minecraft.item.IItemTier;
 public class BasicGaiaAxeItem extends AxeItem {
 
     public BasicGaiaAxeItem(IItemTier material) {
-        super(material, 6F, -3.2F, new Properties().maxStackSize(1).defaultMaxDamage(material.getMaxUses()).group(GaiaItemGroups.GAIA_TOOLS));
+        super(material, 6F, -3.2F, new Properties().tab(GaiaItemGroups.GAIA_TOOLS));
     }
 }

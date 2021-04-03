@@ -17,12 +17,12 @@ public class ModDimensions {
 
     public static final DeferredRegister<PointOfInterestType> POI_TYPES = DeferredRegister.create(ForgeRegistries.POI_TYPES, GaiaDimensionMod.MODID);
 
-    public static final RegistryObject<PointOfInterestType> GAIA_PORTAL = POI_TYPES.register("gaia_portal", () -> new PointOfInterestType("gaia_portal",PointOfInterestType.getAllStates(ModBlocks.gaia_portal.get()), 0, 1));
-    public static final RegistryKey<World> gaia_world = RegistryKey.getOrCreateKey(Registry.WORLD_KEY, new ResourceLocation(GaiaDimensionMod.MODID, "gaia_dimension"));
-    public static final RegistryKey<DimensionType> gaia_dimension = RegistryKey.getOrCreateKey(Registry.DIMENSION_TYPE_KEY, new ResourceLocation(GaiaDimensionMod.MODID, "gaia_dimension"));
+    public static final RegistryObject<PointOfInterestType> GAIA_PORTAL = POI_TYPES.register("gaia_portal", () -> new PointOfInterestType("gaia_portal", PointOfInterestType.getBlockStates(ModBlocks.gaia_portal.get()), 0, 1));
+    public static final RegistryKey<World> gaia_world = RegistryKey.create(Registry.DIMENSION_REGISTRY, new ResourceLocation(GaiaDimensionMod.MODID, "gaia_dimension"));
+    public static final RegistryKey<DimensionType> gaia_dimension = RegistryKey.create(Registry.DIMENSION_TYPE_REGISTRY, new ResourceLocation(GaiaDimensionMod.MODID, "gaia_dimension"));
 
     public static void initDimension() {
-        Registry.register(Registry.BIOME_PROVIDER_CODEC, new ResourceLocation(GaiaDimensionMod.MODID, "gaia_dimension"), GaiaBiomeProvider.CODEC);
-        Registry.register(Registry.CHUNK_GENERATOR_CODEC, new ResourceLocation(GaiaDimensionMod.MODID, "gaia_gen"), GaiaChunkGenerator.CODEC);
+        Registry.register(Registry.BIOME_SOURCE, new ResourceLocation(GaiaDimensionMod.MODID, "gaia_dimension"), GaiaBiomeProvider.CODEC);
+        Registry.register(Registry.CHUNK_GENERATOR, new ResourceLocation(GaiaDimensionMod.MODID, "gaia_gen"), GaiaChunkGenerator.CODEC);
     }
 }

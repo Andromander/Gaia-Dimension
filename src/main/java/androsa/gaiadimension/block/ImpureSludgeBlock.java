@@ -12,7 +12,7 @@ import net.minecraft.world.World;
 
 public class ImpureSludgeBlock extends Block {
 
-    private static final VoxelShape SLUDGE_SHAPE = Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 14.0D, 16.0D);
+    private static final VoxelShape SLUDGE_SHAPE = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 14.0D, 16.0D);
 
     public ImpureSludgeBlock(Properties props) {
         super(props);
@@ -26,13 +26,13 @@ public class ImpureSludgeBlock extends Block {
 
     @Override
     @Deprecated
-    public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
-        entity.setMotion(entity.getMotion().mul(0.4D, 0.1D, 0.4D));
+    public void entityInside(BlockState state, World world, BlockPos pos, Entity entity) {
+        entity.setDeltaMovement(entity.getDeltaMovement().multiply(0.4D, 0.1D, 0.4D));
     }
 
     @Override
     @Deprecated
-    public boolean allowsMovement(BlockState state, IBlockReader reader, BlockPos pos, PathType path) {
+    public boolean isPathfindable(BlockState state, IBlockReader reader, BlockPos pos, PathType path) {
         return false;
     }
 }

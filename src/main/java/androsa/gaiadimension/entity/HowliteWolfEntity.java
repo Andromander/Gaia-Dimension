@@ -15,13 +15,13 @@ public class HowliteWolfEntity extends MonsterEntity {
 
     public HowliteWolfEntity(EntityType<? extends HowliteWolfEntity> entity, World world) {
         super(entity, world);
-        this.experienceValue = 5;
+        this.xpReward = 5;
     }
 
     public static AttributeModifierMap.MutableAttribute registerAttributes() {
-        return MonsterEntity.func_234295_eP_()
-                .createMutableAttribute(Attributes.MAX_HEALTH, 10.0D)
-                .createMutableAttribute(Attributes.ATTACK_DAMAGE, 4.0D);
+        return MonsterEntity.createMonsterAttributes()
+                .add(Attributes.MAX_HEALTH, 10.0D)
+                .add(Attributes.ATTACK_DAMAGE, 4.0D);
     }
 
     @Override
@@ -32,7 +32,7 @@ public class HowliteWolfEntity extends MonsterEntity {
         this.goalSelector.addGoal(2, new RandomWalkingGoal(this, 0.5D));
         this.goalSelector.addGoal(2, new LookAtGoal(this, BlueHowliteWolfEntity.class, 16.0F));
         this.goalSelector.addGoal(3, new MeleeAttackGoal(this, 1.0D, false));
-        this.targetSelector.addGoal(2, new HurtByTargetGoal(this).setCallsForHelp());
+        this.targetSelector.addGoal(2, new HurtByTargetGoal(this).setAlertOthers());
     }
 
     @Override
@@ -41,16 +41,16 @@ public class HowliteWolfEntity extends MonsterEntity {
     }
 
     @Override
-    public boolean canSpawn(IWorld world, SpawnReason reason) {
+    public boolean checkSpawnRules(IWorld world, SpawnReason reason) {
         return true;
     }
 
     public static boolean canSpawnHere(EntityType<HowliteWolfEntity> entity, IServerWorld world, SpawnReason spawn, BlockPos pos, Random random) {
         if (world.getDifficulty() != Difficulty.PEACEFUL) {
             if (spawn == SpawnReason.SPAWNER) {
-                return isValidLightLevel(world, pos, random);
+                return isDarkEnoughToSpawn(world, pos, random);
             } else {
-                return world.getBlockState(pos.down()).canEntitySpawn(world, pos.down(), entity) && world.getLightFor(LightType.SKY, pos) > 8;
+                return world.getBlockState(pos.below()).isValidSpawn(world, pos.below(), entity) && world.getBrightness(LightType.SKY, pos) > 8;
             }
         }
         return false;

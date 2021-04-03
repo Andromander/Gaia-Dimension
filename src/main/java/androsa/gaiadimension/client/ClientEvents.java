@@ -53,18 +53,18 @@ public class ClientEvents {
 
         blocks.register((state, worldIn, pos, tintIndex) ->
                         worldIn != null && pos != null ?
-                                /*worldIn.getColor(pos, (biome, x, z) -> biome instanceof BaseGaiaBiome ?*/ BiomeColors.getGrassColor(worldIn, pos) : 0xF2A3B4,
+                                /*worldIn.getColor(pos, (biome, x, z) -> biome instanceof BaseGaiaBiome ?*/ BiomeColors.getAverageGrassColor(worldIn, pos) : 0xF2A3B4,
                 ModBlocks.glitter_grass.get(),
                 ModBlocks.crystal_growth.get());
 
         blocks.register((state, worldIn, pos, tintIndex) ->
                         worldIn != null && pos != null ?
-                                /*worldIn.getColor(pos, (biome, x, z) -> biome instanceof BaseGaiaBiome ?*/ BiomeColors.getGrassColor(worldIn, pos) : 0x606060,
+                                /*worldIn.getColor(pos, (biome, x, z) -> biome instanceof BaseGaiaBiome ?*/ BiomeColors.getAverageGrassColor(worldIn, pos) : 0x606060,
                 ModBlocks.murky_grass.get());
 
         blocks.register((state, worldIn, pos, tintIndex) ->
                         worldIn != null && pos != null ?
-                                /*worldIn.getColor(pos, (biome, x, z) -> biome instanceof BaseGaiaBiome ?*/ BiomeColors.getGrassColor(worldIn, pos) : 0xA0A0A0,
+                                /*worldIn.getColor(pos, (biome, x, z) -> biome instanceof BaseGaiaBiome ?*/ BiomeColors.getAverageGrassColor(worldIn, pos) : 0xA0A0A0,
                 ModBlocks.soft_grass.get());
 
         blocks.register((state, worldIn, pos, tintIndex) -> {
@@ -152,7 +152,7 @@ public class ClientEvents {
         BlockColors blocks = Minecraft.getInstance().getBlockColors();
         ItemColors items = Minecraft.getInstance().getItemColors();
 
-        items.register((stack, tintIndex) -> blocks.getColor(((BlockItem) stack.getItem()).getBlock().getDefaultState(), null, null, tintIndex),
+        items.register((stack, tintIndex) -> blocks.getColor(((BlockItem) stack.getItem()).getBlock().defaultBlockState(), null, null, tintIndex),
                 ModBlocks.glitter_grass.get(),
                 ModBlocks.crystal_growth.get(),
                 ModBlocks.murky_grass.get(),
@@ -166,7 +166,7 @@ public class ClientEvents {
 
         for (RegistryObject<? extends Block> block : emissiveBlocks) {
             for (int i = 0; i <= 1; i++) {
-                for (BlockState state : block.get().getStateContainer().getValidStates()) {
+                for (BlockState state : block.get().getStateDefinition().getPossibleStates()) {
                     String variant = state.getValues().entrySet().stream().map(MAP_ENTRY_TO_STRING).collect(Collectors.joining(","));
                     ModelResourceLocation modelLoc = new ModelResourceLocation(Objects.requireNonNull(block.getId()), i == 0 ? variant : "inventory");
                     final IBakedModel model = event.getModelRegistry().get(modelLoc);
@@ -177,9 +177,9 @@ public class ClientEvents {
     }
 
     public static void registerBlockRenderers() {
-        RenderType cutout = RenderType.getCutout();
-        RenderType cutoutM = RenderType.getCutoutMipped();
-        RenderType translucent = RenderType.getTranslucent();
+        RenderType cutout = RenderType.cutout();
+        RenderType cutoutM = RenderType.cutoutMipped();
+        RenderType translucent = RenderType.translucent();
 
         renderBlock(ModBlocks.gaia_portal, translucent);
         renderBlock(ModBlocks.gold_fire, cutout);
@@ -283,6 +283,6 @@ public class ClientEvents {
     }
 
     private static void renderFluid(Supplier<? extends Fluid> fluid) {
-        RenderTypeLookup.setRenderLayer(fluid.get(), RenderType.getTranslucent());
+        RenderTypeLookup.setRenderLayer(fluid.get(), RenderType.translucent());
     }
 }

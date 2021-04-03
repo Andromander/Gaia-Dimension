@@ -28,18 +28,18 @@ public class ModParticles {
 
     @SubscribeEvent
     public static void registerFactories(ParticleFactoryRegisterEvent e) {
-        ParticleManager particles = Minecraft.getInstance().particles;
+        ParticleManager particles = Minecraft.getInstance().particleEngine;
 
-        particles.registerFactory(GEYSER_SMOKE, GeyserSmokeParticle.Factory::new);
-        particles.registerFactory(RESTRUCTURER_FIRE, RestructurerFireParticle.Factory::new);
-        particles.registerFactory(PURIFIER_FIRE, PurifierFireParticle.Factory::new);
-        particles.registerFactory(PORTAL, GaiaPortalParticle.Factory::new);
-        particles.registerFactory(PYRITE, PyriteParticle.Factory::new);
-        particles.registerFactory(SPAWNER_CORE, SpawnerCoreParticle.Factory::new);
+        particles.register(GEYSER_SMOKE, GeyserSmokeParticle.Factory::new);
+        particles.register(RESTRUCTURER_FIRE, RestructurerFireParticle.Factory::new);
+        particles.register(PURIFIER_FIRE, PurifierFireParticle.Factory::new);
+        particles.register(PORTAL, GaiaPortalParticle.Factory::new);
+        particles.register(PYRITE, PyriteParticle.Factory::new);
+        particles.register(SPAWNER_CORE, SpawnerCoreParticle.Factory::new);
     }
 
     @OnlyIn(Dist.CLIENT)
     public static void forgeClassLoadingIsFuckedThisShouldntBeHereButHereItIs() {
-        Minecraft.getInstance().particles.registerFactory(ITEM_PEBBLE, new GaiaBreakingParticle.PebbleFactory());
+        Minecraft.getInstance().particleEngine.register(ITEM_PEBBLE, new GaiaBreakingParticle.PebbleFactory());
     }
 }

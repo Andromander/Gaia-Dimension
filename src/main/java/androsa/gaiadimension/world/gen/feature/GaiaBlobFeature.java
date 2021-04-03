@@ -18,15 +18,15 @@ public class GaiaBlobFeature<T extends BlockStateFeatureConfig> extends Feature<
     }
 
     @Override
-    public boolean generate(ISeedReader worldIn, ChunkGenerator generator, Random rand, BlockPos pos, T config) {
+    public boolean place(ISeedReader worldIn, ChunkGenerator generator, Random rand, BlockPos pos, T config) {
         while(true) {
             label50: {
                 if (pos.getY() > 3) {
-                    if (worldIn.isAirBlock(pos.down())) {
+                    if (worldIn.isEmptyBlock(pos.below())) {
                         break label50;
                     }
 
-                    Block block = worldIn.getBlockState(pos.down()).getBlock();
+                    Block block = worldIn.getBlockState(pos.below()).getBlock();
                     if (!(block instanceof AbstractGaiaGrassBlock) && !isDirt(block) && !isStone(block)) {
                         break label50;
                     }
@@ -42,19 +42,19 @@ public class GaiaBlobFeature<T extends BlockStateFeatureConfig> extends Feature<
                     int z = rand.nextInt(2);
                     float f = (float)(x + y + z) * 0.333F + 0.5F;
 
-                    for(BlockPos blockpos : BlockPos.getAllInBoxMutable(pos.add(-x, -y, -z), pos.add(x, y, z))) {
-                        if (blockpos.distanceSq(pos) <= (double)(f * f)) {
-                            worldIn.setBlockState(blockpos, config.state, 4);
+                    for(BlockPos blockpos : BlockPos.betweenClosed(pos.offset(-x, -y, -z), pos.offset(x, y, z))) {
+                        if (blockpos.distSqr(pos) <= (double)(f * f)) {
+                            worldIn.setBlock(blockpos, config.state, 4);
                         }
                     }
 
-                    pos = pos.add(-1 + rand.nextInt(2), 0 - rand.nextInt(2), -1 + rand.nextInt(2));
+                    pos = pos.offset(-1 + rand.nextInt(2), -rand.nextInt(2), -1 + rand.nextInt(2));
                 }
 
                 return true;
             }
 
-            pos = pos.down();
+            pos = pos.below();
         }
     }
 }

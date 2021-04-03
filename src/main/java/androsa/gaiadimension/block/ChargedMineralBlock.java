@@ -16,7 +16,7 @@ public class ChargedMineralBlock extends AbstractGlassBlock {
 
     @Override
     @Deprecated
-    public void onEntityCollision(BlockState state, World worldIn, BlockPos pos, Entity entityIn) {
-        entityIn.attackEntityFrom(DamageSource.LIGHTNING_BOLT, 4.0F);
+    public void entityInside(BlockState state, World worldIn, BlockPos pos, Entity entityIn) {
+        entityIn.hurt(DamageSource.LIGHTNING_BOLT, 4.0F);
     }
 }

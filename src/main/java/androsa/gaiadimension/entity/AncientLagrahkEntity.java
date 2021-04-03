@@ -15,16 +15,16 @@ public class AncientLagrahkEntity extends MonsterEntity {
 
     public AncientLagrahkEntity(EntityType<? extends AncientLagrahkEntity> entity, World world) {
         super(entity, world);
-        this.experienceValue = 20;
+        this.xpReward = 20;
     }
 
     public static AttributeModifierMap.MutableAttribute registerAttributes() {
-        return MonsterEntity.func_234295_eP_()
-                .createMutableAttribute(Attributes.MAX_HEALTH, 150.0D)
-                .createMutableAttribute(Attributes.ATTACK_DAMAGE, 8.0D)
-                .createMutableAttribute(Attributes.KNOCKBACK_RESISTANCE, 1.0D)
-                .createMutableAttribute(Attributes.ARMOR, 2.0D)
-                .createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.6D);
+        return MonsterEntity.createMonsterAttributes()
+                .add(Attributes.MAX_HEALTH, 150.0D)
+                .add(Attributes.ATTACK_DAMAGE, 8.0D)
+                .add(Attributes.KNOCKBACK_RESISTANCE, 1.0D)
+                .add(Attributes.ARMOR, 2.0D)
+                .add(Attributes.MOVEMENT_SPEED, 0.6D);
     }
 
     @Override
@@ -45,16 +45,16 @@ public class AncientLagrahkEntity extends MonsterEntity {
     }
 
     @Override
-    public boolean canSpawn(IWorld world, SpawnReason reason) {
+    public boolean checkSpawnRules(IWorld world, SpawnReason reason) {
         return true;
     }
 
     public static boolean canSpawnHere(EntityType<AncientLagrahkEntity> entity, IServerWorld world, SpawnReason spawn, BlockPos pos, Random random) {
         if (world.getDifficulty() != Difficulty.PEACEFUL) {
             if (spawn == SpawnReason.SPAWNER) {
-                return isValidLightLevel(world, pos, random);
+                return isDarkEnoughToSpawn(world, pos, random);
             } else {
-                return world.getBlockState(pos.down()).canEntitySpawn(world, pos.down(), entity) && world.getLightFor(LightType.SKY, pos) > 8;
+                return world.getBlockState(pos.below()).isValidSpawn(world, pos.below(), entity) && world.getBrightness(LightType.SKY, pos) > 8;
             }
         }
         return false;

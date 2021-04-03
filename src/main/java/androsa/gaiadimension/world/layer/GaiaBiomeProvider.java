@@ -16,7 +16,6 @@ import net.minecraft.world.biome.provider.BiomeProvider;
 import net.minecraft.world.gen.layer.Layer;
 
 import java.util.List;
-import java.util.Random;
 
 import static androsa.gaiadimension.registry.ModBiomes.*;
 
@@ -26,7 +25,7 @@ public class GaiaBiomeProvider extends BiomeProvider {
             Codec.LONG.fieldOf("seed")
                     .orElse(GaiaChunkGenerator.hackSeed)
                     .forGetter((obj) -> obj.seed),
-            RegistryLookupCodec.getLookUpCodec(Registry.BIOME_KEY)
+            RegistryLookupCodec.create(Registry.BIOME_REGISTRY)
                     .forGetter((obj) -> obj.registry)
     ).apply(instance, instance.stable(GaiaBiomeProvider::new)));
 
@@ -51,7 +50,7 @@ public class GaiaBiomeProvider extends BiomeProvider {
             mineral_river);
 
     public GaiaBiomeProvider(long seed, Registry<Biome> registry) {
-        super(biomes.stream().map(key -> () -> registry.getOrThrow(key)));
+        super(biomes.stream().map(define -> () -> registry.getOrThrow(define)));
         this.seed = seed;
         this.registry = registry;
         this.genBiomes = GaiaLayerUtil.makeLayers(seed, registry);
@@ -65,12 +64,12 @@ public class GaiaBiomeProvider extends BiomeProvider {
     }
 
     @Override
-    public BiomeProvider getBiomeProvider(long s) {
+    public BiomeProvider withSeed(long s) {
         return new GaiaBiomeProvider(s, registry);
     }
 
     @Override
-    protected Codec<? extends BiomeProvider> getBiomeProviderCodec() {
+    protected Codec<? extends BiomeProvider> codec() {
         return CODEC;
     }
 
@@ -80,14 +79,14 @@ public class GaiaBiomeProvider extends BiomeProvider {
     }
 
     public Biome getBiomeFromPos(Registry<Biome> registry, int x, int z) {
-        int i = genBiomes.field_215742_b.getValue(x, z);
-        Biome biome = registry.getByValue(i);
+        int i = genBiomes.area.get(x, z);
+        Biome biome = registry.byId(i);
         if (biome == null) {
-            if (SharedConstants.developmentMode) {
-                throw Util.pauseDevMode(new IllegalStateException("Unknown biome id: " + i));
+            if (SharedConstants.IS_RUNNING_IN_IDE) {
+                throw Util.pauseInIde(new IllegalStateException("Unknown biome id: " + i));
             } else {
                 GaiaDimensionMod.LOGGER.warn("Unknown biome id: ", i);
-                return registry.getValueForKey(BiomeRegistry.getKeyFromID(0));
+                return registry.get(BiomeRegistry.byId(0));
             }
         } else {
             return biome;

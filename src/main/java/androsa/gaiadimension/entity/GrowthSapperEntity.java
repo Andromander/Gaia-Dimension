@@ -30,22 +30,22 @@ import java.util.Optional;
 import java.util.Random;
 
 public class GrowthSapperEntity extends CreatureEntity {
-    private static final DataParameter<Integer> SAPPER_VARIANT = EntityDataManager.createKey(GrowthSapperEntity.class, DataSerializers.VARINT);
+    private static final DataParameter<Integer> SAPPER_VARIANT = EntityDataManager.defineId(GrowthSapperEntity.class, DataSerializers.INT);
 
     public GrowthSapperEntity(EntityType<? extends GrowthSapperEntity> entity, World world) {
         super(entity, world);
-        this.experienceValue = 1 + rand.nextInt(3);
+        this.xpReward = 1 + random.nextInt(3);
     }
 
     @Override
-    protected void registerData() {
-        super.registerData();
-        this.dataManager.register(SAPPER_VARIANT, 0);
+    protected void defineSynchedData() {
+        super.defineSynchedData();
+        this.entityData.define(SAPPER_VARIANT, 0);
     }
 
     public static AttributeModifierMap.MutableAttribute registerAttributes() {
-        return MobEntity.func_233666_p_()
-                .createMutableAttribute(Attributes.MAX_HEALTH, 15.0D);
+        return MobEntity.createMobAttributes()
+                .add(Attributes.MAX_HEALTH, 15.0D);
     }
 
     @Override
@@ -58,7 +58,7 @@ public class GrowthSapperEntity extends CreatureEntity {
     }
 
     public int getEntityVariant() {
-        return MathHelper.clamp(dataManager.get(SAPPER_VARIANT), 0, 3);
+        return MathHelper.clamp(entityData.get(SAPPER_VARIANT), 0, 3);
     }
 
     /**
@@ -70,23 +70,23 @@ public class GrowthSapperEntity extends CreatureEntity {
      * //@param type The integer variant of the entity
      */
     public void setSapperVariant(int type) {
-        dataManager.set(SAPPER_VARIANT, type);
+        entityData.set(SAPPER_VARIANT, type);
     }
 
     @Override
-    public void readAdditional(CompoundNBT compound) {
-        super.readAdditional(compound);
+    public void readAdditionalSaveData(CompoundNBT compound) {
+        super.readAdditionalSaveData(compound);
         this.setSapperVariant(compound.getInt("SapperVariant"));
     }
 
     @Override
-    public void writeAdditional(CompoundNBT compound) {
-        super.writeAdditional(compound);
+    public void addAdditionalSaveData(CompoundNBT compound) {
+        super.addAdditionalSaveData(compound);
         compound.putInt("SapperVariant", this.getEntityVariant());
     }
 
     @Override
-    public ResourceLocation getLootTable() {
+    public ResourceLocation getDefaultLootTable() {
         switch (this.getEntityVariant()) {
             case 0:
             default:
@@ -110,12 +110,12 @@ public class GrowthSapperEntity extends CreatureEntity {
     }
 
     public static boolean canSpawnHere(EntityType<GrowthSapperEntity> entity, IWorld world, SpawnReason spawn, BlockPos pos, Random random) {
-        return spawn == SpawnReason.SPAWNER || world.getBlockState(pos.down()).canEntitySpawn(world, pos.down(), entity) && world.getLightSubtracted(pos, 0) > 8;
+        return spawn == SpawnReason.SPAWNER || world.getBlockState(pos.below()).isValidSpawn(world, pos.below(), entity) && world.getRawBrightness(pos, 0) > 8;
     }
 
     @Override
-    public ILivingEntityData onInitialSpawn(IServerWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
-        Optional<RegistryKey<Biome>> biome = worldIn.func_242406_i(this.getPosition());
+    public ILivingEntityData finalizeSpawn(IServerWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
+        Optional<RegistryKey<Biome>> biome = worldIn.getBiomeName(this.blockPosition());
 
         if (Objects.equals(biome, Optional.of(ModBiomes.pink_agate_forest)) || Objects.equals(biome, Optional.of(ModBiomes.crystal_plains))) {
             setSapperVariant(0);
@@ -123,13 +123,13 @@ public class GrowthSapperEntity extends CreatureEntity {
             setSapperVariant(1);
         } else if (Objects.equals(biome, Optional.of(ModBiomes.green_agate_jungle))) {
             setSapperVariant(2);
-        } else if (Objects.equals(biome, Optional.of(ModBiomes.pink_agate_forest))) {
+        } else if (Objects.equals(biome, Optional.of(ModBiomes.purple_agate_swamp))) {
             setSapperVariant(3);
         } else {
             Random rand = new Random();
             setSapperVariant(rand.nextInt(4));
         }
 
-        return super.onInitialSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
+        return super.finalizeSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
     }
 }

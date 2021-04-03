@@ -16,23 +16,23 @@ public class GaiaTags {
     private static final String ID = GaiaDimensionMod.MODID;
 
     private static ITag.INamedTag<Item> tagItem(String name) {
-        return ItemTags.makeWrapperTag(new ResourceLocation(ID, name).toString());
+        return ItemTags.bind(new ResourceLocation(ID, name).toString());
     }
 
     private static ITag.INamedTag<Item> tagItemForge(String name) {
-        return ItemTags.makeWrapperTag(new ResourceLocation(ForgeVersion.MOD_ID, name).toString());
+        return ItemTags.bind(new ResourceLocation(ForgeVersion.MOD_ID, name).toString());
     }
 
     private static ITag.INamedTag<Block> tagBlock(String name) {
-        return BlockTags.makeWrapperTag(new ResourceLocation(ID, name).toString());
+        return BlockTags.bind(new ResourceLocation(ID, name).toString());
     }
 
     private static ITag.INamedTag<Block> tagBlockForge(String name) {
-        return BlockTags.makeWrapperTag(new ResourceLocation(ForgeVersion.MOD_ID, name).toString());
+        return BlockTags.bind(new ResourceLocation(ForgeVersion.MOD_ID, name).toString());
     }
 
     private static ITag.INamedTag<Fluid> tagFluidForge(String name) {
-        return FluidTags.makeWrapperTag(new ResourceLocation(ForgeVersion.MOD_ID, name).toString());
+        return FluidTags.bind(new ResourceLocation(ForgeVersion.MOD_ID, name).toString());
     }
 
     public static class Items {

@@ -26,8 +26,8 @@ public class GaiaOreBlock extends Block {
 
     @Override
     @Deprecated
-    public void spawnAdditionalDrops(BlockState state, ServerWorld worldIn, BlockPos pos, ItemStack stack) {
-        super.spawnAdditionalDrops(state, worldIn, pos, stack);
+    public void spawnAfterBreak(BlockState state, ServerWorld worldIn, BlockPos pos, ItemStack stack) {
+        super.spawnAfterBreak(state, worldIn, pos, stack);
     }
 
     @Override

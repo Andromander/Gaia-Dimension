@@ -17,7 +17,7 @@ import java.util.function.Supplier;
 
 public class BossSpawnerBlock extends Block {
 
-    private static final VoxelShape SHAPE = Block.makeCuboidShape(2.0D, 1.0D, 2.0D, 14.0D, 15.0D, 14.0D);
+    private static final VoxelShape SHAPE = Block.box(2.0D, 1.0D, 2.0D, 14.0D, 15.0D, 14.0D);
     private BossType bossType;
 
     public BossSpawnerBlock(BossType type, Properties props) {
@@ -39,27 +39,27 @@ public class BossSpawnerBlock extends Block {
     @Nullable
     @Override
     public TileEntity createTileEntity(BlockState state, IBlockReader world) {
-        return bossType.getTileEntity();
+        return bossType.getBlockEntity();
     }
 
     @Override
     @Deprecated
-    public boolean eventReceived(BlockState state, World worldIn, BlockPos pos, int id, int param) {
-        super.eventReceived(state, worldIn, pos, id, param);
-        TileEntity tileentity = worldIn.getTileEntity(pos);
-        return tileentity != null && tileentity.receiveClientEvent(id, param);
+    public boolean triggerEvent(BlockState state, World worldIn, BlockPos pos, int id, int param) {
+        super.triggerEvent(state, worldIn, pos, id, param);
+        TileEntity tileentity = worldIn.getBlockEntity(pos);
+        return tileentity != null && tileentity.triggerEvent(id, param);
     }
 
     @Override
     @Deprecated
-    public INamedContainerProvider getContainer(BlockState state, World worldIn, BlockPos pos) {
-        TileEntity tileentity = worldIn.getTileEntity(pos);
+    public INamedContainerProvider getMenuProvider(BlockState state, World worldIn, BlockPos pos) {
+        TileEntity tileentity = worldIn.getBlockEntity(pos);
         return tileentity instanceof INamedContainerProvider ? (INamedContainerProvider)tileentity : null;
     }
 
     @Override
     @Deprecated
-    public ItemStack getItem(IBlockReader reader, BlockPos pos, BlockState state) {
+    public ItemStack getCloneItemStack(IBlockReader reader, BlockPos pos, BlockState state) {
         return ItemStack.EMPTY;
     }
 
@@ -72,7 +72,7 @@ public class BossSpawnerBlock extends Block {
             this.tileEntity = tileentity;
         }
 
-        public TileEntity getTileEntity() {
+        public TileEntity getBlockEntity() {
             return tileEntity.get();
         }
     }

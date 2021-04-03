@@ -20,14 +20,14 @@ import java.util.List;
 public class GaiaChampSwordItem extends SwordItem {
 
     public GaiaChampSwordItem() {
-        super(GaiaToolMaterials.GAIA_CHAMP, 3, -2.4F, new Properties().rarity(Rarity.EPIC).group(GaiaItemGroups.GAIA_TOOLS));
+        super(GaiaToolMaterials.GAIA_CHAMP, 3, -2.4F, new Properties().rarity(Rarity.EPIC).tab(GaiaItemGroups.GAIA_TOOLS));
     }
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public void addInformation(ItemStack stack, World world, List<ITextComponent> tooltips, ITooltipFlag flags) {
-        super.addInformation(stack, world, tooltips, flags);
-        tooltips.add(new TranslationTextComponent(getTranslationKey() + ".tooltip"));
+    public void appendHoverText(ItemStack stack, World world, List<ITextComponent> tooltips, ITooltipFlag flags) {
+        super.appendHoverText(stack, world, tooltips, flags);
+        tooltips.add(new TranslationTextComponent(getDescriptionId() + ".tooltip"));
     }
 
     //TODO: Deals extra damage to Corrupt and Non-Gaian mobs
@@ -35,12 +35,12 @@ public class GaiaChampSwordItem extends SwordItem {
 
     @Override
     public boolean onLeftClickEntity(ItemStack stack, PlayerEntity player, Entity entity) {
-        if (player.world.isRemote) {
+        if (player.level.isClientSide()) {
             for (int var1 = 0; var1 < 20; ++var1) {
-                double px = entity.getPosX() + random.nextFloat() * entity.getWidth() * 2.0F - entity.getWidth();
-                double py = entity.getPosY() + random.nextFloat() * entity.getHeight();
-                double pz = entity.getPosZ() + random.nextFloat() * entity.getWidth() * 2.0F - entity.getWidth();
-                entity.world.addParticle(new BlockParticleData(ParticleTypes.BLOCK, ModBlocks.gaia_portal.get().getDefaultState()), px, py, pz, 1, 1, 1);
+                double px = entity.getX() + random.nextFloat() * entity.getBbWidth() * 2.0F - entity.getBbWidth();
+                double py = entity.getY() + random.nextFloat() * entity.getBbHeight();
+                double pz = entity.getZ() + random.nextFloat() * entity.getBbWidth() * 2.0F - entity.getBbWidth();
+                entity.level.addParticle(new BlockParticleData(ParticleTypes.BLOCK, ModBlocks.gaia_portal.get().defaultBlockState()), px, py, pz, 1, 1, 1);
             }
         }
         return false;

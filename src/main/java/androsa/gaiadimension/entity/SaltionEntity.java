@@ -15,13 +15,13 @@ public class SaltionEntity extends MonsterEntity {
 
     public SaltionEntity(EntityType<? extends SaltionEntity> entity, World world) {
         super(entity, world);
-        this.experienceValue = 1 + rand.nextInt(3);
+        this.xpReward = 1 + random.nextInt(3);
     }
 
     public static AttributeModifierMap.MutableAttribute registerAttributes() {
-        return MonsterEntity.func_234295_eP_()
-                .createMutableAttribute(Attributes.MAX_HEALTH, 8.0D)
-                .createMutableAttribute(Attributes.ATTACK_DAMAGE, 3.0D);
+        return MonsterEntity.createMonsterAttributes()
+                .add(Attributes.MAX_HEALTH, 8.0D)
+                .add(Attributes.ATTACK_DAMAGE, 3.0D);
     }
 
     @Override
@@ -41,16 +41,16 @@ public class SaltionEntity extends MonsterEntity {
     }
 
     @Override
-    public boolean canSpawn(IWorld world, SpawnReason reason) {
+    public boolean checkSpawnRules(IWorld world, SpawnReason reason) {
         return true;
     }
 
     public static boolean canSpawnHere(EntityType<SaltionEntity> entity, IServerWorld world, SpawnReason spawn, BlockPos pos, Random random) {
         if (world.getDifficulty() != Difficulty.PEACEFUL) {
             if (spawn == SpawnReason.SPAWNER) {
-                return isValidLightLevel(world, pos, random);
+                return isDarkEnoughToSpawn(world, pos, random);
             } else {
-                return world.getBlockState(pos.down()).canEntitySpawn(world, pos.down(), entity) && world.getLightFor(LightType.SKY, pos) > 8;
+                return world.getBlockState(pos.below()).isValidSpawn(world, pos.below(), entity) && world.getBrightness(LightType.SKY, pos) > 8;
             }
         }
         return false;

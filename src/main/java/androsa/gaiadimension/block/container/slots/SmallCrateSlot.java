@@ -11,7 +11,7 @@ public class SmallCrateSlot extends Slot {
         super(inventory, slotIndexIn, xPosition, yPosition);
     }
 
-    public boolean isItemValid(ItemStack stack) {
+    public boolean mayPlace(ItemStack stack) {
         return GaiaTags.Items.CRUDE_STORAGE_BLACKLIST.contains(stack.getItem());
     }
 }

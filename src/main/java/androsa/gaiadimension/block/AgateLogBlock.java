@@ -28,16 +28,16 @@ public class AgateLogBlock extends RotatedPillarBlock {
 
     @Override
     @Deprecated
-    public ActionResultType onBlockActivated(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockRayTraceResult result) {
+    public ActionResultType use(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockRayTraceResult result) {
         if (strippedBlock != null) {
-            if (player.getHeldItem(hand).getItem() instanceof AxeItem) {
-                if (!world.isRemote) {
-                    world.setBlockState(pos, strippedBlock.get().getDefaultState().with(RotatedPillarBlock.AXIS, state.get(RotatedPillarBlock.AXIS)), 11);
+            if (player.getItemInHand(hand).getItem() instanceof AxeItem) {
+                if (!world.isClientSide()) {
+                    world.setBlock(pos, strippedBlock.get().defaultBlockState().setValue(RotatedPillarBlock.AXIS, state.getValue(RotatedPillarBlock.AXIS)), 11);
                     if (player != null) {
-                        player.getHeldItem(hand).damageItem(1, player, (consumer) -> consumer.sendBreakAnimation(hand));
+                        player.getItemInHand(hand).hurtAndBreak(1, player, (consumer) -> consumer.broadcastBreakEvent(hand));
                     }
                 }
-                world.playSound(player, pos, SoundEvents.ITEM_AXE_STRIP, SoundCategory.BLOCKS, 1.0F, 1.0F);
+                world.playSound(player, pos, SoundEvents.AXE_STRIP, SoundCategory.BLOCKS, 1.0F, 1.0F);
                 return ActionResultType.SUCCESS;
             }
         }

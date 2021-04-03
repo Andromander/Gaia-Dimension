@@ -18,7 +18,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
 public class MalachiteGuardGlowLayer<T extends MalachiteGuardEntity, M extends MalachiteGuardModel<T>> extends LayerRenderer<T, M> {
-    private static final RenderType textureLoc = RenderType.getEyes(new ResourceLocation(GaiaDimensionMod.MODEL_DIR + "malachiteguard_glow.png"));
+    private static final RenderType textureLoc = RenderType.eyes(new ResourceLocation(GaiaDimensionMod.MODEL_DIR + "malachiteguard_glow.png"));
 
     public MalachiteGuardGlowLayer(IEntityRenderer<T, M> arentisRenderIn) {
         super(arentisRenderIn);
@@ -27,6 +27,6 @@ public class MalachiteGuardGlowLayer<T extends MalachiteGuardEntity, M extends M
     @Override
     public void render(MatrixStack matrixStack, IRenderTypeBuffer buffer, int i, T entity, float v, float v1, float v2, float v3, float v4, float v5) {
         IVertexBuilder builder = buffer.getBuffer(textureLoc);
-        this.getEntityModel().render(matrixStack, builder, 15728640, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);
+        this.getParentModel().renderToBuffer(matrixStack, builder, 15728640, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);
     }
 }

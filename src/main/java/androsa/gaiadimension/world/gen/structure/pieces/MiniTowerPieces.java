@@ -120,7 +120,7 @@ public class MiniTowerPieces {
             super(ModWorldgen.StructureTypes.MITO, 0);
             this.pieceLocation = pieceloc;
             BlockPos blockpos = MiniTowerPieces.piecePos.get(pieceloc);
-            this.templatePosition = pos.add(blockpos.getX(), blockpos.getY() + offset, blockpos.getZ());
+            this.templatePosition = pos.offset(blockpos.getX(), blockpos.getY() + offset, blockpos.getZ());
             this.rotation = rot;
             this.towerType = type;
             this.loadTemplate(manager);
@@ -135,11 +135,11 @@ public class MiniTowerPieces {
         }
 
         private void loadTemplate(TemplateManager manager) {
-            Template template = manager.getTemplateDefaulted(this.pieceLocation);
+            Template template = manager.getOrCreate(this.pieceLocation);
             PlacementSettings settings = (new PlacementSettings())
                     .setRotation(this.rotation)
                     .setMirror(Mirror.NONE)
-                    .setCenterOffset(MiniTowerPieces.centerList.get(this.pieceLocation))
+                    .setRotationPivot(MiniTowerPieces.centerList.get(this.pieceLocation))
                     .addProcessor(BlockIgnoreStructureProcessor.STRUCTURE_BLOCK);
 
             switch (towerType) {
@@ -161,34 +161,34 @@ public class MiniTowerPieces {
         }
 
         @Override
-        protected void readAdditional(CompoundNBT nbt) {
-            super.readAdditional(nbt);
+        protected void addAdditionalSaveData(CompoundNBT nbt) {
+            super.addAdditionalSaveData(nbt);
             nbt.putString("Template", this.pieceLocation.toString());
             nbt.putString("Rot", this.rotation.name());
-            nbt.putString("TowerType", this.towerType.getString());
+            nbt.putString("TowerType", this.towerType.toString());
         }
 
         @Override
         protected void handleDataMarker(String name, BlockPos pos, IServerWorld world, Random random, MutableBoundingBox mbb) {
             if ("Chest".equals(name)) {
                 if (random.nextDouble() > 0.5D) {
-                    world.setBlockState(pos, ModBlocks.crude_storage_crate.get().getDefaultState(), 3);
-                    TileEntity tileentity = world.getTileEntity(pos);
+                    world.setBlock(pos, ModBlocks.crude_storage_crate.get().defaultBlockState(), 3);
+                    TileEntity tileentity = world.getBlockEntity(pos);
                     if (tileentity instanceof SmallCrateTileEntity) {
                         ((SmallCrateTileEntity) tileentity).setLootTable(towerType.getChestLoot(), random.nextLong());
                     }
                 } else {
-                    world.setBlockState(pos, Blocks.AIR.getDefaultState(), 3);
+                    world.setBlock(pos, Blocks.AIR.defaultBlockState(), 3);
                 }
             }
         }
 
         @Override
-        public boolean func_230383_a_(ISeedReader world, StructureManager manager, ChunkGenerator generator, Random random, MutableBoundingBox mbb, ChunkPos chunkpos, BlockPos pos) {
+        public boolean postProcess(ISeedReader world, StructureManager manager, ChunkGenerator generator, Random random, MutableBoundingBox mbb, ChunkPos chunkpos, BlockPos pos) {
             this.placeSettings
                     .setRotation(this.rotation)
                     .setMirror(Mirror.NONE)
-                    .setCenterOffset(MiniTowerPieces.centerList.get(this.pieceLocation))
+                    .setRotationPivot(MiniTowerPieces.centerList.get(this.pieceLocation))
                     .addProcessor(BlockIgnoreStructureProcessor.STRUCTURE_BLOCK);
 
             switch (towerType) {
@@ -207,11 +207,11 @@ public class MiniTowerPieces {
             }
 
             BlockPos blockpos = MiniTowerPieces.piecePos.get(this.pieceLocation);
-            BlockPos blockpos1 = this.templatePosition.add(Template.transformedBlockPos(placeSettings, new BlockPos(3 - blockpos.getX(), 0, 0 - blockpos.getZ())));
+            BlockPos blockpos1 = this.templatePosition.offset(Template.calculateRelativePosition(placeSettings, new BlockPos(3 - blockpos.getX(), 0, 0 - blockpos.getZ())));
             int height = world.getHeight(Heightmap.Type.WORLD_SURFACE_WG, blockpos1.getX(), blockpos1.getZ());
             BlockPos blockpos2 = this.templatePosition;
-            this.templatePosition = this.templatePosition.add(0, height - 90 - 1, 0);
-            boolean flag = super.func_230383_a_(world, manager, generator, random, mbb, chunkpos, pos);
+            this.templatePosition = this.templatePosition.offset(0, height - 90 - 1, 0);
+            boolean flag = super.postProcess(world, manager, generator, random, mbb, chunkpos, pos);
             this.templatePosition = blockpos2;
             return flag;
         }

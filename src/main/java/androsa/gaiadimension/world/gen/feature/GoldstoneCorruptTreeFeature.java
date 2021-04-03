@@ -41,7 +41,7 @@ public class GoldstoneCorruptTreeFeature<T extends GaiaTreeFeatureConfig> extend
                         if (cy >= 0 && cy < 256) {
                             BlockPos cPos = new BlockPos(cx, cy, cz);
 
-                            if (!isReplaceableAt(world, cPos)) {
+                            if (!validTreePos(world, cPos)) {
                                 allClear = false;
                             }
                         } else {
@@ -53,8 +53,8 @@ public class GoldstoneCorruptTreeFeature<T extends GaiaTreeFeatureConfig> extend
 
             if (!allClear) {
                 return false;
-            } else if (isSoil(world, pos.down(), config.getSapling(rand, pos)) && pos.getY() < world.getHeight() - height - 1) {
-                this.setBlockState(world, pos.down(), ModBlocks.corrupt_soil.get().getDefaultState(), boundingBox);
+            } else if (isSoil(world, pos.below(), config.getSapling(rand, pos)) && pos.getY() < world.getHeight() - height - 1) {
+                this.setBlockState(world, pos.below(), ModBlocks.corrupt_soil.get().defaultBlockState(), boundingBox);
                 int k2 = 0;
 
                 for (int l2 = pos.getY() + height; l2 >= pos.getY() + j; --l2) {
@@ -82,7 +82,7 @@ public class GoldstoneCorruptTreeFeature<T extends GaiaTreeFeatureConfig> extend
                 }
 
                 for (int i3 = 0; i3 < height - 1; ++i3) {
-                    BlockPos cPos = pos.up(i3);
+                    BlockPos cPos = pos.above(i3);
                     if (isAirOrLeaves(world, cPos)) {
                         this.setLogBlockState(world, rand, cPos, logPos, boundingBox, config);
                     }

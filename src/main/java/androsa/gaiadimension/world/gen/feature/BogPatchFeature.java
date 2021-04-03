@@ -20,7 +20,7 @@ public class BogPatchFeature<T extends SphereReplaceConfig> extends Feature<T> {
     }
 
     @Override
-    public boolean generate(ISeedReader world, ChunkGenerator generator, Random random, BlockPos pos, T config) {
+    public boolean place(ISeedReader world, ChunkGenerator generator, Random random, BlockPos pos, T config) {
         int range = random.nextInt(4 - 2) + 2;
         int yRange = 1;
 
@@ -38,7 +38,7 @@ public class BogPatchFeature<T extends SphereReplaceConfig> extends Feature<T> {
                     Block blockThere = world.getBlockState(dPos).getBlock();
                     if (blockThere == ModBlocks.murky_grass.get()) {
                         if (random.nextInt(6) != 0) {
-                            world.setBlockState(dPos, ModBlocks.impure_sludge.get().getDefaultState(), 2);
+                            world.setBlock(dPos, ModBlocks.impure_sludge.get().defaultBlockState(), 2);
                         }
                     }
                 }

@@ -21,12 +21,12 @@ public class SpellElementEntity extends CreatureEntity {
 
     public SpellElementEntity(EntityType<? extends SpellElementEntity> entity, World world) {
         super(entity, world);
-        this.experienceValue = 5;
+        this.xpReward = 5;
     }
 
     public static AttributeModifierMap.MutableAttribute registerAttributes() {
-        return MobEntity.func_233666_p_()
-                .createMutableAttribute(Attributes.MAX_HEALTH, 15.0D);
+        return MobEntity.createMobAttributes()
+                .add(Attributes.MAX_HEALTH, 15.0D);
     }
 
     @Override
@@ -39,6 +39,6 @@ public class SpellElementEntity extends CreatureEntity {
     }
 
     public static boolean canSpawnHere(EntityType<SpellElementEntity> entity, IWorld world, SpawnReason spawn, BlockPos pos, Random random) {
-        return world.getBlockState(pos.down()).canEntitySpawn(world, pos.down(), entity) && world.getLightSubtracted(pos, 0) > 8;
+        return world.getBlockState(pos.below()).isValidSpawn(world, pos.below(), entity) && world.getRawBrightness(pos, 0) > 8;
     }
 }

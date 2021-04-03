@@ -14,11 +14,11 @@ public class MucklingRenderer extends SlimeRenderer {
 
     public MucklingRenderer(EntityRendererManager manager, float shadowSize) {
         super(manager);
-        this.shadowSize = shadowSize;
+        this.shadowRadius = shadowSize;
     }
 
     @Override
-    public ResourceLocation getEntityTexture(SlimeEntity entity) {
+    public ResourceLocation getTextureLocation(SlimeEntity entity) {
         return textureLoc;
     }
 }

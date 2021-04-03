@@ -29,11 +29,11 @@ public class GaiaStoneFurnaceContainer extends Container {
 
     public GaiaStoneFurnaceContainer(int id, PlayerInventory playerinv, IInventory inventory, IIntArray array) {
         super(ModContainers.GAIA_STONE_FURNACE.get(), id);
-        assertInventorySize(inventory, 3);
-        assertIntArraySize(array, 4);
+        checkContainerSize(inventory, 3);
+        checkContainerDataCount(array, 4);
         this.tileFurnace = inventory;
         this.slotsArray = array;
-        this.world = playerinv.player.world;
+        this.world = playerinv.player.level;
         this.addSlot(new Slot(inventory, 0, 56, 17));
         this.addSlot(new GaiaFurnaceSlot(inventory, 1, 56, 53));
         this.addSlot(new FurnaceResultSlot(playerinv.player, inventory, 2, 116, 35));
@@ -48,51 +48,51 @@ public class GaiaStoneFurnaceContainer extends Container {
             this.addSlot(new Slot(playerinv, k, 8 + k * 18, 142));
         }
 
-        this.trackIntArray(array);
+        this.addDataSlots(array);
     }
 
     @Override
-    public boolean canInteractWith(PlayerEntity playerIn) {
-        return tileFurnace.isUsableByPlayer(playerIn);
+    public boolean stillValid(PlayerEntity playerIn) {
+        return tileFurnace.stillValid(playerIn);
     }
 
     @Override
-    public ItemStack transferStackInSlot(PlayerEntity playerIn, int index) {
+    public ItemStack quickMoveStack(PlayerEntity playerIn, int index) {
         ItemStack itemstack = ItemStack.EMPTY;
-        Slot slot = this.inventorySlots.get(index);
-        if (slot != null && slot.getHasStack()) {
-            ItemStack itemstack1 = slot.getStack();
+        Slot slot = this.slots.get(index);
+        if (slot != null && slot.hasItem()) {
+            ItemStack itemstack1 = slot.getItem();
             itemstack = itemstack1.copy();
             if (index == 2) {
-                if (!this.mergeItemStack(itemstack1, 3, 39, true)) {
+                if (!this.moveItemStackTo(itemstack1, 3, 39, true)) {
                     return ItemStack.EMPTY;
                 }
 
-                slot.onSlotChange(itemstack1, itemstack);
+                slot.onQuickCraft(itemstack1, itemstack);
             } else if (index != 1 && index != 0) {
                 if (this.isRecipePresent(itemstack1)) {
-                    if (!this.mergeItemStack(itemstack1, 0, 1, false)) {
+                    if (!this.moveItemStackTo(itemstack1, 0, 1, false)) {
                         return ItemStack.EMPTY;
                     }
                 } else if (isFuel(itemstack1)) {
-                    if (!this.mergeItemStack(itemstack1, 1, 2, false)) {
+                    if (!this.moveItemStackTo(itemstack1, 1, 2, false)) {
                         return ItemStack.EMPTY;
                     }
                 } else if (index >= 3 && index < 30) {
-                    if (!this.mergeItemStack(itemstack1, 30, 39, false)) {
+                    if (!this.moveItemStackTo(itemstack1, 30, 39, false)) {
                         return ItemStack.EMPTY;
                     }
-                } else if (index >= 30 && index < 39 && !this.mergeItemStack(itemstack1, 3, 30, false)) {
+                } else if (index >= 30 && index < 39 && !this.moveItemStackTo(itemstack1, 3, 30, false)) {
                     return ItemStack.EMPTY;
                 }
-            } else if (!this.mergeItemStack(itemstack1, 3, 39, false)) {
+            } else if (!this.moveItemStackTo(itemstack1, 3, 39, false)) {
                 return ItemStack.EMPTY;
             }
 
             if (itemstack1.isEmpty()) {
-                slot.putStack(ItemStack.EMPTY);
+                slot.set(ItemStack.EMPTY);
             } else {
-                slot.onSlotChanged();
+                slot.setChanged();
             }
 
             if (itemstack1.getCount() == itemstack.getCount()) {
@@ -106,7 +106,7 @@ public class GaiaStoneFurnaceContainer extends Container {
     }
 
     private boolean isRecipePresent(ItemStack stack) {
-        return this.world.getRecipeManager().getRecipe(this.recipeType, new Inventory(stack), this.world).isPresent();
+        return this.world.getRecipeManager().getRecipeFor(this.recipeType, new Inventory(stack), this.world).isPresent();
     }
 
     public static boolean isFuel(ItemStack stack) {

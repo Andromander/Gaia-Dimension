@@ -21,7 +21,7 @@ public class GaiaFluidTagsProvider extends FluidTagsProvider {
     }
 
     protected void addTag(ITag.INamedTag<Fluid> tag, ImmutableList<Supplier<FlowingFluid>> list) {
-        Builder<Fluid> builder = this.getOrCreateBuilder(tag);
+        Builder<Fluid> builder = this.tag(tag);
         for (Supplier<FlowingFluid> fluid : list) {
             builder.add(fluid.get());
         }

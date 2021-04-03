@@ -17,20 +17,20 @@ import java.util.List;
 public class CorruptWarriorSwordItem extends SwordItem {
 
     public CorruptWarriorSwordItem() {
-        super(GaiaToolMaterials.CORRUPT, 3, -3.5F, new Properties().rarity(Rarity.RARE).group(GaiaItemGroups.GAIA_TOOLS));
+        super(GaiaToolMaterials.CORRUPT, 3, -3.5F, new Properties().rarity(Rarity.RARE).tab(GaiaItemGroups.GAIA_TOOLS));
     }
 
     @Override
     @Nonnull
-    public ITextComponent getDisplayName(ItemStack stack) {
-        return new TranslationTextComponent(super.getDisplayName(stack).getString(), TextFormatting.DARK_PURPLE);
+    public ITextComponent getName(ItemStack stack) {
+        return new TranslationTextComponent(super.getName(stack).getString(), TextFormatting.DARK_PURPLE);
     }
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public void addInformation(ItemStack stack, World world, List<ITextComponent> tooltips, ITooltipFlag flags) {
-        super.addInformation(stack, world, tooltips, flags);
-        tooltips.add(new TranslationTextComponent(getTranslationKey() + ".tooltip"));
+    public void appendHoverText(ItemStack stack, World world, List<ITextComponent> tooltips, ITooltipFlag flags) {
+        super.appendHoverText(stack, world, tooltips, flags);
+        tooltips.add(new TranslationTextComponent(getDescriptionId() + ".tooltip"));
     }
 
     //TODO: Deal extra damage to Gaian Mobs, but half damage to bosses. May inflict Corrupt Mania

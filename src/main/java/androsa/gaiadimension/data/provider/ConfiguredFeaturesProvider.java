@@ -37,13 +37,13 @@ public abstract class ConfiguredFeaturesProvider implements IDataProvider {
     }
 
     @Override
-    public void act(DirectoryCache cache) {
+    public void run(DirectoryCache cache) {
         LOGGER.info("Starting Feature Gen");
         Path output = this.generator.getOutputFolder();
 
         for (Map.Entry<RegistryKey<ConfiguredFeature<?,?>>, ConfiguredFeature<?,?>> feature : registerFeatures().entrySet()) {
-            Path path = getPath(output, feature.getKey().getLocation());
-            Function<Supplier<ConfiguredFeature<?,?>>, DataResult<JsonElement>> featuredata = JsonOps.INSTANCE.withEncoder(ConfiguredFeature.field_236264_b_);
+            Path path = getPath(output, feature.getKey().location());
+            Function<Supplier<ConfiguredFeature<?,?>>, DataResult<JsonElement>> featuredata = JsonOps.INSTANCE.withEncoder(ConfiguredFeature.CODEC);
 
             try {
                 Optional<JsonElement> optional = featuredata.apply(feature::getValue).result();

@@ -37,32 +37,32 @@ public class ThrownPebbleEntity extends ProjectileItemEntity {
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public void handleStatusUpdate(byte id) {
+    public void handleEntityEvent(byte id) {
         if (id == 3) {
-            IParticleData iparticledata = this.func_213887_n();
+            IParticleData iparticledata = this.getParticleData();
 
             for(int i = 0; i < 8; ++i) {
-                this.world.addParticle(iparticledata, this.getPosX(), this.getPosY(), this.getPosZ(), 0.0D, 0.0D, 0.0D);
+                this.level.addParticle(iparticledata, this.getX(), this.getY(), this.getZ(), 0.0D, 0.0D, 0.0D);
             }
         }
 
     }
 
     @OnlyIn(Dist.CLIENT)
-    private IParticleData func_213887_n() {
-        ItemStack itemstack = this.func_213882_k();
+    private IParticleData getParticleData() {
+        ItemStack itemstack = this.getItemRaw();
         return itemstack.isEmpty() ? ModParticles.ITEM_PEBBLE : new ItemParticleData(ParticleTypes.ITEM, itemstack);
     }
 
     @Override
-    protected void onImpact(RayTraceResult result) {
+    protected void onHit(RayTraceResult result) {
         if (result.getType() == RayTraceResult.Type.ENTITY) {
             Entity entity = ((EntityRayTraceResult)result).getEntity();
-            entity.attackEntityFrom(DamageSource.causeThrownDamage(this, this.func_234616_v_()), 3.0F);
+            entity.hurt(DamageSource.thrown(this, this.getOwner()), 3.0F);
         }
 
-        if (!this.world.isRemote) {
-            this.world.setEntityState(this, (byte)3);
+        if (!this.level.isClientSide()) {
+            this.level.broadcastEntityEvent(this, (byte)3);
             this.remove();
         }
     }
@@ -73,7 +73,7 @@ public class ThrownPebbleEntity extends ProjectileItemEntity {
     }
 
     @Override
-    public IPacket<?> createSpawnPacket() {
+    public IPacket<?> getAddEntityPacket() {
         return NetworkHooks.getEntitySpawningPacket(this);
     }
 }

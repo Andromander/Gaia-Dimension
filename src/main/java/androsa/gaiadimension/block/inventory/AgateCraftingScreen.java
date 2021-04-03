@@ -3,7 +3,7 @@ package androsa.gaiadimension.block.inventory;
 import androsa.gaiadimension.GaiaDimensionMod;
 import androsa.gaiadimension.block.container.AgateCraftingTableContainer;
 import com.mojang.blaze3d.matrix.MatrixStack;
-import com.mojang.blaze3d.platform.GlStateManager;
+import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.gui.recipebook.IRecipeShownListener;
 import net.minecraft.client.gui.recipebook.RecipeBookGui;
 import net.minecraft.client.gui.screen.inventory.ContainerScreen;
@@ -28,29 +28,29 @@ public class AgateCraftingScreen extends ContainerScreen<AgateCraftingTableConta
     public void render(MatrixStack stack, int mouseX, int mouseY, float partialTicks) {
         this.renderBackground(stack);
         super.render(stack, mouseX, mouseY, partialTicks);
-        this.renderHoveredTooltip(stack, mouseX, mouseY);
+        this.renderTooltip(stack, mouseX, mouseY);
     }
 
     @Override
-    protected void drawGuiContainerForegroundLayer(MatrixStack stack, int x, int y) {
-        font.func_243246_a(stack, title, 28.0F, 6.0F, 0xF0F0F0);
-        font.func_243246_a(stack, playerInventory.getDisplayName(), 8.0F, (float)(ySize - 96 + 3), 0xF0F0F0);
+    protected void renderLabels(MatrixStack stack, int x, int y) {
+        font.draw(stack, title, 28.0F, 6.0F, 0xF0F0F0);
+        font.draw(stack, inventory.getDisplayName(), 8.0F, (float)(imageHeight - 96 + 3), 0xF0F0F0);
     }
 
     @Override
-    protected void drawGuiContainerBackgroundLayer(MatrixStack stack, float partialTickTime, int x, int y) {
-        GlStateManager.color4f(1.0F, 1.0F, 1.0F, 1.0F);
-        minecraft.getTextureManager().bindTexture(textureLoc);
-        int left = guiLeft;
-        int top = guiTop;
-        blit(stack, left, top, 0, 0, xSize, ySize);
+    protected void renderBg(MatrixStack stack, float partialTickTime, int x, int y) {
+        RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
+        minecraft.getTextureManager().bind(textureLoc);
+        int left = leftPos;
+        int top = topPos;
+        blit(stack, left, top, 0, 0, imageWidth, imageHeight);
     }
 
     @Override
     public void recipesUpdated() { }
 
     @Override
-    public RecipeBookGui getRecipeGui() {
+    public RecipeBookGui getRecipeBookComponent() {
         return null;
     }
 }

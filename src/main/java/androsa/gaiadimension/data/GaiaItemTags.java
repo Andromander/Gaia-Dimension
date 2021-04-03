@@ -48,8 +48,8 @@ public class GaiaItemTags extends GaiaItemTagsProvider {
     }
 
     @Override
-    protected void registerTags() {
-        getOrCreateBuilder(ItemTags.ARROWS).add(ModItems.agate_arrow.get());
+    protected void addTags() {
+        tag(ItemTags.ARROWS).add(ModItems.agate_arrow.get());
         addTag(ItemTags.BEACON_PAYMENT_ITEMS, BEACON_PAYMENTS);
         copy(BlockTags.LEAVES, ItemTags.LEAVES);
         copy(BlockTags.LOGS, ItemTags.LOGS);
@@ -74,46 +74,46 @@ public class GaiaItemTags extends GaiaItemTagsProvider {
         copy(GaiaTags.Blocks.JADE_BRICKS, GaiaTags.Items.JADE_BRICKS);
         copy(GaiaTags.Blocks.JET_BRICKS, GaiaTags.Items.JET_BRICKS);
         addTag(GaiaTags.Items.GEM_POUCH_ITEMS, BEACON_PAYMENTS);
-        getOrCreateBuilder(GaiaTags.Items.CRUDE_STORAGE_BLACKLIST).add(
+        tag(GaiaTags.Items.CRUDE_STORAGE_BLACKLIST).add(
                 //Mojang, actually fuck you for this. "pls dont be mad, we just work under big corporation" and you can't even make an *Item* Tag for shulker boxes???
                 Items.SHULKER_BOX, Items.BLACK_SHULKER_BOX, Items.BLUE_SHULKER_BOX, Items.BROWN_SHULKER_BOX, Items.CYAN_SHULKER_BOX, Items.GRAY_SHULKER_BOX, Items.GREEN_SHULKER_BOX,
                 Items.LIGHT_BLUE_SHULKER_BOX, Items.LIGHT_GRAY_SHULKER_BOX, Items.LIME_SHULKER_BOX, Items.MAGENTA_SHULKER_BOX, Items.ORANGE_SHULKER_BOX, Items.PINK_SHULKER_BOX,
                 Items.PURPLE_SHULKER_BOX, Items.RED_SHULKER_BOX, Items.WHITE_SHULKER_BOX, Items.YELLOW_SHULKER_BOX
         ).add(ModBlocks.crude_storage_crate.get().asItem(), ModBlocks.mega_storage_crate.get().asItem());
-        getOrCreateBuilder(GaiaTags.Items.CRUDE_STORAGE_BLACKLIST).add(
+        tag(GaiaTags.Items.CRUDE_STORAGE_BLACKLIST).add(
                 //Repeat above. Quit the excuse game, you aren't a bunch of tiny modders anymore.
                 Items.SHULKER_BOX, Items.BLACK_SHULKER_BOX, Items.BLUE_SHULKER_BOX, Items.BROWN_SHULKER_BOX, Items.CYAN_SHULKER_BOX, Items.GRAY_SHULKER_BOX, Items.GREEN_SHULKER_BOX,
                 Items.LIGHT_BLUE_SHULKER_BOX, Items.LIGHT_GRAY_SHULKER_BOX, Items.LIME_SHULKER_BOX, Items.MAGENTA_SHULKER_BOX, Items.ORANGE_SHULKER_BOX, Items.PINK_SHULKER_BOX,
                 Items.PURPLE_SHULKER_BOX, Items.RED_SHULKER_BOX, Items.WHITE_SHULKER_BOX, Items.YELLOW_SHULKER_BOX
         ).add(ModBlocks.mega_storage_crate.get().asItem());
 
-        getOrCreateBuilder(GaiaTags.Items.DUSTS_FINE).add(ModItems.fine_dust.get());
-        getOrCreateBuilder(GaiaTags.Items.DUSTS_GOLDSTONE).add(ModItems.goldstone_dust.get());
-        getOrCreateBuilder(GaiaTags.Items.DUSTS_HOT).add(ModItems.hot_dust.get());
-        getOrCreateBuilder(GaiaTags.Items.INGOTS_SCAYNYX).add(ModItems.scaynyx_ingot.get());
-        getOrCreateBuilder(GaiaTags.Items.RODS_AGATE).add(ModItems.agate_stick.get());
-        getOrCreateBuilder(GaiaTags.Items.GEMS_SUGILITE).add(ModItems.sugilite.get());
-        getOrCreateBuilder(GaiaTags.Items.GEMS_HEMATITE).add(ModItems.hematite.get());
-        getOrCreateBuilder(GaiaTags.Items.GEMS_CINNABAR).add(ModItems.cinnabar.get());
-        getOrCreateBuilder(GaiaTags.Items.GEMS_LABRADORITE).add(ModItems.labradorite.get());
-        getOrCreateBuilder(GaiaTags.Items.GEMS_MOONSTONE).add(ModItems.moonstone.get());
-        getOrCreateBuilder(GaiaTags.Items.GEMS_RED_OPAL).add(ModItems.red_opal.get());
-        getOrCreateBuilder(GaiaTags.Items.GEMS_BLUE_OPAL).add(ModItems.blue_opal.get());
-        getOrCreateBuilder(GaiaTags.Items.GEMS_GREEN_OPAL).add(ModItems.green_opal.get());
-        getOrCreateBuilder(GaiaTags.Items.GEMS_WHITE_OPAL).add(ModItems.white_opal.get());
-        getOrCreateBuilder(GaiaTags.Items.GEMS_IXIOLITE).add(ModItems.ixiolite.get());
-        getOrCreateBuilder(GaiaTags.Items.GEMS_PROUSTITE).add(ModItems.proustite.get());
-        getOrCreateBuilder(GaiaTags.Items.GEMS_EUCLASE).add(ModItems.euclase.get());
-        getOrCreateBuilder(GaiaTags.Items.GEMS_LEUCITE).add(ModItems.leucite.get());
-        getOrCreateBuilder(GaiaTags.Items.GEMS_CARNELIAN).add(ModItems.carnelian.get());
-        getOrCreateBuilder(GaiaTags.Items.GEMS_BENITOITE).add(ModItems.benitoite.get());
-        getOrCreateBuilder(GaiaTags.Items.GEMS_DIOPSIDE).add(ModItems.diopside.get());
-        getOrCreateBuilder(GaiaTags.Items.GEMS_CHALCEDONY).add(ModItems.chalcedony.get());
-        getOrCreateBuilder(GaiaTags.Items.GEMS_PYRITE).add(ModItems.pyrite.get());
-        getOrCreateBuilder(GaiaTags.Items.GEMS_TEKTITE).add(ModItems.tektite.get());
-        getOrCreateBuilder(GaiaTags.Items.GEMS_GOLDSTONE).add(ModItems.goldstone.get());
-        getOrCreateBuilder(GaiaTags.Items.GEMS_AURA).add(ModItems.aura_cluster.get());
-        getOrCreateBuilder(GaiaTags.Items.GEMS_BISMUTH).add(ModItems.bismuth_crystal.get());
+        tag(GaiaTags.Items.DUSTS_FINE).add(ModItems.fine_dust.get());
+        tag(GaiaTags.Items.DUSTS_GOLDSTONE).add(ModItems.goldstone_dust.get());
+        tag(GaiaTags.Items.DUSTS_HOT).add(ModItems.hot_dust.get());
+        tag(GaiaTags.Items.INGOTS_SCAYNYX).add(ModItems.scaynyx_ingot.get());
+        tag(GaiaTags.Items.RODS_AGATE).add(ModItems.agate_stick.get());
+        tag(GaiaTags.Items.GEMS_SUGILITE).add(ModItems.sugilite.get());
+        tag(GaiaTags.Items.GEMS_HEMATITE).add(ModItems.hematite.get());
+        tag(GaiaTags.Items.GEMS_CINNABAR).add(ModItems.cinnabar.get());
+        tag(GaiaTags.Items.GEMS_LABRADORITE).add(ModItems.labradorite.get());
+        tag(GaiaTags.Items.GEMS_MOONSTONE).add(ModItems.moonstone.get());
+        tag(GaiaTags.Items.GEMS_RED_OPAL).add(ModItems.red_opal.get());
+        tag(GaiaTags.Items.GEMS_BLUE_OPAL).add(ModItems.blue_opal.get());
+        tag(GaiaTags.Items.GEMS_GREEN_OPAL).add(ModItems.green_opal.get());
+        tag(GaiaTags.Items.GEMS_WHITE_OPAL).add(ModItems.white_opal.get());
+        tag(GaiaTags.Items.GEMS_IXIOLITE).add(ModItems.ixiolite.get());
+        tag(GaiaTags.Items.GEMS_PROUSTITE).add(ModItems.proustite.get());
+        tag(GaiaTags.Items.GEMS_EUCLASE).add(ModItems.euclase.get());
+        tag(GaiaTags.Items.GEMS_LEUCITE).add(ModItems.leucite.get());
+        tag(GaiaTags.Items.GEMS_CARNELIAN).add(ModItems.carnelian.get());
+        tag(GaiaTags.Items.GEMS_BENITOITE).add(ModItems.benitoite.get());
+        tag(GaiaTags.Items.GEMS_DIOPSIDE).add(ModItems.diopside.get());
+        tag(GaiaTags.Items.GEMS_CHALCEDONY).add(ModItems.chalcedony.get());
+        tag(GaiaTags.Items.GEMS_PYRITE).add(ModItems.pyrite.get());
+        tag(GaiaTags.Items.GEMS_TEKTITE).add(ModItems.tektite.get());
+        tag(GaiaTags.Items.GEMS_GOLDSTONE).add(ModItems.goldstone.get());
+        tag(GaiaTags.Items.GEMS_AURA).add(ModItems.aura_cluster.get());
+        tag(GaiaTags.Items.GEMS_BISMUTH).add(ModItems.bismuth_crystal.get());
 
         copy(GaiaTags.Blocks.ORES_SUGILITE, GaiaTags.Items.ORES_SUGILITE);
         copy(GaiaTags.Blocks.ORES_HEMATITE, GaiaTags.Items.ORES_HEMATITE);
@@ -148,18 +148,18 @@ public class GaiaItemTags extends GaiaItemTagsProvider {
         copy(GaiaTags.Blocks.STORAGE_BLOCKS_DIOPSIDE, GaiaTags.Items.STORAGE_BLOCKS_DIOPSIDE);
         copy(GaiaTags.Blocks.STORAGE_BLOCKS_CHALCEDONY, GaiaTags.Items.STORAGE_BLOCKS_CHALCEDONY);
 
-        getOrCreateBuilder(Tags.Items.BONES).add(ModItems.shiny_bone.get());
-        getOrCreateBuilder(Tags.Items.DUSTS).addTags(GaiaTags.Items.DUSTS_FINE, GaiaTags.Items.DUSTS_GOLDSTONE, GaiaTags.Items.DUSTS_HOT);
+        tag(Tags.Items.BONES).add(ModItems.shiny_bone.get());
+        tag(Tags.Items.DUSTS).addTags(GaiaTags.Items.DUSTS_FINE, GaiaTags.Items.DUSTS_GOLDSTONE, GaiaTags.Items.DUSTS_HOT);
         for (ITag.INamedTag<Item> tag : GEM_TAGS) {
-            getOrCreateBuilder(Tags.Items.GEMS).addTag(tag);
+            tag(Tags.Items.GEMS).addTag(tag);
         }
-        getOrCreateBuilder(Tags.Items.INGOTS).addTag(GaiaTags.Items.INGOTS_SCAYNYX);
-        getOrCreateBuilder(Tags.Items.RODS).addTag(GaiaTags.Items.RODS_AGATE);
+        tag(Tags.Items.INGOTS).addTag(GaiaTags.Items.INGOTS_SCAYNYX);
+        tag(Tags.Items.RODS).addTag(GaiaTags.Items.RODS_AGATE);
         for (ITag.INamedTag<Item> tag : ORE_TAGS) {
-            getOrCreateBuilder(Tags.Items.ORES).addTag(tag);
+            tag(Tags.Items.ORES).addTag(tag);
         }
         for (ITag.INamedTag<Item> tag : STORAGE_TAGS) {
-            getOrCreateBuilder(Tags.Items.STORAGE_BLOCKS).addTag(tag);
+            tag(Tags.Items.STORAGE_BLOCKS).addTag(tag);
         }
     }
 }

@@ -89,7 +89,7 @@ public class PurifierTileEntity extends LockableTileEntity implements ISidedInve
         }
 
         @Override
-        public int size() {
+        public int getCount() {
             return 4;
         }
     };
@@ -130,9 +130,9 @@ public class PurifierTileEntity extends LockableTileEntity implements ISidedInve
     }
 
     @Override
-    public void read(BlockState state, CompoundNBT compound) {
-        super.read(state, compound);
-        this.purifyingItemStacks = NonNullList.withSize(this.getSizeInventory(), ItemStack.EMPTY);
+    public void load(BlockState state, CompoundNBT compound) {
+        super.load(state, compound);
+        this.purifyingItemStacks = NonNullList.withSize(this.getContainerSize(), ItemStack.EMPTY);
         ItemStackHelper.loadAllItems(compound, this.purifyingItemStacks);
         this.burnTime = compound.getInt("BurnTime");
         this.cookTime = compound.getInt("CookTime");
@@ -148,8 +148,8 @@ public class PurifierTileEntity extends LockableTileEntity implements ISidedInve
     }
 
     @Override
-    public CompoundNBT write(CompoundNBT compound) {
-        super.write(compound);
+    public CompoundNBT save(CompoundNBT compound) {
+        super.save(compound);
         compound.putInt("BurnTime", this.burnTime);
         compound.putInt("CookTime", this.cookTime);
         compound.putInt("CookTimeTotal", this.cookTimeTotal);
@@ -175,13 +175,13 @@ public class PurifierTileEntity extends LockableTileEntity implements ISidedInve
             --this.burnTime;
         }
 
-        if (!this.world.isRemote) {
+        if (!this.level.isClientSide()) {
             ItemStack goldStack = this.purifyingItemStacks.get(1);
             ItemStack essenceStack = this.purifyingItemStacks.get(2);
             ItemStack bismuthStack = this.purifyingItemStacks.get(3);
 
             if (this.isBurning() || !goldStack.isEmpty() && !essenceStack.isEmpty() && !bismuthStack.isEmpty() && !this.purifyingItemStacks.get(0).isEmpty()) {
-                IRecipe<?> irecipe = this.world.getRecipeManager().getRecipe(ModRecipes.PURIFYING, this, this.world).orElse(null);
+                IRecipe<?> irecipe = this.level.getRecipeManager().getRecipeFor(ModRecipes.PURIFYING, this, this.level).orElse(null);
                 if (!this.isBurning() && this.canChange(irecipe)) {
                     this.burnTime = getItemBurnTime(goldStack, essenceStack, bismuthStack);
                     this.recipesUsed = this.burnTime;
@@ -239,12 +239,12 @@ public class PurifierTileEntity extends LockableTileEntity implements ISidedInve
 
             if (burning != this.isBurning()) {
                 burn = true;
-                this.world.setBlockState(this.pos, this.world.getBlockState(this.pos).with(PurifierBlock.LIT, this.isBurning()), 3);
+                this.level.setBlockAndUpdate(this.worldPosition, this.level.getBlockState(this.worldPosition).setValue(PurifierBlock.LIT, this.isBurning()));
             }
         }
 
         if (burn) {
-            this.markDirty();
+            this.setChanged();
         }
     }
 
@@ -253,7 +253,7 @@ public class PurifierTileEntity extends LockableTileEntity implements ISidedInve
      */
     private boolean canChange(IRecipe<?> recipe) {
         if (!this.purifyingItemStacks.get(0).isEmpty() && recipe != null) {
-            ItemStack slot1 = ((PurifierRecipe)recipe).getRecipeOutput();
+            ItemStack slot1 = ((PurifierRecipe)recipe).getResultItem();
             ItemStack slot2 = ((PurifierRecipe)recipe).getByproduct();
 
             if(slot1.isEmpty() && slot2.isEmpty() || slot1.isEmpty()) {
@@ -263,10 +263,10 @@ public class PurifierTileEntity extends LockableTileEntity implements ISidedInve
 
                 if(output.isEmpty() && byproduct.isEmpty()) {
                     return true;
-                } else if (!output.isItemEqual(slot1) || !byproduct.isItemEqual(slot2)) {
+                } else if (!output.sameItem(slot1) || !byproduct.sameItem(slot2)) {
                     return false;
-                } else if ((output.getCount() + slot1.getCount() <= this.getInventoryStackLimit() && output.getCount() + slot1.getCount() <= output.getMaxStackSize()) &&
-                        byproduct.getCount() + slot2.getCount() <= this.getInventoryStackLimit() && byproduct.getCount() + slot2.getCount() <= byproduct.getMaxStackSize()) {
+                } else if ((output.getCount() + slot1.getCount() <= this.getMaxStackSize() && output.getCount() + slot1.getCount() <= output.getMaxStackSize()) &&
+                        byproduct.getCount() + slot2.getCount() <= this.getMaxStackSize() && byproduct.getCount() + slot2.getCount() <= byproduct.getMaxStackSize()) {
                     return true;
                 } else {
                     return output.getCount() + slot1.getCount() <= output.getMaxStackSize() && byproduct.getCount() + slot2.getCount() <= byproduct.getMaxStackSize();
@@ -283,7 +283,7 @@ public class PurifierTileEntity extends LockableTileEntity implements ISidedInve
     public void changeItem(IRecipe<?> recipe) {
         if (recipe != null && canChange(recipe)) {
             ItemStack input = this.purifyingItemStacks.get(0);
-            ItemStack slot1 = ((PurifierRecipe)recipe).getRecipeOutput();
+            ItemStack slot1 = ((PurifierRecipe)recipe).getResultItem();
             ItemStack slot2 = ((PurifierRecipe)recipe).getByproduct();
             ItemStack output = this.purifyingItemStacks.get(4);
             ItemStack byproduct = this.purifyingItemStacks.get(5);
@@ -299,7 +299,7 @@ public class PurifierTileEntity extends LockableTileEntity implements ISidedInve
                     byproduct.grow(slot2.getCount());
             }
 
-            if (!this.world.isRemote) {
+            if (!this.level.isClientSide()) {
                 this.setRecipeUsed(recipe);
             }
 
@@ -326,7 +326,7 @@ public class PurifierTileEntity extends LockableTileEntity implements ISidedInve
     }
 
     private int cookingTime() {
-        return this.world.getRecipeManager().getRecipe(ModRecipes.PURIFYING, this, this.world).map(PurifierRecipe::getCookTime).orElse(200);
+        return this.level.getRecipeManager().getRecipeFor(ModRecipes.PURIFYING, this, this.level).map(PurifierRecipe::getCookTime).orElse(200);
     }
 
     public static boolean isItemFuel(ItemStack stack) {
@@ -347,15 +347,15 @@ public class PurifierTileEntity extends LockableTileEntity implements ISidedInve
      * Returns true if automation can insert the given item in the given slot from the given side.
      */
     @Override
-    public boolean canInsertItem(int index, ItemStack itemStackIn, Direction direction) {
-        return this.isItemValidForSlot(index, itemStackIn);
+    public boolean canPlaceItemThroughFace(int index, ItemStack itemStackIn, Direction direction) {
+        return this.canPlaceItem(index, itemStackIn);
     }
 
     /**
      * Returns true if automation can extract the given item in the given slot from the given side.
      */
     @Override
-    public boolean canExtractItem(int index, ItemStack stack, Direction direction) {
+    public boolean canTakeItemThroughFace(int index, ItemStack stack, Direction direction) {
         if (direction == Direction.DOWN && index == 1 || index == 2 || index == 3) {
             Item item = stack.getItem();
 
@@ -366,7 +366,7 @@ public class PurifierTileEntity extends LockableTileEntity implements ISidedInve
     }
 
     @Override
-    public int getSizeInventory() {
+    public int getContainerSize() {
         return this.purifyingItemStacks.size();
     }
 
@@ -385,7 +385,7 @@ public class PurifierTileEntity extends LockableTileEntity implements ISidedInve
      * Returns the stack in the given slot.
      */
     @Override
-    public ItemStack getStackInSlot(int index) {
+    public ItemStack getItem(int index) {
         return this.purifyingItemStacks.get(index);
     }
 
@@ -393,50 +393,55 @@ public class PurifierTileEntity extends LockableTileEntity implements ISidedInve
      * Removes up to a specified number of items from an inventory slot and returns them in a new stack.
      */
     @Override
-    public ItemStack decrStackSize(int index, int count) {
-        return ItemStackHelper.getAndSplit(this.purifyingItemStacks, index, count);
+    public ItemStack removeItem(int index, int count) {
+        return ItemStackHelper.removeItem(this.purifyingItemStacks, index, count);
     }
 
     /**
      * Removes a stack from the given slot and returns it.
      */
     @Override
-    public ItemStack removeStackFromSlot(int index) {
-        return ItemStackHelper.getAndRemove(this.purifyingItemStacks, index);
+    public ItemStack removeItemNoUpdate(int index) {
+        return ItemStackHelper.takeItem(this.purifyingItemStacks, index);
     }
 
     /**
      * Sets the given item stack to the specified slot in the inventory (can be crafting or armor sections).
      */
     @Override
-    public void setInventorySlotContents(int index, ItemStack stack) {
+    public void setItem(int index, ItemStack stack) {
         ItemStack itemstack = this.purifyingItemStacks.get(index);
-        boolean burning = !stack.isEmpty() && stack.isItemEqual(itemstack) && ItemStack.areItemStackTagsEqual(stack, itemstack);
+        boolean burning = !stack.isEmpty() && stack.sameItem(itemstack) && ItemStack.tagMatches(stack, itemstack);
         this.purifyingItemStacks.set(index, stack);
 
-        if (stack.getCount() > this.getInventoryStackLimit()) {
-            stack.setCount(this.getInventoryStackLimit());
+        if (stack.getCount() > this.getMaxStackSize()) {
+            stack.setCount(this.getMaxStackSize());
         }
 
         if (index == 0 && !burning) {
             this.cookTimeTotal = 200;
             this.cookTime = 0;
-            this.markDirty();
+            this.setChanged();
         }
     }
 
     @Override
-    public boolean isUsableByPlayer(PlayerEntity player) {
-        return this.world.getTileEntity(this.pos) == this && player.getDistanceSq((double) this.pos.getX() + 0.5D, (double) this.pos.getY() + 0.5D, (double) this.pos.getZ() + 0.5D) <= 64.0D;
+    public boolean stillValid(PlayerEntity player) {
+        return this.level.getBlockEntity(this.worldPosition) == this &&
+                player.distanceToSqr(
+                        (double) this.worldPosition.getX() + 0.5D,
+                        (double) this.worldPosition.getY() + 0.5D,
+                        (double) this.worldPosition.getZ() + 0.5D
+                ) <= 64.0D;
     }
 
     @Override
-    public boolean isItemValidForSlot(int index, ItemStack stack) {
+    public boolean canPlaceItem(int index, ItemStack stack) {
         return index != 4 && index != 5 && (index == 0 || isItemFuel(stack));
     }
 
     @Override
-    public void clear() {
+    public void clearContent() {
         this.purifyingItemStacks.clear();
     }
 
@@ -453,19 +458,19 @@ public class PurifierTileEntity extends LockableTileEntity implements ISidedInve
     }
 
     @Override
-    public void onCrafting(PlayerEntity player) { }
+    public void awardUsedRecipes(PlayerEntity player) { }
 
     public void unlockRecipe(PlayerEntity player) {
         List<IRecipe<?>> list = Lists.newArrayList();
 
         for(Map.Entry<ResourceLocation, Integer> entry : this.recipeMap.entrySet()) {
-            player.world.getRecipeManager().getRecipe(entry.getKey()).ifPresent((recipe) -> {
+            player.level.getRecipeManager().byKey(entry.getKey()).ifPresent((recipe) -> {
                 list.add(recipe);
                 grantExperience(player, entry.getValue(), ((PurifierRecipe)recipe).getExperience());
             });
         }
 
-        player.unlockRecipes(list);
+        player.awardRecipes(list);
         this.recipeMap.clear();
     }
 
@@ -482,9 +487,9 @@ public class PurifierTileEntity extends LockableTileEntity implements ISidedInve
         }
 
         while(amount > 0) {
-            int j = ExperienceOrbEntity.getXPSplit(amount);
+            int j = ExperienceOrbEntity.getExperienceValue(amount);
             amount -= j;
-            player.world.addEntity(new ExperienceOrbEntity(player.world, player.getPosX(), player.getPosY() + 0.5D, player.getPosZ() + 0.5D, j));
+            player.level.addFreshEntity(new ExperienceOrbEntity(player.level, player.getX(), player.getY() + 0.5D, player.getZ() + 0.5D, j));
         }
     }
 
@@ -511,8 +516,9 @@ public class PurifierTileEntity extends LockableTileEntity implements ISidedInve
     }
 
     @Override
-    public void remove() {
-        super.remove();
-        for (LazyOptional<? extends IItemHandler> handler : handlers) handler.invalidate();
+    public void invalidateCaps() {
+        super.invalidateCaps();
+        for (LazyOptional<? extends IItemHandler> handler : handlers)
+            handler.invalidate();
     }
 }

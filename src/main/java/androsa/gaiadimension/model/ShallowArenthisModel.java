@@ -25,20 +25,20 @@ public class ShallowArenthisModel<T extends ShallowArenthisEntity> extends Segme
     private final ImmutableList<ModelRenderer> parts;
 
     public ShallowArenthisModel() {
-        this.textureWidth = 64;
-        this.textureHeight = 32;
+        this.texWidth = 64;
+        this.texHeight = 32;
 
         this.cap = new ModelRenderer(this, 0, 0);
-        this.cap.setRotationPoint(0.0F, 0.0F, 0.0F);
+        this.cap.setPos(0.0F, 0.0F, 0.0F);
         this.cap.addBox(-5.0F, 0.0F, -5.0F, 10, 5, 10, 0.0F);
         this.body = new ModelRenderer(this, 48, 9);
-        this.body.setRotationPoint(0.0F, 3.0F, 0.0F);
+        this.body.setPos(0.0F, 3.0F, 0.0F);
         this.body.addBox(-1.5F, 0.0F, -1.5F, 3, 6, 3, 0.0F);
         this.head = new ModelRenderer(this, 30, 0);
-        this.head.setRotationPoint(0.0F, 5.0F, 0.0F);
+        this.head.setPos(0.0F, 5.0F, 0.0F);
         this.head.addBox(-2.5F, 0.0F, -2.5F, 5, 3, 5, 0.0F);
         this.tail = new ModelRenderer(this, 0, 15);
-        this.tail.setRotationPoint(0.0F, 6.0F, 0.0F);
+        this.tail.setPos(0.0F, 6.0F, 0.0F);
         this.tail.addBox(-3.5F, 0.0F, 0.0F, 7, 4, 0, 0.0F);
         for (int j = 0; j < this.tentacles.length; ++j) {
             this.tentacles[j] = new ModelRenderer(this, 0, 0);
@@ -46,11 +46,11 @@ public class ShallowArenthisModel<T extends ShallowArenthisEntity> extends Segme
             float f = (float)Math.cos(d0) * 5.0F;
             float f1 = (float)Math.sin(d0) * 5.0F;
             this.tentacles[j].addBox(-1.0F, 0.0F, -1.0F, 1, 8, 1);
-            this.tentacles[j].rotationPointX = f;
-            this.tentacles[j].rotationPointZ = f1;
-            this.tentacles[j].rotationPointY = 5.0F;
+            this.tentacles[j].x = f;
+            this.tentacles[j].z = f1;
+            this.tentacles[j].y = 5.0F;
             d0 = (double)j * Math.PI * -2.0D / (double)this.tentacles.length + (Math.PI / 2D);
-            this.tentacles[j].rotateAngleY = (float)d0;
+            this.tentacles[j].yRot = (float)d0;
         }
 
         ImmutableList.Builder<ModelRenderer> builder = ImmutableList.builder();
@@ -64,7 +64,7 @@ public class ShallowArenthisModel<T extends ShallowArenthisEntity> extends Segme
     }
 
     @Override
-    public ImmutableList<ModelRenderer> getParts() {
+    public Iterable<ModelRenderer> parts() {
         return parts;
     }
 
@@ -72,18 +72,18 @@ public class ShallowArenthisModel<T extends ShallowArenthisEntity> extends Segme
      * This is a helper function from Tabula to set the rotation of model parts
      */
     public void setRotateAngle(ModelRenderer modelRenderer, float x, float y, float z) {
-        modelRenderer.rotateAngleX = x;
-        modelRenderer.rotateAngleY = y;
-        modelRenderer.rotateAngleZ = z;
+        modelRenderer.xRot = x;
+        modelRenderer.yRot = y;
+        modelRenderer.zRot = z;
     }
 
     @Override
-    public void setRotationAngles(T entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-        this.body.rotateAngleX = MathHelper.sin(ageInTicks * (float)Math.PI * 0.025F) * 3.0F;
-        this.tail.rotateAngleX = MathHelper.sin(ageInTicks * (float)Math.PI * 0.025F) * 3.0F;
+    public void setupAnim(T entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
+        this.body.xRot = MathHelper.sin(ageInTicks * (float)Math.PI * 0.025F) * 3.0F;
+        this.tail.xRot = MathHelper.sin(ageInTicks * (float)Math.PI * 0.025F) * 3.0F;
 
         for (ModelRenderer modelrenderer : this.tentacles) {
-            modelrenderer.rotateAngleX = ageInTicks;
+            modelrenderer.xRot = ageInTicks;
         }
     }
 }

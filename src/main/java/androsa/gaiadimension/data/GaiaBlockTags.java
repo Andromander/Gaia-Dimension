@@ -115,64 +115,64 @@ public class GaiaBlockTags extends GaiaBlockTagsProvider {
     }
 
     @Override
-    protected void registerTags() {
+    protected void addTags() {
         addTag(BlockTags.BEACON_BASE_BLOCKS, BEACON_BASES);
         addTag(BlockTags.FLOWER_POTS, FLOWER_POTS);
         addTag(BlockTags.GUARDED_BY_PIGLINS, GUARDED_BY_PIGLINS);
         addTag(BlockTags.IMPERMEABLE, IMPERMEABLE);
         addTag(BlockTags.LEAVES, LEAVES);
-        getOrCreateBuilder(BlockTags.LOGS).addTags(
+        tag(BlockTags.LOGS).addTags(
                 GaiaTags.Blocks.PINK_AGATE_LOGS, GaiaTags.Blocks.BLUE_AGATE_LOGS, GaiaTags.Blocks.GREEN_AGATE_LOGS, GaiaTags.Blocks.PURPLE_AGATE_LOGS,
                 GaiaTags.Blocks.FOSSILIZED_LOGS, GaiaTags.Blocks.CORRUPTED_LOGS, GaiaTags.Blocks.BURNT_LOGS, GaiaTags.Blocks.BURNING_LOGS, GaiaTags.Blocks.AURA_LOGS);
-        getOrCreateBuilder(BlockTags.NON_FLAMMABLE_WOOD).addTags(
+        tag(BlockTags.NON_FLAMMABLE_WOOD).addTags(
                 GaiaTags.Blocks.PINK_AGATE_LOGS, GaiaTags.Blocks.BLUE_AGATE_LOGS, GaiaTags.Blocks.GREEN_AGATE_LOGS, GaiaTags.Blocks.PURPLE_AGATE_LOGS,
                 GaiaTags.Blocks.FOSSILIZED_LOGS, GaiaTags.Blocks.CORRUPTED_LOGS, GaiaTags.Blocks.BURNT_LOGS, GaiaTags.Blocks.BURNING_LOGS, GaiaTags.Blocks.AURA_LOGS);
-        getOrCreateBuilder(BlockTags.PORTALS).add(ModBlocks.gaia_portal.get());
+        tag(BlockTags.PORTALS).add(ModBlocks.gaia_portal.get());
         addTag(BlockTags.SAPLINGS, SAPLINGS);
         addTag(BlockTags.SLABS, SLABS);
         addTag(BlockTags.SMALL_FLOWERS, SMALL_FLOWERS);
         addTag(BlockTags.STAIRS, STAIRS);
 
-        getOrCreateBuilder(GaiaTags.Blocks.ORES_SUGILITE).add(ModBlocks.sugilite_ore.get());
-        getOrCreateBuilder(GaiaTags.Blocks.ORES_HEMATITE).add(ModBlocks.hematite_ore.get());
-        getOrCreateBuilder(GaiaTags.Blocks.ORES_CINNABAR).add(ModBlocks.cinnabar_ore.get());
-        getOrCreateBuilder(GaiaTags.Blocks.ORES_LABRADORITE).add(ModBlocks.labradorite_ore.get());
-        getOrCreateBuilder(GaiaTags.Blocks.ORES_MOONSTONE).add(ModBlocks.moonstone_ore.get());
-        getOrCreateBuilder(GaiaTags.Blocks.ORES_RED_OPAL).add(ModBlocks.opal_ore_red.get());
-        getOrCreateBuilder(GaiaTags.Blocks.ORES_BLUE_OPAL).add(ModBlocks.opal_ore_blue.get());
-        getOrCreateBuilder(GaiaTags.Blocks.ORES_GREEN_OPAL).add(ModBlocks.opal_ore_green.get());
-        getOrCreateBuilder(GaiaTags.Blocks.ORES_WHITE_OPAL).add(ModBlocks.opal_ore_white.get());
-        getOrCreateBuilder(GaiaTags.Blocks.ORES_PYRITE).add(ModBlocks.pyrite_ore.get());
-        getOrCreateBuilder(GaiaTags.Blocks.STORAGE_BLOCKS_SUGILITE).add(ModBlocks.sugilite_block.get());
-        getOrCreateBuilder(GaiaTags.Blocks.STORAGE_BLOCKS_HEMATITE).add(ModBlocks.hematite_block.get());
-        getOrCreateBuilder(GaiaTags.Blocks.STORAGE_BLOCKS_CINNABAR).add(ModBlocks.cinnabar_block.get());
-        getOrCreateBuilder(GaiaTags.Blocks.STORAGE_BLOCKS_LABRADORITE).add(ModBlocks.labradorite_block.get());
-        getOrCreateBuilder(GaiaTags.Blocks.STORAGE_BLOCKS_MOONSTONE).add(ModBlocks.moonstone_block.get());
-        getOrCreateBuilder(GaiaTags.Blocks.STORAGE_BLOCKS_RED_OPAL).add(ModBlocks.opal_block_red.get());
-        getOrCreateBuilder(GaiaTags.Blocks.STORAGE_BLOCKS_BLUE_OPAL).add(ModBlocks.opal_block_blue.get());
-        getOrCreateBuilder(GaiaTags.Blocks.STORAGE_BLOCKS_GREEN_OPAL).add(ModBlocks.opal_block_green.get());
-        getOrCreateBuilder(GaiaTags.Blocks.STORAGE_BLOCKS_WHITE_OPAL).add(ModBlocks.opal_block_white.get());
-        getOrCreateBuilder(GaiaTags.Blocks.STORAGE_BLOCKS_PYRITE).add(ModBlocks.pyrite_block.get());
-        getOrCreateBuilder(GaiaTags.Blocks.STORAGE_BLOCKS_TEKTITE).add(ModBlocks.tektite_block.get());
-        getOrCreateBuilder(GaiaTags.Blocks.STORAGE_BLOCKS_GOLDSTONE).add(ModBlocks.goldstone_block.get());
-        getOrCreateBuilder(GaiaTags.Blocks.STORAGE_BLOCKS_AURA_CRYSTAL).add(ModBlocks.aura_block.get());
-        getOrCreateBuilder(GaiaTags.Blocks.STORAGE_BLOCKS_BISMUTH).add(ModBlocks.bismuth_block.get());
-        getOrCreateBuilder(GaiaTags.Blocks.STORAGE_BLOCKS_IXIOLITE).add(ModBlocks.ixiolite_block.get());
-        getOrCreateBuilder(GaiaTags.Blocks.STORAGE_BLOCKS_PROUSTITE).add(ModBlocks.proustite_block.get());
-        getOrCreateBuilder(GaiaTags.Blocks.STORAGE_BLOCKS_EUCLASE).add(ModBlocks.euclase_block.get());
-        getOrCreateBuilder(GaiaTags.Blocks.STORAGE_BLOCKS_LEUCITE).add(ModBlocks.leucite_block.get());
-        getOrCreateBuilder(GaiaTags.Blocks.STORAGE_BLOCKS_CARNELIAN).add(ModBlocks.carnelian_block.get());
-        getOrCreateBuilder(GaiaTags.Blocks.STORAGE_BLOCKS_BENITOITE).add(ModBlocks.benitoite_block.get());
-        getOrCreateBuilder(GaiaTags.Blocks.STORAGE_BLOCKS_DIOPSIDE).add(ModBlocks.diopside_block.get());
-        getOrCreateBuilder(GaiaTags.Blocks.STORAGE_BLOCKS_CHALCEDONY).add(ModBlocks.chalcedony_block.get());
+        tag(GaiaTags.Blocks.ORES_SUGILITE).add(ModBlocks.sugilite_ore.get());
+        tag(GaiaTags.Blocks.ORES_HEMATITE).add(ModBlocks.hematite_ore.get());
+        tag(GaiaTags.Blocks.ORES_CINNABAR).add(ModBlocks.cinnabar_ore.get());
+        tag(GaiaTags.Blocks.ORES_LABRADORITE).add(ModBlocks.labradorite_ore.get());
+        tag(GaiaTags.Blocks.ORES_MOONSTONE).add(ModBlocks.moonstone_ore.get());
+        tag(GaiaTags.Blocks.ORES_RED_OPAL).add(ModBlocks.opal_ore_red.get());
+        tag(GaiaTags.Blocks.ORES_BLUE_OPAL).add(ModBlocks.opal_ore_blue.get());
+        tag(GaiaTags.Blocks.ORES_GREEN_OPAL).add(ModBlocks.opal_ore_green.get());
+        tag(GaiaTags.Blocks.ORES_WHITE_OPAL).add(ModBlocks.opal_ore_white.get());
+        tag(GaiaTags.Blocks.ORES_PYRITE).add(ModBlocks.pyrite_ore.get());
+        tag(GaiaTags.Blocks.STORAGE_BLOCKS_SUGILITE).add(ModBlocks.sugilite_block.get());
+        tag(GaiaTags.Blocks.STORAGE_BLOCKS_HEMATITE).add(ModBlocks.hematite_block.get());
+        tag(GaiaTags.Blocks.STORAGE_BLOCKS_CINNABAR).add(ModBlocks.cinnabar_block.get());
+        tag(GaiaTags.Blocks.STORAGE_BLOCKS_LABRADORITE).add(ModBlocks.labradorite_block.get());
+        tag(GaiaTags.Blocks.STORAGE_BLOCKS_MOONSTONE).add(ModBlocks.moonstone_block.get());
+        tag(GaiaTags.Blocks.STORAGE_BLOCKS_RED_OPAL).add(ModBlocks.opal_block_red.get());
+        tag(GaiaTags.Blocks.STORAGE_BLOCKS_BLUE_OPAL).add(ModBlocks.opal_block_blue.get());
+        tag(GaiaTags.Blocks.STORAGE_BLOCKS_GREEN_OPAL).add(ModBlocks.opal_block_green.get());
+        tag(GaiaTags.Blocks.STORAGE_BLOCKS_WHITE_OPAL).add(ModBlocks.opal_block_white.get());
+        tag(GaiaTags.Blocks.STORAGE_BLOCKS_PYRITE).add(ModBlocks.pyrite_block.get());
+        tag(GaiaTags.Blocks.STORAGE_BLOCKS_TEKTITE).add(ModBlocks.tektite_block.get());
+        tag(GaiaTags.Blocks.STORAGE_BLOCKS_GOLDSTONE).add(ModBlocks.goldstone_block.get());
+        tag(GaiaTags.Blocks.STORAGE_BLOCKS_AURA_CRYSTAL).add(ModBlocks.aura_block.get());
+        tag(GaiaTags.Blocks.STORAGE_BLOCKS_BISMUTH).add(ModBlocks.bismuth_block.get());
+        tag(GaiaTags.Blocks.STORAGE_BLOCKS_IXIOLITE).add(ModBlocks.ixiolite_block.get());
+        tag(GaiaTags.Blocks.STORAGE_BLOCKS_PROUSTITE).add(ModBlocks.proustite_block.get());
+        tag(GaiaTags.Blocks.STORAGE_BLOCKS_EUCLASE).add(ModBlocks.euclase_block.get());
+        tag(GaiaTags.Blocks.STORAGE_BLOCKS_LEUCITE).add(ModBlocks.leucite_block.get());
+        tag(GaiaTags.Blocks.STORAGE_BLOCKS_CARNELIAN).add(ModBlocks.carnelian_block.get());
+        tag(GaiaTags.Blocks.STORAGE_BLOCKS_BENITOITE).add(ModBlocks.benitoite_block.get());
+        tag(GaiaTags.Blocks.STORAGE_BLOCKS_DIOPSIDE).add(ModBlocks.diopside_block.get());
+        tag(GaiaTags.Blocks.STORAGE_BLOCKS_CHALCEDONY).add(ModBlocks.chalcedony_block.get());
         addTag(GaiaTags.Blocks.TILES, TILES);
 
         addTag(Tags.Blocks.DIRT, DIRT);
-        getOrCreateBuilder(Tags.Blocks.GLASS).add(ModBlocks.foggy_glass.get(), ModBlocks.cloudy_glass.get());
-        getOrCreateBuilder(Tags.Blocks.ORES).addTags(
+        tag(Tags.Blocks.GLASS).add(ModBlocks.foggy_glass.get(), ModBlocks.cloudy_glass.get());
+        tag(Tags.Blocks.ORES).addTags(
                 GaiaTags.Blocks.ORES_SUGILITE, GaiaTags.Blocks.ORES_HEMATITE, GaiaTags.Blocks.ORES_CINNABAR, GaiaTags.Blocks.ORES_LABRADORITE, GaiaTags.Blocks.ORES_MOONSTONE,
                 GaiaTags.Blocks.ORES_RED_OPAL, GaiaTags.Blocks.ORES_BLUE_OPAL, GaiaTags.Blocks.ORES_GREEN_OPAL, GaiaTags.Blocks.ORES_WHITE_OPAL,GaiaTags.Blocks.ORES_PYRITE);
-        getOrCreateBuilder(Tags.Blocks.STORAGE_BLOCKS).addTags(
+        tag(Tags.Blocks.STORAGE_BLOCKS).addTags(
                 GaiaTags.Blocks.STORAGE_BLOCKS_SUGILITE, GaiaTags.Blocks.STORAGE_BLOCKS_HEMATITE, GaiaTags.Blocks.STORAGE_BLOCKS_CINNABAR,GaiaTags.Blocks.STORAGE_BLOCKS_LABRADORITE,
                 GaiaTags.Blocks.STORAGE_BLOCKS_MOONSTONE, GaiaTags.Blocks.STORAGE_BLOCKS_RED_OPAL, GaiaTags.Blocks.STORAGE_BLOCKS_BLUE_OPAL,GaiaTags.Blocks.STORAGE_BLOCKS_GREEN_OPAL,
                 GaiaTags.Blocks.STORAGE_BLOCKS_WHITE_OPAL, GaiaTags.Blocks.STORAGE_BLOCKS_PYRITE, GaiaTags.Blocks.STORAGE_BLOCKS_TEKTITE, GaiaTags.Blocks.STORAGE_BLOCKS_GOLDSTONE,
@@ -189,8 +189,8 @@ public class GaiaBlockTags extends GaiaBlockTagsProvider {
         addTag(GaiaTags.Blocks.BURNT_LOGS, BURNT_LOGS);
         addTag(GaiaTags.Blocks.BURNING_LOGS, BURNING_LOGS);
         addTag(GaiaTags.Blocks.AURA_LOGS, AURA_LOGS);
-        getOrCreateBuilder(GaiaTags.Blocks.STATIC).add(ModBlocks.gaia_stone.get(), ModBlocks.wasteland_stone.get());
-        getOrCreateBuilder(GaiaTags.Blocks.VOLCANIC).add(ModBlocks.gaia_stone.get(), ModBlocks.volcanic_rock.get());
+        tag(GaiaTags.Blocks.STATIC).add(ModBlocks.gaia_stone.get(), ModBlocks.wasteland_stone.get());
+        tag(GaiaTags.Blocks.VOLCANIC).add(ModBlocks.gaia_stone.get(), ModBlocks.volcanic_rock.get());
         addTag(GaiaTags.Blocks.GAIA_BRICKS, GAIA_BRICKS);
         addTag(GaiaTags.Blocks.AMETHYST_BRICKS, AMETHYST_BRICKS);
         addTag(GaiaTags.Blocks.COPAL_BRICKS, COPAL_BRICKS);

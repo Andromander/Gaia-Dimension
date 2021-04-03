@@ -18,7 +18,7 @@ public class BismuthUletrusRenderer<T extends BismuthUletrusEntity, M extends Bi
     }
 
     @Override
-    public ResourceLocation getEntityTexture(T entity) {
+    public ResourceLocation getTextureLocation(T entity) {
         return textureLoc;
     }
 }

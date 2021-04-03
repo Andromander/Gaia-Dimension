@@ -20,9 +20,9 @@ public class LargeCrateContainer extends Container {
 
     public LargeCrateContainer(int id, PlayerInventory playerInventoryIn, IInventory inventory) {
         super(ModContainers.LARGE_CRATE.get(), id);
-        assertInventorySize(inventory, 27);
+        checkContainerSize(inventory, 27);
         largeCrate = inventory;
-        inventory.openInventory(playerInventoryIn.player);
+        inventory.startOpen(playerInventoryIn.player);
 
         for (int rowCount = 0; rowCount < 6; ++rowCount) {
             for (int colCount = 0; colCount < 9; ++colCount) {
@@ -42,31 +42,31 @@ public class LargeCrateContainer extends Container {
     }
 
     @Override
-    public boolean canInteractWith(PlayerEntity playerIn) {
-        return this.largeCrate.isUsableByPlayer(playerIn);
+    public boolean stillValid(PlayerEntity playerIn) {
+        return this.largeCrate.stillValid(playerIn);
     }
 
     @Override
-    public ItemStack transferStackInSlot(PlayerEntity playerIn, int index) {
+    public ItemStack quickMoveStack(PlayerEntity playerIn, int index) {
         ItemStack itemstack = ItemStack.EMPTY;
-        Slot slot = this.inventorySlots.get(index);
+        Slot slot = this.slots.get(index);
 
-        if (slot != null && slot.getHasStack()) {
-            ItemStack itemstack1 = slot.getStack();
+        if (slot != null && slot.hasItem()) {
+            ItemStack itemstack1 = slot.getItem();
             itemstack = itemstack1.copy();
 
-            if (index < this.largeCrate.getSizeInventory()) {
-                if (!this.mergeItemStack(itemstack1, this.largeCrate.getSizeInventory(), this.inventorySlots.size(), true)) {
+            if (index < this.largeCrate.getContainerSize()) {
+                if (!this.moveItemStackTo(itemstack1, this.largeCrate.getContainerSize(), this.slots.size(), true)) {
                     return ItemStack.EMPTY;
                 }
-            } else if (!this.mergeItemStack(itemstack1, 0, this.largeCrate.getSizeInventory(), false)) {
+            } else if (!this.moveItemStackTo(itemstack1, 0, this.largeCrate.getContainerSize(), false)) {
                 return ItemStack.EMPTY;
             }
 
             if (itemstack1.isEmpty()) {
-                slot.putStack(ItemStack.EMPTY);
+                slot.set(ItemStack.EMPTY);
             } else {
-                slot.onSlotChanged();
+                slot.setChanged();
             }
         }
 
@@ -74,8 +74,8 @@ public class LargeCrateContainer extends Container {
     }
 
     @Override
-    public void onContainerClosed(PlayerEntity playerIn) {
-        super.onContainerClosed(playerIn);
-        this.largeCrate.closeInventory(playerIn);
+    public void removed(PlayerEntity playerIn) {
+        super.removed(playerIn);
+        this.largeCrate.stopOpen(playerIn);
     }
 }

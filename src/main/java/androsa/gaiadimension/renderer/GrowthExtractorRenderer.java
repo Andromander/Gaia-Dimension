@@ -18,7 +18,7 @@ public class GrowthExtractorRenderer<T extends MutantGrowthExtractorEntity, M ex
     }
 
     @Override
-    public ResourceLocation getEntityTexture(T entity) {
+    public ResourceLocation getTextureLocation(T entity) {
         return textureLoc;
     }
 }

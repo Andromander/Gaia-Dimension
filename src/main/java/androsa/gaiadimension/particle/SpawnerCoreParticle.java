@@ -3,7 +3,6 @@ package androsa.gaiadimension.particle;
 import net.minecraft.client.particle.*;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.particles.BasicParticleType;
-import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
@@ -16,17 +15,16 @@ public class SpawnerCoreParticle extends SpriteTexturedParticle {
 
     public SpawnerCoreParticle(ClientWorld world, double posX, double posY, double posZ, double motionX, double motionY, double motionZ, IAnimatedSprite sprite) {
         super(world, posX, posY, posZ, 0.5D - RANDOM.nextDouble(), motionY, 0.5D - RANDOM.nextDouble());
-//        this.motionY *= (double)0.1F;
         if (motionX == 0.0D && motionZ == 0.0D) {
-            this.motionX *= (double)0.2F;
-            this.motionZ *= (double)0.2F;
+            this.xd *= (double)0.2F;
+            this.zd *= (double)0.2F;
         }
-        this.motionY = 0.0F;
+        this.yd = 0.0F;
 
-        this.particleScale *= 0.75F;
-        this.maxAge = (int)(8.0D / (Math.random() * 0.8D + 0.2D));
-        this.canCollide = false;
-        this.selectSpriteWithAge(sprite);
+        this.quadSize *= 0.75F;
+        this.lifetime = (int)(8.0D / (Math.random() * 0.8D + 0.2D));
+        this.hasPhysics = false;
+        this.setSpriteFromAge(sprite);
     }
 
     @Override
@@ -34,30 +32,28 @@ public class SpawnerCoreParticle extends SpriteTexturedParticle {
         return IParticleRenderType.PARTICLE_SHEET_TRANSLUCENT;
     }
 
-    public int getBrightnessForRender(float partialTicks) {
+    public int getLightColor(float partialTicks) {
         return 15728880;
     }
 
     public void tick() {
-        this.prevPosX = this.posX;
-        this.prevPosY = this.posY;
-        this.prevPosZ = this.posZ;
-        if (this.age++ >= this.maxAge) {
-            this.setExpired();
+        this.xo = this.x;
+        this.yo = this.y;
+        this.zo = this.z;
+        if (this.age++ >= this.lifetime) {
+            this.remove();
         } else {
-//            this.motionY += 0.004D;
-            this.move(this.motionX, this.motionY, this.motionZ);
-            if (this.posY == this.prevPosY) {
-                this.motionX *= 1.1D;
-                this.motionZ *= 1.1D;
+            this.move(this.xd, this.yd, this.zd);
+            if (this.y == this.yo) {
+                this.xd *= 1.1D;
+                this.zd *= 1.1D;
             }
 
-            this.motionX *= (double)0.96F;
-//            this.motionY *= (double)0.96F;
-            this.motionZ *= (double)0.96F;
+            this.xd *= (double)0.96F;
+            this.zd *= (double)0.96F;
             if (this.onGround) {
-                this.motionX *= (double)0.7F;
-                this.motionZ *= (double)0.7F;
+                this.xd *= (double)0.7F;
+                this.zd *= (double)0.7F;
             }
         }
     }
@@ -70,7 +66,7 @@ public class SpawnerCoreParticle extends SpriteTexturedParticle {
             this.spriteSet = sprite;
         }
 
-        public Particle makeParticle(BasicParticleType type, ClientWorld world, double posX, double posY, double posZ, double r, double g, double b) {
+        public Particle createParticle(BasicParticleType type, ClientWorld world, double posX, double posY, double posZ, double r, double g, double b) {
             Particle particle = new SpawnerCoreParticle(world, posX, posY, posZ, r, g, b, this.spriteSet);
             particle.setColor((float)r, (float)g, (float)b);
             return particle;

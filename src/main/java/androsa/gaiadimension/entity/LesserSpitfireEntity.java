@@ -15,7 +15,7 @@ public class LesserSpitfireEntity extends MonsterEntity implements ISpitfireMob 
 
     public LesserSpitfireEntity(EntityType<? extends LesserSpitfireEntity> entity, World worldIn) {
         super(entity, worldIn);
-        this.experienceValue = 10;
+        this.xpReward = 10;
     }
 
     @Override
@@ -31,9 +31,9 @@ public class LesserSpitfireEntity extends MonsterEntity implements ISpitfireMob 
     }
 
     public static AttributeModifierMap.MutableAttribute registerAttributes() {
-        return MonsterEntity.func_234295_eP_()
-                .createMutableAttribute(Attributes.ATTACK_DAMAGE, 6.0D)
-                .createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.23000000417232513D);
+        return MonsterEntity.createMonsterAttributes()
+                .add(Attributes.ATTACK_DAMAGE, 6.0D)
+                .add(Attributes.MOVEMENT_SPEED, 0.23000000417232513D);
     }
 
     @Override
@@ -42,16 +42,16 @@ public class LesserSpitfireEntity extends MonsterEntity implements ISpitfireMob 
     }
 
     @Override
-    public boolean canSpawn(IWorld world, SpawnReason reason) {
+    public boolean checkSpawnRules(IWorld world, SpawnReason reason) {
         return true;
     }
 
     public static boolean canSpawnHere(EntityType<LesserSpitfireEntity> entity, IServerWorld world, SpawnReason spawn, BlockPos pos, Random random) {
         if (world.getDifficulty() != Difficulty.PEACEFUL) {
             if (spawn == SpawnReason.SPAWNER) {
-                return isValidLightLevel(world, pos, random);
+                return isDarkEnoughToSpawn(world, pos, random);
             } else {
-                return world.getBlockState(pos.down()).canEntitySpawn(world, pos.down(), entity) && world.getLightFor(LightType.SKY, pos) > 8;
+                return world.getBlockState(pos.below()).isValidSpawn(world, pos.below(), entity) && world.getBrightness(LightType.SKY, pos) > 8;
             }
         }
         return false;

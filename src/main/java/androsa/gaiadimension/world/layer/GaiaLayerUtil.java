@@ -16,28 +16,28 @@ public class GaiaLayerUtil {
 
     private static Registry<Biome> biomeRegistry;
 
-    static int getBiomeId(RegistryKey<Biome> key) {
-        Biome biome = biomeRegistry.getValueForKey(key);
+    static int getBiomeId(RegistryKey<Biome> define) {
+        Biome biome = biomeRegistry.get(define);
         return biomeRegistry.getId(biome);
     }
 
     public static <T extends IArea, C extends IExtendedNoiseRandom<T>> IAreaFactory<T> makeLayers(LongFunction<C> contextFactory, Registry<Biome> registry) {
         biomeRegistry = registry;
 
-        IAreaFactory<T> biomes = new GaiaBiomesLayer().apply(contextFactory.apply(1L));
+        IAreaFactory<T> biomes = new GaiaBiomesLayer().run(contextFactory.apply(1L));
 
-        biomes = ZoomLayer.NORMAL.apply(contextFactory.apply(1000), biomes);
-        biomes = ZoomLayer.NORMAL.apply(contextFactory.apply(1001), biomes);
-        biomes = ZoomLayer.NORMAL.apply(contextFactory.apply(1002), biomes);
-        biomes = ZoomLayer.NORMAL.apply(contextFactory.apply(1003), biomes);
-        biomes = ZoomLayer.NORMAL.apply(contextFactory.apply(1004), biomes);
-        biomes = ZoomLayer.NORMAL.apply(contextFactory.apply(1005), biomes);
+        biomes = ZoomLayer.NORMAL.run(contextFactory.apply(1000), biomes);
+        biomes = ZoomLayer.NORMAL.run(contextFactory.apply(1001), biomes);
+        biomes = ZoomLayer.NORMAL.run(contextFactory.apply(1002), biomes);
+        biomes = ZoomLayer.NORMAL.run(contextFactory.apply(1003), biomes);
+        biomes = ZoomLayer.NORMAL.run(contextFactory.apply(1004), biomes);
+        biomes = ZoomLayer.NORMAL.run(contextFactory.apply(1005), biomes);
 
-        biomes = LayerUtil.repeat(1000L, ZoomLayer.NORMAL, biomes, 1, contextFactory);
+        biomes = LayerUtil.zoom(1000L, ZoomLayer.NORMAL, biomes, 1, contextFactory);
 
-        IAreaFactory<T> riverLayer = MineralRiverLayer.INSTANCE.apply(contextFactory.apply(1L), biomes);
-        riverLayer = SmoothLayer.INSTANCE.apply(contextFactory.apply(7000L), riverLayer);
-        biomes = MineralRiverMixLayer.INSTANCE.apply(contextFactory.apply(100L), biomes, riverLayer);
+        IAreaFactory<T> riverLayer = MineralRiverLayer.INSTANCE.run(contextFactory.apply(1L), biomes);
+        riverLayer = SmoothLayer.INSTANCE.run(contextFactory.apply(7000L), riverLayer);
+        biomes = MineralRiverMixLayer.INSTANCE.run(contextFactory.apply(100L), biomes, riverLayer);
 
         return biomes;
     }

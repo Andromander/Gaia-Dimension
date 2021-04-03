@@ -15,13 +15,13 @@ public class RuggedLurmorusEntity extends CreatureEntity {
 
     public RuggedLurmorusEntity(EntityType<? extends RuggedLurmorusEntity> entity, World world) {
         super(entity, world);
-        this.experienceValue = 5;
+        this.xpReward = 5;
     }
 
     public static AttributeModifierMap.MutableAttribute registerAttributes() {
-        return MobEntity.func_233666_p_()
-                .createMutableAttribute(Attributes.MAX_HEALTH, 150.0D)
-                .createMutableAttribute(Attributes.KNOCKBACK_RESISTANCE, 1.0D);
+        return MobEntity.createMobAttributes()
+                .add(Attributes.MAX_HEALTH, 150.0D)
+                .add(Attributes.KNOCKBACK_RESISTANCE, 1.0D);
     }
 
     @Override
@@ -40,6 +40,6 @@ public class RuggedLurmorusEntity extends CreatureEntity {
     }
 
     public static boolean canSpawnHere(EntityType<RuggedLurmorusEntity> entity, IWorld world, SpawnReason spawn, BlockPos pos, Random random) {
-        return world.getBlockState(pos.down()).canEntitySpawn(world, pos.down(), entity) && world.getLightSubtracted(pos, 0) > 8;
+        return world.getBlockState(pos.below()).isValidSpawn(world, pos.below(), entity) && world.getRawBrightness(pos, 0) > 8;
     }
 }

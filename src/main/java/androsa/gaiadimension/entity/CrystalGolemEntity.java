@@ -21,14 +21,14 @@ public class CrystalGolemEntity extends GolemEntity {
 
     public CrystalGolemEntity(EntityType<? extends CrystalGolemEntity> entity, World world) {
         super(entity, world);
-        this.experienceValue = 15;
+        this.xpReward = 15;
     }
 
     public static AttributeModifierMap.MutableAttribute registerAttributes() {
-        return MobEntity.func_233666_p_()
-                .createMutableAttribute(Attributes.MAX_HEALTH, 150.0D)
-                .createMutableAttribute(Attributes.KNOCKBACK_RESISTANCE, 1.0D)
-                .createMutableAttribute(Attributes.ARMOR, 2.0D);
+        return MobEntity.createMobAttributes()
+                .add(Attributes.MAX_HEALTH, 150.0D)
+                .add(Attributes.KNOCKBACK_RESISTANCE, 1.0D)
+                .add(Attributes.ARMOR, 2.0D);
     }
 
     @Override
@@ -44,13 +44,13 @@ public class CrystalGolemEntity extends GolemEntity {
     }
 
     @Override
-    public boolean attackEntityAsMob(Entity entityIn) {
-        this.world.setEntityState(this, (byte)4);
-        boolean flag = entityIn.attackEntityFrom(DamageSource.causeMobDamage(this), (float)(6 + this.rand.nextInt(15)));
+    public boolean doHurtTarget(Entity entityIn) {
+        this.level.broadcastEntityEvent(this, (byte)4);
+        boolean flag = entityIn.hurt(DamageSource.mobAttack(this), (float)(6 + this.random.nextInt(15)));
 
         if (flag) {
-            entityIn.setMotion(entityIn.getMotion().add(0.0D, 0.4D, 0.0D));
-            this.applyEnchantments(this, entityIn);
+            entityIn.setDeltaMovement(entityIn.getDeltaMovement().add(0.0D, 0.4D, 0.0D));
+            this.doEnchantDamageEffects(this, entityIn);
         }
 
         return flag;
@@ -58,15 +58,15 @@ public class CrystalGolemEntity extends GolemEntity {
 
     @Override
     protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
-        return SoundEvents.ENTITY_GENERIC_HURT;
+        return SoundEvents.GENERIC_HURT;
     }
 
     @Override
     protected SoundEvent getDeathSound() {
-        return SoundEvents.ENTITY_GENERIC_DEATH;
+        return SoundEvents.GENERIC_DEATH;
     }
 
     public static boolean canSpawnHere(EntityType<CrystalGolemEntity> entity, IWorld world, SpawnReason spawn, BlockPos pos, Random random) {
-        return spawn == SpawnReason.SPAWNER || world.getBlockState(pos.down()).canEntitySpawn(world, pos.down(), entity) && world.getLightSubtracted(pos, 0) > 8;
+        return spawn == SpawnReason.SPAWNER || world.getBlockState(pos.below()).isValidSpawn(world, pos.below(), entity) && world.getRawBrightness(pos, 0) > 8;
     }
 }

@@ -26,7 +26,7 @@ public abstract class GaiaBlockModelProvider extends BlockModelProvider {
 
     public BlockModelBuilder flowerPot(RegistryObject<FlowerPotBlock> plant) {
         return withExistingParent("potted_" + plant.getId().getPath(), mcLoc("block/flower_pot_cross"))
-                .texture("plant", "block/" + plant.get().getFlower().getRegistryName().getPath());
+                .texture("plant", "block/" + plant.get().getContent().getRegistryName().getPath());
     }
 
     public BlockModelBuilder basicLayered(RegistryObject<Block> block, ResourceLocation bottom, ResourceLocation top) {

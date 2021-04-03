@@ -18,7 +18,7 @@ public class LesserShockshooterRenderer<T extends LesserShockshooterEntity, M ex
     }
 
     @Override
-    public ResourceLocation getEntityTexture(T entity) {
+    public ResourceLocation getTextureLocation(T entity) {
         return textureLoc;
     }
 }

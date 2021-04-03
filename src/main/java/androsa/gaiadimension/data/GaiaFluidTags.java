@@ -15,7 +15,7 @@ public class GaiaFluidTags extends GaiaFluidTagsProvider {
     }
 
     @Override
-    protected void registerTags() {
+    protected void addTags() {
         addTag(GaiaTags.Fluids.MINERAL_WATER, ImmutableList.of(ModFluids.mineral_water_still, ModFluids.mineral_water_flow));
         addTag(GaiaTags.Fluids.SUPERHOT_MAGMA, ImmutableList.of(ModFluids.superhot_magma_still, ModFluids.superhot_magma_flow));
         addTag(GaiaTags.Fluids.SWEET_MUCK, ImmutableList.of(ModFluids.sweet_muck_still, ModFluids.sweet_muck_flow));

@@ -19,7 +19,7 @@ public class AncientLagrahkRenderer<T extends AncientLagrahkEntity, M extends An
     }
 
     @Override
-    public ResourceLocation getEntityTexture(T entity) {
+    public ResourceLocation getTextureLocation(T entity) {
         return textureLoc;
     }
 }

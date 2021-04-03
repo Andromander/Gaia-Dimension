@@ -21,7 +21,7 @@ public class AuraTreeFeature<T extends GaiaTreeFeatureConfig> extends GaiaTreeFe
     @Override
     public boolean generate(ISeedReader worldIn, Random rand, BlockPos position, Set<BlockPos> logPos, Set<BlockPos> leavesPos, MutableBoundingBox boundingBox, T config) {
         int baseHeight = rand.nextInt(3) + rand.nextInt(3) + config.minHeight;
-        boolean canGrow = true;
+        boolean isValidBonemealTarget = true;
 
         if (position.getY() >= 1 && position.getY() + baseHeight + 1 <= 256) {
             for (int yMark = position.getY(); yMark <= position.getY() + 1 + baseHeight; ++yMark) {
@@ -37,23 +37,23 @@ public class AuraTreeFeature<T extends GaiaTreeFeatureConfig> extends GaiaTreeFe
 
                 BlockPos.Mutable mutablePos = new BlockPos.Mutable();
 
-                for (int xMark = position.getX() - offset; xMark <= position.getX() + offset && canGrow; ++xMark) {
-                    for (int zMark = position.getZ() - offset; zMark <= position.getZ() + offset && canGrow; ++zMark) {
+                for (int xMark = position.getX() - offset; xMark <= position.getX() + offset && isValidBonemealTarget; ++xMark) {
+                    for (int zMark = position.getZ() - offset; zMark <= position.getZ() + offset && isValidBonemealTarget; ++zMark) {
                         if (yMark >= 0 && yMark < 256) {
-                            if (!isReplaceableAt(worldIn,mutablePos.setPos(xMark, yMark, zMark))) {
-                                canGrow = false;
+                            if (!validTreePos(worldIn,mutablePos.set(xMark, yMark, zMark))) {
+                                isValidBonemealTarget = false;
                             }
                         } else {
-                            canGrow = false;
+                            isValidBonemealTarget = false;
                         }
                     }
                 }
             }
 
-            if (!canGrow) {
+            if (!isValidBonemealTarget) {
                 return false;
-            } else if (isSoil(worldIn, position.down(), config.getSapling(rand, position)) && position.getY() < worldIn.getHeight() - baseHeight - 1) {
-                this.setBlockState(worldIn, position.down(), ModBlocks.light_soil.get().getDefaultState(), boundingBox);
+            } else if (isSoil(worldIn, position.below(), config.getSapling(rand, position)) && position.getY() < worldIn.getHeight() - baseHeight - 1) {
+                this.setBlockState(worldIn, position.below(), ModBlocks.light_soil.get().defaultBlockState(), boundingBox);
                 int posX = position.getX();
                 int posZ = position.getZ();
                 int k1 = 0;
@@ -86,10 +86,10 @@ public class AuraTreeFeature<T extends GaiaTreeFeatureConfig> extends GaiaTreeFe
                 for (int j3 = -1; j3 <= 1; ++j3) {
                     for (int i4 = -1; i4 <= 1; ++i4) {
                         if (Math.abs(j3) != 1 || Math.abs(i4) != 1){
-                            this.setLeavesBlockState(worldIn, rand, blockpos2.add(j3 - 3, 0, i4), leavesPos, boundingBox, config);
-                            this.setLeavesBlockState(worldIn, rand, blockpos2.add(j3 + 3, 0, i4), leavesPos, boundingBox, config);
-                            this.setLeavesBlockState(worldIn, rand, blockpos2.add(j3, 0, i4 - 3), leavesPos, boundingBox, config);
-                            this.setLeavesBlockState(worldIn, rand, blockpos2.add(j3, 0, i4 + 3), leavesPos, boundingBox, config);
+                            this.setLeavesBlockState(worldIn, rand, blockpos2.offset(j3 - 3, 0, i4), leavesPos, boundingBox, config);
+                            this.setLeavesBlockState(worldIn, rand, blockpos2.offset(j3 + 3, 0, i4), leavesPos, boundingBox, config);
+                            this.setLeavesBlockState(worldIn, rand, blockpos2.offset(j3, 0, i4 - 3), leavesPos, boundingBox, config);
+                            this.setLeavesBlockState(worldIn, rand, blockpos2.offset(j3, 0, i4 + 3), leavesPos, boundingBox, config);
                         }
                     }
                 }
@@ -99,15 +99,15 @@ public class AuraTreeFeature<T extends GaiaTreeFeatureConfig> extends GaiaTreeFe
                 for (int j3 = -2; j3 <= 2; ++j3) {
                     for (int i4 = -2; i4 <= 2; ++i4) {
                         if (Math.abs(j3) != 2 || Math.abs(i4) != 2){
-                            this.setLeavesBlockState(worldIn, rand, blockpos3.add(j3 - 3, 0, i4), leavesPos, boundingBox, config);
-                            this.setLeavesBlockState(worldIn, rand, blockpos3.add(j3 + 3, 0, i4), leavesPos, boundingBox, config);
-                            this.setLeavesBlockState(worldIn, rand, blockpos3.add(j3, 0, i4 - 3), leavesPos, boundingBox, config);
-                            this.setLeavesBlockState(worldIn, rand, blockpos3.add(j3, 0, i4 + 3), leavesPos, boundingBox, config);
+                            this.setLeavesBlockState(worldIn, rand, blockpos3.offset(j3 - 3, 0, i4), leavesPos, boundingBox, config);
+                            this.setLeavesBlockState(worldIn, rand, blockpos3.offset(j3 + 3, 0, i4), leavesPos, boundingBox, config);
+                            this.setLeavesBlockState(worldIn, rand, blockpos3.offset(j3, 0, i4 - 3), leavesPos, boundingBox, config);
+                            this.setLeavesBlockState(worldIn, rand, blockpos3.offset(j3, 0, i4 + 3), leavesPos, boundingBox, config);
                         }
                     }
                 }
 
-                this.setLeavesBlockState(worldIn, rand, blockpos3.up(), leavesPos, boundingBox, config);
+                this.setLeavesBlockState(worldIn, rand, blockpos3.above(), leavesPos, boundingBox, config);
 
                 return true;
             } else {

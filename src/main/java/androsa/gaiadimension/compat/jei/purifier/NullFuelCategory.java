@@ -33,7 +33,7 @@ public class NullFuelCategory extends PurifierRecipeCategory<NullFuelRecipe> {
                 .setTextureSize(14, 14)
                 .build();
 
-        localizedName = I18n.format("gui.gaiadimension.category.null_fuel");
+        localizedName = I18n.get("gui.gaiadimension.category.null_fuel");
     }
 
     @Override
@@ -81,6 +81,6 @@ public class NullFuelCategory extends PurifierRecipeCategory<NullFuelRecipe> {
         flame.draw(stack, 1, 0);
         Minecraft minecraft = Minecraft.getInstance();
         String smeltCountString = recipe.getNullCountString();
-        minecraft.fontRenderer.drawString(stack, smeltCountString, 24.0F, 13.0F, -8355712);
+        minecraft.font.draw(stack, smeltCountString, 24.0F, 13.0F, -8355712);
     }
 }

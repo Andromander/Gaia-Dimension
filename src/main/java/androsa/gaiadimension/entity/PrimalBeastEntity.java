@@ -22,17 +22,17 @@ public class PrimalBeastEntity extends MonsterEntity {
 
     public PrimalBeastEntity(EntityType<? extends PrimalBeastEntity> entity, World world) {
         super(entity, world);
-        this.setPathPriority(PathNodeType.LAVA, 8.0F);
-        this.setPathPriority(PathNodeType.DANGER_FIRE, 0.0F);
-        this.setPathPriority(PathNodeType.DAMAGE_FIRE, 0.0F);
-        this.experienceValue = 15;
+        this.setPathfindingMalus(PathNodeType.LAVA, 8.0F);
+        this.setPathfindingMalus(PathNodeType.DANGER_FIRE, 0.0F);
+        this.setPathfindingMalus(PathNodeType.DAMAGE_FIRE, 0.0F);
+        this.xpReward = 15;
     }
 
     public static AttributeModifierMap.MutableAttribute registerAttributes() {
-        return MonsterEntity.func_234295_eP_()
-                .createMutableAttribute(Attributes.MAX_HEALTH, 150.0D)
-                .createMutableAttribute(Attributes.ATTACK_DAMAGE, 8.0D)
-                .createMutableAttribute(Attributes.KNOCKBACK_RESISTANCE, 1.0D);
+        return MonsterEntity.createMonsterAttributes()
+                .add(Attributes.MAX_HEALTH, 150.0D)
+                .add(Attributes.ATTACK_DAMAGE, 8.0D)
+                .add(Attributes.KNOCKBACK_RESISTANCE, 1.0D);
     }
 
     @Override
@@ -48,22 +48,22 @@ public class PrimalBeastEntity extends MonsterEntity {
 
     @Override
     protected SoundEvent getAmbientSound() {
-        return SoundEvents.ENTITY_BLAZE_AMBIENT;
+        return SoundEvents.BLAZE_AMBIENT;
     }
 
     @Override
     protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
-        return SoundEvents.ENTITY_BLAZE_HURT;
+        return SoundEvents.BLAZE_HURT;
     }
 
     @Override
     protected SoundEvent getDeathSound() {
-        return SoundEvents.ENTITY_BLAZE_DEATH;
+        return SoundEvents.BLAZE_DEATH;
     }
 
     @Override
-    protected float getSoundPitch() {
-        return (this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F + 0.6F;
+    protected float getVoicePitch() {
+        return (this.random.nextFloat() - this.random.nextFloat()) * 0.2F + 0.6F;
     }
 
     @Override
@@ -76,19 +76,13 @@ public class PrimalBeastEntity extends MonsterEntity {
         return 1.0F;
     }
 
-//    @Override
-//    @OnlyIn(Dist.CLIENT)
-//    public int getBrightnessForRender() {
-//        return 15728880;
-//    }
-
     @Override
-    public float getBlockPathWeight(BlockPos pos) {
+    public float getWalkTargetValue(BlockPos pos) {
         return 0.0F;
     }
 
     @Override
-    public boolean canSpawn(IWorld world, SpawnReason reason) {
+    public boolean checkSpawnRules(IWorld world, SpawnReason reason) {
         return true;
     }
 
@@ -97,17 +91,17 @@ public class PrimalBeastEntity extends MonsterEntity {
     }
 
     @Override
-    public boolean isNotColliding(IWorldReader world) {
-        return world.checkNoEntityCollision(this);
+    public boolean checkSpawnObstruction(IWorldReader world) {
+        return world.isUnobstructed(this);
     }
 
     @Override
-    public boolean attackEntityAsMob(Entity entityIn) {
-        boolean attacked = super.attackEntityAsMob(entityIn);
+    public boolean doHurtTarget(Entity entityIn) {
+        boolean attacked = super.doHurtTarget(entityIn);
 
         if (attacked) {
-            float diff = this.world.getDifficultyForLocation(this.getPosition()).getAdditionalDifficulty();
-            entityIn.setFire(2 * (int)diff);
+            float diff = this.level.getCurrentDifficultyAt(this.blockPosition()).getEffectiveDifficulty();
+            entityIn.setSecondsOnFire(2 * (int)diff);
         }
         return attacked;
     }

@@ -15,14 +15,14 @@ import java.util.List;
 public class ApexPredatorSwordItem extends SwordItem {
 
     public ApexPredatorSwordItem() {
-        super(GaiaToolMaterials.TIGER_EYE, 3, -3.2F, new Properties().rarity(Rarity.RARE).group(GaiaItemGroups.GAIA_TOOLS));
+        super(GaiaToolMaterials.TIGER_EYE, 3, -3.2F, new Properties().rarity(Rarity.RARE).tab(GaiaItemGroups.GAIA_TOOLS));
     }
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public void addInformation(ItemStack stack, World world, List<ITextComponent> tooltips, ITooltipFlag flags) {
-        super.addInformation(stack, world, tooltips, flags);
-        tooltips.add(new TranslationTextComponent(getTranslationKey() + ".tooltip"));
+    public void appendHoverText(ItemStack stack, World world, List<ITextComponent> tooltips, ITooltipFlag flags) {
+        super.appendHoverText(stack, world, tooltips, flags);
+        tooltips.add(new TranslationTextComponent(getDescriptionId() + ".tooltip"));
     }
 
     //TODO: Deal Bleeding damage/effect

@@ -13,9 +13,9 @@ public enum MineralRiverMixLayer implements IAreaTransformer2, IDimOffset0Transf
     MineralRiverMixLayer() { }
 
     @Override
-    public int apply(INoiseRandom random, IArea area1, IArea area2, int val1, int val2) {
-        int i = area1.getValue(this.getOffsetX(val1), this.getOffsetZ(val2));
-        int j = area2.getValue(this.getOffsetX(val1), this.getOffsetZ(val2));
+    public int applyPixel(INoiseRandom random, IArea area1, IArea area2, int val1, int val2) {
+        int i = area1.get(this.getParentX(val1), this.getParentY(val2));
+        int j = area2.get(this.getParentX(val1), this.getParentY(val2));
 
         if (i == GaiaLayerUtil.getBiomeId(ModBiomes.mineral_reservoir)) {
             return i;

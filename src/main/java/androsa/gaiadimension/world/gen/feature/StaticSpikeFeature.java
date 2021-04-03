@@ -16,23 +16,23 @@ import java.util.Random;
 @ParametersAreNonnullByDefault
 public class StaticSpikeFeature<T extends FeatureHeightConfig> extends Feature<T> {
 
-    private final BlockState block = ModBlocks.charged_mineral.get().getDefaultState();
+    private final BlockState block = ModBlocks.charged_mineral.get().defaultBlockState();
 
     public StaticSpikeFeature(Codec<T> configIn) {
         super(configIn);
     }
 
     @Override
-    public boolean generate(ISeedReader worldIn, ChunkGenerator generator, Random rand, BlockPos position, T config) {
+    public boolean place(ISeedReader worldIn, ChunkGenerator generator, Random rand, BlockPos position, T config) {
         int height = config.startHeight + rand.nextInt(4);
         boolean flag = true;
 
         for (int cx = 0; cx < 3; cx++) {
             for (int cz = 0; cz < 3; cz++) {
-                BlockPos pos1 = position.add(cx - 1, 0, cz - 1);
+                BlockPos pos1 = position.offset(cx - 1, 0, cz - 1);
 
-                if (worldIn.isBlockLoaded(pos1)) {
-                    Block blockBelow = worldIn.getBlockState(pos1.down()).getBlock();
+                if (worldIn.hasChunkAt(pos1)) {
+                    Block blockBelow = worldIn.getBlockState(pos1.below()).getBlock();
 
                     if (blockBelow != ModBlocks.wasteland_stone.get() && blockBelow != ModBlocks.static_stone.get()) {
                         flag = false;
@@ -45,19 +45,19 @@ public class StaticSpikeFeature<T extends FeatureHeightConfig> extends Feature<T
             return false;
         } else {
             for (int i = 0; i < height; i++) {
-                worldIn.setBlockState(position.up(i), this.block, 2);
+                worldIn.setBlock(position.above(i), this.block, 2);
 
                 if (i < height / 2) {
-                    worldIn.setBlockState(position.add(0, i, -1), this.block, 2);
-                    worldIn.setBlockState(position.add(0, i, 1), this.block, 2);
-                    worldIn.setBlockState(position.add(-1, i, 0), this.block, 2);
-                    worldIn.setBlockState(position.add(1, i, 0), this.block, 2);
+                    worldIn.setBlock(position.offset(0, i, -1), this.block, 2);
+                    worldIn.setBlock(position.offset(0, i, 1), this.block, 2);
+                    worldIn.setBlock(position.offset(-1, i, 0), this.block, 2);
+                    worldIn.setBlock(position.offset(1, i, 0), this.block, 2);
 
                     if (i < height / 4) {
-                        worldIn.setBlockState(position.add(1, i, -1), this.block, 2);
-                        worldIn.setBlockState(position.add(1, i, 1), this.block, 2);
-                        worldIn.setBlockState(position.add(-1, i, -1), this.block, 2);
-                        worldIn.setBlockState(position.add(-1, i, 1), this.block, 2);
+                        worldIn.setBlock(position.offset(1, i, -1), this.block, 2);
+                        worldIn.setBlock(position.offset(1, i, 1), this.block, 2);
+                        worldIn.setBlock(position.offset(-1, i, -1), this.block, 2);
+                        worldIn.setBlock(position.offset(-1, i, 1), this.block, 2);
                     }
                 }
             }

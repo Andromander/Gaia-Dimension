@@ -16,24 +16,24 @@ import java.util.Random;
 @ParametersAreNonnullByDefault
 public class AuraShootsFeature<T extends NoFeatureConfig> extends Feature<T> {
 
-    private static final BlockState AURA_SHOOT = ModBlocks.aura_shoot.get().getDefaultState();
+    private static final BlockState AURA_SHOOT = ModBlocks.aura_shoot.get().defaultBlockState();
 
     public AuraShootsFeature(Codec<T> configIn) {
         super(configIn);
     }
 
     @Override
-    public boolean generate(ISeedReader worldIn, ChunkGenerator generator, Random rand, BlockPos position, T config) {
+    public boolean place(ISeedReader worldIn, ChunkGenerator generator, Random rand, BlockPos position, T config) {
 
         for (int i = 0; i < 20; ++i) {
-            BlockPos blockpos = position.add(rand.nextInt(4) - rand.nextInt(4), 0, rand.nextInt(4) - rand.nextInt(4));
+            BlockPos blockpos = position.offset(rand.nextInt(4) - rand.nextInt(4), 0, rand.nextInt(4) - rand.nextInt(4));
 
-            if (worldIn.isAirBlock(blockpos)) {
+            if (worldIn.isEmptyBlock(blockpos)) {
                     int j = 7 + rand.nextInt(5);
 
                     for (int k = 0; k < j; ++k) {
-                        if (AURA_SHOOT.isValidPosition(worldIn, blockpos)) {
-                            worldIn.setBlockState(blockpos.up(k), AURA_SHOOT.with(AuraShootBlock.IS_TOP, k + 1 == j), 2);
+                        if (AURA_SHOOT.canSurvive(worldIn, blockpos)) {
+                            worldIn.setBlock(blockpos.above(k), AURA_SHOOT.setValue(AuraShootBlock.IS_TOP, k + 1 == j), 2);
                         }
                     }
                 }

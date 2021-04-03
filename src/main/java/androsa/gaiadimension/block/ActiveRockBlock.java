@@ -14,11 +14,12 @@ public class ActiveRockBlock extends Block {
         super(props);
     }
 
-    public void onEntityWalk(World worldIn, BlockPos pos, Entity entityIn) {
+    @Override
+    public void stepOn(World worldIn, BlockPos pos, Entity entityIn) {
         if (entityIn instanceof LivingEntity && !EnchantmentHelper.hasFrostWalker((LivingEntity) entityIn)) {
-            entityIn.attackEntityFrom(DamageSource.MAGIC, 2.0F);
+            entityIn.hurt(DamageSource.MAGIC, 2.0F);
         }
 
-        super.onEntityWalk(worldIn, pos, entityIn);
+        super.stepOn(worldIn, pos, entityIn);
     }
 }

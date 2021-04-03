@@ -17,14 +17,14 @@ public class BlueHowliteWolfEntity extends MonsterEntity {
     //TODO: Flesh out and revise
     public BlueHowliteWolfEntity(EntityType<? extends BlueHowliteWolfEntity> entity, World world) {
         super(entity, world);
-        this.experienceValue = 30;
+        this.xpReward = 30;
     }
 
     public static AttributeModifierMap.MutableAttribute registerAttributes() {
-        return MonsterEntity.func_234295_eP_()
-                .createMutableAttribute(Attributes.MAX_HEALTH, 100.0D)
-                .createMutableAttribute(Attributes.ATTACK_DAMAGE, 6.0D)
-                .createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.9D);
+        return MonsterEntity.createMonsterAttributes()
+                .add(Attributes.MAX_HEALTH, 100.0D)
+                .add(Attributes.ATTACK_DAMAGE, 6.0D)
+                .add(Attributes.MOVEMENT_SPEED, 0.9D);
     }
 
     @Override
@@ -36,7 +36,7 @@ public class BlueHowliteWolfEntity extends MonsterEntity {
         this.goalSelector.addGoal(1, new RandomWalkingGoal(this, 0.5D));
         this.goalSelector.addGoal(4, new LeapAtTargetGoal(this, 0.4F));
         this.goalSelector.addGoal(5, new MeleeAttackGoal(this, 1.0D, true));
-        this.targetSelector.addGoal(1, new HurtByTargetGoal(this).setCallsForHelp(HowliteWolfEntity.class));
+        this.targetSelector.addGoal(1, new HurtByTargetGoal(this).setAlertOthers(HowliteWolfEntity.class));
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, false));
     }
 
@@ -46,21 +46,21 @@ public class BlueHowliteWolfEntity extends MonsterEntity {
     }
 
     @Override
-    public int getMaxSpawnedInChunk() {
+    public int getMaxSpawnClusterSize() {
         return 1;
     }
 
     @Override
-    public boolean canSpawn(IWorld world, SpawnReason reason) {
+    public boolean checkSpawnRules(IWorld world, SpawnReason reason) {
         return true;
     }
 
     public static boolean canSpawnHere(EntityType<BlueHowliteWolfEntity> entity, IServerWorld world, SpawnReason spawn, BlockPos pos, Random random) {
         if (world.getDifficulty() != Difficulty.PEACEFUL) {
             if (spawn == SpawnReason.SPAWNER) {
-                return isValidLightLevel(world, pos, random);
+                return isDarkEnoughToSpawn(world, pos, random);
             } else {
-                return world.getBlockState(pos.down()).canEntitySpawn(world, pos.down(), entity) && world.getLightFor(LightType.SKY, pos) > 8;
+                return world.getBlockState(pos.below()).isValidSpawn(world, pos.below(), entity) && world.getBrightness(LightType.SKY, pos) > 8;
             }
         }
         return false;
@@ -69,7 +69,7 @@ public class BlueHowliteWolfEntity extends MonsterEntity {
     //Keep this commented out until later
 /*
     @Override
-    public boolean isNonBoss() {
+    public boolean canChangeDimensions() {
         return false;
     }
 */

@@ -49,7 +49,7 @@ public class MalachiteDegradeProcessor extends StructureProcessor {
         Block block = state.getBlock();
 
         if (block == BRICKS)
-            return random.nextFloat() > integrity ? newInfo : new Template.BlockInfo(newInfo.pos, BRICK_DECAY.get(random.nextInt(BRICK_DECAY.size())).get().getDefaultState(), null);
+            return random.nextFloat() > integrity ? newInfo : new Template.BlockInfo(newInfo.pos, BRICK_DECAY.get(random.nextInt(BRICK_DECAY.size())).get().defaultBlockState(), null);
         if (block == SLAB)
             return random.nextFloat() > integrity ? newInfo : new Template.BlockInfo(newInfo.pos, translateState(state, SLAB_DECAY.get(random.nextInt(SLAB_DECAY.size())).get(), SlabBlock.TYPE, SlabBlock.WATERLOGGED), null);
         if (block == STAIRS)
@@ -59,13 +59,13 @@ public class MalachiteDegradeProcessor extends StructureProcessor {
     }
 
     protected static BlockState translateState(BlockState stateIn, Block blockOut, Property<?>... properties) {
-        BlockState stateOut = blockOut.getDefaultState();
+        BlockState stateOut = blockOut.defaultBlockState();
         for (Property<?> property : properties)
             stateOut = copyValue(stateIn, stateOut, property);
         return stateOut;
     }
 
     private static <T extends Comparable<T>> BlockState copyValue(BlockState from, BlockState to, Property<T> property) {
-        return to.with(property, from.get(property));
+        return to.setValue(property, from.getValue(property));
     }
 }

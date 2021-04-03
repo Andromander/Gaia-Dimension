@@ -51,16 +51,16 @@ public class SmallCrateBlock extends Block {
 
     @Override
     @Deprecated
-    public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
-        if (worldIn.isRemote) {
+    public ActionResultType use(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
+        if (worldIn.isClientSide()) {
             return ActionResultType.SUCCESS;
         } else if (player.isSpectator()) {
             return ActionResultType.SUCCESS;
         } else {
-            TileEntity tileentity = worldIn.getTileEntity(pos);
+            TileEntity tileentity = worldIn.getBlockEntity(pos);
             if (tileentity instanceof SmallCrateTileEntity) {
                 SmallCrateTileEntity smallcratetileentity = (SmallCrateTileEntity)tileentity;
-                player.openContainer(smallcratetileentity);
+                player.openMenu(smallcratetileentity);
                 return ActionResultType.SUCCESS;
             } else {
                 return ActionResultType.PASS;
@@ -69,41 +69,41 @@ public class SmallCrateBlock extends Block {
     }
 
     @Override
-    public void onBlockHarvested(World worldIn, BlockPos pos, BlockState state, PlayerEntity player) {
-        TileEntity tileentity = worldIn.getTileEntity(pos);
+    public void playerWillDestroy(World worldIn, BlockPos pos, BlockState state, PlayerEntity player) {
+        TileEntity tileentity = worldIn.getBlockEntity(pos);
         if (tileentity instanceof SmallCrateTileEntity) {
             SmallCrateTileEntity smallcratetileentity = (SmallCrateTileEntity)tileentity;
-            if (!worldIn.isRemote && player.isCreative() && !smallcratetileentity.isEmpty()) {
+            if (!worldIn.isClientSide() && player.isCreative() && !smallcratetileentity.isEmpty()) {
                 ItemStack itemstack = new ItemStack(this);
                 CompoundNBT compoundnbt = smallcratetileentity.saveToNbt(new CompoundNBT());
                 if (!compoundnbt.isEmpty()) {
-                    itemstack.setTagInfo("BlockEntityTag", compoundnbt);
+                    itemstack.addTagElement("BlockEntityTag", compoundnbt);
                 }
 
                 if (smallcratetileentity.hasCustomName()) {
-                    itemstack.setDisplayName(smallcratetileentity.getCustomName());
+                    itemstack.setHoverName(smallcratetileentity.getCustomName());
                 }
 
                 ItemEntity itementity = new ItemEntity(worldIn, (double)pos.getX(), (double)pos.getY(), (double)pos.getZ(), itemstack);
-                itementity.setDefaultPickupDelay();
-                worldIn.addEntity(itementity);
+                itementity.setDefaultPickUpDelay();
+                worldIn.addFreshEntity(itementity);
             } else {
-                smallcratetileentity.fillWithLoot(player);
+                smallcratetileentity.unpackLootTable(player);
             }
         }
 
-        super.onBlockHarvested(worldIn, pos, state, player);
+        super.playerWillDestroy(worldIn, pos, state, player);
     }
 
     @Override
     @Deprecated
     public List<ItemStack> getDrops(BlockState state, LootContext.Builder builder) {
-        TileEntity tileentity = builder.get(LootParameters.BLOCK_ENTITY);
+        TileEntity tileentity = builder.getParameter(LootParameters.BLOCK_ENTITY);
         if (tileentity instanceof SmallCrateTileEntity) {
             SmallCrateTileEntity smallcratetileentity = (SmallCrateTileEntity)tileentity;
             builder = builder.withDynamicDrop(NAME, (loot, stack) -> {
-                for(int i = 0; i < smallcratetileentity.getSizeInventory(); ++i) {
-                    stack.accept(smallcratetileentity.getStackInSlot(i));
+                for(int i = 0; i < smallcratetileentity.getContainerSize(); ++i) {
+                    stack.accept(smallcratetileentity.getItem(i));
                 }
             });
         }
@@ -112,9 +112,9 @@ public class SmallCrateBlock extends Block {
     }
 
     @Override
-    public void onBlockPlacedBy(World worldIn, BlockPos pos, BlockState state, LivingEntity placer, ItemStack stack) {
-        if (stack.hasDisplayName()) {
-            TileEntity tileentity = worldIn.getTileEntity(pos);
+    public void setPlacedBy(World worldIn, BlockPos pos, BlockState state, LivingEntity placer, ItemStack stack) {
+        if (stack.hasCustomHoverName()) {
+            TileEntity tileentity = worldIn.getBlockEntity(pos);
             if (tileentity instanceof SmallCrateTileEntity) {
                 ((SmallCrateTileEntity)tileentity).setCustomName(stack.getDisplayName());
             }
@@ -123,22 +123,22 @@ public class SmallCrateBlock extends Block {
 
     @Override
     @Deprecated
-    public void onReplaced(BlockState state, World worldIn, BlockPos pos, BlockState newState, boolean isMoving) {
+    public void onRemove(BlockState state, World worldIn, BlockPos pos, BlockState newState, boolean isMoving) {
         if (state.getBlock() != newState.getBlock()) {
-            TileEntity tileentity = worldIn.getTileEntity(pos);
+            TileEntity tileentity = worldIn.getBlockEntity(pos);
             if (tileentity instanceof SmallCrateTileEntity) {
-                worldIn.updateComparatorOutputLevel(pos, state.getBlock());
+                worldIn.updateNeighbourForOutputSignal(pos, state.getBlock());
             }
 
-            super.onReplaced(state, worldIn, pos, newState, isMoving);
+            super.onRemove(state, worldIn, pos, newState, isMoving);
         }
     }
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public void addInformation(ItemStack stack, @Nullable IBlockReader worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
-        super.addInformation(stack, worldIn, tooltip, flagIn);
-        CompoundNBT compoundnbt = stack.getChildTag("BlockEntityTag");
+    public void appendHoverText(ItemStack stack, @Nullable IBlockReader worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
+        super.appendHoverText(stack, worldIn, tooltip, flagIn);
+        CompoundNBT compoundnbt = stack.getTagElement("BlockEntityTag");
         if (compoundnbt != null) {
             if (compoundnbt.contains("LootTable", 8)) {
                 tooltip.add(new StringTextComponent("???????"));
@@ -155,15 +155,15 @@ public class SmallCrateBlock extends Block {
                         ++j;
                         if (i <= 4) {
                             ++i;
-                            IFormattableTextComponent itextcomponent = itemstack.getDisplayName().deepCopy();
-                            itextcomponent.appendString(" x").appendString(String.valueOf(itemstack.getCount()));
+                            IFormattableTextComponent itextcomponent = itemstack.getHoverName().copy();
+                            itextcomponent.append(" x").append(String.valueOf(itemstack.getCount()));
                             tooltip.add(itextcomponent);
                         }
                     }
                 }
 
                 if (j - i > 0) {
-                    tooltip.add((new TranslationTextComponent("container.shulkerBox.more", j - i)).mergeStyle(TextFormatting.ITALIC));
+                    tooltip.add((new TranslationTextComponent("container.shulkerBox.more", j - i)).withStyle(TextFormatting.ITALIC));
                 }
             }
         }
@@ -171,31 +171,31 @@ public class SmallCrateBlock extends Block {
 
     @Override
     @Deprecated
-    public PushReaction getPushReaction(BlockState state) {
+    public PushReaction getPistonPushReaction(BlockState state) {
         return PushReaction.DESTROY;
     }
 
     @Override
     @Deprecated
-    public boolean hasComparatorInputOverride(BlockState state) {
+    public boolean hasAnalogOutputSignal(BlockState state) {
         return true;
     }
 
     @Override
     @Deprecated
-    public int getComparatorInputOverride(BlockState blockState, World worldIn, BlockPos pos) {
-        return Container.calcRedstoneFromInventory((IInventory)worldIn.getTileEntity(pos));
+    public int getAnalogOutputSignal(BlockState blockState, World worldIn, BlockPos pos) {
+        return Container.getRedstoneSignalFromContainer((IInventory)worldIn.getBlockEntity(pos));
     }
 
     @Override
     @Deprecated
     @OnlyIn(Dist.CLIENT)
-    public ItemStack getItem(IBlockReader worldIn, BlockPos pos, BlockState state) {
-        ItemStack itemstack = super.getItem(worldIn, pos, state);
-        SmallCrateTileEntity smallcratetileentity = (SmallCrateTileEntity)worldIn.getTileEntity(pos);
+    public ItemStack getCloneItemStack(IBlockReader worldIn, BlockPos pos, BlockState state) {
+        ItemStack itemstack = super.getCloneItemStack(worldIn, pos, state);
+        SmallCrateTileEntity smallcratetileentity = (SmallCrateTileEntity)worldIn.getBlockEntity(pos);
         CompoundNBT compoundnbt = smallcratetileentity.saveToNbt(new CompoundNBT());
         if (!compoundnbt.isEmpty()) {
-            itemstack.setTagInfo("BlockEntityTag", compoundnbt);
+            itemstack.addTagElement("BlockEntityTag", compoundnbt);
         }
 
         return itemstack;

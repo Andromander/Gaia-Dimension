@@ -24,14 +24,14 @@ public class AgateCraftingTableBlock extends Block {
 
     @Override
     @Deprecated
-    public ActionResultType onBlockActivated(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockRayTraceResult result) {
-        player.openContainer(state.getContainer(world, pos));
+    public ActionResultType use(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockRayTraceResult result) {
+        player.openMenu(state.getMenuProvider(world, pos));
         return ActionResultType.SUCCESS;
     }
 
     @Override
     @Deprecated
-    public INamedContainerProvider getContainer(BlockState state, World worldIn, BlockPos pos) {
-        return new SimpleNamedContainerProvider((id, inventory, worldPos) -> new AgateCraftingTableContainer(id, inventory, IWorldPosCallable.of(worldIn, pos)), NAME);
+    public INamedContainerProvider getMenuProvider(BlockState state, World worldIn, BlockPos pos) {
+        return new SimpleNamedContainerProvider((id, inventory, worldPos) -> new AgateCraftingTableContainer(id, inventory, IWorldPosCallable.create(worldIn, pos)), NAME);
     }
 }

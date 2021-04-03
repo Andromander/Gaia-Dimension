@@ -31,11 +31,11 @@ public abstract class GaiaRecipeProvider extends ForgeRecipeProvider implements 
     }
 
     public ShapedRecipeBuilder smallCompressRecipe(IItemProvider result, IItemProvider ingredient, int count) {
-        return ShapedRecipeBuilder.shapedRecipe(result, count)
-                .patternLine("##")
-                .patternLine("##")
-                .key('#', ingredient)
-                .addCriterion("has_" + ingredient.asItem().toString(), hasItem(ingredient));
+        return ShapedRecipeBuilder.shaped(result, count)
+                .pattern("##")
+                .pattern("##")
+                .define('#', ingredient)
+                .unlockedBy("has_" + ingredient.asItem().toString(), has(ingredient));
     }
 
     public ShapedRecipeBuilder largeCompressRecipe(IItemProvider result, IItemProvider ingredient) {
@@ -43,189 +43,189 @@ public abstract class GaiaRecipeProvider extends ForgeRecipeProvider implements 
     }
 
     public ShapedRecipeBuilder largeCompressRecipe(IItemProvider result, IItemProvider ingredient, int count) {
-        return ShapedRecipeBuilder.shapedRecipe(result, count)
-                .patternLine("###")
-                .patternLine("###")
-                .patternLine("###")
-                .key('#', ingredient)
-                .addCriterion("has_" + ingredient.asItem().toString(), hasItem(ingredient));
+        return ShapedRecipeBuilder.shaped(result, count)
+                .pattern("###")
+                .pattern("###")
+                .pattern("###")
+                .define('#', ingredient)
+                .unlockedBy("has_" + ingredient.asItem().toString(), has(ingredient));
     }
 
     public ShapelessRecipeBuilder planksRecipe(Supplier<Block> result, ITag.INamedTag<Item> ingredient) {
-        return ShapelessRecipeBuilder.shapelessRecipe(result.get(), 4)
-                .addIngredient(ingredient)
-                .addCriterion("has_" + ingredient.getName().getPath(), hasItem(ingredient));
+        return ShapelessRecipeBuilder.shapeless(result.get(), 4)
+                .requires(ingredient)
+                .unlockedBy("has_" + ingredient.getName().getPath(), has(ingredient));
     }
 
     public ShapedRecipeBuilder slabRecipe(RegistryObject<SlabBlock> result, RegistryObject<Block> ingredient) {
-        return ShapedRecipeBuilder.shapedRecipe(result.get(), 6)
-                .patternLine("###")
-                .key('#', ingredient.get())
-                .addCriterion("has_" + ingredient.getId().getPath(), hasItem(ingredient.get()));
+        return ShapedRecipeBuilder.shaped(result.get(), 6)
+                .pattern("###")
+                .define('#', ingredient.get())
+                .unlockedBy("has_" + ingredient.getId().getPath(), has(ingredient.get()));
     }
 
     public ShapedRecipeBuilder stairsRecipe(Supplier<StairsBlock> result, RegistryObject<? extends Block> ingredient) {
-        return ShapedRecipeBuilder.shapedRecipe(result.get(), 8)
-                .patternLine("#  ")
-                .patternLine("## ")
-                .patternLine("###")
-                .key('#', ingredient.get())
-                .addCriterion("has_" + ingredient.getId().getPath(), hasItem(ingredient.get()));
+        return ShapedRecipeBuilder.shaped(result.get(), 8)
+                .pattern("#  ")
+                .pattern("## ")
+                .pattern("###")
+                .define('#', ingredient.get())
+                .unlockedBy("has_" + ingredient.getId().getPath(), has(ingredient.get()));
     }
 
     public ShapelessRecipeBuilder blockToItemRecipe(RegistryObject<Item> result, RegistryObject<Block> ingredient) {
-        return ShapelessRecipeBuilder.shapelessRecipe(result.get(), 9)
-                .addIngredient(ingredient.get())
-                .addCriterion("has_" + ingredient.getId().getPath(), hasItem(ingredient.get()));
+        return ShapelessRecipeBuilder.shapeless(result.get(), 9)
+                .requires(ingredient.get())
+                .unlockedBy("has_" + ingredient.getId().getPath(), has(ingredient.get()));
     }
 
     public ShapedRecipeBuilder helmetRecipe(RegistryObject<Item> result, RegistryObject<Item> ingredient) {
-        return ShapedRecipeBuilder.shapedRecipe(result.get())
-                .patternLine("###")
-                .patternLine("# #")
-                .key('#', ingredient.get())
-                .addCriterion("has_" + ingredient.getId().getPath(), hasItem(ingredient.get()));
+        return ShapedRecipeBuilder.shaped(result.get())
+                .pattern("###")
+                .pattern("# #")
+                .define('#', ingredient.get())
+                .unlockedBy("has_" + ingredient.getId().getPath(), has(ingredient.get()));
     }
 
     public ShapedRecipeBuilder chestRecipe(RegistryObject<Item> result, RegistryObject<Item> ingredient) {
-        return ShapedRecipeBuilder.shapedRecipe(result.get())
-                .patternLine("# #")
-                .patternLine("###")
-                .patternLine("###")
-                .key('#', ingredient.get())
-                .addCriterion("has_" + ingredient.getId().getPath(), hasItem(ingredient.get()));
+        return ShapedRecipeBuilder.shaped(result.get())
+                .pattern("# #")
+                .pattern("###")
+                .pattern("###")
+                .define('#', ingredient.get())
+                .unlockedBy("has_" + ingredient.getId().getPath(), has(ingredient.get()));
     }
 
     public ShapedRecipeBuilder legsRecipe(RegistryObject<Item> result, RegistryObject<Item> ingredient) {
-        return ShapedRecipeBuilder.shapedRecipe(result.get())
-                .patternLine("###")
-                .patternLine("# #")
-                .patternLine("# #")
-                .key('#', ingredient.get())
-                .addCriterion("has_" + ingredient.getId().getPath(), hasItem(ingredient.get()));
+        return ShapedRecipeBuilder.shaped(result.get())
+                .pattern("###")
+                .pattern("# #")
+                .pattern("# #")
+                .define('#', ingredient.get())
+                .unlockedBy("has_" + ingredient.getId().getPath(), has(ingredient.get()));
     }
 
     public ShapedRecipeBuilder bootsRecipe(RegistryObject<Item> result, RegistryObject<Item> ingredient) {
-        return ShapedRecipeBuilder.shapedRecipe(result.get())
-                .patternLine("# #")
-                .patternLine("# #")
-                .key('#', ingredient.get())
-                .addCriterion("has_" + ingredient.getId().getPath(), hasItem(ingredient.get()));
+        return ShapedRecipeBuilder.shaped(result.get())
+                .pattern("# #")
+                .pattern("# #")
+                .define('#', ingredient.get())
+                .unlockedBy("has_" + ingredient.getId().getPath(), has(ingredient.get()));
     }
 
     public ShapedRecipeBuilder axeRecipe(RegistryObject<Item> result, RegistryObject<Item> ingredient) {
-        return ShapedRecipeBuilder.shapedRecipe(result.get())
-                .patternLine("##")
-                .patternLine("#/")
-                .patternLine(" /")
-                .key('#', ingredient.get())
-                .key('/', ModItems.agate_stick.get())
-                .addCriterion("has_" + ingredient.getId().getPath(), hasItem(ingredient.get()));
+        return ShapedRecipeBuilder.shaped(result.get())
+                .pattern("##")
+                .pattern("#/")
+                .pattern(" /")
+                .define('#', ingredient.get())
+                .define('/', ModItems.agate_stick.get())
+                .unlockedBy("has_" + ingredient.getId().getPath(), has(ingredient.get()));
     }
 
     public ShapedRecipeBuilder axeRecipeTag(RegistryObject<Item> result, ITag.INamedTag<Item> ingredient) {
-        return ShapedRecipeBuilder.shapedRecipe(result.get())
-                .patternLine("##")
-                .patternLine("#/")
-                .patternLine(" /")
-                .key('#', ingredient)
-                .key('/', ModItems.agate_stick.get())
-                .addCriterion("has_" + ingredient.getName().getPath(), hasItem(ingredient));
+        return ShapedRecipeBuilder.shaped(result.get())
+                .pattern("##")
+                .pattern("#/")
+                .pattern(" /")
+                .define('#', ingredient)
+                .define('/', ModItems.agate_stick.get())
+                .unlockedBy("has_" + ingredient.getName().getPath(), has(ingredient));
     }
 
     public ShapedRecipeBuilder pickaxeRecipe(RegistryObject<Item> result, RegistryObject<Item> ingredient) {
-        return ShapedRecipeBuilder.shapedRecipe(result.get())
-                .patternLine("###")
-                .patternLine(" / ")
-                .patternLine(" / ")
-                .key('#', ingredient.get())
-                .key('/', ModItems.agate_stick.get())
-                .addCriterion("has_" + ingredient.getId().getPath(), hasItem(ingredient.get()));
+        return ShapedRecipeBuilder.shaped(result.get())
+                .pattern("###")
+                .pattern(" / ")
+                .pattern(" / ")
+                .define('#', ingredient.get())
+                .define('/', ModItems.agate_stick.get())
+                .unlockedBy("has_" + ingredient.getId().getPath(), has(ingredient.get()));
     }
 
     public ShapedRecipeBuilder pickaxeRecipeTag(RegistryObject<Item> result, ITag.INamedTag<Item> ingredient) {
-        return ShapedRecipeBuilder.shapedRecipe(result.get())
-                .patternLine("###")
-                .patternLine(" / ")
-                .patternLine(" / ")
-                .key('#', ingredient)
-                .key('/', ModItems.agate_stick.get())
-                .addCriterion("has_" + ingredient.getName().getPath(), hasItem(ingredient));
+        return ShapedRecipeBuilder.shaped(result.get())
+                .pattern("###")
+                .pattern(" / ")
+                .pattern(" / ")
+                .define('#', ingredient)
+                .define('/', ModItems.agate_stick.get())
+                .unlockedBy("has_" + ingredient.getName().getPath(), has(ingredient));
     }
 
     public ShapedRecipeBuilder shovelRecipe(RegistryObject<Item> result, RegistryObject<Item> ingredient) {
-        return ShapedRecipeBuilder.shapedRecipe(result.get())
-                .patternLine("#")
-                .patternLine("/")
-                .patternLine("/")
-                .key('#', ingredient.get())
-                .key('/', ModItems.agate_stick.get())
-                .addCriterion("has_" + ingredient.getId().getPath(), hasItem(ingredient.get()));
+        return ShapedRecipeBuilder.shaped(result.get())
+                .pattern("#")
+                .pattern("/")
+                .pattern("/")
+                .define('#', ingredient.get())
+                .define('/', ModItems.agate_stick.get())
+                .unlockedBy("has_" + ingredient.getId().getPath(), has(ingredient.get()));
     }
 
     public ShapedRecipeBuilder shovelRecipeTag(RegistryObject<Item> result, ITag.INamedTag<Item> ingredient) {
-        return ShapedRecipeBuilder.shapedRecipe(result.get())
-                .patternLine("#")
-                .patternLine("/")
-                .patternLine("/")
-                .key('#', ingredient)
-                .key('/', ModItems.agate_stick.get())
-                .addCriterion("has_" + ingredient.getName().getPath(), hasItem(ingredient));
+        return ShapedRecipeBuilder.shaped(result.get())
+                .pattern("#")
+                .pattern("/")
+                .pattern("/")
+                .define('#', ingredient)
+                .define('/', ModItems.agate_stick.get())
+                .unlockedBy("has_" + ingredient.getName().getPath(), has(ingredient));
     }
 
     public ShapedRecipeBuilder swordRecipe(RegistryObject<Item> result, RegistryObject<Item> ingredient) {
-        return ShapedRecipeBuilder.shapedRecipe(result.get())
-                .patternLine("#")
-                .patternLine("#")
-                .patternLine("/")
-                .key('#', ingredient.get())
-                .key('/', ModItems.agate_stick.get())
-                .addCriterion("has_" + ingredient.getId().getPath(), hasItem(ingredient.get()));
+        return ShapedRecipeBuilder.shaped(result.get())
+                .pattern("#")
+                .pattern("#")
+                .pattern("/")
+                .define('#', ingredient.get())
+                .define('/', ModItems.agate_stick.get())
+                .unlockedBy("has_" + ingredient.getId().getPath(), has(ingredient.get()));
     }
 
     public ShapedRecipeBuilder swordRecipeTag(RegistryObject<Item> result, ITag.INamedTag<Item> ingredient) {
-        return ShapedRecipeBuilder.shapedRecipe(result.get())
-                .patternLine("#")
-                .patternLine("#")
-                .patternLine("/")
-                .key('#', ingredient)
-                .key('/', ModItems.agate_stick.get())
-                .addCriterion("has_" + ingredient.getName().getPath(), hasItem(ingredient));
+        return ShapedRecipeBuilder.shaped(result.get())
+                .pattern("#")
+                .pattern("#")
+                .pattern("/")
+                .define('#', ingredient)
+                .define('/', ModItems.agate_stick.get())
+                .unlockedBy("has_" + ingredient.getName().getPath(), has(ingredient));
     }
 
     public ShapelessRecipeBuilder drinkRecipe(RegistryObject<Item> result, RegistryObject<Item> geode) {
-        return ShapelessRecipeBuilder.shapelessRecipe(result.get())
-                .addIngredient(geode.get())
-                .addIngredient(ModItems.sugar_crystals.get())
-                .addIngredient(ModItems.agate_cup.get())
-                .addCriterion("has_cup", hasItem(ModItems.agate_cup.get()));
+        return ShapelessRecipeBuilder.shapeless(result.get())
+                .requires(geode.get())
+                .requires(ModItems.sugar_crystals.get())
+                .requires(ModItems.agate_cup.get())
+                .unlockedBy("has_cup", has(ModItems.agate_cup.get()));
     }
 
     public ShapelessRecipeBuilder sliceRecipe(RegistryObject<Item> result, RegistryObject<Item> geode) {
-        return ShapelessRecipeBuilder.shapelessRecipe(result.get(), 4)
-                .addIngredient(geode.get())
-                .addCriterion("has_geode", hasItem(geode.get()));
+        return ShapelessRecipeBuilder.shapeless(result.get(), 4)
+                .requires(geode.get())
+                .unlockedBy("has_geode", has(geode.get()));
     }
 
     public ShapelessRecipeBuilder tiliRecipe(RegistryObject<Item> result, Block ingredient) {
-        return ShapelessRecipeBuilder.shapelessRecipe(result.get())
-                .addIngredient(ingredient)
-                .addIngredient(ModBlocks.thiscus.get())
-                .addCriterion("has_thiscus", hasItem(ModBlocks.thiscus.get()));
+        return ShapelessRecipeBuilder.shapeless(result.get())
+                .requires(ingredient)
+                .requires(ModBlocks.thiscus.get())
+                .unlockedBy("has_thiscus", has(ModBlocks.thiscus.get()));
     }
 
     public ShapelessRecipeBuilder tiliRecipe(RegistryObject<Item> result, Supplier<Block> ingredient) {
-        return ShapelessRecipeBuilder.shapelessRecipe(result.get())
-                .addIngredient(ingredient.get())
-                .addIngredient(ModBlocks.thiscus.get())
-                .addCriterion("has_thiscus", hasItem(ModBlocks.thiscus.get()));
+        return ShapelessRecipeBuilder.shapeless(result.get())
+                .requires(ingredient.get())
+                .requires(ModBlocks.thiscus.get())
+                .unlockedBy("has_thiscus", has(ModBlocks.thiscus.get()));
     }
 
     public ShapelessRecipeBuilder crustBricks(Supplier<Block> result, Supplier<Block> ingredient) {
-        return ShapelessRecipeBuilder.shapelessRecipe(result.get())
-                .addIngredient(ingredient.get())
-                .addIngredient(ModItems.crystal_shard.get())
-                .addCriterion("has_shard", hasItem(ModItems.crystal_shard.get()));
+        return ShapelessRecipeBuilder.shapeless(result.get())
+                .requires(ingredient.get())
+                .requires(ModItems.crystal_shard.get())
+                .unlockedBy("has_shard", has(ModItems.crystal_shard.get()));
     }
 
     public CookingRecipeBuilder smeltingRecipe(IItemProvider result, IItemProvider ingredient, float exp) {
@@ -233,7 +233,7 @@ public abstract class GaiaRecipeProvider extends ForgeRecipeProvider implements 
     }
 
     public CookingRecipeBuilder smeltingRecipe(IItemProvider result, IItemProvider ingredient, float exp, int count) {
-        return CookingRecipeBuilder.smeltingRecipe(Ingredient.fromStacks(new ItemStack(ingredient, count)), result, exp, 200)
-                .addCriterion("has_" + ingredient.asItem().getRegistryName(), hasItem(ingredient));
+        return CookingRecipeBuilder.smelting(Ingredient.of(new ItemStack(ingredient, count)), result, exp, 200)
+                .unlockedBy("has_" + ingredient.asItem().getRegistryName(), has(ingredient));
     }
 }

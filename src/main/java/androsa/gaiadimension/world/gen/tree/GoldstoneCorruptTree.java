@@ -11,6 +11,6 @@ public class GoldstoneCorruptTree extends GaiaTree {
 
     @Override
     public ConfiguredFeature<GaiaTreeFeatureConfig, ?> createTreeFeature(Random rand) {
-        return ModWorldgen.GOLDSTONE_TREE.get().withConfiguration(GaiaBiomeFeatures.CORRUPTED_TREE_CONFIG);
+        return ModWorldgen.GOLDSTONE_TREE.get().configured(GaiaBiomeFeatures.CORRUPTED_TREE_CONFIG);
     }
 }

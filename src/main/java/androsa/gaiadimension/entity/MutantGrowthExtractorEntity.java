@@ -18,13 +18,13 @@ public class MutantGrowthExtractorEntity extends CreatureEntity {
 
     public MutantGrowthExtractorEntity(EntityType<? extends MutantGrowthExtractorEntity> entity, World world) {
         super(entity, world);
-        this.experienceValue = 5;
+        this.xpReward = 5;
     }
 
     public static AttributeModifierMap.MutableAttribute registerAttributes() {
-        return MobEntity.func_233666_p_()
-                .createMutableAttribute(Attributes.MAX_HEALTH, 25.0D)
-                .createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.3D);
+        return MobEntity.createMobAttributes()
+                .add(Attributes.MAX_HEALTH, 25.0D)
+                .add(Attributes.MOVEMENT_SPEED, 0.3D);
     }
 
     @Override
@@ -42,6 +42,6 @@ public class MutantGrowthExtractorEntity extends CreatureEntity {
     }
 
     public static boolean canSpawnHere(EntityType<MutantGrowthExtractorEntity> entity, IWorld world, SpawnReason spawn, BlockPos pos, Random random) {
-        return world.getBlockState(pos.down()).canEntitySpawn(world, pos.down(), entity) && world.getLightSubtracted(pos, 0) > 8;
+        return world.getBlockState(pos.below()).isValidSpawn(world, pos.below(), entity) && world.getRawBrightness(pos, 0) > 8;
     }
 }

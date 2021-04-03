@@ -22,13 +22,13 @@ public class BismuthSpireFeature<T extends FeatureHeightConfig> extends Feature<
     }
 
     @Override
-    public boolean generate(ISeedReader worldIn, ChunkGenerator generator, Random rand, BlockPos position, T config) {
+    public boolean place(ISeedReader worldIn, ChunkGenerator generator, Random rand, BlockPos position, T config) {
         for (int cx = 0; cx < 3; cx++) {
             for (int cz = 0; cz < 3; cz++) {
-                BlockPos pos = position.add(cx - 1, 0, cz - 1);
+                BlockPos pos = position.offset(cx - 1, 0, cz - 1);
 
-                if (worldIn.isBlockLoaded(pos)) {
-                    Block blockBelow = worldIn.getBlockState(pos.down()).getBlock();
+                if (worldIn.hasChunkAt(pos)) {
+                    Block blockBelow = worldIn.getBlockState(pos.below()).getBlock();
 
                     if (blockBelow != ModBlocks.murky_grass.get()) {
                         return false;
@@ -47,25 +47,25 @@ public class BismuthSpireFeature<T extends FeatureHeightConfig> extends Feature<
                 for (int ex = -2; ex <= 2; ex++) {
                     for (int ez = -2; ez <= 2; ez++) {
                         if (Math.abs(ex) != 2 || Math.abs(ez) != 2)
-                        setBismuthType(worldIn, rand, position.add(ex, i, ez));
+                        setBismuthType(worldIn, rand, position.offset(ex, i, ez));
                     }
                 }
             } else if (i < heightD) {
                 for (int dx = -1; dx <= 1; dx++) {
                     for (int dz = -1; dz <= 1; dz++) {
-                        setBismuthType(worldIn, rand, position.add(dx, i, dz));
+                        setBismuthType(worldIn, rand, position.offset(dx, i, dz));
                     }
                 }
             } else if (i < heightA) {
                 for (int ax = -1; ax <= 1; ax++) {
                     for (int az = -1; az <= 1; az++) {
                         if (Math.abs(ax) != 1 || Math.abs(az) != 1) {
-                            setBismuthType(worldIn, rand, position.add(ax, i, az));
+                            setBismuthType(worldIn, rand, position.offset(ax, i, az));
                         }
                     }
                 }
             } else {
-                setBismuthType(worldIn, rand, position.up(i));
+                setBismuthType(worldIn, rand, position.above(i));
             }
         }
         return true;
@@ -75,13 +75,13 @@ public class BismuthSpireFeature<T extends FeatureHeightConfig> extends Feature<
         BlockState state;
 
         if (random.nextInt(30) == 0) {
-            state = ModBlocks.bismuth_block.get().getDefaultState();
+            state = ModBlocks.bismuth_block.get().defaultBlockState();
         } else if (random.nextInt(15) == 0) {
-            state = ModBlocks.active_rock.get().getDefaultState();
+            state = ModBlocks.active_rock.get().defaultBlockState();
         } else {
-            state = ModBlocks.impure_rock.get().getDefaultState();
+            state = ModBlocks.impure_rock.get().defaultBlockState();
         }
-        world.setBlockState(pos, state, 2);
+        world.setBlock(pos, state, 2);
     }
 }
 

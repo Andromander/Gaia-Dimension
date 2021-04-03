@@ -17,115 +17,115 @@ import java.util.function.Supplier;
 public class GaiaEntityLootTableProvider extends EntityLootTables {
 
     public LootTable.Builder blankTable() {
-        return LootTable.builder();
+        return LootTable.lootTable();
     }
 
     public LootTable.Builder sapperTable(Supplier<Item> geode) {
-        return LootTable.builder()
-                .addLootPool(LootPool.builder()
-                        .rolls(ConstantRange.of(1))
-                        .addEntry(ItemLootEntry.builder(geode.get())
-                                .acceptFunction(SetCount.builder(RandomValueRange.of(1.0F, 3.0F)))
-                                .acceptFunction(LootingEnchantBonus.builder(RandomValueRange.of(0.0F, 1.0F)))))
-                .addLootPool(LootPool.builder()
-                        .rolls(ConstantRange.of(1))
-                        .addEntry(TableLootEntry.builder(ModEntities.GROWTH_SAPPER.getLootTable())));
+        return LootTable.lootTable()
+                .withPool(LootPool.lootPool()
+                        .setRolls(ConstantRange.exactly(1))
+                        .add(ItemLootEntry.lootTableItem(geode.get())
+                                .apply(SetCount.setCount(RandomValueRange.between(1.0F, 3.0F)))
+                                .apply(LootingEnchantBonus.lootingMultiplier(RandomValueRange.between(0.0F, 1.0F)))))
+                .withPool(LootPool.lootPool()
+                        .setRolls(ConstantRange.exactly(1))
+                        .add(TableLootEntry.lootTableReference(ModEntities.GROWTH_SAPPER.getDefaultLootTable())));
     }
 
     public LootTable.Builder singleDropTable(Supplier<Item> drop, float minCount, float maxCount) {
-        return LootTable.builder()
-                .addLootPool(LootPool.builder()
-                        .rolls(ConstantRange.of(1))
-                        .addEntry(ItemLootEntry.builder(drop.get())
-                                .acceptFunction(SetCount.builder(RandomValueRange.of(minCount, maxCount)))
-                                .acceptFunction(LootingEnchantBonus.builder(RandomValueRange.of(0.0F, 1.0F)))));
+        return LootTable.lootTable()
+                .withPool(LootPool.lootPool()
+                        .setRolls(ConstantRange.exactly(1))
+                        .add(ItemLootEntry.lootTableItem(drop.get())
+                                .apply(SetCount.setCount(RandomValueRange.between(minCount, maxCount)))
+                                .apply(LootingEnchantBonus.lootingMultiplier(RandomValueRange.between(0.0F, 1.0F)))));
     }
 
     public LootTable.Builder cookableSingleDropTable(Supplier<Item> raw, float minCount, float maxCount) {
-        return LootTable.builder()
-                .addLootPool(LootPool.builder()
-                        .rolls(ConstantRange.of(1))
-                        .addEntry(ItemLootEntry.builder(raw.get())
-                                .acceptFunction(SetCount.builder(RandomValueRange.of(minCount, maxCount)))
-                                .acceptFunction(Smelt.func_215953_b()
-                                        .acceptCondition(EntityHasProperty.builder(LootContext.EntityTarget.THIS, ON_FIRE)))
-                                .acceptFunction(LootingEnchantBonus.builder(RandomValueRange.of(0.0F, 1.0F)))));
+        return LootTable.lootTable()
+                .withPool(LootPool.lootPool()
+                        .setRolls(ConstantRange.exactly(1))
+                        .add(ItemLootEntry.lootTableItem(raw.get())
+                                .apply(SetCount.setCount(RandomValueRange.between(minCount, maxCount)))
+                                .apply(Smelt.smelted()
+                                        .when(EntityHasProperty.hasProperties(LootContext.EntityTarget.THIS, ENTITY_ON_FIRE)))
+                                .apply(LootingEnchantBonus.lootingMultiplier(RandomValueRange.between(0.0F, 1.0F)))));
     }
 
     public LootTable.Builder cookableDoubleDropTable(Supplier<Item> cookable, Supplier<Item> drop, float minCount1, float maxCount1, float minCount2, float maxCount2) {
-        return LootTable.builder()
-                .addLootPool(LootPool.builder()
-                        .rolls(ConstantRange.of(1))
-                        .addEntry(ItemLootEntry.builder(cookable.get())
-                                .acceptFunction(SetCount.builder(RandomValueRange.of(minCount1, maxCount1)))
-                                .acceptFunction(Smelt.func_215953_b()
-                                        .acceptCondition(EntityHasProperty.builder(LootContext.EntityTarget.THIS, ON_FIRE)))
-                                .acceptFunction(LootingEnchantBonus.builder(RandomValueRange.of(0.0F, 1.0F)))))
-                .addLootPool(LootPool.builder()
-                        .rolls(ConstantRange.of(1))
-                        .addEntry(ItemLootEntry.builder(drop.get())
-                                .acceptFunction(SetCount.builder(RandomValueRange.of(minCount2, maxCount2)))
-                                .acceptFunction(LootingEnchantBonus.builder(RandomValueRange.of(0.0F, 1.0F)))));
+        return LootTable.lootTable()
+                .withPool(LootPool.lootPool()
+                        .setRolls(ConstantRange.exactly(1))
+                        .add(ItemLootEntry.lootTableItem(cookable.get())
+                                .apply(SetCount.setCount(RandomValueRange.between(minCount1, maxCount1)))
+                                .apply(Smelt.smelted()
+                                        .when(EntityHasProperty.hasProperties(LootContext.EntityTarget.THIS, ENTITY_ON_FIRE)))
+                                .apply(LootingEnchantBonus.lootingMultiplier(RandomValueRange.between(0.0F, 1.0F)))))
+                .withPool(LootPool.lootPool()
+                        .setRolls(ConstantRange.exactly(1))
+                        .add(ItemLootEntry.lootTableItem(drop.get())
+                                .apply(SetCount.setCount(RandomValueRange.between(minCount2, maxCount2)))
+                                .apply(LootingEnchantBonus.lootingMultiplier(RandomValueRange.between(0.0F, 1.0F)))));
     }
 
     public LootTable.Builder warriorTable() {
-        return LootTable.builder()
-                .addLootPool(LootPool.builder()
-                        .rolls(ConstantRange.of(1))
-                        .addEntry(ItemLootEntry.builder(ModItems.scaynyx_ingot.get()))
-                        .acceptCondition(KilledByPlayer.builder())
-                        .acceptCondition(RandomChanceWithLooting.builder(0.025F, 0.01F)))
-                .addLootPool(LootPool.builder()
-                        .rolls(ConstantRange.of(1))
-                        .addEntry(ItemLootEntry.builder(ModItems.shiny_bone.get())
-                                .acceptFunction(SetCount.builder(RandomValueRange.of(0.0F, 2.0F)))
-                                .acceptFunction(LootingEnchantBonus.builder(RandomValueRange.of(0.0F, 1.0F)))));
+        return LootTable.lootTable()
+                .withPool(LootPool.lootPool()
+                        .setRolls(ConstantRange.exactly(1))
+                        .add(ItemLootEntry.lootTableItem(ModItems.scaynyx_ingot.get()))
+                        .when(KilledByPlayer.killedByPlayer())
+                        .when(RandomChanceWithLooting.randomChanceAndLootingBoost(0.025F, 0.01F)))
+                .withPool(LootPool.lootPool()
+                        .setRolls(ConstantRange.exactly(1))
+                        .add(ItemLootEntry.lootTableItem(ModItems.shiny_bone.get())
+                                .apply(SetCount.setCount(RandomValueRange.between(0.0F, 2.0F)))
+                                .apply(LootingEnchantBonus.lootingMultiplier(RandomValueRange.between(0.0F, 1.0F)))));
     }
 
     public LootTable.Builder extractorTable() {
-        return LootTable.builder()
-                .addLootPool(LootPool.builder()
-                        .rolls(ConstantRange.of(1))
-                        .addEntry(ItemLootEntry.builder(ModItems.pink_geode.get())
-                                .acceptFunction(SetCount.builder(RandomValueRange.of(0.0F, 1.0F)))
-                                .acceptFunction(LootingEnchantBonus.builder(RandomValueRange.of(0.0F, 1.0F)))))
-                .addLootPool(LootPool.builder()
-                        .rolls(ConstantRange.of(1))
-                        .addEntry(ItemLootEntry.builder(ModItems.blue_geode.get())
-                                .acceptFunction(SetCount.builder(RandomValueRange.of(0.0F, 1.0F)))
-                                .acceptFunction(LootingEnchantBonus.builder(RandomValueRange.of(0.0F, 1.0F)))))
-                .addLootPool(LootPool.builder()
-                        .rolls(ConstantRange.of(1))
-                        .addEntry(ItemLootEntry.builder(ModItems.green_geode.get())
-                                .acceptFunction(SetCount.builder(RandomValueRange.of(0.0F, 1.0F)))
-                                .acceptFunction(LootingEnchantBonus.builder(RandomValueRange.of(0.0F, 1.0F)))))
-                .addLootPool(LootPool.builder()
-                        .rolls(ConstantRange.of(1))
-                        .addEntry(ItemLootEntry.builder(ModItems.purple_geode.get())
-                                .acceptFunction(SetCount.builder(RandomValueRange.of(0.0F, 1.0F)))
-                                .acceptFunction(LootingEnchantBonus.builder(RandomValueRange.of(0.0F, 1.0F)))));
+        return LootTable.lootTable()
+                .withPool(LootPool.lootPool()
+                        .setRolls(ConstantRange.exactly(1))
+                        .add(ItemLootEntry.lootTableItem(ModItems.pink_geode.get())
+                                .apply(SetCount.setCount(RandomValueRange.between(0.0F, 1.0F)))
+                                .apply(LootingEnchantBonus.lootingMultiplier(RandomValueRange.between(0.0F, 1.0F)))))
+                .withPool(LootPool.lootPool()
+                        .setRolls(ConstantRange.exactly(1))
+                        .add(ItemLootEntry.lootTableItem(ModItems.blue_geode.get())
+                                .apply(SetCount.setCount(RandomValueRange.between(0.0F, 1.0F)))
+                                .apply(LootingEnchantBonus.lootingMultiplier(RandomValueRange.between(0.0F, 1.0F)))))
+                .withPool(LootPool.lootPool()
+                        .setRolls(ConstantRange.exactly(1))
+                        .add(ItemLootEntry.lootTableItem(ModItems.green_geode.get())
+                                .apply(SetCount.setCount(RandomValueRange.between(0.0F, 1.0F)))
+                                .apply(LootingEnchantBonus.lootingMultiplier(RandomValueRange.between(0.0F, 1.0F)))))
+                .withPool(LootPool.lootPool()
+                        .setRolls(ConstantRange.exactly(1))
+                        .add(ItemLootEntry.lootTableItem(ModItems.purple_geode.get())
+                                .apply(SetCount.setCount(RandomValueRange.between(0.0F, 1.0F)))
+                                .apply(LootingEnchantBonus.lootingMultiplier(RandomValueRange.between(0.0F, 1.0F)))));
     }
 
     public LootTable.Builder malachiteGuardTable() {
-        return LootTable.builder()
-                .addLootPool(LootPool.builder()
-                        .rolls(ConstantRange.of(1))
-                        .addEntry(ItemLootEntry.builder(ModItems.malachite_guard_baton.get())))
-                .addLootPool(LootPool.builder()
-                        .rolls(ConstantRange.of(1))
-                        .addEntry(ItemLootEntry.builder(ModItems.malachite_guard_headgear.get())
-                                .acceptFunction(SetCount.builder(RandomValueRange.of(0.0F, 1.0F)))))
-                .addLootPool(LootPool.builder()
-                        .rolls(ConstantRange.of(1))
-                        .addEntry(ItemLootEntry.builder(ModItems.malachite_guard_brace.get())
-                                .acceptFunction(SetCount.builder(RandomValueRange.of(0.0F, 1.0F)))))
-                .addLootPool(LootPool.builder()
-                        .rolls(ConstantRange.of(1))
-                        .addEntry(ItemLootEntry.builder(ModItems.malachite_guard_gear.get())
-                                .acceptFunction(SetCount.builder(RandomValueRange.of(0.0F, 1.0F)))))
-                .addLootPool(LootPool.builder()
-                        .rolls(ConstantRange.of(1))
-                        .addEntry(ItemLootEntry.builder(ModItems.malachite_guard_boots.get())
-                                .acceptFunction(SetCount.builder(RandomValueRange.of(0.0F, 1.0F)))));
+        return LootTable.lootTable()
+                .withPool(LootPool.lootPool()
+                        .setRolls(ConstantRange.exactly(1))
+                        .add(ItemLootEntry.lootTableItem(ModItems.malachite_guard_baton.get())))
+                .withPool(LootPool.lootPool()
+                        .setRolls(ConstantRange.exactly(1))
+                        .add(ItemLootEntry.lootTableItem(ModItems.malachite_guard_headgear.get())
+                                .apply(SetCount.setCount(RandomValueRange.between(0.0F, 1.0F)))))
+                .withPool(LootPool.lootPool()
+                        .setRolls(ConstantRange.exactly(1))
+                        .add(ItemLootEntry.lootTableItem(ModItems.malachite_guard_brace.get())
+                                .apply(SetCount.setCount(RandomValueRange.between(0.0F, 1.0F)))))
+                .withPool(LootPool.lootPool()
+                        .setRolls(ConstantRange.exactly(1))
+                        .add(ItemLootEntry.lootTableItem(ModItems.malachite_guard_gear.get())
+                                .apply(SetCount.setCount(RandomValueRange.between(0.0F, 1.0F)))))
+                .withPool(LootPool.lootPool()
+                        .setRolls(ConstantRange.exactly(1))
+                        .add(ItemLootEntry.lootTableItem(ModItems.malachite_guard_boots.get())
+                                .apply(SetCount.setCount(RandomValueRange.between(0.0F, 1.0F)))));
     }
 }

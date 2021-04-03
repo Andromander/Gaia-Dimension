@@ -18,7 +18,7 @@ public class CavernTickEntity extends MonsterEntity {
 
     public CavernTickEntity(EntityType<? extends CavernTickEntity> entity, World worldIn) {
         super(entity, worldIn);
-        this.experienceValue = 5;
+        this.xpReward = 5;
     }
 
     @Override
@@ -26,7 +26,7 @@ public class CavernTickEntity extends MonsterEntity {
         this.goalSelector.addGoal(1, new SwimGoal(this));
         this.goalSelector.addGoal(2, new RandomWalkingGoal(this, 1.5D, 30));
         this.goalSelector.addGoal(4, new MeleeAttackGoal(this, 1.5D, false));
-        this.targetSelector.addGoal(1, new HurtByTargetGoal(this).setCallsForHelp());
+        this.targetSelector.addGoal(1, new HurtByTargetGoal(this).setAlertOthers());
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, true));
     }
 
@@ -36,10 +36,10 @@ public class CavernTickEntity extends MonsterEntity {
     }
 
     public static AttributeModifierMap.MutableAttribute registerAttributes() {
-        return MonsterEntity.func_234295_eP_()
-                .createMutableAttribute(Attributes.MAX_HEALTH, 8.0D)
-                .createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.25D)
-                .createMutableAttribute(Attributes.ATTACK_DAMAGE, 1.0D);
+        return MonsterEntity.createMonsterAttributes()
+                .add(Attributes.MAX_HEALTH, 8.0D)
+                .add(Attributes.MOVEMENT_SPEED, 0.25D)
+                .add(Attributes.ATTACK_DAMAGE, 1.0D);
     }
 
 //    @Override
@@ -49,26 +49,26 @@ public class CavernTickEntity extends MonsterEntity {
 
     @Override
     protected SoundEvent getAmbientSound() {
-        return SoundEvents.ENTITY_SILVERFISH_AMBIENT;
+        return SoundEvents.SILVERFISH_AMBIENT;
     }
 
     @Override
     protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
-        return SoundEvents.ENTITY_SILVERFISH_HURT;
+        return SoundEvents.SILVERFISH_HURT;
     }
 
     @Override
     protected SoundEvent getDeathSound() {
-        return SoundEvents.ENTITY_SILVERFISH_DEATH;
+        return SoundEvents.SILVERFISH_DEATH;
     }
 
     @Override
     protected void playStepSound(BlockPos pos, BlockState state) {
-        this.playSound(SoundEvents.ENTITY_SILVERFISH_STEP, 0.15F, 1.0F);
+        this.playSound(SoundEvents.SILVERFISH_STEP, 0.15F, 1.0F);
     }
 
     @Override
-    public float getBlockPathWeight(BlockPos pos) {
-        return this.world.getBlockState(pos.down()).getBlock() == ModBlocks.gaia_stone.get() ? 10.0F : super.getBlockPathWeight(pos);
+    public float getWalkTargetValue(BlockPos pos) {
+        return this.level.getBlockState(pos.below()).getBlock() == ModBlocks.gaia_stone.get() ? 10.0F : super.getWalkTargetValue(pos);
     }
 }

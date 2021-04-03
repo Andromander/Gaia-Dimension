@@ -39,7 +39,7 @@ public class GaiaDimensionMod {
     public static final CreatureAttribute GAIAN = new CreatureAttribute();
     public static final CreatureAttribute CORRUPT = new CreatureAttribute();
 
-    public static final DamageSource CORRUPTION = new DamageSource("corruption").setDamageBypassesArmor();
+    public static final DamageSource CORRUPTION = new DamageSource("corruption").bypassArmor();
 
     public GaiaDimensionMod() {
 
@@ -77,7 +77,7 @@ public class GaiaDimensionMod {
     public void setup(FMLCommonSetupEvent event) {
         event.enqueueWork(() -> {
             PointOfInterestType.registerBlockStates(ModDimensions.GAIA_PORTAL.get());
-            PointOfInterestType.BLOCKS_OF_INTEREST.addAll(ModDimensions.GAIA_PORTAL.get().blockStates);
+            PointOfInterestType.ALL_STATES.addAll(ModDimensions.GAIA_PORTAL.get().matchingStates);
 
             // needs to be in enqueue as vanilla WorldGen registry maps arent threadsafe.
             GaiaBiomeFeatures.registerConfiguredWorldgen();
@@ -91,7 +91,7 @@ public class GaiaDimensionMod {
 
     public void clientSetup(FMLClientSetupEvent event) {
         DimensionRenderInfo gaia = new GaiaDimensionRenderInfo();
-        DimensionRenderInfo.field_239208_a_.put(new ResourceLocation(GaiaDimensionMod.MODID, "gaia"), gaia);
+        DimensionRenderInfo.EFFECTS.put(new ResourceLocation(GaiaDimensionMod.MODID, "gaia"), gaia);
 
         DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> ModContainers::registerScreens);
         DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> ModEntities::registerEntityRender);

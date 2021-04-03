@@ -31,20 +31,20 @@ public class MucklingEntity extends SlimeEntity {
     }
 
     @Override
-    public void setSlimeSize(int size, boolean resetHealth) {
-        super.setSlimeSize(size, resetHealth);
+    public void setSize(int size, boolean resetHealth) {
+        super.setSize(size, resetHealth);
         this.getAttribute(Attributes.ATTACK_DAMAGE).setBaseValue((double)size + 3);
-        this.experienceValue += 3;
+        this.xpReward += 3;
     }
 
     public static boolean canSpawnHere(EntityType<MucklingEntity> entity, IWorld world, SpawnReason spawn, BlockPos pos, Random random) {
         if (world.getDifficulty() != Difficulty.PEACEFUL) {
-            if (spawn == SpawnReason.SPAWNER && world.getLightFor(LightType.SKY, pos) < 8) {
+            if (spawn == SpawnReason.SPAWNER && world.getBrightness(LightType.SKY, pos) < 8) {
                 return true;
             } else {
-                Optional<RegistryKey<Biome>> biome = world.func_242406_i(pos);
+                Optional<RegistryKey<Biome>> biome = world.getBiomeName(pos);
                 if (Objects.equals(biome, Optional.of(ModBiomes.purple_agate_swamp)) || pos.getY() < 40 && random.nextFloat() < 0.5F) {
-                    return canSpawnOn(entity, world, spawn, pos, random);
+                    return checkMobSpawnRules(entity, world, spawn, pos, random);
                 }
             }
         }
@@ -52,27 +52,27 @@ public class MucklingEntity extends SlimeEntity {
     }
 
     public static AttributeModifierMap.MutableAttribute registerAttributes() {
-        return MobEntity.func_233666_p_()
-                .createMutableAttribute(Attributes.MAX_HEALTH, 40.0D);
+        return MobEntity.createMobAttributes()
+                .add(Attributes.MAX_HEALTH, 40.0D);
     }
 
     @Override
-    protected boolean canDamagePlayer() {
+    protected boolean isDealsDamage() {
         return true;
     }
 
     @Override
     protected boolean spawnCustomParticles() {
-        int i = getSlimeSize();
+        int i = getSize();
         for (int j = 0; j < i * 8; ++j) {
-            float f = this.rand.nextFloat() * ((float) Math.PI * 2F);
-            float f1 = this.rand.nextFloat() * 0.5F + 0.5F;
+            float f = this.random.nextFloat() * ((float) Math.PI * 2F);
+            float f1 = this.random.nextFloat() * 0.5F + 0.5F;
             float f2 = MathHelper.sin(f) * (float) i * 0.5F * f1;
             float f3 = MathHelper.cos(f) * (float) i * 0.5F * f1;
-            World world = this.world;
-            double d0 = this.getPosX() + (double) f2;
-            double d1 = this.getPosZ() + (double) f3;
-            BlockState state = ModBlocks.gummy_glitter_block.get().getDefaultState();
+            World world = this.level;
+            double d0 = this.getX() + (double) f2;
+            double d1 = this.getZ() + (double) f3;
+            BlockState state = ModBlocks.gummy_glitter_block.get().defaultBlockState();
             world.addParticle(new BlockParticleData(ParticleTypes.BLOCK, state), d0, this.getBoundingBox().minY, d1, 0.0D, 0.0D, 0.0D);
         }
         return true;

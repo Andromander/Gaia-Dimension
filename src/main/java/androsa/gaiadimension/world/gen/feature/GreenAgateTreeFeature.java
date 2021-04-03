@@ -21,7 +21,7 @@ public class GreenAgateTreeFeature<T extends GaiaTreeFeatureConfig> extends Gaia
     @Override
     public boolean generate(ISeedReader worldIn, Random rand, BlockPos position, Set<BlockPos> logPos, Set<BlockPos> leavesPos, MutableBoundingBox boundingBox, T config) {
         int height = rand.nextInt(3) + rand.nextInt(3) + config.minHeight;
-        boolean canGrow = true;
+        boolean isValidBonemealTarget = true;
 
         if (position.getY() >= 1 && position.getY() + height + 1 <= 256) {
             for (int cy = position.getY(); cy <= position.getY() + 1 + height; ++cy) {
@@ -37,23 +37,23 @@ public class GreenAgateTreeFeature<T extends GaiaTreeFeatureConfig> extends Gaia
 
                 BlockPos.Mutable blockpos$mutableblockpos = new BlockPos.Mutable();
 
-                for (int cx = position.getX() - k; cx <= position.getX() + k && canGrow; ++cx) {
-                    for (int cz = position.getZ() - k; cz <= position.getZ() + k && canGrow; ++cz) {
+                for (int cx = position.getX() - k; cx <= position.getX() + k && isValidBonemealTarget; ++cx) {
+                    for (int cz = position.getZ() - k; cz <= position.getZ() + k && isValidBonemealTarget; ++cz) {
                         if (cy >= 0 && cy < 256) {
-                            if (!isReplaceableAt(worldIn, blockpos$mutableblockpos.setPos(cx, cy, cz))) {
-                                canGrow = false;
+                            if (!validTreePos(worldIn, blockpos$mutableblockpos.set(cx, cy, cz))) {
+                                isValidBonemealTarget = false;
                             }
                         } else {
-                            canGrow = false;
+                            isValidBonemealTarget = false;
                         }
                     }
                 }
             }
 
-            if (!canGrow) {
+            if (!isValidBonemealTarget) {
                 return false;
-            } else if (isSoil(worldIn, position.down(), config.getSapling(rand, position)) && position.getY() < worldIn.getHeight() - height - 1) {
-                this.setBlockState(worldIn, position.down(), ModBlocks.heavy_soil.get().getDefaultState(), boundingBox);
+            } else if (isSoil(worldIn, position.below(), config.getSapling(rand, position)) && position.getY() < worldIn.getHeight() - height - 1) {
+                this.setBlockState(worldIn, position.below(), ModBlocks.heavy_soil.get().defaultBlockState(), boundingBox);
                 int posX = position.getX();
                 int posZ = position.getZ();
                 int posY = 0;
@@ -70,10 +70,10 @@ public class GreenAgateTreeFeature<T extends GaiaTreeFeatureConfig> extends Gaia
                             this.setLogBlockState(worldIn, rand, blockpos.west(2), logPos, boundingBox, config);
                         }
                         if (base < height / 4) {
-                            this.setLogBlockState(worldIn, rand, blockpos.add(1, 0, 1), logPos, boundingBox, config);
-                            this.setLogBlockState(worldIn, rand, blockpos.add(1, 0, -1), logPos, boundingBox, config);
-                            this.setLogBlockState(worldIn, rand, blockpos.add(-1, 0, 1), logPos, boundingBox, config);
-                            this.setLogBlockState(worldIn, rand, blockpos.add(-1, 0, -1), logPos, boundingBox, config);
+                            this.setLogBlockState(worldIn, rand, blockpos.offset(1, 0, 1), logPos, boundingBox, config);
+                            this.setLogBlockState(worldIn, rand, blockpos.offset(1, 0, -1), logPos, boundingBox, config);
+                            this.setLogBlockState(worldIn, rand, blockpos.offset(-1, 0, 1), logPos, boundingBox, config);
+                            this.setLogBlockState(worldIn, rand, blockpos.offset(-1, 0, -1), logPos, boundingBox, config);
                         }
                         this.setLogBlockState(worldIn, rand, blockpos, logPos, boundingBox, config);
                         this.setLogBlockState(worldIn, rand, blockpos.north(), logPos, boundingBox, config);
@@ -88,17 +88,17 @@ public class GreenAgateTreeFeature<T extends GaiaTreeFeatureConfig> extends Gaia
                 for (int leafX1 = -3; leafX1 <= 3; ++leafX1) {
                     for (int leafZ1 = -3; leafZ1 <= 3; ++leafZ1) {
                         if (Math.abs(leafX1) != 3 || Math.abs(leafZ1) != 3) {
-                            this.setLeavesBlockState(worldIn, rand, blockpos2.add(leafX1, 0, leafZ1), leavesPos, boundingBox, config);
-                            this.setLeavesBlockState(worldIn, rand, blockpos2.add(leafX1, -1, leafZ1), leavesPos, boundingBox, config);
+                            this.setLeavesBlockState(worldIn, rand, blockpos2.offset(leafX1, 0, leafZ1), leavesPos, boundingBox, config);
+                            this.setLeavesBlockState(worldIn, rand, blockpos2.offset(leafX1, -1, leafZ1), leavesPos, boundingBox, config);
                         }
                     }
                 }
 
-                blockpos2 = blockpos2.up();
+                blockpos2 = blockpos2.above();
 
                 for (int leafX2 = -1; leafX2 <= 1; ++leafX2) {
                     for (int leafZ = -1; leafZ <= 1; ++leafZ) {
-                        this.setLeavesBlockState(worldIn, rand, blockpos2.add(leafX2, 0, leafZ), leavesPos, boundingBox, config);
+                        this.setLeavesBlockState(worldIn, rand, blockpos2.offset(leafX2, 0, leafZ), leavesPos, boundingBox, config);
                     }
                 }
 
@@ -107,21 +107,21 @@ public class GreenAgateTreeFeature<T extends GaiaTreeFeatureConfig> extends Gaia
                 this.setLeavesBlockState(worldIn, rand, blockpos2.south(2), leavesPos, boundingBox, config);
                 this.setLeavesBlockState(worldIn, rand, blockpos2.north(2), leavesPos, boundingBox, config);
 
-                blockpos2 = blockpos2.down(3);
+                blockpos2 = blockpos2.below(3);
                 for (int leafX3 = -2; leafX3 <= 2; ++leafX3) {
                     for (int leafZ3 = -2; leafZ3 <= 2; ++leafZ3) {
                         if (Math.abs(leafX3) != 2 || Math.abs(leafZ3) != 2) {
-                            this.setLeavesBlockState(worldIn, rand, blockpos2.add(leafX3, 0, leafZ3), leavesPos, boundingBox, config);
+                            this.setLeavesBlockState(worldIn, rand, blockpos2.offset(leafX3, 0, leafZ3), leavesPos, boundingBox, config);
                         }
                     }
                 }
 
-                blockpos2 = blockpos2.down();
+                blockpos2 = blockpos2.below();
 
-                this.setLeavesBlockState(worldIn, rand, blockpos2.add(1, 0, 1), leavesPos, boundingBox, config);
-                this.setLeavesBlockState(worldIn, rand, blockpos2.add(1, 0, -1), leavesPos, boundingBox, config);
-                this.setLeavesBlockState(worldIn, rand, blockpos2.add(-1, 0, 1), leavesPos, boundingBox, config);
-                this.setLeavesBlockState(worldIn, rand, blockpos2.add(-1, 0, -1), leavesPos, boundingBox, config);
+                this.setLeavesBlockState(worldIn, rand, blockpos2.offset(1, 0, 1), leavesPos, boundingBox, config);
+                this.setLeavesBlockState(worldIn, rand, blockpos2.offset(1, 0, -1), leavesPos, boundingBox, config);
+                this.setLeavesBlockState(worldIn, rand, blockpos2.offset(-1, 0, 1), leavesPos, boundingBox, config);
+                this.setLeavesBlockState(worldIn, rand, blockpos2.offset(-1, 0, -1), leavesPos, boundingBox, config);
 
                 return true;
             } else {

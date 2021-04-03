@@ -19,37 +19,37 @@ public class GlitterOutputSlot extends Slot {
     }
 
     @Override
-    public boolean isItemValid(ItemStack par1ItemStack) {
+    public boolean mayPlace(ItemStack par1ItemStack) {
         return false;
     }
 
     @Override
-    public ItemStack decrStackSize(int par1) {
-        if (getHasStack())
-            stackSize += Math.min(par1, getStack().getCount());
+    public ItemStack remove(int par1) {
+        if (hasItem())
+            stackSize += Math.min(par1, getItem().getCount());
 
-        return super.decrStackSize(par1);
+        return super.remove(par1);
     }
 
     @Override
     public ItemStack onTake(PlayerEntity player, ItemStack stack) {
-        this.onCrafting(stack);
+        this.checkTakeAchievements(stack);
         super.onTake(player, stack);
         return stack;
     }
 
     @Override
-    protected void onCrafting(ItemStack par1ItemStack, int par2) {
+    protected void onQuickCraft(ItemStack par1ItemStack, int par2) {
         stackSize += par2;
-        this.onCrafting(par1ItemStack);
+        this.checkTakeAchievements(par1ItemStack);
     }
 
     @Override
-    protected void onCrafting(ItemStack par1ItemStack) {
-        par1ItemStack.onCrafting(thePlayer.world, thePlayer, stackSize);
+    protected void checkTakeAchievements(ItemStack par1ItemStack) {
+        par1ItemStack.onCraftedBy(thePlayer.level, thePlayer, stackSize);
 
-        if (!thePlayer.world.isRemote) {
-            ((RestructurerTileEntity)this.inventory).unlockRecipe(thePlayer);
+        if (!thePlayer.level.isClientSide()) {
+            ((RestructurerTileEntity)this.container).unlockRecipe(thePlayer);
         }
 
         stackSize = 0;

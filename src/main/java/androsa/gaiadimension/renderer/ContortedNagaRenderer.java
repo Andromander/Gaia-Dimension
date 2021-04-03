@@ -18,7 +18,7 @@ public class ContortedNagaRenderer<T extends ContortedNagaEntity, M extends Cont
     }
 
     @Override
-    public ResourceLocation getEntityTexture(T entity) {
+    public ResourceLocation getTextureLocation(T entity) {
         return textureLoc;
     }
 }

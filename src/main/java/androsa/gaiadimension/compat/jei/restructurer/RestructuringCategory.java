@@ -33,7 +33,7 @@ public class RestructuringCategory extends RestructurerRecipeCategory<Restructur
                 .setTextureSize(76, 56).addPadding(0, 0, 0, 10)
                 .build();
         icon = guiHelper.createDrawableIngredient(new ItemStack(ModBlocks.restructurer.get()));
-        localizedName = I18n.format("gui.gaiadimension.category.restructuring");
+        localizedName = I18n.get("gui.gaiadimension.category.restructuring");
     }
 
     @Override
@@ -64,7 +64,7 @@ public class RestructuringCategory extends RestructurerRecipeCategory<Restructur
     @Override
     public void setIngredients(RestructurerRecipe recipe, IIngredients ingredients) {
         List<ItemStack> output = new ArrayList<>();
-        Collections.addAll(output, recipe.getRecipeOutput(), recipe.getByproduct());
+        Collections.addAll(output, recipe.getResultItem(), recipe.getByproduct());
 
         ingredients.setInputIngredients(recipe.getIngredients());
         ingredients.setOutputs(VanillaTypes.ITEM, output);
@@ -85,11 +85,11 @@ public class RestructuringCategory extends RestructurerRecipeCategory<Restructur
     public void draw(RestructurerRecipe recipe, MatrixStack stack, double mouseX, double mouseY) {
         float experience = recipe.getExperience();
         if (experience > 0.0F) {
-            String experienceString = I18n.format("gui.jei.category.smelting.experience", experience);
+            String experienceString = I18n.get("gui.jei.category.smelting.experience", experience);
             Minecraft minecraft = Minecraft.getInstance();
-            FontRenderer fontRenderer = minecraft.fontRenderer;
-            int stringWidth = fontRenderer.getStringWidth(experienceString);
-            fontRenderer.drawString(stack, experienceString, (float)(this.background.getWidth() - stringWidth), 0.0F, -8355712);
+            FontRenderer fontRenderer = minecraft.font;
+            int stringWidth = fontRenderer.width(experienceString);
+            fontRenderer.draw(stack, experienceString, (float)(this.background.getWidth() - stringWidth), 0.0F, -8355712);
         }
     }
 }

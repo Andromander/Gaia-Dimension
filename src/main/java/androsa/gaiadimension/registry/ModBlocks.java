@@ -26,116 +26,116 @@ public class ModBlocks {
 	public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, GaiaDimensionMod.MODID);
 
     //Utility Blocks
-    public static final RegistryObject<GaiaPortalBlock> gaia_portal = registerNoItem("gaia_portal", () -> new GaiaPortalBlock(Properties.create(Material.PORTAL, MaterialColor.PINK_TERRACOTTA).hardnessAndResistance(-1.0F).doesNotBlockMovement().tickRandomly().setLightLevel((state) -> 15).noDrops()));
-    public static final RegistryObject<Block> keystone_block = register("keystone_block", Properties.create(Material.IRON, MaterialColor.GOLD).hardnessAndResistance(5.0F, 10.0F).sound(SoundType.METAL).setRequiresTool().harvestTool(ToolType.PICKAXE).harvestLevel(2));
-    public static final RegistryObject<Block> gold_fire = registerNoItem("gold_fire", () -> new GoldFireBlock(Properties.create(Material.FIRE, MaterialColor.GOLD).hardnessAndResistance(0.0F).doesNotBlockMovement().tickRandomly().setLightLevel((state) -> 15).noDrops()));
+    public static final RegistryObject<GaiaPortalBlock> gaia_portal = registerNoItem("gaia_portal", () -> new GaiaPortalBlock(Properties.of(Material.PORTAL, MaterialColor.TERRACOTTA_PINK).strength(-1.0F).noCollission().randomTicks().lightLevel((state) -> 15).noDrops()));
+    public static final RegistryObject<Block> keystone_block = register("keystone_block", Properties.of(Material.METAL, MaterialColor.GOLD).strength(5.0F, 10.0F).sound(SoundType.METAL).requiresCorrectToolForDrops().harvestTool(ToolType.PICKAXE).harvestLevel(2));
+    public static final RegistryObject<Block> gold_fire = registerNoItem("gold_fire", () -> new GoldFireBlock(Properties.of(Material.FIRE, MaterialColor.GOLD).strength(0.0F).noCollission().randomTicks().lightLevel((state) -> 15).noDrops()));
     public static final RegistryObject<Block> pyrite_torch = registerNoItem("pyrite_torch", () -> new PyriteTorchBlock(GaiaBlockProperties.torchProps()));
     public static final RegistryObject<Block> pyrite_wall_torch = registerNoItem("pyrite_wall_torch", () -> new PyriteWallTorchBlock(GaiaBlockProperties.torchProps().lootFrom(pyrite_torch)));
-    public static final RegistryObject<Block> agate_crafting_table = register("agate_crafting_table", () -> new AgateCraftingTableBlock(GaiaBlockProperties.stoneProps(Material.WOOD, MaterialColor.PINK_TERRACOTTA, 1.5F, 2.0F, ToolType.AXE, 0)));
-    public static final RegistryObject<Block> crude_storage_crate = register("crude_storage_crate", () -> new SmallCrateBlock(GaiaBlockProperties.stoneProps(MaterialColor.PINK_TERRACOTTA, 10.0F, 150.0F, ToolType.AXE, 0)));
-    public static final RegistryObject<Block> mega_storage_crate = register("mega_storage_crate", () -> new LargeCrateBlock(GaiaBlockProperties.stoneProps(MaterialColor.PURPLE_TERRACOTTA, 10.0F, 300.0F, ToolType.AXE, 0)));
-    public static final RegistryObject<Block> gaia_stone_furnace = register("gaia_stone_furnace", () -> new GaiaStoneFurnaceBlock(GaiaBlockProperties.stoneToolProps(MaterialColor.PINK_TERRACOTTA, 20.0F, 300.0F, ToolType.PICKAXE, 0).setLightLevel((state) -> state.get(AbstractFurnaceBlock.LIT) ? 13 : 0)));
-    public static final RegistryObject<Block> restructurer = register("restructurer", () -> new RestructurerBlock(GaiaBlockProperties.stoneToolProps(MaterialColor.PURPLE_TERRACOTTA, 20.0F, 300.0F, ToolType.PICKAXE, 1).setLightLevel((state) -> state.get(RestructurerBlock.LIT) ? 14 : 0)));
-    public static final RegistryObject<Block> purifier = register("purifier", () -> new PurifierBlock(GaiaBlockProperties.stoneToolProps(MaterialColor.SAND, 20.0F, 300.0F, ToolType.PICKAXE, 2).setLightLevel((state) -> state.get(PurifierBlock.LIT) ? 14 : 0)));
+    public static final RegistryObject<Block> agate_crafting_table = register("agate_crafting_table", () -> new AgateCraftingTableBlock(GaiaBlockProperties.stoneProps(Material.WOOD, MaterialColor.TERRACOTTA_PINK, 1.5F, 2.0F, ToolType.AXE, 0)));
+    public static final RegistryObject<Block> crude_storage_crate = register("crude_storage_crate", () -> new SmallCrateBlock(GaiaBlockProperties.stoneProps(MaterialColor.TERRACOTTA_PINK, 10.0F, 150.0F, ToolType.AXE, 0)));
+    public static final RegistryObject<Block> mega_storage_crate = register("mega_storage_crate", () -> new LargeCrateBlock(GaiaBlockProperties.stoneProps(MaterialColor.TERRACOTTA_PURPLE, 10.0F, 300.0F, ToolType.AXE, 0)));
+    public static final RegistryObject<Block> gaia_stone_furnace = register("gaia_stone_furnace", () -> new GaiaStoneFurnaceBlock(GaiaBlockProperties.stoneToolProps(MaterialColor.TERRACOTTA_PINK, 20.0F, 300.0F, ToolType.PICKAXE, 0).lightLevel((state) -> state.getValue(AbstractFurnaceBlock.LIT) ? 13 : 0)));
+    public static final RegistryObject<Block> restructurer = register("restructurer", () -> new RestructurerBlock(GaiaBlockProperties.stoneToolProps(MaterialColor.TERRACOTTA_PURPLE, 20.0F, 300.0F, ToolType.PICKAXE, 1).lightLevel((state) -> state.getValue(RestructurerBlock.LIT) ? 14 : 0)));
+    public static final RegistryObject<Block> purifier = register("purifier", () -> new PurifierBlock(GaiaBlockProperties.stoneToolProps(MaterialColor.SAND, 20.0F, 300.0F, ToolType.PICKAXE, 2).lightLevel((state) -> state.getValue(PurifierBlock.LIT) ? 14 : 0)));
 
     //Fluids
     public static final RegistryObject<FlowingFluidBlock> mineral_water = registerNoItem("mineral_water", () ->
-            new GaiaFluidBlock(ModFluids.mineral_water_still, Block.Properties.create(Material.WATER, MaterialColor.LIGHT_BLUE_TERRACOTTA)));
+            new GaiaFluidBlock(ModFluids.mineral_water_still, Block.Properties.of(Material.WATER, MaterialColor.TERRACOTTA_LIGHT_BLUE)));
     public static final RegistryObject<FlowingFluidBlock> superhot_magma = registerNoItem("superhot_magma", () ->
-            new GaiaFluidBlock(ModFluids.superhot_magma_still, Block.Properties.create(Material.LAVA, MaterialColor.BLUE).tickRandomly().setLightLevel((state) -> 15)));
+            new GaiaFluidBlock(ModFluids.superhot_magma_still, Block.Properties.of(Material.LAVA, MaterialColor.COLOR_BLUE).randomTicks().lightLevel((state) -> 15)));
     public static final RegistryObject<FlowingFluidBlock> sweet_muck = registerNoItem("sweet_muck", () ->
-            new GaiaFluidBlock(ModFluids.sweet_muck_still, Block.Properties.create(Material.WATER, MaterialColor.PURPLE)));
+            new GaiaFluidBlock(ModFluids.sweet_muck_still, Block.Properties.of(Material.WATER, MaterialColor.COLOR_PURPLE)));
     public static final RegistryObject<FlowingFluidBlock> liquid_bismuth = registerNoItem("liquid_bismuth", () ->
-            new GaiaFluidBlock(ModFluids.liquid_bismuth_still, Block.Properties.create(Material.LAVA).tickRandomly().setLightLevel((state) -> 3)));
+            new GaiaFluidBlock(ModFluids.liquid_bismuth_still, Block.Properties.of(Material.LAVA).randomTicks().lightLevel((state) -> 3)));
     public static final RegistryObject<FlowingFluidBlock> liquid_aura = registerNoItem("liquid_aura", () ->
-            new GaiaFluidBlock(ModFluids.liquid_aura_still, Block.Properties.create(Material.WATER)));
+            new GaiaFluidBlock(ModFluids.liquid_aura_still, Block.Properties.of(Material.WATER)));
 
     //Natural Blocks
-    public static final RegistryObject<Block> heavy_soil = register("heavy_soil", () -> new GaiaSoilBlock(GaiaBlockProperties.soilProps(MaterialColor.PURPLE_TERRACOTTA)));
-    public static final RegistryObject<Block> corrupt_soil = register("corrupt_soil", () -> new GaiaSoilBlock(GaiaBlockProperties.soilProps(MaterialColor.GRAY)));
-    public static final RegistryObject<Block> boggy_soil = register("boggy_soil", () -> new GaiaSoilBlock(GaiaBlockProperties.soilProps(MaterialColor.GRAY)));
+    public static final RegistryObject<Block> heavy_soil = register("heavy_soil", () -> new GaiaSoilBlock(GaiaBlockProperties.soilProps(MaterialColor.TERRACOTTA_PURPLE)));
+    public static final RegistryObject<Block> corrupt_soil = register("corrupt_soil", () -> new GaiaSoilBlock(GaiaBlockProperties.soilProps(MaterialColor.COLOR_GRAY)));
+    public static final RegistryObject<Block> boggy_soil = register("boggy_soil", () -> new GaiaSoilBlock(GaiaBlockProperties.soilProps(MaterialColor.COLOR_GRAY)));
     public static final RegistryObject<Block> light_soil = register("light_soil", () -> new GaiaSoilBlock(GaiaBlockProperties.soilProps(MaterialColor.GOLD)));
-    public static final RegistryObject<Block> glitter_grass = register("glitter_grass", () -> new GlitterGrassBlock(GaiaBlockProperties.grassProps(MaterialColor.PINK)));
-    public static final RegistryObject<Block> corrupt_grass = register("corrupt_grass", () -> new CorruptGrassBlock(GaiaBlockProperties.grassProps(MaterialColor.BLACK)));
-    public static final RegistryObject<Block> murky_grass = register("murky_grass", () -> new MurkyGrassBlock(GaiaBlockProperties.grassProps(MaterialColor.GRAY)));
-    public static final RegistryObject<Block> soft_grass = register("soft_grass", () -> new SoftGrassBlock(GaiaBlockProperties.grassProps(MaterialColor.CYAN)));
-    public static final RegistryObject<Block> frail_glitter_block = register("frail_glitter_block", () -> new GaiaGlassBlock(GaiaBlockProperties.glassProps(MaterialColor.PINK, 1.0F)));
-    public static final RegistryObject<Block> thick_glitter_block = register("thick_glitter_block", GaiaBlockProperties.stoneToolProps(MaterialColor.PURPLE_TERRACOTTA, 1.5F, 7.5F, PICKAXE, 1));
-    public static final RegistryObject<Block> gummy_glitter_block = register("gummy_glitter_block", () -> new SlimeBlock(Properties.create(Material.CLAY, MaterialColor.PURPLE).sound(SoundType.SLIME).notSolid()));
-    public static final RegistryObject<Block> pink_sludge_block = register("pink_sludge_block", () -> new SlimeBlock(Properties.create(Material.CLAY, MaterialColor.PINK).sound(SoundType.SLIME)));
+    public static final RegistryObject<Block> glitter_grass = register("glitter_grass", () -> new GlitterGrassBlock(GaiaBlockProperties.grassProps(MaterialColor.COLOR_PINK)));
+    public static final RegistryObject<Block> corrupt_grass = register("corrupt_grass", () -> new CorruptGrassBlock(GaiaBlockProperties.grassProps(MaterialColor.COLOR_BLACK)));
+    public static final RegistryObject<Block> murky_grass = register("murky_grass", () -> new MurkyGrassBlock(GaiaBlockProperties.grassProps(MaterialColor.COLOR_GRAY)));
+    public static final RegistryObject<Block> soft_grass = register("soft_grass", () -> new SoftGrassBlock(GaiaBlockProperties.grassProps(MaterialColor.COLOR_CYAN)));
+    public static final RegistryObject<Block> frail_glitter_block = register("frail_glitter_block", () -> new GaiaGlassBlock(GaiaBlockProperties.glassProps(MaterialColor.COLOR_PINK, 1.0F)));
+    public static final RegistryObject<Block> thick_glitter_block = register("thick_glitter_block", GaiaBlockProperties.stoneToolProps(MaterialColor.TERRACOTTA_PURPLE, 1.5F, 7.5F, PICKAXE, 1));
+    public static final RegistryObject<Block> gummy_glitter_block = register("gummy_glitter_block", () -> new SlimeBlock(Properties.of(Material.CLAY, MaterialColor.COLOR_PURPLE).sound(SoundType.SLIME_BLOCK).noOcclusion()));
+    public static final RegistryObject<Block> pink_sludge_block = register("pink_sludge_block", () -> new SlimeBlock(Properties.of(Material.CLAY, MaterialColor.COLOR_PINK).sound(SoundType.SLIME_BLOCK)));
 
     //Plants
     public static final RegistryObject<Block> crystal_growth = register("crystal_growth", () -> new CrystalGrowthBlock(GaiaBlockProperties.plantProps(MaterialColor.SNOW, true)));
-    public static final RegistryObject<Block> crystal_growth_red = register("crystal_growth_red", () -> new CrystalGrowthBlock(GaiaBlockProperties.plantProps(MaterialColor.RED, true)));
-    public static final RegistryObject<Block> crystal_growth_black = register("crystal_growth_black", () -> new CrystalGrowthBlock(GaiaBlockProperties.plantProps(MaterialColor.BLACK, true)));
-    public static final RegistryObject<Block> crystal_growth_seared = register("crystal_growth_seared", () -> new CrystalGrowthBlock(GaiaBlockProperties.plantProps(MaterialColor.BLACK, true)));
-    public static final RegistryObject<Block> crystal_growth_mutant = register("crystal_growth_mutant", () -> new CrystalGrowthBlock(GaiaBlockProperties.plantProps(MaterialColor.WHITE_TERRACOTTA, true)));
-    public static final RegistryObject<Block> crystal_growth_aura = register("crystal_growth_aura", () -> new CrystalGrowthBlock(GaiaBlockProperties.plantProps(MaterialColor.LIGHT_BLUE_TERRACOTTA, true)));
+    public static final RegistryObject<Block> crystal_growth_red = register("crystal_growth_red", () -> new CrystalGrowthBlock(GaiaBlockProperties.plantProps(MaterialColor.COLOR_RED, true)));
+    public static final RegistryObject<Block> crystal_growth_black = register("crystal_growth_black", () -> new CrystalGrowthBlock(GaiaBlockProperties.plantProps(MaterialColor.COLOR_BLACK, true)));
+    public static final RegistryObject<Block> crystal_growth_seared = register("crystal_growth_seared", () -> new CrystalGrowthBlock(GaiaBlockProperties.plantProps(MaterialColor.COLOR_BLACK, true)));
+    public static final RegistryObject<Block> crystal_growth_mutant = register("crystal_growth_mutant", () -> new CrystalGrowthBlock(GaiaBlockProperties.plantProps(MaterialColor.TERRACOTTA_WHITE, true)));
+    public static final RegistryObject<Block> crystal_growth_aura = register("crystal_growth_aura", () -> new CrystalGrowthBlock(GaiaBlockProperties.plantProps(MaterialColor.TERRACOTTA_LIGHT_BLUE, true)));
     public static final RegistryObject<Block> thiscus = register("thiscus", () -> new CrystalBloomBlock(GaiaBlockProperties.bloomProps()));
     public static final RegistryObject<Block> ouzium = register("ouzium", () -> new CrystalBloomBlock(GaiaBlockProperties.bloomProps()));
     public static final RegistryObject<Block> agathum = register("agathum", () -> new CrystalBloomBlock(GaiaBlockProperties.bloomProps()));
     public static final RegistryObject<Block> varloom = register("varloom", () -> new CrystalBloomBlock(GaiaBlockProperties.bloomProps()));
     public static final RegistryObject<Block> corrupted_varloom = register("corrupted_varloom", () -> new CrystalBloomBlock(GaiaBlockProperties.bloomProps()));
     public static final RegistryObject<Block> missingno_plant = register("missingno_plant", () -> new CrystalBloomBlock(GaiaBlockProperties.bloomProps()));
-    public static final RegistryObject<Block> spotted_kersei = register("spotted_kersei", () -> new CrystalFungusBlock(GaiaBlockProperties.plantProps(MaterialColor.PINK, false), false));
-    public static final RegistryObject<Block> thorny_wiltha = register("thorny_wiltha", () -> new CrystalFungusBlock(GaiaBlockProperties.plantProps(MaterialColor.LIGHT_BLUE, false), false));
-    public static final RegistryObject<Block> roofed_agaric = register("roofed_agaric", () -> new CrystalFungusBlock(GaiaBlockProperties.plantProps(MaterialColor.LIME, false), false));
-    public static final RegistryObject<Block> bulbous_hobina = register("bulbous_hobina", () -> new CrystalFungusBlock(GaiaBlockProperties.plantProps(MaterialColor.PINK_TERRACOTTA, false), false));
-    public static final RegistryObject<Block> stickly_cupsir = register("stickly_cupsir", () -> new CrystalFungusBlock(GaiaBlockProperties.plantProps(MaterialColor.YELLOW_TERRACOTTA, false), false));
+    public static final RegistryObject<Block> spotted_kersei = register("spotted_kersei", () -> new CrystalFungusBlock(GaiaBlockProperties.plantProps(MaterialColor.COLOR_PINK, false), false));
+    public static final RegistryObject<Block> thorny_wiltha = register("thorny_wiltha", () -> new CrystalFungusBlock(GaiaBlockProperties.plantProps(MaterialColor.COLOR_LIGHT_BLUE, false), false));
+    public static final RegistryObject<Block> roofed_agaric = register("roofed_agaric", () -> new CrystalFungusBlock(GaiaBlockProperties.plantProps(MaterialColor.COLOR_LIGHT_GREEN, false), false));
+    public static final RegistryObject<Block> bulbous_hobina = register("bulbous_hobina", () -> new CrystalFungusBlock(GaiaBlockProperties.plantProps(MaterialColor.TERRACOTTA_PINK, false), false));
+    public static final RegistryObject<Block> stickly_cupsir = register("stickly_cupsir", () -> new CrystalFungusBlock(GaiaBlockProperties.plantProps(MaterialColor.TERRACOTTA_YELLOW, false), false));
     public static final RegistryObject<Block> mystical_murgni = register("mystical_murgni", () -> new CrystalFungusBlock(GaiaBlockProperties.plantProps(MaterialColor.GOLD, false), false));
-    public static final RegistryObject<Block> corrupted_gaia_eye = register("corrupted_gaia_eye", () -> new CrystalFungusBlock(GaiaBlockProperties.plantProps(MaterialColor.TNT, false), false));
+    public static final RegistryObject<Block> corrupted_gaia_eye = register("corrupted_gaia_eye", () -> new CrystalFungusBlock(GaiaBlockProperties.plantProps(MaterialColor.FIRE, false), false));
     //public static final RegistryObject<Block> sacred_gaia_eye = RegistryHelper.registerBlock()("sacred_gaia_eye", new CrystalFungusBlock(false));
-    public static final RegistryObject<Block> elder_imklia = register("elder_imklia", () -> new CrystalFungusBlock(GaiaBlockProperties.plantProps(MaterialColor.PURPLE, false), true));
+    public static final RegistryObject<Block> elder_imklia = register("elder_imklia", () -> new CrystalFungusBlock(GaiaBlockProperties.plantProps(MaterialColor.COLOR_PURPLE, false), true));
     public static final RegistryObject<Block> gold_orb_tucher = register("gold_orb_tucher", () -> new CrystalFungusBlock(GaiaBlockProperties.plantProps(MaterialColor.GOLD, false), true));
-    public static final RegistryObject<Block> missingno_fungus = register("missingno_fungus", () -> new CrystalFungusBlock(GaiaBlockProperties.plantProps(MaterialColor.MAGENTA, false), false));
+    public static final RegistryObject<Block> missingno_fungus = register("missingno_fungus", () -> new CrystalFungusBlock(GaiaBlockProperties.plantProps(MaterialColor.COLOR_MAGENTA, false), false));
 
     //Tree Blocks
-    public static RotatedPillarBlock s_pink_agate_log = new AgateLogBlock(GaiaBlockProperties.logProps(MaterialColor.MAGENTA));
-    public static RotatedPillarBlock s_blue_agate_log = new AgateLogBlock(GaiaBlockProperties.logProps(MaterialColor.BLUE));
-    public static RotatedPillarBlock s_green_agate_log = new AgateLogBlock(GaiaBlockProperties.logProps(MaterialColor.GREEN));
-    public static RotatedPillarBlock s_purple_agate_log = new AgateLogBlock(GaiaBlockProperties.logProps(MaterialColor.PURPLE_TERRACOTTA));
-    public static RotatedPillarBlock s_fossilized_log = new AgateLogBlock(GaiaBlockProperties.logProps(MaterialColor.YELLOW));
-    public static RotatedPillarBlock s_corrupted_log = new AgateLogBlock(GaiaBlockProperties.logProps(MaterialColor.TNT));
-    public static RotatedPillarBlock s_burnt_log = new AgateLogBlock(GaiaBlockProperties.logProps(MaterialColor.GRAY));
-    public static RotatedPillarBlock s_burning_log = new AgateLogBlock(GaiaBlockProperties.logProps(MaterialColor.ADOBE).setLightLevel((state) -> 3));
-    public static RotatedPillarBlock s_aura_log = new AgateLogBlock(GaiaBlockProperties.logProps(MaterialColor.IRON));
-    public static RotatedPillarBlock s_pink_agate_wood = new AgateLogBlock(GaiaBlockProperties.logProps(MaterialColor.MAGENTA));
-    public static RotatedPillarBlock s_blue_agate_wood = new AgateLogBlock(GaiaBlockProperties.logProps(MaterialColor.BLUE));
-    public static RotatedPillarBlock s_green_agate_wood = new AgateLogBlock(GaiaBlockProperties.logProps(MaterialColor.GREEN));
-    public static RotatedPillarBlock s_purple_agate_wood = new AgateLogBlock(GaiaBlockProperties.logProps(MaterialColor.PURPLE_TERRACOTTA));
-    public static RotatedPillarBlock s_fossilized_wood = new AgateLogBlock(GaiaBlockProperties.logProps(MaterialColor.YELLOW));
-    public static RotatedPillarBlock s_corrupted_wood = new AgateLogBlock(GaiaBlockProperties.logProps(MaterialColor.TNT));
-    public static RotatedPillarBlock s_burnt_wood = new AgateLogBlock(GaiaBlockProperties.logProps(MaterialColor.GRAY));
-    public static RotatedPillarBlock s_burning_wood = new AgateLogBlock(GaiaBlockProperties.logProps(MaterialColor.ADOBE).setLightLevel((state) -> 3));
-    public static RotatedPillarBlock s_aura_wood = new AgateLogBlock(GaiaBlockProperties.logProps(MaterialColor.IRON));
+    public static RotatedPillarBlock s_pink_agate_log = new AgateLogBlock(GaiaBlockProperties.logProps(MaterialColor.COLOR_MAGENTA));
+    public static RotatedPillarBlock s_blue_agate_log = new AgateLogBlock(GaiaBlockProperties.logProps(MaterialColor.COLOR_BLUE));
+    public static RotatedPillarBlock s_green_agate_log = new AgateLogBlock(GaiaBlockProperties.logProps(MaterialColor.COLOR_GREEN));
+    public static RotatedPillarBlock s_purple_agate_log = new AgateLogBlock(GaiaBlockProperties.logProps(MaterialColor.TERRACOTTA_PURPLE));
+    public static RotatedPillarBlock s_fossilized_log = new AgateLogBlock(GaiaBlockProperties.logProps(MaterialColor.COLOR_YELLOW));
+    public static RotatedPillarBlock s_corrupted_log = new AgateLogBlock(GaiaBlockProperties.logProps(MaterialColor.FIRE));
+    public static RotatedPillarBlock s_burnt_log = new AgateLogBlock(GaiaBlockProperties.logProps(MaterialColor.COLOR_GRAY));
+    public static RotatedPillarBlock s_burning_log = new AgateLogBlock(GaiaBlockProperties.logProps(MaterialColor.COLOR_ORANGE).lightLevel((state) -> 3));
+    public static RotatedPillarBlock s_aura_log = new AgateLogBlock(GaiaBlockProperties.logProps(MaterialColor.METAL));
+    public static RotatedPillarBlock s_pink_agate_wood = new AgateLogBlock(GaiaBlockProperties.logProps(MaterialColor.COLOR_MAGENTA));
+    public static RotatedPillarBlock s_blue_agate_wood = new AgateLogBlock(GaiaBlockProperties.logProps(MaterialColor.COLOR_BLUE));
+    public static RotatedPillarBlock s_green_agate_wood = new AgateLogBlock(GaiaBlockProperties.logProps(MaterialColor.COLOR_GREEN));
+    public static RotatedPillarBlock s_purple_agate_wood = new AgateLogBlock(GaiaBlockProperties.logProps(MaterialColor.TERRACOTTA_PURPLE));
+    public static RotatedPillarBlock s_fossilized_wood = new AgateLogBlock(GaiaBlockProperties.logProps(MaterialColor.COLOR_YELLOW));
+    public static RotatedPillarBlock s_corrupted_wood = new AgateLogBlock(GaiaBlockProperties.logProps(MaterialColor.FIRE));
+    public static RotatedPillarBlock s_burnt_wood = new AgateLogBlock(GaiaBlockProperties.logProps(MaterialColor.COLOR_GRAY));
+    public static RotatedPillarBlock s_burning_wood = new AgateLogBlock(GaiaBlockProperties.logProps(MaterialColor.COLOR_ORANGE).lightLevel((state) -> 3));
+    public static RotatedPillarBlock s_aura_wood = new AgateLogBlock(GaiaBlockProperties.logProps(MaterialColor.METAL));
 
-    public static final RegistryObject<SaplingBlock> pink_agate_sapling = register("pink_agate_sapling", () -> new SaplingBlock(new PinkAgateTree(), GaiaBlockProperties.saplingProps(MaterialColor.PINK)));
-    public static final RegistryObject<SaplingBlock> blue_agate_sapling = register("blue_agate_sapling", () -> new SaplingBlock(new BlueAgateTree(), GaiaBlockProperties.saplingProps(MaterialColor.LIGHT_BLUE)));
-    public static final RegistryObject<SaplingBlock> green_agate_sapling = register("green_agate_sapling", () -> new SaplingBlock(new GreenAgateTree(), GaiaBlockProperties.saplingProps(MaterialColor.LIME)));
-    public static final RegistryObject<SaplingBlock> purple_agate_sapling = register("purple_agate_sapling", () -> new SaplingBlock(new PurpleAgateTree(), GaiaBlockProperties.saplingProps(MaterialColor.PURPLE_TERRACOTTA)));
-    public static final RegistryObject<SaplingBlock> fossilized_sapling = register("fossilized_sapling", () -> new SaplingBlock(new FossilizedTree(), GaiaBlockProperties.saplingProps(MaterialColor.YELLOW_TERRACOTTA)));
-    public static final RegistryObject<SaplingBlock> corrupted_sapling = register("corrupted_sapling", () -> new SaplingBlock(new GoldstoneCorruptTree(), GaiaBlockProperties.saplingProps(MaterialColor.BLACK_TERRACOTTA)));
-    public static final RegistryObject<SaplingBlock> burnt_sapling = register("burnt_sapling", () -> new SaplingBlock(new BurntAgateTree(), GaiaBlockProperties.saplingProps(MaterialColor.BLACK)));
-    public static final RegistryObject<SaplingBlock> burning_sapling = register("burning_sapling", () -> new SaplingBlock(new FieryAgateTree(), GaiaBlockProperties.saplingProps(MaterialColor.ORANGE_TERRACOTTA)), 100);
+    public static final RegistryObject<SaplingBlock> pink_agate_sapling = register("pink_agate_sapling", () -> new SaplingBlock(new PinkAgateTree(), GaiaBlockProperties.saplingProps(MaterialColor.COLOR_PINK)));
+    public static final RegistryObject<SaplingBlock> blue_agate_sapling = register("blue_agate_sapling", () -> new SaplingBlock(new BlueAgateTree(), GaiaBlockProperties.saplingProps(MaterialColor.COLOR_LIGHT_BLUE)));
+    public static final RegistryObject<SaplingBlock> green_agate_sapling = register("green_agate_sapling", () -> new SaplingBlock(new GreenAgateTree(), GaiaBlockProperties.saplingProps(MaterialColor.COLOR_LIGHT_GREEN)));
+    public static final RegistryObject<SaplingBlock> purple_agate_sapling = register("purple_agate_sapling", () -> new SaplingBlock(new PurpleAgateTree(), GaiaBlockProperties.saplingProps(MaterialColor.TERRACOTTA_PURPLE)));
+    public static final RegistryObject<SaplingBlock> fossilized_sapling = register("fossilized_sapling", () -> new SaplingBlock(new FossilizedTree(), GaiaBlockProperties.saplingProps(MaterialColor.TERRACOTTA_YELLOW)));
+    public static final RegistryObject<SaplingBlock> corrupted_sapling = register("corrupted_sapling", () -> new SaplingBlock(new GoldstoneCorruptTree(), GaiaBlockProperties.saplingProps(MaterialColor.TERRACOTTA_BLACK)));
+    public static final RegistryObject<SaplingBlock> burnt_sapling = register("burnt_sapling", () -> new SaplingBlock(new BurntAgateTree(), GaiaBlockProperties.saplingProps(MaterialColor.COLOR_BLACK)));
+    public static final RegistryObject<SaplingBlock> burning_sapling = register("burning_sapling", () -> new SaplingBlock(new FieryAgateTree(), GaiaBlockProperties.saplingProps(MaterialColor.TERRACOTTA_ORANGE)), 100);
     public static final RegistryObject<SaplingBlock> aura_sapling = register("aura_sapling", () -> new SaplingBlock(new AuraTree(), GaiaBlockProperties.saplingProps(MaterialColor.SNOW)));
-    public static final RegistryObject<Block> pink_agate_leaves = register("pink_agate_leaves", () -> new LeavesBlock(GaiaBlockProperties.leavesProps(MaterialColor.MAGENTA)));
-    public static final RegistryObject<Block> blue_agate_leaves = register("blue_agate_leaves", () -> new LeavesBlock(GaiaBlockProperties.leavesProps(MaterialColor.BLUE)));
-    public static final RegistryObject<Block> green_agate_leaves = register("green_agate_leaves", () -> new LeavesBlock(GaiaBlockProperties.leavesProps(MaterialColor.GREEN)));
-    public static final RegistryObject<Block> purple_agate_leaves = register("purple_agate_leaves", () -> new LeavesBlock(GaiaBlockProperties.leavesProps(MaterialColor.PURPLE_TERRACOTTA)));
-    public static final RegistryObject<Block> fossilized_leaves = register("fossilized_leaves", () -> new LeavesBlock(GaiaBlockProperties.leavesProps(MaterialColor.YELLOW)));
-    public static final RegistryObject<Block> corrupted_leaves = register("corrupted_leaves", () -> new LeavesBlock(GaiaBlockProperties.leavesProps(MaterialColor.TNT)));
-    public static final RegistryObject<Block> burnt_leaves = register("burnt_leaves", () -> new LeavesBlock(GaiaBlockProperties.leavesProps(MaterialColor.GRAY)));
-    public static final RegistryObject<Block> burning_leaves = register("burning_leaves", () -> new LeavesBlock(GaiaBlockProperties.leavesProps(MaterialColor.ORANGE_TERRACOTTA).setLightLevel((state) -> 3)), 200);
-    public static final RegistryObject<Block> aura_leaves = register("aura_leaves", () -> new LeavesBlock(GaiaBlockProperties.leavesProps(MaterialColor.IRON)));
-    public static final RegistryObject<RotatedPillarBlock> pink_agate_log = register("pink_agate_log", () -> new AgateLogBlock(() -> s_pink_agate_log, GaiaBlockProperties.logProps(MaterialColor.MAGENTA, MaterialColor.PINK_TERRACOTTA)));
-    public static final RegistryObject<RotatedPillarBlock> blue_agate_log = register("blue_agate_log", () -> new AgateLogBlock(() -> s_blue_agate_log, GaiaBlockProperties.logProps(MaterialColor.BLUE, MaterialColor.BLUE_TERRACOTTA)));
-    public static final RegistryObject<RotatedPillarBlock> green_agate_log = register("green_agate_log", () -> new AgateLogBlock(() -> s_green_agate_log, GaiaBlockProperties.logProps(MaterialColor.GREEN, MaterialColor.LIME_TERRACOTTA)));
-    public static final RegistryObject<RotatedPillarBlock> purple_agate_log = register("purple_agate_log", () -> new AgateLogBlock(() -> s_purple_agate_log, GaiaBlockProperties.logProps(MaterialColor.PURPLE_TERRACOTTA, MaterialColor.PURPLE)));
-    public static final RegistryObject<RotatedPillarBlock> fossilized_log = register("fossilized_log", () -> new AgateLogBlock(() -> s_fossilized_log, GaiaBlockProperties.logProps(MaterialColor.YELLOW, MaterialColor.DIRT)));
-    public static final RegistryObject<RotatedPillarBlock> corrupted_log = register("corrupted_log", () -> new AgateLogBlock(() -> s_corrupted_log, GaiaBlockProperties.logProps(MaterialColor.TNT, MaterialColor.GRAY_TERRACOTTA)));
-    public static final RegistryObject<RotatedPillarBlock> burnt_log = register("burnt_log", () -> new AgateLogBlock(() -> s_burnt_log, GaiaBlockProperties.logProps(MaterialColor.GRAY, MaterialColor.BLACK_TERRACOTTA)));
-    public static final RegistryObject<RotatedPillarBlock> burning_log = register("burning_log", () -> new AgateLogBlock(() -> s_burning_log, GaiaBlockProperties.logProps(MaterialColor.ADOBE, MaterialColor.ORANGE_TERRACOTTA).setLightLevel((state) -> 3)), 1600);
-    public static final RegistryObject<RotatedPillarBlock> aura_log = register("aura_log", () -> new AgateLogBlock(() -> s_aura_log, GaiaBlockProperties.logProps(MaterialColor.IRON, MaterialColor.GRAY)));
+    public static final RegistryObject<Block> pink_agate_leaves = register("pink_agate_leaves", () -> new LeavesBlock(GaiaBlockProperties.leavesProps(MaterialColor.COLOR_MAGENTA)));
+    public static final RegistryObject<Block> blue_agate_leaves = register("blue_agate_leaves", () -> new LeavesBlock(GaiaBlockProperties.leavesProps(MaterialColor.COLOR_BLUE)));
+    public static final RegistryObject<Block> green_agate_leaves = register("green_agate_leaves", () -> new LeavesBlock(GaiaBlockProperties.leavesProps(MaterialColor.COLOR_GREEN)));
+    public static final RegistryObject<Block> purple_agate_leaves = register("purple_agate_leaves", () -> new LeavesBlock(GaiaBlockProperties.leavesProps(MaterialColor.TERRACOTTA_PURPLE)));
+    public static final RegistryObject<Block> fossilized_leaves = register("fossilized_leaves", () -> new LeavesBlock(GaiaBlockProperties.leavesProps(MaterialColor.COLOR_YELLOW)));
+    public static final RegistryObject<Block> corrupted_leaves = register("corrupted_leaves", () -> new LeavesBlock(GaiaBlockProperties.leavesProps(MaterialColor.FIRE)));
+    public static final RegistryObject<Block> burnt_leaves = register("burnt_leaves", () -> new LeavesBlock(GaiaBlockProperties.leavesProps(MaterialColor.COLOR_GRAY)));
+    public static final RegistryObject<Block> burning_leaves = register("burning_leaves", () -> new LeavesBlock(GaiaBlockProperties.leavesProps(MaterialColor.TERRACOTTA_ORANGE).lightLevel((state) -> 3)), 200);
+    public static final RegistryObject<Block> aura_leaves = register("aura_leaves", () -> new LeavesBlock(GaiaBlockProperties.leavesProps(MaterialColor.METAL)));
+    public static final RegistryObject<RotatedPillarBlock> pink_agate_log = register("pink_agate_log", () -> new AgateLogBlock(() -> s_pink_agate_log, GaiaBlockProperties.logProps(MaterialColor.COLOR_MAGENTA, MaterialColor.TERRACOTTA_PINK)));
+    public static final RegistryObject<RotatedPillarBlock> blue_agate_log = register("blue_agate_log", () -> new AgateLogBlock(() -> s_blue_agate_log, GaiaBlockProperties.logProps(MaterialColor.COLOR_BLUE, MaterialColor.TERRACOTTA_BLUE)));
+    public static final RegistryObject<RotatedPillarBlock> green_agate_log = register("green_agate_log", () -> new AgateLogBlock(() -> s_green_agate_log, GaiaBlockProperties.logProps(MaterialColor.COLOR_GREEN, MaterialColor.TERRACOTTA_LIGHT_GREEN)));
+    public static final RegistryObject<RotatedPillarBlock> purple_agate_log = register("purple_agate_log", () -> new AgateLogBlock(() -> s_purple_agate_log, GaiaBlockProperties.logProps(MaterialColor.TERRACOTTA_PURPLE, MaterialColor.COLOR_PURPLE)));
+    public static final RegistryObject<RotatedPillarBlock> fossilized_log = register("fossilized_log", () -> new AgateLogBlock(() -> s_fossilized_log, GaiaBlockProperties.logProps(MaterialColor.COLOR_YELLOW, MaterialColor.DIRT)));
+    public static final RegistryObject<RotatedPillarBlock> corrupted_log = register("corrupted_log", () -> new AgateLogBlock(() -> s_corrupted_log, GaiaBlockProperties.logProps(MaterialColor.FIRE, MaterialColor.TERRACOTTA_GRAY)));
+    public static final RegistryObject<RotatedPillarBlock> burnt_log = register("burnt_log", () -> new AgateLogBlock(() -> s_burnt_log, GaiaBlockProperties.logProps(MaterialColor.COLOR_GRAY, MaterialColor.TERRACOTTA_BLACK)));
+    public static final RegistryObject<RotatedPillarBlock> burning_log = register("burning_log", () -> new AgateLogBlock(() -> s_burning_log, GaiaBlockProperties.logProps(MaterialColor.COLOR_ORANGE, MaterialColor.TERRACOTTA_ORANGE).lightLevel((state) -> 3)), 1600);
+    public static final RegistryObject<RotatedPillarBlock> aura_log = register("aura_log", () -> new AgateLogBlock(() -> s_aura_log, GaiaBlockProperties.logProps(MaterialColor.METAL, MaterialColor.COLOR_GRAY)));
     public static final RegistryObject<RotatedPillarBlock> stripped_pink_agate_log = register("stripped_pink_agate_log", () -> s_pink_agate_log);
     public static final RegistryObject<RotatedPillarBlock> stripped_blue_agate_log = register("stripped_blue_agate_log", () -> s_blue_agate_log);
     public static final RegistryObject<RotatedPillarBlock> stripped_green_agate_log = register("stripped_green_agate_log", () -> s_green_agate_log);
@@ -145,15 +145,15 @@ public class ModBlocks {
     public static final RegistryObject<RotatedPillarBlock> stripped_burnt_log = register("stripped_burnt_log", () -> s_burnt_log);
     public static final RegistryObject<RotatedPillarBlock> stripped_burning_log = register("stripped_burning_log", () -> s_burning_log, 1600);
     public static final RegistryObject<RotatedPillarBlock> stripped_aura_log = register("stripped_aura_log", () -> s_aura_log);
-    public static final RegistryObject<RotatedPillarBlock> pink_agate_wood = register("pink_agate_wood", () -> new AgateLogBlock(() -> s_pink_agate_wood, GaiaBlockProperties.logProps(MaterialColor.PINK_TERRACOTTA)));
-    public static final RegistryObject<RotatedPillarBlock> blue_agate_wood = register("blue_agate_wood", () -> new AgateLogBlock(() -> s_blue_agate_wood, GaiaBlockProperties.logProps(MaterialColor.BLUE_TERRACOTTA)));
-    public static final RegistryObject<RotatedPillarBlock> green_agate_wood = register("green_agate_wood", () -> new AgateLogBlock(() -> s_green_agate_wood, GaiaBlockProperties.logProps(MaterialColor.LIME_TERRACOTTA)));
-    public static final RegistryObject<RotatedPillarBlock> purple_agate_wood = register("purple_agate_wood", () -> new AgateLogBlock(() -> s_purple_agate_wood, GaiaBlockProperties.logProps(MaterialColor.PURPLE)));
+    public static final RegistryObject<RotatedPillarBlock> pink_agate_wood = register("pink_agate_wood", () -> new AgateLogBlock(() -> s_pink_agate_wood, GaiaBlockProperties.logProps(MaterialColor.TERRACOTTA_PINK)));
+    public static final RegistryObject<RotatedPillarBlock> blue_agate_wood = register("blue_agate_wood", () -> new AgateLogBlock(() -> s_blue_agate_wood, GaiaBlockProperties.logProps(MaterialColor.TERRACOTTA_BLUE)));
+    public static final RegistryObject<RotatedPillarBlock> green_agate_wood = register("green_agate_wood", () -> new AgateLogBlock(() -> s_green_agate_wood, GaiaBlockProperties.logProps(MaterialColor.TERRACOTTA_LIGHT_GREEN)));
+    public static final RegistryObject<RotatedPillarBlock> purple_agate_wood = register("purple_agate_wood", () -> new AgateLogBlock(() -> s_purple_agate_wood, GaiaBlockProperties.logProps(MaterialColor.COLOR_PURPLE)));
     public static final RegistryObject<RotatedPillarBlock> fossilized_wood = register("fossilized_wood", () -> new AgateLogBlock(() -> s_fossilized_wood, GaiaBlockProperties.logProps(MaterialColor.DIRT)));
-    public static final RegistryObject<RotatedPillarBlock> corrupted_wood = register("corrupted_wood", () -> new AgateLogBlock(() -> s_corrupted_wood, GaiaBlockProperties.logProps(MaterialColor.GRAY_TERRACOTTA)));
-    public static final RegistryObject<RotatedPillarBlock> burnt_wood = register("burnt_wood", () -> new AgateLogBlock(() -> s_burnt_wood, GaiaBlockProperties.logProps(MaterialColor.BLACK_TERRACOTTA)));
-    public static final RegistryObject<RotatedPillarBlock> burning_wood = register("burning_wood", () -> new AgateLogBlock(() -> s_burning_wood, GaiaBlockProperties.logProps(MaterialColor.ORANGE_TERRACOTTA).setLightLevel((state) -> 3)), 1600);
-    public static final RegistryObject<RotatedPillarBlock> aura_wood = register("aura_wood", () -> new AgateLogBlock(() -> s_aura_wood, GaiaBlockProperties.logProps(MaterialColor.GRAY)));
+    public static final RegistryObject<RotatedPillarBlock> corrupted_wood = register("corrupted_wood", () -> new AgateLogBlock(() -> s_corrupted_wood, GaiaBlockProperties.logProps(MaterialColor.TERRACOTTA_GRAY)));
+    public static final RegistryObject<RotatedPillarBlock> burnt_wood = register("burnt_wood", () -> new AgateLogBlock(() -> s_burnt_wood, GaiaBlockProperties.logProps(MaterialColor.TERRACOTTA_BLACK)));
+    public static final RegistryObject<RotatedPillarBlock> burning_wood = register("burning_wood", () -> new AgateLogBlock(() -> s_burning_wood, GaiaBlockProperties.logProps(MaterialColor.TERRACOTTA_ORANGE).lightLevel((state) -> 3)), 1600);
+    public static final RegistryObject<RotatedPillarBlock> aura_wood = register("aura_wood", () -> new AgateLogBlock(() -> s_aura_wood, GaiaBlockProperties.logProps(MaterialColor.COLOR_GRAY)));
     public static final RegistryObject<RotatedPillarBlock> stripped_pink_agate_wood = register("stripped_pink_agate_wood", () -> s_pink_agate_wood);
     public static final RegistryObject<RotatedPillarBlock> stripped_blue_agate_wood = register("stripped_blue_agate_wood", () -> s_blue_agate_wood);
     public static final RegistryObject<RotatedPillarBlock> stripped_green_agate_wood = register("stripped_green_agate_wood", () -> s_green_agate_wood);
@@ -165,41 +165,41 @@ public class ModBlocks {
     public static final RegistryObject<RotatedPillarBlock> stripped_aura_wood = register("stripped_aura_wood", () -> s_aura_wood);
 
     public static final RegistryObject<Block> salt = register("salt", () -> new GaiaFallingBlock(GaiaBlockProperties.sandProps(MaterialColor.SNOW, 0.9F, SoundType.SAND), 0xE0E0FF));
-    public static final RegistryObject<Block> saltstone = register("saltstone", GaiaBlockProperties.stoneToolProps(MaterialColor.LIGHT_BLUE_TERRACOTTA, 1.5F, 10.0F, PICKAXE, 0));
-    public static final RegistryObject<Block> pebbles = register("pebbles", () -> new GaiaFallingBlock(GaiaBlockProperties.sandProps(MaterialColor.GRAY, 1.3F, SoundType.GROUND), 0x663366));
-    public static final RegistryObject<Block> gaia_stone = register("gaia_stone", GaiaBlockProperties.stoneToolProps(MaterialColor.MAGENTA, 2.0F, 15.0F, PICKAXE, 1));
-    public static final RegistryObject<Block> gaia_cobblestone = register("gaia_cobblestone", GaiaBlockProperties.stoneToolProps(MaterialColor.MAGENTA, 2.0F, 15.0F, PICKAXE, 1));
-    public static final RegistryObject<Block> wasteland_stone = register("wasteland_stone", GaiaBlockProperties.stoneToolProps(MaterialColor.BLUE_TERRACOTTA, 15.0F, 200.0F, PICKAXE, 2));
-    public static final RegistryObject<Block> static_stone = register("static_stone", () -> new StaticStoneBlock(GaiaBlockProperties.stoneToolProps(MaterialColor.BLUE_TERRACOTTA, 50.0F, 200.0F, ToolType.PICKAXE, 2)));
-    public static final RegistryObject<Block> charged_mineral = register("charged_mineral", () -> new ChargedMineralBlock(Properties.create(Material.IRON, MaterialColor.CYAN).hardnessAndResistance(4.0F, 15.0F).harvestTool(ToolType.PICKAXE).harvestLevel(1).sound(SoundType.GLASS).notSolid()));
-    public static final RegistryObject<Block> volcanic_rock = register("volcanic_rock", GaiaBlockProperties.stoneToolProps(MaterialColor.GRAY_TERRACOTTA, 15.0F, 200.0F, PICKAXE, 2));
-    public static final RegistryObject<Block> searing_rock = register("searing_rock", () -> new SearingRockBlock(GaiaBlockProperties.stoneToolProps(MaterialColor.GRAY_TERRACOTTA, 20.0F, 600.0F, ToolType.PICKAXE, 2).setLightLevel((state) -> 7)));
-    public static final RegistryObject<Block> primal_mass = register("primal_mass", GaiaBlockProperties.stoneToolProps(MaterialColor.PURPLE_TERRACOTTA, 30.0F, 400.0F, PICKAXE, 2));
-    public static final RegistryObject<Block> impure_rock = register("impure_rock", GaiaBlockProperties.stoneToolProps(MaterialColor.GRAY, 20.0F, 300.0F, PICKAXE, 2));
-    public static final RegistryObject<Block> active_rock = register("active_rock", () -> new ActiveRockBlock(GaiaBlockProperties.stoneToolProps(MaterialColor.PURPLE_TERRACOTTA, 15.0F, 250.0F, ToolType.PICKAXE, 2).setLightLevel((state) -> 7)));
+    public static final RegistryObject<Block> saltstone = register("saltstone", GaiaBlockProperties.stoneToolProps(MaterialColor.TERRACOTTA_LIGHT_BLUE, 1.5F, 10.0F, PICKAXE, 0));
+    public static final RegistryObject<Block> pebbles = register("pebbles", () -> new GaiaFallingBlock(GaiaBlockProperties.sandProps(MaterialColor.COLOR_GRAY, 1.3F, SoundType.GRAVEL), 0x663366));
+    public static final RegistryObject<Block> gaia_stone = register("gaia_stone", GaiaBlockProperties.stoneToolProps(MaterialColor.COLOR_MAGENTA, 2.0F, 15.0F, PICKAXE, 1));
+    public static final RegistryObject<Block> gaia_cobblestone = register("gaia_cobblestone", GaiaBlockProperties.stoneToolProps(MaterialColor.COLOR_MAGENTA, 2.0F, 15.0F, PICKAXE, 1));
+    public static final RegistryObject<Block> wasteland_stone = register("wasteland_stone", GaiaBlockProperties.stoneToolProps(MaterialColor.TERRACOTTA_BLUE, 15.0F, 200.0F, PICKAXE, 2));
+    public static final RegistryObject<Block> static_stone = register("static_stone", () -> new StaticStoneBlock(GaiaBlockProperties.stoneToolProps(MaterialColor.TERRACOTTA_BLUE, 50.0F, 200.0F, ToolType.PICKAXE, 2)));
+    public static final RegistryObject<Block> charged_mineral = register("charged_mineral", () -> new ChargedMineralBlock(Properties.of(Material.METAL, MaterialColor.COLOR_CYAN).strength(4.0F, 15.0F).harvestTool(ToolType.PICKAXE).harvestLevel(1).sound(SoundType.GLASS).noOcclusion()));
+    public static final RegistryObject<Block> volcanic_rock = register("volcanic_rock", GaiaBlockProperties.stoneToolProps(MaterialColor.TERRACOTTA_GRAY, 15.0F, 200.0F, PICKAXE, 2));
+    public static final RegistryObject<Block> searing_rock = register("searing_rock", () -> new SearingRockBlock(GaiaBlockProperties.stoneToolProps(MaterialColor.TERRACOTTA_GRAY, 20.0F, 600.0F, ToolType.PICKAXE, 2).lightLevel((state) -> 7)));
+    public static final RegistryObject<Block> primal_mass = register("primal_mass", GaiaBlockProperties.stoneToolProps(MaterialColor.TERRACOTTA_PURPLE, 30.0F, 400.0F, PICKAXE, 2));
+    public static final RegistryObject<Block> impure_rock = register("impure_rock", GaiaBlockProperties.stoneToolProps(MaterialColor.COLOR_GRAY, 20.0F, 300.0F, PICKAXE, 2));
+    public static final RegistryObject<Block> active_rock = register("active_rock", () -> new ActiveRockBlock(GaiaBlockProperties.stoneToolProps(MaterialColor.TERRACOTTA_PURPLE, 15.0F, 250.0F, ToolType.PICKAXE, 2).lightLevel((state) -> 7)));
     public static final RegistryObject<Block> impure_sludge = register("impure_sludge", () -> new ImpureSludgeBlock(GaiaBlockProperties.sludgeProps()));
-    public static final RegistryObject<Block> geyser_block = register("geyser_block", () -> new GeyserBlock(GaiaBlockProperties.stoneToolProps(MaterialColor.IRON, 5.0F, 10.0F, ToolType.PICKAXE, 1)));
-    public static final RegistryObject<Block> sparkling_rock = register("sparkling_rock", Properties.create(Material.ROCK, MaterialColor.IRON).hardnessAndResistance(10.0F, 150.0F).sound(SoundType.GLASS).setRequiresTool().harvestTool(ToolType.PICKAXE).harvestLevel(1));
-    public static final RegistryObject<Block> aura_shoot = register("aura_shoot", () -> new AuraShootBlock(Properties.create(Material.GLASS, MaterialColor.BLUE).sound(SoundType.GLASS).harvestTool(ToolType.PICKAXE).harvestLevel(1).tickRandomly()));
+    public static final RegistryObject<Block> geyser_block = register("geyser_block", () -> new GeyserBlock(GaiaBlockProperties.stoneToolProps(MaterialColor.METAL, 5.0F, 10.0F, ToolType.PICKAXE, 1)));
+    public static final RegistryObject<Block> sparkling_rock = register("sparkling_rock", Properties.of(Material.STONE, MaterialColor.METAL).strength(10.0F, 150.0F).sound(SoundType.GLASS).requiresCorrectToolForDrops().harvestTool(ToolType.PICKAXE).harvestLevel(1));
+    public static final RegistryObject<Block> aura_shoot = register("aura_shoot", () -> new AuraShootBlock(Properties.of(Material.GLASS, MaterialColor.COLOR_BLUE).sound(SoundType.GLASS).harvestTool(ToolType.PICKAXE).harvestLevel(1).randomTicks()));
 
     //Planks
-    public static final RegistryObject<Block> pink_agate_planks = register("pink_agate_planks", GaiaBlockProperties.tileProps(MaterialColor.PINK));
-    public static final RegistryObject<Block> blue_agate_planks = register("blue_agate_planks", GaiaBlockProperties.tileProps(MaterialColor.LIGHT_BLUE));
-    public static final RegistryObject<Block> green_agate_planks = register("green_agate_planks", GaiaBlockProperties.tileProps(MaterialColor.LIME));
-    public static final RegistryObject<Block> purple_agate_planks = register("purple_agate_planks", GaiaBlockProperties.tileProps(MaterialColor.PURPLE_TERRACOTTA));
-    public static final RegistryObject<Block> fossilized_planks = register("fossilized_planks", GaiaBlockProperties.tileProps(MaterialColor.YELLOW_TERRACOTTA));
-    public static final RegistryObject<Block> corrupted_planks = register("corrupted_planks", GaiaBlockProperties.tileProps(MaterialColor.BLACK_TERRACOTTA));
-    public static final RegistryObject<Block> burnt_planks = register("burnt_planks", GaiaBlockProperties.tileProps(MaterialColor.BLACK));
-    public static final RegistryObject<Block> burning_planks = register("burning_planks", GaiaBlockProperties.tileProps(MaterialColor.ORANGE_TERRACOTTA).setLightLevel((state) -> 3), 400);
+    public static final RegistryObject<Block> pink_agate_planks = register("pink_agate_planks", GaiaBlockProperties.tileProps(MaterialColor.COLOR_PINK));
+    public static final RegistryObject<Block> blue_agate_planks = register("blue_agate_planks", GaiaBlockProperties.tileProps(MaterialColor.COLOR_LIGHT_BLUE));
+    public static final RegistryObject<Block> green_agate_planks = register("green_agate_planks", GaiaBlockProperties.tileProps(MaterialColor.COLOR_LIGHT_GREEN));
+    public static final RegistryObject<Block> purple_agate_planks = register("purple_agate_planks", GaiaBlockProperties.tileProps(MaterialColor.TERRACOTTA_PURPLE));
+    public static final RegistryObject<Block> fossilized_planks = register("fossilized_planks", GaiaBlockProperties.tileProps(MaterialColor.TERRACOTTA_YELLOW));
+    public static final RegistryObject<Block> corrupted_planks = register("corrupted_planks", GaiaBlockProperties.tileProps(MaterialColor.TERRACOTTA_BLACK));
+    public static final RegistryObject<Block> burnt_planks = register("burnt_planks", GaiaBlockProperties.tileProps(MaterialColor.COLOR_BLACK));
+    public static final RegistryObject<Block> burning_planks = register("burning_planks", GaiaBlockProperties.tileProps(MaterialColor.TERRACOTTA_ORANGE).lightLevel((state) -> 3), 400);
     public static final RegistryObject<Block> aura_planks = register("aura_planks", GaiaBlockProperties.tileProps(MaterialColor.SNOW));
-    public static final RegistryObject<SlabBlock> pink_agate_plank_slab = register("pink_agate_plank_slab", () -> new SlabBlock(GaiaBlockProperties.tileProps(MaterialColor.PINK)));
-    public static final RegistryObject<SlabBlock> blue_agate_plank_slab = register("blue_agate_plank_slab", () -> new SlabBlock(GaiaBlockProperties.tileProps(MaterialColor.LIGHT_BLUE)));
-    public static final RegistryObject<SlabBlock> green_agate_plank_slab = register("green_agate_plank_slab", () -> new SlabBlock(GaiaBlockProperties.tileProps(MaterialColor.LIME)));
-    public static final RegistryObject<SlabBlock> purple_agate_plank_slab = register("purple_agate_plank_slab", () -> new SlabBlock(GaiaBlockProperties.tileProps(MaterialColor.PURPLE_TERRACOTTA)));
-    public static final RegistryObject<SlabBlock> fossilized_plank_slab = register("fossilized_plank_slab", () -> new SlabBlock(GaiaBlockProperties.tileProps(MaterialColor.YELLOW_TERRACOTTA)));
-    public static final RegistryObject<SlabBlock> corrupted_plank_slab = register("corrupted_plank_slab", () -> new SlabBlock(GaiaBlockProperties.tileProps(MaterialColor.BLACK_TERRACOTTA)));
-    public static final RegistryObject<SlabBlock> burnt_plank_slab = register("burnt_plank_slab", () -> new SlabBlock(GaiaBlockProperties.tileProps(MaterialColor.BLACK)));
-    public static final RegistryObject<SlabBlock> burning_plank_slab = register("burning_plank_slab", () -> new SlabBlock(GaiaBlockProperties.tileProps(MaterialColor.ORANGE_TERRACOTTA).setLightLevel((state) -> 3)), 200);
+    public static final RegistryObject<SlabBlock> pink_agate_plank_slab = register("pink_agate_plank_slab", () -> new SlabBlock(GaiaBlockProperties.tileProps(MaterialColor.COLOR_PINK)));
+    public static final RegistryObject<SlabBlock> blue_agate_plank_slab = register("blue_agate_plank_slab", () -> new SlabBlock(GaiaBlockProperties.tileProps(MaterialColor.COLOR_LIGHT_BLUE)));
+    public static final RegistryObject<SlabBlock> green_agate_plank_slab = register("green_agate_plank_slab", () -> new SlabBlock(GaiaBlockProperties.tileProps(MaterialColor.COLOR_LIGHT_GREEN)));
+    public static final RegistryObject<SlabBlock> purple_agate_plank_slab = register("purple_agate_plank_slab", () -> new SlabBlock(GaiaBlockProperties.tileProps(MaterialColor.TERRACOTTA_PURPLE)));
+    public static final RegistryObject<SlabBlock> fossilized_plank_slab = register("fossilized_plank_slab", () -> new SlabBlock(GaiaBlockProperties.tileProps(MaterialColor.TERRACOTTA_YELLOW)));
+    public static final RegistryObject<SlabBlock> corrupted_plank_slab = register("corrupted_plank_slab", () -> new SlabBlock(GaiaBlockProperties.tileProps(MaterialColor.TERRACOTTA_BLACK)));
+    public static final RegistryObject<SlabBlock> burnt_plank_slab = register("burnt_plank_slab", () -> new SlabBlock(GaiaBlockProperties.tileProps(MaterialColor.COLOR_BLACK)));
+    public static final RegistryObject<SlabBlock> burning_plank_slab = register("burning_plank_slab", () -> new SlabBlock(GaiaBlockProperties.tileProps(MaterialColor.TERRACOTTA_ORANGE).lightLevel((state) -> 3)), 200);
     public static final RegistryObject<SlabBlock> aura_plank_slab = register("aura_plank_slab", () -> new SlabBlock(GaiaBlockProperties.tileProps(MaterialColor.SNOW)));
     public static final RegistryObject<StairsBlock> pink_agate_plank_stairs = register("pink_agate_plank_stairs", makeStairs(pink_agate_planks), 0);
     public static final RegistryObject<StairsBlock> blue_agate_plank_stairs = register("blue_agate_plank_stairs", makeStairs(blue_agate_planks), 0);
@@ -212,13 +212,13 @@ public class ModBlocks {
     public static final RegistryObject<StairsBlock> aura_plank_stairs = register("aura_plank_stairs", makeStairs(aura_planks), 0);
 
     //Manufactured
-    public static final RegistryObject<Block> cloudy_glass = register("cloudy_glass", () -> new GaiaGlassBlock(GaiaBlockProperties.glassProps(MaterialColor.YELLOW, 0.7F)));
-    public static final RegistryObject<Block> foggy_glass = register("foggy_glass", () -> new GaiaGlassBlock(GaiaBlockProperties.glassProps(MaterialColor.LIGHT_BLUE, 0.7F)));
+    public static final RegistryObject<Block> cloudy_glass = register("cloudy_glass", () -> new GaiaGlassBlock(GaiaBlockProperties.glassProps(MaterialColor.COLOR_YELLOW, 0.7F)));
+    public static final RegistryObject<Block> foggy_glass = register("foggy_glass", () -> new GaiaGlassBlock(GaiaBlockProperties.glassProps(MaterialColor.COLOR_LIGHT_BLUE, 0.7F)));
     public static final RegistryObject<Block> gaia_stone_bricks = register("gaia_stone_bricks", GaiaBlockProperties.gaiaBrickProps());
     public static final RegistryObject<Block> cracked_gaia_stone_bricks = register("cracked_gaia_stone_bricks", GaiaBlockProperties.gaiaBrickProps());
     public static final RegistryObject<Block> crusted_gaia_stone_bricks = register("crusted_gaia_stone_bricks", GaiaBlockProperties.gaiaBrickProps());
 
-    public static final RegistryObject<Block> raw_jade = register("raw_jade", GaiaBlockProperties.stoneToolProps(MaterialColor.GREEN, 2.0F, 20.0F, PICKAXE, 1));
+    public static final RegistryObject<Block> raw_jade = register("raw_jade", GaiaBlockProperties.stoneToolProps(MaterialColor.COLOR_GREEN, 2.0F, 20.0F, PICKAXE, 1));
     public static final RegistryObject<Block> jade_bricks = register("jade_bricks", GaiaBlockProperties.jadeProps());
     public static final RegistryObject<SlabBlock> jade_brick_slab = register("jade_brick_slab", makeSlab(GaiaBlockProperties.jadeProps()));
     public static final RegistryObject<StairsBlock> jade_brick_stairs = register("jade_brick_stairs", makeStairs(jade_bricks));
@@ -238,7 +238,7 @@ public class ModBlocks {
     public static final RegistryObject<Block> crusted_copal_bricks = register("crusted_copal_bricks", GaiaBlockProperties.copalProps());
     public static final RegistryObject<SlabBlock> crusted_copal_brick_slab = register("crusted_copal_brick_slab", makeSlab(GaiaBlockProperties.copalProps()));
     public static final RegistryObject<StairsBlock> crusted_copal_brick_stairs = register("crusted_copal_brick_stairs", makeStairs(crusted_copal_bricks));
-    public static final RegistryObject<Block> raw_jet = register("raw_jet", GaiaBlockProperties.stoneToolProps(MaterialColor.GRAY, 2.0F, 20.0F, PICKAXE, 1));
+    public static final RegistryObject<Block> raw_jet = register("raw_jet", GaiaBlockProperties.stoneToolProps(MaterialColor.COLOR_GRAY, 2.0F, 20.0F, PICKAXE, 1));
     public static final RegistryObject<Block> jet_bricks = register("jet_bricks", GaiaBlockProperties.jetProps());
     public static final RegistryObject<SlabBlock> jet_brick_slab = register("jet_brick_slab", makeSlab(GaiaBlockProperties.jetProps()));
     public static final RegistryObject<StairsBlock> jet_brick_stairs = register("jet_brick_stairs", makeStairs(jet_bricks));
@@ -248,7 +248,7 @@ public class ModBlocks {
     public static final RegistryObject<Block> crusted_jet_bricks = register("crusted_jet_bricks", GaiaBlockProperties.jetProps());
     public static final RegistryObject<SlabBlock> crusted_jet_brick_slab = register("crusted_jet_brick_slab", makeSlab(GaiaBlockProperties.jetProps()));
     public static final RegistryObject<StairsBlock> crusted_jet_brick_stairs = register("crusted_jet_brick_stairs", makeStairs(crusted_jet_bricks));
-    public static final RegistryObject<Block> raw_amethyst = register("raw_amethyst", GaiaBlockProperties.stoneToolProps(MaterialColor.PURPLE_TERRACOTTA, 2.0F, 20.0F, PICKAXE, 1));
+    public static final RegistryObject<Block> raw_amethyst = register("raw_amethyst", GaiaBlockProperties.stoneToolProps(MaterialColor.TERRACOTTA_PURPLE, 2.0F, 20.0F, PICKAXE, 1));
     public static final RegistryObject<Block> amethyst_bricks = register("amethyst_bricks", GaiaBlockProperties.amethystProps());
     public static final RegistryObject<SlabBlock> amethyst_brick_slab = register("amethyst_brick_slab", makeSlab(GaiaBlockProperties.amethystProps()));
     public static final RegistryObject<StairsBlock> amethyst_brick_stairs = register("amethyst_brick_stairs", makeStairs(amethyst_bricks));
@@ -259,7 +259,7 @@ public class ModBlocks {
     public static final RegistryObject<SlabBlock> crusted_amethyst_brick_slab = register("crusted_amethyst_brick_slab", makeSlab(GaiaBlockProperties.amethystProps()));
     public static final RegistryObject<StairsBlock> crusted_amethyst_brick_stairs = register("crusted_amethyst_brick_stairs", makeStairs(crusted_amethyst_bricks));
 
-    public static final RegistryObject<Block> reinforced_bricks = register("reinforced_bricks", GaiaBlockProperties.stoneToolProps(MaterialColor.PURPLE, 10.0F, 100.0F, PICKAXE, 1));
+    public static final RegistryObject<Block> reinforced_bricks = register("reinforced_bricks", GaiaBlockProperties.stoneToolProps(MaterialColor.COLOR_PURPLE, 10.0F, 100.0F, PICKAXE, 1));
     public static final RegistryObject<Block> bolstered_bricks = register("bolstered_bricks", GaiaBlockProperties.stoneToolProps(MaterialColor.SAND, 30.0F, 400.0F, PICKAXE, 2));
     public static final RegistryObject<Block> malachite_bricks = register("malachite_bricks", GaiaBlockProperties.malachiteProps());
     public static final RegistryObject<Block> malachite_cracked_bricks = register("malachite_cracked_bricks", GaiaBlockProperties.malachiteProps());
@@ -285,43 +285,43 @@ public class ModBlocks {
     public static final RegistryObject<StairsBlock> malachite_pillar_stairs = register("malachite_pillar_stairs", makeStairs(malachite_pillar));
 
     //Storage Blocks
-    public static final RegistryObject<Block> sugilite_block = register("sugilite_block", GaiaBlockProperties.storageProps(MaterialColor.PURPLE));
-    public static final RegistryObject<Block> hematite_block = register("hematite_block", GaiaBlockProperties.storageProps(MaterialColor.GRAY));
-    public static final RegistryObject<Block> cinnabar_block = register("cinnabar_block", GaiaBlockProperties.storageProps(MaterialColor.ADOBE));
-    public static final RegistryObject<Block> labradorite_block = register("labradorite_block", GaiaBlockProperties.storageProps(MaterialColor.GREEN));
-    public static final RegistryObject<Block> moonstone_block = register("moonstone_block", GaiaBlockProperties.storageProps(MaterialColor.IRON));
-    public static final RegistryObject<Block> opal_block_red = register("opal_block_red", GaiaBlockProperties.storageProps(MaterialColor.RED));
-    public static final RegistryObject<Block> opal_block_blue = register("opal_block_blue", GaiaBlockProperties.storageProps(MaterialColor.LIGHT_BLUE));
-    public static final RegistryObject<Block> opal_block_green = register("opal_block_green", GaiaBlockProperties.storageProps(MaterialColor.LIME));
+    public static final RegistryObject<Block> sugilite_block = register("sugilite_block", GaiaBlockProperties.storageProps(MaterialColor.COLOR_PURPLE));
+    public static final RegistryObject<Block> hematite_block = register("hematite_block", GaiaBlockProperties.storageProps(MaterialColor.COLOR_GRAY));
+    public static final RegistryObject<Block> cinnabar_block = register("cinnabar_block", GaiaBlockProperties.storageProps(MaterialColor.COLOR_ORANGE));
+    public static final RegistryObject<Block> labradorite_block = register("labradorite_block", GaiaBlockProperties.storageProps(MaterialColor.COLOR_GREEN));
+    public static final RegistryObject<Block> moonstone_block = register("moonstone_block", GaiaBlockProperties.storageProps(MaterialColor.METAL));
+    public static final RegistryObject<Block> opal_block_red = register("opal_block_red", GaiaBlockProperties.storageProps(MaterialColor.COLOR_RED));
+    public static final RegistryObject<Block> opal_block_blue = register("opal_block_blue", GaiaBlockProperties.storageProps(MaterialColor.COLOR_LIGHT_BLUE));
+    public static final RegistryObject<Block> opal_block_green = register("opal_block_green", GaiaBlockProperties.storageProps(MaterialColor.COLOR_LIGHT_GREEN));
     public static final RegistryObject<Block> opal_block_white = register("opal_block_white", GaiaBlockProperties.storageProps(MaterialColor.SNOW));
-    public static final RegistryObject<Block> pyrite_block = register("pyrite_block", GaiaBlockProperties.storageProps(MaterialColor.GOLD).setLightLevel((state) -> 15));
-    public static final RegistryObject<Block> tektite_block = register("tektite_block", GaiaBlockProperties.storageProps(MaterialColor.BLACK));
-    public static final RegistryObject<Block> goldstone_block = register("goldstone_block", GaiaBlockProperties.storageProps(MaterialColor.BLACK));
+    public static final RegistryObject<Block> pyrite_block = register("pyrite_block", GaiaBlockProperties.storageProps(MaterialColor.GOLD).lightLevel((state) -> 15));
+    public static final RegistryObject<Block> tektite_block = register("tektite_block", GaiaBlockProperties.storageProps(MaterialColor.COLOR_BLACK));
+    public static final RegistryObject<Block> goldstone_block = register("goldstone_block", GaiaBlockProperties.storageProps(MaterialColor.COLOR_BLACK));
     public static final RegistryObject<Block> aura_block = register("aura_block", GaiaBlockProperties.storageProps(MaterialColor.ICE));
-    public static final RegistryObject<Block> bismuth_block = register("bismuth_block", GaiaBlockProperties.storageProps(MaterialColor.OBSIDIAN));
-    public static final RegistryObject<Block> ixiolite_block = register("ixiolite_block", GaiaBlockProperties.storageProps(MaterialColor.GRAY));
-    public static final RegistryObject<Block> proustite_block = register("proustite_block", GaiaBlockProperties.storageProps(MaterialColor.MAGENTA));
-    public static final RegistryObject<Block> euclase_block = register("euclase_block", GaiaBlockProperties.storageProps(MaterialColor.LIME));
+    public static final RegistryObject<Block> bismuth_block = register("bismuth_block", GaiaBlockProperties.storageProps(MaterialColor.PODZOL));
+    public static final RegistryObject<Block> ixiolite_block = register("ixiolite_block", GaiaBlockProperties.storageProps(MaterialColor.COLOR_GRAY));
+    public static final RegistryObject<Block> proustite_block = register("proustite_block", GaiaBlockProperties.storageProps(MaterialColor.COLOR_MAGENTA));
+    public static final RegistryObject<Block> euclase_block = register("euclase_block", GaiaBlockProperties.storageProps(MaterialColor.COLOR_LIGHT_GREEN));
     public static final RegistryObject<Block> leucite_block = register("leucite_block", GaiaBlockProperties.storageProps(MaterialColor.SAND));
-    public static final RegistryObject<Block> carnelian_block = register("carnelian_block", GaiaBlockProperties.storageProps(MaterialColor.RED));
-    public static final RegistryObject<Block> benitoite_block = register("benitoite_block", GaiaBlockProperties.storageProps(MaterialColor.BLUE));
-    public static final RegistryObject<Block> diopside_block = register("diopside_block", GaiaBlockProperties.storageProps(MaterialColor.LIME));
+    public static final RegistryObject<Block> carnelian_block = register("carnelian_block", GaiaBlockProperties.storageProps(MaterialColor.COLOR_RED));
+    public static final RegistryObject<Block> benitoite_block = register("benitoite_block", GaiaBlockProperties.storageProps(MaterialColor.COLOR_BLUE));
+    public static final RegistryObject<Block> diopside_block = register("diopside_block", GaiaBlockProperties.storageProps(MaterialColor.COLOR_LIGHT_GREEN));
     public static final RegistryObject<Block> chalcedony_block = register("chalcedony_block", GaiaBlockProperties.storageProps(MaterialColor.SNOW));
 
     //Ores
-    public static final RegistryObject<Block> sugilite_ore = register("sugilite_ore", () -> new GaiaOreBlock(GaiaBlockProperties.oreProps(MaterialColor.PURPLE, 1), 1, 3));
-    public static final RegistryObject<Block> hematite_ore = register("hematite_ore", () -> new GaiaOreBlock(GaiaBlockProperties.oreProps(MaterialColor.GRAY, 2), 1, 4));
-    public static final RegistryObject<Block> cinnabar_ore = register("cinnabar_ore", () -> new GaiaOreBlock(GaiaBlockProperties.oreProps(MaterialColor.ADOBE, 2), 1, 4));
-    public static final RegistryObject<Block> labradorite_ore = register("labradorite_ore", () -> new GaiaOreBlock(GaiaBlockProperties.oreProps(MaterialColor.GREEN, 2), 5, 2));
-    public static final RegistryObject<Block> moonstone_ore = register("moonstone_ore", () -> new GaiaOreBlock(GaiaBlockProperties.oreProps(MaterialColor.IRON, 2), 5, 2));
-    public static final RegistryObject<Block> opal_ore_red = register("opal_ore_red", () -> new GaiaOreBlock(GaiaBlockProperties.oreProps(MaterialColor.RED, 2), 2, 5));
-    public static final RegistryObject<Block> opal_ore_blue = register("opal_ore_blue", () -> new GaiaOreBlock(GaiaBlockProperties.oreProps(MaterialColor.LIGHT_BLUE, 2), 2, 5));
-    public static final RegistryObject<Block> opal_ore_green = register("opal_ore_green", () -> new GaiaOreBlock(GaiaBlockProperties.oreProps(MaterialColor.LIME, 2), 2, 5));
+    public static final RegistryObject<Block> sugilite_ore = register("sugilite_ore", () -> new GaiaOreBlock(GaiaBlockProperties.oreProps(MaterialColor.COLOR_PURPLE, 1), 1, 3));
+    public static final RegistryObject<Block> hematite_ore = register("hematite_ore", () -> new GaiaOreBlock(GaiaBlockProperties.oreProps(MaterialColor.COLOR_GRAY, 2), 1, 4));
+    public static final RegistryObject<Block> cinnabar_ore = register("cinnabar_ore", () -> new GaiaOreBlock(GaiaBlockProperties.oreProps(MaterialColor.COLOR_ORANGE, 2), 1, 4));
+    public static final RegistryObject<Block> labradorite_ore = register("labradorite_ore", () -> new GaiaOreBlock(GaiaBlockProperties.oreProps(MaterialColor.COLOR_GREEN, 2), 5, 2));
+    public static final RegistryObject<Block> moonstone_ore = register("moonstone_ore", () -> new GaiaOreBlock(GaiaBlockProperties.oreProps(MaterialColor.METAL, 2), 5, 2));
+    public static final RegistryObject<Block> opal_ore_red = register("opal_ore_red", () -> new GaiaOreBlock(GaiaBlockProperties.oreProps(MaterialColor.COLOR_RED, 2), 2, 5));
+    public static final RegistryObject<Block> opal_ore_blue = register("opal_ore_blue", () -> new GaiaOreBlock(GaiaBlockProperties.oreProps(MaterialColor.COLOR_LIGHT_BLUE, 2), 2, 5));
+    public static final RegistryObject<Block> opal_ore_green = register("opal_ore_green", () -> new GaiaOreBlock(GaiaBlockProperties.oreProps(MaterialColor.COLOR_LIGHT_GREEN, 2), 2, 5));
     public static final RegistryObject<Block> opal_ore_white = register("opal_ore_white", () -> new GaiaOreBlock(GaiaBlockProperties.oreProps(MaterialColor.SNOW, 3), 3, 7));
-    public static final RegistryObject<Block> pyrite_ore = register("pyrite_ore", () -> new GaiaOreBlock(GaiaBlockProperties.oreProps(MaterialColor.GOLD, 2).setLightLevel((state) -> 3), 1, 4));
-    public static final RegistryObject<Block> speckled_rock = register("speckled_rock", () -> new GaiaOreBlock(GaiaBlockProperties.oreProps(MaterialColor.MAGENTA, 1)));
-    public static final RegistryObject<Block> coarse_rock = register("coarse_rock", () -> new GaiaOreBlock(GaiaBlockProperties.oreProps(MaterialColor.MAGENTA, 2)));
-    public static final RegistryObject<Block> precious_rock = register("precious_rock", () -> new GaiaOreBlock(GaiaBlockProperties.oreProps(MaterialColor.MAGENTA, 3)));
+    public static final RegistryObject<Block> pyrite_ore = register("pyrite_ore", () -> new GaiaOreBlock(GaiaBlockProperties.oreProps(MaterialColor.GOLD, 2).lightLevel((state) -> 3), 1, 4));
+    public static final RegistryObject<Block> speckled_rock = register("speckled_rock", () -> new GaiaOreBlock(GaiaBlockProperties.oreProps(MaterialColor.COLOR_MAGENTA, 1)));
+    public static final RegistryObject<Block> coarse_rock = register("coarse_rock", () -> new GaiaOreBlock(GaiaBlockProperties.oreProps(MaterialColor.COLOR_MAGENTA, 2)));
+    public static final RegistryObject<Block> precious_rock = register("precious_rock", () -> new GaiaOreBlock(GaiaBlockProperties.oreProps(MaterialColor.COLOR_MAGENTA, 3)));
 
     //Flower Pots
     public static final RegistryObject<FlowerPotBlock> potted_thiscus = registerFlowerPot(thiscus);
@@ -384,7 +384,7 @@ public class ModBlocks {
     }
 
     private static <T extends Block> Supplier<BlockItem> registerBlockItemFuel(final RegistryObject<T> block, int burnTime) {
-        return () -> new BlockItem(block.get(), new Item.Properties().group(GaiaItemGroups.GAIA_BLOCKS)) {
+        return () -> new BlockItem(block.get(), new Item.Properties().tab(GaiaItemGroups.GAIA_BLOCKS)) {
             @Override
             public int getBurnTime(ItemStack itemStack) {
                 return burnTime;
@@ -394,7 +394,7 @@ public class ModBlocks {
 
     private static RegistryObject<FlowerPotBlock> registerFlowerPot(RegistryObject<? extends Block> plant) {
         return registerNoItem("potted_" + plant.getId().getPath(), () ->
-                new FlowerPotBlock(() -> (FlowerPotBlock) Blocks.FLOWER_POT, plant, Block.Properties.create(Material.MISCELLANEOUS).hardnessAndResistance(0.0F)));
+                new FlowerPotBlock(() -> (FlowerPotBlock) Blocks.FLOWER_POT, plant, Block.Properties.of(Material.DECORATION).strength(0.0F)));
     }
 
     private static <T extends Block> RegistryObject<T> registerNoItem(String name, Supplier<? extends T> block) {

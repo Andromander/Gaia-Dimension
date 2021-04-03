@@ -18,24 +18,24 @@ public class FrailGlitterBlobFeature<T extends NoFeatureConfig> extends Feature<
     }
 
     @Override
-    public boolean generate(ISeedReader worldIn, ChunkGenerator generator, Random rand, BlockPos pos, T config) {
-        if (!worldIn.isAirBlock(pos)) {
+    public boolean place(ISeedReader worldIn, ChunkGenerator generator, Random rand, BlockPos pos, T config) {
+        if (!worldIn.isEmptyBlock(pos)) {
             return false;
-        } else if (worldIn.getBlockState(pos.up()).getBlock() != ModBlocks.gaia_stone.get() && worldIn.getBlockState(pos.down()).getBlock() != ModBlocks.gaia_stone.get()) {
+        } else if (worldIn.getBlockState(pos.above()).getBlock() != ModBlocks.gaia_stone.get() && worldIn.getBlockState(pos.below()).getBlock() != ModBlocks.gaia_stone.get()) {
             return false;
         } else {
             if (pos.getY() > worldIn.getSeaLevel() || pos.getY() < 15)
                 return false;
 
-            worldIn.setBlockState(pos, ModBlocks.frail_glitter_block.get().getDefaultState(), 2);
+            worldIn.setBlock(pos, ModBlocks.frail_glitter_block.get().defaultBlockState(), 2);
 
             for(int i = 0; i < 1500; ++i) {
-                BlockPos blockpos = pos.add(rand.nextInt(8) - rand.nextInt(8), -rand.nextInt(12), rand.nextInt(8) - rand.nextInt(8));
+                BlockPos blockpos = pos.offset(rand.nextInt(8) - rand.nextInt(8), -rand.nextInt(12), rand.nextInt(8) - rand.nextInt(8));
                 if (worldIn.getBlockState(blockpos).isAir(worldIn, blockpos)) {
                     int j = 0;
 
                     for(Direction direction : Direction.values()) {
-                        if (worldIn.getBlockState(blockpos.offset(direction)).getBlock() == ModBlocks.frail_glitter_block.get()) {
+                        if (worldIn.getBlockState(blockpos.relative(direction)).getBlock() == ModBlocks.frail_glitter_block.get()) {
                             ++j;
                         }
 
@@ -45,7 +45,7 @@ public class FrailGlitterBlobFeature<T extends NoFeatureConfig> extends Feature<
                     }
 
                     if (j == 1) {
-                        worldIn.setBlockState(blockpos, ModBlocks.frail_glitter_block.get().getDefaultState(), 2);
+                        worldIn.setBlock(blockpos, ModBlocks.frail_glitter_block.get().defaultBlockState(), 2);
                     }
                 }
             }

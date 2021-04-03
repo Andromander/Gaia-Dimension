@@ -8,10 +8,10 @@ import net.minecraft.item.ItemGroup;
 public class BasicGaiaItem extends Item {
 
     public BasicGaiaItem() {
-        super(new Properties().group(GaiaItemGroups.GAIA_ITEMS));
+        super(new Properties().tab(GaiaItemGroups.GAIA_ITEMS));
     }
 
     public BasicGaiaItem(Food food) {
-        super(new Properties().group(ItemGroup.FOOD).food(food));
+        super(new Properties().tab(ItemGroup.TAB_FOOD).food(food));
     }
 }

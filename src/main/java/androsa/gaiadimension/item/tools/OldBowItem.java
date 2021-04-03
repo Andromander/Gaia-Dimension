@@ -12,11 +12,11 @@ public class OldBowItem extends BowItem {
     public static final Predicate<ItemStack> ARROW = (stack) -> stack.getItem() == ModItems.agate_arrow.get();
 
     public OldBowItem() {
-        super(new Properties().defaultMaxDamage(425).group(GaiaItemGroups.GAIA_TOOLS));
+        super(new Properties().durability(425).tab(GaiaItemGroups.GAIA_TOOLS));
     }
 
     @Override
-    public Predicate<ItemStack> getInventoryAmmoPredicate() {
+    public Predicate<ItemStack> getAllSupportedProjectiles() {
         return ARROW;
     }
 }

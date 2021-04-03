@@ -35,11 +35,11 @@ public class PurifierContainer extends Container {
 
     public PurifierContainer(int id, PlayerInventory invPlayer, IInventory purifier, IIntArray slots) {
         super(ModContainers.PURIFIER.get(), id);
-        assertInventorySize(purifier, 6);
-        assertIntArraySize(slots, 4);
+        checkContainerSize(purifier, 6);
+        checkContainerDataCount(slots, 4);
         tilePurifier = purifier;
         slotsArray = slots;
-        world = invPlayer.player.world;
+        world = invPlayer.player.level;
         addSlot(new Slot(purifier, 0, 80, 17)); //Input
         addSlot(new GoldSlot(purifier, 1, 59, 63));    //Fuel 1
         addSlot(new ShineSlot(purifier, 2, 101, 63));  //Fuel 2
@@ -55,47 +55,47 @@ public class PurifierContainer extends Container {
         for (int i = 0; i < 9; ++i)
             addSlot(new Slot(invPlayer, i, 8 + i * 18, 182));
 
-        this.trackIntArray(slots);
+        this.addDataSlots(slots);
     }
 
     @Override
-    public boolean canInteractWith(PlayerEntity player) {
-        return tilePurifier.isUsableByPlayer(player);
+    public boolean stillValid(PlayerEntity player) {
+        return tilePurifier.stillValid(player);
     }
 
     @Override
-    public ItemStack transferStackInSlot(PlayerEntity player, int index) {
+    public ItemStack quickMoveStack(PlayerEntity player, int index) {
         ItemStack itemstack = ItemStack.EMPTY;
-        Slot slot = inventorySlots.get(index);
+        Slot slot = slots.get(index);
 
-        if (slot != null && slot.getHasStack()) {
-            ItemStack slotStack = slot.getStack();
+        if (slot != null && slot.hasItem()) {
+            ItemStack slotStack = slot.getItem();
             itemstack = slotStack.copy();
 
             if (index == 4 || index == 5) {
-                if (!mergeItemStack(slotStack, 6, 39, true))
+                if (!moveItemStackTo(slotStack, 6, 39, true))
                     return ItemStack.EMPTY;
 
-                slot.onSlotChange(slotStack, itemstack);
+                slot.onQuickCraft(slotStack, itemstack);
             } else if (index != 3 && index != 2 && index != 1 && index != 0) {
                 if (isRecipePresent(slotStack)) {
-                    if (!mergeItemStack(slotStack, 0, 1, false))
+                    if (!moveItemStackTo(slotStack, 0, 1, false))
                         return ItemStack.EMPTY;
                 } else if (PurifierTileEntity.isItemFuel(slotStack)) {
-                    if (!mergeItemStack(slotStack, 1, 4, false))
+                    if (!moveItemStackTo(slotStack, 1, 4, false))
                         return ItemStack.EMPTY;
                 } else if (index >= 6 && index < 30) {
-                    if (!mergeItemStack(slotStack, 30, 39, false))
+                    if (!moveItemStackTo(slotStack, 30, 39, false))
                         return ItemStack.EMPTY;
-                } else if (index >= 31 && index < 40 && !mergeItemStack(slotStack, 6, 30, false))
+                } else if (index >= 31 && index < 40 && !moveItemStackTo(slotStack, 6, 30, false))
                     return ItemStack.EMPTY;
-            } else if (!mergeItemStack(slotStack, 6, 39, false))
+            } else if (!moveItemStackTo(slotStack, 6, 39, false))
                 return ItemStack.EMPTY;
 
             if (slotStack.isEmpty())
-                slot.putStack(ItemStack.EMPTY);
+                slot.set(ItemStack.EMPTY);
             else
-                slot.onSlotChanged();
+                slot.setChanged();
 
             if (slotStack.getCount() == itemstack.getCount())
                 return ItemStack.EMPTY;
@@ -107,7 +107,7 @@ public class PurifierContainer extends Container {
     }
 
     private boolean isRecipePresent(ItemStack stack) {
-        return this.world.getRecipeManager().getRecipe(this.recipeType, new Inventory(stack), this.world).isPresent();
+        return this.world.getRecipeManager().getRecipeFor(this.recipeType, new Inventory(stack), this.world).isPresent();
     }
 
     @OnlyIn(Dist.CLIENT)

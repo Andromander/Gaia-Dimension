@@ -1,9 +1,6 @@
 package androsa.gaiadimension.item.inventory;
 
 import androsa.gaiadimension.registry.GaiaTags;
-import androsa.gaiadimension.registry.ModBlocks;
-import androsa.gaiadimension.registry.ModItems;
-import net.minecraft.block.Block;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.IInventory;
@@ -31,7 +28,7 @@ public class GemPouchInventory implements IInventory, INamedContainerProvider {
     }
 
     @Override
-    public int getSizeInventory() {
+    public int getContainerSize() {
         return inventory.size();
     }
 
@@ -41,50 +38,50 @@ public class GemPouchInventory implements IInventory, INamedContainerProvider {
     }
 
     @Override
-    public ItemStack getStackInSlot(int index) {
+    public ItemStack getItem(int index) {
         return inventory.get(index);
     }
 
     @Override
-    public ItemStack decrStackSize(int index, int count) {
-        ItemStack stack = getStackInSlot(index);
+    public ItemStack removeItem(int index, int count) {
+        ItemStack stack = getItem(index);
         if(!stack.isEmpty()) {
             if(stack.getCount() > count) {
                 stack = stack.split(count);
-                this.markDirty();
+                this.setChanged();
             } else {
-                this.setInventorySlotContents(index, ItemStack.EMPTY);
+                this.setItem(index, ItemStack.EMPTY);
             }
         }
         return stack;
     }
 
     @Override
-    public ItemStack removeStackFromSlot(int index) {
-        ItemStack stack = this.getStackInSlot(index);
-        this.setInventorySlotContents(index, ItemStack.EMPTY);
+    public ItemStack removeItemNoUpdate(int index) {
+        ItemStack stack = this.getItem(index);
+        this.setItem(index, ItemStack.EMPTY);
         return stack;
     }
 
     @Override
-    public void setInventorySlotContents(int index, ItemStack stack) {
+    public void setItem(int index, ItemStack stack) {
         inventory.set(index, stack);
 
-        if (!stack.isEmpty() && stack.getCount() > getInventoryStackLimit()) {
-            stack.setCount(getInventoryStackLimit());
+        if (!stack.isEmpty() && stack.getCount() > getMaxStackSize()) {
+            stack.setCount(getMaxStackSize());
         }
-        this.markDirty();
+        this.setChanged();
     }
 
     @Override
-    public int getInventoryStackLimit() {
+    public int getMaxStackSize() {
         return 16;
     }
 
     @Override
-    public void markDirty() {
-        for (int i = 0; i < getSizeInventory(); i++) {
-            if (!getStackInSlot(i).isEmpty() && getStackInSlot(i).getCount() == 0) {
+    public void setChanged() {
+        for (int i = 0; i < getContainerSize(); i++) {
+            if (!getItem(i).isEmpty() && getItem(i).getCount() == 0) {
                 this.inventory.set(i, ItemStack.EMPTY);
             }
         }
@@ -92,26 +89,26 @@ public class GemPouchInventory implements IInventory, INamedContainerProvider {
     }
 
     @Override
-    public boolean isUsableByPlayer(PlayerEntity player) {
+    public boolean stillValid(PlayerEntity player) {
         return true;
     }
 
     @Override
-    public void openInventory(PlayerEntity player) { }
+    public void startOpen(PlayerEntity player) { }
 
     @Override
-    public void closeInventory(PlayerEntity player) { }
+    public void stopOpen(PlayerEntity player) { }
 
     @Override
-    public boolean isItemValidForSlot(int index, ItemStack stack) {
+    public boolean canPlaceItem(int index, ItemStack stack) {
         Item item = stack.getItem();
         return GaiaTags.Items.GEM_POUCH_ITEMS.contains(item);
     }
 
     @Override
-    public void clear() {
-        for (int i = 0; i < getSizeInventory(); i++) {
-            this.setInventorySlotContents(1, ItemStack.EMPTY);
+    public void clearContent() {
+        for (int i = 0; i < getContainerSize(); i++) {
+            this.setItem(1, ItemStack.EMPTY);
         }
     }
 
@@ -121,7 +118,7 @@ public class GemPouchInventory implements IInventory, INamedContainerProvider {
     }
 
     public void readFromNBT(CompoundNBT tag) {
-        inventory = NonNullList.withSize(getSizeInventory(), ItemStack.EMPTY);
+        inventory = NonNullList.withSize(getContainerSize(), ItemStack.EMPTY);
         ItemStackHelper.loadAllItems(tag, inventory);
     }
 

@@ -42,7 +42,7 @@ public class ModWorldgen {
 
     //Feature
     public static final RegistryObject<Feature<BlockStateFeatureConfig>> POOL = FEATURES.register("pool", () ->
-			new GaiaLakesFeature<>(BlockStateFeatureConfig.field_236455_a_));
+			new GaiaLakesFeature<>(BlockStateFeatureConfig.CODEC));
     public static final RegistryObject<Feature<GaiaTreeFeatureConfig>> PINK_AGATE_TREE = FEATURES.register("pink_agate_tree", () ->
 			new PinkAgateTreeFeature<>(GaiaTreeFeatureConfig.CODEC));
     public static final RegistryObject<Feature<GaiaTreeFeatureConfig>> BLUE_AGATE_TREE = FEATURES.register("blue_agate_tree", () ->
@@ -62,35 +62,35 @@ public class ModWorldgen {
     public static final RegistryObject<Feature<GaiaTreeFeatureConfig>> AURA_TREE = FEATURES.register("aura_tree", () ->
 			new AuraTreeFeature<>(GaiaTreeFeatureConfig.CODEC));
     public static final RegistryObject<Feature<NoFeatureConfig>> AURA_SHOOT = FEATURES.register("aura_shoot", () ->
-			new AuraShootsFeature<>(NoFeatureConfig.field_236558_a_));
+			new AuraShootsFeature<>(NoFeatureConfig.CODEC));
     public static final RegistryObject<Feature<SphereReplaceConfig>> BOG_PATCH = FEATURES.register("bog_patch", () ->
-			new BogPatchFeature<>(SphereReplaceConfig.field_236516_a_));
+			new BogPatchFeature<>(SphereReplaceConfig.CODEC));
     public static final RegistryObject<Feature<FeatureHeightConfig>> BISMUTH_SPIRE = FEATURES.register("bismuth_spire", () ->
 			new BismuthSpireFeature<>(FeatureHeightConfig.CODEC));
     public static final RegistryObject<Feature<NoFeatureConfig>> BISMUTH_GEYSER = FEATURES.register("bismuth_geyser", () ->
-			new BismuthGeyserFeature<>(NoFeatureConfig.field_236558_a_));
+			new BismuthGeyserFeature<>(NoFeatureConfig.CODEC));
     public static final RegistryObject<Feature<FeatureHeightConfig>> STATIC_SPIKE = FEATURES.register("static_spike", () ->
 			new StaticSpikeFeature<>(FeatureHeightConfig.CODEC));
     public static final RegistryObject<Feature<NoFeatureConfig>> FRAIL_BLOB = FEATURES.register("frail_blob", () ->
-			new FrailGlitterBlobFeature<>(NoFeatureConfig.field_236558_a_));
+			new FrailGlitterBlobFeature<>(NoFeatureConfig.CODEC));
     public static final RegistryObject<Feature<SphereReplaceConfig>> GAIA_DISK = FEATURES.register("gaia_disk", () ->
-			new DiskNoWaterFeature<>(SphereReplaceConfig.field_236516_a_));
+			new DiskNoWaterFeature<>(SphereReplaceConfig.CODEC));
     public static final RegistryObject<Feature<BlockStateFeatureConfig>> GAIA_BLOB = FEATURES.register("gaia_blob", () ->
-			new GaiaBlobFeature<>(BlockStateFeatureConfig.field_236455_a_));
+			new GaiaBlobFeature<>(BlockStateFeatureConfig.CODEC));
 
     //Structures
     public static final RegistryObject<Structure<NoFeatureConfig>> MINI_TOWER = STRUCTURES.register("mini_tower", () ->
-			new MiniTowerStructure<>(NoFeatureConfig.field_236558_a_));
+			new MiniTowerStructure<>(NoFeatureConfig.CODEC));
     public static final RegistryObject<Structure<NoFeatureConfig>> MALACHITE_WATCHTOWER = STRUCTURES.register("malachite_watchtower", () ->
-			new MalachiteWatchtowerStructure<>(NoFeatureConfig.field_236558_a_));
+			new MalachiteWatchtowerStructure<>(NoFeatureConfig.CODEC));
 
     //SurfaceBuilder
     public static final RegistryObject<SurfaceBuilder<SurfaceBuilderConfig>> DEFAULT_GAIA = SURFACE_BUILDERS.register("default_gaia", () ->
-			new GaiaDefaultSurfaceBuilder<>(SurfaceBuilderConfig.field_237203_a_));
+			new GaiaDefaultSurfaceBuilder<>(SurfaceBuilderConfig.CODEC));
     public static final RegistryObject<SurfaceBuilder<SurfaceBuilderConfig>> VOLCANIC = SURFACE_BUILDERS.register("volcanic", () ->
-			new VolcanicSurfaceBuilder<>(SurfaceBuilderConfig.field_237203_a_));
+			new VolcanicSurfaceBuilder<>(SurfaceBuilderConfig.CODEC));
     public static final RegistryObject<SurfaceBuilder<SurfaceBuilderConfig>> STATIC = SURFACE_BUILDERS.register("static", () ->
-			new WastelandSurfaceBuilder<>(SurfaceBuilderConfig.field_237203_a_));
+			new WastelandSurfaceBuilder<>(SurfaceBuilderConfig.CODEC));
 
     //WorldCarver
     public static final RegistryObject<WorldCarver<ProbabilityConfig>> CRYSTAL_CAVES = WORLD_CARVERS.register("crystal_caves", () ->
@@ -100,8 +100,8 @@ public class ModWorldgen {
 
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public static void stupidShitEvent(RegistryEvent.Register<Structure<?>> event) {
-        Structure.NAME_STRUCTURE_BIMAP.put(ModWorldgen.MINI_TOWER.getId().toString(), ModWorldgen.MINI_TOWER.get());
-        Structure.NAME_STRUCTURE_BIMAP.put(ModWorldgen.MALACHITE_WATCHTOWER.getId().toString(), ModWorldgen.MALACHITE_WATCHTOWER.get());
+        Structure.STRUCTURES_REGISTRY.put(ModWorldgen.MINI_TOWER.getId().toString(), ModWorldgen.MINI_TOWER.get());
+        Structure.STRUCTURES_REGISTRY.put(ModWorldgen.MALACHITE_WATCHTOWER.getId().toString(), ModWorldgen.MALACHITE_WATCHTOWER.get());
     }
 
     public static class StructureTypes {

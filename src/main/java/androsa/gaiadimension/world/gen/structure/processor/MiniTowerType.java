@@ -39,7 +39,7 @@ public enum MiniTowerType implements IStringSerializable {
             ModBlocks.jet_brick_slab, ImmutableList.of(ModBlocks.cracked_jet_brick_slab, ModBlocks.crusted_jet_brick_slab)
     );
 
-    public static final Codec<MiniTowerType> CODEC = IStringSerializable.createEnumCodec(MiniTowerType::values, MiniTowerType::getType);
+    public static final Codec<MiniTowerType> CODEC = IStringSerializable.fromEnum(MiniTowerType::values, MiniTowerType::getType);
 
     private final String name;
     private final ResourceLocation chestLoot;
@@ -72,7 +72,7 @@ public enum MiniTowerType implements IStringSerializable {
     }
 
     @Override
-    public String getString() {
+    public String getSerializedName() {
         return name;
     }
 
@@ -81,26 +81,26 @@ public enum MiniTowerType implements IStringSerializable {
     }
 
     public BlockState getBrick() {
-        return brickBlock.get().getDefaultState();
+        return brickBlock.get().defaultBlockState();
     }
 
     public BlockState getBrickDecay(Random rand) {
-        return brickDegrades.get(rand.nextInt(brickDegrades.size())).get().getDefaultState();
+        return brickDegrades.get(rand.nextInt(brickDegrades.size())).get().defaultBlockState();
     }
 
     public BlockState getStairs() {
-        return stairsBlock.get().getDefaultState();
+        return stairsBlock.get().defaultBlockState();
     }
 
     public BlockState getStairsDecay(Random rand) {
-        return stairsDegrades.get(rand.nextInt(stairsDegrades.size())).get().getDefaultState();
+        return stairsDegrades.get(rand.nextInt(stairsDegrades.size())).get().defaultBlockState();
     }
 
     public BlockState getSlab() {
-        return slabBlock.get().getDefaultState();
+        return slabBlock.get().defaultBlockState();
     }
 
     public BlockState getSlabDecay(Random rand) {
-        return slabDegrades.get(rand.nextInt(slabDegrades.size())).get().getDefaultState();
+        return slabDegrades.get(rand.nextInt(slabDegrades.size())).get().defaultBlockState();
     }
 }

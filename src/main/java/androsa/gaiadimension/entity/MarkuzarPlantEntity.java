@@ -16,17 +16,17 @@ public class MarkuzarPlantEntity extends CreatureEntity {
 
     public MarkuzarPlantEntity(EntityType<? extends MarkuzarPlantEntity> entity, World world) {
         super(entity, world);
-        this.experienceValue = 1 + rand.nextInt(3);
+        this.xpReward = 1 + random.nextInt(3);
     }
 
     public static AttributeModifierMap.MutableAttribute registerAttributes() {
-        return MobEntity.func_233666_p_()
-                .createMutableAttribute(Attributes.MAX_HEALTH, 40.0D)
-                .createMutableAttribute(Attributes.KNOCKBACK_RESISTANCE, 1.0D);
+        return MobEntity.createMobAttributes()
+                .add(Attributes.MAX_HEALTH, 40.0D)
+                .add(Attributes.KNOCKBACK_RESISTANCE, 1.0D);
     }
 
     @Override
-    public void applyKnockback(float distance, double x, double y) { }
+    public void knockback(float distance, double x, double y) { }
 
     @Override
     public void move(MoverType type, Vector3d pos) {
@@ -36,12 +36,12 @@ public class MarkuzarPlantEntity extends CreatureEntity {
     }
 
     @Override
-    public boolean canSpawn(IWorld world, SpawnReason reason) {
+    public boolean checkSpawnRules(IWorld world, SpawnReason reason) {
         return true;
     }
 
     public static boolean canSpawnHere(EntityType<MarkuzarPlantEntity> entity, IWorld world, SpawnReason spawn, BlockPos pos, Random random) {
-        BlockPos blockpos = pos.down();
-        return world.getBlockState(blockpos).canEntitySpawn(world, blockpos, entity) && world.getLightFor(LightType.SKY, blockpos) > 8;
+        BlockPos blockpos = pos.below();
+        return world.getBlockState(blockpos).isValidSpawn(world, blockpos, entity) && world.getBrightness(LightType.SKY, blockpos) > 8;
     }
 }

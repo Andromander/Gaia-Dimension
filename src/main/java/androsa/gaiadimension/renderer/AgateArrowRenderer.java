@@ -16,7 +16,7 @@ public class AgateArrowRenderer<T extends AgateArrowEntity> extends ArrowRendere
         super(manager);
     }
 
-    public ResourceLocation getEntityTexture(T entity) {
+    public ResourceLocation getTextureLocation(T entity) {
         return textureLoc;
     }
 }

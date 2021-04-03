@@ -39,7 +39,7 @@ public class MalachiteWatchtowerStructure<T extends NoFeatureConfig> extends Str
 //    }
 
     @Override
-    public List<MobSpawnInfo.Spawners> getCreatureSpawnList() {
+    public List<MobSpawnInfo.Spawners> getDefaultSpawnList() {
         return Lists.newArrayList(
                 new MobSpawnInfo.Spawners(ModEntities.MALACHITE_DRONE, 10, 1, 1),
                 new MobSpawnInfo.Spawners(ModEntities.SHALURKER, 5, 1, 2),
@@ -53,14 +53,14 @@ public class MalachiteWatchtowerStructure<T extends NoFeatureConfig> extends Str
     }
 
     @Override
-    public GenerationStage.Decoration getDecorationStage() {
+    public GenerationStage.Decoration step() {
         return GenerationStage.Decoration.SURFACE_STRUCTURES;
     }
 
     @Override
-    protected boolean func_230363_a_(ChunkGenerator generator, BiomeProvider provider, long seed, SharedSeedRandom random, int chunkX, int chunkZ, Biome biomeIn, ChunkPos chunkpos, T config) {
-        for(Biome biome : provider.getBiomes(chunkX * 16 + 9, generator.getSeaLevel(), chunkZ * 16 + 9, 16)) {
-            if (!biome.getGenerationSettings().hasStructure(this)) {
+    protected boolean isFeatureChunk(ChunkGenerator generator, BiomeProvider provider, long seed, SharedSeedRandom random, int chunkX, int chunkZ, Biome biomeIn, ChunkPos chunkpos, T config) {
+        for(Biome biome : provider.getBiomesWithin(chunkX * 16 + 9, generator.getSeaLevel(), chunkZ * 16 + 9, 16)) {
+            if (!biome.getGenerationSettings().isValidStart(this)) {
                 return false;
             }
         }
@@ -75,8 +75,8 @@ public class MalachiteWatchtowerStructure<T extends NoFeatureConfig> extends Str
         }
 
         @Override
-        public void func_230364_a_(DynamicRegistries registries, ChunkGenerator generator, TemplateManager manager, int chunkX, int chunkZ, Biome biome, T config) {
-            Rotation rotation = Rotation.randomRotation(this.rand);
+        public void generatePieces(DynamicRegistries registries, ChunkGenerator generator, TemplateManager manager, int chunkX, int chunkZ, Biome biome, T config) {
+            Rotation rotation = Rotation.getRandom(this.random);
             int oX = 5;
             int oZ = 5;
             if (rotation == Rotation.CLOCKWISE_90) {
@@ -90,35 +90,35 @@ public class MalachiteWatchtowerStructure<T extends NoFeatureConfig> extends Str
 
             int cX = (chunkX << 4) + 7;
             int cZ = (chunkZ << 4) + 7;
-            int c1 = generator.getNoiseHeightMinusOne(cX, cZ, Heightmap.Type.WORLD_SURFACE_WG);
-            int c2 = generator.getNoiseHeightMinusOne(cX, cZ + oZ, Heightmap.Type.WORLD_SURFACE_WG);
-            int c3 = generator.getNoiseHeightMinusOne(cX + oX, cZ, Heightmap.Type.WORLD_SURFACE_WG);
-            int c4 = generator.getNoiseHeightMinusOne(cX + oX, cZ + oZ, Heightmap.Type.WORLD_SURFACE_WG);
+            int c1 = generator.getFirstOccupiedHeight(cX, cZ, Heightmap.Type.WORLD_SURFACE_WG);
+            int c2 = generator.getFirstOccupiedHeight(cX, cZ + oZ, Heightmap.Type.WORLD_SURFACE_WG);
+            int c3 = generator.getFirstOccupiedHeight(cX + oX, cZ, Heightmap.Type.WORLD_SURFACE_WG);
+            int c4 = generator.getFirstOccupiedHeight(cX + oX, cZ + oZ, Heightmap.Type.WORLD_SURFACE_WG);
             int height = Math.min(Math.min(c1, c2), Math.min(c3, c4));
 
             if (height >= 60) {
                 int x = chunkX * 16;
                 int z = chunkZ * 16;
                 BlockPos blockpos = new BlockPos(x + 8, height + 1, z + 8);
-                MalachiteWatchtowerPieces.buildStructure(manager, blockpos, rotation, this.components, this.rand);
-                this.recalculateStructureSize();
+                MalachiteWatchtowerPieces.buildStructure(manager, blockpos, rotation, this.pieces, this.random);
+                this.calculateBoundingBox();
             }
         }
 
         @Override
-        public void func_230366_a_(ISeedReader world, StructureManager manager, ChunkGenerator generator, Random random, MutableBoundingBox mbb, ChunkPos chunkpos) {
-            super.func_230366_a_(world, manager, generator, random, mbb, chunkpos);
-            int minY = this.bounds.minY;
+        public void placeInChunk(ISeedReader world, StructureManager manager, ChunkGenerator generator, Random random, MutableBoundingBox mbb, ChunkPos chunkpos) {
+            super.placeInChunk(world, manager, generator, random, mbb, chunkpos);
+            int minY = this.boundingBox.y0;
 
             //Let me ask: do towers overhang cliffs? I didn't think so
-            for(int x = mbb.minX; x <= mbb.maxX; ++x) {
-                for(int z = mbb.minZ; z <= mbb.maxZ; ++z) {
+            for(int x = mbb.x0; x <= mbb.x1; ++x) {
+                for(int z = mbb.z0; z <= mbb.z1; ++z) {
                     BlockPos blockpos = new BlockPos(x, minY, z);
-                    if (!world.isAirBlock(blockpos) && this.bounds.isVecInside(blockpos)) {
+                    if (!world.isEmptyBlock(blockpos) && this.boundingBox.isInside(blockpos)) {
                         boolean isAirBelow = false;
 
-                        for(StructurePiece structurepiece : this.components) {
-                            if (structurepiece.getBoundingBox().isVecInside(blockpos)) {
+                        for(StructurePiece structurepiece : this.pieces) {
+                            if (structurepiece.getBoundingBox().isInside(blockpos)) {
                                 isAirBelow = true;
                                 break;
                             }
@@ -127,11 +127,11 @@ public class MalachiteWatchtowerStructure<T extends NoFeatureConfig> extends Str
                         if (isAirBelow) {
                             for(int lowY = minY - 1; lowY > 1; --lowY) {
                                 BlockPos blockpos1 = new BlockPos(x, lowY, z);
-                                if (!world.isAirBlock(blockpos1) && !world.getBlockState(blockpos1).getMaterial().isLiquid()) {
+                                if (!world.isEmptyBlock(blockpos1) && !world.getBlockState(blockpos1).getMaterial().isLiquid()) {
                                     break;
                                 }
 
-                                world.setBlockState(blockpos1, world.getBiome(blockpos1).getGenerationSettings().getSurfaceBuilderConfig().getUnder(), 2);
+                                world.setBlock(blockpos1, world.getBiome(blockpos1).getGenerationSettings().getSurfaceBuilderConfig().getUnderMaterial(), 2);
                             }
                         }
                     }

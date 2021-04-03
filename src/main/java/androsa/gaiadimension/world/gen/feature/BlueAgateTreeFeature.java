@@ -41,7 +41,7 @@ public class BlueAgateTreeFeature<T extends GaiaTreeFeatureConfig> extends GaiaT
                 for (int k1 = pos.getX() - j1; k1 <= pos.getX() + j1 && allClear; ++k1) {
                     for (int l1 = pos.getZ() - j1; l1 <= pos.getZ() + j1 && allClear; ++l1) {
                         if (i1 >= 0 && i1 < world.getHeight()) {
-                            if (!isReplaceableAt(world, blockpos$mutableblockpos.setPos(k1, i1, l1))) {
+                            if (!validTreePos(world, blockpos$mutableblockpos.set(k1, i1, l1))) {
                                 allClear = false;
                             }
                         } else {
@@ -53,8 +53,8 @@ public class BlueAgateTreeFeature<T extends GaiaTreeFeatureConfig> extends GaiaT
 
             if (!allClear) {
                 return false;
-            } else if (isSoil(world, pos.down(), config.getSapling(rand, pos)) && pos.getY() < world.getHeight() - height - 1) {
-                this.setBlockState(world, pos.down(), ModBlocks.heavy_soil.get().getDefaultState(), boundingBox);
+            } else if (isSoil(world, pos.below(), config.getSapling(rand, pos)) && pos.getY() < world.getHeight() - height - 1) {
+                this.setBlockState(world, pos.below(), ModBlocks.heavy_soil.get().defaultBlockState(), boundingBox);
                 int i3 = rand.nextInt(2);
                 int j3 = 1;
                 int k3 = 0;
@@ -90,9 +90,9 @@ public class BlueAgateTreeFeature<T extends GaiaTreeFeatureConfig> extends GaiaT
                 int i4 = rand.nextInt(3);
 
                 for (int logY = 0; logY < height - i4; ++logY) {
-                    BlockPos upN = pos.up(logY);
+                    BlockPos upN = pos.above(logY);
                     if (isAirOrLeaves(world, upN)) {
-                        this.setLogBlockState(world, rand, pos.up(logY), logPos, boundingBox, config);
+                        this.setLogBlockState(world, rand, pos.above(logY), logPos, boundingBox, config);
                     }
                 }
 

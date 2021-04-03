@@ -28,7 +28,6 @@ import net.minecraft.item.crafting.RecipeManager;
 import net.minecraft.util.ResourceLocation;
 
 import java.util.Collection;
-import java.util.Map;
 
 @JeiPlugin
 public class JEICompat implements IModPlugin {
@@ -50,9 +49,7 @@ public class JEICompat implements IModPlugin {
     }
 
     public static <C extends IInventory, T extends IRecipe<C>> Collection<T> getRecipes(RecipeManager recipeManager, IRecipeType<T> recipeType) {
-        Map<ResourceLocation, IRecipe<C>> recipesMap = recipeManager.getRecipes(recipeType);
-        //noinspection unchecked
-        return (Collection<T>)recipesMap.values();
+        return recipeManager.getAllRecipesFor(recipeType);
     }
 
     @Override

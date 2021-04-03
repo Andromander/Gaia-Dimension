@@ -355,39 +355,39 @@ public class GaiaLootTables extends LootTableProvider {
         @Override
         protected void addTables() {
 
-            registerLootTable(ModEntities.AGATE_GOLEM, blankTable());
-            registerLootTable(ModEntities.ANCIENT_LAGRAHK, blankTable());
-            registerLootTable(ModEntities.ARCHAIC_WARRIOR, warriorTable());
-            registerLootTable(ModEntities.BISMUTH_ULETRUS, blankTable());
-            registerLootTable(ModEntities.CAVERN_TICK, singleDropTable(ModItems.fine_thread, 0.0F, 1.0F));
-            registerLootTable(ModEntities.CONTORTED_NAGA, singleDropTable(ModItems.goldstone, 0.0F, 2.0F));
-            registerLootTable(ModEntities.CORRUPT_SAPPER, singleDropTable(ModItems.goldstone_residue, 0.0F, 2.0F));
-            registerLootTable(ModEntities.CRYSTAL_GOLEM, blankTable());
-            registerLootTable(ModEntities.GROWTH_SAPPER, blankTable());
-            registerLootTable(PINK_SAPPER_TABLE, sapperTable(ModItems.pink_geode));
-            registerLootTable(BLUE_SAPPER_TABLE, sapperTable(ModItems.blue_geode));
-            registerLootTable(GREEN_SAPPER_TABLE, sapperTable(ModItems.green_geode));
-            registerLootTable(PURPLE_SAPPER_TABLE, sapperTable(ModItems.purple_geode));
-            registerLootTable(ModEntities.HOWLITE_WOLF, blankTable());
-            registerLootTable(ModEntities.LESSER_SHOCKSHOOTER, singleDropTable(ModItems.crystallized_lapis_lazuli, 0.0F, 2.0F));
-            registerLootTable(ModEntities.LESSER_SPITFIRE, singleDropTable(ModItems.crystallized_redstone, 0.0F, 2.0F));
-            registerLootTable(ModEntities.MARKUZAR_PLANT, singleDropTable(ModItems.markuzar_mint, 0.0F, 2.0F));
-            registerLootTable(ModEntities.MINERAL_ARENTHIS, cookableDoubleDropTable(ModItems.large_tentacle, ModItems.sugar_cluster, 0.0F, 3.0F, 0.0F, 2.0F));
-            registerLootTable(ModEntities.MUCKLING, singleDropTable(ModItems.sweet_muckball, 0.0F, 2.0F));
-            registerLootTable(ModEntities.MUTANT_GROWTH_EXTRACTOR, extractorTable());
-            registerLootTable(ModEntities.NOMADIC_LAGRAHK, blankTable());
-            registerLootTable(ModEntities.PRIMAL_BEAST, blankTable());
-            registerLootTable(ModEntities.ROCKY_LUGGEROTH, cookableSingleDropTable(ModItems.luggeroth_chop, 0.0F, 3.0F));
-            registerLootTable(ModEntities.RUGGED_LURMORUS, cookableSingleDropTable(ModItems.lurmorus_meat, 0.0F, 3.0F));
-            registerLootTable(ModEntities.SALTION, singleDropTable(ModItems.fine_thread, 0.0F, 2.0F));
-            registerLootTable(ModEntities.SHALLOW_ARENTHIS, cookableDoubleDropTable(ModItems.small_tentacle, ModItems.sugar_crystals, 0.0F, 3.0F, 0.0F, 2.0F));
-            registerLootTable(ModEntities.SHALURKER, blankTable());
-            registerLootTable(ModEntities.SPELLBOUND_ELEMENTAL, blankTable());
-            registerLootTable(ModEntities.MALACHITE_DRONE, blankTable());
+            add(ModEntities.AGATE_GOLEM, blankTable());
+            add(ModEntities.ANCIENT_LAGRAHK, blankTable());
+            add(ModEntities.ARCHAIC_WARRIOR, warriorTable());
+            add(ModEntities.BISMUTH_ULETRUS, blankTable());
+            add(ModEntities.CAVERN_TICK, singleDropTable(ModItems.fine_thread, 0.0F, 1.0F));
+            add(ModEntities.CONTORTED_NAGA, singleDropTable(ModItems.goldstone, 0.0F, 2.0F));
+            add(ModEntities.CORRUPT_SAPPER, singleDropTable(ModItems.goldstone_residue, 0.0F, 2.0F));
+            add(ModEntities.CRYSTAL_GOLEM, blankTable());
+            add(ModEntities.GROWTH_SAPPER, blankTable());
+            add(PINK_SAPPER_TABLE, sapperTable(ModItems.pink_geode));
+            add(BLUE_SAPPER_TABLE, sapperTable(ModItems.blue_geode));
+            add(GREEN_SAPPER_TABLE, sapperTable(ModItems.green_geode));
+            add(PURPLE_SAPPER_TABLE, sapperTable(ModItems.purple_geode));
+            add(ModEntities.HOWLITE_WOLF, blankTable());
+            add(ModEntities.LESSER_SHOCKSHOOTER, singleDropTable(ModItems.crystallized_lapis_lazuli, 0.0F, 2.0F));
+            add(ModEntities.LESSER_SPITFIRE, singleDropTable(ModItems.crystallized_redstone, 0.0F, 2.0F));
+            add(ModEntities.MARKUZAR_PLANT, singleDropTable(ModItems.markuzar_mint, 0.0F, 2.0F));
+            add(ModEntities.MINERAL_ARENTHIS, cookableDoubleDropTable(ModItems.large_tentacle, ModItems.sugar_cluster, 0.0F, 3.0F, 0.0F, 2.0F));
+            add(ModEntities.MUCKLING, singleDropTable(ModItems.sweet_muckball, 0.0F, 2.0F));
+            add(ModEntities.MUTANT_GROWTH_EXTRACTOR, extractorTable());
+            add(ModEntities.NOMADIC_LAGRAHK, blankTable());
+            add(ModEntities.PRIMAL_BEAST, blankTable());
+            add(ModEntities.ROCKY_LUGGEROTH, cookableSingleDropTable(ModItems.luggeroth_chop, 0.0F, 3.0F));
+            add(ModEntities.RUGGED_LURMORUS, cookableSingleDropTable(ModItems.lurmorus_meat, 0.0F, 3.0F));
+            add(ModEntities.SALTION, singleDropTable(ModItems.fine_thread, 0.0F, 2.0F));
+            add(ModEntities.SHALLOW_ARENTHIS, cookableDoubleDropTable(ModItems.small_tentacle, ModItems.sugar_crystals, 0.0F, 3.0F, 0.0F, 2.0F));
+            add(ModEntities.SHALURKER, blankTable());
+            add(ModEntities.SPELLBOUND_ELEMENTAL, blankTable());
+            add(ModEntities.MALACHITE_DRONE, blankTable());
 
-            registerLootTable(ModEntities.BLUE_HOWLITE_WOLF, blankTable());
+            add(ModEntities.BLUE_HOWLITE_WOLF, blankTable());
 
-            registerLootTable(ModEntities.MALACHITE_GUARD, malachiteGuardTable());
+            add(ModEntities.MALACHITE_GUARD, malachiteGuardTable());
         }
 
         @Override
@@ -401,164 +401,164 @@ public class GaiaLootTables extends LootTableProvider {
     public static class Chests extends ChestLootTables {
         @Override
         public void accept(BiConsumer<ResourceLocation, LootTable.Builder> consumer) {
-            consumer.accept(GaiaChestTables.CHESTS_MINITOWER_AMETHYST, LootTable.builder()
-                    .addLootPool(LootPool.builder()
-                            .rolls(RandomValueRange.of(2.0F, 8.0F))
-                            .addEntry(ItemLootEntry.builder(ModItems.purple_geode_slice.get())
-                                    .weight(15)
-                                    .acceptFunction(SetCount.builder(RandomValueRange.of(1.0F, 3.0F))))
-                            .addEntry(ItemLootEntry.builder(ModItems.pyrite.get())
-                                    .weight(15)
-                                    .acceptFunction(SetCount.builder(RandomValueRange.of(1.0F, 5.0F))))
-                            .addEntry(ItemLootEntry.builder(ModItems.scaynyx_ingot.get())
-                                    .weight(10)
-                                    .acceptFunction(SetCount.builder(RandomValueRange.of(1.0F, 3.0F))))
-                            .addEntry(ItemLootEntry.builder(ModItems.sugilite_axe.get())
-                                    .weight(2))
-                            .addEntry(ItemLootEntry.builder(ModItems.proustite.get())
-                                    .weight(10)
-                                    .acceptFunction(SetCount.builder(RandomValueRange.of(1.0F, 3.0F))))
-                            .addEntry(ItemLootEntry.builder(ModBlocks.amethyst_bricks.get())
-                                    .weight(15)
-                                    .acceptFunction(SetCount.builder(RandomValueRange.of(3.0F, 9.0F))))
-                            .addEntry(ItemLootEntry.builder(ModItems.old_bow.get())
-                                    .weight(2))
-                            .addEntry(ItemLootEntry.builder(ModItems.agate_arrow.get())
-                                    .weight(10)
-                                    .acceptFunction(SetCount.builder(RandomValueRange.of(3.0F, 6.0F)))))
-                    .addLootPool(LootPool.builder()
-                            .rolls(ConstantRange.of(1))
-                            .addEntry(ItemLootEntry.builder(ModItems.white_opal.get()))));
-            consumer.accept(GaiaChestTables.CHESTS_MINITOWER_COPAL, LootTable.builder()
-                    .addLootPool(LootPool.builder()
-                            .rolls(RandomValueRange.of(2.0F, 8.0F))
-                            .addEntry(ItemLootEntry.builder(ModItems.pink_geode_slice.get())
-                                    .weight(15)
-                                    .acceptFunction(SetCount.builder(RandomValueRange.of(1.0F, 3.0F))))
-                            .addEntry(ItemLootEntry.builder(ModItems.pyrite.get())
-                                    .weight(15)
-                                    .acceptFunction(SetCount.builder(RandomValueRange.of(1.0F, 5.0F))))
-                            .addEntry(ItemLootEntry.builder(ModItems.scaynyx_ingot.get())
-                                    .weight(10)
-                                    .acceptFunction(SetCount.builder(RandomValueRange.of(1.0F, 3.0F))))
-                            .addEntry(ItemLootEntry.builder(ModItems.sugilite_axe.get())
-                                    .weight(2))
-                            .addEntry(ItemLootEntry.builder(ModItems.leucite.get())
-                                    .weight(10)
-                                    .acceptFunction(SetCount.builder(RandomValueRange.of(1.0F, 3.0F))))
-                            .addEntry(ItemLootEntry.builder(ModBlocks.copal_bricks.get())
-                                    .weight(15)
-                                    .acceptFunction(SetCount.builder(RandomValueRange.of(3.0F, 9.0F))))
-                            .addEntry(ItemLootEntry.builder(ModItems.old_bow.get())
-                                    .weight(2))
-                            .addEntry(ItemLootEntry.builder(ModItems.agate_arrow.get())
-                                    .weight(10)
-                                    .acceptFunction(SetCount.builder(RandomValueRange.of(3.0F, 6.0F)))))
-                    .addLootPool(LootPool.builder()
-                            .rolls(ConstantRange.of(1))
-                            .addEntry(ItemLootEntry.builder(ModItems.white_opal.get()))));
-            consumer.accept(GaiaChestTables.CHESTS_MINITOWER_JADE, LootTable.builder()
-                    .addLootPool(LootPool.builder()
-                            .rolls(RandomValueRange.of(2.0F, 8.0F))
-                            .addEntry(ItemLootEntry.builder(ModItems.green_geode_slice.get())
-                                    .weight(15)
-                                    .acceptFunction(SetCount.builder(RandomValueRange.of(1.0F, 3.0F))))
-                            .addEntry(ItemLootEntry.builder(ModItems.pyrite.get())
-                                    .weight(15)
-                                    .acceptFunction(SetCount.builder(RandomValueRange.of(1.0F, 5.0F))))
-                            .addEntry(ItemLootEntry.builder(ModItems.scaynyx_ingot.get())
-                                    .weight(10)
-                                    .acceptFunction(SetCount.builder(RandomValueRange.of(1.0F, 3.0F))))
-                            .addEntry(ItemLootEntry.builder(ModItems.sugilite_axe.get())
-                                    .weight(2))
-                            .addEntry(ItemLootEntry.builder(ModItems.euclase.get())
-                                    .weight(10)
-                                    .acceptFunction(SetCount.builder(RandomValueRange.of(1.0F, 3.0F))))
-                            .addEntry(ItemLootEntry.builder(ModBlocks.jade_bricks.get())
-                                    .weight(15)
-                                    .acceptFunction(SetCount.builder(RandomValueRange.of(3.0F, 9.0F))))
-                            .addEntry(ItemLootEntry.builder(ModItems.old_bow.get())
-                                    .weight(2))
-                            .addEntry(ItemLootEntry.builder(ModItems.agate_arrow.get())
-                                    .weight(10)
-                                    .acceptFunction(SetCount.builder(RandomValueRange.of(3.0F, 6.0F)))))
-                    .addLootPool(LootPool.builder()
-                            .rolls(ConstantRange.of(1))
-                            .addEntry(ItemLootEntry.builder(ModItems.white_opal.get()))));
-            consumer.accept(GaiaChestTables.CHESTS_MINITOWER_JET, LootTable.builder()
-                    .addLootPool(LootPool.builder()
-                            .rolls(RandomValueRange.of(2.0F, 8.0F))
-                            .addEntry(ItemLootEntry.builder(ModItems.blue_geode_slice.get())
-                                    .weight(15)
-                                    .acceptFunction(SetCount.builder(RandomValueRange.of(1.0F, 3.0F))))
-                            .addEntry(ItemLootEntry.builder(ModItems.pyrite.get())
-                                    .weight(15)
-                                    .acceptFunction(SetCount.builder(RandomValueRange.of(1.0F, 5.0F))))
-                            .addEntry(ItemLootEntry.builder(ModItems.scaynyx_ingot.get())
-                                    .weight(10)
-                                    .acceptFunction(SetCount.builder(RandomValueRange.of(1.0F, 3.0F))))
-                            .addEntry(ItemLootEntry.builder(ModItems.sugilite_axe.get())
-                                    .weight(2))
-                            .addEntry(ItemLootEntry.builder(ModItems.ixiolite.get())
-                                    .weight(10)
-                                    .acceptFunction(SetCount.builder(RandomValueRange.of(1.0F, 3.0F))))
-                            .addEntry(ItemLootEntry.builder(ModBlocks.jet_bricks.get())
-                                    .weight(15)
-                                    .acceptFunction(SetCount.builder(RandomValueRange.of(3.0F, 9.0F))))
-                            .addEntry(ItemLootEntry.builder(ModItems.old_bow.get())
-                                    .weight(2))
-                            .addEntry(ItemLootEntry.builder(ModItems.agate_arrow.get())
-                                    .weight(10)
-                                    .acceptFunction(SetCount.builder(RandomValueRange.of(3.0F, 6.0F)))))
-                    .addLootPool(LootPool.builder()
-                            .rolls(ConstantRange.of(1))
-                            .addEntry(ItemLootEntry.builder(ModItems.white_opal.get()))));
-            consumer.accept(GaiaChestTables.CHESTS_MALACHITE_WATCHTOWER, LootTable.builder()
-                    .addLootPool(LootPool.builder()
-                            .rolls(RandomValueRange.of(2.0F, 8.0F))
-                            .addEntry(ItemLootEntry.builder(ModBlocks.malachite_bricks.get())
-                                    .weight(15)
-                                    .acceptFunction(SetCount.builder(RandomValueRange.of(3.0F, 5.0F))))
-                            .addEntry(ItemLootEntry.builder(ModBlocks.malachite_floor_tiles.get())
-                                    .weight(15)
-                                    .acceptFunction(SetCount.builder(RandomValueRange.of(3.0F, 5.0F))))
-                            .addEntry(ItemLootEntry.builder(ModBlocks.malachite_pillar.get())
-                                    .weight(15)
-                                    .acceptFunction(SetCount.builder(RandomValueRange.of(3.0F, 5.0F))))
-                            .addEntry(ItemLootEntry.builder(ModItems.pyrite.get())
-                                    .weight(15)
-                                    .acceptFunction(SetCount.builder(RandomValueRange.of(1.0F, 3.0F))))
-                            .addEntry(ItemLootEntry.builder(ModItems.ixiolite_sword.get())
-                                    .weight(5))
-                            .addEntry(ItemLootEntry.builder(ModItems.euclase_sword.get())
-                                    .weight(2))
-                            .addEntry(ItemLootEntry.builder(ModItems.tiligr.get())
-                                    .weight(10)
-                                    .acceptFunction(SetCount.builder(RandomValueRange.of(1.0F, 4.0F))))
-                            .addEntry(ItemLootEntry.builder(ModItems.proustite_helmet.get())
-                                    .weight(5))
-                            .addEntry(ItemLootEntry.builder(ModItems.leucite_helmet.get())
-                                    .weight(2)))
-                    .addLootPool(LootPool.builder()
-                            .rolls(RandomValueRange.of(1.0F, 3.0F))
-                            .addEntry(ItemLootEntry.builder(ModItems.ixiolite.get())
-                                    .weight(6)
-                                    .acceptFunction(SetCount.builder(RandomValueRange.of(1.0F, 2.0F))))
-                            .addEntry(ItemLootEntry.builder(ModItems.proustite.get())
-                                    .weight(6)
-                                    .acceptFunction(SetCount.builder(RandomValueRange.of(1.0F, 2.0F))))
-                            .addEntry(ItemLootEntry.builder(ModItems.euclase.get())
-                                    .weight(4)
-                                    .acceptFunction(SetCount.builder(RandomValueRange.of(1.0F, 2.0F))))
-                            .addEntry(ItemLootEntry.builder(ModItems.leucite.get())
-                                    .weight(4)
-                                    .acceptFunction(SetCount.builder(RandomValueRange.of(1.0F, 2.0F))))
-                            .addEntry(ItemLootEntry.builder(ModItems.green_opal.get())
-                                    .weight(4)
-                                    .acceptFunction(SetCount.builder(RandomValueRange.of(1.0F, 2.0F))))
-                            .addEntry(ItemLootEntry.builder(ModItems.white_opal.get())
-                                    .weight(2)
-                                    .acceptFunction(SetCount.builder(RandomValueRange.of(1.0F, 2.0F))))));
+            consumer.accept(GaiaChestTables.CHESTS_MINITOWER_AMETHYST, LootTable.lootTable()
+                    .withPool(LootPool.lootPool()
+                            .setRolls(RandomValueRange.between(2.0F, 8.0F))
+                            .add(ItemLootEntry.lootTableItem(ModItems.purple_geode_slice.get())
+                                    .setWeight(15)
+                                    .apply(SetCount.setCount(RandomValueRange.between(1.0F, 3.0F))))
+                            .add(ItemLootEntry.lootTableItem(ModItems.pyrite.get())
+                                    .setWeight(15)
+                                    .apply(SetCount.setCount(RandomValueRange.between(1.0F, 5.0F))))
+                            .add(ItemLootEntry.lootTableItem(ModItems.scaynyx_ingot.get())
+                                    .setWeight(10)
+                                    .apply(SetCount.setCount(RandomValueRange.between(1.0F, 3.0F))))
+                            .add(ItemLootEntry.lootTableItem(ModItems.sugilite_axe.get())
+                                    .setWeight(2))
+                            .add(ItemLootEntry.lootTableItem(ModItems.proustite.get())
+                                    .setWeight(10)
+                                    .apply(SetCount.setCount(RandomValueRange.between(1.0F, 3.0F))))
+                            .add(ItemLootEntry.lootTableItem(ModBlocks.amethyst_bricks.get())
+                                    .setWeight(15)
+                                    .apply(SetCount.setCount(RandomValueRange.between(3.0F, 9.0F))))
+                            .add(ItemLootEntry.lootTableItem(ModItems.old_bow.get())
+                                    .setWeight(2))
+                            .add(ItemLootEntry.lootTableItem(ModItems.agate_arrow.get())
+                                    .setWeight(10)
+                                    .apply(SetCount.setCount(RandomValueRange.between(3.0F, 6.0F)))))
+                    .withPool(LootPool.lootPool()
+                            .setRolls(ConstantRange.exactly(1))
+                            .add(ItemLootEntry.lootTableItem(ModItems.white_opal.get()))));
+            consumer.accept(GaiaChestTables.CHESTS_MINITOWER_COPAL, LootTable.lootTable()
+                    .withPool(LootPool.lootPool()
+                            .setRolls(RandomValueRange.between(2.0F, 8.0F))
+                            .add(ItemLootEntry.lootTableItem(ModItems.pink_geode_slice.get())
+                                    .setWeight(15)
+                                    .apply(SetCount.setCount(RandomValueRange.between(1.0F, 3.0F))))
+                            .add(ItemLootEntry.lootTableItem(ModItems.pyrite.get())
+                                    .setWeight(15)
+                                    .apply(SetCount.setCount(RandomValueRange.between(1.0F, 5.0F))))
+                            .add(ItemLootEntry.lootTableItem(ModItems.scaynyx_ingot.get())
+                                    .setWeight(10)
+                                    .apply(SetCount.setCount(RandomValueRange.between(1.0F, 3.0F))))
+                            .add(ItemLootEntry.lootTableItem(ModItems.sugilite_axe.get())
+                                    .setWeight(2))
+                            .add(ItemLootEntry.lootTableItem(ModItems.leucite.get())
+                                    .setWeight(10)
+                                    .apply(SetCount.setCount(RandomValueRange.between(1.0F, 3.0F))))
+                            .add(ItemLootEntry.lootTableItem(ModBlocks.copal_bricks.get())
+                                    .setWeight(15)
+                                    .apply(SetCount.setCount(RandomValueRange.between(3.0F, 9.0F))))
+                            .add(ItemLootEntry.lootTableItem(ModItems.old_bow.get())
+                                    .setWeight(2))
+                            .add(ItemLootEntry.lootTableItem(ModItems.agate_arrow.get())
+                                    .setWeight(10)
+                                    .apply(SetCount.setCount(RandomValueRange.between(3.0F, 6.0F)))))
+                    .withPool(LootPool.lootPool()
+                            .setRolls(ConstantRange.exactly(1))
+                            .add(ItemLootEntry.lootTableItem(ModItems.white_opal.get()))));
+            consumer.accept(GaiaChestTables.CHESTS_MINITOWER_JADE, LootTable.lootTable()
+                    .withPool(LootPool.lootPool()
+                            .setRolls(RandomValueRange.between(2.0F, 8.0F))
+                            .add(ItemLootEntry.lootTableItem(ModItems.green_geode_slice.get())
+                                    .setWeight(15)
+                                    .apply(SetCount.setCount(RandomValueRange.between(1.0F, 3.0F))))
+                            .add(ItemLootEntry.lootTableItem(ModItems.pyrite.get())
+                                    .setWeight(15)
+                                    .apply(SetCount.setCount(RandomValueRange.between(1.0F, 5.0F))))
+                            .add(ItemLootEntry.lootTableItem(ModItems.scaynyx_ingot.get())
+                                    .setWeight(10)
+                                    .apply(SetCount.setCount(RandomValueRange.between(1.0F, 3.0F))))
+                            .add(ItemLootEntry.lootTableItem(ModItems.sugilite_axe.get())
+                                    .setWeight(2))
+                            .add(ItemLootEntry.lootTableItem(ModItems.euclase.get())
+                                    .setWeight(10)
+                                    .apply(SetCount.setCount(RandomValueRange.between(1.0F, 3.0F))))
+                            .add(ItemLootEntry.lootTableItem(ModBlocks.jade_bricks.get())
+                                    .setWeight(15)
+                                    .apply(SetCount.setCount(RandomValueRange.between(3.0F, 9.0F))))
+                            .add(ItemLootEntry.lootTableItem(ModItems.old_bow.get())
+                                    .setWeight(2))
+                            .add(ItemLootEntry.lootTableItem(ModItems.agate_arrow.get())
+                                    .setWeight(10)
+                                    .apply(SetCount.setCount(RandomValueRange.between(3.0F, 6.0F)))))
+                    .withPool(LootPool.lootPool()
+                            .setRolls(ConstantRange.exactly(1))
+                            .add(ItemLootEntry.lootTableItem(ModItems.white_opal.get()))));
+            consumer.accept(GaiaChestTables.CHESTS_MINITOWER_JET, LootTable.lootTable()
+                    .withPool(LootPool.lootPool()
+                            .setRolls(RandomValueRange.between(2.0F, 8.0F))
+                            .add(ItemLootEntry.lootTableItem(ModItems.blue_geode_slice.get())
+                                    .setWeight(15)
+                                    .apply(SetCount.setCount(RandomValueRange.between(1.0F, 3.0F))))
+                            .add(ItemLootEntry.lootTableItem(ModItems.pyrite.get())
+                                    .setWeight(15)
+                                    .apply(SetCount.setCount(RandomValueRange.between(1.0F, 5.0F))))
+                            .add(ItemLootEntry.lootTableItem(ModItems.scaynyx_ingot.get())
+                                    .setWeight(10)
+                                    .apply(SetCount.setCount(RandomValueRange.between(1.0F, 3.0F))))
+                            .add(ItemLootEntry.lootTableItem(ModItems.sugilite_axe.get())
+                                    .setWeight(2))
+                            .add(ItemLootEntry.lootTableItem(ModItems.ixiolite.get())
+                                    .setWeight(10)
+                                    .apply(SetCount.setCount(RandomValueRange.between(1.0F, 3.0F))))
+                            .add(ItemLootEntry.lootTableItem(ModBlocks.jet_bricks.get())
+                                    .setWeight(15)
+                                    .apply(SetCount.setCount(RandomValueRange.between(3.0F, 9.0F))))
+                            .add(ItemLootEntry.lootTableItem(ModItems.old_bow.get())
+                                    .setWeight(2))
+                            .add(ItemLootEntry.lootTableItem(ModItems.agate_arrow.get())
+                                    .setWeight(10)
+                                    .apply(SetCount.setCount(RandomValueRange.between(3.0F, 6.0F)))))
+                    .withPool(LootPool.lootPool()
+                            .setRolls(ConstantRange.exactly(1))
+                            .add(ItemLootEntry.lootTableItem(ModItems.white_opal.get()))));
+            consumer.accept(GaiaChestTables.CHESTS_MALACHITE_WATCHTOWER, LootTable.lootTable()
+                    .withPool(LootPool.lootPool()
+                            .setRolls(RandomValueRange.between(2.0F, 8.0F))
+                            .add(ItemLootEntry.lootTableItem(ModBlocks.malachite_bricks.get())
+                                    .setWeight(15)
+                                    .apply(SetCount.setCount(RandomValueRange.between(3.0F, 5.0F))))
+                            .add(ItemLootEntry.lootTableItem(ModBlocks.malachite_floor_tiles.get())
+                                    .setWeight(15)
+                                    .apply(SetCount.setCount(RandomValueRange.between(3.0F, 5.0F))))
+                            .add(ItemLootEntry.lootTableItem(ModBlocks.malachite_pillar.get())
+                                    .setWeight(15)
+                                    .apply(SetCount.setCount(RandomValueRange.between(3.0F, 5.0F))))
+                            .add(ItemLootEntry.lootTableItem(ModItems.pyrite.get())
+                                    .setWeight(15)
+                                    .apply(SetCount.setCount(RandomValueRange.between(1.0F, 3.0F))))
+                            .add(ItemLootEntry.lootTableItem(ModItems.ixiolite_sword.get())
+                                    .setWeight(5))
+                            .add(ItemLootEntry.lootTableItem(ModItems.euclase_sword.get())
+                                    .setWeight(2))
+                            .add(ItemLootEntry.lootTableItem(ModItems.tiligr.get())
+                                    .setWeight(10)
+                                    .apply(SetCount.setCount(RandomValueRange.between(1.0F, 4.0F))))
+                            .add(ItemLootEntry.lootTableItem(ModItems.proustite_helmet.get())
+                                    .setWeight(5))
+                            .add(ItemLootEntry.lootTableItem(ModItems.leucite_helmet.get())
+                                    .setWeight(2)))
+                    .withPool(LootPool.lootPool()
+                            .setRolls(RandomValueRange.between(1.0F, 3.0F))
+                            .add(ItemLootEntry.lootTableItem(ModItems.ixiolite.get())
+                                    .setWeight(6)
+                                    .apply(SetCount.setCount(RandomValueRange.between(1.0F, 2.0F))))
+                            .add(ItemLootEntry.lootTableItem(ModItems.proustite.get())
+                                    .setWeight(6)
+                                    .apply(SetCount.setCount(RandomValueRange.between(1.0F, 2.0F))))
+                            .add(ItemLootEntry.lootTableItem(ModItems.euclase.get())
+                                    .setWeight(4)
+                                    .apply(SetCount.setCount(RandomValueRange.between(1.0F, 2.0F))))
+                            .add(ItemLootEntry.lootTableItem(ModItems.leucite.get())
+                                    .setWeight(4)
+                                    .apply(SetCount.setCount(RandomValueRange.between(1.0F, 2.0F))))
+                            .add(ItemLootEntry.lootTableItem(ModItems.green_opal.get())
+                                    .setWeight(4)
+                                    .apply(SetCount.setCount(RandomValueRange.between(1.0F, 2.0F))))
+                            .add(ItemLootEntry.lootTableItem(ModItems.white_opal.get())
+                                    .setWeight(2)
+                                    .apply(SetCount.setCount(RandomValueRange.between(1.0F, 2.0F))))));
         }
     }
 }

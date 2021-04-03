@@ -24,12 +24,12 @@ public class GlitterFuelRecipe {
         this.inputs = new ArrayList<>(input);
 
         if (burnTime == 200) {
-            this.smeltCountString = I18n.format("gui.gaiadimension.category.fuel.single_average");
+            this.smeltCountString = I18n.get("gui.gaiadimension.category.fuel.single_average");
         } else {
             NumberFormat numberInstance = NumberFormat.getNumberInstance();
             numberInstance.setMaximumFractionDigits(2);
             String smeltCount = numberInstance.format(burnTime / 200f);
-            this.smeltCountString = I18n.format("gui.gaiadimension.category.fuel.smelt_average", smeltCount);
+            this.smeltCountString = I18n.get("gui.gaiadimension.category.fuel.smelt_average", smeltCount);
         }
 
         this.flame = guiHelper.drawableBuilder(firetex, 0, 0, 14, 14)

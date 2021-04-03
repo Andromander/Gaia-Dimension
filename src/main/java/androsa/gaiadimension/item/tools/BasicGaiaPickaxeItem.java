@@ -7,6 +7,6 @@ import net.minecraft.item.PickaxeItem;
 public class BasicGaiaPickaxeItem extends PickaxeItem {
 
     public BasicGaiaPickaxeItem(IItemTier material) {
-        super(material, 1, -2.8F, new Properties().maxStackSize(1).defaultMaxDamage(material.getMaxUses()).group(GaiaItemGroups.GAIA_TOOLS));
+        super(material, 1, -2.8F, new Properties().tab(GaiaItemGroups.GAIA_TOOLS));
     }
 }

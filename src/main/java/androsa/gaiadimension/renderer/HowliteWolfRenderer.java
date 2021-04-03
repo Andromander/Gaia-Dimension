@@ -18,7 +18,7 @@ public class HowliteWolfRenderer<T extends HowliteWolfEntity, M extends HowliteW
     }
 
     @Override
-    public ResourceLocation getEntityTexture(T entity) {
+    public ResourceLocation getTextureLocation(T entity) {
         return textureLoc;
     }
 }

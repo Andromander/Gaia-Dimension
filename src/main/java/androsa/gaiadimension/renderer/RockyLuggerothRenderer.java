@@ -18,7 +18,7 @@ public class RockyLuggerothRenderer<T extends RockyLuggerothEntity, M extends Ro
     }
 
     @Override
-    public ResourceLocation getEntityTexture(T entity) {
+    public ResourceLocation getTextureLocation(T entity) {
         return textureLoc;
     }
 }

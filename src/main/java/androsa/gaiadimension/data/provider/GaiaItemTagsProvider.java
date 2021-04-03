@@ -18,7 +18,7 @@ public class GaiaItemTagsProvider extends ItemTagsProvider {
     }
 
     protected void addTag(ITag.INamedTag<Item> tag, ImmutableList<Supplier<Item>> list) {
-        Builder<Item> builder = this.getOrCreateBuilder(tag);
+        Builder<Item> builder = this.tag(tag);
         for (Supplier<Item> item : list) {
             builder.add(item.get());
         }

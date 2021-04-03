@@ -36,11 +36,11 @@ public class GaiaAdvancementProvider extends AdvancementProvider {
         return new ResourceLocation(GaiaDimensionMod.MODID, "gaia/" + name).toString();
     }
 
-    protected static ICriterionInstance biome(RegistryKey<Biome> key) {
-        return PositionTrigger.Instance.forLocation(LocationPredicate.forBiome(key));
+    protected static ICriterionInstance biome(RegistryKey<Biome> define) {
+        return PositionTrigger.Instance.located(LocationPredicate.inBiome(define));
     }
 
     protected static ICriterionInstance item(RegistryObject<? extends Item> item) {
-        return InventoryChangeTrigger.Instance.forItems(item.get());
+        return InventoryChangeTrigger.Instance.hasItems(item.get());
     }
 }

@@ -101,6 +101,6 @@ public class GaiaConfiguredFeatures extends ConfiguredFeaturesProvider {
     }
 
     private static RegistryKey<ConfiguredFeature<?,?>> getKey(String name) {
-        return RegistryKey.getOrCreateKey(WorldGenRegistries.CONFIGURED_FEATURE.getRegistryKey(), new ResourceLocation(GaiaDimensionMod.MODID, name));
+        return RegistryKey.create(WorldGenRegistries.CONFIGURED_FEATURE.key(), new ResourceLocation(GaiaDimensionMod.MODID, name));
     }
 }

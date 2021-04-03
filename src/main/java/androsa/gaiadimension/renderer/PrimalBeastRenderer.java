@@ -18,7 +18,7 @@ public class PrimalBeastRenderer<T extends PrimalBeastEntity, M extends PrimalBe
     }
 
     @Override
-    public ResourceLocation getEntityTexture(T entity) {
+    public ResourceLocation getTextureLocation(T entity) {
         return textureLoc;
     }
 }

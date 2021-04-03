@@ -12,7 +12,7 @@ public class GemPouchSlot extends Slot {
     }
 
     @Override
-    public boolean isItemValid(ItemStack stack) {
+    public boolean mayPlace(ItemStack stack) {
         return GaiaTags.Items.GEM_POUCH_ITEMS.contains(stack.getItem());
     }
 }

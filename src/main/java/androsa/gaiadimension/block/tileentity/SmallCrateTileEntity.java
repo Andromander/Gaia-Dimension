@@ -31,16 +31,16 @@ public class SmallCrateTileEntity extends LockableLootTileEntity implements ISid
     }
 
     @Override
-    public int getSizeInventory() {
+    public int getContainerSize() {
         return this.items.size();
     }
 
     @Override
-    public void openInventory(PlayerEntity player) {
+    public void startOpen(PlayerEntity player) {
     }
 
     @Override
-    public void closeInventory(PlayerEntity player) {
+    public void stopOpen(PlayerEntity player) {
     }
 
     @Override
@@ -49,27 +49,27 @@ public class SmallCrateTileEntity extends LockableLootTileEntity implements ISid
     }
 
     @Override
-    public void read(BlockState state, CompoundNBT compound) {
-        super.read(state, compound);
+    public void load(BlockState state, CompoundNBT compound) {
+        super.load(state, compound);
         this.loadFromNbt(compound);
     }
 
     @Override
-    public CompoundNBT write(CompoundNBT compound) {
-        super.write(compound);
+    public CompoundNBT save(CompoundNBT compound) {
+        super.save(compound);
         return this.saveToNbt(compound);
     }
 
     public void loadFromNbt(CompoundNBT compound) {
-        this.items = NonNullList.withSize(this.getSizeInventory(), ItemStack.EMPTY);
+        this.items = NonNullList.withSize(this.getContainerSize(), ItemStack.EMPTY);
 
-        if (!this.checkLootAndRead(compound) && compound.contains("Items", 9)) {
+        if (!this.tryLoadLootTable(compound) && compound.contains("Items", 9)) {
             ItemStackHelper.loadAllItems(compound, this.items);
         }
     }
 
     public CompoundNBT saveToNbt(CompoundNBT compound) {
-        if (!this.checkLootAndWrite(compound)) {
+        if (!this.trySaveLootTable(compound)) {
             ItemStackHelper.saveAllItems(compound, this.items, false);
         }
         return compound;
@@ -102,12 +102,12 @@ public class SmallCrateTileEntity extends LockableLootTileEntity implements ISid
     }
 
     @Override
-    public boolean canInsertItem(int index, ItemStack itemStackIn, Direction direction) {
-        return !(Block.getBlockFromItem(itemStackIn.getItem()) instanceof SmallCrateBlock);
+    public boolean canPlaceItemThroughFace(int index, ItemStack itemStackIn, Direction direction) {
+        return !(Block.byItem(itemStackIn.getItem()) instanceof SmallCrateBlock);
     }
 
     @Override
-    public boolean canExtractItem(int index, ItemStack stack, Direction direction) {
+    public boolean canTakeItemThroughFace(int index, ItemStack stack, Direction direction) {
         return true;
     }
 

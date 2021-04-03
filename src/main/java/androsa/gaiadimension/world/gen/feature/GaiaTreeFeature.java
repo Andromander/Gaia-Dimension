@@ -35,24 +35,24 @@ public abstract class GaiaTreeFeature<T extends GaiaTreeFeatureConfig> extends F
     }
 
     @Override
-    public boolean generate(ISeedReader world, ChunkGenerator generator, Random random, BlockPos pos, T config) {
+    public boolean place(ISeedReader world, ChunkGenerator generator, Random random, BlockPos pos, T config) {
         Set<BlockPos> logs = Sets.newHashSet();
         Set<BlockPos> leaves = Sets.newHashSet();
-        MutableBoundingBox mutableboundingbox = MutableBoundingBox.getNewBoundingBox();
+        MutableBoundingBox mutableboundingbox = MutableBoundingBox.getUnknownBox();
         boolean flag = this.generate(world, random, pos, logs, leaves, mutableboundingbox, config);
-        if (mutableboundingbox.minX <= mutableboundingbox.maxX && flag && !logs.isEmpty()) {
+        if (mutableboundingbox.x0 <= mutableboundingbox.x1 && flag && !logs.isEmpty()) {
             VoxelShapePart voxelshapepart = this.getVoxelShapePart(world, mutableboundingbox, logs);
-            Template.func_222857_a(world, 3, voxelshapepart, mutableboundingbox.minX, mutableboundingbox.minY, mutableboundingbox.minZ);
+            Template.updateShapeAtEdge(world, 3, voxelshapepart, mutableboundingbox.x0, mutableboundingbox.y0, mutableboundingbox.z0);
             return true;
         } else {
             return false;
         }
     }
 
-    //TreeFeature.func_227214_a_ copy, modified to remove decorations
+    //TreeFeature.updateLeaves copy, modified to remove decorations
     private VoxelShapePart getVoxelShapePart(IWorld world, MutableBoundingBox mbb, Set<BlockPos> logPosSet) {
         List<Set<BlockPos>> list = Lists.newArrayList();
-        VoxelShapePart voxelshapepart = new BitSetVoxelShapePart(mbb.getXSize(), mbb.getYSize(), mbb.getZSize());
+        VoxelShapePart voxelshapepart = new BitSetVoxelShapePart(mbb.getXSpan(), mbb.getYSpan(), mbb.getZSpan());
 
         for(int j = 0; j < 6; ++j) {
             list.add(Sets.newHashSet());
@@ -61,19 +61,19 @@ public abstract class GaiaTreeFeature<T extends GaiaTreeFeatureConfig> extends F
         BlockPos.Mutable mutable = new BlockPos.Mutable();
 
         for(BlockPos logPos : Lists.newArrayList(logPosSet)) {
-            if (mbb.isVecInside(logPos)) {
-                voxelshapepart.setFilled(logPos.getX() - mbb.minX, logPos.getY() - mbb.minY, logPos.getZ() - mbb.minZ, true, true);
+            if (mbb.isInside(logPos)) {
+                voxelshapepart.setFull(logPos.getX() - mbb.x0, logPos.getY() - mbb.y0, logPos.getZ() - mbb.z0, true, true);
             }
 
             for(Direction direction : Direction.values()) {
-                mutable.setAndMove(logPos, direction);
+                mutable.setWithOffset(logPos, direction);
                 if (!logPosSet.contains(mutable)) {
                     BlockState blockstate = world.getBlockState(mutable);
-                    if (blockstate.hasProperty(BlockStateProperties.DISTANCE_1_7)) {
-                        list.get(0).add(mutable.toImmutable());
-                        TreeFeature.func_236408_b_(world, mutable, blockstate.with(BlockStateProperties.DISTANCE_1_7, 1));
-                        if (mbb.isVecInside(mutable)) {
-                            voxelshapepart.setFilled(mutable.getX() - mbb.minX, mutable.getY() - mbb.minY, mutable.getZ() - mbb.minZ, true, true);
+                    if (blockstate.hasProperty(BlockStateProperties.DISTANCE)) {
+                        list.get(0).add(mutable.immutable());
+                        TreeFeature.setBlockKnownShape(world, mutable, blockstate.setValue(BlockStateProperties.DISTANCE, 1));
+                        if (mbb.isInside(mutable)) {
+                            voxelshapepart.setFull(mutable.getX() - mbb.x0, mutable.getY() - mbb.y0, mutable.getZ() - mbb.z0, true, true);
                         }
                     }
                 }
@@ -85,24 +85,24 @@ public abstract class GaiaTreeFeature<T extends GaiaTreeFeatureConfig> extends F
             Set<BlockPos> set1 = list.get(l);
 
             for(BlockPos blockpos2 : set) {
-                if (mbb.isVecInside(blockpos2)) {
-                    voxelshapepart.setFilled(blockpos2.getX() - mbb.minX, blockpos2.getY() - mbb.minY, blockpos2.getZ() - mbb.minZ, true, true);
+                if (mbb.isInside(blockpos2)) {
+                    voxelshapepart.setFull(blockpos2.getX() - mbb.x0, blockpos2.getY() - mbb.y0, blockpos2.getZ() - mbb.z0, true, true);
                 }
 
                 for(Direction direction1 : Direction.values()) {
-                    mutable.setAndMove(blockpos2, direction1);
+                    mutable.setWithOffset(blockpos2, direction1);
                     if (!set.contains(mutable) && !set1.contains(mutable)) {
                         BlockState blockstate1 = world.getBlockState(mutable);
-                        if (blockstate1.hasProperty(BlockStateProperties.DISTANCE_1_7)) {
-                            int k = blockstate1.get(BlockStateProperties.DISTANCE_1_7);
+                        if (blockstate1.hasProperty(BlockStateProperties.DISTANCE)) {
+                            int k = blockstate1.getValue(BlockStateProperties.DISTANCE);
                             if (k > l + 1) {
-                                BlockState blockstate2 = blockstate1.with(BlockStateProperties.DISTANCE_1_7, l + 1);
-                                TreeFeature.func_236408_b_(world, mutable, blockstate2);
-                                if (mbb.isVecInside(mutable)) {
-                                    voxelshapepart.setFilled(mutable.getX() - mbb.minX, mutable.getY() - mbb.minY, mutable.getZ() - mbb.minZ, true, true);
+                                BlockState blockstate2 = blockstate1.setValue(BlockStateProperties.DISTANCE, l + 1);
+                                TreeFeature.setBlockKnownShape(world, mutable, blockstate2);
+                                if (mbb.isInside(mutable)) {
+                                    voxelshapepart.setFull(mutable.getX() - mbb.x0, mutable.getY() - mbb.y0, mutable.getZ() - mbb.z0, true, true);
                                 }
 
-                                set1.add(mutable.toImmutable());
+                                set1.add(mutable.immutable());
                             }
                         }
                     }
@@ -117,9 +117,9 @@ public abstract class GaiaTreeFeature<T extends GaiaTreeFeatureConfig> extends F
 
     //AbstractTrunkPlacer.func_236911_a_ copy - Use that one instead when extending that Abstract
     protected boolean setLogBlockState(IWorld world, Random random, BlockPos pos, Set<BlockPos> logPos, MutableBoundingBox mbb, GaiaTreeFeatureConfig config) {
-        if (isReplaceableAt(world, pos)) {
-            this.setBlockState(world, pos, config.trunkProvider.getBlockState(random, pos), mbb);
-            logPos.add(pos.toImmutable());
+        if (validTreePos(world, pos)) {
+            this.setBlockState(world, pos, config.trunkProvider.getState(random, pos), mbb);
+            logPos.add(pos.immutable());
             return true;
         } else {
             return false;
@@ -127,9 +127,9 @@ public abstract class GaiaTreeFeature<T extends GaiaTreeFeatureConfig> extends F
     }
 
     protected boolean setLeavesBlockState(IWorld world, Random random, BlockPos pos, Set<BlockPos> leavesPos, MutableBoundingBox mbb, T config) {
-        if (isReplaceableAt(world, pos)) {
-            this.setBlockState(world, pos, config.leavesProvider.getBlockState(random, pos), mbb);
-            leavesPos.add(pos.toImmutable());
+        if (validTreePos(world, pos)) {
+            this.setBlockState(world, pos, config.leavesProvider.getState(random, pos), mbb);
+            leavesPos.add(pos.immutable());
             return true;
         } else {
             return false;
@@ -137,29 +137,29 @@ public abstract class GaiaTreeFeature<T extends GaiaTreeFeatureConfig> extends F
     }
 
     protected final void setBlockState(IWorldWriter world, BlockPos pos, BlockState state, MutableBoundingBox mbb) {
-        world.setBlockState(pos, state, 19);
-        mbb.expandTo(new MutableBoundingBox(pos, pos));
+        world.setBlock(pos, state, 19);
+        mbb.expand(new MutableBoundingBox(pos, pos));
     }
 
-    public static boolean isReplaceableAt(IWorldGenerationBaseReader world, BlockPos pos) {
-        return TreeFeature.isReplaceableAt(world, pos);
+    public static boolean validTreePos(IWorldGenerationBaseReader world, BlockPos pos) {
+        return TreeFeature.validTreePos(world, pos);
     }
 
     public static boolean isAirOrLeaves(IWorldGenerationBaseReader world, BlockPos pos) {
-        return TreeFeature.isAirOrLeavesAt(world, pos);
+        return TreeFeature.isAirOrLeaves(world, pos);
     }
 
     public static boolean isTallPlants(IWorldGenerationBaseReader world, BlockPos pos) {
-        return world.hasBlockState(pos, (state) -> {
+        return world.isStateAtPosition(pos, (state) -> {
             Material mat = state.getMaterial();
-            return mat == Material.TALL_PLANTS;
+            return mat == Material.REPLACEABLE_PLANT;
         });
     }
 
     public static boolean isSoil(IWorldGenerationBaseReader world, BlockPos pos, IPlantable sapling) {
         if (world instanceof IBlockReader) {
-            return world.hasBlockState(pos, (state) -> state.canSustainPlant((IBlockReader)world, pos, Direction.DOWN, sapling));
+            return world.isStateAtPosition(pos, (state) -> state.canSustainPlant((IBlockReader)world, pos, Direction.DOWN, sapling));
         }
-        return world.hasBlockState(pos, state -> isDirt(state.getBlock()));
+        return world.isStateAtPosition(pos, state -> isDirt(state.getBlock()));
     }
 }

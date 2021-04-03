@@ -18,7 +18,7 @@ public class CrystalGolemRenderer<T extends CrystalGolemEntity, M extends Crysta
     }
 
     @Override
-    public ResourceLocation getEntityTexture(T entity) {
+    public ResourceLocation getTextureLocation(T entity) {
         return textureLoc;
     }
 }

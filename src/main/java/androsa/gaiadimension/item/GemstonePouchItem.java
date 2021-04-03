@@ -11,11 +11,11 @@ import net.minecraft.world.World;
 public class GemstonePouchItem extends BasicGaiaItem {
 
     @Override
-    public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity playerIn, Hand handIn) {
-        ItemStack stack = playerIn.getHeldItem(handIn);
+    public ActionResult<ItemStack> use(World worldIn, PlayerEntity playerIn, Hand handIn) {
+        ItemStack stack = playerIn.getItemInHand(handIn);
 
-        if(!worldIn.isRemote) {
-            playerIn.openContainer(new GemPouchInventory(stack));
+        if(!worldIn.isClientSide()) {
+            playerIn.openMenu(new GemPouchInventory(stack));
         }
 
         return new ActionResult<>(ActionResultType.SUCCESS, stack);

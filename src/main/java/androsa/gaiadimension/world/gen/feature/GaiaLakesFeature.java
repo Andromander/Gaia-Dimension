@@ -21,23 +21,23 @@ import java.util.Random;
 
 @ParametersAreNonnullByDefault
 public class GaiaLakesFeature<T extends BlockStateFeatureConfig> extends Feature<T> {
-    private static final BlockState AIR = Blocks.CAVE_AIR.getDefaultState();
+    private static final BlockState AIR = Blocks.CAVE_AIR.defaultBlockState();
 
     public GaiaLakesFeature(Codec<T> config) {
         super(config);
     }
 
     @Override
-    public boolean generate(ISeedReader worldIn, ChunkGenerator generator, Random rand, BlockPos pos, T config) {
-        while(pos.getY() > 5 && worldIn.isAirBlock(pos)) {
-            pos = pos.down();
+    public boolean place(ISeedReader worldIn, ChunkGenerator generator, Random rand, BlockPos pos, T config) {
+        while(pos.getY() > 5 && worldIn.isEmptyBlock(pos)) {
+            pos = pos.below();
         }
 
         if (pos.getY() <= 4) {
             return false;
         } else {
-            pos = pos.down(4);
-            if (worldIn.func_241827_a(SectionPos.from(pos), Structure.VILLAGE).findAny().isPresent()) {
+            pos = pos.below(4);
+            if (worldIn.startsForFeature(SectionPos.of(pos), Structure.VILLAGE).findAny().isPresent()) {
                 return false;
             } else {
                 boolean[] aboolean = new boolean[2048];
@@ -71,12 +71,12 @@ public class GaiaLakesFeature<T extends BlockStateFeatureConfig> extends Feature
                         for(int k = 0; k < 8; ++k) {
                             boolean flag = !aboolean[(k1 * 16 + l2) * 8 + k] && (k1 < 15 && aboolean[((k1 + 1) * 16 + l2) * 8 + k] || k1 > 0 && aboolean[((k1 - 1) * 16 + l2) * 8 + k] || l2 < 15 && aboolean[(k1 * 16 + l2 + 1) * 8 + k] || l2 > 0 && aboolean[(k1 * 16 + (l2 - 1)) * 8 + k] || k < 7 && aboolean[(k1 * 16 + l2) * 8 + k + 1] || k > 0 && aboolean[(k1 * 16 + l2) * 8 + (k - 1)]);
                             if (flag) {
-                                Material material = worldIn.getBlockState(pos.add(k1, k, l2)).getMaterial();
+                                Material material = worldIn.getBlockState(pos.offset(k1, k, l2)).getMaterial();
                                 if (k >= 4 && material.isLiquid()) {
                                     return false;
                                 }
 
-                                if (k < 4 && !material.isSolid() && worldIn.getBlockState(pos.add(k1, k, l2)) != config.state) {
+                                if (k < 4 && !material.isSolid() && worldIn.getBlockState(pos.offset(k1, k, l2)) != config.state) {
                                     return false;
                                 }
                             }
@@ -88,7 +88,7 @@ public class GaiaLakesFeature<T extends BlockStateFeatureConfig> extends Feature
                     for(int i3 = 0; i3 < 16; ++i3) {
                         for(int i4 = 0; i4 < 8; ++i4) {
                             if (aboolean[(l1 * 16 + i3) * 8 + i4]) {
-                                worldIn.setBlockState(pos.add(l1, i4, i3), i4 >= 4 ? AIR : config.state, 2);
+                                worldIn.setBlock(pos.offset(l1, i4, i3), i4 >= 4 ? AIR : config.state, 2);
                             }
                         }
                     }
@@ -98,18 +98,18 @@ public class GaiaLakesFeature<T extends BlockStateFeatureConfig> extends Feature
                     for(int j3 = 0; j3 < 16; ++j3) {
                         for(int j4 = 4; j4 < 8; ++j4) {
                             if (aboolean[(i2 * 16 + j3) * 8 + j4]) {
-                                BlockPos blockpos = pos.add(i2, j4 - 1, j3);
-                                if (worldIn.getBlockState(blockpos).getBlock() instanceof GaiaSoilBlock && worldIn.getLightFor(LightType.SKY, pos.add(i2, j4, j3)) > 0) {
+                                BlockPos blockpos = pos.offset(i2, j4 - 1, j3);
+                                if (worldIn.getBlockState(blockpos).getBlock() instanceof GaiaSoilBlock && worldIn.getBrightness(LightType.SKY, pos.offset(i2, j4, j3)) > 0) {
                                     Biome biome = worldIn.getBiome(blockpos);
 
-                                    if (biome.getGenerationSettings().getSurfaceBuilderConfig().getTop().getBlock() == ModBlocks.murky_grass.get()) {
-                                        worldIn.setBlockState(blockpos, ModBlocks.murky_grass.get().getDefaultState(), 2);
-                                    } else if (biome.getGenerationSettings().getSurfaceBuilderConfig().getTop().getBlock() == ModBlocks.soft_grass.get()) {
-                                        worldIn.setBlockState(blockpos, ModBlocks.soft_grass.get().getDefaultState(), 2);
-                                    } else if (biome.getGenerationSettings().getSurfaceBuilderConfig().getTop().getBlock() == ModBlocks.corrupt_grass.get()) {
-                                        worldIn.setBlockState(blockpos, ModBlocks.corrupt_grass.get().getDefaultState(), 2);
+                                    if (biome.getGenerationSettings().getSurfaceBuilderConfig().getTopMaterial().getBlock() == ModBlocks.murky_grass.get()) {
+                                        worldIn.setBlock(blockpos, ModBlocks.murky_grass.get().defaultBlockState(), 2);
+                                    } else if (biome.getGenerationSettings().getSurfaceBuilderConfig().getTopMaterial().getBlock() == ModBlocks.soft_grass.get()) {
+                                        worldIn.setBlock(blockpos, ModBlocks.soft_grass.get().defaultBlockState(), 2);
+                                    } else if (biome.getGenerationSettings().getSurfaceBuilderConfig().getTopMaterial().getBlock() == ModBlocks.corrupt_grass.get()) {
+                                        worldIn.setBlock(blockpos, ModBlocks.corrupt_grass.get().defaultBlockState(), 2);
                                     } else {
-                                        worldIn.setBlockState(blockpos, ModBlocks.glitter_grass.get().getDefaultState(), 2);
+                                        worldIn.setBlock(blockpos, ModBlocks.glitter_grass.get().defaultBlockState(), 2);
                                     }
                                 }
                             }
@@ -122,20 +122,20 @@ public class GaiaLakesFeature<T extends BlockStateFeatureConfig> extends Feature
                         for(int z = 0; z < 16; ++z) {
                             for(int y = 0; y < 8; ++y) {
                                 boolean flag1 = !aboolean[(x * 16 + z) * 8 + y] && (x < 15 && aboolean[((x + 1) * 16 + z) * 8 + y] || x > 0 && aboolean[((x - 1) * 16 + z) * 8 + y] || z < 15 && aboolean[(x * 16 + z + 1) * 8 + y] || z > 0 && aboolean[(x * 16 + (z - 1)) * 8 + y] || y < 7 && aboolean[(x * 16 + z) * 8 + y + 1] || y > 0 && aboolean[(x * 16 + z) * 8 + (y - 1)]);
-                                if (flag1 && (y < 4 || rand.nextInt(2) != 0) && worldIn.getBlockState(pos.add(x, y, z)).getMaterial().isSolid()) {
+                                if (flag1 && (y < 4 || rand.nextInt(2) != 0) && worldIn.getBlockState(pos.offset(x, y, z)).getMaterial().isSolid()) {
 
                                     if (config.state.getBlock() == ModBlocks.liquid_bismuth.get()) {
                                         if (rand.nextInt(4) == 0) {
-                                            worldIn.setBlockState(pos.add(x, y, z), ModBlocks.active_rock.get().getDefaultState(), 2);
+                                            worldIn.setBlock(pos.offset(x, y, z), ModBlocks.active_rock.get().defaultBlockState(), 2);
                                         } else {
-                                            worldIn.setBlockState(pos.add(x, y, z), ModBlocks.impure_rock.get().getDefaultState(), 2);
+                                            worldIn.setBlock(pos.offset(x, y, z), ModBlocks.impure_rock.get().defaultBlockState(), 2);
                                         }
                                     } else if (config.state.getBlock() == ModBlocks.liquid_aura.get()) {
-                                        worldIn.setBlockState(pos.add(x, y, z), ModBlocks.sparkling_rock.get().getDefaultState(), 2);
+                                        worldIn.setBlock(pos.offset(x, y, z), ModBlocks.sparkling_rock.get().defaultBlockState(), 2);
                                     } else if (config.state.getBlock() == ModBlocks.sweet_muck.get()) {
-                                        worldIn.setBlockState(pos.add(x, y, z), ModBlocks.thick_glitter_block.get().getDefaultState(), 2);
+                                        worldIn.setBlock(pos.offset(x, y, z), ModBlocks.thick_glitter_block.get().defaultBlockState(), 2);
                                     } else {
-                                        worldIn.setBlockState(pos.add(x, y, z), ModBlocks.volcanic_rock.get().getDefaultState(), 2);
+                                        worldIn.setBlock(pos.offset(x, y, z), ModBlocks.volcanic_rock.get().defaultBlockState(), 2);
                                     }
                                 }
                             }

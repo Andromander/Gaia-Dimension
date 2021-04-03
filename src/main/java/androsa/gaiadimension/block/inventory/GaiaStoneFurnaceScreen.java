@@ -2,7 +2,7 @@ package androsa.gaiadimension.block.inventory;
 
 import androsa.gaiadimension.block.container.GaiaStoneFurnaceContainer;
 import com.mojang.blaze3d.matrix.MatrixStack;
-import com.mojang.blaze3d.platform.GlStateManager;
+import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.gui.screen.inventory.ContainerScreen;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.ResourceLocation;
@@ -20,18 +20,18 @@ public class GaiaStoneFurnaceScreen extends ContainerScreen<GaiaStoneFurnaceCont
     }
 
     @Override
-    protected void drawGuiContainerBackgroundLayer(MatrixStack stack, float partialTicks, int mouseX, int mouseY) {
-        GlStateManager.color4f(1.0F, 1.0F, 1.0F, 1.0F);
-        this.minecraft.getTextureManager().bindTexture(textureLoc);
-        int i = this.guiLeft;
-        int j = this.guiTop;
-        this.blit(stack, i, j, 0, 0, this.xSize, this.ySize);
-        if ((this.container).isBurning()) {
-            int k = (this.container).getBurnLeftScaled();
+    protected void renderBg(MatrixStack stack, float partialTicks, int mouseX, int mouseY) {
+        RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
+        this.minecraft.getTextureManager().bind(textureLoc);
+        int i = this.leftPos;
+        int j = this.topPos;
+        this.blit(stack, i, j, 0, 0, this.imageWidth, this.imageHeight);
+        if ((this.menu).isBurning()) {
+            int k = (this.menu).getBurnLeftScaled();
             this.blit(stack, i + 56, j + 36 + 12 - k, 176, 12 - k, 14, k + 1);
         }
 
-        int l = (this.container).getCookProgressionScaled();
+        int l = (this.menu).getCookProgressionScaled();
         this.blit(stack, i + 79, j + 34, 176, 14, l + 1, 16);
     }
 
@@ -39,15 +39,13 @@ public class GaiaStoneFurnaceScreen extends ContainerScreen<GaiaStoneFurnaceCont
     public void render(MatrixStack stack, int mouseX, int mouseZ, float partialTicks) {
         this.renderBackground(stack);
         super.render(stack, mouseX, mouseZ, partialTicks);
-        this.renderHoveredTooltip(stack, mouseX, mouseZ);
+        this.renderTooltip(stack, mouseX, mouseZ);
     }
 
     @Override
-    protected void drawGuiContainerForegroundLayer(MatrixStack stack, int mouseX, int mouseY) {
+    protected void renderLabels(MatrixStack stack, int mouseX, int mouseY) {
         String s = this.title.getString();
-        this.font.drawString(stack, s, (float)(this.xSize / 2 - this.font.getStringWidth(s) / 2), 6.0F, 0xD0D0D0);
-        this.font.drawString(stack, this.playerInventory.getDisplayName().getString(), 8.0F, (float)(this.ySize - 96 + 2), 0xD0D0D0);
+        this.font.draw(stack, s, (float)(this.imageWidth / 2 - this.font.width(s) / 2), 6.0F, 0xD0D0D0);
+        this.font.draw(stack, this.inventory.getDisplayName().getString(), 8.0F, (float)(this.imageHeight - 96 + 2), 0xD0D0D0);
     }
-
-
 }

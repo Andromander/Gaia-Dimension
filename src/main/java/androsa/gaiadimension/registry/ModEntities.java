@@ -80,24 +80,24 @@ public class ModEntities {
 
     public static <E extends Entity> EntityType<E> registerEntity(String name, EntityType.IFactory<E> entity, EntityClassification classification, float width, float height, boolean fireproof) {
         EntityType.Builder<E> type = makeBuilder(entity, classification, width, height);
-        if (fireproof) type.immuneToFire();
+        if (fireproof) type.fireImmune();
         EntityType<E> entitytype = type.build(name);
         entitytype.setRegistryName(name);
         return RegistryHelper.registerEntity(entitytype);
     }
 
     private static <E extends Entity> EntityType.Builder<E> makeBuilder(EntityType.IFactory<E> entity, EntityClassification classification, float width, float height) {
-        return EntityType.Builder.create(entity, classification).size(width, height);
+        return EntityType.Builder.of(entity, classification).sized(width, height);
     }
 
     /* Spawn Placements */
     public static PlacementType IN_LAVA = PlacementType.create("GD_IN_LAVA", (reader, pos, entity) -> {
         BlockState blockState = reader.getBlockState(pos);
         FluidState fluidState = reader.getFluidState(pos);
-        BlockPos posUp = pos.up();
-        BlockPos posDown = pos.down();
+        BlockPos posUp = pos.above();
+        BlockPos posDown = pos.below();
 
-        if (fluidState.isTagged(FluidTags.LAVA) && reader.getFluidState(posDown).isTagged(FluidTags.LAVA) && !reader.getBlockState(posUp).isNormalCube(reader, posUp)) {
+        if (fluidState.is(FluidTags.LAVA) && reader.getFluidState(posDown).is(FluidTags.LAVA) && !reader.getBlockState(posUp).isRedstoneConductor(reader, posUp)) {
             return true;
         } else {
             BlockState state = reader.getBlockState(posDown);
@@ -105,7 +105,7 @@ public class ModEntities {
             if (!state.canCreatureSpawn(reader, posDown, PlacementType.ON_GROUND, entity)) {
                 return false;
             } else {
-                return WorldEntitySpawner.func_234968_a_(reader, pos, blockState, fluidState, entity) && WorldEntitySpawner.func_234968_a_(reader, posUp, reader.getBlockState(posUp), reader.getFluidState(posUp), entity);
+                return WorldEntitySpawner.isValidEmptySpawnBlock(reader, pos, blockState, fluidState, entity) && WorldEntitySpawner.isValidEmptySpawnBlock(reader, posUp, reader.getBlockState(posUp), reader.getFluidState(posUp), entity);
             }
         }
     });
@@ -113,10 +113,10 @@ public class ModEntities {
     public static void registerSpawnPlacement() {
         register(AGATE_GOLEM, PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, AgateGolemEntity::canSpawnHere);
         register(ANCIENT_LAGRAHK, PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, AncientLagrahkEntity::canSpawnHere);
-        register(ARCHAIC_WARRIOR, PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, MonsterEntity::canMonsterSpawnInLight);
+        register(ARCHAIC_WARRIOR, PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, MonsterEntity::checkMonsterSpawnRules);
         register(BISMUTH_ULETRUS, PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, BismuthUletrusEntity::canSpawnHere);
         register(BLUE_HOWLITE_WOLF, PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, BlueHowliteWolfEntity::canSpawnHere);
-        register(CAVERN_TICK, PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, MonsterEntity::canMonsterSpawnInLight);
+        register(CAVERN_TICK, PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, MonsterEntity::checkMonsterSpawnRules);
         register(CONTORTED_NAGA, PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, ContortedNagaEntity::canSpawnHere);
         register(CORRUPT_SAPPER, PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, CorruptSapperEntity::canSpawnHere);
         register(CRYSTAL_GOLEM, PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, CrystalGolemEntity::canSpawnHere);
@@ -134,9 +134,9 @@ public class ModEntities {
         register(RUGGED_LURMORUS, PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, RuggedLurmorusEntity::canSpawnHere);
         register(SALTION, PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, SaltionEntity::canSpawnHere);
         register(SHALLOW_ARENTHIS, PlacementType.IN_WATER, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, ShallowArenthisEntity::canSpawnHere);
-        register(SHALURKER, PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, MonsterEntity::canMonsterSpawnInLight);
+        register(SHALURKER, PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, MonsterEntity::checkMonsterSpawnRules);
         register(SPELLBOUND_ELEMENTAL, PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, SpellElementEntity::canSpawnHere);
-        register(MALACHITE_DRONE, PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, MonsterEntity::canMonsterSpawn);
+        register(MALACHITE_DRONE, PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, MonsterEntity::checkAnyLightMonsterSpawnRules);
     }
 
     @OnlyIn(Dist.CLIENT)
@@ -177,32 +177,32 @@ public class ModEntities {
 
     @SubscribeEvent
     public static void registerAttributes(EntityAttributeCreationEvent evt) {
-        evt.put(AGATE_GOLEM, AgateGolemEntity.registerAttributes().create());
-        evt.put(ANCIENT_LAGRAHK, AncientLagrahkEntity.registerAttributes().create());
-        evt.put(ARCHAIC_WARRIOR, ArchaicWarriorEntity.registerAttributes().create());
-        evt.put(BISMUTH_ULETRUS, BismuthUletrusEntity.registerAttributes().create());
-        evt.put(CAVERN_TICK, CavernTickEntity.registerAttributes().create());
-        evt.put(CONTORTED_NAGA, ContortedNagaEntity.registerAttributes().create());
-        evt.put(CORRUPT_SAPPER, CorruptSapperEntity.registerAttributes().create());
-        evt.put(CRYSTAL_GOLEM, CrystalGolemEntity.registerAttributes().create());
-        evt.put(GROWTH_SAPPER, GrowthSapperEntity.registerAttributes().create());
-        evt.put(HOWLITE_WOLF, HowliteWolfEntity.registerAttributes().create());
-        evt.put(LESSER_SHOCKSHOOTER, LesserShockshooterEntity.registerAttributes().create());
-        evt.put(LESSER_SPITFIRE, LesserSpitfireEntity.registerAttributes().create());
-        evt.put(MARKUZAR_PLANT, MarkuzarPlantEntity.registerAttributes().create());
-        evt.put(MINERAL_ARENTHIS, MineralArenthisEntity.registerAttributes().create());
-        evt.put(MUCKLING, MonsterEntity.func_234295_eP_().create());
-        evt.put(MUTANT_GROWTH_EXTRACTOR, MutantGrowthExtractorEntity.registerAttributes().create());
-        evt.put(NOMADIC_LAGRAHK, NomadicLagrahkEntity.registerAttributes().create());
-        evt.put(PRIMAL_BEAST, PrimalBeastEntity.registerAttributes().create());
-        evt.put(ROCKY_LUGGEROTH, RockyLuggerothEntity.registerAttributes().create());
-        evt.put(RUGGED_LURMORUS, RuggedLurmorusEntity.registerAttributes().create());
-        evt.put(SALTION, SaltionEntity.registerAttributes().create());
-        evt.put(SHALLOW_ARENTHIS, ShallowArenthisEntity.registerAttributes().create());
-        evt.put(SHALURKER, ShalurkerEntity.registerAttributes().create());
-        evt.put(SPELLBOUND_ELEMENTAL, SpellElementEntity.registerAttributes().create());
-        evt.put(MALACHITE_DRONE, MalachiteDroneEntity.registerAttributes().create());
-        evt.put(BLUE_HOWLITE_WOLF, BlueHowliteWolfEntity.registerAttributes().create());
-        evt.put(MALACHITE_GUARD, MalachiteGuardEntity.registerAttributes().create());
+        evt.put(AGATE_GOLEM, AgateGolemEntity.registerAttributes().build());
+        evt.put(ANCIENT_LAGRAHK, AncientLagrahkEntity.registerAttributes().build());
+        evt.put(ARCHAIC_WARRIOR, ArchaicWarriorEntity.registerAttributes().build());
+        evt.put(BISMUTH_ULETRUS, BismuthUletrusEntity.registerAttributes().build());
+        evt.put(CAVERN_TICK, CavernTickEntity.registerAttributes().build());
+        evt.put(CONTORTED_NAGA, ContortedNagaEntity.registerAttributes().build());
+        evt.put(CORRUPT_SAPPER, CorruptSapperEntity.registerAttributes().build());
+        evt.put(CRYSTAL_GOLEM, CrystalGolemEntity.registerAttributes().build());
+        evt.put(GROWTH_SAPPER, GrowthSapperEntity.registerAttributes().build());
+        evt.put(HOWLITE_WOLF, HowliteWolfEntity.registerAttributes().build());
+        evt.put(LESSER_SHOCKSHOOTER, LesserShockshooterEntity.registerAttributes().build());
+        evt.put(LESSER_SPITFIRE, LesserSpitfireEntity.registerAttributes().build());
+        evt.put(MARKUZAR_PLANT, MarkuzarPlantEntity.registerAttributes().build());
+        evt.put(MINERAL_ARENTHIS, MineralArenthisEntity.registerAttributes().build());
+        evt.put(MUCKLING, MonsterEntity.createMonsterAttributes().build());
+        evt.put(MUTANT_GROWTH_EXTRACTOR, MutantGrowthExtractorEntity.registerAttributes().build());
+        evt.put(NOMADIC_LAGRAHK, NomadicLagrahkEntity.registerAttributes().build());
+        evt.put(PRIMAL_BEAST, PrimalBeastEntity.registerAttributes().build());
+        evt.put(ROCKY_LUGGEROTH, RockyLuggerothEntity.registerAttributes().build());
+        evt.put(RUGGED_LURMORUS, RuggedLurmorusEntity.registerAttributes().build());
+        evt.put(SALTION, SaltionEntity.registerAttributes().build());
+        evt.put(SHALLOW_ARENTHIS, ShallowArenthisEntity.registerAttributes().build());
+        evt.put(SHALURKER, ShalurkerEntity.registerAttributes().build());
+        evt.put(SPELLBOUND_ELEMENTAL, SpellElementEntity.registerAttributes().build());
+        evt.put(MALACHITE_DRONE, MalachiteDroneEntity.registerAttributes().build());
+        evt.put(BLUE_HOWLITE_WOLF, BlueHowliteWolfEntity.registerAttributes().build());
+        evt.put(MALACHITE_GUARD, MalachiteGuardEntity.registerAttributes().build());
     }
 }

@@ -28,8 +28,8 @@ public class ApexPredatorArmorItem extends BasicGaiaArmorItem {
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public void addInformation(ItemStack stack, World world, List<ITextComponent> tooltips, ITooltipFlag flags) {
-        super.addInformation(stack, world, tooltips, flags);
+    public void appendHoverText(ItemStack stack, World world, List<ITextComponent> tooltips, ITooltipFlag flags) {
+        super.appendHoverText(stack, world, tooltips, flags);
         tooltips.add(new TranslationTextComponent("tigereye_armor.tooltip"));
     }
 }

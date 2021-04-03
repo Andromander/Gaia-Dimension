@@ -16,7 +16,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
 public class MineralArenthisPartsLayer<T extends MineralArenthisEntity, M extends MineralArenthisModel<T>> extends LayerRenderer<T, M> {
-    private static final RenderType textureLoc = RenderType.getEyes(new ResourceLocation(GaiaDimensionMod.MODEL_DIR + "mineralarenthis_glow.png"));
+    private static final RenderType textureLoc = RenderType.eyes(new ResourceLocation(GaiaDimensionMod.MODEL_DIR + "mineralarenthis_glow.png"));
 
     public MineralArenthisPartsLayer(IEntityRenderer<T, M> arentisRenderIn) {
         super(arentisRenderIn);
@@ -25,6 +25,6 @@ public class MineralArenthisPartsLayer<T extends MineralArenthisEntity, M extend
     @Override
     public void render(MatrixStack matrixStack, IRenderTypeBuffer buffer, int i, T entity, float v, float v1, float v2, float v3, float v4, float v5) {
         IVertexBuilder builder = buffer.getBuffer(textureLoc);
-        this.getEntityModel().render(matrixStack, builder, 15728640, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);
+        this.getParentModel().renderToBuffer(matrixStack, builder, 15728640, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);
     }
 }

@@ -18,7 +18,7 @@ public class PurifierRecipeMaker {
     }
 
     public static List<PurifierRecipe> getPurifierRecipes() {
-        ClientWorld world = Minecraft.getInstance().world;
+        ClientWorld world = Minecraft.getInstance().level;
         RecipeManager recipeManager = world.getRecipeManager();
         List<PurifierRecipe> recipeList = new ArrayList<>();
         Iterator iterator = JEICompat.getRecipes(recipeManager, ModRecipes.PURIFYING).iterator();
@@ -34,7 +34,7 @@ public class PurifierRecipeMaker {
     }
 
     private static boolean isRecipeValid(PurifierRecipe recipe) {
-        ItemStack recipeOutput = recipe.getRecipeOutput();
+        ItemStack recipeOutput = recipe.getResultItem();
         if (recipeOutput != null && !recipeOutput.isEmpty()) {
             List<Ingredient> ingredients = recipe.getIngredients();
             if (ingredients == null) {
@@ -67,7 +67,7 @@ public class PurifierRecipeMaker {
 
         for(Iterator iterator = ingredientList.iterator(); iterator.hasNext(); ++inputCount) {
             Ingredient ingredient = (Ingredient)iterator.next();
-            ItemStack[] input = ingredient.getMatchingStacks();
+            ItemStack[] input = ingredient.getItems();
             if (input == null) {
                 return -1;
             }

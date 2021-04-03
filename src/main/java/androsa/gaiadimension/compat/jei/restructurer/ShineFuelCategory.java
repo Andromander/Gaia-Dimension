@@ -33,7 +33,7 @@ public class ShineFuelCategory extends RestructurerRecipeCategory<ShineFuelRecip
                 .setTextureSize(14, 14)
                 .build();
 
-        localizedName = I18n.format("gui.gaiadimension.category.shine_fuel");
+        localizedName = I18n.get("gui.gaiadimension.category.shine_fuel");
     }
 
     @Override
@@ -81,6 +81,6 @@ public class ShineFuelCategory extends RestructurerRecipeCategory<ShineFuelRecip
         flame.draw(stack, 1, 0);
         Minecraft minecraft = Minecraft.getInstance();
         String smeltCountString = recipe.getShineCountString();
-        minecraft.fontRenderer.drawString(stack, smeltCountString, 24.0F, 13.0F, -8355712);
+        minecraft.font.draw(stack, smeltCountString, 24.0F, 13.0F, -8355712);
     }
 }

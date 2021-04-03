@@ -21,7 +21,7 @@ public class PinkAgateTreeFeature<T extends GaiaTreeFeatureConfig> extends GaiaT
     @Override
     public boolean generate(ISeedReader worldIn, Random rand, BlockPos position, Set<BlockPos> logPos, Set<BlockPos> leavesPos, MutableBoundingBox boundingBox, T config) {
         int height = rand.nextInt(3) + rand.nextInt(3) + config.minHeight;
-        boolean canGrow = true;
+        boolean isValidBonemealTarget = true;
 
         if (position.getY() >= 1 && position.getY() + height + 1 <= 256) {
             for (int cy = position.getY(); cy <= position.getY() + 1 + height; ++cy) {
@@ -37,23 +37,23 @@ public class PinkAgateTreeFeature<T extends GaiaTreeFeatureConfig> extends GaiaT
 
                 BlockPos.Mutable blockpos$mutableblockpos = new BlockPos.Mutable();
 
-                for (int cx = position.getX() - k; cx <= position.getX() + k && canGrow; ++cx) {
-                    for (int cz = position.getZ() - k; cz <= position.getZ() + k && canGrow; ++cz) {
+                for (int cx = position.getX() - k; cx <= position.getX() + k && isValidBonemealTarget; ++cx) {
+                    for (int cz = position.getZ() - k; cz <= position.getZ() + k && isValidBonemealTarget; ++cz) {
                         if (cy >= 0 && cy < 256) {
-                            if (!isReplaceableAt(worldIn, blockpos$mutableblockpos.setPos(cx, cy, cz))) {
-                                canGrow = false;
+                            if (!validTreePos(worldIn, blockpos$mutableblockpos.set(cx, cy, cz))) {
+                                isValidBonemealTarget = false;
                             }
                         } else {
-                            canGrow = false;
+                            isValidBonemealTarget = false;
                         }
                     }
                 }
             }
 
-            if (!canGrow) {
+            if (!isValidBonemealTarget) {
                 return false;
-            } else if (isSoil(worldIn, position.down(), config.getSapling(rand, position)) && position.getY() < worldIn.getHeight() - height - 1) {
-                this.setBlockState(worldIn, position.down(), ModBlocks.heavy_soil.get().getDefaultState(), boundingBox);
+            } else if (isSoil(worldIn, position.below(), config.getSapling(rand, position)) && position.getY() < worldIn.getHeight() - height - 1) {
+                this.setBlockState(worldIn, position.below(), ModBlocks.heavy_soil.get().defaultBlockState(), boundingBox);
                 int posX = position.getX();
                 int posZ = position.getZ();
                 int posY = 0;
@@ -73,16 +73,16 @@ public class PinkAgateTreeFeature<T extends GaiaTreeFeatureConfig> extends GaiaT
                 for (int j3 = -3; j3 <= 3; ++j3) {
                     for (int i4 = -3; i4 <= 3; ++i4) {
                         if (Math.abs(j3) != 3 || Math.abs(i4) != 3){
-                            this.setLeavesBlockState(worldIn, rand, blockpos2.add(j3, 0, i4), leavesPos, boundingBox, config);
+                            this.setLeavesBlockState(worldIn, rand, blockpos2.offset(j3, 0, i4), leavesPos, boundingBox, config);
                         }
                     }
                 }
 
-                blockpos2 = blockpos2.up();
+                blockpos2 = blockpos2.above();
 
                 for (int k3 = -1; k3 <= 1; ++k3) {
                     for (int j4 = -1; j4 <= 1; ++j4) {
-                        this.setLeavesBlockState(worldIn, rand, blockpos2.add(k3, 0, j4), leavesPos, boundingBox, config);
+                        this.setLeavesBlockState(worldIn, rand, blockpos2.offset(k3, 0, j4), leavesPos, boundingBox, config);
                     }
                 }
 

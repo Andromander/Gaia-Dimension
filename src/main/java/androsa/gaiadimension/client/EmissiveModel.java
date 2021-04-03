@@ -28,7 +28,7 @@ public class EmissiveModel implements IBakedModel {
         return quadsMap.computeIfAbsent(direction, (side) -> {
             List<BakedQuad> quads = model.getQuads(state, direction, rand);
             for (BakedQuad quad : quads) {
-                if (quad.hasTintIndex()) {
+                if (quad.isTinted()) {
                     LightUtil.setLightData(quad, 0xF000F0);
                 }
             }
@@ -37,8 +37,8 @@ public class EmissiveModel implements IBakedModel {
     }
 
     @Override
-    public boolean isAmbientOcclusion() {
-        return model.isAmbientOcclusion();
+    public boolean useAmbientOcclusion() {
+        return model.useAmbientOcclusion();
     }
 
     @Override
@@ -47,18 +47,18 @@ public class EmissiveModel implements IBakedModel {
     }
 
     @Override
-    public boolean isSideLit() {
-        return model.isSideLit();
+    public boolean usesBlockLight() {
+        return model.usesBlockLight();
     }
 
     @Override
-    public boolean isBuiltInRenderer() {
-        return model.isBuiltInRenderer();
+    public boolean isCustomRenderer() {
+        return model.isCustomRenderer();
     }
 
     @Override
-    public TextureAtlasSprite getParticleTexture() {
-        return model.getParticleTexture();
+    public TextureAtlasSprite getParticleIcon() {
+        return model.getParticleIcon();
     }
 
     @Override
@@ -68,7 +68,7 @@ public class EmissiveModel implements IBakedModel {
 
     @Override
     @Deprecated
-    public ItemCameraTransforms getItemCameraTransforms() {
-        return model.getItemCameraTransforms();
+    public ItemCameraTransforms getTransforms() {
+        return model.getTransforms();
     }
 }

@@ -18,15 +18,15 @@ public class ContortedNagaEntity extends MonsterEntity {
 
     public ContortedNagaEntity(EntityType<? extends ContortedNagaEntity> entity, World world) {
         super(entity, world);
-        this.experienceValue = 15;
+        this.xpReward = 15;
     }
 
     public static AttributeModifierMap.MutableAttribute registerAttributes() {
-        return MonsterEntity.func_234295_eP_()
-                .createMutableAttribute(Attributes.MAX_HEALTH, 150.0D)
-                .createMutableAttribute(Attributes.ATTACK_DAMAGE, 7.0D)
-                .createMutableAttribute(Attributes.KNOCKBACK_RESISTANCE, 1.0D)
-                .createMutableAttribute(Attributes.ARMOR, 1.5D);
+        return MonsterEntity.createMonsterAttributes()
+                .add(Attributes.MAX_HEALTH, 150.0D)
+                .add(Attributes.ATTACK_DAMAGE, 7.0D)
+                .add(Attributes.KNOCKBACK_RESISTANCE, 1.0D)
+                .add(Attributes.ARMOR, 1.5D);
     }
 
     @Override
@@ -47,12 +47,12 @@ public class ContortedNagaEntity extends MonsterEntity {
     }
 
     @Override
-    public boolean attackEntityAsMob(Entity entityIn) {
-        if (super.attackEntityAsMob(entityIn)) {
+    public boolean doHurtTarget(Entity entityIn) {
+        if (super.doHurtTarget(entityIn)) {
             if (entityIn instanceof LivingEntity) {
                 int i;
 
-                switch (this.world.getDifficulty()) {
+                switch (this.level.getDifficulty()) {
                     case EASY:
                         i = 5;
                         break;
@@ -67,7 +67,7 @@ public class ContortedNagaEntity extends MonsterEntity {
                 }
 
                 if (i > 0) {
-                    ((LivingEntity)entityIn).addPotionEffect(new EffectInstance(ModEffects.goldstone_plague, i * 20, 0));
+                    ((LivingEntity)entityIn).addEffect(new EffectInstance(ModEffects.goldstone_plague, i * 20, 0));
                 }
             }
             return true;
@@ -77,23 +77,23 @@ public class ContortedNagaEntity extends MonsterEntity {
     }
 
     @Override
-    public boolean canSpawn(IWorld world, SpawnReason reason) {
+    public boolean checkSpawnRules(IWorld world, SpawnReason reason) {
         return true;
     }
 
     public static boolean canSpawnHere(EntityType<ContortedNagaEntity> entity, IServerWorld world, SpawnReason spawn, BlockPos pos, Random random) {
         if (world.getDifficulty() != Difficulty.PEACEFUL) {
             if (spawn == SpawnReason.SPAWNER) {
-                return isValidLightLevel(world, pos, random);
+                return isDarkEnoughToSpawn(world, pos, random);
             } else {
-                return world.getBlockState(pos.down()).canEntitySpawn(world, pos.down(), entity) && world.getLightFor(LightType.SKY, pos) > 8;
+                return world.getBlockState(pos.below()).isValidSpawn(world, pos.below(), entity) && world.getBrightness(LightType.SKY, pos) > 8;
             }
         }
         return false;
     }
 
     @Override
-    public CreatureAttribute getCreatureAttribute() {
+    public CreatureAttribute getMobType() {
         return GaiaDimensionMod.CORRUPT;
     }
 }

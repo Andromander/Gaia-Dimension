@@ -18,7 +18,7 @@ public class SpellElementRenderer<T extends SpellElementEntity, M extends SpellE
     }
 
     @Override
-    public ResourceLocation getEntityTexture(T entity) {
+    public ResourceLocation getTextureLocation(T entity) {
         return textureLoc;
     }
 }

@@ -21,7 +21,7 @@ public class NomadicLagrahkRenderer<T extends NomadicLagrahkEntity, M extends No
     }
 
     @Override
-    public ResourceLocation getEntityTexture(T entity) {
+    public ResourceLocation getTextureLocation(T entity) {
         switch(entity.getEntityVariant()) {
             case 1:
                 return saltyLoc;

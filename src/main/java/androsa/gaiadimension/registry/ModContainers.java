@@ -34,12 +34,12 @@ public class ModContainers {
 
     @OnlyIn(Dist.CLIENT)
     public static void registerScreens() {
-        ScreenManager.registerFactory(AGATE_CRAFTING_TABLE.get(), AgateCraftingScreen::new);
-        ScreenManager.registerFactory(GAIA_STONE_FURNACE.get(), GaiaStoneFurnaceScreen::new);
-        ScreenManager.registerFactory(GEMSTONE_POUCH.get(), GemPouchScreen::new);
-        ScreenManager.registerFactory(SMALL_CRATE.get(), SmallCrateScreen::new);
-        ScreenManager.registerFactory(LARGE_CRATE.get(), LargeCrateScreen::new);
-        ScreenManager.registerFactory(RESTRUCTURER.get(), RestructurerScreen::new);
-        ScreenManager.registerFactory(PURIFIER.get(), PurifierScreen::new);
+        ScreenManager.register(AGATE_CRAFTING_TABLE.get(), AgateCraftingScreen::new);
+        ScreenManager.register(GAIA_STONE_FURNACE.get(), GaiaStoneFurnaceScreen::new);
+        ScreenManager.register(GEMSTONE_POUCH.get(), GemPouchScreen::new);
+        ScreenManager.register(SMALL_CRATE.get(), SmallCrateScreen::new);
+        ScreenManager.register(LARGE_CRATE.get(), LargeCrateScreen::new);
+        ScreenManager.register(RESTRUCTURER.get(), RestructurerScreen::new);
+        ScreenManager.register(PURIFIER.get(), PurifierScreen::new);
     }
 }

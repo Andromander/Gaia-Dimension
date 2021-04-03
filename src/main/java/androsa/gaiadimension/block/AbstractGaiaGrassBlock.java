@@ -28,19 +28,17 @@ public abstract class AbstractGaiaGrassBlock extends Block implements IGrowable 
     @Override
     @Deprecated
     public void tick(BlockState state, ServerWorld worldIn, BlockPos pos, Random random) {
-        if (!worldIn.isRemote) {
+        if (!worldIn.isClientSide()) {
             if (!worldIn.isAreaLoaded(pos, 3)) return;
             if (!isLightEnough(state, worldIn, pos)) {
-                worldIn.setBlockState(pos, dirt.getDefaultState());
-            } else if (worldIn.getLight(pos.up()) >= 4) {
-                if (worldIn.getLight(pos.up()) >= 9) {
-                    BlockState blockstate = this.getDefaultState();
+                worldIn.setBlockAndUpdate(pos, dirt.defaultBlockState());
+            } else if (worldIn.getMaxLocalRawBrightness(pos.above()) >= 9) {
+                BlockState blockstate = this.defaultBlockState();
 
-                    for (int i = 0; i < 4; ++i) {
-                        BlockPos blockpos = pos.add(random.nextInt(3) - 1, random.nextInt(5) - 3, random.nextInt(3) - 1);
-                        if (worldIn.getBlockState(blockpos).getBlock() == dirt && canGrowGrass(blockstate, worldIn, blockpos)) {
-                            worldIn.setBlockState(blockpos, blockstate);
-                        }
+                for (int i = 0; i < 4; ++i) {
+                    BlockPos blockpos = pos.offset(random.nextInt(3) - 1, random.nextInt(5) - 3, random.nextInt(3) - 1);
+                    if (worldIn.getBlockState(blockpos).getBlock() == dirt && isValidBonemealTargetGrass(blockstate, worldIn, blockpos)) {
+                        worldIn.setBlockAndUpdate(blockpos, blockstate);
                     }
                 }
             }
@@ -48,16 +46,16 @@ public abstract class AbstractGaiaGrassBlock extends Block implements IGrowable 
     }
 
     private static boolean isLightEnough(BlockState state, IWorldReader reader, BlockPos pos) {
-        BlockPos blockpos = pos.up();
+        BlockPos blockpos = pos.above();
         BlockState blockstate = reader.getBlockState(blockpos);
 
-        int i = LightEngine.func_215613_a(reader, state, pos, blockstate, blockpos, Direction.UP, blockstate.getOpacity(reader, blockpos));
+        int i = LightEngine.getLightBlockInto(reader, state, pos, blockstate, blockpos, Direction.UP, blockstate.getLightBlock(reader, blockpos));
         return i < reader.getMaxLightLevel();
     }
 
-    private static boolean canGrowGrass(BlockState state, IWorldReader reader, BlockPos pos) {
-        BlockPos blockpos = pos.up();
-        return isLightEnough(state, reader, pos) && !reader.getFluidState(blockpos).isTagged(FluidTags.WATER);
+    private static boolean isValidBonemealTargetGrass(BlockState state, IWorldReader reader, BlockPos pos) {
+        BlockPos blockpos = pos.above();
+        return isLightEnough(state, reader, pos) && !reader.getFluidState(blockpos).is(FluidTags.WATER);
     }
 
     @Override
@@ -66,17 +64,17 @@ public abstract class AbstractGaiaGrassBlock extends Block implements IGrowable 
                 world.getBlockState(pos.west()).getMaterial() == Material.WATER ||
                 world.getBlockState(pos.north()).getMaterial() == Material.WATER ||
                 world.getBlockState(pos.south()).getMaterial() == Material.WATER;
-        return plantable.getPlantType(world, pos.offset(facing)) == PlantType.PLAINS ||
-                plantable.getPlantType(world, pos.offset(facing)) == PlantType.BEACH && hasWater;
+        return plantable.getPlantType(world, pos.relative(facing)) == PlantType.PLAINS ||
+                plantable.getPlantType(world, pos.relative(facing)) == PlantType.BEACH && hasWater;
     }
 
     @Override
-    public boolean canGrow(IBlockReader reader, BlockPos pos, BlockState state, boolean isClient) {
+    public boolean isValidBonemealTarget(IBlockReader reader, BlockPos pos, BlockState state, boolean isClient) {
         return true;
     }
 
     @Override
-    public boolean canUseBonemeal(World worldIn, Random rand, BlockPos pos, BlockState state) {
+    public boolean isBonemealSuccess(World worldIn, Random rand, BlockPos pos, BlockState state) {
         return true;
     }
 }

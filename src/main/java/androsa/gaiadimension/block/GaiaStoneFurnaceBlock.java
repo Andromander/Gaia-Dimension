@@ -27,10 +27,10 @@ public class GaiaStoneFurnaceBlock extends FurnaceBlock {
     }
 
     @Override
-    protected void interactWith(World world, BlockPos pos, PlayerEntity player) {
-        TileEntity tileentity = world.getTileEntity(pos);
+    protected void openContainer(World world, BlockPos pos, PlayerEntity player) {
+        TileEntity tileentity = world.getBlockEntity(pos);
         if (tileentity instanceof GaiaStoneFurnaceTileEntity) {
-            player.openContainer((INamedContainerProvider)tileentity);
+            player.openMenu((INamedContainerProvider)tileentity);
         }
     }
 }

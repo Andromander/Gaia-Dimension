@@ -24,7 +24,7 @@ public class PurpleAgateTreeFeature<T extends GaiaTreeFeatureConfig> extends Gai
     @Override
     public boolean generate(ISeedReader worldIn, Random rand, BlockPos position, Set<BlockPos> logPos, Set<BlockPos> leavesPos, MutableBoundingBox boundingBox, T config) {
         int height = rand.nextInt(3) + rand.nextInt(3) + config.minHeight;
-        boolean canGrow = true;
+        boolean isValidBonemealTarget = true;
 
         if (position.getY() >= 1 && position.getY() + height + 1 <= 256) {
             for (int cy = position.getY(); cy <= position.getY() + 1 + height; ++cy) {
@@ -40,23 +40,23 @@ public class PurpleAgateTreeFeature<T extends GaiaTreeFeatureConfig> extends Gai
 
                 BlockPos.Mutable blockpos$mutableblockpos = new BlockPos.Mutable();
 
-                for (int cx = position.getX() - k; cx <= position.getX() + k && canGrow; ++cx) {
-                    for (int cz = position.getZ() - k; cz <= position.getZ() + k && canGrow; ++cz) {
+                for (int cx = position.getX() - k; cx <= position.getX() + k && isValidBonemealTarget; ++cx) {
+                    for (int cz = position.getZ() - k; cz <= position.getZ() + k && isValidBonemealTarget; ++cz) {
                         if (cy >= 0 && cy < 256) {
-                            if (!isReplaceableAt(worldIn, blockpos$mutableblockpos.setPos(cx, cy, cz))) {
-                                canGrow = false;
+                            if (!validTreePos(worldIn, blockpos$mutableblockpos.set(cx, cy, cz))) {
+                                isValidBonemealTarget = false;
                             }
                         } else {
-                            canGrow = false;
+                            isValidBonemealTarget = false;
                         }
                     }
                 }
             }
 
-            if (!canGrow) {
+            if (!isValidBonemealTarget) {
                 return false;
-            } else if (isSoil(worldIn, position.down(), config.getSapling(rand, position)) && position.getY() < worldIn.getHeight() - height - 1) {
-                this.setBlockState(worldIn, position.down(), ModBlocks.heavy_soil.get().getDefaultState(), boundingBox);
+            } else if (isSoil(worldIn, position.below(), config.getSapling(rand, position)) && position.getY() < worldIn.getHeight() - height - 1) {
+                this.setBlockState(worldIn, position.below(), ModBlocks.heavy_soil.get().defaultBlockState(), boundingBox);
                 int posX = position.getX();
                 int posZ = position.getZ();
                 int posY = 0;
@@ -92,16 +92,16 @@ public class PurpleAgateTreeFeature<T extends GaiaTreeFeatureConfig> extends Gai
                     for (int j4 = -1; j4 <= 1; ++j4) {
                         for (int l5 = -1; l5 <= 1; ++l5) {
                             if (Math.abs(k3) != 1 || Math.abs(j4) != 1 || Math.abs(l5) != 1){
-                                this.setLeavesBlockState(worldIn, rand, blockpos2.add(k3 + 4, l5, j4), leavesPos, boundingBox, config);
-                                this.setLeavesBlockState(worldIn, rand, blockpos2.add(k3 - 4, l5, j4), leavesPos, boundingBox, config);
-                                this.setLeavesBlockState(worldIn, rand, blockpos2.add(k3 , l5, j4 + 4), leavesPos, boundingBox, config);
-                                this.setLeavesBlockState(worldIn, rand, blockpos2.add(k3, l5, j4 - 4), leavesPos, boundingBox, config);
+                                this.setLeavesBlockState(worldIn, rand, blockpos2.offset(k3 + 4, l5, j4), leavesPos, boundingBox, config);
+                                this.setLeavesBlockState(worldIn, rand, blockpos2.offset(k3 - 4, l5, j4), leavesPos, boundingBox, config);
+                                this.setLeavesBlockState(worldIn, rand, blockpos2.offset(k3 , l5, j4 + 4), leavesPos, boundingBox, config);
+                                this.setLeavesBlockState(worldIn, rand, blockpos2.offset(k3, l5, j4 - 4), leavesPos, boundingBox, config);
                             }
                         }
                     }
                 }
 
-                BlockPos blockpos3 = blockpos2.down(2);
+                BlockPos blockpos3 = blockpos2.below(2);
                 this.setLeavesBlockState(worldIn, rand, blockpos3.north(1), leavesPos, boundingBox, config);
                 this.setLeavesBlockState(worldIn, rand, blockpos3.south(1), leavesPos, boundingBox, config);
                 this.setLeavesBlockState(worldIn, rand, blockpos3.east(1), leavesPos, boundingBox, config);
@@ -117,7 +117,7 @@ public class PurpleAgateTreeFeature<T extends GaiaTreeFeatureConfig> extends Gai
     }
 
     private void placeLogAt(IWorldGenerationReader reader, Random rand, BlockPos pos, Direction.Axis axis, Set<BlockPos> logPos, MutableBoundingBox boundingBox, T config) {
-        this.setBlockState(reader, pos, config.trunkProvider.getBlockState(rand, pos).with(RotatedPillarBlock.AXIS, axis), boundingBox);
-        logPos.add(pos.toImmutable());
+        this.setBlockState(reader, pos, config.trunkProvider.getState(rand, pos).setValue(RotatedPillarBlock.AXIS, axis), boundingBox);
+        logPos.add(pos.immutable());
     }
 }

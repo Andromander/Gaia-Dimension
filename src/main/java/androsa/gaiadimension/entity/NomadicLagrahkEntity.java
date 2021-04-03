@@ -28,25 +28,25 @@ import java.util.Optional;
 import java.util.Random;
 
 public class NomadicLagrahkEntity extends CreatureEntity {
-    private static final DataParameter<Integer> LAGRAHK_VARIANT = EntityDataManager.createKey(NomadicLagrahkEntity.class, DataSerializers.VARINT);
+    private static final DataParameter<Integer> LAGRAHK_VARIANT = EntityDataManager.defineId(NomadicLagrahkEntity.class, DataSerializers.INT);
 
     public NomadicLagrahkEntity(EntityType<? extends NomadicLagrahkEntity> entity, World world) {
         super(entity, world);
-        this.experienceValue = 10;
+        this.xpReward = 10;
     }
 
     public static AttributeModifierMap.MutableAttribute registerAttributes() {
-        return MobEntity.func_233666_p_()
-                .createMutableAttribute(Attributes.MAX_HEALTH, 120.0D)
-                .createMutableAttribute(Attributes.KNOCKBACK_RESISTANCE, 1.0D)
-                .createMutableAttribute(Attributes.ARMOR, 2.0D)
-                .createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.6D);
+        return MobEntity.createMobAttributes()
+                .add(Attributes.MAX_HEALTH, 120.0D)
+                .add(Attributes.KNOCKBACK_RESISTANCE, 1.0D)
+                .add(Attributes.ARMOR, 2.0D)
+                .add(Attributes.MOVEMENT_SPEED, 0.6D);
     }
 
     @Override
-    protected void registerData() {
-        super.registerData();
-        this.dataManager.register(LAGRAHK_VARIANT, 0);
+    protected void defineSynchedData() {
+        super.defineSynchedData();
+        this.entityData.define(LAGRAHK_VARIANT, 0);
     }
 
     @Override
@@ -58,7 +58,7 @@ public class NomadicLagrahkEntity extends CreatureEntity {
      * Get the variant integer
      */
     public int getEntityVariant() {
-        return MathHelper.clamp(dataManager.get(LAGRAHK_VARIANT), 0, 3);
+        return MathHelper.clamp(entityData.get(LAGRAHK_VARIANT), 0, 3);
     }
 
     /**
@@ -68,7 +68,7 @@ public class NomadicLagrahkEntity extends CreatureEntity {
      * 3 = Volcaniclands variant
      */
     public void setLagrahkVariant(int type) {
-        dataManager.set(LAGRAHK_VARIANT, type);
+        entityData.set(LAGRAHK_VARIANT, type);
     }
 
     @Override
@@ -79,20 +79,20 @@ public class NomadicLagrahkEntity extends CreatureEntity {
         this.goalSelector.addGoal(5, new LookRandomlyGoal(this));
     }
 
-    public void readAdditional(CompoundNBT compound) {
-        super.readAdditional(compound);
+    public void readAdditionalSaveData(CompoundNBT compound) {
+        super.readAdditionalSaveData(compound);
         this.setLagrahkVariant(compound.getInt("LagrahkVariant"));
     }
 
     @Override
-    public void writeAdditional(CompoundNBT compound) {
-        super.writeAdditional(compound);
+    public void addAdditionalSaveData(CompoundNBT compound) {
+        super.addAdditionalSaveData(compound);
         compound.putInt("LagrahkVariant", this.getEntityVariant());
     }
 
     @Override
-    public int getMaxSpawnedInChunk() {
-        Optional<RegistryKey<Biome>> biome = world.func_242406_i(new BlockPos(getPosX(), getPosY(), getPosZ()));
+    public int getMaxSpawnClusterSize() {
+        Optional<RegistryKey<Biome>> biome = level.getBiomeName(new BlockPos(getX(), getY(), getZ()));
 
         if (Objects.equals(biome, Optional.of(ModBiomes.salt_dunes)) || Objects.equals(biome, Optional.of(ModBiomes.static_wasteland)) || Objects.equals(biome, Optional.of(ModBiomes.volcanic_lands))) {
             return 4;
@@ -102,12 +102,12 @@ public class NomadicLagrahkEntity extends CreatureEntity {
     }
 
     public static boolean canSpawnHere(EntityType<NomadicLagrahkEntity> entity, IWorld world, SpawnReason spawn, BlockPos pos, Random random) {
-        return world.getBlockState(pos.down()).canEntitySpawn(world, pos.down(), entity) && world.getLightSubtracted(pos, 0) > 8;
+        return world.getBlockState(pos.below()).isValidSpawn(world, pos.below(), entity) && world.getRawBrightness(pos, 0) > 8;
     }
 
     @Override
-    public ILivingEntityData onInitialSpawn(IServerWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
-        Optional<RegistryKey<Biome>> biome = worldIn.func_242406_i(new BlockPos(getPosX(), getPosY(), getPosZ()));
+    public ILivingEntityData finalizeSpawn(IServerWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
+        Optional<RegistryKey<Biome>> biome = worldIn.getBiomeName(new BlockPos(getX(), getY(), getZ()));
 
         if (Objects.equals(biome, Optional.of(ModBiomes.salt_dunes))) {
             setLagrahkVariant(1);
@@ -119,6 +119,6 @@ public class NomadicLagrahkEntity extends CreatureEntity {
             setLagrahkVariant(0);
         }
 
-        return super.onInitialSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
+        return super.finalizeSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
     }
 }

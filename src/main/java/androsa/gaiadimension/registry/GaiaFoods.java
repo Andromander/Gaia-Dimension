@@ -12,9 +12,9 @@ public class GaiaFoods {
     public static final Food PURPLE_SLICE = buildFood(6, 0.2F);
     public static final Food PINK_JUICE = buildFoodWithEffect(8, 0.7F, true, new EffectInstance(Effects.REGENERATION, 100, 0), 1.0F);
     public static final Food BLUE_TEA = buildFoodWithEffect(8, 0.7F, true, new EffectInstance(Effects.FIRE_RESISTANCE, 100, 0), 1.0F);
-    public static final Food GREEN_ALE = buildFoodWithEffect(8, 0.7F, true, new EffectInstance(Effects.SPEED, 100, 0), 1.0F);
-    public static final Food PURPLE_SODA = buildFoodWithEffect(8, 0.7F, true, new EffectInstance(Effects.STRENGTH, 100, 0), 1.0F);
-    public static final Food PEARLY_ELIXIR = buildFoodWithEffect(12, 0.9F, true, new EffectInstance(Effects.RESISTANCE, 100, 0), 1.0F);
+    public static final Food GREEN_ALE = buildFoodWithEffect(8, 0.7F, true, new EffectInstance(Effects.MOVEMENT_SPEED, 100, 0), 1.0F);
+    public static final Food PURPLE_SODA = buildFoodWithEffect(8, 0.7F, true, new EffectInstance(Effects.DAMAGE_BOOST, 100, 0), 1.0F);
+    public static final Food PEARLY_ELIXIR = buildFoodWithEffect(12, 0.9F, true, new EffectInstance(Effects.DAMAGE_RESISTANCE, 100, 0), 1.0F);
     public static final Food LURMORUS_MEAT = buildFood(4, 0.4F);
     public static final Food LURMORUS_STEAK = buildFood(9, 0.9F);
     public static final Food SMALL_TENTACLE = buildFood(3, 0.2F);
@@ -38,10 +38,10 @@ public class GaiaFoods {
     }
 
     private static Food buildFoodWithEffect(int hunger, float saturation, boolean alwaysEdible, EffectInstance effect, float duration) {
-        Food.Builder food = new Food.Builder().hunger(hunger).saturation(saturation);
+        Food.Builder food = new Food.Builder().nutrition(hunger).saturationMod(saturation);
 
         if (alwaysEdible)
-            food.setAlwaysEdible();
+            food.alwaysEat();
         if (effect != null)
             food.effect(() -> effect, duration);
 

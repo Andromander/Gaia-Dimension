@@ -35,18 +35,18 @@ import java.util.Random;
 
 public class GaiaPortalBlock extends Block {
     public static final EnumProperty<Direction.Axis> AXIS = BlockStateProperties.HORIZONTAL_AXIS;
-    protected static final VoxelShape X_AABB = Block.makeCuboidShape(0.0D, 0.0D, 6.0D, 16.0D, 16.0D, 10.0D);
-    protected static final VoxelShape Z_AABB = Block.makeCuboidShape(6.0D, 0.0D, 0.0D, 10.0D, 16.0D, 16.0D);
+    protected static final VoxelShape X_AABB = Block.box(0.0D, 0.0D, 6.0D, 16.0D, 16.0D, 10.0D);
+    protected static final VoxelShape Z_AABB = Block.box(6.0D, 0.0D, 0.0D, 10.0D, 16.0D, 16.0D);
 
     public GaiaPortalBlock(Properties props) {
         super(props);
-        this.setDefaultState(this.stateContainer.getBaseState().with(AXIS, Direction.Axis.X));
+        this.registerDefaultState(this.stateDefinition.any().setValue(AXIS, Direction.Axis.X));
     }
 
     @Override
     @Deprecated
     public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
-        switch(state.get(AXIS)) {
+        switch(state.getValue(AXIS)) {
             case Z:
                 return Z_AABB;
             case X:
@@ -67,10 +67,10 @@ public class GaiaPortalBlock extends Block {
 
     // This will check for creation conditions in the Overworld or Gaia
     private boolean canCreatePortalByWorld(World world, BlockPos pos) {
-        if (world.getDimensionKey() == World.OVERWORLD) {
+        if (world.dimension() == World.OVERWORLD) {
             //Check if the portal needs to be checking
             if (ModGaiaConfig.portalCheck.get()) {
-                Optional<RegistryKey<Biome>> biome = world.func_242406_i(pos);
+                Optional<RegistryKey<Biome>> biome = world.getBiomeName(pos);
                 ModGaiaConfig.ListType listtype = ModGaiaConfig.listType.get();
                 ModGaiaConfig.BiomeType biometype = ModGaiaConfig.biomeType.get();
 
@@ -78,9 +78,9 @@ public class GaiaPortalBlock extends Block {
                 if (biome.isPresent()) {
                     switch (biometype) {
                         case BIOME:
-                            return (listtype == ModGaiaConfig.ListType.WHITELIST) == ModGaiaConfig.biomeList.get().contains(biome.get().getLocation().toString());
+                            return (listtype == ModGaiaConfig.ListType.WHITELIST) == ModGaiaConfig.biomeList.get().contains(biome.get().location().toString());
                         case CATEGORY:
-                            return (listtype == ModGaiaConfig.ListType.WHITELIST) == ModGaiaConfig.categoryList.get().contains(world.getBiome(pos).getCategory().toString());
+                            return (listtype == ModGaiaConfig.ListType.WHITELIST) == ModGaiaConfig.categoryList.get().contains(world.getBiome(pos).getBiomeCategory().toString());
                         case TYPE:
                             for (String type : ModGaiaConfig.typeList.get()) {
                                 if (BiomeDictionary.hasType(biome.get(), BiomeDictionary.Type.getType(type))) {
@@ -98,7 +98,7 @@ public class GaiaPortalBlock extends Block {
             return true;
         } else {
             //Gaia is pro-portal
-            return world.getDimensionKey() == ModDimensions.gaia_world;
+            return world.dimension() == ModDimensions.gaia_world;
         }
     }
 
@@ -115,31 +115,31 @@ public class GaiaPortalBlock extends Block {
 
     @Override
     @Deprecated
-    public BlockState updatePostPlacement(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
+    public BlockState updateShape(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
         Direction.Axis directionAxis = facing.getAxis();
-        Direction.Axis directionAxis1 = stateIn.get(AXIS);
+        Direction.Axis directionAxis1 = stateIn.getValue(AXIS);
         boolean flag = directionAxis1 != directionAxis && directionAxis.isHorizontal();
-        return !flag && facingState.getBlock() != this && !(new GaiaPortalBlock.Size(worldIn, currentPos, directionAxis1)).canCreatePortal() ? Blocks.AIR.getDefaultState() : super.updatePostPlacement(stateIn, facing, facingState, worldIn, currentPos, facingPos);
+        return !flag && facingState.getBlock() != this && !(new GaiaPortalBlock.Size(worldIn, currentPos, directionAxis1)).canCreatePortal() ? Blocks.AIR.defaultBlockState() : super.updateShape(stateIn, facing, facingState, worldIn, currentPos, facingPos);
     }
 
     @Override
     @Deprecated
-    public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
-        if (!entity.isPassenger() && !entity.isBeingRidden() && entity.isNonBoss()) {
-            if (entity.func_242280_ah()) { //timeUntilPortal > 0
-                entity.func_242279_ag(); // timeUntilPortal = getPortalCooldown
+    public void entityInside(BlockState state, World world, BlockPos pos, Entity entity) {
+        if (!entity.isPassenger() && !entity.isVehicle() && entity.canChangeDimensions()) {
+            if (entity.isOnPortalCooldown()) {
+                entity.setPortalCooldown();
             } else {
-                if (!entity.world.isRemote && !pos.equals(entity.field_242271_ac)) { //lastPortalPos
-                    entity.field_242271_ac = pos.toImmutable();
+                if (!entity.level.isClientSide() && !pos.equals(entity.portalEntrancePos)) {
+                    entity.portalEntrancePos = pos.immutable();
                 }
 
-                if (entity.world instanceof ServerWorld) {
-                    ServerWorld serverworld = (ServerWorld)entity.world;
+                if (entity.level instanceof ServerWorld) {
+                    ServerWorld serverworld = (ServerWorld)entity.level;
                     MinecraftServer minecraftserver = serverworld.getServer();
-                    RegistryKey<World> registrykey = entity.world.getDimensionKey() == ModDimensions.gaia_world ? World.OVERWORLD : ModDimensions.gaia_world;
-                    ServerWorld serverworld1 = minecraftserver.getWorld(registrykey);
+                    RegistryKey<World> registrykey = entity.level.dimension() == ModDimensions.gaia_world ? World.OVERWORLD : ModDimensions.gaia_world;
+                    ServerWorld serverworld1 = minecraftserver.getLevel(registrykey);
                     if (serverworld1 != null && !entity.isPassenger()) {
-                        entity.func_242279_ag();
+                        entity.setPortalCooldown();
                         entity.changeDimension(serverworld1, new GaiaTeleporter(serverworld1));
                     }
                 }
@@ -151,7 +151,7 @@ public class GaiaPortalBlock extends Block {
     @OnlyIn(Dist.CLIENT)
     public void animateTick(BlockState stateIn, World worldIn, BlockPos pos, Random rand) {
         if (rand.nextInt(100) == 0) {
-            worldIn.playSound((double)pos.getX() + 0.5D, (double)pos.getY() + 0.5D, (double)pos.getZ() + 0.5D, SoundEvents.BLOCK_PORTAL_AMBIENT, SoundCategory.BLOCKS, 0.5F, rand.nextFloat() * 0.4F + 0.8F, false);
+            worldIn.playLocalSound((double)pos.getX() + 0.5D, (double)pos.getY() + 0.5D, (double)pos.getZ() + 0.5D, SoundEvents.PORTAL_AMBIENT, SoundCategory.BLOCKS, 0.5F, rand.nextFloat() * 0.4F + 0.8F, false);
         }
 
         for (int i = 0; i < 4; ++i) {
@@ -181,11 +181,11 @@ public class GaiaPortalBlock extends Block {
         switch(rot) {
             case COUNTERCLOCKWISE_90:
             case CLOCKWISE_90:
-                switch(state.get(AXIS)) {
+                switch(state.getValue(AXIS)) {
                     case Z:
-                        return state.with(AXIS, Direction.Axis.X);
+                        return state.setValue(AXIS, Direction.Axis.X);
                     case X:
-                        return state.with(AXIS, Direction.Axis.Z);
+                        return state.setValue(AXIS, Direction.Axis.Z);
                     default:
                         return state;
                 }
@@ -195,14 +195,14 @@ public class GaiaPortalBlock extends Block {
     }
 
     @Override
-    protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
+    protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder) {
         builder.add(AXIS);
     }
 
     public static BlockPattern.PatternHelper createPatternHelper(IWorld worldIn, BlockPos pos) {
         Direction.Axis axis = Direction.Axis.Z;
         GaiaPortalBlock.Size size = new GaiaPortalBlock.Size(worldIn, pos, Direction.Axis.X);
-        LoadingCache<BlockPos, CachedBlockInfo> cache = BlockPattern.createLoadingCache(worldIn, true);
+        LoadingCache<BlockPos, CachedBlockInfo> cache = BlockPattern.createLevelCache(worldIn, true);
         if (!size.isValid()) {
             axis = Direction.Axis.X;
             size = new GaiaPortalBlock.Size(worldIn, pos, Direction.Axis.Z);
@@ -212,16 +212,16 @@ public class GaiaPortalBlock extends Block {
             return new BlockPattern.PatternHelper(pos, Direction.NORTH, Direction.UP, cache, 1, 1, 1);
         } else {
             int[] axes = new int[Direction.AxisDirection.values().length];
-            Direction direction = size.rightDir.rotateYCCW();
-            BlockPos blockpos = size.bottomLeft.up(size.getHeight() - 1);
+            Direction direction = size.rightDir.getCounterClockWise();
+            BlockPos blockpos = size.bottomLeft.above(size.getHeight() - 1);
 
             for(Direction.AxisDirection axisDir : Direction.AxisDirection.values()) {
-                BlockPattern.PatternHelper helper = new BlockPattern.PatternHelper(direction.getAxisDirection() == axisDir ? blockpos : blockpos.offset(size.rightDir, size.getWidth() - 1), Direction.getFacingFromAxis(axisDir, axis), Direction.UP, cache, size.getWidth(), size.getHeight(), 1);
+                BlockPattern.PatternHelper helper = new BlockPattern.PatternHelper(direction.getAxisDirection() == axisDir ? blockpos : blockpos.relative(size.rightDir, size.getWidth() - 1), Direction.get(axisDir, axis), Direction.UP, cache, size.getWidth(), size.getHeight(), 1);
 
                 for(int i = 0; i < size.getWidth(); ++i) {
                     for(int j = 0; j < size.getHeight(); ++j) {
-                        CachedBlockInfo cacheInfo = helper.translateOffset(i, j, 1);
-                        if (!cacheInfo.getBlockState().isAir()) {
+                        CachedBlockInfo cacheInfo = helper.getBlock(i, j, 1);
+                        if (!cacheInfo.getState().isAir()) {
                             ++axes[axisDir.ordinal()];
                         }
                     }
@@ -236,7 +236,7 @@ public class GaiaPortalBlock extends Block {
                 }
             }
 
-            return new BlockPattern.PatternHelper(direction.getAxisDirection() == axisDirPos ? blockpos : blockpos.offset(size.rightDir, size.getWidth() - 1), Direction.getFacingFromAxis(axisDirPos, axis), Direction.UP, cache, size.getWidth(), size.getHeight(), 1);
+            return new BlockPattern.PatternHelper(direction.getAxisDirection() == axisDirPos ? blockpos : blockpos.relative(size.rightDir, size.getWidth() - 1), Direction.get(axisDirPos, axis), Direction.UP, cache, size.getWidth(), size.getHeight(), 1);
         }
     }
 
@@ -266,14 +266,14 @@ public class GaiaPortalBlock extends Block {
             }
 
             BlockPos blockpos = pos;
-            while (pos.getY() > blockpos.getY() - 21 && pos.getY() > 0 && isEmptyBlock(worldIn.getBlockState(pos.down()))) {
-                pos = pos.down();
+            while (pos.getY() > blockpos.getY() - 21 && pos.getY() > 0 && isEmptyBlock(worldIn.getBlockState(pos.below()))) {
+                pos = pos.below();
             }
 
             int i = getDistanceUntilEdge(pos, leftDir) - 1;
 
             if (i >= 0) {
-                bottomLeft = pos.offset(leftDir, i);
+                bottomLeft = pos.relative(leftDir, i);
                 width = this.getDistanceUntilEdge(bottomLeft, rightDir);
 
                 if (width < 2 || width > 21) {
@@ -291,14 +291,14 @@ public class GaiaPortalBlock extends Block {
             int i;
 
             for (i = 0; i < 22; ++i) {
-                BlockPos blockpos = pos.offset(facing, i);
+                BlockPos blockpos = pos.relative(facing, i);
 
-                if (!isEmptyBlock(world.getBlockState(blockpos)) || world.getBlockState(blockpos.down()) != KEYSTONE.getDefaultState()) {
+                if (!isEmptyBlock(world.getBlockState(blockpos)) || world.getBlockState(blockpos.below()) != KEYSTONE.defaultBlockState()) {
                     break;
                 }
             }
 
-            Block block = world.getBlockState(pos.offset(facing, i)).getBlock();
+            Block block = world.getBlockState(pos.relative(facing, i)).getBlock();
             return block == KEYSTONE ? i : 0;
         }
 
@@ -315,7 +315,7 @@ public class GaiaPortalBlock extends Block {
 
             for (height = 0; height < 21; ++height) {
                 for (int i = 0; i < width; ++i) {
-                    BlockPos blockpos = bottomLeft.offset(rightDir, i).up(height);
+                    BlockPos blockpos = bottomLeft.relative(rightDir, i).above(height);
                     BlockState blockstate = world.getBlockState(blockpos);
 
                     if (!isEmptyBlock(blockstate)) {
@@ -327,15 +327,15 @@ public class GaiaPortalBlock extends Block {
                     }
 
                     if (i == 0) {
-                        blockstate = world.getBlockState(blockpos.offset(leftDir));
+                        blockstate = world.getBlockState(blockpos.relative(leftDir));
 
-                        if (blockstate != KEYSTONE.getDefaultState()) {
+                        if (blockstate != KEYSTONE.defaultBlockState()) {
                             break label56;
                         }
                     } else if (i == this.width) {
-                        blockstate = world.getBlockState(blockpos.offset(rightDir));
+                        blockstate = world.getBlockState(blockpos.relative(rightDir));
 
-                        if (blockstate != KEYSTONE.getDefaultState()) {
+                        if (blockstate != KEYSTONE.defaultBlockState()) {
                             break label56;
                         }
                     }
@@ -343,7 +343,7 @@ public class GaiaPortalBlock extends Block {
             }
 
             for (int j = 0; j < width; ++j) {
-                if (world.getBlockState(bottomLeft.offset(rightDir, j).up(height)) != KEYSTONE.getDefaultState()) {
+                if (world.getBlockState(bottomLeft.relative(rightDir, j).above(height)) != KEYSTONE.defaultBlockState()) {
                     height = 0;
                     break;
                 }
@@ -371,10 +371,10 @@ public class GaiaPortalBlock extends Block {
 
         void placePortalBlocks() {
             for (int i = 0; i < this.width; ++i) {
-                BlockPos blockpos = bottomLeft.offset(rightDir, i);
+                BlockPos blockpos = bottomLeft.relative(rightDir, i);
 
                 for (int j = 0; j < height; ++j) {
-                    world.setBlockState(blockpos.up(j), PORTAL.getDefaultState().with(AXIS, axis), 2);
+                    world.setBlock(blockpos.above(j), PORTAL.defaultBlockState().setValue(AXIS, axis), 2);
                 }
             }
         }

@@ -11,7 +11,6 @@ import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.*;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.RegistryObject;
-import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 
@@ -257,7 +256,7 @@ public class ModItems {
     public static final RegistryObject<Item> blue_howlite_wolf_spawn_egg = registerEgg("blue_howlite_wolf", ModEntities.BLUE_HOWLITE_WOLF, 0x0099CC, 0xCC00FF);
     public static final RegistryObject<Item> malachite_guard_spawn_egg = registerEgg("malachite_guard", ModEntities.MALACHITE_GUARD, 0x339900, 0x33CC99);
 
-    public static final RegistryObject<Item> PYRITE_TORCH = ITEMS.register("pyrite_torch", () -> new WallOrFloorItem(ModBlocks.pyrite_torch.get(), ModBlocks.pyrite_wall_torch.get(), new Item.Properties().group(GaiaItemGroups.GAIA_BLOCKS)));
+    public static final RegistryObject<Item> PYRITE_TORCH = ITEMS.register("pyrite_torch", () -> new WallOrFloorItem(ModBlocks.pyrite_torch.get(), ModBlocks.pyrite_wall_torch.get(), new Item.Properties().tab(GaiaItemGroups.GAIA_BLOCKS)));
 
     private static RegistryObject<Item> register(String name) {
         return register(name, BasicGaiaItem::new);
@@ -300,14 +299,14 @@ public class ModItems {
     }
 
     public static void addItemProperties() {
-        ItemModelsProperties.registerProperty(old_bow.get(), new ResourceLocation("pull"), ((stack, world, entity) -> {
+        ItemModelsProperties.register(old_bow.get(), new ResourceLocation("pull"), ((stack, world, entity) -> {
             if (entity == null) {
                 return 0.0F;
             } else {
-                return !(entity.getActiveItemStack().getItem() instanceof BowItem) ? 0.0F : (float)(stack.getUseDuration() - entity.getItemInUseCount()) / 20.0F;
+                return entity.getUseItem() != stack ? 0.0F : (float)(stack.getUseDuration() - entity.getUseItemRemainingTicks()) / 20.0F;
             }
         }));
-        ItemModelsProperties.registerProperty(old_bow.get(), new ResourceLocation("pulling"), (stack, world, entity) ->
-                entity != null && entity.isHandActive() && entity.getActiveItemStack() == stack ? 1.0F : 0.0F);
+        ItemModelsProperties.register(old_bow.get(), new ResourceLocation("pulling"), (stack, world, entity) ->
+                entity != null && entity.isUsingItem() && entity.getUseItem() == stack ? 1.0F : 0.0F);
     }
 }

@@ -18,12 +18,12 @@ public class CorruptSapperEntity extends MonsterEntity {
 
     public CorruptSapperEntity(EntityType<? extends CorruptSapperEntity> entity, World world) {
         super(entity, world);
-        this.experienceValue = (1 + rand.nextInt(3) * 2);
+        this.xpReward = (1 + random.nextInt(3) * 2);
     }
 
     public static AttributeModifierMap.MutableAttribute registerAttributes() {
-        return MonsterEntity.func_234295_eP_()
-                .createMutableAttribute(Attributes.MAX_HEALTH, 30.0D);
+        return MonsterEntity.createMonsterAttributes()
+                .add(Attributes.MAX_HEALTH, 30.0D);
     }
 
     @Override
@@ -44,12 +44,12 @@ public class CorruptSapperEntity extends MonsterEntity {
     }
 
     @Override
-    public boolean attackEntityAsMob(Entity entityIn) {
-        if (super.attackEntityAsMob(entityIn)) {
+    public boolean doHurtTarget(Entity entityIn) {
+        if (super.doHurtTarget(entityIn)) {
             if (entityIn instanceof LivingEntity) {
                 int i;
 
-                switch (this.world.getDifficulty()) {
+                switch (this.level.getDifficulty()) {
                     case EASY:
                         i = 3;
                         break;
@@ -64,7 +64,7 @@ public class CorruptSapperEntity extends MonsterEntity {
                 }
 
                 if (i > 0) {
-                    ((LivingEntity)entityIn).addPotionEffect(new EffectInstance(ModEffects.goldstone_plague, i * 20, 0));
+                    ((LivingEntity)entityIn).addEffect(new EffectInstance(ModEffects.goldstone_plague, i * 20, 0));
                 }
             }
             return true;
@@ -74,23 +74,23 @@ public class CorruptSapperEntity extends MonsterEntity {
     }
 
     @Override
-    public boolean canSpawn(IWorld world, SpawnReason reason) {
+    public boolean checkSpawnRules(IWorld world, SpawnReason reason) {
         return true;
     }
 
     public static boolean canSpawnHere(EntityType<CorruptSapperEntity> entity, IServerWorld world, SpawnReason spawn, BlockPos pos, Random random) {
         if (world.getDifficulty() != Difficulty.PEACEFUL) {
             if (spawn == SpawnReason.SPAWNER) {
-                return isValidLightLevel(world, pos, random);
+                return isDarkEnoughToSpawn(world, pos, random);
             } else {
-                return world.getBlockState(pos.down()).canEntitySpawn(world, pos.down(), entity) && world.getLightFor(LightType.SKY, pos) > 8;
+                return world.getBlockState(pos.below()).isValidSpawn(world, pos.below(), entity) && world.getBrightness(LightType.SKY, pos) > 8;
             }
         }
         return false;
     }
 
     @Override
-    public CreatureAttribute getCreatureAttribute() {
+    public CreatureAttribute getMobType() {
         return GaiaDimensionMod.CORRUPT;
     }
 }

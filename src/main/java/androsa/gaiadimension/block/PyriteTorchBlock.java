@@ -23,6 +23,6 @@ public class PyriteTorchBlock extends TorchBlock {
         double d1 = (double)pos.getY() + rand.nextDouble() * 0.7D + 0.2D;
         double d2 = (double)pos.getZ() + rand.nextDouble() * 0.5D + 0.2D;
 
-        world.addParticle(particleData, d0, d1, d2, 0.0D, 0.0D, 0.0D);
+        world.addParticle(flameParticle, d0, d1, d2, 0.0D, 0.0D, 0.0D);
     }
 }

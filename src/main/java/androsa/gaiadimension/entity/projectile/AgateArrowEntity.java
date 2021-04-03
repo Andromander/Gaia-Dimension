@@ -2,7 +2,6 @@ package androsa.gaiadimension.entity.projectile;
 
 import androsa.gaiadimension.registry.ModEntities;
 import androsa.gaiadimension.registry.ModItems;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.projectile.AbstractArrowEntity;
@@ -15,7 +14,7 @@ public class AgateArrowEntity extends AbstractArrowEntity {
 
     public AgateArrowEntity(EntityType<? extends AgateArrowEntity> entity, World worldIn) {
         super(entity, worldIn);
-        setDamage(4.0D);
+        setBaseDamage(4.0D);
     }
 
     public AgateArrowEntity(World worldIn, double x, double y, double z) {
@@ -27,12 +26,12 @@ public class AgateArrowEntity extends AbstractArrowEntity {
     }
 
     @Override
-    protected ItemStack getArrowStack() {
+    protected ItemStack getPickupItem() {
         return new ItemStack(ModItems.agate_arrow.get());
     }
 
     @Override
-    public IPacket<?> createSpawnPacket() {
+    public IPacket<?> getAddEntityPacket() {
         return NetworkHooks.getEntitySpawningPacket(this);
     }
 }

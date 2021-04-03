@@ -12,12 +12,12 @@ public class NullSlot extends Slot {
     }
 
     @Override
-    public boolean isItemValid(ItemStack stack) {
+    public boolean mayPlace(ItemStack stack) {
         return PurifierTileEntity.getThirdFuelBurnTime().getOrDefault(stack.getItem(), 0) > 0;
     }
 
     @Override
-    public int getSlotStackLimit() {
+    public int getMaxStackSize() {
         return 64;
     }
 }

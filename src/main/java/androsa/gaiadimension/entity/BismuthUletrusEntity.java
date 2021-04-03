@@ -25,24 +25,24 @@ import java.util.Random;
 
 public class BismuthUletrusEntity extends CreatureEntity {
 
-    private static final DataParameter<Boolean> RESTING = EntityDataManager.createKey(BismuthUletrusEntity.class, DataSerializers.BOOLEAN);
+    private static final DataParameter<Boolean> RESTING = EntityDataManager.defineId(BismuthUletrusEntity.class, DataSerializers.BOOLEAN);
 
     public BismuthUletrusEntity(EntityType<? extends BismuthUletrusEntity> entity, World world) {
         super(entity, world);
-        experienceValue = 5;
+        xpReward = 5;
     }
 
     @Override
-    protected void registerData() {
-        super.registerData();
-        this.dataManager.register(RESTING, false);
+    protected void defineSynchedData() {
+        super.defineSynchedData();
+        this.entityData.define(RESTING, false);
     }
 
     public static AttributeModifierMap.MutableAttribute registerAttributes() {
-        return MobEntity.func_233666_p_()
-                .createMutableAttribute(Attributes.MAX_HEALTH, 120.0D)
-                .createMutableAttribute(Attributes.KNOCKBACK_RESISTANCE, 1.0D)
-                .createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.3D);
+        return MobEntity.createMobAttributes()
+                .add(Attributes.MAX_HEALTH, 120.0D)
+                .add(Attributes.KNOCKBACK_RESISTANCE, 1.0D)
+                .add(Attributes.MOVEMENT_SPEED, 0.3D);
     }
 
     @Override
@@ -56,33 +56,33 @@ public class BismuthUletrusEntity extends CreatureEntity {
     }
 
     public boolean getResting() {
-        return this.dataManager.get(RESTING);
+        return this.entityData.get(RESTING);
     }
 
     public void setResting(boolean rest) {
-        this.dataManager.set(RESTING, rest);
+        this.entityData.set(RESTING, rest);
     }
 
     @Override
-    public void readAdditional(CompoundNBT compound) {
-        super.readAdditional(compound);
+    public void readAdditionalSaveData(CompoundNBT compound) {
+        super.readAdditionalSaveData(compound);
         this.setResting(compound.getBoolean("UletrusResting"));
     }
 
     @Override
-    public void writeAdditional(CompoundNBT compound) {
-        super.writeAdditional(compound);
+    public void addAdditionalSaveData(CompoundNBT compound) {
+        super.addAdditionalSaveData(compound);
         compound.putBoolean("UletrusResting", this.getResting());
     }
 
     @Override
-    public boolean attackEntityFrom(DamageSource source, float amount) {
+    public boolean hurt(DamageSource source, float amount) {
         this.setResting(false);
-        return super.attackEntityFrom(source, amount);
+        return super.hurt(source, amount);
     }
 
     public static boolean canSpawnHere(EntityType<BismuthUletrusEntity> entity, IWorld world, SpawnReason spawn, BlockPos pos, Random random) {
-        return spawn == SpawnReason.SPAWNER || world.getBlockState(pos.down()).canEntitySpawn(world, pos.down(), entity) && world.getLightFor(LightType.SKY, pos) > 8;
+        return spawn == SpawnReason.SPAWNER || world.getBlockState(pos.below()).isValidSpawn(world, pos.below(), entity) && world.getBrightness(LightType.SKY, pos) > 8;
     }
 
     @Override
@@ -90,27 +90,27 @@ public class BismuthUletrusEntity extends CreatureEntity {
         super.tick();
 
         if (this.getResting()) {
-            this.setMotion(getMotion().mul(0.0D, 0.0D, 0.0D));
+            this.setDeltaMovement(getDeltaMovement().multiply(0.0D, 0.0D, 0.0D));
         }
     }
 
     @Override
-    protected void updateAITasks() {
-        super.updateAITasks();
-        BlockPos blockpos = this.getPosition();
-        BlockPos blockpos1 = blockpos.down();
+    protected void customServerAiStep() {
+        super.customServerAiStep();
+        BlockPos blockpos = this.blockPosition();
+        BlockPos blockpos1 = blockpos.below();
 
         if (this.getResting()) {
-            if (this.world.getBlockState(blockpos1).isNormalCube(this.world, blockpos)) {
-                if (rand.nextInt(1000) == 0) {
+            if (this.level.getBlockState(blockpos1).isRedstoneConductor(this.level, blockpos)) {
+                if (random.nextInt(1000) == 0) {
                     this.setResting(false);
                 }
             } else {
                 this.setResting(false);
             }
         } else {
-            if (this.getMotion().getX() == 0 && this.getMotion().getZ() == 0) {
-                if (this.rand.nextInt(1000) == 0 && this.world.getBlockState(blockpos1).isNormalCube(this.world, blockpos)) {
+            if (this.getDeltaMovement().x() == 0 && this.getDeltaMovement().z() == 0) {
+                if (this.random.nextInt(1000) == 0 && this.level.getBlockState(blockpos1).isRedstoneConductor(this.level, blockpos)) {
                     this.setResting(true);
                 }
             }

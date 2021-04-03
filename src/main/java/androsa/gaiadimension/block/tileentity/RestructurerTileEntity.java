@@ -91,7 +91,7 @@ public class RestructurerTileEntity extends LockableTileEntity implements ISided
         }
 
         @Override
-        public int size() {
+        public int getCount() {
             return 4;
         }
     };
@@ -163,9 +163,9 @@ public class RestructurerTileEntity extends LockableTileEntity implements ISided
     }
 
     @Override
-    public void read(BlockState state, CompoundNBT compound) {
-        super.read(state, compound);
-        this.restructurerItemStacks = NonNullList.withSize(this.getSizeInventory(), ItemStack.EMPTY);
+    public void load(BlockState state, CompoundNBT compound) {
+        super.load(state, compound);
+        this.restructurerItemStacks = NonNullList.withSize(this.getContainerSize(), ItemStack.EMPTY);
         ItemStackHelper.loadAllItems(compound, this.restructurerItemStacks);
         this.burnTime = compound.getInt("BurnTime");
         this.cookTime = compound.getInt("CookTime");
@@ -181,8 +181,8 @@ public class RestructurerTileEntity extends LockableTileEntity implements ISided
     }
 
     @Override
-    public CompoundNBT write(CompoundNBT compound) {
-        super.write(compound);
+    public CompoundNBT save(CompoundNBT compound) {
+        super.save(compound);
         compound.putInt("BurnTime", this.burnTime);
         compound.putInt("CookTime", this.cookTime);
         compound.putInt("CookTimeTotal", (short)this.cookTimeTotal);
@@ -209,12 +209,12 @@ public class RestructurerTileEntity extends LockableTileEntity implements ISided
             --this.burnTime;
         }
 
-        if (!this.world.isRemote) {
+        if (!this.level.isClientSide()) {
             ItemStack goldStack = this.restructurerItemStacks.get(1);
             ItemStack essenceStack = this.restructurerItemStacks.get(2);
 
             if (this.isBurning() || !goldStack.isEmpty() && !essenceStack.isEmpty() && !this.restructurerItemStacks.get(0).isEmpty()) {
-                IRecipe<?> irecipe = this.world.getRecipeManager().getRecipe(ModRecipes.RESTRUCTURING, this, this.world).orElse(null);
+                IRecipe<?> irecipe = this.level.getRecipeManager().getRecipeFor(ModRecipes.RESTRUCTURING, this, this.level).orElse(null);
                 if (!this.isBurning() && this.canChange(irecipe)) {
                     this.burnTime = getItemBurnTime(goldStack, essenceStack);
                     this.recipesUsed = this.burnTime;
@@ -262,12 +262,12 @@ public class RestructurerTileEntity extends LockableTileEntity implements ISided
 
             if (burning != this.isBurning()) {
                 burn = true;
-                this.world.setBlockState(this.pos, this.world.getBlockState(this.pos).with(RestructurerBlock.LIT, this.isBurning()), 3);
+                this.level.setBlockAndUpdate(this.worldPosition, this.level.getBlockState(this.worldPosition).setValue(RestructurerBlock.LIT, this.isBurning()));
             }
         }
 
         if (burn) {
-            this.markDirty();
+            this.setChanged();
         }
     }
 
@@ -276,7 +276,7 @@ public class RestructurerTileEntity extends LockableTileEntity implements ISided
      */
     private boolean canChange(IRecipe<?> recipe) {
         if (!this.restructurerItemStacks.get(0).isEmpty() && recipe != null) {
-            ItemStack slot1 = ((RestructurerRecipe)recipe).getRecipeOutput();
+            ItemStack slot1 = ((RestructurerRecipe)recipe).getResultItem();
             ItemStack slot2 = ((RestructurerRecipe)recipe).getByproduct();
 
             if (slot1.isEmpty() && slot2.isEmpty() || slot1.isEmpty()) {
@@ -286,10 +286,10 @@ public class RestructurerTileEntity extends LockableTileEntity implements ISided
 
                 if (output.isEmpty() && byproduct.isEmpty()) {
                     return true;
-                } else if (!output.isItemEqual(slot1) || !byproduct.isItemEqual(slot2)) {
+                } else if (!output.sameItem(slot1) || !byproduct.sameItem(slot2)) {
                     return false;
-                } else if ((output.getCount() + slot1.getCount() <= this.getInventoryStackLimit() && output.getCount() + slot1.getCount() <= output.getMaxStackSize()) &&
-                        byproduct.getCount() + slot2.getCount() <= this.getInventoryStackLimit() && byproduct.getCount() + slot2.getCount() <= byproduct.getMaxStackSize()) {
+                } else if ((output.getCount() + slot1.getCount() <= this.getMaxStackSize() && output.getCount() + slot1.getCount() <= output.getMaxStackSize()) &&
+                        byproduct.getCount() + slot2.getCount() <= this.getMaxStackSize() && byproduct.getCount() + slot2.getCount() <= byproduct.getMaxStackSize()) {
                     return true;
                 } else {
                     return output.getCount() + slot1.getCount() <= output.getMaxStackSize() && byproduct.getCount() + slot2.getCount() <= byproduct.getMaxStackSize();
@@ -306,7 +306,7 @@ public class RestructurerTileEntity extends LockableTileEntity implements ISided
     private void changeItem(IRecipe<?> recipe) {
         if (recipe != null && canChange(recipe)) {
             ItemStack input = this.restructurerItemStacks.get(0);
-            ItemStack slot1 = ((RestructurerRecipe)recipe).getRecipeOutput();
+            ItemStack slot1 = ((RestructurerRecipe)recipe).getResultItem();
             ItemStack slot2 = ((RestructurerRecipe)recipe).getByproduct();
             ItemStack output = this.restructurerItemStacks.get(3);
             ItemStack byproduct = this.restructurerItemStacks.get(4);
@@ -322,7 +322,7 @@ public class RestructurerTileEntity extends LockableTileEntity implements ISided
                     byproduct.grow(slot2.getCount());
             }
 
-            if (!this.world.isRemote) {
+            if (!this.level.isClientSide()) {
                 this.setRecipeUsed(recipe);
             }
 
@@ -348,7 +348,7 @@ public class RestructurerTileEntity extends LockableTileEntity implements ISided
     }
 
     private int cookingTime() {
-        return this.world.getRecipeManager().getRecipe(ModRecipes.RESTRUCTURING, this, this.world).map(RestructurerRecipe::getCookTime).orElse(200);
+        return this.level.getRecipeManager().getRecipeFor(ModRecipes.RESTRUCTURING, this, this.level).map(RestructurerRecipe::getCookTime).orElse(200);
     }
 
     public static boolean isItemFuel(ItemStack stack) {
@@ -366,12 +366,12 @@ public class RestructurerTileEntity extends LockableTileEntity implements ISided
     }
 
     @Override
-    public boolean canInsertItem(int index, ItemStack itemStackIn, Direction direction) {
-        return this.isItemValidForSlot(index, itemStackIn);
+    public boolean canPlaceItemThroughFace(int index, ItemStack itemStackIn, Direction direction) {
+        return this.canPlaceItem(index, itemStackIn);
     }
 
     @Override
-    public boolean canExtractItem(int index, ItemStack stack, Direction direction) {
+    public boolean canTakeItemThroughFace(int index, ItemStack stack, Direction direction) {
         if (direction == Direction.DOWN && index == 1 || index == 2) {
             Item item = stack.getItem();
 
@@ -382,7 +382,7 @@ public class RestructurerTileEntity extends LockableTileEntity implements ISided
     }
 
     @Override
-    public int getSizeInventory() {
+    public int getContainerSize() {
         return this.restructurerItemStacks.size();
     }
 
@@ -398,52 +398,57 @@ public class RestructurerTileEntity extends LockableTileEntity implements ISided
     }
 
     @Override
-    public ItemStack getStackInSlot(int index) {
+    public ItemStack getItem(int index) {
         return this.restructurerItemStacks.get(index);
     }
 
     @Override
-    public ItemStack decrStackSize(int index, int count) {
-        return ItemStackHelper.getAndSplit(this.restructurerItemStacks, index, count);
+    public ItemStack removeItem(int index, int count) {
+        return ItemStackHelper.removeItem(this.restructurerItemStacks, index, count);
     }
 
     @Override
-    public ItemStack removeStackFromSlot(int index) {
-        return ItemStackHelper.getAndRemove(this.restructurerItemStacks, index);
+    public ItemStack removeItemNoUpdate(int index) {
+        return ItemStackHelper.takeItem(this.restructurerItemStacks, index);
     }
 
     /**
      * Sets the given item stack to the specified slot in the inventory (can be crafting or armor sections).
      */
     @Override
-    public void setInventorySlotContents(int index, ItemStack stack) {
+    public void setItem(int index, ItemStack stack) {
         ItemStack itemstack = this.restructurerItemStacks.get(index);
-        boolean burning = !stack.isEmpty() && stack.isItemEqual(itemstack) && ItemStack.areItemStackTagsEqual(stack, itemstack);
+        boolean burning = !stack.isEmpty() && stack.sameItem(itemstack) && ItemStack.tagMatches(stack, itemstack);
         this.restructurerItemStacks.set(index, stack);
 
-        if (stack.getCount() > this.getInventoryStackLimit()) {
-            stack.setCount(this.getInventoryStackLimit());
+        if (stack.getCount() > this.getMaxStackSize()) {
+            stack.setCount(this.getMaxStackSize());
         }
 
         if (index == 0 && !burning) {
             this.cookTimeTotal = this.cookingTime();
             this.cookTime = 0;
-            this.markDirty();
+            this.setChanged();
         }
     }
 
     @Override
-    public boolean isUsableByPlayer(PlayerEntity player) {
-        return this.world.getTileEntity(this.pos) == this && player.getDistanceSq((double) this.pos.getX() + 0.5D, (double) this.pos.getY() + 0.5D, (double) this.pos.getZ() + 0.5D) <= 64.0D;
+    public boolean stillValid(PlayerEntity player) {
+        return this.level.getBlockEntity(this.worldPosition) == this &&
+                player.distanceToSqr(
+                        (double) this.worldPosition.getX() + 0.5D,
+                        (double) this.worldPosition.getY() + 0.5D,
+                        (double) this.worldPosition.getZ() + 0.5D
+                ) <= 64.0D;
     }
 
     @Override
-    public boolean isItemValidForSlot(int index, ItemStack stack) {
+    public boolean canPlaceItem(int index, ItemStack stack) {
         return index != 3 && index != 4 && (index == 0 || isItemFuel(stack));
     }
 
     @Override
-    public void clear() {
+    public void clearContent() {
         this.restructurerItemStacks.clear();
     }
 
@@ -461,19 +466,19 @@ public class RestructurerTileEntity extends LockableTileEntity implements ISided
     }
 
     @Override
-    public void onCrafting(PlayerEntity player) { }
+    public void awardUsedRecipes(PlayerEntity player) { }
 
     public void unlockRecipe(PlayerEntity player) {
         List<IRecipe<?>> list = Lists.newArrayList();
 
         for(Map.Entry<ResourceLocation, Integer> entry : this.recipeMap.entrySet()) {
-            player.world.getRecipeManager().getRecipe(entry.getKey()).ifPresent((recipe) -> {
+            player.level.getRecipeManager().byKey(entry.getKey()).ifPresent((recipe) -> {
                 list.add(recipe);
                 grantExperience(player, entry.getValue(), ((RestructurerRecipe)recipe).getExperience());
             });
         }
 
-        player.unlockRecipes(list);
+        player.awardRecipes(list);
         this.recipeMap.clear();
     }
 
@@ -490,9 +495,9 @@ public class RestructurerTileEntity extends LockableTileEntity implements ISided
         }
 
         while(amount > 0) {
-            int j = ExperienceOrbEntity.getXPSplit(amount);
+            int j = ExperienceOrbEntity.getExperienceValue(amount);
             amount -= j;
-            player.world.addEntity(new ExperienceOrbEntity(player.world, player.getPosX(), player.getPosY() + 0.5D, player.getPosZ() + 0.5D, j));
+            player.level.addFreshEntity(new ExperienceOrbEntity(player.level, player.getX(), player.getY() + 0.5D, player.getZ() + 0.5D, j));
         }
     }
 
@@ -519,8 +524,8 @@ public class RestructurerTileEntity extends LockableTileEntity implements ISided
     }
 
     @Override
-    public void remove() {
-        super.remove();
+    public void invalidateCaps() {
+        super.invalidateCaps();
         for (LazyOptional<? extends IItemHandler> handler : handlers) handler.invalidate();
     }
 }

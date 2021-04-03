@@ -24,7 +24,7 @@ public class MalachiteGuardRenderer<T extends MalachiteGuardEntity, M extends Ma
     }
 
     @Override
-    public ResourceLocation getEntityTexture(T entity) {
+    public ResourceLocation getTextureLocation(T entity) {
         return textureLoc;
     }
 }

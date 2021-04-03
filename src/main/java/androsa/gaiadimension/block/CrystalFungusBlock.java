@@ -16,7 +16,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import java.util.Random;
 
 public class CrystalFungusBlock extends BushBlock {
-    protected static final VoxelShape SHAPE = Block.makeCuboidShape(2.0D, 0.0D, 2.0D, 14.0D, 13.0D, 14.0D);
+    protected static final VoxelShape SHAPE = Block.box(2.0D, 0.0D, 2.0D, 14.0D, 13.0D, 14.0D);
     private boolean cavernous;
 
     public CrystalFungusBlock(Properties props, boolean isCave) {
@@ -26,7 +26,7 @@ public class CrystalFungusBlock extends BushBlock {
     }
 
     @Override
-    protected boolean isValidGround(BlockState state, IBlockReader worldIn, BlockPos pos){
+    protected boolean mayPlaceOn(BlockState state, IBlockReader worldIn, BlockPos pos){
         if (cavernous) {
             return state.getBlock() == ModBlocks.gaia_stone.get() ||
                     state.getBlock() == ModBlocks.primal_mass.get() ||

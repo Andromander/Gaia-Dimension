@@ -40,7 +40,7 @@ public class FieryAgateTreeFeature<T extends GaiaTreeFeatureConfig> extends Gaia
                 for (int cx = position.getX() - k; cx <= position.getX() + k && flag; ++cx) {
                     for (int cz = position.getZ() - k; cz <= position.getZ() + k && flag; ++cz) {
                         if (cy >= 0 && cy < 256) {
-                            if (!isReplaceableAt(worldIn, blockpos$mutableblockpos.setPos(cx, cy, cz))) {
+                            if (!validTreePos(worldIn, blockpos$mutableblockpos.set(cx, cy, cz))) {
                                 flag = false;
                             }
                         } else {
@@ -52,8 +52,8 @@ public class FieryAgateTreeFeature<T extends GaiaTreeFeatureConfig> extends Gaia
 
             if (!flag) {
                 return false;
-            } else if (isSoil(worldIn, position.down(), config.getSapling(rand, position)) && position.getY() < worldIn.getHeight() - height - 1) {
-                this.setBlockState(worldIn, position.down(), ModBlocks.heavy_soil.get().getDefaultState(), boundingBox);
+            } else if (isSoil(worldIn, position.below(), config.getSapling(rand, position)) && position.getY() < worldIn.getHeight() - height - 1) {
+                this.setBlockState(worldIn, position.below(), ModBlocks.heavy_soil.get().defaultBlockState(), boundingBox);
                 int posX = position.getX();
                 int posZ = position.getZ();
                 int k1 = 0;
@@ -72,15 +72,15 @@ public class FieryAgateTreeFeature<T extends GaiaTreeFeatureConfig> extends Gaia
                 for (int j3 = -2; j3 <= 2; ++j3) {
                     for (int i4 = -2; i4 <= 2; ++i4) {
                         if (Math.abs(j3) != 2 || Math.abs(i4) != 2){
-                            this.setLeavesBlockState(worldIn, rand, blockpos2.add(j3, 0, i4), leavesPos, boundingBox, config);
+                            this.setLeavesBlockState(worldIn, rand, blockpos2.offset(j3, 0, i4), leavesPos, boundingBox, config);
                         }
                     }
                 }
 
-                blockpos2 = blockpos2.up();
+                blockpos2 = blockpos2.above();
                 for (int k3 = -1; k3 <= 1; ++k3) {
                     for (int j4 = -1; j4 <= 1; ++j4) {
-                        this.setLeavesBlockState(worldIn, rand, blockpos2.add(k3, 0, j4), leavesPos, boundingBox, config);
+                        this.setLeavesBlockState(worldIn, rand, blockpos2.offset(k3, 0, j4), leavesPos, boundingBox, config);
                     }
                 }
 

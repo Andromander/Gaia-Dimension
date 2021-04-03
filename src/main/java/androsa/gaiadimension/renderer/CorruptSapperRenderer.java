@@ -18,7 +18,7 @@ public class CorruptSapperRenderer<T extends CorruptSapperEntity, M extends Grow
     }
 
     @Override
-    public ResourceLocation getEntityTexture(T entity) {
+    public ResourceLocation getTextureLocation(T entity) {
         return textureLoc;
     }
 }

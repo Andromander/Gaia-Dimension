@@ -23,35 +23,35 @@ public class CorruptionEffect extends Effect {
     public CorruptionEffect(int color, double damage) {
         super(EffectType.HARMFUL, color);
         this.bonusPerLevel = damage;
-        this.addAttributesModifier(Attributes.ATTACK_DAMAGE, "ED1B7821-E928-4EC7-8CD7-0FF2DE5E378A", 0.0D, AttributeModifier.Operation.ADDITION);
+        this.addAttributeModifier(Attributes.ATTACK_DAMAGE, "ED1B7821-E928-4EC7-8CD7-0FF2DE5E378A", 0.0D, AttributeModifier.Operation.ADDITION);
     }
 
     @Override
-    public void performEffect(LivingEntity entityLivingBaseIn, int amplifier) {
-        if (entityLivingBaseIn.getCreatureAttribute() != GaiaDimensionMod.CORRUPT) {
-            entityLivingBaseIn.attackEntityFrom(GaiaDimensionMod.CORRUPTION, 2.0F);
+    public void applyEffectTick(LivingEntity entityLivingBaseIn, int amplifier) {
+        if (entityLivingBaseIn.getMobType() != GaiaDimensionMod.CORRUPT) {
+            entityLivingBaseIn.hurt(GaiaDimensionMod.CORRUPTION, 2.0F);
         }
     }
 
     @Override
-    public boolean isReady(int duration, int amplifier) {
+    public boolean isDurationEffectTick(int duration, int amplifier) {
         int j = 25 >> amplifier;
 
         return j <= 0 || duration % j == 0;
     }
 
     @Override
-    public double getAttributeModifierAmount(int amplifier, AttributeModifier modifier) {
+    public double getAttributeModifierValue(int amplifier, AttributeModifier modifier) {
         return this.bonusPerLevel * (double)(amplifier + 1);
     }
 
     @SubscribeEvent
     public static void onEntityHurt(LivingDamageEvent e) {
-        if (e.getEntityLiving().isPotionActive(ModEffects.goldstone_plague) &&
-                e.getSource() == DamageSource.causeMobDamage((LivingEntity)e.getSource().getTrueSource())) {
+        if (e.getEntityLiving().hasEffect(ModEffects.goldstone_plague) &&
+                e.getSource().equals(DamageSource.mobAttack((LivingEntity) e.getSource().getEntity()))) {
 
-            if (e.getEntityLiving().getCreatureAttribute() != GaiaDimensionMod.CORRUPT &&
-                    ((LivingEntity)e.getSource().getTrueSource()).getCreatureAttribute() == GaiaDimensionMod.CORRUPT) {
+            if (e.getEntityLiving().getMobType() != GaiaDimensionMod.CORRUPT &&
+                    ((LivingEntity)e.getSource().getEntity()).getMobType() == GaiaDimensionMod.CORRUPT) {
 
                 e.setAmount(e.getAmount() * 1.5F);
             }
@@ -60,10 +60,10 @@ public class CorruptionEffect extends Effect {
 
     @SubscribeEvent
     public static void onEntityDeath(LivingDeathEvent e) {
-        Entity corrputSpawn = ModEntities.CORRUPT_SAPPER.create(e.getEntity().getEntityWorld());
+        Entity corrputSpawn = ModEntities.CORRUPT_SAPPER.create(e.getEntity().getCommandSenderWorld());
 
         if (e.getSource() == GaiaDimensionMod.CORRUPTION) {
-            e.getEntity().getEntityWorld().addEntity(corrputSpawn);
+            e.getEntity().getCommandSenderWorld().addFreshEntity(corrputSpawn);
         }
     }
 }

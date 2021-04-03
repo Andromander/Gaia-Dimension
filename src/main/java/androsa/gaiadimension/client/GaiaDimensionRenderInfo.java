@@ -15,12 +15,12 @@ public class GaiaDimensionRenderInfo extends DimensionRenderInfo {
     }
 
     @Override
-    public Vector3d func_230494_a_(Vector3d vector3d, float v) {
+    public Vector3d getBrightnessDependentFogColor(Vector3d vector3d, float v) {
         return vector3d;
     }
 
     @Override
-    public boolean func_230493_a_(int i, int i1) {
+    public boolean isFoggyAt(int i, int i1) {
         return false;
     }
 

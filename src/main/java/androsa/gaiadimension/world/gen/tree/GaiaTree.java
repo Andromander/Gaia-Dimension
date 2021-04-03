@@ -17,24 +17,24 @@ public abstract class GaiaTree extends Tree {
 
     @Nullable
     @Override
-    protected ConfiguredFeature<BaseTreeFeatureConfig, ?> getTreeFeature(Random random, boolean b) {
+    protected ConfiguredFeature<BaseTreeFeatureConfig, ?> getConfiguredFeature(Random random, boolean b) {
         return null;
     }
 
     public abstract ConfiguredFeature<GaiaTreeFeatureConfig, ?> createTreeFeature(Random rand);
 
     @Override
-    public boolean attemptGrowTree(ServerWorld world, ChunkGenerator generator, BlockPos pos, BlockState state, Random rand) {
+    public boolean growTree(ServerWorld world, ChunkGenerator generator, BlockPos pos, BlockState state, Random rand) {
         ConfiguredFeature<GaiaTreeFeatureConfig, ?> feature = this.createTreeFeature(rand);
         if (feature == null) {
             return false;
         } else {
-            world.setBlockState(pos, Blocks.AIR.getDefaultState(), 4);
+            world.setBlock(pos, Blocks.AIR.defaultBlockState(), 4);
             feature.config.forcePlacement();
-            if (feature.generate(world, generator, rand, pos)) {
+            if (feature.place(world, generator, rand, pos)) {
                 return true;
             } else {
-                world.setBlockState(pos, state, 4);
+                world.setBlock(pos, state, 4);
                 return false;
             }
         }

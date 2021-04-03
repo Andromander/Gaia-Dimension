@@ -19,7 +19,7 @@ public class GaiaTreeFeatureConfig implements IFeatureConfig {
                     BlockStateProvider.CODEC.fieldOf("trunk_provider").forGetter((obj) -> obj.trunkProvider),
                     BlockStateProvider.CODEC.fieldOf("leaves_provider").forGetter((obj) -> obj.leavesProvider),
                     Codec.INT.fieldOf("height").forGetter((obj) -> obj.minHeight),
-                    BlockStateProvider.CODEC.fieldOf("sapling").orElse(new SimpleBlockStateProvider(ModBlocks.pink_agate_sapling.get().getDefaultState())).forGetter((obj) -> obj.sapling)
+                    BlockStateProvider.CODEC.fieldOf("sapling").orElse(new SimpleBlockStateProvider(ModBlocks.pink_agate_sapling.get().defaultBlockState())).forGetter((obj) -> obj.sapling)
             ).apply(instance, GaiaTreeFeatureConfig::new));
 
     public final BlockStateProvider trunkProvider;
@@ -36,7 +36,7 @@ public class GaiaTreeFeatureConfig implements IFeatureConfig {
     }
 
     public IPlantable getSapling(Random rand, BlockPos pos) {
-        return (IPlantable) sapling.getBlockState(rand, pos).getBlock();
+        return (IPlantable) sapling.getState(rand, pos).getBlock();
     }
 
     public void forcePlacement() {
@@ -56,7 +56,7 @@ public class GaiaTreeFeatureConfig implements IFeatureConfig {
         }
 
         public GaiaTreeFeatureConfig.Builder setSapling(SaplingBlock sapling) {
-            this.sapling = new SimpleBlockStateProvider(sapling.getDefaultState());
+            this.sapling = new SimpleBlockStateProvider(sapling.defaultBlockState());
             return this;
         }
 

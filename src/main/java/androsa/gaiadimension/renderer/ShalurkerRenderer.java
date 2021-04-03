@@ -18,7 +18,7 @@ public class ShalurkerRenderer<T extends ShalurkerEntity, M extends ShalurkerMod
     }
 
     @Override
-    public ResourceLocation getEntityTexture(T entity) {
+    public ResourceLocation getTextureLocation(T entity) {
         return textureLoc;
     }
 }

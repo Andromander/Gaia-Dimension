@@ -22,18 +22,18 @@ public class PurifierRecipeSerializer<T extends PurifierRecipe> extends ForgeReg
     }
 
     @Override
-    public T read(ResourceLocation recipeId, JsonObject json) {
-        String s = JSONUtils.getString(json, "group", "");
-        JsonElement jsonelement = JSONUtils.isJsonArray(json, "ingredient") ? JSONUtils.getJsonArray(json, "ingredient") : JSONUtils.getJsonObject(json, "ingredient");
-        Ingredient ingredient = Ingredient.deserialize(jsonelement);
+    public T fromJson(ResourceLocation recipeId, JsonObject json) {
+        String s = JSONUtils.getAsString(json, "group", "");
+        JsonElement jsonelement = JSONUtils.isArrayNode(json, "ingredient") ? JSONUtils.getAsJsonObject(json, "ingredient") : JSONUtils.getAsJsonObject(json, "ingredient");
+        Ingredient ingredient = Ingredient.fromJson(jsonelement);
         //RESULT
         if (!json.has("result"))
             throw new com.google.gson.JsonSyntaxException("Missing result, expected to find a string or object");
         ItemStack resultStack;
         if (json.get("result").isJsonObject())
-            resultStack = ShapedRecipe.deserializeItem(JSONUtils.getJsonObject(json, "result"));
+            resultStack = ShapedRecipe.itemFromJson(JSONUtils.getAsJsonObject(json, "result"));
         else {
-            String s1 = JSONUtils.getString(json, "result");
+            String s1 = JSONUtils.getAsString(json, "result");
             ResourceLocation resourcelocation = new ResourceLocation(s1);
             resultStack = new ItemStack(Registry.ITEM.getOptional(resourcelocation).orElseThrow(() -> new IllegalStateException("Item: " + s1 + " does not exist")));
         }
@@ -43,34 +43,34 @@ public class PurifierRecipeSerializer<T extends PurifierRecipe> extends ForgeReg
             throw new com.google.gson.JsonSyntaxException("Missing result, expected to find a string or object");
         ItemStack byStack;
         if (json.get("byproduct").isJsonObject())
-            byStack = ShapedRecipe.deserializeItem(JSONUtils.getJsonObject(json, "byproduct"));
+            byStack = ShapedRecipe.itemFromJson(JSONUtils.getAsJsonObject(json, "byproduct"));
         else {
-            String s2 = JSONUtils.getString(json, "byproduct");
+            String s2 = JSONUtils.getAsString(json, "byproduct");
             ResourceLocation resourcelocation = new ResourceLocation(s2);
             byStack = new ItemStack(Registry.ITEM.getOptional(resourcelocation).orElseThrow(() -> new IllegalStateException("Item: " + s2 + " does not exist")));
         }
-        float f = JSONUtils.getFloat(json, "experience", 0.0F);
-        int i = JSONUtils.getInt(json, "cookingtime", this.cookTime);
+        float f = JSONUtils.getAsFloat(json, "experience", 0.0F);
+        int i = JSONUtils.getAsInt(json, "cookingtime", this.cookTime);
         return this.factory.create(recipeId, s, ingredient, resultStack, byStack, f, i);
     }
 
     @Override
-    public T read(ResourceLocation recipeId, PacketBuffer buffer) {
-        String s = buffer.readString(32767);
-        Ingredient ingredient = Ingredient.read(buffer);
-        ItemStack itemstack = buffer.readItemStack();
-        ItemStack itemstack1 = buffer.readItemStack();
+    public T fromNetwork(ResourceLocation recipeId, PacketBuffer buffer) {
+        String s = buffer.readUtf(32767);
+        Ingredient ingredient = Ingredient.fromNetwork(buffer);
+        ItemStack itemstack = buffer.readItem();
+        ItemStack itemstack1 = buffer.readItem();
         float f = buffer.readFloat();
         int i = buffer.readVarInt();
         return this.factory.create(recipeId, s, ingredient, itemstack, itemstack1, f, i);
     }
 
     @Override
-    public void write(PacketBuffer buffer, T recipe) {
-        buffer.writeString(recipe.group);
-        recipe.ingredient.write(buffer);
-        buffer.writeItemStack(recipe.result);
-        buffer.writeItemStack(recipe.byproduct);
+    public void toNetwork(PacketBuffer buffer, T recipe) {
+        buffer.writeUtf(recipe.group);
+        recipe.ingredient.toNetwork(buffer);
+        buffer.writeItem(recipe.result);
+        buffer.writeItem(recipe.byproduct);
         buffer.writeFloat(recipe.experience);
         buffer.writeVarInt(recipe.cookTime);
     }

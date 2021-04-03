@@ -22,25 +22,25 @@ public abstract class LiquidBismuthFluid extends ForgeFlowingFluid {
     }
 
     @Override
-    protected void beforeReplacingBlock(IWorld iWorld, BlockPos pos, BlockState state) {
+    protected void beforeDestroyingBlock(IWorld iWorld, BlockPos pos, BlockState state) {
 
     }
 
     @Override
-    protected boolean canDisplace(FluidState fluidstate, IBlockReader reader, BlockPos pos, Fluid fluid, Direction direction) {
-        return fluidstate.getActualHeight(reader, pos) >= 0.44444445F && fluid.isIn(FluidTags.WATER);
+    protected boolean canBeReplacedWith(FluidState fluidstate, IBlockReader reader, BlockPos pos, Fluid fluid, Direction direction) {
+        return fluidstate.getHeight(reader, pos) >= 0.44444445F && fluid.is(FluidTags.WATER);
     }
 
     @Override
-    protected void flowInto(IWorld worldIn, BlockPos pos, BlockState blockStateIn, Direction direction, FluidState fluidStateIn) {
+    protected void spreadTo(IWorld worldIn, BlockPos pos, BlockState blockStateIn, Direction direction, FluidState fluidStateIn) {
         if (direction == Direction.DOWN) {
             FluidState fluidstate = worldIn.getFluidState(pos);
-            if (this.isIn(FluidTags.LAVA) && fluidstate.isTagged(FluidTags.WATER)) {
+            if (this.is(FluidTags.LAVA) && fluidstate.is(FluidTags.WATER)) {
                 if (blockStateIn.getBlock() instanceof FlowingFluidBlock) {
-                    if (fluidstate.isTagged(GaiaTags.Fluids.LIQUID_AURA)) {
-                        worldIn.setBlockState(pos, ForgeEventFactory.fireFluidPlaceBlockEvent(worldIn, pos, pos, ModBlocks.bismuth_block.get().getDefaultState()), 3);
+                    if (fluidstate.is(GaiaTags.Fluids.LIQUID_AURA)) {
+                        worldIn.setBlock(pos, ForgeEventFactory.fireFluidPlaceBlockEvent(worldIn, pos, pos, ModBlocks.bismuth_block.get().defaultBlockState()), 3);
                     } else {
-                        worldIn.setBlockState(pos, ForgeEventFactory.fireFluidPlaceBlockEvent(worldIn, pos, pos, ModBlocks.active_rock.get().getDefaultState()), 3);
+                        worldIn.setBlock(pos, ForgeEventFactory.fireFluidPlaceBlockEvent(worldIn, pos, pos, ModBlocks.active_rock.get().defaultBlockState()), 3);
                     }
                     this.triggerEffects(worldIn, pos);
                 }
@@ -48,10 +48,10 @@ public abstract class LiquidBismuthFluid extends ForgeFlowingFluid {
             }
         }
 
-        super.flowInto(worldIn, pos, blockStateIn, direction, fluidStateIn);
+        super.spreadTo(worldIn, pos, blockStateIn, direction, fluidStateIn);
     }
 
     private void triggerEffects(IWorld worldIn, BlockPos pos) {
-        worldIn.playEvent(Constants.WorldEvents.LAVA_EXTINGUISH, pos, 0);
+        worldIn.levelEvent(Constants.WorldEvents.LAVA_EXTINGUISH, pos, 0);
     }
 }

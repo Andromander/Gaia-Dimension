@@ -23,20 +23,20 @@ public class ChasmsWorldCarver<T extends ProbabilityConfig> extends WorldCarver<
 
     public ChasmsWorldCarver(Codec<T> config, int height) {
         super(config, height);
-        carvableBlocks = ImmutableSet.of(
+        replaceableBlocks = ImmutableSet.of(
                 ModBlocks.glitter_grass.get(), ModBlocks.corrupt_grass.get(), ModBlocks.murky_grass.get(), ModBlocks.soft_grass.get(), ModBlocks.heavy_soil.get(),
                 ModBlocks.corrupt_soil.get(), ModBlocks.boggy_soil.get(), ModBlocks.light_soil.get(), ModBlocks.saltstone.get(), ModBlocks.gaia_stone.get(), ModBlocks.wasteland_stone.get(),
                 ModBlocks.volcanic_rock.get(), ModBlocks.primal_mass.get());
     }
 
     @Override
-    public boolean shouldCarve(Random rand, int chunkX, int chunkZ, T config) {
+    public boolean isStartChunk(Random rand, int chunkX, int chunkZ, T config) {
         return rand.nextFloat() <= config.probability;
     }
 
     @Override
-    public boolean carveRegion(IChunk chunkIn, Function<BlockPos, Biome> biomePos, Random rand, int seaLevel, int posX, int posZ, int chunkX, int chunkZ, BitSet carvingMask, T config) {
-        int i = (this.func_222704_c() * 2 - 1) * 16;
+    public boolean carve(IChunk chunkIn, Function<BlockPos, Biome> biomePos, Random rand, int seaLevel, int posX, int posZ, int chunkX, int chunkZ, BitSet carvingMask, T config) {
+        int i = (this.getRange() * 2 - 1) * 16;
         int j = rand.nextInt(rand.nextInt(rand.nextInt(this.getChunkSize()) + 1) + 1);
 
         for(int k = 0; k < j; ++k) {
@@ -46,7 +46,7 @@ public class ChasmsWorldCarver<T extends ProbabilityConfig> extends WorldCarver<
             int l = 1;
             if (rand.nextInt(4) == 0) {
                 float f1 = 1.0F + rand.nextFloat() * 6.0F;
-                this.carveCave(chunkIn, biomePos, rand.nextLong(), seaLevel, chunkX, chunkZ, d0, d1, d2, f1, 0.5D, carvingMask);
+                this.genRoom(chunkIn, biomePos, rand.nextLong(), seaLevel, chunkX, chunkZ, d0, d1, d2, f1, 0.5D, carvingMask);
                 l += rand.nextInt(4);
             }
 
@@ -55,7 +55,7 @@ public class ChasmsWorldCarver<T extends ProbabilityConfig> extends WorldCarver<
                 float f3 = (rand.nextFloat() - 0.5F) / 4.0F;
                 float f2 = this.generateCaveRadius(rand);
                 int i1 = i - rand.nextInt(i / 4);
-                this.carveTunnels(chunkIn, biomePos, rand.nextLong(), seaLevel, chunkX, chunkZ, d0, d1, d2, f2, f, f3, 0, i1, this.getDiameter(), carvingMask);
+                this.genTunnels(chunkIn, biomePos, rand.nextLong(), seaLevel, chunkX, chunkZ, d0, d1, d2, f2, f, f3, 0, i1, this.getDiameter(), carvingMask);
             }
         }
 
@@ -83,13 +83,13 @@ public class ChasmsWorldCarver<T extends ProbabilityConfig> extends WorldCarver<
         return rand.nextInt(rand.nextInt(26) + 8);
     }
 
-    protected void carveCave(IChunk chunkIn, Function<BlockPos, Biome> biomePos, long seed, int seaLevel, int chunkX, int chunkZ, double x, double y, double z, float radius, double half, BitSet mask) {
+    protected void genRoom(IChunk chunkIn, Function<BlockPos, Biome> biomePos, long seed, int seaLevel, int chunkX, int chunkZ, double x, double y, double z, float radius, double half, BitSet mask) {
         double d0 = 1.5D + (double)(MathHelper.sin(((float)Math.PI / 2F)) * radius);
         double d1 = d0 * half;
-        this.func_227208_a_(chunkIn, biomePos, seed, seaLevel, chunkX, chunkZ, x + 1.0D, y, z, d0 * 4, d1 * 2, mask);
+        this.carveSphere(chunkIn, biomePos, seed, seaLevel, chunkX, chunkZ, x + 1.0D, y, z, d0 * 4, d1 * 2, mask);
     }
 
-    protected void carveTunnels(IChunk chunkIn, Function<BlockPos, Biome> biomePos, long seed, int seaLevel, int centerX, int centerZ, double x, double y, double z, float radius, float yaw, float pitch, int baseSize, int maxSize, double diameter, BitSet mask) {
+    protected void genTunnels(IChunk chunkIn, Function<BlockPos, Biome> biomePos, long seed, int seaLevel, int centerX, int centerZ, double x, double y, double z, float radius, float yaw, float pitch, int baseSize, int maxSize, double diameter, BitSet mask) {
         Random random = new Random(seed);
         int i = random.nextInt(maxSize / 2) + maxSize / 4;
         boolean flag = random.nextInt(6) == 0;
@@ -111,17 +111,17 @@ public class ChasmsWorldCarver<T extends ProbabilityConfig> extends WorldCarver<
             f1 = f1 + (random.nextFloat() - random.nextFloat()) * random.nextFloat() * 2.0F;
             f = f + (random.nextFloat() - random.nextFloat()) * random.nextFloat() * 4.0F;
             if (j == i && radius > 1.0F) {
-                this.carveTunnels(chunkIn, biomePos, random.nextLong(), seaLevel, centerX, centerZ, x, y, z, random.nextFloat() * 0.5F + 0.5F, yaw - ((float)Math.PI / 2F), pitch / 3.0F, j, maxSize, 1.0D, mask);
-                this.carveTunnels(chunkIn, biomePos, random.nextLong(), seaLevel, centerX, centerZ, x, y, z, random.nextFloat() * 0.5F + 0.5F, yaw + ((float)Math.PI / 2F), pitch / 3.0F, j, maxSize, 1.0D, mask);
+                this.genTunnels(chunkIn, biomePos, random.nextLong(), seaLevel, centerX, centerZ, x, y, z, random.nextFloat() * 0.5F + 0.5F, yaw - ((float)Math.PI / 2F), pitch / 3.0F, j, maxSize, 1.0D, mask);
+                this.genTunnels(chunkIn, biomePos, random.nextLong(), seaLevel, centerX, centerZ, x, y, z, random.nextFloat() * 0.5F + 0.5F, yaw + ((float)Math.PI / 2F), pitch / 3.0F, j, maxSize, 1.0D, mask);
                 return;
             }
 
             if (random.nextInt(4) != 0) {
-                if (!this.func_222702_a(centerX, centerZ, x, z, j, maxSize, radius)) {
+                if (!this.canReach(centerX, centerZ, x, z, j, maxSize, radius)) {
                     return;
                 }
 
-                this.func_227208_a_(chunkIn, biomePos, seed, seaLevel, centerX, centerZ, x, y, z, d0 * 4, d1 * 2, mask);
+                this.carveSphere(chunkIn, biomePos, seed, seaLevel, centerX, centerZ, x, y, z, d0 * 4, d1 * 2, mask);
             }
         }
     }
@@ -133,24 +133,24 @@ public class ChasmsWorldCarver<T extends ProbabilityConfig> extends WorldCarver<
             return false;
         } else {
             carvingMask.set(i);
-            mutablePos.setPos(posX, yVal, posZ);
+            mutablePos.set(posX, yVal, posZ);
             BlockState blockstate = chunkIn.getBlockState(mutablePos);
-            BlockState blockstate1 = chunkIn.getBlockState(mutablePosAbove.setPos(mutablePos).move(Direction.UP));
+            BlockState blockstate1 = chunkIn.getBlockState(mutablePosAbove.set(mutablePos).move(Direction.UP));
             if (blockstate.getBlock() instanceof AbstractGaiaGrassBlock) {
                 flag.setTrue();
             }
 
-            if (!this.canCarveBlock(blockstate, blockstate1)) {
+            if (!this.canReplaceBlock(blockstate, blockstate1)) {
                 return false;
             } else {
                 if (yVal < 11) {
-                    chunkIn.setBlockState(mutablePos, ModBlocks.superhot_magma.get().getDefaultState(), false);
+                    chunkIn.setBlockState(mutablePos, ModBlocks.superhot_magma.get().defaultBlockState(), false);
                 } else {
                     chunkIn.setBlockState(mutablePos, CAVE_AIR, false);
                     if (flag.isTrue()) {
-                        mutablePosBelow.setPos(mutablePos).move(Direction.DOWN);
+                        mutablePosBelow.set(mutablePos).move(Direction.DOWN);
                         if (chunkIn.getBlockState(mutablePosBelow).getBlock() instanceof GaiaSoilBlock) {
-                            chunkIn.setBlockState(mutablePosBelow, biomePos.apply(mutablePos).getGenerationSettings().getSurfaceBuilderConfig().getTop(), false);
+                            chunkIn.setBlockState(mutablePosBelow, biomePos.apply(mutablePos).getGenerationSettings().getSurfaceBuilderConfig().getTopMaterial(), false);
                         }
                     }
                 }
@@ -161,7 +161,7 @@ public class ChasmsWorldCarver<T extends ProbabilityConfig> extends WorldCarver<
     }
 
     @Override
-    protected boolean func_222708_a(double xPos, double yPos, double zPos, int yVal) {
+    protected boolean skip(double xPos, double yPos, double zPos, int yVal) {
         return yPos <= -0.7D || xPos * xPos + yPos * yPos + zPos * zPos >= 1.0D;
     }
 }

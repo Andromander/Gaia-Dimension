@@ -17,20 +17,20 @@ import java.util.List;
 public class GaiaDukeSwordItem extends SwordItem {
 
     public GaiaDukeSwordItem() {
-        super(GaiaToolMaterials.LARVIKITE, 3, -3.0F, new Properties().rarity(Rarity.RARE).group(GaiaItemGroups.GAIA_TOOLS));
+        super(GaiaToolMaterials.LARVIKITE, 3, -3.0F, new Properties().rarity(Rarity.RARE).tab(GaiaItemGroups.GAIA_TOOLS));
     }
 
     @Override
     @Nonnull
-    public ITextComponent getDisplayName(ItemStack stack) {
-        return new TranslationTextComponent(super.getDisplayName(stack).getString(), TextFormatting.BLUE);
+    public ITextComponent getName(ItemStack stack) {
+        return new TranslationTextComponent(super.getName(stack).getString(), TextFormatting.BLUE);
     }
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public void addInformation(ItemStack stack, World world, List<ITextComponent> tooltips, ITooltipFlag flags) {
-        super.addInformation(stack, world, tooltips, flags);
-        tooltips.add(new TranslationTextComponent(getTranslationKey() + ".tooltip"));
+    public void appendHoverText(ItemStack stack, World world, List<ITextComponent> tooltips, ITooltipFlag flags) {
+        super.appendHoverText(stack, world, tooltips, flags);
+        tooltips.add(new TranslationTextComponent(getDescriptionId() + ".tooltip"));
     }
 
     //TODO: Deals extra damage to Gaian mobs

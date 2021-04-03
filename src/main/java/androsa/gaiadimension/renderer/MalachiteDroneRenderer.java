@@ -21,7 +21,7 @@ public class MalachiteDroneRenderer<T extends MalachiteDroneEntity, M extends Ma
     }
 
     @Override
-    public ResourceLocation getEntityTexture(T entity) {
+    public ResourceLocation getTextureLocation(T entity) {
         if (entity.getOwnerUniqueId() != null)
             return followLoc;
         else

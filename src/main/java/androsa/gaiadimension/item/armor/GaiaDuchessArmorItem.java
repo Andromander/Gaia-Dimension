@@ -30,14 +30,14 @@ public class GaiaDuchessArmorItem extends BasicGaiaArmorItem {
 
     @Override
     @Nonnull
-    public ITextComponent getDisplayName(ItemStack stack) {
-        return new TranslationTextComponent(super.getDisplayName(stack).getString(), TextFormatting.RED);
+    public ITextComponent getName(ItemStack stack) {
+        return new TranslationTextComponent(super.getName(stack).getString(), TextFormatting.RED);
     }
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public void addInformation(ItemStack stack, World world, List<ITextComponent> tooltips, ITooltipFlag flags) {
-        super.addInformation(stack, world, tooltips, flags);
+    public void appendHoverText(ItemStack stack, World world, List<ITextComponent> tooltips, ITooltipFlag flags) {
+        super.appendHoverText(stack, world, tooltips, flags);
         tooltips.add(new TranslationTextComponent("bixbite_armor.tooltip"));
     }
 }

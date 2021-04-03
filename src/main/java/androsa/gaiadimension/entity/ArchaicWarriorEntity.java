@@ -38,38 +38,38 @@ public class ArchaicWarriorEntity extends MonsterEntity {
     }
 
     public static AttributeModifierMap.MutableAttribute registerAttributes() {
-        return MonsterEntity.func_234295_eP_()
-                .createMutableAttribute(Attributes.ATTACK_DAMAGE, 4.0D)
-                .createMutableAttribute(Attributes.ARMOR, 2.0D)
-                .createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.4D);
+        return MonsterEntity.createMonsterAttributes()
+                .add(Attributes.ATTACK_DAMAGE, 4.0D)
+                .add(Attributes.ARMOR, 2.0D)
+                .add(Attributes.MOVEMENT_SPEED, 0.4D);
     }
 
     @Override
-    public void livingTick() {
-        if (this.isInDaylight()) {
-            this.setFire(8);
+    public void aiStep() {
+        if (this.isSunBurnTick()) {
+            this.setSecondsOnFire(8);
         }
 
-        super.livingTick();
+        super.aiStep();
     }
 
     @Override
     protected SoundEvent getAmbientSound() {
-        return SoundEvents.ENTITY_SKELETON_AMBIENT;
+        return SoundEvents.SKELETON_AMBIENT;
     }
 
     @Override
     protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
-        return SoundEvents.ENTITY_SKELETON_HURT;
+        return SoundEvents.SKELETON_HURT;
     }
 
     @Override
     protected SoundEvent getDeathSound() {
-        return SoundEvents.ENTITY_SKELETON_DEATH;
+        return SoundEvents.SKELETON_DEATH;
     }
 
     protected SoundEvent getStepSound() {
-        return SoundEvents.ENTITY_SKELETON_STEP;
+        return SoundEvents.SKELETON_STEP;
     }
 
     @Override
@@ -78,16 +78,16 @@ public class ArchaicWarriorEntity extends MonsterEntity {
     }
 
     @Override
-    public CreatureAttribute getCreatureAttribute() {
+    public CreatureAttribute getMobType() {
         return GaiaDimensionMod.GAIAN;
     }
 
     @Override
-    protected void setEquipmentBasedOnDifficulty(DifficultyInstance difficulty) {
-        super.setEquipmentBasedOnDifficulty(difficulty);
+    protected void populateDefaultEquipmentSlots(DifficultyInstance difficulty) {
+        super.populateDefaultEquipmentSlots(difficulty);
 
-        if (this.rand.nextFloat() < (this.world.getDifficulty() == Difficulty.NORMAL ? 0.05F : 0.01F)) {
-            this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(ModItems.sugilite_sword.get()));
+        if (this.random.nextFloat() < (this.level.getDifficulty() == Difficulty.NORMAL ? 0.05F : 0.01F)) {
+            this.setItemSlot(EquipmentSlotType.MAINHAND, new ItemStack(ModItems.sugilite_sword.get()));
         }
     }
 
@@ -98,11 +98,11 @@ public class ArchaicWarriorEntity extends MonsterEntity {
 
     @Override
     @Nullable
-    public ILivingEntityData onInitialSpawn(IServerWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
-        spawnDataIn = super.onInitialSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
+    public ILivingEntityData finalizeSpawn(IServerWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
+        spawnDataIn = super.finalizeSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
 
-        this.setEquipmentBasedOnDifficulty(difficultyIn);
-        this.setEnchantmentBasedOnDifficulty(difficultyIn);
+        this.populateDefaultEquipmentSlots(difficultyIn);
+        this.populateDefaultEquipmentEnchantments(difficultyIn);
 
         return spawnDataIn;
     }

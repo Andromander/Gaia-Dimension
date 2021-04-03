@@ -33,7 +33,7 @@ public class GlitterFuelCategory extends RestructurerRecipeCategory<GlitterFuelR
                 .setTextureSize(14, 14)
                 .build();
 
-        localizedName = I18n.format("gui.gaiadimension.category.glitter_fuel");
+        localizedName = I18n.get("gui.gaiadimension.category.glitter_fuel");
     }
 
     @Override
@@ -81,6 +81,6 @@ public class GlitterFuelCategory extends RestructurerRecipeCategory<GlitterFuelR
         flame.draw(stack, 1, 0);
         Minecraft minecraft = Minecraft.getInstance();
         String smeltCountString = recipe.getGlitterCountString();
-        minecraft.fontRenderer.drawString(stack, smeltCountString, 24.0F, 13.0F, -8355712);
+        minecraft.font.draw(stack, smeltCountString, 24.0F, 13.0F, -8355712);
     }
 }

@@ -22,13 +22,13 @@ public class BismuthGeyserFeature<T extends NoFeatureConfig> extends Feature<T> 
     }
 
     @Override
-    public boolean generate(ISeedReader worldIn, ChunkGenerator generator, Random rand, BlockPos position, T config) {
+    public boolean place(ISeedReader worldIn, ChunkGenerator generator, Random rand, BlockPos position, T config) {
         for (int cx = 0; cx < 5; cx++) {
             for (int cz = 0; cz < 5; cz++) {
-                BlockPos pos = position.add(cx - 2, 0, cz - 2);
+                BlockPos pos = position.offset(cx - 2, 0, cz - 2);
 
-                if (worldIn.isBlockLoaded(pos)) {
-                    Block blockBelow = worldIn.getBlockState(pos.down()).getBlock();
+                if (worldIn.hasChunkAt(pos)) {
+                    Block blockBelow = worldIn.getBlockState(pos.below()).getBlock();
 
                     if (blockBelow != GRASS) {
                         return false;
@@ -41,12 +41,12 @@ public class BismuthGeyserFeature<T extends NoFeatureConfig> extends Feature<T> 
             for (int bz = -2; bz <= 2; bz++) {
                 if (Math.abs(bx) != 2 || Math.abs(bz) != 2) {
                     if (bx == 0 && bz == 0) {
-                        worldIn.setBlockState(position.add(bx, 0, bz), ModBlocks.geyser_block.get().getDefaultState(), 2);
+                        worldIn.setBlock(position.offset(bx, 0, bz), ModBlocks.geyser_block.get().defaultBlockState(), 2);
                     } else {
                         if (bx < 2 && bz < 2 && bx > -2 && bz > -2) {
-                            worldIn.setBlockState(position.add(bx, 0, bz), ModBlocks.boggy_soil.get().getDefaultState(), 2);
+                            worldIn.setBlock(position.offset(bx, 0, bz), ModBlocks.boggy_soil.get().defaultBlockState(), 2);
                         } else {
-                            worldIn.setBlockState(position.add(bx, 0, bz), GRASS.getDefaultState(), 2);
+                            worldIn.setBlock(position.offset(bx, 0, bz), GRASS.defaultBlockState(), 2);
                         }
                     }
                 }
@@ -55,7 +55,7 @@ public class BismuthGeyserFeature<T extends NoFeatureConfig> extends Feature<T> 
         for (int tx = -1; tx <= 1; tx++) {
             for (int tz = -1; tz <= 1; tz++) {
                 if (!(tx == 0 && tz == 0)) {
-                    worldIn.setBlockState(position.add(tx, 1, tz), GRASS.getDefaultState(), 2);
+                    worldIn.setBlock(position.offset(tx, 1, tz), GRASS.defaultBlockState(), 2);
                 }
             }
         }

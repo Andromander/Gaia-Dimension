@@ -20,13 +20,13 @@ public class PyriteWallTorchBlock extends WallTorchBlock {
     @Override
     @OnlyIn(Dist.CLIENT)
     public void animateTick(BlockState state, World world, BlockPos pos, Random rand) {
-        Direction direction = state.get(HORIZONTAL_FACING);
+        Direction direction = state.getValue(FACING);
         double dx = (double)pos.getX() + 0.5D;
         double dy = (double)pos.getY() + 0.7D;
         double dz = (double)pos.getZ() + 0.5D;
         double d0 = 0.22D;
         double d1 = 0.27D;
         Direction opposite = direction.getOpposite();
-        world.addParticle(particleData, dx + d1 * (double)opposite.getXOffset(), dy + d0, dz + d1 * (double)opposite.getZOffset(), 0.0D, 0.0D, 0.0D);
+        world.addParticle(flameParticle, dx + d1 * (double)opposite.getStepX(), dy + d0, dz + d1 * (double)opposite.getStepZ(), 0.0D, 0.0D, 0.0D);
     }
 }
