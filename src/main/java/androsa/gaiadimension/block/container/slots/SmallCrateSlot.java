@@ -12,6 +12,6 @@ public class SmallCrateSlot extends Slot {
     }
 
     public boolean mayPlace(ItemStack stack) {
-        return GaiaTags.Items.CRUDE_STORAGE_BLACKLIST.contains(stack.getItem());
+        return !GaiaTags.Items.CRUDE_STORAGE_BLACKLIST.contains(stack.getItem());
     }
 }

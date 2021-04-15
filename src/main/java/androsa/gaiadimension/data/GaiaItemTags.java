@@ -5,10 +5,10 @@ import androsa.gaiadimension.registry.GaiaTags;
 import androsa.gaiadimension.registry.ModBlocks;
 import androsa.gaiadimension.registry.ModItems;
 import com.google.common.collect.ImmutableList;
+import net.minecraft.block.Blocks;
 import net.minecraft.data.BlockTagsProvider;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.item.Item;
-import net.minecraft.item.Items;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ITag;
 import net.minecraft.tags.ItemTags;
@@ -49,6 +49,11 @@ public class GaiaItemTags extends GaiaItemTagsProvider {
 
     @Override
     protected void addTags() {
+        addTagFromBlock(GaiaTags.Items.SHULKER_BOXES,
+                Blocks.SHULKER_BOX, Blocks.BLACK_SHULKER_BOX, Blocks.BLUE_SHULKER_BOX, Blocks.BROWN_SHULKER_BOX, Blocks.CYAN_SHULKER_BOX, Blocks.GRAY_SHULKER_BOX,
+                Blocks.GREEN_SHULKER_BOX, Blocks.LIGHT_BLUE_SHULKER_BOX, Blocks.LIGHT_GRAY_SHULKER_BOX, Blocks.LIME_SHULKER_BOX, Blocks.MAGENTA_SHULKER_BOX,
+                Blocks.ORANGE_SHULKER_BOX, Blocks.PINK_SHULKER_BOX, Blocks.PURPLE_SHULKER_BOX, Blocks.RED_SHULKER_BOX, Blocks.WHITE_SHULKER_BOX, Blocks.YELLOW_SHULKER_BOX);
+
         tag(ItemTags.ARROWS).add(ModItems.agate_arrow.get());
         addTag(ItemTags.BEACON_PAYMENT_ITEMS, BEACON_PAYMENTS);
         copy(BlockTags.LEAVES, ItemTags.LEAVES);
@@ -74,18 +79,8 @@ public class GaiaItemTags extends GaiaItemTagsProvider {
         copy(GaiaTags.Blocks.JADE_BRICKS, GaiaTags.Items.JADE_BRICKS);
         copy(GaiaTags.Blocks.JET_BRICKS, GaiaTags.Items.JET_BRICKS);
         addTag(GaiaTags.Items.GEM_POUCH_ITEMS, BEACON_PAYMENTS);
-        tag(GaiaTags.Items.CRUDE_STORAGE_BLACKLIST).add(
-                //Mojang, actually fuck you for this. "pls dont be mad, we just work under big corporation" and you can't even make an *Item* Tag for shulker boxes???
-                Items.SHULKER_BOX, Items.BLACK_SHULKER_BOX, Items.BLUE_SHULKER_BOX, Items.BROWN_SHULKER_BOX, Items.CYAN_SHULKER_BOX, Items.GRAY_SHULKER_BOX, Items.GREEN_SHULKER_BOX,
-                Items.LIGHT_BLUE_SHULKER_BOX, Items.LIGHT_GRAY_SHULKER_BOX, Items.LIME_SHULKER_BOX, Items.MAGENTA_SHULKER_BOX, Items.ORANGE_SHULKER_BOX, Items.PINK_SHULKER_BOX,
-                Items.PURPLE_SHULKER_BOX, Items.RED_SHULKER_BOX, Items.WHITE_SHULKER_BOX, Items.YELLOW_SHULKER_BOX
-        ).add(ModBlocks.crude_storage_crate.get().asItem(), ModBlocks.mega_storage_crate.get().asItem());
-        tag(GaiaTags.Items.CRUDE_STORAGE_BLACKLIST).add(
-                //Repeat above. Quit the excuse game, you aren't a bunch of tiny modders anymore.
-                Items.SHULKER_BOX, Items.BLACK_SHULKER_BOX, Items.BLUE_SHULKER_BOX, Items.BROWN_SHULKER_BOX, Items.CYAN_SHULKER_BOX, Items.GRAY_SHULKER_BOX, Items.GREEN_SHULKER_BOX,
-                Items.LIGHT_BLUE_SHULKER_BOX, Items.LIGHT_GRAY_SHULKER_BOX, Items.LIME_SHULKER_BOX, Items.MAGENTA_SHULKER_BOX, Items.ORANGE_SHULKER_BOX, Items.PINK_SHULKER_BOX,
-                Items.PURPLE_SHULKER_BOX, Items.RED_SHULKER_BOX, Items.WHITE_SHULKER_BOX, Items.YELLOW_SHULKER_BOX
-        ).add(ModBlocks.mega_storage_crate.get().asItem());
+        tag(GaiaTags.Items.CRUDE_STORAGE_BLACKLIST).addTag(GaiaTags.Items.SHULKER_BOXES).add(ModBlocks.crude_storage_crate.get().asItem(), ModBlocks.mega_storage_crate.get().asItem());
+        tag(GaiaTags.Items.MEGA_STORAGE_BLACKLIST).addTag(GaiaTags.Items.SHULKER_BOXES).add(ModBlocks.mega_storage_crate.get().asItem());
 
         tag(GaiaTags.Items.DUSTS_FINE).add(ModItems.fine_dust.get());
         tag(GaiaTags.Items.DUSTS_GOLDSTONE).add(ModItems.goldstone_dust.get());

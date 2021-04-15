@@ -115,6 +115,8 @@ public class GaiaTags {
         public static final ITag.INamedTag<Item> GEM_POUCH_ITEMS = tagItem("gem_pouch_items");
         public static final ITag.INamedTag<Item> CRUDE_STORAGE_BLACKLIST = tagItem("crude_storage_blacklist");
         public static final ITag.INamedTag<Item> MEGA_STORAGE_BLACKLIST = tagItem("mega_storage_blacklist");
+
+        public static final ITag.INamedTag<Item> SHULKER_BOXES = ItemTags.bind("minecraft:shulker_boxes");
     }
 
     public static class Blocks {

@@ -2,6 +2,7 @@ package androsa.gaiadimension.data.provider;
 
 import androsa.gaiadimension.GaiaDimensionMod;
 import com.google.common.collect.ImmutableList;
+import net.minecraft.block.Block;
 import net.minecraft.data.BlockTagsProvider;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.ItemTagsProvider;
@@ -15,6 +16,13 @@ public class GaiaItemTagsProvider extends ItemTagsProvider {
 
     public GaiaItemTagsProvider(DataGenerator generatorIn, BlockTagsProvider provider, ExistingFileHelper existingFileHelper) {
         super(generatorIn, provider, GaiaDimensionMod.MODID, existingFileHelper);
+    }
+
+    protected void addTagFromBlock(ITag.INamedTag<Item> tag, Block... blocks) {
+        Builder<Item> builder = this.tag(tag);
+        for (Block block : blocks) {
+            builder.add(block.asItem());
+        }
     }
 
     protected void addTag(ITag.INamedTag<Item> tag, ImmutableList<Supplier<Item>> list) {
