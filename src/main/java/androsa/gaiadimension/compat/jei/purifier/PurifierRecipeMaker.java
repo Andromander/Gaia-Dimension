@@ -6,7 +6,9 @@ import androsa.gaiadimension.recipe.PurifierRecipe;
 import androsa.gaiadimension.registry.ModRecipes;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.world.ClientWorld;
+import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.item.crafting.RecipeManager;
 
@@ -14,17 +16,13 @@ import java.util.*;
 
 public class PurifierRecipeMaker {
 
-    private PurifierRecipeMaker() {
-    }
-
     public static List<PurifierRecipe> getPurifierRecipes() {
         ClientWorld world = Minecraft.getInstance().level;
         RecipeManager recipeManager = world.getRecipeManager();
         List<PurifierRecipe> recipeList = new ArrayList<>();
-        Iterator iterator = JEICompat.getRecipes(recipeManager, ModRecipes.PURIFYING).iterator();
 
-        while(iterator.hasNext()) {
-            PurifierRecipe recipe = (PurifierRecipe)iterator.next();
+        for (IRecipe<IInventory> iInventoryIRecipe : JEICompat.getRecipes(recipeManager, ModRecipes.PURIFYING)) {
+            PurifierRecipe recipe = (PurifierRecipe) iInventoryIRecipe;
             if (isRecipeValid(recipe)) {
                 recipeList.add(recipe);
             }
@@ -57,7 +55,7 @@ public class PurifierRecipeMaker {
                 }
             }
         } else {
-            GaiaDimensionMod.LOGGER.error("Recipe has no output. {}");
+            GaiaDimensionMod.LOGGER.error("Recipe has no output. {}", recipeOutput);
             return false;
         }
     }
@@ -65,8 +63,8 @@ public class PurifierRecipeMaker {
     private static int getInputCount(List<Ingredient> ingredientList) {
         int inputCount = 0;
 
-        for(Iterator iterator = ingredientList.iterator(); iterator.hasNext(); ++inputCount) {
-            Ingredient ingredient = (Ingredient)iterator.next();
+        for(Iterator<Ingredient> iterator = ingredientList.iterator(); iterator.hasNext(); ++inputCount) {
+            Ingredient ingredient = iterator.next();
             ItemStack[] input = ingredient.getItems();
             if (input == null) {
                 return -1;

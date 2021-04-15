@@ -7,7 +7,7 @@ import androsa.gaiadimension.block.container.PurifierContainer;
 import androsa.gaiadimension.block.container.RestructurerContainer;
 import androsa.gaiadimension.compat.jei.purifier.NullFuelCategory;
 import androsa.gaiadimension.compat.jei.purifier.NullFuelRecipeMaker;
-import androsa.gaiadimension.compat.jei.purifier.PurifierCategory;
+import androsa.gaiadimension.compat.jei.purifier.PurifyingCategory;
 import androsa.gaiadimension.compat.jei.purifier.PurifierRecipeMaker;
 import androsa.gaiadimension.compat.jei.restructurer.*;
 import androsa.gaiadimension.registry.ModBlocks;
@@ -28,6 +28,7 @@ import net.minecraft.item.crafting.RecipeManager;
 import net.minecraft.util.ResourceLocation;
 
 import java.util.Collection;
+import java.util.Map;
 
 @JeiPlugin
 public class JEICompat implements IModPlugin {
@@ -44,12 +45,13 @@ public class JEICompat implements IModPlugin {
                 new ShineFuelCategory(registry.getJeiHelpers().getGuiHelper()),
                 new RestructuringCategory(registry.getJeiHelpers().getGuiHelper()),
                 new NullFuelCategory(registry.getJeiHelpers().getGuiHelper()),
-                new PurifierCategory(registry.getJeiHelpers().getGuiHelper())
+                new PurifyingCategory(registry.getJeiHelpers().getGuiHelper())
         );
     }
 
-    public static <C extends IInventory, T extends IRecipe<C>> Collection<T> getRecipes(RecipeManager recipeManager, IRecipeType<T> recipeType) {
-        return recipeManager.getAllRecipesFor(recipeType);
+    public static <C extends IInventory, T extends IRecipe<C>> Collection<IRecipe<C>> getRecipes(RecipeManager recipeManager, IRecipeType<T> recipeType) {
+        Map<ResourceLocation, IRecipe<C>> recipes = recipeManager.byType(recipeType);
+        return recipes.values();
     }
 
     @Override

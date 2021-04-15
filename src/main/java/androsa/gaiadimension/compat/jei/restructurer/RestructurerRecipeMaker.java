@@ -6,7 +6,9 @@ import androsa.gaiadimension.recipe.RestructurerRecipe;
 import androsa.gaiadimension.registry.ModRecipes;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.world.ClientWorld;
+import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.item.crafting.RecipeManager;
 
@@ -21,10 +23,9 @@ public class RestructurerRecipeMaker {
         ClientWorld world = Minecraft.getInstance().level;
         RecipeManager recipeManager = world.getRecipeManager();
         List<RestructurerRecipe> recipeList = new ArrayList<>();
-        Iterator iterator = JEICompat.getRecipes(recipeManager, ModRecipes.RESTRUCTURING).iterator();
 
-        while(iterator.hasNext()) {
-            RestructurerRecipe recipe = (RestructurerRecipe)iterator.next();
+        for (IRecipe<IInventory> iInventoryIRecipe : JEICompat.getRecipes(recipeManager, ModRecipes.RESTRUCTURING)) {
+            RestructurerRecipe recipe = (RestructurerRecipe) iInventoryIRecipe;
             if (isRecipeValid(recipe)) {
                 recipeList.add(recipe);
             }
@@ -57,7 +58,7 @@ public class RestructurerRecipeMaker {
                 }
             }
         } else {
-            GaiaDimensionMod.LOGGER.error("Recipe has no output. {}");
+            GaiaDimensionMod.LOGGER.error("Recipe has no output. {}", recipeOutput);
             return false;
         }
     }
@@ -65,8 +66,8 @@ public class RestructurerRecipeMaker {
     private static int getInputCount(List<Ingredient> ingredientList) {
         int inputCount = 0;
 
-        for(Iterator iterator = ingredientList.iterator(); iterator.hasNext(); ++inputCount) {
-            Ingredient ingredient = (Ingredient)iterator.next();
+        for(Iterator<Ingredient> iterator = ingredientList.iterator(); iterator.hasNext(); ++inputCount) {
+            Ingredient ingredient = iterator.next();
             ItemStack[] input = ingredient.getItems();
             if (input == null) {
                 return -1;

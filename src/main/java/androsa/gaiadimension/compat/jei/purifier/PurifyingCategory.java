@@ -21,14 +21,14 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class PurifierCategory extends PurifierRecipeCategory<PurifierRecipe> {
+public class PurifyingCategory extends PurifierRecipeCategory<PurifierRecipe> {
 
     private final IDrawable background;
     private final IDrawable icon;
     private final String localizedName;
     private final ResourceLocation backgroundimage = new ResourceLocation(GaiaDimensionMod.MODID, "textures/gui/jei/recipe2output.png");
 
-    public PurifierCategory(IGuiHelper guiHelper) {
+    public PurifyingCategory(IGuiHelper guiHelper) {
         background = guiHelper.drawableBuilder(backgroundimage, 0, 0, 75, 55)
                 .setTextureSize(76, 56).addPadding(0, 0, 0, 10)
                 .build();
