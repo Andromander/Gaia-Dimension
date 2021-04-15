@@ -16,6 +16,9 @@
     "announce_to_chat": true,
     "hidden": false
   },
+  "rewards": {
+    "experience": 500
+  },
   "criteria": {
     "agate_sword": {
       "trigger": "minecraft:inventory_changed",
