@@ -1,8 +1,10 @@
 package androsa.gaiadimension.registry;
 
+import androsa.gaiadimension.GaiaDimensionMod;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.IArmorMaterial;
 import net.minecraft.item.crafting.Ingredient;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
 import net.minecraftforge.api.distmarker.Dist;
@@ -71,7 +73,7 @@ public enum GaiaArmorMaterials implements IArmorMaterial {
 
     @OnlyIn(Dist.CLIENT)
     public String getName() {
-        return armorName;
+        return new ResourceLocation(GaiaDimensionMod.MODID, armorName).toString();
     }
 
     public float getToughness() {

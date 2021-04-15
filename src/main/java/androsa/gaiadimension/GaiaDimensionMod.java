@@ -29,7 +29,6 @@ import org.apache.logging.log4j.Logger;
 public class GaiaDimensionMod {
     public static final String MODID = "gaiadimension";
 
-    public static final String ARMOR_DIR = "gaiadimension:textures/armor/";
     public static final String MODEL_DIR = "gaiadimension:textures/model/";
 
     public static final Logger LOGGER = LogManager.getLogger(MODID);
