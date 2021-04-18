@@ -9,14 +9,12 @@ import java.util.function.Predicate;
 
 public class OldBowItem extends BowItem {
 
-    public static final Predicate<ItemStack> ARROW = (stack) -> stack.getItem() == ModItems.agate_arrow.get();
-
     public OldBowItem() {
         super(new Properties().durability(425).tab(GaiaItemGroups.GAIA_TOOLS));
     }
 
     @Override
     public Predicate<ItemStack> getAllSupportedProjectiles() {
-        return ARROW;
+        return (stack) -> stack.getItem() == ModItems.agate_arrow.get();
     }
 }
