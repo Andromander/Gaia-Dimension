@@ -423,6 +423,11 @@ public class MalachiteGuardEntity extends MonsterEntity {
         return false;
     }
 
+    @Override
+    protected boolean canRide(Entity entity) {
+        return false;
+    }
+
     public boolean displayDefenceLayer() {
         return getPhase() == 0;
     }
