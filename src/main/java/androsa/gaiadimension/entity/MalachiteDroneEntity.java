@@ -165,21 +165,6 @@ public class MalachiteDroneEntity extends MonsterEntity {
         return ((ServerWorld) level).getEntity(getOwnerUniqueId()) != null;
     }
 
-    @Override
-    public void remove(boolean keepData) {
-        //If you are a mod that removes an entity with this, be ashamed of yourself. Just kill or despawn it.
-        if (level instanceof ServerWorld) {
-            @Nullable Entity entity = ((ServerWorld) level).getEntity(getOwnerUniqueId());
-
-            if (entity != null) {
-                if (entity instanceof MalachiteGuardEntity) {
-                    ((MalachiteGuardEntity) entity).onDroneKilled();
-                }
-            }
-        }
-        super.remove(keepData);
-    }
-
     static class FollowGuardGoal extends Goal {
         private final MalachiteDroneEntity drone;
         private MalachiteGuardEntity guard;
