@@ -391,7 +391,6 @@ public class MalachiteGuardEntity extends MonsterEntity {
         return false;
     }
 
-
     @Override
     public void checkDespawn() {
         if (this.level.getDifficulty() == Difficulty.PEACEFUL && this.shouldDespawnInPeaceful()) {
@@ -426,14 +425,6 @@ public class MalachiteGuardEntity extends MonsterEntity {
     @Override
     protected boolean canRide(Entity entity) {
         return false;
-    }
-
-    public boolean displayDefenceLayer() {
-        return getPhase() == 0;
-    }
-
-    public boolean displayResistLayer() {
-        return getPhase() == 2;
     }
 
     class AttackGoal extends MeleeAttackGoal {

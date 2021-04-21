@@ -23,7 +23,7 @@ public class MalachiteResistLayer<T extends MalachiteGuardEntity, M extends Mala
 
     @Override
     public void render(MatrixStack matrix, IRenderTypeBuffer buffer, int light, T entity, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch) {
-        if (entity.displayResistLayer()) {
+        if (entity.getPhase() == 2) {
             float ticks = (float)entity.tickCount + partialTicks;
             EntityModel<T> model = this.getEnergySwirlModel();
             model.prepareMobModel(entity, limbSwing, limbSwingAmount, partialTicks);
