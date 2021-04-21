@@ -353,6 +353,7 @@ public class MalachiteGuardEntity extends MonsterEntity {
             if (isAllowedToDamage(source)) {
                 //Calculate a modifier
                 float multiply = getMultiplier(amount);
+
                 return super.hurt(source, amount * multiply);
             } else {
                 //Not unless you're falling out of the world
@@ -368,10 +369,12 @@ public class MalachiteGuardEntity extends MonsterEntity {
      * Easy mode allows all direct damage from living entities. Normal and Hard requires the player
      */
     private boolean isAllowedToDamage(DamageSource source) {
+        Entity entity = source.getDirectEntity();
+
         if (this.level.getDifficulty() == Difficulty.NORMAL || this.level.getDifficulty() == Difficulty.HARD) {
-            return source.getDirectEntity() instanceof PlayerEntity;
+            return entity instanceof PlayerEntity;
         } else {
-            return source.getDirectEntity() instanceof LivingEntity;
+            return entity instanceof LivingEntity;
         }
     }
 
@@ -392,7 +395,6 @@ public class MalachiteGuardEntity extends MonsterEntity {
                 return base;
         }
     }
-
     @Override
     public boolean canBeAffected(EffectInstance effectInstance) {
         return level.getDifficulty() == Difficulty.HARD && effectInstance.getEffect().isBeneficial();
