@@ -42,6 +42,7 @@ public class MalachiteGuardEntity extends MonsterEntity {
 
     public MalachiteGuardEntity(EntityType<? extends MalachiteGuardEntity> entity, World world) {
         super(entity, world);
+        this.maxUpStep = 1.5F;
         this.xpReward = 75;
     }
 
@@ -158,6 +159,23 @@ public class MalachiteGuardEntity extends MonsterEntity {
     public void knockback(float amount, double x, double z) {
         if (getPhase() == 1) {
             super.knockback(amount, x, z);
+        }
+    }
+
+    /**
+     * Guard is too heavy to be dealt fall damage
+     */
+    @Override
+    public boolean causeFallDamage(float dist, float mul) {
+        return false;
+    }
+
+    @Override
+    public void setTarget(@Nullable LivingEntity entity) {
+        if (level.getDifficulty() == Difficulty.NORMAL || level.getDifficulty() == Difficulty.HARD) {
+            if (entity instanceof PlayerEntity) {
+                super.setTarget(entity);
+            }
         }
     }
 
