@@ -107,18 +107,20 @@ public class MalachiteDroneEntity extends MonsterEntity {
     public void tick() {
         super.tick();
 
-        if (getOwnerUniqueId() != null) {
-            //Check if we have been removed too far away from the Guard.
-            Entity entity = ((ServerWorld) level).getEntity(getOwnerUniqueId());
+        if (level instanceof ServerWorld) {
+            if (getOwnerUniqueId() != null) {
+                //Check if we have been removed too far away from the Guard.
+                Entity entity = ((ServerWorld) level).getEntity(getOwnerUniqueId());
 
-            //Wrong dimension, sever the link
-            if (this.level.dimension() != entity.level.dimension()) {
-                ownerRemoved(entity);
-            }
+                //Wrong dimension, sever the link
+                if (this.level.dimension() != entity.level.dimension()) {
+                    ownerRemoved(entity);
+                }
 
-            //Too far away, and we can't go back
-            if (this.distanceToSqr(entity) > 500.0D && (this.isLeashed() || this.isPassenger())) {
-                ownerRemoved(entity);
+                //Too far away, and we can't go back
+                if (this.distanceToSqr(entity) > 500.0D && (this.isLeashed() || this.isPassenger())) {
+                    ownerRemoved(entity);
+                }
             }
         }
     }
@@ -154,7 +156,6 @@ public class MalachiteDroneEntity extends MonsterEntity {
                 }
             }
         }
-
         super.die(source);
     }
 
