@@ -4,7 +4,7 @@
     "type": "EDGES_FULL",
     "layer": "TRANSLUCENT",
     "textures": [
-      "gaiadimension:blocks/wasteland_stone_new"
+      "gaiadimension:block/wasteland_stone_new"
     ],
     "extra": {
       "connect_to": [

@@ -4,7 +4,7 @@
     "type": "EDGES_FULL",
     "layer": "TRANSLUCENT",
     "textures": [
-      "gaiadimension:blocks/keystone_block_ctm"
+      "gaiadimension:block/keystone_block_ctm"
     ],
     "extra": {
       "connect_to": [

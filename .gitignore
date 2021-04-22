@@ -16,7 +16,12 @@ out
 # gradle
 build
 .gradle
+local.gradle
+settings.gradle
 
 # other
 eclipse
 run
+classes
+logs
+src/main/disabled

@@ -4,7 +4,7 @@
     "type": "EDGES_FULL",
     "layer": "CUTOUT_MIPPED",
     "textures": [
-      "gaiadimension:blocks/keystone_block_full"
+      "gaiadimension:block/keystone_block_full"
     ],
     "extra": {
       "connect_to": [
