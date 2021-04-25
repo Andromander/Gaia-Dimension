@@ -82,6 +82,7 @@ public class GaiaDimensionMod {
             GaiaBiomeFeatures.registerConfiguredWorldgen();
             ModDimensions.initDimension();
             ModWorldgen.StructureTypes.init();
+            ModBlocks.addStripping();
         });
         ModBlocks.addPlants();
         ModEntities.registerSpawnPlacement();

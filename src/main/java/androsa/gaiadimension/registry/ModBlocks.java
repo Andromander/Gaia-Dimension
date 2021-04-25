@@ -3,9 +3,11 @@ package androsa.gaiadimension.registry;
 import androsa.gaiadimension.GaiaDimensionMod;
 import androsa.gaiadimension.block.*;
 import androsa.gaiadimension.world.gen.tree.*;
+import com.google.common.collect.Maps;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
+import net.minecraft.item.AxeItem;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -14,6 +16,7 @@ import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 
+import java.util.Map;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
@@ -90,25 +93,6 @@ public class ModBlocks {
     public static final RegistryObject<Block> missingno_fungus = register("missingno_fungus", () -> new CrystalFungusBlock(GaiaBlockProperties.plantProps(MaterialColor.COLOR_MAGENTA, false), false));
 
     //Tree Blocks
-    public static RotatedPillarBlock s_pink_agate_log = new AgateLogBlock(GaiaBlockProperties.logProps(MaterialColor.COLOR_MAGENTA));
-    public static RotatedPillarBlock s_blue_agate_log = new AgateLogBlock(GaiaBlockProperties.logProps(MaterialColor.COLOR_BLUE));
-    public static RotatedPillarBlock s_green_agate_log = new AgateLogBlock(GaiaBlockProperties.logProps(MaterialColor.COLOR_GREEN));
-    public static RotatedPillarBlock s_purple_agate_log = new AgateLogBlock(GaiaBlockProperties.logProps(MaterialColor.TERRACOTTA_PURPLE));
-    public static RotatedPillarBlock s_fossilized_log = new AgateLogBlock(GaiaBlockProperties.logProps(MaterialColor.COLOR_YELLOW));
-    public static RotatedPillarBlock s_corrupted_log = new AgateLogBlock(GaiaBlockProperties.logProps(MaterialColor.FIRE));
-    public static RotatedPillarBlock s_burnt_log = new AgateLogBlock(GaiaBlockProperties.logProps(MaterialColor.COLOR_GRAY));
-    public static RotatedPillarBlock s_burning_log = new AgateLogBlock(GaiaBlockProperties.logProps(MaterialColor.COLOR_ORANGE).lightLevel((state) -> 3));
-    public static RotatedPillarBlock s_aura_log = new AgateLogBlock(GaiaBlockProperties.logProps(MaterialColor.METAL));
-    public static RotatedPillarBlock s_pink_agate_wood = new AgateLogBlock(GaiaBlockProperties.logProps(MaterialColor.COLOR_MAGENTA));
-    public static RotatedPillarBlock s_blue_agate_wood = new AgateLogBlock(GaiaBlockProperties.logProps(MaterialColor.COLOR_BLUE));
-    public static RotatedPillarBlock s_green_agate_wood = new AgateLogBlock(GaiaBlockProperties.logProps(MaterialColor.COLOR_GREEN));
-    public static RotatedPillarBlock s_purple_agate_wood = new AgateLogBlock(GaiaBlockProperties.logProps(MaterialColor.TERRACOTTA_PURPLE));
-    public static RotatedPillarBlock s_fossilized_wood = new AgateLogBlock(GaiaBlockProperties.logProps(MaterialColor.COLOR_YELLOW));
-    public static RotatedPillarBlock s_corrupted_wood = new AgateLogBlock(GaiaBlockProperties.logProps(MaterialColor.FIRE));
-    public static RotatedPillarBlock s_burnt_wood = new AgateLogBlock(GaiaBlockProperties.logProps(MaterialColor.COLOR_GRAY));
-    public static RotatedPillarBlock s_burning_wood = new AgateLogBlock(GaiaBlockProperties.logProps(MaterialColor.COLOR_ORANGE).lightLevel((state) -> 3));
-    public static RotatedPillarBlock s_aura_wood = new AgateLogBlock(GaiaBlockProperties.logProps(MaterialColor.METAL));
-
     public static final RegistryObject<SaplingBlock> pink_agate_sapling = register("pink_agate_sapling", () -> new SaplingBlock(new PinkAgateTree(), GaiaBlockProperties.saplingProps(MaterialColor.COLOR_PINK)));
     public static final RegistryObject<SaplingBlock> blue_agate_sapling = register("blue_agate_sapling", () -> new SaplingBlock(new BlueAgateTree(), GaiaBlockProperties.saplingProps(MaterialColor.COLOR_LIGHT_BLUE)));
     public static final RegistryObject<SaplingBlock> green_agate_sapling = register("green_agate_sapling", () -> new SaplingBlock(new GreenAgateTree(), GaiaBlockProperties.saplingProps(MaterialColor.COLOR_LIGHT_GREEN)));
@@ -127,42 +111,42 @@ public class ModBlocks {
     public static final RegistryObject<Block> burnt_leaves = register("burnt_leaves", () -> new LeavesBlock(GaiaBlockProperties.leavesProps(MaterialColor.COLOR_GRAY)));
     public static final RegistryObject<Block> burning_leaves = register("burning_leaves", () -> new LeavesBlock(GaiaBlockProperties.leavesProps(MaterialColor.TERRACOTTA_ORANGE).lightLevel((state) -> 3)), 200);
     public static final RegistryObject<Block> aura_leaves = register("aura_leaves", () -> new LeavesBlock(GaiaBlockProperties.leavesProps(MaterialColor.METAL)));
-    public static final RegistryObject<RotatedPillarBlock> pink_agate_log = register("pink_agate_log", () -> new AgateLogBlock(() -> s_pink_agate_log, GaiaBlockProperties.logProps(MaterialColor.COLOR_MAGENTA, MaterialColor.TERRACOTTA_PINK)));
-    public static final RegistryObject<RotatedPillarBlock> blue_agate_log = register("blue_agate_log", () -> new AgateLogBlock(() -> s_blue_agate_log, GaiaBlockProperties.logProps(MaterialColor.COLOR_BLUE, MaterialColor.TERRACOTTA_BLUE)));
-    public static final RegistryObject<RotatedPillarBlock> green_agate_log = register("green_agate_log", () -> new AgateLogBlock(() -> s_green_agate_log, GaiaBlockProperties.logProps(MaterialColor.COLOR_GREEN, MaterialColor.TERRACOTTA_LIGHT_GREEN)));
-    public static final RegistryObject<RotatedPillarBlock> purple_agate_log = register("purple_agate_log", () -> new AgateLogBlock(() -> s_purple_agate_log, GaiaBlockProperties.logProps(MaterialColor.TERRACOTTA_PURPLE, MaterialColor.COLOR_PURPLE)));
-    public static final RegistryObject<RotatedPillarBlock> fossilized_log = register("fossilized_log", () -> new AgateLogBlock(() -> s_fossilized_log, GaiaBlockProperties.logProps(MaterialColor.COLOR_YELLOW, MaterialColor.DIRT)));
-    public static final RegistryObject<RotatedPillarBlock> corrupted_log = register("corrupted_log", () -> new AgateLogBlock(() -> s_corrupted_log, GaiaBlockProperties.logProps(MaterialColor.FIRE, MaterialColor.TERRACOTTA_GRAY)));
-    public static final RegistryObject<RotatedPillarBlock> burnt_log = register("burnt_log", () -> new AgateLogBlock(() -> s_burnt_log, GaiaBlockProperties.logProps(MaterialColor.COLOR_GRAY, MaterialColor.TERRACOTTA_BLACK)));
-    public static final RegistryObject<RotatedPillarBlock> burning_log = register("burning_log", () -> new AgateLogBlock(() -> s_burning_log, GaiaBlockProperties.logProps(MaterialColor.COLOR_ORANGE, MaterialColor.TERRACOTTA_ORANGE).lightLevel((state) -> 3)), 1600);
-    public static final RegistryObject<RotatedPillarBlock> aura_log = register("aura_log", () -> new AgateLogBlock(() -> s_aura_log, GaiaBlockProperties.logProps(MaterialColor.METAL, MaterialColor.COLOR_GRAY)));
-    public static final RegistryObject<RotatedPillarBlock> stripped_pink_agate_log = register("stripped_pink_agate_log", () -> s_pink_agate_log);
-    public static final RegistryObject<RotatedPillarBlock> stripped_blue_agate_log = register("stripped_blue_agate_log", () -> s_blue_agate_log);
-    public static final RegistryObject<RotatedPillarBlock> stripped_green_agate_log = register("stripped_green_agate_log", () -> s_green_agate_log);
-    public static final RegistryObject<RotatedPillarBlock> stripped_purple_agate_log = register("stripped_purple_agate_log", () -> s_purple_agate_log);
-    public static final RegistryObject<RotatedPillarBlock> stripped_fossilized_log = register("stripped_fossilized_log", () -> s_fossilized_log);
-    public static final RegistryObject<RotatedPillarBlock> stripped_corrupted_log = register("stripped_corrupted_log", () -> s_corrupted_log);
-    public static final RegistryObject<RotatedPillarBlock> stripped_burnt_log = register("stripped_burnt_log", () -> s_burnt_log);
-    public static final RegistryObject<RotatedPillarBlock> stripped_burning_log = register("stripped_burning_log", () -> s_burning_log, 1600);
-    public static final RegistryObject<RotatedPillarBlock> stripped_aura_log = register("stripped_aura_log", () -> s_aura_log);
-    public static final RegistryObject<RotatedPillarBlock> pink_agate_wood = register("pink_agate_wood", () -> new AgateLogBlock(() -> s_pink_agate_wood, GaiaBlockProperties.logProps(MaterialColor.TERRACOTTA_PINK)));
-    public static final RegistryObject<RotatedPillarBlock> blue_agate_wood = register("blue_agate_wood", () -> new AgateLogBlock(() -> s_blue_agate_wood, GaiaBlockProperties.logProps(MaterialColor.TERRACOTTA_BLUE)));
-    public static final RegistryObject<RotatedPillarBlock> green_agate_wood = register("green_agate_wood", () -> new AgateLogBlock(() -> s_green_agate_wood, GaiaBlockProperties.logProps(MaterialColor.TERRACOTTA_LIGHT_GREEN)));
-    public static final RegistryObject<RotatedPillarBlock> purple_agate_wood = register("purple_agate_wood", () -> new AgateLogBlock(() -> s_purple_agate_wood, GaiaBlockProperties.logProps(MaterialColor.COLOR_PURPLE)));
-    public static final RegistryObject<RotatedPillarBlock> fossilized_wood = register("fossilized_wood", () -> new AgateLogBlock(() -> s_fossilized_wood, GaiaBlockProperties.logProps(MaterialColor.DIRT)));
-    public static final RegistryObject<RotatedPillarBlock> corrupted_wood = register("corrupted_wood", () -> new AgateLogBlock(() -> s_corrupted_wood, GaiaBlockProperties.logProps(MaterialColor.TERRACOTTA_GRAY)));
-    public static final RegistryObject<RotatedPillarBlock> burnt_wood = register("burnt_wood", () -> new AgateLogBlock(() -> s_burnt_wood, GaiaBlockProperties.logProps(MaterialColor.TERRACOTTA_BLACK)));
-    public static final RegistryObject<RotatedPillarBlock> burning_wood = register("burning_wood", () -> new AgateLogBlock(() -> s_burning_wood, GaiaBlockProperties.logProps(MaterialColor.TERRACOTTA_ORANGE).lightLevel((state) -> 3)), 1600);
-    public static final RegistryObject<RotatedPillarBlock> aura_wood = register("aura_wood", () -> new AgateLogBlock(() -> s_aura_wood, GaiaBlockProperties.logProps(MaterialColor.COLOR_GRAY)));
-    public static final RegistryObject<RotatedPillarBlock> stripped_pink_agate_wood = register("stripped_pink_agate_wood", () -> s_pink_agate_wood);
-    public static final RegistryObject<RotatedPillarBlock> stripped_blue_agate_wood = register("stripped_blue_agate_wood", () -> s_blue_agate_wood);
-    public static final RegistryObject<RotatedPillarBlock> stripped_green_agate_wood = register("stripped_green_agate_wood", () -> s_green_agate_wood);
-    public static final RegistryObject<RotatedPillarBlock> stripped_purple_agate_wood = register("stripped_purple_agate_wood", () -> s_purple_agate_wood);
-    public static final RegistryObject<RotatedPillarBlock> stripped_fossilized_wood = register("stripped_fossilized_wood", () -> s_fossilized_wood);
-    public static final RegistryObject<RotatedPillarBlock> stripped_corrupted_wood = register("stripped_corrupted_wood", () -> s_corrupted_wood);
-    public static final RegistryObject<RotatedPillarBlock> stripped_burnt_wood = register("stripped_burnt_wood", () -> s_burnt_wood);
-    public static final RegistryObject<RotatedPillarBlock> stripped_burning_wood = register("stripped_burning_wood", () -> s_burning_wood, 1600);
-    public static final RegistryObject<RotatedPillarBlock> stripped_aura_wood = register("stripped_aura_wood", () -> s_aura_wood);
+    public static final RegistryObject<RotatedPillarBlock> pink_agate_log = register("pink_agate_log", () -> new RotatedPillarBlock(GaiaBlockProperties.logProps(MaterialColor.COLOR_MAGENTA, MaterialColor.TERRACOTTA_PINK)));
+    public static final RegistryObject<RotatedPillarBlock> blue_agate_log = register("blue_agate_log", () -> new RotatedPillarBlock(GaiaBlockProperties.logProps(MaterialColor.COLOR_BLUE, MaterialColor.TERRACOTTA_BLUE)));
+    public static final RegistryObject<RotatedPillarBlock> green_agate_log = register("green_agate_log", () -> new RotatedPillarBlock(GaiaBlockProperties.logProps(MaterialColor.COLOR_GREEN, MaterialColor.TERRACOTTA_LIGHT_GREEN)));
+    public static final RegistryObject<RotatedPillarBlock> purple_agate_log = register("purple_agate_log", () -> new RotatedPillarBlock(GaiaBlockProperties.logProps(MaterialColor.TERRACOTTA_PURPLE, MaterialColor.COLOR_PURPLE)));
+    public static final RegistryObject<RotatedPillarBlock> fossilized_log = register("fossilized_log", () -> new RotatedPillarBlock(GaiaBlockProperties.logProps(MaterialColor.COLOR_YELLOW, MaterialColor.DIRT)));
+    public static final RegistryObject<RotatedPillarBlock> corrupted_log = register("corrupted_log", () -> new RotatedPillarBlock(GaiaBlockProperties.logProps(MaterialColor.FIRE, MaterialColor.TERRACOTTA_GRAY)));
+    public static final RegistryObject<RotatedPillarBlock> burnt_log = register("burnt_log", () -> new RotatedPillarBlock(GaiaBlockProperties.logProps(MaterialColor.COLOR_GRAY, MaterialColor.TERRACOTTA_BLACK)));
+    public static final RegistryObject<RotatedPillarBlock> burning_log = register("burning_log", () -> new RotatedPillarBlock(GaiaBlockProperties.logProps(MaterialColor.COLOR_ORANGE, MaterialColor.TERRACOTTA_ORANGE).lightLevel((state) -> 3)), 1600);
+    public static final RegistryObject<RotatedPillarBlock> aura_log = register("aura_log", () -> new RotatedPillarBlock(GaiaBlockProperties.logProps(MaterialColor.METAL, MaterialColor.COLOR_GRAY)));
+    public static final RegistryObject<RotatedPillarBlock> stripped_pink_agate_log = register("stripped_pink_agate_log", () -> new RotatedPillarBlock(GaiaBlockProperties.logProps(MaterialColor.COLOR_MAGENTA)));
+    public static final RegistryObject<RotatedPillarBlock> stripped_blue_agate_log = register("stripped_blue_agate_log", () -> new RotatedPillarBlock(GaiaBlockProperties.logProps(MaterialColor.COLOR_BLUE)));
+    public static final RegistryObject<RotatedPillarBlock> stripped_green_agate_log = register("stripped_green_agate_log", () -> new RotatedPillarBlock(GaiaBlockProperties.logProps(MaterialColor.COLOR_GREEN)));
+    public static final RegistryObject<RotatedPillarBlock> stripped_purple_agate_log = register("stripped_purple_agate_log", () -> new RotatedPillarBlock(GaiaBlockProperties.logProps(MaterialColor.TERRACOTTA_PURPLE)));
+    public static final RegistryObject<RotatedPillarBlock> stripped_fossilized_log = register("stripped_fossilized_log", () -> new RotatedPillarBlock(GaiaBlockProperties.logProps(MaterialColor.COLOR_YELLOW)));
+    public static final RegistryObject<RotatedPillarBlock> stripped_corrupted_log = register("stripped_corrupted_log", () -> new RotatedPillarBlock(GaiaBlockProperties.logProps(MaterialColor.FIRE)));
+    public static final RegistryObject<RotatedPillarBlock> stripped_burnt_log = register("stripped_burnt_log", () -> new RotatedPillarBlock(GaiaBlockProperties.logProps(MaterialColor.COLOR_GRAY)));
+    public static final RegistryObject<RotatedPillarBlock> stripped_burning_log = register("stripped_burning_log", () -> new RotatedPillarBlock(GaiaBlockProperties.logProps(MaterialColor.COLOR_ORANGE).lightLevel((state) -> 3)), 1600);
+    public static final RegistryObject<RotatedPillarBlock> stripped_aura_log = register("stripped_aura_log", () -> new RotatedPillarBlock(GaiaBlockProperties.logProps(MaterialColor.METAL)));
+    public static final RegistryObject<RotatedPillarBlock> pink_agate_wood = register("pink_agate_wood", () -> new RotatedPillarBlock(GaiaBlockProperties.logProps(MaterialColor.TERRACOTTA_PINK)));
+    public static final RegistryObject<RotatedPillarBlock> blue_agate_wood = register("blue_agate_wood", () -> new RotatedPillarBlock(GaiaBlockProperties.logProps(MaterialColor.TERRACOTTA_BLUE)));
+    public static final RegistryObject<RotatedPillarBlock> green_agate_wood = register("green_agate_wood", () -> new RotatedPillarBlock(GaiaBlockProperties.logProps(MaterialColor.TERRACOTTA_LIGHT_GREEN)));
+    public static final RegistryObject<RotatedPillarBlock> purple_agate_wood = register("purple_agate_wood", () -> new RotatedPillarBlock(GaiaBlockProperties.logProps(MaterialColor.COLOR_PURPLE)));
+    public static final RegistryObject<RotatedPillarBlock> fossilized_wood = register("fossilized_wood", () -> new RotatedPillarBlock(GaiaBlockProperties.logProps(MaterialColor.DIRT)));
+    public static final RegistryObject<RotatedPillarBlock> corrupted_wood = register("corrupted_wood", () -> new RotatedPillarBlock(GaiaBlockProperties.logProps(MaterialColor.TERRACOTTA_GRAY)));
+    public static final RegistryObject<RotatedPillarBlock> burnt_wood = register("burnt_wood", () -> new RotatedPillarBlock(GaiaBlockProperties.logProps(MaterialColor.TERRACOTTA_BLACK)));
+    public static final RegistryObject<RotatedPillarBlock> burning_wood = register("burning_wood", () -> new RotatedPillarBlock(GaiaBlockProperties.logProps(MaterialColor.TERRACOTTA_ORANGE).lightLevel((state) -> 3)), 1600);
+    public static final RegistryObject<RotatedPillarBlock> aura_wood = register("aura_wood", () -> new RotatedPillarBlock(GaiaBlockProperties.logProps(MaterialColor.COLOR_GRAY)));
+    public static final RegistryObject<RotatedPillarBlock> stripped_pink_agate_wood = register("stripped_pink_agate_wood", () -> new RotatedPillarBlock(GaiaBlockProperties.logProps(MaterialColor.COLOR_MAGENTA)));
+    public static final RegistryObject<RotatedPillarBlock> stripped_blue_agate_wood = register("stripped_blue_agate_wood", () -> new RotatedPillarBlock(GaiaBlockProperties.logProps(MaterialColor.COLOR_BLUE)));
+    public static final RegistryObject<RotatedPillarBlock> stripped_green_agate_wood = register("stripped_green_agate_wood", () -> new RotatedPillarBlock(GaiaBlockProperties.logProps(MaterialColor.COLOR_GREEN)));
+    public static final RegistryObject<RotatedPillarBlock> stripped_purple_agate_wood = register("stripped_purple_agate_wood", () -> new RotatedPillarBlock(GaiaBlockProperties.logProps(MaterialColor.TERRACOTTA_PURPLE)));
+    public static final RegistryObject<RotatedPillarBlock> stripped_fossilized_wood = register("stripped_fossilized_wood", () -> new RotatedPillarBlock(GaiaBlockProperties.logProps(MaterialColor.COLOR_YELLOW)));
+    public static final RegistryObject<RotatedPillarBlock> stripped_corrupted_wood = register("stripped_corrupted_wood", () -> new RotatedPillarBlock(GaiaBlockProperties.logProps(MaterialColor.FIRE)));
+    public static final RegistryObject<RotatedPillarBlock> stripped_burnt_wood = register("stripped_burnt_wood", () -> new RotatedPillarBlock(GaiaBlockProperties.logProps(MaterialColor.COLOR_GRAY)));
+    public static final RegistryObject<RotatedPillarBlock> stripped_burning_wood = register("stripped_burning_wood", () -> new RotatedPillarBlock(GaiaBlockProperties.logProps(MaterialColor.COLOR_ORANGE).lightLevel((state) -> 3)), 1600);
+    public static final RegistryObject<RotatedPillarBlock> stripped_aura_wood = register("stripped_aura_wood", () -> new RotatedPillarBlock(GaiaBlockProperties.logProps(MaterialColor.METAL)));
 
     public static final RegistryObject<Block> salt = register("salt", () -> new GaiaFallingBlock(GaiaBlockProperties.sandProps(MaterialColor.SNOW, 0.9F, SoundType.SAND), 0xE0E0FF));
     public static final RegistryObject<Block> saltstone = register("saltstone", GaiaBlockProperties.stoneToolProps(MaterialColor.TERRACOTTA_LIGHT_BLUE, 1.5F, 10.0F, PICKAXE, 0));
@@ -429,5 +413,34 @@ public class ModBlocks {
         block.addPlant(burnt_sapling.getId(), potted_burnt_sapling);
         block.addPlant(burning_sapling.getId(), potted_burning_sapling);
         block.addPlant(aura_sapling.getId(), potted_aura_sapling);
+    }
+
+    public static void addStripping() {
+        Map<Block, Block> STRIPABLES = Maps.newHashMap(AxeItem.STRIPABLES);
+
+        addToMap(STRIPABLES, pink_agate_log, stripped_pink_agate_log);
+        addToMap(STRIPABLES, blue_agate_log, stripped_blue_agate_log);
+        addToMap(STRIPABLES, green_agate_log, stripped_green_agate_log);
+        addToMap(STRIPABLES, purple_agate_log, stripped_purple_agate_log);
+        addToMap(STRIPABLES, fossilized_log, stripped_fossilized_log);
+        addToMap(STRIPABLES, corrupted_log, stripped_corrupted_log);
+        addToMap(STRIPABLES, burnt_log, stripped_burnt_log);
+        addToMap(STRIPABLES, burning_log, stripped_burning_log);
+        addToMap(STRIPABLES, aura_log, stripped_aura_log);
+        addToMap(STRIPABLES, pink_agate_wood, stripped_pink_agate_wood);
+        addToMap(STRIPABLES, blue_agate_wood, stripped_blue_agate_wood);
+        addToMap(STRIPABLES, green_agate_wood, stripped_green_agate_wood);
+        addToMap(STRIPABLES, purple_agate_wood, stripped_purple_agate_wood);
+        addToMap(STRIPABLES, fossilized_wood, stripped_fossilized_wood);
+        addToMap(STRIPABLES, corrupted_wood, stripped_corrupted_wood);
+        addToMap(STRIPABLES, burnt_wood, stripped_burnt_wood);
+        addToMap(STRIPABLES, burning_wood, stripped_burning_wood);
+        addToMap(STRIPABLES, aura_wood, stripped_aura_wood);
+
+        AxeItem.STRIPABLES = STRIPABLES;
+    }
+
+    private static void addToMap(Map<Block, Block> map, Supplier<? extends Block> original, Supplier<? extends Block> newstate) {
+        map.put(original.get(), newstate.get());
     }
 }
