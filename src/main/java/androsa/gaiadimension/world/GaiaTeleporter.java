@@ -20,8 +20,11 @@ import net.minecraft.world.gen.Heightmap;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraft.world.server.TicketType;
 import net.minecraftforge.common.util.ITeleporter;
+import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 
 import javax.annotation.Nullable;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.*;
 import java.util.function.Function;
 import java.util.function.ToDoubleFunction;
@@ -30,6 +33,8 @@ public class GaiaTeleporter implements ITeleporter {
 
     private static final Block KEYSTONE = ModBlocks.keystone_block.get();
     private final ServerWorld world;
+
+    private static final Method m_getRelativePortalPosition = ObfuscationReflectionHelper.findMethod(Entity.class, "func_241839_a", Direction.Axis.class, TeleportationRepositioner.Result.class);
 
     public GaiaTeleporter(ServerWorld world) {
         this.world = world;
@@ -195,7 +200,11 @@ public class GaiaTeleporter implements ITeleporter {
                 if (blockstate.hasProperty(BlockStateProperties.HORIZONTAL_AXIS)) {
                     axis = blockstate.getValue(BlockStateProperties.HORIZONTAL_AXIS);
                     TeleportationRepositioner.Result result = TeleportationRepositioner.getLargestRectangleAround(entity.portalEntrancePos, axis, 21, Direction.Axis.Y, 21, (pos) -> entity.level.getBlockState(pos) == blockstate);
-                    vector3d = entity.getRelativePortalPosition(axis, result);
+                    try {
+                        vector3d = (Vector3d) m_getRelativePortalPosition.invoke(entity, axis, result);
+                    } catch (IllegalAccessException | InvocationTargetException e) {
+                        throw new RuntimeException(e);
+                    }
                 } else {
                     axis = Direction.Axis.X;
                     vector3d = new Vector3d(0.5D, 0.0D, 0.0D);
