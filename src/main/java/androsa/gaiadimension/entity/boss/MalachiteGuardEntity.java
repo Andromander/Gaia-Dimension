@@ -201,39 +201,6 @@ public class MalachiteGuardEntity extends MonsterEntity {
     public void tick() {
         super.tick();
 
-        if (getPhase() == 0) {
-            //Don't move, except falling
-            Vector3d motion = this.getDeltaMovement();
-            this.setDeltaMovement(0.0D, motion.y(), 0.0D);
-
-            //Check if we spawned drones in this phase
-            if (!hasSpawnedDrones()) {
-                spawnDrones();
-                setSpawnedDrones(true);
-            }
-        }
-
-        if (getPhase() == 0 && getDronesLeft() == 0 && hasSpawnedDrones()) {
-            //No more drones, time for the next phase
-            this.setPhase(1);
-        }
-
-        if (getPhase() == 1 && getHealth() < getMaxHealth() / 2) {
-            //Sufficiently weak enough. Change phase
-            this.setPhase(2);
-        }
-
-        //Half speed at Phase 3. Phase 1 doesn't move, anyway
-        float movespeed = (float) this.getAttribute(Attributes.MOVEMENT_SPEED).getValue();
-        if (getPhase() == 2) {
-            //Move at half the speed in this phase
-            movespeed *= 0.35F;
-        } else if (getPhase() == 0) {
-            //No moving in this phase
-            movespeed = 0.0F;
-        }
-        this.setSpeed(movespeed);
-
         if (!level.isClientSide()) {
             this.bossInfo.setPercent(this.getHealth() / this.getMaxHealth());
         }
@@ -303,6 +270,42 @@ public class MalachiteGuardEntity extends MonsterEntity {
     }
 
     @Override
+    public void aiStep() {
+        if (getPhase() == 0) {
+            //Don't move, except falling
+            Vector3d motion = this.getDeltaMovement();
+            this.setDeltaMovement(0.0D, motion.y(), 0.0D);
+
+            //Check if we spawned drones in this phase
+            if (!hasSpawnedDrones()) {
+                spawnDrones();
+                setSpawnedDrones(true);
+            }
+
+            if (getDronesLeft() == 0 && hasSpawnedDrones()) {
+                //No more drones, time for the next phase
+                this.setPhase(1);
+            }
+        }
+
+        if (getPhase() == 1 && getHealth() < getMaxHealth() / 2) {
+            //Sufficiently weak enough. Change phase
+            this.setPhase(2);
+        }
+
+        //Half speed at Phase 3. Phase 1 doesn't move, anyway
+        float movespeed = (float) this.getAttribute(Attributes.MOVEMENT_SPEED).getValue();
+        if (getPhase() == 2) {
+            //Move at half the speed in this phase
+            movespeed *= 0.35F;
+        } else if (getPhase() == 0) {
+            //No moving in this phase
+            movespeed = 0.0F;
+        }
+        this.setSpeed(movespeed);
+
+        super.aiStep();
+    }
 
     @Override
     public boolean canBreatheUnderwater() {
