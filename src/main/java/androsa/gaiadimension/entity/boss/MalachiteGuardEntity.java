@@ -70,7 +70,6 @@ public class MalachiteGuardEntity extends MonsterEntity {
     @Override
     protected void registerGoals() {
         super.registerGoals();
-        this.goalSelector.addGoal(0, new SwimGoal(this));
         this.goalSelector.addGoal(1, new MalachiteGuardEntity.AttackGoal());
         this.goalSelector.addGoal(2, new MoveTowardsTargetGoal(this, 0.6D, 32.0F));
         this.goalSelector.addGoal(3, new LookAtGoal(this, PlayerEntity.class, 8.0F));
@@ -303,8 +302,15 @@ public class MalachiteGuardEntity extends MonsterEntity {
     }
 
     @Override
-    protected int decreaseAirSupply(int amount) {
-        return amount;
+
+    @Override
+    public boolean canBreatheUnderwater() {
+        return true;
+    }
+
+    @Override
+    protected boolean isAffectedByFluids() {
+        return false;
     }
 
     @Override
