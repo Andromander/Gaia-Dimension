@@ -70,10 +70,11 @@ public class MalachiteGuardEntity extends MonsterEntity {
     @Override
     protected void registerGoals() {
         super.registerGoals();
-        this.goalSelector.addGoal(1, new MalachiteGuardEntity.AttackGoal());
-        this.goalSelector.addGoal(2, new MoveTowardsTargetGoal(this, 0.6D, 32.0F));
-        this.goalSelector.addGoal(3, new LookAtGoal(this, PlayerEntity.class, 8.0F));
-        this.goalSelector.addGoal(4, new WaterAvoidingRandomWalkingGoal(this, 0.6D));
+        this.goalSelector.addGoal(0, new DefendGoal());
+        this.goalSelector.addGoal(2, new MeleeAttackGoal(this, 0.6D, true));
+        this.goalSelector.addGoal(3, new MoveTowardsTargetGoal(this, 0.6D, 32.0F));
+        this.goalSelector.addGoal(4, new LookAtGoal(this, PlayerEntity.class, 8.0F));
+        this.goalSelector.addGoal(5, new WaterAvoidingRandomWalkingGoal(this, 0.6D));
         this.targetSelector.addGoal(1, new HurtByTargetGoal(this));
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, true));
     }
@@ -453,18 +454,23 @@ public class MalachiteGuardEntity extends MonsterEntity {
         return false;
     }
 
-    class AttackGoal extends MeleeAttackGoal {
+    class DefendGoal extends Goal {
 
-        /**
-         * MeleeAttackGoal, but it won't execute if it is Phase 1
-         */
-        public AttackGoal() {
-            super(MalachiteGuardEntity.this, 0.6D, true);
+        public DefendGoal() {
+            this.setFlags(EnumSet.of(Flag.MOVE, Flag.LOOK, Flag.JUMP));
         }
 
         @Override
         public boolean canUse() {
-            return MalachiteGuardEntity.this.getPhase() != 0 && super.canUse();
+            return MalachiteGuardEntity.this.getPhase() == 0;
+        }
+    }
+
+        /**
+         */
+        }
+
+        @Override
         }
     }
 }
