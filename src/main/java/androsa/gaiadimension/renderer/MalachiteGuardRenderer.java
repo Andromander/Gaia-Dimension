@@ -27,4 +27,9 @@ public class MalachiteGuardRenderer<T extends MalachiteGuardEntity, M extends Ma
     public ResourceLocation getTextureLocation(T entity) {
         return textureLoc;
     }
+
+    @Override
+    protected boolean isShaking(T entity) {
+        return entity.isCharging();
+    }
 }

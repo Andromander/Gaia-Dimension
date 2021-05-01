@@ -36,6 +36,7 @@ public class MalachiteGuardModel<T extends MalachiteGuardEntity> extends Segment
     public ModelRenderer bladeL;
 
     private float offset;
+    private boolean reset;
 
     public MalachiteGuardModel(float scale) {
         this.texWidth = 128;
@@ -162,46 +163,53 @@ public class MalachiteGuardModel<T extends MalachiteGuardEntity> extends Segment
     @Override
     public void setupAnim(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
         if (entity.getPhase() == 0) {
+            if (reset) reset = false;
             this.offset = 0.1F;
 
-            this.upperArmL.xRot = -1.3F;
-            this.upperArmR.xRot = -1.3F;
-            this.upperArmL.yRot = -0.1F;
-            this.upperArmR.yRot = 0.1F;
+            setRotateAngle(upperArmL, -1.3F, -0.1F, 0.0F);
+            setRotateAngle(upperArmR, -1.3F, 0.1F, 0.0F);
+            setRotateAngle(legL, -0.5F, -0.7F, 0.0F);
+            setRotateAngle(legR, -0.5F, 0.7F, 0.0F);
+            setRotateAngle(footL, 0.5F, 0.0F, 0.0F);
+            setRotateAngle(footR, 0.5F, 0.0F, 0.0F);
+            setRotateAngle(lowerArmL, -1.7F, 0.6F, 0.0F);
+            setRotateAngle(lowerArmR, -1.7F, -0.6F, 0.0F);
+        } else if (entity.isCharging()) {
+            if (reset) reset = false;
+            this.offset = 0.5F;
 
-            this.legL.xRot = -0.5F;
-            this.legR.xRot = -0.5F;
-            this.legL.yRot = -0.7F;
-            this.legR.yRot = 0.7F;
+            setRotateAngle(head, 0.8F, 0.0F, 0.0F);
+            setRotateAngle(torso, 0.2F, 0.0F, 0.0F);
+            setRotateAngle(upperArmL, -0.8F, -0.4F, 0.0F);
+            setRotateAngle(upperArmR, -0.8F, 0.4F, 0.0F);
+            setRotateAngle(lowerArmL, -1.8F, 0.0F, 0.0F);
+            setRotateAngle(lowerArmR, -1.8F, 0.0F, 0.0F);
+            setRotateAngle(legL, -1.1F, -0.3F, 0.0F);
+            setRotateAngle(legR, -1.1F, 0.3F, 0.0F);
+            setRotateAngle(footL, 1.6F, 0.0F, 0.0F);
+            setRotateAngle(footR, 1.6F, 0.0F, 0.0F);
+        } else if (entity.isCharged()) {
+            if (reset) reset = false;
+            this.offset = 0.1F;
 
-            this.footL.xRot = 0.5F;
-            this.footR.xRot = 0.5F;
+            setRotateAngle(head, -0.8F, 0.0F, 0.0F);
+            setRotateAngle(torso, -0.1F, 0.0F, 0.0F);
+            setRotateAngle(upperArmL, -3.0F, 0.0F, 0.7F);
+            setRotateAngle(upperArmR, -3.0F, 0.0F, -0.7F);
+            setRotateAngle(lowerArmL, 0.0F, 0.0F, 0.0F);
+            setRotateAngle(lowerArmR, 0.0F, 0.0F, 0.0F);
+            setRotateAngle(legL, 0.0F, 0.0F, -0.3F);
+            setRotateAngle(legR, 0.0F, 0.0F, 0.3F);
+            setRotateAngle(footL, 0.0F, 0.0F, 0.0F);
+            setRotateAngle(footR, 0.0F, 0.0F, 0.0F);
 
-            this.lowerArmL.xRot = -1.7F;
-            this.lowerArmR.xRot = -1.7F;
-            this.lowerArmL.yRot = 0.6F;
-            this.lowerArmR.yRot = -0.6F;
         } else {
             this.offset = 0.0F;
 
-            //Reset angles
-            this.upperArmL.xRot = 0F;
-            this.upperArmR.xRot = 0F;
-            this.upperArmL.yRot = 0F;
-            this.upperArmR.yRot = 0F;
-
-            this.legL.xRot = 0F;
-            this.legR.xRot = 0F;
-            this.legL.yRot = 0F;
-            this.legR.yRot = 0F;
-
-            this.footL.xRot = 0F;
-            this.footR.xRot = 0F;
-
-            this.lowerArmL.xRot = 0F;
-            this.lowerArmR.xRot = 0F;
-            this.lowerArmL.yRot = 0F;
-            this.lowerArmR.yRot = 0F;
+            if (!reset) {
+                this.resetAngles(head, torso, upperArmL, upperArmR, legL, legR, footL, footR, lowerArmL, lowerArmR);
+                this.reset = true;
+            }
 
             //Do the angles thing
             this.upperArmR.zRot = 0.0F;
@@ -217,9 +225,15 @@ public class MalachiteGuardModel<T extends MalachiteGuardEntity> extends Segment
 
             this.legR.xRot = MathHelper.cos(limbSwing * 0.6662F) * 0.5F * limbSwingAmount;
             this.legL.xRot = MathHelper.cos(limbSwing * 0.6662F + (float) Math.PI) * 0.5F * limbSwingAmount;
-        }
 
-        this.head.yRot = netHeadYaw / (180F / (float) Math.PI);
-        this.head.xRot = headPitch / (180F / (float) Math.PI);
+            this.head.yRot = netHeadYaw / (180F / (float) Math.PI);
+            this.head.xRot = headPitch / (180F / (float) Math.PI);
+        }
+    }
+
+    private void resetAngles(ModelRenderer... renderers) {
+        for (ModelRenderer part : renderers) {
+            this.setRotateAngle(part, 0.0F, 0.0F, 0.0F);
+        }
     }
 }
