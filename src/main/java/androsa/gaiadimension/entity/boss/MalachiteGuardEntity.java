@@ -170,10 +170,25 @@ public class MalachiteGuardEntity extends MonsterEntity {
         return false;
     }
 
+    /**
+     * Ignore anything that's not a player if we are in Normal or Hard
+     */
     @Override
     public void setTarget(@Nullable LivingEntity entity) {
         if (level.getDifficulty() == Difficulty.NORMAL || level.getDifficulty() == Difficulty.HARD) {
             if (entity instanceof PlayerEntity) {
+                PlayerEntity player = (PlayerEntity) entity;
+                if (!player.isSpectator() || !player.isCreative()) {
+                    super.setTarget(entity);
+                }
+            }
+        } else if (level.getDifficulty() == Difficulty.EASY) {
+            if (entity instanceof PlayerEntity) {
+                PlayerEntity player = (PlayerEntity) entity;
+                if (!player.isSpectator() || !player.isCreative()) {
+                    super.setTarget(entity);
+                }
+            } else {
                 super.setTarget(entity);
             }
         }
