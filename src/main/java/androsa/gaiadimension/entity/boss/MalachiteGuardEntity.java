@@ -566,7 +566,6 @@ public class MalachiteGuardEntity extends MonsterEntity {
                     if (type == EntityType.PLAYER) {
                         return !entity.isSpectator() && !((PlayerEntity)entity).isCreative();
                     }
-                    System.out.println(entity + " is not a target");
                     return false;
                 });
                 for (Entity entity : list) {
@@ -577,7 +576,6 @@ public class MalachiteGuardEntity extends MonsterEntity {
                     }
                 }
             }
-            System.out.println("Phase is " + guard.getPhase() + " and cooldown is " + guard.cooldownTimer);
             return false;
         }
 
@@ -628,8 +626,6 @@ public class MalachiteGuardEntity extends MonsterEntity {
                     for (Entity entity : targets) {
                         Vector3d explosion = new Vector3d(guard.getX(), guard.getY(), guard.getZ());
                         Vector3d direction = entity.position().subtract(explosion).normalize();
-
-                        System.out.println("Additional damage is at " + guard.bideDamage);
 
                         entity.hurt(DamageSource.MAGIC, 8.0F + guard.bideDamage);
                         entity.setDeltaMovement(direction.x(), direction.y() + 0.2F, direction.z());
