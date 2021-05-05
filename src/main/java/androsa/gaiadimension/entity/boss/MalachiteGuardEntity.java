@@ -33,10 +33,10 @@ import java.util.List;
 public class MalachiteGuardEntity extends MonsterEntity {
 
     private static final DataParameter<Integer> PHASE = EntityDataManager.defineId(MalachiteGuardEntity.class, DataSerializers.INT);
-    private static final DataParameter<Integer> DRONES_LEFT = EntityDataManager.defineId(MalachiteGuardEntity.class, DataSerializers.INT);
-    private static final DataParameter<Boolean> IS_SPAWNED = EntityDataManager.defineId(MalachiteGuardEntity.class, DataSerializers.BOOLEAN);
     private static final DataParameter<Boolean> IS_CHARGING = EntityDataManager.defineId(MalachiteGuardEntity.class, DataSerializers.BOOLEAN);
     private static final DataParameter<Boolean> IS_CHARGED = EntityDataManager.defineId(MalachiteGuardEntity.class, DataSerializers.BOOLEAN);
+    private int dronesLeft;
+    private boolean hasSpawnedDrones;
     private int cooldownTimer;
     private float bideDamage;
 
@@ -65,8 +65,6 @@ public class MalachiteGuardEntity extends MonsterEntity {
     protected void defineSynchedData() {
         super.defineSynchedData();
         this.entityData.define(PHASE, 0);
-        this.entityData.define(DRONES_LEFT, 0);
-        this.entityData.define(IS_SPAWNED, false);
         this.entityData.define(IS_CHARGING, false);
         this.entityData.define(IS_CHARGED, false);
     }
@@ -75,6 +73,9 @@ public class MalachiteGuardEntity extends MonsterEntity {
     protected void registerGoals() {
         super.registerGoals();
         this.goalSelector.addGoal(0, new DefendGoal());
+        //Spin attack. In a short area, the Guard will spin in place, dealing more knockback and melee damage
+        //Stomping shockwave. If the target is in a specific range and is on the same level, create a shockwave attack, kicking the targets up
+        //Malachite Blast. In a bigger area and the target is above or below a certain height, create a blast attack dealing magic damage. When charging, damage is accumulated
         this.goalSelector.addGoal(1, new BlastAttackGoal(this));
         this.goalSelector.addGoal(2, new MeleeAttackGoal(this, 0.6D, true));
         this.goalSelector.addGoal(3, new MoveTowardsTargetGoal(this, 0.6D, 32.0F));
@@ -88,10 +89,10 @@ public class MalachiteGuardEntity extends MonsterEntity {
     public void readAdditionalSaveData(CompoundNBT nbt) {
         super.readAdditionalSaveData(nbt);
         this.setPhase(nbt.getInt("Phase"));
-        this.setDronesLeft(nbt.getInt("DronesLeft"));
-        this.setSpawnedDrones(nbt.getBoolean("IsSpawned"));
         this.setCharging(nbt.getBoolean("IsCharging"));
         this.setCharged(nbt.getBoolean("IsCharged"));
+        this.dronesLeft = nbt.getInt("DronesLeft");
+        this.hasSpawnedDrones = nbt.getBoolean("IsSpawned");
         this.cooldownTimer = nbt.getInt("CooldownTimer");
         this.bideDamage = nbt.getFloat("BideDamage");
         if (hasCustomName()) {
@@ -103,10 +104,10 @@ public class MalachiteGuardEntity extends MonsterEntity {
     public void addAdditionalSaveData(CompoundNBT nbt) {
         super.addAdditionalSaveData(nbt);
         nbt.putInt("Phase", getPhase());
-        nbt.putInt("DronesLeft", getDronesLeft());
-        nbt.putBoolean("IsSpawned", hasSpawnedDrones());
         nbt.putBoolean("IsCharging", isCharging());
         nbt.putBoolean("IsCharged", isCharged());
+        nbt.putInt("DronesLeft", dronesLeft);
+        nbt.putBoolean("IsSpawned", hasSpawnedDrones);
         nbt.putInt("CooldownTimer", cooldownTimer);
         nbt.putFloat("BideDamage", bideDamage);
     }
@@ -123,29 +124,11 @@ public class MalachiteGuardEntity extends MonsterEntity {
     }
 
     private void setPhase(int id) {
-        if (id > 2 || id < 0) { //Fine, I'll just make you redo this fight
+        if (id > 2 || id < 0) { // Fine, I'll just make you redo this fight
             id = 0;
-            setSpawnedDrones(false);
+            this.hasSpawnedDrones = false;
         }
         this.entityData.set(PHASE, id);
-    }
-
-    /** How many Malachite Drones are left? If we run out, we can change phase */
-    public int getDronesLeft() {
-        return this.entityData.get(DRONES_LEFT);
-    }
-
-    private void setDronesLeft(int drones) {
-        this.entityData.set(DRONES_LEFT, drones);
-    }
-
-    /** Has the Malachite Guard spawned any Malachite Drones yet? Spawn them and we can set this true */
-    public boolean hasSpawnedDrones() {
-        return this.entityData.get(IS_SPAWNED);
-    }
-
-    private void setSpawnedDrones(boolean spawned) {
-        this.entityData.set(IS_SPAWNED, spawned);
     }
 
     /** Is the Malachite Guard in a Charging state? Reduce and bide damage if so */
@@ -281,20 +264,17 @@ public class MalachiteGuardEntity extends MonsterEntity {
             createDrone(bpLeft);
             createDrone(bpMid);
             createDrone(bpRight);
-            setDronesLeft(3);
         } if (difficulty == Difficulty.NORMAL) {
             createDrone(bpTopLeft);
             createDrone(bpLowLeft);
             createDrone(bpTopRight);
             createDrone(bpLowRight);
-            setDronesLeft(4);
         } if (difficulty == Difficulty.HARD) {
             createDrone(bpTopLeft);
             createDrone(bpLowLeft);
             createDrone(bpTopRight);
             createDrone(bpLowRight);
             createDrone(bpMid);
-            setDronesLeft(5);
         }
     }
 
@@ -306,16 +286,14 @@ public class MalachiteGuardEntity extends MonsterEntity {
         }
         drone.setOwner(this);
         this.level.addFreshEntity(drone);
+        this.dronesLeft++;
     }
 
     /**
      * Pointless as it is, this is to safely count down the number of drones left
-     * We don't want others to set drones left recklessly, so this exists to count down outside this entity.
      */
     public void onDroneKilled() {
-        //Only tick down when necessary
-        if (getDronesLeft() > 0)
-            setDronesLeft(getDronesLeft() - 1);
+        this.dronesLeft--;
     }
 
     @Override
@@ -326,12 +304,12 @@ public class MalachiteGuardEntity extends MonsterEntity {
             this.setDeltaMovement(0.0D, motion.y(), 0.0D);
 
             //Check if we spawned drones in this phase
-            if (!hasSpawnedDrones()) {
-                spawnDrones();
-                setSpawnedDrones(true);
+            if (!hasSpawnedDrones) {
+                this.spawnDrones();
+                this.hasSpawnedDrones = true;
             }
 
-            if (getDronesLeft() == 0 && hasSpawnedDrones()) {
+            if (dronesLeft <= 0 && hasSpawnedDrones) {
                 //No more drones, time for the next phase
                 this.setPhase(1);
             }
