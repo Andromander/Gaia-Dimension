@@ -186,15 +186,13 @@ public class MalachiteGuardEntity extends MonsterEntity {
     public void setTarget(@Nullable LivingEntity entity) {
         if (level.getDifficulty() == Difficulty.NORMAL || level.getDifficulty() == Difficulty.HARD) {
             if (entity instanceof PlayerEntity) {
-                PlayerEntity player = (PlayerEntity) entity;
-                if (!player.isSpectator() || !player.isCreative()) {
+                if (EntityPredicates.NO_CREATIVE_OR_SPECTATOR.test(entity)) {
                     super.setTarget(entity);
                 }
             }
         } else if (level.getDifficulty() == Difficulty.EASY) {
             if (entity instanceof PlayerEntity) {
-                PlayerEntity player = (PlayerEntity) entity;
-                if (!player.isSpectator() || !player.isCreative()) {
+                if (EntityPredicates.NO_CREATIVE_OR_SPECTATOR.test(entity)) {
                     super.setTarget(entity);
                 }
             } else {
@@ -542,7 +540,7 @@ public class MalachiteGuardEntity extends MonsterEntity {
                 List<Entity> list = guard.level.getEntities(guard, guard.getBoundingBox().inflate(3.0F), (entity) -> {
                     EntityType<?> type = entity.getType();
                     if (type == EntityType.PLAYER) {
-                        return !entity.isSpectator() && !((PlayerEntity)entity).isCreative();
+                        return EntityPredicates.NO_CREATIVE_OR_SPECTATOR.test(entity);
                     }
                     return false;
                 });
