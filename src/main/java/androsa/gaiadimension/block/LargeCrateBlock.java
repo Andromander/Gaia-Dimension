@@ -116,7 +116,7 @@ public class LargeCrateBlock extends Block {
         if (stack.hasCustomHoverName()) {
             TileEntity tileentity = worldIn.getBlockEntity(pos);
             if (tileentity instanceof LargeCrateTileEntity) {
-                ((LargeCrateTileEntity)tileentity).setCustomName(stack.getDisplayName());
+                ((LargeCrateTileEntity)tileentity).setCustomName(stack.getHoverName());
             }
         }
     }
