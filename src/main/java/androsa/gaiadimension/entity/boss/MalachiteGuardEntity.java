@@ -546,8 +546,8 @@ public class MalachiteGuardEntity extends MonsterEntity {
                 });
                 for (Entity entity : list) {
                     double targetY = entity.blockPosition().getY();
-                    double guardY = entity.blockPosition().getY();
-                    if (targetY < guardY - 0.5D || targetY > guardY + 2.0D) {
+                    double guardY = guard.blockPosition().getY();
+                    if (targetY < guardY - 0.5D || targetY > guardY + 1.0D) {
                         return entity.isAlive();
                     }
                 }
