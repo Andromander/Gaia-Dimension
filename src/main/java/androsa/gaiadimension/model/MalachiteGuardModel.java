@@ -97,8 +97,8 @@ public class MalachiteGuardModel<T extends MalachiteGuardEntity> extends Segment
         this.waist.addBox(-2.0F, 0.0F, -1.0F, 4, 5, 2, scale);
         //hips
         this.hips = new ModelRenderer(this, 24, 0);
-        this.hips.setPos(0.0F, -5.0F, -2.5F);
-        this.hips.addBox(-6.0F, 0.0F, 0.0F, 12, 4, 5, scale);
+        this.hips.setPos(0.0F, -5.0F, 0.0F);
+        this.hips.addBox(-6.0F, 0.0F, -2.5F, 12, 4, 5, scale);
         //left leg
         this.legR = new ModelRenderer(this, 0, 0);
         this.legR.setPos(-4.5F, -1.0F, 0.0F);
@@ -174,7 +174,7 @@ public class MalachiteGuardModel<T extends MalachiteGuardEntity> extends Segment
             setRotateAngle(footR, 0.5F, 0.0F, 0.0F);
             setRotateAngle(lowerArmL, -1.7F, 0.6F, 0.0F);
             setRotateAngle(lowerArmR, -1.7F, -0.6F, 0.0F);
-        } else if (entity.isCharging()) {
+        } else if (entity.getChargePhase() == 1 || entity.getStompPhase() == 2) {
             if (reset) reset = false;
             this.offset = 0.5F;
 
@@ -188,7 +188,7 @@ public class MalachiteGuardModel<T extends MalachiteGuardEntity> extends Segment
             setRotateAngle(legR, -1.1F, 0.3F, 0.0F);
             setRotateAngle(footL, 1.6F, 0.0F, 0.0F);
             setRotateAngle(footR, 1.6F, 0.0F, 0.0F);
-        } else if (entity.isCharged()) {
+        } else if (entity.getChargePhase() == 2) {
             if (reset) reset = false;
             this.offset = 0.1F;
 
@@ -202,7 +202,18 @@ public class MalachiteGuardModel<T extends MalachiteGuardEntity> extends Segment
             setRotateAngle(legR, 0.0F, 0.0F, 0.3F);
             setRotateAngle(footL, 0.0F, 0.0F, 0.0F);
             setRotateAngle(footR, 0.0F, 0.0F, 0.0F);
+        } else if (entity.getStompPhase() == 1) {
+            if (reset) reset = false;
 
+            setRotateAngle(head, -0.3F, 0.0F, 0.0F);
+            setRotateAngle(upperArmL, -2.0F, -0.7F, 0.0F);
+            setRotateAngle(upperArmR, -2.0F, 0.7F, 0.0F);
+            setRotateAngle(lowerArmL, -0.8F, 0.3F, 0.0F);
+            setRotateAngle(lowerArmR, -0.8F, -0.3F, 0.0F);
+            setRotateAngle(legL, -2.0F, -0.5F, 0.0F);
+            setRotateAngle(footL, 2.0F, 0.0F, 0.0F);
+            setRotateAngle(legR, -0.2F, 0.5F, 0.0F);
+            setRotateAngle(footR, 0.2F, 0.0F, 0.0F);
         } else {
             this.offset = 0.0F;
 

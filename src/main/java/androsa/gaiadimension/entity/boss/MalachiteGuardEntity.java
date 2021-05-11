@@ -3,6 +3,7 @@ package androsa.gaiadimension.entity.boss;
 import androsa.gaiadimension.entity.MalachiteDroneEntity;
 import androsa.gaiadimension.registry.ModEntities;
 import androsa.gaiadimension.registry.ModItems;
+import net.minecraft.block.BlockState;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
@@ -16,6 +17,7 @@ import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
+import net.minecraft.particles.BlockParticleData;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.util.*;
@@ -33,11 +35,12 @@ import java.util.List;
 public class MalachiteGuardEntity extends MonsterEntity {
 
     private static final DataParameter<Integer> PHASE = EntityDataManager.defineId(MalachiteGuardEntity.class, DataSerializers.INT);
-    private static final DataParameter<Boolean> IS_CHARGING = EntityDataManager.defineId(MalachiteGuardEntity.class, DataSerializers.BOOLEAN);
-    private static final DataParameter<Boolean> IS_CHARGED = EntityDataManager.defineId(MalachiteGuardEntity.class, DataSerializers.BOOLEAN);
+    private static final DataParameter<Integer> STOMP_PHASE = EntityDataManager.defineId(MalachiteGuardEntity.class, DataSerializers.INT);
+    private static final DataParameter<Integer> CHARGE_PHASE = EntityDataManager.defineId(MalachiteGuardEntity.class, DataSerializers.INT);
     private int dronesLeft;
     private boolean hasSpawnedDrones;
-    private int cooldownTimer;
+    private int stompCooldown;
+    private int chargeCooldown;
     private float bideDamage;
 
     private final ServerBossInfo bossInfo = new ServerBossInfo(this.getDisplayName(), BossInfo.Color.GREEN, BossInfo.Overlay.PROGRESS);
@@ -57,30 +60,28 @@ public class MalachiteGuardEntity extends MonsterEntity {
     }
 
     /**
-     * Phase 0: Defence
-     * Phase 1: Attack
-     * Phase 2: Resist
+     * Phase 0: Defence | Idle     | Idle
+     * Phase 1: Attack  | Charging | Stomping
+     * Phase 2: Resist  | Charged  | Stomped
      */
     @Override
     protected void defineSynchedData() {
         super.defineSynchedData();
         this.entityData.define(PHASE, 0);
-        this.entityData.define(IS_CHARGING, false);
-        this.entityData.define(IS_CHARGED, false);
+        this.entityData.define(STOMP_PHASE, 0);
+        this.entityData.define(CHARGE_PHASE, 0);
     }
 
     @Override
     protected void registerGoals() {
         super.registerGoals();
         this.goalSelector.addGoal(0, new DefendGoal());
-        //Spin attack. In a short area, the Guard will spin in place, dealing more knockback and melee damage
-        //Stomping shockwave. If the target is in a specific range and is on the same level, create a shockwave attack, kicking the targets up
-        //Malachite Blast. In a bigger area and the target is above or below a certain height, create a blast attack dealing magic damage. When charging, damage is accumulated
-        this.goalSelector.addGoal(1, new BlastAttackGoal(this));
-        this.goalSelector.addGoal(2, new MeleeAttackGoal(this, 0.6D, true));
-        this.goalSelector.addGoal(3, new MoveTowardsTargetGoal(this, 0.6D, 32.0F));
-        this.goalSelector.addGoal(4, new LookAtGoal(this, PlayerEntity.class, 8.0F));
-        this.goalSelector.addGoal(5, new WaterAvoidingRandomWalkingGoal(this, 0.6D));
+        this.goalSelector.addGoal(1, new StompAttackGoal(this));
+        this.goalSelector.addGoal(2, new BlastAttackGoal(this));
+        this.goalSelector.addGoal(3, new MeleeAttackGoal(this, 0.6D, true));
+        this.goalSelector.addGoal(4, new MoveTowardsTargetGoal(this, 0.6D, 32.0F));
+        this.goalSelector.addGoal(5, new LookAtGoal(this, PlayerEntity.class, 8.0F));
+        this.goalSelector.addGoal(6, new WaterAvoidingRandomWalkingGoal(this, 0.6D));
         this.targetSelector.addGoal(1, new HurtByTargetGoal(this));
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, true));
     }
@@ -89,11 +90,12 @@ public class MalachiteGuardEntity extends MonsterEntity {
     public void readAdditionalSaveData(CompoundNBT nbt) {
         super.readAdditionalSaveData(nbt);
         this.setPhase(nbt.getInt("Phase"));
-        this.setCharging(nbt.getBoolean("IsCharging"));
-        this.setCharged(nbt.getBoolean("IsCharged"));
+        this.setStompPhase(nbt.getInt("StompPhase"));
+        this.setChargePhase(nbt.getInt("ChargePhase"));
         this.dronesLeft = nbt.getInt("DronesLeft");
         this.hasSpawnedDrones = nbt.getBoolean("IsSpawned");
-        this.cooldownTimer = nbt.getInt("CooldownTimer");
+        this.stompCooldown = nbt.getInt("StompCooldown");
+        this.chargeCooldown = nbt.getInt("ChargeCooldown");
         this.bideDamage = nbt.getFloat("BideDamage");
         if (hasCustomName()) {
             this.bossInfo.setName(getDisplayName());
@@ -104,11 +106,12 @@ public class MalachiteGuardEntity extends MonsterEntity {
     public void addAdditionalSaveData(CompoundNBT nbt) {
         super.addAdditionalSaveData(nbt);
         nbt.putInt("Phase", getPhase());
-        nbt.putBoolean("IsCharging", isCharging());
-        nbt.putBoolean("IsCharged", isCharged());
+        nbt.putInt("StompPhase", getStompPhase());
+        nbt.putInt("ChargePhase", getChargePhase());
         nbt.putInt("DronesLeft", dronesLeft);
         nbt.putBoolean("IsSpawned", hasSpawnedDrones);
-        nbt.putInt("CooldownTimer", cooldownTimer);
+        nbt.putInt("StompCooldown", stompCooldown);
+        nbt.putInt("ChargeCooldown", chargeCooldown);
         nbt.putFloat("BideDamage", bideDamage);
     }
 
@@ -131,22 +134,28 @@ public class MalachiteGuardEntity extends MonsterEntity {
         this.entityData.set(PHASE, id);
     }
 
-    /** Is the Malachite Guard in a Charging state? Reduce and bide damage if so */
-    public boolean isCharging() {
-        return this.entityData.get(IS_CHARGING);
+    /** Our stomping phase. In order: Inactive, Raising, Stomped. Anything higher assumes we are no longer stomping */
+    public int getStompPhase() {
+        return this.entityData.get(STOMP_PHASE);
     }
 
-    public void setCharging(boolean flag) {
-        this.entityData.set(IS_CHARGING, flag);
+    public void setStompPhase(int id) {
+        if (id > 2 || id < 0) { // Guess that means it's supposed to be reset
+            id = 0;
+        }
+        this.entityData.set(STOMP_PHASE, id);
     }
 
-    /** Is the Malachite Guard releasing power? If so, it is charged */
-    public boolean isCharged() {
-        return this.entityData.get(IS_CHARGED);
+    /** Our charge phase. In order: Inactive, Charging, Charged. Anything higher assumes we are no longer charging or charged */
+    public int getChargePhase() {
+        return this.entityData.get(CHARGE_PHASE);
     }
 
-    public void setCharged(boolean flag) {
-        this.entityData.set(IS_CHARGED, flag);
+    private void setChargePhase(int id) {
+        if (id > 2 || id < 0) { // Guess that means it's supposed to be reset
+            id = 0;
+        }
+        this.entityData.set(CHARGE_PHASE, id);
     }
 
     /**
@@ -154,7 +163,7 @@ public class MalachiteGuardEntity extends MonsterEntity {
      */
     @Override
     public void move(MoverType type, Vector3d motion) {
-        if (getPhase() != 0 && !isCharging() && !isCharged()) {
+        if (getPhase() != 0 && (getChargePhase() == 0 || getChargePhase() == 0)) {
             super.move(type, motion);
         }
     }
@@ -166,7 +175,7 @@ public class MalachiteGuardEntity extends MonsterEntity {
      */
     @Override
     public void knockback(float amount, double x, double z) {
-        if (getPhase() == 1 || isCharging() || isCharged()) {
+        if (getPhase() == 1 || getChargePhase() != 0 || getStompPhase() != 0) {
             super.knockback(amount, x, z);
         }
     }
@@ -223,7 +232,7 @@ public class MalachiteGuardEntity extends MonsterEntity {
     public void tick() {
         super.tick();
 
-        if (isCharging()) {
+        if (getChargePhase() == 1) {
             if (level.isClientSide()) {
                 for (int i = 0; i < 5; i++) {
                     level.addParticle(ParticleTypes.FLAME, getRandomX(3.0D), this.getY() + (random.nextDouble() * 0.25D), getRandomZ(3.0D), 0.0D, 0.0D, 0.0D);
@@ -329,9 +338,14 @@ public class MalachiteGuardEntity extends MonsterEntity {
         }
         this.setSpeed(movespeed);
 
+        //Cooldown for stomp attack
+        if (stompCooldown > 0) {
+            stompCooldown--;
+        }
+
         //Cooldown for blast attack
-        if (cooldownTimer > 0) {
-            cooldownTimer--;
+        if (chargeCooldown > 0) {
+            chargeCooldown--;
         }
 
         super.aiStep();
@@ -375,7 +389,7 @@ public class MalachiteGuardEntity extends MonsterEntity {
 
     @Override
     public boolean hurt(DamageSource source, float amount) {
-        if (isCharging()) {
+        if (getChargePhase() == 1) {
             if (isAllowedToDamage(source)) {
                 if (level.getDifficulty() == Difficulty.EASY) {
                     amount /= 4;
@@ -536,7 +550,7 @@ public class MalachiteGuardEntity extends MonsterEntity {
          */
         @Override
         public boolean canUse() {
-            if (guard.getPhase() != 0 && guard.cooldownTimer <= 0) {
+            if (guard.getPhase() != 0 && guard.getStompPhase() == 0 && guard.chargeCooldown <= 0) {
                 List<Entity> list = guard.level.getEntities(guard, guard.getBoundingBox().inflate(3.0F), (entity) -> {
                     EntityType<?> type = entity.getType();
                     if (type == EntityType.PLAYER) {
@@ -547,8 +561,8 @@ public class MalachiteGuardEntity extends MonsterEntity {
                 for (Entity entity : list) {
                     double targetY = entity.blockPosition().getY();
                     double guardY = guard.blockPosition().getY();
-                    if (targetY < guardY - 0.5D || targetY > guardY + 1.0D) {
-                        return entity.isAlive();
+                    if (targetY < guardY - 1.0D || targetY > guardY + 1.0D) {
+                        return entity.isAlive() && guard.isOnGround();
                     }
                 }
             }
@@ -558,13 +572,13 @@ public class MalachiteGuardEntity extends MonsterEntity {
         /** Stop if the timer is no longer set to 0 */
         @Override
         public boolean canContinueToUse() {
-            return guard.cooldownTimer <= 0;
+            return guard.chargeCooldown <= 0;
         }
 
         @Override
         public void start() {
             guard.getNavigation().stop();
-            guard.setCharging(true);
+            guard.setChargePhase(1);
             attackPhase = 0;
             chargeTimer = 100;
             explodeTime = 0;
@@ -572,7 +586,7 @@ public class MalachiteGuardEntity extends MonsterEntity {
 
         @Override
         public void stop() {
-            guard.setCharged(false);
+            guard.setChargePhase(0);
             guard.bideDamage = 0.0F;
         }
 
@@ -587,8 +601,7 @@ public class MalachiteGuardEntity extends MonsterEntity {
             chargeTimer--;
             if (chargeTimer <= 0) {
                 if (attackPhase == 0) {
-                    guard.setCharging(false);
-                    guard.setCharged(true);
+                    guard.setChargePhase(2);
                     attackPhase++;
                 }
 
@@ -616,8 +629,91 @@ public class MalachiteGuardEntity extends MonsterEntity {
 
                 explodeTime++;
                 if (explodeTime >= 20) {
-                    guard.cooldownTimer = 60; //This will stop the task from running as it is no longer 0;
+                    guard.chargeCooldown = 60; //This will stop the task from running as it is no longer 0;
                 }
+            }
+        }
+    }
+
+    static class StompAttackGoal extends Goal {
+
+        private final MalachiteGuardEntity guard;
+        private int stompTime;
+
+        public StompAttackGoal(MalachiteGuardEntity entity) {
+            this.guard = entity;
+
+            setFlags(EnumSet.of(Flag.LOOK, Flag.MOVE));
+        }
+
+        @Override
+        public boolean canUse() {
+            if (guard.getPhase() != 0 && guard.getChargePhase() == 0 && guard.stompCooldown <= 0) {
+                List<Entity> list = guard.level.getEntities(guard, guard.getBoundingBox().inflate(2.0F), (entity) -> {
+                    EntityType<?> type = entity.getType();
+                    if (type == EntityType.PLAYER) {
+                        return EntityPredicates.NO_CREATIVE_OR_SPECTATOR.test(entity);
+                    }
+                    return false;
+                });
+                for (Entity entity : list) {
+                    if (entity.isOnGround() && entity.distanceToSqr(guard) > 1.0F && entity.distanceToSqr(guard) < 4.0F) {
+                        return entity.isAlive();
+                    }
+                }
+            }
+            return false;
+        }
+
+        @Override
+        public boolean canContinueToUse() {
+            return guard.stompCooldown <= 0;
+        }
+
+        @Override
+        public void start() {
+            guard.setStompPhase(1);
+            this.stompTime = 0;
+        }
+
+        @Override
+        public void stop() {
+            guard.setStompPhase(0);
+        }
+
+        @Override
+        public void tick() {
+            stompTime++;
+
+            if (stompTime == 20) {
+                guard.setStompPhase(2);
+
+                List<Entity> targets = guard.level.getEntities(guard, guard.getBoundingBox().inflate(3.0F, -2.0F, 3.0F), (entity) -> {
+                    EntityType<?> type = entity.getType();
+                    return type != ModEntities.MALACHITE_GUARD && type != ModEntities.MALACHITE_DRONE;
+                });
+                guard.playSound(SoundEvents.GENERIC_EXPLODE, 1.0F, 1.0F);
+
+                for (Entity entity : targets) {
+                    Vector3d targetV3D = entity.getDeltaMovement();
+
+                    entity.hurt(DamageSource.mobAttack(guard), 5.0F);
+                    entity.setDeltaMovement(targetV3D.x() * 0.5F, targetV3D.y() + 0.4F, targetV3D.z() * 0.5F);
+                }
+
+                if (!guard.level.isClientSide()) {
+                    for (int x = -3; x <= 3; x++) {
+                        for (int z = -3; z <= 3; z++) {
+                            BlockPos pos = guard.blockPosition().offset(x, 0, z);
+                            BlockState state = guard.level.getBlockState(pos.below());
+                            ((ServerWorld)guard.level).sendParticles(new BlockParticleData(ParticleTypes.BLOCK, state), pos.getX(), guard.getY() + (guard.random.nextDouble() * 0.25D), pos.getZ(), 5, 0.0F, 0.0F, 0.0F, 0.0D);
+                        }
+                    }
+                }
+            }
+
+            if (stompTime >= 30) {
+                guard.stompCooldown = 120; //This will stop the task from running as it is no longer 0;
             }
         }
     }

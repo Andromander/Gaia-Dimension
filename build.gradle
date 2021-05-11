@@ -122,10 +122,6 @@ repositories {
         name = "ModMaven"
         url = "modmaven.k-4u.nl"
     }
-    maven {
-        // Temporary mappings
-        url 'https://www.dogforce-games.com/maven/'
-    }
     flatDir {
         dirs "libs"
     }
@@ -138,8 +134,8 @@ dependencies {
 
     runtimeOnly fg.deobf("com.sk88q.worldedit:WorldEdit:${we_version}")
 //    runtimeOnly fg.deobf("team.chisel.ctm:CTM:1.1.0.8")
-//    runtimeOnly fg.deobf("me.ichun.mods.tabula.common:Tabula:1.15.2-8.0.1")
-//    runtimeOnly fg.deobf("me.ichun.mods.ichunutil.common:iChunUtil:1.15.2-8.0.3")
+    runtimeOnly fg.deobf("me.ichun.mods.tabula.common:Tabula:10.2.0")
+    runtimeOnly fg.deobf("me.ichun.mods.ichunutil.common:iChunUtil:10.2.0")
 
     minecraft "net.minecraftforge:forge:${project.mc_version}-${project.forge_version}"
 }

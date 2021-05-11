@@ -30,6 +30,6 @@ public class MalachiteGuardRenderer<T extends MalachiteGuardEntity, M extends Ma
 
     @Override
     protected boolean isShaking(T entity) {
-        return entity.isCharging();
+        return entity.getChargePhase() == 1;
     }
 }
