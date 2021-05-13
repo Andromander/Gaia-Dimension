@@ -3,6 +3,7 @@ package androsa.gaiadimension.entity.boss;
 import androsa.gaiadimension.entity.MalachiteDroneEntity;
 import androsa.gaiadimension.registry.ModEntities;
 import androsa.gaiadimension.registry.ModItems;
+import androsa.gaiadimension.registry.ModParticles;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
@@ -234,8 +235,8 @@ public class MalachiteGuardEntity extends MonsterEntity {
 
         if (getChargePhase() == 1) {
             if (level.isClientSide()) {
-                for (int i = 0; i < 5; i++) {
-                    level.addParticle(ParticleTypes.FLAME, getRandomX(3.0D), this.getY() + (random.nextDouble() * 0.25D), getRandomZ(3.0D), 0.0D, 0.0D, 0.0D);
+                for (int i = 0; i < 3; i++) {
+                    level.addParticle(ModParticles.MALACHITE_MAGIC, getRandomX(3.0D), this.getY() + (random.nextDouble() * 0.25D), getRandomZ(3.0D), 0.0D, 0.0D, 0.0D);
                 }
             }
         }
@@ -623,7 +624,9 @@ public class MalachiteGuardEntity extends MonsterEntity {
 
                 if (explodeTime < 10) {
                     if (!guard.level.isClientSide()) {
-                        ((ServerWorld)guard.level).sendParticles(ParticleTypes.FLAME, guard.getRandomX(1.0D), guard.getRandomY(), guard.getRandomZ(1.0D), 10, (guard.random.nextDouble()) - 0.5D, guard.random.nextDouble() * 0.5D, (guard.random.nextDouble()) - 0.5D, 0.5D);
+                        for (int i = 0; i < 5; i++) {
+                            ((ServerWorld)guard.level).sendParticles(ModParticles.MALACHITE_MAGIC, guard.getRandomX(1.0D), guard.getRandomY(), guard.getRandomZ(1.0D), 5, (guard.random.nextDouble()) - 0.5D, guard.random.nextDouble() * 0.5D, (guard.random.nextDouble()) - 0.5D, 0.5D);
+                        }
                     }
                 }
 

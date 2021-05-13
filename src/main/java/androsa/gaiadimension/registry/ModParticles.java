@@ -21,6 +21,7 @@ public class ModParticles {
     public static final BasicParticleType PYRITE = registerBasicParticle("pyrite");
     public static final BasicParticleType ITEM_PEBBLE = registerBasicParticle("item_pebble");
     public static final BasicParticleType SPAWNER_CORE = registerBasicParticle("spawner_core");
+    public static final BasicParticleType MALACHITE_MAGIC = registerBasicParticle("malachite_magic");
 
     private static BasicParticleType registerBasicParticle(String name) {
         return RegistryHelper.registerParticle(name, new BasicParticleType(false));
@@ -36,6 +37,7 @@ public class ModParticles {
         particles.register(PORTAL, GaiaPortalParticle.Factory::new);
         particles.register(PYRITE, PyriteParticle.Factory::new);
         particles.register(SPAWNER_CORE, SpawnerCoreParticle.Factory::new);
+        particles.register(MALACHITE_MAGIC, MalachiteMagicParticle.Factory::new);
     }
 
     @OnlyIn(Dist.CLIENT)
