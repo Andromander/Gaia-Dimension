@@ -4,24 +4,13 @@ import net.minecraft.client.particle.*;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.particles.BasicParticleType;
 import net.minecraft.util.math.MathHelper;
-import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
-public class RestructurerFireParticle extends SpriteTexturedParticle {
+public class RestructurerFireParticle extends DeceleratingParticle {
 
     public RestructurerFireParticle(ClientWorld worldIn, double xCoordIn, double yCoordIn, double zCoordIn, double xSpeedIn, double ySpeedIn, double zSpeedIn) {
         super(worldIn, xCoordIn, yCoordIn, zCoordIn, xSpeedIn, ySpeedIn, zSpeedIn);
-        this.xd = this.xd * 0.009999999776482582D + xSpeedIn;
-        this.yd = this.yd * 0.009999999776482582D + ySpeedIn;
-        this.zd = this.zd * 0.009999999776482582D + zSpeedIn;
-        this.x += (double)((this.random.nextFloat() - this.random.nextFloat()) * 0.05F);
-        this.y += (double)((this.random.nextFloat() - this.random.nextFloat()) * 0.05F);
-        this.z += (double)((this.random.nextFloat() - this.random.nextFloat()) * 0.05F);
-        this.rCol = 1.0F;
-        this.gCol = 1.0F;
-        this.bCol = 1.0F;
-        this.lifetime = (int)(8.0D / (Math.random() * 0.8D + 0.2D)) + 4;
     }
 
     @Override
@@ -49,26 +38,6 @@ public class RestructurerFireParticle extends SpriteTexturedParticle {
         }
 
         return j | k << 16;
-    }
-
-    public void onUpdate() {
-        this.xo = this.x;
-        this.yo = this.y;
-        this.zo = this.z;
-
-        if (this.age++ >= this.lifetime) {
-            this.remove();
-        }
-
-        this.move(this.xd, this.yd, this.zd);
-        this.xd *= 0.9599999785423279D;
-        this.yd *= 0.9599999785423279D;
-        this.zd *= 0.9599999785423279D;
-
-        if (this.onGround) {
-            this.xd *= 0.699999988079071D;
-            this.zd *= 0.699999988079071D;
-        }
     }
 
     @OnlyIn(Dist.CLIENT)
