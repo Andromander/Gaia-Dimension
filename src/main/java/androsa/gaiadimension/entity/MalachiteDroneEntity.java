@@ -2,6 +2,7 @@ package androsa.gaiadimension.entity;
 
 import androsa.gaiadimension.entity.boss.MalachiteGuardEntity;
 import androsa.gaiadimension.registry.ModParticles;
+import androsa.gaiadimension.registry.ModSounds;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.LeavesBlock;
 import net.minecraft.entity.*;
@@ -17,7 +18,7 @@ import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.pathfinding.*;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundCategory;
-import net.minecraft.util.SoundEvents;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
@@ -104,6 +105,16 @@ public class MalachiteDroneEntity extends MonsterEntity {
     }
 
     @Override
+    protected SoundEvent getDeathSound() {
+        return ModSounds.ENTITY_MALACHITE_DRONE_DEATH;
+    }
+
+    @Override
+    protected SoundEvent getHurtSound(DamageSource source) {
+        return ModSounds.ENTITY_MALACHITE_DRONE_HURT;
+    }
+
+    @Override
     public void tick() {
         super.tick();
 
@@ -138,7 +149,7 @@ public class MalachiteDroneEntity extends MonsterEntity {
             this.level.addParticle(ModParticles.SPAWNER_CORE, px, py, pz, 0, 128, 0);
         }
 
-        level.playSound(null, this.getX(), this.getY(), this.getZ(), SoundEvents.TOTEM_USE, SoundCategory.HOSTILE, 1.0F, 1.0F);
+        level.playSound(null, this.getX(), this.getY(), this.getZ(), ModSounds.ENTITY_MALACHITE_DRONE_DESYNC, SoundCategory.HOSTILE, 1.0F, 1.0F);
     }
 
     @Override

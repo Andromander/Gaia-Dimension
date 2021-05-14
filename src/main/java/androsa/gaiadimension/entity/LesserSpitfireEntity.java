@@ -1,11 +1,14 @@
 package androsa.gaiadimension.entity;
 
+import androsa.gaiadimension.registry.ModSounds;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.util.DamageSource;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.*;
 
@@ -34,6 +37,16 @@ public class LesserSpitfireEntity extends MonsterEntity implements ISpitfireMob 
         return MonsterEntity.createMonsterAttributes()
                 .add(Attributes.ATTACK_DAMAGE, 6.0D)
                 .add(Attributes.MOVEMENT_SPEED, 0.23000000417232513D);
+    }
+
+    @Override
+    protected SoundEvent getDeathSound() {
+        return ModSounds.ENTITY_LESSER_SPITFIRE_DEATH;
+    }
+
+    @Override
+    protected SoundEvent getHurtSound(DamageSource source) {
+        return ModSounds.ENTITY_LESSER_SPITFIRE_HURT;
     }
 
     @Override

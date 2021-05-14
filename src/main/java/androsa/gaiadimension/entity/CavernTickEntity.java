@@ -1,6 +1,7 @@
 package androsa.gaiadimension.entity;
 
 import androsa.gaiadimension.registry.ModBlocks;
+import androsa.gaiadimension.registry.ModSounds;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
@@ -10,7 +11,6 @@ import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
-import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
@@ -49,22 +49,22 @@ public class CavernTickEntity extends MonsterEntity {
 
     @Override
     protected SoundEvent getAmbientSound() {
-        return SoundEvents.SILVERFISH_AMBIENT;
+        return ModSounds.ENTITY_CAVERN_TICK_AMBIENT;
     }
 
     @Override
     protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
-        return SoundEvents.SILVERFISH_HURT;
+        return ModSounds.ENTITY_CAVERN_TICK_HURT;
     }
 
     @Override
     protected SoundEvent getDeathSound() {
-        return SoundEvents.SILVERFISH_DEATH;
+        return ModSounds.ENTITY_CAVERN_TICK_DEATH;
     }
 
     @Override
     protected void playStepSound(BlockPos pos, BlockState state) {
-        this.playSound(SoundEvents.SILVERFISH_STEP, 0.15F, 1.0F);
+        this.playSound(ModSounds.ENTITY_CAVERN_TICK_STEP, 0.15F, 1.0F);
     }
 
     @Override

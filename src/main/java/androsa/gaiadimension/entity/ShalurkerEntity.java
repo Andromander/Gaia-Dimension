@@ -1,5 +1,6 @@
 package androsa.gaiadimension.entity;
 
+import androsa.gaiadimension.registry.ModSounds;
 import net.minecraft.entity.EntitySize;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.Pose;
@@ -9,6 +10,8 @@ import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.item.BoatEntity;
 import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.util.DamageSource;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
@@ -36,6 +39,16 @@ public class ShalurkerEntity extends MonsterEntity {
                 .add(Attributes.FOLLOW_RANGE, 35.0D)
                 .add(Attributes.MOVEMENT_SPEED, 0.2D)
                 .add(Attributes.ATTACK_DAMAGE, 3.0D);
+    }
+
+    @Override
+    protected SoundEvent getDeathSound() {
+        return ModSounds.ENTITY_SHALURKER_DEATH;
+    }
+
+    @Override
+    protected SoundEvent getHurtSound(DamageSource source) {
+        return ModSounds.ENTITY_SHALURKER_HURT;
     }
 
     public void aiStep() {

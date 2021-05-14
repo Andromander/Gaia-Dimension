@@ -1,5 +1,6 @@
 package androsa.gaiadimension.entity;
 
+import androsa.gaiadimension.registry.ModSounds;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
@@ -10,7 +11,6 @@ import net.minecraft.entity.passive.GolemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
-import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
@@ -58,12 +58,12 @@ public class CrystalGolemEntity extends GolemEntity {
 
     @Override
     protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
-        return SoundEvents.GENERIC_HURT;
+        return ModSounds.ENTITY_CRYSTAL_GOLEM_HURT;
     }
 
     @Override
     protected SoundEvent getDeathSound() {
-        return SoundEvents.GENERIC_DEATH;
+        return ModSounds.ENTITY_CRYSTAL_GOLEM_DEATH;
     }
 
     public static boolean canSpawnHere(EntityType<CrystalGolemEntity> entity, IWorld world, SpawnReason spawn, BlockPos pos, Random random) {

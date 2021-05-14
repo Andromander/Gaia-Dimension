@@ -1,11 +1,14 @@
 package androsa.gaiadimension.entity;
 
 import androsa.gaiadimension.entity.boss.BlueHowliteWolfEntity;
+import androsa.gaiadimension.registry.ModSounds;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.monster.MonsterEntity;
+import net.minecraft.util.DamageSource;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.*;
 
@@ -33,6 +36,16 @@ public class HowliteWolfEntity extends MonsterEntity {
         this.goalSelector.addGoal(2, new LookAtGoal(this, BlueHowliteWolfEntity.class, 16.0F));
         this.goalSelector.addGoal(3, new MeleeAttackGoal(this, 1.0D, false));
         this.targetSelector.addGoal(2, new HurtByTargetGoal(this).setAlertOthers());
+    }
+
+    @Override
+    protected SoundEvent getDeathSound() {
+        return ModSounds.ENTITY_HOWLITE_WOLF_DEATH;
+    }
+
+    @Override
+    protected SoundEvent getHurtSound(DamageSource source) {
+        return ModSounds.ENTITY_HOWLITE_WOLF_HURT;
     }
 
     @Override

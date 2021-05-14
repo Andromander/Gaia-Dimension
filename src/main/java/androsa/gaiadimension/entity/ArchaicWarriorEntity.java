@@ -2,6 +2,7 @@ package androsa.gaiadimension.entity;
 
 import androsa.gaiadimension.GaiaDimensionMod;
 import androsa.gaiadimension.registry.ModItems;
+import androsa.gaiadimension.registry.ModSounds;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
@@ -14,7 +15,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
-import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.*;
 
@@ -55,26 +55,22 @@ public class ArchaicWarriorEntity extends MonsterEntity {
 
     @Override
     protected SoundEvent getAmbientSound() {
-        return SoundEvents.SKELETON_AMBIENT;
+        return ModSounds.ENTITY_ARCHAIC_WARRIOR_AMBIENT;
     }
 
     @Override
     protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
-        return SoundEvents.SKELETON_HURT;
+        return ModSounds.ENTITY_ARCHAIC_WARRIOR_HURT;
     }
 
     @Override
     protected SoundEvent getDeathSound() {
-        return SoundEvents.SKELETON_DEATH;
-    }
-
-    protected SoundEvent getStepSound() {
-        return SoundEvents.SKELETON_STEP;
+        return ModSounds.ENTITY_ARCHAIC_WARRIOR_DEATH;
     }
 
     @Override
     protected void playStepSound(BlockPos pos, BlockState state) {
-        this.playSound(this.getStepSound(), 0.15F, 1.0F);
+        this.playSound(ModSounds.ENTITY_ARCHAIC_WARRIOR_STEP, 0.15F, 1.0F);
     }
 
     @Override

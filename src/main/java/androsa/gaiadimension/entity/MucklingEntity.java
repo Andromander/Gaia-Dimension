@@ -2,6 +2,7 @@ package androsa.gaiadimension.entity;
 
 import androsa.gaiadimension.registry.ModBiomes;
 import androsa.gaiadimension.registry.ModBlocks;
+import androsa.gaiadimension.registry.ModSounds;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.MobEntity;
@@ -11,7 +12,9 @@ import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.monster.SlimeEntity;
 import net.minecraft.particles.BlockParticleData;
 import net.minecraft.particles.ParticleTypes;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.RegistryKey;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.Difficulty;
@@ -37,18 +40,24 @@ public class MucklingEntity extends SlimeEntity {
         this.xpReward += 3;
     }
 
-    public static boolean canSpawnHere(EntityType<MucklingEntity> entity, IWorld world, SpawnReason spawn, BlockPos pos, Random random) {
-        if (world.getDifficulty() != Difficulty.PEACEFUL) {
-            if (spawn == SpawnReason.SPAWNER && world.getBrightness(LightType.SKY, pos) < 8) {
-                return true;
-            } else {
-                Optional<RegistryKey<Biome>> biome = world.getBiomeName(pos);
-                if (Objects.equals(biome, Optional.of(ModBiomes.purple_agate_swamp)) || pos.getY() < 40 && random.nextFloat() < 0.5F) {
-                    return checkMobSpawnRules(entity, world, spawn, pos, random);
-                }
-            }
-        }
-        return false;
+    @Override
+    protected SoundEvent getDeathSound() {
+        return isTiny() ? ModSounds.ENTITY_MUCKLING_DEATH_SMALL : ModSounds.ENTITY_MUCKLING_DEATH;
+    }
+
+    @Override
+    protected SoundEvent getHurtSound(DamageSource source) {
+        return isTiny() ? ModSounds.ENTITY_MUCKLING_HURT_SMALL : ModSounds.ENTITY_MUCKLING_HURT;
+    }
+
+    @Override
+    protected SoundEvent getJumpSound() {
+        return isTiny() ? ModSounds.ENTITY_MUCKLING_JUMP_SMALL : ModSounds.ENTITY_MUCKLING_JUMP;
+    }
+
+    @Override
+    protected SoundEvent getSquishSound() {
+        return isTiny() ? ModSounds.ENTITY_MUCKLING_SQUISH_SMALL : ModSounds.ENTITY_MUCKLING_SQUISH;
     }
 
     public static AttributeModifierMap.MutableAttribute registerAttributes() {
@@ -76,5 +85,19 @@ public class MucklingEntity extends SlimeEntity {
             world.addParticle(new BlockParticleData(ParticleTypes.BLOCK, state), d0, this.getBoundingBox().minY, d1, 0.0D, 0.0D, 0.0D);
         }
         return true;
+    }
+
+    public static boolean canSpawnHere(EntityType<MucklingEntity> entity, IWorld world, SpawnReason spawn, BlockPos pos, Random random) {
+        if (world.getDifficulty() != Difficulty.PEACEFUL) {
+            if (spawn == SpawnReason.SPAWNER && world.getBrightness(LightType.SKY, pos) < 8) {
+                return true;
+            } else {
+                Optional<RegistryKey<Biome>> biome = world.getBiomeName(pos);
+                if (Objects.equals(biome, Optional.of(ModBiomes.purple_agate_swamp)) || pos.getY() < 40 && random.nextFloat() < 0.5F) {
+                    return checkMobSpawnRules(entity, world, spawn, pos, random);
+                }
+            }
+        }
+        return false;
     }
 }

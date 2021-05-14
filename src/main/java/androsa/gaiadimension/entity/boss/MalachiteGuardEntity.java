@@ -4,6 +4,7 @@ import androsa.gaiadimension.entity.MalachiteDroneEntity;
 import androsa.gaiadimension.registry.ModEntities;
 import androsa.gaiadimension.registry.ModItems;
 import androsa.gaiadimension.registry.ModParticles;
+import androsa.gaiadimension.registry.ModSounds;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
@@ -214,13 +215,13 @@ public class MalachiteGuardEntity extends MonsterEntity {
     //TODO: Make hurt sound
     @Override
     protected SoundEvent getHurtSound(DamageSource source) {
-        return SoundEvents.BLAZE_HURT;
+        return ModSounds.ENTITY_MALACHITE_GUARD_HURT;
     }
 
     //TODO: Made damage sound
     @Override
     protected SoundEvent getDeathSound() {
-        return SoundEvents.IRON_GOLEM_DEATH;
+        return ModSounds.ENTITY_MALACHITE_GUARD_DEATH;
     }
 
     //TODO: Keep if we make new sounds?
@@ -611,7 +612,7 @@ public class MalachiteGuardEntity extends MonsterEntity {
                         EntityType<?> type = entity.getType();
                         return type != ModEntities.MALACHITE_GUARD && type != ModEntities.MALACHITE_DRONE;
                     });
-                    guard.playSound(SoundEvents.WITHER_SPAWN, 1.0F, 1.0F);
+                    guard.playSound(ModSounds.ENTITY_MALACHITE_GUARD_BLAST, 1.0F, 1.0F);
 
                     for (Entity entity : targets) {
                         Vector3d explosion = new Vector3d(guard.getX(), guard.getY(), guard.getZ());
@@ -695,7 +696,7 @@ public class MalachiteGuardEntity extends MonsterEntity {
                     EntityType<?> type = entity.getType();
                     return type != ModEntities.MALACHITE_GUARD && type != ModEntities.MALACHITE_DRONE;
                 });
-                guard.playSound(SoundEvents.GENERIC_EXPLODE, 1.0F, 1.0F);
+                guard.playSound(ModSounds.ENTITY_MALACHITE_GUARD_STOMP, 1.0F, 1.0F);
 
                 for (Entity entity : targets) {
                     Vector3d targetV3D = entity.getDeltaMovement();

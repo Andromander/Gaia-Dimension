@@ -1,0 +1,516 @@
+{
+  "entity.sturdy_pebble.throw": {
+    "subtitle": "subtitles.entity.sturdy_pebble.throw",
+    "sounds": [
+      "random/bow"
+    ]
+  },
+  "entity.agate_golem.death": {
+    "subtitle": "subtitles.agate_golem.death",
+    "sounds": [
+      "damage/hit1",
+      "damage/hit2",
+      "damage/hit3"
+    ]
+  },
+  "entity.agate_golem.hurt": {
+    "subtitle": "subtitles.agate_golem.hurt",
+    "sounds": [
+      "damage/fallsmall"
+    ]
+  },
+  "entity.ancient_lagrahk.death": {
+    "subtitle": "subtitles.entity.ancient_lagrahk.death",
+    "sounds": [
+      "damage/hit1",
+      "damage/hit2",
+      "damage/hit3"
+    ]
+  },
+  "entity.ancient_lagrahk.hurt": {
+    "subtitle": "subtitles.entity.ancient_lagrahk.hurt",
+    "sounds": [
+      "damage/fallsmall"
+    ]
+  },
+  "entity.archaic_warrior.ambient": {
+    "subtitle": "subtitles.entity.archaic_warrior.ambient",
+    "sounds": [
+      "mob/skeleton/say1",
+      "mob/skeleton/say2",
+      "mob/skeleton/say3"
+    ]
+  },
+  "entity.archaic_warrior.death": {
+    "subtitle": "subtitles.entity.archaic_warrior.death",
+    "sounds": [
+      "mob/skeleton/death"
+    ]
+  },
+  "entity.archaic_warrior.hurt": {
+    "subtitle": "subtitles.entity.archaic_warrior.hurt",
+    "sounds": [
+      "mob/skeleton/hurt1",
+      "mob/skeleton/hurt2",
+      "mob/skeleton/hurt3",
+      "mob/skeleton/hurt4"
+    ]
+  },
+  "entity.archaic_warrior.step": {
+    "subtitle": "subtitles.entity.archaic_warrior.step",
+    "sounds": [
+      "mob/skeleton/step1",
+      "mob/skeleton/step2",
+      "mob/skeleton/step3",
+      "mob/skeleton/step4"
+    ]
+  },
+  "entity.bismuth_uletrus.death": {
+    "subtitle": "subtitles.entity.bismuth_uletrus.death",
+    "sounds": [
+      "damage/hit1",
+      "damage/hit2",
+      "damage/hit3"
+    ]
+  },
+  "entity.bismuth_uletrus.hurt": {
+    "subtitle": "subtitles.entity.bismuth_uletrus.hurt",
+    "sounds": [
+      "damage/fallsmall"
+    ]
+  },
+  "entity.cavern_tick.ambient": {
+    "subtitle": "subtitles.entity.cavern_tick.ambient",
+    "sounds": [
+      "mob/silverfish/say1",
+      "mob/silverfish/say2",
+      "mob/silverfish/say3",
+      "mob/silverfish/say4"
+    ]
+  },
+  "entity.cavern_tick.death": {
+    "subtitle": "subtitles.entity.cavern_tick.death",
+    "sounds": [
+      "mob/silverfish/kill"
+    ]
+  },
+  "entity.cavern_tick.hurt": {
+    "subtitle": "subtitles.entity.cavern_tick.hurt",
+    "sounds": [
+      "mob/silverfish/hit1",
+      "mob/silverfish/hit2",
+      "mob/silverfish/hit3"
+    ]
+  },
+  "entity.cavern_tick.step": {
+    "subtitle": "subtitles.entity.cavern_tick.step",
+    "sounds": [
+      "mob/silverfish/step1",
+      "mob/silverfish/step2",
+      "mob/silverfish/step3",
+      "mob/silverfish/step4"
+    ]
+  },
+  "entity.contorted_naga.death": {
+    "subtitle": "subtitles.entity.contorted_naga.death",
+    "sounds": [
+      "damage/hit1",
+      "damage/hit2",
+      "damage/hit3"
+    ]
+  },
+  "entity.contorted_naga.hurt": {
+    "subtitle": "subtitles.entity.contorted_naga.hurt",
+    "sounds": [
+      "damage/fallsmall"
+    ]
+  },
+  "entity.corrupt_sapper.death": {
+    "subtitle": "subtitles.entity.corrupt_sapper.death",
+    "sounds": [
+      "damage/hit1",
+      "damage/hit2",
+      "damage/hit3"
+    ]
+  },
+  "entity.corrupt_sapper.hurt": {
+    "subtitle": "subtitles.entity.corrupt_sapper.hurt",
+    "sounds": [
+      "damage/fallsmall"
+    ]
+  },
+  "entity.crystal_golem.death": {
+    "subtitle": "subtitles.entity.crystal_golem.death",
+    "sounds": [
+      "damage/hit1",
+      "damage/hit2",
+      "damage/hit3"
+    ]
+  },
+  "entity.crystal_golem.hurt": {
+    "subtitle": "subtitles.entity.crystal_golem.hurt",
+    "sounds": [
+      "damage/fallsmall"
+    ]
+  },
+  "entity.growth_sapper.death": {
+    "subtitle": "subtitles.entity.growth_sapper.death",
+    "sounds": [
+      "damage/hit1",
+      "damage/hit2",
+      "damage/hit3"
+    ]
+  },
+  "entity.growth_sapper.hurt": {
+    "subtitle": "subtitles.entity.growth_sapper.hurt",
+    "sounds": [
+      "damage/fallsmall"
+    ]
+  },
+  "entity.howlite_wolf.death": {
+    "subtitle": "subtitles.entity.howlite_wolf.death",
+    "sounds": [
+      "damage/hit1",
+      "damage/hit2",
+      "damage/hit3"
+    ]
+  },
+  "entity.howlite_wolf.hurt": {
+    "subtitle": "subtitles.entity.howlite_wolf.hurt",
+    "sounds": [
+      "damage/fallsmall"
+    ]
+  },
+  "entity.lesser_shockshooter.death": {
+    "subtitle": "subtitles.entity.lesser_shockshooter.death",
+    "sounds": [
+      "damage/hit1",
+      "damage/hit2",
+      "damage/hit3"
+    ]
+  },
+  "entity.lesser_shockshooter.hurt": {
+    "subtitle": "subtitles.entity.lesser_shockshooter.hurt",
+    "sounds": [
+      "damage/fallsmall"
+    ]
+  },
+  "entity.lesser_spitfire.death": {
+    "subtitle": "subtitles.entity.lesser_spitfire.death",
+    "sounds": [
+      "damage/hit1",
+      "damage/hit2",
+      "damage/hit3"
+    ]
+  },
+  "entity.lesser_spitfire.hurt": {
+    "subtitle": "subtitles.entity.lesser_spitfire.hurt",
+    "sounds": [
+      "damage/fallsmall"
+    ]
+  },
+  "entity.markuzar_plant.death": {
+    "subtitle": "subtitles.entity.markuzar_plant.death",
+    "sounds": [
+      "damage/hit1",
+      "damage/hit2",
+      "damage/hit3"
+    ]
+  },
+  "entity.markuzar_plant.hurt": {
+    "subtitle": "subtitles.entity.markuzar_plant.hurt",
+    "sounds": [
+      "damage/fallsmall"
+    ]
+  },
+  "entity.mineral_arenthis.death": {
+    "subtitle": "subtitles.entity.mineral_arenthis.death",
+    "sounds": [
+      "damage/hit1",
+      "damage/hit2",
+      "damage/hit3"
+    ]
+  },
+  "entity.mineral_arenthis.hurt": {
+    "subtitle": "subtitles.entity.mineral_arenthis.hurt",
+    "sounds": [
+      "damage/fallsmall"
+    ]
+  },
+  "entity.muckling.death": {
+    "subtitle": "subtitles.entity.muckling.death",
+    "sounds": [
+      "mob/slime/big1",
+      "mob/slime/big2",
+      "mob/slime/big3",
+      "mob/slime/big4"
+    ]
+  },
+  "entity.muckling.hurt": {
+    "subtitle": "subtitles.entity.muckling.hurt",
+    "sounds": [
+      "mob/slime/big1",
+      "mob/slime/big2",
+      "mob/slime/big3",
+      "mob/slime/big4"
+    ]
+  },
+  "entity.muckling.jump": {
+    "subtitle": "subtitles.entity.muckling.squish",
+    "sounds": [
+      "mob/slime/big1",
+      "mob/slime/big2",
+      "mob/slime/big3",
+      "mob/slime/big4"
+    ]
+  },
+  "entity.muckling.squish": {
+    "subtitle": "subtitles.entity.muckling.squish",
+    "sounds": [
+      "mob/slime/big1",
+      "mob/slime/big2",
+      "mob/slime/big3",
+      "mob/slime/big4"
+    ]
+  },
+  "entity.muckling.death.small": {
+    "subtitle": "subtitles.entity.muckling.death",
+    "sounds": [
+      "mob/slime/small1",
+      "mob/slime/small2",
+      "mob/slime/small3",
+      "mob/slime/small4",
+      "mob/slime/small5"
+    ]
+  },
+  "entity.muckling.hurt.small": {
+    "subtitle": "subtitles.entity.muckling.hurt",
+    "sounds": [
+      "mob/slime/small1",
+      "mob/slime/small2",
+      "mob/slime/small3",
+      "mob/slime/small4",
+      "mob/slime/small5"
+    ]
+  },
+  "entity.muckling.jump.small": {
+    "subtitle": "subtitles.entity.muckling.squish",
+    "sounds": [
+      "mob/slime/small1",
+      "mob/slime/small2",
+      "mob/slime/small3",
+      "mob/slime/small4",
+      "mob/slime/small5"
+    ]
+  },
+  "entity.muckling.squish.small": {
+    "subtitle": "subtitles.entity.muckling.squish",
+    "sounds": [
+      "mob/slime/small1",
+      "mob/slime/small2",
+      "mob/slime/small3",
+      "mob/slime/small4",
+      "mob/slime/small5"
+    ]
+  },
+  "entity.mutant_growth_extractor.death": {
+    "subtitle": "subtitles.entity.mutant_growth_extractor.death",
+    "sounds": [
+      "damage/hit1",
+      "damage/hit2",
+      "damage/hit3"
+    ]
+  },
+  "entity.mutant_growth_extractor.hurt": {
+    "subtitle": "subtitles.entity.mutant_growth_extractor.hurt",
+    "sounds": [
+      "damage/fallsmall"
+    ]
+  },
+  "entity.nomadic_lagrahk.death": {
+    "subtitle": "subtitles.entity.nomadic_lagrahk.death",
+    "sounds": [
+      "damage/hit1",
+      "damage/hit2",
+      "damage/hit3"
+    ]
+  },
+  "entity.nomadic_lagrahk.hurt": {
+    "subtitle": "subtitles.entity.nomadic_lagrahk.hurt",
+    "sounds": [
+      "damage/fallsmall"
+    ]
+  },
+  "entity.primal_beast.ambient": {
+    "subtitle": "subtitles.entity.primal_beast.ambient",
+    "sounds": [
+      "mob/blaze/breathe1",
+      "mob/blaze/breathe2",
+      "mob/blaze/breathe3",
+      "mob/blaze/breathe4"
+    ]
+  },
+  "entity.primal_beast.death": {
+    "subtitle": "subtitles.entity.primal_beast.death",
+    "sounds": [
+      "mob/blaze/death"
+    ]
+  },
+  "entity.primal_beast.hurt": {
+    "subtitle": "subtitles.entity.primal_beast.hurt",
+    "sounds": [
+      "mob/blaze/hit1",
+      "mob/blaze/hit2",
+      "mob/blaze/hit3",
+      "mob/blaze/hit4"
+    ]
+  },
+  "entity.rocky_luggeroth.death": {
+    "subtitle": "subtitles.entity.rocky_luggeroth.death",
+    "sounds": [
+      "damage/hit1",
+      "damage/hit2",
+      "damage/hit3"
+    ]
+  },
+  "entity.rocky_luggeroth.hurt": {
+    "subtitle": "subtitles.entity.rocky_luggeroth.hurt",
+    "sounds": [
+      "damage/fallsmall"
+    ]
+  },
+  "entity.rugged_lurmorus.death": {
+    "subtitle": "subtitles.entity.rugged_lurmorus.death",
+    "sounds": [
+      "damage/hit1",
+      "damage/hit2",
+      "damage/hit3"
+    ]
+  },
+  "entity.rugged_lurmorus.hurt": {
+    "subtitle": "subtitles.entity.rugged_lurmorus.hurt",
+    "sounds": [
+      "damage/fallsmall"
+    ]
+  },
+  "entity.saltion.death": {
+    "subtitle": "subtitles.entity.saltion.death",
+    "sounds": [
+      "damage/hit1",
+      "damage/hit2",
+      "damage/hit3"
+    ]
+  },
+  "entity.saltion.hurt": {
+    "subtitle": "subtitles.entity.saltion.hurt",
+    "sounds": [
+      "damage/fallsmall"
+    ]
+  },
+  "entity.shallow_arenthis.death": {
+    "subtitle": "subtitles.entity.shallow_arenthis.death",
+    "sounds": [
+      "damage/hit1",
+      "damage/hit2",
+      "damage/hit3"
+    ]
+  },
+  "entity.shallow_arenthis.hurt": {
+    "subtitle": "subtitles.entity.shallow_arenthis.hurt",
+    "sounds": [
+      "damage/fallsmall"
+    ]
+  },
+  "entity.shalurker.death": {
+    "subtitle": "subtitles.entity.shalurker.death",
+    "sounds": [
+      "damage/hit1",
+      "damage/hit2",
+      "damage/hit3"
+    ]
+  },
+  "entity.shalurker.hurt": {
+    "subtitle": "subtitles.entity.shalurker.hurt",
+    "sounds": [
+      "damage/fallsmall"
+    ]
+  },
+  "entity.spellbound_elemental.death": {
+    "subtitle": "subtitles.entity.spellbound_elemental.death",
+    "sounds": [
+      "damage/hit1",
+      "damage/hit2",
+      "damage/hit3"
+    ]
+  },
+  "entity.spellbound_elemental.hurt": {
+    "subtitle": "subtitles.entity.spellbound_elemental.hurt",
+    "sounds": [
+      "damage/fallsmall"
+    ]
+  },
+  "entity.malachite_drone.death": {
+    "subtitle": "subtitles.entity.malachite_drone.death",
+    "sounds": [
+      "damage/hit1",
+      "damage/hit2",
+      "damage/hit3"
+    ]
+  },
+  "entity.malachite_drone.desync": {
+    "subtitle": "subtitles.entity.malachite_drone.desync",
+    "sounds": [
+      "item/totem/use_totem"
+    ]
+  },
+  "entity.malachite_drone.hurt": {
+    "subtitle": "subtitles.entity.malachite_drone.hurt",
+    "sounds": [
+      "damage/fallsmall"
+    ]
+  },
+  "entity.blue_howlite_wolf.death": {
+    "subtitle": "subtitles.entity.blue_howlite_wolf.death",
+    "sounds": [
+      "damage/hit1",
+      "damage/hit2",
+      "damage/hit3"
+    ]
+  },
+  "entity.blue_howlite_wolf.hurt": {
+    "subtitle": "subtitles.entity.blue_howlite_wolf.hurt",
+    "sounds": [
+      "damage/fallsmall"
+    ]
+  },
+  "entity.malachite_guard.blast": {
+    "subtitle": "subtitles.entity.malachite_guard.blast",
+    "sounds": [
+      "mob/wither/spawn"
+    ]
+  },
+  "entity.malachite_guard.death": {
+    "subtitle": "subtitles.entity.malachite_guard.death",
+    "sounds": [
+      "mob/irongolem/death"
+    ]
+  },
+  "entity.malachite_guard.hurt": {
+    "subtitle": "subtitles.entity.malachite_guard.hurt",
+    "sounds": [
+      "mob/blaze/hit1",
+      "mob/blaze/hit2",
+      "mob/blaze/hit3",
+      "mob/blaze/hit4"
+    ]
+  },
+  "entity.malachite_guard.stomp": {
+    "subtitle": "subtitles.entity.malachite_guard.stomp",
+    "sounds": [
+      "random/explode1",
+      "random/explode2",
+      "random/explode3",
+      "random/explode4"
+    ]
+  }
+}

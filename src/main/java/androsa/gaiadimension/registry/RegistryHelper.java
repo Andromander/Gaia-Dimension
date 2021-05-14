@@ -7,6 +7,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.particles.ParticleType;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.world.gen.carver.ConfiguredCarver;
 import net.minecraft.world.gen.feature.*;
 import net.minecraft.world.gen.surfacebuilders.ConfiguredSurfaceBuilder;
@@ -23,6 +24,7 @@ public class RegistryHelper {
 
     public static final List<EntityType<?>> ENTITY_TYPES = Lists.newArrayList();
     public static final List<ParticleType<?>> PARTICLE_TYPES = Lists.newArrayList();
+    public static final List<SoundEvent> SOUND_EVENTS = Lists.newArrayList();
     public static final Map<ConfiguredSurfaceBuilder<?>, String> CONFIGURED_SURFACE_BUILDERS = Maps.newHashMap();
     public static final Map<StructureFeature<?,?>, String> CONFIGURED_STRUCTURE_FEATURES = Maps.newHashMap();
     public static final Map<ConfiguredCarver<?>, String> CONFIGURED_WORLD_CARVERS = Maps.newHashMap();
@@ -39,6 +41,14 @@ public class RegistryHelper {
         return particle;
     }
 
+    public static SoundEvent registerSoundEvent(String name) {
+        ResourceLocation location = new ResourceLocation(GaiaDimensionMod.MODID, name);
+        SoundEvent sound = new SoundEvent(location);
+        sound.setRegistryName(location);
+        SOUND_EVENTS.add(sound);
+        return sound;
+    }
+
     @SubscribeEvent
     public static void registerEntityTypes(RegistryEvent.Register<EntityType<?>> event) {
         IForgeRegistry<EntityType<?>> registry = event.getRegistry();
@@ -52,6 +62,14 @@ public class RegistryHelper {
         IForgeRegistry<ParticleType<?>> registry = event.getRegistry();
         for (ParticleType<?> particle : PARTICLE_TYPES) {
             registry.register(particle);
+        }
+    }
+
+    @SubscribeEvent
+    public static void registerSoundEvents(RegistryEvent.Register<SoundEvent> event) {
+        IForgeRegistry<SoundEvent> registry = event.getRegistry();
+        for (SoundEvent sound : SOUND_EVENTS) {
+            registry.register(sound);
         }
     }
 }
