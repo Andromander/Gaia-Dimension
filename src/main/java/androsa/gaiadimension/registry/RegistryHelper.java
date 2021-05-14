@@ -6,6 +6,7 @@ import com.google.common.collect.Maps;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.particles.ParticleType;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.gen.carver.ConfiguredCarver;
 import net.minecraft.world.gen.feature.*;
 import net.minecraft.world.gen.surfacebuilders.ConfiguredSurfaceBuilder;
@@ -33,7 +34,7 @@ public class RegistryHelper {
     }
 
     public static <T extends ParticleType<?>> T registerParticle(String name, T particle) {
-        particle.setRegistryName(name);
+        particle.setRegistryName(new ResourceLocation(GaiaDimensionMod.MODID, name));
         PARTICLE_TYPES.add(particle);
         return particle;
     }

@@ -16,6 +16,7 @@ import net.minecraft.entity.EntitySpawnPlacementRegistry.PlacementType;
 import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.tags.FluidTags;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.gen.Heightmap;
 import net.minecraft.world.spawner.WorldEntitySpawner;
@@ -74,7 +75,7 @@ public class ModEntities {
                 .setTrackingRange(range)
                 .setUpdateInterval(interval)
                 .build(name);
-        entitytype.setRegistryName(name);
+        entitytype.setRegistryName(new ResourceLocation(GaiaDimensionMod.MODID, name));
         return RegistryHelper.registerEntity(entitytype);
     }
 
@@ -82,7 +83,7 @@ public class ModEntities {
         EntityType.Builder<E> type = makeBuilder(entity, classification, width, height);
         if (fireproof) type.fireImmune();
         EntityType<E> entitytype = type.build(name);
-        entitytype.setRegistryName(name);
+        entitytype.setRegistryName(new ResourceLocation(GaiaDimensionMod.MODID, name));
         return RegistryHelper.registerEntity(entitytype);
     }
 
