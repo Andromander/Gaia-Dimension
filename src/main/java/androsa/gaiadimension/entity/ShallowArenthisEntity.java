@@ -53,10 +53,10 @@ public class ShallowArenthisEntity extends WaterMobEntity {
                 .add(Attributes.MAX_HEALTH, 15.0D);
     }
 
-//    @Override
-//    protected boolean canTriggerWalking() {
-//        return false;
-//    }
+    @Override
+    protected boolean isMovementNoisy() {
+        return false;
+    }
 
     @Override
     public void aiStep() {
