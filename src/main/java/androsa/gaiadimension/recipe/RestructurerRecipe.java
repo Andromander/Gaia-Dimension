@@ -38,7 +38,7 @@ public class RestructurerRecipe implements IRecipe<IInventory> {
 
     @Override
     public boolean isSpecial() {
-        return false;
+        return true; //Stops log spam
     }
 
     @Override
