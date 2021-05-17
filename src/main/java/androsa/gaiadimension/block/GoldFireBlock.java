@@ -2,6 +2,7 @@ package androsa.gaiadimension.block;
 
 import androsa.gaiadimension.registry.ModBlocks;
 import androsa.gaiadimension.registry.ModDimensions;
+import androsa.gaiadimension.registry.ModGaiaConfig;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -110,7 +111,7 @@ public class GoldFireBlock extends Block {
     @Deprecated
     public void onPlace(BlockState state1, World worldIn, BlockPos pos, BlockState state2, boolean flag) {
         if (state2.getBlock() != state1.getBlock()) {
-            if (worldIn.dimension() != World.OVERWORLD && worldIn.dimension() != ModDimensions.gaia_world || !ModBlocks.gaia_portal.get().tryToCreatePortal(worldIn, pos)) {
+            if (!worldIn.dimension().location().equals(ModGaiaConfig.startDimRL) && worldIn.dimension() != ModDimensions.gaia_world || !ModBlocks.gaia_portal.get().tryToCreatePortal(worldIn, pos)) {
                 if (!state1.canSurvive(worldIn, pos)) {
                     worldIn.removeBlock(pos, false);
                 } else {

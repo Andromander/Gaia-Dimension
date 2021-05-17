@@ -20,6 +20,7 @@ import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
+import net.minecraft.util.registry.Registry;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
@@ -67,7 +68,7 @@ public class GaiaPortalBlock extends Block {
 
     // This will check for creation conditions in the Overworld or Gaia
     private boolean canCreatePortalByWorld(World world, BlockPos pos) {
-        if (world.dimension() == World.OVERWORLD) {
+        if (world.dimension().location().equals(ModGaiaConfig.startDimRL)) {
             //Check if the portal needs to be checking
             if (ModGaiaConfig.portalCheck.get()) {
                 Optional<RegistryKey<Biome>> biome = world.getBiomeName(pos);
@@ -136,7 +137,7 @@ public class GaiaPortalBlock extends Block {
                 if (entity.level instanceof ServerWorld) {
                     ServerWorld serverworld = (ServerWorld)entity.level;
                     MinecraftServer minecraftserver = serverworld.getServer();
-                    RegistryKey<World> registrykey = entity.level.dimension() == ModDimensions.gaia_world ? World.OVERWORLD : ModDimensions.gaia_world;
+                    RegistryKey<World> registrykey = entity.level.dimension() == ModDimensions.gaia_world ? ModGaiaConfig.startDimRK : ModDimensions.gaia_world;
                     ServerWorld serverworld1 = minecraftserver.getLevel(registrykey);
                     if (serverworld1 != null && !entity.isPassenger()) {
                         entity.setPortalCooldown();

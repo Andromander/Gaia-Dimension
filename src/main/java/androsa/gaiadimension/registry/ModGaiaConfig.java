@@ -3,18 +3,27 @@ package androsa.gaiadimension.registry;
 import androsa.gaiadimension.GaiaDimensionMod;
 import com.google.common.collect.ImmutableList;
 import net.minecraft.util.RegistryKey;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.registry.Registry;
+import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.BiomeDictionary;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.config.ModConfig;
 
 import java.util.Collections;
 import java.util.List;
 
 import static net.minecraftforge.common.ForgeConfigSpec.*;
 
+@Mod.EventBusSubscriber(modid = GaiaDimensionMod.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ModGaiaConfig {
     private static final String config = GaiaDimensionMod.MODID + ".config.";
 
     public static ConfigValue<List<? extends String>> starsInSky;
+    public static ResourceLocation startDimRL;
+    public static RegistryKey<World> startDimRK;
 
     public static List<? extends String> starBiomes = Collections.singletonList("gaiadimension:purple_agate_swamp");
 
@@ -27,6 +36,7 @@ public class ModGaiaConfig {
         }
     }
 
+    public static ConfigValue<? extends String> startDimension;
     public static BooleanValue portalCheck;
     public static EnumValue<ListType> listType;
     public static EnumValue<BiomeType> biomeType;
@@ -46,6 +56,10 @@ public class ModGaiaConfig {
 
     public static class CommonConfig {
         public CommonConfig(Builder builder) {
+            startDimension = builder
+                    .translation(config + "start_dimension")
+                    .comment("The Dimension that Gaia will connect to. Results may vary based on the World chosen. Existing portals will remain regardless of what is set here until they are broken, however they may no longer connect.")
+                    .define("startDimension", "minecraft:overworld");
             portalCheck = builder
                     .translation(config + "portal_creation")
                     .comment("Change how the portal can be created. If true, the portal will check where it is allowed to spawn based on the type of list and what contents are in the list.")
@@ -75,6 +89,31 @@ public class ModGaiaConfig {
 
     public static boolean canDisplayStars(RegistryKey<Biome> define) {
         return starsInSky.get().contains(define.location().toString());
+    }
+
+    @SubscribeEvent
+    public static void onConfigLoaded(ModConfig.Loading event) {
+        System.out.println("Config Loading");
+        if (event.getConfig().getModId().equals(GaiaDimensionMod.MODID)) {
+            checkDimension();
+        }
+    }
+
+    @SubscribeEvent
+    public static void onConfigChanged(ModConfig.Reloading event) {
+        if (event.getConfig().getModId().equals(GaiaDimensionMod.MODID)) {
+            checkDimension();
+        }
+    }
+
+    private static void checkDimension() {
+        ResourceLocation rl = ResourceLocation.tryParse(startDimension.get());
+        if (rl == null) {
+            GaiaDimensionMod.LOGGER.warn("Could not create a ResourceLocation with the Start Dimension! Is there a typo, or is there an incorrect character?");
+            rl = World.OVERWORLD.location();
+        }
+        startDimRL = rl;
+        startDimRK = RegistryKey.create(Registry.DIMENSION_REGISTRY, startDimRL);
     }
 
     public enum ListType {
