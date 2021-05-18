@@ -6,11 +6,9 @@ import androsa.gaiadimension.registry.ModDimensions;
 import androsa.gaiadimension.registry.ModGaiaConfig;
 import androsa.gaiadimension.registry.ModParticles;
 import androsa.gaiadimension.world.GaiaTeleporter;
-import com.google.common.cache.LoadingCache;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
-import net.minecraft.block.pattern.BlockPattern;
 import net.minecraft.entity.Entity;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.state.EnumProperty;
@@ -20,7 +18,6 @@ import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
-import net.minecraft.util.registry.Registry;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
@@ -156,9 +153,9 @@ public class GaiaPortalBlock extends Block {
         }
 
         for (int i = 0; i < 4; ++i) {
-            double x = (double)((float)pos.getX() + rand.nextFloat());
-            double y = (double)((float)pos.getY() + rand.nextFloat());
-            double z = (double)((float)pos.getZ() + rand.nextFloat());
+            double x = (float)pos.getX() + rand.nextFloat();
+            double y = (float)pos.getY() + rand.nextFloat();
+            double z = (float)pos.getZ() + rand.nextFloat();
             double sX = ((double)rand.nextFloat() - 0.5D) * 0.5D;
             double sY = ((double)rand.nextFloat() - 0.5D) * 0.5D;
             double sZ = ((double)rand.nextFloat() - 0.5D) * 0.5D;
@@ -166,10 +163,10 @@ public class GaiaPortalBlock extends Block {
 
             if (worldIn.getBlockState(pos.west()).getBlock() != this && worldIn.getBlockState(pos.east()).getBlock() != this) {
                 x = (double)pos.getX() + 0.5D + 0.25D * (double)mul;
-                sX = (double)(rand.nextFloat() * 2.0F * (float)mul);
+                sX = rand.nextFloat() * 2.0F * (float)mul;
             } else {
                 z = (double)pos.getZ() + 0.5D + 0.25D * (double)mul;
-                sZ = (double)(rand.nextFloat() * 2.0F * (float)mul);
+                sZ = rand.nextFloat() * 2.0F * (float)mul;
             }
 
             worldIn.addParticle(ModParticles.PORTAL, x, y, z, sX, sY, sZ);
@@ -200,169 +197,124 @@ public class GaiaPortalBlock extends Block {
         builder.add(AXIS);
     }
 
-    public static BlockPattern.PatternHelper createPatternHelper(IWorld worldIn, BlockPos pos) {
-        Direction.Axis axis = Direction.Axis.Z;
-        GaiaPortalBlock.Size size = new GaiaPortalBlock.Size(worldIn, pos, Direction.Axis.X);
-        LoadingCache<BlockPos, CachedBlockInfo> cache = BlockPattern.createLevelCache(worldIn, true);
-        if (!size.isValid()) {
-            axis = Direction.Axis.X;
-            size = new GaiaPortalBlock.Size(worldIn, pos, Direction.Axis.Z);
-        }
-
-        if (!size.isValid()) {
-            return new BlockPattern.PatternHelper(pos, Direction.NORTH, Direction.UP, cache, 1, 1, 1);
-        } else {
-            int[] axes = new int[Direction.AxisDirection.values().length];
-            Direction direction = size.rightDir.getCounterClockWise();
-            BlockPos blockpos = size.bottomLeft.above(size.getHeight() - 1);
-
-            for(Direction.AxisDirection axisDir : Direction.AxisDirection.values()) {
-                BlockPattern.PatternHelper helper = new BlockPattern.PatternHelper(direction.getAxisDirection() == axisDir ? blockpos : blockpos.relative(size.rightDir, size.getWidth() - 1), Direction.get(axisDir, axis), Direction.UP, cache, size.getWidth(), size.getHeight(), 1);
-
-                for(int i = 0; i < size.getWidth(); ++i) {
-                    for(int j = 0; j < size.getHeight(); ++j) {
-                        CachedBlockInfo cacheInfo = helper.getBlock(i, j, 1);
-                        if (!cacheInfo.getState().isAir()) {
-                            ++axes[axisDir.ordinal()];
-                        }
-                    }
-                }
-            }
-
-            Direction.AxisDirection axisDirPos = Direction.AxisDirection.POSITIVE;
-
-            for(Direction.AxisDirection axisDir : Direction.AxisDirection.values()) {
-                if (axes[axisDir.ordinal()] < axes[axisDirPos.ordinal()]) {
-                    axisDirPos = axisDir;
-                }
-            }
-
-            return new BlockPattern.PatternHelper(direction.getAxisDirection() == axisDirPos ? blockpos : blockpos.relative(size.rightDir, size.getWidth() - 1), Direction.get(axisDirPos, axis), Direction.UP, cache, size.getWidth(), size.getHeight(), 1);
-        }
-    }
-
     //TODO: If ever the portal changes, update this. Hopefully even remove it
     public static class Size {
         private final IWorld world;
         private final Direction.Axis axis;
         private final Direction rightDir;
-        private final Direction leftDir;
         private int portalBlockCount;
         private BlockPos bottomLeft;
         private int height;
         private int width;
-        private final Block KEYSTONE = ModBlocks.keystone_block.get();
+        private static final IPositionPredicate FRAME_TEST = (state, reader, pos) -> state.getBlock() == ModBlocks.keystone_block.get();
         private final Block PORTAL = ModBlocks.gaia_portal.get();
 
         public Size(IWorld worldIn, BlockPos pos, Direction.Axis facing) {
             world = worldIn;
             axis = facing;
-
-            if (facing == Direction.Axis.X) {
-                leftDir = Direction.EAST;
-                rightDir = Direction.WEST;
+            rightDir = facing == Direction.Axis.X ? Direction.WEST : Direction.SOUTH;
+            bottomLeft = calculateBottomLeft(pos);
+            if (bottomLeft == null) {
+                bottomLeft = pos;
+                width = 1;
+                height = 1;
             } else {
-                leftDir = Direction.NORTH;
-                rightDir = Direction.SOUTH;
-            }
-
-            BlockPos blockpos = pos;
-            while (pos.getY() > blockpos.getY() - 21 && pos.getY() > 0 && isEmptyBlock(worldIn.getBlockState(pos.below()))) {
-                pos = pos.below();
-            }
-
-            int i = getDistanceUntilEdge(pos, leftDir) - 1;
-
-            if (i >= 0) {
-                bottomLeft = pos.relative(leftDir, i);
-                width = this.getDistanceUntilEdge(bottomLeft, rightDir);
-
-                if (width < 2 || width > 21) {
-                    bottomLeft = null;
-                    width = 0;
+                width = calculatePortalWidth();
+                if (width > 0) {
+                    height = calculatePortalHeight();
                 }
-            }
-
-            if (this.bottomLeft != null) {
-                height = calculatePortalHeight();
             }
         }
 
-        int getDistanceUntilEdge(BlockPos pos, Direction facing) {
-            int i;
+        @Nullable
+        private BlockPos calculateBottomLeft(BlockPos pos) {
+            int i = Math.max(0, pos.getY() - 21);
+            while (pos.getY() > i && isEmptyBlock(this.world.getBlockState(pos.below()))) {
+                pos = pos.below();
+            }
 
-            for (i = 0; i < 22; ++i) {
-                BlockPos blockpos = pos.relative(facing, i);
+            Direction direction = this.rightDir.getOpposite();
+            int j = this.getDistanceUntilEdge(pos, direction) - 1;
+            return j < 0 ? null : pos.relative(direction, j);
+        }
 
-                if (!isEmptyBlock(world.getBlockState(blockpos)) || world.getBlockState(blockpos.below()) != KEYSTONE.defaultBlockState()) {
+        private int getDistanceUntilEdge(BlockPos pos, Direction facing) {
+            BlockPos.Mutable mutable = new BlockPos.Mutable();
+
+            for (int i = 0; i < 22; ++i) {
+                mutable.set(pos).move(facing, i);
+                BlockState state = this.world.getBlockState(mutable);
+
+                if (!isEmptyBlock(state)) {
+                    if (FRAME_TEST.test(state, world, mutable)) {
+                        return i;
+                    }
+                    break;
+                }
+
+                BlockState state1 = this.world.getBlockState(mutable.move(Direction.DOWN));
+                if (!FRAME_TEST.test(state1, world, mutable)) {
                     break;
                 }
             }
 
-            Block block = world.getBlockState(pos.relative(facing, i)).getBlock();
-            return block == KEYSTONE ? i : 0;
+            return 0;
         }
 
-        public int getHeight() {
-            return height;
+        private int calculatePortalWidth() {
+            int dist = this.getDistanceUntilEdge(this.bottomLeft, this.rightDir);
+            return dist >= 2 && dist <= 21 ? dist : 0;
         }
 
-        public int getWidth() {
-            return width;
+        private int calculatePortalHeight() {
+            BlockPos.Mutable mutable = new BlockPos.Mutable();
+            int dist = this.getDistanceUntilTop(mutable);
+            return dist >= 3 && dist <= 21 && hasTopFrame(mutable, dist) ? dist : 0;
         }
 
-        int calculatePortalHeight() {
-            label56:
+        private int getDistanceUntilTop(BlockPos.Mutable mutable) {
+            for (int i = 0; i < 21; ++i) {
+                mutable.set(bottomLeft).move(Direction.UP, i).move(rightDir, -1);
+                if (!FRAME_TEST.test(this.world.getBlockState(mutable), this.world, mutable)) {
+                    return i;
+                }
 
-            for (height = 0; height < 21; ++height) {
-                for (int i = 0; i < width; ++i) {
-                    BlockPos blockpos = bottomLeft.relative(rightDir, i).above(height);
-                    BlockState blockstate = world.getBlockState(blockpos);
+                mutable.set(bottomLeft).move(Direction.UP, i).move(rightDir, width);
+                if (!FRAME_TEST.test(this.world.getBlockState(mutable), this.world, mutable)) {
+                    return i;
+                }
+
+
+                for (int j = 0; j < width; ++j) {
+                    mutable.set(bottomLeft).move(Direction.UP, i).move(rightDir, j);
+                    BlockState blockstate = world.getBlockState(mutable);
 
                     if (!isEmptyBlock(blockstate)) {
-                        break label56;
+                        return i;
                     }
 
                     if (blockstate.getBlock() == PORTAL) {
                         ++this.portalBlockCount;
                     }
-
-                    if (i == 0) {
-                        blockstate = world.getBlockState(blockpos.relative(leftDir));
-
-                        if (blockstate != KEYSTONE.defaultBlockState()) {
-                            break label56;
-                        }
-                    } else if (i == this.width) {
-                        blockstate = world.getBlockState(blockpos.relative(rightDir));
-
-                        if (blockstate != KEYSTONE.defaultBlockState()) {
-                            break label56;
-                        }
-                    }
                 }
             }
 
-            for (int j = 0; j < width; ++j) {
-                if (world.getBlockState(bottomLeft.relative(rightDir, j).above(height)) != KEYSTONE.defaultBlockState()) {
-                    height = 0;
-                    break;
-                }
-            }
-
-            if (height <= 21 && height >= 3) {
-                return height;
-            } else {
-                this.bottomLeft = null;
-                this.width = 0;
-                this.height = 0;
-                return 0;
-            }
+            return 21;
         }
 
-        boolean isEmptyBlock(BlockState state) {
-            Block block = state.getBlock();
+        private boolean hasTopFrame(BlockPos.Mutable mutable, int offset) {
+            for (int i = 0; i < this.width; i++) {
+                BlockPos.Mutable mutablepos = mutable.set(bottomLeft).move(Direction.UP, offset).move(rightDir, i);
+                if (!FRAME_TEST.test(this.world.getBlockState(mutablepos), world, mutablepos)) {
+                    return false;
+                }
+            }
 
+            return true;
+        }
+
+        private boolean isEmptyBlock(BlockState state) {
+            Block block = state.getBlock();
             return state.isAir() || block == ModBlocks.gold_fire.get() || block == PORTAL;
         }
 
@@ -370,22 +322,19 @@ public class GaiaPortalBlock extends Block {
             return bottomLeft != null && width >= 2 && width <= 21 && height >= 3 && this.height <= 21;
         }
 
-        void placePortalBlocks() {
-            for (int i = 0; i < this.width; ++i) {
-                BlockPos blockpos = bottomLeft.relative(rightDir, i);
-
-                for (int j = 0; j < height; ++j) {
-                    world.setBlock(blockpos.above(j), PORTAL.defaultBlockState().setValue(AXIS, axis), 2);
-                }
-            }
-        }
-
-        private boolean isLargeEnough() {
-            return this.portalBlockCount >= this.width * this.height;
+        public void placePortalBlocks() {
+            BlockState state = PORTAL.defaultBlockState().setValue(GaiaPortalBlock.AXIS, this.axis);
+            BlockPos.betweenClosed(bottomLeft, bottomLeft.relative(Direction.UP, height - 1).relative(rightDir, width - 1)).forEach((pos) -> {
+                this.world.setBlock(pos, state, 18);
+            });
         }
 
         public boolean canCreatePortal() {
             return this.isValid() && this.isLargeEnough();
+        }
+
+        private boolean isLargeEnough() {
+            return this.portalBlockCount == this.width * this.height;
         }
     }
 }
