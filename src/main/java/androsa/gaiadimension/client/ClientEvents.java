@@ -181,6 +181,7 @@ public class ClientEvents {
         RenderType cutoutM = RenderType.cutoutMipped();
         RenderType translucent = RenderType.translucent();
 
+        renderBlock(ModBlocks.keystone_block, translucent);
         renderBlock(ModBlocks.gaia_portal, translucent);
         renderBlock(ModBlocks.gold_fire, cutout);
         renderBlock(ModBlocks.pyrite_torch, cutout);
@@ -233,6 +234,7 @@ public class ClientEvents {
         renderBlock(ModBlocks.burnt_leaves, cutoutM);
         renderBlock(ModBlocks.burning_leaves, cutoutM);
         renderBlock(ModBlocks.aura_leaves, cutoutM);
+        renderBlock(ModBlocks.wasteland_stone, translucent);
         renderBlock(ModBlocks.static_stone, translucent);
         renderBlock(ModBlocks.charged_mineral, translucent);
         renderBlock(ModBlocks.searing_rock, translucent);

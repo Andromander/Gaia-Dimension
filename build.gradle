@@ -128,12 +128,11 @@ repositories {
 }
 
 dependencies {
-    //compile "team.chisel.ctm:CTM:${project.ctm_version}"
     compileOnly fg.deobf("mezz.jei:jei-${mc_version_jei}:${jei_version}:api")
     runtimeOnly fg.deobf("mezz.jei:jei-${mc_version_jei}:${jei_version}")
 
     runtimeOnly fg.deobf("com.sk88q.worldedit:WorldEdit:${we_version}")
-//    runtimeOnly fg.deobf("team.chisel.ctm:CTM:1.1.0.8")
+    runtimeOnly fg.deobf("team.chisel.ctm:CTM:${project.ctm_version}")
     runtimeOnly fg.deobf("me.ichun.mods.tabula.common:Tabula:10.2.0")
     runtimeOnly fg.deobf("me.ichun.mods.ichunutil.common:iChunUtil:10.2.0")
 

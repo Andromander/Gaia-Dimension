@@ -1,6 +1,7 @@
 {
-  "parent": "minecraft:block/cube_all",
+  "parent": "gaiadimension:block/util/cube_all_2_layer",
   "textures": {
-    "all": "gaiadimension:block/keystone_block"
+    "all": "gaiadimension:block/keystone_block",
+    "all2": "gaiadimension:block/keystone_block_empty"
   }
 }

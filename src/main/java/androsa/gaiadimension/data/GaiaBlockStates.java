@@ -22,7 +22,7 @@ public class GaiaBlockStates extends GaiaBlockStateProvider {
 
     @Override
     protected void registerStatesAndModels() {
-        basicBlock(ModBlocks.keystone_block);
+        basicBlockLayered(ModBlocks.keystone_block, "keystone_block", "keystone_block_empty");
         crossBlock(ModBlocks.gold_fire);
         torchBlock(ModBlocks.pyrite_torch, ModBlocks.pyrite_wall_torch);
         sidedBlock(ModBlocks.agate_crafting_table, "agate_table_top", "agate_table_bottom", "agate_table_front", "agate_table_side", "agate_table_side", "agate_table_side");
@@ -124,7 +124,7 @@ public class GaiaBlockStates extends GaiaBlockStateProvider {
         basicBlock(ModBlocks.pebbles);
         basicBlockRotated(ModBlocks.gaia_stone);
         basicBlock(ModBlocks.gaia_cobblestone);
-        basicBlock(ModBlocks.wasteland_stone);
+        basicBlockLayered(ModBlocks.wasteland_stone, "wasteland_stone", "wasteland_stone_static");
         basicBlockLayered(ModBlocks.static_stone, "wasteland_stone", "static_stone");
         basicBlock(ModBlocks.charged_mineral);
         basicBlock(ModBlocks.volcanic_rock);
