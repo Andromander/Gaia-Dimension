@@ -1,11 +1,26 @@
 package androsa.gaiadimension.item;
 
+import androsa.gaiadimension.block.GaiaFluidBlock;
 import androsa.gaiadimension.registry.GaiaItemGroups;
 import androsa.gaiadimension.registry.ModItems;
+import net.minecraft.advancements.CriteriaTriggers;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.ILiquidContainer;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.fluid.Fluid;
+import net.minecraft.fluid.Fluids;
 import net.minecraft.item.BucketItem;
 import net.minecraft.item.ItemStack;
+import net.minecraft.stats.Stats;
+import net.minecraft.tags.FluidTags;
+import net.minecraft.util.*;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.BlockRayTraceResult;
+import net.minecraft.util.math.RayTraceContext;
+import net.minecraft.util.math.RayTraceResult;
+import net.minecraft.world.World;
+import net.minecraftforge.event.ForgeEventFactory;
 
 import java.util.function.Supplier;
 
@@ -18,6 +33,71 @@ public class ScaynyxBucketItem extends BucketItem {
     @Override
     protected ItemStack getEmptySuccessItem(ItemStack stack, PlayerEntity entity) {
         return !entity.abilities.instabuild ? new ItemStack(ModItems.scaynyx_bucket.get()) : stack;
+    }
+
+    @Override
+    public ActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand) {
+        ItemStack itemstack = player.getItemInHand(hand);
+        RayTraceResult raytraceresult = getPlayerPOVHitResult(world, player, getFluid() == Fluids.EMPTY ? RayTraceContext.FluidMode.SOURCE_ONLY : RayTraceContext.FluidMode.NONE);
+        ActionResult<ItemStack> ret = ForgeEventFactory.onBucketUse(player, world, itemstack, raytraceresult);
+        if (ret != null)
+            return ret;
+        if (raytraceresult.getType() == RayTraceResult.Type.MISS) {
+            return ActionResult.pass(itemstack);
+        } else if (raytraceresult.getType() != RayTraceResult.Type.BLOCK) {
+            return ActionResult.pass(itemstack);
+        } else {
+            BlockRayTraceResult blockraytraceresult = (BlockRayTraceResult)raytraceresult;
+            BlockPos blockpos = blockraytraceresult.getBlockPos();
+            Direction direction = blockraytraceresult.getDirection();
+            BlockPos blockpos1 = blockpos.relative(direction);
+            if (world.mayInteract(player, blockpos) && player.mayUseItemAt(blockpos1, direction, itemstack)) {
+
+                if (getFluid() == Fluids.EMPTY) {
+                    //Empty Bucket to fill
+                    BlockState fluidblock = world.getBlockState(blockpos);
+                    if (fluidblock.getBlock() instanceof GaiaFluidBlock) {
+                        Fluid fluid = ((GaiaFluidBlock)fluidblock.getBlock()).takeLiquid(world, blockpos, fluidblock);
+                        if (fluid != Fluids.EMPTY) {
+                            player.awardStat(Stats.ITEM_USED.get(this));
+
+                            SoundEvent soundevent = getFluid().getAttributes().getFillSound();
+                            if (soundevent == null) soundevent = fluid.is(FluidTags.LAVA) ? SoundEvents.BUCKET_FILL_LAVA : SoundEvents.BUCKET_FILL;
+                            player.playSound(soundevent, 1.0F, 1.0F);
+                            ItemStack itemstack1 = DrinkHelper.createFilledResult(itemstack, player, new ItemStack(fluid.getBucket()));
+                            if (!world.isClientSide) {
+                                CriteriaTriggers.FILLED_BUCKET.trigger((ServerPlayerEntity)player, new ItemStack(fluid.getBucket()));
+                            }
+
+                            return ActionResult.sidedSuccess(itemstack1, world.isClientSide());
+                        }
+                    }
+
+                    return ActionResult.fail(itemstack);
+                } else {
+                    //Full Bucket to Empty
+                    BlockState blockstate = world.getBlockState(blockpos);
+                    BlockPos blockpos2 = canBlockContainFluid(world, blockpos, blockstate) ? blockpos : blockpos1;
+                    if (this.emptyBucket(player, world, blockpos2, blockraytraceresult)) {
+                        this.checkExtraContent(world, itemstack, blockpos2);
+                        if (player instanceof ServerPlayerEntity) {
+                            CriteriaTriggers.PLACED_BLOCK.trigger((ServerPlayerEntity)player, blockpos2, itemstack);
+                        }
+
+                        player.awardStat(Stats.ITEM_USED.get(this));
+                        return ActionResult.sidedSuccess(this.getEmptySuccessItem(itemstack, player), world.isClientSide());
+                    } else {
+                        return ActionResult.fail(itemstack);
+                    }
+                }
+            } else {
+                return ActionResult.fail(itemstack);
+            }
+        }
+    }
+
+    private boolean canBlockContainFluid(World worldIn, BlockPos posIn, BlockState blockstate) {
+        return blockstate.getBlock() instanceof ILiquidContainer && ((ILiquidContainer)blockstate.getBlock()).canPlaceLiquid(worldIn, posIn, blockstate, getFluid());
     }
 
     /*
