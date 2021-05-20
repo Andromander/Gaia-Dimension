@@ -2,15 +2,22 @@ package androsa.gaiadimension.registry;
 
 import androsa.gaiadimension.GaiaDimensionMod;
 import androsa.gaiadimension.block.*;
+import androsa.gaiadimension.item.ScaynyxBucketItem;
 import androsa.gaiadimension.world.gen.tree.*;
 import com.google.common.collect.Maps;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
-import net.minecraft.item.AxeItem;
-import net.minecraft.item.BlockItem;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
+import net.minecraft.dispenser.DefaultDispenseItemBehavior;
+import net.minecraft.dispenser.IBlockSource;
+import net.minecraft.dispenser.IDispenseItemBehavior;
+import net.minecraft.fluid.FlowingFluid;
+import net.minecraft.fluid.Fluid;
+import net.minecraft.item.*;
+import net.minecraft.tileentity.DispenserTileEntity;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IWorld;
+import net.minecraft.world.World;
 import net.minecraftforge.common.ToolType;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
@@ -442,5 +449,61 @@ public class ModBlocks {
 
     private static void addToMap(Map<Block, Block> map, Supplier<? extends Block> original, Supplier<? extends Block> newstate) {
         map.put(original.get(), newstate.get());
+    }
+
+    public static void registerDispenserBehaviour() {
+        IDispenseItemBehavior dispenseFluid = new DefaultDispenseItemBehavior() {
+            private final DefaultDispenseItemBehavior defaultBehaviour = new DefaultDispenseItemBehavior();
+
+            @Override
+            public ItemStack execute(IBlockSource source, ItemStack stack) {
+                ScaynyxBucketItem bucketitem = (ScaynyxBucketItem)stack.getItem();
+                BlockPos blockpos = source.getPos().relative(source.getBlockState().getValue(DispenserBlock.FACING));
+                World world = source.getLevel();
+                if (bucketitem.emptyBucket(null, world, blockpos, null)) {
+                    bucketitem.checkExtraContent(world, stack, blockpos);
+                    return new ItemStack(ModItems.scaynyx_bucket.get());
+                } else {
+                    return this.defaultBehaviour.dispense(source, stack);
+                }
+            }
+        };
+
+        DispenserBlock.registerBehavior(ModItems.mineral_water_bucket.get(), dispenseFluid);
+        DispenserBlock.registerBehavior(ModItems.superhot_magma_bucket.get(), dispenseFluid);
+        DispenserBlock.registerBehavior(ModItems.sweet_muck_bucket.get(), dispenseFluid);
+        DispenserBlock.registerBehavior(ModItems.liquid_bismuth_bucket.get(), dispenseFluid);
+        DispenserBlock.registerBehavior(ModItems.liquid_aura_bucket.get(), dispenseFluid);
+        DispenserBlock.registerBehavior(ModItems.scaynyx_bucket.get(), new DefaultDispenseItemBehavior() {
+            private final DefaultDispenseItemBehavior defaultBehaviour = new DefaultDispenseItemBehavior();
+
+            @Override
+            public ItemStack execute(IBlockSource source, ItemStack stack) {
+                IWorld iworld = source.getLevel();
+                BlockPos blockpos = source.getPos().relative(source.getBlockState().getValue(DispenserBlock.FACING));
+                BlockState blockstate = iworld.getBlockState(blockpos);
+                Block block = blockstate.getBlock();
+                if (block instanceof GaiaFluidBlock) {
+                    Fluid fluid = ((GaiaFluidBlock)block).takeLiquid(iworld, blockpos, blockstate);
+                    if (!(fluid instanceof FlowingFluid)) {
+                        return super.execute(source, stack);
+                    } else {
+                        Item item = fluid.getBucket();
+                        stack.shrink(1);
+                        if (stack.isEmpty()) {
+                            return new ItemStack(item);
+                        } else {
+                            if (source.<DispenserTileEntity>getEntity().addItem(new ItemStack(item)) < 0) {
+                                this.defaultBehaviour.dispense(source, new ItemStack(item));
+                            }
+
+                            return stack;
+                        }
+                    }
+                } else {
+                    return super.execute(source, stack);
+                }
+            }
+        });
     }
 }
