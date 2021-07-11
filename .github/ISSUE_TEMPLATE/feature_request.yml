@@ -1,0 +1,29 @@
+name: Feature Request (Beta)
+description: Suggest an idea for this project
+title: "[Idea] "
+labels: [enhancement]
+body:
+  - type: textarea
+    attributes:
+      label: Describe the feature
+      description: |
+        A clear and concise description of what you would like to see in the mod.
+        Please DO NOT submit a feature request for the following:
+        - Implement the unused equipment. Yes, they will be added eventually.
+        - Guidebook. Finding a solution that does not call for a mod dependency is proving fruitless.
+        - New boss <structure, mob, loot, etc.>. Don't worry, plans exist for them.
+        - Backports. Unfortunately, porting features to past versions is just unviable.
+        - Duplicate ideas. Creating a new request to echo an existing one will not boost chances of it being implemented. Leave a thumbs up on your favourites.
+        - Questions. This is suggesting a feature, not FAQ.
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Why do you think it should be added?
+      description: Explain why you may like to see this included into the mod, such as a quality of life upgrade, or expanding on an existing feature. Sell your idea, make it convincing!
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Additional Context
+      description: Any extra notes to add in, such as some proof-of-concept screenshots, or where it may have been discussed - such as the Gaia Dimension Discord.
