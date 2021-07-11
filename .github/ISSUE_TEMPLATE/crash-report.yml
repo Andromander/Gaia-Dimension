@@ -1,5 +1,5 @@
 name: Crash Report (Beta)
-about: In the event of a crash, report here.
+description: In the event of a crash, report here.
 title: "[Crash] "
 labels: [bug, crash]
 body:
