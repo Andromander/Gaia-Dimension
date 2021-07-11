@@ -1,6 +1,6 @@
 name: Bug Report (Beta)
 description: Create an issue about a potential bug
-title: ''
+title: "[Bug] "
 labels: [bug]
 body:
   - type: input
