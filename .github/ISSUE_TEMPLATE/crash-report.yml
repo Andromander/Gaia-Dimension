@@ -1,0 +1,56 @@
+name: Crash Report (Beta)
+about: In the event of a crash, report here.
+title: "[Crash] "
+labels: [bug, crash]
+body:
+  - type: input
+    attributes:
+      label: Minecraft Version
+      description: What version of Minecraft are you running?
+      placeholder: "Example: 1.16.5"
+    validations:
+      required: true
+  - type: input
+    attributes:
+      label: Forge Version
+      description: What version of Forge are you using? This can be found on the jar file you downloaded from the Forge website or the installation setting.
+      placeholder: "Example: 36.1.0"
+    validations:
+      required: true
+  - type: input
+    attributes:
+      label: Gaia Dimension Version
+      description: What version of Gaia Dimension are you using? This can be found on the jar file you downloaded from Curseforge or the repository.
+      placeholder: "Example: 1.3.2"
+    validations:
+      required: true
+  - type: input
+    attributes:
+      label: Crash Log
+      description: Provide the log of the crash via [Gist](https://gist.github.com/). This can be found by going into the game's files and finding the crash reports folder.
+    validations:
+      required: true
+  - type: input
+    attributes:
+      label: Client Log
+      description: A [Gist](https://gist.github.com/) link to the client log for additional context. Some crashes may be caused by an error before the report itself and thus can help proeprly diagnose the crash.
+  - type: textarea
+    attributes:
+      label: To Reproduce
+      description: Describe how you achieved this crash if the steps required are not immediately obvious or instant.
+      value: |
+       1. First step
+       2. Second step
+       3. Third and so on...more steps can be added
+  - type: textarea
+    attributes:
+      label: Additional Details
+      description: Include any additional info that will help diagnose the crash. You can include video or screenshot evidence of a particular setup, details about other mods that may be involved, or links to issues in other repositories.
+  - type: checkboxes
+    attributes:
+     label: Please read and confirm you have done the following
+     options:
+      - label: I have verified my report is unique and is not already opened or closed.
+        required: true
+      - label: The versions listed above are accurate and not a vague answer (ie. "Latest", "I don't know"), a valid link to the crash report, and all details provided are clear and concise.
+        required: true
