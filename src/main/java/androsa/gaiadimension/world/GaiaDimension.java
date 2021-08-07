@@ -47,7 +47,10 @@ public class GaiaDimension extends Dimension {
     @Nullable
     @Override
     public IRenderHandler getSkyRenderer() {
-        return new GaiaSkyRender();
+        if (super.getSkyRenderer() == null) {
+            this.setSkyRenderer(new GaiaSkyRender());
+        }
+        return super.getSkyRenderer();
     }
 
     @Override
