@@ -18,5 +18,8 @@ build
 .gradle
 
 # other
+classes
+logs
 eclipse
 run
+src/main/disabled
