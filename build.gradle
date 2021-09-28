@@ -1,11 +1,10 @@
 buildscript {
     repositories {
-        maven { url = 'https://files.minecraftforge.net/maven' }
-        jcenter()
+        maven { url = 'https://maven.minecraftforge.net/' }
         mavenCentral()
     }
     dependencies {
-        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '3.+', changing: true
+        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '5.1.+', changing: true
     }
 }
 apply plugin: 'net.minecraftforge.gradle'
@@ -23,7 +22,7 @@ if (System.getenv("TRAVIS_BUILD_NUMBER") != null) {
 }
 String jarVersion = fullVersion.replace("+", "-")
 
-sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '1.8' // Need this here so eclipse task generates correctly.
+java.toolchain.languageVersion = JavaLanguageVersion.of(16) // Need this here so eclipse task generates correctly.
 
 minecraft {
     mappings channel: project.forge_channel, version: project.forge_mappings
@@ -110,12 +109,12 @@ artifacts {
 repositories {
     maven {
         name = "tterrag maven"
-        url = 'http://maven.tterrag.com/'
+        url = 'https://maven.tterrag.com/'
     }
     maven {
         // location of the maven that hosts JEI files
         name = "Progwml6 maven"
-        url = "http://dvs1.progwml6.com/files/maven"
+        url = "https://dvs1.progwml6.com/files/maven"
     }
     maven {
         // location of a maven mirror for JEI files, as a fallback
@@ -128,13 +127,13 @@ repositories {
 }
 
 dependencies {
-    compileOnly fg.deobf("mezz.jei:jei-${mc_version_jei}:${jei_version}:api")
-    runtimeOnly fg.deobf("mezz.jei:jei-${mc_version_jei}:${jei_version}")
+//    compileOnly fg.deobf("mezz.jei:jei-${mc_version_jei}:${jei_version}:api")
+//    runtimeOnly fg.deobf("mezz.jei:jei-${mc_version_jei}:${jei_version}")
 
-    runtimeOnly fg.deobf("com.sk88q.worldedit:WorldEdit:${we_version}")
-    runtimeOnly fg.deobf("team.chisel.ctm:CTM:${project.ctm_version}")
-    runtimeOnly fg.deobf("me.ichun.mods.tabula.common:Tabula:10.2.0")
-    runtimeOnly fg.deobf("me.ichun.mods.ichunutil.common:iChunUtil:10.2.0")
+//    runtimeOnly fg.deobf("com.sk88q.worldedit:WorldEdit:${we_version}")
+//    runtimeOnly fg.deobf("team.chisel.ctm:CTM:${project.ctm_version}")
+//    runtimeOnly fg.deobf("me.ichun.mods.tabula.common:Tabula:10.2.0")
+//    runtimeOnly fg.deobf("me.ichun.mods.ichunutil.common:iChunUtil:10.2.0")
 
     minecraft "net.minecraftforge:forge:${project.mc_version}-${project.forge_version}"
 }
