@@ -1,14 +1,13 @@
 package androsa.gaiadimension.block;
 
-import androsa.gaiadimension.block.tileentity.GaiaStoneFurnaceTileEntity;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.FurnaceBlock;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.inventory.container.INamedContainerProvider;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.IBlockReader;
-import net.minecraft.world.World;
+import androsa.gaiadimension.block.blockentity.GaiaStoneFurnaceBlockEntity;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.MenuProvider;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.FurnaceBlock;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.state.BlockState;
 
 public class GaiaStoneFurnaceBlock extends FurnaceBlock {
 
@@ -17,20 +16,15 @@ public class GaiaStoneFurnaceBlock extends FurnaceBlock {
     }
 
     @Override
-    public boolean hasTileEntity(BlockState state) {
-        return true;
+    public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
+        return new GaiaStoneFurnaceBlockEntity(pos, state);
     }
 
     @Override
-    public TileEntity createTileEntity(BlockState state, IBlockReader world) {
-        return new GaiaStoneFurnaceTileEntity();
-    }
-
-    @Override
-    protected void openContainer(World world, BlockPos pos, PlayerEntity player) {
-        TileEntity tileentity = world.getBlockEntity(pos);
-        if (tileentity instanceof GaiaStoneFurnaceTileEntity) {
-            player.openMenu((INamedContainerProvider)tileentity);
+    protected void openContainer(Level world, BlockPos pos, Player player) {
+        BlockEntity tileentity = world.getBlockEntity(pos);
+        if (tileentity instanceof GaiaStoneFurnaceBlockEntity) {
+            player.openMenu((MenuProvider)tileentity);
         }
     }
 }

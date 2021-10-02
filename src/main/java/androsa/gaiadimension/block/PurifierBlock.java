@@ -1,32 +1,39 @@
 package androsa.gaiadimension.block;
 
-import androsa.gaiadimension.block.tileentity.PurifierTileEntity;
+import androsa.gaiadimension.block.blockentity.PurifierBlockEntity;
+import androsa.gaiadimension.registry.GaiaBlockProperties;
 import androsa.gaiadimension.registry.ModParticles;
-import net.minecraft.block.*;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.inventory.InventoryHelper;
-import net.minecraft.inventory.container.Container;
-import net.minecraft.inventory.container.INamedContainerProvider;
-import net.minecraft.item.BlockItemUseContext;
-import net.minecraft.item.ItemStack;
-import net.minecraft.state.BooleanProperty;
-import net.minecraft.state.DirectionProperty;
-import net.minecraft.state.StateContainer;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.*;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.BlockRayTraceResult;
-import net.minecraft.world.IBlockReader;
-import net.minecraft.world.World;
+import androsa.gaiadimension.registry.ModBlockEntities;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.world.Containers;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.MenuProvider;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntityTicker;
+import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.BooleanProperty;
+import net.minecraft.world.level.block.state.properties.DirectionProperty;
+import net.minecraft.world.phys.BlockHitResult;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
+import javax.annotation.Nullable;
 import java.util.Random;
 
-public class PurifierBlock extends Block {
+public class PurifierBlock extends Block implements EntityBlock {
 
-    public static final DirectionProperty FACING = HorizontalBlock.FACING;
+    public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
     public static final BooleanProperty LIT = RedstoneTorchBlock.LIT;
 
     public PurifierBlock(Properties props) {
@@ -36,54 +43,54 @@ public class PurifierBlock extends Block {
 
     @Override
     @Deprecated
-    public boolean triggerEvent(BlockState state, World worldIn, BlockPos pos, int id, int param) {
+    public boolean triggerEvent(BlockState state, Level worldIn, BlockPos pos, int id, int param) {
         super.triggerEvent(state, worldIn, pos, id, param);
-        TileEntity tileentity = worldIn.getBlockEntity(pos);
+        BlockEntity tileentity = worldIn.getBlockEntity(pos);
         return tileentity != null && tileentity.triggerEvent(id, param);
     }
 
     @Override
     @Deprecated
-    public INamedContainerProvider getMenuProvider(BlockState state, World worldIn, BlockPos pos) {
-        TileEntity tileentity = worldIn.getBlockEntity(pos);
-        return tileentity instanceof INamedContainerProvider ? (INamedContainerProvider)tileentity : null;
+    public MenuProvider getMenuProvider(BlockState state, Level worldIn, BlockPos pos) {
+        BlockEntity tileentity = worldIn.getBlockEntity(pos);
+        return tileentity instanceof MenuProvider ? (MenuProvider)tileentity : null;
     }
 
     @Override
     @Deprecated
-    public ActionResultType use(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
+    public InteractionResult use(BlockState state, Level worldIn, BlockPos pos, Player player, InteractionHand handIn, BlockHitResult hit) {
         if (!worldIn.isClientSide()) {
-            TileEntity tileentity = worldIn.getBlockEntity(pos);
-            if (tileentity instanceof PurifierTileEntity) {
-                player.openMenu((PurifierTileEntity) tileentity);
+            BlockEntity tileentity = worldIn.getBlockEntity(pos);
+            if (tileentity instanceof PurifierBlockEntity) {
+                player.openMenu((PurifierBlockEntity) tileentity);
             }
         }
 
-        return ActionResultType.SUCCESS;
+        return InteractionResult.SUCCESS;
     }
 
     @Override
-    public BlockState getStateForPlacement(BlockItemUseContext context) {
+    public BlockState getStateForPlacement(BlockPlaceContext context) {
         return this.defaultBlockState().setValue(FACING, context.getHorizontalDirection().getOpposite());
     }
 
     @Override
-    public void setPlacedBy(World world, BlockPos pos, BlockState state, LivingEntity living, ItemStack stack) {
+    public void setPlacedBy(Level world, BlockPos pos, BlockState state, LivingEntity living, ItemStack stack) {
         if (stack.hasCustomHoverName()) {
-            TileEntity tileentity = world.getBlockEntity(pos);
-            if (tileentity instanceof PurifierTileEntity) {
-                ((PurifierTileEntity)tileentity).setCustomName(stack.getDisplayName());
+            BlockEntity tileentity = world.getBlockEntity(pos);
+            if (tileentity instanceof PurifierBlockEntity) {
+                ((PurifierBlockEntity)tileentity).setCustomName(stack.getDisplayName());
             }
         }
     }
 
     @Override
     @Deprecated
-    public void onRemove(BlockState state, World worldIn, BlockPos pos, BlockState newState, boolean isMoving) {
+    public void onRemove(BlockState state, Level worldIn, BlockPos pos, BlockState newState, boolean isMoving) {
         if (state.getBlock() != newState.getBlock()) {
-            TileEntity tileentity = worldIn.getBlockEntity(pos);
-            if (tileentity instanceof PurifierTileEntity) {
-                InventoryHelper.dropContents(worldIn, pos, (PurifierTileEntity)tileentity);
+            BlockEntity tileentity = worldIn.getBlockEntity(pos);
+            if (tileentity instanceof PurifierBlockEntity) {
+                Containers.dropContents(worldIn, pos, (PurifierBlockEntity)tileentity);
                 worldIn.updateNeighbourForOutputSignal(pos, this);
             }
 
@@ -99,8 +106,8 @@ public class PurifierBlock extends Block {
 
     @Override
     @Deprecated
-    public int getAnalogOutputSignal(BlockState state, World world, BlockPos pos) {
-        return Container.getRedstoneSignalFromBlockEntity(world.getBlockEntity(pos));
+    public int getAnalogOutputSignal(BlockState state, Level world, BlockPos pos) {
+        return AbstractContainerMenu.getRedstoneSignalFromBlockEntity(world.getBlockEntity(pos));
     }
 
     @Override
@@ -116,23 +123,25 @@ public class PurifierBlock extends Block {
     }
 
     @Override
-    protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder) {
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         builder.add(FACING, LIT);
     }
 
+    @Nullable
     @Override
-    public TileEntity createTileEntity(BlockState state, IBlockReader world) {
-        return new PurifierTileEntity();
+    public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
+        return new PurifierBlockEntity(pos, state);
     }
 
+    @Nullable
     @Override
-    public boolean hasTileEntity(BlockState state) {
-        return true;
+    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> entity) {
+        return ModBlockEntities.PURIFIER.get() == entity && !level.isClientSide() ? GaiaBlockProperties.getTicker(PurifierBlockEntity::tick) : null;
     }
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public void animateTick(BlockState stateIn, World worldIn, BlockPos pos, Random rand) {
+    public void animateTick(BlockState stateIn, Level worldIn, BlockPos pos, Random rand) {
         if (stateIn.getValue(LIT)){
             double d0 = (double)pos.getX() + 0.5D;
             double d1 = (double)pos.getY();

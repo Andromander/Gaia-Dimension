@@ -3,31 +3,31 @@ package androsa.gaiadimension.block;
 import androsa.gaiadimension.fluids.*;
 import androsa.gaiadimension.registry.GaiaTags;
 import androsa.gaiadimension.registry.ModBlocks;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.FlowingFluidBlock;
-import net.minecraft.entity.Entity;
-import net.minecraft.fluid.FlowingFluid;
-import net.minecraft.fluid.FluidState;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.tags.FluidTags;
-import net.minecraft.util.DamageSource;
-import net.minecraft.util.Direction;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.IWorld;
-import net.minecraft.world.World;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.LiquidBlock;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.material.FlowingFluid;
+import net.minecraft.world.level.material.FluidState;
 import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.event.ForgeEventFactory;
 
 import java.util.function.Supplier;
 
-public class GaiaFluidBlock extends FlowingFluidBlock {
+public class GaiaFluidBlock extends LiquidBlock {
 
     public GaiaFluidBlock(Supplier<? extends FlowingFluid> fluid, Properties builder) {
         super(fluid, builder.noCollission().strength(100.0F).noDrops());
     }
 
     @Override
-    public boolean shouldSpreadLiquid(World world, BlockPos pos, BlockState state) {
+    public boolean shouldSpreadLiquid(Level world, BlockPos pos, BlockState state) {
         for (Direction side : Direction.values()) {
             if (side != Direction.DOWN) {
                 FluidState offset = world.getFluidState(pos.relative(side));
@@ -66,18 +66,18 @@ public class GaiaFluidBlock extends FlowingFluidBlock {
         return super.shouldSpreadLiquid(world, pos, state);
     }
 
-    private void setMixedBlock(World world, BlockPos pos, Supplier<Block> block) {
+    private void setMixedBlock(Level world, BlockPos pos, Supplier<Block> block) {
         world.setBlockAndUpdate(pos, ForgeEventFactory.fireFluidPlaceBlockEvent(world, pos, pos, block.get().defaultBlockState()));
         this.triggerMixEffects(world, pos);
     }
 
-    private void triggerMixEffects(IWorld worldIn, BlockPos pos) {
+    private void triggerMixEffects(LevelAccessor worldIn, BlockPos pos) {
         worldIn.levelEvent(Constants.WorldEvents.LAVA_EXTINGUISH, pos, 0);
     }
 
     @Override
     @Deprecated
-    public void entityInside(BlockState state, World worldIn, BlockPos pos, Entity entityIn) {
+    public void entityInside(BlockState state, Level worldIn, BlockPos pos, Entity entityIn) {
         if (this.getFluid().is(FluidTags.LAVA)) {
             if (this.getFluid() instanceof SuperhotMagmaFluid && !entityIn.fireImmune()) {
                 entityIn.hurt(DamageSource.IN_FIRE, 5.0F);

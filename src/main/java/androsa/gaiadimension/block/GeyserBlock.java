@@ -1,27 +1,37 @@
 package androsa.gaiadimension.block;
 
-import androsa.gaiadimension.block.tileentity.GeyserTileEntity;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.world.IBlockReader;
+import androsa.gaiadimension.block.blockentity.GeyserBlockEntity;
+import androsa.gaiadimension.registry.GaiaBlockProperties;
+import androsa.gaiadimension.registry.ModBlockEntities;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.EntityBlock;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntityTicker;
+import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraft.world.level.block.state.BlockState;
 
 import javax.annotation.Nullable;
 
-public class GeyserBlock extends Block {
+public class GeyserBlock extends Block implements EntityBlock {
 
     public GeyserBlock(Properties props) {
         super(props);
     }
 
+    @Nullable
     @Override
-    public boolean hasTileEntity(BlockState state) {
-        return true;
+    public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
+        return new GeyserBlockEntity(pos, state);
     }
 
     @Nullable
     @Override
-    public TileEntity createTileEntity(BlockState state, IBlockReader world) {
-        return new GeyserTileEntity();
+    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> entity) {
+        if (level.isClientSide()) {
+            return ModBlockEntities.GEYSER.get() == entity ? GaiaBlockProperties.getTicker(GeyserBlockEntity::tick) : null;
+        }
+        return null;
     }
 }

@@ -1,22 +1,22 @@
 package androsa.gaiadimension.block;
 
-import androsa.gaiadimension.block.container.AgateCraftingTableContainer;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.inventory.container.INamedContainerProvider;
-import net.minecraft.inventory.container.SimpleNamedContainerProvider;
-import net.minecraft.util.ActionResultType;
-import net.minecraft.util.Hand;
-import net.minecraft.util.IWorldPosCallable;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.BlockRayTraceResult;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TranslationTextComponent;
-import net.minecraft.world.World;
+import androsa.gaiadimension.block.menu.AgateCraftingTableMenu;
+import net.minecraft.core.BlockPos;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.MenuProvider;
+import net.minecraft.world.SimpleMenuProvider;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.inventory.ContainerLevelAccess;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.BlockHitResult;
 
 public class AgateCraftingTableBlock extends Block {
-    private static final ITextComponent NAME = new TranslationTextComponent("gaiadimension.container.crafting");
+    private static final Component NAME = new TranslatableComponent("gaiadimension.container.crafting");
 
     public AgateCraftingTableBlock(Properties props) {
         super(props);
@@ -24,14 +24,14 @@ public class AgateCraftingTableBlock extends Block {
 
     @Override
     @Deprecated
-    public ActionResultType use(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockRayTraceResult result) {
+    public InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult result) {
         player.openMenu(state.getMenuProvider(world, pos));
-        return ActionResultType.SUCCESS;
+        return InteractionResult.SUCCESS;
     }
 
     @Override
     @Deprecated
-    public INamedContainerProvider getMenuProvider(BlockState state, World worldIn, BlockPos pos) {
-        return new SimpleNamedContainerProvider((id, inventory, worldPos) -> new AgateCraftingTableContainer(id, inventory, IWorldPosCallable.create(worldIn, pos)), NAME);
+    public MenuProvider getMenuProvider(BlockState state, Level worldIn, BlockPos pos) {
+        return new SimpleMenuProvider((id, inventory, worldPos) -> new AgateCraftingTableMenu(id, inventory, ContainerLevelAccess.create(worldIn, pos)), NAME);
     }
 }

@@ -1,11 +1,11 @@
 package androsa.gaiadimension.block;
 
 import androsa.gaiadimension.registry.ModBlocks;
-import net.minecraft.block.BlockState;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.gen.feature.ConfiguredFeature;
-import net.minecraft.world.gen.feature.FlowersFeature;
-import net.minecraft.world.server.ServerWorld;
+import net.minecraft.core.BlockPos;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.levelgen.feature.AbstractFlowerFeature;
+import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 
 import java.util.List;
 import java.util.Random;
@@ -17,7 +17,7 @@ public class CorruptGrassBlock extends AbstractGaiaGrassBlock {
     }
 
     @Override
-    public void performBonemeal(ServerWorld worldIn, Random rand, BlockPos pos, BlockState state) {
+    public void performBonemeal(ServerLevel worldIn, Random rand, BlockPos pos, BlockState state) {
         BlockPos blockpos = pos.above();
         BlockState blackGrowth = ModBlocks.crystal_growth_black.get().defaultBlockState();
         BlockState redGrowth = ModBlocks.crystal_growth_red.get().defaultBlockState();
@@ -43,7 +43,7 @@ public class CorruptGrassBlock extends AbstractGaiaGrassBlock {
                     }
 
                     ConfiguredFeature<?, ?> configuredfeature = list.get(0);
-                    FlowersFeature flowersfeature = (FlowersFeature)configuredfeature.feature;
+                    AbstractFlowerFeature flowersfeature = (AbstractFlowerFeature)configuredfeature.feature;
                     blockstate1 = flowersfeature.getRandomFlower(rand, blockpos1, configuredfeature.config());
                 } else {
                     blockstate1 = rand.nextInt(2) == 0 ? blackGrowth : redGrowth;

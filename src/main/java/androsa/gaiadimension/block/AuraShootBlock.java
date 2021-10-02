@@ -1,21 +1,21 @@
 package androsa.gaiadimension.block;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.item.BlockItemUseContext;
-import net.minecraft.state.BooleanProperty;
-import net.minecraft.state.IntegerProperty;
-import net.minecraft.state.StateContainer;
-import net.minecraft.state.properties.BlockStateProperties;
-import net.minecraft.util.Direction;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.shapes.ISelectionContext;
-import net.minecraft.util.math.shapes.VoxelShape;
-import net.minecraft.util.math.shapes.VoxelShapes;
-import net.minecraft.world.IBlockReader;
-import net.minecraft.world.IWorld;
-import net.minecraft.world.IWorldReader;
-import net.minecraft.world.server.ServerWorld;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.block.state.properties.BooleanProperty;
+import net.minecraft.world.level.block.state.properties.IntegerProperty;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.Shapes;
+import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.common.PlantType;
@@ -30,7 +30,7 @@ public class AuraShootBlock extends Block implements IPlantable {
     private static final VoxelShape TOP_SHOOT_SHAPE_1 = Block.box(5.0D, 0.0D, 5.0D, 11.0D, 10.0D, 11.0D);
     private static final VoxelShape TOP_SHOOT_SHAPE_2 = Block.box(6.0D, 10.0D, 6.0D, 10.0D, 13.0D, 10.0D);
     private static final VoxelShape TOP_SHOOT_SHAPE_3 = Block.box(7.0D, 13.0D, 7.0D, 9.0D, 16.0D, 9.0D);
-    private static final VoxelShape TOP_SHOOT_SHAPE = VoxelShapes.or(TOP_SHOOT_SHAPE_1, TOP_SHOOT_SHAPE_2, TOP_SHOOT_SHAPE_3);
+    private static final VoxelShape TOP_SHOOT_SHAPE = Shapes.or(TOP_SHOOT_SHAPE_1, TOP_SHOOT_SHAPE_2, TOP_SHOOT_SHAPE_3);
 
     public AuraShootBlock(Properties props) {
         super(props);
@@ -39,7 +39,7 @@ public class AuraShootBlock extends Block implements IPlantable {
 
     @Override
     @Deprecated
-    public VoxelShape getShape(BlockState state, IBlockReader reader, BlockPos pos, ISelectionContext context) {
+    public VoxelShape getShape(BlockState state, BlockGetter reader, BlockPos pos, CollisionContext context) {
         if (state.getValue(IS_TOP)) {
             return TOP_SHOOT_SHAPE;
         }
@@ -48,7 +48,7 @@ public class AuraShootBlock extends Block implements IPlantable {
 
     @Override
     @Deprecated
-    public BlockState updateShape(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
+    public BlockState updateShape(BlockState stateIn, Direction facing, BlockState facingState, LevelAccessor worldIn, BlockPos currentPos, BlockPos facingPos) {
         if (!stateIn.canSurvive(worldIn, currentPos)) {
             worldIn.getBlockTicks().scheduleTick(currentPos, this, 1);
         }
@@ -62,14 +62,14 @@ public class AuraShootBlock extends Block implements IPlantable {
     }
 
     @Override
-    public BlockState getStateForPlacement(BlockItemUseContext context) {
+    public BlockState getStateForPlacement(BlockPlaceContext context) {
         Block block = context.getLevel().getBlockState(context.getClickedPos().above()).getBlock();
         return this.defaultBlockState().setValue(IS_TOP, block != this);
     }
 
     @Override
     @Deprecated
-    public boolean canSurvive(BlockState state, IWorldReader worldIn, BlockPos pos) {
+    public boolean canSurvive(BlockState state, LevelReader worldIn, BlockPos pos) {
         BlockState soil = worldIn.getBlockState(pos.below());
         if (soil.canSustainPlant(worldIn, pos.below(), Direction.UP, this))
             return true;
@@ -80,18 +80,18 @@ public class AuraShootBlock extends Block implements IPlantable {
     }
 
     @Override
-    public PlantType getPlantType(IBlockReader reader, BlockPos pos) {
+    public PlantType getPlantType(BlockGetter reader, BlockPos pos) {
         return PlantType.PLAINS;
     }
 
     @Override
-    public BlockState getPlant(IBlockReader reader, BlockPos pos) {
+    public BlockState getPlant(BlockGetter reader, BlockPos pos) {
         return this.defaultBlockState();
     }
 
     @Override
     @Deprecated
-    public void tick(BlockState state, ServerWorld worldIn, BlockPos pos, Random rand) {
+    public void tick(BlockState state, ServerLevel worldIn, BlockPos pos, Random rand) {
         if (!state.canSurvive(worldIn, pos)) {
             worldIn.destroyBlock(pos, true);
         }
@@ -99,7 +99,7 @@ public class AuraShootBlock extends Block implements IPlantable {
 
     @Override
     @Deprecated
-    public void randomTick(BlockState state, ServerWorld worldIn, BlockPos pos, Random random) {
+    public void randomTick(BlockState state, ServerLevel worldIn, BlockPos pos, Random random) {
         if (worldIn.isEmptyBlock(pos.above())) {
             int i;
             i = 1;
@@ -125,7 +125,7 @@ public class AuraShootBlock extends Block implements IPlantable {
     }
 
     @Override
-    protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder) {
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         builder.add(AGE, IS_TOP);
     }
 }

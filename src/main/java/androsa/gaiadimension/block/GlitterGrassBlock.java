@@ -2,11 +2,11 @@ package androsa.gaiadimension.block;
 
 import androsa.gaiadimension.registry.ModBiomes;
 import androsa.gaiadimension.registry.ModBlocks;
-import net.minecraft.block.BlockState;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.gen.feature.ConfiguredFeature;
-import net.minecraft.world.gen.feature.FlowersFeature;
-import net.minecraft.world.server.ServerWorld;
+import net.minecraft.core.BlockPos;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.levelgen.feature.AbstractFlowerFeature;
+import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 
 import java.util.List;
 import java.util.Optional;
@@ -19,7 +19,7 @@ public class GlitterGrassBlock extends AbstractGaiaGrassBlock {
     }
 
     @Override
-    public void performBonemeal(ServerWorld worldIn, Random rand, BlockPos pos, BlockState state) {
+    public void performBonemeal(ServerLevel worldIn, Random rand, BlockPos pos, BlockState state) {
         BlockPos blockpos = pos.above();
         BlockState normalGrowth = ModBlocks.crystal_growth.get().defaultBlockState();
         BlockState mutantGrowth = ModBlocks.crystal_growth_mutant.get().defaultBlockState();
@@ -45,7 +45,7 @@ public class GlitterGrassBlock extends AbstractGaiaGrassBlock {
                     }
 
                     ConfiguredFeature<?, ?> configuredfeature = list.get(0);
-                    FlowersFeature flowersfeature = (FlowersFeature)configuredfeature.feature;
+                    AbstractFlowerFeature flowersfeature = (AbstractFlowerFeature)configuredfeature.feature;
                     blockstate1 = flowersfeature.getRandomFlower(rand, blockpos1, configuredfeature.config());
                 } else {
                     blockstate1 = worldIn.getBiomeName(blockpos1) == Optional.of(ModBiomes.mutant_agate_wildwood) ? mutantGrowth : normalGrowth;

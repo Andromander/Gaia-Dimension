@@ -51,7 +51,7 @@ public class GaiaDimensionMod {
 
         ModBiomes.BIOMES.register(modEventBus);
         ModBlocks.BLOCKS.register(modEventBus);
-        ModContainers.CONTAINERS.register(modEventBus);
+        ModMenus.CONTAINERS.register(modEventBus);
         ModDimensions.POI_TYPES.register(modEventBus);
 //      ModEffects.POTIONS.register(modEventBus);
 //      ModEntities.ENTITIES.register(modEventBus);
@@ -59,7 +59,7 @@ public class GaiaDimensionMod {
         ModItems.ITEMS.register(modEventBus);
 //      ModParticles.PARTICLE_TYPES.register(modEventBus);
         ModRecipes.RECIPE_SERIALIZERS.register(modEventBus);
-        ModTileEntities.TILE_ENTITIES.register(modEventBus);
+        ModBlockEntities.TILE_ENTITIES.register(modEventBus);
         ModWorldgen.FEATURES.register(modEventBus);
         ModWorldgen.STRUCTURES.register(modEventBus);
         ModWorldgen.SURFACE_BUILDERS.register(modEventBus);
@@ -94,7 +94,7 @@ public class GaiaDimensionMod {
         DimensionRenderInfo gaia = new GaiaDimensionRenderInfo();
         DimensionRenderInfo.EFFECTS.put(new ResourceLocation(GaiaDimensionMod.MODID, "gaia"), gaia);
 
-        DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> ModContainers::registerScreens);
+        DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> ModMenus::registerScreens);
         DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> ModEntities::registerEntityRender);
         DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> ModParticles::forgeClassLoadingIsFuckedThisShouldntBeHereButHereItIs);
         DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> ClientEvents::registerBlockColors);
