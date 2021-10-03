@@ -1,14 +1,14 @@
 package androsa.gaiadimension.particle;
 
+import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.particle.*;
-import net.minecraft.client.world.ClientWorld;
-import net.minecraft.particles.BasicParticleType;
+import net.minecraft.core.particles.SimpleParticleType;
 
 import javax.annotation.Nullable;
 
-public class MalachiteMagicParticle extends SpriteTexturedParticle {
+public class MalachiteMagicParticle extends TextureSheetParticle {
 
-    protected MalachiteMagicParticle(ClientWorld world, double xPos, double yPos, double zPos, double xDist, double yDist, double zDist) {
+    protected MalachiteMagicParticle(ClientLevel world, double xPos, double yPos, double zPos, double xDist, double yDist, double zDist) {
         super(world, xPos, yPos, zPos, xDist, yDist, zDist);
         this.xd = xDist;
         this.yd = yDist + this.random.nextFloat() * 0.05F;
@@ -35,21 +35,21 @@ public class MalachiteMagicParticle extends SpriteTexturedParticle {
     }
 
     @Override
-    public IParticleRenderType getRenderType() {
-        return IParticleRenderType.PARTICLE_SHEET_TRANSLUCENT;
+    public ParticleRenderType getRenderType() {
+        return ParticleRenderType.PARTICLE_SHEET_TRANSLUCENT;
     }
 
-    public static class Factory implements IParticleFactory<BasicParticleType> {
+    public static class Factory implements ParticleProvider<SimpleParticleType> {
 
-        private final IAnimatedSprite sprite;
+        private final SpriteSet sprite;
 
-        public Factory(IAnimatedSprite sprite) {
+        public Factory(SpriteSet sprite) {
             this.sprite = sprite;
         }
 
         @Nullable
         @Override
-        public Particle createParticle(BasicParticleType type, ClientWorld level, double xPos, double yPos, double zPos, double xDist, double yDist, double zDist) {
+        public Particle createParticle(SimpleParticleType type, ClientLevel level, double xPos, double yPos, double zPos, double xDist, double yDist, double zDist) {
             MalachiteMagicParticle particle = new MalachiteMagicParticle(level, xPos, yPos, zPos, xDist, yDist, zDist);
             particle.pickSprite(sprite);
             return particle;

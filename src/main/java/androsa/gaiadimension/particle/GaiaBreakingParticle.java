@@ -1,24 +1,24 @@
 package androsa.gaiadimension.particle;
 
 import androsa.gaiadimension.registry.ModItems;
-import net.minecraft.client.particle.BreakingParticle;
-import net.minecraft.client.particle.IParticleFactory;
+import net.minecraft.client.multiplayer.ClientLevel;
+import net.minecraft.client.particle.BreakingItemParticle;
 import net.minecraft.client.particle.Particle;
-import net.minecraft.client.world.ClientWorld;
-import net.minecraft.item.ItemStack;
-import net.minecraft.particles.BasicParticleType;
+import net.minecraft.client.particle.ParticleProvider;
+import net.minecraft.core.particles.SimpleParticleType;
+import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
-public class GaiaBreakingParticle extends BreakingParticle {
+public class GaiaBreakingParticle extends BreakingItemParticle {
 
-    protected GaiaBreakingParticle(ClientWorld world, double x, double y, double z, ItemStack stack) {
+    protected GaiaBreakingParticle(ClientLevel world, double x, double y, double z, ItemStack stack) {
         super(world, x, y, z, stack);
     }
 
     @OnlyIn(Dist.CLIENT)
-    public static class PebbleFactory implements IParticleFactory<BasicParticleType> {
-        public Particle createParticle(BasicParticleType particle, ClientWorld world, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
+    public static class PebbleFactory implements ParticleProvider<SimpleParticleType> {
+        public Particle createParticle(SimpleParticleType particle, ClientLevel world, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
             return new GaiaBreakingParticle(world, x, y, z, new ItemStack(ModItems.sturdy_pebble.get()));
         }
     }

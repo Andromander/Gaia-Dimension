@@ -1,18 +1,18 @@
 package androsa.gaiadimension.particle;
 
+import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.particle.*;
-import net.minecraft.client.world.ClientWorld;
-import net.minecraft.particles.BasicParticleType;
+import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
-public class GaiaPortalParticle extends SpriteTexturedParticle {
+public class GaiaPortalParticle extends TextureSheetParticle {
     private final double portalPosX;
     private final double portalPosY;
     private final double portalPosZ;
 
-    public GaiaPortalParticle(ClientWorld worldIn, double xCoordIn, double yCoordIn, double zCoordIn, double xSpeedIn, double ySpeedIn, double zSpeedIn) {
+    public GaiaPortalParticle(ClientLevel worldIn, double xCoordIn, double yCoordIn, double zCoordIn, double xSpeedIn, double ySpeedIn, double zSpeedIn) {
         super(worldIn, xCoordIn, yCoordIn, zCoordIn, xSpeedIn, ySpeedIn, zSpeedIn);
         this.xd = xSpeedIn;
         this.yd = ySpeedIn;
@@ -31,8 +31,8 @@ public class GaiaPortalParticle extends SpriteTexturedParticle {
     }
 
     @Override
-    public IParticleRenderType getRenderType() {
-        return IParticleRenderType.PARTICLE_SHEET_OPAQUE;
+    public ParticleRenderType getRenderType() {
+        return ParticleRenderType.PARTICLE_SHEET_OPAQUE;
     }
 
     @Override
@@ -85,15 +85,15 @@ public class GaiaPortalParticle extends SpriteTexturedParticle {
     }
 
     @OnlyIn(Dist.CLIENT)
-    public static class Factory implements IParticleFactory<BasicParticleType> {
-        private final IAnimatedSprite spriteSet;
+    public static class Factory implements ParticleProvider<SimpleParticleType> {
+        private final SpriteSet spriteSet;
 
-        public Factory(IAnimatedSprite sprite) {
+        public Factory(SpriteSet sprite) {
             this.spriteSet = sprite;
         }
 
         @Override
-        public Particle createParticle(BasicParticleType typeIn, ClientWorld worldIn, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
+        public Particle createParticle(SimpleParticleType typeIn, ClientLevel worldIn, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
             GaiaPortalParticle portalparticle = new GaiaPortalParticle(worldIn, x, y, z, xSpeed, ySpeed, zSpeed);
             portalparticle.pickSprite(this.spriteSet);
             return portalparticle;

@@ -1,15 +1,14 @@
 package androsa.gaiadimension.particle;
 
+import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.particle.*;
-import net.minecraft.client.world.ClientWorld;
-import net.minecraft.particles.BasicParticleType;
-import net.minecraft.world.World;
+import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
-public class PyriteParticle extends SpriteTexturedParticle {
+public class PyriteParticle extends TextureSheetParticle {
 
-    public PyriteParticle(ClientWorld worldIn, double xCoordIn, double yCoordIn, double zCoordIn, double xSpeedIn, double ySpeedIn, double speedIn) {
+    public PyriteParticle(ClientLevel worldIn, double xCoordIn, double yCoordIn, double zCoordIn, double xSpeedIn, double ySpeedIn, double speedIn) {
         super(worldIn, xCoordIn, yCoordIn, zCoordIn, xSpeedIn, ySpeedIn, speedIn);
         this.rCol = 1.0F;
         this.gCol = 0.8F;
@@ -23,8 +22,8 @@ public class PyriteParticle extends SpriteTexturedParticle {
     }
 
     @Override
-    public IParticleRenderType getRenderType() {
-        return IParticleRenderType.PARTICLE_SHEET_OPAQUE;
+    public ParticleRenderType getRenderType() {
+        return ParticleRenderType.PARTICLE_SHEET_OPAQUE;
     }
 
     @Override
@@ -49,14 +48,14 @@ public class PyriteParticle extends SpriteTexturedParticle {
     }
 
     @OnlyIn(Dist.CLIENT)
-    public static class Factory implements IParticleFactory<BasicParticleType> {
-        private final IAnimatedSprite spriteSet;
+    public static class Factory implements ParticleProvider<SimpleParticleType> {
+        private final SpriteSet spriteSet;
 
-        public Factory(IAnimatedSprite sprite) {
+        public Factory(SpriteSet sprite) {
             this.spriteSet = sprite;
         }
 
-        public Particle createParticle(BasicParticleType typeIn, ClientWorld worldIn, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
+        public Particle createParticle(SimpleParticleType typeIn, ClientLevel worldIn, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
             PyriteParticle pyriteparticle = new PyriteParticle(worldIn, x, y, z, xSpeed, ySpeed, zSpeed);
             pyriteparticle.pickSprite(this.spriteSet);
             pyriteparticle.setColor(1.0F, 0.8F, 0.0F);

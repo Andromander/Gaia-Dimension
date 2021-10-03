@@ -1,21 +1,21 @@
 package androsa.gaiadimension.particle;
 
+import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.particle.*;
-import net.minecraft.client.world.ClientWorld;
-import net.minecraft.particles.BasicParticleType;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.core.particles.SimpleParticleType;
+import net.minecraft.util.Mth;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
-public class PurifierFireParticle extends DeceleratingParticle {
+public class PurifierFireParticle extends RisingParticle {
 
-    public PurifierFireParticle(ClientWorld worldIn, double xCoordIn, double yCoordIn, double zCoordIn, double xSpeedIn, double ySpeedIn, double zSpeedIn) {
+    public PurifierFireParticle(ClientLevel worldIn, double xCoordIn, double yCoordIn, double zCoordIn, double xSpeedIn, double ySpeedIn, double zSpeedIn) {
         super(worldIn, xCoordIn, yCoordIn, zCoordIn, xSpeedIn, ySpeedIn, zSpeedIn);
     }
 
     @Override
-    public IParticleRenderType getRenderType() {
-        return IParticleRenderType.PARTICLE_SHEET_OPAQUE;
+    public ParticleRenderType getRenderType() {
+        return ParticleRenderType.PARTICLE_SHEET_OPAQUE;
     }
 
     @Override
@@ -27,7 +27,7 @@ public class PurifierFireParticle extends DeceleratingParticle {
     @Override
     public int getLightColor(float partialTick) {
         float f = ((float)this.age + partialTick) / (float)this.lifetime;
-        f = MathHelper.clamp(f, 0.0F, 1.0F);
+        f = Mth.clamp(f, 0.0F, 1.0F);
         int i = super.getLightColor(partialTick);
         int j = i & 255;
         int k = i >> 16 & 255;
@@ -41,15 +41,15 @@ public class PurifierFireParticle extends DeceleratingParticle {
     }
 
     @OnlyIn(Dist.CLIENT)
-    public static class Factory implements IParticleFactory<BasicParticleType> {
-        private final IAnimatedSprite spriteSet;
+    public static class Factory implements ParticleProvider<SimpleParticleType> {
+        private final SpriteSet spriteSet;
 
-        public Factory(IAnimatedSprite sprite) {
+        public Factory(SpriteSet sprite) {
             this.spriteSet = sprite;
         }
 
         @Override
-        public Particle createParticle(BasicParticleType typeIn, ClientWorld worldIn, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
+        public Particle createParticle(SimpleParticleType typeIn, ClientLevel worldIn, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
             PurifierFireParticle flameparticle = new PurifierFireParticle(worldIn, x, y, z, xSpeed, ySpeed, zSpeed);
             flameparticle.pickSprite(this.spriteSet);
             return flameparticle;
