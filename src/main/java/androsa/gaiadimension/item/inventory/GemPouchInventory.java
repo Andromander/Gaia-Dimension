@@ -1,20 +1,20 @@
 package androsa.gaiadimension.item.inventory;
 
 import androsa.gaiadimension.registry.GaiaTags;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.inventory.ItemStackHelper;
-import net.minecraft.inventory.container.Container;
-import net.minecraft.inventory.container.INamedContainerProvider;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.util.NonNullList;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraft.core.NonNullList;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.world.Container;
+import net.minecraft.world.ContainerHelper;
+import net.minecraft.world.MenuProvider;
+import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 
-public class GemPouchInventory implements IInventory, INamedContainerProvider {
+public class GemPouchInventory implements Container, MenuProvider {
 
     private final ItemStack invItem;
     private NonNullList<ItemStack> inventory;
@@ -23,7 +23,7 @@ public class GemPouchInventory implements IInventory, INamedContainerProvider {
         this.invItem = stack;
         this.inventory = NonNullList.withSize(20, ItemStack.EMPTY);
         if (!stack.hasTag())
-            stack.setTag(new CompoundNBT());
+            stack.setTag(new CompoundTag());
         this.readFromNBT(stack.getTag());
     }
 
@@ -89,15 +89,15 @@ public class GemPouchInventory implements IInventory, INamedContainerProvider {
     }
 
     @Override
-    public boolean stillValid(PlayerEntity player) {
+    public boolean stillValid(Player player) {
         return true;
     }
 
     @Override
-    public void startOpen(PlayerEntity player) { }
+    public void startOpen(Player player) { }
 
     @Override
-    public void stopOpen(PlayerEntity player) { }
+    public void stopOpen(Player player) { }
 
     @Override
     public boolean canPlaceItem(int index, ItemStack stack) {
@@ -113,21 +113,21 @@ public class GemPouchInventory implements IInventory, INamedContainerProvider {
     }
 
     @Override
-    public ITextComponent getDisplayName() {
-        return new TranslationTextComponent("gaiadimension.container.gemstone_pouch");
+    public Component getDisplayName() {
+        return new TranslatableComponent("gaiadimension.container.gemstone_pouch");
     }
 
-    public void readFromNBT(CompoundNBT tag) {
+    public void readFromNBT(CompoundTag tag) {
         inventory = NonNullList.withSize(getContainerSize(), ItemStack.EMPTY);
-        ItemStackHelper.loadAllItems(tag, inventory);
+        ContainerHelper.loadAllItems(tag, inventory);
     }
 
-    public void writeToNBT(CompoundNBT tag) {
-        ItemStackHelper.saveAllItems(tag, inventory, true);
+    public void writeToNBT(CompoundTag tag) {
+        ContainerHelper.saveAllItems(tag, inventory, true);
     }
 
     @Override
-    public Container createMenu(int menuId, PlayerInventory playerInv, PlayerEntity player) {
+    public AbstractContainerMenu createMenu(int menuId, Inventory playerInv, Player player) {
         return new GemPouchContainer(menuId, playerInv, this);
     }
 }

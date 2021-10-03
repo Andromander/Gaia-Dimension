@@ -1,173 +1,149 @@
 package androsa.gaiadimension.registry;
 
-import net.minecraft.block.AbstractBlock;
-import net.minecraft.block.RotatedPillarBlock;
-import net.minecraft.block.SoundType;
-import net.minecraft.block.material.Material;
-import net.minecraft.block.material.MaterialColor;
-import net.minecraft.util.Direction;
-import net.minecraftforge.common.ToolType;
+import net.minecraft.core.Direction;
+import net.minecraft.world.level.block.RotatedPillarBlock;
+import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntityTicker;
+import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.material.Material;
+import net.minecraft.world.level.material.MaterialColor;
+
+import javax.annotation.Nullable;
 
 public class GaiaBlockProperties {
 
-    public static AbstractBlock.Properties glassProps(MaterialColor color, float hardness) {
-        return AbstractBlock.Properties.of(Material.GLASS, color)
-                .strength(hardness, 0.0F)
-                .sound(SoundType.GLASS)
-                .noOcclusion();
+    public static BlockBehaviour.Properties glassProps(MaterialColor color, float hardness) {
+        return basicProps(Material.GLASS, color, SoundType.GLASS, hardness, 0.0F).noOcclusion();
     }
 
-    public static AbstractBlock.Properties sandProps(MaterialColor color, float hardness, SoundType sound) {
-        return AbstractBlock.Properties.of(Material.SAND, color)
-                .strength(hardness, 0.0F)
-                .harvestTool(ToolType.SHOVEL)
-                .sound(sound);
+    public static BlockBehaviour.Properties sandProps(MaterialColor color, float hardness, SoundType sound) {
+        return basicProps(Material.SAND, color, sound, hardness, 0.0F);
     }
 
-    public static AbstractBlock.Properties stoneProps(MaterialColor color, float hardness, float resistance, ToolType toolClass, int harvestLevel) {
-        return stoneProps(Material.STONE, color, hardness, resistance, toolClass, harvestLevel);
+    public static BlockBehaviour.Properties stoneProps(MaterialColor color, float hardness, float resistance) {
+        return stoneProps(Material.STONE, color, hardness, resistance, false);
     }
 
-    public static AbstractBlock.Properties stoneProps(Material material, MaterialColor color, float hardness, float resistance, ToolType toolClass, int harvestLevel) {
-        return AbstractBlock.Properties.of(material, color)
-                .strength(hardness, resistance)
-                .sound(SoundType.STONE)
-                .harvestTool(toolClass)
-                .harvestLevel(harvestLevel);
+    public static BlockBehaviour.Properties stoneProps(MaterialColor color, float hardness, float resistance, boolean tool) {
+        return stoneProps(Material.STONE, color, hardness, resistance, tool);
     }
 
-    public static AbstractBlock.Properties stoneToolProps(MaterialColor color, float hardness, float resistance, ToolType toolClass, int harvestLevel) {
-        return stoneToolProps(Material.STONE, color, hardness, resistance, toolClass, harvestLevel);
+    public static BlockBehaviour.Properties stoneProps(Material material, MaterialColor color, float hardness, float resistance, boolean tool) {
+        BlockBehaviour.Properties props = basicProps(material, color, SoundType.STONE, hardness, resistance);
+        if (tool)
+            props.requiresCorrectToolForDrops();
+        return props;
     }
 
-    public static AbstractBlock.Properties stoneToolProps(Material material, MaterialColor color, float hardness, float resistance, ToolType toolClass, int harvestLevel) {
-        return AbstractBlock.Properties.of(material, color)
-                .strength(hardness, resistance)
-                .sound(SoundType.STONE)
-                .requiresCorrectToolForDrops()
-                .harvestTool(toolClass)
-                .harvestLevel(harvestLevel);
+    public static BlockBehaviour.Properties soilProps(MaterialColor color) {
+        return basicProps(Material.DIRT, color, SoundType.GRAVEL, 0.9F, 0.0F);
     }
 
-    public static AbstractBlock.Properties soilProps(MaterialColor color) {
-        return AbstractBlock.Properties.of(Material.DIRT, color)
-                .strength(0.9F, 0.0F)
-                .sound(SoundType.GRAVEL)
-                .harvestTool(ToolType.SHOVEL)
-                .harvestLevel(0);
+    public static BlockBehaviour.Properties grassProps(MaterialColor color) {
+        return basicProps(Material.GRASS, color, SoundType.GRASS, 0.9F, 0.0F).randomTicks();
     }
 
-    public static AbstractBlock.Properties grassProps(MaterialColor color) {
-        return AbstractBlock.Properties.of(Material.GRASS, color)
-                .strength(0.9F, 0.0F)
-                .sound(SoundType.GRASS).harvestTool(ToolType.SHOVEL)
-                .harvestLevel(0)
-                .randomTicks();
+    public static BlockBehaviour.Properties saplingProps(MaterialColor color) {
+        return basicProps(Material.PLANT, color, SoundType.GLASS, 0.0F).noCollission().randomTicks();
     }
 
-    public static AbstractBlock.Properties saplingProps(MaterialColor color) {
-        return AbstractBlock.Properties.of(Material.PLANT, color)
-                .strength(0.0F)
-                .sound(SoundType.GLASS)
-                .noCollission()
-                .randomTicks();
+    public static BlockBehaviour.Properties leavesProps(MaterialColor color) {
+        return basicProps(Material.LEAVES, color, SoundType.GLASS, 0.3F, 0.0F).noOcclusion();
     }
 
-    public static AbstractBlock.Properties leavesProps(MaterialColor color) {
-        return AbstractBlock.Properties.of(Material.LEAVES, color)
-                .strength(0.3F, 0.0F)
-                .sound(SoundType.GLASS)
-                .noOcclusion();
-    }
-
-    public static AbstractBlock.Properties logProps(MaterialColor color) {
+    public static BlockBehaviour.Properties logProps(MaterialColor color) {
         return logProps(color, color);
     }
 
-    public static AbstractBlock.Properties logProps(MaterialColor top, MaterialColor side) {
-        return AbstractBlock.Properties.of(Material.WOOD, (state) ->
+    public static BlockBehaviour.Properties logProps(MaterialColor top, MaterialColor side) {
+        return BlockBehaviour.Properties.of(Material.WOOD, (state) ->
                 state.getValue(RotatedPillarBlock.AXIS) == Direction.Axis.Y ? top : side)
                 .strength(1.5F, 2.0F)
-                .sound(SoundType.STONE)
-                .harvestTool(ToolType.AXE)
-                .harvestLevel(0);
+                .sound(SoundType.STONE);
     }
 
-    public static AbstractBlock.Properties tileProps(MaterialColor color) {
-        return AbstractBlock.Properties.of(Material.WOOD, color)
-                .strength(10.0F, 150.0F)
-                .sound(SoundType.STONE)
-                .harvestTool(ToolType.AXE)
-                .harvestLevel(0);
+    public static BlockBehaviour.Properties tileProps(MaterialColor color) {
+        return stoneProps(Material.WOOD, color, 10.0F, 150.0F, false);
     }
 
-    public static AbstractBlock.Properties storageProps(MaterialColor color) {
-        return AbstractBlock.Properties.of(Material.METAL, color)
-                .strength(5.0F, 10.0F)
-                .sound(SoundType.METAL)
-                .requiresCorrectToolForDrops()
-                .harvestTool(ToolType.PICKAXE)
-                .harvestLevel(2);
+    public static BlockBehaviour.Properties storageProps(MaterialColor color) {
+        return basicProps(Material.METAL, color, SoundType.METAL, 5.0F, 10.0F).requiresCorrectToolForDrops();
     }
 
-    public static AbstractBlock.Properties oreProps(MaterialColor color, int level) {
-        return stoneToolProps(color, 4.0F, 25.0F, ToolType.PICKAXE, level);
+    public static BlockBehaviour.Properties oreProps(MaterialColor color) {
+        return stoneProps(color, 4.0F, 25.0F, true);
     }
 
-    public static AbstractBlock.Properties bloomProps() {
+    public static BlockBehaviour.Properties bloomProps() {
         return plantProps(MaterialColor.TERRACOTTA_MAGENTA, false);
     }
 
-    public static AbstractBlock.Properties plantProps(MaterialColor color, boolean isGlass) {
-        return AbstractBlock.Properties.of(Material.PLANT, color)
+    public static BlockBehaviour.Properties plantProps(MaterialColor color, boolean isGlass) {
+        return BlockBehaviour.Properties.of(Material.PLANT, color)
                 .strength(0.0F)
                 .sound(isGlass ? SoundType.GLASS : SoundType.GRASS)
                 .noCollission();
     }
 
-    public static AbstractBlock.Properties sludgeProps() {
-        return AbstractBlock.Properties.of(Material.DIRT, MaterialColor.TERRACOTTA_YELLOW)
+    public static BlockBehaviour.Properties sludgeProps() {
+        return BlockBehaviour.Properties.of(Material.DIRT, MaterialColor.TERRACOTTA_YELLOW)
                 .strength(0.6F, 0.0F)
                 .sound(SoundType.GRAVEL)
                 .isValidSpawn((state, reader, pos, entity) -> entity == ModEntities.BISMUTH_ULETRUS);
     }
 
-    public static AbstractBlock.Properties gaiaBrickProps() {
-        return stoneToolProps(MaterialColor.COLOR_MAGENTA, 2.0F, 20.0F, ToolType.PICKAXE, 1);
+    public static BlockBehaviour.Properties gaiaBrickProps() {
+        return stoneProps(MaterialColor.COLOR_MAGENTA, 2.0F, 20.0F, true);
     }
 
-    public static AbstractBlock.Properties jadeProps() {
-        return stoneToolProps(MaterialColor.COLOR_LIGHT_GREEN, 2.0F, 20.0F, ToolType.PICKAXE, 1);
+    public static BlockBehaviour.Properties jadeProps() {
+        return stoneProps(MaterialColor.COLOR_LIGHT_GREEN, 2.0F, 20.0F, true);
     }
 
-    public static AbstractBlock.Properties copalProps() {
-        return stoneToolProps(MaterialColor.TERRACOTTA_ORANGE, 2.0F, 20.0F, ToolType.PICKAXE, 1);
+    public static BlockBehaviour.Properties copalProps() {
+        return stoneProps(MaterialColor.TERRACOTTA_ORANGE, 2.0F, 20.0F, true);
     }
 
-    public static AbstractBlock.Properties jetProps() {
-        return stoneToolProps(MaterialColor.COLOR_BLACK, 2.0F, 20.0F, ToolType.PICKAXE, 1);
+    public static BlockBehaviour.Properties jetProps() {
+        return stoneProps(MaterialColor.COLOR_BLACK, 2.0F, 20.0F, true);
     }
 
-    public static AbstractBlock.Properties amethystProps() {
-        return stoneToolProps(MaterialColor.COLOR_PURPLE, 2.0F, 20.0F, ToolType.PICKAXE, 1);
+    public static BlockBehaviour.Properties amethystProps() {
+        return stoneProps(MaterialColor.COLOR_PURPLE, 2.0F, 20.0F, true);
     }
 
-    public static AbstractBlock.Properties malachiteProps() {
-        return stoneToolProps(MaterialColor.COLOR_GREEN, 20.0F, 200.0F, ToolType.PICKAXE, 2);
+    public static BlockBehaviour.Properties malachiteProps() {
+        return stoneProps(MaterialColor.COLOR_GREEN, 20.0F, 200.0F, true);
     }
 
-    public static AbstractBlock.Properties spawnerProps() {
-        return AbstractBlock.Properties.of(Material.METAL)
+    public static BlockBehaviour.Properties spawnerProps() {
+        return BlockBehaviour.Properties.of(Material.METAL)
                 .strength(-1F)
                 .sound(SoundType.METAL)
                 .noOcclusion()
                 .noDrops();
     }
 
-    public static AbstractBlock.Properties torchProps() {
-        return AbstractBlock.Properties.of(Material.DECORATION)
+    public static BlockBehaviour.Properties torchProps() {
+        return BlockBehaviour.Properties.of(Material.DECORATION)
                 .strength(0.0F)
                 .lightLevel((state) -> 14)
                 .noCollission();
+    }
+
+    public static BlockBehaviour.Properties basicProps(Material material, MaterialColor color, SoundType sound, float strength) {
+        return basicProps(material, color, sound, strength, strength);
+    }
+
+    public static BlockBehaviour.Properties basicProps(Material material, MaterialColor color, SoundType sound, float hardness, float resistance) {
+        return BlockBehaviour.Properties.of(material, color)
+                .strength(hardness, resistance)
+                .sound(sound);
+    }
+
+    @Nullable
+    public static <E extends BlockEntity, A extends BlockEntity> BlockEntityTicker<A> getTicker(BlockEntityTicker<? super E> ticker) {
+        return (BlockEntityTicker<A>)ticker;
     }
 }

@@ -1,17 +1,22 @@
 package androsa.gaiadimension.item;
 
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TextFormatting;
-import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraft.ChatFormatting;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 
 import javax.annotation.Nonnull;
 
-public class GroundGemItem extends BasicGaiaItem {
+public class GroundGemItem extends Item {
+
+    public GroundGemItem(Properties props) {
+        super(props);
+    }
 
     @Override
     @Nonnull
-    public ITextComponent getName(ItemStack stack) {
-        return new TranslationTextComponent(super.getName(stack).getString(), TextFormatting.GRAY);
+    public Component getName(ItemStack stack) {
+        return new TranslatableComponent(super.getName(stack).getString(), ChatFormatting.GRAY);
     }
 }

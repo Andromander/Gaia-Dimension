@@ -1,20 +1,22 @@
 package androsa.gaiadimension.item;
 
-import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Rarity;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TranslationTextComponent;
-import net.minecraft.world.World;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Rarity;
+import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 import java.util.List;
 
-public class MockGemItem extends BasicGaiaItem {
 
-    public MockGemItem() {
-        super();
+public class MockGemItem extends Item {
+
+    public MockGemItem(Properties props) {
+        super(props);
     }
 
     @Override
@@ -24,8 +26,8 @@ public class MockGemItem extends BasicGaiaItem {
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public void appendHoverText(ItemStack stack, World world, List<ITextComponent> tooltips, ITooltipFlag flags) {
+    public void appendHoverText(ItemStack stack, Level world, List<Component> tooltips, TooltipFlag flags) {
         super.appendHoverText(stack, world, tooltips, flags);
-        tooltips.add(new TranslationTextComponent("mock_gem.tooltip"));
+        tooltips.add(new TranslatableComponent("mock_gem.tooltip"));
     }
 }

@@ -1,28 +1,27 @@
 package androsa.gaiadimension.item;
 
 import androsa.gaiadimension.entity.projectile.AgateArrowEntity;
-import androsa.gaiadimension.registry.GaiaItemGroups;
-import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.enchantment.Enchantments;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.projectile.AbstractArrowEntity;
-import net.minecraft.item.ArrowItem;
-import net.minecraft.item.ItemStack;
-import net.minecraft.world.World;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.projectile.AbstractArrow;
+import net.minecraft.world.item.ArrowItem;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
+import net.minecraft.world.item.enchantment.Enchantments;
+import net.minecraft.world.level.Level;
 
 public class AgateArrowItem extends ArrowItem {
 
-    public AgateArrowItem() {
-        super(new Properties().tab(GaiaItemGroups.GAIA_TOOLS));
+    public AgateArrowItem(Properties props) {
+        super(props);
     }
 
-    public AbstractArrowEntity createArrow(World worldIn, ItemStack stack, LivingEntity entity) {
+    public AbstractArrow createArrow(Level worldIn, ItemStack stack, LivingEntity entity) {
         return new AgateArrowEntity(worldIn, entity);
     }
 
     @Override
-    public boolean isInfinite(ItemStack stack, ItemStack bow, PlayerEntity player) {
+    public boolean isInfinite(ItemStack stack, ItemStack bow, Player player) {
         int enchant = EnchantmentHelper.getItemEnchantmentLevel(Enchantments.INFINITY_ARROWS, bow);
         return enchant > 0 && this.getClass() == AgateArrowItem.class;
     }

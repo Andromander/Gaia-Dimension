@@ -1,26 +1,26 @@
 package androsa.gaiadimension.item;
 
 import androsa.gaiadimension.registry.ModItems;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Food;
-import net.minecraft.item.ItemStack;
-import net.minecraft.world.World;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
 
-public class GeodeSliceItem extends BasicGaiaItem {
+public class GeodeSliceItem extends Item {
 
-    public GeodeSliceItem(Food food) {
-        super(food);
+    public GeodeSliceItem(Properties props) {
+        super(props);
     }
 
     @Override
-    public ItemStack finishUsingItem(ItemStack stack, World worldIn, LivingEntity entityLiving) {
-        PlayerEntity player = (PlayerEntity)entityLiving;
+    public ItemStack finishUsingItem(ItemStack stack, Level worldIn, LivingEntity entityLiving) {
+        Player player = (Player)entityLiving;
         ItemStack item = new ItemStack(ModItems.agate_fabric.get());
 
         super.finishUsingItem(stack, worldIn, entityLiving);
 
-        if (!player.inventory.add(item.copy())) {
+        if (!player.getInventory().add(item.copy())) {
             player.drop(item, false);
         }
 

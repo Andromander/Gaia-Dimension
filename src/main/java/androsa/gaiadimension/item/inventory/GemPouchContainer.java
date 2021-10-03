@@ -1,24 +1,24 @@
 package androsa.gaiadimension.item.inventory;
 
-import androsa.gaiadimension.registry.ModContainers;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.inventory.Inventory;
-import net.minecraft.inventory.container.Container;
-import net.minecraft.inventory.container.Slot;
-import net.minecraft.item.ItemStack;
+import androsa.gaiadimension.registry.ModMenus;
+import net.minecraft.world.Container;
+import net.minecraft.world.SimpleContainer;
+import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.inventory.Slot;
+import net.minecraft.world.item.ItemStack;
 
-public class GemPouchContainer extends Container {
+public class GemPouchContainer extends AbstractContainerMenu {
 
-    private final IInventory inventory;
+    private final Container inventory;
 
-    public GemPouchContainer(int id, PlayerInventory inventory) {
-        this(id, inventory, new Inventory(20));
+    public GemPouchContainer(int id, Inventory inventory) {
+        this(id, inventory, new SimpleContainer(20));
     }
 
-    public GemPouchContainer(int id, PlayerInventory invPlayer, IInventory inventory) {
-        super(ModContainers.GEMSTONE_POUCH.get(), id);
+    public GemPouchContainer(int id, Inventory invPlayer, Container inventory) {
+        super(ModMenus.GEMSTONE_POUCH.get(), id);
         this.inventory = inventory;
         //Pouch
         for (int row = 0; row < 4; ++row) {
@@ -41,12 +41,12 @@ public class GemPouchContainer extends Container {
     }
 
     @Override
-    public boolean stillValid(PlayerEntity playerIn) {
+    public boolean stillValid(Player playerIn) {
         return true;
     }
 
     @Override
-    public ItemStack quickMoveStack(PlayerEntity playerIn, int index) {
+    public ItemStack quickMoveStack(Player playerIn, int index) {
         ItemStack itemstack = ItemStack.EMPTY;
         Slot slot = this.slots.get(index);
 
@@ -73,7 +73,7 @@ public class GemPouchContainer extends Container {
     }
 
     @Override
-    public void removed(PlayerEntity playerIn) {
+    public void removed(Player playerIn) {
         super.removed(playerIn);
         this.inventory.stopOpen(playerIn);
     }

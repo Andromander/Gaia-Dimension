@@ -1,12 +1,13 @@
 package androsa.gaiadimension.item.tools;
 
-import androsa.gaiadimension.registry.GaiaItemGroups;
-import net.minecraft.item.IItemTier;
-import net.minecraft.item.PickaxeItem;
+import net.minecraft.world.item.PickaxeItem;
+import net.minecraft.world.item.Tier;
 
 public class BasicGaiaPickaxeItem extends PickaxeItem {
 
-    public BasicGaiaPickaxeItem(IItemTier material) {
-        super(material, 1, -2.8F, new Properties().tab(GaiaItemGroups.GAIA_TOOLS));
+    public BasicGaiaPickaxeItem(Tier material, Properties props) {
+        super(material, 1, -2.8F, props);
     }
+
+    //TODO This class looks redundant, but it will be revisited for honing
 }

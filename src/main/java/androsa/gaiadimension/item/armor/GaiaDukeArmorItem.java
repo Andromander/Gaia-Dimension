@@ -1,14 +1,13 @@
 package androsa.gaiadimension.item.armor;
 
 import androsa.gaiadimension.registry.GaiaArmorMaterials;
-import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Rarity;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TextFormatting;
-import net.minecraft.util.text.TranslationTextComponent;
-import net.minecraft.world.World;
+import net.minecraft.ChatFormatting;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
@@ -17,27 +16,22 @@ import java.util.List;
 
 public class GaiaDukeArmorItem extends BasicGaiaArmorItem {
 
-    public GaiaDukeArmorItem(EquipmentSlotType slot) {
-        super(GaiaArmorMaterials.LARVIKITE, slot);
+    public GaiaDukeArmorItem(EquipmentSlot slot, Properties props) {
+        super(GaiaArmorMaterials.LARVIKITE, slot, props);
     }
 
     //TODO: If I can, allows for temporary Elytra flight. Otherwise, teleports the attacker randomly
 
     @Override
-    public Rarity getRarity(ItemStack stack) {
-        return Rarity.RARE;
-    }
-
-    @Override
     @Nonnull
-    public ITextComponent getName(ItemStack stack) {
-        return new TranslationTextComponent(super.getName(stack).getString(), TextFormatting.BLUE);
+    public Component getName(ItemStack stack) {
+        return new TranslatableComponent(super.getName(stack).getString(), ChatFormatting.BLUE);
     }
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public void appendHoverText(ItemStack stack, World world, List<ITextComponent> tooltips, ITooltipFlag flags) {
+    public void appendHoverText(ItemStack stack, Level world, List<Component> tooltips, TooltipFlag flags) {
         super.appendHoverText(stack, world, tooltips, flags);
-        tooltips.add(new TranslationTextComponent("larvikite_armor.tooltip"));
+        tooltips.add(new TranslatableComponent("larvikite_armor.tooltip"));
     }
 }

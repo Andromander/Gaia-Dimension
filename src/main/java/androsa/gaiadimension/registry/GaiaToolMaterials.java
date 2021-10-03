@@ -1,12 +1,13 @@
 package androsa.gaiadimension.registry;
 
-import net.minecraft.item.IItemTier;
-import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.util.LazyValue;
+
+import net.minecraft.util.LazyLoadedValue;
+import net.minecraft.world.item.Tier;
+import net.minecraft.world.item.crafting.Ingredient;
 
 import java.util.function.Supplier;
 
-public enum GaiaToolMaterials implements IItemTier {
+public enum GaiaToolMaterials implements Tier {
     AGATE(1, 150, 2.5F, 1.0F, 5, () -> Ingredient.of(GaiaTags.Items.TILES)),
     SUGILITE(2, 800, 3.0F, 1.5F, 10, () -> Ingredient.of(ModItems.sugilite.get())),
     IXIOLITE(2, 1500, 4.0F, 2.0F, 10, () -> Ingredient.of(ModItems.ixiolite.get())),
@@ -30,7 +31,7 @@ public enum GaiaToolMaterials implements IItemTier {
     private final float toolEfficiency;
     private final float attackDamage;
     private final int enchantability;
-    private final LazyValue<Ingredient> repairMaterial;
+    private final LazyLoadedValue<Ingredient> repairMaterial;
 
     GaiaToolMaterials(int level, int maxUse, float efficiency, float attack, int enchant, Supplier<Ingredient> ingredient) {
         harvestLevel = level;
@@ -38,7 +39,7 @@ public enum GaiaToolMaterials implements IItemTier {
         toolEfficiency = efficiency;
         attackDamage = attack;
         enchantability = enchant;
-        repairMaterial = new LazyValue<>(ingredient);
+        repairMaterial = new LazyLoadedValue<>(ingredient);
     }
 
     @Override

@@ -1,13 +1,12 @@
 package androsa.gaiadimension.item.armor;
 
 import androsa.gaiadimension.registry.GaiaArmorMaterials;
-import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Rarity;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TranslationTextComponent;
-import net.minecraft.world.World;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
@@ -15,19 +14,14 @@ import java.util.List;
 
 public class MalachiteGuardArmorItem extends BasicGaiaArmorItem {
 
-    public MalachiteGuardArmorItem(EquipmentSlotType slot) {
-        super(GaiaArmorMaterials.MALACHITE, slot);
-    }
-
-    @Override
-    public Rarity getRarity(ItemStack stack) {
-        return Rarity.RARE;
+    public MalachiteGuardArmorItem(EquipmentSlot slot, Properties props) {
+        super(GaiaArmorMaterials.MALACHITE, slot, props);
     }
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public void appendHoverText(ItemStack stack, World world, List<ITextComponent> tooltips, ITooltipFlag flags) {
+    public void appendHoverText(ItemStack stack, Level world, List<Component> tooltips, TooltipFlag flags) {
         super.appendHoverText(stack, world, tooltips, flags);
-        tooltips.add(new TranslationTextComponent("malachite_armor.tooltip"));
+        tooltips.add(new TranslatableComponent("malachite_armor.tooltip"));
     }
 }

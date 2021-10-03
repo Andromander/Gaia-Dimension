@@ -1,13 +1,14 @@
 package androsa.gaiadimension.item.armor;
 
-import androsa.gaiadimension.registry.GaiaItemGroups;
-import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.ArmorItem;
-import net.minecraft.item.IArmorMaterial;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.item.ArmorItem;
+import net.minecraft.world.item.ArmorMaterial;
 
 public class BasicGaiaArmorItem extends ArmorItem {
 
-    public BasicGaiaArmorItem(IArmorMaterial material, EquipmentSlotType slot) {
-        super(material, slot, new Properties().tab(GaiaItemGroups.GAIA_ARMOR));
+    public BasicGaiaArmorItem(ArmorMaterial material, EquipmentSlot slot, Properties props) {
+        super(material, slot, props);
     }
+
+    //TODO: Yes, this looks redundant, but keep it here for Honing
 }

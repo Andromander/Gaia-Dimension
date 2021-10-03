@@ -1,16 +1,15 @@
 package androsa.gaiadimension.item.tools;
 
-import androsa.gaiadimension.registry.GaiaItemGroups;
 import androsa.gaiadimension.registry.ModItems;
-import net.minecraft.item.BowItem;
-import net.minecraft.item.ItemStack;
+import net.minecraft.world.item.BowItem;
+import net.minecraft.world.item.ItemStack;
 
 import java.util.function.Predicate;
 
 public class OldBowItem extends BowItem {
 
-    public OldBowItem() {
-        super(new Properties().durability(425).tab(GaiaItemGroups.GAIA_TOOLS));
+    public OldBowItem(Properties props) {
+        super(props);
     }
 
     @Override

@@ -1,13 +1,13 @@
 package androsa.gaiadimension.item.tools;
 
-import androsa.gaiadimension.registry.GaiaItemGroups;
 import androsa.gaiadimension.registry.GaiaToolMaterials;
-import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.item.*;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TextFormatting;
-import net.minecraft.util.text.TranslationTextComponent;
-import net.minecraft.world.World;
+import net.minecraft.ChatFormatting;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.SwordItem;
+import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
@@ -16,21 +16,21 @@ import java.util.List;
 
 public class GaiaDuchessSwordItem extends SwordItem {
 
-    public GaiaDuchessSwordItem() {
-        super(GaiaToolMaterials.BIXBITE, 3, -2.2F, new Properties().rarity(Rarity.RARE).tab(GaiaItemGroups.GAIA_TOOLS));
+    public GaiaDuchessSwordItem(Properties props) {
+        super(GaiaToolMaterials.BIXBITE, 3, -2.2F, props);
     }
 
     @Override
     @Nonnull
-    public ITextComponent getName(ItemStack stack) {
-        return new TranslationTextComponent(super.getName(stack).getString(), TextFormatting.RED);
+    public Component getName(ItemStack stack) {
+        return new TranslatableComponent(super.getName(stack).getString(), ChatFormatting.RED);
     }
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public void appendHoverText(ItemStack stack, World world, List<ITextComponent> tooltips, ITooltipFlag flags) {
+    public void appendHoverText(ItemStack stack, Level world, List<Component> tooltips, TooltipFlag flags) {
         super.appendHoverText(stack, world, tooltips, flags);
-        tooltips.add(new TranslationTextComponent(getDescriptionId() + ".tooltip"));
+        tooltips.add(new TranslatableComponent(getDescriptionId() + ".tooltip"));
     }
 
     //TODO: Make this sword shoot projectiles, but lowers durability by 2

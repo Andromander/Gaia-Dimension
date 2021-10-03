@@ -1,27 +1,27 @@
 package androsa.gaiadimension.item;
 
 import androsa.gaiadimension.registry.ModItems;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Food;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.UseAction;
-import net.minecraft.world.World;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.UseAnim;
+import net.minecraft.world.level.Level;
 
-public class GeodeJuiceItem extends BasicGaiaItem {
+public class GeodeJuiceItem extends Item {
 
-    public GeodeJuiceItem(Food food) {
-        super(food);
+    public GeodeJuiceItem(Properties props) {
+        super(props);
     }
 
     @Override
-    public ItemStack finishUsingItem(ItemStack stack, World worldIn, LivingEntity entityLiving) {
-        PlayerEntity player = (PlayerEntity)entityLiving;
+    public ItemStack finishUsingItem(ItemStack stack, Level worldIn, LivingEntity entityLiving) {
+        Player player = (Player)entityLiving;
         ItemStack cup = new ItemStack(ModItems.agate_cup.get());
 
         super.finishUsingItem(stack, worldIn, entityLiving);
 
-        if (!player.inventory.add(cup.copy())) {
+        if (!player.getInventory().add(cup.copy())) {
             player.drop(cup, false);
         }
 
@@ -29,7 +29,7 @@ public class GeodeJuiceItem extends BasicGaiaItem {
     }
 
     @Override
-    public UseAction getUseAnimation(ItemStack stack) {
-        return UseAction.DRINK;
+    public UseAnim getUseAnimation(ItemStack stack) {
+        return UseAnim.DRINK;
     }
 }

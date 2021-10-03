@@ -1,13 +1,13 @@
 package androsa.gaiadimension.item.inventory;
 
 import androsa.gaiadimension.registry.GaiaTags;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.inventory.container.Slot;
-import net.minecraft.item.ItemStack;
+import net.minecraft.world.Container;
+import net.minecraft.world.inventory.Slot;
+import net.minecraft.world.item.ItemStack;
 
 public class GemPouchSlot extends Slot {
 
-    public GemPouchSlot(IInventory inv, int index, int xPosition, int yPosition) {
+    public GemPouchSlot(Container inv, int index, int xPosition, int yPosition) {
         super(inv, index, xPosition, yPosition);
     }
 

@@ -1,15 +1,14 @@
 package androsa.gaiadimension.item.tools;
 
-import androsa.gaiadimension.registry.GaiaItemGroups;
 import androsa.gaiadimension.registry.GaiaToolMaterials;
-import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.*;
-import net.minecraft.particles.ParticleTypes;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TranslationTextComponent;
-import net.minecraft.world.World;
+import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.SwordItem;
+import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
@@ -17,30 +16,24 @@ import java.util.List;
 
 public class SpinelPrincessSwordItem extends SwordItem {
 
-    public SpinelPrincessSwordItem() {
-        super(GaiaToolMaterials.SPINEL, 3, -2.5F, new Properties().rarity(Rarity.RARE).tab(GaiaItemGroups.GAIA_TOOLS));
+    public SpinelPrincessSwordItem(Properties props) {
+        super(GaiaToolMaterials.SPINEL, 3, -2.5F, props);
     }
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public void appendHoverText(ItemStack stack, World world, List<ITextComponent> tooltips, ITooltipFlag flags) {
+    public void appendHoverText(ItemStack stack, Level world, List<Component> tooltips, TooltipFlag flags) {
         super.appendHoverText(stack, world, tooltips, flags);
-        tooltips.add(new TranslationTextComponent(getDescriptionId() + ".tooltip"));
+        tooltips.add(new TranslatableComponent(getDescriptionId() + ".tooltip"));
     }
 
     @Override
-    public boolean onLeftClickEntity(ItemStack stack, PlayerEntity player, Entity entity) {
-        if (player.level.isClientSide()) {
-            for (int var1 = 0; var1 < 20; ++var1) {
-                double px = entity.getX() + random.nextFloat() * entity.getBbWidth() * 2.0F - entity.getBbWidth();
-                double py = entity.getY() + random.nextFloat() * entity.getBbHeight();
-                double pz = entity.getZ() + random.nextFloat() * entity.getBbWidth() * 2.0F - entity.getBbWidth();
-                entity.level.addParticle(ParticleTypes.FLAME, px, py, pz, 0, 0, 0);
-            }
+    public boolean hurtEnemy(ItemStack stack, LivingEntity target, LivingEntity attacker) {
+        if (super.hurtEnemy(stack, target, attacker)) {
+            target.level.addParticle(ParticleTypes.FLAME, target.getRandomX(target.getBbWidth()), target.getRandomY(), target.getRandomZ(target.getBbWidth()), 0, 0, 0);
+            target.setSecondsOnFire(10);
+            return true;
         }
-
-        entity.setSecondsOnFire(10);
-
         return false;
     }
 
