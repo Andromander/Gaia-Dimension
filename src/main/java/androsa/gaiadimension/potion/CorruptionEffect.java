@@ -3,25 +3,26 @@ package androsa.gaiadimension.potion;
 import androsa.gaiadimension.GaiaDimensionMod;
 import androsa.gaiadimension.registry.ModEffects;
 import androsa.gaiadimension.registry.ModEntities;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.ai.attributes.Attributes;
-import net.minecraft.entity.ai.attributes.AttributeModifier;
-import net.minecraft.potion.Effect;
-import net.minecraft.potion.EffectType;
-import net.minecraft.util.DamageSource;
+import net.minecraft.world.effect.MobEffect;
+import net.minecraft.world.effect.MobEffectCategory;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.ai.attributes.AttributeModifier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
+import net.minecraftforge.event.entity.living.PotionEvent;
+import net.minecraftforge.eventbus.api.Event;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber(modid = GaiaDimensionMod.MODID)
-public class CorruptionEffect extends Effect {
+public class CorruptionEffect extends MobEffect {
 
     private final double bonusPerLevel;
 
     public CorruptionEffect(int color, double damage) {
-        super(EffectType.HARMFUL, color);
+        super(MobEffectCategory.HARMFUL, color);
         this.bonusPerLevel = damage;
         this.addAttributeModifier(Attributes.ATTACK_DAMAGE, "ED1B7821-E928-4EC7-8CD7-0FF2DE5E378A", 0.0D, AttributeModifier.Operation.ADDITION);
     }
@@ -47,13 +48,11 @@ public class CorruptionEffect extends Effect {
 
     @SubscribeEvent
     public static void onEntityHurt(LivingDamageEvent e) {
-        if (e.getEntityLiving().hasEffect(ModEffects.goldstone_plague) &&
-                e.getSource().equals(DamageSource.mobAttack((LivingEntity) e.getSource().getEntity()))) {
-
-            if (e.getEntityLiving().getMobType() != GaiaDimensionMod.CORRUPT &&
-                    ((LivingEntity)e.getSource().getEntity()).getMobType() == GaiaDimensionMod.CORRUPT) {
-
-                e.setAmount(e.getAmount() * 1.5F);
+        if (e.getEntityLiving().hasEffect(ModEffects.goldstone_plague)) {
+            if (e.getSource().getDirectEntity() != null && e.getSource().getDirectEntity() instanceof LivingEntity attacker) {
+                if (attacker.getMobType() == GaiaDimensionMod.CORRUPT) {
+                    e.setAmount(e.getAmount() * 1.5F);
+                }
             }
         }
     }
@@ -64,6 +63,14 @@ public class CorruptionEffect extends Effect {
 
         if (e.getSource() == GaiaDimensionMod.CORRUPTION) {
             e.getEntity().getCommandSenderWorld().addFreshEntity(corrputSpawn);
+        }
+    }
+
+    //Do not apply to Corrupted mobs
+    @SubscribeEvent
+    public static void applyEffect(PotionEvent.PotionApplicableEvent e) {
+        if (e.getEntityLiving().getMobType() == GaiaDimensionMod.CORRUPT) {
+            e.setResult(Event.Result.DENY);
         }
     }
 }
