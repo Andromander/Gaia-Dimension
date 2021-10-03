@@ -1,12 +1,13 @@
 package androsa.gaiadimension.registry;
 
 import androsa.gaiadimension.GaiaDimensionMod;
-import androsa.gaiadimension.fluids.*;
-import net.minecraft.fluid.FlowingFluid;
-import net.minecraft.fluid.Fluid;
+import androsa.gaiadimension.fluids.LiquidBismuthFluid;
+import androsa.gaiadimension.fluids.SuperhotMagmaFluid;
+import net.minecraft.world.level.material.FlowingFluid;
+import net.minecraft.world.level.material.Fluid;
 import net.minecraftforge.fluids.ForgeFlowingFluid;
-import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fmllegacy.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 

@@ -1,16 +1,21 @@
 package androsa.gaiadimension.fluids;
 
 import androsa.gaiadimension.registry.ModBlocks;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.FlowingFluidBlock;
-import net.minecraft.fluid.Fluid;
-import net.minecraft.fluid.FluidState;
-import net.minecraft.particles.ParticleTypes;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.FluidTags;
-import net.minecraft.util.*;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.*;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.GameRules;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.LiquidBlock;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.material.Fluid;
+import net.minecraft.world.level.material.FluidState;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.util.Constants;
@@ -26,21 +31,21 @@ public abstract class SuperhotMagmaFluid extends ForgeFlowingFluid {
     }
 
     @Override
-    protected void beforeDestroyingBlock(IWorld iWorld, BlockPos pos, BlockState state) {
+    protected void beforeDestroyingBlock(LevelAccessor iWorld, BlockPos pos, BlockState state) {
         this.triggerEffects(iWorld, pos);
     }
 
     @Override
-    protected boolean canBeReplacedWith(FluidState fluidstate, IBlockReader reader, BlockPos pos, Fluid fluid, Direction direction) {
+    protected boolean canBeReplacedWith(FluidState fluidstate, BlockGetter reader, BlockPos pos, Fluid fluid, Direction direction) {
         return fluidstate.getHeight(reader, pos) >= 0.44444445F && fluid.is(FluidTags.WATER);
     }
 
     @Override
-    protected void spreadTo(IWorld worldIn, BlockPos pos, BlockState blockStateIn, Direction direction, FluidState fluidStateIn) {
+    protected void spreadTo(LevelAccessor worldIn, BlockPos pos, BlockState blockStateIn, Direction direction, FluidState fluidStateIn) {
         if (direction == Direction.DOWN) {
             FluidState fluidstate = worldIn.getFluidState(pos);
             if (this.is(FluidTags.LAVA) && fluidstate.is(FluidTags.WATER)) {
-                if (blockStateIn.getBlock() instanceof FlowingFluidBlock) {
+                if (blockStateIn.getBlock() instanceof LiquidBlock) {
                     worldIn.setBlock(pos, ForgeEventFactory.fireFluidPlaceBlockEvent(worldIn, pos, pos, ModBlocks.primal_mass.get().defaultBlockState()), 3);
                     this.triggerEffects(worldIn, pos);
                 }
@@ -53,7 +58,7 @@ public abstract class SuperhotMagmaFluid extends ForgeFlowingFluid {
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public void animateTick(World worldIn, BlockPos pos, FluidState state, Random random) {
+    public void animateTick(Level worldIn, BlockPos pos, FluidState state, Random random) {
         BlockPos blockpos = pos.above();
         if (worldIn.getBlockState(blockpos).isAir() && !worldIn.getBlockState(blockpos).isSolidRender(worldIn, blockpos)) {
             if (random.nextInt(100) == 0) {
@@ -61,17 +66,17 @@ public abstract class SuperhotMagmaFluid extends ForgeFlowingFluid {
                 double d1 = pos.getY() + 1;
                 double d2 = (float)pos.getZ() + random.nextFloat();
                 worldIn.addParticle(ParticleTypes.LAVA, d0, d1, d2, 0.0D, 0.0D, 0.0D); //TODO: Make this Superhot Magma particle
-                worldIn.playLocalSound(d0, d1, d2, SoundEvents.LAVA_POP, SoundCategory.BLOCKS, 0.2F + random.nextFloat() * 0.2F, 0.9F + random.nextFloat() * 0.15F, false);
+                worldIn.playLocalSound(d0, d1, d2, SoundEvents.LAVA_POP, SoundSource.BLOCKS, 0.2F + random.nextFloat() * 0.2F, 0.9F + random.nextFloat() * 0.15F, false);
             }
 
             if (random.nextInt(200) == 0) {
-                worldIn.playLocalSound(pos.getX(), pos.getY(), pos.getZ(), SoundEvents.LAVA_AMBIENT, SoundCategory.BLOCKS, 0.2F + random.nextFloat() * 0.2F, 0.9F + random.nextFloat() * 0.15F, false);
+                worldIn.playLocalSound(pos.getX(), pos.getY(), pos.getZ(), SoundEvents.LAVA_AMBIENT, SoundSource.BLOCKS, 0.2F + random.nextFloat() * 0.2F, 0.9F + random.nextFloat() * 0.15F, false);
             }
         }
     }
 
     @Override
-    public void randomTick(World world, BlockPos pos, FluidState state, Random random) {
+    public void randomTick(Level world, BlockPos pos, FluidState state, Random random) {
         if (world.getGameRules().getBoolean(GameRules.RULE_DOFIRETICK)) {
             int i = random.nextInt(3);
             if (i > 0) {
@@ -109,7 +114,7 @@ public abstract class SuperhotMagmaFluid extends ForgeFlowingFluid {
         }
     }
 
-    private boolean isSurroundingBlockFlammable(IWorldReader worldIn, BlockPos pos) {
+    private boolean isSurroundingBlockFlammable(LevelAccessor worldIn, BlockPos pos) {
         for(Direction direction : Direction.values()) {
             if (this.getCanBlockBurn(worldIn, pos.relative(direction))) {
                 return true;
@@ -119,11 +124,11 @@ public abstract class SuperhotMagmaFluid extends ForgeFlowingFluid {
         return false;
     }
 
-    private boolean getCanBlockBurn(IWorldReader worldIn, BlockPos pos) {
+    private boolean getCanBlockBurn(LevelAccessor worldIn, BlockPos pos) {
         return (pos.getY() < 0 || pos.getY() >= 256 || worldIn.hasChunkAt(pos)) && worldIn.getBlockState(pos).getMaterial().isFlammable();
     }
 
-    private void triggerEffects(IWorld world, BlockPos pos) {
+    private void triggerEffects(LevelAccessor world, BlockPos pos) {
         world.levelEvent(Constants.WorldEvents.LAVA_EXTINGUISH, pos, 0);
     }
 }

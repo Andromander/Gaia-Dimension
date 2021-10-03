@@ -1,11 +1,11 @@
 package androsa.gaiadimension.registry;
 
-import androsa.gaiadimension.client.ClientEvents;
 import androsa.gaiadimension.GaiaDimensionMod;
-import net.minecraft.fluid.Fluid;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.IBlockDisplayReader;
+import androsa.gaiadimension.client.ClientEvents;
+import net.minecraft.core.BlockPos;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.BlockAndTintGetter;
+import net.minecraft.world.level.material.Fluid;
 import net.minecraftforge.fluids.FluidAttributes;
 import net.minecraftforge.fluids.ForgeFlowingFluid;
 
@@ -88,7 +88,7 @@ public class GaiaFluidAttributes {
         }
 
         @Override
-        public int getColor(IBlockDisplayReader world, BlockPos pos) {
+        public int getColor(BlockAndTintGetter world, BlockPos pos) {
             return ClientEvents.getBismuthColor(pos) | 0xFF000000;
         }
 
@@ -109,7 +109,7 @@ public class GaiaFluidAttributes {
         }
 
         @Override
-        public int getColor(IBlockDisplayReader world, BlockPos pos) {
+        public int getColor(BlockAndTintGetter world, BlockPos pos) {
             return ClientEvents.getAuraColor(pos) | 0xFF000000;
         }
 
