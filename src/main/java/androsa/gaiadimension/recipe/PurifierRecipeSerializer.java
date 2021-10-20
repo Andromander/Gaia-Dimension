@@ -2,38 +2,38 @@ package androsa.gaiadimension.recipe;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.IRecipeSerializer;
-import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.item.crafting.ShapedRecipe;
-import net.minecraft.network.PacketBuffer;
-import net.minecraft.util.JSONUtils;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.registry.Registry;
+import net.minecraft.core.Registry;
+import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.GsonHelper;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.crafting.RecipeSerializer;
+import net.minecraft.world.item.crafting.ShapedRecipe;
 import net.minecraftforge.registries.ForgeRegistryEntry;
 
-public class PurifierRecipeSerializer<T extends PurifierRecipe> extends ForgeRegistryEntry<IRecipeSerializer<?>> implements IRecipeSerializer<T> {
+public class PurifierRecipeSerializer<T extends PurifierRecipe> extends ForgeRegistryEntry<RecipeSerializer<?>> implements RecipeSerializer<T> {
     private final int cookTime;
-    private final PurifierRecipeSerializer.IFactory<T> factory;
+    private final PurifierRecipeSerializer.EntityFactory<T> factory;
 
-    public PurifierRecipeSerializer(PurifierRecipeSerializer.IFactory<T> factoryIn, int timeIn) {
+    public PurifierRecipeSerializer(PurifierRecipeSerializer.EntityFactory<T> factoryIn, int timeIn) {
         this.cookTime = timeIn;
         this.factory = factoryIn;
     }
 
     @Override
     public T fromJson(ResourceLocation recipeId, JsonObject json) {
-        String s = JSONUtils.getAsString(json, "group", "");
-        JsonElement jsonelement = JSONUtils.isArrayNode(json, "ingredient") ? JSONUtils.getAsJsonObject(json, "ingredient") : JSONUtils.getAsJsonObject(json, "ingredient");
+        String s = GsonHelper.getAsString(json, "group", "");
+        JsonElement jsonelement = GsonHelper.isArrayNode(json, "ingredient") ? GsonHelper.getAsJsonArray(json, "ingredient") : GsonHelper.getAsJsonObject(json, "ingredient");
         Ingredient ingredient = Ingredient.fromJson(jsonelement);
         //RESULT
         if (!json.has("result"))
             throw new com.google.gson.JsonSyntaxException("Missing result, expected to find a string or object");
         ItemStack resultStack;
         if (json.get("result").isJsonObject())
-            resultStack = ShapedRecipe.itemFromJson(JSONUtils.getAsJsonObject(json, "result"));
+            resultStack = ShapedRecipe.itemStackFromJson(GsonHelper.getAsJsonObject(json, "result"));
         else {
-            String s1 = JSONUtils.getAsString(json, "result");
+            String s1 = GsonHelper.getAsString(json, "result");
             ResourceLocation resourcelocation = new ResourceLocation(s1);
             resultStack = new ItemStack(Registry.ITEM.getOptional(resourcelocation).orElseThrow(() -> new IllegalStateException("Item: " + s1 + " does not exist")));
         }
@@ -43,19 +43,19 @@ public class PurifierRecipeSerializer<T extends PurifierRecipe> extends ForgeReg
             throw new com.google.gson.JsonSyntaxException("Missing result, expected to find a string or object");
         ItemStack byStack;
         if (json.get("byproduct").isJsonObject())
-            byStack = ShapedRecipe.itemFromJson(JSONUtils.getAsJsonObject(json, "byproduct"));
+            byStack = ShapedRecipe.itemStackFromJson(GsonHelper.getAsJsonObject(json, "byproduct"));
         else {
-            String s2 = JSONUtils.getAsString(json, "byproduct");
+            String s2 = GsonHelper.getAsString(json, "byproduct");
             ResourceLocation resourcelocation = new ResourceLocation(s2);
             byStack = new ItemStack(Registry.ITEM.getOptional(resourcelocation).orElseThrow(() -> new IllegalStateException("Item: " + s2 + " does not exist")));
         }
-        float f = JSONUtils.getAsFloat(json, "experience", 0.0F);
-        int i = JSONUtils.getAsInt(json, "cookingtime", this.cookTime);
+        float f = GsonHelper.getAsFloat(json, "experience", 0.0F);
+        int i = GsonHelper.getAsInt(json, "cookingtime", this.cookTime);
         return this.factory.create(recipeId, s, ingredient, resultStack, byStack, f, i);
     }
 
     @Override
-    public T fromNetwork(ResourceLocation recipeId, PacketBuffer buffer) {
+    public T fromNetwork(ResourceLocation recipeId, FriendlyByteBuf buffer) {
         String s = buffer.readUtf(32767);
         Ingredient ingredient = Ingredient.fromNetwork(buffer);
         ItemStack itemstack = buffer.readItem();
@@ -66,7 +66,7 @@ public class PurifierRecipeSerializer<T extends PurifierRecipe> extends ForgeReg
     }
 
     @Override
-    public void toNetwork(PacketBuffer buffer, T recipe) {
+    public void toNetwork(FriendlyByteBuf buffer, T recipe) {
         buffer.writeUtf(recipe.group);
         recipe.ingredient.toNetwork(buffer);
         buffer.writeItem(recipe.result);
@@ -75,7 +75,7 @@ public class PurifierRecipeSerializer<T extends PurifierRecipe> extends ForgeReg
         buffer.writeVarInt(recipe.cookTime);
     }
 
-    public interface IFactory<T extends PurifierRecipe> {
+    public interface EntityFactory<T extends PurifierRecipe> {
         T create(ResourceLocation id, String group, Ingredient ingredientIn, ItemStack outputIn, ItemStack byproductIn, float experienceIn, int timeIn);
     }
 }

@@ -5,25 +5,25 @@ import androsa.gaiadimension.recipe.PurifierRecipe;
 import androsa.gaiadimension.recipe.PurifierRecipeSerializer;
 import androsa.gaiadimension.recipe.RestructurerRecipe;
 import androsa.gaiadimension.recipe.RestructurerRecipeSerializer;
-import net.minecraft.item.crafting.IRecipeSerializer;
-import net.minecraft.item.crafting.IRecipeType;
-import net.minecraft.util.registry.Registry;
-import net.minecraftforge.fml.RegistryObject;
+import net.minecraft.core.Registry;
+import net.minecraft.world.item.crafting.RecipeSerializer;
+import net.minecraft.world.item.crafting.RecipeType;
+import net.minecraftforge.fmllegacy.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 
 public class ModRecipes {
 
-    public static final DeferredRegister<IRecipeSerializer<?>> RECIPE_SERIALIZERS = DeferredRegister.create(ForgeRegistries.RECIPE_SERIALIZERS, GaiaDimensionMod.MODID);
+    public static final DeferredRegister<RecipeSerializer<?>> RECIPE_SERIALIZERS = DeferredRegister.create(ForgeRegistries.RECIPE_SERIALIZERS, GaiaDimensionMod.MODID);
 
     //RecipeType
-    public static final IRecipeType<RestructurerRecipe> RESTRUCTURING = new IRecipeType<RestructurerRecipe>() {
+    public static final RecipeType<RestructurerRecipe> RESTRUCTURING = new RecipeType<>() {
         @Override
         public String toString() {
             return "gaiadimension:restructuring";
         }
     };
-    public static final IRecipeType<PurifierRecipe> PURIFYING = new IRecipeType<PurifierRecipe>() {
+    public static final RecipeType<PurifierRecipe> PURIFYING = new RecipeType<>() {
         @Override
         public String toString() {
             return "gaiadimension:purifying";

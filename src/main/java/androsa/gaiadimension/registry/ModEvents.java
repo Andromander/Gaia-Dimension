@@ -1,7 +1,7 @@
 package androsa.gaiadimension.registry;
 
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 
 public class ModEvents {
@@ -10,7 +10,7 @@ public class ModEvents {
     public static class ItemGlitteredEvent extends PlayerEvent {
         private final ItemStack glittered;
 
-        public ItemGlitteredEvent(PlayerEntity player, ItemStack crafting) {
+        public ItemGlitteredEvent(Player player, ItemStack crafting) {
             super(player);
             glittered = crafting;
         }
@@ -24,7 +24,7 @@ public class ModEvents {
     public static class ItemPurifiedEvent extends PlayerEvent {
         private final ItemStack purified;
 
-        public ItemPurifiedEvent(PlayerEntity player, ItemStack crafting) {
+        public ItemPurifiedEvent(Player player, ItemStack crafting) {
             super(player);
             purified = crafting;
         }
