@@ -2,26 +2,26 @@ package androsa.gaiadimension.entity.projectile;
 
 import androsa.gaiadimension.registry.ModEntities;
 import androsa.gaiadimension.registry.ModItems;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.projectile.AbstractArrowEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.network.IPacket;
-import net.minecraft.world.World;
-import net.minecraftforge.fml.network.NetworkHooks;
+import net.minecraft.network.protocol.Packet;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.projectile.AbstractArrow;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
+import net.minecraftforge.fmllegacy.network.NetworkHooks;
 
-public class AgateArrowEntity extends AbstractArrowEntity {
+public class AgateArrowEntity extends AbstractArrow {
 
-    public AgateArrowEntity(EntityType<? extends AgateArrowEntity> entity, World worldIn) {
+    public AgateArrowEntity(EntityType<? extends AgateArrowEntity> entity, Level worldIn) {
         super(entity, worldIn);
         setBaseDamage(4.0D);
     }
 
-    public AgateArrowEntity(World worldIn, double x, double y, double z) {
+    public AgateArrowEntity(Level worldIn, double x, double y, double z) {
         super(ModEntities.AGATE_ARROW, x, y, z, worldIn);
     }
 
-    public AgateArrowEntity(World worldIn, LivingEntity shooter) {
+    public AgateArrowEntity(Level worldIn, LivingEntity shooter) {
         super(ModEntities.AGATE_ARROW, shooter, worldIn);
     }
 
@@ -31,7 +31,7 @@ public class AgateArrowEntity extends AbstractArrowEntity {
     }
 
     @Override
-    public IPacket<?> getAddEntityPacket() {
+    public Packet<?> getAddEntityPacket() {
         return NetworkHooks.getEntitySpawningPacket(this);
     }
 }

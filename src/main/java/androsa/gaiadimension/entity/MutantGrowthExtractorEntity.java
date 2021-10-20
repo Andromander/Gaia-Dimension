@@ -1,32 +1,32 @@
 package androsa.gaiadimension.entity;
 
 import androsa.gaiadimension.registry.ModSounds;
-import net.minecraft.entity.*;
-import net.minecraft.entity.ai.attributes.AttributeModifierMap;
-import net.minecraft.entity.ai.attributes.Attributes;
-import net.minecraft.entity.ai.goal.LookAtGoal;
-import net.minecraft.entity.ai.goal.LookRandomlyGoal;
-import net.minecraft.entity.ai.goal.RandomWalkingGoal;
-import net.minecraft.entity.ai.goal.SwimGoal;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.util.DamageSource;
-import net.minecraft.util.SoundEvent;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.IWorld;
-import net.minecraft.world.World;
+import net.minecraft.core.BlockPos;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.ai.goal.FloatGoal;
+import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
+import net.minecraft.world.entity.ai.goal.RandomLookAroundGoal;
+import net.minecraft.world.entity.ai.goal.RandomStrollGoal;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelAccessor;
 
 import javax.annotation.Nullable;
 import java.util.Random;
 
-public class MutantGrowthExtractorEntity extends CreatureEntity {
+public class MutantGrowthExtractorEntity extends PathfinderMob {
 
-    public MutantGrowthExtractorEntity(EntityType<? extends MutantGrowthExtractorEntity> entity, World world) {
+    public MutantGrowthExtractorEntity(EntityType<? extends MutantGrowthExtractorEntity> entity, Level world) {
         super(entity, world);
         this.xpReward = 5;
     }
 
-    public static AttributeModifierMap.MutableAttribute registerAttributes() {
-        return MobEntity.createMobAttributes()
+    public static AttributeSupplier.Builder registerAttributes() {
+        return Mob.createMobAttributes()
                 .add(Attributes.MAX_HEALTH, 25.0D)
                 .add(Attributes.MOVEMENT_SPEED, 0.3D);
     }
@@ -34,10 +34,10 @@ public class MutantGrowthExtractorEntity extends CreatureEntity {
     @Override
     protected void registerGoals() {
         super.registerGoals();
-        this.goalSelector.addGoal(0, new SwimGoal(this));
-        this.goalSelector.addGoal(3, new LookAtGoal(this, PlayerEntity.class, 8.0F));
-        this.goalSelector.addGoal(4, new LookRandomlyGoal(this));
-        this.goalSelector.addGoal(1, new RandomWalkingGoal(this, 0.5D));
+        this.goalSelector.addGoal(0, new FloatGoal(this));
+        this.goalSelector.addGoal(3, new LookAtPlayerGoal(this, Player.class, 8.0F));
+        this.goalSelector.addGoal(4, new RandomLookAroundGoal(this));
+        this.goalSelector.addGoal(1, new RandomStrollGoal(this, 0.5D));
     }
 
     @Nullable
@@ -53,11 +53,11 @@ public class MutantGrowthExtractorEntity extends CreatureEntity {
     }
 
     @Override
-    public float getStandingEyeHeight(Pose poseIn, EntitySize sizeIn) {
+    public float getStandingEyeHeight(Pose poseIn, EntityDimensions sizeIn) {
         return 1.3F;
     }
 
-    public static boolean canSpawnHere(EntityType<MutantGrowthExtractorEntity> entity, IWorld world, SpawnReason spawn, BlockPos pos, Random random) {
+    public static boolean canSpawnHere(EntityType<MutantGrowthExtractorEntity> entity, LevelAccessor world, MobSpawnType spawn, BlockPos pos, Random random) {
         return world.getBlockState(pos.below()).isValidSpawn(world, pos.below(), entity) && world.getRawBrightness(pos, 0) > 8;
     }
 }

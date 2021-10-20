@@ -3,18 +3,15 @@ package androsa.gaiadimension.renderer;
 import androsa.gaiadimension.GaiaDimensionMod;
 import androsa.gaiadimension.entity.RuggedLurmorusEntity;
 import androsa.gaiadimension.model.RuggedLurmorusModel;
-import com.mojang.blaze3d.matrix.MatrixStack;
+import com.mojang.blaze3d.vertex.PoseStack;
+import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.MobRenderer;
-import net.minecraft.client.renderer.entity.EntityRendererManager;
-import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraft.resources.ResourceLocation;
 
-@OnlyIn(Dist.CLIENT)
 public class RuggedLurmorusRenderer<T extends RuggedLurmorusEntity, M extends RuggedLurmorusModel<T>> extends MobRenderer<T, M> {
     private static final ResourceLocation textureLoc = new ResourceLocation(GaiaDimensionMod.MODEL_DIR + "ruggedlurmorus.png");
 
-    public RuggedLurmorusRenderer(EntityRendererManager manager, M model, float shadowSize) {
+    public RuggedLurmorusRenderer(EntityRendererProvider.Context manager, M model, float shadowSize) {
         super(manager, model, shadowSize);
     }
 
@@ -24,7 +21,7 @@ public class RuggedLurmorusRenderer<T extends RuggedLurmorusEntity, M extends Ru
     }
 
     @Override
-    protected void scale(T entity, MatrixStack stack, float p_225620_3_) {
+    protected void scale(T entity, PoseStack stack, float p_225620_3_) {
         float scale = 2.5F;
         stack.scale(scale, scale, scale);
     }

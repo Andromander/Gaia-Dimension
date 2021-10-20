@@ -1,88 +1,84 @@
 package androsa.gaiadimension.model;
 
 import androsa.gaiadimension.entity.ShallowArenthisEntity;
-import com.google.common.collect.ImmutableList;
-import net.minecraft.client.renderer.entity.model.SegmentedModel;
-import net.minecraft.client.renderer.model.ModelRenderer;
-import net.minecraft.util.math.MathHelper;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraft.client.model.HierarchicalModel;
+import net.minecraft.client.model.geom.ModelPart;
+import net.minecraft.client.model.geom.PartPose;
+import net.minecraft.client.model.geom.builders.CubeListBuilder;
+import net.minecraft.client.model.geom.builders.LayerDefinition;
+import net.minecraft.client.model.geom.builders.MeshDefinition;
+import net.minecraft.client.model.geom.builders.PartDefinition;
+import net.minecraft.util.Mth;
 
 import java.util.Arrays;
 
 /**
- * ModelShallowArenthis - Undefined
+ * ModelShallowArenthis - Androsa
  * Created using Tabula 7.0.0
  */
-@OnlyIn(Dist.CLIENT)
-public class ShallowArenthisModel<T extends ShallowArenthisEntity> extends SegmentedModel<T> {
-    public ModelRenderer cap;
-    public ModelRenderer head;
-    public ModelRenderer[] tentacles = new ModelRenderer[7];
-    public ModelRenderer body;
-    public ModelRenderer tail;
+public class ShallowArenthisModel<T extends ShallowArenthisEntity> extends HierarchicalModel<T> {
+    public ModelPart root;
+    public ModelPart[] tentacles = new ModelPart[7];
+    public ModelPart body;
+    public ModelPart tail;
 
-    private final ImmutableList<ModelRenderer> parts;
-
-    public ShallowArenthisModel() {
-        this.texWidth = 64;
-        this.texHeight = 32;
-
-        this.cap = new ModelRenderer(this, 0, 0);
-        this.cap.setPos(0.0F, 0.0F, 0.0F);
-        this.cap.addBox(-5.0F, 0.0F, -5.0F, 10, 5, 10, 0.0F);
-        this.body = new ModelRenderer(this, 48, 9);
-        this.body.setPos(0.0F, 3.0F, 0.0F);
-        this.body.addBox(-1.5F, 0.0F, -1.5F, 3, 6, 3, 0.0F);
-        this.head = new ModelRenderer(this, 30, 0);
-        this.head.setPos(0.0F, 5.0F, 0.0F);
-        this.head.addBox(-2.5F, 0.0F, -2.5F, 5, 3, 5, 0.0F);
-        this.tail = new ModelRenderer(this, 0, 15);
-        this.tail.setPos(0.0F, 6.0F, 0.0F);
-        this.tail.addBox(-3.5F, 0.0F, 0.0F, 7, 4, 0, 0.0F);
-        for (int j = 0; j < this.tentacles.length; ++j) {
-            this.tentacles[j] = new ModelRenderer(this, 0, 0);
-            double d0 = (double)j * Math.PI * 2.0D / (double)this.tentacles.length;
-            float f = (float)Math.cos(d0) * 5.0F;
-            float f1 = (float)Math.sin(d0) * 5.0F;
-            this.tentacles[j].addBox(-1.0F, 0.0F, -1.0F, 1, 8, 1);
-            this.tentacles[j].x = f;
-            this.tentacles[j].z = f1;
-            this.tentacles[j].y = 5.0F;
-            d0 = (double)j * Math.PI * -2.0D / (double)this.tentacles.length + (Math.PI / 2D);
-            this.tentacles[j].yRot = (float)d0;
-        }
-
-        ImmutableList.Builder<ModelRenderer> builder = ImmutableList.builder();
-        builder.add(this.cap);
-        builder.addAll(Arrays.asList(this.tentacles));
-        this.parts = builder.build();
-
-        this.head.addChild(this.body);
-        this.cap.addChild(this.head);
-        this.body.addChild(this.tail);
+    public ShallowArenthisModel(ModelPart root) {
+        this.root = root;
+        this.body = root.getChild("cap").getChild("head").getChild("body");
+        this.tail = body.getChild("tail");
+        Arrays.setAll(this.tentacles, (num) -> root.getChild(getTentacleName(num)));
     }
 
     @Override
-    public Iterable<ModelRenderer> parts() {
-        return parts;
+    public ModelPart root() {
+        return this.root;
     }
 
-    /**
-     * This is a helper function from Tabula to set the rotation of model parts
-     */
-    public void setRotateAngle(ModelRenderer modelRenderer, float x, float y, float z) {
-        modelRenderer.xRot = x;
-        modelRenderer.yRot = y;
-        modelRenderer.zRot = z;
+    public static LayerDefinition makeBodyLayer() {
+        MeshDefinition mesh = new MeshDefinition();
+        PartDefinition root = mesh.getRoot();
+
+        PartDefinition cap = root.addOrReplaceChild("cap", CubeListBuilder.create()
+                        .texOffs(0, 0)
+                        .addBox(-5.0F, 0.0F, -5.0F, 10, 5, 10),
+                PartPose.ZERO);
+        PartDefinition head = cap.addOrReplaceChild("head", CubeListBuilder.create()
+                        .texOffs(30, 0)
+                        .addBox(-2.5F, 0.0F, -2.5F, 5, 3, 5),
+                PartPose.offset(0.0F, 5.0F, 0.0F));
+        PartDefinition body = head.addOrReplaceChild("body", CubeListBuilder.create()
+                        .texOffs(48, 9)
+                        .addBox(-1.5F, 0.0F, -1.5F, 3, 6, 3),
+                PartPose.offset(0.0F, 3.0F, 0.0F));
+        body.addOrReplaceChild("tail", CubeListBuilder.create()
+                        .texOffs(0, 15)
+                        .addBox(-3.5F, 0.0F, 0.0F, 7, 4, 0),
+                PartPose.offset(0.0F, 6.0F, 0.0F));
+
+        for (int j = 0; j < 7; ++j) {
+            double d0 = (double)j * Math.PI * 2.0D / 7.0D;
+            float f = (float)Math.cos(d0) * 5.0F;
+            float f1 = (float)Math.sin(d0) * 5.0F;
+            d0 = (double)j * Math.PI * -2.0D / 7.0D + (Math.PI / 2D);
+
+            CubeListBuilder tentaclecube = CubeListBuilder.create()
+                    .texOffs(0, 0).addBox(-1.0F, 0.0F, -1.0F, 1, 8, 1);
+            root.addOrReplaceChild(getTentacleName(j), tentaclecube, PartPose.offsetAndRotation(f, 5.0F, f1, 0.0F, (float)d0, 0.0F));
+        }
+
+       return LayerDefinition.create(mesh, 64, 32);
+    }
+
+    public static String getTentacleName(int num) {
+        return "tentacle_" + num;
     }
 
     @Override
     public void setupAnim(T entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-        this.body.xRot = MathHelper.sin(ageInTicks * (float)Math.PI * 0.025F) * 3.0F;
-        this.tail.xRot = MathHelper.sin(ageInTicks * (float)Math.PI * 0.025F) * 3.0F;
+        this.body.xRot = Mth.sin(ageInTicks * (float)Math.PI * 0.025F) * 3.0F;
+        this.tail.xRot = Mth.sin(ageInTicks * (float)Math.PI * 0.025F) * 3.0F;
 
-        for (ModelRenderer modelrenderer : this.tentacles) {
+        for (ModelPart modelrenderer : this.tentacles) {
             modelrenderer.xRot = ageInTicks;
         }
     }

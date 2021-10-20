@@ -3,16 +3,13 @@ package androsa.gaiadimension.renderer;
 import androsa.gaiadimension.GaiaDimensionMod;
 import androsa.gaiadimension.entity.projectile.AgateArrowEntity;
 import net.minecraft.client.renderer.entity.ArrowRenderer;
-import net.minecraft.client.renderer.entity.EntityRendererManager;
-import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraft.client.renderer.entity.EntityRendererProvider;
+import net.minecraft.resources.ResourceLocation;
 
-@OnlyIn(Dist.CLIENT)
 public class AgateArrowRenderer<T extends AgateArrowEntity> extends ArrowRenderer<T> {
     public static final ResourceLocation textureLoc = new ResourceLocation(GaiaDimensionMod.MODEL_DIR + "projectiles/agate_arrow.png");
 
-    public AgateArrowRenderer(EntityRendererManager manager) {
+    public AgateArrowRenderer(EntityRendererProvider.Context manager) {
         super(manager);
     }
 

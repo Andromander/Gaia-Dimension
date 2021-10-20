@@ -3,17 +3,14 @@ package androsa.gaiadimension.renderer;
 import androsa.gaiadimension.GaiaDimensionMod;
 import androsa.gaiadimension.entity.boss.BlueHowliteWolfEntity;
 import androsa.gaiadimension.model.BlueHowliteWolfModel;
+import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.MobRenderer;
-import net.minecraft.client.renderer.entity.EntityRendererManager;
-import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraft.resources.ResourceLocation;
 
-@OnlyIn(Dist.CLIENT)
 public class BlueHowliteWolfRenderer<T extends BlueHowliteWolfEntity, M extends BlueHowliteWolfModel<T>> extends MobRenderer<T, M> {
     private static final ResourceLocation textureLoc = new ResourceLocation(GaiaDimensionMod.MODEL_DIR + "bluehowlitewolf.png");
 
-    public BlueHowliteWolfRenderer(EntityRendererManager manager, M model, float shadowSize) {
+    public BlueHowliteWolfRenderer(EntityRendererProvider.Context manager, M model, float shadowSize) {
         super(manager, model, shadowSize);
     }
 

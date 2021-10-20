@@ -1,45 +1,45 @@
 package androsa.gaiadimension.entity;
 
 import androsa.gaiadimension.registry.ModSounds;
-import net.minecraft.entity.CreatureEntity;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.MobEntity;
-import net.minecraft.entity.ai.attributes.AttributeModifierMap;
-import net.minecraft.entity.ai.attributes.Attributes;
-import net.minecraft.entity.SpawnReason;
-import net.minecraft.entity.ai.goal.LookAtGoal;
-import net.minecraft.entity.ai.goal.LookRandomlyGoal;
-import net.minecraft.entity.ai.goal.RandomWalkingGoal;
-import net.minecraft.entity.ai.goal.SwimGoal;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.util.DamageSource;
-import net.minecraft.util.SoundEvent;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.IWorld;
-import net.minecraft.world.World;
+import net.minecraft.core.BlockPos;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.MobSpawnType;
+import net.minecraft.world.entity.PathfinderMob;
+import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.ai.goal.FloatGoal;
+import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
+import net.minecraft.world.entity.ai.goal.RandomLookAroundGoal;
+import net.minecraft.world.entity.ai.goal.RandomStrollGoal;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelAccessor;
 
 import javax.annotation.Nullable;
 import java.util.Random;
 
-public class SpellElementEntity extends CreatureEntity {
+public class SpellElementEntity extends PathfinderMob {
 
-    public SpellElementEntity(EntityType<? extends SpellElementEntity> entity, World world) {
+    public SpellElementEntity(EntityType<? extends SpellElementEntity> entity, Level world) {
         super(entity, world);
         this.xpReward = 5;
     }
 
-    public static AttributeModifierMap.MutableAttribute registerAttributes() {
-        return MobEntity.createMobAttributes()
+    public static AttributeSupplier.Builder registerAttributes() {
+        return Mob.createMobAttributes()
                 .add(Attributes.MAX_HEALTH, 15.0D);
     }
 
     @Override
     protected void registerGoals() {
         super.registerGoals();
-        this.goalSelector.addGoal(0, new SwimGoal(this));
-        this.goalSelector.addGoal(3, new LookAtGoal(this, PlayerEntity.class, 8.0F));
-        this.goalSelector.addGoal(4, new LookRandomlyGoal(this));
-        this.goalSelector.addGoal(2, new RandomWalkingGoal(this, 0.5D));
+        this.goalSelector.addGoal(0, new FloatGoal(this));
+        this.goalSelector.addGoal(3, new LookAtPlayerGoal(this, Player.class, 8.0F));
+        this.goalSelector.addGoal(4, new RandomLookAroundGoal(this));
+        this.goalSelector.addGoal(2, new RandomStrollGoal(this, 0.5D));
     }
 
     @Nullable
@@ -54,7 +54,7 @@ public class SpellElementEntity extends CreatureEntity {
         return ModSounds.ENTITY_SPELLBOUND_ELEMENTAL_HURT;
     }
 
-    public static boolean canSpawnHere(EntityType<SpellElementEntity> entity, IWorld world, SpawnReason spawn, BlockPos pos, Random random) {
+    public static boolean canSpawnHere(EntityType<SpellElementEntity> entity, LevelAccessor world, MobSpawnType spawn, BlockPos pos, Random random) {
         return world.getBlockState(pos.below()).isValidSpawn(world, pos.below(), entity) && world.getRawBrightness(pos, 0) > 8;
     }
 }

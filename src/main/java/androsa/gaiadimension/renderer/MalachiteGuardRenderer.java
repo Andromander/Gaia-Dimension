@@ -6,21 +6,18 @@ import androsa.gaiadimension.model.MalachiteGuardModel;
 import androsa.gaiadimension.renderer.layer.MalachiteDefenceLayer;
 import androsa.gaiadimension.renderer.layer.MalachiteGuardGlowLayer;
 import androsa.gaiadimension.renderer.layer.MalachiteResistLayer;
+import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.MobRenderer;
-import net.minecraft.client.renderer.entity.EntityRendererManager;
-import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraft.resources.ResourceLocation;
 
-@OnlyIn(Dist.CLIENT)
 public class MalachiteGuardRenderer<T extends MalachiteGuardEntity, M extends MalachiteGuardModel<T>> extends MobRenderer<T, M> {
     private static final ResourceLocation textureLoc = new ResourceLocation(GaiaDimensionMod.MODEL_DIR + "malachiteguard.png");
 
-    public MalachiteGuardRenderer(EntityRendererManager manager, M model, float shadowSize) {
+    public MalachiteGuardRenderer(EntityRendererProvider.Context manager, M model, float shadowSize) {
         super(manager, model, shadowSize);
         addLayer(new MalachiteGuardGlowLayer<>(this));
-        addLayer(new MalachiteDefenceLayer<>(this));
-        addLayer(new MalachiteResistLayer<>(this));
+        addLayer(new MalachiteDefenceLayer<>(this, manager.getModelSet()));
+        addLayer(new MalachiteResistLayer<>(this, manager.getModelSet()));
     }
 
     @Override

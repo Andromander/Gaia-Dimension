@@ -2,44 +2,44 @@ package androsa.gaiadimension.entity;
 
 import androsa.gaiadimension.registry.ModBiomes;
 import androsa.gaiadimension.registry.ModSounds;
-import net.minecraft.entity.*;
-import net.minecraft.entity.ai.attributes.AttributeModifierMap;
-import net.minecraft.entity.ai.attributes.Attributes;
-import net.minecraft.entity.ai.goal.LookAtGoal;
-import net.minecraft.entity.ai.goal.LookRandomlyGoal;
-import net.minecraft.entity.ai.goal.SwimGoal;
-import net.minecraft.entity.ai.goal.WaterAvoidingRandomWalkingGoal;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.network.datasync.DataParameter;
-import net.minecraft.network.datasync.DataSerializers;
-import net.minecraft.network.datasync.EntityDataManager;
-import net.minecraft.util.DamageSource;
-import net.minecraft.util.RegistryKey;
-import net.minecraft.util.SoundEvent;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.core.BlockPos;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.syncher.EntityDataAccessor;
+import net.minecraft.network.syncher.EntityDataSerializers;
+import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.util.Mth;
 import net.minecraft.world.DifficultyInstance;
-import net.minecraft.world.IServerWorld;
-import net.minecraft.world.IWorld;
-import net.minecraft.world.World;
-import net.minecraft.world.biome.Biome;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.ai.goal.FloatGoal;
+import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
+import net.minecraft.world.entity.ai.goal.RandomLookAroundGoal;
+import net.minecraft.world.entity.ai.goal.WaterAvoidingRandomStrollGoal;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.ServerLevelAccessor;
+import net.minecraft.world.level.biome.Biome;
 
 import javax.annotation.Nullable;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.Random;
 
-public class NomadicLagrahkEntity extends CreatureEntity {
-    private static final DataParameter<Integer> LAGRAHK_VARIANT = EntityDataManager.defineId(NomadicLagrahkEntity.class, DataSerializers.INT);
+public class NomadicLagrahkEntity extends PathfinderMob {
+    private static final EntityDataAccessor<Integer> LAGRAHK_VARIANT = SynchedEntityData.defineId(NomadicLagrahkEntity.class, EntityDataSerializers.INT);
 
-    public NomadicLagrahkEntity(EntityType<? extends NomadicLagrahkEntity> entity, World world) {
+    public NomadicLagrahkEntity(EntityType<? extends NomadicLagrahkEntity> entity, Level world) {
         super(entity, world);
         this.xpReward = 10;
     }
 
-    public static AttributeModifierMap.MutableAttribute registerAttributes() {
-        return MobEntity.createMobAttributes()
+    public static AttributeSupplier.Builder registerAttributes() {
+        return Mob.createMobAttributes()
                 .add(Attributes.MAX_HEALTH, 120.0D)
                 .add(Attributes.KNOCKBACK_RESISTANCE, 1.0D)
                 .add(Attributes.ARMOR, 2.0D)
@@ -53,7 +53,7 @@ public class NomadicLagrahkEntity extends CreatureEntity {
     }
 
     @Override
-    public float getStandingEyeHeight(Pose poseIn, EntitySize sizeIn) {
+    public float getStandingEyeHeight(Pose poseIn, EntityDimensions sizeIn) {
         return 3.55F;
     }
 
@@ -61,7 +61,7 @@ public class NomadicLagrahkEntity extends CreatureEntity {
      * Get the variant integer
      */
     public int getEntityVariant() {
-        return MathHelper.clamp(entityData.get(LAGRAHK_VARIANT), 0, 3);
+        return Mth.clamp(entityData.get(LAGRAHK_VARIANT), 0, 3);
     }
 
     /**
@@ -76,19 +76,19 @@ public class NomadicLagrahkEntity extends CreatureEntity {
 
     @Override
     protected void registerGoals() {
-        this.goalSelector.addGoal(1, new SwimGoal(this));
-        this.goalSelector.addGoal(4, new WaterAvoidingRandomWalkingGoal(this, 0.5D));
-        this.goalSelector.addGoal(5, new LookAtGoal(this, PlayerEntity.class, 8.0F));
-        this.goalSelector.addGoal(5, new LookRandomlyGoal(this));
+        this.goalSelector.addGoal(1, new FloatGoal(this));
+        this.goalSelector.addGoal(4, new WaterAvoidingRandomStrollGoal(this, 0.5D));
+        this.goalSelector.addGoal(5, new LookAtPlayerGoal(this, Player.class, 8.0F));
+        this.goalSelector.addGoal(5, new RandomLookAroundGoal(this));
     }
 
-    public void readAdditionalSaveData(CompoundNBT compound) {
+    public void readAdditionalSaveData(CompoundTag compound) {
         super.readAdditionalSaveData(compound);
         this.setLagrahkVariant(compound.getInt("LagrahkVariant"));
     }
 
     @Override
-    public void addAdditionalSaveData(CompoundNBT compound) {
+    public void addAdditionalSaveData(CompoundTag compound) {
         super.addAdditionalSaveData(compound);
         compound.putInt("LagrahkVariant", this.getEntityVariant());
     }
@@ -107,7 +107,7 @@ public class NomadicLagrahkEntity extends CreatureEntity {
 
     @Override
     public int getMaxSpawnClusterSize() {
-        Optional<RegistryKey<Biome>> biome = level.getBiomeName(new BlockPos(getX(), getY(), getZ()));
+        Optional<ResourceKey<Biome>> biome = level.getBiomeName(new BlockPos(getX(), getY(), getZ()));
 
         if (Objects.equals(biome, Optional.of(ModBiomes.salt_dunes)) || Objects.equals(biome, Optional.of(ModBiomes.static_wasteland)) || Objects.equals(biome, Optional.of(ModBiomes.volcanic_lands))) {
             return 4;
@@ -116,13 +116,13 @@ public class NomadicLagrahkEntity extends CreatureEntity {
         }
     }
 
-    public static boolean canSpawnHere(EntityType<NomadicLagrahkEntity> entity, IWorld world, SpawnReason spawn, BlockPos pos, Random random) {
+    public static boolean canSpawnHere(EntityType<NomadicLagrahkEntity> entity, LevelAccessor world, MobSpawnType spawn, BlockPos pos, Random random) {
         return world.getBlockState(pos.below()).isValidSpawn(world, pos.below(), entity) && world.getRawBrightness(pos, 0) > 8;
     }
 
     @Override
-    public ILivingEntityData finalizeSpawn(IServerWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
-        Optional<RegistryKey<Biome>> biome = worldIn.getBiomeName(new BlockPos(getX(), getY(), getZ()));
+    public SpawnGroupData finalizeSpawn(ServerLevelAccessor worldIn, DifficultyInstance difficultyIn, MobSpawnType reason, @Nullable SpawnGroupData spawnDataIn, @Nullable CompoundTag dataTag) {
+        Optional<ResourceKey<Biome>> biome = worldIn.getBiomeName(new BlockPos(getX(), getY(), getZ()));
 
         if (Objects.equals(biome, Optional.of(ModBiomes.salt_dunes))) {
             setLagrahkVariant(1);

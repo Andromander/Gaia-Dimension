@@ -3,27 +3,24 @@ package androsa.gaiadimension.renderer;
 import androsa.gaiadimension.GaiaDimensionMod;
 import androsa.gaiadimension.entity.ShallowArenthisEntity;
 import androsa.gaiadimension.model.ShallowArenthisModel;
-import com.mojang.blaze3d.matrix.MatrixStack;
+import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.math.Vector3f;
+import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.MobRenderer;
-import net.minecraft.client.renderer.entity.EntityRendererManager;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.vector.Vector3f;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.Mth;
 
-@OnlyIn(Dist.CLIENT)
 public class ShallowArenthisRenderer<T extends ShallowArenthisEntity, M extends ShallowArenthisModel<T>> extends MobRenderer<T, M> {
     private static final ResourceLocation textureLoc = new ResourceLocation(GaiaDimensionMod.MODEL_DIR + "shallowarenthis.png");
 
-    public ShallowArenthisRenderer(EntityRendererManager manager, M model, float shadowSize) {
+    public ShallowArenthisRenderer(EntityRendererProvider.Context manager, M model, float shadowSize) {
         super(manager, model, shadowSize);
     }
 
     @Override
-    protected void setupRotations(T entityLiving, MatrixStack matrixStack, float rotationPitch, float rotationYaw, float partialTicks) {
-        float f = MathHelper.lerp(partialTicks, entityLiving.prevArenthisPitch, entityLiving.arenthisPitch);
-        float f1 = MathHelper.lerp(partialTicks, entityLiving.prevArenthisYaw, entityLiving.arenthisYaw);
+    protected void setupRotations(T entityLiving, PoseStack matrixStack, float rotationPitch, float rotationYaw, float partialTicks) {
+        float f = Mth.lerp(partialTicks, entityLiving.prevArenthisPitch, entityLiving.arenthisPitch);
+        float f1 = Mth.lerp(partialTicks, entityLiving.prevArenthisYaw, entityLiving.arenthisYaw);
         matrixStack.translate(0.0F, 0.5F, 0.0F);
         matrixStack.mulPose(Vector3f.YP.rotationDegrees(180.0F - rotationYaw));
         matrixStack.mulPose(Vector3f.XP.rotationDegrees(f));

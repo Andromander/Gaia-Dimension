@@ -5,56 +5,62 @@ import androsa.gaiadimension.registry.ModEntities;
 import androsa.gaiadimension.registry.ModItems;
 import androsa.gaiadimension.registry.ModParticles;
 import androsa.gaiadimension.registry.ModSounds;
-import net.minecraft.block.BlockState;
-import net.minecraft.entity.*;
-import net.minecraft.entity.ai.attributes.AttributeModifierMap;
-import net.minecraft.entity.ai.attributes.Attributes;
-import net.minecraft.entity.ai.goal.*;
-import net.minecraft.entity.monster.MonsterEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.network.datasync.DataParameter;
-import net.minecraft.network.datasync.DataSerializers;
-import net.minecraft.network.datasync.EntityDataManager;
-import net.minecraft.particles.BlockParticleData;
-import net.minecraft.particles.ParticleTypes;
-import net.minecraft.potion.EffectInstance;
-import net.minecraft.util.*;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.vector.Vector3d;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.world.*;
-import net.minecraft.world.server.ServerBossInfo;
-import net.minecraft.world.server.ServerWorld;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.NonNullList;
+import net.minecraft.core.particles.BlockParticleOption;
+import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.syncher.EntityDataAccessor;
+import net.minecraft.network.syncher.EntityDataSerializers;
+import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.server.level.ServerBossEvent;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.world.BossEvent;
+import net.minecraft.world.Difficulty;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.ai.goal.*;
+import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
+import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
+import net.minecraft.world.entity.monster.Monster;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.ServerLevelAccessor;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.Vec3;
 
 import javax.annotation.Nullable;
 import java.util.EnumSet;
 import java.util.List;
 
-public class MalachiteGuardEntity extends MonsterEntity {
+public class MalachiteGuardEntity extends Monster {
 
-    private static final DataParameter<Integer> PHASE = EntityDataManager.defineId(MalachiteGuardEntity.class, DataSerializers.INT);
-    private static final DataParameter<Integer> STOMP_PHASE = EntityDataManager.defineId(MalachiteGuardEntity.class, DataSerializers.INT);
-    private static final DataParameter<Integer> CHARGE_PHASE = EntityDataManager.defineId(MalachiteGuardEntity.class, DataSerializers.INT);
+    private static final EntityDataAccessor<Integer> PHASE = SynchedEntityData.defineId(MalachiteGuardEntity.class, EntityDataSerializers.INT);
+    private static final EntityDataAccessor<Integer> STOMP_PHASE = SynchedEntityData.defineId(MalachiteGuardEntity.class, EntityDataSerializers.INT);
+    private static final EntityDataAccessor<Integer> CHARGE_PHASE = SynchedEntityData.defineId(MalachiteGuardEntity.class, EntityDataSerializers.INT);
     private int dronesLeft;
     private boolean hasSpawnedDrones;
     private int stompCooldown;
     private int chargeCooldown;
     private float bideDamage;
 
-    private final ServerBossInfo bossInfo = new ServerBossInfo(this.getDisplayName(), BossInfo.Color.GREEN, BossInfo.Overlay.PROGRESS);
+    private final ServerBossEvent bossInfo = new ServerBossEvent(this.getDisplayName(), BossEvent.BossBarColor.GREEN, BossEvent.BossBarOverlay.PROGRESS);
 
-    public MalachiteGuardEntity(EntityType<? extends MalachiteGuardEntity> entity, World world) {
+    public MalachiteGuardEntity(EntityType<? extends MalachiteGuardEntity> entity, Level world) {
         super(entity, world);
         this.maxUpStep = 1.5F;
         this.xpReward = 75;
     }
 
-    public static AttributeModifierMap.MutableAttribute registerAttributes() {
-        return MonsterEntity.createMonsterAttributes()
+    public static AttributeSupplier.Builder registerAttributes() {
+        return Monster.createMonsterAttributes()
                 .add(Attributes.MAX_HEALTH, 200.0D)
                 .add(Attributes.ATTACK_DAMAGE, 5.0D)
                 .add(Attributes.MOVEMENT_SPEED, 0.6D)
@@ -82,14 +88,14 @@ public class MalachiteGuardEntity extends MonsterEntity {
         this.goalSelector.addGoal(2, new BlastAttackGoal(this));
         this.goalSelector.addGoal(3, new MeleeAttackGoal(this, 0.6D, true));
         this.goalSelector.addGoal(4, new MoveTowardsTargetGoal(this, 0.6D, 32.0F));
-        this.goalSelector.addGoal(5, new LookAtGoal(this, PlayerEntity.class, 8.0F));
-        this.goalSelector.addGoal(6, new WaterAvoidingRandomWalkingGoal(this, 0.6D));
+        this.goalSelector.addGoal(5, new LookAtPlayerGoal(this, Player.class, 8.0F));
+        this.goalSelector.addGoal(6, new WaterAvoidingRandomStrollGoal(this, 0.6D));
         this.targetSelector.addGoal(1, new HurtByTargetGoal(this));
-        this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, true));
+        this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Player.class, true));
     }
 
     @Override
-    public void readAdditionalSaveData(CompoundNBT nbt) {
+    public void readAdditionalSaveData(CompoundTag nbt) {
         super.readAdditionalSaveData(nbt);
         this.setPhase(nbt.getInt("Phase"));
         this.setStompPhase(nbt.getInt("StompPhase"));
@@ -105,7 +111,7 @@ public class MalachiteGuardEntity extends MonsterEntity {
     }
 
     @Override
-    public void addAdditionalSaveData(CompoundNBT nbt) {
+    public void addAdditionalSaveData(CompoundTag nbt) {
         super.addAdditionalSaveData(nbt);
         nbt.putInt("Phase", getPhase());
         nbt.putInt("StompPhase", getStompPhase());
@@ -118,7 +124,7 @@ public class MalachiteGuardEntity extends MonsterEntity {
     }
 
     @Override
-    public void setCustomName(@Nullable ITextComponent text) {
+    public void setCustomName(@Nullable Component text) {
         super.setCustomName(text);
         this.bossInfo.setName(getDisplayName());
     }
@@ -164,7 +170,7 @@ public class MalachiteGuardEntity extends MonsterEntity {
      * Do not move if we are in Phase 1.
      */
     @Override
-    public void move(MoverType type, Vector3d motion) {
+    public void move(MoverType type, Vec3 motion) {
         if (getPhase() != 0 && (getChargePhase() == 0 || getChargePhase() == 0)) {
             super.move(type, motion);
         }
@@ -176,7 +182,7 @@ public class MalachiteGuardEntity extends MonsterEntity {
      * Do not apply knockback if we are Charged or Charging
      */
     @Override
-    public void knockback(float amount, double x, double z) {
+    public void knockback(double amount, double x, double z) {
         if (getPhase() == 1 || getChargePhase() != 0 || getStompPhase() != 0) {
             super.knockback(amount, x, z);
         }
@@ -186,7 +192,7 @@ public class MalachiteGuardEntity extends MonsterEntity {
      * Guard is too heavy to be dealt fall damage
      */
     @Override
-    public boolean causeFallDamage(float dist, float mul) {
+    public boolean causeFallDamage(float dist, float mul, DamageSource source) {
         return false;
     }
 
@@ -196,14 +202,14 @@ public class MalachiteGuardEntity extends MonsterEntity {
     @Override
     public void setTarget(@Nullable LivingEntity entity) {
         if (level.getDifficulty() == Difficulty.NORMAL || level.getDifficulty() == Difficulty.HARD) {
-            if (entity instanceof PlayerEntity) {
-                if (EntityPredicates.NO_CREATIVE_OR_SPECTATOR.test(entity)) {
+            if (entity instanceof Player) {
+                if (EntitySelector.NO_CREATIVE_OR_SPECTATOR.test(entity)) {
                     super.setTarget(entity);
                 }
             }
         } else if (level.getDifficulty() == Difficulty.EASY) {
-            if (entity instanceof PlayerEntity) {
-                if (EntityPredicates.NO_CREATIVE_OR_SPECTATOR.test(entity)) {
+            if (entity instanceof Player) {
+                if (EntitySelector.NO_CREATIVE_OR_SPECTATOR.test(entity)) {
                     super.setTarget(entity);
                 }
             } else {
@@ -226,7 +232,7 @@ public class MalachiteGuardEntity extends MonsterEntity {
 
     //TODO: Keep if we make new sounds?
     @Override
-    protected float getVoicePitch() {
+    public float getVoicePitch() {
         return (this.random.nextFloat() - this.random.nextFloat()) * 0.2F + 0.6F;
     }
 
@@ -243,7 +249,7 @@ public class MalachiteGuardEntity extends MonsterEntity {
         }
 
         if (!level.isClientSide()) {
-            this.bossInfo.setPercent(this.getHealth() / this.getMaxHealth());
+            this.bossInfo.setProgress(this.getHealth() / this.getMaxHealth());
         }
     }
 
@@ -291,7 +297,7 @@ public class MalachiteGuardEntity extends MonsterEntity {
         MalachiteDroneEntity drone = new MalachiteDroneEntity(ModEntities.MALACHITE_DRONE, this.level);
         drone.moveTo(pos, 0.0F, 0.0F);
         if (!level.isClientSide()) {
-            drone.finalizeSpawn((IServerWorld)this.level, this.level.getCurrentDifficultyAt(pos), SpawnReason.MOB_SUMMONED, null, null);
+            drone.finalizeSpawn((ServerLevelAccessor)this.level, this.level.getCurrentDifficultyAt(pos), MobSpawnType.MOB_SUMMONED, null, null);
         }
         drone.setOwner(this);
         this.level.addFreshEntity(drone);
@@ -309,7 +315,7 @@ public class MalachiteGuardEntity extends MonsterEntity {
     public void aiStep() {
         if (getPhase() == 0) {
             //Don't move, except falling
-            Vector3d motion = this.getDeltaMovement();
+            Vec3 motion = this.getDeltaMovement();
             this.setDeltaMovement(0.0D, motion.y(), 0.0D);
 
             //Check if we spawned drones in this phase
@@ -370,12 +376,12 @@ public class MalachiteGuardEntity extends MonsterEntity {
 
         //Just have this happen in Normal or Hard
         if (difficulty == Difficulty.NORMAL || difficulty == Difficulty.HARD) {
-            if (target instanceof PlayerEntity) {
-                PlayerEntity player = (PlayerEntity) target;
-                NonNullList<ItemStack> armor = player.inventory.armor;
+            if (target instanceof Player) {
+                Player player = (Player) target;
+                NonNullList<ItemStack> armor = player.getInventory().armor;
                 int slot = random.nextInt(armor.size());
                 ItemStack stack = armor.get(slot);
-                EquipmentSlotType slotType = EquipmentSlotType.byTypeAndIndex(EquipmentSlotType.Group.ARMOR, slot);
+                EquipmentSlot slotType = EquipmentSlot.byTypeAndIndex(EquipmentSlot.Type.ARMOR, slot);
 
                 //Normal: 1:16 chance. Hard: 1:8 chance. Chances decrease if the slot is empty
                 if ((difficulty == Difficulty.NORMAL && random.nextInt(16) == 0) || (difficulty == Difficulty.HARD && random.nextInt(8) == 0)) {
@@ -444,7 +450,7 @@ public class MalachiteGuardEntity extends MonsterEntity {
         Entity entity = source.getDirectEntity();
 
         if (this.level.getDifficulty() == Difficulty.NORMAL || this.level.getDifficulty() == Difficulty.HARD) {
-            return entity instanceof PlayerEntity;
+            return entity instanceof Player;
         } else {
             return entity instanceof LivingEntity;
         }
@@ -469,7 +475,7 @@ public class MalachiteGuardEntity extends MonsterEntity {
     }
 
     @Override
-    public boolean canBeAffected(EffectInstance effectInstance) {
+    public boolean canBeAffected(MobEffectInstance effectInstance) {
         return level.getDifficulty() == Difficulty.HARD && effectInstance.getEffect().isBeneficial();
     }
 
@@ -488,24 +494,24 @@ public class MalachiteGuardEntity extends MonsterEntity {
     public void checkDespawn() {
         if (this.level.getDifficulty() == Difficulty.PEACEFUL && this.shouldDespawnInPeaceful()) {
             this.spawnAtLocation(ModItems.mock_malachite.get(), 1);
-            this.remove();
+            this.discard();
         }
         super.checkDespawn();
     }
 
     @Override
-    public float getStandingEyeHeight(Pose poseIn, EntitySize sizeIn) {
+    public float getStandingEyeHeight(Pose poseIn, EntityDimensions sizeIn) {
         return 3.0F;
     }
 
     @Override
-    public void startSeenByPlayer(ServerPlayerEntity player) {
+    public void startSeenByPlayer(ServerPlayer player) {
         super.startSeenByPlayer(player);
         this.bossInfo.addPlayer(player);
     }
 
     @Override
-    public void stopSeenByPlayer(ServerPlayerEntity player) {
+    public void stopSeenByPlayer(ServerPlayer player) {
         super.stopSeenByPlayer(player);
         this.bossInfo.removePlayer(player);
     }
@@ -556,7 +562,7 @@ public class MalachiteGuardEntity extends MonsterEntity {
                 List<Entity> list = guard.level.getEntities(guard, guard.getBoundingBox().inflate(3.0F), (entity) -> {
                     EntityType<?> type = entity.getType();
                     if (type == EntityType.PLAYER) {
-                        return EntityPredicates.NO_CREATIVE_OR_SPECTATOR.test(entity);
+                        return EntitySelector.NO_CREATIVE_OR_SPECTATOR.test(entity);
                     }
                     return false;
                 });
@@ -615,8 +621,8 @@ public class MalachiteGuardEntity extends MonsterEntity {
                     guard.playSound(ModSounds.ENTITY_MALACHITE_GUARD_BLAST, 1.0F, 1.0F);
 
                     for (Entity entity : targets) {
-                        Vector3d explosion = new Vector3d(guard.getX(), guard.getY(), guard.getZ());
-                        Vector3d direction = entity.position().subtract(explosion).normalize();
+                        Vec3 explosion = new Vec3(guard.getX(), guard.getY(), guard.getZ());
+                        Vec3 direction = entity.position().subtract(explosion).normalize();
 
                         entity.hurt(DamageSource.MAGIC, 8.0F + guard.bideDamage);
                         entity.setDeltaMovement(direction.x(), direction.y() + 0.2F, direction.z());
@@ -626,7 +632,7 @@ public class MalachiteGuardEntity extends MonsterEntity {
                 if (explodeTime < 10) {
                     if (!guard.level.isClientSide()) {
                         for (int i = 0; i < 5; i++) {
-                            ((ServerWorld)guard.level).sendParticles(ModParticles.MALACHITE_MAGIC, guard.getRandomX(1.0D), guard.getRandomY(), guard.getRandomZ(1.0D), 5, (guard.random.nextDouble()) - 0.5D, guard.random.nextDouble() * 0.5D, (guard.random.nextDouble()) - 0.5D, 0.5D);
+                            ((ServerLevel)guard.level).sendParticles(ModParticles.MALACHITE_MAGIC, guard.getRandomX(1.0D), guard.getRandomY(), guard.getRandomZ(1.0D), 5, (guard.random.nextDouble()) - 0.5D, guard.random.nextDouble() * 0.5D, (guard.random.nextDouble()) - 0.5D, 0.5D);
                         }
                     }
                 }
@@ -656,7 +662,7 @@ public class MalachiteGuardEntity extends MonsterEntity {
                 List<Entity> list = guard.level.getEntities(guard, guard.getBoundingBox().inflate(2.0F), (entity) -> {
                     EntityType<?> type = entity.getType();
                     if (type == EntityType.PLAYER) {
-                        return EntityPredicates.NO_CREATIVE_OR_SPECTATOR.test(entity);
+                        return EntitySelector.NO_CREATIVE_OR_SPECTATOR.test(entity);
                     }
                     return false;
                 });
@@ -699,7 +705,7 @@ public class MalachiteGuardEntity extends MonsterEntity {
                 guard.playSound(ModSounds.ENTITY_MALACHITE_GUARD_STOMP, 1.0F, 1.0F);
 
                 for (Entity entity : targets) {
-                    Vector3d targetV3D = entity.getDeltaMovement();
+                    Vec3 targetV3D = entity.getDeltaMovement();
 
                     entity.hurt(DamageSource.mobAttack(guard), 5.0F);
                     entity.setDeltaMovement(targetV3D.x() * 0.5F, targetV3D.y() + 0.4F, targetV3D.z() * 0.5F);
@@ -710,7 +716,7 @@ public class MalachiteGuardEntity extends MonsterEntity {
                         for (int z = -3; z <= 3; z++) {
                             BlockPos pos = guard.blockPosition().offset(x, 0, z);
                             BlockState state = guard.level.getBlockState(pos.below());
-                            ((ServerWorld)guard.level).sendParticles(new BlockParticleData(ParticleTypes.BLOCK, state), pos.getX(), guard.getY() + (guard.random.nextDouble() * 0.25D), pos.getZ(), 5, 0.0F, 0.0F, 0.0F, 0.0D);
+                            ((ServerLevel)guard.level).sendParticles(new BlockParticleOption(ParticleTypes.BLOCK, state), pos.getX(), guard.getY() + (guard.random.nextDouble() * 0.25D), pos.getZ(), 5, 0.0F, 0.0F, 0.0F, 0.0D);
                         }
                     }
                 }

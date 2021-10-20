@@ -1,97 +1,90 @@
 package androsa.gaiadimension.model;
 
 import androsa.gaiadimension.entity.ShalurkerEntity;
-import com.google.common.collect.ImmutableList;
-import net.minecraft.client.renderer.entity.model.SegmentedModel;
-import net.minecraft.client.renderer.model.ModelRenderer;
-import net.minecraft.util.math.MathHelper;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraft.client.model.HierarchicalModel;
+import net.minecraft.client.model.geom.ModelPart;
+import net.minecraft.client.model.geom.PartPose;
+import net.minecraft.client.model.geom.builders.CubeListBuilder;
+import net.minecraft.client.model.geom.builders.LayerDefinition;
+import net.minecraft.client.model.geom.builders.MeshDefinition;
+import net.minecraft.client.model.geom.builders.PartDefinition;
+import net.minecraft.util.Mth;
 
 /**
  * ModelShalurker - Androsa
  * Created using Tabula 7.0.0
  */
-@OnlyIn(Dist.CLIENT)
-public class ShalurkerModel<T extends ShalurkerEntity> extends SegmentedModel<T> {
-    public ModelRenderer body;
-    public ModelRenderer legR;
-    public ModelRenderer legL;
-    public ModelRenderer armR;
-    public ModelRenderer armL;
-    public ModelRenderer head;
-    public ModelRenderer legRL;
-    public ModelRenderer legLL;
-    public ModelRenderer spike1;
-    public ModelRenderer spike2;
+public class ShalurkerModel<T extends ShalurkerEntity> extends HierarchicalModel<T> {
+    public ModelPart root;
+    public ModelPart head;
+    public ModelPart armL;
+    public ModelPart armR;
+    public ModelPart legL;
+    public ModelPart legR;
 
-    public ShalurkerModel() {
-        this.texWidth = 64;
-        this.texHeight = 32;
-        this.legLL = new ModelRenderer(this, 44, 12);
-        this.legLL.setPos(-0.1F, 5.0F, 0.1F);
-        this.legLL.addBox(-1.0F, 0.0F, 0.0F, 2, 11, 2, 0.0F);
-        this.setRotation(legLL, 0.6108652381980153F, 0.0F, 0.0F);
-        this.armR = new ModelRenderer(this, 40, 0);
-        this.armR.setPos(-2.0F, 1.0F, -2.0F);
-        this.armR.addBox(-2.0F, 0.0F, -1.0F, 2, 10, 2, 0.0F);
-        this.setRotation(armR, -0.2617993877991494F, 0.0F, 0.0F);
-        this.spike1 = new ModelRenderer(this, 0, 0);
-        this.spike1.setPos(-1.5F, -6.0F, -4.5F);
-        this.spike1.addBox(-0.5F, -3.0F, 0.0F, 1, 3, 1, 0.0F);
-        this.setRotation(spike1, -0.3490658503988659F, 0.0F, 0.0F);
-        this.legL = new ModelRenderer(this, 30, 0);
-        this.legL.setPos(2.5F, 8.5F, 3.0F);
-        this.legL.addBox(-1.0F, 0.0F, 0.0F, 2, 6, 3, 0.0F);
-        this.setRotation(legL, -0.6108652381980153F, 0.0F, 0.0F);
-        this.legR = new ModelRenderer(this, 20, 0);
-        this.legR.setPos(-2.5F, 8.5F, 3.0F);
-        this.legR.addBox(-1.0F, 0.0F, 0.0F, 2, 6, 3, 0.0F);
-        this.setRotation(legR, -0.6108652381980153F, 0.0F, 0.0F);
-        this.spike2 = new ModelRenderer(this, 15, 0);
-        this.spike2.setPos(1.5F, -6.0F, -4.5F);
-        this.spike2.addBox(-0.5F, -3.0F, 0.0F, 1, 3, 1, 0.0F);
-        this.setRotation(spike2, -0.3490658503988659F, 0.0F, 0.0F);
-        this.body = new ModelRenderer(this, 0, 0);
-        this.body.setPos(0.0F, 0.0F, -6.0F);
-        this.body.addBox(-2.5F, 0.0F, 0.0F, 5, 15, 5, 0.0F);
-        this.setRotation(body, 0.6108652381980153F, 0.0F, 0.0F);
-        this.armL = new ModelRenderer(this, 48, 0);
-        this.armL.setPos(2.0F, 1.0F, -2.0F);
-        this.armL.addBox(0.0F, 0.0F, 0.0F, 2, 10, 2, 0.0F);
-        this.setRotation(armL, -0.2617993877991494F, 0.0F, 0.0F);
-        this.head = new ModelRenderer(this, 20, 9);
-        this.head.setPos(0.0F, 0.0F, -1.5F);
-        this.head.addBox(-3.0F, -6.0F, -6.5F, 6, 6, 6, 0.0F);
-        this.legRL = new ModelRenderer(this, 54, 10);
-        this.legRL.setPos(0.1F, 5.0F, 0.1F);
-        this.legRL.addBox(-1.0F, 0.0F, 0.0F, 2, 11, 2, 0.0F);
-        this.setRotation(legRL, 0.6108652381980153F, 0.0F, 0.0F);
-        this.legL.addChild(this.legLL);
-        this.head.addChild(this.spike1);
-        this.head.addChild(this.spike2);
-        this.legR.addChild(this.legRL);
+    public ShalurkerModel(ModelPart root) {
+        this.root = root;
+        this.head = root.getChild("head");
+        this.armL = root.getChild("arm_left");
+        this.armR = root.getChild("arm_right");
+        this.legL = root.getChild("leg_left");
+        this.legR = root.getChild("leg_right");
     }
 
     @Override
-    public Iterable<ModelRenderer> parts() {
-        return ImmutableList.of(
-                this.armR,
-                this.legL,
-                this.legR,
-                this.body,
-                this.armL,
-                this.head
-        );
+    public ModelPart root() {
+        return this.root;
     }
 
-    /**
-     * This is a helper function from Tabula to set the rotation of model parts
-     */
-    public void setRotation(ModelRenderer modelRenderer, float x, float y, float z) {
-        modelRenderer.xRot = x;
-        modelRenderer.yRot = y;
-        modelRenderer.zRot = z;
+    public static LayerDefinition makeBodyLayer() {
+        MeshDefinition mesh = new MeshDefinition();
+        PartDefinition root = mesh.getRoot();
+
+        PartDefinition head = root.addOrReplaceChild("head", CubeListBuilder.create()
+                        .texOffs(20, 9)
+                        .addBox(-3.0F, -6.0F, -6.5F, 6, 6, 6),
+                PartPose.offset(0.0F, 0.0F, -1.5F));
+        head.addOrReplaceChild("spike_left", CubeListBuilder.create()
+                        .texOffs(0, 0)
+                        .addBox(-0.5F, -3.0F, 0.0F, 1, 3, 1),
+                PartPose.offsetAndRotation(-1.5F, -6.0F, -4.5F, -0.3490658503988659F, 0.0F, 0.0F));
+        head.addOrReplaceChild("spike_right", CubeListBuilder.create()
+                        .texOffs(15, 0)
+                        .addBox(-0.5F, -3.0F, 0.0F, 1, 3, 1),
+                PartPose.offsetAndRotation(1.5F, -6.0F, -4.5F, -0.3490658503988659F, 0.0F, 0.0F));
+
+        root.addOrReplaceChild("body", CubeListBuilder.create()
+                        .texOffs(0, 0)
+                        .addBox(-2.5F, 0.0F, 0.0F, 5, 15, 5),
+                PartPose.offsetAndRotation(0.0F, 0.0F, -6.0F, 0.6108652381980153F, 0.0F, 0.0F));
+        root.addOrReplaceChild("arm_left", CubeListBuilder.create()
+                        .texOffs(48, 0)
+                        .addBox(0.0F, 0.0F, 0.0F, 2, 10, 2),
+                PartPose.offsetAndRotation(2.0F, 1.0F, -2.0F, -0.2617993877991494F, 0.0F, 0.0F));
+        root.addOrReplaceChild("arm_right", CubeListBuilder.create()
+                        .texOffs(40, 0)
+                        .addBox(-2.0F, 0.0F, -1.0F, 2, 10, 2),
+                PartPose.offsetAndRotation(-2.0F, 1.0F, -2.0F, -0.2617993877991494F, 0.0F, 0.0F));
+
+        PartDefinition leftleg = root.addOrReplaceChild("leg_left", CubeListBuilder.create()
+                        .texOffs(30, 0)
+                        .addBox(-1.0F, 0.0F, 0.0F, 2, 6, 3),
+                PartPose.offsetAndRotation(2.5F, 8.5F, 3.0F, -0.6108652381980153F, 0.0F, 0.0F));
+        leftleg.addOrReplaceChild("foreleg_left", CubeListBuilder.create()
+                        .texOffs(44, 12)
+                        .addBox(-1.0F, 0.0F, 0.0F, 2, 11, 2),
+                PartPose.offsetAndRotation(-0.1F, 5.0F, 0.1F, 0.6108652381980153F, 0.0F, 0.0F));
+
+        PartDefinition rightleg = root.addOrReplaceChild("leg_right", CubeListBuilder.create()
+                        .texOffs(20, 0)
+                        .addBox(-1.0F, 0.0F, 0.0F, 2, 6, 3),
+                PartPose.offsetAndRotation(-2.5F, 8.5F, 3.0F, -0.6108652381980153F, 0.0F, 0.0F));
+        rightleg.addOrReplaceChild("foreleg_right", CubeListBuilder.create()
+                        .texOffs(54, 10)
+                        .addBox(-1.0F, 0.0F, 0.0F, 2, 11, 2),
+                PartPose.offsetAndRotation(0.1F, 5.0F, 0.1F, 0.6108652381980153F, 0.0F, 0.0F));
+
+        return LayerDefinition.create(mesh, 64, 32);
     }
 
     @Override
@@ -99,10 +92,10 @@ public class ShalurkerModel<T extends ShalurkerEntity> extends SegmentedModel<T>
         this.head.yRot = netHeadYaw / (180F / (float) Math.PI);
         this.head.xRot = headPitch / (180F / (float) Math.PI);
 
-        this.armR.xRot = MathHelper.cos(limbSwing * 0.6662F) * 0.5F * limbSwingAmount + -0.2617993877991494F;
-        this.armL.xRot = MathHelper.cos(limbSwing * 0.6662F + (float) Math.PI) * 0.5F * limbSwingAmount + -0.2617993877991494F;
+        this.armR.xRot = Mth.cos(limbSwing * 0.6662F) * 0.5F * limbSwingAmount - 0.2617993877991494F;
+        this.armL.xRot = Mth.cos(limbSwing * 0.6662F + (float) Math.PI) * 0.5F * limbSwingAmount - 0.2617993877991494F;
 
-        this.legL.xRot = MathHelper.cos(limbSwing * 0.6662F + (float) Math.PI) * 0.5F * limbSwingAmount + -0.6108652381980153F;
-        this.legR.xRot = MathHelper.cos(limbSwing * 0.6662F) * 0.5F * limbSwingAmount + -0.6108652381980153F;
+        this.legL.xRot = Mth.cos(limbSwing * 0.6662F + (float) Math.PI) * 0.5F * limbSwingAmount - 0.6108652381980153F;
+        this.legR.xRot = Mth.cos(limbSwing * 0.6662F) * 0.5F * limbSwingAmount - 0.6108652381980153F;
     }
 }

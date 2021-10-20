@@ -3,33 +3,33 @@ package androsa.gaiadimension.entity;
 import androsa.gaiadimension.registry.ModBiomes;
 import androsa.gaiadimension.registry.ModBlocks;
 import androsa.gaiadimension.registry.ModSounds;
-import net.minecraft.block.BlockState;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.MobEntity;
-import net.minecraft.entity.ai.attributes.AttributeModifierMap;
-import net.minecraft.entity.ai.attributes.Attributes;
-import net.minecraft.entity.SpawnReason;
-import net.minecraft.entity.monster.SlimeEntity;
-import net.minecraft.particles.BlockParticleData;
-import net.minecraft.particles.ParticleTypes;
-import net.minecraft.util.DamageSource;
-import net.minecraft.util.RegistryKey;
-import net.minecraft.util.SoundEvent;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.particles.BlockParticleOption;
+import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.util.Mth;
 import net.minecraft.world.Difficulty;
-import net.minecraft.world.IWorld;
-import net.minecraft.world.LightType;
-import net.minecraft.world.World;
-import net.minecraft.world.biome.Biome;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.MobSpawnType;
+import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.monster.Slime;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.LightLayer;
+import net.minecraft.world.level.biome.Biome;
+import net.minecraft.world.level.block.state.BlockState;
 
 import java.util.Objects;
 import java.util.Optional;
 import java.util.Random;
 
-public class MucklingEntity extends SlimeEntity {
+public class MucklingEntity extends Slime {
 
-    public MucklingEntity(EntityType<? extends MucklingEntity> entity, World par1World) {
+    public MucklingEntity(EntityType<? extends MucklingEntity> entity, Level par1World) {
         super(entity, par1World);
     }
 
@@ -60,8 +60,8 @@ public class MucklingEntity extends SlimeEntity {
         return isTiny() ? ModSounds.ENTITY_MUCKLING_SQUISH_SMALL : ModSounds.ENTITY_MUCKLING_SQUISH;
     }
 
-    public static AttributeModifierMap.MutableAttribute registerAttributes() {
-        return MobEntity.createMobAttributes()
+    public static AttributeSupplier.Builder registerAttributes() {
+        return Mob.createMobAttributes()
                 .add(Attributes.MAX_HEALTH, 40.0D);
     }
 
@@ -76,23 +76,23 @@ public class MucklingEntity extends SlimeEntity {
         for (int j = 0; j < i * 8; ++j) {
             float f = this.random.nextFloat() * ((float) Math.PI * 2F);
             float f1 = this.random.nextFloat() * 0.5F + 0.5F;
-            float f2 = MathHelper.sin(f) * (float) i * 0.5F * f1;
-            float f3 = MathHelper.cos(f) * (float) i * 0.5F * f1;
-            World world = this.level;
+            float f2 = Mth.sin(f) * (float) i * 0.5F * f1;
+            float f3 = Mth.cos(f) * (float) i * 0.5F * f1;
+            Level world = this.level;
             double d0 = this.getX() + (double) f2;
             double d1 = this.getZ() + (double) f3;
             BlockState state = ModBlocks.gummy_glitter_block.get().defaultBlockState();
-            world.addParticle(new BlockParticleData(ParticleTypes.BLOCK, state), d0, this.getBoundingBox().minY, d1, 0.0D, 0.0D, 0.0D);
+            world.addParticle(new BlockParticleOption(ParticleTypes.BLOCK, state), d0, this.getBoundingBox().minY, d1, 0.0D, 0.0D, 0.0D);
         }
         return true;
     }
 
-    public static boolean canSpawnHere(EntityType<MucklingEntity> entity, IWorld world, SpawnReason spawn, BlockPos pos, Random random) {
+    public static boolean canSpawnHere(EntityType<MucklingEntity> entity, LevelAccessor world, MobSpawnType spawn, BlockPos pos, Random random) {
         if (world.getDifficulty() != Difficulty.PEACEFUL) {
-            if (spawn == SpawnReason.SPAWNER && world.getBrightness(LightType.SKY, pos) < 8) {
+            if (spawn == MobSpawnType.SPAWNER && world.getBrightness(LightLayer.SKY, pos) < 8) {
                 return true;
             } else {
-                Optional<RegistryKey<Biome>> biome = world.getBiomeName(pos);
+                Optional<ResourceKey<Biome>> biome = world.getBiomeName(pos);
                 if (Objects.equals(biome, Optional.of(ModBiomes.purple_agate_swamp)) || pos.getY() < 40 && random.nextFloat() < 0.5F) {
                     return checkMobSpawnRules(entity, world, spawn, pos, random);
                 }

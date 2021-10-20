@@ -1,26 +1,26 @@
 package androsa.gaiadimension.entity;
 
 import androsa.gaiadimension.registry.ModSounds;
-import net.minecraft.entity.*;
-import net.minecraft.entity.ai.attributes.AttributeModifierMap;
-import net.minecraft.entity.ai.attributes.Attributes;
-import net.minecraft.entity.ai.goal.Goal;
-import net.minecraft.entity.passive.WaterMobEntity;
-import net.minecraft.potion.Effects;
-import net.minecraft.util.DamageSource;
-import net.minecraft.util.SoundEvent;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.vector.Vector3d;
-import net.minecraft.world.IWorld;
-import net.minecraft.world.World;
+import net.minecraft.core.BlockPos;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.util.Mth;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.ai.goal.Goal;
+import net.minecraft.world.entity.animal.WaterAnimal;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 import javax.annotation.Nullable;
 import java.util.Random;
 
-public class MineralArenthisEntity extends WaterMobEntity {
+public class MineralArenthisEntity extends WaterAnimal {
 
     public float arenthisPitch;
     public float prevArenthisPitch;
@@ -37,7 +37,7 @@ public class MineralArenthisEntity extends WaterMobEntity {
     private float randomMotionVecY;
     private float randomMotionVecZ;
 
-    public MineralArenthisEntity(EntityType<? extends MineralArenthisEntity> entity, World worldIn) {
+    public MineralArenthisEntity(EntityType<? extends MineralArenthisEntity> entity, Level worldIn) {
         super(entity, worldIn);
         this.xpReward = 5;
         this.random.setSeed((long) (1 + this.getId()));
@@ -48,8 +48,8 @@ public class MineralArenthisEntity extends WaterMobEntity {
         this.goalSelector.addGoal(0, new MineralArenthisEntity.MoveRandomGoal(this));
     }
 
-    public static AttributeModifierMap.MutableAttribute registerAttributes() {
-        return MobEntity.createMobAttributes()
+    public static AttributeSupplier.Builder registerAttributes() {
+        return Mob.createMobAttributes()
                 .add(Attributes.MAX_HEALTH, 15.0D);
     }
 
@@ -66,13 +66,13 @@ public class MineralArenthisEntity extends WaterMobEntity {
     }
 
     @Override
-    public float getStandingEyeHeight(Pose poseIn, EntitySize sizeIn) {
+    public float getStandingEyeHeight(Pose poseIn, EntityDimensions sizeIn) {
         return this.getBbHeight() * 0.85F;
     }
 
     @Override
-    protected boolean isMovementNoisy() {
-        return false;
+    protected MovementEmission getMovementEmission() {
+        return MovementEmission.EVENTS;
     }
 
     @Override
@@ -99,7 +99,7 @@ public class MineralArenthisEntity extends WaterMobEntity {
         if (this.isInWaterOrBubble()) {
             if (this.arenthisRotation < (float)Math.PI) {
                 float f = this.arenthisRotation / (float)Math.PI;
-                this.tentacleAngle = MathHelper.sin(f * f * (float)Math.PI) * (float)Math.PI * 0.25F;
+                this.tentacleAngle = Mth.sin(f * f * (float)Math.PI) * (float)Math.PI * 0.25F;
                 if ((double)f > 0.75D) {
                     this.randomMotionSpeed = 1.0F;
                     this.rotateSpeed = 1.0F;
@@ -113,21 +113,21 @@ public class MineralArenthisEntity extends WaterMobEntity {
             }
 
             if (!this.level.isClientSide()) {
-                this.setDeltaMovement((double)(this.randomMotionVecX * this.randomMotionSpeed), (double)(this.randomMotionVecY * this.randomMotionSpeed), (double)(this.randomMotionVecZ * this.randomMotionSpeed));
+                this.setDeltaMovement(this.randomMotionVecX * this.randomMotionSpeed, this.randomMotionVecY * this.randomMotionSpeed, this.randomMotionVecZ * this.randomMotionSpeed);
             }
 
-            Vector3d vec3d = this.getDeltaMovement();
-            float f1 = MathHelper.sqrt(getHorizontalDistanceSqr(vec3d));
-            this.yBodyRot += (-((float)MathHelper.atan2(vec3d.x, vec3d.z)) * (180F / (float)Math.PI) - this.yBodyRot) * 0.1F;
-            this.yRot = this.yBodyRot;
+            Vec3 vec3d = this.getDeltaMovement();
+            double dist = vec3d.horizontalDistance();
+            this.yBodyRot += (-((float)Mth.atan2(vec3d.x, vec3d.z)) * (180F / (float)Math.PI) - this.yBodyRot) * 0.1F;
+            this.setYRot(this.yBodyRot);
             this.arenthisYaw = (float)((double)this.arenthisYaw + Math.PI * (double)this.rotateSpeed * 1.5D);
-            this.arenthisPitch += (-((float)MathHelper.atan2((double)f1, vec3d.y)) * (180F / (float)Math.PI) - this.arenthisPitch) * 0.1F;
+            this.arenthisPitch += (-((float)Mth.atan2(dist, vec3d.y)) * (180F / (float)Math.PI) - this.arenthisPitch) * 0.1F;
         } else {
-            this.tentacleAngle = MathHelper.abs(MathHelper.sin(this.arenthisRotation)) * (float)Math.PI * 0.25F;
+            this.tentacleAngle = Mth.abs(Mth.sin(this.arenthisRotation)) * (float)Math.PI * 0.25F;
             if (!this.level.isClientSide()) {
                 double d0 = this.getDeltaMovement().y;
-                if (this.hasEffect(Effects.LEVITATION)) {
-                    d0 = 0.05D * (double)(this.getEffect(Effects.LEVITATION).getAmplifier() + 1);
+                if (this.hasEffect(MobEffects.LEVITATION)) {
+                    d0 = 0.05D * (double)(this.getEffect(MobEffects.LEVITATION).getAmplifier() + 1);
                 } else if (!this.isNoGravity()) {
                     d0 -= 0.08D;
                 }
@@ -139,12 +139,12 @@ public class MineralArenthisEntity extends WaterMobEntity {
         }
     }
 
-    public static boolean canSpawnHere(EntityType<MineralArenthisEntity> entity, IWorld world, SpawnReason reason, BlockPos pos, Random rand) {
+    public static boolean canSpawnHere(EntityType<MineralArenthisEntity> entity, LevelAccessor world, MobSpawnType reason, BlockPos pos, Random rand) {
         return pos.getY() > 30 && pos.getY() < 50;
     }
 
     @Override
-    public void travel(Vector3d motion) {
+    public void travel(Vec3 motion) {
         this.move(MoverType.SELF, this.getDeltaMovement());
     }
 
@@ -189,9 +189,9 @@ public class MineralArenthisEntity extends WaterMobEntity {
                 this.arenthis.setMovementVector(0.0F, 0.0F, 0.0F);
             } else if (this.arenthis.getRandom().nextInt(50) == 0 || !this.arenthis.wasTouchingWater || !this.arenthis.hasMovementVector()) {
                 float randomVec = this.arenthis.getRandom().nextFloat() * ((float)Math.PI * 2F);
-                float vecX = MathHelper.cos(randomVec) * 0.2F;
+                float vecX = Mth.cos(randomVec) * 0.2F;
                 float vecY = -0.1F + this.arenthis.getRandom().nextFloat() * 0.2F;
-                float vecZ = MathHelper.sin(randomVec) * 0.2F;
+                float vecZ = Mth.sin(randomVec) * 0.2F;
                 this.arenthis.setMovementVector(vecX, vecY, vecZ);
             }
         }

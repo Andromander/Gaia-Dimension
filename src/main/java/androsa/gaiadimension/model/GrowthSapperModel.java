@@ -1,84 +1,87 @@
 package androsa.gaiadimension.model;
 
-import com.google.common.collect.ImmutableList;
-import net.minecraft.client.renderer.entity.model.SegmentedModel;
-import net.minecraft.client.renderer.model.ModelRenderer;
-import net.minecraft.entity.MobEntity;
-import net.minecraft.util.math.MathHelper;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraft.client.model.HierarchicalModel;
+import net.minecraft.client.model.geom.ModelPart;
+import net.minecraft.client.model.geom.PartPose;
+import net.minecraft.client.model.geom.builders.CubeListBuilder;
+import net.minecraft.client.model.geom.builders.LayerDefinition;
+import net.minecraft.client.model.geom.builders.MeshDefinition;
+import net.minecraft.client.model.geom.builders.PartDefinition;
+import net.minecraft.util.Mth;
+import net.minecraft.world.entity.Mob;
 
 /**
  * ModelGrowthSapper - Androsa
  * Created using Tabula 7.0.0
  */
-@OnlyIn(Dist.CLIENT)
-public class GrowthSapperModel<T extends MobEntity> extends SegmentedModel<T> {
-    public ModelRenderer head;
-    public ModelRenderer body;
-    public ModelRenderer leg1;
-    public ModelRenderer leg2;
-    public ModelRenderer leg3;
-    public ModelRenderer leg4;
-    public ModelRenderer leg5;
-    public ModelRenderer leg6;
-    public ModelRenderer nozzle;
+public class GrowthSapperModel<T extends Mob> extends HierarchicalModel<T> {
+    public ModelPart root;
+    public ModelPart head;
+    public ModelPart leg1;
+    public ModelPart leg2;
+    public ModelPart leg3;
+    public ModelPart leg4;
+    public ModelPart leg5;
+    public ModelPart leg6;
 
-    public GrowthSapperModel() {
-        this.texWidth = 64;
-        this.texHeight = 32;
-        this.leg2 = new ModelRenderer(this, 34, 0);
-        this.leg2.setPos(-1.4F, 18.0F, 0.0F);
-        this.leg2.addBox(-2.0F, 0.0F, 0.0F, 2, 6, 2, 0.0F);
-        this.body = new ModelRenderer(this, 8, 0);
-        this.body.setPos(0.0F, 18.0F, -6.0F);
-        this.body.addBox(-3.5F, -9.0F, 0.0F, 7, 9, 12, 0.0F);
-        this.head = new ModelRenderer(this, 0, 0);
-        this.head.setPos(0.0F, 15.0F, -6.0F);
-        this.head.addBox(-2.5F, -2.5F, -5.0F, 5, 5, 5, 0.0F);
-        this.leg1 = new ModelRenderer(this, 0, 10);
-        this.leg1.setPos(-1.4F, 18.0F, -5.5F);
-        this.leg1.addBox(-2.0F, 0.0F, 0.0F, 2, 6, 2, 0.0F);
-        this.leg3 = new ModelRenderer(this, 42, 0);
-        this.leg3.setPos(-1.4F, 18.0F, 3.5F);
-        this.leg3.addBox(-2.0F, 0.0F, 0.0F, 2, 6, 2, 0.0F);
-        this.nozzle = new ModelRenderer(this, 41, 16);
-        this.nozzle.setPos(0.0F, 1.0F, -5.0F);
-        this.nozzle.addBox(-0.5F, 0.0F, -5.0F, 1, 1, 5, 0.0F);
-        this.setRotation(nozzle, 0.27314402793711257F, 0.0F, 0.0F);
-        this.leg5 = new ModelRenderer(this, 46, 8);
-        this.leg5.setPos(1.4F, 18.0F, 0.0F);
-        this.leg5.addBox(0.0F, 0.0F, 0.0F, 2, 6, 2, 0.0F);
-        this.leg4 = new ModelRenderer(this, 50, 0);
-        this.leg4.setPos(1.4F, 18.0F, -5.5F);
-        this.leg4.addBox(0.0F, 0.0F, 0.0F, 2, 6, 2, 0.0F);
-        this.leg6 = new ModelRenderer(this, 54, 8);
-        this.leg6.setPos(1.4F, 18.0F, 3.5F);
-        this.leg6.addBox(0.0F, 0.0F, 0.0F, 2, 6, 2, 0.0F);
-        this.head.addChild(this.nozzle);
+    public GrowthSapperModel(ModelPart root) {
+        this.root = root;
+        this.head = root.getChild("head");
+        this.leg1 = root.getChild("leg_front_left");
+        this.leg2 = root.getChild("leg_mid_left");
+        this.leg3 = root.getChild("leg_back_left");
+        this.leg4 = root.getChild("leg_front_right");
+        this.leg5 = root.getChild("leg_mid_right");
+        this.leg6 = root.getChild("leg_back_right");
     }
 
     @Override
-    public Iterable<ModelRenderer> parts() {
-        return ImmutableList.of(
-                this.leg2,
-                this.body,
-                this.head,
-                this.leg1,
-                this.leg3,
-                this.leg5,
-                this.leg4,
-                this.leg6
-        );
+    public ModelPart root() {
+        return this.root;
     }
 
-    /**
-     * This is a helper function from Tabula to set the rotation of model parts
-     */
-    public void setRotation(ModelRenderer modelRenderer, float x, float y, float z) {
-        modelRenderer.xRot = x;
-        modelRenderer.yRot = y;
-        modelRenderer.zRot = z;
+    public static LayerDefinition makeBodyLayer() {
+        MeshDefinition mesh = new MeshDefinition();
+        PartDefinition root = mesh.getRoot();
+
+        PartDefinition head = root.addOrReplaceChild("head", CubeListBuilder.create()
+                        .texOffs(0, 0)
+                        .addBox(-2.5F, -2.5F, -5.0F, 5, 5, 5),
+                PartPose.offset(0.0F, 15.0F, -6.0F));
+        head.addOrReplaceChild("nozzle", CubeListBuilder.create()
+                        .texOffs(41, 16)
+                        .addBox(-0.5F, 0.0F, -5.0F, 1, 1, 5),
+                PartPose.offsetAndRotation(0.0F, 1.0F, -5.0F, 0.27314402793711257F, 0.0F, 0.0F));
+        root.addOrReplaceChild("body", CubeListBuilder.create()
+                        .texOffs(8, 0)
+                        .addBox(-3.5F, -9.0F, 0.0F, 7, 9, 12),
+                PartPose.offset(0.0F, 18.0F, -6.0F));
+        root.addOrReplaceChild("leg_front_left", CubeListBuilder.create()
+                        .texOffs(0, 10)
+                        .addBox(-2.0F, 0.0F, 0.0F, 2, 6, 2),
+                PartPose.offset(-1.4F, 18.0F, -5.5F));
+        root.addOrReplaceChild("leg_mid_left", CubeListBuilder.create()
+                        .texOffs(34, 0)
+                        .addBox(-2.0F, 0.0F, 0.0F, 2, 6, 2),
+                PartPose.offset(-1.4F, 18.0F, 0.0F));
+        root.addOrReplaceChild("leg_back_left", CubeListBuilder.create()
+                        .texOffs(42, 0)
+                        .addBox(-2.0F, 0.0F, 0.0F, 2, 6, 2),
+                PartPose.offset(-1.4F, 18.0F, 3.5F));
+        root.addOrReplaceChild("leg_front_right", CubeListBuilder.create()
+                        .texOffs(50, 0)
+                        .addBox(0.0F, 0.0F, 0.0F, 2, 6, 2),
+                PartPose.offset(1.4F, 18.0F, -5.5F));
+        root.addOrReplaceChild("leg_mid_right", CubeListBuilder.create()
+                        .texOffs(46, 8)
+                        .addBox(0.0F, 0.0F, 0.0F, 2, 6, 2),
+                PartPose.offset(1.4F, 18.0F, 0.0F));
+        root.addOrReplaceChild("leg_back_right", CubeListBuilder.create()
+                        .texOffs(54, 8)
+                        .addBox(0.0F, 0.0F, 0.0F, 2, 6, 2),
+                PartPose.offset(1.4F, 18.0F, 3.5F));
+
+        return LayerDefinition.create(mesh, 64, 32);
     }
 
     @Override
@@ -86,12 +89,12 @@ public class GrowthSapperModel<T extends MobEntity> extends SegmentedModel<T> {
         this.head.yRot = netHeadYaw / (180F / (float) Math.PI);
         this.head.xRot = headPitch / (180F / (float) Math.PI);
 
-        this.leg1.xRot = MathHelper.cos(limbSwing * 0.6662F) * 0.5F * limbSwingAmount;
-        this.leg4.xRot = MathHelper.cos(limbSwing * 0.6662F + (float) Math.PI) * 0.5F * limbSwingAmount;
+        this.leg1.xRot = Mth.cos(limbSwing * 0.6662F) * 0.5F * limbSwingAmount;
+        this.leg4.xRot = Mth.cos(limbSwing * 0.6662F + (float) Math.PI) * 0.5F * limbSwingAmount;
 
-        this.leg2.xRot = MathHelper.cos(limbSwing * 0.6662F + (float) Math.PI) * 0.5F * limbSwingAmount;
-        this.leg3.xRot = MathHelper.cos(limbSwing * 0.6662F + (float) Math.PI) * 0.5F * limbSwingAmount;
-        this.leg5.xRot = MathHelper.cos(limbSwing * 0.6662F) * 0.5F * limbSwingAmount;
-        this.leg6.xRot = MathHelper.cos(limbSwing * 0.6662F) * 0.5F * limbSwingAmount;
+        this.leg2.xRot = Mth.cos(limbSwing * 0.6662F + (float) Math.PI) * 0.5F * limbSwingAmount;
+        this.leg3.xRot = Mth.cos(limbSwing * 0.6662F + (float) Math.PI) * 0.5F * limbSwingAmount;
+        this.leg5.xRot = Mth.cos(limbSwing * 0.6662F) * 0.5F * limbSwingAmount;
+        this.leg6.xRot = Mth.cos(limbSwing * 0.6662F) * 0.5F * limbSwingAmount;
     }
 }

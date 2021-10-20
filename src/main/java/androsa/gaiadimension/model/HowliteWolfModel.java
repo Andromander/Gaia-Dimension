@@ -1,111 +1,93 @@
 package androsa.gaiadimension.model;
 
 import androsa.gaiadimension.entity.HowliteWolfEntity;
-import com.google.common.collect.ImmutableList;
-import net.minecraft.client.renderer.entity.model.SegmentedModel;
-import net.minecraft.client.renderer.model.ModelRenderer;
-import net.minecraft.util.math.MathHelper;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraft.client.model.HierarchicalModel;
+import net.minecraft.client.model.geom.ModelPart;
+import net.minecraft.client.model.geom.PartPose;
+import net.minecraft.client.model.geom.builders.CubeListBuilder;
+import net.minecraft.client.model.geom.builders.LayerDefinition;
+import net.minecraft.client.model.geom.builders.MeshDefinition;
+import net.minecraft.client.model.geom.builders.PartDefinition;
+import net.minecraft.util.Mth;
 
 /**
  * ModelSlime - Either Mojang or a mod author
  * Created using Tabula 7.0.0
  */
-@OnlyIn(Dist.CLIENT)
-public class HowliteWolfModel<T extends HowliteWolfEntity> extends SegmentedModel<T> {
-    ModelRenderer body;
-    ModelRenderer leg1;
-    ModelRenderer leg2;
-    ModelRenderer leg3;
-    ModelRenderer leg4;
-    ModelRenderer head;
-    ModelRenderer ear1;
-    ModelRenderer ear2;
-    ModelRenderer nose;
-    ModelRenderer tail1;
-    ModelRenderer tail2;
+public class HowliteWolfModel<T extends HowliteWolfEntity> extends HierarchicalModel<T> {
+    public ModelPart root;
+    public ModelPart head;
+    public ModelPart leg1;
+    public ModelPart leg2;
+    public ModelPart leg3;
+    public ModelPart leg4;
 
-    public HowliteWolfModel() {
-        this.texWidth = 64;
-        this.texHeight = 32;
-
-        //leg4
-        this.leg4 = new ModelRenderer(this, 20, 0);
-        this.leg4.setPos(0.5F, 16.0F, -4.0F);
-        this.leg4.addBox(0.0F, 0.0F, -1.0F, 2, 8, 2, 0.0F);
-        //leg1
-        this.leg1 = new ModelRenderer(this, 20, 10);
-        this.leg1.setPos(-2.5F, 16.0F, 7.0F);
-        this.leg1.addBox(0.0F, 0.0F, -1.0F, 2, 8, 2, 0.0F);
-        //leg3
-        this.leg3 = new ModelRenderer(this, 36, 10);
-        this.leg3.setPos(-2.5F, 16.0F, -4.0F);
-        this.leg3.addBox(0.0F, 0.0F, -1.0F, 2, 8, 2, 0.0F);
-        //nose
-        this.nose = new ModelRenderer(this, 46, 5);
-        this.nose.setPos(-1.5F, 0.8F, -5.0F);
-        this.nose.addBox(0.0F, 0.0F, 0.0F, 3, 2, 4, 0.0F);
-        //tail1
-        this.tail1 = new ModelRenderer(this, 44, 11);
-        this.tail1.setPos(-1.0F, 13.0F, 6.5F);
-        this.tail1.addBox(0.0F, 0.0F, -1.0F, 2, 7, 2, 0.0F);
-        this.setRotation(tail1, 1.3062044121925562F, 0.0F, 0.0F);
-        //leg2
-        this.leg2 = new ModelRenderer(this, 28, 10);
-        this.leg2.setPos(0.5F, 16.0F, 7.0F);
-        this.leg2.addBox(0.0F, 0.0F, -1.0F, 2, 8, 2, 0.0F);
-        //head
-        this.head = new ModelRenderer(this, 28, 0);
-        this.head.setPos(0.0F, 13.5F, -7.0F);
-        this.head.addBox(-2.5F, -3.0F, -2.0F, 5, 6, 4, 0.0F);
-        //ear1
-        this.ear1 = new ModelRenderer(this, 46, 0);
-        this.ear1.setPos(-2.0F, -2.5F, 0.0F);
-        this.ear1.addBox(-1.0F, -4.0F, 0.0F, 2, 4, 1, 0.0F);
-        this.setRotation(ear1, 0.0F, 0.0F, -0.136659280431156F);
-        //tail2
-        this.tail2 = new ModelRenderer(this, 52, 11);
-        this.tail2.setPos(0.0F, 7.0F, -1.0F);
-        this.tail2.addBox(0.0F, 0.0F, 0.0F, 2, 7, 2, 0.0F);
-        this.setRotation(tail2, 0.6818213656395611F, 0.0F, 0.0F);
-        //body
-        this.body = new ModelRenderer(this, 0, 0);
-        this.body.setPos(0.5F, 14.0F, -3.0F);
-        this.body.addBox(-3.0F, -2.0F, -3.0F, 5, 12, 5, 0.0F);
-        this.setRotation(body, 1.5707963267948966F, 0.0F, 0.0F);
-        //ear2
-        this.ear2 = new ModelRenderer(this, 52, 0);
-        this.ear2.setPos(2.0F, -2.5F, 0.0F);
-        this.ear2.addBox(-1.0F, -4.0F, 0.0F, 2, 4, 1, 0.0F);
-        this.setRotation(ear2, 0.0F, 0.0F, 0.136659280431156F);
-
-        head.addChild(ear1);
-        head.addChild(ear2);
-        head.addChild(nose);
-        tail1.addChild(tail2);
+    public HowliteWolfModel(ModelPart root) {
+        this.root = root;
+        this.head = root.getChild("head");
+        this.leg1 = root.getChild("leg_front_left");
+        this.leg2 = root.getChild("leg_front_right");
+        this.leg3 = root.getChild("leg_back_left");
+        this.leg4 = root.getChild("leg_back_right");
     }
 
     @Override
-    public Iterable<ModelRenderer> parts() {
-        return ImmutableList.of(
-                this.leg4,
-                this.leg1,
-                this.leg3,
-                this.tail1,
-                this.leg2,
-                this.head,
-                this.body
-        );
+    public ModelPart root() {
+        return this.root;
     }
 
-    /**
-     * This is a helper function from Tabula to set the rotation of model parts
-     */
-    public void setRotation(ModelRenderer modelRenderer, float x, float y, float z) {
-        modelRenderer.xRot = x;
-        modelRenderer.yRot = y;
-        modelRenderer.zRot = z;
+    public static LayerDefinition makeBodyLayer() {
+        MeshDefinition mesh = new MeshDefinition();
+        PartDefinition root = mesh.getRoot();
+
+        PartDefinition head = root.addOrReplaceChild("head", CubeListBuilder.create()
+                        .texOffs(28, 0)
+                        .addBox(-2.5F, -3.0F, -2.0F, 5, 6, 4),
+                PartPose.offset(0.0F, 13.5F, -7.0F));
+        head.addOrReplaceChild("ear_left", CubeListBuilder.create()
+                        .texOffs(46, 0)
+                        .addBox(-1.0F, -4.0F, 0.0F, 2, 4, 1),
+                PartPose.offsetAndRotation(-2.0F, -2.5F, 0.0F, 0.0F, 0.0F, -0.136659280431156F));
+        head.addOrReplaceChild("ear_right", CubeListBuilder.create()
+                        .texOffs(52, 0)
+                        .addBox(-1.0F, -4.0F, 0.0F, 2, 4, 1),
+                PartPose.offsetAndRotation(2.0F, -2.5F, 0.0F, 0.0F, 0.0F, 0.136659280431156F));
+        head.addOrReplaceChild("nose", CubeListBuilder.create()
+                        .texOffs(46, 5)
+                        .addBox(0.0F, 0.0F, 0.0F, 3, 2, 4),
+                PartPose.offset(-1.5F, 0.8F, -5.0F));
+
+        root.addOrReplaceChild("body", CubeListBuilder.create()
+                        .texOffs(0, 0)
+                        .addBox(-3.0F, -2.0F, -3.0F, 5, 12, 5),
+                PartPose.offsetAndRotation(0.5F, 14.0F, -3.0F, 1.5707963267948966F, 0.0F, 0.0F));
+        root.addOrReplaceChild("leg_front_left", CubeListBuilder.create()
+                        .texOffs(20, 10)
+                        .addBox(0.0F, 0.0F, -1.0F, 2, 8, 2),
+                PartPose.offset(-2.5F, 16.0F, 7.0F));
+        root.addOrReplaceChild("leg_back_left", CubeListBuilder.create()
+                        .texOffs(36, 10)
+                        .addBox(0.0F, 0.0F, -1.0F, 2, 8, 2),
+                PartPose.offset(-2.5F, 16.0F, -4.0F));
+        root.addOrReplaceChild("leg_front_right", CubeListBuilder.create()
+                        .texOffs(28, 10)
+                        .addBox(0.0F, 0.0F, -1.0F, 2, 8, 2),
+                PartPose.offset(0.5F, 16.0F, 7.0F));
+        root.addOrReplaceChild("leg_back_right", CubeListBuilder.create()
+                        .texOffs(20, 0)
+                        .addBox(0.0F, 0.0F, -1.0F, 2, 8, 2),
+                PartPose.offset(0.5F, 16.0F, -4.0F));
+
+        PartDefinition tail1 = root.addOrReplaceChild("tail_segment_1", CubeListBuilder.create()
+                        .texOffs(44, 11)
+                        .addBox(0.0F, 0.0F, -1.0F, 2, 7, 2),
+                PartPose.offsetAndRotation(-1.0F, 13.0F, 6.5F, 1.3062044121925562F, 0.0F, 0.0F));
+        tail1.addOrReplaceChild("tail_segment_2", CubeListBuilder.create()
+                        .texOffs(52, 11)
+                        .addBox(0.0F, 0.0F, 0.0F, 2, 7, 2),
+                PartPose.offsetAndRotation(0.0F, 7.0F, -1.0F, 0.6818213656395611F, 0.0F, 0.0F));
+
+        return LayerDefinition.create(mesh, 64, 32);
     }
 
     @Override
@@ -113,10 +95,10 @@ public class HowliteWolfModel<T extends HowliteWolfEntity> extends SegmentedMode
         this.head.yRot = netHeadYaw / (180F / (float) Math.PI);
         this.head.xRot = headPitch / (180F / (float) Math.PI);
 
-        this.leg4.xRot = MathHelper.cos(limbSwing * 0.6662F) * 0.5F * limbSwingAmount;
-        this.leg2.xRot = MathHelper.cos(limbSwing * 0.6662F + (float) Math.PI) * 0.5F * limbSwingAmount;
+        this.leg4.xRot = Mth.cos(limbSwing * 0.6662F) * 0.5F * limbSwingAmount;
+        this.leg2.xRot = Mth.cos(limbSwing * 0.6662F + (float) Math.PI) * 0.5F * limbSwingAmount;
 
-        this.leg1.xRot = MathHelper.cos(limbSwing * 0.6662F + (float) Math.PI) * 0.5F * limbSwingAmount;
-        this.leg3.xRot = MathHelper.cos(limbSwing * 0.6662F) * 0.5F * limbSwingAmount;
+        this.leg1.xRot = Mth.cos(limbSwing * 0.6662F + (float) Math.PI) * 0.5F * limbSwingAmount;
+        this.leg3.xRot = Mth.cos(limbSwing * 0.6662F) * 0.5F * limbSwingAmount;
     }
 }

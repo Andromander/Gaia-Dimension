@@ -3,17 +3,14 @@ package androsa.gaiadimension.renderer;
 import androsa.gaiadimension.GaiaDimensionMod;
 import androsa.gaiadimension.entity.CrystalGolemEntity;
 import androsa.gaiadimension.model.CrystalGolemModel;
+import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.MobRenderer;
-import net.minecraft.client.renderer.entity.EntityRendererManager;
-import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraft.resources.ResourceLocation;
 
-@OnlyIn(Dist.CLIENT)
 public class CrystalGolemRenderer<T extends CrystalGolemEntity, M extends CrystalGolemModel<T>> extends MobRenderer<T, M> {
     private static final ResourceLocation textureLoc = new ResourceLocation(GaiaDimensionMod.MODEL_DIR + "crystalgolem.png");
 
-    public CrystalGolemRenderer(EntityRendererManager manager, M model, float shadowSize) {
+    public CrystalGolemRenderer(EntityRendererProvider.Context manager, M model, float shadowSize) {
         super(manager, model, shadowSize);
     }
 

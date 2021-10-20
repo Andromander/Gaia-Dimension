@@ -2,29 +2,38 @@ package androsa.gaiadimension.entity.boss;
 
 import androsa.gaiadimension.entity.HowliteWolfEntity;
 import androsa.gaiadimension.registry.ModSounds;
-import net.minecraft.entity.*;
-import net.minecraft.entity.ai.attributes.AttributeModifierMap;
-import net.minecraft.entity.ai.attributes.Attributes;
-import net.minecraft.entity.ai.goal.*;
-import net.minecraft.entity.monster.MonsterEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.util.DamageSource;
-import net.minecraft.util.SoundEvent;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.*;
+import net.minecraft.core.BlockPos;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.world.Difficulty;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.entity.EntityDimensions;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.MobSpawnType;
+import net.minecraft.world.entity.Pose;
+import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.ai.goal.*;
+import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
+import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
+import net.minecraft.world.entity.monster.Monster;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.LightLayer;
+import net.minecraft.world.level.ServerLevelAccessor;
 
 import java.util.Random;
 
-public class BlueHowliteWolfEntity extends MonsterEntity {
+public class BlueHowliteWolfEntity extends Monster {
 
     //TODO: Flesh out and revise
-    public BlueHowliteWolfEntity(EntityType<? extends BlueHowliteWolfEntity> entity, World world) {
+    public BlueHowliteWolfEntity(EntityType<? extends BlueHowliteWolfEntity> entity, Level world) {
         super(entity, world);
         this.xpReward = 30;
     }
 
-    public static AttributeModifierMap.MutableAttribute registerAttributes() {
-        return MonsterEntity.createMonsterAttributes()
+    public static AttributeSupplier.Builder registerAttributes() {
+        return Monster.createMonsterAttributes()
                 .add(Attributes.MAX_HEALTH, 100.0D)
                 .add(Attributes.ATTACK_DAMAGE, 6.0D)
                 .add(Attributes.MOVEMENT_SPEED, 0.9D);
@@ -33,14 +42,14 @@ public class BlueHowliteWolfEntity extends MonsterEntity {
     @Override
     protected void registerGoals() {
         super.registerGoals();
-        this.goalSelector.addGoal(0, new SwimGoal(this));
-        this.goalSelector.addGoal(2, new LookAtGoal(this, HowliteWolfEntity.class, 8.0F));
-        this.goalSelector.addGoal(3, new LookRandomlyGoal(this));
-        this.goalSelector.addGoal(1, new RandomWalkingGoal(this, 0.5D));
+        this.goalSelector.addGoal(0, new FloatGoal(this));
+        this.goalSelector.addGoal(2, new LookAtPlayerGoal(this, HowliteWolfEntity.class, 8.0F));
+        this.goalSelector.addGoal(3, new RandomLookAroundGoal(this));
+        this.goalSelector.addGoal(1, new RandomStrollGoal(this, 0.5D));
         this.goalSelector.addGoal(4, new LeapAtTargetGoal(this, 0.4F));
         this.goalSelector.addGoal(5, new MeleeAttackGoal(this, 1.0D, true));
         this.targetSelector.addGoal(1, new HurtByTargetGoal(this).setAlertOthers(HowliteWolfEntity.class));
-        this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, false));
+        this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Player.class, false));
     }
 
     @Override
@@ -54,7 +63,7 @@ public class BlueHowliteWolfEntity extends MonsterEntity {
     }
 
     @Override
-    public float getStandingEyeHeight(Pose poseIn, EntitySize sizeIn) {
+    public float getStandingEyeHeight(Pose poseIn, EntityDimensions sizeIn) {
         return 2.1F;
     }
 
@@ -64,16 +73,16 @@ public class BlueHowliteWolfEntity extends MonsterEntity {
     }
 
     @Override
-    public boolean checkSpawnRules(IWorld world, SpawnReason reason) {
+    public boolean checkSpawnRules(LevelAccessor world, MobSpawnType reason) {
         return true;
     }
 
-    public static boolean canSpawnHere(EntityType<BlueHowliteWolfEntity> entity, IServerWorld world, SpawnReason spawn, BlockPos pos, Random random) {
+    public static boolean canSpawnHere(EntityType<BlueHowliteWolfEntity> entity, ServerLevelAccessor world, MobSpawnType spawn, BlockPos pos, Random random) {
         if (world.getDifficulty() != Difficulty.PEACEFUL) {
-            if (spawn == SpawnReason.SPAWNER) {
+            if (spawn == MobSpawnType.SPAWNER) {
                 return isDarkEnoughToSpawn(world, pos, random);
             } else {
-                return world.getBlockState(pos.below()).isValidSpawn(world, pos.below(), entity) && world.getBrightness(LightType.SKY, pos) > 8;
+                return world.getBlockState(pos.below()).isValidSpawn(world, pos.below(), entity) && world.getBrightness(LightLayer.SKY, pos) > 8;
             }
         }
         return false;

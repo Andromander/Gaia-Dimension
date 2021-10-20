@@ -3,26 +3,32 @@ package androsa.gaiadimension.entity;
 import androsa.gaiadimension.entity.boss.MalachiteGuardEntity;
 import androsa.gaiadimension.registry.ModParticles;
 import androsa.gaiadimension.registry.ModSounds;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.LeavesBlock;
-import net.minecraft.entity.*;
-import net.minecraft.entity.ai.attributes.AttributeModifierMap;
-import net.minecraft.entity.ai.attributes.Attributes;
-import net.minecraft.entity.ai.goal.*;
-import net.minecraft.entity.monster.MonsterEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.network.datasync.DataParameter;
-import net.minecraft.network.datasync.DataSerializers;
-import net.minecraft.network.datasync.EntityDataManager;
-import net.minecraft.pathfinding.*;
-import net.minecraft.util.DamageSource;
-import net.minecraft.util.SoundCategory;
-import net.minecraft.util.SoundEvent;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.IWorldReader;
-import net.minecraft.world.World;
-import net.minecraft.world.server.ServerWorld;
+import net.minecraft.core.BlockPos;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.syncher.EntityDataAccessor;
+import net.minecraft.network.syncher.EntityDataSerializers;
+import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.ai.goal.*;
+import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
+import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
+import net.minecraft.world.entity.ai.navigation.PathNavigation;
+import net.minecraft.world.entity.monster.Monster;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.block.LeavesBlock;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.pathfinder.BlockPathTypes;
+import net.minecraft.world.level.pathfinder.WalkNodeEvaluator;
 import net.minecraftforge.common.ForgeHooks;
 
 import javax.annotation.Nullable;
@@ -30,17 +36,17 @@ import java.util.EnumSet;
 import java.util.Optional;
 import java.util.UUID;
 
-public class MalachiteDroneEntity extends MonsterEntity {
+public class MalachiteDroneEntity extends Monster {
 
-    private static final DataParameter<Optional<UUID>> OWNER_UNIQUE_ID = EntityDataManager.defineId(MalachiteDroneEntity.class, DataSerializers.OPTIONAL_UUID);
+    private static final EntityDataAccessor<Optional<UUID>> OWNER_UNIQUE_ID = SynchedEntityData.defineId(MalachiteDroneEntity.class, EntityDataSerializers.OPTIONAL_UUID);
     private LivingEntity owner;
 
-    public MalachiteDroneEntity(EntityType<? extends MalachiteDroneEntity> entity, World world) {
+    public MalachiteDroneEntity(EntityType<? extends MalachiteDroneEntity> entity, Level world) {
         super(entity, world);
     }
 
-    public static AttributeModifierMap.MutableAttribute registerAttributes() {
-        return MonsterEntity.createMonsterAttributes()
+    public static AttributeSupplier.Builder registerAttributes() {
+        return Monster.createMonsterAttributes()
                 .add(Attributes.MAX_HEALTH, 30.0D)
                 .add(Attributes.ATTACK_DAMAGE, 4.0D)
                 .add(Attributes.MOVEMENT_SPEED, 0.6D);
@@ -55,24 +61,24 @@ public class MalachiteDroneEntity extends MonsterEntity {
     @Override
     protected void registerGoals() {
         super.registerGoals();
-        this.goalSelector.addGoal(0, new SwimGoal(this));
+        this.goalSelector.addGoal(0, new FloatGoal(this));
         this.goalSelector.addGoal(1, new MeleeAttackGoal(this, 0.6D, false));
         this.goalSelector.addGoal(2, new MoveTowardsTargetGoal(this, 0.6D, 16.0F));
-        this.goalSelector.addGoal(3, new LookAtGoal(this, PlayerEntity.class, 8.0F));
+        this.goalSelector.addGoal(3, new LookAtPlayerGoal(this, Player.class, 8.0F));
         this.goalSelector.addGoal(4, new FollowGuardGoal(this));
-        this.goalSelector.addGoal(5, new WaterAvoidingRandomWalkingGoal(this, 0.6D));
+        this.goalSelector.addGoal(5, new WaterAvoidingRandomStrollGoal(this, 0.6D));
         this.targetSelector.addGoal(1, new HurtByTargetGoal(this));
-        this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, true));
+        this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Player.class, true));
     }
 
     @Override
-    public void readAdditionalSaveData(CompoundNBT nbt) {
+    public void readAdditionalSaveData(CompoundTag nbt) {
         super.readAdditionalSaveData(nbt);
         this.setOwnerUniqueId(UUID.fromString(nbt.getString("OwnerUUID")));
     }
 
     @Override
-    public void addAdditionalSaveData(CompoundNBT nbt) {
+    public void addAdditionalSaveData(CompoundTag nbt) {
         super.addAdditionalSaveData(nbt);
         if (this.getOwnerUniqueId() != null) {
             nbt.putString("OwnerUUID", this.getOwnerUniqueId().toString());
@@ -81,8 +87,8 @@ public class MalachiteDroneEntity extends MonsterEntity {
 
     @Nullable
     public LivingEntity getOwner() {
-        if (getOwnerUniqueId() != null && this.level instanceof ServerWorld) {
-            Entity entity = ((ServerWorld) level).getEntity(getOwnerUniqueId());
+        if (getOwnerUniqueId() != null && this.level instanceof ServerLevel server) {
+            Entity entity = server.getEntity(getOwnerUniqueId());
             if (entity instanceof LivingEntity) {
                 return (LivingEntity) entity;
             }
@@ -118,10 +124,10 @@ public class MalachiteDroneEntity extends MonsterEntity {
     public void tick() {
         super.tick();
 
-        if (level instanceof ServerWorld) {
+        if (level instanceof ServerLevel server) {
             if (getOwnerUniqueId() != null) {
                 //Check if we have been removed too far away from the Guard.
-                Entity entity = ((ServerWorld) level).getEntity(getOwnerUniqueId());
+                Entity entity = server.getEntity(getOwnerUniqueId());
 
                 //Wrong dimension, sever the link
                 if (this.level.dimension() != entity.level.dimension()) {
@@ -137,8 +143,8 @@ public class MalachiteDroneEntity extends MonsterEntity {
     }
 
     private void ownerRemoved(Entity owner) {
-        if (owner instanceof MalachiteGuardEntity) {
-            ((MalachiteGuardEntity) owner).onDroneKilled();
+        if (owner instanceof MalachiteGuardEntity guard) {
+            guard.onDroneKilled();
         }
         this.setOwnerUniqueId(null);
 
@@ -149,7 +155,7 @@ public class MalachiteDroneEntity extends MonsterEntity {
             this.level.addParticle(ModParticles.SPAWNER_CORE, px, py, pz, 0, 128, 0);
         }
 
-        level.playSound(null, this.getX(), this.getY(), this.getZ(), ModSounds.ENTITY_MALACHITE_DRONE_DESYNC, SoundCategory.HOSTILE, 1.0F, 1.0F);
+        level.playSound(null, this.getX(), this.getY(), this.getZ(), ModSounds.ENTITY_MALACHITE_DRONE_DESYNC, SoundSource.HOSTILE, 1.0F, 1.0F);
     }
 
     @Override
@@ -157,13 +163,13 @@ public class MalachiteDroneEntity extends MonsterEntity {
         if (ForgeHooks.onLivingDeath(this,  source)) //The event was cancelled, therefore do not decrease the Guard's tracker.
             return;
 
-        if (level instanceof ServerWorld) {
-            @Nullable Entity entity = ((ServerWorld) level).getEntity(getOwnerUniqueId());
+        if (level instanceof ServerLevel server) {
+            @Nullable Entity entity = server.getEntity(getOwnerUniqueId());
 
             //Were we a follower, and was it a Guard? If so, detract that Guard's counter
             if (entity != null) {
-                if (entity instanceof MalachiteGuardEntity) {
-                    ((MalachiteGuardEntity) entity).onDroneKilled();
+                if (entity instanceof MalachiteGuardEntity guard) {
+                    guard.onDroneKilled();
                 }
             }
         }
@@ -173,15 +179,15 @@ public class MalachiteDroneEntity extends MonsterEntity {
     @Override
     public boolean removeWhenFarAway(double dist) {
         //Don't despawn if we have an owner. Disregard whether it's a Guard because we don't want to disappear in general.
-        return ((ServerWorld) level).getEntity(getOwnerUniqueId()) != null;
+        return ((ServerLevel) level).getEntity(getOwnerUniqueId()) != null;
     }
 
     static class FollowGuardGoal extends Goal {
         private final MalachiteDroneEntity drone;
         private MalachiteGuardEntity guard;
-        private final IWorldReader world;
+        private final LevelAccessor world;
         private final double followSpeed = 0.4D;
-        private final PathNavigator navigator;
+        private final PathNavigation navigator;
         private int timeToRecalcPath;
         private final float maxDist = 2.0F;
         private final float minDist = 10.0F;
@@ -211,21 +217,21 @@ public class MalachiteDroneEntity extends MonsterEntity {
             }
         }
 
-        public boolean shouldContinueExecuting() {
+        public boolean canContinueToUse() {
             return !this.navigator.isDone() && this.drone.distanceToSqr(this.guard) > (double) (this.maxDist * this.maxDist);
         }
 
-        public void startExecuting() {
+        public void start() {
             this.timeToRecalcPath = 0;
-            this.oldWaterCost = this.drone.getPathfindingMalus(PathNodeType.WATER);
-            this.drone.setPathfindingMalus(PathNodeType.WATER, 0.0F);
+            this.oldWaterCost = this.drone.getPathfindingMalus(BlockPathTypes.WATER);
+            this.drone.setPathfindingMalus(BlockPathTypes.WATER, 0.0F);
         }
 
         @Override
         public void stop() {
             this.guard = null;
             this.navigator.stop();
-            this.drone.setPathfindingMalus(PathNodeType.WATER, this.oldWaterCost);
+            this.drone.setPathfindingMalus(BlockPathTypes.WATER, this.oldWaterCost);
         }
 
         @Override
@@ -263,15 +269,15 @@ public class MalachiteDroneEntity extends MonsterEntity {
             } else if (!this.canTeleportTo(new BlockPos(x, y, z))) {
                 return false;
             } else {
-                this.drone.moveTo((double)((float)x + 0.5F), (double)y, (double)((float)z + 0.5F), this.drone.yRot, this.drone.xRot);
+                this.drone.moveTo((float)x + 0.5F, y, (float)z + 0.5F, this.drone.getYRot(), this.drone.getXRot());
                 this.navigator.stop();
                 return true;
             }
         }
 
         private boolean canTeleportTo(BlockPos pos) {
-            PathNodeType nodeType = WalkNodeProcessor.getBlockPathTypeStatic(this.world, pos.mutable());
-            if (nodeType != PathNodeType.WALKABLE) {
+            BlockPathTypes nodeType = WalkNodeEvaluator.getBlockPathTypeStatic(this.world, pos.mutable());
+            if (nodeType != BlockPathTypes.WALKABLE) {
                 return false;
             } else {
                 BlockState state = this.world.getBlockState(pos.below());

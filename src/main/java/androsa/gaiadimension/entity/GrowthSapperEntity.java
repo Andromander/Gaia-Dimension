@@ -3,39 +3,39 @@ package androsa.gaiadimension.entity;
 import androsa.gaiadimension.GaiaDimensionMod;
 import androsa.gaiadimension.registry.ModBiomes;
 import androsa.gaiadimension.registry.ModSounds;
-import net.minecraft.entity.*;
-import net.minecraft.entity.ai.attributes.AttributeModifierMap;
-import net.minecraft.entity.ai.attributes.Attributes;
-import net.minecraft.entity.ai.goal.LookAtGoal;
-import net.minecraft.entity.ai.goal.LookRandomlyGoal;
-import net.minecraft.entity.ai.goal.RandomWalkingGoal;
-import net.minecraft.entity.ai.goal.SwimGoal;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.network.datasync.DataParameter;
-import net.minecraft.network.datasync.DataSerializers;
-import net.minecraft.network.datasync.EntityDataManager;
-import net.minecraft.util.DamageSource;
-import net.minecraft.util.RegistryKey;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.SoundEvent;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.core.BlockPos;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.syncher.EntityDataAccessor;
+import net.minecraft.network.syncher.EntityDataSerializers;
+import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.util.Mth;
 import net.minecraft.world.DifficultyInstance;
-import net.minecraft.world.IServerWorld;
-import net.minecraft.world.IWorld;
-import net.minecraft.world.World;
-import net.minecraft.world.biome.Biome;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.ai.goal.FloatGoal;
+import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
+import net.minecraft.world.entity.ai.goal.RandomLookAroundGoal;
+import net.minecraft.world.entity.ai.goal.RandomStrollGoal;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.ServerLevelAccessor;
+import net.minecraft.world.level.biome.Biome;
 
 import javax.annotation.Nullable;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.Random;
 
-public class GrowthSapperEntity extends CreatureEntity {
-    private static final DataParameter<Integer> SAPPER_VARIANT = EntityDataManager.defineId(GrowthSapperEntity.class, DataSerializers.INT);
+public class GrowthSapperEntity extends PathfinderMob {
+    private static final EntityDataAccessor<Integer> SAPPER_VARIANT = SynchedEntityData.defineId(GrowthSapperEntity.class, EntityDataSerializers.INT);
 
-    public GrowthSapperEntity(EntityType<? extends GrowthSapperEntity> entity, World world) {
+    public GrowthSapperEntity(EntityType<? extends GrowthSapperEntity> entity, Level world) {
         super(entity, world);
         this.xpReward = 1 + random.nextInt(3);
     }
@@ -46,22 +46,22 @@ public class GrowthSapperEntity extends CreatureEntity {
         this.entityData.define(SAPPER_VARIANT, 0);
     }
 
-    public static AttributeModifierMap.MutableAttribute registerAttributes() {
-        return MobEntity.createMobAttributes()
+    public static AttributeSupplier.Builder registerAttributes() {
+        return Mob.createMobAttributes()
                 .add(Attributes.MAX_HEALTH, 15.0D);
     }
 
     @Override
     protected void registerGoals() {
         super.registerGoals();
-        this.goalSelector.addGoal(0, new SwimGoal(this));
-        this.goalSelector.addGoal(3, new LookAtGoal(this, PlayerEntity.class, 8.0F));
-        this.goalSelector.addGoal(4, new LookRandomlyGoal(this));
-        this.goalSelector.addGoal(1, new RandomWalkingGoal(this, 0.5D));
+        this.goalSelector.addGoal(0, new FloatGoal(this));
+        this.goalSelector.addGoal(3, new LookAtPlayerGoal(this, Player.class, 8.0F));
+        this.goalSelector.addGoal(4, new RandomLookAroundGoal(this));
+        this.goalSelector.addGoal(1, new RandomStrollGoal(this, 0.5D));
     }
 
     public int getEntityVariant() {
-        return MathHelper.clamp(entityData.get(SAPPER_VARIANT), 0, 3);
+        return Mth.clamp(entityData.get(SAPPER_VARIANT), 0, 3);
     }
 
     /**
@@ -77,13 +77,13 @@ public class GrowthSapperEntity extends CreatureEntity {
     }
 
     @Override
-    public void readAdditionalSaveData(CompoundNBT compound) {
+    public void readAdditionalSaveData(CompoundTag compound) {
         super.readAdditionalSaveData(compound);
         this.setSapperVariant(compound.getInt("SapperVariant"));
     }
 
     @Override
-    public void addAdditionalSaveData(CompoundNBT compound) {
+    public void addAdditionalSaveData(CompoundTag compound) {
         super.addAdditionalSaveData(compound);
         compound.putInt("SapperVariant", this.getEntityVariant());
     }
@@ -102,17 +102,12 @@ public class GrowthSapperEntity extends CreatureEntity {
 
     @Override
     public ResourceLocation getDefaultLootTable() {
-        switch (this.getEntityVariant()) {
-            case 0:
-            default:
-                return getLocation("common_sapper");
-            case 1:
-                return getLocation("chilled_sapper");
-            case 2:
-                return getLocation("nutrient_sapper");
-            case 3:
-                return getLocation("mystified_sapper");
-        }
+        return switch (this.getEntityVariant()) {
+            default -> getLocation("common_sapper");
+            case 1 -> getLocation("chilled_sapper");
+            case 2 -> getLocation("nutrient_sapper");
+            case 3 -> getLocation("mystified_sapper");
+        };
     }
 
     private ResourceLocation getLocation(String name) {
@@ -120,17 +115,17 @@ public class GrowthSapperEntity extends CreatureEntity {
     }
 
     @Override
-    public float getStandingEyeHeight(Pose poseIn, EntitySize sizeIn) {
+    public float getStandingEyeHeight(Pose poseIn, EntityDimensions sizeIn) {
         return 0.70F;
     }
 
-    public static boolean canSpawnHere(EntityType<GrowthSapperEntity> entity, IWorld world, SpawnReason spawn, BlockPos pos, Random random) {
-        return spawn == SpawnReason.SPAWNER || world.getBlockState(pos.below()).isValidSpawn(world, pos.below(), entity) && world.getRawBrightness(pos, 0) > 8;
+    public static boolean canSpawnHere(EntityType<GrowthSapperEntity> entity, LevelAccessor world, MobSpawnType spawn, BlockPos pos, Random random) {
+        return spawn == MobSpawnType.SPAWNER || world.getBlockState(pos.below()).isValidSpawn(world, pos.below(), entity) && world.getRawBrightness(pos, 0) > 8;
     }
 
     @Override
-    public ILivingEntityData finalizeSpawn(IServerWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
-        Optional<RegistryKey<Biome>> biome = worldIn.getBiomeName(this.blockPosition());
+    public SpawnGroupData finalizeSpawn(ServerLevelAccessor worldIn, DifficultyInstance difficultyIn, MobSpawnType reason, @Nullable SpawnGroupData spawnDataIn, @Nullable CompoundTag dataTag) {
+        Optional<ResourceKey<Biome>> biome = worldIn.getBiomeName(this.blockPosition());
 
         if (Objects.equals(biome, Optional.of(ModBiomes.pink_agate_forest)) || Objects.equals(biome, Optional.of(ModBiomes.crystal_plains))) {
             setSapperVariant(0);

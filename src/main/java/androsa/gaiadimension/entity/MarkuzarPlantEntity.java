@@ -1,30 +1,33 @@
 package androsa.gaiadimension.entity;
 
 import androsa.gaiadimension.registry.ModSounds;
-import net.minecraft.entity.*;
-import net.minecraft.entity.ai.attributes.AttributeModifierMap;
-import net.minecraft.entity.ai.attributes.Attributes;
-import net.minecraft.util.DamageSource;
-import net.minecraft.util.SoundEvent;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.vector.Vector3d;
-import net.minecraft.world.IWorld;
-import net.minecraft.world.LightType;
-import net.minecraft.world.World;
+import net.minecraft.core.BlockPos;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.MobSpawnType;
+import net.minecraft.world.entity.MoverType;
+import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.LightLayer;
+import net.minecraft.world.phys.Vec3;
 
 import javax.annotation.Nullable;
 import java.util.Random;
 
 //TODO: Random colours of the petals
-public class MarkuzarPlantEntity extends CreatureEntity {
+public class MarkuzarPlantEntity extends Mob {
 
-    public MarkuzarPlantEntity(EntityType<? extends MarkuzarPlantEntity> entity, World world) {
+    public MarkuzarPlantEntity(EntityType<? extends MarkuzarPlantEntity> entity, Level world) {
         super(entity, world);
         this.xpReward = 1 + random.nextInt(3);
     }
 
-    public static AttributeModifierMap.MutableAttribute registerAttributes() {
-        return MobEntity.createMobAttributes()
+    public static AttributeSupplier.Builder registerAttributes() {
+        return Mob.createMobAttributes()
                 .add(Attributes.MAX_HEALTH, 40.0D)
                 .add(Attributes.KNOCKBACK_RESISTANCE, 1.0D);
     }
@@ -42,22 +45,22 @@ public class MarkuzarPlantEntity extends CreatureEntity {
     }
 
     @Override
-    public void knockback(float distance, double x, double y) { }
+    public void knockback(double distance, double x, double y) { }
 
     @Override
-    public void move(MoverType type, Vector3d pos) {
+    public void move(MoverType type, Vec3 pos) {
         if (type == MoverType.PISTON) {
             super.move(type, pos);
         }
     }
 
     @Override
-    public boolean checkSpawnRules(IWorld world, SpawnReason reason) {
+    public boolean checkSpawnRules(LevelAccessor world, MobSpawnType reason) {
         return true;
     }
 
-    public static boolean canSpawnHere(EntityType<MarkuzarPlantEntity> entity, IWorld world, SpawnReason spawn, BlockPos pos, Random random) {
+    public static boolean canSpawnHere(EntityType<MarkuzarPlantEntity> entity, LevelAccessor world, MobSpawnType spawn, BlockPos pos, Random random) {
         BlockPos blockpos = pos.below();
-        return world.getBlockState(blockpos).isValidSpawn(world, blockpos, entity) && world.getBrightness(LightType.SKY, blockpos) > 8;
+        return world.getBlockState(blockpos).isValidSpawn(world, blockpos, entity) && world.getBrightness(LightLayer.SKY, blockpos) > 8;
     }
 }
