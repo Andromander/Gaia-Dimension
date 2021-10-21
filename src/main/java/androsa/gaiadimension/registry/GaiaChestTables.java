@@ -1,7 +1,7 @@
 package androsa.gaiadimension.registry;
 
 import androsa.gaiadimension.GaiaDimensionMod;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.resources.ResourceLocation;
 
 public class GaiaChestTables {
     public static final ResourceLocation CHESTS_MINITOWER_AMETHYST = register("minitower/tower_amethyst");
