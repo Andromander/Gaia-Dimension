@@ -2,15 +2,15 @@ package androsa.gaiadimension.registry;
 
 import androsa.gaiadimension.GaiaDimensionMod;
 import com.google.common.collect.ImmutableList;
-import net.minecraft.util.RegistryKey;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.registry.Registry;
-import net.minecraft.world.World;
-import net.minecraft.world.biome.Biome;
+import net.minecraft.core.Registry;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.biome.Biome;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.config.ModConfig;
+import net.minecraftforge.fml.event.config.ModConfigEvent;
 
 import java.util.Collections;
 import java.util.List;
@@ -23,7 +23,7 @@ public class ModGaiaConfig {
 
     public static ConfigValue<List<? extends String>> starsInSky;
     public static ResourceLocation startDimRL;
-    public static RegistryKey<World> startDimRK;
+    public static ResourceKey<Level> startDimRK;
 
     public static List<? extends String> starBiomes = Collections.singletonList("gaiadimension:purple_agate_swamp");
 
@@ -51,14 +51,14 @@ public class ModGaiaConfig {
             "minecraft:bamboo_jungle", "minecraft:bamboo_jungle_hills", "minecraft:badlands", "minecraft:wooded_badlands_plateau", "minecraft:badlands_plateau", "minecraft:mountains",
             "minecraft:snowy_mountains", "minecraft:mountain_edge", "minecraft:wooded_mountains", "minecraft:gravelly_mountains", "minecraft:taiga_mountains", "minecraft:tall_birch_hills",
             "minecraft:dark_forest_hills", "minecraft:snowy_taiga_mountains", "minecraft:modified_gravelly_mountains");
-    public static List<? extends String> categories = ImmutableList.of(Biome.Category.DESERT.getName(), Biome.Category.EXTREME_HILLS.getName(), Biome.Category.MESA.getName(), Biome.Category.SAVANNA.getName(), Biome.Category.JUNGLE.getName());
+    public static List<? extends String> categories = ImmutableList.of(Biome.BiomeCategory.DESERT.getName(), Biome.BiomeCategory.EXTREME_HILLS.getName(), Biome.BiomeCategory.MESA.getName(), Biome.BiomeCategory.SAVANNA.getName(), Biome.BiomeCategory.JUNGLE.getName());
     public static List<? extends String> types = ImmutableList.of(BiomeDictionary.Type.HOT.getName(), BiomeDictionary.Type.DRY.getName(), BiomeDictionary.Type.MOUNTAIN.getName());
 
     public static class CommonConfig {
         public CommonConfig(Builder builder) {
             startDimension = builder
                     .translation(config + "start_dimension")
-                    .comment("The Dimension that Gaia will connect to. Results may vary based on the World chosen. Existing portals will remain regardless of what is set here until they are broken, however they may no longer connect.")
+                    .comment("The Dimension that Gaia will connect to. Results may vary based on the Level chosen. Existing portals will remain regardless of what is set here until they are broken, however they may no longer connect.")
                     .define("startDimension", "minecraft:overworld");
             portalCheck = builder
                     .translation(config + "portal_creation")
@@ -87,12 +87,12 @@ public class ModGaiaConfig {
         }
     }
 
-    public static boolean canDisplayStars(RegistryKey<Biome> define) {
+    public static boolean canDisplayStars(ResourceKey<Biome> define) {
         return starsInSky.get().contains(define.location().toString());
     }
 
     @SubscribeEvent
-    public static void onConfigLoaded(ModConfig.Loading event) {
+    public static void onConfigLoaded(ModConfigEvent.Loading event) {
         System.out.println("Config Loading");
         if (event.getConfig().getModId().equals(GaiaDimensionMod.MODID)) {
             checkDimension();
@@ -100,7 +100,7 @@ public class ModGaiaConfig {
     }
 
     @SubscribeEvent
-    public static void onConfigChanged(ModConfig.Reloading event) {
+    public static void onConfigChanged(ModConfigEvent.Reloading event) {
         if (event.getConfig().getModId().equals(GaiaDimensionMod.MODID)) {
             checkDimension();
         }
@@ -110,10 +110,10 @@ public class ModGaiaConfig {
         ResourceLocation rl = ResourceLocation.tryParse(startDimension.get());
         if (rl == null) {
             GaiaDimensionMod.LOGGER.warn("Could not create a ResourceLocation with the Start Dimension! Is there a typo, or is there an incorrect character?");
-            rl = World.OVERWORLD.location();
+            rl = Level.OVERWORLD.location();
         }
         startDimRL = rl;
-        startDimRK = RegistryKey.create(Registry.DIMENSION_REGISTRY, startDimRL);
+        startDimRK = ResourceKey.create(Registry.DIMENSION_REGISTRY, startDimRL);
     }
 
     public enum ListType {
