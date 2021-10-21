@@ -1,6 +1,6 @@
 package androsa.gaiadimension.registry;
 
-import net.minecraft.util.SoundEvent;
+import net.minecraft.sounds.SoundEvent;
 
 public class ModSounds {
 
