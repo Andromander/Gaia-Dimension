@@ -1,54 +1,55 @@
 package androsa.gaiadimension.registry;
 
 import androsa.gaiadimension.GaiaDimensionMod;
-import net.minecraft.util.RegistryKey;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.registry.Registry;
-import net.minecraft.world.biome.Biome;
-import net.minecraft.world.biome.BiomeAmbience;
-import net.minecraft.world.biome.BiomeGenerationSettings;
-import net.minecraft.world.biome.MobSpawnInfo;
-import net.minecraft.world.gen.surfacebuilders.ConfiguredSurfaceBuilders;
+import net.minecraft.core.Registry;
+import net.minecraft.data.worldgen.SurfaceBuilders;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.biome.Biome;
+import net.minecraft.world.level.biome.BiomeGenerationSettings;
+import net.minecraft.world.level.biome.BiomeSpecialEffects;
+import net.minecraft.world.level.biome.MobSpawnSettings;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 
-import static net.minecraftforge.common.BiomeDictionary.*;
+import static net.minecraftforge.common.BiomeDictionary.Type;
+import static net.minecraftforge.common.BiomeDictionary.addTypes;
 
 public class ModBiomes {
 
     public static final DeferredRegister<Biome> BIOMES = DeferredRegister.create(ForgeRegistries.BIOMES, GaiaDimensionMod.MODID);
 
-    public static final RegistryKey<Biome> pink_agate_forest = registerBiome("pink_agate_forest");
-    public static final RegistryKey<Biome> blue_agate_taiga = registerBiome("blue_agate_taiga");
-    public static final RegistryKey<Biome> green_agate_jungle = registerBiome("green_agate_jungle");
-    public static final RegistryKey<Biome> purple_agate_swamp = registerBiome("purple_agate_swamp");
-    public static final RegistryKey<Biome> fossil_woodland = registerBiome("fossil_woodland");
-    public static final RegistryKey<Biome> mutant_agate_wildwood = registerBiome("mutant_agate_wildwood");
-    public static final RegistryKey<Biome> volcanic_lands = registerBiome("volcanic_lands");
-    public static final RegistryKey<Biome> static_wasteland = registerBiome("static_wasteland");
-    public static final RegistryKey<Biome> goldstone_lands = registerBiome("goldstone_lands");
-    public static final RegistryKey<Biome> crystal_plains = registerBiome("crystal_plains");
-    public static final RegistryKey<Biome> salt_dunes = registerBiome("salt_dunes");
-    public static final RegistryKey<Biome> shining_grove = registerBiome("shining_grove");
-    public static final RegistryKey<Biome> smoldering_bog = registerBiome("smoldering_bog");
-    public static final RegistryKey<Biome> mineral_reservoir = registerBiome("mineral_reservoir");
-    public static final RegistryKey<Biome> mineral_river = registerBiome("mineral_river");
+    public static final ResourceKey<Biome> pink_agate_forest = registerBiome("pink_agate_forest");
+    public static final ResourceKey<Biome> blue_agate_taiga = registerBiome("blue_agate_taiga");
+    public static final ResourceKey<Biome> green_agate_jungle = registerBiome("green_agate_jungle");
+    public static final ResourceKey<Biome> purple_agate_swamp = registerBiome("purple_agate_swamp");
+    public static final ResourceKey<Biome> fossil_woodland = registerBiome("fossil_woodland");
+    public static final ResourceKey<Biome> mutant_agate_wildwood = registerBiome("mutant_agate_wildwood");
+    public static final ResourceKey<Biome> volcanic_lands = registerBiome("volcanic_lands");
+    public static final ResourceKey<Biome> static_wasteland = registerBiome("static_wasteland");
+    public static final ResourceKey<Biome> goldstone_lands = registerBiome("goldstone_lands");
+    public static final ResourceKey<Biome> crystal_plains = registerBiome("crystal_plains");
+    public static final ResourceKey<Biome> salt_dunes = registerBiome("salt_dunes");
+    public static final ResourceKey<Biome> shining_grove = registerBiome("shining_grove");
+    public static final ResourceKey<Biome> smoldering_bog = registerBiome("smoldering_bog");
+    public static final ResourceKey<Biome> mineral_reservoir = registerBiome("mineral_reservoir");
+    public static final ResourceKey<Biome> mineral_river = registerBiome("mineral_river");
 
-    private static RegistryKey<Biome> registerBiome(String name) {
+    private static ResourceKey<Biome> registerBiome(String name) {
     	//Supply a dummy biome, as Biome are only required for IDs. They do not save generations
-        BIOMES.register(name, () -> new Biome.Builder()
-				.precipitation(Biome.RainType.NONE)
-				.biomeCategory(Biome.Category.NONE)
+        BIOMES.register(name, () -> new Biome.BiomeBuilder()
+				.precipitation(Biome.Precipitation.NONE)
+				.biomeCategory(Biome.BiomeCategory.NONE)
 				.depth(0)
 				.downfall(0)
 				.scale(0)
 				.temperature(0)
-				.specialEffects(new BiomeAmbience.Builder().fogColor(0).waterColor(0).waterFogColor(0).skyColor(0).build())
-				.generationSettings(new BiomeGenerationSettings.Builder().surfaceBuilder(ConfiguredSurfaceBuilders.GRASS).build())
-				.mobSpawnSettings(new MobSpawnInfo.Builder().build())
+				.specialEffects(new BiomeSpecialEffects.Builder().fogColor(0).waterColor(0).waterFogColor(0).skyColor(0).build())
+				.generationSettings(new BiomeGenerationSettings.Builder().surfaceBuilder(SurfaceBuilders.GRASS).build())
+				.mobSpawnSettings(new MobSpawnSettings.Builder().build())
 				.temperatureAdjustment(Biome.TemperatureModifier.NONE)
 				.build());
-        return RegistryKey.create(Registry.BIOME_REGISTRY, new ResourceLocation(GaiaDimensionMod.MODID, name));
+        return ResourceKey.create(Registry.BIOME_REGISTRY, new ResourceLocation(GaiaDimensionMod.MODID, name));
     }
 
     public static void addBiomeTypes() {
