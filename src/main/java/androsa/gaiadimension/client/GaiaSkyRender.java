@@ -1,24 +1,24 @@
 package androsa.gaiadimension.client;
 
 import androsa.gaiadimension.registry.ModGaiaConfig;
-import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.platform.GlStateManager;
 import com.mojang.blaze3d.systems.RenderSystem;
+import com.mojang.blaze3d.vertex.*;
+import com.mojang.math.Matrix4f;
+import com.mojang.math.Vector3f;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.*;
-import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
-import net.minecraft.client.renderer.vertex.VertexBuffer;
-import net.minecraft.client.renderer.vertex.VertexFormat;
-import net.minecraft.client.world.ClientWorld;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.util.RegistryKey;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.vector.Matrix4f;
-import net.minecraft.util.math.vector.Vector3d;
-import net.minecraft.util.math.vector.Vector3f;
-import net.minecraft.world.biome.Biome;
+import net.minecraft.client.multiplayer.ClientLevel;
+import net.minecraft.client.renderer.FogRenderer;
+import net.minecraft.client.renderer.GameRenderer;
+import net.minecraft.client.renderer.LevelRenderer;
+import net.minecraft.client.renderer.ShaderInstance;
+import net.minecraft.core.BlockPos;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.Mth;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.biome.Biome;
+import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.ISkyRenderHandler;
@@ -39,62 +39,56 @@ public class GaiaSkyRender implements ISkyRenderHandler {
 
     private static final ResourceLocation SUN_TEXTURES = new ResourceLocation("minecraft:textures/environment/sun.png");
     private VertexBuffer starVBO;
-    private final VertexFormat vertexBufferFormat = DefaultVertexFormats.POSITION;
+    private final VertexFormat vertexBufferFormat = DefaultVertexFormat.POSITION;
 
     public GaiaSkyRender() {
         generateStars();
     }
 
     @Override
-    public void render(int ticks, float partialTicks, MatrixStack matrix, ClientWorld world, Minecraft mc) {
-        WorldRenderer renderer = mc.levelRenderer;
+    public void render(int ticks, float partialTicks, PoseStack matrix, ClientLevel world, Minecraft mc) {
+        LevelRenderer renderer = mc.levelRenderer;
 
         RenderSystem.disableTexture();
-        Vector3d skycol = world.getSkyColor(mc.gameRenderer.getMainCamera().getBlockPosition(), partialTicks);
+        Vec3 skycol = world.getSkyColor(mc.gameRenderer.getMainCamera().getPosition(), partialTicks);
         float sRed = (float) skycol.x;
         float sGreen = (float) skycol.y;
         float sBlue = (float) skycol.z;
         FogRenderer.levelFogColor();
-        BufferBuilder bufferbuilder = Tessellator.getInstance().getBuilder();
+        BufferBuilder bufferbuilder = Tesselator.getInstance().getBuilder();
         RenderSystem.depthMask(false);
-        RenderSystem.enableFog();
-        RenderSystem.color3f(sRed, sGreen, sBlue);
-        renderer.skyBuffer.bind();
-        this.vertexBufferFormat.setupBufferState(0L);
-        renderer.skyBuffer.draw(matrix.last().pose(), 7);
-        VertexBuffer.unbind();
-        this.vertexBufferFormat.clearBufferState();
-        RenderSystem.disableFog();
-        RenderSystem.disableAlphaTest();
+        RenderSystem.setShaderColor(sRed, sGreen, sBlue, 1.0F);
+        ShaderInstance instance = RenderSystem.getShader();
+        renderer.skyBuffer.drawWithShader(matrix.last().pose(), RenderSystem.getProjectionMatrix(), instance);
         RenderSystem.enableBlend();
         RenderSystem.defaultBlendFunc();
         float[] setcol = world.effects().getSunriseColor(world.getTimeOfDay(partialTicks), partialTicks);
         if (setcol != null) {
+            RenderSystem.setShader(GameRenderer::getPositionColorShader);
             RenderSystem.disableTexture();
-            RenderSystem.shadeModel(7425);
+            RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
             matrix.pushPose();
             matrix.mulPose(Vector3f.XP.rotationDegrees(90.0F));
-            float f3 = MathHelper.sin(world.getSunAngle(partialTicks)) < 0.0F ? 180.0F : 0.0F;
+            float f3 = Mth.sin(world.getSunAngle(partialTicks)) < 0.0F ? 180.0F : 0.0F;
             matrix.mulPose(Vector3f.ZP.rotationDegrees(f3));
             matrix.mulPose(Vector3f.ZP.rotationDegrees(90.0F));
             float ssRed = setcol[0];
             float ssGreen = setcol[1];
             float ssBlue = setcol[2];
             Matrix4f matrix4f = matrix.last().pose();
-            bufferbuilder.begin(6, DefaultVertexFormats.POSITION_COLOR);
+            bufferbuilder.begin(VertexFormat.Mode.TRIANGLE_FAN, DefaultVertexFormat.POSITION_COLOR);
             bufferbuilder.vertex(matrix4f, 0.0F, 100.0F, 0.0F).color(ssRed, ssGreen, ssBlue, setcol[3]).endVertex();
 
             for (int j = 0; j <= 16; ++j) {
                 float f7 = (float) j * ((float) Math.PI * 2F) / 16.0F;
-                float f8 = MathHelper.sin(f7);
-                float f9 = MathHelper.cos(f7);
+                float f8 = Mth.sin(f7);
+                float f9 = Mth.cos(f7);
                 bufferbuilder.vertex(matrix4f, f8 * 120.0F, f9 * 120.0F, -f9 * 40.0F * setcol[3]).color(setcol[0], setcol[1], setcol[2], 0.0F).endVertex();
             }
 
             bufferbuilder.end();
-            WorldVertexBufferUploader.end(bufferbuilder);
+            BufferUploader.end(bufferbuilder);
             matrix.popPose();
-            RenderSystem.shadeModel(7424);
         }
 
         RenderSystem.enableTexture();
@@ -108,63 +102,57 @@ public class GaiaSkyRender implements ISkyRenderHandler {
 
         //Sun
         float f12 = 30.0F;
-        renderer.textureManager.bind(SUN_TEXTURES);
-        bufferbuilder.begin(7, DefaultVertexFormats.POSITION_TEX);
+        RenderSystem.setShader(GameRenderer::getPositionTexShader);
+        RenderSystem.setShaderTexture(0, SUN_TEXTURES);
+        bufferbuilder.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_TEX);
         bufferbuilder.vertex(matrix4f1, -f12, 100.0F, -f12).uv(0.0F, 0.0F).endVertex();
         bufferbuilder.vertex(matrix4f1, f12, 100.0F, -f12).uv(1.0F, 0.0F).endVertex();
         bufferbuilder.vertex(matrix4f1, f12, 100.0F, f12).uv(1.0F, 1.0F).endVertex();
         bufferbuilder.vertex(matrix4f1, -f12, 100.0F, f12).uv(0.0F, 1.0F).endVertex();
         bufferbuilder.end();
-        WorldVertexBufferUploader.end(bufferbuilder);
+        BufferUploader.end(bufferbuilder);
 
         RenderSystem.disableTexture();
         float f10 = this.getStarBrightness(world, partialTicks);
         if (f10 > 0.0F) {
-            RenderSystem.color4f(f10, f10, f10, f10);
-            this.starVBO.bind();
-            this.vertexBufferFormat.setupBufferState(0L);
-            this.starVBO.draw(matrix.last().pose(), 7);
+            RenderSystem.setShaderColor(f10, f10, f10, f10);
+            FogRenderer.setupNoFog();
+            this.starVBO.drawWithShader(matrix.last().pose(), RenderSystem.getProjectionMatrix(), GameRenderer.getPositionShader());
             VertexBuffer.unbind();
             this.vertexBufferFormat.clearBufferState();
         }
 
-        RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
+        RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
         RenderSystem.disableBlend();
-        RenderSystem.enableAlphaTest();
-        RenderSystem.enableFog();
         matrix.popPose();
         RenderSystem.disableTexture();
-        RenderSystem.color3f(0.0F, 0.0F, 0.0F);
-        double y = mc.player.getEyePosition(partialTicks).y - world.getLevelData().getHorizonHeight();
+        RenderSystem.setShaderColor(0.0F, 0.0F, 0.0F, 1.0F);
+        double y = mc.player.getEyePosition(partialTicks).y - world.getLevelData().getHorizonHeight(world);
         if (y < 0.0D) {
             matrix.pushPose();
             matrix.translate(0.0D, 12.0D, 0.0D);
-            renderer.darkBuffer.bind();
-            this.vertexBufferFormat.setupBufferState(0L);
-            renderer.darkBuffer.draw(matrix.last().pose(), 7);
-            VertexBuffer.unbind();
-            this.vertexBufferFormat.clearBufferState();
+            renderer.darkBuffer.drawWithShader(matrix.last().pose(), RenderSystem.getProjectionMatrix(), instance);
             matrix.popPose();
         }
 
-        RenderSystem.color3f(sRed * 0.2F + 0.04F, sGreen * 0.2F + 0.04F, sBlue * 0.6F + 0.1F);
+        RenderSystem.setShaderColor(sRed * 0.2F + 0.04F, sGreen * 0.2F + 0.04F, sBlue * 0.6F + 0.1F, 1.0F);
         RenderSystem.enableTexture();
         RenderSystem.depthMask(true);
-        RenderSystem.disableFog();
     }
 
     //VanillaCopy of WorldRenderer.generateStars, with VanillaCopy of WorldRenderer.renderStars mashed in
     private void generateStars() {
-        Tessellator tessellator = Tessellator.getInstance();
+        Tesselator tessellator = Tesselator.getInstance();
         BufferBuilder bufferbuilder = tessellator.getBuilder();
+        RenderSystem.setShader(GameRenderer::getPositionShader);
         if (this.starVBO != null) {
             this.starVBO.close();
         }
 
-        this.starVBO = new VertexBuffer(this.vertexBufferFormat);
+        this.starVBO = new VertexBuffer();
 
         Random random = new Random(10842L);
-        bufferbuilder.begin(7, DefaultVertexFormats.POSITION);
+        bufferbuilder.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION);
 
         //renderStars
         for(int i = 0; i < 1500; ++i) {
@@ -210,9 +198,9 @@ public class GaiaSkyRender implements ISkyRenderHandler {
     }
 
     @OnlyIn(Dist.CLIENT)
-    public float getStarBrightness(ClientWorld world, float par1) {
-        PlayerEntity player = Minecraft.getInstance().player;
-        Optional<RegistryKey<Biome>> biome = world.getBiomeName(new BlockPos(player.getX(), player.getY(), player.getZ()));
+    public float getStarBrightness(ClientLevel world, float par1) {
+        Player player = Minecraft.getInstance().player;
+        Optional<ResourceKey<Biome>> biome = world.getBiomeName(new BlockPos(player.getX(), player.getY(), player.getZ()));
 
         return biome.filter(ModGaiaConfig::canDisplayStars).map(biomeRegistryKey -> 0.5F).orElseGet(() -> world.getStarBrightness(par1));
     }

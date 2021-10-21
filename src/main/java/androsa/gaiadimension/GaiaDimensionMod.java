@@ -4,8 +4,9 @@ import androsa.gaiadimension.client.ClientEvents;
 import androsa.gaiadimension.client.GaiaDimensionRenderInfo;
 import androsa.gaiadimension.data.*;
 import androsa.gaiadimension.registry.*;
-import net.minecraft.client.world.DimensionRenderInfo;
+import net.minecraft.client.renderer.DimensionSpecialEffects;
 import net.minecraft.data.DataGenerator;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.village.PointOfInterestType;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.MobType;
@@ -90,8 +91,8 @@ public class GaiaDimensionMod {
     }
 
     public void clientSetup(FMLClientSetupEvent event) {
-        DimensionRenderInfo gaia = new GaiaDimensionRenderInfo();
-        DimensionRenderInfo.EFFECTS.put(new ResourceLocation(GaiaDimensionMod.MODID, "gaia"), gaia);
+        DimensionSpecialEffects gaia = new GaiaDimensionRenderInfo();
+        DimensionSpecialEffects.EFFECTS.put(new ResourceLocation(GaiaDimensionMod.MODID, "gaia"), gaia);
 
         DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> ModMenus::registerScreens);
         DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> ModParticles::forgeClassLoadingIsFuckedThisShouldntBeHereButHereItIs);

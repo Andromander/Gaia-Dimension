@@ -1,21 +1,21 @@
 package androsa.gaiadimension.client;
 
-import net.minecraft.client.world.DimensionRenderInfo;
-import net.minecraft.util.math.vector.Vector3d;
+import net.minecraft.client.renderer.DimensionSpecialEffects;
+import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.client.ISkyRenderHandler;
 
 import javax.annotation.Nonnull;
 
-public class GaiaDimensionRenderInfo extends DimensionRenderInfo {
+public class GaiaDimensionRenderInfo extends DimensionSpecialEffects {
 
     private ISkyRenderHandler skyrender;
 
     public GaiaDimensionRenderInfo() {
-        super(255.0F, true, FogType.NORMAL, false, false);
+        super(255.0F, true, SkyType.NORMAL, false, false);
     }
 
     @Override
-    public Vector3d getBrightnessDependentFogColor(Vector3d vector3d, float v) {
+    public Vec3 getBrightnessDependentFogColor(Vec3 vector3d, float v) {
         return vector3d;
     }
 

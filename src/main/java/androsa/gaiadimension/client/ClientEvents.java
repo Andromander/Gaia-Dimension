@@ -4,29 +4,29 @@ import androsa.gaiadimension.GaiaDimensionMod;
 import androsa.gaiadimension.registry.ModBlocks;
 import androsa.gaiadimension.registry.ModFluids;
 import com.google.common.collect.ImmutableList;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.color.block.BlockColors;
+import net.minecraft.client.color.item.ItemColors;
+import net.minecraft.client.renderer.BiomeColors;
+import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
-import net.minecraft.client.renderer.RenderTypeLookup;
-import net.minecraft.client.renderer.color.BlockColors;
-import net.minecraft.client.renderer.color.ItemColors;
-import net.minecraft.client.renderer.model.IBakedModel;
-import net.minecraft.client.renderer.model.ModelResourceLocation;
-import net.minecraft.fluid.Fluid;
-import net.minecraft.item.BlockItem;
-import net.minecraft.state.Property;
-import net.minecraft.state.StateHolder;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.world.biome.BiomeColors;
+import net.minecraft.client.resources.model.BakedModel;
+import net.minecraft.client.resources.model.ModelResourceLocation;
+import net.minecraft.core.BlockPos;
+import net.minecraft.util.Mth;
+import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.StateHolder;
+import net.minecraft.world.level.block.state.properties.Property;
+import net.minecraft.world.level.material.Fluid;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.ModelBakeEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
+import net.minecraftforge.fml.util.ObfuscationReflectionHelper;
+import net.minecraftforge.fmllegacy.RegistryObject;
 
 import java.util.Map;
 import java.util.Objects;
@@ -81,38 +81,17 @@ public class ClientEvents {
 
             if (worldIn != null && pos != null) {
                 int location = (Math.abs(pos.getX() % 5)) + (Math.abs(pos.getZ() % 5));
-                switch (location) {
-                    case 0:
-                        hex = 0xEA500D;
-                        break;
-                    case 1:
-                        hex = 0xFFC24C;
-                        break;
-                    case 2:
-                        hex = 0xC1ED26;
-                        break;
-                    case 3:
-                        hex = 0x67FFB9;
-                        break;
-                    case 4:
-                        hex = 0x265AEf;
-                        break;
-                    case 5:
-                        hex = 0x5C0AD7;
-                        break;
-                    case 6:
-                        hex = 0x5D3883;
-                        break;
-                    case 7:
-                        hex = 0xC330E8;
-                        break;
-                    case 8:
-                        hex = 0xFF6CAE;
-                        break;
-                    default:
-                        hex = 0x5D3883;
-                        break;
-                }
+                hex = switch (location) {
+                    case 0 -> 0xEA500D;
+                    case 1 -> 0xFFC24C;
+                    case 2 -> 0xC1ED26;
+                    case 3 -> 0x67FFB9;
+                    case 4 -> 0x265AEf;
+                    case 5 -> 0x5C0AD7;
+                    case 7 -> 0xC330E8;
+                    case 8 -> 0xFF6CAE;
+                    default -> 0x5D3883;
+                };
             } else {
                 hex = 0x1109B7;
             }
@@ -125,25 +104,25 @@ public class ClientEvents {
     }
 
     public static int getBismuthColor(BlockPos pos) {
-        int red = (int) ((MathHelper.cos((float) Math.toRadians(pos.getX() * 4)) + 1F) / 2F * 0xFF);
-        int green = (int) ((MathHelper.cos((float) Math.toRadians(pos.getY() * 8)) + 1F) / 3F * 0xFF);
-        int blue = (int) ((MathHelper.cos((float) Math.toRadians(pos.getZ() * 4)) + 1F) / 2F * 0xFF);
+        int red = (int) ((Mth.cos((float) Math.toRadians(pos.getX() * 4)) + 1F) / 2F * 0xFF);
+        int green = (int) ((Mth.cos((float) Math.toRadians(pos.getY() * 8)) + 1F) / 3F * 0xFF);
+        int blue = (int) ((Mth.cos((float) Math.toRadians(pos.getZ() * 4)) + 1F) / 2F * 0xFF);
 
-        red = MathHelper.clamp(red, 20, 170);
-        green = MathHelper.clamp(green, 20, 160);
-        blue = MathHelper.clamp(blue, 20, 200);
+        red = Mth.clamp(red, 20, 170);
+        green = Mth.clamp(green, 20, 160);
+        blue = Mth.clamp(blue, 20, 200);
 
         return (red << 16) | (green << 8) | blue;
     }
 
     public static int getAuraColor(BlockPos pos) {
-        int red = (int) ((MathHelper.cos((float) Math.toRadians((pos.getX() + 100) * 8)) + 1F) / 2F * 0xFF);
-        int green = (int) ((MathHelper.cos((float) Math.toRadians((pos.getY() + 100) * 32)) + 1F) / 2F * 0xFF);
-        int blue = (int) ((MathHelper.cos((float) Math.toRadians((pos.getZ() + 100) * 8)) + 1F) / 2F * 0xFF);
+        int red = (int) ((Mth.cos((float) Math.toRadians((pos.getX() + 100) * 8)) + 1F) / 2F * 0xFF);
+        int green = (int) ((Mth.cos((float) Math.toRadians((pos.getY() + 100) * 32)) + 1F) / 2F * 0xFF);
+        int blue = (int) ((Mth.cos((float) Math.toRadians((pos.getZ() + 100) * 8)) + 1F) / 2F * 0xFF);
 
-        red = MathHelper.clamp(red, 150, 256);
-        green = MathHelper.clamp(green, 100, 220);
-        blue = MathHelper.clamp(blue, 150, 256);
+        red = Mth.clamp(red, 150, 256);
+        green = Mth.clamp(green, 100, 220);
+        blue = Mth.clamp(blue, 150, 256);
 
         return (red << 16) | (green << 8) | blue;
     }
@@ -162,14 +141,14 @@ public class ClientEvents {
 
     @SubscribeEvent
     public static void bakeModels(ModelBakeEvent event) {
-        Function<Map.Entry<Property<?>, Comparable<?>>, String> MAP_ENTRY_TO_STRING = ObfuscationReflectionHelper.getPrivateValue(StateHolder.class, null, "field_235890_a_");
+        Function<Map.Entry<Property<?>, Comparable<?>>, String> MAP_ENTRY_TO_STRING = ObfuscationReflectionHelper.getPrivateValue(StateHolder.class, null, "f_61110_");
 
         for (RegistryObject<? extends Block> block : emissiveBlocks) {
             for (int i = 0; i <= 1; i++) {
                 for (BlockState state : block.get().getStateDefinition().getPossibleStates()) {
                     String variant = state.getValues().entrySet().stream().map(MAP_ENTRY_TO_STRING).collect(Collectors.joining(","));
                     ModelResourceLocation modelLoc = new ModelResourceLocation(Objects.requireNonNull(block.getId()), i == 0 ? variant : "inventory");
-                    final IBakedModel model = event.getModelRegistry().get(modelLoc);
+                    final BakedModel model = event.getModelRegistry().get(modelLoc);
                     event.getModelRegistry().put(modelLoc, new EmissiveModel(model));
                 }
             }
@@ -281,10 +260,10 @@ public class ClientEvents {
     }
 
     private static void renderBlock(Supplier<? extends Block> block, RenderType render) {
-        RenderTypeLookup.setRenderLayer(block.get(), render);
+        ItemBlockRenderTypes.setRenderLayer(block.get(), render);
     }
 
     private static void renderFluid(Supplier<? extends Fluid> fluid) {
-        RenderTypeLookup.setRenderLayer(fluid.get(), RenderType.translucent());
+        ItemBlockRenderTypes.setRenderLayer(fluid.get(), RenderType.translucent());
     }
 }
