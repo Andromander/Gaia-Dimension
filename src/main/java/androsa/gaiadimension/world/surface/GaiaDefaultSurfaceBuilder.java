@@ -2,78 +2,93 @@ package androsa.gaiadimension.world.surface;
 
 import androsa.gaiadimension.registry.ModBlocks;
 import com.mojang.serialization.Codec;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.biome.Biome;
-import net.minecraft.world.chunk.IChunk;
-import net.minecraft.world.gen.surfacebuilders.SurfaceBuilder;
-import net.minecraft.world.gen.surfacebuilders.SurfaceBuilderConfig;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.biome.Biome;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.chunk.ChunkAccess;
+import net.minecraft.world.level.levelgen.surfacebuilders.SurfaceBuilder;
+import net.minecraft.world.level.levelgen.surfacebuilders.SurfaceBuilderBaseConfiguration;
 
 import java.util.Random;
 
-public class GaiaDefaultSurfaceBuilder<T extends SurfaceBuilderConfig> extends SurfaceBuilder<T> {
+public class GaiaDefaultSurfaceBuilder<T extends SurfaceBuilderBaseConfiguration> extends SurfaceBuilder<T> {
 
     public GaiaDefaultSurfaceBuilder(Codec<T> config) {
         super(config);
     }
 
     @Override
-    public void apply(Random random, IChunk chunkIn, Biome biomeIn, int x, int z, int startHeight, double noise, BlockState defaultBlock, BlockState defaultFluid, int sealevel, long seed, T config) {
-        this.genGaiaBiomeTerrain(random, chunkIn, biomeIn, x, z, startHeight, noise, defaultBlock, defaultFluid, config.getTopMaterial(), config.getUnderMaterial(), config.getUnderwaterMaterial(), sealevel);
+    public void apply(Random random, ChunkAccess chunkIn, Biome biomeIn, int x, int z, int startHeight, double noise, BlockState defaultBlock, BlockState defaultFluid, int sealevel, int minheight, long seed, T config) {
+        this.genGaiaBiomeTerrain(random, chunkIn, biomeIn, x, z, startHeight, noise, defaultBlock, defaultFluid, config.getTopMaterial(), config.getUnderMaterial(), config.getUnderwaterMaterial(), sealevel, minheight);
     }
 
-    public final void genGaiaBiomeTerrain(Random rand, IChunk chunk, Biome biome, int x, int z, int startHeight, double noiseVal, BlockState defaultBlock, BlockState defaultFluid, BlockState top, BlockState middle, BlockState bottom, int sealevel) {
-        BlockState topBlock = top;
-        BlockState middleBlock = middle;
-        BlockPos.Mutable blockpos$mutableblockpos = new BlockPos.Mutable();
-        int j = -1;
-        int k = (int) (noiseVal / 3.0D + 3.0D + rand.nextDouble() * 0.25D);
-        int posX = x & 15;
-        int posZ = z & 15;
+    public final void genGaiaBiomeTerrain(Random rand, ChunkAccess chunk, Biome biome, int x, int z, int startHeight, double noise, BlockState defaultBlock, BlockState defaultFluid, BlockState top, BlockState middle, BlockState bottom, int sealevel, int minlevel) {
+        BlockPos.MutableBlockPos mutable = new BlockPos.MutableBlockPos();
+        int i = (int)(noise / 3.0D + 3.0D + rand.nextDouble() * 0.25D);
+        if (i == 0) {
+            boolean flag = false;
 
-        for (int posY = startHeight; posY >= 0; --posY) {
-            blockpos$mutableblockpos.set(posX, posY, posZ);
-            BlockState blockstate2 = chunk.getBlockState(blockpos$mutableblockpos);
-            if (blockstate2.isAir()) {
-                j = -1;
-            } else if (blockstate2.getBlock() == defaultBlock.getBlock()) {
-                if (j == -1) {
-                    if (k <= 0) {
-                        topBlock = Blocks.AIR.defaultBlockState();
-                        middleBlock = defaultBlock;
-                    } else if (posY >= sealevel - 4 && posY <= sealevel + 1) {
-                        topBlock = top;
-                        middleBlock = middle;
-                    }
-
-                    if (posY < sealevel && (topBlock == null || topBlock.isAir())) {
-                        if (biome.getTemperature(blockpos$mutableblockpos.set(x, posY, z)) < 0.15F) {
-                            topBlock = Blocks.ICE.defaultBlockState();
+            for(int y = startHeight; y >= minlevel; --y) {
+                mutable.set(x, y, z);
+                BlockState state = chunk.getBlockState(mutable);
+                if (state.isAir()) {
+                    flag = false;
+                } else if (state.is(defaultBlock.getBlock())) {
+                    if (!flag) {
+                        BlockState newstate;
+                        if (y >= sealevel) {
+                            newstate = Blocks.AIR.defaultBlockState();
+                        } else if (y == sealevel - 1) {
+                            newstate = biome.getTemperature(mutable) < 0.15F ? Blocks.ICE.defaultBlockState() : defaultFluid;
+                        } else if (y >= sealevel - (7 + i)) {
+                            newstate = defaultBlock;
                         } else {
-                            topBlock = defaultFluid;
+                            newstate = bottom;
                         }
-                        blockpos$mutableblockpos.set(posX, posY, posZ);
+
+                        chunk.setBlockState(mutable, newstate, false);
                     }
 
-                    j = k;
+                    flag = true;
+                }
+            }
+        } else {
+            BlockState blockstate3 = middle;
+            int k = -1;
 
-                    if (posY >= sealevel - 1) {
-                        chunk.setBlockState(blockpos$mutableblockpos, topBlock, false);
-                    } else if (posY < sealevel - 7 - k) {
-                        topBlock = Blocks.AIR.defaultBlockState();
-                        middleBlock = defaultBlock;
-                        chunk.setBlockState(blockpos$mutableblockpos, bottom, false);
-                    } else {
-                        chunk.setBlockState(blockpos$mutableblockpos, middleBlock, false);
-                    }
-                } else if (j > 0) {
-                    --j;
-                    chunk.setBlockState(blockpos$mutableblockpos, middleBlock, false);
+            for(int l = startHeight; l >= minlevel; --l) {
+                mutable.set(x, l, z);
+                BlockState blockstate4 = chunk.getBlockState(mutable);
+                if (blockstate4.isAir()) {
+                    k = -1;
+                } else if (blockstate4.is(defaultBlock.getBlock())) {
+                    if (k == -1) {
+                        k = i;
+                        BlockState blockstate2;
+                        if (l >= sealevel + 2) {
+                            blockstate2 = top;
+                        } else if (l >= sealevel - 1) {
+                            blockstate3 = middle;
+                            blockstate2 = top;
+                        } else if (l >= sealevel - 4) {
+                            blockstate3 = middle;
+                            blockstate2 = middle;
+                        } else if (l >= sealevel - (7 + i)) {
+                            blockstate2 = blockstate3;
+                        } else {
+                            blockstate3 = defaultBlock;
+                            blockstate2 = bottom;
+                        }
 
-                    if (j == 0 && middleBlock.getBlock() == ModBlocks.salt.get() && k > 1) {
-                        j = rand.nextInt(4) + Math.max(0, posY - 63);
-                        middleBlock = ModBlocks.saltstone.get().defaultBlockState();
+                        chunk.setBlockState(mutable, blockstate2, false);
+                    } else if (k > 0) {
+                        --k;
+                        chunk.setBlockState(mutable, blockstate3, false);
+                        if (k == 0 && blockstate3.is(ModBlocks.salt.get()) && i > 1) {
+                            k = rand.nextInt(4) + Math.max(0, l - sealevel);
+                            blockstate3 = ModBlocks.saltstone.get().defaultBlockState();
+                        }
                     }
                 }
             }

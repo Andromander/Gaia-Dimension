@@ -3,16 +3,16 @@ package androsa.gaiadimension.world.gen.feature;
 import androsa.gaiadimension.registry.ModBlocks;
 import androsa.gaiadimension.world.gen.config.GaiaTreeFeatureConfig;
 import com.mojang.serialization.Codec;
-import net.minecraft.block.RotatedPillarBlock;
-import net.minecraft.util.Direction;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MutableBoundingBox;
-import net.minecraft.world.ISeedReader;
-import net.minecraft.world.gen.IWorldGenerationReader;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.world.level.WorldGenLevel;
+import net.minecraft.world.level.block.RotatedPillarBlock;
+import net.minecraft.world.level.block.state.BlockState;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.Random;
-import java.util.Set;
+import java.util.function.BiConsumer;
+import java.util.function.Function;
 
 @ParametersAreNonnullByDefault
 public class PurpleAgateTreeFeature<T extends GaiaTreeFeatureConfig> extends GaiaTreeFeature<T> {
@@ -22,7 +22,7 @@ public class PurpleAgateTreeFeature<T extends GaiaTreeFeatureConfig> extends Gai
     }
 
     @Override
-    public boolean generate(ISeedReader worldIn, Random rand, BlockPos position, Set<BlockPos> logPos, Set<BlockPos> leavesPos, MutableBoundingBox boundingBox, T config) {
+    public boolean generate(WorldGenLevel worldIn, Random rand, BlockPos position, BiConsumer<BlockPos, BlockState> logPos, BiConsumer<BlockPos, BlockState> leavesPos, T config) {
         int height = rand.nextInt(3) + rand.nextInt(3) + config.minHeight;
         boolean isValidBonemealTarget = true;
 
@@ -38,7 +38,7 @@ public class PurpleAgateTreeFeature<T extends GaiaTreeFeatureConfig> extends Gai
                     k = 2;
                 }
 
-                BlockPos.Mutable blockpos$mutableblockpos = new BlockPos.Mutable();
+                BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
 
                 for (int cx = position.getX() - k; cx <= position.getX() + k && isValidBonemealTarget; ++cx) {
                     for (int cz = position.getZ() - k; cz <= position.getZ() + k && isValidBonemealTarget; ++cz) {
@@ -56,7 +56,7 @@ public class PurpleAgateTreeFeature<T extends GaiaTreeFeatureConfig> extends Gai
             if (!isValidBonemealTarget) {
                 return false;
             } else if (isSoil(worldIn, position.below(), config.getSapling(rand, position)) && position.getY() < worldIn.getHeight() - height - 1) {
-                this.setBlockState(worldIn, position.below(), ModBlocks.heavy_soil.get().defaultBlockState(), boundingBox);
+                this.setBlock(worldIn, position.below(), ModBlocks.heavy_soil.get().defaultBlockState());
                 int posX = position.getX();
                 int posZ = position.getZ();
                 int posY = 0;
@@ -68,20 +68,20 @@ public class PurpleAgateTreeFeature<T extends GaiaTreeFeatureConfig> extends Gai
                     if (isAirOrLeaves(worldIn, blockpos)) {
                         if (base == height - 2) {
                             for (int length = 1; length <= 2; ++length) {
-                                this.placeLogAt(worldIn, rand, blockpos.north(length), Direction.Axis.Z, logPos, boundingBox, config);
-                                this.placeLogAt(worldIn, rand, blockpos.south(length), Direction.Axis.Z, logPos, boundingBox, config);
-                                this.placeLogAt(worldIn, rand, blockpos.east(length), Direction.Axis.X, logPos, boundingBox, config);
-                                this.placeLogAt(worldIn, rand, blockpos.west(length), Direction.Axis.X, logPos, boundingBox, config);
+                                this.placeLogAt(rand, blockpos.north(length), Direction.Axis.Z, logPos, config);
+                                this.placeLogAt(rand, blockpos.south(length), Direction.Axis.Z, logPos, config);
+                                this.placeLogAt(rand, blockpos.east(length), Direction.Axis.X, logPos, config);
+                                this.placeLogAt(rand, blockpos.west(length), Direction.Axis.X, logPos, config);
                             }
                         } else if (base == height - 1) {
                             for (int length = 3; length <= 4; ++length) {
-                                this.placeLogAt(worldIn, rand, blockpos.north(length), Direction.Axis.Z, logPos, boundingBox, config);
-                                this.placeLogAt(worldIn, rand, blockpos.south(length), Direction.Axis.Z, logPos, boundingBox, config);
-                                this.placeLogAt(worldIn, rand, blockpos.east(length), Direction.Axis.X, logPos, boundingBox, config);
-                                this.placeLogAt(worldIn, rand, blockpos.west(length), Direction.Axis.X, logPos, boundingBox, config);
+                                this.placeLogAt(rand, blockpos.north(length), Direction.Axis.Z, logPos, config);
+                                this.placeLogAt(rand, blockpos.south(length), Direction.Axis.Z, logPos, config);
+                                this.placeLogAt(rand, blockpos.east(length), Direction.Axis.X, logPos, config);
+                                this.placeLogAt(rand, blockpos.west(length), Direction.Axis.X, logPos, config);
                             }
                         } else {
-                            this.setLogBlockState(worldIn, rand, blockpos, logPos, boundingBox, config);
+                            this.setLog(worldIn, rand, blockpos, logPos, config);
                         }
                         posY = currentY;
                     }
@@ -92,20 +92,20 @@ public class PurpleAgateTreeFeature<T extends GaiaTreeFeatureConfig> extends Gai
                     for (int j4 = -1; j4 <= 1; ++j4) {
                         for (int l5 = -1; l5 <= 1; ++l5) {
                             if (Math.abs(k3) != 1 || Math.abs(j4) != 1 || Math.abs(l5) != 1){
-                                this.setLeavesBlockState(worldIn, rand, blockpos2.offset(k3 + 4, l5, j4), leavesPos, boundingBox, config);
-                                this.setLeavesBlockState(worldIn, rand, blockpos2.offset(k3 - 4, l5, j4), leavesPos, boundingBox, config);
-                                this.setLeavesBlockState(worldIn, rand, blockpos2.offset(k3 , l5, j4 + 4), leavesPos, boundingBox, config);
-                                this.setLeavesBlockState(worldIn, rand, blockpos2.offset(k3, l5, j4 - 4), leavesPos, boundingBox, config);
+                                this.setLeaves(worldIn, rand, blockpos2.offset(k3 + 4, l5, j4), leavesPos, config);
+                                this.setLeaves(worldIn, rand, blockpos2.offset(k3 - 4, l5, j4), leavesPos, config);
+                                this.setLeaves(worldIn, rand, blockpos2.offset(k3 , l5, j4 + 4), leavesPos, config);
+                                this.setLeaves(worldIn, rand, blockpos2.offset(k3, l5, j4 - 4), leavesPos, config);
                             }
                         }
                     }
                 }
 
                 BlockPos blockpos3 = blockpos2.below(2);
-                this.setLeavesBlockState(worldIn, rand, blockpos3.north(1), leavesPos, boundingBox, config);
-                this.setLeavesBlockState(worldIn, rand, blockpos3.south(1), leavesPos, boundingBox, config);
-                this.setLeavesBlockState(worldIn, rand, blockpos3.east(1), leavesPos, boundingBox, config);
-                this.setLeavesBlockState(worldIn, rand, blockpos3.west(1), leavesPos, boundingBox, config);
+                this.setLeaves(worldIn, rand, blockpos3.north(1), leavesPos, config);
+                this.setLeaves(worldIn, rand, blockpos3.south(1), leavesPos, config);
+                this.setLeaves(worldIn, rand, blockpos3.east(1), leavesPos, config);
+                this.setLeaves(worldIn, rand, blockpos3.west(1), leavesPos, config);
 
                 return true;
             } else {
@@ -116,8 +116,8 @@ public class PurpleAgateTreeFeature<T extends GaiaTreeFeatureConfig> extends Gai
         }
     }
 
-    private void placeLogAt(IWorldGenerationReader reader, Random rand, BlockPos pos, Direction.Axis axis, Set<BlockPos> logPos, MutableBoundingBox boundingBox, T config) {
-        this.setBlockState(reader, pos, config.trunkProvider.getState(rand, pos).setValue(RotatedPillarBlock.AXIS, axis), boundingBox);
-        logPos.add(pos.immutable());
+    private void placeLogAt(Random rand, BlockPos pos, Direction.Axis axis, BiConsumer<BlockPos, BlockState> logPos, T config) {
+        Function<BlockState, BlockState> function = Function.identity();
+        logPos.accept(pos, function.apply(config.trunkProvider.getState(rand, pos).setValue(RotatedPillarBlock.AXIS, axis)));
     }
 }

@@ -1,27 +1,27 @@
 package androsa.gaiadimension.world.gen.structure.pieces;
 
 import androsa.gaiadimension.GaiaDimensionMod;
-import androsa.gaiadimension.block.tileentity.SmallCrateTileEntity;
+import androsa.gaiadimension.block.blockentity.SmallCrateBlockEntity;
 import androsa.gaiadimension.registry.GaiaChestTables;
 import androsa.gaiadimension.registry.ModBlocks;
 import androsa.gaiadimension.registry.ModWorldgen;
 import androsa.gaiadimension.world.gen.structure.processor.MalachiteDegradeProcessor;
 import com.google.common.collect.ImmutableMap;
-import net.minecraft.block.Blocks;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.Mirror;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.Rotation;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MutableBoundingBox;
-import net.minecraft.world.IServerWorld;
-import net.minecraft.world.gen.feature.structure.StructurePiece;
-import net.minecraft.world.gen.feature.structure.TemplateStructurePiece;
-import net.minecraft.world.gen.feature.template.BlockIgnoreStructureProcessor;
-import net.minecraft.world.gen.feature.template.PlacementSettings;
-import net.minecraft.world.gen.feature.template.Template;
-import net.minecraft.world.gen.feature.template.TemplateManager;
+import net.minecraft.core.BlockPos;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.level.ServerLevelAccessor;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.Mirror;
+import net.minecraft.world.level.block.Rotation;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.levelgen.structure.BoundingBox;
+import net.minecraft.world.level.levelgen.structure.StructurePiece;
+import net.minecraft.world.level.levelgen.structure.TemplateStructurePiece;
+import net.minecraft.world.level.levelgen.structure.templatesystem.BlockIgnoreProcessor;
+import net.minecraft.world.level.levelgen.structure.templatesystem.StructureManager;
+import net.minecraft.world.level.levelgen.structure.templatesystem.StructurePlaceSettings;
 
 import java.util.List;
 import java.util.Random;
@@ -77,7 +77,7 @@ public class MalachiteWatchtowerPieces {
             Rotation.COUNTERCLOCKWISE_90, offsetCC90Small
     );
 
-    protected static final ImmutableMap<ResourceLocation, BlockPos> centerList = ImmutableMap.<ResourceLocation, BlockPos>builder()
+    protected static final ImmutableMap<ResourceLocation, BlockPos> PIVOTS = ImmutableMap.<ResourceLocation, BlockPos>builder()
             .put(foyer, baseCenter)
             .put(floor1_1, f1Center).put(floor1_2, f1Center).put(floor1_3, f1Center)
             .put(floor_random1, f1Center).put(floor_random2, f1Center).put(floor_random3, f1Center).put(floor_random4, f1Center).put(floor_random5, f1Center)
@@ -86,7 +86,7 @@ public class MalachiteWatchtowerPieces {
             .put(roof_m, roofCenter)
             .build();
 
-    public static void buildStructure(TemplateManager manager, BlockPos pos, Rotation rotation, List<StructurePiece> pieces, Random random) {
+    public static void buildStructure(StructureManager manager, BlockPos pos, Rotation rotation, List<StructurePiece> pieces, Random random) {
         int i = 0;
         pieces.add(new MalachiteWatchtowerPieces.Piece(manager, foyer, pos, rotation, i));
         i += 14;
@@ -116,50 +116,42 @@ public class MalachiteWatchtowerPieces {
     }
 
     public static class Piece extends TemplateStructurePiece {
-        private final ResourceLocation pieceName;
-        private final Rotation rotation;
-
-        public Piece(TemplateManager manager, ResourceLocation pieceloc, BlockPos pos, Rotation rot, int offset) {
-            super(ModWorldgen.StructureTypes.MAWA, 0);
-            this.pieceName = pieceloc;
-            this.templatePosition = pos.offset(0, offset, 0);
-            this.rotation = rot;
-            this.loadTemplate(manager);
+        public Piece(StructureManager manager, ResourceLocation pieceloc, BlockPos pos, Rotation rot, int offset) {
+            super(ModWorldgen.StructureTypes.MAWA, 0, manager, pieceloc, pieceloc.toString(), loadTemplate(rot, pieceloc), loadPosition(pos, offset));
         }
 
-        public Piece(TemplateManager manager, CompoundNBT nbt) {
-            super(ModWorldgen.StructureTypes.MAWA, nbt);
-            this.pieceName = new ResourceLocation(nbt.getString("Template"));
-            this.rotation = Rotation.valueOf(nbt.getString("Rot"));
-            this.loadTemplate(manager);
+        public Piece(ServerLevel level, CompoundTag nbt) {
+            super(ModWorldgen.StructureTypes.MAWA, nbt, level, (rl) ->
+                    loadTemplate(Rotation.valueOf(nbt.getString("Rot")), rl));
         }
 
-        private void loadTemplate(TemplateManager manager) {
-            Template template = manager.getOrCreate(this.pieceName);
-            PlacementSettings settings = (new PlacementSettings())
-                    .setRotation(this.rotation)
+        private static StructurePlaceSettings loadTemplate(Rotation rotation, ResourceLocation pivot) {
+            return (new StructurePlaceSettings())
+                    .setRotation(rotation)
                     .setMirror(Mirror.NONE)
-                    .setRotationPivot(MalachiteWatchtowerPieces.centerList.get(this.pieceName))
-                    .addProcessor(BlockIgnoreStructureProcessor.STRUCTURE_BLOCK)
+                    .setRotationPivot(MalachiteWatchtowerPieces.PIVOTS.get(pivot))
+                    .addProcessor(BlockIgnoreProcessor.STRUCTURE_BLOCK)
                     .addProcessor(new MalachiteDegradeProcessor(0.2F));
-            this.setup(template, this.templatePosition, settings);
+        }
+
+        private static BlockPos loadPosition(BlockPos pos, int offset) {
+            return pos.offset(0, offset, 0);
         }
 
         @Override
-        protected void addAdditionalSaveData(CompoundNBT nbt) {
-            super.addAdditionalSaveData(nbt);
-            nbt.putString("Template", this.pieceName.toString());
-            nbt.putString("Rot", this.rotation.name());
+        protected void addAdditionalSaveData(ServerLevel level, CompoundTag nbt) {
+            super.addAdditionalSaveData(level, nbt);
+            nbt.putString("Rot", this.placeSettings.getRotation().name());
         }
 
         @Override
-        protected void handleDataMarker(String name, BlockPos pos, IServerWorld world, Random random, MutableBoundingBox mbb) {
+        protected void handleDataMarker(String name, BlockPos pos, ServerLevelAccessor world, Random random, BoundingBox mbb) {
             if ("ChestChance".equals(name)) {
                 if (random.nextDouble() > 0.5D) {
                     world.setBlock(pos, ModBlocks.crude_storage_crate.get().defaultBlockState(), 3);
-                    TileEntity tileentity = world.getBlockEntity(pos);
-                    if (tileentity instanceof SmallCrateTileEntity) {
-                        ((SmallCrateTileEntity) tileentity).setLootTable(GaiaChestTables.CHESTS_MALACHITE_WATCHTOWER, random.nextLong());
+                    BlockEntity tileentity = world.getBlockEntity(pos);
+                    if (tileentity instanceof SmallCrateBlockEntity) {
+                        ((SmallCrateBlockEntity) tileentity).setLootTable(GaiaChestTables.CHESTS_MALACHITE_WATCHTOWER, random.nextLong());
                     }
                 } else {
                     world.setBlock(pos, Blocks.AIR.defaultBlockState(), 3);
@@ -167,9 +159,9 @@ public class MalachiteWatchtowerPieces {
             }
             if ("Chest".equals(name)) {
                 world.setBlock(pos, ModBlocks.crude_storage_crate.get().defaultBlockState(), 3);
-                TileEntity tileentity = world.getBlockEntity(pos);
-                if (tileentity instanceof SmallCrateTileEntity) {
-                    ((SmallCrateTileEntity) tileentity).setLootTable(GaiaChestTables.CHESTS_MALACHITE_WATCHTOWER, random.nextLong());
+                BlockEntity tileentity = world.getBlockEntity(pos);
+                if (tileentity instanceof SmallCrateBlockEntity) {
+                    ((SmallCrateBlockEntity) tileentity).setLootTable(GaiaChestTables.CHESTS_MALACHITE_WATCHTOWER, random.nextLong());
                 }
             }
             if ("Boss".equals(name)) {

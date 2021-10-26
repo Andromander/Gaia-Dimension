@@ -3,13 +3,13 @@ package androsa.gaiadimension.world.gen.feature;
 import androsa.gaiadimension.registry.ModBlocks;
 import androsa.gaiadimension.world.gen.config.GaiaTreeFeatureConfig;
 import com.mojang.serialization.Codec;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MutableBoundingBox;
-import net.minecraft.world.ISeedReader;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.WorldGenLevel;
+import net.minecraft.world.level.block.state.BlockState;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.Random;
-import java.util.Set;
+import java.util.function.BiConsumer;
 
 @ParametersAreNonnullByDefault
 public class BurntAgateTreeFeature<T extends GaiaTreeFeatureConfig> extends GaiaTreeFeature<T> {
@@ -19,7 +19,7 @@ public class BurntAgateTreeFeature<T extends GaiaTreeFeatureConfig> extends Gaia
     }
 
     @Override
-    public boolean generate(ISeedReader worldIn, Random rand, BlockPos position, Set<BlockPos> logPos, Set<BlockPos> leavesPos, MutableBoundingBox boundingBox, T config) {
+    public boolean generate(WorldGenLevel worldIn, Random rand, BlockPos position, BiConsumer<BlockPos, BlockState> logPos, BiConsumer<BlockPos, BlockState> leavesPos, T config) {
         int height = rand.nextInt(3) + rand.nextInt(3) + config.minHeight;
         boolean flag = true;
 
@@ -35,7 +35,7 @@ public class BurntAgateTreeFeature<T extends GaiaTreeFeatureConfig> extends Gaia
                     k = 2;
                 }
 
-                BlockPos.Mutable blockpos$mutableblockpos = new BlockPos.Mutable();
+                BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
 
                 for (int cx = position.getX() - k; cx <= position.getX() + k && flag; ++cx) {
                     for (int cz = position.getZ() - k; cz <= position.getZ() + k && flag; ++cz) {
@@ -53,7 +53,7 @@ public class BurntAgateTreeFeature<T extends GaiaTreeFeatureConfig> extends Gaia
             if (!flag) {
                 return false;
             } else if (isSoil(worldIn, position.below(), config.getSapling(rand, position)) && position.getY() < worldIn.getHeight() - height - 1) {
-                this.setBlockState(worldIn, position.below(), ModBlocks.heavy_soil.get().defaultBlockState(), boundingBox);
+                this.setBlock(worldIn, position.below(), ModBlocks.heavy_soil.get().defaultBlockState());
                 int posX = position.getX();
                 int posZ = position.getZ();
                 int k1 = 0;
@@ -63,7 +63,7 @@ public class BurntAgateTreeFeature<T extends GaiaTreeFeatureConfig> extends Gaia
 
                     BlockPos blockpos = new BlockPos(posX, i2, posZ);
                     if (isAirOrLeaves(worldIn, blockpos)) {
-                        this.setLogBlockState(worldIn, rand, blockpos, logPos, boundingBox, config);
+                        this.setLog(worldIn, rand, blockpos, logPos, config);
                         k1 = i2;
                     }
                 }
@@ -72,7 +72,7 @@ public class BurntAgateTreeFeature<T extends GaiaTreeFeatureConfig> extends Gaia
                 for (int j3 = -2; j3 <= 2; ++j3) {
                     for (int i4 = -2; i4 <= 2; ++i4) {
                         if (Math.abs(j3) != 2 || Math.abs(i4) != 2){
-                            this.setLeavesBlockState(worldIn, rand, blockpos2.offset(j3, 0, i4), leavesPos, boundingBox, config);
+                            this.setLeaves(worldIn, rand, blockpos2.offset(j3, 0, i4), leavesPos, config);
                         }
                     }
                 }
@@ -80,7 +80,7 @@ public class BurntAgateTreeFeature<T extends GaiaTreeFeatureConfig> extends Gaia
                 blockpos2 = blockpos2.above();
                 for (int k3 = -1; k3 <= 1; ++k3) {
                     for (int j4 = -1; j4 <= 1; ++j4) {
-                        this.setLeavesBlockState(worldIn, rand, blockpos2.offset(k3, 0, j4), leavesPos, boundingBox, config);
+                        this.setLeaves(worldIn, rand, blockpos2.offset(k3, 0, j4), leavesPos, config);
                     }
                 }
 

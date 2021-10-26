@@ -2,25 +2,26 @@ package androsa.gaiadimension.world.gen.structure;
 
 import androsa.gaiadimension.world.gen.structure.pieces.MiniTowerPieces;
 import com.mojang.serialization.Codec;
-import net.minecraft.util.Rotation;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.ChunkPos;
-import net.minecraft.util.math.MutableBoundingBox;
-import net.minecraft.util.registry.DynamicRegistries;
-import net.minecraft.world.ISeedReader;
-import net.minecraft.world.biome.Biome;
-import net.minecraft.world.gen.ChunkGenerator;
-import net.minecraft.world.gen.GenerationStage;
-import net.minecraft.world.gen.feature.NoFeatureConfig;
-import net.minecraft.world.gen.feature.structure.Structure;
-import net.minecraft.world.gen.feature.structure.StructureManager;
-import net.minecraft.world.gen.feature.structure.StructurePiece;
-import net.minecraft.world.gen.feature.structure.StructureStart;
-import net.minecraft.world.gen.feature.template.TemplateManager;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.RegistryAccess;
+import net.minecraft.world.level.ChunkPos;
+import net.minecraft.world.level.LevelHeightAccessor;
+import net.minecraft.world.level.StructureFeatureManager;
+import net.minecraft.world.level.WorldGenLevel;
+import net.minecraft.world.level.biome.Biome;
+import net.minecraft.world.level.block.Rotation;
+import net.minecraft.world.level.chunk.ChunkGenerator;
+import net.minecraft.world.level.levelgen.GenerationStep;
+import net.minecraft.world.level.levelgen.feature.StructureFeature;
+import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
+import net.minecraft.world.level.levelgen.structure.BoundingBox;
+import net.minecraft.world.level.levelgen.structure.StructurePiece;
+import net.minecraft.world.level.levelgen.structure.StructureStart;
+import net.minecraft.world.level.levelgen.structure.templatesystem.StructureManager;
 
 import java.util.Random;
 
-public class MiniTowerStructure<T extends NoFeatureConfig> extends Structure<T> {
+public class MiniTowerStructure<T extends NoneFeatureConfiguration> extends StructureFeature<T> {
 
     public MiniTowerStructure(Codec<T> config) {
         super(config);
@@ -32,41 +33,39 @@ public class MiniTowerStructure<T extends NoFeatureConfig> extends Structure<T> 
 //    }
 
     @Override
-    public IStartFactory<T> getStartFactory() {
+    public StructureStartFactory<T> getStartFactory() {
         return MiniTowerStructure.Start::new;
     }
 
     @Override
-    public GenerationStage.Decoration step() {
-        return GenerationStage.Decoration.SURFACE_STRUCTURES;
+    public GenerationStep.Decoration step() {
+        return GenerationStep.Decoration.SURFACE_STRUCTURES;
     }
 
-    public static class Start<T extends NoFeatureConfig> extends StructureStart<T> {
+    public static class Start<T extends NoneFeatureConfiguration> extends StructureStart<T> {
 
-        public Start(Structure<T> structure, int chunkX, int chunkZ, MutableBoundingBox mbb, int ref, long seed) {
-            super(structure, chunkX, chunkZ, mbb, ref, seed);
+        public Start(StructureFeature<T> structure, ChunkPos pos, int ref, long seed) {
+            super(structure, pos, ref, seed);
         }
 
         @Override
-        public void generatePieces(DynamicRegistries registries, ChunkGenerator generator, TemplateManager manager, int chunkX, int chunkZ, Biome biome, T config) {
-            int x = chunkX * 16;
-            int z = chunkZ * 16;
-            BlockPos blockpos = new BlockPos(x, 90, z);
+        public void generatePieces(RegistryAccess registries, ChunkGenerator generator, StructureManager manager, ChunkPos pos, Biome biome, T config, LevelHeightAccessor height) {
+            BlockPos blockpos = new BlockPos(pos.getMinBlockX(), 90, pos.getMinBlockZ());
             Rotation rotation = Rotation.values()[this.random.nextInt(Rotation.values().length)];
             MiniTowerPieces.buildStructure(manager, blockpos, rotation, this.pieces, this.random);
-            this.calculateBoundingBox();
         }
 
         @Override
-        public void placeInChunk(ISeedReader world, StructureManager manager, ChunkGenerator generator, Random random, MutableBoundingBox mbb, ChunkPos chunkpos) {
+        public void placeInChunk(WorldGenLevel world, StructureFeatureManager manager, ChunkGenerator generator, Random random, BoundingBox mbb, ChunkPos chunkpos) {
             super.placeInChunk(world, manager, generator, random, mbb, chunkpos);
-            int minY = this.boundingBox.y0;
+            BoundingBox boundingbox = this.getBoundingBox();
+            int minY = boundingbox.minY();
 
             //Let me ask: do towers overhang cliffs? I didn't think so
-            for(int x = mbb.x0; x <= mbb.x1; ++x) {
-                for(int z = mbb.z0; z <= mbb.z1; ++z) {
+            for(int x = mbb.minX(); x <= mbb.maxX(); ++x) {
+                for(int z = mbb.minZ(); z <= mbb.maxZ(); ++z) {
                     BlockPos blockpos = new BlockPos(x, minY, z);
-                    if (!world.isEmptyBlock(blockpos) && this.boundingBox.isInside(blockpos)) {
+                    if (!world.isEmptyBlock(blockpos) && boundingbox.isInside(blockpos)) {
                         boolean isAirBelow = false;
 
                         for(StructurePiece structurepiece : this.pieces) {

@@ -2,23 +2,27 @@ package androsa.gaiadimension.world.gen.feature;
 
 import androsa.gaiadimension.block.AbstractGaiaGrassBlock;
 import com.mojang.serialization.Codec;
-import net.minecraft.block.Block;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.ISeedReader;
-import net.minecraft.world.gen.ChunkGenerator;
-import net.minecraft.world.gen.feature.BlockStateFeatureConfig;
-import net.minecraft.world.gen.feature.Feature;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.WorldGenLevel;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.levelgen.feature.Feature;
+import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
+import net.minecraft.world.level.levelgen.feature.configurations.BlockStateConfiguration;
 
 import java.util.Random;
 
-public class GaiaBlobFeature<T extends BlockStateFeatureConfig> extends Feature<T> {
+public class GaiaBlobFeature<T extends BlockStateConfiguration> extends Feature<T> {
 
     public GaiaBlobFeature(Codec<T> config) {
         super(config);
     }
 
     @Override
-    public boolean place(ISeedReader worldIn, ChunkGenerator generator, Random rand, BlockPos pos, T config) {
+    public boolean place(FeaturePlaceContext<T> context) {
+        return place(context.level(), context.random(), context.origin(), context.config());
+    }
+
+    public boolean place(WorldGenLevel worldIn, Random rand, BlockPos pos, T config) {
         while(true) {
             label50: {
                 if (pos.getY() > 3) {
@@ -26,8 +30,8 @@ public class GaiaBlobFeature<T extends BlockStateFeatureConfig> extends Feature<
                         break label50;
                     }
 
-                    Block block = worldIn.getBlockState(pos.below()).getBlock();
-                    if (!(block instanceof AbstractGaiaGrassBlock) && !isDirt(block) && !isStone(block)) {
+                    BlockState block = worldIn.getBlockState(pos.below());
+                    if (!(block.getBlock() instanceof AbstractGaiaGrassBlock) && !isDirt(block) && !isStone(block)) {
                         break label50;
                     }
                 }

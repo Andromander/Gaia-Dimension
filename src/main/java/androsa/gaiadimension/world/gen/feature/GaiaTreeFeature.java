@@ -1,33 +1,32 @@
 package androsa.gaiadimension.world.gen.feature;
 
 import androsa.gaiadimension.world.gen.config.GaiaTreeFeatureConfig;
+import com.google.common.collect.Iterables;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
 import com.mojang.serialization.Codec;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.material.Material;
-import net.minecraft.state.properties.BlockStateProperties;
-import net.minecraft.util.Direction;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MutableBoundingBox;
-import net.minecraft.util.math.shapes.BitSetVoxelShapePart;
-import net.minecraft.util.math.shapes.VoxelShapePart;
-import net.minecraft.world.IBlockReader;
-import net.minecraft.world.ISeedReader;
-import net.minecraft.world.IWorld;
-import net.minecraft.world.IWorldWriter;
-import net.minecraft.world.gen.ChunkGenerator;
-import net.minecraft.world.gen.IWorldGenerationBaseReader;
-import net.minecraft.world.gen.feature.Feature;
-import net.minecraft.world.gen.feature.TreeFeature;
-import net.minecraft.world.gen.feature.template.Template;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.core.Vec3i;
+import net.minecraft.world.level.*;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.levelgen.feature.Feature;
+import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
+import net.minecraft.world.level.levelgen.feature.TreeFeature;
+import net.minecraft.world.level.levelgen.structure.BoundingBox;
+import net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemplate;
+import net.minecraft.world.level.material.Material;
+import net.minecraft.world.phys.shapes.BitSetDiscreteVoxelShape;
+import net.minecraft.world.phys.shapes.DiscreteVoxelShape;
 import net.minecraftforge.common.IPlantable;
 
-import java.util.List;
-import java.util.Random;
-import java.util.Set;
+import java.util.*;
+import java.util.function.BiConsumer;
+import java.util.function.Function;
 
 //VanillaCopy class because I'm not extending TreeFeature
+//TODO: Comb through and see if we can use the vanilla tree system.
 public abstract class GaiaTreeFeature<T extends GaiaTreeFeatureConfig> extends Feature<T> {
 
     public GaiaTreeFeature(Codec<T> config) {
@@ -35,45 +34,66 @@ public abstract class GaiaTreeFeature<T extends GaiaTreeFeatureConfig> extends F
     }
 
     @Override
-    public boolean place(ISeedReader world, ChunkGenerator generator, Random random, BlockPos pos, T config) {
+    public boolean place(FeaturePlaceContext<T> context) {
+        return place(context.level(), context.random(), context.origin(), context.config());
+    }
+
+    public boolean place(WorldGenLevel world, Random random, BlockPos pos, T config) {
         Set<BlockPos> logs = Sets.newHashSet();
         Set<BlockPos> leaves = Sets.newHashSet();
-        MutableBoundingBox mutableboundingbox = MutableBoundingBox.getUnknownBox();
-        boolean flag = this.generate(world, random, pos, logs, leaves, mutableboundingbox, config);
-        if (mutableboundingbox.x0 <= mutableboundingbox.x1 && flag && !logs.isEmpty()) {
-            VoxelShapePart voxelshapepart = this.getVoxelShapePart(world, mutableboundingbox, logs);
-            Template.updateShapeAtEdge(world, 3, voxelshapepart, mutableboundingbox.x0, mutableboundingbox.y0, mutableboundingbox.z0);
-            return true;
+        BiConsumer<BlockPos, BlockState> logconsumer = (cpos, cstate) -> {
+            logs.add(cpos.immutable());
+            world.setBlock(cpos, cstate, 19);
+        };
+        BiConsumer<BlockPos, BlockState> leavesconsumer = (cpos, cstate) -> {
+            leaves.add(cpos.immutable());
+            world.setBlock(cpos, cstate, 19);
+        };
+        boolean flag = this.generate(world, random, pos, logconsumer, leavesconsumer, config);
+        if (flag && (!logs.isEmpty() || !leaves.isEmpty())) {
+            List<BlockPos> loglist = Lists.newArrayList(logs);
+            List<BlockPos> leaveslist = Lists.newArrayList(leaves);
+            loglist.sort(Comparator.comparingInt(Vec3i::getY));
+            leaveslist.sort(Comparator.comparingInt(Vec3i::getY));
+            
+            return BoundingBox.encapsulatingPositions(Iterables.concat(logs, leaves)).map((bb) -> {
+                DiscreteVoxelShape voxelshapepart = getVoxelShapePart(world, bb, logs);
+                StructureTemplate.updateShapeAtEdge(world, 3, voxelshapepart, bb.minX(), bb.minY(), bb.minZ());
+                return true;
+            }).orElse(false);
         } else {
             return false;
         }
     }
 
     //TreeFeature.updateLeaves copy, modified to remove decorations
-    private VoxelShapePart getVoxelShapePart(IWorld world, MutableBoundingBox mbb, Set<BlockPos> logPosSet) {
+    private static DiscreteVoxelShape getVoxelShapePart(LevelAccessor world, BoundingBox mbb, Set<BlockPos> logPosSet) {
         List<Set<BlockPos>> list = Lists.newArrayList();
-        VoxelShapePart voxelshapepart = new BitSetVoxelShapePart(mbb.getXSpan(), mbb.getYSpan(), mbb.getZSpan());
+        DiscreteVoxelShape voxelshapepart = new BitSetDiscreteVoxelShape(mbb.getXSpan(), mbb.getYSpan(), mbb.getZSpan());
 
         for(int j = 0; j < 6; ++j) {
             list.add(Sets.newHashSet());
         }
 
-        BlockPos.Mutable mutable = new BlockPos.Mutable();
+        BlockPos.MutableBlockPos mutable = new BlockPos.MutableBlockPos();
+        Iterator<BlockPos> logiterator = Lists.newArrayList(logPosSet).iterator();
+        BlockPos pos;
 
-        for(BlockPos logPos : Lists.newArrayList(logPosSet)) {
-            if (mbb.isInside(logPos)) {
-                voxelshapepart.setFull(logPos.getX() - mbb.x0, logPos.getY() - mbb.y0, logPos.getZ() - mbb.z0, true, true);
+        while(logiterator.hasNext()) {
+            pos = logiterator.next();
+            if (mbb.isInside(pos)) {
+                voxelshapepart.fill(pos.getX() - mbb.minX(), pos.getY() - mbb.minY(), pos.getZ() - mbb.minZ());
             }
 
             for(Direction direction : Direction.values()) {
-                mutable.setWithOffset(logPos, direction);
+                mutable.setWithOffset(pos, direction);
                 if (!logPosSet.contains(mutable)) {
                     BlockState blockstate = world.getBlockState(mutable);
                     if (blockstate.hasProperty(BlockStateProperties.DISTANCE)) {
                         list.get(0).add(mutable.immutable());
-                        TreeFeature.setBlockKnownShape(world, mutable, blockstate.setValue(BlockStateProperties.DISTANCE, 1));
+                        setBlockKnownShape(world, mutable, blockstate.setValue(BlockStateProperties.DISTANCE, 1));
                         if (mbb.isInside(mutable)) {
-                            voxelshapepart.setFull(mutable.getX() - mbb.x0, mutable.getY() - mbb.y0, mutable.getZ() - mbb.z0, true, true);
+                            voxelshapepart.fill(mutable.getX() - mbb.minX(), mutable.getY() - mbb.minY(), mutable.getZ() - mbb.minZ());
                         }
                     }
                 }
@@ -84,22 +104,22 @@ public abstract class GaiaTreeFeature<T extends GaiaTreeFeatureConfig> extends F
             Set<BlockPos> set = list.get(l - 1);
             Set<BlockPos> set1 = list.get(l);
 
-            for(BlockPos blockpos2 : set) {
-                if (mbb.isInside(blockpos2)) {
-                    voxelshapepart.setFull(blockpos2.getX() - mbb.x0, blockpos2.getY() - mbb.y0, blockpos2.getZ() - mbb.z0, true, true);
+            for (BlockPos position : set) {
+                if (mbb.isInside(position)) {
+                    voxelshapepart.fill(position.getX() - mbb.minX(), position.getY() - mbb.minY(), position.getZ() - mbb.minZ());
                 }
 
-                for(Direction direction1 : Direction.values()) {
-                    mutable.setWithOffset(blockpos2, direction1);
+                for (Direction direction1 : Direction.values()) {
+                    mutable.setWithOffset(position, direction1);
                     if (!set.contains(mutable) && !set1.contains(mutable)) {
                         BlockState blockstate1 = world.getBlockState(mutable);
                         if (blockstate1.hasProperty(BlockStateProperties.DISTANCE)) {
                             int k = blockstate1.getValue(BlockStateProperties.DISTANCE);
                             if (k > l + 1) {
                                 BlockState blockstate2 = blockstate1.setValue(BlockStateProperties.DISTANCE, l + 1);
-                                TreeFeature.setBlockKnownShape(world, mutable, blockstate2);
+                                setBlockKnownShape(world, mutable, blockstate2);
                                 if (mbb.isInside(mutable)) {
-                                    voxelshapepart.setFull(mutable.getX() - mbb.x0, mutable.getY() - mbb.y0, mutable.getZ() - mbb.z0, true, true);
+                                    voxelshapepart.fill(mutable.getX() - mbb.minX(), mutable.getY() - mbb.minY(), mutable.getZ() - mbb.minZ());
                                 }
 
                                 set1.add(mutable.immutable());
@@ -113,53 +133,58 @@ public abstract class GaiaTreeFeature<T extends GaiaTreeFeatureConfig> extends F
         return voxelshapepart;
     }
 
-    public abstract boolean generate(ISeedReader world, Random random, BlockPos pos, Set<BlockPos> logPos, Set<BlockPos> leavesPos, MutableBoundingBox mbb, T config);
+    public abstract boolean generate(WorldGenLevel world, Random random, BlockPos pos, BiConsumer<BlockPos, BlockState> logPos, BiConsumer<BlockPos, BlockState> leavesPos, T config);
 
     //AbstractTrunkPlacer.func_236911_a_ copy - Use that one instead when extending that Abstract
-    protected boolean setLogBlockState(IWorld world, Random random, BlockPos pos, Set<BlockPos> logPos, MutableBoundingBox mbb, GaiaTreeFeatureConfig config) {
-        if (validTreePos(world, pos)) {
-            this.setBlockState(world, pos, config.trunkProvider.getState(random, pos), mbb);
-            logPos.add(pos.immutable());
+    protected boolean setLog(LevelSimulatedReader world, Random random, BlockPos pos, BiConsumer<BlockPos, BlockState> log, T config) {
+        return setLog(world, log, random, pos, config, Function.identity());
+    }
+
+    protected boolean setLog(LevelSimulatedReader level, BiConsumer<BlockPos, BlockState> log, Random random, BlockPos pos, T config, Function<BlockState, BlockState> function) {
+        if (validTreePos(level, pos)) {
+            log.accept(pos, function.apply(config.trunkProvider.getState(random, pos)));
             return true;
         } else {
             return false;
         }
     }
 
-    protected boolean setLeavesBlockState(IWorld world, Random random, BlockPos pos, Set<BlockPos> leavesPos, MutableBoundingBox mbb, T config) {
-        if (validTreePos(world, pos)) {
-            this.setBlockState(world, pos, config.leavesProvider.getState(random, pos), mbb);
-            leavesPos.add(pos.immutable());
+    protected boolean setLeaves(LevelSimulatedReader world, Random random, BlockPos pos, BiConsumer<BlockPos, BlockState> leaves, T config) {
+        return setLeaves(world, leaves, random, pos, config, Function.identity());
+    }
+
+    protected boolean setLeaves(LevelSimulatedReader level, BiConsumer<BlockPos, BlockState> leaves, Random random, BlockPos pos, T config, Function<BlockState, BlockState> function) {
+        if (validTreePos(level, pos)) {
+            leaves.accept(pos, function.apply(config.leavesProvider.getState(random, pos)));
             return true;
         } else {
             return false;
         }
     }
 
-    protected final void setBlockState(IWorldWriter world, BlockPos pos, BlockState state, MutableBoundingBox mbb) {
-        world.setBlock(pos, state, 19);
-        mbb.expand(new MutableBoundingBox(pos, pos));
+    private static void setBlockKnownShape(LevelWriter level, BlockPos pos, BlockState state) {
+        level.setBlock(pos, state, 19);
     }
 
-    public static boolean validTreePos(IWorldGenerationBaseReader world, BlockPos pos) {
+    public static boolean validTreePos(LevelSimulatedReader world, BlockPos pos) {
         return TreeFeature.validTreePos(world, pos);
     }
 
-    public static boolean isAirOrLeaves(IWorldGenerationBaseReader world, BlockPos pos) {
+    public static boolean isAirOrLeaves(LevelSimulatedReader world, BlockPos pos) {
         return TreeFeature.isAirOrLeaves(world, pos);
     }
 
-    public static boolean isTallPlants(IWorldGenerationBaseReader world, BlockPos pos) {
+    public static boolean isTallPlants(LevelSimulatedReader world, BlockPos pos) {
         return world.isStateAtPosition(pos, (state) -> {
             Material mat = state.getMaterial();
             return mat == Material.REPLACEABLE_PLANT;
         });
     }
 
-    public static boolean isSoil(IWorldGenerationBaseReader world, BlockPos pos, IPlantable sapling) {
-        if (world instanceof IBlockReader) {
-            return world.isStateAtPosition(pos, (state) -> state.canSustainPlant((IBlockReader)world, pos, Direction.DOWN, sapling));
+    public static boolean isSoil(LevelSimulatedReader world, BlockPos pos, IPlantable sapling) {
+        if (world instanceof BlockGetter) {
+            return world.isStateAtPosition(pos, (state) -> state.canSustainPlant((BlockGetter)world, pos, Direction.DOWN, sapling));
         }
-        return world.isStateAtPosition(pos, state -> isDirt(state.getBlock()));
+        return world.isStateAtPosition(pos, Feature::isDirt);
     }
 }

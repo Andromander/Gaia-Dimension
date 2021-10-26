@@ -2,23 +2,27 @@ package androsa.gaiadimension.world.gen.feature;
 
 import androsa.gaiadimension.registry.ModBlocks;
 import com.mojang.serialization.Codec;
-import net.minecraft.util.Direction;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.ISeedReader;
-import net.minecraft.world.gen.ChunkGenerator;
-import net.minecraft.world.gen.feature.Feature;
-import net.minecraft.world.gen.feature.NoFeatureConfig;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.world.level.WorldGenLevel;
+import net.minecraft.world.level.levelgen.feature.Feature;
+import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
+import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
 
 import java.util.Random;
 
-public class FrailGlitterBlobFeature<T extends NoFeatureConfig> extends Feature<T> {
+public class FrailGlitterBlobFeature<T extends NoneFeatureConfiguration> extends Feature<T> {
 
     public FrailGlitterBlobFeature(Codec<T> config) {
         super(config);
     }
 
     @Override
-    public boolean place(ISeedReader worldIn, ChunkGenerator generator, Random rand, BlockPos pos, T config) {
+    public boolean place(FeaturePlaceContext<T> context) {
+        return place(context.level(), context.random(), context.origin());
+    }
+
+    public boolean place(WorldGenLevel worldIn, Random rand, BlockPos pos) {
         if (!worldIn.isEmptyBlock(pos)) {
             return false;
         } else if (worldIn.getBlockState(pos.above()).getBlock() != ModBlocks.gaia_stone.get() && worldIn.getBlockState(pos.below()).getBlock() != ModBlocks.gaia_stone.get()) {
@@ -31,7 +35,7 @@ public class FrailGlitterBlobFeature<T extends NoFeatureConfig> extends Feature<
 
             for(int i = 0; i < 1500; ++i) {
                 BlockPos blockpos = pos.offset(rand.nextInt(8) - rand.nextInt(8), -rand.nextInt(12), rand.nextInt(8) - rand.nextInt(8));
-                if (worldIn.getBlockState(blockpos).isAir(worldIn, blockpos)) {
+                if (worldIn.getBlockState(blockpos).isAir()) {
                     int j = 0;
 
                     for(Direction direction : Direction.values()) {

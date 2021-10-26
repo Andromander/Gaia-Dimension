@@ -3,13 +3,13 @@ package androsa.gaiadimension.world.gen.feature;
 import androsa.gaiadimension.registry.ModBlocks;
 import androsa.gaiadimension.world.gen.config.GaiaTreeFeatureConfig;
 import com.mojang.serialization.Codec;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MutableBoundingBox;
-import net.minecraft.world.ISeedReader;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.WorldGenLevel;
+import net.minecraft.world.level.block.state.BlockState;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.Random;
-import java.util.Set;
+import java.util.function.BiConsumer;
 
 @ParametersAreNonnullByDefault
 public class BlueAgateTreeFeature<T extends GaiaTreeFeatureConfig> extends GaiaTreeFeature<T> {
@@ -19,7 +19,7 @@ public class BlueAgateTreeFeature<T extends GaiaTreeFeatureConfig> extends GaiaT
     }
 
     @Override
-    public boolean generate(ISeedReader world, Random rand, BlockPos pos, Set<BlockPos> logPos, Set<BlockPos> leavesPos, MutableBoundingBox boundingBox, T config) {
+    public boolean generate(WorldGenLevel world, Random rand, BlockPos pos, BiConsumer<BlockPos, BlockState> logPos, BiConsumer<BlockPos, BlockState> leavesPos, T config) {
         int height = rand.nextInt(4) + config.minHeight;
         int j = 1 + rand.nextInt(2);
         int k = height - j;
@@ -36,7 +36,7 @@ public class BlueAgateTreeFeature<T extends GaiaTreeFeatureConfig> extends GaiaT
                     j1 = l;
                 }
 
-                BlockPos.Mutable blockpos$mutableblockpos = new BlockPos.Mutable();
+                BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
 
                 for (int k1 = pos.getX() - j1; k1 <= pos.getX() + j1 && allClear; ++k1) {
                     for (int l1 = pos.getZ() - j1; l1 <= pos.getZ() + j1 && allClear; ++l1) {
@@ -54,7 +54,7 @@ public class BlueAgateTreeFeature<T extends GaiaTreeFeatureConfig> extends GaiaT
             if (!allClear) {
                 return false;
             } else if (isSoil(world, pos.below(), config.getSapling(rand, pos)) && pos.getY() < world.getHeight() - height - 1) {
-                this.setBlockState(world, pos.below(), ModBlocks.heavy_soil.get().defaultBlockState(), boundingBox);
+                this.setBlock(world, pos.below(), ModBlocks.heavy_soil.get().defaultBlockState());
                 int i3 = rand.nextInt(2);
                 int j3 = 1;
                 int k3 = 0;
@@ -68,7 +68,7 @@ public class BlueAgateTreeFeature<T extends GaiaTreeFeatureConfig> extends GaiaT
                             if (Math.abs(j2) != i3 || Math.abs(l2) != i3 || i3 <= 0) {
                                 BlockPos blockpos = new BlockPos(i2, j4, k2);
                                 if (isAirOrLeaves(world, blockpos) || isTallPlants(world, blockpos)) {
-                                    this.setLeavesBlockState(world, rand, blockpos, leavesPos, boundingBox, config);
+                                    this.setLeaves(world, rand, blockpos, leavesPos, config);
                                 }
                             }
                         }
@@ -92,7 +92,7 @@ public class BlueAgateTreeFeature<T extends GaiaTreeFeatureConfig> extends GaiaT
                 for (int logY = 0; logY < height - i4; ++logY) {
                     BlockPos upN = pos.above(logY);
                     if (isAirOrLeaves(world, upN)) {
-                        this.setLogBlockState(world, rand, pos.above(logY), logPos, boundingBox, config);
+                        this.setLog(world, rand, pos.above(logY), logPos, config);
                     }
                 }
 

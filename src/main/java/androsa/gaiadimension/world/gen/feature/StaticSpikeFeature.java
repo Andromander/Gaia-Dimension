@@ -3,12 +3,12 @@ package androsa.gaiadimension.world.gen.feature;
 import androsa.gaiadimension.registry.ModBlocks;
 import androsa.gaiadimension.world.gen.config.FeatureHeightConfig;
 import com.mojang.serialization.Codec;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.ISeedReader;
-import net.minecraft.world.gen.ChunkGenerator;
-import net.minecraft.world.gen.feature.Feature;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.WorldGenLevel;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.levelgen.feature.Feature;
+import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.Random;
@@ -23,7 +23,11 @@ public class StaticSpikeFeature<T extends FeatureHeightConfig> extends Feature<T
     }
 
     @Override
-    public boolean place(ISeedReader worldIn, ChunkGenerator generator, Random rand, BlockPos position, T config) {
+    public boolean place(FeaturePlaceContext<T> context) {
+        return place(context.level(), context.random(), context.origin(), context.config());
+    }
+
+    public boolean place(WorldGenLevel worldIn, Random rand, BlockPos position, T config) {
         int height = config.startHeight + rand.nextInt(4);
         boolean flag = true;
 

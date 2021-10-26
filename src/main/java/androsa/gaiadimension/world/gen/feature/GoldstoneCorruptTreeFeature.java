@@ -3,13 +3,13 @@ package androsa.gaiadimension.world.gen.feature;
 import androsa.gaiadimension.registry.ModBlocks;
 import androsa.gaiadimension.world.gen.config.GaiaTreeFeatureConfig;
 import com.mojang.serialization.Codec;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MutableBoundingBox;
-import net.minecraft.world.ISeedReader;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.WorldGenLevel;
+import net.minecraft.world.level.block.state.BlockState;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.Random;
-import java.util.Set;
+import java.util.function.BiConsumer;
 
 @ParametersAreNonnullByDefault
 public class GoldstoneCorruptTreeFeature<T extends GaiaTreeFeatureConfig> extends GaiaTreeFeature<T> {
@@ -19,7 +19,7 @@ public class GoldstoneCorruptTreeFeature<T extends GaiaTreeFeatureConfig> extend
     }
 
     @Override
-    public boolean generate(ISeedReader world, Random rand, BlockPos pos, Set<BlockPos> logPos, Set<BlockPos> leavesPos, MutableBoundingBox boundingBox, T config) {
+    public boolean generate(WorldGenLevel world, Random rand, BlockPos pos, BiConsumer<BlockPos, BlockState> logPos, BiConsumer<BlockPos, BlockState> leavesPos, T config) {
         int height = rand.nextInt(5) + config.minHeight;
         int j = height - rand.nextInt(2) - 3;
         int k = height - j;
@@ -54,7 +54,7 @@ public class GoldstoneCorruptTreeFeature<T extends GaiaTreeFeatureConfig> extend
             if (!allClear) {
                 return false;
             } else if (isSoil(world, pos.below(), config.getSapling(rand, pos)) && pos.getY() < world.getHeight() - height - 1) {
-                this.setBlockState(world, pos.below(), ModBlocks.corrupt_soil.get().defaultBlockState(), boundingBox);
+                this.setBlock(world, pos.below(), ModBlocks.corrupt_soil.get().defaultBlockState());
                 int k2 = 0;
 
                 for (int l2 = pos.getY() + height; l2 >= pos.getY() + j; --l2) {
@@ -67,7 +67,7 @@ public class GoldstoneCorruptTreeFeature<T extends GaiaTreeFeatureConfig> extend
                             BlockPos tPos = new BlockPos(j3, l2, i2);
                             if (Math.abs(k3) != k2 || Math.abs(j2) != k2 || k2 <= 0) {
                                 if (isAirOrLeaves(world, tPos)) {
-                                    this.setLeavesBlockState(world, rand, tPos, leavesPos, boundingBox, config);
+                                    this.setLeaves(world, rand, tPos, leavesPos, config);
                                 }
                             }
                         }
@@ -84,7 +84,7 @@ public class GoldstoneCorruptTreeFeature<T extends GaiaTreeFeatureConfig> extend
                 for (int i3 = 0; i3 < height - 1; ++i3) {
                     BlockPos cPos = pos.above(i3);
                     if (isAirOrLeaves(world, cPos)) {
-                        this.setLogBlockState(world, rand, cPos, logPos, boundingBox, config);
+                        this.setLog(world, rand, cPos, logPos, config);
                     }
                 }
 

@@ -2,9 +2,9 @@ package androsa.gaiadimension.world.gen.config;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import net.minecraft.world.gen.feature.IFeatureConfig;
+import net.minecraft.world.level.levelgen.feature.configurations.FeatureConfiguration;
 
-public class FeatureHeightConfig implements IFeatureConfig {
+public class FeatureHeightConfig implements FeatureConfiguration {
 
     public static final Codec<FeatureHeightConfig> CODEC = RecordCodecBuilder.create((instance) ->
             instance.group(

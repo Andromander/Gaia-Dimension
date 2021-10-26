@@ -3,23 +3,23 @@ package androsa.gaiadimension.world.gen.config;
 import androsa.gaiadimension.registry.ModBlocks;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import net.minecraft.block.SaplingBlock;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.gen.blockstateprovider.BlockStateProvider;
-import net.minecraft.world.gen.blockstateprovider.SimpleBlockStateProvider;
-import net.minecraft.world.gen.feature.IFeatureConfig;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.block.SaplingBlock;
+import net.minecraft.world.level.levelgen.feature.configurations.FeatureConfiguration;
+import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
+import net.minecraft.world.level.levelgen.feature.stateproviders.SimpleStateProvider;
 import net.minecraftforge.common.IPlantable;
 
 import java.util.Random;
 
-public class GaiaTreeFeatureConfig implements IFeatureConfig {
+public class GaiaTreeFeatureConfig implements FeatureConfiguration {
 
     public static final Codec<GaiaTreeFeatureConfig> CODEC = RecordCodecBuilder.create((instance) ->
             instance.group(
                     BlockStateProvider.CODEC.fieldOf("trunk_provider").forGetter((obj) -> obj.trunkProvider),
                     BlockStateProvider.CODEC.fieldOf("leaves_provider").forGetter((obj) -> obj.leavesProvider),
                     Codec.INT.fieldOf("height").forGetter((obj) -> obj.minHeight),
-                    BlockStateProvider.CODEC.fieldOf("sapling").orElse(new SimpleBlockStateProvider(ModBlocks.pink_agate_sapling.get().defaultBlockState())).forGetter((obj) -> obj.sapling)
+                    BlockStateProvider.CODEC.fieldOf("sapling").orElse(new SimpleStateProvider(ModBlocks.pink_agate_sapling.get().defaultBlockState())).forGetter((obj) -> obj.sapling)
             ).apply(instance, GaiaTreeFeatureConfig::new));
 
     public final BlockStateProvider trunkProvider;
@@ -56,7 +56,7 @@ public class GaiaTreeFeatureConfig implements IFeatureConfig {
         }
 
         public GaiaTreeFeatureConfig.Builder setSapling(SaplingBlock sapling) {
-            this.sapling = new SimpleBlockStateProvider(sapling.defaultBlockState());
+            this.sapling = new SimpleStateProvider(sapling.defaultBlockState());
             return this;
         }
 

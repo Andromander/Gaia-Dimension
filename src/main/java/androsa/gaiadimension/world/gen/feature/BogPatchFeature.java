@@ -2,25 +2,29 @@ package androsa.gaiadimension.world.gen.feature;
 
 import androsa.gaiadimension.registry.ModBlocks;
 import com.mojang.serialization.Codec;
-import net.minecraft.block.Block;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.ISeedReader;
-import net.minecraft.world.gen.ChunkGenerator;
-import net.minecraft.world.gen.feature.Feature;
-import net.minecraft.world.gen.feature.SphereReplaceConfig;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.WorldGenLevel;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.levelgen.feature.Feature;
+import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
+import net.minecraft.world.level.levelgen.feature.configurations.DiskConfiguration;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.Random;
 
 @ParametersAreNonnullByDefault
-public class BogPatchFeature<T extends SphereReplaceConfig> extends Feature<T> {
+public class BogPatchFeature<T extends DiskConfiguration> extends Feature<T> {
 
     public BogPatchFeature(Codec<T> configIn) {
         super(configIn);
     }
 
     @Override
-    public boolean place(ISeedReader world, ChunkGenerator generator, Random random, BlockPos pos, T config) {
+    public boolean place(FeaturePlaceContext<T> context) {
+        return place(context.level(), context.random(), context.origin());
+    }
+
+    public boolean place(WorldGenLevel world, Random random, BlockPos pos) {
         int range = random.nextInt(4 - 2) + 2;
         int yRange = 1;
 

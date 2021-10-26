@@ -8,9 +8,10 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.gen.carver.ConfiguredCarver;
-import net.minecraft.world.gen.feature.*;
-import net.minecraft.world.gen.surfacebuilders.ConfiguredSurfaceBuilder;
+import net.minecraft.world.level.levelgen.carver.ConfiguredWorldCarver;
+import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
+import net.minecraft.world.level.levelgen.feature.ConfiguredStructureFeature;
+import net.minecraft.world.level.levelgen.surfacebuilders.ConfiguredSurfaceBuilder;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -26,8 +27,8 @@ public class RegistryHelper {
     public static final List<ParticleType<?>> PARTICLE_TYPES = Lists.newArrayList();
     public static final List<SoundEvent> SOUND_EVENTS = Lists.newArrayList();
     public static final Map<ConfiguredSurfaceBuilder<?>, String> CONFIGURED_SURFACE_BUILDERS = Maps.newHashMap();
-    public static final Map<StructureFeature<?,?>, String> CONFIGURED_STRUCTURE_FEATURES = Maps.newHashMap();
-    public static final Map<ConfiguredCarver<?>, String> CONFIGURED_WORLD_CARVERS = Maps.newHashMap();
+    public static final Map<ConfiguredStructureFeature<?,?>, String> CONFIGURED_STRUCTURE_FEATURES = Maps.newHashMap();
+    public static final Map<ConfiguredWorldCarver<?>, String> CONFIGURED_WORLD_CARVERS = Maps.newHashMap();
     public static final Map<ConfiguredFeature<?,?>, String> CONFIGURED_FEATURES = Maps.newHashMap();
 
     public static <E extends Entity> EntityType<E> registerEntity(EntityType<E> entity) {

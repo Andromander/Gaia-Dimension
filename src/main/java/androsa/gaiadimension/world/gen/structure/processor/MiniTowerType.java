@@ -5,19 +5,19 @@ import androsa.gaiadimension.registry.ModBlocks;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Maps;
 import com.mojang.serialization.Codec;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.SlabBlock;
-import net.minecraft.block.StairsBlock;
-import net.minecraft.util.IStringSerializable;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.Util;
+import net.minecraft.Util;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.StringRepresentable;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.SlabBlock;
+import net.minecraft.world.level.block.StairBlock;
+import net.minecraft.world.level.block.state.BlockState;
 
 import java.util.Map;
 import java.util.Random;
 import java.util.function.Supplier;
 
-public enum MiniTowerType implements IStringSerializable {
+public enum MiniTowerType implements StringRepresentable {
     AMETHYST("AMETHYST", GaiaChestTables.CHESTS_MINITOWER_AMETHYST,
             ModBlocks.amethyst_bricks, ImmutableList.of(ModBlocks.cracked_amethyst_bricks, ModBlocks.crusted_amethyst_bricks),
             ModBlocks.amethyst_brick_stairs, ImmutableList.of(ModBlocks.cracked_amethyst_brick_stairs, ModBlocks.crusted_amethyst_brick_stairs),
@@ -39,14 +39,14 @@ public enum MiniTowerType implements IStringSerializable {
             ModBlocks.jet_brick_slab, ImmutableList.of(ModBlocks.cracked_jet_brick_slab, ModBlocks.crusted_jet_brick_slab)
     );
 
-    public static final Codec<MiniTowerType> CODEC = IStringSerializable.fromEnum(MiniTowerType::values, MiniTowerType::getType);
+    public static final Codec<MiniTowerType> CODEC = StringRepresentable.fromEnum(MiniTowerType::values, MiniTowerType::getType);
 
     private final String name;
     private final ResourceLocation chestLoot;
     private final Supplier<Block> brickBlock;
     private final ImmutableList<Supplier<Block>> brickDegrades;
-    private final Supplier<StairsBlock> stairsBlock;
-    private final ImmutableList<Supplier<StairsBlock>> stairsDegrades;
+    private final Supplier<StairBlock> stairsBlock;
+    private final ImmutableList<Supplier<StairBlock>> stairsDegrades;
     private final Supplier<SlabBlock> slabBlock;
     private final ImmutableList<Supplier<SlabBlock>> slabDegrades;
 
@@ -56,7 +56,7 @@ public enum MiniTowerType implements IStringSerializable {
         }
     });
 
-    MiniTowerType(String name, ResourceLocation loot, Supplier<Block> brick, ImmutableList<Supplier<Block>> breakbricks, Supplier<StairsBlock> stairs, ImmutableList<Supplier<StairsBlock>> breakstairs, Supplier<SlabBlock> slab, ImmutableList<Supplier<SlabBlock>> breakslab) {
+    MiniTowerType(String name, ResourceLocation loot, Supplier<Block> brick, ImmutableList<Supplier<Block>> breakbricks, Supplier<StairBlock> stairs, ImmutableList<Supplier<StairBlock>> breakstairs, Supplier<SlabBlock> slab, ImmutableList<Supplier<SlabBlock>> breakslab) {
         this.name = name;
         chestLoot = loot;
         brickBlock = brick;

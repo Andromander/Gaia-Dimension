@@ -131,4 +131,10 @@ public abstract class SuperhotMagmaFluid extends ForgeFlowingFluid {
     private void triggerEffects(LevelAccessor world, BlockPos pos) {
         world.levelEvent(Constants.WorldEvents.LAVA_EXTINGUISH, pos, 0);
     }
+
+    @Override
+    public BlockState createLegacyBlock(FluidState state) {
+        //Looks like nothing, but I'm making it public
+        return super.createLegacyBlock(state);
+    }
 }

@@ -3,17 +3,17 @@ package androsa.gaiadimension.world.gen.structure.processor;
 import androsa.gaiadimension.registry.ModWorldgen;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.SlabBlock;
-import net.minecraft.block.StairsBlock;
-import net.minecraft.state.Property;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.IWorldReader;
-import net.minecraft.world.gen.feature.template.IStructureProcessorType;
-import net.minecraft.world.gen.feature.template.PlacementSettings;
-import net.minecraft.world.gen.feature.template.StructureProcessor;
-import net.minecraft.world.gen.feature.template.Template;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.SlabBlock;
+import net.minecraft.world.level.block.StairBlock;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.Property;
+import net.minecraft.world.level.levelgen.structure.templatesystem.StructurePlaceSettings;
+import net.minecraft.world.level.levelgen.structure.templatesystem.StructureProcessor;
+import net.minecraft.world.level.levelgen.structure.templatesystem.StructureProcessorType;
+import net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemplate;
 
 import javax.annotation.Nullable;
 import java.util.Random;
@@ -41,21 +41,21 @@ public class BlockDegradeProcessor extends StructureProcessor {
     }
 
     @Override
-    protected IStructureProcessorType getType() {
+    protected StructureProcessorType<?> getType() {
         return ModWorldgen.StructureTypes.BLOCK_DEGRADE;
     }
 
     @Nullable
     @Override
-    public Template.BlockInfo process(IWorldReader world, BlockPos pos, BlockPos tpos, Template.BlockInfo oldInfo, Template.BlockInfo newInfo, PlacementSettings settings, @Nullable Template template) {
+    public StructureTemplate.StructureBlockInfo process(LevelReader world, BlockPos pos, BlockPos tpos, StructureTemplate.StructureBlockInfo oldInfo, StructureTemplate.StructureBlockInfo newInfo, StructurePlaceSettings settings, @Nullable StructureTemplate template) {
         BlockState state = newInfo.state;
 
         if (state == towertype.getBrick())
-            return random.nextFloat() > integrity ? newInfo : new Template.BlockInfo(newInfo.pos, towertype.getBrickDecay(random), null);
+            return random.nextFloat() > integrity ? newInfo : new StructureTemplate.StructureBlockInfo(newInfo.pos, towertype.getBrickDecay(random), null);
         if (state == towertype.getSlab())
-            return random.nextFloat() > integrity ? newInfo : new Template.BlockInfo(newInfo.pos, translateState(state, towertype.getSlabDecay(random).getBlock(), SlabBlock.TYPE, SlabBlock.WATERLOGGED), null);
+            return random.nextFloat() > integrity ? newInfo : new StructureTemplate.StructureBlockInfo(newInfo.pos, translateState(state, towertype.getSlabDecay(random).getBlock(), SlabBlock.TYPE, SlabBlock.WATERLOGGED), null);
         if (state == towertype.getStairs())
-            return random.nextFloat() > integrity ? newInfo : new Template.BlockInfo(newInfo.pos, translateState(state, towertype.getStairsDecay(random).getBlock(), StairsBlock.FACING, StairsBlock.HALF, StairsBlock.SHAPE, StairsBlock.WATERLOGGED), null);
+            return random.nextFloat() > integrity ? newInfo : new StructureTemplate.StructureBlockInfo(newInfo.pos, translateState(state, towertype.getStairsDecay(random).getBlock(), StairBlock.FACING, StairBlock.HALF, StairBlock.SHAPE, StairBlock.WATERLOGGED), null);
 
         return newInfo;
     }

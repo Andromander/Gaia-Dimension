@@ -2,18 +2,17 @@ package androsa.gaiadimension.world.gen.feature;
 
 import androsa.gaiadimension.registry.ModBlocks;
 import com.mojang.serialization.Codec;
-import net.minecraft.block.Block;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.ISeedReader;
-import net.minecraft.world.gen.ChunkGenerator;
-import net.minecraft.world.gen.feature.Feature;
-import net.minecraft.world.gen.feature.NoFeatureConfig;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.WorldGenLevel;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.levelgen.feature.Feature;
+import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
+import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
 
 import javax.annotation.ParametersAreNonnullByDefault;
-import java.util.Random;
 
 @ParametersAreNonnullByDefault
-public class BismuthGeyserFeature<T extends NoFeatureConfig> extends Feature<T> {
+public class BismuthGeyserFeature<T extends NoneFeatureConfiguration> extends Feature<T> {
 
     private static final Block GRASS = ModBlocks.murky_grass.get();
 
@@ -22,7 +21,11 @@ public class BismuthGeyserFeature<T extends NoFeatureConfig> extends Feature<T> 
     }
 
     @Override
-    public boolean place(ISeedReader worldIn, ChunkGenerator generator, Random rand, BlockPos position, T config) {
+    public boolean place(FeaturePlaceContext<T> context) {
+        return place(context.level(), context.origin());
+    }
+
+    public boolean place(WorldGenLevel worldIn, BlockPos position) {
         for (int cx = 0; cx < 5; cx++) {
             for (int cz = 0; cz < 5; cz++) {
                 BlockPos pos = position.offset(cx - 2, 0, cz - 2);

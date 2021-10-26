@@ -3,18 +3,18 @@ package androsa.gaiadimension.world.gen.feature;
 import androsa.gaiadimension.block.AuraShootBlock;
 import androsa.gaiadimension.registry.ModBlocks;
 import com.mojang.serialization.Codec;
-import net.minecraft.block.BlockState;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.ISeedReader;
-import net.minecraft.world.gen.ChunkGenerator;
-import net.minecraft.world.gen.feature.Feature;
-import net.minecraft.world.gen.feature.NoFeatureConfig;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.WorldGenLevel;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.levelgen.feature.Feature;
+import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
+import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.Random;
 
 @ParametersAreNonnullByDefault
-public class AuraShootsFeature<T extends NoFeatureConfig> extends Feature<T> {
+public class AuraShootsFeature<T extends NoneFeatureConfiguration> extends Feature<T> {
 
     private static final BlockState AURA_SHOOT = ModBlocks.aura_shoot.get().defaultBlockState();
 
@@ -23,8 +23,11 @@ public class AuraShootsFeature<T extends NoFeatureConfig> extends Feature<T> {
     }
 
     @Override
-    public boolean place(ISeedReader worldIn, ChunkGenerator generator, Random rand, BlockPos position, T config) {
+    public boolean place(FeaturePlaceContext<T> context) {
+        return place(context.level(), context.random(), context.origin());
+    }
 
+    public boolean place(WorldGenLevel worldIn, Random rand, BlockPos position) {
         for (int i = 0; i < 20; ++i) {
             BlockPos blockpos = position.offset(rand.nextInt(4) - rand.nextInt(4), 0, rand.nextInt(4) - rand.nextInt(4));
 

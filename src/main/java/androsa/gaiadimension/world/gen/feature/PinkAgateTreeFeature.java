@@ -3,14 +3,15 @@ package androsa.gaiadimension.world.gen.feature;
 import androsa.gaiadimension.registry.ModBlocks;
 import androsa.gaiadimension.world.gen.config.GaiaTreeFeatureConfig;
 import com.mojang.serialization.Codec;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MutableBoundingBox;
-import net.minecraft.world.ISeedReader;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.WorldGenLevel;
+import net.minecraft.world.level.block.state.BlockState;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.Random;
-import java.util.Set;
+import java.util.function.BiConsumer;
 
+//TODO: Comb through and see if we can use the vanilla tree system.
 @ParametersAreNonnullByDefault
 public class PinkAgateTreeFeature<T extends GaiaTreeFeatureConfig> extends GaiaTreeFeature<T> {
 
@@ -19,7 +20,7 @@ public class PinkAgateTreeFeature<T extends GaiaTreeFeatureConfig> extends GaiaT
     }
 
     @Override
-    public boolean generate(ISeedReader worldIn, Random rand, BlockPos position, Set<BlockPos> logPos, Set<BlockPos> leavesPos, MutableBoundingBox boundingBox, T config) {
+    public boolean generate(WorldGenLevel worldIn, Random rand, BlockPos position, BiConsumer<BlockPos, BlockState> logPos, BiConsumer<BlockPos, BlockState> leavesPos, T config) {
         int height = rand.nextInt(3) + rand.nextInt(3) + config.minHeight;
         boolean isValidBonemealTarget = true;
 
@@ -35,7 +36,7 @@ public class PinkAgateTreeFeature<T extends GaiaTreeFeatureConfig> extends GaiaT
                     k = 2;
                 }
 
-                BlockPos.Mutable blockpos$mutableblockpos = new BlockPos.Mutable();
+                BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
 
                 for (int cx = position.getX() - k; cx <= position.getX() + k && isValidBonemealTarget; ++cx) {
                     for (int cz = position.getZ() - k; cz <= position.getZ() + k && isValidBonemealTarget; ++cz) {
@@ -53,7 +54,7 @@ public class PinkAgateTreeFeature<T extends GaiaTreeFeatureConfig> extends GaiaT
             if (!isValidBonemealTarget) {
                 return false;
             } else if (isSoil(worldIn, position.below(), config.getSapling(rand, position)) && position.getY() < worldIn.getHeight() - height - 1) {
-                this.setBlockState(worldIn, position.below(), ModBlocks.heavy_soil.get().defaultBlockState(), boundingBox);
+                this.setBlock(worldIn, position.below(), ModBlocks.heavy_soil.get().defaultBlockState());
                 int posX = position.getX();
                 int posZ = position.getZ();
                 int posY = 0;
@@ -63,7 +64,7 @@ public class PinkAgateTreeFeature<T extends GaiaTreeFeatureConfig> extends GaiaT
 
                     BlockPos blockpos = new BlockPos(posX, i2, posZ);
                     if (isAirOrLeaves(worldIn, blockpos)) {
-                        this.setLogBlockState(worldIn, rand, blockpos, logPos, boundingBox, config);
+                        this.setLog(worldIn, rand, blockpos, logPos, config);
                         posY = i2;
                     }
                 }
@@ -73,7 +74,7 @@ public class PinkAgateTreeFeature<T extends GaiaTreeFeatureConfig> extends GaiaT
                 for (int j3 = -3; j3 <= 3; ++j3) {
                     for (int i4 = -3; i4 <= 3; ++i4) {
                         if (Math.abs(j3) != 3 || Math.abs(i4) != 3){
-                            this.setLeavesBlockState(worldIn, rand, blockpos2.offset(j3, 0, i4), leavesPos, boundingBox, config);
+                            this.setLeaves(worldIn, rand, blockpos2.offset(j3, 0, i4), leavesPos, config);
                         }
                     }
                 }
@@ -82,14 +83,14 @@ public class PinkAgateTreeFeature<T extends GaiaTreeFeatureConfig> extends GaiaT
 
                 for (int k3 = -1; k3 <= 1; ++k3) {
                     for (int j4 = -1; j4 <= 1; ++j4) {
-                        this.setLeavesBlockState(worldIn, rand, blockpos2.offset(k3, 0, j4), leavesPos, boundingBox, config);
+                        this.setLeaves(worldIn, rand, blockpos2.offset(k3, 0, j4), leavesPos, config);
                     }
                 }
 
-                this.setLeavesBlockState(worldIn, rand, blockpos2.east(2), leavesPos, boundingBox, config);
-                this.setLeavesBlockState(worldIn, rand, blockpos2.west(2), leavesPos, boundingBox, config);
-                this.setLeavesBlockState(worldIn, rand, blockpos2.south(2), leavesPos, boundingBox, config);
-                this.setLeavesBlockState(worldIn, rand, blockpos2.north(2), leavesPos, boundingBox, config);
+                this.setLeaves(worldIn, rand, blockpos2.east(2), leavesPos, config);
+                this.setLeaves(worldIn, rand, blockpos2.west(2), leavesPos, config);
+                this.setLeaves(worldIn, rand, blockpos2.south(2), leavesPos, config);
+                this.setLeaves(worldIn, rand, blockpos2.north(2), leavesPos, config);
 
                 return true;
             } else {
