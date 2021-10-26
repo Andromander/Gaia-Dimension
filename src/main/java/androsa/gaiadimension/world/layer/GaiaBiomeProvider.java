@@ -5,21 +5,21 @@ import androsa.gaiadimension.world.GaiaChunkGenerator;
 import com.google.common.collect.ImmutableList;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import net.minecraft.util.RegistryKey;
-import net.minecraft.util.SharedConstants;
-import net.minecraft.util.Util;
-import net.minecraft.util.registry.Registry;
-import net.minecraft.util.registry.RegistryLookupCodec;
-import net.minecraft.world.biome.Biome;
-import net.minecraft.world.biome.BiomeRegistry;
-import net.minecraft.world.biome.provider.BiomeProvider;
-import net.minecraft.world.gen.layer.Layer;
+import net.minecraft.SharedConstants;
+import net.minecraft.Util;
+import net.minecraft.core.Registry;
+import net.minecraft.data.worldgen.biome.Biomes;
+import net.minecraft.resources.RegistryLookupCodec;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.world.level.biome.Biome;
+import net.minecraft.world.level.biome.BiomeSource;
+import net.minecraft.world.level.newbiome.layer.Layer;
 
 import java.util.List;
 
 import static androsa.gaiadimension.registry.ModBiomes.*;
 
-public class GaiaBiomeProvider extends BiomeProvider {
+public class GaiaBiomeProvider extends BiomeSource {
 
     public static final Codec<GaiaBiomeProvider> CODEC = RecordCodecBuilder.create((instance) -> instance.group(
             Codec.LONG.fieldOf("seed")
@@ -32,7 +32,7 @@ public class GaiaBiomeProvider extends BiomeProvider {
     private final long seed;
     private final Registry<Biome> registry;
     private final Layer genBiomes;
-    private static final List<RegistryKey<Biome>> biomes = ImmutableList.of(
+    private static final List<ResourceKey<Biome>> biomes = ImmutableList.of(
             pink_agate_forest,
             blue_agate_taiga,
             green_agate_jungle,
@@ -64,12 +64,12 @@ public class GaiaBiomeProvider extends BiomeProvider {
     }
 
     @Override
-    public BiomeProvider withSeed(long s) {
+    public BiomeSource withSeed(long s) {
         return new GaiaBiomeProvider(s, registry);
     }
 
     @Override
-    protected Codec<? extends BiomeProvider> codec() {
+    protected Codec<? extends BiomeSource> codec() {
         return CODEC;
     }
 
@@ -86,7 +86,7 @@ public class GaiaBiomeProvider extends BiomeProvider {
                 throw Util.pauseInIde(new IllegalStateException("Unknown biome id: " + i));
             } else {
                 GaiaDimensionMod.LOGGER.warn("Unknown biome id: ", i);
-                return registry.get(BiomeRegistry.byId(0));
+                return registry.get(Biomes.byId(0));
             }
         } else {
             return biome;

@@ -4,49 +4,56 @@ import androsa.gaiadimension.GaiaDimensionMod;
 import androsa.gaiadimension.block.GaiaPortalBlock;
 import androsa.gaiadimension.registry.ModBlocks;
 import androsa.gaiadimension.registry.ModDimensions;
-import net.minecraft.block.*;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.state.properties.BlockStateProperties;
-import net.minecraft.util.Direction;
-import net.minecraft.util.TeleportationRepositioner;
-import net.minecraft.util.math.*;
-import net.minecraft.util.math.vector.Vector3d;
-import net.minecraft.village.PointOfInterest;
-import net.minecraft.village.PointOfInterestManager;
-import net.minecraft.world.DimensionType;
-import net.minecraft.world.border.WorldBorder;
-import net.minecraft.world.gen.Heightmap;
-import net.minecraft.world.server.ServerWorld;
-import net.minecraft.world.server.TicketType;
+import net.minecraft.BlockUtil;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.server.level.TicketType;
+import net.minecraft.util.Mth;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.ai.village.poi.PoiManager;
+import net.minecraft.world.entity.ai.village.poi.PoiRecord;
+import net.minecraft.world.level.ChunkPos;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.border.WorldBorder;
+import net.minecraft.world.level.dimension.DimensionType;
+import net.minecraft.world.level.levelgen.Heightmap;
+import net.minecraft.world.level.portal.PortalInfo;
+import net.minecraft.world.level.portal.PortalShape;
+import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.common.util.ITeleporter;
-import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
+import net.minecraftforge.fml.util.ObfuscationReflectionHelper;
 
 import javax.annotation.Nullable;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.*;
+import java.util.Comparator;
+import java.util.Optional;
 import java.util.function.Function;
 import java.util.function.ToDoubleFunction;
 
 public class GaiaTeleporter implements ITeleporter {
 
     private static final Block KEYSTONE = ModBlocks.keystone_block.get();
-    private final ServerWorld world;
+    private final ServerLevel world;
 
-    private static final Method m_getRelativePortalPosition = ObfuscationReflectionHelper.findMethod(Entity.class, "func_241839_a", Direction.Axis.class, TeleportationRepositioner.Result.class);
+    private static final Method m_getRelativePortalPosition = ObfuscationReflectionHelper.findMethod(Entity.class, "m_7643_", Direction.Axis.class, BlockUtil.FoundRectangle.class);
 
-    public GaiaTeleporter(ServerWorld world) {
+    public GaiaTeleporter(ServerLevel world) {
         this.world = world;
     }
 
-    public Optional<TeleportationRepositioner.Result> getExistingPortal(BlockPos pos) {
-        PointOfInterestManager poimanager = this.world.getPoiManager();
+    public Optional<BlockUtil.FoundRectangle> getExistingPortal(BlockPos pos) {
+        PoiManager poimanager = this.world.getPoiManager();
         int i = 64; //TODO: correct?
         poimanager.ensureLoadedAndValid(this.world, pos, i);
-        Optional<PointOfInterest> optional = poimanager.getInSquare(poiType ->
-                poiType == ModDimensions.GAIA_PORTAL.get(), pos, i, PointOfInterestManager.Status.ANY)
-                .sorted(Comparator.comparingDouble((ToDoubleFunction<PointOfInterest>) poi ->
+        Optional<PoiRecord> optional = poimanager.getInSquare(type ->
+                type == ModDimensions.GAIA_PORTAL.get(), pos, i, PoiManager.Occupancy.ANY)
+                .sorted(Comparator.comparingDouble((ToDoubleFunction<PoiRecord>) poi ->
                         poi.getPos().distSqr(pos))
                         .thenComparingInt(poi ->
                                 poi.getPos().getY()))
@@ -57,14 +64,14 @@ public class GaiaTeleporter implements ITeleporter {
             BlockPos blockpos = poi.getPos();
             this.world.getChunkSource().addRegionTicket(TicketType.PORTAL, new ChunkPos(blockpos), 3, blockpos);
             BlockState blockstate = this.world.getBlockState(blockpos);
-            return TeleportationRepositioner.getLargestRectangleAround(blockpos, blockstate.getValue(BlockStateProperties.HORIZONTAL_AXIS), 21, Direction.Axis.Y, 21, (posIn) -> this.world.getBlockState(posIn) == blockstate);
+            return BlockUtil.getLargestRectangleAround(blockpos, blockstate.getValue(BlockStateProperties.HORIZONTAL_AXIS), 21, Direction.Axis.Y, 21, (posIn) -> this.world.getBlockState(posIn) == blockstate);
         });
     }
 
     /**
      * Create a portal at the teleport location.
      */
-    public Optional<TeleportationRepositioner.Result> makePortal(BlockPos pos, Direction.Axis axis) {
+    public Optional<BlockUtil.FoundRectangle> makePortal(BlockPos pos, Direction.Axis axis) {
         Direction direction = Direction.get(Direction.AxisDirection.POSITIVE, axis);
         double d0 = -1.0D;
         BlockPos blockpos = null;
@@ -72,10 +79,10 @@ public class GaiaTeleporter implements ITeleporter {
         BlockPos blockpos1 = null;
         WorldBorder border = this.world.getWorldBorder();
         int height = this.world.getHeight() - 1;
-        BlockPos.Mutable mutable = pos.mutable();
+        BlockPos.MutableBlockPos mutable = pos.mutable();
 
-        for (BlockPos.Mutable mut : BlockPos.spiralAround(pos, 16, Direction.EAST, Direction.SOUTH)) {
-            int j = Math.min(height, this.world.getHeight(Heightmap.Type.MOTION_BLOCKING, mut.getX(), mut.getZ()));
+        for (BlockPos.MutableBlockPos mut : BlockPos.spiralAround(pos, 16, Direction.EAST, Direction.SOUTH)) {
+            int j = Math.min(height, this.world.getHeight(Heightmap.Types.MOTION_BLOCKING, mut.getX(), mut.getZ()));
             if (border.isWithinBounds(mut) && border.isWithinBounds(mut.move(direction, 1))) {
                 mut.move(direction.getOpposite(), 1);
 
@@ -116,7 +123,7 @@ public class GaiaTeleporter implements ITeleporter {
 
         //Place the frame blocks
         if (d0 == -1.0D) {
-            blockpos = (new BlockPos(pos.getX(), MathHelper.clamp(pos.getY(), 70, world.getHeight() - 10), pos.getZ())).immutable();
+            blockpos = (new BlockPos(pos.getX(), Mth.clamp(pos.getY(), 70, world.getHeight() - 10), pos.getZ())).immutable();
             Direction drotated = direction.getClockWise();
             if (!border.isWithinBounds(blockpos)) {
                 return Optional.empty();
@@ -151,11 +158,11 @@ public class GaiaTeleporter implements ITeleporter {
             }
         }
 
-        return Optional.of(new TeleportationRepositioner.Result(blockpos.immutable(), 2, 3));
+        return Optional.of(new BlockUtil.FoundRectangle(blockpos.immutable(), 2, 3));
     }
 
     //VanillaCopy of Teleporter.checkRegionForPlacement
-    private boolean checkRegionForPlacement(BlockPos originalPos, BlockPos.Mutable offsetPos, Direction directionIn, int offsetScale) {
+    private boolean checkRegionForPlacement(BlockPos originalPos, BlockPos.MutableBlockPos offsetPos, Direction directionIn, int offsetScale) {
         Direction direction = directionIn.getClockWise();
 
         for(int i = -1; i < 3; ++i) {
@@ -175,13 +182,13 @@ public class GaiaTeleporter implements ITeleporter {
     }
 
     @Override
-    public Entity placeEntity(Entity entity, ServerWorld currentWorld, ServerWorld destWorld, float yaw, Function<Boolean, Entity> repositionEntity) {
+    public Entity placeEntity(Entity entity, ServerLevel currentWorld, ServerLevel destWorld, float yaw, Function<Boolean, Entity> repositionEntity) {
         return repositionEntity.apply(false);
     }
 
     @Nullable
     @Override
-    public PortalInfo getPortalInfo(Entity entity, ServerWorld destWorld, Function<ServerWorld, PortalInfo> defaultPortalInfo) {
+    public PortalInfo getPortalInfo(Entity entity, ServerLevel destWorld, Function<ServerLevel, PortalInfo> defaultPortalInfo) {
         boolean toGaia = destWorld.dimension() == ModDimensions.gaia_world;
         if (entity.level.dimension() != ModDimensions.gaia_world && !toGaia) {
             return null;
@@ -192,37 +199,37 @@ public class GaiaTeleporter implements ITeleporter {
             double maxX = Math.min(2.9999872E7D, border.getMaxX() - 16.0D);
             double maxZ = Math.min(2.9999872E7D, border.getMaxZ() - 16.0D);
             double offset = DimensionType.getTeleportationScale(entity.level.dimensionType(), destWorld.dimensionType());
-            BlockPos blockpos = new BlockPos(MathHelper.clamp(entity.getX() * offset, minX, maxX), entity.getY(), MathHelper.clamp(entity.getZ() * offset, minZ, maxZ));
+            BlockPos blockpos = new BlockPos(Mth.clamp(entity.getX() * offset, minX, maxX), entity.getY(), Mth.clamp(entity.getZ() * offset, minZ, maxZ));
             return this.getPortalLogic(entity, blockpos).map((portalresult) -> {
                 BlockState blockstate = entity.level.getBlockState(entity.portalEntrancePos);
                 Direction.Axis axis;
-                Vector3d vector3d;
+                Vec3 vector3d;
                 if (blockstate.hasProperty(BlockStateProperties.HORIZONTAL_AXIS)) {
                     axis = blockstate.getValue(BlockStateProperties.HORIZONTAL_AXIS);
-                    TeleportationRepositioner.Result result = TeleportationRepositioner.getLargestRectangleAround(entity.portalEntrancePos, axis, 21, Direction.Axis.Y, 21, (pos) -> entity.level.getBlockState(pos) == blockstate);
+                    BlockUtil.FoundRectangle result = BlockUtil.getLargestRectangleAround(entity.portalEntrancePos, axis, 21, Direction.Axis.Y, 21, (pos) -> entity.level.getBlockState(pos) == blockstate);
                     try {
-                        vector3d = (Vector3d) m_getRelativePortalPosition.invoke(entity, axis, result);
+                        vector3d = (Vec3) m_getRelativePortalPosition.invoke(entity, axis, result);
                     } catch (IllegalAccessException | InvocationTargetException e) {
                         throw new RuntimeException(e);
                     }
                 } else {
                     axis = Direction.Axis.X;
-                    vector3d = new Vector3d(0.5D, 0.0D, 0.0D);
+                    vector3d = new Vec3(0.5D, 0.0D, 0.0D);
                 }
 
-                return PortalSize.createPortalInfo(destWorld, portalresult, axis, vector3d, entity.getDimensions(entity.getPose()), entity.getDeltaMovement(), entity.yRot, entity.xRot);
+                return PortalShape.createPortalInfo(destWorld, portalresult, axis, vector3d, entity.getDimensions(entity.getPose()), entity.getDeltaMovement(), entity.getYRot(), entity.getXRot());
             }).orElse(null);
         }
     }
 
-    private Optional<TeleportationRepositioner.Result> getPortalLogic(Entity entity, BlockPos pos) {
-        Optional<TeleportationRepositioner.Result> existing = this.getExistingPortal(pos);
-        if (entity instanceof ServerPlayerEntity) { //ServerPlayerEntity seems to do the portal creation
+    private Optional<BlockUtil.FoundRectangle> getPortalLogic(Entity entity, BlockPos pos) {
+        Optional<BlockUtil.FoundRectangle> existing = this.getExistingPortal(pos);
+        if (entity instanceof ServerPlayer) { //ServerPlayer seems to do the portal creation
             if (existing.isPresent()) {
                 return existing;
             } else {
                 Direction.Axis axis = entity.level.getBlockState(entity.portalEntrancePos).getOptionalValue(GaiaPortalBlock.AXIS).orElse(Direction.Axis.X);
-                Optional<TeleportationRepositioner.Result> portal = this.makePortal(pos, axis);
+                Optional<BlockUtil.FoundRectangle> portal = this.makePortal(pos, axis);
                 if (!portal.isPresent()) {
                     GaiaDimensionMod.LOGGER.error("Unable to create a portal, likely target out of worldborder");
                 }

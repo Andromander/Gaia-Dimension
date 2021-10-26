@@ -2,12 +2,12 @@ package androsa.gaiadimension.world.layer;
 
 import androsa.gaiadimension.registry.ModBiomes;
 import com.google.common.collect.ImmutableList;
-import net.minecraft.world.gen.INoiseRandom;
-import net.minecraft.world.gen.layer.traits.ICastleTransformer;
+import net.minecraft.world.level.newbiome.context.Context;
+import net.minecraft.world.level.newbiome.layer.traits.CastleTransformer;
 
 import java.util.List;
 
-public enum MineralRiverLayer implements ICastleTransformer {
+public enum MineralRiverLayer implements CastleTransformer {
 
     INSTANCE;
 
@@ -24,7 +24,7 @@ public enum MineralRiverLayer implements ICastleTransformer {
     MineralRiverLayer() { }
 
     @Override
-    public int apply(INoiseRandom random, int north, int west, int south, int east, int center) {
+    public int apply(Context random, int north, int west, int south, int east, int center) {
         if (shouldRiver(center, west, south, east, north)) {
             return GaiaLayerUtil.getBiomeId(ModBiomes.mineral_river);
         } else {

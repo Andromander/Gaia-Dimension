@@ -7,9 +7,9 @@ import androsa.gaiadimension.registry.*;
 import net.minecraft.client.renderer.DimensionSpecialEffects;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.village.PointOfInterestType;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.MobType;
+import net.minecraft.world.entity.ai.village.poi.PoiType;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -75,8 +75,8 @@ public class GaiaDimensionMod {
 
     public void setup(FMLCommonSetupEvent event) {
         event.enqueueWork(() -> {
-            PointOfInterestType.registerBlockStates(ModDimensions.GAIA_PORTAL.get());
-            PointOfInterestType.ALL_STATES.addAll(ModDimensions.GAIA_PORTAL.get().matchingStates);
+            PoiType.registerBlockStates(ModDimensions.GAIA_PORTAL.get());
+            PoiType.ALL_STATES.addAll(ModDimensions.GAIA_PORTAL.get().matchingStates);
 
             // needs to be in enqueue as vanilla WorldGen registry maps arent threadsafe.
             GaiaBiomeFeatures.registerConfiguredWorldgen();
