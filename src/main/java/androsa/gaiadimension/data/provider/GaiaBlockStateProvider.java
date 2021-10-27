@@ -1,12 +1,14 @@
 package androsa.gaiadimension.data.provider;
 
-import net.minecraft.block.*;
 import net.minecraft.data.DataGenerator;
-import net.minecraft.state.properties.BlockStateProperties;
-import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.client.model.generators.*;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraftforge.client.model.generators.BlockStateProvider;
+import net.minecraftforge.client.model.generators.ConfiguredModel;
+import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.common.data.ExistingFileHelper;
-import net.minecraftforge.fml.RegistryObject;
+import net.minecraftforge.fmllegacy.RegistryObject;
 
 import java.util.function.Supplier;
 
@@ -75,11 +77,11 @@ public abstract class GaiaBlockStateProvider extends BlockStateProvider {
         axisBlock(block.get(), model, model);
     }
 
-    public void stairsBlock(RegistryObject<StairsBlock> block, String name) {
+    public void stairsBlock(RegistryObject<StairBlock> block, String name) {
         stairsBlock(block.get(), tLocGaia(name));
     }
 
-    public void stairsBlockLayered(RegistryObject<StairsBlock> block, String inner, String outer) {
+    public void stairsBlockLayered(RegistryObject<StairBlock> block, String inner, String outer) {
         ModelFile stairs = models().stairsBasicLayer(block, tLocGaia(inner), tLocGaia(outer));
         ModelFile stairsInner = models().stairsInnerBasicLayer(block, tLocGaia(inner), tLocGaia(outer));
         ModelFile stairsOuter = models().stairsOuterBasicLayer(block, tLocGaia(inner), tLocGaia(outer));
