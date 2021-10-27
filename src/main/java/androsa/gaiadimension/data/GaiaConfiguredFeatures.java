@@ -4,11 +4,11 @@ import androsa.gaiadimension.GaiaDimensionMod;
 import androsa.gaiadimension.data.provider.ConfiguredFeaturesProvider;
 import androsa.gaiadimension.registry.GaiaBiomeFeatures;
 import com.google.common.collect.ImmutableMap;
+import net.minecraft.data.BuiltinRegistries;
 import net.minecraft.data.DataGenerator;
-import net.minecraft.util.RegistryKey;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.registry.WorldGenRegistries;
-import net.minecraft.world.gen.feature.ConfiguredFeature;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 
 import java.util.Map;
 
@@ -19,8 +19,8 @@ public class GaiaConfiguredFeatures extends ConfiguredFeaturesProvider {
     }
 
     @Override
-    protected Map<RegistryKey<ConfiguredFeature<?, ?>>, ConfiguredFeature<?, ?>> registerFeatures() {
-        final ImmutableMap.Builder<RegistryKey<ConfiguredFeature<?, ?>>, ConfiguredFeature<?, ?>> features = ImmutableMap.builder();
+    protected Map<ResourceKey<ConfiguredFeature<?, ?>>, ConfiguredFeature<?, ?>> registerFeatures() {
+        final ImmutableMap.Builder<ResourceKey<ConfiguredFeature<?, ?>>, ConfiguredFeature<?, ?>> features = ImmutableMap.builder();
 
         features.put(getKey("lake_superhot_magma_common"), GaiaBiomeFeatures.lake_superhot_magma_common);
         features.put(getKey("lake_superhot_magma_rare"), GaiaBiomeFeatures.lake_superhot_magma_rare);
@@ -100,7 +100,7 @@ public class GaiaConfiguredFeatures extends ConfiguredFeaturesProvider {
         return features.build();
     }
 
-    private static RegistryKey<ConfiguredFeature<?,?>> getKey(String name) {
-        return RegistryKey.create(WorldGenRegistries.CONFIGURED_FEATURE.key(), new ResourceLocation(GaiaDimensionMod.MODID, name));
+    private static ResourceKey<ConfiguredFeature<?,?>> getKey(String name) {
+        return ResourceKey.create(BuiltinRegistries.CONFIGURED_FEATURE.key(), new ResourceLocation(GaiaDimensionMod.MODID, name));
     }
 }

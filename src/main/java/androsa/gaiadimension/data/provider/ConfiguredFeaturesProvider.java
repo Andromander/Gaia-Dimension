@@ -6,11 +6,11 @@ import com.google.gson.JsonElement;
 import com.mojang.serialization.DataResult;
 import com.mojang.serialization.JsonOps;
 import net.minecraft.data.DataGenerator;
-import net.minecraft.data.DirectoryCache;
-import net.minecraft.data.IDataProvider;
-import net.minecraft.util.RegistryKey;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.world.gen.feature.ConfiguredFeature;
+import net.minecraft.data.DataProvider;
+import net.minecraft.data.HashCache;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -21,7 +21,7 @@ import java.util.Optional;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
-public abstract class ConfiguredFeaturesProvider implements IDataProvider {
+public abstract class ConfiguredFeaturesProvider implements DataProvider {
 
     private static final Logger LOGGER = LogManager.getLogger();
     public static final Gson GSON = (new GsonBuilder()).setPrettyPrinting().create();
@@ -37,11 +37,11 @@ public abstract class ConfiguredFeaturesProvider implements IDataProvider {
     }
 
     @Override
-    public void run(DirectoryCache cache) {
+    public void run(HashCache cache) {
         LOGGER.info("Starting Feature Gen");
         Path output = this.generator.getOutputFolder();
 
-        for (Map.Entry<RegistryKey<ConfiguredFeature<?,?>>, ConfiguredFeature<?,?>> feature : registerFeatures().entrySet()) {
+        for (Map.Entry<ResourceKey<ConfiguredFeature<?,?>>, ConfiguredFeature<?,?>> feature : registerFeatures().entrySet()) {
             Path path = getPath(output, feature.getKey().location());
             Function<Supplier<ConfiguredFeature<?,?>>, DataResult<JsonElement>> featuredata = JsonOps.INSTANCE.withEncoder(ConfiguredFeature.CODEC);
 
@@ -49,7 +49,7 @@ public abstract class ConfiguredFeaturesProvider implements IDataProvider {
                 Optional<JsonElement> optional = featuredata.apply(feature::getValue).result();
 
                 if (optional.isPresent()) {
-                    IDataProvider.save(GSON, cache, optional.get(), path);
+                    DataProvider.save(GSON, cache, optional.get(), path);
                 } else {
                     LOGGER.error("Couldn't serialize feature {}", path);
                 }
@@ -60,7 +60,7 @@ public abstract class ConfiguredFeaturesProvider implements IDataProvider {
         LOGGER.info("Finished Feature Gen");
     }
 
-    protected abstract Map<RegistryKey<ConfiguredFeature<?,?>>, ConfiguredFeature<?,?>> registerFeatures();
+    protected abstract Map<ResourceKey<ConfiguredFeature<?,?>>, ConfiguredFeature<?,?>> registerFeatures();
 
     private static Path getPath(Path path, ResourceLocation loc) {
         return path.resolve("data/" + loc.getNamespace() + "/worldgen/configured_feature/" + loc.getPath() + ".json");
