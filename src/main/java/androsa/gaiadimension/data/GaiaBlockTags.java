@@ -4,9 +4,9 @@ import androsa.gaiadimension.data.provider.GaiaBlockTagsProvider;
 import androsa.gaiadimension.registry.GaiaTags;
 import androsa.gaiadimension.registry.ModBlocks;
 import com.google.common.collect.ImmutableList;
-import net.minecraft.block.Block;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.world.level.block.Block;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.data.ExistingFileHelper;
 
