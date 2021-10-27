@@ -1,18 +1,18 @@
 package androsa.gaiadimension.data.provider;
 
 import androsa.gaiadimension.GaiaDimensionMod;
-import net.minecraft.advancements.ICriterionInstance;
-import net.minecraft.advancements.criterion.InventoryChangeTrigger;
-import net.minecraft.advancements.criterion.LocationPredicate;
-import net.minecraft.advancements.criterion.PositionTrigger;
-import net.minecraft.data.AdvancementProvider;
+import net.minecraft.advancements.CriterionTriggerInstance;
+import net.minecraft.advancements.critereon.InventoryChangeTrigger;
+import net.minecraft.advancements.critereon.LocationPredicate;
+import net.minecraft.advancements.critereon.LocationTrigger;
 import net.minecraft.data.DataGenerator;
-import net.minecraft.item.Item;
-import net.minecraft.util.RegistryKey;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.text.TranslationTextComponent;
-import net.minecraft.world.biome.Biome;
-import net.minecraftforge.fml.RegistryObject;
+import net.minecraft.data.advancements.AdvancementProvider;
+import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.level.biome.Biome;
+import net.minecraftforge.fmllegacy.RegistryObject;
 
 public class GaiaAdvancementProvider extends AdvancementProvider {
 
@@ -20,27 +20,27 @@ public class GaiaAdvancementProvider extends AdvancementProvider {
         super(generator);
     }
 
-    protected static TranslationTextComponent title(String name) {
+    protected static TranslatableComponent title(String name) {
         return advancement(name + ".title");
     }
 
-    protected static TranslationTextComponent description(String name) {
+    protected static TranslatableComponent description(String name) {
         return advancement(name + ".description");
     }
 
-    protected static TranslationTextComponent advancement(String name) {
-        return new TranslationTextComponent("advancements.gaia." + name);
+    protected static TranslatableComponent advancement(String name) {
+        return new TranslatableComponent("advancements.gaia." + name);
     }
 
     protected static String loc(String name) {
         return new ResourceLocation(GaiaDimensionMod.MODID, "gaia/" + name).toString();
     }
 
-    protected static ICriterionInstance biome(RegistryKey<Biome> define) {
-        return PositionTrigger.Instance.located(LocationPredicate.inBiome(define));
+    protected static CriterionTriggerInstance biome(ResourceKey<Biome> define) {
+        return LocationTrigger.TriggerInstance.located(LocationPredicate.inBiome(define));
     }
 
-    protected static ICriterionInstance item(RegistryObject<? extends Item> item) {
-        return InventoryChangeTrigger.Instance.hasItems(item.get());
+    protected static CriterionTriggerInstance item(RegistryObject<? extends Item> item) {
+        return InventoryChangeTrigger.TriggerInstance.hasItems(item.get());
     }
 }
