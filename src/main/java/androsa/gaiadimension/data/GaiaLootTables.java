@@ -3,18 +3,28 @@ package androsa.gaiadimension.data;
 import androsa.gaiadimension.GaiaDimensionMod;
 import androsa.gaiadimension.data.provider.GaiaBlockLootTableProvider;
 import androsa.gaiadimension.data.provider.GaiaEntityLootTableProvider;
-import androsa.gaiadimension.registry.*;
+import androsa.gaiadimension.registry.GaiaChestTables;
+import androsa.gaiadimension.registry.ModBlocks;
+import androsa.gaiadimension.registry.ModEntities;
+import androsa.gaiadimension.registry.ModItems;
 import com.google.common.collect.ImmutableList;
 import com.mojang.datafixers.util.Pair;
-import net.minecraft.block.Block;
 import net.minecraft.data.DataGenerator;
-import net.minecraft.data.LootTableProvider;
-import net.minecraft.data.loot.ChestLootTables;
-import net.minecraft.entity.EntityType;
-import net.minecraft.item.Items;
-import net.minecraft.loot.*;
-import net.minecraft.loot.functions.SetCount;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.data.loot.ChestLoot;
+import net.minecraft.data.loot.LootTableProvider;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.storage.loot.LootPool;
+import net.minecraft.world.level.storage.loot.LootTable;
+import net.minecraft.world.level.storage.loot.ValidationContext;
+import net.minecraft.world.level.storage.loot.entries.LootItem;
+import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
+import net.minecraft.world.level.storage.loot.parameters.LootContextParamSet;
+import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
+import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
+import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.List;
@@ -38,12 +48,12 @@ public class GaiaLootTables extends LootTableProvider {
     }
 
     @Override
-    protected List<Pair<Supplier<Consumer<BiConsumer<ResourceLocation, LootTable.Builder>>>, LootParameterSet>> getTables() {
-        return ImmutableList.of(Pair.of(Blocks::new, LootParameterSets.BLOCK), Pair.of(Entities::new, LootParameterSets.ENTITY), Pair.of(Chests::new, LootParameterSets.CHEST));
+    protected List<Pair<Supplier<Consumer<BiConsumer<ResourceLocation, LootTable.Builder>>>, LootContextParamSet>> getTables() {
+        return ImmutableList.of(Pair.of(Blocks::new, LootContextParamSets.BLOCK), Pair.of(Entities::new, LootContextParamSets.ENTITY), Pair.of(Chests::new, LootContextParamSets.CHEST));
     }
 
     @Override
-    protected void validate(Map<ResourceLocation, LootTable> map, ValidationTracker validationresults) {
+    protected void validate(Map<ResourceLocation, LootTable> map, ValidationContext validationresults) {
     }
 
     public static class Blocks extends GaiaBlockLootTableProvider {
@@ -354,7 +364,6 @@ public class GaiaLootTables extends LootTableProvider {
 
         @Override
         protected void addTables() {
-
             add(ModEntities.AGATE_GOLEM, blankTable());
             add(ModEntities.ANCIENT_LAGRAHK, blankTable());
             add(ModEntities.ARCHAIC_WARRIOR, warriorTable());
@@ -398,167 +407,167 @@ public class GaiaLootTables extends LootTableProvider {
         }
     }
 
-    public static class Chests extends ChestLootTables {
+    public static class Chests extends ChestLoot {
         @Override
         public void accept(BiConsumer<ResourceLocation, LootTable.Builder> consumer) {
             consumer.accept(GaiaChestTables.CHESTS_MINITOWER_AMETHYST, LootTable.lootTable()
                     .withPool(LootPool.lootPool()
-                            .setRolls(RandomValueRange.between(2.0F, 8.0F))
-                            .add(ItemLootEntry.lootTableItem(ModItems.purple_geode_slice.get())
+                            .setRolls(UniformGenerator.between(2.0F, 8.0F))
+                            .add(LootItem.lootTableItem(ModItems.purple_geode_slice.get())
                                     .setWeight(15)
-                                    .apply(SetCount.setCount(RandomValueRange.between(1.0F, 3.0F))))
-                            .add(ItemLootEntry.lootTableItem(ModItems.pyrite.get())
+                                    .apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 3.0F))))
+                            .add(LootItem.lootTableItem(ModItems.pyrite.get())
                                     .setWeight(15)
-                                    .apply(SetCount.setCount(RandomValueRange.between(1.0F, 5.0F))))
-                            .add(ItemLootEntry.lootTableItem(ModItems.scaynyx_ingot.get())
+                                    .apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 5.0F))))
+                            .add(LootItem.lootTableItem(ModItems.scaynyx_ingot.get())
                                     .setWeight(10)
-                                    .apply(SetCount.setCount(RandomValueRange.between(1.0F, 3.0F))))
-                            .add(ItemLootEntry.lootTableItem(ModItems.sugilite_axe.get())
+                                    .apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 3.0F))))
+                            .add(LootItem.lootTableItem(ModItems.sugilite_axe.get())
                                     .setWeight(2))
-                            .add(ItemLootEntry.lootTableItem(ModItems.proustite.get())
+                            .add(LootItem.lootTableItem(ModItems.proustite.get())
                                     .setWeight(10)
-                                    .apply(SetCount.setCount(RandomValueRange.between(1.0F, 3.0F))))
-                            .add(ItemLootEntry.lootTableItem(ModBlocks.amethyst_bricks.get())
+                                    .apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 3.0F))))
+                            .add(LootItem.lootTableItem(ModBlocks.amethyst_bricks.get())
                                     .setWeight(15)
-                                    .apply(SetCount.setCount(RandomValueRange.between(3.0F, 9.0F))))
-                            .add(ItemLootEntry.lootTableItem(ModItems.old_bow.get())
+                                    .apply(SetItemCountFunction.setCount(UniformGenerator.between(3.0F, 9.0F))))
+                            .add(LootItem.lootTableItem(ModItems.old_bow.get())
                                     .setWeight(2))
-                            .add(ItemLootEntry.lootTableItem(ModItems.agate_arrow.get())
+                            .add(LootItem.lootTableItem(ModItems.agate_arrow.get())
                                     .setWeight(10)
-                                    .apply(SetCount.setCount(RandomValueRange.between(3.0F, 6.0F)))))
+                                    .apply(SetItemCountFunction.setCount(UniformGenerator.between(3.0F, 6.0F)))))
                     .withPool(LootPool.lootPool()
-                            .setRolls(ConstantRange.exactly(1))
-                            .add(ItemLootEntry.lootTableItem(ModItems.white_opal.get()))));
+                            .setRolls(ConstantValue.exactly(1))
+                            .add(LootItem.lootTableItem(ModItems.white_opal.get()))));
             consumer.accept(GaiaChestTables.CHESTS_MINITOWER_COPAL, LootTable.lootTable()
                     .withPool(LootPool.lootPool()
-                            .setRolls(RandomValueRange.between(2.0F, 8.0F))
-                            .add(ItemLootEntry.lootTableItem(ModItems.pink_geode_slice.get())
+                            .setRolls(UniformGenerator.between(2.0F, 8.0F))
+                            .add(LootItem.lootTableItem(ModItems.pink_geode_slice.get())
                                     .setWeight(15)
-                                    .apply(SetCount.setCount(RandomValueRange.between(1.0F, 3.0F))))
-                            .add(ItemLootEntry.lootTableItem(ModItems.pyrite.get())
+                                    .apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 3.0F))))
+                            .add(LootItem.lootTableItem(ModItems.pyrite.get())
                                     .setWeight(15)
-                                    .apply(SetCount.setCount(RandomValueRange.between(1.0F, 5.0F))))
-                            .add(ItemLootEntry.lootTableItem(ModItems.scaynyx_ingot.get())
+                                    .apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 5.0F))))
+                            .add(LootItem.lootTableItem(ModItems.scaynyx_ingot.get())
                                     .setWeight(10)
-                                    .apply(SetCount.setCount(RandomValueRange.between(1.0F, 3.0F))))
-                            .add(ItemLootEntry.lootTableItem(ModItems.sugilite_axe.get())
+                                    .apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 3.0F))))
+                            .add(LootItem.lootTableItem(ModItems.sugilite_axe.get())
                                     .setWeight(2))
-                            .add(ItemLootEntry.lootTableItem(ModItems.leucite.get())
+                            .add(LootItem.lootTableItem(ModItems.leucite.get())
                                     .setWeight(10)
-                                    .apply(SetCount.setCount(RandomValueRange.between(1.0F, 3.0F))))
-                            .add(ItemLootEntry.lootTableItem(ModBlocks.copal_bricks.get())
+                                    .apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 3.0F))))
+                            .add(LootItem.lootTableItem(ModBlocks.copal_bricks.get())
                                     .setWeight(15)
-                                    .apply(SetCount.setCount(RandomValueRange.between(3.0F, 9.0F))))
-                            .add(ItemLootEntry.lootTableItem(ModItems.old_bow.get())
+                                    .apply(SetItemCountFunction.setCount(UniformGenerator.between(3.0F, 9.0F))))
+                            .add(LootItem.lootTableItem(ModItems.old_bow.get())
                                     .setWeight(2))
-                            .add(ItemLootEntry.lootTableItem(ModItems.agate_arrow.get())
+                            .add(LootItem.lootTableItem(ModItems.agate_arrow.get())
                                     .setWeight(10)
-                                    .apply(SetCount.setCount(RandomValueRange.between(3.0F, 6.0F)))))
+                                    .apply(SetItemCountFunction.setCount(UniformGenerator.between(3.0F, 6.0F)))))
                     .withPool(LootPool.lootPool()
-                            .setRolls(ConstantRange.exactly(1))
-                            .add(ItemLootEntry.lootTableItem(ModItems.white_opal.get()))));
+                            .setRolls(ConstantValue.exactly(1))
+                            .add(LootItem.lootTableItem(ModItems.white_opal.get()))));
             consumer.accept(GaiaChestTables.CHESTS_MINITOWER_JADE, LootTable.lootTable()
                     .withPool(LootPool.lootPool()
-                            .setRolls(RandomValueRange.between(2.0F, 8.0F))
-                            .add(ItemLootEntry.lootTableItem(ModItems.green_geode_slice.get())
+                            .setRolls(UniformGenerator.between(2.0F, 8.0F))
+                            .add(LootItem.lootTableItem(ModItems.green_geode_slice.get())
                                     .setWeight(15)
-                                    .apply(SetCount.setCount(RandomValueRange.between(1.0F, 3.0F))))
-                            .add(ItemLootEntry.lootTableItem(ModItems.pyrite.get())
+                                    .apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 3.0F))))
+                            .add(LootItem.lootTableItem(ModItems.pyrite.get())
                                     .setWeight(15)
-                                    .apply(SetCount.setCount(RandomValueRange.between(1.0F, 5.0F))))
-                            .add(ItemLootEntry.lootTableItem(ModItems.scaynyx_ingot.get())
+                                    .apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 5.0F))))
+                            .add(LootItem.lootTableItem(ModItems.scaynyx_ingot.get())
                                     .setWeight(10)
-                                    .apply(SetCount.setCount(RandomValueRange.between(1.0F, 3.0F))))
-                            .add(ItemLootEntry.lootTableItem(ModItems.sugilite_axe.get())
+                                    .apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 3.0F))))
+                            .add(LootItem.lootTableItem(ModItems.sugilite_axe.get())
                                     .setWeight(2))
-                            .add(ItemLootEntry.lootTableItem(ModItems.euclase.get())
+                            .add(LootItem.lootTableItem(ModItems.euclase.get())
                                     .setWeight(10)
-                                    .apply(SetCount.setCount(RandomValueRange.between(1.0F, 3.0F))))
-                            .add(ItemLootEntry.lootTableItem(ModBlocks.jade_bricks.get())
+                                    .apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 3.0F))))
+                            .add(LootItem.lootTableItem(ModBlocks.jade_bricks.get())
                                     .setWeight(15)
-                                    .apply(SetCount.setCount(RandomValueRange.between(3.0F, 9.0F))))
-                            .add(ItemLootEntry.lootTableItem(ModItems.old_bow.get())
+                                    .apply(SetItemCountFunction.setCount(UniformGenerator.between(3.0F, 9.0F))))
+                            .add(LootItem.lootTableItem(ModItems.old_bow.get())
                                     .setWeight(2))
-                            .add(ItemLootEntry.lootTableItem(ModItems.agate_arrow.get())
+                            .add(LootItem.lootTableItem(ModItems.agate_arrow.get())
                                     .setWeight(10)
-                                    .apply(SetCount.setCount(RandomValueRange.between(3.0F, 6.0F)))))
+                                    .apply(SetItemCountFunction.setCount(UniformGenerator.between(3.0F, 6.0F)))))
                     .withPool(LootPool.lootPool()
-                            .setRolls(ConstantRange.exactly(1))
-                            .add(ItemLootEntry.lootTableItem(ModItems.white_opal.get()))));
+                            .setRolls(ConstantValue.exactly(1))
+                            .add(LootItem.lootTableItem(ModItems.white_opal.get()))));
             consumer.accept(GaiaChestTables.CHESTS_MINITOWER_JET, LootTable.lootTable()
                     .withPool(LootPool.lootPool()
-                            .setRolls(RandomValueRange.between(2.0F, 8.0F))
-                            .add(ItemLootEntry.lootTableItem(ModItems.blue_geode_slice.get())
+                            .setRolls(UniformGenerator.between(2.0F, 8.0F))
+                            .add(LootItem.lootTableItem(ModItems.blue_geode_slice.get())
                                     .setWeight(15)
-                                    .apply(SetCount.setCount(RandomValueRange.between(1.0F, 3.0F))))
-                            .add(ItemLootEntry.lootTableItem(ModItems.pyrite.get())
+                                    .apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 3.0F))))
+                            .add(LootItem.lootTableItem(ModItems.pyrite.get())
                                     .setWeight(15)
-                                    .apply(SetCount.setCount(RandomValueRange.between(1.0F, 5.0F))))
-                            .add(ItemLootEntry.lootTableItem(ModItems.scaynyx_ingot.get())
+                                    .apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 5.0F))))
+                            .add(LootItem.lootTableItem(ModItems.scaynyx_ingot.get())
                                     .setWeight(10)
-                                    .apply(SetCount.setCount(RandomValueRange.between(1.0F, 3.0F))))
-                            .add(ItemLootEntry.lootTableItem(ModItems.sugilite_axe.get())
+                                    .apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 3.0F))))
+                            .add(LootItem.lootTableItem(ModItems.sugilite_axe.get())
                                     .setWeight(2))
-                            .add(ItemLootEntry.lootTableItem(ModItems.ixiolite.get())
+                            .add(LootItem.lootTableItem(ModItems.ixiolite.get())
                                     .setWeight(10)
-                                    .apply(SetCount.setCount(RandomValueRange.between(1.0F, 3.0F))))
-                            .add(ItemLootEntry.lootTableItem(ModBlocks.jet_bricks.get())
+                                    .apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 3.0F))))
+                            .add(LootItem.lootTableItem(ModBlocks.jet_bricks.get())
                                     .setWeight(15)
-                                    .apply(SetCount.setCount(RandomValueRange.between(3.0F, 9.0F))))
-                            .add(ItemLootEntry.lootTableItem(ModItems.old_bow.get())
+                                    .apply(SetItemCountFunction.setCount(UniformGenerator.between(3.0F, 9.0F))))
+                            .add(LootItem.lootTableItem(ModItems.old_bow.get())
                                     .setWeight(2))
-                            .add(ItemLootEntry.lootTableItem(ModItems.agate_arrow.get())
+                            .add(LootItem.lootTableItem(ModItems.agate_arrow.get())
                                     .setWeight(10)
-                                    .apply(SetCount.setCount(RandomValueRange.between(3.0F, 6.0F)))))
+                                    .apply(SetItemCountFunction.setCount(UniformGenerator.between(3.0F, 6.0F)))))
                     .withPool(LootPool.lootPool()
-                            .setRolls(ConstantRange.exactly(1))
-                            .add(ItemLootEntry.lootTableItem(ModItems.white_opal.get()))));
+                            .setRolls(ConstantValue.exactly(1))
+                            .add(LootItem.lootTableItem(ModItems.white_opal.get()))));
             consumer.accept(GaiaChestTables.CHESTS_MALACHITE_WATCHTOWER, LootTable.lootTable()
                     .withPool(LootPool.lootPool()
-                            .setRolls(RandomValueRange.between(2.0F, 8.0F))
-                            .add(ItemLootEntry.lootTableItem(ModBlocks.malachite_bricks.get())
+                            .setRolls(UniformGenerator.between(2.0F, 8.0F))
+                            .add(LootItem.lootTableItem(ModBlocks.malachite_bricks.get())
                                     .setWeight(15)
-                                    .apply(SetCount.setCount(RandomValueRange.between(3.0F, 5.0F))))
-                            .add(ItemLootEntry.lootTableItem(ModBlocks.malachite_floor_tiles.get())
+                                    .apply(SetItemCountFunction.setCount(UniformGenerator.between(3.0F, 5.0F))))
+                            .add(LootItem.lootTableItem(ModBlocks.malachite_floor_tiles.get())
                                     .setWeight(15)
-                                    .apply(SetCount.setCount(RandomValueRange.between(3.0F, 5.0F))))
-                            .add(ItemLootEntry.lootTableItem(ModBlocks.malachite_pillar.get())
+                                    .apply(SetItemCountFunction.setCount(UniformGenerator.between(3.0F, 5.0F))))
+                            .add(LootItem.lootTableItem(ModBlocks.malachite_pillar.get())
                                     .setWeight(15)
-                                    .apply(SetCount.setCount(RandomValueRange.between(3.0F, 5.0F))))
-                            .add(ItemLootEntry.lootTableItem(ModItems.pyrite.get())
+                                    .apply(SetItemCountFunction.setCount(UniformGenerator.between(3.0F, 5.0F))))
+                            .add(LootItem.lootTableItem(ModItems.pyrite.get())
                                     .setWeight(15)
-                                    .apply(SetCount.setCount(RandomValueRange.between(1.0F, 3.0F))))
-                            .add(ItemLootEntry.lootTableItem(ModItems.ixiolite_sword.get())
+                                    .apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 3.0F))))
+                            .add(LootItem.lootTableItem(ModItems.ixiolite_sword.get())
                                     .setWeight(5))
-                            .add(ItemLootEntry.lootTableItem(ModItems.euclase_sword.get())
+                            .add(LootItem.lootTableItem(ModItems.euclase_sword.get())
                                     .setWeight(2))
-                            .add(ItemLootEntry.lootTableItem(ModItems.tiligr.get())
+                            .add(LootItem.lootTableItem(ModItems.tiligr.get())
                                     .setWeight(10)
-                                    .apply(SetCount.setCount(RandomValueRange.between(1.0F, 4.0F))))
-                            .add(ItemLootEntry.lootTableItem(ModItems.proustite_helmet.get())
+                                    .apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 4.0F))))
+                            .add(LootItem.lootTableItem(ModItems.proustite_helmet.get())
                                     .setWeight(5))
-                            .add(ItemLootEntry.lootTableItem(ModItems.leucite_helmet.get())
+                            .add(LootItem.lootTableItem(ModItems.leucite_helmet.get())
                                     .setWeight(2)))
                     .withPool(LootPool.lootPool()
-                            .setRolls(RandomValueRange.between(1.0F, 3.0F))
-                            .add(ItemLootEntry.lootTableItem(ModItems.ixiolite.get())
+                            .setRolls(UniformGenerator.between(1.0F, 3.0F))
+                            .add(LootItem.lootTableItem(ModItems.ixiolite.get())
                                     .setWeight(6)
-                                    .apply(SetCount.setCount(RandomValueRange.between(1.0F, 2.0F))))
-                            .add(ItemLootEntry.lootTableItem(ModItems.proustite.get())
+                                    .apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 2.0F))))
+                            .add(LootItem.lootTableItem(ModItems.proustite.get())
                                     .setWeight(6)
-                                    .apply(SetCount.setCount(RandomValueRange.between(1.0F, 2.0F))))
-                            .add(ItemLootEntry.lootTableItem(ModItems.euclase.get())
+                                    .apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 2.0F))))
+                            .add(LootItem.lootTableItem(ModItems.euclase.get())
                                     .setWeight(4)
-                                    .apply(SetCount.setCount(RandomValueRange.between(1.0F, 2.0F))))
-                            .add(ItemLootEntry.lootTableItem(ModItems.leucite.get())
+                                    .apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 2.0F))))
+                            .add(LootItem.lootTableItem(ModItems.leucite.get())
                                     .setWeight(4)
-                                    .apply(SetCount.setCount(RandomValueRange.between(1.0F, 2.0F))))
-                            .add(ItemLootEntry.lootTableItem(ModItems.green_opal.get())
+                                    .apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 2.0F))))
+                            .add(LootItem.lootTableItem(ModItems.green_opal.get())
                                     .setWeight(4)
-                                    .apply(SetCount.setCount(RandomValueRange.between(1.0F, 2.0F))))
-                            .add(ItemLootEntry.lootTableItem(ModItems.white_opal.get())
+                                    .apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 2.0F))))
+                            .add(LootItem.lootTableItem(ModItems.white_opal.get())
                                     .setWeight(2)
-                                    .apply(SetCount.setCount(RandomValueRange.between(1.0F, 2.0F))))));
+                                    .apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 2.0F))))));
         }
     }
 }
