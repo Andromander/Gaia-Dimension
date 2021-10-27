@@ -1,13 +1,13 @@
 package androsa.gaiadimension.data.provider;
 
 import androsa.gaiadimension.GaiaDimensionMod;
-import net.minecraft.block.Block;
 import net.minecraft.data.DataGenerator;
-import net.minecraft.item.Item;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.level.block.Block;
 import net.minecraftforge.client.model.generators.ItemModelBuilder;
 import net.minecraftforge.client.model.generators.ItemModelProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
-import net.minecraftforge.fml.RegistryObject;
+import net.minecraftforge.fmllegacy.RegistryObject;
 
 public abstract class GaiaItemModelProvider extends ItemModelProvider {
 
