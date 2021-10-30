@@ -12,12 +12,13 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.biome.Biome;
+import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.fmllegacy.RegistryObject;
 
 public class GaiaAdvancementProvider extends AdvancementProvider {
 
-    public GaiaAdvancementProvider(DataGenerator generator) {
-        super(generator);
+    public GaiaAdvancementProvider(DataGenerator generator, ExistingFileHelper helper) {
+        super(generator, helper);
     }
 
     protected static TranslatableComponent title(String name) {

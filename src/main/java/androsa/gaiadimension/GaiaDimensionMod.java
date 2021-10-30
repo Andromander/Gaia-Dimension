@@ -114,7 +114,7 @@ public class GaiaDimensionMod {
             generator.addProvider(new GaiaRecipes(generator));
             generator.addProvider(new GaiaConfiguredFeatures(generator));
             generator.addProvider(new GaiaBiomes(generator));
-            generator.addProvider(new GaiaAdvancements(generator));
+            generator.addProvider(new GaiaAdvancements(generator, event.getExistingFileHelper()));
             generator.addProvider(blocktags);
             generator.addProvider(new GaiaItemTags(generator, blocktags, event.getExistingFileHelper()));
             generator.addProvider(new GaiaFluidTags(generator, event.getExistingFileHelper()));
