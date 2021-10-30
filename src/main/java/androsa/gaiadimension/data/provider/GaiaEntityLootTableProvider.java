@@ -3,6 +3,7 @@ package androsa.gaiadimension.data.provider;
 import androsa.gaiadimension.registry.ModEntities;
 import androsa.gaiadimension.registry.ModItems;
 import net.minecraft.data.loot.EntityLoot;
+import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.level.storage.loot.LootPool;
@@ -22,6 +23,10 @@ import java.util.function.Supplier;
 
 public class GaiaEntityLootTableProvider extends EntityLoot {
 
+    public void addTable(Supplier<? extends EntityType<?>> entity, LootTable.Builder table) {
+        this.add(entity.get(), table);
+    }
+
     public LootTable.Builder blankTable() {
         return LootTable.lootTable();
     }
@@ -35,7 +40,7 @@ public class GaiaEntityLootTableProvider extends EntityLoot {
                                 .apply(LootingEnchantFunction.lootingMultiplier(UniformGenerator.between(0.0F, 1.0F)))))
                 .withPool(LootPool.lootPool()
                         .setRolls(ConstantValue.exactly(1))
-                        .add(LootTableReference.lootTableReference(ModEntities.GROWTH_SAPPER.getDefaultLootTable())));
+                        .add(LootTableReference.lootTableReference(ModEntities.GROWTH_SAPPER.get().getDefaultLootTable())));
     }
 
     public LootTable.Builder singleDropTable(Supplier<Item> drop, float minCount, float maxCount) {

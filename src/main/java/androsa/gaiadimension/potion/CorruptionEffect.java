@@ -59,7 +59,7 @@ public class CorruptionEffect extends MobEffect {
 
     @SubscribeEvent
     public static void onEntityDeath(LivingDeathEvent e) {
-        Entity corrputSpawn = ModEntities.CORRUPT_SAPPER.create(e.getEntity().getCommandSenderWorld());
+        Entity corrputSpawn = ModEntities.CORRUPT_SAPPER.get().create(e.getEntity().getCommandSenderWorld());
 
         if (e.getSource() == GaiaDimensionMod.CORRUPTION) {
             e.getEntity().getCommandSenderWorld().addFreshEntity(corrputSpawn);

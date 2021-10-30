@@ -9,7 +9,7 @@ import net.minecraft.world.level.block.state.BlockState;
 public class MalachiteGuardSpawnerBlockEntity extends AbstractSpawnerBlockEntity<MalachiteGuardEntity> {
 
     public MalachiteGuardSpawnerBlockEntity(BlockPos pos, BlockState state) {
-        super(ModBlockEntities.MALACHITE_SPAWNER.get(), pos, state, ModEntities.MALACHITE_GUARD);
+        super(ModBlockEntities.MALACHITE_SPAWNER.get(), pos, state, ModEntities.MALACHITE_GUARD.get());
     }
 
     @Override

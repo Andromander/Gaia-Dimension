@@ -294,7 +294,7 @@ public class MalachiteGuardEntity extends Monster {
     }
 
     private void createDrone(BlockPos pos) {
-        MalachiteDroneEntity drone = new MalachiteDroneEntity(ModEntities.MALACHITE_DRONE, this.level);
+        MalachiteDroneEntity drone = new MalachiteDroneEntity(ModEntities.MALACHITE_DRONE.get(), this.level);
         drone.moveTo(pos, 0.0F, 0.0F);
         if (!level.isClientSide()) {
             drone.finalizeSpawn((ServerLevelAccessor)this.level, this.level.getCurrentDifficultyAt(pos), MobSpawnType.MOB_SUMMONED, null, null);
@@ -616,7 +616,7 @@ public class MalachiteGuardEntity extends Monster {
                 if (explodeTime == 0) {
                     List<Entity> targets = guard.level.getEntities(guard, guard.getBoundingBox().inflate(4.0F), (entity) -> {
                         EntityType<?> type = entity.getType();
-                        return type != ModEntities.MALACHITE_GUARD && type != ModEntities.MALACHITE_DRONE;
+                        return type != ModEntities.MALACHITE_GUARD.get() && type != ModEntities.MALACHITE_DRONE.get();
                     });
                     guard.playSound(ModSounds.ENTITY_MALACHITE_GUARD_BLAST, 1.0F, 1.0F);
 
@@ -700,7 +700,7 @@ public class MalachiteGuardEntity extends Monster {
 
                 List<Entity> targets = guard.level.getEntities(guard, guard.getBoundingBox().inflate(3.0F, -2.0F, 3.0F), (entity) -> {
                     EntityType<?> type = entity.getType();
-                    return type != ModEntities.MALACHITE_GUARD && type != ModEntities.MALACHITE_DRONE;
+                    return type != ModEntities.MALACHITE_GUARD.get() && type != ModEntities.MALACHITE_DRONE.get();
                 });
                 guard.playSound(ModSounds.ENTITY_MALACHITE_GUARD_STOMP, 1.0F, 1.0F);
 

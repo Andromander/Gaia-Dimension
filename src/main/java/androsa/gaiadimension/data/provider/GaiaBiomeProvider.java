@@ -118,13 +118,17 @@ public abstract class GaiaBiomeProvider extends BiomeReport {
 
     public static MobSpawnSettings.Builder createSpawns() {
         return new MobSpawnSettings.Builder()
-                .addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(ModEntities.CAVERN_TICK, 65, 2, 4))
-                .addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(ModEntities.SHALURKER, 65, 2, 4))
-                .addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(ModEntities.ARCHAIC_WARRIOR, 65, 2, 4))
-                .addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(ModEntities.MUCKLING, 65, 2, 4))
-                .addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(EntityType.ENDERMAN, 5, 1, 2))
-                .addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(ModEntities.PRIMAL_BEAST, 15, 1, 2))
-                .addSpawn(MobCategory.WATER_CREATURE, new MobSpawnSettings.SpawnerData(ModEntities.SHALLOW_ARENTHIS, 10, 2, 4));
+                .addSpawn(MobCategory.MONSTER, mobData(ModEntities.CAVERN_TICK, 65, 2, 4))
+                .addSpawn(MobCategory.MONSTER, mobData(ModEntities.SHALURKER, 65, 2, 4))
+                .addSpawn(MobCategory.MONSTER, mobData(ModEntities.ARCHAIC_WARRIOR, 65, 2, 4))
+                .addSpawn(MobCategory.MONSTER, mobData(ModEntities.MUCKLING, 65, 2, 4))
+                .addSpawn(MobCategory.MONSTER, mobData(() -> EntityType.ENDERMAN, 5, 1, 2))
+                .addSpawn(MobCategory.MONSTER, mobData(ModEntities.PRIMAL_BEAST, 15, 1, 2))
+                .addSpawn(MobCategory.WATER_CREATURE, mobData(ModEntities.SHALLOW_ARENTHIS, 10, 2, 4));
+    }
+
+    public static MobSpawnSettings.SpawnerData mobData(Supplier<? extends EntityType<?>> entity, int weight, int min, int max) {
+        return new MobSpawnSettings.SpawnerData(entity.get(), weight, min, max);
     }
 
     public static BiomeGenerationSettings pinkAgateForest() {

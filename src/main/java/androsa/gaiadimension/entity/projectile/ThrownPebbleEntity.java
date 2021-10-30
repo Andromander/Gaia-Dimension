@@ -27,11 +27,11 @@ public class ThrownPebbleEntity extends ThrowableItemProjectile {
     }
 
     public ThrownPebbleEntity(Level worldIn, LivingEntity throwerIn) {
-        super(ModEntities.THROWN_PEBBLE, throwerIn, worldIn);
+        super(ModEntities.THROWN_PEBBLE.get(), throwerIn, worldIn);
     }
 
     public ThrownPebbleEntity(Level worldIn, double x, double y, double z) {
-        super(ModEntities.THROWN_PEBBLE, x, y, z, worldIn);
+        super(ModEntities.THROWN_PEBBLE.get(), x, y, z, worldIn);
     }
 
     @Override

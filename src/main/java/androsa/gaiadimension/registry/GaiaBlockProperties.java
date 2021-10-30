@@ -90,7 +90,7 @@ public class GaiaBlockProperties {
         return BlockBehaviour.Properties.of(Material.DIRT, MaterialColor.TERRACOTTA_YELLOW)
                 .strength(0.6F, 0.0F)
                 .sound(SoundType.GRAVEL)
-                .isValidSpawn((state, reader, pos, entity) -> entity == ModEntities.BISMUTH_ULETRUS);
+                .isValidSpawn((state, reader, pos, entity) -> entity == ModEntities.BISMUTH_ULETRUS.get());
     }
 
     public static BlockBehaviour.Properties gaiaBrickProps() {

@@ -364,39 +364,39 @@ public class GaiaLootTables extends LootTableProvider {
 
         @Override
         protected void addTables() {
-            add(ModEntities.AGATE_GOLEM, blankTable());
-            add(ModEntities.ANCIENT_LAGRAHK, blankTable());
-            add(ModEntities.ARCHAIC_WARRIOR, warriorTable());
-            add(ModEntities.BISMUTH_ULETRUS, blankTable());
-            add(ModEntities.CAVERN_TICK, singleDropTable(ModItems.fine_thread, 0.0F, 1.0F));
-            add(ModEntities.CONTORTED_NAGA, singleDropTable(ModItems.goldstone, 0.0F, 2.0F));
-            add(ModEntities.CORRUPT_SAPPER, singleDropTable(ModItems.goldstone_residue, 0.0F, 2.0F));
-            add(ModEntities.CRYSTAL_GOLEM, blankTable());
-            add(ModEntities.GROWTH_SAPPER, blankTable());
+            addTable(ModEntities.AGATE_GOLEM, blankTable());
+            addTable(ModEntities.ANCIENT_LAGRAHK, blankTable());
+            addTable(ModEntities.ARCHAIC_WARRIOR, warriorTable());
+            addTable(ModEntities.BISMUTH_ULETRUS, blankTable());
+            addTable(ModEntities.CAVERN_TICK, singleDropTable(ModItems.fine_thread, 0.0F, 1.0F));
+            addTable(ModEntities.CONTORTED_NAGA, singleDropTable(ModItems.goldstone, 0.0F, 2.0F));
+            addTable(ModEntities.CORRUPT_SAPPER, singleDropTable(ModItems.goldstone_residue, 0.0F, 2.0F));
+            addTable(ModEntities.CRYSTAL_GOLEM, blankTable());
+            addTable(ModEntities.GROWTH_SAPPER, blankTable());
             add(PINK_SAPPER_TABLE, sapperTable(ModItems.pink_geode));
             add(BLUE_SAPPER_TABLE, sapperTable(ModItems.blue_geode));
             add(GREEN_SAPPER_TABLE, sapperTable(ModItems.green_geode));
             add(PURPLE_SAPPER_TABLE, sapperTable(ModItems.purple_geode));
-            add(ModEntities.HOWLITE_WOLF, blankTable());
-            add(ModEntities.LESSER_SHOCKSHOOTER, singleDropTable(ModItems.crystallized_lapis_lazuli, 0.0F, 2.0F));
-            add(ModEntities.LESSER_SPITFIRE, singleDropTable(ModItems.crystallized_redstone, 0.0F, 2.0F));
-            add(ModEntities.MARKUZAR_PLANT, singleDropTable(ModItems.markuzar_mint, 0.0F, 2.0F));
-            add(ModEntities.MINERAL_ARENTHIS, cookableDoubleDropTable(ModItems.large_tentacle, ModItems.sugar_cluster, 0.0F, 3.0F, 0.0F, 2.0F));
-            add(ModEntities.MUCKLING, singleDropTable(ModItems.sweet_muckball, 0.0F, 2.0F));
-            add(ModEntities.MUTANT_GROWTH_EXTRACTOR, extractorTable());
-            add(ModEntities.NOMADIC_LAGRAHK, blankTable());
-            add(ModEntities.PRIMAL_BEAST, blankTable());
-            add(ModEntities.ROCKY_LUGGEROTH, cookableSingleDropTable(ModItems.luggeroth_chop, 0.0F, 3.0F));
-            add(ModEntities.RUGGED_LURMORUS, cookableSingleDropTable(ModItems.lurmorus_meat, 0.0F, 3.0F));
-            add(ModEntities.SALTION, singleDropTable(ModItems.fine_thread, 0.0F, 2.0F));
-            add(ModEntities.SHALLOW_ARENTHIS, cookableDoubleDropTable(ModItems.small_tentacle, ModItems.sugar_crystals, 0.0F, 3.0F, 0.0F, 2.0F));
-            add(ModEntities.SHALURKER, blankTable());
-            add(ModEntities.SPELLBOUND_ELEMENTAL, blankTable());
-            add(ModEntities.MALACHITE_DRONE, blankTable());
+            addTable(ModEntities.HOWLITE_WOLF, blankTable());
+            addTable(ModEntities.LESSER_SHOCKSHOOTER, singleDropTable(ModItems.crystallized_lapis_lazuli, 0.0F, 2.0F));
+            addTable(ModEntities.LESSER_SPITFIRE, singleDropTable(ModItems.crystallized_redstone, 0.0F, 2.0F));
+            addTable(ModEntities.MARKUZAR_PLANT, singleDropTable(ModItems.markuzar_mint, 0.0F, 2.0F));
+            addTable(ModEntities.MINERAL_ARENTHIS, cookableDoubleDropTable(ModItems.large_tentacle, ModItems.sugar_cluster, 0.0F, 3.0F, 0.0F, 2.0F));
+            addTable(ModEntities.MUCKLING, singleDropTable(ModItems.sweet_muckball, 0.0F, 2.0F));
+            addTable(ModEntities.MUTANT_GROWTH_EXTRACTOR, extractorTable());
+            addTable(ModEntities.NOMADIC_LAGRAHK, blankTable());
+            addTable(ModEntities.PRIMAL_BEAST, blankTable());
+            addTable(ModEntities.ROCKY_LUGGEROTH, cookableSingleDropTable(ModItems.luggeroth_chop, 0.0F, 3.0F));
+            addTable(ModEntities.RUGGED_LURMORUS, cookableSingleDropTable(ModItems.lurmorus_meat, 0.0F, 3.0F));
+            addTable(ModEntities.SALTION, singleDropTable(ModItems.fine_thread, 0.0F, 2.0F));
+            addTable(ModEntities.SHALLOW_ARENTHIS, cookableDoubleDropTable(ModItems.small_tentacle, ModItems.sugar_crystals, 0.0F, 3.0F, 0.0F, 2.0F));
+            addTable(ModEntities.SHALURKER, blankTable());
+            addTable(ModEntities.SPELLBOUND_ELEMENTAL, blankTable());
+            addTable(ModEntities.MALACHITE_DRONE, blankTable());
 
-            add(ModEntities.BLUE_HOWLITE_WOLF, blankTable());
+            addTable(ModEntities.BLUE_HOWLITE_WOLF, blankTable());
 
-            add(ModEntities.MALACHITE_GUARD, malachiteGuardTable());
+            addTable(ModEntities.MALACHITE_GUARD, malachiteGuardTable());
         }
 
         @Override

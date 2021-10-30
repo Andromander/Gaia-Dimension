@@ -48,9 +48,9 @@ public class GaiaBiomes extends GaiaBiomeProvider {
                         pinkAgateForest(),
                         buildSpawns(
                                 createSpawns()
-                                        .addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(ModEntities.NOMADIC_LAGRAHK, 15, 1, 1))
-                                        .addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(ModEntities.GROWTH_SAPPER, 20, 3, 5))
-                                        .addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(ModEntities.AGATE_GOLEM, 15, 1, 3)))
+                                        .addSpawn(MobCategory.CREATURE, mobData(ModEntities.NOMADIC_LAGRAHK, 15, 1, 1))
+                                        .addSpawn(MobCategory.CREATURE, mobData(ModEntities.GROWTH_SAPPER, 20, 3, 5))
+                                        .addSpawn(MobCategory.CREATURE, mobData(ModEntities.AGATE_GOLEM, 15, 1, 3)))
                 ).depth(0.1F).scale(0.1F).temperature(0.66F));
     }
 
@@ -61,10 +61,10 @@ public class GaiaBiomes extends GaiaBiomeProvider {
                         blueAgateTaiga(),
                         buildSpawns(
                                 createSpawns()
-                                        .addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(ModEntities.HOWLITE_WOLF, 15, 2, 4))
-                                        .addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(ModEntities.BLUE_HOWLITE_WOLF, 1, 1, 1))
-                                        .addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(ModEntities.NOMADIC_LAGRAHK, 15, 1, 1))
-                                        .addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(ModEntities.GROWTH_SAPPER, 20, 3, 5)))
+                                        .addSpawn(MobCategory.MONSTER, mobData(ModEntities.HOWLITE_WOLF, 15, 2, 4))
+                                        .addSpawn(MobCategory.MONSTER, mobData(ModEntities.BLUE_HOWLITE_WOLF, 1, 1, 1))
+                                        .addSpawn(MobCategory.CREATURE, mobData(ModEntities.NOMADIC_LAGRAHK, 15, 1, 1))
+                                        .addSpawn(MobCategory.CREATURE, mobData(ModEntities.GROWTH_SAPPER, 20, 3, 5)))
                 ).depth(0.1F).scale(0.2F).temperature(0.4F));
     }
 
@@ -75,9 +75,9 @@ public class GaiaBiomes extends GaiaBiomeProvider {
                         greenAgateJungle(),
                         buildSpawns(
                                 createSpawns()
-                                        .addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(ModEntities.NOMADIC_LAGRAHK, 15, 1, 1))
-                                        .addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(ModEntities.GROWTH_SAPPER, 20, 3, 5))
-                                        .addSpawn(MobCategory.AMBIENT, new MobSpawnSettings.SpawnerData(ModEntities.MARKUZAR_PLANT, 15, 2, 4)))
+                                        .addSpawn(MobCategory.CREATURE, mobData(ModEntities.NOMADIC_LAGRAHK, 15, 1, 1))
+                                        .addSpawn(MobCategory.CREATURE, mobData(ModEntities.GROWTH_SAPPER, 20, 3, 5))
+                                        .addSpawn(MobCategory.AMBIENT, mobData(ModEntities.MARKUZAR_PLANT, 15, 2, 4)))
                 ).depth(0.1F).scale(0.2F).temperature(0.75F));
     }
 
@@ -88,9 +88,9 @@ public class GaiaBiomes extends GaiaBiomeProvider {
                         purpleAgateSwamp(),
                         buildSpawns(
                                 createSpawns()
-                                        .addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(ModEntities.NOMADIC_LAGRAHK, 15, 1, 1))
-                                        .addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(ModEntities.GROWTH_SAPPER, 20, 3, 5))
-                                        .addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(ModEntities.SPELLBOUND_ELEMENTAL, 10, 2, 4)))
+                                        .addSpawn(MobCategory.CREATURE, mobData(ModEntities.NOMADIC_LAGRAHK, 15, 1, 1))
+                                        .addSpawn(MobCategory.CREATURE, mobData(ModEntities.GROWTH_SAPPER, 20, 3, 5))
+                                        .addSpawn(MobCategory.CREATURE, mobData(ModEntities.SPELLBOUND_ELEMENTAL, 10, 2, 4)))
                 ).depth(0.0F).scale(0.05F).temperature(0.66F));
     }
 
@@ -101,10 +101,10 @@ public class GaiaBiomes extends GaiaBiomeProvider {
                         fossilWoodland(),
                         buildSpawns(
                                 createSpawns()
-                                        .addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(ModEntities.ANCIENT_LAGRAHK, 10, 1, 2))
-                                        .addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(ModEntities.NOMADIC_LAGRAHK, 15, 1, 1))
-                                        .addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(ModEntities.ROCKY_LUGGEROTH, 10, 4, 5))
-                                        .addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(ModEntities.RUGGED_LURMORUS, 10, 1, 3)))
+                                        .addSpawn(MobCategory.MONSTER, mobData(ModEntities.ANCIENT_LAGRAHK, 10, 1, 2))
+                                        .addSpawn(MobCategory.CREATURE, mobData(ModEntities.NOMADIC_LAGRAHK, 15, 1, 1))
+                                        .addSpawn(MobCategory.CREATURE, mobData(ModEntities.ROCKY_LUGGEROTH, 10, 4, 5))
+                                        .addSpawn(MobCategory.CREATURE, mobData(ModEntities.RUGGED_LURMORUS, 10, 1, 3)))
                 ).depth(0.1F).scale(0.05F).temperature(0.66F));
     }
 
@@ -115,9 +115,9 @@ public class GaiaBiomes extends GaiaBiomeProvider {
                         mutantAgateWildwood(),
                         buildSpawns(
                                 createSpawns()
-                                        .addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(ModEntities.NOMADIC_LAGRAHK, 15, 1, 1))
-                                        .addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(ModEntities.GROWTH_SAPPER, 40, 3, 5))
-                                        .addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(ModEntities.MUTANT_GROWTH_EXTRACTOR, 5, 2, 4)))
+                                        .addSpawn(MobCategory.CREATURE, mobData(ModEntities.NOMADIC_LAGRAHK, 15, 1, 1))
+                                        .addSpawn(MobCategory.CREATURE, mobData(ModEntities.GROWTH_SAPPER, 40, 3, 5))
+                                        .addSpawn(MobCategory.CREATURE, mobData(ModEntities.MUTANT_GROWTH_EXTRACTOR, 5, 2, 4)))
                 ).depth(0.1F).scale(0.1F).temperature(0.66F));
     }
 
@@ -128,8 +128,8 @@ public class GaiaBiomes extends GaiaBiomeProvider {
                         volcanicLands(),
                         buildSpawns(
                                 createSpawns()
-                                        .addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(ModEntities.LESSER_SPITFIRE, 10, 2, 4))
-                                        .addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(ModEntities.NOMADIC_LAGRAHK, 15, 1, 3)))
+                                        .addSpawn(MobCategory.MONSTER, mobData(ModEntities.LESSER_SPITFIRE, 10, 2, 4))
+                                        .addSpawn(MobCategory.CREATURE, mobData(ModEntities.NOMADIC_LAGRAHK, 15, 1, 3)))
                 ).depth(1.0F).scale(0.7F).temperature(0.9F));
     }
 
@@ -140,8 +140,8 @@ public class GaiaBiomes extends GaiaBiomeProvider {
                         staticWasteland(),
                         buildSpawns(
                                 createSpawns()
-                                        .addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(ModEntities.LESSER_SHOCKSHOOTER, 10, 2, 4))
-                                        .addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(ModEntities.NOMADIC_LAGRAHK, 15, 1, 3)))
+                                        .addSpawn(MobCategory.MONSTER, mobData(ModEntities.LESSER_SHOCKSHOOTER, 10, 2, 4))
+                                        .addSpawn(MobCategory.CREATURE, mobData(ModEntities.NOMADIC_LAGRAHK, 15, 1, 3)))
                 ).depth(3.0F).scale(0.05F).temperature(0.4F));
     }
 
@@ -152,8 +152,8 @@ public class GaiaBiomes extends GaiaBiomeProvider {
                         goldstoneLands(),
                         buildSpawns(
                                 createSpawns()
-                                        .addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(ModEntities.CORRUPT_SAPPER, 20, 2, 4))
-                                        .addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(ModEntities.CONTORTED_NAGA, 10, 2, 3)))
+                                        .addSpawn(MobCategory.MONSTER, mobData(ModEntities.CORRUPT_SAPPER, 20, 2, 4))
+                                        .addSpawn(MobCategory.MONSTER, mobData(ModEntities.CONTORTED_NAGA, 10, 2, 3)))
                 ).depth(0.125F).scale(0.05F).temperature(0.55F));
     }
 
@@ -164,9 +164,9 @@ public class GaiaBiomes extends GaiaBiomeProvider {
                         crystalPlains(),
                         buildSpawns(
                                 createSpawns()
-                                        .addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(ModEntities.NOMADIC_LAGRAHK, 15, 1, 1))
-                                        .addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(ModEntities.GROWTH_SAPPER, 20, 4, 6))
-                                        .addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(ModEntities.CRYSTAL_GOLEM, 15, 1, 3)))
+                                        .addSpawn(MobCategory.CREATURE, mobData(ModEntities.NOMADIC_LAGRAHK, 15, 1, 1))
+                                        .addSpawn(MobCategory.CREATURE, mobData(ModEntities.GROWTH_SAPPER, 20, 4, 6))
+                                        .addSpawn(MobCategory.CREATURE, mobData(ModEntities.CRYSTAL_GOLEM, 15, 1, 3)))
                 ).depth(0.05F).scale(0.05F).temperature(0.66F));
     }
 
@@ -177,8 +177,8 @@ public class GaiaBiomes extends GaiaBiomeProvider {
                         saltDunes(),
                         buildSpawns(
                                 createSpawns()
-                                        .addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(ModEntities.NOMADIC_LAGRAHK, 15, 1, 3))
-                                        .addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(ModEntities.SALTION, 15, 1, 3)))
+                                        .addSpawn(MobCategory.CREATURE, mobData(ModEntities.NOMADIC_LAGRAHK, 15, 1, 3))
+                                        .addSpawn(MobCategory.CREATURE, mobData(ModEntities.SALTION, 15, 1, 3)))
                 ).depth(0.2F).scale(0.05F).temperature(0.8F));
     }
 
@@ -189,8 +189,8 @@ public class GaiaBiomes extends GaiaBiomeProvider {
                         smolderingBog(),
                         buildSpawns(
                                 createSpawns()
-                                        .addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(ModEntities.NOMADIC_LAGRAHK, 15, 1, 1))
-                                        .addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(ModEntities.BISMUTH_ULETRUS, 20, 2, 3)))
+                                        .addSpawn(MobCategory.CREATURE, mobData(ModEntities.NOMADIC_LAGRAHK, 15, 1, 1))
+                                        .addSpawn(MobCategory.CREATURE, mobData(ModEntities.BISMUTH_ULETRUS, 20, 2, 3)))
                 ).depth(0.2F).scale(0.02F).temperature(0.9F));
     }
 
@@ -201,7 +201,7 @@ public class GaiaBiomes extends GaiaBiomeProvider {
                         shiningGrove(),
                         buildSpawns(
                                 createSpawns()
-                                        .addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(ModEntities.NOMADIC_LAGRAHK, 15, 1, 1)))
+                                        .addSpawn(MobCategory.CREATURE, mobData(ModEntities.NOMADIC_LAGRAHK, 15, 1, 1)))
                 ).depth(0.4F).scale(0.05F).temperature(0.5F));
     }
 
@@ -212,7 +212,7 @@ public class GaiaBiomes extends GaiaBiomeProvider {
                         mineralBiome(),
                         buildSpawns(
                                 createSpawns()
-                                        .addSpawn(MobCategory.WATER_CREATURE, new MobSpawnSettings.SpawnerData(ModEntities.MINERAL_ARENTHIS, 10, 1, 4)))
+                                        .addSpawn(MobCategory.WATER_CREATURE, mobData(ModEntities.MINERAL_ARENTHIS, 10, 1, 4)))
                 ).depth(-1.8F).scale(0.1F).temperature(0.66F));
     }
 

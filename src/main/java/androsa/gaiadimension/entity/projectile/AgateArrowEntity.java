@@ -18,11 +18,11 @@ public class AgateArrowEntity extends AbstractArrow {
     }
 
     public AgateArrowEntity(Level worldIn, double x, double y, double z) {
-        super(ModEntities.AGATE_ARROW, x, y, z, worldIn);
+        super(ModEntities.AGATE_ARROW.get(), x, y, z, worldIn);
     }
 
     public AgateArrowEntity(Level worldIn, LivingEntity shooter) {
-        super(ModEntities.AGATE_ARROW, shooter, worldIn);
+        super(ModEntities.AGATE_ARROW.get(), shooter, worldIn);
     }
 
     @Override

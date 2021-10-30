@@ -297,5 +297,6 @@ public class GaiaAdvancements extends GaiaAdvancementProvider {
                     .addCriterion("malachite_guard_baton", item(ModItems.malachite_guard_baton))
                     .save(consumer, loc("all_malachite_gear"));
         }
+                .addCriterion("malachite_guard", KilledTrigger.TriggerInstance.playerKilledEntity(EntityPredicate.Builder.entity().of(ModEntities.MALACHITE_GUARD.get())))
     }
 }

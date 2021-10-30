@@ -14,6 +14,7 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.material.Fluids;
+import net.minecraftforge.common.ForgeSpawnEggItem;
 import net.minecraftforge.fmllegacy.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -295,8 +296,8 @@ public class ModItems {
         return register(name, () -> new BasicGaiaShovelItem(tier, toolProps()));
     }
 
-    public static RegistryObject<Item> registerEgg(String name, EntityType<? extends Mob> entity, int back, int front) {
-        return register(name + "_spawn_egg", () -> new GaiaSpawnEggItem(entity, back, front));
+    public static RegistryObject<Item> registerEgg(String name, Supplier<? extends EntityType<? extends Mob>> entity, int back, int front) {
+        return register(name + "_spawn_egg", () -> new ForgeSpawnEggItem(entity, back, front, new Item.Properties().tab(CreativeModeTab.TAB_MISC)));
     }
 
     private static RegistryObject<Item> register(String name, Supplier<Item> item) {

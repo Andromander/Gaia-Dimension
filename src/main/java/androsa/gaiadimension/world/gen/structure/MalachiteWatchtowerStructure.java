@@ -41,10 +41,10 @@ public class MalachiteWatchtowerStructure<T extends NoneFeatureConfiguration> ex
     @Override
     public List<MobSpawnSettings.SpawnerData> getDefaultSpawnList() {
         return Lists.newArrayList(
-                new MobSpawnSettings.SpawnerData(ModEntities.MALACHITE_DRONE, 10, 1, 1),
-                new MobSpawnSettings.SpawnerData(ModEntities.SHALURKER, 5, 1, 2),
-                new MobSpawnSettings.SpawnerData(ModEntities.ARCHAIC_WARRIOR, 8, 1, 2),
-                new MobSpawnSettings.SpawnerData(ModEntities.CAVERN_TICK, 3, 2, 3));
+                new MobSpawnSettings.SpawnerData(ModEntities.MALACHITE_DRONE.get(), 10, 1, 1),
+                new MobSpawnSettings.SpawnerData(ModEntities.SHALURKER.get(), 5, 1, 2),
+                new MobSpawnSettings.SpawnerData(ModEntities.ARCHAIC_WARRIOR.get(), 8, 1, 2),
+                new MobSpawnSettings.SpawnerData(ModEntities.CAVERN_TICK.get(), 3, 2, 3));
     }
 
     @Override
