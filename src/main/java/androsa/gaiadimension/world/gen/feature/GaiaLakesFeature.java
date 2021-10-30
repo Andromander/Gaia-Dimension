@@ -106,11 +106,11 @@ public class GaiaLakesFeature<T extends BlockStateConfiguration> extends Feature
                                 if (worldIn.getBlockState(blockpos).getBlock() instanceof GaiaSoilBlock && worldIn.getBrightness(LightLayer.SKY, pos.offset(i2, j4, j3)) > 0) {
                                     Biome biome = worldIn.getBiome(blockpos);
 
-                                    if (biome.getGenerationSettings().getSurfaceBuilderBaseConfiguration().getTopMaterial().getBlock() == ModBlocks.murky_grass.get()) {
+                                    if (biome.getGenerationSettings().getSurfaceBuilderConfig().getTopMaterial().getBlock() == ModBlocks.murky_grass.get()) {
                                         worldIn.setBlock(blockpos, ModBlocks.murky_grass.get().defaultBlockState(), 2);
-                                    } else if (biome.getGenerationSettings().getSurfaceBuilderBaseConfiguration().getTopMaterial().getBlock() == ModBlocks.soft_grass.get()) {
+                                    } else if (biome.getGenerationSettings().getSurfaceBuilderConfig().getTopMaterial().getBlock() == ModBlocks.soft_grass.get()) {
                                         worldIn.setBlock(blockpos, ModBlocks.soft_grass.get().defaultBlockState(), 2);
-                                    } else if (biome.getGenerationSettings().getSurfaceBuilderBaseConfiguration().getTopMaterial().getBlock() == ModBlocks.corrupt_grass.get()) {
+                                    } else if (biome.getGenerationSettings().getSurfaceBuilderConfig().getTopMaterial().getBlock() == ModBlocks.corrupt_grass.get()) {
                                         worldIn.setBlock(blockpos, ModBlocks.corrupt_grass.get().defaultBlockState(), 2);
                                     } else {
                                         worldIn.setBlock(blockpos, ModBlocks.glitter_grass.get().defaultBlockState(), 2);
