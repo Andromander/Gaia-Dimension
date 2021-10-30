@@ -1,7 +1,7 @@
 package androsa.gaiadimension.compat.jei;
 
 import androsa.gaiadimension.GaiaDimensionMod;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.resources.ResourceLocation;
 
 public class GDRecipeCategoryUid {
     //Restructuring Recipes

@@ -4,7 +4,7 @@ import androsa.gaiadimension.GaiaDimensionMod;
 import androsa.gaiadimension.compat.jei.GDRecipeCategoryUid;
 import androsa.gaiadimension.recipe.PurifierRecipe;
 import androsa.gaiadimension.registry.ModBlocks;
-import com.mojang.blaze3d.matrix.MatrixStack;
+import com.mojang.blaze3d.vertex.PoseStack;
 import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.gui.IRecipeLayout;
 import mezz.jei.api.gui.drawable.IDrawable;
@@ -12,10 +12,11 @@ import mezz.jei.api.gui.ingredient.IGuiItemStackGroup;
 import mezz.jei.api.helpers.IGuiHelper;
 import mezz.jei.api.ingredients.IIngredients;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.FontRenderer;
-import net.minecraft.client.resources.I18n;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.client.gui.Font;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.ItemStack;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -25,7 +26,7 @@ public class PurifyingCategory extends PurifierRecipeCategory<PurifierRecipe> {
 
     private final IDrawable background;
     private final IDrawable icon;
-    private final String localizedName;
+    private final Component localizedName;
     private final ResourceLocation backgroundimage = new ResourceLocation(GaiaDimensionMod.MODID, "textures/gui/jei/recipe2output.png");
 
     public PurifyingCategory(IGuiHelper guiHelper) {
@@ -33,7 +34,7 @@ public class PurifyingCategory extends PurifierRecipeCategory<PurifierRecipe> {
                 .setTextureSize(76, 56).addPadding(0, 0, 0, 10)
                 .build();
         icon = guiHelper.createDrawableIngredient(new ItemStack(ModBlocks.purifier.get()));
-        localizedName = I18n.get("gui.gaiadimension.category.purifying");
+        localizedName = new TranslatableComponent("gui.gaiadimension.category.purifying");
     }
 
     @Override
@@ -47,7 +48,7 @@ public class PurifyingCategory extends PurifierRecipeCategory<PurifierRecipe> {
     }
 
     @Override
-    public String getTitle() {
+    public Component getTitle() {
         return localizedName;
     }
 
@@ -82,12 +83,12 @@ public class PurifyingCategory extends PurifierRecipeCategory<PurifierRecipe> {
     }
 
     @Override
-    public void draw(PurifierRecipe recipe, MatrixStack stack, double mouseX, double mouseY) {
+    public void draw(PurifierRecipe recipe, PoseStack stack, double mouseX, double mouseY) {
         float experience = recipe.getExperience();
         if (experience > 0.0F) {
-            String experienceString = I18n.get("gui.jei.category.smelting.experience", experience);
+            Component experienceString = new TranslatableComponent("gui.jei.category.smelting.experience", experience);
             Minecraft minecraft = Minecraft.getInstance();
-            FontRenderer fontRenderer = minecraft.font;
+            Font fontRenderer = minecraft.font;
             int stringWidth = fontRenderer.width(experienceString);
             fontRenderer.draw(stack, experienceString, (float)(this.background.getWidth() - stringWidth), 0.0F, -8355712);
         }

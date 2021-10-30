@@ -1,14 +1,14 @@
 package androsa.gaiadimension.compat.jei;
 
 import androsa.gaiadimension.GaiaDimensionMod;
-import androsa.gaiadimension.block.container.AgateCraftingTableContainer;
-import androsa.gaiadimension.block.container.GaiaStoneFurnaceContainer;
-import androsa.gaiadimension.block.container.PurifierContainer;
-import androsa.gaiadimension.block.container.RestructurerContainer;
+import androsa.gaiadimension.block.menu.AgateCraftingTableMenu;
+import androsa.gaiadimension.block.menu.GaiaStoneFurnaceMenu;
+import androsa.gaiadimension.block.menu.PurifierMenu;
+import androsa.gaiadimension.block.menu.RestructurerMenu;
 import androsa.gaiadimension.compat.jei.purifier.NullFuelCategory;
 import androsa.gaiadimension.compat.jei.purifier.NullFuelRecipeMaker;
-import androsa.gaiadimension.compat.jei.purifier.PurifyingCategory;
 import androsa.gaiadimension.compat.jei.purifier.PurifierRecipeMaker;
+import androsa.gaiadimension.compat.jei.purifier.PurifyingCategory;
 import androsa.gaiadimension.compat.jei.restructurer.*;
 import androsa.gaiadimension.registry.ModBlocks;
 import mezz.jei.api.IModPlugin;
@@ -20,12 +20,12 @@ import mezz.jei.api.registration.IRecipeCategoryRegistration;
 import mezz.jei.api.registration.IRecipeRegistration;
 import mezz.jei.api.registration.IRecipeTransferRegistration;
 import mezz.jei.api.runtime.IIngredientManager;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.IRecipe;
-import net.minecraft.item.crafting.IRecipeType;
-import net.minecraft.item.crafting.RecipeManager;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.Container;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.Recipe;
+import net.minecraft.world.item.crafting.RecipeManager;
+import net.minecraft.world.item.crafting.RecipeType;
 
 import java.util.Collection;
 import java.util.Map;
@@ -49,8 +49,8 @@ public class JEICompat implements IModPlugin {
         );
     }
 
-    public static <C extends IInventory, T extends IRecipe<C>> Collection<IRecipe<C>> getRecipes(RecipeManager recipeManager, IRecipeType<T> recipeType) {
-        Map<ResourceLocation, IRecipe<C>> recipes = recipeManager.byType(recipeType);
+    public static <C extends Container, T extends Recipe<C>> Collection<Recipe<C>> getRecipes(RecipeManager recipeManager, RecipeType<T> recipeType) {
+        Map<ResourceLocation, Recipe<C>> recipes = recipeManager.byType(recipeType);
         return recipes.values();
     }
 
@@ -68,16 +68,16 @@ public class JEICompat implements IModPlugin {
 
     @Override
     public void registerRecipeTransferHandlers(IRecipeTransferRegistration registration) {
-        registration.addRecipeTransferHandler(AgateCraftingTableContainer.class, VanillaRecipeCategoryUid.CRAFTING, 1, 9, 10, 36);
-        registration.addRecipeTransferHandler(GaiaStoneFurnaceContainer.class, VanillaRecipeCategoryUid.FURNACE, 0, 1, 3, 36);
-        registration.addRecipeTransferHandler(GaiaStoneFurnaceContainer.class, VanillaRecipeCategoryUid.FUEL, 1, 1, 3, 36);
-        registration.addRecipeTransferHandler(RestructurerContainer.class, GDRecipeCategoryUid.RESTRUCTURE, 0, 1, 5, 36);
-        registration.addRecipeTransferHandler(RestructurerContainer.class, GDRecipeCategoryUid.GOLD, 1, 1, 5, 36);
-        registration.addRecipeTransferHandler(RestructurerContainer.class, GDRecipeCategoryUid.SHINE, 2, 1, 5, 36);
-        registration.addRecipeTransferHandler(PurifierContainer.class, GDRecipeCategoryUid.PURIFY, 0, 1, 6, 36);
-        registration.addRecipeTransferHandler(PurifierContainer.class, GDRecipeCategoryUid.GOLD, 1, 1, 6, 36);
-        registration.addRecipeTransferHandler(PurifierContainer.class, GDRecipeCategoryUid.SHINE, 2, 1, 6, 36);
-        registration.addRecipeTransferHandler(PurifierContainer.class, GDRecipeCategoryUid.NULLING, 3, 1, 6, 36);
+        registration.addRecipeTransferHandler(AgateCraftingTableMenu.class, VanillaRecipeCategoryUid.CRAFTING, 1, 9, 10, 36);
+        registration.addRecipeTransferHandler(GaiaStoneFurnaceMenu.class, VanillaRecipeCategoryUid.FURNACE, 0, 1, 3, 36);
+        registration.addRecipeTransferHandler(GaiaStoneFurnaceMenu.class, VanillaRecipeCategoryUid.FUEL, 1, 1, 3, 36);
+        registration.addRecipeTransferHandler(RestructurerMenu.class, GDRecipeCategoryUid.RESTRUCTURE, 0, 1, 5, 36);
+        registration.addRecipeTransferHandler(RestructurerMenu.class, GDRecipeCategoryUid.GOLD, 1, 1, 5, 36);
+        registration.addRecipeTransferHandler(RestructurerMenu.class, GDRecipeCategoryUid.SHINE, 2, 1, 5, 36);
+        registration.addRecipeTransferHandler(PurifierMenu.class, GDRecipeCategoryUid.PURIFY, 0, 1, 6, 36);
+        registration.addRecipeTransferHandler(PurifierMenu.class, GDRecipeCategoryUid.GOLD, 1, 1, 6, 36);
+        registration.addRecipeTransferHandler(PurifierMenu.class, GDRecipeCategoryUid.SHINE, 2, 1, 6, 36);
+        registration.addRecipeTransferHandler(PurifierMenu.class, GDRecipeCategoryUid.NULLING, 3, 1, 6, 36);
     }
 
     @Override

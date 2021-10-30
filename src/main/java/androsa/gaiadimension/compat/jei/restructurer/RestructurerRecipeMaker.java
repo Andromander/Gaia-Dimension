@@ -5,14 +5,16 @@ import androsa.gaiadimension.compat.jei.JEICompat;
 import androsa.gaiadimension.recipe.RestructurerRecipe;
 import androsa.gaiadimension.registry.ModRecipes;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.world.ClientWorld;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.IRecipe;
-import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.item.crafting.RecipeManager;
+import net.minecraft.client.multiplayer.ClientLevel;
+import net.minecraft.world.Container;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.crafting.Recipe;
+import net.minecraft.world.item.crafting.RecipeManager;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 public class RestructurerRecipeMaker {
 
@@ -20,11 +22,11 @@ public class RestructurerRecipeMaker {
     }
 
     public static List<RestructurerRecipe> getRestructurerRecipes() {
-        ClientWorld world = Minecraft.getInstance().level;
+        ClientLevel world = Minecraft.getInstance().level;
         RecipeManager recipeManager = world.getRecipeManager();
         List<RestructurerRecipe> recipeList = new ArrayList<>();
 
-        for (IRecipe<IInventory> iInventoryIRecipe : JEICompat.getRecipes(recipeManager, ModRecipes.RESTRUCTURING)) {
+        for (Recipe<Container> iInventoryIRecipe : JEICompat.getRecipes(recipeManager, ModRecipes.RESTRUCTURING)) {
             RestructurerRecipe recipe = (RestructurerRecipe) iInventoryIRecipe;
             if (isRecipeValid(recipe)) {
                 recipeList.add(recipe);

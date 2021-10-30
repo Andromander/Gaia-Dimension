@@ -4,9 +4,10 @@ import androsa.gaiadimension.GaiaDimensionMod;
 import com.google.common.base.Preconditions;
 import mezz.jei.api.gui.drawable.IDrawableAnimated;
 import mezz.jei.api.helpers.IGuiHelper;
-import net.minecraft.client.resources.I18n;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.ItemStack;
 
 import java.text.NumberFormat;
 import java.util.ArrayList;
@@ -15,7 +16,7 @@ import java.util.List;
 
 public class NullFuelRecipe {
     private final List<ItemStack> inputs;
-    private final String smeltCountString;
+    private final Component smeltCountString;
     private final IDrawableAnimated flame;
     private final ResourceLocation firetex = new ResourceLocation(GaiaDimensionMod.MODID, "textures/gui/jei/nulling.png");
 
@@ -24,12 +25,12 @@ public class NullFuelRecipe {
         this.inputs = new ArrayList<>(input);
 
         if (burnTime == 200) {
-            this.smeltCountString = I18n.get("gui.gaiadimension.category.fuel.single_average");
+            this.smeltCountString = new TranslatableComponent("gui.gaiadimension.category.fuel.single_average");
         } else {
             NumberFormat numberInstance = NumberFormat.getNumberInstance();
             numberInstance.setMaximumFractionDigits(2);
             String smeltCount = numberInstance.format(burnTime / 200f);
-            this.smeltCountString = I18n.get("gui.gaiadimension.category.fuel.smelt_average", smeltCount);
+            this.smeltCountString = new TranslatableComponent("gui.gaiadimension.category.fuel.smelt_average", smeltCount);
         }
 
         this.flame = guiHelper.drawableBuilder(firetex, 0, 0, 14, 14)
@@ -41,7 +42,7 @@ public class NullFuelRecipe {
         return this.inputs;
     }
 
-    public String getNullCountString() {
+    public Component getNullCountString() {
         return this.smeltCountString;
     }
 

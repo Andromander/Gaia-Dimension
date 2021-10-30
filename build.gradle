@@ -127,8 +127,8 @@ repositories {
 }
 
 dependencies {
-//    compileOnly fg.deobf("mezz.jei:jei-${mc_version_jei}:${jei_version}:api")
-//    runtimeOnly fg.deobf("mezz.jei:jei-${mc_version_jei}:${jei_version}")
+    compileOnly fg.deobf("mezz.jei:jei-${mc_version}:${jei_version}:api")
+    runtimeOnly fg.deobf("mezz.jei:jei-${mc_version}:${jei_version}")
 
 //    runtimeOnly fg.deobf("com.sk88q.worldedit:WorldEdit:${we_version}")
 //    runtimeOnly fg.deobf("team.chisel.ctm:CTM:${project.ctm_version}")
