@@ -6,41 +6,18 @@
       "block_search_extent": 8,
       "offset": 2.0
     },
-    "sky_color": 15833793,
-    "foliage_color": 13948848,
-    "grass_color": 13948848,
+    "sky_color": 13016408,
+    "foliage_color": 15901620,
+    "grass_color": 15901620,
     "fog_color": 15381216,
     "water_color": 7117233,
     "water_fog_color": 9617108
   },
-  "surface_builder": {
-    "config": {
-      "top_material": {
-        "Name": "gaiadimension:glitter_grass"
-      },
-      "under_material": {
-        "Name": "gaiadimension:heavy_soil"
-      },
-      "underwater_material": {
-        "Name": "gaiadimension:salt"
-      }
-    },
-    "type": "gaiadimension:default_gaia"
-  },
+  "surface_builder": "gaiadimension:salty",
   "carvers": {
     "air": [
-      {
-        "config": {
-          "probability": 0.15
-        },
-        "type": "gaiadimension:crystal_caves"
-      },
-      {
-        "config": {
-          "probability": 0.03
-        },
-        "type": "gaiadimension:chasms"
-      }
+      "gaiadimension:crystal_caves",
+      "gaiadimension:chasms"
     ]
   },
   "features": [
@@ -64,30 +41,14 @@
       "gaiadimension:ore_pyrite",
       "gaiadimension:ore_cinnabar",
       "gaiadimension:ore_labradorite",
-      "gaiadimension:ore_moonstone",
-      "gaiadimension:ore_raw_amethyst",
-      "gaiadimension:ore_raw_jade",
-      "gaiadimension:ore_red_opal",
-      "gaiadimension:ore_blue_opal",
-      "gaiadimension:ore_green_opal",
-      "gaiadimension:ore_white_opal_common"
+      "gaiadimension:ore_moonstone"
     ],
     [
       "gaiadimension:crystal_fungi_caves",
       "gaiadimension:underground_glitter_blob"
-    ],
-    [
-      "gaiadimension:various_agate_trees",
-      "gaiadimension:crystal_blooms_mutant",
-      "gaiadimension:mystical_murgni"
     ]
   ],
-  "starts": [
-    {
-      "config": {},
-      "type": "gaiadimension:mini_tower"
-    }
-  ],
+  "starts": [],
   "spawners": {
     "monster": [
       {
@@ -127,27 +88,9 @@
         "maxCount": 2
       }
     ],
-    "creature": [
-      {
-        "type": "gaiadimension:nomadic_lagrahk",
-        "weight": 15,
-        "minCount": 1,
-        "maxCount": 1
-      },
-      {
-        "type": "gaiadimension:growth_sapper",
-        "weight": 40,
-        "minCount": 3,
-        "maxCount": 5
-      },
-      {
-        "type": "gaiadimension:mutant_growth_extractor",
-        "weight": 5,
-        "minCount": 2,
-        "maxCount": 4
-      }
-    ],
+    "creature": [],
     "ambient": [],
+    "underground_water_creature": [],
     "water_creature": [
       {
         "type": "gaiadimension:shallow_arenthis",
@@ -161,11 +104,11 @@
   },
   "spawn_costs": {},
   "player_spawn_friendly": false,
-  "forge:registry_name": "gaiadimension:mutant_agate_wildwood",
+  "forge:registry_name": "gaiadimension:mineral_river",
   "precipitation": "none",
   "temperature": 0.66,
   "downfall": 0.0,
   "category": "none",
-  "depth": 0.1,
-  "scale": 0.1
+  "depth": -0.5,
+  "scale": 0.0
 }

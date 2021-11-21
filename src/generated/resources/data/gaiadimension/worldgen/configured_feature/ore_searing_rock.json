@@ -6,22 +6,33 @@
           "config": {
             "feature": {
               "config": {
-                "target": {
-                  "tag": "gaiadimension:base_stone_volcanic",
-                  "predicate_type": "minecraft:tag_match"
-                },
-                "state": {
-                  "Name": "gaiadimension:searing_rock"
-                },
-                "size": 33
+                "targets": [
+                  {
+                    "target": {
+                      "tag": "gaiadimension:base_stone_volcanic",
+                      "predicate_type": "minecraft:tag_match"
+                    },
+                    "state": {
+                      "Name": "gaiadimension:searing_rock"
+                    }
+                  }
+                ],
+                "size": 33,
+                "discard_chance_on_air_exposure": 0.0
               },
               "type": "minecraft:ore"
             },
             "decorator": {
               "config": {
-                "bottom_offset": 0,
-                "top_offset": 0,
-                "maximum": 100
+                "height": {
+                  "min_inclusive": {
+                    "above_bottom": 0
+                  },
+                  "max_inclusive": {
+                    "absolute": 100
+                  },
+                  "type": "minecraft:uniform"
+                }
               },
               "type": "minecraft:range"
             }

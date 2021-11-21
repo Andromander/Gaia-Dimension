@@ -6,41 +6,18 @@
       "block_search_extent": 8,
       "offset": 2.0
     },
-    "sky_color": 8437662,
-    "foliage_color": 4961870,
-    "grass_color": 4961870,
+    "sky_color": 13016408,
+    "foliage_color": 15901620,
+    "grass_color": 15901620,
     "fog_color": 15381216,
     "water_color": 7117233,
     "water_fog_color": 9617108
   },
-  "surface_builder": {
-    "config": {
-      "top_material": {
-        "Name": "gaiadimension:glitter_grass"
-      },
-      "under_material": {
-        "Name": "gaiadimension:heavy_soil"
-      },
-      "underwater_material": {
-        "Name": "gaiadimension:salt"
-      }
-    },
-    "type": "gaiadimension:default_gaia"
-  },
+  "surface_builder": "gaiadimension:glitter_grass",
   "carvers": {
     "air": [
-      {
-        "config": {
-          "probability": 0.15
-        },
-        "type": "gaiadimension:crystal_caves"
-      },
-      {
-        "config": {
-          "probability": 0.03
-        },
-        "type": "gaiadimension:chasms"
-      }
+      "gaiadimension:crystal_caves",
+      "gaiadimension:chasms"
     ]
   },
   "features": [
@@ -65,32 +42,23 @@
       "gaiadimension:ore_cinnabar",
       "gaiadimension:ore_labradorite",
       "gaiadimension:ore_moonstone",
-      "gaiadimension:ore_raw_copal",
-      "gaiadimension:ore_raw_jade",
-      "gaiadimension:ore_green_opal",
-      "gaiadimension:ore_white_opal_rare"
+      "gaiadimension:ore_raw_amethyst",
+      "gaiadimension:ore_raw_jade"
     ],
     [
       "gaiadimension:crystal_fungi_caves",
       "gaiadimension:underground_glitter_blob"
     ],
     [
-      "gaiadimension:green_agate_tree",
-      "gaiadimension:green_agate_bush",
-      "gaiadimension:crystal_growth_04",
+      "gaiadimension:pink_agate_tree_rare",
+      "gaiadimension:crystal_growth_05",
       "gaiadimension:crystal_blooms_common",
-      "gaiadimension:roofed_agaric"
+      "gaiadimension:spotted_kersei"
     ]
   ],
   "starts": [
-    {
-      "config": {},
-      "type": "gaiadimension:mini_tower"
-    },
-    {
-      "config": {},
-      "type": "gaiadimension:malachite_watchtower"
-    }
+    "gaiadimension:mini_tower",
+    "gaiadimension:malachite_watchtower"
   ],
   "spawners": {
     "monster": [
@@ -141,18 +109,18 @@
       {
         "type": "gaiadimension:growth_sapper",
         "weight": 20,
-        "minCount": 3,
-        "maxCount": 5
-      }
-    ],
-    "ambient": [
+        "minCount": 4,
+        "maxCount": 6
+      },
       {
-        "type": "gaiadimension:markuzar_plant",
+        "type": "gaiadimension:crystal_golem",
         "weight": 15,
-        "minCount": 2,
-        "maxCount": 4
+        "minCount": 1,
+        "maxCount": 3
       }
     ],
+    "ambient": [],
+    "underground_water_creature": [],
     "water_creature": [
       {
         "type": "gaiadimension:shallow_arenthis",
@@ -166,11 +134,11 @@
   },
   "spawn_costs": {},
   "player_spawn_friendly": false,
-  "forge:registry_name": "gaiadimension:green_agate_jungle",
+  "forge:registry_name": "gaiadimension:crystal_plains",
   "precipitation": "none",
-  "temperature": 0.75,
+  "temperature": 0.66,
   "downfall": 0.0,
   "category": "none",
-  "depth": 0.1,
-  "scale": 0.2
+  "depth": 0.05,
+  "scale": 0.05
 }

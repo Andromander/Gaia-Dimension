@@ -44,16 +44,16 @@
             "state_provider": {
               "entries": [
                 {
-                  "weight": 2,
                   "data": {
                     "Name": "gaiadimension:elder_imklia"
-                  }
+                  },
+                  "weight": 2
                 },
                 {
-                  "weight": 2,
                   "data": {
                     "Name": "gaiadimension:gold_orb_tucher"
-                  }
+                  },
+                  "weight": 2
                 }
               ],
               "type": "minecraft:weighted_state_provider"
@@ -71,7 +71,9 @@
               "type": "minecraft:square"
             },
             "inner": {
-              "config": {},
+              "config": {
+                "heightmap": "MOTION_BLOCKING"
+              },
               "type": "minecraft:heightmap_spread_double"
             }
           },

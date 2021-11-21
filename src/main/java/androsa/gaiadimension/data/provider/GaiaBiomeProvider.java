@@ -1,67 +1,15 @@
 package androsa.gaiadimension.data.provider;
 
-import androsa.gaiadimension.GaiaDimensionMod;
 import androsa.gaiadimension.registry.GaiaBiomeFeatures;
 import androsa.gaiadimension.registry.ModEntities;
-import com.google.gson.JsonElement;
-import com.mojang.serialization.DataResult;
-import com.mojang.serialization.JsonOps;
-import net.minecraft.data.DataGenerator;
-import net.minecraft.data.DataProvider;
-import net.minecraft.data.HashCache;
-import net.minecraft.data.worldgen.biome.BiomeReport;
-import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.level.biome.*;
 import net.minecraft.world.level.levelgen.GenerationStep;
 
-import java.io.IOException;
-import java.nio.file.Path;
-import java.util.Map;
-import java.util.Optional;
-import java.util.function.Function;
 import java.util.function.Supplier;
 
-public abstract class GaiaBiomeProvider extends BiomeReport {
-
-    public GaiaBiomeProvider(DataGenerator generator) {
-        super(generator);
-    }
-
-    @Override
-    public void run(HashCache dir) {
-        GaiaDimensionMod.LOGGER.info("Gaia Biomes starting generation...");
-
-        Path out = this.generator.getOutputFolder();
-
-        for(Map.Entry<ResourceKey<Biome>, Biome> biome : registerBiomes().entrySet()) {
-            Path path = getPath(out, biome.getKey().location());
-            Biome obj = biome.getValue();
-            obj.setRegistryName(biome.getKey().location());
-            Function<Supplier<Biome>, DataResult<JsonElement>> biomedata = JsonOps.INSTANCE.withEncoder(Biome.CODEC);
-
-            try {
-                 Optional<JsonElement> element = biomedata.apply(biome::getValue).result();
-                if (element.isPresent()) {
-                    DataProvider.save(GSON, dir, element.get(), path);
-                } else {
-                    GaiaDimensionMod.LOGGER.error("Couldn't serialize biome {}", path);
-                }
-            } catch (IOException e) {
-                GaiaDimensionMod.LOGGER.error("Couldn't save biome {}", path, e);
-            }
-        }
-
-        GaiaDimensionMod.LOGGER.info("Gaia Biomes finished generating!");
-    }
-
-    private static Path getPath(Path path, ResourceLocation loc) {
-        return path.resolve("data/" + loc.getNamespace() + "/worldgen/biome/" + loc.getPath() + ".json");
-    }
-
-    protected abstract Map<ResourceKey<Biome>, Biome> registerBiomes();
+public abstract class GaiaBiomeProvider {
 
     public static Biome buildBiome(Biome.BiomeBuilder builder) {
         return builder.build();

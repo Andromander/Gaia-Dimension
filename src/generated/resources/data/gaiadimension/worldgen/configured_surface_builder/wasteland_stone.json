@@ -1,0 +1,14 @@
+{
+  "config": {
+    "top_material": {
+      "Name": "gaiadimension:wasteland_stone"
+    },
+    "under_material": {
+      "Name": "gaiadimension:wasteland_stone"
+    },
+    "underwater_material": {
+      "Name": "gaiadimension:wasteland_stone"
+    }
+  },
+  "type": "gaiadimension:static"
+}

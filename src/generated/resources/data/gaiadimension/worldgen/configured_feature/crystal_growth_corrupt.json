@@ -16,16 +16,16 @@
             "state_provider": {
               "entries": [
                 {
-                  "weight": 2,
                   "data": {
                     "Name": "gaiadimension:crystal_growth_red"
-                  }
+                  },
+                  "weight": 2
                 },
                 {
-                  "weight": 2,
                   "data": {
                     "Name": "gaiadimension:crystal_growth_black"
-                  }
+                  },
+                  "weight": 2
                 }
               ],
               "type": "minecraft:weighted_state_provider"
@@ -43,7 +43,9 @@
               "type": "minecraft:square"
             },
             "inner": {
-              "config": {},
+              "config": {
+                "heightmap": "MOTION_BLOCKING"
+              },
               "type": "minecraft:heightmap_spread_double"
             }
           },

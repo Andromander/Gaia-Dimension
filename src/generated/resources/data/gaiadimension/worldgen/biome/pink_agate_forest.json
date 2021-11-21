@@ -13,34 +13,11 @@
     "water_color": 7117233,
     "water_fog_color": 9617108
   },
-  "surface_builder": {
-    "config": {
-      "top_material": {
-        "Name": "gaiadimension:glitter_grass"
-      },
-      "under_material": {
-        "Name": "gaiadimension:heavy_soil"
-      },
-      "underwater_material": {
-        "Name": "gaiadimension:salt"
-      }
-    },
-    "type": "gaiadimension:default_gaia"
-  },
+  "surface_builder": "gaiadimension:glitter_grass",
   "carvers": {
     "air": [
-      {
-        "config": {
-          "probability": 0.15
-        },
-        "type": "gaiadimension:crystal_caves"
-      },
-      {
-        "config": {
-          "probability": 0.03
-        },
-        "type": "gaiadimension:chasms"
-      }
+      "gaiadimension:crystal_caves",
+      "gaiadimension:chasms"
     ]
   },
   "features": [
@@ -82,14 +59,8 @@
     ]
   ],
   "starts": [
-    {
-      "config": {},
-      "type": "gaiadimension:mini_tower"
-    },
-    {
-      "config": {},
-      "type": "gaiadimension:malachite_watchtower"
-    }
+    "gaiadimension:mini_tower",
+    "gaiadimension:malachite_watchtower"
   ],
   "spawners": {
     "monster": [
@@ -151,6 +122,7 @@
       }
     ],
     "ambient": [],
+    "underground_water_creature": [],
     "water_creature": [
       {
         "type": "gaiadimension:shallow_arenthis",

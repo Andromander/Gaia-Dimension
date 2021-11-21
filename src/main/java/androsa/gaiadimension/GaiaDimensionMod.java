@@ -79,7 +79,7 @@ public class GaiaDimensionMod {
             PoiType.ALL_STATES.addAll(ModDimensions.GAIA_PORTAL.get().matchingStates);
 
             // needs to be in enqueue as vanilla WorldGen registry maps arent threadsafe.
-            GaiaBiomeFeatures.registerConfiguredWorldgen();
+            //GaiaBiomeFeatures.registerConfiguredWorldgen();
             ModDimensions.initDimension();
             ModWorldgen.StructureTypes.init();
             ModBlocks.addStripping();
@@ -110,10 +110,9 @@ public class GaiaDimensionMod {
             generator.addProvider(new GaiaItemModels(generator, event.getExistingFileHelper()));
         }
         if (event.includeServer()) {
+            generator.addProvider(new GaiaWorldGen(generator));
             generator.addProvider(new GaiaLootTables(generator));
             generator.addProvider(new GaiaRecipes(generator));
-            generator.addProvider(new GaiaConfiguredFeatures(generator));
-            generator.addProvider(new GaiaBiomes(generator));
             generator.addProvider(new GaiaAdvancements(generator, event.getExistingFileHelper()));
             generator.addProvider(blocktags);
             generator.addProvider(new GaiaItemTags(generator, blocktags, event.getExistingFileHelper()));

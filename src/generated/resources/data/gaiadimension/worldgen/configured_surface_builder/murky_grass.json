@@ -1,0 +1,14 @@
+{
+  "config": {
+    "top_material": {
+      "Name": "gaiadimension:murky_grass"
+    },
+    "under_material": {
+      "Name": "gaiadimension:boggy_soil"
+    },
+    "underwater_material": {
+      "Name": "gaiadimension:pebbles"
+    }
+  },
+  "type": "gaiadimension:default_gaia"
+}

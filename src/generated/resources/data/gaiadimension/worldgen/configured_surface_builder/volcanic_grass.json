@@ -1,0 +1,14 @@
+{
+  "config": {
+    "top_material": {
+      "Name": "gaiadimension:glitter_grass"
+    },
+    "under_material": {
+      "Name": "gaiadimension:heavy_soil"
+    },
+    "underwater_material": {
+      "Name": "gaiadimension:volcanic_rock"
+    }
+  },
+  "type": "gaiadimension:volcanic"
+}

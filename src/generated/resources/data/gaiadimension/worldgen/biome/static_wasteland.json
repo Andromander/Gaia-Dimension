@@ -13,34 +13,11 @@
     "water_color": 7117233,
     "water_fog_color": 9617108
   },
-  "surface_builder": {
-    "config": {
-      "top_material": {
-        "Name": "gaiadimension:wasteland_stone"
-      },
-      "under_material": {
-        "Name": "gaiadimension:wasteland_stone"
-      },
-      "underwater_material": {
-        "Name": "gaiadimension:wasteland_stone"
-      }
-    },
-    "type": "gaiadimension:static"
-  },
+  "surface_builder": "gaiadimension:wasteland_stone",
   "carvers": {
     "air": [
-      {
-        "config": {
-          "probability": 0.15
-        },
-        "type": "gaiadimension:crystal_caves"
-      },
-      {
-        "config": {
-          "probability": 0.03
-        },
-        "type": "gaiadimension:chasms"
-      }
+      "gaiadimension:crystal_caves",
+      "gaiadimension:chasms"
     ]
   },
   "features": [
@@ -127,6 +104,7 @@
       }
     ],
     "ambient": [],
+    "underground_water_creature": [],
     "water_creature": [
       {
         "type": "gaiadimension:shallow_arenthis",

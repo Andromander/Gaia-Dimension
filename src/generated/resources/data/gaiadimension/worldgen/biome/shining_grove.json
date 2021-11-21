@@ -6,48 +6,24 @@
       "block_search_extent": 8,
       "offset": 2.0
     },
-    "sky_color": 13016408,
-    "foliage_color": 12298105,
-    "grass_color": 12298105,
-    "fog_color": 15381216,
+    "sky_color": 15004627,
+    "foliage_color": 14546943,
+    "grass_color": 7982765,
+    "fog_color": 16764489,
     "water_color": 7117233,
     "water_fog_color": 9617108
   },
-  "surface_builder": {
-    "config": {
-      "top_material": {
-        "Name": "gaiadimension:glitter_grass"
-      },
-      "under_material": {
-        "Name": "gaiadimension:heavy_soil"
-      },
-      "underwater_material": {
-        "Name": "gaiadimension:salt"
-      }
-    },
-    "type": "gaiadimension:default_gaia"
-  },
+  "surface_builder": "gaiadimension:soft_grass",
   "carvers": {
     "air": [
-      {
-        "config": {
-          "probability": 0.15
-        },
-        "type": "gaiadimension:crystal_caves"
-      },
-      {
-        "config": {
-          "probability": 0.03
-        },
-        "type": "gaiadimension:chasms"
-      }
+      "gaiadimension:crystal_caves",
+      "gaiadimension:chasms"
     ]
   },
   "features": [
     [],
     [
-      "gaiadimension:lake_superhot_magma_rare",
-      "gaiadimension:lake_mineral_water_common"
+      "gaiadimension:lake_liquid_aura"
     ],
     [],
     [],
@@ -66,25 +42,20 @@
       "gaiadimension:ore_labradorite",
       "gaiadimension:ore_moonstone",
       "gaiadimension:ore_raw_copal",
-      "gaiadimension:ore_raw_jet"
+      "gaiadimension:ore_raw_jade"
     ],
     [
       "gaiadimension:crystal_fungi_caves",
       "gaiadimension:underground_glitter_blob"
     ],
     [
-      "gaiadimension:fossilized_tree",
-      "gaiadimension:crystal_growth_02",
-      "gaiadimension:crystal_blooms_common",
-      "gaiadimension:stickly_cupsir"
+      "gaiadimension:aura_tree",
+      "gaiadimension:aura_shoots",
+      "gaiadimension:crystal_growth_aura",
+      "gaiadimension:crystal_blooms_common"
     ]
   ],
-  "starts": [
-    {
-      "config": {},
-      "type": "gaiadimension:mini_tower"
-    }
-  ],
+  "starts": [],
   "spawners": {
     "monster": [
       {
@@ -122,12 +93,6 @@
         "weight": 15,
         "minCount": 1,
         "maxCount": 2
-      },
-      {
-        "type": "gaiadimension:ancient_lagrahk",
-        "weight": 10,
-        "minCount": 1,
-        "maxCount": 2
       }
     ],
     "creature": [
@@ -136,21 +101,10 @@
         "weight": 15,
         "minCount": 1,
         "maxCount": 1
-      },
-      {
-        "type": "gaiadimension:rocky_luggeroth",
-        "weight": 10,
-        "minCount": 4,
-        "maxCount": 5
-      },
-      {
-        "type": "gaiadimension:rugged_lurmorus",
-        "weight": 10,
-        "minCount": 1,
-        "maxCount": 3
       }
     ],
     "ambient": [],
+    "underground_water_creature": [],
     "water_creature": [
       {
         "type": "gaiadimension:shallow_arenthis",
@@ -164,11 +118,11 @@
   },
   "spawn_costs": {},
   "player_spawn_friendly": false,
-  "forge:registry_name": "gaiadimension:fossil_woodland",
+  "forge:registry_name": "gaiadimension:shining_grove",
   "precipitation": "none",
-  "temperature": 0.66,
+  "temperature": 0.5,
   "downfall": 0.0,
   "category": "none",
-  "depth": 0.1,
+  "depth": 0.4,
   "scale": 0.05
 }

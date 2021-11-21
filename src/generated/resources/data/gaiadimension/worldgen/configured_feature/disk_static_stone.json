@@ -6,8 +6,11 @@
           "Name": "gaiadimension:static_stone"
         },
         "radius": {
-          "base": 4,
-          "spread": 2
+          "type": "minecraft:uniform",
+          "value": {
+            "min_inclusive": 4,
+            "max_inclusive": 2
+          }
         },
         "half_height": 3,
         "targets": [
@@ -25,8 +28,10 @@
           "type": "minecraft:square"
         },
         "inner": {
-          "config": {},
-          "type": "minecraft:top_solid_heightmap"
+          "config": {
+            "heightmap": "OCEAN_FLOOR_WG"
+          },
+          "type": "minecraft:heightmap"
         }
       },
       "type": "minecraft:decorated"

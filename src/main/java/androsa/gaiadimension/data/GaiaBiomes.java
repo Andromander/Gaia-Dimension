@@ -4,22 +4,17 @@ import androsa.gaiadimension.data.provider.GaiaBiomeProvider;
 import androsa.gaiadimension.registry.ModBiomes;
 import androsa.gaiadimension.registry.ModEntities;
 import com.google.common.collect.ImmutableMap;
-import net.minecraft.data.DataGenerator;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.level.biome.Biome;
-import net.minecraft.world.level.biome.MobSpawnSettings;
 
 import java.util.Map;
 
 public class GaiaBiomes extends GaiaBiomeProvider {
 
-    public GaiaBiomes(DataGenerator generator) {
-        super(generator);
-    }
+    public static final Map<ResourceKey<Biome>, Biome> BIOMES = registerBiomes();
 
-    @Override
-    protected Map<ResourceKey<Biome>, Biome> registerBiomes() {
+    private static Map<ResourceKey<Biome>, Biome> registerBiomes() {
         final ImmutableMap.Builder<ResourceKey<Biome>, Biome> biomes = ImmutableMap.builder();
 
         biomes.put(ModBiomes.pink_agate_forest, makePinkAgateForest());

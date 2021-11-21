@@ -1,0 +1,14 @@
+{
+  "config": {
+    "top_material": {
+      "Name": "gaiadimension:salt"
+    },
+    "under_material": {
+      "Name": "gaiadimension:salt"
+    },
+    "underwater_material": {
+      "Name": "gaiadimension:salt"
+    }
+  },
+  "type": "gaiadimension:default_gaia"
+}

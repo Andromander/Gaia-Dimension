@@ -6,6 +6,7 @@ import androsa.gaiadimension.world.gen.config.GaiaTreeFeatureConfig;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Lists;
+import net.minecraft.core.Registry;
 import net.minecraft.data.BuiltinRegistries;
 import net.minecraft.data.worldgen.Features;
 import net.minecraft.resources.ResourceLocation;
@@ -404,18 +405,27 @@ public final class GaiaBiomeFeatures {
         return feature;
     }
 
-    public static void registerConfiguredWorldgen() {
-        for (Map.Entry<ConfiguredSurfaceBuilder<?>, String> entry : RegistryHelper.CONFIGURED_SURFACE_BUILDERS.entrySet()) {
-            BuiltinRegistries.register(BuiltinRegistries.CONFIGURED_SURFACE_BUILDER, new ResourceLocation(GaiaDimensionMod.MODID, entry.getValue()), entry.getKey());
-        }
-        for (Map.Entry<ConfiguredStructureFeature<?,?>, String> entry : RegistryHelper.CONFIGURED_STRUCTURE_FEATURES.entrySet()) {
-            BuiltinRegistries.register(BuiltinRegistries.CONFIGURED_STRUCTURE_FEATURE, new ResourceLocation(GaiaDimensionMod.MODID, entry.getValue()), entry.getKey());
-        }
-        for (Map.Entry<ConfiguredWorldCarver<?>, String> entry : RegistryHelper.CONFIGURED_WORLD_CARVERS.entrySet()) {
-            BuiltinRegistries.register(BuiltinRegistries.CONFIGURED_CARVER, new ResourceLocation(GaiaDimensionMod.MODID, entry.getValue()), entry.getKey());
-        }
+    public static void registerFeatures(Registry<ConfiguredFeature<?,?>> registry) {
         for (Map.Entry<ConfiguredFeature<?,?>, String> entry : RegistryHelper.CONFIGURED_FEATURES.entrySet()) {
-            BuiltinRegistries.register(BuiltinRegistries.CONFIGURED_FEATURE, new ResourceLocation(GaiaDimensionMod.MODID, entry.getValue()), entry.getKey());
+            Registry.register(registry, new ResourceLocation(GaiaDimensionMod.MODID, entry.getValue()), entry.getKey());
+        }
+    }
+
+    public static void registerSurfaceBuilders(Registry<ConfiguredSurfaceBuilder<?>> registry) {
+        for (Map.Entry<ConfiguredSurfaceBuilder<?>, String> entry : RegistryHelper.CONFIGURED_SURFACE_BUILDERS.entrySet()) {
+            Registry.register(registry, new ResourceLocation(GaiaDimensionMod.MODID, entry.getValue()), entry.getKey());
+        }
+    }
+
+    public static void registerCarvers(Registry<ConfiguredWorldCarver<?>> registry) {
+        for (Map.Entry<ConfiguredWorldCarver<?>, String> entry : RegistryHelper.CONFIGURED_WORLD_CARVERS.entrySet()) {
+            Registry.register(registry, new ResourceLocation(GaiaDimensionMod.MODID, entry.getValue()), entry.getKey());
+        }
+    }
+
+    public static void registerStructureFeatures(Registry<ConfiguredStructureFeature<?,?>> registry) {
+        for (Map.Entry<ConfiguredStructureFeature<?,?>, String> entry : RegistryHelper.CONFIGURED_STRUCTURE_FEATURES.entrySet()) {
+            Registry.register(registry, new ResourceLocation(GaiaDimensionMod.MODID, entry.getValue()), entry.getKey());
         }
     }
 }

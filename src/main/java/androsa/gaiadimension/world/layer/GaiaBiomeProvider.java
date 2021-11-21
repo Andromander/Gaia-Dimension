@@ -16,6 +16,7 @@ import net.minecraft.world.level.biome.BiomeSource;
 import net.minecraft.world.level.newbiome.layer.Layer;
 
 import java.util.List;
+import java.util.Optional;
 
 import static androsa.gaiadimension.registry.ModBiomes.*;
 
@@ -50,7 +51,13 @@ public class GaiaBiomeProvider extends BiomeSource {
             mineral_river);
 
     public GaiaBiomeProvider(long seed, Registry<Biome> registry) {
-        super(biomes.stream().map(define -> () -> registry.getOrThrow(define)));
+//        super(biomes.stream().map(define -> () -> registry.getOrThrow(define)));
+        super(biomes
+                .stream()
+                .map(ResourceKey::location)
+                .map(registry::getOptional)
+                .filter(Optional::isPresent)
+                .map(opt -> opt::get));
         this.seed = seed;
         this.registry = registry;
         this.genBiomes = GaiaLayerUtil.makeLayers(seed, registry);

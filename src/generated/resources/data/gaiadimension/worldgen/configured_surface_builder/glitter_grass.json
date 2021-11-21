@@ -1,0 +1,14 @@
+{
+  "config": {
+    "top_material": {
+      "Name": "gaiadimension:glitter_grass"
+    },
+    "under_material": {
+      "Name": "gaiadimension:heavy_soil"
+    },
+    "underwater_material": {
+      "Name": "gaiadimension:salt"
+    }
+  },
+  "type": "gaiadimension:default_gaia"
+}

@@ -6,53 +6,27 @@
       "block_search_extent": 8,
       "offset": 2.0
     },
-    "sky_color": 11234801,
-    "foliage_color": 8417209,
-    "grass_color": 8417209,
+    "sky_color": 15833793,
+    "foliage_color": 13948848,
+    "grass_color": 13948848,
     "fog_color": 15381216,
     "water_color": 7117233,
     "water_fog_color": 9617108
   },
-  "surface_builder": {
-    "config": {
-      "top_material": {
-        "Name": "gaiadimension:glitter_grass"
-      },
-      "under_material": {
-        "Name": "gaiadimension:heavy_soil"
-      },
-      "underwater_material": {
-        "Name": "gaiadimension:salt"
-      }
-    },
-    "type": "gaiadimension:default_gaia"
-  },
+  "surface_builder": "gaiadimension:glitter_grass",
   "carvers": {
     "air": [
-      {
-        "config": {
-          "probability": 0.15
-        },
-        "type": "gaiadimension:crystal_caves"
-      },
-      {
-        "config": {
-          "probability": 0.03
-        },
-        "type": "gaiadimension:chasms"
-      }
+      "gaiadimension:crystal_caves",
+      "gaiadimension:chasms"
     ]
   },
   "features": [
     [],
     [
-      "gaiadimension:lake_sweet_muck",
       "gaiadimension:lake_superhot_magma_rare",
-      "gaiadimension:lake_mineral_water_uncommon"
+      "gaiadimension:lake_mineral_water_common"
     ],
-    [
-      "gaiadimension:gummy_glitter_blob"
-    ],
+    [],
     [],
     [],
     [],
@@ -68,27 +42,25 @@
       "gaiadimension:ore_cinnabar",
       "gaiadimension:ore_labradorite",
       "gaiadimension:ore_moonstone",
-      "gaiadimension:ore_thick_glitter",
       "gaiadimension:ore_raw_amethyst",
       "gaiadimension:ore_raw_jade",
-      "gaiadimension:ore_white_opal_rare"
+      "gaiadimension:ore_red_opal",
+      "gaiadimension:ore_blue_opal",
+      "gaiadimension:ore_green_opal",
+      "gaiadimension:ore_white_opal_common"
     ],
     [
       "gaiadimension:crystal_fungi_caves",
       "gaiadimension:underground_glitter_blob"
     ],
     [
-      "gaiadimension:purple_agate_tree",
-      "gaiadimension:crystal_growth_02",
-      "gaiadimension:crystal_blooms_rare",
-      "gaiadimension:bulbous_hobina"
+      "gaiadimension:various_agate_trees",
+      "gaiadimension:crystal_blooms_mutant",
+      "gaiadimension:mystical_murgni"
     ]
   ],
   "starts": [
-    {
-      "config": {},
-      "type": "gaiadimension:mini_tower"
-    }
+    "gaiadimension:mini_tower"
   ],
   "spawners": {
     "monster": [
@@ -138,18 +110,19 @@
       },
       {
         "type": "gaiadimension:growth_sapper",
-        "weight": 20,
+        "weight": 40,
         "minCount": 3,
         "maxCount": 5
       },
       {
-        "type": "gaiadimension:spellbound_elemental",
-        "weight": 10,
+        "type": "gaiadimension:mutant_growth_extractor",
+        "weight": 5,
         "minCount": 2,
         "maxCount": 4
       }
     ],
     "ambient": [],
+    "underground_water_creature": [],
     "water_creature": [
       {
         "type": "gaiadimension:shallow_arenthis",
@@ -163,11 +136,11 @@
   },
   "spawn_costs": {},
   "player_spawn_friendly": false,
-  "forge:registry_name": "gaiadimension:purple_agate_swamp",
+  "forge:registry_name": "gaiadimension:mutant_agate_wildwood",
   "precipitation": "none",
   "temperature": 0.66,
   "downfall": 0.0,
   "category": "none",
-  "depth": 0.0,
-  "scale": 0.05
+  "depth": 0.1,
+  "scale": 0.1
 }

@@ -6,52 +6,27 @@
       "block_search_extent": 8,
       "offset": 2.0
     },
-    "sky_color": 3287859,
-    "foliage_color": 1118482,
-    "grass_color": 2500135,
-    "fog_color": 8284598,
+    "sky_color": 2236962,
+    "foliage_color": 2302755,
+    "grass_color": 2302755,
+    "fog_color": 12352044,
     "water_color": 7117233,
     "water_fog_color": 9617108
   },
-  "surface_builder": {
-    "config": {
-      "top_material": {
-        "Name": "gaiadimension:murky_grass"
-      },
-      "under_material": {
-        "Name": "gaiadimension:boggy_soil"
-      },
-      "underwater_material": {
-        "Name": "gaiadimension:pebbles"
-      }
-    },
-    "type": "gaiadimension:default_gaia"
-  },
+  "surface_builder": "gaiadimension:corrupt_grass",
   "carvers": {
     "air": [
-      {
-        "config": {
-          "probability": 0.15
-        },
-        "type": "gaiadimension:crystal_caves"
-      },
-      {
-        "config": {
-          "probability": 0.03
-        },
-        "type": "gaiadimension:chasms"
-      }
+      "gaiadimension:crystal_caves",
+      "gaiadimension:chasms"
     ]
   },
   "features": [
     [],
     [
-      "gaiadimension:lake_liquid_bismuth"
+      "gaiadimension:lake_superhot_magma_rare",
+      "gaiadimension:lake_mineral_water_common"
     ],
-    [
-      "gaiadimension:bismuth_spires",
-      "gaiadimension:bismuth_geysers"
-    ],
+    [],
     [],
     [],
     [],
@@ -67,12 +42,17 @@
       "gaiadimension:ore_cinnabar",
       "gaiadimension:ore_labradorite",
       "gaiadimension:ore_moonstone",
-      "gaiadimension:ore_raw_amethyst",
-      "gaiadimension:ore_raw_jet",
-      "gaiadimension:disk_bog_patch"
+      "gaiadimension:ore_raw_jet"
     ],
     [
-      "gaiadimension:crystal_fungi_caves"
+      "gaiadimension:crystal_fungi_caves",
+      "gaiadimension:underground_glitter_blob"
+    ],
+    [
+      "gaiadimension:goldstone_tree",
+      "gaiadimension:crystal_growth_corrupt",
+      "gaiadimension:crystal_blooms_corrupt",
+      "gaiadimension:corrupted_gaia_eye"
     ]
   ],
   "starts": [],
@@ -113,23 +93,23 @@
         "weight": 15,
         "minCount": 1,
         "maxCount": 2
-      }
-    ],
-    "creature": [
-      {
-        "type": "gaiadimension:nomadic_lagrahk",
-        "weight": 15,
-        "minCount": 1,
-        "maxCount": 1
       },
       {
-        "type": "gaiadimension:bismuth_uletrus",
+        "type": "gaiadimension:corrupt_sapper",
         "weight": 20,
+        "minCount": 2,
+        "maxCount": 4
+      },
+      {
+        "type": "gaiadimension:contorted_naga",
+        "weight": 10,
         "minCount": 2,
         "maxCount": 3
       }
     ],
+    "creature": [],
     "ambient": [],
+    "underground_water_creature": [],
     "water_creature": [
       {
         "type": "gaiadimension:shallow_arenthis",
@@ -143,11 +123,11 @@
   },
   "spawn_costs": {},
   "player_spawn_friendly": false,
-  "forge:registry_name": "gaiadimension:smoldering_bog",
+  "forge:registry_name": "gaiadimension:goldstone_lands",
   "precipitation": "none",
-  "temperature": 0.9,
+  "temperature": 0.55,
   "downfall": 0.0,
   "category": "none",
-  "depth": 0.2,
-  "scale": 0.02
+  "depth": 0.125,
+  "scale": 0.05
 }

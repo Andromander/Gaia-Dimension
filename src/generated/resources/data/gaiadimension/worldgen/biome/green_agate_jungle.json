@@ -6,68 +6,25 @@
       "block_search_extent": 8,
       "offset": 2.0
     },
-    "sky_color": 15004627,
-    "foliage_color": 14546943,
-    "grass_color": 7982765,
-    "fog_color": 16764489,
+    "sky_color": 8437662,
+    "foliage_color": 4961870,
+    "grass_color": 4961870,
+    "fog_color": 15381216,
     "water_color": 7117233,
     "water_fog_color": 9617108
   },
-  "surface_builder": {
-    "config": {
-      "top_material": {
-        "Name": "gaiadimension:soft_grass"
-      },
-      "under_material": {
-        "Name": "gaiadimension:light_soil"
-      },
-      "underwater_material": {
-        "Name": "gaiadimension:pebbles"
-      }
-    },
-    "type": "gaiadimension:default_gaia"
-  },
+  "surface_builder": "gaiadimension:glitter_grass",
   "carvers": {
     "air": [
-      {
-        "config": {
-          "probability": 0.15
-        },
-        "type": "gaiadimension:crystal_caves"
-      },
-      {
-        "config": {
-          "probability": 0.03
-        },
-        "type": "gaiadimension:chasms"
-      }
+      "gaiadimension:crystal_caves",
+      "gaiadimension:chasms"
     ]
   },
   "features": [
     [],
     [
-      {
-        "config": {
-          "feature": {
-            "config": {
-              "state": {
-                "Properties": {
-                  "level": "0"
-                },
-                "Name": "gaiadimension:liquid_aura"
-              }
-            },
-            "type": "gaiadimension:pool"
-          },
-          "decorator": {
-            "config": {
-              "chance": 20
-            },
-            "type": "minecraft:lava_lake"
-          }
-        },
-        "type": "minecraft:decorated"
-      }
+      "gaiadimension:lake_superhot_magma_rare",
+      "gaiadimension:lake_mineral_water_common"
     ],
     [],
     [],
@@ -86,20 +43,26 @@
       "gaiadimension:ore_labradorite",
       "gaiadimension:ore_moonstone",
       "gaiadimension:ore_raw_copal",
-      "gaiadimension:ore_raw_jade"
+      "gaiadimension:ore_raw_jade",
+      "gaiadimension:ore_green_opal",
+      "gaiadimension:ore_white_opal_rare"
     ],
     [
       "gaiadimension:crystal_fungi_caves",
       "gaiadimension:underground_glitter_blob"
     ],
     [
-      "gaiadimension:aura_tree",
-      "gaiadimension:aura_shoots",
-      "gaiadimension:crystal_growth_aura",
-      "gaiadimension:crystal_blooms_common"
+      "gaiadimension:green_agate_tree",
+      "gaiadimension:green_agate_bush",
+      "gaiadimension:crystal_growth_04",
+      "gaiadimension:crystal_blooms_common",
+      "gaiadimension:roofed_agaric"
     ]
   ],
-  "starts": [],
+  "starts": [
+    "gaiadimension:mini_tower",
+    "gaiadimension:malachite_watchtower"
+  ],
   "spawners": {
     "monster": [
       {
@@ -145,9 +108,23 @@
         "weight": 15,
         "minCount": 1,
         "maxCount": 1
+      },
+      {
+        "type": "gaiadimension:growth_sapper",
+        "weight": 20,
+        "minCount": 3,
+        "maxCount": 5
       }
     ],
-    "ambient": [],
+    "ambient": [
+      {
+        "type": "gaiadimension:markuzar_plant",
+        "weight": 15,
+        "minCount": 2,
+        "maxCount": 4
+      }
+    ],
+    "underground_water_creature": [],
     "water_creature": [
       {
         "type": "gaiadimension:shallow_arenthis",
@@ -161,11 +138,11 @@
   },
   "spawn_costs": {},
   "player_spawn_friendly": false,
-  "forge:registry_name": "gaiadimension:shining_grove",
+  "forge:registry_name": "gaiadimension:green_agate_jungle",
   "precipitation": "none",
-  "temperature": 0.5,
+  "temperature": 0.75,
   "downfall": 0.0,
   "category": "none",
-  "depth": 0.4,
-  "scale": 0.05
+  "depth": 0.1,
+  "scale": 0.2
 }

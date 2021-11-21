@@ -6,48 +6,25 @@
       "block_search_extent": 8,
       "offset": 2.0
     },
-    "sky_color": 13016408,
-    "foliage_color": 15901620,
-    "grass_color": 15901620,
-    "fog_color": 15381216,
+    "sky_color": 4922905,
+    "foliage_color": 2302755,
+    "grass_color": 2302755,
+    "fog_color": 16086896,
     "water_color": 7117233,
     "water_fog_color": 9617108
   },
-  "surface_builder": {
-    "config": {
-      "top_material": {
-        "Name": "gaiadimension:glitter_grass"
-      },
-      "under_material": {
-        "Name": "gaiadimension:heavy_soil"
-      },
-      "underwater_material": {
-        "Name": "gaiadimension:salt"
-      }
-    },
-    "type": "gaiadimension:default_gaia"
-  },
+  "surface_builder": "gaiadimension:volcanic_grass",
   "carvers": {
     "air": [
-      {
-        "config": {
-          "probability": 0.15
-        },
-        "type": "gaiadimension:crystal_caves"
-      },
-      {
-        "config": {
-          "probability": 0.03
-        },
-        "type": "gaiadimension:chasms"
-      }
+      "gaiadimension:crystal_caves",
+      "gaiadimension:chasms"
     ]
   },
   "features": [
     [],
     [
-      "gaiadimension:lake_superhot_magma_rare",
-      "gaiadimension:lake_mineral_water_common"
+      "gaiadimension:lake_superhot_magma_common",
+      "gaiadimension:lake_mineral_water_rare"
     ],
     [],
     [],
@@ -65,30 +42,19 @@
       "gaiadimension:ore_cinnabar",
       "gaiadimension:ore_labradorite",
       "gaiadimension:ore_moonstone",
-      "gaiadimension:ore_raw_amethyst",
-      "gaiadimension:ore_raw_jade"
+      "gaiadimension:ore_searing_rock",
+      "gaiadimension:ore_raw_copal"
     ],
     [
-      "gaiadimension:crystal_fungi_caves",
-      "gaiadimension:underground_glitter_blob"
+      "gaiadimension:crystal_fungi_caves"
     ],
     [
-      "gaiadimension:pink_agate_tree_rare",
-      "gaiadimension:crystal_growth_05",
-      "gaiadimension:crystal_blooms_common",
-      "gaiadimension:spotted_kersei"
+      "gaiadimension:burnt_agate_tree",
+      "gaiadimension:fiery_agate_tree",
+      "gaiadimension:crystal_growth_seared"
     ]
   ],
-  "starts": [
-    {
-      "config": {},
-      "type": "gaiadimension:mini_tower"
-    },
-    {
-      "config": {},
-      "type": "gaiadimension:malachite_watchtower"
-    }
-  ],
+  "starts": [],
   "spawners": {
     "monster": [
       {
@@ -126,6 +92,12 @@
         "weight": 15,
         "minCount": 1,
         "maxCount": 2
+      },
+      {
+        "type": "gaiadimension:lesser_spitfire",
+        "weight": 10,
+        "minCount": 2,
+        "maxCount": 4
       }
     ],
     "creature": [
@@ -133,22 +105,11 @@
         "type": "gaiadimension:nomadic_lagrahk",
         "weight": 15,
         "minCount": 1,
-        "maxCount": 1
-      },
-      {
-        "type": "gaiadimension:growth_sapper",
-        "weight": 20,
-        "minCount": 4,
-        "maxCount": 6
-      },
-      {
-        "type": "gaiadimension:crystal_golem",
-        "weight": 15,
-        "minCount": 1,
         "maxCount": 3
       }
     ],
     "ambient": [],
+    "underground_water_creature": [],
     "water_creature": [
       {
         "type": "gaiadimension:shallow_arenthis",
@@ -162,11 +123,11 @@
   },
   "spawn_costs": {},
   "player_spawn_friendly": false,
-  "forge:registry_name": "gaiadimension:crystal_plains",
+  "forge:registry_name": "gaiadimension:volcanic_lands",
   "precipitation": "none",
-  "temperature": 0.66,
+  "temperature": 0.9,
   "downfall": 0.0,
   "category": "none",
-  "depth": 0.05,
-  "scale": 0.05
+  "depth": 1.0,
+  "scale": 0.7
 }

@@ -13,41 +13,17 @@
     "water_color": 7117233,
     "water_fog_color": 9617108
   },
-  "surface_builder": {
-    "config": {
-      "top_material": {
-        "Name": "gaiadimension:salt"
-      },
-      "under_material": {
-        "Name": "gaiadimension:salt"
-      },
-      "underwater_material": {
-        "Name": "gaiadimension:salt"
-      }
-    },
-    "type": "gaiadimension:default_gaia"
-  },
+  "surface_builder": "gaiadimension:salty",
   "carvers": {
     "air": [
-      {
-        "config": {
-          "probability": 0.15
-        },
-        "type": "gaiadimension:crystal_caves"
-      },
-      {
-        "config": {
-          "probability": 0.03
-        },
-        "type": "gaiadimension:chasms"
-      }
+      "gaiadimension:crystal_caves",
+      "gaiadimension:chasms"
     ]
   },
   "features": [
     [],
     [
-      "gaiadimension:lake_superhot_magma_rare",
-      "gaiadimension:lake_mineral_water_common"
+      "gaiadimension:lake_mineral_water_rare"
     ],
     [],
     [],
@@ -64,7 +40,9 @@
       "gaiadimension:ore_pyrite",
       "gaiadimension:ore_cinnabar",
       "gaiadimension:ore_labradorite",
-      "gaiadimension:ore_moonstone"
+      "gaiadimension:ore_moonstone",
+      "gaiadimension:ore_raw_amethyst",
+      "gaiadimension:ore_raw_jet"
     ],
     [
       "gaiadimension:crystal_fungi_caves",
@@ -111,8 +89,22 @@
         "maxCount": 2
       }
     ],
-    "creature": [],
+    "creature": [
+      {
+        "type": "gaiadimension:nomadic_lagrahk",
+        "weight": 15,
+        "minCount": 1,
+        "maxCount": 3
+      },
+      {
+        "type": "gaiadimension:saltion",
+        "weight": 15,
+        "minCount": 1,
+        "maxCount": 3
+      }
+    ],
     "ambient": [],
+    "underground_water_creature": [],
     "water_creature": [
       {
         "type": "gaiadimension:shallow_arenthis",
@@ -126,11 +118,11 @@
   },
   "spawn_costs": {},
   "player_spawn_friendly": false,
-  "forge:registry_name": "gaiadimension:mineral_river",
+  "forge:registry_name": "gaiadimension:salt_dunes",
   "precipitation": "none",
-  "temperature": 0.66,
+  "temperature": 0.8,
   "downfall": 0.0,
   "category": "none",
-  "depth": -0.5,
-  "scale": 0.0
+  "depth": 0.2,
+  "scale": 0.05
 }
