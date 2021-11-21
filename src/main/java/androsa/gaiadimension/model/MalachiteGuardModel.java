@@ -37,11 +37,11 @@ public class MalachiteGuardModel<T extends MalachiteGuardEntity> extends Hierarc
         this.upperArmL = root.getChild("shoulder_left").getChild("upper_arm_left");
         this.lowerArmL = upperArmL.getChild("lower_arm_left");
         this.upperArmR = root.getChild("shoulder_right").getChild("upper_arm_right");
-        this.lowerArmR = root.getChild("lower_arm_right");
+        this.lowerArmR = upperArmR.getChild("lower_arm_right");
         this.legL = root.getChild("leg_left");
-        this.footL = root.getChild("boot_left");
+        this.footL = legL.getChild("boot_left");
         this.legR = root.getChild("leg_right");
-        this.footR = root.getChild("boot_right");
+        this.footR = legR.getChild("boot_right");
     }
 
     @Override
@@ -79,7 +79,7 @@ public class MalachiteGuardModel<T extends MalachiteGuardEntity> extends Hierarc
                         .addBox(-1.5F, 0.0F, -1.0F, 3, 4, 2, scale),
                 PartPose.offset(0.0F, -4.0F, 0.0F));
 
-        PartDefinition leftshoulder = root.addOrReplaceChild("", CubeListBuilder.create()
+        PartDefinition leftshoulder = root.addOrReplaceChild("shoulder_left", CubeListBuilder.create()
                         .texOffs(66, 6)
                         .addBox(0.0F, -2.0F, -2.0F, 5, 2, 4, scale),
                 PartPose.offset(6.0F, -14.5F, 0.0F));
@@ -114,7 +114,7 @@ public class MalachiteGuardModel<T extends MalachiteGuardEntity> extends Hierarc
                         .addBox(-6.0F, 0.0F, -2.5F, 12, 4, 5, scale),
                 PartPose.offset(0.0F, -5.0F, 0.0F));
 
-        PartDefinition leftleg = root.addOrReplaceChild("leg_leg", CubeListBuilder.create()
+        PartDefinition leftleg = root.addOrReplaceChild("leg_left", CubeListBuilder.create()
                         .texOffs(12, 0)
                         .addBox(-1.5F, 0.0F, -1.5F, 3, 10, 3, scale),
                 PartPose.offset(4.5F, -1.0F, 0.0F));

@@ -38,8 +38,8 @@ public class ContortedNagaModel<T extends ContortedNagaEntity> extends Hierarchi
         this.tendril2 = tendril1.getChild("tendril_segment_2");
         this.tendril3 = tendril2.getChild("tendril_segment_3");
         this.miniTendril1 = torso.getChild("mini_tendril_segment_1");
-        this.miniTendril2 = tendril1.getChild("mini_tendril_segment_2");
-        this.miniTendril3 = tendril2.getChild("mini_tendril_segment_3");
+        this.miniTendril2 = miniTendril1.getChild("mini_tendril_segment_2");
+        this.miniTendril3 = miniTendril2.getChild("mini_tendril_segment_3");
         this.tailTop = torso.getChild("chest").getChild("lower_body").getChild("tail_top");
         this.tailBottom = tailTop.getChild("tail_bottom");
     }

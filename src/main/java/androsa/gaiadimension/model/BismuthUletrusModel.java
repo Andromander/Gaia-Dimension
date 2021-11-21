@@ -44,15 +44,15 @@ public class BismuthUletrusModel<T extends BismuthUletrusEntity> extends Hierarc
         this.lowerArmR = upperArmR.getChild("lower_arm_right");
         this.frontPawR = lowerArmR.getChild("front_paw_right");
         this.upperLegL = root.getChild("upper_leg_left");
-        this.lowerLegL = upperArmL.getChild("lower_leg_left");
-        this.backPawL = lowerArmL.getChild("back_paw_left");
+        this.lowerLegL = upperLegL.getChild("lower_leg_left");
+        this.backPawL = lowerLegL.getChild("back_paw_left");
         this.upperLegR = root.getChild("upper_leg_right");
-        this.lowerLegR = upperArmR.getChild("lower_leg_right");
-        this.backPawR = lowerArmR.getChild("back_paw_right");
+        this.lowerLegR = upperLegR.getChild("lower_leg_right");
+        this.backPawR = lowerLegR.getChild("back_paw_right");
         this.tail1 = root.getChild("tail_segment_1");
-        this.tail2 = root.getChild("tail_segment_2");
-        this.tail3 = root.getChild("tail_segment_3");
-        this.tail4 = root.getChild("tail_segment_4");
+        this.tail2 = tail1.getChild("tail_segment_2");
+        this.tail3 = tail2.getChild("tail_segment_3");
+        this.tail4 = tail3.getChild("tail_segment_4");
     }
 
     @Override

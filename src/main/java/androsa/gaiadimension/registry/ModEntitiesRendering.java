@@ -85,6 +85,7 @@ public class ModEntitiesRendering {
         event.registerLayerDefinition(MALACHITE_GUARD_RESIST, () -> MalachiteGuardModel.makeBodyLayer(new CubeDeformation(0.25F)));
     }
 
+    @SubscribeEvent
     public static void registerEntityRender(EntityRenderersEvent.RegisterRenderers event) {
         // RenderingRegistry.registerEntityRenderingHandler(GDShotGaianEnergy.class, m -> new RenderSnowball<>(m, Items.ENDER_PEARL, Minecraft.getMinecraft().getRenderItem()));
         event.registerEntityRenderer(ModEntities.THROWN_PEBBLE.get(), ThrownItemRenderer::new);
@@ -105,7 +106,7 @@ public class ModEntitiesRendering {
         event.registerEntityRenderer(ModEntities.MARKUZAR_PLANT.get(), m -> new MarkuzarPlantRenderer<>(m, new MarkuzarPlantModel<>(m.bakeLayer(MARKUZAR_PLANT)), 0.5F));
         event.registerEntityRenderer(ModEntities.MINERAL_ARENTHIS.get(), m -> new MineralArenthisRenderer<>(m, new MineralArenthisModel<>(m.bakeLayer(MINERAL_ARENTHIS)), 0.8F));
         event.registerEntityRenderer(ModEntities.MUCKLING.get(), m -> new MucklingRenderer(m, 0.625F));
-        event.registerEntityRenderer(ModEntities.MUTANT_GROWTH_EXTRACTOR.get(), m -> new GrowthExtractorRenderer<>(m, new GrowthExtractorModel<>(m.bakeLayer(GROWTH_SAPPER)),0.8F));
+        event.registerEntityRenderer(ModEntities.MUTANT_GROWTH_EXTRACTOR.get(), m -> new GrowthExtractorRenderer<>(m, new GrowthExtractorModel<>(m.bakeLayer(MUTANT_GROWTH_EXTRACTOR)),0.8F));
         event.registerEntityRenderer(ModEntities.NOMADIC_LAGRAHK.get(), m -> new NomadicLagrahkRenderer<>(m, new NomadicLagrahkModel<>(m.bakeLayer(NOMADIC_LAGRAHK)), 1.0F));
         event.registerEntityRenderer(ModEntities.PRIMAL_BEAST.get(), m -> new PrimalBeastRenderer<>(m, new PrimalBeastModel<>(m.bakeLayer(PRIMAL_BEAST)), 0.5F));
         event.registerEntityRenderer(ModEntities.ROCKY_LUGGEROTH.get(), m -> new RockyLuggerothRenderer<>(m, new RockyLuggerothModel<>(m.bakeLayer(ROCKY_LUGGEROTH)), 0.7F));

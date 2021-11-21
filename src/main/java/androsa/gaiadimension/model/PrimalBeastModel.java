@@ -38,7 +38,7 @@ public class PrimalBeastModel<T extends PrimalBeastEntity> extends HierarchicalM
         this.legL = stomach.getChild("leg_left");
         this.legR = stomach.getChild("leg_right");
         this.tailtop = stomach.getChild("tail_segment_top");
-        this.tailBottom = stomach.getChild("tail_segment_bottom");
+        this.tailBottom = tailtop.getChild("tail_segment_bottom");
     }
 
     @Override

@@ -34,9 +34,9 @@ public class RuggedLurmorusModel<T extends RuggedLurmorusEntity> extends Hierarc
         this.upperLegL = root.getChild("upper_leg_back_left");
         this.upperLegR = root.getChild("upper_leg_back_right");
         this.tailBase = root.getChild("tail_base");
-        this.tailpart1 = root.getChild("tail_segment_1");
-        this.tailpart2 = root.getChild("tail_segment_2");
-        this.tailpart3 = root.getChild("tail_segment_3");
+        this.tailpart1 = tailBase.getChild("tail_segment_1");
+        this.tailpart2 = tailpart1.getChild("tail_segment_2");
+        this.tailpart3 = tailpart2.getChild("tail_segment_3");
     }
 
     @Override
