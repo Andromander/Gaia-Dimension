@@ -4,7 +4,6 @@
     "biome_source": {
       "type": "gaiadimension:gaia_dimension"
     },
-    "seed": 0,
     "settings": "gaiadimension:gaia_noise_settings",
     "type": "gaiadimension:gaia_gen"
   }

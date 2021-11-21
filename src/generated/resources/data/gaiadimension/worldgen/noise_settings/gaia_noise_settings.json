@@ -17,15 +17,15 @@
   "sea_level": 63,
   "structures": {
     "structures": {
-      "gaiadimension:mini_tower": {
-        "spacing": 30,
-        "separation": 10,
-        "salt": 38474253
-      },
       "gaiadimension:malachite_watchtower": {
         "spacing": 35,
         "separation": 15,
         "salt": 39482048
+      },
+      "gaiadimension:mini_tower": {
+        "spacing": 30,
+        "separation": 10,
+        "salt": 38474253
       }
     }
   },

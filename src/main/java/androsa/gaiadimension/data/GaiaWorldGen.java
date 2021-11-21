@@ -42,10 +42,8 @@ public class GaiaWorldGen extends WorldGenerationProvider<JsonElement> {
     @Override
     protected JsonElement intercept(ResourceKey<?> key, JsonElement element) {
         if (key == Registry.LEVEL_STEM_REGISTRY) {
-            element.getAsJsonObject()
-                    .get("generator").getAsJsonObject()
-                    .get("biome_source").getAsJsonObject()
-                    .remove("seed");
+            element.getAsJsonObject().get("generator").getAsJsonObject().remove("seed");
+            element.getAsJsonObject().get("generator").getAsJsonObject().get("biome_source").getAsJsonObject().remove("seed");
         }
         return super.intercept(key, element);
     }
