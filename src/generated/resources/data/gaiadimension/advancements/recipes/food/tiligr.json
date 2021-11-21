@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "gaiadimension:tiligr"
+    ]
+  },
+  "criteria": {
+    "has_thiscus": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "gaiadimension:thiscus"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "gaiadimension:tiligr"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_thiscus",
+      "has_the_recipe"
+    ]
+  ]
+}

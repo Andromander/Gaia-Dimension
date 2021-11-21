@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "gaiadimension:smelting/green_opal_smelt"
+    ]
+  },
+  "criteria": {
+    "has_gaiadimension:opal_ore_green": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "gaiadimension:opal_ore_green"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "gaiadimension:smelting/green_opal_smelt"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_gaiadimension:opal_ore_green",
+      "has_the_recipe"
+    ]
+  ]
+}

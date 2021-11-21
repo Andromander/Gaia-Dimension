@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "gaiadimension:wood/blue_agate_plank_stairs"
+    ]
+  },
+  "criteria": {
+    "has_blue_agate_planks": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "gaiadimension:blue_agate_planks"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "gaiadimension:wood/blue_agate_plank_stairs"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_blue_agate_planks",
+      "has_the_recipe"
+    ]
+  ]
+}

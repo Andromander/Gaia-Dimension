@@ -1,0 +1,47 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "gaiadimension:agate_arrow"
+    ]
+  },
+  "criteria": {
+    "has_pebble": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "gaiadimension:sturdy_pebble"
+            ]
+          }
+        ]
+      }
+    },
+    "has_fabric": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "gaiadimension:agate_fabric"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "gaiadimension:agate_arrow"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_pebble",
+      "has_fabric",
+      "has_the_recipe"
+    ]
+  ]
+}

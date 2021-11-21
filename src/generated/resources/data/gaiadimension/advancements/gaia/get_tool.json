@@ -22,7 +22,9 @@
       "conditions": {
         "items": [
           {
-            "item": "gaiadimension:agate_sword"
+            "items": [
+              "gaiadimension:agate_sword"
+            ]
           }
         ]
       }
@@ -32,7 +34,9 @@
       "conditions": {
         "items": [
           {
-            "item": "gaiadimension:agate_pickaxe"
+            "items": [
+              "gaiadimension:agate_pickaxe"
+            ]
           }
         ]
       }
@@ -42,7 +46,9 @@
       "conditions": {
         "items": [
           {
-            "item": "gaiadimension:agate_axe"
+            "items": [
+              "gaiadimension:agate_axe"
+            ]
           }
         ]
       }
@@ -52,7 +58,9 @@
       "conditions": {
         "items": [
           {
-            "item": "gaiadimension:agate_shovel"
+            "items": [
+              "gaiadimension:agate_shovel"
+            ]
           }
         ]
       }
@@ -62,7 +70,9 @@
       "conditions": {
         "items": [
           {
-            "item": "gaiadimension:sugilite_sword"
+            "items": [
+              "gaiadimension:sugilite_sword"
+            ]
           }
         ]
       }
@@ -72,7 +82,9 @@
       "conditions": {
         "items": [
           {
-            "item": "gaiadimension:sugilite_pickaxe"
+            "items": [
+              "gaiadimension:sugilite_pickaxe"
+            ]
           }
         ]
       }
@@ -82,7 +94,9 @@
       "conditions": {
         "items": [
           {
-            "item": "gaiadimension:sugilite_axe"
+            "items": [
+              "gaiadimension:sugilite_axe"
+            ]
           }
         ]
       }
@@ -92,7 +106,9 @@
       "conditions": {
         "items": [
           {
-            "item": "gaiadimension:sugilite_shovel"
+            "items": [
+              "gaiadimension:sugilite_shovel"
+            ]
           }
         ]
       }
@@ -102,7 +118,9 @@
       "conditions": {
         "items": [
           {
-            "item": "gaiadimension:ixiolite_sword"
+            "items": [
+              "gaiadimension:ixiolite_sword"
+            ]
           }
         ]
       }
@@ -112,7 +130,9 @@
       "conditions": {
         "items": [
           {
-            "item": "gaiadimension:ixiolite_pickaxe"
+            "items": [
+              "gaiadimension:ixiolite_pickaxe"
+            ]
           }
         ]
       }
@@ -122,7 +142,9 @@
       "conditions": {
         "items": [
           {
-            "item": "gaiadimension:ixiolite_axe"
+            "items": [
+              "gaiadimension:ixiolite_axe"
+            ]
           }
         ]
       }
@@ -132,7 +154,9 @@
       "conditions": {
         "items": [
           {
-            "item": "gaiadimension:ixiolite_shovel"
+            "items": [
+              "gaiadimension:ixiolite_shovel"
+            ]
           }
         ]
       }
@@ -142,7 +166,9 @@
       "conditions": {
         "items": [
           {
-            "item": "gaiadimension:euclase_sword"
+            "items": [
+              "gaiadimension:euclase_sword"
+            ]
           }
         ]
       }
@@ -152,7 +178,9 @@
       "conditions": {
         "items": [
           {
-            "item": "gaiadimension:euclase_pickaxe"
+            "items": [
+              "gaiadimension:euclase_pickaxe"
+            ]
           }
         ]
       }
@@ -162,7 +190,9 @@
       "conditions": {
         "items": [
           {
-            "item": "gaiadimension:euclase_axe"
+            "items": [
+              "gaiadimension:euclase_axe"
+            ]
           }
         ]
       }
@@ -172,7 +202,9 @@
       "conditions": {
         "items": [
           {
-            "item": "gaiadimension:euclase_shovel"
+            "items": [
+              "gaiadimension:euclase_shovel"
+            ]
           }
         ]
       }
@@ -182,7 +214,9 @@
       "conditions": {
         "items": [
           {
-            "item": "gaiadimension:carnelian_sword"
+            "items": [
+              "gaiadimension:carnelian_sword"
+            ]
           }
         ]
       }
@@ -192,7 +226,9 @@
       "conditions": {
         "items": [
           {
-            "item": "gaiadimension:carnelian_pickaxe"
+            "items": [
+              "gaiadimension:carnelian_pickaxe"
+            ]
           }
         ]
       }
@@ -202,7 +238,9 @@
       "conditions": {
         "items": [
           {
-            "item": "gaiadimension:carnelian_axe"
+            "items": [
+              "gaiadimension:carnelian_axe"
+            ]
           }
         ]
       }
@@ -212,7 +250,9 @@
       "conditions": {
         "items": [
           {
-            "item": "gaiadimension:carnelian_shovel"
+            "items": [
+              "gaiadimension:carnelian_shovel"
+            ]
           }
         ]
       }
@@ -222,7 +262,9 @@
       "conditions": {
         "items": [
           {
-            "item": "gaiadimension:benitoite_sword"
+            "items": [
+              "gaiadimension:benitoite_sword"
+            ]
           }
         ]
       }
@@ -232,7 +274,9 @@
       "conditions": {
         "items": [
           {
-            "item": "gaiadimension:benitoite_pickaxe"
+            "items": [
+              "gaiadimension:benitoite_pickaxe"
+            ]
           }
         ]
       }
@@ -242,7 +286,9 @@
       "conditions": {
         "items": [
           {
-            "item": "gaiadimension:benitoite_axe"
+            "items": [
+              "gaiadimension:benitoite_axe"
+            ]
           }
         ]
       }
@@ -252,7 +298,9 @@
       "conditions": {
         "items": [
           {
-            "item": "gaiadimension:benitoite_shovel"
+            "items": [
+              "gaiadimension:benitoite_shovel"
+            ]
           }
         ]
       }
@@ -262,7 +310,9 @@
       "conditions": {
         "items": [
           {
-            "item": "gaiadimension:chalcedony_sword"
+            "items": [
+              "gaiadimension:chalcedony_sword"
+            ]
           }
         ]
       }
@@ -272,7 +322,9 @@
       "conditions": {
         "items": [
           {
-            "item": "gaiadimension:chalcedony_pickaxe"
+            "items": [
+              "gaiadimension:chalcedony_pickaxe"
+            ]
           }
         ]
       }
@@ -282,7 +334,9 @@
       "conditions": {
         "items": [
           {
-            "item": "gaiadimension:chalcedony_axe"
+            "items": [
+              "gaiadimension:chalcedony_axe"
+            ]
           }
         ]
       }
@@ -292,7 +346,9 @@
       "conditions": {
         "items": [
           {
-            "item": "gaiadimension:chalcedony_shovel"
+            "items": [
+              "gaiadimension:chalcedony_shovel"
+            ]
           }
         ]
       }

@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "gaiadimension:wood/green_agate_wood"
+    ]
+  },
+  "criteria": {
+    "has_green_agate_log": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "gaiadimension:green_agate_log"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "gaiadimension:wood/green_agate_wood"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_green_agate_log",
+      "has_the_recipe"
+    ]
+  ]
+}

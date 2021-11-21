@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "gaiadimension:jet_brick_slab"
+    ]
+  },
+  "criteria": {
+    "has_jet_bricks": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "gaiadimension:jet_bricks"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "gaiadimension:jet_brick_slab"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_jet_bricks",
+      "has_the_recipe"
+    ]
+  ]
+}

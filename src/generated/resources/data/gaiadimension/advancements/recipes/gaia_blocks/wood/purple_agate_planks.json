@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "gaiadimension:wood/purple_agate_planks"
+    ]
+  },
+  "criteria": {
+    "has_purple_agate_logs": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "gaiadimension:purple_agate_logs"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "gaiadimension:wood/purple_agate_planks"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_purple_agate_logs",
+      "has_the_recipe"
+    ]
+  ]
+}

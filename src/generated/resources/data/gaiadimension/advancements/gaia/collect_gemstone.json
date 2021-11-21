@@ -21,7 +21,9 @@
       "conditions": {
         "items": [
           {
-            "item": "gaiadimension:sugilite"
+            "items": [
+              "gaiadimension:sugilite"
+            ]
           }
         ]
       }
@@ -31,7 +33,9 @@
       "conditions": {
         "items": [
           {
-            "item": "gaiadimension:hematite"
+            "items": [
+              "gaiadimension:hematite"
+            ]
           }
         ]
       }
@@ -41,7 +45,9 @@
       "conditions": {
         "items": [
           {
-            "item": "gaiadimension:cinnabar"
+            "items": [
+              "gaiadimension:cinnabar"
+            ]
           }
         ]
       }
@@ -51,7 +57,9 @@
       "conditions": {
         "items": [
           {
-            "item": "gaiadimension:labradorite"
+            "items": [
+              "gaiadimension:labradorite"
+            ]
           }
         ]
       }
@@ -61,7 +69,9 @@
       "conditions": {
         "items": [
           {
-            "item": "gaiadimension:moonstone"
+            "items": [
+              "gaiadimension:moonstone"
+            ]
           }
         ]
       }
@@ -71,7 +81,9 @@
       "conditions": {
         "items": [
           {
-            "item": "gaiadimension:red_opal"
+            "items": [
+              "gaiadimension:red_opal"
+            ]
           }
         ]
       }
@@ -81,7 +93,9 @@
       "conditions": {
         "items": [
           {
-            "item": "gaiadimension:blue_opal"
+            "items": [
+              "gaiadimension:blue_opal"
+            ]
           }
         ]
       }
@@ -91,7 +105,9 @@
       "conditions": {
         "items": [
           {
-            "item": "gaiadimension:green_opal"
+            "items": [
+              "gaiadimension:green_opal"
+            ]
           }
         ]
       }
@@ -101,7 +117,9 @@
       "conditions": {
         "items": [
           {
-            "item": "gaiadimension:white_opal"
+            "items": [
+              "gaiadimension:white_opal"
+            ]
           }
         ]
       }
@@ -111,7 +129,9 @@
       "conditions": {
         "items": [
           {
-            "item": "gaiadimension:ixiolite"
+            "items": [
+              "gaiadimension:ixiolite"
+            ]
           }
         ]
       }
@@ -121,7 +141,9 @@
       "conditions": {
         "items": [
           {
-            "item": "gaiadimension:proustite"
+            "items": [
+              "gaiadimension:proustite"
+            ]
           }
         ]
       }
@@ -131,7 +153,9 @@
       "conditions": {
         "items": [
           {
-            "item": "gaiadimension:euclase"
+            "items": [
+              "gaiadimension:euclase"
+            ]
           }
         ]
       }
@@ -141,7 +165,9 @@
       "conditions": {
         "items": [
           {
-            "item": "gaiadimension:leucite"
+            "items": [
+              "gaiadimension:leucite"
+            ]
           }
         ]
       }
@@ -151,7 +177,9 @@
       "conditions": {
         "items": [
           {
-            "item": "gaiadimension:carnelian"
+            "items": [
+              "gaiadimension:carnelian"
+            ]
           }
         ]
       }
@@ -161,7 +189,9 @@
       "conditions": {
         "items": [
           {
-            "item": "gaiadimension:benitoite"
+            "items": [
+              "gaiadimension:benitoite"
+            ]
           }
         ]
       }
@@ -171,7 +201,9 @@
       "conditions": {
         "items": [
           {
-            "item": "gaiadimension:diopside"
+            "items": [
+              "gaiadimension:diopside"
+            ]
           }
         ]
       }
@@ -181,7 +213,9 @@
       "conditions": {
         "items": [
           {
-            "item": "gaiadimension:chalcedony"
+            "items": [
+              "gaiadimension:chalcedony"
+            ]
           }
         ]
       }
@@ -191,7 +225,9 @@
       "conditions": {
         "items": [
           {
-            "item": "gaiadimension:pyrite"
+            "items": [
+              "gaiadimension:pyrite"
+            ]
           }
         ]
       }
@@ -201,7 +237,9 @@
       "conditions": {
         "items": [
           {
-            "item": "gaiadimension:tektite"
+            "items": [
+              "gaiadimension:tektite"
+            ]
           }
         ]
       }
@@ -211,7 +249,9 @@
       "conditions": {
         "items": [
           {
-            "item": "gaiadimension:goldstone"
+            "items": [
+              "gaiadimension:goldstone"
+            ]
           }
         ]
       }
@@ -221,7 +261,9 @@
       "conditions": {
         "items": [
           {
-            "item": "gaiadimension:aura_cluster"
+            "items": [
+              "gaiadimension:aura_cluster"
+            ]
           }
         ]
       }
@@ -231,7 +273,9 @@
       "conditions": {
         "items": [
           {
-            "item": "gaiadimension:bismuth_crystal"
+            "items": [
+              "gaiadimension:bismuth_crystal"
+            ]
           }
         ]
       }

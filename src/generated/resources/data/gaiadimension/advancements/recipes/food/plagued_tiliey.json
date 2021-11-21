@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "gaiadimension:plagued_tiliey"
+    ]
+  },
+  "criteria": {
+    "has_thiscus": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "gaiadimension:thiscus"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "gaiadimension:plagued_tiliey"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_thiscus",
+      "has_the_recipe"
+    ]
+  ]
+}

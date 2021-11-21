@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "gaiadimension:armor/sugilite_helmet"
+    ]
+  },
+  "criteria": {
+    "has_sugilite": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "gaiadimension:sugilite"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "gaiadimension:armor/sugilite_helmet"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_sugilite",
+      "has_the_recipe"
+    ]
+  ]
+}

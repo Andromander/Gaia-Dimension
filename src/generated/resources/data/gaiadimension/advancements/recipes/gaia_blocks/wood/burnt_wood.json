@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "gaiadimension:wood/burnt_wood"
+    ]
+  },
+  "criteria": {
+    "has_burnt_log": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "gaiadimension:burnt_log"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "gaiadimension:wood/burnt_wood"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_burnt_log",
+      "has_the_recipe"
+    ]
+  ]
+}

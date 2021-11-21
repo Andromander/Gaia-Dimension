@@ -2,7 +2,8 @@
   "type": "minecraft:entity",
   "pools": [
     {
-      "rolls": 1,
+      "rolls": 1.0,
+      "bonus_rolls": 0.0,
       "entries": [
         {
           "type": "minecraft:item",
@@ -11,7 +12,8 @@
       ]
     },
     {
-      "rolls": 1,
+      "rolls": 1.0,
+      "bonus_rolls": 0.0,
       "entries": [
         {
           "type": "minecraft:item",
@@ -19,10 +21,11 @@
             {
               "function": "minecraft:set_count",
               "count": {
+                "type": "minecraft:uniform",
                 "min": 0.0,
-                "max": 1.0,
-                "type": "minecraft:uniform"
-              }
+                "max": 1.0
+              },
+              "add": false
             }
           ],
           "name": "gaiadimension:malachite_guard_headgear"
@@ -30,7 +33,8 @@
       ]
     },
     {
-      "rolls": 1,
+      "rolls": 1.0,
+      "bonus_rolls": 0.0,
       "entries": [
         {
           "type": "minecraft:item",
@@ -38,10 +42,11 @@
             {
               "function": "minecraft:set_count",
               "count": {
+                "type": "minecraft:uniform",
                 "min": 0.0,
-                "max": 1.0,
-                "type": "minecraft:uniform"
-              }
+                "max": 1.0
+              },
+              "add": false
             }
           ],
           "name": "gaiadimension:malachite_guard_brace"
@@ -49,7 +54,8 @@
       ]
     },
     {
-      "rolls": 1,
+      "rolls": 1.0,
+      "bonus_rolls": 0.0,
       "entries": [
         {
           "type": "minecraft:item",
@@ -57,10 +63,11 @@
             {
               "function": "minecraft:set_count",
               "count": {
+                "type": "minecraft:uniform",
                 "min": 0.0,
-                "max": 1.0,
-                "type": "minecraft:uniform"
-              }
+                "max": 1.0
+              },
+              "add": false
             }
           ],
           "name": "gaiadimension:malachite_guard_gear"
@@ -68,7 +75,8 @@
       ]
     },
     {
-      "rolls": 1,
+      "rolls": 1.0,
+      "bonus_rolls": 0.0,
       "entries": [
         {
           "type": "minecraft:item",
@@ -76,10 +84,11 @@
             {
               "function": "minecraft:set_count",
               "count": {
+                "type": "minecraft:uniform",
                 "min": 0.0,
-                "max": 1.0,
-                "type": "minecraft:uniform"
-              }
+                "max": 1.0
+              },
+              "add": false
             }
           ],
           "name": "gaiadimension:malachite_guard_boots"

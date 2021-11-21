@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "gaiadimension:green_geode_ale"
+    ]
+  },
+  "criteria": {
+    "has_cup": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "gaiadimension:agate_cup"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "gaiadimension:green_geode_ale"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_cup",
+      "has_the_recipe"
+    ]
+  ]
+}

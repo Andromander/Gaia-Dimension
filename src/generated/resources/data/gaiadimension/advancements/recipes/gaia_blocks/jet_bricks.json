@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "gaiadimension:jet_bricks"
+    ]
+  },
+  "criteria": {
+    "has_raw_jet": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "gaiadimension:raw_jet"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "gaiadimension:jet_bricks"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_raw_jet",
+      "has_the_recipe"
+    ]
+  ]
+}

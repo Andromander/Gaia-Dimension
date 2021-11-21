@@ -22,7 +22,9 @@
       "conditions": {
         "items": [
           {
-            "item": "gaiadimension:malachite_guard_headgear"
+            "items": [
+              "gaiadimension:malachite_guard_headgear"
+            ]
           }
         ]
       }
@@ -32,7 +34,9 @@
       "conditions": {
         "items": [
           {
-            "item": "gaiadimension:malachite_guard_brace"
+            "items": [
+              "gaiadimension:malachite_guard_brace"
+            ]
           }
         ]
       }
@@ -42,7 +46,9 @@
       "conditions": {
         "items": [
           {
-            "item": "gaiadimension:malachite_guard_gear"
+            "items": [
+              "gaiadimension:malachite_guard_gear"
+            ]
           }
         ]
       }
@@ -52,7 +58,9 @@
       "conditions": {
         "items": [
           {
-            "item": "gaiadimension:malachite_guard_boots"
+            "items": [
+              "gaiadimension:malachite_guard_boots"
+            ]
           }
         ]
       }
@@ -62,7 +70,9 @@
       "conditions": {
         "items": [
           {
-            "item": "gaiadimension:malachite_guard_baton"
+            "items": [
+              "gaiadimension:malachite_guard_baton"
+            ]
           }
         ]
       }

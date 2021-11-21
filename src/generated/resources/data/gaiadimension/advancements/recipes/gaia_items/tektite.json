@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "gaiadimension:tektite"
+    ]
+  },
+  "criteria": {
+    "has_black_residue": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "gaiadimension:black_residue"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "gaiadimension:tektite"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_black_residue",
+      "has_the_recipe"
+    ]
+  ]
+}

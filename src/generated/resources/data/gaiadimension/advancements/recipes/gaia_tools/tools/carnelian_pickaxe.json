@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "gaiadimension:tools/carnelian_pickaxe"
+    ]
+  },
+  "criteria": {
+    "has_carnelian": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "gaiadimension:carnelian"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "gaiadimension:tools/carnelian_pickaxe"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_carnelian",
+      "has_the_recipe"
+    ]
+  ]
+}

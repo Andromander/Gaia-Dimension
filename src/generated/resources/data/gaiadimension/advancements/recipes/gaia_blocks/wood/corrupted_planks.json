@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "gaiadimension:wood/corrupted_planks"
+    ]
+  },
+  "criteria": {
+    "has_corrupted_logs": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "gaiadimension:corrupted_logs"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "gaiadimension:wood/corrupted_planks"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_corrupted_logs",
+      "has_the_recipe"
+    ]
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "gaiadimension:wood/burning_plank_slab"
+    ]
+  },
+  "criteria": {
+    "has_burning_planks": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "gaiadimension:burning_planks"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "gaiadimension:wood/burning_plank_slab"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_burning_planks",
+      "has_the_recipe"
+    ]
+  ]
+}

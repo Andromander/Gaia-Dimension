@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "gaiadimension:wood/aura_planks"
+    ]
+  },
+  "criteria": {
+    "has_aura_logs": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "gaiadimension:aura_logs"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "gaiadimension:wood/aura_planks"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_aura_logs",
+      "has_the_recipe"
+    ]
+  ]
+}

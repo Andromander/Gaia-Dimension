@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "gaiadimension:jade_bricks"
+    ]
+  },
+  "criteria": {
+    "has_raw_jade": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "gaiadimension:raw_jade"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "gaiadimension:jade_bricks"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_raw_jade",
+      "has_the_recipe"
+    ]
+  ]
+}

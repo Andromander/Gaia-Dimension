@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "gaiadimension:tools/chalcedony_sword"
+    ]
+  },
+  "criteria": {
+    "has_chalcedony": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "gaiadimension:chalcedony"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "gaiadimension:tools/chalcedony_sword"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_chalcedony",
+      "has_the_recipe"
+    ]
+  ]
+}

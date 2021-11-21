@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "gaiadimension:large_chest"
+    ]
+  },
+  "criteria": {
+    "has_crate": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "gaiadimension:crude_storage_crate"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "gaiadimension:large_chest"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_crate",
+      "has_the_recipe"
+    ]
+  ]
+}

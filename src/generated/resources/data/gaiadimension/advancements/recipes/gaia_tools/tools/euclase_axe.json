@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "gaiadimension:tools/euclase_axe"
+    ]
+  },
+  "criteria": {
+    "has_euclase": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "gaiadimension:euclase"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "gaiadimension:tools/euclase_axe"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_euclase",
+      "has_the_recipe"
+    ]
+  ]
+}

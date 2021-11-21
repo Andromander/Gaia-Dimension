@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "gaiadimension:storage_blocks/sugilite_block"
+    ]
+  },
+  "criteria": {
+    "has_sugilite": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "gaiadimension:sugilite"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "gaiadimension:storage_blocks/sugilite_block"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_sugilite",
+      "has_the_recipe"
+    ]
+  ]
+}

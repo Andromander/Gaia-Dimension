@@ -22,7 +22,9 @@
       "conditions": {
         "items": [
           {
-            "item": "gaiadimension:sugilite_helmet"
+            "items": [
+              "gaiadimension:sugilite_helmet"
+            ]
           }
         ]
       }
@@ -32,7 +34,9 @@
       "conditions": {
         "items": [
           {
-            "item": "gaiadimension:sugilite_chestplate"
+            "items": [
+              "gaiadimension:sugilite_chestplate"
+            ]
           }
         ]
       }
@@ -42,7 +46,9 @@
       "conditions": {
         "items": [
           {
-            "item": "gaiadimension:sugilite_legs"
+            "items": [
+              "gaiadimension:sugilite_legs"
+            ]
           }
         ]
       }
@@ -52,7 +58,9 @@
       "conditions": {
         "items": [
           {
-            "item": "gaiadimension:sugilite_boots"
+            "items": [
+              "gaiadimension:sugilite_boots"
+            ]
           }
         ]
       }
@@ -62,7 +70,9 @@
       "conditions": {
         "items": [
           {
-            "item": "gaiadimension:proustite_helmet"
+            "items": [
+              "gaiadimension:proustite_helmet"
+            ]
           }
         ]
       }
@@ -72,7 +82,9 @@
       "conditions": {
         "items": [
           {
-            "item": "gaiadimension:proustite_chestplate"
+            "items": [
+              "gaiadimension:proustite_chestplate"
+            ]
           }
         ]
       }
@@ -82,7 +94,9 @@
       "conditions": {
         "items": [
           {
-            "item": "gaiadimension:proustite_legs"
+            "items": [
+              "gaiadimension:proustite_legs"
+            ]
           }
         ]
       }
@@ -92,7 +106,9 @@
       "conditions": {
         "items": [
           {
-            "item": "gaiadimension:proustite_boots"
+            "items": [
+              "gaiadimension:proustite_boots"
+            ]
           }
         ]
       }
@@ -102,7 +118,9 @@
       "conditions": {
         "items": [
           {
-            "item": "gaiadimension:leucite_helmet"
+            "items": [
+              "gaiadimension:leucite_helmet"
+            ]
           }
         ]
       }
@@ -112,7 +130,9 @@
       "conditions": {
         "items": [
           {
-            "item": "gaiadimension:leucite_chestplate"
+            "items": [
+              "gaiadimension:leucite_chestplate"
+            ]
           }
         ]
       }
@@ -122,7 +142,9 @@
       "conditions": {
         "items": [
           {
-            "item": "gaiadimension:leucite_legs"
+            "items": [
+              "gaiadimension:leucite_legs"
+            ]
           }
         ]
       }
@@ -132,7 +154,9 @@
       "conditions": {
         "items": [
           {
-            "item": "gaiadimension:leucite_boots"
+            "items": [
+              "gaiadimension:leucite_boots"
+            ]
           }
         ]
       }
@@ -142,7 +166,9 @@
       "conditions": {
         "items": [
           {
-            "item": "gaiadimension:carnelian_helmet"
+            "items": [
+              "gaiadimension:carnelian_helmet"
+            ]
           }
         ]
       }
@@ -152,7 +178,9 @@
       "conditions": {
         "items": [
           {
-            "item": "gaiadimension:carnelian_chestplate"
+            "items": [
+              "gaiadimension:carnelian_chestplate"
+            ]
           }
         ]
       }
@@ -162,7 +190,9 @@
       "conditions": {
         "items": [
           {
-            "item": "gaiadimension:carnelian_legs"
+            "items": [
+              "gaiadimension:carnelian_legs"
+            ]
           }
         ]
       }
@@ -172,7 +202,9 @@
       "conditions": {
         "items": [
           {
-            "item": "gaiadimension:carnelian_boots"
+            "items": [
+              "gaiadimension:carnelian_boots"
+            ]
           }
         ]
       }
@@ -182,7 +214,9 @@
       "conditions": {
         "items": [
           {
-            "item": "gaiadimension:diopside_helmet"
+            "items": [
+              "gaiadimension:diopside_helmet"
+            ]
           }
         ]
       }
@@ -192,7 +226,9 @@
       "conditions": {
         "items": [
           {
-            "item": "gaiadimension:diopside_chestplate"
+            "items": [
+              "gaiadimension:diopside_chestplate"
+            ]
           }
         ]
       }
@@ -202,7 +238,9 @@
       "conditions": {
         "items": [
           {
-            "item": "gaiadimension:diopside_legs"
+            "items": [
+              "gaiadimension:diopside_legs"
+            ]
           }
         ]
       }
@@ -212,7 +250,9 @@
       "conditions": {
         "items": [
           {
-            "item": "gaiadimension:diopside_boots"
+            "items": [
+              "gaiadimension:diopside_boots"
+            ]
           }
         ]
       }
@@ -222,7 +262,9 @@
       "conditions": {
         "items": [
           {
-            "item": "gaiadimension:chalcedony_helmet"
+            "items": [
+              "gaiadimension:chalcedony_helmet"
+            ]
           }
         ]
       }
@@ -232,7 +274,9 @@
       "conditions": {
         "items": [
           {
-            "item": "gaiadimension:chalcedony_chestplate"
+            "items": [
+              "gaiadimension:chalcedony_chestplate"
+            ]
           }
         ]
       }
@@ -242,7 +286,9 @@
       "conditions": {
         "items": [
           {
-            "item": "gaiadimension:chalcedony_legs"
+            "items": [
+              "gaiadimension:chalcedony_legs"
+            ]
           }
         ]
       }
@@ -252,7 +298,9 @@
       "conditions": {
         "items": [
           {
-            "item": "gaiadimension:chalcedony_boots"
+            "items": [
+              "gaiadimension:chalcedony_boots"
+            ]
           }
         ]
       }

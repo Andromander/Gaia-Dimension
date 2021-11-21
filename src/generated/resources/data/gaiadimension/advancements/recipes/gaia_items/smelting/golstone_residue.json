@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "gaiadimension:smelting/golstone_residue"
+    ]
+  },
+  "criteria": {
+    "has_gaiadimension:goldstone_dust": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "gaiadimension:goldstone_dust"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "gaiadimension:smelting/golstone_residue"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_gaiadimension:goldstone_dust",
+      "has_the_recipe"
+    ]
+  ]
+}

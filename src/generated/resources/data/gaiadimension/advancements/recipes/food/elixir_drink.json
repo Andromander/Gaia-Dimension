@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "gaiadimension:elixir_drink"
+    ]
+  },
+  "criteria": {
+    "has_cup": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "gaiadimension:agate_cup"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "gaiadimension:elixir_drink"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_cup",
+      "has_the_recipe"
+    ]
+  ]
+}

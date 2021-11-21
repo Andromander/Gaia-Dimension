@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "gaiadimension:wood/fossilized_plank_slab"
+    ]
+  },
+  "criteria": {
+    "has_fossilized_planks": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "gaiadimension:fossilized_planks"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "gaiadimension:wood/fossilized_plank_slab"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_fossilized_planks",
+      "has_the_recipe"
+    ]
+  ]
+}

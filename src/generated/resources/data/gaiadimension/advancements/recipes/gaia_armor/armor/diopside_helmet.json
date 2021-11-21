@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "gaiadimension:armor/diopside_helmet"
+    ]
+  },
+  "criteria": {
+    "has_diopside": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "gaiadimension:diopside"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "gaiadimension:armor/diopside_helmet"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_diopside",
+      "has_the_recipe"
+    ]
+  ]
+}

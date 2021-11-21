@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "gaiadimension:tools/ixiolite_axe"
+    ]
+  },
+  "criteria": {
+    "has_ixiolite": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "gaiadimension:ixiolite"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "gaiadimension:tools/ixiolite_axe"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_ixiolite",
+      "has_the_recipe"
+    ]
+  ]
+}

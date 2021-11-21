@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "gaiadimension:malachite_pulsing_chisel_stairs"
+    ]
+  },
+  "criteria": {
+    "has_malachite_pulsing_chisel": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "gaiadimension:malachite_pulsing_chisel"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "gaiadimension:malachite_pulsing_chisel_stairs"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_malachite_pulsing_chisel",
+      "has_the_recipe"
+    ]
+  ]
+}

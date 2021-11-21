@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "gaiadimension:bismuth_crystal"
+    ]
+  },
+  "criteria": {
+    "has_bismuth_residue": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "gaiadimension:bismuth_residue"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "gaiadimension:bismuth_crystal"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_bismuth_residue",
+      "has_the_recipe"
+    ]
+  ]
+}

@@ -21,7 +21,9 @@
       "conditions": {
         "items": [
           {
-            "item": "gaiadimension:ixiolite"
+            "items": [
+              "gaiadimension:ixiolite"
+            ]
           }
         ]
       }
@@ -31,7 +33,9 @@
       "conditions": {
         "items": [
           {
-            "item": "gaiadimension:proustite"
+            "items": [
+              "gaiadimension:proustite"
+            ]
           }
         ]
       }
@@ -41,7 +45,9 @@
       "conditions": {
         "items": [
           {
-            "item": "gaiadimension:euclase"
+            "items": [
+              "gaiadimension:euclase"
+            ]
           }
         ]
       }
@@ -51,7 +57,9 @@
       "conditions": {
         "items": [
           {
-            "item": "gaiadimension:leucite"
+            "items": [
+              "gaiadimension:leucite"
+            ]
           }
         ]
       }
@@ -61,7 +69,9 @@
       "conditions": {
         "items": [
           {
-            "item": "gaiadimension:carnelian"
+            "items": [
+              "gaiadimension:carnelian"
+            ]
           }
         ]
       }
@@ -71,7 +81,9 @@
       "conditions": {
         "items": [
           {
-            "item": "gaiadimension:benitoite"
+            "items": [
+              "gaiadimension:benitoite"
+            ]
           }
         ]
       }
@@ -81,7 +93,9 @@
       "conditions": {
         "items": [
           {
-            "item": "gaiadimension:diopside"
+            "items": [
+              "gaiadimension:diopside"
+            ]
           }
         ]
       }
@@ -91,7 +105,9 @@
       "conditions": {
         "items": [
           {
-            "item": "gaiadimension:chalcedony"
+            "items": [
+              "gaiadimension:chalcedony"
+            ]
           }
         ]
       }
@@ -101,7 +117,9 @@
       "conditions": {
         "items": [
           {
-            "item": "gaiadimension:tektite"
+            "items": [
+              "gaiadimension:tektite"
+            ]
           }
         ]
       }

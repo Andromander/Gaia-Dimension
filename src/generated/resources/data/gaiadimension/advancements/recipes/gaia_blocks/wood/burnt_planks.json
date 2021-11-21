@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "gaiadimension:wood/burnt_planks"
+    ]
+  },
+  "criteria": {
+    "has_burnt_logs": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "gaiadimension:burnt_logs"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "gaiadimension:wood/burnt_planks"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_burnt_logs",
+      "has_the_recipe"
+    ]
+  ]
+}

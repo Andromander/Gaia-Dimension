@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "gaiadimension:pyrite_torch"
+    ]
+  },
+  "criteria": {
+    "has_pyrite": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "gaiadimension:pyrite"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "gaiadimension:pyrite_torch"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_pyrite",
+      "has_the_recipe"
+    ]
+  ]
+}

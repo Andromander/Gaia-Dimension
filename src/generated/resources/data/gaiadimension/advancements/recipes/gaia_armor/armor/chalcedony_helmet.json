@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "gaiadimension:armor/chalcedony_helmet"
+    ]
+  },
+  "criteria": {
+    "has_chalcedony": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "gaiadimension:chalcedony"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "gaiadimension:armor/chalcedony_helmet"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_chalcedony",
+      "has_the_recipe"
+    ]
+  ]
+}

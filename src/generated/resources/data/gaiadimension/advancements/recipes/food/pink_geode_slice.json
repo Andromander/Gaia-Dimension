@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "gaiadimension:pink_geode_slice"
+    ]
+  },
+  "criteria": {
+    "has_geode": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "gaiadimension:pink_geode"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "gaiadimension:pink_geode_slice"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_geode",
+      "has_the_recipe"
+    ]
+  ]
+}

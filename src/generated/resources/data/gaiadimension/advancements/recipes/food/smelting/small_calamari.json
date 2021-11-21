@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "gaiadimension:smelting/small_calamari"
+    ]
+  },
+  "criteria": {
+    "has_gaiadimension:small_tentacle": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "gaiadimension:small_tentacle"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "gaiadimension:smelting/small_calamari"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_gaiadimension:small_tentacle",
+      "has_the_recipe"
+    ]
+  ]
+}
