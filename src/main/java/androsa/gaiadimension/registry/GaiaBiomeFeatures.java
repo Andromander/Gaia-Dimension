@@ -211,7 +211,7 @@ public final class GaiaBiomeFeatures {
             ConstantFloat.of(-0.7F))));
     public static final ConfiguredWorldCarver<CaveCarverConfiguration> chasms = registerCarver("chasms", ModWorldgen.CHASMS.get().configured(new CaveCarverConfiguration(
             0.03F,
-            BiasedToBottomHeight.of(VerticalAnchor.absolute(0), VerticalAnchor.absolute(32), 8),
+            BiasedToBottomHeight.of(VerticalAnchor.absolute(0), VerticalAnchor.absolute(24), 8),
             ConstantFloat.of(0.5F),
             VerticalAnchor.aboveBottom(10),
             false,
