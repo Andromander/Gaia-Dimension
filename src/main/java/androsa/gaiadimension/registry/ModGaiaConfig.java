@@ -93,7 +93,6 @@ public class ModGaiaConfig {
 
     @SubscribeEvent
     public static void onConfigLoaded(ModConfigEvent.Loading event) {
-        System.out.println("Config Loading");
         if (event.getConfig().getModId().equals(GaiaDimensionMod.MODID)) {
             checkDimension();
         }
