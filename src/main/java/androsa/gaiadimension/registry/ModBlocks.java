@@ -2,6 +2,8 @@ package androsa.gaiadimension.registry;
 
 import androsa.gaiadimension.GaiaDimensionMod;
 import androsa.gaiadimension.block.*;
+import androsa.gaiadimension.fluids.LiquidBismuthFluid;
+import androsa.gaiadimension.fluids.SuperhotMagmaFluid;
 import androsa.gaiadimension.item.ScaynyxBucketItem;
 import androsa.gaiadimension.world.gen.tree.*;
 import com.google.common.collect.Maps;
@@ -23,6 +25,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.level.material.Material;
 import net.minecraft.world.level.material.MaterialColor;
+import net.minecraftforge.fluids.ForgeFlowingFluid;
 import net.minecraftforge.fmllegacy.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -62,15 +65,15 @@ public class ModBlocks {
 
     //Fluids
     public static final RegistryObject<LiquidBlock> mineral_water = registerNoItem("mineral_water", () ->
-            new GaiaFluidBlock(ModFluids.mineral_water_still, Block.Properties.of(Material.WATER, MaterialColor.TERRACOTTA_LIGHT_BLUE)));
+            new GaiaFluidBlock(() -> new ForgeFlowingFluid.Source(GaiaFluidAttributes.mineral_water_properties), Block.Properties.of(Material.WATER, MaterialColor.TERRACOTTA_LIGHT_BLUE)));
     public static final RegistryObject<LiquidBlock> superhot_magma = registerNoItem("superhot_magma", () ->
-            new GaiaFluidBlock(ModFluids.superhot_magma_still, Block.Properties.of(Material.LAVA, MaterialColor.COLOR_BLUE).randomTicks().lightLevel((state) -> 15)));
+            new GaiaFluidBlock(() -> new SuperhotMagmaFluid.Source(GaiaFluidAttributes.superhot_magma_properties), Block.Properties.of(Material.LAVA, MaterialColor.COLOR_BLUE).randomTicks().lightLevel((state) -> 15)));
     public static final RegistryObject<LiquidBlock> sweet_muck = registerNoItem("sweet_muck", () ->
-            new GaiaFluidBlock(ModFluids.sweet_muck_still, Block.Properties.of(Material.WATER, MaterialColor.COLOR_PURPLE)));
+            new GaiaFluidBlock(() -> new ForgeFlowingFluid.Source(GaiaFluidAttributes.sweet_muck_properties), Block.Properties.of(Material.WATER, MaterialColor.COLOR_PURPLE)));
     public static final RegistryObject<LiquidBlock> liquid_bismuth = registerNoItem("liquid_bismuth", () ->
-            new GaiaFluidBlock(ModFluids.liquid_bismuth_still, Block.Properties.of(Material.LAVA).randomTicks().lightLevel((state) -> 3)));
+            new GaiaFluidBlock(() -> new LiquidBismuthFluid.Source(GaiaFluidAttributes.liquid_bismuth_properties), Block.Properties.of(Material.LAVA).randomTicks().lightLevel((state) -> 3)));
     public static final RegistryObject<LiquidBlock> liquid_aura = registerNoItem("liquid_aura", () ->
-            new GaiaFluidBlock(ModFluids.liquid_aura_still, Block.Properties.of(Material.WATER)));
+            new GaiaFluidBlock(() -> new ForgeFlowingFluid.Source(GaiaFluidAttributes.liquid_aura_properties), Block.Properties.of(Material.WATER)));
 
     //Natural Blocks
     public static final RegistryObject<Block> heavy_soil = register("heavy_soil", () -> new GaiaSoilBlock(GaiaBlockProperties.soilProps(MaterialColor.TERRACOTTA_PURPLE)));

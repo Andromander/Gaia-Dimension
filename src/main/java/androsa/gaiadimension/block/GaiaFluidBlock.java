@@ -24,6 +24,7 @@ public class GaiaFluidBlock extends LiquidBlock {
 
     public GaiaFluidBlock(Supplier<? extends FlowingFluid> fluid, Properties builder) {
         super(fluid, builder.noCollission().strength(100.0F).noDrops());
+        this.fluid = fluid.get();
     }
 
     @Override
