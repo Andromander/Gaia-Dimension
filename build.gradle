@@ -17,12 +17,12 @@ group = project.mod_group
 archivesBaseName = project.archives_base_name
 
 String fullVersion = project.mc_version + "-" + version
-if (System.getenv("TRAVIS_BUILD_NUMBER") != null) {
-    fullVersion += "+${System.getenv("TRAVIS_BUILD_NUMBER")}"
+if (hasProperty("CIVersion")) {
+    fullVersion += "-" + CIVersion
 }
 String jarVersion = fullVersion.replace("+", "-")
 
-java.toolchain.languageVersion = JavaLanguageVersion.of(16) // Need this here so eclipse task generates correctly.
+java.toolchain.languageVersion = JavaLanguageVersion.of(17) // Need this here so eclipse task generates correctly.
 
 minecraft {
     mappings channel: project.forge_channel, version: project.forge_mappings
@@ -127,8 +127,8 @@ repositories {
 }
 
 dependencies {
-    compileOnly fg.deobf("mezz.jei:jei-${mc_version}:${jei_version}:api")
-    runtimeOnly fg.deobf("mezz.jei:jei-${mc_version}:${jei_version}")
+//    compileOnly fg.deobf("mezz.jei:jei-${mc_version}:${jei_version}:api")
+//    runtimeOnly fg.deobf("mezz.jei:jei-${mc_version}:${jei_version}")
 
 //    runtimeOnly fg.deobf("com.sk88q.worldedit:WorldEdit:${we_version}")
 //    runtimeOnly fg.deobf("team.chisel.ctm:CTM:${project.ctm_version}")
