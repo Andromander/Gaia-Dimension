@@ -126,6 +126,7 @@ public class GaiaItemModels extends GaiaItemModelProvider {
         blockItem(ModBlocks.volcanic_rock);
         blockItem(ModBlocks.searing_rock);
         blockItem(ModBlocks.primal_mass);
+        blockItem(ModBlocks.nexustone);
         blockItem(ModBlocks.impure_rock);
         blockItem(ModBlocks.active_rock);
         blockItem(ModBlocks.impure_sludge);

@@ -1,7 +1,8 @@
 package androsa.gaiadimension.data.provider;
 
-import androsa.gaiadimension.registry.GaiaBiomeFeatures;
 import androsa.gaiadimension.registry.ModEntities;
+import androsa.gaiadimension.registry.configurations.GaiaConfiguredCarvers;
+import androsa.gaiadimension.registry.configurations.GaiaPlacedFeatures;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.level.biome.*;
@@ -44,20 +45,20 @@ public abstract class GaiaBiomeProvider {
 
     public static BiomeGenerationSettings.Builder createSettings() {
         return new BiomeGenerationSettings.Builder()
-                .addCarver(GenerationStep.Carving.AIR, GaiaBiomeFeatures.crystal_caves)
-                .addCarver(GenerationStep.Carving.AIR, GaiaBiomeFeatures.chasms)
-                .addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, GaiaBiomeFeatures.ore_primal_mass)
-                .addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, GaiaBiomeFeatures.ore_pebbles)
-                .addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, GaiaBiomeFeatures.ore_speckled_rock)
-                .addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, GaiaBiomeFeatures.ore_coarse_rock)
-                .addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, GaiaBiomeFeatures.ore_precious_rock)
-                .addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, GaiaBiomeFeatures.ore_sugilite)
-                .addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, GaiaBiomeFeatures.ore_hematite)
-                .addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, GaiaBiomeFeatures.ore_pyrite)
-                .addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, GaiaBiomeFeatures.ore_cinnabar)
-                .addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, GaiaBiomeFeatures.ore_labradorite)
-                .addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, GaiaBiomeFeatures.ore_moonstone)
-                .addFeature(GenerationStep.Decoration.UNDERGROUND_DECORATION, GaiaBiomeFeatures.crystal_fungi_caves);
+                .addCarver(GenerationStep.Carving.AIR, GaiaConfiguredCarvers.crystal_caves)
+                .addCarver(GenerationStep.Carving.AIR, GaiaConfiguredCarvers.chasms)
+                .addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, GaiaPlacedFeatures.ORE_PRIMAL_MASS)
+                .addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, GaiaPlacedFeatures.ORE_PEBBLES)
+                .addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, GaiaPlacedFeatures.ORE_SPECKLED_ROCK)
+                .addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, GaiaPlacedFeatures.ORE_COARSE_ROCK)
+                .addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, GaiaPlacedFeatures.ORE_PRECIOUS_ROCK)
+                .addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, GaiaPlacedFeatures.ORE_SUGILITE)
+                .addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, GaiaPlacedFeatures.ORE_HEMATITE)
+                .addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, GaiaPlacedFeatures.ORE_PYRITE)
+                .addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, GaiaPlacedFeatures.ORE_CINNABAR)
+                .addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, GaiaPlacedFeatures.ORE_LABRADORITE)
+                .addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, GaiaPlacedFeatures.ORE_MOONSTONE)
+                .addFeature(GenerationStep.Decoration.UNDERGROUND_DECORATION, GaiaPlacedFeatures.CRYSTAL_FUNGI_CAVES);
     }
 
     public static MobSpawnSettings buildSpawns(MobSpawnSettings.Builder builder) {
@@ -81,212 +82,188 @@ public abstract class GaiaBiomeProvider {
 
     public static BiomeGenerationSettings pinkAgateForest() {
         return createSettings()
-                .surfaceBuilder(GaiaBiomeFeatures.d_glitter_heavy_salt)
-                .addFeature(GenerationStep.Decoration.LAKES, GaiaBiomeFeatures.lake_superhot_magma_rare)
-                .addFeature(GenerationStep.Decoration.LAKES, GaiaBiomeFeatures.lake_mineral_water_common)
-                .addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, GaiaBiomeFeatures.ore_raw_amethyst)
-                .addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, GaiaBiomeFeatures.ore_raw_copal)
-                .addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, GaiaBiomeFeatures.ore_red_opal)
-                .addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, GaiaBiomeFeatures.ore_white_opal_rare)
-                .addFeature(GenerationStep.Decoration.UNDERGROUND_DECORATION, GaiaBiomeFeatures.underground_glitter_blob)
-                .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, GaiaBiomeFeatures.pink_agate_tree_common)
-                .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, GaiaBiomeFeatures.crystal_growth_03)
-                .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, GaiaBiomeFeatures.crystal_blooms_common)
-                .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, GaiaBiomeFeatures.spotted_kersei)
-                .addStructureStart(GaiaBiomeFeatures.mini_tower)
-                .addStructureStart(GaiaBiomeFeatures.malachite_watchtower)
+                .addFeature(GenerationStep.Decoration.LAKES, GaiaPlacedFeatures.LAKE_SUPERHOT_MAGMA_RARE)
+                .addFeature(GenerationStep.Decoration.LAKES, GaiaPlacedFeatures.LAKE_MINERAL_WATER_COMMON)
+                .addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, GaiaPlacedFeatures.ORE_RAW_AMETHYST)
+                .addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, GaiaPlacedFeatures.ORE_RAW_COPAL)
+                .addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, GaiaPlacedFeatures.ORE_RED_OPAL)
+                .addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, GaiaPlacedFeatures.ORE_WHITE_OPAL_RARE)
+                .addFeature(GenerationStep.Decoration.UNDERGROUND_DECORATION, GaiaPlacedFeatures.UNDERGROUND_GLITTER_BLOB)
+                .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, GaiaPlacedFeatures.PINK_AGATE_TREE_COMMON)
+                .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, GaiaPlacedFeatures.CRYSTAL_GROWTH_03)
+                .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, GaiaPlacedFeatures.CRYSTAL_BLOOMS_COMMON)
+                .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, GaiaPlacedFeatures.SPOTTED_KERSEI)
                 .build();
     }
 
     public static BiomeGenerationSettings blueAgateTaiga() {
         return createSettings()
-                .surfaceBuilder(GaiaBiomeFeatures.d_glitter_heavy_salt)
-                .addFeature(GenerationStep.Decoration.LAKES, GaiaBiomeFeatures.lake_superhot_magma_rare)
-                .addFeature(GenerationStep.Decoration.LAKES, GaiaBiomeFeatures.lake_mineral_water_common)
-                .addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, GaiaBiomeFeatures.ore_raw_amethyst)
-                .addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, GaiaBiomeFeatures.ore_raw_jet)
-                .addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, GaiaBiomeFeatures.ore_blue_opal)
-                .addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, GaiaBiomeFeatures.ore_white_opal_rare)
-                .addFeature(GenerationStep.Decoration.UNDERGROUND_DECORATION, GaiaBiomeFeatures.underground_glitter_blob)
-                .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, GaiaBiomeFeatures.blue_agate_tree)
-                .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, GaiaBiomeFeatures.crystal_growth_02)
-                .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, GaiaBiomeFeatures.crystal_blooms_common)
-                .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, GaiaBiomeFeatures.thorny_wiltha)
-                .addStructureStart(GaiaBiomeFeatures.mini_tower)
+                .addFeature(GenerationStep.Decoration.LAKES, GaiaPlacedFeatures.LAKE_SUPERHOT_MAGMA_RARE)
+                .addFeature(GenerationStep.Decoration.LAKES, GaiaPlacedFeatures.LAKE_MINERAL_WATER_COMMON)
+                .addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, GaiaPlacedFeatures.ORE_RAW_AMETHYST)
+                .addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, GaiaPlacedFeatures.ORE_RAW_JET)
+                .addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, GaiaPlacedFeatures.ORE_BLUE_OPAL)
+                .addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, GaiaPlacedFeatures.ORE_WHITE_OPAL_RARE)
+                .addFeature(GenerationStep.Decoration.UNDERGROUND_DECORATION, GaiaPlacedFeatures.UNDERGROUND_GLITTER_BLOB)
+                .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, GaiaPlacedFeatures.BLUE_AGATE_TREE)
+                .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, GaiaPlacedFeatures.CRYSTAL_GROWTH_02)
+                .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, GaiaPlacedFeatures.CRYSTAL_BLOOMS_COMMON)
+                .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, GaiaPlacedFeatures.THORNY_WILTHA)
                 .build();
     }
 
     public static BiomeGenerationSettings greenAgateJungle() {
         return createSettings()
-                .surfaceBuilder(GaiaBiomeFeatures.d_glitter_heavy_salt)
-                .addFeature(GenerationStep.Decoration.LAKES, GaiaBiomeFeatures.lake_superhot_magma_rare)
-                .addFeature(GenerationStep.Decoration.LAKES, GaiaBiomeFeatures.lake_mineral_water_common)
-                .addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, GaiaBiomeFeatures.ore_raw_copal)
-                .addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, GaiaBiomeFeatures.ore_raw_jade)
-                .addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, GaiaBiomeFeatures.ore_green_opal)
-                .addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, GaiaBiomeFeatures.ore_white_opal_rare)
-                .addFeature(GenerationStep.Decoration.UNDERGROUND_DECORATION, GaiaBiomeFeatures.underground_glitter_blob)
-                .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, GaiaBiomeFeatures.green_agate_tree)
-                .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, GaiaBiomeFeatures.green_agate_bush)
-                .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, GaiaBiomeFeatures.crystal_growth_04)
-                .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, GaiaBiomeFeatures.crystal_blooms_common)
-                .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, GaiaBiomeFeatures.roofed_agaric)
-                .addStructureStart(GaiaBiomeFeatures.mini_tower)
-                .addStructureStart(GaiaBiomeFeatures.malachite_watchtower)
+                .addFeature(GenerationStep.Decoration.LAKES, GaiaPlacedFeatures.LAKE_SUPERHOT_MAGMA_RARE)
+                .addFeature(GenerationStep.Decoration.LAKES, GaiaPlacedFeatures.LAKE_MINERAL_WATER_COMMON)
+                .addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, GaiaPlacedFeatures.ORE_RAW_COPAL)
+                .addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, GaiaPlacedFeatures.ORE_RAW_JADE)
+                .addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, GaiaPlacedFeatures.ORE_GREEN_OPAL)
+                .addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, GaiaPlacedFeatures.ORE_WHITE_OPAL_RARE)
+                .addFeature(GenerationStep.Decoration.UNDERGROUND_DECORATION, GaiaPlacedFeatures.UNDERGROUND_GLITTER_BLOB)
+                .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, GaiaPlacedFeatures.GREEN_AGATE_TREE)
+                .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, GaiaPlacedFeatures.GREEN_AGATE_BUSH)
+                .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, GaiaPlacedFeatures.CRYSTAL_GROWTH_04)
+                .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, GaiaPlacedFeatures.CRYSTAL_BLOOMS_COMMON)
+                .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, GaiaPlacedFeatures.ROOFED_AGARIC)
                 .build();
     }
 
     public static BiomeGenerationSettings purpleAgateSwamp() {
         return createSettings()
-                .surfaceBuilder(GaiaBiomeFeatures.d_glitter_heavy_salt)
-                .addFeature(GenerationStep.Decoration.LAKES, GaiaBiomeFeatures.lake_sweet_muck)
-                .addFeature(GenerationStep.Decoration.LAKES, GaiaBiomeFeatures.lake_superhot_magma_rare)
-                .addFeature(GenerationStep.Decoration.LAKES, GaiaBiomeFeatures.lake_mineral_water_uncommon)
-                .addFeature(GenerationStep.Decoration.LOCAL_MODIFICATIONS, GaiaBiomeFeatures.gummy_glitter_blob)
-                .addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, GaiaBiomeFeatures.ore_thick_glitter)
-                .addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, GaiaBiomeFeatures.ore_raw_amethyst)
-                .addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, GaiaBiomeFeatures.ore_raw_jade)
-                .addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, GaiaBiomeFeatures.ore_white_opal_rare)
-                .addFeature(GenerationStep.Decoration.UNDERGROUND_DECORATION, GaiaBiomeFeatures.underground_glitter_blob)
-                .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, GaiaBiomeFeatures.purple_agate_tree)
-                .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, GaiaBiomeFeatures.crystal_growth_02)
-                .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, GaiaBiomeFeatures.crystal_blooms_rare)
-                .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, GaiaBiomeFeatures.bulbous_hobina)
-                .addStructureStart(GaiaBiomeFeatures.mini_tower)
+                .addFeature(GenerationStep.Decoration.LAKES, GaiaPlacedFeatures.LAKE_SWEET_MUCK)
+                .addFeature(GenerationStep.Decoration.LAKES, GaiaPlacedFeatures.LAKE_SUPERHOT_MAGMA_RARE)
+                .addFeature(GenerationStep.Decoration.LAKES, GaiaPlacedFeatures.LAKE_MINERAL_WATER_UNCOMMON)
+                .addFeature(GenerationStep.Decoration.LOCAL_MODIFICATIONS, GaiaPlacedFeatures.GUMMY_GLITTER_BLOB)
+                .addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, GaiaPlacedFeatures.ORE_THICK_GLITTER)
+                .addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, GaiaPlacedFeatures.ORE_RAW_AMETHYST)
+                .addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, GaiaPlacedFeatures.ORE_RAW_JADE)
+                .addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, GaiaPlacedFeatures.ORE_WHITE_OPAL_RARE)
+                .addFeature(GenerationStep.Decoration.UNDERGROUND_DECORATION, GaiaPlacedFeatures.UNDERGROUND_GLITTER_BLOB)
+                .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, GaiaPlacedFeatures.PURPLE_AGATE_TREE)
+                .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, GaiaPlacedFeatures.CRYSTAL_GROWTH_02)
+                .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, GaiaPlacedFeatures.CRYSTAL_BLOOMS_RARE)
+                .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, GaiaPlacedFeatures.BULBOUS_HOBINA)
                 .build();
     }
 
     public static BiomeGenerationSettings fossilWoodland() {
         return createSettings()
-                .surfaceBuilder(GaiaBiomeFeatures.d_glitter_heavy_salt)
-                .addFeature(GenerationStep.Decoration.LAKES, GaiaBiomeFeatures.lake_superhot_magma_rare)
-                .addFeature(GenerationStep.Decoration.LAKES, GaiaBiomeFeatures.lake_mineral_water_common)
-                .addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, GaiaBiomeFeatures.ore_raw_copal)
-                .addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, GaiaBiomeFeatures.ore_raw_jet)
-                .addFeature(GenerationStep.Decoration.UNDERGROUND_DECORATION, GaiaBiomeFeatures.underground_glitter_blob)
-                .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, GaiaBiomeFeatures.fossilized_tree)
-                .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, GaiaBiomeFeatures.crystal_growth_02)
-                .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, GaiaBiomeFeatures.crystal_blooms_common)
-                .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, GaiaBiomeFeatures.stickly_cupsir)
-                .addStructureStart(GaiaBiomeFeatures.mini_tower)
+                .addFeature(GenerationStep.Decoration.LAKES, GaiaPlacedFeatures.LAKE_SUPERHOT_MAGMA_RARE)
+                .addFeature(GenerationStep.Decoration.LAKES, GaiaPlacedFeatures.LAKE_MINERAL_WATER_COMMON)
+                .addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, GaiaPlacedFeatures.ORE_RAW_COPAL)
+                .addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, GaiaPlacedFeatures.ORE_RAW_JET)
+                .addFeature(GenerationStep.Decoration.UNDERGROUND_DECORATION, GaiaPlacedFeatures.UNDERGROUND_GLITTER_BLOB)
+                .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, GaiaPlacedFeatures.FOSSILIZED_TREE)
+                .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, GaiaPlacedFeatures.CRYSTAL_GROWTH_02)
+                .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, GaiaPlacedFeatures.CRYSTAL_BLOOMS_COMMON)
+                .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, GaiaPlacedFeatures.STICKLY_CUPSIR)
                 .build();
     }
 
     public static BiomeGenerationSettings mutantAgateWildwood() {
         return createSettings()
-                .surfaceBuilder(GaiaBiomeFeatures.d_glitter_heavy_salt)
-                .addFeature(GenerationStep.Decoration.LAKES, GaiaBiomeFeatures.lake_superhot_magma_rare)
-                .addFeature(GenerationStep.Decoration.LAKES, GaiaBiomeFeatures.lake_mineral_water_common)
-                .addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, GaiaBiomeFeatures.ore_raw_amethyst)
-                .addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, GaiaBiomeFeatures.ore_raw_jade)
-                .addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, GaiaBiomeFeatures.ore_red_opal)
-                .addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, GaiaBiomeFeatures.ore_blue_opal)
-                .addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, GaiaBiomeFeatures.ore_green_opal)
-                .addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, GaiaBiomeFeatures.ore_white_opal_common)
-                .addFeature(GenerationStep.Decoration.UNDERGROUND_DECORATION, GaiaBiomeFeatures.underground_glitter_blob)
-                .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, GaiaBiomeFeatures.various_agate_trees)
-                .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, GaiaBiomeFeatures.crystal_blooms_mutant)
-                .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, GaiaBiomeFeatures.mystical_murgni)
-                .addStructureStart(GaiaBiomeFeatures.mini_tower)
+                .addFeature(GenerationStep.Decoration.LAKES, GaiaPlacedFeatures.LAKE_SUPERHOT_MAGMA_RARE)
+                .addFeature(GenerationStep.Decoration.LAKES, GaiaPlacedFeatures.LAKE_MINERAL_WATER_COMMON)
+                .addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, GaiaPlacedFeatures.ORE_RAW_AMETHYST)
+                .addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, GaiaPlacedFeatures.ORE_RAW_JADE)
+                .addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, GaiaPlacedFeatures.ORE_RED_OPAL)
+                .addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, GaiaPlacedFeatures.ORE_BLUE_OPAL)
+                .addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, GaiaPlacedFeatures.ORE_GREEN_OPAL)
+                .addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, GaiaPlacedFeatures.ORE_WHITE_OPAL_COMMON)
+                .addFeature(GenerationStep.Decoration.UNDERGROUND_DECORATION, GaiaPlacedFeatures.UNDERGROUND_GLITTER_BLOB)
+                .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, GaiaPlacedFeatures.VARIOUS_AGATE_TREES)
+                .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, GaiaPlacedFeatures.CRYSTAL_BLOOMS_MUTANT)
+                .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, GaiaPlacedFeatures.MYSTICAL_MURGNI)
                 .build();
     }
 
     public static BiomeGenerationSettings volcanicLands() {
         return createSettings()
-                .surfaceBuilder(GaiaBiomeFeatures.v_glitter_heavy_volrock)
-                .addFeature(GenerationStep.Decoration.LAKES, GaiaBiomeFeatures.lake_superhot_magma_common)
-                .addFeature(GenerationStep.Decoration.LAKES, GaiaBiomeFeatures.lake_mineral_water_rare)
-                .addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, GaiaBiomeFeatures.ore_searing_rock)
-                .addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, GaiaBiomeFeatures.ore_raw_copal)
-                .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, GaiaBiomeFeatures.burnt_agate_tree)
-                .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, GaiaBiomeFeatures.fiery_agate_tree)
-                .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, GaiaBiomeFeatures.crystal_growth_seared)
+                .addFeature(GenerationStep.Decoration.LAKES, GaiaPlacedFeatures.LAKE_SUPERHOT_MAGMA_COMMON)
+                .addFeature(GenerationStep.Decoration.LAKES, GaiaPlacedFeatures.LAKE_MINERAL_WATER_RARE)
+                .addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, GaiaPlacedFeatures.ORE_SEARING_ROCK)
+                .addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, GaiaPlacedFeatures.ORE_RAW_COPAL)
+                .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, GaiaPlacedFeatures.BURNT_AGATE_TREE)
+                .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, GaiaPlacedFeatures.FIERY_AGATE_TREE)
+                .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, GaiaPlacedFeatures.CRYSTAL_GROWTH_SEARED)
                 .build();
     }
 
     public static BiomeGenerationSettings staticWasteland() {
         return createSettings()
-                .surfaceBuilder(GaiaBiomeFeatures.s_wasteland_stone)
-                .addFeature(GenerationStep.Decoration.LOCAL_MODIFICATIONS, GaiaBiomeFeatures.static_spikes)
-                .addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, GaiaBiomeFeatures.ore_static_stone)
-                .addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, GaiaBiomeFeatures.ore_raw_amethyst)
-                .addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, GaiaBiomeFeatures.disk_static_stone)
+                .addFeature(GenerationStep.Decoration.LOCAL_MODIFICATIONS, GaiaPlacedFeatures.STATIC_SPIKES)
+                .addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, GaiaPlacedFeatures.ORE_STATIC_STONE)
+                .addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, GaiaPlacedFeatures.ORE_RAW_AMETHYST)
+                .addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, GaiaPlacedFeatures.DISK_STATIC_STONE)
                 .build();
     }
 
     public static BiomeGenerationSettings goldstoneLands() {
         return createSettings()
-                .surfaceBuilder(GaiaBiomeFeatures.d_corrupt_salt)
-                .addFeature(GenerationStep.Decoration.LAKES, GaiaBiomeFeatures.lake_superhot_magma_rare)
-                .addFeature(GenerationStep.Decoration.LAKES, GaiaBiomeFeatures.lake_mineral_water_common)
-                .addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, GaiaBiomeFeatures.ore_raw_jet)
-                .addFeature(GenerationStep.Decoration.UNDERGROUND_DECORATION, GaiaBiomeFeatures.underground_glitter_blob)
-                .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, GaiaBiomeFeatures.goldstone_tree)
-                .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, GaiaBiomeFeatures.crystal_growth_corrupt)
-                .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, GaiaBiomeFeatures.crystal_blooms_corrupt)
-                .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, GaiaBiomeFeatures.corrupted_gaia_eye)
+                .addFeature(GenerationStep.Decoration.LAKES, GaiaPlacedFeatures.LAKE_SUPERHOT_MAGMA_RARE)
+                .addFeature(GenerationStep.Decoration.LAKES, GaiaPlacedFeatures.LAKE_MINERAL_WATER_COMMON)
+                .addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, GaiaPlacedFeatures.ORE_RAW_JET)
+                .addFeature(GenerationStep.Decoration.UNDERGROUND_DECORATION, GaiaPlacedFeatures.UNDERGROUND_GLITTER_BLOB)
+                .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, GaiaPlacedFeatures.GOLDSTONE_TREE)
+                .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, GaiaPlacedFeatures.CRYSTAL_GROWTH_CORRUPT)
+                .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, GaiaPlacedFeatures.CRYSTAL_BLOOMS_CORRUPT)
+                .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, GaiaPlacedFeatures.CORRUPTED_GAIA_EYE)
                 .build();
     }
 
     public static BiomeGenerationSettings crystalPlains() {
         return createSettings()
-                .surfaceBuilder(GaiaBiomeFeatures.d_glitter_heavy_salt)
-                .addFeature(GenerationStep.Decoration.LAKES, GaiaBiomeFeatures.lake_superhot_magma_rare)
-                .addFeature(GenerationStep.Decoration.LAKES, GaiaBiomeFeatures.lake_mineral_water_common)
-                .addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, GaiaBiomeFeatures.ore_raw_amethyst)
-                .addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, GaiaBiomeFeatures.ore_raw_jade)
-                .addFeature(GenerationStep.Decoration.UNDERGROUND_DECORATION, GaiaBiomeFeatures.underground_glitter_blob)
-                .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, GaiaBiomeFeatures.pink_agate_tree_rare)
-                .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, GaiaBiomeFeatures.crystal_growth_05)
-                .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, GaiaBiomeFeatures.crystal_blooms_common)
-                .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, GaiaBiomeFeatures.spotted_kersei)
-                .addStructureStart(GaiaBiomeFeatures.mini_tower)
-                .addStructureStart(GaiaBiomeFeatures.malachite_watchtower)
+                .addFeature(GenerationStep.Decoration.LAKES, GaiaPlacedFeatures.LAKE_SUPERHOT_MAGMA_RARE)
+                .addFeature(GenerationStep.Decoration.LAKES, GaiaPlacedFeatures.LAKE_MINERAL_WATER_COMMON)
+                .addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, GaiaPlacedFeatures.ORE_RAW_AMETHYST)
+                .addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, GaiaPlacedFeatures.ORE_RAW_JADE)
+                .addFeature(GenerationStep.Decoration.UNDERGROUND_DECORATION, GaiaPlacedFeatures.UNDERGROUND_GLITTER_BLOB)
+                .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, GaiaPlacedFeatures.PINK_AGATE_TREE_RARE)
+                .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, GaiaPlacedFeatures.CRYSTAL_GROWTH_05)
+                .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, GaiaPlacedFeatures.CRYSTAL_BLOOMS_COMMON)
+                .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, GaiaPlacedFeatures.SPOTTED_KERSEI)
                 .build();
     }
 
     public static BiomeGenerationSettings saltDunes() {
         return createSettings()
-                .surfaceBuilder(GaiaBiomeFeatures.d_salty)
-                .addFeature(GenerationStep.Decoration.LAKES, GaiaBiomeFeatures.lake_mineral_water_rare)
-                .addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, GaiaBiomeFeatures.ore_raw_amethyst)
-                .addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, GaiaBiomeFeatures.ore_raw_jet)
-                .addFeature(GenerationStep.Decoration.UNDERGROUND_DECORATION, GaiaBiomeFeatures.underground_glitter_blob)
+                .addFeature(GenerationStep.Decoration.LAKES, GaiaPlacedFeatures.LAKE_MINERAL_WATER_RARE)
+                .addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, GaiaPlacedFeatures.ORE_RAW_AMETHYST)
+                .addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, GaiaPlacedFeatures.ORE_RAW_JET)
+                .addFeature(GenerationStep.Decoration.UNDERGROUND_DECORATION, GaiaPlacedFeatures.UNDERGROUND_GLITTER_BLOB)
                 .build();
     }
 
     public static BiomeGenerationSettings smolderingBog() {
         return createSettings()
-                .surfaceBuilder(GaiaBiomeFeatures.d_murky_boggy_pebble)
-                .addFeature(GenerationStep.Decoration.LAKES, GaiaBiomeFeatures.lake_liquid_bismuth)
-                .addFeature(GenerationStep.Decoration.LOCAL_MODIFICATIONS, GaiaBiomeFeatures.bismuth_spires)
-                .addFeature(GenerationStep.Decoration.LOCAL_MODIFICATIONS, GaiaBiomeFeatures.bismuth_geysers)
-                .addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, GaiaBiomeFeatures.ore_raw_amethyst)
-                .addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, GaiaBiomeFeatures.ore_raw_jet)
-                .addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, GaiaBiomeFeatures.disk_bog_patch)
+                .addFeature(GenerationStep.Decoration.LAKES, GaiaPlacedFeatures.LAKE_LIQUID_BISMUTH)
+                .addFeature(GenerationStep.Decoration.LOCAL_MODIFICATIONS, GaiaPlacedFeatures.BISMUTH_SPIRES)
+                .addFeature(GenerationStep.Decoration.LOCAL_MODIFICATIONS, GaiaPlacedFeatures.BISMUTH_GEYSERS)
+                .addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, GaiaPlacedFeatures.ORE_RAW_AMETHYST)
+                .addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, GaiaPlacedFeatures.ORE_RAW_JET)
+                .addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, GaiaPlacedFeatures.DISK_BOG_PATCH)
                 .build();
     }
 
     public static BiomeGenerationSettings shiningGrove() {
         return createSettings()
-                .surfaceBuilder(GaiaBiomeFeatures.d_soft_light_salt)
-                .addFeature(GenerationStep.Decoration.LAKES, GaiaBiomeFeatures.lake_liquid_aura)
-                .addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, GaiaBiomeFeatures.ore_raw_copal)
-                .addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, GaiaBiomeFeatures.ore_raw_jade)
-                .addFeature(GenerationStep.Decoration.UNDERGROUND_DECORATION, GaiaBiomeFeatures.underground_glitter_blob)
-                .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, GaiaBiomeFeatures.aura_tree)
-                .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, GaiaBiomeFeatures.aura_shoots)
-                .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, GaiaBiomeFeatures.crystal_growth_aura)
-                .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, GaiaBiomeFeatures.crystal_blooms_common)
+                .addFeature(GenerationStep.Decoration.LAKES, GaiaPlacedFeatures.LAKE_LIQUID_AURA)
+                .addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, GaiaPlacedFeatures.ORE_RAW_COPAL)
+                .addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, GaiaPlacedFeatures.ORE_RAW_JADE)
+                .addFeature(GenerationStep.Decoration.UNDERGROUND_DECORATION, GaiaPlacedFeatures.UNDERGROUND_GLITTER_BLOB)
+                .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, GaiaPlacedFeatures.AURA_TREE)
+                .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, GaiaPlacedFeatures.AURA_SHOOTS)
+                .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, GaiaPlacedFeatures.CRYSTAL_GROWTH_AURA)
+                .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, GaiaPlacedFeatures.CRYSTAL_BLOOMS_COMMON)
                 .build();
     }
 
     public static BiomeGenerationSettings mineralBiome() {
         return createSettings()
-                .surfaceBuilder(GaiaBiomeFeatures.d_salty)
-                .addFeature(GenerationStep.Decoration.LAKES, GaiaBiomeFeatures.lake_superhot_magma_rare)
-                .addFeature(GenerationStep.Decoration.LAKES, GaiaBiomeFeatures.lake_mineral_water_common)
-                .addFeature(GenerationStep.Decoration.UNDERGROUND_DECORATION, GaiaBiomeFeatures.underground_glitter_blob)
+                .addFeature(GenerationStep.Decoration.LAKES, GaiaPlacedFeatures.LAKE_SUPERHOT_MAGMA_RARE)
+                .addFeature(GenerationStep.Decoration.LAKES, GaiaPlacedFeatures.LAKE_MINERAL_WATER_COMMON)
+                .addFeature(GenerationStep.Decoration.UNDERGROUND_DECORATION, GaiaPlacedFeatures.UNDERGROUND_GLITTER_BLOB)
                 .build();
     }
 }

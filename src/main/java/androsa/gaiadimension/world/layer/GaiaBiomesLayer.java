@@ -1,8 +1,8 @@
 package androsa.gaiadimension.world.layer;
 
 import androsa.gaiadimension.registry.ModBiomes;
-import net.minecraft.world.level.newbiome.context.Context;
-import net.minecraft.world.level.newbiome.layer.traits.AreaTransformer0;
+import androsa.gaiadimension.world.layer.oldgen.AreaTransformer0;
+import androsa.gaiadimension.world.layer.oldgen.Context;
 
 public class GaiaBiomesLayer implements AreaTransformer0 {
 
@@ -32,7 +32,7 @@ public class GaiaBiomesLayer implements AreaTransformer0 {
     public GaiaBiomesLayer() { }
 
     @Override
-    public int applyPixel(Context iNoiseRandom, int rand1, int rand2) {
+    public int applyPixel(Context iNoiseRandom, int x, int z) {
         if (iNoiseRandom.nextRandom(RARE_BIOME_CHANCE) == 0) {
             //magic number!
             return rareBiomes[iNoiseRandom.nextRandom(rareBiomes.length)];

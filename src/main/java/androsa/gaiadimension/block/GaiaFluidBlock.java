@@ -11,11 +11,11 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.LevelEvent;
 import net.minecraft.world.level.block.LiquidBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.FlowingFluid;
 import net.minecraft.world.level.material.FluidState;
-import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.event.ForgeEventFactory;
 
 import java.util.function.Supplier;
@@ -24,7 +24,6 @@ public class GaiaFluidBlock extends LiquidBlock {
 
     public GaiaFluidBlock(Supplier<? extends FlowingFluid> fluid, Properties builder) {
         super(fluid, builder.noCollission().strength(100.0F).noDrops());
-        this.fluid = fluid.get();
     }
 
     @Override
@@ -73,7 +72,7 @@ public class GaiaFluidBlock extends LiquidBlock {
     }
 
     private void triggerMixEffects(LevelAccessor worldIn, BlockPos pos) {
-        worldIn.levelEvent(Constants.WorldEvents.LAVA_EXTINGUISH, pos, 0);
+        worldIn.levelEvent(LevelEvent.SOUND_EXTINGUISH_FIRE, pos, 0);
     }
 
     @Override

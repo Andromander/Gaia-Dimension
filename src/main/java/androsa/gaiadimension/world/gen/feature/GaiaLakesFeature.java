@@ -1,15 +1,13 @@
 package androsa.gaiadimension.world.gen.feature;
 
-import androsa.gaiadimension.block.GaiaSoilBlock;
 import androsa.gaiadimension.registry.ModBlocks;
 import com.mojang.serialization.Codec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.SectionPos;
-import net.minecraft.world.level.LightLayer;
 import net.minecraft.world.level.WorldGenLevel;
-import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.chunk.ChunkGenerator;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.minecraft.world.level.levelgen.feature.StructureFeature;
@@ -29,10 +27,10 @@ public class GaiaLakesFeature<T extends BlockStateConfiguration> extends Feature
 
     @Override
     public boolean place(FeaturePlaceContext<T> context) {
-        return place(context.level(), context.random(), context.origin(), context.config());
+        return place(context.level(), context.chunkGenerator(), context.random(), context.origin(), context.config());
     }
 
-    public boolean place(WorldGenLevel worldIn, Random rand, BlockPos pos, T config) {
+    public boolean place(WorldGenLevel worldIn, ChunkGenerator generator, Random rand, BlockPos pos, T config) {
         while(pos.getY() > 5 && worldIn.isEmptyBlock(pos)) {
             pos = pos.below();
         }
@@ -41,7 +39,7 @@ public class GaiaLakesFeature<T extends BlockStateConfiguration> extends Feature
             return false;
         } else {
             pos = pos.below(4);
-            if (worldIn.startsForFeature(SectionPos.of(pos), StructureFeature.VILLAGE).findAny().isPresent()) {
+            if (!worldIn.startsForFeature(SectionPos.of(pos), StructureFeature.VILLAGE).isEmpty()) {
                 return false;
             } else {
                 boolean[] aboolean = new boolean[2048];
@@ -93,29 +91,6 @@ public class GaiaLakesFeature<T extends BlockStateConfiguration> extends Feature
                         for(int i4 = 0; i4 < 8; ++i4) {
                             if (aboolean[(l1 * 16 + i3) * 8 + i4]) {
                                 worldIn.setBlock(pos.offset(l1, i4, i3), i4 >= 4 ? AIR : config.state, 2);
-                            }
-                        }
-                    }
-                }
-
-                for(int i2 = 0; i2 < 16; ++i2) {
-                    for(int j3 = 0; j3 < 16; ++j3) {
-                        for(int j4 = 4; j4 < 8; ++j4) {
-                            if (aboolean[(i2 * 16 + j3) * 8 + j4]) {
-                                BlockPos blockpos = pos.offset(i2, j4 - 1, j3);
-                                if (worldIn.getBlockState(blockpos).getBlock() instanceof GaiaSoilBlock && worldIn.getBrightness(LightLayer.SKY, pos.offset(i2, j4, j3)) > 0) {
-                                    Biome biome = worldIn.getBiome(blockpos);
-
-                                    if (biome.getGenerationSettings().getSurfaceBuilderConfig().getTopMaterial().getBlock() == ModBlocks.murky_grass.get()) {
-                                        worldIn.setBlock(blockpos, ModBlocks.murky_grass.get().defaultBlockState(), 2);
-                                    } else if (biome.getGenerationSettings().getSurfaceBuilderConfig().getTopMaterial().getBlock() == ModBlocks.soft_grass.get()) {
-                                        worldIn.setBlock(blockpos, ModBlocks.soft_grass.get().defaultBlockState(), 2);
-                                    } else if (biome.getGenerationSettings().getSurfaceBuilderConfig().getTopMaterial().getBlock() == ModBlocks.corrupt_grass.get()) {
-                                        worldIn.setBlock(blockpos, ModBlocks.corrupt_grass.get().defaultBlockState(), 2);
-                                    } else {
-                                        worldIn.setBlock(blockpos, ModBlocks.glitter_grass.get().defaultBlockState(), 2);
-                                    }
-                                }
                             }
                         }
                     }

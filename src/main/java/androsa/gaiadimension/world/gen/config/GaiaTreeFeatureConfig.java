@@ -7,7 +7,6 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.block.SaplingBlock;
 import net.minecraft.world.level.levelgen.feature.configurations.FeatureConfiguration;
 import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
-import net.minecraft.world.level.levelgen.feature.stateproviders.SimpleStateProvider;
 import net.minecraftforge.common.IPlantable;
 
 import java.util.Random;
@@ -19,7 +18,7 @@ public class GaiaTreeFeatureConfig implements FeatureConfiguration {
                     BlockStateProvider.CODEC.fieldOf("trunk_provider").forGetter((obj) -> obj.trunkProvider),
                     BlockStateProvider.CODEC.fieldOf("leaves_provider").forGetter((obj) -> obj.leavesProvider),
                     Codec.INT.fieldOf("height").forGetter((obj) -> obj.minHeight),
-                    BlockStateProvider.CODEC.fieldOf("sapling").orElse(new SimpleStateProvider(ModBlocks.pink_agate_sapling.get().defaultBlockState())).forGetter((obj) -> obj.sapling)
+                    BlockStateProvider.CODEC.fieldOf("sapling").orElse(BlockStateProvider.simple(ModBlocks.pink_agate_sapling.get())).forGetter((obj) -> obj.sapling)
             ).apply(instance, GaiaTreeFeatureConfig::new));
 
     public final BlockStateProvider trunkProvider;
@@ -56,7 +55,7 @@ public class GaiaTreeFeatureConfig implements FeatureConfiguration {
         }
 
         public GaiaTreeFeatureConfig.Builder setSapling(SaplingBlock sapling) {
-            this.sapling = new SimpleStateProvider(sapling.defaultBlockState());
+            this.sapling = BlockStateProvider.simple(sapling.defaultBlockState());
             return this;
         }
 

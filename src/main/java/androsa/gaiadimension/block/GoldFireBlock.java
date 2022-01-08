@@ -77,7 +77,7 @@ public class GoldFireBlock extends Block {
                 }
 
                 if (!flag) {
-                    worldIn.getBlockTicks().scheduleTick(pos, this, this.tickRate() + random.nextInt(10));
+                    worldIn.scheduleTick(pos, this, this.tickRate() + random.nextInt(10));
                     BlockPos blockpos = pos.below();
                     if (!worldIn.getBlockState(blockpos).isFaceSturdy(worldIn, blockpos, Direction.UP) || i > 3) {
                         worldIn.removeBlock(pos, false);
@@ -117,7 +117,7 @@ public class GoldFireBlock extends Block {
                 if (!state1.canSurvive(worldIn, pos)) {
                     worldIn.removeBlock(pos, false);
                 } else {
-                    worldIn.getBlockTicks().scheduleTick(pos, this, this.tickRate() + worldIn.random.nextInt(10));
+                    worldIn.scheduleTick(pos, this, this.tickRate() + worldIn.random.nextInt(10));
                 }
             }
         }

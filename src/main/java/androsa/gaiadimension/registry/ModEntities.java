@@ -6,21 +6,18 @@ import androsa.gaiadimension.entity.boss.BlueHowliteWolfEntity;
 import androsa.gaiadimension.entity.boss.MalachiteGuardEntity;
 import androsa.gaiadimension.entity.projectile.AgateArrowEntity;
 import androsa.gaiadimension.entity.projectile.ThrownPebbleEntity;
-import net.minecraft.core.BlockPos;
-import net.minecraft.tags.FluidTags;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.monster.Monster;
-import net.minecraft.world.level.NaturalSpawner;
-import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.biome.MobSpawnSettings;
 import net.minecraft.world.level.levelgen.Heightmap;
-import net.minecraft.world.level.material.FluidState;
 import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
+import net.minecraftforge.event.world.StructureSpawnListGatherEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fmllegacy.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.RegistryObject;
 
 import java.util.function.Supplier;
 
@@ -89,26 +86,6 @@ public class ModEntities {
         return EntityType.Builder.of(entity, classification).sized(width, height);
     }
 
-    /* Spawn Placements */
-    public static Type IN_LAVA = Type.create("GD_IN_LAVA", (reader, pos, entity) -> {
-        BlockState blockState = reader.getBlockState(pos);
-        FluidState fluidState = reader.getFluidState(pos);
-        BlockPos posUp = pos.above();
-        BlockPos posDown = pos.below();
-
-        if (fluidState.is(FluidTags.LAVA) && reader.getFluidState(posDown).is(FluidTags.LAVA) && !reader.getBlockState(posUp).isRedstoneConductor(reader, posUp)) {
-            return true;
-        } else {
-            BlockState state = reader.getBlockState(posDown);
-
-            if (!state.canCreatureSpawn(reader, posDown, Type.ON_GROUND, entity)) {
-                return false;
-            } else {
-                return NaturalSpawner.isValidEmptySpawnBlock(reader, pos, blockState, fluidState, entity) && NaturalSpawner.isValidEmptySpawnBlock(reader, posUp, reader.getBlockState(posUp), reader.getFluidState(posUp), entity);
-            }
-        }
-    });
-
     public static void registerSpawnPlacement() {
         registerPlacement(AGATE_GOLEM, Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, AgateGolemEntity::canSpawnHere);
         registerPlacement(ANCIENT_LAGRAHK, Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, AncientLagrahkEntity::canSpawnHere);
@@ -128,7 +105,7 @@ public class ModEntities {
         registerPlacement(MUCKLING, Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, MucklingEntity::canSpawnHere);
         registerPlacement(MUTANT_GROWTH_EXTRACTOR, Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, MutantGrowthExtractorEntity::canSpawnHere);
         registerPlacement(NOMADIC_LAGRAHK, Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, NomadicLagrahkEntity::canSpawnHere);
-        registerPlacement(PRIMAL_BEAST, IN_LAVA, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, PrimalBeastEntity::canSpawnHere);
+        registerPlacement(PRIMAL_BEAST, Type.IN_LAVA, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, PrimalBeastEntity::canSpawnHere);
         registerPlacement(ROCKY_LUGGEROTH, Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, RockyLuggerothEntity::canSpawnHere);
         registerPlacement(RUGGED_LURMORUS, Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, RuggedLurmorusEntity::canSpawnHere);
         registerPlacement(SALTION, Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, SaltionEntity::canSpawnHere);
@@ -175,5 +152,14 @@ public class ModEntities {
 
     private static <E extends LivingEntity> void setAttributes(EntityAttributeCreationEvent evt, Supplier<EntityType<E>> entity, AttributeSupplier.Builder builder) {
         evt.put(entity.get(), builder.build());
+    }
+
+    public static void addStructureSpawns(StructureSpawnListGatherEvent evt) {
+        if (evt.getStructure() == ModWorldgen.MALACHITE_WATCHTOWER.get()) {
+            evt.addEntitySpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(ModEntities.MALACHITE_DRONE.get(), 10, 1, 1));
+            evt.addEntitySpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(ModEntities.SHALURKER.get(), 5, 1, 2));
+            evt.addEntitySpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(ModEntities.ARCHAIC_WARRIOR.get(), 8, 1, 2));
+            evt.addEntitySpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(ModEntities.CAVERN_TICK.get(), 3, 2, 3));
+        }
     }
 }

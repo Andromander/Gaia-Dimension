@@ -8,7 +8,7 @@ import net.minecraft.world.level.block.FlowerPotBlock;
 import net.minecraftforge.client.model.generators.BlockModelBuilder;
 import net.minecraftforge.client.model.generators.BlockModelProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
-import net.minecraftforge.fmllegacy.RegistryObject;
+import net.minecraftforge.registries.RegistryObject;
 
 public abstract class GaiaBlockModelProvider extends BlockModelProvider {
 

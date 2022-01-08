@@ -2,11 +2,13 @@ package androsa.gaiadimension.block;
 
 import androsa.gaiadimension.registry.ModBiomes;
 import androsa.gaiadimension.registry.ModBlocks;
+import androsa.gaiadimension.registry.configurations.GaiaPlacedFeatures;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.levelgen.feature.AbstractFlowerFeature;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
+import net.minecraft.world.level.levelgen.feature.configurations.RandomPatchConfiguration;
+import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 
 import java.util.List;
 import java.util.Optional;
@@ -21,8 +23,6 @@ public class GlitterGrassBlock extends AbstractGaiaGrassBlock {
     @Override
     public void performBonemeal(ServerLevel worldIn, Random rand, BlockPos pos, BlockState state) {
         BlockPos blockpos = pos.above();
-        BlockState normalGrowth = ModBlocks.crystal_growth.get().defaultBlockState();
-        BlockState mutantGrowth = ModBlocks.crystal_growth_mutant.get().defaultBlockState();
 
         label48:
         for(int i = 0; i < 128; ++i) {
@@ -37,23 +37,19 @@ public class GlitterGrassBlock extends AbstractGaiaGrassBlock {
 
             BlockState blockstate2 = worldIn.getBlockState(blockpos1);
             if (blockstate2.isAir()) {
-                BlockState blockstate1;
+                PlacedFeature feature;
                 if (rand.nextInt(8) == 0) {
                     List<ConfiguredFeature<?, ?>> list = worldIn.getBiome(blockpos1).getGenerationSettings().getFlowerFeatures();
                     if (list.isEmpty()) {
                         continue;
                     }
 
-                    ConfiguredFeature<?, ?> configuredfeature = list.get(0);
-                    AbstractFlowerFeature flowersfeature = (AbstractFlowerFeature)configuredfeature.feature;
-                    blockstate1 = flowersfeature.getRandomFlower(rand, blockpos1, configuredfeature.config());
+                    feature = ((RandomPatchConfiguration)list.get(0).config()).feature().get();
                 } else {
-                    blockstate1 = worldIn.getBiomeName(blockpos1) == Optional.of(ModBiomes.mutant_agate_wildwood) ? mutantGrowth : normalGrowth;
+                    feature = worldIn.getBiomeName(blockpos1).equals(Optional.of(ModBiomes.mutant_agate_wildwood)) ? GaiaPlacedFeatures.CRYSTAL_GROWTH_MUTANT : GaiaPlacedFeatures.CRYSTAL_GROWTH_02;
                 }
 
-                if (blockstate1.canSurvive(worldIn, blockpos1)) {
-                    worldIn.setBlockAndUpdate(blockpos1, blockstate1);
-                }
+                feature.place(worldIn, worldIn.getChunkSource().getGenerator(), rand, blockpos1);
             }
         }
     }

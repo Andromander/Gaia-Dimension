@@ -2,6 +2,7 @@ package androsa.gaiadimension.data.provider;
 
 import androsa.gaiadimension.block.LargeCrateBlock;
 import androsa.gaiadimension.block.SmallCrateBlock;
+import androsa.gaiadimension.registry.ModBlockEntities;
 import androsa.gaiadimension.registry.ModItems;
 import net.minecraft.advancements.critereon.EnchantmentPredicate;
 import net.minecraft.advancements.critereon.ItemPredicate;
@@ -25,7 +26,7 @@ import net.minecraft.world.level.storage.loot.predicates.MatchTool;
 import net.minecraft.world.level.storage.loot.providers.nbt.ContextNbtProvider;
 import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
 import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
-import net.minecraftforge.fmllegacy.RegistryObject;
+import net.minecraftforge.registries.RegistryObject;
 
 import java.util.function.Function;
 import java.util.function.Supplier;
@@ -89,7 +90,7 @@ public abstract class GaiaBlockLootTableProvider extends BlockLoot {
                                         .copy("Lock", "BlockEntityTag.Lock")
                                         .copy("LootTable", "BlockEntityTag.LootTable")
                                         .copy("LootTableSeed", "BlockEntityTag.LootTableSeed"))
-                                .apply(SetContainerContents.setContents()
+                                .apply(SetContainerContents.setContents(ModBlockEntities.SMALL_CRATE.get())
                                         .withEntry(DynamicLoot.dynamicEntry(SmallCrateBlock.NAME))))));
     }
 
@@ -103,7 +104,7 @@ public abstract class GaiaBlockLootTableProvider extends BlockLoot {
                                         .copy("Lock", "BlockEntityTag.Lock")
                                         .copy("LootTable", "BlockEntityTag.LootTable")
                                         .copy("LootTableSeed", "BlockEntityTag.LootTableSeed"))
-                                .apply(SetContainerContents.setContents()
+                                .apply(SetContainerContents.setContents(ModBlockEntities.LARGE_CRATE.get())
                                         .withEntry(DynamicLoot.dynamicEntry(LargeCrateBlock.NAME))))));
     }
 

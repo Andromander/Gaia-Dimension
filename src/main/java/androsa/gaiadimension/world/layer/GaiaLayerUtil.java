@@ -1,17 +1,9 @@
 package androsa.gaiadimension.world.layer;
 
+import androsa.gaiadimension.world.layer.oldgen.*;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.level.biome.Biome;
-import net.minecraft.world.level.newbiome.area.Area;
-import net.minecraft.world.level.newbiome.area.AreaFactory;
-import net.minecraft.world.level.newbiome.area.LazyArea;
-import net.minecraft.world.level.newbiome.context.BigContext;
-import net.minecraft.world.level.newbiome.context.LazyAreaContext;
-import net.minecraft.world.level.newbiome.layer.Layer;
-import net.minecraft.world.level.newbiome.layer.Layers;
-import net.minecraft.world.level.newbiome.layer.SmoothLayer;
-import net.minecraft.world.level.newbiome.layer.ZoomLayer;
 
 import java.util.function.LongFunction;
 
@@ -36,7 +28,8 @@ public class GaiaLayerUtil {
         biomes = ZoomLayer.NORMAL.run(contextFactory.apply(1004), biomes);
         biomes = ZoomLayer.NORMAL.run(contextFactory.apply(1005), biomes);
 
-        biomes = Layers.zoom(1000L, ZoomLayer.NORMAL, biomes, 1, contextFactory);
+        biomes = ZoomLayer.NORMAL.run(contextFactory.apply(1000), biomes);
+        biomes = ZoomLayer.NORMAL.run(contextFactory.apply(1001), biomes);
 
         AreaFactory<T> riverLayer = MineralRiverLayer.INSTANCE.run(contextFactory.apply(1L), biomes);
         riverLayer = SmoothLayer.INSTANCE.run(contextFactory.apply(7000L), riverLayer);

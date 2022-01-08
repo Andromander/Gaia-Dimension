@@ -2,11 +2,13 @@ package androsa.gaiadimension.data;
 
 import androsa.gaiadimension.GaiaDimensionMod;
 import androsa.gaiadimension.data.provider.WorldGenerationProvider;
-import androsa.gaiadimension.registry.GaiaBiomeFeatures;
+import androsa.gaiadimension.registry.configurations.*;
 import androsa.gaiadimension.registry.ModBlocks;
 import androsa.gaiadimension.registry.ModDimensions;
 import androsa.gaiadimension.registry.ModWorldgen;
 import androsa.gaiadimension.world.GaiaChunkGenerator;
+import androsa.gaiadimension.world.GaiaStructureSettings;
+import androsa.gaiadimension.world.GaiaSurfaceRuleData;
 import androsa.gaiadimension.world.layer.GaiaBiomeProvider;
 import com.google.common.collect.Maps;
 import com.google.gson.JsonElement;
@@ -19,9 +21,11 @@ import net.minecraft.data.DataGenerator;
 import net.minecraft.data.HashCache;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.CubicSpline;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.biome.BiomeSource;
-import net.minecraft.world.level.biome.FuzzyOffsetBiomeZoomer;
+import net.minecraft.world.level.biome.TerrainShaper;
+import net.minecraft.world.level.chunk.ChunkGenerator;
 import net.minecraft.world.level.dimension.DimensionType;
 import net.minecraft.world.level.dimension.LevelStem;
 import net.minecraft.world.level.levelgen.*;
@@ -29,7 +33,6 @@ import net.minecraft.world.level.levelgen.feature.StructureFeature;
 import net.minecraft.world.level.levelgen.feature.configurations.StructureFeatureConfiguration;
 
 import java.util.Map;
-import java.util.Optional;
 import java.util.OptionalLong;
 import java.util.stream.Collectors;
 
@@ -50,10 +53,10 @@ public class GaiaWorldGen extends WorldGenerationProvider<JsonElement> {
 
     @Override
     public void generate(HashCache cache) {
-        GaiaBiomeFeatures.registerCarvers(this.registries.registryOrThrow(Registry.CONFIGURED_CARVER_REGISTRY));
-        GaiaBiomeFeatures.registerSurfaceBuilders(this.registries.registryOrThrow(Registry.CONFIGURED_SURFACE_BUILDER_REGISTRY));
-        GaiaBiomeFeatures.registerStructureFeatures(this.registries.registryOrThrow(Registry.CONFIGURED_STRUCTURE_FEATURE_REGISTRY));
-        GaiaBiomeFeatures.registerFeatures(this.registries.registryOrThrow(Registry.CONFIGURED_FEATURE_REGISTRY));
+        GaiaConfiguredCarvers.registerCarvers(this.registries.registryOrThrow(Registry.CONFIGURED_CARVER_REGISTRY));
+        GaiaConfiguredStructures.registerStructureFeatures(this.registries.registryOrThrow(Registry.CONFIGURED_STRUCTURE_FEATURE_REGISTRY));
+        GaiaPlacedFeatures.registerPlacedFeatures(this.registries.registryOrThrow(Registry.PLACED_FEATURE_REGISTRY));
+        GaiaConfiguredFeatures.registerFeatures(this.registries.registryOrThrow(Registry.CONFIGURED_FEATURE_REGISTRY));
 
         Map<ResourceLocation, Biome> biomes = this.getBiomes();
         biomes.forEach((rl, biome) -> this.registries.registry(Registry.BIOME_REGISTRY).ifPresent(reg -> Registry.register(reg, rl, biome)));
@@ -71,44 +74,34 @@ public class GaiaWorldGen extends WorldGenerationProvider<JsonElement> {
     }
 
     private LevelStem makeDimension() {
-        StructureSettings structureSettings = new StructureSettings(
-                Optional.empty(), // No Strongholds
-                getStructures());
+        StructureSettings structureSettings = new GaiaStructureSettings(getStructures());
         NoiseSettings noiseSettings = NoiseSettings.create(
-                0, // TODO: Bring this down once we get to this
+                -64,
                 256,
-                new NoiseSamplingSettings(0.9999999814507745D, 0.9999999814507745D, 80.0D, 160.0D),
-                new NoiseSlideSettings(-10, 3, 0),
-                new NoiseSlideSettings(15, 3, 0),
+                new NoiseSamplingSettings(1.0D, 1.0D, 80.0D, 160.0D),
+                new NoiseSlider(-10, 3, 0),
+                new NoiseSlider(15, 3, 0),
                 1,
                 2,
-                1.0D,
-                -0.46875D,
                 false,
-                true,
                 false,
-                false);
+                false,
+                new TerrainShaper(CubicSpline.constant(-0.46875F), CubicSpline.constant(0.0F), CubicSpline.constant(0.0F))); //TODO
         NoiseGeneratorSettings noiseGeneratorSettings = new NoiseGeneratorSettings(
                 structureSettings,
                 noiseSettings,
                 ModBlocks.gaia_stone.get().defaultBlockState(),
                 ModBlocks.mineral_water.get().defaultBlockState(),
-                Integer.MIN_VALUE,
-                0,
+                GaiaSurfaceRuleData.gaia(true, false, true),
                 63, // TODO: Sea Level. Bump?
-                0, // TODO: Min height. Bump in rework
                 false,
                 false,
                 false,
-                false, // TODO: Deepslate layer. Evaluate for Primal Mass
+                false,
                 false,
                 false);
 
-        this.getOrCreateRegistry(this.registries.registryOrThrow(Registry.NOISE_GENERATOR_SETTINGS_REGISTRY),
-                ResourceKey.create(Registry.NOISE_GENERATOR_SETTINGS_REGISTRY, new ResourceLocation(GaiaDimensionMod.MODID, "gaia_noise_settings")),
-                () -> noiseGeneratorSettings);
-
-        ModDimensions.initDimension();
+        this.getOrCreateRegistry(this.registries.registryOrThrow(Registry.NOISE_GENERATOR_SETTINGS_REGISTRY), ModDimensions.gaia_noise, () -> noiseGeneratorSettings);
 
         DimensionType gaiaDimension = DimensionType.create(
                 OptionalLong.of(6000L), //time
@@ -122,21 +115,19 @@ public class GaiaWorldGen extends WorldGenerationProvider<JsonElement> {
                 true, //bed
                 true, //anchor TODO: until alternative
                 false, //raids
-                0, //minY
+                -64, //minY
                 256, //maxY
                 256, //logical
-                FuzzyOffsetBiomeZoomer.INSTANCE, //zoom
                 new ResourceLocation("infiniburn_overworld"), //infiniburn
-                new ResourceLocation(GaiaDimensionMod.MODID, "gaia"),
+                new ResourceLocation(GaiaDimensionMod.MODID, "gaia"), //effects
                 0.0F //ambient
         );
 
-        this.getOrCreateRegistry(this.registries.registryOrThrow(Registry.DIMENSION_TYPE_REGISTRY),
-                ResourceKey.create(Registry.DIMENSION_TYPE_REGISTRY, new ResourceLocation(GaiaDimensionMod.MODID, "gaia_dimension")),
-                () -> gaiaDimension);
+        ModDimensions.initDimension();
+        this.getOrCreateRegistry(this.registries.registryOrThrow(Registry.DIMENSION_TYPE_REGISTRY), ModDimensions.gaia_dimension, () -> gaiaDimension);
 
         BiomeSource biomeSource = new GaiaBiomeProvider(0L, new MappedRegistry<>(Registry.BIOME_REGISTRY, Lifecycle.experimental()));
-        NoiseBasedChunkGenerator chunkGenerator = new GaiaChunkGenerator(biomeSource, 0L, () -> noiseGeneratorSettings);
+        ChunkGenerator chunkGenerator = new GaiaChunkGenerator(RegistryAccess.builtin().registryOrThrow(Registry.NOISE_REGISTRY), biomeSource, 0L, () -> noiseGeneratorSettings);
 
         return new LevelStem(() -> gaiaDimension, chunkGenerator);
     }

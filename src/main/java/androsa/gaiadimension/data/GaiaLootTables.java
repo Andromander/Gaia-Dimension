@@ -174,6 +174,7 @@ public class GaiaLootTables extends LootTableProvider {
             dropSelf(ModBlocks.volcanic_rock);
             dropSelf(ModBlocks.searing_rock);
             dropSelf(ModBlocks.primal_mass);
+            dropSelf(ModBlocks.nexustone);
             dropSelf(ModBlocks.impure_rock);
             dropSelf(ModBlocks.active_rock);
             dropSelf(ModBlocks.impure_sludge);

@@ -10,7 +10,6 @@ import com.google.common.collect.ImmutableMap;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.ChunkPos;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.StructureFeatureManager;
@@ -22,14 +21,14 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.chunk.ChunkGenerator;
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.level.levelgen.structure.BoundingBox;
-import net.minecraft.world.level.levelgen.structure.StructurePiece;
+import net.minecraft.world.level.levelgen.structure.StructurePieceAccessor;
 import net.minecraft.world.level.levelgen.structure.TemplateStructurePiece;
+import net.minecraft.world.level.levelgen.structure.pieces.StructurePieceSerializationContext;
 import net.minecraft.world.level.levelgen.structure.templatesystem.BlockIgnoreProcessor;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructureManager;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructurePlaceSettings;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemplate;
 
-import java.util.List;
 import java.util.Random;
 
 public class MiniTowerPieces {
@@ -75,7 +74,7 @@ public class MiniTowerPieces {
             .put(am_roof, blockpos_1).put(co_roof, blockpos_1).put(ja_roof, blockpos_1).put(je_roof, blockpos_1)
             .build();
 
-    public static void buildStructure(StructureManager manager, BlockPos pos, Rotation rotation, List<StructurePiece> pieces, Random random) {
+    public static void buildStructure(StructureManager manager, BlockPos pos, Rotation rotation, StructurePieceAccessor pieces, Random random) {
         ResourceLocation[] piecearray;
         MiniTowerType type;
         switch (random.nextInt(MiniTowerType.values().length)) {
@@ -98,13 +97,13 @@ public class MiniTowerPieces {
         }
 
         int i = 0;
-        pieces.add(new MiniTowerPieces.Piece(manager, piecearray[0], pos, rotation, type, i));
+        pieces.addPiece(new MiniTowerPieces.Piece(manager, piecearray[0], pos, rotation, type, i));
         i += 8;
-        pieces.add(new MiniTowerPieces.Piece(manager, piecearray[1], pos, rotation, type, i));
+        pieces.addPiece(new MiniTowerPieces.Piece(manager, piecearray[1], pos, rotation, type, i));
         i += 11;
-        pieces.add(new MiniTowerPieces.Piece(manager, piecearray[2], pos, rotation, type, i));
+        pieces.addPiece(new MiniTowerPieces.Piece(manager, piecearray[2], pos, rotation, type, i));
         i += 9;
-        pieces.add(new MiniTowerPieces.Piece(manager, piecearray[3], pos, rotation, type, i));
+        pieces.addPiece(new MiniTowerPieces.Piece(manager, piecearray[3], pos, rotation, type, i));
     }
 
     public static ResourceLocation makePiece(String material, String part) {
@@ -119,7 +118,7 @@ public class MiniTowerPieces {
             this.towerType = type;
         }
 
-        public Piece(ServerLevel level, CompoundTag nbt) {
+        public Piece(StructureManager level, CompoundTag nbt) {
             super(ModWorldgen.StructureTypes.MITO, nbt, level, (rl) ->
                     loadTemplate(Rotation.valueOf(nbt.getString("Rot")), rl));
             this.towerType = MiniTowerType.valueOf(nbt.getString("TowerType"));
@@ -153,7 +152,7 @@ public class MiniTowerPieces {
         }
 
         @Override
-        protected void addAdditionalSaveData(ServerLevel level, CompoundTag nbt) {
+        protected void addAdditionalSaveData(StructurePieceSerializationContext level, CompoundTag nbt) {
             super.addAdditionalSaveData(level, nbt);
             nbt.putString("Rot", this.placeSettings.getRotation().name());
             nbt.putString("TowerType", this.towerType.toString());
@@ -175,7 +174,7 @@ public class MiniTowerPieces {
         }
 
         @Override
-        public boolean postProcess(WorldGenLevel world, StructureFeatureManager manager, ChunkGenerator generator, Random random, BoundingBox mbb, ChunkPos chunkpos, BlockPos pos) {
+        public void postProcess(WorldGenLevel world, StructureFeatureManager manager, ChunkGenerator generator, Random random, BoundingBox mbb, ChunkPos chunkpos, BlockPos pos) {
             ResourceLocation location = new ResourceLocation(this.templateName);
             StructurePlaceSettings settings = loadTemplate(this.placeSettings.getRotation(), location);
 
@@ -191,9 +190,8 @@ public class MiniTowerPieces {
             int height = world.getHeight(Heightmap.Types.WORLD_SURFACE_WG, tempoffset.getX(), tempoffset.getZ());
             BlockPos temppos = this.templatePosition;
             this.templatePosition = this.templatePosition.offset(0, height - 90 - 1, 0);
-            boolean flag = super.postProcess(world, manager, generator, random, mbb, chunkpos, pos);
+            super.postProcess(world, manager, generator, random, mbb, chunkpos, pos);
             this.templatePosition = temppos;
-            return flag;
         }
     }
 }

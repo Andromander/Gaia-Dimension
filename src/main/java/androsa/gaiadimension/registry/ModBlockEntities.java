@@ -5,9 +5,9 @@ import androsa.gaiadimension.block.blockentity.*;
 import androsa.gaiadimension.block.blockentity.boss.MalachiteGuardSpawnerBlockEntity;
 import com.google.common.collect.Sets;
 import net.minecraft.world.level.block.entity.BlockEntityType;
-import net.minecraftforge.fmllegacy.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.RegistryObject;
 
 public class ModBlockEntities {
 

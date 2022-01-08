@@ -12,6 +12,8 @@ import net.minecraft.world.entity.MobType;
 import net.minecraft.world.entity.ai.village.poi.PoiType;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.ForgeConfigSpec;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.ModLoadingContext;
@@ -47,6 +49,8 @@ public class GaiaDimensionMod {
         modEventBus.addListener(this::clientSetup);
         modEventBus.addListener(this::gatherData);
 
+        MinecraftForge.EVENT_BUS.addListener(EventPriority.HIGH, ModEntities::addStructureSpawns);
+
         ModRecipes.registerRecipeTypes();
 
         ModBiomes.BIOMES.register(modEventBus);
@@ -62,7 +66,6 @@ public class GaiaDimensionMod {
         ModBlockEntities.TILE_ENTITIES.register(modEventBus);
         ModWorldgen.FEATURES.register(modEventBus);
         ModWorldgen.STRUCTURES.register(modEventBus);
-        ModWorldgen.SURFACE_BUILDERS.register(modEventBus);
         ModWorldgen.WORLD_CARVERS.register(modEventBus);
 
         final Pair<ModGaiaConfig.ClientConfig, ForgeConfigSpec> specPairC = new ForgeConfigSpec.Builder().configure(ModGaiaConfig.ClientConfig::new);

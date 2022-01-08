@@ -1,7 +1,6 @@
 package androsa.gaiadimension.world.gen.tree;
 
-import androsa.gaiadimension.registry.GaiaBiomeFeatures;
-import androsa.gaiadimension.registry.ModWorldgen;
+import androsa.gaiadimension.registry.configurations.GaiaConfiguredFeatures;
 import androsa.gaiadimension.world.gen.config.GaiaTreeFeatureConfig;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 
@@ -11,6 +10,6 @@ public class FossilizedTree extends GaiaTree {
 
     @Override
     public ConfiguredFeature<GaiaTreeFeatureConfig, ?> createTreeFeature(Random rand) {
-        return ModWorldgen.FOSSILIZED_TREE.get().configured(GaiaBiomeFeatures.FOSSILIZED_TREE_CONFIG);
+        return GaiaConfiguredFeatures.fossilized_tree;
     }
 }

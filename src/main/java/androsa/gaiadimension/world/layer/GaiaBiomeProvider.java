@@ -1,19 +1,16 @@
 package androsa.gaiadimension.world.layer;
 
-import androsa.gaiadimension.GaiaDimensionMod;
 import androsa.gaiadimension.world.GaiaChunkGenerator;
+import androsa.gaiadimension.world.layer.oldgen.Layer;
 import com.google.common.collect.ImmutableList;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import net.minecraft.SharedConstants;
-import net.minecraft.Util;
 import net.minecraft.core.Registry;
-import net.minecraft.data.worldgen.biome.Biomes;
 import net.minecraft.resources.RegistryLookupCodec;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.biome.BiomeSource;
-import net.minecraft.world.level.newbiome.layer.Layer;
+import net.minecraft.world.level.biome.Climate;
 
 import java.util.List;
 import java.util.Optional;
@@ -81,22 +78,7 @@ public class GaiaBiomeProvider extends BiomeSource {
     }
 
     @Override
-    public Biome getNoiseBiome(int x, int y, int z) {
-        return this.getBiomeFromPos(registry, x, z);
-    }
-
-    public Biome getBiomeFromPos(Registry<Biome> registry, int x, int z) {
-        int i = genBiomes.area.get(x, z);
-        Biome biome = registry.byId(i);
-        if (biome == null) {
-            if (SharedConstants.IS_RUNNING_IN_IDE) {
-                throw Util.pauseInIde(new IllegalStateException("Unknown biome id: " + i));
-            } else {
-                GaiaDimensionMod.LOGGER.warn("Unknown biome id: ", i);
-                return registry.get(Biomes.byId(0));
-            }
-        } else {
-            return biome;
-        }
+    public Biome getNoiseBiome(int x, int y, int z, Climate.Sampler sampler) {
+        return this.genBiomes.get(registry, x, z);
     }
 }

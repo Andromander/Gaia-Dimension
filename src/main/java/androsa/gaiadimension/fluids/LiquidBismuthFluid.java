@@ -7,11 +7,11 @@ import net.minecraft.core.Direction;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.block.LevelEvent;
 import net.minecraft.world.level.block.LiquidBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.material.FluidState;
-import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.event.ForgeEventFactory;
 import net.minecraftforge.fluids.ForgeFlowingFluid;
 
@@ -52,6 +52,6 @@ public abstract class LiquidBismuthFluid extends ForgeFlowingFluid {
     }
 
     private void triggerEffects(LevelAccessor worldIn, BlockPos pos) {
-        worldIn.levelEvent(Constants.WorldEvents.LAVA_EXTINGUISH, pos, 0);
+        worldIn.levelEvent(LevelEvent.SOUND_EXTINGUISH_FIRE, pos, 0);
     }
 }

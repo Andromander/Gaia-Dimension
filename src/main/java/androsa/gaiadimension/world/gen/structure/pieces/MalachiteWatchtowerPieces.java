@@ -10,15 +10,14 @@ import com.google.common.collect.ImmutableMap;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.Mirror;
 import net.minecraft.world.level.block.Rotation;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.levelgen.structure.BoundingBox;
-import net.minecraft.world.level.levelgen.structure.StructurePiece;
 import net.minecraft.world.level.levelgen.structure.TemplateStructurePiece;
+import net.minecraft.world.level.levelgen.structure.pieces.StructurePieceSerializationContext;
 import net.minecraft.world.level.levelgen.structure.templatesystem.BlockIgnoreProcessor;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructureManager;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructurePlaceSettings;
@@ -86,7 +85,7 @@ public class MalachiteWatchtowerPieces {
             .put(roof_m, roofCenter)
             .build();
 
-    public static void buildStructure(StructureManager manager, BlockPos pos, Rotation rotation, List<StructurePiece> pieces, Random random) {
+    public static void buildStructure(StructureManager manager, BlockPos pos, Rotation rotation, List<Piece> pieces, Random random) {
         int i = 0;
         pieces.add(new MalachiteWatchtowerPieces.Piece(manager, foyer, pos, rotation, i));
         i += 14;
@@ -120,7 +119,7 @@ public class MalachiteWatchtowerPieces {
             super(ModWorldgen.StructureTypes.MAWA, 0, manager, pieceloc, pieceloc.toString(), loadTemplate(rot, pieceloc), loadPosition(pos, offset));
         }
 
-        public Piece(ServerLevel level, CompoundTag nbt) {
+        public Piece(StructureManager level, CompoundTag nbt) {
             super(ModWorldgen.StructureTypes.MAWA, nbt, level, (rl) ->
                     loadTemplate(Rotation.valueOf(nbt.getString("Rot")), rl));
         }
@@ -139,7 +138,7 @@ public class MalachiteWatchtowerPieces {
         }
 
         @Override
-        protected void addAdditionalSaveData(ServerLevel level, CompoundTag nbt) {
+        protected void addAdditionalSaveData(StructurePieceSerializationContext level, CompoundTag nbt) {
             super.addAdditionalSaveData(level, nbt);
             nbt.putString("Rot", this.placeSettings.getRotation().name());
         }

@@ -30,7 +30,7 @@ import java.util.Optional;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
-// Referenced from
+// Referenced from TF
 public abstract class WorldGenerationProvider<T> extends RegistryWriteOps<T> implements DataProvider {
     protected static final Logger LOGGER = LogManager.getLogger();
     protected static final Gson GSON = (new GsonBuilder()).setPrettyPrinting().create();
@@ -176,7 +176,6 @@ public abstract class WorldGenerationProvider<T> extends RegistryWriteOps<T> imp
     }
 
     /** VanillaCopy: IDataProvider.save */
-    @SuppressWarnings("UnstableApiUsage") // Mojang uses HASH_FUNCTION as well, hence the warning suppression
     private void save(ResourceKey<?> key, HashCache cache, T registry, Path path) throws IOException {
         registry = intercept(key, registry);
         String write = fileWriter.apply(registry);

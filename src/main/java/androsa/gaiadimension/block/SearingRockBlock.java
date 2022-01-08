@@ -44,6 +44,6 @@ public class SearingRockBlock extends Block {
     @Override
     @Deprecated
     public void onPlace(BlockState state, Level worldIn, BlockPos pos, BlockState oldState, boolean isMoving) {
-        worldIn.getBlockTicks().scheduleTick(pos, this, 20);
+        worldIn.scheduleTick(pos, this, 20);
     }
 }

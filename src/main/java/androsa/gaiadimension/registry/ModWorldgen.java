@@ -12,9 +12,6 @@ import androsa.gaiadimension.world.gen.structure.pieces.MalachiteWatchtowerPiece
 import androsa.gaiadimension.world.gen.structure.pieces.MiniTowerPieces;
 import androsa.gaiadimension.world.gen.structure.processor.BlockDegradeProcessor;
 import androsa.gaiadimension.world.gen.structure.processor.MalachiteDegradeProcessor;
-import androsa.gaiadimension.world.surface.GaiaDefaultSurfaceBuilder;
-import androsa.gaiadimension.world.surface.VolcanicSurfaceBuilder;
-import androsa.gaiadimension.world.surface.WastelandSurfaceBuilder;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.levelgen.carver.CaveCarverConfiguration;
@@ -26,22 +23,19 @@ import net.minecraft.world.level.levelgen.feature.configurations.BlockStateConfi
 import net.minecraft.world.level.levelgen.feature.configurations.DiskConfiguration;
 import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructureProcessorType;
-import net.minecraft.world.level.levelgen.surfacebuilders.SurfaceBuilder;
-import net.minecraft.world.level.levelgen.surfacebuilders.SurfaceBuilderBaseConfiguration;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fmllegacy.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.RegistryObject;
 
 @Mod.EventBusSubscriber(modid = GaiaDimensionMod.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ModWorldgen {
 
 	public static final DeferredRegister<Feature<?>> FEATURES = DeferredRegister.create(ForgeRegistries.FEATURES, GaiaDimensionMod.MODID);
 	public static final DeferredRegister<StructureFeature<?>> STRUCTURES = DeferredRegister.create(ForgeRegistries.STRUCTURE_FEATURES, GaiaDimensionMod.MODID);
-	public static final DeferredRegister<SurfaceBuilder<?>> SURFACE_BUILDERS = DeferredRegister.create(ForgeRegistries.SURFACE_BUILDERS, GaiaDimensionMod.MODID);
 	public static final DeferredRegister<WorldCarver<?>> WORLD_CARVERS = DeferredRegister.create(ForgeRegistries.WORLD_CARVERS, GaiaDimensionMod.MODID);
 
     //Feature
@@ -84,17 +78,9 @@ public class ModWorldgen {
 
     //Structures
     public static final RegistryObject<StructureFeature<NoneFeatureConfiguration>> MINI_TOWER = STRUCTURES.register("mini_tower", () ->
-			new MiniTowerStructure<>(NoneFeatureConfiguration.CODEC));
+			new MiniTowerStructure(NoneFeatureConfiguration.CODEC));
     public static final RegistryObject<StructureFeature<NoneFeatureConfiguration>> MALACHITE_WATCHTOWER = STRUCTURES.register("malachite_watchtower", () ->
-			new MalachiteWatchtowerStructure<>(NoneFeatureConfiguration.CODEC));
-
-    //SurfaceBuilder
-    public static final RegistryObject<SurfaceBuilder<SurfaceBuilderBaseConfiguration>> DEFAULT_GAIA = SURFACE_BUILDERS.register("default_gaia", () ->
-			new GaiaDefaultSurfaceBuilder<>(SurfaceBuilderBaseConfiguration.CODEC));
-    public static final RegistryObject<SurfaceBuilder<SurfaceBuilderBaseConfiguration>> VOLCANIC = SURFACE_BUILDERS.register("volcanic", () ->
-			new VolcanicSurfaceBuilder<>(SurfaceBuilderBaseConfiguration.CODEC));
-    public static final RegistryObject<SurfaceBuilder<SurfaceBuilderBaseConfiguration>> STATIC = SURFACE_BUILDERS.register("static", () ->
-			new WastelandSurfaceBuilder<>(SurfaceBuilderBaseConfiguration.CODEC));
+			new MalachiteWatchtowerStructure(NoneFeatureConfiguration.CODEC));
 
     //WorldCarver
     public static final RegistryObject<WorldCarver<CaveCarverConfiguration>> CRYSTAL_CAVES = WORLD_CARVERS.register("crystal_caves", () ->
@@ -112,8 +98,8 @@ public class ModWorldgen {
         public static final StructureProcessorType<BlockDegradeProcessor> BLOCK_DEGRADE = () -> BlockDegradeProcessor.CODEC;
         public static final StructureProcessorType<MalachiteDegradeProcessor> MALACHITE_DEGRADE = () -> MalachiteDegradeProcessor.CODEC;
 
-        public static final StructurePieceType MITO = MiniTowerPieces.Piece::new;
-        public static final StructurePieceType MAWA = MalachiteWatchtowerPieces.Piece::new;
+        public static final StructurePieceType.StructureTemplateType MITO = MiniTowerPieces.Piece::new;
+        public static final StructurePieceType.StructureTemplateType MAWA = MalachiteWatchtowerPieces.Piece::new;
 
         public static void init() {
             Registry.register(Registry.STRUCTURE_PROCESSOR, new ResourceLocation(GaiaDimensionMod.MODID, "block_degrade"), BLOCK_DEGRADE);

@@ -12,13 +12,13 @@ import net.minecraft.world.level.GameRules;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.LevelEvent;
 import net.minecraft.world.level.block.LiquidBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.event.ForgeEventFactory;
 import net.minecraftforge.fluids.ForgeFlowingFluid;
 
@@ -129,7 +129,7 @@ public abstract class SuperhotMagmaFluid extends ForgeFlowingFluid {
     }
 
     private void triggerEffects(LevelAccessor world, BlockPos pos) {
-        world.levelEvent(Constants.WorldEvents.LAVA_EXTINGUISH, pos, 0);
+        world.levelEvent(LevelEvent.SOUND_EXTINGUISH_FIRE, pos, 0);
     }
 
     @Override

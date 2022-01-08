@@ -13,22 +13,18 @@ import net.minecraft.util.Mth;
 import net.minecraft.world.level.ChunkPos;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.chunk.CarvingMask;
 import net.minecraft.world.level.chunk.ChunkAccess;
 import net.minecraft.world.level.levelgen.Aquifer;
-import net.minecraft.world.level.levelgen.BaseStoneSource;
-import net.minecraft.world.level.levelgen.SingleBaseStoneSource;
 import net.minecraft.world.level.levelgen.carver.CarvingContext;
 import net.minecraft.world.level.levelgen.carver.CaveCarverConfiguration;
 import net.minecraft.world.level.levelgen.carver.WorldCarver;
 import org.apache.commons.lang3.mutable.MutableBoolean;
 
-import java.util.BitSet;
 import java.util.Random;
 import java.util.function.Function;
 
 public class CoatedCavesWorldCarver<T extends CaveCarverConfiguration> extends WorldCarver<T> {
-
-    private static final BaseStoneSource STONE_SOURCE = new SingleBaseStoneSource(ModBlocks.gaia_stone.get().defaultBlockState());
 
     public CoatedCavesWorldCarver(Codec<T> config) {
         //TODO: Height: 256
@@ -46,7 +42,7 @@ public class CoatedCavesWorldCarver<T extends CaveCarverConfiguration> extends W
     }
 
     @Override
-    public boolean carve(CarvingContext context, T config, ChunkAccess chunkIn, Function<BlockPos, Biome> biomePos, Random rand, Aquifer aquifer, ChunkPos chunkpos, BitSet carvingMask) {
+    public boolean carve(CarvingContext context, T config, ChunkAccess chunkIn, Function<BlockPos, Biome> biomePos, Random rand, Aquifer aquifer, ChunkPos chunkpos, CarvingMask carvingMask) {
         int i = SectionPos.sectionToBlockCoord(this.getRange() * 2 - 1);
         int j = rand.nextInt(rand.nextInt(rand.nextInt(this.getCaveBound()) + 1) + 1);
 
@@ -102,13 +98,13 @@ public class CoatedCavesWorldCarver<T extends CaveCarverConfiguration> extends W
 //        return rand.nextInt(rand.nextInt(120) + 8);
 //    }
 
-    protected void genRoom(CarvingContext context, T config, ChunkAccess chunkIn, Function<BlockPos, Biome> biomePos, long seed, Aquifer aquifer, double x, double y, double z, float radius, double diameter, BitSet mask, CarveSkipChecker checker) {
+    protected void genRoom(CarvingContext context, T config, ChunkAccess chunkIn, Function<BlockPos, Biome> biomePos, long seed, Aquifer aquifer, double x, double y, double z, float radius, double diameter, CarvingMask mask, CarveSkipChecker checker) {
         double d0 = 1.5D + (double)(Mth.sin(((float)Math.PI / 2F)) * radius);
         double d1 = d0 * diameter;
-        this.carveEllipsoid(context, config, chunkIn, biomePos, seed, aquifer, x + 1.0D, y, z, d0, d1, mask, checker);
+        this.carveEllipsoid(context, config, chunkIn, biomePos, aquifer, x + 1.0D, y, z, d0, d1, mask, checker);
     }
 
-    protected void genTunnels(CarvingContext context, T config, ChunkAccess chunk, Function<BlockPos, Biome> biomepos, long seed, Aquifer aquifer, double x, double y, double z, double hRad, double vRad, float width, float yaw, float pitch, int base, int max, double scale, BitSet mask, WorldCarver.CarveSkipChecker checker) {
+    protected void genTunnels(CarvingContext context, T config, ChunkAccess chunk, Function<BlockPos, Biome> biomepos, long seed, Aquifer aquifer, double x, double y, double z, double hRad, double vRad, float width, float yaw, float pitch, int base, int max, double scale, CarvingMask mask, WorldCarver.CarveSkipChecker checker) {
         Random random = new Random(seed);
         int i = random.nextInt(max / 2) + max / 4;
         boolean flag = random.nextInt(6) == 0;
@@ -140,20 +136,19 @@ public class CoatedCavesWorldCarver<T extends CaveCarverConfiguration> extends W
                     return;
                 }
 
-                this.carveEllipsoid(context, config, chunk, biomepos, seed, aquifer, x, y, z, d0 * hRad, d1 * vRad, mask, checker);
+                this.carveEllipsoid(context, config, chunk, biomepos, aquifer, x, y, z, d0 * hRad, d1 * vRad, mask, checker);
             }
         }
     }
 
     @Override
-    protected boolean carveBlock(CarvingContext context, T config, ChunkAccess chunk, Function<BlockPos, Biome> biomepos, BitSet mask, Random random, BlockPos.MutableBlockPos mutable, BlockPos.MutableBlockPos newmutable, Aquifer aquifer, MutableBoolean bool) {
+    protected boolean carveBlock(CarvingContext context, T config, ChunkAccess chunk, Function<BlockPos, Biome> biomepos, CarvingMask mask, BlockPos.MutableBlockPos mutable, BlockPos.MutableBlockPos newmutable, Aquifer aquifer, MutableBoolean bool) {
         BlockState blockstate = chunk.getBlockState(mutable);
-        BlockState blockstate1 = chunk.getBlockState(newmutable.setWithOffset(mutable, Direction.UP));
         if (blockstate.getBlock() instanceof AbstractGaiaGrassBlock) {
             bool.setTrue();
         }
 
-        if (!this.canReplaceBlock(blockstate, blockstate1)) {
+        if (!this.canReplaceBlock(blockstate)) {
             return false;
         } else {
             BlockState state = this.getCarveState(context, config, mutable, aquifer);
@@ -161,10 +156,17 @@ public class CoatedCavesWorldCarver<T extends CaveCarverConfiguration> extends W
                 return false;
             } else {
                 chunk.setBlockState(mutable, state, false);
+                chunk.setBlockState(mutable, state, false);
                 if (bool.isTrue()) {
                     newmutable.setWithOffset(mutable, Direction.DOWN);
                     if (chunk.getBlockState(newmutable).getBlock() instanceof GaiaSoilBlock) {
-                        chunk.setBlockState(newmutable, biomepos.apply(mutable).getGenerationSettings().getSurfaceBuilderConfig().getTopMaterial(), false);
+                        context.topMaterial(biomepos, chunk, newmutable, !state.getFluidState().isEmpty()).ifPresent((newstate) -> {
+                            chunk.setBlockState(newmutable, newstate, false);
+                            if (!newstate.getFluidState().isEmpty()) {
+                                chunk.markPosForPostprocessing(newmutable);
+                            }
+                        });
+
                     }
                 }
             }
@@ -176,10 +178,8 @@ public class CoatedCavesWorldCarver<T extends CaveCarverConfiguration> extends W
     private BlockState getCarveState(CarvingContext context, T config, BlockPos pos, Aquifer aquifer) {
         if (pos.getY() <= config.lavaLevel.resolveY(context)) {
             return ModFluids.superhot_magma_still.get().defaultFluidState().createLegacyBlock();
-        } else if (!config.aquifersEnabled) {
-            return AIR;
         } else {
-            BlockState blockstate = aquifer.computeState(STONE_SOURCE, pos.getX(), pos.getY(), pos.getZ(), 0.0D);
+            BlockState blockstate = aquifer.computeSubstance(pos.getX(), pos.getY(), pos.getZ(), 0.0D, 0.0D);
             return blockstate == ModBlocks.gaia_stone.get().defaultBlockState() ? null : blockstate;
         }
     }

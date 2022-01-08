@@ -1,10 +1,10 @@
 package androsa.gaiadimension.world.layer;
 
 import androsa.gaiadimension.registry.ModBiomes;
-import net.minecraft.world.level.newbiome.area.Area;
-import net.minecraft.world.level.newbiome.context.Context;
-import net.minecraft.world.level.newbiome.layer.traits.AreaTransformer2;
-import net.minecraft.world.level.newbiome.layer.traits.DimensionOffset0Transformer;
+import androsa.gaiadimension.world.layer.oldgen.Area;
+import androsa.gaiadimension.world.layer.oldgen.AreaTransformer2;
+import androsa.gaiadimension.world.layer.oldgen.Context;
+import androsa.gaiadimension.world.layer.oldgen.DimensionOffset0Transformer;
 
 public enum MineralRiverMixLayer implements AreaTransformer2, DimensionOffset0Transformer {
 

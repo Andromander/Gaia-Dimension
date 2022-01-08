@@ -1,9 +1,9 @@
 package androsa.gaiadimension.world.layer;
 
 import androsa.gaiadimension.registry.ModBiomes;
+import androsa.gaiadimension.world.layer.oldgen.CastleTransformer;
+import androsa.gaiadimension.world.layer.oldgen.Context;
 import com.google.common.collect.ImmutableList;
-import net.minecraft.world.level.newbiome.context.Context;
-import net.minecraft.world.level.newbiome.layer.traits.CastleTransformer;
 
 import java.util.List;
 

@@ -1,7 +1,6 @@
 package androsa.gaiadimension.world.gen.tree;
 
-import androsa.gaiadimension.registry.GaiaBiomeFeatures;
-import androsa.gaiadimension.registry.ModWorldgen;
+import androsa.gaiadimension.registry.configurations.GaiaConfiguredFeatures;
 import androsa.gaiadimension.world.gen.config.GaiaTreeFeatureConfig;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 
@@ -11,6 +10,6 @@ public class GreenAgateTree extends GaiaTree {
 
     @Override
     public ConfiguredFeature<GaiaTreeFeatureConfig, ?> createTreeFeature(Random rand) {
-        return ModWorldgen.GREEN_AGATE_TREE.get().configured(GaiaBiomeFeatures.GREEN_AGATE_TREE_CONFIG);
+        return GaiaConfiguredFeatures.green_agate_tree;
     }
 }

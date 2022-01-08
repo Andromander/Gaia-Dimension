@@ -2,7 +2,6 @@ package androsa.gaiadimension.registry;
 
 import androsa.gaiadimension.GaiaDimensionMod;
 import net.minecraft.core.Registry;
-import net.minecraft.data.worldgen.SurfaceBuilders;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.biome.Biome;
@@ -40,12 +39,10 @@ public class ModBiomes {
         BIOMES.register(name, () -> new Biome.BiomeBuilder()
 				.precipitation(Biome.Precipitation.NONE)
 				.biomeCategory(Biome.BiomeCategory.NONE)
-				.depth(0)
 				.downfall(0)
-				.scale(0)
 				.temperature(0)
 				.specialEffects(new BiomeSpecialEffects.Builder().fogColor(0).waterColor(0).waterFogColor(0).skyColor(0).build())
-				.generationSettings(new BiomeGenerationSettings.Builder().surfaceBuilder(SurfaceBuilders.GRASS).build())
+				.generationSettings(new BiomeGenerationSettings.Builder().build())
 				.mobSpawnSettings(new MobSpawnSettings.Builder().build())
 				.temperatureAdjustment(Biome.TemperatureModifier.NONE)
 				.build());
