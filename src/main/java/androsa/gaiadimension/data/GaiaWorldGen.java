@@ -2,29 +2,26 @@ package androsa.gaiadimension.data;
 
 import androsa.gaiadimension.GaiaDimensionMod;
 import androsa.gaiadimension.data.provider.WorldGenerationProvider;
-import androsa.gaiadimension.registry.configurations.*;
 import androsa.gaiadimension.registry.ModBlocks;
 import androsa.gaiadimension.registry.ModDimensions;
 import androsa.gaiadimension.registry.ModWorldgen;
-import androsa.gaiadimension.world.GaiaChunkGenerator;
-import androsa.gaiadimension.world.GaiaStructureSettings;
-import androsa.gaiadimension.world.GaiaSurfaceRuleData;
-import androsa.gaiadimension.world.layer.GaiaBiomeProvider;
+import androsa.gaiadimension.registry.configurations.GaiaConfiguredCarvers;
+import androsa.gaiadimension.registry.configurations.GaiaConfiguredFeatures;
+import androsa.gaiadimension.registry.configurations.GaiaConfiguredStructures;
+import androsa.gaiadimension.registry.configurations.GaiaPlacedFeatures;
+import androsa.gaiadimension.world.*;
+import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Maps;
 import com.google.gson.JsonElement;
+import com.mojang.datafixers.util.Pair;
 import com.mojang.serialization.JsonOps;
-import com.mojang.serialization.Lifecycle;
-import net.minecraft.core.MappedRegistry;
 import net.minecraft.core.Registry;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.HashCache;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.util.CubicSpline;
-import net.minecraft.world.level.biome.Biome;
-import net.minecraft.world.level.biome.BiomeSource;
-import net.minecraft.world.level.biome.TerrainShaper;
+import net.minecraft.world.level.biome.*;
 import net.minecraft.world.level.chunk.ChunkGenerator;
 import net.minecraft.world.level.dimension.DimensionType;
 import net.minecraft.world.level.dimension.LevelStem;
@@ -34,6 +31,7 @@ import net.minecraft.world.level.levelgen.feature.configurations.StructureFeatur
 
 import java.util.Map;
 import java.util.OptionalLong;
+import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
 public class GaiaWorldGen extends WorldGenerationProvider<JsonElement> {
@@ -86,7 +84,7 @@ public class GaiaWorldGen extends WorldGenerationProvider<JsonElement> {
                 false,
                 false,
                 false,
-                new TerrainShaper(CubicSpline.constant(-0.46875F), CubicSpline.constant(0.0F), CubicSpline.constant(0.0F))); //TODO
+                TerrainShaper.overworld(false)); //TODO
         NoiseGeneratorSettings noiseGeneratorSettings = new NoiseGeneratorSettings(
                 structureSettings,
                 noiseSettings,
@@ -116,8 +114,8 @@ public class GaiaWorldGen extends WorldGenerationProvider<JsonElement> {
                 true, //anchor TODO: until alternative
                 false, //raids
                 -64, //minY
-                256, //maxY
-                256, //logical
+                64+256, //maxY
+                64+256, //logical
                 new ResourceLocation("infiniburn_overworld"), //infiniburn
                 new ResourceLocation(GaiaDimensionMod.MODID, "gaia"), //effects
                 0.0F //ambient
@@ -126,7 +124,15 @@ public class GaiaWorldGen extends WorldGenerationProvider<JsonElement> {
         ModDimensions.initDimension();
         this.getOrCreateRegistry(this.registries.registryOrThrow(Registry.DIMENSION_TYPE_REGISTRY), ModDimensions.gaia_dimension, () -> gaiaDimension);
 
-        BiomeSource biomeSource = new GaiaBiomeProvider(0L, new MappedRegistry<>(Registry.BIOME_REGISTRY, Lifecycle.experimental()));
+        //BiomeSource biomeSource = new GaiaBiomeProvider(0L, new MappedRegistry<>(Registry.BIOME_REGISTRY, Lifecycle.experimental()));
+        MultiNoiseBiomeSource.Preset gaiaPreset = new MultiNoiseBiomeSource.Preset(new ResourceLocation(GaiaDimensionMod.MODID, "gaia"), (registry) -> {
+            ImmutableList.Builder<Pair<Climate.ParameterPoint, Supplier<Biome>>> builder = ImmutableList.builder();
+            (new GaiaBiomeBuilder()).addBiomes((biome) -> { //TODO
+                builder.add(biome.mapSecond((name) -> () -> registry.getOrThrow(name)));
+            });
+            return new Climate.ParameterList<>(builder.build());
+        });
+        BiomeSource biomeSource = gaiaPreset.biomeSource(RegistryAccess.builtin().registryOrThrow(Registry.BIOME_REGISTRY), true);
         ChunkGenerator chunkGenerator = new GaiaChunkGenerator(RegistryAccess.builtin().registryOrThrow(Registry.NOISE_REGISTRY), biomeSource, 0L, () -> noiseGeneratorSettings);
 
         return new LevelStem(() -> gaiaDimension, chunkGenerator);

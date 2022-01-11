@@ -172,7 +172,7 @@ public abstract class GaiaBiomeProvider {
                 .addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, GaiaPlacedFeatures.ORE_GREEN_OPAL)
                 .addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, GaiaPlacedFeatures.ORE_WHITE_OPAL_COMMON)
                 .addFeature(GenerationStep.Decoration.UNDERGROUND_DECORATION, GaiaPlacedFeatures.UNDERGROUND_GLITTER_BLOB)
-                .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, GaiaPlacedFeatures.VARIOUS_AGATE_TREES)
+                //.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, GaiaPlacedFeatures.VARIOUS_AGATE_TREES)
                 .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, GaiaPlacedFeatures.CRYSTAL_BLOOMS_MUTANT)
                 .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, GaiaPlacedFeatures.MYSTICAL_MURGNI)
                 .build();
