@@ -127,12 +127,12 @@ public class GaiaWorldGen extends WorldGenerationProvider<JsonElement> {
         //BiomeSource biomeSource = new GaiaBiomeProvider(0L, new MappedRegistry<>(Registry.BIOME_REGISTRY, Lifecycle.experimental()));
         MultiNoiseBiomeSource.Preset gaiaPreset = new MultiNoiseBiomeSource.Preset(new ResourceLocation(GaiaDimensionMod.MODID, "gaia"), (registry) -> {
             ImmutableList.Builder<Pair<Climate.ParameterPoint, Supplier<Biome>>> builder = ImmutableList.builder();
-            (new GaiaBiomeBuilder()).addBiomes((biome) -> { //TODO
+            (new GaiaBiomeBuilder()).addBiomes((biome) -> {
                 builder.add(biome.mapSecond((name) -> () -> registry.getOrThrow(name)));
             });
             return new Climate.ParameterList<>(builder.build());
         });
-        BiomeSource biomeSource = gaiaPreset.biomeSource(RegistryAccess.builtin().registryOrThrow(Registry.BIOME_REGISTRY), true);
+        BiomeSource biomeSource = gaiaPreset.biomeSource(registries.registryOrThrow(Registry.BIOME_REGISTRY), false);
         ChunkGenerator chunkGenerator = new GaiaChunkGenerator(RegistryAccess.builtin().registryOrThrow(Registry.NOISE_REGISTRY), biomeSource, 0L, () -> noiseGeneratorSettings);
 
         return new LevelStem(() -> gaiaDimension, chunkGenerator);

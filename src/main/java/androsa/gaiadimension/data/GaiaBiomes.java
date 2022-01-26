@@ -23,15 +23,39 @@ public class GaiaBiomes extends GaiaBiomeProvider {
         biomes.put(ModBiomes.purple_agate_swamp, makePurpleAgateSwamp());
         biomes.put(ModBiomes.fossil_woodland, makeFossilWoodland());
         biomes.put(ModBiomes.mutant_agate_wildwood, makeMutantAgateWildwood());
+        biomes.put(ModBiomes.igneous_plains, makeDebug());
         biomes.put(ModBiomes.volcanic_lands, makeVolcanicLands());
+        biomes.put(ModBiomes.wasteland_hills, makeDebug());
         biomes.put(ModBiomes.static_wasteland, makeStaticWasteland());
+        biomes.put(ModBiomes.weirded_goldstone_lands, makeDebug());
         biomes.put(ModBiomes.goldstone_lands, makeGoldstoneLands());
         biomes.put(ModBiomes.crystal_plains, makeCrystalPlains());
         biomes.put(ModBiomes.salt_dunes, makeSaltDunes());
-        biomes.put(ModBiomes.smoldering_bog, makeSmolderingBog());
+        biomes.put(ModBiomes.crystal_salt_dunes, makeDebug());
+        biomes.put(ModBiomes.mookaite_mesa, makeDebug());
         biomes.put(ModBiomes.shining_grove, makeShiningGrove());
+        biomes.put(ModBiomes.smoldering_bog, makeSmolderingBog());
+        biomes.put(ModBiomes.hotspot, makeDebug());
+        biomes.put(ModBiomes.prismatic_steppe, makeDebug());
         biomes.put(ModBiomes.mineral_reservoir, makeMineralReservoir());
+        biomes.put(ModBiomes.aquamarine_trench, makeDebug());
+        biomes.put(ModBiomes.salty_coast, makeSaltyCoast());
+        biomes.put(ModBiomes.tourmaline_coast, makeDebug());
         biomes.put(ModBiomes.mineral_river, makeMineralRiver());
+
+        biomes.put(ModBiomes.golden_forest, makeDebug());
+        biomes.put(ModBiomes.golden_plains, makeDebug());
+        biomes.put(ModBiomes.golden_hills, makeDebug());
+        biomes.put(ModBiomes.golden_sands, makeDebug());
+        biomes.put(ModBiomes.golden_marsh, makeDebug());
+
+        biomes.put(ModBiomes.glitter_caves, makeDebug());
+        biomes.put(ModBiomes.energy_caves, makeDebug());
+        biomes.put(ModBiomes.sludge_caves, makeDebug());
+        biomes.put(ModBiomes.corrupt_caves, makeDebug());
+        biomes.put(ModBiomes.static_caves, makeDebug());
+        biomes.put(ModBiomes.magma_caves, makeDebug());
+        biomes.put(ModBiomes.golden_caves, makeDebug());
 
         return biomes.build();
     }
@@ -211,6 +235,15 @@ public class GaiaBiomes extends GaiaBiomeProvider {
                 )/*.depth(-1.8F).scale(0.1F)*/.temperature(0.66F));
     }
 
+    public static Biome makeSaltyCoast() {
+        return buildBiome(
+                createBuilder(
+                        createAmbience(15901620, 13016408, 15381216),
+                        mineralBiome(),
+                        buildSpawns(createSpawns())
+                ).temperature(0.66F));
+    }
+
     public static Biome makeMineralRiver() {
         return buildBiome(
                 createBuilder(
@@ -218,5 +251,15 @@ public class GaiaBiomes extends GaiaBiomeProvider {
                         mineralBiome(),
                         buildSpawns(createSpawns())
                 )/*.depth(-0.5F).scale(0.0F)*/.temperature(0.66F));
+    }
+
+    @Deprecated
+    public static Biome makeDebug() {
+        return buildBiome(
+                createBuilder(
+                        createAmbience(0, 0, 0),
+                        createSettings().build(),
+                        buildSpawns(createSpawns())
+                ).temperature(0.0F));
     }
 }
