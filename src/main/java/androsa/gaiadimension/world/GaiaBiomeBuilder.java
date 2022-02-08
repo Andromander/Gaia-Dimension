@@ -26,7 +26,7 @@ public class GaiaBiomeBuilder {
     private final Climate.Parameter EX_UPPER_RANGE = span(1.0F, 2.0F);
     private final Climate.Parameter EX_LOWER_RANGE = span(-2.0F, -1.0F);
     private final Climate.Parameter GOLD_CONTINENT = span(-1.2F, -1.05F);
-    private final Climate.Parameter SEA_CONTINENT = span(-0.95F, -0.19F);
+    private final Climate.Parameter SEA_CONTINENT = span(-1.05F, -0.19F);
     private final Climate.Parameter COAST_CONTINENT = span(-0.19F, -0.11F);
     private final Climate.Parameter NEAR_INLAND_CONTINENT = span(-0.11F, 0.03F);
     private final Climate.Parameter MID_INLAND_CONTINENT = span(0.03F, 0.3F);
@@ -34,6 +34,7 @@ public class GaiaBiomeBuilder {
     private final Climate.Parameter INLAND_CONTINENT = span(-0.11F, 1.0F);
     private final Climate.Parameter LAND_CONTINENT = Climate.Parameter.span(COAST_CONTINENT, PEAK_CONTINENT);
     private final Climate.Parameter[] TEMPERATURES = new Climate.Parameter[]{ span(-1.0F, -0.45F), span(-0.45F, -0.15F), span(-0.15F, 0.2F), span(0.2F, 0.55F), span(0.55F, 1.0F) };
+    private final Climate.Parameter[] HUMIDITIES = new Climate.Parameter[]{ span(-1.0F, -0.35F), span(-0.35F, -0.1F), span(-0.1F, 0.1F), span(0.1F, 0.3F), span(0.3F, 1.0F) };
     private final Climate.Parameter[] EROSIONS = new Climate.Parameter[]{ span(-1.0F, -0.78F), span(-0.78F, -0.375F), span(-0.375F, -0.2225F), span(-0.2225F, 0.05F), span(0.05F, 0.45F), span(0.45F, 0.55F), span(0.55F, 1.0F) };
     private final ResourceKey<Biome>[] COMMON_BIOMES = new ResourceKey[]{ ModBiomes.blue_agate_taiga, ModBiomes.purple_agate_swamp, ModBiomes.pink_agate_forest, ModBiomes.crystal_plains, ModBiomes.green_agate_jungle };
 
@@ -45,7 +46,10 @@ public class GaiaBiomeBuilder {
     }
 
     private void addOffCoastBiomes(Consumer<Pair<Climate.ParameterPoint, ResourceKey<Biome>>> consumer) {
-        this.addGoldBiomes(consumer, this.GOLD_CONTINENT);
+        this.addGoldBiomes(consumer, this.GOLD_CONTINENT, span(-1.0F, -0.05F));
+        this.addGoldBiomes(consumer, this.GOLD_CONTINENT, span(-0.05F, 0.05F));
+        this.addGoldBiomes(consumer, this.GOLD_CONTINENT, span(0.05F, 1.0F));
+
         this.addSeaBiomes(consumer, this.SEA_CONTINENT);
     }
 
@@ -65,13 +69,38 @@ public class GaiaBiomeBuilder {
         this.addMidSlice(consumer, Climate.Parameter.span(0.93333334F, 1.0F));
     }
 
-    private void addGoldBiomes(Consumer<Pair<Climate.ParameterPoint, ResourceKey<Biome>>> consumer, Climate.Parameter continent) {
-        addSurfaceBiome(consumer, LOWER_RANGE, LOWER_RANGE, continent, LOWER_RANGE, LOWER_RANGE, ModBiomes.golden_forest);
-        addSurfaceBiome(consumer, UPPER_RANGE, LOWER_RANGE, continent, LOWER_RANGE, LOWER_RANGE, ModBiomes.golden_sands);
-        addSurfaceBiome(consumer, LOWER_RANGE, UPPER_RANGE, continent, LOWER_RANGE, LOWER_RANGE, ModBiomes.golden_marsh);
-        addSurfaceBiome(consumer, LOWER_RANGE, LOWER_RANGE, continent, UPPER_RANGE, LOWER_RANGE, ModBiomes.golden_plains);
-        addSurfaceBiome(consumer, LOWER_RANGE, LOWER_RANGE, continent, LOWER_RANGE, UPPER_RANGE, ModBiomes.golden_hills);
-        addUndergroundBiome(consumer, FULL_RANGE, FULL_RANGE, continent, FULL_RANGE, FULL_RANGE, span(0.2F, 0.5F), ModBiomes.golden_caves);
+    private void addGoldBiomes(Consumer<Pair<Climate.ParameterPoint, ResourceKey<Biome>>> consumer, Climate.Parameter continent, Climate.Parameter weirdness) {
+        for (int i = 0; i < this.TEMPERATURES.length; ++i) {
+            Climate.Parameter temperature = TEMPERATURES[i];
+
+            for (int j = 0; j < this.HUMIDITIES.length; ++j) {
+                Climate.Parameter humidity = HUMIDITIES[j];
+
+                for (int k = 0; k < this.EROSIONS.length; ++k) {
+                    Climate.Parameter erosion = EROSIONS[k];
+
+                    if (weirdness.max() > 0L) {
+                        addSurfaceBiome(consumer, temperature, humidity, continent, erosion, weirdness, ModBiomes.golden_hills);
+                    } else {
+                        if (k > 3) {
+                            this.addSurfaceBiome(consumer, temperature, humidity, continent, erosion, weirdness, ModBiomes.golden_plains);
+                        } else {
+                            if (j > 2) {
+                                this.addSurfaceBiome(consumer, temperature, humidity, continent, erosion, weirdness, ModBiomes.golden_marsh);
+                            } else {
+                                if (i > 3) {
+                                    this.addSurfaceBiome(consumer, temperature, humidity, continent, erosion, weirdness, ModBiomes.golden_sands);
+                                } else {
+                                    this.addSurfaceBiome(consumer, temperature, humidity, continent, erosion, weirdness, ModBiomes.golden_forest);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        addUndergroundBiome(consumer, FULL_RANGE, FULL_RANGE, continent, FULL_RANGE, FULL_RANGE, span(0.2F, 0.9F), ModBiomes.golden_caves);
     }
 
     private void addSeaBiomes(Consumer<Pair<Climate.ParameterPoint, ResourceKey<Biome>>> consumer, Climate.Parameter continent) {
