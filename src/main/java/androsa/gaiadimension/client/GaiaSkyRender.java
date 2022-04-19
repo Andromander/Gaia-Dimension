@@ -200,7 +200,7 @@ public class GaiaSkyRender implements ISkyRenderHandler {
     @OnlyIn(Dist.CLIENT)
     public float getStarBrightness(ClientLevel world, float par1) {
         Player player = Minecraft.getInstance().player;
-        Optional<ResourceKey<Biome>> biome = world.getBiomeName(new BlockPos(player.getX(), player.getY(), player.getZ()));
+        Optional<ResourceKey<Biome>> biome = world.getBiome(new BlockPos(player.getX(), player.getY(), player.getZ())).unwrapKey();
 
         return biome.filter(ModGaiaConfig::canDisplayStars).map(biomeRegistryKey -> 0.5F).orElseGet(() -> world.getStarBrightness(par1));
     }

@@ -27,7 +27,7 @@ public class PurifierMenu extends AbstractContainerMenu {
     private final Container tilePurifier;
     private final ContainerData slotsArray;
     private final Level world;
-    private final RecipeType<PurifierRecipe> recipeType = ModRecipes.PURIFYING;
+    private final RecipeType<PurifierRecipe> recipeType = ModRecipes.PURIFYING.get();
 
     public PurifierMenu(int id, Inventory playerinv) {
         this(id, playerinv, new SimpleContainer(6), new SimpleContainerData(4));

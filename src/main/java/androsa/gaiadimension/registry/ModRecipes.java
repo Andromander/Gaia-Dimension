@@ -15,29 +15,25 @@ import net.minecraftforge.registries.RegistryObject;
 public class ModRecipes {
 
     public static final DeferredRegister<RecipeSerializer<?>> RECIPE_SERIALIZERS = DeferredRegister.create(ForgeRegistries.RECIPE_SERIALIZERS, GaiaDimensionMod.MODID);
+    public static final DeferredRegister<RecipeType<?>> RECIPE_TYPES = DeferredRegister.create(Registry.RECIPE_TYPE_REGISTRY, GaiaDimensionMod.MODID);
 
     //RecipeType
-    public static final RecipeType<RestructurerRecipe> RESTRUCTURING = new RecipeType<>() {
+    public static RegistryObject<RecipeType<RestructurerRecipe>> RESTRUCTURING = RECIPE_TYPES.register("restructuring", () -> new RecipeType<>() {
         @Override
         public String toString() {
-            return "gaiadimension:restructuring";
+            return RESTRUCTURING.getId().toString();
         }
-    };
-    public static final RecipeType<PurifierRecipe> PURIFYING = new RecipeType<>() {
+    });
+    public static RegistryObject<RecipeType<PurifierRecipe>> PURIFYING = RECIPE_TYPES.register("purifying", () -> new RecipeType<>() {
         @Override
         public String toString() {
-            return "gaiadimension:purifying";
+            return PURIFYING.getId().toString();
         }
-    };
+    });
 
     //RecipeSerializer
     public static final RegistryObject<RestructurerRecipeSerializer<RestructurerRecipe>> RESTRUCTURING_SERIALIZER = RECIPE_SERIALIZERS.register("restructuring",
             () -> new RestructurerRecipeSerializer<>(RestructurerRecipe::new, 200));
     public static final RegistryObject<PurifierRecipeSerializer<PurifierRecipe>> PURIFYING_SERIALIZER = RECIPE_SERIALIZERS.register("purifying",
             () -> new PurifierRecipeSerializer<>(PurifierRecipe::new, 200));
-
-    public static void registerRecipeTypes() {
-        Registry.register(Registry.RECIPE_TYPE, RESTRUCTURING.toString(), RESTRUCTURING);
-        Registry.register(Registry.RECIPE_TYPE, PURIFYING.toString(), PURIFYING);
-    }
 }

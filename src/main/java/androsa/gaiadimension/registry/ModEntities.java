@@ -67,19 +67,17 @@ public class ModEntities {
     public static final RegistryObject<EntityType<MalachiteGuardEntity>> MALACHITE_GUARD = registerEntity("malachite_guard", MalachiteGuardEntity::new, MobCategory.MONSTER, 0.8F, 3.3F, false);
 
     public static <E extends Entity> RegistryObject<EntityType<E>> registerProjectile(String name, EntityType.EntityFactory<E> entity, boolean updates, int range, int interval, float width, float height) {
-        EntityType<E> entitytype = makeBuilder(entity, MobCategory.MISC, width, height)
+        EntityType.Builder<E> entitytype = makeBuilder(entity, MobCategory.MISC, width, height)
                 .setShouldReceiveVelocityUpdates(updates)
                 .setTrackingRange(range)
-                .setUpdateInterval(interval)
-                .build(name);
-        return ENTITY_TYPES.register(name, () -> entitytype);
+                .setUpdateInterval(interval);
+        return ENTITY_TYPES.register(name, () -> entitytype.build(name));
     }
 
     public static <E extends Entity> RegistryObject<EntityType<E>> registerEntity(String name, EntityType.EntityFactory<E> entity, MobCategory classification, float width, float height, boolean fireproof) {
         EntityType.Builder<E> type = makeBuilder(entity, classification, width, height);
         if (fireproof) type.fireImmune();
-        EntityType<E> entitytype = type.build(name);
-        return ENTITY_TYPES.register(name, () -> entitytype);
+        return ENTITY_TYPES.register(name, () -> type.build(name));
     }
 
     private static <E extends Entity> EntityType.Builder<E> makeBuilder(EntityType.EntityFactory<E> entity, MobCategory classification, float width, float height) {

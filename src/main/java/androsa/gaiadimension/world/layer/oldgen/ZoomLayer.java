@@ -1,7 +1,13 @@
 package androsa.gaiadimension.world.layer.oldgen;
 
 public enum ZoomLayer implements AreaTransformer1 {
-    NORMAL;
+    NORMAL,
+    FUZZY {
+        @Override
+        protected int modeOrRandom(BigContext<?> context, int first, int second, int third, int fourth) {
+            return context.random(first, second, third, fourth);
+        }
+    };
 
     public int getParentX(int x) {
         return x >> 1;
@@ -41,7 +47,7 @@ public enum ZoomLayer implements AreaTransformer1 {
         }
     }
 
-    private int modeOrRandom(BigContext<?> context, int first, int second, int third, int fourth) {
+    protected int modeOrRandom(BigContext<?> context, int first, int second, int third, int fourth) {
         if (second == third && third == fourth) {
             return second;
         } else if (first == second && first == third) {

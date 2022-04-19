@@ -5,7 +5,7 @@ import com.google.common.collect.ImmutableList;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.tags.BlockTagsProvider;
 import net.minecraft.data.tags.ItemTagsProvider;
-import net.minecraft.tags.Tag;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.common.data.ExistingFileHelper;
@@ -18,14 +18,14 @@ public class GaiaItemTagsProvider extends ItemTagsProvider {
         super(generatorIn, provider, GaiaDimensionMod.MODID, existingFileHelper);
     }
 
-    protected void addTagFromBlock(Tag.Named<Item> tag, Block... blocks) {
+    protected void addTagFromBlock(TagKey<Item> tag, Block... blocks) {
         TagAppender<Item> builder = this.tag(tag);
         for (Block block : blocks) {
             builder.add(block.asItem());
         }
     }
 
-    protected void addTag(Tag.Named<Item> tag, ImmutableList<Supplier<Item>> list) {
+    protected void addTag(TagKey<Item> tag, ImmutableList<Supplier<Item>> list) {
         TagAppender<Item> builder = this.tag(tag);
         for (Supplier<Item> item : list) {
             builder.add(item.get());

@@ -66,7 +66,7 @@ public class GaiaPortalBlock extends Block {
         if (world.dimension().location().equals(ModGaiaConfig.startDimRL)) {
             //Check if the portal needs to be checking
             if (ModGaiaConfig.portalCheck.get()) {
-                Optional<ResourceKey<Biome>> biome = world.getBiomeName(pos);
+                Optional<ResourceKey<Biome>> biome = world.getBiome(pos).unwrapKey();
                 ModGaiaConfig.ListType listtype = ModGaiaConfig.listType.get();
                 ModGaiaConfig.BiomeType biometype = ModGaiaConfig.biomeType.get();
 
@@ -76,7 +76,7 @@ public class GaiaPortalBlock extends Block {
                         case BIOME:
                             return (listtype == ModGaiaConfig.ListType.WHITELIST) == ModGaiaConfig.biomeList.get().contains(biome.get().location().toString());
                         case CATEGORY:
-                            return (listtype == ModGaiaConfig.ListType.WHITELIST) == ModGaiaConfig.categoryList.get().contains(world.getBiome(pos).getBiomeCategory().toString());
+                            return (listtype == ModGaiaConfig.ListType.WHITELIST) == ModGaiaConfig.categoryList.get().contains(Biome.getBiomeCategory(world.getBiome(pos)).toString());
                         case TYPE:
                             for (String type : ModGaiaConfig.typeList.get()) {
                                 if (BiomeDictionary.hasType(biome.get(), BiomeDictionary.Type.getType(type))) {

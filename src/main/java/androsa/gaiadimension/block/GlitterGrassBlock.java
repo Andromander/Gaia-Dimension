@@ -39,14 +39,14 @@ public class GlitterGrassBlock extends AbstractGaiaGrassBlock {
             if (blockstate2.isAir()) {
                 PlacedFeature feature;
                 if (rand.nextInt(8) == 0) {
-                    List<ConfiguredFeature<?, ?>> list = worldIn.getBiome(blockpos1).getGenerationSettings().getFlowerFeatures();
+                    List<ConfiguredFeature<?, ?>> list = worldIn.getBiome(blockpos1).value().getGenerationSettings().getFlowerFeatures();
                     if (list.isEmpty()) {
                         continue;
                     }
 
-                    feature = ((RandomPatchConfiguration)list.get(0).config()).feature().get();
+                    feature = ((RandomPatchConfiguration)list.get(0).config()).feature().value();
                 } else {
-                    feature = worldIn.getBiomeName(blockpos1).equals(Optional.of(ModBiomes.mutant_agate_wildwood)) ? GaiaPlacedFeatures.CRYSTAL_GROWTH_MUTANT : GaiaPlacedFeatures.CRYSTAL_GROWTH_02;
+                    feature = worldIn.getBiome(blockpos1).unwrapKey().equals(Optional.of(ModBiomes.mutant_agate_wildwood)) ? GaiaPlacedFeatures.CRYSTAL_GROWTH_MUTANT.value() : GaiaPlacedFeatures.CRYSTAL_GROWTH_02.value();
                 }
 
                 feature.place(worldIn, worldIn.getChunkSource().getGenerator(), rand, blockpos1);

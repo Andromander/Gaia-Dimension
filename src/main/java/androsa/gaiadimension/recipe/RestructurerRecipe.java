@@ -95,7 +95,7 @@ public class RestructurerRecipe implements Recipe<Container> {
 
     @Override
     public RecipeType<?> getType() {
-        return ModRecipes.RESTRUCTURING;
+        return ModRecipes.RESTRUCTURING.get();
     }
 
     @Override

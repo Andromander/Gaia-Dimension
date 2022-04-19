@@ -117,6 +117,7 @@ public class GaiaBlockTags extends GaiaBlockTagsProvider {
     @Override
     protected void addTags() {
         addTag(BlockTags.BEACON_BASE_BLOCKS, BEACON_BASES);
+        addTag(BlockTags.DIRT, DIRT);
         addTag(BlockTags.FLOWER_POTS, FLOWER_POTS);
         addTag(BlockTags.GUARDED_BY_PIGLINS, GUARDED_BY_PIGLINS);
         addTag(BlockTags.IMPERMEABLE, IMPERMEABLE);
@@ -167,7 +168,7 @@ public class GaiaBlockTags extends GaiaBlockTagsProvider {
         tag(GaiaTags.Blocks.STORAGE_BLOCKS_CHALCEDONY).add(ModBlocks.chalcedony_block.get());
         addTag(GaiaTags.Blocks.TILES, TILES);
 
-        addTag(Tags.Blocks.DIRT, DIRT);
+        //addTag(Tags.Blocks.DIRT, DIRT);
         tag(Tags.Blocks.GLASS).add(ModBlocks.foggy_glass.get(), ModBlocks.cloudy_glass.get());
         tag(Tags.Blocks.ORES).addTags(
                 GaiaTags.Blocks.ORES_SUGILITE, GaiaTags.Blocks.ORES_HEMATITE, GaiaTags.Blocks.ORES_CINNABAR, GaiaTags.Blocks.ORES_LABRADORITE, GaiaTags.Blocks.ORES_MOONSTONE,

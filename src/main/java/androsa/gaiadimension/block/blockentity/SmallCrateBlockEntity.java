@@ -56,9 +56,9 @@ public class SmallCrateBlockEntity extends RandomizableContainerBlockEntity impl
     }
 
     @Override
-    public CompoundTag save(CompoundTag compound) {
-        super.save(compound);
-        return this.saveToNbt(compound);
+    public void saveAdditional(CompoundTag compound) {
+        super.saveAdditional(compound);
+        this.saveToNbt(compound);
     }
 
     public void loadFromNbt(CompoundTag compound) {

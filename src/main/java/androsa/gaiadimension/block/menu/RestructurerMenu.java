@@ -26,7 +26,7 @@ public class RestructurerMenu extends AbstractContainerMenu {
     private final Container tileRestructurer;
     private final ContainerData slotsArray;
     private final Level world;
-    private final RecipeType<RestructurerRecipe> recipeType = ModRecipes.RESTRUCTURING;
+    private final RecipeType<RestructurerRecipe> recipeType = ModRecipes.RESTRUCTURING.get();
 
     public RestructurerMenu(int id, Inventory playerinv) {
         this(id, playerinv, new SimpleContainer(5), new SimpleContainerData(4));

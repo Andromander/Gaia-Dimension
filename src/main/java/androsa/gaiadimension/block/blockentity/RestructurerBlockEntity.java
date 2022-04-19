@@ -182,8 +182,8 @@ public class RestructurerBlockEntity extends BaseContainerBlockEntity implements
     }
 
     @Override
-    public CompoundTag save(CompoundTag compound) {
-        super.save(compound);
+    public void saveAdditional(CompoundTag compound) {
+        super.saveAdditional(compound);
         compound.putInt("BurnTime", this.burnTime);
         compound.putInt("CookTime", this.cookTime);
         compound.putInt("CookTimeTotal", (short)this.cookTimeTotal);
@@ -196,8 +196,6 @@ public class RestructurerBlockEntity extends BaseContainerBlockEntity implements
             compound.putInt("RecipeAmount" + i, entry.getValue());
             ++i;
         }
-
-        return compound;
     }
 
     public static void tick(Level level, BlockPos pos, BlockState state, RestructurerBlockEntity entity) {
@@ -212,7 +210,7 @@ public class RestructurerBlockEntity extends BaseContainerBlockEntity implements
         ItemStack essenceStack = entity.restructurerItemStacks.get(2);
 
         if (entity.isBurning() || !goldStack.isEmpty() && !essenceStack.isEmpty() && !entity.restructurerItemStacks.get(0).isEmpty()) {
-            Recipe<?> irecipe = level.getRecipeManager().getRecipeFor(ModRecipes.RESTRUCTURING, entity, level).orElse(null);
+            Recipe<?> irecipe = level.getRecipeManager().getRecipeFor(ModRecipes.RESTRUCTURING.get(), entity, level).orElse(null);
             if (!entity.isBurning() && entity.canChange(irecipe, entity.restructurerItemStacks, entity.getMaxStackSize())) {
                 entity.burnTime = entity.getItemBurnTime(goldStack, essenceStack);
                 entity.burnDuration = entity.burnTime;
@@ -340,7 +338,7 @@ public class RestructurerBlockEntity extends BaseContainerBlockEntity implements
     }
 
     private static int cookingTime(Level level, Container container) {
-        return level.getRecipeManager().getRecipeFor(ModRecipes.RESTRUCTURING, container, level).map(RestructurerRecipe::getCookTime).orElse(200);
+        return level.getRecipeManager().getRecipeFor(ModRecipes.RESTRUCTURING.get(), container, level).map(RestructurerRecipe::getCookTime).orElse(200);
     }
 
     public static boolean isItemFuel(ItemStack stack) {

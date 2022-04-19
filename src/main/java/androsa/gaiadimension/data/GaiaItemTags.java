@@ -9,7 +9,7 @@ import net.minecraft.data.DataGenerator;
 import net.minecraft.data.tags.BlockTagsProvider;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
-import net.minecraft.tags.Tag;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.common.Tags;
@@ -23,18 +23,18 @@ public class GaiaItemTags extends GaiaItemTagsProvider {
             ModItems.white_opal, ModItems.ixiolite, ModItems.proustite, ModItems.euclase, ModItems.leucite, ModItems.carnelian, ModItems.benitoite, ModItems.diopside,
             ModItems.chalcedony, ModItems.pyrite, ModItems.tektite, ModItems.goldstone, ModItems.aura_cluster, ModItems.bismuth_crystal
     );
-    ImmutableList<Tag.Named<Item>> GEM_TAGS = ImmutableList.of(
+    ImmutableList<TagKey<Item>> GEM_TAGS = ImmutableList.of(
             GaiaTags.Items.GEMS_SUGILITE, GaiaTags.Items.GEMS_HEMATITE, GaiaTags.Items.GEMS_CINNABAR, GaiaTags.Items.GEMS_LABRADORITE, GaiaTags.Items.GEMS_MOONSTONE,
             GaiaTags.Items.GEMS_RED_OPAL, GaiaTags.Items.GEMS_BLUE_OPAL, GaiaTags.Items.GEMS_GREEN_OPAL, GaiaTags.Items.GEMS_WHITE_OPAL, GaiaTags.Items.GEMS_IXIOLITE,
             GaiaTags.Items.GEMS_PROUSTITE, GaiaTags.Items.GEMS_EUCLASE, GaiaTags.Items.GEMS_LEUCITE, GaiaTags.Items.GEMS_CARNELIAN, GaiaTags.Items.GEMS_BENITOITE,
             GaiaTags.Items.GEMS_DIOPSIDE, GaiaTags.Items.GEMS_CHALCEDONY, GaiaTags.Items.GEMS_PYRITE, GaiaTags.Items.GEMS_TEKTITE, GaiaTags.Items.GEMS_GOLDSTONE,
             GaiaTags.Items.GEMS_AURA, GaiaTags.Items.GEMS_BISMUTH
     );
-    ImmutableList<Tag.Named<Item>> ORE_TAGS = ImmutableList.of(
+    ImmutableList<TagKey<Item>> ORE_TAGS = ImmutableList.of(
             GaiaTags.Items.ORES_SUGILITE, GaiaTags.Items.ORES_HEMATITE, GaiaTags.Items.ORES_CINNABAR, GaiaTags.Items.ORES_LABRADORITE, GaiaTags.Items.ORES_MOONSTONE,
             GaiaTags.Items.ORES_RED_OPAL, GaiaTags.Items.ORES_BLUE_OPAL, GaiaTags.Items.ORES_GREEN_OPAL, GaiaTags.Items.ORES_WHITE_OPAL, GaiaTags.Items.ORES_PYRITE
     );
-    ImmutableList<Tag.Named<Item>> STORAGE_TAGS = ImmutableList.of(
+    ImmutableList<TagKey<Item>> STORAGE_TAGS = ImmutableList.of(
             GaiaTags.Items.STORAGE_BLOCKS_SUGILITE, GaiaTags.Items.STORAGE_BLOCKS_HEMATITE, GaiaTags.Items.STORAGE_BLOCKS_CINNABAR, GaiaTags.Items.STORAGE_BLOCKS_LABRADORITE,
             GaiaTags.Items.STORAGE_BLOCKS_MOONSTONE, GaiaTags.Items.STORAGE_BLOCKS_RED_OPAL, GaiaTags.Items.STORAGE_BLOCKS_BLUE_OPAL, GaiaTags.Items.STORAGE_BLOCKS_GREEN_OPAL,
             GaiaTags.Items.STORAGE_BLOCKS_WHITE_OPAL, GaiaTags.Items.STORAGE_BLOCKS_PYRITE, GaiaTags.Items.STORAGE_BLOCKS_TEKTITE, GaiaTags.Items.STORAGE_BLOCKS_GOLDSTONE,
@@ -145,15 +145,15 @@ public class GaiaItemTags extends GaiaItemTagsProvider {
 
         tag(Tags.Items.BONES).add(ModItems.shiny_bone.get());
         tag(Tags.Items.DUSTS).addTags(GaiaTags.Items.DUSTS_FINE, GaiaTags.Items.DUSTS_GOLDSTONE, GaiaTags.Items.DUSTS_HOT);
-        for (Tag.Named<Item> tag : GEM_TAGS) {
+        for (TagKey<Item> tag : GEM_TAGS) {
             tag(Tags.Items.GEMS).addTag(tag);
         }
         tag(Tags.Items.INGOTS).addTag(GaiaTags.Items.INGOTS_SCAYNYX);
         tag(Tags.Items.RODS).addTag(GaiaTags.Items.RODS_AGATE);
-        for (Tag.Named<Item> tag : ORE_TAGS) {
+        for (TagKey<Item> tag : ORE_TAGS) {
             tag(Tags.Items.ORES).addTag(tag);
         }
-        for (Tag.Named<Item> tag : STORAGE_TAGS) {
+        for (TagKey<Item> tag : STORAGE_TAGS) {
             tag(Tags.Items.STORAGE_BLOCKS).addTag(tag);
         }
     }

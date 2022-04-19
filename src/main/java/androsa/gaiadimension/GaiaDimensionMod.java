@@ -10,11 +10,14 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.MobType;
 import net.minecraft.world.entity.ai.village.poi.PoiType;
+import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
@@ -48,10 +51,9 @@ public class GaiaDimensionMod {
         modEventBus.addListener(this::setup);
         modEventBus.addListener(this::clientSetup);
         modEventBus.addListener(this::gatherData);
+        modEventBus.addGenericListener(RecipeSerializer.class, this::hackyEvent);
 
         MinecraftForge.EVENT_BUS.addListener(EventPriority.HIGH, ModEntities::addStructureSpawns);
-
-        ModRecipes.registerRecipeTypes();
 
         ModBiomes.BIOMES.register(modEventBus);
         ModBlocks.BLOCKS.register(modEventBus);
@@ -62,6 +64,7 @@ public class GaiaDimensionMod {
 		ModFluids.FLUIDS.register(modEventBus);
         ModItems.ITEMS.register(modEventBus);
 //      ModParticles.PARTICLE_TYPES.register(modEventBus);
+        ModRecipes.RECIPE_TYPES.register(modEventBus);
         ModRecipes.RECIPE_SERIALIZERS.register(modEventBus);
         ModBlockEntities.TILE_ENTITIES.register(modEventBus);
         ModWorldgen.FEATURES.register(modEventBus);
@@ -76,6 +79,10 @@ public class GaiaDimensionMod {
         commonConfig = specPairB.getLeft();
     }
 
+    public void hackyEvent(RegistryEvent.Register<RecipeSerializer<?>> event) {
+        ModDimensions.initDimension();
+    }
+
     public void setup(FMLCommonSetupEvent event) {
         event.enqueueWork(() -> {
             PoiType.registerBlockStates(ModDimensions.GAIA_PORTAL.get());
@@ -83,7 +90,6 @@ public class GaiaDimensionMod {
 
             // needs to be in enqueue as vanilla WorldGen registry maps arent threadsafe.
             //GaiaBiomeFeatures.registerConfiguredWorldgen();
-            ModDimensions.initDimension();
             ModWorldgen.StructureTypes.init();
             ModBlocks.addStripping();
             ModBlocks.registerDispenserBehaviour();

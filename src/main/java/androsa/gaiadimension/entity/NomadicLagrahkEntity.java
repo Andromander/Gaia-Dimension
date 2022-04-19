@@ -107,7 +107,7 @@ public class NomadicLagrahkEntity extends PathfinderMob {
 
     @Override
     public int getMaxSpawnClusterSize() {
-        Optional<ResourceKey<Biome>> biome = level.getBiomeName(new BlockPos(getX(), getY(), getZ()));
+        Optional<ResourceKey<Biome>> biome = level.getBiome(new BlockPos(getX(), getY(), getZ())).unwrapKey();
 
         if (Objects.equals(biome, Optional.of(ModBiomes.salt_dunes)) || Objects.equals(biome, Optional.of(ModBiomes.static_wasteland)) || Objects.equals(biome, Optional.of(ModBiomes.volcanic_lands))) {
             return 4;
@@ -122,7 +122,7 @@ public class NomadicLagrahkEntity extends PathfinderMob {
 
     @Override
     public SpawnGroupData finalizeSpawn(ServerLevelAccessor worldIn, DifficultyInstance difficultyIn, MobSpawnType reason, @Nullable SpawnGroupData spawnDataIn, @Nullable CompoundTag dataTag) {
-        Optional<ResourceKey<Biome>> biome = worldIn.getBiomeName(new BlockPos(getX(), getY(), getZ()));
+        Optional<ResourceKey<Biome>> biome = worldIn.getBiome(new BlockPos(getX(), getY(), getZ())).unwrapKey();
 
         if (Objects.equals(biome, Optional.of(ModBiomes.salt_dunes))) {
             setLagrahkVariant(1);

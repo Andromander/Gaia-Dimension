@@ -12,6 +12,6 @@ public class LargeCrateSlot extends Slot {
     }
 
     public boolean mayPlace(ItemStack stack) {
-        return !GaiaTags.Items.MEGA_STORAGE_BLACKLIST.contains(stack.getItem());
+        return !stack.is(GaiaTags.Items.MEGA_STORAGE_BLACKLIST);
     }
 }

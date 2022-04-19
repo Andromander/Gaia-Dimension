@@ -95,7 +95,7 @@ public class PurifierRecipe implements Recipe<Container> {
 
     @Override
     public RecipeType<?> getType() {
-        return ModRecipes.PURIFYING;
+        return ModRecipes.PURIFYING.get();
     }
 
     @Override

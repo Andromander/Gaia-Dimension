@@ -37,14 +37,14 @@ public class CorruptGrassBlock extends AbstractGaiaGrassBlock {
             if (blockstate2.isAir()) {
                 PlacedFeature feature;
                 if (rand.nextInt(8) == 0) {
-                    List<ConfiguredFeature<?, ?>> list = worldIn.getBiome(blockpos1).getGenerationSettings().getFlowerFeatures();
+                    List<ConfiguredFeature<?, ?>> list = worldIn.getBiome(blockpos1).value().getGenerationSettings().getFlowerFeatures();
                     if (list.isEmpty()) {
                         continue;
                     }
 
-                    feature = ((RandomPatchConfiguration)list.get(0).config()).feature().get();
+                    feature = ((RandomPatchConfiguration)list.get(0).config()).feature().value();
                 } else {
-                    feature = GaiaPlacedFeatures.CRYSTAL_GROWTH_CORRUPT;
+                    feature = GaiaPlacedFeatures.CRYSTAL_GROWTH_CORRUPT.value();
                 }
 
                 feature.place(worldIn, worldIn.getChunkSource().getGenerator(), rand, blockpos1);

@@ -3,6 +3,7 @@ package androsa.gaiadimension.data;
 import androsa.gaiadimension.GaiaDimensionMod;
 import androsa.gaiadimension.data.provider.GaiaAdvancementProvider;
 import androsa.gaiadimension.registry.*;
+import androsa.gaiadimension.registry.configurations.GaiaConfiguredStructures;
 import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.AdvancementRewards;
 import net.minecraft.advancements.FrameType;
@@ -269,13 +270,13 @@ public class GaiaAdvancements extends GaiaAdvancementProvider {
         Advancement progress1 = Advancement.Builder.advancement()
                 .parent(root)
                 .display(ModBlocks.amethyst_bricks.get(), title("find_mini_tower"), description("find_mini_tower"), null, FrameType.TASK, true, true, false)
-                .addCriterion("mini_tower", LocationTrigger.TriggerInstance.located(LocationPredicate.inFeature(ModWorldgen.MINI_TOWER.get())))
+                .addCriterion("mini_tower", LocationTrigger.TriggerInstance.located(LocationPredicate.inFeature(GaiaConfiguredStructures.MINI_TOWER)))
                 .save(consumer, loc("find_mini_tower"));
         //Find a Malachite Watchtower
         Advancement progress2 = Advancement.Builder.advancement()
                 .parent(progress1)
                 .display(ModBlocks.malachite_bricks.get(), title("find_malachite_watchtower"), description("find_malachite_watchtower"), null, FrameType.TASK, true, true, false)
-                .addCriterion("malachite_watchtower", LocationTrigger.TriggerInstance.located(LocationPredicate.inFeature(ModWorldgen.MALACHITE_WATCHTOWER.get())))
+                .addCriterion("malachite_watchtower", LocationTrigger.TriggerInstance.located(LocationPredicate.inFeature(GaiaConfiguredStructures.MALACHITE_WATCHTOWER)))
                 .save(consumer, loc("find_malachite_watchtower"));
         //Slay the Malachite Guard
         Advancement progress3 = Advancement.Builder.advancement()

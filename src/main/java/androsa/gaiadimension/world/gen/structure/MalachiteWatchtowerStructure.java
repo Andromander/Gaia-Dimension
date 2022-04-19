@@ -100,8 +100,8 @@ public class MalachiteWatchtowerStructure extends StructureFeature<NoneFeatureCo
         return GenerationStep.Decoration.SURFACE_STRUCTURES;
     }
 
-    @Override
-    protected boolean linearSeparation() {
-        return false;
-    }
+//    @Override
+//    protected boolean linearSeparation() {
+//        return false;
+//    }
 }

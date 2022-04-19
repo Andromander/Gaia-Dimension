@@ -7,7 +7,7 @@ import net.minecraft.data.recipes.RecipeProvider;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.data.recipes.ShapelessRecipeBuilder;
 import net.minecraft.data.recipes.SimpleCookingRecipeBuilder;
-import net.minecraft.tags.Tag;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
@@ -51,10 +51,10 @@ public abstract class GaiaRecipeProvider extends RecipeProvider implements ICond
                 .unlockedBy("has_" + ingredient.asItem(), has(ingredient));
     }
 
-    public ShapelessRecipeBuilder planksRecipe(Supplier<Block> result, Tag.Named<Item> ingredient) {
+    public ShapelessRecipeBuilder planksRecipe(Supplier<Block> result, TagKey<Item> ingredient) {
         return ShapelessRecipeBuilder.shapeless(result.get(), 4)
                 .requires(ingredient)
-                .unlockedBy("has_" + ingredient.getName().getPath(), has(ingredient));
+                .unlockedBy("has_" + ingredient.location(), has(ingredient));
     }
 
     public ShapedRecipeBuilder slabRecipe(RegistryObject<SlabBlock> result, RegistryObject<Block> ingredient) {
@@ -123,14 +123,14 @@ public abstract class GaiaRecipeProvider extends RecipeProvider implements ICond
                 .unlockedBy("has_" + ingredient.getId().getPath(), has(ingredient.get()));
     }
 
-    public ShapedRecipeBuilder axeRecipeTag(RegistryObject<Item> result, Tag.Named<Item> ingredient) {
+    public ShapedRecipeBuilder axeRecipeTag(RegistryObject<Item> result, TagKey<Item> ingredient) {
         return ShapedRecipeBuilder.shaped(result.get())
                 .pattern("##")
                 .pattern("#/")
                 .pattern(" /")
                 .define('#', ingredient)
                 .define('/', ModItems.agate_stick.get())
-                .unlockedBy("has_" + ingredient.getName().getPath(), has(ingredient));
+                .unlockedBy("has_" + ingredient.location(), has(ingredient));
     }
 
     public ShapedRecipeBuilder pickaxeRecipe(RegistryObject<Item> result, RegistryObject<Item> ingredient) {
@@ -143,14 +143,14 @@ public abstract class GaiaRecipeProvider extends RecipeProvider implements ICond
                 .unlockedBy("has_" + ingredient.getId().getPath(), has(ingredient.get()));
     }
 
-    public ShapedRecipeBuilder pickaxeRecipeTag(RegistryObject<Item> result, Tag.Named<Item> ingredient) {
+    public ShapedRecipeBuilder pickaxeRecipeTag(RegistryObject<Item> result, TagKey<Item> ingredient) {
         return ShapedRecipeBuilder.shaped(result.get())
                 .pattern("###")
                 .pattern(" / ")
                 .pattern(" / ")
                 .define('#', ingredient)
                 .define('/', ModItems.agate_stick.get())
-                .unlockedBy("has_" + ingredient.getName().getPath(), has(ingredient));
+                .unlockedBy("has_" + ingredient.location(), has(ingredient));
     }
 
     public ShapedRecipeBuilder shovelRecipe(RegistryObject<Item> result, RegistryObject<Item> ingredient) {
@@ -163,14 +163,14 @@ public abstract class GaiaRecipeProvider extends RecipeProvider implements ICond
                 .unlockedBy("has_" + ingredient.getId().getPath(), has(ingredient.get()));
     }
 
-    public ShapedRecipeBuilder shovelRecipeTag(RegistryObject<Item> result, Tag.Named<Item> ingredient) {
+    public ShapedRecipeBuilder shovelRecipeTag(RegistryObject<Item> result, TagKey<Item> ingredient) {
         return ShapedRecipeBuilder.shaped(result.get())
                 .pattern("#")
                 .pattern("/")
                 .pattern("/")
                 .define('#', ingredient)
                 .define('/', ModItems.agate_stick.get())
-                .unlockedBy("has_" + ingredient.getName().getPath(), has(ingredient));
+                .unlockedBy("has_" + ingredient.location(), has(ingredient));
     }
 
     public ShapedRecipeBuilder swordRecipe(RegistryObject<Item> result, RegistryObject<Item> ingredient) {
@@ -183,14 +183,14 @@ public abstract class GaiaRecipeProvider extends RecipeProvider implements ICond
                 .unlockedBy("has_" + ingredient.getId().getPath(), has(ingredient.get()));
     }
 
-    public ShapedRecipeBuilder swordRecipeTag(RegistryObject<Item> result, Tag.Named<Item> ingredient) {
+    public ShapedRecipeBuilder swordRecipeTag(RegistryObject<Item> result, TagKey<Item> ingredient) {
         return ShapedRecipeBuilder.shaped(result.get())
                 .pattern("#")
                 .pattern("#")
                 .pattern("/")
                 .define('#', ingredient)
                 .define('/', ModItems.agate_stick.get())
-                .unlockedBy("has_" + ingredient.getName().getPath(), has(ingredient));
+                .unlockedBy("has_" + ingredient.location(), has(ingredient));
     }
 
     public ShapelessRecipeBuilder drinkRecipe(RegistryObject<Item> result, RegistryObject<Item> geode) {

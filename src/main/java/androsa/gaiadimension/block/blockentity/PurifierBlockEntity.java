@@ -149,8 +149,8 @@ public class PurifierBlockEntity extends BaseContainerBlockEntity implements Wor
     }
 
     @Override
-    public CompoundTag save(CompoundTag compound) {
-        super.save(compound);
+    public void saveAdditional(CompoundTag compound) {
+        super.saveAdditional(compound);
         compound.putInt("BurnTime", this.burnTime);
         compound.putInt("CookTime", this.cookTime);
         compound.putInt("CookTimeTotal", this.cookTimeTotal);
@@ -163,8 +163,6 @@ public class PurifierBlockEntity extends BaseContainerBlockEntity implements Wor
             compound.putInt("RecipeAmount" + i, entry.getValue());
             ++i;
         }
-
-        return compound;
     }
 
     public static void tick(Level level, BlockPos pos, BlockState state, PurifierBlockEntity entity) {
@@ -180,7 +178,7 @@ public class PurifierBlockEntity extends BaseContainerBlockEntity implements Wor
         ItemStack bismuthStack = entity.purifyingItemStacks.get(3);
 
         if (entity.isBurning() || !goldStack.isEmpty() && !essenceStack.isEmpty() && !bismuthStack.isEmpty() && !entity.purifyingItemStacks.get(0).isEmpty()) {
-            Recipe<?> irecipe = level.getRecipeManager().getRecipeFor(ModRecipes.PURIFYING, entity, level).orElse(null);
+            Recipe<?> irecipe = level.getRecipeManager().getRecipeFor(ModRecipes.PURIFYING.get(), entity, level).orElse(null);
             if (!entity.isBurning() && entity.canChange(irecipe, entity.purifyingItemStacks, entity.getMaxStackSize())) {
                 entity.burnTime = entity.getItemBurnTime(goldStack, essenceStack, bismuthStack);
                 entity.burnDuration = entity.burnTime;
@@ -318,7 +316,7 @@ public class PurifierBlockEntity extends BaseContainerBlockEntity implements Wor
     }
 
     private static int cookingTime(Level level, Container container) {
-        return level.getRecipeManager().getRecipeFor(ModRecipes.PURIFYING, container, level).map(PurifierRecipe::getCookTime).orElse(200);
+        return level.getRecipeManager().getRecipeFor(ModRecipes.PURIFYING.get(), container, level).map(PurifierRecipe::getCookTime).orElse(200);
     }
 
     public static boolean isItemFuel(ItemStack stack) {

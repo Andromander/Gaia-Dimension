@@ -11,7 +11,6 @@ import net.minecraft.world.MenuProvider;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 
 public class GemPouchInventory implements Container, MenuProvider {
@@ -101,8 +100,7 @@ public class GemPouchInventory implements Container, MenuProvider {
 
     @Override
     public boolean canPlaceItem(int index, ItemStack stack) {
-        Item item = stack.getItem();
-        return GaiaTags.Items.GEM_POUCH_ITEMS.contains(item);
+        return stack.is(GaiaTags.Items.GEM_POUCH_ITEMS);
     }
 
     @Override

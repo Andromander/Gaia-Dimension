@@ -92,7 +92,7 @@ public class MucklingEntity extends Slime {
             if (spawn == MobSpawnType.SPAWNER && world.getBrightness(LightLayer.SKY, pos) < 8) {
                 return true;
             } else {
-                Optional<ResourceKey<Biome>> biome = world.getBiomeName(pos);
+                Optional<ResourceKey<Biome>> biome = world.getBiome(pos).unwrapKey();
                 if (Objects.equals(biome, Optional.of(ModBiomes.purple_agate_swamp)) || pos.getY() < 40 && random.nextFloat() < 0.5F) {
                     return checkMobSpawnRules(entity, world, spawn, pos, random);
                 }
