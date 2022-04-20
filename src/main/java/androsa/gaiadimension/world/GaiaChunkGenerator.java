@@ -1,6 +1,5 @@
 package androsa.gaiadimension.world;
 
-import androsa.gaiadimension.registry.ModBlocks;
 import androsa.gaiadimension.world.biomegen.GaiaBlendedNoise;
 import androsa.gaiadimension.world.biomegen.NoiseModifier;
 import com.google.common.collect.Lists;
@@ -14,8 +13,6 @@ import net.minecraft.core.Registry;
 import net.minecraft.resources.RegistryOps;
 import net.minecraft.util.Mth;
 import net.minecraft.world.level.ChunkPos;
-import net.minecraft.world.level.LevelHeightAccessor;
-import net.minecraft.world.level.NoiseColumn;
 import net.minecraft.world.level.StructureFeatureManager;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.biome.BiomeSource;
@@ -52,16 +49,12 @@ public class GaiaChunkGenerator extends NoiseBasedChunkGenerator {
     protected final Holder<NoiseGeneratorSettings> settings;
     protected final Registry<StructureSet> structureRegistry;
     protected final Registry<NormalNoise.NoiseParameters> noiseRegistry;
-    protected final NoiseRouter router;
     protected final Climate.Sampler sampler;
     protected final GaiaTerrainWarp warper;
     private final int cellWidth;
     private final int cellHeight;
-    private static final BlockState[] EMPTY = new BlockState[0];
-    private final BlockState defaultFluid = ModBlocks.mineral_water.get().defaultBlockState();
-    private final Aquifer.FluidPicker globalFluidPicker;
+    private final BlockState defaultFluid;
     private final Aquifer emptyAquifier;
-    private final SurfaceSystem surfaceSystem;
 
     public GaiaChunkGenerator(BiomeSource mainsource, Registry<StructureSet> setregistry, Registry<NormalNoise.NoiseParameters> noiseregistry, Holder<NoiseGeneratorSettings> noisesettings, long seed) {
         super(setregistry, noiseregistry, mainsource, seed, noisesettings);
@@ -76,16 +69,14 @@ public class GaiaChunkGenerator extends NoiseBasedChunkGenerator {
         WorldgenRandom random = new WorldgenRandom(new LegacyRandomSource(seed));
         BlendedNoise blendedNoise = new GaiaBlendedNoise(random, noise.noiseSamplingSettings(), this.cellWidth, this.cellHeight);
         NoiseModifier modifier = NoiseModifier.PASS;
-        this.router = noisesettings.value().createNoiseRouter(noiseregistry, seed);
         this.sampler = new Climate.Sampler(DensityFunctions.zero(), DensityFunctions.zero(), DensityFunctions.zero(), DensityFunctions.zero(), DensityFunctions.zero(), DensityFunctions.zero(), List.of()); //let's be real, this is a dummy
         this.warper = new GaiaTerrainWarp(this.cellWidth, this.cellHeight, noise.getCellCountY(), mainsource, noise, blendedNoise, modifier);
+        this.defaultFluid = noisesettings.value().defaultFluid();
         int i = noisesettings.value().seaLevel();
         Aquifer.FluidStatus topfluid = new Aquifer.FluidStatus(i, noisesettings.value().defaultFluid());
         Aquifer.FluidStatus lowfluid = new Aquifer.FluidStatus(-54, Blocks.LAVA.defaultBlockState());
-        this.globalFluidPicker = (x, y, z) -> y < Math.min(-54, i) ? lowfluid : topfluid;
-        this.emptyAquifier = Aquifer.createDisabled(this.globalFluidPicker);
-        BlockState defaultBlock = this.settings.value().defaultBlock();
-        this.surfaceSystem = new SurfaceSystem(noiseregistry, defaultBlock, i, seed, this.settings.value().getRandomSource());
+        Aquifer.FluidPicker globalFluidPicker = (x, y, z) -> y < Math.min(-54, i) ? lowfluid : topfluid;
+        this.emptyAquifier = Aquifer.createDisabled(globalFluidPicker);
     }
 
     @Override
@@ -216,43 +207,6 @@ public class GaiaChunkGenerator extends NoiseBasedChunkGenerator {
         }
 
         return access;
-    }
-
-    @Override
-    public int getSeaLevel() {
-        return this.settings.value().seaLevel();
-    }
-
-    @Override
-    public int getMinY() {
-        return this.settings.value().noiseSettings().minY();
-    }
-
-    @Override
-    public int getBaseHeight(int x, int z, Heightmap.Types type, LevelHeightAccessor accessor) {
-        NoiseSettings settings = this.settings.value().noiseSettings();
-        int minY = Math.max(settings.minY(), accessor.getMinBuildHeight());
-        int maxY = Math.min(settings.minY() + settings.height(), accessor.getMaxBuildHeight());
-        int mincell = Mth.intFloorDiv(minY, settings.getCellHeight());
-        int maxcell = Mth.intFloorDiv(maxY - minY, settings.getCellHeight());
-        return maxcell <= 0 ? accessor.getMinBuildHeight() : this.iterateNoiseColumn(x, z, null, type.isOpaque(), mincell, maxcell).orElse(accessor.getMinBuildHeight());
-    }
-
-    @Override
-    public NoiseColumn getBaseColumn(int x, int z, LevelHeightAccessor accessor) {
-        NoiseSettings noise = this.settings.value().noiseSettings();
-        int minheight = Math.max(noise.minY(), accessor.getMinBuildHeight());
-        int maxheight = Math.min(noise.minY() + noise.height(), accessor.getMaxBuildHeight());
-        int mincells = Mth.intFloorDiv(minheight, noise.getCellHeight());
-        int maxcells = Mth.intFloorDiv(maxheight - minheight, noise.getCellHeight());
-
-        if (maxcells <= 0) {
-            return new NoiseColumn(minheight, EMPTY);
-        } else {
-            BlockState[] states = new BlockState[maxcells * noise.getCellHeight()];
-            this.iterateNoiseColumn(x, z, states, null, mincells, maxcells);
-            return new NoiseColumn(minheight, states);
-        }
     }
 
     @Override
