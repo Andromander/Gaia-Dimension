@@ -35,6 +35,7 @@
             },
             {
               "function": "minecraft:set_contents",
+              "type": "gaiadimension:small_crate",
               "entries": [
                 {
                   "type": "minecraft:dynamic",
@@ -50,8 +51,7 @@
         {
           "condition": "minecraft:survives_explosion"
         }
-      ],
-      "functions": []
+      ]
     }
   ]
 }
