@@ -120,7 +120,7 @@ public class GaiaWorldGen extends WorldGenerationProvider {
                 pairBiome(registry, 0.3F, 0.5F, ModBiomes.hotspot),
                 pairBiome(registry, 0.4F, 0.25F, ModBiomes.igneous_plains),
                 pairBiome(registry, -1.8F, 0.1F, ModBiomes.mineral_reservoir),
-                pairBiome(registry, -0.5F, 0.0F, ModBiomes.mineral_river),
+                pairBiome(registry, -0.8F, 0.0F, ModBiomes.mineral_river),
                 pairBiome(registry, 2.0F, 0.075F, ModBiomes.mookaite_mesa),
                 pairBiome(registry, 0.1F, 0.1F, ModBiomes.mutant_agate_wildwood),
                 pairBiome(registry, 0.1F, 0.1F, ModBiomes.pink_agate_forest),

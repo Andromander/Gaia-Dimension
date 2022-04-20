@@ -44,7 +44,7 @@ public class ModDimensions {
                 new NoiseSlider(15, 3, 0),
                 1,
                 2,
-                new TerrainShaper(CubicSpline.constant(10.0F), CubicSpline.constant(10.0F), CubicSpline.constant(0.0F))); //TODO
+                new TerrainShaper(CubicSpline.constant(1.0F), CubicSpline.constant(10.0F), CubicSpline.constant(0.0F))); //TODO
         NoiseRouterWithOnlyNoises noiseRouter = new NoiseRouterWithOnlyNoises(
                 DensityFunctions.zero(),
                 DensityFunctions.zero(),

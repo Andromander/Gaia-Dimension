@@ -43,7 +43,7 @@ public class GaiaTerrainWarp {
         this.bottomSlide = settings.bottomSlideSettings();
         this.blendedNoise = blend;
         this.dimensionDensityFactor = 1.0F;
-        this.dimensionDensityOffset = -0.46875F;
+        this.dimensionDensityOffset = 0.0F;
         this.caveNoiseModifier = modifier;
     }
 

@@ -592,7 +592,7 @@
     "size_horizontal": 1,
     "size_vertical": 2,
     "terrain_shaper": {
-      "offset": 10.0,
+      "offset": 1.0,
       "factor": 10.0,
       "jaggedness": 0.0
     },
