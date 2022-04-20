@@ -42,8 +42,9 @@ public class GaiaTerrainWarp {
         this.topSlide = settings.topSlideSettings();
         this.bottomSlide = settings.bottomSlideSettings();
         this.blendedNoise = blend;
-        this.dimensionDensityFactor = 1.0F;
-        this.dimensionDensityOffset = 0.0F;
+        //Fallbacks will never be met as this will crash to enforce correct source
+        this.dimensionDensityFactor = source instanceof GaiaBiomeSource gsource ? gsource.getBaseFactor() : 1.0F;
+        this.dimensionDensityOffset = source instanceof GaiaBiomeSource gsource ? gsource.getBaseOffset() : 0.0F;
         this.caveNoiseModifier = modifier;
     }
 

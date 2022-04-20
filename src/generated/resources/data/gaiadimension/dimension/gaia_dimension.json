@@ -4,6 +4,8 @@
     "settings": "gaiadimension:gaia_noise",
     "seed": 0,
     "biome_source": {
+      "base_offset": 0.0,
+      "base_factor": 1.0,
       "biomes": [
         {
           "parameters": {
@@ -112,7 +114,7 @@
         },
         {
           "parameters": {
-            "depth": -0.5,
+            "depth": -0.8,
             "scale": 0.0
           },
           "biome": "gaiadimension:mineral_river"

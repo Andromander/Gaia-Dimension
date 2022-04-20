@@ -67,7 +67,7 @@ public class GaiaWorldGen extends WorldGenerationProvider {
         Holder.Reference<DimensionType> dimtype = Holder.Reference.createStandAlone(dimtypeRegistry, ModDimensions.gaia_dimension);
         dimtype.bind(ModDimensions.gaia_dimension, dimType());
         Holder<NoiseGeneratorSettings> noisegen = noisegenRegistry.getHolderOrThrow(ModDimensions.gaia_noise);
-        BiomeSource source = new GaiaBiomeSource(makeBiomeList(biomeRegistry), 0L, biomeRegistry);
+        BiomeSource source = new GaiaBiomeSource(makeBiomeList(biomeRegistry), 0L, 0.0F, 1.0F, biomeRegistry);
         NoiseBasedChunkGenerator chunkgen = new GaiaChunkGenerator(source, structureRegistry, noiseparamRegistry, noisegen, 0L);
         stemRegistry.register(ModDimensions.GAIA_DIMENSION_STEM, new LevelStem(dimtype, chunkgen, true), Lifecycle.stable());
         this.dumpRegistry(path, cache, ops, Registry.LEVEL_STEM_REGISTRY, stemRegistry, LevelStem.CODEC);
