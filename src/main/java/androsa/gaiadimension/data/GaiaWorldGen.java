@@ -31,6 +31,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.OptionalLong;
 import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 public class GaiaWorldGen extends WorldGenerationProvider {
 
@@ -59,7 +60,7 @@ public class GaiaWorldGen extends WorldGenerationProvider {
         //Registries
         WritableRegistry<LevelStem> stemRegistry = new MappedRegistry<>(Registry.LEVEL_STEM_REGISTRY, Lifecycle.experimental(), null);
         Registry<DimensionType> dimtypeRegistry = access.registryOrThrow(Registry.DIMENSION_TYPE_REGISTRY);
-        Registry<Biome> biomeRegistry = access.registryOrThrow(Registry.BIOME_REGISTRY);
+        WritableRegistry<Biome> biomeRegistry = new MappedRegistry<>(Registry.BIOME_REGISTRY, Lifecycle.experimental(), null);
         Registry<StructureSet> structureRegistry = access.registryOrThrow(Registry.STRUCTURE_SET_REGISTRY);
         Registry<NoiseGeneratorSettings> noisegenRegistry = access.registryOrThrow(Registry.NOISE_GENERATOR_SETTINGS_REGISTRY);
         Registry<NormalNoise.NoiseParameters> noiseparamRegistry = access.registryOrThrow(Registry.NOISE_REGISTRY);
@@ -67,9 +68,22 @@ public class GaiaWorldGen extends WorldGenerationProvider {
         Holder.Reference<DimensionType> dimtype = Holder.Reference.createStandAlone(dimtypeRegistry, ModDimensions.gaia_dimension);
         dimtype.bind(ModDimensions.gaia_dimension, dimType());
         Holder<NoiseGeneratorSettings> noisegen = noisegenRegistry.getHolderOrThrow(ModDimensions.gaia_noise);
-        BiomeSource source = new GaiaBiomeSource(makeBiomeList(biomeRegistry), 0L, 0.0F, 1.0F, biomeRegistry);
+        Registry<Biome> biomeRegistry1 = access.registryOrThrow(Registry.BIOME_REGISTRY);
+        BiomeSource source = new GaiaBiomeSource(makeBiomeList(biomeRegistry1), 0L, 0.0F, 1.0F, biomeRegistry1);
         NoiseBasedChunkGenerator chunkgen = new GaiaChunkGenerator(source, structureRegistry, noiseparamRegistry, noisegen, 0L);
         stemRegistry.register(ModDimensions.GAIA_DIMENSION_STEM, new LevelStem(dimtype, chunkgen, true), Lifecycle.stable());
+
+        Map<ResourceLocation, Biome> biomes = this.getBiomes();
+        biomes.forEach((rl, biome) -> biomeRegistry.register(ResourceKey.create(Registry.BIOME_REGISTRY, rl), biome, Lifecycle.experimental()));
+
+        StreamSupport.stream(RegistryAccess.knownRegistries().spliterator(), false)
+                .filter(data -> access.ownedRegistry(data.key()).isPresent() && !data.key().equals(Registry.BIOME_REGISTRY))
+                .forEach((consumer) -> dumpRegistryCap(cache, path, access, ops, consumer));
+
+        LOGGER.info("Dumping biomes");
+        this.dumpRegistry(path, cache, ops, Registry.BIOME_REGISTRY, biomeRegistry, Biome.DIRECT_CODEC);
+
+        LOGGER.info("Dumping level stem");
         this.dumpRegistry(path, cache, ops, Registry.LEVEL_STEM_REGISTRY, stemRegistry, LevelStem.CODEC);
     }
 

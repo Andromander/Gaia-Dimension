@@ -7,6 +7,7 @@ import com.google.common.collect.ImmutableMap;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.level.biome.Biome;
+import net.minecraft.world.level.biome.BiomeGenerationSettings;
 
 import java.util.Map;
 
@@ -258,7 +259,7 @@ public class GaiaBiomes extends GaiaBiomeProvider {
         return buildBiome(
                 createBuilder(
                         createAmbience(0, 0, 0),
-                        createSettings().build(),
+                        BiomeGenerationSettings.EMPTY,
                         buildSpawns(createSpawns())
                 ).temperature(0.0F));
     }
