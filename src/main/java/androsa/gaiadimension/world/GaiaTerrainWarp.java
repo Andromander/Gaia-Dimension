@@ -11,6 +11,10 @@ import net.minecraft.world.level.levelgen.NoiseSettings;
 import net.minecraft.world.level.levelgen.NoiseSlider;
 import net.minecraft.world.level.levelgen.synth.BlendedNoise;
 
+/*
+ * This is where the magic of warping terrain with biomes happens.
+ * This will require having the BiomeSource be specific or at least parent the specific BiomeSource otherwise the logic can't run
+ */
 public class GaiaTerrainWarp {
 
     private final int cellWidth;

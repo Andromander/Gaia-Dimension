@@ -7,6 +7,9 @@ import net.minecraft.world.level.levelgen.synth.BlendedNoise;
 import net.minecraft.world.level.levelgen.synth.ImprovedNoise;
 import net.minecraft.world.level.levelgen.synth.PerlinNoise;
 
+/*
+ * Honestly, this just makes absolutely certain that things go the way we want it. Might not even need this? Who knows.
+ */
 public class GaiaBlendedNoise extends BlendedNoise {
 
     public GaiaBlendedNoise(RandomSource random, NoiseSamplingSettings settings, int x, int z) {

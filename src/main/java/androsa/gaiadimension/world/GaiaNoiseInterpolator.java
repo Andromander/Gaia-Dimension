@@ -3,6 +3,7 @@ package androsa.gaiadimension.world;
 import net.minecraft.util.Mth;
 import net.minecraft.world.level.ChunkPos;
 
+//VanillaCopy of NoiseInterpolator from 1.17.1. Just easier to control than the existing NoiseInterpolator
 public class GaiaNoiseInterpolator {
 
     private final int cellCountY;
