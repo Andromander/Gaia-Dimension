@@ -1,5 +1,6 @@
 package androsa.gaiadimension.data.provider;
 
+import androsa.gaiadimension.GaiaDimensionMod;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonElement;
@@ -49,7 +50,7 @@ public abstract class WorldGenerationProvider extends WorldgenRegistryDumpReport
     protected <E, T extends Registry<E>> void dumpRegistry(Path path, HashCache cache, DynamicOps<JsonElement> ops, ResourceKey<? extends T> key, T registry, Encoder<E> encoder) {
         for (Map.Entry<ResourceKey<E>, E> entry : registry.entrySet()) {
             //Check if the object can serialize. Excludes any serialized or in the wrong namespace.
-            if (!this.shouldSerialize(entry.getKey(), entry.getValue())) continue;
+            if (!entry.getKey().location().getNamespace().equals(GaiaDimensionMod.MODID)) continue;
             Path fullpath = this.makePath(path, key, entry.getKey().location());
             this.dumpValue(fullpath, cache, ops, encoder, entry.getValue());
         }

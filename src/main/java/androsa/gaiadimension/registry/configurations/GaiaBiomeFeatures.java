@@ -2,17 +2,9 @@ package androsa.gaiadimension.registry.configurations;
 
 import androsa.gaiadimension.registry.GaiaTags;
 import androsa.gaiadimension.registry.ModBlocks;
-import androsa.gaiadimension.world.gen.config.GaiaTreeFeatureConfig;
 import com.google.common.collect.ImmutableList;
-import net.minecraft.util.valueproviders.ConstantInt;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.SaplingBlock;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.levelgen.feature.configurations.TreeConfiguration;
-import net.minecraft.world.level.levelgen.feature.featuresize.TwoLayersFeatureSize;
-import net.minecraft.world.level.levelgen.feature.foliageplacers.BushFoliagePlacer;
-import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
-import net.minecraft.world.level.levelgen.feature.trunkplacers.StraightTrunkPlacer;
 import net.minecraft.world.level.levelgen.structure.templatesystem.BlockMatchTest;
 import net.minecraft.world.level.levelgen.structure.templatesystem.RuleTest;
 import net.minecraft.world.level.levelgen.structure.templatesystem.TagMatchTest;
@@ -104,33 +96,7 @@ public class GaiaBiomeFeatures {
 
     public static final List<Block> cave_blacklist = ImmutableList.of(GLITTER_GRASS.getBlock(), HEAVY_SOIL.getBlock(), CORRUPT_GRASS.getBlock(), CORRUPT_SOIL.getBlock(), MURKY_GRASS.getBlock(), BOGGY_SOIL.getBlock(), SOFT_GRASS.getBlock(), LIGHT_SOIL.getBlock(), SALT.getBlock());
 
-    //Configs
-    public static final GaiaTreeFeatureConfig PINK_AGATE_TREE_CONFIG = configureTree(PINK_AGATE_LOG, PINK_AGATE_LEAVES, 5, ModBlocks.pink_agate_sapling.get());
-    public static final GaiaTreeFeatureConfig BLUE_AGATE_TREE_CONFIG = configureTree(BLUE_AGATE_LOG, BLUE_AGATE_LEAVES, 6, ModBlocks.blue_agate_sapling.get());
-    public static final GaiaTreeFeatureConfig GREEN_AGATE_TREE_CONFIG = configureTree(GREEN_AGATE_LOG, GREEN_AGATE_LEAVES, 10, ModBlocks.green_agate_sapling.get());
-    public static final TreeConfiguration GREEN_AGATE_BUSH_CONFIG = (
-            new TreeConfiguration.TreeConfigurationBuilder(
-                    BlockStateProvider.simple(GREEN_AGATE_LOG),
-                    new StraightTrunkPlacer(1, 0, 0),
-                    BlockStateProvider.simple(GREEN_AGATE_LEAVES),
-                    new BushFoliagePlacer(
-                            ConstantInt.of(2),
-                            ConstantInt.of(1),
-                            2),
-                    new TwoLayersFeatureSize(0, 0, 0)))
-            .build();
-    public static final GaiaTreeFeatureConfig PURPLE_AGATE_TREE_CONFIG = configureTree(PURPLE_AGATE_LOG, PURPLE_AGATE_LEAVES, 7, ModBlocks.purple_agate_sapling.get());
-    public static final GaiaTreeFeatureConfig FOSSILIZED_TREE_CONFIG = configureTree(FOSSIL_LOG, FOSSIL_LEAVES, 5, ModBlocks.fossilized_sapling.get());
-    public static final GaiaTreeFeatureConfig CORRUPTED_TREE_CONFIG = configureTree(CORRUPTED_LOG, CORRUPTED_LEAVES, 7, ModBlocks.corrupted_sapling.get());
-    public static final GaiaTreeFeatureConfig BURNT_TREE_CONFIG = configureTree(BURNT_LOG, BURNT_LEAVES, 5, ModBlocks.burnt_sapling.get());
-    public static final GaiaTreeFeatureConfig BURNING_TREE_CONFIG = configureTree(BURNING_LOG, BURNING_LEAVES, 5, ModBlocks.burning_sapling.get());
-    public static final GaiaTreeFeatureConfig AURA_TREE_CONFIG = configureTree(AURA_LOG, AURA_LEAVES, 10, ModBlocks.aura_sapling.get());
-
     private static BlockState state(RegistryObject<? extends Block> block) {
         return block.get().defaultBlockState();
-    }
-
-    public static GaiaTreeFeatureConfig configureTree(BlockState log, BlockState leaves, int height, SaplingBlock sapling) {
-        return (new GaiaTreeFeatureConfig.Builder(BlockStateProvider.simple(log), BlockStateProvider.simple(leaves), height).setSapling(sapling)).build();
     }
 }

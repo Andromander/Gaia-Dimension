@@ -2,7 +2,7 @@ package androsa.gaiadimension.block;
 
 import androsa.gaiadimension.registry.ModBiomes;
 import androsa.gaiadimension.registry.ModBlocks;
-import androsa.gaiadimension.registry.configurations.GaiaPlacedFeatures;
+import androsa.gaiadimension.registry.configurations.GaiaFeatures;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.block.state.BlockState;
@@ -46,7 +46,7 @@ public class GlitterGrassBlock extends AbstractGaiaGrassBlock {
 
                     feature = ((RandomPatchConfiguration)list.get(0).config()).feature().value();
                 } else {
-                    feature = worldIn.getBiome(blockpos1).unwrapKey().equals(Optional.of(ModBiomes.mutant_agate_wildwood)) ? GaiaPlacedFeatures.CRYSTAL_GROWTH_MUTANT.value() : GaiaPlacedFeatures.CRYSTAL_GROWTH_02.value();
+                    feature = worldIn.getBiome(blockpos1).unwrapKey().equals(Optional.of(ModBiomes.mutant_agate_wildwood)) ? GaiaFeatures.Placed.CRYSTAL_GROWTH_MUTANT.value() : GaiaFeatures.Placed.CRYSTAL_GROWTH_02.value();
                 }
 
                 feature.place(worldIn, worldIn.getChunkSource().getGenerator(), rand, blockpos1);

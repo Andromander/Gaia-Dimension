@@ -1,7 +1,7 @@
 package androsa.gaiadimension.block;
 
 import androsa.gaiadimension.registry.ModBlocks;
-import androsa.gaiadimension.registry.configurations.GaiaPlacedFeatures;
+import androsa.gaiadimension.registry.configurations.GaiaFeatures;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.block.state.BlockState;
@@ -44,7 +44,7 @@ public class SoftGrassBlock extends AbstractGaiaGrassBlock {
 
                     feature = ((RandomPatchConfiguration)list.get(0).config()).feature().value();
                 } else {
-                    feature = GaiaPlacedFeatures.CRYSTAL_GROWTH_AURA.value();
+                    feature = GaiaFeatures.Placed.CRYSTAL_GROWTH_AURA.value();
                 }
 
                 feature.place(worldIn, worldIn.getChunkSource().getGenerator(), rand, blockpos1);
