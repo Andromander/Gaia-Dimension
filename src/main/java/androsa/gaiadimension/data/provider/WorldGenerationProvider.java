@@ -9,6 +9,7 @@ import com.mojang.serialization.Encoder;
 import com.mojang.serialization.JsonOps;
 import net.minecraft.core.Registry;
 import net.minecraft.core.RegistryAccess;
+import net.minecraft.data.BuiltinRegistries;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.DataProvider;
 import net.minecraft.data.HashCache;
@@ -71,13 +72,11 @@ public abstract class WorldGenerationProvider extends WorldgenRegistryDumpReport
     @Override
     public void run(HashCache cache) {
         Path path = this.generator.getOutputFolder();
-        RegistryAccess access = RegistryAccess.BUILTIN.get();
+        RegistryAccess access = BuiltinRegistries.ACCESS;
         DynamicOps<JsonElement> ops = RegistryOps.create(JsonOps.INSTANCE, access);
-        RegistryAccess.knownRegistries().forEach(registryData -> this.dumpRegistryCap(cache, path, access, ops, registryData));
+        //RegistryAccess.knownRegistries().forEach(registryData -> this.dumpRegistryCap(cache, path, access, ops, registryData));
         this.dumpRegistries(access, cache, path, ops);
     }
-
-    public abstract <E> boolean shouldSerialize(ResourceKey<E> key, E element);
 
     protected abstract void dumpRegistries(RegistryAccess access, HashCache cache, Path path, DynamicOps<JsonElement> ops);
 

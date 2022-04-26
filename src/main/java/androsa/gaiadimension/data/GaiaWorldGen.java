@@ -40,38 +40,12 @@ public class GaiaWorldGen extends WorldGenerationProvider {
     }
 
     @Override
-    public <E> boolean shouldSerialize(ResourceKey<E> key, E element) {
-        return GaiaDimensionMod.MODID.equals(key.location().getNamespace());
-    }
-
-    @Override
     protected void dumpRegistries(RegistryAccess access, HashCache cache, Path path, DynamicOps<JsonElement> ops) {
-        this.registerDimensionType(cache, path, ops);
-        this.registerLevelStem(access, cache, path, ops);
-    }
-
-    protected void registerDimensionType(HashCache cache, Path path, DynamicOps<JsonElement> ops) {
-        WritableRegistry<DimensionType> registry = new MappedRegistry<>(Registry.DIMENSION_TYPE_REGISTRY, Lifecycle.experimental(), null);
-        registry.register(ModDimensions.gaia_dimension, dimType(), Lifecycle.stable());
-        this.dumpRegistry(path, cache, ops, Registry.DIMENSION_TYPE_REGISTRY, registry, DimensionType.DIRECT_CODEC);
-    }
-
-    protected void registerLevelStem(RegistryAccess access, HashCache cache, Path path, DynamicOps<JsonElement> ops) {
         //Registries
         WritableRegistry<LevelStem> stemRegistry = new MappedRegistry<>(Registry.LEVEL_STEM_REGISTRY, Lifecycle.experimental(), null);
-        Registry<DimensionType> dimtypeRegistry = access.registryOrThrow(Registry.DIMENSION_TYPE_REGISTRY);
         WritableRegistry<Biome> biomeRegistry = new MappedRegistry<>(Registry.BIOME_REGISTRY, Lifecycle.experimental(), null);
-        Registry<StructureSet> structureRegistry = access.registryOrThrow(Registry.STRUCTURE_SET_REGISTRY);
-        Registry<NoiseGeneratorSettings> noisegenRegistry = access.registryOrThrow(Registry.NOISE_GENERATOR_SETTINGS_REGISTRY);
-        Registry<NormalNoise.NoiseParameters> noiseparamRegistry = access.registryOrThrow(Registry.NOISE_REGISTRY);
 
-        Holder.Reference<DimensionType> dimtype = Holder.Reference.createStandAlone(dimtypeRegistry, ModDimensions.gaia_dimension);
-        dimtype.bind(ModDimensions.gaia_dimension, dimType());
-        Holder<NoiseGeneratorSettings> noisegen = noisegenRegistry.getHolderOrThrow(ModDimensions.gaia_noise);
-        Registry<Biome> biomeRegistry1 = access.registryOrThrow(Registry.BIOME_REGISTRY);
-        BiomeSource source = new GaiaBiomeSource(makeBiomeList(biomeRegistry1), 0L, 0.0F, 1.0F, biomeRegistry1);
-        NoiseBasedChunkGenerator chunkgen = new GaiaChunkGenerator(source, structureRegistry, noiseparamRegistry, noisegen, 0L);
-        stemRegistry.register(ModDimensions.GAIA_DIMENSION_STEM, new LevelStem(dimtype, chunkgen, true), Lifecycle.stable());
+        stemRegistry.register(ModDimensions.GAIA_DIMENSION_STEM, createGaia(access), Lifecycle.experimental());
 
         Map<ResourceLocation, Biome> biomes = this.getBiomes();
         biomes.forEach((rl, biome) -> biomeRegistry.register(ResourceKey.create(Registry.BIOME_REGISTRY, rl), biome, Lifecycle.experimental()));
@@ -85,6 +59,19 @@ public class GaiaWorldGen extends WorldGenerationProvider {
 
         LOGGER.info("Dumping level stem");
         this.dumpRegistry(path, cache, ops, Registry.LEVEL_STEM_REGISTRY, stemRegistry, LevelStem.CODEC);
+    }
+
+    private LevelStem createGaia(RegistryAccess access) {
+        Registry<Biome> biomeRegistry = access.registryOrThrow(Registry.BIOME_REGISTRY);
+        Registry<StructureSet> structureRegistry = access.registryOrThrow(Registry.STRUCTURE_SET_REGISTRY);
+        Registry<NormalNoise.NoiseParameters> noiseparamRegistry = access.registryOrThrow(Registry.NOISE_REGISTRY);
+        Registry<NoiseGeneratorSettings> noisegenRegistry = access.registryOrThrow(Registry.NOISE_GENERATOR_SETTINGS_REGISTRY);
+
+        BiomeSource source = new GaiaBiomeSource(makeBiomeList(biomeRegistry), 0L, 0.0F, 1.0F, biomeRegistry);
+        Holder<NoiseGeneratorSettings> noisegen = noisegenRegistry.getHolderOrThrow(ModDimensions.gaia_noise);
+        NoiseBasedChunkGenerator chunkgen = new GaiaChunkGenerator(source, structureRegistry, noiseparamRegistry, noisegen, 0L);
+
+        return new LevelStem(Holder.direct(dimType()), chunkgen, true);
     }
 
     private DimensionType dimType() {
