@@ -1,67 +1,34 @@
 {
   "config": {
-    "feature": {
-      "config": {
-        "feature": {
-          "config": {
-            "trunk_provider": {
-              "state": {
-                "Properties": {
-                  "axis": "y"
-                },
-                "Name": "gaiadimension:burnt_log"
-              },
-              "type": "minecraft:simple_state_provider"
-            },
-            "leaves_provider": {
-              "state": {
-                "Properties": {
-                  "persistent": "false",
-                  "distance": "7"
-                },
-                "Name": "gaiadimension:burnt_leaves"
-              },
-              "type": "minecraft:simple_state_provider"
-            },
-            "height": 5,
-            "sapling": {
-              "state": {
-                "Properties": {
-                  "stage": "0"
-                },
-                "Name": "gaiadimension:burnt_sapling"
-              },
-              "type": "minecraft:simple_state_provider"
-            }
-          },
-          "type": "gaiadimension:burnt_agate_tree"
+    "trunk_provider": {
+      "state": {
+        "Properties": {
+          "axis": "y"
         },
-        "decorator": {
-          "config": {
-            "outer": {
-              "config": {},
-              "type": "minecraft:square"
-            },
-            "inner": {
-              "config": {
-                "heightmap": "MOTION_BLOCKING"
-              },
-              "type": "minecraft:heightmap"
-            }
-          },
-          "type": "minecraft:decorated"
-        }
+        "Name": "gaiadimension:burnt_log"
       },
-      "type": "minecraft:decorated"
+      "type": "minecraft:simple_state_provider"
     },
-    "decorator": {
-      "config": {
-        "count": 0,
-        "extra_chance": 0.1,
-        "extra_count": 1
+    "leaves_provider": {
+      "state": {
+        "Properties": {
+          "persistent": "false",
+          "distance": "7"
+        },
+        "Name": "gaiadimension:burnt_leaves"
       },
-      "type": "minecraft:count_extra"
+      "type": "minecraft:simple_state_provider"
+    },
+    "height": 5,
+    "sapling": {
+      "state": {
+        "Properties": {
+          "stage": "0"
+        },
+        "Name": "gaiadimension:burnt_sapling"
+      },
+      "type": "minecraft:simple_state_provider"
     }
   },
-  "type": "minecraft:decorated"
+  "type": "gaiadimension:burnt_agate_tree"
 }

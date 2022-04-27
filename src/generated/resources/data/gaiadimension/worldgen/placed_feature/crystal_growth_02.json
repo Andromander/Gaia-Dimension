@@ -1,0 +1,16 @@
+{
+  "feature": "gaiadimension:crystal_growth",
+  "placement": [
+    {
+      "type": "minecraft:in_square"
+    },
+    {
+      "heightmap": "WORLD_SURFACE_WG",
+      "type": "minecraft:heightmap"
+    },
+    {
+      "count": 2,
+      "type": "minecraft:count"
+    }
+  ]
+}

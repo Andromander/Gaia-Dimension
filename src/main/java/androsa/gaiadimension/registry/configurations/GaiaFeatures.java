@@ -107,7 +107,7 @@ public class GaiaFeatures extends GaiaBiomeFeatures {
         public static final Holder<ConfiguredFeature<OreConfiguration, ?>> ore_red_opal = registerFeature("ore_red_opal", Feature.ORE, configureOre(GAIA_STONE, RED_OPAL_ORE, 8));
         public static final Holder<ConfiguredFeature<OreConfiguration, ?>> ore_blue_opal = registerFeature("ore_blue_opal", Feature.ORE, configureOre(GAIA_STONE, BLUE_OPAL_ORE, 8));
         public static final Holder<ConfiguredFeature<OreConfiguration, ?>> ore_green_opal = registerFeature("ore_green_opal", Feature.ORE, configureOre(GAIA_STONE, GREEN_OPAL_ORE, 8));
-        public static final Holder<ConfiguredFeature<OreConfiguration, ?>> ore_white_opal = registerFeature("ore_white_opal_common", Feature.ORE, configureOre(GAIA_STONE, WHITE_OPAL_ORE, 8));
+        public static final Holder<ConfiguredFeature<OreConfiguration, ?>> ore_white_opal = registerFeature("ore_white_opal", Feature.ORE, configureOre(GAIA_STONE, WHITE_OPAL_ORE, 8));
         public static final Holder<ConfiguredFeature<DiskConfiguration, ?>> disk_static_stone = registerFeature("disk_static_stone", ModWorldgen.GAIA_DISK.get(), new DiskConfiguration(STATIC_STONE, UniformInt.of(2, 4), 3, ImmutableList.of(WASTELAND_STONE)));
         public static final Holder<ConfiguredFeature<DiskConfiguration, ?>> disk_bog_patch = registerFeature("disk_bog_patch", ModWorldgen.BOG_PATCH.get(), new DiskConfiguration(ModBlocks.impure_sludge.get().defaultBlockState(), UniformInt.of(1, 4), 2, Lists.newArrayList(MURKY_GRASS, BOGGY_SOIL)));
 
@@ -136,7 +136,7 @@ public class GaiaFeatures extends GaiaBiomeFeatures {
         public static final Holder<ConfiguredFeature<RandomPatchConfiguration, ?>> murgni = registerFeature("mystical_murgni", Feature.RANDOM_PATCH, configurePatch(16, 7, 3, BlockStateProvider.simple(MYSTICAL_MURGNI)));
         public static final Holder<ConfiguredFeature<RandomPatchConfiguration, ?>> corrupt_eye = registerFeature("corrupt_gaia_eye", Feature.RANDOM_PATCH, configurePatch(16, 7, 3, BlockStateProvider.simple(CORRUPTED_GAIA_EYE)));
 
-        public static final Holder<ConfiguredFeature<GaiaTreeFeatureConfig, ?>> pink_agate_tree = registerFeature("pink_agate_tree_common", ModWorldgen.PINK_AGATE_TREE.get(), Config.PINK_AGATE_TREE_CONFIG);
+        public static final Holder<ConfiguredFeature<GaiaTreeFeatureConfig, ?>> pink_agate_tree = registerFeature("pink_agate_tree", ModWorldgen.PINK_AGATE_TREE.get(), Config.PINK_AGATE_TREE_CONFIG);
         public static final Holder<ConfiguredFeature<GaiaTreeFeatureConfig, ?>> blue_agate_tree = registerFeature("blue_agate_tree", ModWorldgen.BLUE_AGATE_TREE.get(), Config.BLUE_AGATE_TREE_CONFIG);
         public static final Holder<ConfiguredFeature<GaiaTreeFeatureConfig, ?>> green_agate_tree = registerFeature("green_agate_tree", ModWorldgen.GREEN_AGATE_TREE.get(), Config.GREEN_AGATE_TREE_CONFIG);
         public static final Holder<ConfiguredFeature<GaiaTreeFeatureConfig, ?>> purple_agate_tree = registerFeature("purple_agate_tree", ModWorldgen.PURPLE_AGATE_TREE.get(), Config.PURPLE_AGATE_TREE_CONFIG);
@@ -146,12 +146,6 @@ public class GaiaFeatures extends GaiaBiomeFeatures {
         public static final Holder<ConfiguredFeature<GaiaTreeFeatureConfig, ?>> fiery_agate_tree = registerFeature("fiery_agate_tree", ModWorldgen.FIERY_AGATE_TREE.get(), Config.BURNING_TREE_CONFIG);
         public static final Holder<ConfiguredFeature<GaiaTreeFeatureConfig, ?>> aura_tree = registerFeature("aura_tree", ModWorldgen.AURA_TREE.get(), Config.AURA_TREE_CONFIG);
         public static final Holder<ConfiguredFeature<SimpleRandomFeatureConfiguration, ?>> green_agate_bush = registerFeature("green_agate_bush", Feature.SIMPLE_RANDOM_SELECTOR, new SimpleRandomFeatureConfiguration(BUSH_WORKAROUND));
-        public static final Holder<ConfiguredFeature<RandomFeatureConfiguration, ?>> various_agate_trees = registerFeature("various_agate_trees", Feature.RANDOM_SELECTOR, new RandomFeatureConfiguration(List.of(
-                new WeightedPlacedFeature(Placed.PINK_AGATE_TREE_COMMON, 0.25F),
-                new WeightedPlacedFeature(Placed.BLUE_AGATE_TREE, 0.25F),
-                new WeightedPlacedFeature(Placed.GREEN_AGATE_TREE, 0.25F),
-                new WeightedPlacedFeature(Placed.PURPLE_AGATE_TREE, 0.25F)),
-                Placed.CRYSTAL_GROWTH_MUTANT));
 
         private static SimpleWeightedRandomList.Builder<BlockState> weight() {
             return SimpleWeightedRandomList.builder();
@@ -307,11 +301,6 @@ public class GaiaFeatures extends GaiaBiomeFeatures {
                 InSquarePlacement.spread(),
                 PlacementUtils.HEIGHTMAP,
                 BiomeFilter.biome());
-        public static final Holder<PlacedFeature> VARIOUS_AGATE_TREES = registerPlacedFeature("various_agate_trees", Configured.various_agate_trees,
-                InSquarePlacement.spread(),
-                PlacementUtils.HEIGHTMAP,
-                PlacementUtils.countExtra(2, 0.1F, 1),
-                BiomeFilter.biome());
         public static final Holder<PlacedFeature> AURA_SHOOTS = registerPlacedFeature("aura_shoots", Configured.aura_shoots,
                 InSquarePlacement.spread(),
                 PlacementUtils.HEIGHTMAP,
@@ -336,6 +325,18 @@ public class GaiaFeatures extends GaiaBiomeFeatures {
         public static final Holder<PlacedFeature> STICKLY_CUPSIR = placedFungi("stickly_cupsir", Configured.cupsir, 1);
         public static final Holder<PlacedFeature> MYSTICAL_MURGNI = placedFungi("mystical_murgni", Configured.murgni, 1);
         public static final Holder<PlacedFeature> CORRUPTED_GAIA_EYE = placedFungi("corrupted_gaia_eye", Configured.corrupt_eye, 1);
+
+        public static final Holder<ConfiguredFeature<RandomFeatureConfiguration, ?>> various_agate_trees = Configured.registerFeature("various_agate_trees", Feature.RANDOM_SELECTOR, new RandomFeatureConfiguration(List.of(
+                new WeightedPlacedFeature(Placed.PINK_AGATE_TREE_COMMON, 0.25F),
+                new WeightedPlacedFeature(Placed.BLUE_AGATE_TREE, 0.25F),
+                new WeightedPlacedFeature(Placed.GREEN_AGATE_TREE, 0.25F),
+                new WeightedPlacedFeature(Placed.PURPLE_AGATE_TREE, 0.25F)),
+                Placed.CRYSTAL_GROWTH_MUTANT));
+        public static final Holder<PlacedFeature> VARIOUS_AGATE_TREES = registerPlacedFeature("various_agate_trees", various_agate_trees,
+                InSquarePlacement.spread(),
+                PlacementUtils.HEIGHTMAP,
+                PlacementUtils.countExtra(2, 0.1F, 1),
+                BiomeFilter.biome());
 
         private static Holder<PlacedFeature> placedOre(String name, Holder<ConfiguredFeature<OreConfiguration,?>> ore, int height, int count) {
             return registerPlacedFeature(name, ore,
@@ -372,7 +373,7 @@ public class GaiaFeatures extends GaiaBiomeFeatures {
 
         private static Holder<PlacedFeature> registerPlacedFeature(String name, Holder<? extends ConfiguredFeature<?, ?>> feature, PlacementModifier... modifiers) {
             PlacedFeature placedFeature = new PlacedFeature(Holder.hackyErase(feature), List.of(modifiers));
-            return BuiltinRegistries.register(BuiltinRegistries.PLACED_FEATURE, new ResourceLocation(GaiaDimensionMod.MODID, name), placedFeature);
+            return BuiltinRegistries.registerExact(BuiltinRegistries.PLACED_FEATURE, new ResourceLocation(GaiaDimensionMod.MODID, name).toString(), placedFeature);
         }
     }
 }

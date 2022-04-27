@@ -1,19 +1,4 @@
 {
-  "effects": {
-    "mood_sound": {
-      "sound": "minecraft:ambient.cave",
-      "tick_delay": 6000,
-      "block_search_extent": 8,
-      "offset": 2.0
-    },
-    "sky_color": 13016408,
-    "foliage_color": 12298105,
-    "grass_color": 12298105,
-    "fog_color": 15381216,
-    "water_color": 7117233,
-    "water_fog_color": 9617108
-  },
-  "surface_builder": "gaiadimension:glitter_grass",
   "carvers": {
     "air": [
       "gaiadimension:crystal_caves",
@@ -49,15 +34,13 @@
       "gaiadimension:crystal_fungi_caves",
       "gaiadimension:underground_glitter_blob"
     ],
+    [],
     [
       "gaiadimension:fossilized_tree",
       "gaiadimension:crystal_growth_02",
       "gaiadimension:crystal_blooms_common",
       "gaiadimension:stickly_cupsir"
     ]
-  ],
-  "starts": [
-    "gaiadimension:mini_tower"
   ],
   "spawners": {
     "monster": [
@@ -125,6 +108,7 @@
       }
     ],
     "ambient": [],
+    "axolotls": [],
     "underground_water_creature": [],
     "water_creature": [
       {
@@ -138,12 +122,23 @@
     "misc": []
   },
   "spawn_costs": {},
-  "player_spawn_friendly": false,
   "forge:registry_name": "gaiadimension:fossil_woodland",
   "precipitation": "none",
   "temperature": 0.66,
   "downfall": 0.0,
   "category": "none",
-  "depth": 0.1,
-  "scale": 0.05
+  "effects": {
+    "mood_sound": {
+      "sound": "minecraft:ambient.cave",
+      "tick_delay": 6000,
+      "block_search_extent": 8,
+      "offset": 2.0
+    },
+    "sky_color": 13016408,
+    "foliage_color": 12298105,
+    "grass_color": 12298105,
+    "fog_color": 15381216,
+    "water_color": 7117233,
+    "water_fog_color": 9617108
+  }
 }

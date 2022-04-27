@@ -1,0 +1,11 @@
+{
+  "config": {
+    "state": {
+      "Properties": {
+        "level": "0"
+      },
+      "Name": "gaiadimension:superhot_magma"
+    }
+  },
+  "type": "gaiadimension:pool"
+}

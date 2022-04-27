@@ -1,62 +1,11 @@
 {
   "config": {
-    "feature": {
-      "config": {
-        "feature": {
-          "config": {
-            "feature": {
-              "config": {
-                "feature": {
-                  "config": {
-                    "state": {
-                      "Properties": {
-                        "level": "0"
-                      },
-                      "Name": "gaiadimension:sweet_muck"
-                    }
-                  },
-                  "type": "gaiadimension:pool"
-                },
-                "decorator": {
-                  "config": {
-                    "chance": 10
-                  },
-                  "type": "minecraft:lava_lake"
-                }
-              },
-              "type": "minecraft:decorated"
-            },
-            "decorator": {
-              "config": {
-                "height": {
-                  "min_inclusive": {
-                    "absolute": 40
-                  },
-                  "max_inclusive": {
-                    "absolute": 120
-                  },
-                  "inner": 8,
-                  "type": "minecraft:biased_to_bottom"
-                }
-              },
-              "type": "minecraft:range"
-            }
-          },
-          "type": "minecraft:decorated"
-        },
-        "decorator": {
-          "config": {},
-          "type": "minecraft:square"
-        }
+    "state": {
+      "Properties": {
+        "level": "0"
       },
-      "type": "minecraft:decorated"
-    },
-    "decorator": {
-      "config": {
-        "chance": 4
-      },
-      "type": "minecraft:chance"
+      "Name": "gaiadimension:sweet_muck"
     }
   },
-  "type": "minecraft:decorated"
+  "type": "gaiadimension:pool"
 }

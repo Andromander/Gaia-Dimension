@@ -1,41 +1,21 @@
 {
   "config": {
-    "feature": {
-      "config": {
-        "state": {
-          "Name": "gaiadimension:static_stone"
-        },
-        "radius": {
-          "type": "minecraft:uniform",
-          "value": {
-            "min_inclusive": 2,
-            "max_inclusive": 4
-          }
-        },
-        "half_height": 3,
-        "targets": [
-          {
-            "Name": "gaiadimension:wasteland_stone"
-          }
-        ]
-      },
-      "type": "gaiadimension:gaia_disk"
+    "state": {
+      "Name": "gaiadimension:static_stone"
     },
-    "decorator": {
-      "config": {
-        "outer": {
-          "config": {},
-          "type": "minecraft:square"
-        },
-        "inner": {
-          "config": {
-            "heightmap": "OCEAN_FLOOR_WG"
-          },
-          "type": "minecraft:heightmap"
-        }
-      },
-      "type": "minecraft:decorated"
-    }
+    "radius": {
+      "type": "minecraft:uniform",
+      "value": {
+        "min_inclusive": 2,
+        "max_inclusive": 4
+      }
+    },
+    "half_height": 3,
+    "targets": [
+      {
+        "Name": "gaiadimension:wasteland_stone"
+      }
+    ]
   },
-  "type": "minecraft:decorated"
+  "type": "gaiadimension:gaia_disk"
 }

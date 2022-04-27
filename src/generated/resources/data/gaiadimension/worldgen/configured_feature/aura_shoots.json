@@ -1,44 +1,4 @@
 {
-  "config": {
-    "feature": {
-      "config": {
-        "feature": {
-          "config": {
-            "feature": {
-              "config": {},
-              "type": "gaiadimension:aura_shoot"
-            },
-            "decorator": {
-              "config": {},
-              "type": "minecraft:spread_32_above"
-            }
-          },
-          "type": "minecraft:decorated"
-        },
-        "decorator": {
-          "config": {
-            "outer": {
-              "config": {},
-              "type": "minecraft:square"
-            },
-            "inner": {
-              "config": {
-                "heightmap": "MOTION_BLOCKING"
-              },
-              "type": "minecraft:heightmap"
-            }
-          },
-          "type": "minecraft:decorated"
-        }
-      },
-      "type": "minecraft:decorated"
-    },
-    "decorator": {
-      "config": {
-        "count": 6
-      },
-      "type": "minecraft:count"
-    }
-  },
-  "type": "minecraft:decorated"
+  "config": {},
+  "type": "gaiadimension:aura_shoot"
 }

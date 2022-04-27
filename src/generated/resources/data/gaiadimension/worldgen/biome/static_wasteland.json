@@ -1,19 +1,4 @@
 {
-  "effects": {
-    "mood_sound": {
-      "sound": "minecraft:ambient.cave",
-      "tick_delay": 6000,
-      "block_search_extent": 8,
-      "offset": 2.0
-    },
-    "sky_color": 2633554,
-    "foliage_color": 2837910,
-    "grass_color": 2837910,
-    "fog_color": 5690794,
-    "water_color": 7117233,
-    "water_fog_color": 9617108
-  },
-  "surface_builder": "gaiadimension:wasteland_stone",
   "carvers": {
     "air": [
       "gaiadimension:crystal_caves",
@@ -49,7 +34,6 @@
       "gaiadimension:crystal_fungi_caves"
     ]
   ],
-  "starts": [],
   "spawners": {
     "monster": [
       {
@@ -104,6 +88,7 @@
       }
     ],
     "ambient": [],
+    "axolotls": [],
     "underground_water_creature": [],
     "water_creature": [
       {
@@ -117,12 +102,23 @@
     "misc": []
   },
   "spawn_costs": {},
-  "player_spawn_friendly": false,
   "forge:registry_name": "gaiadimension:static_wasteland",
   "precipitation": "none",
   "temperature": 0.4,
   "downfall": 0.0,
   "category": "none",
-  "depth": 3.0,
-  "scale": 0.05
+  "effects": {
+    "mood_sound": {
+      "sound": "minecraft:ambient.cave",
+      "tick_delay": 6000,
+      "block_search_extent": 8,
+      "offset": 2.0
+    },
+    "sky_color": 2633554,
+    "foliage_color": 2837910,
+    "grass_color": 2837910,
+    "fog_color": 5690794,
+    "water_color": 7117233,
+    "water_fog_color": 9617108
+  }
 }

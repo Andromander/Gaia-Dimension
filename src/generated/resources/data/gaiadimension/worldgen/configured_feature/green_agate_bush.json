@@ -1,7 +1,7 @@
 {
   "config": {
-    "features": [
-      {
+    "features": {
+      "feature": {
         "config": {
           "decorators": [],
           "ignore_vines": false,
@@ -18,31 +18,6 @@
             "upper_size": 0,
             "type": "minecraft:two_layers_feature_size"
           },
-          "foliage_provider": {
-            "state": {
-              "Properties": {
-                "persistent": "false",
-                "distance": "7"
-              },
-              "Name": "gaiadimension:green_agate_leaves"
-            },
-            "type": "minecraft:simple_state_provider"
-          },
-          "sapling_provider": {
-            "state": {
-              "Properties": {
-                "stage": "0"
-              },
-              "Name": "gaiadimension:green_agate_sapling"
-            },
-            "type": "minecraft:simple_state_provider"
-          },
-          "foliage_placer": {
-            "radius": 2,
-            "offset": 1,
-            "height": 2,
-            "type": "minecraft:bush_foliage_placer"
-          },
           "trunk_provider": {
             "state": {
               "Properties": {
@@ -57,11 +32,28 @@
             "height_rand_a": 0,
             "height_rand_b": 0,
             "type": "minecraft:straight_trunk_placer"
+          },
+          "foliage_provider": {
+            "state": {
+              "Properties": {
+                "persistent": "false",
+                "distance": "7"
+              },
+              "Name": "gaiadimension:green_agate_leaves"
+            },
+            "type": "minecraft:simple_state_provider"
+          },
+          "foliage_placer": {
+            "radius": 2,
+            "offset": 1,
+            "height": 2,
+            "type": "minecraft:bush_foliage_placer"
           }
         },
         "type": "minecraft:tree"
-      }
-    ]
+      },
+      "placement": []
+    }
   },
   "type": "minecraft:simple_random_selector"
 }

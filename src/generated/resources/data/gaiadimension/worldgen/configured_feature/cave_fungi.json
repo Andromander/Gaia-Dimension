@@ -1,0 +1,54 @@
+{
+  "config": {
+    "tries": 64,
+    "xz_spread": 7,
+    "y_spread": 3,
+    "feature": {
+      "feature": {
+        "config": {
+          "to_place": {
+            "entries": [
+              {
+                "data": {
+                  "Name": "gaiadimension:elder_imklia"
+                },
+                "weight": 2
+              },
+              {
+                "data": {
+                  "Name": "gaiadimension:gold_orb_tucher"
+                },
+                "weight": 2
+              }
+            ],
+            "type": "minecraft:weighted_state_provider"
+          }
+        },
+        "type": "minecraft:simple_block"
+      },
+      "placement": [
+        {
+          "predicate": {
+            "predicate": {
+              "blocks": [
+                "gaiadimension:glitter_grass",
+                "gaiadimension:heavy_soil",
+                "gaiadimension:corrupt_grass",
+                "gaiadimension:corrupt_soil",
+                "gaiadimension:murky_grass",
+                "gaiadimension:boggy_soil",
+                "gaiadimension:soft_grass",
+                "gaiadimension:light_soil",
+                "gaiadimension:salt"
+              ],
+              "type": "minecraft:matching_blocks"
+            },
+            "type": "minecraft:not"
+          },
+          "type": "minecraft:block_predicate_filter"
+        }
+      ]
+    }
+  },
+  "type": "minecraft:random_patch"
+}

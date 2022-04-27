@@ -1,0 +1,27 @@
+{
+  "feature": "gaiadimension:cave_fungi",
+  "placement": [
+    {
+      "type": "minecraft:in_square"
+    },
+    {
+      "height": {
+        "min_inclusive": {
+          "absolute": 0
+        },
+        "max_inclusive": {
+          "below_top": 0
+        },
+        "type": "minecraft:uniform"
+      },
+      "type": "minecraft:height_range"
+    },
+    {
+      "chance": 2,
+      "type": "minecraft:rarity_filter"
+    },
+    {
+      "type": "minecraft:biome"
+    }
+  ]
+}

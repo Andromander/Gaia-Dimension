@@ -1,44 +1,24 @@
 {
   "config": {
-    "feature": {
-      "config": {
-        "state": {
-          "Name": "gaiadimension:impure_sludge"
-        },
-        "radius": {
-          "type": "minecraft:uniform",
-          "value": {
-            "min_inclusive": 1,
-            "max_inclusive": 4
-          }
-        },
-        "half_height": 2,
-        "targets": [
-          {
-            "Name": "gaiadimension:murky_grass"
-          },
-          {
-            "Name": "gaiadimension:boggy_soil"
-          }
-        ]
-      },
-      "type": "gaiadimension:bog_patch"
+    "state": {
+      "Name": "gaiadimension:impure_sludge"
     },
-    "decorator": {
-      "config": {
-        "outer": {
-          "config": {},
-          "type": "minecraft:square"
-        },
-        "inner": {
-          "config": {
-            "heightmap": "OCEAN_FLOOR_WG"
-          },
-          "type": "minecraft:heightmap"
-        }
+    "radius": {
+      "type": "minecraft:uniform",
+      "value": {
+        "min_inclusive": 1,
+        "max_inclusive": 4
+      }
+    },
+    "half_height": 2,
+    "targets": [
+      {
+        "Name": "gaiadimension:murky_grass"
       },
-      "type": "minecraft:decorated"
-    }
+      {
+        "Name": "gaiadimension:boggy_soil"
+      }
+    ]
   },
-  "type": "minecraft:decorated"
+  "type": "gaiadimension:bog_patch"
 }

@@ -1,19 +1,4 @@
 {
-  "effects": {
-    "mood_sound": {
-      "sound": "minecraft:ambient.cave",
-      "tick_delay": 6000,
-      "block_search_extent": 8,
-      "offset": 2.0
-    },
-    "sky_color": 15004627,
-    "foliage_color": 14546943,
-    "grass_color": 7982765,
-    "fog_color": 16764489,
-    "water_color": 7117233,
-    "water_fog_color": 9617108
-  },
-  "surface_builder": "gaiadimension:soft_grass",
   "carvers": {
     "air": [
       "gaiadimension:crystal_caves",
@@ -48,6 +33,7 @@
       "gaiadimension:crystal_fungi_caves",
       "gaiadimension:underground_glitter_blob"
     ],
+    [],
     [
       "gaiadimension:aura_tree",
       "gaiadimension:aura_shoots",
@@ -55,7 +41,6 @@
       "gaiadimension:crystal_blooms_common"
     ]
   ],
-  "starts": [],
   "spawners": {
     "monster": [
       {
@@ -104,6 +89,7 @@
       }
     ],
     "ambient": [],
+    "axolotls": [],
     "underground_water_creature": [],
     "water_creature": [
       {
@@ -117,12 +103,23 @@
     "misc": []
   },
   "spawn_costs": {},
-  "player_spawn_friendly": false,
   "forge:registry_name": "gaiadimension:shining_grove",
   "precipitation": "none",
   "temperature": 0.5,
   "downfall": 0.0,
   "category": "none",
-  "depth": 0.4,
-  "scale": 0.05
+  "effects": {
+    "mood_sound": {
+      "sound": "minecraft:ambient.cave",
+      "tick_delay": 6000,
+      "block_search_extent": 8,
+      "offset": 2.0
+    },
+    "sky_color": 15004627,
+    "foliage_color": 14546943,
+    "grass_color": 7982765,
+    "fog_color": 16764489,
+    "water_color": 7117233,
+    "water_fog_color": 9617108
+  }
 }
