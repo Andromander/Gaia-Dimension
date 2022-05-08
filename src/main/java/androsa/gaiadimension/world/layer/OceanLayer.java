@@ -1,8 +1,8 @@
 package androsa.gaiadimension.world.layer;
 
 import androsa.gaiadimension.registry.ModBiomes;
-import androsa.gaiadimension.world.layer.oldgen.AreaTransformer0;
-import androsa.gaiadimension.world.layer.oldgen.Context;
+import androsa.gaiadimension.world.layer.util.AreaTransformer0;
+import androsa.gaiadimension.world.layer.util.Context;
 
 public enum OceanLayer implements AreaTransformer0 {
     INSTANCE;

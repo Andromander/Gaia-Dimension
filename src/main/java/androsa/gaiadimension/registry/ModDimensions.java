@@ -1,9 +1,9 @@
 package androsa.gaiadimension.registry;
 
 import androsa.gaiadimension.GaiaDimensionMod;
-import androsa.gaiadimension.world.GaiaBiomeSource;
-import androsa.gaiadimension.world.GaiaSurfaceRuleData;
-import androsa.gaiadimension.world.GaiaChunkGenerator;
+import androsa.gaiadimension.world.chunk.GaiaBiomeSource;
+import androsa.gaiadimension.world.chunk.GaiaSurfaceRuleData;
+import androsa.gaiadimension.world.chunk.GaiaChunkGenerator;
 import net.minecraft.core.Registry;
 import net.minecraft.data.BuiltinRegistries;
 import net.minecraft.resources.ResourceKey;

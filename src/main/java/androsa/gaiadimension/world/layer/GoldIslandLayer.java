@@ -1,8 +1,8 @@
 package androsa.gaiadimension.world.layer;
 
 import androsa.gaiadimension.registry.ModBiomes;
-import androsa.gaiadimension.world.layer.oldgen.BishopTransformer;
-import androsa.gaiadimension.world.layer.oldgen.Context;
+import androsa.gaiadimension.world.layer.util.BishopTransformer;
+import androsa.gaiadimension.world.layer.util.Context;
 
 public enum GoldIslandLayer implements BishopTransformer {
     INSTANCE;

@@ -1,8 +1,8 @@
 package androsa.gaiadimension.world.layer;
 
-import androsa.gaiadimension.world.layer.oldgen.Area;
-import androsa.gaiadimension.world.layer.oldgen.AreaTransformer1;
-import androsa.gaiadimension.world.layer.oldgen.BigContext;
+import androsa.gaiadimension.world.layer.util.Area;
+import androsa.gaiadimension.world.layer.util.AreaTransformer1;
+import androsa.gaiadimension.world.layer.util.BigContext;
 
 public enum SpecialBiomeMixLayer implements AreaTransformer1 {
     INSTANCE;

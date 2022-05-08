@@ -1,9 +1,9 @@
 package androsa.gaiadimension.world.layer;
 
 import androsa.gaiadimension.registry.ModBiomes;
-import androsa.gaiadimension.world.layer.oldgen.Area;
-import androsa.gaiadimension.world.layer.oldgen.AreaTransformer1;
-import androsa.gaiadimension.world.layer.oldgen.BigContext;
+import androsa.gaiadimension.world.layer.util.Area;
+import androsa.gaiadimension.world.layer.util.AreaTransformer1;
+import androsa.gaiadimension.world.layer.util.BigContext;
 
 import java.util.Random;
 

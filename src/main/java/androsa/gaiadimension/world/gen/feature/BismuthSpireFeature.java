@@ -1,7 +1,7 @@
 package androsa.gaiadimension.world.gen.feature;
 
 import androsa.gaiadimension.registry.ModBlocks;
-import androsa.gaiadimension.world.gen.config.FeatureHeightConfig;
+import androsa.gaiadimension.world.gen.feature.config.FeatureHeightConfig;
 import com.mojang.serialization.Codec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.WorldGenLevel;

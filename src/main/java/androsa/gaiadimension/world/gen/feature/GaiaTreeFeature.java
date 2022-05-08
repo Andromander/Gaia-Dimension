@@ -1,6 +1,6 @@
 package androsa.gaiadimension.world.gen.feature;
 
-import androsa.gaiadimension.world.gen.config.GaiaTreeFeatureConfig;
+import androsa.gaiadimension.world.gen.feature.config.GaiaTreeFeatureConfig;
 import com.google.common.collect.Iterables;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;

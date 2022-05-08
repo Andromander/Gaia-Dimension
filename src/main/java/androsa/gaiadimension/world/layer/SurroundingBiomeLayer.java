@@ -1,8 +1,8 @@
 package androsa.gaiadimension.world.layer;
 
 import androsa.gaiadimension.registry.ModBiomes;
-import androsa.gaiadimension.world.layer.oldgen.CastleTransformer;
-import androsa.gaiadimension.world.layer.oldgen.Context;
+import androsa.gaiadimension.world.layer.util.CastleTransformer;
+import androsa.gaiadimension.world.layer.util.Context;
 
 public enum SurroundingBiomeLayer implements CastleTransformer {
     INSTANCE;

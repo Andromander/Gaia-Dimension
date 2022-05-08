@@ -3,6 +3,7 @@ package androsa.gaiadimension.registry;
 import androsa.gaiadimension.GaiaDimensionMod;
 import androsa.gaiadimension.block.*;
 import androsa.gaiadimension.item.ScaynyxBucketItem;
+import androsa.gaiadimension.world.gen.feature.tree.*;
 import androsa.gaiadimension.world.gen.tree.*;
 import com.google.common.collect.Maps;
 import net.minecraft.core.BlockPos;

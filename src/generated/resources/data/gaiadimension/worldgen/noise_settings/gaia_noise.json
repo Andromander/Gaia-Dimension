@@ -87,7 +87,7 @@
                                 "absolute": 50
                               },
                               "false_at_and_above": {
-                                "absolute": 63
+                                "below_top": 0
                               },
                               "type": "minecraft:vertical_gradient"
                             },
@@ -105,6 +105,8 @@
                           "if_true": {
                             "biome_is": [
                               "gaiadimension:salt_dunes",
+                              "gaiadimension:crystal_salt_dunes",
+                              "gaiadimension:salty_coast",
                               "gaiadimension:mineral_river",
                               "gaiadimension:mineral_reservoir"
                             ],
@@ -310,7 +312,7 @@
                                     "absolute": 50
                                   },
                                   "false_at_and_above": {
-                                    "absolute": 63
+                                    "below_top": 0
                                   },
                                   "type": "minecraft:vertical_gradient"
                                 },
@@ -328,6 +330,8 @@
                               "if_true": {
                                 "biome_is": [
                                   "gaiadimension:salt_dunes",
+                                  "gaiadimension:crystal_salt_dunes",
+                                  "gaiadimension:salty_coast",
                                   "gaiadimension:mineral_river",
                                   "gaiadimension:mineral_reservoir"
                                 ],
@@ -430,6 +434,8 @@
                     "if_true": {
                       "biome_is": [
                         "gaiadimension:salt_dunes",
+                        "gaiadimension:crystal_salt_dunes",
+                        "gaiadimension:salty_coast",
                         "gaiadimension:mineral_river",
                         "gaiadimension:mineral_reservoir"
                       ],

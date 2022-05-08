@@ -1,8 +1,8 @@
 package androsa.gaiadimension.world.layer;
 
 import androsa.gaiadimension.registry.ModBiomes;
-import androsa.gaiadimension.world.layer.oldgen.C0Transformer;
-import androsa.gaiadimension.world.layer.oldgen.Context;
+import androsa.gaiadimension.world.layer.util.C0Transformer;
+import androsa.gaiadimension.world.layer.util.Context;
 
 public class GaiaBiomesLayer implements C0Transformer {
 
