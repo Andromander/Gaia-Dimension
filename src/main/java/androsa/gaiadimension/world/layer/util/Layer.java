@@ -8,6 +8,8 @@ import net.minecraft.core.Registry;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.biome.Biomes;
 
+import java.util.Optional;
+
 public class Layer {
 
     public final LazyArea area;
@@ -18,16 +20,16 @@ public class Layer {
 
     public Holder<Biome> get(Registry<Biome> registry, int x, int z) {
         int i = this.area.get(x, z);
-        Biome biome = registry.byId(i);
-        if (biome == null) {
+        Optional<Holder<Biome>> biome = registry.getHolder(i);
+        if (biome.isEmpty()) {
             if (SharedConstants.IS_RUNNING_IN_IDE) {
                 throw Util.pauseInIde(new IllegalStateException("Unknown biome id: " + i));
             } else {
                 GaiaDimensionMod.LOGGER.warn("Unknown biome id: ", i);
-                return Holder.direct(registry.get(Biomes.OCEAN.getRegistryName()));
+                return registry.getHolderOrThrow(Biomes.OCEAN);
             }
         } else {
-            return Holder.direct(biome);
+            return biome.get();
         }
     }
 }
