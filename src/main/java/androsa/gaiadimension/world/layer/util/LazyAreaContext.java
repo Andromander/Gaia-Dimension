@@ -20,18 +20,22 @@ public class LazyAreaContext implements BigContext<LazyArea> {
         this.maxCache = pMaxCache;
     }
 
+    @Override
     public LazyArea createResult(PixelTransformer pPixelTransformer) {
         return new LazyArea(this.cache, this.maxCache, pPixelTransformer);
     }
 
+    @Override
     public LazyArea createResult(PixelTransformer pPixelTransformer, LazyArea pArea) {
         return new LazyArea(this.cache, Math.min(1024, pArea.getMaxCache() * 4), pPixelTransformer);
     }
 
+    @Override
     public LazyArea createResult(PixelTransformer pTransformer, LazyArea pFirstArea, LazyArea pSecondArea) {
         return new LazyArea(this.cache, Math.min(1024, Math.max(pFirstArea.getMaxCache(), pSecondArea.getMaxCache()) * 4), pTransformer);
     }
 
+    @Override
     public void initRandom(long pX, long pZ) {
         long i = this.seed;
         i = LinearCongruentialGenerator.next(i, pX);
@@ -41,12 +45,14 @@ public class LazyAreaContext implements BigContext<LazyArea> {
         this.rval = i;
     }
 
+    @Override
     public int nextRandom(int pBound) {
         int i = Math.floorMod(this.rval >> 24, pBound);
         this.rval = LinearCongruentialGenerator.next(this.rval, this.seed);
         return i;
     }
 
+    @Override
     public ImprovedNoise getBiomeNoise() {
         return this.biomeNoise;
     }

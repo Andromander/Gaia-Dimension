@@ -35,6 +35,7 @@ public class GaiaLayerUtil {
         ocean = ZoomLayer.NORMAL.run(contextFactory.apply(2004L), ocean);
         ocean = ZoomLayer.NORMAL.run(contextFactory.apply(2005L), ocean);
         ocean = ZoomLayer.NORMAL.run(contextFactory.apply(2006L), ocean);
+        ocean = SmoothLayer.INSTANCE.run(contextFactory.apply(1003L), ocean);
 
         islands = AddIslandLayer.INSTANCE.run(contextFactory.apply(3L), islands);
         islands = ZoomLayer.NORMAL.run(contextFactory.apply(2002), islands);
@@ -51,21 +52,12 @@ public class GaiaLayerUtil {
         biomes = SpecialBiomeMixLayer.INSTANCE.run(contextFactory.apply(700L), biomes);
         biomes = ZoomLayer.NORMAL.run(contextFactory.apply(1002L), biomes);
         biomes = ZoomLayer.NORMAL.run(contextFactory.apply(1003L), biomes);
+        biomes = CoastLayer.INSTANCE.run(contextFactory.apply(1000L), biomes);
         biomes = ZoomLayer.NORMAL.run(contextFactory.apply(1004L), biomes);
         biomes = ZoomLayer.NORMAL.run(contextFactory.apply(1005L), biomes);
 
         AreaFactory<T> river = MineralRiverLayer.INSTANCE.run(contextFactory.apply(1L), biomes);
         river = SmoothLayer.INSTANCE.run(contextFactory.apply(1000L), river);
-
-        for (int i = 0; i < 4; i++) {
-            //biomes = ZoomLayer.NORMAL.run(contextFactory.apply(1000L + i), biomes);
-            if (i == 0) {
-                biomes = AddIslandLayer.INSTANCE.run(contextFactory.apply(3L), biomes);
-            }
-            if (i == 1) {
-                biomes = CoastLayer.INSTANCE.run(contextFactory.apply(1000L), biomes);
-            }
-        }
 
         biomes = SmoothLayer.INSTANCE.run(contextFactory.apply(1000L), biomes);
         biomes = MineralRiverMixLayer.INSTANCE.run(contextFactory.apply(100L), biomes, river);

@@ -9,7 +9,12 @@ public enum RemoveTooMuchOceanLayer implements CastleTransformer {
 
     @Override
     public int apply(Context context, int north, int east, int south, int west, int center) {
-        return isOcean(center) && isOcean(north) && isOcean(east) && isOcean(west) && isOcean(south) && context.nextRandom(7) == 0 ? center : 1;
+        if (isOcean(center) && isOcean(north) && isOcean(east) && isOcean(west) && isOcean(south)) {
+            int rand = context.nextRandom(2);
+            return rand == 0 ? center : 1;
+        }
+
+        return 1;
     }
 
     private boolean isOcean(int biome) {

@@ -10,7 +10,7 @@ public enum GoldIslandLayer implements BishopTransformer {
     @Override
     public int apply(Context context, int sw, int se, int ne, int nw, int center) {
         if (isOcean(sw) && isOcean(se) && isOcean(ne) && isOcean(nw) && isOcean(center)) {
-            if (context.nextRandom(5) == 0) {
+            if (context.nextRandom(3) == 0) {
                 return GaiaLayerUtil.getBiomeId(ModBiomes.golden_forest);
             }
         }

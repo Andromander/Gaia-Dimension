@@ -14,6 +14,7 @@ public class LazyArea implements Area {
         this.transformer = pTransformer;
     }
 
+    @Override
     public int get(int pX, int pZ) {
         long i = ChunkPos.asLong(pX, pZ);
         synchronized(this.cache) {

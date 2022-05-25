@@ -11,7 +11,8 @@ public enum IslandLayer implements AreaTransformer0 {
         if (x == 0 && z == 0) {
             return 1;
         } else {
-            return context.nextRandom(10) == 0 ? 1 : 0;
+            int rand = context.nextRandom(10);
+            return rand == 0 ? 1 : 0;
         }
     }
 }
