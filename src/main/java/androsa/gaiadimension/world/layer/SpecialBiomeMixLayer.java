@@ -20,7 +20,7 @@ public enum SpecialBiomeMixLayer implements AreaTransformer1 {
     @Override
     public int applyPixel(BigContext<?> context, Area area, int x, int z) {
         int posX = getParentX(x << 4);
-        int posZ = getParentY(x << 4);
+        int posZ = getParentY(z << 4);
         int centerX = ((x + posX + 1) & -4) - posX;
         int centerZ = ((z + posZ + 1) & -4) - posZ;
 
