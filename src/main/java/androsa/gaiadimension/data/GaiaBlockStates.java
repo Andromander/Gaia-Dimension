@@ -130,6 +130,7 @@ public class GaiaBlockStates extends GaiaBlockStateProvider {
         basicBlock(ModBlocks.volcanic_rock);
         basicBlock(ModBlocks.searing_rock);
         basicBlock(ModBlocks.primal_mass);
+        basicBlock(ModBlocks.nexustone);
         basicBlock(ModBlocks.impure_rock);
         basicBlockLayered(ModBlocks.active_rock, "active_rock", "active_rock_overlay");
         basicBlock(ModBlocks.impure_sludge);

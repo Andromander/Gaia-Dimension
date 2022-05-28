@@ -89,7 +89,7 @@ public class GaiaSurfaceRuleData {
 
         SurfaceRules.RuleSource aboveSeaLevelRule = SurfaceRules.ifTrue(SurfaceRules.abovePreliminarySurface(), worldSurfaceRule);
         builder.add(hasSeaLevel ? aboveSeaLevelRule : worldSurfaceRule);
-        builder.add(SurfaceRules.ifTrue(SurfaceRules.verticalGradient("nexustone", VerticalAnchor.absolute(-32), VerticalAnchor.absolute(-48)), NEXUSTONE));
+        builder.add(SurfaceRules.ifTrue(SurfaceRules.verticalGradient("nexustone", VerticalAnchor.absolute(-48), VerticalAnchor.absolute(-32)), NEXUSTONE));
         builder.add(SurfaceRules.ifTrue(SurfaceRules.verticalGradient("primal_mass", VerticalAnchor.absolute(0), VerticalAnchor.absolute(16)), PRIMAL_MASS));
         return SurfaceRules.sequence(builder.build().toArray(SurfaceRules.RuleSource[]::new));
     }

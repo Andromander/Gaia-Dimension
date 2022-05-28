@@ -552,10 +552,10 @@
         "if_true": {
           "random_name": "minecraft:nexustone",
           "true_at_and_below": {
-            "absolute": -32
+            "absolute": -48
           },
           "false_at_and_above": {
-            "absolute": -48
+            "absolute": -32
           },
           "type": "minecraft:vertical_gradient"
         },

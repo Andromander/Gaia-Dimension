@@ -4,7 +4,6 @@ import androsa.gaiadimension.GaiaDimensionMod;
 import androsa.gaiadimension.block.*;
 import androsa.gaiadimension.item.ScaynyxBucketItem;
 import androsa.gaiadimension.world.gen.feature.tree.*;
-import androsa.gaiadimension.world.gen.tree.*;
 import com.google.common.collect.Maps;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.BlockSource;
@@ -178,7 +177,8 @@ public class ModBlocks {
     public static final RegistryObject<Block> charged_mineral = register("charged_mineral", () -> new ChargedMineralBlock(Properties.of(Material.METAL, MaterialColor.COLOR_CYAN).strength(4.0F, 15.0F).sound(SoundType.GLASS).noOcclusion()));
     public static final RegistryObject<Block> volcanic_rock = register("volcanic_rock", GaiaBlockProperties.stoneProps(MaterialColor.TERRACOTTA_GRAY, 15.0F, 200.0F, true));
     public static final RegistryObject<Block> searing_rock = register("searing_rock", () -> new SearingRockBlock(GaiaBlockProperties.stoneProps(MaterialColor.TERRACOTTA_GRAY, 20.0F, 600.0F, true).lightLevel((state) -> 7)));
-    public static final RegistryObject<Block> primal_mass = register("primal_mass", GaiaBlockProperties.stoneProps(MaterialColor.TERRACOTTA_PURPLE, 30.0F, 400.0F, true));
+    public static final RegistryObject<Block> primal_mass = register("primal_mass", GaiaBlockProperties.stoneProps(MaterialColor.TERRACOTTA_PURPLE, 5.0F, 45.0F, true));
+    public static final RegistryObject<Block> nexustone = register("nexustone", GaiaBlockProperties.stoneProps(MaterialColor.TERRACOTTA_BLACK, 10.0F, 100.0F, true));
     public static final RegistryObject<Block> impure_rock = register("impure_rock", GaiaBlockProperties.stoneProps(MaterialColor.COLOR_GRAY, 20.0F, 300.0F, true));
     public static final RegistryObject<Block> active_rock = register("active_rock", () -> new ActiveRockBlock(GaiaBlockProperties.stoneProps(MaterialColor.TERRACOTTA_PURPLE, 15.0F, 250.0F, true).lightLevel((state) -> 7)));
     public static final RegistryObject<Block> impure_sludge = register("impure_sludge", () -> new ImpureSludgeBlock(GaiaBlockProperties.sludgeProps()));
