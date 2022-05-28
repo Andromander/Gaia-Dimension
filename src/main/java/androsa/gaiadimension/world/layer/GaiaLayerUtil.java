@@ -34,7 +34,6 @@ public class GaiaLayerUtil {
         ocean = ZoomLayer.NORMAL.run(contextFactory.apply(2003L), ocean);
         ocean = ZoomLayer.NORMAL.run(contextFactory.apply(2004L), ocean);
         ocean = ZoomLayer.NORMAL.run(contextFactory.apply(2005L), ocean);
-        ocean = ZoomLayer.NORMAL.run(contextFactory.apply(2006L), ocean);
         ocean = SmoothLayer.INSTANCE.run(contextFactory.apply(1003L), ocean);
 
         islands = AddIslandLayer.INSTANCE.run(contextFactory.apply(3L), islands);
