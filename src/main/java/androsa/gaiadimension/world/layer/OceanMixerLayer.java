@@ -12,7 +12,7 @@ public enum OceanMixerLayer implements AreaTransformer2, DimensionOffset0Transfo
     @Override
     public int applyPixel(Context context, Area first, Area second, int x, int z) {
         int i = first.get(this.getParentX(x), this.getParentY(z));
-        int j = second.get(this.getParentX(z), this.getParentY(z));
+        int j = second.get(this.getParentX(x), this.getParentY(z));
         if (!isOcean(i)) {
             return i;
         } else {
