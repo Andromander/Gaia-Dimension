@@ -8,6 +8,8 @@
     "gaiadimension:boggy_soil",
     "gaiadimension:murky_grass",
     "gaiadimension:light_soil",
-    "gaiadimension:soft_grass"
+    "gaiadimension:soft_grass",
+    "gaiadimension:aurum_soil",
+    "gaiadimension:gilded_grass"
   ]
 }

@@ -92,7 +92,7 @@ public class GaiaBlockTags extends GaiaBlockTagsProvider {
     );
     private static final ImmutableList<Supplier<? extends Block>> DIRT = ImmutableList.of(
             ModBlocks.heavy_soil, ModBlocks.glitter_grass, ModBlocks.corrupt_soil, ModBlocks.corrupt_grass,
-            ModBlocks.boggy_soil, ModBlocks.murky_grass, ModBlocks.light_soil, ModBlocks.soft_grass
+            ModBlocks.boggy_soil, ModBlocks.murky_grass, ModBlocks.light_soil, ModBlocks.soft_grass, ModBlocks.aurum_soil, ModBlocks.gilded_grass
     );
     private static final ImmutableList<Supplier<? extends Block>> GAIA_BRICKS = ImmutableList.of(
             ModBlocks.gaia_stone_bricks, ModBlocks.cracked_gaia_stone_bricks, ModBlocks.crusted_gaia_stone_bricks

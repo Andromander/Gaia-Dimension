@@ -77,10 +77,12 @@ public class ModBlocks {
     public static final RegistryObject<Block> corrupt_soil = register("corrupt_soil", () -> new GaiaSoilBlock(GaiaBlockProperties.soilProps(MaterialColor.COLOR_GRAY)));
     public static final RegistryObject<Block> boggy_soil = register("boggy_soil", () -> new GaiaSoilBlock(GaiaBlockProperties.soilProps(MaterialColor.COLOR_GRAY)));
     public static final RegistryObject<Block> light_soil = register("light_soil", () -> new GaiaSoilBlock(GaiaBlockProperties.soilProps(MaterialColor.GOLD)));
+    public static final RegistryObject<Block> aurum_soil = register("aurum_soil", () -> new GaiaSoilBlock(GaiaBlockProperties.soilProps(MaterialColor.TERRACOTTA_BLACK)));
     public static final RegistryObject<Block> glitter_grass = register("glitter_grass", () -> new GlitterGrassBlock(GaiaBlockProperties.grassProps(MaterialColor.COLOR_PINK)));
     public static final RegistryObject<Block> corrupt_grass = register("corrupt_grass", () -> new CorruptGrassBlock(GaiaBlockProperties.grassProps(MaterialColor.COLOR_BLACK)));
     public static final RegistryObject<Block> murky_grass = register("murky_grass", () -> new MurkyGrassBlock(GaiaBlockProperties.grassProps(MaterialColor.COLOR_GRAY)));
     public static final RegistryObject<Block> soft_grass = register("soft_grass", () -> new SoftGrassBlock(GaiaBlockProperties.grassProps(MaterialColor.COLOR_CYAN)));
+    public static final RegistryObject<Block> gilded_grass = register("gilded_grass", () -> new GildedGrassBlock(GaiaBlockProperties.grassProps(MaterialColor.TERRACOTTA_BROWN)));
     public static final RegistryObject<Block> frail_glitter_block = register("frail_glitter_block", () -> new GlassBlock(GaiaBlockProperties.glassProps(MaterialColor.COLOR_PINK, 1.0F)));
     public static final RegistryObject<Block> thick_glitter_block = register("thick_glitter_block", GaiaBlockProperties.stoneProps(MaterialColor.TERRACOTTA_PURPLE, 1.5F, 7.5F, true));
     public static final RegistryObject<Block> gummy_glitter_block = register("gummy_glitter_block", () -> new SlimeBlock(Properties.of(Material.CLAY, MaterialColor.COLOR_PURPLE).sound(SoundType.SLIME_BLOCK).noOcclusion()));

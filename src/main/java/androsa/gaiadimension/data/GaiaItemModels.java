@@ -31,10 +31,12 @@ public class GaiaItemModels extends GaiaItemModelProvider {
         blockItem(ModBlocks.corrupt_soil);
         blockItem(ModBlocks.boggy_soil);
         blockItem(ModBlocks.light_soil);
+        blockItem(ModBlocks.aurum_soil);
         blockItem(ModBlocks.glitter_grass);
         blockItem(ModBlocks.corrupt_grass);
         blockItem(ModBlocks.murky_grass);
         blockItem(ModBlocks.soft_grass);
+        blockItem(ModBlocks.gilded_grass);
         blockItem(ModBlocks.frail_glitter_block);
         blockItem(ModBlocks.thick_glitter_block);
         blockItem(ModBlocks.gummy_glitter_block);

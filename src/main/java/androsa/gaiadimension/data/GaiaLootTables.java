@@ -74,10 +74,12 @@ public class GaiaLootTables extends LootTableProvider {
             dropSelf(ModBlocks.corrupt_soil);
             dropSelf(ModBlocks.boggy_soil);
             dropSelf(ModBlocks.light_soil);
+            dropSelf(ModBlocks.aurum_soil);
             dropWithSilk(ModBlocks.glitter_grass, ModBlocks.heavy_soil);
             dropWithSilk(ModBlocks.corrupt_grass, ModBlocks.corrupt_soil);
             dropWithSilk(ModBlocks.murky_grass, ModBlocks.boggy_soil);
             dropWithSilk(ModBlocks.soft_grass, ModBlocks.light_soil);
+            dropWithSilk(ModBlocks.gilded_grass, ModBlocks.aurum_soil);
             dropOnlySilk(ModBlocks.frail_glitter_block);
             dropSelf(ModBlocks.thick_glitter_block);
             dropSelf(ModBlocks.gummy_glitter_block);

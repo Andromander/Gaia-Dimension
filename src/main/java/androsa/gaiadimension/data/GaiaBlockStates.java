@@ -35,10 +35,12 @@ public class GaiaBlockStates extends GaiaBlockStateProvider {
         basicBlockRotated(ModBlocks.corrupt_soil);
         basicBlockRotated(ModBlocks.boggy_soil);
         basicBlockRotated(ModBlocks.light_soil);
+        basicBlock(ModBlocks.aurum_soil);
         grassBlock(ModBlocks.glitter_grass, "heavy_soil");
         grassBlock(ModBlocks.corrupt_grass, "corrupt_soil");
         grassBlock(ModBlocks.murky_grass, "boggy_soil");
         grassBlock(ModBlocks.soft_grass, "light_soil");
+        sidedBlock(ModBlocks.gilded_grass, "gilded_grass_top", "aurum_soil", "gilded_grass_side", "gilded_grass_side", "gilded_grass_side", "gilded_grass_side");
         basicBlockRotated(ModBlocks.frail_glitter_block);
         basicBlockRotated(ModBlocks.thick_glitter_block);
         basicBlockRotated(ModBlocks.gummy_glitter_block);
