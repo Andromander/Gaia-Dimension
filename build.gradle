@@ -12,11 +12,11 @@ apply plugin: 'net.minecraftforge.gradle'
 apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
 
-version = project.mod_version
+version = project.artifactor_mod_version
 group = project.mod_group
 archivesBaseName = project.archives_base_name
 
-String fullVersion = project.mc_version + "-" + version
+String fullVersion = project.artifactor_minecraft_version + "-" + version
 if (hasProperty("CIVersion")) {
     fullVersion += "-" + CIVersion
 }
@@ -26,7 +26,7 @@ java.toolchain.languageVersion = JavaLanguageVersion.of(17) // Need this here so
 
 minecraft {
     mappings channel: project.forge_channel, version: project.forge_mappings
-    //version = "${project.mc_version}-${project.forge_version}"
+    //version = "${project.artifactor_minecraft_version}-${project.artifactor_forge_version}"
     // makeObfSourceJar = false // an Srg named sources jar is made by default. uncomment this to disable.
 
     accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg')
@@ -96,15 +96,15 @@ jar {
     }
 }
 
-task sourcesJar(type: Jar, dependsOn: classes) {
-    archiveName = archivesBaseName + "-" + jarVersion + "-sources.jar"
-    classifier = 'sources'
-    from sourceSets.main.allSource
-}
+//task sourcesJar(type: Jar, dependsOn: classes) {
+//    archiveName = archivesBaseName + "-" + jarVersion + "-sources.jar"
+//    classifier = 'sources'
+//    from sourceSets.main.allSource
+//}
 
-artifacts {
-    archives sourcesJar
-}
+//artifacts {
+//    archives sourcesJar
+//}
 
 repositories {
     maven {
@@ -127,13 +127,13 @@ repositories {
 }
 
 dependencies {
-//    compileOnly fg.deobf("mezz.jei:jei-${mc_version}:${jei_version}:api")
-//    runtimeOnly fg.deobf("mezz.jei:jei-${mc_version}:${jei_version}")
+//    compileOnly fg.deobf("mezz.jei:jei-${artifactor_minecraft_version}:${jei_version}:api")
+//    runtimeOnly fg.deobf("mezz.jei:jei-${artifactor_minecraft_version}:${jei_version}")
 
 //    runtimeOnly fg.deobf("com.sk88q.worldedit:WorldEdit:${we_version}")
 //    runtimeOnly fg.deobf("team.chisel.ctm:CTM:${project.ctm_version}")
 //    runtimeOnly fg.deobf("me.ichun.mods.tabula.common:Tabula:10.2.0")
 //    runtimeOnly fg.deobf("me.ichun.mods.ichunutil.common:iChunUtil:10.2.0")
 
-    minecraft "net.minecraftforge:forge:${project.mc_version}-${project.forge_version}"
+    minecraft "net.minecraftforge:forge:${project.artifactor_minecraft_version}-${project.artifactor_forge_version}"
 }
