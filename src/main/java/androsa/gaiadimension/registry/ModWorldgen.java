@@ -6,6 +6,7 @@ import androsa.gaiadimension.world.gen.carver.CoatedCavesWorldCarver;
 import androsa.gaiadimension.world.gen.feature.config.FeatureHeightConfig;
 import androsa.gaiadimension.world.gen.feature.config.GaiaTreeFeatureConfig;
 import androsa.gaiadimension.world.gen.feature.*;
+import androsa.gaiadimension.world.gen.feature.config.TwoBlockStateConfig;
 import androsa.gaiadimension.world.gen.structure.MalachiteWatchtowerStructure;
 import androsa.gaiadimension.world.gen.structure.MiniTowerStructure;
 import androsa.gaiadimension.world.gen.structure.pieces.MalachiteWatchtowerPieces;
@@ -72,6 +73,10 @@ public class ModWorldgen {
 			new DiskNoWaterFeature(DiskConfiguration.CODEC));
     public static final RegistryObject<Feature<BlockStateConfiguration>> GAIA_BLOB = FEATURES.register("gaia_blob", () ->
 			new GaiaBlobFeature<>(BlockStateConfiguration.CODEC));
+    public static final RegistryObject<Feature<BlockStateConfiguration>> TERRAIN_SPIKE = FEATURES.register("terrain_spike", () ->
+            new TerrainSpikeFeature<>(BlockStateConfiguration.CODEC));
+    public static final RegistryObject<Feature<TwoBlockStateConfig>> BALANCING_ROCKS = FEATURES.register("balancing_rocks", () ->
+            new BalancingRockFeature<>(TwoBlockStateConfig.CODEC));
 
     //Structures
     public static final RegistryObject<StructureFeature<NoneFeatureConfiguration>> MINI_TOWER = STRUCTURES.register("mini_tower", () ->

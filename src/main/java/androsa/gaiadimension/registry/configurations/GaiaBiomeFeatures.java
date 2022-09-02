@@ -38,6 +38,8 @@ public class GaiaBiomeFeatures {
     public static final BlockState THICK_GLITTER = state(ModBlocks.thick_glitter_block);
     public static final BlockState SEARING_ROCK = state(ModBlocks.searing_rock);
     public static final BlockState STATIC_STONE = state(ModBlocks.static_stone);
+    public static final BlockState BRILLIANT_STONE = state(ModBlocks.brilliant_stone);
+    public static final BlockState GILDED_BRILLIANT_STONE = state(ModBlocks.gilded_brilliant_stone);
     public static final BlockState PEBBLES = state(ModBlocks.pebbles);
     public static final BlockState SPECKLED_ROCK = state(ModBlocks.speckled_rock);
     public static final BlockState COARSE_ROCK = state(ModBlocks.coarse_rock);
@@ -80,6 +82,9 @@ public class GaiaBiomeFeatures {
     public static final BlockState CRYSTAL_GROWTH_RED = state(ModBlocks.crystal_growth_red);
     public static final BlockState CRYSTAL_GROWTH_BLACK = state(ModBlocks.crystal_growth_black);
     public static final BlockState CRYSTAL_GROWTH_AURA = state(ModBlocks.crystal_growth_aura);
+    public static final BlockState GOLDEN_GRASS = state(ModBlocks.golden_grass);
+    public static final BlockState GOLDEN_STONE = state(ModBlocks.golden_stone);
+    public static final BlockState TOUGH_GOLDEN_STONE = state(ModBlocks.tough_golden_stone);
     public static final BlockState THISCUS = state(ModBlocks.thiscus);
     public static final BlockState OUZIUM = state(ModBlocks.ouzium);
     public static final BlockState AGATHUM = state(ModBlocks.agathum);

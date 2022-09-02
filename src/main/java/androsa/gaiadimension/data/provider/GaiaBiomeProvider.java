@@ -266,4 +266,13 @@ public abstract class GaiaBiomeProvider {
                 .addFeature(GenerationStep.Decoration.UNDERGROUND_DECORATION, GaiaFeatures.Placed.UNDERGROUND_GLITTER_BLOB)
                 .build();
     }
+
+    public static BiomeGenerationSettings goldenHillsBiome() {
+        return new BiomeGenerationSettings.Builder()
+                .addFeature(GenerationStep.Decoration.LOCAL_MODIFICATIONS, GaiaFeatures.Placed.BRILLIANT_STONE_SPIKES)
+                .addFeature(GenerationStep.Decoration.LOCAL_MODIFICATIONS, GaiaFeatures.Placed.BALANCING_ROCKS)
+                .addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, GaiaFeatures.Placed.DISK_GILDED_BRILLIANT_STONE)
+                .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, GaiaFeatures.Placed.GOLDEN_GRASS_UNCOMMON)
+                .build();
+    }
 }

@@ -1,0 +1,11 @@
+{
+  "config": {
+    "first_state": {
+      "Name": "gaiadimension:golden_stone"
+    },
+    "second_state": {
+      "Name": "gaiadimension:tough_golden_stone"
+    }
+  },
+  "type": "gaiadimension:balancing_rocks"
+}

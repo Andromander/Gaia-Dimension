@@ -1,0 +1,19 @@
+{
+  "feature": "gaiadimension:brilliant_stone_spikes",
+  "placement": [
+    {
+      "type": "minecraft:in_square"
+    },
+    {
+      "heightmap": "WORLD_SURFACE_WG",
+      "type": "minecraft:heightmap"
+    },
+    {
+      "count": 5,
+      "type": "minecraft:count"
+    },
+    {
+      "type": "minecraft:biome"
+    }
+  ]
+}

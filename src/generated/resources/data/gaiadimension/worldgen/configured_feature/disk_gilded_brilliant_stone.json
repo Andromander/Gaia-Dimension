@@ -1,0 +1,21 @@
+{
+  "config": {
+    "state": {
+      "Name": "gaiadimension:gilded_brilliant_stone"
+    },
+    "radius": {
+      "type": "minecraft:uniform",
+      "value": {
+        "min_inclusive": 2,
+        "max_inclusive": 4
+      }
+    },
+    "half_height": 2,
+    "targets": [
+      {
+        "Name": "gaiadimension:brilliant_stone"
+      }
+    ]
+  },
+  "type": "gaiadimension:gaia_disk"
+}

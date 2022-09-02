@@ -5,6 +5,7 @@ import androsa.gaiadimension.registry.ModBlocks;
 import androsa.gaiadimension.registry.ModWorldgen;
 import androsa.gaiadimension.world.gen.feature.config.FeatureHeightConfig;
 import androsa.gaiadimension.world.gen.feature.config.GaiaTreeFeatureConfig;
+import androsa.gaiadimension.world.gen.feature.config.TwoBlockStateConfig;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
 import net.minecraft.core.BlockPos;
@@ -84,6 +85,8 @@ public class GaiaFeatures extends GaiaBiomeFeatures {
         public static final Holder<ConfiguredFeature<FeatureHeightConfig, ?>> static_spikes = registerFeature("static_spikes", ModWorldgen.STATIC_SPIKE.get(), new FeatureHeightConfig(8));
         public static final Holder<ConfiguredFeature<FeatureHeightConfig, ?>> bismuth_spires = registerFeature("bismuth_spires", ModWorldgen.BISMUTH_SPIRE.get(), new FeatureHeightConfig(7));
         public static final Holder<ConfiguredFeature<NoneFeatureConfiguration, ?>> bismuth_geysers = registerFeature("bismuth_geysers", ModWorldgen.BISMUTH_GEYSER.get(), FeatureConfiguration.NONE);
+        public static final Holder<ConfiguredFeature<BlockStateConfiguration, ?>> brilliant_stone_spikes = registerFeature("brilliant_stone_spikes", ModWorldgen.TERRAIN_SPIKE.get(), new BlockStateConfiguration(BRILLIANT_STONE));
+        public static final Holder<ConfiguredFeature<TwoBlockStateConfig, ?>> balancing_rocks = registerFeature("balancing_rocks", ModWorldgen.BALANCING_ROCKS.get(), new TwoBlockStateConfig(GOLDEN_STONE, TOUGH_GOLDEN_STONE));
 
         //Underground Ores
         public static final Holder<ConfiguredFeature<OreConfiguration, ?>> ore_primal_mass = registerFeature("ore_primal_mass", Feature.ORE, configureOre(GAIA_STONE, PRIMAL_MASS, 33));
@@ -110,6 +113,7 @@ public class GaiaFeatures extends GaiaBiomeFeatures {
         public static final Holder<ConfiguredFeature<OreConfiguration, ?>> ore_white_opal = registerFeature("ore_white_opal", Feature.ORE, configureOre(GAIA_STONE, WHITE_OPAL_ORE, 8));
         public static final Holder<ConfiguredFeature<DiskConfiguration, ?>> disk_static_stone = registerFeature("disk_static_stone", ModWorldgen.GAIA_DISK.get(), new DiskConfiguration(STATIC_STONE, UniformInt.of(2, 4), 3, ImmutableList.of(WASTELAND_STONE)));
         public static final Holder<ConfiguredFeature<DiskConfiguration, ?>> disk_bog_patch = registerFeature("disk_bog_patch", ModWorldgen.BOG_PATCH.get(), new DiskConfiguration(ModBlocks.impure_sludge.get().defaultBlockState(), UniformInt.of(1, 4), 2, Lists.newArrayList(MURKY_GRASS, BOGGY_SOIL)));
+        public static final Holder<ConfiguredFeature<DiskConfiguration, ?>> disk_gilded_stone = registerFeature("disk_gilded_brilliant_stone", ModWorldgen.GAIA_DISK.get(), new DiskConfiguration(GILDED_BRILLIANT_STONE, UniformInt.of(2, 4), 2, ImmutableList.of(BRILLIANT_STONE)));
 
         //Underground Decoration
         public static final Holder<ConfiguredFeature<NoneFeatureConfiguration, ?>> underground_glitter_blob = registerFeature("underground_glitter_blob", ModWorldgen.FRAIL_BLOB.get(), FeatureConfiguration.NONE);
@@ -122,6 +126,7 @@ public class GaiaFeatures extends GaiaBiomeFeatures {
         public static final Holder<ConfiguredFeature<RandomPatchConfiguration, ?>> seared_growth = registerFeature("seared_crystal_growth", Feature.RANDOM_PATCH, configurePatch(32, 7, 3, BlockStateProvider.simple(CRYSTAL_GROWTH_SEARED)));
         public static final Holder<ConfiguredFeature<RandomPatchConfiguration, ?>> corrupt_growth = registerFeature("corrupt_crystal_growth", Feature.RANDOM_PATCH, configurePatch(32, 7, 3, new WeightedStateProvider(weight().add(CRYSTAL_GROWTH_RED, 2).add(CRYSTAL_GROWTH_BLACK, 2))));
         public static final Holder<ConfiguredFeature<RandomPatchConfiguration, ?>> aura_growth = registerFeature("aura_crystal_growth", Feature.RANDOM_PATCH, configurePatch(32, 7, 3, BlockStateProvider.simple(CRYSTAL_GROWTH_AURA)));
+        public static final Holder<ConfiguredFeature<RandomPatchConfiguration, ?>> golden_grass = registerFeature("golden_grass", Feature.RANDOM_PATCH, configurePatch(32, 7, 3, BlockStateProvider.simple(GOLDEN_GRASS)));
 
         public static final Holder<ConfiguredFeature<RandomPatchConfiguration, ?>> common_bloom = registerFeature("common_bloom", Feature.RANDOM_PATCH, configurePatch(32, 7, 3, new WeightedStateProvider(weight().add(THISCUS, 4).add(OUZIUM, 1))));
         public static final Holder<ConfiguredFeature<RandomPatchConfiguration, ?>> rare_bloom = registerFeature("rare_bloom", Feature.RANDOM_PATCH, configurePatch(32, 7, 3, new WeightedStateProvider(weight().add(OUZIUM, 4).add(THISCUS, 1))));
@@ -239,6 +244,16 @@ public class GaiaFeatures extends GaiaBiomeFeatures {
                 PlacementUtils.HEIGHTMAP,
                 CountPlacement.of(2),
                 BiomeFilter.biome());
+        public static final Holder<PlacedFeature> BRILLIANT_STONE_SPIKES = registerPlacedFeature("brilliant_stone_spikes", Configured.brilliant_stone_spikes,
+                InSquarePlacement.spread(),
+                PlacementUtils.HEIGHTMAP_WORLD_SURFACE,
+                CountPlacement.of(5),
+                BiomeFilter.biome());
+        public static final Holder<PlacedFeature> BALANCING_ROCKS = registerPlacedFeature("balancing_rocks", Configured.balancing_rocks,
+                InSquarePlacement.spread(),
+                PlacementUtils.HEIGHTMAP,
+                CountPlacement.of(1),
+                BiomeFilter.biome());
 
         //Underground Ores
         public static final Holder<PlacedFeature> ORE_PRIMAL_MASS = placedOre("ore_primal_mass", Configured.ore_primal_mass, 25, 33);
@@ -269,6 +284,10 @@ public class GaiaFeatures extends GaiaBiomeFeatures {
                 PlacementUtils.HEIGHTMAP_TOP_SOLID,
                 BiomeFilter.biome());
         public static final Holder<PlacedFeature> DISK_BOG_PATCH = registerPlacedFeature("disk_bog_patch", Configured.disk_bog_patch,
+                InSquarePlacement.spread(),
+                PlacementUtils.HEIGHTMAP_TOP_SOLID,
+                BiomeFilter.biome());
+        public static final Holder<PlacedFeature> DISK_GILDED_BRILLIANT_STONE = registerPlacedFeature("disk_gilded_brilliant_stone", Configured.disk_gilded_stone,
                 InSquarePlacement.spread(),
                 PlacementUtils.HEIGHTMAP_TOP_SOLID,
                 BiomeFilter.biome());
@@ -314,6 +333,7 @@ public class GaiaFeatures extends GaiaBiomeFeatures {
         public static final Holder<PlacedFeature> CRYSTAL_GROWTH_CORRUPT = placedPlant("crystal_growth_corrupt", Configured.corrupt_growth, 1);
         public static final Holder<PlacedFeature> CRYSTAL_GROWTH_AURA = placedPlant("crystal_growth_aura", Configured.aura_growth, 2);
         public static final Holder<PlacedFeature> CRYSTAL_GROWTH_MUTANT = placedPlant("crystal_growth_mutant", Configured.mutant_growth, 2);
+        public static final Holder<PlacedFeature> GOLDEN_GRASS_UNCOMMON = placedPlant("golden_grass_uncommon", Configured.golden_grass, 2);
         public static final Holder<PlacedFeature> CRYSTAL_BLOOMS_COMMON = placedPlant("crystal_blooms_common", Configured.common_bloom, 2);
         public static final Holder<PlacedFeature> CRYSTAL_BLOOMS_RARE = placedPlant("crystal_blooms_rare", Configured.rare_bloom, 2);
         public static final Holder<PlacedFeature> CRYSTAL_BLOOMS_MUTANT = placedPlant("crystal_blooms_mutant", Configured.mutant_bloom, 2);

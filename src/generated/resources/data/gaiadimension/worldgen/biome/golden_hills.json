@@ -1,6 +1,24 @@
 {
   "carvers": {},
-  "features": [],
+  "features": [
+    [],
+    [],
+    [
+      "gaiadimension:brilliant_stone_spikes",
+      "gaiadimension:balancing_rocks"
+    ],
+    [],
+    [],
+    [],
+    [
+      "gaiadimension:disk_gilded_brilliant_stone"
+    ],
+    [],
+    [],
+    [
+      "gaiadimension:golden_grass_uncommon"
+    ]
+  ],
   "spawners": {
     "monster": [
       {
@@ -58,7 +76,7 @@
   "spawn_costs": {},
   "forge:registry_name": "gaiadimension:golden_hills",
   "precipitation": "none",
-  "temperature": 0.0,
+  "temperature": 0.3,
   "downfall": 0.0,
   "category": "none",
   "effects": {
@@ -68,10 +86,10 @@
       "block_search_extent": 8,
       "offset": 2.0
     },
-    "sky_color": 0,
-    "foliage_color": 0,
-    "grass_color": 0,
-    "fog_color": 0,
+    "sky_color": 3415307,
+    "foliage_color": 4997150,
+    "grass_color": 4997150,
+    "fog_color": 13801728,
     "water_color": 7117233,
     "water_fog_color": 9617108
   }

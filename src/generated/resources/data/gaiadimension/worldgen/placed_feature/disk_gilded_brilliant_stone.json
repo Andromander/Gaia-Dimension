@@ -1,0 +1,15 @@
+{
+  "feature": "gaiadimension:disk_gilded_brilliant_stone",
+  "placement": [
+    {
+      "type": "minecraft:in_square"
+    },
+    {
+      "heightmap": "OCEAN_FLOOR_WG",
+      "type": "minecraft:heightmap"
+    },
+    {
+      "type": "minecraft:biome"
+    }
+  ]
+}
