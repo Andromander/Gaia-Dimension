@@ -95,6 +95,7 @@ public class ModBlocks {
     public static final RegistryObject<Block> crystal_growth_seared = register("crystal_growth_seared", () -> new CrystalGrowthBlock(GaiaBlockProperties.plantProps(MaterialColor.COLOR_BLACK, true)));
     public static final RegistryObject<Block> crystal_growth_mutant = register("crystal_growth_mutant", () -> new CrystalGrowthBlock(GaiaBlockProperties.plantProps(MaterialColor.TERRACOTTA_WHITE, true)));
     public static final RegistryObject<Block> crystal_growth_aura = register("crystal_growth_aura", () -> new CrystalGrowthBlock(GaiaBlockProperties.plantProps(MaterialColor.TERRACOTTA_LIGHT_BLUE, true)));
+    public static final RegistryObject<Block> golden_grass = register("golden_grass", () -> new GoldenGrassBlock(GaiaBlockProperties.plantProps(MaterialColor.GOLD, false)));
     public static final RegistryObject<Block> thiscus = register("thiscus", () -> new CrystalBloomBlock(GaiaBlockProperties.bloomProps()));
     public static final RegistryObject<Block> ouzium = register("ouzium", () -> new CrystalBloomBlock(GaiaBlockProperties.bloomProps()));
     public static final RegistryObject<Block> agathum = register("agathum", () -> new CrystalBloomBlock(GaiaBlockProperties.bloomProps()));
@@ -187,6 +188,10 @@ public class ModBlocks {
     public static final RegistryObject<Block> geyser_block = register("geyser_block", () -> new GeyserBlock(GaiaBlockProperties.stoneProps(MaterialColor.METAL, 5.0F, 10.0F, true)));
     public static final RegistryObject<Block> sparkling_rock = register("sparkling_rock", Properties.of(Material.STONE, MaterialColor.METAL).strength(10.0F, 150.0F).sound(SoundType.AMETHYST).requiresCorrectToolForDrops());
     public static final RegistryObject<Block> aura_shoot = register("aura_shoot", () -> new AuraShootBlock(Properties.of(Material.GLASS, MaterialColor.COLOR_BLUE).sound(SoundType.AMETHYST_CLUSTER).randomTicks()));
+    public static final RegistryObject<Block> golden_stone = register("golden_stone", GaiaBlockProperties.stoneProps(MaterialColor.TERRACOTTA_PURPLE, 2.0F, 15.0F, true));
+    public static final RegistryObject<Block> tough_golden_stone = register("tough_golden_stone", GaiaBlockProperties.stoneProps(MaterialColor.COLOR_BLACK, 3.0F, 30.0F, true));
+    public static final RegistryObject<Block> brilliant_stone = register("brilliant_stone", GaiaBlockProperties.stoneProps(MaterialColor.TERRACOTTA_YELLOW, 5.0F, 35.0F, true));
+    public static final RegistryObject<Block> gilded_brilliant_stone = register("gilded_brilliant_stone", GaiaBlockProperties.stoneProps(MaterialColor.TERRACOTTA_WHITE, 5.0F, 35.0F, true).lightLevel((state) -> 5));
 
     //Planks
     public static final RegistryObject<Block> pink_agate_planks = register("pink_agate_planks", GaiaBlockProperties.tileProps(MaterialColor.COLOR_PINK));

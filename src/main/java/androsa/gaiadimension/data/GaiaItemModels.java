@@ -47,6 +47,7 @@ public class GaiaItemModels extends GaiaItemModelProvider {
         blockItemTexture(ModBlocks.crystal_growth_seared);
         blockItemTexture(ModBlocks.crystal_growth_mutant);
         blockItemTexture(ModBlocks.crystal_growth_aura);
+        blockItemTexture(ModBlocks.golden_grass);
         blockItemTexture(ModBlocks.thiscus);
         blockItemTexture(ModBlocks.ouzium);
         blockItemTexture(ModBlocks.agathum);
@@ -135,6 +136,10 @@ public class GaiaItemModels extends GaiaItemModelProvider {
         blockItem(ModBlocks.geyser_block);
         blockItem(ModBlocks.sparkling_rock);
         blockItem(ModBlocks.aura_shoot, "aura_shoot_top");
+        blockItem(ModBlocks.golden_stone);
+        blockItem(ModBlocks.tough_golden_stone);
+        blockItem(ModBlocks.brilliant_stone);
+        blockItem(ModBlocks.gilded_brilliant_stone);
         blockItem(ModBlocks.pink_agate_planks);
         blockItem(ModBlocks.blue_agate_planks);
         blockItem(ModBlocks.green_agate_planks);

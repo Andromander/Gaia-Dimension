@@ -47,6 +47,11 @@ public abstract class GaiaBlockStateProvider extends BlockStateProvider {
         simpleBlock(block.get());
     }
 
+    public void columnBlock(RegistryObject<Block> block) {
+        String basename = blockName(block);
+        simpleBlock(block.get(), models().cubeColumn(basename, tLocGaia(basename), tLocGaia(basename + "_top")));
+    }
+
     public void sidedBlock(RegistryObject<Block> block, String top, String bottom, String north, String south, String east, String west) {
         simpleBlock(block.get(), models().cube(blockName(block), tLocGaia(bottom), tLocGaia(top), tLocGaia(north), tLocGaia(south), tLocGaia(east), tLocGaia(west)));
     }

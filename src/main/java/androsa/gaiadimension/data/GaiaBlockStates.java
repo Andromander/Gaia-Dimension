@@ -51,6 +51,7 @@ public class GaiaBlockStates extends GaiaBlockStateProvider {
         crossBlock(ModBlocks.crystal_growth_seared);
         crossBlock(ModBlocks.crystal_growth_mutant);
         crossBlock(ModBlocks.crystal_growth_aura);
+        crossBlock(ModBlocks.golden_grass);
         crossBlock(ModBlocks.thiscus);
         crossBlock(ModBlocks.ouzium);
         crossBlock(ModBlocks.agathum);
@@ -138,6 +139,10 @@ public class GaiaBlockStates extends GaiaBlockStateProvider {
         basicBlock(ModBlocks.impure_sludge);
         sidedBlock(ModBlocks.geyser_block, "geyser_block_top", "bismuth_block", "geyser_block_side", "geyser_block_side", "geyser_block_side", "geyser_block_side");
         basicBlock(ModBlocks.sparkling_rock);
+        basicBlock(ModBlocks.golden_stone);
+        basicBlock(ModBlocks.tough_golden_stone);
+        columnBlock(ModBlocks.brilliant_stone);
+        columnBlock(ModBlocks.gilded_brilliant_stone);
         basicBlock(ModBlocks.pink_agate_planks);
         basicBlock(ModBlocks.blue_agate_planks);
         basicBlock(ModBlocks.green_agate_planks);

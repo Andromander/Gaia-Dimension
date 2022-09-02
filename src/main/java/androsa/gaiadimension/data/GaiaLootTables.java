@@ -10,6 +10,7 @@ import androsa.gaiadimension.registry.ModItems;
 import com.google.common.collect.ImmutableList;
 import com.mojang.datafixers.util.Pair;
 import net.minecraft.data.DataGenerator;
+import net.minecraft.data.loot.BlockLoot;
 import net.minecraft.data.loot.ChestLoot;
 import net.minecraft.data.loot.LootTableProvider;
 import net.minecraft.resources.ResourceLocation;
@@ -92,6 +93,7 @@ public class GaiaLootTables extends LootTableProvider {
             dropTable(ModBlocks.crystal_growth_seared, GaiaBlockLootTableProvider::withShards);
             dropTable(ModBlocks.crystal_growth_mutant, GaiaBlockLootTableProvider::withShards);
             dropTable(ModBlocks.crystal_growth_aura, GaiaBlockLootTableProvider::withShards);
+            dropTable(ModBlocks.golden_grass, BlockLoot::createShearsOnlyDrop);
             dropSelf(ModBlocks.thiscus);
             dropSelf(ModBlocks.ouzium);
             dropSelf(ModBlocks.agathum);
@@ -183,6 +185,10 @@ public class GaiaLootTables extends LootTableProvider {
             dropSelf(ModBlocks.geyser_block);
             dropOnlySilk(ModBlocks.sparkling_rock);
             dropSelf(ModBlocks.aura_shoot);
+            dropSelf(ModBlocks.golden_stone);
+            dropSelf(ModBlocks.tough_golden_stone);
+            dropSelf(ModBlocks.brilliant_stone);
+            dropSelf(ModBlocks.gilded_brilliant_stone);
 
             //Planks (Tiles)
             dropSelf(ModBlocks.pink_agate_planks);

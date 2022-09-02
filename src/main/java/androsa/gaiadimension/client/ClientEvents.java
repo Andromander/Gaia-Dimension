@@ -179,6 +179,7 @@ public class ClientEvents {
         renderBlock(ModBlocks.crystal_growth_seared, translucent);
         renderBlock(ModBlocks.crystal_growth_mutant, translucent);
         renderBlock(ModBlocks.crystal_growth_aura, cutoutM);
+        renderBlock(ModBlocks.golden_grass, cutoutM);
         renderBlock(ModBlocks.thiscus, cutoutM);
         renderBlock(ModBlocks.ouzium, cutoutM);
         renderBlock(ModBlocks.agathum, cutoutM);

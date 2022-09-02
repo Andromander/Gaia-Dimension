@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "side": "gaiadimension:block/brilliant_stone",
+    "end": "gaiadimension:block/brilliant_stone_top"
+  }
+}
