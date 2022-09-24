@@ -1,0 +1,6 @@
+{
+  "config": {
+    "features": "gaiadimension:burnt_agate_tree_checked"
+  },
+  "type": "minecraft:simple_random_selector"
+}

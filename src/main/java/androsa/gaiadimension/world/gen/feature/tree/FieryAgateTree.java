@@ -1,16 +1,18 @@
 package androsa.gaiadimension.world.gen.feature.tree;
 
 import androsa.gaiadimension.registry.configurations.GaiaFeatures;
-import androsa.gaiadimension.world.gen.feature.config.GaiaTreeFeatureConfig;
 import net.minecraft.core.Holder;
+import net.minecraft.world.level.block.grower.AbstractTreeGrower;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.Random;
 
-public class FieryAgateTree extends GaiaTree {
+public class FieryAgateTree extends AbstractTreeGrower {
 
+    @Nullable
     @Override
-    public Holder<ConfiguredFeature<GaiaTreeFeatureConfig, ?>> createTreeFeature(Random rand) {
+    protected Holder<? extends ConfiguredFeature<?, ?>> getConfiguredFeature(Random random, boolean flowers) {
         return GaiaFeatures.Configured.fiery_agate_tree;
     }
 }

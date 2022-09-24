@@ -2,23 +2,26 @@
   "config": {
     "features": [
       {
-        "feature": "gaiadimension:pink_agate_tree_common",
+        "feature": "gaiadimension:pink_agate_tree_checked",
         "chance": 0.25
       },
       {
-        "feature": "gaiadimension:blue_agate_tree",
+        "feature": "gaiadimension:blue_agate_tree_checked",
         "chance": 0.25
       },
       {
-        "feature": "gaiadimension:green_agate_tree",
+        "feature": "gaiadimension:green_agate_tree_checked",
         "chance": 0.25
       },
       {
-        "feature": "gaiadimension:purple_agate_tree",
+        "feature": "gaiadimension:purple_agate_tree_checked",
         "chance": 0.25
       }
     ],
-    "default": "gaiadimension:crystal_growth_mutant"
+    "default": {
+      "feature": "gaiadimension:mutant_crystal_growth",
+      "placement": []
+    }
   },
   "type": "minecraft:random_selector"
 }

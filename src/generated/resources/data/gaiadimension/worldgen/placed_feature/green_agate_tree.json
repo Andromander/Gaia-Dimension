@@ -1,5 +1,5 @@
 {
-  "feature": "gaiadimension:green_agate_tree",
+  "feature": "gaiadimension:green_agate_trees",
   "placement": [
     {
       "count": {
@@ -16,18 +16,6 @@
         "type": "minecraft:weighted_list"
       },
       "type": "minecraft:count"
-    },
-    {
-      "predicate": {
-        "state": {
-          "Properties": {
-            "stage": "0"
-          },
-          "Name": "gaiadimension:green_agate_sapling"
-        },
-        "type": "minecraft:would_survive"
-      },
-      "type": "minecraft:block_predicate_filter"
     },
     {
       "type": "minecraft:in_square"

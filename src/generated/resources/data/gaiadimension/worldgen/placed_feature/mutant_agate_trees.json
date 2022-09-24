@@ -5,7 +5,11 @@
       "type": "minecraft:in_square"
     },
     {
-      "heightmap": "MOTION_BLOCKING",
+      "max_water_depth": 0,
+      "type": "minecraft:surface_water_depth_filter"
+    },
+    {
+      "heightmap": "OCEAN_FLOOR",
       "type": "minecraft:heightmap"
     },
     {

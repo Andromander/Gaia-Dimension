@@ -1,0 +1,6 @@
+{
+  "config": {
+    "features": "gaiadimension:pink_agate_tree_checked"
+  },
+  "type": "minecraft:simple_random_selector"
+}

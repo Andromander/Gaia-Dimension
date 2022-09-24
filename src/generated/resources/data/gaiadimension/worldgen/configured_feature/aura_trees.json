@@ -1,0 +1,6 @@
+{
+  "config": {
+    "features": "gaiadimension:aura_tree_checked"
+  },
+  "type": "minecraft:simple_random_selector"
+}

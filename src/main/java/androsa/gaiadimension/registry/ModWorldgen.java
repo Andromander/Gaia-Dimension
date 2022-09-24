@@ -3,10 +3,15 @@ package androsa.gaiadimension.registry;
 import androsa.gaiadimension.GaiaDimensionMod;
 import androsa.gaiadimension.world.gen.carver.ChasmsWorldCarver;
 import androsa.gaiadimension.world.gen.carver.CoatedCavesWorldCarver;
-import androsa.gaiadimension.world.gen.feature.config.FeatureHeightConfig;
-import androsa.gaiadimension.world.gen.feature.config.GaiaTreeFeatureConfig;
 import androsa.gaiadimension.world.gen.feature.*;
+import androsa.gaiadimension.world.gen.feature.config.FeatureHeightConfig;
 import androsa.gaiadimension.world.gen.feature.config.TwoBlockStateConfig;
+import androsa.gaiadimension.world.gen.feature.foliage.BulbFoliagePlacer;
+import androsa.gaiadimension.world.gen.feature.foliage.CappedFoliagePlacer;
+import androsa.gaiadimension.world.gen.feature.foliage.ThickFoliagePlacer;
+import androsa.gaiadimension.world.gen.feature.trunk.CardinalTrunkPlacer;
+import androsa.gaiadimension.world.gen.feature.trunk.FourBranchTrunkPlacer;
+import androsa.gaiadimension.world.gen.feature.trunk.ThickTrunkPlacer;
 import androsa.gaiadimension.world.gen.structure.MalachiteWatchtowerStructure;
 import androsa.gaiadimension.world.gen.structure.MiniTowerStructure;
 import androsa.gaiadimension.world.gen.structure.pieces.MalachiteWatchtowerPieces;
@@ -22,6 +27,9 @@ import net.minecraft.world.level.levelgen.feature.StructureFeature;
 import net.minecraft.world.level.levelgen.feature.configurations.BlockStateConfiguration;
 import net.minecraft.world.level.levelgen.feature.configurations.DiskConfiguration;
 import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
+import net.minecraft.world.level.levelgen.feature.configurations.TreeConfiguration;
+import net.minecraft.world.level.levelgen.feature.foliageplacers.FoliagePlacerType;
+import net.minecraft.world.level.levelgen.feature.trunkplacers.TrunkPlacerType;
 import net.minecraft.world.level.levelgen.structure.pieces.StructurePieceType;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructureProcessorType;
 import net.minecraftforge.fml.common.Mod;
@@ -33,30 +41,24 @@ import net.minecraftforge.registries.RegistryObject;
 public class ModWorldgen {
 
 	public static final DeferredRegister<Feature<?>> FEATURES = DeferredRegister.create(ForgeRegistries.FEATURES, GaiaDimensionMod.MODID);
+    public static final DeferredRegister<FoliagePlacerType<?>> FOLIAGE_PLACERS = DeferredRegister.create(ForgeRegistries.FOLIAGE_PLACER_TYPES, GaiaDimensionMod.MODID);
 	public static final DeferredRegister<StructureFeature<?>> STRUCTURES = DeferredRegister.create(ForgeRegistries.STRUCTURE_FEATURES, GaiaDimensionMod.MODID);
+    public static final DeferredRegister<TrunkPlacerType<?>> TRUNK_PLACERS = DeferredRegister.create(Registry.TRUNK_PLACER_TYPE_REGISTRY, GaiaDimensionMod.MODID);
 	public static final DeferredRegister<WorldCarver<?>> WORLD_CARVERS = DeferredRegister.create(ForgeRegistries.WORLD_CARVERS, GaiaDimensionMod.MODID);
+
+    //Trunk
+    public static final RegistryObject<TrunkPlacerType<?>> THICK_TRUNK_PLACER = TRUNK_PLACERS.register("thick_trunk_placer", () -> new TrunkPlacerType<>(ThickTrunkPlacer.CODEC));
+    public static final RegistryObject<TrunkPlacerType<?>> FOUR_BRANCH_TRUNK_PLACER = TRUNK_PLACERS.register("four_branch_trunk_placer", () -> new TrunkPlacerType<>(FourBranchTrunkPlacer.CODEC));
+    public static final RegistryObject<TrunkPlacerType<?>> CARDINAL_TRUNK_PLACER = TRUNK_PLACERS.register("cardinal_trunk_placer", () -> new TrunkPlacerType<>(CardinalTrunkPlacer.CODEC));
+
+    //Foliage
+    public static final RegistryObject<FoliagePlacerType<?>> CAPPED_FOLIAGE_PLACER = FOLIAGE_PLACERS.register("capped_foliage_placer", () -> new FoliagePlacerType<>(CappedFoliagePlacer.CODEC));
+    public static final RegistryObject<FoliagePlacerType<?>> THICK_FOLIAGE_PLACER = FOLIAGE_PLACERS.register("thick_foliage_placer", () -> new FoliagePlacerType<>(ThickFoliagePlacer.CODEC));
+    public static final RegistryObject<FoliagePlacerType<?>> BULB_FOLIAGE_PLACER = FOLIAGE_PLACERS.register("bulb_foliage_placer", () -> new FoliagePlacerType<>(BulbFoliagePlacer.CODEC));
 
     //Feature
     public static final RegistryObject<Feature<BlockStateConfiguration>> POOL = FEATURES.register("pool", () ->
 			new GaiaLakesFeature<>(BlockStateConfiguration.CODEC));
-    public static final RegistryObject<Feature<GaiaTreeFeatureConfig>> PINK_AGATE_TREE = FEATURES.register("pink_agate_tree", () ->
-			new PinkAgateTreeFeature<>(GaiaTreeFeatureConfig.CODEC));
-    public static final RegistryObject<Feature<GaiaTreeFeatureConfig>> BLUE_AGATE_TREE = FEATURES.register("blue_agate_tree", () ->
-			new BlueAgateTreeFeature<>(GaiaTreeFeatureConfig.CODEC));
-    public static final RegistryObject<Feature<GaiaTreeFeatureConfig>> GREEN_AGATE_TREE = FEATURES.register("green_agate_tree", () ->
-			new GreenAgateTreeFeature<>(GaiaTreeFeatureConfig.CODEC));
-    public static final RegistryObject<Feature<GaiaTreeFeatureConfig>> PURPLE_AGATE_TREE = FEATURES.register("purple_agate_tree", () ->
-			new PurpleAgateTreeFeature<>(GaiaTreeFeatureConfig.CODEC));
-    public static final RegistryObject<Feature<GaiaTreeFeatureConfig>> FOSSILIZED_TREE = FEATURES.register("fossilized_tree", () ->
-			new FossilizedTreeFeature<>(GaiaTreeFeatureConfig.CODEC));
-    public static final RegistryObject<Feature<GaiaTreeFeatureConfig>> GOLDSTONE_TREE = FEATURES.register("goldstone_tree", () ->
-			new GoldstoneCorruptTreeFeature<>(GaiaTreeFeatureConfig.CODEC));
-    public static final RegistryObject<Feature<GaiaTreeFeatureConfig>> BURNT_AGATE_TREE = FEATURES.register("burnt_agate_tree", () ->
-			new BurntAgateTreeFeature<>(GaiaTreeFeatureConfig.CODEC));
-    public static final RegistryObject<Feature<GaiaTreeFeatureConfig>> FIERY_AGATE_TREE = FEATURES.register("fiery_agate_tree", () ->
-			new FieryAgateTreeFeature<>(GaiaTreeFeatureConfig.CODEC));
-    public static final RegistryObject<Feature<GaiaTreeFeatureConfig>> AURA_TREE = FEATURES.register("aura_tree", () ->
-			new AuraTreeFeature<>(GaiaTreeFeatureConfig.CODEC));
     public static final RegistryObject<Feature<NoneFeatureConfiguration>> AURA_SHOOT = FEATURES.register("aura_shoot", () ->
 			new AuraShootsFeature<>(NoneFeatureConfiguration.CODEC));
     public static final RegistryObject<Feature<DiskConfiguration>> BOG_PATCH = FEATURES.register("bog_patch", () ->
@@ -77,6 +79,8 @@ public class ModWorldgen {
             new TerrainSpikeFeature<>(BlockStateConfiguration.CODEC));
     public static final RegistryObject<Feature<TwoBlockStateConfig>> BALANCING_ROCKS = FEATURES.register("balancing_rocks", () ->
             new BalancingRockFeature<>(TwoBlockStateConfig.CODEC));
+    public static final RegistryObject<Feature<TreeConfiguration>> STRICT_TREE = FEATURES.register("strict_tree", () ->
+            new StrictTreeFeature(TreeConfiguration.CODEC));
 
     //Structures
     public static final RegistryObject<StructureFeature<NoneFeatureConfiguration>> MINI_TOWER = STRUCTURES.register("mini_tower", () ->

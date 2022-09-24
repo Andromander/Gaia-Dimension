@@ -68,7 +68,9 @@ public class GaiaDimensionMod {
         ModRecipes.RECIPE_SERIALIZERS.register(modEventBus);
         ModBlockEntities.TILE_ENTITIES.register(modEventBus);
         ModWorldgen.FEATURES.register(modEventBus);
+        ModWorldgen.FOLIAGE_PLACERS.register(modEventBus);
         ModWorldgen.STRUCTURES.register(modEventBus);
+        ModWorldgen.TRUNK_PLACERS.register(modEventBus);
         ModWorldgen.WORLD_CARVERS.register(modEventBus);
 
         final Pair<ModGaiaConfig.ClientConfig, ForgeConfigSpec> specPairC = new ForgeConfigSpec.Builder().configure(ModGaiaConfig.ClientConfig::new);

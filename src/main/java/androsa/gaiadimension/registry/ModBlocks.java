@@ -115,15 +115,15 @@ public class ModBlocks {
     public static final RegistryObject<Block> missingno_fungus = register("missingno_fungus", () -> new CrystalFungusBlock(GaiaBlockProperties.plantProps(MaterialColor.COLOR_MAGENTA, false), false));
 
     //Tree Blocks
-    public static final RegistryObject<SaplingBlock> pink_agate_sapling = register("pink_agate_sapling", () -> new SaplingBlock(new PinkAgateTree(), GaiaBlockProperties.saplingProps(MaterialColor.COLOR_PINK)));
-    public static final RegistryObject<SaplingBlock> blue_agate_sapling = register("blue_agate_sapling", () -> new SaplingBlock(new BlueAgateTree(), GaiaBlockProperties.saplingProps(MaterialColor.COLOR_LIGHT_BLUE)));
-    public static final RegistryObject<SaplingBlock> green_agate_sapling = register("green_agate_sapling", () -> new SaplingBlock(new GreenAgateTree(), GaiaBlockProperties.saplingProps(MaterialColor.COLOR_LIGHT_GREEN)));
-    public static final RegistryObject<SaplingBlock> purple_agate_sapling = register("purple_agate_sapling", () -> new SaplingBlock(new PurpleAgateTree(), GaiaBlockProperties.saplingProps(MaterialColor.TERRACOTTA_PURPLE)));
-    public static final RegistryObject<SaplingBlock> fossilized_sapling = register("fossilized_sapling", () -> new SaplingBlock(new FossilizedTree(), GaiaBlockProperties.saplingProps(MaterialColor.TERRACOTTA_YELLOW)));
-    public static final RegistryObject<SaplingBlock> corrupted_sapling = register("corrupted_sapling", () -> new SaplingBlock(new GoldstoneCorruptTree(), GaiaBlockProperties.saplingProps(MaterialColor.TERRACOTTA_BLACK)));
-    public static final RegistryObject<SaplingBlock> burnt_sapling = register("burnt_sapling", () -> new SaplingBlock(new BurntAgateTree(), GaiaBlockProperties.saplingProps(MaterialColor.COLOR_BLACK)));
-    public static final RegistryObject<SaplingBlock> burning_sapling = register("burning_sapling", () -> new SaplingBlock(new FieryAgateTree(), GaiaBlockProperties.saplingProps(MaterialColor.TERRACOTTA_ORANGE)), 100);
-    public static final RegistryObject<SaplingBlock> aura_sapling = register("aura_sapling", () -> new SaplingBlock(new AuraTree(), GaiaBlockProperties.saplingProps(MaterialColor.SNOW)));
+    public static final RegistryObject<SaplingBlock> pink_agate_sapling = register("pink_agate_sapling", () -> new GaiaSaplingBlock(new PinkAgateTree(), GaiaBlockProperties.saplingProps(MaterialColor.COLOR_PINK)));
+    public static final RegistryObject<SaplingBlock> blue_agate_sapling = register("blue_agate_sapling", () -> new GaiaSaplingBlock(new BlueAgateTree(), GaiaBlockProperties.saplingProps(MaterialColor.COLOR_LIGHT_BLUE)));
+    public static final RegistryObject<SaplingBlock> green_agate_sapling = register("green_agate_sapling", () -> new GaiaSaplingBlock(new GreenAgateTree(), GaiaBlockProperties.saplingProps(MaterialColor.COLOR_LIGHT_GREEN)));
+    public static final RegistryObject<SaplingBlock> purple_agate_sapling = register("purple_agate_sapling", () -> new GaiaSaplingBlock(new PurpleAgateTree(), GaiaBlockProperties.saplingProps(MaterialColor.TERRACOTTA_PURPLE)));
+    public static final RegistryObject<SaplingBlock> fossilized_sapling = register("fossilized_sapling", () -> new GaiaSaplingBlock(new FossilizedTree(), GaiaBlockProperties.saplingProps(MaterialColor.TERRACOTTA_YELLOW)));
+    public static final RegistryObject<SaplingBlock> corrupted_sapling = register("corrupted_sapling", () -> new GaiaSaplingBlock(new GoldstoneCorruptTree(), GaiaBlockProperties.saplingProps(MaterialColor.TERRACOTTA_BLACK)));
+    public static final RegistryObject<SaplingBlock> burnt_sapling = register("burnt_sapling", () -> new GaiaSaplingBlock(new BurntAgateTree(), GaiaBlockProperties.saplingProps(MaterialColor.COLOR_BLACK)));
+    public static final RegistryObject<SaplingBlock> burning_sapling = register("burning_sapling", () -> new GaiaSaplingBlock(new FieryAgateTree(), GaiaBlockProperties.saplingProps(MaterialColor.TERRACOTTA_ORANGE)), 100);
+    public static final RegistryObject<SaplingBlock> aura_sapling = register("aura_sapling", () -> new GaiaSaplingBlock(new AuraTree(), GaiaBlockProperties.saplingProps(MaterialColor.SNOW)));
     public static final RegistryObject<Block> pink_agate_leaves = register("pink_agate_leaves", () -> new LeavesBlock(GaiaBlockProperties.leavesProps(MaterialColor.COLOR_MAGENTA)));
     public static final RegistryObject<Block> blue_agate_leaves = register("blue_agate_leaves", () -> new LeavesBlock(GaiaBlockProperties.leavesProps(MaterialColor.COLOR_BLUE)));
     public static final RegistryObject<Block> green_agate_leaves = register("green_agate_leaves", () -> new LeavesBlock(GaiaBlockProperties.leavesProps(MaterialColor.COLOR_GREEN)));

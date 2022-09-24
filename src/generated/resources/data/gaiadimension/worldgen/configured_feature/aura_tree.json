@@ -1,5 +1,20 @@
 {
   "config": {
+    "decorators": [],
+    "ignore_vines": false,
+    "force_dirt": false,
+    "dirt_provider": {
+      "state": {
+        "Name": "gaiadimension:light_soil"
+      },
+      "type": "minecraft:simple_state_provider"
+    },
+    "minimum_size": {
+      "limit": 1,
+      "lower_size": 0,
+      "upper_size": 1,
+      "type": "minecraft:two_layers_feature_size"
+    },
     "trunk_provider": {
       "state": {
         "Properties": {
@@ -9,7 +24,13 @@
       },
       "type": "minecraft:simple_state_provider"
     },
-    "leaves_provider": {
+    "trunk_placer": {
+      "base_height": 10,
+      "height_rand_a": 3,
+      "height_rand_b": 3,
+      "type": "gaiadimension:four_branch_trunk_placer"
+    },
+    "foliage_provider": {
       "state": {
         "Properties": {
           "persistent": "false",
@@ -19,16 +40,11 @@
       },
       "type": "minecraft:simple_state_provider"
     },
-    "height": 10,
-    "sapling": {
-      "state": {
-        "Properties": {
-          "stage": "0"
-        },
-        "Name": "gaiadimension:aura_sapling"
-      },
-      "type": "minecraft:simple_state_provider"
+    "foliage_placer": {
+      "radius": 2,
+      "offset": 1,
+      "type": "gaiadimension:capped_foliage_placer"
     }
   },
-  "type": "gaiadimension:aura_tree"
+  "type": "gaiadimension:strict_tree"
 }

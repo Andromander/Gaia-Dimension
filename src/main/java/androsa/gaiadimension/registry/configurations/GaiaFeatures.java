@@ -4,8 +4,13 @@ import androsa.gaiadimension.GaiaDimensionMod;
 import androsa.gaiadimension.registry.ModBlocks;
 import androsa.gaiadimension.registry.ModWorldgen;
 import androsa.gaiadimension.world.gen.feature.config.FeatureHeightConfig;
-import androsa.gaiadimension.world.gen.feature.config.GaiaTreeFeatureConfig;
 import androsa.gaiadimension.world.gen.feature.config.TwoBlockStateConfig;
+import androsa.gaiadimension.world.gen.feature.foliage.BulbFoliagePlacer;
+import androsa.gaiadimension.world.gen.feature.foliage.CappedFoliagePlacer;
+import androsa.gaiadimension.world.gen.feature.foliage.ThickFoliagePlacer;
+import androsa.gaiadimension.world.gen.feature.trunk.CardinalTrunkPlacer;
+import androsa.gaiadimension.world.gen.feature.trunk.FourBranchTrunkPlacer;
+import androsa.gaiadimension.world.gen.feature.trunk.ThickTrunkPlacer;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
 import net.minecraft.core.BlockPos;
@@ -31,9 +36,13 @@ import net.minecraft.world.level.levelgen.feature.WeightedPlacedFeature;
 import net.minecraft.world.level.levelgen.feature.configurations.*;
 import net.minecraft.world.level.levelgen.feature.featuresize.TwoLayersFeatureSize;
 import net.minecraft.world.level.levelgen.feature.foliageplacers.BushFoliagePlacer;
+import net.minecraft.world.level.levelgen.feature.foliageplacers.FoliagePlacer;
+import net.minecraft.world.level.levelgen.feature.foliageplacers.PineFoliagePlacer;
+import net.minecraft.world.level.levelgen.feature.foliageplacers.SpruceFoliagePlacer;
 import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
 import net.minecraft.world.level.levelgen.feature.stateproviders.WeightedStateProvider;
 import net.minecraft.world.level.levelgen.feature.trunkplacers.StraightTrunkPlacer;
+import net.minecraft.world.level.levelgen.feature.trunkplacers.TrunkPlacer;
 import net.minecraft.world.level.levelgen.heightproviders.BiasedToBottomHeight;
 import net.minecraft.world.level.levelgen.placement.*;
 import net.minecraft.world.level.levelgen.structure.templatesystem.RuleTest;
@@ -44,34 +53,30 @@ import java.util.List;
 public class GaiaFeatures extends GaiaBiomeFeatures {
 
     public static class Config {
-        public static final GaiaTreeFeatureConfig PINK_AGATE_TREE_CONFIG = configureTree(PINK_AGATE_LOG, PINK_AGATE_LEAVES, 5, ModBlocks.pink_agate_sapling.get());
-        public static final GaiaTreeFeatureConfig BLUE_AGATE_TREE_CONFIG = configureTree(BLUE_AGATE_LOG, BLUE_AGATE_LEAVES, 6, ModBlocks.blue_agate_sapling.get());
-        public static final GaiaTreeFeatureConfig GREEN_AGATE_TREE_CONFIG = configureTree(GREEN_AGATE_LOG, GREEN_AGATE_LEAVES, 10, ModBlocks.green_agate_sapling.get());
-        public static final TreeConfiguration GREEN_AGATE_BUSH_CONFIG = (
-                new TreeConfiguration.TreeConfigurationBuilder(
-                        BlockStateProvider.simple(GREEN_AGATE_LOG),
-                        new StraightTrunkPlacer(1, 0, 0),
-                        BlockStateProvider.simple(GREEN_AGATE_LEAVES),
-                        new BushFoliagePlacer(
-                                ConstantInt.of(2),
-                                ConstantInt.of(1),
-                                2),
-                        new TwoLayersFeatureSize(0, 0, 0)))
-                .build();
-        public static final GaiaTreeFeatureConfig PURPLE_AGATE_TREE_CONFIG = configureTree(PURPLE_AGATE_LOG, PURPLE_AGATE_LEAVES, 7, ModBlocks.purple_agate_sapling.get());
-        public static final GaiaTreeFeatureConfig FOSSILIZED_TREE_CONFIG = configureTree(FOSSIL_LOG, FOSSIL_LEAVES, 5, ModBlocks.fossilized_sapling.get());
-        public static final GaiaTreeFeatureConfig CORRUPTED_TREE_CONFIG = configureTree(CORRUPTED_LOG, CORRUPTED_LEAVES, 7, ModBlocks.corrupted_sapling.get());
-        public static final GaiaTreeFeatureConfig BURNT_TREE_CONFIG = configureTree(BURNT_LOG, BURNT_LEAVES, 5, ModBlocks.burnt_sapling.get());
-        public static final GaiaTreeFeatureConfig BURNING_TREE_CONFIG = configureTree(BURNING_LOG, BURNING_LEAVES, 5, ModBlocks.burning_sapling.get());
-        public static final GaiaTreeFeatureConfig AURA_TREE_CONFIG = configureTree(AURA_LOG, AURA_LEAVES, 10, ModBlocks.aura_sapling.get());
+        public static final TreeConfiguration PINK_AGATE_TREE_CONFIG = configureTree(PINK_AGATE_LOG, new StraightTrunkPlacer(5, 3, 3), PINK_AGATE_LEAVES, new CappedFoliagePlacer(ConstantInt.of(3), ConstantInt.of(1)), 1, 0, 1, HEAVY_SOIL);
+        public static final TreeConfiguration BLUE_AGATE_TREE_CONFIG = configureTree(BLUE_AGATE_LOG, new StraightTrunkPlacer(6, 2, 1), BLUE_AGATE_LEAVES, new SpruceFoliagePlacer(UniformInt.of(2, 3), UniformInt.of(0, 2), UniformInt.of(1, 2)), 2, 0, 2, HEAVY_SOIL);
+        public static final TreeConfiguration GREEN_AGATE_TREE_CONFIG = configureTree(GREEN_AGATE_LOG, new ThickTrunkPlacer(10, 3, 3), GREEN_AGATE_LEAVES, new ThickFoliagePlacer(ConstantInt.of(3), ConstantInt.of(1)), 1, 0, 1, HEAVY_SOIL);
+        public static final TreeConfiguration GREEN_AGATE_BUSH_CONFIG = configureTree(GREEN_AGATE_LOG, new StraightTrunkPlacer(1, 0, 0), GREEN_AGATE_LEAVES, new BushFoliagePlacer(ConstantInt.of(2), ConstantInt.of(1), 2), 0, 0, 0, HEAVY_SOIL);
+        public static final TreeConfiguration PURPLE_AGATE_TREE_CONFIG = configureTree(PURPLE_AGATE_LOG, new CardinalTrunkPlacer(7, 3, 3), PURPLE_AGATE_LEAVES, new BulbFoliagePlacer(ConstantInt.of(1), ConstantInt.of(1)), 1, 0, 1, HEAVY_SOIL);
+        public static final TreeConfiguration FOSSILIZED_TREE_CONFIG = configureTree(FOSSIL_LOG, new StraightTrunkPlacer(5, 3, 3), FOSSIL_LEAVES, new CappedFoliagePlacer(ConstantInt.of(3), ConstantInt.of(1)), 1, 0, 1, HEAVY_SOIL);
+        public static final TreeConfiguration CORRUPTED_TREE_CONFIG = configureTree(CORRUPTED_LOG, new StraightTrunkPlacer(7, 4, 0), CORRUPTED_LEAVES, new PineFoliagePlacer(ConstantInt.of(1), ConstantInt.of(1), UniformInt.of(3, 4)), 2, 0, 2, CORRUPT_SOIL);
+        public static final TreeConfiguration BURNT_TREE_CONFIG = configureTree(BURNT_LOG, new StraightTrunkPlacer(5, 3, 3), BURNT_LEAVES, new CappedFoliagePlacer(ConstantInt.of(2), ConstantInt.of(1)), 1, 0, 1, HEAVY_SOIL);
+        public static final TreeConfiguration BURNING_TREE_CONFIG = configureTree(BURNING_LOG, new StraightTrunkPlacer(5, 3, 3), BURNING_LEAVES, new CappedFoliagePlacer(ConstantInt.of(2), ConstantInt.of(1)), 1, 0, 1, HEAVY_SOIL);
+        public static final TreeConfiguration AURA_TREE_CONFIG = configureTree(AURA_LOG, new FourBranchTrunkPlacer(10, 3, 3), AURA_LEAVES, new CappedFoliagePlacer(ConstantInt.of(2), ConstantInt.of(1)), 1, 0, 1, LIGHT_SOIL);
 
-        public static GaiaTreeFeatureConfig configureTree(BlockState log, BlockState leaves, int height, SaplingBlock sapling) {
-            return (new GaiaTreeFeatureConfig.Builder(BlockStateProvider.simple(log), BlockStateProvider.simple(leaves), height).setSapling(sapling)).build();
+        public static TreeConfiguration configureTree(BlockState log, TrunkPlacer trunk, BlockState leaves, FoliagePlacer foliage, int limit, int lower, int upper, BlockState dirt) {
+            return new TreeConfiguration.TreeConfigurationBuilder(
+                    BlockStateProvider.simple(log),
+                    trunk,
+                    BlockStateProvider.simple(leaves),
+                    foliage,
+                    new TwoLayersFeatureSize(limit, lower, upper)
+            ).dirt(BlockStateProvider.simple(dirt)).build();
         }
     }
 
     public static class Configured {
-        public static final HolderSet<PlacedFeature> BUSH_WORKAROUND = HolderSet.direct(PlacementUtils.inlinePlaced(Feature.TREE, Config.GREEN_AGATE_BUSH_CONFIG));
+        public static final HolderSet<PlacedFeature> BUSH_WORKAROUND = HolderSet.direct(PlacementUtils.inlinePlaced(ModWorldgen.STRICT_TREE.get(), Config.GREEN_AGATE_BUSH_CONFIG));
 
         //Lakes
         public static final Holder<ConfiguredFeature<BlockStateConfiguration, ?>> lake_superhot_magma = registerFeature("lake_superhot_magma", ModWorldgen.POOL.get(), new BlockStateConfiguration(SUPERHOT_MAGMA));
@@ -141,16 +146,32 @@ public class GaiaFeatures extends GaiaBiomeFeatures {
         public static final Holder<ConfiguredFeature<RandomPatchConfiguration, ?>> murgni = registerFeature("mystical_murgni", Feature.RANDOM_PATCH, configurePatch(16, 7, 3, BlockStateProvider.simple(MYSTICAL_MURGNI)));
         public static final Holder<ConfiguredFeature<RandomPatchConfiguration, ?>> corrupt_eye = registerFeature("corrupt_gaia_eye", Feature.RANDOM_PATCH, configurePatch(16, 7, 3, BlockStateProvider.simple(CORRUPTED_GAIA_EYE)));
 
-        public static final Holder<ConfiguredFeature<GaiaTreeFeatureConfig, ?>> pink_agate_tree = registerFeature("pink_agate_tree", ModWorldgen.PINK_AGATE_TREE.get(), Config.PINK_AGATE_TREE_CONFIG);
-        public static final Holder<ConfiguredFeature<GaiaTreeFeatureConfig, ?>> blue_agate_tree = registerFeature("blue_agate_tree", ModWorldgen.BLUE_AGATE_TREE.get(), Config.BLUE_AGATE_TREE_CONFIG);
-        public static final Holder<ConfiguredFeature<GaiaTreeFeatureConfig, ?>> green_agate_tree = registerFeature("green_agate_tree", ModWorldgen.GREEN_AGATE_TREE.get(), Config.GREEN_AGATE_TREE_CONFIG);
-        public static final Holder<ConfiguredFeature<GaiaTreeFeatureConfig, ?>> purple_agate_tree = registerFeature("purple_agate_tree", ModWorldgen.PURPLE_AGATE_TREE.get(), Config.PURPLE_AGATE_TREE_CONFIG);
-        public static final Holder<ConfiguredFeature<GaiaTreeFeatureConfig, ?>> fossilized_tree = registerFeature("fossilized_tree", ModWorldgen.FOSSILIZED_TREE.get(), Config.FOSSILIZED_TREE_CONFIG);
-        public static final Holder<ConfiguredFeature<GaiaTreeFeatureConfig, ?>> goldstone_tree = registerFeature("goldstone_tree", ModWorldgen.GOLDSTONE_TREE.get(), Config.CORRUPTED_TREE_CONFIG);
-        public static final Holder<ConfiguredFeature<GaiaTreeFeatureConfig, ?>> burnt_agate_tree = registerFeature("burnt_agate_tree", ModWorldgen.BURNT_AGATE_TREE.get(), Config.BURNT_TREE_CONFIG);
-        public static final Holder<ConfiguredFeature<GaiaTreeFeatureConfig, ?>> fiery_agate_tree = registerFeature("fiery_agate_tree", ModWorldgen.FIERY_AGATE_TREE.get(), Config.BURNING_TREE_CONFIG);
-        public static final Holder<ConfiguredFeature<GaiaTreeFeatureConfig, ?>> aura_tree = registerFeature("aura_tree", ModWorldgen.AURA_TREE.get(), Config.AURA_TREE_CONFIG);
+        public static final Holder<ConfiguredFeature<TreeConfiguration, ?>> pink_agate_tree = registerFeature("pink_agate_tree", ModWorldgen.STRICT_TREE.get(), Config.PINK_AGATE_TREE_CONFIG);
+        public static final Holder<ConfiguredFeature<TreeConfiguration, ?>> blue_agate_tree = registerFeature("blue_agate_tree", ModWorldgen.STRICT_TREE.get(), Config.BLUE_AGATE_TREE_CONFIG);
+        public static final Holder<ConfiguredFeature<TreeConfiguration, ?>> green_agate_tree = registerFeature("green_agate_tree", ModWorldgen.STRICT_TREE.get(), Config.GREEN_AGATE_TREE_CONFIG);
+        public static final Holder<ConfiguredFeature<TreeConfiguration, ?>> purple_agate_tree = registerFeature("purple_agate_tree", ModWorldgen.STRICT_TREE.get(), Config.PURPLE_AGATE_TREE_CONFIG);
+        public static final Holder<ConfiguredFeature<TreeConfiguration, ?>> fossilized_tree = registerFeature("fossilized_tree", ModWorldgen.STRICT_TREE.get(), Config.FOSSILIZED_TREE_CONFIG);
+        public static final Holder<ConfiguredFeature<TreeConfiguration, ?>> goldstone_tree = registerFeature("goldstone_tree", ModWorldgen.STRICT_TREE.get(), Config.CORRUPTED_TREE_CONFIG);
+        public static final Holder<ConfiguredFeature<TreeConfiguration, ?>> burnt_agate_tree = registerFeature("burnt_agate_tree", ModWorldgen.STRICT_TREE.get(), Config.BURNT_TREE_CONFIG);
+        public static final Holder<ConfiguredFeature<TreeConfiguration, ?>> fiery_agate_tree = registerFeature("fiery_agate_tree", ModWorldgen.STRICT_TREE.get(), Config.BURNING_TREE_CONFIG);
+        public static final Holder<ConfiguredFeature<TreeConfiguration, ?>> aura_tree = registerFeature("aura_tree", ModWorldgen.STRICT_TREE.get(), Config.AURA_TREE_CONFIG);
+
+        public static final Holder<ConfiguredFeature<SimpleRandomFeatureConfiguration, ?>> pink_agate_trees = registerFeature("pink_agate_trees", Feature.SIMPLE_RANDOM_SELECTOR, new SimpleRandomFeatureConfiguration(HolderSet.direct(Tree.PINK_AGATE_TREE_CHECKED)));
+        public static final Holder<ConfiguredFeature<SimpleRandomFeatureConfiguration, ?>> blue_agate_trees = registerFeature("blue_agate_trees", Feature.SIMPLE_RANDOM_SELECTOR, new SimpleRandomFeatureConfiguration(HolderSet.direct(Tree.BLUE_AGATE_TREE_CHECKED)));
+        public static final Holder<ConfiguredFeature<SimpleRandomFeatureConfiguration, ?>> green_agate_trees = registerFeature("green_agate_trees", Feature.SIMPLE_RANDOM_SELECTOR, new SimpleRandomFeatureConfiguration(HolderSet.direct(Tree.GREEN_AGATE_TREE_CHECKED)));
+        public static final Holder<ConfiguredFeature<SimpleRandomFeatureConfiguration, ?>> purple_agate_trees = registerFeature("purple_agate_trees", Feature.SIMPLE_RANDOM_SELECTOR, new SimpleRandomFeatureConfiguration(HolderSet.direct(Tree.PURPLE_AGATE_TREE_CHECKED)));
+        public static final Holder<ConfiguredFeature<SimpleRandomFeatureConfiguration, ?>> fossilized_trees = registerFeature("fossilized_trees", Feature.SIMPLE_RANDOM_SELECTOR, new SimpleRandomFeatureConfiguration(HolderSet.direct(Tree.FOSSILIZED_TREE_CHECKED)));
+        public static final Holder<ConfiguredFeature<SimpleRandomFeatureConfiguration, ?>> goldstone_trees = registerFeature("goldstone_trees", Feature.SIMPLE_RANDOM_SELECTOR, new SimpleRandomFeatureConfiguration(HolderSet.direct(Tree.GOLDSTONE_TREE_CHECKED)));
+        public static final Holder<ConfiguredFeature<SimpleRandomFeatureConfiguration, ?>> burnt_agate_trees = registerFeature("burnt_agate_trees", Feature.SIMPLE_RANDOM_SELECTOR, new SimpleRandomFeatureConfiguration(HolderSet.direct(Tree.BURNT_AGATE_TREE_CHECKED)));
+        public static final Holder<ConfiguredFeature<SimpleRandomFeatureConfiguration, ?>> fiery_agate_trees = registerFeature("fiery_agate_trees", Feature.SIMPLE_RANDOM_SELECTOR, new SimpleRandomFeatureConfiguration(HolderSet.direct(Tree.FIERY_AGATE_TREE_CHECKED)));
+        public static final Holder<ConfiguredFeature<SimpleRandomFeatureConfiguration, ?>> aura_trees = registerFeature("aura_trees", Feature.SIMPLE_RANDOM_SELECTOR, new SimpleRandomFeatureConfiguration(HolderSet.direct(Tree.AURA_TREE_CHECKED)));
         public static final Holder<ConfiguredFeature<SimpleRandomFeatureConfiguration, ?>> green_agate_bush = registerFeature("green_agate_bush", Feature.SIMPLE_RANDOM_SELECTOR, new SimpleRandomFeatureConfiguration(BUSH_WORKAROUND));
+        public static final Holder<ConfiguredFeature<RandomFeatureConfiguration, ?>> various_agate_trees = registerFeature("various_agate_trees", Feature.RANDOM_SELECTOR, new RandomFeatureConfiguration(List.of(
+                new WeightedPlacedFeature(Tree.PINK_AGATE_TREE_CHECKED, 0.25F),
+                new WeightedPlacedFeature(Tree.BLUE_AGATE_TREE_CHECKED, 0.25F),
+                new WeightedPlacedFeature(Tree.GREEN_AGATE_TREE_CHECKED, 0.25F),
+                new WeightedPlacedFeature(Tree.PURPLE_AGATE_TREE_CHECKED, 0.25F)),
+                PlacementUtils.inlinePlaced(mutant_growth)));
 
         private static SimpleWeightedRandomList.Builder<BlockState> weight() {
             return SimpleWeightedRandomList.builder();
@@ -167,6 +188,27 @@ public class GaiaFeatures extends GaiaBiomeFeatures {
         private static <FC extends FeatureConfiguration, F extends Feature<FC>> Holder<ConfiguredFeature<FC, ?>> registerFeature(String name, F feature, FC config) {
             ConfiguredFeature<FC, ?> configuredFeature = new ConfiguredFeature<>(feature, config);
             return BuiltinRegistries.registerExact(BuiltinRegistries.CONFIGURED_FEATURE, new ResourceLocation(GaiaDimensionMod.MODID, name).toString(), configuredFeature);
+        }
+    }
+
+    public static class Tree {
+        public static final Holder<PlacedFeature> PINK_AGATE_TREE_CHECKED = checkTree("pink_agate_tree_checked", Configured.pink_agate_tree, ModBlocks.pink_agate_sapling);
+        public static final Holder<PlacedFeature> BLUE_AGATE_TREE_CHECKED = checkTree("blue_agate_tree_checked", Configured.blue_agate_tree, ModBlocks.blue_agate_sapling);
+        public static final Holder<PlacedFeature> GREEN_AGATE_TREE_CHECKED = checkTree("green_agate_tree_checked", Configured.green_agate_tree, ModBlocks.green_agate_sapling);
+        public static final Holder<PlacedFeature> PURPLE_AGATE_TREE_CHECKED = checkTree("purple_agate_tree_checked", Configured.purple_agate_tree, ModBlocks.purple_agate_sapling);
+        public static final Holder<PlacedFeature> FOSSILIZED_TREE_CHECKED = checkTree("fossilized_tree_checked", Configured.fossilized_tree, ModBlocks.fossilized_sapling);
+        public static final Holder<PlacedFeature> GOLDSTONE_TREE_CHECKED = checkTree("goldstone_tree_checked", Configured.goldstone_tree, ModBlocks.corrupted_sapling);
+        public static final Holder<PlacedFeature> FIERY_AGATE_TREE_CHECKED = checkTree("fiery_agate_tree_checked", Configured.fiery_agate_tree, ModBlocks.burning_sapling);
+        public static final Holder<PlacedFeature> BURNT_AGATE_TREE_CHECKED = checkTree("burnt_agate_tree_checked", Configured.burnt_agate_tree, ModBlocks.burnt_sapling);
+        public static final Holder<PlacedFeature> AURA_TREE_CHECKED = checkTree("aura_tree_checked", Configured.aura_tree, ModBlocks.aura_sapling);
+
+        private static Holder<PlacedFeature> checkTree(String name, Holder<? extends ConfiguredFeature<?, ?>> feature, RegistryObject<SaplingBlock> sapling) {
+            return registerPlacedFeature(name, feature, PlacementUtils.filteredByBlockSurvival(sapling.get()));
+        }
+
+        private static Holder<PlacedFeature> registerPlacedFeature(String name, Holder<? extends ConfiguredFeature<?, ?>> feature, PlacementModifier... modifiers) {
+            PlacedFeature placedFeature = new PlacedFeature(Holder.hackyErase(feature), List.of(modifiers));
+            return BuiltinRegistries.registerExact(BuiltinRegistries.PLACED_FEATURE, new ResourceLocation(GaiaDimensionMod.MODID, name).toString(), placedFeature);
         }
     }
 
@@ -305,20 +347,26 @@ public class GaiaFeatures extends GaiaBiomeFeatures {
                 BiomeFilter.biome());
 
         //Vegetal Decoration
-        public static final Holder<PlacedFeature> PINK_AGATE_TREE_COMMON = placedTree("pink_agate_tree_common", Configured.pink_agate_tree, 4, 0.1F, 1, ModBlocks.pink_agate_sapling);
-        public static final Holder<PlacedFeature> PINK_AGATE_TREE_RARE = placedTree("pink_agate_tree_rare", Configured.pink_agate_tree, 0, 0.1F, 1, ModBlocks.pink_agate_sapling);
-        public static final Holder<PlacedFeature> BLUE_AGATE_TREE = placedTree("blue_agate_tree", Configured.blue_agate_tree, 1, 0.1F, 1, ModBlocks.blue_agate_sapling);
-        public static final Holder<PlacedFeature> GREEN_AGATE_TREE = placedTree("green_agate_tree", Configured.green_agate_tree, 5, 0.1F, 1, ModBlocks.green_agate_sapling);
-        public static final Holder<PlacedFeature> PURPLE_AGATE_TREE = placedTree("purple_agate_tree", Configured.purple_agate_tree, 1, 0.1F, 2, ModBlocks.purple_agate_sapling);
-        public static final Holder<PlacedFeature> FOSSILIZED_TREE = placedTree("fossilized_tree", Configured.fossilized_tree, 1, 0.1F, 1, ModBlocks.fossilized_sapling);
-        public static final Holder<PlacedFeature> GOLDSTONE_TREE = placedTree("goldstone_tree", Configured.goldstone_tree, 1, 0.1F, 1, ModBlocks.corrupted_sapling);
-        public static final Holder<PlacedFeature> BURNT_AGATE_TREE = placedTree("burnt_agate_tree", Configured.burnt_agate_tree, 0, 0.1F, 1, ModBlocks.burnt_sapling);
-        public static final Holder<PlacedFeature> FIERY_AGATE_TREE = placedTree("fiery_agate_tree", Configured.fiery_agate_tree, 0, 0.1F, 1, ModBlocks.burning_sapling);
-        public static final Holder<PlacedFeature> AURA_TREE = placedTree("aura_tree", Configured.aura_tree, 2, 0.1F, 1, ModBlocks.aura_sapling);
+        public static final Holder<PlacedFeature> PINK_AGATE_TREE_COMMON = placedTree("pink_agate_tree_common", Configured.pink_agate_trees, 4, 0.1F, 1);
+        public static final Holder<PlacedFeature> PINK_AGATE_TREE_RARE = placedTree("pink_agate_tree_rare", Configured.pink_agate_trees, 0, 0.1F, 1);
+        public static final Holder<PlacedFeature> BLUE_AGATE_TREE = placedTree("blue_agate_tree", Configured.blue_agate_trees, 1, 0.1F, 1);
+        public static final Holder<PlacedFeature> GREEN_AGATE_TREE = placedTree("green_agate_tree", Configured.green_agate_trees, 5, 0.1F, 1);
+        public static final Holder<PlacedFeature> PURPLE_AGATE_TREE = placedTree("purple_agate_tree", Configured.purple_agate_trees, 1, 0.1F, 2);
+        public static final Holder<PlacedFeature> FOSSILIZED_TREE = placedTree("fossilized_tree", Configured.fossilized_trees, 1, 0.1F, 1);
+        public static final Holder<PlacedFeature> GOLDSTONE_TREE = placedTree("goldstone_tree", Configured.goldstone_trees, 1, 0.1F, 1);
+        public static final Holder<PlacedFeature> BURNT_AGATE_TREE = placedTree("burnt_agate_tree", Configured.burnt_agate_trees, 0, 0.1F, 1);
+        public static final Holder<PlacedFeature> FIERY_AGATE_TREE = placedTree("fiery_agate_tree", Configured.fiery_agate_trees, 0, 0.1F, 1);
+        public static final Holder<PlacedFeature> AURA_TREE = placedTree("aura_tree", Configured.aura_trees, 2, 0.1F, 1);
         public static final Holder<PlacedFeature> GREEN_AGATE_BUSH = registerPlacedFeature("green_agate_bush", Configured.green_agate_bush,
                 CountPlacement.of(ClampedInt.of(UniformInt.of(-3, 1), 0, 1)),
                 InSquarePlacement.spread(),
                 PlacementUtils.HEIGHTMAP,
+                BiomeFilter.biome());
+        public static final Holder<PlacedFeature> VARIOUS_AGATE_TREES = registerPlacedFeature("mutant_agate_trees", Configured.various_agate_trees,
+                InSquarePlacement.spread(),
+                VegetationPlacements.TREE_THRESHOLD,
+                PlacementUtils.HEIGHTMAP_OCEAN_FLOOR,
+                PlacementUtils.countExtra(2, 0.1F, 1),
                 BiomeFilter.biome());
         public static final Holder<PlacedFeature> AURA_SHOOTS = registerPlacedFeature("aura_shoots", Configured.aura_shoots,
                 InSquarePlacement.spread(),
@@ -346,17 +394,6 @@ public class GaiaFeatures extends GaiaBiomeFeatures {
         public static final Holder<PlacedFeature> MYSTICAL_MURGNI = placedFungi("mystical_murgni", Configured.murgni, 1);
         public static final Holder<PlacedFeature> CORRUPTED_GAIA_EYE = placedFungi("corrupted_gaia_eye", Configured.corrupt_eye, 1);
 
-        public static final Holder<ConfiguredFeature<RandomFeatureConfiguration, ?>> various_agate_trees = Configured.registerFeature("various_agate_trees", Feature.RANDOM_SELECTOR, new RandomFeatureConfiguration(List.of(
-                new WeightedPlacedFeature(Placed.PINK_AGATE_TREE_COMMON, 0.25F),
-                new WeightedPlacedFeature(Placed.BLUE_AGATE_TREE, 0.25F),
-                new WeightedPlacedFeature(Placed.GREEN_AGATE_TREE, 0.25F),
-                new WeightedPlacedFeature(Placed.PURPLE_AGATE_TREE, 0.25F)),
-                Placed.CRYSTAL_GROWTH_MUTANT));
-        public static final Holder<PlacedFeature> VARIOUS_AGATE_TREES = registerPlacedFeature("various_agate_trees", various_agate_trees,
-                InSquarePlacement.spread(),
-                PlacementUtils.HEIGHTMAP,
-                PlacementUtils.countExtra(2, 0.1F, 1),
-                BiomeFilter.biome());
 
         private static Holder<PlacedFeature> placedOre(String name, Holder<ConfiguredFeature<OreConfiguration,?>> ore, int height, int count) {
             return registerPlacedFeature(name, ore,
@@ -366,10 +403,9 @@ public class GaiaFeatures extends GaiaBiomeFeatures {
                     BiomeFilter.biome());
         }
 
-        public static Holder<PlacedFeature> placedTree(String name, Holder<ConfiguredFeature<GaiaTreeFeatureConfig,?>> tree, int count, float chance, int extra, RegistryObject<SaplingBlock> sapling) {
+        public static Holder<PlacedFeature> placedTree(String name, Holder<ConfiguredFeature<SimpleRandomFeatureConfiguration,?>> tree, int count, float chance, int extra) {
             return registerPlacedFeature(name, tree,
                     PlacementUtils.countExtra(count, chance, extra),
-                    BlockPredicateFilter.forPredicate(BlockPredicate.wouldSurvive(sapling.get().defaultBlockState(), BlockPos.ZERO)),
                     InSquarePlacement.spread(),
                     VegetationPlacements.TREE_THRESHOLD,
                     PlacementUtils.HEIGHTMAP_OCEAN_FLOOR,

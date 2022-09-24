@@ -111,7 +111,7 @@
                           "then_run": {
                             "if_true": {
                               "invert": {
-                                "random_name": "minecraft:solid_golden_stone",
+                                "random_name": "minecraft:brilliant_stone",
                                 "true_at_and_below": {
                                   "absolute": 100
                                 },
@@ -234,7 +234,8 @@
                               {
                                 "if_true": {
                                   "biome_is": [
-                                    "gaiadimension:golden_hills"
+                                    "gaiadimension:golden_hills",
+                                    "gaiadimension:golden_forest"
                                   ],
                                   "type": "minecraft:biome"
                                 },
@@ -307,7 +308,8 @@
                             {
                               "if_true": {
                                 "biome_is": [
-                                  "gaiadimension:golden_hills"
+                                  "gaiadimension:golden_hills",
+                                  "gaiadimension:golden_forest"
                                 ],
                                 "type": "minecraft:biome"
                               },
@@ -397,7 +399,7 @@
                               "then_run": {
                                 "if_true": {
                                   "invert": {
-                                    "random_name": "minecraft:solid_golden_stone",
+                                    "random_name": "minecraft:brilliant_stone",
                                     "true_at_and_below": {
                                       "absolute": 100
                                     },
@@ -511,7 +513,8 @@
                             {
                               "if_true": {
                                 "biome_is": [
-                                  "gaiadimension:golden_hills"
+                                  "gaiadimension:golden_hills",
+                                  "gaiadimension:golden_forest"
                                 ],
                                 "type": "minecraft:biome"
                               },
@@ -658,7 +661,8 @@
       {
         "if_true": {
           "biome_is": [
-            "gaiadimension:golden_hills"
+            "gaiadimension:golden_hills",
+            "gaiadimension:golden_forest"
           ],
           "type": "minecraft:biome"
         },
