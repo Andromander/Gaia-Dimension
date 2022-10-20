@@ -8,10 +8,12 @@ import androsa.gaiadimension.world.gen.feature.config.FeatureHeightConfig;
 import androsa.gaiadimension.world.gen.feature.config.TwoBlockStateConfig;
 import androsa.gaiadimension.world.gen.feature.foliage.BulbFoliagePlacer;
 import androsa.gaiadimension.world.gen.feature.foliage.CappedFoliagePlacer;
+import androsa.gaiadimension.world.gen.feature.foliage.CubeFoliagePlacer;
 import androsa.gaiadimension.world.gen.feature.foliage.ThickFoliagePlacer;
 import androsa.gaiadimension.world.gen.feature.trunk.CardinalTrunkPlacer;
 import androsa.gaiadimension.world.gen.feature.trunk.FourBranchTrunkPlacer;
 import androsa.gaiadimension.world.gen.feature.trunk.ThickTrunkPlacer;
+import androsa.gaiadimension.world.gen.feature.trunk.VaryingFourBranchTrunkPlacer;
 import androsa.gaiadimension.world.gen.structure.MalachiteWatchtowerStructure;
 import androsa.gaiadimension.world.gen.structure.MiniTowerStructure;
 import androsa.gaiadimension.world.gen.structure.pieces.MalachiteWatchtowerPieces;
@@ -50,11 +52,13 @@ public class ModWorldgen {
     public static final RegistryObject<TrunkPlacerType<?>> THICK_TRUNK_PLACER = TRUNK_PLACERS.register("thick_trunk_placer", () -> new TrunkPlacerType<>(ThickTrunkPlacer.CODEC));
     public static final RegistryObject<TrunkPlacerType<?>> FOUR_BRANCH_TRUNK_PLACER = TRUNK_PLACERS.register("four_branch_trunk_placer", () -> new TrunkPlacerType<>(FourBranchTrunkPlacer.CODEC));
     public static final RegistryObject<TrunkPlacerType<?>> CARDINAL_TRUNK_PLACER = TRUNK_PLACERS.register("cardinal_trunk_placer", () -> new TrunkPlacerType<>(CardinalTrunkPlacer.CODEC));
+    public static final RegistryObject<TrunkPlacerType<?>> VARYING_FOUR_BRANCH_TRUNK_PLACER = TRUNK_PLACERS.register("varying_four_branch_trunk_placer", () -> new TrunkPlacerType<>(VaryingFourBranchTrunkPlacer.CODEC));
 
     //Foliage
     public static final RegistryObject<FoliagePlacerType<?>> CAPPED_FOLIAGE_PLACER = FOLIAGE_PLACERS.register("capped_foliage_placer", () -> new FoliagePlacerType<>(CappedFoliagePlacer.CODEC));
     public static final RegistryObject<FoliagePlacerType<?>> THICK_FOLIAGE_PLACER = FOLIAGE_PLACERS.register("thick_foliage_placer", () -> new FoliagePlacerType<>(ThickFoliagePlacer.CODEC));
     public static final RegistryObject<FoliagePlacerType<?>> BULB_FOLIAGE_PLACER = FOLIAGE_PLACERS.register("bulb_foliage_placer", () -> new FoliagePlacerType<>(BulbFoliagePlacer.CODEC));
+    public static final RegistryObject<FoliagePlacerType<?>> CUBE_FOLIAGE_PLACER = FOLIAGE_PLACERS.register("cube_foliage_placer", () -> new FoliagePlacerType<>(CubeFoliagePlacer.CODEC));
 
     //Feature
     public static final RegistryObject<Feature<BlockStateConfiguration>> POOL = FEATURES.register("pool", () ->

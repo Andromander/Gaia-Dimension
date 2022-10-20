@@ -99,6 +99,7 @@ public class GaiaLootTables extends LootTableProvider {
             dropSelf(ModBlocks.agathum);
             dropSelf(ModBlocks.varloom);
             dropSelf(ModBlocks.corrupted_varloom);
+            dropSelf(ModBlocks.glamelea);
             dropSelf(ModBlocks.missingno_plant);
             dropSelf(ModBlocks.spotted_kersei);
             dropSelf(ModBlocks.thorny_wiltha);
@@ -121,6 +122,7 @@ public class GaiaLootTables extends LootTableProvider {
             dropSelf(ModBlocks.burnt_sapling);
             dropSelf(ModBlocks.burning_sapling);
             dropSelf(ModBlocks.aura_sapling);
+            dropSelf(ModBlocks.golden_sapling);
             dropChance(ModBlocks.pink_agate_leaves, ModBlocks.pink_agate_sapling, leaf_chances);
             dropChance(ModBlocks.blue_agate_leaves, ModBlocks.blue_agate_sapling, leaf_chances);
             dropChance(ModBlocks.green_agate_leaves, ModBlocks.green_agate_sapling, leaf_chances);
@@ -130,6 +132,7 @@ public class GaiaLootTables extends LootTableProvider {
             dropChanceAlternative(ModBlocks.burnt_leaves, ModBlocks.burnt_sapling, () -> Items.GUNPOWDER, leaf_chances);
             dropChanceAlternative(ModBlocks.burning_leaves, ModBlocks.burning_sapling, ModItems.hot_dust, leaf_chances);
             dropChance(ModBlocks.aura_leaves, ModBlocks.aura_sapling, leaf_chances);
+            dropChance(ModBlocks.golden_leaves, ModBlocks.golden_sapling, leaf_chances);
             dropSelf(ModBlocks.pink_agate_log);
             dropSelf(ModBlocks.blue_agate_log);
             dropSelf(ModBlocks.green_agate_log);
@@ -139,6 +142,7 @@ public class GaiaLootTables extends LootTableProvider {
             dropSelf(ModBlocks.burnt_log);
             dropSelf(ModBlocks.burning_log);
             dropSelf(ModBlocks.aura_log);
+            dropSelf(ModBlocks.golden_log);
             dropSelf(ModBlocks.stripped_pink_agate_log);
             dropSelf(ModBlocks.stripped_blue_agate_log);
             dropSelf(ModBlocks.stripped_green_agate_log);
@@ -148,6 +152,7 @@ public class GaiaLootTables extends LootTableProvider {
             dropSelf(ModBlocks.stripped_burnt_log);
             dropSelf(ModBlocks.stripped_burning_log);
             dropSelf(ModBlocks.stripped_aura_log);
+            dropSelf(ModBlocks.stripped_golden_log);
             dropSelf(ModBlocks.pink_agate_wood);
             dropSelf(ModBlocks.blue_agate_wood);
             dropSelf(ModBlocks.green_agate_wood);
@@ -157,6 +162,7 @@ public class GaiaLootTables extends LootTableProvider {
             dropSelf(ModBlocks.burnt_wood);
             dropSelf(ModBlocks.burning_wood);
             dropSelf(ModBlocks.aura_wood);
+            dropSelf(ModBlocks.golden_wood);
             dropSelf(ModBlocks.stripped_pink_agate_wood);
             dropSelf(ModBlocks.stripped_blue_agate_wood);
             dropSelf(ModBlocks.stripped_green_agate_wood);
@@ -166,6 +172,7 @@ public class GaiaLootTables extends LootTableProvider {
             dropSelf(ModBlocks.stripped_burnt_wood);
             dropSelf(ModBlocks.stripped_burning_wood);
             dropSelf(ModBlocks.stripped_aura_wood);
+            dropSelf(ModBlocks.stripped_golden_wood);
 
             dropSelf(ModBlocks.salt);
             dropSelf(ModBlocks.saltstone);
@@ -357,6 +364,7 @@ public class GaiaLootTables extends LootTableProvider {
             dropPot(ModBlocks.potted_burnt_sapling);
             dropPot(ModBlocks.potted_burning_sapling);
             dropPot(ModBlocks.potted_aura_sapling);
+            dropPot(ModBlocks.potted_golden_sapling);
         }
 
         @Override

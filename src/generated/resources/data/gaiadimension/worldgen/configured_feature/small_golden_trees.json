@@ -1,0 +1,6 @@
+{
+  "config": {
+    "features": "gaiadimension:small_golden_tree_checked"
+  },
+  "type": "minecraft:simple_random_selector"
+}

@@ -60,6 +60,7 @@ public class GaiaRecipes extends GaiaRecipeProvider {
         smallCompressRecipe(ModBlocks.burnt_wood.get(), ModBlocks.burnt_log.get(), 3).save(consumer, locWood("burnt_wood"));
         smallCompressRecipe(ModBlocks.burning_wood.get(), ModBlocks.burning_log.get(), 3).save(consumer, locWood("burning_wood"));
         smallCompressRecipe(ModBlocks.aura_wood.get(), ModBlocks.aura_log.get(), 3).save(consumer, locWood("aura_wood"));
+        smallCompressRecipe(ModBlocks.golden_wood.get(), ModBlocks.golden_log.get(), 3).save(consumer, locWood("golden_wood"));
 
         largeCompressRecipe(ModBlocks.sugilite_block.get(), ModItems.sugilite.get()).save(consumer, locStorage("sugilite_block"));
         largeCompressRecipe(ModBlocks.hematite_block.get(), ModItems.hematite.get()).save(consumer, locStorage("hematite_block"));

@@ -1,0 +1,14 @@
+{
+  "parent": "block/block",
+  "textures": {
+    "texture": "gaiadimension:block/glamelea",
+    "particle": "gaiadimension:block/glamelea"
+  },
+  "elements": [{
+    "from": [ 0, 0, 0 ],
+    "to": [ 16, 0.5, 16 ],
+    "faces": {
+      "up": { "texture": "#texture" }
+    }
+  }]
+}

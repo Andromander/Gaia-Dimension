@@ -73,6 +73,7 @@ public class GaiaItemTags extends GaiaItemTagsProvider {
         copy(GaiaTags.Blocks.BURNT_LOGS, GaiaTags.Items.BURNT_LOGS);
         copy(GaiaTags.Blocks.BURNING_LOGS, GaiaTags.Items.BURNING_LOGS);
         copy(GaiaTags.Blocks.AURA_LOGS, GaiaTags.Items.AURA_LOGS);
+        copy(GaiaTags.Blocks.GOLDEN_LOGS, GaiaTags.Items.GOLDEN_LOGS);
         copy(GaiaTags.Blocks.GAIA_BRICKS, GaiaTags.Items.GAIA_BRICKS);
         copy(GaiaTags.Blocks.AMETHYST_BRICKS, GaiaTags.Items.AMETHYST_BRICKS);
         copy(GaiaTags.Blocks.COPAL_BRICKS, GaiaTags.Items.COPAL_BRICKS);

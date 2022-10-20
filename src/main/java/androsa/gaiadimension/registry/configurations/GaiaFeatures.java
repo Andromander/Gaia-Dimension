@@ -7,10 +7,12 @@ import androsa.gaiadimension.world.gen.feature.config.FeatureHeightConfig;
 import androsa.gaiadimension.world.gen.feature.config.TwoBlockStateConfig;
 import androsa.gaiadimension.world.gen.feature.foliage.BulbFoliagePlacer;
 import androsa.gaiadimension.world.gen.feature.foliage.CappedFoliagePlacer;
+import androsa.gaiadimension.world.gen.feature.foliage.CubeFoliagePlacer;
 import androsa.gaiadimension.world.gen.feature.foliage.ThickFoliagePlacer;
 import androsa.gaiadimension.world.gen.feature.trunk.CardinalTrunkPlacer;
 import androsa.gaiadimension.world.gen.feature.trunk.FourBranchTrunkPlacer;
 import androsa.gaiadimension.world.gen.feature.trunk.ThickTrunkPlacer;
+import androsa.gaiadimension.world.gen.feature.trunk.VaryingFourBranchTrunkPlacer;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
 import net.minecraft.core.BlockPos;
@@ -63,6 +65,8 @@ public class GaiaFeatures extends GaiaBiomeFeatures {
         public static final TreeConfiguration BURNT_TREE_CONFIG = configureTree(BURNT_LOG, new StraightTrunkPlacer(5, 3, 3), BURNT_LEAVES, new CappedFoliagePlacer(ConstantInt.of(2), ConstantInt.of(1)), 1, 0, 1, HEAVY_SOIL);
         public static final TreeConfiguration BURNING_TREE_CONFIG = configureTree(BURNING_LOG, new StraightTrunkPlacer(5, 3, 3), BURNING_LEAVES, new CappedFoliagePlacer(ConstantInt.of(2), ConstantInt.of(1)), 1, 0, 1, HEAVY_SOIL);
         public static final TreeConfiguration AURA_TREE_CONFIG = configureTree(AURA_LOG, new FourBranchTrunkPlacer(10, 3, 3), AURA_LEAVES, new CappedFoliagePlacer(ConstantInt.of(2), ConstantInt.of(1)), 1, 0, 1, LIGHT_SOIL);
+        public static final TreeConfiguration SMALL_GOLDEN_TREE_CONFIG = configureTree(GOLDEN_LOG, new VaryingFourBranchTrunkPlacer(7, 2, 2), GOLDEN_LEAVES, new CubeFoliagePlacer(ConstantInt.of(1), ConstantInt.of(1)), 1, 0, 1, AURUM_SOIL);
+        public static final TreeConfiguration BIG_GOLDEN_TREE_CONFIG = configureTree(GOLDEN_LOG, new VaryingFourBranchTrunkPlacer(9, 3, 4), GOLDEN_LEAVES, new CubeFoliagePlacer(ConstantInt.of(2), ConstantInt.of(1)), 1, 0, 1, AURUM_SOIL);
 
         public static TreeConfiguration configureTree(BlockState log, TrunkPlacer trunk, BlockState leaves, FoliagePlacer foliage, int limit, int lower, int upper, BlockState dirt) {
             return new TreeConfiguration.TreeConfigurationBuilder(
@@ -137,6 +141,7 @@ public class GaiaFeatures extends GaiaBiomeFeatures {
         public static final Holder<ConfiguredFeature<RandomPatchConfiguration, ?>> rare_bloom = registerFeature("rare_bloom", Feature.RANDOM_PATCH, configurePatch(32, 7, 3, new WeightedStateProvider(weight().add(OUZIUM, 4).add(THISCUS, 1))));
         public static final Holder<ConfiguredFeature<RandomPatchConfiguration, ?>> mutant_bloom = registerFeature("mutant_bloom", Feature.RANDOM_PATCH, configurePatch(32, 7, 3, new WeightedStateProvider(weight().add(OUZIUM, 4).add(AGATHUM, 1))));
         public static final Holder<ConfiguredFeature<RandomPatchConfiguration, ?>> corrupt_bloom = registerFeature("corrupt_bloom", Feature.RANDOM_PATCH, configurePatch(64, 7, 3, BlockStateProvider.simple(CORRUPTED_VARLOOM)));
+        public static final Holder<ConfiguredFeature<RandomPatchConfiguration, ?>> golden_bloom = registerFeature("glamelea_bloom", Feature.RANDOM_PATCH, configurePatch(32, 6, 3, BlockStateProvider.simple(GLAMELEA)));
 
         public static final Holder<ConfiguredFeature<RandomPatchConfiguration, ?>> kersei = registerFeature("spotted_kersei", Feature.RANDOM_PATCH, configurePatch(16, 7, 3, BlockStateProvider.simple(SPOTTED_KERSEI)));
         public static final Holder<ConfiguredFeature<RandomPatchConfiguration, ?>> wiltha = registerFeature("thorny_wiltha", Feature.RANDOM_PATCH, configurePatch(16, 7, 3, BlockStateProvider.simple(THORNY_WILTHA)));
@@ -155,6 +160,8 @@ public class GaiaFeatures extends GaiaBiomeFeatures {
         public static final Holder<ConfiguredFeature<TreeConfiguration, ?>> burnt_agate_tree = registerFeature("burnt_agate_tree", ModWorldgen.STRICT_TREE.get(), Config.BURNT_TREE_CONFIG);
         public static final Holder<ConfiguredFeature<TreeConfiguration, ?>> fiery_agate_tree = registerFeature("fiery_agate_tree", ModWorldgen.STRICT_TREE.get(), Config.BURNING_TREE_CONFIG);
         public static final Holder<ConfiguredFeature<TreeConfiguration, ?>> aura_tree = registerFeature("aura_tree", ModWorldgen.STRICT_TREE.get(), Config.AURA_TREE_CONFIG);
+        public static final Holder<ConfiguredFeature<TreeConfiguration, ?>> small_golden_tree = registerFeature("small_golden_tree", ModWorldgen.STRICT_TREE.get(), Config.SMALL_GOLDEN_TREE_CONFIG);
+        public static final Holder<ConfiguredFeature<TreeConfiguration, ?>> big_golden_tree = registerFeature("big_golden_tree", ModWorldgen.STRICT_TREE.get(), Config.BIG_GOLDEN_TREE_CONFIG);
 
         public static final Holder<ConfiguredFeature<SimpleRandomFeatureConfiguration, ?>> pink_agate_trees = registerFeature("pink_agate_trees", Feature.SIMPLE_RANDOM_SELECTOR, new SimpleRandomFeatureConfiguration(HolderSet.direct(Tree.PINK_AGATE_TREE_CHECKED)));
         public static final Holder<ConfiguredFeature<SimpleRandomFeatureConfiguration, ?>> blue_agate_trees = registerFeature("blue_agate_trees", Feature.SIMPLE_RANDOM_SELECTOR, new SimpleRandomFeatureConfiguration(HolderSet.direct(Tree.BLUE_AGATE_TREE_CHECKED)));
@@ -165,6 +172,7 @@ public class GaiaFeatures extends GaiaBiomeFeatures {
         public static final Holder<ConfiguredFeature<SimpleRandomFeatureConfiguration, ?>> burnt_agate_trees = registerFeature("burnt_agate_trees", Feature.SIMPLE_RANDOM_SELECTOR, new SimpleRandomFeatureConfiguration(HolderSet.direct(Tree.BURNT_AGATE_TREE_CHECKED)));
         public static final Holder<ConfiguredFeature<SimpleRandomFeatureConfiguration, ?>> fiery_agate_trees = registerFeature("fiery_agate_trees", Feature.SIMPLE_RANDOM_SELECTOR, new SimpleRandomFeatureConfiguration(HolderSet.direct(Tree.FIERY_AGATE_TREE_CHECKED)));
         public static final Holder<ConfiguredFeature<SimpleRandomFeatureConfiguration, ?>> aura_trees = registerFeature("aura_trees", Feature.SIMPLE_RANDOM_SELECTOR, new SimpleRandomFeatureConfiguration(HolderSet.direct(Tree.AURA_TREE_CHECKED)));
+        public static final Holder<ConfiguredFeature<SimpleRandomFeatureConfiguration, ?>> small_golden_trees = registerFeature("small_golden_trees", Feature.SIMPLE_RANDOM_SELECTOR, new SimpleRandomFeatureConfiguration(HolderSet.direct(Tree.SMALL_GOLDEN_TREE_CHECKED)));
         public static final Holder<ConfiguredFeature<SimpleRandomFeatureConfiguration, ?>> green_agate_bush = registerFeature("green_agate_bush", Feature.SIMPLE_RANDOM_SELECTOR, new SimpleRandomFeatureConfiguration(BUSH_WORKAROUND));
         public static final Holder<ConfiguredFeature<RandomFeatureConfiguration, ?>> various_agate_trees = registerFeature("various_agate_trees", Feature.RANDOM_SELECTOR, new RandomFeatureConfiguration(List.of(
                 new WeightedPlacedFeature(Tree.PINK_AGATE_TREE_CHECKED, 0.25F),
@@ -172,6 +180,9 @@ public class GaiaFeatures extends GaiaBiomeFeatures {
                 new WeightedPlacedFeature(Tree.GREEN_AGATE_TREE_CHECKED, 0.25F),
                 new WeightedPlacedFeature(Tree.PURPLE_AGATE_TREE_CHECKED, 0.25F)),
                 PlacementUtils.inlinePlaced(mutant_growth)));
+        public static final Holder<ConfiguredFeature<RandomFeatureConfiguration, ?>> golden_trees = registerFeature("golden_trees", Feature.RANDOM_SELECTOR, new RandomFeatureConfiguration(List.of(
+                new WeightedPlacedFeature(Tree.BIG_GOLDEN_TREE_CHECKED, 0.25F)),
+                Tree.SMALL_GOLDEN_TREE_CHECKED));
 
         private static SimpleWeightedRandomList.Builder<BlockState> weight() {
             return SimpleWeightedRandomList.builder();
@@ -201,6 +212,8 @@ public class GaiaFeatures extends GaiaBiomeFeatures {
         public static final Holder<PlacedFeature> FIERY_AGATE_TREE_CHECKED = checkTree("fiery_agate_tree_checked", Configured.fiery_agate_tree, ModBlocks.burning_sapling);
         public static final Holder<PlacedFeature> BURNT_AGATE_TREE_CHECKED = checkTree("burnt_agate_tree_checked", Configured.burnt_agate_tree, ModBlocks.burnt_sapling);
         public static final Holder<PlacedFeature> AURA_TREE_CHECKED = checkTree("aura_tree_checked", Configured.aura_tree, ModBlocks.aura_sapling);
+        public static final Holder<PlacedFeature> SMALL_GOLDEN_TREE_CHECKED = checkTree("small_golden_tree_checked", Configured.small_golden_tree, ModBlocks.golden_sapling);
+        public static final Holder<PlacedFeature> BIG_GOLDEN_TREE_CHECKED = checkTree("big_golden_tree_checked", Configured.big_golden_tree, ModBlocks.golden_sapling);
 
         private static Holder<PlacedFeature> checkTree(String name, Holder<? extends ConfiguredFeature<?, ?>> feature, RegistryObject<SaplingBlock> sapling) {
             return registerPlacedFeature(name, feature, PlacementUtils.filteredByBlockSurvival(sapling.get()));
@@ -357,12 +370,19 @@ public class GaiaFeatures extends GaiaBiomeFeatures {
         public static final Holder<PlacedFeature> BURNT_AGATE_TREE = placedTree("burnt_agate_tree", Configured.burnt_agate_trees, 0, 0.1F, 1);
         public static final Holder<PlacedFeature> FIERY_AGATE_TREE = placedTree("fiery_agate_tree", Configured.fiery_agate_trees, 0, 0.1F, 1);
         public static final Holder<PlacedFeature> AURA_TREE = placedTree("aura_tree", Configured.aura_trees, 2, 0.1F, 1);
+        public static final Holder<PlacedFeature> SMALL_GOLDEN_TREE = placedTree("small_golden_tree", Configured.small_golden_trees, 2, 0.1F, 1);
         public static final Holder<PlacedFeature> GREEN_AGATE_BUSH = registerPlacedFeature("green_agate_bush", Configured.green_agate_bush,
                 CountPlacement.of(ClampedInt.of(UniformInt.of(-3, 1), 0, 1)),
                 InSquarePlacement.spread(),
                 PlacementUtils.HEIGHTMAP,
                 BiomeFilter.biome());
         public static final Holder<PlacedFeature> VARIOUS_AGATE_TREES = registerPlacedFeature("mutant_agate_trees", Configured.various_agate_trees,
+                InSquarePlacement.spread(),
+                VegetationPlacements.TREE_THRESHOLD,
+                PlacementUtils.HEIGHTMAP_OCEAN_FLOOR,
+                PlacementUtils.countExtra(2, 0.1F, 1),
+                BiomeFilter.biome());
+        public static final Holder<PlacedFeature> GOLDEN_TREES = registerPlacedFeature("golden_trees", Configured.golden_trees,
                 InSquarePlacement.spread(),
                 VegetationPlacements.TREE_THRESHOLD,
                 PlacementUtils.HEIGHTMAP_OCEAN_FLOOR,
@@ -381,11 +401,13 @@ public class GaiaFeatures extends GaiaBiomeFeatures {
         public static final Holder<PlacedFeature> CRYSTAL_GROWTH_CORRUPT = placedPlant("crystal_growth_corrupt", Configured.corrupt_growth, 1);
         public static final Holder<PlacedFeature> CRYSTAL_GROWTH_AURA = placedPlant("crystal_growth_aura", Configured.aura_growth, 2);
         public static final Holder<PlacedFeature> CRYSTAL_GROWTH_MUTANT = placedPlant("crystal_growth_mutant", Configured.mutant_growth, 2);
+        public static final Holder<PlacedFeature> GOLDEN_GRASS_COMMON = placedPlant("golden_grass_common", Configured.golden_grass, 3);
         public static final Holder<PlacedFeature> GOLDEN_GRASS_UNCOMMON = placedPlant("golden_grass_uncommon", Configured.golden_grass, 2);
         public static final Holder<PlacedFeature> CRYSTAL_BLOOMS_COMMON = placedPlant("crystal_blooms_common", Configured.common_bloom, 2);
         public static final Holder<PlacedFeature> CRYSTAL_BLOOMS_RARE = placedPlant("crystal_blooms_rare", Configured.rare_bloom, 2);
         public static final Holder<PlacedFeature> CRYSTAL_BLOOMS_MUTANT = placedPlant("crystal_blooms_mutant", Configured.mutant_bloom, 2);
         public static final Holder<PlacedFeature> CRYSTAL_BLOOMS_CORRUPT = placedPlant("crystal_blooms_corrupt", Configured.corrupt_bloom, 1);
+        public static final Holder<PlacedFeature> CRYSTAL_BLOOMS_GOLDEN = placedPlant("crystal_blooms_golden", Configured.golden_bloom, 1);
         public static final Holder<PlacedFeature> SPOTTED_KERSEI = placedFungi("spotted_kersei", Configured.kersei, 1);
         public static final Holder<PlacedFeature> THORNY_WILTHA = placedFungi("thorny_wiltha", Configured.wiltha, 1);
         public static final Holder<PlacedFeature> ROOFED_AGARIC = placedFungi("roofed_agaric", Configured.agaric, 1);

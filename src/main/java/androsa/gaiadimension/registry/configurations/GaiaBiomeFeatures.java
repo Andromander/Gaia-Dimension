@@ -26,6 +26,7 @@ public class GaiaBiomeFeatures {
     public static final BlockState CORRUPT_SOIL = state(ModBlocks.corrupt_soil);
     public static final BlockState BOGGY_SOIL = state(ModBlocks.boggy_soil);
     public static final BlockState LIGHT_SOIL = state(ModBlocks.light_soil);
+    public static final BlockState AURUM_SOIL = state(ModBlocks.aurum_soil);
     public static final BlockState SALT = state(ModBlocks.salt);
     public static final BlockState WASTELAND_STONE = state(ModBlocks.wasteland_stone);
     public static final BlockState SUPERHOT_MAGMA = state(ModBlocks.superhot_magma);
@@ -76,6 +77,8 @@ public class GaiaBiomeFeatures {
     public static final BlockState BURNING_LEAVES = state(ModBlocks.burning_leaves);
     public static final BlockState AURA_LOG = state(ModBlocks.aura_log);
     public static final BlockState AURA_LEAVES = state(ModBlocks.aura_leaves);
+    public static final BlockState GOLDEN_LOG = state(ModBlocks.golden_log);
+    public static final BlockState GOLDEN_LEAVES = state(ModBlocks.golden_leaves);
     public static final BlockState CRYSTAL_GROWTH = state(ModBlocks.crystal_growth);
     public static final BlockState CRYSTAL_GROWTH_MUTANT = state(ModBlocks.crystal_growth_mutant);
     public static final BlockState CRYSTAL_GROWTH_SEARED = state(ModBlocks.crystal_growth_seared);
@@ -89,6 +92,7 @@ public class GaiaBiomeFeatures {
     public static final BlockState OUZIUM = state(ModBlocks.ouzium);
     public static final BlockState AGATHUM = state(ModBlocks.agathum);
     public static final BlockState CORRUPTED_VARLOOM = state(ModBlocks.corrupted_varloom);
+    public static final BlockState GLAMELEA = state(ModBlocks.glamelea);
     public static final BlockState SPOTTED_KERSEI = state(ModBlocks.spotted_kersei);
     public static final BlockState THORNY_WILTHA = state(ModBlocks.thorny_wiltha);
     public static final BlockState ROOFED_AGARIC = state(ModBlocks.roofed_agaric);

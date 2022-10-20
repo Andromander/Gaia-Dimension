@@ -53,6 +53,7 @@ public class GaiaItemModels extends GaiaItemModelProvider {
         blockItemTexture(ModBlocks.agathum);
         blockItemTexture(ModBlocks.varloom);
         blockItemTexture(ModBlocks.corrupted_varloom);
+        blockItemTexture(ModBlocks.glamelea);
         blockItemTexture(ModBlocks.missingno_plant);
         blockItemTexture(ModBlocks.spotted_kersei);
         blockItemTexture(ModBlocks.thorny_wiltha);
@@ -73,6 +74,7 @@ public class GaiaItemModels extends GaiaItemModelProvider {
         blockItemTexture(ModBlocks.burnt_sapling);
         blockItemTexture(ModBlocks.burning_sapling);
         blockItemTexture(ModBlocks.aura_sapling);
+        blockItemTexture(ModBlocks.golden_sapling);
         blockItem(ModBlocks.pink_agate_leaves);
         blockItem(ModBlocks.blue_agate_leaves);
         blockItem(ModBlocks.green_agate_leaves);
@@ -82,6 +84,7 @@ public class GaiaItemModels extends GaiaItemModelProvider {
         blockItem(ModBlocks.burnt_leaves);
         blockItem(ModBlocks.burning_leaves);
         blockItem(ModBlocks.aura_leaves);
+        blockItem(ModBlocks.golden_leaves);
         blockItem(ModBlocks.pink_agate_log);
         blockItem(ModBlocks.blue_agate_log);
         blockItem(ModBlocks.green_agate_log);
@@ -91,6 +94,7 @@ public class GaiaItemModels extends GaiaItemModelProvider {
         blockItem(ModBlocks.burnt_log);
         blockItem(ModBlocks.burning_log);
         blockItem(ModBlocks.aura_log);
+        blockItem(ModBlocks.golden_log);
         blockItem(ModBlocks.stripped_pink_agate_log);
         blockItem(ModBlocks.stripped_blue_agate_log);
         blockItem(ModBlocks.stripped_green_agate_log);
@@ -100,6 +104,7 @@ public class GaiaItemModels extends GaiaItemModelProvider {
         blockItem(ModBlocks.stripped_burnt_log);
         blockItem(ModBlocks.stripped_burning_log);
         blockItem(ModBlocks.stripped_aura_log);
+        blockItem(ModBlocks.stripped_golden_log);
         blockItem(ModBlocks.pink_agate_wood);
         blockItem(ModBlocks.blue_agate_wood);
         blockItem(ModBlocks.green_agate_wood);
@@ -109,6 +114,7 @@ public class GaiaItemModels extends GaiaItemModelProvider {
         blockItem(ModBlocks.burnt_wood);
         blockItem(ModBlocks.burning_wood);
         blockItem(ModBlocks.aura_wood);
+        blockItem(ModBlocks.golden_wood);
         blockItem(ModBlocks.stripped_pink_agate_wood);
         blockItem(ModBlocks.stripped_blue_agate_wood);
         blockItem(ModBlocks.stripped_green_agate_wood);
@@ -118,6 +124,7 @@ public class GaiaItemModels extends GaiaItemModelProvider {
         blockItem(ModBlocks.stripped_burnt_wood);
         blockItem(ModBlocks.stripped_burning_wood);
         blockItem(ModBlocks.stripped_aura_wood);
+        blockItem(ModBlocks.stripped_golden_wood);
         blockItem(ModBlocks.salt);
         blockItem(ModBlocks.saltstone);
         blockItem(ModBlocks.pebbles);

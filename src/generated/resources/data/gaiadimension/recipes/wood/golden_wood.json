@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "##",
+    "##"
+  ],
+  "key": {
+    "#": {
+      "item": "gaiadimension:golden_log"
+    }
+  },
+  "result": {
+    "item": "gaiadimension:golden_wood",
+    "count": 3
+  }
+}

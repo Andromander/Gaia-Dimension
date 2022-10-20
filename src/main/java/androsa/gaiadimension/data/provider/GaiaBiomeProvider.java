@@ -275,4 +275,12 @@ public abstract class GaiaBiomeProvider {
                 .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, GaiaFeatures.Placed.GOLDEN_GRASS_UNCOMMON)
                 .build();
     }
+
+    public static BiomeGenerationSettings goldenForestBiome() {
+        return new BiomeGenerationSettings.Builder()
+                .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, GaiaFeatures.Placed.GOLDEN_TREES)
+                .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, GaiaFeatures.Placed.CRYSTAL_BLOOMS_GOLDEN)
+                .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, GaiaFeatures.Placed.GOLDEN_GRASS_COMMON)
+                .build();
+    }
 }

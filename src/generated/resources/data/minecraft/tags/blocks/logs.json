@@ -9,6 +9,7 @@
     "#gaiadimension:corrupted_logs",
     "#gaiadimension:burnt_logs",
     "#gaiadimension:burning_logs",
-    "#gaiadimension:aura_logs"
+    "#gaiadimension:aura_logs",
+    "#gaiadimension:golden_logs"
   ]
 }

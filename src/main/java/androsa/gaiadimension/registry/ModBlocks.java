@@ -101,6 +101,7 @@ public class ModBlocks {
     public static final RegistryObject<Block> agathum = register("agathum", () -> new CrystalBloomBlock(GaiaBlockProperties.bloomProps()));
     public static final RegistryObject<Block> varloom = register("varloom", () -> new CrystalBloomBlock(GaiaBlockProperties.bloomProps()));
     public static final RegistryObject<Block> corrupted_varloom = register("corrupted_varloom", () -> new CrystalBloomBlock(GaiaBlockProperties.bloomProps()));
+    public static final RegistryObject<Block> glamelea = register("glamelea", () -> new GlameleaBlock(GaiaBlockProperties.bloomProps()));
     public static final RegistryObject<Block> missingno_plant = register("missingno_plant", () -> new CrystalBloomBlock(GaiaBlockProperties.bloomProps()));
     public static final RegistryObject<Block> spotted_kersei = register("spotted_kersei", () -> new CrystalFungusBlock(GaiaBlockProperties.plantProps(MaterialColor.COLOR_PINK, false), false));
     public static final RegistryObject<Block> thorny_wiltha = register("thorny_wiltha", () -> new CrystalFungusBlock(GaiaBlockProperties.plantProps(MaterialColor.COLOR_LIGHT_BLUE, false), false));
@@ -124,6 +125,7 @@ public class ModBlocks {
     public static final RegistryObject<SaplingBlock> burnt_sapling = register("burnt_sapling", () -> new GaiaSaplingBlock(new BurntAgateTree(), GaiaBlockProperties.saplingProps(MaterialColor.COLOR_BLACK)));
     public static final RegistryObject<SaplingBlock> burning_sapling = register("burning_sapling", () -> new GaiaSaplingBlock(new FieryAgateTree(), GaiaBlockProperties.saplingProps(MaterialColor.TERRACOTTA_ORANGE)), 100);
     public static final RegistryObject<SaplingBlock> aura_sapling = register("aura_sapling", () -> new GaiaSaplingBlock(new AuraTree(), GaiaBlockProperties.saplingProps(MaterialColor.SNOW)));
+    public static final RegistryObject<SaplingBlock> golden_sapling = register("golden_sapling", () -> new GaiaSaplingBlock(new GoldenTree(), GaiaBlockProperties.saplingProps(MaterialColor.GOLD)));
     public static final RegistryObject<Block> pink_agate_leaves = register("pink_agate_leaves", () -> new LeavesBlock(GaiaBlockProperties.leavesProps(MaterialColor.COLOR_MAGENTA)));
     public static final RegistryObject<Block> blue_agate_leaves = register("blue_agate_leaves", () -> new LeavesBlock(GaiaBlockProperties.leavesProps(MaterialColor.COLOR_BLUE)));
     public static final RegistryObject<Block> green_agate_leaves = register("green_agate_leaves", () -> new LeavesBlock(GaiaBlockProperties.leavesProps(MaterialColor.COLOR_GREEN)));
@@ -133,6 +135,7 @@ public class ModBlocks {
     public static final RegistryObject<Block> burnt_leaves = register("burnt_leaves", () -> new LeavesBlock(GaiaBlockProperties.leavesProps(MaterialColor.COLOR_GRAY)));
     public static final RegistryObject<Block> burning_leaves = register("burning_leaves", () -> new LeavesBlock(GaiaBlockProperties.leavesProps(MaterialColor.TERRACOTTA_ORANGE).lightLevel((state) -> 3)), 200);
     public static final RegistryObject<Block> aura_leaves = register("aura_leaves", () -> new LeavesBlock(GaiaBlockProperties.leavesProps(MaterialColor.METAL)));
+    public static final RegistryObject<Block> golden_leaves = register("golden_leaves", () -> new LeavesBlock(GaiaBlockProperties.leavesProps(MaterialColor.GOLD)));
     public static final RegistryObject<RotatedPillarBlock> pink_agate_log = register("pink_agate_log", () -> new RotatedPillarBlock(GaiaBlockProperties.logProps(MaterialColor.COLOR_MAGENTA, MaterialColor.TERRACOTTA_PINK)));
     public static final RegistryObject<RotatedPillarBlock> blue_agate_log = register("blue_agate_log", () -> new RotatedPillarBlock(GaiaBlockProperties.logProps(MaterialColor.COLOR_BLUE, MaterialColor.TERRACOTTA_BLUE)));
     public static final RegistryObject<RotatedPillarBlock> green_agate_log = register("green_agate_log", () -> new RotatedPillarBlock(GaiaBlockProperties.logProps(MaterialColor.COLOR_GREEN, MaterialColor.TERRACOTTA_LIGHT_GREEN)));
@@ -142,6 +145,7 @@ public class ModBlocks {
     public static final RegistryObject<RotatedPillarBlock> burnt_log = register("burnt_log", () -> new RotatedPillarBlock(GaiaBlockProperties.logProps(MaterialColor.COLOR_GRAY, MaterialColor.TERRACOTTA_BLACK)));
     public static final RegistryObject<RotatedPillarBlock> burning_log = register("burning_log", () -> new RotatedPillarBlock(GaiaBlockProperties.logProps(MaterialColor.COLOR_ORANGE, MaterialColor.TERRACOTTA_ORANGE).lightLevel((state) -> 3)), 1600);
     public static final RegistryObject<RotatedPillarBlock> aura_log = register("aura_log", () -> new RotatedPillarBlock(GaiaBlockProperties.logProps(MaterialColor.METAL, MaterialColor.COLOR_GRAY)));
+    public static final RegistryObject<RotatedPillarBlock> golden_log = register("golden_log", () -> new RotatedPillarBlock(GaiaBlockProperties.logProps(MaterialColor.GOLD, MaterialColor.TERRACOTTA_BROWN)));
     public static final RegistryObject<RotatedPillarBlock> stripped_pink_agate_log = register("stripped_pink_agate_log", () -> new RotatedPillarBlock(GaiaBlockProperties.logProps(MaterialColor.COLOR_MAGENTA)));
     public static final RegistryObject<RotatedPillarBlock> stripped_blue_agate_log = register("stripped_blue_agate_log", () -> new RotatedPillarBlock(GaiaBlockProperties.logProps(MaterialColor.COLOR_BLUE)));
     public static final RegistryObject<RotatedPillarBlock> stripped_green_agate_log = register("stripped_green_agate_log", () -> new RotatedPillarBlock(GaiaBlockProperties.logProps(MaterialColor.COLOR_GREEN)));
@@ -151,6 +155,7 @@ public class ModBlocks {
     public static final RegistryObject<RotatedPillarBlock> stripped_burnt_log = register("stripped_burnt_log", () -> new RotatedPillarBlock(GaiaBlockProperties.logProps(MaterialColor.COLOR_GRAY)));
     public static final RegistryObject<RotatedPillarBlock> stripped_burning_log = register("stripped_burning_log", () -> new RotatedPillarBlock(GaiaBlockProperties.logProps(MaterialColor.COLOR_ORANGE).lightLevel((state) -> 3)), 1600);
     public static final RegistryObject<RotatedPillarBlock> stripped_aura_log = register("stripped_aura_log", () -> new RotatedPillarBlock(GaiaBlockProperties.logProps(MaterialColor.METAL)));
+    public static final RegistryObject<RotatedPillarBlock> stripped_golden_log = register("stripped_golden_log", () -> new RotatedPillarBlock(GaiaBlockProperties.logProps(MaterialColor.GOLD)));
     public static final RegistryObject<RotatedPillarBlock> pink_agate_wood = register("pink_agate_wood", () -> new RotatedPillarBlock(GaiaBlockProperties.logProps(MaterialColor.TERRACOTTA_PINK)));
     public static final RegistryObject<RotatedPillarBlock> blue_agate_wood = register("blue_agate_wood", () -> new RotatedPillarBlock(GaiaBlockProperties.logProps(MaterialColor.TERRACOTTA_BLUE)));
     public static final RegistryObject<RotatedPillarBlock> green_agate_wood = register("green_agate_wood", () -> new RotatedPillarBlock(GaiaBlockProperties.logProps(MaterialColor.TERRACOTTA_LIGHT_GREEN)));
@@ -160,6 +165,7 @@ public class ModBlocks {
     public static final RegistryObject<RotatedPillarBlock> burnt_wood = register("burnt_wood", () -> new RotatedPillarBlock(GaiaBlockProperties.logProps(MaterialColor.TERRACOTTA_BLACK)));
     public static final RegistryObject<RotatedPillarBlock> burning_wood = register("burning_wood", () -> new RotatedPillarBlock(GaiaBlockProperties.logProps(MaterialColor.TERRACOTTA_ORANGE).lightLevel((state) -> 3)), 1600);
     public static final RegistryObject<RotatedPillarBlock> aura_wood = register("aura_wood", () -> new RotatedPillarBlock(GaiaBlockProperties.logProps(MaterialColor.COLOR_GRAY)));
+    public static final RegistryObject<RotatedPillarBlock> golden_wood = register("golden_wood", () -> new RotatedPillarBlock(GaiaBlockProperties.logProps(MaterialColor.TERRACOTTA_BROWN)));
     public static final RegistryObject<RotatedPillarBlock> stripped_pink_agate_wood = register("stripped_pink_agate_wood", () -> new RotatedPillarBlock(GaiaBlockProperties.logProps(MaterialColor.COLOR_MAGENTA)));
     public static final RegistryObject<RotatedPillarBlock> stripped_blue_agate_wood = register("stripped_blue_agate_wood", () -> new RotatedPillarBlock(GaiaBlockProperties.logProps(MaterialColor.COLOR_BLUE)));
     public static final RegistryObject<RotatedPillarBlock> stripped_green_agate_wood = register("stripped_green_agate_wood", () -> new RotatedPillarBlock(GaiaBlockProperties.logProps(MaterialColor.COLOR_GREEN)));
@@ -169,6 +175,7 @@ public class ModBlocks {
     public static final RegistryObject<RotatedPillarBlock> stripped_burnt_wood = register("stripped_burnt_wood", () -> new RotatedPillarBlock(GaiaBlockProperties.logProps(MaterialColor.COLOR_GRAY)));
     public static final RegistryObject<RotatedPillarBlock> stripped_burning_wood = register("stripped_burning_wood", () -> new RotatedPillarBlock(GaiaBlockProperties.logProps(MaterialColor.COLOR_ORANGE).lightLevel((state) -> 3)), 1600);
     public static final RegistryObject<RotatedPillarBlock> stripped_aura_wood = register("stripped_aura_wood", () -> new RotatedPillarBlock(GaiaBlockProperties.logProps(MaterialColor.METAL)));
+    public static final RegistryObject<RotatedPillarBlock> stripped_golden_wood = register("stripped_golden_wood", () -> new RotatedPillarBlock(GaiaBlockProperties.logProps(MaterialColor.GOLD)));
 
     public static final RegistryObject<Block> salt = register("salt", () -> new GaiaFallingBlock(GaiaBlockProperties.sandProps(MaterialColor.SNOW, 0.9F, SoundType.SAND), 0xE0E0FF));
     public static final RegistryObject<Block> saltstone = register("saltstone", GaiaBlockProperties.stoneProps(MaterialColor.TERRACOTTA_LIGHT_BLUE, 1.5F, 10.0F, true));
@@ -360,6 +367,7 @@ public class ModBlocks {
     public static final RegistryObject<FlowerPotBlock> potted_burnt_sapling = registerFlowerPot(burnt_sapling);
     public static final RegistryObject<FlowerPotBlock> potted_burning_sapling = registerFlowerPot(burning_sapling);
     public static final RegistryObject<FlowerPotBlock> potted_aura_sapling = registerFlowerPot(aura_sapling);
+    public static final RegistryObject<FlowerPotBlock> potted_golden_sapling = registerFlowerPot(golden_sapling);
 
     //Spawners
     public static final RegistryObject<BossSpawnerBlock> malachite_guard_spawner = registerNoItem("malachite_guard_spawner", () -> new BossSpawnerBlock(BossSpawnerBlock.BossType.MALACHITE, GaiaBlockProperties.spawnerProps()));
@@ -385,10 +393,10 @@ public class ModBlocks {
     }
 
     private static <T extends Block> RegistryObject<T> register(String name, Supplier<? extends T> block, int burnTime) {
-        return registerBlock(name, block, burnTime, item -> registerBlockItemFuel(item, burnTime));
+        return registerBlock(name, block, item -> registerBlockItemFuel(item, burnTime));
     }
 
-    private static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<? extends T> block, int burnTime, Function<RegistryObject<T>, Supplier<? extends Item>> item) {
+    private static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<? extends T> block, Function<RegistryObject<T>, Supplier<? extends Item>> item) {
         RegistryObject<T> reg = BLOCKS.register(name, block);
         ModItems.ITEMS.register(name, item.apply(reg));
         return reg;
@@ -440,6 +448,7 @@ public class ModBlocks {
         block.addPlant(burnt_sapling.getId(), potted_burnt_sapling);
         block.addPlant(burning_sapling.getId(), potted_burning_sapling);
         block.addPlant(aura_sapling.getId(), potted_aura_sapling);
+        block.addPlant(golden_sapling.getId(), potted_golden_sapling);
     }
 
     public static void addStripping() {
@@ -454,6 +463,7 @@ public class ModBlocks {
         addToMap(STRIPABLES, burnt_log, stripped_burnt_log);
         addToMap(STRIPABLES, burning_log, stripped_burning_log);
         addToMap(STRIPABLES, aura_log, stripped_aura_log);
+        addToMap(STRIPABLES, golden_log, stripped_golden_log);
         addToMap(STRIPABLES, pink_agate_wood, stripped_pink_agate_wood);
         addToMap(STRIPABLES, blue_agate_wood, stripped_blue_agate_wood);
         addToMap(STRIPABLES, green_agate_wood, stripped_green_agate_wood);
@@ -463,6 +473,7 @@ public class ModBlocks {
         addToMap(STRIPABLES, burnt_wood, stripped_burnt_wood);
         addToMap(STRIPABLES, burning_wood, stripped_burning_wood);
         addToMap(STRIPABLES, aura_wood, stripped_aura_wood);
+        addToMap(STRIPABLES, golden_wood, stripped_golden_wood);
 
         AxeItem.STRIPPABLES = STRIPABLES;
     }

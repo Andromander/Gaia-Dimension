@@ -185,6 +185,7 @@ public class ClientEvents {
         renderBlock(ModBlocks.agathum, cutoutM);
         renderBlock(ModBlocks.varloom, cutoutM);
         renderBlock(ModBlocks.corrupted_varloom, cutoutM);
+        renderBlock(ModBlocks.glamelea, cutoutM);
         renderBlock(ModBlocks.missingno_plant, cutoutM);
         renderBlock(ModBlocks.spotted_kersei, cutoutM);
         renderBlock(ModBlocks.thorny_wiltha, cutoutM);
@@ -205,6 +206,7 @@ public class ClientEvents {
         renderBlock(ModBlocks.burnt_sapling, cutout);
         renderBlock(ModBlocks.burning_sapling, cutout);
         renderBlock(ModBlocks.aura_sapling, cutout);
+        renderBlock(ModBlocks.golden_sapling, cutout);
         renderBlock(ModBlocks.pink_agate_leaves, cutoutM);
         renderBlock(ModBlocks.blue_agate_leaves, cutoutM);
         renderBlock(ModBlocks.green_agate_leaves, cutoutM);
@@ -214,6 +216,7 @@ public class ClientEvents {
         renderBlock(ModBlocks.burnt_leaves, cutoutM);
         renderBlock(ModBlocks.burning_leaves, cutoutM);
         renderBlock(ModBlocks.aura_leaves, cutoutM);
+        renderBlock(ModBlocks.golden_leaves, cutoutM);
         renderBlock(ModBlocks.wasteland_stone, translucent);
         renderBlock(ModBlocks.static_stone, translucent);
         renderBlock(ModBlocks.charged_mineral, translucent);
@@ -252,6 +255,7 @@ public class ClientEvents {
         renderBlock(ModBlocks.potted_burnt_sapling, cutout);
         renderBlock(ModBlocks.potted_burning_sapling, cutout);
         renderBlock(ModBlocks.potted_aura_sapling, cutout);
+        renderBlock(ModBlocks.potted_golden_sapling, cutout);
         renderBlock(ModBlocks.malachite_guard_spawner, cutout);
 
         renderFluid(ModFluids.mineral_water_flow);

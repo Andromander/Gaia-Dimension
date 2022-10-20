@@ -25,7 +25,8 @@ public class GaiaBlockTags extends GaiaBlockTagsProvider {
             ModBlocks.potted_spotted_kersei, ModBlocks.potted_thorny_wiltha, ModBlocks.potted_roofed_agaric, ModBlocks.potted_bulbous_hobina, ModBlocks.potted_stickly_cupsir,
             ModBlocks.potted_mystical_murgni, ModBlocks.potted_corrupted_gaia_eye, ModBlocks.potted_elder_imklia, ModBlocks.potted_gold_orb_tucher, ModBlocks.potted_missingno_fungus,
             ModBlocks.potted_pink_agate_sapling, ModBlocks.potted_blue_agate_sapling, ModBlocks.potted_green_agate_sapling, ModBlocks.potted_purple_agate_sapling,
-            ModBlocks.potted_fossilized_sapling, ModBlocks.potted_corrupted_sapling, ModBlocks.potted_burnt_sapling, ModBlocks.potted_burning_sapling, ModBlocks.potted_aura_sapling
+            ModBlocks.potted_fossilized_sapling, ModBlocks.potted_corrupted_sapling, ModBlocks.potted_burnt_sapling, ModBlocks.potted_burning_sapling, ModBlocks.potted_aura_sapling,
+            ModBlocks.potted_golden_sapling
     );
     private static final ImmutableList<Supplier<? extends Block>> GUARDED_BY_PIGLINS = ImmutableList.of(
             ModBlocks.crude_storage_crate, ModBlocks.mega_storage_crate
@@ -35,7 +36,7 @@ public class GaiaBlockTags extends GaiaBlockTagsProvider {
     );
     private static final ImmutableList<Supplier<? extends Block>> LEAVES = ImmutableList.of(
             ModBlocks.pink_agate_leaves, ModBlocks.blue_agate_leaves, ModBlocks.green_agate_leaves, ModBlocks.purple_agate_leaves, ModBlocks.fossilized_leaves,
-            ModBlocks.corrupted_leaves, ModBlocks.burnt_leaves, ModBlocks.burning_leaves, ModBlocks.aura_leaves
+            ModBlocks.corrupted_leaves, ModBlocks.burnt_leaves, ModBlocks.burning_leaves, ModBlocks.aura_leaves, ModBlocks.golden_leaves
     );
     private static final ImmutableList<Supplier<? extends Block>> PINK_AGATE_LOGS = ImmutableList.of(
             ModBlocks.pink_agate_log, ModBlocks.stripped_pink_agate_log, ModBlocks.pink_agate_wood, ModBlocks.stripped_pink_agate_wood
@@ -64,13 +65,16 @@ public class GaiaBlockTags extends GaiaBlockTagsProvider {
     private static final ImmutableList<Supplier<? extends Block>> AURA_LOGS = ImmutableList.of(
             ModBlocks.aura_log, ModBlocks.stripped_aura_log, ModBlocks.aura_wood, ModBlocks.stripped_aura_wood
     );
+    private static final ImmutableList<Supplier<? extends Block>> GOLDEN_LOGS = ImmutableList.of(
+            ModBlocks.golden_log, ModBlocks.stripped_golden_log, ModBlocks.golden_wood, ModBlocks.stripped_golden_wood
+    );
     private static final ImmutableList<Supplier<? extends Block>> TILES = ImmutableList.of(
             ModBlocks.pink_agate_planks, ModBlocks.blue_agate_planks, ModBlocks.green_agate_planks, ModBlocks.purple_agate_planks,
             ModBlocks.fossilized_planks, ModBlocks.corrupted_planks, ModBlocks.burnt_planks, ModBlocks.burning_planks, ModBlocks.aura_planks
     );
     private static final ImmutableList<Supplier<? extends Block>> SAPLINGS = ImmutableList.of(
             ModBlocks.pink_agate_sapling, ModBlocks.blue_agate_sapling, ModBlocks.green_agate_sapling, ModBlocks.purple_agate_sapling,
-            ModBlocks.fossilized_sapling, ModBlocks.corrupted_sapling, ModBlocks.burnt_sapling, ModBlocks.burning_sapling, ModBlocks.aura_sapling
+            ModBlocks.fossilized_sapling, ModBlocks.corrupted_sapling, ModBlocks.burnt_sapling, ModBlocks.burning_sapling, ModBlocks.aura_sapling, ModBlocks.golden_sapling
     );
     private static final ImmutableList<Supplier<? extends Block>> SLABS = ImmutableList.of(
             ModBlocks.pink_agate_plank_slab, ModBlocks.blue_agate_plank_slab, ModBlocks.green_agate_plank_slab, ModBlocks.purple_agate_plank_slab, ModBlocks.fossilized_plank_slab,
@@ -80,7 +84,7 @@ public class GaiaBlockTags extends GaiaBlockTagsProvider {
             ModBlocks.crusted_amethyst_brick_slab, ModBlocks.malachite_brick_slab, ModBlocks.malachite_cracked_brick_slab, ModBlocks.malachite_crusted_brick_slab, ModBlocks.malachite_floor_slab
     );
     private static final ImmutableList<Supplier<? extends Block>> SMALL_FLOWERS = ImmutableList.of(
-            ModBlocks.thiscus, ModBlocks.ouzium, ModBlocks.agathum, ModBlocks.varloom, ModBlocks.corrupted_varloom, ModBlocks.missingno_plant
+            ModBlocks.thiscus, ModBlocks.ouzium, ModBlocks.agathum, ModBlocks.varloom, ModBlocks.corrupted_varloom, ModBlocks.missingno_plant, ModBlocks.glamelea
     );
     private static final ImmutableList<Supplier<? extends Block>> STAIRS = ImmutableList.of(
             ModBlocks.pink_agate_plank_stairs, ModBlocks.blue_agate_plank_stairs, ModBlocks.green_agate_plank_stairs, ModBlocks.purple_agate_plank_stairs, ModBlocks.fossilized_plank_stairs,
@@ -124,10 +128,10 @@ public class GaiaBlockTags extends GaiaBlockTagsProvider {
         addTag(BlockTags.LEAVES, LEAVES);
         tag(BlockTags.LOGS).addTags(
                 GaiaTags.Blocks.PINK_AGATE_LOGS, GaiaTags.Blocks.BLUE_AGATE_LOGS, GaiaTags.Blocks.GREEN_AGATE_LOGS, GaiaTags.Blocks.PURPLE_AGATE_LOGS,
-                GaiaTags.Blocks.FOSSILIZED_LOGS, GaiaTags.Blocks.CORRUPTED_LOGS, GaiaTags.Blocks.BURNT_LOGS, GaiaTags.Blocks.BURNING_LOGS, GaiaTags.Blocks.AURA_LOGS);
+                GaiaTags.Blocks.FOSSILIZED_LOGS, GaiaTags.Blocks.CORRUPTED_LOGS, GaiaTags.Blocks.BURNT_LOGS, GaiaTags.Blocks.BURNING_LOGS, GaiaTags.Blocks.AURA_LOGS, GaiaTags.Blocks.GOLDEN_LOGS);
         tag(BlockTags.NON_FLAMMABLE_WOOD).addTags(
                 GaiaTags.Blocks.PINK_AGATE_LOGS, GaiaTags.Blocks.BLUE_AGATE_LOGS, GaiaTags.Blocks.GREEN_AGATE_LOGS, GaiaTags.Blocks.PURPLE_AGATE_LOGS,
-                GaiaTags.Blocks.FOSSILIZED_LOGS, GaiaTags.Blocks.CORRUPTED_LOGS, GaiaTags.Blocks.BURNT_LOGS, GaiaTags.Blocks.BURNING_LOGS, GaiaTags.Blocks.AURA_LOGS);
+                GaiaTags.Blocks.FOSSILIZED_LOGS, GaiaTags.Blocks.CORRUPTED_LOGS, GaiaTags.Blocks.BURNT_LOGS, GaiaTags.Blocks.BURNING_LOGS, GaiaTags.Blocks.AURA_LOGS, GaiaTags.Blocks.GOLDEN_LOGS);
         tag(BlockTags.PORTALS).add(ModBlocks.gaia_portal.get());
         addTag(BlockTags.SAPLINGS, SAPLINGS);
         addTag(BlockTags.SLABS, SLABS);
@@ -190,6 +194,7 @@ public class GaiaBlockTags extends GaiaBlockTagsProvider {
         addTag(GaiaTags.Blocks.BURNT_LOGS, BURNT_LOGS);
         addTag(GaiaTags.Blocks.BURNING_LOGS, BURNING_LOGS);
         addTag(GaiaTags.Blocks.AURA_LOGS, AURA_LOGS);
+        addTag(GaiaTags.Blocks.GOLDEN_LOGS, GOLDEN_LOGS);
         tag(GaiaTags.Blocks.STATIC).add(ModBlocks.gaia_stone.get(), ModBlocks.wasteland_stone.get());
         tag(GaiaTags.Blocks.VOLCANIC).add(ModBlocks.gaia_stone.get(), ModBlocks.volcanic_rock.get());
         addTag(GaiaTags.Blocks.GAIA_BRICKS, GAIA_BRICKS);

@@ -115,6 +115,7 @@ public class GaiaTags {
         public static final TagKey<Item> BURNT_LOGS = tagItem("burnt_logs");
         public static final TagKey<Item> BURNING_LOGS = tagItem("burning_logs");
         public static final TagKey<Item> AURA_LOGS = tagItem("aura_logs");
+        public static final TagKey<Item> GOLDEN_LOGS = tagItem("golden_logs");
         public static final TagKey<Item> GAIA_BRICKS = tagItem("gaia_bricks");
         public static final TagKey<Item> AMETHYST_BRICKS = tagItem("amethyst_bricks");
         public static final TagKey<Item> COPAL_BRICKS = tagItem("copal_bricks");
@@ -140,6 +141,7 @@ public class GaiaTags {
         public static final TagKey<Block> BURNT_LOGS = tagBlock("burnt_logs");
         public static final TagKey<Block> BURNING_LOGS = tagBlock("burning_logs");
         public static final TagKey<Block> AURA_LOGS = tagBlock("aura_logs");
+        public static final TagKey<Block> GOLDEN_LOGS = tagBlock("golden_logs");
         public static final TagKey<Block> GAIA_BRICKS = tagBlock("gaia_bricks");
         public static final TagKey<Block> AMETHYST_BRICKS = tagBlock("amethyst_bricks");
         public static final TagKey<Block> COPAL_BRICKS = tagBlock("copal_bricks");

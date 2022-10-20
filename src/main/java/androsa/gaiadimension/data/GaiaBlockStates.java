@@ -77,6 +77,7 @@ public class GaiaBlockStates extends GaiaBlockStateProvider {
         crossBlock(ModBlocks.burnt_sapling);
         crossBlock(ModBlocks.burning_sapling);
         crossBlock(ModBlocks.aura_sapling);
+        crossBlock(ModBlocks.golden_sapling);
         basicBlock(ModBlocks.pink_agate_leaves);
         basicBlock(ModBlocks.blue_agate_leaves);
         basicBlock(ModBlocks.green_agate_leaves);
@@ -86,6 +87,7 @@ public class GaiaBlockStates extends GaiaBlockStateProvider {
         basicBlock(ModBlocks.burnt_leaves);
         basicBlock(ModBlocks.burning_leaves);
         basicBlock(ModBlocks.aura_leaves);
+        basicBlock(ModBlocks.golden_leaves);
         logBlock(ModBlocks.pink_agate_log, "pink_agate_log");
         logBlock(ModBlocks.blue_agate_log, "blue_agate_log");
         logBlock(ModBlocks.green_agate_log, "green_agate_log");
@@ -95,6 +97,7 @@ public class GaiaBlockStates extends GaiaBlockStateProvider {
         logBlock(ModBlocks.burnt_log, "burnt_log");
         logBlock(ModBlocks.burning_log, "burning_log");
         logBlock(ModBlocks.aura_log, "aura_log");
+        logBlock(ModBlocks.golden_log, "golden_log");
         strippedLogBlock(ModBlocks.stripped_pink_agate_log, "pink_agate_log");
         strippedLogBlock(ModBlocks.stripped_blue_agate_log, "blue_agate_log");
         strippedLogBlock(ModBlocks.stripped_green_agate_log, "green_agate_log");
@@ -104,6 +107,7 @@ public class GaiaBlockStates extends GaiaBlockStateProvider {
         strippedLogBlock(ModBlocks.stripped_burnt_log, "burnt_log");
         strippedLogBlock(ModBlocks.stripped_burning_log, "burning_log");
         strippedLogBlock(ModBlocks.stripped_aura_log, "aura_log");
+        strippedLogBlock(ModBlocks.stripped_golden_log, "golden_log");
         woodBlock(ModBlocks.pink_agate_wood, "pink_agate_log");
         woodBlock(ModBlocks.blue_agate_wood, "blue_agate_log");
         woodBlock(ModBlocks.green_agate_wood, "green_agate_log");
@@ -113,6 +117,7 @@ public class GaiaBlockStates extends GaiaBlockStateProvider {
         woodBlock(ModBlocks.burnt_wood, "burnt_log");
         woodBlock(ModBlocks.burning_wood, "burning_log");
         woodBlock(ModBlocks.aura_wood, "aura_log");
+        woodBlock(ModBlocks.golden_wood, "golden_log");
         strippedWoodBlock(ModBlocks.stripped_pink_agate_wood, "pink_agate");
         strippedWoodBlock(ModBlocks.stripped_blue_agate_wood, "blue_agate");
         strippedWoodBlock(ModBlocks.stripped_green_agate_wood, "green_agate");
@@ -122,6 +127,7 @@ public class GaiaBlockStates extends GaiaBlockStateProvider {
         strippedWoodBlock(ModBlocks.stripped_burnt_wood, "burnt");
         strippedWoodBlock(ModBlocks.stripped_burning_wood, "burning");
         strippedWoodBlock(ModBlocks.stripped_aura_wood, "aura");
+        strippedWoodBlock(ModBlocks.stripped_golden_wood, "golden");
         basicBlockRotated(ModBlocks.salt);
         sidedBlock(ModBlocks.saltstone, "salt_rock_top", "salt_rock_bottom", "salt_rock_side", "salt_rock_side", "salt_rock_side", "salt_rock_side");
         basicBlock(ModBlocks.pebbles);
@@ -304,5 +310,6 @@ public class GaiaBlockStates extends GaiaBlockStateProvider {
         pottedPlantBlock(ModBlocks.potted_burnt_sapling);
         pottedPlantBlock(ModBlocks.potted_burning_sapling);
         pottedPlantBlock(ModBlocks.potted_aura_sapling);
+        pottedPlantBlock(ModBlocks.potted_golden_sapling);
     }
 }
