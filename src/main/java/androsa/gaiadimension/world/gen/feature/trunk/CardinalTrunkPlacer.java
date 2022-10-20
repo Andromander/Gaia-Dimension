@@ -38,37 +38,24 @@ public class CardinalTrunkPlacer extends TrunkPlacer {
 
         setDirtAt(level, statepos, random, origin.below(), config);
 
-        for (int y = 0; y < height; y++) {
-            if (y == height - 3) {
-                placeLog(level, statepos, random, origin.above(y).north(), config, (state) -> state.setValue(RotatedPillarBlock.AXIS, Direction.Axis.Z));
-                placeLog(level, statepos, random, origin.above(y).south(), config, (state) -> state.setValue(RotatedPillarBlock.AXIS, Direction.Axis.Z));
-                placeLog(level, statepos, random, origin.above(y).east(), config, (state) -> state.setValue(RotatedPillarBlock.AXIS, Direction.Axis.X));
-                placeLog(level, statepos, random, origin.above(y).west(), config, (state) -> state.setValue(RotatedPillarBlock.AXIS, Direction.Axis.X));
+        for (int y = 0; y < height - 3; y++) {
+            placeLog(level, statepos, random, origin.above(y), config);
+        }
 
-            }
-            if (y == height - 2) {
-                for (int length = 1; length <= 2; length++) {
-                    placeLog(level, statepos, random, origin.above(y).north(length), config, (state) -> state.setValue(RotatedPillarBlock.AXIS, Direction.Axis.Z));
-                    placeLog(level, statepos, random, origin.above(y).south(length), config, (state) -> state.setValue(RotatedPillarBlock.AXIS, Direction.Axis.Z));
-                    placeLog(level, statepos, random, origin.above(y).east(length), config, (state) -> state.setValue(RotatedPillarBlock.AXIS, Direction.Axis.X));
-                    placeLog(level, statepos, random, origin.above(y).west(length), config, (state) -> state.setValue(RotatedPillarBlock.AXIS, Direction.Axis.X));
-                }
-            } else if (y == height - 1) {
-                for (int length = 3; length <= 4; length++) {
-                    placeLog(level, statepos, random, origin.above(y).north(length), config, (state) -> state.setValue(RotatedPillarBlock.AXIS, Direction.Axis.Z));
-                    placeLog(level, statepos, random, origin.above(y).south(length), config, (state) -> state.setValue(RotatedPillarBlock.AXIS, Direction.Axis.Z));
-                    placeLog(level, statepos, random, origin.above(y).east(length), config, (state) -> state.setValue(RotatedPillarBlock.AXIS, Direction.Axis.X));
-                    placeLog(level, statepos, random, origin.above(y).west(length), config, (state) -> state.setValue(RotatedPillarBlock.AXIS, Direction.Axis.X));
+        for (Direction dir : Direction.Plane.HORIZONTAL.stream().toList()) {
+            int x = dir.getStepX();
+            int z = dir.getStepZ();
 
-                    if (length == 4) {
-                        list.add(new FoliagePlacer.FoliageAttachment(origin.above(y).north(length + 1), 0, false));
-                        list.add(new FoliagePlacer.FoliageAttachment(origin.above(y).south(length + 1), 0, false));
-                        list.add(new FoliagePlacer.FoliageAttachment(origin.above(y).east(length + 1), 0, false));
-                        list.add(new FoliagePlacer.FoliageAttachment(origin.above(y).west(length + 1), 0, false));
-                    }
+            placeLog(level, statepos, random, origin.offset(x, height - 2, z), config, (state) -> state.setValue(RotatedPillarBlock.AXIS, dir.getAxis()));
+            placeLog(level, statepos, random, origin.offset(x, height - 1, z), config, (state) -> state.setValue(RotatedPillarBlock.AXIS, dir.getAxis()));
+            placeLog(level, statepos, random, origin.offset(x += dir.getStepX(), height - 1, z += dir.getStepZ()), config, (state) -> state.setValue(RotatedPillarBlock.AXIS, dir.getAxis()));
+
+            for (int i = 0; i <= 1; i++) {
+                placeLog(level, statepos, random, origin.offset(x += dir.getStepX(), height, z += dir.getStepZ()), config, (state) -> state.setValue(RotatedPillarBlock.AXIS, dir.getAxis()));
+
+                if (i == 1) {
+                    list.add(new FoliagePlacer.FoliageAttachment(origin.offset(x += dir.getStepX(), height, z += dir.getStepZ()), 0, false));
                 }
-            } else {
-                placeLog(level, statepos, random, origin.above(y), config);
             }
         }
 
