@@ -48,6 +48,7 @@ public class GaiaItemModels extends GaiaItemModelProvider {
         blockItemTexture(ModBlocks.crystal_growth_mutant);
         blockItemTexture(ModBlocks.crystal_growth_aura);
         blockItemTexture(ModBlocks.golden_grass);
+        blockItemTexture(ModBlocks.tall_golden_grass, "tall_golden_grass_top");
         blockItemTexture(ModBlocks.thiscus);
         blockItemTexture(ModBlocks.ouzium);
         blockItemTexture(ModBlocks.agathum);

@@ -85,6 +85,8 @@ public class ModWorldgen {
             new BalancingRockFeature<>(TwoBlockStateConfig.CODEC));
     public static final RegistryObject<Feature<TreeConfiguration>> STRICT_TREE = FEATURES.register("strict_tree", () ->
             new StrictTreeFeature(TreeConfiguration.CODEC));
+    public static final RegistryObject<Feature<BlockStateConfiguration>> MONOLITH = FEATURES.register("monolith", () ->
+            new MonolithFeature(BlockStateConfiguration.CODEC));
 
     //Structures
     public static final RegistryObject<StructureFeature<NoneFeatureConfiguration>> MINI_TOWER = STRUCTURES.register("mini_tower", () ->

@@ -94,6 +94,7 @@ public class GaiaLootTables extends LootTableProvider {
             dropTable(ModBlocks.crystal_growth_mutant, GaiaBlockLootTableProvider::withShards);
             dropTable(ModBlocks.crystal_growth_aura, GaiaBlockLootTableProvider::withShards);
             dropTable(ModBlocks.golden_grass, BlockLoot::createShearsOnlyDrop);
+            dropTable(ModBlocks.tall_golden_grass, (block) -> GaiaBlockLootTableProvider.doubleShearsOnly(block, ModBlocks.golden_grass.get()));
             dropSelf(ModBlocks.thiscus);
             dropSelf(ModBlocks.ouzium);
             dropSelf(ModBlocks.agathum);

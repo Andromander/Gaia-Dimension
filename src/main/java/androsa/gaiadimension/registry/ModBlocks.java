@@ -96,6 +96,7 @@ public class ModBlocks {
     public static final RegistryObject<Block> crystal_growth_mutant = register("crystal_growth_mutant", () -> new CrystalGrowthBlock(GaiaBlockProperties.plantProps(MaterialColor.TERRACOTTA_WHITE, true)));
     public static final RegistryObject<Block> crystal_growth_aura = register("crystal_growth_aura", () -> new CrystalGrowthBlock(GaiaBlockProperties.plantProps(MaterialColor.TERRACOTTA_LIGHT_BLUE, true)));
     public static final RegistryObject<Block> golden_grass = register("golden_grass", () -> new GoldenGrassBlock(GaiaBlockProperties.plantProps(MaterialColor.GOLD, false)));
+    public static final RegistryObject<Block> tall_golden_grass = register("tall_golden_grass", () -> new DoubleCrystalGrowthBlock(GaiaBlockProperties.plantProps(MaterialColor.GOLD, false)));
     public static final RegistryObject<Block> thiscus = register("thiscus", () -> new CrystalBloomBlock(GaiaBlockProperties.bloomProps()));
     public static final RegistryObject<Block> ouzium = register("ouzium", () -> new CrystalBloomBlock(GaiaBlockProperties.bloomProps()));
     public static final RegistryObject<Block> agathum = register("agathum", () -> new CrystalBloomBlock(GaiaBlockProperties.bloomProps()));

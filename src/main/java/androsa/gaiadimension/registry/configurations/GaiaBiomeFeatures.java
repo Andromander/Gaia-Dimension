@@ -86,6 +86,7 @@ public class GaiaBiomeFeatures {
     public static final BlockState CRYSTAL_GROWTH_BLACK = state(ModBlocks.crystal_growth_black);
     public static final BlockState CRYSTAL_GROWTH_AURA = state(ModBlocks.crystal_growth_aura);
     public static final BlockState GOLDEN_GRASS = state(ModBlocks.golden_grass);
+    public static final BlockState TALL_GOLDEN_GRASS = state(ModBlocks.tall_golden_grass);
     public static final BlockState GOLDEN_STONE = state(ModBlocks.golden_stone);
     public static final BlockState TOUGH_GOLDEN_STONE = state(ModBlocks.tough_golden_stone);
     public static final BlockState THISCUS = state(ModBlocks.thiscus);

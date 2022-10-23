@@ -28,8 +28,12 @@ public abstract class GaiaItemModelProvider extends ItemModelProvider {
     }
 
     public ItemModelBuilder blockItemTexture(RegistryObject<? extends Block> block) {
+        return blockItemTexture(block, blockName(block));
+    }
+
+    public ItemModelBuilder blockItemTexture(RegistryObject<? extends Block> block, String texture) {
         return withExistingParent(blockName(block), mcLoc("item/generated"))
-                .texture("layer0", modLoc("block/" + blockName(block)));
+                .texture("layer0", modLoc("block/" + texture));
     }
 
     public ItemModelBuilder basicItem(RegistryObject<Item> item) {

@@ -1,5 +1,5 @@
 {
-  "feature": "gaiadimension:golden_grass",
+  "feature": "gaiadimension:tall_golden_grass",
   "placement": [
     {
       "type": "minecraft:in_square"
@@ -9,7 +9,7 @@
       "type": "minecraft:heightmap"
     },
     {
-      "count": 7,
+      "count": 4,
       "type": "minecraft:count"
     }
   ]

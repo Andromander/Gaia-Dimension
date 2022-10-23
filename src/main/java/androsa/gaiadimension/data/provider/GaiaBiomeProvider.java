@@ -272,7 +272,7 @@ public abstract class GaiaBiomeProvider {
                 .addFeature(GenerationStep.Decoration.LOCAL_MODIFICATIONS, GaiaFeatures.Placed.BRILLIANT_STONE_SPIKES)
                 .addFeature(GenerationStep.Decoration.LOCAL_MODIFICATIONS, GaiaFeatures.Placed.BALANCING_ROCKS)
                 .addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, GaiaFeatures.Placed.DISK_GILDED_BRILLIANT_STONE)
-                .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, GaiaFeatures.Placed.GOLDEN_GRASS_UNCOMMON)
+                .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, GaiaFeatures.Placed.GOLDEN_GRASS_RARE)
                 .build();
     }
 
@@ -280,6 +280,14 @@ public abstract class GaiaBiomeProvider {
         return new BiomeGenerationSettings.Builder()
                 .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, GaiaFeatures.Placed.GOLDEN_TREES)
                 .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, GaiaFeatures.Placed.CRYSTAL_BLOOMS_GOLDEN)
+                .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, GaiaFeatures.Placed.GOLDEN_GRASS_UNCOMMON)
+                .build();
+    }
+
+    public static BiomeGenerationSettings goldenPlainsBiome() {
+        return new BiomeGenerationSettings.Builder()
+                .addFeature(GenerationStep.Decoration.LOCAL_MODIFICATIONS, GaiaFeatures.Placed.TOUGH_GOLDEN_STONE_MONOLITHS)
+                .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, GaiaFeatures.Placed.TALL_GOLDEN_GRASS)
                 .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, GaiaFeatures.Placed.GOLDEN_GRASS_COMMON)
                 .build();
     }

@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "half=lower": {
+      "model": "gaiadimension:block/tall_golden_grass_bottom"
+    },
+    "half=upper": {
+      "model": "gaiadimension:block/tall_golden_grass_top"
+    }
+  }
+}

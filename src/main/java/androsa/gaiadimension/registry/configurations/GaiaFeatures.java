@@ -96,6 +96,7 @@ public class GaiaFeatures extends GaiaBiomeFeatures {
         public static final Holder<ConfiguredFeature<NoneFeatureConfiguration, ?>> bismuth_geysers = registerFeature("bismuth_geysers", ModWorldgen.BISMUTH_GEYSER.get(), FeatureConfiguration.NONE);
         public static final Holder<ConfiguredFeature<BlockStateConfiguration, ?>> brilliant_stone_spikes = registerFeature("brilliant_stone_spikes", ModWorldgen.TERRAIN_SPIKE.get(), new BlockStateConfiguration(BRILLIANT_STONE));
         public static final Holder<ConfiguredFeature<TwoBlockStateConfig, ?>> balancing_rocks = registerFeature("balancing_rocks", ModWorldgen.BALANCING_ROCKS.get(), new TwoBlockStateConfig(GOLDEN_STONE, TOUGH_GOLDEN_STONE));
+        public static final Holder<ConfiguredFeature<BlockStateConfiguration, ?>> tough_golden_stone_monolith = registerFeature("tough_golden_stone_monolith", ModWorldgen.MONOLITH.get(), new BlockStateConfiguration(TOUGH_GOLDEN_STONE));
 
         //Underground Ores
         public static final Holder<ConfiguredFeature<OreConfiguration, ?>> ore_primal_mass = registerFeature("ore_primal_mass", Feature.ORE, configureOre(GAIA_STONE, PRIMAL_MASS, 33));
@@ -136,6 +137,7 @@ public class GaiaFeatures extends GaiaBiomeFeatures {
         public static final Holder<ConfiguredFeature<RandomPatchConfiguration, ?>> corrupt_growth = registerFeature("corrupt_crystal_growth", Feature.RANDOM_PATCH, configurePatch(32, 7, 3, new WeightedStateProvider(weight().add(CRYSTAL_GROWTH_RED, 2).add(CRYSTAL_GROWTH_BLACK, 2))));
         public static final Holder<ConfiguredFeature<RandomPatchConfiguration, ?>> aura_growth = registerFeature("aura_crystal_growth", Feature.RANDOM_PATCH, configurePatch(32, 7, 3, BlockStateProvider.simple(CRYSTAL_GROWTH_AURA)));
         public static final Holder<ConfiguredFeature<RandomPatchConfiguration, ?>> golden_grass = registerFeature("golden_grass", Feature.RANDOM_PATCH, configurePatch(32, 7, 3, BlockStateProvider.simple(GOLDEN_GRASS)));
+        public static final Holder<ConfiguredFeature<RandomPatchConfiguration, ?>> tall_golden_grass = registerFeature("tall_golden_grass", Feature.RANDOM_PATCH, configurePatch(32, 7, 3, BlockStateProvider.simple(TALL_GOLDEN_GRASS)));
 
         public static final Holder<ConfiguredFeature<RandomPatchConfiguration, ?>> common_bloom = registerFeature("common_bloom", Feature.RANDOM_PATCH, configurePatch(32, 7, 3, new WeightedStateProvider(weight().add(THISCUS, 4).add(OUZIUM, 1))));
         public static final Holder<ConfiguredFeature<RandomPatchConfiguration, ?>> rare_bloom = registerFeature("rare_bloom", Feature.RANDOM_PATCH, configurePatch(32, 7, 3, new WeightedStateProvider(weight().add(OUZIUM, 4).add(THISCUS, 1))));
@@ -309,6 +311,11 @@ public class GaiaFeatures extends GaiaBiomeFeatures {
                 PlacementUtils.HEIGHTMAP,
                 CountPlacement.of(1),
                 BiomeFilter.biome());
+        public static final Holder<PlacedFeature> TOUGH_GOLDEN_STONE_MONOLITHS = registerPlacedFeature("tough_golden_stone_monoliths", Configured.tough_golden_stone_monolith,
+                InSquarePlacement.spread(),
+                PlacementUtils.HEIGHTMAP,
+                RarityFilter.onAverageOnceEvery(5),
+                BiomeFilter.biome());
 
         //Underground Ores
         public static final Holder<PlacedFeature> ORE_PRIMAL_MASS = placedOre("ore_primal_mass", Configured.ore_primal_mass, 25, 33);
@@ -401,8 +408,10 @@ public class GaiaFeatures extends GaiaBiomeFeatures {
         public static final Holder<PlacedFeature> CRYSTAL_GROWTH_CORRUPT = placedPlant("crystal_growth_corrupt", Configured.corrupt_growth, 1);
         public static final Holder<PlacedFeature> CRYSTAL_GROWTH_AURA = placedPlant("crystal_growth_aura", Configured.aura_growth, 2);
         public static final Holder<PlacedFeature> CRYSTAL_GROWTH_MUTANT = placedPlant("crystal_growth_mutant", Configured.mutant_growth, 2);
-        public static final Holder<PlacedFeature> GOLDEN_GRASS_COMMON = placedPlant("golden_grass_common", Configured.golden_grass, 3);
-        public static final Holder<PlacedFeature> GOLDEN_GRASS_UNCOMMON = placedPlant("golden_grass_uncommon", Configured.golden_grass, 2);
+        public static final Holder<PlacedFeature> GOLDEN_GRASS_COMMON = placedPlant("golden_grass_common", Configured.golden_grass, 7);
+        public static final Holder<PlacedFeature> GOLDEN_GRASS_UNCOMMON = placedPlant("golden_grass_uncommon", Configured.golden_grass, 3);
+        public static final Holder<PlacedFeature> GOLDEN_GRASS_RARE = placedPlant("golden_grass_rare", Configured.golden_grass, 2);
+        public static final Holder<PlacedFeature> TALL_GOLDEN_GRASS = placedPlant("tall_golden_grass", Configured.tall_golden_grass, 4);
         public static final Holder<PlacedFeature> CRYSTAL_BLOOMS_COMMON = placedPlant("crystal_blooms_common", Configured.common_bloom, 2);
         public static final Holder<PlacedFeature> CRYSTAL_BLOOMS_RARE = placedPlant("crystal_blooms_rare", Configured.rare_bloom, 2);
         public static final Holder<PlacedFeature> CRYSTAL_BLOOMS_MUTANT = placedPlant("crystal_blooms_mutant", Configured.mutant_bloom, 2);
