@@ -33,7 +33,7 @@ import java.util.function.Supplier;
 
 import static net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 
-@SuppressWarnings("unused")
+//@SuppressWarnings("unused")
 public class ModBlocks {
 
 	public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, GaiaDimensionMod.MODID);
@@ -111,10 +111,12 @@ public class ModBlocks {
     public static final RegistryObject<Block> stickly_cupsir = register("stickly_cupsir", () -> new CrystalFungusBlock(GaiaBlockProperties.plantProps(MaterialColor.TERRACOTTA_YELLOW, false), false));
     public static final RegistryObject<Block> mystical_murgni = register("mystical_murgni", () -> new CrystalFungusBlock(GaiaBlockProperties.plantProps(MaterialColor.GOLD, false), false));
     public static final RegistryObject<Block> corrupted_gaia_eye = register("corrupted_gaia_eye", () -> new CrystalFungusBlock(GaiaBlockProperties.plantProps(MaterialColor.FIRE, false), false));
+    public static final RegistryObject<Block> twinkling_gilsri = register("twinkling_gilsri", ()-> new CrystalFungusBlock(GaiaBlockProperties.plantProps(MaterialColor.GOLD, false), false));
     //public static final RegistryObject<Block> sacred_gaia_eye = RegistryHelper.registerBlock()("sacred_gaia_eye", new CrystalFungusBlock(false));
     public static final RegistryObject<Block> elder_imklia = register("elder_imklia", () -> new CrystalFungusBlock(GaiaBlockProperties.plantProps(MaterialColor.COLOR_PURPLE, false), true));
     public static final RegistryObject<Block> gold_orb_tucher = register("gold_orb_tucher", () -> new CrystalFungusBlock(GaiaBlockProperties.plantProps(MaterialColor.GOLD, false), true));
     public static final RegistryObject<Block> missingno_fungus = register("missingno_fungus", () -> new CrystalFungusBlock(GaiaBlockProperties.plantProps(MaterialColor.COLOR_MAGENTA, false), false));
+    public static final RegistryObject<Block> golden_vine = register("golden_vine", () -> new VineBlock(GaiaBlockProperties.plantProps(MaterialColor.GOLD, false)));
 
     //Tree Blocks
     public static final RegistryObject<SaplingBlock> pink_agate_sapling = register("pink_agate_sapling", () -> new GaiaSaplingBlock(new PinkAgateTree(), GaiaBlockProperties.saplingProps(MaterialColor.COLOR_PINK)));
@@ -192,7 +194,7 @@ public class ModBlocks {
     public static final RegistryObject<Block> nexustone = register("nexustone", GaiaBlockProperties.stoneProps(MaterialColor.TERRACOTTA_BLACK, 10.0F, 100.0F, true));
     public static final RegistryObject<Block> impure_rock = register("impure_rock", GaiaBlockProperties.stoneProps(MaterialColor.COLOR_GRAY, 20.0F, 300.0F, true));
     public static final RegistryObject<Block> active_rock = register("active_rock", () -> new ActiveRockBlock(GaiaBlockProperties.stoneProps(MaterialColor.TERRACOTTA_PURPLE, 15.0F, 250.0F, true).lightLevel((state) -> 7)));
-    public static final RegistryObject<Block> impure_sludge = register("impure_sludge", () -> new ImpureSludgeBlock(GaiaBlockProperties.sludgeProps()));
+    public static final RegistryObject<Block> impure_sludge = register("impure_sludge", () -> new SlowingBlock(GaiaBlockProperties.muckyProps(MaterialColor.TERRACOTTA_YELLOW, 0.4F, 0.8F)));
     public static final RegistryObject<Block> geyser_block = register("geyser_block", () -> new GeyserBlock(GaiaBlockProperties.stoneProps(MaterialColor.METAL, 5.0F, 10.0F, true)));
     public static final RegistryObject<Block> sparkling_rock = register("sparkling_rock", Properties.of(Material.STONE, MaterialColor.METAL).strength(10.0F, 150.0F).sound(SoundType.AMETHYST).requiresCorrectToolForDrops());
     public static final RegistryObject<Block> aura_shoot = register("aura_shoot", () -> new AuraShootBlock(Properties.of(Material.GLASS, MaterialColor.COLOR_BLUE).sound(SoundType.AMETHYST_CLUSTER).randomTicks()));
@@ -200,6 +202,7 @@ public class ModBlocks {
     public static final RegistryObject<Block> tough_golden_stone = register("tough_golden_stone", GaiaBlockProperties.stoneProps(MaterialColor.COLOR_BLACK, 3.0F, 30.0F, true));
     public static final RegistryObject<Block> brilliant_stone = register("brilliant_stone", GaiaBlockProperties.stoneProps(MaterialColor.TERRACOTTA_YELLOW, 5.0F, 35.0F, true));
     public static final RegistryObject<Block> gilded_brilliant_stone = register("gilded_brilliant_stone", GaiaBlockProperties.stoneProps(MaterialColor.TERRACOTTA_WHITE, 5.0F, 35.0F, true).lightLevel((state) -> 5));
+    public static final RegistryObject<Block> aurum_mud = register("aurum_mud", GaiaBlockProperties.muckyProps(MaterialColor.TERRACOTTA_BLACK, 0.3F, 0.4F));
 
     //Planks
     public static final RegistryObject<Block> pink_agate_planks = register("pink_agate_planks", GaiaBlockProperties.tileProps(MaterialColor.COLOR_PINK));
@@ -356,6 +359,7 @@ public class ModBlocks {
     public static final RegistryObject<FlowerPotBlock> potted_stickly_cupsir = registerFlowerPot(stickly_cupsir);
     public static final RegistryObject<FlowerPotBlock> potted_mystical_murgni = registerFlowerPot(mystical_murgni);
     public static final RegistryObject<FlowerPotBlock> potted_corrupted_gaia_eye = registerFlowerPot(corrupted_gaia_eye);
+    public static final RegistryObject<FlowerPotBlock> potted_twinkling_gilsri = registerFlowerPot(twinkling_gilsri);
     public static final RegistryObject<FlowerPotBlock> potted_elder_imklia = registerFlowerPot(elder_imklia);
     public static final RegistryObject<FlowerPotBlock> potted_gold_orb_tucher = registerFlowerPot(gold_orb_tucher);
     public static final RegistryObject<FlowerPotBlock> potted_missingno_fungus = registerFlowerPot(missingno_fungus);
@@ -437,6 +441,7 @@ public class ModBlocks {
         block.addPlant(stickly_cupsir.getId(), potted_stickly_cupsir);
         block.addPlant(mystical_murgni.getId(), potted_mystical_murgni);
         block.addPlant(corrupted_gaia_eye.getId(), potted_corrupted_gaia_eye);
+        block.addPlant(twinkling_gilsri.getId(), potted_twinkling_gilsri);
         block.addPlant(elder_imklia.getId(), potted_elder_imklia);
         block.addPlant(gold_orb_tucher.getId(), potted_gold_orb_tucher);
         block.addPlant(missingno_fungus.getId(), potted_missingno_fungus);

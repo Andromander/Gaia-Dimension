@@ -6,6 +6,7 @@ import androsa.gaiadimension.world.gen.carver.CoatedCavesWorldCarver;
 import androsa.gaiadimension.world.gen.feature.*;
 import androsa.gaiadimension.world.gen.feature.config.FeatureHeightConfig;
 import androsa.gaiadimension.world.gen.feature.config.TwoBlockStateConfig;
+import androsa.gaiadimension.world.gen.feature.decorator.GoldenVineDecorator;
 import androsa.gaiadimension.world.gen.feature.foliage.BulbFoliagePlacer;
 import androsa.gaiadimension.world.gen.feature.foliage.CappedFoliagePlacer;
 import androsa.gaiadimension.world.gen.feature.foliage.CubeFoliagePlacer;
@@ -31,6 +32,7 @@ import net.minecraft.world.level.levelgen.feature.configurations.DiskConfigurati
 import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
 import net.minecraft.world.level.levelgen.feature.configurations.TreeConfiguration;
 import net.minecraft.world.level.levelgen.feature.foliageplacers.FoliagePlacerType;
+import net.minecraft.world.level.levelgen.feature.treedecorators.TreeDecoratorType;
 import net.minecraft.world.level.levelgen.feature.trunkplacers.TrunkPlacerType;
 import net.minecraft.world.level.levelgen.structure.pieces.StructurePieceType;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructureProcessorType;
@@ -42,6 +44,7 @@ import net.minecraftforge.registries.RegistryObject;
 @Mod.EventBusSubscriber(modid = GaiaDimensionMod.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ModWorldgen {
 
+    public static final DeferredRegister<TreeDecoratorType<?>> DECORATORS = DeferredRegister.create(ForgeRegistries.TREE_DECORATOR_TYPES, GaiaDimensionMod.MODID);
 	public static final DeferredRegister<Feature<?>> FEATURES = DeferredRegister.create(ForgeRegistries.FEATURES, GaiaDimensionMod.MODID);
     public static final DeferredRegister<FoliagePlacerType<?>> FOLIAGE_PLACERS = DeferredRegister.create(ForgeRegistries.FOLIAGE_PLACER_TYPES, GaiaDimensionMod.MODID);
 	public static final DeferredRegister<StructureFeature<?>> STRUCTURES = DeferredRegister.create(ForgeRegistries.STRUCTURE_FEATURES, GaiaDimensionMod.MODID);
@@ -59,6 +62,9 @@ public class ModWorldgen {
     public static final RegistryObject<FoliagePlacerType<?>> THICK_FOLIAGE_PLACER = FOLIAGE_PLACERS.register("thick_foliage_placer", () -> new FoliagePlacerType<>(ThickFoliagePlacer.CODEC));
     public static final RegistryObject<FoliagePlacerType<?>> BULB_FOLIAGE_PLACER = FOLIAGE_PLACERS.register("bulb_foliage_placer", () -> new FoliagePlacerType<>(BulbFoliagePlacer.CODEC));
     public static final RegistryObject<FoliagePlacerType<?>> CUBE_FOLIAGE_PLACER = FOLIAGE_PLACERS.register("cube_foliage_placer", () -> new FoliagePlacerType<>(CubeFoliagePlacer.CODEC));
+
+    //Decorator
+    public static final RegistryObject<TreeDecoratorType<?>> GOLDEN_VINE_DECORATOR = DECORATORS.register("golden_vine", () -> new TreeDecoratorType<>(GoldenVineDecorator.CODEC));
 
     //Feature
     public static final RegistryObject<Feature<BlockStateConfiguration>> POOL = FEATURES.register("pool", () ->
@@ -87,6 +93,10 @@ public class ModWorldgen {
             new StrictTreeFeature(TreeConfiguration.CODEC));
     public static final RegistryObject<Feature<BlockStateConfiguration>> MONOLITH = FEATURES.register("monolith", () ->
             new MonolithFeature(BlockStateConfiguration.CODEC));
+    public static final RegistryObject<Feature<NoneFeatureConfiguration>> MARSH_LAKE = FEATURES.register("marsh_lake", () ->
+            new MarshLakeFeature(NoneFeatureConfiguration.CODEC));
+    public static final RegistryObject<Feature<NoneFeatureConfiguration>> GOLDEN_VINES = FEATURES.register("golden_vines", () ->
+            new GoldenVinesFeature(NoneFeatureConfiguration.CODEC));
 
     //Structures
     public static final RegistryObject<StructureFeature<NoneFeatureConfiguration>> MINI_TOWER = STRUCTURES.register("mini_tower", () ->

@@ -22,6 +22,7 @@ public class GaiaBiomeFeatures {
     public static final BlockState CORRUPT_GRASS = state(ModBlocks.corrupt_grass);
     public static final BlockState MURKY_GRASS = state(ModBlocks.murky_grass);
     public static final BlockState SOFT_GRASS = state(ModBlocks.soft_grass);
+    public static final BlockState GILDED_GRASS = state(ModBlocks.gilded_grass);
     public static final BlockState HEAVY_SOIL = state(ModBlocks.heavy_soil);
     public static final BlockState CORRUPT_SOIL = state(ModBlocks.corrupt_soil);
     public static final BlockState BOGGY_SOIL = state(ModBlocks.boggy_soil);
@@ -101,8 +102,10 @@ public class GaiaBiomeFeatures {
     public static final BlockState STICKLY_CUPSIR = state(ModBlocks.stickly_cupsir);
     public static final BlockState MYSTICAL_MURGNI = state(ModBlocks.mystical_murgni);
     public static final BlockState CORRUPTED_GAIA_EYE = state(ModBlocks.corrupted_gaia_eye);
+    public static final BlockState TWINKLING_GILSRI = state(ModBlocks.twinkling_gilsri);
     public static final BlockState ELDER_IMKLIA = state(ModBlocks.elder_imklia);
     public static final BlockState GOLD_ORB_TUCHER = state(ModBlocks.gold_orb_tucher);
+    public static final BlockState GOLDEN_VINE = state(ModBlocks.golden_vine);
 
     public static final List<Block> cave_blacklist = ImmutableList.of(GLITTER_GRASS.getBlock(), HEAVY_SOIL.getBlock(), CORRUPT_GRASS.getBlock(), CORRUPT_SOIL.getBlock(), MURKY_GRASS.getBlock(), BOGGY_SOIL.getBlock(), SOFT_GRASS.getBlock(), LIGHT_SOIL.getBlock(), SALT.getBlock());
 

@@ -86,11 +86,15 @@ public class GaiaBlockProperties {
                 .noCollission();
     }
 
-    public static BlockBehaviour.Properties sludgeProps() {
-        return BlockBehaviour.Properties.of(Material.DIRT, MaterialColor.TERRACOTTA_YELLOW)
+    public static BlockBehaviour.Properties muckyProps(MaterialColor color, float speed, float jump) {
+        return BlockBehaviour.Properties.of(Material.CLAY, color)
                 .strength(0.6F, 0.0F)
-                .sound(SoundType.GRAVEL)
-                .isValidSpawn((state, reader, pos, entity) -> entity == ModEntities.BISMUTH_ULETRUS.get());
+                .sound(SoundType.GRAVEL) //TODO 1.19 mud sound
+                .speedFactor(speed)
+                .jumpFactor(jump)
+                .isRedstoneConductor((state, getter, pos) -> true)
+                .isViewBlocking((state, getter, pos) -> true)
+                .isSuffocating((state, getter, pos) -> true);
     }
 
     public static BlockBehaviour.Properties gaiaBrickProps() {

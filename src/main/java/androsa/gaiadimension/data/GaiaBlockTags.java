@@ -23,8 +23,8 @@ public class GaiaBlockTags extends GaiaBlockTagsProvider {
     private static final ImmutableList<Supplier<? extends Block>> FLOWER_POTS = ImmutableList.of(
             ModBlocks.potted_thiscus, ModBlocks.potted_ouzium, ModBlocks.potted_agathum, ModBlocks.potted_varloom, ModBlocks.potted_corrupted_varloom, ModBlocks.potted_missingno_plant,
             ModBlocks.potted_spotted_kersei, ModBlocks.potted_thorny_wiltha, ModBlocks.potted_roofed_agaric, ModBlocks.potted_bulbous_hobina, ModBlocks.potted_stickly_cupsir,
-            ModBlocks.potted_mystical_murgni, ModBlocks.potted_corrupted_gaia_eye, ModBlocks.potted_elder_imklia, ModBlocks.potted_gold_orb_tucher, ModBlocks.potted_missingno_fungus,
-            ModBlocks.potted_pink_agate_sapling, ModBlocks.potted_blue_agate_sapling, ModBlocks.potted_green_agate_sapling, ModBlocks.potted_purple_agate_sapling,
+            ModBlocks.potted_mystical_murgni, ModBlocks.potted_corrupted_gaia_eye, ModBlocks.potted_twinkling_gilsri, ModBlocks.potted_elder_imklia, ModBlocks.potted_gold_orb_tucher,
+            ModBlocks.potted_missingno_fungus,ModBlocks.potted_pink_agate_sapling, ModBlocks.potted_blue_agate_sapling, ModBlocks.potted_green_agate_sapling, ModBlocks.potted_purple_agate_sapling,
             ModBlocks.potted_fossilized_sapling, ModBlocks.potted_corrupted_sapling, ModBlocks.potted_burnt_sapling, ModBlocks.potted_burning_sapling, ModBlocks.potted_aura_sapling,
             ModBlocks.potted_golden_sapling
     );
@@ -121,6 +121,7 @@ public class GaiaBlockTags extends GaiaBlockTagsProvider {
     @Override
     protected void addTags() {
         addTag(BlockTags.BEACON_BASE_BLOCKS, BEACON_BASES);
+        tag(BlockTags.CLIMBABLE).add(ModBlocks.golden_vine.get());
         addTag(BlockTags.DIRT, DIRT);
         addTag(BlockTags.FLOWER_POTS, FLOWER_POTS);
         addTag(BlockTags.GUARDED_BY_PIGLINS, GUARDED_BY_PIGLINS);

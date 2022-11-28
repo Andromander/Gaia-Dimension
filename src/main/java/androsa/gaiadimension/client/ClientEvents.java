@@ -195,9 +195,11 @@ public class ClientEvents {
         renderBlock(ModBlocks.stickly_cupsir, cutoutM);
         renderBlock(ModBlocks.mystical_murgni, cutoutM);
         renderBlock(ModBlocks.corrupted_gaia_eye, cutoutM);
+        renderBlock(ModBlocks.twinkling_gilsri, cutoutM);
         renderBlock(ModBlocks.elder_imklia, cutoutM);
         renderBlock(ModBlocks.gold_orb_tucher, cutoutM);
         renderBlock(ModBlocks.missingno_fungus, cutoutM);
+        renderBlock(ModBlocks.golden_vine, cutoutM);
         renderBlock(ModBlocks.pink_agate_sapling, cutout);
         renderBlock(ModBlocks.blue_agate_sapling, cutout);
         renderBlock(ModBlocks.green_agate_sapling, cutout);
@@ -244,6 +246,7 @@ public class ClientEvents {
         renderBlock(ModBlocks.potted_stickly_cupsir, cutout);
         renderBlock(ModBlocks.potted_mystical_murgni, cutout);
         renderBlock(ModBlocks.potted_corrupted_gaia_eye, cutout);
+        renderBlock(ModBlocks.potted_twinkling_gilsri, cutout);
         renderBlock(ModBlocks.potted_elder_imklia, cutout);
         renderBlock(ModBlocks.potted_gold_orb_tucher, cutout);
         renderBlock(ModBlocks.potted_missingno_fungus, cutout);

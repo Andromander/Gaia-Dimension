@@ -1,6 +1,6 @@
 {
   "config": {
-    "features": "gaiadimension:small_golden_tree_checked"
+    "features": "gaiadimension:small_golden_tree_vines_checked"
   },
   "type": "minecraft:simple_random_selector"
 }

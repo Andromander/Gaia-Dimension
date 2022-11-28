@@ -5,6 +5,7 @@ import androsa.gaiadimension.registry.ModBlocks;
 import androsa.gaiadimension.registry.ModWorldgen;
 import androsa.gaiadimension.world.gen.feature.config.FeatureHeightConfig;
 import androsa.gaiadimension.world.gen.feature.config.TwoBlockStateConfig;
+import androsa.gaiadimension.world.gen.feature.decorator.GoldenVineDecorator;
 import androsa.gaiadimension.world.gen.feature.foliage.BulbFoliagePlacer;
 import androsa.gaiadimension.world.gen.feature.foliage.CappedFoliagePlacer;
 import androsa.gaiadimension.world.gen.feature.foliage.CubeFoliagePlacer;
@@ -43,6 +44,7 @@ import net.minecraft.world.level.levelgen.feature.foliageplacers.PineFoliagePlac
 import net.minecraft.world.level.levelgen.feature.foliageplacers.SpruceFoliagePlacer;
 import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
 import net.minecraft.world.level.levelgen.feature.stateproviders.WeightedStateProvider;
+import net.minecraft.world.level.levelgen.feature.treedecorators.TreeDecorator;
 import net.minecraft.world.level.levelgen.feature.trunkplacers.StraightTrunkPlacer;
 import net.minecraft.world.level.levelgen.feature.trunkplacers.TrunkPlacer;
 import net.minecraft.world.level.levelgen.heightproviders.BiasedToBottomHeight;
@@ -66,16 +68,24 @@ public class GaiaFeatures extends GaiaBiomeFeatures {
         public static final TreeConfiguration BURNING_TREE_CONFIG = configureTree(BURNING_LOG, new StraightTrunkPlacer(5, 3, 3), BURNING_LEAVES, new CappedFoliagePlacer(ConstantInt.of(2), ConstantInt.of(1)), 1, 0, 1, HEAVY_SOIL);
         public static final TreeConfiguration AURA_TREE_CONFIG = configureTree(AURA_LOG, new FourBranchTrunkPlacer(10, 3, 3), AURA_LEAVES, new CappedFoliagePlacer(ConstantInt.of(2), ConstantInt.of(1)), 1, 0, 1, LIGHT_SOIL);
         public static final TreeConfiguration SMALL_GOLDEN_TREE_CONFIG = configureTree(GOLDEN_LOG, new VaryingFourBranchTrunkPlacer(7, 2, 2), GOLDEN_LEAVES, new CubeFoliagePlacer(ConstantInt.of(1), ConstantInt.of(1)), 1, 0, 1, AURUM_SOIL);
+        public static final TreeConfiguration SMALL_GOLDEN_TREE_VINES_CONFIG = configureTree(GOLDEN_LOG, new VaryingFourBranchTrunkPlacer(7, 2, 2), GOLDEN_LEAVES, new CubeFoliagePlacer(ConstantInt.of(1), ConstantInt.of(1)), 1, 0, 1, AURUM_SOIL, ImmutableList.of(GoldenVineDecorator.INSTANCE));
         public static final TreeConfiguration BIG_GOLDEN_TREE_CONFIG = configureTree(GOLDEN_LOG, new VaryingFourBranchTrunkPlacer(9, 3, 4), GOLDEN_LEAVES, new CubeFoliagePlacer(ConstantInt.of(2), ConstantInt.of(1)), 1, 0, 1, AURUM_SOIL);
 
         public static TreeConfiguration configureTree(BlockState log, TrunkPlacer trunk, BlockState leaves, FoliagePlacer foliage, int limit, int lower, int upper, BlockState dirt) {
-            return new TreeConfiguration.TreeConfigurationBuilder(
+            return configureTree(log, trunk, leaves, foliage, limit, lower, upper, dirt, ImmutableList.of());
+        }
+
+        public static TreeConfiguration configureTree(BlockState log, TrunkPlacer trunk, BlockState leaves, FoliagePlacer foliage, int limit, int lower, int upper, BlockState dirt, List<TreeDecorator> decorators) {
+            TreeConfiguration.TreeConfigurationBuilder builder = new TreeConfiguration.TreeConfigurationBuilder(
                     BlockStateProvider.simple(log),
                     trunk,
                     BlockStateProvider.simple(leaves),
                     foliage,
-                    new TwoLayersFeatureSize(limit, lower, upper)
-            ).dirt(BlockStateProvider.simple(dirt)).build();
+                    new TwoLayersFeatureSize(limit, lower, upper))
+                    .dirt(BlockStateProvider.simple(dirt));
+            if (!decorators.isEmpty()) builder.decorators(decorators);
+
+            return builder.build();
         }
     }
 
@@ -97,6 +107,7 @@ public class GaiaFeatures extends GaiaBiomeFeatures {
         public static final Holder<ConfiguredFeature<BlockStateConfiguration, ?>> brilliant_stone_spikes = registerFeature("brilliant_stone_spikes", ModWorldgen.TERRAIN_SPIKE.get(), new BlockStateConfiguration(BRILLIANT_STONE));
         public static final Holder<ConfiguredFeature<TwoBlockStateConfig, ?>> balancing_rocks = registerFeature("balancing_rocks", ModWorldgen.BALANCING_ROCKS.get(), new TwoBlockStateConfig(GOLDEN_STONE, TOUGH_GOLDEN_STONE));
         public static final Holder<ConfiguredFeature<BlockStateConfiguration, ?>> tough_golden_stone_monolith = registerFeature("tough_golden_stone_monolith", ModWorldgen.MONOLITH.get(), new BlockStateConfiguration(TOUGH_GOLDEN_STONE));
+        public static final Holder<ConfiguredFeature<NoneFeatureConfiguration, ?>> marsh_lake = registerFeature("marsh_lake", ModWorldgen.MARSH_LAKE.get(), FeatureConfiguration.NONE);
 
         //Underground Ores
         public static final Holder<ConfiguredFeature<OreConfiguration, ?>> ore_primal_mass = registerFeature("ore_primal_mass", Feature.ORE, configureOre(GAIA_STONE, PRIMAL_MASS, 33));
@@ -124,6 +135,7 @@ public class GaiaFeatures extends GaiaBiomeFeatures {
         public static final Holder<ConfiguredFeature<DiskConfiguration, ?>> disk_static_stone = registerFeature("disk_static_stone", ModWorldgen.GAIA_DISK.get(), new DiskConfiguration(STATIC_STONE, UniformInt.of(2, 4), 3, ImmutableList.of(WASTELAND_STONE)));
         public static final Holder<ConfiguredFeature<DiskConfiguration, ?>> disk_bog_patch = registerFeature("disk_bog_patch", ModWorldgen.BOG_PATCH.get(), new DiskConfiguration(ModBlocks.impure_sludge.get().defaultBlockState(), UniformInt.of(1, 4), 2, Lists.newArrayList(MURKY_GRASS, BOGGY_SOIL)));
         public static final Holder<ConfiguredFeature<DiskConfiguration, ?>> disk_gilded_stone = registerFeature("disk_gilded_brilliant_stone", ModWorldgen.GAIA_DISK.get(), new DiskConfiguration(GILDED_BRILLIANT_STONE, UniformInt.of(2, 4), 2, ImmutableList.of(BRILLIANT_STONE)));
+        public static final Holder<ConfiguredFeature<DiskConfiguration, ?>> disk_marsh_patch = registerFeature("disk_marsh_patch", ModWorldgen.BOG_PATCH.get(), new DiskConfiguration(ModBlocks.aurum_mud.get().defaultBlockState(), UniformInt.of(3, 4), 3, Lists.newArrayList(GILDED_GRASS, AURUM_SOIL)));
 
         //Underground Decoration
         public static final Holder<ConfiguredFeature<NoneFeatureConfiguration, ?>> underground_glitter_blob = registerFeature("underground_glitter_blob", ModWorldgen.FRAIL_BLOB.get(), FeatureConfiguration.NONE);
@@ -138,6 +150,7 @@ public class GaiaFeatures extends GaiaBiomeFeatures {
         public static final Holder<ConfiguredFeature<RandomPatchConfiguration, ?>> aura_growth = registerFeature("aura_crystal_growth", Feature.RANDOM_PATCH, configurePatch(32, 7, 3, BlockStateProvider.simple(CRYSTAL_GROWTH_AURA)));
         public static final Holder<ConfiguredFeature<RandomPatchConfiguration, ?>> golden_grass = registerFeature("golden_grass", Feature.RANDOM_PATCH, configurePatch(32, 7, 3, BlockStateProvider.simple(GOLDEN_GRASS)));
         public static final Holder<ConfiguredFeature<RandomPatchConfiguration, ?>> tall_golden_grass = registerFeature("tall_golden_grass", Feature.RANDOM_PATCH, configurePatch(32, 7, 3, BlockStateProvider.simple(TALL_GOLDEN_GRASS)));
+        public static final Holder<ConfiguredFeature<NoneFeatureConfiguration, ?>> golden_vines = registerFeature("golden_vines", ModWorldgen.GOLDEN_VINES.get(), FeatureConfiguration.NONE);
 
         public static final Holder<ConfiguredFeature<RandomPatchConfiguration, ?>> common_bloom = registerFeature("common_bloom", Feature.RANDOM_PATCH, configurePatch(32, 7, 3, new WeightedStateProvider(weight().add(THISCUS, 4).add(OUZIUM, 1))));
         public static final Holder<ConfiguredFeature<RandomPatchConfiguration, ?>> rare_bloom = registerFeature("rare_bloom", Feature.RANDOM_PATCH, configurePatch(32, 7, 3, new WeightedStateProvider(weight().add(OUZIUM, 4).add(THISCUS, 1))));
@@ -152,6 +165,7 @@ public class GaiaFeatures extends GaiaBiomeFeatures {
         public static final Holder<ConfiguredFeature<RandomPatchConfiguration, ?>> cupsir = registerFeature("stickly_cupsir", Feature.RANDOM_PATCH, configurePatch(16, 7, 3, BlockStateProvider.simple(STICKLY_CUPSIR)));
         public static final Holder<ConfiguredFeature<RandomPatchConfiguration, ?>> murgni = registerFeature("mystical_murgni", Feature.RANDOM_PATCH, configurePatch(16, 7, 3, BlockStateProvider.simple(MYSTICAL_MURGNI)));
         public static final Holder<ConfiguredFeature<RandomPatchConfiguration, ?>> corrupt_eye = registerFeature("corrupt_gaia_eye", Feature.RANDOM_PATCH, configurePatch(16, 7, 3, BlockStateProvider.simple(CORRUPTED_GAIA_EYE)));
+        public static final Holder<ConfiguredFeature<RandomPatchConfiguration, ?>> gilsri = registerFeature("twinkling_gilsri", Feature.RANDOM_PATCH, configurePatch(16, 7, 3, BlockStateProvider.simple(TWINKLING_GILSRI)));
 
         public static final Holder<ConfiguredFeature<TreeConfiguration, ?>> pink_agate_tree = registerFeature("pink_agate_tree", ModWorldgen.STRICT_TREE.get(), Config.PINK_AGATE_TREE_CONFIG);
         public static final Holder<ConfiguredFeature<TreeConfiguration, ?>> blue_agate_tree = registerFeature("blue_agate_tree", ModWorldgen.STRICT_TREE.get(), Config.BLUE_AGATE_TREE_CONFIG);
@@ -163,6 +177,7 @@ public class GaiaFeatures extends GaiaBiomeFeatures {
         public static final Holder<ConfiguredFeature<TreeConfiguration, ?>> fiery_agate_tree = registerFeature("fiery_agate_tree", ModWorldgen.STRICT_TREE.get(), Config.BURNING_TREE_CONFIG);
         public static final Holder<ConfiguredFeature<TreeConfiguration, ?>> aura_tree = registerFeature("aura_tree", ModWorldgen.STRICT_TREE.get(), Config.AURA_TREE_CONFIG);
         public static final Holder<ConfiguredFeature<TreeConfiguration, ?>> small_golden_tree = registerFeature("small_golden_tree", ModWorldgen.STRICT_TREE.get(), Config.SMALL_GOLDEN_TREE_CONFIG);
+        public static final Holder<ConfiguredFeature<TreeConfiguration, ?>> small_golden_tree_vines = registerFeature("small_golden_tree_vines", ModWorldgen.STRICT_TREE.get(), Config.SMALL_GOLDEN_TREE_VINES_CONFIG);
         public static final Holder<ConfiguredFeature<TreeConfiguration, ?>> big_golden_tree = registerFeature("big_golden_tree", ModWorldgen.STRICT_TREE.get(), Config.BIG_GOLDEN_TREE_CONFIG);
 
         public static final Holder<ConfiguredFeature<SimpleRandomFeatureConfiguration, ?>> pink_agate_trees = registerFeature("pink_agate_trees", Feature.SIMPLE_RANDOM_SELECTOR, new SimpleRandomFeatureConfiguration(HolderSet.direct(Tree.PINK_AGATE_TREE_CHECKED)));
@@ -174,7 +189,7 @@ public class GaiaFeatures extends GaiaBiomeFeatures {
         public static final Holder<ConfiguredFeature<SimpleRandomFeatureConfiguration, ?>> burnt_agate_trees = registerFeature("burnt_agate_trees", Feature.SIMPLE_RANDOM_SELECTOR, new SimpleRandomFeatureConfiguration(HolderSet.direct(Tree.BURNT_AGATE_TREE_CHECKED)));
         public static final Holder<ConfiguredFeature<SimpleRandomFeatureConfiguration, ?>> fiery_agate_trees = registerFeature("fiery_agate_trees", Feature.SIMPLE_RANDOM_SELECTOR, new SimpleRandomFeatureConfiguration(HolderSet.direct(Tree.FIERY_AGATE_TREE_CHECKED)));
         public static final Holder<ConfiguredFeature<SimpleRandomFeatureConfiguration, ?>> aura_trees = registerFeature("aura_trees", Feature.SIMPLE_RANDOM_SELECTOR, new SimpleRandomFeatureConfiguration(HolderSet.direct(Tree.AURA_TREE_CHECKED)));
-        public static final Holder<ConfiguredFeature<SimpleRandomFeatureConfiguration, ?>> small_golden_trees = registerFeature("small_golden_trees", Feature.SIMPLE_RANDOM_SELECTOR, new SimpleRandomFeatureConfiguration(HolderSet.direct(Tree.SMALL_GOLDEN_TREE_CHECKED)));
+        public static final Holder<ConfiguredFeature<SimpleRandomFeatureConfiguration, ?>> small_golden_trees_with_vines = registerFeature("small_golden_trees_with_vines", Feature.SIMPLE_RANDOM_SELECTOR, new SimpleRandomFeatureConfiguration(HolderSet.direct(Tree.SMALL_GOLDEN_TREE_VINES_CHECKED)));
         public static final Holder<ConfiguredFeature<SimpleRandomFeatureConfiguration, ?>> green_agate_bush = registerFeature("green_agate_bush", Feature.SIMPLE_RANDOM_SELECTOR, new SimpleRandomFeatureConfiguration(BUSH_WORKAROUND));
         public static final Holder<ConfiguredFeature<RandomFeatureConfiguration, ?>> various_agate_trees = registerFeature("various_agate_trees", Feature.RANDOM_SELECTOR, new RandomFeatureConfiguration(List.of(
                 new WeightedPlacedFeature(Tree.PINK_AGATE_TREE_CHECKED, 0.25F),
@@ -215,6 +230,7 @@ public class GaiaFeatures extends GaiaBiomeFeatures {
         public static final Holder<PlacedFeature> BURNT_AGATE_TREE_CHECKED = checkTree("burnt_agate_tree_checked", Configured.burnt_agate_tree, ModBlocks.burnt_sapling);
         public static final Holder<PlacedFeature> AURA_TREE_CHECKED = checkTree("aura_tree_checked", Configured.aura_tree, ModBlocks.aura_sapling);
         public static final Holder<PlacedFeature> SMALL_GOLDEN_TREE_CHECKED = checkTree("small_golden_tree_checked", Configured.small_golden_tree, ModBlocks.golden_sapling);
+        public static final Holder<PlacedFeature> SMALL_GOLDEN_TREE_VINES_CHECKED = checkTree("small_golden_tree_vines_checked", Configured.small_golden_tree_vines, ModBlocks.golden_sapling);
         public static final Holder<PlacedFeature> BIG_GOLDEN_TREE_CHECKED = checkTree("big_golden_tree_checked", Configured.big_golden_tree, ModBlocks.golden_sapling);
 
         private static Holder<PlacedFeature> checkTree(String name, Holder<? extends ConfiguredFeature<?, ?>> feature, RegistryObject<SaplingBlock> sapling) {
@@ -316,6 +332,10 @@ public class GaiaFeatures extends GaiaBiomeFeatures {
                 PlacementUtils.HEIGHTMAP,
                 RarityFilter.onAverageOnceEvery(5),
                 BiomeFilter.biome());
+        public static final Holder<PlacedFeature> MARSH_LAKES = registerPlacedFeature("marsh_lakes", Configured.marsh_lake,
+                InSquarePlacement.spread(),
+                PlacementUtils.HEIGHTMAP,
+                BiomeFilter.biome());
 
         //Underground Ores
         public static final Holder<PlacedFeature> ORE_PRIMAL_MASS = placedOre("ore_primal_mass", Configured.ore_primal_mass, 25, 33);
@@ -353,6 +373,11 @@ public class GaiaFeatures extends GaiaBiomeFeatures {
                 InSquarePlacement.spread(),
                 PlacementUtils.HEIGHTMAP_TOP_SOLID,
                 BiomeFilter.biome());
+        public static final Holder<PlacedFeature> DISK_MARSH_PATCH = registerPlacedFeature("disk_marsh_patch", Configured.disk_marsh_patch,
+                InSquarePlacement.spread(),
+                PlacementUtils.HEIGHTMAP_TOP_SOLID,
+                CountPlacement.of(3),
+                BiomeFilter.biome());
 
         //Underground Decoration
         public static final Holder<PlacedFeature> UNDERGROUND_GLITTER_BLOB = registerPlacedFeature("underground_glitter_blob", Configured.underground_glitter_blob,
@@ -377,7 +402,7 @@ public class GaiaFeatures extends GaiaBiomeFeatures {
         public static final Holder<PlacedFeature> BURNT_AGATE_TREE = placedTree("burnt_agate_tree", Configured.burnt_agate_trees, 0, 0.1F, 1);
         public static final Holder<PlacedFeature> FIERY_AGATE_TREE = placedTree("fiery_agate_tree", Configured.fiery_agate_trees, 0, 0.1F, 1);
         public static final Holder<PlacedFeature> AURA_TREE = placedTree("aura_tree", Configured.aura_trees, 2, 0.1F, 1);
-        public static final Holder<PlacedFeature> SMALL_GOLDEN_TREE = placedTree("small_golden_tree", Configured.small_golden_trees, 2, 0.1F, 1);
+        public static final Holder<PlacedFeature> SMALL_GOLDEN_TREE_WITH_VINES = placedTree("small_golden_tree", Configured.small_golden_trees_with_vines, 1, 0.1F, 1);
         public static final Holder<PlacedFeature> GREEN_AGATE_BUSH = registerPlacedFeature("green_agate_bush", Configured.green_agate_bush,
                 CountPlacement.of(ClampedInt.of(UniformInt.of(-3, 1), 0, 1)),
                 InSquarePlacement.spread(),
@@ -399,6 +424,11 @@ public class GaiaFeatures extends GaiaBiomeFeatures {
                 InSquarePlacement.spread(),
                 PlacementUtils.HEIGHTMAP,
                 CountPlacement.of(6),
+                BiomeFilter.biome());
+        public static final Holder<PlacedFeature> GOLDEN_VINES = registerPlacedFeature("golden_vines", Configured.golden_vines,
+                InSquarePlacement.spread(),
+                CountPlacement.of(127),
+                HeightRangePlacement.uniform(VerticalAnchor.absolute(64), VerticalAnchor.absolute(100)),
                 BiomeFilter.biome());
         public static final Holder<PlacedFeature> CRYSTAL_GROWTH_02 = placedPlant("crystal_growth_02", Configured.normal_growth, 2);
         public static final Holder<PlacedFeature> CRYSTAL_GROWTH_03 = placedPlant("crystal_growth_03", Configured.normal_growth, 3);
@@ -424,7 +454,7 @@ public class GaiaFeatures extends GaiaBiomeFeatures {
         public static final Holder<PlacedFeature> STICKLY_CUPSIR = placedFungi("stickly_cupsir", Configured.cupsir, 1);
         public static final Holder<PlacedFeature> MYSTICAL_MURGNI = placedFungi("mystical_murgni", Configured.murgni, 1);
         public static final Holder<PlacedFeature> CORRUPTED_GAIA_EYE = placedFungi("corrupted_gaia_eye", Configured.corrupt_eye, 1);
-
+        public static final Holder<PlacedFeature> TWINKLING_GILSRI = placedFungi("twinkling_gilsri", Configured.gilsri, 1);
 
         private static Holder<PlacedFeature> placedOre(String name, Holder<ConfiguredFeature<OreConfiguration,?>> ore, int height, int count) {
             return registerPlacedFeature(name, ore,

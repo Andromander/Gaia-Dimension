@@ -1,6 +1,26 @@
 {
   "carvers": {},
-  "features": [],
+  "features": [
+    [],
+    [],
+    [
+      "gaiadimension:marsh_lakes"
+    ],
+    [],
+    [],
+    [],
+    [
+      "gaiadimension:disk_marsh_patch"
+    ],
+    [],
+    [],
+    [
+      "gaiadimension:small_golden_tree",
+      "gaiadimension:golden_grass_uncommon",
+      "gaiadimension:twinkling_gilsri",
+      "gaiadimension:golden_vines"
+    ]
+  ],
   "spawners": {
     "monster": [
       {
@@ -58,7 +78,7 @@
   "spawn_costs": {},
   "forge:registry_name": "gaiadimension:golden_marsh",
   "precipitation": "none",
-  "temperature": 0.0,
+  "temperature": 0.3,
   "downfall": 0.0,
   "category": "none",
   "effects": {
@@ -68,10 +88,10 @@
       "block_search_extent": 8,
       "offset": 2.0
     },
-    "sky_color": 0,
-    "foliage_color": 0,
-    "grass_color": 0,
-    "fog_color": 0,
+    "sky_color": 3415307,
+    "foliage_color": 4997150,
+    "grass_color": 4997150,
+    "fog_color": 13801728,
     "water_color": 7117233,
     "water_fog_color": 9617108
   }

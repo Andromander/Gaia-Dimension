@@ -65,6 +65,7 @@ public class GaiaBlockStates extends GaiaBlockStateProvider {
         crossBlock(ModBlocks.stickly_cupsir);
         crossBlock(ModBlocks.mystical_murgni);
         crossBlock(ModBlocks.corrupted_gaia_eye);
+        crossBlock(ModBlocks.twinkling_gilsri);
         crossBlock(ModBlocks.elder_imklia);
         crossBlock(ModBlocks.gold_orb_tucher);
         crossBlock(ModBlocks.missingno_fungus);
@@ -149,6 +150,8 @@ public class GaiaBlockStates extends GaiaBlockStateProvider {
         basicBlock(ModBlocks.tough_golden_stone);
         columnBlock(ModBlocks.brilliant_stone);
         columnBlock(ModBlocks.gilded_brilliant_stone);
+        basicBlock(ModBlocks.aurum_mud);
+
         basicBlock(ModBlocks.pink_agate_planks);
         basicBlock(ModBlocks.blue_agate_planks);
         basicBlock(ModBlocks.green_agate_planks);
@@ -298,6 +301,7 @@ public class GaiaBlockStates extends GaiaBlockStateProvider {
         pottedPlantBlock(ModBlocks.potted_stickly_cupsir);
         pottedPlantBlock(ModBlocks.potted_mystical_murgni);
         pottedPlantBlock(ModBlocks.potted_corrupted_gaia_eye);
+        pottedPlantBlock(ModBlocks.potted_twinkling_gilsri);
         pottedPlantBlock(ModBlocks.potted_elder_imklia);
         pottedPlantBlock(ModBlocks.potted_gold_orb_tucher);
         pottedPlantBlock(ModBlocks.potted_missingno_fungus);

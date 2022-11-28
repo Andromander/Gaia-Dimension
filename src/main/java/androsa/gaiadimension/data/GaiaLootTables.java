@@ -109,9 +109,11 @@ public class GaiaLootTables extends LootTableProvider {
             dropSelf(ModBlocks.stickly_cupsir);
             dropSelf(ModBlocks.mystical_murgni);
             dropSelf(ModBlocks.corrupted_gaia_eye);
+            dropSelf(ModBlocks.twinkling_gilsri);
             dropSelf(ModBlocks.elder_imklia);
             dropSelf(ModBlocks.gold_orb_tucher);
             dropSelf(ModBlocks.missingno_fungus);
+            dropTable(ModBlocks.golden_vine, BlockLoot::createShearsOnlyDrop);
 
             //Tree Blocks
             dropSelf(ModBlocks.pink_agate_sapling);
@@ -197,6 +199,7 @@ public class GaiaLootTables extends LootTableProvider {
             dropSelf(ModBlocks.tough_golden_stone);
             dropSelf(ModBlocks.brilliant_stone);
             dropSelf(ModBlocks.gilded_brilliant_stone);
+            dropSelf(ModBlocks.aurum_mud);
 
             //Planks (Tiles)
             dropSelf(ModBlocks.pink_agate_planks);
@@ -353,6 +356,7 @@ public class GaiaLootTables extends LootTableProvider {
             dropPot(ModBlocks.potted_stickly_cupsir);
             dropPot(ModBlocks.potted_mystical_murgni);
             dropPot(ModBlocks.potted_corrupted_gaia_eye);
+            dropPot(ModBlocks.potted_twinkling_gilsri);
             dropPot(ModBlocks.potted_elder_imklia);
             dropPot(ModBlocks.potted_gold_orb_tucher);
             dropPot(ModBlocks.potted_missingno_fungus);

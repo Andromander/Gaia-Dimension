@@ -1,0 +1,24 @@
+{
+  "config": {
+    "state": {
+      "Name": "gaiadimension:aurum_mud"
+    },
+    "radius": {
+      "type": "minecraft:uniform",
+      "value": {
+        "min_inclusive": 3,
+        "max_inclusive": 4
+      }
+    },
+    "half_height": 3,
+    "targets": [
+      {
+        "Name": "gaiadimension:gilded_grass"
+      },
+      {
+        "Name": "gaiadimension:aurum_soil"
+      }
+    ]
+  },
+  "type": "gaiadimension:bog_patch"
+}

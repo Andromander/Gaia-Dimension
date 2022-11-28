@@ -75,35 +75,35 @@
         },
         {
           "parameters": {
-            "depth": 0.75,
+            "depth": 0.35,
             "scale": 0.15
           },
           "biome": "gaiadimension:golden_forest"
         },
         {
           "parameters": {
-            "depth": 1.0,
+            "depth": 0.8,
             "scale": 0.5
           },
           "biome": "gaiadimension:golden_hills"
         },
         {
           "parameters": {
-            "depth": 0.55,
+            "depth": 0.15,
             "scale": 0.05
           },
           "biome": "gaiadimension:golden_marsh"
         },
         {
           "parameters": {
-            "depth": 0.65,
+            "depth": 0.35,
             "scale": 0.1
           },
           "biome": "gaiadimension:golden_plains"
         },
         {
           "parameters": {
-            "depth": 0.65,
+            "depth": 0.35,
             "scale": 0.05
           },
           "biome": "gaiadimension:golden_sands"

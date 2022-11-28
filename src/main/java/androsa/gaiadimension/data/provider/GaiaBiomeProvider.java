@@ -291,4 +291,15 @@ public abstract class GaiaBiomeProvider {
                 .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, GaiaFeatures.Placed.GOLDEN_GRASS_COMMON)
                 .build();
     }
+
+    public static BiomeGenerationSettings goldenMarshBiome() {
+        return new BiomeGenerationSettings.Builder()
+                .addFeature(GenerationStep.Decoration.LOCAL_MODIFICATIONS, GaiaFeatures.Placed.MARSH_LAKES)
+                .addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, GaiaFeatures.Placed.DISK_MARSH_PATCH)
+                .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, GaiaFeatures.Placed.SMALL_GOLDEN_TREE_WITH_VINES)
+                .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, GaiaFeatures.Placed.GOLDEN_GRASS_UNCOMMON)
+                .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, GaiaFeatures.Placed.TWINKLING_GILSRI)
+                .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, GaiaFeatures.Placed.GOLDEN_VINES)
+                .build();
+    }
 }

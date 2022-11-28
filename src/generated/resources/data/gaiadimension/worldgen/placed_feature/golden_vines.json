@@ -1,0 +1,27 @@
+{
+  "feature": "gaiadimension:golden_vines",
+  "placement": [
+    {
+      "type": "minecraft:in_square"
+    },
+    {
+      "count": 127,
+      "type": "minecraft:count"
+    },
+    {
+      "height": {
+        "min_inclusive": {
+          "absolute": 64
+        },
+        "max_inclusive": {
+          "absolute": 100
+        },
+        "type": "minecraft:uniform"
+      },
+      "type": "minecraft:height_range"
+    },
+    {
+      "type": "minecraft:biome"
+    }
+  ]
+}
