@@ -200,6 +200,7 @@ public class ClientEvents {
         renderBlock(ModBlocks.gold_orb_tucher, cutoutM);
         renderBlock(ModBlocks.missingno_fungus, cutoutM);
         renderBlock(ModBlocks.golden_vine, cutoutM);
+        renderBlock(ModBlocks.sombre_shrub, cutoutM);
         renderBlock(ModBlocks.pink_agate_sapling, cutout);
         renderBlock(ModBlocks.blue_agate_sapling, cutout);
         renderBlock(ModBlocks.green_agate_sapling, cutout);

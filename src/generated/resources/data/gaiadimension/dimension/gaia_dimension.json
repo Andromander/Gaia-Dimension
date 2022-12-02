@@ -103,7 +103,7 @@
         },
         {
           "parameters": {
-            "depth": 0.35,
+            "depth": 0.25,
             "scale": 0.05
           },
           "biome": "gaiadimension:golden_sands"

@@ -302,4 +302,12 @@ public abstract class GaiaBiomeProvider {
                 .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, GaiaFeatures.Placed.GOLDEN_VINES)
                 .build();
     }
+
+    public static BiomeGenerationSettings goldenSandsBiome() {
+        return new BiomeGenerationSettings.Builder()
+                .addFeature(GenerationStep.Decoration.LOCAL_MODIFICATIONS, GaiaFeatures.Placed.TOUGH_GOLDEN_STONE_MENHIRS)
+                .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, GaiaFeatures.Placed.SOMBRE_SHRUBS)
+                .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, GaiaFeatures.Placed.SOMBRE_CACTI)
+                .build();
+    }
 }

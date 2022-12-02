@@ -107,6 +107,7 @@ public class GaiaFeatures extends GaiaBiomeFeatures {
         public static final Holder<ConfiguredFeature<BlockStateConfiguration, ?>> brilliant_stone_spikes = registerFeature("brilliant_stone_spikes", ModWorldgen.TERRAIN_SPIKE.get(), new BlockStateConfiguration(BRILLIANT_STONE));
         public static final Holder<ConfiguredFeature<TwoBlockStateConfig, ?>> balancing_rocks = registerFeature("balancing_rocks", ModWorldgen.BALANCING_ROCKS.get(), new TwoBlockStateConfig(GOLDEN_STONE, TOUGH_GOLDEN_STONE));
         public static final Holder<ConfiguredFeature<BlockStateConfiguration, ?>> tough_golden_stone_monolith = registerFeature("tough_golden_stone_monolith", ModWorldgen.MONOLITH.get(), new BlockStateConfiguration(TOUGH_GOLDEN_STONE));
+        public static final Holder<ConfiguredFeature<BlockStateConfiguration, ?>> tough_golden_stone_menhir = registerFeature("tough_golden_stone_menhir", ModWorldgen.MENHIR.get(), new BlockStateConfiguration(TOUGH_GOLDEN_STONE));
         public static final Holder<ConfiguredFeature<NoneFeatureConfiguration, ?>> marsh_lake = registerFeature("marsh_lake", ModWorldgen.MARSH_LAKE.get(), FeatureConfiguration.NONE);
 
         //Underground Ores
@@ -151,6 +152,8 @@ public class GaiaFeatures extends GaiaBiomeFeatures {
         public static final Holder<ConfiguredFeature<RandomPatchConfiguration, ?>> golden_grass = registerFeature("golden_grass", Feature.RANDOM_PATCH, configurePatch(32, 7, 3, BlockStateProvider.simple(GOLDEN_GRASS)));
         public static final Holder<ConfiguredFeature<RandomPatchConfiguration, ?>> tall_golden_grass = registerFeature("tall_golden_grass", Feature.RANDOM_PATCH, configurePatch(32, 7, 3, BlockStateProvider.simple(TALL_GOLDEN_GRASS)));
         public static final Holder<ConfiguredFeature<NoneFeatureConfiguration, ?>> golden_vines = registerFeature("golden_vines", ModWorldgen.GOLDEN_VINES.get(), FeatureConfiguration.NONE);
+        public static final Holder<ConfiguredFeature<RandomPatchConfiguration, ?>> sombre_cacti = registerFeature("sombre_cacti", Feature.RANDOM_PATCH, configurePatch(16, 4, 3, BlockStateProvider.simple(ModBlocks.sombre_cacti.get())));
+        public static final Holder<ConfiguredFeature<RandomPatchConfiguration, ?>> sombre_shrub = registerFeature("sombre_shrub", Feature.RANDOM_PATCH, configurePatch(32, 7, 3, BlockStateProvider.simple(SOMBRE_SHRUB)));
 
         public static final Holder<ConfiguredFeature<RandomPatchConfiguration, ?>> common_bloom = registerFeature("common_bloom", Feature.RANDOM_PATCH, configurePatch(32, 7, 3, new WeightedStateProvider(weight().add(THISCUS, 4).add(OUZIUM, 1))));
         public static final Holder<ConfiguredFeature<RandomPatchConfiguration, ?>> rare_bloom = registerFeature("rare_bloom", Feature.RANDOM_PATCH, configurePatch(32, 7, 3, new WeightedStateProvider(weight().add(OUZIUM, 4).add(THISCUS, 1))));
@@ -332,6 +335,11 @@ public class GaiaFeatures extends GaiaBiomeFeatures {
                 PlacementUtils.HEIGHTMAP,
                 RarityFilter.onAverageOnceEvery(5),
                 BiomeFilter.biome());
+        public static final Holder<PlacedFeature> TOUGH_GOLDEN_STONE_MENHIRS = registerPlacedFeature("tough_golden_stone_menhirs", Configured.tough_golden_stone_menhir,
+                InSquarePlacement.spread(),
+                PlacementUtils.HEIGHTMAP,
+                RarityFilter.onAverageOnceEvery(5),
+                BiomeFilter.biome());
         public static final Holder<PlacedFeature> MARSH_LAKES = registerPlacedFeature("marsh_lakes", Configured.marsh_lake,
                 InSquarePlacement.spread(),
                 PlacementUtils.HEIGHTMAP,
@@ -430,6 +438,11 @@ public class GaiaFeatures extends GaiaBiomeFeatures {
                 CountPlacement.of(127),
                 HeightRangePlacement.uniform(VerticalAnchor.absolute(64), VerticalAnchor.absolute(100)),
                 BiomeFilter.biome());
+        public static final Holder<PlacedFeature> SOMBRE_CACTI = registerPlacedFeature("sombre_cacti", Configured.sombre_cacti,
+                InSquarePlacement.spread(),
+                PlacementUtils.HEIGHTMAP,
+                RarityFilter.onAverageOnceEvery(2),
+                BiomeFilter.biome());
         public static final Holder<PlacedFeature> CRYSTAL_GROWTH_02 = placedPlant("crystal_growth_02", Configured.normal_growth, 2);
         public static final Holder<PlacedFeature> CRYSTAL_GROWTH_03 = placedPlant("crystal_growth_03", Configured.normal_growth, 3);
         public static final Holder<PlacedFeature> CRYSTAL_GROWTH_04 = placedPlant("crystal_growth_04", Configured.normal_growth, 4);
@@ -447,6 +460,7 @@ public class GaiaFeatures extends GaiaBiomeFeatures {
         public static final Holder<PlacedFeature> CRYSTAL_BLOOMS_MUTANT = placedPlant("crystal_blooms_mutant", Configured.mutant_bloom, 2);
         public static final Holder<PlacedFeature> CRYSTAL_BLOOMS_CORRUPT = placedPlant("crystal_blooms_corrupt", Configured.corrupt_bloom, 1);
         public static final Holder<PlacedFeature> CRYSTAL_BLOOMS_GOLDEN = placedPlant("crystal_blooms_golden", Configured.golden_bloom, 1);
+        public static final Holder<PlacedFeature> SOMBRE_SHRUBS = placedPlant("sombre_shrubs", Configured.sombre_shrub, 2);
         public static final Holder<PlacedFeature> SPOTTED_KERSEI = placedFungi("spotted_kersei", Configured.kersei, 1);
         public static final Holder<PlacedFeature> THORNY_WILTHA = placedFungi("thorny_wiltha", Configured.wiltha, 1);
         public static final Holder<PlacedFeature> ROOFED_AGARIC = placedFungi("roofed_agaric", Configured.agaric, 1);

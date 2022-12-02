@@ -69,6 +69,7 @@ public class GaiaBlockStates extends GaiaBlockStateProvider {
         crossBlock(ModBlocks.elder_imklia);
         crossBlock(ModBlocks.gold_orb_tucher);
         crossBlock(ModBlocks.missingno_fungus);
+        crossBlock(ModBlocks.sombre_shrub);
         crossBlock(ModBlocks.pink_agate_sapling);
         crossBlock(ModBlocks.blue_agate_sapling);
         crossBlock(ModBlocks.green_agate_sapling);
@@ -151,6 +152,7 @@ public class GaiaBlockStates extends GaiaBlockStateProvider {
         columnBlock(ModBlocks.brilliant_stone);
         columnBlock(ModBlocks.gilded_brilliant_stone);
         basicBlock(ModBlocks.aurum_mud);
+        basicBlockRotated(ModBlocks.golden_sand);
 
         basicBlock(ModBlocks.pink_agate_planks);
         basicBlock(ModBlocks.blue_agate_planks);

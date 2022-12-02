@@ -105,7 +105,7 @@ public class GaiaBiomeFeatures {
     public static final BlockState TWINKLING_GILSRI = state(ModBlocks.twinkling_gilsri);
     public static final BlockState ELDER_IMKLIA = state(ModBlocks.elder_imklia);
     public static final BlockState GOLD_ORB_TUCHER = state(ModBlocks.gold_orb_tucher);
-    public static final BlockState GOLDEN_VINE = state(ModBlocks.golden_vine);
+    public static final BlockState SOMBRE_SHRUB = state(ModBlocks.sombre_shrub);
 
     public static final List<Block> cave_blacklist = ImmutableList.of(GLITTER_GRASS.getBlock(), HEAVY_SOIL.getBlock(), CORRUPT_GRASS.getBlock(), CORRUPT_SOIL.getBlock(), MURKY_GRASS.getBlock(), BOGGY_SOIL.getBlock(), SOFT_GRASS.getBlock(), LIGHT_SOIL.getBlock(), SALT.getBlock());
 

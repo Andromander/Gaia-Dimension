@@ -68,6 +68,8 @@ public class GaiaItemModels extends GaiaItemModelProvider {
         blockItemTexture(ModBlocks.gold_orb_tucher);
         blockItemTexture(ModBlocks.missingno_fungus);
         blockItemTexture(ModBlocks.golden_vine);
+        blockItemTexture(ModBlocks.sombre_shrub);
+        blockItem(ModBlocks.sombre_cacti);
         blockItemTexture(ModBlocks.pink_agate_sapling);
         blockItemTexture(ModBlocks.blue_agate_sapling);
         blockItemTexture(ModBlocks.green_agate_sapling);
@@ -151,6 +153,7 @@ public class GaiaItemModels extends GaiaItemModelProvider {
         blockItem(ModBlocks.brilliant_stone);
         blockItem(ModBlocks.gilded_brilliant_stone);
         blockItem(ModBlocks.aurum_mud);
+        blockItem(ModBlocks.golden_sand);
         blockItem(ModBlocks.pink_agate_planks);
         blockItem(ModBlocks.blue_agate_planks);
         blockItem(ModBlocks.green_agate_planks);

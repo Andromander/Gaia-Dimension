@@ -93,6 +93,8 @@ public class ModWorldgen {
             new StrictTreeFeature(TreeConfiguration.CODEC));
     public static final RegistryObject<Feature<BlockStateConfiguration>> MONOLITH = FEATURES.register("monolith", () ->
             new MonolithFeature(BlockStateConfiguration.CODEC));
+    public static final RegistryObject<Feature<BlockStateConfiguration>> MENHIR = FEATURES.register("menhir", () ->
+            new MenhirFeature(BlockStateConfiguration.CODEC));
     public static final RegistryObject<Feature<NoneFeatureConfiguration>> MARSH_LAKE = FEATURES.register("marsh_lake", () ->
             new MarshLakeFeature(NoneFeatureConfiguration.CODEC));
     public static final RegistryObject<Feature<NoneFeatureConfiguration>> GOLDEN_VINES = FEATURES.register("golden_vines", () ->

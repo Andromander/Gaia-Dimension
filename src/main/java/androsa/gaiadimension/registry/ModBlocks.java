@@ -117,6 +117,8 @@ public class ModBlocks {
     public static final RegistryObject<Block> gold_orb_tucher = register("gold_orb_tucher", () -> new CrystalFungusBlock(GaiaBlockProperties.plantProps(MaterialColor.GOLD, false), true));
     public static final RegistryObject<Block> missingno_fungus = register("missingno_fungus", () -> new CrystalFungusBlock(GaiaBlockProperties.plantProps(MaterialColor.COLOR_MAGENTA, false), false));
     public static final RegistryObject<Block> golden_vine = register("golden_vine", () -> new VineBlock(GaiaBlockProperties.plantProps(MaterialColor.GOLD, false)));
+    public static final RegistryObject<Block> sombre_cacti = register("sombre_cacti", () -> new SombreCactiBlock(GaiaBlockProperties.plantProps(MaterialColor.TERRACOTTA_BROWN, false))); //TODO DEBUG
+    public static final RegistryObject<Block> sombre_shrub = register("sombre_shrub", () -> new SombreShrubBlock(GaiaBlockProperties.plantProps(MaterialColor.TERRACOTTA_BROWN, false)));
 
     //Tree Blocks
     public static final RegistryObject<SaplingBlock> pink_agate_sapling = register("pink_agate_sapling", () -> new GaiaSaplingBlock(new PinkAgateTree(), GaiaBlockProperties.saplingProps(MaterialColor.COLOR_PINK)));
@@ -203,6 +205,7 @@ public class ModBlocks {
     public static final RegistryObject<Block> brilliant_stone = register("brilliant_stone", GaiaBlockProperties.stoneProps(MaterialColor.TERRACOTTA_YELLOW, 5.0F, 35.0F, true));
     public static final RegistryObject<Block> gilded_brilliant_stone = register("gilded_brilliant_stone", GaiaBlockProperties.stoneProps(MaterialColor.TERRACOTTA_WHITE, 5.0F, 35.0F, true).lightLevel((state) -> 5));
     public static final RegistryObject<Block> aurum_mud = register("aurum_mud", GaiaBlockProperties.muckyProps(MaterialColor.TERRACOTTA_BLACK, 0.3F, 0.4F));
+    public static final RegistryObject<Block> golden_sand = register("golden_sand", () -> new GaiaFallingBlock(GaiaBlockProperties.sandProps(MaterialColor.GOLD, 1.0F, SoundType.SAND), 0xFFD700));
 
     //Planks
     public static final RegistryObject<Block> pink_agate_planks = register("pink_agate_planks", GaiaBlockProperties.tileProps(MaterialColor.COLOR_PINK));

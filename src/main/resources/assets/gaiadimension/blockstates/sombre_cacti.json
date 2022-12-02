@@ -1,0 +1,21 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "gaiadimension:block/sombre_cacti"
+      },
+      {
+        "model": "gaiadimension:block/sombre_cacti",
+        "y": 90
+      },
+      {
+        "model": "gaiadimension:block/sombre_cacti",
+        "y": 180
+      },
+      {
+        "model": "gaiadimension:block/sombre_cacti",
+        "y": 270
+      }
+    ]
+  }
+}

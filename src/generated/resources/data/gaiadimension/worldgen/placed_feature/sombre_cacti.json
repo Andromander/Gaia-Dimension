@@ -1,0 +1,19 @@
+{
+  "feature": "gaiadimension:sombre_cacti",
+  "placement": [
+    {
+      "type": "minecraft:in_square"
+    },
+    {
+      "heightmap": "MOTION_BLOCKING",
+      "type": "minecraft:heightmap"
+    },
+    {
+      "chance": 2,
+      "type": "minecraft:rarity_filter"
+    },
+    {
+      "type": "minecraft:biome"
+    }
+  ]
+}

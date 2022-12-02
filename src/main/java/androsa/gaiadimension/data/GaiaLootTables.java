@@ -114,6 +114,8 @@ public class GaiaLootTables extends LootTableProvider {
             dropSelf(ModBlocks.gold_orb_tucher);
             dropSelf(ModBlocks.missingno_fungus);
             dropTable(ModBlocks.golden_vine, BlockLoot::createShearsOnlyDrop);
+            dropSelf(ModBlocks.sombre_cacti);
+            dropTable(ModBlocks.sombre_shrub, BlockLoot::createShearsOnlyDrop);
 
             //Tree Blocks
             dropSelf(ModBlocks.pink_agate_sapling);
@@ -200,6 +202,7 @@ public class GaiaLootTables extends LootTableProvider {
             dropSelf(ModBlocks.brilliant_stone);
             dropSelf(ModBlocks.gilded_brilliant_stone);
             dropSelf(ModBlocks.aurum_mud);
+            dropSelf(ModBlocks.golden_sand);
 
             //Planks (Tiles)
             dropSelf(ModBlocks.pink_agate_planks);

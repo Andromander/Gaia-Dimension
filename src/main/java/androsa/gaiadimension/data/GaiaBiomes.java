@@ -47,7 +47,7 @@ public class GaiaBiomes extends GaiaBiomeProvider {
         biomes.put(ModBiomes.golden_forest, makeGoldenForest());
         biomes.put(ModBiomes.golden_plains, makeGoldenPlains());
         biomes.put(ModBiomes.golden_hills, makeGoldenHills());
-        biomes.put(ModBiomes.golden_sands, makeDebug());
+        biomes.put(ModBiomes.golden_sands, makeGoldenSands());
         biomes.put(ModBiomes.golden_marsh, makeGoldenMarsh());
 
         biomes.put(ModBiomes.glitter_caves, makeDebug());
@@ -288,6 +288,15 @@ public class GaiaBiomes extends GaiaBiomeProvider {
                         goldenMarshBiome(),
                         buildSpawns(createSpawns())
                 ).temperature(0.3F));
+    }
+
+    public static Biome makeGoldenSands() {
+        return buildBiome(
+                createBuilder(
+                        createAmbience(4997150, 3415307, 13801728),
+                        goldenSandsBiome(),
+                        buildSpawns(createSpawns())
+                ).temperature(0.7F));
     }
 
     @Deprecated

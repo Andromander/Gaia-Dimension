@@ -28,6 +28,7 @@ public class GaiaSurfaceRuleData {
     public static final SurfaceRules.RuleSource WASTELAND_STONE = stateRule(ModBlocks.wasteland_stone);
     public static final SurfaceRules.RuleSource GOLDEN_STONE = stateRule(ModBlocks.golden_stone);
     public static final SurfaceRules.RuleSource SOLID_GOLDEN_STONE = stateRule(ModBlocks.brilliant_stone);
+    public static final SurfaceRules.RuleSource GOLDEN_SAND = stateRule(ModBlocks.golden_sand);
     public static final SurfaceRules.RuleSource GAIA_STONE = stateRule(ModBlocks.gaia_stone);
     public static final SurfaceRules.RuleSource PRIMAL_MASS = stateRule(ModBlocks.primal_mass);
     public static final SurfaceRules.RuleSource NEXUSTONE = stateRule(ModBlocks.nexustone);
@@ -62,6 +63,8 @@ public class GaiaSurfaceRuleData {
                                 SurfaceRules.ifTrue(SurfaceRules.verticalGradient("wasteland_stone", VerticalAnchor.absolute(50), VerticalAnchor.absolute(63)), WASTELAND_STONE)),
                         SurfaceRules.ifTrue(SurfaceRules.isBiome(ModBiomes.golden_hills),
                                 SurfaceRules.ifTrue(SurfaceRules.not(SurfaceRules.verticalGradient("brilliant_stone", VerticalAnchor.absolute(100), VerticalAnchor.absolute(105))), SOLID_GOLDEN_STONE)),
+                        SurfaceRules.ifTrue(SurfaceRules.isBiome(ModBiomes.golden_sands),
+                                SurfaceRules.sequence(SurfaceRules.ifTrue(SurfaceRules.ON_CEILING, SOLID_GOLDEN_STONE), GOLDEN_SAND)),
                         SurfaceRules.ifTrue(saltyBiomeCondition, saltstoneRoofRule)/*,
                         SurfaceRules.ifTrue(SurfaceRules.isBiome(Biomes.DRIPSTONE_CAVES), STONE)*/); //TODO: watch this space for new biomes
         SurfaceRules.RuleSource belowTopRule =
@@ -78,7 +81,9 @@ public class GaiaSurfaceRuleData {
                                 SurfaceRules.ifTrue(aboveWaterCondition, topMaterialRule)),
                         SurfaceRules.ifTrue(belowWaterCondition,
                                 SurfaceRules.sequence(
-                                        SurfaceRules.ifTrue(SurfaceRules.UNDER_FLOOR, belowTopRule),
+                                        SurfaceRules.ifTrue(SurfaceRules.yStartCheck(VerticalAnchor.absolute(-4), 1),
+                                                SurfaceRules.sequence(
+                                                        SurfaceRules.ifTrue(SurfaceRules.UNDER_FLOOR, belowTopRule))),
                                         SurfaceRules.ifTrue(saltyBiomeCondition,
                                                 SurfaceRules.ifTrue(SurfaceRules.stoneDepthCheck(0, true, 30, CaveSurface.FLOOR), SALTSTONE)))),
                         SurfaceRules.ifTrue(SurfaceRules.ON_FLOOR,
@@ -97,7 +102,7 @@ public class GaiaSurfaceRuleData {
 
         SurfaceRules.RuleSource aboveSeaLevelRule = SurfaceRules.ifTrue(SurfaceRules.abovePreliminarySurface(), worldSurfaceRule);
         builder.add(hasSeaLevel ? aboveSeaLevelRule : worldSurfaceRule);
-        builder.add(SurfaceRules.ifTrue(SurfaceRules.isBiome(ModBiomes.golden_hills, ModBiomes.golden_forest, ModBiomes.golden_plains, ModBiomes.golden_marsh),
+        builder.add(SurfaceRules.ifTrue(SurfaceRules.isBiome(ModBiomes.golden_hills, ModBiomes.golden_forest, ModBiomes.golden_plains, ModBiomes.golden_marsh, ModBiomes.golden_sands),
                 SurfaceRules.ifTrue(SurfaceRules.not(SurfaceRules.verticalGradient("golden_stone", VerticalAnchor.absolute(50), VerticalAnchor.absolute(63))), GOLDEN_STONE)));
         builder.add(SurfaceRules.ifTrue(SurfaceRules.verticalGradient("nexustone", VerticalAnchor.absolute(-48), VerticalAnchor.absolute(-32)), NEXUSTONE));
         builder.add(SurfaceRules.ifTrue(SurfaceRules.verticalGradient("primal_mass", VerticalAnchor.absolute(0), VerticalAnchor.absolute(16)), PRIMAL_MASS));
