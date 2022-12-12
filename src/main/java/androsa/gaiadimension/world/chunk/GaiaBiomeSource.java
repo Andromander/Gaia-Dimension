@@ -23,13 +23,14 @@ public class GaiaBiomeSource extends BiomeSource {
                     TerrainPoint.CODEC.fieldOf("parameters").forGetter(Pair::getFirst),
                     Biome.CODEC.fieldOf("biome").forGetter(Pair::getSecond)
             ).apply(pair, Pair::of)).listOf().fieldOf("biomes").forGetter((object) -> object.list),
-            Codec.LONG.fieldOf("seed").forGetter((object) -> object.seed),
+            Codec.LONG.fieldOf("seed").stable().orElseGet(() -> GaiaBiomeSource.hackseed).forGetter((object) -> object.seed),
             Codec.FLOAT.fieldOf("base_offset").forGetter((object) -> object.offset),
             Codec.FLOAT.fieldOf("base_factor").forGetter((object) -> object.factor),
             RegistryOps.retrieveRegistry(Registry.BIOME_REGISTRY)
                     .forGetter((obj) -> obj.registry)
     ).apply(instance, GaiaBiomeSource::new));
 
+    public static long hackseed; //DON'T TOUCH ME
     private final long seed;
     private final Registry<Biome> registry;
     private final Layer genBiomes;
