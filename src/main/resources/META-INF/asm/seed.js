@@ -4,7 +4,7 @@ var MethodInsnNode = Java.type('org.objectweb.asm.tree.MethodInsnNode');
 
 function initializeCoreMod() {
     return {
-        'attributes': {
+        'worldcreate': {
             'target': {
                 'type': 'METHOD',
                 'class': 'net.minecraft.world.level.levelgen.WorldGenSettings',
@@ -26,6 +26,30 @@ function initializeCoreMod() {
                         )
                     );
 
+                return methodNode;
+            }
+        },
+        'worldload': {
+            'target': {
+                'type': 'METHOD',
+                'class': 'net.minecraft.world.level.storage.LevelStorageSource',
+                'methodName': ASM.mapMethod('m_78204_'), //readWorldGenSettings
+                'methodDesc': '(Lcom/mojang/serialization/Dynamic;Lcom.mojang.datafixers/DataFixer;I)Lcom/mojang/datafixers/util/Pair;'
+            },
+            'transformer': function (/*org.objectweb.asm.tree.MethodNode*/ methodNode) {
+                var /*org.objectweb.asm.tree.InsnList*/ instructions = methodNode.instructions;
+                instructions.insertBefore(
+                    ASM.findFirstInstruction(methodNode, Opcodes.ASTORE),
+                    ASM.listOf(
+                        new MethodInsnNode(
+                            Opcodes.INVOKESTATIC,
+                            'androsa/gaiadimension/asm/ASMHooks',
+                            'seed',
+                            '(Lcom/mojang/serialization/Dynamic;)Lcom/mojang/serialization/Dynamic;',
+                            false
+                            )
+                        )
+                    );
                 return methodNode;
             }
         }
