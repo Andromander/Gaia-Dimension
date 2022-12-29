@@ -154,6 +154,12 @@ public class GaiaItemModels extends GaiaItemModelProvider {
         blockItem(ModBlocks.gilded_brilliant_stone);
         blockItem(ModBlocks.aurum_mud);
         blockItem(ModBlocks.golden_sand);
+        blockItem(ModBlocks.scarlet_mookaite);
+        blockItem(ModBlocks.auburn_mookaite);
+        blockItem(ModBlocks.gold_mookaite);
+        blockItem(ModBlocks.mauve_mookaite);
+        blockItem(ModBlocks.beige_mookaite);
+        blockItem(ModBlocks.ivory_mookaite);
         blockItem(ModBlocks.pink_agate_planks);
         blockItem(ModBlocks.blue_agate_planks);
         blockItem(ModBlocks.green_agate_planks);

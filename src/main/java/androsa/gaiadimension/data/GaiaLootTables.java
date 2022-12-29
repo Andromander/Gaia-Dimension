@@ -203,6 +203,12 @@ public class GaiaLootTables extends LootTableProvider {
             dropSelf(ModBlocks.gilded_brilliant_stone);
             dropSelf(ModBlocks.aurum_mud);
             dropSelf(ModBlocks.golden_sand);
+            dropSelf(ModBlocks.scarlet_mookaite);
+            dropSelf(ModBlocks.auburn_mookaite);
+            dropSelf(ModBlocks.gold_mookaite);
+            dropSelf(ModBlocks.mauve_mookaite);
+            dropSelf(ModBlocks.beige_mookaite);
+            dropSelf(ModBlocks.ivory_mookaite);
 
             //Planks (Tiles)
             dropSelf(ModBlocks.pink_agate_planks);

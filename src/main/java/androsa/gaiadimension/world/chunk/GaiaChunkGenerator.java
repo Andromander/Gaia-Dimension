@@ -8,11 +8,13 @@ import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
+import net.minecraft.SharedConstants;
 import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.RegistryOps;
+import net.minecraft.server.level.WorldGenRegion;
 import net.minecraft.util.Mth;
 import net.minecraft.world.level.ChunkPos;
 import net.minecraft.world.level.StructureFeatureManager;
@@ -27,15 +29,18 @@ import net.minecraft.world.level.chunk.LevelChunkSection;
 import net.minecraft.world.level.chunk.ProtoChunk;
 import net.minecraft.world.level.levelgen.*;
 import net.minecraft.world.level.levelgen.blending.Blender;
+import net.minecraft.world.level.levelgen.carver.CarvingContext;
 import net.minecraft.world.level.levelgen.structure.StructureSet;
 import net.minecraft.world.level.levelgen.synth.BlendedNoise;
 import net.minecraft.world.level.levelgen.synth.NormalNoise;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.OptionalInt;
 import java.util.Set;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.Executor;
+import java.util.function.Function;
 import java.util.function.Predicate;
 
 public class GaiaChunkGenerator extends NoiseBasedChunkGenerator {
@@ -57,6 +62,7 @@ public class GaiaChunkGenerator extends NoiseBasedChunkGenerator {
     private final int cellHeight;
     private final BlockState defaultFluid;
     private final Aquifer emptyAquifier;
+    private final GaiaSurfaceSystem surface;
 
     public GaiaChunkGenerator(BiomeSource mainsource, Registry<StructureSet> setregistry, Registry<NormalNoise.NoiseParameters> noiseregistry, Holder<NoiseGeneratorSettings> noisesettings, long seed) {
         super(setregistry, noiseregistry, mainsource, seed, noisesettings);
@@ -79,6 +85,7 @@ public class GaiaChunkGenerator extends NoiseBasedChunkGenerator {
         Aquifer.FluidStatus lowfluid = new Aquifer.FluidStatus(-54, Blocks.LAVA.defaultBlockState());
         Aquifer.FluidPicker globalFluidPicker = (x, y, z) -> y < Math.min(-54, i) ? lowfluid : topfluid;
         this.emptyAquifier = Aquifer.createDisabled(globalFluidPicker);
+        this.surface = new GaiaSurfaceSystem(this.noiseRegistry, this.settings.value().defaultBlock(), this.settings.value().seaLevel(), seed, settings.value().getRandomSource());
     }
 
     @Override
@@ -94,6 +101,15 @@ public class GaiaChunkGenerator extends NoiseBasedChunkGenerator {
     @Override
     public Climate.Sampler climateSampler() {
         return this.sampler;
+    }
+
+    public void buildSurface(WorldGenRegion region, StructureFeatureManager structures, ChunkAccess chunk) {
+        if (!SharedConstants.debugVoidTerrain(chunk.getPos())) {
+            WorldGenerationContext context = new WorldGenerationContext(this, region);
+            NoiseGeneratorSettings settings = this.settings.value();
+            NoiseChunk noisechunk = chunk.getOrCreateNoiseChunk(this.router(), () -> new Beardifier(structures, chunk), settings, this.globalFluidPicker, Blender.of(region));
+            this.surface.buildSurface(region.getBiomeManager(), region.registryAccess().registryOrThrow(Registry.BIOME_REGISTRY), settings.useLegacyRandomSource(), context, chunk, noisechunk, settings.surfaceRule());
+        }
     }
 
     @Override
@@ -280,5 +296,11 @@ public class GaiaChunkGenerator extends NoiseBasedChunkGenerator {
         }
 
         return state;
+    }
+
+    @Deprecated
+    @Override
+    public Optional<BlockState> topMaterial(CarvingContext context, Function<BlockPos, Holder<Biome>> biomepos, ChunkAccess chunk, NoiseChunk noise, BlockPos pos, boolean fluid) {
+        return this.surface.topMaterial(this.settings.value().surfaceRule(), context, biomepos, chunk, noise, pos, fluid);
     }
 }

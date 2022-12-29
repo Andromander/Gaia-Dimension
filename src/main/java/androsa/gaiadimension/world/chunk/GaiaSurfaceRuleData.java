@@ -30,6 +30,10 @@ public class GaiaSurfaceRuleData {
     public static final SurfaceRules.RuleSource GOLDEN_STONE = stateRule(ModBlocks.golden_stone);
     public static final SurfaceRules.RuleSource SOLID_GOLDEN_STONE = stateRule(ModBlocks.brilliant_stone);
     public static final SurfaceRules.RuleSource GOLDEN_SAND = stateRule(ModBlocks.golden_sand);
+    public static final SurfaceRules.RuleSource SCARLET_MOOKAITE = stateRule(ModBlocks.scarlet_mookaite);
+    public static final SurfaceRules.RuleSource AUBURN_MOOKAITE = stateRule(ModBlocks.auburn_mookaite);
+    public static final SurfaceRules.RuleSource GOLD_MOOKAITE = stateRule(ModBlocks.gold_mookaite);
+    public static final SurfaceRules.RuleSource MAUVE_MOOKAITE = stateRule(ModBlocks.mauve_mookaite);
     public static final SurfaceRules.RuleSource GAIA_STONE = stateRule(ModBlocks.gaia_stone);
     public static final SurfaceRules.RuleSource PRIMAL_MASS = stateRule(ModBlocks.primal_mass);
     public static final SurfaceRules.RuleSource NEXUSTONE = stateRule(ModBlocks.nexustone);
@@ -40,10 +44,9 @@ public class GaiaSurfaceRuleData {
     }
 
     public static SurfaceRules.RuleSource gaia(boolean hasSeaLevel, boolean bedrockRoof, boolean bedrockFloor) {
-        SurfaceRules.ConditionSource surfacerules$conditionsource2 = SurfaceRules.yStartCheck(VerticalAnchor.absolute(63), -1);
-        SurfaceRules.ConditionSource surfacerules$conditionsource3 = SurfaceRules.yStartCheck(VerticalAnchor.absolute(74), 1);
-        SurfaceRules.ConditionSource surfacerules$conditionsource4 = SurfaceRules.yBlockCheck(VerticalAnchor.absolute(62), 0);
-        SurfaceRules.ConditionSource surfacerules$conditionsource5 = SurfaceRules.yBlockCheck(VerticalAnchor.absolute(63), 0);
+        SurfaceRules.ConditionSource seaLevelCondition = SurfaceRules.yStartCheck(VerticalAnchor.absolute(63), -1);
+        SurfaceRules.ConditionSource bandsCondition = SurfaceRules.yStartCheck(VerticalAnchor.absolute(74), 1);
+        SurfaceRules.ConditionSource aboveSeaCondition = SurfaceRules.yBlockCheck(VerticalAnchor.absolute(63), 0);
         SurfaceRules.RuleSource saltstoneRoofRule = SurfaceRules.sequence(SurfaceRules.ifTrue(SurfaceRules.ON_CEILING, SALTSTONE), SALT);
         SurfaceRules.RuleSource solidGoldRoofRule = SurfaceRules.sequence(SurfaceRules.ifTrue(SurfaceRules.ON_CEILING, SOLID_GOLDEN_STONE), GOLDEN_SAND);
         SurfaceRules.ConditionSource beachCondition = SurfaceRules.isBiome(ModBiomes.mineral_reservoir, ModBiomes.mineral_river, ModBiomes.salty_coast);
@@ -74,27 +77,27 @@ public class GaiaSurfaceRuleData {
                 SurfaceRules.ifTrue(dunesRule, saltstoneRoofRule)
                 /*SurfaceRules.ifTrue(SurfaceRules.isBiome(Biomes.DRIPSTONE_CAVES), STONE)*/);
         SurfaceRules.RuleSource surfaceRule = SurfaceRules.sequence(
-                /*SurfaceRules.ifTrue(SurfaceRules.isBiome(Biomes.BADLANDS, Biomes.ERODED_BADLANDS, Biomes.WOODED_BADLANDS),
+                SurfaceRules.ifTrue(SurfaceRules.isBiome(ModBiomes.mookaite_mesa),
                         SurfaceRules.sequence(
                                 SurfaceRules.ifTrue(SurfaceRules.ON_FLOOR,
                                         SurfaceRules.sequence(
-                                                SurfaceRules.ifTrue(surfacerules$conditionsource3,
+                                                SurfaceRules.ifTrue(bandsCondition,
                                                         SurfaceRules.sequence(
-                                                                SurfaceRules.ifTrue(surfacerules$conditionsource14, TERRACOTTA),
-                                                                SurfaceRules.ifTrue(surfacerules$conditionsource15, TERRACOTTA),
-                                                                SurfaceRules.ifTrue(surfacerules$conditionsource16, TERRACOTTA),
+                                                                SurfaceRules.ifTrue(surfacerules$conditionsource14, GOLD_MOOKAITE),
+                                                                SurfaceRules.ifTrue(surfacerules$conditionsource15, SCARLET_MOOKAITE),
+                                                                SurfaceRules.ifTrue(surfacerules$conditionsource16, MAUVE_MOOKAITE),
                                                                 SurfaceRules.bandlands())),
-                                                SurfaceRules.ifTrue(surfacerules$conditionsource6,
-                                                        SurfaceRules.sequence
-                                                                (SurfaceRules.ifTrue(SurfaceRules.ON_CEILING, RED_SANDSTONE), RED_SAND)),
-                                                SurfaceRules.ifTrue(surfacerules$conditionsource8, WHITE_TERRACOTTA))),
-                                SurfaceRules.ifTrue(surfacerules$conditionsource2,
+                                                /*SurfaceRules.ifTrue(SurfaceRules.waterBlockCheck(-1, 0),
+                                                        SurfaceRules.sequence(
+                                                                SurfaceRules.ifTrue(SurfaceRules.ON_CEILING, SALTSTONE), SALT)),*/
+                                                SurfaceRules.ifTrue(SurfaceRules.waterStartCheck(-6, -1), GOLD_MOOKAITE))),
+                                SurfaceRules.ifTrue(seaLevelCondition,
                                         SurfaceRules.sequence(
-                                                SurfaceRules.ifTrue(surfacerules$conditionsource5,
-                                                        SurfaceRules.ifTrue(SurfaceRules.not(surfacerules$conditionsource3), ORANGE_TERRACOTTA)),
+                                                SurfaceRules.ifTrue(aboveSeaCondition,
+                                                        SurfaceRules.ifTrue(SurfaceRules.not(bandsCondition), AUBURN_MOOKAITE)),
                                                 SurfaceRules.bandlands())),
                                 SurfaceRules.ifTrue(SurfaceRules.UNDER_FLOOR,
-                                        SurfaceRules.ifTrue(surfacerules$conditionsource8, WHITE_TERRACOTTA)))),*/
+                                        SurfaceRules.ifTrue(SurfaceRules.waterStartCheck(-6, -1), SCARLET_MOOKAITE)))),
                 SurfaceRules.ifTrue(SurfaceRules.isBiome(ModBiomes.static_wasteland),
                         SurfaceRules.ifTrue(SurfaceRules.verticalGradient("wasteland_stone", VerticalAnchor.absolute(50), VerticalAnchor.absolute(63)), WASTELAND_STONE)),
                 SurfaceRules.ifTrue(SurfaceRules.ON_FLOOR,

@@ -206,6 +206,12 @@ public class ModBlocks {
     public static final RegistryObject<Block> gilded_brilliant_stone = register("gilded_brilliant_stone", GaiaBlockProperties.stoneProps(MaterialColor.TERRACOTTA_WHITE, 5.0F, 35.0F, true).lightLevel((state) -> 5));
     public static final RegistryObject<Block> aurum_mud = register("aurum_mud", GaiaBlockProperties.muckyProps(MaterialColor.TERRACOTTA_BLACK, 0.3F, 0.4F));
     public static final RegistryObject<Block> golden_sand = register("golden_sand", () -> new GaiaFallingBlock(GaiaBlockProperties.sandProps(MaterialColor.GOLD, 1.0F, SoundType.SAND), 0xFFD700));
+    public static final RegistryObject<Block> scarlet_mookaite = register("scarlet_mookaite", GaiaBlockProperties.stoneProps(MaterialColor.TERRACOTTA_RED, 1.8F, 12.0F));
+    public static final RegistryObject<Block> auburn_mookaite = register("auburn_mookaite", GaiaBlockProperties.stoneProps(MaterialColor.TERRACOTTA_ORANGE, 1.8F, 12.0F));
+    public static final RegistryObject<Block> gold_mookaite = register("gold_mookaite", GaiaBlockProperties.stoneProps(MaterialColor.TERRACOTTA_YELLOW, 1.8F, 12.0F));
+    public static final RegistryObject<Block> mauve_mookaite = register("mauve_mookaite", GaiaBlockProperties.stoneProps(MaterialColor.TERRACOTTA_PURPLE, 1.8F, 12.0F));
+    public static final RegistryObject<Block> beige_mookaite = register("beige_mookaite", GaiaBlockProperties.stoneProps(MaterialColor.SAND, 1.8F, 12.0F));
+    public static final RegistryObject<Block> ivory_mookaite = register("ivory_mookaite", GaiaBlockProperties.stoneProps(MaterialColor.TERRACOTTA_WHITE, 1.8F, 12.0F));
 
     //Planks
     public static final RegistryObject<Block> pink_agate_planks = register("pink_agate_planks", GaiaBlockProperties.tileProps(MaterialColor.COLOR_PINK));

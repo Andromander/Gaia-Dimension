@@ -153,6 +153,12 @@ public class GaiaBlockStates extends GaiaBlockStateProvider {
         columnBlock(ModBlocks.gilded_brilliant_stone);
         basicBlock(ModBlocks.aurum_mud);
         basicBlockRotated(ModBlocks.golden_sand);
+        basicBlock(ModBlocks.scarlet_mookaite);
+        basicBlock(ModBlocks.auburn_mookaite);
+        basicBlock(ModBlocks.gold_mookaite);
+        basicBlock(ModBlocks.mauve_mookaite);
+        basicBlock(ModBlocks.beige_mookaite);
+        basicBlock(ModBlocks.ivory_mookaite);
 
         basicBlock(ModBlocks.pink_agate_planks);
         basicBlock(ModBlocks.blue_agate_planks);
