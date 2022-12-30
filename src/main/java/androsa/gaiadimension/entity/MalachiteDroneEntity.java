@@ -179,7 +179,7 @@ public class MalachiteDroneEntity extends Monster {
     @Override
     public boolean removeWhenFarAway(double dist) {
         //Don't despawn if we have an owner. Disregard whether it's a Guard because we don't want to disappear in general.
-        return ((ServerLevel) level).getEntity(getOwnerUniqueId()) != null;
+        return this.getOwnerUniqueId() == null;
     }
 
     static class FollowGuardGoal extends Goal {
