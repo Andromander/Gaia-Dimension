@@ -54,7 +54,7 @@ public abstract class GaiaRecipeProvider extends RecipeProvider implements ICond
     public ShapelessRecipeBuilder planksRecipe(Supplier<Block> result, TagKey<Item> ingredient) {
         return ShapelessRecipeBuilder.shapeless(result.get(), 4)
                 .requires(ingredient)
-                .unlockedBy("has_" + ingredient.location(), has(ingredient));
+                .unlockedBy("has_" + ingredient.location().getPath(), has(ingredient));
     }
 
     public ShapedRecipeBuilder slabRecipe(RegistryObject<SlabBlock> result, RegistryObject<Block> ingredient) {
@@ -130,7 +130,7 @@ public abstract class GaiaRecipeProvider extends RecipeProvider implements ICond
                 .pattern(" /")
                 .define('#', ingredient)
                 .define('/', ModItems.agate_stick.get())
-                .unlockedBy("has_" + ingredient.location(), has(ingredient));
+                .unlockedBy("has_" + ingredient.location().getPath(), has(ingredient));
     }
 
     public ShapedRecipeBuilder pickaxeRecipe(RegistryObject<Item> result, RegistryObject<Item> ingredient) {
@@ -150,7 +150,7 @@ public abstract class GaiaRecipeProvider extends RecipeProvider implements ICond
                 .pattern(" / ")
                 .define('#', ingredient)
                 .define('/', ModItems.agate_stick.get())
-                .unlockedBy("has_" + ingredient.location(), has(ingredient));
+                .unlockedBy("has_" + ingredient.location().getPath(), has(ingredient));
     }
 
     public ShapedRecipeBuilder shovelRecipe(RegistryObject<Item> result, RegistryObject<Item> ingredient) {
@@ -170,7 +170,7 @@ public abstract class GaiaRecipeProvider extends RecipeProvider implements ICond
                 .pattern("/")
                 .define('#', ingredient)
                 .define('/', ModItems.agate_stick.get())
-                .unlockedBy("has_" + ingredient.location(), has(ingredient));
+                .unlockedBy("has_" + ingredient.location().getPath(), has(ingredient));
     }
 
     public ShapedRecipeBuilder swordRecipe(RegistryObject<Item> result, RegistryObject<Item> ingredient) {
@@ -190,7 +190,7 @@ public abstract class GaiaRecipeProvider extends RecipeProvider implements ICond
                 .pattern("/")
                 .define('#', ingredient)
                 .define('/', ModItems.agate_stick.get())
-                .unlockedBy("has_" + ingredient.location(), has(ingredient));
+                .unlockedBy("has_" + ingredient.location().getPath(), has(ingredient));
     }
 
     public ShapelessRecipeBuilder drinkRecipe(RegistryObject<Item> result, RegistryObject<Item> geode) {
