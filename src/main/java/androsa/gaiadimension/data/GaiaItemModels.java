@@ -315,6 +315,7 @@ public class GaiaItemModels extends GaiaItemModelProvider {
         basicItem(ModItems.gemstone_pouch);
         basicItem(ModItems.agate_fabric);
         basicItem(ModItems.sturdy_pebble);
+        basicItem(ModItems.construct_charm);
         basicItem(ModItems.scaynyx_bucket);
         basicItem(ModItems.mineral_water_bucket);
         basicItem(ModItems.superhot_magma_bucket);

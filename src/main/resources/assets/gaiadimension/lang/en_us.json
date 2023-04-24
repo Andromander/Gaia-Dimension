@@ -539,6 +539,20 @@
 
   "mock_gem.tooltip": "The only reward from forfeiting the battle",
 
+  "construct_charm.message.invalid_entity": "Cannot bond this entity",
+  "construct_charm.message.mookaite_already_bonded": "This Mookaite Construct has a bond already",
+  "construct_charm.message.has_mookaite_bond": "Already bonding with a Mookaite Construct",
+  "construct_charm.message.opalite_already_bonded": "This Opalite Construct has a bond already",
+  "construct_charm.message.has_opalite_bond": "Already bonding with an Opalite Construct",
+  "construct_charm.message.both_out_of_range": "Could not bond. Both Constructs out of range",
+  "construct_charm.message.mookaite_out_of_range": "Could not bond. Mookaite Construct out of range",
+  "construct_charm.message.opalite_out_of_range": "Could not bond. Opalite Construct out of range",
+  "construct_charm.message.both_invalid": "Could not bond. Both Constructs are not valid Construct entities",
+  "construct_charm.message.mookaite_invalid": "Could not bond. Mookaite Construct is not a valid Mookaite Construct entity",
+  "construct_charm.message.opalite_invalid": "Could not bond. Opalite Construct is not a valid Opalite Construct entity",
+  "construct_charm.message.success": "Successfully bonded Mookaite and Opalite Constructs",
+  "construct_charm.message.reset": "Resetting bonds",
+
   "itemGroup.gaia_blocks": "Gaia Blocks",
   "itemGroup.gaia_items": "Gaia Items",
   "itemGroup.gaia_tools": "Gaia Tools",

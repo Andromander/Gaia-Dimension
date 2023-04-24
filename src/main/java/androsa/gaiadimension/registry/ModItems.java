@@ -53,6 +53,7 @@ public class ModItems {
     public static final RegistryObject<Item> gemstone_pouch = register("gemstone_pouch", () -> new GemstonePouchItem(itemProps()));
     public static final RegistryObject<Item> agate_fabric = register("agate_fabric");
     public static final RegistryObject<Item> sturdy_pebble = register("sturdy_pebble", () -> new SturdyPebbleItem(itemProps().stacksTo(16)));
+    public static final RegistryObject<Item> construct_charm = register("construct_charm", () -> new ConstructCharmItem(itemProps().stacksTo(1)));
     public static final RegistryObject<Item> scaynyx_bucket = registerBucket("scaynyx_bucket", () -> Fluids.EMPTY);
     public static final RegistryObject<Item> mineral_water_bucket = registerBucket("mineral_water_bucket", ModFluids.mineral_water_still);
     public static final RegistryObject<Item> superhot_magma_bucket = registerBucket("superhot_magma_bucket", ModFluids.superhot_magma_still);
