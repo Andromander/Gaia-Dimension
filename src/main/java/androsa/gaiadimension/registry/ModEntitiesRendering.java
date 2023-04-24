@@ -37,6 +37,7 @@ public class ModEntitiesRendering {
     public static final ModelLayerLocation SHALURKER = baselayer("shalurker");
     public static final ModelLayerLocation SPELLBOUND_ELEMENTAL = baselayer("spellbound_elemental");
     public static final ModelLayerLocation MALACHITE_DRONE = baselayer("malachite_drone");
+    public static final ModelLayerLocation MOOKAITE_CONSTRUCT = baselayer("mookaite_construct");
 
     public static final ModelLayerLocation BLUE_HOWLITE_WOLF = baselayer("blue_howlite_wolf");
 
@@ -77,6 +78,7 @@ public class ModEntitiesRendering {
         event.registerLayerDefinition(SHALURKER, ShalurkerModel::makeBodyLayer);
         event.registerLayerDefinition(SPELLBOUND_ELEMENTAL, SpellElementModel::makeBodyLayer);
         event.registerLayerDefinition(MALACHITE_DRONE, MalachiteDroneModel::makeBodyLayer);
+        event.registerLayerDefinition(MOOKAITE_CONSTRUCT, MookaiteConstructModel::makeBodyLayer);
 
         event.registerLayerDefinition(BLUE_HOWLITE_WOLF, BlueHowliteWolfModel::makeBodyLayer);
 
@@ -116,6 +118,7 @@ public class ModEntitiesRendering {
         event.registerEntityRenderer(ModEntities.SHALURKER.get(), m -> new ShalurkerRenderer<>(m, new ShalurkerModel<>(m.bakeLayer(SHALURKER)), 0.5F));
         event.registerEntityRenderer(ModEntities.SPELLBOUND_ELEMENTAL.get(), m -> new SpellElementRenderer<>(m, new SpellElementModel<>(m.bakeLayer(SPELLBOUND_ELEMENTAL)), 0.4F));
         event.registerEntityRenderer(ModEntities.MALACHITE_DRONE.get(), m -> new MalachiteDroneRenderer<>(m, new MalachiteDroneModel<>(m.bakeLayer(MALACHITE_DRONE)), 0.5F));
+        event.registerEntityRenderer(ModEntities.MOOKAITE_CONSTRUCT.get(), m -> new MookaiteConstructRenderer<>(m, new MookaiteConstructModel<>(m.bakeLayer(MOOKAITE_CONSTRUCT)), 0.7F));
 
         event.registerEntityRenderer(ModEntities.BLUE_HOWLITE_WOLF.get(), m -> new BlueHowliteWolfRenderer<>(m, new BlueHowliteWolfModel<>(m.bakeLayer(BLUE_HOWLITE_WOLF)), 1.0F));
         event.registerEntityRenderer(ModEntities.MALACHITE_GUARD.get(), m -> new MalachiteGuardRenderer<>(m, new MalachiteGuardModel<>(m.bakeLayer(MALACHITE_GUARD)), 0.7F));

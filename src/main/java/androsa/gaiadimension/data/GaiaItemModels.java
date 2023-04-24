@@ -512,6 +512,7 @@ public class GaiaItemModels extends GaiaItemModelProvider {
         eggItem(ModItems.primal_beast_spawn_egg);
         eggItem(ModItems.cavern_tick_spawn_egg);
         eggItem(ModItems.malachite_drone_spawn_egg);
+        eggItem(ModItems.mookaite_construct_spawn_egg);
         eggItem(ModItems.blue_howlite_wolf_spawn_egg);
         eggItem(ModItems.malachite_guard_spawn_egg);
     }

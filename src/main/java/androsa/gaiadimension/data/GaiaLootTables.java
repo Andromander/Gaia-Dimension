@@ -424,6 +424,7 @@ public class GaiaLootTables extends LootTableProvider {
             addTable(ModEntities.SHALURKER, blankTable());
             addTable(ModEntities.SPELLBOUND_ELEMENTAL, blankTable());
             addTable(ModEntities.MALACHITE_DRONE, blankTable());
+            addTable(ModEntities.MOOKAITE_CONSTRUCT, blankTable());
 
             addTable(ModEntities.BLUE_HOWLITE_WOLF, blankTable());
 
