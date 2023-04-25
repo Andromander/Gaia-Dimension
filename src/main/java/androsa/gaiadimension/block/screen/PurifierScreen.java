@@ -33,8 +33,8 @@ public class PurifierScreen extends AbstractContainerScreen<PurifierMenu> {
 
     @Override
     protected void renderLabels(PoseStack stack, int mouseX, int mouseY) {
-        font.draw(stack, title, (float)(imageWidth / 2 - font.width(title.getString()) / 2), 6, 0xF0F0F0);
-        font.draw(stack, playerInventoryTitle, 8.0F, (float)(imageHeight - 96 + 2), 0xF0F0F0);
+        font.draw(stack, title, (float)(imageWidth / 2 - font.width(title.getString()) / 2), 6, 0x000000);
+        font.draw(stack, playerInventoryTitle, 8.0F, (float)(imageHeight - 96 + 2), 0x000000);
     }
 
     @Override
@@ -54,6 +54,6 @@ public class PurifierScreen extends AbstractContainerScreen<PurifierMenu> {
         }
 
         i1 = menu.getTimeLeft();
-        blit(stack, k + 77, l + 62 + 12 - i1, 176, 21 - i1, 22, i1 + 2);
+        blit(stack, k + 77, l + 61 + 12 - i1, 176, 20 - i1, 22, i1 + 2);
     }
 }

@@ -124,7 +124,7 @@ public class PurifierMenu extends AbstractContainerMenu {
             recipes = 200;
         }
 
-        return this.slotsArray.get(0) * 13 / recipes;
+        return this.slotsArray.get(0) * 20 / recipes;
     }
 
     @OnlyIn(Dist.CLIENT)
