@@ -38,7 +38,7 @@ public class CardinalTrunkPlacer extends TrunkPlacer {
 
         setDirtAt(level, statepos, random, origin.below(), config);
 
-        for (int y = 0; y < height - 3; y++) {
+        for (int y = 0; y <= height - 2; y++) {
             placeLog(level, statepos, random, origin.above(y), config);
         }
 
