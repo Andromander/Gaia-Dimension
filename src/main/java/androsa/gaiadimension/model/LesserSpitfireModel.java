@@ -67,12 +67,12 @@ public class LesserSpitfireModel<T extends LesserSpitfireEntity> extends Hierarc
                         .addBox(-2.5F, 0.0F, -2.5F, 5, 10, 5),
                 PartPose.ZERO);
         body.addOrReplaceChild("cape_left", CubeListBuilder.create()
-                        .texOffs(22, 29)
+                        .texOffs(0, 26)
                         .addBox(-2.0F, 0.0F, 0.0F, 4, 1, 14),
                 PartPose.offsetAndRotation(2.0F, 8.5F, 2.0F, -0.7853981633974483F, 0.7853981633974483F, 0.0F));
         body.addOrReplaceChild("cape_mid", CubeListBuilder.create()
-                        .texOffs(0, 31)
-                        .addBox(-3.5F, 0.0F, 0.0F, 7, 1, 17),
+                        .texOffs(22, 29)
+                        .addBox(-2.0F, 0.0F, 0.0F, 4, 1, 14),
                 PartPose.offsetAndRotation(0.0F, 8.5F, 2.0F, -0.7853981633974483F, 0.0F, 0.0F));
         body.addOrReplaceChild("cape_right", CubeListBuilder.create()
                         .texOffs(0, 41)

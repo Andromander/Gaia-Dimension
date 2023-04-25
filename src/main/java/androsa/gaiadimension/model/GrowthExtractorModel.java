@@ -128,11 +128,11 @@ public class GrowthExtractorModel<T extends MutantGrowthExtractorEntity> extends
                         .addBox(-2.0F, 0.0F, -2.0F, 4, 6, 4),
                 PartPose.offsetAndRotation(0.0F, -1.3F, -5.0F, -0.2617993877991494F, 0.0F, 0.0F));
 
-        root.addOrReplaceChild("leg_right", CubeListBuilder.create()
+        PartDefinition rightleg = root.addOrReplaceChild("leg_right", CubeListBuilder.create()
                         .texOffs(32, 14)
                         .addBox(-1.5F, -1.5F, -6.0F, 3, 3, 6),
                 PartPose.offsetAndRotation(-3.4F, 18.0F, 2.0F, 0.2617993877991494F, 0.4363323129985824F, 0.0F));
-        root.addOrReplaceChild("foot_right", CubeListBuilder.create()
+        rightleg.addOrReplaceChild("foot_right", CubeListBuilder.create()
                         .texOffs(40, 32)
                         .addBox(-2.0F, 0.0F, -2.0F, 4, 6, 4),
                 PartPose.offsetAndRotation(0.0F, -1.3F, -5.0F, -0.2617993877991494F, 0.0F, 0.0F));

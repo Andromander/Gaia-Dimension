@@ -49,11 +49,11 @@ public class MarkuzarPlantModel<T extends MarkuzarPlantEntity> extends Hierarchi
                         .addBox(-2.5F, -10.0F, -2.5F, 5, 10, 5),
                 PartPose.offset(0.0F, -12.0F, 0.0F));
         midstalk.addOrReplaceChild("leaf_left", CubeListBuilder.create()
-                        .texOffs(0, 40)
+                        .texOffs(-7, 40)
                         .addBox(0.0F, 0.0F, -3.5F, 10, 0, 7),
                 PartPose.offsetAndRotation(2.5F, -6.0F, 0.0F, 0.3490658503988659F, 0.0F, 0.0F));
         midstalk.addOrReplaceChild("leaf_right", CubeListBuilder.create()
-                        .texOffs(0, 48)
+                        .texOffs(-7, 48)
                         .addBox(-10.0F, 0.0F, -3.5F, 10, 0, 7),
                 PartPose.offsetAndRotation(-2.5F, -6.0F, 0.0F, 0.3490658503988659F, 0.0F, 0.0F));
         PartDefinition upperstalk = midstalk.addOrReplaceChild("stalk_upper", CubeListBuilder.create()
@@ -65,7 +65,7 @@ public class MarkuzarPlantModel<T extends MarkuzarPlantEntity> extends Hierarchi
                         .addBox(-2.0F, -2.0F, -2.0F, 4, 4, 4),
                 PartPose.offsetAndRotation(0.0F, -9.0F, 0.0F, 1.1344640137963142F, 0.0F, 0.0F));
         bulb.addOrReplaceChild("decor", CubeListBuilder.create()
-                        .texOffs(0, 27)
+                        .texOffs(-13, 27)
                         .addBox(-6.5F, 0.0F, -6.5F, 13, 0, 13),
                 PartPose.offset(0.0F, -0.4F, 0.0F));
         bulb.addOrReplaceChild("jewel", CubeListBuilder.create()

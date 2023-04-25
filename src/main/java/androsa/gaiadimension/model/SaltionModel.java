@@ -68,8 +68,8 @@ public class SaltionModel<T extends SaltionEntity> extends HierarchicalModel<T> 
 
         body.addOrReplaceChild("leg_front_left", CubeListBuilder.create()
                         .texOffs(20, 0)
-                        .addBox(6.0F, -1.0F, -1.0F, 6, 2, 2),
-                PartPose.offsetAndRotation(-2.0F, 0.6F, 2.8F, 0.13962634015954636F, -0.3490658503988659F, 0.0F));
+                        .addBox(-6.0F, -1.0F, -1.0F, 6, 2, 2),
+                PartPose.offsetAndRotation(-2.0F, 0.6F, 2.8F, 0.0F, 0.13962634015954636F, -0.3490658503988659F));
         body.addOrReplaceChild("leg_mid_left", CubeListBuilder.create()
                         .texOffs(36, 0)
                         .addBox(-6.0F, -1.0F, -1.0F, 6, 2, 2),

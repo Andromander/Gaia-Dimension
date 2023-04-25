@@ -57,11 +57,11 @@ public class MineralArenthisModel<T extends MineralArenthisEntity> extends Hiera
                         .addBox(-2.5F, 0.0F, -2.0F, 5, 5, 4),
                 PartPose.offset(0.0F, 4.0F, 0.0F));
         body.addOrReplaceChild("fin_left", CubeListBuilder.create()
-                        .texOffs(0, 41)
+                        .texOffs(-4, 41)
                         .addBox(0.0F, 0.0F, -2.0F, 10, 0, 4),
                 PartPose.offsetAndRotation(2.2F, 0.5F, 0.1F, 0.0F, 0.0F, 1.2217304763960306F));
         body.addOrReplaceChild("fin_right", CubeListBuilder.create()
-                        .texOffs(0, 36)
+                        .texOffs(-4, 36)
                         .addBox(-10.0F, 0.0F, -2.0F, 10, 0, 4),
                 PartPose.offsetAndRotation(-2.2F, 0.5F, 0.1F, 0.0F, 0.0F, -1.2217304763960306F));
         PartDefinition tail = body.addOrReplaceChild("tail", CubeListBuilder.create()

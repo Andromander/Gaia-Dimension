@@ -84,19 +84,19 @@ public class BismuthUletrusModel<T extends BismuthUletrusEntity> extends Hierarc
                         .texOffs(0, 66)
                         .addBox(-4.5F, 0.0F, -14.0F, 9, 5, 14),
                 PartPose.offset(0.0F, -3.0F, -8.5F));
-        root.addOrReplaceChild("jaw", CubeListBuilder.create()
+        head.addOrReplaceChild("jaw", CubeListBuilder.create()
                         .texOffs(125, 43)
                         .addBox(-3.5F, 0.0F, -10.0F, 7, 4, 10),
                 PartPose.offset(0.0F, 2.0F, -11.0F));
-        root.addOrReplaceChild("brow_left", CubeListBuilder.create()
+        head.addOrReplaceChild("brow_left", CubeListBuilder.create()
                         .texOffs(28, 77)
                         .addBox(-2.5F, -2.0F, 0.0F, 5, 3, 18),
                 PartPose.offsetAndRotation(4.0F, -4.0F, -13.0F, 0.3665191429188092F, 0.17453292519943295F, 0.6981317007977318F));
-        root.addOrReplaceChild("brow_right", CubeListBuilder.create()
+        head.addOrReplaceChild("brow_right", CubeListBuilder.create()
                         .texOffs(56, 80)
                         .addBox(-2.5F, -2.0F, 0.0F, 5, 3, 18),
                 PartPose.offsetAndRotation(-4.0F, -4.0F, -13.0F, 0.3665191429188092F, -0.17453292519943295F, -0.6981317007977318F));
-        root.addOrReplaceChild("horn", CubeListBuilder.create()
+        head.addOrReplaceChild("horn", CubeListBuilder.create()
                         .texOffs(146, 18)
                         .addBox(-1.5F, -12.0F, -1.5F, 3, 13, 3),
                 PartPose.offsetAndRotation(0.0F, -5.0F, -11.5F, 0.7853981633974483F, 0.0F, 0.0F));

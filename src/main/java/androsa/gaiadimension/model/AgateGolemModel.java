@@ -48,7 +48,7 @@ public class AgateGolemModel<T extends AgateGolemEntity> extends HierarchicalMod
                         .texOffs(120, 0)
                         .addBox(-2.5F, -2.5F, -1.0F, 5, 5, 2),
                 PartPose.offsetAndRotation(0.0F, -6.7F, -5.0F, -0.16388641676226753F, 0.17453292519943295F, 0.7853981633974483F));
-        root.addOrReplaceChild("face_part_upper_left", CubeListBuilder.create()
+        face.addOrReplaceChild("face_part_upper_left", CubeListBuilder.create()
                         .texOffs(102, 0)
                         .addBox(-2.5F, -7.0F, 0.0F, 6, 7, 3),
                 PartPose.offsetAndRotation(2.0F, -5.2F, -4.5F, -0.2617993877991494F, 0.0F, 0.6981317007977318F));
