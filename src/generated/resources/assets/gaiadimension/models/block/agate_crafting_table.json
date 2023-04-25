@@ -6,6 +6,7 @@
     "north": "gaiadimension:block/agate_table_front",
     "south": "gaiadimension:block/agate_table_side",
     "east": "gaiadimension:block/agate_table_side",
-    "west": "gaiadimension:block/agate_table_side"
+    "west": "gaiadimension:block/agate_table_side",
+    "particle": "gaiadimension:block/agate_table_front"
   }
 }

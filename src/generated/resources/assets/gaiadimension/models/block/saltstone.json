@@ -6,6 +6,7 @@
     "north": "gaiadimension:block/salt_rock_side",
     "south": "gaiadimension:block/salt_rock_side",
     "east": "gaiadimension:block/salt_rock_side",
-    "west": "gaiadimension:block/salt_rock_side"
+    "west": "gaiadimension:block/salt_rock_side",
+    "particle": "gaiadimension:block/salt_rock_side"
   }
 }

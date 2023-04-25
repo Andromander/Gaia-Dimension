@@ -6,6 +6,7 @@
     "north": "gaiadimension:block/gilded_grass_side",
     "south": "gaiadimension:block/gilded_grass_side",
     "east": "gaiadimension:block/gilded_grass_side",
-    "west": "gaiadimension:block/gilded_grass_side"
+    "west": "gaiadimension:block/gilded_grass_side",
+    "particle": "gaiadimension:block/gilded_grass_side"
   }
 }

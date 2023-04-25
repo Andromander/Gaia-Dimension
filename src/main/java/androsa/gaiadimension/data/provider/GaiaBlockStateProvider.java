@@ -53,7 +53,7 @@ public abstract class GaiaBlockStateProvider extends BlockStateProvider {
     }
 
     public void sidedBlock(RegistryObject<Block> block, String top, String bottom, String north, String south, String east, String west) {
-        simpleBlock(block.get(), models().cube(blockName(block), tLocGaia(bottom), tLocGaia(top), tLocGaia(north), tLocGaia(south), tLocGaia(east), tLocGaia(west)));
+        simpleBlock(block.get(), models().cube(blockName(block), tLocGaia(bottom), tLocGaia(top), tLocGaia(north), tLocGaia(south), tLocGaia(east), tLocGaia(west)).texture("particle", tLocGaia(north)));
     }
 
     public void basicBlockRotated(Supplier<Block> block) {

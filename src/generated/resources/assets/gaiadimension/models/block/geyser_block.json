@@ -6,6 +6,7 @@
     "north": "gaiadimension:block/geyser_block_side",
     "south": "gaiadimension:block/geyser_block_side",
     "east": "gaiadimension:block/geyser_block_side",
-    "west": "gaiadimension:block/geyser_block_side"
+    "west": "gaiadimension:block/geyser_block_side",
+    "particle": "gaiadimension:block/geyser_block_side"
   }
 }
