@@ -90,5 +90,10 @@ public class ModBiomes {
         addTypes(goldstone_lands, Type.WASTELAND, Type.PLAINS);
         addTypes(mineral_reservoir, Type.OCEAN);
         addTypes(mineral_river, Type.RIVER);
+        addTypes(golden_forest, Type.FOREST, Type.MAGICAL);
+        addTypes(golden_plains, Type.PLAINS, Type.MAGICAL);
+        addTypes(golden_hills, Type.HILLS, Type.MAGICAL);
+        addTypes(golden_sands, Type.SANDY, Type.MAGICAL);
+        addTypes(golden_marsh, Type.SWAMP, Type.MAGICAL);
     }
 }
