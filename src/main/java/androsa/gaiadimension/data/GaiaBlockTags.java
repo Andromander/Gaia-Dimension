@@ -114,6 +114,73 @@ public class GaiaBlockTags extends GaiaBlockTagsProvider {
             ModBlocks.jet_bricks, ModBlocks.cracked_jet_bricks, ModBlocks.crusted_jet_bricks
     );
 
+    private static final ImmutableList<Supplier<? extends Block>> AXE_TOOL = ImmutableList.of(
+            ModBlocks.agate_crafting_table, ModBlocks.crude_storage_crate, ModBlocks.mega_storage_crate, ModBlocks.pink_agate_log, ModBlocks.stripped_pink_agate_log, ModBlocks.pink_agate_wood,
+            ModBlocks.stripped_pink_agate_wood, ModBlocks.blue_agate_log, ModBlocks.stripped_blue_agate_log, ModBlocks.blue_agate_wood, ModBlocks.stripped_blue_agate_wood, ModBlocks.green_agate_log,
+            ModBlocks.stripped_green_agate_log, ModBlocks.green_agate_wood, ModBlocks.stripped_green_agate_wood, ModBlocks.purple_agate_log, ModBlocks.stripped_purple_agate_log, ModBlocks.purple_agate_wood,
+            ModBlocks.stripped_purple_agate_wood, ModBlocks.fossilized_log, ModBlocks.stripped_fossilized_log, ModBlocks.fossilized_wood, ModBlocks.stripped_fossilized_wood, ModBlocks.corrupted_log,
+            ModBlocks.stripped_corrupted_log, ModBlocks.corrupted_wood, ModBlocks.stripped_corrupted_wood, ModBlocks.burnt_log, ModBlocks.stripped_burnt_log, ModBlocks.burnt_wood, ModBlocks.stripped_burnt_wood,
+            ModBlocks.burning_log, ModBlocks.stripped_burning_log, ModBlocks.burning_wood, ModBlocks.stripped_burning_wood, ModBlocks.aura_log, ModBlocks.stripped_aura_log, ModBlocks.aura_wood,
+            ModBlocks.stripped_aura_wood, ModBlocks.pink_agate_plank_stairs, ModBlocks.blue_agate_plank_stairs, ModBlocks.green_agate_plank_stairs, ModBlocks.purple_agate_plank_stairs,
+            ModBlocks.fossilized_plank_stairs, ModBlocks.corrupted_plank_stairs, ModBlocks.burnt_plank_stairs, ModBlocks.burning_plank_stairs, ModBlocks.aura_plank_stairs, ModBlocks.pink_agate_plank_slab,
+            ModBlocks.blue_agate_plank_slab, ModBlocks.green_agate_plank_slab, ModBlocks.purple_agate_plank_slab, ModBlocks.fossilized_plank_slab, ModBlocks.corrupted_plank_slab, ModBlocks.burnt_plank_slab,
+            ModBlocks.burning_plank_slab, ModBlocks.aura_plank_slab
+    );
+    private static final ImmutableList<Supplier<? extends Block>> PICKAXE_TOOL = ImmutableList.of(
+            ModBlocks.cloudy_glass, ModBlocks.foggy_glass, ModBlocks.gaia_stone_furnace, ModBlocks.saltstone, ModBlocks.scarlet_mookaite, ModBlocks.auburn_mookaite, ModBlocks.gold_mookaite,
+            ModBlocks.mauve_mookaite, ModBlocks.beige_mookaite, ModBlocks.ivory_mookaite, ModBlocks.restructurer, ModBlocks.thick_glitter_block, ModBlocks.gaia_stone, ModBlocks.gaia_cobblestone,
+            ModBlocks.charged_mineral, ModBlocks.geyser_block, ModBlocks.sparkling_rock, ModBlocks.golden_stone, ModBlocks.brilliant_stone, ModBlocks.aura_shoot, ModBlocks.raw_jade,
+            ModBlocks.raw_copal, ModBlocks.raw_jet, ModBlocks.raw_amethyst, ModBlocks.reinforced_bricks, ModBlocks.sugilite_ore, ModBlocks.pyrite_ore, ModBlocks.speckled_rock, ModBlocks.gaia_stone_bricks,
+            ModBlocks.cracked_gaia_stone_bricks, ModBlocks.crusted_gaia_stone_bricks, ModBlocks.jade_bricks, ModBlocks.jade_brick_stairs, ModBlocks.jade_brick_slab, ModBlocks.cracked_jade_bricks,
+            ModBlocks.cracked_jade_brick_stairs, ModBlocks.cracked_jade_brick_slab, ModBlocks.crusted_jade_bricks, ModBlocks.crusted_jade_brick_stairs, ModBlocks.crusted_jade_brick_slab, ModBlocks.copal_bricks,
+            ModBlocks.copal_brick_stairs, ModBlocks.copal_brick_slab, ModBlocks.cracked_copal_bricks, ModBlocks.cracked_copal_brick_stairs, ModBlocks.cracked_copal_brick_slab, ModBlocks.crusted_copal_bricks,
+            ModBlocks.crusted_copal_brick_stairs, ModBlocks.crusted_copal_brick_slab, ModBlocks.jet_brick_stairs, ModBlocks.jet_brick_slab, ModBlocks.cracked_jet_bricks, ModBlocks.cracked_jet_brick_stairs,
+            ModBlocks.cracked_jet_brick_slab, ModBlocks.crusted_jet_bricks, ModBlocks.crusted_jet_brick_stairs, ModBlocks.crusted_jet_brick_slab, ModBlocks.amethyst_brick_stairs, ModBlocks.amethyst_brick_slab,
+            ModBlocks.cracked_amethyst_bricks, ModBlocks.cracked_amethyst_brick_stairs, ModBlocks.cracked_amethyst_brick_slab, ModBlocks.crusted_amethyst_bricks, ModBlocks.crusted_amethyst_brick_stairs,
+            ModBlocks.crusted_amethyst_brick_slab, ModBlocks.keystone_block, ModBlocks.purifier, ModBlocks.wasteland_stone, ModBlocks.static_stone, ModBlocks.volcanic_rock, ModBlocks.searing_rock,
+            ModBlocks.primal_mass, ModBlocks.impure_rock, ModBlocks.active_rock, ModBlocks.tough_golden_stone, ModBlocks.gilded_brilliant_stone, ModBlocks.bolstered_bricks, ModBlocks.hematite_ore,
+            ModBlocks.cinnabar_ore, ModBlocks.labradorite_ore, ModBlocks.opal_ore_red, ModBlocks.opal_ore_blue, ModBlocks.opal_ore_green, ModBlocks.coarse_rock, ModBlocks.malachite_bricks,
+            ModBlocks.malachite_cracked_bricks, ModBlocks.malachite_crusted_bricks, ModBlocks.malachite_floor_tiles, ModBlocks.malachite_chisel_bricks, ModBlocks.malachite_pulsing_bricks,
+            ModBlocks.malachite_pulsing_tiles, ModBlocks.malachite_pulsing_chisel, ModBlocks.malachite_brick_slab, ModBlocks.malachite_cracked_brick_slab, ModBlocks.malachite_crusted_brick_slab,
+            ModBlocks.malachite_floor_slab, ModBlocks.malachite_pillar, ModBlocks.malachite_brick_stairs, ModBlocks.malachite_cracked_brick_stairs, ModBlocks.malachite_crusted_brick_stairs,
+            ModBlocks.malachite_floor_stairs, ModBlocks.malachite_chisel_stairs, ModBlocks.malachite_pulsing_brick_stairs, ModBlocks.malachite_pulsing_floor_stairs, ModBlocks.malachite_pulsing_chisel_stairs,
+            ModBlocks.malachite_pillar_stairs, ModBlocks.sugilite_block, ModBlocks.hematite_block, ModBlocks.cinnabar_block, ModBlocks.labradorite_block, ModBlocks.moonstone_block, ModBlocks.opal_block_red,
+            ModBlocks.opal_block_blue, ModBlocks.opal_block_green, ModBlocks.opal_block_white, ModBlocks.pyrite_block, ModBlocks.tektite_block, ModBlocks.goldstone_block, ModBlocks.aura_block,
+            ModBlocks.bismuth_block, ModBlocks.ixiolite_block, ModBlocks.proustite_block, ModBlocks.euclase_block, ModBlocks.leucite_block, ModBlocks.carnelian_block, ModBlocks.benitoite_block,
+            ModBlocks.diopside_block, ModBlocks.chalcedony_block, ModBlocks.nexustone, ModBlocks.opal_ore_white, ModBlocks.precious_rock
+    );
+    private static final ImmutableList<Supplier<? extends Block>> SHOVEL_TOOL = ImmutableList.of(
+            ModBlocks.heavy_soil, ModBlocks.corrupt_soil, ModBlocks.boggy_soil, ModBlocks.light_soil, ModBlocks.aurum_soil, ModBlocks.glitter_grass, ModBlocks.corrupt_grass, ModBlocks.murky_grass,
+            ModBlocks.soft_grass, ModBlocks.gilded_grass, ModBlocks.salt, ModBlocks.pebbles, ModBlocks.impure_sludge, ModBlocks.aurum_mud, ModBlocks.golden_sand
+    );
+
+    private static final ImmutableList<Supplier<? extends Block>> NEEDS_STONE = ImmutableList.of(
+            ModBlocks.restructurer, ModBlocks.thick_glitter_block, ModBlocks.gaia_stone, ModBlocks.gaia_cobblestone, ModBlocks.charged_mineral, ModBlocks.geyser_block, ModBlocks.sparkling_rock, ModBlocks.golden_stone,
+            ModBlocks.brilliant_stone, ModBlocks.aura_shoot, ModBlocks.raw_jade, ModBlocks.raw_copal, ModBlocks.raw_jet, ModBlocks.raw_amethyst, ModBlocks.reinforced_bricks, ModBlocks.sugilite_ore,
+            ModBlocks.pyrite_ore, ModBlocks.speckled_rock, ModBlocks.gaia_stone_bricks, ModBlocks.cracked_gaia_stone_bricks, ModBlocks.crusted_gaia_stone_bricks, ModBlocks.jade_bricks, ModBlocks.jade_brick_stairs,
+            ModBlocks.jade_brick_slab, ModBlocks.cracked_jade_bricks, ModBlocks.cracked_jade_brick_stairs, ModBlocks.cracked_jade_brick_slab, ModBlocks.crusted_jade_bricks, ModBlocks.crusted_jade_brick_stairs,
+            ModBlocks.crusted_jade_brick_slab, ModBlocks.copal_bricks, ModBlocks.copal_brick_stairs, ModBlocks.copal_brick_slab, ModBlocks.cracked_copal_bricks, ModBlocks.cracked_copal_brick_stairs,
+            ModBlocks.cracked_copal_brick_slab, ModBlocks.crusted_copal_bricks, ModBlocks.crusted_copal_brick_stairs, ModBlocks.crusted_copal_brick_slab, ModBlocks.jet_brick_stairs, ModBlocks.jet_brick_slab,
+            ModBlocks.cracked_jet_bricks, ModBlocks.cracked_jet_brick_stairs, ModBlocks.cracked_jet_brick_slab, ModBlocks.crusted_jet_bricks, ModBlocks.crusted_jet_brick_stairs, ModBlocks.crusted_jet_brick_slab,
+            ModBlocks.amethyst_brick_stairs, ModBlocks.amethyst_brick_slab, ModBlocks.cracked_amethyst_bricks, ModBlocks.cracked_amethyst_brick_stairs, ModBlocks.cracked_amethyst_brick_slab, ModBlocks.crusted_amethyst_bricks,
+            ModBlocks.crusted_amethyst_brick_stairs, ModBlocks.crusted_amethyst_brick_slab
+    );
+    private static final ImmutableList<Supplier<? extends Block>> NEEDS_IRON = ImmutableList.of(
+            ModBlocks.keystone_block, ModBlocks.purifier, ModBlocks.wasteland_stone, ModBlocks.static_stone, ModBlocks.volcanic_rock, ModBlocks.searing_rock, ModBlocks.primal_mass, ModBlocks.impure_rock,
+            ModBlocks.active_rock, ModBlocks.tough_golden_stone, ModBlocks.gilded_brilliant_stone, ModBlocks.bolstered_bricks, ModBlocks.hematite_ore, ModBlocks.cinnabar_ore, ModBlocks.labradorite_ore, ModBlocks.opal_ore_red,
+            ModBlocks.opal_ore_blue, ModBlocks.opal_ore_green, ModBlocks.coarse_rock, ModBlocks.malachite_bricks, ModBlocks.malachite_cracked_bricks, ModBlocks.malachite_crusted_bricks, ModBlocks.malachite_floor_tiles,
+            ModBlocks.malachite_chisel_bricks, ModBlocks.malachite_pulsing_bricks, ModBlocks.malachite_pulsing_tiles, ModBlocks.malachite_pulsing_chisel, ModBlocks.malachite_brick_slab, ModBlocks.malachite_cracked_brick_slab,
+            ModBlocks.malachite_crusted_brick_slab, ModBlocks.malachite_floor_slab, ModBlocks.malachite_pillar, ModBlocks.malachite_brick_stairs, ModBlocks.malachite_cracked_brick_stairs, ModBlocks.malachite_crusted_brick_stairs,
+            ModBlocks.malachite_floor_stairs, ModBlocks.malachite_chisel_stairs, ModBlocks.malachite_pulsing_brick_stairs, ModBlocks.malachite_pulsing_floor_stairs, ModBlocks.malachite_pulsing_chisel_stairs,
+            ModBlocks.malachite_pillar_stairs, ModBlocks.sugilite_block, ModBlocks.hematite_block, ModBlocks.cinnabar_block, ModBlocks.labradorite_block, ModBlocks.moonstone_block, ModBlocks.opal_block_red,
+            ModBlocks.opal_block_blue, ModBlocks.opal_block_green, ModBlocks.opal_block_white, ModBlocks.pyrite_block, ModBlocks.tektite_block, ModBlocks.goldstone_block, ModBlocks.aura_block,
+            ModBlocks.bismuth_block, ModBlocks.ixiolite_block, ModBlocks.proustite_block, ModBlocks.euclase_block, ModBlocks.leucite_block, ModBlocks.carnelian_block, ModBlocks.benitoite_block,
+            ModBlocks.diopside_block, ModBlocks.chalcedony_block
+    );
+    private static final ImmutableList<Supplier<? extends Block>> NEEDS_DIAMOND = ImmutableList.of(
+            ModBlocks.nexustone, ModBlocks.opal_ore_white, ModBlocks.precious_rock
+    );
+
     public GaiaBlockTags(DataGenerator generatorIn, ExistingFileHelper existingFileHelper) {
         super(generatorIn, existingFileHelper);
     }
@@ -138,6 +205,13 @@ public class GaiaBlockTags extends GaiaBlockTagsProvider {
         addTag(BlockTags.SLABS, SLABS);
         addTag(BlockTags.SMALL_FLOWERS, SMALL_FLOWERS);
         addTag(BlockTags.STAIRS, STAIRS);
+
+        addTag(BlockTags.MINEABLE_WITH_AXE, AXE_TOOL);
+        addTag(BlockTags.MINEABLE_WITH_PICKAXE, PICKAXE_TOOL);
+        addTag(BlockTags.MINEABLE_WITH_SHOVEL, SHOVEL_TOOL);
+        addTag(BlockTags.NEEDS_STONE_TOOL, NEEDS_STONE);
+        addTag(BlockTags.NEEDS_IRON_TOOL, NEEDS_IRON);
+        addTag(BlockTags.NEEDS_DIAMOND_TOOL, NEEDS_DIAMOND);
 
         tag(GaiaTags.Blocks.ORES_SUGILITE).add(ModBlocks.sugilite_ore.get());
         tag(GaiaTags.Blocks.ORES_HEMATITE).add(ModBlocks.hematite_ore.get());

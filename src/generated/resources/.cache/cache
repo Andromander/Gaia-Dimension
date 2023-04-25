@@ -2404,6 +2404,12 @@ ae7cd6fe362ca0a50b6f9bac5d872ce768fae165 data/minecraft/tags/blocks/flower_pots.
 67b950134bc3a14250d61e678a753c5d792eced3 data/minecraft/tags/blocks/impermeable.json
 0eb22cbbcb5656e98e098dfdb338b06b53c81195 data/minecraft/tags/blocks/leaves.json
 af6bd83c9ef1cce9bd51aa112d56fae310c8f31a data/minecraft/tags/blocks/logs.json
+9148fa7ebff074a3ff4665dc425a85fc75695672 data/minecraft/tags/blocks/mineable/axe.json
+5684c9bf5ff4088a93708b2b37af1120bbc81ef9 data/minecraft/tags/blocks/mineable/pickaxe.json
+03b37ef007e8bef9974cc2d4ce4162a94d550651 data/minecraft/tags/blocks/mineable/shovel.json
+33ebf882c1dc67f71a8ce274cbe6620747e8c52c data/minecraft/tags/blocks/needs_diamond_tool.json
+306471aacc50ddeb720f36d343290d09732ec545 data/minecraft/tags/blocks/needs_iron_tool.json
+b30743c7b2e12a0552b37ae9bfd7b41c87a09e5b data/minecraft/tags/blocks/needs_stone_tool.json
 af6bd83c9ef1cce9bd51aa112d56fae310c8f31a data/minecraft/tags/blocks/non_flammable_wood.json
 da7b669fe704b674d1d575c013246923e13b32a0 data/minecraft/tags/blocks/portals.json
 e3c668ac62957a36c081c25f2fe8c4dcaf8468c0 data/minecraft/tags/blocks/saplings.json
