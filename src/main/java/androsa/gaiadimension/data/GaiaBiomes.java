@@ -33,7 +33,7 @@ public class GaiaBiomes extends GaiaBiomeProvider {
         biomes.put(ModBiomes.crystal_plains, makeCrystalPlains());
         biomes.put(ModBiomes.salt_dunes, makeSaltDunes());
         biomes.put(ModBiomes.crystal_salt_dunes, makeDebug());
-        biomes.put(ModBiomes.mookaite_mesa, makeDebug());
+        biomes.put(ModBiomes.mookaite_mesa, makeMookaite());
         biomes.put(ModBiomes.shining_grove, makeShiningGrove());
         biomes.put(ModBiomes.smoldering_bog, makeSmolderingBog());
         biomes.put(ModBiomes.hotspot, makeDebug());
@@ -299,13 +299,14 @@ public class GaiaBiomes extends GaiaBiomeProvider {
                 ).temperature(0.7F));
     }
 
-    @Deprecated
-    public static Biome makeDebug() {
+    public static Biome makeMookaite() {
         return buildBiome(
                 createBuilder(
-                        createAmbience(0, 0, 0),
+                        createAmbience(14646073, 16165141, 12793637),
                         BiomeGenerationSettings.EMPTY,
-                        buildSpawns(createSpawns())
-                ).temperature(0.0F));
+                        buildSpawns(createSpawns()
+                                .addSpawn(MobCategory.CREATURE, mobData(ModEntities.MOOKAITE_CONSTRUCT, 10, 1, 2))
+                                .addSpawn(MobCategory.CREATURE, mobData(ModEntities.OPALITE_CONSTRUCT, 10, 1, 2)))
+                ).temperature(0.65F));
     }
 }

@@ -40,7 +40,20 @@
         "maxCount": 2
       }
     ],
-    "creature": [],
+    "creature": [
+      {
+        "type": "gaiadimension:mookaite_construct",
+        "weight": 10,
+        "minCount": 1,
+        "maxCount": 2
+      },
+      {
+        "type": "gaiadimension:opalite_construct",
+        "weight": 10,
+        "minCount": 1,
+        "maxCount": 2
+      }
+    ],
     "ambient": [],
     "axolotls": [],
     "underground_water_creature": [],
@@ -58,7 +71,7 @@
   "spawn_costs": {},
   "forge:registry_name": "gaiadimension:mookaite_mesa",
   "precipitation": "none",
-  "temperature": 0.0,
+  "temperature": 0.65,
   "downfall": 0.0,
   "category": "none",
   "effects": {
@@ -68,10 +81,10 @@
       "block_search_extent": 8,
       "offset": 2.0
     },
-    "sky_color": 0,
-    "foliage_color": 0,
-    "grass_color": 0,
-    "fog_color": 0,
+    "sky_color": 16165141,
+    "foliage_color": 14646073,
+    "grass_color": 14646073,
+    "fog_color": 12793637,
     "water_color": 7117233,
     "water_fog_color": 9617108
   }

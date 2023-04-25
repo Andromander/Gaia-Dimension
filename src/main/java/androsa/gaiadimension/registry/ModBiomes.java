@@ -82,6 +82,7 @@ public class ModBiomes {
         addTypes(fossil_woodland, Type.SAVANNA);
         addTypes(crystal_plains, Type.PLAINS);
         addTypes(salt_dunes, Type.DRY, Type.HOT, Type.SANDY, Type.SPARSE);
+        addTypes(mookaite_mesa, Type.DRY, Type.SPARSE, Type.HOT, Type.MESA, Type.PLATEAU);
         addTypes(smoldering_bog, Type.HOT, Type.WASTELAND, Type.DEAD);
         addTypes(shining_grove, Type.LUSH, Type.FOREST, Type.MAGICAL);
         addTypes(volcanic_lands, Type.HOT, Type.SPARSE, Type.DRY, Type.MOUNTAIN);
