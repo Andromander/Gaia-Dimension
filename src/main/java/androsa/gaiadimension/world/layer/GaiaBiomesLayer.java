@@ -16,12 +16,16 @@ public class GaiaBiomesLayer implements C0Transformer {
             GaiaLayerUtil.getBiomeId(ModBiomes.fossil_woodland),
     };
     protected int[] uncommonBiomes = (new int[]{
+            GaiaLayerUtil.getBiomeId(ModBiomes.volcanic_lands),
+            GaiaLayerUtil.getBiomeId(ModBiomes.static_wasteland),
+            GaiaLayerUtil.getBiomeId(ModBiomes.salt_dunes),
             GaiaLayerUtil.getBiomeId(ModBiomes.smoldering_bog),
             GaiaLayerUtil.getBiomeId(ModBiomes.shining_grove),
             GaiaLayerUtil.getBiomeId(ModBiomes.mookaite_mesa)
     });
     protected int[] rareBiomes = (new int[]{
             GaiaLayerUtil.getBiomeId(ModBiomes.purple_agate_swamp), //This will make the sacred biome less likely to generate
+            GaiaLayerUtil.getBiomeId(ModBiomes.goldstone_lands), //It's basically the sacred biome turned corrupt, so there's that
             GaiaLayerUtil.getBiomeId(ModBiomes.mutant_agate_wildwood) //A rare kind of Agate Forest with different Agate Trees
     });
     protected int[] goldBiomes = new int[]{
