@@ -33,7 +33,6 @@ import java.util.function.Supplier;
 
 import static net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 
-//@SuppressWarnings("unused")
 public class ModBlocks {
 
 	public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, GaiaDimensionMod.MODID);
