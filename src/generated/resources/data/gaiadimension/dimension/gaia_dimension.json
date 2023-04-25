@@ -26,13 +26,6 @@
       "biomes": [
         {
           "parameters": {
-            "depth": -1.8,
-            "scale": 0.2
-          },
-          "biome": "gaiadimension:aquarmarine_trench"
-        },
-        {
-          "parameters": {
             "depth": 0.1,
             "scale": 0.2
           },
@@ -44,13 +37,6 @@
             "scale": 0.05
           },
           "biome": "gaiadimension:crystal_plains"
-        },
-        {
-          "parameters": {
-            "depth": 0.25,
-            "scale": 0.05
-          },
-          "biome": "gaiadimension:crystal_salt_dunes"
         },
         {
           "parameters": {
@@ -110,20 +96,6 @@
         },
         {
           "parameters": {
-            "depth": 0.3,
-            "scale": 0.5
-          },
-          "biome": "gaiadimension:hotspot"
-        },
-        {
-          "parameters": {
-            "depth": 0.4,
-            "scale": 0.25
-          },
-          "biome": "gaiadimension:igneous_plains"
-        },
-        {
-          "parameters": {
             "depth": -1.8,
             "scale": 0.1
           },
@@ -159,13 +131,6 @@
         },
         {
           "parameters": {
-            "depth": 0.1,
-            "scale": 0.25
-          },
-          "biome": "gaiadimension:prismatic_steppe"
-        },
-        {
-          "parameters": {
             "depth": 0.0,
             "scale": 0.05
           },
@@ -177,13 +142,6 @@
             "scale": 0.05
           },
           "biome": "gaiadimension:salt_dunes"
-        },
-        {
-          "parameters": {
-            "depth": 0.0,
-            "scale": 0.025
-          },
-          "biome": "gaiadimension:salty_coast"
         },
         {
           "parameters": {
@@ -208,31 +166,10 @@
         },
         {
           "parameters": {
-            "depth": 0.15,
-            "scale": 0.025
-          },
-          "biome": "gaiadimension:tourmaline_coast"
-        },
-        {
-          "parameters": {
             "depth": 1.0,
             "scale": 0.7
           },
           "biome": "gaiadimension:volcanic_lands"
-        },
-        {
-          "parameters": {
-            "depth": 1.0,
-            "scale": 0.05
-          },
-          "biome": "gaiadimension:wasteland_hills"
-        },
-        {
-          "parameters": {
-            "depth": 0.125,
-            "scale": 0.05
-          },
-          "biome": "gaiadimension:weirded_goldstone_lands"
         }
       ],
       "seed": 0,

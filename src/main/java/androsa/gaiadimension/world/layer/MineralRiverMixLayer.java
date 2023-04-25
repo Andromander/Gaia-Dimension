@@ -17,7 +17,7 @@ public enum MineralRiverMixLayer implements AreaTransformer2, DimensionOffset0Tr
         int i = area1.get(this.getParentX(val1), this.getParentY(val2));
         int j = area2.get(this.getParentX(val1), this.getParentY(val2));
 
-        if (i == GaiaLayerUtil.getBiomeId(ModBiomes.mineral_reservoir) || i == GaiaLayerUtil.getBiomeId(ModBiomes.aquamarine_trench)) {
+        if (i == GaiaLayerUtil.getBiomeId(ModBiomes.mineral_reservoir)) {
             return i;
         } else if (j == GaiaLayerUtil.getBiomeId(ModBiomes.mineral_river)) {
             return j;

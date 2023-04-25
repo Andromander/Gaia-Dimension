@@ -21,6 +21,6 @@ public enum OceanMixerLayer implements AreaTransformer2, DimensionOffset0Transfo
     }
 
     private boolean isOcean(int biome) {
-        return biome == GaiaLayerUtil.getBiomeId(ModBiomes.mineral_reservoir) || biome == GaiaLayerUtil.getBiomeId(ModBiomes.aquamarine_trench) || biome == 0;
+        return biome == GaiaLayerUtil.getBiomeId(ModBiomes.mineral_reservoir) || biome == 0;
     }
 }

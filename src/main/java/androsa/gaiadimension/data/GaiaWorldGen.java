@@ -106,10 +106,8 @@ public class GaiaWorldGen extends WorldGenerationProvider {
 
     private List<Pair<TerrainPoint, Holder<Biome>>> makeBiomeList(Registry<Biome> registry) {
         return List.of(
-                pairBiome(registry, -1.8F, 0.2F, ModBiomes.aquamarine_trench),
                 pairBiome(registry, 0.1F, 0.2F, ModBiomes.blue_agate_taiga),
                 pairBiome(registry, 0.05F, 0.05F, ModBiomes.crystal_plains),
-                pairBiome(registry, 0.25F, 0.05F, ModBiomes.crystal_salt_dunes),
                 pairBiome(registry, 0.1F, 0.05F, ModBiomes.fossil_woodland),
                 pairBiome(registry, 0.125F, 0.05F, ModBiomes.goldstone_lands),
                 pairBiome(registry, 0.1F, 0.2F, ModBiomes.green_agate_jungle),
@@ -118,24 +116,17 @@ public class GaiaWorldGen extends WorldGenerationProvider {
                 pairBiome(registry, 0.15F, 0.05F, ModBiomes.golden_marsh),
                 pairBiome(registry, 0.35F, 0.1F, ModBiomes.golden_plains),
                 pairBiome(registry, 0.25F, 0.05F, ModBiomes.golden_sands),
-                pairBiome(registry, 0.3F, 0.5F, ModBiomes.hotspot),
-                pairBiome(registry, 0.4F, 0.25F, ModBiomes.igneous_plains),
                 pairBiome(registry, -1.8F, 0.1F, ModBiomes.mineral_reservoir),
                 pairBiome(registry, -0.8F, 0.0F, ModBiomes.mineral_river),
                 pairBiome(registry, 2.0F, 0.075F, ModBiomes.mookaite_mesa),
                 pairBiome(registry, 0.1F, 0.1F, ModBiomes.mutant_agate_wildwood),
                 pairBiome(registry, 0.1F, 0.1F, ModBiomes.pink_agate_forest),
-                pairBiome(registry, 0.1F, 0.25F, ModBiomes.prismatic_steppe),
                 pairBiome(registry, 0.0F, 0.05F, ModBiomes.purple_agate_swamp),
                 pairBiome(registry, 0.2F, 0.05F, ModBiomes.salt_dunes),
-                pairBiome(registry, 0.0F, 0.025F, ModBiomes.salty_coast),
                 pairBiome(registry, 0.4F, 0.05F, ModBiomes.shining_grove),
                 pairBiome(registry, 0.2F, 0.02F, ModBiomes.smoldering_bog),
                 pairBiome(registry, 3.0F, 0.05F, ModBiomes.static_wasteland),
-                pairBiome(registry, 0.15F, 0.025F, ModBiomes.tourmaline_coast),
-                pairBiome(registry, 1.0F, 0.7F, ModBiomes.volcanic_lands),
-                pairBiome(registry, 1.0F, 0.05F, ModBiomes.wasteland_hills),
-                pairBiome(registry, 0.125F, 0.05F, ModBiomes.weirded_goldstone_lands)
+                pairBiome(registry, 1.0F, 0.7F, ModBiomes.volcanic_lands)
         );
     }
 

@@ -18,6 +18,6 @@ public enum GoldIslandLayer implements BishopTransformer {
     }
 
     private boolean isOcean(int biome) {
-        return biome == GaiaLayerUtil.getBiomeId(ModBiomes.mineral_reservoir) || biome == GaiaLayerUtil.getBiomeId(ModBiomes.aquamarine_trench) || biome == 0;
+        return biome == GaiaLayerUtil.getBiomeId(ModBiomes.mineral_reservoir) || biome == 0;
     }
 }

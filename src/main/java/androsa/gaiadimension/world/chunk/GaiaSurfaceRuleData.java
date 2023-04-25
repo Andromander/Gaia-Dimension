@@ -49,7 +49,7 @@ public class GaiaSurfaceRuleData {
         SurfaceRules.ConditionSource aboveSeaCondition = SurfaceRules.yBlockCheck(VerticalAnchor.absolute(63), 0);
         SurfaceRules.RuleSource saltstoneRoofRule = SurfaceRules.sequence(SurfaceRules.ifTrue(SurfaceRules.ON_CEILING, SALTSTONE), SALT);
         SurfaceRules.RuleSource solidGoldRoofRule = SurfaceRules.sequence(SurfaceRules.ifTrue(SurfaceRules.ON_CEILING, SOLID_GOLDEN_STONE), GOLDEN_SAND);
-        SurfaceRules.ConditionSource beachCondition = SurfaceRules.isBiome(ModBiomes.mineral_reservoir, ModBiomes.mineral_river, ModBiomes.salty_coast);
+        SurfaceRules.ConditionSource beachCondition = SurfaceRules.isBiome(ModBiomes.mineral_reservoir, ModBiomes.mineral_river);
         SurfaceRules.ConditionSource dunesRule = SurfaceRules.isBiome(ModBiomes.salt_dunes);
         SurfaceRules.ConditionSource sandsRule = SurfaceRules.isBiome(ModBiomes.golden_sands);
         SurfaceRules.ConditionSource surfacerules$conditionsource14 = SurfaceRules.noiseCondition(Noises.SURFACE, -0.909D, -0.5454D);

@@ -44,14 +44,11 @@ public class GaiaLayerUtil {
         islands = ZoomLayer.NORMAL.run(contextFactory.apply(1000), islands);
 
         AreaFactory<T> biomes = new GaiaBiomesLayer().run(contextFactory.apply(1L), islands);
-        biomes = SpecialBiomeLayer.INSTANCE.setup(seed).run(contextFactory.apply(1000L), biomes);
-        biomes = SurroundingBiomeLayer.INSTANCE.run(contextFactory.apply(1000L), biomes);
         biomes = ZoomLayer.NORMAL.run(contextFactory.apply(1000L), biomes);
         biomes = ZoomLayer.NORMAL.run(contextFactory.apply(1001L), biomes);
         biomes = SpecialBiomeMixLayer.INSTANCE.run(contextFactory.apply(700L), biomes);
         biomes = ZoomLayer.NORMAL.run(contextFactory.apply(1002L), biomes);
         biomes = ZoomLayer.NORMAL.run(contextFactory.apply(1003L), biomes);
-        biomes = CoastLayer.INSTANCE.run(contextFactory.apply(1000L), biomes);
         biomes = ZoomLayer.NORMAL.run(contextFactory.apply(1004L), biomes);
         biomes = ZoomLayer.NORMAL.run(contextFactory.apply(1005L), biomes);
 

@@ -9,6 +9,6 @@ public enum OceanLayer implements AreaTransformer0 {
 
     @Override
     public int applyPixel(Context context, int x, int z) {
-        return context.nextRandom(3) == 0 ? GaiaLayerUtil.getBiomeId(ModBiomes.aquamarine_trench) : GaiaLayerUtil.getBiomeId(ModBiomes.mineral_reservoir);
+        return GaiaLayerUtil.getBiomeId(ModBiomes.mineral_reservoir);
     }
 }

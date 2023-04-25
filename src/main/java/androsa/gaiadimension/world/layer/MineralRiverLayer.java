@@ -24,9 +24,6 @@ public enum MineralRiverLayer implements CastleTransformer {
             GaiaLayerUtil.getBiomeId(ModBiomes.golden_sands),
             GaiaLayerUtil.getBiomeId(ModBiomes.golden_marsh),
             GaiaLayerUtil.getBiomeId(ModBiomes.mineral_reservoir),
-            GaiaLayerUtil.getBiomeId(ModBiomes.aquamarine_trench),
-            GaiaLayerUtil.getBiomeId(ModBiomes.salty_coast),
-            GaiaLayerUtil.getBiomeId(ModBiomes.tourmaline_coast),
             0 // We don't see oceans, have this here, too
     );
 
@@ -59,18 +56,6 @@ public enum MineralRiverLayer implements CastleTransformer {
 
         //Mutated Agate Wildwoods should look like they were any Agate Forest, but with strange growth patterns
         if ((id1 == GaiaLayerUtil.getBiomeId(ModBiomes.mutant_agate_wildwood) && agateBiomes.contains(id2)) || (agateBiomes.contains(id1) && id2 == GaiaLayerUtil.getBiomeId(ModBiomes.mutant_agate_wildwood)))
-            return false;
-
-        //Central biomes do not river with Surrounding biomes
-        if (isMatch(id1, id2, GaiaLayerUtil.getBiomeId(ModBiomes.volcanic_lands), GaiaLayerUtil.getBiomeId(ModBiomes.igneous_plains)))
-            return false;
-        if (isMatch(id1, id2, GaiaLayerUtil.getBiomeId(ModBiomes.static_wasteland), GaiaLayerUtil.getBiomeId(ModBiomes.wasteland_hills)))
-            return false;
-        if (isMatch(id1, id2, GaiaLayerUtil.getBiomeId(ModBiomes.goldstone_lands), GaiaLayerUtil.getBiomeId(ModBiomes.weirded_goldstone_lands)))
-            return false;
-        if (isMatch(id1, id2, GaiaLayerUtil.getBiomeId(ModBiomes.crystal_salt_dunes), GaiaLayerUtil.getBiomeId(ModBiomes.salt_dunes)))
-            return false;
-        if (isMatch(id1, id2, GaiaLayerUtil.getBiomeId(ModBiomes.hotspot), GaiaLayerUtil.getBiomeId(ModBiomes.prismatic_steppe)))
             return false;
 
         return true;

@@ -355,8 +355,7 @@
                           "if_true": {
                             "biome_is": [
                               "gaiadimension:mineral_reservoir",
-                              "gaiadimension:mineral_river",
-                              "gaiadimension:salty_coast"
+                              "gaiadimension:mineral_river"
                             ],
                             "type": "minecraft:biome"
                           },
@@ -689,8 +688,7 @@
                               "if_true": {
                                 "biome_is": [
                                   "gaiadimension:mineral_reservoir",
-                                  "gaiadimension:mineral_river",
-                                  "gaiadimension:salty_coast"
+                                  "gaiadimension:mineral_river"
                                 ],
                                 "type": "minecraft:biome"
                               },
@@ -845,8 +843,7 @@
                     "if_true": {
                       "biome_is": [
                         "gaiadimension:mineral_reservoir",
-                        "gaiadimension:mineral_river",
-                        "gaiadimension:salty_coast"
+                        "gaiadimension:mineral_river"
                       ],
                       "type": "minecraft:biome"
                     },
