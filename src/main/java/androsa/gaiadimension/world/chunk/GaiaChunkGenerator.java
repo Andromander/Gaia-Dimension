@@ -61,7 +61,6 @@ public class GaiaChunkGenerator extends NoiseBasedChunkGenerator {
     private final int cellWidth;
     private final int cellHeight;
     private final BlockState defaultFluid;
-    private final Aquifer emptyAquifier;
     private final GaiaSurfaceSystem surface;
 
     public GaiaChunkGenerator(BiomeSource mainsource, Registry<StructureSet> setregistry, Registry<NormalNoise.NoiseParameters> noiseregistry, Holder<NoiseGeneratorSettings> noisesettings, long seed) {
@@ -81,10 +80,6 @@ public class GaiaChunkGenerator extends NoiseBasedChunkGenerator {
         this.warper = new GaiaTerrainWarp(this.cellWidth, this.cellHeight, noise.getCellCountY(), mainsource, noise, blendedNoise, modifier);
         this.defaultFluid = noisesettings.value().defaultFluid();
         int i = noisesettings.value().seaLevel();
-        Aquifer.FluidStatus topfluid = new Aquifer.FluidStatus(i, noisesettings.value().defaultFluid());
-        Aquifer.FluidStatus lowfluid = new Aquifer.FluidStatus(-54, Blocks.LAVA.defaultBlockState());
-        Aquifer.FluidPicker globalFluidPicker = (x, y, z) -> y < Math.min(-54, i) ? lowfluid : topfluid;
-        this.emptyAquifier = Aquifer.createDisabled(globalFluidPicker);
         this.surface = new GaiaSurfaceSystem(this.noiseRegistry, this.settings.value().defaultBlock(), this.settings.value().seaLevel(), seed, settings.value().getRandomSource());
     }
 
@@ -209,11 +204,6 @@ public class GaiaChunkGenerator extends NoiseBasedChunkGenerator {
                                     section.setBlockState(mincellX, mincellY, mincellZ, state, false);
                                     oceanfloor.update(mincellX, minheight, mincellZ, state);
                                     surface.update(mincellX, minheight, mincellZ, state);
-
-                                    if (emptyAquifier.shouldScheduleFluidUpdate() && !state.getFluidState().isEmpty()) {
-                                        mutable.set(minwidthX, minheight, minwidthZ);
-                                        access.markPosForPostprocessing(mutable);
-                                    }
                                 }
                             }
                         }

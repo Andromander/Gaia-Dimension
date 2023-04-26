@@ -21,6 +21,7 @@ import net.minecraft.world.level.levelgen.DensityFunction;
 import net.minecraft.world.level.levelgen.carver.CarvingContext;
 import net.minecraft.world.level.levelgen.carver.CaveCarverConfiguration;
 import net.minecraft.world.level.levelgen.carver.WorldCarver;
+import net.minecraft.world.level.material.FluidState;
 import org.apache.commons.lang3.mutable.MutableBoolean;
 
 import java.util.Random;
@@ -157,20 +158,31 @@ public class CoatedCavesWorldCarver<T extends CaveCarverConfiguration> extends W
             if (state == null) {
                 return false;
             } else {
-                chunk.setBlockState(mutable, state, false);
-                chunk.setBlockState(mutable, state, false);
-                if (bool.isTrue()) {
-                    newmutable.setWithOffset(mutable, Direction.DOWN);
-                    if (chunk.getBlockState(newmutable).getBlock() instanceof GaiaSoilBlock) {
-                        context.topMaterial(biomepos, chunk, newmutable, !state.getFluidState().isEmpty()).ifPresent((newstate) -> {
-                            chunk.setBlockState(newmutable, newstate, false);
-                            if (!newstate.getFluidState().isEmpty()) {
-                                chunk.markPosForPostprocessing(newmutable);
-                            }
-                        });
+                for (Direction dir : Direction.values()) {
+                    FluidState around = chunk.getFluidState(newmutable.relative(dir));
+                    FluidState above = chunk.getFluidState(newmutable.offset(mutable.offset(0, 1, 0)));
+                    FluidState aroundabove = chunk.getFluidState(newmutable.offset(mutable.offset(0, 1, 1).relative(dir)));
+                    if (around.is(ModFluids.mineral_water_still.get()) || above.is(ModFluids.mineral_water_still.get()) || aroundabove.is(ModFluids.mineral_water_still.get())) {
+                        return false;
+                    } else {
+                        chunk.setBlockState(mutable, state, false);
 
+                        if (bool.isTrue()) {
+                            newmutable.setWithOffset(mutable, Direction.DOWN);
+                            if (chunk.getBlockState(newmutable).getBlock() instanceof GaiaSoilBlock) {
+                                context.topMaterial(biomepos, chunk, newmutable, !state.getFluidState().isEmpty()).ifPresent((newstate) -> {
+                                    chunk.setBlockState(newmutable, newstate, false);
+                                    if (!newstate.getFluidState().isEmpty()) {
+                                        chunk.markPosForPostprocessing(newmutable);
+                                    }
+                                });
+
+                            }
+                        }
                     }
+
                 }
+
             }
 
             return true;
@@ -182,7 +194,7 @@ public class CoatedCavesWorldCarver<T extends CaveCarverConfiguration> extends W
             return ModFluids.superhot_magma_still.get().defaultFluidState().createLegacyBlock();
         } else {
             BlockState blockstate = aquifer.computeSubstance(new DensityFunction.SinglePointContext(pos.getX(), pos.getY(), pos.getZ()), 0.0D);
-            return blockstate == ModBlocks.gaia_stone.get().defaultBlockState() ? null : blockstate;
+            return blockstate == ModBlocks.gaia_stone.get().defaultBlockState() ? null : CAVE_AIR;
         }
     }
 

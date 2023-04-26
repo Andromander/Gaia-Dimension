@@ -21,6 +21,7 @@ import net.minecraft.world.level.levelgen.DensityFunction;
 import net.minecraft.world.level.levelgen.carver.CarvingContext;
 import net.minecraft.world.level.levelgen.carver.CaveCarverConfiguration;
 import net.minecraft.world.level.levelgen.carver.WorldCarver;
+import net.minecraft.world.level.material.FluidState;
 import org.apache.commons.lang3.mutable.MutableBoolean;
 
 import java.util.Random;
@@ -141,8 +142,8 @@ public class ChasmsWorldCarver<T extends CaveCarverConfiguration> extends WorldC
     }
 
     @Override
-    protected boolean carveBlock(CarvingContext context, T config, ChunkAccess chunkIn, Function<BlockPos, Holder<Biome>> biomePos, CarvingMask carvingMask, BlockPos.MutableBlockPos mutablePos, BlockPos.MutableBlockPos newmutable, Aquifer aquifer, MutableBoolean flag) {
-        BlockState blockstate = chunkIn.getBlockState(mutablePos);
+    protected boolean carveBlock(CarvingContext context, T config, ChunkAccess chunkIn, Function<BlockPos, Holder<Biome>> biomePos, CarvingMask carvingMask, BlockPos.MutableBlockPos mutable, BlockPos.MutableBlockPos newmutable, Aquifer aquifer, MutableBoolean flag) {
+        BlockState blockstate = chunkIn.getBlockState(mutable);
         if (blockstate.getBlock() instanceof AbstractGaiaGrassBlock) {
             flag.setTrue();
         }
@@ -150,21 +151,31 @@ public class ChasmsWorldCarver<T extends CaveCarverConfiguration> extends WorldC
         if (!this.canReplaceBlock(blockstate)) {
             return false;
         } else {
-            BlockState state = this.getCarveState(context, config, mutablePos, aquifer);
+            BlockState state = this.getCarveState(context, config, mutable, aquifer);
             if (state == null) {
                 return false;
             } else {
-                chunkIn.setBlockState(mutablePos, state, false);
-                if (flag.isTrue()) {
-                    newmutable.setWithOffset(mutablePos, Direction.DOWN);
-                    if (chunkIn.getBlockState(newmutable).getBlock() instanceof GaiaSoilBlock) {
-                        context.topMaterial(biomePos, chunkIn, newmutable, !state.getFluidState().isEmpty()).ifPresent((newstate) -> {
-                            chunkIn.setBlockState(newmutable, newstate, false);
-                            if (!newstate.getFluidState().isEmpty()) {
-                                chunkIn.markPosForPostprocessing(newmutable);
-                            }
-                        });
+                for (Direction dir : Direction.values()) {
+                    FluidState around = chunkIn.getFluidState(newmutable.relative(dir));
+                    FluidState above = chunkIn.getFluidState(newmutable.offset(mutable.offset(0, 1, 0)));
+                    FluidState aroundabove = chunkIn.getFluidState(newmutable.offset(mutable.offset(0, 1, 1).relative(dir)));
+                    if (around.is(ModFluids.mineral_water_still.get()) || above.is(ModFluids.mineral_water_still.get()) || aroundabove.is(ModFluids.mineral_water_still.get())) {
+                        return false;
+                    } else {
+                        chunkIn.setBlockState(mutable, state, false);
 
+                        if (flag.isTrue()) {
+                            newmutable.setWithOffset(mutable, Direction.DOWN);
+                            if (chunkIn.getBlockState(newmutable).getBlock() instanceof GaiaSoilBlock) {
+                                context.topMaterial(biomePos, chunkIn, newmutable, !state.getFluidState().isEmpty()).ifPresent((newstate) -> {
+                                    chunkIn.setBlockState(newmutable, newstate, false);
+                                    if (!newstate.getFluidState().isEmpty()) {
+                                        chunkIn.markPosForPostprocessing(newmutable);
+                                    }
+                                });
+
+                            }
+                        }
                     }
                 }
             }
@@ -178,7 +189,7 @@ public class ChasmsWorldCarver<T extends CaveCarverConfiguration> extends WorldC
             return ModFluids.superhot_magma_still.get().defaultFluidState().createLegacyBlock();
         } else {
             BlockState blockstate = aquifer.computeSubstance(new DensityFunction.SinglePointContext(pos.getX(), pos.getY(), pos.getZ()), 0.0D);
-            return blockstate == ModBlocks.gaia_stone.get().defaultBlockState() ? null : blockstate;
+            return blockstate == ModBlocks.gaia_stone.get().defaultBlockState() ? null : CAVE_AIR;
         }
     }
 
