@@ -246,14 +246,17 @@
               },
               "then_run": {
                 "if_true": {
-                  "random_name": "minecraft:wasteland_stone",
-                  "true_at_and_below": {
-                    "absolute": 50
+                  "invert": {
+                    "random_name": "minecraft:wasteland_stone",
+                    "true_at_and_below": {
+                      "absolute": 50
+                    },
+                    "false_at_and_above": {
+                      "absolute": 63
+                    },
+                    "type": "minecraft:vertical_gradient"
                   },
-                  "false_at_and_above": {
-                    "absolute": 63
-                  },
-                  "type": "minecraft:vertical_gradient"
+                  "type": "minecraft:not"
                 },
                 "then_run": {
                   "result_state": {

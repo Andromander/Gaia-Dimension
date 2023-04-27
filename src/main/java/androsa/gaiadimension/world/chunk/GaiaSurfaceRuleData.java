@@ -99,7 +99,7 @@ public class GaiaSurfaceRuleData {
                                 SurfaceRules.ifTrue(SurfaceRules.UNDER_FLOOR,
                                         SurfaceRules.ifTrue(SurfaceRules.waterStartCheck(-6, -1), SCARLET_MOOKAITE)))),
                 SurfaceRules.ifTrue(SurfaceRules.isBiome(ModBiomes.static_wasteland),
-                        SurfaceRules.ifTrue(SurfaceRules.verticalGradient("wasteland_stone", VerticalAnchor.absolute(50), VerticalAnchor.absolute(63)), WASTELAND_STONE)),
+                        SurfaceRules.ifTrue(SurfaceRules.not(SurfaceRules.verticalGradient("wasteland_stone", VerticalAnchor.absolute(50), VerticalAnchor.absolute(63))), WASTELAND_STONE)),
                 SurfaceRules.ifTrue(SurfaceRules.ON_FLOOR,
                         SurfaceRules.ifTrue(SurfaceRules.waterBlockCheck(-1, 0),
                                 SurfaceRules.sequence(
