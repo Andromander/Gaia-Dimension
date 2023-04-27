@@ -140,7 +140,17 @@ public class GaiaFeatures extends GaiaBiomeFeatures {
 
         //Underground Decoration
         public static final Holder<ConfiguredFeature<NoneFeatureConfiguration, ?>> underground_glitter_blob = registerFeature("underground_glitter_blob", ModWorldgen.FRAIL_BLOB.get(), FeatureConfiguration.NONE);
-        public static final Holder<ConfiguredFeature<RandomPatchConfiguration, ?>> cave_fungi = registerFeature("cave_fungi", Feature.RANDOM_PATCH, new RandomPatchConfiguration(64, 7, 3, PlacementUtils.filtered(Feature.SIMPLE_BLOCK, new SimpleBlockConfiguration(new WeightedStateProvider(weight().add(ELDER_IMKLIA, 2).add(GOLD_ORB_TUCHER, 2))), BlockPredicate.not(BlockPredicate.matchesBlocks(cave_blacklist)))));
+        public static final Holder<ConfiguredFeature<RandomPatchConfiguration, ?>> cave_fungi = registerFeature(
+                "cave_fungi",
+                Feature.RANDOM_PATCH,
+                new RandomPatchConfiguration(64, 7, 3,
+                        PlacementUtils.filtered(
+                                Feature.SIMPLE_BLOCK,
+                                new SimpleBlockConfiguration(new WeightedStateProvider(weight().add(ELDER_IMKLIA, 2).add(GOLD_ORB_TUCHER, 2))),
+                                BlockPredicate.allOf(
+                                        BlockPredicate.ONLY_IN_AIR_PREDICATE,
+                                        BlockPredicate.not(BlockPredicate.matchesBlocks(cave_blacklist, new BlockPos(0, -1, 0)))
+                                ))));
 
         //Vegetal Decoration
         public static final Holder<ConfiguredFeature<NoneFeatureConfiguration, ?>> aura_shoots = registerFeature("aura_shoots", ModWorldgen.AURA_SHOOT.get(), FeatureConfiguration.NONE);

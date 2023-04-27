@@ -29,21 +29,35 @@
       "placement": [
         {
           "predicate": {
-            "predicate": {
-              "blocks": [
-                "gaiadimension:glitter_grass",
-                "gaiadimension:heavy_soil",
-                "gaiadimension:corrupt_grass",
-                "gaiadimension:corrupt_soil",
-                "gaiadimension:murky_grass",
-                "gaiadimension:boggy_soil",
-                "gaiadimension:soft_grass",
-                "gaiadimension:light_soil",
-                "gaiadimension:salt"
-              ],
-              "type": "minecraft:matching_blocks"
-            },
-            "type": "minecraft:not"
+            "predicates": [
+              {
+                "blocks": "minecraft:air",
+                "type": "minecraft:matching_blocks"
+              },
+              {
+                "predicate": {
+                  "offset": [
+                    0,
+                    -1,
+                    0
+                  ],
+                  "blocks": [
+                    "gaiadimension:glitter_grass",
+                    "gaiadimension:heavy_soil",
+                    "gaiadimension:corrupt_grass",
+                    "gaiadimension:corrupt_soil",
+                    "gaiadimension:murky_grass",
+                    "gaiadimension:boggy_soil",
+                    "gaiadimension:soft_grass",
+                    "gaiadimension:light_soil",
+                    "gaiadimension:salt"
+                  ],
+                  "type": "minecraft:matching_blocks"
+                },
+                "type": "minecraft:not"
+              }
+            ],
+            "type": "minecraft:all_of"
           },
           "type": "minecraft:block_predicate_filter"
         }
