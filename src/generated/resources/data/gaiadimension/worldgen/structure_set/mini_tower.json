@@ -1,0 +1,14 @@
+{
+  "structures": [
+    {
+      "structure": "gaiadimension:mini_tower",
+      "weight": 1
+    }
+  ],
+  "placement": {
+    "salt": 420,
+    "spacing": 30,
+    "separation": 10,
+    "type": "minecraft:random_spread"
+  }
+}

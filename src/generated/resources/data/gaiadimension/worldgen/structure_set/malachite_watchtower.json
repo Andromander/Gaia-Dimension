@@ -1,0 +1,14 @@
+{
+  "structures": [
+    {
+      "structure": "gaiadimension:malachite_watchtower",
+      "weight": 1
+    }
+  ],
+  "placement": {
+    "salt": 621,
+    "spacing": 35,
+    "separation": 15,
+    "type": "minecraft:random_spread"
+  }
+}

@@ -3,39 +3,32 @@ package androsa.gaiadimension.registry.configurations;
 import androsa.gaiadimension.GaiaDimensionMod;
 import androsa.gaiadimension.registry.GaiaTags;
 import androsa.gaiadimension.registry.ModWorldgen;
-import androsa.gaiadimension.registry.RegistryHelper;
+import com.google.common.collect.Maps;
 import net.minecraft.core.Holder;
-import net.minecraft.core.Registry;
 import net.minecraft.data.BuiltinRegistries;
-import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.levelgen.feature.ConfiguredStructureFeature;
 import net.minecraft.world.level.levelgen.feature.StructureFeature;
 import net.minecraft.world.level.levelgen.feature.configurations.FeatureConfiguration;
 import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
+import net.minecraft.world.level.levelgen.structure.StructureSet;
+import net.minecraft.world.level.levelgen.structure.placement.RandomSpreadStructurePlacement;
+import net.minecraft.world.level.levelgen.structure.placement.RandomSpreadType;
 
 import java.util.Map;
+import java.util.function.Function;
 
 public final class GaiaConfiguredStructures extends GaiaBiomeFeatures {
 
-    //ConfiguredStructureFeatures
-    public static final ResourceKey<ConfiguredStructureFeature<?, ?>> MINI_TOWER = createKey("mini_tower");
-    public static final ResourceKey<ConfiguredStructureFeature<?, ?>> MALACHITE_WATCHTOWER = createKey("malachite_watchtower");
+    public static final Map<ResourceLocation, StructureSet> STRUCTURE_SETS = Maps.newHashMap();
 
-    public static final Holder<ConfiguredStructureFeature<?, ?>> mini_tower = registerStructureFeature(MINI_TOWER, ModWorldgen.MINI_TOWER.get().configured(NoneFeatureConfiguration.INSTANCE, GaiaTags.Biomes.HAS_MINI_TOWER));
-    public static final Holder<ConfiguredStructureFeature<?, ?>> malachite_watchtower = registerStructureFeature(MALACHITE_WATCHTOWER, ModWorldgen.MALACHITE_WATCHTOWER.get().configured(NoneFeatureConfiguration.INSTANCE, GaiaTags.Biomes.HAS_MALACHITE_WATCHTOWER));
+    public static final Holder<ConfiguredStructureFeature<?, ?>> mini_tower = registerStructureFeature(ModWorldgen.MINI_TOWER.get(), structure -> structure.configured(NoneFeatureConfiguration.INSTANCE, GaiaTags.Biomes.HAS_MINI_TOWER), 30, 10, 420);
+    public static final Holder<ConfiguredStructureFeature<?, ?>> malachite_watchtower = registerStructureFeature(ModWorldgen.MALACHITE_WATCHTOWER.get(), structure -> structure.configured(NoneFeatureConfiguration.INSTANCE, GaiaTags.Biomes.HAS_MALACHITE_WATCHTOWER), 35, 15, 621);
 
-    private static ResourceKey<ConfiguredStructureFeature<?, ?>> createKey(String name) {
-        return ResourceKey.create(Registry.CONFIGURED_STRUCTURE_FEATURE_REGISTRY, new ResourceLocation(GaiaDimensionMod.MODID, name));
-    }
-    private static <FC extends FeatureConfiguration, F extends StructureFeature<FC>> Holder<ConfiguredStructureFeature<?, ?>> registerStructureFeature(ResourceKey<ConfiguredStructureFeature<?, ?>> name, ConfiguredStructureFeature<FC, F> structure) {
-        RegistryHelper.CONFIGURED_STRUCTURE_FEATURES.put(structure, name.location().getPath());
-        return BuiltinRegistries.register(BuiltinRegistries.CONFIGURED_STRUCTURE_FEATURE, name, structure);
-    }
-
-    public static void registerStructureFeatures(Registry<ConfiguredStructureFeature<?,?>> registry) {
-        for (Map.Entry<ConfiguredStructureFeature<?,?>, String> entry : RegistryHelper.CONFIGURED_STRUCTURE_FEATURES.entrySet()) {
-            Registry.register(registry, new ResourceLocation(GaiaDimensionMod.MODID, entry.getValue()), entry.getKey());
-        }
+    private static <FC extends FeatureConfiguration> Holder<ConfiguredStructureFeature<?, ?>> registerStructureFeature(StructureFeature<FC> feature, Function<StructureFeature<FC>, ConfiguredStructureFeature<?, ?>> config, int spacing, int separation, int salt) {
+        ResourceLocation name = new ResourceLocation(GaiaDimensionMod.MODID, feature.getRegistryName().getPath());
+        Holder<ConfiguredStructureFeature<?, ?>> holder = BuiltinRegistries.registerExact(BuiltinRegistries.CONFIGURED_STRUCTURE_FEATURE, name.toString(), config.apply(feature));
+        STRUCTURE_SETS.put(name, new StructureSet(holder, new RandomSpreadStructurePlacement(spacing, separation, RandomSpreadType.LINEAR, salt)));
+        return holder;
     }
 }

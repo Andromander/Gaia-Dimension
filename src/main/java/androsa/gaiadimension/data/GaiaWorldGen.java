@@ -4,6 +4,7 @@ import androsa.gaiadimension.GaiaDimensionMod;
 import androsa.gaiadimension.data.provider.WorldGenerationProvider;
 import androsa.gaiadimension.registry.ModBiomes;
 import androsa.gaiadimension.registry.ModDimensions;
+import androsa.gaiadimension.registry.configurations.GaiaConfiguredStructures;
 import androsa.gaiadimension.world.chunk.GaiaBiomeSource;
 import androsa.gaiadimension.world.chunk.GaiaChunkGenerator;
 import androsa.gaiadimension.world.chunk.warp.TerrainPoint;
@@ -12,6 +13,7 @@ import com.mojang.datafixers.util.Pair;
 import com.mojang.serialization.DynamicOps;
 import com.mojang.serialization.Lifecycle;
 import net.minecraft.core.*;
+import net.minecraft.data.BuiltinRegistries;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.HashCache;
 import net.minecraft.resources.ResourceKey;
@@ -62,6 +64,10 @@ public class GaiaWorldGen extends WorldGenerationProvider {
     }
 
     private LevelStem createGaia(RegistryAccess access) {
+        for (Map.Entry<ResourceLocation, StructureSet> entry : GaiaConfiguredStructures.STRUCTURE_SETS.entrySet()) {
+            BuiltinRegistries.registerExact(BuiltinRegistries.STRUCTURE_SETS, entry.getKey().toString(), entry.getValue());
+        }
+
         Registry<Biome> biomeRegistry = access.registryOrThrow(Registry.BIOME_REGISTRY);
         Registry<StructureSet> structureRegistry = access.registryOrThrow(Registry.STRUCTURE_SET_REGISTRY);
         Registry<NormalNoise.NoiseParameters> noiseparamRegistry = access.registryOrThrow(Registry.NOISE_REGISTRY);
