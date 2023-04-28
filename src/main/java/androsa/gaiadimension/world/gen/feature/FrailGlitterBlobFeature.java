@@ -5,6 +5,7 @@ import com.mojang.serialization.Codec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.level.WorldGenLevel;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
@@ -25,36 +26,37 @@ public class FrailGlitterBlobFeature<T extends NoneFeatureConfiguration> extends
     public boolean place(WorldGenLevel worldIn, Random rand, BlockPos pos) {
         if (!worldIn.isEmptyBlock(pos)) {
             return false;
-        } else if (worldIn.getBlockState(pos.above()).getBlock() != ModBlocks.gaia_stone.get() && worldIn.getBlockState(pos.below()).getBlock() != ModBlocks.gaia_stone.get()) {
-            return false;
         } else {
-            if (pos.getY() > worldIn.getSeaLevel() || pos.getY() < 15)
+            BlockState above = worldIn.getBlockState(pos.above());
+            BlockState below = worldIn.getBlockState(pos.below());
+            if (!above.is(ModBlocks.gaia_stone.get()) && !below.is(ModBlocks.gaia_stone.get())) {
                 return false;
+            } else {
+                worldIn.setBlock(pos, ModBlocks.frail_glitter_block.get().defaultBlockState(), 2);
 
-            worldIn.setBlock(pos, ModBlocks.frail_glitter_block.get().defaultBlockState(), 2);
+                for(int i = 0; i < 1500; ++i) {
+                    BlockPos blockpos = pos.offset(rand.nextInt(8) - rand.nextInt(8), -rand.nextInt(12), rand.nextInt(8) - rand.nextInt(8));
+                    if (worldIn.getBlockState(blockpos).isAir()) {
+                        int j = 0;
 
-            for(int i = 0; i < 1500; ++i) {
-                BlockPos blockpos = pos.offset(rand.nextInt(8) - rand.nextInt(8), -rand.nextInt(12), rand.nextInt(8) - rand.nextInt(8));
-                if (worldIn.getBlockState(blockpos).isAir()) {
-                    int j = 0;
+                        for(Direction direction : Direction.values()) {
+                            if (worldIn.getBlockState(blockpos.relative(direction)).getBlock() == ModBlocks.frail_glitter_block.get()) {
+                                ++j;
+                            }
 
-                    for(Direction direction : Direction.values()) {
-                        if (worldIn.getBlockState(blockpos.relative(direction)).getBlock() == ModBlocks.frail_glitter_block.get()) {
-                            ++j;
+                            if (j > 1) {
+                                break;
+                            }
                         }
 
-                        if (j > 1) {
-                            break;
+                        if (j == 1) {
+                            worldIn.setBlock(blockpos, ModBlocks.frail_glitter_block.get().defaultBlockState(), 2);
                         }
-                    }
-
-                    if (j == 1) {
-                        worldIn.setBlock(blockpos, ModBlocks.frail_glitter_block.get().defaultBlockState(), 2);
                     }
                 }
-            }
 
-            return true;
+                return true;
+            }
         }
     }
 }

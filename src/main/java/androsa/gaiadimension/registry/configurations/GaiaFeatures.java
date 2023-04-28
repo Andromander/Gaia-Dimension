@@ -399,9 +399,9 @@ public class GaiaFeatures extends GaiaBiomeFeatures {
 
         //Underground Decoration
         public static final Holder<PlacedFeature> UNDERGROUND_GLITTER_BLOB = registerPlacedFeature("underground_glitter_blob", Configured.underground_glitter_blob,
-                HeightRangePlacement.uniform(VerticalAnchor.absolute(50), VerticalAnchor.absolute(70)),
-                InSquarePlacement.spread(),
                 CountPlacement.of(100),
+                InSquarePlacement.spread(),
+                HeightRangePlacement.uniform(VerticalAnchor.absolute(30), VerticalAnchor.absolute(70)),
                 BiomeFilter.biome());
         public static final Holder<PlacedFeature> CRYSTAL_FUNGI_CAVES = registerPlacedFeature("crystal_fungi_caves", Configured.cave_fungi,
                 InSquarePlacement.spread(),

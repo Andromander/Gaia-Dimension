@@ -2,9 +2,16 @@
   "feature": "gaiadimension:underground_glitter_blob",
   "placement": [
     {
+      "count": 100,
+      "type": "minecraft:count"
+    },
+    {
+      "type": "minecraft:in_square"
+    },
+    {
       "height": {
         "min_inclusive": {
-          "absolute": 50
+          "absolute": 30
         },
         "max_inclusive": {
           "absolute": 70
@@ -12,13 +19,6 @@
         "type": "minecraft:uniform"
       },
       "type": "minecraft:height_range"
-    },
-    {
-      "type": "minecraft:in_square"
-    },
-    {
-      "count": 100,
-      "type": "minecraft:count"
     },
     {
       "type": "minecraft:biome"
