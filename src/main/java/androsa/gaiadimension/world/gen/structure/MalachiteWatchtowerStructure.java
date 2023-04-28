@@ -2,6 +2,7 @@ package androsa.gaiadimension.world.gen.structure;
 
 import androsa.gaiadimension.registry.ModBlocks;
 import androsa.gaiadimension.world.gen.structure.pieces.MalachiteWatchtowerPieces;
+import com.google.common.collect.Lists;
 import com.mojang.serialization.Codec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.QuartPos;
@@ -21,7 +22,6 @@ import net.minecraft.world.level.levelgen.structure.pieces.PieceGeneratorSupplie
 import net.minecraft.world.level.levelgen.structure.pieces.PiecesContainer;
 import org.checkerframework.checker.nullness.qual.NonNull;
 
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
 import java.util.Random;
@@ -65,8 +65,9 @@ public class MalachiteWatchtowerStructure extends StructureFeature<NoneFeatureCo
         } else {
             BlockPos blockpos = new BlockPos(context.chunkPos().getMiddleBlockX(), level + 1, context.chunkPos().getMiddleBlockZ());
             return Optional.of((builder, config) -> {
-                List<MalachiteWatchtowerPieces.Piece> list = new LinkedList<>();
+                List<MalachiteWatchtowerPieces.Piece> list = Lists.newLinkedList();
                 MalachiteWatchtowerPieces.buildStructure(config.structureManager(), blockpos, rotation, list, random);
+                list.forEach(builder::addPiece);
             });
         }
     }

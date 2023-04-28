@@ -129,6 +129,7 @@ public class GaiaDimensionMod {
             generator.addProvider(blocktags);
             generator.addProvider(new GaiaItemTags(generator, blocktags, event.getExistingFileHelper()));
             generator.addProvider(new GaiaFluidTags(generator, event.getExistingFileHelper()));
+            generator.addProvider(new GaiaBiomeTags(generator, event.getExistingFileHelper()));
         }
     }
 }

@@ -122,14 +122,16 @@ public class ModWorldgen {
         public static final StructureProcessorType<BlockDegradeProcessor> BLOCK_DEGRADE = () -> BlockDegradeProcessor.CODEC;
         public static final StructureProcessorType<MalachiteDegradeProcessor> MALACHITE_DEGRADE = () -> MalachiteDegradeProcessor.CODEC;
 
-        public static final StructurePieceType.StructureTemplateType MITO = MiniTowerPieces.Piece::new;
-        public static final StructurePieceType.StructureTemplateType MAWA = MalachiteWatchtowerPieces.Piece::new;
+        public static final StructurePieceType MITO = piece("mito", MiniTowerPieces.Piece::new);
+        public static final StructurePieceType MAWA = piece("mawa", MalachiteWatchtowerPieces.Piece::new);
+
+        public static StructurePieceType piece(String name, StructurePieceType.StructureTemplateType piece) {
+            return Registry.register(Registry.STRUCTURE_PIECE, new ResourceLocation(GaiaDimensionMod.MODID, name), piece);
+        }
 
         public static void init() {
             Registry.register(Registry.STRUCTURE_PROCESSOR, new ResourceLocation(GaiaDimensionMod.MODID, "block_degrade"), BLOCK_DEGRADE);
             Registry.register(Registry.STRUCTURE_PROCESSOR, new ResourceLocation(GaiaDimensionMod.MODID, "malachite_degrade"), MALACHITE_DEGRADE);
-            Registry.register(Registry.STRUCTURE_PIECE, new ResourceLocation(GaiaDimensionMod.MODID, "mito"), MITO);
-            Registry.register(Registry.STRUCTURE_PIECE, new ResourceLocation(GaiaDimensionMod.MODID, "mawa"), MAWA);
         }
     }
 }
