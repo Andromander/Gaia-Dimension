@@ -28,6 +28,7 @@ import net.minecraft.util.random.SimpleWeightedRandomList;
 import net.minecraft.util.valueproviders.ClampedInt;
 import net.minecraft.util.valueproviders.ConstantInt;
 import net.minecraft.util.valueproviders.UniformInt;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.SaplingBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.Heightmap;
@@ -148,7 +149,7 @@ public class GaiaFeatures extends GaiaBiomeFeatures {
                                 Feature.SIMPLE_BLOCK,
                                 new SimpleBlockConfiguration(new WeightedStateProvider(weight().add(ELDER_IMKLIA, 2).add(GOLD_ORB_TUCHER, 2))),
                                 BlockPredicate.allOf(
-                                        BlockPredicate.ONLY_IN_AIR_PREDICATE,
+                                        BlockPredicate.matchesBlock(Blocks.CAVE_AIR, BlockPos.ZERO),
                                         BlockPredicate.not(BlockPredicate.matchesBlocks(cave_blacklist, new BlockPos(0, -1, 0)))
                                 ))));
 
@@ -404,9 +405,9 @@ public class GaiaFeatures extends GaiaBiomeFeatures {
                 HeightRangePlacement.uniform(VerticalAnchor.absolute(30), VerticalAnchor.absolute(70)),
                 BiomeFilter.biome());
         public static final Holder<PlacedFeature> CRYSTAL_FUNGI_CAVES = registerPlacedFeature("crystal_fungi_caves", Configured.cave_fungi,
+                CountPlacement.of(2),
                 InSquarePlacement.spread(),
-                HeightRangePlacement.uniform(VerticalAnchor.absolute(0), VerticalAnchor.top()),
-                RarityFilter.onAverageOnceEvery(2),
+                HeightRangePlacement.uniform(VerticalAnchor.absolute(0), VerticalAnchor.absolute(70)),
                 BiomeFilter.biome());
 
         //Vegetal Decoration
