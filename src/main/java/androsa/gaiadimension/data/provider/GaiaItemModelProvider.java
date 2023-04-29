@@ -1,7 +1,7 @@
 package androsa.gaiadimension.data.provider;
 
 import androsa.gaiadimension.GaiaDimensionMod;
-import net.minecraft.data.DataGenerator;
+import net.minecraft.data.PackOutput;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.client.model.generators.ItemModelBuilder;
@@ -11,8 +11,8 @@ import net.minecraftforge.registries.RegistryObject;
 
 public abstract class GaiaItemModelProvider extends ItemModelProvider {
 
-    public GaiaItemModelProvider(DataGenerator generator, ExistingFileHelper helper) {
-        super(generator, GaiaDimensionMod.MODID, helper);
+    public GaiaItemModelProvider(PackOutput output, ExistingFileHelper helper) {
+        super(output, GaiaDimensionMod.MODID, helper);
     }
 
     public String blockName(RegistryObject<? extends Block> block) {

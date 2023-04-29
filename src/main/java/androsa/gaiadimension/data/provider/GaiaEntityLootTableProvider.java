@@ -2,8 +2,10 @@ package androsa.gaiadimension.data.provider;
 
 import androsa.gaiadimension.registry.ModEntities;
 import androsa.gaiadimension.registry.ModItems;
-import net.minecraft.data.loot.EntityLoot;
+import net.minecraft.data.loot.EntityLootSubProvider;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.level.storage.loot.LootPool;
@@ -21,10 +23,18 @@ import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
 
 import java.util.function.Supplier;
 
-public class GaiaEntityLootTableProvider extends EntityLoot {
+public abstract class GaiaEntityLootTableProvider extends EntityLootSubProvider {
+
+    protected GaiaEntityLootTableProvider() {
+        super(FeatureFlags.REGISTRY.allFlags());
+    }
 
     public void addTable(Supplier<? extends EntityType<?>> entity, LootTable.Builder table) {
         this.add(entity.get(), table);
+    }
+
+    public void addTable(Supplier<? extends EntityType<?>> entity, ResourceLocation path, LootTable.Builder table) {
+        this.add(entity.get(), path, table);
     }
 
     public LootTable.Builder blankTable() {

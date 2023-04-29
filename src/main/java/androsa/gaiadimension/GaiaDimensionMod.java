@@ -116,22 +116,18 @@ public class GaiaDimensionMod {
         DataGenerator generator = event.getGenerator();
         PackOutput output = generator.getPackOutput();
         CompletableFuture<HolderLookup.Provider> provider = event.getLookupProvider();
-        GaiaBlockTags blocktags = new GaiaBlockTags(generator, event.getExistingFileHelper());
+        GaiaBlockTags blocktags = new GaiaBlockTags(output, provider, event.getExistingFileHelper());
 
-        if (event.includeClient()) {
-            generator.addProvider(new GaiaBlockStates(generator, event.getExistingFileHelper()));
-            generator.addProvider(new GaiaItemModels(generator, event.getExistingFileHelper()));
-        }
-        if (event.includeServer()) {
-            generator.addProvider(new GaiaWorldGen(generator));
-            generator.addProvider(new GaiaLootTables(generator));
-            generator.addProvider(new GaiaRecipes(generator));
-            generator.addProvider(new GaiaAdvancements(generator, event.getExistingFileHelper()));
-            generator.addProvider(blocktags);
-            generator.addProvider(new GaiaItemTags(generator, blocktags, event.getExistingFileHelper()));
-            generator.addProvider(new GaiaFluidTags(generator, event.getExistingFileHelper()));
-            generator.addProvider(new GaiaBiomeTags(generator, event.getExistingFileHelper()));
-            GaiaDatapackRegistries.generate(generator, output, provider);
-        }
+        generator.addProvider(event.includeClient(), new GaiaBlockStates(output, event.getExistingFileHelper()));
+        generator.addProvider(event.includeClient(), new GaiaItemModels(output, event.getExistingFileHelper()));
+        generator.addProvider(event.includeServer(), new GaiaLootTables(output));
+        generator.addProvider(event.includeServer(), new GaiaRecipes(output));
+        generator.addProvider(event.includeServer(), new GaiaAdvancements(output, provider, event.getExistingFileHelper()));
+        generator.addProvider(event.includeServer(), blocktags);
+        generator.addProvider(event.includeServer(), new GaiaItemTags(output, provider, blocktags.contentsGetter(), event.getExistingFileHelper()));
+        generator.addProvider(event.includeServer(), new GaiaFluidTags(output, provider, event.getExistingFileHelper()));
+        generator.addProvider(event.includeServer(), new GaiaBiomeTags(output, provider, event.getExistingFileHelper()));
+        GaiaDatapackRegistries.generate(event.includeServer(), generator, output, provider);
+        generator.addProvider(new GaiaWorldGen(generator));
     }
 }

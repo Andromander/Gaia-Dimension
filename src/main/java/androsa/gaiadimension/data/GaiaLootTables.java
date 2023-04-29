@@ -3,16 +3,10 @@ package androsa.gaiadimension.data;
 import androsa.gaiadimension.GaiaDimensionMod;
 import androsa.gaiadimension.data.provider.GaiaBlockLootTableProvider;
 import androsa.gaiadimension.data.provider.GaiaEntityLootTableProvider;
-import androsa.gaiadimension.registry.GaiaChestTables;
-import androsa.gaiadimension.registry.ModBlocks;
-import androsa.gaiadimension.registry.ModEntities;
-import androsa.gaiadimension.registry.ModItems;
-import com.google.common.collect.ImmutableList;
-import com.mojang.datafixers.util.Pair;
-import net.minecraft.data.DataGenerator;
-import net.minecraft.data.loot.BlockLoot;
-import net.minecraft.data.loot.ChestLoot;
+import androsa.gaiadimension.registry.*;
+import net.minecraft.data.PackOutput;
 import net.minecraft.data.loot.LootTableProvider;
+import net.minecraft.data.loot.LootTableSubProvider;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.Items;
@@ -22,7 +16,6 @@ import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.ValidationContext;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
-import net.minecraft.world.level.storage.loot.parameters.LootContextParamSet;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
 import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
@@ -31,26 +24,20 @@ import net.minecraftforge.registries.ForgeRegistries;
 import java.util.List;
 import java.util.Map;
 import java.util.function.BiConsumer;
-import java.util.function.Consumer;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class GaiaLootTables extends LootTableProvider {
 
     public static final float[] leaf_chances = new float[]{0.05F, 0.0625F, 0.083333336F, 0.1F};
 
-    public GaiaLootTables(DataGenerator generator) {
-        super(generator);
-    }
-
-    @Override
-    public String getName() {
-        return "Gaia Dimension Loot Tables";
-    }
-
-    @Override
-    protected List<Pair<Supplier<Consumer<BiConsumer<ResourceLocation, LootTable.Builder>>>, LootContextParamSet>> getTables() {
-        return ImmutableList.of(Pair.of(Blocks::new, LootContextParamSets.BLOCK), Pair.of(Entities::new, LootContextParamSets.ENTITY), Pair.of(Chests::new, LootContextParamSets.CHEST));
+    public GaiaLootTables(PackOutput output) {
+        super(output, GaiaBuiltinTables.builtin(), List.of(
+                new LootTableProvider.SubProviderEntry(Blocks::new, LootContextParamSets.BLOCK),
+                new LootTableProvider.SubProviderEntry(Entities::new, LootContextParamSets.ENTITY),
+                new LootTableProvider.SubProviderEntry(Chests::new, LootContextParamSets.CHEST)
+        ));
     }
 
     @Override
@@ -59,16 +46,16 @@ public class GaiaLootTables extends LootTableProvider {
 
     public static class Blocks extends GaiaBlockLootTableProvider {
         @Override
-        protected void addTables() {
+        protected void generate() {
             //Utility Blocks
             dropSelf(ModBlocks.keystone_block);
             dropSelf(ModBlocks.pyrite_torch);
             dropSelf(ModBlocks.agate_crafting_table);
-            dropTable(ModBlocks.crude_storage_crate, GaiaBlockLootTableProvider::smallCrate);
-            dropTable(ModBlocks.mega_storage_crate, GaiaBlockLootTableProvider::largeCrate);
-            dropTable(ModBlocks.gaia_stone_furnace, GaiaBlockLootTableProvider::withName);
-            dropTable(ModBlocks.restructurer, GaiaBlockLootTableProvider::withName);
-            dropTable(ModBlocks.purifier, GaiaBlockLootTableProvider::withName);
+            dropTable(ModBlocks.crude_storage_crate, smallCrate(ModBlocks.crude_storage_crate.get()));
+            dropTable(ModBlocks.mega_storage_crate, largeCrate(ModBlocks.mega_storage_crate.get()));
+            dropTable(ModBlocks.gaia_stone_furnace, withName(ModBlocks.gaia_stone_furnace.get()));
+            dropTable(ModBlocks.restructurer, withName(ModBlocks.restructurer.get()));
+            dropTable(ModBlocks.purifier, withName(ModBlocks.purifier.get()));
 
             //Natural Blocks
             dropSelf(ModBlocks.heavy_soil);
@@ -87,13 +74,13 @@ public class GaiaLootTables extends LootTableProvider {
             dropSelf(ModBlocks.pink_sludge_block);
 
             //Plants
-            dropTable(ModBlocks.crystal_growth, GaiaBlockLootTableProvider::withShards);
-            dropTable(ModBlocks.crystal_growth_red, GaiaBlockLootTableProvider::withShards);
-            dropTable(ModBlocks.crystal_growth_black, GaiaBlockLootTableProvider::withShards);
-            dropTable(ModBlocks.crystal_growth_seared, GaiaBlockLootTableProvider::withShards);
-            dropTable(ModBlocks.crystal_growth_mutant, GaiaBlockLootTableProvider::withShards);
-            dropTable(ModBlocks.crystal_growth_aura, GaiaBlockLootTableProvider::withShards);
-            dropTable(ModBlocks.golden_grass, BlockLoot::createShearsOnlyDrop);
+            dropTable(ModBlocks.crystal_growth, withShards(ModBlocks.crystal_growth.get()));
+            dropTable(ModBlocks.crystal_growth_red, withShards(ModBlocks.crystal_growth_red.get()));
+            dropTable(ModBlocks.crystal_growth_black, withShards(ModBlocks.crystal_growth_black.get()));
+            dropTable(ModBlocks.crystal_growth_seared, withShards(ModBlocks.crystal_growth_seared.get()));
+            dropTable(ModBlocks.crystal_growth_mutant, withShards(ModBlocks.crystal_growth_mutant.get()));
+            dropTable(ModBlocks.crystal_growth_aura, withShards(ModBlocks.crystal_growth_aura.get()));
+            dropTable(ModBlocks.golden_grass, createShearsOnlyDrop(ModBlocks.golden_grass.get()));
             dropTable(ModBlocks.tall_golden_grass, (block) -> GaiaBlockLootTableProvider.doubleShearsOnly(block, ModBlocks.golden_grass.get()));
             dropSelf(ModBlocks.thiscus);
             dropSelf(ModBlocks.ouzium);
@@ -113,9 +100,9 @@ public class GaiaLootTables extends LootTableProvider {
             dropSelf(ModBlocks.elder_imklia);
             dropSelf(ModBlocks.gold_orb_tucher);
             dropSelf(ModBlocks.missingno_fungus);
-            dropTable(ModBlocks.golden_vine, BlockLoot::createShearsOnlyDrop);
+            dropTable(ModBlocks.golden_vine, createShearsOnlyDrop(ModBlocks.golden_vine.get()));
             dropSelf(ModBlocks.sombre_cacti);
-            dropTable(ModBlocks.sombre_shrub, BlockLoot::createShearsOnlyDrop);
+            dropTable(ModBlocks.sombre_shrub, createShearsOnlyDrop(ModBlocks.sombre_shrub.get()));
 
             //Tree Blocks
             dropSelf(ModBlocks.pink_agate_sapling);
@@ -388,13 +375,9 @@ public class GaiaLootTables extends LootTableProvider {
     }
 
     public static class Entities extends GaiaEntityLootTableProvider {
-        public static final ResourceLocation PINK_SAPPER_TABLE = new ResourceLocation(GaiaDimensionMod.MODID, "entities/common_sapper");
-        public static final ResourceLocation BLUE_SAPPER_TABLE = new ResourceLocation(GaiaDimensionMod.MODID, "entities/chilled_sapper");
-        public static final ResourceLocation GREEN_SAPPER_TABLE = new ResourceLocation(GaiaDimensionMod.MODID, "entities/nutrient_sapper");
-        public static final ResourceLocation PURPLE_SAPPER_TABLE = new ResourceLocation(GaiaDimensionMod.MODID, "entities/mystified_sapper");
 
         @Override
-        protected void addTables() {
+        public void generate() {
             addTable(ModEntities.AGATE_GOLEM, blankTable());
             addTable(ModEntities.ANCIENT_LAGRAHK, blankTable());
             addTable(ModEntities.ARCHAIC_WARRIOR, warriorTable());
@@ -404,10 +387,10 @@ public class GaiaLootTables extends LootTableProvider {
             addTable(ModEntities.CORRUPT_SAPPER, singleDropTable(ModItems.goldstone_residue, 0.0F, 2.0F));
             addTable(ModEntities.CRYSTAL_GOLEM, blankTable());
             addTable(ModEntities.GROWTH_SAPPER, blankTable());
-            add(PINK_SAPPER_TABLE, sapperTable(ModItems.pink_geode));
-            add(BLUE_SAPPER_TABLE, sapperTable(ModItems.blue_geode));
-            add(GREEN_SAPPER_TABLE, sapperTable(ModItems.green_geode));
-            add(PURPLE_SAPPER_TABLE, sapperTable(ModItems.purple_geode));
+            addTable(ModEntities.GROWTH_SAPPER, GaiaBuiltinTables.PINK_SAPPER_TABLE, sapperTable(ModItems.pink_geode));
+            addTable(ModEntities.GROWTH_SAPPER, GaiaBuiltinTables.BLUE_SAPPER_TABLE, sapperTable(ModItems.blue_geode));
+            addTable(ModEntities.GROWTH_SAPPER, GaiaBuiltinTables.GREEN_SAPPER_TABLE, sapperTable(ModItems.green_geode));
+            addTable(ModEntities.GROWTH_SAPPER, GaiaBuiltinTables.PURPLE_SAPPER_TABLE, sapperTable(ModItems.purple_geode));
             addTable(ModEntities.HOWLITE_WOLF, blankTable());
             addTable(ModEntities.LESSER_SHOCKSHOOTER, singleDropTable(ModItems.crystallized_lapis_lazuli, 0.0F, 2.0F));
             addTable(ModEntities.LESSER_SPITFIRE, singleDropTable(ModItems.crystallized_redstone, 0.0F, 2.0F));
@@ -433,16 +416,15 @@ public class GaiaLootTables extends LootTableProvider {
         }
 
         @Override
-        protected Iterable<EntityType<?>> getKnownEntities() {
-            return ForgeRegistries.ENTITIES.getValues().stream()
-                    .filter(entity -> GaiaDimensionMod.MODID.equals(entity.getRegistryName().getNamespace()))
-                    .collect(Collectors.toList());
+        protected Stream<EntityType<?>> getKnownEntityTypes() {
+            return ForgeRegistries.ENTITY_TYPES.getValues().stream()
+                    .filter(entity -> GaiaDimensionMod.MODID.equals(ForgeRegistries.ENTITY_TYPES.getKey(entity).getNamespace()));
         }
     }
 
-    public static class Chests extends ChestLoot {
+    public static class Chests implements LootTableSubProvider {
         @Override
-        public void accept(BiConsumer<ResourceLocation, LootTable.Builder> consumer) {
+        public void generate(BiConsumer<ResourceLocation, LootTable.Builder> consumer) {
             consumer.accept(GaiaChestTables.CHESTS_MINITOWER_AMETHYST, LootTable.lootTable()
                     .withPool(LootPool.lootPool()
                             .setRolls(UniformGenerator.between(2.0F, 8.0F))

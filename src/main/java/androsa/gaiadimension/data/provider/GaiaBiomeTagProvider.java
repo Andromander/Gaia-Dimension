@@ -1,7 +1,7 @@
 package androsa.gaiadimension.data.provider;
 
-import androsa.gaiadimension.GaiaDimensionMod;
-import net.minecraft.data.DataGenerator;
+import net.minecraft.core.HolderLookup;
+import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.BiomeTagsProvider;
 import net.minecraft.data.tags.TagsProvider;
 import net.minecraft.resources.ResourceKey;
@@ -9,10 +9,12 @@ import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraftforge.common.data.ExistingFileHelper;
 
+import java.util.concurrent.CompletableFuture;
+
 public class GaiaBiomeTagProvider extends BiomeTagsProvider {
 
-    public GaiaBiomeTagProvider(DataGenerator generator, ExistingFileHelper helper) {
-        super(generator, GaiaDimensionMod.MODID, helper);
+    public GaiaBiomeTagProvider(PackOutput generator, CompletableFuture<HolderLookup.Provider> provider, String modid, ExistingFileHelper helper) {
+        super(generator, provider, modid, helper);
     }
 
     protected void addTag(TagKey<Biome> tag, ResourceKey<Biome>... keys) {

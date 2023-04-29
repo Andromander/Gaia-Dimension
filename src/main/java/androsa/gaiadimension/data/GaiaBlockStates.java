@@ -3,15 +3,15 @@ package androsa.gaiadimension.data;
 import androsa.gaiadimension.GaiaDimensionMod;
 import androsa.gaiadimension.data.provider.GaiaBlockStateProvider;
 import androsa.gaiadimension.registry.ModBlocks;
-import net.minecraft.data.DataGenerator;
+import net.minecraft.data.PackOutput;
 import net.minecraftforge.common.data.ExistingFileHelper;
 
 import javax.annotation.Nonnull;
 
 public class GaiaBlockStates extends GaiaBlockStateProvider {
 
-    public GaiaBlockStates(DataGenerator generator, ExistingFileHelper helper) {
-        super(generator, GaiaDimensionMod.MODID, helper);
+    public GaiaBlockStates(PackOutput output, ExistingFileHelper helper) {
+        super(output, GaiaDimensionMod.MODID, helper);
     }
 
     @Nonnull

@@ -1,32 +1,33 @@
 package androsa.gaiadimension.data.provider;
 
-import androsa.gaiadimension.GaiaDimensionMod;
 import com.google.common.collect.ImmutableList;
-import net.minecraft.data.DataGenerator;
-import net.minecraft.data.tags.BlockTagsProvider;
+import net.minecraft.core.HolderLookup;
+import net.minecraft.data.PackOutput;
+import net.minecraft.data.tags.IntrinsicHolderTagsProvider;
 import net.minecraft.data.tags.ItemTagsProvider;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.common.data.ExistingFileHelper;
 
+import java.util.concurrent.CompletableFuture;
 import java.util.function.Supplier;
 
-public class GaiaItemTagsProvider extends ItemTagsProvider {
+public abstract class GaiaItemTagsProvider extends ItemTagsProvider {
 
-    public GaiaItemTagsProvider(DataGenerator generatorIn, BlockTagsProvider provider, ExistingFileHelper existingFileHelper) {
-        super(generatorIn, provider, GaiaDimensionMod.MODID, existingFileHelper);
+    public GaiaItemTagsProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> provider, CompletableFuture<TagLookup<Block>> blocktags, String modid, ExistingFileHelper existingFileHelper) {
+        super(output, provider, blocktags, modid, existingFileHelper);
     }
 
     protected void addTagFromBlock(TagKey<Item> tag, Block... blocks) {
-        TagAppender<Item> builder = this.tag(tag);
+        IntrinsicHolderTagsProvider.IntrinsicTagAppender<Item> builder = this.tag(tag);
         for (Block block : blocks) {
             builder.add(block.asItem());
         }
     }
 
     protected void addTag(TagKey<Item> tag, ImmutableList<Supplier<Item>> list) {
-        TagAppender<Item> builder = this.tag(tag);
+        IntrinsicHolderTagsProvider.IntrinsicTagAppender<Item> builder = this.tag(tag);
         for (Supplier<Item> item : list) {
             builder.add(item.get());
         }

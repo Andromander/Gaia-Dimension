@@ -1,19 +1,20 @@
 package androsa.gaiadimension.data.provider;
 
 import androsa.gaiadimension.GaiaDimensionMod;
-import net.minecraft.data.DataGenerator;
+import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.FlowerPotBlock;
 import net.minecraftforge.client.model.generators.BlockModelBuilder;
 import net.minecraftforge.client.model.generators.BlockModelProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
+import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
 public abstract class GaiaBlockModelProvider extends BlockModelProvider {
 
-    public GaiaBlockModelProvider(DataGenerator generator, ExistingFileHelper helper) {
-        super(generator, GaiaDimensionMod.MODID, helper);
+    public GaiaBlockModelProvider(PackOutput output, ExistingFileHelper helper) {
+        super(output, GaiaDimensionMod.MODID, helper);
     }
 
     public BlockModelBuilder grass(RegistryObject<Block> block, ResourceLocation top, ResourceLocation bottom, ResourceLocation side, ResourceLocation overlay) {
@@ -26,7 +27,7 @@ public abstract class GaiaBlockModelProvider extends BlockModelProvider {
 
     public BlockModelBuilder flowerPot(RegistryObject<FlowerPotBlock> plant) {
         return withExistingParent("potted_" + plant.getId().getPath(), mcLoc("block/flower_pot_cross"))
-                .texture("plant", "block/" + plant.get().getContent().getRegistryName().getPath());
+                .texture("plant", "block/" + ForgeRegistries.BLOCKS.getKey(plant.get().getContent()).getPath());
     }
 
     public BlockModelBuilder basicLayered(RegistryObject<Block> block, ResourceLocation bottom, ResourceLocation top) {

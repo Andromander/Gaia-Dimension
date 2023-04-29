@@ -21,7 +21,7 @@ public class GaiaDatapackRegistries extends DatapackBuiltinEntriesProvider {
         super(output, provider, REGISTRIES, Set.of("minecraft", GaiaDimensionMod.MODID));
     }
 
-    public static void generate(DataGenerator generator, PackOutput output, CompletableFuture<HolderLookup.Provider> provider) {
-        generator.addProvider(false, new GaiaDatapackRegistries(output, provider));
+    public static void generate(boolean server, DataGenerator generator, PackOutput output, CompletableFuture<HolderLookup.Provider> provider) {
+        generator.addProvider(server, new GaiaDatapackRegistries(output, provider));
     }
 }

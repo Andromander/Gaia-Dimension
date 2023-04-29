@@ -1,20 +1,23 @@
 package androsa.gaiadimension.data;
 
+import androsa.gaiadimension.GaiaDimensionMod;
 import androsa.gaiadimension.data.provider.GaiaItemTagsProvider;
 import androsa.gaiadimension.registry.GaiaTags;
 import androsa.gaiadimension.registry.ModBlocks;
 import androsa.gaiadimension.registry.ModItems;
 import com.google.common.collect.ImmutableList;
-import net.minecraft.data.DataGenerator;
-import net.minecraft.data.tags.BlockTagsProvider;
+import net.minecraft.core.HolderLookup;
+import net.minecraft.data.PackOutput;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.data.ExistingFileHelper;
 
+import java.util.concurrent.CompletableFuture;
 import java.util.function.Supplier;
 
 public class GaiaItemTags extends GaiaItemTagsProvider {
@@ -43,12 +46,12 @@ public class GaiaItemTags extends GaiaItemTagsProvider {
             GaiaTags.Items.STORAGE_BLOCKS_DIOPSIDE, GaiaTags.Items.STORAGE_BLOCKS_CHALCEDONY
     );
 
-    public GaiaItemTags(DataGenerator generatorIn, BlockTagsProvider provider, ExistingFileHelper existingFileHelper) {
-        super(generatorIn, provider, existingFileHelper);
+    public GaiaItemTags(PackOutput output, CompletableFuture<HolderLookup.Provider> provider, CompletableFuture<TagLookup<Block>> blocktags, ExistingFileHelper existingFileHelper) {
+        super(output, provider, blocktags, GaiaDimensionMod.MODID, existingFileHelper);
     }
 
     @Override
-    protected void addTags() {
+    protected void addTags(HolderLookup.Provider provider) {
         addTagFromBlock(GaiaTags.Items.SHULKER_BOXES,
                 Blocks.SHULKER_BOX, Blocks.BLACK_SHULKER_BOX, Blocks.BLUE_SHULKER_BOX, Blocks.BROWN_SHULKER_BOX, Blocks.CYAN_SHULKER_BOX, Blocks.GRAY_SHULKER_BOX,
                 Blocks.GREEN_SHULKER_BOX, Blocks.LIGHT_BLUE_SHULKER_BOX, Blocks.LIGHT_GRAY_SHULKER_BOX, Blocks.LIME_SHULKER_BOX, Blocks.MAGENTA_SHULKER_BOX,
@@ -58,7 +61,6 @@ public class GaiaItemTags extends GaiaItemTagsProvider {
         addTag(ItemTags.BEACON_PAYMENT_ITEMS, BEACON_PAYMENTS);
         copy(BlockTags.LEAVES, ItemTags.LEAVES);
         copy(BlockTags.LOGS, ItemTags.LOGS);
-        copy(BlockTags.NON_FLAMMABLE_WOOD, ItemTags.NON_FLAMMABLE_WOOD);
         copy(BlockTags.SAPLINGS, ItemTags.SAPLINGS);
         copy(BlockTags.SLABS, ItemTags.SLABS);
         copy(BlockTags.STAIRS, ItemTags.STAIRS);

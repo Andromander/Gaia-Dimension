@@ -1,21 +1,25 @@
 package androsa.gaiadimension.data;
 
+import androsa.gaiadimension.GaiaDimensionMod;
 import androsa.gaiadimension.data.provider.GaiaFluidTagsProvider;
 import androsa.gaiadimension.registry.GaiaTags;
 import androsa.gaiadimension.registry.ModFluids;
 import com.google.common.collect.ImmutableList;
-import net.minecraft.data.DataGenerator;
+import net.minecraft.core.HolderLookup;
+import net.minecraft.data.PackOutput;
 import net.minecraft.tags.FluidTags;
 import net.minecraftforge.common.data.ExistingFileHelper;
 
+import java.util.concurrent.CompletableFuture;
+
 public class GaiaFluidTags extends GaiaFluidTagsProvider {
 
-    public GaiaFluidTags(DataGenerator generatorIn, ExistingFileHelper existingFileHelper) {
-        super(generatorIn, existingFileHelper);
+    public GaiaFluidTags(PackOutput output, CompletableFuture<HolderLookup.Provider> provider, ExistingFileHelper existingFileHelper) {
+        super(output, provider, GaiaDimensionMod.MODID, existingFileHelper);
     }
 
     @Override
-    protected void addTags() {
+    protected void addTags(HolderLookup.Provider provider) {
         addTag(GaiaTags.Fluids.MINERAL_WATER, ImmutableList.of(ModFluids.mineral_water_still, ModFluids.mineral_water_flow));
         addTag(GaiaTags.Fluids.SUPERHOT_MAGMA, ImmutableList.of(ModFluids.superhot_magma_still, ModFluids.superhot_magma_flow));
         addTag(GaiaTags.Fluids.SWEET_MUCK, ImmutableList.of(ModFluids.sweet_muck_still, ModFluids.sweet_muck_flow));

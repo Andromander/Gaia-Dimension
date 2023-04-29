@@ -1,15 +1,18 @@
 package androsa.gaiadimension.data;
 
+import androsa.gaiadimension.GaiaDimensionMod;
 import androsa.gaiadimension.data.provider.GaiaBlockTagsProvider;
 import androsa.gaiadimension.registry.GaiaTags;
 import androsa.gaiadimension.registry.ModBlocks;
 import com.google.common.collect.ImmutableList;
-import net.minecraft.data.DataGenerator;
+import net.minecraft.core.HolderLookup;
+import net.minecraft.data.PackOutput;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.data.ExistingFileHelper;
 
+import java.util.concurrent.CompletableFuture;
 import java.util.function.Supplier;
 
 public class GaiaBlockTags extends GaiaBlockTagsProvider {
@@ -181,12 +184,12 @@ public class GaiaBlockTags extends GaiaBlockTagsProvider {
             ModBlocks.nexustone, ModBlocks.opal_ore_white, ModBlocks.precious_rock
     );
 
-    public GaiaBlockTags(DataGenerator generatorIn, ExistingFileHelper existingFileHelper) {
-        super(generatorIn, existingFileHelper);
+    public GaiaBlockTags(PackOutput output, CompletableFuture<HolderLookup.Provider> provider, ExistingFileHelper existingFileHelper) {
+        super(output, provider, GaiaDimensionMod.MODID, existingFileHelper);
     }
 
     @Override
-    protected void addTags() {
+    protected void addTags(HolderLookup.Provider provider) {
         addTag(BlockTags.BEACON_BASE_BLOCKS, BEACON_BASES);
         tag(BlockTags.CLIMBABLE).add(ModBlocks.golden_vine.get());
         addTag(BlockTags.DIRT, DIRT);
@@ -195,9 +198,6 @@ public class GaiaBlockTags extends GaiaBlockTagsProvider {
         addTag(BlockTags.IMPERMEABLE, IMPERMEABLE);
         addTag(BlockTags.LEAVES, LEAVES);
         tag(BlockTags.LOGS).addTags(
-                GaiaTags.Blocks.PINK_AGATE_LOGS, GaiaTags.Blocks.BLUE_AGATE_LOGS, GaiaTags.Blocks.GREEN_AGATE_LOGS, GaiaTags.Blocks.PURPLE_AGATE_LOGS,
-                GaiaTags.Blocks.FOSSILIZED_LOGS, GaiaTags.Blocks.CORRUPTED_LOGS, GaiaTags.Blocks.BURNT_LOGS, GaiaTags.Blocks.BURNING_LOGS, GaiaTags.Blocks.AURA_LOGS, GaiaTags.Blocks.GOLDEN_LOGS);
-        tag(BlockTags.NON_FLAMMABLE_WOOD).addTags(
                 GaiaTags.Blocks.PINK_AGATE_LOGS, GaiaTags.Blocks.BLUE_AGATE_LOGS, GaiaTags.Blocks.GREEN_AGATE_LOGS, GaiaTags.Blocks.PURPLE_AGATE_LOGS,
                 GaiaTags.Blocks.FOSSILIZED_LOGS, GaiaTags.Blocks.CORRUPTED_LOGS, GaiaTags.Blocks.BURNT_LOGS, GaiaTags.Blocks.BURNING_LOGS, GaiaTags.Blocks.AURA_LOGS, GaiaTags.Blocks.GOLDEN_LOGS);
         tag(BlockTags.PORTALS).add(ModBlocks.gaia_portal.get());

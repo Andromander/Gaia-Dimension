@@ -5,11 +5,8 @@ import androsa.gaiadimension.data.provider.GaiaRecipeProvider;
 import androsa.gaiadimension.registry.GaiaTags;
 import androsa.gaiadimension.registry.ModBlocks;
 import androsa.gaiadimension.registry.ModItems;
-import net.minecraft.data.DataGenerator;
-import net.minecraft.data.recipes.FinishedRecipe;
-import net.minecraft.data.recipes.ShapedRecipeBuilder;
-import net.minecraft.data.recipes.ShapelessRecipeBuilder;
-import net.minecraft.data.recipes.SimpleCookingRecipeBuilder;
+import net.minecraft.data.PackOutput;
+import net.minecraft.data.recipes.*;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
@@ -18,12 +15,12 @@ import java.util.function.Consumer;
 
 public class GaiaRecipes extends GaiaRecipeProvider {
 
-    public GaiaRecipes(DataGenerator generator) {
-        super(generator);
+    public GaiaRecipes(PackOutput output) {
+        super(output);
     }
 
     @Override
-    protected void buildCraftingRecipes(Consumer<FinishedRecipe> consumer) {
+    protected void buildRecipes(Consumer<FinishedRecipe> consumer) {
         planksRecipe(ModBlocks.pink_agate_planks, GaiaTags.Items.PINK_AGATE_LOGS).save(consumer, locWood("pink_agate_planks"));
         planksRecipe(ModBlocks.blue_agate_planks, GaiaTags.Items.BLUE_AGATE_LOGS).save(consumer, locWood("blue_agate_planks"));
         planksRecipe(ModBlocks.green_agate_planks, GaiaTags.Items.GREEN_AGATE_LOGS).save(consumer, locWood("green_agate_planks"));
@@ -221,7 +218,7 @@ public class GaiaRecipes extends GaiaRecipeProvider {
         slabRecipe(ModBlocks.malachite_crusted_brick_slab, ModBlocks.malachite_crusted_bricks).save(consumer, loc("malachite_crusted_brick_slab"));
         slabRecipe(ModBlocks.malachite_floor_slab, ModBlocks.malachite_floor_tiles).save(consumer, loc("malachite_floor_slab"));
 
-        ShapedRecipeBuilder.shaped(ModItems.agate_arrow.get(), 4)
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ModItems.agate_arrow.get(), 4)
                 .pattern("#")
                 .pattern("/")
                 .pattern("%")
@@ -231,17 +228,17 @@ public class GaiaRecipes extends GaiaRecipeProvider {
                 .unlockedBy("has_pebble", has(ModItems.sturdy_pebble.get()))
                 .unlockedBy("has_fabric", has(ModItems.agate_fabric.get()))
                 .save(consumer, loc("agate_arrow"));
-        ShapedRecipeBuilder.shaped(ModItems.agate_cup.get(), 8)
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.agate_cup.get(), 8)
                 .pattern("# #")
                 .pattern(" # ")
                 .define('#', GaiaTags.Items.TILES)
                 .unlockedBy("has_planks", has(GaiaTags.Items.TILES))
                 .save(consumer, loc("agate_cup"));
-        ShapelessRecipeBuilder.shapeless(ModItems.agate_stick.get(), 4)
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.agate_stick.get(), 4)
                 .requires(GaiaTags.Items.TILES)
                 .unlockedBy("has_planks", has(GaiaTags.Items.TILES))
                 .save(consumer, loc("agate_stick"));
-        ShapedRecipeBuilder.shaped(ModBlocks.bolstered_bricks.get(), 2)
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ModBlocks.bolstered_bricks.get(), 2)
                 .pattern("%#")
                 .pattern("#%")
                 .define('#', ModBlocks.reinforced_bricks.get())
@@ -249,7 +246,7 @@ public class GaiaRecipes extends GaiaRecipeProvider {
                 .unlockedBy("has_brick", has(ModBlocks.reinforced_bricks.get()))
                 .unlockedBy("has_goldstone", has(ModBlocks.goldstone_block.get()))
                 .save(consumer, loc("bolstered_bricks"));
-        ShapedRecipeBuilder.shaped(ModBlocks.bolstered_bricks.get(), 2)
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ModBlocks.bolstered_bricks.get(), 2)
                 .pattern("#%")
                 .pattern("%#")
                 .define('#', ModBlocks.reinforced_bricks.get())
@@ -257,7 +254,7 @@ public class GaiaRecipes extends GaiaRecipeProvider {
                 .unlockedBy("has_brick", has(ModBlocks.reinforced_bricks.get()))
                 .unlockedBy("has_goldstone", has(ModBlocks.goldstone_block.get()))
                 .save(consumer, loc("bolstered_bricks_2"));
-        ShapedRecipeBuilder.shaped(ModBlocks.corrupt_grass.get())
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ModBlocks.corrupt_grass.get())
                 .pattern("///")
                 .pattern("/#/")
                 .pattern("///")
@@ -265,7 +262,7 @@ public class GaiaRecipes extends GaiaRecipeProvider {
                 .define('#', ModBlocks.glitter_grass.get())
                 .unlockedBy("has_residue", has(ModItems.goldstone_residue.get()))
                 .save(consumer, loc("corrupt_grass"));
-        ShapedRecipeBuilder.shaped(ModBlocks.corrupt_soil.get())
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ModBlocks.corrupt_soil.get())
                 .pattern("///")
                 .pattern("/#/")
                 .pattern("///")
@@ -273,7 +270,7 @@ public class GaiaRecipes extends GaiaRecipeProvider {
                 .define('#', ModBlocks.heavy_soil.get())
                 .unlockedBy("has_residue", has(ModItems.goldstone_residue.get()))
                 .save(consumer, loc("corrupt_soil"));
-        ShapedRecipeBuilder.shaped(ModBlocks.corrupted_sapling.get())
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ModBlocks.corrupted_sapling.get())
                 .pattern(" / ")
                 .pattern("/#/")
                 .pattern(" / ")
@@ -281,13 +278,13 @@ public class GaiaRecipes extends GaiaRecipeProvider {
                 .define('#', Ingredient.of(ModBlocks.pink_agate_sapling.get(), ModBlocks.blue_agate_sapling.get(), ModBlocks.green_agate_sapling.get(), ModBlocks.purple_agate_sapling.get()))
                 .unlockedBy("has_residue", has(ModItems.goldstone_residue.get()))
                 .save(consumer, loc("corrupted_sapling"));
-        ShapedRecipeBuilder.shaped(ModBlocks.agate_crafting_table.get())
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ModBlocks.agate_crafting_table.get())
                 .pattern("##")
                 .pattern("##")
                 .define('#', GaiaTags.Items.TILES)
                 .unlockedBy("has_planks", has(GaiaTags.Items.TILES))
                 .save(consumer, loc("crafting_table"));
-        ShapelessRecipeBuilder.shapeless(ModItems.pearly_geode_elixir.get())
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, ModItems.pearly_geode_elixir.get())
                 .requires(ModItems.pink_geode_slice.get())
                 .requires(ModItems.blue_geode_slice.get())
                 .requires(ModItems.green_geode_slice.get())
@@ -296,30 +293,30 @@ public class GaiaRecipes extends GaiaRecipeProvider {
                 .requires(ModItems.agate_cup.get())
                 .unlockedBy("has_cup", has(ModItems.agate_cup.get()))
                 .save(consumer, loc("elixir_drink"));
-        ShapelessRecipeBuilder.shapeless(ModBlocks.frail_glitter_block.get(), 4)
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, ModBlocks.frail_glitter_block.get(), 4)
                 .requires(ModBlocks.thick_glitter_block.get())
                 .unlockedBy("has_glitter", has(ModBlocks.frail_glitter_block.get()))
                 .save(consumer, loc("frail_glitter_block"));
-        ShapedRecipeBuilder.shaped(ModBlocks.gaia_stone_furnace.get())
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ModBlocks.gaia_stone_furnace.get())
                 .pattern("###")
                 .pattern("# #")
                 .pattern("###")
                 .define('#', ModBlocks.gaia_cobblestone.get())
                 .unlockedBy("has_stone", has(ModBlocks.gaia_stone.get()))
                 .save(consumer, loc("furnace"));
-        ShapelessRecipeBuilder.shapeless(ModItems.gemstone_pouch.get())
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.TOOLS, ModItems.gemstone_pouch.get())
                 .requires(ModItems.agate_fabric.get())
                 .requires(ModItems.agate_fabric.get())
                 .requires(ModItems.agate_fabric.get())
                 .requires(ModItems.fine_thread.get())
                 .unlockedBy("has_fabric", has(ModItems.agate_fabric.get()))
                 .save(consumer, loc("gemstone_pouch"));
-        ShapelessRecipeBuilder.shapeless(ModItems.glint_and_gold.get())
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.TOOLS, ModItems.glint_and_gold.get())
                 .requires(Items.DIAMOND)
                 .requires(Items.GOLD_INGOT)
                 .unlockedBy("has_diamond", has(Items.DIAMOND))
                 .save(consumer, loc("glint_and_gold"));
-        ShapedRecipeBuilder.shaped(ModBlocks.keystone_block.get())
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ModBlocks.keystone_block.get())
                 .pattern("*%*")
                 .pattern("%#%")
                 .pattern("*%*")
@@ -329,7 +326,7 @@ public class GaiaRecipes extends GaiaRecipeProvider {
                 .unlockedBy("has_lapis", has(ModItems.crystallized_lapis_lazuli.get()))
                 .unlockedBy("has_redstone", has(ModItems.crystallized_redstone.get()))
                 .save(consumer, loc("keystone_block"));
-        ShapedRecipeBuilder.shaped(ModBlocks.mega_storage_crate.get())
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ModBlocks.mega_storage_crate.get())
                 .pattern("*%*")
                 .pattern("%#%")
                 .pattern("*%*")
@@ -338,7 +335,7 @@ public class GaiaRecipes extends GaiaRecipeProvider {
                 .define('#', ModBlocks.crude_storage_crate.get())
                 .unlockedBy("has_crate", has(ModBlocks.crude_storage_crate.get()))
                 .save(consumer, loc("large_chest"));
-        ShapedRecipeBuilder.shaped(ModBlocks.mega_storage_crate.get())
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ModBlocks.mega_storage_crate.get())
                 .pattern("*%*")
                 .pattern("%#%")
                 .pattern("*%*")
@@ -347,7 +344,7 @@ public class GaiaRecipes extends GaiaRecipeProvider {
                 .define('#', ModBlocks.crude_storage_crate.get())
                 .unlockedBy("has_crate", has(ModBlocks.crude_storage_crate.get()))
                 .save(consumer, loc("large_chest_2"));
-        ShapedRecipeBuilder.shaped(ModItems.old_bow.get())
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ModItems.old_bow.get())
                 .pattern("#/ ")
                 .pattern("# /")
                 .pattern("#/ ")
@@ -355,7 +352,7 @@ public class GaiaRecipes extends GaiaRecipeProvider {
                 .define('/', ModItems.shiny_bone.get())
                 .unlockedBy("has_bone", has(ModItems.shiny_bone.get()))
                 .save(consumer, locTools("old_bow"));
-        ShapedRecipeBuilder.shaped(ModBlocks.purifier.get())
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ModBlocks.purifier.get())
                 .pattern("///")
                 .pattern("/#/")
                 .pattern("///")
@@ -363,14 +360,14 @@ public class GaiaRecipes extends GaiaRecipeProvider {
                 .define('#', ModBlocks.restructurer.get())
                 .unlockedBy("has_bricks", has(ModBlocks.reinforced_bricks.get()))
                 .save(consumer, loc("purifier"));
-        ShapedRecipeBuilder.shaped(ModItems.PYRITE_TORCH.get(), 4)
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ModItems.PYRITE_TORCH.get(), 4)
                 .pattern("#")
                 .pattern("/")
                 .define('#', ModItems.pyrite.get())
                 .define('/', ModItems.agate_stick.get())
                 .unlockedBy("has_pyrite", has(ModItems.pyrite.get()))
                 .save(consumer, loc("pyrite_torch"));
-        ShapedRecipeBuilder.shaped(ModBlocks.reinforced_bricks.get(), 2)
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ModBlocks.reinforced_bricks.get(), 2)
                 .pattern("%#")
                 .pattern("#%")
                 .define('#', GaiaTags.Items.GAIA_BRICKS)
@@ -378,7 +375,7 @@ public class GaiaRecipes extends GaiaRecipeProvider {
                 .unlockedBy("has_brick", has(GaiaTags.Items.GAIA_BRICKS))
                 .unlockedBy("has_goldstone", has(ModBlocks.thick_glitter_block.get()))
                 .save(consumer, loc("reinforced_bricks"));
-        ShapedRecipeBuilder.shaped(ModBlocks.reinforced_bricks.get(), 2)
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ModBlocks.reinforced_bricks.get(), 2)
                 .pattern("#%")
                 .pattern("%#")
                 .define('#', GaiaTags.Items.GAIA_BRICKS)
@@ -386,7 +383,7 @@ public class GaiaRecipes extends GaiaRecipeProvider {
                 .unlockedBy("has_brick", has(GaiaTags.Items.GAIA_BRICKS))
                 .unlockedBy("has_goldstone", has(ModBlocks.thick_glitter_block.get()))
                 .save(consumer, loc("reinforced_bricks_2"));
-        ShapedRecipeBuilder.shaped(ModBlocks.restructurer.get())
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ModBlocks.restructurer.get())
                 .pattern("///")
                 .pattern("/#/")
                 .pattern("///")
@@ -394,33 +391,33 @@ public class GaiaRecipes extends GaiaRecipeProvider {
                 .define('#', ModBlocks.gaia_stone_furnace.get())
                 .unlockedBy("has_bricks", has(ModBlocks.reinforced_bricks.get()))
                 .save(consumer, loc("restructurer"));
-        ShapedRecipeBuilder.shaped(ModItems.scaynyx_bucket.get())
+        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, ModItems.scaynyx_bucket.get())
                 .pattern("# #")
                 .pattern(" # ")
                 .define('#', ModItems.scaynyx_ingot.get())
                 .unlockedBy("has_ingot", has(ModItems.scaynyx_ingot.get()))
                 .save(consumer, loc("scaynyx_bucket"));
-        ShapedRecipeBuilder.shaped(ModBlocks.crude_storage_crate.get())
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ModBlocks.crude_storage_crate.get())
                 .pattern("###")
                 .pattern("# #")
                 .pattern("###")
                 .define('#', GaiaTags.Items.TILES)
                 .unlockedBy("has_planks", has(GaiaTags.Items.TILES))
                 .save(consumer, loc("small_chest"));
-        ShapelessRecipeBuilder.shapeless(ModItems.twined_thread.get())
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.twined_thread.get())
                 .requires(ModItems.fine_thread.get())
                 .requires(ModItems.fine_thread.get())
                 .requires(ModItems.fine_thread.get())
                 .requires(ModItems.fine_thread.get())
                 .unlockedBy("has_thread", has(ModItems.fine_thread.get()))
                 .save(consumer, loc("twined_thread"));
-        ShapedRecipeBuilder.shaped(ModBlocks.malachite_chisel_bricks.get())
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ModBlocks.malachite_chisel_bricks.get())
                 .pattern("#")
                 .pattern("#")
                 .define('#', ModBlocks.malachite_brick_slab.get())
                 .unlockedBy("has_malachite_slab", has(ModBlocks.malachite_brick_slab.get()))
                 .save(consumer, loc("malachite_chisel_bricks"));
-        ShapelessRecipeBuilder.shapeless(Items.BONE_MEAL, 3)
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, Items.BONE_MEAL, 3)
                 .requires(ModItems.shiny_bone.get())
                 .group("bonemeal")
                 .unlockedBy("has_bone", has(ModItems.shiny_bone.get()))
@@ -429,7 +426,7 @@ public class GaiaRecipes extends GaiaRecipeProvider {
 
         smeltingRecipe(ModItems.blue_opal.get(), ModBlocks.opal_ore_blue.get(), 0.3F).save(consumer, locSmelt("blue_opal_smelt"));
         smeltingRecipe(ModBlocks.burning_sapling.get(), ModBlocks.burnt_sapling.get(), 0.1F).save(consumer, locSmelt("burning_sapling"));
-        SimpleCookingRecipeBuilder.smelting(Ingredient.of(ModBlocks.pink_agate_sapling.get(), ModBlocks.blue_agate_sapling.get(), ModBlocks.green_agate_sapling.get(), ModBlocks.purple_agate_sapling.get()), ModBlocks.burnt_sapling.get(), 0.1F, 200)
+        SimpleCookingRecipeBuilder.smelting(Ingredient.of(ModBlocks.pink_agate_sapling.get(), ModBlocks.blue_agate_sapling.get(), ModBlocks.green_agate_sapling.get(), ModBlocks.purple_agate_sapling.get()), RecipeCategory.DECORATIONS, ModBlocks.burnt_sapling.get(), 0.1F, 200)
                 .unlockedBy("has_sapling", has(ModBlocks.pink_agate_sapling.get()))
                 .save(consumer, locSmelt("burnt_sapling"));
         smeltingRecipe(ModItems.cinnabar.get(), ModBlocks.cinnabar_ore.get(), 0.3F).save(consumer, locSmelt("cinnabar_smelt"));

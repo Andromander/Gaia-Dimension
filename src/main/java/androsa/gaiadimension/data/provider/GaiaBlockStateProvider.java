@@ -1,6 +1,6 @@
 package androsa.gaiadimension.data.provider;
 
-import net.minecraft.data.DataGenerator;
+import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
@@ -16,10 +16,10 @@ public abstract class GaiaBlockStateProvider extends BlockStateProvider {
 
     private final GaiaBlockModelProvider blockModels;
 
-    public GaiaBlockStateProvider(DataGenerator generator, String modid, ExistingFileHelper helper) {
-        super(generator, modid, helper);
+    public GaiaBlockStateProvider(PackOutput output, String modid, ExistingFileHelper helper) {
+        super(output, modid, helper);
 
-        blockModels = new GaiaBlockModelProvider(generator, helper) {
+        blockModels = new GaiaBlockModelProvider(output, helper) {
             @Override
             protected void registerModels() { }
 
