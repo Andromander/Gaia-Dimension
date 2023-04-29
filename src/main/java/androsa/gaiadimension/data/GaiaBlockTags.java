@@ -272,6 +272,10 @@ public class GaiaBlockTags extends GaiaBlockTagsProvider {
         addTag(GaiaTags.Blocks.GOLDEN_LOGS, GOLDEN_LOGS);
         tag(GaiaTags.Blocks.STATIC).add(ModBlocks.gaia_stone.get(), ModBlocks.wasteland_stone.get());
         tag(GaiaTags.Blocks.VOLCANIC).add(ModBlocks.gaia_stone.get(), ModBlocks.volcanic_rock.get());
+        tag(GaiaTags.Blocks.GAIA_GRASS).add(ModBlocks.glitter_grass.get(), ModBlocks.corrupt_grass.get(), ModBlocks.murky_grass.get(), ModBlocks.soft_grass.get(), ModBlocks.gilded_grass.get());
+        tag(GaiaTags.Blocks.GAIA_SOIL).add(ModBlocks.heavy_soil.get(), ModBlocks.corrupt_soil.get(), ModBlocks.boggy_soil.get(), ModBlocks.light_soil.get(), ModBlocks.aurum_soil.get());
+        tag(GaiaTags.Blocks.GAIA_CARVER_REPLACEABLES).addTags(GaiaTags.Blocks.GAIA_GRASS, GaiaTags.Blocks.GAIA_SOIL)
+                .add(ModBlocks.saltstone.get(), ModBlocks.gaia_stone.get(), ModBlocks.wasteland_stone.get(), ModBlocks.volcanic_rock.get(), ModBlocks.primal_mass.get(), ModBlocks.nexustone.get());
         addTag(GaiaTags.Blocks.GAIA_BRICKS, GAIA_BRICKS);
         addTag(GaiaTags.Blocks.AMETHYST_BRICKS, AMETHYST_BRICKS);
         addTag(GaiaTags.Blocks.COPAL_BRICKS, COPAL_BRICKS);

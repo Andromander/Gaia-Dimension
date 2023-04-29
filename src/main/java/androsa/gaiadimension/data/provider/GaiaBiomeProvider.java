@@ -3,10 +3,13 @@ package androsa.gaiadimension.data.provider;
 import androsa.gaiadimension.registry.ModEntities;
 import androsa.gaiadimension.registry.configurations.GaiaConfiguredCarvers;
 import androsa.gaiadimension.registry.configurations.GaiaFeatures;
+import net.minecraft.core.HolderGetter;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.level.biome.*;
 import net.minecraft.world.level.levelgen.GenerationStep;
+import net.minecraft.world.level.levelgen.carver.ConfiguredWorldCarver;
+import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 
 import java.util.function.Supplier;
 
@@ -18,9 +21,8 @@ public abstract class GaiaBiomeProvider {
 
     public static Biome.BiomeBuilder createBuilder(BiomeSpecialEffects ambience, BiomeGenerationSettings settings, MobSpawnSettings info) {
         return (new Biome.BiomeBuilder())
-                .precipitation(Biome.Precipitation.NONE)
+                .hasPrecipitation(false)
                 .downfall(0.0F)
-                .biomeCategory(Biome.BiomeCategory.NONE) //Note: This is to prevent unwanted feature gens
                 .temperatureAdjustment(Biome.TemperatureModifier.NONE)
                 .specialEffects(ambience)
                 .generationSettings(settings)
@@ -43,10 +45,10 @@ public abstract class GaiaBiomeProvider {
                 .build();
     }
 
-    public static BiomeGenerationSettings.Builder createSettings() {
-        return new BiomeGenerationSettings.Builder()
-                .addCarver(GenerationStep.Carving.AIR, GaiaConfiguredCarvers.crystal_caves)
-                .addCarver(GenerationStep.Carving.AIR, GaiaConfiguredCarvers.chasms)
+    public static BiomeGenerationSettings.PlainBuilder createSettings(HolderGetter<PlacedFeature> features, HolderGetter<ConfiguredWorldCarver<?>> carvers) {
+        return new BiomeGenerationSettings.Builder(features, carvers)
+                .addCarver(GenerationStep.Carving.AIR, GaiaConfiguredCarvers.CRYSTAL_CAVES)
+                .addCarver(GenerationStep.Carving.AIR, GaiaConfiguredCarvers.CHASMS)
                 .addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, GaiaFeatures.Placed.ORE_PRIMAL_MASS)
                 .addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, GaiaFeatures.Placed.ORE_PEBBLES)
                 .addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, GaiaFeatures.Placed.ORE_SPECKLED_ROCK)
@@ -80,8 +82,8 @@ public abstract class GaiaBiomeProvider {
         return new MobSpawnSettings.SpawnerData(entity.get(), weight, min, max);
     }
 
-    public static BiomeGenerationSettings pinkAgateForest() {
-        return createSettings()
+    public static BiomeGenerationSettings pinkAgateForest(HolderGetter<PlacedFeature> features, HolderGetter<ConfiguredWorldCarver<?>> carvers) {
+        return createSettings(features, carvers)
                 .addFeature(GenerationStep.Decoration.LAKES, GaiaFeatures.Placed.LAKE_SUPERHOT_MAGMA_RARE)
                 .addFeature(GenerationStep.Decoration.LAKES, GaiaFeatures.Placed.LAKE_MINERAL_WATER_COMMON)
                 .addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, GaiaFeatures.Placed.ORE_RAW_AMETHYST)
@@ -96,8 +98,8 @@ public abstract class GaiaBiomeProvider {
                 .build();
     }
 
-    public static BiomeGenerationSettings blueAgateTaiga() {
-        return createSettings()
+    public static BiomeGenerationSettings blueAgateTaiga(HolderGetter<PlacedFeature> features, HolderGetter<ConfiguredWorldCarver<?>> carvers) {
+        return createSettings(features, carvers)
                 .addFeature(GenerationStep.Decoration.LAKES, GaiaFeatures.Placed.LAKE_SUPERHOT_MAGMA_RARE)
                 .addFeature(GenerationStep.Decoration.LAKES, GaiaFeatures.Placed.LAKE_MINERAL_WATER_COMMON)
                 .addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, GaiaFeatures.Placed.ORE_RAW_AMETHYST)
@@ -112,8 +114,8 @@ public abstract class GaiaBiomeProvider {
                 .build();
     }
 
-    public static BiomeGenerationSettings greenAgateJungle() {
-        return createSettings()
+    public static BiomeGenerationSettings greenAgateJungle(HolderGetter<PlacedFeature> features, HolderGetter<ConfiguredWorldCarver<?>> carvers) {
+        return createSettings(features, carvers)
                 .addFeature(GenerationStep.Decoration.LAKES, GaiaFeatures.Placed.LAKE_SUPERHOT_MAGMA_RARE)
                 .addFeature(GenerationStep.Decoration.LAKES, GaiaFeatures.Placed.LAKE_MINERAL_WATER_COMMON)
                 .addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, GaiaFeatures.Placed.ORE_RAW_COPAL)
@@ -129,8 +131,8 @@ public abstract class GaiaBiomeProvider {
                 .build();
     }
 
-    public static BiomeGenerationSettings purpleAgateSwamp() {
-        return createSettings()
+    public static BiomeGenerationSettings purpleAgateSwamp(HolderGetter<PlacedFeature> features, HolderGetter<ConfiguredWorldCarver<?>> carvers) {
+        return createSettings(features, carvers)
                 .addFeature(GenerationStep.Decoration.LAKES, GaiaFeatures.Placed.LAKE_SWEET_MUCK)
                 .addFeature(GenerationStep.Decoration.LAKES, GaiaFeatures.Placed.LAKE_SUPERHOT_MAGMA_RARE)
                 .addFeature(GenerationStep.Decoration.LAKES, GaiaFeatures.Placed.LAKE_MINERAL_WATER_UNCOMMON)
@@ -147,8 +149,8 @@ public abstract class GaiaBiomeProvider {
                 .build();
     }
 
-    public static BiomeGenerationSettings fossilWoodland() {
-        return createSettings()
+    public static BiomeGenerationSettings fossilWoodland(HolderGetter<PlacedFeature> features, HolderGetter<ConfiguredWorldCarver<?>> carvers) {
+        return createSettings(features, carvers)
                 .addFeature(GenerationStep.Decoration.LAKES, GaiaFeatures.Placed.LAKE_SUPERHOT_MAGMA_RARE)
                 .addFeature(GenerationStep.Decoration.LAKES, GaiaFeatures.Placed.LAKE_MINERAL_WATER_COMMON)
                 .addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, GaiaFeatures.Placed.ORE_RAW_COPAL)
@@ -161,8 +163,8 @@ public abstract class GaiaBiomeProvider {
                 .build();
     }
 
-    public static BiomeGenerationSettings mutantAgateWildwood() {
-        return createSettings()
+    public static BiomeGenerationSettings mutantAgateWildwood(HolderGetter<PlacedFeature> features, HolderGetter<ConfiguredWorldCarver<?>> carvers) {
+        return createSettings(features, carvers)
                 .addFeature(GenerationStep.Decoration.LAKES, GaiaFeatures.Placed.LAKE_SUPERHOT_MAGMA_RARE)
                 .addFeature(GenerationStep.Decoration.LAKES, GaiaFeatures.Placed.LAKE_MINERAL_WATER_COMMON)
                 .addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, GaiaFeatures.Placed.ORE_RAW_AMETHYST)
@@ -178,8 +180,8 @@ public abstract class GaiaBiomeProvider {
                 .build();
     }
 
-    public static BiomeGenerationSettings volcanicLands() {
-        return createSettings()
+    public static BiomeGenerationSettings volcanicLands(HolderGetter<PlacedFeature> features, HolderGetter<ConfiguredWorldCarver<?>> carvers) {
+        return createSettings(features, carvers)
                 .addFeature(GenerationStep.Decoration.LAKES, GaiaFeatures.Placed.LAKE_SUPERHOT_MAGMA_COMMON)
                 .addFeature(GenerationStep.Decoration.LAKES, GaiaFeatures.Placed.LAKE_MINERAL_WATER_RARE)
                 .addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, GaiaFeatures.Placed.ORE_SEARING_ROCK)
@@ -190,8 +192,8 @@ public abstract class GaiaBiomeProvider {
                 .build();
     }
 
-    public static BiomeGenerationSettings staticWasteland() {
-        return createSettings()
+    public static BiomeGenerationSettings staticWasteland(HolderGetter<PlacedFeature> features, HolderGetter<ConfiguredWorldCarver<?>> carvers) {
+        return createSettings(features, carvers)
                 .addFeature(GenerationStep.Decoration.LOCAL_MODIFICATIONS, GaiaFeatures.Placed.STATIC_SPIKES)
                 .addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, GaiaFeatures.Placed.ORE_STATIC_STONE)
                 .addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, GaiaFeatures.Placed.ORE_RAW_AMETHYST)
@@ -199,8 +201,8 @@ public abstract class GaiaBiomeProvider {
                 .build();
     }
 
-    public static BiomeGenerationSettings goldstoneLands() {
-        return createSettings()
+    public static BiomeGenerationSettings goldstoneLands(HolderGetter<PlacedFeature> features, HolderGetter<ConfiguredWorldCarver<?>> carvers) {
+        return createSettings(features, carvers)
                 .addFeature(GenerationStep.Decoration.LAKES, GaiaFeatures.Placed.LAKE_SUPERHOT_MAGMA_RARE)
                 .addFeature(GenerationStep.Decoration.LAKES, GaiaFeatures.Placed.LAKE_MINERAL_WATER_COMMON)
                 .addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, GaiaFeatures.Placed.ORE_RAW_JET)
@@ -212,8 +214,8 @@ public abstract class GaiaBiomeProvider {
                 .build();
     }
 
-    public static BiomeGenerationSettings crystalPlains() {
-        return createSettings()
+    public static BiomeGenerationSettings crystalPlains(HolderGetter<PlacedFeature> features, HolderGetter<ConfiguredWorldCarver<?>> carvers) {
+        return createSettings(features, carvers)
                 .addFeature(GenerationStep.Decoration.LAKES, GaiaFeatures.Placed.LAKE_SUPERHOT_MAGMA_RARE)
                 .addFeature(GenerationStep.Decoration.LAKES, GaiaFeatures.Placed.LAKE_MINERAL_WATER_COMMON)
                 .addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, GaiaFeatures.Placed.ORE_RAW_AMETHYST)
@@ -226,8 +228,8 @@ public abstract class GaiaBiomeProvider {
                 .build();
     }
 
-    public static BiomeGenerationSettings saltDunes() {
-        return createSettings()
+    public static BiomeGenerationSettings saltDunes(HolderGetter<PlacedFeature> features, HolderGetter<ConfiguredWorldCarver<?>> carvers) {
+        return createSettings(features, carvers)
                 .addFeature(GenerationStep.Decoration.LAKES, GaiaFeatures.Placed.LAKE_MINERAL_WATER_RARE)
                 .addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, GaiaFeatures.Placed.ORE_RAW_AMETHYST)
                 .addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, GaiaFeatures.Placed.ORE_RAW_JET)
@@ -235,8 +237,8 @@ public abstract class GaiaBiomeProvider {
                 .build();
     }
 
-    public static BiomeGenerationSettings smolderingBog() {
-        return createSettings()
+    public static BiomeGenerationSettings smolderingBog(HolderGetter<PlacedFeature> features, HolderGetter<ConfiguredWorldCarver<?>> carvers) {
+        return createSettings(features, carvers)
                 .addFeature(GenerationStep.Decoration.LAKES, GaiaFeatures.Placed.LAKE_LIQUID_BISMUTH)
                 .addFeature(GenerationStep.Decoration.LOCAL_MODIFICATIONS, GaiaFeatures.Placed.BISMUTH_SPIRES)
                 .addFeature(GenerationStep.Decoration.LOCAL_MODIFICATIONS, GaiaFeatures.Placed.BISMUTH_GEYSERS)
@@ -246,8 +248,8 @@ public abstract class GaiaBiomeProvider {
                 .build();
     }
 
-    public static BiomeGenerationSettings shiningGrove() {
-        return createSettings()
+    public static BiomeGenerationSettings shiningGrove(HolderGetter<PlacedFeature> features, HolderGetter<ConfiguredWorldCarver<?>> carvers) {
+        return createSettings(features, carvers)
                 .addFeature(GenerationStep.Decoration.LAKES, GaiaFeatures.Placed.LAKE_LIQUID_AURA)
                 .addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, GaiaFeatures.Placed.ORE_RAW_COPAL)
                 .addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, GaiaFeatures.Placed.ORE_RAW_JADE)
@@ -259,16 +261,16 @@ public abstract class GaiaBiomeProvider {
                 .build();
     }
 
-    public static BiomeGenerationSettings mineralBiome() {
-        return createSettings()
+    public static BiomeGenerationSettings mineralBiome(HolderGetter<PlacedFeature> features, HolderGetter<ConfiguredWorldCarver<?>> carvers) {
+        return createSettings(features, carvers)
                 .addFeature(GenerationStep.Decoration.LAKES, GaiaFeatures.Placed.LAKE_SUPERHOT_MAGMA_RARE)
                 .addFeature(GenerationStep.Decoration.LAKES, GaiaFeatures.Placed.LAKE_MINERAL_WATER_COMMON)
                 .addFeature(GenerationStep.Decoration.UNDERGROUND_DECORATION, GaiaFeatures.Placed.UNDERGROUND_GLITTER_BLOB)
                 .build();
     }
 
-    public static BiomeGenerationSettings goldenHillsBiome() {
-        return new BiomeGenerationSettings.Builder()
+    public static BiomeGenerationSettings goldenHillsBiome(HolderGetter<PlacedFeature> features, HolderGetter<ConfiguredWorldCarver<?>> carvers) {
+        return new BiomeGenerationSettings.Builder(features, carvers)
                 .addFeature(GenerationStep.Decoration.LOCAL_MODIFICATIONS, GaiaFeatures.Placed.BRILLIANT_STONE_SPIKES)
                 .addFeature(GenerationStep.Decoration.LOCAL_MODIFICATIONS, GaiaFeatures.Placed.BALANCING_ROCKS)
                 .addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, GaiaFeatures.Placed.DISK_GILDED_BRILLIANT_STONE)
@@ -276,24 +278,24 @@ public abstract class GaiaBiomeProvider {
                 .build();
     }
 
-    public static BiomeGenerationSettings goldenForestBiome() {
-        return new BiomeGenerationSettings.Builder()
+    public static BiomeGenerationSettings goldenForestBiome(HolderGetter<PlacedFeature> features, HolderGetter<ConfiguredWorldCarver<?>> carvers) {
+        return new BiomeGenerationSettings.Builder(features, carvers)
                 .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, GaiaFeatures.Placed.GOLDEN_TREES)
                 .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, GaiaFeatures.Placed.CRYSTAL_BLOOMS_GOLDEN)
                 .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, GaiaFeatures.Placed.GOLDEN_GRASS_UNCOMMON)
                 .build();
     }
 
-    public static BiomeGenerationSettings goldenPlainsBiome() {
-        return new BiomeGenerationSettings.Builder()
+    public static BiomeGenerationSettings goldenPlainsBiome(HolderGetter<PlacedFeature> features, HolderGetter<ConfiguredWorldCarver<?>> carvers) {
+        return new BiomeGenerationSettings.Builder(features, carvers)
                 .addFeature(GenerationStep.Decoration.LOCAL_MODIFICATIONS, GaiaFeatures.Placed.TOUGH_GOLDEN_STONE_MONOLITHS)
                 .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, GaiaFeatures.Placed.TALL_GOLDEN_GRASS)
                 .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, GaiaFeatures.Placed.GOLDEN_GRASS_COMMON)
                 .build();
     }
 
-    public static BiomeGenerationSettings goldenMarshBiome() {
-        return new BiomeGenerationSettings.Builder()
+    public static BiomeGenerationSettings goldenMarshBiome(HolderGetter<PlacedFeature> features, HolderGetter<ConfiguredWorldCarver<?>> carvers) {
+        return new BiomeGenerationSettings.Builder(features, carvers)
                 .addFeature(GenerationStep.Decoration.LOCAL_MODIFICATIONS, GaiaFeatures.Placed.MARSH_LAKES)
                 .addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, GaiaFeatures.Placed.DISK_MARSH_PATCH)
                 .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, GaiaFeatures.Placed.SMALL_GOLDEN_TREE_WITH_VINES)
@@ -303,8 +305,8 @@ public abstract class GaiaBiomeProvider {
                 .build();
     }
 
-    public static BiomeGenerationSettings goldenSandsBiome() {
-        return new BiomeGenerationSettings.Builder()
+    public static BiomeGenerationSettings goldenSandsBiome(HolderGetter<PlacedFeature> features, HolderGetter<ConfiguredWorldCarver<?>> carvers) {
+        return new BiomeGenerationSettings.Builder(features, carvers)
                 .addFeature(GenerationStep.Decoration.LOCAL_MODIFICATIONS, GaiaFeatures.Placed.TOUGH_GOLDEN_STONE_MENHIRS)
                 .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, GaiaFeatures.Placed.SOMBRE_SHRUBS)
                 .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, GaiaFeatures.Placed.SOMBRE_CACTI)

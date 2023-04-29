@@ -131,6 +131,9 @@ public class GaiaTags {
     public static class Blocks {
         public static final TagKey<Block> VOLCANIC = tagBlock("base_stone_volcanic");
         public static final TagKey<Block> STATIC = tagBlock("base_stone_static");
+        public static final TagKey<Block> GAIA_CARVER_REPLACEABLES = tagBlock("gaia_carver_replaceables");
+        public static final TagKey<Block> GAIA_GRASS = tagBlock("gaia_grass");
+        public static final TagKey<Block> GAIA_SOIL = tagBlock("gaia_soil");
         public static final TagKey<Block> TILES = tagBlock("agate_tiles");
         public static final TagKey<Block> PINK_AGATE_LOGS = tagBlock("pink_agate_logs");
         public static final TagKey<Block> BLUE_AGATE_LOGS = tagBlock("blue_agate_logs");

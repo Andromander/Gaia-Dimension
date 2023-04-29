@@ -15,6 +15,7 @@ import java.util.concurrent.CompletableFuture;
 public class GaiaDatapackRegistries extends DatapackBuiltinEntriesProvider {
 
     public static final RegistrySetBuilder REGISTRIES = new RegistrySetBuilder()
+            .add(Registries.BIOME, GaiaBiomes::init)
             .add(Registries.DAMAGE_TYPE, GaiaDamage::init);
 
     public GaiaDatapackRegistries(PackOutput output, CompletableFuture<HolderLookup.Provider> provider) {
