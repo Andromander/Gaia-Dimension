@@ -1,6 +1,7 @@
 package androsa.gaiadimension.potion;
 
 import androsa.gaiadimension.GaiaDimensionMod;
+import androsa.gaiadimension.registry.GaiaDamage;
 import androsa.gaiadimension.registry.ModEffects;
 import androsa.gaiadimension.registry.ModEntities;
 import net.minecraft.world.effect.MobEffect;
@@ -28,9 +29,9 @@ public class CorruptionEffect extends MobEffect {
     }
 
     @Override
-    public void applyEffectTick(LivingEntity entityLivingBaseIn, int amplifier) {
-        if (entityLivingBaseIn.getMobType() != GaiaDimensionMod.CORRUPT) {
-            entityLivingBaseIn.hurt(GaiaDimensionMod.CORRUPTION, 2.0F);
+    public void applyEffectTick(LivingEntity living, int amplifier) {
+        if (living.getMobType() != GaiaDimensionMod.CORRUPT) {
+            living.hurt(GaiaDamage.getDamage(living.level, GaiaDamage.CORRUPTION), 2.0F);
         }
     }
 
@@ -61,7 +62,7 @@ public class CorruptionEffect extends MobEffect {
     public static void onEntityDeath(LivingDeathEvent e) {
         Entity corrputSpawn = ModEntities.CORRUPT_SAPPER.get().create(e.getEntity().getCommandSenderWorld());
 
-        if (e.getSource() == GaiaDimensionMod.CORRUPTION) {
+        if (e.getSource().is(GaiaDamage.CORRUPTION)) {
             e.getEntity().getCommandSenderWorld().addFreshEntity(corrputSpawn);
         }
     }

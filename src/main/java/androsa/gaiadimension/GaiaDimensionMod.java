@@ -5,19 +5,18 @@ import androsa.gaiadimension.client.GaiaDimensionRenderInfo;
 import androsa.gaiadimension.data.*;
 import androsa.gaiadimension.registry.*;
 import net.minecraft.client.renderer.DimensionSpecialEffects;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.data.DataGenerator;
+import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.MobType;
-import net.minecraft.world.entity.ai.village.poi.PoiType;
-import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.data.event.GatherDataEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
@@ -25,10 +24,14 @@ import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import net.minecraftforge.forge.event.lifecycle.GatherDataEvent;
+import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.RegisterEvent;
 import org.apache.commons.lang3.tuple.Pair;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
+import java.util.Objects;
+import java.util.concurrent.CompletableFuture;
 
 @Mod(GaiaDimensionMod.MODID)
 public class GaiaDimensionMod {
@@ -43,15 +46,12 @@ public class GaiaDimensionMod {
     public static final MobType GAIAN = new MobType();
     public static final MobType CORRUPT = new MobType();
 
-    public static final DamageSource CORRUPTION = new DamageSource("corruption").bypassArmor();
-
     public GaiaDimensionMod() {
-
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
         modEventBus.addListener(this::setup);
         modEventBus.addListener(this::clientSetup);
         modEventBus.addListener(this::gatherData);
-        modEventBus.addGenericListener(RecipeSerializer.class, this::hackyEvent);
+        modEventBus.addListener(this::hackyEvent);
 
         MinecraftForge.EVENT_BUS.addListener(EventPriority.HIGH, ModEntities::addStructureSpawns);
 
@@ -82,17 +82,15 @@ public class GaiaDimensionMod {
         commonConfig = specPairB.getLeft();
     }
 
-    public void hackyEvent(RegistryEvent.Register<RecipeSerializer<?>> event) {
-        ModDimensions.initDimension();
+    public void hackyEvent(RegisterEvent event) {
+        if (Objects.equals(event.getForgeRegistry(), ForgeRegistries.RECIPE_SERIALIZERS)) {
+            ModDimensions.initDimension();
+        }
     }
 
     public void setup(FMLCommonSetupEvent event) {
         event.enqueueWork(() -> {
-            PoiType.registerBlockStates(ModDimensions.GAIA_PORTAL.get());
-            PoiType.ALL_STATES.addAll(ModDimensions.GAIA_PORTAL.get().matchingStates);
-
             // needs to be in enqueue as vanilla WorldGen registry maps arent threadsafe.
-            //GaiaBiomeFeatures.registerConfiguredWorldgen();
             ModWorldgen.StructureTypes.init();
             ModBlocks.addStripping();
             ModBlocks.registerDispenserBehaviour();
@@ -116,7 +114,10 @@ public class GaiaDimensionMod {
 
     public void gatherData(GatherDataEvent event) {
         DataGenerator generator = event.getGenerator();
+        PackOutput output = generator.getPackOutput();
+        CompletableFuture<HolderLookup.Provider> provider = event.getLookupProvider();
         GaiaBlockTags blocktags = new GaiaBlockTags(generator, event.getExistingFileHelper());
+
         if (event.includeClient()) {
             generator.addProvider(new GaiaBlockStates(generator, event.getExistingFileHelper()));
             generator.addProvider(new GaiaItemModels(generator, event.getExistingFileHelper()));
@@ -130,6 +131,7 @@ public class GaiaDimensionMod {
             generator.addProvider(new GaiaItemTags(generator, blocktags, event.getExistingFileHelper()));
             generator.addProvider(new GaiaFluidTags(generator, event.getExistingFileHelper()));
             generator.addProvider(new GaiaBiomeTags(generator, event.getExistingFileHelper()));
+            GaiaDatapackRegistries.generate(generator, output, provider);
         }
     }
 }
