@@ -176,13 +176,12 @@ public class MiniTowerPieces {
         @Override
         public void postProcess(WorldGenLevel world, StructureFeatureManager manager, ChunkGenerator generator, Random random, BoundingBox mbb, ChunkPos chunkpos, BlockPos pos) {
             ResourceLocation location = new ResourceLocation(this.templateName);
-            StructurePlaceSettings settings = loadTemplate(this.placeSettings.getRotation(), location);
 
             switch (towerType) {
-                case AMETHYST -> settings.addProcessor(BlockDegradeProcessor.AMETHYST_DECAY);
-                case COPAL -> settings.addProcessor(BlockDegradeProcessor.COPAL_DECAY);
-                case JADE -> settings.addProcessor(BlockDegradeProcessor.JADE_DECAY);
-                case JET -> settings.addProcessor(BlockDegradeProcessor.JET_DECAY);
+                case AMETHYST -> placeSettings.addProcessor(BlockDegradeProcessor.AMETHYST_DECAY);
+                case COPAL -> placeSettings.addProcessor(BlockDegradeProcessor.COPAL_DECAY);
+                case JADE -> placeSettings.addProcessor(BlockDegradeProcessor.JADE_DECAY);
+                case JET -> placeSettings.addProcessor(BlockDegradeProcessor.JET_DECAY);
             }
 
             BlockPos offsetpos = MiniTowerPieces.OFFSETS.get(location);
