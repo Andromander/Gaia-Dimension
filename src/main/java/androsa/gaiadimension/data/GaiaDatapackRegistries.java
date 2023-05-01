@@ -2,6 +2,7 @@ package androsa.gaiadimension.data;
 
 import androsa.gaiadimension.GaiaDimensionMod;
 import androsa.gaiadimension.registry.GaiaDamage;
+import androsa.gaiadimension.registry.ModStructures;
 import androsa.gaiadimension.registry.ModDimensions;
 import androsa.gaiadimension.registry.configurations.GaiaConfiguredCarvers;
 import androsa.gaiadimension.registry.configurations.GaiaFeatures;
@@ -23,6 +24,8 @@ public class GaiaDatapackRegistries extends DatapackBuiltinEntriesProvider {
             .add(Registries.PLACED_FEATURE, GaiaFeatures.Placed::init)
             .add(Registries.CONFIGURED_FEATURE, GaiaFeatures.Configured::init)
             .add(Registries.BIOME, GaiaBiomes::init)
+            .add(Registries.STRUCTURE, ModStructures::initStructures)
+            .add(Registries.STRUCTURE_SET, ModStructures::initSets)
             .add(Registries.DIMENSION_TYPE, ModDimensions::initType)
             .add(Registries.NOISE_SETTINGS, ModDimensions::initNoise)
             .add(Registries.LEVEL_STEM, ModDimensions::initStem)

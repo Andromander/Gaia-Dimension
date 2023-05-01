@@ -10,6 +10,7 @@ import com.google.common.collect.ImmutableMap;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.Mirror;
@@ -21,6 +22,7 @@ import net.minecraft.world.level.levelgen.structure.pieces.StructurePieceSeriali
 import net.minecraft.world.level.levelgen.structure.templatesystem.BlockIgnoreProcessor;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructureManager;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructurePlaceSettings;
+import net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemplateManager;
 
 import java.util.List;
 import java.util.Random;
@@ -85,7 +87,7 @@ public class MalachiteWatchtowerPieces {
             .put(roof_m, roofCenter)
             .build();
 
-    public static void buildStructure(StructureManager manager, BlockPos pos, Rotation rotation, List<Piece> pieces, Random random) {
+    public static void buildStructure(StructureTemplateManager manager, BlockPos pos, Rotation rotation, List<Piece> pieces, RandomSource random) {
         int i = 0;
         pieces.add(new MalachiteWatchtowerPieces.Piece(manager, foyer, pos, rotation, i));
         i += 14;

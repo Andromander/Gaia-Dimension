@@ -10,6 +10,7 @@ import com.google.common.collect.ImmutableMap;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.ChunkPos;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.StructureFeatureManager;
@@ -28,6 +29,7 @@ import net.minecraft.world.level.levelgen.structure.templatesystem.BlockIgnorePr
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructureManager;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructurePlaceSettings;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemplate;
+import net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemplateManager;
 
 import java.util.Random;
 
@@ -74,7 +76,7 @@ public class MiniTowerPieces {
             .put(am_roof, blockpos_1).put(co_roof, blockpos_1).put(ja_roof, blockpos_1).put(je_roof, blockpos_1)
             .build();
 
-    public static void buildStructure(StructureManager manager, BlockPos pos, Rotation rotation, StructurePieceAccessor pieces, Random random) {
+    public static void buildStructure(StructureTemplateManager manager, BlockPos pos, Rotation rotation, StructurePieceAccessor pieces, RandomSource random) {
         ResourceLocation[] piecearray;
         MiniTowerType type;
         switch (random.nextInt(MiniTowerType.values().length)) {

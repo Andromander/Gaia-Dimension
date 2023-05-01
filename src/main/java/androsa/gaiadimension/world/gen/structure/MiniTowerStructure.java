@@ -1,44 +1,45 @@
 package androsa.gaiadimension.world.gen.structure;
 
+import androsa.gaiadimension.registry.ModStructures;
 import androsa.gaiadimension.registry.ModBlocks;
 import androsa.gaiadimension.world.gen.structure.pieces.MiniTowerPieces;
 import com.mojang.serialization.Codec;
 import net.minecraft.core.BlockPos;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.ChunkPos;
-import net.minecraft.world.level.StructureFeatureManager;
+import net.minecraft.world.level.StructureManager;
 import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.block.Rotation;
 import net.minecraft.world.level.chunk.ChunkGenerator;
-import net.minecraft.world.level.levelgen.GenerationStep;
 import net.minecraft.world.level.levelgen.Heightmap;
-import net.minecraft.world.level.levelgen.feature.StructureFeature;
-import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
 import net.minecraft.world.level.levelgen.structure.BoundingBox;
-import net.minecraft.world.level.levelgen.structure.pieces.PieceGenerator;
-import net.minecraft.world.level.levelgen.structure.pieces.PieceGeneratorSupplier;
+import net.minecraft.world.level.levelgen.structure.Structure;
+import net.minecraft.world.level.levelgen.structure.StructureType;
 import net.minecraft.world.level.levelgen.structure.pieces.PiecesContainer;
 import net.minecraft.world.level.levelgen.structure.pieces.StructurePiecesBuilder;
 
-import java.util.Random;
+import java.util.Optional;
 
-public class MiniTowerStructure extends StructureFeature<NoneFeatureConfiguration> {
+public class MiniTowerStructure extends Structure {
+    public static final Codec<MiniTowerStructure> CODEC = simpleCodec(MiniTowerStructure::new);
 
-    public MiniTowerStructure(Codec<NoneFeatureConfiguration> config) {
-        super(config, PieceGeneratorSupplier.simple(PieceGeneratorSupplier.checkForBiomeOnTop(Heightmap.Types.WORLD_SURFACE_WG), MiniTowerStructure::pieceGenerator), MiniTowerStructure::afterPlace);
+    public MiniTowerStructure(StructureSettings config) {
+        super(config);
     }
 
-//    @Override
-//    public String getStructureName() {
-//        return GaiaDimensionMod.MODID + ":GaiaMiniTower";
-//    }
+    @Override
+    public Optional<GenerationStub> findGenerationPoint(GenerationContext context) {
+        return onTopOfChunkCenter(context, Heightmap.Types.WORLD_SURFACE_WG, (builder) -> this.generatePieces(builder, context));
+    }
 
-    private static void pieceGenerator(StructurePiecesBuilder builder, PieceGenerator.Context<NoneFeatureConfiguration> context) {
-        BlockPos blockpos = new BlockPos(context.chunkPos().getMinBlockX(), 90, context.chunkPos().getMinBlockZ());
+    private void generatePieces(StructurePiecesBuilder builder, GenerationContext context) {
         Rotation rotation = Rotation.getRandom(context.random());
-        MiniTowerPieces.buildStructure(context.structureManager(), blockpos, rotation, builder, context.random());
+        BlockPos blockpos = new BlockPos(context.chunkPos().getMinBlockX(), 90, context.chunkPos().getMinBlockZ());
+        MiniTowerPieces.buildStructure(context.structureTemplateManager(), blockpos, rotation, builder, context.random());
     }
 
-    private static void afterPlace(WorldGenLevel world, StructureFeatureManager manager, ChunkGenerator generator, Random random, BoundingBox mbb, ChunkPos pos, PiecesContainer container) {
+    @Override
+    public void afterPlace(WorldGenLevel world, StructureManager manager, ChunkGenerator generator, RandomSource random, BoundingBox mbb, ChunkPos pos, PiecesContainer container) {
         BoundingBox boundingbox = container.calculateBoundingBox();
         int minY = boundingbox.minY();
         BlockPos.MutableBlockPos mutable = new BlockPos.MutableBlockPos();
@@ -62,7 +63,7 @@ public class MiniTowerStructure extends StructureFeature<NoneFeatureConfiguratio
     }
 
     @Override
-    public GenerationStep.Decoration step() {
-        return GenerationStep.Decoration.SURFACE_STRUCTURES;
+    public StructureType<?> type() {
+        return ModStructures.MINI_TOWER_TYPE.get();
     }
 }

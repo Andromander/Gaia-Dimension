@@ -1,78 +1,61 @@
 package androsa.gaiadimension.world.gen.structure;
 
+import androsa.gaiadimension.registry.ModStructures;
 import androsa.gaiadimension.registry.ModBlocks;
+import androsa.gaiadimension.registry.ModEntities;
 import androsa.gaiadimension.world.gen.structure.pieces.MalachiteWatchtowerPieces;
 import com.google.common.collect.Lists;
 import com.mojang.serialization.Codec;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.QuartPos;
+import net.minecraft.util.RandomSource;
+import net.minecraft.util.random.WeightedRandomList;
+import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.level.ChunkPos;
-import net.minecraft.world.level.StructureFeatureManager;
+import net.minecraft.world.level.StructureManager;
 import net.minecraft.world.level.WorldGenLevel;
+import net.minecraft.world.level.biome.MobSpawnSettings;
 import net.minecraft.world.level.block.Rotation;
 import net.minecraft.world.level.chunk.ChunkGenerator;
-import net.minecraft.world.level.levelgen.GenerationStep;
-import net.minecraft.world.level.levelgen.LegacyRandomSource;
-import net.minecraft.world.level.levelgen.WorldgenRandom;
-import net.minecraft.world.level.levelgen.feature.StructureFeature;
-import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
 import net.minecraft.world.level.levelgen.structure.BoundingBox;
-import net.minecraft.world.level.levelgen.structure.pieces.PieceGenerator;
-import net.minecraft.world.level.levelgen.structure.pieces.PieceGeneratorSupplier;
+import net.minecraft.world.level.levelgen.structure.Structure;
+import net.minecraft.world.level.levelgen.structure.StructureSpawnOverride;
+import net.minecraft.world.level.levelgen.structure.StructureType;
 import net.minecraft.world.level.levelgen.structure.pieces.PiecesContainer;
-import org.checkerframework.checker.nullness.qual.NonNull;
+import net.minecraft.world.level.levelgen.structure.pieces.StructurePiecesBuilder;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
-import java.util.Random;
 
-public class MalachiteWatchtowerStructure extends StructureFeature<NoneFeatureConfiguration> {
+public class MalachiteWatchtowerStructure extends Structure {
+    public static final Codec<MalachiteWatchtowerStructure> CODEC = simpleCodec(MalachiteWatchtowerStructure::new);
 
-    public MalachiteWatchtowerStructure(Codec<NoneFeatureConfiguration> config) {
-        super(config, MalachiteWatchtowerStructure::pieceGenerator, MalachiteWatchtowerStructure::afterPlace);
+    public static final Map<MobCategory, StructureSpawnOverride> SPAWNS = Map.of(
+            MobCategory.MONSTER, new StructureSpawnOverride(StructureSpawnOverride.BoundingBoxType.PIECE, WeightedRandomList.create(
+                    new MobSpawnSettings.SpawnerData(ModEntities.MALACHITE_DRONE.get(), 10, 1, 1),
+                    new MobSpawnSettings.SpawnerData(ModEntities.SHALURKER.get(), 5, 1, 2),
+                    new MobSpawnSettings.SpawnerData(ModEntities.ARCHAIC_WARRIOR.get(), 8, 1, 2),
+                    new MobSpawnSettings.SpawnerData(ModEntities.CAVERN_TICK.get(), 3, 2, 3))));
+
+    public MalachiteWatchtowerStructure(StructureSettings config) {
+        super(config);
     }
 
-//    @Override
-//    public String getStructureName() {
-//        return GaiaDimensionMod.MODID + ":MalachiteWatchtower";
-//    }
-
-    @NonNull
-    private static Optional<PieceGenerator<NoneFeatureConfiguration>> pieceGenerator(PieceGeneratorSupplier.Context<NoneFeatureConfiguration> context) {
-        WorldgenRandom random = new WorldgenRandom(new LegacyRandomSource(0L));
-        random.setLargeFeatureSeed(context.seed(), context.chunkPos().x, context.chunkPos().z);
-        Rotation rotation = Rotation.getRandom(random);
-        int oX = 5;
-        int oZ = 5;
-        if (rotation == Rotation.CLOCKWISE_90) {
-            oX = -5;
-        } else if (rotation == Rotation.CLOCKWISE_180) {
-            oX = -5;
-            oZ = -5;
-        } else if (rotation == Rotation.COUNTERCLOCKWISE_90) {
-            oZ = -5;
-        }
-
-        int cX = context.chunkPos().getBlockX(7);
-        int cZ = context.chunkPos().getBlockZ(7);
-        int[] heights = context.getCornerHeights(cX, oX, cZ, oZ);
-        int level = Math.min(Math.min(heights[0], heights[1]), Math.min(heights[2], heights[3]));
-
-        if (level < 60) {
-            return Optional.empty();
-        } else if (!context.validBiome().test(context.chunkGenerator().getNoiseBiome(QuartPos.fromBlock(cX), QuartPos.fromBlock(heights[0]), QuartPos.fromBlock(cZ)))) {
-            return Optional.empty();
-        } else {
-            BlockPos blockpos = new BlockPos(context.chunkPos().getMiddleBlockX(), level + 1, context.chunkPos().getMiddleBlockZ());
-            return Optional.of((builder, config) -> {
-                List<MalachiteWatchtowerPieces.Piece> list = Lists.newLinkedList();
-                MalachiteWatchtowerPieces.buildStructure(config.structureManager(), blockpos, rotation, list, random);
-                list.forEach(builder::addPiece);
-            });
-        }
+    @Override
+    protected Optional<GenerationStub> findGenerationPoint(GenerationContext context) {
+        Rotation rotation = Rotation.getRandom(context.random());
+        BlockPos pos = this.getLowestYIn5by5BoxOffset7Blocks(context, rotation);
+        return pos.getY() < 60 ? Optional.empty() : Optional.of(new GenerationStub(pos, (builder) -> this.generatePieces(builder, context, pos, rotation)));
     }
 
-    private static void afterPlace(WorldGenLevel world, StructureFeatureManager manager, ChunkGenerator generator, Random random, BoundingBox mbb, ChunkPos pos, PiecesContainer container) {
+    private void generatePieces(StructurePiecesBuilder builder, GenerationContext context, BlockPos pos, Rotation rotation) {
+        List<MalachiteWatchtowerPieces.Piece> list = Lists.newLinkedList();
+        MalachiteWatchtowerPieces.buildStructure(context.structureTemplateManager(), pos, rotation, list, context.random());
+        list.forEach(builder::addPiece);
+    }
+
+    @Override
+    public void afterPlace(WorldGenLevel world, StructureManager manager, ChunkGenerator generator, RandomSource random, BoundingBox mbb, ChunkPos pos, PiecesContainer container) {
         BoundingBox boundingbox = container.calculateBoundingBox();
         int minY = boundingbox.minY();
         BlockPos.MutableBlockPos mutable = new BlockPos.MutableBlockPos();
@@ -97,9 +80,14 @@ public class MalachiteWatchtowerStructure extends StructureFeature<NoneFeatureCo
     }
 
     @Override
-    public GenerationStep.Decoration step() {
-        return GenerationStep.Decoration.SURFACE_STRUCTURES;
+    public StructureType<?> type() {
+        return ModStructures.MALACHITE_WATCHTOWER_TYPE.get();
     }
+
+    //    @Override
+//    public GenerationStep.Decoration step() {
+//        return GenerationStep.Decoration.SURFACE_STRUCTURES;
+//    }
 
 //    @Override
 //    protected boolean linearSeparation() {

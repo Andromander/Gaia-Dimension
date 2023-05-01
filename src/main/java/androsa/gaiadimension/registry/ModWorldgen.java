@@ -47,7 +47,6 @@ public class ModWorldgen {
     public static final DeferredRegister<TreeDecoratorType<?>> DECORATORS = DeferredRegister.create(ForgeRegistries.TREE_DECORATOR_TYPES, GaiaDimensionMod.MODID);
 	public static final DeferredRegister<Feature<?>> FEATURES = DeferredRegister.create(ForgeRegistries.FEATURES, GaiaDimensionMod.MODID);
     public static final DeferredRegister<FoliagePlacerType<?>> FOLIAGE_PLACERS = DeferredRegister.create(ForgeRegistries.FOLIAGE_PLACER_TYPES, GaiaDimensionMod.MODID);
-	public static final DeferredRegister<StructureFeature<?>> STRUCTURES = DeferredRegister.create(ForgeRegistries.STRUCTURE_FEATURES, GaiaDimensionMod.MODID);
     public static final DeferredRegister<TrunkPlacerType<?>> TRUNK_PLACERS = DeferredRegister.create(Registry.TRUNK_PLACER_TYPE_REGISTRY, GaiaDimensionMod.MODID);
 	public static final DeferredRegister<WorldCarver<?>> WORLD_CARVERS = DeferredRegister.create(ForgeRegistries.WORLD_CARVERS, GaiaDimensionMod.MODID);
 
@@ -99,12 +98,6 @@ public class ModWorldgen {
             new MarshLakeFeature(NoneFeatureConfiguration.CODEC));
     public static final RegistryObject<Feature<NoneFeatureConfiguration>> GOLDEN_VINES = FEATURES.register("golden_vines", () ->
             new GoldenVinesFeature(NoneFeatureConfiguration.CODEC));
-
-    //Structures
-    public static final RegistryObject<StructureFeature<NoneFeatureConfiguration>> MINI_TOWER = STRUCTURES.register("mini_tower", () ->
-			new MiniTowerStructure(NoneFeatureConfiguration.CODEC));
-    public static final RegistryObject<StructureFeature<NoneFeatureConfiguration>> MALACHITE_WATCHTOWER = STRUCTURES.register("malachite_watchtower", () ->
-			new MalachiteWatchtowerStructure(NoneFeatureConfiguration.CODEC));
 
     //WorldCarver
     public static final RegistryObject<WorldCarver<CaveCarverConfiguration>> CRYSTAL_CAVES = WORLD_CARVERS.register("crystal_caves", () ->

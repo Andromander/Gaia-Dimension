@@ -157,13 +157,4 @@ public class ModEntities {
     private static <E extends LivingEntity> void setAttributes(EntityAttributeCreationEvent evt, Supplier<EntityType<E>> entity, AttributeSupplier.Builder builder) {
         evt.put(entity.get(), builder.build());
     }
-
-    public static void addStructureSpawns(StructureSpawnListGatherEvent evt) {
-        if (evt.getStructure() == ModWorldgen.MALACHITE_WATCHTOWER.get()) {
-            evt.addEntitySpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(ModEntities.MALACHITE_DRONE.get(), 10, 1, 1));
-            evt.addEntitySpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(ModEntities.SHALURKER.get(), 5, 1, 2));
-            evt.addEntitySpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(ModEntities.ARCHAIC_WARRIOR.get(), 8, 1, 2));
-            evt.addEntitySpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(ModEntities.CAVERN_TICK.get(), 3, 2, 3));
-        }
-    }
 }
