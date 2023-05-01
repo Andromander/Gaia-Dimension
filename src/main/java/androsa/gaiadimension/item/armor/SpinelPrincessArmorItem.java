@@ -2,8 +2,7 @@ package androsa.gaiadimension.item.armor;
 
 import androsa.gaiadimension.registry.GaiaArmorMaterials;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
-import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
@@ -14,7 +13,7 @@ import java.util.List;
 
 public class SpinelPrincessArmorItem extends BasicGaiaArmorItem {
 
-    public SpinelPrincessArmorItem(EquipmentSlot slot, Properties props) {
+    public SpinelPrincessArmorItem(ArmorItem.Type slot, Properties props) {
         super(GaiaArmorMaterials.SPINEL, slot, props);
     }
 
@@ -24,7 +23,7 @@ public class SpinelPrincessArmorItem extends BasicGaiaArmorItem {
     @OnlyIn(Dist.CLIENT)
     public void appendHoverText(ItemStack stack, Level world, List<Component> tooltips, TooltipFlag flags) {
         super.appendHoverText(stack, world, tooltips, flags);
-        tooltips.add(new TranslatableComponent("spinel_armor.tooltip"));
+        tooltips.add(Component.translatable("spinel_armor.tooltip"));
     }
 }
 

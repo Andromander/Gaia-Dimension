@@ -1,7 +1,6 @@
 package androsa.gaiadimension.item;
 
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Rarity;
@@ -11,7 +10,6 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 import java.util.List;
-
 
 public class MockGemItem extends Item {
 
@@ -28,6 +26,6 @@ public class MockGemItem extends Item {
     @OnlyIn(Dist.CLIENT)
     public void appendHoverText(ItemStack stack, Level world, List<Component> tooltips, TooltipFlag flags) {
         super.appendHoverText(stack, world, tooltips, flags);
-        tooltips.add(new TranslatableComponent("mock_gem.tooltip"));
+        tooltips.add(Component.translatable("mock_gem.tooltip"));
     }
 }

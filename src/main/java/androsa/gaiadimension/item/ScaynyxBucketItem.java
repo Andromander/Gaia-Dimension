@@ -94,7 +94,8 @@ public class ScaynyxBucketItem extends BucketItem {
         }
     }
 
-    private boolean canBlockContainFluid(Level worldIn, BlockPos posIn, BlockState blockstate) {
+    @Override
+    public boolean canBlockContainFluid(Level worldIn, BlockPos posIn, BlockState blockstate) {
         return blockstate.getBlock() instanceof LiquidBlockContainer && ((LiquidBlockContainer)blockstate.getBlock()).canPlaceLiquid(worldIn, posIn, blockstate, getFluid());
     }
 

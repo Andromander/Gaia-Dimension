@@ -5,9 +5,9 @@ import androsa.gaiadimension.item.*;
 import androsa.gaiadimension.item.armor.*;
 import androsa.gaiadimension.item.tools.*;
 import net.minecraft.client.renderer.item.ItemProperties;
+import net.minecraft.core.Direction;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.*;
@@ -22,7 +22,8 @@ import net.minecraftforge.registries.RegistryObject;
 import javax.annotation.Nullable;
 import java.util.function.Supplier;
 
-import static net.minecraft.world.entity.EquipmentSlot.*;
+import static net.minecraft.world.item.ArmorItem.Type.*;
+
 
 public class ModItems {
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, GaiaDimensionMod.MODID);
@@ -130,67 +131,67 @@ public class ModItems {
     public static final RegistryObject<Item> bismuth_residue = register("bismuth_residue");
     public static final RegistryObject<Item> bismuth_crystal = register("bismuth_crystal");
 
-    public static final RegistryObject<Item> sugilite_helmet = register("sugilite_helmet", GaiaArmorMaterials.SUGILITE, HEAD);
-    public static final RegistryObject<Item> sugilite_chestplate = register("sugilite_chestplate", GaiaArmorMaterials.SUGILITE, CHEST);
-    public static final RegistryObject<Item> sugilite_legs = register("sugilite_legs", GaiaArmorMaterials.SUGILITE, LEGS);
-    public static final RegistryObject<Item> sugilite_boots = register("sugilite_boots", GaiaArmorMaterials.SUGILITE, FEET);
-    public static final RegistryObject<Item> proustite_helmet = register("proustite_helmet", GaiaArmorMaterials.PROUSTITE, HEAD);
-    public static final RegistryObject<Item> proustite_chestplate = register("proustite_chestplate", GaiaArmorMaterials.PROUSTITE, CHEST);
-    public static final RegistryObject<Item> proustite_legs = register("proustite_legs", GaiaArmorMaterials.PROUSTITE, LEGS);
-    public static final RegistryObject<Item> proustite_boots = register("proustite_boots", GaiaArmorMaterials.PROUSTITE, FEET);
-    public static final RegistryObject<Item> leucite_helmet = register("leucite_helmet", GaiaArmorMaterials.LEUCITE, HEAD);
-    public static final RegistryObject<Item> leucite_chestplate = register("leucite_chestplate", GaiaArmorMaterials.LEUCITE, CHEST);
-    public static final RegistryObject<Item> leucite_legs = register("leucite_legs", GaiaArmorMaterials.LEUCITE, LEGS);
-    public static final RegistryObject<Item> leucite_boots = register("leucite_boots", GaiaArmorMaterials.LEUCITE, FEET);
-    public static final RegistryObject<Item> carnelian_helmet = register("carnelian_helmet", GaiaArmorMaterials.CARNELIAN, HEAD);
-    public static final RegistryObject<Item> carnelian_chestplate = register("carnelian_chestplate", GaiaArmorMaterials.CARNELIAN, CHEST);
-    public static final RegistryObject<Item> carnelian_legs = register("carnelian_legs", GaiaArmorMaterials.CARNELIAN, LEGS);
-    public static final RegistryObject<Item> carnelian_boots = register("carnelian_boots", GaiaArmorMaterials.CARNELIAN, FEET);
-    public static final RegistryObject<Item> diopside_helmet = register("diopside_helmet", GaiaArmorMaterials.DIOPSIDE, HEAD);
-    public static final RegistryObject<Item> diopside_chestplate = register("diopside_chestplate", GaiaArmorMaterials.DIOPSIDE, CHEST);
-    public static final RegistryObject<Item> diopside_legs = register("diopside_legs", GaiaArmorMaterials.DIOPSIDE, LEGS);
-    public static final RegistryObject<Item> diopside_boots = register("diopside_boots", GaiaArmorMaterials.DIOPSIDE, FEET);
-    public static final RegistryObject<Item> chalcedony_helmet = register("chalcedony_helmet", GaiaArmorMaterials.CHALCEDONY, HEAD);
-    public static final RegistryObject<Item> chalcedony_chestplate = register("chalcedony_chestplate", GaiaArmorMaterials.CHALCEDONY, CHEST);
-    public static final RegistryObject<Item> chalcedony_legs = register("chalcedony_legs", GaiaArmorMaterials.CHALCEDONY, LEGS);
-    public static final RegistryObject<Item> chalcedony_boots = register("chalcedony_boots", GaiaArmorMaterials.CHALCEDONY, FEET);
+    public static final RegistryObject<Item> sugilite_helmet = register("sugilite_helmet", GaiaArmorMaterials.SUGILITE, HELMET);
+    public static final RegistryObject<Item> sugilite_chestplate = register("sugilite_chestplate", GaiaArmorMaterials.SUGILITE, CHESTPLATE);
+    public static final RegistryObject<Item> sugilite_legs = register("sugilite_legs", GaiaArmorMaterials.SUGILITE, LEGGINGS);
+    public static final RegistryObject<Item> sugilite_boots = register("sugilite_boots", GaiaArmorMaterials.SUGILITE, BOOTS);
+    public static final RegistryObject<Item> proustite_helmet = register("proustite_helmet", GaiaArmorMaterials.PROUSTITE, HELMET);
+    public static final RegistryObject<Item> proustite_chestplate = register("proustite_chestplate", GaiaArmorMaterials.PROUSTITE, CHESTPLATE);
+    public static final RegistryObject<Item> proustite_legs = register("proustite_legs", GaiaArmorMaterials.PROUSTITE, LEGGINGS);
+    public static final RegistryObject<Item> proustite_boots = register("proustite_boots", GaiaArmorMaterials.PROUSTITE, BOOTS);
+    public static final RegistryObject<Item> leucite_helmet = register("leucite_helmet", GaiaArmorMaterials.LEUCITE, HELMET);
+    public static final RegistryObject<Item> leucite_chestplate = register("leucite_chestplate", GaiaArmorMaterials.LEUCITE, CHESTPLATE);
+    public static final RegistryObject<Item> leucite_legs = register("leucite_legs", GaiaArmorMaterials.LEUCITE, LEGGINGS);
+    public static final RegistryObject<Item> leucite_boots = register("leucite_boots", GaiaArmorMaterials.LEUCITE, BOOTS);
+    public static final RegistryObject<Item> carnelian_helmet = register("carnelian_helmet", GaiaArmorMaterials.CARNELIAN, HELMET);
+    public static final RegistryObject<Item> carnelian_chestplate = register("carnelian_chestplate", GaiaArmorMaterials.CARNELIAN, CHESTPLATE);
+    public static final RegistryObject<Item> carnelian_legs = register("carnelian_legs", GaiaArmorMaterials.CARNELIAN, LEGGINGS);
+    public static final RegistryObject<Item> carnelian_boots = register("carnelian_boots", GaiaArmorMaterials.CARNELIAN, BOOTS);
+    public static final RegistryObject<Item> diopside_helmet = register("diopside_helmet", GaiaArmorMaterials.DIOPSIDE, HELMET);
+    public static final RegistryObject<Item> diopside_chestplate = register("diopside_chestplate", GaiaArmorMaterials.DIOPSIDE, CHESTPLATE);
+    public static final RegistryObject<Item> diopside_legs = register("diopside_legs", GaiaArmorMaterials.DIOPSIDE, LEGGINGS);
+    public static final RegistryObject<Item> diopside_boots = register("diopside_boots", GaiaArmorMaterials.DIOPSIDE, BOOTS);
+    public static final RegistryObject<Item> chalcedony_helmet = register("chalcedony_helmet", GaiaArmorMaterials.CHALCEDONY, HELMET);
+    public static final RegistryObject<Item> chalcedony_chestplate = register("chalcedony_chestplate", GaiaArmorMaterials.CHALCEDONY, CHESTPLATE);
+    public static final RegistryObject<Item> chalcedony_legs = register("chalcedony_legs", GaiaArmorMaterials.CHALCEDONY, LEGGINGS);
+    public static final RegistryObject<Item> chalcedony_boots = register("chalcedony_boots", GaiaArmorMaterials.CHALCEDONY, BOOTS);
 
-    public static final RegistryObject<Item> malachite_guard_headgear = register("malachite_guard_headgear", () -> new MalachiteGuardArmorItem(HEAD, armorProps().rarity(Rarity.RARE)));
-    public static final RegistryObject<Item> malachite_guard_brace = register("malachite_guard_brace", () -> new MalachiteGuardArmorItem(CHEST, armorProps().rarity(Rarity.RARE)));
-    public static final RegistryObject<Item> malachite_guard_gear = register("malachite_guard_gear", () -> new MalachiteGuardArmorItem(LEGS, armorProps().rarity(Rarity.RARE)));
-    public static final RegistryObject<Item> malachite_guard_boots = register("malachite_guard_boots", () -> new MalachiteGuardArmorItem(FEET, armorProps().rarity(Rarity.RARE)));
-    public static final RegistryObject<Item> apex_predator_hood = register("apex_predator_hood", () -> new ApexPredatorArmorItem(HEAD, armorProps().rarity(Rarity.RARE)));
-    public static final RegistryObject<Item> apex_predator_jacket = register("apex_predator_jacket", () -> new ApexPredatorArmorItem(CHEST, armorProps().rarity(Rarity.RARE)));
-    public static final RegistryObject<Item> apex_predator_trousers = register("apex_predator_trousers", () -> new ApexPredatorArmorItem(LEGS, armorProps().rarity(Rarity.RARE)));
-    public static final RegistryObject<Item> apex_predator_boots = register("apex_predator_boots", () -> new ApexPredatorArmorItem(FEET, armorProps().rarity(Rarity.RARE)));
-    public static final RegistryObject<Item> spinel_princess_cowl = register("spinel_princess_cowl", () -> new SpinelPrincessArmorItem(HEAD, armorProps().rarity(Rarity.RARE)));
-    public static final RegistryObject<Item> spinel_princess_cloak = register("spinel_princess_cloak", () -> new SpinelPrincessArmorItem(CHEST, armorProps().rarity(Rarity.RARE)));
-    public static final RegistryObject<Item> spinel_princess_dress = register("spinel_princess_dress", () -> new SpinelPrincessArmorItem(LEGS, armorProps().rarity(Rarity.RARE)));
-    public static final RegistryObject<Item> spinel_princess_heels = register("spinel_princess_heels", () -> new SpinelPrincessArmorItem(FEET, armorProps().rarity(Rarity.RARE)));
-    public static final RegistryObject<Item> zircon_prince_crown = register("zircon_prince_crown", () -> new ZirconPrinceArmorItem(HEAD, armorProps().rarity(Rarity.RARE)));
-    public static final RegistryObject<Item> zircon_prince_chestpiece = register("zircon_prince_chestpiece", () -> new ZirconPrinceArmorItem(CHEST, armorProps().rarity(Rarity.RARE)));
-    public static final RegistryObject<Item> zircon_prince_gear = register("zircon_prince_gear", () -> new ZirconPrinceArmorItem(LEGS, armorProps().rarity(Rarity.RARE)));
-    public static final RegistryObject<Item> zircon_prince_boots = register("zircon_prince_boots", () -> new ZirconPrinceArmorItem(FEET, armorProps().rarity(Rarity.RARE)));
-    public static final RegistryObject<Item> corrupt_warrior_helm = register("corrupt_warrior_helm", () -> new CorruptWarriorArmorItem(HEAD, armorProps().rarity(Rarity.RARE)));
-    public static final RegistryObject<Item> corrupt_warrior_guard = register("corrupt_warrior_guard", () -> new CorruptWarriorArmorItem(CHEST, armorProps().rarity(Rarity.RARE)));
-    public static final RegistryObject<Item> corrupt_warrior_greaves = register("corrupt_warrior_greaves", () -> new CorruptWarriorArmorItem(LEGS, armorProps().rarity(Rarity.RARE)));
-    public static final RegistryObject<Item> corrupt_warrior_boots = register("corrupt_warrior_boots", () -> new CorruptWarriorArmorItem(FEET, armorProps().rarity(Rarity.RARE)));
-    public static final RegistryObject<Item> gaia_duchess_helm = register("gaia_duchess_helm", () -> new GaiaDuchessArmorItem(HEAD, armorProps().rarity(Rarity.RARE)));
-    public static final RegistryObject<Item> gaia_duchess_guard = register("gaia_duchess_guard", () -> new GaiaDuchessArmorItem(CHEST, armorProps().rarity(Rarity.RARE)));
-    public static final RegistryObject<Item> gaia_duchess_greaves = register("gaia_duchess_greaves", () -> new GaiaDuchessArmorItem(LEGS, armorProps().rarity(Rarity.RARE)));
-    public static final RegistryObject<Item> gaia_duchess_boots = register("gaia_duchess_boots", () -> new GaiaDuchessArmorItem(FEET, armorProps().rarity(Rarity.RARE)));
-    public static final RegistryObject<Item> gaia_baron_mask = register("gaia_baron_mask", () -> new GaiaBaronArmorItem(HEAD, armorProps().rarity(Rarity.RARE)));
-    public static final RegistryObject<Item> gaia_baron_tuxedo = register("gaia_baron_tuxedo", () -> new GaiaBaronArmorItem(CHEST, armorProps().rarity(Rarity.RARE)));
-    public static final RegistryObject<Item> gaia_baron_pants = register("gaia_baron_pants", () -> new GaiaBaronArmorItem(LEGS, armorProps().rarity(Rarity.RARE)));
-    public static final RegistryObject<Item> gaia_baron_shoes = register("gaia_baron_shoes", () -> new GaiaBaronArmorItem(FEET, armorProps().rarity(Rarity.RARE)));
-    public static final RegistryObject<Item> gaia_duke_helm = register("gaia_duke_helm", () -> new GaiaDukeArmorItem(HEAD, armorProps().rarity(Rarity.RARE)));
-    public static final RegistryObject<Item> gaia_duke_guard = register("gaia_duke_guard", () -> new GaiaDukeArmorItem(CHEST, armorProps().rarity(Rarity.RARE)));
-    public static final RegistryObject<Item> gaia_duke_greaves = register("gaia_duke_greaves", () -> new GaiaDukeArmorItem(LEGS, armorProps().rarity(Rarity.RARE)));
-    public static final RegistryObject<Item> gaia_duke_boots = register("gaia_duke_boots", () -> new GaiaDukeArmorItem(FEET, armorProps().rarity(Rarity.RARE)));
-    public static final RegistryObject<Item> gaia_champion_helm = register("gaia_champion_helm", () -> new GaiaChampArmorItem(HEAD, armorProps().rarity(Rarity.EPIC)));
-    public static final RegistryObject<Item> gaia_champion_guard = register("gaia_champion_guard", () -> new GaiaChampArmorItem(CHEST, armorProps().rarity(Rarity.EPIC)));
-    public static final RegistryObject<Item> gaia_champion_greaves = register("gaia_champion_greaves", () -> new GaiaChampArmorItem(LEGS, armorProps().rarity(Rarity.EPIC)));
-    public static final RegistryObject<Item> gaia_champion_boots = register("gaia_champion_boots", () -> new GaiaChampArmorItem(FEET, armorProps().rarity(Rarity.EPIC)));
+    public static final RegistryObject<Item> malachite_guard_headgear = register("malachite_guard_headgear", () -> new MalachiteGuardArmorItem(HELMET, armorProps().rarity(Rarity.RARE)));
+    public static final RegistryObject<Item> malachite_guard_brace = register("malachite_guard_brace", () -> new MalachiteGuardArmorItem(CHESTPLATE, armorProps().rarity(Rarity.RARE)));
+    public static final RegistryObject<Item> malachite_guard_gear = register("malachite_guard_gear", () -> new MalachiteGuardArmorItem(LEGGINGS, armorProps().rarity(Rarity.RARE)));
+    public static final RegistryObject<Item> malachite_guard_boots = register("malachite_guard_boots", () -> new MalachiteGuardArmorItem(BOOTS, armorProps().rarity(Rarity.RARE)));
+    public static final RegistryObject<Item> apex_predator_hood = register("apex_predator_hood", () -> new ApexPredatorArmorItem(HELMET, armorProps().rarity(Rarity.RARE)));
+    public static final RegistryObject<Item> apex_predator_jacket = register("apex_predator_jacket", () -> new ApexPredatorArmorItem(CHESTPLATE, armorProps().rarity(Rarity.RARE)));
+    public static final RegistryObject<Item> apex_predator_trousers = register("apex_predator_trousers", () -> new ApexPredatorArmorItem(LEGGINGS, armorProps().rarity(Rarity.RARE)));
+    public static final RegistryObject<Item> apex_predator_boots = register("apex_predator_boots", () -> new ApexPredatorArmorItem(BOOTS, armorProps().rarity(Rarity.RARE)));
+    public static final RegistryObject<Item> spinel_princess_cowl = register("spinel_princess_cowl", () -> new SpinelPrincessArmorItem(HELMET, armorProps().rarity(Rarity.RARE)));
+    public static final RegistryObject<Item> spinel_princess_cloak = register("spinel_princess_cloak", () -> new SpinelPrincessArmorItem(CHESTPLATE, armorProps().rarity(Rarity.RARE)));
+    public static final RegistryObject<Item> spinel_princess_dress = register("spinel_princess_dress", () -> new SpinelPrincessArmorItem(LEGGINGS, armorProps().rarity(Rarity.RARE)));
+    public static final RegistryObject<Item> spinel_princess_heels = register("spinel_princess_heels", () -> new SpinelPrincessArmorItem(BOOTS, armorProps().rarity(Rarity.RARE)));
+    public static final RegistryObject<Item> zircon_prince_crown = register("zircon_prince_crown", () -> new ZirconPrinceArmorItem(HELMET, armorProps().rarity(Rarity.RARE)));
+    public static final RegistryObject<Item> zircon_prince_chestpiece = register("zircon_prince_chestpiece", () -> new ZirconPrinceArmorItem(CHESTPLATE, armorProps().rarity(Rarity.RARE)));
+    public static final RegistryObject<Item> zircon_prince_gear = register("zircon_prince_gear", () -> new ZirconPrinceArmorItem(LEGGINGS, armorProps().rarity(Rarity.RARE)));
+    public static final RegistryObject<Item> zircon_prince_boots = register("zircon_prince_boots", () -> new ZirconPrinceArmorItem(BOOTS, armorProps().rarity(Rarity.RARE)));
+    public static final RegistryObject<Item> corrupt_warrior_helm = register("corrupt_warrior_helm", () -> new CorruptWarriorArmorItem(HELMET, armorProps().rarity(Rarity.RARE)));
+    public static final RegistryObject<Item> corrupt_warrior_guard = register("corrupt_warrior_guard", () -> new CorruptWarriorArmorItem(CHESTPLATE, armorProps().rarity(Rarity.RARE)));
+    public static final RegistryObject<Item> corrupt_warrior_greaves = register("corrupt_warrior_greaves", () -> new CorruptWarriorArmorItem(LEGGINGS, armorProps().rarity(Rarity.RARE)));
+    public static final RegistryObject<Item> corrupt_warrior_boots = register("corrupt_warrior_boots", () -> new CorruptWarriorArmorItem(BOOTS, armorProps().rarity(Rarity.RARE)));
+    public static final RegistryObject<Item> gaia_duchess_helm = register("gaia_duchess_helm", () -> new GaiaDuchessArmorItem(HELMET, armorProps().rarity(Rarity.RARE)));
+    public static final RegistryObject<Item> gaia_duchess_guard = register("gaia_duchess_guard", () -> new GaiaDuchessArmorItem(CHESTPLATE, armorProps().rarity(Rarity.RARE)));
+    public static final RegistryObject<Item> gaia_duchess_greaves = register("gaia_duchess_greaves", () -> new GaiaDuchessArmorItem(LEGGINGS, armorProps().rarity(Rarity.RARE)));
+    public static final RegistryObject<Item> gaia_duchess_boots = register("gaia_duchess_boots", () -> new GaiaDuchessArmorItem(BOOTS, armorProps().rarity(Rarity.RARE)));
+    public static final RegistryObject<Item> gaia_baron_mask = register("gaia_baron_mask", () -> new GaiaBaronArmorItem(HELMET, armorProps().rarity(Rarity.RARE)));
+    public static final RegistryObject<Item> gaia_baron_tuxedo = register("gaia_baron_tuxedo", () -> new GaiaBaronArmorItem(CHESTPLATE, armorProps().rarity(Rarity.RARE)));
+    public static final RegistryObject<Item> gaia_baron_pants = register("gaia_baron_pants", () -> new GaiaBaronArmorItem(LEGGINGS, armorProps().rarity(Rarity.RARE)));
+    public static final RegistryObject<Item> gaia_baron_shoes = register("gaia_baron_shoes", () -> new GaiaBaronArmorItem(BOOTS, armorProps().rarity(Rarity.RARE)));
+    public static final RegistryObject<Item> gaia_duke_helm = register("gaia_duke_helm", () -> new GaiaDukeArmorItem(HELMET, armorProps().rarity(Rarity.RARE)));
+    public static final RegistryObject<Item> gaia_duke_guard = register("gaia_duke_guard", () -> new GaiaDukeArmorItem(CHESTPLATE, armorProps().rarity(Rarity.RARE)));
+    public static final RegistryObject<Item> gaia_duke_greaves = register("gaia_duke_greaves", () -> new GaiaDukeArmorItem(LEGGINGS, armorProps().rarity(Rarity.RARE)));
+    public static final RegistryObject<Item> gaia_duke_boots = register("gaia_duke_boots", () -> new GaiaDukeArmorItem(BOOTS, armorProps().rarity(Rarity.RARE)));
+    public static final RegistryObject<Item> gaia_champion_helm = register("gaia_champion_helm", () -> new GaiaChampArmorItem(HELMET, armorProps().rarity(Rarity.EPIC)));
+    public static final RegistryObject<Item> gaia_champion_guard = register("gaia_champion_guard", () -> new GaiaChampArmorItem(CHESTPLATE, armorProps().rarity(Rarity.EPIC)));
+    public static final RegistryObject<Item> gaia_champion_greaves = register("gaia_champion_greaves", () -> new GaiaChampArmorItem(LEGGINGS, armorProps().rarity(Rarity.EPIC)));
+    public static final RegistryObject<Item> gaia_champion_boots = register("gaia_champion_boots", () -> new GaiaChampArmorItem(BOOTS, armorProps().rarity(Rarity.EPIC)));
 
     public static final RegistryObject<Item> agate_sword = registerSword("agate_sword", GaiaToolMaterials.AGATE);
     public static final RegistryObject<Item> agate_pickaxe = registerPickaxe("agate_pickaxe", GaiaToolMaterials.AGATE);
@@ -265,18 +266,18 @@ public class ModItems {
     public static final RegistryObject<Item> blue_howlite_wolf_spawn_egg = registerEgg("blue_howlite_wolf", ModEntities.BLUE_HOWLITE_WOLF, 0x0099CC, 0xCC00FF);
     public static final RegistryObject<Item> malachite_guard_spawn_egg = registerEgg("malachite_guard", ModEntities.MALACHITE_GUARD, 0x339900, 0x33CC99);
 
-    public static final RegistryObject<Item> PYRITE_TORCH = ITEMS.register("pyrite_torch", () -> new StandingAndWallBlockItem(ModBlocks.pyrite_torch.get(), ModBlocks.pyrite_wall_torch.get(), basicProps(GaiaItemGroups.GAIA_BLOCKS)));
+    public static final RegistryObject<Item> PYRITE_TORCH = ITEMS.register("pyrite_torch", () -> new StandingAndWallBlockItem(ModBlocks.pyrite_torch.get(), ModBlocks.pyrite_wall_torch.get(), basicProps(), Direction.DOWN));
 
     private static RegistryObject<Item> register(String name) {
-        return register(name, () -> new Item(basicProps(GaiaItemGroups.GAIA_ITEMS)));
+        return register(name, () -> new Item(basicProps()));
     }
 
     private static RegistryObject<Item> register(String name, FoodProperties props) {
         return register(name, () -> new Item(foodProps(props)));
     }
 
-    private static RegistryObject<Item> register(String name, ArmorMaterial material, EquipmentSlot slot) {
-        return register(name, () -> new BasicGaiaArmorItem(material, slot, basicProps(GaiaItemGroups.GAIA_ARMOR)));
+    private static RegistryObject<Item> register(String name, ArmorMaterial material, ArmorItem.Type slot) {
+        return register(name, () -> new BasicGaiaArmorItem(material, slot, basicProps()));
     }
 
     private static RegistryObject<Item> registerBucket(String name, Supplier<? extends Fluid> fluid) {
@@ -300,7 +301,7 @@ public class ModItems {
     }
 
     public static RegistryObject<Item> registerEgg(String name, Supplier<? extends EntityType<? extends Mob>> entity, int back, int front) {
-        return register(name + "_spawn_egg", () -> new ForgeSpawnEggItem(entity, back, front, new Item.Properties().tab(CreativeModeTab.TAB_MISC)));
+        return register(name + "_spawn_egg", () -> new ForgeSpawnEggItem(entity, back, front, new Item.Properties()));
     }
 
     private static RegistryObject<Item> register(String name, Supplier<Item> item) {
@@ -308,23 +309,23 @@ public class ModItems {
     }
 
     private static Item.Properties itemProps() {
-        return basicProps(GaiaItemGroups.GAIA_ITEMS);
+        return basicProps();
     }
 
     private static Item.Properties foodProps(FoodProperties food) {
-        return basicProps(CreativeModeTab.TAB_FOOD).food(food);
+        return basicProps().food(food);
     }
 
     private static Item.Properties toolProps() {
-        return basicProps(GaiaItemGroups.GAIA_TOOLS);
+        return basicProps();
     }
 
     private static Item.Properties armorProps() {
-        return basicProps(GaiaItemGroups.GAIA_ARMOR);
+        return basicProps();
     }
 
-    private static Item.Properties basicProps(CreativeModeTab tab) {
-        return new Item.Properties().tab(tab);
+    private static Item.Properties basicProps() {
+        return new Item.Properties();
     }
 
     public static void addItemProperties() {

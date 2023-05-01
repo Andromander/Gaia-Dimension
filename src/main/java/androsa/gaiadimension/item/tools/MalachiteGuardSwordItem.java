@@ -2,7 +2,6 @@ package androsa.gaiadimension.item.tools;
 
 import androsa.gaiadimension.registry.GaiaToolMaterials;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
@@ -24,7 +23,7 @@ public class MalachiteGuardSwordItem extends SwordItem {
     @OnlyIn(Dist.CLIENT)
     public void appendHoverText(ItemStack stack, Level world, List<Component> tooltips, TooltipFlag flags) {
         super.appendHoverText(stack, world, tooltips, flags);
-        tooltips.add(new TranslatableComponent(getDescriptionId() + ".tooltip"));
+        tooltips.add(Component.translatable(getDescriptionId() + ".tooltip"));
     }
 
     @Override

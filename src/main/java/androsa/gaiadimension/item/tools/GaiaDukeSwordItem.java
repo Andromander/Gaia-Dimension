@@ -3,7 +3,6 @@ package androsa.gaiadimension.item.tools;
 import androsa.gaiadimension.registry.GaiaToolMaterials;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.SwordItem;
 import net.minecraft.world.item.TooltipFlag;
@@ -23,14 +22,14 @@ public class GaiaDukeSwordItem extends SwordItem {
     @Override
     @Nonnull
     public Component getName(ItemStack stack) {
-        return new TranslatableComponent(super.getName(stack).getString(), ChatFormatting.BLUE);
+        return Component.translatable(super.getName(stack).getString(), ChatFormatting.BLUE);
     }
 
     @Override
     @OnlyIn(Dist.CLIENT)
     public void appendHoverText(ItemStack stack, Level world, List<Component> tooltips, TooltipFlag flags) {
         super.appendHoverText(stack, world, tooltips, flags);
-        tooltips.add(new TranslatableComponent(getDescriptionId() + ".tooltip"));
+        tooltips.add(Component.translatable(getDescriptionId() + ".tooltip"));
     }
 
     //TODO: Deals extra damage to Gaian mobs

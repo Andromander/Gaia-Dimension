@@ -5,7 +5,6 @@ import androsa.gaiadimension.registry.ModBlocks;
 import net.minecraft.core.particles.BlockParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.SwordItem;
@@ -26,7 +25,7 @@ public class GaiaChampSwordItem extends SwordItem {
     @OnlyIn(Dist.CLIENT)
     public void appendHoverText(ItemStack stack, Level world, List<Component> tooltips, TooltipFlag flags) {
         super.appendHoverText(stack, world, tooltips, flags);
-        tooltips.add(new TranslatableComponent(getDescriptionId() + ".tooltip"));
+        tooltips.add(Component.translatable(getDescriptionId() + ".tooltip"));
     }
 
     //TODO: Deals extra damage to Corrupt and Non-Gaian mobs

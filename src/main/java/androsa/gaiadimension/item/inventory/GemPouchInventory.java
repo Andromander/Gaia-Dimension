@@ -4,7 +4,6 @@ import androsa.gaiadimension.registry.GaiaTags;
 import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.Container;
 import net.minecraft.world.ContainerHelper;
 import net.minecraft.world.MenuProvider;
@@ -112,7 +111,7 @@ public class GemPouchInventory implements Container, MenuProvider {
 
     @Override
     public Component getDisplayName() {
-        return new TranslatableComponent("gaiadimension.container.gemstone_pouch");
+        return Component.translatable("gaiadimension.container.gemstone_pouch");
     }
 
     public void readFromNBT(CompoundTag tag) {

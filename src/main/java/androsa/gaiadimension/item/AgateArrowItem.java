@@ -22,7 +22,7 @@ public class AgateArrowItem extends ArrowItem {
 
     @Override
     public boolean isInfinite(ItemStack stack, ItemStack bow, Player player) {
-        int enchant = EnchantmentHelper.getItemEnchantmentLevel(Enchantments.INFINITY_ARROWS, bow);
+        int enchant = EnchantmentHelper.getTagEnchantmentLevel(Enchantments.INFINITY_ARROWS, bow);
         return enchant > 0 && this.getClass() == AgateArrowItem.class;
     }
 }

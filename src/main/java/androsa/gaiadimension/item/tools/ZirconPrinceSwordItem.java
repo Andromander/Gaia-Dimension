@@ -2,7 +2,6 @@ package androsa.gaiadimension.item.tools;
 
 import androsa.gaiadimension.registry.GaiaToolMaterials;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.SwordItem;
 import net.minecraft.world.item.TooltipFlag;
@@ -22,7 +21,7 @@ public class ZirconPrinceSwordItem extends SwordItem {
     @OnlyIn(Dist.CLIENT)
     public void appendHoverText(ItemStack stack, Level world, List<Component> tooltips, TooltipFlag flags) {
         super.appendHoverText(stack, world, tooltips, flags);
-        tooltips.add(new TranslatableComponent(getDescriptionId() + ".tooltip"));
+        tooltips.add(Component.translatable(getDescriptionId() + ".tooltip"));
     }
 
     //TODO: Deals lightning damage to those hit

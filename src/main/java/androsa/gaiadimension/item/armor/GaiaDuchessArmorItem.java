@@ -3,8 +3,7 @@ package androsa.gaiadimension.item.armor;
 import androsa.gaiadimension.registry.GaiaArmorMaterials;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
-import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
@@ -16,7 +15,7 @@ import java.util.List;
 
 public class GaiaDuchessArmorItem extends BasicGaiaArmorItem {
 
-    public GaiaDuchessArmorItem(EquipmentSlot slot, Properties props) {
+    public GaiaDuchessArmorItem(ArmorItem.Type slot, Properties props) {
         super(GaiaArmorMaterials.BIXBITE, slot, props);
     }
 
@@ -25,13 +24,13 @@ public class GaiaDuchessArmorItem extends BasicGaiaArmorItem {
     @Override
     @Nonnull
     public Component getName(ItemStack stack) {
-        return new TranslatableComponent(super.getName(stack).getString(), ChatFormatting.RED);
+        return Component.translatable(super.getName(stack).getString(), ChatFormatting.RED);
     }
 
     @Override
     @OnlyIn(Dist.CLIENT)
     public void appendHoverText(ItemStack stack, Level world, List<Component> tooltips, TooltipFlag flags) {
         super.appendHoverText(stack, world, tooltips, flags);
-        tooltips.add(new TranslatableComponent("bixbite_armor.tooltip"));
+        tooltips.add(Component.translatable("bixbite_armor.tooltip"));
     }
 }

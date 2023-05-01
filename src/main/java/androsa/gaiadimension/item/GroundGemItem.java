@@ -2,7 +2,6 @@ package androsa.gaiadimension.item;
 
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 
@@ -17,6 +16,6 @@ public class GroundGemItem extends Item {
     @Override
     @Nonnull
     public Component getName(ItemStack stack) {
-        return new TranslatableComponent(super.getName(stack).getString(), ChatFormatting.GRAY);
+        return Component.translatable(super.getName(stack).getString(), ChatFormatting.GRAY);
     }
 }

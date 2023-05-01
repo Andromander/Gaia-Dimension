@@ -2,8 +2,7 @@ package androsa.gaiadimension.item.armor;
 
 import androsa.gaiadimension.registry.GaiaArmorMaterials;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
-import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
@@ -14,7 +13,7 @@ import java.util.List;
 
 public class MalachiteGuardArmorItem extends BasicGaiaArmorItem {
 
-    public MalachiteGuardArmorItem(EquipmentSlot slot, Properties props) {
+    public MalachiteGuardArmorItem(ArmorItem.Type slot, Properties props) {
         super(GaiaArmorMaterials.MALACHITE, slot, props);
     }
 
@@ -22,6 +21,6 @@ public class MalachiteGuardArmorItem extends BasicGaiaArmorItem {
     @OnlyIn(Dist.CLIENT)
     public void appendHoverText(ItemStack stack, Level world, List<Component> tooltips, TooltipFlag flags) {
         super.appendHoverText(stack, world, tooltips, flags);
-        tooltips.add(new TranslatableComponent("malachite_armor.tooltip"));
+        tooltips.add(Component.translatable("malachite_armor.tooltip"));
     }
 }

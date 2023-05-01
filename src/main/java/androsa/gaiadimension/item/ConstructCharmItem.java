@@ -4,7 +4,7 @@ import androsa.gaiadimension.entity.MookaiteConstructEntity;
 import androsa.gaiadimension.entity.OpaliteContructEntity;
 import androsa.gaiadimension.registry.ModEntities;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.InteractionResultHolder;
@@ -42,11 +42,11 @@ public class ConstructCharmItem extends Item {
                             this.setUUID(stack, mookaite.getUUID(), "MookaiteUUID");
                         }
                     } else {
-                        player.displayClientMessage(new TranslatableComponent("construct_charm.message.mookaite_already_bonded"), true);
+                        player.displayClientMessage(Component.translatable("construct_charm.message.mookaite_already_bonded"), true);
                         return InteractionResult.PASS;
                     }
                 } else {
-                    player.displayClientMessage(new TranslatableComponent("construct_charm.message.has_mookaite_bond"), true);
+                    player.displayClientMessage(Component.translatable("construct_charm.message.has_mookaite_bond"), true);
                     return InteractionResult.PASS;
                 }
             }
@@ -60,11 +60,11 @@ public class ConstructCharmItem extends Item {
                             this.setUUID(stack, opalite.getUUID(), "OpaliteUUID");
                         }
                     } else {
-                        player.displayClientMessage(new TranslatableComponent("construct_charm.message.opalite_already_bonded"), true);
+                        player.displayClientMessage(Component.translatable("construct_charm.message.opalite_already_bonded"), true);
                         return InteractionResult.PASS;
                     }
                 } else {
-                    player.displayClientMessage(new TranslatableComponent("construct_charm.message.has_opalite_bond"), true);
+                    player.displayClientMessage(Component.translatable("construct_charm.message.has_opalite_bond"), true);
                     return InteractionResult.PASS;
                 }
             }
@@ -110,15 +110,15 @@ public class ConstructCharmItem extends Item {
                             stack.shrink(1);
                         }
 
-                        player.displayClientMessage(new TranslatableComponent("construct_charm.message.success"), true);
+                        player.displayClientMessage(Component.translatable("construct_charm.message.success"), true);
                         return InteractionResult.CONSUME;
                     } else {
                         if (!mFlag && !oFlag) {
-                            player.displayClientMessage(new TranslatableComponent("construct_charm.message.both_invalid"), true);
+                            player.displayClientMessage(Component.translatable("construct_charm.message.both_invalid"), true);
                         } else if (!mFlag) {
-                            player.displayClientMessage(new TranslatableComponent("construct_charm.message.mookaite_invalid"), true);
+                            player.displayClientMessage(Component.translatable("construct_charm.message.mookaite_invalid"), true);
                         } else if (!oFlag) {
-                            player.displayClientMessage(new TranslatableComponent("construct_charm.message.opalite_invalid"), true);
+                            player.displayClientMessage(Component.translatable("construct_charm.message.opalite_invalid"), true);
                         }
 
                         if (!player.level.isClientSide()) {
@@ -129,11 +129,11 @@ public class ConstructCharmItem extends Item {
                     }
                 } else {
                     if (!mFlag && !oFlag) {
-                        player.displayClientMessage(new TranslatableComponent("construct_charm.message.both_out_of_range"), true);
+                        player.displayClientMessage(Component.translatable("construct_charm.message.both_out_of_range"), true);
                     } else if (!mFlag) {
-                        player.displayClientMessage(new TranslatableComponent("construct_charm.message.mookaite_out_of_range"), true);
+                        player.displayClientMessage(Component.translatable("construct_charm.message.mookaite_out_of_range"), true);
                     } else if (!oFlag) {
-                        player.displayClientMessage(new TranslatableComponent("construct_charm.message.opalite_out_of_range"), true);
+                        player.displayClientMessage(Component.translatable("construct_charm.message.opalite_out_of_range"), true);
                     }
 
                     if (!player.level.isClientSide()) {
@@ -145,7 +145,7 @@ public class ConstructCharmItem extends Item {
             }
 
         } else {
-            player.displayClientMessage(new TranslatableComponent("construct_charm.message.invalid_entity"), true);
+            player.displayClientMessage(Component.translatable("construct_charm.message.invalid_entity"), true);
             return InteractionResult.PASS;
         }
 
@@ -160,7 +160,7 @@ public class ConstructCharmItem extends Item {
                 this.removeUUID(stack, "MookaiteUUID");
                 this.removeUUID(stack, "OpaliteUUID");
             }
-            player.displayClientMessage(new TranslatableComponent("construct_charm.message.reset"), true);
+            player.displayClientMessage(Component.translatable("construct_charm.message.reset"), true);
 
             return InteractionResultHolder.sidedSuccess(stack, level.isClientSide());
         }
