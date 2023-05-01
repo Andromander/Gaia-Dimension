@@ -13,6 +13,7 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -29,11 +30,9 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.common.BiomeDictionary;
 
 import javax.annotation.Nullable;
 import java.util.Optional;
-import java.util.Random;
 
 public class GaiaPortalBlock extends Block {
     public static final EnumProperty<Direction.Axis> AXIS = BlockStateProperties.HORIZONTAL_AXIS;
@@ -62,6 +61,7 @@ public class GaiaPortalBlock extends Block {
     }
 
     // This will check for creation conditions in the Overworld or Gaia
+    //TODO: revise logic as of 1.19.4
     private boolean canCreatePortalByWorld(Level world, BlockPos pos) {
         if (world.dimension().location().equals(ModGaiaConfig.startDimRL)) {
             //Check if the portal needs to be checking
@@ -75,15 +75,17 @@ public class GaiaPortalBlock extends Block {
                     switch (biometype) {
                         case BIOME:
                             return (listtype == ModGaiaConfig.ListType.WHITELIST) == ModGaiaConfig.biomeList.get().contains(biome.get().location().toString());
-                        case CATEGORY:
-                            return (listtype == ModGaiaConfig.ListType.WHITELIST) == ModGaiaConfig.categoryList.get().contains(Biome.getBiomeCategory(world.getBiome(pos)).toString());
-                        case TYPE:
-                            for (String type : ModGaiaConfig.typeList.get()) {
-                                if (BiomeDictionary.hasType(biome.get(), BiomeDictionary.Type.getType(type))) {
-                                    return listtype == ModGaiaConfig.ListType.WHITELIST;
-                                }
-                            }
-                            return listtype == ModGaiaConfig.ListType.BLACKLIST;
+                        default:
+                            return listtype == ModGaiaConfig.ListType.WHITELIST;
+//                        case CATEGORY:
+//                            return (listtype == ModGaiaConfig.ListType.WHITELIST) == ModGaiaConfig.categoryList.get().contains(Biome.getBiomeCategory(world.getBiome(pos)).toString());
+//                        case TYPE:
+//                            for (String type : ModGaiaConfig.typeList.get()) {
+//                                if (BiomeDictionary.hasType(biome.get(), BiomeDictionary.Type.getType(type))) {
+//                                    return listtype == ModGaiaConfig.ListType.WHITELIST;
+//                                }
+//                            }
+//                            return listtype == ModGaiaConfig.ListType.BLACKLIST;
                     }
                 }
                 //Somehow checking the biome failed
@@ -145,7 +147,7 @@ public class GaiaPortalBlock extends Block {
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public void animateTick(BlockState stateIn, Level worldIn, BlockPos pos, Random rand) {
+    public void animateTick(BlockState stateIn, Level worldIn, BlockPos pos, RandomSource rand) {
         if (rand.nextInt(100) == 0) {
             worldIn.playLocalSound((double)pos.getX() + 0.5D, (double)pos.getY() + 0.5D, (double)pos.getZ() + 0.5D, SoundEvents.PORTAL_AMBIENT, SoundSource.BLOCKS, 0.5F, rand.nextFloat() * 0.4F + 0.8F, false);
         }

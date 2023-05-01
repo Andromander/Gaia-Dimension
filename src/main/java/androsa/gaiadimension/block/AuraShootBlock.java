@@ -3,6 +3,7 @@ package androsa.gaiadimension.block;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.LevelAccessor;
@@ -19,8 +20,6 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.common.PlantType;
-
-import java.util.Random;
 
 public class AuraShootBlock extends Block implements IPlantable {
 
@@ -91,7 +90,7 @@ public class AuraShootBlock extends Block implements IPlantable {
 
     @Override
     @Deprecated
-    public void tick(BlockState state, ServerLevel worldIn, BlockPos pos, Random rand) {
+    public void tick(BlockState state, ServerLevel worldIn, BlockPos pos, RandomSource rand) {
         if (!state.canSurvive(worldIn, pos)) {
             worldIn.destroyBlock(pos, true);
         }
@@ -99,7 +98,7 @@ public class AuraShootBlock extends Block implements IPlantable {
 
     @Override
     @Deprecated
-    public void randomTick(BlockState state, ServerLevel worldIn, BlockPos pos, Random random) {
+    public void randomTick(BlockState state, ServerLevel worldIn, BlockPos pos, RandomSource random) {
         if (worldIn.isEmptyBlock(pos.above())) {
             int i;
             i = 1;

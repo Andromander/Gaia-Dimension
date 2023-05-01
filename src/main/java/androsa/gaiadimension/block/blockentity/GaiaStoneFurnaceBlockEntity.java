@@ -4,7 +4,6 @@ import androsa.gaiadimension.block.menu.GaiaStoneFurnaceMenu;
 import androsa.gaiadimension.registry.ModBlockEntities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.item.crafting.RecipeType;
@@ -19,7 +18,7 @@ public class GaiaStoneFurnaceBlockEntity extends AbstractFurnaceBlockEntity {
 
     @Override
     protected Component getDefaultName() {
-        return new TranslatableComponent("gaiadimension.container.gaia_stone_furnace");
+        return Component.translatable("gaiadimension.container.gaia_stone_furnace");
     }
 
     protected AbstractContainerMenu createMenu(int id, Inventory inventory) {

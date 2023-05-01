@@ -14,7 +14,6 @@ import net.minecraft.core.Direction;
 import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.world.Container;
@@ -38,8 +37,8 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BaseContainerBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.util.LazyOptional;
-import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.wrapper.SidedInvWrapper;
 
@@ -104,7 +103,7 @@ public class RestructurerBlockEntity extends BaseContainerBlockEntity implements
 
     @Override
     protected Component getDefaultName() {
-        return new TranslatableComponent("gaiadimension.container.restructurer", 0);
+        return Component.translatable("gaiadimension.container.restructurer", 0);
     }
 
     @Override
@@ -218,21 +217,21 @@ public class RestructurerBlockEntity extends BaseContainerBlockEntity implements
                 if (entity.isBurning()) {
                     burn = true;
 
-                    if (goldStack.hasContainerItem()) {
-                        entity.restructurerItemStacks.set(1, goldStack.getContainerItem());
+                    if (goldStack.hasCraftingRemainingItem()) {
+                        entity.restructurerItemStacks.set(1, goldStack.getCraftingRemainingItem());
                     } else if (!goldStack.isEmpty()) {
                         goldStack.shrink(1);
                         if (goldStack.isEmpty()) {
-                            entity.restructurerItemStacks.set(1, goldStack.getContainerItem());
+                            entity.restructurerItemStacks.set(1, goldStack.getCraftingRemainingItem());
                         }
                     }
 
-                    if (essenceStack.hasContainerItem()) {
-                        entity.restructurerItemStacks.set(2, essenceStack.getContainerItem());
+                    if (essenceStack.hasCraftingRemainingItem()) {
+                        entity.restructurerItemStacks.set(2, essenceStack.getCraftingRemainingItem());
                     } else if (!essenceStack.isEmpty()) {
                         essenceStack.shrink(1);
                         if (essenceStack.isEmpty()) {
-                            entity.restructurerItemStacks.set(2, essenceStack.getContainerItem());
+                            entity.restructurerItemStacks.set(2, essenceStack.getCraftingRemainingItem());
                         }
                     }
                 }
@@ -503,7 +502,7 @@ public class RestructurerBlockEntity extends BaseContainerBlockEntity implements
     @Override
     @Nonnull
     public <T> LazyOptional<T> getCapability(Capability<T> capability, @Nullable Direction facing) {
-        if (facing != null && capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY)
+        if (facing != null && capability == ForgeCapabilities.ITEM_HANDLER)
             if (facing == Direction.UP)
                 return handlers[0].cast();
             else if (facing == Direction.DOWN)

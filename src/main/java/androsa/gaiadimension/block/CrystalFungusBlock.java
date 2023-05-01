@@ -3,6 +3,7 @@ package androsa.gaiadimension.block;
 import androsa.gaiadimension.registry.ModBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
@@ -12,8 +13,6 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-
-import java.util.Random;
 
 public class CrystalFungusBlock extends BushBlock {
     protected static final VoxelShape SHAPE = Block.box(2.0D, 0.0D, 2.0D, 14.0D, 13.0D, 14.0D);
@@ -41,7 +40,7 @@ public class CrystalFungusBlock extends BushBlock {
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public void animateTick(BlockState stateIn, Level worldIn, BlockPos pos, Random rand) {
+    public void animateTick(BlockState stateIn, Level worldIn, BlockPos pos, RandomSource rand) {
         double d0 = (double)pos.getX() + rand.nextDouble() * 0.6D + 0.2D;
         double d1 = (double)pos.getY() + rand.nextDouble() * 0.6D + 0.2D;
         double d2 = (double)pos.getZ() + rand.nextDouble() * 0.6D + 0.2D;

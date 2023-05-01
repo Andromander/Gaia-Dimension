@@ -67,7 +67,7 @@ public class AgateCraftingTableMenu extends RecipeBookMenu<CraftingContainer> {
             if (optional.isPresent()) {
                 CraftingRecipe icraftingrecipe = optional.get();
                 if (result.setRecipeUsed(world, serverplayerentity, icraftingrecipe)) {
-                    itemstack = icraftingrecipe.assemble(craft);
+                    itemstack = icraftingrecipe.assemble(craft, world.registryAccess());
                 }
             }
 

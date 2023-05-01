@@ -7,15 +7,13 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.FluidTags;
-import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
-
-import java.util.Random;
 
 public class SearingRockBlock extends Block {
 
@@ -25,7 +23,7 @@ public class SearingRockBlock extends Block {
 
     public void stepOn(Level worldIn, BlockPos pos, BlockState state, Entity entityIn) {
         if (entityIn instanceof LivingEntity && !EnchantmentHelper.hasFrostWalker((LivingEntity)entityIn) || !(entityIn instanceof ISpitfireMob)) {
-            entityIn.hurt(DamageSource.HOT_FLOOR, 2.0F);
+            entityIn.hurt(worldIn.damageSources().hotFloor(), 2.0F);
         }
 
         super.stepOn(worldIn, pos, state, entityIn);
@@ -33,7 +31,7 @@ public class SearingRockBlock extends Block {
 
     @Override
     @Deprecated
-    public void randomTick(BlockState state, ServerLevel worldIn, BlockPos pos, Random random) {
+    public void randomTick(BlockState state, ServerLevel worldIn, BlockPos pos, RandomSource random) {
         BlockPos blockpos = pos.above();
         if (worldIn.getFluidState(pos).is(FluidTags.WATER)) {
             worldIn.playSound(null, pos, SoundEvents.FIRE_EXTINGUISH, SoundSource.BLOCKS, 0.5F, 2.6F + (worldIn.random.nextFloat() - worldIn.random.nextFloat()) * 0.8F);

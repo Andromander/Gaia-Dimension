@@ -3,13 +3,12 @@ package androsa.gaiadimension.block;
 import androsa.gaiadimension.registry.ModParticles;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.WallTorchBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-
-import java.util.Random;
 
 public class PyriteWallTorchBlock extends WallTorchBlock {
 
@@ -19,7 +18,7 @@ public class PyriteWallTorchBlock extends WallTorchBlock {
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public void animateTick(BlockState state, Level world, BlockPos pos, Random rand) {
+    public void animateTick(BlockState state, Level world, BlockPos pos, RandomSource rand) {
         Direction direction = state.getValue(FACING);
         double dx = (double)pos.getX() + 0.5D;
         double dy = (double)pos.getY() + 0.7D;

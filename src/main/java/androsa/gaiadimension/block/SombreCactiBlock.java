@@ -2,7 +2,6 @@ package androsa.gaiadimension.block;
 
 import androsa.gaiadimension.registry.ModBlocks;
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -48,7 +47,7 @@ public class SombreCactiBlock extends Block implements IPlantable {
     @Override
     @Deprecated
     public void entityInside(BlockState state, Level level, BlockPos pos, Entity entity) {
-        entity.hurt(DamageSource.CACTUS, 1.0F);
+        entity.hurt(level.damageSources().cactus(), 1.0F);
     }
 
     @Override

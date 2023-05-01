@@ -1,12 +1,11 @@
 package androsa.gaiadimension.block;
 
-import androsa.gaiadimension.fluids.*;
+import androsa.gaiadimension.fluids.SuperhotMagmaFluid;
 import androsa.gaiadimension.registry.GaiaTags;
 import androsa.gaiadimension.registry.ModBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.tags.FluidTags;
-import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
@@ -23,7 +22,7 @@ import java.util.function.Supplier;
 public class GaiaFluidBlock extends LiquidBlock {
 
     public GaiaFluidBlock(Supplier<? extends FlowingFluid> fluid, Properties builder) {
-        super(fluid, builder.noCollission().strength(100.0F).noDrops());
+        super(fluid, builder.noCollission().strength(100.0F));
     }
 
     @Override
@@ -80,7 +79,7 @@ public class GaiaFluidBlock extends LiquidBlock {
     public void entityInside(BlockState state, Level worldIn, BlockPos pos, Entity entityIn) {
         if (this.getFluid().is(FluidTags.LAVA)) {
             if (this.getFluid() instanceof SuperhotMagmaFluid && !entityIn.fireImmune()) {
-                entityIn.hurt(DamageSource.IN_FIRE, 5.0F);
+                entityIn.hurt(worldIn.damageSources().lava(), 5.0F);
             }
             entityIn.setSecondsOnFire(15);
         }

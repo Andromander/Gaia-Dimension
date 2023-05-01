@@ -15,9 +15,4 @@ public class DoubleCrystalGrowthBlock extends DoublePlantBlock {
     protected boolean mayPlaceOn(BlockState state, BlockGetter getter, BlockPos pos) {
         return state.getBlock() instanceof AbstractGaiaGrassBlock || state.getBlock() instanceof GaiaSoilBlock;
     }
-
-    @Override
-    public OffsetType getOffsetType() {
-        return OffsetType.NONE; //nah, don't like it
-    }
 }

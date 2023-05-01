@@ -39,11 +39,11 @@ public class ModBlocks {
 
     //Utility Blocks
     public static final RegistryObject<GaiaPortalBlock> gaia_portal = registerNoItem("gaia_portal", () ->
-            new GaiaPortalBlock(GaiaBlockProperties.stoneProps(Material.PORTAL, MaterialColor.TERRACOTTA_PINK, -1.0F, -1.0F, false).noCollission().randomTicks().lightLevel((state) -> 15).noDrops()));
+            new GaiaPortalBlock(GaiaBlockProperties.stoneProps(Material.PORTAL, MaterialColor.TERRACOTTA_PINK, -1.0F, -1.0F, false).noCollission().randomTicks().lightLevel((state) -> 15)));
     public static final RegistryObject<Block> keystone_block = register("keystone_block",
             GaiaBlockProperties.basicProps(Material.METAL, MaterialColor.GOLD, SoundType.METAL, 5.0F, 10.0F).requiresCorrectToolForDrops());
     public static final RegistryObject<Block> gold_fire = registerNoItem("gold_fire", () ->
-            new GoldFireBlock(Properties.of(Material.FIRE, MaterialColor.GOLD).strength(0.0F).noCollission().randomTicks().lightLevel((state) -> 15).noDrops()));
+            new GoldFireBlock(Properties.of(Material.FIRE, MaterialColor.GOLD).strength(0.0F).noCollission().randomTicks().lightLevel((state) -> 15)));
     public static final RegistryObject<Block> pyrite_torch = registerNoItem("pyrite_torch", () -> new PyriteTorchBlock(GaiaBlockProperties.torchProps()));
     public static final RegistryObject<Block> pyrite_wall_torch = registerNoItem("pyrite_wall_torch", () -> new PyriteWallTorchBlock(GaiaBlockProperties.torchProps().lootFrom(pyrite_torch)));
     public static final RegistryObject<Block> agate_crafting_table = register("agate_crafting_table", () ->
@@ -339,19 +339,19 @@ public class ModBlocks {
     public static final RegistryObject<Block> chalcedony_block = register("chalcedony_block", GaiaBlockProperties.storageProps(MaterialColor.SNOW));
 
     //Ores
-    public static final RegistryObject<Block> sugilite_ore = register("sugilite_ore", () -> new OreBlock(GaiaBlockProperties.oreProps(MaterialColor.COLOR_PURPLE), UniformInt.of(1, 3)));
-    public static final RegistryObject<Block> hematite_ore = register("hematite_ore", () -> new OreBlock(GaiaBlockProperties.oreProps(MaterialColor.COLOR_GRAY), UniformInt.of(1, 4)));
-    public static final RegistryObject<Block> cinnabar_ore = register("cinnabar_ore", () -> new OreBlock(GaiaBlockProperties.oreProps(MaterialColor.COLOR_ORANGE), UniformInt.of(1, 4)));
-    public static final RegistryObject<Block> labradorite_ore = register("labradorite_ore", () -> new OreBlock(GaiaBlockProperties.oreProps(MaterialColor.COLOR_GREEN), UniformInt.of(5, 2)));
-    public static final RegistryObject<Block> moonstone_ore = register("moonstone_ore", () -> new OreBlock(GaiaBlockProperties.oreProps(MaterialColor.METAL), UniformInt.of(5, 2)));
-    public static final RegistryObject<Block> opal_ore_red = register("opal_ore_red", () -> new OreBlock(GaiaBlockProperties.oreProps(MaterialColor.COLOR_RED), UniformInt.of(2, 5)));
-    public static final RegistryObject<Block> opal_ore_blue = register("opal_ore_blue", () -> new OreBlock(GaiaBlockProperties.oreProps(MaterialColor.COLOR_LIGHT_BLUE), UniformInt.of(2, 5)));
-    public static final RegistryObject<Block> opal_ore_green = register("opal_ore_green", () -> new OreBlock(GaiaBlockProperties.oreProps(MaterialColor.COLOR_LIGHT_GREEN), UniformInt.of(2, 5)));
-    public static final RegistryObject<Block> opal_ore_white = register("opal_ore_white", () -> new OreBlock(GaiaBlockProperties.oreProps(MaterialColor.SNOW), UniformInt.of(3, 7)));
-    public static final RegistryObject<Block> pyrite_ore = register("pyrite_ore", () -> new OreBlock(GaiaBlockProperties.oreProps(MaterialColor.GOLD).lightLevel((state) -> 3), UniformInt.of(1, 4)));
-    public static final RegistryObject<Block> speckled_rock = register("speckled_rock", () -> new OreBlock(GaiaBlockProperties.oreProps(MaterialColor.COLOR_MAGENTA)));
-    public static final RegistryObject<Block> coarse_rock = register("coarse_rock", () -> new OreBlock(GaiaBlockProperties.oreProps(MaterialColor.COLOR_MAGENTA)));
-    public static final RegistryObject<Block> precious_rock = register("precious_rock", () -> new OreBlock(GaiaBlockProperties.oreProps(MaterialColor.COLOR_MAGENTA)));
+    public static final RegistryObject<Block> sugilite_ore = register("sugilite_ore", () -> new DropExperienceBlock(GaiaBlockProperties.oreProps(MaterialColor.COLOR_PURPLE), UniformInt.of(1, 3)));
+    public static final RegistryObject<Block> hematite_ore = register("hematite_ore", () -> new DropExperienceBlock(GaiaBlockProperties.oreProps(MaterialColor.COLOR_GRAY), UniformInt.of(1, 4)));
+    public static final RegistryObject<Block> cinnabar_ore = register("cinnabar_ore", () -> new DropExperienceBlock(GaiaBlockProperties.oreProps(MaterialColor.COLOR_ORANGE), UniformInt.of(1, 4)));
+    public static final RegistryObject<Block> labradorite_ore = register("labradorite_ore", () -> new DropExperienceBlock(GaiaBlockProperties.oreProps(MaterialColor.COLOR_GREEN), UniformInt.of(5, 2)));
+    public static final RegistryObject<Block> moonstone_ore = register("moonstone_ore", () -> new DropExperienceBlock(GaiaBlockProperties.oreProps(MaterialColor.METAL), UniformInt.of(5, 2)));
+    public static final RegistryObject<Block> opal_ore_red = register("opal_ore_red", () -> new DropExperienceBlock(GaiaBlockProperties.oreProps(MaterialColor.COLOR_RED), UniformInt.of(2, 5)));
+    public static final RegistryObject<Block> opal_ore_blue = register("opal_ore_blue", () -> new DropExperienceBlock(GaiaBlockProperties.oreProps(MaterialColor.COLOR_LIGHT_BLUE), UniformInt.of(2, 5)));
+    public static final RegistryObject<Block> opal_ore_green = register("opal_ore_green", () -> new DropExperienceBlock(GaiaBlockProperties.oreProps(MaterialColor.COLOR_LIGHT_GREEN), UniformInt.of(2, 5)));
+    public static final RegistryObject<Block> opal_ore_white = register("opal_ore_white", () -> new DropExperienceBlock(GaiaBlockProperties.oreProps(MaterialColor.SNOW), UniformInt.of(3, 7)));
+    public static final RegistryObject<Block> pyrite_ore = register("pyrite_ore", () -> new DropExperienceBlock(GaiaBlockProperties.oreProps(MaterialColor.GOLD).lightLevel((state) -> 3), UniformInt.of(1, 4)));
+    public static final RegistryObject<Block> speckled_rock = register("speckled_rock", () -> new Block(GaiaBlockProperties.oreProps(MaterialColor.COLOR_MAGENTA)));
+    public static final RegistryObject<Block> coarse_rock = register("coarse_rock", () -> new Block(GaiaBlockProperties.oreProps(MaterialColor.COLOR_MAGENTA)));
+    public static final RegistryObject<Block> precious_rock = register("precious_rock", () -> new Block(GaiaBlockProperties.oreProps(MaterialColor.COLOR_MAGENTA)));
 
     //Flower Pots
     public static final RegistryObject<FlowerPotBlock> potted_thiscus = registerFlowerPot(thiscus);
@@ -416,7 +416,7 @@ public class ModBlocks {
     }
 
     private static <T extends Block> Supplier<BlockItem> registerBlockItemFuel(final RegistryObject<T> block, int burnTime) {
-        return () -> new BlockItem(block.get(), new Item.Properties().tab(GaiaItemGroups.GAIA_BLOCKS)) {
+        return () -> new BlockItem(block.get(), new Item.Properties()) {
             @Override
             public int getBurnTime(ItemStack itemStack, RecipeType<?> type) {
                 return burnTime;

@@ -9,6 +9,7 @@ import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
@@ -21,8 +22,6 @@ import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-
-import java.util.Random;
 
 public class GoldFireBlock extends Block {
     public static final IntegerProperty AGE = BlockStateProperties.AGE_15;
@@ -57,7 +56,7 @@ public class GoldFireBlock extends Block {
 
     @Override
     @Deprecated
-    public void tick(BlockState state, ServerLevel worldIn, BlockPos pos, Random random) {
+    public void tick(BlockState state, ServerLevel worldIn, BlockPos pos, RandomSource random) {
         if (worldIn.getGameRules().getBoolean(GameRules.RULE_DOFIRETICK)) {
             if (!worldIn.isAreaLoaded(pos, 2)) return;
             if (!state.canSurvive(worldIn, pos)) {
@@ -125,7 +124,7 @@ public class GoldFireBlock extends Block {
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public void animateTick(BlockState stateIn, Level worldIn, BlockPos pos, Random rand) {
+    public void animateTick(BlockState stateIn, Level worldIn, BlockPos pos, RandomSource rand) {
         if (rand.nextInt(24) == 0) {
             worldIn.playLocalSound((double)((float)pos.getX() + 0.5F), (double)((float)pos.getY() + 0.5F), (double)((float)pos.getZ() + 0.5F), SoundEvents.FIRE_AMBIENT, SoundSource.BLOCKS, 1.0F + rand.nextFloat(), rand.nextFloat() * 0.7F + 0.3F, false);
         }
