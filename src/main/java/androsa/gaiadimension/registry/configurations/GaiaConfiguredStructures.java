@@ -6,11 +6,14 @@ import androsa.gaiadimension.registry.ModWorldgen;
 import com.google.common.collect.Maps;
 import net.minecraft.core.Holder;
 import net.minecraft.data.BuiltinRegistries;
+import net.minecraft.data.worldgen.BootstapContext;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.levelgen.feature.ConfiguredStructureFeature;
 import net.minecraft.world.level.levelgen.feature.StructureFeature;
 import net.minecraft.world.level.levelgen.feature.configurations.FeatureConfiguration;
 import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
+import net.minecraft.world.level.levelgen.structure.Structure;
 import net.minecraft.world.level.levelgen.structure.StructureSet;
 import net.minecraft.world.level.levelgen.structure.placement.RandomSpreadStructurePlacement;
 import net.minecraft.world.level.levelgen.structure.placement.RandomSpreadType;
@@ -30,5 +33,9 @@ public final class GaiaConfiguredStructures extends GaiaBiomeFeatures {
         Holder<ConfiguredStructureFeature<?, ?>> holder = BuiltinRegistries.registerExact(BuiltinRegistries.CONFIGURED_STRUCTURE_FEATURE, name.toString(), config.apply(feature));
         STRUCTURE_SETS.put(name, new StructureSet(holder, new RandomSpreadStructurePlacement(spacing, separation, RandomSpreadType.LINEAR, salt)));
         return holder;
+    }
+
+    public static void initStructures(BootstapContext<Structure> context) {
+
     }
 }

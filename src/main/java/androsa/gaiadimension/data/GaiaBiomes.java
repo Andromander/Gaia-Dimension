@@ -3,14 +3,20 @@ package androsa.gaiadimension.data;
 import androsa.gaiadimension.data.provider.GaiaBiomeProvider;
 import androsa.gaiadimension.registry.ModBiomes;
 import androsa.gaiadimension.registry.ModEntities;
+import androsa.gaiadimension.world.chunk.warp.TerrainPoint;
+import com.mojang.datafixers.util.Pair;
+import net.minecraft.core.Holder;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstapContext;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.biome.BiomeGenerationSettings;
 import net.minecraft.world.level.levelgen.carver.ConfiguredWorldCarver;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
+
+import java.util.List;
 
 public class GaiaBiomes extends GaiaBiomeProvider {
 
@@ -40,6 +46,36 @@ public class GaiaBiomes extends GaiaBiomeProvider {
         context.register(ModBiomes.golden_hills, makeGoldenHills(placedFeatures, worldCarvers));
         context.register(ModBiomes.golden_sands, makeGoldenSands(placedFeatures, worldCarvers));
         context.register(ModBiomes.golden_marsh, makeGoldenMarsh(placedFeatures, worldCarvers));
+    }
+
+    public static List<Pair<TerrainPoint, Holder<Biome>>> makeBiomeList(HolderGetter<Biome> registry) {
+        return List.of(
+                pairBiome(registry, 0.1F, 0.2F, ModBiomes.blue_agate_taiga),
+                pairBiome(registry, 0.05F, 0.05F, ModBiomes.crystal_plains),
+                pairBiome(registry, 0.1F, 0.05F, ModBiomes.fossil_woodland),
+                pairBiome(registry, 0.125F, 0.05F, ModBiomes.goldstone_lands),
+                pairBiome(registry, 0.1F, 0.2F, ModBiomes.green_agate_jungle),
+                pairBiome(registry, 0.35F, 0.15F, ModBiomes.golden_forest),
+                pairBiome(registry, 0.8F, 0.5F, ModBiomes.golden_hills),
+                pairBiome(registry, 0.15F, 0.05F, ModBiomes.golden_marsh),
+                pairBiome(registry, 0.35F, 0.1F, ModBiomes.golden_plains),
+                pairBiome(registry, 0.25F, 0.05F, ModBiomes.golden_sands),
+                pairBiome(registry, -1.8F, 0.1F, ModBiomes.mineral_reservoir),
+                pairBiome(registry, -0.8F, 0.0F, ModBiomes.mineral_river),
+                pairBiome(registry, 2.0F, 0.075F, ModBiomes.mookaite_mesa),
+                pairBiome(registry, 0.1F, 0.1F, ModBiomes.mutant_agate_wildwood),
+                pairBiome(registry, 0.1F, 0.1F, ModBiomes.pink_agate_forest),
+                pairBiome(registry, 0.0F, 0.05F, ModBiomes.purple_agate_swamp),
+                pairBiome(registry, 0.2F, 0.05F, ModBiomes.salt_dunes),
+                pairBiome(registry, 0.4F, 0.05F, ModBiomes.shining_grove),
+                pairBiome(registry, 0.2F, 0.02F, ModBiomes.smoldering_bog),
+                pairBiome(registry, 3.0F, 0.05F, ModBiomes.static_wasteland),
+                pairBiome(registry, 1.0F, 0.7F, ModBiomes.volcanic_lands)
+        );
+    }
+
+    private static Pair<TerrainPoint, Holder<Biome>> pairBiome(HolderGetter<Biome> registry, float depth, float scale, ResourceKey<Biome> biome) {
+        return Pair.of(new TerrainPoint(depth, scale), registry.getOrThrow(biome));
     }
 
     public static Biome makePinkAgateForest(HolderGetter<PlacedFeature> features, HolderGetter<ConfiguredWorldCarver<?>> carvers) {

@@ -2,6 +2,9 @@ package androsa.gaiadimension.data;
 
 import androsa.gaiadimension.GaiaDimensionMod;
 import androsa.gaiadimension.registry.GaiaDamage;
+import androsa.gaiadimension.registry.ModDimensions;
+import androsa.gaiadimension.registry.configurations.GaiaConfiguredCarvers;
+import androsa.gaiadimension.registry.configurations.GaiaFeatures;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.RegistrySetBuilder;
 import net.minecraft.core.registries.Registries;
@@ -15,7 +18,14 @@ import java.util.concurrent.CompletableFuture;
 public class GaiaDatapackRegistries extends DatapackBuiltinEntriesProvider {
 
     public static final RegistrySetBuilder REGISTRIES = new RegistrySetBuilder()
+            .add(Registries.CONFIGURED_CARVER, GaiaConfiguredCarvers::init)
+            .add(Registries.PLACED_FEATURE, GaiaFeatures.Tree::init)
+            .add(Registries.PLACED_FEATURE, GaiaFeatures.Placed::init)
+            .add(Registries.CONFIGURED_FEATURE, GaiaFeatures.Configured::init)
             .add(Registries.BIOME, GaiaBiomes::init)
+            .add(Registries.DIMENSION_TYPE, ModDimensions::initType)
+            .add(Registries.NOISE_SETTINGS, ModDimensions::initNoise)
+            .add(Registries.LEVEL_STEM, ModDimensions::initStem)
             .add(Registries.DAMAGE_TYPE, GaiaDamage::init);
 
     public GaiaDatapackRegistries(PackOutput output, CompletableFuture<HolderLookup.Provider> provider) {

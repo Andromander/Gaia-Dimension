@@ -45,7 +45,7 @@ public abstract class GaiaBiomeProvider {
                 .build();
     }
 
-    public static BiomeGenerationSettings.PlainBuilder createSettings(HolderGetter<PlacedFeature> features, HolderGetter<ConfiguredWorldCarver<?>> carvers) {
+    public static BiomeGenerationSettings.Builder createSettings(HolderGetter<PlacedFeature> features, HolderGetter<ConfiguredWorldCarver<?>> carvers) {
         return new BiomeGenerationSettings.Builder(features, carvers)
                 .addCarver(GenerationStep.Carving.AIR, GaiaConfiguredCarvers.CRYSTAL_CAVES)
                 .addCarver(GenerationStep.Carving.AIR, GaiaConfiguredCarvers.CHASMS)

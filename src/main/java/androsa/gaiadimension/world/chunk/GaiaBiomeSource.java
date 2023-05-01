@@ -7,6 +7,7 @@ import com.mojang.datafixers.util.Pair;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.Holder;
+import net.minecraft.core.HolderGetter;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.RegistryOps;
 import net.minecraft.world.level.biome.Biome;
@@ -38,7 +39,7 @@ public class GaiaBiomeSource extends BiomeSource {
     private final float factor;
     private final List<Pair<TerrainPoint, Holder<Biome>>> list;
 
-    public GaiaBiomeSource(List<Pair<TerrainPoint, Holder<Biome>>> list, long seed, float offset, float factor, Registry<Biome> registry) {
+    public GaiaBiomeSource(List<Pair<TerrainPoint, Holder<Biome>>> list, long seed, float offset, float factor, HolderGetter<Biome> registry) {
         super(list.stream().map(Pair::getSecond));
         this.seed = seed;
         this.registry = registry;

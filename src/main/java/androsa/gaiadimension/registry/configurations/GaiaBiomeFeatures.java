@@ -5,10 +5,12 @@ import androsa.gaiadimension.registry.ModBlocks;
 import com.google.common.collect.ImmutableList;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate;
 import net.minecraft.world.level.levelgen.structure.templatesystem.BlockMatchTest;
 import net.minecraft.world.level.levelgen.structure.templatesystem.RuleTest;
 import net.minecraft.world.level.levelgen.structure.templatesystem.TagMatchTest;
 import net.minecraftforge.registries.RegistryObject;
+import org.apache.commons.compress.utils.Lists;
 
 import java.util.List;
 
@@ -40,8 +42,10 @@ public class GaiaBiomeFeatures {
     public static final BlockState THICK_GLITTER = state(ModBlocks.thick_glitter_block);
     public static final BlockState SEARING_ROCK = state(ModBlocks.searing_rock);
     public static final BlockState STATIC_STONE = state(ModBlocks.static_stone);
+    public static final BlockState IMPURE_SLUDGE = state(ModBlocks.impure_sludge);
     public static final BlockState BRILLIANT_STONE = state(ModBlocks.brilliant_stone);
     public static final BlockState GILDED_BRILLIANT_STONE = state(ModBlocks.gilded_brilliant_stone);
+    public static final BlockState AURUM_MUD = state(ModBlocks.aurum_mud);
     public static final BlockState PEBBLES = state(ModBlocks.pebbles);
     public static final BlockState SPECKLED_ROCK = state(ModBlocks.speckled_rock);
     public static final BlockState COARSE_ROCK = state(ModBlocks.coarse_rock);
@@ -111,5 +115,14 @@ public class GaiaBiomeFeatures {
 
     private static BlockState state(RegistryObject<? extends Block> block) {
         return block.get().defaultBlockState();
+    }
+
+    @SafeVarargs
+    protected static BlockPredicate match(RegistryObject<Block>... blocks) {
+        List<Block> list = Lists.newArrayList();
+        for (RegistryObject<Block> block : blocks) {
+            list.add(block.get());
+        }
+        return BlockPredicate.matchesBlocks(list);
     }
 }

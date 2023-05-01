@@ -2,14 +2,12 @@ package androsa.gaiadimension.world.chunk;
 
 import androsa.gaiadimension.GaiaDimensionMod;
 import androsa.gaiadimension.registry.ModBlocks;
-import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.PositionalRandomFactory;
-import net.minecraft.world.level.levelgen.RandomSource;
+import net.minecraft.world.level.levelgen.RandomState;
 import net.minecraft.world.level.levelgen.SurfaceSystem;
-import net.minecraft.world.level.levelgen.WorldgenRandom;
-import net.minecraft.world.level.levelgen.synth.NormalNoise;
 
 import java.util.Arrays;
 
@@ -24,11 +22,10 @@ public class GaiaSurfaceSystem extends SurfaceSystem {
     public static final BlockState BEIGE_MOOKAITE = ModBlocks.beige_mookaite.get().defaultBlockState();
     private final BlockState[] mookaiteBands;
 
-    public GaiaSurfaceSystem(Registry<NormalNoise.NoiseParameters> registry, BlockState defaultstone, int sealevel, long seed, WorldgenRandom.Algorithm algorithm) {
-        super(registry, defaultstone, sealevel, seed, algorithm);
+    public GaiaSurfaceSystem(RandomState random, BlockState defaultstone, int sealevel, PositionalRandomFactory posrandom) {
+        super(random, defaultstone, sealevel, posrandom);
 
-        PositionalRandomFactory positionalRandomFactory = algorithm.newInstance(seed).forkPositional();
-        this.mookaiteBands = generateBands(positionalRandomFactory.fromHashOf(new ResourceLocation(GaiaDimensionMod.MODID, "mookaite_bands")));
+        this.mookaiteBands = generateBands(posrandom.fromHashOf(new ResourceLocation(GaiaDimensionMod.MODID, "mookaite_bands")));
     }
 
     @Override

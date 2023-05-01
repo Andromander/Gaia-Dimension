@@ -14,11 +14,13 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.RegistryOps;
-import net.minecraft.server.level.WorldGenRegion;
 import net.minecraft.util.Mth;
 import net.minecraft.world.level.ChunkPos;
-import net.minecraft.world.level.StructureFeatureManager;
+import net.minecraft.world.level.LevelHeightAccessor;
+import net.minecraft.world.level.NoiseColumn;
+import net.minecraft.world.level.StructureManager;
 import net.minecraft.world.level.biome.Biome;
+import net.minecraft.world.level.biome.BiomeManager;
 import net.minecraft.world.level.biome.BiomeSource;
 import net.minecraft.world.level.biome.Climate;
 import net.minecraft.world.level.block.Blocks;
@@ -52,35 +54,31 @@ public class GaiaChunkGenerator extends NoiseBasedChunkGenerator {
             Codec.LONG.fieldOf("seed").forGetter((object) -> object.seed)
     ).apply(instance, instance.stable(GaiaChunkGenerator::new)));
 
-    protected final long seed;
     protected final Holder<NoiseGeneratorSettings> settings;
-    protected final Registry<StructureSet> structureRegistry;
-    protected final Registry<NormalNoise.NoiseParameters> noiseRegistry;
     protected final Climate.Sampler sampler;
     protected final GaiaTerrainWarp warper;
     private final int cellWidth;
     private final int cellHeight;
+    private final BlockState defaultBlock;
     private final BlockState defaultFluid;
-    private final GaiaSurfaceSystem surface;
+    private GaiaSurfaceSystem surface;
 
-    public GaiaChunkGenerator(BiomeSource mainsource, Registry<StructureSet> setregistry, Registry<NormalNoise.NoiseParameters> noiseregistry, Holder<NoiseGeneratorSettings> noisesettings, long seed) {
-        super(setregistry, noiseregistry, mainsource, seed, noisesettings);
+    private static final BlockState[] EMPTY_COLUMN = new BlockState[0];
 
-        this.seed = seed;
+    public GaiaChunkGenerator(BiomeSource mainsource, Holder<NoiseGeneratorSettings> noisesettings) {
+        super(mainsource, noisesettings);
+
         this.settings = noisesettings;
-        this.structureRegistry = setregistry;
-        this.noiseRegistry = noiseregistry;
         NoiseSettings noise = noisesettings.value().noiseSettings();
         this.cellWidth = noise.getCellWidth();
         this.cellHeight = noise.getCellHeight();
-        WorldgenRandom random = new WorldgenRandom(new LegacyRandomSource(seed));
+        WorldgenRandom random = new WorldgenRandom(new LegacyRandomSource(0L));
         BlendedNoise blendedNoise = new GaiaBlendedNoise(random, noise.noiseSamplingSettings(), this.cellWidth, this.cellHeight);
         NoiseModifier modifier = NoiseModifier.PASS;
         this.sampler = new Climate.Sampler(DensityFunctions.zero(), DensityFunctions.zero(), DensityFunctions.zero(), DensityFunctions.zero(), DensityFunctions.zero(), DensityFunctions.zero(), List.of()); //let's be real, this is a dummy
         this.warper = new GaiaTerrainWarp(this.cellWidth, this.cellHeight, noise.getCellCountY(), mainsource, noise, blendedNoise, modifier);
+        this.defaultBlock = noisesettings.value().defaultBlock();
         this.defaultFluid = noisesettings.value().defaultFluid();
-        int i = noisesettings.value().seaLevel();
-        this.surface = new GaiaSurfaceSystem(this.noiseRegistry, this.settings.value().defaultBlock(), this.settings.value().seaLevel(), seed, settings.value().getRandomSource());
     }
 
     @Override
@@ -89,39 +87,64 @@ public class GaiaChunkGenerator extends NoiseBasedChunkGenerator {
     }
 
     @Override
-    public ChunkGenerator withSeed(long seed) {
-        return new GaiaChunkGenerator(this.biomeSource.withSeed(seed), this.structureRegistry, this.noiseRegistry, this.settings, seed);
-    }
+    public int getBaseHeight(int x, int z, Heightmap.Types height, LevelHeightAccessor level, RandomState random) {
+        NoiseSettings settings = this.settings.value().noiseSettings();
+        int minY = Math.max(settings.minY(), level.getMinBuildHeight());
+        int maxY = Math.min(settings.minY() + settings.height(), level.getMaxBuildHeight());
+        int mincell = Math.floorDiv(minY, this.cellHeight);
+        int maxcell = Math.floorDiv(maxY - minY, this.cellHeight);
 
-    @Override
-    public Climate.Sampler climateSampler() {
-        return this.sampler;
-    }
-
-    public void buildSurface(WorldGenRegion region, StructureFeatureManager structures, ChunkAccess chunk) {
-        if (!SharedConstants.debugVoidTerrain(chunk.getPos())) {
-            WorldGenerationContext context = new WorldGenerationContext(this, region);
-            NoiseGeneratorSettings settings = this.settings.value();
-            NoiseChunk noisechunk = chunk.getOrCreateNoiseChunk(this.router(), () -> new Beardifier(structures, chunk), settings, this.globalFluidPicker, Blender.of(region));
-            this.surface.buildSurface(region.getBiomeManager(), region.registryAccess().registryOrThrow(Registry.BIOME_REGISTRY), settings.useLegacyRandomSource(), context, chunk, noisechunk, settings.surfaceRule());
+        if (maxcell <= 0) {
+            return level.getMinBuildHeight();
+        } else {
+            return this.iterateNoiseColumn(x, z, null, height.isOpaque(), mincell, maxcell).orElse(level.getMinBuildHeight());
         }
     }
 
     @Override
-    public CompletableFuture<ChunkAccess> createBiomes(Registry<Biome> registry, Executor executor, Blender blender, StructureFeatureManager manager, ChunkAccess access) {
+    public NoiseColumn getBaseColumn(int x, int z, LevelHeightAccessor level, RandomState random) {
+        NoiseSettings settings = this.settings.value().noiseSettings();
+        int minY = Math.max(settings.minY(), level.getMinBuildHeight());
+        int maxY = Math.min(settings.minY() + settings.height(), level.getMaxBuildHeight());
+        int mincell = Math.floorDiv(minY, this.cellHeight);
+        int maxcell = Math.floorDiv(maxY - minY, this.cellHeight);
+
+        if (maxcell <= 0) {
+            return new NoiseColumn(minY, EMPTY_COLUMN);
+        } else {
+            BlockState[] ablockstate = new BlockState[maxcell * settings.getCellHeight()];
+            this.iterateNoiseColumn(x, z, ablockstate, null, mincell, maxcell);
+            return new NoiseColumn(minY, ablockstate);
+        }
+    }
+
+    @Override
+    public void buildSurface(ChunkAccess chunk, WorldGenerationContext context, RandomState random, StructureManager structures, BiomeManager biomes, Registry<Biome> registry, Blender blender) {
+        if (!SharedConstants.debugVoidTerrain(chunk.getPos())) {
+            NoiseGeneratorSettings settings = this.settings.value();
+            NoiseChunk noisechunk = chunk.getOrCreateNoiseChunk((access) -> this.createNoiseChunk(access, structures, blender, random));
+            if (this.surface == null) {
+                this.surface = new GaiaSurfaceSystem(random, this.settings.value().defaultBlock(), this.settings.value().seaLevel(), settings.getRandomSource().newInstance(0L).forkPositional());
+            }
+            this.surface.buildSurface(random, biomes, registry, settings.useLegacyRandomSource(), context, chunk, noisechunk, settings.surfaceRule());
+        }
+    }
+
+    @Override
+    public CompletableFuture<ChunkAccess> createBiomes(Executor executor, RandomState random, Blender blender, StructureManager manager, ChunkAccess access) {
         return CompletableFuture.supplyAsync(Util.wrapThreadWithTaskName("init_biomes", () -> {
-            access.fillBiomesFromNoise(this.getBiomeSource(), this.climateSampler());
+            access.fillBiomesFromNoise(this.getBiomeSource(), Climate.empty());
             return access;
         }), Util.backgroundExecutor());
     }
 
     @Override
-    public CompletableFuture<ChunkAccess> fillFromNoise(Executor executor, Blender blender, StructureFeatureManager manager, ChunkAccess access) {
+    public CompletableFuture<ChunkAccess> fillFromNoise(Executor executor, Blender blender, RandomState random, StructureManager manager, ChunkAccess access) {
         NoiseSettings settings = this.settings.value().noiseSettings();
         int minY = Math.max(settings.minY(), access.getMinBuildHeight());
         int maxY = Math.min(settings.minY() + settings.height(), access.getMaxBuildHeight());
-        int mincell = Mth.intFloorDiv(minY, this.cellHeight);
-        int maxcell = Mth.intFloorDiv(maxY - minY, this.cellHeight);
+        int mincell = Math.floorDiv(minY, this.cellHeight);
+        int maxcell = Math.floorDiv(maxY - minY, this.cellHeight);
 
         if (maxcell <= 0) {
             return CompletableFuture.completedFuture(access);
@@ -217,7 +240,6 @@ public class GaiaChunkGenerator extends NoiseBasedChunkGenerator {
         return access;
     }
 
-    @Override
     protected OptionalInt iterateNoiseColumn(int x, int z, BlockState[] states, Predicate<BlockState> predicate, int min, int max) {
         int xDiv = Math.floorDiv(x, this.cellWidth);
         int zDiv = Math.floorDiv(z, this.cellWidth);
@@ -288,9 +310,7 @@ public class GaiaChunkGenerator extends NoiseBasedChunkGenerator {
         return state;
     }
 
-    @Deprecated
-    @Override
-    public Optional<BlockState> topMaterial(CarvingContext context, Function<BlockPos, Holder<Biome>> biomepos, ChunkAccess chunk, NoiseChunk noise, BlockPos pos, boolean fluid) {
-        return this.surface.topMaterial(this.settings.value().surfaceRule(), context, biomepos, chunk, noise, pos, fluid);
+    private NoiseChunk createNoiseChunk(ChunkAccess access, StructureManager manager, Blender blender, RandomState random) {
+        return NoiseChunk.forChunk(access, random, Beardifier.forStructuresInChunk(manager, access.getPos()), this.settings.value(), this.globalFluidPicker.get(), blender);
     }
 }
