@@ -7,6 +7,7 @@ import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.FluidTags;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.GameRules;
 import net.minecraft.world.level.Level;
@@ -21,8 +22,6 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.event.ForgeEventFactory;
 import net.minecraftforge.fluids.ForgeFlowingFluid;
-
-import java.util.Random;
 
 public abstract class SuperhotMagmaFluid extends ForgeFlowingFluid {
 
@@ -58,7 +57,7 @@ public abstract class SuperhotMagmaFluid extends ForgeFlowingFluid {
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public void animateTick(Level worldIn, BlockPos pos, FluidState state, Random random) {
+    public void animateTick(Level worldIn, BlockPos pos, FluidState state, RandomSource random) {
         BlockPos blockpos = pos.above();
         if (worldIn.getBlockState(blockpos).isAir() && !worldIn.getBlockState(blockpos).isSolidRender(worldIn, blockpos)) {
             if (random.nextInt(100) == 0) {
@@ -76,7 +75,7 @@ public abstract class SuperhotMagmaFluid extends ForgeFlowingFluid {
     }
 
     @Override
-    public void randomTick(Level world, BlockPos pos, FluidState state, Random random) {
+    public void randomTick(Level world, BlockPos pos, FluidState state, RandomSource random) {
         if (world.getGameRules().getBoolean(GameRules.RULE_DOFIRETICK)) {
             int i = random.nextInt(3);
             if (i > 0) {
