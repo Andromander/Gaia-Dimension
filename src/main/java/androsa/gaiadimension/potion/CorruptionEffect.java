@@ -12,7 +12,7 @@ import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
-import net.minecraftforge.event.entity.living.PotionEvent;
+import net.minecraftforge.event.entity.living.MobEffectEvent;
 import net.minecraftforge.eventbus.api.Event;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -49,7 +49,7 @@ public class CorruptionEffect extends MobEffect {
 
     @SubscribeEvent
     public static void onEntityHurt(LivingDamageEvent e) {
-        if (e.getEntityLiving().hasEffect(ModEffects.goldstone_plague)) {
+        if (e.getEntity().hasEffect(ModEffects.goldstone_plague.get())) {
             if (e.getSource().getDirectEntity() != null && e.getSource().getDirectEntity() instanceof LivingEntity attacker) {
                 if (attacker.getMobType() == GaiaDimensionMod.CORRUPT) {
                     e.setAmount(e.getAmount() * 1.5F);
@@ -69,8 +69,8 @@ public class CorruptionEffect extends MobEffect {
 
     //Do not apply to Corrupted mobs
     @SubscribeEvent
-    public static void applyEffect(PotionEvent.PotionApplicableEvent e) {
-        if (e.getEntityLiving().getMobType() == GaiaDimensionMod.CORRUPT) {
+    public static void applyEffect(MobEffectEvent.Applicable e) {
+        if (e.getEntity().getMobType() == GaiaDimensionMod.CORRUPT) {
             e.setResult(Event.Result.DENY);
         }
     }

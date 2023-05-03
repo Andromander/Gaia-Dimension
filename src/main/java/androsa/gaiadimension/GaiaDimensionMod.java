@@ -55,9 +55,9 @@ public class GaiaDimensionMod {
         ModBlocks.BLOCKS.register(modEventBus);
         ModMenus.CONTAINERS.register(modEventBus);
         ModDimensions.POI_TYPES.register(modEventBus);
-//      ModEffects.POTIONS.register(modEventBus);
+        ModEffects.MOB_EFFECTS.register(modEventBus);
         ModEntities.ENTITY_TYPES.register(modEventBus);
-		ModFluids.FLUIDS.register(modEventBus);
+        ModFluids.FLUIDS.register(modEventBus);
         ModItems.ITEMS.register(modEventBus);
 //      ModParticles.PARTICLE_TYPES.register(modEventBus);
         ModRecipes.RECIPE_TYPES.register(modEventBus);

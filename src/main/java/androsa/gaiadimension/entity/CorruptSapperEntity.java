@@ -73,7 +73,7 @@ public class CorruptSapperEntity extends Monster {
                 };
 
                 if (i > 0) {
-                    living.addEffect(new MobEffectInstance(ModEffects.goldstone_plague, i * 20, 0));
+                    living.addEffect(new MobEffectInstance(ModEffects.goldstone_plague.get(), i * 20, 0));
                 }
             }
             return true;
