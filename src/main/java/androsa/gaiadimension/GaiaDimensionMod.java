@@ -53,8 +53,6 @@ public class GaiaDimensionMod {
         modEventBus.addListener(this::gatherData);
         modEventBus.addListener(this::hackyEvent);
 
-        MinecraftForge.EVENT_BUS.addListener(EventPriority.HIGH, ModEntities::addStructureSpawns);
-
         ModBiomes.BIOMES.register(modEventBus);
         ModBlocks.BLOCKS.register(modEventBus);
         ModMenus.CONTAINERS.register(modEventBus);
