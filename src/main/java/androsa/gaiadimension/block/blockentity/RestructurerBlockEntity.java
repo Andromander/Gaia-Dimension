@@ -12,6 +12,7 @@ import com.google.common.collect.Maps;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.NonNullList;
+import net.minecraft.core.RegistryAccess;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -210,7 +211,7 @@ public class RestructurerBlockEntity extends BaseContainerBlockEntity implements
 
         if (entity.isBurning() || !goldStack.isEmpty() && !essenceStack.isEmpty() && !entity.restructurerItemStacks.get(0).isEmpty()) {
             Recipe<?> irecipe = level.getRecipeManager().getRecipeFor(ModRecipes.RESTRUCTURING.get(), entity, level).orElse(null);
-            if (!entity.isBurning() && entity.canChange(irecipe, entity.restructurerItemStacks, entity.getMaxStackSize())) {
+            if (!entity.isBurning() && entity.canChange(level.registryAccess(), irecipe, entity.restructurerItemStacks, entity.getMaxStackSize())) {
                 entity.burnTime = entity.getItemBurnTime(goldStack, essenceStack);
                 entity.burnDuration = entity.burnTime;
 
@@ -237,13 +238,13 @@ public class RestructurerBlockEntity extends BaseContainerBlockEntity implements
                 }
             }
 
-            if (entity.isBurning() && entity.canChange(irecipe, entity.restructurerItemStacks, entity.getMaxStackSize())) {
+            if (entity.isBurning() && entity.canChange(level.registryAccess(), irecipe, entity.restructurerItemStacks, entity.getMaxStackSize())) {
                 ++entity.cookTime;
 
                 if (entity.cookTime == entity.cookTimeTotal) {
                     entity.cookTime = 0;
                     entity.cookTimeTotal = cookingTime(level, entity);
-                    if (entity.changeItem(irecipe, entity.restructurerItemStacks, entity.getMaxStackSize())) {
+                    if (entity.changeItem(level.registryAccess(), irecipe, entity.restructurerItemStacks, entity.getMaxStackSize())) {
                         entity.setRecipeUsed(irecipe);
                     }
                     burn = true;
@@ -268,9 +269,9 @@ public class RestructurerBlockEntity extends BaseContainerBlockEntity implements
     /**
      * Returns true if the furnace can smelt an item, i.e. has a source item, destination stack isn't full, etc.
      */
-    private boolean canChange(Recipe<?> recipe, NonNullList<ItemStack> stacks, int stacksize) {
+    private boolean canChange(RegistryAccess access, Recipe<?> recipe, NonNullList<ItemStack> stacks, int stacksize) {
         if (!stacks.get(0).isEmpty() && recipe != null) {
-            ItemStack slot1 = ((RestructurerRecipe)recipe).getResultItem();
+            ItemStack slot1 = ((RestructurerRecipe)recipe).getResultItem(access);
             ItemStack slot2 = ((RestructurerRecipe)recipe).getByproduct();
 
             if (slot1.isEmpty() && slot2.isEmpty() || slot1.isEmpty()) {
@@ -297,10 +298,10 @@ public class RestructurerBlockEntity extends BaseContainerBlockEntity implements
     /**
      * Turn one item from the furnace source stack into the appropriate smelted item in the furnace result stack
      */
-    private boolean changeItem(Recipe<?> recipe, NonNullList<ItemStack> stacks, int stacksize) {
-        if (recipe != null && canChange(recipe, stacks, stacksize)) {
+    private boolean changeItem(RegistryAccess access, Recipe<?> recipe, NonNullList<ItemStack> stacks, int stacksize) {
+        if (recipe != null && canChange(access, recipe, stacks, stacksize)) {
             ItemStack input = stacks.get(0);
-            ItemStack slot1 = ((RestructurerRecipe)recipe).getResultItem();
+            ItemStack slot1 = ((RestructurerRecipe)recipe).getResultItem(access);
             ItemStack slot2 = ((RestructurerRecipe)recipe).getByproduct();
             ItemStack output = stacks.get(3);
             ItemStack byproduct = stacks.get(4);

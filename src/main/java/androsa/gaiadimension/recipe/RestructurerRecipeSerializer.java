@@ -2,7 +2,6 @@ package androsa.gaiadimension.recipe;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import net.minecraft.core.Registry;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.GsonHelper;
@@ -10,9 +9,9 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.ShapedRecipe;
-import net.minecraftforge.registries.ForgeRegistryEntry;
+import net.minecraftforge.registries.ForgeRegistries;
 
-public class RestructurerRecipeSerializer<T extends RestructurerRecipe> extends ForgeRegistryEntry<RecipeSerializer<?>> implements RecipeSerializer<T> {
+public class RestructurerRecipeSerializer<T extends RestructurerRecipe> implements RecipeSerializer<T> {
     private final int cookTime;
     private final RestructurerRecipeSerializer.EntityFactory<T> factory;
 
@@ -36,7 +35,7 @@ public class RestructurerRecipeSerializer<T extends RestructurerRecipe> extends 
         else {
             String s1 = GsonHelper.getAsString(json, "result");
             ResourceLocation resourcelocation = new ResourceLocation(s1);
-            resultStack = new ItemStack(Registry.ITEM.getOptional(resourcelocation).orElseThrow(() -> new IllegalStateException("Item: " + s1 + " does not exist")));
+            resultStack = new ItemStack(ForgeRegistries.ITEMS.getDelegate(resourcelocation).orElseThrow(() -> new IllegalStateException("Item: " + s1 + " does not exist")));
         }
 
         //BYPRODUCT
@@ -48,7 +47,7 @@ public class RestructurerRecipeSerializer<T extends RestructurerRecipe> extends 
         else {
             String s2 = GsonHelper.getAsString(json, "byproduct");
             ResourceLocation resourcelocation = new ResourceLocation(s2);
-            byStack = new ItemStack(Registry.ITEM.getOptional(resourcelocation).orElseThrow(() -> new IllegalStateException("Item: " + s2 + " does not exist")));
+            byStack = new ItemStack(ForgeRegistries.ITEMS.getDelegate(resourcelocation).orElseThrow(() -> new IllegalStateException("Item: " + s2 + " does not exist")));
         }
 
         float f = GsonHelper.getAsFloat(json, "experience", 0.0F);

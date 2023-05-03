@@ -2,7 +2,6 @@ package androsa.gaiadimension.recipe;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import net.minecraft.core.Registry;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.GsonHelper;
@@ -10,9 +9,9 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.ShapedRecipe;
-import net.minecraftforge.registries.ForgeRegistryEntry;
+import net.minecraftforge.registries.ForgeRegistries;
 
-public class PurifierRecipeSerializer<T extends PurifierRecipe> extends ForgeRegistryEntry<RecipeSerializer<?>> implements RecipeSerializer<T> {
+public class PurifierRecipeSerializer<T extends PurifierRecipe> implements RecipeSerializer<T> {
     private final int cookTime;
     private final PurifierRecipeSerializer.EntityFactory<T> factory;
 
@@ -26,6 +25,7 @@ public class PurifierRecipeSerializer<T extends PurifierRecipe> extends ForgeReg
         String s = GsonHelper.getAsString(json, "group", "");
         JsonElement jsonelement = GsonHelper.isArrayNode(json, "ingredient") ? GsonHelper.getAsJsonArray(json, "ingredient") : GsonHelper.getAsJsonObject(json, "ingredient");
         Ingredient ingredient = Ingredient.fromJson(jsonelement);
+
         //RESULT
         if (!json.has("result"))
             throw new com.google.gson.JsonSyntaxException("Missing result, expected to find a string or object");
@@ -35,7 +35,7 @@ public class PurifierRecipeSerializer<T extends PurifierRecipe> extends ForgeReg
         else {
             String s1 = GsonHelper.getAsString(json, "result");
             ResourceLocation resourcelocation = new ResourceLocation(s1);
-            resultStack = new ItemStack(Registry.ITEM.getOptional(resourcelocation).orElseThrow(() -> new IllegalStateException("Item: " + s1 + " does not exist")));
+            resultStack = new ItemStack(ForgeRegistries.ITEMS.getDelegate(resourcelocation).orElseThrow(() -> new IllegalStateException("Item: " + s1 + " does not exist")));
         }
 
         //BYPRODUCT
@@ -47,7 +47,7 @@ public class PurifierRecipeSerializer<T extends PurifierRecipe> extends ForgeReg
         else {
             String s2 = GsonHelper.getAsString(json, "byproduct");
             ResourceLocation resourcelocation = new ResourceLocation(s2);
-            byStack = new ItemStack(Registry.ITEM.getOptional(resourcelocation).orElseThrow(() -> new IllegalStateException("Item: " + s2 + " does not exist")));
+            byStack = new ItemStack(ForgeRegistries.ITEMS.getDelegate(resourcelocation).orElseThrow(() -> new IllegalStateException("Item: " + s2 + " does not exist")));
         }
         float f = GsonHelper.getAsFloat(json, "experience", 0.0F);
         int i = GsonHelper.getAsInt(json, "cookingtime", this.cookTime);

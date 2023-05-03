@@ -12,6 +12,7 @@ import com.google.common.collect.Maps;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.NonNullList;
+import net.minecraft.core.RegistryAccess;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -180,7 +181,7 @@ public class PurifierBlockEntity extends BaseContainerBlockEntity implements Wor
 
         if (entity.isBurning() || !goldStack.isEmpty() && !essenceStack.isEmpty() && !bismuthStack.isEmpty() && !entity.purifyingItemStacks.get(0).isEmpty()) {
             Recipe<?> irecipe = level.getRecipeManager().getRecipeFor(ModRecipes.PURIFYING.get(), entity, level).orElse(null);
-            if (!entity.isBurning() && entity.canChange(irecipe, entity.purifyingItemStacks, entity.getMaxStackSize())) {
+            if (!entity.isBurning() && entity.canChange(level.registryAccess(), irecipe, entity.purifyingItemStacks, entity.getMaxStackSize())) {
                 entity.burnTime = entity.getItemBurnTime(goldStack, essenceStack, bismuthStack);
                 entity.burnDuration = entity.burnTime;
 
@@ -216,13 +217,13 @@ public class PurifierBlockEntity extends BaseContainerBlockEntity implements Wor
                 }
             }
 
-            if (entity.isBurning() && entity.canChange(irecipe, entity.purifyingItemStacks, entity.getMaxStackSize())) {
+            if (entity.isBurning() && entity.canChange(level.registryAccess(), irecipe, entity.purifyingItemStacks, entity.getMaxStackSize())) {
                 ++entity.cookTime;
 
                 if (entity.cookTime == entity.cookTimeTotal) {
                     entity.cookTime = 0;
                     entity.cookTimeTotal = cookingTime(level, entity);
-                    if (entity.changeItem(irecipe, entity.purifyingItemStacks, entity.getMaxStackSize())) {
+                    if (entity.changeItem(level.registryAccess(), irecipe, entity.purifyingItemStacks, entity.getMaxStackSize())) {
                         entity.setRecipeUsed(irecipe);
                     }
                     burn = true;
@@ -247,9 +248,9 @@ public class PurifierBlockEntity extends BaseContainerBlockEntity implements Wor
     /**
      * Returns true if the furnace can smelt an item, i.e. has a source item, destination stack isn't full, etc.
      */
-    private boolean canChange(Recipe<?> recipe, NonNullList<ItemStack> stacks, int stacksize) {
+    private boolean canChange(RegistryAccess access, Recipe<?> recipe, NonNullList<ItemStack> stacks, int stacksize) {
         if (!stacks.get(0).isEmpty() && recipe != null) {
-            ItemStack slot1 = ((PurifierRecipe)recipe).getResultItem();
+            ItemStack slot1 = ((PurifierRecipe)recipe).getResultItem(access);
             ItemStack slot2 = ((PurifierRecipe)recipe).getByproduct();
 
             if(slot1.isEmpty() && slot2.isEmpty() || slot1.isEmpty()) {
@@ -276,10 +277,10 @@ public class PurifierBlockEntity extends BaseContainerBlockEntity implements Wor
     /**
      * Turn one item from the furnace source stack into the appropriate smelted item in the furnace result stack
      */
-    public boolean changeItem(Recipe<?> recipe, NonNullList<ItemStack> stacks, int stacksize) {
-        if (recipe != null && canChange(recipe, stacks, stacksize)) {
+    public boolean changeItem(RegistryAccess access, Recipe<?> recipe, NonNullList<ItemStack> stacks, int stacksize) {
+        if (recipe != null && canChange(access, recipe, stacks, stacksize)) {
             ItemStack input = stacks.get(0);
-            ItemStack slot1 = ((PurifierRecipe)recipe).getResultItem();
+            ItemStack slot1 = ((PurifierRecipe)recipe).getResultItem(access);
             ItemStack slot2 = ((PurifierRecipe)recipe).getByproduct();
             ItemStack output = stacks.get(4);
             ItemStack byproduct = stacks.get(5);

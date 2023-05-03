@@ -3,6 +3,7 @@ package androsa.gaiadimension.recipe;
 import androsa.gaiadimension.registry.ModBlocks;
 import androsa.gaiadimension.registry.ModRecipes;
 import net.minecraft.core.NonNullList;
+import net.minecraft.core.RegistryAccess;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.Container;
 import net.minecraft.world.item.ItemStack;
@@ -47,7 +48,7 @@ public class PurifierRecipe implements Recipe<Container> {
     }
 
     @Override
-    public ItemStack assemble(Container inv) {
+    public ItemStack assemble(Container inv, RegistryAccess access) {
         return this.result.copy();
     }
 
@@ -68,7 +69,7 @@ public class PurifierRecipe implements Recipe<Container> {
     }
 
     @Override
-    public ItemStack getResultItem() {
+    public ItemStack getResultItem(RegistryAccess access) {
         return this.result;
     }
 
