@@ -4,7 +4,7 @@ import androsa.gaiadimension.GaiaDimensionMod;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
-import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ArmorMaterial;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraftforge.api.distmarker.Dist;
@@ -51,31 +51,38 @@ public enum GaiaArmorMaterials implements ArmorMaterial {
         repairMaterial = ingredient;
     }
 
-    public int getDurabilityForSlot(EquipmentSlot slotIn) {
-        return MAX_DAMAGE_ARRAY[slotIn.getIndex()] * durabilityFactor;
+    @Override
+    public int getDurabilityForType(ArmorItem.Type slotIn) {
+        return MAX_DAMAGE_ARRAY[slotIn.ordinal()] * durabilityFactor;
     }
 
-    public int getDefenseForSlot(EquipmentSlot slotIn) {
-        return damageReduction[slotIn.getIndex()];
+    @Override
+    public int getDefenseForType(ArmorItem.Type slotIn) {
+        return damageReduction[slotIn.ordinal()];
     }
 
+    @Override
     public int getEnchantmentValue() {
         return enchantability;
     }
 
+    @Override
     public SoundEvent getEquipSound() {
         return equipSound;
     }
 
+    @Override
     public Ingredient getRepairIngredient() {
         return repairMaterial.get();
     }
 
+    @Override
     @OnlyIn(Dist.CLIENT)
     public String getName() {
         return new ResourceLocation(GaiaDimensionMod.MODID, armorName).toString();
     }
 
+    @Override
     public float getToughness() {
         return armorToughness;
     }
