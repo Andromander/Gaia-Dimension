@@ -96,14 +96,8 @@ public class GaiaDimensionMod {
     }
 
     public void clientSetup(FMLClientSetupEvent event) {
-        DimensionSpecialEffects gaia = new GaiaDimensionRenderInfo();
-        DimensionSpecialEffects.EFFECTS.put(new ResourceLocation(GaiaDimensionMod.MODID, "gaia"), gaia);
-
         DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> ModMenus::registerScreens);
         DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> ModParticles::forgeClassLoadingIsFuckedThisShouldntBeHereButHereItIs);
-        DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> ClientEvents::registerBlockColors);
-        DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> ClientEvents::registerItemColors);
-        DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> ClientEvents::registerBlockRenderers);
         DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> ModItems::addItemProperties);
     }
 
