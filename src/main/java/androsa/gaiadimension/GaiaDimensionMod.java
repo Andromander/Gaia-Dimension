@@ -37,8 +37,6 @@ import java.util.concurrent.CompletableFuture;
 public class GaiaDimensionMod {
     public static final String MODID = "gaiadimension";
 
-    public static final String MODEL_DIR = "gaiadimension:textures/entity/";
-
     public static final Logger LOGGER = LogManager.getLogger(MODID);
     public static ModGaiaConfig.ClientConfig clientConfig;
     public static ModGaiaConfig.CommonConfig commonConfig;
@@ -94,7 +92,6 @@ public class GaiaDimensionMod {
             ModBlocks.registerDispenserBehaviour();
         });
         ModBlocks.addPlants();
-        ModEntities.registerSpawnPlacement();
         ModBiomes.addBiomeTypes();
     }
 

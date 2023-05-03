@@ -1,10 +1,7 @@
 package androsa.gaiadimension.entity.boss;
 
 import androsa.gaiadimension.entity.MalachiteDroneEntity;
-import androsa.gaiadimension.registry.ModEntities;
-import androsa.gaiadimension.registry.ModItems;
-import androsa.gaiadimension.registry.ModParticles;
-import androsa.gaiadimension.registry.ModSounds;
+import androsa.gaiadimension.registry.*;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.NonNullList;
 import net.minecraft.core.particles.BlockParticleOption;
@@ -624,7 +621,7 @@ public class MalachiteGuardEntity extends Monster {
                         Vec3 explosion = new Vec3(guard.getX(), guard.getY(), guard.getZ());
                         Vec3 direction = entity.position().subtract(explosion).normalize();
 
-                        entity.hurt(DamageSource.MAGIC, 8.0F + guard.bideDamage);
+                        entity.hurt(GaiaDamage.getDamage(guard.level, GaiaDamage.MALACHITE_BLAST), 8.0F + guard.bideDamage);
                         entity.setDeltaMovement(direction.x(), direction.y() + 0.2F, direction.z());
                     }
                 }
@@ -707,7 +704,7 @@ public class MalachiteGuardEntity extends Monster {
                 for (Entity entity : targets) {
                     Vec3 targetV3D = entity.getDeltaMovement();
 
-                    entity.hurt(DamageSource.mobAttack(guard), 5.0F);
+                    entity.hurt(guard.damageSources().mobAttack(guard), 5.0F);
                     entity.setDeltaMovement(targetV3D.x() * 0.5F, targetV3D.y() + 0.4F, targetV3D.z() * 0.5F);
                 }
 

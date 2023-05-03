@@ -9,6 +9,7 @@ import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.util.Mth;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.EntityType;
@@ -25,7 +26,6 @@ import net.minecraft.world.level.block.state.BlockState;
 
 import java.util.Objects;
 import java.util.Optional;
-import java.util.Random;
 
 public class MucklingEntity extends Slime {
 
@@ -87,7 +87,7 @@ public class MucklingEntity extends Slime {
         return true;
     }
 
-    public static boolean canSpawnHere(EntityType<MucklingEntity> entity, LevelAccessor world, MobSpawnType spawn, BlockPos pos, Random random) {
+    public static boolean canSpawnHere(EntityType<MucklingEntity> entity, LevelAccessor world, MobSpawnType spawn, BlockPos pos, RandomSource random) {
         if (world.getDifficulty() != Difficulty.PEACEFUL) {
             if (spawn == MobSpawnType.SPAWNER && world.getBrightness(LightLayer.SKY, pos) < 8) {
                 return true;

@@ -3,6 +3,7 @@ package androsa.gaiadimension.entity;
 import androsa.gaiadimension.registry.ModSounds;
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvent;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
@@ -16,7 +17,6 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 
 import javax.annotation.Nullable;
-import java.util.Random;
 
 public class MutantGrowthExtractorEntity extends PathfinderMob {
 
@@ -57,7 +57,7 @@ public class MutantGrowthExtractorEntity extends PathfinderMob {
         return 1.3F;
     }
 
-    public static boolean canSpawnHere(EntityType<MutantGrowthExtractorEntity> entity, LevelAccessor world, MobSpawnType spawn, BlockPos pos, Random random) {
+    public static boolean canSpawnHere(EntityType<MutantGrowthExtractorEntity> entity, LevelAccessor world, MobSpawnType spawn, BlockPos pos, RandomSource random) {
         return world.getBlockState(pos.below()).isValidSpawn(world, pos.below(), entity) && world.getRawBrightness(pos, 0) > 8;
     }
 }

@@ -5,6 +5,7 @@ import androsa.gaiadimension.registry.ModEffects;
 import androsa.gaiadimension.registry.ModSounds;
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvent;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -20,8 +21,6 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LightLayer;
 import net.minecraft.world.level.ServerLevelAccessor;
-
-import java.util.Random;
 
 public class ContortedNagaEntity extends Monster {
 
@@ -91,7 +90,7 @@ public class ContortedNagaEntity extends Monster {
         return true;
     }
 
-    public static boolean canSpawnHere(EntityType<ContortedNagaEntity> entity, ServerLevelAccessor world, MobSpawnType spawn, BlockPos pos, Random random) {
+    public static boolean canSpawnHere(EntityType<ContortedNagaEntity> entity, ServerLevelAccessor world, MobSpawnType spawn, BlockPos pos, RandomSource random) {
         if (world.getDifficulty() != Difficulty.PEACEFUL) {
             if (spawn == MobSpawnType.SPAWNER) {
                 return isDarkEnoughToSpawn(world, pos, random);

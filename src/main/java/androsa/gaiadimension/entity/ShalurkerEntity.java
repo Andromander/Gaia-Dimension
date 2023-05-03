@@ -1,7 +1,6 @@
 package androsa.gaiadimension.entity;
 
 import androsa.gaiadimension.registry.ModSounds;
-import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.EntityDimensions;
@@ -14,7 +13,6 @@ import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.entity.vehicle.Boat;
 import net.minecraft.world.level.Level;
 
 public class ShalurkerEntity extends Monster {
@@ -54,13 +52,9 @@ public class ShalurkerEntity extends Monster {
     }
 
     public void aiStep() {
-        if (this.level.isDay() && !this.level.isClientSide()) {
-            float f = this.getBrightness();
-            BlockPos blockpos = this.getVehicle() instanceof Boat ? (new BlockPos(this.getX(), (double)Math.round(this.getY()), this.getZ())).above() : new BlockPos(this.getX(), (double)Math.round(this.getY()), this.getZ());
-
-            if (f > 0.5F && this.random.nextFloat() * 30.0F < (f - 0.4F) * 2.0F && this.level.canSeeSky(blockpos)) {
-                this.setSecondsOnFire(8);
-            }
+        boolean flag = this.isSunBurnTick();
+        if (flag) {
+            this.setSecondsOnFire(8);
         }
 
         super.aiStep();

@@ -1,8 +1,8 @@
 package androsa.gaiadimension.renderer;
 
-import androsa.gaiadimension.GaiaDimensionMod;
 import androsa.gaiadimension.entity.boss.MalachiteGuardEntity;
 import androsa.gaiadimension.model.MalachiteGuardModel;
+import androsa.gaiadimension.registry.ModEntitiesRendering;
 import androsa.gaiadimension.renderer.layer.MalachiteDefenceLayer;
 import androsa.gaiadimension.renderer.layer.MalachiteGuardGlowLayer;
 import androsa.gaiadimension.renderer.layer.MalachiteResistLayer;
@@ -11,7 +11,7 @@ import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.resources.ResourceLocation;
 
 public class MalachiteGuardRenderer<T extends MalachiteGuardEntity, M extends MalachiteGuardModel<T>> extends MobRenderer<T, M> {
-    private static final ResourceLocation textureLoc = new ResourceLocation(GaiaDimensionMod.MODEL_DIR + "malachiteguard.png");
+    private static final ResourceLocation textureLoc = new ResourceLocation(ModEntitiesRendering.TEXTURE_DIRECTORY + "malachiteguard.png");
 
     public MalachiteGuardRenderer(EntityRendererProvider.Context manager, M model, float shadowSize) {
         super(manager, model, shadowSize);

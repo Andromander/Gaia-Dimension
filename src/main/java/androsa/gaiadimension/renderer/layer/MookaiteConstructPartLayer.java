@@ -1,8 +1,8 @@
 package androsa.gaiadimension.renderer.layer;
 
-import androsa.gaiadimension.GaiaDimensionMod;
 import androsa.gaiadimension.entity.MookaiteConstructEntity;
 import androsa.gaiadimension.model.MookaiteConstructModel;
+import androsa.gaiadimension.registry.ModEntitiesRendering;
 import com.google.common.collect.Maps;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
@@ -19,7 +19,7 @@ import java.util.Map;
 
 public class MookaiteConstructPartLayer<T extends MookaiteConstructEntity, M extends MookaiteConstructModel<T>> extends RenderLayer<T, M> {
 
-    private static final String dir = GaiaDimensionMod.MODEL_DIR + "mookaite_construct/";
+    private static final String dir = ModEntitiesRendering.TEXTURE_DIRECTORY + "mookaite_construct/";
     public static final Map<EntityDataAccessor<Integer>, String> DIR_MAP = Util.make(Maps.newHashMap(), (map) -> {
         map.put(MookaiteConstructEntity.LEFT_HORN_TYPE, "left_horn");
         map.put(MookaiteConstructEntity.RIGHT_HORN_TYPE, "right_horn");

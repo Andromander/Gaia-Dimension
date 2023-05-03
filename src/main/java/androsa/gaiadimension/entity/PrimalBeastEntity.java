@@ -3,6 +3,7 @@ package androsa.gaiadimension.entity;
 import androsa.gaiadimension.registry.ModSounds;
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvent;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.*;
@@ -17,8 +18,6 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.pathfinder.BlockPathTypes;
-
-import java.util.Random;
 
 public class PrimalBeastEntity extends Monster {
 
@@ -74,11 +73,6 @@ public class PrimalBeastEntity extends Monster {
     }
 
     @Override
-    public float getBrightness() {
-        return 1.0F;
-    }
-
-    @Override
     public float getWalkTargetValue(BlockPos pos) {
         return 0.0F;
     }
@@ -88,7 +82,7 @@ public class PrimalBeastEntity extends Monster {
         return true;
     }
 
-    public static boolean canSpawnHere(EntityType<PrimalBeastEntity> entity, LevelAccessor world, MobSpawnType spawn, BlockPos pos, Random random) {
+    public static boolean canSpawnHere(EntityType<PrimalBeastEntity> entity, LevelAccessor world, MobSpawnType spawn, BlockPos pos, RandomSource random) {
         return world.getDifficulty() != Difficulty.PEACEFUL && pos.getY() < 20.0D && pos.getY() > 0.0D;
     }
 

@@ -7,6 +7,7 @@ import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.sounds.SoundEvent;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Mob;
@@ -24,7 +25,6 @@ import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LightLayer;
 
 import javax.annotation.Nullable;
-import java.util.Random;
 
 public class BismuthUletrusEntity extends PathfinderMob {
 
@@ -96,7 +96,7 @@ public class BismuthUletrusEntity extends PathfinderMob {
         return super.hurt(source, amount);
     }
 
-    public static boolean canSpawnHere(EntityType<BismuthUletrusEntity> entity, LevelAccessor world, MobSpawnType spawn, BlockPos pos, Random random) {
+    public static boolean canSpawnHere(EntityType<BismuthUletrusEntity> entity, LevelAccessor world, MobSpawnType spawn, BlockPos pos, RandomSource random) {
         return spawn == MobSpawnType.SPAWNER || world.getBlockState(pos.below()).isValidSpawn(world, pos.below(), entity) && world.getBrightness(LightLayer.SKY, pos) > 8;
     }
 

@@ -1,6 +1,5 @@
 package androsa.gaiadimension.renderer.layer;
 
-import androsa.gaiadimension.GaiaDimensionMod;
 import androsa.gaiadimension.entity.boss.MalachiteGuardEntity;
 import androsa.gaiadimension.model.MalachiteGuardModel;
 import androsa.gaiadimension.registry.ModEntitiesRendering;
@@ -15,9 +14,10 @@ import net.minecraft.client.renderer.entity.layers.RenderLayer;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.resources.ResourceLocation;
 
+//TODO: Texture location
 public class MalachiteResistLayer<T extends MalachiteGuardEntity, M extends MalachiteGuardModel<T>> extends RenderLayer<T,M> {
 
-    private static final ResourceLocation textureLoc = new ResourceLocation(GaiaDimensionMod.MODEL_DIR + "malachiteguard_resist.png");
+    private static final ResourceLocation textureLoc = new ResourceLocation(ModEntitiesRendering.TEXTURE_DIRECTORY + "malachiteguard_resist.png");
     private final EntityModel<T> model;
 
     public MalachiteResistLayer(RenderLayerParent<T, M> renderer, EntityModelSet set) {

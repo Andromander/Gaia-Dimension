@@ -4,6 +4,7 @@ import androsa.gaiadimension.registry.ModSounds;
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.util.Mth;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EntityType;
@@ -21,7 +22,6 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 import javax.annotation.Nullable;
-import java.util.Random;
 
 public class ShallowArenthisEntity extends WaterAnimal {
 
@@ -138,7 +138,7 @@ public class ShallowArenthisEntity extends WaterAnimal {
         }
     }
 
-    public static boolean canSpawnHere(EntityType<ShallowArenthisEntity> entity, LevelAccessor world, MobSpawnType reason, BlockPos pos, Random rand) {
+    public static boolean canSpawnHere(EntityType<ShallowArenthisEntity> entity, LevelAccessor world, MobSpawnType reason, BlockPos pos, RandomSource rand) {
         return pos.getY() > 30 && pos.getY() < world.getSeaLevel();
     }
 

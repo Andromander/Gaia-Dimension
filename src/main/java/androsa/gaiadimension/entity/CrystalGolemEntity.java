@@ -3,6 +3,7 @@ package androsa.gaiadimension.entity;
 import androsa.gaiadimension.registry.ModSounds;
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvent;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
@@ -19,8 +20,6 @@ import net.minecraft.world.entity.monster.Enemy;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
-
-import java.util.Random;
 
 public class CrystalGolemEntity extends AbstractGolem {
 
@@ -51,7 +50,7 @@ public class CrystalGolemEntity extends AbstractGolem {
     @Override
     public boolean doHurtTarget(Entity entityIn) {
         this.level.broadcastEntityEvent(this, (byte)4);
-        boolean flag = entityIn.hurt(DamageSource.mobAttack(this), (float)(6 + this.random.nextInt(15)));
+        boolean flag = entityIn.hurt(entityIn.damageSources().mobAttack(this), (float)(6 + this.random.nextInt(15)));
 
         if (flag) {
             entityIn.setDeltaMovement(entityIn.getDeltaMovement().add(0.0D, 0.4D, 0.0D));
@@ -71,7 +70,7 @@ public class CrystalGolemEntity extends AbstractGolem {
         return ModSounds.ENTITY_CRYSTAL_GOLEM_DEATH;
     }
 
-    public static boolean canSpawnHere(EntityType<CrystalGolemEntity> entity, LevelAccessor world, MobSpawnType spawn, BlockPos pos, Random random) {
+    public static boolean canSpawnHere(EntityType<CrystalGolemEntity> entity, LevelAccessor world, MobSpawnType spawn, BlockPos pos, RandomSource random) {
         return spawn == MobSpawnType.SPAWNER || world.getBlockState(pos.below()).isValidSpawn(world, pos.below(), entity) && world.getRawBrightness(pos, 0) > 8;
     }
 }

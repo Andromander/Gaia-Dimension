@@ -6,6 +6,7 @@ import androsa.gaiadimension.registry.ModSounds;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.sounds.SoundEvent;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.damagesource.DamageSource;
@@ -82,10 +83,10 @@ public class ArchaicWarriorEntity extends Monster {
     }
 
     @Override
-    protected void populateDefaultEquipmentSlots(DifficultyInstance difficulty) {
-        super.populateDefaultEquipmentSlots(difficulty);
+    protected void populateDefaultEquipmentSlots(RandomSource random, DifficultyInstance difficulty) {
+        super.populateDefaultEquipmentSlots(random, difficulty);
 
-        if (this.random.nextFloat() < (this.level.getDifficulty() == Difficulty.NORMAL ? 0.05F : 0.01F)) {
+        if (random.nextFloat() < (this.level.getDifficulty() == Difficulty.NORMAL ? 0.05F : 0.01F)) {
             this.setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(ModItems.sugilite_sword.get()));
         }
     }
@@ -96,12 +97,13 @@ public class ArchaicWarriorEntity extends Monster {
     }
 
     @Override
+    @Deprecated
     @Nullable
     public SpawnGroupData finalizeSpawn(ServerLevelAccessor worldIn, DifficultyInstance difficultyIn, MobSpawnType reason, @Nullable SpawnGroupData spawnDataIn, @Nullable CompoundTag dataTag) {
         spawnDataIn = super.finalizeSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
 
-        this.populateDefaultEquipmentSlots(difficultyIn);
-        this.populateDefaultEquipmentEnchantments(difficultyIn);
+        this.populateDefaultEquipmentSlots(worldIn.getRandom(), difficultyIn);
+        this.populateDefaultEquipmentEnchantments(worldIn.getRandom(), difficultyIn);
 
         return spawnDataIn;
     }

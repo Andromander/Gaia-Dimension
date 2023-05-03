@@ -9,10 +9,9 @@ import androsa.gaiadimension.entity.projectile.ThrownPebbleEntity;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.monster.Monster;
-import net.minecraft.world.level.biome.MobSpawnSettings;
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
-import net.minecraftforge.event.world.StructureSpawnListGatherEvent;
+import net.minecraftforge.event.entity.SpawnPlacementRegisterEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.DeferredRegister;
@@ -22,12 +21,11 @@ import net.minecraftforge.registries.RegistryObject;
 import java.util.function.Supplier;
 
 import static net.minecraft.world.entity.SpawnPlacements.Type;
-import static net.minecraft.world.entity.SpawnPlacements.register;
 
 @Mod.EventBusSubscriber(modid = GaiaDimensionMod.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ModEntities {
 
-    public static final DeferredRegister<EntityType<?>> ENTITY_TYPES = DeferredRegister.create(ForgeRegistries.ENTITIES, GaiaDimensionMod.MODID);
+    public static final DeferredRegister<EntityType<?>> ENTITY_TYPES = DeferredRegister.create(ForgeRegistries.ENTITY_TYPES, GaiaDimensionMod.MODID);
 
     //Projectiles
     public static final RegistryObject<EntityType<AgateArrowEntity>> AGATE_ARROW = registerProjectile("agate_arrow", AgateArrowEntity::new, true, 150, 1, 0.5F, 0.5F);
@@ -86,39 +84,40 @@ public class ModEntities {
         return EntityType.Builder.of(entity, classification).sized(width, height);
     }
 
-    public static void registerSpawnPlacement() {
-        registerPlacement(AGATE_GOLEM, Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, AgateGolemEntity::canSpawnHere);
-        registerPlacement(ANCIENT_LAGRAHK, Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, AncientLagrahkEntity::canSpawnHere);
-        registerPlacement(ARCHAIC_WARRIOR, Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Monster::checkMonsterSpawnRules);
-        registerPlacement(BISMUTH_ULETRUS, Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, BismuthUletrusEntity::canSpawnHere);
-        registerPlacement(BLUE_HOWLITE_WOLF, Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, BlueHowliteWolfEntity::canSpawnHere);
-        registerPlacement(CAVERN_TICK, Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Monster::checkMonsterSpawnRules);
-        registerPlacement(CONTORTED_NAGA, Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, ContortedNagaEntity::canSpawnHere);
-        registerPlacement(CORRUPT_SAPPER, Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, CorruptSapperEntity::canSpawnHere);
-        registerPlacement(CRYSTAL_GOLEM, Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, CrystalGolemEntity::canSpawnHere);
-        registerPlacement(GROWTH_SAPPER, Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, GrowthSapperEntity::canSpawnHere);
-        registerPlacement(HOWLITE_WOLF, Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, HowliteWolfEntity::canSpawnHere);
-        registerPlacement(LESSER_SHOCKSHOOTER, Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, LesserShockshooterEntity::canSpawnHere);
-        registerPlacement(LESSER_SPITFIRE, Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, LesserSpitfireEntity::canSpawnHere);
-        registerPlacement(MARKUZAR_PLANT, Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, MarkuzarPlantEntity::canSpawnHere);
-        registerPlacement(MINERAL_ARENTHIS, Type.IN_WATER, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, MineralArenthisEntity::canSpawnHere);
-        registerPlacement(MUCKLING, Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, MucklingEntity::canSpawnHere);
-        registerPlacement(MUTANT_GROWTH_EXTRACTOR, Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, MutantGrowthExtractorEntity::canSpawnHere);
-        registerPlacement(NOMADIC_LAGRAHK, Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, NomadicLagrahkEntity::canSpawnHere);
-        registerPlacement(PRIMAL_BEAST, Type.IN_LAVA, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, PrimalBeastEntity::canSpawnHere);
-        registerPlacement(ROCKY_LUGGEROTH, Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, RockyLuggerothEntity::canSpawnHere);
-        registerPlacement(RUGGED_LURMORUS, Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, RuggedLurmorusEntity::canSpawnHere);
-        registerPlacement(SALTION, Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, SaltionEntity::canSpawnHere);
-        registerPlacement(SHALLOW_ARENTHIS, Type.IN_WATER, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, ShallowArenthisEntity::canSpawnHere);
-        registerPlacement(SHALURKER, Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Monster::checkMonsterSpawnRules);
-        registerPlacement(SPELLBOUND_ELEMENTAL, Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, SpellElementEntity::canSpawnHere);
-        registerPlacement(MALACHITE_DRONE, Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Monster::checkAnyLightMonsterSpawnRules);
-        registerPlacement(MOOKAITE_CONSTRUCT, Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, MookaiteConstructEntity::canSpawnHere);
-        registerPlacement(OPALITE_CONSTRUCT, Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, OpaliteContructEntity::canSpawnHere);
+    @SubscribeEvent
+    public static void registerSpawnPlacement(SpawnPlacementRegisterEvent event) {
+        registerPlacement(event, AGATE_GOLEM, Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, AgateGolemEntity::canSpawnHere);
+        registerPlacement(event, ANCIENT_LAGRAHK, Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, AncientLagrahkEntity::canSpawnHere);
+        registerPlacement(event, ARCHAIC_WARRIOR, Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Monster::checkMonsterSpawnRules);
+        registerPlacement(event, BISMUTH_ULETRUS, Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, BismuthUletrusEntity::canSpawnHere);
+        registerPlacement(event, BLUE_HOWLITE_WOLF, Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, BlueHowliteWolfEntity::canSpawnHere);
+        registerPlacement(event, CAVERN_TICK, Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Monster::checkMonsterSpawnRules);
+        registerPlacement(event, CONTORTED_NAGA, Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, ContortedNagaEntity::canSpawnHere);
+        registerPlacement(event, CORRUPT_SAPPER, Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, CorruptSapperEntity::canSpawnHere);
+        registerPlacement(event, CRYSTAL_GOLEM, Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, CrystalGolemEntity::canSpawnHere);
+        registerPlacement(event, GROWTH_SAPPER, Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, GrowthSapperEntity::canSpawnHere);
+        registerPlacement(event, HOWLITE_WOLF, Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, HowliteWolfEntity::canSpawnHere);
+        registerPlacement(event, LESSER_SHOCKSHOOTER, Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, LesserShockshooterEntity::canSpawnHere);
+        registerPlacement(event, LESSER_SPITFIRE, Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, LesserSpitfireEntity::canSpawnHere);
+        registerPlacement(event, MARKUZAR_PLANT, Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, MarkuzarPlantEntity::canSpawnHere);
+        registerPlacement(event, MINERAL_ARENTHIS, Type.IN_WATER, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, MineralArenthisEntity::canSpawnHere);
+        registerPlacement(event, MUCKLING, Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, MucklingEntity::canSpawnHere);
+        registerPlacement(event, MUTANT_GROWTH_EXTRACTOR, Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, MutantGrowthExtractorEntity::canSpawnHere);
+        registerPlacement(event, NOMADIC_LAGRAHK, Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, NomadicLagrahkEntity::canSpawnHere);
+        registerPlacement(event, PRIMAL_BEAST, Type.IN_LAVA, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, PrimalBeastEntity::canSpawnHere);
+        registerPlacement(event, ROCKY_LUGGEROTH, Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, RockyLuggerothEntity::canSpawnHere);
+        registerPlacement(event, RUGGED_LURMORUS, Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, RuggedLurmorusEntity::canSpawnHere);
+        registerPlacement(event, SALTION, Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, SaltionEntity::canSpawnHere);
+        registerPlacement(event, SHALLOW_ARENTHIS, Type.IN_WATER, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, ShallowArenthisEntity::canSpawnHere);
+        registerPlacement(event, SHALURKER, Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Monster::checkMonsterSpawnRules);
+        registerPlacement(event, SPELLBOUND_ELEMENTAL, Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, SpellElementEntity::canSpawnHere);
+        registerPlacement(event, MALACHITE_DRONE, Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Monster::checkAnyLightMonsterSpawnRules);
+        registerPlacement(event, MOOKAITE_CONSTRUCT, Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, MookaiteConstructEntity::canSpawnHere);
+        registerPlacement(event, OPALITE_CONSTRUCT, Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, OpaliteContructEntity::canSpawnHere);
     }
 
-    private static <E extends Mob, T extends EntityType<E>> void registerPlacement(Supplier<T> entity, Type type, Heightmap.Types heightmap, SpawnPlacements.SpawnPredicate<E> predicate) {
-        register(entity.get(), type, heightmap, predicate);
+    private static <E extends Mob, T extends EntityType<E>> void registerPlacement(SpawnPlacementRegisterEvent event, Supplier<T> entity, Type type, Heightmap.Types heightmap, SpawnPlacements.SpawnPredicate<E> predicate) {
+        event.register(entity.get(), type, heightmap, predicate, SpawnPlacementRegisterEvent.Operation.REPLACE);
     }
 
     @SubscribeEvent

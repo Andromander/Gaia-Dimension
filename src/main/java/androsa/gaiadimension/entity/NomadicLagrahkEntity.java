@@ -10,6 +10,7 @@ import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.util.Mth;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.*;
@@ -28,7 +29,6 @@ import net.minecraft.world.level.biome.Biome;
 import javax.annotation.Nullable;
 import java.util.Objects;
 import java.util.Optional;
-import java.util.Random;
 
 public class NomadicLagrahkEntity extends PathfinderMob {
     private static final EntityDataAccessor<Integer> LAGRAHK_VARIANT = SynchedEntityData.defineId(NomadicLagrahkEntity.class, EntityDataSerializers.INT);
@@ -107,7 +107,7 @@ public class NomadicLagrahkEntity extends PathfinderMob {
 
     @Override
     public int getMaxSpawnClusterSize() {
-        Optional<ResourceKey<Biome>> biome = level.getBiome(new BlockPos(getX(), getY(), getZ())).unwrapKey();
+        Optional<ResourceKey<Biome>> biome = level.getBiome(this.blockPosition()).unwrapKey();
 
         if (Objects.equals(biome, Optional.of(ModBiomes.salt_dunes)) || Objects.equals(biome, Optional.of(ModBiomes.static_wasteland)) || Objects.equals(biome, Optional.of(ModBiomes.volcanic_lands))) {
             return 4;
@@ -116,13 +116,13 @@ public class NomadicLagrahkEntity extends PathfinderMob {
         }
     }
 
-    public static boolean canSpawnHere(EntityType<NomadicLagrahkEntity> entity, LevelAccessor world, MobSpawnType spawn, BlockPos pos, Random random) {
+    public static boolean canSpawnHere(EntityType<NomadicLagrahkEntity> entity, LevelAccessor world, MobSpawnType spawn, BlockPos pos, RandomSource random) {
         return world.getBlockState(pos.below()).isValidSpawn(world, pos.below(), entity) && world.getRawBrightness(pos, 0) > 8;
     }
 
     @Override
     public SpawnGroupData finalizeSpawn(ServerLevelAccessor worldIn, DifficultyInstance difficultyIn, MobSpawnType reason, @Nullable SpawnGroupData spawnDataIn, @Nullable CompoundTag dataTag) {
-        Optional<ResourceKey<Biome>> biome = worldIn.getBiome(new BlockPos(getX(), getY(), getZ())).unwrapKey();
+        Optional<ResourceKey<Biome>> biome = worldIn.getBiome(this.blockPosition()).unwrapKey();
 
         if (Objects.equals(biome, Optional.of(ModBiomes.salt_dunes))) {
             setLagrahkVariant(1);

@@ -3,6 +3,7 @@ package androsa.gaiadimension.entity;
 import androsa.gaiadimension.registry.ModSounds;
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvent;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Mob;
@@ -16,7 +17,6 @@ import net.minecraft.world.level.LightLayer;
 import net.minecraft.world.phys.Vec3;
 
 import javax.annotation.Nullable;
-import java.util.Random;
 
 //TODO: Random colours of the petals
 public class MarkuzarPlantEntity extends Mob {
@@ -59,7 +59,7 @@ public class MarkuzarPlantEntity extends Mob {
         return true;
     }
 
-    public static boolean canSpawnHere(EntityType<MarkuzarPlantEntity> entity, LevelAccessor world, MobSpawnType spawn, BlockPos pos, Random random) {
+    public static boolean canSpawnHere(EntityType<MarkuzarPlantEntity> entity, LevelAccessor world, MobSpawnType spawn, BlockPos pos, RandomSource random) {
         BlockPos blockpos = pos.below();
         return world.getBlockState(blockpos).isValidSpawn(world, blockpos, entity) && world.getBrightness(LightLayer.SKY, blockpos) > 8;
     }
