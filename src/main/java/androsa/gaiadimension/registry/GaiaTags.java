@@ -1,16 +1,18 @@
 package androsa.gaiadimension.registry;
 
 import androsa.gaiadimension.GaiaDimensionMod;
-import net.minecraft.core.Registry;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.tags.*;
+import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.FluidTags;
+import net.minecraft.tags.ItemTags;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraftforge.versions.forge.ForgeVersion;
 
-//TODO: Mining tags
 public class GaiaTags {
 
     private static final String ID = GaiaDimensionMod.MODID;
@@ -40,7 +42,7 @@ public class GaiaTags {
     }
 
     private static TagKey<Biome> tagBiome(String name) {
-        return TagKey.create(Registry.BIOME_REGISTRY, new ResourceLocation(GaiaDimensionMod.MODID, name));
+        return TagKey.create(Registries.BIOME, new ResourceLocation(GaiaDimensionMod.MODID, name));
     }
 
     public static class Items {

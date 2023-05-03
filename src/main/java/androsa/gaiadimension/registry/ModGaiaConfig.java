@@ -3,6 +3,7 @@ package androsa.gaiadimension.registry;
 import androsa.gaiadimension.GaiaDimensionMod;
 import com.google.common.collect.ImmutableList;
 import net.minecraft.core.Registry;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.Level;
@@ -44,6 +45,7 @@ public class ModGaiaConfig {
     public static ConfigValue<List<? extends String>> categoryList;
     public static ConfigValue<List<? extends String>> typeList;
 
+    //TODO: Biome Tags
     public static List<? extends String> biomes = ImmutableList.of(
             "minecraft:desert", "minecraft:desert_hills", "minecraft:jungle", "minecraft:jungle_hills", "minecraft:jungle_edge", "minecraft:savanna", "minecraft:savanna_plateau",
             "minecraft:warm_ocean", "minecraft:deep_warm_ocean", "minecraft:desert_lakes", "minecraft:modified_jungle", "minecraft:modified_jungle_edge", "minecraft:shattered_savanna",
@@ -112,7 +114,7 @@ public class ModGaiaConfig {
             rl = Level.OVERWORLD.location();
         }
         startDimRL = rl;
-        startDimRK = ResourceKey.create(Registry.DIMENSION_REGISTRY, startDimRL);
+        startDimRK = ResourceKey.create(Registries.DIMENSION, startDimRL);
     }
 
     public enum ListType {

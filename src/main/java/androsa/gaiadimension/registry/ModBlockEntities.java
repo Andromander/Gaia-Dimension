@@ -11,7 +11,7 @@ import net.minecraftforge.registries.RegistryObject;
 
 public class ModBlockEntities {
 
-    public static final DeferredRegister<BlockEntityType<?>> TILE_ENTITIES = DeferredRegister.create(ForgeRegistries.BLOCK_ENTITIES, GaiaDimensionMod.MODID);
+    public static final DeferredRegister<BlockEntityType<?>> TILE_ENTITIES = DeferredRegister.create(ForgeRegistries.BLOCK_ENTITY_TYPES, GaiaDimensionMod.MODID);
 
     public static final RegistryObject<BlockEntityType<GaiaStoneFurnaceBlockEntity>> GAIA_STONE_FURNACE =  TILE_ENTITIES.register(
             "gaia_stone_furnace", () -> new BlockEntityType<>(GaiaStoneFurnaceBlockEntity::new, Sets.newHashSet(ModBlocks.gaia_stone_furnace.get()), null));
