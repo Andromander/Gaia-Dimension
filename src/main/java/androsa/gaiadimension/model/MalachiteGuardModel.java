@@ -29,7 +29,6 @@ public class MalachiteGuardModel<T extends MalachiteGuardEntity> extends Hierarc
     private float offset;
     private boolean reset;
 
-    //FIXME: scale is now CubeDeformation
     public MalachiteGuardModel(ModelPart root) {
         this.root = root;
         this.head = root.getChild("head");

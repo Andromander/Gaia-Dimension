@@ -89,7 +89,7 @@ public class GaiaBlockProperties {
     public static BlockBehaviour.Properties muckyProps(MaterialColor color, float speed, float jump) {
         return BlockBehaviour.Properties.of(Material.CLAY, color)
                 .strength(0.6F, 0.0F)
-                .sound(SoundType.GRAVEL) //TODO 1.19 mud sound
+                .sound(SoundType.MUD)
                 .speedFactor(speed)
                 .jumpFactor(jump)
                 .isRedstoneConductor((state, getter, pos) -> true)
@@ -125,8 +125,7 @@ public class GaiaBlockProperties {
         return BlockBehaviour.Properties.of(Material.METAL)
                 .strength(-1F)
                 .sound(SoundType.METAL)
-                .noOcclusion()
-                .noDrops();
+                .noOcclusion();
     }
 
     public static BlockBehaviour.Properties torchProps() {
