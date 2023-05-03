@@ -553,10 +553,10 @@
   "construct_charm.message.success": "Successfully bonded Mookaite and Opalite Constructs",
   "construct_charm.message.reset": "Resetting bonds",
 
-  "itemGroup.gaia_blocks": "Gaia Blocks",
-  "itemGroup.gaia_items": "Gaia Items",
-  "itemGroup.gaia_tools": "Gaia Tools",
-  "itemGroup.gaia_armor": "Gaia Armor",
+  "itemGroup.gaiadimension.gaia_blocks": "Gaia Blocks",
+  "itemGroup.gaiadimension.gaia_items": "Gaia Items",
+  "itemGroup.gaiadimension.gaia_tools": "Gaia Tools",
+  "itemGroup.gaiadimension.gaia_armor": "Gaia Armor",
 
   "entity.gaiadimension.growth_sapper": "Growth Sapper",
   "entity.gaiadimension.corrupt_sapper": "Corrupted Growth Sapper",
