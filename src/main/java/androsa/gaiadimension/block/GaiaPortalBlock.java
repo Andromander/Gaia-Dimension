@@ -131,8 +131,7 @@ public class GaiaPortalBlock extends Block {
                     entity.portalEntrancePos = pos.immutable();
                 }
 
-                if (entity.level instanceof ServerLevel) {
-                    ServerLevel serverworld = (ServerLevel)entity.level;
+                if (entity.level instanceof ServerLevel serverworld) {
                     MinecraftServer minecraftserver = serverworld.getServer();
                     ResourceKey<Level> registrykey = entity.level.dimension() == ModDimensions.gaia_world ? ModGaiaConfig.startDimRK : ModDimensions.gaia_world;
                     ServerLevel serverworld1 = minecraftserver.getLevel(registrykey);

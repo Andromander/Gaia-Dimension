@@ -52,7 +52,7 @@ public class GaiaTeleporter implements ITeleporter {
         int i = 64; //TODO: correct?
         poimanager.ensureLoadedAndValid(this.world, pos, i);
         Optional<PoiRecord> optional = poimanager.getInSquare(type ->
-                type == ModDimensions.GAIA_PORTAL.get(), pos, i, PoiManager.Occupancy.ANY)
+                type.is(ModDimensions.GAIA_PORTAL.getKey()), pos, i, PoiManager.Occupancy.ANY)
                 .sorted(Comparator.comparingDouble((ToDoubleFunction<PoiRecord>) poi ->
                         poi.getPos().distSqr(pos))
                         .thenComparingInt(poi ->
@@ -199,7 +199,7 @@ public class GaiaTeleporter implements ITeleporter {
             double maxX = Math.min(2.9999872E7D, border.getMaxX() - 16.0D);
             double maxZ = Math.min(2.9999872E7D, border.getMaxZ() - 16.0D);
             double offset = DimensionType.getTeleportationScale(entity.level.dimensionType(), destWorld.dimensionType());
-            BlockPos blockpos = new BlockPos(Mth.clamp(entity.getX() * offset, minX, maxX), entity.getY(), Mth.clamp(entity.getZ() * offset, minZ, maxZ));
+            BlockPos blockpos = BlockPos.containing(Mth.clamp(entity.getX() * offset, minX, maxX), entity.getY(), Mth.clamp(entity.getZ() * offset, minZ, maxZ));
             return this.getPortalLogic(entity, blockpos).map((portalresult) -> {
                 BlockState blockstate = entity.level.getBlockState(entity.portalEntrancePos);
                 Direction.Axis axis;
@@ -217,7 +217,7 @@ public class GaiaTeleporter implements ITeleporter {
                     vector3d = new Vec3(0.5D, 0.0D, 0.0D);
                 }
 
-                return PortalShape.createPortalInfo(destWorld, portalresult, axis, vector3d, entity.getDimensions(entity.getPose()), entity.getDeltaMovement(), entity.getYRot(), entity.getXRot());
+                return PortalShape.createPortalInfo(destWorld, portalresult, axis, vector3d, entity, entity.getDeltaMovement(), entity.getYRot(), entity.getXRot());
             }).orElse(null);
         }
     }
@@ -230,7 +230,7 @@ public class GaiaTeleporter implements ITeleporter {
             } else {
                 Direction.Axis axis = entity.level.getBlockState(entity.portalEntrancePos).getOptionalValue(GaiaPortalBlock.AXIS).orElse(Direction.Axis.X);
                 Optional<BlockUtil.FoundRectangle> portal = this.makePortal(pos, axis);
-                if (!portal.isPresent()) {
+                if (portal.isEmpty()) {
                     GaiaDimensionMod.LOGGER.error("Unable to create a portal, likely target out of worldborder");
                 }
 
