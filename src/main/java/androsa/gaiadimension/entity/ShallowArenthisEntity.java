@@ -60,13 +60,13 @@ public class ShallowArenthisEntity extends WaterAnimal {
     @Nullable
     @Override
     protected SoundEvent getDeathSound() {
-        return ModSounds.ENTITY_SHALLOW_ARENTHIS_DEATH;
+        return ModSounds.ENTITY_SHALLOW_ARENTHIS_DEATH.get();
     }
 
     @Nullable
     @Override
     protected SoundEvent getHurtSound(DamageSource source) {
-        return ModSounds.ENTITY_SHALLOW_ARENTHIS_HURT;
+        return ModSounds.ENTITY_SHALLOW_ARENTHIS_HURT.get();
     }
 
     @Override

@@ -41,13 +41,13 @@ public class RuggedLurmorusEntity extends PathfinderMob {
     @Nullable
     @Override
     protected SoundEvent getDeathSound() {
-        return ModSounds.ENTITY_RUGGED_LURMORUS_DEATH;
+        return ModSounds.ENTITY_RUGGED_LURMORUS_DEATH.get();
     }
 
     @Nullable
     @Override
     protected SoundEvent getHurtSound(DamageSource source) {
-        return ModSounds.ENTITY_RUGGED_LURMORUS_HURT;
+        return ModSounds.ENTITY_RUGGED_LURMORUS_HURT.get();
     }
 
     @Override

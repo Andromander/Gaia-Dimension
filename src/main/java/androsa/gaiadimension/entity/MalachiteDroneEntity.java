@@ -112,12 +112,12 @@ public class MalachiteDroneEntity extends Monster {
 
     @Override
     protected SoundEvent getDeathSound() {
-        return ModSounds.ENTITY_MALACHITE_DRONE_DEATH;
+        return ModSounds.ENTITY_MALACHITE_DRONE_DEATH.get();
     }
 
     @Override
     protected SoundEvent getHurtSound(DamageSource source) {
-        return ModSounds.ENTITY_MALACHITE_DRONE_HURT;
+        return ModSounds.ENTITY_MALACHITE_DRONE_HURT.get();
     }
 
     @Override
@@ -155,7 +155,7 @@ public class MalachiteDroneEntity extends Monster {
             this.level.addParticle(ModParticles.SPAWNER_CORE.get(), px, py, pz, 0, 128, 0);
         }
 
-        level.playSound(null, this.getX(), this.getY(), this.getZ(), ModSounds.ENTITY_MALACHITE_DRONE_DESYNC, SoundSource.HOSTILE, 1.0F, 1.0F);
+        level.playSound(null, this.getX(), this.getY(), this.getZ(), ModSounds.ENTITY_MALACHITE_DRONE_DESYNC.get(), SoundSource.HOSTILE, 1.0F, 1.0F);
     }
 
     @Override

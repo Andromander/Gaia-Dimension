@@ -92,13 +92,13 @@ public class GrowthSapperEntity extends PathfinderMob {
     @Nullable
     @Override
     protected SoundEvent getDeathSound() {
-        return ModSounds.ENTITY_GROWTH_SAPPER_DEATH;
+        return ModSounds.ENTITY_GROWTH_SAPPER_DEATH.get();
     }
 
     @Nullable
     @Override
     protected SoundEvent getHurtSound(DamageSource source) {
-        return ModSounds.ENTITY_GROWTH_SAPPER_HURT;
+        return ModSounds.ENTITY_GROWTH_SAPPER_HURT.get();
     }
 
     @Override

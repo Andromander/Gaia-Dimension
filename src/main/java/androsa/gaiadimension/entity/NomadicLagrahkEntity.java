@@ -96,13 +96,13 @@ public class NomadicLagrahkEntity extends PathfinderMob {
     @Nullable
     @Override
     protected SoundEvent getDeathSound() {
-        return ModSounds.ENTITY_NOMADIC_LAGRAHK_DEATH;
+        return ModSounds.ENTITY_NOMADIC_LAGRAHK_DEATH.get();
     }
 
     @Nullable
     @Override
     protected SoundEvent getHurtSound(DamageSource source) {
-        return ModSounds.ENTITY_NOMADIC_LAGRAHK_HURT;
+        return ModSounds.ENTITY_NOMADIC_LAGRAHK_HURT.get();
     }
 
     @Override

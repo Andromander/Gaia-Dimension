@@ -59,22 +59,22 @@ public class ArchaicWarriorEntity extends Monster {
 
     @Override
     protected SoundEvent getAmbientSound() {
-        return ModSounds.ENTITY_ARCHAIC_WARRIOR_AMBIENT;
+        return ModSounds.ENTITY_ARCHAIC_WARRIOR_AMBIENT.get();
     }
 
     @Override
     protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
-        return ModSounds.ENTITY_ARCHAIC_WARRIOR_HURT;
+        return ModSounds.ENTITY_ARCHAIC_WARRIOR_HURT.get();
     }
 
     @Override
     protected SoundEvent getDeathSound() {
-        return ModSounds.ENTITY_ARCHAIC_WARRIOR_DEATH;
+        return ModSounds.ENTITY_ARCHAIC_WARRIOR_DEATH.get();
     }
 
     @Override
     protected void playStepSound(BlockPos pos, BlockState state) {
-        this.playSound(ModSounds.ENTITY_ARCHAIC_WARRIOR_STEP, 0.15F, 1.0F);
+        this.playSound(ModSounds.ENTITY_ARCHAIC_WARRIOR_STEP.get(), 0.15F, 1.0F);
     }
 
     @Override

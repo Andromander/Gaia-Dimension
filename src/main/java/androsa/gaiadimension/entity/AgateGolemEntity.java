@@ -50,12 +50,12 @@ public class AgateGolemEntity extends Monster {
 
     @Override
     protected SoundEvent getDeathSound() {
-        return ModSounds.ENTITY_AGATE_GOLEM_DEATH;
+        return ModSounds.ENTITY_AGATE_GOLEM_DEATH.get();
     }
 
     @Override
     protected SoundEvent getHurtSound(DamageSource source) {
-        return ModSounds.ENTITY_AGATE_GOLEM_HURT;
+        return ModSounds.ENTITY_AGATE_GOLEM_HURT.get();
     }
 
     @Override

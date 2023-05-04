@@ -49,12 +49,12 @@ public class LesserShockshooterEntity extends Monster implements IShockshooterMo
 
     @Override
     protected SoundEvent getDeathSound() {
-        return ModSounds.ENTITY_LESSER_SHOCKSHOOTER_DEATH;
+        return ModSounds.ENTITY_LESSER_SHOCKSHOOTER_DEATH.get();
     }
 
     @Override
     protected SoundEvent getHurtSound(DamageSource source) {
-        return ModSounds.ENTITY_LESSER_SHOCKSHOOTER_HURT;
+        return ModSounds.ENTITY_LESSER_SHOCKSHOOTER_HURT.get();
     }
 
     @Override

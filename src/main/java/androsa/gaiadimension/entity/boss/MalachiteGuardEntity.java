@@ -218,13 +218,13 @@ public class MalachiteGuardEntity extends Monster {
     //TODO: Make hurt sound
     @Override
     protected SoundEvent getHurtSound(DamageSource source) {
-        return ModSounds.ENTITY_MALACHITE_GUARD_HURT;
+        return ModSounds.ENTITY_MALACHITE_GUARD_HURT.get();
     }
 
     //TODO: Made damage sound
     @Override
     protected SoundEvent getDeathSound() {
-        return ModSounds.ENTITY_MALACHITE_GUARD_DEATH;
+        return ModSounds.ENTITY_MALACHITE_GUARD_DEATH.get();
     }
 
     //TODO: Keep if we make new sounds?
@@ -615,7 +615,7 @@ public class MalachiteGuardEntity extends Monster {
                         EntityType<?> type = entity.getType();
                         return type != ModEntities.MALACHITE_GUARD.get() && type != ModEntities.MALACHITE_DRONE.get();
                     });
-                    guard.playSound(ModSounds.ENTITY_MALACHITE_GUARD_BLAST, 1.0F, 1.0F);
+                    guard.playSound(ModSounds.ENTITY_MALACHITE_GUARD_BLAST.get(), 1.0F, 1.0F);
 
                     for (Entity entity : targets) {
                         Vec3 explosion = new Vec3(guard.getX(), guard.getY(), guard.getZ());
@@ -699,7 +699,7 @@ public class MalachiteGuardEntity extends Monster {
                     EntityType<?> type = entity.getType();
                     return type != ModEntities.MALACHITE_GUARD.get() && type != ModEntities.MALACHITE_DRONE.get();
                 });
-                guard.playSound(ModSounds.ENTITY_MALACHITE_GUARD_STOMP, 1.0F, 1.0F);
+                guard.playSound(ModSounds.ENTITY_MALACHITE_GUARD_STOMP.get(), 1.0F, 1.0F);
 
                 for (Entity entity : targets) {
                     Vec3 targetV3D = entity.getDeltaMovement();

@@ -62,12 +62,12 @@ public class CrystalGolemEntity extends AbstractGolem {
 
     @Override
     protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
-        return ModSounds.ENTITY_CRYSTAL_GOLEM_HURT;
+        return ModSounds.ENTITY_CRYSTAL_GOLEM_HURT.get();
     }
 
     @Override
     protected SoundEvent getDeathSound() {
-        return ModSounds.ENTITY_CRYSTAL_GOLEM_DEATH;
+        return ModSounds.ENTITY_CRYSTAL_GOLEM_DEATH.get();
     }
 
     public static boolean canSpawnHere(EntityType<CrystalGolemEntity> entity, LevelAccessor world, MobSpawnType spawn, BlockPos pos, RandomSource random) {

@@ -35,13 +35,13 @@ public class MarkuzarPlantEntity extends Mob {
     @Nullable
     @Override
     protected SoundEvent getDeathSound() {
-        return ModSounds.ENTITY_MARKUZAR_PLANT_DEATH;
+        return ModSounds.ENTITY_MARKUZAR_PLANT_DEATH.get();
     }
 
     @Nullable
     @Override
     protected SoundEvent getHurtSound(DamageSource source) {
-        return ModSounds.ENTITY_MARKUZAR_PLANT_HURT;
+        return ModSounds.ENTITY_MARKUZAR_PLANT_HURT.get();
     }
 
     @Override

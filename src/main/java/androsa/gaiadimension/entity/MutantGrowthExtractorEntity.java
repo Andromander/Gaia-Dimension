@@ -43,13 +43,13 @@ public class MutantGrowthExtractorEntity extends PathfinderMob {
     @Nullable
     @Override
     protected SoundEvent getDeathSound() {
-        return ModSounds.ENTITY_MUTANT_GROWTH_EXTRACTOR_DEATH;
+        return ModSounds.ENTITY_MUTANT_GROWTH_EXTRACTOR_DEATH.get();
     }
 
     @Nullable
     @Override
     protected SoundEvent getHurtSound(DamageSource source) {
-        return ModSounds.ENTITY_MUTANT_GROWTH_EXTRACTOR_HURT;
+        return ModSounds.ENTITY_MUTANT_GROWTH_EXTRACTOR_HURT.get();
     }
 
     @Override

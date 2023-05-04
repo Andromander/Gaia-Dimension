@@ -56,13 +56,13 @@ public class MineralArenthisEntity extends WaterAnimal {
     @Nullable
     @Override
     protected SoundEvent getDeathSound() {
-        return ModSounds.ENTITY_MINERAL_ARENTHIS_DEATH;
+        return ModSounds.ENTITY_MINERAL_ARENTHIS_DEATH.get();
     }
 
     @Nullable
     @Override
     protected SoundEvent getHurtSound(DamageSource source) {
-        return ModSounds.ENTITY_MINERAL_ARENTHIS_HURT;
+        return ModSounds.ENTITY_MINERAL_ARENTHIS_HURT.get();
     }
 
     @Override

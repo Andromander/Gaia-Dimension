@@ -51,12 +51,12 @@ public class ContortedNagaEntity extends Monster {
 
     @Override
     protected SoundEvent getDeathSound() {
-        return ModSounds.ENTITY_CONTORTED_NAGA_DEATH;
+        return ModSounds.ENTITY_CONTORTED_NAGA_DEATH.get();
     }
 
     @Override
     protected SoundEvent getHurtSound(DamageSource source) {
-        return ModSounds.ENTITY_CONTORTED_NAGA_HURT;
+        return ModSounds.ENTITY_CONTORTED_NAGA_HURT.get();
     }
 
     @Override

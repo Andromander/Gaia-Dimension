@@ -40,12 +40,12 @@ public class AncientLagrahkEntity extends Monster {
 
     @Override
     protected SoundEvent getDeathSound() {
-        return ModSounds.ENTITY_ANCIENT_LAGRAHK_DEATH;
+        return ModSounds.ENTITY_ANCIENT_LAGRAHK_DEATH.get();
     }
 
     @Override
     protected SoundEvent getHurtSound(DamageSource source) {
-        return ModSounds.ENTITY_ANCIENT_LAGRAHK_HURT;
+        return ModSounds.ENTITY_ANCIENT_LAGRAHK_HURT.get();
     }
 
     @Override

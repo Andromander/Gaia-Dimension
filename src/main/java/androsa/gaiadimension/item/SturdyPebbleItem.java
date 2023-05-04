@@ -26,7 +26,7 @@ public class SturdyPebbleItem extends Item {
             itemstack.shrink(1);
         }
 
-        worldIn.playSound(null, playerIn.getX(), playerIn.getY(), playerIn.getZ(), ModSounds.STURDY_PEBBLE_THROW, SoundSource.NEUTRAL, 0.5F, 0.4F / (worldIn.random.nextFloat() * 0.4F + 0.8F));
+        worldIn.playSound(null, playerIn.getX(), playerIn.getY(), playerIn.getZ(), ModSounds.STURDY_PEBBLE_THROW.get(), SoundSource.NEUTRAL, 0.5F, 0.4F / (worldIn.random.nextFloat() * 0.4F + 0.8F));
 
         if (!worldIn.isClientSide()) {
             ThrownPebbleEntity pebble = new ThrownPebbleEntity(worldIn, playerIn);

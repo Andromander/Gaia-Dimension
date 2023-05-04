@@ -45,13 +45,13 @@ public class SpellElementEntity extends PathfinderMob {
     @Nullable
     @Override
     protected SoundEvent getDeathSound() {
-        return ModSounds.ENTITY_SPELLBOUND_ELEMENTAL_DEATH;
+        return ModSounds.ENTITY_SPELLBOUND_ELEMENTAL_DEATH.get();
     }
 
     @Nullable
     @Override
     protected SoundEvent getHurtSound(DamageSource source) {
-        return ModSounds.ENTITY_SPELLBOUND_ELEMENTAL_HURT;
+        return ModSounds.ENTITY_SPELLBOUND_ELEMENTAL_HURT.get();
     }
 
     public static boolean canSpawnHere(EntityType<SpellElementEntity> entity, LevelAccessor world, MobSpawnType spawn, BlockPos pos, RandomSource random) {

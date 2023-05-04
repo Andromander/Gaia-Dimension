@@ -49,17 +49,17 @@ public class PrimalBeastEntity extends Monster {
 
     @Override
     protected SoundEvent getAmbientSound() {
-        return ModSounds.ENTITY_PRIMAL_BEAST_AMBIENT;
+        return ModSounds.ENTITY_PRIMAL_BEAST_AMBIENT.get();
     }
 
     @Override
     protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
-        return ModSounds.ENTITY_PRIMAL_BEAST_HURT;
+        return ModSounds.ENTITY_PRIMAL_BEAST_HURT.get();
     }
 
     @Override
     protected SoundEvent getDeathSound() {
-        return ModSounds.ENTITY_PRIMAL_BEAST_DEATH;
+        return ModSounds.ENTITY_PRIMAL_BEAST_DEATH.get();
     }
 
     @Override

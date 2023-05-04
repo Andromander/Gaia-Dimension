@@ -49,12 +49,12 @@ public class LesserSpitfireEntity extends Monster implements ISpitfireMob {
 
     @Override
     protected SoundEvent getDeathSound() {
-        return ModSounds.ENTITY_LESSER_SPITFIRE_DEATH;
+        return ModSounds.ENTITY_LESSER_SPITFIRE_DEATH.get();
     }
 
     @Override
     protected SoundEvent getHurtSound(DamageSource source) {
-        return ModSounds.ENTITY_LESSER_SPITFIRE_HURT;
+        return ModSounds.ENTITY_LESSER_SPITFIRE_HURT.get();
     }
 
     @Override

@@ -42,13 +42,13 @@ public class RockyLuggerothEntity extends PathfinderMob {
     @Nullable
     @Override
     protected SoundEvent getDeathSound() {
-        return ModSounds.ENTITY_ROCKY_LUGGEROTH_DEATH;
+        return ModSounds.ENTITY_ROCKY_LUGGEROTH_DEATH.get();
     }
 
     @Nullable
     @Override
     protected SoundEvent getHurtSound(DamageSource source) {
-        return ModSounds.ENTITY_ROCKY_LUGGEROTH_HURT;
+        return ModSounds.ENTITY_ROCKY_LUGGEROTH_HURT.get();
     }
 
     @Override

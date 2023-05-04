@@ -55,22 +55,22 @@ public class CavernTickEntity extends Monster {
 
     @Override
     protected SoundEvent getAmbientSound() {
-        return ModSounds.ENTITY_CAVERN_TICK_AMBIENT;
+        return ModSounds.ENTITY_CAVERN_TICK_AMBIENT.get();
     }
 
     @Override
     protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
-        return ModSounds.ENTITY_CAVERN_TICK_HURT;
+        return ModSounds.ENTITY_CAVERN_TICK_HURT.get();
     }
 
     @Override
     protected SoundEvent getDeathSound() {
-        return ModSounds.ENTITY_CAVERN_TICK_DEATH;
+        return ModSounds.ENTITY_CAVERN_TICK_DEATH.get();
     }
 
     @Override
     protected void playStepSound(BlockPos pos, BlockState state) {
-        this.playSound(ModSounds.ENTITY_CAVERN_TICK_STEP, 0.15F, 1.0F);
+        this.playSound(ModSounds.ENTITY_CAVERN_TICK_STEP.get(), 0.15F, 1.0F);
     }
 
     @Override

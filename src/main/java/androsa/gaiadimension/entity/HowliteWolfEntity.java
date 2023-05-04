@@ -47,12 +47,12 @@ public class HowliteWolfEntity extends Monster {
 
     @Override
     protected SoundEvent getDeathSound() {
-        return ModSounds.ENTITY_HOWLITE_WOLF_DEATH;
+        return ModSounds.ENTITY_HOWLITE_WOLF_DEATH.get();
     }
 
     @Override
     protected SoundEvent getHurtSound(DamageSource source) {
-        return ModSounds.ENTITY_HOWLITE_WOLF_HURT;
+        return ModSounds.ENTITY_HOWLITE_WOLF_HURT.get();
     }
 
     @Override

@@ -42,22 +42,22 @@ public class MucklingEntity extends Slime {
 
     @Override
     protected SoundEvent getDeathSound() {
-        return isTiny() ? ModSounds.ENTITY_MUCKLING_DEATH_SMALL : ModSounds.ENTITY_MUCKLING_DEATH;
+        return isTiny() ? ModSounds.ENTITY_MUCKLING_DEATH_SMALL.get() : ModSounds.ENTITY_MUCKLING_DEATH.get();
     }
 
     @Override
     protected SoundEvent getHurtSound(DamageSource source) {
-        return isTiny() ? ModSounds.ENTITY_MUCKLING_HURT_SMALL : ModSounds.ENTITY_MUCKLING_HURT;
+        return isTiny() ? ModSounds.ENTITY_MUCKLING_HURT_SMALL.get() : ModSounds.ENTITY_MUCKLING_HURT.get();
     }
 
     @Override
     protected SoundEvent getJumpSound() {
-        return isTiny() ? ModSounds.ENTITY_MUCKLING_JUMP_SMALL : ModSounds.ENTITY_MUCKLING_JUMP;
+        return isTiny() ? ModSounds.ENTITY_MUCKLING_JUMP_SMALL.get() : ModSounds.ENTITY_MUCKLING_JUMP.get();
     }
 
     @Override
     protected SoundEvent getSquishSound() {
-        return isTiny() ? ModSounds.ENTITY_MUCKLING_SQUISH_SMALL : ModSounds.ENTITY_MUCKLING_SQUISH;
+        return isTiny() ? ModSounds.ENTITY_MUCKLING_SQUISH_SMALL.get() : ModSounds.ENTITY_MUCKLING_SQUISH.get();
     }
 
     public static AttributeSupplier.Builder registerAttributes() {

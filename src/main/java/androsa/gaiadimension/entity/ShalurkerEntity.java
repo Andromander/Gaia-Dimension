@@ -43,12 +43,12 @@ public class ShalurkerEntity extends Monster {
 
     @Override
     protected SoundEvent getDeathSound() {
-        return ModSounds.ENTITY_SHALURKER_DEATH;
+        return ModSounds.ENTITY_SHALURKER_DEATH.get();
     }
 
     @Override
     protected SoundEvent getHurtSound(DamageSource source) {
-        return ModSounds.ENTITY_SHALURKER_HURT;
+        return ModSounds.ENTITY_SHALURKER_HURT.get();
     }
 
     public void aiStep() {

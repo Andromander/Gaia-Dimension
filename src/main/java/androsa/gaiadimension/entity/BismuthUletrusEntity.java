@@ -81,13 +81,13 @@ public class BismuthUletrusEntity extends PathfinderMob {
     @Nullable
     @Override
     protected SoundEvent getDeathSound() {
-        return ModSounds.ENTITY_BISMUTH_ULETRUS_DEATH;
+        return ModSounds.ENTITY_BISMUTH_ULETRUS_DEATH.get();
     }
 
     @Nullable
     @Override
     protected SoundEvent getHurtSound(DamageSource source) {
-        return ModSounds.ENTITY_BISMUTH_ULETRUS_HURT;
+        return ModSounds.ENTITY_BISMUTH_ULETRUS_HURT.get();
     }
 
     @Override

@@ -48,12 +48,12 @@ public class CorruptSapperEntity extends Monster {
 
     @Override
     protected SoundEvent getDeathSound() {
-        return ModSounds.ENTITY_CORRUPT_SAPPER_DEATH;
+        return ModSounds.ENTITY_CORRUPT_SAPPER_DEATH.get();
     }
 
     @Override
     protected SoundEvent getHurtSound(DamageSource source) {
-        return ModSounds.ENTITY_CORRUPT_SAPPER_HURT;
+        return ModSounds.ENTITY_CORRUPT_SAPPER_HURT.get();
     }
 
     @Override

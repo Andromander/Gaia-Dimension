@@ -47,12 +47,12 @@ public class SaltionEntity extends Monster {
 
     @Override
     protected SoundEvent getDeathSound() {
-        return ModSounds.ENTITY_SALTION_DEATH;
+        return ModSounds.ENTITY_SALTION_DEATH.get();
     }
 
     @Override
     protected SoundEvent getHurtSound(DamageSource source) {
-        return ModSounds.ENTITY_SALTION_HURT;
+        return ModSounds.ENTITY_SALTION_HURT.get();
     }
 
     @Override
