@@ -1,8 +1,7 @@
 package androsa.gaiadimension.world.chunk.warp;
 
 import net.minecraft.util.Mth;
-import net.minecraft.world.level.levelgen.NoiseSamplingSettings;
-import net.minecraft.world.level.levelgen.RandomSource;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.levelgen.synth.BlendedNoise;
 import net.minecraft.world.level.levelgen.synth.ImprovedNoise;
 import net.minecraft.world.level.levelgen.synth.PerlinNoise;
@@ -12,8 +11,8 @@ import net.minecraft.world.level.levelgen.synth.PerlinNoise;
  */
 public class GaiaBlendedNoise extends BlendedNoise {
 
-    public GaiaBlendedNoise(RandomSource random, NoiseSamplingSettings settings, int x, int z) {
-        super(random, settings, x, z);
+    public GaiaBlendedNoise(RandomSource random) {
+        super(random, 1.0F, 1.0F, 80.0F, 160.0F, 0.0D);
     }
 
     public double sampleAndClampNoise(int x, int y, int z, double scaleXZ, double scaleY, double factorXZ, double factorY) {

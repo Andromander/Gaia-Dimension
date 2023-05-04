@@ -1,9 +1,6 @@
 package androsa.gaiadimension.world.chunk;
 
-import androsa.gaiadimension.world.chunk.warp.GaiaTerrainWarp;
-import androsa.gaiadimension.world.chunk.warp.GaiaBlendedNoise;
-import androsa.gaiadimension.world.chunk.warp.GaiaNoiseInterpolator;
-import androsa.gaiadimension.world.chunk.warp.NoiseModifier;
+import androsa.gaiadimension.world.chunk.warp.*;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
 import com.mojang.serialization.Codec;
@@ -13,7 +10,6 @@ import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.core.Registry;
-import net.minecraft.resources.RegistryOps;
 import net.minecraft.util.Mth;
 import net.minecraft.world.level.ChunkPos;
 import net.minecraft.world.level.LevelHeightAccessor;
@@ -31,27 +27,19 @@ import net.minecraft.world.level.chunk.LevelChunkSection;
 import net.minecraft.world.level.chunk.ProtoChunk;
 import net.minecraft.world.level.levelgen.*;
 import net.minecraft.world.level.levelgen.blending.Blender;
-import net.minecraft.world.level.levelgen.carver.CarvingContext;
-import net.minecraft.world.level.levelgen.structure.StructureSet;
 import net.minecraft.world.level.levelgen.synth.BlendedNoise;
-import net.minecraft.world.level.levelgen.synth.NormalNoise;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.OptionalInt;
 import java.util.Set;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.Executor;
-import java.util.function.Function;
 import java.util.function.Predicate;
 
 public class GaiaChunkGenerator extends NoiseBasedChunkGenerator {
     public static final Codec<GaiaChunkGenerator> CODEC = RecordCodecBuilder.create((instance) -> instance.group(
             BiomeSource.CODEC.fieldOf("biome_source").forGetter((object) -> object.biomeSource),
-            RegistryOps.retrieveRegistry(Registry.STRUCTURE_SET_REGISTRY).forGetter((object) -> object.structureRegistry),
-            RegistryOps.retrieveRegistry(Registry.NOISE_REGISTRY).forGetter((object) -> object.noiseRegistry),
-            NoiseGeneratorSettings.CODEC.fieldOf("settings").forGetter((object) -> object.settings),
-            Codec.LONG.fieldOf("seed").forGetter((object) -> object.seed)
+            NoiseGeneratorSettings.CODEC.fieldOf("settings").forGetter((object) -> object.settings)
     ).apply(instance, instance.stable(GaiaChunkGenerator::new)));
 
     protected final Holder<NoiseGeneratorSettings> settings;
@@ -73,10 +61,12 @@ public class GaiaChunkGenerator extends NoiseBasedChunkGenerator {
         this.cellWidth = noise.getCellWidth();
         this.cellHeight = noise.getCellHeight();
         WorldgenRandom random = new WorldgenRandom(new LegacyRandomSource(0L));
-        BlendedNoise blendedNoise = new GaiaBlendedNoise(random, noise.noiseSamplingSettings(), this.cellWidth, this.cellHeight);
+        BlendedNoise blendedNoise = new GaiaBlendedNoise(random);
         NoiseModifier modifier = NoiseModifier.PASS;
         this.sampler = new Climate.Sampler(DensityFunctions.zero(), DensityFunctions.zero(), DensityFunctions.zero(), DensityFunctions.zero(), DensityFunctions.zero(), DensityFunctions.zero(), List.of()); //let's be real, this is a dummy
-        this.warper = new GaiaTerrainWarp(this.cellWidth, this.cellHeight, noise.getCellCountY(), mainsource, noise, blendedNoise, modifier);
+        NoiseSlider topSlide = new NoiseSlider(-10.0D, 3, 0);
+        NoiseSlider bottomSlide = new NoiseSlider(15.0D, 3, 0);
+        this.warper = new GaiaTerrainWarp(this.cellWidth, this.cellHeight, noise.height() / this.cellHeight, mainsource, noise, topSlide, bottomSlide, blendedNoise, modifier);
         this.defaultBlock = noisesettings.value().defaultBlock();
         this.defaultFluid = noisesettings.value().defaultFluid();
     }
@@ -293,7 +283,7 @@ public class GaiaChunkGenerator extends NoiseBasedChunkGenerator {
 
     private void fillNoiseColumn(double[] columns, int x, int z, int min, int max) {
         NoiseSettings settings = this.settings.value().noiseSettings();
-        this.warper.fillNoiseColumn(this, columns, x, z, settings, this.getSeaLevel(), min, max);
+        this.warper.fillNoiseColumn(this, columns, x, z, settings, sampler, this.getSeaLevel(), min, max);
     }
 
     private BlockState generateBaseState(double a, double b) {

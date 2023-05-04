@@ -8,7 +8,7 @@ import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderGetter;
-import net.minecraft.core.Registry;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.RegistryOps;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.biome.BiomeSource;
@@ -16,6 +16,7 @@ import net.minecraft.world.level.biome.Climate;
 
 import java.util.List;
 import java.util.function.Function;
+import java.util.stream.Stream;
 
 public class GaiaBiomeSource extends BiomeSource {
 
@@ -27,20 +28,18 @@ public class GaiaBiomeSource extends BiomeSource {
             Codec.LONG.fieldOf("seed").stable().orElseGet(() -> GaiaBiomeSource.hackseed).forGetter((object) -> object.seed),
             Codec.FLOAT.fieldOf("base_offset").forGetter((object) -> object.offset),
             Codec.FLOAT.fieldOf("base_factor").forGetter((object) -> object.factor),
-            RegistryOps.retrieveRegistry(Registry.BIOME_REGISTRY)
-                    .forGetter((obj) -> obj.registry)
+            RegistryOps.retrieveGetter(Registries.BIOME)
     ).apply(instance, GaiaBiomeSource::new));
 
     public static long hackseed; //DON'T TOUCH ME
     private final long seed;
-    private final Registry<Biome> registry;
+    private final HolderGetter<Biome> registry;
     private final Layer genBiomes;
     private final float offset;
     private final float factor;
     private final List<Pair<TerrainPoint, Holder<Biome>>> list;
 
     public GaiaBiomeSource(List<Pair<TerrainPoint, Holder<Biome>>> list, long seed, float offset, float factor, HolderGetter<Biome> registry) {
-        super(list.stream().map(Pair::getSecond));
         this.seed = seed;
         this.registry = registry;
         this.genBiomes = GaiaLayerUtil.makeLayers(seed, registry);
@@ -57,13 +56,13 @@ public class GaiaBiomeSource extends BiomeSource {
     }
 
     @Override
-    public BiomeSource withSeed(long s) {
-        return new GaiaBiomeSource(list, s, offset, factor, registry);
+    protected Codec<? extends BiomeSource> codec() {
+        return CODEC;
     }
 
     @Override
-    protected Codec<? extends BiomeSource> codec() {
-        return CODEC;
+    protected Stream<Holder<Biome>> collectPossibleBiomes() {
+        return this.list.stream().map(Pair::getSecond);
     }
 
     @Override
