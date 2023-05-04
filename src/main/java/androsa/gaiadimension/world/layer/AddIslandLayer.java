@@ -3,11 +3,20 @@ package androsa.gaiadimension.world.layer;
 import androsa.gaiadimension.registry.ModBiomes;
 import androsa.gaiadimension.world.layer.util.BishopTransformer;
 import androsa.gaiadimension.world.layer.util.Context;
+import net.minecraft.core.HolderGetter;
+import net.minecraft.world.level.biome.Biome;
 
 public enum AddIslandLayer implements BishopTransformer {
     INSTANCE;
 
-    private int basebiome = GaiaLayerUtil.getBiomeId(ModBiomes.pink_agate_forest);
+    private HolderGetter<Biome> registry;
+
+    private final int basebiome = GaiaLayerUtil.getBiomeId(ModBiomes.pink_agate_forest, registry);
+
+    public AddIslandLayer setup(HolderGetter<Biome> registry) {
+        this.registry = registry;
+        return this;
+    }
 
     @Override
     public int apply(Context context, int sw, int se, int ne, int nw, int center) {
@@ -59,6 +68,6 @@ public enum AddIslandLayer implements BishopTransformer {
     }
 
     private boolean isOcean(int biome) {
-        return biome == GaiaLayerUtil.getBiomeId(ModBiomes.mineral_reservoir) || biome == 0;
+        return biome == GaiaLayerUtil.getBiomeId(ModBiomes.mineral_reservoir, registry) || biome == 0;
     }
 }
