@@ -20,12 +20,10 @@ import net.minecraft.world.level.levelgen.structure.BoundingBox;
 import net.minecraft.world.level.levelgen.structure.TemplateStructurePiece;
 import net.minecraft.world.level.levelgen.structure.pieces.StructurePieceSerializationContext;
 import net.minecraft.world.level.levelgen.structure.templatesystem.BlockIgnoreProcessor;
-import net.minecraft.world.level.levelgen.structure.templatesystem.StructureManager;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructurePlaceSettings;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemplateManager;
 
 import java.util.List;
-import java.util.Random;
 
 public class MalachiteWatchtowerPieces {
 
@@ -117,11 +115,11 @@ public class MalachiteWatchtowerPieces {
     }
 
     public static class Piece extends TemplateStructurePiece {
-        public Piece(StructureManager manager, ResourceLocation pieceloc, BlockPos pos, Rotation rot, int offset) {
+        public Piece(StructureTemplateManager manager, ResourceLocation pieceloc, BlockPos pos, Rotation rot, int offset) {
             super(ModWorldgen.StructureTypes.MAWA, 0, manager, pieceloc, pieceloc.toString(), loadTemplate(rot, pieceloc), loadPosition(pos, offset));
         }
 
-        public Piece(StructureManager level, CompoundTag nbt) {
+        public Piece(StructureTemplateManager level, CompoundTag nbt) {
             super(ModWorldgen.StructureTypes.MAWA, nbt, level, (rl) ->
                     loadTemplate(Rotation.valueOf(nbt.getString("Rot")), rl));
         }
@@ -146,7 +144,7 @@ public class MalachiteWatchtowerPieces {
         }
 
         @Override
-        protected void handleDataMarker(String name, BlockPos pos, ServerLevelAccessor world, Random random, BoundingBox mbb) {
+        protected void handleDataMarker(String name, BlockPos pos, ServerLevelAccessor world, RandomSource random, BoundingBox mbb) {
             if ("ChestChance".equals(name)) {
                 if (random.nextDouble() > 0.5D) {
                     world.setBlock(pos, ModBlocks.crude_storage_crate.get().defaultBlockState(), 3);

@@ -13,7 +13,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.ChunkPos;
 import net.minecraft.world.level.ServerLevelAccessor;
-import net.minecraft.world.level.StructureFeatureManager;
+import net.minecraft.world.level.StructureManager;
 import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.Mirror;
@@ -26,12 +26,9 @@ import net.minecraft.world.level.levelgen.structure.StructurePieceAccessor;
 import net.minecraft.world.level.levelgen.structure.TemplateStructurePiece;
 import net.minecraft.world.level.levelgen.structure.pieces.StructurePieceSerializationContext;
 import net.minecraft.world.level.levelgen.structure.templatesystem.BlockIgnoreProcessor;
-import net.minecraft.world.level.levelgen.structure.templatesystem.StructureManager;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructurePlaceSettings;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemplate;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemplateManager;
-
-import java.util.Random;
 
 public class MiniTowerPieces {
     private static final ResourceLocation am_base = makePiece("amethyst", "base");
@@ -115,12 +112,12 @@ public class MiniTowerPieces {
     public static class Piece extends TemplateStructurePiece {
         private final MiniTowerType towerType;
 
-        public Piece(StructureManager manager, ResourceLocation pieceloc, BlockPos pos, Rotation rot, MiniTowerType type, int offset) {
+        public Piece(StructureTemplateManager manager, ResourceLocation pieceloc, BlockPos pos, Rotation rot, MiniTowerType type, int offset) {
             super(ModWorldgen.StructureTypes.MITO, 0, manager, pieceloc, pieceloc.toString(), loadTemplate(rot, pieceloc), loadPosition(pieceloc, pos, offset));
             this.towerType = type;
         }
 
-        public Piece(StructureManager level, CompoundTag nbt) {
+        public Piece(StructureTemplateManager level, CompoundTag nbt) {
             super(ModWorldgen.StructureTypes.MITO, nbt, level, (rl) ->
                     loadTemplate(Rotation.valueOf(nbt.getString("Rot")), rl));
             this.towerType = MiniTowerType.valueOf(nbt.getString("TowerType"));
@@ -161,7 +158,7 @@ public class MiniTowerPieces {
         }
 
         @Override
-        protected void handleDataMarker(String name, BlockPos pos, ServerLevelAccessor world, Random random, BoundingBox mbb) {
+        protected void handleDataMarker(String name, BlockPos pos, ServerLevelAccessor world, RandomSource random, BoundingBox mbb) {
             if ("Chest".equals(name)) {
                 if (random.nextDouble() > 0.5D) {
                     world.setBlock(pos, ModBlocks.crude_storage_crate.get().defaultBlockState(), 3);
@@ -176,7 +173,7 @@ public class MiniTowerPieces {
         }
 
         @Override
-        public void postProcess(WorldGenLevel world, StructureFeatureManager manager, ChunkGenerator generator, Random random, BoundingBox mbb, ChunkPos chunkpos, BlockPos pos) {
+        public void postProcess(WorldGenLevel world, StructureManager manager, ChunkGenerator generator, RandomSource random, BoundingBox mbb, ChunkPos chunkpos, BlockPos pos) {
             ResourceLocation location = new ResourceLocation(this.templateName);
 
             switch (towerType) {

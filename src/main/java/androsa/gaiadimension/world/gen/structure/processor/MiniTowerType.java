@@ -39,7 +39,7 @@ public enum MiniTowerType implements StringRepresentable {
             ModBlocks.jet_brick_slab, ImmutableList.of(ModBlocks.cracked_jet_brick_slab, ModBlocks.crusted_jet_brick_slab)
     );
 
-    public static final Codec<MiniTowerType> CODEC = StringRepresentable.fromEnum(MiniTowerType::values, MiniTowerType::getType);
+    public static final Codec<MiniTowerType> CODEC = StringRepresentable.fromEnum(MiniTowerType::values);
 
     private final String name;
     private final ResourceLocation chestLoot;
