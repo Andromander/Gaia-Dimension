@@ -152,7 +152,7 @@ public class MalachiteDroneEntity extends Monster {
             double px = this.getX() + this.random.nextFloat() * this.getBbWidth() * 2.0F - this.getBbWidth();
             double py = this.getY() + this.random.nextFloat() * this.getBbHeight();
             double pz = this.getZ() + this.random.nextFloat() * this.getBbWidth() * 2.0F - this.getBbWidth();
-            this.level.addParticle(ModParticles.SPAWNER_CORE, px, py, pz, 0, 128, 0);
+            this.level.addParticle(ModParticles.SPAWNER_CORE.get(), px, py, pz, 0, 128, 0);
         }
 
         level.playSound(null, this.getX(), this.getY(), this.getZ(), ModSounds.ENTITY_MALACHITE_DRONE_DESYNC, SoundSource.HOSTILE, 1.0F, 1.0F);

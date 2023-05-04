@@ -1,7 +1,9 @@
 package androsa.gaiadimension.client;
 
 import androsa.gaiadimension.GaiaDimensionMod;
+import androsa.gaiadimension.particle.*;
 import androsa.gaiadimension.registry.ModBlocks;
+import androsa.gaiadimension.registry.ModParticles;
 import com.google.common.collect.ImmutableList;
 import net.minecraft.client.renderer.BiomeColors;
 import net.minecraft.core.BlockPos;
@@ -13,6 +15,7 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.RegisterColorHandlersEvent;
 import net.minecraftforge.client.event.RegisterDimensionSpecialEffectsEvent;
+import net.minecraftforge.client.event.RegisterParticleProvidersEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.RegistryObject;
@@ -117,6 +120,18 @@ public class ClientEvents {
                 ModBlocks.murky_grass.get(),
                 ModBlocks.aura_shoot.get(),
                 ModBlocks.soft_grass.get());
+    }
+
+    @SubscribeEvent
+    public static void registerFactories(RegisterParticleProvidersEvent e) {
+        e.registerSpriteSet(ModParticles.GEYSER_SMOKE.get(), GeyserSmokeParticle.Factory::new);
+        e.registerSpriteSet(ModParticles.RESTRUCTURER_FIRE.get(), RestructurerFireParticle.Factory::new);
+        e.registerSpriteSet(ModParticles.PURIFIER_FIRE.get(), PurifierFireParticle.Factory::new);
+        e.registerSpriteSet(ModParticles.PORTAL.get(), GaiaPortalParticle.Factory::new);
+        e.registerSpriteSet(ModParticles.PYRITE.get(), PyriteParticle.Factory::new);
+        e.registerSpecial(ModParticles.ITEM_PEBBLE.get(), new GaiaBreakingParticle.PebbleFactory());
+        e.registerSpriteSet(ModParticles.SPAWNER_CORE.get(), SpawnerCoreParticle.Factory::new);
+        e.registerSpriteSet(ModParticles.MALACHITE_MAGIC.get(), MalachiteMagicParticle.Factory::new);
     }
 
     @SubscribeEvent

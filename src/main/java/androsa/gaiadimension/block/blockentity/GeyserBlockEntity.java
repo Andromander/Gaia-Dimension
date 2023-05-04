@@ -31,7 +31,7 @@ public class GeyserBlockEntity extends BlockEntity {
             xVel = Mth.clamp(xVel, -0.02D, 0.02D);
             zVel = Mth.clamp(zVel, -0.02D, 0.02D);
 
-            level.addParticle(ModParticles.GEYSER_SMOKE, xPos, yPos, zPos, xVel, 0.3D, zVel);
+            level.addParticle(ModParticles.GEYSER_SMOKE.get(), xPos, yPos, zPos, xVel, 0.3D, zVel);
         }
     }
 }

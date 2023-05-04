@@ -1,47 +1,24 @@
 package androsa.gaiadimension.registry;
 
 import androsa.gaiadimension.GaiaDimensionMod;
-import androsa.gaiadimension.particle.*;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.particle.ParticleEngine;
+import net.minecraft.core.particles.ParticleType;
 import net.minecraft.core.particles.SimpleParticleType;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.client.event.ParticleFactoryRegisterEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.registries.DeferredRegister;
+import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.RegistryObject;
 
 @Mod.EventBusSubscriber(modid = GaiaDimensionMod.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ModParticles {
 
-    public static final SimpleParticleType GEYSER_SMOKE = registerBasicParticle("geyser_smoke");
-    public static final SimpleParticleType RESTRUCTURER_FIRE = registerBasicParticle("restructurer_fire");
-    public static final SimpleParticleType PURIFIER_FIRE = registerBasicParticle("purifier_fire");
-    public static final SimpleParticleType PORTAL = registerBasicParticle("portal");
-    public static final SimpleParticleType PYRITE = registerBasicParticle("pyrite");
-    public static final SimpleParticleType ITEM_PEBBLE = registerBasicParticle("item_pebble");
-    public static final SimpleParticleType SPAWNER_CORE = registerBasicParticle("spawner_core");
-    public static final SimpleParticleType MALACHITE_MAGIC = registerBasicParticle("malachite_magic");
+    public static final DeferredRegister<ParticleType<?>> PARTICLE_TYPES = DeferredRegister.create(ForgeRegistries.PARTICLE_TYPES, GaiaDimensionMod.MODID);
 
-    private static SimpleParticleType registerBasicParticle(String name) {
-        return RegistryHelper.registerParticle(name, new SimpleParticleType(false));
-    }
-
-    @SubscribeEvent
-    public static void registerFactories(ParticleFactoryRegisterEvent e) {
-        ParticleEngine particles = Minecraft.getInstance().particleEngine;
-
-        particles.register(GEYSER_SMOKE, GeyserSmokeParticle.Factory::new);
-        particles.register(RESTRUCTURER_FIRE, RestructurerFireParticle.Factory::new);
-        particles.register(PURIFIER_FIRE, PurifierFireParticle.Factory::new);
-        particles.register(PORTAL, GaiaPortalParticle.Factory::new);
-        particles.register(PYRITE, PyriteParticle.Factory::new);
-        particles.register(SPAWNER_CORE, SpawnerCoreParticle.Factory::new);
-        particles.register(MALACHITE_MAGIC, MalachiteMagicParticle.Factory::new);
-    }
-
-    @OnlyIn(Dist.CLIENT)
-    public static void forgeClassLoadingIsFuckedThisShouldntBeHereButHereItIs() {
-        Minecraft.getInstance().particleEngine.register(ITEM_PEBBLE, new GaiaBreakingParticle.PebbleFactory());
-    }
+    public static final RegistryObject<SimpleParticleType> GEYSER_SMOKE = PARTICLE_TYPES.register("geyser_smoke", () -> new SimpleParticleType(false));
+    public static final RegistryObject<SimpleParticleType> RESTRUCTURER_FIRE = PARTICLE_TYPES.register("restructurer_fire", () -> new SimpleParticleType(false));
+    public static final RegistryObject<SimpleParticleType> PURIFIER_FIRE = PARTICLE_TYPES.register("purifier_fire", () -> new SimpleParticleType(false));
+    public static final RegistryObject<SimpleParticleType> PORTAL = PARTICLE_TYPES.register("portal", () -> new SimpleParticleType(false));
+    public static final RegistryObject<SimpleParticleType> PYRITE = PARTICLE_TYPES.register("pyrite", () -> new SimpleParticleType(false));
+    public static final RegistryObject<SimpleParticleType> ITEM_PEBBLE = PARTICLE_TYPES.register("item_pebble", () -> new SimpleParticleType(false));
+    public static final RegistryObject<SimpleParticleType> SPAWNER_CORE = PARTICLE_TYPES.register("spawner_core", () -> new SimpleParticleType(false));
+    public static final RegistryObject<SimpleParticleType> MALACHITE_MAGIC = PARTICLE_TYPES.register("malachite_magic", () -> new SimpleParticleType(false));
 }

@@ -97,7 +97,6 @@ public class GaiaDimensionMod {
 
     public void clientSetup(FMLClientSetupEvent event) {
         DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> ModMenus::registerScreens);
-        DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> ModParticles::forgeClassLoadingIsFuckedThisShouldntBeHereButHereItIs);
         DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> ModItems::addItemProperties);
     }
 

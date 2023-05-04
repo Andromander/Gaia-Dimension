@@ -240,7 +240,7 @@ public class MalachiteGuardEntity extends Monster {
         if (getChargePhase() == 1) {
             if (level.isClientSide()) {
                 for (int i = 0; i < 3; i++) {
-                    level.addParticle(ModParticles.MALACHITE_MAGIC, getRandomX(3.0D), this.getY() + (random.nextDouble() * 0.25D), getRandomZ(3.0D), 0.0D, 0.0D, 0.0D);
+                    level.addParticle(ModParticles.MALACHITE_MAGIC.get(), getRandomX(3.0D), this.getY() + (random.nextDouble() * 0.25D), getRandomZ(3.0D), 0.0D, 0.0D, 0.0D);
                 }
             }
         }
@@ -629,7 +629,7 @@ public class MalachiteGuardEntity extends Monster {
                 if (explodeTime < 10) {
                     if (!guard.level.isClientSide()) {
                         for (int i = 0; i < 5; i++) {
-                            ((ServerLevel)guard.level).sendParticles(ModParticles.MALACHITE_MAGIC, guard.getRandomX(1.0D), guard.getRandomY(), guard.getRandomZ(1.0D), 5, (guard.random.nextDouble()) - 0.5D, guard.random.nextDouble() * 0.5D, (guard.random.nextDouble()) - 0.5D, 0.5D);
+                            ((ServerLevel)guard.level).sendParticles(ModParticles.MALACHITE_MAGIC.get(), guard.getRandomX(1.0D), guard.getRandomY(), guard.getRandomZ(1.0D), 5, (guard.random.nextDouble()) - 0.5D, guard.random.nextDouble() * 0.5D, (guard.random.nextDouble()) - 0.5D, 0.5D);
                         }
                     }
                 }

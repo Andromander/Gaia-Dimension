@@ -50,7 +50,7 @@ public class ThrownPebbleEntity extends ThrowableItemProjectile {
     @OnlyIn(Dist.CLIENT)
     private ParticleOptions getParticleData() {
         ItemStack itemstack = this.getItemRaw();
-        return itemstack.isEmpty() ? ModParticles.ITEM_PEBBLE : new ItemParticleOption(ParticleTypes.ITEM, itemstack);
+        return itemstack.isEmpty() ? ModParticles.ITEM_PEBBLE.get() : new ItemParticleOption(ParticleTypes.ITEM, itemstack);
     }
 
     @Override

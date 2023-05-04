@@ -35,7 +35,7 @@ public abstract class AbstractSpawnerBlockEntity<T extends Mob> extends BlockEnt
             double yPos = (double)pos.getY() + 0.5D + (entity.random.nextDouble() - 0.5D);
             double zPos = (double)pos.getZ() + 0.5D + (entity.random.nextDouble() - 0.5D);
 
-            level.addParticle(ModParticles.SPAWNER_CORE, xPos, yPos, zPos, r, g, b);
+            level.addParticle(ModParticles.SPAWNER_CORE.get(), xPos, yPos, zPos, r, g, b);
         }
     }
 

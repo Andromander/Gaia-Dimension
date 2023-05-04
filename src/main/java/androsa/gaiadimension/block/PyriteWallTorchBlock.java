@@ -13,7 +13,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 public class PyriteWallTorchBlock extends WallTorchBlock {
 
     public PyriteWallTorchBlock(Properties props) {
-        super(props, ModParticles.PYRITE);
+        super(props, ModParticles.PYRITE.get());
     }
 
     @Override
