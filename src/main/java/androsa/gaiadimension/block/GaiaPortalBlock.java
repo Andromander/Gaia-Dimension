@@ -1,10 +1,7 @@
 package androsa.gaiadimension.block;
 
 import androsa.gaiadimension.GaiaDimensionMod;
-import androsa.gaiadimension.registry.ModBlocks;
-import androsa.gaiadimension.registry.ModDimensions;
-import androsa.gaiadimension.registry.ModGaiaConfig;
-import androsa.gaiadimension.registry.ModParticles;
+import androsa.gaiadimension.registry.*;
 import androsa.gaiadimension.world.GaiaTeleporter;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -61,33 +58,18 @@ public class GaiaPortalBlock extends Block {
     }
 
     // This will check for creation conditions in the Overworld or Gaia
-    //TODO: revise logic as of 1.19.4
     private boolean canCreatePortalByWorld(Level world, BlockPos pos) {
         if (world.dimension().location().equals(ModGaiaConfig.startDimRL)) {
             //Check if the portal needs to be checking
             if (ModGaiaConfig.portalCheck.get()) {
                 Optional<ResourceKey<Biome>> biome = world.getBiome(pos).unwrapKey();
                 ModGaiaConfig.ListType listtype = ModGaiaConfig.listType.get();
-                ModGaiaConfig.BiomeType biometype = ModGaiaConfig.biomeType.get();
 
                 //Check the type of list we are looking for
                 if (biome.isPresent()) {
-                    switch (biometype) {
-                        case BIOME:
-                            return (listtype == ModGaiaConfig.ListType.WHITELIST) == ModGaiaConfig.biomeList.get().contains(biome.get().location().toString());
-                        default:
-                            return listtype == ModGaiaConfig.ListType.WHITELIST;
-//                        case CATEGORY:
-//                            return (listtype == ModGaiaConfig.ListType.WHITELIST) == ModGaiaConfig.categoryList.get().contains(Biome.getBiomeCategory(world.getBiome(pos)).toString());
-//                        case TYPE:
-//                            for (String type : ModGaiaConfig.typeList.get()) {
-//                                if (BiomeDictionary.hasType(biome.get(), BiomeDictionary.Type.getType(type))) {
-//                                    return listtype == ModGaiaConfig.ListType.WHITELIST;
-//                                }
-//                            }
-//                            return listtype == ModGaiaConfig.ListType.BLACKLIST;
-                    }
+                    return (listtype == ModGaiaConfig.ListType.WHITELIST) == world.getBiome(pos).is(GaiaTags.Biomes.PORTAL_BIOMES);
                 }
+
                 //Somehow checking the biome failed
                 GaiaDimensionMod.LOGGER.warn("The biome doesn't appear to exist. Portal could not be created. If this issue persists, disable biome checking in the world's config.");
                 return false;

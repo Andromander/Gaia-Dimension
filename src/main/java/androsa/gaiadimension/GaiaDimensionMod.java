@@ -91,7 +91,6 @@ public class GaiaDimensionMod {
             ModBlocks.registerDispenserBehaviour();
         });
         ModBlocks.addPlants();
-        ModBiomes.addBiomeTypes();
     }
 
     public void clientSetup(FMLClientSetupEvent event) {

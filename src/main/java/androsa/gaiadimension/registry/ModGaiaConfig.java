@@ -1,14 +1,11 @@
 package androsa.gaiadimension.registry;
 
 import androsa.gaiadimension.GaiaDimensionMod;
-import com.google.common.collect.ImmutableList;
-import net.minecraft.core.Registry;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.biome.Biome;
-import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.config.ModConfigEvent;
@@ -42,19 +39,6 @@ public class ModGaiaConfig {
     public static EnumValue<ListType> listType;
     public static EnumValue<BiomeType> biomeType;
     public static ConfigValue<List<? extends String>> biomeList;
-    public static ConfigValue<List<? extends String>> categoryList;
-    public static ConfigValue<List<? extends String>> typeList;
-
-    //TODO: Biome Tags
-    public static List<? extends String> biomes = ImmutableList.of(
-            "minecraft:desert", "minecraft:desert_hills", "minecraft:jungle", "minecraft:jungle_hills", "minecraft:jungle_edge", "minecraft:savanna", "minecraft:savanna_plateau",
-            "minecraft:warm_ocean", "minecraft:deep_warm_ocean", "minecraft:desert_lakes", "minecraft:modified_jungle", "minecraft:modified_jungle_edge", "minecraft:shattered_savanna",
-            "minecraft:shattered_savanna_plateau", "minecraft:eroded_badlands", "minecraft:modified_wooded_badlands_plateau", "minecraft:modified_badlands_plateau",
-            "minecraft:bamboo_jungle", "minecraft:bamboo_jungle_hills", "minecraft:badlands", "minecraft:wooded_badlands_plateau", "minecraft:badlands_plateau", "minecraft:mountains",
-            "minecraft:snowy_mountains", "minecraft:mountain_edge", "minecraft:wooded_mountains", "minecraft:gravelly_mountains", "minecraft:taiga_mountains", "minecraft:tall_birch_hills",
-            "minecraft:dark_forest_hills", "minecraft:snowy_taiga_mountains", "minecraft:modified_gravelly_mountains");
-    public static List<? extends String> categories = ImmutableList.of(Biome.BiomeCategory.DESERT.getName(), Biome.BiomeCategory.EXTREME_HILLS.getName(), Biome.BiomeCategory.MESA.getName(), Biome.BiomeCategory.SAVANNA.getName(), Biome.BiomeCategory.JUNGLE.getName());
-    public static List<? extends String> types = ImmutableList.of(BiomeDictionary.Type.HOT.getName(), BiomeDictionary.Type.DRY.getName(), BiomeDictionary.Type.MOUNTAIN.getName());
 
     public static class CommonConfig {
         public CommonConfig(Builder builder) {
@@ -68,24 +52,8 @@ public class ModGaiaConfig {
                     .define("portalCheck", true);
             listType = builder
                     .translation(config + "list_type")
-                    .comment("Changes whether the list to check is a blacklist or a whitelist. A blacklist will exclude biomes from the portal, anything not on the list is allowed. A whitelist will allow biomes for the portal, anything on the list is allowed. If portalCheck is false, this value is unused.")
+                    .comment("Changes whether the portal_biomes Biome Tag is a blacklist or a whitelist. A blacklist will exclude biomes from the portal, anything not on the list is allowed. A whitelist will allow biomes for the portal, anything on the list is allowed. If portalCheck is false, this value is unused.")
                     .defineEnum("listType", ListType.WHITELIST);
-            biomeType = builder
-                    .translation(config + "biome_type")
-                    .comment("Determines what list the biome checker should use. If set to BIOME, the list will check entries based on the individual biome. If set to CATEGORY, the list will check entries based on the biome's Category. If set to Type, the list will check entries based on the biome's BiomeDictionary Type. If portalCheck is false, this value is unused.")
-                    .defineEnum("biomeType", BiomeType.TYPE);
-            biomeList = builder
-                    .translation(config + "biome_list")
-                    .comment("A list of biomes to be used by the check list. Blacklists will ignore the biomes while whitelists will allow the biomes. This value is only checked if biomeType is set to BIOME.")
-                    .defineList("biomeList", biomes, p -> true);
-            categoryList = builder
-                    .translation(config + "category_list")
-                    .comment("A list of biome Categories to be used by the check list. A Category is a single value assigned to a biome and is a vanilla system. Blacklists will ignore the Categories while whitelists will allow the Categories. This value is only checked if biomeType is set to CATEGORY.")
-                    .defineList("categoryList", categories, p -> true);
-            typeList = builder
-                    .translation(config + "type_list")
-                    .comment("A list of biome Types to be used by the check list. A Type is a value that is assigned to a biome by Forge's BiomeDictionary system; one biome can have multiple Types. Blacklists will ignore biomes with the Tag while whitelists will allow biomes with the Tag. This value is only checked if biomeType is set to TYPE.")
-                    .defineList("typeList", types, p -> true);
         }
     }
 

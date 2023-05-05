@@ -42,7 +42,11 @@ public class GaiaTags {
     }
 
     private static TagKey<Biome> tagBiome(String name) {
-        return TagKey.create(Registries.BIOME, new ResourceLocation(GaiaDimensionMod.MODID, name));
+        return TagKey.create(Registries.BIOME, new ResourceLocation(ID, name));
+    }
+
+    private static TagKey<Biome> tagBiomeForge(String name) {
+        return TagKey.create(Registries.BIOME, new ResourceLocation(ForgeVersion.MOD_ID, name));
     }
 
     public static class Items {
@@ -198,5 +202,9 @@ public class GaiaTags {
     public static class Biomes {
         public static final TagKey<Biome> HAS_MINI_TOWER = tagStructure("mini_tower");
         public static final TagKey<Biome> HAS_MALACHITE_WATCHTOWER = tagStructure("malachite_watchtower");
+        public static final TagKey<Biome> PORTAL_BIOMES = tagBiome("portal_biomes");
+        public static final TagKey<Biome> IS_DRY_GAIA = tagBiomeForge("is_dry/gaia");
+        public static final TagKey<Biome> IS_HOT_GAIA = tagBiomeForge("is_hot/gaia");
+        public static final TagKey<Biome> IS_SPARSE_GAIA = tagBiomeForge("is_sparse/gaia");
     }
 }

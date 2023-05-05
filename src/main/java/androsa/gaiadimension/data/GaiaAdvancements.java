@@ -274,13 +274,13 @@ public class GaiaAdvancements extends GaiaAdvancementProvider {
             Advancement progress1 = Advancement.Builder.advancement()
                     .parent(root)
                     .display(ModBlocks.amethyst_bricks.get(), title("find_mini_tower"), description("find_mini_tower"), null, FrameType.TASK, true, true, false)
-                    .addCriterion("mini_tower", PlayerTrigger.TriggerInstance.located(LocationPredicate.inStructure(ModStructures.mini_tower.unwrapKey().orElseThrow())))
+                    .addCriterion("mini_tower", PlayerTrigger.TriggerInstance.located(LocationPredicate.inStructure(ModStructures.MINI_TOWER)))
                     .save(consumer, loc("find_mini_tower"));
             //Find a Malachite Watchtower
             Advancement progress2 = Advancement.Builder.advancement()
                     .parent(progress1)
                     .display(ModBlocks.malachite_bricks.get(), title("find_malachite_watchtower"), description("find_malachite_watchtower"), null, FrameType.TASK, true, true, false)
-                    .addCriterion("malachite_watchtower", PlayerTrigger.TriggerInstance.located(LocationPredicate.inStructure(ModStructures.malachite_watchtower.unwrapKey().orElseThrow())))
+                    .addCriterion("malachite_watchtower", PlayerTrigger.TriggerInstance.located(LocationPredicate.inStructure(ModStructures.MALACHITE_WATCHTOWER)))
                     .save(consumer, loc("find_malachite_watchtower"));
             //Slay the Malachite Guard
             Advancement progress3 = Advancement.Builder.advancement()
