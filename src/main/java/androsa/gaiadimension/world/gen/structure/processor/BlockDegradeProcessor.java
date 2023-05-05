@@ -1,6 +1,6 @@
 package androsa.gaiadimension.world.gen.structure.processor;
 
-import androsa.gaiadimension.registry.ModWorldgen;
+import androsa.gaiadimension.registry.ModStructures;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.BlockPos;
@@ -42,7 +42,7 @@ public class BlockDegradeProcessor extends StructureProcessor {
 
     @Override
     protected StructureProcessorType<?> getType() {
-        return ModWorldgen.StructureTypes.BLOCK_DEGRADE;
+        return ModStructures.BLOCK_DEGRADE.get();
     }
 
     @Nullable

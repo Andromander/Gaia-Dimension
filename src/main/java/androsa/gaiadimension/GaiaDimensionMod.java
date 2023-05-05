@@ -59,14 +59,15 @@ public class GaiaDimensionMod {
         ModEntities.ENTITY_TYPES.register(modEventBus);
         ModFluids.FLUIDS.register(modEventBus);
         ModItems.ITEMS.register(modEventBus);
-//      ModParticles.PARTICLE_TYPES.register(modEventBus);
+        ModParticles.PARTICLE_TYPES.register(modEventBus);
         ModRecipes.RECIPE_TYPES.register(modEventBus);
         ModRecipes.RECIPE_SERIALIZERS.register(modEventBus);
         ModBlockEntities.TILE_ENTITIES.register(modEventBus);
+        ModStructures.STRUCTURE_PROCESSORS.register(modEventBus);
+        ModStructures.STRUCTURE_TYPES.register(modEventBus);
         ModWorldgen.DECORATORS.register(modEventBus);
         ModWorldgen.FEATURES.register(modEventBus);
         ModWorldgen.FOLIAGE_PLACERS.register(modEventBus);
-//      ModWorldgen.STRUCTURES.register(modEventBus);
         ModWorldgen.TRUNK_PLACERS.register(modEventBus);
         ModWorldgen.WORLD_CARVERS.register(modEventBus);
 
@@ -86,8 +87,6 @@ public class GaiaDimensionMod {
 
     public void setup(FMLCommonSetupEvent event) {
         event.enqueueWork(() -> {
-            // needs to be in enqueue as vanilla WorldGen registry maps arent threadsafe.
-            ModWorldgen.StructureTypes.init();
             ModBlocks.addStripping();
             ModBlocks.registerDispenserBehaviour();
         });

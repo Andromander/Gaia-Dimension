@@ -4,7 +4,7 @@ import androsa.gaiadimension.GaiaDimensionMod;
 import androsa.gaiadimension.block.blockentity.SmallCrateBlockEntity;
 import androsa.gaiadimension.registry.GaiaChestTables;
 import androsa.gaiadimension.registry.ModBlocks;
-import androsa.gaiadimension.registry.ModWorldgen;
+import androsa.gaiadimension.registry.ModStructures;
 import androsa.gaiadimension.world.gen.structure.processor.MalachiteDegradeProcessor;
 import com.google.common.collect.ImmutableMap;
 import net.minecraft.core.BlockPos;
@@ -116,11 +116,11 @@ public class MalachiteWatchtowerPieces {
 
     public static class Piece extends TemplateStructurePiece {
         public Piece(StructureTemplateManager manager, ResourceLocation pieceloc, BlockPos pos, Rotation rot, int offset) {
-            super(ModWorldgen.StructureTypes.MAWA, 0, manager, pieceloc, pieceloc.toString(), loadTemplate(rot, pieceloc), loadPosition(pos, offset));
+            super(ModStructures.MAWA.get(), 0, manager, pieceloc, pieceloc.toString(), loadTemplate(rot, pieceloc), loadPosition(pos, offset));
         }
 
         public Piece(StructureTemplateManager level, CompoundTag nbt) {
-            super(ModWorldgen.StructureTypes.MAWA, nbt, level, (rl) ->
+            super(ModStructures.MAWA.get(), nbt, level, (rl) ->
                     loadTemplate(Rotation.valueOf(nbt.getString("Rot")), rl));
         }
 

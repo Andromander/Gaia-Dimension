@@ -15,13 +15,7 @@ import androsa.gaiadimension.world.gen.feature.trunk.CardinalTrunkPlacer;
 import androsa.gaiadimension.world.gen.feature.trunk.FourBranchTrunkPlacer;
 import androsa.gaiadimension.world.gen.feature.trunk.ThickTrunkPlacer;
 import androsa.gaiadimension.world.gen.feature.trunk.VaryingFourBranchTrunkPlacer;
-import androsa.gaiadimension.world.gen.structure.pieces.MalachiteWatchtowerPieces;
-import androsa.gaiadimension.world.gen.structure.pieces.MiniTowerPieces;
-import androsa.gaiadimension.world.gen.structure.processor.BlockDegradeProcessor;
-import androsa.gaiadimension.world.gen.structure.processor.MalachiteDegradeProcessor;
-import net.minecraft.core.Registry;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.levelgen.carver.CaveCarverConfiguration;
 import net.minecraft.world.level.levelgen.carver.WorldCarver;
 import net.minecraft.world.level.levelgen.feature.Feature;
@@ -32,8 +26,6 @@ import net.minecraft.world.level.levelgen.feature.configurations.TreeConfigurati
 import net.minecraft.world.level.levelgen.feature.foliageplacers.FoliagePlacerType;
 import net.minecraft.world.level.levelgen.feature.treedecorators.TreeDecoratorType;
 import net.minecraft.world.level.levelgen.feature.trunkplacers.TrunkPlacerType;
-import net.minecraft.world.level.levelgen.structure.pieces.StructurePieceType;
-import net.minecraft.world.level.levelgen.structure.templatesystem.StructureProcessorType;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -100,27 +92,4 @@ public class ModWorldgen {
 			new CoatedCavesWorldCarver<>(CaveCarverConfiguration.CODEC));
     public static final RegistryObject<WorldCarver<CaveCarverConfiguration>> CHASMS = WORLD_CARVERS.register("chasms", () ->
 			new ChasmsWorldCarver<>(CaveCarverConfiguration.CODEC));
-
-//    @SubscribeEvent(priority = EventPriority.LOWEST)
-//    public static void stupidShitEvent(RegistryEvent.Register<StructureFeature<?>> event) {
-//        StructureFeature.STRUCTURES_REGISTRY.put(ModWorldgen.MINI_TOWER.getId().toString(), ModWorldgen.MINI_TOWER.get());
-//        StructureFeature.STRUCTURES_REGISTRY.put(ModWorldgen.MALACHITE_WATCHTOWER.getId().toString(), ModWorldgen.MALACHITE_WATCHTOWER.get());
-//    }
-
-    public static class StructureTypes {
-        public static final StructureProcessorType<BlockDegradeProcessor> BLOCK_DEGRADE = () -> BlockDegradeProcessor.CODEC;
-        public static final StructureProcessorType<MalachiteDegradeProcessor> MALACHITE_DEGRADE = () -> MalachiteDegradeProcessor.CODEC;
-
-        public static final StructurePieceType MITO = piece("mito", MiniTowerPieces.Piece::new);
-        public static final StructurePieceType MAWA = piece("mawa", MalachiteWatchtowerPieces.Piece::new);
-
-        public static StructurePieceType piece(String name, StructurePieceType.StructureTemplateType piece) {
-            return Registry.register(Registry.STRUCTURE_PIECE, new ResourceLocation(GaiaDimensionMod.MODID, name), piece);
-        }
-
-        public static void init() {
-            Registry.register(Registry.STRUCTURE_PROCESSOR, new ResourceLocation(GaiaDimensionMod.MODID, "block_degrade"), BLOCK_DEGRADE);
-            Registry.register(Registry.STRUCTURE_PROCESSOR, new ResourceLocation(GaiaDimensionMod.MODID, "malachite_degrade"), MALACHITE_DEGRADE);
-        }
-    }
 }

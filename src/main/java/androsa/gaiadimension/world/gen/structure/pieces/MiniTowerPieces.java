@@ -3,7 +3,7 @@ package androsa.gaiadimension.world.gen.structure.pieces;
 import androsa.gaiadimension.GaiaDimensionMod;
 import androsa.gaiadimension.block.blockentity.SmallCrateBlockEntity;
 import androsa.gaiadimension.registry.ModBlocks;
-import androsa.gaiadimension.registry.ModWorldgen;
+import androsa.gaiadimension.registry.ModStructures;
 import androsa.gaiadimension.world.gen.structure.processor.BlockDegradeProcessor;
 import androsa.gaiadimension.world.gen.structure.processor.MiniTowerType;
 import com.google.common.collect.ImmutableMap;
@@ -113,12 +113,12 @@ public class MiniTowerPieces {
         private final MiniTowerType towerType;
 
         public Piece(StructureTemplateManager manager, ResourceLocation pieceloc, BlockPos pos, Rotation rot, MiniTowerType type, int offset) {
-            super(ModWorldgen.StructureTypes.MITO, 0, manager, pieceloc, pieceloc.toString(), loadTemplate(rot, pieceloc), loadPosition(pieceloc, pos, offset));
+            super(ModStructures.MITO.get(), 0, manager, pieceloc, pieceloc.toString(), loadTemplate(rot, pieceloc), loadPosition(pieceloc, pos, offset));
             this.towerType = type;
         }
 
         public Piece(StructureTemplateManager level, CompoundTag nbt) {
-            super(ModWorldgen.StructureTypes.MITO, nbt, level, (rl) ->
+            super(ModStructures.MITO.get(), nbt, level, (rl) ->
                     loadTemplate(Rotation.valueOf(nbt.getString("Rot")), rl));
             this.towerType = MiniTowerType.valueOf(nbt.getString("TowerType"));
         }

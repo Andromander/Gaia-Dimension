@@ -1,7 +1,7 @@
 package androsa.gaiadimension.world.gen.structure.processor;
 
 import androsa.gaiadimension.registry.ModBlocks;
-import androsa.gaiadimension.registry.ModWorldgen;
+import androsa.gaiadimension.registry.ModStructures;
 import com.google.common.collect.ImmutableList;
 import com.mojang.serialization.Codec;
 import net.minecraft.core.BlockPos;
@@ -39,7 +39,7 @@ public class MalachiteDegradeProcessor extends StructureProcessor {
 
     @Override
     protected StructureProcessorType<?> getType() {
-        return ModWorldgen.StructureTypes.MALACHITE_DEGRADE;
+        return ModStructures.MALACHITE_DEGRADE.get();
     }
 
     @Nullable
