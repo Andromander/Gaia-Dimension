@@ -270,6 +270,7 @@ public class GaiaBlockTags extends GaiaBlockTagsProvider {
         addTag(GaiaTags.Blocks.BURNING_LOGS, BURNING_LOGS);
         addTag(GaiaTags.Blocks.AURA_LOGS, AURA_LOGS);
         addTag(GaiaTags.Blocks.GOLDEN_LOGS, GOLDEN_LOGS);
+        tag(GaiaTags.Blocks.GAIA_STONE).add(ModBlocks.gaia_stone.get());
         tag(GaiaTags.Blocks.STATIC).add(ModBlocks.gaia_stone.get(), ModBlocks.wasteland_stone.get());
         tag(GaiaTags.Blocks.VOLCANIC).add(ModBlocks.gaia_stone.get(), ModBlocks.volcanic_rock.get());
         tag(GaiaTags.Blocks.GAIA_GRASS).add(ModBlocks.glitter_grass.get(), ModBlocks.corrupt_grass.get(), ModBlocks.murky_grass.get(), ModBlocks.soft_grass.get(), ModBlocks.gilded_grass.get());

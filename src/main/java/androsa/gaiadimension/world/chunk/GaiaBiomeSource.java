@@ -34,7 +34,7 @@ public class GaiaBiomeSource extends BiomeSource {
     public static long hackseed; //DON'T TOUCH ME
     private final long seed;
     private final HolderGetter<Biome> registry;
-    private final Layer genBiomes;
+    private Layer genBiomes;
     private final float offset;
     private final float factor;
     private final List<Pair<TerrainPoint, Holder<Biome>>> list;
@@ -42,7 +42,7 @@ public class GaiaBiomeSource extends BiomeSource {
     public GaiaBiomeSource(List<Pair<TerrainPoint, Holder<Biome>>> list, long seed, float offset, float factor, HolderGetter<Biome> registry) {
         this.seed = seed;
         this.registry = registry;
-        this.genBiomes = GaiaLayerUtil.makeLayers(seed, registry);
+
         this.list = list;
         this.offset = offset;
         this.factor = factor;
@@ -67,6 +67,7 @@ public class GaiaBiomeSource extends BiomeSource {
 
     @Override
     public Holder<Biome> getNoiseBiome(int x, int y, int z, Climate.Sampler sampler) {
+        this.lazyLoad();
         return this.genBiomes.get(registry, x, z);
     }
 
@@ -97,6 +98,13 @@ public class GaiaBiomeSource extends BiomeSource {
     }
 
     private float getBiomeValue(Biome biome, Function<? super TerrainPoint, Float> function) {
+        this.lazyLoad();
         return this.list.stream().filter(p -> p.getSecond().value().equals(biome)).map(Pair::getFirst).map(function).findFirst().orElse(0.0F);
+    }
+
+    private void lazyLoad() {
+        if (genBiomes == null) {
+            this.genBiomes = GaiaLayerUtil.makeLayers(seed, registry);
+        }
     }
 }

@@ -341,66 +341,27 @@ public class GaiaFeatures extends GaiaBiomeFeatures {
             context.register(small_golden_tree_vines, treeFeature(Config.SMALL_GOLDEN_TREE_VINES_CONFIG));
             context.register(big_golden_tree, treeFeature(Config.BIG_GOLDEN_TREE_CONFIG));
 
-            context.register(pink_agate_trees, registerFeature(Feature.SIMPLE_RANDOM_SELECTOR, new SimpleRandomFeatureConfiguration(HolderSet.direct(placed.getOrThrow(Tree.PINK_AGATE_TREE_CHECKED)))));
-            context.register(blue_agate_trees, registerFeature(Feature.SIMPLE_RANDOM_SELECTOR, new SimpleRandomFeatureConfiguration(HolderSet.direct(placed.getOrThrow(Tree.BLUE_AGATE_TREE_CHECKED)))));
-            context.register(green_agate_trees, registerFeature(Feature.SIMPLE_RANDOM_SELECTOR, new SimpleRandomFeatureConfiguration(HolderSet.direct(placed.getOrThrow(Tree.GREEN_AGATE_TREE_CHECKED)))));
-            context.register(purple_agate_trees, registerFeature(Feature.SIMPLE_RANDOM_SELECTOR, new SimpleRandomFeatureConfiguration(HolderSet.direct(placed.getOrThrow(Tree.PURPLE_AGATE_TREE_CHECKED)))));
-            context.register(fossilized_trees, registerFeature(Feature.SIMPLE_RANDOM_SELECTOR, new SimpleRandomFeatureConfiguration(HolderSet.direct(placed.getOrThrow(Tree.FOSSILIZED_TREE_CHECKED)))));
-            context.register(goldstone_trees, registerFeature(Feature.SIMPLE_RANDOM_SELECTOR, new SimpleRandomFeatureConfiguration(HolderSet.direct(placed.getOrThrow(Tree.GOLDSTONE_TREE_CHECKED)))));
-            context.register(burnt_agate_trees, registerFeature(Feature.SIMPLE_RANDOM_SELECTOR, new SimpleRandomFeatureConfiguration(HolderSet.direct(placed.getOrThrow(Tree.BURNT_AGATE_TREE_CHECKED)))));
-            context.register(fiery_agate_trees, registerFeature(Feature.SIMPLE_RANDOM_SELECTOR, new SimpleRandomFeatureConfiguration(HolderSet.direct(placed.getOrThrow(Tree.FIERY_AGATE_TREE_CHECKED)))));
-            context.register(aura_trees, registerFeature(Feature.SIMPLE_RANDOM_SELECTOR, new SimpleRandomFeatureConfiguration(HolderSet.direct(placed.getOrThrow(Tree.AURA_TREE_CHECKED)))));
-            context.register(small_golden_trees_with_vines, registerFeature(Feature.SIMPLE_RANDOM_SELECTOR, new SimpleRandomFeatureConfiguration(HolderSet.direct(placed.getOrThrow(Tree.SMALL_GOLDEN_TREE_VINES_CHECKED)))));
+            context.register(pink_agate_trees, registerFeature(Feature.SIMPLE_RANDOM_SELECTOR, new SimpleRandomFeatureConfiguration(HolderSet.direct(placed.getOrThrow(Placed.PINK_AGATE_TREE_CHECKED)))));
+            context.register(blue_agate_trees, registerFeature(Feature.SIMPLE_RANDOM_SELECTOR, new SimpleRandomFeatureConfiguration(HolderSet.direct(placed.getOrThrow(Placed.BLUE_AGATE_TREE_CHECKED)))));
+            context.register(green_agate_trees, registerFeature(Feature.SIMPLE_RANDOM_SELECTOR, new SimpleRandomFeatureConfiguration(HolderSet.direct(placed.getOrThrow(Placed.GREEN_AGATE_TREE_CHECKED)))));
+            context.register(purple_agate_trees, registerFeature(Feature.SIMPLE_RANDOM_SELECTOR, new SimpleRandomFeatureConfiguration(HolderSet.direct(placed.getOrThrow(Placed.PURPLE_AGATE_TREE_CHECKED)))));
+            context.register(fossilized_trees, registerFeature(Feature.SIMPLE_RANDOM_SELECTOR, new SimpleRandomFeatureConfiguration(HolderSet.direct(placed.getOrThrow(Placed.FOSSILIZED_TREE_CHECKED)))));
+            context.register(goldstone_trees, registerFeature(Feature.SIMPLE_RANDOM_SELECTOR, new SimpleRandomFeatureConfiguration(HolderSet.direct(placed.getOrThrow(Placed.GOLDSTONE_TREE_CHECKED)))));
+            context.register(burnt_agate_trees, registerFeature(Feature.SIMPLE_RANDOM_SELECTOR, new SimpleRandomFeatureConfiguration(HolderSet.direct(placed.getOrThrow(Placed.BURNT_AGATE_TREE_CHECKED)))));
+            context.register(fiery_agate_trees, registerFeature(Feature.SIMPLE_RANDOM_SELECTOR, new SimpleRandomFeatureConfiguration(HolderSet.direct(placed.getOrThrow(Placed.FIERY_AGATE_TREE_CHECKED)))));
+            context.register(aura_trees, registerFeature(Feature.SIMPLE_RANDOM_SELECTOR, new SimpleRandomFeatureConfiguration(HolderSet.direct(placed.getOrThrow(Placed.AURA_TREE_CHECKED)))));
+            context.register(small_golden_trees_with_vines, registerFeature(Feature.SIMPLE_RANDOM_SELECTOR, new SimpleRandomFeatureConfiguration(HolderSet.direct(placed.getOrThrow(Placed.SMALL_GOLDEN_TREE_VINES_CHECKED)))));
             context.register(green_agate_bush, registerFeature(Feature.SIMPLE_RANDOM_SELECTOR, new SimpleRandomFeatureConfiguration(BUSH_WORKAROUND)));
             context.register(various_agate_trees, registerFeature(Feature.RANDOM_SELECTOR, new RandomFeatureConfiguration(List.of(
-                    new WeightedPlacedFeature(placed.getOrThrow(Tree.PINK_AGATE_TREE_CHECKED), 0.25F),
-                    new WeightedPlacedFeature(placed.getOrThrow(Tree.BLUE_AGATE_TREE_CHECKED), 0.25F),
-                    new WeightedPlacedFeature(placed.getOrThrow(Tree.GREEN_AGATE_TREE_CHECKED), 0.25F),
-                    new WeightedPlacedFeature(placed.getOrThrow(Tree.PURPLE_AGATE_TREE_CHECKED), 0.25F)),
+                    new WeightedPlacedFeature(placed.getOrThrow(Placed.PINK_AGATE_TREE_CHECKED), 0.25F),
+                    new WeightedPlacedFeature(placed.getOrThrow(Placed.BLUE_AGATE_TREE_CHECKED), 0.25F),
+                    new WeightedPlacedFeature(placed.getOrThrow(Placed.GREEN_AGATE_TREE_CHECKED), 0.25F),
+                    new WeightedPlacedFeature(placed.getOrThrow(Placed.PURPLE_AGATE_TREE_CHECKED), 0.25F)),
                     PlacementUtils.inlinePlaced(features.getOrThrow(mutant_growth)))));
             context.register(golden_trees, registerFeature(Feature.RANDOM_SELECTOR, new RandomFeatureConfiguration(List.of(
-                    new WeightedPlacedFeature(placed.getOrThrow(Tree.BIG_GOLDEN_TREE_CHECKED), 0.25F)),
-                    placed.getOrThrow(Tree.SMALL_GOLDEN_TREE_CHECKED))));
+                    new WeightedPlacedFeature(placed.getOrThrow(Placed.BIG_GOLDEN_TREE_CHECKED), 0.25F)),
+                    placed.getOrThrow(Placed.SMALL_GOLDEN_TREE_CHECKED))));
 
-        }
-    }
-
-    public static class Tree {
-        public static final ResourceKey<PlacedFeature> PINK_AGATE_TREE_CHECKED = registerPlacedFeature("pink_agate_tree_checked");
-        public static final ResourceKey<PlacedFeature> BLUE_AGATE_TREE_CHECKED = registerPlacedFeature("blue_agate_tree_checked");
-        public static final ResourceKey<PlacedFeature> GREEN_AGATE_TREE_CHECKED = registerPlacedFeature("green_agate_tree_checked");
-        public static final ResourceKey<PlacedFeature> PURPLE_AGATE_TREE_CHECKED = registerPlacedFeature("purple_agate_tree_checked");
-        public static final ResourceKey<PlacedFeature> FOSSILIZED_TREE_CHECKED = registerPlacedFeature("fossilized_tree_checked");
-        public static final ResourceKey<PlacedFeature> GOLDSTONE_TREE_CHECKED = registerPlacedFeature("goldstone_tree_checked");
-        public static final ResourceKey<PlacedFeature> FIERY_AGATE_TREE_CHECKED = registerPlacedFeature("fiery_agate_tree_checked");
-        public static final ResourceKey<PlacedFeature> BURNT_AGATE_TREE_CHECKED = registerPlacedFeature("burnt_agate_tree_checked");
-        public static final ResourceKey<PlacedFeature> AURA_TREE_CHECKED = registerPlacedFeature("aura_tree_checked");
-        public static final ResourceKey<PlacedFeature> SMALL_GOLDEN_TREE_CHECKED = registerPlacedFeature("small_golden_tree_checked");
-        public static final ResourceKey<PlacedFeature> SMALL_GOLDEN_TREE_VINES_CHECKED = registerPlacedFeature("small_golden_tree_vines_checked");
-        public static final ResourceKey<PlacedFeature> BIG_GOLDEN_TREE_CHECKED = registerPlacedFeature("big_golden_tree_checked");
-
-        private static ResourceKey<PlacedFeature> registerPlacedFeature(String name) {
-            return ResourceKey.create(Registries.PLACED_FEATURE, new ResourceLocation(GaiaDimensionMod.MODID, name));
-        }
-
-        private static PlacedFeature checkTree(HolderGetter<ConfiguredFeature<?, ?>> getter, ResourceKey<ConfiguredFeature<?, ?>> feature, RegistryObject<SaplingBlock> sapling) {
-            return new PlacedFeature(getter.getOrThrow(feature), List.of(PlacementUtils.filteredByBlockSurvival(sapling.get())));
-        }
-
-        public static void init(BootstapContext<PlacedFeature> context) {
-            HolderGetter<ConfiguredFeature<?, ?>> features = context.lookup(Registries.CONFIGURED_FEATURE);
-            context.register(PINK_AGATE_TREE_CHECKED, checkTree(features, Configured.pink_agate_tree, ModBlocks.pink_agate_sapling));
-            context.register(BLUE_AGATE_TREE_CHECKED, checkTree(features, Configured.blue_agate_tree, ModBlocks.blue_agate_sapling));
-            context.register(GREEN_AGATE_TREE_CHECKED, checkTree(features, Configured.green_agate_tree, ModBlocks.green_agate_sapling));
-            context.register(PURPLE_AGATE_TREE_CHECKED, checkTree(features, Configured.purple_agate_tree, ModBlocks.purple_agate_sapling));
-            context.register(FOSSILIZED_TREE_CHECKED, checkTree(features, Configured.fossilized_tree, ModBlocks.fossilized_sapling));
-            context.register(GOLDSTONE_TREE_CHECKED, checkTree(features, Configured.goldstone_tree, ModBlocks.corrupted_sapling));
-            context.register(FIERY_AGATE_TREE_CHECKED, checkTree(features, Configured.fiery_agate_tree, ModBlocks.burning_sapling));
-            context.register(BURNT_AGATE_TREE_CHECKED, checkTree(features, Configured.burnt_agate_tree, ModBlocks.burnt_sapling));
-            context.register(AURA_TREE_CHECKED, checkTree(features, Configured.aura_tree, ModBlocks.aura_sapling));
-            context.register(SMALL_GOLDEN_TREE_CHECKED, checkTree(features, Configured.small_golden_tree, ModBlocks.golden_sapling));
-            context.register(SMALL_GOLDEN_TREE_VINES_CHECKED, checkTree(features, Configured.small_golden_tree_vines, ModBlocks.golden_sapling));
-            context.register(BIG_GOLDEN_TREE_CHECKED, checkTree(features, Configured.big_golden_tree, ModBlocks.golden_sapling));
         }
     }
 
@@ -459,6 +420,21 @@ public class GaiaFeatures extends GaiaBiomeFeatures {
         public static final ResourceKey<PlacedFeature> UNDERGROUND_GLITTER_BLOB = registerPlaced("underground_glitter_blob");
         public static final ResourceKey<PlacedFeature> CRYSTAL_FUNGI_CAVES = registerPlaced("crystal_fungi_caves");
 
+        ///Tree Placers
+        public static final ResourceKey<PlacedFeature> PINK_AGATE_TREE_CHECKED = registerPlaced("pink_agate_tree_checked");
+        public static final ResourceKey<PlacedFeature> BLUE_AGATE_TREE_CHECKED = registerPlaced("blue_agate_tree_checked");
+        public static final ResourceKey<PlacedFeature> GREEN_AGATE_TREE_CHECKED = registerPlaced("green_agate_tree_checked");
+        public static final ResourceKey<PlacedFeature> PURPLE_AGATE_TREE_CHECKED = registerPlaced("purple_agate_tree_checked");
+        public static final ResourceKey<PlacedFeature> FOSSILIZED_TREE_CHECKED = registerPlaced("fossilized_tree_checked");
+        public static final ResourceKey<PlacedFeature> GOLDSTONE_TREE_CHECKED = registerPlaced("goldstone_tree_checked");
+        public static final ResourceKey<PlacedFeature> FIERY_AGATE_TREE_CHECKED = registerPlaced("fiery_agate_tree_checked");
+        public static final ResourceKey<PlacedFeature> BURNT_AGATE_TREE_CHECKED = registerPlaced("burnt_agate_tree_checked");
+        public static final ResourceKey<PlacedFeature> AURA_TREE_CHECKED = registerPlaced("aura_tree_checked");
+        public static final ResourceKey<PlacedFeature> SMALL_GOLDEN_TREE_CHECKED = registerPlaced("small_golden_tree_checked");
+        public static final ResourceKey<PlacedFeature> SMALL_GOLDEN_TREE_VINES_CHECKED = registerPlaced("small_golden_tree_vines_checked");
+        public static final ResourceKey<PlacedFeature> BIG_GOLDEN_TREE_CHECKED = registerPlaced("big_golden_tree_checked");
+
+
         //Vegetal Decoration
         public static final ResourceKey<PlacedFeature> PINK_AGATE_TREE_COMMON = registerPlaced("pink_agate_tree_common");
         public static final ResourceKey<PlacedFeature> PINK_AGATE_TREE_RARE = registerPlaced("pink_agate_tree_rare");
@@ -514,6 +490,10 @@ public class GaiaFeatures extends GaiaBiomeFeatures {
                     InSquarePlacement.spread(),
                     HeightRangePlacement.uniform(VerticalAnchor.bottom(), VerticalAnchor.absolute(height)),
                     BiomeFilter.biome());
+        }
+
+        private static PlacedFeature checkTree(HolderGetter<ConfiguredFeature<?, ?>> getter, ResourceKey<ConfiguredFeature<?, ?>> feature, RegistryObject<SaplingBlock> sapling) {
+            return new PlacedFeature(getter.getOrThrow(feature), List.of(PlacementUtils.filteredByBlockSurvival(sapling.get())));
         }
 
         public static PlacedFeature placedTree(HolderGetter<ConfiguredFeature<?, ?>> getter, ResourceKey<ConfiguredFeature<?, ?>> tree, int count, float chance, int extra) {
@@ -698,6 +678,20 @@ public class GaiaFeatures extends GaiaBiomeFeatures {
                     InSquarePlacement.spread(),
                     HeightRangePlacement.uniform(VerticalAnchor.absolute(0), VerticalAnchor.absolute(70)),
                     BiomeFilter.biome()));
+
+            //Tree Placers
+            context.register(PINK_AGATE_TREE_CHECKED, checkTree(features, Configured.pink_agate_tree, ModBlocks.pink_agate_sapling));
+            context.register(BLUE_AGATE_TREE_CHECKED, checkTree(features, Configured.blue_agate_tree, ModBlocks.blue_agate_sapling));
+            context.register(GREEN_AGATE_TREE_CHECKED, checkTree(features, Configured.green_agate_tree, ModBlocks.green_agate_sapling));
+            context.register(PURPLE_AGATE_TREE_CHECKED, checkTree(features, Configured.purple_agate_tree, ModBlocks.purple_agate_sapling));
+            context.register(FOSSILIZED_TREE_CHECKED, checkTree(features, Configured.fossilized_tree, ModBlocks.fossilized_sapling));
+            context.register(GOLDSTONE_TREE_CHECKED, checkTree(features, Configured.goldstone_tree, ModBlocks.corrupted_sapling));
+            context.register(FIERY_AGATE_TREE_CHECKED, checkTree(features, Configured.fiery_agate_tree, ModBlocks.burning_sapling));
+            context.register(BURNT_AGATE_TREE_CHECKED, checkTree(features, Configured.burnt_agate_tree, ModBlocks.burnt_sapling));
+            context.register(AURA_TREE_CHECKED, checkTree(features, Configured.aura_tree, ModBlocks.aura_sapling));
+            context.register(SMALL_GOLDEN_TREE_CHECKED, checkTree(features, Configured.small_golden_tree, ModBlocks.golden_sapling));
+            context.register(SMALL_GOLDEN_TREE_VINES_CHECKED, checkTree(features, Configured.small_golden_tree_vines, ModBlocks.golden_sapling));
+            context.register(BIG_GOLDEN_TREE_CHECKED, checkTree(features, Configured.big_golden_tree, ModBlocks.golden_sapling));
 
             //Vegetal Decoration
             context.register(PINK_AGATE_TREE_COMMON, placedTree(features, Configured.pink_agate_trees, 4, 0.1F, 1));

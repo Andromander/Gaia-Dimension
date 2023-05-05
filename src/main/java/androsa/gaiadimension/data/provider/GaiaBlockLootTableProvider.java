@@ -42,6 +42,10 @@ public abstract class GaiaBlockLootTableProvider extends BlockLootSubProvider {
         super(Set.of(), FeatureFlags.REGISTRY.allFlags());
     }
 
+    public <T extends Block> void noDrops(Supplier<T> block) {
+        add(block.get(), noDrop());
+    }
+
     public <T extends Block> void dropSelf(Supplier<T> block) {
         dropSelf(block.get());
     }
@@ -55,7 +59,7 @@ public abstract class GaiaBlockLootTableProvider extends BlockLootSubProvider {
     }
 
     public void dropSlab(Supplier<SlabBlock> block) {
-        this.createSlabItemTable(block.get());
+        add(block.get(), this.createSlabItemTable(block.get()));
     }
 
     public void dropWithFortune(Supplier<Block> block, Supplier<Item> drop) {

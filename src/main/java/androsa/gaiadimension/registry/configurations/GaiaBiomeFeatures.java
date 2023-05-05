@@ -6,7 +6,6 @@ import com.google.common.collect.ImmutableList;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate;
-import net.minecraft.world.level.levelgen.structure.templatesystem.BlockMatchTest;
 import net.minecraft.world.level.levelgen.structure.templatesystem.RuleTest;
 import net.minecraft.world.level.levelgen.structure.templatesystem.TagMatchTest;
 import net.minecraftforge.registries.RegistryObject;
@@ -16,7 +15,7 @@ import java.util.List;
 
 public class GaiaBiomeFeatures {
 
-    public static final RuleTest GAIA_STONE = new BlockMatchTest(ModBlocks.gaia_stone.get());
+    public static final RuleTest GAIA_STONE = new TagMatchTest(GaiaTags.Blocks.GAIA_STONE);
     public static final RuleTest VOLCANIC = new TagMatchTest(GaiaTags.Blocks.VOLCANIC);
     public static final RuleTest STATIC = new TagMatchTest(GaiaTags.Blocks.STATIC);
 

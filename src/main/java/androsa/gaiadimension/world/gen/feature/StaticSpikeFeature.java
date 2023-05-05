@@ -12,11 +12,12 @@ import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 
 import javax.annotation.ParametersAreNonnullByDefault;
+import java.util.function.Supplier;
 
 @ParametersAreNonnullByDefault
 public class StaticSpikeFeature<T extends FeatureHeightConfig> extends Feature<T> {
 
-    private final BlockState block = ModBlocks.charged_mineral.get().defaultBlockState();
+    private static final Supplier<BlockState> BLOCK = () -> ModBlocks.charged_mineral.get().defaultBlockState();
 
     public StaticSpikeFeature(Codec<T> configIn) {
         super(configIn);
@@ -49,19 +50,19 @@ public class StaticSpikeFeature<T extends FeatureHeightConfig> extends Feature<T
             return false;
         } else {
             for (int i = 0; i < height; i++) {
-                worldIn.setBlock(position.above(i), this.block, 2);
+                worldIn.setBlock(position.above(i), BLOCK.get(), 2);
 
                 if (i < height / 2) {
-                    worldIn.setBlock(position.offset(0, i, -1), this.block, 2);
-                    worldIn.setBlock(position.offset(0, i, 1), this.block, 2);
-                    worldIn.setBlock(position.offset(-1, i, 0), this.block, 2);
-                    worldIn.setBlock(position.offset(1, i, 0), this.block, 2);
+                    worldIn.setBlock(position.offset(0, i, -1), BLOCK.get(), 2);
+                    worldIn.setBlock(position.offset(0, i, 1), BLOCK.get(), 2);
+                    worldIn.setBlock(position.offset(-1, i, 0), BLOCK.get(), 2);
+                    worldIn.setBlock(position.offset(1, i, 0), BLOCK.get(), 2);
 
                     if (i < height / 4) {
-                        worldIn.setBlock(position.offset(1, i, -1), this.block, 2);
-                        worldIn.setBlock(position.offset(1, i, 1), this.block, 2);
-                        worldIn.setBlock(position.offset(-1, i, -1), this.block, 2);
-                        worldIn.setBlock(position.offset(-1, i, 1), this.block, 2);
+                        worldIn.setBlock(position.offset(1, i, -1), BLOCK.get(), 2);
+                        worldIn.setBlock(position.offset(1, i, 1), BLOCK.get(), 2);
+                        worldIn.setBlock(position.offset(-1, i, -1), BLOCK.get(), 2);
+                        worldIn.setBlock(position.offset(-1, i, 1), BLOCK.get(), 2);
                     }
                 }
             }

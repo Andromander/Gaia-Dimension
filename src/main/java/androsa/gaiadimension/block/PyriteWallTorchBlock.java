@@ -3,6 +3,7 @@ package androsa.gaiadimension.block;
 import androsa.gaiadimension.registry.ModParticles;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.WallTorchBlock;
@@ -13,7 +14,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 public class PyriteWallTorchBlock extends WallTorchBlock {
 
     public PyriteWallTorchBlock(Properties props) {
-        super(props, ModParticles.PYRITE.get());
+        super(props, ParticleTypes.SMALL_FLAME);
     }
 
     @Override
@@ -26,6 +27,6 @@ public class PyriteWallTorchBlock extends WallTorchBlock {
         double d0 = 0.22D;
         double d1 = 0.27D;
         Direction opposite = direction.getOpposite();
-        world.addParticle(flameParticle, dx + d1 * (double)opposite.getStepX(), dy + d0, dz + d1 * (double)opposite.getStepZ(), 0.0D, 0.0D, 0.0D);
+        world.addParticle(ModParticles.PYRITE.get(), dx + d1 * (double)opposite.getStepX(), dy + d0, dz + d1 * (double)opposite.getStepZ(), 0.0D, 0.0D, 0.0D);
     }
 }

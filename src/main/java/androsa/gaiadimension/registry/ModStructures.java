@@ -1,7 +1,6 @@
 package androsa.gaiadimension.registry;
 
 import androsa.gaiadimension.GaiaDimensionMod;
-import androsa.gaiadimension.registry.configurations.GaiaBiomeFeatures;
 import androsa.gaiadimension.world.gen.structure.MalachiteWatchtowerStructure;
 import androsa.gaiadimension.world.gen.structure.MiniTowerStructure;
 import androsa.gaiadimension.world.gen.structure.pieces.MalachiteWatchtowerPieces;
@@ -29,7 +28,7 @@ import net.minecraftforge.registries.RegistryObject;
 import java.util.Map;
 import java.util.function.Supplier;
 
-public final class ModStructures extends GaiaBiomeFeatures {
+public final class ModStructures {
 
     public static final DeferredRegister<StructureType<?>> STRUCTURE_TYPES = DeferredRegister.create(Registries.STRUCTURE_TYPE, GaiaDimensionMod.MODID);
     public static final DeferredRegister<StructureProcessorType<?>> STRUCTURE_PROCESSORS = DeferredRegister.create(Registries.STRUCTURE_PROCESSOR, GaiaDimensionMod.MODID);

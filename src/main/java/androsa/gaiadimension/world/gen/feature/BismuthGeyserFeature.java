@@ -5,16 +5,18 @@ import com.mojang.serialization.Codec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
 
 import javax.annotation.ParametersAreNonnullByDefault;
+import java.util.function.Supplier;
 
 @ParametersAreNonnullByDefault
 public class BismuthGeyserFeature<T extends NoneFeatureConfiguration> extends Feature<T> {
 
-    private static final Block GRASS = ModBlocks.murky_grass.get();
+    private static final Supplier<BlockState> GRASS = () -> ModBlocks.murky_grass.get().defaultBlockState();
 
     public BismuthGeyserFeature(Codec<T> configIn) {
         super(configIn);
@@ -33,7 +35,7 @@ public class BismuthGeyserFeature<T extends NoneFeatureConfiguration> extends Fe
                 if (worldIn.hasChunkAt(pos)) {
                     Block blockBelow = worldIn.getBlockState(pos.below()).getBlock();
 
-                    if (blockBelow != GRASS) {
+                    if (blockBelow != ModBlocks.murky_grass.get()) {
                         return false;
                     }
                 }
@@ -49,7 +51,7 @@ public class BismuthGeyserFeature<T extends NoneFeatureConfiguration> extends Fe
                         if (bx < 2 && bz < 2 && bx > -2 && bz > -2) {
                             worldIn.setBlock(position.offset(bx, 0, bz), ModBlocks.boggy_soil.get().defaultBlockState(), 2);
                         } else {
-                            worldIn.setBlock(position.offset(bx, 0, bz), GRASS.defaultBlockState(), 2);
+                            worldIn.setBlock(position.offset(bx, 0, bz), GRASS.get(), 2);
                         }
                     }
                 }
@@ -58,7 +60,7 @@ public class BismuthGeyserFeature<T extends NoneFeatureConfiguration> extends Fe
         for (int tx = -1; tx <= 1; tx++) {
             for (int tz = -1; tz <= 1; tz++) {
                 if (!(tx == 0 && tz == 0)) {
-                    worldIn.setBlock(position.offset(tx, 1, tz), GRASS.defaultBlockState(), 2);
+                    worldIn.setBlock(position.offset(tx, 1, tz), GRASS.get(), 2);
                 }
             }
         }

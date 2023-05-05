@@ -57,18 +57,28 @@ public class GaiaChunkGenerator extends NoiseBasedChunkGenerator {
         super(mainsource, noisesettings);
 
         this.settings = noisesettings;
-        NoiseSettings noise = noisesettings.value().noiseSettings();
-        this.cellWidth = noise.getCellWidth();
-        this.cellHeight = noise.getCellHeight();
-        WorldgenRandom random = new WorldgenRandom(new LegacyRandomSource(0L));
-        BlendedNoise blendedNoise = new GaiaBlendedNoise(random);
-        NoiseModifier modifier = NoiseModifier.PASS;
+        if (noisesettings.isBound()) {
+            this.defaultBlock = noisesettings.value().defaultBlock();
+            this.defaultFluid = noisesettings.value().defaultFluid();
+            WorldgenRandom random = new WorldgenRandom(new LegacyRandomSource(0L));
+            NoiseSettings noise = noisesettings.value().noiseSettings();
+            this.cellWidth = noise.getCellWidth();
+            this.cellHeight = noise.getCellHeight();
+            NoiseSlider topSlide = new NoiseSlider(-10.0D, 3, 0);
+            NoiseSlider bottomSlide = new NoiseSlider(15.0D, 3, 0);
+            BlendedNoise blendedNoise = new GaiaBlendedNoise(random);
+            NoiseModifier modifier = NoiseModifier.PASS;
+            this.warper = new GaiaTerrainWarp(this.cellWidth, this.cellHeight, noise.height() / this.cellHeight, mainsource, noise, topSlide, bottomSlide, blendedNoise, modifier);
+        } else {
+            //TODO: TF seems to handle this fine, but this is Gaia, these are not our blocks.
+            this.defaultBlock = Blocks.STONE.defaultBlockState();
+            this.defaultFluid = Blocks.WATER.defaultBlockState();
+            this.warper = null;
+            this.cellWidth = 0;
+            this.cellHeight = 0;
+        }
+
         this.sampler = new Climate.Sampler(DensityFunctions.zero(), DensityFunctions.zero(), DensityFunctions.zero(), DensityFunctions.zero(), DensityFunctions.zero(), DensityFunctions.zero(), List.of()); //let's be real, this is a dummy
-        NoiseSlider topSlide = new NoiseSlider(-10.0D, 3, 0);
-        NoiseSlider bottomSlide = new NoiseSlider(15.0D, 3, 0);
-        this.warper = new GaiaTerrainWarp(this.cellWidth, this.cellHeight, noise.height() / this.cellHeight, mainsource, noise, topSlide, bottomSlide, blendedNoise, modifier);
-        this.defaultBlock = noisesettings.value().defaultBlock();
-        this.defaultFluid = noisesettings.value().defaultFluid();
     }
 
     @Override

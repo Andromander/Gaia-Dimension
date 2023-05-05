@@ -47,6 +47,16 @@ public class GaiaLootTables extends LootTableProvider {
     public static class Blocks extends GaiaBlockLootTableProvider {
         @Override
         protected void generate() {
+            //No Drops
+            noDrops(ModBlocks.gaia_portal);
+            noDrops(ModBlocks.gold_fire);
+            noDrops(ModBlocks.mineral_water);
+            noDrops(ModBlocks.superhot_magma);
+            noDrops(ModBlocks.sweet_muck);
+            noDrops(ModBlocks.liquid_bismuth);
+            noDrops(ModBlocks.liquid_aura);
+            noDrops(ModBlocks.malachite_guard_spawner);
+
             //Utility Blocks
             dropSelf(ModBlocks.keystone_block);
             dropSelf(ModBlocks.pyrite_torch);
