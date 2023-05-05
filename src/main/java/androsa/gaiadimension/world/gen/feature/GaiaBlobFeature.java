@@ -3,13 +3,12 @@ package androsa.gaiadimension.world.gen.feature;
 import androsa.gaiadimension.block.AbstractGaiaGrassBlock;
 import com.mojang.serialization.Codec;
 import net.minecraft.core.BlockPos;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.minecraft.world.level.levelgen.feature.configurations.BlockStateConfiguration;
-
-import java.util.Random;
 
 public class GaiaBlobFeature<T extends BlockStateConfiguration> extends Feature<T> {
 
@@ -22,7 +21,7 @@ public class GaiaBlobFeature<T extends BlockStateConfiguration> extends Feature<
         return place(context.level(), context.random(), context.origin(), context.config());
     }
 
-    public boolean place(WorldGenLevel worldIn, Random rand, BlockPos pos, T config) {
+    public boolean place(WorldGenLevel worldIn, RandomSource rand, BlockPos pos, T config) {
         while(true) {
             label50: {
                 if (pos.getY() > 3) {

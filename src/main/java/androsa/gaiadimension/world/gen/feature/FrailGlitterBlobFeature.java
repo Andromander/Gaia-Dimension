@@ -4,13 +4,12 @@ import androsa.gaiadimension.registry.ModBlocks;
 import com.mojang.serialization.Codec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
-
-import java.util.Random;
 
 public class FrailGlitterBlobFeature<T extends NoneFeatureConfiguration> extends Feature<T> {
 
@@ -23,7 +22,7 @@ public class FrailGlitterBlobFeature<T extends NoneFeatureConfiguration> extends
         return place(context.level(), context.random(), context.origin());
     }
 
-    public boolean place(WorldGenLevel worldIn, Random rand, BlockPos pos) {
+    public boolean place(WorldGenLevel worldIn, RandomSource rand, BlockPos pos) {
         if (!worldIn.isEmptyBlock(pos)) {
             return false;
         } else {

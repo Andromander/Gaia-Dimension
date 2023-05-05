@@ -15,18 +15,16 @@ import androsa.gaiadimension.world.gen.feature.trunk.CardinalTrunkPlacer;
 import androsa.gaiadimension.world.gen.feature.trunk.FourBranchTrunkPlacer;
 import androsa.gaiadimension.world.gen.feature.trunk.ThickTrunkPlacer;
 import androsa.gaiadimension.world.gen.feature.trunk.VaryingFourBranchTrunkPlacer;
-import androsa.gaiadimension.world.gen.structure.MalachiteWatchtowerStructure;
-import androsa.gaiadimension.world.gen.structure.MiniTowerStructure;
 import androsa.gaiadimension.world.gen.structure.pieces.MalachiteWatchtowerPieces;
 import androsa.gaiadimension.world.gen.structure.pieces.MiniTowerPieces;
 import androsa.gaiadimension.world.gen.structure.processor.BlockDegradeProcessor;
 import androsa.gaiadimension.world.gen.structure.processor.MalachiteDegradeProcessor;
 import net.minecraft.core.Registry;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.levelgen.carver.CaveCarverConfiguration;
 import net.minecraft.world.level.levelgen.carver.WorldCarver;
 import net.minecraft.world.level.levelgen.feature.Feature;
-import net.minecraft.world.level.levelgen.feature.StructureFeature;
 import net.minecraft.world.level.levelgen.feature.configurations.BlockStateConfiguration;
 import net.minecraft.world.level.levelgen.feature.configurations.DiskConfiguration;
 import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
@@ -47,7 +45,7 @@ public class ModWorldgen {
     public static final DeferredRegister<TreeDecoratorType<?>> DECORATORS = DeferredRegister.create(ForgeRegistries.TREE_DECORATOR_TYPES, GaiaDimensionMod.MODID);
 	public static final DeferredRegister<Feature<?>> FEATURES = DeferredRegister.create(ForgeRegistries.FEATURES, GaiaDimensionMod.MODID);
     public static final DeferredRegister<FoliagePlacerType<?>> FOLIAGE_PLACERS = DeferredRegister.create(ForgeRegistries.FOLIAGE_PLACER_TYPES, GaiaDimensionMod.MODID);
-    public static final DeferredRegister<TrunkPlacerType<?>> TRUNK_PLACERS = DeferredRegister.create(Registry.TRUNK_PLACER_TYPE_REGISTRY, GaiaDimensionMod.MODID);
+    public static final DeferredRegister<TrunkPlacerType<?>> TRUNK_PLACERS = DeferredRegister.create(Registries.TRUNK_PLACER_TYPE, GaiaDimensionMod.MODID);
 	public static final DeferredRegister<WorldCarver<?>> WORLD_CARVERS = DeferredRegister.create(ForgeRegistries.WORLD_CARVERS, GaiaDimensionMod.MODID);
 
     //Trunk
@@ -80,8 +78,6 @@ public class ModWorldgen {
 			new StaticSpikeFeature<>(FeatureHeightConfig.CODEC));
     public static final RegistryObject<Feature<NoneFeatureConfiguration>> FRAIL_BLOB = FEATURES.register("frail_blob", () ->
 			new FrailGlitterBlobFeature<>(NoneFeatureConfiguration.CODEC));
-    public static final RegistryObject<Feature<DiskConfiguration>> GAIA_DISK = FEATURES.register("gaia_disk", () ->
-			new DiskNoWaterFeature(DiskConfiguration.CODEC));
     public static final RegistryObject<Feature<BlockStateConfiguration>> GAIA_BLOB = FEATURES.register("gaia_blob", () ->
 			new GaiaBlobFeature<>(BlockStateConfiguration.CODEC));
     public static final RegistryObject<Feature<BlockStateConfiguration>> TERRAIN_SPIKE = FEATURES.register("terrain_spike", () ->

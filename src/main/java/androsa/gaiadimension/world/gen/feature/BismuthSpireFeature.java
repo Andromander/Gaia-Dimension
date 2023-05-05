@@ -4,6 +4,7 @@ import androsa.gaiadimension.registry.ModBlocks;
 import androsa.gaiadimension.world.gen.feature.config.FeatureHeightConfig;
 import com.mojang.serialization.Codec;
 import net.minecraft.core.BlockPos;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
@@ -11,7 +12,6 @@ import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 
 import javax.annotation.ParametersAreNonnullByDefault;
-import java.util.Random;
 
 @ParametersAreNonnullByDefault
 public class BismuthSpireFeature<T extends FeatureHeightConfig> extends Feature<T> {
@@ -25,7 +25,7 @@ public class BismuthSpireFeature<T extends FeatureHeightConfig> extends Feature<
         return place(context.level(), context.random(), context.origin(), context.config());
     }
 
-    public boolean place(WorldGenLevel worldIn, Random rand, BlockPos position, T config) {
+    public boolean place(WorldGenLevel worldIn, RandomSource rand, BlockPos position, T config) {
         for (int cx = 0; cx < 3; cx++) {
             for (int cz = 0; cz < 3; cz++) {
                 BlockPos pos = position.offset(cx - 1, 0, cz - 1);
@@ -74,7 +74,7 @@ public class BismuthSpireFeature<T extends FeatureHeightConfig> extends Feature<
         return true;
     }
 
-    private void setBismuthType(WorldGenLevel world, Random random, BlockPos pos) {
+    private void setBismuthType(WorldGenLevel world, RandomSource random, BlockPos pos) {
         BlockState state;
 
         if (random.nextInt(30) == 0) {

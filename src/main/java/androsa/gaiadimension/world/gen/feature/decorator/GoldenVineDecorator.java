@@ -4,17 +4,13 @@ import androsa.gaiadimension.registry.ModBlocks;
 import androsa.gaiadimension.registry.ModWorldgen;
 import com.mojang.serialization.Codec;
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.level.LevelSimulatedReader;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.block.VineBlock;
-import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
-import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.treedecorators.TreeDecorator;
 import net.minecraft.world.level.levelgen.feature.treedecorators.TreeDecoratorType;
 
 import java.util.List;
-import java.util.Random;
-import java.util.function.BiConsumer;
 
 public class GoldenVineDecorator extends TreeDecorator {
 
@@ -27,49 +23,53 @@ public class GoldenVineDecorator extends TreeDecorator {
     }
 
     @Override
-    public void place(LevelSimulatedReader level, BiConsumer<BlockPos, BlockState> statepos, Random random, List<BlockPos> trunk, List<BlockPos> leaves) {
+    public void place(Context context) {
+        this.place(context, context.random(), context.leaves());
+    }
+
+    public void place(Context context, RandomSource random, List<BlockPos> leaves) {
         leaves.forEach((pos) -> {
             if (random.nextInt(4) == 0) {
                 BlockPos west = pos.west();
-                if (Feature.isAir(level, west)) {
-                    addHangingVine(level, west, VineBlock.EAST, statepos);
+                if (context.isAir(west)) {
+                    addHangingVine(west, VineBlock.EAST, context);
                 }
             }
 
             if (random.nextInt(4) == 0) {
                 BlockPos east = pos.east();
-                if (Feature.isAir(level, east)) {
-                    addHangingVine(level, east, VineBlock.WEST, statepos);
+                if (context.isAir(east)) {
+                    addHangingVine(east, VineBlock.WEST, context);
                 }
             }
 
             if (random.nextInt(4) == 0) {
                 BlockPos north = pos.north();
-                if (Feature.isAir(level, north)) {
-                    addHangingVine(level, north, VineBlock.SOUTH, statepos);
+                if (context.isAir(north)) {
+                    addHangingVine(north, VineBlock.SOUTH, context);
                 }
 
             }
             if (random.nextInt(4) == 0) {
                 BlockPos south = pos.south();
-                if (Feature.isAir(level, south)) {
-                    addHangingVine(level, south, VineBlock.NORTH, statepos);
+                if (context.isAir(south)) {
+                    addHangingVine(south, VineBlock.NORTH, context);
                 }
             }
         });
     }
 
-    private static void addHangingVine(LevelSimulatedReader reader, BlockPos pos, BooleanProperty property, BiConsumer<BlockPos, BlockState> statepos) {
-        addVine(statepos, pos, property);
+    private static void addHangingVine(BlockPos pos, BooleanProperty property, Context context) {
+        addVine(context, pos, property);
         int y = 4;
 
-        for (BlockPos hangpos = pos.below(); Feature.isAir(reader, hangpos) && y > 0; y--) {
-            addVine(statepos, hangpos, property);
+        for (BlockPos hangpos = pos.below(); context.isAir(hangpos) && y > 0; y--) {
+            addVine(context, hangpos, property);
             hangpos = hangpos.below();
         }
     }
 
-    private static void addVine(BiConsumer<BlockPos, BlockState> statepos, BlockPos pos, BooleanProperty property) {
-        statepos.accept(pos, ModBlocks.golden_vine.get().defaultBlockState().setValue(property, true));
+    private static void addVine(Context context, BlockPos pos, BooleanProperty property) {
+        context.setBlock(pos, ModBlocks.golden_vine.get().defaultBlockState().setValue(property, true));
     }
 }

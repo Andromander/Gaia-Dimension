@@ -3,17 +3,16 @@ package androsa.gaiadimension.world.gen.feature;
 import androsa.gaiadimension.registry.ModBlocks;
 import com.mojang.serialization.Codec;
 import net.minecraft.core.BlockPos;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.chunk.ChunkGenerator;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.minecraft.world.level.levelgen.feature.configurations.BlockStateConfiguration;
 import net.minecraft.world.level.material.Material;
 
 import javax.annotation.ParametersAreNonnullByDefault;
-import java.util.Random;
 
 @ParametersAreNonnullByDefault
 public class GaiaLakesFeature<T extends BlockStateConfiguration> extends Feature<T> {
@@ -25,10 +24,10 @@ public class GaiaLakesFeature<T extends BlockStateConfiguration> extends Feature
 
     @Override
     public boolean place(FeaturePlaceContext<T> context) {
-        return place(context.level(), context.chunkGenerator(), context.random(), context.origin(), context.config());
+        return place(context.level(), context.random(), context.origin(), context.config());
     }
 
-    public boolean place(WorldGenLevel worldIn, ChunkGenerator generator, Random rand, BlockPos pos, T config) {
+    public boolean place(WorldGenLevel worldIn, RandomSource rand, BlockPos pos, T config) {
         while(pos.getY() > 5 && worldIn.isEmptyBlock(pos)) {
             pos = pos.below();
         }

@@ -4,6 +4,7 @@ import androsa.gaiadimension.registry.ModBlocks;
 import androsa.gaiadimension.world.gen.feature.config.FeatureHeightConfig;
 import com.mojang.serialization.Codec;
 import net.minecraft.core.BlockPos;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
@@ -11,7 +12,6 @@ import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 
 import javax.annotation.ParametersAreNonnullByDefault;
-import java.util.Random;
 
 @ParametersAreNonnullByDefault
 public class StaticSpikeFeature<T extends FeatureHeightConfig> extends Feature<T> {
@@ -27,7 +27,7 @@ public class StaticSpikeFeature<T extends FeatureHeightConfig> extends Feature<T
         return place(context.level(), context.random(), context.origin(), context.config());
     }
 
-    public boolean place(WorldGenLevel worldIn, Random rand, BlockPos position, T config) {
+    public boolean place(WorldGenLevel worldIn, RandomSource rand, BlockPos position, T config) {
         int height = config.startHeight + rand.nextInt(4);
         boolean flag = true;
 

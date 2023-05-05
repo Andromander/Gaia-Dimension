@@ -3,14 +3,13 @@ package androsa.gaiadimension.world.gen.feature;
 import com.mojang.serialization.Codec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.EmptyBlockGetter;
 import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.minecraft.world.level.levelgen.feature.configurations.BlockStateConfiguration;
-
-import java.util.Random;
 
 public class MenhirFeature extends Feature<BlockStateConfiguration> {
 
@@ -23,7 +22,7 @@ public class MenhirFeature extends Feature<BlockStateConfiguration> {
         return place(context.level(), context.random(), context.origin(), context.config().state);
     }
 
-    public boolean place(WorldGenLevel level, Random random, BlockPos origin, BlockState state) {
+    public boolean place(WorldGenLevel level, RandomSource random, BlockPos origin, BlockState state) {
         boolean place = true;
         for (int x = 0; x <= 1; x++) {
             for (int z = 0; z <= 1; z++) {

@@ -282,9 +282,9 @@ public class GaiaFeatures extends GaiaBiomeFeatures {
             context.register(ore_blue_opal, oreFeature(GAIA_STONE, BLUE_OPAL_ORE, 8));
             context.register(ore_green_opal, oreFeature(GAIA_STONE, GREEN_OPAL_ORE, 8));
             context.register(ore_white_opal, oreFeature(GAIA_STONE, WHITE_OPAL_ORE, 8));
-            context.register(disk_static_stone, registerFeature(ModWorldgen.GAIA_DISK.get(), diskConfig(STATIC_STONE, match(ModBlocks.wasteland_stone), UniformInt.of(2, 4), 3)));
+            context.register(disk_static_stone, registerFeature(Feature.DISK, diskConfig(STATIC_STONE, match(ModBlocks.wasteland_stone), UniformInt.of(2, 4), 3)));
             context.register(disk_bog_patch, registerFeature(ModWorldgen.BOG_PATCH.get(), diskConfig(IMPURE_SLUDGE, match(ModBlocks.murky_grass, ModBlocks.boggy_soil), UniformInt.of(1, 4), 2)));
-            context.register(disk_gilded_stone, registerFeature(ModWorldgen.GAIA_DISK.get(), diskConfig(GILDED_BRILLIANT_STONE, match(ModBlocks.brilliant_stone), UniformInt.of(2, 4), 2)));
+            context.register(disk_gilded_stone, registerFeature(Feature.DISK, diskConfig(GILDED_BRILLIANT_STONE, match(ModBlocks.brilliant_stone), UniformInt.of(2, 4), 2)));
             context.register(disk_marsh_patch, registerFeature(ModWorldgen.BOG_PATCH.get(), diskConfig(AURUM_MUD, match(ModBlocks.gilded_grass, ModBlocks.aurum_soil), UniformInt.of(3, 4), 3)));
 
             //Underground Decoration

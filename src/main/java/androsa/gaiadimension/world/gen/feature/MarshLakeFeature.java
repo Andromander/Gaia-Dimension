@@ -5,14 +5,13 @@ import androsa.gaiadimension.registry.ModFluids;
 import com.mojang.serialization.Codec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.EmptyBlockGetter;
 import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
-
-import java.util.Random;
 
 public class MarshLakeFeature extends Feature<NoneFeatureConfiguration> {
 
@@ -25,7 +24,7 @@ public class MarshLakeFeature extends Feature<NoneFeatureConfiguration> {
         return place(context.level(), context.random(), context.origin());
     }
 
-    public boolean place(WorldGenLevel level, Random random, BlockPos origin) {
+    public boolean place(WorldGenLevel level, RandomSource random, BlockPos origin) {
         int radius = 14;
         int rad = (radius / 2) + 1;
         Direction dir = Direction.Plane.HORIZONTAL.getRandomDirection(random);

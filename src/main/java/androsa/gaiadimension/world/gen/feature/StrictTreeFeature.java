@@ -2,12 +2,11 @@ package androsa.gaiadimension.world.gen.feature;
 
 import com.mojang.serialization.Codec;
 import net.minecraft.core.BlockPos;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.chunk.ChunkGenerator;
 import net.minecraft.world.level.levelgen.feature.TreeFeature;
 import net.minecraft.world.level.levelgen.feature.configurations.TreeConfiguration;
-
-import java.util.Random;
 
 /**
  * You daft bastards.
@@ -20,7 +19,7 @@ import java.util.Random;
  * All it took was this tiny bit of line down there, you see it?
  * "Is this BlockPos air? Go ahead."
  * What kind of checks do you even have?
- * "Yeah, if the block plants here go ahead, oh and we can definitely generate on logs"
+ * "Yeah, if the block plants here go ahead, oh, and we can definitely generate on logs"
  * What kind a situation do you need to have trees in trees?
  */
 public class StrictTreeFeature extends TreeFeature {
@@ -30,7 +29,7 @@ public class StrictTreeFeature extends TreeFeature {
     }
 
     @Override
-    public boolean place(TreeConfiguration config, WorldGenLevel level, ChunkGenerator generator, Random random, BlockPos pos) {
+    public boolean place(TreeConfiguration config, WorldGenLevel level, ChunkGenerator generator, RandomSource random, BlockPos pos) {
         if (level.ensureCanWrite(pos)) {
             if (level.getBlockState(pos).isAir()) {
                 return super.place(config, level, generator, random, pos);

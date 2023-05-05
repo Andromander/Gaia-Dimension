@@ -5,6 +5,7 @@ import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.LevelSimulatedReader;
 import net.minecraft.world.level.block.RotatedPillarBlock;
 import net.minecraft.world.level.block.state.BlockState;
@@ -15,7 +16,6 @@ import net.minecraft.world.level.levelgen.feature.trunkplacers.TrunkPlacerType;
 import org.apache.commons.compress.utils.Lists;
 
 import java.util.List;
-import java.util.Random;
 import java.util.function.BiConsumer;
 
 public class VaryingFourBranchTrunkPlacer extends TrunkPlacer {
@@ -33,7 +33,7 @@ public class VaryingFourBranchTrunkPlacer extends TrunkPlacer {
     }
 
     @Override
-    public List<FoliagePlacer.FoliageAttachment> placeTrunk(LevelSimulatedReader level, BiConsumer<BlockPos, BlockState> statepos, Random random, int height, BlockPos origin, TreeConfiguration config) {
+    public List<FoliagePlacer.FoliageAttachment> placeTrunk(LevelSimulatedReader level, BiConsumer<BlockPos, BlockState> statepos, RandomSource random, int height, BlockPos origin, TreeConfiguration config) {
         List<FoliagePlacer.FoliageAttachment> list = Lists.newArrayList();
 
         setDirtAt(level, statepos, random, origin.below(), config);

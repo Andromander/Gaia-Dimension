@@ -4,6 +4,7 @@ import androsa.gaiadimension.block.AuraShootBlock;
 import androsa.gaiadimension.registry.ModBlocks;
 import com.mojang.serialization.Codec;
 import net.minecraft.core.BlockPos;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.feature.Feature;
@@ -11,7 +12,6 @@ import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
 
 import javax.annotation.ParametersAreNonnullByDefault;
-import java.util.Random;
 
 @ParametersAreNonnullByDefault
 public class AuraShootsFeature<T extends NoneFeatureConfiguration> extends Feature<T> {
@@ -27,7 +27,7 @@ public class AuraShootsFeature<T extends NoneFeatureConfiguration> extends Featu
         return place(context.level(), context.random(), context.origin());
     }
 
-    public boolean place(WorldGenLevel worldIn, Random rand, BlockPos position) {
+    public boolean place(WorldGenLevel worldIn, RandomSource rand, BlockPos position) {
         for (int i = 0; i < 20; ++i) {
             BlockPos blockpos = position.offset(rand.nextInt(4) - rand.nextInt(4), 0, rand.nextInt(4) - rand.nextInt(4));
 
