@@ -1,17 +1,19 @@
 {
   "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "#  ",
-    "## ",
-    "###"
-  ],
+  "category": "building",
   "key": {
     "#": {
       "item": "gaiadimension:blue_agate_planks"
     }
   },
+  "pattern": [
+    "#  ",
+    "## ",
+    "###"
+  ],
   "result": {
-    "item": "gaiadimension:blue_agate_plank_stairs",
-    "count": 8
-  }
+    "count": 8,
+    "item": "gaiadimension:blue_agate_plank_stairs"
+  },
+  "show_notification": true
 }

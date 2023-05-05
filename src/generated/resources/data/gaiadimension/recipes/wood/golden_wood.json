@@ -1,16 +1,18 @@
 {
   "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "##",
-    "##"
-  ],
+  "category": "building",
   "key": {
     "#": {
       "item": "gaiadimension:golden_log"
     }
   },
+  "pattern": [
+    "##",
+    "##"
+  ],
   "result": {
-    "item": "gaiadimension:golden_wood",
-    "count": 3
-  }
+    "count": 3,
+    "item": "gaiadimension:golden_wood"
+  },
+  "show_notification": true
 }

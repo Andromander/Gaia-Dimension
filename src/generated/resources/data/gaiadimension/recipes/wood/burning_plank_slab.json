@@ -1,15 +1,17 @@
 {
   "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "###"
-  ],
+  "category": "building",
   "key": {
     "#": {
       "item": "gaiadimension:burning_planks"
     }
   },
+  "pattern": [
+    "###"
+  ],
   "result": {
-    "item": "gaiadimension:burning_plank_slab",
-    "count": 6
-  }
+    "count": 6,
+    "item": "gaiadimension:burning_plank_slab"
+  },
+  "show_notification": true
 }

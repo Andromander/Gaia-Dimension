@@ -1,6 +1,6 @@
 {
+  "type": "minecraft:simple_random_selector",
   "config": {
     "features": "gaiadimension:green_agate_tree_checked"
-  },
-  "type": "minecraft:simple_random_selector"
+  }
 }

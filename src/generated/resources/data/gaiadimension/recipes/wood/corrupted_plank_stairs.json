@@ -1,17 +1,19 @@
 {
   "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "#  ",
-    "## ",
-    "###"
-  ],
+  "category": "building",
   "key": {
     "#": {
       "item": "gaiadimension:corrupted_planks"
     }
   },
+  "pattern": [
+    "#  ",
+    "## ",
+    "###"
+  ],
   "result": {
-    "item": "gaiadimension:corrupted_plank_stairs",
-    "count": 8
-  }
+    "count": 8,
+    "item": "gaiadimension:corrupted_plank_stairs"
+  },
+  "show_notification": true
 }

@@ -1,13 +1,13 @@
 {
   "variants": {
-    "type=top": {
-      "model": "gaiadimension:block/burning_plank_slab_top"
-    },
     "type=bottom": {
       "model": "gaiadimension:block/burning_plank_slab"
     },
     "type=double": {
       "model": "gaiadimension:block/burning_planks"
+    },
+    "type=top": {
+      "model": "gaiadimension:block/burning_plank_slab_top"
     }
   }
 }

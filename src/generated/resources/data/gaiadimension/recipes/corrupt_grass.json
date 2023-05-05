@@ -1,19 +1,21 @@
 {
   "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "#": {
+      "item": "gaiadimension:glitter_grass"
+    },
+    "/": {
+      "item": "gaiadimension:goldstone_residue"
+    }
+  },
   "pattern": [
     "///",
     "/#/",
     "///"
   ],
-  "key": {
-    "/": {
-      "item": "gaiadimension:goldstone_residue"
-    },
-    "#": {
-      "item": "gaiadimension:glitter_grass"
-    }
-  },
   "result": {
     "item": "gaiadimension:corrupt_grass"
-  }
+  },
+  "show_notification": true
 }

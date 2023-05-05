@@ -1,266 +1,7 @@
 {
   "parent": "gaiadimension:gaia/mine_all_gemstones",
-  "display": {
-    "icon": {
-      "item": "gaiadimension:chalcedony"
-    },
-    "title": {
-      "translate": "advancements.gaia.get_all_gemstones.title"
-    },
-    "description": {
-      "translate": "advancements.gaia.get_all_gemstones.description"
-    },
-    "frame": "challenge",
-    "show_toast": true,
-    "announce_to_chat": true,
-    "hidden": false
-  },
-  "rewards": {
-    "experience": 250
-  },
   "criteria": {
-    "get_sugilite": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "items": [
-              "gaiadimension:sugilite"
-            ]
-          }
-        ]
-      }
-    },
-    "get_hematite": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "items": [
-              "gaiadimension:hematite"
-            ]
-          }
-        ]
-      }
-    },
-    "get_cinnabar": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "items": [
-              "gaiadimension:cinnabar"
-            ]
-          }
-        ]
-      }
-    },
-    "get_labradorite": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "items": [
-              "gaiadimension:labradorite"
-            ]
-          }
-        ]
-      }
-    },
-    "get_moonstone": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "items": [
-              "gaiadimension:moonstone"
-            ]
-          }
-        ]
-      }
-    },
-    "get_red_opal": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "items": [
-              "gaiadimension:red_opal"
-            ]
-          }
-        ]
-      }
-    },
-    "get_blue_opal": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "items": [
-              "gaiadimension:blue_opal"
-            ]
-          }
-        ]
-      }
-    },
-    "get_green_opal": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "items": [
-              "gaiadimension:green_opal"
-            ]
-          }
-        ]
-      }
-    },
-    "get_white_opal": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "items": [
-              "gaiadimension:white_opal"
-            ]
-          }
-        ]
-      }
-    },
-    "get_ixiolite": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "items": [
-              "gaiadimension:ixiolite"
-            ]
-          }
-        ]
-      }
-    },
-    "get_proustite": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "items": [
-              "gaiadimension:proustite"
-            ]
-          }
-        ]
-      }
-    },
-    "get_euclase": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "items": [
-              "gaiadimension:euclase"
-            ]
-          }
-        ]
-      }
-    },
-    "get_leucite": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "items": [
-              "gaiadimension:leucite"
-            ]
-          }
-        ]
-      }
-    },
-    "get_carnelian": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "items": [
-              "gaiadimension:carnelian"
-            ]
-          }
-        ]
-      }
-    },
-    "get_benitoite": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "items": [
-              "gaiadimension:benitoite"
-            ]
-          }
-        ]
-      }
-    },
-    "get_diopside": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "items": [
-              "gaiadimension:diopside"
-            ]
-          }
-        ]
-      }
-    },
-    "get_chalcedony": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "items": [
-              "gaiadimension:chalcedony"
-            ]
-          }
-        ]
-      }
-    },
-    "get_pyrite": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "items": [
-              "gaiadimension:pyrite"
-            ]
-          }
-        ]
-      }
-    },
-    "get_tektite": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "items": [
-              "gaiadimension:tektite"
-            ]
-          }
-        ]
-      }
-    },
-    "get_goldstone": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "items": [
-              "gaiadimension:goldstone"
-            ]
-          }
-        ]
-      }
-    },
     "get_aura_cluster": {
-      "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
@@ -269,10 +10,22 @@
             ]
           }
         ]
-      }
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "get_benitoite": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "gaiadimension:benitoite"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
     },
     "get_bismuth_crystal": {
-      "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
@@ -281,7 +34,251 @@
             ]
           }
         ]
-      }
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "get_blue_opal": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "gaiadimension:blue_opal"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "get_carnelian": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "gaiadimension:carnelian"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "get_chalcedony": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "gaiadimension:chalcedony"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "get_cinnabar": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "gaiadimension:cinnabar"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "get_diopside": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "gaiadimension:diopside"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "get_euclase": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "gaiadimension:euclase"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "get_goldstone": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "gaiadimension:goldstone"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "get_green_opal": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "gaiadimension:green_opal"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "get_hematite": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "gaiadimension:hematite"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "get_ixiolite": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "gaiadimension:ixiolite"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "get_labradorite": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "gaiadimension:labradorite"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "get_leucite": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "gaiadimension:leucite"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "get_moonstone": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "gaiadimension:moonstone"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "get_proustite": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "gaiadimension:proustite"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "get_pyrite": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "gaiadimension:pyrite"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "get_red_opal": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "gaiadimension:red_opal"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "get_sugilite": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "gaiadimension:sugilite"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "get_tektite": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "gaiadimension:tektite"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "get_white_opal": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "gaiadimension:white_opal"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancements.gaia.get_all_gemstones.description"
+    },
+    "frame": "challenge",
+    "hidden": false,
+    "icon": {
+      "item": "gaiadimension:chalcedony"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.gaia.get_all_gemstones.title"
     }
   },
   "requirements": [
@@ -351,5 +348,8 @@
     [
       "get_bismuth_crystal"
     ]
-  ]
+  ],
+  "rewards": {
+    "experience": 250
+  }
 }

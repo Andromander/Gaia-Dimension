@@ -2,11 +2,11 @@
   "parent": "minecraft:block/cube",
   "textures": {
     "down": "gaiadimension:block/aurum_soil",
-    "up": "gaiadimension:block/gilded_grass_top",
-    "north": "gaiadimension:block/gilded_grass_side",
-    "south": "gaiadimension:block/gilded_grass_side",
     "east": "gaiadimension:block/gilded_grass_side",
-    "west": "gaiadimension:block/gilded_grass_side",
-    "particle": "gaiadimension:block/gilded_grass_side"
+    "north": "gaiadimension:block/gilded_grass_side",
+    "particle": "gaiadimension:block/gilded_grass_side",
+    "south": "gaiadimension:block/gilded_grass_side",
+    "up": "gaiadimension:block/gilded_grass_top",
+    "west": "gaiadimension:block/gilded_grass_side"
   }
 }

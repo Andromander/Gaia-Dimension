@@ -1,12 +1,13 @@
 {
   "type": "minecraft:crafting_shapeless",
+  "category": "misc",
   "ingredients": [
     {
       "item": "gaiadimension:blue_geode"
     }
   ],
   "result": {
-    "item": "gaiadimension:blue_geode_slice",
-    "count": 4
+    "count": 4,
+    "item": "gaiadimension:blue_geode_slice"
   }
 }

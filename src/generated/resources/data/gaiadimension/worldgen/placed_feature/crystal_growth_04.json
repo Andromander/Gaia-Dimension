@@ -5,12 +5,12 @@
       "type": "minecraft:in_square"
     },
     {
-      "heightmap": "WORLD_SURFACE_WG",
-      "type": "minecraft:heightmap"
+      "type": "minecraft:heightmap",
+      "heightmap": "WORLD_SURFACE_WG"
     },
     {
-      "count": 4,
-      "type": "minecraft:count"
+      "type": "minecraft:count",
+      "count": 4
     }
   ]
 }

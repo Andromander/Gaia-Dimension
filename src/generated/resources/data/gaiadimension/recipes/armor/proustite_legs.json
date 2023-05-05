@@ -1,16 +1,18 @@
 {
   "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "###",
-    "# #",
-    "# #"
-  ],
+  "category": "equipment",
   "key": {
     "#": {
       "item": "gaiadimension:proustite"
     }
   },
+  "pattern": [
+    "###",
+    "# #",
+    "# #"
+  ],
   "result": {
     "item": "gaiadimension:proustite_legs"
-  }
+  },
+  "show_notification": true
 }

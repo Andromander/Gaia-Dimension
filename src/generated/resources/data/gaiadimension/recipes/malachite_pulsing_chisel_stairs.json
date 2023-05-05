@@ -1,17 +1,19 @@
 {
   "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "#  ",
-    "## ",
-    "###"
-  ],
+  "category": "building",
   "key": {
     "#": {
       "item": "gaiadimension:malachite_pulsing_chisel"
     }
   },
+  "pattern": [
+    "#  ",
+    "## ",
+    "###"
+  ],
   "result": {
-    "item": "gaiadimension:malachite_pulsing_chisel_stairs",
-    "count": 8
-  }
+    "count": 8,
+    "item": "gaiadimension:malachite_pulsing_chisel_stairs"
+  },
+  "show_notification": true
 }

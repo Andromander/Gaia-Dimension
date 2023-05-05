@@ -1,8 +1,8 @@
 {
+  "type": "gaiadimension:gaia_blob",
   "config": {
     "state": {
       "Name": "gaiadimension:gummy_glitter_block"
     }
-  },
-  "type": "gaiadimension:gaia_blob"
+  }
 }

@@ -1,4 +1,4 @@
 {
-  "config": {},
-  "type": "gaiadimension:bismuth_geyser"
+  "type": "gaiadimension:bismuth_geyser",
+  "config": {}
 }

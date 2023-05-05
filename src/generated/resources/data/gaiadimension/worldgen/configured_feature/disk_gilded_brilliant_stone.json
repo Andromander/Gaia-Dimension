@@ -1,21 +1,26 @@
 {
+  "type": "minecraft:disk",
   "config": {
-    "state": {
-      "Name": "gaiadimension:gilded_brilliant_stone"
-    },
+    "half_height": 2,
     "radius": {
       "type": "minecraft:uniform",
       "value": {
-        "min_inclusive": 2,
-        "max_inclusive": 4
+        "max_inclusive": 4,
+        "min_inclusive": 2
       }
     },
-    "half_height": 2,
-    "targets": [
-      {
-        "Name": "gaiadimension:brilliant_stone"
-      }
-    ]
-  },
-  "type": "gaiadimension:gaia_disk"
+    "state_provider": {
+      "fallback": {
+        "type": "minecraft:simple_state_provider",
+        "state": {
+          "Name": "gaiadimension:gilded_brilliant_stone"
+        }
+      },
+      "rules": []
+    },
+    "target": {
+      "type": "minecraft:matching_blocks",
+      "blocks": "gaiadimension:brilliant_stone"
+    }
+  }
 }

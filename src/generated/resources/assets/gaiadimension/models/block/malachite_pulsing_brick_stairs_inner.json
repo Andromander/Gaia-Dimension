@@ -2,10 +2,10 @@
   "parent": "gaiadimension:block/util/inner_stairs_2_layer",
   "textures": {
     "bottom": "gaiadimension:block/malachite_bricks",
-    "top": "gaiadimension:block/malachite_bricks",
-    "side": "gaiadimension:block/malachite_bricks",
     "bottom2": "gaiadimension:block/malachite_green_pulse_corner",
-    "top2": "gaiadimension:block/malachite_green_pulse_corner",
-    "side2": "gaiadimension:block/malachite_green_pulse_corner"
+    "side": "gaiadimension:block/malachite_bricks",
+    "side2": "gaiadimension:block/malachite_green_pulse_corner",
+    "top": "gaiadimension:block/malachite_bricks",
+    "top2": "gaiadimension:block/malachite_green_pulse_corner"
   }
 }

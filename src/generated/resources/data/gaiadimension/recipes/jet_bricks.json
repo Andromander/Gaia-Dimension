@@ -1,16 +1,18 @@
 {
   "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "##",
-    "##"
-  ],
+  "category": "building",
   "key": {
     "#": {
       "item": "gaiadimension:raw_jet"
     }
   },
+  "pattern": [
+    "##",
+    "##"
+  ],
   "result": {
-    "item": "gaiadimension:jet_bricks",
-    "count": 4
-  }
+    "count": 4,
+    "item": "gaiadimension:jet_bricks"
+  },
+  "show_notification": true
 }

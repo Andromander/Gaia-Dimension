@@ -1,17 +1,19 @@
 {
   "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "#  ",
-    "## ",
-    "###"
-  ],
+  "category": "building",
   "key": {
     "#": {
       "item": "gaiadimension:aura_planks"
     }
   },
+  "pattern": [
+    "#  ",
+    "## ",
+    "###"
+  ],
   "result": {
-    "item": "gaiadimension:aura_plank_stairs",
-    "count": 8
-  }
+    "count": 8,
+    "item": "gaiadimension:aura_plank_stairs"
+  },
+  "show_notification": true
 }

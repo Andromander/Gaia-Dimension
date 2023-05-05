@@ -1,24 +1,29 @@
 {
+  "type": "gaiadimension:bog_patch",
   "config": {
-    "state": {
-      "Name": "gaiadimension:impure_sludge"
-    },
+    "half_height": 2,
     "radius": {
       "type": "minecraft:uniform",
       "value": {
-        "min_inclusive": 1,
-        "max_inclusive": 4
+        "max_inclusive": 4,
+        "min_inclusive": 1
       }
     },
-    "half_height": 2,
-    "targets": [
-      {
-        "Name": "gaiadimension:murky_grass"
+    "state_provider": {
+      "fallback": {
+        "type": "minecraft:simple_state_provider",
+        "state": {
+          "Name": "gaiadimension:impure_sludge"
+        }
       },
-      {
-        "Name": "gaiadimension:boggy_soil"
-      }
-    ]
-  },
-  "type": "gaiadimension:bog_patch"
+      "rules": []
+    },
+    "target": {
+      "type": "minecraft:matching_blocks",
+      "blocks": [
+        "gaiadimension:murky_grass",
+        "gaiadimension:boggy_soil"
+      ]
+    }
+  }
 }

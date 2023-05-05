@@ -1,13 +1,13 @@
 {
   "variants": {
-    "type=top": {
-      "model": "gaiadimension:block/cracked_jet_brick_slab_top"
-    },
     "type=bottom": {
       "model": "gaiadimension:block/cracked_jet_brick_slab"
     },
     "type=double": {
       "model": "gaiadimension:block/cracked_jet_bricks"
+    },
+    "type=top": {
+      "model": "gaiadimension:block/cracked_jet_brick_slab_top"
     }
   }
 }

@@ -1,9 +1,9 @@
 {
   "parent": "gaiadimension:block/util/grass_block",
   "textures": {
-    "top": "gaiadimension:block/soft_grass_top",
     "bottom": "gaiadimension:block/light_soil",
+    "overlay": "gaiadimension:block/soft_grass_overlay",
     "side": "gaiadimension:block/soft_grass_side",
-    "overlay": "gaiadimension:block/soft_grass_overlay"
+    "top": "gaiadimension:block/soft_grass_top"
   }
 }

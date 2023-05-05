@@ -1,12 +1,13 @@
 {
   "type": "minecraft:crafting_shapeless",
+  "category": "building",
   "ingredients": [
     {
       "item": "gaiadimension:diopside_block"
     }
   ],
   "result": {
-    "item": "gaiadimension:diopside",
-    "count": 9
+    "count": 9,
+    "item": "gaiadimension:diopside"
   }
 }

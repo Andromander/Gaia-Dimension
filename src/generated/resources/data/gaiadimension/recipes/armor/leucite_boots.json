@@ -1,15 +1,17 @@
 {
   "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "# #",
-    "# #"
-  ],
+  "category": "equipment",
   "key": {
     "#": {
       "item": "gaiadimension:leucite"
     }
   },
+  "pattern": [
+    "# #",
+    "# #"
+  ],
   "result": {
     "item": "gaiadimension:leucite_boots"
-  }
+  },
+  "show_notification": true
 }

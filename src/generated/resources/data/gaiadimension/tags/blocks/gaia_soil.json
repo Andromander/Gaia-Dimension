@@ -1,0 +1,9 @@
+{
+  "values": [
+    "gaiadimension:heavy_soil",
+    "gaiadimension:corrupt_soil",
+    "gaiadimension:boggy_soil",
+    "gaiadimension:light_soil",
+    "gaiadimension:aurum_soil"
+  ]
+}

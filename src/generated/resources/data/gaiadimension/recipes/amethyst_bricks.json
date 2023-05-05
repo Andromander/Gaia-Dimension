@@ -1,16 +1,18 @@
 {
   "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "##",
-    "##"
-  ],
+  "category": "building",
   "key": {
     "#": {
       "item": "gaiadimension:raw_amethyst"
     }
   },
+  "pattern": [
+    "##",
+    "##"
+  ],
   "result": {
-    "item": "gaiadimension:amethyst_bricks",
-    "count": 4
-  }
+    "count": 4,
+    "item": "gaiadimension:amethyst_bricks"
+  },
+  "show_notification": true
 }

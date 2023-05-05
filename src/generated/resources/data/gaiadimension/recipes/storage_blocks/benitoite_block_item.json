@@ -1,12 +1,13 @@
 {
   "type": "minecraft:crafting_shapeless",
+  "category": "building",
   "ingredients": [
     {
       "item": "gaiadimension:benitoite_block"
     }
   ],
   "result": {
-    "item": "gaiadimension:benitoite",
-    "count": 9
+    "count": 9,
+    "item": "gaiadimension:benitoite"
   }
 }

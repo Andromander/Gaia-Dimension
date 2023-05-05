@@ -1,16 +1,18 @@
 {
   "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "###",
-    "# #",
-    "# #"
-  ],
+  "category": "equipment",
   "key": {
     "#": {
       "item": "gaiadimension:diopside"
     }
   },
+  "pattern": [
+    "###",
+    "# #",
+    "# #"
+  ],
   "result": {
     "item": "gaiadimension:diopside_legs"
-  }
+  },
+  "show_notification": true
 }

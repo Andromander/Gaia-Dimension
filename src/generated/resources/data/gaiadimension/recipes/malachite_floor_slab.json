@@ -1,15 +1,17 @@
 {
   "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "###"
-  ],
+  "category": "building",
   "key": {
     "#": {
       "item": "gaiadimension:malachite_floor_tiles"
     }
   },
+  "pattern": [
+    "###"
+  ],
   "result": {
-    "item": "gaiadimension:malachite_floor_slab",
-    "count": 6
-  }
+    "count": 6,
+    "item": "gaiadimension:malachite_floor_slab"
+  },
+  "show_notification": true
 }

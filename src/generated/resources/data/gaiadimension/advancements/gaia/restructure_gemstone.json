@@ -1,83 +1,7 @@
 {
   "parent": "gaiadimension:gaia/collect_gemstone",
-  "display": {
-    "icon": {
-      "item": "gaiadimension:ixiolite"
-    },
-    "title": {
-      "translate": "advancements.gaia.restructure_gemstone.title"
-    },
-    "description": {
-      "translate": "advancements.gaia.restructure_gemstone.description"
-    },
-    "frame": "task",
-    "show_toast": true,
-    "announce_to_chat": true,
-    "hidden": false
-  },
   "criteria": {
-    "get_ixiolite": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "items": [
-              "gaiadimension:ixiolite"
-            ]
-          }
-        ]
-      }
-    },
-    "get_proustite": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "items": [
-              "gaiadimension:proustite"
-            ]
-          }
-        ]
-      }
-    },
-    "get_euclase": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "items": [
-              "gaiadimension:euclase"
-            ]
-          }
-        ]
-      }
-    },
-    "get_leucite": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "items": [
-              "gaiadimension:leucite"
-            ]
-          }
-        ]
-      }
-    },
-    "get_carnelian": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "items": [
-              "gaiadimension:carnelian"
-            ]
-          }
-        ]
-      }
-    },
     "get_benitoite": {
-      "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
@@ -86,22 +10,22 @@
             ]
           }
         ]
-      }
+      },
+      "trigger": "minecraft:inventory_changed"
     },
-    "get_diopside": {
-      "trigger": "minecraft:inventory_changed",
+    "get_carnelian": {
       "conditions": {
         "items": [
           {
             "items": [
-              "gaiadimension:diopside"
+              "gaiadimension:carnelian"
             ]
           }
         ]
-      }
+      },
+      "trigger": "minecraft:inventory_changed"
     },
     "get_chalcedony": {
-      "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
@@ -110,10 +34,70 @@
             ]
           }
         ]
-      }
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "get_diopside": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "gaiadimension:diopside"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "get_euclase": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "gaiadimension:euclase"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "get_ixiolite": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "gaiadimension:ixiolite"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "get_leucite": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "gaiadimension:leucite"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "get_proustite": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "gaiadimension:proustite"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
     },
     "get_tektite": {
-      "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
@@ -122,7 +106,23 @@
             ]
           }
         ]
-      }
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancements.gaia.restructure_gemstone.description"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "gaiadimension:ixiolite"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.gaia.restructure_gemstone.title"
     }
   },
   "requirements": [

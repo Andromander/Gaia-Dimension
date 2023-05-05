@@ -1,8 +1,8 @@
 {
   "parent": "minecraft:block/outer_stairs",
   "textures": {
-    "side": "gaiadimension:block/burnt_planks",
     "bottom": "gaiadimension:block/burnt_planks",
+    "side": "gaiadimension:block/burnt_planks",
     "top": "gaiadimension:block/burnt_planks"
   }
 }

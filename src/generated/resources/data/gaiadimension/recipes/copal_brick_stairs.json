@@ -1,17 +1,19 @@
 {
   "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "#  ",
-    "## ",
-    "###"
-  ],
+  "category": "building",
   "key": {
     "#": {
       "item": "gaiadimension:copal_bricks"
     }
   },
+  "pattern": [
+    "#  ",
+    "## ",
+    "###"
+  ],
   "result": {
-    "item": "gaiadimension:copal_brick_stairs",
-    "count": 8
-  }
+    "count": 8,
+    "item": "gaiadimension:copal_brick_stairs"
+  },
+  "show_notification": true
 }

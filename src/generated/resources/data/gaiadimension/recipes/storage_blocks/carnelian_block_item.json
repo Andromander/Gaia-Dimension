@@ -1,12 +1,13 @@
 {
   "type": "minecraft:crafting_shapeless",
+  "category": "building",
   "ingredients": [
     {
       "item": "gaiadimension:carnelian_block"
     }
   ],
   "result": {
-    "item": "gaiadimension:carnelian",
-    "count": 9
+    "count": 9,
+    "item": "gaiadimension:carnelian"
   }
 }

@@ -1,15 +1,17 @@
 {
   "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "###",
-    "# #"
-  ],
+  "category": "equipment",
   "key": {
     "#": {
       "item": "gaiadimension:carnelian"
     }
   },
+  "pattern": [
+    "###",
+    "# #"
+  ],
   "result": {
     "item": "gaiadimension:carnelian_helmet"
-  }
+  },
+  "show_notification": true
 }

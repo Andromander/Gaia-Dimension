@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "gaiadimension:twined_thread"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "has_thread": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "gaiadimension:fine_thread"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_thread",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "gaiadimension:twined_thread"
+    ]
+  }
+}

@@ -1,15 +1,17 @@
 {
   "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "###"
-  ],
+  "category": "building",
   "key": {
     "#": {
       "item": "gaiadimension:malachite_crusted_bricks"
     }
   },
+  "pattern": [
+    "###"
+  ],
   "result": {
-    "item": "gaiadimension:malachite_crusted_brick_slab",
-    "count": 6
-  }
+    "count": 6,
+    "item": "gaiadimension:malachite_crusted_brick_slab"
+  },
+  "show_notification": true
 }

@@ -1,23 +1,25 @@
 {
   "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "#": {
+      "item": "gaiadimension:sturdy_pebble"
+    },
+    "%": {
+      "item": "gaiadimension:agate_fabric"
+    },
+    "/": {
+      "item": "gaiadimension:agate_stick"
+    }
+  },
   "pattern": [
     "#",
     "/",
     "%"
   ],
-  "key": {
-    "#": {
-      "item": "gaiadimension:sturdy_pebble"
-    },
-    "/": {
-      "item": "gaiadimension:agate_stick"
-    },
-    "%": {
-      "item": "gaiadimension:agate_fabric"
-    }
-  },
   "result": {
-    "item": "gaiadimension:agate_arrow",
-    "count": 4
-  }
+    "count": 4,
+    "item": "gaiadimension:agate_arrow"
+  },
+  "show_notification": true
 }

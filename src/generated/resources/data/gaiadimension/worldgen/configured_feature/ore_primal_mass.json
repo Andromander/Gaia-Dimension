@@ -1,18 +1,18 @@
 {
+  "type": "minecraft:ore",
   "config": {
+    "discard_chance_on_air_exposure": 0.0,
+    "size": 33,
     "targets": [
       {
-        "target": {
-          "block": "gaiadimension:gaia_stone",
-          "predicate_type": "minecraft:block_match"
-        },
         "state": {
           "Name": "gaiadimension:primal_mass"
+        },
+        "target": {
+          "predicate_type": "minecraft:tag_match",
+          "tag": "gaiadimension:base_stone_gaia"
         }
       }
-    ],
-    "size": 33,
-    "discard_chance_on_air_exposure": 0.0
-  },
-  "type": "minecraft:ore"
+    ]
+  }
 }

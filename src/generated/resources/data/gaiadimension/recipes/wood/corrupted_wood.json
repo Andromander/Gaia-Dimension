@@ -1,16 +1,18 @@
 {
   "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "##",
-    "##"
-  ],
+  "category": "building",
   "key": {
     "#": {
       "item": "gaiadimension:corrupted_log"
     }
   },
+  "pattern": [
+    "##",
+    "##"
+  ],
   "result": {
-    "item": "gaiadimension:corrupted_wood",
-    "count": 3
-  }
+    "count": 3,
+    "item": "gaiadimension:corrupted_wood"
+  },
+  "show_notification": true
 }

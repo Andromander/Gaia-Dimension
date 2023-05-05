@@ -5,12 +5,12 @@
       "type": "minecraft:in_square"
     },
     {
-      "heightmap": "MOTION_BLOCKING",
-      "type": "minecraft:heightmap"
+      "type": "minecraft:heightmap",
+      "heightmap": "MOTION_BLOCKING"
     },
     {
-      "chance": 2,
-      "type": "minecraft:rarity_filter"
+      "type": "minecraft:rarity_filter",
+      "chance": 2
     },
     {
       "type": "minecraft:biome"

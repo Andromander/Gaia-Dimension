@@ -2,8 +2,12 @@
   "type": "minecraft:block",
   "pools": [
     {
-      "rolls": 1.0,
       "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
+        }
+      ],
       "entries": [
         {
           "type": "minecraft:item",
@@ -14,44 +18,40 @@
             },
             {
               "function": "minecraft:copy_nbt",
-              "source": "block_entity",
               "ops": [
                 {
+                  "op": "replace",
                   "source": "Lock",
-                  "target": "BlockEntityTag.Lock",
-                  "op": "replace"
+                  "target": "BlockEntityTag.Lock"
                 },
                 {
+                  "op": "replace",
                   "source": "LootTable",
-                  "target": "BlockEntityTag.LootTable",
-                  "op": "replace"
+                  "target": "BlockEntityTag.LootTable"
                 },
                 {
+                  "op": "replace",
                   "source": "LootTableSeed",
-                  "target": "BlockEntityTag.LootTableSeed",
-                  "op": "replace"
+                  "target": "BlockEntityTag.LootTableSeed"
                 }
-              ]
+              ],
+              "source": "block_entity"
             },
             {
-              "function": "minecraft:set_contents",
               "type": "gaiadimension:small_crate",
               "entries": [
                 {
                   "type": "minecraft:dynamic",
                   "name": "minecraft:contents"
                 }
-              ]
+              ],
+              "function": "minecraft:set_contents"
             }
           ],
           "name": "gaiadimension:crude_storage_crate"
         }
       ],
-      "conditions": [
-        {
-          "condition": "minecraft:survives_explosion"
-        }
-      ]
+      "rolls": 1.0
     }
   ]
 }

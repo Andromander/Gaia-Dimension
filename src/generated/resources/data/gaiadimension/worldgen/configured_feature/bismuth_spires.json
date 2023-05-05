@@ -1,6 +1,6 @@
 {
+  "type": "gaiadimension:bismuth_spire",
   "config": {
     "start_height": 7
-  },
-  "type": "gaiadimension:bismuth_spire"
+  }
 }

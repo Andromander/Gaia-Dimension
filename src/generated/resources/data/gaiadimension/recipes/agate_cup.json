@@ -1,16 +1,18 @@
 {
   "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "# #",
-    " # "
-  ],
+  "category": "misc",
   "key": {
     "#": {
       "tag": "gaiadimension:agate_tiles"
     }
   },
+  "pattern": [
+    "# #",
+    " # "
+  ],
   "result": {
-    "item": "gaiadimension:agate_cup",
-    "count": 8
-  }
+    "count": 8,
+    "item": "gaiadimension:agate_cup"
+  },
+  "show_notification": true
 }

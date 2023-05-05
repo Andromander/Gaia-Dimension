@@ -1,12 +1,13 @@
 {
   "type": "minecraft:crafting_shapeless",
+  "category": "building",
   "ingredients": [
     {
       "item": "gaiadimension:chalcedony_block"
     }
   ],
   "result": {
-    "item": "gaiadimension:chalcedony",
-    "count": 9
+    "count": 9,
+    "item": "gaiadimension:chalcedony"
   }
 }

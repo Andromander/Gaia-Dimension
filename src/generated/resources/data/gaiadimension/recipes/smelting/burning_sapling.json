@@ -1,9 +1,10 @@
 {
   "type": "minecraft:smelting",
+  "category": "blocks",
+  "cookingtime": 200,
+  "experience": 0.1,
   "ingredient": {
     "item": "gaiadimension:burnt_sapling"
   },
-  "result": "gaiadimension:burning_sapling",
-  "experience": 0.1,
-  "cookingtime": 200
+  "result": "gaiadimension:burning_sapling"
 }

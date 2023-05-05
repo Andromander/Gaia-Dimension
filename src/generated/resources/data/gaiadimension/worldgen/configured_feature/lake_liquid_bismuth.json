@@ -1,11 +1,11 @@
 {
+  "type": "gaiadimension:pool",
   "config": {
     "state": {
+      "Name": "gaiadimension:liquid_bismuth",
       "Properties": {
         "level": "0"
-      },
-      "Name": "gaiadimension:liquid_bismuth"
+      }
     }
-  },
-  "type": "gaiadimension:pool"
+  }
 }

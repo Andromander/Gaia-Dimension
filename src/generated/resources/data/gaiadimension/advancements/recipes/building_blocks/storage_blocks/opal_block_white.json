@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "gaiadimension:storage_blocks/opal_block_white"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "has_white_opal": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "gaiadimension:white_opal"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_white_opal",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "gaiadimension:storage_blocks/opal_block_white"
+    ]
+  }
+}

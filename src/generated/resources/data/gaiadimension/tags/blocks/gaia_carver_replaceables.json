@@ -1,0 +1,12 @@
+{
+  "values": [
+    "#gaiadimension:gaia_grass",
+    "#gaiadimension:gaia_soil",
+    "gaiadimension:saltstone",
+    "gaiadimension:gaia_stone",
+    "gaiadimension:wasteland_stone",
+    "gaiadimension:volcanic_rock",
+    "gaiadimension:primal_mass",
+    "gaiadimension:nexustone"
+  ]
+}

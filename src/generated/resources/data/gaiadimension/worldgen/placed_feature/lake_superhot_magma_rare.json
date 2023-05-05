@@ -2,54 +2,54 @@
   "feature": "gaiadimension:lake_superhot_magma",
   "placement": [
     {
-      "chance": 80,
-      "type": "minecraft:rarity_filter"
+      "type": "minecraft:rarity_filter",
+      "chance": 80
     },
     {
       "type": "minecraft:in_square"
     },
     {
+      "type": "minecraft:height_range",
       "height": {
-        "min_inclusive": {
-          "above_bottom": 0
-        },
+        "type": "minecraft:biased_to_bottom",
+        "inner": 8,
         "max_inclusive": {
           "below_top": 0
         },
-        "inner": 8,
-        "type": "minecraft:biased_to_bottom"
-      },
-      "type": "minecraft:height_range"
+        "min_inclusive": {
+          "above_bottom": 0
+        }
+      }
     },
     {
+      "type": "minecraft:environment_scan",
       "direction_of_search": "down",
+      "max_steps": 32,
       "target_condition": {
+        "type": "minecraft:all_of",
         "predicates": [
           {
+            "type": "minecraft:not",
             "predicate": {
-              "blocks": "minecraft:air",
-              "type": "minecraft:matching_blocks"
-            },
-            "type": "minecraft:not"
+              "type": "minecraft:matching_blocks",
+              "blocks": "minecraft:air"
+            }
           },
           {
+            "type": "minecraft:inside_world_bounds",
             "offset": [
               0,
               -5,
               0
-            ],
-            "type": "minecraft:inside_world_bounds"
+            ]
           }
-        ],
-        "type": "minecraft:all_of"
-      },
-      "max_steps": 32,
-      "type": "minecraft:environment_scan"
+        ]
+      }
     },
     {
+      "type": "minecraft:surface_relative_threshold_filter",
       "heightmap": "OCEAN_FLOOR_WG",
-      "max_inclusive": -5,
-      "type": "minecraft:surface_relative_threshold_filter"
+      "max_inclusive": -5
     },
     {
       "type": "minecraft:biome"

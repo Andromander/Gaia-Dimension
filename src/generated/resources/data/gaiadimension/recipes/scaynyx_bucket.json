@@ -1,15 +1,17 @@
 {
   "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "# #",
-    " # "
-  ],
+  "category": "equipment",
   "key": {
     "#": {
       "item": "gaiadimension:scaynyx_ingot"
     }
   },
+  "pattern": [
+    "# #",
+    " # "
+  ],
   "result": {
     "item": "gaiadimension:scaynyx_bucket"
-  }
+  },
+  "show_notification": true
 }

@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:block/cube_column",
   "textures": {
-    "side": "gaiadimension:block/golden_log_side",
-    "end": "gaiadimension:block/golden_log_side"
+    "end": "gaiadimension:block/golden_log_side",
+    "side": "gaiadimension:block/golden_log_side"
   }
 }

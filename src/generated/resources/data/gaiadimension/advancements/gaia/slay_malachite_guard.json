@@ -1,35 +1,35 @@
 {
   "parent": "gaiadimension:gaia/find_malachite_watchtower",
-  "display": {
-    "icon": {
-      "item": "gaiadimension:malachite_guard_baton",
-      "nbt": "{Damage:0}"
-    },
-    "title": {
-      "translate": "advancements.gaia.slay_malachite_guard.title"
-    },
-    "description": {
-      "translate": "advancements.gaia.slay_malachite_guard.description"
-    },
-    "frame": "goal",
-    "show_toast": true,
-    "announce_to_chat": true,
-    "hidden": false
-  },
   "criteria": {
     "malachite_guard": {
-      "trigger": "minecraft:player_killed_entity",
       "conditions": {
         "entity": [
           {
             "condition": "minecraft:entity_properties",
+            "entity": "this",
             "predicate": {
               "type": "gaiadimension:malachite_guard"
-            },
-            "entity": "this"
+            }
           }
         ]
-      }
+      },
+      "trigger": "minecraft:player_killed_entity"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancements.gaia.slay_malachite_guard.description"
+    },
+    "frame": "goal",
+    "hidden": false,
+    "icon": {
+      "item": "gaiadimension:malachite_guard_baton",
+      "nbt": "{Damage:0}"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.gaia.slay_malachite_guard.title"
     }
   },
   "requirements": [

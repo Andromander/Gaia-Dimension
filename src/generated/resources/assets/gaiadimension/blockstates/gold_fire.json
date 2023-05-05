@@ -6,6 +6,24 @@
     "age=1": {
       "model": "gaiadimension:block/gold_fire"
     },
+    "age=10": {
+      "model": "gaiadimension:block/gold_fire"
+    },
+    "age=11": {
+      "model": "gaiadimension:block/gold_fire"
+    },
+    "age=12": {
+      "model": "gaiadimension:block/gold_fire"
+    },
+    "age=13": {
+      "model": "gaiadimension:block/gold_fire"
+    },
+    "age=14": {
+      "model": "gaiadimension:block/gold_fire"
+    },
+    "age=15": {
+      "model": "gaiadimension:block/gold_fire"
+    },
     "age=2": {
       "model": "gaiadimension:block/gold_fire"
     },
@@ -28,24 +46,6 @@
       "model": "gaiadimension:block/gold_fire"
     },
     "age=9": {
-      "model": "gaiadimension:block/gold_fire"
-    },
-    "age=10": {
-      "model": "gaiadimension:block/gold_fire"
-    },
-    "age=11": {
-      "model": "gaiadimension:block/gold_fire"
-    },
-    "age=12": {
-      "model": "gaiadimension:block/gold_fire"
-    },
-    "age=13": {
-      "model": "gaiadimension:block/gold_fire"
-    },
-    "age=14": {
-      "model": "gaiadimension:block/gold_fire"
-    },
-    "age=15": {
       "model": "gaiadimension:block/gold_fire"
     }
   }

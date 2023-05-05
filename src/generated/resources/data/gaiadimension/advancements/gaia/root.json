@@ -1,26 +1,26 @@
 {
+  "criteria": {
+    "entered_gaia": {
+      "conditions": {
+        "to": "gaiadimension:gaia_dimension"
+      },
+      "trigger": "minecraft:changed_dimension"
+    }
+  },
   "display": {
-    "icon": {
-      "item": "gaiadimension:keystone_block"
-    },
-    "title": {
-      "translate": "advancements.gaia.root.title"
-    },
+    "announce_to_chat": true,
+    "background": "gaiadimension:textures/block/gaia_stone.png",
     "description": {
       "translate": "advancements.gaia.root.description"
     },
     "frame": "task",
-    "show_toast": true,
-    "announce_to_chat": true,
     "hidden": false,
-    "background": "gaiadimension:textures/block/gaia_stone.png"
-  },
-  "criteria": {
-    "entered_gaia": {
-      "trigger": "minecraft:changed_dimension",
-      "conditions": {
-        "to": "gaiadimension:gaia_dimension"
-      }
+    "icon": {
+      "item": "gaiadimension:keystone_block"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.gaia.root.title"
     }
   },
   "requirements": [

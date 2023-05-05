@@ -2,16 +2,16 @@
   "feature": "gaiadimension:small_golden_tree_vines",
   "placement": [
     {
+      "type": "minecraft:block_predicate_filter",
       "predicate": {
+        "type": "minecraft:would_survive",
         "state": {
+          "Name": "gaiadimension:golden_sapling",
           "Properties": {
             "stage": "0"
-          },
-          "Name": "gaiadimension:golden_sapling"
-        },
-        "type": "minecraft:would_survive"
-      },
-      "type": "minecraft:block_predicate_filter"
+          }
+        }
+      }
     }
   ]
 }

@@ -1,11 +1,11 @@
 {
+  "type": "gaiadimension:pool",
   "config": {
     "state": {
+      "Name": "gaiadimension:liquid_aura",
       "Properties": {
         "level": "0"
-      },
-      "Name": "gaiadimension:liquid_aura"
+      }
     }
-  },
-  "type": "gaiadimension:pool"
+  }
 }

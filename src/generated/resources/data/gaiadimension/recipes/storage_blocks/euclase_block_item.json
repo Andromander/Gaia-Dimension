@@ -1,12 +1,13 @@
 {
   "type": "minecraft:crafting_shapeless",
+  "category": "building",
   "ingredients": [
     {
       "item": "gaiadimension:euclase_block"
     }
   ],
   "result": {
-    "item": "gaiadimension:euclase",
-    "count": 9
+    "count": 9,
+    "item": "gaiadimension:euclase"
   }
 }

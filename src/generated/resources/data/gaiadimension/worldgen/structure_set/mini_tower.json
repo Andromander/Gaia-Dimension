@@ -1,14 +1,14 @@
 {
+  "placement": {
+    "type": "minecraft:random_spread",
+    "salt": 420,
+    "separation": 10,
+    "spacing": 30
+  },
   "structures": [
     {
       "structure": "gaiadimension:mini_tower",
       "weight": 1
     }
-  ],
-  "placement": {
-    "salt": 420,
-    "spacing": 30,
-    "separation": 10,
-    "type": "minecraft:random_spread"
-  }
+  ]
 }

@@ -1,9 +1,10 @@
 {
   "type": "minecraft:smelting",
+  "category": "misc",
+  "cookingtime": 200,
+  "experience": 0.1,
   "ingredient": {
     "item": "gaiadimension:goldstone_dust"
   },
-  "result": "gaiadimension:goldstone_residue",
-  "experience": 0.1,
-  "cookingtime": 200
+  "result": "gaiadimension:goldstone_residue"
 }

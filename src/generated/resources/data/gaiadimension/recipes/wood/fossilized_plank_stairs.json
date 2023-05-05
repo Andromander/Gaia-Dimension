@@ -1,17 +1,19 @@
 {
   "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "#  ",
-    "## ",
-    "###"
-  ],
+  "category": "building",
   "key": {
     "#": {
       "item": "gaiadimension:fossilized_planks"
     }
   },
+  "pattern": [
+    "#  ",
+    "## ",
+    "###"
+  ],
   "result": {
-    "item": "gaiadimension:fossilized_plank_stairs",
-    "count": 8
-  }
+    "count": 8,
+    "item": "gaiadimension:fossilized_plank_stairs"
+  },
+  "show_notification": true
 }

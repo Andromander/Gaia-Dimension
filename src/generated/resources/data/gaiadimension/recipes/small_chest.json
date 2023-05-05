@@ -1,16 +1,18 @@
 {
   "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "###",
-    "# #",
-    "###"
-  ],
+  "category": "misc",
   "key": {
     "#": {
       "tag": "gaiadimension:agate_tiles"
     }
   },
+  "pattern": [
+    "###",
+    "# #",
+    "###"
+  ],
   "result": {
     "item": "gaiadimension:crude_storage_crate"
-  }
+  },
+  "show_notification": true
 }

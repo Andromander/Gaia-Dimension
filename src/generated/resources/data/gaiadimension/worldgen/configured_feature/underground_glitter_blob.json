@@ -1,4 +1,4 @@
 {
-  "config": {},
-  "type": "gaiadimension:frail_blob"
+  "type": "gaiadimension:frail_blob",
+  "config": {}
 }

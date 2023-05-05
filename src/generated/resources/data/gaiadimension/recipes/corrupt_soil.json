@@ -1,19 +1,21 @@
 {
   "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "#": {
+      "item": "gaiadimension:heavy_soil"
+    },
+    "/": {
+      "item": "gaiadimension:goldstone_residue"
+    }
+  },
   "pattern": [
     "///",
     "/#/",
     "///"
   ],
-  "key": {
-    "/": {
-      "item": "gaiadimension:goldstone_residue"
-    },
-    "#": {
-      "item": "gaiadimension:heavy_soil"
-    }
-  },
   "result": {
     "item": "gaiadimension:corrupt_soil"
-  }
+  },
+  "show_notification": true
 }

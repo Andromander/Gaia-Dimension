@@ -1,51 +1,7 @@
 {
   "parent": "gaiadimension:gaia/get_tool",
-  "display": {
-    "icon": {
-      "item": "gaiadimension:chalcedony_sword",
-      "nbt": "{Damage:0}"
-    },
-    "title": {
-      "translate": "advancements.gaia.get_all_tools.title"
-    },
-    "description": {
-      "translate": "advancements.gaia.get_all_tools.description"
-    },
-    "frame": "challenge",
-    "show_toast": true,
-    "announce_to_chat": true,
-    "hidden": false
-  },
-  "rewards": {
-    "experience": 500
-  },
   "criteria": {
-    "agate_sword": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "items": [
-              "gaiadimension:agate_sword"
-            ]
-          }
-        ]
-      }
-    },
-    "agate_pickaxe": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "items": [
-              "gaiadimension:agate_pickaxe"
-            ]
-          }
-        ]
-      }
-    },
     "agate_axe": {
-      "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
@@ -54,10 +10,22 @@
             ]
           }
         ]
-      }
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "agate_pickaxe": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "gaiadimension:agate_pickaxe"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
     },
     "agate_shovel": {
-      "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
@@ -66,226 +34,22 @@
             ]
           }
         ]
-      }
+      },
+      "trigger": "minecraft:inventory_changed"
     },
-    "sugilite_sword": {
-      "trigger": "minecraft:inventory_changed",
+    "agate_sword": {
       "conditions": {
         "items": [
           {
             "items": [
-              "gaiadimension:sugilite_sword"
+              "gaiadimension:agate_sword"
             ]
           }
         ]
-      }
-    },
-    "sugilite_pickaxe": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "items": [
-              "gaiadimension:sugilite_pickaxe"
-            ]
-          }
-        ]
-      }
-    },
-    "sugilite_axe": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "items": [
-              "gaiadimension:sugilite_axe"
-            ]
-          }
-        ]
-      }
-    },
-    "sugilite_shovel": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "items": [
-              "gaiadimension:sugilite_shovel"
-            ]
-          }
-        ]
-      }
-    },
-    "ixiolite_sword": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "items": [
-              "gaiadimension:ixiolite_sword"
-            ]
-          }
-        ]
-      }
-    },
-    "ixiolite_pickaxe": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "items": [
-              "gaiadimension:ixiolite_pickaxe"
-            ]
-          }
-        ]
-      }
-    },
-    "ixiolite_axe": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "items": [
-              "gaiadimension:ixiolite_axe"
-            ]
-          }
-        ]
-      }
-    },
-    "ixiolite_shovel": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "items": [
-              "gaiadimension:ixiolite_shovel"
-            ]
-          }
-        ]
-      }
-    },
-    "euclase_sword": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "items": [
-              "gaiadimension:euclase_sword"
-            ]
-          }
-        ]
-      }
-    },
-    "euclase_pickaxe": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "items": [
-              "gaiadimension:euclase_pickaxe"
-            ]
-          }
-        ]
-      }
-    },
-    "euclase_axe": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "items": [
-              "gaiadimension:euclase_axe"
-            ]
-          }
-        ]
-      }
-    },
-    "euclase_shovel": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "items": [
-              "gaiadimension:euclase_shovel"
-            ]
-          }
-        ]
-      }
-    },
-    "carnelian_sword": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "items": [
-              "gaiadimension:carnelian_sword"
-            ]
-          }
-        ]
-      }
-    },
-    "carnelian_pickaxe": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "items": [
-              "gaiadimension:carnelian_pickaxe"
-            ]
-          }
-        ]
-      }
-    },
-    "carnelian_axe": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "items": [
-              "gaiadimension:carnelian_axe"
-            ]
-          }
-        ]
-      }
-    },
-    "carnelian_shovel": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "items": [
-              "gaiadimension:carnelian_shovel"
-            ]
-          }
-        ]
-      }
-    },
-    "benitoite_sword": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "items": [
-              "gaiadimension:benitoite_sword"
-            ]
-          }
-        ]
-      }
-    },
-    "benitoite_pickaxe": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "items": [
-              "gaiadimension:benitoite_pickaxe"
-            ]
-          }
-        ]
-      }
+      },
+      "trigger": "minecraft:inventory_changed"
     },
     "benitoite_axe": {
-      "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
@@ -294,10 +58,22 @@
             ]
           }
         ]
-      }
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "benitoite_pickaxe": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "gaiadimension:benitoite_pickaxe"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
     },
     "benitoite_shovel": {
-      "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
@@ -306,34 +82,70 @@
             ]
           }
         ]
-      }
+      },
+      "trigger": "minecraft:inventory_changed"
     },
-    "chalcedony_sword": {
-      "trigger": "minecraft:inventory_changed",
+    "benitoite_sword": {
       "conditions": {
         "items": [
           {
             "items": [
-              "gaiadimension:chalcedony_sword"
+              "gaiadimension:benitoite_sword"
             ]
           }
         ]
-      }
+      },
+      "trigger": "minecraft:inventory_changed"
     },
-    "chalcedony_pickaxe": {
-      "trigger": "minecraft:inventory_changed",
+    "carnelian_axe": {
       "conditions": {
         "items": [
           {
             "items": [
-              "gaiadimension:chalcedony_pickaxe"
+              "gaiadimension:carnelian_axe"
             ]
           }
         ]
-      }
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "carnelian_pickaxe": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "gaiadimension:carnelian_pickaxe"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "carnelian_shovel": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "gaiadimension:carnelian_shovel"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "carnelian_sword": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "gaiadimension:carnelian_sword"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
     },
     "chalcedony_axe": {
-      "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
@@ -342,10 +154,22 @@
             ]
           }
         ]
-      }
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "chalcedony_pickaxe": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "gaiadimension:chalcedony_pickaxe"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
     },
     "chalcedony_shovel": {
-      "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
@@ -354,7 +178,180 @@
             ]
           }
         ]
-      }
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "chalcedony_sword": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "gaiadimension:chalcedony_sword"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "euclase_axe": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "gaiadimension:euclase_axe"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "euclase_pickaxe": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "gaiadimension:euclase_pickaxe"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "euclase_shovel": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "gaiadimension:euclase_shovel"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "euclase_sword": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "gaiadimension:euclase_sword"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "ixiolite_axe": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "gaiadimension:ixiolite_axe"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "ixiolite_pickaxe": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "gaiadimension:ixiolite_pickaxe"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "ixiolite_shovel": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "gaiadimension:ixiolite_shovel"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "ixiolite_sword": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "gaiadimension:ixiolite_sword"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "sugilite_axe": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "gaiadimension:sugilite_axe"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "sugilite_pickaxe": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "gaiadimension:sugilite_pickaxe"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "sugilite_shovel": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "gaiadimension:sugilite_shovel"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "sugilite_sword": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "gaiadimension:sugilite_sword"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancements.gaia.get_all_tools.description"
+    },
+    "frame": "challenge",
+    "hidden": false,
+    "icon": {
+      "item": "gaiadimension:chalcedony_sword",
+      "nbt": "{Damage:0}"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.gaia.get_all_tools.title"
     }
   },
   "requirements": [
@@ -442,5 +439,8 @@
     [
       "chalcedony_shovel"
     ]
-  ]
+  ],
+  "rewards": {
+    "experience": 500
+  }
 }

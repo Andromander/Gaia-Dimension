@@ -1,24 +1,29 @@
 {
+  "type": "gaiadimension:bog_patch",
   "config": {
-    "state": {
-      "Name": "gaiadimension:aurum_mud"
-    },
+    "half_height": 3,
     "radius": {
       "type": "minecraft:uniform",
       "value": {
-        "min_inclusive": 3,
-        "max_inclusive": 4
+        "max_inclusive": 4,
+        "min_inclusive": 3
       }
     },
-    "half_height": 3,
-    "targets": [
-      {
-        "Name": "gaiadimension:gilded_grass"
+    "state_provider": {
+      "fallback": {
+        "type": "minecraft:simple_state_provider",
+        "state": {
+          "Name": "gaiadimension:aurum_mud"
+        }
       },
-      {
-        "Name": "gaiadimension:aurum_soil"
-      }
-    ]
-  },
-  "type": "gaiadimension:bog_patch"
+      "rules": []
+    },
+    "target": {
+      "type": "minecraft:matching_blocks",
+      "blocks": [
+        "gaiadimension:gilded_grass",
+        "gaiadimension:aurum_soil"
+      ]
+    }
+  }
 }

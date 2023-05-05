@@ -1,4 +1,4 @@
 {
-  "config": {},
-  "type": "gaiadimension:aura_shoot"
+  "type": "gaiadimension:aura_shoot",
+  "config": {}
 }

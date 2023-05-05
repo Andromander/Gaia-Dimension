@@ -5,6 +5,21 @@
       "gaiadimension:chasms"
     ]
   },
+  "downfall": 0.0,
+  "effects": {
+    "fog_color": 8284598,
+    "foliage_color": 1118482,
+    "grass_color": 2500135,
+    "mood_sound": {
+      "block_search_extent": 8,
+      "offset": 2.0,
+      "sound": "minecraft:ambient.cave",
+      "tick_delay": 6000
+    },
+    "sky_color": 3287859,
+    "water_color": 7117233,
+    "water_fog_color": 9617108
+  },
   "features": [
     [],
     [
@@ -37,91 +52,74 @@
       "gaiadimension:crystal_fungi_caves"
     ]
   ],
+  "has_precipitation": false,
+  "spawn_costs": {},
   "spawners": {
-    "monster": [
-      {
-        "type": "gaiadimension:cavern_tick",
-        "weight": 65,
-        "minCount": 2,
-        "maxCount": 4
-      },
-      {
-        "type": "gaiadimension:shalurker",
-        "weight": 65,
-        "minCount": 2,
-        "maxCount": 4
-      },
-      {
-        "type": "gaiadimension:archaic_warrior",
-        "weight": 65,
-        "minCount": 2,
-        "maxCount": 4
-      },
-      {
-        "type": "gaiadimension:muckling",
-        "weight": 65,
-        "minCount": 2,
-        "maxCount": 4
-      },
-      {
-        "type": "minecraft:enderman",
-        "weight": 5,
-        "minCount": 1,
-        "maxCount": 2
-      },
-      {
-        "type": "gaiadimension:primal_beast",
-        "weight": 15,
-        "minCount": 1,
-        "maxCount": 2
-      }
-    ],
+    "ambient": [],
+    "axolotls": [],
     "creature": [
       {
         "type": "gaiadimension:nomadic_lagrahk",
-        "weight": 15,
+        "maxCount": 1,
         "minCount": 1,
-        "maxCount": 1
+        "weight": 15
       },
       {
         "type": "gaiadimension:bismuth_uletrus",
-        "weight": 20,
+        "maxCount": 3,
         "minCount": 2,
-        "maxCount": 3
+        "weight": 20
       }
     ],
-    "ambient": [],
-    "axolotls": [],
+    "misc": [],
+    "monster": [
+      {
+        "type": "gaiadimension:cavern_tick",
+        "maxCount": 4,
+        "minCount": 2,
+        "weight": 65
+      },
+      {
+        "type": "gaiadimension:shalurker",
+        "maxCount": 4,
+        "minCount": 2,
+        "weight": 65
+      },
+      {
+        "type": "gaiadimension:archaic_warrior",
+        "maxCount": 4,
+        "minCount": 2,
+        "weight": 65
+      },
+      {
+        "type": "gaiadimension:muckling",
+        "maxCount": 4,
+        "minCount": 2,
+        "weight": 65
+      },
+      {
+        "type": "minecraft:enderman",
+        "maxCount": 2,
+        "minCount": 1,
+        "weight": 5
+      },
+      {
+        "type": "gaiadimension:primal_beast",
+        "maxCount": 2,
+        "minCount": 1,
+        "weight": 15
+      }
+    ],
     "underground_water_creature": [],
+    "water_ambient": [],
     "water_creature": [
       {
         "type": "gaiadimension:shallow_arenthis",
-        "weight": 10,
+        "maxCount": 4,
         "minCount": 2,
-        "maxCount": 4
+        "weight": 10
       }
-    ],
-    "water_ambient": [],
-    "misc": []
+    ]
   },
-  "spawn_costs": {},
-  "forge:registry_name": "gaiadimension:smoldering_bog",
-  "precipitation": "none",
-  "temperature": 0.9,
-  "downfall": 0.0,
-  "category": "none",
-  "effects": {
-    "mood_sound": {
-      "sound": "minecraft:ambient.cave",
-      "tick_delay": 6000,
-      "block_search_extent": 8,
-      "offset": 2.0
-    },
-    "sky_color": 3287859,
-    "foliage_color": 1118482,
-    "grass_color": 2500135,
-    "fog_color": 8284598,
-    "water_color": 7117233,
-    "water_fog_color": 9617108
-  }
+  "temperature": 0.9
 }

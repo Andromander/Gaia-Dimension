@@ -1,10 +1,6 @@
 {
   "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "#",
-    "#",
-    "/"
-  ],
+  "category": "equipment",
   "key": {
     "#": {
       "item": "gaiadimension:chalcedony"
@@ -13,7 +9,13 @@
       "item": "gaiadimension:agate_stick"
     }
   },
+  "pattern": [
+    "#",
+    "#",
+    "/"
+  ],
   "result": {
     "item": "gaiadimension:chalcedony_sword"
-  }
+  },
+  "show_notification": true
 }

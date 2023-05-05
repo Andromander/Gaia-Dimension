@@ -1,9 +1,10 @@
 {
   "type": "minecraft:smelting",
+  "category": "misc",
+  "cookingtime": 200,
+  "experience": 0.25,
   "ingredient": {
     "item": "minecraft:redstone"
   },
-  "result": "gaiadimension:crystallized_redstone",
-  "experience": 0.25,
-  "cookingtime": 200
+  "result": "gaiadimension:crystallized_redstone"
 }

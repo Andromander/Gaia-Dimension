@@ -1,8 +1,8 @@
 {
+  "type": "gaiadimension:terrain_spike",
   "config": {
     "state": {
       "Name": "gaiadimension:brilliant_stone"
     }
-  },
-  "type": "gaiadimension:terrain_spike"
+  }
 }

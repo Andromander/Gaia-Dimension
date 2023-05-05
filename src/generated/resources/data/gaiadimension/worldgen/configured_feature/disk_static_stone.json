@@ -1,21 +1,26 @@
 {
+  "type": "minecraft:disk",
   "config": {
-    "state": {
-      "Name": "gaiadimension:static_stone"
-    },
+    "half_height": 3,
     "radius": {
       "type": "minecraft:uniform",
       "value": {
-        "min_inclusive": 2,
-        "max_inclusive": 4
+        "max_inclusive": 4,
+        "min_inclusive": 2
       }
     },
-    "half_height": 3,
-    "targets": [
-      {
-        "Name": "gaiadimension:wasteland_stone"
-      }
-    ]
-  },
-  "type": "gaiadimension:gaia_disk"
+    "state_provider": {
+      "fallback": {
+        "type": "minecraft:simple_state_provider",
+        "state": {
+          "Name": "gaiadimension:static_stone"
+        }
+      },
+      "rules": []
+    },
+    "target": {
+      "type": "minecraft:matching_blocks",
+      "blocks": "gaiadimension:wasteland_stone"
+    }
+  }
 }

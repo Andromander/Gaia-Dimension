@@ -2,11 +2,11 @@
   "parent": "minecraft:block/cube",
   "textures": {
     "down": "gaiadimension:block/bismuth_block",
-    "up": "gaiadimension:block/geyser_block_top",
-    "north": "gaiadimension:block/geyser_block_side",
-    "south": "gaiadimension:block/geyser_block_side",
     "east": "gaiadimension:block/geyser_block_side",
-    "west": "gaiadimension:block/geyser_block_side",
-    "particle": "gaiadimension:block/geyser_block_side"
+    "north": "gaiadimension:block/geyser_block_side",
+    "particle": "gaiadimension:block/geyser_block_side",
+    "south": "gaiadimension:block/geyser_block_side",
+    "up": "gaiadimension:block/geyser_block_top",
+    "west": "gaiadimension:block/geyser_block_side"
   }
 }

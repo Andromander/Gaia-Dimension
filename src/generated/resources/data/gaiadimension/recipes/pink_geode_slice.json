@@ -1,12 +1,13 @@
 {
   "type": "minecraft:crafting_shapeless",
+  "category": "misc",
   "ingredients": [
     {
       "item": "gaiadimension:pink_geode"
     }
   ],
   "result": {
-    "item": "gaiadimension:pink_geode_slice",
-    "count": 4
+    "count": 4,
+    "item": "gaiadimension:pink_geode_slice"
   }
 }

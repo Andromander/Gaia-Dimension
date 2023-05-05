@@ -1,181 +1,162 @@
 {
-  "type": {
-    "logical_height": 320,
-    "infiniburn": "#minecraft:infiniburn_overworld",
-    "effects": "gaiadimension:gaia",
-    "ambient_light": 0.0,
-    "respawn_anchor_works": true,
-    "has_raids": false,
-    "min_y": -64,
-    "height": 320,
-    "natural": true,
-    "coordinate_scale": 1.0,
-    "piglin_safe": false,
-    "bed_works": true,
-    "fixed_time": 6000,
-    "has_skylight": true,
-    "has_ceiling": false,
-    "ultrawarm": false
-  },
+  "type": "gaiadimension:gaia_dimension",
   "generator": {
-    "settings": "gaiadimension:gaia_noise",
-    "seed": 0,
+    "type": "gaiadimension:gaia_gen",
     "biome_source": {
-      "base_offset": 0.0,
+      "type": "gaiadimension:gaia_dimension",
       "base_factor": 1.0,
+      "base_offset": 0.0,
       "biomes": [
         {
+          "biome": "gaiadimension:blue_agate_taiga",
           "parameters": {
             "depth": 0.1,
             "scale": 0.2
-          },
-          "biome": "gaiadimension:blue_agate_taiga"
+          }
         },
         {
+          "biome": "gaiadimension:crystal_plains",
           "parameters": {
             "depth": 0.05,
             "scale": 0.05
-          },
-          "biome": "gaiadimension:crystal_plains"
+          }
         },
         {
+          "biome": "gaiadimension:fossil_woodland",
           "parameters": {
             "depth": 0.1,
             "scale": 0.05
-          },
-          "biome": "gaiadimension:fossil_woodland"
+          }
         },
         {
+          "biome": "gaiadimension:goldstone_lands",
           "parameters": {
             "depth": 0.125,
             "scale": 0.05
-          },
-          "biome": "gaiadimension:goldstone_lands"
+          }
         },
         {
+          "biome": "gaiadimension:green_agate_jungle",
           "parameters": {
             "depth": 0.1,
             "scale": 0.2
-          },
-          "biome": "gaiadimension:green_agate_jungle"
+          }
         },
         {
+          "biome": "gaiadimension:golden_forest",
           "parameters": {
             "depth": 0.35,
             "scale": 0.15
-          },
-          "biome": "gaiadimension:golden_forest"
+          }
         },
         {
+          "biome": "gaiadimension:golden_hills",
           "parameters": {
             "depth": 0.8,
             "scale": 0.5
-          },
-          "biome": "gaiadimension:golden_hills"
+          }
         },
         {
+          "biome": "gaiadimension:golden_marsh",
           "parameters": {
             "depth": 0.15,
             "scale": 0.05
-          },
-          "biome": "gaiadimension:golden_marsh"
+          }
         },
         {
+          "biome": "gaiadimension:golden_plains",
           "parameters": {
             "depth": 0.35,
             "scale": 0.1
-          },
-          "biome": "gaiadimension:golden_plains"
+          }
         },
         {
+          "biome": "gaiadimension:golden_sands",
           "parameters": {
             "depth": 0.25,
             "scale": 0.05
-          },
-          "biome": "gaiadimension:golden_sands"
+          }
         },
         {
+          "biome": "gaiadimension:mineral_reservoir",
           "parameters": {
             "depth": -1.8,
             "scale": 0.1
-          },
-          "biome": "gaiadimension:mineral_reservoir"
+          }
         },
         {
+          "biome": "gaiadimension:mineral_river",
           "parameters": {
             "depth": -0.8,
             "scale": 0.0
-          },
-          "biome": "gaiadimension:mineral_river"
+          }
         },
         {
+          "biome": "gaiadimension:mookaite_mesa",
           "parameters": {
             "depth": 2.0,
             "scale": 0.075
-          },
-          "biome": "gaiadimension:mookaite_mesa"
+          }
         },
         {
+          "biome": "gaiadimension:mutant_agate_wildwood",
           "parameters": {
             "depth": 0.1,
             "scale": 0.1
-          },
-          "biome": "gaiadimension:mutant_agate_wildwood"
+          }
         },
         {
+          "biome": "gaiadimension:pink_agate_forest",
           "parameters": {
             "depth": 0.1,
             "scale": 0.1
-          },
-          "biome": "gaiadimension:pink_agate_forest"
+          }
         },
         {
+          "biome": "gaiadimension:purple_agate_swamp",
           "parameters": {
             "depth": 0.0,
             "scale": 0.05
-          },
-          "biome": "gaiadimension:purple_agate_swamp"
+          }
         },
         {
+          "biome": "gaiadimension:salt_dunes",
           "parameters": {
             "depth": 0.2,
             "scale": 0.05
-          },
-          "biome": "gaiadimension:salt_dunes"
+          }
         },
         {
+          "biome": "gaiadimension:shining_grove",
           "parameters": {
             "depth": 0.4,
             "scale": 0.05
-          },
-          "biome": "gaiadimension:shining_grove"
+          }
         },
         {
+          "biome": "gaiadimension:smoldering_bog",
           "parameters": {
             "depth": 0.2,
             "scale": 0.02
-          },
-          "biome": "gaiadimension:smoldering_bog"
+          }
         },
         {
+          "biome": "gaiadimension:static_wasteland",
           "parameters": {
             "depth": 3.0,
             "scale": 0.05
-          },
-          "biome": "gaiadimension:static_wasteland"
+          }
         },
         {
+          "biome": "gaiadimension:volcanic_lands",
           "parameters": {
             "depth": 1.0,
             "scale": 0.7
-          },
-          "biome": "gaiadimension:volcanic_lands"
+          }
         }
       ],
-      "seed": 0,
-      "type": "gaiadimension:gaia_dimension"
+      "seed": 0
     },
-    "type": "gaiadimension:gaia_gen"
-  },
-  "forge:use_server_seed": true
+    "settings": "gaiadimension:gaia_noise"
+  }
 }

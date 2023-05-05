@@ -1,0 +1,7 @@
+{
+  "values": [
+    "#forge:is_hot",
+    "#forge:is_dry",
+    "#forge:is_mountain"
+  ]
+}

@@ -1,28 +1,36 @@
 {
   "parent": "gaiadimension:gaia/find_mini_tower",
+  "criteria": {
+    "malachite_watchtower": {
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "location": {
+                "structure": "gaiadimension:malachite_watchtower"
+              }
+            }
+          }
+        ]
+      },
+      "trigger": "minecraft:location"
+    }
+  },
   "display": {
-    "icon": {
-      "item": "gaiadimension:malachite_bricks"
-    },
-    "title": {
-      "translate": "advancements.gaia.find_malachite_watchtower.title"
-    },
+    "announce_to_chat": true,
     "description": {
       "translate": "advancements.gaia.find_malachite_watchtower.description"
     },
     "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "gaiadimension:malachite_bricks"
+    },
     "show_toast": true,
-    "announce_to_chat": true,
-    "hidden": false
-  },
-  "criteria": {
-    "malachite_watchtower": {
-      "trigger": "minecraft:location",
-      "conditions": {
-        "location": {
-          "feature": "gaiadimension:malachite_watchtower"
-        }
-      }
+    "title": {
+      "translate": "advancements.gaia.find_malachite_watchtower.title"
     }
   },
   "requirements": [

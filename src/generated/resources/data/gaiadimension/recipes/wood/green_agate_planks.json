@@ -1,12 +1,13 @@
 {
   "type": "minecraft:crafting_shapeless",
+  "category": "building",
   "ingredients": [
     {
       "tag": "gaiadimension:green_agate_logs"
     }
   ],
   "result": {
-    "item": "gaiadimension:green_agate_planks",
-    "count": 4
+    "count": 4,
+    "item": "gaiadimension:green_agate_planks"
   }
 }

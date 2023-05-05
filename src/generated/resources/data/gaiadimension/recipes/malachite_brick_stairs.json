@@ -1,17 +1,19 @@
 {
   "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "#  ",
-    "## ",
-    "###"
-  ],
+  "category": "building",
   "key": {
     "#": {
       "item": "gaiadimension:malachite_bricks"
     }
   },
+  "pattern": [
+    "#  ",
+    "## ",
+    "###"
+  ],
   "result": {
-    "item": "gaiadimension:malachite_brick_stairs",
-    "count": 8
-  }
+    "count": 8,
+    "item": "gaiadimension:malachite_brick_stairs"
+  },
+  "show_notification": true
 }

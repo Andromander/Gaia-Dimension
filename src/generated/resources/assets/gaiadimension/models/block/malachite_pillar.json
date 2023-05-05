@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:block/cube_column",
   "textures": {
-    "side": "gaiadimension:block/malachite_pillar_side",
-    "end": "gaiadimension:block/malachite_pillar_end"
+    "end": "gaiadimension:block/malachite_pillar_end",
+    "side": "gaiadimension:block/malachite_pillar_side"
   }
 }

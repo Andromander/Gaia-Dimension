@@ -1,16 +1,18 @@
 {
   "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "##",
-    "##"
-  ],
+  "category": "building",
   "key": {
     "#": {
       "item": "gaiadimension:green_agate_log"
     }
   },
+  "pattern": [
+    "##",
+    "##"
+  ],
   "result": {
-    "item": "gaiadimension:green_agate_wood",
-    "count": 3
-  }
+    "count": 3,
+    "item": "gaiadimension:green_agate_wood"
+  },
+  "show_notification": true
 }

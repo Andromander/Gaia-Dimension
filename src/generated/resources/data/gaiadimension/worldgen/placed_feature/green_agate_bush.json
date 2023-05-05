@@ -2,28 +2,28 @@
   "feature": "gaiadimension:green_agate_bush",
   "placement": [
     {
+      "type": "minecraft:count",
       "count": {
         "type": "minecraft:clamped",
         "value": {
+          "max_inclusive": 1,
+          "min_inclusive": 0,
           "source": {
             "type": "minecraft:uniform",
             "value": {
-              "min_inclusive": -3,
-              "max_inclusive": 1
+              "max_inclusive": 1,
+              "min_inclusive": -3
             }
-          },
-          "min_inclusive": 0,
-          "max_inclusive": 1
+          }
         }
-      },
-      "type": "minecraft:count"
+      }
     },
     {
       "type": "minecraft:in_square"
     },
     {
-      "heightmap": "MOTION_BLOCKING",
-      "type": "minecraft:heightmap"
+      "type": "minecraft:heightmap",
+      "heightmap": "MOTION_BLOCKING"
     },
     {
       "type": "minecraft:biome"
