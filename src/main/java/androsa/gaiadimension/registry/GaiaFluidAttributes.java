@@ -3,6 +3,13 @@ package androsa.gaiadimension.registry;
 import net.minecraftforge.fluids.FluidType;
 import net.minecraftforge.fluids.ForgeFlowingFluid;
 
+import java.util.function.Supplier;
+
+/*
+ * You might be looking in here, tempted to simplify those Suppliers. This is...actually the only way these can be registered
+ * Compress to method reference, it'll throw an ExceptionInInitializerError
+ * Compress to qualifier, it'll throw a NullPointerException
+ */
 public class GaiaFluidAttributes {
 
     public static final String mineralDir = "fluids/mineralwater/mineral_water_";
@@ -36,34 +43,34 @@ public class GaiaFluidAttributes {
             FluidType.Properties.create()
                     .viscosity(1500);
 
-    public static final ForgeFlowingFluid.Properties mineral_water_properties =
-            new ForgeFlowingFluid.Properties(ModFluids.MINERAL_WATER, ModFluids.mineral_water_still, ModFluids.mineral_water_flow)
+    public static final Supplier<ForgeFlowingFluid.Properties> mineral_water_properties =
+            () -> new ForgeFlowingFluid.Properties(() -> ModFluids.MINERAL_WATER.get(), () -> ModFluids.mineral_water_still.get(), () -> ModFluids.mineral_water_flow.get())
                     .block(ModBlocks.mineral_water)
                     .bucket(ModItems.mineral_water_bucket)
                     .explosionResistance(100.0F);
-    public static final ForgeFlowingFluid.Properties superhot_magma_properties =
-            new ForgeFlowingFluid.Properties(ModFluids.SUPERHOT_MAGMA, ModFluids.superhot_magma_still, ModFluids.superhot_magma_flow)
+    public static final Supplier<ForgeFlowingFluid.Properties> superhot_magma_properties =
+            () -> new ForgeFlowingFluid.Properties(() -> ModFluids.SUPERHOT_MAGMA.get(), () -> ModFluids.superhot_magma_still.get(), () -> ModFluids.superhot_magma_flow.get())
                     .block(ModBlocks.superhot_magma)
                     .bucket(ModItems.superhot_magma_bucket)
                     .explosionResistance(100.0F)
                     .slopeFindDistance(2)
                     .tickRate(30);
-    public static final ForgeFlowingFluid.Properties sweet_muck_properties =
-            new ForgeFlowingFluid.Properties(ModFluids.SWEET_MUCK, ModFluids.sweet_muck_still, ModFluids.sweet_muck_flow)
+    public static final Supplier<ForgeFlowingFluid.Properties> sweet_muck_properties =
+            () -> new ForgeFlowingFluid.Properties(() -> ModFluids.SWEET_MUCK.get(), () -> ModFluids.sweet_muck_still.get(), () -> ModFluids.sweet_muck_flow.get())
                     .block(ModBlocks.sweet_muck)
                     .bucket(ModItems.sweet_muck_bucket)
                     .explosionResistance(100.0F)
                     .slopeFindDistance(2)
                     .tickRate(20);
-    public static final ForgeFlowingFluid.Properties liquid_bismuth_properties =
-            new ForgeFlowingFluid.Properties(ModFluids.LIQUID_BISMUTH, ModFluids.liquid_bismuth_still, ModFluids.liquid_bismuth_flow)
+    public static final Supplier<ForgeFlowingFluid.Properties> liquid_bismuth_properties =
+            () -> new ForgeFlowingFluid.Properties(() -> ModFluids.LIQUID_BISMUTH.get(), () -> ModFluids.liquid_bismuth_still.get(), () -> ModFluids.liquid_bismuth_flow.get())
                     .block(ModBlocks.liquid_bismuth)
                     .bucket(ModItems.liquid_bismuth_bucket)
                     .explosionResistance(100.0F)
                     .slopeFindDistance(3)
                     .tickRate(20);
-    public static final ForgeFlowingFluid.Properties liquid_aura_properties =
-            new ForgeFlowingFluid.Properties(ModFluids.LIQUID_AURA, ModFluids.liquid_aura_still, ModFluids.liquid_aura_flow)
+    public static final Supplier<ForgeFlowingFluid.Properties> liquid_aura_properties =
+            () -> new ForgeFlowingFluid.Properties(() -> ModFluids.LIQUID_AURA.get(), () -> ModFluids.liquid_aura_still.get(), () -> ModFluids.liquid_aura_flow.get())
                     .block(ModBlocks.liquid_aura)
                     .bucket(ModItems.liquid_aura_bucket)
                     .explosionResistance(100.0F);

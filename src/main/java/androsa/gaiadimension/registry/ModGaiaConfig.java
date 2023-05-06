@@ -6,6 +6,7 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.biome.Biome;
+import net.minecraftforge.event.server.ServerStartingEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.config.ModConfigEvent;
@@ -15,7 +16,6 @@ import java.util.List;
 
 import static net.minecraftforge.common.ForgeConfigSpec.*;
 
-@Mod.EventBusSubscriber(modid = GaiaDimensionMod.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ModGaiaConfig {
     private static final String config = GaiaDimensionMod.MODID + ".config.";
 
@@ -37,8 +37,6 @@ public class ModGaiaConfig {
     public static ConfigValue<? extends String> startDimension;
     public static BooleanValue portalCheck;
     public static EnumValue<ListType> listType;
-    public static EnumValue<BiomeType> biomeType;
-    public static ConfigValue<List<? extends String>> biomeList;
 
     public static class CommonConfig {
         public CommonConfig(Builder builder) {
@@ -61,21 +59,7 @@ public class ModGaiaConfig {
         return starsInSky.get().contains(define.location().toString());
     }
 
-    @SubscribeEvent
-    public static void onConfigLoaded(ModConfigEvent.Loading event) {
-        if (event.getConfig().getModId().equals(GaiaDimensionMod.MODID)) {
-            checkDimension();
-        }
-    }
-
-    @SubscribeEvent
-    public static void onConfigChanged(ModConfigEvent.Reloading event) {
-        if (event.getConfig().getModId().equals(GaiaDimensionMod.MODID)) {
-            checkDimension();
-        }
-    }
-
-    private static void checkDimension() {
+    public static void checkDimension() {
         ResourceLocation rl = ResourceLocation.tryParse(startDimension.get());
         if (rl == null) {
             GaiaDimensionMod.LOGGER.warn("Could not create a ResourceLocation with the Start Dimension! Is there a typo, or is there an incorrect character?");
@@ -90,9 +74,21 @@ public class ModGaiaConfig {
         WHITELIST
     }
 
-    public enum BiomeType {
-        BIOME,
-        CATEGORY,
-        TYPE,
+    @Mod.EventBusSubscriber(modid = GaiaDimensionMod.MODID, bus = Mod.EventBusSubscriber.Bus.FORGE)
+    public static class ForgeBus {
+        @SubscribeEvent
+        public static void onConfigLoaded(ServerStartingEvent event) {
+            checkDimension();
+        }
+    }
+
+    @Mod.EventBusSubscriber(modid = GaiaDimensionMod.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
+    public static class ModBus {
+        @SubscribeEvent
+        public static void onConfigChanged(ModConfigEvent.Reloading event) {
+            if (event.getConfig().getModId().equals(GaiaDimensionMod.MODID)) {
+                checkDimension();
+            }
+        }
     }
 }

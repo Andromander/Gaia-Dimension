@@ -46,25 +46,25 @@ public class ModFluids {
 
 	//Fluids
     public static final RegistryObject<FlowingFluid> mineral_water_still = FLUIDS.register("mineral_water_still",
-			() -> new ForgeFlowingFluid.Source(GaiaFluidAttributes.mineral_water_properties));
+			() -> new ForgeFlowingFluid.Source(GaiaFluidAttributes.mineral_water_properties.get()));
     public static final RegistryObject<FlowingFluid> mineral_water_flow = FLUIDS.register("mineral_water_flow",
-			() -> new ForgeFlowingFluid.Flowing(GaiaFluidAttributes.mineral_water_properties));
+			() -> new ForgeFlowingFluid.Flowing(GaiaFluidAttributes.mineral_water_properties.get()));
     public static final RegistryObject<FlowingFluid> superhot_magma_still = FLUIDS.register("superhot_magma_still",
-			() -> new SuperhotMagmaFluid.Source(GaiaFluidAttributes.superhot_magma_properties));
+			() -> new SuperhotMagmaFluid.Source(GaiaFluidAttributes.superhot_magma_properties.get()));
     public static final RegistryObject<FlowingFluid> superhot_magma_flow = FLUIDS.register("superhot_magma_flow",
-			() -> new SuperhotMagmaFluid.Flowing(GaiaFluidAttributes.superhot_magma_properties));
+			() -> new SuperhotMagmaFluid.Flowing(GaiaFluidAttributes.superhot_magma_properties.get()));
     public static final RegistryObject<FlowingFluid> sweet_muck_still = FLUIDS.register("sweet_muck_still",
-			() -> new ForgeFlowingFluid.Source(GaiaFluidAttributes.sweet_muck_properties));
+			() -> new ForgeFlowingFluid.Source(GaiaFluidAttributes.sweet_muck_properties.get()));
     public static final RegistryObject<FlowingFluid> sweet_muck_flow = FLUIDS.register("sweet_muck_flow",
-			() -> new ForgeFlowingFluid.Flowing(GaiaFluidAttributes.sweet_muck_properties));
+			() -> new ForgeFlowingFluid.Flowing(GaiaFluidAttributes.sweet_muck_properties.get()));
     public static final RegistryObject<FlowingFluid> liquid_bismuth_still = FLUIDS.register("liquid_bismuth_still",
-			() -> new LiquidBismuthFluid.Source(GaiaFluidAttributes.liquid_bismuth_properties));
+			() -> new LiquidBismuthFluid.Source(GaiaFluidAttributes.liquid_bismuth_properties.get()));
     public static final RegistryObject<FlowingFluid> liquid_bismuth_flow = FLUIDS.register("liquid_bismuth_flow",
-			() -> new LiquidBismuthFluid.Flowing(GaiaFluidAttributes.liquid_bismuth_properties));
+			() -> new LiquidBismuthFluid.Flowing(GaiaFluidAttributes.liquid_bismuth_properties.get()));
     public static final RegistryObject<FlowingFluid> liquid_aura_still = FLUIDS.register("liquid_aura_still",
-			() -> new ForgeFlowingFluid.Source(GaiaFluidAttributes.liquid_aura_properties));
+			() -> new ForgeFlowingFluid.Source(GaiaFluidAttributes.liquid_aura_properties.get()));
     public static final RegistryObject<FlowingFluid> liquid_aura_flow = FLUIDS.register("liquid_aura_flow",
-			() -> new ForgeFlowingFluid.Flowing(GaiaFluidAttributes.liquid_aura_properties));
+			() -> new ForgeFlowingFluid.Flowing(GaiaFluidAttributes.liquid_aura_properties.get()));
 
 	private static Supplier<FluidType> makeFluidType(FluidType.Properties props, String directory, boolean overlay, Vector3f fog, Function<BlockPos, Integer> color) {
 		return () -> new FluidType(props) {
