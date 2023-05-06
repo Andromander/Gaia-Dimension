@@ -40,13 +40,12 @@ public class GaiaSkyRender {
 
     private static final ResourceLocation SUN_TEXTURES = new ResourceLocation("minecraft:textures/environment/sun.png");
     private static VertexBuffer starVBO;
-    private final VertexFormat vertexBufferFormat = DefaultVertexFormat.POSITION;
 
     public GaiaSkyRender() {
         generateStars();
     }
 
-    public static boolean render(int ticks, float partialTicks, PoseStack matrix, ClientLevel world, Camera camera, Runnable fog) {
+    public static boolean render(float partialTicks, PoseStack stack, ClientLevel world, Camera camera, Matrix4f matrix, Runnable fog) {
         LevelRenderer renderer = Minecraft.getInstance().levelRenderer;
 
         fog.run();
@@ -60,22 +59,22 @@ public class GaiaSkyRender {
         RenderSystem.setShaderColor(sRed, sGreen, sBlue, 1.0F);
         ShaderInstance instance = RenderSystem.getShader();
         renderer.skyBuffer.bind();
-        renderer.skyBuffer.drawWithShader(matrix.last().pose(), RenderSystem.getProjectionMatrix(), instance);
+        renderer.skyBuffer.drawWithShader(stack.last().pose(), matrix, instance);
         VertexBuffer.unbind();
         RenderSystem.enableBlend();
         float[] setcol = world.effects().getSunriseColor(world.getTimeOfDay(partialTicks), partialTicks);
         if (setcol != null) {
             RenderSystem.setShader(GameRenderer::getPositionColorShader);
             RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
-            matrix.pushPose();
-            matrix.mulPose(Axis.XP.rotationDegrees(90.0F));
+            stack.pushPose();
+            stack.mulPose(Axis.XP.rotationDegrees(90.0F));
             float f3 = Mth.sin(world.getSunAngle(partialTicks)) < 0.0F ? 180.0F : 0.0F;
-            matrix.mulPose(Axis.ZP.rotationDegrees(f3));
-            matrix.mulPose(Axis.ZP.rotationDegrees(90.0F));
+            stack.mulPose(Axis.ZP.rotationDegrees(f3));
+            stack.mulPose(Axis.ZP.rotationDegrees(90.0F));
             float ssRed = setcol[0];
             float ssGreen = setcol[1];
             float ssBlue = setcol[2];
-            Matrix4f matrix4f = matrix.last().pose();
+            Matrix4f matrix4f = stack.last().pose();
             bufferbuilder.begin(VertexFormat.Mode.TRIANGLE_FAN, DefaultVertexFormat.POSITION_COLOR);
             bufferbuilder.vertex(matrix4f, 0.0F, 100.0F, 0.0F).color(ssRed, ssGreen, ssBlue, setcol[3]).endVertex();
 
@@ -87,16 +86,16 @@ public class GaiaSkyRender {
             }
 
             BufferUploader.drawWithShader(bufferbuilder.end());
-            matrix.popPose();
+            stack.popPose();
         }
 
         RenderSystem.blendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
-        matrix.pushPose();
+        stack.pushPose();
 //      float f11 = 1.0F - this.world.getRainStrength(p_228424_2_);
 //      RenderSystem.color4f(1.0F, 1.0F, 1.0F, f11);
-        matrix.mulPose(Axis.YP.rotationDegrees(-90.0F));
-        matrix.mulPose(Axis.XP.rotationDegrees(world.getTimeOfDay(partialTicks) * 360.0F));
-        Matrix4f matrix4f1 = matrix.last().pose();
+        stack.mulPose(Axis.YP.rotationDegrees(-90.0F));
+        stack.mulPose(Axis.XP.rotationDegrees(world.getTimeOfDay(partialTicks) * 360.0F));
+        Matrix4f matrix4f1 = stack.last().pose();
 
         //Sun
         float f12 = 30.0F;
@@ -114,26 +113,27 @@ public class GaiaSkyRender {
             RenderSystem.setShaderColor(f10, f10, f10, f10);
             FogRenderer.setupNoFog();
             starVBO.bind();
-            starVBO.drawWithShader(matrix.last().pose(), RenderSystem.getProjectionMatrix(), GameRenderer.getPositionShader());
+            starVBO.drawWithShader(stack.last().pose(), matrix, GameRenderer.getPositionShader());
             VertexBuffer.unbind();
             fog.run();
         }
 
         RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
         RenderSystem.disableBlend();
-        matrix.popPose();
+        RenderSystem.defaultBlendFunc();
+        stack.popPose();
         RenderSystem.setShaderColor(0.0F, 0.0F, 0.0F, 1.0F);
-        double y = Minecraft.getInstance().player.getEyePosition(partialTicks).y - world.getLevelData().getHorizonHeight(world);
+        double y = camera.getEntity().getEyePosition(partialTicks).y - world.getLevelData().getHorizonHeight(world);
         if (y < 0.0D) {
-            matrix.pushPose();
-            matrix.translate(0.0D, 12.0D, 0.0D);
+            stack.pushPose();
+            stack.translate(0.0D, 12.0D, 0.0D);
             renderer.darkBuffer.bind();
-            renderer.darkBuffer.drawWithShader(matrix.last().pose(), RenderSystem.getProjectionMatrix(), instance);
+            renderer.darkBuffer.drawWithShader(stack.last().pose(), matrix, instance);
             VertexBuffer.unbind();
-            matrix.popPose();
+            stack.popPose();
         }
 
-        RenderSystem.setShaderColor(sRed * 0.2F + 0.04F, sGreen * 0.2F + 0.04F, sBlue * 0.6F + 0.1F, 1.0F);
+        RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
         RenderSystem.depthMask(true);
         return true;
     }

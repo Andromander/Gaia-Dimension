@@ -90,9 +90,6 @@ public class ModDimensions {
         NoiseSettings noiseSettings = NoiseSettings.create(
                 -64,
                 256,
-                //new NoiseSamplingSettings(1.0D, 1.0D, 80.0D, 160.0D),
-                //new NoiseSlider(-10, 3, 0),
-                //new NoiseSlider(15, 3, 0),
                 1,
                 2/*,
                 new TerrainShaper(CubicSpline.constant(1.0F), CubicSpline.constant(10.0F), CubicSpline.constant(0.0F))*/); //TODO

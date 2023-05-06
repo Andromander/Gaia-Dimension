@@ -15,7 +15,7 @@ public class GaiaDimensionRenderInfo extends DimensionSpecialEffects {
 
     @Override
     public boolean renderSky(ClientLevel level, int ticks, float partialTick, PoseStack poseStack, Camera camera, Matrix4f projectionMatrix, boolean isFoggy, Runnable setupFog) {
-        return GaiaSkyRender.render(ticks, partialTick, poseStack, level, camera, setupFog);
+        return GaiaSkyRender.render(partialTick, poseStack, level, camera, projectionMatrix, setupFog);
     }
 
     @Override
