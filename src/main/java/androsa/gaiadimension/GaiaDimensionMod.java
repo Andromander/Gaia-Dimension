@@ -65,8 +65,10 @@ public class GaiaDimensionMod {
         ModRecipes.RECIPE_TYPES.register(modEventBus);
         ModRecipes.RECIPE_SERIALIZERS.register(modEventBus);
         ModBlockEntities.TILE_ENTITIES.register(modEventBus);
+        ModStructures.STRUCTURE_PIECES.register(modEventBus);
         ModStructures.STRUCTURE_PROCESSORS.register(modEventBus);
         ModStructures.STRUCTURE_TYPES.register(modEventBus);
+        ModSounds.SOUND_EVENTS.register(modEventBus);
         ModWorldgen.DECORATORS.register(modEventBus);
         ModWorldgen.FEATURES.register(modEventBus);
         ModWorldgen.FOLIAGE_PLACERS.register(modEventBus);

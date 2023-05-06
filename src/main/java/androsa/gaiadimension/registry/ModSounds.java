@@ -48,10 +48,10 @@ public class ModSounds {
     public static final RegistryObject<SoundEvent> ENTITY_MUCKLING_HURT                 = makeHurtSound("muckling");
     public static final RegistryObject<SoundEvent> ENTITY_MUCKLING_JUMP                 = makeEntitySound("muckling", "jump");
     public static final RegistryObject<SoundEvent> ENTITY_MUCKLING_SQUISH               = makeEntitySound("muckling", "squish");
-    public static final RegistryObject<SoundEvent> ENTITY_MUCKLING_DEATH_SMALL          = makeDeathSound("muckling");
-    public static final RegistryObject<SoundEvent> ENTITY_MUCKLING_HURT_SMALL           = makeHurtSound("muckling");
-    public static final RegistryObject<SoundEvent> ENTITY_MUCKLING_JUMP_SMALL           = makeEntitySound("muckling", "jump");
-    public static final RegistryObject<SoundEvent> ENTITY_MUCKLING_SQUISH_SMALL         = makeEntitySound("muckling", "squish");
+    public static final RegistryObject<SoundEvent> ENTITY_MUCKLING_DEATH_SMALL          = makeDeathSound("muckling_small");
+    public static final RegistryObject<SoundEvent> ENTITY_MUCKLING_HURT_SMALL           = makeHurtSound("muckling_small");
+    public static final RegistryObject<SoundEvent> ENTITY_MUCKLING_JUMP_SMALL           = makeEntitySound("muckling_small", "jump");
+    public static final RegistryObject<SoundEvent> ENTITY_MUCKLING_SQUISH_SMALL         = makeEntitySound("muckling_small", "squish");
     public static final RegistryObject<SoundEvent> ENTITY_MUTANT_GROWTH_EXTRACTOR_DEATH = makeDeathSound("mutant_growth_extractor");
     public static final RegistryObject<SoundEvent> ENTITY_MUTANT_GROWTH_EXTRACTOR_HURT  = makeHurtSound("mutant_growth_extractor");
     public static final RegistryObject<SoundEvent> ENTITY_NOMADIC_LAGRAHK_DEATH         = makeDeathSound("nomadic_lagrahk");

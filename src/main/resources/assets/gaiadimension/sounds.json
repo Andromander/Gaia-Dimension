@@ -273,7 +273,7 @@
       "mob/slime/big4"
     ]
   },
-  "entity.muckling.death.small": {
+  "entity.muckling_small.death": {
     "subtitle": "subtitles.entity.muckling.death",
     "sounds": [
       "mob/slime/small1",
@@ -283,7 +283,7 @@
       "mob/slime/small5"
     ]
   },
-  "entity.muckling.hurt.small": {
+  "entity.muckling_small.hurt": {
     "subtitle": "subtitles.entity.muckling.hurt",
     "sounds": [
       "mob/slime/small1",
@@ -293,7 +293,7 @@
       "mob/slime/small5"
     ]
   },
-  "entity.muckling.jump.small": {
+  "entity.muckling_small.jump": {
     "subtitle": "subtitles.entity.muckling.squish",
     "sounds": [
       "mob/slime/small1",
@@ -303,7 +303,7 @@
       "mob/slime/small5"
     ]
   },
-  "entity.muckling.squish.small": {
+  "entity.muckling_small.squish": {
     "subtitle": "subtitles.entity.muckling.squish",
     "sounds": [
       "mob/slime/small1",
