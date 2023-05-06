@@ -46,7 +46,7 @@ public class ModEntitiesRendering {
     public static final ModelLayerLocation MALACHITE_GUARD_DEFENCE = layer("malachite_guard", "defence");
     public static final ModelLayerLocation MALACHITE_GUARD_RESIST = layer("malachite_guard", "resist");
 
-    public static final String TEXTURE_DIRECTORY = "gaiadimension:textures/entity/";
+    public static final String TEXTURE_DIRECTORY = "textures/entity/";
 
     private static ModelLayerLocation baselayer(String name) {
         return layer(name, "main");

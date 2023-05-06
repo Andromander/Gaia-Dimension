@@ -16,6 +16,6 @@ public class BasicEntityRenderer<T extends Mob, M extends EntityModel<T>> extend
 
     @Override
     public ResourceLocation getTextureLocation(T entity) {
-        return new ResourceLocation(GaiaDimensionMod.MODID, ModEntitiesRendering.TEXTURE_DIRECTORY + ForgeRegistries.ENTITY_TYPES.getKey(entity.getType()) + ".png");
+        return new ResourceLocation(GaiaDimensionMod.MODID, ModEntitiesRendering.TEXTURE_DIRECTORY + ForgeRegistries.ENTITY_TYPES.getKey(entity.getType()).getPath() + ".png");
     }
 }
