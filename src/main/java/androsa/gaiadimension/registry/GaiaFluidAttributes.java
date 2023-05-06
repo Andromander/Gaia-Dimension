@@ -1,5 +1,7 @@
 package androsa.gaiadimension.registry;
 
+import androsa.gaiadimension.GaiaDimensionMod;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.fluids.FluidType;
 import net.minecraftforge.fluids.ForgeFlowingFluid;
 
@@ -12,11 +14,22 @@ import java.util.function.Supplier;
  */
 public class GaiaFluidAttributes {
 
-    public static final String mineralDir = "fluids/mineralwater/mineral_water_";
-    public static final String superhotDir = "fluids/superhotmagma/superhot_magma_";
-    public static final String sweetDir = "fluids/sweetmuck/sweet_muck_";
-    public static final String bismuthDir = "fluids/liquidbismuth/liquid_bismuth_";
-    public static final String auraDir = "fluids/liquidaura/liquid_aura_";
+    public static final String mineralDir = "block/fluids/mineralwater/mineral_water_";
+    public static final String superhotDir = "block/fluids/superhotmagma/superhot_magma_";
+    public static final String sweetDir = "block/fluids/sweetmuck/sweet_muck_";
+    public static final String bismuthDir = "block/fluids/liquidbismuth/liquid_bismuth_";
+    public static final String auraDir = "block/fluids/liquidaura/liquid_aura_";
+
+    public static final ResourceLocation mineral_still = makePath("mineral_water", "still");
+    public static final ResourceLocation mineral_flow = makePath("mineral_water", "flow");
+    public static final ResourceLocation superhot_still = makePath("superhot_magma", "still");
+    public static final ResourceLocation superhot_flow = makePath("superhot_magma", "flow");
+    public static final ResourceLocation sweet_still = makePath("sweet_muck", "still");
+    public static final ResourceLocation sweet_flow = makePath("sweet_muck", "flow");
+    public static final ResourceLocation bismuth_still = makePath("liquid_bismuth", "still");
+    public static final ResourceLocation bismuth_flow = makePath("liquid_bismuth", "flow");
+    public static final ResourceLocation aura_still = makePath("liquid_aura", "still");
+    public static final ResourceLocation aura_flow = makePath("liquid_aura", "flow");
 
     public static final FluidType.Properties mineral_water_attributes =
             FluidType.Properties.create()
@@ -74,4 +87,8 @@ public class GaiaFluidAttributes {
                     .block(ModBlocks.liquid_aura)
                     .bucket(ModItems.liquid_aura_bucket)
                     .explosionResistance(100.0F);
+
+    private static ResourceLocation makePath(String name, String suffix) {
+        return new ResourceLocation(GaiaDimensionMod.MODID, String.format("block/fluids/%s/%s_%s", name, name, suffix));
+    }
 }

@@ -1,6 +1,6 @@
 {
     "textures": {
-        "particle": "gaiadimension:fluids/liquidbismuth/liquid_bismuth_still"
+        "particle": "gaiadimension:block/fluids/liquid_bismuth/liquid_bismuth_still"
     }
 }
 

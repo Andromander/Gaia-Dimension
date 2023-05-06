@@ -1,6 +1,6 @@
 {
     "textures": {
-        "particle": "gaiadimension:fluids/superhotmagma/superhot_magma_still"
+        "particle": "gaiadimension:block/fluids/superhot_magma/superhot_magma_still"
     }
 }
 

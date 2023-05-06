@@ -1,6 +1,6 @@
 {
     "textures": {
-        "particle": "gaiadimension:fluids/sweetmuck/sweet_muck_still"
+        "particle": "gaiadimension:block/fluids/sweet_muck/sweet_muck_still"
     }
 }
 

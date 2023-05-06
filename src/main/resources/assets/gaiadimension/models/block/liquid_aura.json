@@ -1,6 +1,6 @@
 {
     "textures": {
-        "particle": "gaiadimension:fluids/liquidaura/liquid_aura_still"
+        "particle": "gaiadimension:block/fluids/liquid_aura/liquid_aura_still"
     }
 }
 
