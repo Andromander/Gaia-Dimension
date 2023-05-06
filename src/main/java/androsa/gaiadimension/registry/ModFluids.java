@@ -32,7 +32,7 @@ public class ModFluids {
 
 	//FluidTypes
 	public static final RegistryObject<FluidType> MINERAL_WATER = FLUID_TYPES.register("mineral_water",
-			makeFluidType(GaiaFluidAttributes.mineral_water_attributes, GaiaFluidAttributes.mineral_flow, GaiaFluidAttributes.mineral_still, true, new Vector3f(0.6875F, 0.75F, 1.0F), null));
+			makeFluidType(GaiaFluidAttributes.mineral_water_attributes, GaiaFluidAttributes.mineral_still, GaiaFluidAttributes.mineral_flow, true, new Vector3f(0.6875F, 0.75F, 1.0F), null));
 	public static final RegistryObject<FluidType> SUPERHOT_MAGMA = FLUID_TYPES.register("superhot_magma",
 			makeFluidType(GaiaFluidAttributes.superhot_magma_attributes, GaiaFluidAttributes.superhot_still, GaiaFluidAttributes.superhot_flow, false, new Vector3f(0.0F, 1.0F, 1.0F), null));
 	public static final RegistryObject<FluidType> SWEET_MUCK = FLUID_TYPES.register("sweet_muck",
