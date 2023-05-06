@@ -6,6 +6,7 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.biome.Biome;
+import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.event.server.ServerStartingEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -87,7 +88,11 @@ public class ModGaiaConfig {
         @SubscribeEvent
         public static void onConfigChanged(ModConfigEvent.Reloading event) {
             if (event.getConfig().getModId().equals(GaiaDimensionMod.MODID)) {
-                checkDimension();
+                if (event.getConfig().getSpec() instanceof ForgeConfigSpec forgeSpec) {
+                    if (forgeSpec.isLoaded()) {
+                        checkDimension();
+                    }
+                }
             }
         }
     }
