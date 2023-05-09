@@ -92,7 +92,6 @@ public class GaiaTerrainWarp {
                 double factorY = scaleY / blend.yFactor;
                 double density = -0.46875;
 
-
                 for (int index = 0; index <= max; ++index) {
                     int y = index + min;
                     double noise = blend.sampleAndClampNoise(x, y, z, scaleXZ, scaleY, factorXZ, factorY);

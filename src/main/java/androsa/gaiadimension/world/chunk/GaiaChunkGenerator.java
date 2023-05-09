@@ -1,5 +1,6 @@
 package androsa.gaiadimension.world.chunk;
 
+import androsa.gaiadimension.registry.ModBlocks;
 import androsa.gaiadimension.world.chunk.warp.*;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
@@ -71,8 +72,8 @@ public class GaiaChunkGenerator extends NoiseBasedChunkGenerator {
             this.warper = new GaiaTerrainWarp(this.cellWidth, this.cellHeight, noise.height() / this.cellHeight, mainsource, noise, topSlide, bottomSlide, blendedNoise, modifier);
         } else {
             //TODO: TF seems to handle this fine, but this is Gaia, these are not our blocks.
-            this.defaultBlock = Blocks.STONE.defaultBlockState();
-            this.defaultFluid = Blocks.WATER.defaultBlockState();
+            this.defaultBlock = ModBlocks.gaia_stone.get().defaultBlockState();
+            this.defaultFluid = ModBlocks.mineral_water.get().defaultBlockState();
             this.warper = null;
             this.cellWidth = 0;
             this.cellHeight = 0;
@@ -270,7 +271,6 @@ public class GaiaChunkGenerator extends NoiseBasedChunkGenerator {
                 double lcell = Mth.lerp3(dcell, xMin, zMin, d10, d11, d30, d31, d20, d21, d40, d41);
                 int layer = cell * this.cellHeight + height;
                 int maxlayer = layer + min * this.cellHeight;
-                //BlockState state = this.updateNoiseAndGenerateBaseState(GaiaBeardifier.NO_OP, this.emptyAquifier, NoiseModifier.PASS, x, maxlayer, z, lcell);
                 BlockState state = this.generateBaseState(lcell, layer);
                 if (states != null) {
                     states[layer] = state;
