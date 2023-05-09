@@ -11,8 +11,6 @@ public enum AddIslandLayer implements BishopTransformer {
 
     private HolderGetter<Biome> registry;
 
-    private final int basebiome = GaiaLayerUtil.getBiomeId(ModBiomes.pink_agate_forest, registry);
-
     public AddIslandLayer setup(HolderGetter<Biome> registry) {
         this.registry = registry;
         return this;
@@ -20,6 +18,7 @@ public enum AddIslandLayer implements BishopTransformer {
 
     @Override
     public int apply(Context context, int sw, int se, int ne, int nw, int center) {
+        int basebiome = GaiaLayerUtil.getBiomeId(ModBiomes.pink_agate_forest, registry);
         if (!isOcean(center) || isOcean(nw) && isOcean(ne) && isOcean(sw) && isOcean(se)) {
             if (!isOcean(center) && (isOcean(nw) || isOcean(sw) || isOcean(ne) || isOcean(se)) && context.nextRandom(5) == 0) {
                 if (isOcean(nw)) {
