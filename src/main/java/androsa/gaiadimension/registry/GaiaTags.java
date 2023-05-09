@@ -204,8 +204,8 @@ public class GaiaTags {
         public static final TagKey<Biome> HAS_MINI_TOWER = tagStructure("mini_tower");
         public static final TagKey<Biome> HAS_MALACHITE_WATCHTOWER = tagStructure("malachite_watchtower");
         public static final TagKey<Biome> PORTAL_BIOMES = tagBiome("portal_biomes");
-        public static final TagKey<Biome> IS_DRY_GAIA = tagBiomeForge("is_dry/gaia");
-        public static final TagKey<Biome> IS_HOT_GAIA = tagBiomeForge("is_hot/gaia");
-        public static final TagKey<Biome> IS_SPARSE_GAIA = tagBiomeForge("is_sparse/gaia");
+        public static final TagKey<Biome> GAIA_BIOMES = tagBiome("is_gaia");
+        public static final TagKey<Biome> AGATE_BIOMES = tagBiome("is_agate");
+        public static final TagKey<Biome> GOLDEN_BIOMES = tagBiome("is_golden");
     }
 }

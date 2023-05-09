@@ -1,28 +1,10 @@
-// 1.19.4	2023-05-05T19:35:48.0362499	Tags for minecraft:worldgen/biome mod id gaiadimension
-5f438142f9cdaa679fc1035bdb93c2868b764213 data/forge/tags/worldgen/biome/is_dry.json
-d917be0774f20a357f1931ee431b801456053de0 data/forge/tags/worldgen/biome/is_dry/gaia.json
-f90d3940df5cdc524c0e13b28f1b218c21eea286 data/forge/tags/worldgen/biome/is_hot.json
-3fa0864abdd36bbf2791e9c9fef1bff4cc566205 data/forge/tags/worldgen/biome/is_hot/gaia.json
-75dd208f37522797fc5f7770765c6973f9859e95 data/forge/tags/worldgen/biome/is_lush.json
-e2aa5a1c9e53e3f474f3522b4abf00a653925ca0 data/forge/tags/worldgen/biome/is_magical.json
-9f2db08812c2947a5252a471b3a58675b8ae089b data/forge/tags/worldgen/biome/is_modified.json
-d1801aab1202ac9cc31ff26fba8bbabb16a3e172 data/forge/tags/worldgen/biome/is_mountain.json
-f325ac1e2c39167242683ae9deb0936c6d2928ff data/forge/tags/worldgen/biome/is_plains.json
-3b9e45ec8f2eef5363997f1c7eba115f4567e862 data/forge/tags/worldgen/biome/is_plateau.json
-8c7d43ed3e2db259d7c6e7fa998583612a57bed8 data/forge/tags/worldgen/biome/is_rare.json
-01d954b76c53e93de21cd5b4d002815cbc9ce4e5 data/forge/tags/worldgen/biome/is_sandy.json
-ae641728c1d74b4f328ef72774891b3d1b9e39e8 data/forge/tags/worldgen/biome/is_sparse.json
-d917be0774f20a357f1931ee431b801456053de0 data/forge/tags/worldgen/biome/is_sparse/gaia.json
-7a04fb6a000f0c8ed2ae3516197d4d7f310db3b8 data/forge/tags/worldgen/biome/is_swamp.json
-8dca52ae25b45eb74c31b675a060b1d3bc929dd4 data/forge/tags/worldgen/biome/is_wasteland.json
+// 1.19.4	2023-05-09T12:31:44.1990583	Tags for minecraft:worldgen/biome mod id gaiadimension
 8c6668600ed62aa9077a8405eb19b6d384381746 data/gaiadimension/tags/worldgen/biome/has_structure/malachite_watchtower.json
-4c5863a7962caa6f7309b4a4ca8af395b8a309bb data/gaiadimension/tags/worldgen/biome/has_structure/mini_tower.json
-7d5ca2e27e833dbb87afc9fd9296941e2d96f311 data/gaiadimension/tags/worldgen/biome/portal_biomes.json
-a09ed7151c439ce4ff674c03369f6f4daf6a497b data/minecraft/tags/worldgen/biome/is_badlands.json
-efcacf12be8447850989b2cad3d9b96a7ecac889 data/minecraft/tags/worldgen/biome/is_forest.json
-356497560fb68ee92765f31c9126d79e76327629 data/minecraft/tags/worldgen/biome/is_hill.json
-0be987722caf5774f2d52e70db7fa32d887129f5 data/minecraft/tags/worldgen/biome/is_jungle.json
-0e1590a2f3ef7865efe6d92543838946cb027d7e data/minecraft/tags/worldgen/biome/is_ocean.json
-a0c2b08d7b3832e86898211e4e517bda5f5da165 data/minecraft/tags/worldgen/biome/is_river.json
-cb297211c4a31f0706b3dbfd3bff3f632dfe61e9 data/minecraft/tags/worldgen/biome/is_savanna.json
-924a9753f9af428041263965354fde1a163711fb data/minecraft/tags/worldgen/biome/is_taiga.json
+8e6b362faf34338d74e5b776218c54adebb303bd data/gaiadimension/tags/worldgen/biome/has_structure/mini_tower.json
+6453471cf8c33885abd0499ae98daa636ae2b185 data/gaiadimension/tags/worldgen/biome/is_agate.json
+53a72ce0c4a1f80b66aa142dbc5cf0e0cf08bafa data/gaiadimension/tags/worldgen/biome/is_gaia.json
+adddbc165d9a6d00003dbb4d4d88c4ca00a8c905 data/gaiadimension/tags/worldgen/biome/is_golden.json
+58932c4761823b1c2dfb84bff69e9b4f6224d58f data/gaiadimension/tags/worldgen/biome/portal_biomes.json
+9944aef3b0f4fe28dcf1ec53e0ba6f3e8ebd7fc9 data/minecraft/tags/worldgen/biome/without_patrol_spawns.json
+9944aef3b0f4fe28dcf1ec53e0ba6f3e8ebd7fc9 data/minecraft/tags/worldgen/biome/without_wandering_trader_spawns.json
+9944aef3b0f4fe28dcf1ec53e0ba6f3e8ebd7fc9 data/minecraft/tags/worldgen/biome/without_zombie_sieges.json

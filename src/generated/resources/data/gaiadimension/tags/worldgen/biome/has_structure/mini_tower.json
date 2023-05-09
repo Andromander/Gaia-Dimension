@@ -1,11 +1,7 @@
 {
   "values": [
-    "gaiadimension:pink_agate_forest",
-    "gaiadimension:blue_agate_taiga",
-    "gaiadimension:green_agate_jungle",
-    "gaiadimension:purple_agate_swamp",
+    "#gaiadimension:is_agate",
     "gaiadimension:fossil_woodland",
-    "gaiadimension:mutant_agate_wildwood",
     "gaiadimension:crystal_plains"
   ]
 }
