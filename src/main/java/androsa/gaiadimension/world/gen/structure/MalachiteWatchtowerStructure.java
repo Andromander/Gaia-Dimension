@@ -72,7 +72,7 @@ public class MalachiteWatchtowerStructure extends Structure {
                             break;
                         }
 
-                        world.setBlock(mutable, ModBlocks.malachite_bricks.get().defaultBlockState(), 2); //TODO
+                        world.setBlock(mutable, ModBlocks.malachite_bricks.get().defaultBlockState(), 2);
                     }
                 }
             }
@@ -83,14 +83,4 @@ public class MalachiteWatchtowerStructure extends Structure {
     public StructureType<?> type() {
         return ModStructures.MALACHITE_WATCHTOWER_TYPE.get();
     }
-
-    //    @Override
-//    public GenerationStep.Decoration step() {
-//        return GenerationStep.Decoration.SURFACE_STRUCTURES;
-//    }
-
-//    @Override
-//    protected boolean linearSeparation() {
-//        return false;
-//    }
 }
