@@ -129,15 +129,21 @@ public class MalachiteDroneEntity extends Monster {
                 //Check if we have been removed too far away from the Guard.
                 Entity entity = server.getEntity(getOwnerUniqueId());
 
-                //Wrong dimension, sever the link
-                if (this.level.dimension() != entity.level.dimension()) {
-                    ownerRemoved(entity);
+                if (entity != null) {
+                    //Wrong dimension, sever the link
+                    if (this.level.dimension() != entity.level.dimension()) {
+                        ownerRemoved(entity);
+                    }
+
+                    //Too far away, and we can't go back
+                    if (this.distanceToSqr(entity) > 500.0D && (this.isLeashed() || this.isPassenger())) {
+                        ownerRemoved(entity);
+                    }
+                } else {
+                    //We've lost out owner
+                    setOwnerUniqueId(null);
                 }
 
-                //Too far away, and we can't go back
-                if (this.distanceToSqr(entity) > 500.0D && (this.isLeashed() || this.isPassenger())) {
-                    ownerRemoved(entity);
-                }
             }
         }
     }

@@ -1,6 +1,5 @@
 package androsa.gaiadimension.renderer.layer;
 
-import androsa.gaiadimension.GaiaDimensionMod;
 import androsa.gaiadimension.entity.MookaiteConstructEntity;
 import androsa.gaiadimension.model.MookaiteConstructModel;
 import androsa.gaiadimension.registry.ModEntitiesRendering;
@@ -20,7 +19,6 @@ import java.util.Map;
 
 public class MookaiteConstructPartLayer<T extends MookaiteConstructEntity, M extends MookaiteConstructModel<T>> extends RenderLayer<T, M> {
 
-    private static final String dir = ModEntitiesRendering.TEXTURE_DIRECTORY + "mookaite_construct/";
     public static final Map<EntityDataAccessor<Integer>, String> DIR_MAP = Util.make(Maps.newHashMap(), (map) -> {
         map.put(MookaiteConstructEntity.LEFT_HORN_TYPE, "left_horn");
         map.put(MookaiteConstructEntity.RIGHT_HORN_TYPE, "right_horn");
@@ -43,7 +41,7 @@ public class MookaiteConstructPartLayer<T extends MookaiteConstructEntity, M ext
         for (EntityDataAccessor<Integer> part : DIR_MAP.keySet()) {
             if (entity.isPresent(part)) {
                 String color = MookaiteConstructEntity.INT_TO_COLOR.getOrDefault(entity.getPart(part), MookaiteConstructEntity.INT_TO_COLOR.get(1));
-                ResourceLocation location = new ResourceLocation(GaiaDimensionMod.MODID, dir + DIR_MAP.get(part) + "/" + color + ".png");
+                ResourceLocation location = ModEntitiesRendering.makeTextureNoPrefix(entity, DIR_MAP.get(part) + "/" + color);
                 if (location != null && !entity.isInvisible()) {
                     VertexConsumer vertex = buffer.getBuffer(RenderType.entityCutout(location));
                     this.getParentModel().renderToBuffer(stack, vertex, light, LivingEntityRenderer.getOverlayCoords(entity, 0.0F), 1.0F, 1.0F, 1.0F, 1.0F);

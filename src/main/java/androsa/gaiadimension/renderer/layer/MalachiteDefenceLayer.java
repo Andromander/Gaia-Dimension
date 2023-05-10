@@ -14,10 +14,8 @@ import net.minecraft.client.renderer.entity.layers.RenderLayer;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.resources.ResourceLocation;
 
-//TODO: texture location
 public class MalachiteDefenceLayer<T extends MalachiteGuardEntity, M extends MalachiteGuardModel<T>> extends RenderLayer<T,M> {
 
-    private static final ResourceLocation textureLoc = new ResourceLocation(ModEntitiesRendering.TEXTURE_DIRECTORY + "malachiteguard_defence.png");
     private final EntityModel<T> model;
 
     public MalachiteDefenceLayer(RenderLayerParent<T, M> renderer, EntityModelSet set) {
@@ -32,7 +30,7 @@ public class MalachiteDefenceLayer<T extends MalachiteGuardEntity, M extends Mal
             EntityModel<T> model = this.getEnergySwirlModel();
             model.prepareMobModel(entity, limbSwing, limbSwingAmount, partialTicks);
             this.getParentModel().copyPropertiesTo(model);
-            VertexConsumer builder = buffer.getBuffer(RenderType.energySwirl(this.getEnergySwirlTexture(), this.getEnergySwirlX(ticks), ticks * 0.01F));
+            VertexConsumer builder = buffer.getBuffer(RenderType.energySwirl(this.getEnergySwirlTexture(entity), this.getEnergySwirlX(ticks), ticks * 0.01F));
             model.setupAnim(entity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
             model.renderToBuffer(matrix, builder, light, OverlayTexture.NO_OVERLAY, 0.5F, 0.5F, 0.5F, 1.0F);
         }
@@ -42,8 +40,8 @@ public class MalachiteDefenceLayer<T extends MalachiteGuardEntity, M extends Mal
         return ticks * 0.01F;
     }
 
-    protected ResourceLocation getEnergySwirlTexture() {
-        return textureLoc;
+    protected ResourceLocation getEnergySwirlTexture(T entity) {
+        return ModEntitiesRendering.makeTexture(entity, "defence");
     }
 
     protected EntityModel<T> getEnergySwirlModel() {

@@ -14,10 +14,8 @@ import net.minecraft.client.renderer.entity.layers.RenderLayer;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.resources.ResourceLocation;
 
-//TODO: Texture location
 public class MalachiteResistLayer<T extends MalachiteGuardEntity, M extends MalachiteGuardModel<T>> extends RenderLayer<T,M> {
 
-    private static final ResourceLocation textureLoc = new ResourceLocation(ModEntitiesRendering.TEXTURE_DIRECTORY + "malachiteguard_resist.png");
     private final EntityModel<T> model;
 
     public MalachiteResistLayer(RenderLayerParent<T, M> renderer, EntityModelSet set) {
@@ -32,7 +30,7 @@ public class MalachiteResistLayer<T extends MalachiteGuardEntity, M extends Mala
             EntityModel<T> model = this.getEnergySwirlModel();
             model.prepareMobModel(entity, limbSwing, limbSwingAmount, partialTicks);
             this.getParentModel().copyPropertiesTo(model);
-            VertexConsumer builder = buffer.getBuffer(RenderType.energySwirl(this.getEnergySwirlTexture(), this.getEnergySwirlX(ticks), ticks * 0.01F));
+            VertexConsumer builder = buffer.getBuffer(RenderType.energySwirl(this.getEnergySwirlTexture(entity), this.getEnergySwirlX(ticks), ticks * 0.01F));
             model.setupAnim(entity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
             model.renderToBuffer(matrix, builder, light, OverlayTexture.NO_OVERLAY, 0.5F, 0.5F, 0.5F, 1.0F);
         }
@@ -42,8 +40,8 @@ public class MalachiteResistLayer<T extends MalachiteGuardEntity, M extends Mala
         return ticks * 0.005F;
     }
 
-    protected ResourceLocation getEnergySwirlTexture() {
-        return textureLoc;
+    protected ResourceLocation getEnergySwirlTexture(T entity) {
+        return ModEntitiesRendering.makeTexture(entity, "resist");
     }
 
     protected EntityModel<T> getEnergySwirlModel() {

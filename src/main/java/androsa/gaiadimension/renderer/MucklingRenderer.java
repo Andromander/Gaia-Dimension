@@ -7,7 +7,6 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.monster.Slime;
 
 public class MucklingRenderer extends SlimeRenderer {
-    private static final ResourceLocation textureLoc = new ResourceLocation(ModEntitiesRendering.TEXTURE_DIRECTORY + "muckling.png");
 
     public MucklingRenderer(EntityRendererProvider.Context manager, float shadowSize) {
         super(manager);
@@ -16,6 +15,6 @@ public class MucklingRenderer extends SlimeRenderer {
 
     @Override
     public ResourceLocation getTextureLocation(Slime entity) {
-        return textureLoc;
+        return ModEntitiesRendering.makeTexture(entity);
     }
 }

@@ -10,11 +10,8 @@ import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.RenderLayerParent;
 import net.minecraft.client.renderer.entity.layers.RenderLayer;
 import net.minecraft.client.renderer.texture.OverlayTexture;
-import net.minecraft.resources.ResourceLocation;
 
-//TODO: texture location
 public class MalachiteGuardGlowLayer<T extends MalachiteGuardEntity, M extends MalachiteGuardModel<T>> extends RenderLayer<T, M> {
-    private static final RenderType textureLoc = RenderType.eyes(new ResourceLocation(ModEntitiesRendering.TEXTURE_DIRECTORY + "malachiteguard_glow.png"));
 
     public MalachiteGuardGlowLayer(RenderLayerParent<T, M> render) {
         super(render);
@@ -22,7 +19,11 @@ public class MalachiteGuardGlowLayer<T extends MalachiteGuardEntity, M extends M
 
     @Override
     public void render(PoseStack matrixStack, MultiBufferSource buffer, int i, T entity, float v, float v1, float v2, float v3, float v4, float v5) {
-        VertexConsumer builder = buffer.getBuffer(textureLoc);
+        VertexConsumer builder = buffer.getBuffer(validate(entity));
         this.getParentModel().renderToBuffer(matrixStack, builder, 15728640, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);
+    }
+
+    private RenderType validate(T entity) {
+        return RenderType.eyes(ModEntitiesRendering.makeTexture(entity, "glow"));
     }
 }

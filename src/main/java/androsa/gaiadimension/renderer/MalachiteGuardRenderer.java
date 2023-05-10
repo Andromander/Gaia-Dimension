@@ -11,7 +11,6 @@ import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.resources.ResourceLocation;
 
 public class MalachiteGuardRenderer<T extends MalachiteGuardEntity, M extends MalachiteGuardModel<T>> extends MobRenderer<T, M> {
-    private static final ResourceLocation textureLoc = new ResourceLocation(ModEntitiesRendering.TEXTURE_DIRECTORY + "malachiteguard.png");
 
     public MalachiteGuardRenderer(EntityRendererProvider.Context manager, M model, float shadowSize) {
         super(manager, model, shadowSize);
@@ -22,7 +21,7 @@ public class MalachiteGuardRenderer<T extends MalachiteGuardEntity, M extends Ma
 
     @Override
     public ResourceLocation getTextureLocation(T entity) {
-        return textureLoc;
+        return ModEntitiesRendering.makeTexture(entity, "");
     }
 
     @Override

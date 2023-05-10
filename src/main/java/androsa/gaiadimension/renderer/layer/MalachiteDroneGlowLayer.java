@@ -10,12 +10,10 @@ import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.RenderLayerParent;
 import net.minecraft.client.renderer.entity.layers.RenderLayer;
 import net.minecraft.client.renderer.texture.OverlayTexture;
-import net.minecraft.resources.ResourceLocation;
 
-//TODO: texture location
 public class MalachiteDroneGlowLayer<T extends MalachiteDroneEntity, M extends MalachiteDroneModel<T>> extends RenderLayer<T, M> {
-    private static final RenderType normalLoc = RenderType.eyes(new ResourceLocation(ModEntitiesRendering.TEXTURE_DIRECTORY + "malachitedrone_normal_glow.png"));
-    private static final RenderType followLoc = RenderType.eyes(new ResourceLocation(ModEntitiesRendering.TEXTURE_DIRECTORY + "malachitedrone_follow_glow.png"));
+    private static RenderType NORMAL;
+    private static RenderType FOLLOW;
 
     public MalachiteDroneGlowLayer(RenderLayerParent<T, M> renderer) {
         super(renderer);
@@ -23,7 +21,17 @@ public class MalachiteDroneGlowLayer<T extends MalachiteDroneEntity, M extends M
 
     @Override
     public void render(PoseStack matrixStack, MultiBufferSource buffer, int i, T entity, float v, float v1, float v2, float v3, float v4, float v5) {
-        VertexConsumer builder = entity.getOwnerUniqueId() != null ? buffer.getBuffer(followLoc) : buffer.getBuffer(normalLoc);
+        this.validate(entity);
+        VertexConsumer builder = entity.getOwnerUniqueId() != null ? buffer.getBuffer(FOLLOW) : buffer.getBuffer(NORMAL);
         this.getParentModel().renderToBuffer(matrixStack, builder, 15728640, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);
+    }
+
+    private void validate(T entity) {
+        if (NORMAL == null) {
+            NORMAL = RenderType.eyes(ModEntitiesRendering.makeTexture(entity, "normal_glow"));
+        }
+        if (FOLLOW == null) {
+            FOLLOW = RenderType.eyes(ModEntitiesRendering.makeTexture(entity, "follow_glow"));
+        }
     }
 }
