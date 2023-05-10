@@ -134,7 +134,6 @@ public class MalachiteGuardModel<T extends MalachiteGuardEntity> extends Hierarc
         return LayerDefinition.create(mesh, 128, 64);
     }
 
-    //TODO: Move to root;
     @Override
     public void renderToBuffer(PoseStack stack, VertexConsumer builder, int light, int overlay, float red, float green, float blue, float scale) {
         stack.pushPose();

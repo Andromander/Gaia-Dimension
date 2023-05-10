@@ -71,7 +71,6 @@ public class GaiaChunkGenerator extends NoiseBasedChunkGenerator {
             NoiseModifier modifier = NoiseModifier.PASS;
             this.warper = new GaiaTerrainWarp(this.cellWidth, this.cellHeight, noise.height() / this.cellHeight, mainsource, noise, topSlide, bottomSlide, blendedNoise, modifier);
         } else {
-            //TODO: TF seems to handle this fine, but this is Gaia, these are not our blocks.
             this.defaultBlock = ModBlocks.gaia_stone.get().defaultBlockState();
             this.defaultFluid = ModBlocks.mineral_water.get().defaultBlockState();
             this.warper = null;
@@ -216,7 +215,7 @@ public class GaiaChunkGenerator extends NoiseBasedChunkGenerator {
                                 int mincellZ = minwidthZ & 15;
                                 double widthdivZ = (double)widthZ / (double)this.cellWidth;
                                 double noiseval = interpolator.updateZ(widthdivZ);
-                                //BlockState state = this.updateNoiseAndGenerateBaseState(beardifier, this.emptyAquifier, NoiseModifier.PASS, minwidthX, minheight, minwidthZ, noiseval); //TODO
+                                //BlockState state = this.updateNoiseAndGenerateBaseState(beardifier, this.emptyAquifier, NoiseModifier.PASS, minwidthX, minheight, minwidthZ, noiseval);
                                 BlockState state = this.generateBaseState(noiseval, minheight);
 
                                 if (state != Blocks.AIR.defaultBlockState()) {
@@ -254,7 +253,7 @@ public class GaiaChunkGenerator extends NoiseBasedChunkGenerator {
                 this.makeAndFillNoiseColumn(xDiv + 1, zDiv, min, max),
                 this.makeAndFillNoiseColumn(xDiv + 1, zDiv + 1, min, max)
         };
-        //TODO Aquifers?
+        //Aquifers?
 
         for (int cell = max - 1; cell >= 0; cell--) {
             double d10 = columns[0][cell];
