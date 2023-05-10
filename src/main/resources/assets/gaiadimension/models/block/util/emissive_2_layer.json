@@ -1,0 +1,45 @@
+{
+  "parent": "block/block",
+  "textures": {
+    "particle": "#all",
+    "down": "#all",
+    "up": "#all",
+    "north": "#all",
+    "east": "#all",
+    "south": "#all",
+    "west": "#all",
+    "down2": "#all2",
+    "up2": "#all2",
+    "north2": "#all2",
+    "east2": "#all2",
+    "south2": "#all2",
+    "west2": "#all2"
+  },
+  "elements": [
+    {
+      "from": [ 0, 0, 0 ],
+      "to": [ 16, 16, 16 ],
+      "faces": {
+        "down":  { "texture": "#texture", "cullface": "down"  },
+        "up":    { "texture": "#texture", "cullface": "up"    },
+        "north": { "texture": "#texture", "cullface": "north" },
+        "south": { "texture": "#texture", "cullface": "south" },
+        "west":  { "texture": "#texture", "cullface": "west"  },
+        "east":  { "texture": "#texture", "cullface": "east"  }
+      }
+    }, {
+      "from": [ 0, 0, 0 ],
+      "to": [ 16, 16, 16 ],
+      "shade": false,
+      "faces": {
+        "down":  { "texture": "#texture2", "cullface": "down",  "forge_data": { "block_light": 15, "sky_light": 15 } },
+        "up":    { "texture": "#texture2", "cullface": "up",    "forge_data": { "block_light": 15, "sky_light": 15 } },
+        "north": { "texture": "#texture2", "cullface": "north", "forge_data": { "block_light": 15, "sky_light": 15 } },
+        "south": { "texture": "#texture2", "cullface": "south", "forge_data": { "block_light": 15, "sky_light": 15 } },
+        "west":  { "texture": "#texture2", "cullface": "west",  "forge_data": { "block_light": 15, "sky_light": 15 } },
+        "east":  { "texture": "#texture2", "cullface": "east",  "forge_data": { "block_light": 15, "sky_light": 15 } }
+      }
+    }
+  ]
+
+}

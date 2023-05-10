@@ -36,6 +36,12 @@ public abstract class GaiaBlockModelProvider extends BlockModelProvider {
                 .texture("all2", top);
     }
 
+    public BlockModelBuilder emissiveLayered(RegistryObject<Block> block, ResourceLocation bottom, ResourceLocation top) {
+        return withExistingParent(block.getId().getPath(), modLoc("block/util/emissive_2_layer"))
+                .texture("texture", bottom)
+                .texture("texture2", top);
+    }
+
     public BlockModelBuilder stairsBasicLayer(RegistryObject<? extends Block> block, ResourceLocation inner, ResourceLocation outer) {
         return stairsLayer(block, inner, inner, inner, outer, outer, outer);
     }

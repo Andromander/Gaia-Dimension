@@ -4,13 +4,11 @@ import androsa.gaiadimension.GaiaDimensionMod;
 import androsa.gaiadimension.particle.*;
 import androsa.gaiadimension.registry.ModBlocks;
 import androsa.gaiadimension.registry.ModParticles;
-import com.google.common.collect.ImmutableList;
 import net.minecraft.client.renderer.BiomeColors;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.world.item.BlockItem;
-import net.minecraft.world.level.block.Block;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.RegisterColorHandlersEvent;
@@ -18,21 +16,10 @@ import net.minecraftforge.client.event.RegisterDimensionSpecialEffectsEvent;
 import net.minecraftforge.client.event.RegisterParticleProvidersEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.registries.RegistryObject;
 
 @Mod.EventBusSubscriber(value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.MOD, modid = GaiaDimensionMod.MODID)
 @OnlyIn(Dist.CLIENT)
 public class ClientEvents {
-
-    private static final ImmutableList<RegistryObject<? extends Block>> emissiveBlocks = ImmutableList.of(
-            ModBlocks.malachite_pulsing_bricks,
-            ModBlocks.malachite_pulsing_chisel,
-            ModBlocks.malachite_pulsing_tiles,
-            ModBlocks.malachite_pulsing_brick_stairs,
-            ModBlocks.malachite_pulsing_chisel_stairs,
-            ModBlocks.malachite_pulsing_floor_stairs,
-            ModBlocks.active_rock
-    );
 
     @SubscribeEvent
     public static void registerBlockColors(RegisterColorHandlersEvent.Block event) {
@@ -139,21 +126,4 @@ public class ClientEvents {
         new GaiaSkyRender();
         event.register(new ResourceLocation(GaiaDimensionMod.MODID, "gaia"), new GaiaDimensionRenderInfo());
     }
-
-    //TODO: They put these into models
-//    @SubscribeEvent
-//    public static void bakeModels(ModelEvent.ModifyBakingResult event) {
-//        Function<Map.Entry<Property<?>, Comparable<?>>, String> MAP_ENTRY_TO_STRING = ObfuscationReflectionHelper.getPrivateValue(StateHolder.class, null, "f_61110_");
-//
-//        for (RegistryObject<? extends Block> block : emissiveBlocks) {
-//            for (int i = 0; i <= 1; i++) {
-//                for (BlockState state : block.get().getStateDefinition().getPossibleStates()) {
-//                    String variant = state.getValues().entrySet().stream().map(MAP_ENTRY_TO_STRING).collect(Collectors.joining(","));
-//                    ModelResourceLocation modelLoc = new ModelResourceLocation(Objects.requireNonNull(block.getId()), i == 0 ? variant : "inventory");
-//                    final BakedModel model = event.getModels().get(modelLoc);
-//                    event.getModels().put(modelLoc, new EmissiveModel(model));
-//                }
-//            }
-//        }
-//    }
 }

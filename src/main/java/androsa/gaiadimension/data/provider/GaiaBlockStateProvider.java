@@ -74,12 +74,12 @@ public abstract class GaiaBlockStateProvider extends BlockStateProvider {
         simpleBlock(block.get(), expander.apply(models().cubeAll(blockName(block), blockTexture(block.get())).renderType(type)));
     }
 
-    public void basicBlockLayered(RegistryObject<Block> block, String bottom, String top) {
-        basicBlockLayered(block, bottom, top, "solid");
-    }
-
     public void basicBlockLayered(RegistryObject<Block> block, String bottom, String top, String type) {
         simpleBlock(block.get(), models().basicLayered(block, tLocGaia(bottom), tLocGaia(top)).renderType(type));
+    }
+
+    public void layeredEmissive(RegistryObject<Block> block, String bottom, String top) {
+        simpleBlock(block.get(), models().emissiveLayered(block, tLocGaia(bottom), tLocGaia(top)).renderType("cutout"));
     }
 
     public void logBlock(Supplier<RotatedPillarBlock> block, String name) {

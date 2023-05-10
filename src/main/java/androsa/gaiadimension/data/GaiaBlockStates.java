@@ -143,7 +143,7 @@ public class GaiaBlockStates extends GaiaBlockStateProvider {
         basicBlock(ModBlocks.primal_mass);
         basicBlock(ModBlocks.nexustone);
         basicBlock(ModBlocks.impure_rock);
-        basicBlockLayered(ModBlocks.active_rock, "active_rock", "active_rock_overlay", "cutout");
+        layeredEmissive(ModBlocks.active_rock, "active_rock", "active_rock_overlay");
         basicBlock(ModBlocks.impure_sludge);
         sidedBlock(ModBlocks.geyser_block, "geyser_block_top", "bismuth_block", "geyser_block_side", "geyser_block_side", "geyser_block_side", "geyser_block_side");
         basicBlock(ModBlocks.sparkling_rock);
@@ -244,9 +244,9 @@ public class GaiaBlockStates extends GaiaBlockStateProvider {
         basicBlock(ModBlocks.malachite_crusted_bricks);
         basicBlock(ModBlocks.malachite_floor_tiles);
         basicBlock(ModBlocks.malachite_chisel_bricks);
-        basicBlockLayered(ModBlocks.malachite_pulsing_bricks, "malachite_bricks", "malachite_green_pulse_corner", "cutout");
-        basicBlockLayered(ModBlocks.malachite_pulsing_tiles, "malachite_floor_tiles", "malachite_blue_pulse_corner", "cutout");
-        basicBlockLayered(ModBlocks.malachite_pulsing_chisel, "malachite_chisel_bricks", "malachite_lime_pulse_corner", "cutout");
+        layeredEmissive(ModBlocks.malachite_pulsing_bricks, "malachite_bricks", "malachite_green_pulse_corner");
+        layeredEmissive(ModBlocks.malachite_pulsing_tiles, "malachite_floor_tiles", "malachite_blue_pulse_corner");
+        layeredEmissive(ModBlocks.malachite_pulsing_chisel, "malachite_chisel_bricks", "malachite_lime_pulse_corner");
         slabBlock(ModBlocks.malachite_brick_slab, ModBlocks.malachite_bricks);
         slabBlock(ModBlocks.malachite_cracked_brick_slab, ModBlocks.malachite_cracked_bricks);
         slabBlock(ModBlocks.malachite_crusted_brick_slab, ModBlocks.malachite_crusted_bricks);
