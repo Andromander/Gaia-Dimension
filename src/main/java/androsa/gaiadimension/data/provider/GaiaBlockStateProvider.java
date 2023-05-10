@@ -10,6 +10,7 @@ import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.registries.RegistryObject;
 
+import java.util.function.Function;
 import java.util.function.Supplier;
 
 public abstract class GaiaBlockStateProvider extends BlockStateProvider {
@@ -47,6 +48,14 @@ public abstract class GaiaBlockStateProvider extends BlockStateProvider {
         simpleBlock(block.get());
     }
 
+    public void leavesBlock(RegistryObject<? extends Block> block) {
+        basicBlock(block, "cutout_mipped");
+    }
+
+    public void basicBlock(RegistryObject<? extends Block> block, String type) {
+        simpleBlock(block.get(), models().cubeAll(blockName(block), blockTexture(block.get())).renderType(type));
+    }
+
     public void columnBlock(RegistryObject<Block> block) {
         String basename = blockName(block);
         simpleBlock(block.get(), models().cubeColumn(basename, tLocGaia(basename), tLocGaia(basename + "_top")));
@@ -56,12 +65,21 @@ public abstract class GaiaBlockStateProvider extends BlockStateProvider {
         simpleBlock(block.get(), models().cube(blockName(block), tLocGaia(bottom), tLocGaia(top), tLocGaia(north), tLocGaia(south), tLocGaia(east), tLocGaia(west)).texture("particle", tLocGaia(north)));
     }
 
-    public void basicBlockRotated(Supplier<Block> block) {
-        simpleBlock(block.get(), model -> ConfiguredModel.allYRotations(model, 0, false));
+    public void basicBlockRotated(RegistryObject<Block> block) {
+        basicBlockRotated(block, "solid");
+    }
+
+    public void basicBlockRotated(RegistryObject<Block> block, String type) {
+        Function<ModelFile, ConfiguredModel[]> expander = model -> ConfiguredModel.allYRotations(model, 0, false);
+        simpleBlock(block.get(), expander.apply(models().cubeAll(blockName(block), blockTexture(block.get())).renderType(type)));
     }
 
     public void basicBlockLayered(RegistryObject<Block> block, String bottom, String top) {
-        simpleBlock(block.get(), models().basicLayered(block, tLocGaia(bottom), tLocGaia(top)));
+        basicBlockLayered(block, bottom, top, "solid");
+    }
+
+    public void basicBlockLayered(RegistryObject<Block> block, String bottom, String top, String type) {
+        simpleBlock(block.get(), models().basicLayered(block, tLocGaia(bottom), tLocGaia(top)).renderType(type));
     }
 
     public void logBlock(Supplier<RotatedPillarBlock> block, String name) {
@@ -86,10 +104,10 @@ public abstract class GaiaBlockStateProvider extends BlockStateProvider {
         stairsBlock(block.get(), tLocGaia(name));
     }
 
-    public void stairsBlockLayered(RegistryObject<StairBlock> block, String inner, String outer) {
-        ModelFile stairs = models().stairsBasicLayer(block, tLocGaia(inner), tLocGaia(outer));
-        ModelFile stairsInner = models().stairsInnerBasicLayer(block, tLocGaia(inner), tLocGaia(outer));
-        ModelFile stairsOuter = models().stairsOuterBasicLayer(block, tLocGaia(inner), tLocGaia(outer));
+    public void stairsBlockLayered(RegistryObject<StairBlock> block, String inner, String outer, String type) {
+        ModelFile stairs = models().stairsBasicLayer(block, tLocGaia(inner), tLocGaia(outer)).renderType(type);
+        ModelFile stairsInner = models().stairsInnerBasicLayer(block, tLocGaia(inner), tLocGaia(outer)).renderType(type);
+        ModelFile stairsOuter = models().stairsOuterBasicLayer(block, tLocGaia(inner), tLocGaia(outer)).renderType(type);
         stairsBlock(block.get(), stairs, stairsInner, stairsOuter);
     }
 
@@ -97,12 +115,12 @@ public abstract class GaiaBlockStateProvider extends BlockStateProvider {
         slabBlock(block.get(), tLocGaia(blockName(doubleBlock)), tLocGaia(blockName(doubleBlock)));
     }
 
-    public void crossBlock(RegistryObject<? extends Block> block) {
-        crossBlock(block, models().cross(blockName(block), tLocGaia(blockName(block))));
+    public void crossBlock(RegistryObject<? extends Block> block, String type) {
+        crossBlock(block, models().cross(blockName(block), tLocGaia(blockName(block))).renderType(type));
     }
 
     public void crossBlockTinted(RegistryObject<Block> block) {
-        crossBlock(block, models().tintedCross(blockName(block), tLocGaia(blockName(block))));
+        crossBlock(block, models().tintedCross(blockName(block), tLocGaia(blockName(block))).renderType("translucent"));
     }
 
     public void orientableBlockLit(RegistryObject<Block> block) {
@@ -120,21 +138,22 @@ public abstract class GaiaBlockStateProvider extends BlockStateProvider {
     public void grassBlock(RegistryObject<Block> block, String bottom) {
         String baseName = blockName(block);
         ModelFile model = models().grass(
-                block,
-                tLocGaia(baseName + "_top"),
-                tLocGaia(bottom),
-                tLocGaia(baseName + "_side"),
-                tLocGaia(baseName + "_overlay"));
+                        block,
+                        tLocGaia(baseName + "_top"),
+                        tLocGaia(bottom),
+                        tLocGaia(baseName + "_side"),
+                        tLocGaia(baseName + "_overlay"))
+                .renderType("cutout_mipped");
         grassBlock(block, model);
     }
 
     public void pottedPlantBlock(RegistryObject<FlowerPotBlock> block) {
-        simpleBlock(block.get(), models().flowerPot(block));
+        simpleBlock(block.get(), models().flowerPot(block).renderType("cutout"));
     }
 
     public void torchBlock(RegistryObject<Block> block, RegistryObject<Block> wall) {
-        ModelFile torch = models().torch(blockName(block), tLocGaia(blockName(block)));
-        ModelFile torchwall = models().torchWall(blockName(wall), tLocGaia(blockName(block)));
+        ModelFile torch = models().torch(blockName(block), tLocGaia(blockName(block))).renderType("cutout");
+        ModelFile torchwall = models().torchWall(blockName(wall), tLocGaia(blockName(block))).renderType("cutout");
         simpleBlock(block.get(), torch);
         getVariantBuilder(wall.get()).forAllStates(state ->
                 ConfiguredModel.builder()

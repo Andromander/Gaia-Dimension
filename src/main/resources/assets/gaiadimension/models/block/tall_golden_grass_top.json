@@ -2,5 +2,6 @@
   "parent": "minecraft:block/cross",
   "textures": {
     "cross": "gaiadimension:block/tall_golden_grass_top"
-  }
+  },
+  "render_type": "minecraft:cutout"
 }

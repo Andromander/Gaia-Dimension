@@ -1,6 +1,7 @@
 {
     "textures": {
         "particle": "gaiadimension:block/fluids/sweet_muck/sweet_muck_still"
-    }
+    },
+    "render_type": "minecraft:translucent"
 }
 

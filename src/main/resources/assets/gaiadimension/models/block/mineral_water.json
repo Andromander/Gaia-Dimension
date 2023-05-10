@@ -1,6 +1,7 @@
 {
     "textures": {
         "particle": "gaiadimension:block/fluids/mineral_water/mineral_water_still"
-    }
+    },
+    "render_type": "minecraft:translucent"
 }
 

@@ -1,5 +1,6 @@
 {
   "parent": "minecraft:block/cube_all",
+  "render_type": "minecraft:cutout_mipped",
   "textures": {
     "all": "gaiadimension:block/burning_leaves"
   }

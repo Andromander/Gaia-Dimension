@@ -1,5 +1,6 @@
 {
   "parent": "gaiadimension:block/util/cube_all_2_layer",
+  "render_type": "minecraft:cutout",
   "textures": {
     "all": "gaiadimension:block/active_rock",
     "all2": "gaiadimension:block/active_rock_overlay"

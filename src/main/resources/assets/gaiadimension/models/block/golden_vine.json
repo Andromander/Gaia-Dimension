@@ -4,6 +4,7 @@
         "particle": "gaiadimension:block/golden_vine",
         "vine": "gaiadimension:block/golden_vine"
     },
+    "render_type": "minecraft:cutout",
     "elements": [
         {   "from": [ 0, 0, 0.8 ],
             "to": [ 16, 16, 0.8 ],

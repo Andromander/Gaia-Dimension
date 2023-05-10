@@ -1,5 +1,6 @@
 {
   "parent": "gaiadimension:block/util/outer_stairs_2_layer",
+  "render_type": "minecraft:cutout",
   "textures": {
     "bottom": "gaiadimension:block/malachite_chisel_bricks",
     "bottom2": "gaiadimension:block/malachite_lime_pulse_corner",

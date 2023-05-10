@@ -1,5 +1,6 @@
 {
   "parent": "gaiadimension:block/util/cube_all_2_layer",
+  "render_type": "minecraft:cutout",
   "textures": {
     "all": "gaiadimension:block/malachite_chisel_bricks",
     "all2": "gaiadimension:block/malachite_lime_pulse_corner"

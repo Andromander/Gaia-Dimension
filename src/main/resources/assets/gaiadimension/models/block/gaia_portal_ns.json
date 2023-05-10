@@ -3,6 +3,7 @@
     "particle": "gaiadimension:block/gaia_portal",
     "portal": "gaiadimension:block/gaia_portal"
   },
+  "render_type": "minecraft:translucent",
   "elements": [
     {   "from": [ 0, 0, 6 ],
       "to": [ 16, 16, 10 ],
