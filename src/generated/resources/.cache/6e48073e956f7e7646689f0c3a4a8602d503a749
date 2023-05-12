@@ -1,0 +1,5 @@
+// 1.19.4	2023-05-12T21:28:15.0476727	Tags for minecraft:damage_type mod id gaiadimension
+acccfeb8cf6d63b6ce782c599c2816d6210796d7 data/minecraft/tags/damage_type/bypasses_armor.json
+92a36c9640e77d9579957b0adf34556f88dc4a8e data/minecraft/tags/damage_type/bypasses_enchantments.json
+92a36c9640e77d9579957b0adf34556f88dc4a8e data/minecraft/tags/damage_type/bypasses_resistance.json
+c6292c606dc8e8082eaa972f7f7c594b06c98fed data/minecraft/tags/damage_type/bypasses_shield.json

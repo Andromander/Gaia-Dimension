@@ -1,6 +1,7 @@
 package androsa.gaiadimension.block;
 
 import androsa.gaiadimension.entity.IShockshooterMob;
+import androsa.gaiadimension.registry.GaiaDamage;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
@@ -15,11 +16,10 @@ public class StaticStoneBlock extends Block {
         super(props);
     }
 
-    //TODO: Shocked damage
     @Override
     public void stepOn(Level worldIn, BlockPos pos, BlockState state, Entity entityIn) {
         if (entityIn instanceof LivingEntity && !EnchantmentHelper.hasFrostWalker((LivingEntity)entityIn) || !(entityIn instanceof IShockshooterMob)) {
-            entityIn.hurt(worldIn.damageSources().lightningBolt(), 2.0F); //TODO: new damage?
+            entityIn.hurt(GaiaDamage.getDamage(worldIn, GaiaDamage.STATIC), 2.0F);
         }
 
         super.stepOn(worldIn, pos, state, entityIn);

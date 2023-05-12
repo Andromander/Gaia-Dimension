@@ -1,5 +1,6 @@
 package androsa.gaiadimension.block;
 
+import androsa.gaiadimension.registry.GaiaDamage;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.Level;
@@ -16,6 +17,6 @@ public class ChargedMineralBlock extends AbstractGlassBlock {
     @Override
     @Deprecated
     public void entityInside(BlockState state, Level worldIn, BlockPos pos, Entity entityIn) {
-        entityIn.hurt(worldIn.damageSources().lightningBolt(), 4.0F); //TODO: new damage?
+        entityIn.hurt(GaiaDamage.getDamage(worldIn, GaiaDamage.STATIC), 4.0F);
     }
 }

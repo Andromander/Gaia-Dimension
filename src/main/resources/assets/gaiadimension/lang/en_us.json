@@ -590,8 +590,14 @@
 
   "effect.gaiadimension.goldstone_plague": "Corrupt Mania",
 
-  "death.attack.corruption": "%1$s succumbed to the Goldstone Plague",
-  "death.attack.corruption.player": "%1$s succumbed to the Goldstone Plague before %1$s",
+  "death.attack.gaiadimension.energetic": "%1$s was flooded with immense energy",
+  "death.attack.gaiadimension.energetic.player": "%1$s was flooded with immense energy whilst escaping %1$s",
+  "death.attack.gaiadimension.static": "%1$s was electrocuted",
+  "death.attack.gaiadimension.static.player": "%1$s was electrocuted whilst escaping %1$s",
+  "death.attack.gaiadimension.corruption": "%1$s succumbed to the Goldstone Plague",
+  "death.attack.gaiadimension.corruption.player": "%1$s succumbed to the Goldstone Plague before %1$s",
+  "death.attack.gaiadimension.malachiteBlast": "%1$s was vaporised",
+  "death.attack.gaiadimension.malachiteBlast.player": "%1$s was vaporised before %1$s",
 
   "gui.gaiadimension.category.fuel.single_average": "Burns ~1 item",
   "gui.gaiadimension.category.fuel.smelt_average": "Burns ~%s items",

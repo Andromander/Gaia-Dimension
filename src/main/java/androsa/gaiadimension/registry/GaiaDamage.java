@@ -10,6 +10,8 @@ import net.minecraft.world.damagesource.DamageType;
 import net.minecraft.world.level.Level;
 
 public class GaiaDamage {
+    public static final ResourceKey<DamageType> ENERGETIC = makeDamage("energetic");
+    public static final ResourceKey<DamageType> STATIC = makeDamage("static");
     public static final ResourceKey<DamageType> CORRUPTION = makeDamage("corruption");
     public static final ResourceKey<DamageType> MALACHITE_BLAST = makeDamage("malachite_blast");
 
@@ -22,6 +24,8 @@ public class GaiaDamage {
     }
 
     public static void init(BootstapContext<DamageType> context) {
+        context.register(ENERGETIC, new DamageType("gaiadimension.energetic", 0.0F));
+        context.register(STATIC, new DamageType("gaiadimension.static", 0.0F));
         context.register(CORRUPTION, new DamageType("gaiadimension.corruption", 0.0F));
         context.register(MALACHITE_BLAST, new DamageType("gaiadimension.malachiteBlast", 0.0F));
     }

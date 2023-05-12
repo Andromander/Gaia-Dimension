@@ -1,5 +1,6 @@
 package androsa.gaiadimension.block;
 
+import androsa.gaiadimension.registry.GaiaDamage;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
@@ -17,7 +18,7 @@ public class ActiveRockBlock extends Block {
     @Override
     public void stepOn(Level worldIn, BlockPos pos, BlockState state, Entity entityIn) {
         if (entityIn instanceof LivingEntity && !EnchantmentHelper.hasFrostWalker((LivingEntity) entityIn)) {
-            entityIn.hurt(worldIn.damageSources().magic(), 2.0F); //TODO: new damage
+            entityIn.hurt(GaiaDamage.getDamage(worldIn, GaiaDamage.ENERGETIC), 2.0F);
         }
 
         super.stepOn(worldIn, pos, state, entityIn);
