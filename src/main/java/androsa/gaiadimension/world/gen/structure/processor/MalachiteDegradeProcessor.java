@@ -1,7 +1,7 @@
 package androsa.gaiadimension.world.gen.structure.processor;
 
-import androsa.gaiadimension.registry.ModBlocks;
-import androsa.gaiadimension.registry.ModStructures;
+import androsa.gaiadimension.registry.registration.ModBlocks;
+import androsa.gaiadimension.registry.registration.ModStructures;
 import com.google.common.collect.ImmutableList;
 import com.mojang.serialization.Codec;
 import net.minecraft.core.BlockPos;

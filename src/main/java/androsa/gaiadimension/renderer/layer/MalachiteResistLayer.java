@@ -2,7 +2,7 @@ package androsa.gaiadimension.renderer.layer;
 
 import androsa.gaiadimension.entity.boss.MalachiteGuardEntity;
 import androsa.gaiadimension.model.MalachiteGuardModel;
-import androsa.gaiadimension.registry.ModEntitiesRendering;
+import androsa.gaiadimension.registry.helpers.ModEntitiesRendering;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.client.model.EntityModel;

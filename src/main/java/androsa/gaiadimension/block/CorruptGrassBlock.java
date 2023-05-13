@@ -1,7 +1,7 @@
 package androsa.gaiadimension.block;
 
-import androsa.gaiadimension.registry.ModBlocks;
-import androsa.gaiadimension.registry.configurations.GaiaFeatures;
+import androsa.gaiadimension.registry.registration.ModBlocks;
+import androsa.gaiadimension.registry.bootstrap.GaiaFeatures;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.core.registries.Registries;

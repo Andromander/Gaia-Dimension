@@ -1,6 +1,6 @@
 package androsa.gaiadimension.block;
 
-import androsa.gaiadimension.registry.ModBlocks;
+import androsa.gaiadimension.registry.registration.ModBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;

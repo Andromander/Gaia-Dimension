@@ -2,8 +2,8 @@ package androsa.gaiadimension.data;
 
 import androsa.gaiadimension.GaiaDimensionMod;
 import androsa.gaiadimension.data.provider.GaiaFluidTagsProvider;
-import androsa.gaiadimension.registry.GaiaTags;
-import androsa.gaiadimension.registry.ModFluids;
+import androsa.gaiadimension.registry.values.GaiaTags;
+import androsa.gaiadimension.registry.registration.ModFluids;
 import com.google.common.collect.ImmutableList;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;

@@ -1,6 +1,6 @@
 package androsa.gaiadimension.world.layer;
 
-import androsa.gaiadimension.registry.ModBiomes;
+import androsa.gaiadimension.registry.bootstrap.GaiaBiomes;
 import androsa.gaiadimension.world.layer.util.CastleTransformer;
 import androsa.gaiadimension.world.layer.util.Context;
 import net.minecraft.core.HolderGetter;
@@ -27,6 +27,6 @@ public enum RemoveTooMuchOceanLayer implements CastleTransformer {
     }
 
     private boolean isOcean(int biome) {
-        return biome == GaiaLayerUtil.getBiomeId(ModBiomes.mineral_reservoir, registry) || biome == 0;
+        return biome == GaiaLayerUtil.getBiomeId(GaiaBiomes.mineral_reservoir, registry) || biome == 0;
     }
 }

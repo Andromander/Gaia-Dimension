@@ -2,7 +2,7 @@ package androsa.gaiadimension.renderer;
 
 import androsa.gaiadimension.entity.boss.MalachiteGuardEntity;
 import androsa.gaiadimension.model.MalachiteGuardModel;
-import androsa.gaiadimension.registry.ModEntitiesRendering;
+import androsa.gaiadimension.registry.helpers.ModEntitiesRendering;
 import androsa.gaiadimension.renderer.layer.MalachiteDefenceLayer;
 import androsa.gaiadimension.renderer.layer.MalachiteGuardGlowLayer;
 import androsa.gaiadimension.renderer.layer.MalachiteResistLayer;

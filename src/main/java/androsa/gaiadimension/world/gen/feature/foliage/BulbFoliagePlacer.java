@@ -1,6 +1,6 @@
 package androsa.gaiadimension.world.gen.feature.foliage;
 
-import androsa.gaiadimension.registry.ModWorldgen;
+import androsa.gaiadimension.registry.registration.ModWorldgen;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.util.RandomSource;

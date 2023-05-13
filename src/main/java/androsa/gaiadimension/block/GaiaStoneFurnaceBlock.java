@@ -1,7 +1,7 @@
 package androsa.gaiadimension.block;
 
 import androsa.gaiadimension.block.blockentity.GaiaStoneFurnaceBlockEntity;
-import androsa.gaiadimension.registry.ModBlockEntities;
+import androsa.gaiadimension.registry.registration.ModBlockEntities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.entity.player.Player;

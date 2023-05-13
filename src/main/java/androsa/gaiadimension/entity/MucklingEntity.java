@@ -1,8 +1,8 @@
 package androsa.gaiadimension.entity;
 
-import androsa.gaiadimension.registry.ModBiomes;
-import androsa.gaiadimension.registry.ModBlocks;
-import androsa.gaiadimension.registry.ModSounds;
+import androsa.gaiadimension.registry.bootstrap.GaiaBiomes;
+import androsa.gaiadimension.registry.registration.ModBlocks;
+import androsa.gaiadimension.registry.registration.ModSounds;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.BlockParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
@@ -93,7 +93,7 @@ public class MucklingEntity extends Slime {
                 return true;
             } else {
                 Optional<ResourceKey<Biome>> biome = world.getBiome(pos).unwrapKey();
-                if (Objects.equals(biome, Optional.of(ModBiomes.purple_agate_swamp)) || pos.getY() < 40 && random.nextFloat() < 0.5F) {
+                if (Objects.equals(biome, Optional.of(GaiaBiomes.purple_agate_swamp)) || pos.getY() < 40 && random.nextFloat() < 0.5F) {
                     return checkMobSpawnRules(entity, world, spawn, pos, random);
                 }
             }

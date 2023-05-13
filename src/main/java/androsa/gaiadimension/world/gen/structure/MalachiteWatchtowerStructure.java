@@ -1,8 +1,8 @@
 package androsa.gaiadimension.world.gen.structure;
 
-import androsa.gaiadimension.registry.ModStructures;
-import androsa.gaiadimension.registry.ModBlocks;
-import androsa.gaiadimension.registry.ModEntities;
+import androsa.gaiadimension.registry.registration.ModStructures;
+import androsa.gaiadimension.registry.registration.ModBlocks;
+import androsa.gaiadimension.registry.registration.ModEntities;
 import androsa.gaiadimension.world.gen.structure.pieces.MalachiteWatchtowerPieces;
 import com.google.common.collect.Lists;
 import com.mojang.serialization.Codec;

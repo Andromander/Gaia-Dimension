@@ -2,8 +2,8 @@ package androsa.gaiadimension.world.gen.carver;
 
 import androsa.gaiadimension.block.AbstractGaiaGrassBlock;
 import androsa.gaiadimension.block.GaiaSoilBlock;
-import androsa.gaiadimension.registry.ModBlocks;
-import androsa.gaiadimension.registry.ModFluids;
+import androsa.gaiadimension.registry.registration.ModBlocks;
+import androsa.gaiadimension.registry.registration.ModFluids;
 import com.google.common.collect.ImmutableSet;
 import com.mojang.serialization.Codec;
 import net.minecraft.core.BlockPos;

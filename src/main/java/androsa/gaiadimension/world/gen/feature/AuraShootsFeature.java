@@ -1,7 +1,7 @@
 package androsa.gaiadimension.world.gen.feature;
 
 import androsa.gaiadimension.block.AuraShootBlock;
-import androsa.gaiadimension.registry.ModBlocks;
+import androsa.gaiadimension.registry.registration.ModBlocks;
 import com.mojang.serialization.Codec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.RandomSource;

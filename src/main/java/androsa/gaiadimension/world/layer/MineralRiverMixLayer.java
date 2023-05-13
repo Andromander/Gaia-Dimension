@@ -1,6 +1,6 @@
 package androsa.gaiadimension.world.layer;
 
-import androsa.gaiadimension.registry.ModBiomes;
+import androsa.gaiadimension.registry.bootstrap.GaiaBiomes;
 import androsa.gaiadimension.world.layer.util.Area;
 import androsa.gaiadimension.world.layer.util.AreaTransformer2;
 import androsa.gaiadimension.world.layer.util.Context;
@@ -24,9 +24,9 @@ public enum MineralRiverMixLayer implements AreaTransformer2, DimensionOffset0Tr
         int i = area1.get(this.getParentX(val1), this.getParentY(val2));
         int j = area2.get(this.getParentX(val1), this.getParentY(val2));
 
-        if (i == GaiaLayerUtil.getBiomeId(ModBiomes.mineral_reservoir, registry)) {
+        if (i == GaiaLayerUtil.getBiomeId(GaiaBiomes.mineral_reservoir, registry)) {
             return i;
-        } else if (j == GaiaLayerUtil.getBiomeId(ModBiomes.mineral_river, registry)) {
+        } else if (j == GaiaLayerUtil.getBiomeId(GaiaBiomes.mineral_river, registry)) {
             return j;
         } else {
             return i;

@@ -2,7 +2,7 @@ package androsa.gaiadimension.renderer;
 
 import androsa.gaiadimension.entity.GrowthSapperEntity;
 import androsa.gaiadimension.model.GrowthSapperModel;
-import androsa.gaiadimension.registry.ModEntitiesRendering;
+import androsa.gaiadimension.registry.helpers.ModEntitiesRendering;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.resources.ResourceLocation;

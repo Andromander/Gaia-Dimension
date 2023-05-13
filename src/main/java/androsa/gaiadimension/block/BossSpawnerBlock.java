@@ -1,8 +1,8 @@
 package androsa.gaiadimension.block;
 
 import androsa.gaiadimension.block.blockentity.boss.AbstractSpawnerBlockEntity;
-import androsa.gaiadimension.registry.GaiaBlockProperties;
-import androsa.gaiadimension.registry.ModBlockEntities;
+import androsa.gaiadimension.registry.helpers.PropertiesHandler;
+import androsa.gaiadimension.registry.registration.ModBlockEntities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.item.ItemStack;
@@ -45,7 +45,7 @@ public class BossSpawnerBlock extends Block implements EntityBlock {
     @Nullable
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> entity) {
-        return level.isClientSide() ? GaiaBlockProperties.getTicker((BlockEntityTicker<AbstractSpawnerBlockEntity<?>>) AbstractSpawnerBlockEntity::particleTick) : GaiaBlockProperties.getTicker((BlockEntityTicker<AbstractSpawnerBlockEntity<?>>) AbstractSpawnerBlockEntity::spawnTick);
+        return level.isClientSide() ? PropertiesHandler.getTicker((BlockEntityTicker<AbstractSpawnerBlockEntity<?>>) AbstractSpawnerBlockEntity::particleTick) : PropertiesHandler.getTicker((BlockEntityTicker<AbstractSpawnerBlockEntity<?>>) AbstractSpawnerBlockEntity::spawnTick);
     }
 
     @Override

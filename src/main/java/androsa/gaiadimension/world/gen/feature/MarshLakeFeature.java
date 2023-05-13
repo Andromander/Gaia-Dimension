@@ -1,7 +1,7 @@
 package androsa.gaiadimension.world.gen.feature;
 
-import androsa.gaiadimension.registry.ModBlocks;
-import androsa.gaiadimension.registry.ModFluids;
+import androsa.gaiadimension.registry.registration.ModBlocks;
+import androsa.gaiadimension.registry.registration.ModFluids;
 import com.mojang.serialization.Codec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;

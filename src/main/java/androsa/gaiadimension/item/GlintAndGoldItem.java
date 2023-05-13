@@ -1,6 +1,6 @@
 package androsa.gaiadimension.item;
 
-import androsa.gaiadimension.registry.ModBlocks;
+import androsa.gaiadimension.registry.registration.ModBlocks;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;

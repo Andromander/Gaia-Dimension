@@ -2,8 +2,9 @@ package androsa.gaiadimension.world;
 
 import androsa.gaiadimension.GaiaDimensionMod;
 import androsa.gaiadimension.block.GaiaPortalBlock;
-import androsa.gaiadimension.registry.ModBlocks;
-import androsa.gaiadimension.registry.ModDimensions;
+import androsa.gaiadimension.registry.registration.ModPOIs;
+import androsa.gaiadimension.registry.registration.ModBlocks;
+import androsa.gaiadimension.registry.bootstrap.GaiaDimensions;
 import net.minecraft.BlockUtil;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -52,7 +53,7 @@ public class GaiaTeleporter implements ITeleporter {
         int i = 64; //TODO: correct?
         poimanager.ensureLoadedAndValid(this.world, pos, i);
         Optional<PoiRecord> optional = poimanager.getInSquare(type ->
-                type.is(ModDimensions.GAIA_PORTAL.getKey()), pos, i, PoiManager.Occupancy.ANY)
+                type.is(ModPOIs.GAIA_PORTAL.getKey()), pos, i, PoiManager.Occupancy.ANY)
                 .sorted(Comparator.comparingDouble((ToDoubleFunction<PoiRecord>) poi ->
                         poi.getPos().distSqr(pos))
                         .thenComparingInt(poi ->
@@ -189,8 +190,8 @@ public class GaiaTeleporter implements ITeleporter {
     @Nullable
     @Override
     public PortalInfo getPortalInfo(Entity entity, ServerLevel destWorld, Function<ServerLevel, PortalInfo> defaultPortalInfo) {
-        boolean toGaia = destWorld.dimension() == ModDimensions.gaia_world;
-        if (entity.level.dimension() != ModDimensions.gaia_world && !toGaia) {
+        boolean toGaia = destWorld.dimension() == GaiaDimensions.gaia_world;
+        if (entity.level.dimension() != GaiaDimensions.gaia_world && !toGaia) {
             return null;
         } else {
             WorldBorder border = destWorld.getWorldBorder();

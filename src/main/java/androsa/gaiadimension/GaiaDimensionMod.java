@@ -1,22 +1,17 @@
 package androsa.gaiadimension;
 
-import androsa.gaiadimension.client.ClientEvents;
-import androsa.gaiadimension.client.GaiaDimensionRenderInfo;
 import androsa.gaiadimension.data.*;
-import androsa.gaiadimension.registry.*;
-import net.minecraft.client.renderer.DimensionSpecialEffects;
+import androsa.gaiadimension.registry.bootstrap.GaiaBiomes;
+import androsa.gaiadimension.registry.bootstrap.GaiaDimensions;
+import androsa.gaiadimension.registry.helpers.GaiaConfig;
+import androsa.gaiadimension.registry.registration.*;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.MobType;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.ForgeConfigSpec;
-import net.minecraftforge.common.ForgeMod;
-import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.data.event.GatherDataEvent;
-import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.ModLoadingContext;
@@ -39,8 +34,8 @@ public class GaiaDimensionMod {
     public static final String MODID = "gaiadimension";
 
     public static final Logger LOGGER = LogManager.getLogger(MODID);
-    public static ModGaiaConfig.ClientConfig clientConfig;
-    public static ModGaiaConfig.CommonConfig commonConfig;
+    public static GaiaConfig.ClientConfig clientConfig;
+    public static GaiaConfig.CommonConfig commonConfig;
 
     public static final MobType GAIAN = new MobType();
     public static final MobType CORRUPT = new MobType();
@@ -52,10 +47,10 @@ public class GaiaDimensionMod {
         modEventBus.addListener(this::gatherData);
         modEventBus.addListener(this::hackyEvent);
 
-        ModBiomes.BIOMES.register(modEventBus);
+        GaiaBiomes.BIOMES.register(modEventBus);
         ModBlocks.BLOCKS.register(modEventBus);
         ModMenus.CONTAINERS.register(modEventBus);
-        ModDimensions.POI_TYPES.register(modEventBus);
+        ModPOIs.POI_TYPES.register(modEventBus);
         ModEffects.MOB_EFFECTS.register(modEventBus);
         ModEntities.ENTITY_TYPES.register(modEventBus);
         ModFluids.FLUID_TYPES.register(modEventBus);
@@ -75,8 +70,8 @@ public class GaiaDimensionMod {
         ModWorldgen.TRUNK_PLACERS.register(modEventBus);
         ModWorldgen.WORLD_CARVERS.register(modEventBus);
 
-        final Pair<ModGaiaConfig.ClientConfig, ForgeConfigSpec> specPairC = new ForgeConfigSpec.Builder().configure(ModGaiaConfig.ClientConfig::new);
-        final Pair<ModGaiaConfig.CommonConfig, ForgeConfigSpec> specPairB = new ForgeConfigSpec.Builder().configure(ModGaiaConfig.CommonConfig::new);
+        final Pair<GaiaConfig.ClientConfig, ForgeConfigSpec> specPairC = new ForgeConfigSpec.Builder().configure(GaiaConfig.ClientConfig::new);
+        final Pair<GaiaConfig.CommonConfig, ForgeConfigSpec> specPairB = new ForgeConfigSpec.Builder().configure(GaiaConfig.CommonConfig::new);
         ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, specPairC.getRight());
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, specPairB.getRight());
         clientConfig = specPairC.getLeft();
@@ -85,7 +80,7 @@ public class GaiaDimensionMod {
 
     public void hackyEvent(RegisterEvent event) {
         if (Objects.equals(event.getForgeRegistry(), ForgeRegistries.RECIPE_SERIALIZERS)) {
-            ModDimensions.initDimension();
+            GaiaDimensions.initDimension();
         }
     }
 

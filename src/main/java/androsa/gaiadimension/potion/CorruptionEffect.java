@@ -1,9 +1,9 @@
 package androsa.gaiadimension.potion;
 
 import androsa.gaiadimension.GaiaDimensionMod;
-import androsa.gaiadimension.registry.GaiaDamage;
-import androsa.gaiadimension.registry.ModEffects;
-import androsa.gaiadimension.registry.ModEntities;
+import androsa.gaiadimension.registry.bootstrap.GaiaDamage;
+import androsa.gaiadimension.registry.registration.ModEffects;
+import androsa.gaiadimension.registry.registration.ModEntities;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.entity.Entity;

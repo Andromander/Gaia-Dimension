@@ -1,6 +1,6 @@
 package androsa.gaiadimension.block.blockentity.boss;
 
-import androsa.gaiadimension.registry.ModParticles;
+import androsa.gaiadimension.registry.registration.ModParticles;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.Difficulty;

@@ -1,6 +1,6 @@
 package androsa.gaiadimension.item.tools;
 
-import androsa.gaiadimension.registry.GaiaToolMaterials;
+import androsa.gaiadimension.registry.values.GaiaToolMaterials;
 import net.minecraft.network.chat.Component;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.LivingEntity;

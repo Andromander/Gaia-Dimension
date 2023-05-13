@@ -1,7 +1,11 @@
 package androsa.gaiadimension.entity.boss;
 
 import androsa.gaiadimension.entity.MalachiteDroneEntity;
-import androsa.gaiadimension.registry.*;
+import androsa.gaiadimension.registry.bootstrap.GaiaDamage;
+import androsa.gaiadimension.registry.registration.ModEntities;
+import androsa.gaiadimension.registry.registration.ModItems;
+import androsa.gaiadimension.registry.registration.ModParticles;
+import androsa.gaiadimension.registry.registration.ModSounds;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.NonNullList;
 import net.minecraft.core.particles.BlockParticleOption;

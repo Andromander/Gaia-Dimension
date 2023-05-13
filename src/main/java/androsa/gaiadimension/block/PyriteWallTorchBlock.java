@@ -1,6 +1,6 @@
 package androsa.gaiadimension.block;
 
-import androsa.gaiadimension.registry.ModParticles;
+import androsa.gaiadimension.registry.registration.ModParticles;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;

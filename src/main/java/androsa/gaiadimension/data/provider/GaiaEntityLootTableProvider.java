@@ -1,7 +1,7 @@
 package androsa.gaiadimension.data.provider;
 
-import androsa.gaiadimension.registry.ModEntities;
-import androsa.gaiadimension.registry.ModItems;
+import androsa.gaiadimension.registry.registration.ModEntities;
+import androsa.gaiadimension.registry.registration.ModItems;
 import net.minecraft.data.loot.EntityLootSubProvider;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EntityType;

@@ -1,6 +1,6 @@
 package androsa.gaiadimension.particle;
 
-import androsa.gaiadimension.registry.ModItems;
+import androsa.gaiadimension.registry.registration.ModItems;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.particle.BreakingItemParticle;
 import net.minecraft.client.particle.Particle;

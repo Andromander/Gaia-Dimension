@@ -2,9 +2,9 @@ package androsa.gaiadimension.data;
 
 import androsa.gaiadimension.GaiaDimensionMod;
 import androsa.gaiadimension.data.provider.GaiaItemTagsProvider;
-import androsa.gaiadimension.registry.GaiaTags;
-import androsa.gaiadimension.registry.ModBlocks;
-import androsa.gaiadimension.registry.ModItems;
+import androsa.gaiadimension.registry.values.GaiaTags;
+import androsa.gaiadimension.registry.registration.ModBlocks;
+import androsa.gaiadimension.registry.registration.ModItems;
 import com.google.common.collect.ImmutableList;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;

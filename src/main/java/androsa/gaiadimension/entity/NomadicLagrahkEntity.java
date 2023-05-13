@@ -1,7 +1,7 @@
 package androsa.gaiadimension.entity;
 
-import androsa.gaiadimension.registry.ModBiomes;
-import androsa.gaiadimension.registry.ModSounds;
+import androsa.gaiadimension.registry.bootstrap.GaiaBiomes;
+import androsa.gaiadimension.registry.registration.ModSounds;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
@@ -109,7 +109,7 @@ public class NomadicLagrahkEntity extends PathfinderMob {
     public int getMaxSpawnClusterSize() {
         Optional<ResourceKey<Biome>> biome = level.getBiome(this.blockPosition()).unwrapKey();
 
-        if (Objects.equals(biome, Optional.of(ModBiomes.salt_dunes)) || Objects.equals(biome, Optional.of(ModBiomes.static_wasteland)) || Objects.equals(biome, Optional.of(ModBiomes.volcanic_lands))) {
+        if (Objects.equals(biome, Optional.of(GaiaBiomes.salt_dunes)) || Objects.equals(biome, Optional.of(GaiaBiomes.static_wasteland)) || Objects.equals(biome, Optional.of(GaiaBiomes.volcanic_lands))) {
             return 4;
         } else {
             return 1;
@@ -124,11 +124,11 @@ public class NomadicLagrahkEntity extends PathfinderMob {
     public SpawnGroupData finalizeSpawn(ServerLevelAccessor worldIn, DifficultyInstance difficultyIn, MobSpawnType reason, @Nullable SpawnGroupData spawnDataIn, @Nullable CompoundTag dataTag) {
         Optional<ResourceKey<Biome>> biome = worldIn.getBiome(this.blockPosition()).unwrapKey();
 
-        if (Objects.equals(biome, Optional.of(ModBiomes.salt_dunes))) {
+        if (Objects.equals(biome, Optional.of(GaiaBiomes.salt_dunes))) {
             setLagrahkVariant(1);
-        } else if (Objects.equals(biome, Optional.of(ModBiomes.static_wasteland))) {
+        } else if (Objects.equals(biome, Optional.of(GaiaBiomes.static_wasteland))) {
             setLagrahkVariant(2);
-        } else if (Objects.equals(biome, Optional.of(ModBiomes.volcanic_lands))) {
+        } else if (Objects.equals(biome, Optional.of(GaiaBiomes.volcanic_lands))) {
             setLagrahkVariant(3);
         } else {
             setLagrahkVariant(0);

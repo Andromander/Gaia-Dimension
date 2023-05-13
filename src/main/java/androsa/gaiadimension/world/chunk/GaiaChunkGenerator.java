@@ -1,6 +1,6 @@
 package androsa.gaiadimension.world.chunk;
 
-import androsa.gaiadimension.registry.ModBlocks;
+import androsa.gaiadimension.registry.registration.ModBlocks;
 import androsa.gaiadimension.world.chunk.warp.*;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;

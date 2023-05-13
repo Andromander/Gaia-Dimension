@@ -1,7 +1,7 @@
 package androsa.gaiadimension.world.gen.structure.processor;
 
-import androsa.gaiadimension.registry.GaiaChestTables;
-import androsa.gaiadimension.registry.ModBlocks;
+import androsa.gaiadimension.registry.values.GaiaChestTables;
+import androsa.gaiadimension.registry.registration.ModBlocks;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Maps;
 import com.mojang.serialization.Codec;

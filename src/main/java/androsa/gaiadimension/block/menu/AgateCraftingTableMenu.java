@@ -1,7 +1,7 @@
 package androsa.gaiadimension.block.menu;
 
-import androsa.gaiadimension.registry.ModBlocks;
-import androsa.gaiadimension.registry.ModMenus;
+import androsa.gaiadimension.registry.registration.ModBlocks;
+import androsa.gaiadimension.registry.registration.ModMenus;
 import net.minecraft.network.protocol.game.ClientboundContainerSetSlotPacket;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.Container;

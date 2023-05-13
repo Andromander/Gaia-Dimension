@@ -1,7 +1,7 @@
 package androsa.gaiadimension.world.gen.feature.decorator;
 
-import androsa.gaiadimension.registry.ModBlocks;
-import androsa.gaiadimension.registry.ModWorldgen;
+import androsa.gaiadimension.registry.registration.ModBlocks;
+import androsa.gaiadimension.registry.registration.ModWorldgen;
 import com.mojang.serialization.Codec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.RandomSource;

@@ -2,8 +2,8 @@ package androsa.gaiadimension.client;
 
 import androsa.gaiadimension.GaiaDimensionMod;
 import androsa.gaiadimension.particle.*;
-import androsa.gaiadimension.registry.ModBlocks;
-import androsa.gaiadimension.registry.ModParticles;
+import androsa.gaiadimension.registry.registration.ModBlocks;
+import androsa.gaiadimension.registry.registration.ModParticles;
 import net.minecraft.client.renderer.BiomeColors;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;

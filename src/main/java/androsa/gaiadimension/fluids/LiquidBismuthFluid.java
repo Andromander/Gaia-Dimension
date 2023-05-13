@@ -1,7 +1,7 @@
 package androsa.gaiadimension.fluids;
 
-import androsa.gaiadimension.registry.GaiaTags;
-import androsa.gaiadimension.registry.ModBlocks;
+import androsa.gaiadimension.registry.values.GaiaTags;
+import androsa.gaiadimension.registry.registration.ModBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.tags.FluidTags;

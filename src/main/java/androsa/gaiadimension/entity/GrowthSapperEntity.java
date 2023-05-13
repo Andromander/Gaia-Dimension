@@ -1,8 +1,8 @@
 package androsa.gaiadimension.entity;
 
 import androsa.gaiadimension.GaiaDimensionMod;
-import androsa.gaiadimension.registry.ModBiomes;
-import androsa.gaiadimension.registry.ModSounds;
+import androsa.gaiadimension.registry.bootstrap.GaiaBiomes;
+import androsa.gaiadimension.registry.registration.ModSounds;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
@@ -128,13 +128,13 @@ public class GrowthSapperEntity extends PathfinderMob {
     public SpawnGroupData finalizeSpawn(ServerLevelAccessor worldIn, DifficultyInstance difficultyIn, MobSpawnType reason, @Nullable SpawnGroupData spawnDataIn, @Nullable CompoundTag dataTag) {
         Optional<ResourceKey<Biome>> biome = worldIn.getBiome(this.blockPosition()).unwrapKey();
 
-        if (Objects.equals(biome, Optional.of(ModBiomes.pink_agate_forest)) || Objects.equals(biome, Optional.of(ModBiomes.crystal_plains))) {
+        if (Objects.equals(biome, Optional.of(GaiaBiomes.pink_agate_forest)) || Objects.equals(biome, Optional.of(GaiaBiomes.crystal_plains))) {
             setSapperVariant(0);
-        } else if (Objects.equals(biome, Optional.of(ModBiomes.blue_agate_taiga))) {
+        } else if (Objects.equals(biome, Optional.of(GaiaBiomes.blue_agate_taiga))) {
             setSapperVariant(1);
-        } else if (Objects.equals(biome, Optional.of(ModBiomes.green_agate_jungle))) {
+        } else if (Objects.equals(biome, Optional.of(GaiaBiomes.green_agate_jungle))) {
             setSapperVariant(2);
-        } else if (Objects.equals(biome, Optional.of(ModBiomes.purple_agate_swamp))) {
+        } else if (Objects.equals(biome, Optional.of(GaiaBiomes.purple_agate_swamp))) {
             setSapperVariant(3);
         } else {
             Random rand = new Random();

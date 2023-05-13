@@ -1,6 +1,6 @@
 package androsa.gaiadimension.world.layer;
 
-import androsa.gaiadimension.registry.ModBiomes;
+import androsa.gaiadimension.registry.bootstrap.GaiaBiomes;
 import androsa.gaiadimension.world.layer.util.CastleTransformer;
 import androsa.gaiadimension.world.layer.util.Context;
 import com.google.common.collect.ImmutableList;
@@ -17,18 +17,18 @@ public enum MineralRiverLayer implements CastleTransformer {
     private HolderGetter<Biome> registry;
 
     private final List<ResourceKey<Biome>> agateBiomes = ImmutableList.of(
-            ModBiomes.pink_agate_forest,
-            ModBiomes.blue_agate_taiga,
-            ModBiomes.green_agate_jungle,
-            ModBiomes.purple_agate_swamp);
+            GaiaBiomes.pink_agate_forest,
+            GaiaBiomes.blue_agate_taiga,
+            GaiaBiomes.green_agate_jungle,
+            GaiaBiomes.purple_agate_swamp);
     private final List<ResourceKey<Biome>> omitBiomes = ImmutableList.of(
-            ModBiomes.smoldering_bog,
-            ModBiomes.golden_forest,
-            ModBiomes.golden_plains,
-            ModBiomes.golden_hills,
-            ModBiomes.golden_sands,
-            ModBiomes.golden_marsh,
-            ModBiomes.mineral_reservoir
+            GaiaBiomes.smoldering_bog,
+            GaiaBiomes.golden_forest,
+            GaiaBiomes.golden_plains,
+            GaiaBiomes.golden_hills,
+            GaiaBiomes.golden_sands,
+            GaiaBiomes.golden_marsh,
+            GaiaBiomes.mineral_reservoir
     );
 
     public MineralRiverLayer setup(HolderGetter<Biome> registry) {
@@ -39,7 +39,7 @@ public enum MineralRiverLayer implements CastleTransformer {
     @Override
     public int apply(Context random, int north, int west, int south, int east, int center) {
         if (shouldRiver(center, west, south, east, north)) {
-            return GaiaLayerUtil.getBiomeId(ModBiomes.mineral_river, this.registry);
+            return GaiaLayerUtil.getBiomeId(GaiaBiomes.mineral_river, this.registry);
         } else {
             return -1;
         }
@@ -64,7 +64,7 @@ public enum MineralRiverLayer implements CastleTransformer {
         }
 
         //Crystal Plains and Pink Agate Forest are too similar for rivers
-        if (isMatch(id1, id2, GaiaLayerUtil.getBiomeId(ModBiomes.pink_agate_forest, this.registry), GaiaLayerUtil.getBiomeId(ModBiomes.crystal_plains, this.registry)))
+        if (isMatch(id1, id2, GaiaLayerUtil.getBiomeId(GaiaBiomes.pink_agate_forest, this.registry), GaiaLayerUtil.getBiomeId(GaiaBiomes.crystal_plains, this.registry)))
             return false;
 
         //Mutated Agate Wildwoods should look like they were any Agate Forest, but with strange growth patterns
@@ -79,7 +79,7 @@ public enum MineralRiverLayer implements CastleTransformer {
     }
 
     private boolean matchesWildwood(int id1, int id2) {
-        return id1 == GaiaLayerUtil.getBiomeId(ModBiomes.mutant_agate_wildwood, this.registry) && agateBiomes.stream().map((key) -> GaiaLayerUtil.getBiomeId(key, registry)).toList().contains(id2);
+        return id1 == GaiaLayerUtil.getBiomeId(GaiaBiomes.mutant_agate_wildwood, this.registry) && agateBiomes.stream().map((key) -> GaiaLayerUtil.getBiomeId(key, registry)).toList().contains(id2);
     }
 
     private boolean isMatch(int id1, int id2, int biome1, int biome2) {

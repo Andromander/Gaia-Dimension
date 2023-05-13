@@ -1,6 +1,6 @@
 package androsa.gaiadimension.world.gen.feature.trunk;
 
-import androsa.gaiadimension.registry.ModWorldgen;
+import androsa.gaiadimension.registry.registration.ModWorldgen;
 import com.google.common.collect.ImmutableList;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;

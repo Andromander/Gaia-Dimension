@@ -1,8 +1,8 @@
 package androsa.gaiadimension.block;
 
 import androsa.gaiadimension.block.blockentity.GeyserBlockEntity;
-import androsa.gaiadimension.registry.GaiaBlockProperties;
-import androsa.gaiadimension.registry.ModBlockEntities;
+import androsa.gaiadimension.registry.helpers.PropertiesHandler;
+import androsa.gaiadimension.registry.registration.ModBlockEntities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
@@ -30,7 +30,7 @@ public class GeyserBlock extends Block implements EntityBlock {
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> entity) {
         if (level.isClientSide()) {
-            return ModBlockEntities.GEYSER.get() == entity ? GaiaBlockProperties.getTicker(GeyserBlockEntity::tick) : null;
+            return ModBlockEntities.GEYSER.get() == entity ? PropertiesHandler.getTicker(GeyserBlockEntity::tick) : null;
         }
         return null;
     }

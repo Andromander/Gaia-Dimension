@@ -1,7 +1,7 @@
 package androsa.gaiadimension.block.menu.slots;
 
 import androsa.gaiadimension.block.blockentity.RestructurerBlockEntity;
-import androsa.gaiadimension.registry.ModEvents;
+import androsa.gaiadimension.registry.helpers.EventHandler;
 import net.minecraft.world.Container;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.Slot;
@@ -52,6 +52,6 @@ public class GlitterOutputSlot extends Slot {
         }
 
         stackSize = 0;
-        MinecraftForge.EVENT_BUS.post(new ModEvents.ItemGlitteredEvent(thePlayer, par1ItemStack));
+        MinecraftForge.EVENT_BUS.post(new EventHandler.ItemGlitteredEvent(thePlayer, par1ItemStack));
     }
 }

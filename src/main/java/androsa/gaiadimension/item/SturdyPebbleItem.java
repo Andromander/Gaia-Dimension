@@ -1,7 +1,7 @@
 package androsa.gaiadimension.item;
 
 import androsa.gaiadimension.entity.projectile.ThrownPebbleEntity;
-import androsa.gaiadimension.registry.ModSounds;
+import androsa.gaiadimension.registry.registration.ModSounds;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionHand;

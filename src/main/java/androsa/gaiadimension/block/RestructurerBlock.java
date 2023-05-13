@@ -1,9 +1,9 @@
 package androsa.gaiadimension.block;
 
 import androsa.gaiadimension.block.blockentity.RestructurerBlockEntity;
-import androsa.gaiadimension.registry.GaiaBlockProperties;
-import androsa.gaiadimension.registry.ModBlockEntities;
-import androsa.gaiadimension.registry.ModParticles;
+import androsa.gaiadimension.registry.helpers.PropertiesHandler;
+import androsa.gaiadimension.registry.registration.ModBlockEntities;
+import androsa.gaiadimension.registry.registration.ModParticles;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.util.RandomSource;
@@ -136,7 +136,7 @@ public class RestructurerBlock extends Block implements EntityBlock {
     @Nullable
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> entity) {
-        return ModBlockEntities.RESTRUCTURER.get() == entity && !level.isClientSide() ? GaiaBlockProperties.getTicker(RestructurerBlockEntity::tick) : null;
+        return ModBlockEntities.RESTRUCTURER.get() == entity && !level.isClientSide() ? PropertiesHandler.getTicker(RestructurerBlockEntity::tick) : null;
     }
 
     @Override

@@ -1,8 +1,8 @@
 package androsa.gaiadimension.block;
 
-import androsa.gaiadimension.registry.ModBiomes;
-import androsa.gaiadimension.registry.ModBlocks;
-import androsa.gaiadimension.registry.configurations.GaiaFeatures;
+import androsa.gaiadimension.registry.bootstrap.GaiaBiomes;
+import androsa.gaiadimension.registry.registration.ModBlocks;
+import androsa.gaiadimension.registry.bootstrap.GaiaFeatures;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.core.registries.Registries;
@@ -26,7 +26,7 @@ public class GlitterGrassBlock extends AbstractGaiaGrassBlock {
     @Override
     public void performBonemeal(ServerLevel worldIn, RandomSource rand, BlockPos pos, BlockState state) {
         BlockPos blockpos = pos.above();
-        Optional<Holder.Reference<Biome>> wildwood = worldIn.registryAccess().registryOrThrow(Registries.BIOME).getHolder(ModBiomes.mutant_agate_wildwood);
+        Optional<Holder.Reference<Biome>> wildwood = worldIn.registryAccess().registryOrThrow(Registries.BIOME).getHolder(GaiaBiomes.mutant_agate_wildwood);
         Optional<Holder.Reference<PlacedFeature>> optionalD = worldIn.registryAccess().registryOrThrow(Registries.PLACED_FEATURE).getHolder(GaiaFeatures.Placed.CRYSTAL_GROWTH_02);
         Optional<Holder.Reference<PlacedFeature>> optionalM = worldIn.registryAccess().registryOrThrow(Registries.PLACED_FEATURE).getHolder(GaiaFeatures.Placed.CRYSTAL_GROWTH_MUTANT);
 

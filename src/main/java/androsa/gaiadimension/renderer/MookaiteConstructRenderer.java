@@ -2,7 +2,7 @@ package androsa.gaiadimension.renderer;
 
 import androsa.gaiadimension.entity.MookaiteConstructEntity;
 import androsa.gaiadimension.model.MookaiteConstructModel;
-import androsa.gaiadimension.registry.ModEntitiesRendering;
+import androsa.gaiadimension.registry.helpers.ModEntitiesRendering;
 import androsa.gaiadimension.renderer.layer.MookaiteConstructPartLayer;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.resources.ResourceLocation;

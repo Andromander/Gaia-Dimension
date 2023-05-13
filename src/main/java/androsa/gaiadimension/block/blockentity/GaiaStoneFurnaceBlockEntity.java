@@ -1,7 +1,7 @@
 package androsa.gaiadimension.block.blockentity;
 
 import androsa.gaiadimension.block.menu.GaiaStoneFurnaceMenu;
-import androsa.gaiadimension.registry.ModBlockEntities;
+import androsa.gaiadimension.registry.registration.ModBlockEntities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Inventory;

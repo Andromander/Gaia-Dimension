@@ -1,8 +1,8 @@
 package androsa.gaiadimension.block.blockentity.boss;
 
 import androsa.gaiadimension.entity.boss.MalachiteGuardEntity;
-import androsa.gaiadimension.registry.ModBlockEntities;
-import androsa.gaiadimension.registry.ModEntities;
+import androsa.gaiadimension.registry.registration.ModBlockEntities;
+import androsa.gaiadimension.registry.registration.ModEntities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.block.state.BlockState;
 

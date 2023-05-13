@@ -1,7 +1,7 @@
 package androsa.gaiadimension.block.menu;
 
 import androsa.gaiadimension.block.menu.slots.GaiaFurnaceSlot;
-import androsa.gaiadimension.registry.ModMenus;
+import androsa.gaiadimension.registry.registration.ModMenus;
 import net.minecraft.world.Container;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Inventory;

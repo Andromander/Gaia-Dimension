@@ -1,7 +1,7 @@
 package androsa.gaiadimension.recipe;
 
-import androsa.gaiadimension.registry.ModBlocks;
-import androsa.gaiadimension.registry.ModRecipes;
+import androsa.gaiadimension.registry.registration.ModBlocks;
+import androsa.gaiadimension.registry.registration.ModRecipes;
 import net.minecraft.core.NonNullList;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.resources.ResourceLocation;

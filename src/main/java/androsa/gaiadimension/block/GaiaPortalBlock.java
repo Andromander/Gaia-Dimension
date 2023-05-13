@@ -1,7 +1,11 @@
 package androsa.gaiadimension.block;
 
 import androsa.gaiadimension.GaiaDimensionMod;
-import androsa.gaiadimension.registry.*;
+import androsa.gaiadimension.registry.bootstrap.GaiaDimensions;
+import androsa.gaiadimension.registry.helpers.GaiaConfig;
+import androsa.gaiadimension.registry.registration.ModBlocks;
+import androsa.gaiadimension.registry.registration.ModParticles;
+import androsa.gaiadimension.registry.values.GaiaTags;
 import androsa.gaiadimension.world.GaiaTeleporter;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -59,15 +63,15 @@ public class GaiaPortalBlock extends Block {
 
     // This will check for creation conditions in the Overworld or Gaia
     private boolean canCreatePortalByWorld(Level world, BlockPos pos) {
-        if (world.dimension().location().equals(ModGaiaConfig.startDimRL)) {
+        if (world.dimension().location().equals(GaiaConfig.startDimRL)) {
             //Check if the portal needs to be checking
-            if (ModGaiaConfig.portalCheck.get()) {
+            if (GaiaConfig.portalCheck.get()) {
                 Optional<ResourceKey<Biome>> biome = world.getBiome(pos).unwrapKey();
-                ModGaiaConfig.ListType listtype = ModGaiaConfig.listType.get();
+                GaiaConfig.ListType listtype = GaiaConfig.listType.get();
 
                 //Check the type of list we are looking for
                 if (biome.isPresent()) {
-                    return (listtype == ModGaiaConfig.ListType.WHITELIST) == world.getBiome(pos).is(GaiaTags.Biomes.PORTAL_BIOMES);
+                    return (listtype == GaiaConfig.ListType.WHITELIST) == world.getBiome(pos).is(GaiaTags.Biomes.PORTAL_BIOMES);
                 }
 
                 //Somehow checking the biome failed
@@ -78,7 +82,7 @@ public class GaiaPortalBlock extends Block {
             return true;
         } else {
             //Gaia is pro-portal
-            return world.dimension() == ModDimensions.gaia_world;
+            return world.dimension() == GaiaDimensions.gaia_world;
         }
     }
 
@@ -115,7 +119,7 @@ public class GaiaPortalBlock extends Block {
 
                 if (entity.level instanceof ServerLevel serverworld) {
                     MinecraftServer minecraftserver = serverworld.getServer();
-                    ResourceKey<Level> registrykey = entity.level.dimension() == ModDimensions.gaia_world ? ModGaiaConfig.startDimRK : ModDimensions.gaia_world;
+                    ResourceKey<Level> registrykey = entity.level.dimension() == GaiaDimensions.gaia_world ? GaiaConfig.startDimRK : GaiaDimensions.gaia_world;
                     ServerLevel serverworld1 = minecraftserver.getLevel(registrykey);
                     if (serverworld1 != null && !entity.isPassenger()) {
                         entity.setPortalCooldown();

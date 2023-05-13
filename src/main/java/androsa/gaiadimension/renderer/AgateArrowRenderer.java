@@ -2,7 +2,7 @@ package androsa.gaiadimension.renderer;
 
 import androsa.gaiadimension.GaiaDimensionMod;
 import androsa.gaiadimension.entity.projectile.AgateArrowEntity;
-import androsa.gaiadimension.registry.ModEntitiesRendering;
+import androsa.gaiadimension.registry.helpers.ModEntitiesRendering;
 import net.minecraft.client.renderer.entity.ArrowRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.resources.ResourceLocation;

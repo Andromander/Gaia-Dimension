@@ -1,6 +1,6 @@
 package androsa.gaiadimension.entity;
 
-import androsa.gaiadimension.registry.ModItems;
+import androsa.gaiadimension.registry.registration.ModItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;

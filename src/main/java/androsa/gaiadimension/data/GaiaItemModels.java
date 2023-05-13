@@ -1,8 +1,8 @@
 package androsa.gaiadimension.data;
 
 import androsa.gaiadimension.data.provider.GaiaItemModelProvider;
-import androsa.gaiadimension.registry.ModBlocks;
-import androsa.gaiadimension.registry.ModItems;
+import androsa.gaiadimension.registry.registration.ModBlocks;
+import androsa.gaiadimension.registry.registration.ModItems;
 import net.minecraft.data.PackOutput;
 import net.minecraftforge.common.data.ExistingFileHelper;
 

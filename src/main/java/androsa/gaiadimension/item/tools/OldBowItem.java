@@ -1,6 +1,6 @@
 package androsa.gaiadimension.item.tools;
 
-import androsa.gaiadimension.registry.ModItems;
+import androsa.gaiadimension.registry.registration.ModItems;
 import net.minecraft.world.item.BowItem;
 import net.minecraft.world.item.ItemStack;
 

@@ -1,6 +1,6 @@
 package androsa.gaiadimension.world.gen.feature;
 
-import androsa.gaiadimension.registry.ModBlocks;
+import androsa.gaiadimension.registry.registration.ModBlocks;
 import androsa.gaiadimension.world.gen.feature.config.TwoBlockStateConfig;
 import com.mojang.serialization.Codec;
 import net.minecraft.core.BlockPos;

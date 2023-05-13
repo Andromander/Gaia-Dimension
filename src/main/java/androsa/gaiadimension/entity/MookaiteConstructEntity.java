@@ -1,6 +1,6 @@
 package androsa.gaiadimension.entity;
 
-import androsa.gaiadimension.registry.ModItems;
+import androsa.gaiadimension.registry.registration.ModItems;
 import com.google.common.collect.Maps;
 import net.minecraft.Util;
 import net.minecraft.core.BlockPos;

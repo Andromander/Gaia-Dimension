@@ -1,7 +1,7 @@
 package androsa.gaiadimension.block.blockentity;
 
-import androsa.gaiadimension.registry.ModBlockEntities;
-import androsa.gaiadimension.registry.ModParticles;
+import androsa.gaiadimension.registry.registration.ModBlockEntities;
+import androsa.gaiadimension.registry.registration.ModParticles;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.Mth;
 import net.minecraft.world.level.Level;

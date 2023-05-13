@@ -1,6 +1,6 @@
 package androsa.gaiadimension.item.inventory;
 
-import androsa.gaiadimension.registry.GaiaTags;
+import androsa.gaiadimension.registry.values.GaiaTags;
 import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;

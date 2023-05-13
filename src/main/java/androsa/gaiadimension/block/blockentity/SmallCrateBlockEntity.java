@@ -2,7 +2,7 @@ package androsa.gaiadimension.block.blockentity;
 
 import androsa.gaiadimension.block.SmallCrateBlock;
 import androsa.gaiadimension.block.menu.SmallCrateContainer;
-import androsa.gaiadimension.registry.ModBlockEntities;
+import androsa.gaiadimension.registry.registration.ModBlockEntities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.NonNullList;

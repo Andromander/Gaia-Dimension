@@ -1,6 +1,6 @@
 package androsa.gaiadimension.client;
 
-import androsa.gaiadimension.registry.ModGaiaConfig;
+import androsa.gaiadimension.registry.helpers.GaiaConfig;
 import com.mojang.blaze3d.platform.GlStateManager;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.*;
@@ -25,7 +25,6 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import org.joml.Matrix4f;
 
 import java.util.Optional;
-import java.util.Random;
 
 /**
  * Custom sky render for Gaia:
@@ -200,6 +199,6 @@ public class GaiaSkyRender {
         Player player = Minecraft.getInstance().player;
         Optional<ResourceKey<Biome>> biome = world.getBiome(new BlockPos(player.blockPosition())).unwrapKey();
 
-        return biome.filter(ModGaiaConfig::canDisplayStars).map(biomeRegistryKey -> 0.5F).orElseGet(() -> world.getStarBrightness(par1));
+        return biome.filter(GaiaConfig::canDisplayStars).map(biomeRegistryKey -> 0.5F).orElseGet(() -> world.getStarBrightness(par1));
     }
 }

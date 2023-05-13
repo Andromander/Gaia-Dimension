@@ -1,8 +1,8 @@
 package androsa.gaiadimension.entity;
 
 import androsa.gaiadimension.entity.boss.MalachiteGuardEntity;
-import androsa.gaiadimension.registry.ModParticles;
-import androsa.gaiadimension.registry.ModSounds;
+import androsa.gaiadimension.registry.registration.ModParticles;
+import androsa.gaiadimension.registry.registration.ModSounds;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;

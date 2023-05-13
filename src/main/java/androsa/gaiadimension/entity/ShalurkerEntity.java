@@ -1,6 +1,6 @@
 package androsa.gaiadimension.entity;
 
-import androsa.gaiadimension.registry.ModSounds;
+import androsa.gaiadimension.registry.registration.ModSounds;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.EntityDimensions;

@@ -1,7 +1,7 @@
 package androsa.gaiadimension.entity.boss;
 
 import androsa.gaiadimension.entity.HowliteWolfEntity;
-import androsa.gaiadimension.registry.ModSounds;
+import androsa.gaiadimension.registry.registration.ModSounds;
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.util.RandomSource;

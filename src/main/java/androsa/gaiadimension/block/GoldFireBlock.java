@@ -1,8 +1,8 @@
 package androsa.gaiadimension.block;
 
-import androsa.gaiadimension.registry.ModBlocks;
-import androsa.gaiadimension.registry.ModDimensions;
-import androsa.gaiadimension.registry.ModGaiaConfig;
+import androsa.gaiadimension.registry.registration.ModBlocks;
+import androsa.gaiadimension.registry.bootstrap.GaiaDimensions;
+import androsa.gaiadimension.registry.helpers.GaiaConfig;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
@@ -112,7 +112,7 @@ public class GoldFireBlock extends Block {
     @Deprecated
     public void onPlace(BlockState state1, Level worldIn, BlockPos pos, BlockState state2, boolean flag) {
         if (state2.getBlock() != state1.getBlock()) {
-            if (!worldIn.dimension().location().equals(ModGaiaConfig.startDimRL) && worldIn.dimension() != ModDimensions.gaia_world || !ModBlocks.gaia_portal.get().tryToCreatePortal(worldIn, pos)) {
+            if (!worldIn.dimension().location().equals(GaiaConfig.startDimRL) && worldIn.dimension() != GaiaDimensions.gaia_world || !ModBlocks.gaia_portal.get().tryToCreatePortal(worldIn, pos)) {
                 if (!state1.canSurvive(worldIn, pos)) {
                     worldIn.removeBlock(pos, false);
                 } else {

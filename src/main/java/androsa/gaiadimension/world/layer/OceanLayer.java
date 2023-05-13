@@ -1,6 +1,6 @@
 package androsa.gaiadimension.world.layer;
 
-import androsa.gaiadimension.registry.ModBiomes;
+import androsa.gaiadimension.registry.bootstrap.GaiaBiomes;
 import androsa.gaiadimension.world.layer.util.AreaTransformer0;
 import androsa.gaiadimension.world.layer.util.Context;
 import net.minecraft.core.HolderGetter;
@@ -18,6 +18,6 @@ public enum OceanLayer implements AreaTransformer0 {
 
     @Override
     public int applyPixel(Context context, int x, int z) {
-        return GaiaLayerUtil.getBiomeId(ModBiomes.mineral_reservoir, registry);
+        return GaiaLayerUtil.getBiomeId(GaiaBiomes.mineral_reservoir, registry);
     }
 }

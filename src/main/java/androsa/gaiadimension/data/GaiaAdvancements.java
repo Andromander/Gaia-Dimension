@@ -2,8 +2,12 @@ package androsa.gaiadimension.data;
 
 import androsa.gaiadimension.GaiaDimensionMod;
 import androsa.gaiadimension.data.provider.GaiaAdvancementProvider;
-import androsa.gaiadimension.registry.*;
-import androsa.gaiadimension.registry.ModStructures;
+import androsa.gaiadimension.registry.registration.ModStructures;
+import androsa.gaiadimension.registry.bootstrap.GaiaBiomes;
+import androsa.gaiadimension.registry.bootstrap.GaiaDimensions;
+import androsa.gaiadimension.registry.registration.ModBlocks;
+import androsa.gaiadimension.registry.registration.ModEntities;
+import androsa.gaiadimension.registry.registration.ModItems;
 import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.AdvancementRewards;
 import net.minecraft.advancements.FrameType;
@@ -34,7 +38,7 @@ public class GaiaAdvancements extends GaiaAdvancementProvider {
             //Enter Gaia
             Advancement root = Advancement.Builder.advancement()
                     .display(ModBlocks.keystone_block.get(), title("root"), description("root"), new ResourceLocation(GaiaDimensionMod.MODID, "textures/block/gaia_stone.png"), FrameType.TASK, true, true, false)
-                    .addCriterion("entered_gaia", ChangeDimensionTrigger.TriggerInstance.changedDimensionTo(ModDimensions.gaia_world))
+                    .addCriterion("entered_gaia", ChangeDimensionTrigger.TriggerInstance.changedDimensionTo(GaiaDimensions.gaia_world))
                     .save(consumer, loc("root"));
             //Collect a Gemstone
             Advancement gemstone1 = Advancement.Builder.advancement()
@@ -254,21 +258,21 @@ public class GaiaAdvancements extends GaiaAdvancementProvider {
                     .parent(root)
                     .display(ModBlocks.glitter_grass.get(), title("explore_gaia"), description("explore_gaia"), null, FrameType.CHALLENGE, true, true, false)
                     .rewards(AdvancementRewards.Builder.experience(1000))
-                    .addCriterion("pink_agate_forest", biome(ModBiomes.pink_agate_forest))
-                    .addCriterion("blue_agate_taiga", biome(ModBiomes.blue_agate_taiga))
-                    .addCriterion("green_agate_jungle", biome(ModBiomes.green_agate_jungle))
-                    .addCriterion("purple_agate_swamp", biome(ModBiomes.purple_agate_swamp))
-                    .addCriterion("fossil_woodland", biome(ModBiomes.fossil_woodland))
-                    .addCriterion("mutant_agate_wildwood", biome(ModBiomes.mutant_agate_wildwood))
-                    .addCriterion("volcanic_lands", biome(ModBiomes.volcanic_lands))
-                    .addCriterion("static_wasteland", biome(ModBiomes.static_wasteland))
-                    .addCriterion("goldstone_lands", biome(ModBiomes.goldstone_lands))
-                    .addCriterion("crystal_plains", biome(ModBiomes.crystal_plains))
-                    .addCriterion("salt_dunes", biome(ModBiomes.salt_dunes))
-                    .addCriterion("shining_grove", biome(ModBiomes.shining_grove))
-                    .addCriterion("smoldering_bog", biome(ModBiomes.smoldering_bog))
-                    .addCriterion("mineral_reservoir", biome(ModBiomes.mineral_reservoir))
-                    .addCriterion("mineral_river", biome(ModBiomes.mineral_river))
+                    .addCriterion("pink_agate_forest", biome(GaiaBiomes.pink_agate_forest))
+                    .addCriterion("blue_agate_taiga", biome(GaiaBiomes.blue_agate_taiga))
+                    .addCriterion("green_agate_jungle", biome(GaiaBiomes.green_agate_jungle))
+                    .addCriterion("purple_agate_swamp", biome(GaiaBiomes.purple_agate_swamp))
+                    .addCriterion("fossil_woodland", biome(GaiaBiomes.fossil_woodland))
+                    .addCriterion("mutant_agate_wildwood", biome(GaiaBiomes.mutant_agate_wildwood))
+                    .addCriterion("volcanic_lands", biome(GaiaBiomes.volcanic_lands))
+                    .addCriterion("static_wasteland", biome(GaiaBiomes.static_wasteland))
+                    .addCriterion("goldstone_lands", biome(GaiaBiomes.goldstone_lands))
+                    .addCriterion("crystal_plains", biome(GaiaBiomes.crystal_plains))
+                    .addCriterion("salt_dunes", biome(GaiaBiomes.salt_dunes))
+                    .addCriterion("shining_grove", biome(GaiaBiomes.shining_grove))
+                    .addCriterion("smoldering_bog", biome(GaiaBiomes.smoldering_bog))
+                    .addCriterion("mineral_reservoir", biome(GaiaBiomes.mineral_reservoir))
+                    .addCriterion("mineral_river", biome(GaiaBiomes.mineral_river))
                     .save(consumer, loc("explore_gaia"));
             //Find a Gaia Mini Tower
             Advancement progress1 = Advancement.Builder.advancement()

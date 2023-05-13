@@ -1,8 +1,8 @@
 package androsa.gaiadimension.entity;
 
 import androsa.gaiadimension.GaiaDimensionMod;
-import androsa.gaiadimension.registry.ModItems;
-import androsa.gaiadimension.registry.ModSounds;
+import androsa.gaiadimension.registry.registration.ModItems;
+import androsa.gaiadimension.registry.registration.ModSounds;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.sounds.SoundEvent;

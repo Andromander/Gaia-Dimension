@@ -2,8 +2,8 @@ package androsa.gaiadimension.data.provider;
 
 import androsa.gaiadimension.block.LargeCrateBlock;
 import androsa.gaiadimension.block.SmallCrateBlock;
-import androsa.gaiadimension.registry.ModBlockEntities;
-import androsa.gaiadimension.registry.ModItems;
+import androsa.gaiadimension.registry.registration.ModBlockEntities;
+import androsa.gaiadimension.registry.registration.ModItems;
 import net.minecraft.advancements.critereon.*;
 import net.minecraft.core.BlockPos;
 import net.minecraft.data.loot.BlockLootSubProvider;

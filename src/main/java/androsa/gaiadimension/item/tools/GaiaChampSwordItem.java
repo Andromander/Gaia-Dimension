@@ -1,7 +1,7 @@
 package androsa.gaiadimension.item.tools;
 
-import androsa.gaiadimension.registry.GaiaToolMaterials;
-import androsa.gaiadimension.registry.ModBlocks;
+import androsa.gaiadimension.registry.values.GaiaToolMaterials;
+import androsa.gaiadimension.registry.registration.ModBlocks;
 import net.minecraft.core.particles.BlockParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;

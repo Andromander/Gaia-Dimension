@@ -2,7 +2,7 @@ package androsa.gaiadimension.item;
 
 import androsa.gaiadimension.entity.MookaiteConstructEntity;
 import androsa.gaiadimension.entity.OpaliteContructEntity;
-import androsa.gaiadimension.registry.ModEntities;
+import androsa.gaiadimension.registry.registration.ModEntities;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;

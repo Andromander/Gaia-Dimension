@@ -2,7 +2,7 @@ package androsa.gaiadimension.renderer;
 
 import androsa.gaiadimension.entity.MineralArenthisEntity;
 import androsa.gaiadimension.model.MineralArenthisModel;
-import androsa.gaiadimension.registry.ModEntitiesRendering;
+import androsa.gaiadimension.registry.helpers.ModEntitiesRendering;
 import androsa.gaiadimension.renderer.layer.MineralArenthisPartsLayer;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;

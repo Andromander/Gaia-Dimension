@@ -1,7 +1,7 @@
 package androsa.gaiadimension.world.chunk;
 
-import androsa.gaiadimension.registry.ModBiomes;
-import androsa.gaiadimension.registry.ModBlocks;
+import androsa.gaiadimension.registry.bootstrap.GaiaBiomes;
+import androsa.gaiadimension.registry.registration.ModBlocks;
 import com.google.common.collect.ImmutableList;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
@@ -49,28 +49,28 @@ public class GaiaSurfaceRuleData {
         SurfaceRules.ConditionSource aboveSeaCondition = SurfaceRules.yBlockCheck(VerticalAnchor.absolute(63), 0);
         SurfaceRules.RuleSource saltstoneRoofRule = SurfaceRules.sequence(SurfaceRules.ifTrue(SurfaceRules.ON_CEILING, SALTSTONE), SALT);
         SurfaceRules.RuleSource solidGoldRoofRule = SurfaceRules.sequence(SurfaceRules.ifTrue(SurfaceRules.ON_CEILING, SOLID_GOLDEN_STONE), GOLDEN_SAND);
-        SurfaceRules.ConditionSource beachCondition = SurfaceRules.isBiome(ModBiomes.mineral_reservoir, ModBiomes.mineral_river);
-        SurfaceRules.ConditionSource dunesRule = SurfaceRules.isBiome(ModBiomes.salt_dunes);
-        SurfaceRules.ConditionSource sandsRule = SurfaceRules.isBiome(ModBiomes.golden_sands);
+        SurfaceRules.ConditionSource beachCondition = SurfaceRules.isBiome(GaiaBiomes.mineral_reservoir, GaiaBiomes.mineral_river);
+        SurfaceRules.ConditionSource dunesRule = SurfaceRules.isBiome(GaiaBiomes.salt_dunes);
+        SurfaceRules.ConditionSource sandsRule = SurfaceRules.isBiome(GaiaBiomes.golden_sands);
         SurfaceRules.ConditionSource surfacerules$conditionsource14 = SurfaceRules.noiseCondition(Noises.SURFACE, -0.909D, -0.5454D);
         SurfaceRules.ConditionSource surfacerules$conditionsource15 = SurfaceRules.noiseCondition(Noises.SURFACE, -0.1818D, 0.1818D);
         SurfaceRules.ConditionSource surfacerules$conditionsource16 = SurfaceRules.noiseCondition(Noises.SURFACE, 0.5454D, 0.909D);
 
         SurfaceRules.RuleSource grassRule = SurfaceRules.sequence(
-                SurfaceRules.ifTrue(SurfaceRules.isBiome(ModBiomes.goldstone_lands), CORRUPT_GRASS),
-                SurfaceRules.ifTrue(SurfaceRules.isBiome(ModBiomes.smoldering_bog), MURKY_GRASS),
-                SurfaceRules.ifTrue(SurfaceRules.isBiome(ModBiomes.shining_grove), SOFT_GRASS),
-                SurfaceRules.ifTrue(SurfaceRules.isBiome(ModBiomes.golden_hills, ModBiomes.golden_forest, ModBiomes.golden_plains, ModBiomes.golden_marsh), GILDED_GRASS),
+                SurfaceRules.ifTrue(SurfaceRules.isBiome(GaiaBiomes.goldstone_lands), CORRUPT_GRASS),
+                SurfaceRules.ifTrue(SurfaceRules.isBiome(GaiaBiomes.smoldering_bog), MURKY_GRASS),
+                SurfaceRules.ifTrue(SurfaceRules.isBiome(GaiaBiomes.shining_grove), SOFT_GRASS),
+                SurfaceRules.ifTrue(SurfaceRules.isBiome(GaiaBiomes.golden_hills, GaiaBiomes.golden_forest, GaiaBiomes.golden_plains, GaiaBiomes.golden_marsh), GILDED_GRASS),
                 GLITTER_GRASS);
         SurfaceRules.RuleSource dirtRule = SurfaceRules.sequence(
-                SurfaceRules.ifTrue(SurfaceRules.isBiome(ModBiomes.goldstone_lands), CORRUPT_SOIL),
-                SurfaceRules.ifTrue(SurfaceRules.isBiome(ModBiomes.smoldering_bog), BOGGY_SOIL),
-                SurfaceRules.ifTrue(SurfaceRules.isBiome(ModBiomes.shining_grove), LIGHT_SOIL),
-                SurfaceRules.ifTrue(SurfaceRules.isBiome(ModBiomes.golden_hills, ModBiomes.golden_forest, ModBiomes.golden_plains, ModBiomes.golden_marsh), AURUM_SOIL),
+                SurfaceRules.ifTrue(SurfaceRules.isBiome(GaiaBiomes.goldstone_lands), CORRUPT_SOIL),
+                SurfaceRules.ifTrue(SurfaceRules.isBiome(GaiaBiomes.smoldering_bog), BOGGY_SOIL),
+                SurfaceRules.ifTrue(SurfaceRules.isBiome(GaiaBiomes.shining_grove), LIGHT_SOIL),
+                SurfaceRules.ifTrue(SurfaceRules.isBiome(GaiaBiomes.golden_hills, GaiaBiomes.golden_forest, GaiaBiomes.golden_plains, GaiaBiomes.golden_marsh), AURUM_SOIL),
                 HEAVY_SOIL);
         SurfaceRules.RuleSource basicSurfaceRule = SurfaceRules.sequence(SurfaceRules.ifTrue(SurfaceRules.waterBlockCheck(-1, 0), grassRule), dirtRule);
         SurfaceRules.RuleSource rockySurfaceRule = SurfaceRules.sequence(
-                SurfaceRules.ifTrue(SurfaceRules.isBiome(ModBiomes.golden_hills),
+                SurfaceRules.ifTrue(SurfaceRules.isBiome(GaiaBiomes.golden_hills),
                         SurfaceRules.ifTrue(SurfaceRules.not(SurfaceRules.verticalGradient("brilliant_stone", VerticalAnchor.absolute(100), VerticalAnchor.absolute(105))), SOLID_GOLDEN_STONE)),
                 SurfaceRules.ifTrue(sandsRule, solidGoldRoofRule),
                 SurfaceRules.ifTrue(beachCondition, saltstoneRoofRule),
@@ -78,7 +78,7 @@ public class GaiaSurfaceRuleData {
                 /*SurfaceRules.ifTrue(SurfaceRules.isBiome(Biomes.DRIPSTONE_CAVES), STONE)*/);
 
         SurfaceRules.RuleSource mookaite = SurfaceRules.sequence(
-                SurfaceRules.ifTrue(SurfaceRules.isBiome(ModBiomes.mookaite_mesa),
+                SurfaceRules.ifTrue(SurfaceRules.isBiome(GaiaBiomes.mookaite_mesa),
                         SurfaceRules.sequence(
                                 SurfaceRules.ifTrue(SurfaceRules.ON_FLOOR,
                                         SurfaceRules.sequence(
@@ -103,7 +103,7 @@ public class GaiaSurfaceRuleData {
         );
 
         SurfaceRules.RuleSource wasteland = SurfaceRules.sequence(
-                SurfaceRules.ifTrue(SurfaceRules.isBiome(ModBiomes.static_wasteland),
+                SurfaceRules.ifTrue(SurfaceRules.isBiome(GaiaBiomes.static_wasteland),
                         SurfaceRules.ifTrue(SurfaceRules.not(SurfaceRules.verticalGradient("wasteland_stone", VerticalAnchor.absolute(50), VerticalAnchor.absolute(63))), WASTELAND_STONE))
         );
 
@@ -132,7 +132,7 @@ public class GaiaSurfaceRuleData {
                         )),
                 SurfaceRules.ifTrue(SurfaceRules.ON_FLOOR,
                         SurfaceRules.sequence(
-                                SurfaceRules.ifTrue(SurfaceRules.isBiome(ModBiomes.mineral_reservoir, ModBiomes.mineral_river), saltstoneRoofRule),
+                                SurfaceRules.ifTrue(SurfaceRules.isBiome(GaiaBiomes.mineral_reservoir, GaiaBiomes.mineral_river), saltstoneRoofRule),
                                 SurfaceRules.sequence(
                                         SurfaceRules.ifTrue(SurfaceRules.ON_CEILING, GAIA_STONE), PEBBLES))));
 
@@ -154,10 +154,10 @@ public class GaiaSurfaceRuleData {
         builder.add(grassSurface);
         builder.add(surfaceRule);
         //generate golden stone under gold biomes
-        builder.add(SurfaceRules.ifTrue(SurfaceRules.isBiome(ModBiomes.golden_hills, ModBiomes.golden_forest, ModBiomes.golden_plains, ModBiomes.golden_marsh, ModBiomes.golden_sands),
+        builder.add(SurfaceRules.ifTrue(SurfaceRules.isBiome(GaiaBiomes.golden_hills, GaiaBiomes.golden_forest, GaiaBiomes.golden_plains, GaiaBiomes.golden_marsh, GaiaBiomes.golden_sands),
                 SurfaceRules.ifTrue(SurfaceRules.not(SurfaceRules.verticalGradient("golden_stone", VerticalAnchor.absolute(50), VerticalAnchor.absolute(63))), GOLDEN_STONE)));
         //generate volcanic rock under Volcanic Lands
-        builder.add(SurfaceRules.ifTrue(SurfaceRules.isBiome(ModBiomes.volcanic_lands),
+        builder.add(SurfaceRules.ifTrue(SurfaceRules.isBiome(GaiaBiomes.volcanic_lands),
                 SurfaceRules.ifTrue(SurfaceRules.not(SurfaceRules.verticalGradient("volcanic_rock", VerticalAnchor.absolute(50), VerticalAnchor.absolute(63))), VOLCANIC_ROCK)));
         //generate nexustone
         builder.add(SurfaceRules.ifTrue(SurfaceRules.verticalGradient("nexustone", VerticalAnchor.absolute(-48), VerticalAnchor.absolute(-32)), NEXUSTONE));

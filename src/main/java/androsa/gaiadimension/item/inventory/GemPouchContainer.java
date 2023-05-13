@@ -1,6 +1,6 @@
 package androsa.gaiadimension.item.inventory;
 
-import androsa.gaiadimension.registry.ModMenus;
+import androsa.gaiadimension.registry.registration.ModMenus;
 import net.minecraft.world.Container;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Inventory;

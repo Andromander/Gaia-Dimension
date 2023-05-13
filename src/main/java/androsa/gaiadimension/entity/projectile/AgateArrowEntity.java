@@ -1,7 +1,7 @@
 package androsa.gaiadimension.entity.projectile;
 
-import androsa.gaiadimension.registry.ModEntities;
-import androsa.gaiadimension.registry.ModItems;
+import androsa.gaiadimension.registry.registration.ModEntities;
+import androsa.gaiadimension.registry.registration.ModItems;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.world.entity.EntityType;

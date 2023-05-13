@@ -2,9 +2,9 @@ package androsa.gaiadimension.world.gen.structure.pieces;
 
 import androsa.gaiadimension.GaiaDimensionMod;
 import androsa.gaiadimension.block.blockentity.SmallCrateBlockEntity;
-import androsa.gaiadimension.registry.GaiaChestTables;
-import androsa.gaiadimension.registry.ModBlocks;
-import androsa.gaiadimension.registry.ModStructures;
+import androsa.gaiadimension.registry.values.GaiaChestTables;
+import androsa.gaiadimension.registry.registration.ModBlocks;
+import androsa.gaiadimension.registry.registration.ModStructures;
 import androsa.gaiadimension.world.gen.structure.processor.MalachiteDegradeProcessor;
 import com.google.common.collect.ImmutableMap;
 import net.minecraft.core.BlockPos;

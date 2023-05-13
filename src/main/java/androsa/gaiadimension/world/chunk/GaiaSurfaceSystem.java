@@ -1,7 +1,7 @@
 package androsa.gaiadimension.world.chunk;
 
 import androsa.gaiadimension.GaiaDimensionMod;
-import androsa.gaiadimension.registry.ModBlocks;
+import androsa.gaiadimension.registry.registration.ModBlocks;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.block.state.BlockState;

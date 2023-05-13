@@ -1,8 +1,8 @@
 package androsa.gaiadimension.entity.projectile;
 
-import androsa.gaiadimension.registry.ModEntities;
-import androsa.gaiadimension.registry.ModItems;
-import androsa.gaiadimension.registry.ModParticles;
+import androsa.gaiadimension.registry.registration.ModEntities;
+import androsa.gaiadimension.registry.registration.ModItems;
+import androsa.gaiadimension.registry.registration.ModParticles;
 import net.minecraft.core.particles.ItemParticleOption;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;

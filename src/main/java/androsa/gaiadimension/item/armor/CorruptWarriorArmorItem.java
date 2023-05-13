@@ -1,6 +1,6 @@
 package androsa.gaiadimension.item.armor;
 
-import androsa.gaiadimension.registry.GaiaArmorMaterials;
+import androsa.gaiadimension.registry.values.GaiaArmorMaterials;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.ArmorItem;

@@ -1,6 +1,6 @@
 package androsa.gaiadimension.world.gen.structure.processor;
 
-import androsa.gaiadimension.registry.ModStructures;
+import androsa.gaiadimension.registry.registration.ModStructures;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.BlockPos;

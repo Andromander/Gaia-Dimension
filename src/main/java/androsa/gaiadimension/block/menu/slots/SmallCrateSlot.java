@@ -1,6 +1,6 @@
 package androsa.gaiadimension.block.menu.slots;
 
-import androsa.gaiadimension.registry.GaiaTags;
+import androsa.gaiadimension.registry.values.GaiaTags;
 import net.minecraft.world.Container;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
