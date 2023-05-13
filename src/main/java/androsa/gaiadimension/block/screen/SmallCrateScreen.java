@@ -41,6 +41,6 @@ public class SmallCrateScreen extends AbstractContainerScreen<SmallCrateContaine
         RenderSystem.setShaderTexture(0, textureLoc);
         int i = (this.width - this.imageWidth) / 2;
         int j = (this.height - this.imageHeight) / 2;
-        this.blit(stack, i, j, 0, 0, this.imageWidth, this.imageHeight);
+        blit(stack, i, j, 0, 0, this.imageWidth, this.imageHeight);
     }
 }

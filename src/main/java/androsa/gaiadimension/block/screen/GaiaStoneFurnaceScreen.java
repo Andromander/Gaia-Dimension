@@ -28,14 +28,14 @@ public class GaiaStoneFurnaceScreen extends AbstractContainerScreen<GaiaStoneFur
         RenderSystem.setShaderTexture(0, textureLoc);
         int i = this.leftPos;
         int j = this.topPos;
-        this.blit(stack, i, j, 0, 0, this.imageWidth, this.imageHeight);
+        blit(stack, i, j, 0, 0, this.imageWidth, this.imageHeight);
         if ((this.menu).isBurning()) {
             int k = (this.menu).getBurnLeftScaled();
-            this.blit(stack, i + 56, j + 36 + 12 - k, 176, 12 - k, 14, k + 1);
+            blit(stack, i + 56, j + 36 + 12 - k, 176, 12 - k, 14, k + 1);
         }
 
         int l = (this.menu).getCookProgressionScaled();
-        this.blit(stack, i + 79, j + 34, 176, 14, l + 1, 16);
+        blit(stack, i + 79, j + 34, 176, 14, l + 1, 16);
     }
 
     @Override
