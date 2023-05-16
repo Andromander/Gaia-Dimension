@@ -506,7 +506,7 @@ public class ModBlocks {
                 ScaynyxBucketItem bucketitem = (ScaynyxBucketItem)stack.getItem();
                 BlockPos blockpos = source.getPos().relative(source.getBlockState().getValue(DispenserBlock.FACING));
                 Level world = source.getLevel();
-                if (bucketitem.emptyContents(null, world, blockpos, null)) {
+                if (bucketitem.emptyContents(null, world, blockpos, null, stack)) {
                     bucketitem.checkExtraContent(null, world, stack, blockpos);
                     return new ItemStack(ModItems.scaynyx_bucket.get());
                 } else {
