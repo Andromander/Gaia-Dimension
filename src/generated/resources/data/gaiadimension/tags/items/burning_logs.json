@@ -1,8 +1,8 @@
 {
   "values": [
-    "gaiadimension:burning_log",
-    "gaiadimension:stripped_burning_log",
-    "gaiadimension:burning_wood",
-    "gaiadimension:stripped_burning_wood"
+    "gaiadimension:fire_agate_log",
+    "gaiadimension:stripped_fire_agate_log",
+    "gaiadimension:fire_agate_wood",
+    "gaiadimension:stripped_fire_agate_wood"
   ]
 }

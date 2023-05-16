@@ -1,12 +1,12 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_opal_ore_green": {
+    "has_green_opal_ore": {
       "conditions": {
         "items": [
           {
             "items": [
-              "gaiadimension:opal_ore_green"
+              "gaiadimension:green_opal_ore"
             ]
           }
         ]
@@ -22,7 +22,7 @@
   },
   "requirements": [
     [
-      "has_opal_ore_green",
+      "has_green_opal_ore",
       "has_the_recipe"
     ]
   ],

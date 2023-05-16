@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/stairs",
-  "textures": {
-    "bottom": "gaiadimension:block/burnt_planks",
-    "side": "gaiadimension:block/burnt_planks",
-    "top": "gaiadimension:block/burnt_planks"
-  }
-}

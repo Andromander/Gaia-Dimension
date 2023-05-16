@@ -33,7 +33,7 @@
               "function": "minecraft:set_count"
             }
           ],
-          "name": "gaiadimension:malachite_floor_tiles",
+          "name": "gaiadimension:malachite_tiles",
           "weight": 15
         },
         {

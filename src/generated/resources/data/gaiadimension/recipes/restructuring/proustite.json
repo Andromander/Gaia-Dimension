@@ -1,0 +1,10 @@
+{
+  "type": "gaiadimension:restructuring",
+  "byproduct": "gaiadimension:black_residue",
+  "cookingtime": 200,
+  "experience": 0.3,
+  "ingredient": {
+    "item": "gaiadimension:cinnabar"
+  },
+  "result": "gaiadimension:proustite"
+}

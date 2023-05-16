@@ -1,12 +1,12 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_opal_block_red": {
+    "has_red_opal_block": {
       "conditions": {
         "items": [
           {
             "items": [
-              "gaiadimension:opal_block_red"
+              "gaiadimension:red_opal_block"
             ]
           }
         ]
@@ -22,7 +22,7 @@
   },
   "requirements": [
     [
-      "has_opal_block_red",
+      "has_red_opal_block",
       "has_the_recipe"
     ]
   ],

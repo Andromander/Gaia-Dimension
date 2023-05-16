@@ -1,0 +1,12 @@
+{
+  "type": "gaiadimension:purifying",
+  "byproduct": {
+    "item": "gaiadimension:goldstone_residue"
+  },
+  "cookingtime": 200,
+  "experience": 0.3,
+  "ingredient": {
+    "item": "gaiadimension:stripped_corrupted_log"
+  },
+  "result": "gaiadimension:stripped_pink_agate_log"
+}

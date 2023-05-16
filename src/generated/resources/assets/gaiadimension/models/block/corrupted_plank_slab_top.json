@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/slab_top",
-  "textures": {
-    "bottom": "gaiadimension:block/corrupted_planks",
-    "side": "gaiadimension:block/corrupted_planks",
-    "top": "gaiadimension:block/corrupted_planks"
-  }
-}

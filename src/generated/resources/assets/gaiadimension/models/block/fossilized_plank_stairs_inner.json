@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/inner_stairs",
-  "textures": {
-    "bottom": "gaiadimension:block/fossilized_planks",
-    "side": "gaiadimension:block/fossilized_planks",
-    "top": "gaiadimension:block/fossilized_planks"
-  }
-}

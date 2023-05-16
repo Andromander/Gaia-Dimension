@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "gaiadimension:block/burnt_agate_tiles"
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "gaiadimension:block/corrupted_soil"
+      },
+      {
+        "model": "gaiadimension:block/corrupted_soil",
+        "y": 90
+      },
+      {
+        "model": "gaiadimension:block/corrupted_soil",
+        "y": 180
+      },
+      {
+        "model": "gaiadimension:block/corrupted_soil",
+        "y": 270
+      }
+    ]
+  }
+}

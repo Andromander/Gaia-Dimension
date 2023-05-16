@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/slab",
-  "textures": {
-    "bottom": "gaiadimension:block/burning_planks",
-    "side": "gaiadimension:block/burning_planks",
-    "top": "gaiadimension:block/burning_planks"
-  }
-}

@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/inner_stairs",
-  "textures": {
-    "bottom": "gaiadimension:block/pink_agate_planks",
-    "side": "gaiadimension:block/pink_agate_planks",
-    "top": "gaiadimension:block/pink_agate_planks"
-  }
-}

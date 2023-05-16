@@ -4,7 +4,7 @@
   "cookingtime": 200,
   "experience": 0.3,
   "ingredient": {
-    "item": "gaiadimension:opal_ore_red"
+    "item": "gaiadimension:red_opal_ore"
   },
   "result": "gaiadimension:red_opal"
 }

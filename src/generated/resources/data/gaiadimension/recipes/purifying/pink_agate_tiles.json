@@ -1,0 +1,12 @@
+{
+  "type": "gaiadimension:purifying",
+  "byproduct": {
+    "item": "gaiadimension:goldstone_residue"
+  },
+  "cookingtime": 200,
+  "experience": 0.3,
+  "ingredient": {
+    "item": "gaiadimension:corrupted_tiles"
+  },
+  "result": "gaiadimension:pink_agate_tiles"
+}

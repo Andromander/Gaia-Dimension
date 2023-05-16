@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/outer_stairs",
+  "textures": {
+    "bottom": "gaiadimension:block/fossilized_tiles",
+    "side": "gaiadimension:block/fossilized_tiles",
+    "top": "gaiadimension:block/fossilized_tiles"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "gaiadimension:block/stripped_burnt_agate_log_end",
+    "side": "gaiadimension:block/stripped_burnt_agate_log_side"
+  }
+}

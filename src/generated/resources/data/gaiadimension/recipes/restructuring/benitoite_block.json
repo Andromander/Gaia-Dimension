@@ -1,0 +1,10 @@
+{
+  "type": "gaiadimension:restructuring",
+  "byproduct": "gaiadimension:tektite",
+  "cookingtime": 200,
+  "experience": 2.7,
+  "ingredient": {
+    "item": "gaiadimension:blue_opal_block"
+  },
+  "result": "gaiadimension:benitoite_block"
+}

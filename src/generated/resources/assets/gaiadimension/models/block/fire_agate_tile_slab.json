@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab",
+  "textures": {
+    "bottom": "gaiadimension:block/fire_agate_tiles",
+    "side": "gaiadimension:block/fire_agate_tiles",
+    "top": "gaiadimension:block/fire_agate_tiles"
+  }
+}

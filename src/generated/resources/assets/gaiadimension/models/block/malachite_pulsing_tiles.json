@@ -2,7 +2,7 @@
   "parent": "gaiadimension:block/util/emissive_2_layer",
   "render_type": "minecraft:cutout",
   "textures": {
-    "texture": "gaiadimension:block/malachite_floor_tiles",
+    "texture": "gaiadimension:block/malachite_tiles",
     "texture2": "gaiadimension:block/malachite_blue_pulse_corner"
   }
 }

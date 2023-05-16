@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/slab",
-  "textures": {
-    "bottom": "gaiadimension:block/green_agate_planks",
-    "side": "gaiadimension:block/green_agate_planks",
-    "top": "gaiadimension:block/green_agate_planks"
-  }
-}

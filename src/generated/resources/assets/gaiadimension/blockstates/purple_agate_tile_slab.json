@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "gaiadimension:block/purple_agate_tile_slab"
+    },
+    "type=double": {
+      "model": "gaiadimension:block/purple_agate_tiles"
+    },
+    "type=top": {
+      "model": "gaiadimension:block/purple_agate_tile_slab_top"
+    }
+  }
+}

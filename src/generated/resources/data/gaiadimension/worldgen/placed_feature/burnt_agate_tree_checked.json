@@ -6,7 +6,7 @@
       "predicate": {
         "type": "minecraft:would_survive",
         "state": {
-          "Name": "gaiadimension:burnt_sapling",
+          "Name": "gaiadimension:burnt_agate_sapling",
           "Properties": {
             "stage": "0"
           }

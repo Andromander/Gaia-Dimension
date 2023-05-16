@@ -1,5 +1,7 @@
 package androsa.gaiadimension.data.provider;
 
+import androsa.gaiadimension.recipe.PurifierRecipeBuilder;
+import androsa.gaiadimension.recipe.RestructurerRecipeBuilder;
 import androsa.gaiadimension.registry.registration.ModBlocks;
 import androsa.gaiadimension.registry.registration.ModItems;
 import net.minecraft.data.PackOutput;
@@ -232,6 +234,26 @@ public abstract class GaiaRecipeProvider extends RecipeProvider implements ICond
 
     public SimpleCookingRecipeBuilder smeltingRecipe(ItemLike result, ItemLike ingredient, float exp, int count) {
         return SimpleCookingRecipeBuilder.smelting(Ingredient.of(new ItemStack(ingredient, count)), RecipeCategory.MISC, result, exp, 200)
+                .unlockedBy("has_" + ForgeRegistries.ITEMS.getKey(ingredient.asItem()).getPath(), has(ingredient));
+    }
+
+    public RestructurerRecipeBuilder restructureBlackResidue(RegistryObject<Item> result, RegistryObject<Item> ingredient, float exp, int count) {
+        return RestructurerRecipeBuilder.restructuring(Ingredient.of(new ItemStack(ingredient.get(), count)), result.get(), ModItems.black_residue.get(), exp, 200)
+                .unlockedBy("has_" + ForgeRegistries.ITEMS.getKey(ingredient.get().asItem()).getPath(), has(ingredient.get()));
+    }
+
+    public RestructurerRecipeBuilder restructuringTektite(RegistryObject<Block> result, RegistryObject<Block> ingredient, float exp, int count) {
+        return RestructurerRecipeBuilder.restructuring(Ingredient.of(new ItemStack(ingredient.get(), count)), result.get(), ModItems.tektite.get(), exp, 200)
+                .unlockedBy("has_" + ForgeRegistries.ITEMS.getKey(ingredient.get().asItem()).getPath(), has(ingredient.get()));
+    }
+
+    public RestructurerRecipeBuilder restructuringItems(ItemLike result, ItemLike byproduct, ItemLike ingredient, float exp, int count) {
+        return RestructurerRecipeBuilder.restructuring(Ingredient.of(new ItemStack(ingredient, count)), result, byproduct, exp, 200)
+                .unlockedBy("has_" + ForgeRegistries.ITEMS.getKey(ingredient.asItem()).getPath(), has(ingredient));
+    }
+
+    public PurifierRecipeBuilder purifyingItems(ItemLike result, ItemLike byproduct, ItemLike ingredient, float exp, int count, int bycount) {
+        return PurifierRecipeBuilder.purifying(Ingredient.of(new ItemStack(ingredient, count)), result, Ingredient.of(new ItemStack(byproduct, bycount)), exp, 200)
                 .unlockedBy("has_" + ForgeRegistries.ITEMS.getKey(ingredient.asItem()).getPath(), has(ingredient));
     }
 }

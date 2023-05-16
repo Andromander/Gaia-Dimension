@@ -1,0 +1,10 @@
+{
+  "type": "gaiadimension:restructuring",
+  "byproduct": "gaiadimension:pink_essence",
+  "cookingtime": 200,
+  "experience": 0.1,
+  "ingredient": {
+    "item": "gaiadimension:benitoite"
+  },
+  "result": "gaiadimension:crystallized_lapis_lazuli"
+}

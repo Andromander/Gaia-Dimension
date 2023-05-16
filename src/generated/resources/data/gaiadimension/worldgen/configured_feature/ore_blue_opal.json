@@ -6,7 +6,7 @@
     "targets": [
       {
         "state": {
-          "Name": "gaiadimension:opal_ore_blue"
+          "Name": "gaiadimension:blue_opal_ore"
         },
         "target": {
           "predicate_type": "minecraft:tag_match",

@@ -476,7 +476,7 @@
                               "then_run": {
                                 "type": "minecraft:block",
                                 "result_state": {
-                                  "Name": "gaiadimension:corrupt_grass"
+                                  "Name": "gaiadimension:corrupted_grass"
                                 }
                               }
                             },
@@ -551,7 +551,7 @@
                             "then_run": {
                               "type": "minecraft:block",
                               "result_state": {
-                                "Name": "gaiadimension:corrupt_soil"
+                                "Name": "gaiadimension:corrupted_soil"
                               }
                             }
                           },
@@ -804,7 +804,7 @@
                             "then_run": {
                               "type": "minecraft:block",
                               "result_state": {
-                                "Name": "gaiadimension:corrupt_soil"
+                                "Name": "gaiadimension:corrupted_soil"
                               }
                             }
                           },

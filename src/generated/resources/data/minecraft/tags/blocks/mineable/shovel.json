@@ -1,12 +1,12 @@
 {
   "values": [
     "gaiadimension:heavy_soil",
-    "gaiadimension:corrupt_soil",
+    "gaiadimension:corrupted_soil",
     "gaiadimension:boggy_soil",
     "gaiadimension:light_soil",
     "gaiadimension:aurum_soil",
     "gaiadimension:glitter_grass",
-    "gaiadimension:corrupt_grass",
+    "gaiadimension:corrupted_grass",
     "gaiadimension:murky_grass",
     "gaiadimension:soft_grass",
     "gaiadimension:gilded_grass",
