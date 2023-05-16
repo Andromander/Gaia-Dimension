@@ -1,4 +1,4 @@
-// 1.19.4	2023-05-14T20:36:28.9444694	Registries
+// 1.19.4	2023-05-16T21:34:00.0867887	Registries
 56d72770b020b85f72c305522124360858cbe607 data/gaiadimension/damage_type/corruption.json
 a1e930106447e88a8543df5b23b57cfb80a32144 data/gaiadimension/damage_type/energetic.json
 fabd7f085894b585a78435b4771454b6036d241e data/gaiadimension/damage_type/malachite_blast.json
@@ -119,7 +119,7 @@ ff734437bbd5b8d65f40560195125f286674ffc6 data/gaiadimension/worldgen/configured_
 05af5808d2813e03d6f8da081ffe80734100aa94 data/gaiadimension/worldgen/configured_feature/twinkling_gilsri.json
 4b3322d63be2553c37def27e0e1e9b3262cca5c3 data/gaiadimension/worldgen/configured_feature/underground_glitter_blob.json
 a7da18a33b7d07a399e66bcbaf06763c01a2b3ee data/gaiadimension/worldgen/configured_feature/various_agate_trees.json
-6cbbadc5c4d83a7891de728d208651ac858cd15c data/gaiadimension/worldgen/noise_settings/gaia_noise.json
+84806d110b20f893ccbbd4ed0f45ef90cac8b56a data/gaiadimension/worldgen/noise_settings/gaia_noise.json
 bc48d9294567c431b14a0ce3667a6dd5cb0c1759 data/gaiadimension/worldgen/placed_feature/aura_shoots.json
 c378330a722f065c3139c78d62a58c3a2253a8da data/gaiadimension/worldgen/placed_feature/aura_tree.json
 311eaa0740051191cc1ecd1359b1c920b884e93a data/gaiadimension/worldgen/placed_feature/aura_tree_checked.json

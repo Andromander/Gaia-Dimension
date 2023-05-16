@@ -149,7 +149,7 @@ public class GaiaSurfaceRuleData {
         }
 
         //SurfaceRules.RuleSource aboveSurfaceRule = SurfaceRules.ifTrue(SurfaceRules.abovePreliminarySurface(), surfaceRule);
-        builder.add(mookaite);
+        builder.add(SurfaceRules.ifTrue(seaLevelCondition, mookaite));
         builder.add(wasteland);
         builder.add(grassSurface);
         builder.add(surfaceRule);
