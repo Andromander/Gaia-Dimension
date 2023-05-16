@@ -74,12 +74,12 @@ public class ModBlocks {
 
     //Natural Blocks
     public static final RegistryObject<Block> heavy_soil = register("heavy_soil", () -> new GaiaSoilBlock(PropertiesHandler.soilProps(MaterialColor.TERRACOTTA_PURPLE)));
-    public static final RegistryObject<Block> corrupt_soil = register("corrupted_soil", () -> new GaiaSoilBlock(PropertiesHandler.soilProps(MaterialColor.COLOR_GRAY)));
+    public static final RegistryObject<Block> corrupted_soil = register("corrupted_soil", () -> new GaiaSoilBlock(PropertiesHandler.soilProps(MaterialColor.COLOR_GRAY)));
     public static final RegistryObject<Block> boggy_soil = register("boggy_soil", () -> new GaiaSoilBlock(PropertiesHandler.soilProps(MaterialColor.COLOR_GRAY)));
     public static final RegistryObject<Block> light_soil = register("light_soil", () -> new GaiaSoilBlock(PropertiesHandler.soilProps(MaterialColor.GOLD)));
     public static final RegistryObject<Block> aurum_soil = register("aurum_soil", () -> new GaiaSoilBlock(PropertiesHandler.soilProps(MaterialColor.TERRACOTTA_BLACK)));
     public static final RegistryObject<Block> glitter_grass = register("glitter_grass", () -> new GlitterGrassBlock(PropertiesHandler.grassProps(MaterialColor.COLOR_PINK)));
-    public static final RegistryObject<Block> corrupt_grass = register("corrupted_grass", () -> new CorruptGrassBlock(PropertiesHandler.grassProps(MaterialColor.COLOR_BLACK)));
+    public static final RegistryObject<Block> corrupted_grass = register("corrupted_grass", () -> new CorruptGrassBlock(PropertiesHandler.grassProps(MaterialColor.COLOR_BLACK)));
     public static final RegistryObject<Block> murky_grass = register("murky_grass", () -> new MurkyGrassBlock(PropertiesHandler.grassProps(MaterialColor.COLOR_GRAY)));
     public static final RegistryObject<Block> soft_grass = register("soft_grass", () -> new SoftGrassBlock(PropertiesHandler.grassProps(MaterialColor.COLOR_CYAN)));
     public static final RegistryObject<Block> gilded_grass = register("gilded_grass", () -> new GildedGrassBlock(PropertiesHandler.grassProps(MaterialColor.TERRACOTTA_BROWN)));
@@ -128,7 +128,7 @@ public class ModBlocks {
     public static final RegistryObject<SaplingBlock> fossilized_sapling = register("fossilized_sapling", () -> new GaiaSaplingBlock(new FossilizedTree(), PropertiesHandler.saplingProps(MaterialColor.TERRACOTTA_YELLOW)));
     public static final RegistryObject<SaplingBlock> corrupted_sapling = register("corrupted_sapling", () -> new GaiaSaplingBlock(new GoldstoneCorruptTree(), PropertiesHandler.saplingProps(MaterialColor.TERRACOTTA_BLACK)));
     public static final RegistryObject<SaplingBlock> burnt_sapling = register("burnt_agate_sapling", () -> new GaiaSaplingBlock(new BurntAgateTree(), PropertiesHandler.saplingProps(MaterialColor.COLOR_BLACK)));
-    public static final RegistryObject<SaplingBlock> burning_sapling = register("fire_agate_sapling", () -> new GaiaSaplingBlock(new FieryAgateTree(), PropertiesHandler.saplingProps(MaterialColor.TERRACOTTA_ORANGE)), 100);
+    public static final RegistryObject<SaplingBlock> fire_agate_sapling = register("fire_agate_sapling", () -> new GaiaSaplingBlock(new FieryAgateTree(), PropertiesHandler.saplingProps(MaterialColor.TERRACOTTA_ORANGE)), 100);
     public static final RegistryObject<SaplingBlock> aura_sapling = register("aura_sapling", () -> new GaiaSaplingBlock(new AuraTree(), PropertiesHandler.saplingProps(MaterialColor.SNOW)));
     public static final RegistryObject<SaplingBlock> golden_sapling = register("golden_sapling", () -> new GaiaSaplingBlock(new GoldenTree(), PropertiesHandler.saplingProps(MaterialColor.GOLD)));
     public static final RegistryObject<Block> pink_agate_leaves = register("pink_agate_leaves", () -> new LeavesBlock(PropertiesHandler.leavesProps(MaterialColor.COLOR_MAGENTA)));
@@ -138,7 +138,7 @@ public class ModBlocks {
     public static final RegistryObject<Block> fossilized_leaves = register("fossilized_leaves", () -> new LeavesBlock(PropertiesHandler.leavesProps(MaterialColor.COLOR_YELLOW)));
     public static final RegistryObject<Block> corrupted_leaves = register("corrupted_leaves", () -> new LeavesBlock(PropertiesHandler.leavesProps(MaterialColor.FIRE)));
     public static final RegistryObject<Block> burnt_leaves = register("burnt_agate_leaves", () -> new LeavesBlock(PropertiesHandler.leavesProps(MaterialColor.COLOR_GRAY)));
-    public static final RegistryObject<Block> burning_leaves = register("fire_agate_leaves", () -> new LeavesBlock(PropertiesHandler.leavesProps(MaterialColor.TERRACOTTA_ORANGE).lightLevel((state) -> 3)), 200);
+    public static final RegistryObject<Block> fire_agate_leaves = register("fire_agate_leaves", () -> new LeavesBlock(PropertiesHandler.leavesProps(MaterialColor.TERRACOTTA_ORANGE).lightLevel((state) -> 3)), 200);
     public static final RegistryObject<Block> aura_leaves = register("aura_leaves", () -> new LeavesBlock(PropertiesHandler.leavesProps(MaterialColor.METAL)));
     public static final RegistryObject<Block> golden_leaves = register("golden_leaves", () -> new LeavesBlock(PropertiesHandler.leavesProps(MaterialColor.GOLD)));
     public static final RegistryObject<RotatedPillarBlock> pink_agate_log = register("pink_agate_log", () -> new RotatedPillarBlock(PropertiesHandler.logProps(MaterialColor.COLOR_MAGENTA, MaterialColor.TERRACOTTA_PINK)));
@@ -148,7 +148,7 @@ public class ModBlocks {
     public static final RegistryObject<RotatedPillarBlock> fossilized_log = register("fossilized_log", () -> new RotatedPillarBlock(PropertiesHandler.logProps(MaterialColor.COLOR_YELLOW, MaterialColor.DIRT)));
     public static final RegistryObject<RotatedPillarBlock> corrupted_log = register("corrupted_log", () -> new RotatedPillarBlock(PropertiesHandler.logProps(MaterialColor.FIRE, MaterialColor.TERRACOTTA_GRAY)));
     public static final RegistryObject<RotatedPillarBlock> burnt_log = register("burnt_agate_log", () -> new RotatedPillarBlock(PropertiesHandler.logProps(MaterialColor.COLOR_GRAY, MaterialColor.TERRACOTTA_BLACK)));
-    public static final RegistryObject<RotatedPillarBlock> burning_log = register("fire_agate_log", () -> new RotatedPillarBlock(PropertiesHandler.logProps(MaterialColor.COLOR_ORANGE, MaterialColor.TERRACOTTA_ORANGE).lightLevel((state) -> 3)), 1600);
+    public static final RegistryObject<RotatedPillarBlock> fire_agate_log = register("fire_agate_log", () -> new RotatedPillarBlock(PropertiesHandler.logProps(MaterialColor.COLOR_ORANGE, MaterialColor.TERRACOTTA_ORANGE).lightLevel((state) -> 3)), 1600);
     public static final RegistryObject<RotatedPillarBlock> aura_log = register("aura_log", () -> new RotatedPillarBlock(PropertiesHandler.logProps(MaterialColor.METAL, MaterialColor.COLOR_GRAY)));
     public static final RegistryObject<RotatedPillarBlock> golden_log = register("golden_log", () -> new RotatedPillarBlock(PropertiesHandler.logProps(MaterialColor.GOLD, MaterialColor.TERRACOTTA_BROWN)));
     public static final RegistryObject<RotatedPillarBlock> stripped_pink_agate_log = register("stripped_pink_agate_log", () -> new RotatedPillarBlock(PropertiesHandler.logProps(MaterialColor.COLOR_MAGENTA)));
@@ -158,7 +158,7 @@ public class ModBlocks {
     public static final RegistryObject<RotatedPillarBlock> stripped_fossilized_log = register("stripped_fossilized_log", () -> new RotatedPillarBlock(PropertiesHandler.logProps(MaterialColor.COLOR_YELLOW)));
     public static final RegistryObject<RotatedPillarBlock> stripped_corrupted_log = register("stripped_corrupted_log", () -> new RotatedPillarBlock(PropertiesHandler.logProps(MaterialColor.FIRE)));
     public static final RegistryObject<RotatedPillarBlock> stripped_burnt_log = register("stripped_burnt_agate_log", () -> new RotatedPillarBlock(PropertiesHandler.logProps(MaterialColor.COLOR_GRAY)));
-    public static final RegistryObject<RotatedPillarBlock> stripped_burning_log = register("stripped_fire_agate_log", () -> new RotatedPillarBlock(PropertiesHandler.logProps(MaterialColor.COLOR_ORANGE).lightLevel((state) -> 3)), 1600);
+    public static final RegistryObject<RotatedPillarBlock> stripped_fire_agate_log = register("stripped_fire_agate_log", () -> new RotatedPillarBlock(PropertiesHandler.logProps(MaterialColor.COLOR_ORANGE).lightLevel((state) -> 3)), 1600);
     public static final RegistryObject<RotatedPillarBlock> stripped_aura_log = register("stripped_aura_log", () -> new RotatedPillarBlock(PropertiesHandler.logProps(MaterialColor.METAL)));
     public static final RegistryObject<RotatedPillarBlock> stripped_golden_log = register("stripped_golden_log", () -> new RotatedPillarBlock(PropertiesHandler.logProps(MaterialColor.GOLD)));
     public static final RegistryObject<RotatedPillarBlock> pink_agate_wood = register("pink_agate_wood", () -> new RotatedPillarBlock(PropertiesHandler.logProps(MaterialColor.TERRACOTTA_PINK)));
@@ -168,7 +168,7 @@ public class ModBlocks {
     public static final RegistryObject<RotatedPillarBlock> fossilized_wood = register("fossilized_wood", () -> new RotatedPillarBlock(PropertiesHandler.logProps(MaterialColor.DIRT)));
     public static final RegistryObject<RotatedPillarBlock> corrupted_wood = register("corrupted_wood", () -> new RotatedPillarBlock(PropertiesHandler.logProps(MaterialColor.TERRACOTTA_GRAY)));
     public static final RegistryObject<RotatedPillarBlock> burnt_wood = register("burnt_agate_wood", () -> new RotatedPillarBlock(PropertiesHandler.logProps(MaterialColor.TERRACOTTA_BLACK)));
-    public static final RegistryObject<RotatedPillarBlock> burning_wood = register("fire_agate_wood", () -> new RotatedPillarBlock(PropertiesHandler.logProps(MaterialColor.TERRACOTTA_ORANGE).lightLevel((state) -> 3)), 1600);
+    public static final RegistryObject<RotatedPillarBlock> fire_agate_wood = register("fire_agate_wood", () -> new RotatedPillarBlock(PropertiesHandler.logProps(MaterialColor.TERRACOTTA_ORANGE).lightLevel((state) -> 3)), 1600);
     public static final RegistryObject<RotatedPillarBlock> aura_wood = register("aura_wood", () -> new RotatedPillarBlock(PropertiesHandler.logProps(MaterialColor.COLOR_GRAY)));
     public static final RegistryObject<RotatedPillarBlock> golden_wood = register("golden_wood", () -> new RotatedPillarBlock(PropertiesHandler.logProps(MaterialColor.TERRACOTTA_BROWN)));
     public static final RegistryObject<RotatedPillarBlock> stripped_pink_agate_wood = register("stripped_pink_agate_wood", () -> new RotatedPillarBlock(PropertiesHandler.logProps(MaterialColor.COLOR_MAGENTA)));
@@ -178,7 +178,7 @@ public class ModBlocks {
     public static final RegistryObject<RotatedPillarBlock> stripped_fossilized_wood = register("stripped_fossilized_wood", () -> new RotatedPillarBlock(PropertiesHandler.logProps(MaterialColor.COLOR_YELLOW)));
     public static final RegistryObject<RotatedPillarBlock> stripped_corrupted_wood = register("stripped_corrupted_wood", () -> new RotatedPillarBlock(PropertiesHandler.logProps(MaterialColor.FIRE)));
     public static final RegistryObject<RotatedPillarBlock> stripped_burnt_wood = register("stripped_burnt_agate_wood", () -> new RotatedPillarBlock(PropertiesHandler.logProps(MaterialColor.COLOR_GRAY)));
-    public static final RegistryObject<RotatedPillarBlock> stripped_burning_wood = register("stripped_fire_agate_wood", () -> new RotatedPillarBlock(PropertiesHandler.logProps(MaterialColor.COLOR_ORANGE).lightLevel((state) -> 3)), 1600);
+    public static final RegistryObject<RotatedPillarBlock> stripped_fire_agate_wood = register("stripped_fire_agate_wood", () -> new RotatedPillarBlock(PropertiesHandler.logProps(MaterialColor.COLOR_ORANGE).lightLevel((state) -> 3)), 1600);
     public static final RegistryObject<RotatedPillarBlock> stripped_aura_wood = register("stripped_aura_wood", () -> new RotatedPillarBlock(PropertiesHandler.logProps(MaterialColor.METAL)));
     public static final RegistryObject<RotatedPillarBlock> stripped_golden_wood = register("stripped_golden_wood", () -> new RotatedPillarBlock(PropertiesHandler.logProps(MaterialColor.GOLD)));
 
@@ -214,33 +214,33 @@ public class ModBlocks {
     public static final RegistryObject<Block> ivory_mookaite = register("ivory_mookaite", PropertiesHandler.stoneProps(MaterialColor.TERRACOTTA_WHITE, 1.8F, 12.0F));
 
     //Planks
-    public static final RegistryObject<Block> pink_agate_planks = register("pink_agate_tiles", PropertiesHandler.tileProps(MaterialColor.COLOR_PINK));
-    public static final RegistryObject<Block> blue_agate_planks = register("blue_agate_tiles", PropertiesHandler.tileProps(MaterialColor.COLOR_LIGHT_BLUE));
-    public static final RegistryObject<Block> green_agate_planks = register("green_agate_tiles", PropertiesHandler.tileProps(MaterialColor.COLOR_LIGHT_GREEN));
-    public static final RegistryObject<Block> purple_agate_planks = register("purple_agate_tiles", PropertiesHandler.tileProps(MaterialColor.TERRACOTTA_PURPLE));
-    public static final RegistryObject<Block> fossilized_planks = register("fossilized_tiles", PropertiesHandler.tileProps(MaterialColor.TERRACOTTA_YELLOW));
-    public static final RegistryObject<Block> corrupted_planks = register("corrupted_tiles", PropertiesHandler.tileProps(MaterialColor.TERRACOTTA_BLACK));
-    public static final RegistryObject<Block> burnt_planks = register("burnt_agate_tiles", PropertiesHandler.tileProps(MaterialColor.COLOR_BLACK));
-    public static final RegistryObject<Block> burning_planks = register("fire_agate_tiles", PropertiesHandler.tileProps(MaterialColor.TERRACOTTA_ORANGE).lightLevel((state) -> 3), 400);
-    public static final RegistryObject<Block> aura_planks = register("aura_tiles", PropertiesHandler.tileProps(MaterialColor.SNOW));
-    public static final RegistryObject<SlabBlock> pink_agate_plank_slab = register("pink_agate_tile_slab", () -> new SlabBlock(PropertiesHandler.tileProps(MaterialColor.COLOR_PINK)));
-    public static final RegistryObject<SlabBlock> blue_agate_plank_slab = register("blue_agate_tile_slab", () -> new SlabBlock(PropertiesHandler.tileProps(MaterialColor.COLOR_LIGHT_BLUE)));
-    public static final RegistryObject<SlabBlock> green_agate_plank_slab = register("green_agate_tile_slab", () -> new SlabBlock(PropertiesHandler.tileProps(MaterialColor.COLOR_LIGHT_GREEN)));
-    public static final RegistryObject<SlabBlock> purple_agate_plank_slab = register("purple_agate_tile_slab", () -> new SlabBlock(PropertiesHandler.tileProps(MaterialColor.TERRACOTTA_PURPLE)));
-    public static final RegistryObject<SlabBlock> fossilized_plank_slab = register("fossilized_tile_slab", () -> new SlabBlock(PropertiesHandler.tileProps(MaterialColor.TERRACOTTA_YELLOW)));
-    public static final RegistryObject<SlabBlock> corrupted_plank_slab = register("corrupted_tile_slab", () -> new SlabBlock(PropertiesHandler.tileProps(MaterialColor.TERRACOTTA_BLACK)));
-    public static final RegistryObject<SlabBlock> burnt_plank_slab = register("burnt_agate_tile_slab", () -> new SlabBlock(PropertiesHandler.tileProps(MaterialColor.COLOR_BLACK)));
-    public static final RegistryObject<SlabBlock> burning_plank_slab = register("fire_agate_tile_slab", () -> new SlabBlock(PropertiesHandler.tileProps(MaterialColor.TERRACOTTA_ORANGE).lightLevel((state) -> 3)), 200);
-    public static final RegistryObject<SlabBlock> aura_plank_slab = register("aura_tile_slab", () -> new SlabBlock(PropertiesHandler.tileProps(MaterialColor.SNOW)));
-    public static final RegistryObject<StairBlock> pink_agate_plank_stairs = register("pink_agate_tile_stairs", makeStairs(pink_agate_planks), 0);
-    public static final RegistryObject<StairBlock> blue_agate_plank_stairs = register("blue_agate_tile_stairs", makeStairs(blue_agate_planks), 0);
-    public static final RegistryObject<StairBlock> green_agate_plank_stairs = register("green_agate_tile_stairs", makeStairs(green_agate_planks), 0);
-    public static final RegistryObject<StairBlock> purple_agate_plank_stairs = register("purple_agate_tile_stairs", makeStairs(purple_agate_planks), 0);
-    public static final RegistryObject<StairBlock> fossilized_plank_stairs = register("fossilized_tile_stairs", makeStairs(fossilized_planks), 0);
-    public static final RegistryObject<StairBlock> corrupted_plank_stairs = register("corrupted_tile_stairs", makeStairs(corrupted_planks), 0);
-    public static final RegistryObject<StairBlock> burnt_plank_stairs = register("burnt_agate_tile_stairs", makeStairs(burnt_planks), 0);
-    public static final RegistryObject<StairBlock> burning_plank_stairs = register("fire_agate_tile_stairs", makeStairs(burning_planks), 300);
-    public static final RegistryObject<StairBlock> aura_plank_stairs = register("aura_tile_stairs", makeStairs(aura_planks), 0);
+    public static final RegistryObject<Block> pink_agate_tiles = register("pink_agate_tiles", PropertiesHandler.tileProps(MaterialColor.COLOR_PINK));
+    public static final RegistryObject<Block> blue_agate_tiles = register("blue_agate_tiles", PropertiesHandler.tileProps(MaterialColor.COLOR_LIGHT_BLUE));
+    public static final RegistryObject<Block> green_agate_tiles = register("green_agate_tiles", PropertiesHandler.tileProps(MaterialColor.COLOR_LIGHT_GREEN));
+    public static final RegistryObject<Block> purple_agate_tiles = register("purple_agate_tiles", PropertiesHandler.tileProps(MaterialColor.TERRACOTTA_PURPLE));
+    public static final RegistryObject<Block> fossilized_tiles = register("fossilized_tiles", PropertiesHandler.tileProps(MaterialColor.TERRACOTTA_YELLOW));
+    public static final RegistryObject<Block> corrupted_tiles = register("corrupted_tiles", PropertiesHandler.tileProps(MaterialColor.TERRACOTTA_BLACK));
+    public static final RegistryObject<Block> burnt_tiles = register("burnt_agate_tiles", PropertiesHandler.tileProps(MaterialColor.COLOR_BLACK));
+    public static final RegistryObject<Block> burning_tiles = register("fire_agate_tiles", PropertiesHandler.tileProps(MaterialColor.TERRACOTTA_ORANGE).lightLevel((state) -> 3), 400);
+    public static final RegistryObject<Block> aura_tiles = register("aura_tiles", PropertiesHandler.tileProps(MaterialColor.SNOW));
+    public static final RegistryObject<SlabBlock> pink_agate_tile_slab = register("pink_agate_tile_slab", () -> new SlabBlock(PropertiesHandler.tileProps(MaterialColor.COLOR_PINK)));
+    public static final RegistryObject<SlabBlock> blue_agate_tile_slab = register("blue_agate_tile_slab", () -> new SlabBlock(PropertiesHandler.tileProps(MaterialColor.COLOR_LIGHT_BLUE)));
+    public static final RegistryObject<SlabBlock> green_agate_tile_slab = register("green_agate_tile_slab", () -> new SlabBlock(PropertiesHandler.tileProps(MaterialColor.COLOR_LIGHT_GREEN)));
+    public static final RegistryObject<SlabBlock> purple_agate_tile_slab = register("purple_agate_tile_slab", () -> new SlabBlock(PropertiesHandler.tileProps(MaterialColor.TERRACOTTA_PURPLE)));
+    public static final RegistryObject<SlabBlock> fossilized_tile_slab = register("fossilized_tile_slab", () -> new SlabBlock(PropertiesHandler.tileProps(MaterialColor.TERRACOTTA_YELLOW)));
+    public static final RegistryObject<SlabBlock> corrupted_tile_slab = register("corrupted_tile_slab", () -> new SlabBlock(PropertiesHandler.tileProps(MaterialColor.TERRACOTTA_BLACK)));
+    public static final RegistryObject<SlabBlock> burnt_tile_slab = register("burnt_agate_tile_slab", () -> new SlabBlock(PropertiesHandler.tileProps(MaterialColor.COLOR_BLACK)));
+    public static final RegistryObject<SlabBlock> burning_tile_slab = register("fire_agate_tile_slab", () -> new SlabBlock(PropertiesHandler.tileProps(MaterialColor.TERRACOTTA_ORANGE).lightLevel((state) -> 3)), 200);
+    public static final RegistryObject<SlabBlock> aura_tile_slab = register("aura_tile_slab", () -> new SlabBlock(PropertiesHandler.tileProps(MaterialColor.SNOW)));
+    public static final RegistryObject<StairBlock> pink_agate_tile_stairs = register("pink_agate_tile_stairs", makeStairs(pink_agate_tiles), 0);
+    public static final RegistryObject<StairBlock> blue_agate_tile_stairs = register("blue_agate_tile_stairs", makeStairs(blue_agate_tiles), 0);
+    public static final RegistryObject<StairBlock> green_agate_tile_stairs = register("green_agate_tile_stairs", makeStairs(green_agate_tiles), 0);
+    public static final RegistryObject<StairBlock> purple_agate_tile_stairs = register("purple_agate_tile_stairs", makeStairs(purple_agate_tiles), 0);
+    public static final RegistryObject<StairBlock> fossilized_tile_stairs = register("fossilized_tile_stairs", makeStairs(fossilized_tiles), 0);
+    public static final RegistryObject<StairBlock> corrupted_tile_stairs = register("corrupted_tile_stairs", makeStairs(corrupted_tiles), 0);
+    public static final RegistryObject<StairBlock> burnt_tile_stairs = register("burnt_agate_tile_stairs", makeStairs(burnt_tiles), 0);
+    public static final RegistryObject<StairBlock> burning_tile_stairs = register("fire_agate_tile_stairs", makeStairs(burning_tiles), 300);
+    public static final RegistryObject<StairBlock> aura_tile_stairs = register("aura_tile_stairs", makeStairs(aura_tiles), 0);
 
     //Manufactured
     public static final RegistryObject<Block> cloudy_glass = register("cloudy_glass", () -> new GlassBlock(PropertiesHandler.glassProps(MaterialColor.COLOR_YELLOW, 0.7F)));
@@ -295,7 +295,7 @@ public class ModBlocks {
     public static final RegistryObject<Block> malachite_bricks = register("malachite_bricks", PropertiesHandler.malachiteProps());
     public static final RegistryObject<Block> malachite_cracked_bricks = register("malachite_cracked_bricks", PropertiesHandler.malachiteProps());
     public static final RegistryObject<Block> malachite_crusted_bricks = register("malachite_crusted_bricks", PropertiesHandler.malachiteProps());
-    public static final RegistryObject<Block> malachite_floor_tiles = register("malachite_tiles", PropertiesHandler.malachiteProps());
+    public static final RegistryObject<Block> malachite_tiles = register("malachite_tiles", PropertiesHandler.malachiteProps());
     public static final RegistryObject<Block> malachite_chisel_bricks = register("malachite_chisel_bricks", PropertiesHandler.malachiteProps());
     public static final RegistryObject<Block> malachite_pulsing_bricks = register("malachite_pulsing_bricks", PropertiesHandler.malachiteProps());
     public static final RegistryObject<Block> malachite_pulsing_tiles = register("malachite_pulsing_tiles", PropertiesHandler.malachiteProps());
@@ -303,15 +303,15 @@ public class ModBlocks {
     public static final RegistryObject<SlabBlock> malachite_brick_slab = register("malachite_brick_slab", makeSlab(PropertiesHandler.malachiteProps()));
     public static final RegistryObject<SlabBlock> malachite_cracked_brick_slab = register("malachite_cracked_brick_slab", makeSlab(PropertiesHandler.malachiteProps()));
     public static final RegistryObject<SlabBlock> malachite_crusted_brick_slab = register("malachite_crusted_brick_slab", makeSlab(PropertiesHandler.malachiteProps()));
-    public static final RegistryObject<SlabBlock> malachite_floor_slab = register("malachite_tile_slab", makeSlab(PropertiesHandler.malachiteProps()));
+    public static final RegistryObject<SlabBlock> malachite_tile_slab = register("malachite_tile_slab", makeSlab(PropertiesHandler.malachiteProps()));
     public static final RegistryObject<RotatedPillarBlock> malachite_pillar = register("malachite_pillar", () -> new RotatedPillarBlock(PropertiesHandler.malachiteProps()));
     public static final RegistryObject<StairBlock> malachite_brick_stairs = register("malachite_brick_stairs", makeStairs(malachite_bricks));
     public static final RegistryObject<StairBlock> malachite_cracked_brick_stairs = register("malachite_cracked_brick_stairs", makeStairs(malachite_cracked_bricks));
     public static final RegistryObject<StairBlock> malachite_crusted_brick_stairs = register("malachite_crusted_brick_stairs", makeStairs(malachite_crusted_bricks));
-    public static final RegistryObject<StairBlock> malachite_floor_stairs = register("malachite_tile_stairs", makeStairs(malachite_floor_tiles));
+    public static final RegistryObject<StairBlock> malachite_tile_stairs = register("malachite_tile_stairs", makeStairs(malachite_tiles));
     public static final RegistryObject<StairBlock> malachite_chisel_stairs = register("malachite_chisel_stairs", makeStairs(malachite_chisel_bricks));
     public static final RegistryObject<StairBlock> malachite_pulsing_brick_stairs = register("malachite_pulsing_brick_stairs", makeStairs(malachite_bricks));
-    public static final RegistryObject<StairBlock> malachite_pulsing_floor_stairs = register("malachite_pulsing_tile_stairs", makeStairs(malachite_floor_tiles));
+    public static final RegistryObject<StairBlock> malachite_pulsing_floor_stairs = register("malachite_pulsing_tile_stairs", makeStairs(malachite_tiles));
     public static final RegistryObject<StairBlock> malachite_pulsing_chisel_stairs = register("malachite_pulsing_chisel_stairs", makeStairs(malachite_chisel_bricks));
     public static final RegistryObject<StairBlock> malachite_pillar_stairs = register("malachite_pillar_stairs", makeStairs(malachite_pillar));
 
@@ -321,10 +321,10 @@ public class ModBlocks {
     public static final RegistryObject<Block> cinnabar_block = register("cinnabar_block", PropertiesHandler.storageProps(MaterialColor.COLOR_ORANGE));
     public static final RegistryObject<Block> labradorite_block = register("labradorite_block", PropertiesHandler.storageProps(MaterialColor.COLOR_GREEN));
     public static final RegistryObject<Block> moonstone_block = register("moonstone_block", PropertiesHandler.storageProps(MaterialColor.METAL));
-    public static final RegistryObject<Block> opal_block_red = register("red_opal_block", PropertiesHandler.storageProps(MaterialColor.COLOR_RED));
-    public static final RegistryObject<Block> opal_block_blue = register("blue_opal_block", PropertiesHandler.storageProps(MaterialColor.COLOR_LIGHT_BLUE));
-    public static final RegistryObject<Block> opal_block_green = register("green_opal_block", PropertiesHandler.storageProps(MaterialColor.COLOR_LIGHT_GREEN));
-    public static final RegistryObject<Block> opal_block_white = register("white_opal_block", PropertiesHandler.storageProps(MaterialColor.SNOW));
+    public static final RegistryObject<Block> red_opal_block = register("red_opal_block", PropertiesHandler.storageProps(MaterialColor.COLOR_RED));
+    public static final RegistryObject<Block> blue_opal_block = register("blue_opal_block", PropertiesHandler.storageProps(MaterialColor.COLOR_LIGHT_BLUE));
+    public static final RegistryObject<Block> green_opal_block = register("green_opal_block", PropertiesHandler.storageProps(MaterialColor.COLOR_LIGHT_GREEN));
+    public static final RegistryObject<Block> white_opal_block = register("white_opal_block", PropertiesHandler.storageProps(MaterialColor.SNOW));
     public static final RegistryObject<Block> pyrite_block = register("pyrite_block", PropertiesHandler.storageProps(MaterialColor.GOLD).lightLevel((state) -> 15));
     public static final RegistryObject<Block> tektite_block = register("tektite_block", PropertiesHandler.storageProps(MaterialColor.COLOR_BLACK));
     public static final RegistryObject<Block> goldstone_block = register("goldstone_block", PropertiesHandler.storageProps(MaterialColor.COLOR_BLACK));
@@ -345,10 +345,10 @@ public class ModBlocks {
     public static final RegistryObject<Block> cinnabar_ore = register("cinnabar_ore", () -> new DropExperienceBlock(PropertiesHandler.oreProps(MaterialColor.COLOR_ORANGE), UniformInt.of(1, 4)));
     public static final RegistryObject<Block> labradorite_ore = register("labradorite_ore", () -> new DropExperienceBlock(PropertiesHandler.oreProps(MaterialColor.COLOR_GREEN), UniformInt.of(5, 2)));
     public static final RegistryObject<Block> moonstone_ore = register("moonstone_ore", () -> new DropExperienceBlock(PropertiesHandler.oreProps(MaterialColor.METAL), UniformInt.of(5, 2)));
-    public static final RegistryObject<Block> opal_ore_red = register("red_opal_ore", () -> new DropExperienceBlock(PropertiesHandler.oreProps(MaterialColor.COLOR_RED), UniformInt.of(2, 5)));
-    public static final RegistryObject<Block> opal_ore_blue = register("blue_opal_ore", () -> new DropExperienceBlock(PropertiesHandler.oreProps(MaterialColor.COLOR_LIGHT_BLUE), UniformInt.of(2, 5)));
-    public static final RegistryObject<Block> opal_ore_green = register("green_opal_ore", () -> new DropExperienceBlock(PropertiesHandler.oreProps(MaterialColor.COLOR_LIGHT_GREEN), UniformInt.of(2, 5)));
-    public static final RegistryObject<Block> opal_ore_white = register("white_opal_ore", () -> new DropExperienceBlock(PropertiesHandler.oreProps(MaterialColor.SNOW), UniformInt.of(3, 7)));
+    public static final RegistryObject<Block> red_opal_ore = register("red_opal_ore", () -> new DropExperienceBlock(PropertiesHandler.oreProps(MaterialColor.COLOR_RED), UniformInt.of(2, 5)));
+    public static final RegistryObject<Block> blue_opal_ore = register("blue_opal_ore", () -> new DropExperienceBlock(PropertiesHandler.oreProps(MaterialColor.COLOR_LIGHT_BLUE), UniformInt.of(2, 5)));
+    public static final RegistryObject<Block> green_opal_ore = register("green_opal_ore", () -> new DropExperienceBlock(PropertiesHandler.oreProps(MaterialColor.COLOR_LIGHT_GREEN), UniformInt.of(2, 5)));
+    public static final RegistryObject<Block> white_opal_ore = register("white_opal_ore", () -> new DropExperienceBlock(PropertiesHandler.oreProps(MaterialColor.SNOW), UniformInt.of(3, 7)));
     public static final RegistryObject<Block> pyrite_ore = register("pyrite_ore", () -> new DropExperienceBlock(PropertiesHandler.oreProps(MaterialColor.GOLD).lightLevel((state) -> 3), UniformInt.of(1, 4)));
     public static final RegistryObject<Block> speckled_rock = register("speckled_rock", () -> new Block(PropertiesHandler.oreProps(MaterialColor.COLOR_MAGENTA)));
     public static final RegistryObject<Block> coarse_rock = register("coarse_rock", () -> new Block(PropertiesHandler.oreProps(MaterialColor.COLOR_MAGENTA)));
@@ -379,7 +379,7 @@ public class ModBlocks {
     public static final RegistryObject<FlowerPotBlock> potted_fossilized_sapling = registerFlowerPot(fossilized_sapling);
     public static final RegistryObject<FlowerPotBlock> potted_corrupted_sapling = registerFlowerPot(corrupted_sapling);
     public static final RegistryObject<FlowerPotBlock> potted_burnt_sapling = registerFlowerPot(burnt_sapling);
-    public static final RegistryObject<FlowerPotBlock> potted_burning_sapling = registerFlowerPot(burning_sapling);
+    public static final RegistryObject<FlowerPotBlock> potted_burning_sapling = registerFlowerPot(fire_agate_sapling);
     public static final RegistryObject<FlowerPotBlock> potted_aura_sapling = registerFlowerPot(aura_sapling);
     public static final RegistryObject<FlowerPotBlock> potted_golden_sapling = registerFlowerPot(golden_sapling);
 
@@ -461,7 +461,7 @@ public class ModBlocks {
         block.addPlant(fossilized_sapling.getId(), potted_fossilized_sapling);
         block.addPlant(corrupted_sapling.getId(), potted_corrupted_sapling);
         block.addPlant(burnt_sapling.getId(), potted_burnt_sapling);
-        block.addPlant(burning_sapling.getId(), potted_burning_sapling);
+        block.addPlant(fire_agate_sapling.getId(), potted_burning_sapling);
         block.addPlant(aura_sapling.getId(), potted_aura_sapling);
         block.addPlant(golden_sapling.getId(), potted_golden_sapling);
     }
@@ -476,7 +476,7 @@ public class ModBlocks {
         addToMap(STRIPABLES, fossilized_log, stripped_fossilized_log);
         addToMap(STRIPABLES, corrupted_log, stripped_corrupted_log);
         addToMap(STRIPABLES, burnt_log, stripped_burnt_log);
-        addToMap(STRIPABLES, burning_log, stripped_burning_log);
+        addToMap(STRIPABLES, fire_agate_log, stripped_fire_agate_log);
         addToMap(STRIPABLES, aura_log, stripped_aura_log);
         addToMap(STRIPABLES, golden_log, stripped_golden_log);
         addToMap(STRIPABLES, pink_agate_wood, stripped_pink_agate_wood);
@@ -486,7 +486,7 @@ public class ModBlocks {
         addToMap(STRIPABLES, fossilized_wood, stripped_fossilized_wood);
         addToMap(STRIPABLES, corrupted_wood, stripped_corrupted_wood);
         addToMap(STRIPABLES, burnt_wood, stripped_burnt_wood);
-        addToMap(STRIPABLES, burning_wood, stripped_burning_wood);
+        addToMap(STRIPABLES, fire_agate_wood, stripped_fire_agate_wood);
         addToMap(STRIPABLES, aura_wood, stripped_aura_wood);
         addToMap(STRIPABLES, golden_wood, stripped_golden_wood);
 

@@ -687,7 +687,7 @@ public class GaiaFeatures extends GaiaBiomeFeatures {
             context.register(PURPLE_AGATE_TREE_CHECKED, checkTree(features, Configured.purple_agate_tree, ModBlocks.purple_agate_sapling));
             context.register(FOSSILIZED_TREE_CHECKED, checkTree(features, Configured.fossilized_tree, ModBlocks.fossilized_sapling));
             context.register(GOLDSTONE_TREE_CHECKED, checkTree(features, Configured.goldstone_tree, ModBlocks.corrupted_sapling));
-            context.register(FIERY_AGATE_TREE_CHECKED, checkTree(features, Configured.fiery_agate_tree, ModBlocks.burning_sapling));
+            context.register(FIERY_AGATE_TREE_CHECKED, checkTree(features, Configured.fiery_agate_tree, ModBlocks.fire_agate_sapling));
             context.register(BURNT_AGATE_TREE_CHECKED, checkTree(features, Configured.burnt_agate_tree, ModBlocks.burnt_sapling));
             context.register(AURA_TREE_CHECKED, checkTree(features, Configured.aura_tree, ModBlocks.aura_sapling));
             context.register(SMALL_GOLDEN_TREE_CHECKED, checkTree(features, Configured.small_golden_tree, ModBlocks.golden_sapling));

@@ -18,7 +18,7 @@ import java.util.Optional;
 public class CorruptGrassBlock extends AbstractGaiaGrassBlock {
 
     public CorruptGrassBlock(Properties props) {
-        super(props, ModBlocks.corrupt_soil.get());
+        super(props, ModBlocks.corrupted_soil.get());
     }
 
     @Override

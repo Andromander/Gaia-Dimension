@@ -73,12 +73,12 @@ public class GaiaLootTables extends LootTableProvider {
 
             //Natural Blocks
             dropSelf(ModBlocks.heavy_soil);
-            dropSelf(ModBlocks.corrupt_soil);
+            dropSelf(ModBlocks.corrupted_soil);
             dropSelf(ModBlocks.boggy_soil);
             dropSelf(ModBlocks.light_soil);
             dropSelf(ModBlocks.aurum_soil);
             dropWithSilk(ModBlocks.glitter_grass, ModBlocks.heavy_soil);
-            dropWithSilk(ModBlocks.corrupt_grass, ModBlocks.corrupt_soil);
+            dropWithSilk(ModBlocks.corrupted_grass, ModBlocks.corrupted_soil);
             dropWithSilk(ModBlocks.murky_grass, ModBlocks.boggy_soil);
             dropWithSilk(ModBlocks.soft_grass, ModBlocks.light_soil);
             dropWithSilk(ModBlocks.gilded_grass, ModBlocks.aurum_soil);
@@ -126,7 +126,7 @@ public class GaiaLootTables extends LootTableProvider {
             dropSelf(ModBlocks.fossilized_sapling);
             dropSelf(ModBlocks.corrupted_sapling);
             dropSelf(ModBlocks.burnt_sapling);
-            dropSelf(ModBlocks.burning_sapling);
+            dropSelf(ModBlocks.fire_agate_sapling);
             dropSelf(ModBlocks.aura_sapling);
             dropSelf(ModBlocks.golden_sapling);
             dropChance(ModBlocks.pink_agate_leaves, ModBlocks.pink_agate_sapling, leaf_chances);
@@ -136,7 +136,7 @@ public class GaiaLootTables extends LootTableProvider {
             dropChanceAlternative(ModBlocks.fossilized_leaves, ModBlocks.fossilized_sapling, ModItems.fine_dust, leaf_chances);
             dropChanceAlternative(ModBlocks.corrupted_leaves, ModBlocks.corrupted_sapling, ModItems.goldstone_dust, leaf_chances);
             dropChanceAlternative(ModBlocks.burnt_leaves, ModBlocks.burnt_sapling, () -> Items.GUNPOWDER, leaf_chances);
-            dropChanceAlternative(ModBlocks.burning_leaves, ModBlocks.burning_sapling, ModItems.hot_dust, leaf_chances);
+            dropChanceAlternative(ModBlocks.fire_agate_leaves, ModBlocks.fire_agate_sapling, ModItems.hot_dust, leaf_chances);
             dropChance(ModBlocks.aura_leaves, ModBlocks.aura_sapling, leaf_chances);
             dropChance(ModBlocks.golden_leaves, ModBlocks.golden_sapling, leaf_chances);
             dropSelf(ModBlocks.pink_agate_log);
@@ -146,7 +146,7 @@ public class GaiaLootTables extends LootTableProvider {
             dropSelf(ModBlocks.fossilized_log);
             dropSelf(ModBlocks.corrupted_log);
             dropSelf(ModBlocks.burnt_log);
-            dropSelf(ModBlocks.burning_log);
+            dropSelf(ModBlocks.fire_agate_log);
             dropSelf(ModBlocks.aura_log);
             dropSelf(ModBlocks.golden_log);
             dropSelf(ModBlocks.stripped_pink_agate_log);
@@ -156,7 +156,7 @@ public class GaiaLootTables extends LootTableProvider {
             dropSelf(ModBlocks.stripped_fossilized_log);
             dropSelf(ModBlocks.stripped_corrupted_log);
             dropSelf(ModBlocks.stripped_burnt_log);
-            dropSelf(ModBlocks.stripped_burning_log);
+            dropSelf(ModBlocks.stripped_fire_agate_log);
             dropSelf(ModBlocks.stripped_aura_log);
             dropSelf(ModBlocks.stripped_golden_log);
             dropSelf(ModBlocks.pink_agate_wood);
@@ -166,7 +166,7 @@ public class GaiaLootTables extends LootTableProvider {
             dropSelf(ModBlocks.fossilized_wood);
             dropSelf(ModBlocks.corrupted_wood);
             dropSelf(ModBlocks.burnt_wood);
-            dropSelf(ModBlocks.burning_wood);
+            dropSelf(ModBlocks.fire_agate_wood);
             dropSelf(ModBlocks.aura_wood);
             dropSelf(ModBlocks.golden_wood);
             dropSelf(ModBlocks.stripped_pink_agate_wood);
@@ -176,7 +176,7 @@ public class GaiaLootTables extends LootTableProvider {
             dropSelf(ModBlocks.stripped_fossilized_wood);
             dropSelf(ModBlocks.stripped_corrupted_wood);
             dropSelf(ModBlocks.stripped_burnt_wood);
-            dropSelf(ModBlocks.stripped_burning_wood);
+            dropSelf(ModBlocks.stripped_fire_agate_wood);
             dropSelf(ModBlocks.stripped_aura_wood);
             dropSelf(ModBlocks.stripped_golden_wood);
 
@@ -212,33 +212,33 @@ public class GaiaLootTables extends LootTableProvider {
             dropSelf(ModBlocks.ivory_mookaite);
 
             //Planks (Tiles)
-            dropSelf(ModBlocks.pink_agate_planks);
-            dropSelf(ModBlocks.blue_agate_planks);
-            dropSelf(ModBlocks.green_agate_planks);
-            dropSelf(ModBlocks.purple_agate_planks);
-            dropSelf(ModBlocks.fossilized_planks);
-            dropSelf(ModBlocks.corrupted_planks);
-            dropSelf(ModBlocks.burnt_planks);
-            dropSelf(ModBlocks.burning_planks);
-            dropSelf(ModBlocks.aura_planks);
-            dropSlab(ModBlocks.pink_agate_plank_slab);
-            dropSlab(ModBlocks.blue_agate_plank_slab);
-            dropSlab(ModBlocks.green_agate_plank_slab);
-            dropSlab(ModBlocks.purple_agate_plank_slab);
-            dropSlab(ModBlocks.fossilized_plank_slab);
-            dropSlab(ModBlocks.corrupted_plank_slab);
-            dropSlab(ModBlocks.burnt_plank_slab);
-            dropSlab(ModBlocks.burning_plank_slab);
-            dropSlab(ModBlocks.aura_plank_slab);
-            dropSelf(ModBlocks.pink_agate_plank_stairs);
-            dropSelf(ModBlocks.blue_agate_plank_stairs);
-            dropSelf(ModBlocks.green_agate_plank_stairs);
-            dropSelf(ModBlocks.purple_agate_plank_stairs);
-            dropSelf(ModBlocks.fossilized_plank_stairs);
-            dropSelf(ModBlocks.corrupted_plank_stairs);
-            dropSelf(ModBlocks.burnt_plank_stairs);
-            dropSelf(ModBlocks.burning_plank_stairs);
-            dropSelf(ModBlocks.aura_plank_stairs);
+            dropSelf(ModBlocks.pink_agate_tiles);
+            dropSelf(ModBlocks.blue_agate_tiles);
+            dropSelf(ModBlocks.green_agate_tiles);
+            dropSelf(ModBlocks.purple_agate_tiles);
+            dropSelf(ModBlocks.fossilized_tiles);
+            dropSelf(ModBlocks.corrupted_tiles);
+            dropSelf(ModBlocks.burnt_tiles);
+            dropSelf(ModBlocks.burning_tiles);
+            dropSelf(ModBlocks.aura_tiles);
+            dropSlab(ModBlocks.pink_agate_tile_slab);
+            dropSlab(ModBlocks.blue_agate_tile_slab);
+            dropSlab(ModBlocks.green_agate_tile_slab);
+            dropSlab(ModBlocks.purple_agate_tile_slab);
+            dropSlab(ModBlocks.fossilized_tile_slab);
+            dropSlab(ModBlocks.corrupted_tile_slab);
+            dropSlab(ModBlocks.burnt_tile_slab);
+            dropSlab(ModBlocks.burning_tile_slab);
+            dropSlab(ModBlocks.aura_tile_slab);
+            dropSelf(ModBlocks.pink_agate_tile_stairs);
+            dropSelf(ModBlocks.blue_agate_tile_stairs);
+            dropSelf(ModBlocks.green_agate_tile_stairs);
+            dropSelf(ModBlocks.purple_agate_tile_stairs);
+            dropSelf(ModBlocks.fossilized_tile_stairs);
+            dropSelf(ModBlocks.corrupted_tile_stairs);
+            dropSelf(ModBlocks.burnt_tile_stairs);
+            dropSelf(ModBlocks.burning_tile_stairs);
+            dropSelf(ModBlocks.aura_tile_stairs);
 
             //Manufactured
             dropOnlySilk(ModBlocks.cloudy_glass);
@@ -293,7 +293,7 @@ public class GaiaLootTables extends LootTableProvider {
             dropSelf(ModBlocks.malachite_bricks);
             dropSelf(ModBlocks.malachite_cracked_bricks);
             dropSelf(ModBlocks.malachite_crusted_bricks);
-            dropSelf(ModBlocks.malachite_floor_tiles);
+            dropSelf(ModBlocks.malachite_tiles);
             dropSelf(ModBlocks.malachite_chisel_bricks);
             dropSelf(ModBlocks.malachite_pulsing_bricks);
             dropSelf(ModBlocks.malachite_pulsing_tiles);
@@ -301,12 +301,12 @@ public class GaiaLootTables extends LootTableProvider {
             dropSlab(ModBlocks.malachite_brick_slab);
             dropSlab(ModBlocks.malachite_cracked_brick_slab);
             dropSlab(ModBlocks.malachite_crusted_brick_slab);
-            dropSlab(ModBlocks.malachite_floor_slab);
+            dropSlab(ModBlocks.malachite_tile_slab);
             dropSelf(ModBlocks.malachite_pillar);
             dropSelf(ModBlocks.malachite_brick_stairs);
             dropSelf(ModBlocks.malachite_cracked_brick_stairs);
             dropSelf(ModBlocks.malachite_crusted_brick_stairs);
-            dropSelf(ModBlocks.malachite_floor_stairs);
+            dropSelf(ModBlocks.malachite_tile_stairs);
             dropSelf(ModBlocks.malachite_chisel_stairs);
             dropSelf(ModBlocks.malachite_pulsing_brick_stairs);
             dropSelf(ModBlocks.malachite_pulsing_floor_stairs);
@@ -319,10 +319,10 @@ public class GaiaLootTables extends LootTableProvider {
             dropSelf(ModBlocks.cinnabar_block);
             dropSelf(ModBlocks.labradorite_block);
             dropSelf(ModBlocks.moonstone_block);
-            dropSelf(ModBlocks.opal_block_red);
-            dropSelf(ModBlocks.opal_block_blue);
-            dropSelf(ModBlocks.opal_block_green);
-            dropSelf(ModBlocks.opal_block_white);
+            dropSelf(ModBlocks.red_opal_block);
+            dropSelf(ModBlocks.blue_opal_block);
+            dropSelf(ModBlocks.green_opal_block);
+            dropSelf(ModBlocks.white_opal_block);
             dropSelf(ModBlocks.pyrite_block);
             dropSelf(ModBlocks.tektite_block);
             dropSelf(ModBlocks.goldstone_block);
@@ -343,10 +343,10 @@ public class GaiaLootTables extends LootTableProvider {
             dropWithFortune(ModBlocks.cinnabar_ore, ModItems.cinnabar);
             dropWithFortune(ModBlocks.labradorite_ore, ModItems.labradorite);
             dropWithFortune(ModBlocks.moonstone_ore, ModItems.moonstone);
-            dropWithFortune(ModBlocks.opal_ore_red, ModItems.red_opal);
-            dropWithFortune(ModBlocks.opal_ore_blue, ModItems.blue_opal);
-            dropWithFortune(ModBlocks.opal_ore_green, ModItems.green_opal);
-            dropWithFortune(ModBlocks.opal_ore_white, ModItems.white_opal);
+            dropWithFortune(ModBlocks.red_opal_ore, ModItems.red_opal);
+            dropWithFortune(ModBlocks.blue_opal_ore, ModItems.blue_opal);
+            dropWithFortune(ModBlocks.green_opal_ore, ModItems.green_opal);
+            dropWithFortune(ModBlocks.white_opal_ore, ModItems.white_opal);
             dropWithFortune(ModBlocks.pyrite_ore, ModItems.pyrite);
             dropSelf(ModBlocks.speckled_rock);
             dropSelf(ModBlocks.coarse_rock);
@@ -557,7 +557,7 @@ public class GaiaLootTables extends LootTableProvider {
                             .add(LootItem.lootTableItem(ModBlocks.malachite_bricks.get())
                                     .setWeight(15)
                                     .apply(SetItemCountFunction.setCount(UniformGenerator.between(3.0F, 5.0F))))
-                            .add(LootItem.lootTableItem(ModBlocks.malachite_floor_tiles.get())
+                            .add(LootItem.lootTableItem(ModBlocks.malachite_tiles.get())
                                     .setWeight(15)
                                     .apply(SetItemCountFunction.setCount(UniformGenerator.between(3.0F, 5.0F))))
                             .add(LootItem.lootTableItem(ModBlocks.malachite_pillar.get())

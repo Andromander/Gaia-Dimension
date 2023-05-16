@@ -13,12 +13,12 @@ import net.minecraftforge.registries.RegistryObject;
 public class GaiaSurfaceRuleData {
 
     public static final SurfaceRules.RuleSource GLITTER_GRASS = stateRule(ModBlocks.glitter_grass);
-    public static final SurfaceRules.RuleSource CORRUPT_GRASS = stateRule(ModBlocks.corrupt_grass);
+    public static final SurfaceRules.RuleSource CORRUPT_GRASS = stateRule(ModBlocks.corrupted_grass);
     public static final SurfaceRules.RuleSource MURKY_GRASS = stateRule(ModBlocks.murky_grass);
     public static final SurfaceRules.RuleSource SOFT_GRASS = stateRule(ModBlocks.soft_grass);
     public static final SurfaceRules.RuleSource GILDED_GRASS = stateRule(ModBlocks.gilded_grass);
     public static final SurfaceRules.RuleSource HEAVY_SOIL = stateRule(ModBlocks.heavy_soil);
-    public static final SurfaceRules.RuleSource CORRUPT_SOIL = stateRule(ModBlocks.corrupt_soil);
+    public static final SurfaceRules.RuleSource CORRUPT_SOIL = stateRule(ModBlocks.corrupted_soil);
     public static final SurfaceRules.RuleSource BOGGY_SOIL = stateRule(ModBlocks.boggy_soil);
     public static final SurfaceRules.RuleSource LIGHT_SOIL = stateRule(ModBlocks.light_soil);
     public static final SurfaceRules.RuleSource AURUM_SOIL = stateRule(ModBlocks.aurum_soil);

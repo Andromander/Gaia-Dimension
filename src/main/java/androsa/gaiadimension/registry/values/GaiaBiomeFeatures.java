@@ -19,12 +19,12 @@ public class GaiaBiomeFeatures {
     public static final RuleTest STATIC = new TagMatchTest(GaiaTags.Blocks.STATIC);
 
     public static final BlockState GLITTER_GRASS = state(ModBlocks.glitter_grass);
-    public static final BlockState CORRUPT_GRASS = state(ModBlocks.corrupt_grass);
+    public static final BlockState CORRUPT_GRASS = state(ModBlocks.corrupted_grass);
     public static final BlockState MURKY_GRASS = state(ModBlocks.murky_grass);
     public static final BlockState SOFT_GRASS = state(ModBlocks.soft_grass);
     public static final BlockState GILDED_GRASS = state(ModBlocks.gilded_grass);
     public static final BlockState HEAVY_SOIL = state(ModBlocks.heavy_soil);
-    public static final BlockState CORRUPT_SOIL = state(ModBlocks.corrupt_soil);
+    public static final BlockState CORRUPT_SOIL = state(ModBlocks.corrupted_soil);
     public static final BlockState BOGGY_SOIL = state(ModBlocks.boggy_soil);
     public static final BlockState LIGHT_SOIL = state(ModBlocks.light_soil);
     public static final BlockState AURUM_SOIL = state(ModBlocks.aurum_soil);
@@ -58,10 +58,10 @@ public class GaiaBiomeFeatures {
     public static final BlockState CINNABAR_ORE = state(ModBlocks.cinnabar_ore);
     public static final BlockState LABRADORITE_ORE = state(ModBlocks.labradorite_ore);
     public static final BlockState MOONSTONE_ORE = state(ModBlocks.moonstone_ore);
-    public static final BlockState RED_OPAL_ORE = state(ModBlocks.opal_ore_red);
-    public static final BlockState BLUE_OPAL_ORE = state(ModBlocks.opal_ore_blue);
-    public static final BlockState GREEN_OPAL_ORE = state(ModBlocks.opal_ore_green);
-    public static final BlockState WHITE_OPAL_ORE = state(ModBlocks.opal_ore_white);
+    public static final BlockState RED_OPAL_ORE = state(ModBlocks.red_opal_ore);
+    public static final BlockState BLUE_OPAL_ORE = state(ModBlocks.blue_opal_ore);
+    public static final BlockState GREEN_OPAL_ORE = state(ModBlocks.green_opal_ore);
+    public static final BlockState WHITE_OPAL_ORE = state(ModBlocks.white_opal_ore);
     public static final BlockState PINK_AGATE_LOG = state(ModBlocks.pink_agate_log);
     public static final BlockState PINK_AGATE_LEAVES = state(ModBlocks.pink_agate_leaves);
     public static final BlockState BLUE_AGATE_LOG = state(ModBlocks.blue_agate_log);
@@ -76,8 +76,8 @@ public class GaiaBiomeFeatures {
     public static final BlockState CORRUPTED_LEAVES = state(ModBlocks.corrupted_leaves);
     public static final BlockState BURNT_LOG = state(ModBlocks.burnt_log);
     public static final BlockState BURNT_LEAVES = state(ModBlocks.burnt_leaves);
-    public static final BlockState BURNING_LOG = state(ModBlocks.burning_log);
-    public static final BlockState BURNING_LEAVES = state(ModBlocks.burning_leaves);
+    public static final BlockState BURNING_LOG = state(ModBlocks.fire_agate_log);
+    public static final BlockState BURNING_LEAVES = state(ModBlocks.fire_agate_leaves);
     public static final BlockState AURA_LOG = state(ModBlocks.aura_log);
     public static final BlockState AURA_LEAVES = state(ModBlocks.aura_leaves);
     public static final BlockState GOLDEN_LOG = state(ModBlocks.golden_log);
