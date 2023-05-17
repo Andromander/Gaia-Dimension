@@ -1,4 +1,4 @@
-// 1.19.4	2023-05-16T21:34:00.0867887	Registries
+// 1.19.4	2023-05-17T14:18:59.3020419	Registries
 56d72770b020b85f72c305522124360858cbe607 data/gaiadimension/damage_type/corruption.json
 a1e930106447e88a8543df5b23b57cfb80a32144 data/gaiadimension/damage_type/energetic.json
 fabd7f085894b585a78435b4771454b6036d241e data/gaiadimension/damage_type/malachite_blast.json
@@ -26,8 +26,8 @@ e5909d8def091ae5bafe548d8dc486b267c59a65 data/gaiadimension/worldgen/biome/purpl
 29dffdc8a144bdca5aacef49780445b4886e709e data/gaiadimension/worldgen/biome/smoldering_bog.json
 62e11789c5e8700fddde995fe95a285b35850e50 data/gaiadimension/worldgen/biome/static_wasteland.json
 1174c3d53f1f399ea755c74703d28d03e7cf0e88 data/gaiadimension/worldgen/biome/volcanic_lands.json
-e61bd4a5152c5a9f610244d9102e53d1132b509f data/gaiadimension/worldgen/configured_carver/chasms.json
-e61bd4a5152c5a9f610244d9102e53d1132b509f data/gaiadimension/worldgen/configured_carver/crystal_caves.json
+5c6b3e1b1e59271da82091c1bb1ddef7f7127795 data/gaiadimension/worldgen/configured_carver/chasms.json
+2dcbf2e33b40ce63626f27366c36686565a2be82 data/gaiadimension/worldgen/configured_carver/crystal_caves.json
 07578c8a047f640d3a6e38499bcf3f9af534b7a1 data/gaiadimension/worldgen/configured_feature/aura_crystal_growth.json
 97893860eabfb3e0a11ed6f7d1511d23498489f2 data/gaiadimension/worldgen/configured_feature/aura_shoots.json
 b51c3fd571173fb3fc0194c8719ee7595263d371 data/gaiadimension/worldgen/configured_feature/aura_tree.json

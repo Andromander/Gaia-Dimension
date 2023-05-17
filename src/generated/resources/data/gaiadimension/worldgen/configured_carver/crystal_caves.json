@@ -1,5 +1,5 @@
 {
-  "type": "gaiadimension:chasms",
+  "type": "gaiadimension:crystal_caves",
   "config": {
     "floor_level": -0.7,
     "horizontal_radius_multiplier": 1.0,
@@ -10,13 +10,12 @@
     "replaceable": "#gaiadimension:gaia_carver_replaceables",
     "vertical_radius_multiplier": 1.0,
     "y": {
-      "type": "minecraft:biased_to_bottom",
-      "inner": 8,
+      "type": "minecraft:uniform",
       "max_inclusive": {
-        "absolute": 24
+        "absolute": 120
       },
       "min_inclusive": {
-        "absolute": 0
+        "above_bottom": 10
       }
     },
     "yScale": 0.5

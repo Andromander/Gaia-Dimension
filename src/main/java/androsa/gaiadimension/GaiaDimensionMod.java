@@ -111,7 +111,6 @@ public class GaiaDimensionMod {
         generator.addProvider(event.includeServer(), blocktags);
         generator.addProvider(event.includeServer(), new GaiaItemTags(output, provider, blocktags.contentsGetter(), event.getExistingFileHelper()));
         generator.addProvider(event.includeServer(), new GaiaFluidTags(output, provider, event.getExistingFileHelper()));
-        //generator.addProvider(event.includeServer(), new GaiaBiomeTags(output, provider, event.getExistingFileHelper()));
         GaiaDatapackRegistries.generate(event.includeServer(), generator, output, provider, event.getExistingFileHelper());
     }
 }
