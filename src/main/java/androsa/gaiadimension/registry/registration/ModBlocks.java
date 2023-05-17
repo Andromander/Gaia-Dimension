@@ -117,7 +117,7 @@ public class ModBlocks {
     public static final RegistryObject<Block> gold_orb_tucher = register("gold_orb_tucher", () -> new CrystalFungusBlock(PropertiesHandler.plantProps(MaterialColor.GOLD, false), true));
     public static final RegistryObject<Block> missingno_fungus = register("missingno_fungus", () -> new CrystalFungusBlock(PropertiesHandler.plantProps(MaterialColor.COLOR_MAGENTA, false), false));
     public static final RegistryObject<Block> golden_vine = register("golden_vine", () -> new VineBlock(PropertiesHandler.plantProps(MaterialColor.GOLD, false)));
-    public static final RegistryObject<Block> sombre_cacti = register("sombre_cacti", () -> new SombreCactiBlock(PropertiesHandler.plantProps(MaterialColor.TERRACOTTA_BROWN, false))); //TODO DEBUG
+    public static final RegistryObject<Block> sombre_cacti = register("sombre_cacti", () -> new SombreCactiBlock(PropertiesHandler.plantProps(MaterialColor.TERRACOTTA_BROWN, false)));
     public static final RegistryObject<Block> sombre_shrub = register("sombre_shrub", () -> new SombreShrubBlock(PropertiesHandler.plantProps(MaterialColor.TERRACOTTA_BROWN, false)));
 
     //Tree Blocks
@@ -223,6 +223,7 @@ public class ModBlocks {
     public static final RegistryObject<Block> burnt_tiles = register("burnt_agate_tiles", PropertiesHandler.tileProps(MaterialColor.COLOR_BLACK));
     public static final RegistryObject<Block> burning_tiles = register("fire_agate_tiles", PropertiesHandler.tileProps(MaterialColor.TERRACOTTA_ORANGE).lightLevel((state) -> 3), 400);
     public static final RegistryObject<Block> aura_tiles = register("aura_tiles", PropertiesHandler.tileProps(MaterialColor.SNOW));
+    public static final RegistryObject<Block> golden_tiles = register("golden_tiles", PropertiesHandler.tileProps(MaterialColor.GOLD));
     public static final RegistryObject<SlabBlock> pink_agate_tile_slab = register("pink_agate_tile_slab", () -> new SlabBlock(PropertiesHandler.tileProps(MaterialColor.COLOR_PINK)));
     public static final RegistryObject<SlabBlock> blue_agate_tile_slab = register("blue_agate_tile_slab", () -> new SlabBlock(PropertiesHandler.tileProps(MaterialColor.COLOR_LIGHT_BLUE)));
     public static final RegistryObject<SlabBlock> green_agate_tile_slab = register("green_agate_tile_slab", () -> new SlabBlock(PropertiesHandler.tileProps(MaterialColor.COLOR_LIGHT_GREEN)));
@@ -232,6 +233,7 @@ public class ModBlocks {
     public static final RegistryObject<SlabBlock> burnt_tile_slab = register("burnt_agate_tile_slab", () -> new SlabBlock(PropertiesHandler.tileProps(MaterialColor.COLOR_BLACK)));
     public static final RegistryObject<SlabBlock> burning_tile_slab = register("fire_agate_tile_slab", () -> new SlabBlock(PropertiesHandler.tileProps(MaterialColor.TERRACOTTA_ORANGE).lightLevel((state) -> 3)), 200);
     public static final RegistryObject<SlabBlock> aura_tile_slab = register("aura_tile_slab", () -> new SlabBlock(PropertiesHandler.tileProps(MaterialColor.SNOW)));
+    public static final RegistryObject<SlabBlock> golden_tile_slab = register("golden_tile_slab", () -> new SlabBlock(PropertiesHandler.tileProps(MaterialColor.GOLD)));
     public static final RegistryObject<StairBlock> pink_agate_tile_stairs = register("pink_agate_tile_stairs", makeStairs(pink_agate_tiles), 0);
     public static final RegistryObject<StairBlock> blue_agate_tile_stairs = register("blue_agate_tile_stairs", makeStairs(blue_agate_tiles), 0);
     public static final RegistryObject<StairBlock> green_agate_tile_stairs = register("green_agate_tile_stairs", makeStairs(green_agate_tiles), 0);
@@ -241,6 +243,7 @@ public class ModBlocks {
     public static final RegistryObject<StairBlock> burnt_tile_stairs = register("burnt_agate_tile_stairs", makeStairs(burnt_tiles), 0);
     public static final RegistryObject<StairBlock> burning_tile_stairs = register("fire_agate_tile_stairs", makeStairs(burning_tiles), 300);
     public static final RegistryObject<StairBlock> aura_tile_stairs = register("aura_tile_stairs", makeStairs(aura_tiles), 0);
+    public static final RegistryObject<StairBlock> golden_tile_stairs = register("golden_tile_stairs", makeStairs(golden_tiles), 0);
 
     //Manufactured
     public static final RegistryObject<Block> cloudy_glass = register("cloudy_glass", () -> new GlassBlock(PropertiesHandler.glassProps(MaterialColor.COLOR_YELLOW, 0.7F)));

@@ -211,7 +211,7 @@ public class GaiaLootTables extends LootTableProvider {
             dropSelf(ModBlocks.beige_mookaite);
             dropSelf(ModBlocks.ivory_mookaite);
 
-            //Planks (Tiles)
+            //Tiles
             dropSelf(ModBlocks.pink_agate_tiles);
             dropSelf(ModBlocks.blue_agate_tiles);
             dropSelf(ModBlocks.green_agate_tiles);
@@ -221,6 +221,7 @@ public class GaiaLootTables extends LootTableProvider {
             dropSelf(ModBlocks.burnt_tiles);
             dropSelf(ModBlocks.burning_tiles);
             dropSelf(ModBlocks.aura_tiles);
+            dropSelf(ModBlocks.golden_tiles);
             dropSlab(ModBlocks.pink_agate_tile_slab);
             dropSlab(ModBlocks.blue_agate_tile_slab);
             dropSlab(ModBlocks.green_agate_tile_slab);
@@ -230,6 +231,7 @@ public class GaiaLootTables extends LootTableProvider {
             dropSlab(ModBlocks.burnt_tile_slab);
             dropSlab(ModBlocks.burning_tile_slab);
             dropSlab(ModBlocks.aura_tile_slab);
+            dropSlab(ModBlocks.golden_tile_slab);
             dropSelf(ModBlocks.pink_agate_tile_stairs);
             dropSelf(ModBlocks.blue_agate_tile_stairs);
             dropSelf(ModBlocks.green_agate_tile_stairs);
@@ -239,6 +241,7 @@ public class GaiaLootTables extends LootTableProvider {
             dropSelf(ModBlocks.burnt_tile_stairs);
             dropSelf(ModBlocks.burning_tile_stairs);
             dropSelf(ModBlocks.aura_tile_stairs);
+            dropSelf(ModBlocks.golden_tile_stairs);
 
             //Manufactured
             dropOnlySilk(ModBlocks.cloudy_glass);

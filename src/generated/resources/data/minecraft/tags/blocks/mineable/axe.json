@@ -52,6 +52,7 @@
     "gaiadimension:burnt_agate_tiles",
     "gaiadimension:fire_agate_tiles",
     "gaiadimension:aura_tiles",
+    "gaiadimension:golden_tiles",
     "gaiadimension:pink_agate_tile_stairs",
     "gaiadimension:blue_agate_tile_stairs",
     "gaiadimension:green_agate_tile_stairs",
@@ -61,6 +62,7 @@
     "gaiadimension:burnt_agate_tile_stairs",
     "gaiadimension:fire_agate_tile_stairs",
     "gaiadimension:aura_tile_stairs",
+    "gaiadimension:golden_tile_stairs",
     "gaiadimension:pink_agate_tile_slab",
     "gaiadimension:blue_agate_tile_slab",
     "gaiadimension:green_agate_tile_slab",
@@ -69,6 +71,7 @@
     "gaiadimension:corrupted_tile_slab",
     "gaiadimension:burnt_agate_tile_slab",
     "gaiadimension:fire_agate_tile_slab",
-    "gaiadimension:aura_tile_slab"
+    "gaiadimension:aura_tile_slab",
+    "gaiadimension:golden_tile_slab"
   ]
 }

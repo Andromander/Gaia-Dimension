@@ -1,4 +1,4 @@
-// 1.19.4	2023-05-14T20:36:28.9394649	Loot Tables
+// 1.19.4	2023-05-17T13:51:19.1250854	Loot Tables
 f0180cd5d668895dd957e8e62b9b8f1e7faa2f1c data/gaiadimension/loot_tables/blocks/active_rock.json
 78f3cd95231017ec1d3c912e35deaf39ff43be6d data/gaiadimension/loot_tables/blocks/agate_crafting_table.json
 0c934f6027147ace231a143e8c1b13c56cf08c9f data/gaiadimension/loot_tables/blocks/agathum.json
@@ -129,6 +129,9 @@ bd85d0232f6a351a6b2ded10e6c136df2e09c86f data/gaiadimension/loot_tables/blocks/g
 a67b984c6f0ef23f578471b00e228414296d632b data/gaiadimension/loot_tables/blocks/golden_sand.json
 798ebb180d56731865568dda1c7d3a5407b810d8 data/gaiadimension/loot_tables/blocks/golden_sapling.json
 74d07a359ef265250712afde72b34439cc63fb87 data/gaiadimension/loot_tables/blocks/golden_stone.json
+b43f8237da0c569efabe310441b36e7e3e0a8d49 data/gaiadimension/loot_tables/blocks/golden_tiles.json
+0023e8162ba0ae9546ed70473e6da24872c9eaa6 data/gaiadimension/loot_tables/blocks/golden_tile_slab.json
+37c3a9b955b94982ecc8d933a170a32439a85dbb data/gaiadimension/loot_tables/blocks/golden_tile_stairs.json
 c392da071188a2df4b9840239387a55400ba7a3a data/gaiadimension/loot_tables/blocks/golden_vine.json
 84fce47c9401887762f432b2c816950d08c173a1 data/gaiadimension/loot_tables/blocks/golden_wood.json
 dc8f89c9da744c8099c252f35ddf8f4bed0a76c9 data/gaiadimension/loot_tables/blocks/goldstone_block.json

@@ -169,6 +169,7 @@ public class GaiaBlockStates extends GaiaBlockStateProvider {
         basicBlock(ModBlocks.burnt_tiles);
         basicBlock(ModBlocks.burning_tiles);
         basicBlock(ModBlocks.aura_tiles);
+        basicBlock(ModBlocks.golden_tiles);
         slabBlock(ModBlocks.pink_agate_tile_slab, ModBlocks.pink_agate_tiles);
         slabBlock(ModBlocks.blue_agate_tile_slab, ModBlocks.blue_agate_tiles);
         slabBlock(ModBlocks.green_agate_tile_slab, ModBlocks.green_agate_tiles);
@@ -178,6 +179,7 @@ public class GaiaBlockStates extends GaiaBlockStateProvider {
         slabBlock(ModBlocks.burnt_tile_slab, ModBlocks.burnt_tiles);
         slabBlock(ModBlocks.burning_tile_slab, ModBlocks.burning_tiles);
         slabBlock(ModBlocks.aura_tile_slab, ModBlocks.aura_tiles);
+        slabBlock(ModBlocks.golden_tile_slab, ModBlocks.golden_tiles);
         stairsBlock(ModBlocks.pink_agate_tile_stairs, "pink_agate_tiles");
         stairsBlock(ModBlocks.blue_agate_tile_stairs, "blue_agate_tiles");
         stairsBlock(ModBlocks.green_agate_tile_stairs, "green_agate_tiles");
@@ -187,6 +189,7 @@ public class GaiaBlockStates extends GaiaBlockStateProvider {
         stairsBlock(ModBlocks.burnt_tile_stairs, "burnt_agate_tiles");
         stairsBlock(ModBlocks.burning_tile_stairs, "fire_agate_tiles");
         stairsBlock(ModBlocks.aura_tile_stairs, "aura_tiles");
+        stairsBlock(ModBlocks.golden_tile_stairs, "golden_tiles");
         basicBlock(ModBlocks.cloudy_glass, "translucent");
         basicBlock(ModBlocks.foggy_glass, "translucent");
         basicBlock(ModBlocks.gaia_stone_bricks);

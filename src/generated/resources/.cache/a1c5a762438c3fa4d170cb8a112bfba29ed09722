@@ -1,4 +1,4 @@
-// 1.19.4	2023-05-14T20:36:28.9354612	Gaia Item Models
+// 1.19.4	2023-05-17T13:51:19.1200808	Gaia Item Models
 d5c0f0011c11d4bd7b161026eed13370329d4981 assets/gaiadimension/models/item/active_rock.json
 f8516b22f5651209e5c6893ab609ebc1105db572 assets/gaiadimension/models/item/agate_arrow.json
 8edce106f0b6a88ad044dafcb45074427a389d02 assets/gaiadimension/models/item/agate_axe.json
@@ -230,6 +230,9 @@ a58d3761162d5f5bcc53a83abf7509a63fa358e5 assets/gaiadimension/models/item/golden
 2ab3542696356a110084e247c331f9b5472d3708 assets/gaiadimension/models/item/golden_sand.json
 039280e0cdd0cffdd07b643c0b6abb35e1e10182 assets/gaiadimension/models/item/golden_sapling.json
 5ff2fc51ae4c02c0108e7ecabda16fa831277ffa assets/gaiadimension/models/item/golden_stone.json
+d648c1c44ccbe8fbe1e48b906df9a7309040ea72 assets/gaiadimension/models/item/golden_tiles.json
+475ad4b3a86a79d2c09220d842bb28bd872ec212 assets/gaiadimension/models/item/golden_tile_slab.json
+b35aa0aa3947e2ebe2d71c1d82f5bd536c60049d assets/gaiadimension/models/item/golden_tile_stairs.json
 af906cb0119381d4ed03aadf7ee552aa35dbf3d2 assets/gaiadimension/models/item/golden_vine.json
 5a024b3dee9fd6a9292b6aa6d1ae4c5bbb6b8f93 assets/gaiadimension/models/item/golden_wood.json
 93c1cc8fb26546e32f7abae402f1190f1c0075e7 assets/gaiadimension/models/item/goldstone.json

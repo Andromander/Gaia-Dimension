@@ -169,6 +169,7 @@ public class GaiaItemModels extends GaiaItemModelProvider {
         blockItem(ModBlocks.burnt_tiles);
         blockItem(ModBlocks.burning_tiles);
         blockItem(ModBlocks.aura_tiles);
+        blockItem(ModBlocks.golden_tiles);
         blockItem(ModBlocks.pink_agate_tile_slab);
         blockItem(ModBlocks.blue_agate_tile_slab);
         blockItem(ModBlocks.green_agate_tile_slab);
@@ -178,6 +179,7 @@ public class GaiaItemModels extends GaiaItemModelProvider {
         blockItem(ModBlocks.burnt_tile_slab);
         blockItem(ModBlocks.burning_tile_slab);
         blockItem(ModBlocks.aura_tile_slab);
+        blockItem(ModBlocks.golden_tile_slab);
         blockItem(ModBlocks.pink_agate_tile_stairs);
         blockItem(ModBlocks.blue_agate_tile_stairs);
         blockItem(ModBlocks.green_agate_tile_stairs);
@@ -187,6 +189,7 @@ public class GaiaItemModels extends GaiaItemModelProvider {
         blockItem(ModBlocks.burnt_tile_stairs);
         blockItem(ModBlocks.burning_tile_stairs);
         blockItem(ModBlocks.aura_tile_stairs);
+        blockItem(ModBlocks.golden_tile_stairs);
         blockItem(ModBlocks.cloudy_glass);
         blockItem(ModBlocks.foggy_glass);
         blockItem(ModBlocks.gaia_stone_bricks);

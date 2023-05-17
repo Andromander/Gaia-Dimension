@@ -72,8 +72,8 @@ public class GaiaBlockTags extends GaiaBlockTagsProvider {
             ModBlocks.golden_log, ModBlocks.stripped_golden_log, ModBlocks.golden_wood, ModBlocks.stripped_golden_wood
     );
     private static final ImmutableList<Supplier<? extends Block>> TILES = ImmutableList.of(
-            ModBlocks.pink_agate_tiles, ModBlocks.blue_agate_tiles, ModBlocks.green_agate_tiles, ModBlocks.purple_agate_tiles,
-            ModBlocks.fossilized_tiles, ModBlocks.corrupted_tiles, ModBlocks.burnt_tiles, ModBlocks.burning_tiles, ModBlocks.aura_tiles
+            ModBlocks.pink_agate_tiles, ModBlocks.blue_agate_tiles, ModBlocks.green_agate_tiles, ModBlocks.purple_agate_tiles, ModBlocks.fossilized_tiles,
+            ModBlocks.corrupted_tiles, ModBlocks.burnt_tiles, ModBlocks.burning_tiles, ModBlocks.aura_tiles, ModBlocks.golden_tiles
     );
     private static final ImmutableList<Supplier<? extends Block>> SAPLINGS = ImmutableList.of(
             ModBlocks.pink_agate_sapling, ModBlocks.blue_agate_sapling, ModBlocks.green_agate_sapling, ModBlocks.purple_agate_sapling,
@@ -81,7 +81,7 @@ public class GaiaBlockTags extends GaiaBlockTagsProvider {
     );
     private static final ImmutableList<Supplier<? extends Block>> SLABS = ImmutableList.of(
             ModBlocks.pink_agate_tile_slab, ModBlocks.blue_agate_tile_slab, ModBlocks.green_agate_tile_slab, ModBlocks.purple_agate_tile_slab, ModBlocks.fossilized_tile_slab,
-            ModBlocks.corrupted_tile_slab, ModBlocks.burnt_tile_slab, ModBlocks.burning_tile_slab, ModBlocks.aura_tile_slab, ModBlocks.jade_brick_slab,
+            ModBlocks.corrupted_tile_slab, ModBlocks.burnt_tile_slab, ModBlocks.burning_tile_slab, ModBlocks.aura_tile_slab, ModBlocks.golden_tile_slab, ModBlocks.jade_brick_slab,
             ModBlocks.cracked_jade_brick_slab, ModBlocks.crusted_jade_brick_slab, ModBlocks.copal_brick_slab, ModBlocks.cracked_copal_brick_slab,ModBlocks.crusted_copal_brick_slab,
             ModBlocks.jet_brick_slab, ModBlocks.cracked_jet_brick_slab, ModBlocks.crusted_jet_brick_slab, ModBlocks.amethyst_brick_slab,  ModBlocks.cracked_amethyst_brick_slab,
             ModBlocks.crusted_amethyst_brick_slab, ModBlocks.malachite_brick_slab, ModBlocks.malachite_cracked_brick_slab, ModBlocks.malachite_crusted_brick_slab, ModBlocks.malachite_tile_slab
@@ -91,8 +91,8 @@ public class GaiaBlockTags extends GaiaBlockTagsProvider {
     );
     private static final ImmutableList<Supplier<? extends Block>> STAIRS = ImmutableList.of(
             ModBlocks.pink_agate_tile_stairs, ModBlocks.blue_agate_tile_stairs, ModBlocks.green_agate_tile_stairs, ModBlocks.purple_agate_tile_stairs, ModBlocks.fossilized_tile_stairs,
-            ModBlocks.corrupted_tile_stairs, ModBlocks.burnt_tile_stairs, ModBlocks.burning_tile_stairs, ModBlocks.aura_tile_stairs, ModBlocks.jade_brick_stairs,
-            ModBlocks.cracked_jade_brick_stairs, ModBlocks.crusted_jade_brick_stairs, ModBlocks.copal_brick_stairs, ModBlocks.cracked_copal_brick_stairs,ModBlocks.crusted_copal_brick_stairs,
+            ModBlocks.corrupted_tile_stairs, ModBlocks.burnt_tile_stairs, ModBlocks.burning_tile_stairs, ModBlocks.aura_tile_stairs, ModBlocks.golden_tile_stairs, ModBlocks.jade_brick_stairs,
+            ModBlocks.cracked_jade_brick_stairs, ModBlocks.crusted_jade_brick_stairs, ModBlocks.copal_brick_stairs, ModBlocks.cracked_copal_brick_stairs, ModBlocks.crusted_copal_brick_stairs,
             ModBlocks.jet_brick_stairs, ModBlocks.cracked_jet_brick_stairs, ModBlocks.crusted_jet_brick_stairs, ModBlocks.amethyst_brick_stairs,  ModBlocks.cracked_amethyst_brick_stairs,
             ModBlocks.crusted_amethyst_brick_stairs, ModBlocks.malachite_brick_stairs, ModBlocks.malachite_cracked_brick_stairs, ModBlocks.malachite_crusted_brick_stairs, ModBlocks.malachite_tile_stairs,
             ModBlocks.malachite_chisel_stairs, ModBlocks.malachite_pulsing_brick_stairs, ModBlocks.malachite_pulsing_floor_stairs, ModBlocks.malachite_pulsing_chisel_stairs, ModBlocks.malachite_pillar_stairs
@@ -125,11 +125,11 @@ public class GaiaBlockTags extends GaiaBlockTagsProvider {
             ModBlocks.stripped_corrupted_log, ModBlocks.corrupted_wood, ModBlocks.stripped_corrupted_wood, ModBlocks.burnt_log, ModBlocks.stripped_burnt_log, ModBlocks.burnt_wood, ModBlocks.stripped_burnt_wood,
             ModBlocks.fire_agate_log, ModBlocks.stripped_fire_agate_log, ModBlocks.fire_agate_wood, ModBlocks.stripped_fire_agate_wood, ModBlocks.aura_log, ModBlocks.stripped_aura_log, ModBlocks.aura_wood,
             ModBlocks.stripped_aura_wood, ModBlocks.golden_log, ModBlocks.stripped_golden_log, ModBlocks.golden_wood, ModBlocks.stripped_golden_wood, ModBlocks.pink_agate_tiles, ModBlocks.blue_agate_tiles,
-            ModBlocks.green_agate_tiles, ModBlocks.purple_agate_tiles, ModBlocks.fossilized_tiles, ModBlocks.corrupted_tiles, ModBlocks.burnt_tiles, ModBlocks.burning_tiles, ModBlocks.aura_tiles,
+            ModBlocks.green_agate_tiles, ModBlocks.purple_agate_tiles, ModBlocks.fossilized_tiles, ModBlocks.corrupted_tiles, ModBlocks.burnt_tiles, ModBlocks.burning_tiles, ModBlocks.aura_tiles, ModBlocks.golden_tiles,
             ModBlocks.pink_agate_tile_stairs, ModBlocks.blue_agate_tile_stairs, ModBlocks.green_agate_tile_stairs, ModBlocks.purple_agate_tile_stairs, ModBlocks.fossilized_tile_stairs,
-            ModBlocks.corrupted_tile_stairs, ModBlocks.burnt_tile_stairs, ModBlocks.burning_tile_stairs, ModBlocks.aura_tile_stairs, ModBlocks.pink_agate_tile_slab, ModBlocks.blue_agate_tile_slab,
-            ModBlocks.green_agate_tile_slab, ModBlocks.purple_agate_tile_slab, ModBlocks.fossilized_tile_slab, ModBlocks.corrupted_tile_slab, ModBlocks.burnt_tile_slab, ModBlocks.burning_tile_slab,
-            ModBlocks.aura_tile_slab
+            ModBlocks.corrupted_tile_stairs, ModBlocks.burnt_tile_stairs, ModBlocks.burning_tile_stairs, ModBlocks.aura_tile_stairs, ModBlocks.golden_tile_stairs, ModBlocks.pink_agate_tile_slab,
+            ModBlocks.blue_agate_tile_slab, ModBlocks.green_agate_tile_slab, ModBlocks.purple_agate_tile_slab, ModBlocks.fossilized_tile_slab, ModBlocks.corrupted_tile_slab, ModBlocks.burnt_tile_slab,
+            ModBlocks.burning_tile_slab, ModBlocks.aura_tile_slab, ModBlocks.golden_tile_slab
     );
     private static final ImmutableList<Supplier<? extends Block>> PICKAXE_TOOL = ImmutableList.of(
             ModBlocks.cloudy_glass, ModBlocks.foggy_glass, ModBlocks.gaia_stone_furnace, ModBlocks.saltstone, ModBlocks.scarlet_mookaite, ModBlocks.auburn_mookaite, ModBlocks.gold_mookaite,

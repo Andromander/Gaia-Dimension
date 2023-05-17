@@ -57,7 +57,7 @@ public class ModTabs {
                     add(output, ModBlocks.burnt_tiles, ModBlocks.burnt_tile_stairs, ModBlocks.burnt_tile_slab);
                     add(output, ModBlocks.burning_tiles, ModBlocks.burning_tile_stairs, ModBlocks.burning_tile_slab);
                     add(output, ModBlocks.aura_tiles, ModBlocks.aura_tile_stairs, ModBlocks.aura_tile_slab);
-                    //TODO: Golden Planks
+                    add(output, ModBlocks.golden_tiles, ModBlocks.golden_tile_stairs, ModBlocks.golden_tile_slab);
                     add(output, ModBlocks.cloudy_glass, ModBlocks.foggy_glass);
                     add(output, ModBlocks.gaia_stone_bricks, ModBlocks.cracked_gaia_stone_bricks, ModBlocks.crusted_gaia_stone_bricks, ModBlocks.reinforced_bricks, ModBlocks.bolstered_bricks);
                     add(output, ModBlocks.raw_jade, ModBlocks.jade_bricks, ModBlocks.jade_brick_stairs, ModBlocks.jade_brick_slab, ModBlocks.cracked_jade_bricks, ModBlocks.cracked_jade_brick_stairs, ModBlocks.cracked_jade_brick_slab, ModBlocks.crusted_jade_bricks, ModBlocks.crusted_jade_brick_stairs, ModBlocks.crusted_jade_brick_slab);
