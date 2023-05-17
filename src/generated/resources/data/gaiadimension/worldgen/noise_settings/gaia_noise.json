@@ -63,11 +63,11 @@
         "type": "minecraft:condition",
         "if_true": {
           "type": "minecraft:y_above",
-          "add_stone_depth": true,
+          "add_stone_depth": false,
           "anchor": {
-            "absolute": 63
+            "absolute": 55
           },
-          "surface_depth_multiplier": -1
+          "surface_depth_multiplier": 0
         },
         "then_run": {
           "type": "minecraft:sequence",

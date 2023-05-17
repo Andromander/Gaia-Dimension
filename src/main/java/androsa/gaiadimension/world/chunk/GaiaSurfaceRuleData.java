@@ -148,8 +148,7 @@ public class GaiaSurfaceRuleData {
             builder.add(SurfaceRules.ifTrue(SurfaceRules.verticalGradient("bedrock_floor", VerticalAnchor.bottom(), VerticalAnchor.aboveBottom(5)), BEDROCK));
         }
 
-        //SurfaceRules.RuleSource aboveSurfaceRule = SurfaceRules.ifTrue(SurfaceRules.abovePreliminarySurface(), surfaceRule);
-        builder.add(SurfaceRules.ifTrue(seaLevelCondition, mookaite));
+        builder.add(SurfaceRules.ifTrue(SurfaceRules.yBlockCheck(VerticalAnchor.absolute(55), 0), mookaite));
         builder.add(wasteland);
         builder.add(grassSurface);
         builder.add(surfaceRule);
