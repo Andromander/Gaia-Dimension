@@ -64,7 +64,7 @@ e0a5ebfc298d52b6f4a5832eaea6015572e4ca25 data/minecraft/tags/blocks/guarded_by_p
 5fa2c7b62e723bd216e94ee128ea84bb8a58f34a data/minecraft/tags/blocks/impermeable.json
 b9a0b933dee19d656843afcdfe9e88bc0ecb35fe data/minecraft/tags/blocks/leaves.json
 1e390eb30d5274548cb84e76e7daa8daf1faea53 data/minecraft/tags/blocks/logs.json
-0c005d7505ef3b0580fd21f324c6f6651fd759ea data/minecraft/tags/blocks/mineable/axe.json
+ae2e390d66b4426205b8a2f4bb29d2ba31ded325 data/minecraft/tags/blocks/mineable/axe.json
 267903275c04663d6793d7b05821bc9746ed1dbd data/minecraft/tags/blocks/mineable/pickaxe.json
 6746cb8fa96e4ae2f4a32c5da90209292dcadc90 data/minecraft/tags/blocks/mineable/shovel.json
 8060177bd562c1795b1ed402783496cfb565e288 data/minecraft/tags/blocks/needs_diamond_tool.json
