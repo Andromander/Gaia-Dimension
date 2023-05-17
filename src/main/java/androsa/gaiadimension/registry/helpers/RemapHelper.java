@@ -71,6 +71,8 @@ public class RemapHelper {
                     remapBlock(mapping, "malachite_floor_slab", "malachite_tile_slab");
                     remapBlock(mapping, "malachite_floor_stairs", "malachite_tile_stairs");
                     remapBlock(mapping, "malachite_pulsing_floor_stairs", "malachite_pulsing_tile_stairs");
+                    remapBlock(mapping, "potted_burnt_sapling", "potted_burnt_agate_sapling");
+                    remapBlock(mapping, "potted_burning_sapling", "potted_fire_agate_sapling");
                 }
             }
         }

@@ -55,7 +55,7 @@ public class ModTabs {
                     add(output, ModBlocks.fossilized_tiles, ModBlocks.fossilized_tile_stairs, ModBlocks.fossilized_tile_slab);
                     add(output, ModBlocks.corrupted_tiles, ModBlocks.corrupted_tile_stairs, ModBlocks.corrupted_tile_slab);
                     add(output, ModBlocks.burnt_tiles, ModBlocks.burnt_tile_stairs, ModBlocks.burnt_tile_slab);
-                    add(output, ModBlocks.burning_tiles, ModBlocks.burning_tile_stairs, ModBlocks.burning_tile_slab);
+                    add(output, ModBlocks.fire_agate_tiles, ModBlocks.fire_agate_tile_stairs, ModBlocks.fire_agate_tile_slab);
                     add(output, ModBlocks.aura_tiles, ModBlocks.aura_tile_stairs, ModBlocks.aura_tile_slab);
                     add(output, ModBlocks.golden_tiles, ModBlocks.golden_tile_stairs, ModBlocks.golden_tile_slab);
                     add(output, ModBlocks.cloudy_glass, ModBlocks.foggy_glass);

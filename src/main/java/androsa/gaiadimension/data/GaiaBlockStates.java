@@ -167,7 +167,7 @@ public class GaiaBlockStates extends GaiaBlockStateProvider {
         basicBlock(ModBlocks.fossilized_tiles);
         basicBlock(ModBlocks.corrupted_tiles);
         basicBlock(ModBlocks.burnt_tiles);
-        basicBlock(ModBlocks.burning_tiles);
+        basicBlock(ModBlocks.fire_agate_tiles);
         basicBlock(ModBlocks.aura_tiles);
         basicBlock(ModBlocks.golden_tiles);
         slabBlock(ModBlocks.pink_agate_tile_slab, ModBlocks.pink_agate_tiles);
@@ -177,7 +177,7 @@ public class GaiaBlockStates extends GaiaBlockStateProvider {
         slabBlock(ModBlocks.fossilized_tile_slab, ModBlocks.fossilized_tiles);
         slabBlock(ModBlocks.corrupted_tile_slab, ModBlocks.corrupted_tiles);
         slabBlock(ModBlocks.burnt_tile_slab, ModBlocks.burnt_tiles);
-        slabBlock(ModBlocks.burning_tile_slab, ModBlocks.burning_tiles);
+        slabBlock(ModBlocks.fire_agate_tile_slab, ModBlocks.fire_agate_tiles);
         slabBlock(ModBlocks.aura_tile_slab, ModBlocks.aura_tiles);
         slabBlock(ModBlocks.golden_tile_slab, ModBlocks.golden_tiles);
         stairsBlock(ModBlocks.pink_agate_tile_stairs, "pink_agate_tiles");
@@ -187,7 +187,7 @@ public class GaiaBlockStates extends GaiaBlockStateProvider {
         stairsBlock(ModBlocks.fossilized_tile_stairs, "fossilized_tiles");
         stairsBlock(ModBlocks.corrupted_tile_stairs, "corrupted_tiles");
         stairsBlock(ModBlocks.burnt_tile_stairs, "burnt_agate_tiles");
-        stairsBlock(ModBlocks.burning_tile_stairs, "fire_agate_tiles");
+        stairsBlock(ModBlocks.fire_agate_tile_stairs, "fire_agate_tiles");
         stairsBlock(ModBlocks.aura_tile_stairs, "aura_tiles");
         stairsBlock(ModBlocks.golden_tile_stairs, "golden_tiles");
         basicBlock(ModBlocks.cloudy_glass, "translucent");
@@ -323,7 +323,7 @@ public class GaiaBlockStates extends GaiaBlockStateProvider {
         pottedPlantBlock(ModBlocks.potted_fossilized_sapling);
         pottedPlantBlock(ModBlocks.potted_corrupted_sapling);
         pottedPlantBlock(ModBlocks.potted_burnt_sapling);
-        pottedPlantBlock(ModBlocks.potted_burning_sapling);
+        pottedPlantBlock(ModBlocks.potted_fire_agate_sapling);
         pottedPlantBlock(ModBlocks.potted_aura_sapling);
         pottedPlantBlock(ModBlocks.potted_golden_sapling);
     }

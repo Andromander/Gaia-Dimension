@@ -219,7 +219,7 @@ public class GaiaLootTables extends LootTableProvider {
             dropSelf(ModBlocks.fossilized_tiles);
             dropSelf(ModBlocks.corrupted_tiles);
             dropSelf(ModBlocks.burnt_tiles);
-            dropSelf(ModBlocks.burning_tiles);
+            dropSelf(ModBlocks.fire_agate_tiles);
             dropSelf(ModBlocks.aura_tiles);
             dropSelf(ModBlocks.golden_tiles);
             dropSlab(ModBlocks.pink_agate_tile_slab);
@@ -229,7 +229,7 @@ public class GaiaLootTables extends LootTableProvider {
             dropSlab(ModBlocks.fossilized_tile_slab);
             dropSlab(ModBlocks.corrupted_tile_slab);
             dropSlab(ModBlocks.burnt_tile_slab);
-            dropSlab(ModBlocks.burning_tile_slab);
+            dropSlab(ModBlocks.fire_agate_tile_slab);
             dropSlab(ModBlocks.aura_tile_slab);
             dropSlab(ModBlocks.golden_tile_slab);
             dropSelf(ModBlocks.pink_agate_tile_stairs);
@@ -239,7 +239,7 @@ public class GaiaLootTables extends LootTableProvider {
             dropSelf(ModBlocks.fossilized_tile_stairs);
             dropSelf(ModBlocks.corrupted_tile_stairs);
             dropSelf(ModBlocks.burnt_tile_stairs);
-            dropSelf(ModBlocks.burning_tile_stairs);
+            dropSelf(ModBlocks.fire_agate_tile_stairs);
             dropSelf(ModBlocks.aura_tile_stairs);
             dropSelf(ModBlocks.golden_tile_stairs);
 
@@ -380,7 +380,7 @@ public class GaiaLootTables extends LootTableProvider {
             dropPot(ModBlocks.potted_fossilized_sapling);
             dropPot(ModBlocks.potted_corrupted_sapling);
             dropPot(ModBlocks.potted_burnt_sapling);
-            dropPot(ModBlocks.potted_burning_sapling);
+            dropPot(ModBlocks.potted_fire_agate_sapling);
             dropPot(ModBlocks.potted_aura_sapling);
             dropPot(ModBlocks.potted_golden_sapling);
         }
