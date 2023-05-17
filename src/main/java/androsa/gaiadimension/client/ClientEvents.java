@@ -3,12 +3,16 @@ package androsa.gaiadimension.client;
 import androsa.gaiadimension.GaiaDimensionMod;
 import androsa.gaiadimension.particle.*;
 import androsa.gaiadimension.registry.registration.ModBlocks;
+import androsa.gaiadimension.registry.registration.ModFluids;
 import androsa.gaiadimension.registry.registration.ModParticles;
 import net.minecraft.client.renderer.BiomeColors;
+import net.minecraft.client.renderer.ItemBlockRenderTypes;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.level.material.Fluid;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.RegisterColorHandlersEvent;
@@ -16,6 +20,8 @@ import net.minecraftforge.client.event.RegisterDimensionSpecialEffectsEvent;
 import net.minecraftforge.client.event.RegisterParticleProvidersEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+
+import java.util.function.Supplier;
 
 @Mod.EventBusSubscriber(value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.MOD, modid = GaiaDimensionMod.MODID)
 @OnlyIn(Dist.CLIENT)
@@ -125,5 +131,16 @@ public class ClientEvents {
     public static void registerDimensionEffects(RegisterDimensionSpecialEffectsEvent event) {
         new GaiaSkyRender();
         event.register(new ResourceLocation(GaiaDimensionMod.MODID, "gaia"), new GaiaDimensionRenderInfo());
+    }
+
+    public static void registerBlockRenderers() {
+        renderFluid(ModFluids.mineral_water_flow);
+        renderFluid(ModFluids.mineral_water_still);
+        renderFluid(ModFluids.sweet_muck_flow);
+        renderFluid(ModFluids.sweet_muck_still);
+    }
+
+    private static void renderFluid(Supplier<? extends Fluid> fluid) {
+        ItemBlockRenderTypes.setRenderLayer(fluid.get(), RenderType.translucent());
     }
 }

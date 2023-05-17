@@ -1,5 +1,6 @@
 package androsa.gaiadimension;
 
+import androsa.gaiadimension.client.ClientEvents;
 import androsa.gaiadimension.data.*;
 import androsa.gaiadimension.registry.bootstrap.GaiaBiomes;
 import androsa.gaiadimension.registry.bootstrap.GaiaDimensions;
@@ -93,6 +94,7 @@ public class GaiaDimensionMod {
     }
 
     public void clientSetup(FMLClientSetupEvent event) {
+        DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> ClientEvents::registerBlockRenderers);
         DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> ModMenus::registerScreens);
         DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> ModItems::addItemProperties);
     }
