@@ -39,9 +39,9 @@ public class ModFluids {
 	public static final RegistryObject<FluidType> SWEET_MUCK = FLUID_TYPES.register("sweet_muck",
 			makeFluidType(GaiaFluidAttributes.sweet_muck_attrubutes, GaiaFluidAttributes.sweet_still, GaiaFluidAttributes.sweet_flow, true, new Vector3f(0.5F, 0.0F, 0.5F), null));
 	public static final RegistryObject<FluidType> LIQUID_BISMUTH = FLUID_TYPES.register("liquid_bismuth",
-			makeFluidType(GaiaFluidAttributes.liquid_bismuth_attributes, GaiaFluidAttributes.bismuth_still, GaiaFluidAttributes.bismuth_flow, false, new Vector3f(0.5F, 0.5F, 0.5F), ClientEvents::getBismuthColor));
+			makeFluidType(GaiaFluidAttributes.liquid_bismuth_attributes, GaiaFluidAttributes.bismuth_still, GaiaFluidAttributes.bismuth_flow, false, new Vector3f(0.5F, 0.5F, 0.5F), () -> ClientEvents::getBismuthColor));
 	public static final RegistryObject<FluidType> LIQUID_AURA = FLUID_TYPES.register("liquid_aura",
-			makeFluidType(GaiaFluidAttributes.liquid_aura_attributes, GaiaFluidAttributes.aura_still, GaiaFluidAttributes.aura_flow, true, new Vector3f(1.0F, 1.0F, 1.0F), ClientEvents::getAuraColor));
+			makeFluidType(GaiaFluidAttributes.liquid_aura_attributes, GaiaFluidAttributes.aura_still, GaiaFluidAttributes.aura_flow, true, new Vector3f(1.0F, 1.0F, 1.0F), () -> ClientEvents::getAuraColor));
 
 	//Fluids
     public static final RegistryObject<FlowingFluid> mineral_water_still = FLUIDS.register("mineral_water_still",
@@ -65,7 +65,7 @@ public class ModFluids {
     public static final RegistryObject<FlowingFluid> liquid_aura_flow = FLUIDS.register("liquid_aura_flow",
 			() -> new ForgeFlowingFluid.Flowing(GaiaFluidAttributes.liquid_aura_properties.get()));
 
-	private static Supplier<FluidType> makeFluidType(FluidType.Properties props, ResourceLocation stillpath, ResourceLocation flowingpath, boolean overlay, Vector3f fog, Function<BlockPos, Integer> color) {
+	private static Supplier<FluidType> makeFluidType(FluidType.Properties props, ResourceLocation stillpath, ResourceLocation flowingpath, boolean overlay, Vector3f fog, Supplier<Function<BlockPos, Integer>> color) {
 		return () -> new FluidType(props) {
 			@Override
 			public void initializeClient(Consumer<IClientFluidTypeExtensions> consumer) {
@@ -87,7 +87,7 @@ public class ModFluids {
 
 					@Override
 					public int getTintColor(FluidState state, BlockAndTintGetter getter, BlockPos pos) {
-						return color != null ? color.apply(pos) | 0xFF000000 : this.getTintColor();
+						return color != null ? color.get().apply(pos) | 0xFF000000 : this.getTintColor();
 					}
 
 					@Override
