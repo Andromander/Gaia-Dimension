@@ -90,6 +90,11 @@ public class GaiaConfig {
             if (event.getConfig().getModId().equals(GaiaDimensionMod.MODID)) {
                 if (event.getConfig().getSpec() instanceof ForgeConfigSpec forgeSpec) {
                     if (forgeSpec.isLoaded()) {
+                        GaiaDimensionMod.LOGGER.debug("""
+                                ForgeConfigSpec is: {}.
+                                This is to verify that there is or is not a ForgeConfigSpec.
+                                Do report this if the ForgeConfigSpec comes out as a null, as this is impossible.""",
+                                forgeSpec);
                         checkDimension();
                     }
                 }
