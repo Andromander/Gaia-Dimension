@@ -1,6 +1,5 @@
 package androsa.gaiadimension.fluids;
 
-import androsa.gaiadimension.registry.registration.ModBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
@@ -14,13 +13,11 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.LevelEvent;
-import net.minecraft.world.level.block.LiquidBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.event.ForgeEventFactory;
 import net.minecraftforge.fluids.ForgeFlowingFluid;
 
 public abstract class SuperhotMagmaFluid extends ForgeFlowingFluid {
@@ -32,27 +29,12 @@ public abstract class SuperhotMagmaFluid extends ForgeFlowingFluid {
     @Override
     protected void beforeDestroyingBlock(LevelAccessor iWorld, BlockPos pos, BlockState state) {
         this.triggerEffects(iWorld, pos);
+        super.beforeDestroyingBlock(iWorld, pos, state);
     }
 
     @Override
     protected boolean canBeReplacedWith(FluidState fluidstate, BlockGetter reader, BlockPos pos, Fluid fluid, Direction direction) {
         return fluidstate.getHeight(reader, pos) >= 0.44444445F && fluid.is(FluidTags.WATER);
-    }
-
-    @Override
-    protected void spreadTo(LevelAccessor worldIn, BlockPos pos, BlockState blockStateIn, Direction direction, FluidState fluidStateIn) {
-        if (direction == Direction.DOWN) {
-            FluidState fluidstate = worldIn.getFluidState(pos);
-            if (this.is(FluidTags.LAVA) && fluidstate.is(FluidTags.WATER)) {
-                if (blockStateIn.getBlock() instanceof LiquidBlock) {
-                    worldIn.setBlock(pos, ForgeEventFactory.fireFluidPlaceBlockEvent(worldIn, pos, pos, ModBlocks.primal_mass.get().defaultBlockState()), 3);
-                    this.triggerEffects(worldIn, pos);
-                }
-                return;
-            }
-        }
-
-        super.spreadTo(worldIn, pos, blockStateIn, direction, fluidStateIn);
     }
 
     @Override
@@ -128,12 +110,6 @@ public abstract class SuperhotMagmaFluid extends ForgeFlowingFluid {
     }
 
     private void triggerEffects(LevelAccessor world, BlockPos pos) {
-        world.levelEvent(LevelEvent.SOUND_EXTINGUISH_FIRE, pos, 0);
-    }
-
-    @Override
-    public BlockState createLegacyBlock(FluidState state) {
-        //Looks like nothing, but I'm making it public
-        return super.createLegacyBlock(state);
+        world.levelEvent(LevelEvent.LAVA_FIZZ, pos, 0);
     }
 }

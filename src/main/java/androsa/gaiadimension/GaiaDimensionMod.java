@@ -6,6 +6,7 @@ import androsa.gaiadimension.registry.bootstrap.GaiaBiomes;
 import androsa.gaiadimension.registry.bootstrap.GaiaDimensions;
 import androsa.gaiadimension.registry.helpers.GaiaConfig;
 import androsa.gaiadimension.registry.registration.*;
+import androsa.gaiadimension.registry.values.GaiaFluidAttributes;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
@@ -89,6 +90,7 @@ public class GaiaDimensionMod {
         event.enqueueWork(() -> {
             ModBlocks.addStripping();
             ModBlocks.registerDispenserBehaviour();
+            GaiaFluidAttributes.registerFluidInteractions();
         });
         ModBlocks.addPlants();
     }

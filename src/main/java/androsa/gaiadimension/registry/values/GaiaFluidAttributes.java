@@ -5,6 +5,8 @@ import androsa.gaiadimension.registry.registration.ModBlocks;
 import androsa.gaiadimension.registry.registration.ModFluids;
 import androsa.gaiadimension.registry.registration.ModItems;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraftforge.common.ForgeMod;
+import net.minecraftforge.fluids.FluidInteractionRegistry;
 import net.minecraftforge.fluids.FluidType;
 import net.minecraftforge.fluids.ForgeFlowingFluid;
 
@@ -16,12 +18,6 @@ import java.util.function.Supplier;
  * Compress to qualifier, it'll throw a NullPointerException
  */
 public class GaiaFluidAttributes {
-
-    public static final String mineralDir = "block/fluids/mineralwater/mineral_water_";
-    public static final String superhotDir = "block/fluids/superhotmagma/superhot_magma_";
-    public static final String sweetDir = "block/fluids/sweetmuck/sweet_muck_";
-    public static final String bismuthDir = "block/fluids/liquidbismuth/liquid_bismuth_";
-    public static final String auraDir = "block/fluids/liquidaura/liquid_aura_";
 
     public static final ResourceLocation mineral_still = makePath("mineral_water", "still");
     public static final ResourceLocation mineral_flow = makePath("mineral_water", "flow");
@@ -98,5 +94,40 @@ public class GaiaFluidAttributes {
 
     private static ResourceLocation makePath(String name, String suffix) {
         return new ResourceLocation(GaiaDimensionMod.MODID, String.format("block/fluids/%s/%s_%s", name, name, suffix));
+    }
+
+    public static void registerFluidInteractions() {
+        //Superhot Magma + Water
+        FluidInteractionRegistry.addInteraction(ModFluids.SUPERHOT_MAGMA.get(), new FluidInteractionRegistry.InteractionInformation(
+                ForgeMod.WATER_TYPE.get(),
+                ModBlocks.primal_mass.get().defaultBlockState()));
+        //Superhot Magma + Mineral Water
+        FluidInteractionRegistry.addInteraction(ModFluids.SUPERHOT_MAGMA.get(), new FluidInteractionRegistry.InteractionInformation(
+                ModFluids.MINERAL_WATER.get(),
+                ModBlocks.primal_mass.get().defaultBlockState()));
+        //Superhot Magma + Sweet Muck
+        FluidInteractionRegistry.addInteraction(ModFluids.SUPERHOT_MAGMA.get(), new FluidInteractionRegistry.InteractionInformation(
+                ModFluids.SWEET_MUCK.get(),
+                ModBlocks.primal_mass.get().defaultBlockState()));
+        //Superhot Magma + Liquid Aura
+        FluidInteractionRegistry.addInteraction(ModFluids.SUPERHOT_MAGMA.get(), new FluidInteractionRegistry.InteractionInformation(
+                ModFluids.LIQUID_AURA.get(),
+                ModBlocks.aura_block.get().defaultBlockState()));
+        //Liquid Bismuth + Water
+        FluidInteractionRegistry.addInteraction(ModFluids.LIQUID_BISMUTH.get(), new FluidInteractionRegistry.InteractionInformation(
+                ForgeMod.WATER_TYPE.get(),
+                ModBlocks.active_rock.get().defaultBlockState()));
+        //Liquid Bismuth + Mineral Water
+        FluidInteractionRegistry.addInteraction(ModFluids.LIQUID_BISMUTH.get(), new FluidInteractionRegistry.InteractionInformation(
+                ModFluids.MINERAL_WATER.get(),
+                ModBlocks.active_rock.get().defaultBlockState()));
+        //Liquid Bismuth + Sweet Muck
+        FluidInteractionRegistry.addInteraction(ModFluids.LIQUID_BISMUTH.get(), new FluidInteractionRegistry.InteractionInformation(
+                ModFluids.SWEET_MUCK.get(),
+                ModBlocks.active_rock.get().defaultBlockState()));
+        //Liquid Bismuth + Liquid Aura
+        FluidInteractionRegistry.addInteraction(ModFluids.LIQUID_BISMUTH.get(), new FluidInteractionRegistry.InteractionInformation(
+                ModFluids.LIQUID_AURA.get(),
+                ModBlocks.bismuth_block.get().defaultBlockState()));
     }
 }
