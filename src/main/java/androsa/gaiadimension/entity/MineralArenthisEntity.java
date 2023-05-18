@@ -1,5 +1,6 @@
 package androsa.gaiadimension.entity;
 
+import androsa.gaiadimension.registry.registration.ModFluids;
 import androsa.gaiadimension.registry.registration.ModSounds;
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvent;
@@ -17,6 +18,8 @@ import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.common.ForgeMod;
+import net.minecraftforge.fluids.FluidType;
 
 import javax.annotation.Nullable;
 
@@ -42,6 +45,29 @@ public class MineralArenthisEntity extends WaterAnimal {
         this.xpReward = 5;
         this.random.setSeed((long) (1 + this.getId()));
         this.rotationVelocity = 1.0F / (this.random.nextFloat() + 1.0F) * 0.2F;
+    }
+
+    @Override
+    public boolean canSwimInFluidType(FluidType type) {
+        return type == ModFluids.MINERAL_WATER.get() || type == ForgeMod.WATER_TYPE.get();
+    }
+
+    @Override
+    public boolean canDrownInFluidType(FluidType type) {
+        return type != ModFluids.MINERAL_WATER.get() && type != ForgeMod.WATER_TYPE.get();
+    }
+
+    @Override
+    protected void handleAirSupply(int amount) {
+        if (this.isAlive() && !this.isInWaterOrBubble() && this.isInFluidType((type, height) -> this.canDrownInFluidType(type), true)) {
+            this.setAirSupply(amount - 1);
+            if (this.getAirSupply() == -20) {
+                this.setAirSupply(0);
+                this.hurt(this.damageSources().drown(), 2.0F);
+            }
+        } else {
+            this.setAirSupply(300);
+        }
     }
 
     protected void registerGoals() {
@@ -96,7 +122,7 @@ public class MineralArenthisEntity extends WaterAnimal {
             }
         }
 
-        if (this.isInWaterOrBubble()) {
+        if (this.isInWaterOrBubble() || this.isInFluidType((type, height) -> this.canSwimInFluidType(type))) {
             if (this.arenthisRotation < (float)Math.PI) {
                 float f = this.arenthisRotation / (float)Math.PI;
                 this.tentacleAngle = Mth.sin(f * f * (float)Math.PI) * (float)Math.PI * 0.25F;
@@ -187,7 +213,7 @@ public class MineralArenthisEntity extends WaterAnimal {
 
             if (i > 100) {
                 this.arenthis.setMovementVector(0.0F, 0.0F, 0.0F);
-            } else if (this.arenthis.getRandom().nextInt(50) == 0 || !this.arenthis.wasTouchingWater || !this.arenthis.hasMovementVector()) {
+            } else if (this.arenthis.getRandom().nextInt(50) == 0 || !(this.arenthis.wasTouchingWater || this.arenthis.isInFluidType((fluidType, height) -> this.arenthis.canSwimInFluidType(fluidType))) || !this.arenthis.hasMovementVector()) {
                 float randomVec = this.arenthis.getRandom().nextFloat() * ((float)Math.PI * 2F);
                 float vecX = Mth.cos(randomVec) * 0.2F;
                 float vecY = -0.1F + this.arenthis.getRandom().nextFloat() * 0.2F;

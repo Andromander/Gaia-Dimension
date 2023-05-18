@@ -33,8 +33,8 @@ public class GaiaTags {
         return BlockTags.create(new ResourceLocation(ForgeVersion.MOD_ID, name));
     }
 
-    private static TagKey<Fluid> tagFluidForge(String name) {
-        return FluidTags.create(new ResourceLocation(ForgeVersion.MOD_ID, name));
+    private static TagKey<Fluid> tagFluid(String name) {
+        return FluidTags.create(new ResourceLocation(GaiaDimensionMod.MODID, name));
     }
 
     private static TagKey<Biome> tagStructure(String name) {
@@ -189,11 +189,11 @@ public class GaiaTags {
     }
 
     public static class Fluids {
-        public static final TagKey<Fluid> MINERAL_WATER = tagFluidForge("mineral_water");
-        public static final TagKey<Fluid> SUPERHOT_MAGMA = tagFluidForge("superhot_magma");
-        public static final TagKey<Fluid> SWEET_MUCK = tagFluidForge("sweet_muck");
-        public static final TagKey<Fluid> LIQUID_BISMUTH = tagFluidForge("liquid_bismuth");
-        public static final TagKey<Fluid> LIQUID_AURA = tagFluidForge("liquid_aura");
+        public static final TagKey<Fluid> MINERAL_WATER = tagFluid("mineral_water");
+        public static final TagKey<Fluid> SUPERHOT_MAGMA = tagFluid("superhot_magma");
+        public static final TagKey<Fluid> SWEET_MUCK = tagFluid("sweet_muck");
+        public static final TagKey<Fluid> LIQUID_BISMUTH = tagFluid("liquid_bismuth");
+        public static final TagKey<Fluid> LIQUID_AURA = tagFluid("liquid_aura");
     }
 
     public static class Biomes {

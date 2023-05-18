@@ -1,8 +1,8 @@
-// 1.19.4	2023-05-05T19:35:48.033247	Tags for minecraft:fluid mod id gaiadimension
-fbc8c4031c9cde59c69740de62809baeb31af810 data/forge/tags/fluids/liquid_aura.json
-ef41f631dd3070209f446f17e253d4c42b7eab0e data/forge/tags/fluids/liquid_bismuth.json
-a67b7492013555240a7dfa313daf3807c8597b53 data/forge/tags/fluids/mineral_water.json
-3cd2a70537611ef9cd4958cb016cd144e2c2af6d data/forge/tags/fluids/superhot_magma.json
-b8eff8f493a425080e39a78c177a13ef652ab57d data/forge/tags/fluids/sweet_muck.json
+// 1.19.4	2023-05-18T10:06:37.6356183	Tags for minecraft:fluid mod id gaiadimension
+fbc8c4031c9cde59c69740de62809baeb31af810 data/gaiadimension/tags/fluids/liquid_aura.json
+ef41f631dd3070209f446f17e253d4c42b7eab0e data/gaiadimension/tags/fluids/liquid_bismuth.json
+a67b7492013555240a7dfa313daf3807c8597b53 data/gaiadimension/tags/fluids/mineral_water.json
+3cd2a70537611ef9cd4958cb016cd144e2c2af6d data/gaiadimension/tags/fluids/superhot_magma.json
+b8eff8f493a425080e39a78c177a13ef652ab57d data/gaiadimension/tags/fluids/sweet_muck.json
 e4c0eb8c2e397f4381e1a4bedd3a41d8f00aca0b data/minecraft/tags/fluids/lava.json
 c9abd9cd85a413b91c47947f65868c94cb21a881 data/minecraft/tags/fluids/water.json

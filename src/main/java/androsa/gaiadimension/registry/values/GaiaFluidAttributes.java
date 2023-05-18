@@ -37,6 +37,11 @@ public class GaiaFluidAttributes {
     public static final FluidType.Properties mineral_water_attributes =
             FluidType.Properties.create()
                     .canConvertToSource(true)
+                    .canDrown(true)
+                    .canExtinguish(true)
+                    .canSwim(true)
+                    .fallDistanceModifier(0.0F)
+                    .supportsBoating(true)
                     .viscosity(750);
     public static final FluidType.Properties superhot_magma_attributes =
             FluidType.Properties.create()
