@@ -271,8 +271,14 @@ public class GaiaAdvancements extends GaiaAdvancementProvider {
                     .addCriterion("salt_dunes", biome(GaiaBiomes.salt_dunes))
                     .addCriterion("shining_grove", biome(GaiaBiomes.shining_grove))
                     .addCriterion("smoldering_bog", biome(GaiaBiomes.smoldering_bog))
+                    .addCriterion("mookaite_mesa", biome(GaiaBiomes.mookaite_mesa))
                     .addCriterion("mineral_reservoir", biome(GaiaBiomes.mineral_reservoir))
                     .addCriterion("mineral_river", biome(GaiaBiomes.mineral_river))
+                    .addCriterion("golden_forest", biome(GaiaBiomes.golden_forest))
+                    .addCriterion("golden_plains", biome(GaiaBiomes.golden_plains))
+                    .addCriterion("golden_hills", biome(GaiaBiomes.golden_hills))
+                    .addCriterion("golden_marsh", biome(GaiaBiomes.golden_marsh))
+                    .addCriterion("golden_sands", biome(GaiaBiomes.golden_sands))
                     .save(consumer, loc("explore_gaia"));
             //Find a Gaia Mini Tower
             Advancement progress1 = Advancement.Builder.advancement()

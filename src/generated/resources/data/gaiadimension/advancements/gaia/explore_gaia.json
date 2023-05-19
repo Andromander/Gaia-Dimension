@@ -49,6 +49,86 @@
       },
       "trigger": "minecraft:location"
     },
+    "golden_forest": {
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "location": {
+                "biome": "gaiadimension:golden_forest"
+              }
+            }
+          }
+        ]
+      },
+      "trigger": "minecraft:location"
+    },
+    "golden_hills": {
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "location": {
+                "biome": "gaiadimension:golden_hills"
+              }
+            }
+          }
+        ]
+      },
+      "trigger": "minecraft:location"
+    },
+    "golden_marsh": {
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "location": {
+                "biome": "gaiadimension:golden_marsh"
+              }
+            }
+          }
+        ]
+      },
+      "trigger": "minecraft:location"
+    },
+    "golden_plains": {
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "location": {
+                "biome": "gaiadimension:golden_plains"
+              }
+            }
+          }
+        ]
+      },
+      "trigger": "minecraft:location"
+    },
+    "golden_sands": {
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "location": {
+                "biome": "gaiadimension:golden_sands"
+              }
+            }
+          }
+        ]
+      },
+      "trigger": "minecraft:location"
+    },
     "goldstone_lands": {
       "conditions": {
         "player": [
@@ -106,6 +186,22 @@
             "predicate": {
               "location": {
                 "biome": "gaiadimension:mineral_river"
+              }
+            }
+          }
+        ]
+      },
+      "trigger": "minecraft:location"
+    },
+    "mookaite_mesa": {
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "location": {
+                "biome": "gaiadimension:mookaite_mesa"
               }
             }
           }
@@ -298,10 +394,28 @@
       "smoldering_bog"
     ],
     [
+      "mookaite_mesa"
+    ],
+    [
       "mineral_reservoir"
     ],
     [
       "mineral_river"
+    ],
+    [
+      "golden_forest"
+    ],
+    [
+      "golden_plains"
+    ],
+    [
+      "golden_hills"
+    ],
+    [
+      "golden_marsh"
+    ],
+    [
+      "golden_sands"
     ]
   ],
   "rewards": {
