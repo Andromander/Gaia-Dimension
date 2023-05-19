@@ -1,9 +1,9 @@
-// 1.19.4	2023-05-17T20:45:33.5281317	Registries
+// 1.19.4	2023-05-19T10:18:33.0747873	Registries
 56d72770b020b85f72c305522124360858cbe607 data/gaiadimension/damage_type/corruption.json
 a1e930106447e88a8543df5b23b57cfb80a32144 data/gaiadimension/damage_type/energetic.json
 fabd7f085894b585a78435b4771454b6036d241e data/gaiadimension/damage_type/malachite_blast.json
 f90004ec2c2661cd6f96f4773fda5e63e1354d21 data/gaiadimension/damage_type/static.json
-1d861983c255a80161dea67c9f143c0ef2501197 data/gaiadimension/dimension/gaia_dimension.json
+06fa0206a9f7743130a7f6eb58ad88fc2bae06c9 data/gaiadimension/dimension/gaia_dimension.json
 c72efbf6ad22f1d74d8a22b6a85ddb1d0d183572 data/gaiadimension/dimension_type/gaia_dimension.json
 7be5f84ba25bf5f222827a47d8a814a146280c66 data/gaiadimension/worldgen/biome/blue_agate_taiga.json
 f7c78cd525cd575e043393fa5df8272846606ad5 data/gaiadimension/worldgen/biome/crystal_plains.json

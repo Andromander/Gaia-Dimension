@@ -25,22 +25,19 @@ public class GaiaBiomeSource extends BiomeSource {
                     TerrainPoint.CODEC.fieldOf("parameters").forGetter(Pair::getFirst),
                     Biome.CODEC.fieldOf("biome").forGetter(Pair::getSecond)
             ).apply(pair, Pair::of)).listOf().fieldOf("biomes").forGetter((object) -> object.list),
-            Codec.LONG.fieldOf("seed").stable().orElseGet(() -> GaiaBiomeSource.hackseed).forGetter((object) -> object.seed),
             Codec.FLOAT.fieldOf("base_offset").forGetter((object) -> object.offset),
             Codec.FLOAT.fieldOf("base_factor").forGetter((object) -> object.factor),
             RegistryOps.retrieveGetter(Registries.BIOME)
     ).apply(instance, GaiaBiomeSource::new));
 
     public static long hackseed; //DON'T TOUCH ME
-    private final long seed;
     private final HolderGetter<Biome> registry;
     private Layer genBiomes;
     private final float offset;
     private final float factor;
     private final List<Pair<TerrainPoint, Holder<Biome>>> list;
 
-    public GaiaBiomeSource(List<Pair<TerrainPoint, Holder<Biome>>> list, long seed, float offset, float factor, HolderGetter<Biome> registry) {
-        this.seed = seed;
+    public GaiaBiomeSource(List<Pair<TerrainPoint, Holder<Biome>>> list, float offset, float factor, HolderGetter<Biome> registry) {
         this.registry = registry;
 
         this.list = list;
@@ -104,7 +101,7 @@ public class GaiaBiomeSource extends BiomeSource {
 
     private void lazyLoad() {
         if (genBiomes == null) {
-            this.genBiomes = GaiaLayerUtil.makeLayers(seed, registry);
+            this.genBiomes = GaiaLayerUtil.makeLayers(hackseed, registry);
         }
     }
 }

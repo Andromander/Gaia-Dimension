@@ -15,8 +15,7 @@ public class GaiaLayerUtil {
         return ServerLifecycleHooks.getCurrentServer().registryAccess().registryOrThrow(Registries.BIOME).getId(registry.get(define).get().get());
     }
 
-    public static <T extends Area, C extends BigContext<T>> AreaFactory<T> makeLayers(LongFunction<C> contextFactory, long seed, HolderGetter<Biome> registry) {
-
+    public static <T extends Area, C extends BigContext<T>> AreaFactory<T> makeLayers(LongFunction<C> contextFactory, HolderGetter<Biome> registry) {
         AreaFactory<T> islands = IslandLayer.INSTANCE.run(contextFactory.apply(1L));
         islands = ZoomLayer.FUZZY.run(contextFactory.apply(2000L), islands);
         islands = AddIslandLayer.INSTANCE.setup(registry).run(contextFactory.apply(1L), islands);
@@ -58,7 +57,7 @@ public class GaiaLayerUtil {
     }
 
     public static Layer makeLayers(long seed, HolderGetter<Biome> registry) {
-        AreaFactory<LazyArea> areaFactory = makeLayers((contextSeed) -> new LazyAreaContext(25, seed, contextSeed), seed, registry);
+        AreaFactory<LazyArea> areaFactory = makeLayers((contextSeed) -> new LazyAreaContext(25, seed, contextSeed), registry);
         return new Layer(areaFactory);
     }
 }

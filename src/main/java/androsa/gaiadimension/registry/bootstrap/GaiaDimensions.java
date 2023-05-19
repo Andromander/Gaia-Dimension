@@ -42,7 +42,7 @@ public class GaiaDimensions {
         HolderGetter<NoiseGeneratorSettings> noiseGens = context.lookup(Registries.NOISE_SETTINGS);
         HolderGetter<DimensionType> dimTypes = context.lookup(Registries.DIMENSION_TYPE);
 
-        BiomeSource source = new GaiaBiomeSource(GaiaBiomeMaker.makeBiomeList(biomes), 0L, 0.0F, 1.0F, biomes);
+        BiomeSource source = new GaiaBiomeSource(GaiaBiomeMaker.makeBiomeList(biomes), 0.0F, 1.0F, biomes);
         NoiseBasedChunkGenerator chunkgen = new GaiaChunkGenerator(source, noiseGens.getOrThrow(gaia_noise));
         LevelStem stem = new LevelStem(dimTypes.getOrThrow(gaia_dimension), chunkgen);
 
