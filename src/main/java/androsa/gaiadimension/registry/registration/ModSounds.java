@@ -52,10 +52,14 @@ public class ModSounds {
     public static final RegistryObject<SoundEvent> ENTITY_MUCKLING_HURT_SMALL           = makeHurtSound("muckling_small");
     public static final RegistryObject<SoundEvent> ENTITY_MUCKLING_JUMP_SMALL           = makeEntitySound("muckling_small", "jump");
     public static final RegistryObject<SoundEvent> ENTITY_MUCKLING_SQUISH_SMALL         = makeEntitySound("muckling_small", "squish");
+    public static final RegistryObject<SoundEvent> ENTITY_MOOKAITE_CONSTRUCT_DEATH      = makeDeathSound("mookaite_construct");
+    public static final RegistryObject<SoundEvent> ENTITY_MOOKAITE_CONSTRUCT_HURT       = makeHurtSound("mookaite_construct");
     public static final RegistryObject<SoundEvent> ENTITY_MUTANT_GROWTH_EXTRACTOR_DEATH = makeDeathSound("mutant_growth_extractor");
     public static final RegistryObject<SoundEvent> ENTITY_MUTANT_GROWTH_EXTRACTOR_HURT  = makeHurtSound("mutant_growth_extractor");
     public static final RegistryObject<SoundEvent> ENTITY_NOMADIC_LAGRAHK_DEATH         = makeDeathSound("nomadic_lagrahk");
     public static final RegistryObject<SoundEvent> ENTITY_NOMADIC_LAGRAHK_HURT          = makeHurtSound("nomadic_lagrahk");
+    public static final RegistryObject<SoundEvent> ENTITY_OPALITE_CONSTRUCT_DEATH       = makeDeathSound("opalite_construct");
+    public static final RegistryObject<SoundEvent> ENTITY_OPALITE_CONSTRUCT_HURT        = makeHurtSound("opalite_construct");
     public static final RegistryObject<SoundEvent> ENTITY_PRIMAL_BEAST_AMBIENT          = makeAmbientSound("primal_beast");
     public static final RegistryObject<SoundEvent> ENTITY_PRIMAL_BEAST_DEATH            = makeDeathSound("primal_beast");
     public static final RegistryObject<SoundEvent> ENTITY_PRIMAL_BEAST_HURT             = makeHurtSound("primal_beast");

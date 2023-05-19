@@ -313,6 +313,20 @@
       "mob/slime/small5"
     ]
   },
+  "entity.mookaite_construct.death": {
+    "subtitle": "subtitles.entity.mookaite_construct.death",
+    "sounds": [
+      "damage/hit1",
+      "damage/hit2",
+      "damage/hit3"
+    ]
+  },
+  "entity.mookaite_construct.hurt": {
+    "subtitle": "subtitles.entity.mookaite_construct.hurt",
+    "sounds": [
+      "damage/fallsmall"
+    ]
+  },
   "entity.mutant_growth_extractor.death": {
     "subtitle": "subtitles.entity.mutant_growth_extractor.death",
     "sounds": [
@@ -337,6 +351,20 @@
   },
   "entity.nomadic_lagrahk.hurt": {
     "subtitle": "subtitles.entity.nomadic_lagrahk.hurt",
+    "sounds": [
+      "damage/fallsmall"
+    ]
+  },
+  "entity.opalite_construct.death": {
+    "subtitle": "subtitles.entity.opalite_construct.death",
+    "sounds": [
+      "damage/hit1",
+      "damage/hit2",
+      "damage/hit3"
+    ]
+  },
+  "entity.opalite_construct.hurt": {
+    "subtitle": "subtitles.entity.opalite_construct.hurt",
     "sounds": [
       "damage/fallsmall"
     ]
