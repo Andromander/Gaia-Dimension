@@ -5,8 +5,6 @@ import androsa.gaiadimension.block.menu.AgateCraftingTableMenu;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
-import net.minecraft.client.gui.screens.recipebook.RecipeBookComponent;
-import net.minecraft.client.gui.screens.recipebook.RecipeUpdateListener;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -14,8 +12,9 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
+//TODO: Recipe Book?
 @OnlyIn(Dist.CLIENT)
-public class AgateCraftingScreen extends AbstractContainerScreen<AgateCraftingTableMenu> implements RecipeUpdateListener {
+public class AgateCraftingScreen extends AbstractContainerScreen<AgateCraftingTableMenu> {
     private static final ResourceLocation textureLoc = new ResourceLocation(GaiaDimensionMod.MODID, "textures/gui/crafting_table.png");
 
     public AgateCraftingScreen(AgateCraftingTableMenu container, Inventory player, Component textComponent) {
@@ -46,13 +45,5 @@ public class AgateCraftingScreen extends AbstractContainerScreen<AgateCraftingTa
         int left = leftPos;
         int top = topPos;
         blit(stack, left, top, 0, 0, imageWidth, imageHeight);
-    }
-
-    @Override
-    public void recipesUpdated() { }
-
-    @Override
-    public RecipeBookComponent getRecipeBookComponent() {
-        return null;
     }
 }
