@@ -1,4 +1,4 @@
-// 1.19.4	2023-05-17T13:51:19.1200808	Gaia Item Models
+// 1.19.4	2023-05-24T19:11:10.743251	Gaia Item Models
 d5c0f0011c11d4bd7b161026eed13370329d4981 assets/gaiadimension/models/item/active_rock.json
 f8516b22f5651209e5c6893ab609ebc1105db572 assets/gaiadimension/models/item/agate_arrow.json
 8edce106f0b6a88ad044dafcb45074427a389d02 assets/gaiadimension/models/item/agate_axe.json
@@ -102,7 +102,6 @@ e9a19b31a88adf25bc86f28ab92f0c160d2e321c assets/gaiadimension/models/item/cinnab
 d9b82df0ad79ed0c8b9f7ea6ccdcbc57abdc5318 assets/gaiadimension/models/item/cloudy_glass.json
 a0cfbb5d8060ec37061720b5f27b42828e51ddaa assets/gaiadimension/models/item/cloudy_shard.json
 3fcdf80126e0d900ca7750b19a56a2d8a8e97e4a assets/gaiadimension/models/item/coarse_rock.json
-d89ed79b04bde63c1811c502683f9304228b5f13 assets/gaiadimension/models/item/construct_charm.json
 63ec6c618a3a23eab4cab9c52d7d3250de9b516e assets/gaiadimension/models/item/contorted_naga_spawn_egg.json
 be732b3b8bee5e750b5771062aa4fd2dd18d58b7 assets/gaiadimension/models/item/cooked_luggeroth_chop.json
 ad42ed73f27831b38e150f2ab5b82fe7204dc633 assets/gaiadimension/models/item/copal_bricks.json

@@ -1,0 +1,29 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "gaiadimension:item/construct_charm"
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "mookaite": 1,
+        "opalite": 0
+      },
+      "model": "gaiadimension:item/construct_charm_mookaite"
+    },
+    {
+      "predicate": {
+        "mookaite": 0,
+        "opalite": 1
+      },
+      "model": "gaiadimension:item/construct_charm_opalite"
+    },
+    {
+      "predicate": {
+        "mookaite": 1,
+        "opalite": 1
+      },
+      "model": "gaiadimension:item/construct_charm_both"
+    }
+  ]
+}

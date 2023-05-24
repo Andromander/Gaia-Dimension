@@ -4,9 +4,6 @@ import androsa.gaiadimension.GaiaDimensionMod;
 import androsa.gaiadimension.item.*;
 import androsa.gaiadimension.item.armor.*;
 import androsa.gaiadimension.item.tools.*;
-import androsa.gaiadimension.registry.registration.ModBlocks;
-import androsa.gaiadimension.registry.registration.ModEntities;
-import androsa.gaiadimension.registry.registration.ModFluids;
 import androsa.gaiadimension.registry.values.GaiaArmorMaterials;
 import androsa.gaiadimension.registry.values.GaiaFoods;
 import androsa.gaiadimension.registry.values.GaiaToolMaterials;
@@ -29,7 +26,6 @@ import javax.annotation.Nullable;
 import java.util.function.Supplier;
 
 import static net.minecraft.world.item.ArmorItem.Type.*;
-
 
 public class ModItems {
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, GaiaDimensionMod.MODID);
@@ -344,5 +340,9 @@ public class ModItems {
         }));
         ItemProperties.register(old_bow.get(), new ResourceLocation("pulling"), (stack, world, entity, seed) ->
                 entity != null && entity.isUsingItem() && entity.getUseItem() == stack ? 1.0F : 0.0F);
+        ItemProperties.register(construct_charm.get(), new ResourceLocation("mookaite"), (stack, world, entity, seed) ->
+                entity != null && stack.getTag() != null && stack.getTag().contains("MookaiteUUID") ? 1.0F : 0.0F);
+        ItemProperties.register(construct_charm.get(), new ResourceLocation("opalite"), (stack, world, entity, seed) ->
+                entity != null && stack.getTag() != null && stack.getTag().contains("OpaliteUUID") ? 1.0F : 0.0F);
     }
 }

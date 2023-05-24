@@ -1,0 +1,6 @@
+{
+  "parent": "gaiadimension:item/construct_charm",
+  "textures": {
+    "layer0": "gaiadimension:item/construct_charm_both"
+  }
+}

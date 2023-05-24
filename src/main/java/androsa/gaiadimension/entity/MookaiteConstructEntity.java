@@ -1,6 +1,5 @@
 package androsa.gaiadimension.entity;
 
-import androsa.gaiadimension.registry.registration.ModItems;
 import androsa.gaiadimension.registry.registration.ModSounds;
 import com.google.common.collect.Maps;
 import net.minecraft.Util;
@@ -13,8 +12,6 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.DifficultyInstance;
-import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
@@ -187,16 +184,6 @@ public class MookaiteConstructEntity extends PathfinderMob {
 
     public static boolean canSpawnHere(EntityType<MookaiteConstructEntity> entity, LevelAccessor world, MobSpawnType spawn, BlockPos pos, RandomSource random) {
         return spawn == MobSpawnType.SPAWNER || world.getBlockState(pos.below()).isValidSpawn(world, pos.below(), entity) && world.getRawBrightness(pos, 0) > 8;
-    }
-
-    @Override
-    protected InteractionResult mobInteract(Player player, InteractionHand hand) {
-        if (player.getItemInHand(hand).getItem() != ModItems.construct_charm.get()) {
-            String output = this.getOpaliteCompanion() != null ? this.getOpaliteCompanion().toString() : "No companion set";
-            System.out.println(output);
-            return InteractionResult.sidedSuccess(this.level.isClientSide());
-        }
-        return InteractionResult.PASS;
     }
 
     @Override
