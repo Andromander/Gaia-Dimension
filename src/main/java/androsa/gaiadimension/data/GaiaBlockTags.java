@@ -172,15 +172,15 @@ public class GaiaBlockTags extends GaiaBlockTagsProvider {
     );
     private static final ImmutableList<Supplier<? extends Block>> NEEDS_IRON = ImmutableList.of(
             ModBlocks.keystone_block, ModBlocks.purifier, ModBlocks.wasteland_stone, ModBlocks.static_stone, ModBlocks.volcanic_rock, ModBlocks.searing_rock, ModBlocks.primal_mass, ModBlocks.impure_rock,
-            ModBlocks.active_rock, ModBlocks.tough_golden_stone, ModBlocks.gilded_brilliant_stone, ModBlocks.bolstered_bricks, ModBlocks.hematite_ore, ModBlocks.cinnabar_ore, ModBlocks.labradorite_ore, ModBlocks.red_opal_ore,
-            ModBlocks.blue_opal_ore, ModBlocks.green_opal_ore, ModBlocks.coarse_rock, ModBlocks.malachite_bricks, ModBlocks.malachite_cracked_bricks, ModBlocks.malachite_crusted_bricks, ModBlocks.malachite_tiles,
-            ModBlocks.malachite_chisel_bricks, ModBlocks.malachite_pulsing_bricks, ModBlocks.malachite_pulsing_tiles, ModBlocks.malachite_pulsing_chisel, ModBlocks.malachite_brick_slab, ModBlocks.malachite_cracked_brick_slab,
-            ModBlocks.malachite_crusted_brick_slab, ModBlocks.malachite_tile_slab, ModBlocks.malachite_pillar, ModBlocks.malachite_brick_stairs, ModBlocks.malachite_cracked_brick_stairs, ModBlocks.malachite_crusted_brick_stairs,
-            ModBlocks.malachite_tile_stairs, ModBlocks.malachite_chisel_stairs, ModBlocks.malachite_pulsing_brick_stairs, ModBlocks.malachite_pulsing_floor_stairs, ModBlocks.malachite_pulsing_chisel_stairs,
-            ModBlocks.malachite_pillar_stairs, ModBlocks.sugilite_block, ModBlocks.hematite_block, ModBlocks.cinnabar_block, ModBlocks.labradorite_block, ModBlocks.moonstone_block, ModBlocks.red_opal_block,
-            ModBlocks.blue_opal_block, ModBlocks.green_opal_block, ModBlocks.white_opal_block, ModBlocks.pyrite_block, ModBlocks.tektite_block, ModBlocks.goldstone_block, ModBlocks.aura_block,
-            ModBlocks.bismuth_block, ModBlocks.ixiolite_block, ModBlocks.proustite_block, ModBlocks.euclase_block, ModBlocks.leucite_block, ModBlocks.carnelian_block, ModBlocks.benitoite_block,
-            ModBlocks.diopside_block, ModBlocks.chalcedony_block
+            ModBlocks.active_rock, ModBlocks.tough_golden_stone, ModBlocks.gilded_brilliant_stone, ModBlocks.bolstered_bricks, ModBlocks.hematite_ore, ModBlocks.cinnabar_ore, ModBlocks.labradorite_ore, ModBlocks.moonstone_ore,
+            ModBlocks.red_opal_ore, ModBlocks.blue_opal_ore, ModBlocks.green_opal_ore, ModBlocks.coarse_rock, ModBlocks.malachite_bricks, ModBlocks.malachite_cracked_bricks, ModBlocks.malachite_crusted_bricks,
+            ModBlocks.malachite_tiles, ModBlocks.malachite_chisel_bricks, ModBlocks.malachite_pulsing_bricks, ModBlocks.malachite_pulsing_tiles, ModBlocks.malachite_pulsing_chisel, ModBlocks.malachite_brick_slab,
+            ModBlocks.malachite_cracked_brick_slab, ModBlocks.malachite_crusted_brick_slab, ModBlocks.malachite_tile_slab, ModBlocks.malachite_pillar, ModBlocks.malachite_brick_stairs, ModBlocks.malachite_cracked_brick_stairs,
+            ModBlocks.malachite_crusted_brick_stairs, ModBlocks.malachite_tile_stairs, ModBlocks.malachite_chisel_stairs, ModBlocks.malachite_pulsing_brick_stairs, ModBlocks.malachite_pulsing_floor_stairs,
+            ModBlocks.malachite_pulsing_chisel_stairs, ModBlocks.malachite_pillar_stairs, ModBlocks.sugilite_block, ModBlocks.hematite_block, ModBlocks.cinnabar_block, ModBlocks.labradorite_block, ModBlocks.moonstone_block,
+            ModBlocks.red_opal_block, ModBlocks.blue_opal_block, ModBlocks.green_opal_block, ModBlocks.white_opal_block, ModBlocks.pyrite_block, ModBlocks.tektite_block, ModBlocks.goldstone_block, ModBlocks.aura_block,
+            ModBlocks.bismuth_block, ModBlocks.ixiolite_block, ModBlocks.proustite_block, ModBlocks.euclase_block, ModBlocks.leucite_block, ModBlocks.carnelian_block, ModBlocks.benitoite_block, ModBlocks.diopside_block,
+            ModBlocks.chalcedony_block
     );
     private static final ImmutableList<Supplier<? extends Block>> NEEDS_DIAMOND = ImmutableList.of(
             ModBlocks.nexustone, ModBlocks.white_opal_ore, ModBlocks.precious_rock
