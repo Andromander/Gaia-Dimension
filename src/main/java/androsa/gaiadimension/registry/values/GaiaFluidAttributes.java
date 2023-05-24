@@ -5,7 +5,9 @@ import androsa.gaiadimension.registry.registration.ModBlocks;
 import androsa.gaiadimension.registry.registration.ModFluids;
 import androsa.gaiadimension.registry.registration.ModItems;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraftforge.common.ForgeMod;
+import net.minecraftforge.common.SoundActions;
 import net.minecraftforge.fluids.FluidInteractionRegistry;
 import net.minecraftforge.fluids.FluidType;
 import net.minecraftforge.fluids.ForgeFlowingFluid;
@@ -32,6 +34,9 @@ public class GaiaFluidAttributes {
 
     public static final FluidType.Properties mineral_water_attributes =
             FluidType.Properties.create()
+                    .sound(SoundActions.BUCKET_FILL, SoundEvents.BUCKET_FILL)
+                    .sound(SoundActions.BUCKET_EMPTY, SoundEvents.BUCKET_EMPTY)
+                    .sound(SoundActions.FLUID_VAPORIZE, SoundEvents.FIRE_EXTINGUISH)
                     .canConvertToSource(true)
                     .canDrown(true)
                     .canExtinguish(true)
@@ -41,23 +46,33 @@ public class GaiaFluidAttributes {
                     .viscosity(750);
     public static final FluidType.Properties superhot_magma_attributes =
             FluidType.Properties.create()
+                    .sound(SoundActions.BUCKET_FILL, SoundEvents.BUCKET_FILL_LAVA)
+                    .sound(SoundActions.BUCKET_EMPTY, SoundEvents.BUCKET_EMPTY_LAVA)
                     .density(4000)
                     .lightLevel(15)
                     .temperature(2000)
                     .viscosity(4000);
     public static final FluidType.Properties sweet_muck_attrubutes =
             FluidType.Properties.create()
+                    .sound(SoundActions.BUCKET_FILL, SoundEvents.BUCKET_FILL)
+                    .sound(SoundActions.BUCKET_EMPTY, SoundEvents.BUCKET_EMPTY)
+                    .sound(SoundActions.FLUID_VAPORIZE, SoundEvents.FIRE_EXTINGUISH)
                     .canConvertToSource(true)
                     .density(1000)
                     .viscosity(750);
     public static final FluidType.Properties liquid_bismuth_attributes =
             FluidType.Properties.create()
+                    .sound(SoundActions.BUCKET_FILL, SoundEvents.BUCKET_FILL_LAVA)
+                    .sound(SoundActions.BUCKET_EMPTY, SoundEvents.BUCKET_EMPTY_LAVA)
                     .density(2500)
                     .lightLevel(3)
                     .temperature(300)
                     .viscosity(3500);
     public static final FluidType.Properties liquid_aura_attributes =
             FluidType.Properties.create()
+                    .sound(SoundActions.BUCKET_FILL, SoundEvents.BUCKET_FILL)
+                    .sound(SoundActions.BUCKET_EMPTY, SoundEvents.BUCKET_EMPTY)
+                    .sound(SoundActions.FLUID_VAPORIZE, SoundEvents.FIRE_EXTINGUISH)
                     .viscosity(1500);
 
     public static final Supplier<ForgeFlowingFluid.Properties> mineral_water_properties =
