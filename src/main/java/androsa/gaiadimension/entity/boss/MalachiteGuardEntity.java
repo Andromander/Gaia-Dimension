@@ -36,6 +36,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
+import net.minecraftforge.event.ForgeEventFactory;
 
 import javax.annotation.Nullable;
 import java.util.EnumSet;
@@ -298,7 +299,7 @@ public class MalachiteGuardEntity extends Monster {
         MalachiteDroneEntity drone = new MalachiteDroneEntity(ModEntities.MALACHITE_DRONE.get(), this.level);
         drone.moveTo(pos, 0.0F, 0.0F);
         if (!level.isClientSide()) {
-            drone.finalizeSpawn((ServerLevelAccessor)this.level, this.level.getCurrentDifficultyAt(pos), MobSpawnType.MOB_SUMMONED, null, null);
+            ForgeEventFactory.onFinalizeSpawn(drone, (ServerLevelAccessor)this.level, this.level.getCurrentDifficultyAt(pos), MobSpawnType.MOB_SUMMONED, null, null);
         }
         drone.setOwner(this);
         this.level.addFreshEntity(drone);

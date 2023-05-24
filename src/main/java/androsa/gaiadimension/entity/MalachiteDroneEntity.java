@@ -165,6 +165,16 @@ public class MalachiteDroneEntity extends Monster {
     }
 
     @Override
+    public void remove(RemovalReason reason) {
+        if (reason == RemovalReason.DISCARDED) {
+            if (this.getOwnerUniqueId() != null) {
+                this.ownerRemoved(this.getOwner());
+            }
+        }
+        super.remove(reason);
+    }
+
+    @Override
     public void die(DamageSource source) {
         if (ForgeHooks.onLivingDeath(this,  source)) //The event was cancelled, therefore do not decrease the Guard's tracker.
             return;
