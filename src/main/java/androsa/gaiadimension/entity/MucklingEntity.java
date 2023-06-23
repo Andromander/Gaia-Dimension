@@ -78,7 +78,7 @@ public class MucklingEntity extends Slime {
             float f1 = this.random.nextFloat() * 0.5F + 0.5F;
             float f2 = Mth.sin(f) * (float) i * 0.5F * f1;
             float f3 = Mth.cos(f) * (float) i * 0.5F * f1;
-            Level world = this.level;
+            Level world = this.level();
             double d0 = this.getX() + (double) f2;
             double d1 = this.getZ() + (double) f3;
             BlockState state = ModBlocks.gummy_glitter_block.get().defaultBlockState();

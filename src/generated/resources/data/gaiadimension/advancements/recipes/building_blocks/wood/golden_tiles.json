@@ -28,5 +28,6 @@
     "recipes": [
       "gaiadimension:wood/golden_tiles"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

@@ -203,13 +203,13 @@ public class MalachiteGuardEntity extends Monster {
      */
     @Override
     public void setTarget(@Nullable LivingEntity entity) {
-        if (level.getDifficulty() == Difficulty.NORMAL || level.getDifficulty() == Difficulty.HARD) {
+        if (level().getDifficulty() == Difficulty.NORMAL || level().getDifficulty() == Difficulty.HARD) {
             if (entity instanceof Player) {
                 if (EntitySelector.NO_CREATIVE_OR_SPECTATOR.test(entity)) {
                     super.setTarget(entity);
                 }
             }
-        } else if (level.getDifficulty() == Difficulty.EASY) {
+        } else if (level().getDifficulty() == Difficulty.EASY) {
             if (entity instanceof Player) {
                 if (EntitySelector.NO_CREATIVE_OR_SPECTATOR.test(entity)) {
                     super.setTarget(entity);
@@ -243,14 +243,14 @@ public class MalachiteGuardEntity extends Monster {
         super.tick();
 
         if (getChargePhase() == 1) {
-            if (level.isClientSide()) {
+            if (level().isClientSide()) {
                 for (int i = 0; i < 3; i++) {
-                    level.addParticle(ModParticles.MALACHITE_MAGIC.get(), getRandomX(3.0D), this.getY() + (random.nextDouble() * 0.25D), getRandomZ(3.0D), 0.0D, 0.0D, 0.0D);
+                    level().addParticle(ModParticles.MALACHITE_MAGIC.get(), getRandomX(3.0D), this.getY() + (random.nextDouble() * 0.25D), getRandomZ(3.0D), 0.0D, 0.0D, 0.0D);
                 }
             }
         }
 
-        if (!level.isClientSide()) {
+        if (!level().isClientSide()) {
             this.bossInfo.setProgress(this.getHealth() / this.getMaxHealth());
         }
     }
@@ -263,7 +263,7 @@ public class MalachiteGuardEntity extends Monster {
         int gX = guardPos.getX();
         int gy = guardPos.getY();
         int gZ = guardPos.getZ();
-        Difficulty difficulty = this.level.getDifficulty();
+        Difficulty difficulty = this.level().getDifficulty();
 
         //Easy Modes
         BlockPos bpLeft = new BlockPos(gX - 2, gy, gZ);
@@ -296,13 +296,13 @@ public class MalachiteGuardEntity extends Monster {
     }
 
     private void createDrone(BlockPos pos) {
-        MalachiteDroneEntity drone = new MalachiteDroneEntity(ModEntities.MALACHITE_DRONE.get(), this.level);
+        MalachiteDroneEntity drone = new MalachiteDroneEntity(ModEntities.MALACHITE_DRONE.get(), this.level());
         drone.moveTo(pos, 0.0F, 0.0F);
-        if (!level.isClientSide()) {
-            ForgeEventFactory.onFinalizeSpawn(drone, (ServerLevelAccessor)this.level, this.level.getCurrentDifficultyAt(pos), MobSpawnType.MOB_SUMMONED, null, null);
+        if (!level().isClientSide()) {
+            ForgeEventFactory.onFinalizeSpawn(drone, (ServerLevelAccessor)this.level(), this.level().getCurrentDifficultyAt(pos), MobSpawnType.MOB_SUMMONED, null, null);
         }
         drone.setOwner(this);
-        this.level.addFreshEntity(drone);
+        this.level().addFreshEntity(drone);
         this.dronesLeft++;
     }
 
@@ -374,7 +374,7 @@ public class MalachiteGuardEntity extends Monster {
     @Override
     public boolean doHurtTarget(Entity target) {
         boolean flag = super.doHurtTarget(target);
-        Difficulty difficulty = level.getDifficulty();
+        Difficulty difficulty = level().getDifficulty();
 
         //Just have this happen in Normal or Hard
         if (difficulty == Difficulty.NORMAL || difficulty == Difficulty.HARD) {
@@ -401,14 +401,14 @@ public class MalachiteGuardEntity extends Monster {
     public boolean hurt(DamageSource source, float amount) {
         if (getChargePhase() == 1) {
             if (isAllowedToDamage(source)) {
-                if (level.getDifficulty() == Difficulty.EASY) {
+                if (level().getDifficulty() == Difficulty.EASY) {
                     amount /= 4;
                     bideDamage += amount;
                     amount *= 3;
-                } else if (level.getDifficulty() == Difficulty.NORMAL) {
+                } else if (level().getDifficulty() == Difficulty.NORMAL) {
                     amount /= 2;
                     bideDamage += amount;
-                } else if (level.getDifficulty() == Difficulty.HARD) {
+                } else if (level().getDifficulty() == Difficulty.HARD) {
                     amount /= 4;
                     bideDamage += amount * 3;
                 }
@@ -451,7 +451,7 @@ public class MalachiteGuardEntity extends Monster {
     private boolean isAllowedToDamage(DamageSource source) {
         Entity entity = source.getDirectEntity();
 
-        if (this.level.getDifficulty() == Difficulty.NORMAL || this.level.getDifficulty() == Difficulty.HARD) {
+        if (this.level().getDifficulty() == Difficulty.NORMAL || this.level().getDifficulty() == Difficulty.HARD) {
             return entity instanceof Player;
         } else {
             return entity instanceof LivingEntity;
@@ -460,25 +460,20 @@ public class MalachiteGuardEntity extends Monster {
 
     /**
      * Easy mode has softer weakeners. Normal is more strict. Hard has less attacking range.
+     * Default handler only falls onto Peaceful, but we already despawned by then.
      */
     private float getMultiplier(float base) {
-        switch (this.level.getDifficulty()) {
-            case EASY:
-                return base > 50.0F ? 0.25F : base > 25.0F ? 0.5F : base > 10.0F ? 0.75F : 1.0F;
-            case NORMAL:
-                return base > 100.0F ? 0.0F : base > 50.0F ? 0.125F : base > 25.0F ? 0.25F : base > 10.0F ? 0.5F : 1.0F;
-            case HARD:
-                return base > 75.0F ? 0.0F : base > 50.0F ? 0.125F : base > 25.0F ? 0.25F : base > 10.0F ? 0.5F : 1.0F;
-            case PEACEFUL:
-            default:
-                //We aren't here in Peaceful, but fall onto this
-                return base;
-        }
+        return switch (this.level().getDifficulty()) {
+            case EASY -> base > 50.0F ? 0.25F : base > 25.0F ? 0.5F : base > 10.0F ? 0.75F : 1.0F;
+            case NORMAL -> base > 100.0F ? 0.0F : base > 50.0F ? 0.125F : base > 25.0F ? 0.25F : base > 10.0F ? 0.5F : 1.0F;
+            case HARD -> base > 75.0F ? 0.0F : base > 50.0F ? 0.125F : base > 25.0F ? 0.25F : base > 10.0F ? 0.5F : 1.0F;
+            default -> base;
+        };
     }
 
     @Override
     public boolean canBeAffected(MobEffectInstance effectInstance) {
-        return level.getDifficulty() == Difficulty.HARD && effectInstance.getEffect().isBeneficial();
+        return level().getDifficulty() == Difficulty.HARD && effectInstance.getEffect().isBeneficial();
     }
 
     @Override
@@ -494,7 +489,7 @@ public class MalachiteGuardEntity extends Monster {
 
     @Override
     public void checkDespawn() {
-        if (this.level.getDifficulty() == Difficulty.PEACEFUL && this.shouldDespawnInPeaceful()) {
+        if (this.level().getDifficulty() == Difficulty.PEACEFUL && this.shouldDespawnInPeaceful()) {
             this.spawnAtLocation(ModItems.mock_malachite.get(), 1);
             this.discard();
         }
@@ -561,7 +556,7 @@ public class MalachiteGuardEntity extends Monster {
         @Override
         public boolean canUse() {
             if (guard.getPhase() != 0 && guard.getStompPhase() == 0 && guard.chargeCooldown <= 0) {
-                List<Entity> list = guard.level.getEntities(guard, guard.getBoundingBox().inflate(3.0F), (entity) -> {
+                List<Entity> list = guard.level().getEntities(guard, guard.getBoundingBox().inflate(3.0F), (entity) -> {
                     EntityType<?> type = entity.getType();
                     if (type == EntityType.PLAYER) {
                         return EntitySelector.NO_CREATIVE_OR_SPECTATOR.test(entity);
@@ -572,7 +567,7 @@ public class MalachiteGuardEntity extends Monster {
                     double targetY = entity.blockPosition().getY();
                     double guardY = guard.blockPosition().getY();
                     if (targetY < guardY - 1.0D || targetY > guardY + 1.0D) {
-                        return entity.isAlive() && guard.isOnGround();
+                        return entity.isAlive() && guard.onGround();
                     }
                 }
             }
@@ -616,7 +611,7 @@ public class MalachiteGuardEntity extends Monster {
                 }
 
                 if (explodeTime == 0) {
-                    List<Entity> targets = guard.level.getEntities(guard, guard.getBoundingBox().inflate(4.0F), (entity) -> {
+                    List<Entity> targets = guard.level().getEntities(guard, guard.getBoundingBox().inflate(4.0F), (entity) -> {
                         EntityType<?> type = entity.getType();
                         return type != ModEntities.MALACHITE_GUARD.get() && type != ModEntities.MALACHITE_DRONE.get();
                     });
@@ -626,15 +621,15 @@ public class MalachiteGuardEntity extends Monster {
                         Vec3 explosion = new Vec3(guard.getX(), guard.getY(), guard.getZ());
                         Vec3 direction = entity.position().subtract(explosion).normalize();
 
-                        entity.hurt(GaiaDamage.getDamage(guard.level, GaiaDamage.MALACHITE_BLAST), 8.0F + guard.bideDamage);
+                        entity.hurt(GaiaDamage.getDamage(guard.level(), GaiaDamage.MALACHITE_BLAST), 8.0F + guard.bideDamage);
                         entity.setDeltaMovement(direction.x(), direction.y() + 0.2F, direction.z());
                     }
                 }
 
                 if (explodeTime < 10) {
-                    if (!guard.level.isClientSide()) {
+                    if (!guard.level().isClientSide()) {
                         for (int i = 0; i < 5; i++) {
-                            ((ServerLevel)guard.level).sendParticles(ModParticles.MALACHITE_MAGIC.get(), guard.getRandomX(1.0D), guard.getRandomY(), guard.getRandomZ(1.0D), 5, (guard.random.nextDouble()) - 0.5D, guard.random.nextDouble() * 0.5D, (guard.random.nextDouble()) - 0.5D, 0.5D);
+                            ((ServerLevel)guard.level()).sendParticles(ModParticles.MALACHITE_MAGIC.get(), guard.getRandomX(1.0D), guard.getRandomY(), guard.getRandomZ(1.0D), 5, (guard.random.nextDouble()) - 0.5D, guard.random.nextDouble() * 0.5D, (guard.random.nextDouble()) - 0.5D, 0.5D);
                         }
                     }
                 }
@@ -661,7 +656,7 @@ public class MalachiteGuardEntity extends Monster {
         @Override
         public boolean canUse() {
             if (guard.getPhase() != 0 && guard.getChargePhase() == 0 && guard.stompCooldown <= 0) {
-                List<Entity> list = guard.level.getEntities(guard, guard.getBoundingBox().inflate(2.0F), (entity) -> {
+                List<Entity> list = guard.level().getEntities(guard, guard.getBoundingBox().inflate(2.0F), (entity) -> {
                     EntityType<?> type = entity.getType();
                     if (type == EntityType.PLAYER) {
                         return EntitySelector.NO_CREATIVE_OR_SPECTATOR.test(entity);
@@ -669,7 +664,7 @@ public class MalachiteGuardEntity extends Monster {
                     return false;
                 });
                 for (Entity entity : list) {
-                    if (entity.isOnGround() && entity.distanceToSqr(guard) > 1.0F && entity.distanceToSqr(guard) < 4.0F) {
+                    if (entity.onGround() && entity.distanceToSqr(guard) > 1.0F && entity.distanceToSqr(guard) < 4.0F) {
                         return entity.isAlive();
                     }
                 }
@@ -700,7 +695,7 @@ public class MalachiteGuardEntity extends Monster {
             if (stompTime == 20) {
                 guard.setStompPhase(2);
 
-                List<Entity> targets = guard.level.getEntities(guard, guard.getBoundingBox().inflate(3.0F, -2.0F, 3.0F), (entity) -> {
+                List<Entity> targets = guard.level().getEntities(guard, guard.getBoundingBox().inflate(3.0F, -2.0F, 3.0F), (entity) -> {
                     EntityType<?> type = entity.getType();
                     return type != ModEntities.MALACHITE_GUARD.get() && type != ModEntities.MALACHITE_DRONE.get();
                 });
@@ -713,12 +708,12 @@ public class MalachiteGuardEntity extends Monster {
                     entity.setDeltaMovement(targetV3D.x() * 0.5F, targetV3D.y() + 0.4F, targetV3D.z() * 0.5F);
                 }
 
-                if (!guard.level.isClientSide()) {
+                if (!guard.level().isClientSide()) {
                     for (int x = -3; x <= 3; x++) {
                         for (int z = -3; z <= 3; z++) {
                             BlockPos pos = guard.blockPosition().offset(x, 0, z);
-                            BlockState state = guard.level.getBlockState(pos.below());
-                            ((ServerLevel)guard.level).sendParticles(new BlockParticleOption(ParticleTypes.BLOCK, state), pos.getX(), guard.getY() + (guard.random.nextDouble() * 0.25D), pos.getZ(), 5, 0.0F, 0.0F, 0.0F, 0.0D);
+                            BlockState state = guard.level().getBlockState(pos.below());
+                            ((ServerLevel)guard.level()).sendParticles(new BlockParticleOption(ParticleTypes.BLOCK, state), pos.getX(), guard.getY() + (guard.random.nextDouble() * 0.25D), pos.getZ(), 5, 0.0F, 0.0F, 0.0F, 0.0D);
                         }
                     }
                 }

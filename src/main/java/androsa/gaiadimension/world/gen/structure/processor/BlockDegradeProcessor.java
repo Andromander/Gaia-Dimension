@@ -48,14 +48,14 @@ public class BlockDegradeProcessor extends StructureProcessor {
     @Nullable
     @Override
     public StructureTemplate.StructureBlockInfo process(LevelReader world, BlockPos pos, BlockPos tpos, StructureTemplate.StructureBlockInfo oldInfo, StructureTemplate.StructureBlockInfo newInfo, StructurePlaceSettings settings, @Nullable StructureTemplate template) {
-        BlockState state = newInfo.state;
+        BlockState state = newInfo.state();
 
         if (state == towertype.getBrick())
-            return random.nextFloat() > integrity ? newInfo : new StructureTemplate.StructureBlockInfo(newInfo.pos, towertype.getBrickDecay(random), null);
+            return random.nextFloat() > integrity ? newInfo : new StructureTemplate.StructureBlockInfo(newInfo.pos(), towertype.getBrickDecay(random), null);
         if (state == towertype.getSlab())
-            return random.nextFloat() > integrity ? newInfo : new StructureTemplate.StructureBlockInfo(newInfo.pos, translateState(state, towertype.getSlabDecay(random).getBlock(), SlabBlock.TYPE, SlabBlock.WATERLOGGED), null);
+            return random.nextFloat() > integrity ? newInfo : new StructureTemplate.StructureBlockInfo(newInfo.pos(), translateState(state, towertype.getSlabDecay(random).getBlock(), SlabBlock.TYPE, SlabBlock.WATERLOGGED), null);
         if (state == towertype.getStairs())
-            return random.nextFloat() > integrity ? newInfo : new StructureTemplate.StructureBlockInfo(newInfo.pos, translateState(state, towertype.getStairsDecay(random).getBlock(), StairBlock.FACING, StairBlock.HALF, StairBlock.SHAPE, StairBlock.WATERLOGGED), null);
+            return random.nextFloat() > integrity ? newInfo : new StructureTemplate.StructureBlockInfo(newInfo.pos(), translateState(state, towertype.getStairsDecay(random).getBlock(), StairBlock.FACING, StairBlock.HALF, StairBlock.SHAPE, StairBlock.WATERLOGGED), null);
 
         return newInfo;
     }

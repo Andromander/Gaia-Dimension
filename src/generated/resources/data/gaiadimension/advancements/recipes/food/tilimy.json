@@ -30,5 +30,6 @@
     "recipes": [
       "gaiadimension:tilimy"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

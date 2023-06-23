@@ -31,7 +31,7 @@ public class CorruptionEffect extends MobEffect {
     @Override
     public void applyEffectTick(LivingEntity living, int amplifier) {
         if (living.getMobType() != GaiaDimensionMod.CORRUPT) {
-            living.hurt(GaiaDamage.getDamage(living.level, GaiaDamage.CORRUPTION), 2.0F);
+            living.hurt(GaiaDamage.getDamage(living.level(), GaiaDamage.CORRUPTION), 2.0F);
         }
     }
 

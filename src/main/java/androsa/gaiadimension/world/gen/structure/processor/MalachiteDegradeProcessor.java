@@ -45,15 +45,15 @@ public class MalachiteDegradeProcessor extends StructureProcessor {
     @Nullable
     @Override
     public StructureTemplate.StructureBlockInfo process(LevelReader world, BlockPos pos, BlockPos tpos, StructureTemplate.StructureBlockInfo oldInfo, StructureTemplate.StructureBlockInfo newInfo, StructurePlaceSettings settings, @Nullable StructureTemplate template) {
-        BlockState state = newInfo.state;
+        BlockState state = newInfo.state();
         Block block = state.getBlock();
 
         if (block == BRICKS)
-            return random.nextFloat() > integrity ? newInfo : new StructureTemplate.StructureBlockInfo(newInfo.pos, BRICK_DECAY.get(random.nextInt(BRICK_DECAY.size())).get().defaultBlockState(), null);
+            return random.nextFloat() > integrity ? newInfo : new StructureTemplate.StructureBlockInfo(newInfo.pos(), BRICK_DECAY.get(random.nextInt(BRICK_DECAY.size())).get().defaultBlockState(), null);
         if (block == SLAB)
-            return random.nextFloat() > integrity ? newInfo : new StructureTemplate.StructureBlockInfo(newInfo.pos, translateState(state, SLAB_DECAY.get(random.nextInt(SLAB_DECAY.size())).get(), SlabBlock.TYPE, SlabBlock.WATERLOGGED), null);
+            return random.nextFloat() > integrity ? newInfo : new StructureTemplate.StructureBlockInfo(newInfo.pos(), translateState(state, SLAB_DECAY.get(random.nextInt(SLAB_DECAY.size())).get(), SlabBlock.TYPE, SlabBlock.WATERLOGGED), null);
         if (block == STAIRS)
-            return random.nextFloat() > integrity ? newInfo : new StructureTemplate.StructureBlockInfo(newInfo.pos, translateState(state, STAIRS_DECAY.get(random.nextInt(STAIRS_DECAY.size())).get(), StairBlock.FACING, StairBlock.HALF, StairBlock.SHAPE, StairBlock.WATERLOGGED), null);
+            return random.nextFloat() > integrity ? newInfo : new StructureTemplate.StructureBlockInfo(newInfo.pos(), translateState(state, STAIRS_DECAY.get(random.nextInt(STAIRS_DECAY.size())).get(), StairBlock.FACING, StairBlock.HALF, StairBlock.SHAPE, StairBlock.WATERLOGGED), null);
 
         return newInfo;
     }

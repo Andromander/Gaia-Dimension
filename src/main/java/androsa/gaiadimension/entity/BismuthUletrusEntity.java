@@ -116,7 +116,7 @@ public class BismuthUletrusEntity extends PathfinderMob {
         BlockPos blockpos1 = blockpos.below();
 
         if (this.getResting()) {
-            if (this.level.getBlockState(blockpos1).isRedstoneConductor(this.level, blockpos)) {
+            if (this.level().getBlockState(blockpos1).isRedstoneConductor(this.level(), blockpos)) {
                 if (random.nextInt(1000) == 0) {
                     this.setResting(false);
                 }
@@ -125,7 +125,7 @@ public class BismuthUletrusEntity extends PathfinderMob {
             }
         } else {
             if (this.getDeltaMovement().x() == 0 && this.getDeltaMovement().z() == 0) {
-                if (this.random.nextInt(1000) == 0 && this.level.getBlockState(blockpos1).isRedstoneConductor(this.level, blockpos)) {
+                if (this.random.nextInt(1000) == 0 && this.level().getBlockState(blockpos1).isRedstoneConductor(this.level(), blockpos)) {
                     this.setResting(true);
                 }
             }

@@ -110,7 +110,7 @@ public class MineralArenthisEntity extends WaterAnimal {
         this.lastTentacleAngle = this.tentacleAngle;
         this.arenthisRotation += this.rotationVelocity;
         if ((double)this.arenthisRotation > (Math.PI * 2D)) {
-            if (this.level.isClientSide()) {
+            if (this.level().isClientSide()) {
                 this.arenthisRotation = ((float)Math.PI * 2F);
             } else {
                 this.arenthisRotation = (float)((double)this.arenthisRotation - (Math.PI * 2D));
@@ -118,7 +118,7 @@ public class MineralArenthisEntity extends WaterAnimal {
                     this.rotationVelocity = 1.0F / (this.random.nextFloat() + 1.0F) * 0.2F;
                 }
 
-                this.level.broadcastEntityEvent(this, (byte)19);
+                this.level().broadcastEntityEvent(this, (byte)19);
             }
         }
 
@@ -138,7 +138,7 @@ public class MineralArenthisEntity extends WaterAnimal {
                 this.rotateSpeed *= 0.99F;
             }
 
-            if (!this.level.isClientSide()) {
+            if (!this.level().isClientSide()) {
                 this.setDeltaMovement(this.randomMotionVecX * this.randomMotionSpeed, this.randomMotionVecY * this.randomMotionSpeed, this.randomMotionVecZ * this.randomMotionSpeed);
             }
 
@@ -150,7 +150,7 @@ public class MineralArenthisEntity extends WaterAnimal {
             this.arenthisPitch += (-((float)Mth.atan2(dist, vec3d.y)) * (180F / (float)Math.PI) - this.arenthisPitch) * 0.1F;
         } else {
             this.tentacleAngle = Mth.abs(Mth.sin(this.arenthisRotation)) * (float)Math.PI * 0.25F;
-            if (!this.level.isClientSide()) {
+            if (!this.level().isClientSide()) {
                 double d0 = this.getDeltaMovement().y;
                 if (this.hasEffect(MobEffects.LEVITATION)) {
                     d0 = 0.05D * (double)(this.getEffect(MobEffects.LEVITATION).getAmplifier() + 1);

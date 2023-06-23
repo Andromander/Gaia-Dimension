@@ -94,5 +94,6 @@
     [
       "malachite_guard_baton"
     ]
-  ]
+  ],
+  "sends_telemetry_event": true
 }

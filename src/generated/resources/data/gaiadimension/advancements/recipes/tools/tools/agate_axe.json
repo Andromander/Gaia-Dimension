@@ -28,5 +28,6 @@
     "recipes": [
       "gaiadimension:tools/agate_axe"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

@@ -65,7 +65,7 @@ public class CorruptSapperEntity extends Monster {
     public boolean doHurtTarget(Entity entityIn) {
         if (super.doHurtTarget(entityIn)) {
             if (entityIn instanceof LivingEntity living) {
-                int i = switch (this.level.getDifficulty()) {
+                int i = switch (this.level().getDifficulty()) {
                     case EASY -> 3;
                     case NORMAL -> 6;
                     case HARD -> 12;

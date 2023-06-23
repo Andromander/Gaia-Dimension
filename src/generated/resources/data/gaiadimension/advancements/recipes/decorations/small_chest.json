@@ -28,5 +28,6 @@
     "recipes": [
       "gaiadimension:small_chest"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

@@ -75,7 +75,7 @@ public abstract class SuperhotMagmaFluid extends ForgeFlowingFluid {
                             world.setBlockAndUpdate(blockpos, Blocks.FIRE.defaultBlockState());
                             return;
                         }
-                    } else if (blockstate.getMaterial().blocksMotion()) {
+                    } else if (blockstate.blocksMotion()) {
                         return;
                     }
                 }
@@ -106,7 +106,7 @@ public abstract class SuperhotMagmaFluid extends ForgeFlowingFluid {
     }
 
     private boolean getCanBlockBurn(LevelAccessor worldIn, BlockPos pos) {
-        return (pos.getY() < 0 || pos.getY() >= 256 || worldIn.hasChunkAt(pos)) && worldIn.getBlockState(pos).getMaterial().isFlammable();
+        return (pos.getY() < 0 || pos.getY() >= 256 || worldIn.hasChunkAt(pos)) && worldIn.getBlockState(pos).ignitedByLava();
     }
 
     private void triggerEffects(LevelAccessor world, BlockPos pos) {

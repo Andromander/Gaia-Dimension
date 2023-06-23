@@ -30,5 +30,6 @@
     "recipes": [
       "gaiadimension:malachite_crusted_bricks"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

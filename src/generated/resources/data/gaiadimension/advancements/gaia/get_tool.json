@@ -385,5 +385,6 @@
       "chalcedony_axe",
       "chalcedony_shovel"
     ]
-  ]
+  ],
+  "sends_telemetry_event": true
 }

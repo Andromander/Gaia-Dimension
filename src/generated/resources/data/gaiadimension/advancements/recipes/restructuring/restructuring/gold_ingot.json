@@ -30,5 +30,6 @@
     "recipes": [
       "gaiadimension:restructuring/gold_ingot"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

@@ -30,5 +30,6 @@
     "recipes": [
       "gaiadimension:purifying/pink_agate_log"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

@@ -30,5 +30,6 @@
     "recipes": [
       "gaiadimension:smelting/red_opal_smelt"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

@@ -217,5 +217,6 @@
         "min": 1.0
       }
     }
-  ]
+  ],
+  "random_sequence": "gaiadimension:chests/watchtower"
 }

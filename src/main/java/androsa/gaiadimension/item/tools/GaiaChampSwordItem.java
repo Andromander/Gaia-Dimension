@@ -33,7 +33,7 @@ public class GaiaChampSwordItem extends SwordItem {
 
     @Override
     public boolean hurtEnemy(ItemStack stack, LivingEntity target, LivingEntity attacker) {
-        target.level.addParticle(new BlockParticleOption(ParticleTypes.BLOCK, ModBlocks.gaia_portal.get().defaultBlockState()), target.getX(), target.getY(), target.getZ(), 1, 1, 1);
+        target.level().addParticle(new BlockParticleOption(ParticleTypes.BLOCK, ModBlocks.gaia_portal.get().defaultBlockState()), target.getX(), target.getY(), target.getZ(), 1, 1, 1);
         return super.hurtEnemy(stack, target, attacker);
     }
 }

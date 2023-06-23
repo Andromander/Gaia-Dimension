@@ -28,5 +28,6 @@
     "recipes": [
       "gaiadimension:agate_cup"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

@@ -30,5 +30,6 @@
     "recipes": [
       "gaiadimension:wood/purple_agate_tile_slab"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

@@ -28,5 +28,6 @@
     "recipes": [
       "gaiadimension:wood/fire_agate_tiles"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

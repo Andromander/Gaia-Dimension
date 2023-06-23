@@ -30,5 +30,6 @@
     "recipes": [
       "gaiadimension:twined_thread"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

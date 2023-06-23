@@ -146,7 +146,7 @@ public class GaiaSkyRender {
             this.starVBO.close();
         }
 
-        this.starVBO = new VertexBuffer();
+        this.starVBO = new VertexBuffer(VertexBuffer.Usage.STATIC);
 
         //renderStars
         RandomSource random = RandomSource.create(10842L);

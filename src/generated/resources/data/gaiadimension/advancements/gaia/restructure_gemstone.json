@@ -137,5 +137,6 @@
       "get_chalcedony",
       "get_tektite"
     ]
-  ]
+  ],
+  "sends_telemetry_event": true
 }

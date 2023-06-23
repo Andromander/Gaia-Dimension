@@ -30,5 +30,6 @@
     "recipes": [
       "gaiadimension:crusted_jet_bricks"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

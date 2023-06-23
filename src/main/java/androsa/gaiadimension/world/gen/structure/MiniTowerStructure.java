@@ -51,7 +51,7 @@ public class MiniTowerStructure extends Structure {
                 if (!world.isEmptyBlock(mutable) && boundingbox.isInside(mutable) && container.isInsidePiece(mutable)) {
                     for(int lowY = minY - 1; lowY > 1; --lowY) {
                         mutable.setY(lowY);
-                        if (!world.isEmptyBlock(mutable) && !world.getBlockState(mutable).getMaterial().isLiquid()) {
+                        if (!world.isEmptyBlock(mutable) && !world.getBlockState(mutable).liquid()) {
                             break;
                         }
 

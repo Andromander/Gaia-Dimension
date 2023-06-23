@@ -30,5 +30,6 @@
     "recipes": [
       "gaiadimension:pyrite_torch"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

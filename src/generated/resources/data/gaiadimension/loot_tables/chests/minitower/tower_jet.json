@@ -127,5 +127,6 @@
       ],
       "rolls": 1.0
     }
-  ]
+  ],
+  "random_sequence": "gaiadimension:chests/minitower/tower_jet"
 }

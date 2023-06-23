@@ -30,5 +30,6 @@
     "recipes": [
       "gaiadimension:elixir_drink"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

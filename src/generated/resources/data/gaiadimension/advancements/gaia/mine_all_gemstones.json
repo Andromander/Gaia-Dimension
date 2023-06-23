@@ -153,5 +153,6 @@
     [
       "get_white_opal"
     ]
-  ]
+  ],
+  "sends_telemetry_event": true
 }

@@ -30,5 +30,6 @@
     "recipes": [
       "gaiadimension:restructuring/proustite"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

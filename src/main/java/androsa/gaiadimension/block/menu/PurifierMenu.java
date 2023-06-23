@@ -39,7 +39,7 @@ public class PurifierMenu extends AbstractContainerMenu {
         checkContainerDataCount(slots, 4);
         tilePurifier = purifier;
         slotsArray = slots;
-        world = invPlayer.player.level;
+        world = invPlayer.player.level();
         addSlot(new Slot(purifier, 0, 80, 17)); //Input
         addSlot(new GoldSlot(purifier, 1, 59, 63));    //Fuel 1
         addSlot(new ShineSlot(purifier, 2, 101, 63));  //Fuel 2

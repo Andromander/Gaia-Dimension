@@ -38,7 +38,7 @@ public class ConstructCharmItem extends Item {
                 if (this.getUUID(stack, "MookaiteUUID") == null) {
                     //Check if the Mookaite Construct has a bond already
                     if (mookaite.getOpaliteCompanion() == null) {
-                        if (!player.level.isClientSide()) {
+                        if (!player.level().isClientSide()) {
                             this.setUUID(stack, mookaite.getUUID(), "MookaiteUUID");
                         }
                     } else {
@@ -56,7 +56,7 @@ public class ConstructCharmItem extends Item {
                 if (this.getUUID(stack, "OpaliteUUID") == null) {
                     //Check if the Mookaite Construct has a bond already
                     if (opalite.getMookaiteCompanion() == null) {
-                        if (!player.level.isClientSide()) {
+                        if (!player.level().isClientSide()) {
                             this.setUUID(stack, opalite.getUUID(), "OpaliteUUID");
                         }
                     } else {
@@ -77,8 +77,8 @@ public class ConstructCharmItem extends Item {
                 Entity opalite = null;
 
                 //Check if mobs are in range
-                if (!player.level.isClientSide()) {
-                    List<Entity> entities = player.level.getEntities(player, player.getBoundingBox().inflate(16.0F), (e) -> {
+                if (!player.level().isClientSide()) {
+                    List<Entity> entities = player.level().getEntities(player, player.getBoundingBox().inflate(16.0F), (e) -> {
                         EntityType<?> type = e.getType();
                         return type == ModEntities.MOOKAITE_CONSTRUCT.get() || type == ModEntities.OPALITE_CONSTRUCT.get();
                     });
@@ -104,7 +104,7 @@ public class ConstructCharmItem extends Item {
                         MookaiteConstructEntity mEntity = (MookaiteConstructEntity) mookaite;
                         OpaliteContructEntity oEntity = (OpaliteContructEntity) opalite;
 
-                        if (!player.level.isClientSide()) {
+                        if (!player.level().isClientSide()) {
                             mEntity.setOpaliteCompanion(oEntity.getUUID());
                             oEntity.setMookaiteCompanion(mEntity.getUUID());
                             stack.shrink(1);
@@ -121,7 +121,7 @@ public class ConstructCharmItem extends Item {
                             player.displayClientMessage(Component.translatable("gaiadimension.construct_charm.message.opalite_invalid"), true);
                         }
 
-                        if (!player.level.isClientSide()) {
+                        if (!player.level().isClientSide()) {
                             this.removeUUID(stack, "MookaiteUUID");
                             this.removeUUID(stack, "OpaliteUUID");
                         }
@@ -136,7 +136,7 @@ public class ConstructCharmItem extends Item {
                         player.displayClientMessage(Component.translatable("gaiadimension.construct_charm.message.opalite_out_of_range"), true);
                     }
 
-                    if (!player.level.isClientSide()) {
+                    if (!player.level().isClientSide()) {
                         this.removeUUID(stack, "MookaiteUUID");
                         this.removeUUID(stack, "OpaliteUUID");
                     }

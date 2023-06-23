@@ -36,5 +36,6 @@
     [
       "malachite_guard"
     ]
-  ]
+  ],
+  "sends_telemetry_event": true
 }

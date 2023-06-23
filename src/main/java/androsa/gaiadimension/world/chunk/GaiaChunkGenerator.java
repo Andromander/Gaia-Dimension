@@ -8,7 +8,6 @@ import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.SharedConstants;
 import net.minecraft.Util;
-import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.core.Registry;
 import net.minecraft.util.Mth;
@@ -25,7 +24,6 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.chunk.ChunkAccess;
 import net.minecraft.world.level.chunk.ChunkGenerator;
 import net.minecraft.world.level.chunk.LevelChunkSection;
-import net.minecraft.world.level.chunk.ProtoChunk;
 import net.minecraft.world.level.levelgen.*;
 import net.minecraft.world.level.levelgen.blending.Blender;
 import net.minecraft.world.level.levelgen.synth.BlendedNoise;
@@ -178,14 +176,14 @@ public class GaiaChunkGenerator extends NoiseBasedChunkGenerator {
         GaiaNoiseInterpolator interpolator = new GaiaNoiseInterpolator(cellCountX, max, cellCountZ, chunkpos, min, this::fillNoiseColumn);
         List<GaiaNoiseInterpolator> list = Lists.newArrayList(interpolator);
         list.forEach(GaiaNoiseInterpolator::initialiseFirstX);
-        BlockPos.MutableBlockPos mutable = new BlockPos.MutableBlockPos();
 
         for (int cellX = 0; cellX < cellCountX; cellX++) {
             int advX = cellX;
             list.forEach((noiseint) -> noiseint.advanceX(advX));
 
             for (int cellZ = 0; cellZ < cellCountZ; cellZ++) {
-                LevelChunkSection section = access.getSection(access.getSectionsCount() - 1);
+                int sections = access.getSectionsCount() - 1;
+                LevelChunkSection section = access.getSection(sections);
 
                 for (int cellY = max - 1; cellY >= 0; cellY--) {
                     int advY = cellY;
@@ -197,7 +195,8 @@ public class GaiaChunkGenerator extends NoiseBasedChunkGenerator {
                         int mincellY = minheight & 15;
                         int minindexY = access.getSectionIndex(minheight);
 
-                        if (access.getSectionIndex(section.bottomBlockY()) != minindexY) {
+                        if (sections != minindexY) {
+                            sections = minindexY;
                             section = access.getSection(minindexY);
                         }
 
@@ -219,11 +218,6 @@ public class GaiaChunkGenerator extends NoiseBasedChunkGenerator {
                                 BlockState state = this.generateBaseState(noiseval, minheight);
 
                                 if (state != Blocks.AIR.defaultBlockState()) {
-                                    if (state.getLightEmission() != 0 && access instanceof ProtoChunk proto) {
-                                        mutable.set(minwidthX, minheight, minwidthZ);
-                                        proto.addLight(mutable);
-                                    }
-
                                     section.setBlockState(mincellX, mincellY, mincellZ, state, false);
                                     oceanfloor.update(mincellX, minheight, mincellZ, state);
                                     surface.update(mincellX, minheight, mincellZ, state);

@@ -333,5 +333,6 @@
       "chalcedony_legs",
       "chalcedony_boots"
     ]
-  ]
+  ],
+  "sends_telemetry_event": true
 }

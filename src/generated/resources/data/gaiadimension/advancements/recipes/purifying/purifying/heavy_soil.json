@@ -30,5 +30,6 @@
     "recipes": [
       "gaiadimension:purifying/heavy_soil"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

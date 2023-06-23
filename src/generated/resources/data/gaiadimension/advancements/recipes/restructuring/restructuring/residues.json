@@ -30,5 +30,6 @@
     "recipes": [
       "gaiadimension:restructuring/residues"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

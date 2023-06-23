@@ -23,7 +23,7 @@ import java.util.function.Supplier;
 public class BossSpawnerBlock extends Block implements EntityBlock {
 
     private static final VoxelShape SHAPE = Block.box(2.0D, 1.0D, 2.0D, 14.0D, 15.0D, 14.0D);
-    private BossType bossType;
+    private final BossType bossType;
 
     public BossSpawnerBlock(BossType type, Properties props) {
         super(props);

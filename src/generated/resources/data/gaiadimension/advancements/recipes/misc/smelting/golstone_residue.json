@@ -30,5 +30,6 @@
     "recipes": [
       "gaiadimension:smelting/golstone_residue"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

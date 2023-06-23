@@ -260,7 +260,7 @@ public class PurifierBlockEntity extends BaseContainerBlockEntity implements Wor
 
                 if(output.isEmpty() && byproduct.isEmpty()) {
                     return true;
-                } else if (!output.sameItem(slot1) || !byproduct.sameItem(slot2)) {
+                } else if (!ItemStack.isSameItem(output, slot1) || !ItemStack.isSameItem(byproduct, slot2)) {
                     return false;
                 } else if ((output.getCount() + slot1.getCount() <= stacksize && output.getCount() + slot1.getCount() <= output.getMaxStackSize()) &&
                         byproduct.getCount() + slot2.getCount() <= stacksize && byproduct.getCount() + slot2.getCount() <= byproduct.getMaxStackSize()) {
@@ -403,7 +403,7 @@ public class PurifierBlockEntity extends BaseContainerBlockEntity implements Wor
     @Override
     public void setItem(int index, ItemStack stack) {
         ItemStack itemstack = this.purifyingItemStacks.get(index);
-        boolean burning = !stack.isEmpty() && stack.sameItem(itemstack) && ItemStack.tagMatches(stack, itemstack);
+        boolean burning = !stack.isEmpty() && ItemStack.isSameItemSameTags(stack, itemstack);
         this.purifyingItemStacks.set(index, stack);
 
         if (stack.getCount() > this.getMaxStackSize()) {
@@ -450,13 +450,13 @@ public class PurifierBlockEntity extends BaseContainerBlockEntity implements Wor
     }
 
     @Override
-    public void awardUsedRecipes(Player player) { }
+    public void awardUsedRecipes(Player player, List<ItemStack> stacks) { }
 
     public void unlockRecipe(Player player) {
         List<Recipe<?>> list = Lists.newArrayList();
 
         for(Map.Entry<ResourceLocation, Integer> entry : this.recipeMap.entrySet()) {
-            player.level.getRecipeManager().byKey(entry.getKey()).ifPresent((recipe) -> {
+            player.level().getRecipeManager().byKey(entry.getKey()).ifPresent((recipe) -> {
                 list.add(recipe);
                 grantExperience(player, entry.getValue(), ((PurifierRecipe)recipe).getExperience());
             });
@@ -481,7 +481,7 @@ public class PurifierBlockEntity extends BaseContainerBlockEntity implements Wor
         while(amount > 0) {
             int j = ExperienceOrb.getExperienceValue(amount);
             amount -= j;
-            player.level.addFreshEntity(new ExperienceOrb(player.level, player.getX(), player.getY() + 0.5D, player.getZ() + 0.5D, j));
+            player.level().addFreshEntity(new ExperienceOrb(player.level(), player.getX(), player.getY() + 0.5D, player.getZ() + 0.5D, j));
         }
     }
 

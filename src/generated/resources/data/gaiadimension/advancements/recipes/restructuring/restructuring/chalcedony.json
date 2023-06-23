@@ -30,5 +30,6 @@
     "recipes": [
       "gaiadimension:restructuring/chalcedony"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

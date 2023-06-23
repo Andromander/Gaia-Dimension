@@ -10,7 +10,6 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.minecraft.world.level.levelgen.feature.configurations.BlockStateConfiguration;
-import net.minecraft.world.level.material.Material;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 
@@ -67,12 +66,12 @@ public class GaiaLakesFeature<T extends BlockStateConfiguration> extends Feature
                     for(int k = 0; k < 8; ++k) {
                         boolean flag = !aboolean[(k1 * 16 + l2) * 8 + k] && (k1 < 15 && aboolean[((k1 + 1) * 16 + l2) * 8 + k] || k1 > 0 && aboolean[((k1 - 1) * 16 + l2) * 8 + k] || l2 < 15 && aboolean[(k1 * 16 + l2 + 1) * 8 + k] || l2 > 0 && aboolean[(k1 * 16 + (l2 - 1)) * 8 + k] || k < 7 && aboolean[(k1 * 16 + l2) * 8 + k + 1] || k > 0 && aboolean[(k1 * 16 + l2) * 8 + (k - 1)]);
                         if (flag) {
-                            Material material = worldIn.getBlockState(pos.offset(k1, k, l2)).getMaterial();
-                            if (k >= 4 && material.isLiquid()) {
+                            BlockState state = worldIn.getBlockState(pos.offset(k1, k, l2));
+                            if (k >= 4 && state.liquid()) {
                                 return false;
                             }
 
-                            if (k < 4 && !material.isSolid() && worldIn.getBlockState(pos.offset(k1, k, l2)) != config.state) {
+                            if (k < 4 && !state.isSolid() && worldIn.getBlockState(pos.offset(k1, k, l2)) != config.state) {
                                 return false;
                             }
                         }
@@ -95,7 +94,7 @@ public class GaiaLakesFeature<T extends BlockStateConfiguration> extends Feature
                     for(int z = 0; z < 16; ++z) {
                         for(int y = 0; y < 8; ++y) {
                             boolean flag1 = !aboolean[(x * 16 + z) * 8 + y] && (x < 15 && aboolean[((x + 1) * 16 + z) * 8 + y] || x > 0 && aboolean[((x - 1) * 16 + z) * 8 + y] || z < 15 && aboolean[(x * 16 + z + 1) * 8 + y] || z > 0 && aboolean[(x * 16 + (z - 1)) * 8 + y] || y < 7 && aboolean[(x * 16 + z) * 8 + y + 1] || y > 0 && aboolean[(x * 16 + z) * 8 + (y - 1)]);
-                            if (flag1 && (y < 4 || rand.nextInt(2) != 0) && worldIn.getBlockState(pos.offset(x, y, z)).getMaterial().isSolid()) {
+                            if (flag1 && (y < 4 || rand.nextInt(2) != 0) && worldIn.getBlockState(pos.offset(x, y, z)).isSolid()) {
 
                                 if (config.state.getBlock() == ModBlocks.liquid_bismuth.get()) {
                                     if (rand.nextInt(4) == 0) {

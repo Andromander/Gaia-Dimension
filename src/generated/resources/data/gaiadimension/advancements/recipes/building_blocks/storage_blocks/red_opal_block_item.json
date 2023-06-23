@@ -30,5 +30,6 @@
     "recipes": [
       "gaiadimension:storage_blocks/red_opal_block_item"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

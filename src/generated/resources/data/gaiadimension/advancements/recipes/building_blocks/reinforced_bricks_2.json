@@ -41,5 +41,6 @@
     "recipes": [
       "gaiadimension:reinforced_bricks_2"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

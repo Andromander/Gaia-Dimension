@@ -30,5 +30,6 @@
     "recipes": [
       "gaiadimension:restructuring/leucite_block"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

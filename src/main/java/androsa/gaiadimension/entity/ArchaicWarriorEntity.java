@@ -86,7 +86,7 @@ public class ArchaicWarriorEntity extends Monster {
     protected void populateDefaultEquipmentSlots(RandomSource random, DifficultyInstance difficulty) {
         super.populateDefaultEquipmentSlots(random, difficulty);
 
-        if (random.nextFloat() < (this.level.getDifficulty() == Difficulty.NORMAL ? 0.05F : 0.01F)) {
+        if (random.nextFloat() < (this.level().getDifficulty() == Difficulty.NORMAL ? 0.05F : 0.01F)) {
             this.setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(ModItems.sugilite_sword.get()));
         }
     }

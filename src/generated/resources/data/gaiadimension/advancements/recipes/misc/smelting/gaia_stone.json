@@ -30,5 +30,6 @@
     "recipes": [
       "gaiadimension:smelting/gaia_stone"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

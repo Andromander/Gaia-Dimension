@@ -30,5 +30,6 @@
     "recipes": [
       "gaiadimension:corrupted_soil"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

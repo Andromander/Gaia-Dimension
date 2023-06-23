@@ -30,5 +30,6 @@
     "recipes": [
       "gaiadimension:restructuring/diopside"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

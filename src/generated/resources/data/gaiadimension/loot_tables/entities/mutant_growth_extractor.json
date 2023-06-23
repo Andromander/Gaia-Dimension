@@ -117,5 +117,6 @@
       ],
       "rolls": 1.0
     }
-  ]
+  ],
+  "random_sequence": "gaiadimension:entities/mutant_growth_extractor"
 }

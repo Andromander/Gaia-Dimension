@@ -87,7 +87,7 @@ public class MalachiteDroneEntity extends Monster {
 
     @Nullable
     public LivingEntity getOwner() {
-        if (getOwnerUniqueId() != null && this.level instanceof ServerLevel server) {
+        if (getOwnerUniqueId() != null && this.level() instanceof ServerLevel server) {
             Entity entity = server.getEntity(getOwnerUniqueId());
             if (entity instanceof LivingEntity) {
                 return (LivingEntity) entity;
@@ -124,14 +124,14 @@ public class MalachiteDroneEntity extends Monster {
     public void tick() {
         super.tick();
 
-        if (level instanceof ServerLevel server) {
+        if (level() instanceof ServerLevel server) {
             if (getOwnerUniqueId() != null) {
                 //Check if we have been removed too far away from the Guard.
                 Entity entity = server.getEntity(getOwnerUniqueId());
 
                 if (entity != null) {
                     //Wrong dimension, sever the link
-                    if (this.level.dimension() != entity.level.dimension()) {
+                    if (this.level().dimension() != entity.level().dimension()) {
                         ownerRemoved(entity);
                     }
 
@@ -154,14 +154,14 @@ public class MalachiteDroneEntity extends Monster {
         }
         this.setOwnerUniqueId(null);
 
-        if (level.isClientSide()) {
+        if (level().isClientSide()) {
             double px = this.getX() + this.random.nextFloat() * this.getBbWidth() * 2.0F - this.getBbWidth();
             double py = this.getY() + this.random.nextFloat() * this.getBbHeight();
             double pz = this.getZ() + this.random.nextFloat() * this.getBbWidth() * 2.0F - this.getBbWidth();
-            this.level.addParticle(ModParticles.SPAWNER_CORE.get(), px, py, pz, 0, 128, 0);
+            this.level().addParticle(ModParticles.SPAWNER_CORE.get(), px, py, pz, 0, 128, 0);
         }
 
-        level.playSound(null, this.getX(), this.getY(), this.getZ(), ModSounds.ENTITY_MALACHITE_DRONE_DESYNC.get(), SoundSource.HOSTILE, 1.0F, 1.0F);
+        level().playSound(null, this.getX(), this.getY(), this.getZ(), ModSounds.ENTITY_MALACHITE_DRONE_DESYNC.get(), SoundSource.HOSTILE, 1.0F, 1.0F);
     }
 
     @Override
@@ -179,7 +179,7 @@ public class MalachiteDroneEntity extends Monster {
         if (ForgeHooks.onLivingDeath(this,  source)) //The event was cancelled, therefore do not decrease the Guard's tracker.
             return;
 
-        if (level instanceof ServerLevel server) {
+        if (level() instanceof ServerLevel server) {
             @Nullable Entity entity = server.getEntity(getOwnerUniqueId());
 
             //Were we a follower, and was it a Guard? If so, detract that Guard's counter
@@ -211,7 +211,7 @@ public class MalachiteDroneEntity extends Monster {
 
         public FollowGuardGoal(MalachiteDroneEntity entity) {
             this.drone = entity;
-            this.world = entity.level;
+            this.world = entity.level();
             this.navigator = entity.getNavigation();
             this.setFlags(EnumSet.of(Flag.MOVE, Flag.LOOK));
         }

@@ -30,5 +30,6 @@
     "recipes": [
       "gaiadimension:green_geode_slice"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

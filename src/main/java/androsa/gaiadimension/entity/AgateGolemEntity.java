@@ -60,7 +60,7 @@ public class AgateGolemEntity extends Monster {
 
     @Override
     public boolean doHurtTarget(Entity entityIn) {
-        this.level.broadcastEntityEvent(this, (byte)4);
+        this.level().broadcastEntityEvent(this, (byte)4);
         boolean flag = entityIn.hurt(this.damageSources().mobAttack(this), (float)(6 + this.random.nextInt(15)));
 
         if (flag) {

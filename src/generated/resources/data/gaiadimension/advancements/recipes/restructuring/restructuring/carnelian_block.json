@@ -30,5 +30,6 @@
     "recipes": [
       "gaiadimension:restructuring/carnelian_block"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

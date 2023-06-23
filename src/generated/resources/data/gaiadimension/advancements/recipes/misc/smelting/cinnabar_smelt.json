@@ -30,5 +30,6 @@
     "recipes": [
       "gaiadimension:smelting/cinnabar_smelt"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

@@ -30,5 +30,6 @@
     "recipes": [
       "gaiadimension:smelting/scaynyx_medium"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

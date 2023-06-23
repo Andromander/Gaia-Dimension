@@ -53,5 +53,6 @@
       ],
       "rolls": 1.0
     }
-  ]
+  ],
+  "random_sequence": "gaiadimension:blocks/mega_storage_crate"
 }

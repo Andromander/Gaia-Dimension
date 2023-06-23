@@ -30,5 +30,6 @@
     "recipes": [
       "gaiadimension:pink_sludge_block"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

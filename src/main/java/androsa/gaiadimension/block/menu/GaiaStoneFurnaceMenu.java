@@ -32,7 +32,7 @@ public class GaiaStoneFurnaceMenu extends AbstractContainerMenu {
         checkContainerDataCount(array, 4);
         this.tileFurnace = inventory;
         this.slotData = array;
-        this.world = playerinv.player.level;
+        this.world = playerinv.player.level();
         this.addSlot(new Slot(inventory, 0, 56, 17));
         this.addSlot(new GaiaFurnaceSlot(inventory, 1, 56, 53));
         this.addSlot(new FurnaceResultSlot(playerinv.player, inventory, 2, 116, 35));

@@ -68,7 +68,7 @@ public class ContortedNagaEntity extends Monster {
     public boolean doHurtTarget(Entity entityIn) {
         if (super.doHurtTarget(entityIn)) {
             if (entityIn instanceof LivingEntity living) {
-                int i = switch (this.level.getDifficulty()) {
+                int i = switch (this.level().getDifficulty()) {
                     case EASY -> 5;
                     case NORMAL -> 10;
                     case HARD -> 20;

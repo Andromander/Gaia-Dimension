@@ -30,5 +30,6 @@
     "recipes": [
       "gaiadimension:smelting/burnt_agate_sapling"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

@@ -21,7 +21,7 @@ import java.util.Optional;
 
 public class AgateCraftingTableMenu extends RecipeBookMenu<CraftingContainer> {
 
-    private final CraftingContainer invCrafting = new CraftingContainer(this, 3, 3);
+    private final CraftingContainer invCrafting = new TransientCraftingContainer(this, 3, 3);
     private final ResultContainer invResult = new ResultContainer();
     private final ContainerLevelAccess worldPos;
     private final Player player;
@@ -90,7 +90,7 @@ public class AgateCraftingTableMenu extends RecipeBookMenu<CraftingContainer> {
 
     @Override
     public boolean recipeMatches(Recipe<? super CraftingContainer> recipeIn) {
-        return recipeIn.matches(this.invCrafting, this.player.level);
+        return recipeIn.matches(this.invCrafting, this.player.level());
     }
 
     @Override

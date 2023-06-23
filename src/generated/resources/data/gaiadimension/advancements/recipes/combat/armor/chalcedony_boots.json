@@ -30,5 +30,6 @@
     "recipes": [
       "gaiadimension:armor/chalcedony_boots"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

@@ -30,5 +30,6 @@
     "recipes": [
       "gaiadimension:aura_cluster"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

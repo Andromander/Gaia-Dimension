@@ -30,5 +30,6 @@
     "recipes": [
       "gaiadimension:frail_glitter_block"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

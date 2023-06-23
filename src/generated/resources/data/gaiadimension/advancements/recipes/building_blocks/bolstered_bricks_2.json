@@ -43,5 +43,6 @@
     "recipes": [
       "gaiadimension:bolstered_bricks_2"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

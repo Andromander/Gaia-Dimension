@@ -30,5 +30,6 @@
     "recipes": [
       "gaiadimension:restructuring/ixiolite"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

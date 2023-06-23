@@ -30,5 +30,6 @@
     "recipes": [
       "gaiadimension:purifying/glitter_grass"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

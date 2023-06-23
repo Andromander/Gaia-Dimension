@@ -113,13 +113,13 @@ public class GaiaPortalBlock extends Block {
             if (entity.isOnPortalCooldown()) {
                 entity.setPortalCooldown();
             } else {
-                if (!entity.level.isClientSide() && !pos.equals(entity.portalEntrancePos)) {
+                if (!entity.level().isClientSide() && !pos.equals(entity.portalEntrancePos)) {
                     entity.portalEntrancePos = pos.immutable();
                 }
 
-                if (entity.level instanceof ServerLevel serverworld) {
+                if (entity.level() instanceof ServerLevel serverworld) {
                     MinecraftServer minecraftserver = serverworld.getServer();
-                    ResourceKey<Level> registrykey = entity.level.dimension() == GaiaDimensions.gaia_world ? GaiaConfig.startDimRK : GaiaDimensions.gaia_world;
+                    ResourceKey<Level> registrykey = entity.level().dimension() == GaiaDimensions.gaia_world ? GaiaConfig.startDimRK : GaiaDimensions.gaia_world;
                     ServerLevel serverworld1 = minecraftserver.getLevel(registrykey);
                     if (serverworld1 != null && !entity.isPassenger()) {
                         entity.setPortalCooldown();

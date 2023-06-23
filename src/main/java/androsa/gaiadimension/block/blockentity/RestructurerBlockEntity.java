@@ -281,7 +281,7 @@ public class RestructurerBlockEntity extends BaseContainerBlockEntity implements
 
                 if (output.isEmpty() && byproduct.isEmpty()) {
                     return true;
-                } else if (!output.sameItem(slot1) || !byproduct.sameItem(slot2)) {
+                } else if (!ItemStack.isSameItem(output, slot1) || !ItemStack.isSameItem(byproduct, slot2)) {
                     return false;
                 } else if ((output.getCount() + slot1.getCount() <= stacksize && output.getCount() + slot1.getCount() <= output.getMaxStackSize()) &&
                         byproduct.getCount() + slot2.getCount() <= stacksize && byproduct.getCount() + slot2.getCount() <= byproduct.getMaxStackSize()) {
@@ -408,7 +408,7 @@ public class RestructurerBlockEntity extends BaseContainerBlockEntity implements
     @Override
     public void setItem(int index, ItemStack stack) {
         ItemStack itemstack = this.restructurerItemStacks.get(index);
-        boolean burning = !stack.isEmpty() && stack.sameItem(itemstack) && ItemStack.tagMatches(stack, itemstack);
+        boolean burning = !stack.isEmpty() && ItemStack.isSameItemSameTags(stack, itemstack);
         this.restructurerItemStacks.set(index, stack);
 
         if (stack.getCount() > this.getMaxStackSize()) {
@@ -416,7 +416,7 @@ public class RestructurerBlockEntity extends BaseContainerBlockEntity implements
         }
 
         if (index == 0 && !burning) {
-            this.cookTimeTotal = this.cookingTime(this.level, this);
+            this.cookTimeTotal = cookingTime(this.level, this);
             this.cookTime = 0;
             this.setChanged();
         }
@@ -456,13 +456,13 @@ public class RestructurerBlockEntity extends BaseContainerBlockEntity implements
     }
 
     @Override
-    public void awardUsedRecipes(Player player) { }
+    public void awardUsedRecipes(Player player, List<ItemStack> stacks) { }
 
     public void unlockRecipe(Player player) {
         List<Recipe<?>> list = Lists.newArrayList();
 
         for(Map.Entry<ResourceLocation, Integer> entry : this.recipeMap.entrySet()) {
-            player.level.getRecipeManager().byKey(entry.getKey()).ifPresent((recipe) -> {
+            player.level().getRecipeManager().byKey(entry.getKey()).ifPresent((recipe) -> {
                 list.add(recipe);
                 grantExperience(player, entry.getValue(), ((RestructurerRecipe)recipe).getExperience());
             });
@@ -487,7 +487,7 @@ public class RestructurerBlockEntity extends BaseContainerBlockEntity implements
         while(amount > 0) {
             int j = ExperienceOrb.getExperienceValue(amount);
             amount -= j;
-            player.level.addFreshEntity(new ExperienceOrb(player.level, player.getX(), player.getY() + 0.5D, player.getZ() + 0.5D, j));
+            player.level().addFreshEntity(new ExperienceOrb(player.level(), player.getX(), player.getY() + 0.5D, player.getZ() + 0.5D, j));
         }
     }
 

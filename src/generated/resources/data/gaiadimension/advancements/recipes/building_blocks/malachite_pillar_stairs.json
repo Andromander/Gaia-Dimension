@@ -30,5 +30,6 @@
     "recipes": [
       "gaiadimension:malachite_pillar_stairs"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

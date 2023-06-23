@@ -75,6 +75,6 @@ public class CavernTickEntity extends Monster {
 
     @Override
     public float getWalkTargetValue(BlockPos pos) {
-        return this.level.getBlockState(pos.below()).getBlock() == ModBlocks.gaia_stone.get() ? 10.0F : super.getWalkTargetValue(pos);
+        return this.level().getBlockState(pos.below()).getBlock() == ModBlocks.gaia_stone.get() ? 10.0F : super.getWalkTargetValue(pos);
     }
 }

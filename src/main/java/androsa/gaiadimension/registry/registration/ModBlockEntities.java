@@ -3,7 +3,6 @@ package androsa.gaiadimension.registry.registration;
 import androsa.gaiadimension.GaiaDimensionMod;
 import androsa.gaiadimension.block.blockentity.*;
 import androsa.gaiadimension.block.blockentity.boss.MalachiteGuardSpawnerBlockEntity;
-import com.google.common.collect.Sets;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -14,18 +13,18 @@ public class ModBlockEntities {
     public static final DeferredRegister<BlockEntityType<?>> TILE_ENTITIES = DeferredRegister.create(ForgeRegistries.BLOCK_ENTITY_TYPES, GaiaDimensionMod.MODID);
 
     public static final RegistryObject<BlockEntityType<GaiaStoneFurnaceBlockEntity>> GAIA_STONE_FURNACE =  TILE_ENTITIES.register(
-            "gaia_stone_furnace", () -> new BlockEntityType<>(GaiaStoneFurnaceBlockEntity::new, Sets.newHashSet(ModBlocks.gaia_stone_furnace.get()), null));
+            "gaia_stone_furnace", () -> BlockEntityType.Builder.of(GaiaStoneFurnaceBlockEntity::new, ModBlocks.gaia_stone_furnace.get()).build(null));
     public static final RegistryObject<BlockEntityType<GeyserBlockEntity>> GEYSER = TILE_ENTITIES.register(
-            "geyser", () -> new BlockEntityType<>(GeyserBlockEntity::new, Sets.newHashSet(ModBlocks.geyser_block.get()), null));
+            "geyser", () -> BlockEntityType.Builder.of(GeyserBlockEntity::new, ModBlocks.geyser_block.get()).build(null));
     public static final RegistryObject<BlockEntityType<LargeCrateBlockEntity>> LARGE_CRATE = TILE_ENTITIES.register(
-            "large_crate", () -> new BlockEntityType<>(LargeCrateBlockEntity::new, Sets.newHashSet(ModBlocks.mega_storage_crate.get()), null));
+            "large_crate", () -> BlockEntityType.Builder.of(LargeCrateBlockEntity::new, ModBlocks.mega_storage_crate.get()).build(null));
     public static final RegistryObject<BlockEntityType<PurifierBlockEntity>> PURIFIER = TILE_ENTITIES.register(
-            "purifier", () -> new BlockEntityType<>(PurifierBlockEntity::new, Sets.newHashSet(ModBlocks.purifier.get()), null));
+            "purifier", () -> BlockEntityType.Builder.of(PurifierBlockEntity::new, ModBlocks.purifier.get()).build(null));
     public static final RegistryObject<BlockEntityType<RestructurerBlockEntity>> RESTRUCTURER = TILE_ENTITIES.register(
-            "restructurer", () -> new BlockEntityType<>(RestructurerBlockEntity::new, Sets.newHashSet(ModBlocks.restructurer.get()), null));
+            "restructurer", () -> BlockEntityType.Builder.of(RestructurerBlockEntity::new, ModBlocks.restructurer.get()).build(null));
     public static final RegistryObject<BlockEntityType<SmallCrateBlockEntity>> SMALL_CRATE = TILE_ENTITIES.register(
-            "small_crate", () -> new BlockEntityType<>(SmallCrateBlockEntity::new, Sets.newHashSet(ModBlocks.crude_storage_crate.get()), null));
+            "small_crate", () -> BlockEntityType.Builder.of(SmallCrateBlockEntity::new, ModBlocks.crude_storage_crate.get()).build(null));
 
     public static final RegistryObject<BlockEntityType<MalachiteGuardSpawnerBlockEntity>> MALACHITE_SPAWNER = TILE_ENTITIES.register(
-            "malachite_spawner", () -> new BlockEntityType<>(MalachiteGuardSpawnerBlockEntity::new, Sets.newHashSet(ModBlocks.malachite_guard_spawner.get()), null));
+            "malachite_spawner", () -> BlockEntityType.Builder.of(MalachiteGuardSpawnerBlockEntity::new, ModBlocks.malachite_guard_spawner.get()).build(null));
 }

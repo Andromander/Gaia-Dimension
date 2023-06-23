@@ -30,5 +30,6 @@
     "recipes": [
       "gaiadimension:scaynyx_bucket"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

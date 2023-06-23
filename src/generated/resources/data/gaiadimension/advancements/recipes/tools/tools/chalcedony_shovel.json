@@ -30,5 +30,6 @@
     "recipes": [
       "gaiadimension:tools/chalcedony_shovel"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

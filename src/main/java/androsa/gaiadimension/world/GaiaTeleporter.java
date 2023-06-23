@@ -169,7 +169,7 @@ public class GaiaTeleporter implements ITeleporter {
         for(int i = -1; i < 3; ++i) {
             for(int j = -1; j < 4; ++j) {
                 offsetPos.setWithOffset(originalPos, directionIn.getStepX() * i + direction.getStepX() * offsetScale, j, directionIn.getStepZ() * i + direction.getStepZ() * offsetScale);
-                if (j < 0 && !this.world.getBlockState(offsetPos).getMaterial().isSolid()) {
+                if (j < 0 && !this.world.getBlockState(offsetPos).isSolid()) {
                     return false;
                 }
 
@@ -191,7 +191,7 @@ public class GaiaTeleporter implements ITeleporter {
     @Override
     public PortalInfo getPortalInfo(Entity entity, ServerLevel destWorld, Function<ServerLevel, PortalInfo> defaultPortalInfo) {
         boolean toGaia = destWorld.dimension() == GaiaDimensions.gaia_world;
-        if (entity.level.dimension() != GaiaDimensions.gaia_world && !toGaia) {
+        if (entity.level().dimension() != GaiaDimensions.gaia_world && !toGaia) {
             return null;
         } else {
             WorldBorder border = destWorld.getWorldBorder();
@@ -199,15 +199,15 @@ public class GaiaTeleporter implements ITeleporter {
             double minZ = Math.max(-2.9999872E7D, border.getMinZ() + 16.0D);
             double maxX = Math.min(2.9999872E7D, border.getMaxX() - 16.0D);
             double maxZ = Math.min(2.9999872E7D, border.getMaxZ() - 16.0D);
-            double offset = DimensionType.getTeleportationScale(entity.level.dimensionType(), destWorld.dimensionType());
+            double offset = DimensionType.getTeleportationScale(entity.level().dimensionType(), destWorld.dimensionType());
             BlockPos blockpos = BlockPos.containing(Mth.clamp(entity.getX() * offset, minX, maxX), entity.getY(), Mth.clamp(entity.getZ() * offset, minZ, maxZ));
             return this.getPortalLogic(entity, blockpos).map((portalresult) -> {
-                BlockState blockstate = entity.level.getBlockState(entity.portalEntrancePos);
+                BlockState blockstate = entity.level().getBlockState(entity.portalEntrancePos);
                 Direction.Axis axis;
                 Vec3 vector3d;
                 if (blockstate.hasProperty(BlockStateProperties.HORIZONTAL_AXIS)) {
                     axis = blockstate.getValue(BlockStateProperties.HORIZONTAL_AXIS);
-                    BlockUtil.FoundRectangle result = BlockUtil.getLargestRectangleAround(entity.portalEntrancePos, axis, 21, Direction.Axis.Y, 21, (pos) -> entity.level.getBlockState(pos) == blockstate);
+                    BlockUtil.FoundRectangle result = BlockUtil.getLargestRectangleAround(entity.portalEntrancePos, axis, 21, Direction.Axis.Y, 21, (pos) -> entity.level().getBlockState(pos) == blockstate);
                     try {
                         vector3d = (Vec3) m_getRelativePortalPosition.invoke(entity, axis, result);
                     } catch (IllegalAccessException | InvocationTargetException e) {
@@ -229,7 +229,7 @@ public class GaiaTeleporter implements ITeleporter {
             if (existing.isPresent()) {
                 return existing;
             } else {
-                Direction.Axis axis = entity.level.getBlockState(entity.portalEntrancePos).getOptionalValue(GaiaPortalBlock.AXIS).orElse(Direction.Axis.X);
+                Direction.Axis axis = entity.level().getBlockState(entity.portalEntrancePos).getOptionalValue(GaiaPortalBlock.AXIS).orElse(Direction.Axis.X);
                 Optional<BlockUtil.FoundRectangle> portal = this.makePortal(pos, axis);
                 if (portal.isEmpty()) {
                     GaiaDimensionMod.LOGGER.error("Unable to create a portal, likely target out of worldborder");

@@ -30,5 +30,6 @@
       ],
       "rolls": 1.0
     }
-  ]
+  ],
+  "random_sequence": "gaiadimension:blocks/malachite_brick_slab"
 }

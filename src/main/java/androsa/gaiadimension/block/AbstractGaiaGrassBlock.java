@@ -10,10 +10,11 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.BonemealableBlock;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.lighting.LayerLightEngine;
-import net.minecraft.world.level.material.Material;
+import net.minecraft.world.level.lighting.LightEngine;
+import net.minecraft.world.level.material.FluidState;
 import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.common.PlantType;
 
@@ -27,21 +28,20 @@ public abstract class AbstractGaiaGrassBlock extends Block implements Bonemealab
         dirt = dirtblock;
     }
 
+    //TODO
     @Override
     @Deprecated
-    public void tick(BlockState state, ServerLevel worldIn, BlockPos pos, RandomSource random) {
-        if (!worldIn.isClientSide()) {
-            if (!worldIn.isAreaLoaded(pos, 3)) return;
-            if (!isLightEnough(state, worldIn, pos)) {
-                worldIn.setBlockAndUpdate(pos, dirt.defaultBlockState());
-            } else if (worldIn.getMaxLocalRawBrightness(pos.above()) >= 9) {
-                BlockState blockstate = this.defaultBlockState();
+    public void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
+        if (!level.isAreaLoaded(pos, 3)) return;
+        if (!isLightEnough(state, level, pos)) {
+            level.setBlockAndUpdate(pos, dirt.defaultBlockState());
+        } else if (level.getMaxLocalRawBrightness(pos.above()) >= 9) {
+            BlockState blockstate = this.defaultBlockState();
 
-                for (int i = 0; i < 4; ++i) {
-                    BlockPos blockpos = pos.offset(random.nextInt(3) - 1, random.nextInt(5) - 3, random.nextInt(3) - 1);
-                    if (worldIn.getBlockState(blockpos).getBlock() == dirt && isValidBonemealTargetGrass(blockstate, worldIn, blockpos)) {
-                        worldIn.setBlockAndUpdate(blockpos, blockstate);
-                    }
+            for (int i = 0; i < 4; ++i) {
+                BlockPos blockpos = pos.offset(random.nextInt(3) - 1, random.nextInt(5) - 3, random.nextInt(3) - 1);
+                if (level.getBlockState(blockpos).getBlock() == dirt && isValidBonemealTargetGrass(blockstate, level, blockpos)) {
+                    level.setBlockAndUpdate(blockpos, blockstate);
                 }
             }
         }
@@ -51,7 +51,7 @@ public abstract class AbstractGaiaGrassBlock extends Block implements Bonemealab
         BlockPos blockpos = pos.above();
         BlockState blockstate = reader.getBlockState(blockpos);
 
-        int i = LayerLightEngine.getLightBlockInto(reader, state, pos, blockstate, blockpos, Direction.UP, blockstate.getLightBlock(reader, blockpos));
+        int i = LightEngine.getLightBlockInto(reader, state, pos, blockstate, blockpos, Direction.UP, blockstate.getLightBlock(reader, blockpos));
         return i < reader.getMaxLightLevel();
     }
 
@@ -62,10 +62,12 @@ public abstract class AbstractGaiaGrassBlock extends Block implements Bonemealab
 
     @Override
     public boolean canSustainPlant(BlockState state, BlockGetter world, BlockPos pos, Direction facing, IPlantable plantable) {
-        boolean hasWater = world.getBlockState(pos.east()).getMaterial() == Material.WATER ||
-                world.getBlockState(pos.west()).getMaterial() == Material.WATER ||
-                world.getBlockState(pos.north()).getMaterial() == Material.WATER ||
-                world.getBlockState(pos.south()).getMaterial() == Material.WATER;
+        boolean hasWater = false;
+        for (Direction dir : Direction.Plane.HORIZONTAL) {
+            BlockState facingState = world.getBlockState(pos.relative(dir));
+            FluidState facingFluid = world.getFluidState(pos.relative(dir));
+            hasWater = hasWater || facingState.is(Blocks.FROSTED_ICE) || facingFluid.is(FluidTags.WATER);
+        }
         return plantable.getPlantType(world, pos.relative(facing)) == PlantType.PLAINS ||
                 plantable.getPlantType(world, pos.relative(facing)) == PlantType.BEACH && hasWater;
     }

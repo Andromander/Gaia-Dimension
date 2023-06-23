@@ -107,7 +107,7 @@ public class NomadicLagrahkEntity extends PathfinderMob {
 
     @Override
     public int getMaxSpawnClusterSize() {
-        Optional<ResourceKey<Biome>> biome = level.getBiome(this.blockPosition()).unwrapKey();
+        Optional<ResourceKey<Biome>> biome = level().getBiome(this.blockPosition()).unwrapKey();
 
         if (Objects.equals(biome, Optional.of(GaiaBiomes.salt_dunes)) || Objects.equals(biome, Optional.of(GaiaBiomes.static_wasteland)) || Objects.equals(biome, Optional.of(GaiaBiomes.volcanic_lands))) {
             return 4;

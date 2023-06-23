@@ -38,7 +38,7 @@ public class RestructurerMenu extends AbstractContainerMenu {
         checkContainerDataCount(slots, 4);
         tileRestructurer = restructurer;
         slotsArray = slots;
-        world = invPlayer.player.level;
+        world = invPlayer.player.level();
         addSlot(new Slot(restructurer, 0, 80, 34)); //Input
         addSlot(new GoldSlot(restructurer, 1, 51, 17));    //Fuel 1
         addSlot(new ShineSlot(restructurer, 2, 109, 17));  //Fuel 2

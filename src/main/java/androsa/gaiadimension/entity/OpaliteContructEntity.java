@@ -79,7 +79,7 @@ public class OpaliteContructEntity extends PathfinderMob {
 
     @Nullable
     public MookaiteConstructEntity getFollowing() {
-        if (getMookaiteCompanion() != null && this.level instanceof ServerLevel server) {
+        if (getMookaiteCompanion() != null && this.level() instanceof ServerLevel server) {
             Entity entity = server.getEntity(getMookaiteCompanion());
             if (entity instanceof MookaiteConstructEntity) {
                 return (MookaiteConstructEntity) entity;
@@ -116,7 +116,7 @@ public class OpaliteContructEntity extends PathfinderMob {
     public void die(DamageSource source) {
         if (ForgeHooks.onLivingDeath(this, source)) return;
 
-        if (this.level instanceof ServerLevel level && this.getMookaiteCompanion() != null) {
+        if (this.level() instanceof ServerLevel level && this.getMookaiteCompanion() != null) {
             Entity entity = level.getEntity(this.getMookaiteCompanion());
             if (entity instanceof MookaiteConstructEntity mookaite) {
                 mookaite.setOpaliteCompanion(null);
@@ -139,7 +139,7 @@ public class OpaliteContructEntity extends PathfinderMob {
 
         public FollowCompanionGoal(OpaliteContructEntity entity) {
             this.opalite = entity;
-            this.world = entity.level;
+            this.world = entity.level();
             this.navigator = entity.getNavigation();
             this.setFlags(EnumSet.of(Flag.MOVE, Flag.LOOK));
         }

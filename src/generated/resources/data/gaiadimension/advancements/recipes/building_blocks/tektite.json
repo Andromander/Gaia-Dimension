@@ -30,5 +30,6 @@
     "recipes": [
       "gaiadimension:tektite"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

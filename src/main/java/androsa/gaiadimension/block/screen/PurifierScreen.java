@@ -2,10 +2,8 @@ package androsa.gaiadimension.block.screen;
 
 import androsa.gaiadimension.GaiaDimensionMod;
 import androsa.gaiadimension.block.menu.PurifierMenu;
-import com.mojang.blaze3d.systems.RenderSystem;
-import com.mojang.blaze3d.vertex.PoseStack;
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
-import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
@@ -25,35 +23,32 @@ public class PurifierScreen extends AbstractContainerScreen<PurifierMenu> {
     }
 
     @Override
-    public void render(PoseStack stack, int mouseX, int mouseY, float partialTicks) {
+    public void render(GuiGraphics stack, int mouseX, int mouseY, float partialTicks) {
         renderBackground(stack);
         super.render(stack, mouseX, mouseY, partialTicks);
         renderTooltip(stack, mouseX, mouseY);
     }
 
     @Override
-    protected void renderLabels(PoseStack stack, int mouseX, int mouseY) {
-        font.draw(stack, title, (float)(imageWidth / 2 - font.width(title.getString()) / 2), 6, 0x000000);
-        font.draw(stack, playerInventoryTitle, 8.0F, (float)(imageHeight - 96 + 2), 0x000000);
+    protected void renderLabels(GuiGraphics stack, int mouseX, int mouseY) {
+        stack.drawString(font, title, (imageWidth / 2 - font.width(title.getString()) / 2), 6, 0x000000);
+        stack.drawString(font, playerInventoryTitle, 8, (imageHeight - 96 + 2), 0x000000);
     }
 
     @Override
-    protected void renderBg(PoseStack stack, float par1, int par2, int par3) {
-        RenderSystem.setShader(GameRenderer::getPositionTexShader);
-        RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
-        RenderSystem.setShaderTexture(0, textureLoc);
+    protected void renderBg(GuiGraphics stack, float par1, int par2, int par3) {
         int k = (width - imageWidth) / 2;
         int l = (height - imageHeight) / 2;
-        blit(stack, k, l, 0, 0, imageWidth, imageHeight);
+        stack.blit(textureLoc, k, l, 0, 0, imageWidth, imageHeight);
         int i1;
 
         if (menu.isBurning()) {
             i1 = menu.getTimeLeftScaled();
-            blit(stack, k + 64, l + 81, 176, 22, 47, i1 + 1);
+            stack.blit(textureLoc, k + 64, l + 81, 176, 22, 47, i1 + 1);
 
         }
 
         i1 = menu.getTimeLeft();
-        blit(stack, k + 77, l + 61 + 12 - i1, 176, 20 - i1, 22, i1 + 2);
+        stack.blit(textureLoc, k + 77, l + 61 + 12 - i1, 176, 20 - i1, 22, i1 + 2);
     }
 }

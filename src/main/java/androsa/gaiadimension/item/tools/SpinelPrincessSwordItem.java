@@ -29,7 +29,7 @@ public class SpinelPrincessSwordItem extends SwordItem {
     @Override
     public boolean hurtEnemy(ItemStack stack, LivingEntity target, LivingEntity attacker) {
         if (super.hurtEnemy(stack, target, attacker)) {
-            target.level.addParticle(ParticleTypes.FLAME, target.getRandomX(target.getBbWidth()), target.getRandomY(), target.getRandomZ(target.getBbWidth()), 0, 0, 0);
+            target.level().addParticle(ParticleTypes.FLAME, target.getRandomX(target.getBbWidth()), target.getRandomY(), target.getRandomZ(target.getBbWidth()), 0, 0, 0);
             target.setSecondsOnFire(10);
             return true;
         }

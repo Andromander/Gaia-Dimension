@@ -306,5 +306,6 @@
       "get_aura_cluster",
       "get_bismuth_crystal"
     ]
-  ]
+  ],
+  "sends_telemetry_event": true
 }

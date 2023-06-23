@@ -30,5 +30,6 @@
     "recipes": [
       "gaiadimension:smelting/white_opal_smelt"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

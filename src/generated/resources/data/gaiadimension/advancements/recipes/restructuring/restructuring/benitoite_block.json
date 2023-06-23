@@ -30,5 +30,6 @@
     "recipes": [
       "gaiadimension:restructuring/benitoite_block"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

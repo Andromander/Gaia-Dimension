@@ -30,5 +30,6 @@
     "recipes": [
       "gaiadimension:restructuring/diamond"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

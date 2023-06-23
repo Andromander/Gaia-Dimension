@@ -190,7 +190,7 @@ public class MookaiteConstructEntity extends PathfinderMob {
     public void die(DamageSource source) {
         if (ForgeHooks.onLivingDeath(this, source)) return;
 
-        if (this.level instanceof ServerLevel level && this.getOpaliteCompanion() != null) {
+        if (this.level() instanceof ServerLevel level && this.getOpaliteCompanion() != null) {
             Entity entity = level.getEntity(this.getOpaliteCompanion());
             if (entity instanceof OpaliteContructEntity opalite) {
                 opalite.setMookaiteCompanion(null);

@@ -96,7 +96,7 @@ public class PrimalBeastEntity extends Monster {
         boolean attacked = super.doHurtTarget(entityIn);
 
         if (attacked) {
-            float diff = this.level.getCurrentDifficultyAt(this.blockPosition()).getEffectiveDifficulty();
+            float diff = this.level().getCurrentDifficultyAt(this.blockPosition()).getEffectiveDifficulty();
             entityIn.setSecondsOnFire(2 * (int)diff);
         }
         return attacked;

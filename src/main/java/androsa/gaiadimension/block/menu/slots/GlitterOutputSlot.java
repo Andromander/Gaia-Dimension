@@ -45,9 +45,9 @@ public class GlitterOutputSlot extends Slot {
 
     @Override
     protected void checkTakeAchievements(ItemStack par1ItemStack) {
-        par1ItemStack.onCraftedBy(thePlayer.level, thePlayer, stackSize);
+        par1ItemStack.onCraftedBy(thePlayer.level(), thePlayer, stackSize);
 
-        if (!thePlayer.level.isClientSide()) {
+        if (!thePlayer.level().isClientSide()) {
             ((RestructurerBlockEntity)this.container).unlockRecipe(thePlayer);
         }
 

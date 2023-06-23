@@ -24,8 +24,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.EntityBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.material.PushReaction;
-import net.minecraft.world.level.storage.loot.LootContext;
+import net.minecraft.world.level.storage.loot.LootParams;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraftforge.api.distmarker.Dist;
@@ -57,9 +56,8 @@ public class LargeCrateBlock extends Block implements EntityBlock {
             return InteractionResult.SUCCESS;
         } else {
             BlockEntity tileentity = worldIn.getBlockEntity(pos);
-            if (tileentity instanceof LargeCrateBlockEntity) {
-                LargeCrateBlockEntity largecratetileentity = (LargeCrateBlockEntity)tileentity;
-                player.openMenu(largecratetileentity);
+            if (tileentity instanceof LargeCrateBlockEntity crate) {
+                player.openMenu(crate);
                 return InteractionResult.SUCCESS;
             } else {
                 return InteractionResult.PASS;
@@ -70,24 +68,23 @@ public class LargeCrateBlock extends Block implements EntityBlock {
     @Override
     public void playerWillDestroy(Level worldIn, BlockPos pos, BlockState state, Player player) {
         BlockEntity tileentity = worldIn.getBlockEntity(pos);
-        if (tileentity instanceof LargeCrateBlockEntity) {
-            LargeCrateBlockEntity largecratetileentity = (LargeCrateBlockEntity)tileentity;
-            if (!worldIn.isClientSide() && player.isCreative() && !largecratetileentity.isEmpty()) {
+        if (tileentity instanceof LargeCrateBlockEntity crate) {
+            if (!worldIn.isClientSide() && player.isCreative() && !crate.isEmpty()) {
                 ItemStack itemstack = new ItemStack(this);
-                CompoundTag compoundnbt = largecratetileentity.saveToNbt(new CompoundTag());
+                CompoundTag compoundnbt = crate.saveToNbt(new CompoundTag());
                 if (!compoundnbt.isEmpty()) {
                     itemstack.addTagElement("BlockEntityTag", compoundnbt);
                 }
 
-                if (largecratetileentity.hasCustomName()) {
-                    itemstack.setHoverName(largecratetileentity.getCustomName());
+                if (crate.hasCustomName()) {
+                    itemstack.setHoverName(crate.getCustomName());
                 }
 
                 ItemEntity itementity = new ItemEntity(worldIn, pos.getX(), pos.getY(), pos.getZ(), itemstack);
                 itementity.setDefaultPickUpDelay();
                 worldIn.addFreshEntity(itementity);
             } else {
-                largecratetileentity.unpackLootTable(player);
+                crate.unpackLootTable(player);
             }
         }
 
@@ -96,13 +93,12 @@ public class LargeCrateBlock extends Block implements EntityBlock {
 
     @Override
     @Deprecated
-    public List<ItemStack> getDrops(BlockState state, LootContext.Builder builder) {
+    public List<ItemStack> getDrops(BlockState state, LootParams.Builder builder) {
         BlockEntity tileentity = builder.getParameter(LootContextParams.BLOCK_ENTITY);
-        if (tileentity instanceof LargeCrateBlockEntity) {
-            LargeCrateBlockEntity largecratetileentity = (LargeCrateBlockEntity)tileentity;
-            builder = builder.withDynamicDrop(NAME, (loot, stack) -> {
-                for(int i = 0; i < largecratetileentity.getContainerSize(); ++i) {
-                    stack.accept(largecratetileentity.getItem(i));
+        if (tileentity instanceof LargeCrateBlockEntity crate) {
+            builder = builder.withDynamicDrop(NAME, (stack) -> {
+                for(int i = 0; i < crate.getContainerSize(); ++i) {
+                    stack.accept(crate.getItem(i));
                 }
             });
         }
@@ -166,12 +162,6 @@ public class LargeCrateBlock extends Block implements EntityBlock {
                 }
             }
         }
-    }
-
-    @Override
-    @Deprecated
-    public PushReaction getPistonPushReaction(BlockState state) {
-        return PushReaction.DESTROY;
     }
 
     @Override

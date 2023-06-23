@@ -30,5 +30,6 @@
     "recipes": [
       "gaiadimension:smelting/small_calamari"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

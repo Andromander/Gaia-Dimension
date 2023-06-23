@@ -30,5 +30,6 @@
     "recipes": [
       "gaiadimension:restructuring/aura_and_bismuth"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

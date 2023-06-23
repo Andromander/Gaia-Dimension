@@ -30,5 +30,6 @@
     "recipes": [
       "gaiadimension:bismuth_crystal"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

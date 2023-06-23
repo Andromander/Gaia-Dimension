@@ -30,5 +30,6 @@
     "recipes": [
       "gaiadimension:purple_geode_soda"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }
