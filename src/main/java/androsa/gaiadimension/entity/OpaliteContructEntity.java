@@ -120,6 +120,7 @@ public class OpaliteContructEntity extends PathfinderMob {
             Entity entity = level.getEntity(this.getMookaiteCompanion());
             if (entity instanceof MookaiteConstructEntity mookaite) {
                 mookaite.setOpaliteCompanion(null);
+                mookaite.setBonder(null);
             }
         }
 

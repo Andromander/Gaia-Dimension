@@ -327,6 +327,35 @@
       "damage/fallsmall"
     ]
   },
+  "entity.mookaite_construct.stomp": {
+    "subtitle": "subtitles.entity.mookaite_construct.stomp",
+    "sounds": [
+      "random/explode1",
+      "random/explode2",
+      "random/explode3",
+      "random/explode4"
+    ]
+  },
+  "entity.mookaite_construct.breath": {
+    "subtitle": "subtitles.entity.mookaite_construct.breath",
+    "sounds": [
+      "mob/ghast/fireball4"
+    ]
+  },
+  "entity.mookaite_construct.cast": {
+    "subtitle": "subtitles.entity.mookaite_construct.cast",
+    "sounds": [
+      "random/bow"
+    ]
+  },
+  "entity.mookaite_construct.shoot": {
+    "subtitle": "subtitles.entity.mookaite_construct.shoot",
+    "sounds": [
+      "item/crossbow/shoot1",
+      "item/crossbow/shoot2",
+      "item/crossbow/shoot3"
+    ]
+  },
   "entity.mutant_growth_extractor.death": {
     "subtitle": "subtitles.entity.mutant_growth_extractor.death",
     "sounds": [

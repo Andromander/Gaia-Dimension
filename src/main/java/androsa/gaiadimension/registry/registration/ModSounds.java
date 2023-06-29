@@ -54,6 +54,10 @@ public class ModSounds {
     public static final RegistryObject<SoundEvent> ENTITY_MUCKLING_SQUISH_SMALL         = makeEntitySound("muckling_small", "squish");
     public static final RegistryObject<SoundEvent> ENTITY_MOOKAITE_CONSTRUCT_DEATH      = makeDeathSound("mookaite_construct");
     public static final RegistryObject<SoundEvent> ENTITY_MOOKAITE_CONSTRUCT_HURT       = makeHurtSound("mookaite_construct");
+    public static final RegistryObject<SoundEvent> ENTITY_MOOKAITE_CONSTRUCT_STOMP      = makeEntitySound("mookaite_construct", "stomp");
+    public static final RegistryObject<SoundEvent> ENTITY_MOOKAITE_CONSTRUCT_BREATH     = makeEntitySound("mookaite_construct", "breath");
+    public static final RegistryObject<SoundEvent> ENTITY_MOOKAITE_CONSTRUCT_CAST       = makeEntitySound("mookaite_construct", "cast");
+    public static final RegistryObject<SoundEvent> ENTITY_MOOKAITE_CONSTRUCT_SHOOT      = makeEntitySound("mookaite_construct", "shoot");
     public static final RegistryObject<SoundEvent> ENTITY_MUTANT_GROWTH_EXTRACTOR_DEATH = makeDeathSound("mutant_growth_extractor");
     public static final RegistryObject<SoundEvent> ENTITY_MUTANT_GROWTH_EXTRACTOR_HURT  = makeHurtSound("mutant_growth_extractor");
     public static final RegistryObject<SoundEvent> ENTITY_NOMADIC_LAGRAHK_DEATH         = makeDeathSound("nomadic_lagrahk");

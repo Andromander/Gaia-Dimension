@@ -624,6 +624,9 @@
   "entity.gaiadimension.malachite_guard": "Malachite Guard",
   "entity.gaiadimension.agate_arrow": "Agate Arrow",
   "entity.gaiadimension.thrown_pebble": "Thrown Pebble",
+  "entity.gaiadimension.mookaite_ammo_bullet": "Mookaite Ammo Bullet",
+  "entity.gaiadimension.mookaite_magic_bullet": "Mookaite Magic Bullet",
+  "entity.gaiadimension.mookaite_magic_area": "Mookaite Magic Area",
 
   "effect.gaiadimension.goldstone_plague": "Corrupt Mania",
 
@@ -733,6 +736,10 @@
   "subtitles.entity.muckling.squish": "Muckling squishes",
   "subtitles.entity.mookaite_construct.death": "Mookaite Construct dies",
   "subtitles.entity.mookaite_construct.hurt": "Mookaite Construct hurts",
+  "subtitles.entity.mookaite_construct.stomp": "Mookaite Construct stomps",
+  "subtitles.entity.mookaite_construct.breath": "Mookaite Construct breathes fire",
+  "subtitles.entity.mookaite_construct.cast": "Mookaite Construct casts magic",
+  "subtitles.entity.mookaite_construct.shoot": "Mookaite Construct shoots",
   "subtitles.entity.mutant_growth_extractor.death": "Mutant Growth Extractor dies",
   "subtitles.entity.mutant_growth_extractor.hurt": "Mutant Growth Extractor hurts",
   "subtitles.entity.nomadic_lagrahk.death": "Nomadic Lagrahk dies",

@@ -6,6 +6,7 @@ import androsa.gaiadimension.registry.registration.ModEntities;
 import androsa.gaiadimension.renderer.*;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.builders.CubeDeformation;
+import net.minecraft.client.renderer.entity.NoopRenderer;
 import net.minecraft.client.renderer.entity.ThrownItemRenderer;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
@@ -118,6 +119,9 @@ public class ModEntitiesRendering {
         // RenderingRegistry.registerEntityRenderingHandler(GDShotGaianEnergy.class, m -> new RenderSnowball<>(m, Items.ENDER_PEARL, Minecraft.getMinecraft().getRenderItem()));
         event.registerEntityRenderer(ModEntities.THROWN_PEBBLE.get(), ThrownItemRenderer::new);
         event.registerEntityRenderer(ModEntities.AGATE_ARROW.get(), AgateArrowRenderer::new);
+        event.registerEntityRenderer(ModEntities.MOOKAITE_AMMO_BULLET.get(), ThrownItemRenderer::new);
+        event.registerEntityRenderer(ModEntities.MOOKAITE_MAGIC_BULLET.get(), ThrownItemRenderer::new);
+        event.registerEntityRenderer(ModEntities.MOOKAITE_MAGIC_AREA.get(), NoopRenderer::new);
 
         event.registerEntityRenderer(ModEntities.AGATE_GOLEM.get(), m -> new BasicEntityRenderer<>(m, new AgateGolemModel<>(m.bakeLayer(AGATE_GOLEM)), 0.9F));
         event.registerEntityRenderer(ModEntities.ANCIENT_LAGRAHK.get(), m -> new BasicEntityRenderer<>(m, new AncientLagrahkModel<>(m.bakeLayer(ANCIENT_LAGRAHK)), 2.0F));

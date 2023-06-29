@@ -4,8 +4,7 @@ import androsa.gaiadimension.GaiaDimensionMod;
 import androsa.gaiadimension.entity.*;
 import androsa.gaiadimension.entity.boss.BlueHowliteWolfEntity;
 import androsa.gaiadimension.entity.boss.MalachiteGuardEntity;
-import androsa.gaiadimension.entity.projectile.AgateArrowEntity;
-import androsa.gaiadimension.entity.projectile.ThrownPebbleEntity;
+import androsa.gaiadimension.entity.projectile.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.monster.Monster;
@@ -28,8 +27,11 @@ public class ModEntities {
     public static final DeferredRegister<EntityType<?>> ENTITY_TYPES = DeferredRegister.create(ForgeRegistries.ENTITY_TYPES, GaiaDimensionMod.MODID);
 
     //Projectiles
-    public static final RegistryObject<EntityType<AgateArrowEntity>> AGATE_ARROW = registerProjectile("agate_arrow", AgateArrowEntity::new, true, 150, 1, 0.5F, 0.5F);
-    public static final RegistryObject<EntityType<ThrownPebbleEntity>> THROWN_PEBBLE = registerProjectile("thrown_pebble", ThrownPebbleEntity::new, true, 150, 2, 0.25F, 0.25F);
+    public static final RegistryObject<EntityType<AgateArrowEntity>> AGATE_ARROW = registerProjectile("agate_arrow", AgateArrowEntity::new, true, 150, 1, 0.5F, 0.5F, false);
+    public static final RegistryObject<EntityType<ThrownPebbleEntity>> THROWN_PEBBLE = registerProjectile("thrown_pebble", ThrownPebbleEntity::new, true, 150, 2, 0.25F, 0.25F, false);
+    public static final RegistryObject<EntityType<MookaiteAmmoEntity>> MOOKAITE_AMMO_BULLET = registerProjectile("mookaite_ammo_bullet", MookaiteAmmoEntity::new, true, 150, 2, 0.25F, 0.25F, false);
+    public static final RegistryObject<EntityType<MookaiteMagicEntity>> MOOKAITE_MAGIC_BULLET = registerProjectile("mookaite_magic_bullet", MookaiteMagicEntity::new, true, 150, 10, 0.25F, 0.25F, false);
+    public static final RegistryObject<EntityType<MookaiteAreaEntity>> MOOKAITE_MAGIC_AREA = registerProjectile("mookaite_magic_area", MookaiteAreaEntity::new, true, 150, Integer.MAX_VALUE, 6.0F, 0.5F, true);
 
     //Mobs
     public static final RegistryObject<EntityType<AgateGolemEntity>> AGATE_GOLEM = registerEntity("agate_golem", AgateGolemEntity::new, MobCategory.MONSTER, 1.2F, 2.7F, false);
@@ -66,11 +68,12 @@ public class ModEntities {
     //Bosses
     public static final RegistryObject<EntityType<MalachiteGuardEntity>> MALACHITE_GUARD = registerEntity("malachite_guard", MalachiteGuardEntity::new, MobCategory.MONSTER, 0.8F, 3.3F, false);
 
-    public static <E extends Entity> RegistryObject<EntityType<E>> registerProjectile(String name, EntityType.EntityFactory<E> entity, boolean updates, int range, int interval, float width, float height) {
+    public static <E extends Entity> RegistryObject<EntityType<E>> registerProjectile(String name, EntityType.EntityFactory<E> entity, boolean updates, int range, int interval, float width, float height, boolean fireproof) {
         EntityType.Builder<E> entitytype = makeBuilder(entity, MobCategory.MISC, width, height)
                 .setShouldReceiveVelocityUpdates(updates)
                 .setTrackingRange(range)
                 .setUpdateInterval(interval);
+        if (fireproof) entitytype.fireImmune();
         return ENTITY_TYPES.register(name, () -> entitytype.build(name));
     }
 

@@ -105,6 +105,7 @@ public class ConstructCharmItem extends Item {
                         OpaliteContructEntity oEntity = (OpaliteContructEntity) opalite;
 
                         if (!player.level().isClientSide()) {
+                            mEntity.setBonder(player.getUUID());
                             mEntity.setOpaliteCompanion(oEntity.getUUID());
                             oEntity.setMookaiteCompanion(mEntity.getUUID());
                             stack.shrink(1);
