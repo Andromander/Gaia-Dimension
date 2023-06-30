@@ -23,11 +23,11 @@ version = project.artifactor_mod_version
 group = project.mod_group
 archivesBaseName = project.archives_base_name
 
-String fullVersion = project.artifactor_minecraft_version + "-" + version
+String fullVersion = project.artifactor_minecraft_version + "." + version
 if (hasProperty("CIVersion")) {
-    fullVersion += "-" + CIVersion
+    fullVersion += "." + CIVersion
 }
-String jarVersion = fullVersion.replace("+", "-")
+String jarVersion = fullVersion.replace("+", ".")
 
 java.toolchain.languageVersion = JavaLanguageVersion.of(17) // Need this here so eclipse task generates correctly.
 
@@ -103,15 +103,54 @@ jar {
     }
 }
 
-//task sourcesJar(type: Jar, dependsOn: classes) {
-//    archiveName = archivesBaseName + "-" + jarVersion + "-sources.jar"
-//    classifier = 'sources'
-//    from sourceSets.main.allSource
-//}
+def secrets = new Properties()
+def secretsFile = file('secrets.properties')
+if (secretsFile.exists()) {
+    secretsFile.withInputStream {
+        stream -> secrets.load(stream)
+    }
+    fileTree("secrets").matching {
+        include "**/*.properties"
+    }.each {
+        File file ->
+            file.withInputStream {
+                stream -> secrets.load(stream)
+            }
+    }
+}
 
-//artifacts {
-//    archives sourcesJar
-//}
+jar.finalizedBy('reobfJar')
+
+def mavenUser = hasProperty("CIMUser") ? CIMUser : secrets.getProperty("maven_username")
+def mavenToken = hasProperty("CIMToken") ? CIMToken : secrets.getProperty("maven_password")
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            afterEvaluate {
+                artifact project.jar
+                artifact project.sourceJar
+            }
+            setGroupId 'androsa'
+            setArtifactId project.mod_id
+        }
+    }
+    repositories {
+        maven {
+            url "https://maven.tamaized.com/releases"
+            credentials {
+                username mavenUser
+                password mavenToken
+            }
+        }
+    }
+}
+
+task sourceJar(type: Jar, dependsOn: 'classes') {
+    from sourceSets.main.allSource
+    archiveName = archivesBaseName + "." + jarVersion + "-sources.jar"
+    classifier = 'sources'
+}
 
 repositories {
     maven {
