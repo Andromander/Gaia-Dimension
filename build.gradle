@@ -23,7 +23,7 @@ version = project.artifactor_mod_version
 group = project.mod_group
 archivesBaseName = project.archives_base_name
 
-String fullVersion = project.artifactor_minecraft_version + "." + version
+String fullVersion = project.artifactor_minecraft_version + "-" + version
 if (hasProperty("CIVersion")) {
     fullVersion += "." + CIVersion
 }
