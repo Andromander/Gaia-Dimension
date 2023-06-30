@@ -19,15 +19,13 @@ apply plugin: 'net.minecraftforge.gradle'
 apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
 
-version = project.artifactor_mod_version
+version = project.artifactor_minecraft_version + "-" + project.artifactor_mod_version
 group = project.mod_group
 archivesBaseName = project.archives_base_name
 
-String fullVersion = project.artifactor_minecraft_version + "-" + version
 if (hasProperty("CIVersion")) {
-    fullVersion += "." + CIVersion
+    version += "." + CIVersion
 }
-String jarVersion = fullVersion.replace("+", ".")
 
 java.toolchain.languageVersion = JavaLanguageVersion.of(17) // Need this here so eclipse task generates correctly.
 
@@ -90,14 +88,14 @@ sourceSets.main.resources {
 }
 
 jar {
-    archiveName = archivesBaseName + "." + jarVersion + ".jar"
+    archiveName = archivesBaseName + "." + project.version + ".jar"
 
     manifest {
         attributes(["Specification-Title": "gaiadimension",
                     "Specification-Vendor": "Androsa",
                     "Specification-Version": "1", // We are version 1 of the modlauncher specification
                     "Implementation-Title": project.name,
-                    "Implementation-Version": "${fullVersion}",
+                    "Implementation-Version": "${project.version}",
                     "Implementation-Vendor" :"Androsa",
                     "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")],)
     }
@@ -148,7 +146,7 @@ publishing {
 
 task sourceJar(type: Jar, dependsOn: 'classes') {
     from sourceSets.main.allSource
-    archiveName = archivesBaseName + "." + jarVersion + "-sources.jar"
+    archiveName = archivesBaseName + "." + project.version + "-sources.jar"
     classifier = 'sources'
 }
 
