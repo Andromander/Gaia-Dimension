@@ -54,11 +54,6 @@ public class GaiaLootTables extends LootTableProvider {
             //No Drops
             noDrops(ModBlocks.gaia_portal);
             noDrops(ModBlocks.gold_fire);
-            noDrops(ModBlocks.mineral_water);
-            noDrops(ModBlocks.superhot_magma);
-            noDrops(ModBlocks.sweet_muck);
-            noDrops(ModBlocks.liquid_bismuth);
-            noDrops(ModBlocks.liquid_aura);
             noDrops(ModBlocks.malachite_guard_spawner);
 
             //Utility Blocks

@@ -7,6 +7,7 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.MapColor;
+import net.minecraft.world.level.material.PushReaction;
 
 import javax.annotation.Nullable;
 
@@ -134,6 +135,11 @@ public class PropertiesHandler {
     public static BlockBehaviour.Properties liquidProps(MapColor color) {
         return BlockBehaviour.Properties.of()
                 .mapColor(color)
+                .replaceable()
+                .noCollission()
+                .pushReaction(PushReaction.DESTROY)
+                .noLootTable()
+                .sound(SoundType.EMPTY)
                 .liquid();
     }
 
