@@ -258,15 +258,15 @@ public class MookaiteConstructModel<T extends MookaiteConstructEntity> extends H
 
 	@Override
 	public void prepareMobModel(T entity, float limbSwing, float limbSwingAmount, float partialTicks) {
-		this.right_horn.visible = entity.isPresent(MookaiteConstructEntity.RIGHT_HORN_TYPE);
-		this.left_horn.visible = entity.isPresent(MookaiteConstructEntity.LEFT_HORN_TYPE);
-		this.left_eye.visible = entity.isPresent(MookaiteConstructEntity.LEFT_EYE_TYPE);
-		this.right_eye.visible = entity.isPresent(MookaiteConstructEntity.RIGHT_EYE_TYPE);
-		this.right_shoulder.visible = entity.isPresent(MookaiteConstructEntity.RIGHT_SHOULDER_TYPE);
-		this.left_shoulder.visible = entity.isPresent(MookaiteConstructEntity.LEFT_SHOULDER_TYPE);
-		this.right_arm_brace.visible = entity.isPresent(MookaiteConstructEntity.RIGHT_ARM_BRACE_TYPE);
-		this.left_arm_brace.visible = entity.isPresent(MookaiteConstructEntity.LEFT_ARM_BRACE_TYPE);
-		this.right_leg_brace.visible = entity.isPresent(MookaiteConstructEntity.RIGHT_LEG_BRACE_TYPE);
-		this.left_leg_brace.visible = entity.isPresent(MookaiteConstructEntity.LEFT_LEG_BRACE_TYPE);
+		this.right_horn.visible = entity.isPresent(MookaiteConstructEntity.RIGHT_HORN);
+		this.left_horn.visible = entity.isPresent(MookaiteConstructEntity.LEFT_HORN);
+		this.left_eye.visible = entity.isPresent(MookaiteConstructEntity.LEFT_EYE);
+		this.right_eye.visible = entity.isPresent(MookaiteConstructEntity.RIGHT_EYE);
+		this.right_shoulder.visible = entity.isPresent(MookaiteConstructEntity.RIGHT_SHOULDER);
+		this.left_shoulder.visible = entity.isPresent(MookaiteConstructEntity.LEFT_SHOULDER);
+		this.right_arm_brace.visible = entity.isPresent(MookaiteConstructEntity.RIGHT_ARM);
+		this.left_arm_brace.visible = entity.isPresent(MookaiteConstructEntity.LEFT_ARM);
+		this.right_leg_brace.visible = entity.isPresent(MookaiteConstructEntity.RIGHT_LEG);
+		this.left_leg_brace.visible = entity.isPresent(MookaiteConstructEntity.LEFT_LEG);
 	}
 }

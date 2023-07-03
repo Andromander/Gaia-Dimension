@@ -25,6 +25,8 @@ import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.ai.attributes.Attribute;
+import net.minecraft.world.entity.ai.attributes.AttributeInstance;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.*;
@@ -58,6 +60,31 @@ public class MookaiteConstructEntity extends PathfinderMob {
     public static final EntityDataAccessor<Integer> RIGHT_ARM_BRACE_TYPE = SynchedEntityData.defineId(MookaiteConstructEntity.class, EntityDataSerializers.INT);
     public static final EntityDataAccessor<Integer> LEFT_LEG_BRACE_TYPE = SynchedEntityData.defineId(MookaiteConstructEntity.class, EntityDataSerializers.INT);
     public static final EntityDataAccessor<Integer> RIGHT_LEG_BRACE_TYPE = SynchedEntityData.defineId(MookaiteConstructEntity.class, EntityDataSerializers.INT);
+    public static final EntityDataAccessor<Float> LEFT_HORN_MULTIPLIER = SynchedEntityData.defineId(MookaiteConstructEntity.class, EntityDataSerializers.FLOAT);
+    public static final EntityDataAccessor<Float> RIGHT_HORN_MULTIPLIER = SynchedEntityData.defineId(MookaiteConstructEntity.class, EntityDataSerializers.FLOAT);
+    public static final EntityDataAccessor<Float> LEFT_EYE_MULTIPLIER = SynchedEntityData.defineId(MookaiteConstructEntity.class, EntityDataSerializers.FLOAT);
+    public static final EntityDataAccessor<Float> RIGHT_EYE_MULTIPLIER = SynchedEntityData.defineId(MookaiteConstructEntity.class, EntityDataSerializers.FLOAT);
+    public static final EntityDataAccessor<Float> LEFT_SHOULDER_MULTIPLIER = SynchedEntityData.defineId(MookaiteConstructEntity.class, EntityDataSerializers.FLOAT);
+    public static final EntityDataAccessor<Float> RIGHT_SHOULDER_MULTIPLIER = SynchedEntityData.defineId(MookaiteConstructEntity.class, EntityDataSerializers.FLOAT);
+    public static final EntityDataAccessor<Float> LEFT_ARM_MULTIPLIER = SynchedEntityData.defineId(MookaiteConstructEntity.class, EntityDataSerializers.FLOAT);
+    public static final EntityDataAccessor<Float> RIGHT_ARM_MULTIPLIER = SynchedEntityData.defineId(MookaiteConstructEntity.class, EntityDataSerializers.FLOAT);
+    public static final EntityDataAccessor<Float> LEFT_LEG_MULTIPLIER = SynchedEntityData.defineId(MookaiteConstructEntity.class, EntityDataSerializers.FLOAT);
+    public static final EntityDataAccessor<Float> RIGHT_LEG_MULTIPLIER = SynchedEntityData.defineId(MookaiteConstructEntity.class, EntityDataSerializers.FLOAT);
+    private static final float ARMOR = 0.5F;
+    private static final float KNOCKBACK_RESISTANCE = 0.75F;
+    private static final float ATTACK_KNOCKBACK = 1.0F;
+    private static final float ATTACK_DAMAGE = 3.0F;
+    private static final float MOVEMENT_SPEED = 0.25F;
+    public static final MookaitePart LEFT_HORN = new MookaitePart("left_horn", LEFT_HORN_TYPE, LEFT_HORN_MULTIPLIER, RIGHT_HORN_MULTIPLIER, Attributes.KNOCKBACK_RESISTANCE, KNOCKBACK_RESISTANCE);
+    public static final MookaitePart RIGHT_HORN = new MookaitePart("right_horn", RIGHT_HORN_TYPE, RIGHT_HORN_MULTIPLIER, LEFT_HORN_MULTIPLIER, Attributes.KNOCKBACK_RESISTANCE, KNOCKBACK_RESISTANCE);
+    public static final MookaitePart LEFT_EYE = new MookaitePart("left_eye", LEFT_EYE_TYPE, LEFT_EYE_MULTIPLIER, RIGHT_EYE_MULTIPLIER, Attributes.FOLLOW_RANGE, ARMOR);
+    public static final MookaitePart RIGHT_EYE = new MookaitePart("right_eye", RIGHT_EYE_TYPE, LEFT_EYE_MULTIPLIER, RIGHT_EYE_MULTIPLIER, Attributes.FOLLOW_RANGE, ARMOR);
+    public static final MookaitePart LEFT_SHOULDER = new MookaitePart("left_shoulder", LEFT_SHOULDER_TYPE, LEFT_SHOULDER_MULTIPLIER,RIGHT_SHOULDER_MULTIPLIER, Attributes.ATTACK_KNOCKBACK, ATTACK_KNOCKBACK);
+    public static final MookaitePart RIGHT_SHOULDER = new MookaitePart("right_shoulder", RIGHT_SHOULDER_TYPE,  RIGHT_SHOULDER_MULTIPLIER, LEFT_SHOULDER_MULTIPLIER, Attributes.ATTACK_KNOCKBACK, ATTACK_KNOCKBACK);
+    public static final MookaitePart LEFT_ARM = new MookaitePart("left_arm_brace", LEFT_ARM_BRACE_TYPE, LEFT_ARM_MULTIPLIER, RIGHT_ARM_MULTIPLIER, Attributes.ATTACK_DAMAGE, ATTACK_DAMAGE);
+    public static final MookaitePart RIGHT_ARM = new MookaitePart("right_arm_brace", RIGHT_ARM_BRACE_TYPE, RIGHT_ARM_MULTIPLIER, LEFT_ARM_MULTIPLIER, Attributes.ATTACK_DAMAGE, ATTACK_DAMAGE);
+    public static final MookaitePart LEFT_LEG = new MookaitePart("left_leg_brace", LEFT_LEG_BRACE_TYPE, LEFT_LEG_MULTIPLIER, RIGHT_LEG_MULTIPLIER, Attributes.MOVEMENT_SPEED, MOVEMENT_SPEED);
+    public static final MookaitePart RIGHT_LEG = new MookaitePart("right_leg_brace", RIGHT_LEG_BRACE_TYPE, RIGHT_LEG_MULTIPLIER, LEFT_LEG_MULTIPLIER, Attributes.MOVEMENT_SPEED, MOVEMENT_SPEED);
     public static final Map<Integer, String> INT_TO_COLOR = Util.make(Maps.newHashMap(), (map) -> {
         map.put(0, "none");
         map.put(1, "scarlet");
@@ -68,12 +95,12 @@ public class MookaiteConstructEntity extends PathfinderMob {
         map.put(6, "ivory");
         map.put(7, "opalite");
     });
-    public static final List<EntityDataAccessor<Integer>> PARTS = ImmutableList.of(
-            LEFT_HORN_TYPE, RIGHT_HORN_TYPE,
-            LEFT_EYE_TYPE, RIGHT_EYE_TYPE,
-            LEFT_SHOULDER_TYPE, RIGHT_SHOULDER_TYPE,
-            LEFT_ARM_BRACE_TYPE, RIGHT_ARM_BRACE_TYPE,
-            LEFT_LEG_BRACE_TYPE, RIGHT_LEG_BRACE_TYPE
+    public static final List<MookaitePart> PARTS = ImmutableList.of(
+            LEFT_HORN, RIGHT_HORN,
+            LEFT_EYE, RIGHT_EYE,
+            LEFT_SHOULDER, RIGHT_SHOULDER,
+            LEFT_ARM, RIGHT_ARM,
+            LEFT_LEG, RIGHT_LEG
     );
     protected int attackCooldown = 200;
 
@@ -85,10 +112,11 @@ public class MookaiteConstructEntity extends PathfinderMob {
     public static AttributeSupplier.Builder registerAttributes() {
         return Mob.createMobAttributes()
                 .add(Attributes.MAX_HEALTH, 150.0D)
-                .add(Attributes.ATTACK_DAMAGE, 3.0F)
-                .add(Attributes.KNOCKBACK_RESISTANCE, 0.75D)
-                .add(Attributes.ARMOR, 1.5D)
-                .add(Attributes.MOVEMENT_SPEED, 0.5F);
+                .add(Attributes.ATTACK_DAMAGE, ATTACK_DAMAGE)
+                .add(Attributes.ATTACK_KNOCKBACK, ATTACK_KNOCKBACK)
+                .add(Attributes.KNOCKBACK_RESISTANCE, KNOCKBACK_RESISTANCE)
+                .add(Attributes.ARMOR, ARMOR)
+                .add(Attributes.MOVEMENT_SPEED, MOVEMENT_SPEED);
     }
 
     @Override
@@ -107,6 +135,16 @@ public class MookaiteConstructEntity extends PathfinderMob {
         this.entityData.define(RIGHT_ARM_BRACE_TYPE, 0);
         this.entityData.define(LEFT_LEG_BRACE_TYPE, 0);
         this.entityData.define(RIGHT_LEG_BRACE_TYPE, 0);
+        this.entityData.define(LEFT_HORN_MULTIPLIER, 0.5F);
+        this.entityData.define(RIGHT_HORN_MULTIPLIER, 0.5F);
+        this.entityData.define(LEFT_EYE_MULTIPLIER, 0.5F);
+        this.entityData.define(RIGHT_EYE_MULTIPLIER, 0.5F);
+        this.entityData.define(LEFT_SHOULDER_MULTIPLIER, 0.5F);
+        this.entityData.define(RIGHT_SHOULDER_MULTIPLIER, 0.5F);
+        this.entityData.define(LEFT_ARM_MULTIPLIER, 0.5F);
+        this.entityData.define(RIGHT_ARM_MULTIPLIER, 0.5F);
+        this.entityData.define(LEFT_LEG_MULTIPLIER, 0.5F);
+        this.entityData.define(RIGHT_LEG_MULTIPLIER, 0.5F);
     }
 
     @Override
@@ -119,16 +157,26 @@ public class MookaiteConstructEntity extends PathfinderMob {
             this.setOpaliteCompanion(tag.getUUID("OpaliteUUID"));
         }
         this.setBurning(tag.getBoolean("IsBurning"));
-        this.setPart(LEFT_HORN_TYPE, tag.getInt("LeftHornType"));
-        this.setPart(RIGHT_HORN_TYPE, tag.getInt("RightHornType"));
-        this.setPart(LEFT_EYE_TYPE, tag.getInt("LeftEyeType"));
-        this.setPart(RIGHT_EYE_TYPE, tag.getInt("RightEyeType"));
-        this.setPart(LEFT_SHOULDER_TYPE, tag.getInt("LeftShoulderType"));
-        this.setPart(RIGHT_SHOULDER_TYPE, tag.getInt("RightShoulderType"));
-        this.setPart(LEFT_ARM_BRACE_TYPE, tag.getInt("LeftArmBraceType"));
-        this.setPart(RIGHT_ARM_BRACE_TYPE, tag.getInt("RightArmBraceType"));
-        this.setPart(LEFT_LEG_BRACE_TYPE, tag.getInt("LeftLegBraceType"));
-        this.setPart(RIGHT_LEG_BRACE_TYPE, tag.getInt("RightLegBraceType"));
+        this.setPart(LEFT_HORN, tag.getInt("LeftHornType"));
+        this.setPart(RIGHT_HORN, tag.getInt("RightHornType"));
+        this.setPart(LEFT_EYE, tag.getInt("LeftEyeType"));
+        this.setPart(RIGHT_EYE, tag.getInt("RightEyeType"));
+        this.setPart(LEFT_SHOULDER, tag.getInt("LeftShoulderType"));
+        this.setPart(RIGHT_SHOULDER, tag.getInt("RightShoulderType"));
+        this.setPart(LEFT_ARM, tag.getInt("LeftArmBraceType"));
+        this.setPart(RIGHT_ARM, tag.getInt("RightArmBraceType"));
+        this.setPart(LEFT_LEG, tag.getInt("LeftLegBraceType"));
+        this.setPart(RIGHT_LEG, tag.getInt("RightLegBraceType"));
+        this.setMultiplier(LEFT_HORN_MULTIPLIER, tag.getFloat("LeftHornMultiplier"));
+        this.setMultiplier(RIGHT_HORN_MULTIPLIER, tag.getFloat("RightHornMultiplier"));
+        this.setMultiplier(LEFT_EYE_MULTIPLIER, tag.getFloat("LeftEyeMultiplier"));
+        this.setMultiplier(RIGHT_EYE_MULTIPLIER, tag.getFloat("RightEyeMultiplier"));
+        this.setMultiplier(LEFT_SHOULDER_MULTIPLIER, tag.getFloat("LeftShoulderMultiplier"));
+        this.setMultiplier(RIGHT_SHOULDER_MULTIPLIER, tag.getFloat("RightShoulderMultiplier"));
+        this.setMultiplier(LEFT_ARM_MULTIPLIER, tag.getFloat("LeftArmBraceMultiplier"));
+        this.setMultiplier(RIGHT_ARM_MULTIPLIER, tag.getFloat("RightArmBraceMultiplier"));
+        this.setMultiplier(LEFT_LEG_MULTIPLIER, tag.getFloat("LeftLegBraceMultiplier"));
+        this.setMultiplier(RIGHT_LEG_MULTIPLIER, tag.getFloat("RightLegBraceMultiplier"));
     }
 
     @Override
@@ -141,16 +189,26 @@ public class MookaiteConstructEntity extends PathfinderMob {
             tag.putUUID("OpaliteUUID", this.getOpaliteCompanion());
         }
         tag.putBoolean("IsBurning", isBurning());
-        tag.putInt("LeftHornType", getPart(LEFT_HORN_TYPE));
-        tag.putInt("RightHornType", getPart(RIGHT_HORN_TYPE));
-        tag.putInt("LeftEyeType", getPart(LEFT_EYE_TYPE));
-        tag.putInt("RightEyeType", getPart(RIGHT_EYE_TYPE));
-        tag.putInt("LeftShoulderType", getPart(LEFT_SHOULDER_TYPE));
-        tag.putInt("RightShoulderType", getPart(RIGHT_SHOULDER_TYPE));
-        tag.putInt("LeftArmBraceType", getPart(LEFT_ARM_BRACE_TYPE));
-        tag.putInt("RightArmBraceType", getPart(RIGHT_ARM_BRACE_TYPE));
-        tag.putInt("LeftLegBraceType", getPart(LEFT_LEG_BRACE_TYPE));
-        tag.putInt("RightLegBraceType", getPart(RIGHT_LEG_BRACE_TYPE));
+        tag.putInt("LeftHornType", getPart(LEFT_HORN));
+        tag.putInt("RightHornType", getPart(RIGHT_HORN));
+        tag.putInt("LeftEyeType", getPart(LEFT_EYE));
+        tag.putInt("RightEyeType", getPart(RIGHT_EYE));
+        tag.putInt("LeftShoulderType", getPart(LEFT_SHOULDER));
+        tag.putInt("RightShoulderType", getPart(RIGHT_SHOULDER));
+        tag.putInt("LeftArmBraceType", getPart(LEFT_ARM));
+        tag.putInt("RightArmBraceType", getPart(RIGHT_ARM));
+        tag.putInt("LeftLegBraceType", getPart(LEFT_LEG));
+        tag.putInt("RightLegBraceType", getPart(RIGHT_LEG));
+        tag.putFloat("LeftHornMultiplier", getMultiplier(LEFT_HORN_MULTIPLIER));
+        tag.putFloat("RightHornMultiplier", getMultiplier(RIGHT_HORN_MULTIPLIER));
+        tag.putFloat("LeftEyeMultiplier", getMultiplier(LEFT_EYE_MULTIPLIER));
+        tag.putFloat("RightEyeMultiplier", getMultiplier(RIGHT_EYE_MULTIPLIER));
+        tag.putFloat("LeftShoulderMultiplier", getMultiplier(LEFT_SHOULDER_MULTIPLIER));
+        tag.putFloat("RightShoulderMultiplier", getMultiplier(RIGHT_SHOULDER_MULTIPLIER));
+        tag.putFloat("LeftArmBraceMultiplier", getMultiplier(LEFT_ARM_MULTIPLIER));
+        tag.putFloat("RightArmBraceMultiplier", getMultiplier(RIGHT_ARM_MULTIPLIER));
+        tag.putFloat("LeftLegBraceMultiplier", getMultiplier(LEFT_LEG_MULTIPLIER));
+        tag.putFloat("RightLegBraceMultiplier", getMultiplier(RIGHT_LEG_MULTIPLIER));
     }
 
     public void setBonder(UUID id) {
@@ -177,28 +235,49 @@ public class MookaiteConstructEntity extends PathfinderMob {
         return this.entityData.get(IS_BURNING);
     }
 
-    public boolean isPresent(EntityDataAccessor<Integer> part) {
+    public boolean isPresent(MookaitePart part) {
         int value = this.getPart(part);
         return value > 0 && value <= 7;
     }
 
-    public int getPart(EntityDataAccessor<Integer> part) {
-        return entityData.get(part);
+    public int getPart(MookaitePart part) {
+        return entityData.get(part.main());
     }
 
-    public void setPart(EntityDataAccessor<Integer> part, int value) {
+    public void setPart(MookaitePart part, int value) {
         if (value < 0 || value > 7) {
             value = random.nextInt(7);
         }
-        entityData.set(part, value);
+        entityData.set(part.main(), value);
+        calculateMultiplier(part, value);
+    }
+
+    public float getMultiplier(EntityDataAccessor<Float> multiplier) {
+        return entityData.get(multiplier);
+    }
+
+    public void setMultiplier(EntityDataAccessor<Float> multiplier, float value) {
+        entityData.set(multiplier, value);
     }
 
     public int countColors(int colour) {
         int amount = 0;
-        for (EntityDataAccessor<Integer> part : PARTS) {
+        for (MookaitePart part : PARTS) {
             if (this.getPart(part) == colour) amount++;
+
         }
         return amount;
+    }
+
+    public void calculateMultiplier(MookaitePart part, int value) {
+        float base = 0.5F;
+        AttributeInstance attribute = this.getAttribute(part.attribute());
+
+        if (!this.isPresent(part)) base = 0.25F;
+        else if (value == 7) base = 1.0F;
+
+        this.setMultiplier(part.multiplier(), base);
+        attribute.setBaseValue(part.base() * (getMultiplier(part.multiplier()) + getMultiplier(part.pair())));
     }
 
     @Override
@@ -208,9 +287,9 @@ public class MookaiteConstructEntity extends PathfinderMob {
         this.goalSelector.addGoal(1, new GoldMagicGoal(this));
         this.goalSelector.addGoal(1, new MauveElectricGoal(this));
         this.goalSelector.addGoal(1, new IvoryProjectileGoal(this));
-        this.goalSelector.addGoal(2, new MeleeAttackGoal(this, 0.4D, true));
-        this.goalSelector.addGoal(3, new MoveTowardsTargetGoal(this, 0.3D, 32.0F));
-        this.goalSelector.addGoal(4, new WaterAvoidingRandomStrollGoal(this, 0.3D));
+        this.goalSelector.addGoal(2, new MeleeAttackGoal(this, 1.0D, true));
+        this.goalSelector.addGoal(3, new MoveTowardsTargetGoal(this, 1.0D, 32.0F));
+        this.goalSelector.addGoal(4, new WaterAvoidingRandomStrollGoal(this, 0.5D));
         this.goalSelector.addGoal(5, new LookAtPlayerGoal(this, Player.class, 6.0F));
         this.goalSelector.addGoal(6, new RandomLookAroundGoal(this));
         this.targetSelector.addGoal(1, new HurtByTargetGoal(this));
@@ -232,16 +311,16 @@ public class MookaiteConstructEntity extends PathfinderMob {
     @Nullable
     @Override
     public SpawnGroupData finalizeSpawn(ServerLevelAccessor level, DifficultyInstance difficulty, MobSpawnType spawn, @Nullable SpawnGroupData data, @Nullable CompoundTag tag) {
-        this.setPart(LEFT_HORN_TYPE, random.nextInt(7));
-        this.setPart(RIGHT_HORN_TYPE, random.nextInt(7));
-        this.setPart(LEFT_EYE_TYPE, random.nextInt(7));
-        this.setPart(RIGHT_EYE_TYPE, random.nextInt(7));
-        this.setPart(LEFT_SHOULDER_TYPE, random.nextInt(7));
-        this.setPart(RIGHT_SHOULDER_TYPE, random.nextInt(7));
-        this.setPart(LEFT_ARM_BRACE_TYPE, random.nextInt(7));
-        this.setPart(RIGHT_ARM_BRACE_TYPE, random.nextInt(7));
-        this.setPart(LEFT_LEG_BRACE_TYPE, random.nextInt(7));
-        this.setPart(RIGHT_LEG_BRACE_TYPE, random.nextInt(7));
+        this.setPart(LEFT_HORN, random.nextInt(7));
+        this.setPart(RIGHT_HORN, random.nextInt(7));
+        this.setPart(LEFT_EYE, random.nextInt(7));
+        this.setPart(RIGHT_EYE, random.nextInt(7));
+        this.setPart(LEFT_SHOULDER, random.nextInt(7));
+        this.setPart(RIGHT_SHOULDER, random.nextInt(7));
+        this.setPart(LEFT_ARM, random.nextInt(7));
+        this.setPart(RIGHT_ARM, random.nextInt(7));
+        this.setPart(LEFT_LEG, random.nextInt(7));
+        this.setPart(RIGHT_LEG, random.nextInt(7));
         return super.finalizeSpawn(level, difficulty, spawn, data, tag);
     }
 
@@ -700,4 +779,6 @@ public class MookaiteConstructEntity extends PathfinderMob {
             super.tick();
         }
     }
+
+    public record MookaitePart(String name, EntityDataAccessor<Integer> main, EntityDataAccessor<Float> multiplier, EntityDataAccessor<Float> pair, Attribute attribute, float base) { }
 }
