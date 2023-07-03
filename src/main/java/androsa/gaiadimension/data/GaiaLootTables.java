@@ -52,8 +52,6 @@ public class GaiaLootTables extends LootTableProvider {
         @Override
         protected void generate() {
             //No Drops
-            noDrops(ModBlocks.gaia_portal);
-            noDrops(ModBlocks.gold_fire);
             noDrops(ModBlocks.malachite_guard_spawner);
 
             //Utility Blocks

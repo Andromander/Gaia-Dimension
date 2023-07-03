@@ -40,11 +40,11 @@ public class ModBlocks {
 
     //Utility Blocks
     public static final RegistryObject<GaiaPortalBlock> gaia_portal = registerNoItem("gaia_portal", () ->
-            new GaiaPortalBlock(PropertiesHandler.stoneProps(MapColor.TERRACOTTA_PINK, -1.0F, -1.0F, false).noCollission().randomTicks().lightLevel((state) -> 15)));
+            new GaiaPortalBlock(PropertiesHandler.stoneProps(MapColor.TERRACOTTA_PINK, -1.0F, -1.0F, false).noCollission().randomTicks().lightLevel((state) -> 15).noLootTable()));
     public static final RegistryObject<Block> keystone_block = register("keystone_block",
             PropertiesHandler.basicProps(MapColor.GOLD, SoundType.METAL, 5.0F, 10.0F).requiresCorrectToolForDrops());
     public static final RegistryObject<Block> gold_fire = registerNoItem("gold_fire", () ->
-            new GoldFireBlock(Properties.of().mapColor(MapColor.GOLD).strength(0.0F).noCollission().randomTicks().lightLevel((state) -> 15)));
+            new GoldFireBlock(Properties.of().mapColor(MapColor.GOLD).strength(0.0F).noCollission().randomTicks().lightLevel((state) -> 15).noLootTable()));
     public static final RegistryObject<Block> pyrite_torch = registerNoItem("pyrite_torch", () -> new PyriteTorchBlock(PropertiesHandler.torchProps()));
     public static final RegistryObject<Block> pyrite_wall_torch = registerNoItem("pyrite_wall_torch", () -> new PyriteWallTorchBlock(PropertiesHandler.torchProps().lootFrom(pyrite_torch)));
     public static final RegistryObject<Block> agate_crafting_table = register("agate_crafting_table", () ->

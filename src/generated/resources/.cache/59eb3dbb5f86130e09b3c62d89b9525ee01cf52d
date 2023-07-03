@@ -1,4 +1,4 @@
-// 1.20	2023-07-04T09:23:13.0359679	Loot Tables
+// 1.20	2023-07-04T09:34:46.364549	Loot Tables
 70fac5f3da5e56a3221f03ad3388e9157b04753a data/gaiadimension/loot_tables/blocks/active_rock.json
 488882d8b9f64b34ecf3a22af357f2aedd29512a data/gaiadimension/loot_tables/blocks/agate_crafting_table.json
 7d233d88ea3fc2923fa77a2fb7e6b9dafd09ff5f data/gaiadimension/loot_tables/blocks/agathum.json
@@ -114,7 +114,6 @@ fffd8145b389b8e51a3bbf1b4a6684235cbb7529 data/gaiadimension/loot_tables/blocks/f
 f16d579c6346314484caf7ed8cefd92e8055c9bb data/gaiadimension/loot_tables/blocks/fossilized_wood.json
 0173af5012227bcc6a9bb2244d11723639f60634 data/gaiadimension/loot_tables/blocks/frail_glitter_block.json
 3ff552d7746fe259fb2e0bd48b9bdd6e6cfd4182 data/gaiadimension/loot_tables/blocks/gaia_cobblestone.json
-15168e06f34c9c1a9a9713eb70e59bac5c91dac1 data/gaiadimension/loot_tables/blocks/gaia_portal.json
 55de799ff9211b581773bf3890315ff236da5b4e data/gaiadimension/loot_tables/blocks/gaia_stone.json
 32deebab9100beaf54c5f79c71936c8976d79bac data/gaiadimension/loot_tables/blocks/gaia_stone_bricks.json
 901a75d165d2726d99c5ff9313306328dc96c3c1 data/gaiadimension/loot_tables/blocks/gaia_stone_furnace.json
@@ -135,7 +134,6 @@ c342376e0f8ff8c35f3b1440ea2d9e4811ecc8cf data/gaiadimension/loot_tables/blocks/g
 b0df229cfcc88e5acb8a81cd6ab92bf45fdbba9f data/gaiadimension/loot_tables/blocks/golden_vine.json
 f88414fb01985ba41dae60e41e6fbbea6fc6e30c data/gaiadimension/loot_tables/blocks/golden_wood.json
 323b1c91da58624f6e0aff86c634179c4a9afbe5 data/gaiadimension/loot_tables/blocks/goldstone_block.json
-d1e3debba539ba58c8d8bbbe76b5485b8fed1663 data/gaiadimension/loot_tables/blocks/gold_fire.json
 9660483345bb14ff1f56d8160ee21212a38fe23c data/gaiadimension/loot_tables/blocks/gold_mookaite.json
 d569140c2a25de6a28274226d904ea7f0fe6730e data/gaiadimension/loot_tables/blocks/gold_orb_tucher.json
 925a009ac9e15b7b8c957e9dd3b9de26ec9b7895 data/gaiadimension/loot_tables/blocks/green_agate_leaves.json
