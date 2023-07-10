@@ -1,6 +1,7 @@
 package androsa.gaiadimension.world.gen.feature.trunk;
 
 import androsa.gaiadimension.registry.registration.ModWorldgen;
+import com.google.common.collect.Lists;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.BlockPos;
@@ -13,7 +14,6 @@ import net.minecraft.world.level.levelgen.feature.configurations.TreeConfigurati
 import net.minecraft.world.level.levelgen.feature.foliageplacers.FoliagePlacer;
 import net.minecraft.world.level.levelgen.feature.trunkplacers.TrunkPlacer;
 import net.minecraft.world.level.levelgen.feature.trunkplacers.TrunkPlacerType;
-import org.apache.commons.compress.utils.Lists;
 
 import java.util.List;
 import java.util.function.BiConsumer;
