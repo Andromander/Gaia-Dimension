@@ -31,7 +31,6 @@ import java.util.function.Function;
 public class CoatedCavesWorldCarver<T extends CaveCarverConfiguration> extends WorldCarver<T> {
 
     public CoatedCavesWorldCarver(Codec<T> config) {
-        //TODO: Height: 256
         super(config);
         liquids = ImmutableSet.of(ModFluids.mineral_water_still.get());
     }

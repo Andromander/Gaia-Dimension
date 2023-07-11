@@ -83,8 +83,7 @@ public class GaiaDimensions {
                 -64,
                 256,
                 1,
-                2/*,
-                new TerrainShaper(CubicSpline.constant(1.0F), CubicSpline.constant(10.0F), CubicSpline.constant(0.0F))*/); //TODO
+                2);
         NoiseRouter noiseRouter = new NoiseRouter(
                 DensityFunctions.zero(),
                 DensityFunctions.zero(),

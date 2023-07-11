@@ -89,11 +89,6 @@ public class ChasmsWorldCarver<T extends CaveCarverConfiguration> extends WorldC
         return 1.0D;
     }
 
-    //TODO
-//    protected int generateCaveStartY(Random rand) {
-//        return rand.nextInt(rand.nextInt(26) + 8);
-//    }
-
     protected void genRoom(CarvingContext context, T config, ChunkAccess chunkIn, Function<BlockPos, Holder<Biome>> biomePos, Aquifer aquifer, double x, double y, double z, float radius, double diameter, CarvingMask mask, CarveSkipChecker checker) {
         double d0 = 1.5D + (double)(Mth.sin(((float)Math.PI / 2F)) * radius);
         double d1 = d0 * diameter;

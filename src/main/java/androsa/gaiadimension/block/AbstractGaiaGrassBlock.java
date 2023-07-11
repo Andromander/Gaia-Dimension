@@ -28,7 +28,6 @@ public abstract class AbstractGaiaGrassBlock extends Block implements Bonemealab
         dirt = dirtblock;
     }
 
-    //TODO
     @Override
     @Deprecated
     public void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
