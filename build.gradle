@@ -88,8 +88,6 @@ sourceSets.main.resources {
 }
 
 jar {
-    archiveName = archivesBaseName + "-" + project.version + ".jar"
-
     manifest {
         attributes(["Specification-Title": "gaiadimension",
                     "Specification-Vendor": "Androsa",
