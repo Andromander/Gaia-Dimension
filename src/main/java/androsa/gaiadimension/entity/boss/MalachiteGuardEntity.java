@@ -57,8 +57,8 @@ public class MalachiteGuardEntity extends Monster {
 
     public MalachiteGuardEntity(EntityType<? extends MalachiteGuardEntity> entity, Level world) {
         super(entity, world);
-        this.maxUpStep = 1.5F;
         this.xpReward = 75;
+        this.setMaxUpStep(1.5F);
     }
 
     public static AttributeSupplier.Builder registerAttributes() {
