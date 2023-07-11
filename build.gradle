@@ -88,7 +88,7 @@ sourceSets.main.resources {
 }
 
 jar {
-    archiveName = archivesBaseName + "." + project.version + ".jar"
+    archiveName = archivesBaseName + "-" + project.version + ".jar"
 
     manifest {
         attributes(["Specification-Title": "gaiadimension",
