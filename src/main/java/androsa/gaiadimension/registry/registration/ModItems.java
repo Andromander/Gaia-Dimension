@@ -132,6 +132,7 @@ public class ModItems {
     public static final RegistryObject<Item> aura_cluster = register("aura_cluster");
     public static final RegistryObject<Item> bismuth_residue = register("bismuth_residue");
     public static final RegistryObject<Item> bismuth_crystal = register("bismuth_crystal");
+    public static final RegistryObject<Item> opalite = register("opalite");
 
     public static final RegistryObject<Item> sugilite_helmet = register("sugilite_helmet", GaiaArmorMaterials.SUGILITE, HELMET);
     public static final RegistryObject<Item> sugilite_chestplate = register("sugilite_chestplate", GaiaArmorMaterials.SUGILITE, CHESTPLATE);

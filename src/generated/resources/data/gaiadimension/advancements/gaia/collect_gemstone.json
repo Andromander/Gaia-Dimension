@@ -193,6 +193,18 @@
       },
       "trigger": "minecraft:inventory_changed"
     },
+    "get_opalite": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "gaiadimension:opalite"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
     "get_proustite": {
       "conditions": {
         "items": [
@@ -304,7 +316,8 @@
       "get_tektite",
       "get_goldstone",
       "get_aura_cluster",
-      "get_bismuth_crystal"
+      "get_bismuth_crystal",
+      "get_opalite"
     ]
   ],
   "sends_telemetry_event": true

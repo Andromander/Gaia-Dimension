@@ -1,10 +1,10 @@
-// 1.20	2023-06-23T11:27:47.8365136	Tags for minecraft:item mod id gaiadimension
+// 1.20	2023-07-14T09:57:16.1695569	Tags for minecraft:item mod id gaiadimension
 b8824061659e34d2bcb2a29f7526c559c25d1834 data/forge/tags/items/bones.json
 00f056f549ce6b76c1ebf78cd3805f4d1f83acfd data/forge/tags/items/dusts.json
 307d706a2aab12da68949f0ac0ae908638e5b471 data/forge/tags/items/dusts/fine.json
 0e5859f7d9c9dd9bb141b8efc06d0bff6801c23e data/forge/tags/items/dusts/goldstone.json
 7c84d7f6f3cdd65b94309c000a30ea9f605952ca data/forge/tags/items/dusts/hot.json
-d734260f7fe3c6859624e613493e1ea5e32de9f5 data/forge/tags/items/gems.json
+313b9aff1f1c7663c8f4ca4b5c3e729916282fe1 data/forge/tags/items/gems.json
 fc9e4f1e998159347ff8abb7fa476694abde7129 data/forge/tags/items/gems/aura.json
 bae91599f65c97aa1f19f003a8b45a19caecf990 data/forge/tags/items/gems/benitoite.json
 c06b52ed89329a7cc3d39c7b07f799ea663d8206 data/forge/tags/items/gems/bismuth.json
@@ -21,6 +21,7 @@ d22a83fe0885f7fcc613531236b5b4871854ec94 data/forge/tags/items/gems/ixiolite.jso
 8024c8c8a569b882e62ecd8c79e1062cabb865a2 data/forge/tags/items/gems/labradorite.json
 4e9f8fd0103c39faeacbdb4b3beae1351f8a1d07 data/forge/tags/items/gems/leucite.json
 f7abde20556fdf47ad5b5e5b5d2c0b489d0e8b8b data/forge/tags/items/gems/moonstone.json
+1d3213601f94fb7a0a3f2dd99a83bcf8092f5d0d data/forge/tags/items/gems/opalite.json
 3452e4d52968e01b5b9744c911615a44edff9026 data/forge/tags/items/gems/proustite.json
 56bfb4b413aea2c405b323a0a4c722d15eecef33 data/forge/tags/items/gems/pyrite.json
 4856b401856ff58692a1006a48d4ee862ce1e9a1 data/forge/tags/items/gems/red_opal.json
@@ -76,7 +77,7 @@ fd8e2693b0608b474f1f5d748e2c5446606a9c42 data/gaiadimension/tags/items/burnt_log
 c4857a5da01b41cd04581d4d85cd6d0420ffeecd data/gaiadimension/tags/items/crude_storage_blacklist.json
 4bdaba1b7376284767884597916b1ddc88988574 data/gaiadimension/tags/items/fossilized_logs.json
 1cd062210289b860829029d2daf5ddc6dca72920 data/gaiadimension/tags/items/gaia_bricks.json
-8e2cd4fe8de8698b4676001fa9d234d15b1ac49c data/gaiadimension/tags/items/gem_pouch_items.json
+bfd07b7fe4f76561e823c360c4e31f861423b99f data/gaiadimension/tags/items/gem_pouch_items.json
 8984ad8286ec1911e16a6180db174b3c8ae26b74 data/gaiadimension/tags/items/golden_logs.json
 c0a14608cf3450ba2b117f632ec560b832e6ae57 data/gaiadimension/tags/items/green_agate_logs.json
 b4f54a6a78f1774ef9ece4931668009485a9c49b data/gaiadimension/tags/items/jade_bricks.json
@@ -85,7 +86,7 @@ a7ef6957fa3ffe8f9a1b4c73f0480355bc02054a data/gaiadimension/tags/items/jet_brick
 1b8f76fa91301b319b9bfcc3ce9f7d673001c1d3 data/gaiadimension/tags/items/pink_agate_logs.json
 2e93564739d6ff64a6824fdc175143eefcb32969 data/gaiadimension/tags/items/purple_agate_logs.json
 f9cec1e73ad9b78997ec6e268f7194198b7ce97a data/minecraft/tags/items/arrows.json
-8e2cd4fe8de8698b4676001fa9d234d15b1ac49c data/minecraft/tags/items/beacon_payment_items.json
+bfd07b7fe4f76561e823c360c4e31f861423b99f data/minecraft/tags/items/beacon_payment_items.json
 b9a0b933dee19d656843afcdfe9e88bc0ecb35fe data/minecraft/tags/items/leaves.json
 1e390eb30d5274548cb84e76e7daa8daf1faea53 data/minecraft/tags/items/logs.json
 4893ede937c1d21c7795c0d2d4ee8dad3e5f1630 data/minecraft/tags/items/saplings.json

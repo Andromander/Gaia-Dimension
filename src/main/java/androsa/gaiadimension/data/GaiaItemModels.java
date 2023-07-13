@@ -390,6 +390,7 @@ public class GaiaItemModels extends GaiaItemModelProvider {
         basicItem(ModItems.aura_cluster);
         basicItem(ModItems.bismuth_residue);
         basicItem(ModItems.bismuth_crystal);
+        basicItem(ModItems.opalite);
         basicItem(ModItems.sugilite_helmet);
         basicItem(ModItems.sugilite_chestplate);
         basicItem(ModItems.sugilite_legs);

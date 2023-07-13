@@ -1,11 +1,11 @@
-// 1.20	2023-06-23T11:27:47.8465224	Advancements
+// 1.20	2023-07-14T09:57:16.1715588	Advancements
 79d10f1b49db48c3eb9eb28354c83bb17c533546 data/gaiadimension/advancements/gaia/all_malachite_gear.json
-273f47830611579e455802147d309f99bebe545c data/gaiadimension/advancements/gaia/collect_gemstone.json
+032cfc7eee5b4996de56fbc3d1c1c80307ea7cf7 data/gaiadimension/advancements/gaia/collect_gemstone.json
 b07bbe47d2b93678cefa945ac8bc823b394f0f23 data/gaiadimension/advancements/gaia/explore_gaia.json
 d59901f1cdb02ea9dcf59f20a262a725e2f4952f data/gaiadimension/advancements/gaia/find_malachite_watchtower.json
 60ceadd4fd990aee7bf72f15519007e9d506efa8 data/gaiadimension/advancements/gaia/find_mini_tower.json
 4c6556942dd6c7cc17d06a84b429fdb67bee0c93 data/gaiadimension/advancements/gaia/get_all_armor.json
-121ef1e0e0cfcf2cba3c0440b959058bbc7d31b5 data/gaiadimension/advancements/gaia/get_all_gemstones.json
+8df1d8e539f1c3f2fa0dc72af0a996809e64fc72 data/gaiadimension/advancements/gaia/get_all_gemstones.json
 4dcfd9e5a7ee452acc3a5c378f83bfd478f33667 data/gaiadimension/advancements/gaia/get_all_tools.json
 ffd4e7c7409522c6cc95e3878069fd49fa96c2cb data/gaiadimension/advancements/gaia/get_armor.json
 9589e3cccc88ffb430a8ec60eca36bc73f75bd23 data/gaiadimension/advancements/gaia/get_tool.json

@@ -24,14 +24,14 @@ public class GaiaItemTags extends GaiaItemTagsProvider {
     ImmutableList<Supplier<Item>> BEACON_PAYMENTS = ImmutableList.of(
             ModItems.sugilite, ModItems.hematite, ModItems.cinnabar, ModItems.labradorite, ModItems.moonstone, ModItems.red_opal, ModItems.blue_opal, ModItems.green_opal,
             ModItems.white_opal, ModItems.ixiolite, ModItems.proustite, ModItems.euclase, ModItems.leucite, ModItems.carnelian, ModItems.benitoite, ModItems.diopside,
-            ModItems.chalcedony, ModItems.pyrite, ModItems.tektite, ModItems.goldstone, ModItems.aura_cluster, ModItems.bismuth_crystal
+            ModItems.chalcedony, ModItems.pyrite, ModItems.tektite, ModItems.goldstone, ModItems.aura_cluster, ModItems.bismuth_crystal, ModItems.opalite
     );
     ImmutableList<TagKey<Item>> GEM_TAGS = ImmutableList.of(
             GaiaTags.Items.GEMS_SUGILITE, GaiaTags.Items.GEMS_HEMATITE, GaiaTags.Items.GEMS_CINNABAR, GaiaTags.Items.GEMS_LABRADORITE, GaiaTags.Items.GEMS_MOONSTONE,
             GaiaTags.Items.GEMS_RED_OPAL, GaiaTags.Items.GEMS_BLUE_OPAL, GaiaTags.Items.GEMS_GREEN_OPAL, GaiaTags.Items.GEMS_WHITE_OPAL, GaiaTags.Items.GEMS_IXIOLITE,
             GaiaTags.Items.GEMS_PROUSTITE, GaiaTags.Items.GEMS_EUCLASE, GaiaTags.Items.GEMS_LEUCITE, GaiaTags.Items.GEMS_CARNELIAN, GaiaTags.Items.GEMS_BENITOITE,
             GaiaTags.Items.GEMS_DIOPSIDE, GaiaTags.Items.GEMS_CHALCEDONY, GaiaTags.Items.GEMS_PYRITE, GaiaTags.Items.GEMS_TEKTITE, GaiaTags.Items.GEMS_GOLDSTONE,
-            GaiaTags.Items.GEMS_AURA, GaiaTags.Items.GEMS_BISMUTH
+            GaiaTags.Items.GEMS_AURA, GaiaTags.Items.GEMS_BISMUTH, GaiaTags.Items.GEMS_OPALITE
     );
     ImmutableList<TagKey<Item>> ORE_TAGS = ImmutableList.of(
             GaiaTags.Items.ORES_SUGILITE, GaiaTags.Items.ORES_HEMATITE, GaiaTags.Items.ORES_CINNABAR, GaiaTags.Items.ORES_LABRADORITE, GaiaTags.Items.ORES_MOONSTONE,
@@ -112,6 +112,7 @@ public class GaiaItemTags extends GaiaItemTagsProvider {
         tag(GaiaTags.Items.GEMS_GOLDSTONE).add(ModItems.goldstone.get());
         tag(GaiaTags.Items.GEMS_AURA).add(ModItems.aura_cluster.get());
         tag(GaiaTags.Items.GEMS_BISMUTH).add(ModItems.bismuth_crystal.get());
+        tag(GaiaTags.Items.GEMS_OPALITE).add(ModItems.opalite.get());
 
         copy(GaiaTags.Blocks.ORES_SUGILITE, GaiaTags.Items.ORES_SUGILITE);
         copy(GaiaTags.Blocks.ORES_HEMATITE, GaiaTags.Items.ORES_HEMATITE);

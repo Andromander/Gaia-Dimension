@@ -67,6 +67,7 @@ public class GaiaAdvancements extends GaiaAdvancementProvider {
                     .addCriterion("get_goldstone", item(ModItems.goldstone))
                     .addCriterion("get_aura_cluster", item(ModItems.aura_cluster))
                     .addCriterion("get_bismuth_crystal", item(ModItems.bismuth_crystal))
+                    .addCriterion("get_opalite", item(ModItems.opalite))
                     .save(consumer, loc("collect_gemstone"));
             //Restructure a Gemstone
             Advancement gemstone2 = Advancement.Builder.advancement()
@@ -124,6 +125,7 @@ public class GaiaAdvancements extends GaiaAdvancementProvider {
                     .addCriterion("get_goldstone", item(ModItems.goldstone))
                     .addCriterion("get_aura_cluster", item(ModItems.aura_cluster))
                     .addCriterion("get_bismuth_crystal", item(ModItems.bismuth_crystal))
+                    .addCriterion("get_opalite", item(ModItems.opalite))
                     .save(consumer, loc("get_all_gemstones"));
             //Craft a weapon from Gaia
             Advancement tool1 = Advancement.Builder.advancement()

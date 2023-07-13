@@ -193,6 +193,18 @@
       },
       "trigger": "minecraft:inventory_changed"
     },
+    "get_opalite": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "gaiadimension:opalite"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
     "get_proustite": {
       "conditions": {
         "items": [
@@ -347,6 +359,9 @@
     ],
     [
       "get_bismuth_crystal"
+    ],
+    [
+      "get_opalite"
     ]
   ],
   "rewards": {

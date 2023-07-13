@@ -106,6 +106,7 @@ public class GaiaTags {
         public static final TagKey<Item> GEMS_GOLDSTONE = tagItemForge("gems/goldstone");
         public static final TagKey<Item> GEMS_AURA = tagItemForge("gems/aura");
         public static final TagKey<Item> GEMS_BISMUTH = tagItemForge("gems/bismuth");
+        public static final TagKey<Item> GEMS_OPALITE = tagItemForge("gems/opalite");
 
         public static final TagKey<Item> TILES = tagItem("agate_tiles");
         public static final TagKey<Item> PINK_AGATE_LOGS = tagItem("pink_agate_logs");

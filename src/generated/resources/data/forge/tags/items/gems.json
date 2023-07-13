@@ -21,6 +21,7 @@
     "#forge:gems/tektite",
     "#forge:gems/goldstone",
     "#forge:gems/aura",
-    "#forge:gems/bismuth"
+    "#forge:gems/bismuth",
+    "#forge:gems/opalite"
   ]
 }
