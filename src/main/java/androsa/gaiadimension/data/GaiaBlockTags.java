@@ -278,7 +278,7 @@ public class GaiaBlockTags extends GaiaBlockTagsProvider {
         tag(GaiaTags.Blocks.GAIA_STONE).add(ModBlocks.gaia_stone.get());
         tag(GaiaTags.Blocks.STATIC).add(ModBlocks.gaia_stone.get(), ModBlocks.wasteland_stone.get());
         tag(GaiaTags.Blocks.VOLCANIC).add(ModBlocks.gaia_stone.get(), ModBlocks.volcanic_rock.get());
-        tag(GaiaTags.Blocks.MOOKAITE_STONE).add(ModBlocks.scarlet_mookaite.get(), ModBlocks.auburn_mookaite.get(), ModBlocks.gold_mookaite.get(), ModBlocks.mauve_mookaite.get(), ModBlocks.beige_mookaite.get(), ModBlocks.ivory_mookaite.get());
+        tag(GaiaTags.Blocks.MOOKAITE).add(ModBlocks.scarlet_mookaite.get(), ModBlocks.auburn_mookaite.get(), ModBlocks.gold_mookaite.get(), ModBlocks.mauve_mookaite.get(), ModBlocks.beige_mookaite.get(), ModBlocks.ivory_mookaite.get());
         tag(GaiaTags.Blocks.GAIA_GRASS).add(ModBlocks.glitter_grass.get(), ModBlocks.corrupted_grass.get(), ModBlocks.murky_grass.get(), ModBlocks.soft_grass.get(), ModBlocks.gilded_grass.get());
         tag(GaiaTags.Blocks.GAIA_SOIL).add(ModBlocks.heavy_soil.get(), ModBlocks.corrupted_soil.get(), ModBlocks.boggy_soil.get(), ModBlocks.light_soil.get(), ModBlocks.aurum_soil.get());
         tag(GaiaTags.Blocks.GAIA_CARVER_REPLACEABLES).addTags(GaiaTags.Blocks.GAIA_GRASS, GaiaTags.Blocks.GAIA_SOIL)

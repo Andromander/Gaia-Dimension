@@ -17,7 +17,6 @@ public class GaiaBiomeFeatures {
     public static final RuleTest GAIA_STONE = new TagMatchTest(GaiaTags.Blocks.GAIA_STONE);
     public static final RuleTest VOLCANIC = new TagMatchTest(GaiaTags.Blocks.VOLCANIC);
     public static final RuleTest STATIC = new TagMatchTest(GaiaTags.Blocks.STATIC);
-    public static final RuleTest MOOKAITE = new TagMatchTest(GaiaTags.Blocks.MOOKAITE_STONE);
 
     public static final BlockState GLITTER_GRASS = state(ModBlocks.glitter_grass);
     public static final BlockState CORRUPT_GRASS = state(ModBlocks.corrupted_grass);
