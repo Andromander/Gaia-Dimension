@@ -12,7 +12,6 @@ import net.minecraft.data.worldgen.BootstapContext;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.level.biome.Biome;
-import net.minecraft.world.level.biome.BiomeGenerationSettings;
 import net.minecraft.world.level.levelgen.carver.ConfiguredWorldCarver;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 
@@ -320,7 +319,7 @@ public class GaiaBiomeMaker extends GaiaBiomeProvider {
         return buildBiome(
                 createBuilder(
                         createAmbience(14646073, 16165141, 12793637),
-                        BiomeGenerationSettings.EMPTY,
+                        mookaiteMesa(features, carvers),
                         buildSpawns(createSpawns()
                                 .addSpawn(MobCategory.CREATURE, mobData(ModEntities.MOOKAITE_CONSTRUCT, 10, 1, 2))
                                 .addSpawn(MobCategory.CREATURE, mobData(ModEntities.OPALITE_CONSTRUCT, 10, 1, 2)))

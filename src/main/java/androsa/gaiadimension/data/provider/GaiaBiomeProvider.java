@@ -261,6 +261,12 @@ public abstract class GaiaBiomeProvider {
                 .build();
     }
 
+    public static BiomeGenerationSettings mookaiteMesa(HolderGetter<PlacedFeature> features, HolderGetter<ConfiguredWorldCarver<?>> carvers) {
+        return createSettings(features, carvers)
+                .addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, GaiaFeatures.Placed.ORE_OPALITE)
+                .build();
+    }
+
     public static BiomeGenerationSettings mineralBiome(HolderGetter<PlacedFeature> features, HolderGetter<ConfiguredWorldCarver<?>> carvers) {
         return createSettings(features, carvers)
                 .addFeature(GenerationStep.Decoration.LAKES, GaiaFeatures.Placed.LAKE_SUPERHOT_MAGMA_RARE)

@@ -56,6 +56,7 @@ public class GaiaTags {
         public static final TagKey<Item> ORES_GREEN_OPAL = tagItemForge("ore/green_opal");
         public static final TagKey<Item> ORES_WHITE_OPAL = tagItemForge("ore/white_opal");
         public static final TagKey<Item> ORES_PYRITE = tagItemForge("ore/pyrite");
+        public static final TagKey<Item> ORES_OPALITE = tagItemForge("ore/opalite");
         public static final TagKey<Item> STORAGE_BLOCKS_SUGILITE = tagItemForge("storage_blocks/sugilite");
         public static final TagKey<Item> STORAGE_BLOCKS_HEMATITE = tagItemForge("storage_blocks/hematite");
         public static final TagKey<Item> STORAGE_BLOCKS_CINNABAR = tagItemForge("storage_blocks/cinnabar");
@@ -135,6 +136,7 @@ public class GaiaTags {
         public static final TagKey<Block> GAIA_STONE = tagBlock("base_stone_gaia");
         public static final TagKey<Block> VOLCANIC = tagBlock("base_stone_volcanic");
         public static final TagKey<Block> STATIC = tagBlock("base_stone_static");
+        public static final TagKey<Block> MOOKAITE_STONE = tagBlock("base_stone_mookaite");
         public static final TagKey<Block> GAIA_CARVER_REPLACEABLES = tagBlock("gaia_carver_replaceables");
         public static final TagKey<Block> GAIA_GRASS = tagBlock("gaia_grass");
         public static final TagKey<Block> GAIA_SOIL = tagBlock("gaia_soil");
@@ -165,6 +167,7 @@ public class GaiaTags {
         public static final TagKey<Block> ORES_GREEN_OPAL = tagBlockForge("ore/green_opal");
         public static final TagKey<Block> ORES_WHITE_OPAL = tagBlockForge("ore/white_opal");
         public static final TagKey<Block> ORES_PYRITE = tagBlockForge("ore/pyrite");
+        public static final TagKey<Block> ORES_OPALITE = tagBlockForge("ore/opalite");
         public static final TagKey<Block> STORAGE_BLOCKS_SUGILITE = tagBlockForge("storage_blocks/sugilite");
         public static final TagKey<Block> STORAGE_BLOCKS_HEMATITE = tagBlockForge("storage_blocks/hematite");
         public static final TagKey<Block> STORAGE_BLOCKS_CINNABAR = tagBlockForge("storage_blocks/cinnabar");

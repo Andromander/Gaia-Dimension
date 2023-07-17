@@ -5,6 +5,7 @@ import androsa.gaiadimension.registry.registration.ModBlocks;
 import androsa.gaiadimension.registry.registration.ModWorldgen;
 import androsa.gaiadimension.registry.values.GaiaBiomeFeatures;
 import androsa.gaiadimension.world.gen.feature.config.FeatureHeightConfig;
+import androsa.gaiadimension.world.gen.feature.config.OpaliteOreConfiguration;
 import androsa.gaiadimension.world.gen.feature.config.TwoBlockStateConfig;
 import androsa.gaiadimension.world.gen.feature.decorator.GoldenVineDecorator;
 import androsa.gaiadimension.world.gen.feature.foliage.BulbFoliagePlacer;
@@ -134,6 +135,7 @@ public class GaiaFeatures extends GaiaBiomeFeatures {
         public static final ResourceKey<ConfiguredFeature<?, ?>> ore_blue_opal = registerFeature("ore_blue_opal");
         public static final ResourceKey<ConfiguredFeature<?, ?>> ore_green_opal = registerFeature("ore_green_opal");
         public static final ResourceKey<ConfiguredFeature<?, ?>> ore_white_opal = registerFeature("ore_white_opal");
+        public static final ResourceKey<ConfiguredFeature<?, ?>> ore_opalite = registerFeature("ore_opalite");
         public static final ResourceKey<ConfiguredFeature<?, ?>> disk_static_stone = registerFeature("disk_static_stone");
         public static final ResourceKey<ConfiguredFeature<?, ?>> disk_bog_patch = registerFeature("disk_bog_patch");
         public static final ResourceKey<ConfiguredFeature<?, ?>> disk_gilded_stone = registerFeature("disk_gilded_brilliant_stone");
@@ -283,6 +285,7 @@ public class GaiaFeatures extends GaiaBiomeFeatures {
             context.register(ore_blue_opal, oreFeature(GAIA_STONE, BLUE_OPAL_ORE, 8));
             context.register(ore_green_opal, oreFeature(GAIA_STONE, GREEN_OPAL_ORE, 8));
             context.register(ore_white_opal, oreFeature(GAIA_STONE, WHITE_OPAL_ORE, 8));
+            context.register(ore_opalite, registerFeature(ModWorldgen.OPALITE_ORE.get(), new OpaliteOreConfiguration(12)));
             context.register(disk_static_stone, registerFeature(Feature.DISK, diskConfig(STATIC_STONE, match(ModBlocks.wasteland_stone), UniformInt.of(2, 4), 3)));
             context.register(disk_bog_patch, registerFeature(ModWorldgen.BOG_PATCH.get(), diskConfig(IMPURE_SLUDGE, match(ModBlocks.murky_grass, ModBlocks.boggy_soil), UniformInt.of(1, 4), 2)));
             context.register(disk_gilded_stone, registerFeature(Feature.DISK, diskConfig(GILDED_BRILLIANT_STONE, match(ModBlocks.brilliant_stone), UniformInt.of(2, 4), 2)));
@@ -412,6 +415,7 @@ public class GaiaFeatures extends GaiaBiomeFeatures {
         public static final ResourceKey<PlacedFeature> ORE_GREEN_OPAL = registerPlaced("ore_green_opal");
         public static final ResourceKey<PlacedFeature> ORE_WHITE_OPAL_COMMON = registerPlaced("ore_white_opal_common");
         public static final ResourceKey<PlacedFeature> ORE_WHITE_OPAL_RARE = registerPlaced("ore_white_opal_rare");
+        public static final ResourceKey<PlacedFeature> ORE_OPALITE = registerPlaced("ore_opalite");
         public static final ResourceKey<PlacedFeature> DISK_STATIC_STONE = registerPlaced("disk_static_stone");
         public static final ResourceKey<PlacedFeature> DISK_BOG_PATCH = registerPlaced("disk_bog_patch");
         public static final ResourceKey<PlacedFeature> DISK_GILDED_BRILLIANT_STONE = registerPlaced("disk_gilded_brilliant_stone");
@@ -650,6 +654,7 @@ public class GaiaFeatures extends GaiaBiomeFeatures {
             context.register(ORE_GREEN_OPAL, placedOre(features, Configured.ore_green_opal, 30, 4));
             context.register(ORE_WHITE_OPAL_COMMON, placedOre(features, Configured.ore_white_opal, 25, 4));
             context.register(ORE_WHITE_OPAL_RARE, placedOre(features, Configured.ore_white_opal, 20, 3));
+            context.register(ORE_OPALITE, placedOre(features, Configured.ore_opalite, 120, 7));
             context.register(DISK_STATIC_STONE, registerPlacedFeature(features, Configured.disk_static_stone,
                     InSquarePlacement.spread(),
                     PlacementUtils.HEIGHTMAP_TOP_SOLID,

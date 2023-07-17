@@ -299,6 +299,12 @@ public class GaiaBlockStates extends GaiaBlockStateProvider {
         basicBlock(ModBlocks.speckled_rock);
         basicBlock(ModBlocks.coarse_rock);
         basicBlock(ModBlocks.precious_rock);
+        basicBlock(ModBlocks.scarlet_opalite_ore);
+        basicBlock(ModBlocks.auburn_opalite_ore);
+        basicBlock(ModBlocks.gold_opalite_ore);
+        basicBlock(ModBlocks.mauve_opalite_ore);
+        basicBlock(ModBlocks.beige_opalite_ore);
+        basicBlock(ModBlocks.ivory_opalite_ore);
         pottedPlantBlock(ModBlocks.potted_thiscus);
         pottedPlantBlock(ModBlocks.potted_ouzium);
         pottedPlantBlock(ModBlocks.potted_agathum);

@@ -1,12 +1,13 @@
-// 1.20	2023-06-23T11:27:47.8455213	Tags for minecraft:block mod id gaiadimension
+// 1.20	2023-07-17T11:20:12.1893776	Tags for minecraft:block mod id gaiadimension
 a0f6d052fb3fbfa78856319e5a0690260f5f1324 data/forge/tags/blocks/glass.json
-a4928828b465e67b2bcd283525a97fb3deafb4e0 data/forge/tags/blocks/ores.json
+19461ab2b979018bb60577ac954869fedc511a4a data/forge/tags/blocks/ores.json
 4b8f45b473a841817cf09db0adaba060881f30e6 data/forge/tags/blocks/ore/blue_opal.json
 5f28a31597ce561c44092a357c333621293f601b data/forge/tags/blocks/ore/cinnabar.json
 06c0543475a49fde69ce09455d8a385ec4ec725d data/forge/tags/blocks/ore/green_opal.json
 53d60cb18b4424da303684ad8fc8150c6631d67d data/forge/tags/blocks/ore/hematite.json
 cd1808082a041baee1ebef2d74445b9b0744cf41 data/forge/tags/blocks/ore/labradorite.json
 ed0a6860d19095c05b9a3f153256ccbe68f12e71 data/forge/tags/blocks/ore/moonstone.json
+db9141f81a600b872f15596aa0029f0c6a967525 data/forge/tags/blocks/ore/opalite.json
 2a68e5026eed490ab017fa76b541e76b680e6185 data/forge/tags/blocks/ore/pyrite.json
 dcd4ca26591bdd8677a136ac5750aca03d3663b9 data/forge/tags/blocks/ore/red_opal.json
 c68e0f1188532e3ddba1e571463ae634e7ce75f4 data/forge/tags/blocks/ore/sugilite.json
@@ -38,6 +39,7 @@ c17d48cad4a7c7c19a92d57a2475718999347e7e data/forge/tags/blocks/storage_blocks/t
 fd2559bda96191cd7b5e0fc7352a550af755c12c data/gaiadimension/tags/blocks/amethyst_bricks.json
 52f97525d7b3dd2efbf55a1b17037134101b39db data/gaiadimension/tags/blocks/aura_logs.json
 2241651699a1b19325a31ab65f3f6897849be871 data/gaiadimension/tags/blocks/base_stone_gaia.json
+03694c1040ed55e92c85a2343f837567a996f30d data/gaiadimension/tags/blocks/base_stone_mookaite.json
 422e15a990aec83bf8b5cfdaf656290e1b99b46d data/gaiadimension/tags/blocks/base_stone_static.json
 af3891e1ab1728b31ca89fc17e4f4b126f938f18 data/gaiadimension/tags/blocks/base_stone_volcanic.json
 8be37263f09e65f2ace3ee86ec4f592b73d54005 data/gaiadimension/tags/blocks/blue_agate_logs.json
@@ -65,11 +67,11 @@ e0a5ebfc298d52b6f4a5832eaea6015572e4ca25 data/minecraft/tags/blocks/guarded_by_p
 b9a0b933dee19d656843afcdfe9e88bc0ecb35fe data/minecraft/tags/blocks/leaves.json
 1e390eb30d5274548cb84e76e7daa8daf1faea53 data/minecraft/tags/blocks/logs.json
 b1c2e352c0507c61f1712855b4086ac1ec1a9e8c data/minecraft/tags/blocks/mineable/axe.json
-267903275c04663d6793d7b05821bc9746ed1dbd data/minecraft/tags/blocks/mineable/pickaxe.json
+28cc3fa3e88384c222f7e4e7a0f6feaade2c84d5 data/minecraft/tags/blocks/mineable/pickaxe.json
 6746cb8fa96e4ae2f4a32c5da90209292dcadc90 data/minecraft/tags/blocks/mineable/shovel.json
 8060177bd562c1795b1ed402783496cfb565e288 data/minecraft/tags/blocks/needs_diamond_tool.json
 8e72e1b24b368cfd419551bed57e585ef95336cf data/minecraft/tags/blocks/needs_iron_tool.json
-872f939de0050365d292dfad6d1f655c70b8ea38 data/minecraft/tags/blocks/needs_stone_tool.json
+416f6919ef08afaadb4be1bd5f3b4dfa561258a6 data/minecraft/tags/blocks/needs_stone_tool.json
 306bdf0661fb7c2f8d93af69a1fad3d4ab8a7a0a data/minecraft/tags/blocks/portals.json
 4893ede937c1d21c7795c0d2d4ee8dad3e5f1630 data/minecraft/tags/blocks/saplings.json
 61e6606b20391fce9702d6a75c25b8f684f3bc4f data/minecraft/tags/blocks/slabs.json

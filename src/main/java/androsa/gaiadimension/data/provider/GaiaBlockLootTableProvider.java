@@ -66,6 +66,10 @@ public abstract class GaiaBlockLootTableProvider extends BlockLootSubProvider {
         super.add(block.get(), (result) -> createOreDrop(result, drop.get()));
     }
 
+    public void dropWithMultiple(Supplier<Block> block, Supplier<Item> drop) {
+        super.add(block.get(), (result) -> multipleOreDrops(result, drop.get()));
+    }
+
     public void dropOnlySilk(Supplier<Block> block) {
         dropWhenSilkTouch(block.get());
     }
@@ -148,6 +152,12 @@ public abstract class GaiaBlockLootTableProvider extends BlockLootSubProvider {
         return createShearsDispatchTable(block, applyExplosionDecay(block, LootItem.lootTableItem(ModItems.crystal_shard.get())
                 .when(LootItemRandomChanceCondition.randomChance(0.125F))
                 .apply(ApplyBonusCount.addUniformBonusCount(Enchantments.BLOCK_FORTUNE, 2))));
+    }
+
+    protected LootTable.Builder multipleOreDrops(Block ore, Item drop) {
+        return createSilkTouchDispatchTable(ore, applyExplosionDecay(ore, LootItem.lootTableItem(drop)
+                .apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 3.0F)))
+                .apply(ApplyBonusCount.addOreBonusCount(Enchantments.BLOCK_FORTUNE))));
     }
 
     protected static LootTable.Builder doubleShearsOnly(Block block, Block half) {

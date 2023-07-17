@@ -347,6 +347,12 @@ public class GaiaLootTables extends LootTableProvider {
             dropSelf(ModBlocks.speckled_rock);
             dropSelf(ModBlocks.coarse_rock);
             dropSelf(ModBlocks.precious_rock);
+            dropWithMultiple(ModBlocks.scarlet_opalite_ore, ModItems.opalite);
+            dropWithMultiple(ModBlocks.auburn_opalite_ore, ModItems.opalite);
+            dropWithMultiple(ModBlocks.gold_opalite_ore, ModItems.opalite);
+            dropWithMultiple(ModBlocks.mauve_opalite_ore, ModItems.opalite);
+            dropWithMultiple(ModBlocks.beige_opalite_ore, ModItems.opalite);
+            dropWithMultiple(ModBlocks.ivory_opalite_ore, ModItems.opalite);
 
             //Flower Pots
             dropPot(ModBlocks.potted_thiscus);

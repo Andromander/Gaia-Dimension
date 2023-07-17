@@ -296,6 +296,12 @@ public class GaiaItemModels extends GaiaItemModelProvider {
         blockItem(ModBlocks.speckled_rock);
         blockItem(ModBlocks.coarse_rock);
         blockItem(ModBlocks.precious_rock);
+        blockItem(ModBlocks.scarlet_opalite_ore);
+        blockItem(ModBlocks.auburn_opalite_ore);
+        blockItem(ModBlocks.gold_opalite_ore);
+        blockItem(ModBlocks.mauve_opalite_ore);
+        blockItem(ModBlocks.beige_opalite_ore);
+        blockItem(ModBlocks.ivory_opalite_ore);
 
         basicItem(ModItems.crystallized_redstone);
         basicItem(ModItems.crystallized_lapis_lazuli);

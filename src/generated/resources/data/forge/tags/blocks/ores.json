@@ -9,6 +9,7 @@
     "#forge:ore/blue_opal",
     "#forge:ore/green_opal",
     "#forge:ore/white_opal",
-    "#forge:ore/pyrite"
+    "#forge:ore/pyrite",
+    "#forge:ore/opalite"
   ]
 }

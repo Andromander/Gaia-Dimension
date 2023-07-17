@@ -1,4 +1,4 @@
-// 1.20	2023-07-14T09:57:16.1635515	Gaia Item Models
+// 1.20	2023-07-15T12:17:28.4637281	Gaia Item Models
 d5c0f0011c11d4bd7b161026eed13370329d4981 assets/gaiadimension/models/item/active_rock.json
 f8516b22f5651209e5c6893ab609ebc1105db572 assets/gaiadimension/models/item/agate_arrow.json
 8edce106f0b6a88ad044dafcb45074427a389d02 assets/gaiadimension/models/item/agate_axe.json
@@ -22,6 +22,7 @@ cd48f96144ad6810b6e2ba6ea38d293f177e60d9 assets/gaiadimension/models/item/apex_p
 a45d8cc76821b067acc7f04e37208bc485ca2109 assets/gaiadimension/models/item/apex_predator_trousers.json
 63ec6c618a3a23eab4cab9c52d7d3250de9b516e assets/gaiadimension/models/item/archaic_warrior_spawn_egg.json
 e3c6b53e8cd69aa7c366c07e9739b15b3f9a2bb5 assets/gaiadimension/models/item/auburn_mookaite.json
+6ec8789465528ab4b3893e25cd9f1bf5f559d5cb assets/gaiadimension/models/item/auburn_opalite_ore.json
 fe5ebc44714d168bb19ff2118a0cc366e87c9d19 assets/gaiadimension/models/item/aura_block.json
 da2111bbe22c5bf03dc2105ab74affa044562455 assets/gaiadimension/models/item/aura_cluster.json
 05757ae4fbfcaf6745c02dc5bfb62008f77ef8f0 assets/gaiadimension/models/item/aura_leaves.json
@@ -36,6 +37,7 @@ e7a253ae7ab27b0d4625a0aaaa2397b879fa48f2 assets/gaiadimension/models/item/aura_s
 f48a5a89154f69badd26f86436f3959c8abae97f assets/gaiadimension/models/item/aurum_mud.json
 14f40a00b1aa90d146e186cee5014fcffc2a0f2e assets/gaiadimension/models/item/aurum_soil.json
 bc511d228d2bbcbbe85680aa9daea543ab85d591 assets/gaiadimension/models/item/beige_mookaite.json
+62145ab172917bf96c1d7f7ef23db4b9b92c2650 assets/gaiadimension/models/item/beige_opalite_ore.json
 3e305098b6a9df5f949125b3dc248f56711c5509 assets/gaiadimension/models/item/benitoite.json
 9f49e68aabce53413788156e30a73cdf768d572d assets/gaiadimension/models/item/benitoite_axe.json
 3e01fa615837785c9cf0a7bf5c2ceb9d1e409904 assets/gaiadimension/models/item/benitoite_block.json
@@ -239,6 +241,7 @@ c0a9f7f01d84263b00876e77e409e48d229cf1b1 assets/gaiadimension/models/item/goldst
 ff0edac899f33b77b3e26224115bcc909f812869 assets/gaiadimension/models/item/goldstone_dust.json
 f031763cb7ba8d3b3c60c6adfb807d4939eae3e2 assets/gaiadimension/models/item/goldstone_residue.json
 cb4fa4f464c7edb9c78f29d01d948541193be3c1 assets/gaiadimension/models/item/gold_mookaite.json
+ca2fe2aa31aa5f2eb30ed7af6fc227a610661347 assets/gaiadimension/models/item/gold_opalite_ore.json
 82d4a1e57da35ce0bf8d044014c5f1f986915b16 assets/gaiadimension/models/item/gold_orb_tucher.json
 387284662ee9be5652b9d284dfb0fc312e9e2d6c assets/gaiadimension/models/item/green_agate_leaves.json
 7ab5e908ba7d84b56fbebc35aef9a468c6d8faf5 assets/gaiadimension/models/item/green_agate_log.json
@@ -266,6 +269,7 @@ bbbac5bf297a5e1f6a628e10a55cb72dd71848de assets/gaiadimension/models/item/hot_du
 29fd0f55d1ad9890d6409c23e957906bbf62bb79 assets/gaiadimension/models/item/impure_rock.json
 af3e45800cb7a174353e136532af63666e4bb7ee assets/gaiadimension/models/item/impure_sludge.json
 437bf4171c70466814ecc4be22c486b5ca24c6df assets/gaiadimension/models/item/ivory_mookaite.json
+ab0261fa8c80bb83ced923aefcd7b0310f4757b4 assets/gaiadimension/models/item/ivory_opalite_ore.json
 a6d04671bb0e66e35a766aee014cf32abe2132ef assets/gaiadimension/models/item/ixiolite.json
 0356b82c74a828c999dadc9a7911293abb3c2c20 assets/gaiadimension/models/item/ixiolite_axe.json
 72b68633e81ef073d6367b5679272771dacbac8b assets/gaiadimension/models/item/ixiolite_block.json
@@ -331,6 +335,7 @@ eaca600d7a9d24be5a530b2af24d77839040a31e assets/gaiadimension/models/item/malach
 e8478cfa9da4ed1d22c4eb532cb14f892685d5d9 assets/gaiadimension/models/item/markuzar_mint.json
 63ec6c618a3a23eab4cab9c52d7d3250de9b516e assets/gaiadimension/models/item/markuzar_plant_spawn_egg.json
 2f27646e2ed526c4a1c9e03e1f6c0e61ec5b7d4f assets/gaiadimension/models/item/mauve_mookaite.json
+4d95438cb49d374b233f85a45b819250adaf3379 assets/gaiadimension/models/item/mauve_opalite_ore.json
 d5b35ac3554b2b9385ec7771a6d5572d003d4ee9 assets/gaiadimension/models/item/mega_storage_crate.json
 63ec6c618a3a23eab4cab9c52d7d3250de9b516e assets/gaiadimension/models/item/mineral_arenthis_spawn_egg.json
 fe59d0608ca6cc242d52f167a4fb6738ae465b39 assets/gaiadimension/models/item/mineral_water_bucket.json
@@ -409,6 +414,7 @@ c165f1e2e6f0fa8977bebb712f060a9737c683a0 assets/gaiadimension/models/item/roofed
 63ec6c618a3a23eab4cab9c52d7d3250de9b516e assets/gaiadimension/models/item/saltion_spawn_egg.json
 65e549fade5fcf6b583dba99e211bd8541af7558 assets/gaiadimension/models/item/saltstone.json
 bdfafce0fed7099f4b62a891914c2c612a439993 assets/gaiadimension/models/item/scarlet_mookaite.json
+4e534c50145cac5028597f7ee6ed84e7cada00a6 assets/gaiadimension/models/item/scarlet_opalite_ore.json
 29d015abc543c2147972dad3486f59c04010f232 assets/gaiadimension/models/item/scaynyx_bucket.json
 032f087e67d78f9c653aba173dc851081dc8c7b0 assets/gaiadimension/models/item/scaynyx_ingot.json
 72c006bfde38ed6eda23febe7592d10743bdbe76 assets/gaiadimension/models/item/searing_rock.json

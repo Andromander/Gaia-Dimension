@@ -1,5 +1,10 @@
 {
-  "carvers": {},
+  "carvers": {
+    "air": [
+      "gaiadimension:crystal_caves",
+      "gaiadimension:chasms"
+    ]
+  },
   "downfall": 0.0,
   "effects": {
     "fog_color": 12793637,
@@ -15,7 +20,31 @@
     "water_color": 7117233,
     "water_fog_color": 9617108
   },
-  "features": [],
+  "features": [
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [
+      "gaiadimension:ore_primal_mass",
+      "gaiadimension:ore_pebbles",
+      "gaiadimension:ore_speckled_rock",
+      "gaiadimension:ore_coarse_rock",
+      "gaiadimension:ore_precious_rock",
+      "gaiadimension:ore_sugilite",
+      "gaiadimension:ore_hematite",
+      "gaiadimension:ore_pyrite",
+      "gaiadimension:ore_cinnabar",
+      "gaiadimension:ore_labradorite",
+      "gaiadimension:ore_moonstone",
+      "gaiadimension:ore_opalite"
+    ],
+    [
+      "gaiadimension:crystal_fungi_caves"
+    ]
+  ],
   "has_precipitation": false,
   "spawn_costs": {},
   "spawners": {

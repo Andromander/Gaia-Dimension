@@ -1,4 +1,4 @@
-// 1.20	2023-07-14T09:57:16.1695569	Tags for minecraft:item mod id gaiadimension
+// 1.20	2023-07-15T12:17:28.4677326	Tags for minecraft:item mod id gaiadimension
 b8824061659e34d2bcb2a29f7526c559c25d1834 data/forge/tags/items/bones.json
 00f056f549ce6b76c1ebf78cd3805f4d1f83acfd data/forge/tags/items/dusts.json
 307d706a2aab12da68949f0ac0ae908638e5b471 data/forge/tags/items/dusts/fine.json
@@ -37,6 +37,7 @@ a4928828b465e67b2bcd283525a97fb3deafb4e0 data/forge/tags/items/ores.json
 53d60cb18b4424da303684ad8fc8150c6631d67d data/forge/tags/items/ore/hematite.json
 cd1808082a041baee1ebef2d74445b9b0744cf41 data/forge/tags/items/ore/labradorite.json
 ed0a6860d19095c05b9a3f153256ccbe68f12e71 data/forge/tags/items/ore/moonstone.json
+db9141f81a600b872f15596aa0029f0c6a967525 data/forge/tags/items/ore/opalite.json
 2a68e5026eed490ab017fa76b541e76b680e6185 data/forge/tags/items/ore/pyrite.json
 dcd4ca26591bdd8677a136ac5750aca03d3663b9 data/forge/tags/items/ore/red_opal.json
 c68e0f1188532e3ddba1e571463ae634e7ce75f4 data/forge/tags/items/ore/sugilite.json

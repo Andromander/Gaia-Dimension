@@ -5,6 +5,7 @@ import androsa.gaiadimension.world.gen.carver.ChasmsWorldCarver;
 import androsa.gaiadimension.world.gen.carver.CoatedCavesWorldCarver;
 import androsa.gaiadimension.world.gen.feature.*;
 import androsa.gaiadimension.world.gen.feature.config.FeatureHeightConfig;
+import androsa.gaiadimension.world.gen.feature.config.OpaliteOreConfiguration;
 import androsa.gaiadimension.world.gen.feature.config.TwoBlockStateConfig;
 import androsa.gaiadimension.world.gen.feature.decorator.GoldenVineDecorator;
 import androsa.gaiadimension.world.gen.feature.foliage.BulbFoliagePlacer;
@@ -84,6 +85,8 @@ public class ModWorldgen {
             new MarshLakeFeature(NoneFeatureConfiguration.CODEC));
     public static final RegistryObject<Feature<NoneFeatureConfiguration>> GOLDEN_VINES = FEATURES.register("golden_vines", () ->
             new GoldenVinesFeature(NoneFeatureConfiguration.CODEC));
+    public static final RegistryObject<Feature<OpaliteOreConfiguration>> OPALITE_ORE = FEATURES.register("opalite_ore", () ->
+            new OpaliteOreFeature(OpaliteOreConfiguration.CODEC));
 
     //WorldCarver
     public static final RegistryObject<WorldCarver<CaveCarverConfiguration>> CRYSTAL_CAVES = WORLD_CARVERS.register("crystal_caves", () ->

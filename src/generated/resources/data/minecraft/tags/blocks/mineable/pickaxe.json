@@ -130,6 +130,12 @@
     "gaiadimension:chalcedony_block",
     "gaiadimension:nexustone",
     "gaiadimension:white_opal_ore",
-    "gaiadimension:precious_rock"
+    "gaiadimension:precious_rock",
+    "gaiadimension:scarlet_opalite_ore",
+    "gaiadimension:auburn_opalite_ore",
+    "gaiadimension:gold_opalite_ore",
+    "gaiadimension:mauve_opalite_ore",
+    "gaiadimension:beige_opalite_ore",
+    "gaiadimension:ivory_opalite_ore"
   ]
 }

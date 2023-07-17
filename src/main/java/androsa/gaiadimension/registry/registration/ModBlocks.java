@@ -356,6 +356,12 @@ public class ModBlocks {
     public static final RegistryObject<Block> speckled_rock = register("speckled_rock", () -> new Block(PropertiesHandler.oreProps(MapColor.COLOR_MAGENTA)));
     public static final RegistryObject<Block> coarse_rock = register("coarse_rock", () -> new Block(PropertiesHandler.oreProps(MapColor.COLOR_MAGENTA)));
     public static final RegistryObject<Block> precious_rock = register("precious_rock", () -> new Block(PropertiesHandler.oreProps(MapColor.COLOR_MAGENTA)));
+    public static final RegistryObject<Block> scarlet_opalite_ore = register("scarlet_opalite_ore", () -> new DropExperienceBlock(PropertiesHandler.oreProps(MapColor.TERRACOTTA_RED), UniformInt.of(1, 2)));
+    public static final RegistryObject<Block> auburn_opalite_ore = register("auburn_opalite_ore", () -> new DropExperienceBlock(PropertiesHandler.oreProps(MapColor.TERRACOTTA_ORANGE), UniformInt.of(1, 2)));
+    public static final RegistryObject<Block> gold_opalite_ore = register("gold_opalite_ore", () -> new DropExperienceBlock(PropertiesHandler.oreProps(MapColor.TERRACOTTA_YELLOW), UniformInt.of(1, 2)));
+    public static final RegistryObject<Block> mauve_opalite_ore = register("mauve_opalite_ore", () -> new DropExperienceBlock(PropertiesHandler.oreProps(MapColor.TERRACOTTA_PURPLE), UniformInt.of(1, 2)));
+    public static final RegistryObject<Block> beige_opalite_ore = register("beige_opalite_ore", () -> new DropExperienceBlock(PropertiesHandler.oreProps(MapColor.SAND), UniformInt.of(1, 2)));
+    public static final RegistryObject<Block> ivory_opalite_ore = register("ivory_opalite_ore", () -> new DropExperienceBlock(PropertiesHandler.oreProps(MapColor.TERRACOTTA_WHITE), UniformInt.of(1, 2)));
 
     //Flower Pots
     public static final RegistryObject<FlowerPotBlock> potted_thiscus = registerFlowerPot(thiscus);
