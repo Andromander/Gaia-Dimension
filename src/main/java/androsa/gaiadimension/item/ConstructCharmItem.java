@@ -107,6 +107,7 @@ public class ConstructCharmItem extends Item {
                         if (!player.level().isClientSide()) {
                             mEntity.setBonder(player.getUUID());
                             mEntity.setOpaliteCompanion(oEntity.getUUID());
+                            oEntity.setBonder(player.getUUID());
                             oEntity.setMookaiteCompanion(mEntity.getUUID());
                             stack.shrink(1);
                         }

@@ -635,6 +635,8 @@
   "entity.gaiadimension.mookaite_magic_bullet": "Mookaite Magic Bullet",
   "entity.gaiadimension.mookaite_magic_area": "Mookaite Magic Area",
 
+  "gaiadimension.opalite_construct.too_many_opalite": "You can't give it any more Opalite",
+
   "effect.gaiadimension.goldstone_plague": "Corrupt Mania",
 
   "death.attack.gaiadimension.energetic": "%1$s was flooded with immense energy",

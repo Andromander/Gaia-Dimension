@@ -1,14 +1,18 @@
 package androsa.gaiadimension.entity;
 
+import androsa.gaiadimension.registry.registration.ModItems;
 import androsa.gaiadimension.registry.registration.ModSounds;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.chat.Component;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
@@ -19,6 +23,7 @@ import net.minecraft.world.entity.ai.goal.RandomLookAroundGoal;
 import net.minecraft.world.entity.ai.goal.WaterAvoidingRandomStrollGoal;
 import net.minecraft.world.entity.ai.navigation.PathNavigation;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.LeavesBlock;
@@ -34,7 +39,9 @@ import java.util.UUID;
 
 public class OpaliteContructEntity extends PathfinderMob {
 
+    private static final EntityDataAccessor<Optional<UUID>> BOND_CREATOR_UUID = SynchedEntityData.defineId(OpaliteContructEntity.class, EntityDataSerializers.OPTIONAL_UUID);
     private static final EntityDataAccessor<Optional<UUID>> MOOKAITE_COMPANION_UUID = SynchedEntityData.defineId(OpaliteContructEntity.class, EntityDataSerializers.OPTIONAL_UUID);
+    private static final EntityDataAccessor<Integer> OPALITE_STACK = SynchedEntityData.defineId(OpaliteContructEntity.class, EntityDataSerializers.INT);
 
     public OpaliteContructEntity(EntityType<? extends OpaliteContructEntity> entity, Level level) {
         super(entity, level);
@@ -50,12 +57,18 @@ public class OpaliteContructEntity extends PathfinderMob {
     @Override
     protected void defineSynchedData() {
         super.defineSynchedData();
+        this.entityData.define(BOND_CREATOR_UUID, Optional.empty());
         this.entityData.define(MOOKAITE_COMPANION_UUID, Optional.empty());
+        this.entityData.define(OPALITE_STACK, 0);
     }
 
     @Override
     public void readAdditionalSaveData(CompoundTag tag) {
         super.readAdditionalSaveData(tag);
+        this.setOpaliteAmount(tag.getInt("OpaliteStack"));
+        if (tag.hasUUID("BonderUUID")) {
+            this.setMookaiteCompanion(tag.getUUID("BonderUUID"));
+        }
         if (tag.hasUUID("MookaiteUUID")) {
             this.setMookaiteCompanion(tag.getUUID("MookaiteUUID"));
         }
@@ -64,9 +77,18 @@ public class OpaliteContructEntity extends PathfinderMob {
     @Override
     public void addAdditionalSaveData(CompoundTag tag) {
         super.addAdditionalSaveData(tag);
+        tag.getInt("OpaliteStack");
         if (this.getMookaiteCompanion() != null) {
             tag.putUUID("MookaiteUUID", this.getMookaiteCompanion());
         }
+    }
+
+    public void setBonder(UUID id) {
+        this.entityData.set(BOND_CREATOR_UUID, Optional.ofNullable(id));
+    }
+
+    public UUID getBonder() {
+        return this.entityData.get(BOND_CREATOR_UUID).orElse(null);
     }
 
     public void setMookaiteCompanion(UUID id) {
@@ -75,6 +97,14 @@ public class OpaliteContructEntity extends PathfinderMob {
 
     public UUID getMookaiteCompanion() {
         return this.entityData.get(MOOKAITE_COMPANION_UUID).orElse(null);
+    }
+
+    public void setOpaliteAmount(int amount) {
+        this.entityData.set(OPALITE_STACK, amount);
+    }
+
+    public int getOpaliteAmount() {
+        return this.entityData.get(OPALITE_STACK);
     }
 
     @Nullable
@@ -106,6 +136,39 @@ public class OpaliteContructEntity extends PathfinderMob {
     @Override
     protected SoundEvent getDeathSound() {
         return ModSounds.ENTITY_OPALITE_CONSTRUCT_DEATH.get();
+    }
+
+    @Override
+    protected void dropCustomDeathLoot(DamageSource source, int looting, boolean player) {
+        super.dropCustomDeathLoot(source, looting, player);
+
+        if (getOpaliteAmount() > 0) {
+            ItemStack opalite = new ItemStack(ModItems.opalite.get(), this.getOpaliteAmount());
+            this.spawnAtLocation(opalite);
+        }
+    }
+
+    @Override
+    protected InteractionResult mobInteract(Player player, InteractionHand hand) {
+        ItemStack stack = player.getItemInHand(hand);
+        /*
+         * Opalite: add to the Opalite Stack.
+         * Mookaite (all colours): add to the Mookaite Stack.
+         * Kits: Check any of the stacks if there's enough of each item. If there's enough of the required stacks, begin the building.
+         */
+        if (this.getBonder() != null && player.getUUID() == this.getBonder()) {
+            if (stack.is(ModItems.opalite.get())) {
+                if (this.getOpaliteAmount() >= 10) {
+                    player.displayClientMessage(Component.translatable("gaiadimension.opalite_construct.too_many_opalite"), true);
+                    return InteractionResult.PASS;
+                } else {
+                    this.setOpaliteAmount(this.getOpaliteAmount() + 1);
+                    System.out.println("Opalite amount is at " + this.getOpaliteAmount());
+                }
+            }
+        }
+
+        return super.mobInteract(player, hand);
     }
 
     public static boolean canSpawnHere(EntityType<OpaliteContructEntity> entity, LevelAccessor world, MobSpawnType spawn, BlockPos pos, RandomSource random) {
