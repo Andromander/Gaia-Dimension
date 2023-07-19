@@ -44,10 +44,6 @@ public class GaiaSurfaceSystem extends SurfaceSystem {
                 ablockstate[k] = BEIGE_MOOKAITE;
             }
         }
-
-        makeBands(random, ablockstate, 1, GOLD_MOOKAITE);
-        makeBands(random, ablockstate, 2, IVORY_MOOKAITE);
-        makeBands(random, ablockstate, 1, MAUVE_MOOKAITE);
         int l = random.nextIntBetweenInclusive(9, 15);
         int i = 0;
 
@@ -63,6 +59,10 @@ public class GaiaSurfaceSystem extends SurfaceSystem {
 
             ++i;
         }
+
+        makeBands(random, ablockstate, 1, MAUVE_MOOKAITE);
+        makeBands(random, ablockstate, 2, GOLD_MOOKAITE);
+        makeBands(random, ablockstate, 1, IVORY_MOOKAITE);
 
         return ablockstate;
     }
