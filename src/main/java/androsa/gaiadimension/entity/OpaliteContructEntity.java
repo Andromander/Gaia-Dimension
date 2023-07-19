@@ -77,7 +77,7 @@ public class OpaliteContructEntity extends PathfinderMob {
     @Override
     public void addAdditionalSaveData(CompoundTag tag) {
         super.addAdditionalSaveData(tag);
-        tag.getInt("OpaliteStack");
+        tag.putInt("OpaliteStack", this.getOpaliteAmount());
         if (this.getMookaiteCompanion() != null) {
             tag.putUUID("MookaiteUUID", this.getMookaiteCompanion());
         }
