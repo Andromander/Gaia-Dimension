@@ -1,7 +1,9 @@
 package androsa.gaiadimension.entity;
 
+import androsa.gaiadimension.registry.registration.ModBlocks;
 import androsa.gaiadimension.registry.registration.ModItems;
 import androsa.gaiadimension.registry.registration.ModSounds;
+import com.google.common.collect.ImmutableMap;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
@@ -23,6 +25,7 @@ import net.minecraft.world.entity.ai.goal.RandomLookAroundGoal;
 import net.minecraft.world.entity.ai.goal.WaterAvoidingRandomStrollGoal;
 import net.minecraft.world.entity.ai.navigation.PathNavigation;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
@@ -34,6 +37,7 @@ import net.minecraftforge.common.ForgeHooks;
 
 import javax.annotation.Nullable;
 import java.util.EnumSet;
+import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -42,6 +46,19 @@ public class OpaliteContructEntity extends PathfinderMob {
     private static final EntityDataAccessor<Optional<UUID>> BOND_CREATOR_UUID = SynchedEntityData.defineId(OpaliteContructEntity.class, EntityDataSerializers.OPTIONAL_UUID);
     private static final EntityDataAccessor<Optional<UUID>> MOOKAITE_COMPANION_UUID = SynchedEntityData.defineId(OpaliteContructEntity.class, EntityDataSerializers.OPTIONAL_UUID);
     private static final EntityDataAccessor<Integer> OPALITE_STACK = SynchedEntityData.defineId(OpaliteContructEntity.class, EntityDataSerializers.INT);
+    private static final EntityDataAccessor<Integer> SCARLET_STACK = SynchedEntityData.defineId(OpaliteContructEntity.class, EntityDataSerializers.INT);
+    private static final EntityDataAccessor<Integer> AUBURN_STACK = SynchedEntityData.defineId(OpaliteContructEntity.class, EntityDataSerializers.INT);
+    private static final EntityDataAccessor<Integer> GOLD_STACK = SynchedEntityData.defineId(OpaliteContructEntity.class, EntityDataSerializers.INT);
+    private static final EntityDataAccessor<Integer> MAUVE_STACK = SynchedEntityData.defineId(OpaliteContructEntity.class, EntityDataSerializers.INT);
+    private static final EntityDataAccessor<Integer> BEIGE_STACK = SynchedEntityData.defineId(OpaliteContructEntity.class, EntityDataSerializers.INT);
+    private static final EntityDataAccessor<Integer> IVORY_STACK = SynchedEntityData.defineId(OpaliteContructEntity.class, EntityDataSerializers.INT);
+    private static final Map<Item, EntityDataAccessor<Integer>> BLOCK_TO_DATA = ImmutableMap.of(
+            ModBlocks.scarlet_mookaite.get().asItem(), SCARLET_STACK,
+            ModBlocks.auburn_mookaite.get().asItem(), AUBURN_STACK,
+            ModBlocks.gold_mookaite.get().asItem(), GOLD_STACK,
+            ModBlocks.mauve_mookaite.get().asItem(), MAUVE_STACK,
+            ModBlocks.beige_mookaite.get().asItem(), BEIGE_STACK,
+            ModBlocks.ivory_mookaite.get().asItem(), IVORY_STACK);
 
     public OpaliteContructEntity(EntityType<? extends OpaliteContructEntity> entity, Level level) {
         super(entity, level);
@@ -60,12 +77,24 @@ public class OpaliteContructEntity extends PathfinderMob {
         this.entityData.define(BOND_CREATOR_UUID, Optional.empty());
         this.entityData.define(MOOKAITE_COMPANION_UUID, Optional.empty());
         this.entityData.define(OPALITE_STACK, 0);
+        this.entityData.define(SCARLET_STACK, 0);
+        this.entityData.define(AUBURN_STACK, 0);
+        this.entityData.define(GOLD_STACK, 0);
+        this.entityData.define(MAUVE_STACK, 0);
+        this.entityData.define(BEIGE_STACK, 0);
+        this.entityData.define(IVORY_STACK, 0);
     }
 
     @Override
     public void readAdditionalSaveData(CompoundTag tag) {
         super.readAdditionalSaveData(tag);
         this.setOpaliteAmount(tag.getInt("OpaliteStack"));
+        this.setMookaiteAmount(SCARLET_STACK, tag.getInt("ScarletStack"));
+        this.setMookaiteAmount(AUBURN_STACK, tag.getInt("AuburnStack"));
+        this.setMookaiteAmount(GOLD_STACK, tag.getInt("GoldStack"));
+        this.setMookaiteAmount(MAUVE_STACK, tag.getInt("MauveStack"));
+        this.setMookaiteAmount(BEIGE_STACK, tag.getInt("BeigeStack"));
+        this.setMookaiteAmount(IVORY_STACK, tag.getInt("IvoryStack"));
         if (tag.hasUUID("BonderUUID")) {
             this.setMookaiteCompanion(tag.getUUID("BonderUUID"));
         }
@@ -78,6 +107,12 @@ public class OpaliteContructEntity extends PathfinderMob {
     public void addAdditionalSaveData(CompoundTag tag) {
         super.addAdditionalSaveData(tag);
         tag.putInt("OpaliteStack", this.getOpaliteAmount());
+        tag.putInt("ScarletStack", this.getMookaiteAmount(SCARLET_STACK));
+        tag.putInt("AuburnStack", this.getMookaiteAmount(AUBURN_STACK));
+        tag.putInt("GoldStack", this.getMookaiteAmount(GOLD_STACK));
+        tag.putInt("MauveStack", this.getMookaiteAmount(MAUVE_STACK));
+        tag.putInt("BeigeStack", this.getMookaiteAmount(BEIGE_STACK));
+        tag.putInt("IvoryStack", this.getMookaiteAmount(IVORY_STACK));
         if (this.getMookaiteCompanion() != null) {
             tag.putUUID("MookaiteUUID", this.getMookaiteCompanion());
         }
@@ -105,6 +140,14 @@ public class OpaliteContructEntity extends PathfinderMob {
 
     public int getOpaliteAmount() {
         return this.entityData.get(OPALITE_STACK);
+    }
+
+    public void setMookaiteAmount(EntityDataAccessor<Integer> mookaite, int amount) {
+        this.entityData.set(mookaite, amount);
+    }
+
+    public int getMookaiteAmount(EntityDataAccessor<Integer> mookaite) {
+        return this.entityData.get(mookaite);
     }
 
     @Nullable
@@ -146,11 +189,16 @@ public class OpaliteContructEntity extends PathfinderMob {
             ItemStack opalite = new ItemStack(ModItems.opalite.get(), this.getOpaliteAmount());
             this.spawnAtLocation(opalite);
         }
+        for (Map.Entry<Item, EntityDataAccessor<Integer>> entry : BLOCK_TO_DATA.entrySet()) {
+            ItemStack mookaite = new ItemStack(entry.getKey(), this.getMookaiteAmount(entry.getValue()));
+            this.spawnAtLocation(mookaite);
+        }
     }
 
     @Override
     protected InteractionResult mobInteract(Player player, InteractionHand hand) {
         ItemStack stack = player.getItemInHand(hand);
+        Item item = stack.getItem();
         /*
          * Opalite: add to the Opalite Stack.
          * Mookaite (all colours): add to the Mookaite Stack.
@@ -163,7 +211,18 @@ public class OpaliteContructEntity extends PathfinderMob {
                     return InteractionResult.PASS;
                 } else {
                     this.setOpaliteAmount(this.getOpaliteAmount() + 1);
-                    System.out.println("Opalite amount is at " + this.getOpaliteAmount());
+                    return InteractionResult.sidedSuccess(this.level().isClientSide());
+                }
+            }
+
+            if (BLOCK_TO_DATA.containsKey(item)) {
+                EntityDataAccessor<Integer> data = BLOCK_TO_DATA.get(item);
+                if (this.getMookaiteAmount(data) >= 10) {
+                    player.displayClientMessage(Component.translatable("gaiadimension.opalite_construct.too_many_mookaite"), true);
+                    return InteractionResult.PASS;
+                } else {
+                    this.setMookaiteAmount(data, this.getMookaiteAmount(data) + 1);
+                    return InteractionResult.sidedSuccess(this.level().isClientSide());
                 }
             }
         }
