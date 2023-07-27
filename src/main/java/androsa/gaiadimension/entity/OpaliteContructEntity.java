@@ -116,6 +116,9 @@ public class OpaliteContructEntity extends PathfinderMob {
         if (this.getMookaiteCompanion() != null) {
             tag.putUUID("MookaiteUUID", this.getMookaiteCompanion());
         }
+        if (this.getBonder() != null) {
+            tag.putUUID("BonderUUID", this.getBonder());
+        }
     }
 
     public void setBonder(UUID id) {
