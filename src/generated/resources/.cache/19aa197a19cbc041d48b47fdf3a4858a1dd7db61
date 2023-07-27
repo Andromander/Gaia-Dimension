@@ -1,4 +1,4 @@
-// 1.20	2023-07-15T12:17:28.4677326	Tags for minecraft:item mod id gaiadimension
+// 1.20	2023-07-25T09:44:28.890942	Tags for minecraft:item mod id gaiadimension
 b8824061659e34d2bcb2a29f7526c559c25d1834 data/forge/tags/items/bones.json
 00f056f549ce6b76c1ebf78cd3805f4d1f83acfd data/forge/tags/items/dusts.json
 307d706a2aab12da68949f0ac0ae908638e5b471 data/forge/tags/items/dusts/fine.json
@@ -84,6 +84,7 @@ c0a14608cf3450ba2b117f632ec560b832e6ae57 data/gaiadimension/tags/items/green_aga
 b4f54a6a78f1774ef9ece4931668009485a9c49b data/gaiadimension/tags/items/jade_bricks.json
 a7ef6957fa3ffe8f9a1b4c73f0480355bc02054a data/gaiadimension/tags/items/jet_bricks.json
 107a8d2cf5923b2888badc36a3dce1bb3345ae45 data/gaiadimension/tags/items/mega_storage_blacklist.json
+03694c1040ed55e92c85a2343f837567a996f30d data/gaiadimension/tags/items/mookaite.json
 1b8f76fa91301b319b9bfcc3ce9f7d673001c1d3 data/gaiadimension/tags/items/pink_agate_logs.json
 2e93564739d6ff64a6824fdc175143eefcb32969 data/gaiadimension/tags/items/purple_agate_logs.json
 f9cec1e73ad9b78997ec6e268f7194198b7ce97a data/minecraft/tags/items/arrows.json

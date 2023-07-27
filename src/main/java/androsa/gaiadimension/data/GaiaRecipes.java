@@ -8,6 +8,7 @@ import androsa.gaiadimension.registry.values.GaiaTags;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 
@@ -424,6 +425,14 @@ public class GaiaRecipes extends GaiaRecipeProvider {
                 .group("bonemeal")
                 .unlockedBy("has_bone", has(ModItems.shiny_bone.get()))
                 .save(consumer, loc("bone_meal"));
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.blank_kit.get())
+                .pattern(" / ")
+                .pattern("/#/")
+                .pattern(" / ")
+                .define('/', GaiaTags.Items.MOOKAITE)
+                .define('#', ItemTags.PICKAXES)
+                .unlockedBy("has_mookaite", has(GaiaTags.Items.MOOKAITE))
+                .save(consumer, loc("blank_kit"));
 
 
         smeltingRecipe(ModItems.blue_opal.get(), ModBlocks.blue_opal_ore.get(), 0.3F).save(consumer, locSmelt("blue_opal_smelt"));

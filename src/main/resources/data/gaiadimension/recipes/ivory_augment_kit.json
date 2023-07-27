@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "gaiadimension:blank_kit"
+    },
+    {
+      "item": "gaiadimension:opalite"
+    },
+    {
+      "item": "gaiadimension:ivory_mookaite"
+    }
+  ],
+  "result": {
+    "item": "gaiadimension:ivory_augment_kit",
+    "nbt": "{Part:0}",
+    "type": "minecraft:item_nbt"
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "#": {
+      "tag": "minecraft:pickaxes"
+    },
+    "/": {
+      "tag": "gaiadimension:mookaite"
+    }
+  },
+  "pattern": [
+    " / ",
+    "/#/",
+    " / "
+  ],
+  "result": {
+    "item": "gaiadimension:blank_kit"
+  },
+  "show_notification": true
+}

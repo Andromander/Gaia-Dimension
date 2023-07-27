@@ -1,4 +1,4 @@
-// 1.20	2023-06-23T11:27:47.8385152	Recipes
+// 1.20	2023-07-25T09:44:28.8919432	Recipes
 b228f91dec6c08cca30c2e65d40bb0a1b8c6bb2c data/gaiadimension/advancements/recipes/building_blocks/amethyst_bricks.json
 f92776a5d130e7f0b70d430c76980d4697a05136 data/gaiadimension/advancements/recipes/building_blocks/amethyst_brick_slab.json
 604ead483732f016bf42cfb0da17fcb447e89b74 data/gaiadimension/advancements/recipes/building_blocks/amethyst_brick_stairs.json
@@ -195,6 +195,7 @@ c40191d7af59ade2049f1750b0e0851c90dfd739 data/gaiadimension/advancements/recipes
 3b285d8c2ac63e27a0a6d98627ef8069ded24cbf data/gaiadimension/advancements/recipes/food/tilipu.json
 561c09ca5f4eb640df5a0a071ec790969556e27b data/gaiadimension/advancements/recipes/misc/agate_cup.json
 0f410e238157ceae1759a72e791ce787cdee8647 data/gaiadimension/advancements/recipes/misc/agate_stick.json
+cd0be1c5dc6ca227e7b9a991a947244bfce17caf data/gaiadimension/advancements/recipes/misc/blank_kit.json
 8518d2fea827328dda181c05c4805762c300efa9 data/gaiadimension/advancements/recipes/misc/bone_meal.json
 d2213cdad34663be161fac3946f870c54cc4409b data/gaiadimension/advancements/recipes/misc/smelting/blue_opal_smelt.json
 51d5aa476de924c03a344b19c73e2f47a4cd781d data/gaiadimension/advancements/recipes/misc/smelting/cinnabar_smelt.json
@@ -312,6 +313,7 @@ b3951cc3be8396f66e88b1dcceb27f43ab18afa0 data/gaiadimension/recipes/armor/sugili
 9f0da3de8526b1170e55cde99ef1c4546fc01c1c data/gaiadimension/recipes/armor/sugilite_legs.json
 34e28a4a95a58c0f0e4402eb3bd9435c234fd078 data/gaiadimension/recipes/aura_cluster.json
 3143b2fea9a0cf738b45b711dc4bc02ec0ed123f data/gaiadimension/recipes/bismuth_crystal.json
+848d34d635475ca5212abc3374e3e2385e90f6d3 data/gaiadimension/recipes/blank_kit.json
 1eeab1bbf416493ba7b905b0166d54a126a4d242 data/gaiadimension/recipes/blue_geode_slice.json
 4a3019618fe599aff1759eb24f1a39dbd7890ad7 data/gaiadimension/recipes/blue_geode_tea.json
 aef8bfd7bcf693fd504778b7352efff2805a4de8 data/gaiadimension/recipes/bolstered_bricks.json

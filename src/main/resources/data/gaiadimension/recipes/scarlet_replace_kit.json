@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "gaiadimension:blank_kit"
+    },
+    {
+      "item": "gaiadimension:scarlet_mookaite"
+    }
+  ],
+  "result": {
+    "item": "gaiadimension:scarlet_replace_kit",
+    "nbt": "{Part:0}",
+    "type": "minecraft:item_nbt"
+  }
+}

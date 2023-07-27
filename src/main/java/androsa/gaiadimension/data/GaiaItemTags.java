@@ -65,6 +65,7 @@ public class GaiaItemTags extends GaiaItemTagsProvider {
         copy(BlockTags.SLABS, ItemTags.SLABS);
         copy(BlockTags.STAIRS, ItemTags.STAIRS);
 
+        copy(GaiaTags.Blocks.MOOKAITE, GaiaTags.Items.MOOKAITE);
         copy(GaiaTags.Blocks.TILES, GaiaTags.Items.TILES);
         copy(GaiaTags.Blocks.PINK_AGATE_LOGS, GaiaTags.Items.PINK_AGATE_LOGS);
         copy(GaiaTags.Blocks.BLUE_AGATE_LOGS, GaiaTags.Items.BLUE_AGATE_LOGS);

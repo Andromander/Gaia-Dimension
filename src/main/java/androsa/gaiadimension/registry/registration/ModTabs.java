@@ -4,6 +4,7 @@ import androsa.gaiadimension.GaiaDimensionMod;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.ItemLike;
 import net.minecraftforge.registries.DeferredRegister;
@@ -86,7 +87,8 @@ public class ModTabs {
                 add(output, ModItems.pink_geode, ModItems.blue_geode, ModItems.green_geode, ModItems.purple_geode);
                 add(output, ModItems.pink_geode_slice, ModItems.blue_geode_slice, ModItems.green_geode_slice, ModItems.purple_geode_slice, ModItems.pink_geode_juice, ModItems.blue_geode_tea, ModItems.green_geode_ale, ModItems.purple_geode_soda, ModItems.pearly_geode_elixir);
                 add(output, ModItems.markuzar_mint, ModItems.luggeroth_chop, ModItems.cooked_luggeroth_chop, ModItems.lurmorus_meat, ModItems.lurmorus_steak, ModItems.small_tentacle, ModItems.small_calamari, ModItems.large_tentacle, ModItems.large_calamari);
-                add(output, ModItems.gemstone_pouch, ModItems.construct_charm);
+                add(output, ModItems.gemstone_pouch, ModItems.construct_charm, ModItems.blank_kit);
+                addKits(output, ModItems.repair_kit, ModItems.scarlet_augment_kit, ModItems.auburn_augment_kit, ModItems.gold_augment_kit, ModItems.mauve_augment_kit, ModItems.beige_augment_kit, ModItems.ivory_augment_kit, ModItems.scarlet_replace_kit, ModItems.auburn_replace_kit, ModItems.gold_replace_kit, ModItems.mauve_replace_kit, ModItems.beige_replace_kit, ModItems.ivory_replace_kit);
                 add(output, ModItems.scaynyx_bucket, ModItems.mineral_water_bucket, ModItems.superhot_magma_bucket, ModItems.sweet_muck_bucket, ModItems.liquid_bismuth_bucket , ModItems.liquid_aura_bucket);
                 add(output, ModItems.mock_malachite);
                 add(output, ModItems.growth_sapper_spawn_egg, ModItems.nomadic_lagrahk_spawn_egg, ModItems.shallow_arenthis_spawn_egg, ModItems.mineral_arenthis_spawn_egg);
@@ -142,6 +144,18 @@ public class ModTabs {
     private static void add(CreativeModeTab.Output output, RegistryObject<? extends ItemLike>... objects) {
         for (RegistryObject<? extends ItemLike> object : objects) {
             output.accept(object.get());
+        }
+    }
+
+    @SafeVarargs
+    private static void addKits(CreativeModeTab.Output output, RegistryObject<? extends Item>... items) {
+        for (RegistryObject<? extends Item> item : items) {
+            ItemStack stack = new ItemStack(item.get());
+            stack.getOrCreateTag();
+            if (!stack.getTag().contains("Part")) {
+                stack.getTag().putInt("Part", 0);
+            }
+            output.accept(stack);
         }
     }
 }
