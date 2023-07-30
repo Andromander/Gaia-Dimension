@@ -284,6 +284,7 @@ public class OpaliteContructEntity extends PathfinderMob {
                     return InteractionResult.PASS;
                 } else {
                     this.setOpaliteAmount(this.getOpaliteAmount() + 1);
+                    stack.shrink(1);
                     return InteractionResult.sidedSuccess(this.level().isClientSide());
                 }
             }
@@ -295,6 +296,7 @@ public class OpaliteContructEntity extends PathfinderMob {
                     return InteractionResult.PASS;
                 } else {
                     this.setMookaiteAmount(data, this.getMookaiteAmount(data) + 1);
+                    stack.shrink(1);
                     return InteractionResult.sidedSuccess(this.level().isClientSide());
                 }
             }
