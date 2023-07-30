@@ -484,9 +484,12 @@ public class OpaliteContructEntity extends PathfinderMob {
                             this.opalite.playSound(SoundEvents.ANVIL_USE);
                         }
                         if (this.repairTime <= 0) {
+                            ConstructKitItem.Kit kit = ConstructKitItem.Kit.values()[this.opalite.getKitData().getInt("KitID")];
                             MookaiteConstructEntity.MookaitePart part = ConstructKitItem.Part.values()[this.opalite.getKitData().getInt("PartID")].getPart();
                             int color = ConstructKitItem.Color.values()[this.opalite.getKitData().getInt("ColorID")].getPartColor();
-                            ConstructKitItem.Kit kit = ConstructKitItem.Kit.values()[this.opalite.getKitData().getInt("KitID")];
+                            if (kit == ConstructKitItem.Kit.REPAIR) {
+                                color = 7;
+                            }
 
                             //Subtract materials
                             switch (kit) {
