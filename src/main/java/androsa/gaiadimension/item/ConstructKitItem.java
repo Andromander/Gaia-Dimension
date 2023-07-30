@@ -1,13 +1,16 @@
 package androsa.gaiadimension.item;
 
 import androsa.gaiadimension.entity.MookaiteConstructEntity;
+import androsa.gaiadimension.entity.OpaliteContructEntity;
 import net.minecraft.ChatFormatting;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.CommonComponents;
 import net.minecraft.network.chat.Component;
 import net.minecraft.util.ByIdMap;
 import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -50,7 +53,7 @@ public class ConstructKitItem extends Item {
     }
 
     private static Component getPart(CompoundTag tag) {
-        return Component.translatable("gaiadimension.construct_kit.part." + Part.byId(tag.getInt("Part")).getName()).withStyle(style -> style.withColor(0x8599ff));
+        return Component.translatable("gaiadimension.construct_kit.part." + Part.byId(tag.getInt("Part")).getPart().name()).withStyle(style -> style.withColor(0x8599ff));
     }
 
     private static Component getColor(Color part) {
@@ -82,6 +85,62 @@ public class ConstructKitItem extends Item {
         return InteractionResultHolder.pass(stack);
     }
 
+    @Override
+    public InteractionResult interactLivingEntity(ItemStack stack, Player player, LivingEntity entity, InteractionHand hand) {
+        //Blanks do nothing
+        if (this.kit != Kit.BLANK) {
+            //Make sure it's an Opalite Construct
+            if (entity.isAlive() && entity instanceof OpaliteContructEntity opalite) {
+                if (!entity.level().isClientSide()) {
+                    //First, make sure we are bonded, otherwise we shouldn't do anything
+                    if (opalite.getMookaiteCompanion() == null) {
+                        player.displayClientMessage(Component.translatable("gaiadimension.constuct_kit.invalid.no_bond").withStyle(ChatFormatting.RED), true);
+                        return InteractionResult.FAIL;
+                    }
+                    //Also make sure the bond is a Mookaite Construct
+                    if (opalite.getFollowing() == null) {
+                        player.displayClientMessage(Component.translatable("gaiadimension.construct_kit.invalid.follower").withStyle(ChatFormatting.RED), true);
+                        return InteractionResult.FAIL;
+                    }
+                    //Then, check we don't have kit data already, make sure we do one task at a time
+                    if (!opalite.getKitData().isEmpty()) {
+                        player.displayClientMessage(Component.translatable("gaiadimension.constuct_kit.invalid.in_use").withStyle(ChatFormatting.RED), true);
+                        return InteractionResult.FAIL;
+                    }
+                    CompoundTag tag = stack.getTag();
+                    //Failsafe check for Part tag
+                    if (tag == null || !tag.contains("Part")) {
+                        player.displayClientMessage(Component.translatable("gaiadimension.construct_kit.invalid.no_part").withStyle(ChatFormatting.RED), true);
+                        return InteractionResult.FAIL;
+                    }
+                    //Validate if we have enough to perform the action
+                    if (!opalite.validateStacks(this.kit, Part.byId(tag.getInt("Part")))) {
+                        player.displayClientMessage(Component.translatable("gaiadimension.construct_kit.invalid.resources").withStyle(ChatFormatting.RED), true);
+                        return InteractionResult.FAIL;
+                    }
+                    //Validate if the kit can be used
+                    if (!opalite.validateKit(this.kit, Part.byId(tag.getInt("Part")), this.partColor)) {
+                        player.displayClientMessage(Component.translatable("gaiadimension.construct_kit.invalid.incompatible").withStyle(ChatFormatting.RED), true);
+                        return InteractionResult.FAIL;
+                    }
+                    //Validate if the Mookaite Construct is in action
+                    if (!opalite.validateActivity()) {
+                        player.displayClientMessage(Component.translatable("gaiadimension.construct_kit.invalid.in_combat").withStyle(ChatFormatting.RED), true);
+                        return InteractionResult.FAIL;
+                    }
+                    //Complete the action because we passed
+                    opalite.writeKitData(this.kit, Part.byId(tag.getInt("Part")), this.partColor);
+                    stack.shrink(1);
+                    return InteractionResult.sidedSuccess(player.level().isClientSide());
+                } else {
+                    return InteractionResult.SUCCESS;
+                }
+            }
+        }
+
+        return InteractionResult.PASS;
+    }
+
     public enum Kit {
         BLANK("blank", false),
         REPAIR("repair", true),
@@ -105,33 +164,33 @@ public class ConstructKitItem extends Item {
         }
     }
 
-    private enum Part {
-        LEFT_HORN(0, "left_horn"),
-        RIGHT_HORN(1, "right_horn"),
-        LEFT_EYE(2, "left_eye"),
-        RIGHT_EYE(3, "right_eye"),
-        LEFT_SHOULDER(4, "left_shoulder"),
-        RIGHT_SHOULDER(5, "right_shoulder"),
-        LEFT_ARM(6, "left_arm"),
-        RIGHT_ARM(7, "right_arm"),
-        LEFT_LEG(8, "left_leg"),
-        RIGHT_LEG(9, "right_leg");
+    public enum Part {
+        LEFT_HORN(0, MookaiteConstructEntity.LEFT_HORN),
+        RIGHT_HORN(1, MookaiteConstructEntity.RIGHT_HORN),
+        LEFT_EYE(2, MookaiteConstructEntity.LEFT_EYE),
+        RIGHT_EYE(3, MookaiteConstructEntity.RIGHT_EYE),
+        LEFT_SHOULDER(4, MookaiteConstructEntity.LEFT_SHOULDER),
+        RIGHT_SHOULDER(5, MookaiteConstructEntity.RIGHT_SHOULDER),
+        LEFT_ARM(6, MookaiteConstructEntity.LEFT_ARM),
+        RIGHT_ARM(7, MookaiteConstructEntity.RIGHT_ARM),
+        LEFT_LEG(8, MookaiteConstructEntity.LEFT_LEG),
+        RIGHT_LEG(9, MookaiteConstructEntity.RIGHT_LEG);
 
         private static final IntFunction<Part> ID = ByIdMap.continuous(Part::getId, values(), ByIdMap.OutOfBoundsStrategy.ZERO);
         private final int id;
-        private final String name;
+        private final MookaiteConstructEntity.MookaitePart part;
 
-        Part(int id, String name) {
+        Part(int id, MookaiteConstructEntity.MookaitePart part) {
             this.id = id;
-            this.name = name;
+            this.part = part;
+        }
+
+        public MookaiteConstructEntity.MookaitePart getPart() {
+            return part;
         }
 
         public int getId() {
             return id;
-        }
-
-        public String getName() {
-            return name;
         }
 
         public static Part byId(int id) {
@@ -161,6 +220,34 @@ public class ConstructKitItem extends Item {
 
         public int getPartColor() {
             return part;
+        }
+    }
+
+    //TODO integrate this
+    public enum State {
+        NO_BOND("no_bond", false),
+        FOLLOWER("follower", false),
+        IN_USE("in_use", false),
+        NO_PART("no_part", false),
+        INCOMPATIBLE("incompatible", false),
+        RESOURCE("resource", false),
+        IN_COMBAT("in_combat", false),
+        PASS("valid", true);
+
+        private final String lang;
+        private final boolean flag;
+
+        State(String lang, boolean flag) {
+            this.lang = lang;
+            this.flag = flag;
+        }
+
+        public static Component getLangKey(State state) {
+            return Component.translatable("gaiadimension.construct_kit.invalid." + state.lang).withStyle(ChatFormatting.RED);
+        }
+
+        public boolean getReturnState() {
+            return flag;
         }
     }
 }

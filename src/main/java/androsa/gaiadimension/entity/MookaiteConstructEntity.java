@@ -32,6 +32,7 @@ import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.*;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
+import net.minecraft.world.entity.ai.targeting.TargetingConditions;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
@@ -50,6 +51,7 @@ public class MookaiteConstructEntity extends PathfinderMob {
     private static final EntityDataAccessor<Optional<UUID>> BOND_CREATOR_UUID = SynchedEntityData.defineId(MookaiteConstructEntity.class, EntityDataSerializers.OPTIONAL_UUID);
     private static final EntityDataAccessor<Optional<UUID>> OPALITE_COMPANION_UUID = SynchedEntityData.defineId(MookaiteConstructEntity.class, EntityDataSerializers.OPTIONAL_UUID);
     private static final EntityDataAccessor<Boolean> IS_BURNING = SynchedEntityData.defineId(MookaiteConstructEntity.class, EntityDataSerializers.BOOLEAN);
+    private static final EntityDataAccessor<Boolean> IS_CONSTRUCTING = SynchedEntityData.defineId(MookaiteConstructEntity.class, EntityDataSerializers.BOOLEAN);
     public static final EntityDataAccessor<Integer> LEFT_HORN_TYPE = SynchedEntityData.defineId(MookaiteConstructEntity.class, EntityDataSerializers.INT);
     public static final EntityDataAccessor<Integer> RIGHT_HORN_TYPE = SynchedEntityData.defineId(MookaiteConstructEntity.class, EntityDataSerializers.INT);
     public static final EntityDataAccessor<Integer> LEFT_EYE_TYPE = SynchedEntityData.defineId(MookaiteConstructEntity.class, EntityDataSerializers.INT);
@@ -125,6 +127,7 @@ public class MookaiteConstructEntity extends PathfinderMob {
         this.entityData.define(BOND_CREATOR_UUID, Optional.empty());
         this.entityData.define(OPALITE_COMPANION_UUID, Optional.empty());
         this.entityData.define(IS_BURNING, false);
+        this.entityData.define(IS_CONSTRUCTING, false);
         this.entityData.define(LEFT_HORN_TYPE, 0);
         this.entityData.define(RIGHT_HORN_TYPE, 0);
         this.entityData.define(LEFT_EYE_TYPE, 0);
@@ -157,6 +160,7 @@ public class MookaiteConstructEntity extends PathfinderMob {
             this.setOpaliteCompanion(tag.getUUID("OpaliteUUID"));
         }
         this.setBurning(tag.getBoolean("IsBurning"));
+        this.setConstructing(tag.getBoolean("IsConstructing"));
         this.setPart(LEFT_HORN, tag.getInt("LeftHornType"));
         this.setPart(RIGHT_HORN, tag.getInt("RightHornType"));
         this.setPart(LEFT_EYE, tag.getInt("LeftEyeType"));
@@ -189,6 +193,7 @@ public class MookaiteConstructEntity extends PathfinderMob {
             tag.putUUID("OpaliteUUID", this.getOpaliteCompanion());
         }
         tag.putBoolean("IsBurning", isBurning());
+        tag.putBoolean("IsConstructing", isConstructing());
         tag.putInt("LeftHornType", getPart(LEFT_HORN));
         tag.putInt("RightHornType", getPart(RIGHT_HORN));
         tag.putInt("LeftEyeType", getPart(LEFT_EYE));
@@ -233,6 +238,14 @@ public class MookaiteConstructEntity extends PathfinderMob {
 
     public boolean isBurning() {
         return this.entityData.get(IS_BURNING);
+    }
+
+    public void setConstructing(boolean flag) {
+        this.entityData.set(IS_CONSTRUCTING, flag);
+    }
+
+    public boolean isConstructing() {
+        return this.entityData.get(IS_CONSTRUCTING);
     }
 
     public boolean isPresent(MookaitePart part) {
@@ -282,16 +295,17 @@ public class MookaiteConstructEntity extends PathfinderMob {
 
     @Override
     protected void registerGoals() {
-        this.goalSelector.addGoal(1, new ScarletShockwaveGoal(this));
-        this.goalSelector.addGoal(1, new AuburnFireGoal(this));
-        this.goalSelector.addGoal(1, new GoldMagicGoal(this));
-        this.goalSelector.addGoal(1, new MauveElectricGoal(this));
-        this.goalSelector.addGoal(1, new IvoryProjectileGoal(this));
-        this.goalSelector.addGoal(2, new MeleeAttackGoal(this, 1.0D, true));
-        this.goalSelector.addGoal(3, new MoveTowardsTargetGoal(this, 1.0D, 32.0F));
-        this.goalSelector.addGoal(4, new WaterAvoidingRandomStrollGoal(this, 0.5D));
-        this.goalSelector.addGoal(5, new LookAtPlayerGoal(this, Player.class, 6.0F));
-        this.goalSelector.addGoal(6, new RandomLookAroundGoal(this));
+        this.goalSelector.addGoal(1, new LookAtCompanionGoal(this));
+        this.goalSelector.addGoal(2, new ScarletShockwaveGoal(this));
+        this.goalSelector.addGoal(2, new AuburnFireGoal(this));
+        this.goalSelector.addGoal(2, new GoldMagicGoal(this));
+        this.goalSelector.addGoal(2, new MauveElectricGoal(this));
+        this.goalSelector.addGoal(2, new IvoryProjectileGoal(this));
+        this.goalSelector.addGoal(3, new MeleeAttackGoal(this, 1.0D, true));
+        this.goalSelector.addGoal(4, new MoveTowardsTargetGoal(this, 1.0D, 32.0F));
+        this.goalSelector.addGoal(5, new WaterAvoidingRandomStrollGoal(this, 0.5D));
+        this.goalSelector.addGoal(6, new LookAtPlayerGoal(this, Player.class, 6.0F));
+        this.goalSelector.addGoal(7, new RandomLookAroundGoal(this));
         this.targetSelector.addGoal(1, new HurtByTargetGoal(this));
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Monster.class, true));
     }
@@ -402,6 +416,44 @@ public class MookaiteConstructEntity extends PathfinderMob {
         }
 
         super.die(source);
+    }
+
+    static class LookAtCompanionGoal extends Goal {
+        protected final MookaiteConstructEntity mob;
+        protected Entity lookAt;
+
+        public LookAtCompanionGoal(MookaiteConstructEntity entity) {
+            this.mob = entity;
+            this.setFlags(EnumSet.of(Goal.Flag.LOOK, Flag.MOVE));
+        }
+
+        public boolean canUse() {
+            if (this.mob.level() instanceof ServerLevel server) {
+                this.lookAt = server.getEntity(this.mob.getOpaliteCompanion());
+            }
+
+            return this.mob.isConstructing() && this.mob.getOpaliteCompanion() != null;
+        }
+
+        public boolean canContinueToUse() {
+            if (!this.lookAt.isAlive()) {
+                return false;
+            } else if (this.mob.distanceToSqr(this.lookAt) > (double)(20.0D * 20.0D)) {
+                return false;
+            } else {
+                return this.mob.isConstructing();
+            }
+        }
+
+        public void stop() {
+            this.lookAt = null;
+        }
+
+        public void tick() {
+            if (this.lookAt.isAlive()) {
+                this.mob.getLookControl().setLookAt(this.lookAt.getX(), this.lookAt.getEyeY(), this.lookAt.getZ());
+            }
+        }
     }
 
     static abstract class TimedGoal extends Goal {

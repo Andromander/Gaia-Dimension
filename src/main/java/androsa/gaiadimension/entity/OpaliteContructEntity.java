@@ -1,5 +1,6 @@
 package androsa.gaiadimension.entity;
 
+import androsa.gaiadimension.item.ConstructKitItem;
 import androsa.gaiadimension.registry.registration.ModBlocks;
 import androsa.gaiadimension.registry.registration.ModItems;
 import androsa.gaiadimension.registry.registration.ModSounds;
@@ -12,6 +13,7 @@ import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -45,6 +47,7 @@ public class OpaliteContructEntity extends PathfinderMob {
 
     private static final EntityDataAccessor<Optional<UUID>> BOND_CREATOR_UUID = SynchedEntityData.defineId(OpaliteContructEntity.class, EntityDataSerializers.OPTIONAL_UUID);
     private static final EntityDataAccessor<Optional<UUID>> MOOKAITE_COMPANION_UUID = SynchedEntityData.defineId(OpaliteContructEntity.class, EntityDataSerializers.OPTIONAL_UUID);
+    private static final EntityDataAccessor<CompoundTag> CONSTRUCT_KIT_DATA = SynchedEntityData.defineId(OpaliteContructEntity.class, EntityDataSerializers.COMPOUND_TAG);
     private static final EntityDataAccessor<Integer> OPALITE_STACK = SynchedEntityData.defineId(OpaliteContructEntity.class, EntityDataSerializers.INT);
     private static final EntityDataAccessor<Integer> SCARLET_STACK = SynchedEntityData.defineId(OpaliteContructEntity.class, EntityDataSerializers.INT);
     private static final EntityDataAccessor<Integer> AUBURN_STACK = SynchedEntityData.defineId(OpaliteContructEntity.class, EntityDataSerializers.INT);
@@ -76,6 +79,7 @@ public class OpaliteContructEntity extends PathfinderMob {
         super.defineSynchedData();
         this.entityData.define(BOND_CREATOR_UUID, Optional.empty());
         this.entityData.define(MOOKAITE_COMPANION_UUID, Optional.empty());
+        this.entityData.define(CONSTRUCT_KIT_DATA, new CompoundTag());
         this.entityData.define(OPALITE_STACK, 0);
         this.entityData.define(SCARLET_STACK, 0);
         this.entityData.define(AUBURN_STACK, 0);
@@ -101,6 +105,9 @@ public class OpaliteContructEntity extends PathfinderMob {
         if (tag.hasUUID("MookaiteUUID")) {
             this.setMookaiteCompanion(tag.getUUID("MookaiteUUID"));
         }
+        if (tag.contains("ConstructKit", 10)) {
+            this.setKitData(tag.getCompound("ConstructKit"));
+        }
     }
 
     @Override
@@ -119,6 +126,9 @@ public class OpaliteContructEntity extends PathfinderMob {
         if (this.getBonder() != null) {
             tag.putUUID("BonderUUID", this.getBonder());
         }
+        if (!this.getKitData().isEmpty()) {
+            tag.put("ConstructKit", this.getKitData());
+        }
     }
 
     public void setBonder(UUID id) {
@@ -135,6 +145,65 @@ public class OpaliteContructEntity extends PathfinderMob {
 
     public UUID getMookaiteCompanion() {
         return this.entityData.get(MOOKAITE_COMPANION_UUID).orElse(null);
+    }
+
+    public CompoundTag getKitData() {
+        return entityData.get(CONSTRUCT_KIT_DATA);
+    }
+
+    public void setKitData(CompoundTag tag) {
+        entityData.set(CONSTRUCT_KIT_DATA, tag);
+    }
+
+    public boolean validateStacks(ConstructKitItem.Kit kit, ConstructKitItem.Part part) {
+        boolean flag = false;
+
+        switch (kit) {
+            case REPAIR -> flag = this.getOpaliteAmount() >= 10;
+            case AUGMENT -> flag = this.getOpaliteAmount() >= 5 && this.getMookaiteAmount(part.getPart().main()) >= 10;
+            case REPLACE -> flag = this.getMookaiteAmount(part.getPart().main()) >= 5;
+        }
+
+        return flag;
+    }
+
+    public boolean validateKit(ConstructKitItem.Kit kit, ConstructKitItem.Part part, ConstructKitItem.Color color) {
+        boolean flag = false;
+        MookaiteConstructEntity mookaite = this.getFollowing();
+        if (mookaite != null) {
+            switch (kit) {
+                //Must not be Opalite or missing
+                case REPAIR -> flag = mookaite.getPart(part.getPart()) != 7 && mookaite.getPart(part.getPart()) != 0;
+                //Must be missing
+                case AUGMENT -> flag = mookaite.getPart(part.getPart()) == 0;
+                //Must exist and not the same colour
+                case REPLACE -> flag = mookaite.isPresent(part.getPart()) && mookaite.getPart(part.getPart()) != color.getPartColor();
+            }
+        }
+
+        return flag;
+    }
+
+    public boolean validateActivity() {
+        if (this.getFollowing() != null) {
+            if (this.distanceToSqr(this.getFollowing()) < 10.0D) {
+                return this.getFollowing().getTarget() == null;
+            }
+        }
+        return false;
+    }
+
+    public void writeKitData(ConstructKitItem.Kit kit, ConstructKitItem.Part part, ConstructKitItem.Color color) {
+        CompoundTag tag = new CompoundTag();
+        tag.putInt("KitID", kit.ordinal());
+        tag.putInt("PartID", part.ordinal());
+        if (color != null) tag.putInt("ColorID", color.ordinal());
+        this.setKitData(tag);
+    }
+
+    public void clearKitData() {
+        CompoundTag tag = new CompoundTag();
+        this.setKitData(tag);
     }
 
     public void setOpaliteAmount(int amount) {
@@ -166,6 +235,7 @@ public class OpaliteContructEntity extends PathfinderMob {
 
     @Override
     protected void registerGoals() {
+        this.goalSelector.addGoal(1, new RepairCompanionGoal(this));
         this.goalSelector.addGoal(2, new FollowCompanionGoal(this));
         this.goalSelector.addGoal(3, new WaterAvoidingRandomStrollGoal(this, 0.3D));
         this.goalSelector.addGoal(4, new LookAtPlayerGoal(this, Player.class, 6.0F));
@@ -246,6 +316,7 @@ public class OpaliteContructEntity extends PathfinderMob {
             if (entity instanceof MookaiteConstructEntity mookaite) {
                 mookaite.setOpaliteCompanion(null);
                 mookaite.setBonder(null);
+                mookaite.setConstructing(false);
             }
         }
 
@@ -360,6 +431,79 @@ public class OpaliteContructEntity extends PathfinderMob {
 
         private int getRandomInt(int min, int max) {
             return this.opalite.getRandom().nextInt(max - min + 1) + min;
+        }
+    }
+
+    static class RepairCompanionGoal extends Goal {
+
+        private final OpaliteContructEntity opalite;
+        private MookaiteConstructEntity mookaite;
+        private int repairTime;
+        private boolean isDone;
+
+        public RepairCompanionGoal(OpaliteContructEntity entity) {
+            this.opalite = entity;
+        }
+
+        @Override
+        public boolean canUse() {
+            return !this.opalite.getKitData().isEmpty() && this.opalite.getMookaiteCompanion() != null
+                    && this.opalite.getFollowing() != null && this.opalite.distanceToSqr(this.opalite.getFollowing()) <= 20.0D;
+        }
+
+        @Override
+        public boolean canContinueToUse() {
+            return !isDone || this.opalite.getMookaiteCompanion() != null;
+        }
+
+        @Override
+        public void start() {
+            super.start();
+            this.mookaite = this.opalite.getFollowing();
+            this.mookaite.setConstructing(true);
+            this.repairTime = 40;
+            this.isDone = false;
+        }
+
+        @Override
+        public void stop() {
+            super.stop();
+            this.mookaite.setConstructing(false);
+            this.opalite.clearKitData();
+        }
+
+        @Override
+        public void tick() {
+            if (this.opalite.level() instanceof ServerLevel server) {
+                if (server.getEntity(this.opalite.getMookaiteCompanion()) instanceof MookaiteConstructEntity) {
+                    opalite.getNavigation().moveTo(mookaite, 1.0D);
+                    if (opalite.getNavigation().isDone()) {
+                        if (this.repairTime >= 40) {
+                            this.opalite.playSound(SoundEvents.ANVIL_USE);
+                        }
+                        if (this.repairTime <= 0) {
+                            MookaiteConstructEntity.MookaitePart part = ConstructKitItem.Part.values()[this.opalite.getKitData().getInt("PartID")].getPart();
+                            int color = ConstructKitItem.Color.values()[this.opalite.getKitData().getInt("ColorID")].getPartColor();
+                            ConstructKitItem.Kit kit = ConstructKitItem.Kit.values()[this.opalite.getKitData().getInt("KitID")];
+
+                            //Subtract materials
+                            switch (kit) {
+                                case REPAIR -> opalite.setOpaliteAmount(opalite.getOpaliteAmount() - 10);
+                                case AUGMENT -> {
+                                    opalite.setOpaliteAmount(opalite.getOpaliteAmount() - 5);
+                                    opalite.setMookaiteAmount(part.main(), opalite.getMookaiteAmount(part.main()) - 10);
+                                }
+                                case REPLACE -> opalite.setMookaiteAmount(part.main(), opalite.getMookaiteAmount(part.main()) - 5);
+                            }
+                            //Set part
+                            mookaite.setPart(part, color);
+                            this.isDone = true;
+                        }
+                        repairTime--;
+                    }
+
+                }
+            }
         }
     }
 }

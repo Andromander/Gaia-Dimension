@@ -606,6 +606,13 @@
   "gaiadimension.construct_kit.color.mauve": "Mauve",
   "gaiadimension.construct_kit.color.beige": "Beige",
   "gaiadimension.construct_kit.color.ivory": "Ivory",
+  "gaiadimension.constuct_kit.invalid.no_bond": "There is no bond with a Mookaite Construct",
+  "gaiadimension.construct_kit.invalid.follower": "This bond is not with a Mookaite Construct",
+  "gaiadimension.constuct_kit.invalid.in_use": "The Opalite Construct is at work already",
+  "gaiadimension.construct_kit.invalid.no_part": "There's no part in this Kit",
+  "gaiadimension.construct_kit.invalid.resources": "There's not enough materials to use this kit",
+  "gaiadimension.construct_kit.invalid.incompatible": "This Kit cannot be used because it's incompatible",
+  "gaiadimension.construct_kit.invalid.in_combat": "The Mookaite Construct is too distracted",
 
   "malachite_armor.tooltip": "Sturdy, heavy, and eerily polished",
   "tigereye_armor.tooltip": "Who knew something old was still this dangerous?",
