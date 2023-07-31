@@ -1,4 +1,4 @@
-// 1.20	2023-07-26T23:23:35.6693986	Gaia Item Models
+// 1.20	2023-07-31T20:10:58.6928941	Gaia Item Models
 d5c0f0011c11d4bd7b161026eed13370329d4981 assets/gaiadimension/models/item/active_rock.json
 f8516b22f5651209e5c6893ab609ebc1105db572 assets/gaiadimension/models/item/agate_arrow.json
 8edce106f0b6a88ad044dafcb45074427a389d02 assets/gaiadimension/models/item/agate_axe.json
@@ -365,6 +365,7 @@ e66614d01b9527fd662d70bf0d1b1e5f16219a97 assets/gaiadimension/models/item/mystic
 b857bc36e09064c2962a04156ff4f6ce5ffcf9bf assets/gaiadimension/models/item/nexustone.json
 63ec6c618a3a23eab4cab9c52d7d3250de9b516e assets/gaiadimension/models/item/nomadic_lagrahk_spawn_egg.json
 a1b54b97a6e14e9432133869c2fbc0a36f68f3d0 assets/gaiadimension/models/item/opalite.json
+3e6079286bc00b7d1c60a5b7609845e595cf3a5d assets/gaiadimension/models/item/opalite_block.json
 63ec6c618a3a23eab4cab9c52d7d3250de9b516e assets/gaiadimension/models/item/opalite_construct_spawn_egg.json
 ed72677c57249bebb54e15e3c79528936f336782 assets/gaiadimension/models/item/ouzium.json
 339ef447d6c4ae492b429656624687e0a24e5db5 assets/gaiadimension/models/item/pearly_geode_elixir.json

@@ -183,6 +183,7 @@ public class GaiaTags {
         public static final TagKey<Block> STORAGE_BLOCKS_GOLDSTONE = tagBlockForge("storage_blocks/goldstone");
         public static final TagKey<Block> STORAGE_BLOCKS_AURA_CRYSTAL = tagBlockForge("storage_blocks/aura");
         public static final TagKey<Block> STORAGE_BLOCKS_BISMUTH = tagBlockForge("storage_blocks/bismuth");
+        public static final TagKey<Block> STORAGE_BLOCKS_OPALITE = tagBlockForge("storage_blocks/opalite");
         public static final TagKey<Block> STORAGE_BLOCKS_IXIOLITE = tagBlockForge("storage_blocks/ixiolite");
         public static final TagKey<Block> STORAGE_BLOCKS_PROUSTITE = tagBlockForge("storage_blocks/proustite");
         public static final TagKey<Block> STORAGE_BLOCKS_EUCLASE = tagBlockForge("storage_blocks/euclase");

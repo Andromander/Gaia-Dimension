@@ -65,7 +65,7 @@ public class ModTabs {
                 add(output, ModBlocks.malachite_pulsing_brick_stairs, ModBlocks.malachite_pulsing_chisel_stairs, ModBlocks.malachite_pulsing_floor_stairs);
                 add(output, ModBlocks.malachite_brick_slab, ModBlocks.malachite_cracked_brick_slab, ModBlocks.malachite_crusted_brick_slab, ModBlocks.malachite_tile_slab);
                 add(output, ModBlocks.pyrite_block, ModBlocks.sugilite_block, ModBlocks.hematite_block, ModBlocks.cinnabar_block, ModBlocks.labradorite_block, ModBlocks.moonstone_block, ModBlocks.red_opal_block, ModBlocks.blue_opal_block, ModBlocks.green_opal_block, ModBlocks.white_opal_block);
-                add(output, ModBlocks.goldstone_block, ModBlocks.bismuth_block, ModBlocks.aura_block, ModBlocks.tektite_block);
+                add(output, ModBlocks.goldstone_block, ModBlocks.bismuth_block, ModBlocks.aura_block, ModBlocks.tektite_block, ModBlocks.opalite_block);
                 add(output, ModBlocks.ixiolite_block, ModBlocks.proustite_block, ModBlocks.euclase_block, ModBlocks.leucite_block, ModBlocks.carnelian_block, ModBlocks.benitoite_block, ModBlocks.diopside_block, ModBlocks.chalcedony_block);
             }).build());
 

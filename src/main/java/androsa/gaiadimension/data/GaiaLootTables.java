@@ -324,6 +324,7 @@ public class GaiaLootTables extends LootTableProvider {
             dropSelf(ModBlocks.goldstone_block);
             dropSelf(ModBlocks.aura_block);
             dropSelf(ModBlocks.bismuth_block);
+            dropSelf(ModBlocks.opalite_block);
             dropSelf(ModBlocks.ixiolite_block);
             dropSelf(ModBlocks.proustite_block);
             dropSelf(ModBlocks.euclase_block);

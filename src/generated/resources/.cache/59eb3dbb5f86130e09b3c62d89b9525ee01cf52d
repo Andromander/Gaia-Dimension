@@ -1,4 +1,4 @@
-// 1.20	2023-07-15T12:17:28.4687678	Loot Tables
+// 1.20	2023-07-31T20:10:58.6968976	Loot Tables
 70fac5f3da5e56a3221f03ad3388e9157b04753a data/gaiadimension/loot_tables/blocks/active_rock.json
 488882d8b9f64b34ecf3a22af357f2aedd29512a data/gaiadimension/loot_tables/blocks/agate_crafting_table.json
 7d233d88ea3fc2923fa77a2fb7e6b9dafd09ff5f data/gaiadimension/loot_tables/blocks/agathum.json
@@ -201,6 +201,7 @@ acb53e9006a347833450d6dae1404f1fec711c13 data/gaiadimension/loot_tables/blocks/m
 c8c26c2e9f22d8ba34ba6657c0a77763dea46966 data/gaiadimension/loot_tables/blocks/murky_grass.json
 2d185c024ced11e7c7c81bf6b47a7f1a877dceb3 data/gaiadimension/loot_tables/blocks/mystical_murgni.json
 4c48d18630799afb3eb2c628ac00e694746b49b4 data/gaiadimension/loot_tables/blocks/nexustone.json
+7ed64f5d0214594f57a516fdd99cb089912d1daa data/gaiadimension/loot_tables/blocks/opalite_block.json
 d2b3bd3fcd8cc3c7c9beedd19dddaf3a673995f2 data/gaiadimension/loot_tables/blocks/ouzium.json
 db855d0dbef40e36ee2310ae924e2328eb9fc164 data/gaiadimension/loot_tables/blocks/pebbles.json
 aee7104fc274a430c54ca2dd5a1b75762e117146 data/gaiadimension/loot_tables/blocks/pink_agate_leaves.json

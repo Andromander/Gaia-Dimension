@@ -76,6 +76,7 @@ public class GaiaRecipes extends GaiaRecipeProvider {
         largeCompressRecipe(ModBlocks.goldstone_block.get(), ModItems.goldstone.get()).save(consumer, locStorage("goldstone_block"));
         largeCompressRecipe(ModBlocks.aura_block.get(), ModItems.aura_cluster.get()).save(consumer, locStorage("aura_block"));
         largeCompressRecipe(ModBlocks.bismuth_block.get(), ModItems.bismuth_crystal.get()).save(consumer, locStorage("bismuth_block"));
+        largeCompressRecipe(ModBlocks.opalite_block.get(), ModItems.opalite.get()).save(consumer, locStorage("opalite_block"));
         largeCompressRecipe(ModBlocks.ixiolite_block.get(), ModItems.ixiolite.get()).save(consumer, locStorage("ixiolite_block"));
         largeCompressRecipe(ModBlocks.proustite_block.get(), ModItems.proustite.get()).save(consumer, locStorage("proustite_block"));
         largeCompressRecipe(ModBlocks.euclase_block.get(), ModItems.euclase.get()).save(consumer, locStorage("euclase_block"));
@@ -107,6 +108,7 @@ public class GaiaRecipes extends GaiaRecipeProvider {
         blockToItemRecipe(ModItems.goldstone, ModBlocks.goldstone_block).save(consumer, locStorage("goldstone_block_item"));
         blockToItemRecipe(ModItems.aura_cluster, ModBlocks.aura_block).save(consumer, locStorage("aura_cluster_block_item"));
         blockToItemRecipe(ModItems.bismuth_crystal, ModBlocks.bismuth_block).save(consumer, locStorage("bismuth_crystal_block_item"));
+        blockToItemRecipe(ModItems.opalite, ModBlocks.opalite_block).save(consumer, locStorage("opalite_block_item"));
 
         helmetRecipe(ModItems.sugilite_helmet, ModItems.sugilite).save(consumer, locArmor("sugilite_helmet"));
         chestRecipe(ModItems.sugilite_chestplate, ModItems.sugilite).save(consumer, locArmor("sugilite_chestplate"));

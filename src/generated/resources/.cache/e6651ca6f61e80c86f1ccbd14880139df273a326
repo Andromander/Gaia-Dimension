@@ -1,4 +1,4 @@
-// 1.20	2023-07-15T12:17:28.4567219	Gaia Blockstates and Models
+// 1.20	2023-07-31T20:10:58.6838864	Gaia Blockstates and Models
 8608ca08d4e09a00c5ac1279dc5458d093d263da assets/gaiadimension/blockstates/active_rock.json
 23ea34251e78628208a9041761eae63ba0f255fa assets/gaiadimension/blockstates/agate_crafting_table.json
 77a0b7c45ea73099883d8e25af0610686569ed6a assets/gaiadimension/blockstates/agathum.json
@@ -198,6 +198,7 @@ dd8570998c0b8d60fe9f0e417e55772f8e28b7d3 assets/gaiadimension/blockstates/moonst
 cbdf9283b4a7042c058ca040e2b31066bc949a38 assets/gaiadimension/blockstates/murky_grass.json
 3c572ee3648805baf3ac049eb41232b9ca569935 assets/gaiadimension/blockstates/mystical_murgni.json
 82dbe6ae647fe995a58039e6304f2a24b78e55bf assets/gaiadimension/blockstates/nexustone.json
+ee94dde520ae9e04ab8ea42803e6d6a099d40f74 assets/gaiadimension/blockstates/opalite_block.json
 a8958a6fd07a8d11ebf1546d531b31b90ee4b281 assets/gaiadimension/blockstates/ouzium.json
 d0d149a443c7642c5eb74bc378aa03841474fe14 assets/gaiadimension/blockstates/pebbles.json
 71fd9530b476bbba658339e35265ec9cb68abcf2 assets/gaiadimension/blockstates/pink_agate_leaves.json
@@ -595,6 +596,7 @@ b7e574f51d33153a9d83ea9f98866467a58cb037 assets/gaiadimension/models/block/moons
 1405371b7e99e9a22344755590ed658fe259b7a4 assets/gaiadimension/models/block/murky_grass.json
 d2a4ef84c22a2c8ad6d09dab3f19fee912d2973e assets/gaiadimension/models/block/mystical_murgni.json
 d16131dbed22dd22f93c8a6d1c8dd7cd62cc9319 assets/gaiadimension/models/block/nexustone.json
+f2065558cee607702a3b97533ef3eee562cd8e8e assets/gaiadimension/models/block/opalite_block.json
 8a4605e244bc0f3606a7fac6e66fce0672f668da assets/gaiadimension/models/block/ouzium.json
 d9461ddf1998e53b846c1a52333fd01e283c60c3 assets/gaiadimension/models/block/pebbles.json
 b8c949eb60d2843e5ccf21b71e45954714735887 assets/gaiadimension/models/block/pink_agate_leaves.json

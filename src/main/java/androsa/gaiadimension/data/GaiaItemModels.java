@@ -275,6 +275,7 @@ public class GaiaItemModels extends GaiaItemModelProvider {
         blockItem(ModBlocks.goldstone_block);
         blockItem(ModBlocks.aura_block);
         blockItem(ModBlocks.bismuth_block);
+        blockItem(ModBlocks.opalite_block);
         blockItem(ModBlocks.ixiolite_block);
         blockItem(ModBlocks.proustite_block);
         blockItem(ModBlocks.euclase_block);
