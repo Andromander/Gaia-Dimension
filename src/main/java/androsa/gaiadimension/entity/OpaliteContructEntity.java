@@ -445,6 +445,7 @@ public class OpaliteContructEntity extends PathfinderMob {
 
         public RepairCompanionGoal(OpaliteContructEntity entity) {
             this.opalite = entity;
+            this.setFlags(EnumSet.of(Flag.LOOK, Flag.MOVE));
         }
 
         @Override
@@ -455,7 +456,7 @@ public class OpaliteContructEntity extends PathfinderMob {
 
         @Override
         public boolean canContinueToUse() {
-            return !isDone || this.opalite.getMookaiteCompanion() != null;
+            return !isDone && this.opalite.getMookaiteCompanion() != null;
         }
 
         @Override
@@ -463,7 +464,7 @@ public class OpaliteContructEntity extends PathfinderMob {
             super.start();
             this.mookaite = this.opalite.getFollowing();
             this.mookaite.setConstructing(true);
-            this.repairTime = 20;
+            this.repairTime = 10;
             this.isDone = false;
         }
 
@@ -479,8 +480,9 @@ public class OpaliteContructEntity extends PathfinderMob {
             if (this.opalite.level() instanceof ServerLevel server) {
                 if (server.getEntity(this.opalite.getMookaiteCompanion()) instanceof MookaiteConstructEntity) {
                     opalite.getNavigation().moveTo(mookaite, 0.5D);
+                    opalite.getLookControl().setLookAt(mookaite);
                     if (opalite.getNavigation().isDone()) {
-                        if (this.repairTime == 20) {
+                        if (this.repairTime == 10) {
                             this.opalite.playSound(SoundEvents.ANVIL_USE);
                         }
                         if (this.repairTime == 0) {
