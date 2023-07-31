@@ -587,6 +587,7 @@
   "gaiadimension.construct_kit.repair": "Use this to turn a Mookaite part into Opalite",
   "gaiadimension.construct_kit.augment": "Use this to repair a missing Mookaite part",
   "gaiadimension.construct_kit.replace": "Use this to make a part a different Mookaite color",
+  "gaiaidmension.construct_kit.part.instruction": "Hold Shift and Right-Click to change part",
   "gaiadimension.construct_kit.part.swap": "Kit part changed to:",
   "gaiadimension.construct_kit.part": "This kit will affect:",
   "gaiadimension.construct_kit.part.left_horn": "Left Horn",

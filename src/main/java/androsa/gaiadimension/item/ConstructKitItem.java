@@ -45,6 +45,7 @@ public class ConstructKitItem extends Item {
             CompoundTag tag = stack.getTag();
             if (tag != null && tag.contains("Part")) {
                 components.add(Component.translatable("gaiadimension.construct_kit.part").withStyle(ChatFormatting.GRAY).append(CommonComponents.SPACE).append(getPart(tag)));
+                components.add(Component.translatable("gaiaidmension.construct_kit.part.instruction").withStyle(ChatFormatting.DARK_GRAY));
             }
         }
         if (partColor != null) {
