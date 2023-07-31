@@ -478,7 +478,7 @@ public class OpaliteContructEntity extends PathfinderMob {
         public void tick() {
             if (this.opalite.level() instanceof ServerLevel server) {
                 if (server.getEntity(this.opalite.getMookaiteCompanion()) instanceof MookaiteConstructEntity) {
-                    opalite.getNavigation().moveTo(mookaite, 1.0D);
+                    opalite.getNavigation().moveTo(mookaite, 0.5D);
                     if (opalite.getNavigation().isDone()) {
                         if (this.repairTime >= 40) {
                             this.opalite.playSound(SoundEvents.ANVIL_USE);
