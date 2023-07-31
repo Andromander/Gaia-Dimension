@@ -48,6 +48,7 @@ public class OpaliteContructEntity extends PathfinderMob {
     private static final EntityDataAccessor<Optional<UUID>> BOND_CREATOR_UUID = SynchedEntityData.defineId(OpaliteContructEntity.class, EntityDataSerializers.OPTIONAL_UUID);
     private static final EntityDataAccessor<Optional<UUID>> MOOKAITE_COMPANION_UUID = SynchedEntityData.defineId(OpaliteContructEntity.class, EntityDataSerializers.OPTIONAL_UUID);
     private static final EntityDataAccessor<CompoundTag> CONSTRUCT_KIT_DATA = SynchedEntityData.defineId(OpaliteContructEntity.class, EntityDataSerializers.COMPOUND_TAG);
+    private static final EntityDataAccessor<Boolean> IS_CONSTRUCTING = SynchedEntityData.defineId(OpaliteContructEntity.class, EntityDataSerializers.BOOLEAN);
     private static final EntityDataAccessor<Integer> OPALITE_STACK = SynchedEntityData.defineId(OpaliteContructEntity.class, EntityDataSerializers.INT);
     private static final EntityDataAccessor<Integer> SCARLET_STACK = SynchedEntityData.defineId(OpaliteContructEntity.class, EntityDataSerializers.INT);
     private static final EntityDataAccessor<Integer> AUBURN_STACK = SynchedEntityData.defineId(OpaliteContructEntity.class, EntityDataSerializers.INT);
@@ -80,6 +81,7 @@ public class OpaliteContructEntity extends PathfinderMob {
         this.entityData.define(BOND_CREATOR_UUID, Optional.empty());
         this.entityData.define(MOOKAITE_COMPANION_UUID, Optional.empty());
         this.entityData.define(CONSTRUCT_KIT_DATA, new CompoundTag());
+        this.entityData.define(IS_CONSTRUCTING, false);
         this.entityData.define(OPALITE_STACK, 0);
         this.entityData.define(SCARLET_STACK, 0);
         this.entityData.define(AUBURN_STACK, 0);
@@ -92,6 +94,7 @@ public class OpaliteContructEntity extends PathfinderMob {
     @Override
     public void readAdditionalSaveData(CompoundTag tag) {
         super.readAdditionalSaveData(tag);
+        this.setConstructing(tag.getBoolean("IsConstructing"));
         this.setOpaliteAmount(tag.getInt("OpaliteStack"));
         this.setMookaiteAmount(SCARLET_STACK, tag.getInt("ScarletStack"));
         this.setMookaiteAmount(AUBURN_STACK, tag.getInt("AuburnStack"));
@@ -113,6 +116,7 @@ public class OpaliteContructEntity extends PathfinderMob {
     @Override
     public void addAdditionalSaveData(CompoundTag tag) {
         super.addAdditionalSaveData(tag);
+        tag.putBoolean("IsConstructing", this.isConstructing());
         tag.putInt("OpaliteStack", this.getOpaliteAmount());
         tag.putInt("ScarletStack", this.getMookaiteAmount(SCARLET_STACK));
         tag.putInt("AuburnStack", this.getMookaiteAmount(AUBURN_STACK));
@@ -153,6 +157,14 @@ public class OpaliteContructEntity extends PathfinderMob {
 
     public void setKitData(CompoundTag tag) {
         entityData.set(CONSTRUCT_KIT_DATA, tag);
+    }
+
+    public boolean isConstructing() {
+        return entityData.get(IS_CONSTRUCTING);
+    }
+
+    public void setConstructing(boolean flag) {
+        entityData.set(IS_CONSTRUCTING, flag);
     }
 
     public boolean validateStacks(ConstructKitItem.Kit kit, ConstructKitItem.Part part) {
@@ -473,6 +485,7 @@ public class OpaliteContructEntity extends PathfinderMob {
             super.stop();
             this.mookaite.setConstructing(false);
             this.opalite.clearKitData();
+            this.opalite.setConstructing(false);
         }
 
         @Override
@@ -483,6 +496,7 @@ public class OpaliteContructEntity extends PathfinderMob {
                     opalite.getLookControl().setLookAt(mookaite);
                     if (opalite.getNavigation().isDone()) {
                         if (this.repairTime == 10) {
+                            this.opalite.setConstructing(true);
                             this.opalite.playSound(SoundEvents.ANVIL_USE);
                         }
                         if (this.repairTime == 0) {

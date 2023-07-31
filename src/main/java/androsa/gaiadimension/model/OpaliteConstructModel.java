@@ -78,14 +78,20 @@ public class OpaliteConstructModel<T extends OpaliteContructEntity> extends Hier
 
 		this.right_arm.zRot = 0.0F;
 		this.left_arm.zRot = 0.0F;
-		this.right_arm.xRot = 0.0F;
-		this.left_arm.xRot = 0.0F;
 		this.right_arm.zRot += Mth.cos(ageInTicks * 0.09F) * 0.05F;
 		this.left_arm.zRot -= Mth.cos(ageInTicks * 0.09F) * 0.05F;
-		this.right_arm.xRot += Mth.sin(ageInTicks * 0.067F) * 0.05F;
-		this.left_arm.xRot -= Mth.sin(ageInTicks * 0.067F) * 0.05F;
-		this.left_arm.xRot = Mth.cos(limbSwing * 0.6662F) * 1.0F * limbSwingAmount;
-		this.right_arm.xRot = Mth.cos(limbSwing * 0.6662F + (float) Math.PI) * 1.0F * limbSwingAmount;
+
+		if (entity.isConstructing()) {
+			this.right_arm.xRot = -2.0F;
+			this.left_arm.xRot = -2.0F;
+		} else {
+			this.right_arm.xRot = 0.0F;
+			this.left_arm.xRot = 0.0F;
+			this.right_arm.xRot += Mth.sin(ageInTicks * 0.067F) * 0.05F;
+			this.left_arm.xRot -= Mth.sin(ageInTicks * 0.067F) * 0.05F;
+			this.left_arm.xRot = Mth.cos(limbSwing * 0.6662F) * 1.0F * limbSwingAmount;
+			this.right_arm.xRot = Mth.cos(limbSwing * 0.6662F + (float) Math.PI) * 1.0F * limbSwingAmount;
+		}
 
 		this.left_leg.xRot = Mth.cos(limbSwing * 0.6662F) * 0.5F * limbSwingAmount;
 		this.right_leg.xRot = Mth.cos(limbSwing * 0.6662F + (float) Math.PI) * 0.5F * limbSwingAmount;
