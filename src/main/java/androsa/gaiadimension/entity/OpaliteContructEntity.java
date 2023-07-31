@@ -463,7 +463,7 @@ public class OpaliteContructEntity extends PathfinderMob {
             super.start();
             this.mookaite = this.opalite.getFollowing();
             this.mookaite.setConstructing(true);
-            this.repairTime = 40;
+            this.repairTime = 20;
             this.isDone = false;
         }
 
@@ -480,10 +480,10 @@ public class OpaliteContructEntity extends PathfinderMob {
                 if (server.getEntity(this.opalite.getMookaiteCompanion()) instanceof MookaiteConstructEntity) {
                     opalite.getNavigation().moveTo(mookaite, 0.5D);
                     if (opalite.getNavigation().isDone()) {
-                        if (this.repairTime >= 40) {
+                        if (this.repairTime == 20) {
                             this.opalite.playSound(SoundEvents.ANVIL_USE);
                         }
-                        if (this.repairTime <= 0) {
+                        if (this.repairTime == 0) {
                             ConstructKitItem.Kit kit = ConstructKitItem.Kit.values()[this.opalite.getKitData().getInt("KitID")];
                             MookaiteConstructEntity.MookaitePart part = ConstructKitItem.Part.values()[this.opalite.getKitData().getInt("PartID")].getPart();
                             int color = ConstructKitItem.Color.values()[this.opalite.getKitData().getInt("ColorID")].getPartColor();
