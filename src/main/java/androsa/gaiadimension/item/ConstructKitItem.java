@@ -95,39 +95,32 @@ public class ConstructKitItem extends Item {
                 if (!entity.level().isClientSide()) {
                     //First, make sure we are bonded, otherwise we shouldn't do anything
                     if (opalite.getMookaiteCompanion() == null) {
-                        player.displayClientMessage(Component.translatable("gaiadimension.constuct_kit.invalid.no_bond").withStyle(ChatFormatting.RED), true);
-                        return InteractionResult.FAIL;
+                        return this.fail(player, Error.NO_BOND);
                     }
                     //Also make sure the bond is a Mookaite Construct
                     if (opalite.getFollowing() == null) {
-                        player.displayClientMessage(Component.translatable("gaiadimension.construct_kit.invalid.follower").withStyle(ChatFormatting.RED), true);
-                        return InteractionResult.FAIL;
+                        return this.fail(player, Error.FOLLOWER);
                     }
                     //Then, check we don't have kit data already, make sure we do one task at a time
                     if (!opalite.getKitData().isEmpty()) {
-                        player.displayClientMessage(Component.translatable("gaiadimension.constuct_kit.invalid.in_use").withStyle(ChatFormatting.RED), true);
-                        return InteractionResult.FAIL;
+                        return this.fail(player, Error.IN_USE);
                     }
                     CompoundTag tag = stack.getTag();
                     //Failsafe check for Part tag
                     if (tag == null || !tag.contains("Part")) {
-                        player.displayClientMessage(Component.translatable("gaiadimension.construct_kit.invalid.no_part").withStyle(ChatFormatting.RED), true);
-                        return InteractionResult.FAIL;
+                        return this.fail(player, Error.NO_PART);
                     }
                     //Validate if we have enough to perform the action
                     if (!opalite.validateStacks(this.kit, Part.byId(tag.getInt("Part")))) {
-                        player.displayClientMessage(Component.translatable("gaiadimension.construct_kit.invalid.resources").withStyle(ChatFormatting.RED), true);
-                        return InteractionResult.FAIL;
+                        return this.fail(player, Error.RESOURCES);
                     }
                     //Validate if the kit can be used
                     if (!opalite.validateKit(this.kit, Part.byId(tag.getInt("Part")), this.partColor)) {
-                        player.displayClientMessage(Component.translatable("gaiadimension.construct_kit.invalid.incompatible").withStyle(ChatFormatting.RED), true);
-                        return InteractionResult.FAIL;
+                        return this.fail(player, Error.INCOMPATIBLE);
                     }
                     //Validate if the Mookaite Construct is in action
                     if (!opalite.validateActivity()) {
-                        player.displayClientMessage(Component.translatable("gaiadimension.construct_kit.invalid.in_combat").withStyle(ChatFormatting.RED), true);
-                        return InteractionResult.FAIL;
+                        return this.fail(player, Error.IN_COMBAT);
                     }
                     //Complete the action because we passed
                     opalite.writeKitData(this.kit, Part.byId(tag.getInt("Part")), this.partColor);
@@ -140,6 +133,11 @@ public class ConstructKitItem extends Item {
         }
 
         return InteractionResult.PASS;
+    }
+
+    private InteractionResult fail(Player player, Error failure) {
+        player.displayClientMessage(failure.getLangKey(), true);
+        return InteractionResult.FAIL;
     }
 
     public enum Kit {
@@ -223,32 +221,24 @@ public class ConstructKitItem extends Item {
             return part;
         }
     }
-
-    //TODO integrate this
-    public enum State {
-        NO_BOND("no_bond", false),
-        FOLLOWER("follower", false),
-        IN_USE("in_use", false),
-        NO_PART("no_part", false),
-        INCOMPATIBLE("incompatible", false),
-        RESOURCE("resource", false),
-        IN_COMBAT("in_combat", false),
-        PASS("valid", true);
+    
+    public enum Error {
+        NO_BOND("no_bond"),
+        FOLLOWER("follower"),
+        IN_USE("in_use"),
+        NO_PART("no_part"),
+        RESOURCES("resources"),
+        INCOMPATIBLE("incompatible"),
+        IN_COMBAT("in_combat");
 
         private final String lang;
-        private final boolean flag;
 
-        State(String lang, boolean flag) {
+        Error(String lang) {
             this.lang = lang;
-            this.flag = flag;
         }
 
-        public static Component getLangKey(State state) {
-            return Component.translatable("gaiadimension.construct_kit.invalid." + state.lang).withStyle(ChatFormatting.RED);
-        }
-
-        public boolean getReturnState() {
-            return flag;
+        public Component getLangKey() {
+            return Component.translatable("gaiadimension.construct_kit.invalid." + lang).withStyle(ChatFormatting.RED);
         }
     }
 }
