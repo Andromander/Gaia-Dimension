@@ -186,7 +186,7 @@ public class OpaliteContructEntity extends PathfinderMob {
 
     public boolean validateActivity() {
         if (this.getFollowing() != null) {
-            if (this.distanceToSqr(this.getFollowing()) < 10.0D) {
+            if (this.distanceToSqr(this.getFollowing()) < 100.0D) {
                 return this.getFollowing().getTarget() == null;
             }
         }
@@ -450,7 +450,7 @@ public class OpaliteContructEntity extends PathfinderMob {
         @Override
         public boolean canUse() {
             return !this.opalite.getKitData().isEmpty() && this.opalite.getMookaiteCompanion() != null
-                    && this.opalite.getFollowing() != null && this.opalite.distanceToSqr(this.opalite.getFollowing()) <= 20.0D;
+                    && this.opalite.getFollowing() != null && this.opalite.distanceToSqr(this.opalite.getFollowing()) <= 100.0D;
         }
 
         @Override
