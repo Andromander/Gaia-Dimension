@@ -103,7 +103,7 @@ public class OpaliteContructEntity extends PathfinderMob {
         this.setMookaiteAmount(BEIGE_STACK, tag.getInt("BeigeStack"));
         this.setMookaiteAmount(IVORY_STACK, tag.getInt("IvoryStack"));
         if (tag.hasUUID("BonderUUID")) {
-            this.setMookaiteCompanion(tag.getUUID("BonderUUID"));
+            this.setBonder(tag.getUUID("BonderUUID"));
         }
         if (tag.hasUUID("MookaiteUUID")) {
             this.setMookaiteCompanion(tag.getUUID("MookaiteUUID"));
