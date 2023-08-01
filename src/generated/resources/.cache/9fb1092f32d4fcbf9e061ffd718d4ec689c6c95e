@@ -1,4 +1,4 @@
-// 1.20	2023-07-31T20:10:58.6999005	Recipes
+// 1.20	2023-08-01T11:56:42.3237842	Recipes
 b228f91dec6c08cca30c2e65d40bb0a1b8c6bb2c data/gaiadimension/advancements/recipes/building_blocks/amethyst_bricks.json
 f92776a5d130e7f0b70d430c76980d4697a05136 data/gaiadimension/advancements/recipes/building_blocks/amethyst_brick_slab.json
 604ead483732f016bf42cfb0da17fcb447e89b74 data/gaiadimension/advancements/recipes/building_blocks/amethyst_brick_stairs.json
@@ -199,6 +199,7 @@ c40191d7af59ade2049f1750b0e0851c90dfd739 data/gaiadimension/advancements/recipes
 0f410e238157ceae1759a72e791ce787cdee8647 data/gaiadimension/advancements/recipes/misc/agate_stick.json
 cd0be1c5dc6ca227e7b9a991a947244bfce17caf data/gaiadimension/advancements/recipes/misc/blank_kit.json
 8518d2fea827328dda181c05c4805762c300efa9 data/gaiadimension/advancements/recipes/misc/bone_meal.json
+b851233e24cd0e1a174fff258d7dd52792e47623 data/gaiadimension/advancements/recipes/misc/construct_charm.json
 d2213cdad34663be161fac3946f870c54cc4409b data/gaiadimension/advancements/recipes/misc/smelting/blue_opal_smelt.json
 51d5aa476de924c03a344b19c73e2f47a4cd781d data/gaiadimension/advancements/recipes/misc/smelting/cinnabar_smelt.json
 8287f81cd00bfe6fb64f28abc7fa49a99efde3ec data/gaiadimension/advancements/recipes/misc/smelting/cloudy_shard.json
@@ -322,6 +323,7 @@ aef8bfd7bcf693fd504778b7352efff2805a4de8 data/gaiadimension/recipes/bolstered_br
 31cfd31d5fe779365206797193db825591e4d918 data/gaiadimension/recipes/bolstered_bricks_2.json
 6ed0e37e215e070e529c839f4bd94e324abbf6c0 data/gaiadimension/recipes/bone_meal.json
 6d78ce5b2fea25e072ed3829668a10ab32ec9f3a data/gaiadimension/recipes/cloudy_glass.json
+e13fcfa1df428f711f099fda8aa7c30df538e7cb data/gaiadimension/recipes/construct_charm.json
 d31bc327cf686adfe5b6b674e076a7e5e3744f6c data/gaiadimension/recipes/copal_bricks.json
 ffa421e65ecc790728bc25e6f4f08a29a590a53d data/gaiadimension/recipes/copal_brick_slab.json
 a510d13569b3862b70b582227ba5fb9eb01b3078 data/gaiadimension/recipes/copal_brick_stairs.json

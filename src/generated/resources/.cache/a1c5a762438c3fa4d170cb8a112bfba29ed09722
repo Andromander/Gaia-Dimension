@@ -1,4 +1,4 @@
-// 1.20	2023-07-31T20:10:58.6928941	Gaia Item Models
+// 1.20	2023-08-01T11:53:06.2993537	Gaia Item Models
 d5c0f0011c11d4bd7b161026eed13370329d4981 assets/gaiadimension/models/item/active_rock.json
 f8516b22f5651209e5c6893ab609ebc1105db572 assets/gaiadimension/models/item/agate_arrow.json
 8edce106f0b6a88ad044dafcb45074427a389d02 assets/gaiadimension/models/item/agate_axe.json
@@ -91,6 +91,7 @@ be2c04853d838615afec9b157cd9837a93babcd0 assets/gaiadimension/models/item/carnel
 3cf15445df5b1f3409d823e120c9d73c0014db11 assets/gaiadimension/models/item/carnelian_shovel.json
 1cccef70e81511562f1b5b78e62c0a7b090905ce assets/gaiadimension/models/item/carnelian_sword.json
 63ec6c618a3a23eab4cab9c52d7d3250de9b516e assets/gaiadimension/models/item/cavern_tick_spawn_egg.json
+94c912ad9dc13e7a66169915650d22e6ac10c9de assets/gaiadimension/models/item/celestine.json
 6b8b9a63358926782ef57fdd7d242d34749fc3aa assets/gaiadimension/models/item/chalcedony.json
 372394278bd7177e1d94972f16d38073acd2cb3b assets/gaiadimension/models/item/chalcedony_axe.json
 c2104bf0135887cf1288673ec6ccac5f1ed2e9b6 assets/gaiadimension/models/item/chalcedony_block.json

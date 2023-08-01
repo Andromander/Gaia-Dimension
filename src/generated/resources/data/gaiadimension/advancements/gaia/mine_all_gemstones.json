@@ -13,6 +13,18 @@
       },
       "trigger": "minecraft:inventory_changed"
     },
+    "get_celestine": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "gaiadimension:celestine"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
     "get_cinnabar": {
       "conditions": {
         "items": [
@@ -152,6 +164,9 @@
     ],
     [
       "get_white_opal"
+    ],
+    [
+      "get_celestine"
     ]
   ],
   "sends_telemetry_event": true

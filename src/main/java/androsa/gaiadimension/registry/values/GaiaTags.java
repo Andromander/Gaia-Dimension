@@ -108,6 +108,7 @@ public class GaiaTags {
         public static final TagKey<Item> GEMS_AURA = tagItemForge("gems/aura");
         public static final TagKey<Item> GEMS_BISMUTH = tagItemForge("gems/bismuth");
         public static final TagKey<Item> GEMS_OPALITE = tagItemForge("gems/opalite");
+        public static final TagKey<Item> GEMS_CELESTINE = tagItemForge("gems/celestine");
 
         public static final TagKey<Item> MOOKAITE = tagItem("mookaite");
         public static final TagKey<Item> TILES = tagItem("agate_tiles");

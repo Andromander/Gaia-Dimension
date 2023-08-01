@@ -80,7 +80,7 @@ public class ModTabs {
                 add(output, ModItems.crystal_shard, ModItems.agate_stick, ModItems.agate_fabric, ModItems.sugar_crystals, ModItems.sugar_cluster, ModItems.sturdy_pebble, ModItems.shiny_bone, ModItems.fine_thread, ModItems.sweet_muckball, ModItems.cloudy_shard);
                 add(output, ModItems.agate_cup, ModItems.twined_thread, ModItems.pink_essence, ModItems.pink_goo, ModItems.scaynyx_ingot);
                 add(output, ModItems.goldstone_residue, ModItems.goldstone, ModItems.bismuth_residue, ModItems.bismuth_crystal, ModItems.aura_residue, ModItems.aura_cluster, ModItems.black_residue, ModItems.tektite);
-                add(output, ModItems.opalite, ModItems.pyrite, ModItems.sugilite, ModItems.hematite, ModItems.cinnabar, ModItems.labradorite, ModItems.moonstone, ModItems.red_opal, ModItems.blue_opal, ModItems.green_opal, ModItems.white_opal);
+                add(output, ModItems.opalite, ModItems.pyrite, ModItems.sugilite, ModItems.hematite, ModItems.cinnabar, ModItems.labradorite, ModItems.moonstone, ModItems.red_opal, ModItems.blue_opal, ModItems.green_opal, ModItems.white_opal, ModItems.celestine);
                 add(output, ModItems.ixiolite, ModItems.proustite, ModItems.euclase, ModItems.leucite, ModItems.carnelian, ModItems.benitoite, ModItems.diopside, ModItems.chalcedony);
                 add(output, ModItems.pyrite_powder, ModItems.hematite_powder, ModItems.cinnabar_powder, ModItems.labradorite_powder, ModItems.moonstone_powder, ModItems.red_opal_powder, ModItems.blue_opal_powder, ModItems.green_opal_powder, ModItems.white_opal_grit);
                 add(output, ModItems.tilipi, ModItems.tilibl, ModItems.tiligr, ModItems.tilipu, ModItems.tiliol, ModItems.tilimy, ModItems.plagued_tiliey, ModItems.tiliou);

@@ -68,6 +68,7 @@ public class GaiaAdvancements extends GaiaAdvancementProvider {
                     .addCriterion("get_aura_cluster", item(ModItems.aura_cluster))
                     .addCriterion("get_bismuth_crystal", item(ModItems.bismuth_crystal))
                     .addCriterion("get_opalite", item(ModItems.opalite))
+                    .addCriterion("get_celestine", item(ModItems.celestine))
                     .save(consumer, loc("collect_gemstone"));
             //Restructure a Gemstone
             Advancement gemstone2 = Advancement.Builder.advancement()
@@ -97,6 +98,7 @@ public class GaiaAdvancements extends GaiaAdvancementProvider {
                     .addCriterion("get_blue_opal", item(ModItems.blue_opal))
                     .addCriterion("get_green_opal", item(ModItems.green_opal))
                     .addCriterion("get_white_opal", item(ModItems.white_opal))
+                    .addCriterion("get_celestine", item(ModItems.celestine))
                     .save(consumer, loc("mine_all_gemstones"));
             //Collect all Gemstones
             Advancement.Builder.advancement()
@@ -126,6 +128,7 @@ public class GaiaAdvancements extends GaiaAdvancementProvider {
                     .addCriterion("get_aura_cluster", item(ModItems.aura_cluster))
                     .addCriterion("get_bismuth_crystal", item(ModItems.bismuth_crystal))
                     .addCriterion("get_opalite", item(ModItems.opalite))
+                    .addCriterion("get_celestine", item(ModItems.celestine))
                     .save(consumer, loc("get_all_gemstones"));
             //Craft a weapon from Gaia
             Advancement tool1 = Advancement.Builder.advancement()

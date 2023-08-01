@@ -435,7 +435,12 @@ public class GaiaRecipes extends GaiaRecipeProvider {
                 .define('#', ItemTags.PICKAXES)
                 .unlockedBy("has_mookaite", has(GaiaTags.Items.MOOKAITE))
                 .save(consumer, loc("blank_kit"));
-
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.construct_charm.get())
+                .requires(ModItems.celestine.get())
+                .requires(GaiaTags.Items.MOOKAITE)
+                .requires(ModItems.opalite.get())
+                .unlockedBy("has_celestine", has(ModItems.celestine.get()))
+                .save(consumer, loc("construct_charm"));
 
         smeltingRecipe(ModItems.blue_opal.get(), ModBlocks.blue_opal_ore.get(), 0.3F).save(consumer, locSmelt("blue_opal_smelt"));
         smeltingRecipe(ModBlocks.fire_agate_sapling.get(), ModBlocks.burnt_sapling.get(), 0.1F).save(consumer, locSmelt("fire_agate_sapling"));

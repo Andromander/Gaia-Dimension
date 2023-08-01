@@ -61,6 +61,18 @@
       },
       "trigger": "minecraft:inventory_changed"
     },
+    "get_celestine": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "gaiadimension:celestine"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
     "get_chalcedony": {
       "conditions": {
         "items": [
@@ -317,7 +329,8 @@
       "get_goldstone",
       "get_aura_cluster",
       "get_bismuth_crystal",
-      "get_opalite"
+      "get_opalite",
+      "get_celestine"
     ]
   ],
   "sends_telemetry_event": true

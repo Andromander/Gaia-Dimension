@@ -61,6 +61,18 @@
       },
       "trigger": "minecraft:inventory_changed"
     },
+    "get_celestine": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "gaiadimension:celestine"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
     "get_chalcedony": {
       "conditions": {
         "items": [
@@ -362,6 +374,9 @@
     ],
     [
       "get_opalite"
+    ],
+    [
+      "get_celestine"
     ]
   ],
   "rewards": {
