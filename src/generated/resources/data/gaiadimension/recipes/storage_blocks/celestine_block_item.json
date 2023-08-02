@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "ingredients": [
+    {
+      "item": "gaiadimension:celestine_block"
+    }
+  ],
+  "result": {
+    "count": 9,
+    "item": "gaiadimension:celestine"
+  }
+}

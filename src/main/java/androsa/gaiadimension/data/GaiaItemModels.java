@@ -284,6 +284,7 @@ public class GaiaItemModels extends GaiaItemModelProvider {
         blockItem(ModBlocks.benitoite_block);
         blockItem(ModBlocks.diopside_block);
         blockItem(ModBlocks.chalcedony_block);
+        blockItem(ModBlocks.celestine_block);
         blockItem(ModBlocks.sugilite_ore);
         blockItem(ModBlocks.hematite_ore);
         blockItem(ModBlocks.cinnabar_ore);

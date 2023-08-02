@@ -342,6 +342,7 @@ public class ModBlocks {
     public static final RegistryObject<Block> benitoite_block = register("benitoite_block", PropertiesHandler.storageProps(MapColor.COLOR_BLUE));
     public static final RegistryObject<Block> diopside_block = register("diopside_block", PropertiesHandler.storageProps(MapColor.COLOR_LIGHT_GREEN));
     public static final RegistryObject<Block> chalcedony_block = register("chalcedony_block", PropertiesHandler.storageProps(MapColor.SNOW));
+    public static final RegistryObject<Block> celestine_block = register("celestine_block", PropertiesHandler.storageProps(MapColor.COLOR_LIGHT_BLUE));
 
     //Ores
     public static final RegistryObject<Block> sugilite_ore = register("sugilite_ore", () -> new DropExperienceBlock(PropertiesHandler.oreProps(MapColor.COLOR_PURPLE), UniformInt.of(1, 3)));

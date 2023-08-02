@@ -1,4 +1,4 @@
-// 1.20	2023-07-31T20:10:58.6968976	Loot Tables
+// 1.20	2023-08-02T21:45:23.6623527	Loot Tables
 70fac5f3da5e56a3221f03ad3388e9157b04753a data/gaiadimension/loot_tables/blocks/active_rock.json
 488882d8b9f64b34ecf3a22af357f2aedd29512a data/gaiadimension/loot_tables/blocks/agate_crafting_table.json
 7d233d88ea3fc2923fa77a2fb7e6b9dafd09ff5f data/gaiadimension/loot_tables/blocks/agathum.json
@@ -43,6 +43,7 @@ fc0aa74d2e47f95a023f85d6c0116a37ce18dd25 data/gaiadimension/loot_tables/blocks/b
 36571c245f9027a8423ed3d00bc57126e1428aac data/gaiadimension/loot_tables/blocks/burnt_agate_tile_stairs.json
 9f9bac5cddda5f1f77b7bfde2b2c36c060d0f223 data/gaiadimension/loot_tables/blocks/burnt_agate_wood.json
 9c1c203d313cbf14d30768ee4f524f2805325ec4 data/gaiadimension/loot_tables/blocks/carnelian_block.json
+5de810fad231cd1a3075b5cc594e0dda8e2f7239 data/gaiadimension/loot_tables/blocks/celestine_block.json
 80b907354eb8284aef87012c3202d678ce7347f0 data/gaiadimension/loot_tables/blocks/chalcedony_block.json
 deda56b5f6fce3bf9feec5124832c962f64957cc data/gaiadimension/loot_tables/blocks/charged_mineral.json
 ac041d82cd0caab81776b067478ee603b2b9001e data/gaiadimension/loot_tables/blocks/cinnabar_block.json

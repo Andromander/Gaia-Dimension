@@ -193,6 +193,7 @@ public class GaiaTags {
         public static final TagKey<Block> STORAGE_BLOCKS_BENITOITE = tagBlockForge("storage_blocks/benitoite");
         public static final TagKey<Block> STORAGE_BLOCKS_DIOPSIDE = tagBlockForge("storage_blocks/diopside");
         public static final TagKey<Block> STORAGE_BLOCKS_CHALCEDONY = tagBlockForge("storage_blocks/chalcedony");
+        public static final TagKey<Block> STORAGE_BLOCKS_CELESTINE = tagBlockForge("storage_blocks/celestine");
     }
 
     public static class Fluids {

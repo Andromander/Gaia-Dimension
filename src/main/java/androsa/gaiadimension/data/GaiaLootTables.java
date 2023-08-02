@@ -333,6 +333,7 @@ public class GaiaLootTables extends LootTableProvider {
             dropSelf(ModBlocks.benitoite_block);
             dropSelf(ModBlocks.diopside_block);
             dropSelf(ModBlocks.chalcedony_block);
+            dropSelf(ModBlocks.celestine_block);
 
             //Ores
             dropWithFortune(ModBlocks.sugilite_ore, ModItems.sugilite);
