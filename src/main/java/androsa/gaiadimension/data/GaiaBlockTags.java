@@ -153,7 +153,7 @@ public class GaiaBlockTags extends GaiaBlockTagsProvider {
             ModBlocks.blue_opal_block, ModBlocks.green_opal_block, ModBlocks.white_opal_block, ModBlocks.pyrite_block, ModBlocks.tektite_block, ModBlocks.goldstone_block, ModBlocks.aura_block,
             ModBlocks.bismuth_block, ModBlocks.ixiolite_block, ModBlocks.proustite_block, ModBlocks.euclase_block, ModBlocks.leucite_block, ModBlocks.carnelian_block, ModBlocks.benitoite_block,
             ModBlocks.diopside_block, ModBlocks.chalcedony_block, ModBlocks.nexustone, ModBlocks.white_opal_ore, ModBlocks.precious_rock, ModBlocks.scarlet_opalite_ore, ModBlocks.auburn_opalite_ore,
-            ModBlocks.gold_opalite_ore, ModBlocks.mauve_opalite_ore, ModBlocks.beige_opalite_ore, ModBlocks.ivory_opalite_ore, ModBlocks.opalite_block, ModBlocks.celestine_block
+            ModBlocks.gold_opalite_ore, ModBlocks.mauve_opalite_ore, ModBlocks.beige_opalite_ore, ModBlocks.ivory_opalite_ore, ModBlocks.opalite_block, ModBlocks.celestine_block, ModBlocks.celestine_ore
     );
     private static final ImmutableList<Supplier<? extends Block>> SHOVEL_TOOL = ImmutableList.of(
             ModBlocks.heavy_soil, ModBlocks.corrupted_soil, ModBlocks.boggy_soil, ModBlocks.light_soil, ModBlocks.aurum_soil, ModBlocks.glitter_grass, ModBlocks.corrupted_grass, ModBlocks.murky_grass,
@@ -185,7 +185,7 @@ public class GaiaBlockTags extends GaiaBlockTagsProvider {
             ModBlocks.chalcedony_block, ModBlocks.opalite_block, ModBlocks.celestine_block
     );
     private static final ImmutableList<Supplier<? extends Block>> NEEDS_DIAMOND = ImmutableList.of(
-            ModBlocks.nexustone, ModBlocks.white_opal_ore, ModBlocks.precious_rock
+            ModBlocks.nexustone, ModBlocks.white_opal_ore, ModBlocks.precious_rock, ModBlocks.celestine_ore
     );
 
     public GaiaBlockTags(PackOutput output, CompletableFuture<HolderLookup.Provider> provider, ExistingFileHelper existingFileHelper) {
@@ -228,6 +228,7 @@ public class GaiaBlockTags extends GaiaBlockTagsProvider {
         tag(GaiaTags.Blocks.ORES_WHITE_OPAL).add(ModBlocks.white_opal_ore.get());
         tag(GaiaTags.Blocks.ORES_PYRITE).add(ModBlocks.pyrite_ore.get());
         tag(GaiaTags.Blocks.ORES_OPALITE).add(ModBlocks.scarlet_opalite_ore.get(), ModBlocks.auburn_opalite_ore.get(), ModBlocks.gold_opalite_ore.get(), ModBlocks.mauve_opalite_ore.get(), ModBlocks.beige_opalite_ore.get(), ModBlocks.ivory_opalite_ore.get());
+        tag(GaiaTags.Blocks.ORES_CELESTINE).add(ModBlocks.celestine_ore.get());
         tag(GaiaTags.Blocks.STORAGE_BLOCKS_SUGILITE).add(ModBlocks.sugilite_block.get());
         tag(GaiaTags.Blocks.STORAGE_BLOCKS_HEMATITE).add(ModBlocks.hematite_block.get());
         tag(GaiaTags.Blocks.STORAGE_BLOCKS_CINNABAR).add(ModBlocks.cinnabar_block.get());

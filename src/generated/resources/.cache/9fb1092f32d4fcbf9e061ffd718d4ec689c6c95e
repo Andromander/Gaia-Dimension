@@ -1,4 +1,4 @@
-// 1.20	2023-08-02T21:45:23.6643548	Recipes
+// 1.20	2023-08-03T12:02:45.9196404	Recipes
 b228f91dec6c08cca30c2e65d40bb0a1b8c6bb2c data/gaiadimension/advancements/recipes/building_blocks/amethyst_bricks.json
 f92776a5d130e7f0b70d430c76980d4697a05136 data/gaiadimension/advancements/recipes/building_blocks/amethyst_brick_slab.json
 604ead483732f016bf42cfb0da17fcb447e89b74 data/gaiadimension/advancements/recipes/building_blocks/amethyst_brick_stairs.json
@@ -203,6 +203,7 @@ cd0be1c5dc6ca227e7b9a991a947244bfce17caf data/gaiadimension/advancements/recipes
 8518d2fea827328dda181c05c4805762c300efa9 data/gaiadimension/advancements/recipes/misc/bone_meal.json
 b851233e24cd0e1a174fff258d7dd52792e47623 data/gaiadimension/advancements/recipes/misc/construct_charm.json
 d2213cdad34663be161fac3946f870c54cc4409b data/gaiadimension/advancements/recipes/misc/smelting/blue_opal_smelt.json
+3a56fcf7b94fe1d0e4f3cc42dda3d805c9386380 data/gaiadimension/advancements/recipes/misc/smelting/celestine_smelt.json
 51d5aa476de924c03a344b19c73e2f47a4cd781d data/gaiadimension/advancements/recipes/misc/smelting/cinnabar_smelt.json
 8287f81cd00bfe6fb64f28abc7fa49a99efde3ec data/gaiadimension/advancements/recipes/misc/smelting/cloudy_shard.json
 b23257d86ae853defe6d7a9586e8edbc916014c4 data/gaiadimension/advancements/recipes/misc/smelting/cooked_luggeroth_chop.json
@@ -422,6 +423,7 @@ bbed4e773ae914c151cc86c414f96cde65613f18 data/gaiadimension/recipes/restructurin
 0403c107e8f5df5dd71a7d43060deba79278d70a data/gaiadimension/recipes/small_chest.json
 c01b5c0c3ae70fc30b5b3846883c4b2aeb682f14 data/gaiadimension/recipes/smelting/blue_opal_smelt.json
 7bed23f4a6c5ec7d43a6e77d04ef1d9abdee0470 data/gaiadimension/recipes/smelting/burnt_agate_sapling.json
+9775b8a1eadd75442830dbb548a70de4fd0c91cb data/gaiadimension/recipes/smelting/celestine_smelt.json
 42735330ccfde227edda7cd36d3bd0d756353ae8 data/gaiadimension/recipes/smelting/cinnabar_smelt.json
 1b614ac5d4d8abcd6676fd54654cfd9d23a88bb0 data/gaiadimension/recipes/smelting/cloudy_shard.json
 941a93214ce66f9c2d192b8ed9f4a5b84e172e8f data/gaiadimension/recipes/smelting/cooked_luggeroth_chop.json

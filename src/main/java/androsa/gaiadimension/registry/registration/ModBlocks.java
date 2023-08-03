@@ -364,6 +364,7 @@ public class ModBlocks {
     public static final RegistryObject<Block> mauve_opalite_ore = register("mauve_opalite_ore", () -> new DropExperienceBlock(PropertiesHandler.oreProps(MapColor.TERRACOTTA_PURPLE), UniformInt.of(1, 2)));
     public static final RegistryObject<Block> beige_opalite_ore = register("beige_opalite_ore", () -> new DropExperienceBlock(PropertiesHandler.oreProps(MapColor.SAND), UniformInt.of(1, 2)));
     public static final RegistryObject<Block> ivory_opalite_ore = register("ivory_opalite_ore", () -> new DropExperienceBlock(PropertiesHandler.oreProps(MapColor.TERRACOTTA_WHITE), UniformInt.of(1, 2)));
+    public static final RegistryObject<Block> celestine_ore = register("celestine_ore", () -> new DropExperienceBlock(PropertiesHandler.oreProps(MapColor.COLOR_LIGHT_BLUE), UniformInt.of(2, 4)));
 
     //Flower Pots
     public static final RegistryObject<FlowerPotBlock> potted_thiscus = registerFlowerPot(thiscus);

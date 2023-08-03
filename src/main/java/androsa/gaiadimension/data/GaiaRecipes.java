@@ -445,6 +445,7 @@ public class GaiaRecipes extends GaiaRecipeProvider {
                 .save(consumer, loc("construct_charm"));
 
         smeltingRecipe(ModItems.blue_opal.get(), ModBlocks.blue_opal_ore.get(), 0.3F).save(consumer, locSmelt("blue_opal_smelt"));
+        smeltingRecipe(ModItems.celestine.get(), ModBlocks.celestine_ore.get(), 1.5F).save(consumer, locSmelt("celestine_smelt"));
         smeltingRecipe(ModBlocks.fire_agate_sapling.get(), ModBlocks.burnt_sapling.get(), 0.1F).save(consumer, locSmelt("fire_agate_sapling"));
         SimpleCookingRecipeBuilder.smelting(Ingredient.of(ModBlocks.pink_agate_sapling.get(), ModBlocks.blue_agate_sapling.get(), ModBlocks.green_agate_sapling.get(), ModBlocks.purple_agate_sapling.get()), RecipeCategory.DECORATIONS, ModBlocks.burnt_sapling.get(), 0.1F, 200)
                 .unlockedBy("has_sapling", has(ModBlocks.pink_agate_sapling.get()))

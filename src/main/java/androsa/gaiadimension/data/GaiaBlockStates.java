@@ -307,6 +307,7 @@ public class GaiaBlockStates extends GaiaBlockStateProvider {
         basicBlock(ModBlocks.mauve_opalite_ore);
         basicBlock(ModBlocks.beige_opalite_ore);
         basicBlock(ModBlocks.ivory_opalite_ore);
+        layeredEmissive(ModBlocks.celestine_ore, "celestine_ore", "celestine_ore_overlay");
         pottedPlantBlock(ModBlocks.potted_thiscus);
         pottedPlantBlock(ModBlocks.potted_ouzium);
         pottedPlantBlock(ModBlocks.potted_agathum);

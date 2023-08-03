@@ -1,4 +1,4 @@
-// 1.20	2023-08-02T21:45:23.6513429	Gaia Blockstates and Models
+// 1.20	2023-08-03T12:02:45.9046312	Gaia Blockstates and Models
 8608ca08d4e09a00c5ac1279dc5458d093d263da assets/gaiadimension/blockstates/active_rock.json
 23ea34251e78628208a9041761eae63ba0f255fa assets/gaiadimension/blockstates/agate_crafting_table.json
 77a0b7c45ea73099883d8e25af0610686569ed6a assets/gaiadimension/blockstates/agathum.json
@@ -43,6 +43,7 @@ c06402732dc885835d8379f80cde9a886a22f9cd assets/gaiadimension/blockstates/brilli
 51ff1e7532fd3fbea2f5f44c40e678ac68d1561b assets/gaiadimension/blockstates/burnt_agate_wood.json
 fb85f38d6939d3b05b2cfd824b81080a528374ff assets/gaiadimension/blockstates/carnelian_block.json
 fce4485fc8b2e5fdbed6be97a097664eece0579a assets/gaiadimension/blockstates/celestine_block.json
+2dea7c1d0bda1a3df7297b2244902d807d86038d assets/gaiadimension/blockstates/celestine_ore.json
 ca64c196058b217884d3f43b09d2b74ccd6be2e6 assets/gaiadimension/blockstates/chalcedony_block.json
 23db24236f9814e5d417388ad8fa39c04b895a3c assets/gaiadimension/blockstates/charged_mineral.json
 cea742091c09ab0629a4341d99338a609e963844 assets/gaiadimension/blockstates/cinnabar_block.json
@@ -365,6 +366,7 @@ b6a2f698eaec2cbe9bc4601b14ecbbeafeea99fb assets/gaiadimension/models/block/burnt
 316482f5732319e45944b2546c10fe06b8acfafb assets/gaiadimension/models/block/burnt_agate_wood.json
 0c69287d3c3a59f86b4df7d71c0c499d31dbb5d0 assets/gaiadimension/models/block/carnelian_block.json
 29b7266fff04724d189e7d33e18a450c10ca978a assets/gaiadimension/models/block/celestine_block.json
+07e413729892494d5cb8ba39ccdbaba67fc0ab04 assets/gaiadimension/models/block/celestine_ore.json
 504fbe68e73955d9e2b65d865be1a42c9f0a69d0 assets/gaiadimension/models/block/chalcedony_block.json
 c79629ad07740b00b4b8c6da3105feaeb3f8735f assets/gaiadimension/models/block/charged_mineral.json
 2937ae9723a9fdc4e64e3f87af00f97e1d8acf8a assets/gaiadimension/models/block/cinnabar_block.json

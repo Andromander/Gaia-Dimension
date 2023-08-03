@@ -1,0 +1,8 @@
+{
+  "parent": "gaiadimension:block/util/emissive_2_layer",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "texture": "gaiadimension:block/celestine_ore",
+    "texture2": "gaiadimension:block/celestine_ore_overlay"
+  }
+}

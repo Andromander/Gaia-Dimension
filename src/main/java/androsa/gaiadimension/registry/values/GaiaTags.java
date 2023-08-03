@@ -170,6 +170,7 @@ public class GaiaTags {
         public static final TagKey<Block> ORES_WHITE_OPAL = tagBlockForge("ore/white_opal");
         public static final TagKey<Block> ORES_PYRITE = tagBlockForge("ore/pyrite");
         public static final TagKey<Block> ORES_OPALITE = tagBlockForge("ore/opalite");
+        public static final TagKey<Block> ORES_CELESTINE = tagBlockForge("ore/celestine");
         public static final TagKey<Block> STORAGE_BLOCKS_SUGILITE = tagBlockForge("storage_blocks/sugilite");
         public static final TagKey<Block> STORAGE_BLOCKS_HEMATITE = tagBlockForge("storage_blocks/hematite");
         public static final TagKey<Block> STORAGE_BLOCKS_CINNABAR = tagBlockForge("storage_blocks/cinnabar");
