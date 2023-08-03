@@ -17,6 +17,7 @@ public class GaiaBiomeFeatures {
     public static final RuleTest GAIA_STONE = new TagMatchTest(GaiaTags.Blocks.GAIA_STONE);
     public static final RuleTest VOLCANIC = new TagMatchTest(GaiaTags.Blocks.VOLCANIC);
     public static final RuleTest STATIC = new TagMatchTest(GaiaTags.Blocks.STATIC);
+    public static final RuleTest PRIMAL = new TagMatchTest(GaiaTags.Blocks.PRIMAL);
 
     public static final BlockState GLITTER_GRASS = state(ModBlocks.glitter_grass);
     public static final BlockState CORRUPT_GRASS = state(ModBlocks.corrupted_grass);
@@ -62,12 +63,7 @@ public class GaiaBiomeFeatures {
     public static final BlockState BLUE_OPAL_ORE = state(ModBlocks.blue_opal_ore);
     public static final BlockState GREEN_OPAL_ORE = state(ModBlocks.green_opal_ore);
     public static final BlockState WHITE_OPAL_ORE = state(ModBlocks.white_opal_ore);
-    public static final BlockState SCARLET_OPALITE_ORE = state(ModBlocks.scarlet_opalite_ore);
-    public static final BlockState AUBURN_OPALITE_ORE = state(ModBlocks.auburn_opalite_ore);
-    public static final BlockState GOLD_OPALITE_ORE = state(ModBlocks.gold_opalite_ore);
-    public static final BlockState MAUVE_OPALITE_ORE = state(ModBlocks.mauve_opalite_ore);
-    public static final BlockState BEIGE_OPALITE_ORE = state(ModBlocks.beige_opalite_ore);
-    public static final BlockState IVORY_OPALITE_ORE = state(ModBlocks.ivory_opalite_ore);
+    public static final BlockState CELESTINE_ORE = state(ModBlocks.celestine_ore);
     public static final BlockState PINK_AGATE_LOG = state(ModBlocks.pink_agate_log);
     public static final BlockState PINK_AGATE_LEAVES = state(ModBlocks.pink_agate_leaves);
     public static final BlockState BLUE_AGATE_LOG = state(ModBlocks.blue_agate_log);

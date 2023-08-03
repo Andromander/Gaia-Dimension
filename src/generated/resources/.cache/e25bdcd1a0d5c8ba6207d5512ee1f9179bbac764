@@ -1,4 +1,4 @@
-// 1.20	2023-08-03T12:02:45.9236444	Tags for minecraft:block mod id gaiadimension
+// 1.20	2023-08-03T12:59:09.5656868	Tags for minecraft:block mod id gaiadimension
 a0f6d052fb3fbfa78856319e5a0690260f5f1324 data/forge/tags/blocks/glass.json
 19461ab2b979018bb60577ac954869fedc511a4a data/forge/tags/blocks/ores.json
 4b8f45b473a841817cf09db0adaba060881f30e6 data/forge/tags/blocks/ore/blue_opal.json
@@ -42,6 +42,7 @@ c17d48cad4a7c7c19a92d57a2475718999347e7e data/forge/tags/blocks/storage_blocks/t
 fd2559bda96191cd7b5e0fc7352a550af755c12c data/gaiadimension/tags/blocks/amethyst_bricks.json
 52f97525d7b3dd2efbf55a1b17037134101b39db data/gaiadimension/tags/blocks/aura_logs.json
 2241651699a1b19325a31ab65f3f6897849be871 data/gaiadimension/tags/blocks/base_stone_gaia.json
+ff9fd1c57bd48fd687c8729ebb816bf05948128e data/gaiadimension/tags/blocks/base_stone_primal.json
 422e15a990aec83bf8b5cfdaf656290e1b99b46d data/gaiadimension/tags/blocks/base_stone_static.json
 af3891e1ab1728b31ca89fc17e4f4b126f938f18 data/gaiadimension/tags/blocks/base_stone_volcanic.json
 8be37263f09e65f2ace3ee86ec4f592b73d54005 data/gaiadimension/tags/blocks/blue_agate_logs.json

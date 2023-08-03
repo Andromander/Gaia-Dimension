@@ -60,6 +60,7 @@ public abstract class GaiaBiomeProvider {
                 .addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, GaiaFeatures.Placed.ORE_CINNABAR)
                 .addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, GaiaFeatures.Placed.ORE_LABRADORITE)
                 .addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, GaiaFeatures.Placed.ORE_MOONSTONE)
+                .addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, GaiaFeatures.Placed.ORE_CELESTINE)
                 .addFeature(GenerationStep.Decoration.UNDERGROUND_DECORATION, GaiaFeatures.Placed.CRYSTAL_FUNGI_CAVES);
     }
 
