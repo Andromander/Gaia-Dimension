@@ -79,8 +79,8 @@ public class MookaiteConstructEntity extends PathfinderMob {
     private static final float MOVEMENT_SPEED = 0.25F;
     public static final MookaitePart LEFT_HORN = new MookaitePart("left_horn", LEFT_HORN_TYPE, LEFT_HORN_MULTIPLIER, RIGHT_HORN_MULTIPLIER, Attributes.KNOCKBACK_RESISTANCE, KNOCKBACK_RESISTANCE);
     public static final MookaitePart RIGHT_HORN = new MookaitePart("right_horn", RIGHT_HORN_TYPE, RIGHT_HORN_MULTIPLIER, LEFT_HORN_MULTIPLIER, Attributes.KNOCKBACK_RESISTANCE, KNOCKBACK_RESISTANCE);
-    public static final MookaitePart LEFT_EYE = new MookaitePart("left_eye", LEFT_EYE_TYPE, LEFT_EYE_MULTIPLIER, RIGHT_EYE_MULTIPLIER, Attributes.FOLLOW_RANGE, ARMOR);
-    public static final MookaitePart RIGHT_EYE = new MookaitePart("right_eye", RIGHT_EYE_TYPE, LEFT_EYE_MULTIPLIER, RIGHT_EYE_MULTIPLIER, Attributes.FOLLOW_RANGE, ARMOR);
+    public static final MookaitePart LEFT_EYE = new MookaitePart("left_eye", LEFT_EYE_TYPE, LEFT_EYE_MULTIPLIER, RIGHT_EYE_MULTIPLIER, Attributes.ARMOR, ARMOR);
+    public static final MookaitePart RIGHT_EYE = new MookaitePart("right_eye", RIGHT_EYE_TYPE, LEFT_EYE_MULTIPLIER, RIGHT_EYE_MULTIPLIER, Attributes.ARMOR, ARMOR);
     public static final MookaitePart LEFT_SHOULDER = new MookaitePart("left_shoulder", LEFT_SHOULDER_TYPE, LEFT_SHOULDER_MULTIPLIER,RIGHT_SHOULDER_MULTIPLIER, Attributes.ATTACK_KNOCKBACK, ATTACK_KNOCKBACK);
     public static final MookaitePart RIGHT_SHOULDER = new MookaitePart("right_shoulder", RIGHT_SHOULDER_TYPE,  RIGHT_SHOULDER_MULTIPLIER, LEFT_SHOULDER_MULTIPLIER, Attributes.ATTACK_KNOCKBACK, ATTACK_KNOCKBACK);
     public static final MookaitePart LEFT_ARM = new MookaitePart("left_arm_brace", LEFT_ARM_BRACE_TYPE, LEFT_ARM_MULTIPLIER, RIGHT_ARM_MULTIPLIER, Attributes.ATTACK_DAMAGE, ATTACK_DAMAGE);
