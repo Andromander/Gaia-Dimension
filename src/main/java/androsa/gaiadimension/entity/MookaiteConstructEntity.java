@@ -529,7 +529,7 @@ public class MookaiteConstructEntity extends PathfinderMob {
             if (stompTime >= 10) {
                 float range = 2.0F + (float) mookaite.countColors(this.color);
                 List<Entity> targets = mookaite.level().getEntities(mookaite, mookaite.getBoundingBox().inflate(range), (entity) ->
-                        entity.getUUID() != mookaite.getOpaliteCompanion() && entity.getUUID() != mookaite.getBonder() && entity.onGround());
+                        !entity.getUUID().equals(mookaite.getOpaliteCompanion()) && !entity.getUUID().equals(mookaite.getBonder()) && entity.onGround());
                 mookaite.playSound(ModSounds.ENTITY_MOOKAITE_CONSTRUCT_STOMP.get(), 1.0F, 1.0F);
 
                 for (Entity entity : targets) {
@@ -646,8 +646,8 @@ public class MookaiteConstructEntity extends PathfinderMob {
             List<Entity> affectedList = Lists.newArrayList();
             List<Entity> possibleList = this.mookaite.level().getEntities(this.mookaite, this.mookaite.getBoundingBox().move(lookVec.x * offset, lookVec.y * offset, lookVec.z * offset).inflate(area), (entity) ->
                     entity.isPickable() &&
-                    entity.getUUID() != this.mookaite.getOpaliteCompanion() &&
-                    entity.getUUID() != this.mookaite.getBonder() &&
+                    !entity.getUUID().equals(this.mookaite.getOpaliteCompanion()) &&
+                    !entity.getUUID().equals(this.mookaite.getBonder()) &&
                     EntitySelector.NO_CREATIVE_OR_SPECTATOR.and(EntitySelector.LIVING_ENTITY_STILL_ALIVE).test(entity));
 
             for (Entity possibleEntity : possibleList) {
@@ -750,7 +750,7 @@ public class MookaiteConstructEntity extends PathfinderMob {
         @Override
         public void tick() {
             List<Entity> targets = mookaite.level().getEntities(mookaite, mookaite.getBoundingBox().inflate(2.0F), (entity) ->
-                    entity.getUUID() != mookaite.getOpaliteCompanion() && entity.getUUID() != mookaite.getBonder());
+                    !entity.getUUID().equals(mookaite.getOpaliteCompanion()) && !entity.getUUID().equals(mookaite.getBonder()));
 
             for (Entity entity : targets) {
                 Vec3 targetV3D = entity.getDeltaMovement();

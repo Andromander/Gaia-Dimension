@@ -284,12 +284,13 @@ public class OpaliteContructEntity extends PathfinderMob {
     protected InteractionResult mobInteract(Player player, InteractionHand hand) {
         ItemStack stack = player.getItemInHand(hand);
         Item item = stack.getItem();
+
         /*
          * Opalite: add to the Opalite Stack.
          * Mookaite (all colours): add to the Mookaite Stack.
          * Kits: Check any of the stacks if there's enough of each item. If there's enough of the required stacks, begin the building.
          */
-        if (this.getBonder() != null && player.getUUID() == this.getBonder()) {
+        if (this.getBonder() != null && player.getUUID().equals(this.getBonder())) {
             if (stack.is(ModItems.opalite.get())) {
                 if (this.getOpaliteAmount() >= 10) {
                     player.displayClientMessage(Component.translatable("gaiadimension.opalite_construct.too_many_opalite"), true);

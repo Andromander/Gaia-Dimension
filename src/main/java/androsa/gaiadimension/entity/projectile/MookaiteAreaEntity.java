@@ -157,7 +157,7 @@ public class MookaiteAreaEntity extends Entity implements TraceableEntity {
 
     private boolean validateUUID(LivingEntity entity, UUID id) {
         if (id != null) {
-            return entity.getUUID() != id;
+            return !entity.getUUID().equals(id);
         }
         return false;
     }
