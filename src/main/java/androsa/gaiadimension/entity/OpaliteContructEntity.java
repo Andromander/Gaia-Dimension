@@ -323,6 +323,11 @@ public class OpaliteContructEntity extends PathfinderMob {
     }
 
     @Override
+    public boolean requiresCustomPersistence() {
+        return super.requiresCustomPersistence() || this.getMookaiteCompanion() != null;
+    }
+
+    @Override
     public void die(DamageSource source) {
         if (ForgeHooks.onLivingDeath(this, source)) return;
 

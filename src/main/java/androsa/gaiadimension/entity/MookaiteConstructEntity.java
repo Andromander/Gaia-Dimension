@@ -344,6 +344,11 @@ public class MookaiteConstructEntity extends PathfinderMob {
     }
 
     @Override
+    public boolean requiresCustomPersistence() {
+        return super.requiresCustomPersistence() || this.getOpaliteCompanion() != null;
+    }
+
+    @Override
     public boolean isInvulnerableTo(DamageSource source) {
         if (source.is(DamageTypeTags.IS_EXPLOSION)) {
             return this.countColors(1) >= 10; //Full Scarlet is Explosion immune
