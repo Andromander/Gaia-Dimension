@@ -32,7 +32,6 @@ import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.*;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
-import net.minecraft.world.entity.ai.targeting.TargetingConditions;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
@@ -290,7 +289,8 @@ public class MookaiteConstructEntity extends PathfinderMob {
         else if (value == 7) base = 1.0F;
 
         this.setMultiplier(part.multiplier(), base);
-        attribute.setBaseValue(part.base() * (getMultiplier(part.multiplier()) + getMultiplier(part.pair())));
+        double total = part.base() * (getMultiplier(part.multiplier()) + getMultiplier(part.pair()));
+        attribute.setBaseValue(total);
     }
 
     @Override
@@ -303,7 +303,7 @@ public class MookaiteConstructEntity extends PathfinderMob {
         this.goalSelector.addGoal(2, new IvoryProjectileGoal(this));
         this.goalSelector.addGoal(3, new MeleeAttackGoal(this, 1.0D, true));
         this.goalSelector.addGoal(4, new MoveTowardsTargetGoal(this, 1.0D, 32.0F));
-        this.goalSelector.addGoal(5, new WaterAvoidingRandomStrollGoal(this, 0.5D));
+        this.goalSelector.addGoal(5, new WaterAvoidingRandomStrollGoal(this, 1.0D));
         this.goalSelector.addGoal(6, new LookAtPlayerGoal(this, Player.class, 6.0F));
         this.goalSelector.addGoal(7, new RandomLookAroundGoal(this));
         this.targetSelector.addGoal(1, new HurtByTargetGoal(this));
@@ -335,6 +335,7 @@ public class MookaiteConstructEntity extends PathfinderMob {
         this.setPart(RIGHT_ARM, random.nextInt(7));
         this.setPart(LEFT_LEG, random.nextInt(7));
         this.setPart(RIGHT_LEG, random.nextInt(7));
+
         return super.finalizeSpawn(level, difficulty, spawn, data, tag);
     }
 
