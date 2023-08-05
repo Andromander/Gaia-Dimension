@@ -1,5 +1,5 @@
 modLoader="javafml" #mandatory
-loaderVersion="[46,)" #mandatory
+loaderVersion="[47,)" #mandatory
 issueTrackerURL="https://github.com/Andromander/Gaia-Dimension/issues" #optional
 license="GNU Lesser General Public v3"
 
@@ -18,7 +18,7 @@ description="Explore the fantastical land of Gaia and uncover the secrets within
 [[dependencies.gaiadimension]] #optional
     modId="forge" #mandatory
     mandatory=true #mandatory
-    versionRange="[46,47.1.3]" #mandatory
+    versionRange="[47.1.0,)" #mandatory
     ordering="NONE"
     side="BOTH"
 [[dependencies.gaiadimension]]
