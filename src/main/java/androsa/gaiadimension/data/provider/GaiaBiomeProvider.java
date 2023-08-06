@@ -264,6 +264,7 @@ public abstract class GaiaBiomeProvider {
 
     public static BiomeGenerationSettings mookaiteMesa(HolderGetter<PlacedFeature> features, HolderGetter<ConfiguredWorldCarver<?>> carvers) {
         return createSettings(features, carvers)
+                .addFeature(GenerationStep.Decoration.LOCAL_MODIFICATIONS, GaiaFeatures.Placed.MOOKAITE_MOUND)
                 .addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, GaiaFeatures.Placed.ORE_OPALITE)
                 .build();
     }

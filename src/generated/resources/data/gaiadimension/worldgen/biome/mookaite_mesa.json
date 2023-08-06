@@ -23,7 +23,9 @@
   "features": [
     [],
     [],
-    [],
+    [
+      "gaiadimension:mookaite_mound"
+    ],
     [],
     [],
     [],

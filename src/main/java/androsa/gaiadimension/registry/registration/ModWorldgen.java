@@ -87,6 +87,8 @@ public class ModWorldgen {
             new GoldenVinesFeature(NoneFeatureConfiguration.CODEC));
     public static final RegistryObject<Feature<OpaliteOreConfiguration>> OPALITE_ORE = FEATURES.register("opalite_ore", () ->
             new OpaliteOreFeature(OpaliteOreConfiguration.CODEC));
+    public static final RegistryObject<Feature<NoneFeatureConfiguration>> MOOKAITE_MOUND = FEATURES.register("mookaite_mound", () ->
+            new MookaiteMoundFeature(NoneFeatureConfiguration.CODEC));
 
     //WorldCarver
     public static final RegistryObject<WorldCarver<CaveCarverConfiguration>> CRYSTAL_CAVES = WORLD_CARVERS.register("crystal_caves", () ->

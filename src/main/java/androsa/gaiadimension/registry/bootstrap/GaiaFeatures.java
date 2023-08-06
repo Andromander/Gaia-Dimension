@@ -111,6 +111,7 @@ public class GaiaFeatures extends GaiaBiomeFeatures {
         public static final ResourceKey<ConfiguredFeature<?, ?>> tough_golden_stone_monolith = registerFeature("tough_golden_stone_monolith");
         public static final ResourceKey<ConfiguredFeature<?, ?>> tough_golden_stone_menhir = registerFeature("tough_golden_stone_menhir");
         public static final ResourceKey<ConfiguredFeature<?, ?>> marsh_lake = registerFeature("marsh_lake");
+        public static final ResourceKey<ConfiguredFeature<?, ?>> mookaite_mound = registerFeature("mookaite_mound");
 
         //Underground Ores
         public static final ResourceKey<ConfiguredFeature<?, ?>> ore_primal_mass = registerFeature("ore_primal_mass");
@@ -262,6 +263,7 @@ public class GaiaFeatures extends GaiaBiomeFeatures {
             context.register(tough_golden_stone_monolith, registerFeature(ModWorldgen.MONOLITH.get(), new BlockStateConfiguration(TOUGH_GOLDEN_STONE)));
             context.register(tough_golden_stone_menhir, registerFeature(ModWorldgen.MENHIR.get(), new BlockStateConfiguration(TOUGH_GOLDEN_STONE)));
             context.register(marsh_lake, registerFeature(ModWorldgen.MARSH_LAKE.get(), FeatureConfiguration.NONE));
+            context.register(mookaite_mound, registerFeature(ModWorldgen.MOOKAITE_MOUND.get(), FeatureConfiguration.NONE));
 
             //Underground Ores
             context.register(ore_primal_mass, oreFeature(GAIA_STONE, PRIMAL_MASS, 33));
@@ -392,6 +394,7 @@ public class GaiaFeatures extends GaiaBiomeFeatures {
         public static final ResourceKey<PlacedFeature> TOUGH_GOLDEN_STONE_MONOLITHS = registerPlaced("tough_golden_stone_monoliths");
         public static final ResourceKey<PlacedFeature> TOUGH_GOLDEN_STONE_MENHIRS = registerPlaced("tough_golden_stone_menhirs");
         public static final ResourceKey<PlacedFeature> MARSH_LAKES = registerPlaced("marsh_lakes");
+        public static final ResourceKey<PlacedFeature> MOOKAITE_MOUND = registerPlaced("mookaite_mound");
 
         //Underground Ores
         public static final ResourceKey<PlacedFeature> ORE_PRIMAL_MASS = registerPlaced("ore_primal_mass");
@@ -631,6 +634,11 @@ public class GaiaFeatures extends GaiaBiomeFeatures {
             context.register(MARSH_LAKES, registerPlacedFeature(features, Configured.marsh_lake,
                     InSquarePlacement.spread(),
                     PlacementUtils.HEIGHTMAP,
+                    BiomeFilter.biome()));
+            context.register(MOOKAITE_MOUND, registerPlacedFeature(features, Configured.mookaite_mound,
+                    InSquarePlacement.spread(),
+                    PlacementUtils.HEIGHTMAP,
+                    RarityFilter.onAverageOnceEvery(2),
                     BiomeFilter.biome()));
 
             //Underground Ores
