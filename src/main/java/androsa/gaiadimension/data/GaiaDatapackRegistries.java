@@ -36,14 +36,4 @@ public class GaiaDatapackRegistries extends DatapackBuiltinEntriesProvider {
     public GaiaDatapackRegistries(PackOutput output, CompletableFuture<HolderLookup.Provider> provider) {
         super(output, provider, REGISTRIES, Set.of("minecraft", GaiaDimensionMod.MODID));
     }
-
-    public static void generate(boolean server, DataGenerator generator, PackOutput output, CompletableFuture<HolderLookup.Provider> provider, ExistingFileHelper helper) {
-        generator.addProvider(server, new GaiaDatapackRegistries(output, provider));
-        generator.addProvider(server, new GaiaBiomeTags(output, provider.thenApply(r -> apply(r, REGISTRIES)), helper));
-        generator.addProvider(server, new GaiaDamageTags(output, provider.thenApply(r -> apply(r, REGISTRIES)), helper));
-    }
-
-    private static HolderLookup.Provider apply(HolderLookup.Provider provider, RegistrySetBuilder builder) {
-        return builder.buildPatch(RegistryAccess.fromRegistryOfRegistries(BuiltInRegistries.REGISTRY), provider);
-    }
 }

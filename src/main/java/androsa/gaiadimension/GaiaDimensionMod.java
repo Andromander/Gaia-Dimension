@@ -13,6 +13,7 @@ import net.minecraft.data.PackOutput;
 import net.minecraft.world.entity.MobType;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.ForgeConfigSpec;
+import net.minecraftforge.common.data.DatapackBuiltinEntriesProvider;
 import net.minecraftforge.data.event.GatherDataEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.DistExecutor;
@@ -116,6 +117,12 @@ public class GaiaDimensionMod {
         generator.addProvider(event.includeServer(), blocktags);
         generator.addProvider(event.includeServer(), new GaiaItemTags(output, provider, blocktags.contentsGetter(), event.getExistingFileHelper()));
         generator.addProvider(event.includeServer(), new GaiaFluidTags(output, provider, event.getExistingFileHelper()));
-        GaiaDatapackRegistries.generate(event.includeServer(), generator, output, provider, event.getExistingFileHelper());
+
+        DatapackBuiltinEntriesProvider datapackEntries = new GaiaDatapackRegistries(output, provider);
+        CompletableFuture<HolderLookup.Provider> datapackProvider = datapackEntries.getRegistryProvider();
+        generator.addProvider(event.includeServer(), datapackEntries);
+        generator.addProvider(event.includeServer(), new GaiaBiomeTags(output, datapackProvider, event.getExistingFileHelper()));
+        generator.addProvider(event.includeServer(), new GaiaDamageTags(output, datapackProvider, event.getExistingFileHelper()));
+
     }
 }
