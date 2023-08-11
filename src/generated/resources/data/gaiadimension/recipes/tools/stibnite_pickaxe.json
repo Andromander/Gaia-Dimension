@@ -3,7 +3,7 @@
   "category": "equipment",
   "key": {
     "#": {
-      "item": "gaiadimension:ixiolite"
+      "item": "gaiadimension:stibnite"
     },
     "/": {
       "item": "gaiadimension:agate_stick"
@@ -15,7 +15,7 @@
     " / "
   ],
   "result": {
-    "item": "gaiadimension:ixiolite_pickaxe"
+    "item": "gaiadimension:stibnite_pickaxe"
   },
   "show_notification": true
 }

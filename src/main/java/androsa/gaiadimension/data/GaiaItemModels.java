@@ -276,7 +276,7 @@ public class GaiaItemModels extends GaiaItemModelProvider {
         blockItem(ModBlocks.aura_block);
         blockItem(ModBlocks.bismuth_block);
         blockItem(ModBlocks.opalite_block);
-        blockItem(ModBlocks.ixiolite_block);
+        blockItem(ModBlocks.stibnite_block);
         blockItem(ModBlocks.proustite_block);
         blockItem(ModBlocks.euclase_block);
         blockItem(ModBlocks.leucite_block);
@@ -396,7 +396,7 @@ public class GaiaItemModels extends GaiaItemModelProvider {
         basicItem(ModItems.blue_opal);
         basicItem(ModItems.green_opal);
         basicItem(ModItems.white_opal);
-        basicItem(ModItems.ixiolite);
+        basicItem(ModItems.stibnite);
         basicItem(ModItems.proustite);
         basicItem(ModItems.euclase);
         basicItem(ModItems.leucite);
@@ -483,10 +483,10 @@ public class GaiaItemModels extends GaiaItemModelProvider {
         heldItem(ModItems.sugilite_pickaxe);
         heldItem(ModItems.sugilite_axe);
         heldItem(ModItems.sugilite_shovel);
-        heldItem(ModItems.ixiolite_sword);
-        heldItem(ModItems.ixiolite_pickaxe);
-        heldItem(ModItems.ixiolite_axe);
-        heldItem(ModItems.ixiolite_shovel);
+        heldItem(ModItems.stibnite_sword);
+        heldItem(ModItems.stibnite_pickaxe);
+        heldItem(ModItems.stibnite_axe);
+        heldItem(ModItems.stibnite_shovel);
         heldItem(ModItems.euclase_sword);
         heldItem(ModItems.euclase_pickaxe);
         heldItem(ModItems.euclase_axe);

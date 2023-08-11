@@ -70,7 +70,7 @@
         },
         {
           "type": "minecraft:item",
-          "name": "gaiadimension:ixiolite_sword",
+          "name": "gaiadimension:stibnite_sword",
           "weight": 5
         },
         {
@@ -127,7 +127,7 @@
               "function": "minecraft:set_count"
             }
           ],
-          "name": "gaiadimension:ixiolite",
+          "name": "gaiadimension:stibnite",
           "weight": 6
         },
         {

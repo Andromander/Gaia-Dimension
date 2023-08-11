@@ -3,7 +3,7 @@
   "category": "building",
   "key": {
     "#": {
-      "item": "gaiadimension:ixiolite"
+      "item": "gaiadimension:stibnite"
     }
   },
   "pattern": [
@@ -12,7 +12,7 @@
     "###"
   ],
   "result": {
-    "item": "gaiadimension:ixiolite_block"
+    "item": "gaiadimension:stibnite_block"
   },
   "show_notification": true
 }

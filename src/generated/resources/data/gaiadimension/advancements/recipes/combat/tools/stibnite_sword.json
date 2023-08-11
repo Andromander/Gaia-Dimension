@@ -1,12 +1,12 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_ixiolite": {
+    "has_stibnite": {
       "conditions": {
         "items": [
           {
             "items": [
-              "gaiadimension:ixiolite"
+              "gaiadimension:stibnite"
             ]
           }
         ]
@@ -15,20 +15,20 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "gaiadimension:tools/ixiolite_shovel"
+        "recipe": "gaiadimension:tools/stibnite_sword"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
   },
   "requirements": [
     [
-      "has_ixiolite",
+      "has_stibnite",
       "has_the_recipe"
     ]
   ],
   "rewards": {
     "recipes": [
-      "gaiadimension:tools/ixiolite_shovel"
+      "gaiadimension:tools/stibnite_sword"
     ]
   },
   "sends_telemetry_event": false

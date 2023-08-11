@@ -157,18 +157,6 @@
       },
       "trigger": "minecraft:inventory_changed"
     },
-    "get_ixiolite": {
-      "conditions": {
-        "items": [
-          {
-            "items": [
-              "gaiadimension:ixiolite"
-            ]
-          }
-        ]
-      },
-      "trigger": "minecraft:inventory_changed"
-    },
     "get_labradorite": {
       "conditions": {
         "items": [
@@ -253,6 +241,18 @@
       },
       "trigger": "minecraft:inventory_changed"
     },
+    "get_stibnite": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "gaiadimension:stibnite"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
     "get_sugilite": {
       "conditions": {
         "items": [
@@ -316,7 +316,7 @@
       "get_blue_opal",
       "get_green_opal",
       "get_white_opal",
-      "get_ixiolite",
+      "get_stibnite",
       "get_proustite",
       "get_euclase",
       "get_leucite",

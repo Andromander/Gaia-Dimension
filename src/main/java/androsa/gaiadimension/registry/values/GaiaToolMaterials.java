@@ -10,7 +10,7 @@ import java.util.function.Supplier;
 public enum GaiaToolMaterials implements Tier {
     AGATE(1, 150, 2.5F, 1.0F, 5, () -> Ingredient.of(GaiaTags.Items.TILES)),
     SUGILITE(2, 800, 3.0F, 1.5F, 10, () -> Ingredient.of(ModItems.sugilite.get())),
-    IXIOLITE(2, 1500, 4.0F, 2.0F, 10, () -> Ingredient.of(ModItems.ixiolite.get())),
+    STIBNITE(2, 1500, 4.0F, 2.0F, 10, () -> Ingredient.of(ModItems.stibnite.get())),
     EUCLASE(2, 3000, 4.0F, 2.0F, 10, () -> Ingredient.of(ModItems.euclase.get())),
     CARNELIAN(3, 2500, 5.0F, 3.0F, 10, () -> Ingredient.of(ModItems.carnelian.get())),
     BENITOITE(3, 3500, 5.0F, 3.0F, 10, () -> Ingredient.of(ModItems.benitoite.get())),

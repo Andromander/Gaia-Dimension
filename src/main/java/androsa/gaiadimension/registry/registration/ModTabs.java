@@ -66,7 +66,7 @@ public class ModTabs {
                 add(output, ModBlocks.malachite_brick_slab, ModBlocks.malachite_cracked_brick_slab, ModBlocks.malachite_crusted_brick_slab, ModBlocks.malachite_tile_slab);
                 add(output, ModBlocks.pyrite_block, ModBlocks.sugilite_block, ModBlocks.hematite_block, ModBlocks.cinnabar_block, ModBlocks.labradorite_block, ModBlocks.moonstone_block, ModBlocks.red_opal_block, ModBlocks.blue_opal_block, ModBlocks.green_opal_block, ModBlocks.white_opal_block);
                 add(output, ModBlocks.goldstone_block, ModBlocks.bismuth_block, ModBlocks.aura_block, ModBlocks.tektite_block, ModBlocks.opalite_block);
-                add(output, ModBlocks.ixiolite_block, ModBlocks.proustite_block, ModBlocks.euclase_block, ModBlocks.leucite_block, ModBlocks.carnelian_block, ModBlocks.benitoite_block, ModBlocks.diopside_block, ModBlocks.chalcedony_block, ModBlocks.celestine_block);
+                add(output, ModBlocks.stibnite_block, ModBlocks.proustite_block, ModBlocks.euclase_block, ModBlocks.leucite_block, ModBlocks.carnelian_block, ModBlocks.benitoite_block, ModBlocks.diopside_block, ModBlocks.chalcedony_block, ModBlocks.celestine_block);
             }).build());
 
     //Tab for generic Items
@@ -81,7 +81,7 @@ public class ModTabs {
                 add(output, ModItems.agate_cup, ModItems.twined_thread, ModItems.pink_essence, ModItems.pink_goo, ModItems.scaynyx_ingot);
                 add(output, ModItems.goldstone_residue, ModItems.goldstone, ModItems.bismuth_residue, ModItems.bismuth_crystal, ModItems.aura_residue, ModItems.aura_cluster, ModItems.black_residue, ModItems.tektite);
                 add(output, ModItems.opalite, ModItems.pyrite, ModItems.sugilite, ModItems.hematite, ModItems.cinnabar, ModItems.labradorite, ModItems.moonstone, ModItems.red_opal, ModItems.blue_opal, ModItems.green_opal, ModItems.white_opal, ModItems.celestine);
-                add(output, ModItems.ixiolite, ModItems.proustite, ModItems.euclase, ModItems.leucite, ModItems.carnelian, ModItems.benitoite, ModItems.diopside, ModItems.chalcedony);
+                add(output, ModItems.stibnite, ModItems.proustite, ModItems.euclase, ModItems.leucite, ModItems.carnelian, ModItems.benitoite, ModItems.diopside, ModItems.chalcedony);
                 add(output, ModItems.pyrite_powder, ModItems.hematite_powder, ModItems.cinnabar_powder, ModItems.labradorite_powder, ModItems.moonstone_powder, ModItems.red_opal_powder, ModItems.blue_opal_powder, ModItems.green_opal_powder, ModItems.white_opal_grit);
                 add(output, ModItems.tilipi, ModItems.tilibl, ModItems.tiligr, ModItems.tilipu, ModItems.tiliol, ModItems.tilimy, ModItems.plagued_tiliey, ModItems.tiliou);
                 add(output, ModItems.pink_geode, ModItems.blue_geode, ModItems.green_geode, ModItems.purple_geode);
@@ -108,7 +108,7 @@ public class ModTabs {
                 add(output, ModItems.old_bow, ModItems.agate_arrow);
                 add(output, ModItems.agate_sword, ModItems.agate_pickaxe, ModItems.agate_axe, ModItems.agate_shovel);
                 add(output, ModItems.sugilite_sword, ModItems.sugilite_pickaxe, ModItems.sugilite_axe, ModItems.sugilite_shovel);
-                add(output, ModItems.ixiolite_sword, ModItems.ixiolite_pickaxe, ModItems.ixiolite_axe, ModItems.ixiolite_shovel);
+                add(output, ModItems.stibnite_sword, ModItems.stibnite_pickaxe, ModItems.stibnite_axe, ModItems.stibnite_shovel);
                 add(output, ModItems.euclase_sword, ModItems.euclase_pickaxe, ModItems.euclase_axe, ModItems.euclase_shovel);
                 add(output, ModItems.carnelian_sword, ModItems.carnelian_pickaxe, ModItems.carnelian_axe, ModItems.carnelian_shovel);
                 add(output, ModItems.benitoite_sword, ModItems.benitoite_pickaxe, ModItems.benitoite_axe, ModItems.benitoite_shovel);

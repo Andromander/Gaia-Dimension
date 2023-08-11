@@ -20,7 +20,7 @@ public class GaiaBlockTags extends GaiaBlockTagsProvider {
     private static final ImmutableList<Supplier<? extends Block>> BEACON_BASES = ImmutableList.of(
             ModBlocks.sugilite_block, ModBlocks.hematite_block, ModBlocks.cinnabar_block, ModBlocks.labradorite_block, ModBlocks.moonstone_block, ModBlocks.red_opal_block,
             ModBlocks.blue_opal_block, ModBlocks.green_opal_block,  ModBlocks.white_opal_block, ModBlocks.pyrite_block, ModBlocks.tektite_block, ModBlocks.goldstone_block,
-            ModBlocks.aura_block, ModBlocks.bismuth_block, ModBlocks.ixiolite_block, ModBlocks.proustite_block, ModBlocks.euclase_block, ModBlocks.leucite_block,
+            ModBlocks.aura_block, ModBlocks.bismuth_block, ModBlocks.stibnite_block, ModBlocks.proustite_block, ModBlocks.euclase_block, ModBlocks.leucite_block,
             ModBlocks.carnelian_block, ModBlocks.benitoite_block, ModBlocks.diopside_block, ModBlocks.chalcedony_block, ModBlocks.opalite_block, ModBlocks.celestine_block
     );
     private static final ImmutableList<Supplier<? extends Block>> FLOWER_POTS = ImmutableList.of(
@@ -151,7 +151,7 @@ public class GaiaBlockTags extends GaiaBlockTagsProvider {
             ModBlocks.malachite_tile_stairs, ModBlocks.malachite_chisel_stairs, ModBlocks.malachite_pulsing_brick_stairs, ModBlocks.malachite_pulsing_floor_stairs, ModBlocks.malachite_pulsing_chisel_stairs,
             ModBlocks.malachite_pillar_stairs, ModBlocks.sugilite_block, ModBlocks.hematite_block, ModBlocks.cinnabar_block, ModBlocks.labradorite_block, ModBlocks.moonstone_block, ModBlocks.red_opal_block,
             ModBlocks.blue_opal_block, ModBlocks.green_opal_block, ModBlocks.white_opal_block, ModBlocks.pyrite_block, ModBlocks.tektite_block, ModBlocks.goldstone_block, ModBlocks.aura_block,
-            ModBlocks.bismuth_block, ModBlocks.ixiolite_block, ModBlocks.proustite_block, ModBlocks.euclase_block, ModBlocks.leucite_block, ModBlocks.carnelian_block, ModBlocks.benitoite_block,
+            ModBlocks.bismuth_block, ModBlocks.stibnite_block, ModBlocks.proustite_block, ModBlocks.euclase_block, ModBlocks.leucite_block, ModBlocks.carnelian_block, ModBlocks.benitoite_block,
             ModBlocks.diopside_block, ModBlocks.chalcedony_block, ModBlocks.nexustone, ModBlocks.white_opal_ore, ModBlocks.precious_rock, ModBlocks.scarlet_opalite_ore, ModBlocks.auburn_opalite_ore,
             ModBlocks.gold_opalite_ore, ModBlocks.mauve_opalite_ore, ModBlocks.beige_opalite_ore, ModBlocks.ivory_opalite_ore, ModBlocks.opalite_block, ModBlocks.celestine_block, ModBlocks.celestine_ore
     );
@@ -181,7 +181,7 @@ public class GaiaBlockTags extends GaiaBlockTagsProvider {
             ModBlocks.malachite_crusted_brick_stairs, ModBlocks.malachite_tile_stairs, ModBlocks.malachite_chisel_stairs, ModBlocks.malachite_pulsing_brick_stairs, ModBlocks.malachite_pulsing_floor_stairs,
             ModBlocks.malachite_pulsing_chisel_stairs, ModBlocks.malachite_pillar_stairs, ModBlocks.sugilite_block, ModBlocks.hematite_block, ModBlocks.cinnabar_block, ModBlocks.labradorite_block, ModBlocks.moonstone_block,
             ModBlocks.red_opal_block, ModBlocks.blue_opal_block, ModBlocks.green_opal_block, ModBlocks.white_opal_block, ModBlocks.pyrite_block, ModBlocks.tektite_block, ModBlocks.goldstone_block, ModBlocks.aura_block,
-            ModBlocks.bismuth_block, ModBlocks.ixiolite_block, ModBlocks.proustite_block, ModBlocks.euclase_block, ModBlocks.leucite_block, ModBlocks.carnelian_block, ModBlocks.benitoite_block, ModBlocks.diopside_block,
+            ModBlocks.bismuth_block, ModBlocks.stibnite_block, ModBlocks.proustite_block, ModBlocks.euclase_block, ModBlocks.leucite_block, ModBlocks.carnelian_block, ModBlocks.benitoite_block, ModBlocks.diopside_block,
             ModBlocks.chalcedony_block, ModBlocks.opalite_block, ModBlocks.celestine_block
     );
     private static final ImmutableList<Supplier<? extends Block>> NEEDS_DIAMOND = ImmutableList.of(
@@ -244,7 +244,7 @@ public class GaiaBlockTags extends GaiaBlockTagsProvider {
         tag(GaiaTags.Blocks.STORAGE_BLOCKS_AURA_CRYSTAL).add(ModBlocks.aura_block.get());
         tag(GaiaTags.Blocks.STORAGE_BLOCKS_BISMUTH).add(ModBlocks.bismuth_block.get());
         tag(GaiaTags.Blocks.STORAGE_BLOCKS_OPALITE).add(ModBlocks.opalite_block.get());
-        tag(GaiaTags.Blocks.STORAGE_BLOCKS_IXIOLITE).add(ModBlocks.ixiolite_block.get());
+        tag(GaiaTags.Blocks.STORAGE_BLOCKS_STIBNITE).add(ModBlocks.stibnite_block.get());
         tag(GaiaTags.Blocks.STORAGE_BLOCKS_PROUSTITE).add(ModBlocks.proustite_block.get());
         tag(GaiaTags.Blocks.STORAGE_BLOCKS_EUCLASE).add(ModBlocks.euclase_block.get());
         tag(GaiaTags.Blocks.STORAGE_BLOCKS_LEUCITE).add(ModBlocks.leucite_block.get());
@@ -264,7 +264,7 @@ public class GaiaBlockTags extends GaiaBlockTagsProvider {
                 GaiaTags.Blocks.STORAGE_BLOCKS_SUGILITE, GaiaTags.Blocks.STORAGE_BLOCKS_HEMATITE, GaiaTags.Blocks.STORAGE_BLOCKS_CINNABAR,GaiaTags.Blocks.STORAGE_BLOCKS_LABRADORITE,
                 GaiaTags.Blocks.STORAGE_BLOCKS_MOONSTONE, GaiaTags.Blocks.STORAGE_BLOCKS_RED_OPAL, GaiaTags.Blocks.STORAGE_BLOCKS_BLUE_OPAL,GaiaTags.Blocks.STORAGE_BLOCKS_GREEN_OPAL,
                 GaiaTags.Blocks.STORAGE_BLOCKS_WHITE_OPAL, GaiaTags.Blocks.STORAGE_BLOCKS_PYRITE, GaiaTags.Blocks.STORAGE_BLOCKS_TEKTITE, GaiaTags.Blocks.STORAGE_BLOCKS_GOLDSTONE,
-                GaiaTags.Blocks.STORAGE_BLOCKS_AURA_CRYSTAL, GaiaTags.Blocks.STORAGE_BLOCKS_BISMUTH, GaiaTags.Blocks.STORAGE_BLOCKS_OPALITE, GaiaTags.Blocks.STORAGE_BLOCKS_IXIOLITE,
+                GaiaTags.Blocks.STORAGE_BLOCKS_AURA_CRYSTAL, GaiaTags.Blocks.STORAGE_BLOCKS_BISMUTH, GaiaTags.Blocks.STORAGE_BLOCKS_OPALITE, GaiaTags.Blocks.STORAGE_BLOCKS_STIBNITE,
                 GaiaTags.Blocks.STORAGE_BLOCKS_PROUSTITE, GaiaTags.Blocks.STORAGE_BLOCKS_EUCLASE, GaiaTags.Blocks.STORAGE_BLOCKS_LEUCITE, GaiaTags.Blocks.STORAGE_BLOCKS_CARNELIAN,
                 GaiaTags.Blocks.STORAGE_BLOCKS_BENITOITE, GaiaTags.Blocks.STORAGE_BLOCKS_DIOPSIDE, GaiaTags.Blocks.STORAGE_BLOCKS_CHALCEDONY, GaiaTags.Blocks.STORAGE_BLOCKS_CELESTINE);
 

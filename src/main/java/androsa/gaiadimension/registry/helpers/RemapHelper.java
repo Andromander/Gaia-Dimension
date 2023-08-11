@@ -79,6 +79,7 @@ public class RemapHelper {
                     remapBlock(mapping, blockMappings, "malachite_pulsing_floor_stairs", "malachite_pulsing_tile_stairs");
                     remapBlock(mapping, blockMappings, "potted_burnt_sapling", "potted_burnt_agate_sapling");
                     remapBlock(mapping, blockMappings, "potted_burning_sapling", "potted_fire_agate_sapling");
+                    remapBlock(mapping, blockMappings, "ixiolite_block", "stibnite_block");
                 }
             }
         }
@@ -92,6 +93,12 @@ public class RemapHelper {
                     for (Map.Entry<String, String> entry : blockMappings.entrySet()) {
                         remapItem(mapping, entry.getKey(), entry.getValue());
                     }
+
+                    remapItem(mapping, "ixiolite", "stibnite");
+                    remapItem(mapping, "ixiolite_sword", "stibnite_sword");
+                    remapItem(mapping, "ixiolite_pickaxe", "stibnite_pickaxe");
+                    remapItem(mapping, "ixiolite_axe", "stibnite_axe");
+                    remapItem(mapping, "ixiolite_shovel", "stibnite_shovel");
                 }
             }
         }

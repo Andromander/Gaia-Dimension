@@ -1,4 +1,4 @@
-// 1.20.1	2023-08-06T09:39:09.5748917	Gaia Item Models
+// 1.20.1	2023-08-11T19:54:43.7418708	Gaia Item Models
 d5c0f0011c11d4bd7b161026eed13370329d4981 assets/gaiadimension/models/item/active_rock.json
 f8516b22f5651209e5c6893ab609ebc1105db572 assets/gaiadimension/models/item/agate_arrow.json
 8edce106f0b6a88ad044dafcb45074427a389d02 assets/gaiadimension/models/item/agate_axe.json
@@ -282,12 +282,6 @@ af3e45800cb7a174353e136532af63666e4bb7ee assets/gaiadimension/models/item/impure
 437bf4171c70466814ecc4be22c486b5ca24c6df assets/gaiadimension/models/item/ivory_mookaite.json
 ab0261fa8c80bb83ced923aefcd7b0310f4757b4 assets/gaiadimension/models/item/ivory_opalite_ore.json
 fd702205546cdfffcac1218b58509c3604b5cf74 assets/gaiadimension/models/item/ivory_replace_kit.json
-a6d04671bb0e66e35a766aee014cf32abe2132ef assets/gaiadimension/models/item/ixiolite.json
-0356b82c74a828c999dadc9a7911293abb3c2c20 assets/gaiadimension/models/item/ixiolite_axe.json
-72b68633e81ef073d6367b5679272771dacbac8b assets/gaiadimension/models/item/ixiolite_block.json
-ee6a5463ec79ccb170c513747803eb8a7082052d assets/gaiadimension/models/item/ixiolite_pickaxe.json
-d9f042dfa392603cafc278d85fa577ae1211c55f assets/gaiadimension/models/item/ixiolite_shovel.json
-3b0b977d60f263dc94952633ac02d693d93cde9c assets/gaiadimension/models/item/ixiolite_sword.json
 ae5047bc350655632693c7f13af5744ee61e89fb assets/gaiadimension/models/item/jade_bricks.json
 32622c7ee43b29cdc71df0d612b74d60370dc2ea assets/gaiadimension/models/item/jade_brick_slab.json
 2b4b351e9301a4ad6cdf99b714c3e762c85ecba1 assets/gaiadimension/models/item/jade_brick_stairs.json
@@ -454,6 +448,12 @@ d3d1afbcf7f8a81866c6fafa07eddc1dd7e7c05e assets/gaiadimension/models/item/spinel
 ab917ed19371cbb3b33edb3f9d95bd4e55a9ab32 assets/gaiadimension/models/item/spinel_princess_heels.json
 10be34ced647d6cf890ae86967fde2d21f4d90a4 assets/gaiadimension/models/item/spotted_kersei.json
 f69914c880de8e67d465703c8a0800ff6fd90af1 assets/gaiadimension/models/item/static_stone.json
+0ee84e8fd702353de28d12d36723b515b3e00727 assets/gaiadimension/models/item/stibnite.json
+877fdff9b323a2399c7f5df5569d902247e69fff assets/gaiadimension/models/item/stibnite_axe.json
+f8f2100abd12d8e3dab3106debda4f054ab59a12 assets/gaiadimension/models/item/stibnite_block.json
+fd5013aea34ca0767f0649c622a7ed6042d2ca1e assets/gaiadimension/models/item/stibnite_pickaxe.json
+7024cb942d092c10d6b9f44d97f49331fb245364 assets/gaiadimension/models/item/stibnite_shovel.json
+7a3eb1ebea357e677c7e4cbee1eb0ad2a6619fd4 assets/gaiadimension/models/item/stibnite_sword.json
 b1c452c15086c1c3f305ed9cc35495f3570ec99e assets/gaiadimension/models/item/stickly_cupsir.json
 944bc58b5659bf71c0e1791769a45d5b1ba676c6 assets/gaiadimension/models/item/stripped_aura_log.json
 c61c0c37470fe546b18c832d44531586d74ff077 assets/gaiadimension/models/item/stripped_aura_wood.json

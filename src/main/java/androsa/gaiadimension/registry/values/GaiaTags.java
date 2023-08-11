@@ -71,7 +71,7 @@ public class GaiaTags {
         public static final TagKey<Item> STORAGE_BLOCKS_GOLDSTONE = tagItemForge("storage_blocks/goldstone");
         public static final TagKey<Item> STORAGE_BLOCKS_AURA_CRYSTAL = tagItemForge("storage_blocks/aura");
         public static final TagKey<Item> STORAGE_BLOCKS_BISMUTH = tagItemForge("storage_blocks/bismuth");
-        public static final TagKey<Item> STORAGE_BLOCKS_IXIOLITE = tagItemForge("storage_blocks/ixiolite");
+        public static final TagKey<Item> STORAGE_BLOCKS_STIBNITE = tagItemForge("storage_blocks/stibnite");
         public static final TagKey<Item> STORAGE_BLOCKS_PROUSTITE = tagItemForge("storage_blocks/proustite");
         public static final TagKey<Item> STORAGE_BLOCKS_EUCLASE = tagItemForge("storage_blocks/euclase");
         public static final TagKey<Item> STORAGE_BLOCKS_LEUCITE = tagItemForge("storage_blocks/leucite");
@@ -94,7 +94,7 @@ public class GaiaTags {
         public static final TagKey<Item> GEMS_BLUE_OPAL = tagItemForge("gems/blue_opal");
         public static final TagKey<Item> GEMS_GREEN_OPAL = tagItemForge("gems/green_opal");
         public static final TagKey<Item> GEMS_WHITE_OPAL = tagItemForge("gems/white_opal");
-        public static final TagKey<Item> GEMS_IXIOLITE = tagItemForge("gems/ixiolite");
+        public static final TagKey<Item> GEMS_STIBNITE = tagItemForge("gems/stibnite");
         public static final TagKey<Item> GEMS_PROUSTITE = tagItemForge("gems/proustite");
         public static final TagKey<Item> GEMS_EUCLASE = tagItemForge("gems/euclase");
         public static final TagKey<Item> GEMS_LEUCITE = tagItemForge("gems/leucite");
@@ -187,7 +187,7 @@ public class GaiaTags {
         public static final TagKey<Block> STORAGE_BLOCKS_AURA_CRYSTAL = tagBlockForge("storage_blocks/aura");
         public static final TagKey<Block> STORAGE_BLOCKS_BISMUTH = tagBlockForge("storage_blocks/bismuth");
         public static final TagKey<Block> STORAGE_BLOCKS_OPALITE = tagBlockForge("storage_blocks/opalite");
-        public static final TagKey<Block> STORAGE_BLOCKS_IXIOLITE = tagBlockForge("storage_blocks/ixiolite");
+        public static final TagKey<Block> STORAGE_BLOCKS_STIBNITE = tagBlockForge("storage_blocks/stibnite");
         public static final TagKey<Block> STORAGE_BLOCKS_PROUSTITE = tagBlockForge("storage_blocks/proustite");
         public static final TagKey<Block> STORAGE_BLOCKS_EUCLASE = tagBlockForge("storage_blocks/euclase");
         public static final TagKey<Block> STORAGE_BLOCKS_LEUCITE = tagBlockForge("storage_blocks/leucite");

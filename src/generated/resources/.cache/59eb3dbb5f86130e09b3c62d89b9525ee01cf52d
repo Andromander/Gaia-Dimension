@@ -1,4 +1,4 @@
-// 1.20.1	2023-08-06T09:39:09.5857196	Loot Tables
+// 1.20.1	2023-08-11T19:54:43.7462456	Loot Tables
 70fac5f3da5e56a3221f03ad3388e9157b04753a data/gaiadimension/loot_tables/blocks/active_rock.json
 488882d8b9f64b34ecf3a22af357f2aedd29512a data/gaiadimension/loot_tables/blocks/agate_crafting_table.json
 7d233d88ea3fc2923fa77a2fb7e6b9dafd09ff5f data/gaiadimension/loot_tables/blocks/agathum.json
@@ -158,7 +158,6 @@ aa2484a5d49ec04c01eb15e2076620a4448bfca0 data/gaiadimension/loot_tables/blocks/h
 ad6b5cd3a74ed4594bf060172372b7cfc0133734 data/gaiadimension/loot_tables/blocks/impure_sludge.json
 4b459f6de06e3202fe18fa3e5c2c52f44689193d data/gaiadimension/loot_tables/blocks/ivory_mookaite.json
 f73440033b5088f6989938955028cd5043807089 data/gaiadimension/loot_tables/blocks/ivory_opalite_ore.json
-b92b023f458d77fba9990b7e660ae603306eccd3 data/gaiadimension/loot_tables/blocks/ixiolite_block.json
 2e83a5055b0920e7715eb96464b8dde867e7c093 data/gaiadimension/loot_tables/blocks/jade_bricks.json
 7c507f925669fe4de1656b70bb696cdf330f1188 data/gaiadimension/loot_tables/blocks/jade_brick_slab.json
 82179c112a6ffedf20b37cf3da706fad6d1997ab data/gaiadimension/loot_tables/blocks/jade_brick_stairs.json
@@ -276,6 +275,7 @@ bdc93dfbc60bfb475869907be5853fd9137bc0b6 data/gaiadimension/loot_tables/blocks/s
 82435fb97b285601698b2ef2f76dccae538273e9 data/gaiadimension/loot_tables/blocks/speckled_rock.json
 279850667f66268e2401d08e65a1a90388550871 data/gaiadimension/loot_tables/blocks/spotted_kersei.json
 dec00bc47faf8ebe8d7f1c6c173c19f465920d08 data/gaiadimension/loot_tables/blocks/static_stone.json
+3f541e12b6ebcb5e3653e0797972fb3217cfb31e data/gaiadimension/loot_tables/blocks/stibnite_block.json
 af5738b80013a0c5a1ea44da50f3f6a5680981b7 data/gaiadimension/loot_tables/blocks/stickly_cupsir.json
 3306451abe5f3c9d78b973e2df053a3b2e5a07e8 data/gaiadimension/loot_tables/blocks/stripped_aura_log.json
 33fdfd0082d7f76f0b0b81d1b4cc1ceb33cafecc data/gaiadimension/loot_tables/blocks/stripped_aura_wood.json
@@ -314,8 +314,8 @@ da59c6d03d300a98745c3d355cf2bc028947949e data/gaiadimension/loot_tables/blocks/w
 4c9de48767b4429dc982836a0a15821faf55e2a8 data/gaiadimension/loot_tables/chests/minitower/tower_amethyst.json
 99437c44caf052e42ffe9e695aee88df0d7aedaa data/gaiadimension/loot_tables/chests/minitower/tower_copal.json
 6c7bf0278bfc46d5d3c38c0122773494a454f4ad data/gaiadimension/loot_tables/chests/minitower/tower_jade.json
-9a2a96e8c42ce0f82fa8a3eab79c13716246a957 data/gaiadimension/loot_tables/chests/minitower/tower_jet.json
-b023f0c4067aaab23cfe6fb49d5c1b1e7038c10f data/gaiadimension/loot_tables/chests/watchtower.json
+499bc2ab76aef1d4e69cbe5d400fd7ed117a38b6 data/gaiadimension/loot_tables/chests/minitower/tower_jet.json
+e9326281cd5a353c44a7e22d07e1f6e62ce5299d data/gaiadimension/loot_tables/chests/watchtower.json
 5b3078dcaed8bf014a5aee4395df65c8d549d6e5 data/gaiadimension/loot_tables/entities/agate_golem.json
 03accbfcf7c243183f69a938137b5e51283f8c48 data/gaiadimension/loot_tables/entities/ancient_lagrahk.json
 48f0d2b028003a2f9ebfb34540ea5d98cbadf1e8 data/gaiadimension/loot_tables/entities/archaic_warrior.json

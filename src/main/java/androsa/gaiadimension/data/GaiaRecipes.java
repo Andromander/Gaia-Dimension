@@ -77,7 +77,7 @@ public class GaiaRecipes extends GaiaRecipeProvider {
         largeCompressRecipe(ModBlocks.aura_block.get(), ModItems.aura_cluster.get()).save(consumer, locStorage("aura_block"));
         largeCompressRecipe(ModBlocks.bismuth_block.get(), ModItems.bismuth_crystal.get()).save(consumer, locStorage("bismuth_block"));
         largeCompressRecipe(ModBlocks.opalite_block.get(), ModItems.opalite.get()).save(consumer, locStorage("opalite_block"));
-        largeCompressRecipe(ModBlocks.ixiolite_block.get(), ModItems.ixiolite.get()).save(consumer, locStorage("ixiolite_block"));
+        largeCompressRecipe(ModBlocks.stibnite_block.get(), ModItems.stibnite.get()).save(consumer, locStorage("stibnite_block"));
         largeCompressRecipe(ModBlocks.proustite_block.get(), ModItems.proustite.get()).save(consumer, locStorage("proustite_block"));
         largeCompressRecipe(ModBlocks.euclase_block.get(), ModItems.euclase.get()).save(consumer, locStorage("euclase_block"));
         largeCompressRecipe(ModBlocks.leucite_block.get(), ModItems.leucite.get()).save(consumer, locStorage("leucite_block"));
@@ -96,7 +96,7 @@ public class GaiaRecipes extends GaiaRecipeProvider {
         blockToItemRecipe(ModItems.blue_opal, ModBlocks.blue_opal_block).save(consumer, locStorage("blue_opal_block_item"));
         blockToItemRecipe(ModItems.green_opal, ModBlocks.green_opal_block).save(consumer, locStorage("green_opal_block_item"));
         blockToItemRecipe(ModItems.white_opal, ModBlocks.white_opal_block).save(consumer, locStorage("white_opal_block_item"));
-        blockToItemRecipe(ModItems.ixiolite, ModBlocks.ixiolite_block).save(consumer, locStorage("ixiolite_block_item"));
+        blockToItemRecipe(ModItems.stibnite, ModBlocks.stibnite_block).save(consumer, locStorage("stibnite_block_item"));
         blockToItemRecipe(ModItems.proustite, ModBlocks.proustite_block).save(consumer, locStorage("proustite_block_item"));
         blockToItemRecipe(ModItems.euclase, ModBlocks.euclase_block).save(consumer, locStorage("euclase_block_item"));
         blockToItemRecipe(ModItems.leucite, ModBlocks.leucite_block).save(consumer, locStorage("leucite_block_item"));
@@ -145,10 +145,10 @@ public class GaiaRecipes extends GaiaRecipeProvider {
         pickaxeRecipe(ModItems.sugilite_pickaxe, ModItems.sugilite).save(consumer, locTools("sugilite_pickaxe"));
         axeRecipe(ModItems.sugilite_axe, ModItems.sugilite).save(consumer, locTools("sugilite_axe"));
         shovelRecipe(ModItems.sugilite_shovel, ModItems.sugilite).save(consumer, locTools("sugilite_shovel"));
-        swordRecipe(ModItems.ixiolite_sword, ModItems.ixiolite).save(consumer, locTools("ixiolite_sword"));
-        pickaxeRecipe(ModItems.ixiolite_pickaxe, ModItems.ixiolite).save(consumer, locTools("ixiolite_pickaxe"));
-        axeRecipe(ModItems.ixiolite_axe, ModItems.ixiolite).save(consumer, locTools("ixiolite_axe"));
-        shovelRecipe(ModItems.ixiolite_shovel, ModItems.ixiolite).save(consumer, locTools("ixiolite_shovel"));
+        swordRecipe(ModItems.stibnite_sword, ModItems.stibnite).save(consumer, locTools("stibnite_sword"));
+        pickaxeRecipe(ModItems.stibnite_pickaxe, ModItems.stibnite).save(consumer, locTools("stibnite_pickaxe"));
+        axeRecipe(ModItems.stibnite_axe, ModItems.stibnite).save(consumer, locTools("stibnite_axe"));
+        shovelRecipe(ModItems.stibnite_shovel, ModItems.stibnite).save(consumer, locTools("stibnite_shovel"));
         swordRecipe(ModItems.euclase_sword, ModItems.euclase).save(consumer, locTools("euclase_sword"));
         pickaxeRecipe(ModItems.euclase_pickaxe, ModItems.euclase).save(consumer, locTools("euclase_pickaxe"));
         axeRecipe(ModItems.euclase_axe, ModItems.euclase).save(consumer, locTools("euclase_axe"));
@@ -485,8 +485,8 @@ public class GaiaRecipes extends GaiaRecipeProvider {
         restructuringTektite(ModBlocks.diopside_block, ModBlocks.green_opal_block, 2.7F, 1).save(consumer, locRestructure("diopside_block"));
         restructureBlackResidue(ModItems.euclase, ModItems.labradorite, 0.3F, 1).save(consumer, locRestructure("euclase"));
         restructuringTektite(ModBlocks.euclase_block, ModBlocks.labradorite_block, 2.7F, 1).save(consumer, locRestructure("euclase_block"));
-        restructureBlackResidue(ModItems.ixiolite, ModItems.hematite, 0.3F, 1).save(consumer, locRestructure("ixiolite"));
-        restructuringTektite(ModBlocks.ixiolite_block, ModBlocks.hematite_block, 2.7F, 1).save(consumer, locRestructure("ixiolite_block"));
+        restructureBlackResidue(ModItems.stibnite, ModItems.hematite, 0.3F, 1).save(consumer, locRestructure("stibnite"));
+        restructuringTektite(ModBlocks.stibnite_block, ModBlocks.hematite_block, 2.7F, 1).save(consumer, locRestructure("stibnite_block"));
         restructureBlackResidue(ModItems.leucite, ModItems.moonstone, 0.3F, 1).save(consumer, locRestructure("leucite"));
         restructuringTektite(ModBlocks.leucite_block, ModBlocks.moonstone_block, 2.7F, 1).save(consumer, locRestructure("leucite_block"));
         restructureBlackResidue(ModItems.proustite, ModItems.cinnabar, 0.3F, 1).save(consumer, locRestructure("proustite"));

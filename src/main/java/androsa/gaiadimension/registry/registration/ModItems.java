@@ -129,7 +129,7 @@ public class ModItems {
     public static final RegistryObject<Item> blue_opal = register("blue_opal");
     public static final RegistryObject<Item> green_opal = register("green_opal");
     public static final RegistryObject<Item> white_opal = register("white_opal");
-    public static final RegistryObject<Item> ixiolite = register("ixiolite");
+    public static final RegistryObject<Item> stibnite = register("stibnite");
     public static final RegistryObject<Item> proustite = register("proustite");
     public static final RegistryObject<Item> euclase = register("euclase");
     public static final RegistryObject<Item> leucite = register("leucite");
@@ -219,10 +219,10 @@ public class ModItems {
     public static final RegistryObject<Item> sugilite_pickaxe = registerPickaxe("sugilite_pickaxe", GaiaToolMaterials.SUGILITE);
     public static final RegistryObject<Item> sugilite_axe = registerAxe("sugilite_axe", GaiaToolMaterials.SUGILITE);
     public static final RegistryObject<Item> sugilite_shovel = registerShovel("sugilite_shovel", GaiaToolMaterials.SUGILITE);
-    public static final RegistryObject<Item> ixiolite_sword = registerSword("ixiolite_sword", GaiaToolMaterials.IXIOLITE);
-    public static final RegistryObject<Item> ixiolite_pickaxe = registerPickaxe("ixiolite_pickaxe", GaiaToolMaterials.IXIOLITE);
-    public static final RegistryObject<Item> ixiolite_axe = registerAxe("ixiolite_axe", GaiaToolMaterials.IXIOLITE);
-    public static final RegistryObject<Item> ixiolite_shovel = registerShovel("ixiolite_shovel", GaiaToolMaterials.IXIOLITE);
+    public static final RegistryObject<Item> stibnite_sword = registerSword("stibnite_sword", GaiaToolMaterials.STIBNITE);
+    public static final RegistryObject<Item> stibnite_pickaxe = registerPickaxe("stibnite_pickaxe", GaiaToolMaterials.STIBNITE);
+    public static final RegistryObject<Item> stibnite_axe = registerAxe("stibnite_axe", GaiaToolMaterials.STIBNITE);
+    public static final RegistryObject<Item> stibnite_shovel = registerShovel("stibnite_shovel", GaiaToolMaterials.STIBNITE);
     public static final RegistryObject<Item> euclase_sword = registerSword("euclase_sword", GaiaToolMaterials.EUCLASE);
     public static final RegistryObject<Item> euclase_pickaxe = registerPickaxe("euclase_pickaxe", GaiaToolMaterials.EUCLASE);
     public static final RegistryObject<Item> euclase_axe = registerAxe("euclase_axe", GaiaToolMaterials.EUCLASE);

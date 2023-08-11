@@ -3,11 +3,11 @@
   "category": "building",
   "ingredients": [
     {
-      "item": "gaiadimension:ixiolite_block"
+      "item": "gaiadimension:stibnite_block"
     }
   ],
   "result": {
     "count": 9,
-    "item": "gaiadimension:ixiolite"
+    "item": "gaiadimension:stibnite"
   }
 }

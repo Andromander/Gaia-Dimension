@@ -325,7 +325,7 @@ public class GaiaLootTables extends LootTableProvider {
             dropSelf(ModBlocks.aura_block);
             dropSelf(ModBlocks.bismuth_block);
             dropSelf(ModBlocks.opalite_block);
-            dropSelf(ModBlocks.ixiolite_block);
+            dropSelf(ModBlocks.stibnite_block);
             dropSelf(ModBlocks.proustite_block);
             dropSelf(ModBlocks.euclase_block);
             dropSelf(ModBlocks.leucite_block);
@@ -542,7 +542,7 @@ public class GaiaLootTables extends LootTableProvider {
                                     .apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 3.0F))))
                             .add(LootItem.lootTableItem(ModItems.sugilite_axe.get())
                                     .setWeight(2))
-                            .add(LootItem.lootTableItem(ModItems.ixiolite.get())
+                            .add(LootItem.lootTableItem(ModItems.stibnite.get())
                                     .setWeight(10)
                                     .apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 3.0F))))
                             .add(LootItem.lootTableItem(ModBlocks.jet_bricks.get())
@@ -571,7 +571,7 @@ public class GaiaLootTables extends LootTableProvider {
                             .add(LootItem.lootTableItem(ModItems.pyrite.get())
                                     .setWeight(15)
                                     .apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 3.0F))))
-                            .add(LootItem.lootTableItem(ModItems.ixiolite_sword.get())
+                            .add(LootItem.lootTableItem(ModItems.stibnite_sword.get())
                                     .setWeight(5))
                             .add(LootItem.lootTableItem(ModItems.euclase_sword.get())
                                     .setWeight(2))
@@ -584,7 +584,7 @@ public class GaiaLootTables extends LootTableProvider {
                                     .setWeight(2)))
                     .withPool(LootPool.lootPool()
                             .setRolls(UniformGenerator.between(1.0F, 3.0F))
-                            .add(LootItem.lootTableItem(ModItems.ixiolite.get())
+                            .add(LootItem.lootTableItem(ModItems.stibnite.get())
                                     .setWeight(6)
                                     .apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 2.0F))))
                             .add(LootItem.lootTableItem(ModItems.proustite.get())

@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/handheld",
   "textures": {
-    "layer0": "gaiadimension:item/ixiolite_shovel"
+    "layer0": "gaiadimension:item/stibnite_shovel"
   }
 }

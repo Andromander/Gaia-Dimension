@@ -61,18 +61,6 @@
       },
       "trigger": "minecraft:inventory_changed"
     },
-    "get_ixiolite": {
-      "conditions": {
-        "items": [
-          {
-            "items": [
-              "gaiadimension:ixiolite"
-            ]
-          }
-        ]
-      },
-      "trigger": "minecraft:inventory_changed"
-    },
     "get_leucite": {
       "conditions": {
         "items": [
@@ -91,6 +79,18 @@
           {
             "items": [
               "gaiadimension:proustite"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "get_stibnite": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "gaiadimension:stibnite"
             ]
           }
         ]
@@ -118,7 +118,7 @@
     "frame": "task",
     "hidden": false,
     "icon": {
-      "item": "gaiadimension:ixiolite"
+      "item": "gaiadimension:stibnite"
     },
     "show_toast": true,
     "title": {
@@ -127,7 +127,7 @@
   },
   "requirements": [
     [
-      "get_ixiolite",
+      "get_stibnite",
       "get_proustite",
       "get_euclase",
       "get_leucite",

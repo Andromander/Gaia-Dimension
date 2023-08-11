@@ -241,48 +241,48 @@
       },
       "trigger": "minecraft:inventory_changed"
     },
-    "ixiolite_axe": {
+    "stibnite_axe": {
       "conditions": {
         "items": [
           {
             "items": [
-              "gaiadimension:ixiolite_axe"
+              "gaiadimension:stibnite_axe"
             ]
           }
         ]
       },
       "trigger": "minecraft:inventory_changed"
     },
-    "ixiolite_pickaxe": {
+    "stibnite_pickaxe": {
       "conditions": {
         "items": [
           {
             "items": [
-              "gaiadimension:ixiolite_pickaxe"
+              "gaiadimension:stibnite_pickaxe"
             ]
           }
         ]
       },
       "trigger": "minecraft:inventory_changed"
     },
-    "ixiolite_shovel": {
+    "stibnite_shovel": {
       "conditions": {
         "items": [
           {
             "items": [
-              "gaiadimension:ixiolite_shovel"
+              "gaiadimension:stibnite_shovel"
             ]
           }
         ]
       },
       "trigger": "minecraft:inventory_changed"
     },
-    "ixiolite_sword": {
+    "stibnite_sword": {
       "conditions": {
         "items": [
           {
             "items": [
-              "gaiadimension:ixiolite_sword"
+              "gaiadimension:stibnite_sword"
             ]
           }
         ]
@@ -380,16 +380,16 @@
       "sugilite_shovel"
     ],
     [
-      "ixiolite_sword"
+      "stibnite_sword"
     ],
     [
-      "ixiolite_pickaxe"
+      "stibnite_pickaxe"
     ],
     [
-      "ixiolite_axe"
+      "stibnite_axe"
     ],
     [
-      "ixiolite_shovel"
+      "stibnite_shovel"
     ],
     [
       "euclase_sword"

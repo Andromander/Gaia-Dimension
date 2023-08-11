@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/handheld",
   "textures": {
-    "layer0": "gaiadimension:item/ixiolite_pickaxe"
+    "layer0": "gaiadimension:item/stibnite_sword"
   }
 }

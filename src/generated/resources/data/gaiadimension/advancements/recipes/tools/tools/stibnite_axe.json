@@ -1,12 +1,12 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_ixiolite_block": {
+    "has_stibnite": {
       "conditions": {
         "items": [
           {
             "items": [
-              "gaiadimension:ixiolite_block"
+              "gaiadimension:stibnite"
             ]
           }
         ]
@@ -15,20 +15,20 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "gaiadimension:storage_blocks/ixiolite_block_item"
+        "recipe": "gaiadimension:tools/stibnite_axe"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
   },
   "requirements": [
     [
-      "has_ixiolite_block",
+      "has_stibnite",
       "has_the_recipe"
     ]
   ],
   "rewards": {
     "recipes": [
-      "gaiadimension:storage_blocks/ixiolite_block_item"
+      "gaiadimension:tools/stibnite_axe"
     ]
   },
   "sends_telemetry_event": false

@@ -1,12 +1,12 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_ixiolite": {
+    "has_hematite": {
       "conditions": {
         "items": [
           {
             "items": [
-              "gaiadimension:ixiolite"
+              "gaiadimension:hematite"
             ]
           }
         ]
@@ -15,21 +15,21 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "gaiadimension:storage_blocks/ixiolite_block"
+        "recipe": "gaiadimension:restructuring/stibnite"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
   },
   "requirements": [
     [
-      "has_ixiolite",
+      "has_hematite",
       "has_the_recipe"
     ]
   ],
   "rewards": {
     "recipes": [
-      "gaiadimension:storage_blocks/ixiolite_block"
+      "gaiadimension:restructuring/stibnite"
     ]
   },
-  "sends_telemetry_event": false
+  "sends_telemetry_event": true
 }

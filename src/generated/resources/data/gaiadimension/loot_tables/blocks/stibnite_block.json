@@ -11,11 +11,11 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "gaiadimension:ixiolite_block"
+          "name": "gaiadimension:stibnite_block"
         }
       ],
       "rolls": 1.0
     }
   ],
-  "random_sequence": "gaiadimension:blocks/ixiolite_block"
+  "random_sequence": "gaiadimension:blocks/stibnite_block"
 }

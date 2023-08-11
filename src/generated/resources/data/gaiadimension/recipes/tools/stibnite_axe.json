@@ -3,19 +3,19 @@
   "category": "equipment",
   "key": {
     "#": {
-      "item": "gaiadimension:ixiolite"
+      "item": "gaiadimension:stibnite"
     },
     "/": {
       "item": "gaiadimension:agate_stick"
     }
   },
   "pattern": [
-    "#",
-    "#",
-    "/"
+    "##",
+    "#/",
+    " /"
   ],
   "result": {
-    "item": "gaiadimension:ixiolite_sword"
+    "item": "gaiadimension:stibnite_axe"
   },
   "show_notification": true
 }
