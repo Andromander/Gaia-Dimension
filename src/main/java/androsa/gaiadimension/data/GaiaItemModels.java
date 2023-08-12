@@ -279,7 +279,7 @@ public class GaiaItemModels extends GaiaItemModelProvider {
         blockItem(ModBlocks.stibnite_block);
         blockItem(ModBlocks.proustite_block);
         blockItem(ModBlocks.euclase_block);
-        blockItem(ModBlocks.leucite_block);
+        blockItem(ModBlocks.albite_block);
         blockItem(ModBlocks.carnelian_block);
         blockItem(ModBlocks.benitoite_block);
         blockItem(ModBlocks.diopside_block);
@@ -399,7 +399,7 @@ public class GaiaItemModels extends GaiaItemModelProvider {
         basicItem(ModItems.stibnite);
         basicItem(ModItems.proustite);
         basicItem(ModItems.euclase);
-        basicItem(ModItems.leucite);
+        basicItem(ModItems.albite);
         basicItem(ModItems.carnelian);
         basicItem(ModItems.benitoite);
         basicItem(ModItems.diopside);
@@ -423,10 +423,10 @@ public class GaiaItemModels extends GaiaItemModelProvider {
         basicItem(ModItems.proustite_chestplate);
         basicItem(ModItems.proustite_legs);
         basicItem(ModItems.proustite_boots);
-        basicItem(ModItems.leucite_helmet);
-        basicItem(ModItems.leucite_chestplate);
-        basicItem(ModItems.leucite_legs);
-        basicItem(ModItems.leucite_boots);
+        basicItem(ModItems.albite_helmet);
+        basicItem(ModItems.albite_chestplate);
+        basicItem(ModItems.albite_legs);
+        basicItem(ModItems.albite_boots);
         basicItem(ModItems.carnelian_helmet);
         basicItem(ModItems.carnelian_chestplate);
         basicItem(ModItems.carnelian_legs);

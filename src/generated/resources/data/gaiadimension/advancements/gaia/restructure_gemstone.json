@@ -1,6 +1,18 @@
 {
   "parent": "gaiadimension:gaia/collect_gemstone",
   "criteria": {
+    "get_albite": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "gaiadimension:albite"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
     "get_benitoite": {
       "conditions": {
         "items": [
@@ -55,18 +67,6 @@
           {
             "items": [
               "gaiadimension:euclase"
-            ]
-          }
-        ]
-      },
-      "trigger": "minecraft:inventory_changed"
-    },
-    "get_leucite": {
-      "conditions": {
-        "items": [
-          {
-            "items": [
-              "gaiadimension:leucite"
             ]
           }
         ]
@@ -130,7 +130,7 @@
       "get_stibnite",
       "get_proustite",
       "get_euclase",
-      "get_leucite",
+      "get_albite",
       "get_carnelian",
       "get_benitoite",
       "get_diopside",

@@ -1,6 +1,54 @@
 {
   "parent": "gaiadimension:gaia/get_armor",
   "criteria": {
+    "albite_boots": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "gaiadimension:albite_boots"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "albite_chestplate": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "gaiadimension:albite_chestplate"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "albite_helmet": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "gaiadimension:albite_helmet"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "albite_legs": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "gaiadimension:albite_legs"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
     "carnelian_boots": {
       "conditions": {
         "items": [
@@ -139,54 +187,6 @@
           {
             "items": [
               "gaiadimension:diopside_legs"
-            ]
-          }
-        ]
-      },
-      "trigger": "minecraft:inventory_changed"
-    },
-    "leucite_boots": {
-      "conditions": {
-        "items": [
-          {
-            "items": [
-              "gaiadimension:leucite_boots"
-            ]
-          }
-        ]
-      },
-      "trigger": "minecraft:inventory_changed"
-    },
-    "leucite_chestplate": {
-      "conditions": {
-        "items": [
-          {
-            "items": [
-              "gaiadimension:leucite_chestplate"
-            ]
-          }
-        ]
-      },
-      "trigger": "minecraft:inventory_changed"
-    },
-    "leucite_helmet": {
-      "conditions": {
-        "items": [
-          {
-            "items": [
-              "gaiadimension:leucite_helmet"
-            ]
-          }
-        ]
-      },
-      "trigger": "minecraft:inventory_changed"
-    },
-    "leucite_legs": {
-      "conditions": {
-        "items": [
-          {
-            "items": [
-              "gaiadimension:leucite_legs"
             ]
           }
         ]
@@ -332,16 +332,16 @@
       "proustite_boots"
     ],
     [
-      "leucite_helmet"
+      "albite_helmet"
     ],
     [
-      "leucite_chestplate"
+      "albite_chestplate"
     ],
     [
-      "leucite_legs"
+      "albite_legs"
     ],
     [
-      "leucite_boots"
+      "albite_boots"
     ],
     [
       "carnelian_helmet"

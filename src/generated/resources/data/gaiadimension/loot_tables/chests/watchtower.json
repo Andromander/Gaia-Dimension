@@ -101,7 +101,7 @@
         },
         {
           "type": "minecraft:item",
-          "name": "gaiadimension:leucite_helmet",
+          "name": "gaiadimension:albite_helmet",
           "weight": 2
         }
       ],
@@ -175,7 +175,7 @@
               "function": "minecraft:set_count"
             }
           ],
-          "name": "gaiadimension:leucite",
+          "name": "gaiadimension:albite",
           "weight": 4
         },
         {

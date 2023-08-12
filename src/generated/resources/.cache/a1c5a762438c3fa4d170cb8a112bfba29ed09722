@@ -1,4 +1,4 @@
-// 1.20.1	2023-08-11T19:54:43.7418708	Gaia Item Models
+// 1.20.1	2023-08-12T23:05:29.8235012	Gaia Item Models
 d5c0f0011c11d4bd7b161026eed13370329d4981 assets/gaiadimension/models/item/active_rock.json
 f8516b22f5651209e5c6893ab609ebc1105db572 assets/gaiadimension/models/item/agate_arrow.json
 8edce106f0b6a88ad044dafcb45074427a389d02 assets/gaiadimension/models/item/agate_axe.json
@@ -11,6 +11,12 @@ df8999eb0dac5c3194fa68345746e16f4b4cfc43 assets/gaiadimension/models/item/agate_
 d5cfeb23731c2411b384e9c3be14b9cac12f932e assets/gaiadimension/models/item/agate_stick.json
 b2d866b09f13dad78eca8356616737fe902551fd assets/gaiadimension/models/item/agate_sword.json
 bfe564e189cb3fe5864525e8cb1c8ae497e2fef3 assets/gaiadimension/models/item/agathum.json
+9586b8aaa4a9238b5127244b63e6308392bbfc38 assets/gaiadimension/models/item/albite.json
+9142a7c88d9d505af08c41f7d13783c71d6a1ee0 assets/gaiadimension/models/item/albite_block.json
+b021bc4ca1b704d6084c88b91e9ce33ed1bd2042 assets/gaiadimension/models/item/albite_boots.json
+e933f31bd15ae7e28dd2b97161a46375a2495b36 assets/gaiadimension/models/item/albite_chestplate.json
+b4f0e152be1d84dd3f8d4e420c1056cbfe4110e8 assets/gaiadimension/models/item/albite_helmet.json
+4daff1af542c19842af58387a05023687ad76b07 assets/gaiadimension/models/item/albite_legs.json
 9580a8e8627e518a1df0279fdab4edb956491dee assets/gaiadimension/models/item/amethyst_bricks.json
 eeefd56705f004c5037f26e6328d4766e039c96e assets/gaiadimension/models/item/amethyst_brick_slab.json
 a63477e54f28d9d3db19651e227912f4ff5bd7e6 assets/gaiadimension/models/item/amethyst_brick_stairs.json
@@ -297,12 +303,6 @@ e2793c68532e33c1d05a5c3018b66de2f58c7ea7 assets/gaiadimension/models/item/large_
 d4632308374bb1c116fdc4824ba4a1205f4927a5 assets/gaiadimension/models/item/large_tentacle.json
 63ec6c618a3a23eab4cab9c52d7d3250de9b516e assets/gaiadimension/models/item/lesser_shockshooter_spawn_egg.json
 63ec6c618a3a23eab4cab9c52d7d3250de9b516e assets/gaiadimension/models/item/lesser_spitfire_spawn_egg.json
-0c2cfe09af08894837c9de8141e39d954259198d assets/gaiadimension/models/item/leucite.json
-a776849bc2eaae732a8c09f36821996ad20b335d assets/gaiadimension/models/item/leucite_block.json
-e2f8ca77318446211c34f0fd8899ab8b24019bd8 assets/gaiadimension/models/item/leucite_boots.json
-cb6fd7903b06eff95a6b12004c4ec3832a0bd3e7 assets/gaiadimension/models/item/leucite_chestplate.json
-c235c3a0b0b85dbef2f93ddfaf16ffc303c64719 assets/gaiadimension/models/item/leucite_helmet.json
-91b731aefbfa1dc8f17ba676d397b43bdb3094e3 assets/gaiadimension/models/item/leucite_legs.json
 de2c463f2e7b33cddd3743f6cc6db864509cbe91 assets/gaiadimension/models/item/light_soil.json
 9c3d20fa4106c1ec0164dac163ba7ee71a38be5a assets/gaiadimension/models/item/liquid_aura_bucket.json
 b8080f2f2744ecfb2ce52f6c52d3ef0dabf0d766 assets/gaiadimension/models/item/liquid_bismuth_bucket.json

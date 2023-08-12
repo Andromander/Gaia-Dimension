@@ -80,6 +80,7 @@ public class RemapHelper {
                     remapBlock(mapping, blockMappings, "potted_burnt_sapling", "potted_burnt_agate_sapling");
                     remapBlock(mapping, blockMappings, "potted_burning_sapling", "potted_fire_agate_sapling");
                     remapBlock(mapping, blockMappings, "ixiolite_block", "stibnite_block");
+                    remapBlock(mapping, blockMappings, "leucite_block", "albite_block");
                 }
             }
         }
@@ -99,6 +100,11 @@ public class RemapHelper {
                     remapItem(mapping, "ixiolite_pickaxe", "stibnite_pickaxe");
                     remapItem(mapping, "ixiolite_axe", "stibnite_axe");
                     remapItem(mapping, "ixiolite_shovel", "stibnite_shovel");
+                    remapItem(mapping, "leucite", "albite");
+                    remapItem(mapping, "leucite_sword", "albite_sword");
+                    remapItem(mapping, "leucite_pickaxe", "albite_pickaxe");
+                    remapItem(mapping, "leucite_axe", "albite_axe");
+                    remapItem(mapping, "leucite_shovel", "albite_shovel");
                 }
             }
         }

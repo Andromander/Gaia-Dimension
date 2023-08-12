@@ -23,13 +23,13 @@ import java.util.function.Supplier;
 public class GaiaItemTags extends GaiaItemTagsProvider {
     ImmutableList<Supplier<Item>> BEACON_PAYMENTS = ImmutableList.of(
             ModItems.sugilite, ModItems.hematite, ModItems.cinnabar, ModItems.labradorite, ModItems.moonstone, ModItems.red_opal, ModItems.blue_opal, ModItems.green_opal,
-            ModItems.white_opal, ModItems.stibnite, ModItems.proustite, ModItems.euclase, ModItems.leucite, ModItems.carnelian, ModItems.benitoite, ModItems.diopside,
+            ModItems.white_opal, ModItems.stibnite, ModItems.proustite, ModItems.euclase, ModItems.albite, ModItems.carnelian, ModItems.benitoite, ModItems.diopside,
             ModItems.chalcedony, ModItems.pyrite, ModItems.tektite, ModItems.goldstone, ModItems.aura_cluster, ModItems.bismuth_crystal, ModItems.opalite, ModItems.celestine
     );
     ImmutableList<TagKey<Item>> GEM_TAGS = ImmutableList.of(
             GaiaTags.Items.GEMS_SUGILITE, GaiaTags.Items.GEMS_HEMATITE, GaiaTags.Items.GEMS_CINNABAR, GaiaTags.Items.GEMS_LABRADORITE, GaiaTags.Items.GEMS_MOONSTONE,
             GaiaTags.Items.GEMS_RED_OPAL, GaiaTags.Items.GEMS_BLUE_OPAL, GaiaTags.Items.GEMS_GREEN_OPAL, GaiaTags.Items.GEMS_WHITE_OPAL, GaiaTags.Items.GEMS_STIBNITE,
-            GaiaTags.Items.GEMS_PROUSTITE, GaiaTags.Items.GEMS_EUCLASE, GaiaTags.Items.GEMS_LEUCITE, GaiaTags.Items.GEMS_CARNELIAN, GaiaTags.Items.GEMS_BENITOITE,
+            GaiaTags.Items.GEMS_PROUSTITE, GaiaTags.Items.GEMS_EUCLASE, GaiaTags.Items.GEMS_ALBITE, GaiaTags.Items.GEMS_CARNELIAN, GaiaTags.Items.GEMS_BENITOITE,
             GaiaTags.Items.GEMS_DIOPSIDE, GaiaTags.Items.GEMS_CHALCEDONY, GaiaTags.Items.GEMS_PYRITE, GaiaTags.Items.GEMS_TEKTITE, GaiaTags.Items.GEMS_GOLDSTONE,
             GaiaTags.Items.GEMS_AURA, GaiaTags.Items.GEMS_BISMUTH, GaiaTags.Items.GEMS_OPALITE, GaiaTags.Items.GEMS_CELESTINE
     );
@@ -42,7 +42,7 @@ public class GaiaItemTags extends GaiaItemTagsProvider {
             GaiaTags.Items.STORAGE_BLOCKS_MOONSTONE, GaiaTags.Items.STORAGE_BLOCKS_RED_OPAL, GaiaTags.Items.STORAGE_BLOCKS_BLUE_OPAL, GaiaTags.Items.STORAGE_BLOCKS_GREEN_OPAL,
             GaiaTags.Items.STORAGE_BLOCKS_WHITE_OPAL, GaiaTags.Items.STORAGE_BLOCKS_PYRITE, GaiaTags.Items.STORAGE_BLOCKS_TEKTITE, GaiaTags.Items.STORAGE_BLOCKS_GOLDSTONE,
             GaiaTags.Items.STORAGE_BLOCKS_AURA_CRYSTAL, GaiaTags.Items.STORAGE_BLOCKS_BISMUTH, GaiaTags.Items.STORAGE_BLOCKS_STIBNITE, GaiaTags.Items.STORAGE_BLOCKS_PROUSTITE,
-            GaiaTags.Items.STORAGE_BLOCKS_EUCLASE, GaiaTags.Items.STORAGE_BLOCKS_LEUCITE, GaiaTags.Items.STORAGE_BLOCKS_CARNELIAN, GaiaTags.Items.STORAGE_BLOCKS_BENITOITE,
+            GaiaTags.Items.STORAGE_BLOCKS_EUCLASE, GaiaTags.Items.STORAGE_BLOCKS_ALBITE, GaiaTags.Items.STORAGE_BLOCKS_CARNELIAN, GaiaTags.Items.STORAGE_BLOCKS_BENITOITE,
             GaiaTags.Items.STORAGE_BLOCKS_DIOPSIDE, GaiaTags.Items.STORAGE_BLOCKS_CHALCEDONY
     );
 
@@ -103,7 +103,7 @@ public class GaiaItemTags extends GaiaItemTagsProvider {
         tag(GaiaTags.Items.GEMS_STIBNITE).add(ModItems.stibnite.get());
         tag(GaiaTags.Items.GEMS_PROUSTITE).add(ModItems.proustite.get());
         tag(GaiaTags.Items.GEMS_EUCLASE).add(ModItems.euclase.get());
-        tag(GaiaTags.Items.GEMS_LEUCITE).add(ModItems.leucite.get());
+        tag(GaiaTags.Items.GEMS_ALBITE).add(ModItems.albite.get());
         tag(GaiaTags.Items.GEMS_CARNELIAN).add(ModItems.carnelian.get());
         tag(GaiaTags.Items.GEMS_BENITOITE).add(ModItems.benitoite.get());
         tag(GaiaTags.Items.GEMS_DIOPSIDE).add(ModItems.diopside.get());
@@ -144,7 +144,7 @@ public class GaiaItemTags extends GaiaItemTagsProvider {
         copy(GaiaTags.Blocks.STORAGE_BLOCKS_STIBNITE, GaiaTags.Items.STORAGE_BLOCKS_STIBNITE);
         copy(GaiaTags.Blocks.STORAGE_BLOCKS_PROUSTITE, GaiaTags.Items.STORAGE_BLOCKS_PROUSTITE);
         copy(GaiaTags.Blocks.STORAGE_BLOCKS_EUCLASE, GaiaTags.Items.STORAGE_BLOCKS_EUCLASE);
-        copy(GaiaTags.Blocks.STORAGE_BLOCKS_LEUCITE, GaiaTags.Items.STORAGE_BLOCKS_LEUCITE);
+        copy(GaiaTags.Blocks.STORAGE_BLOCKS_ALBITE, GaiaTags.Items.STORAGE_BLOCKS_ALBITE);
         copy(GaiaTags.Blocks.STORAGE_BLOCKS_CARNELIAN, GaiaTags.Items.STORAGE_BLOCKS_CARNELIAN);
         copy(GaiaTags.Blocks.STORAGE_BLOCKS_BENITOITE, GaiaTags.Items.STORAGE_BLOCKS_BENITOITE);
         copy(GaiaTags.Blocks.STORAGE_BLOCKS_DIOPSIDE, GaiaTags.Items.STORAGE_BLOCKS_DIOPSIDE);

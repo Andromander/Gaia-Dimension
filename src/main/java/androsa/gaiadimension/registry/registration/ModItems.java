@@ -132,7 +132,7 @@ public class ModItems {
     public static final RegistryObject<Item> stibnite = register("stibnite");
     public static final RegistryObject<Item> proustite = register("proustite");
     public static final RegistryObject<Item> euclase = register("euclase");
-    public static final RegistryObject<Item> leucite = register("leucite");
+    public static final RegistryObject<Item> albite = register("albite");
     public static final RegistryObject<Item> carnelian = register("carnelian");
     public static final RegistryObject<Item> benitoite = register("benitoite");
     public static final RegistryObject<Item> diopside = register("diopside");
@@ -157,10 +157,10 @@ public class ModItems {
     public static final RegistryObject<Item> proustite_chestplate = register("proustite_chestplate", GaiaArmorMaterials.PROUSTITE, CHESTPLATE);
     public static final RegistryObject<Item> proustite_legs = register("proustite_legs", GaiaArmorMaterials.PROUSTITE, LEGGINGS);
     public static final RegistryObject<Item> proustite_boots = register("proustite_boots", GaiaArmorMaterials.PROUSTITE, BOOTS);
-    public static final RegistryObject<Item> leucite_helmet = register("leucite_helmet", GaiaArmorMaterials.LEUCITE, HELMET);
-    public static final RegistryObject<Item> leucite_chestplate = register("leucite_chestplate", GaiaArmorMaterials.LEUCITE, CHESTPLATE);
-    public static final RegistryObject<Item> leucite_legs = register("leucite_legs", GaiaArmorMaterials.LEUCITE, LEGGINGS);
-    public static final RegistryObject<Item> leucite_boots = register("leucite_boots", GaiaArmorMaterials.LEUCITE, BOOTS);
+    public static final RegistryObject<Item> albite_helmet = register("albite_helmet", GaiaArmorMaterials.ALBITE, HELMET);
+    public static final RegistryObject<Item> albite_chestplate = register("albite_chestplate", GaiaArmorMaterials.ALBITE, CHESTPLATE);
+    public static final RegistryObject<Item> albite_legs = register("albite_legs", GaiaArmorMaterials.ALBITE, LEGGINGS);
+    public static final RegistryObject<Item> albite_boots = register("albite_boots", GaiaArmorMaterials.ALBITE, BOOTS);
     public static final RegistryObject<Item> carnelian_helmet = register("carnelian_helmet", GaiaArmorMaterials.CARNELIAN, HELMET);
     public static final RegistryObject<Item> carnelian_chestplate = register("carnelian_chestplate", GaiaArmorMaterials.CARNELIAN, CHESTPLATE);
     public static final RegistryObject<Item> carnelian_legs = register("carnelian_legs", GaiaArmorMaterials.CARNELIAN, LEGGINGS);

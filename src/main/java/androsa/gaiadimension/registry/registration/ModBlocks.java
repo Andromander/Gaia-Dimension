@@ -337,7 +337,7 @@ public class ModBlocks {
     public static final RegistryObject<Block> stibnite_block = register("stibnite_block", PropertiesHandler.storageProps(MapColor.COLOR_GRAY));
     public static final RegistryObject<Block> proustite_block = register("proustite_block", PropertiesHandler.storageProps(MapColor.COLOR_MAGENTA));
     public static final RegistryObject<Block> euclase_block = register("euclase_block", PropertiesHandler.storageProps(MapColor.COLOR_LIGHT_GREEN));
-    public static final RegistryObject<Block> leucite_block = register("leucite_block", PropertiesHandler.storageProps(MapColor.SAND));
+    public static final RegistryObject<Block> albite_block = register("albite_block", PropertiesHandler.storageProps(MapColor.SAND));
     public static final RegistryObject<Block> carnelian_block = register("carnelian_block", PropertiesHandler.storageProps(MapColor.COLOR_RED));
     public static final RegistryObject<Block> benitoite_block = register("benitoite_block", PropertiesHandler.storageProps(MapColor.COLOR_BLUE));
     public static final RegistryObject<Block> diopside_block = register("diopside_block", PropertiesHandler.storageProps(MapColor.COLOR_LIGHT_GREEN));

@@ -16,7 +16,7 @@ import java.util.function.Supplier;
 public enum GaiaArmorMaterials implements ArmorMaterial {
     SUGILITE("sugilite", 77, new int[]{1, 4, 6, 1}, 5, SoundEvents.ARMOR_EQUIP_CHAIN, 0.0F, 0.0F, () -> Ingredient.of(ModItems.sugilite.get())),
     PROUSTITE("proustite", 115, new int[]{1, 4, 6, 1}, 5, SoundEvents.ARMOR_EQUIP_CHAIN, 0.0F, 0.0F, () -> Ingredient.of(ModItems.proustite.get())),
-    LEUCITE("leucite", 100, new int[]{1, 4, 6, 1}, 5, SoundEvents.ARMOR_EQUIP_CHAIN, 1.0F, 0.0F, () -> Ingredient.of(ModItems.leucite.get())),
+    ALBITE("albite", 100, new int[]{1, 4, 6, 1}, 5, SoundEvents.ARMOR_EQUIP_CHAIN, 1.0F, 0.0F, () -> Ingredient.of(ModItems.albite.get())),
     CARNELIAN("carnelian", 192, new int[]{2, 5, 7, 2}, 5, SoundEvents.ARMOR_EQUIP_IRON, 0.0F, 0.0F, () -> Ingredient.of(ModItems.carnelian.get())),
     DIOPSIDE("diopside", 177, new int[]{2, 5, 7, 2}, 5, SoundEvents.ARMOR_EQUIP_IRON, 1.0F, 0.0F, () -> Ingredient.of(ModItems.diopside.get())),
     CHALCEDONY("chalcedony", 230, new int[]{3, 6, 8, 3}, 5, SoundEvents.ARMOR_EQUIP_IRON, 2.0F, 0.0F, () -> Ingredient.of(ModItems.chalcedony.get())),

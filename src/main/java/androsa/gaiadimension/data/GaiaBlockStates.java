@@ -282,7 +282,7 @@ public class GaiaBlockStates extends GaiaBlockStateProvider {
         basicBlock(ModBlocks.stibnite_block);
         basicBlock(ModBlocks.proustite_block);
         basicBlock(ModBlocks.euclase_block);
-        basicBlock(ModBlocks.leucite_block);
+        basicBlock(ModBlocks.albite_block);
         basicBlock(ModBlocks.carnelian_block);
         basicBlock(ModBlocks.benitoite_block);
         basicBlock(ModBlocks.diopside_block);

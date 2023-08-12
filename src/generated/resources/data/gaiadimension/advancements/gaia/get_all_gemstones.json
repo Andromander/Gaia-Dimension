@@ -1,6 +1,18 @@
 {
   "parent": "gaiadimension:gaia/mine_all_gemstones",
   "criteria": {
+    "get_albite": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "gaiadimension:albite"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
     "get_aura_cluster": {
       "conditions": {
         "items": [
@@ -169,18 +181,6 @@
       },
       "trigger": "minecraft:inventory_changed"
     },
-    "get_leucite": {
-      "conditions": {
-        "items": [
-          {
-            "items": [
-              "gaiadimension:leucite"
-            ]
-          }
-        ]
-      },
-      "trigger": "minecraft:inventory_changed"
-    },
     "get_moonstone": {
       "conditions": {
         "items": [
@@ -343,7 +343,7 @@
       "get_euclase"
     ],
     [
-      "get_leucite"
+      "get_albite"
     ],
     [
       "get_carnelian"

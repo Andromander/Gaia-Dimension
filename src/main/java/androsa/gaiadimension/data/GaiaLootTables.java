@@ -328,7 +328,7 @@ public class GaiaLootTables extends LootTableProvider {
             dropSelf(ModBlocks.stibnite_block);
             dropSelf(ModBlocks.proustite_block);
             dropSelf(ModBlocks.euclase_block);
-            dropSelf(ModBlocks.leucite_block);
+            dropSelf(ModBlocks.albite_block);
             dropSelf(ModBlocks.carnelian_block);
             dropSelf(ModBlocks.benitoite_block);
             dropSelf(ModBlocks.diopside_block);
@@ -486,7 +486,7 @@ public class GaiaLootTables extends LootTableProvider {
                                     .apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 3.0F))))
                             .add(LootItem.lootTableItem(ModItems.sugilite_axe.get())
                                     .setWeight(2))
-                            .add(LootItem.lootTableItem(ModItems.leucite.get())
+                            .add(LootItem.lootTableItem(ModItems.albite.get())
                                     .setWeight(10)
                                     .apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 3.0F))))
                             .add(LootItem.lootTableItem(ModBlocks.copal_bricks.get())
@@ -580,7 +580,7 @@ public class GaiaLootTables extends LootTableProvider {
                                     .apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 4.0F))))
                             .add(LootItem.lootTableItem(ModItems.proustite_helmet.get())
                                     .setWeight(5))
-                            .add(LootItem.lootTableItem(ModItems.leucite_helmet.get())
+                            .add(LootItem.lootTableItem(ModItems.albite_helmet.get())
                                     .setWeight(2)))
                     .withPool(LootPool.lootPool()
                             .setRolls(UniformGenerator.between(1.0F, 3.0F))
@@ -593,7 +593,7 @@ public class GaiaLootTables extends LootTableProvider {
                             .add(LootItem.lootTableItem(ModItems.euclase.get())
                                     .setWeight(4)
                                     .apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 2.0F))))
-                            .add(LootItem.lootTableItem(ModItems.leucite.get())
+                            .add(LootItem.lootTableItem(ModItems.albite.get())
                                     .setWeight(4)
                                     .apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 2.0F))))
                             .add(LootItem.lootTableItem(ModItems.green_opal.get())
