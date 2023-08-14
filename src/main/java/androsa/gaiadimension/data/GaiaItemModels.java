@@ -283,7 +283,7 @@ public class GaiaItemModels extends GaiaItemModelProvider {
         blockItem(ModBlocks.carnelian_block);
         blockItem(ModBlocks.benitoite_block);
         blockItem(ModBlocks.diopside_block);
-        blockItem(ModBlocks.chalcedony_block);
+        blockItem(ModBlocks.goshenite_block);
         blockItem(ModBlocks.celestine_block);
         blockItem(ModBlocks.sugilite_ore);
         blockItem(ModBlocks.hematite_ore);
@@ -403,7 +403,7 @@ public class GaiaItemModels extends GaiaItemModelProvider {
         basicItem(ModItems.carnelian);
         basicItem(ModItems.benitoite);
         basicItem(ModItems.diopside);
-        basicItem(ModItems.chalcedony);
+        basicItem(ModItems.goshenite);
         basicItem(ModItems.pyrite);
         basicItem(ModItems.black_residue);
         basicItem(ModItems.tektite);
@@ -435,10 +435,10 @@ public class GaiaItemModels extends GaiaItemModelProvider {
         basicItem(ModItems.diopside_chestplate);
         basicItem(ModItems.diopside_legs);
         basicItem(ModItems.diopside_boots);
-        basicItem(ModItems.chalcedony_helmet);
-        basicItem(ModItems.chalcedony_chestplate);
-        basicItem(ModItems.chalcedony_legs);
-        basicItem(ModItems.chalcedony_boots);
+        basicItem(ModItems.goshenite_helmet);
+        basicItem(ModItems.goshenite_chestplate);
+        basicItem(ModItems.goshenite_legs);
+        basicItem(ModItems.goshenite_boots);
         basicItem(ModItems.malachite_guard_headgear);
         basicItem(ModItems.malachite_guard_brace);
         basicItem(ModItems.malachite_guard_gear);
@@ -499,10 +499,10 @@ public class GaiaItemModels extends GaiaItemModelProvider {
         heldItem(ModItems.benitoite_pickaxe);
         heldItem(ModItems.benitoite_axe);
         heldItem(ModItems.benitoite_shovel);
-        heldItem(ModItems.chalcedony_sword);
-        heldItem(ModItems.chalcedony_pickaxe);
-        heldItem(ModItems.chalcedony_axe);
-        heldItem(ModItems.chalcedony_shovel);
+        heldItem(ModItems.goshenite_sword);
+        heldItem(ModItems.goshenite_pickaxe);
+        heldItem(ModItems.goshenite_axe);
+        heldItem(ModItems.goshenite_shovel);
         basicItem(ModItems.agate_arrow);
         basicItem(ModItems.mock_malachite);
 

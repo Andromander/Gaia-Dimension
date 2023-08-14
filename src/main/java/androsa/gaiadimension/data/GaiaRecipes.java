@@ -84,7 +84,7 @@ public class GaiaRecipes extends GaiaRecipeProvider {
         largeCompressRecipe(ModBlocks.carnelian_block.get(), ModItems.carnelian.get()).save(consumer, locStorage("carnelian_block"));
         largeCompressRecipe(ModBlocks.benitoite_block.get(), ModItems.benitoite.get()).save(consumer, locStorage("benitoite_block"));
         largeCompressRecipe(ModBlocks.diopside_block.get(), ModItems.diopside.get()).save(consumer, locStorage("diopside_block"));
-        largeCompressRecipe(ModBlocks.chalcedony_block.get(), ModItems.chalcedony.get()).save(consumer, locStorage("chalcedony_block"));
+        largeCompressRecipe(ModBlocks.goshenite_block.get(), ModItems.goshenite.get()).save(consumer, locStorage("goshenite_block"));
         largeCompressRecipe(ModBlocks.celestine_block.get(), ModItems.celestine.get()).save(consumer, locStorage("celestine_block"));
 
         blockToItemRecipe(ModItems.sugilite, ModBlocks.sugilite_block).save(consumer, locStorage("sugilite_block_item"));
@@ -103,7 +103,7 @@ public class GaiaRecipes extends GaiaRecipeProvider {
         blockToItemRecipe(ModItems.carnelian, ModBlocks.carnelian_block).save(consumer, locStorage("carnelian_block_item"));
         blockToItemRecipe(ModItems.benitoite, ModBlocks.benitoite_block).save(consumer, locStorage("benitoite_block_item"));
         blockToItemRecipe(ModItems.diopside, ModBlocks.diopside_block).save(consumer, locStorage("diopside_block_item"));
-        blockToItemRecipe(ModItems.chalcedony, ModBlocks.chalcedony_block).save(consumer, locStorage("chalcedony_block_item"));
+        blockToItemRecipe(ModItems.goshenite, ModBlocks.goshenite_block).save(consumer, locStorage("goshenite_block_item"));
         blockToItemRecipe(ModItems.pyrite, ModBlocks.pyrite_block).save(consumer, locStorage("pyrite_block_item"));
         blockToItemRecipe(ModItems.tektite, ModBlocks.tektite_block).save(consumer, locStorage("tektite_block_item"));
         blockToItemRecipe(ModItems.goldstone, ModBlocks.goldstone_block).save(consumer, locStorage("goldstone_block_item"));
@@ -132,10 +132,10 @@ public class GaiaRecipes extends GaiaRecipeProvider {
         chestRecipe(ModItems.diopside_chestplate, ModItems.diopside).save(consumer, locArmor("diopside_chestplate"));
         legsRecipe(ModItems.diopside_legs, ModItems.diopside).save(consumer, locArmor("diopside_legs"));
         bootsRecipe(ModItems.diopside_boots, ModItems.diopside).save(consumer, locArmor("diopside_boots"));
-        helmetRecipe(ModItems.chalcedony_helmet, ModItems.chalcedony).save(consumer, locArmor("chalcedony_helmet"));
-        chestRecipe(ModItems.chalcedony_chestplate, ModItems.chalcedony).save(consumer, locArmor("chalcedony_chestplate"));
-        legsRecipe(ModItems.chalcedony_legs, ModItems.chalcedony).save(consumer, locArmor("chalcedony_legs"));
-        bootsRecipe(ModItems.chalcedony_boots, ModItems.chalcedony).save(consumer, locArmor("chalcedony_boots"));
+        helmetRecipe(ModItems.goshenite_helmet, ModItems.goshenite).save(consumer, locArmor("goshenite_helmet"));
+        chestRecipe(ModItems.goshenite_chestplate, ModItems.goshenite).save(consumer, locArmor("goshenite_chestplate"));
+        legsRecipe(ModItems.goshenite_legs, ModItems.goshenite).save(consumer, locArmor("goshenite_legs"));
+        bootsRecipe(ModItems.goshenite_boots, ModItems.goshenite).save(consumer, locArmor("goshenite_boots"));
 
         swordRecipeTag(ModItems.agate_sword, GaiaTags.Items.TILES).save(consumer, locTools("agate_sword"));
         pickaxeRecipeTag(ModItems.agate_pickaxe, GaiaTags.Items.TILES).save(consumer, locTools("agate_pickaxe"));
@@ -161,10 +161,10 @@ public class GaiaRecipes extends GaiaRecipeProvider {
         pickaxeRecipe(ModItems.benitoite_pickaxe, ModItems.benitoite).save(consumer, locTools("benitoite_pickaxe"));
         axeRecipe(ModItems.benitoite_axe, ModItems.benitoite).save(consumer, locTools("benitoite_axe"));
         shovelRecipe(ModItems.benitoite_shovel, ModItems.benitoite).save(consumer, locTools("benitoite_shovel"));
-        swordRecipe(ModItems.chalcedony_sword, ModItems.chalcedony).save(consumer, locTools("chalcedony_sword"));
-        pickaxeRecipe(ModItems.chalcedony_pickaxe, ModItems.chalcedony).save(consumer, locTools("chalcedony_pickaxe"));
-        axeRecipe(ModItems.chalcedony_axe, ModItems.chalcedony).save(consumer, locTools("chalcedony_axe"));
-        shovelRecipe(ModItems.chalcedony_shovel, ModItems.chalcedony).save(consumer, locTools("chalcedony_shovel"));
+        swordRecipe(ModItems.goshenite_sword, ModItems.goshenite).save(consumer, locTools("goshenite_sword"));
+        pickaxeRecipe(ModItems.goshenite_pickaxe, ModItems.goshenite).save(consumer, locTools("goshenite_pickaxe"));
+        axeRecipe(ModItems.goshenite_axe, ModItems.goshenite).save(consumer, locTools("goshenite_axe"));
+        shovelRecipe(ModItems.goshenite_shovel, ModItems.goshenite).save(consumer, locTools("goshenite_shovel"));
 
         largeCompressRecipe(ModItems.aura_cluster.get(), ModItems.aura_residue.get()).save(consumer, loc("aura_cluster"));
         largeCompressRecipe(ModItems.bismuth_crystal.get(), ModItems.bismuth_residue.get()).save(consumer, loc("bismuth_crystal"));
@@ -479,8 +479,8 @@ public class GaiaRecipes extends GaiaRecipeProvider {
         restructuringTektite(ModBlocks.benitoite_block, ModBlocks.blue_opal_block, 2.7F, 1).save(consumer, locRestructure("benitoite_block"));
         restructureBlackResidue(ModItems.carnelian, ModItems.red_opal, 0.3F, 1).save(consumer, locRestructure("carnelian"));
         restructuringTektite(ModBlocks.carnelian_block, ModBlocks.red_opal_block, 2.7F, 1).save(consumer, locRestructure("carnelian_block"));
-        restructureBlackResidue(ModItems.chalcedony, ModItems.white_opal, 0.3F, 1).save(consumer, locRestructure("chalcedony"));
-        restructuringTektite(ModBlocks.chalcedony_block, ModBlocks.white_opal_block, 2.7F, 1).save(consumer, locRestructure("chalcedony_block"));
+        restructureBlackResidue(ModItems.goshenite, ModItems.white_opal, 0.3F, 1).save(consumer, locRestructure("goshenite"));
+        restructuringTektite(ModBlocks.goshenite_block, ModBlocks.white_opal_block, 2.7F, 1).save(consumer, locRestructure("goshenite_block"));
         restructureBlackResidue(ModItems.diopside, ModItems.green_opal, 0.3F, 1).save(consumer, locRestructure("diopside"));
         restructuringTektite(ModBlocks.diopside_block, ModBlocks.green_opal_block, 2.7F, 1).save(consumer, locRestructure("diopside_block"));
         restructureBlackResidue(ModItems.euclase, ModItems.labradorite, 0.3F, 1).save(consumer, locRestructure("euclase"));

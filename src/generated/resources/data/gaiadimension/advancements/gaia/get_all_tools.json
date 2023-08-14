@@ -145,54 +145,6 @@
       },
       "trigger": "minecraft:inventory_changed"
     },
-    "chalcedony_axe": {
-      "conditions": {
-        "items": [
-          {
-            "items": [
-              "gaiadimension:chalcedony_axe"
-            ]
-          }
-        ]
-      },
-      "trigger": "minecraft:inventory_changed"
-    },
-    "chalcedony_pickaxe": {
-      "conditions": {
-        "items": [
-          {
-            "items": [
-              "gaiadimension:chalcedony_pickaxe"
-            ]
-          }
-        ]
-      },
-      "trigger": "minecraft:inventory_changed"
-    },
-    "chalcedony_shovel": {
-      "conditions": {
-        "items": [
-          {
-            "items": [
-              "gaiadimension:chalcedony_shovel"
-            ]
-          }
-        ]
-      },
-      "trigger": "minecraft:inventory_changed"
-    },
-    "chalcedony_sword": {
-      "conditions": {
-        "items": [
-          {
-            "items": [
-              "gaiadimension:chalcedony_sword"
-            ]
-          }
-        ]
-      },
-      "trigger": "minecraft:inventory_changed"
-    },
     "euclase_axe": {
       "conditions": {
         "items": [
@@ -235,6 +187,54 @@
           {
             "items": [
               "gaiadimension:euclase_sword"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "goshenite_axe": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "gaiadimension:goshenite_axe"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "goshenite_pickaxe": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "gaiadimension:goshenite_pickaxe"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "goshenite_shovel": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "gaiadimension:goshenite_shovel"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "goshenite_sword": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "gaiadimension:goshenite_sword"
             ]
           }
         ]
@@ -346,7 +346,7 @@
     "frame": "challenge",
     "hidden": false,
     "icon": {
-      "item": "gaiadimension:chalcedony_sword",
+      "item": "gaiadimension:goshenite_sword",
       "nbt": "{Damage:0}"
     },
     "show_toast": true,
@@ -428,16 +428,16 @@
       "benitoite_shovel"
     ],
     [
-      "chalcedony_sword"
+      "goshenite_sword"
     ],
     [
-      "chalcedony_pickaxe"
+      "goshenite_pickaxe"
     ],
     [
-      "chalcedony_axe"
+      "goshenite_axe"
     ],
     [
-      "chalcedony_shovel"
+      "goshenite_shovel"
     ]
   ],
   "rewards": {

@@ -37,18 +37,6 @@
       },
       "trigger": "minecraft:inventory_changed"
     },
-    "get_chalcedony": {
-      "conditions": {
-        "items": [
-          {
-            "items": [
-              "gaiadimension:chalcedony"
-            ]
-          }
-        ]
-      },
-      "trigger": "minecraft:inventory_changed"
-    },
     "get_diopside": {
       "conditions": {
         "items": [
@@ -67,6 +55,18 @@
           {
             "items": [
               "gaiadimension:euclase"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "get_goshenite": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "gaiadimension:goshenite"
             ]
           }
         ]
@@ -134,7 +134,7 @@
       "get_carnelian",
       "get_benitoite",
       "get_diopside",
-      "get_chalcedony",
+      "get_goshenite",
       "get_tektite"
     ]
   ],

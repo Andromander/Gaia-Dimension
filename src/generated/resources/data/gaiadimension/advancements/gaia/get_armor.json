@@ -97,54 +97,6 @@
       },
       "trigger": "minecraft:inventory_changed"
     },
-    "chalcedony_boots": {
-      "conditions": {
-        "items": [
-          {
-            "items": [
-              "gaiadimension:chalcedony_boots"
-            ]
-          }
-        ]
-      },
-      "trigger": "minecraft:inventory_changed"
-    },
-    "chalcedony_chestplate": {
-      "conditions": {
-        "items": [
-          {
-            "items": [
-              "gaiadimension:chalcedony_chestplate"
-            ]
-          }
-        ]
-      },
-      "trigger": "minecraft:inventory_changed"
-    },
-    "chalcedony_helmet": {
-      "conditions": {
-        "items": [
-          {
-            "items": [
-              "gaiadimension:chalcedony_helmet"
-            ]
-          }
-        ]
-      },
-      "trigger": "minecraft:inventory_changed"
-    },
-    "chalcedony_legs": {
-      "conditions": {
-        "items": [
-          {
-            "items": [
-              "gaiadimension:chalcedony_legs"
-            ]
-          }
-        ]
-      },
-      "trigger": "minecraft:inventory_changed"
-    },
     "diopside_boots": {
       "conditions": {
         "items": [
@@ -187,6 +139,54 @@
           {
             "items": [
               "gaiadimension:diopside_legs"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "goshenite_boots": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "gaiadimension:goshenite_boots"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "goshenite_chestplate": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "gaiadimension:goshenite_chestplate"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "goshenite_helmet": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "gaiadimension:goshenite_helmet"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "goshenite_legs": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "gaiadimension:goshenite_legs"
             ]
           }
         ]
@@ -328,10 +328,10 @@
       "diopside_chestplate",
       "diopside_legs",
       "diopside_boots",
-      "chalcedony_helmet",
-      "chalcedony_chestplate",
-      "chalcedony_legs",
-      "chalcedony_boots"
+      "goshenite_helmet",
+      "goshenite_chestplate",
+      "goshenite_legs",
+      "goshenite_boots"
     ]
   ],
   "sends_telemetry_event": true

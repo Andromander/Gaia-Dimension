@@ -78,7 +78,7 @@ public class GaiaTags {
         public static final TagKey<Item> STORAGE_BLOCKS_CARNELIAN = tagItemForge("storage_blocks/carnelian");
         public static final TagKey<Item> STORAGE_BLOCKS_BENITOITE = tagItemForge("storage_blocks/benitoite");
         public static final TagKey<Item> STORAGE_BLOCKS_DIOPSIDE = tagItemForge("storage_blocks/diopside");
-        public static final TagKey<Item> STORAGE_BLOCKS_CHALCEDONY = tagItemForge("storage_blocks/chalcedony");
+        public static final TagKey<Item> STORAGE_BLOCKS_GOSHENITE = tagItemForge("storage_blocks/goshenite");
 
         public static final TagKey<Item> DUSTS_FINE = tagItemForge("dusts/fine");
         public static final TagKey<Item> DUSTS_GOLDSTONE = tagItemForge("dusts/goldstone");
@@ -101,7 +101,7 @@ public class GaiaTags {
         public static final TagKey<Item> GEMS_CARNELIAN = tagItemForge("gems/carnelian");
         public static final TagKey<Item> GEMS_BENITOITE = tagItemForge("gems/benitoite");
         public static final TagKey<Item> GEMS_DIOPSIDE = tagItemForge("gems/diopside");
-        public static final TagKey<Item> GEMS_CHALCEDONY = tagItemForge("gems/chalcedony");
+        public static final TagKey<Item> GEMS_GOSHENITE = tagItemForge("gems/goshenite");
         public static final TagKey<Item> GEMS_PYRITE = tagItemForge("gems/pyrite");
         public static final TagKey<Item> GEMS_TEKTITE = tagItemForge("gems/tektite");
         public static final TagKey<Item> GEMS_GOLDSTONE = tagItemForge("gems/goldstone");
@@ -194,7 +194,7 @@ public class GaiaTags {
         public static final TagKey<Block> STORAGE_BLOCKS_CARNELIAN = tagBlockForge("storage_blocks/carnelian");
         public static final TagKey<Block> STORAGE_BLOCKS_BENITOITE = tagBlockForge("storage_blocks/benitoite");
         public static final TagKey<Block> STORAGE_BLOCKS_DIOPSIDE = tagBlockForge("storage_blocks/diopside");
-        public static final TagKey<Block> STORAGE_BLOCKS_CHALCEDONY = tagBlockForge("storage_blocks/chalcedony");
+        public static final TagKey<Block> STORAGE_BLOCKS_GOSHENITE = tagBlockForge("storage_blocks/goshenite");
         public static final TagKey<Block> STORAGE_BLOCKS_CELESTINE = tagBlockForge("storage_blocks/celestine");
     }
 

@@ -1,4 +1,4 @@
-// 1.20.1	2023-08-12T23:05:29.8275048	Loot Tables
+// 1.20.1	2023-08-14T11:21:01.9467772	Loot Tables
 70fac5f3da5e56a3221f03ad3388e9157b04753a data/gaiadimension/loot_tables/blocks/active_rock.json
 488882d8b9f64b34ecf3a22af357f2aedd29512a data/gaiadimension/loot_tables/blocks/agate_crafting_table.json
 7d233d88ea3fc2923fa77a2fb7e6b9dafd09ff5f data/gaiadimension/loot_tables/blocks/agathum.json
@@ -46,7 +46,6 @@ fc0aa74d2e47f95a023f85d6c0116a37ce18dd25 data/gaiadimension/loot_tables/blocks/b
 9c1c203d313cbf14d30768ee4f524f2805325ec4 data/gaiadimension/loot_tables/blocks/carnelian_block.json
 5de810fad231cd1a3075b5cc594e0dda8e2f7239 data/gaiadimension/loot_tables/blocks/celestine_block.json
 0006e8e01d62de96aba867a7afa89fdce2cb6dc4 data/gaiadimension/loot_tables/blocks/celestine_ore.json
-80b907354eb8284aef87012c3202d678ce7347f0 data/gaiadimension/loot_tables/blocks/chalcedony_block.json
 deda56b5f6fce3bf9feec5124832c962f64957cc data/gaiadimension/loot_tables/blocks/charged_mineral.json
 ac041d82cd0caab81776b067478ee603b2b9001e data/gaiadimension/loot_tables/blocks/cinnabar_block.json
 c87307ecf84bfd78a6a05eccb5b78f3b4df465e6 data/gaiadimension/loot_tables/blocks/cinnabar_ore.json
@@ -142,6 +141,7 @@ f88414fb01985ba41dae60e41e6fbbea6fc6e30c data/gaiadimension/loot_tables/blocks/g
 9660483345bb14ff1f56d8160ee21212a38fe23c data/gaiadimension/loot_tables/blocks/gold_mookaite.json
 b74e43b20b20bc5d0be933ed750573f0dcbbe25f data/gaiadimension/loot_tables/blocks/gold_opalite_ore.json
 d569140c2a25de6a28274226d904ea7f0fe6730e data/gaiadimension/loot_tables/blocks/gold_orb_tucher.json
+929230519acfbfb19225edaf075e1e90bc500449 data/gaiadimension/loot_tables/blocks/goshenite_block.json
 925a009ac9e15b7b8c957e9dd3b9de26ec9b7895 data/gaiadimension/loot_tables/blocks/green_agate_leaves.json
 e588d7f295a3c50efdde339c1b62e30d8b86724a data/gaiadimension/loot_tables/blocks/green_agate_log.json
 f414a00660c45679a2efb7068f597c67b0b4600f data/gaiadimension/loot_tables/blocks/green_agate_sapling.json

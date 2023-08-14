@@ -136,7 +136,7 @@ public class ModItems {
     public static final RegistryObject<Item> carnelian = register("carnelian");
     public static final RegistryObject<Item> benitoite = register("benitoite");
     public static final RegistryObject<Item> diopside = register("diopside");
-    public static final RegistryObject<Item> chalcedony = register("chalcedony");
+    public static final RegistryObject<Item> goshenite = register("goshenite");
     public static final RegistryObject<Item> pyrite = register("pyrite");
     public static final RegistryObject<Item> black_residue = register("black_residue");
     public static final RegistryObject<Item> tektite = register("tektite");
@@ -169,10 +169,10 @@ public class ModItems {
     public static final RegistryObject<Item> diopside_chestplate = register("diopside_chestplate", GaiaArmorMaterials.DIOPSIDE, CHESTPLATE);
     public static final RegistryObject<Item> diopside_legs = register("diopside_legs", GaiaArmorMaterials.DIOPSIDE, LEGGINGS);
     public static final RegistryObject<Item> diopside_boots = register("diopside_boots", GaiaArmorMaterials.DIOPSIDE, BOOTS);
-    public static final RegistryObject<Item> chalcedony_helmet = register("chalcedony_helmet", GaiaArmorMaterials.CHALCEDONY, HELMET);
-    public static final RegistryObject<Item> chalcedony_chestplate = register("chalcedony_chestplate", GaiaArmorMaterials.CHALCEDONY, CHESTPLATE);
-    public static final RegistryObject<Item> chalcedony_legs = register("chalcedony_legs", GaiaArmorMaterials.CHALCEDONY, LEGGINGS);
-    public static final RegistryObject<Item> chalcedony_boots = register("chalcedony_boots", GaiaArmorMaterials.CHALCEDONY, BOOTS);
+    public static final RegistryObject<Item> goshenite_helmet = register("goshenite_helmet", GaiaArmorMaterials.GOSHENITE, HELMET);
+    public static final RegistryObject<Item> goshenite_chestplate = register("goshenite_chestplate", GaiaArmorMaterials.GOSHENITE, CHESTPLATE);
+    public static final RegistryObject<Item> goshenite_legs = register("goshenite_legs", GaiaArmorMaterials.GOSHENITE, LEGGINGS);
+    public static final RegistryObject<Item> goshenite_boots = register("goshenite_boots", GaiaArmorMaterials.GOSHENITE, BOOTS);
 
     public static final RegistryObject<Item> malachite_guard_headgear = register("malachite_guard_headgear", () -> new MalachiteGuardArmorItem(HELMET, armorProps().rarity(Rarity.RARE)));
     public static final RegistryObject<Item> malachite_guard_brace = register("malachite_guard_brace", () -> new MalachiteGuardArmorItem(CHESTPLATE, armorProps().rarity(Rarity.RARE)));
@@ -235,10 +235,10 @@ public class ModItems {
     public static final RegistryObject<Item> benitoite_pickaxe = registerPickaxe("benitoite_pickaxe", GaiaToolMaterials.BENITOITE);
     public static final RegistryObject<Item> benitoite_axe = registerAxe("benitoite_axe", GaiaToolMaterials.BENITOITE);
     public static final RegistryObject<Item> benitoite_shovel = registerShovel("benitoite_shovel", GaiaToolMaterials.BENITOITE);
-    public static final RegistryObject<Item> chalcedony_sword = registerSword("chalcedony_sword", GaiaToolMaterials.CHALCEDONY);
-    public static final RegistryObject<Item> chalcedony_pickaxe = registerPickaxe("chalcedony_pickaxe", GaiaToolMaterials.CHALCEDONY);
-    public static final RegistryObject<Item> chalcedony_axe = registerAxe("chalcedony_axe", GaiaToolMaterials.CHALCEDONY);
-    public static final RegistryObject<Item> chalcedony_shovel = registerShovel("chalcedony_shovel", GaiaToolMaterials.CHALCEDONY);
+    public static final RegistryObject<Item> goshenite_sword = registerSword("goshenite_sword", GaiaToolMaterials.GOSHENITE);
+    public static final RegistryObject<Item> goshenite_pickaxe = registerPickaxe("goshenite_pickaxe", GaiaToolMaterials.GOSHENITE);
+    public static final RegistryObject<Item> goshenite_axe = registerAxe("goshenite_axe", GaiaToolMaterials.GOSHENITE);
+    public static final RegistryObject<Item> goshenite_shovel = registerShovel("goshenite_shovel", GaiaToolMaterials.GOSHENITE);
     public static final RegistryObject<Item> old_bow = register("old_bow", () -> new OldBowItem(toolProps().durability(425)));
     public static final RegistryObject<Item> agate_arrow = register("agate_arrow", () -> new AgateArrowItem(itemProps()));
 

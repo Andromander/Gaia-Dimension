@@ -81,6 +81,7 @@ public class RemapHelper {
                     remapBlock(mapping, blockMappings, "potted_burning_sapling", "potted_fire_agate_sapling");
                     remapBlock(mapping, blockMappings, "ixiolite_block", "stibnite_block");
                     remapBlock(mapping, blockMappings, "leucite_block", "albite_block");
+                    remapBlock(mapping, blockMappings, "chalcedony_block", "goshenite_block");
                 }
             }
         }
@@ -105,6 +106,15 @@ public class RemapHelper {
                     remapItem(mapping, "leucite_chestplate", "albite_chestplate");
                     remapItem(mapping, "leucite_legs", "albite_legs");
                     remapItem(mapping, "leucite_boots", "albite_boots");
+                    remapItem(mapping, "chalcedony", "goshenite");
+                    remapItem(mapping, "chalcedony_sword", "goshenite_sword");
+                    remapItem(mapping, "chalcedony_pickaxe", "goshenite_pickaxe");
+                    remapItem(mapping, "chalcedony_axe", "goshenite_axe");
+                    remapItem(mapping, "chalcedony_shovel", "goshenite_shovel");
+                    remapItem(mapping, "chalcedony_helmet", "goshenite_helmet");
+                    remapItem(mapping, "chalcedony_chestplate", "goshenite_chestplate");
+                    remapItem(mapping, "chalcedony_legs", "goshenite_legs");
+                    remapItem(mapping, "chalcedony_boots", "goshenite_boots");
                 }
             }
         }

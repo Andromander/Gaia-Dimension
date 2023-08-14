@@ -14,7 +14,7 @@ public enum GaiaToolMaterials implements Tier {
     EUCLASE(2, 3000, 4.0F, 2.0F, 10, () -> Ingredient.of(ModItems.euclase.get())),
     CARNELIAN(3, 2500, 5.0F, 3.0F, 10, () -> Ingredient.of(ModItems.carnelian.get())),
     BENITOITE(3, 3500, 5.0F, 3.0F, 10, () -> Ingredient.of(ModItems.benitoite.get())),
-    CHALCEDONY(4, 4000, 6.0F, 4.0F, 10, () -> Ingredient.of(ModItems.chalcedony.get())),
+    GOSHENITE(4, 4000, 6.0F, 4.0F, 10, () -> Ingredient.of(ModItems.goshenite.get())),
 
     MALACHITE(3, 5120, 8.0F, 4.0F, 10, () -> Ingredient.EMPTY),
     TIGER_EYE(3, 4096, 8.0F, 5.0F, 10, () -> Ingredient.EMPTY),
