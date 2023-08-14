@@ -154,14 +154,8 @@ repositories {
         url = 'https://maven.tterrag.com/'
     }
     maven {
-        // location of the maven that hosts JEI files
-        name = "Progwml6 maven"
-        url = "https://dvs1.progwml6.com/files/maven"
-    }
-    maven {
-        // location of a maven mirror for JEI files, as a fallback
-        name = "ModMaven"
-        url = "modmaven.k-4u.nl"
+        name 'Jared\'s Maven' // JEI
+        url 'https://maven.blamejared.com/'
     }
     flatDir {
         dirs "libs"
@@ -169,8 +163,7 @@ repositories {
 }
 
 dependencies {
-//    compileOnly fg.deobf("mezz.jei:jei-${artifactor_minecraft_version}:${jei_version}:api")
-//    runtimeOnly fg.deobf("mezz.jei:jei-${artifactor_minecraft_version}:${jei_version}")
+    implementation fg.deobf("mezz.jei:jei-${artifactor_minecraft_version}-forge:${jei_version}")
 
 //    runtimeOnly fg.deobf("com.sk88q.worldedit:WorldEdit:${we_version}")
 //    runtimeOnly fg.deobf("team.chisel.ctm:CTM:${project.ctm_version}")

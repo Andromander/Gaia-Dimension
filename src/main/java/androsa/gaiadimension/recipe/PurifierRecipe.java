@@ -38,11 +38,6 @@ public class PurifierRecipe implements Recipe<Container> {
     }
 
     @Override
-    public boolean isSpecial() {
-        return true; //Stops log spam
-    }
-
-    @Override
     public boolean matches(Container inv, Level worldIn) {
         return this.ingredient.test(inv.getItem(0));
     }

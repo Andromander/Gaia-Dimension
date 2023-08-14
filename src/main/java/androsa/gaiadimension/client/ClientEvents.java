@@ -2,9 +2,8 @@ package androsa.gaiadimension.client;
 
 import androsa.gaiadimension.GaiaDimensionMod;
 import androsa.gaiadimension.particle.*;
-import androsa.gaiadimension.registry.registration.ModBlocks;
-import androsa.gaiadimension.registry.registration.ModFluids;
-import androsa.gaiadimension.registry.registration.ModParticles;
+import androsa.gaiadimension.registry.registration.*;
+import net.minecraft.client.RecipeBookCategories;
 import net.minecraft.client.renderer.BiomeColors;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
@@ -12,12 +11,14 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.RegisterColorHandlersEvent;
 import net.minecraftforge.client.event.RegisterDimensionSpecialEffectsEvent;
 import net.minecraftforge.client.event.RegisterParticleProvidersEvent;
+import net.minecraftforge.client.event.RegisterRecipeBookCategoriesEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
@@ -142,5 +143,11 @@ public class ClientEvents {
 
     private static void renderFluid(Supplier<? extends Fluid> fluid) {
         ItemBlockRenderTypes.setRenderLayer(fluid.get(), RenderType.translucent());
+    }
+
+    @SubscribeEvent
+    public static void registerRecipeCategories(RegisterRecipeBookCategoriesEvent e) {
+        e.registerRecipeCategoryFinder(ModRecipes.RESTRUCTURING.get(), recipe -> RecipeBookCategories.create("restructuring", new ItemStack(ModItems.stibnite.get())));
+        e.registerRecipeCategoryFinder(ModRecipes.PURIFYING.get(), recipe -> RecipeBookCategories.create("purifying", new ItemStack(ModItems.goldstone.get())));
     }
 }
