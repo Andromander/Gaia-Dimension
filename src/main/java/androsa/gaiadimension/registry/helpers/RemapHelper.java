@@ -101,10 +101,10 @@ public class RemapHelper {
                     remapItem(mapping, "ixiolite_axe", "stibnite_axe");
                     remapItem(mapping, "ixiolite_shovel", "stibnite_shovel");
                     remapItem(mapping, "leucite", "albite");
-                    remapItem(mapping, "leucite_sword", "albite_sword");
-                    remapItem(mapping, "leucite_pickaxe", "albite_pickaxe");
-                    remapItem(mapping, "leucite_axe", "albite_axe");
-                    remapItem(mapping, "leucite_shovel", "albite_shovel");
+                    remapItem(mapping, "leucite_helmet", "albite_helmet");
+                    remapItem(mapping, "leucite_chestplate", "albite_chestplate");
+                    remapItem(mapping, "leucite_legs", "albite_legs");
+                    remapItem(mapping, "leucite_boots", "albite_boots");
                 }
             }
         }
