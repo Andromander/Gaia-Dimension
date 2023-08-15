@@ -362,6 +362,9 @@ public class MookaiteConstructEntity extends PathfinderMob {
         if (source.is(GaiaDamage.STATIC)) {
             return this.countColors(4) >= 10; //Full Mauve is Static immune
         }
+        if (source.is(DamageTypes.FREEZE)) {
+            return this.countColors(5) >= 10; //Full Beige is Freezing immune
+        }
         if (source.is(DamageTypeTags.IS_PROJECTILE)) {
             return this.countColors(6) >= 10; //Full Ivory is Projectile immune
         }
