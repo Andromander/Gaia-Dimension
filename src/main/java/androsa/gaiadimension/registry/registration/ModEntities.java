@@ -61,6 +61,7 @@ public class ModEntities {
     public static final RegistryObject<EntityType<MalachiteDroneEntity>> MALACHITE_DRONE = registerEntity("malachite_drone", MalachiteDroneEntity::new, MobCategory.MONSTER, 1.0F, 2.0F, false);
     public static final RegistryObject<EntityType<MookaiteConstructEntity>> MOOKAITE_CONSTRUCT = registerEntity("mookaite_construct", MookaiteConstructEntity::new, MobCategory.CREATURE, 1.2F, 3.2F, false);
     public static final RegistryObject<EntityType<OpaliteContructEntity>> OPALITE_CONSTRUCT = registerEntity("opalite_construct", OpaliteContructEntity::new, MobCategory.CREATURE, 1.0F, 1.5F, false);
+    public static final RegistryObject<EntityType<GrowthGrazerEntity>> GROWTH_GRAZER = registerEntity("growth_grazer", GrowthGrazerEntity::new, MobCategory.CREATURE, 1.0F, 1.0F, false);
 
     //Mini Bosses
     public static final RegistryObject<EntityType<BlueHowliteWolfEntity>> BLUE_HOWLITE_WOLF = registerEntity("blue_howlite_wolf", BlueHowliteWolfEntity::new, MobCategory.MONSTER, 1.2F, 2.2F, false);
@@ -117,6 +118,7 @@ public class ModEntities {
         registerPlacement(event, MALACHITE_DRONE, Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Monster::checkAnyLightMonsterSpawnRules);
         registerPlacement(event, MOOKAITE_CONSTRUCT, Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, MookaiteConstructEntity::canSpawnHere);
         registerPlacement(event, OPALITE_CONSTRUCT, Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, OpaliteContructEntity::canSpawnHere);
+        registerPlacement(event, GROWTH_GRAZER, Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, GrowthGrazerEntity::canSpawnHere);
     }
 
     private static <E extends Mob, T extends EntityType<E>> void registerPlacement(SpawnPlacementRegisterEvent event, Supplier<T> entity, Type type, Heightmap.Types heightmap, SpawnPlacements.SpawnPredicate<E> predicate) {
@@ -152,6 +154,7 @@ public class ModEntities {
         setAttributes(evt, MALACHITE_DRONE, MalachiteDroneEntity.registerAttributes());
         setAttributes(evt, MOOKAITE_CONSTRUCT, MookaiteConstructEntity.registerAttributes());
         setAttributes(evt, OPALITE_CONSTRUCT, OpaliteContructEntity.registerAttributes());
+        setAttributes(evt, GROWTH_GRAZER, GrowthGrazerEntity.registerAttributes());
         setAttributes(evt, BLUE_HOWLITE_WOLF, BlueHowliteWolfEntity.registerAttributes());
         setAttributes(evt, MALACHITE_GUARD, MalachiteGuardEntity.registerAttributes());
     }

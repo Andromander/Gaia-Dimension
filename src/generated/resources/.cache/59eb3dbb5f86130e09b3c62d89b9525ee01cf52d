@@ -1,4 +1,4 @@
-// 1.20.1	2023-08-14T11:21:01.9467772	Loot Tables
+// 1.20.1	2023-09-07T22:05:27.1412606	Loot Tables
 70fac5f3da5e56a3221f03ad3388e9157b04753a data/gaiadimension/loot_tables/blocks/active_rock.json
 488882d8b9f64b34ecf3a22af357f2aedd29512a data/gaiadimension/loot_tables/blocks/agate_crafting_table.json
 7d233d88ea3fc2923fa77a2fb7e6b9dafd09ff5f data/gaiadimension/loot_tables/blocks/agathum.json
@@ -327,6 +327,7 @@ d8dac31f4faac8bd657cf82594833f59eb67c320 data/gaiadimension/loot_tables/entities
 3b724e7c2d2f0ab9c4d5958aeeab32429e47f8e5 data/gaiadimension/loot_tables/entities/contorted_naga.json
 af14ad9687bb2376f1a202b5b2029286c567ac61 data/gaiadimension/loot_tables/entities/corrupt_sapper.json
 15d768bdac07431cbc5efc0cd5bcd9d9b3ede51e data/gaiadimension/loot_tables/entities/crystal_golem.json
+45184263fd2e5229caa1b67ce79b663029b350bb data/gaiadimension/loot_tables/entities/growth_grazer.json
 74c9e0b77e28ee926f60980adf452945df6361e0 data/gaiadimension/loot_tables/entities/growth_sapper.json
 2a7976a5e23d27fbc7f2d07017196d31e04ccc4b data/gaiadimension/loot_tables/entities/howlite_wolf.json
 44c4b97370e33cc2d169cedd2948d62689061163 data/gaiadimension/loot_tables/entities/lesser_shockshooter.json

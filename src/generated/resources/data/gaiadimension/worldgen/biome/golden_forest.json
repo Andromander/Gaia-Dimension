@@ -36,7 +36,14 @@
   "spawners": {
     "ambient": [],
     "axolotls": [],
-    "creature": [],
+    "creature": [
+      {
+        "type": "gaiadimension:growth_grazer",
+        "maxCount": 4,
+        "minCount": 2,
+        "weight": 20
+      }
+    ],
     "misc": [],
     "monster": [
       {

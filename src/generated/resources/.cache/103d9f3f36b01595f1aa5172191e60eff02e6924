@@ -1,4 +1,4 @@
-// 1.20.1	2023-08-06T10:20:24.6861009	Registries
+// 1.20.1	2023-09-08T13:22:52.0831298	Registries
 56d72770b020b85f72c305522124360858cbe607 data/gaiadimension/damage_type/corruption.json
 a1e930106447e88a8543df5b23b57cfb80a32144 data/gaiadimension/damage_type/energetic.json
 fabd7f085894b585a78435b4771454b6036d241e data/gaiadimension/damage_type/malachite_blast.json
@@ -8,10 +8,10 @@ c72efbf6ad22f1d74d8a22b6a85ddb1d0d183572 data/gaiadimension/dimension_type/gaia_
 9aa6dc61275fa57d966df3bddddec23add4fe0a6 data/gaiadimension/worldgen/biome/blue_agate_taiga.json
 7f513edfe1b11da20b5a25352e028a2120082b32 data/gaiadimension/worldgen/biome/crystal_plains.json
 4e9cf05d740221332423fd4992cb07ffa3e06135 data/gaiadimension/worldgen/biome/fossil_woodland.json
-0e4a8124d9e5bbf46740c3031581ac66a1531404 data/gaiadimension/worldgen/biome/golden_forest.json
+0bdc75dfe30ca7df052eed40040f59799ee3de99 data/gaiadimension/worldgen/biome/golden_forest.json
 24b9cd35ee839798c2085235c2e4954b1ca81074 data/gaiadimension/worldgen/biome/golden_hills.json
 7c14bb8eaffe18ec5db1790aa5b79d7149f3a674 data/gaiadimension/worldgen/biome/golden_marsh.json
-28e54c2be9fa31011851cb7f4afad67f95cefb04 data/gaiadimension/worldgen/biome/golden_plains.json
+ae828e944b0b0c53fa45b5fed0fb185a643ae5ad data/gaiadimension/worldgen/biome/golden_plains.json
 b18cc915a17cbe4854ea82875f5770302ad032ec data/gaiadimension/worldgen/biome/golden_sands.json
 4d9dacf8a9cef1ade7999c6a87cfcf642ab3686b data/gaiadimension/worldgen/biome/goldstone_lands.json
 478e5161bf62cba4f7c78f2aa4bf18294937677b data/gaiadimension/worldgen/biome/green_agate_jungle.json
