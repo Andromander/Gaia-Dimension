@@ -25,7 +25,7 @@ public class BogPatchFeature<T extends DiskConfiguration> extends Feature<T> {
 
     public boolean place(WorldGenLevel world, RandomSource random, BlockPos pos, DiskConfiguration config) {
         int range = config.radius().sample(random) + 2;
-        int yRange = config.halfHeight();
+        int y = pos.getY();
         BlockPos.MutableBlockPos mutable = new BlockPos.MutableBlockPos();
         boolean flag = false;
 
@@ -34,20 +34,20 @@ public class BogPatchFeature<T extends DiskConfiguration> extends Feature<T> {
             int i2 = position.getZ() - pos.getZ();
 
             if (l1 * l1 + i2 * i2 <= range * range) {
-                flag |= this.place(config, world, random, yRange, yRange - 1, mutable.set(position));
+                flag |= this.place(config, world, random, y + config.halfHeight(), y - config.halfHeight() - 1, mutable.set(position));
             }
         }
 
         return flag;
     }
 
-    private boolean place(DiskConfiguration config, WorldGenLevel level, RandomSource random, int minY, int maxY, BlockPos.MutableBlockPos mutable) {
+    private boolean place(DiskConfiguration config, WorldGenLevel level, RandomSource random, int maxY, int minY, BlockPos.MutableBlockPos mutable) {
         boolean flag = false;
 
-        for (int dy = minY; dy > maxY; dy--) {
+        for (int dy = maxY; dy > minY; --dy) {
            mutable.setY(dy);
             if (config.target().test(level, mutable)) {
-                if (random.nextInt(5) != 0) {
+                if (random.nextInt(3) != 0) {
                     BlockState state = config.stateProvider().getState(level, random, mutable);
                     level.setBlock(mutable, state, 2);
                     this.markAboveForPostProcessing(level, mutable);
