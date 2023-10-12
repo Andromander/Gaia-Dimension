@@ -348,8 +348,8 @@ public class ModBlocks {
     public static final RegistryObject<Block> sugilite_ore = register("sugilite_ore", () -> new DropExperienceBlock(PropertiesHandler.oreProps(MapColor.COLOR_PURPLE), UniformInt.of(1, 3)));
     public static final RegistryObject<Block> hematite_ore = register("hematite_ore", () -> new DropExperienceBlock(PropertiesHandler.oreProps(MapColor.COLOR_GRAY), UniformInt.of(1, 4)));
     public static final RegistryObject<Block> cinnabar_ore = register("cinnabar_ore", () -> new DropExperienceBlock(PropertiesHandler.oreProps(MapColor.COLOR_ORANGE), UniformInt.of(1, 4)));
-    public static final RegistryObject<Block> labradorite_ore = register("labradorite_ore", () -> new DropExperienceBlock(PropertiesHandler.oreProps(MapColor.COLOR_GREEN), UniformInt.of(5, 2)));
-    public static final RegistryObject<Block> moonstone_ore = register("moonstone_ore", () -> new DropExperienceBlock(PropertiesHandler.oreProps(MapColor.METAL), UniformInt.of(5, 2)));
+    public static final RegistryObject<Block> labradorite_ore = register("labradorite_ore", () -> new DropExperienceBlock(PropertiesHandler.oreProps(MapColor.COLOR_GREEN), UniformInt.of(2, 5)));
+    public static final RegistryObject<Block> moonstone_ore = register("moonstone_ore", () -> new DropExperienceBlock(PropertiesHandler.oreProps(MapColor.METAL), UniformInt.of(2, 5)));
     public static final RegistryObject<Block> red_opal_ore = register("red_opal_ore", () -> new DropExperienceBlock(PropertiesHandler.oreProps(MapColor.COLOR_RED), UniformInt.of(2, 5)));
     public static final RegistryObject<Block> blue_opal_ore = register("blue_opal_ore", () -> new DropExperienceBlock(PropertiesHandler.oreProps(MapColor.COLOR_LIGHT_BLUE), UniformInt.of(2, 5)));
     public static final RegistryObject<Block> green_opal_ore = register("green_opal_ore", () -> new DropExperienceBlock(PropertiesHandler.oreProps(MapColor.COLOR_LIGHT_GREEN), UniformInt.of(2, 5)));
