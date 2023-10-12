@@ -144,7 +144,7 @@ public class GaiaBlockTags extends GaiaBlockTagsProvider {
             ModBlocks.cracked_amethyst_bricks, ModBlocks.cracked_amethyst_brick_stairs, ModBlocks.cracked_amethyst_brick_slab, ModBlocks.crusted_amethyst_bricks, ModBlocks.crusted_amethyst_brick_stairs,
             ModBlocks.crusted_amethyst_brick_slab, ModBlocks.keystone_block, ModBlocks.purifier, ModBlocks.wasteland_stone, ModBlocks.static_stone, ModBlocks.volcanic_rock, ModBlocks.searing_rock,
             ModBlocks.primal_mass, ModBlocks.impure_rock, ModBlocks.active_rock, ModBlocks.tough_golden_stone, ModBlocks.gilded_brilliant_stone, ModBlocks.bolstered_bricks, ModBlocks.hematite_ore,
-            ModBlocks.cinnabar_ore, ModBlocks.labradorite_ore, ModBlocks.red_opal_ore, ModBlocks.blue_opal_ore, ModBlocks.green_opal_ore, ModBlocks.coarse_rock, ModBlocks.malachite_bricks,
+            ModBlocks.cinnabar_ore, ModBlocks.labradorite_ore, ModBlocks.moonstone_ore, ModBlocks.red_opal_ore, ModBlocks.blue_opal_ore, ModBlocks.green_opal_ore, ModBlocks.coarse_rock, ModBlocks.malachite_bricks,
             ModBlocks.malachite_cracked_bricks, ModBlocks.malachite_crusted_bricks, ModBlocks.malachite_tiles, ModBlocks.malachite_chisel_bricks, ModBlocks.malachite_pulsing_bricks,
             ModBlocks.malachite_pulsing_tiles, ModBlocks.malachite_pulsing_chisel, ModBlocks.malachite_brick_slab, ModBlocks.malachite_cracked_brick_slab, ModBlocks.malachite_crusted_brick_slab,
             ModBlocks.malachite_tile_slab, ModBlocks.malachite_pillar, ModBlocks.malachite_brick_stairs, ModBlocks.malachite_cracked_brick_stairs, ModBlocks.malachite_crusted_brick_stairs,
