@@ -275,7 +275,8 @@ public class GaiaBiomeMaker extends GaiaBiomeProvider {
                 createBuilder(
                         createAmbience(4997150, 3415307, 13801728),
                         goldenHillsBiome(features, carvers),
-                        buildSpawns(createSpawns())
+                        buildSpawns(createSpawns()
+                                .addSpawn(MobCategory.CREATURE, mobData(ModEntities.AUREATE_EVRAUN, 20, 1, 2)))
                 ).temperature(0.3F));
     }
 
@@ -285,7 +286,8 @@ public class GaiaBiomeMaker extends GaiaBiomeProvider {
                         createAmbience(4997150, 3415307, 13801728),
                         goldenForestBiome(features, carvers),
                         buildSpawns(createSpawns()
-                                .addSpawn(MobCategory.CREATURE, mobData(ModEntities.GROWTH_GRAZER, 20, 2, 4)))
+                                .addSpawn(MobCategory.CREATURE, mobData(ModEntities.GROWTH_GRAZER, 20, 2, 4))
+                                .addSpawn(MobCategory.CREATURE, mobData(ModEntities.AUREATE_EVRAUN, 20, 1, 2)))
                 ).temperature(0.3F));
     }
 
@@ -295,7 +297,8 @@ public class GaiaBiomeMaker extends GaiaBiomeProvider {
                         createAmbience(4997150, 3415307, 13801728),
                         goldenPlainsBiome(features, carvers),
                         buildSpawns(createSpawns()
-                                .addSpawn(MobCategory.CREATURE, mobData(ModEntities.GROWTH_GRAZER, 20, 2, 4)))
+                                .addSpawn(MobCategory.CREATURE, mobData(ModEntities.GROWTH_GRAZER, 20, 2, 4))
+                                .addSpawn(MobCategory.CREATURE, mobData(ModEntities.AUREATE_EVRAUN, 20, 1, 2)))
                 ).temperature(0.3F));
     }
 
@@ -304,7 +307,8 @@ public class GaiaBiomeMaker extends GaiaBiomeProvider {
                 createBuilder(
                         createAmbience(4997150, 3415307, 13801728),
                         goldenMarshBiome(features, carvers),
-                        buildSpawns(createSpawns())
+                        buildSpawns(createSpawns()
+                                .addSpawn(MobCategory.CREATURE, mobData(ModEntities.AUREATE_EVRAUN, 20, 1, 2)))
                 ).temperature(0.3F));
     }
 
@@ -313,7 +317,8 @@ public class GaiaBiomeMaker extends GaiaBiomeProvider {
                 createBuilder(
                         createAmbience(4997150, 3415307, 13801728),
                         goldenSandsBiome(features, carvers),
-                        buildSpawns(createSpawns())
+                        buildSpawns(createSpawns()
+                                .addSpawn(MobCategory.CREATURE, mobData(ModEntities.AUREATE_EVRAUN, 20, 1, 2)))
                 ).temperature(0.7F));
     }
 

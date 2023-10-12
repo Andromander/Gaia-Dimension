@@ -43,6 +43,12 @@
         "maxCount": 4,
         "minCount": 2,
         "weight": 20
+      },
+      {
+        "type": "gaiadimension:aureate_evraun",
+        "maxCount": 2,
+        "minCount": 1,
+        "weight": 20
       }
     ],
     "misc": [],

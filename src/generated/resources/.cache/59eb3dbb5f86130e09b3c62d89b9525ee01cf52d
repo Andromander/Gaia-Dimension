@@ -1,4 +1,4 @@
-// 1.20.1	2023-09-07T22:05:27.1412606	Loot Tables
+// 1.20.1	2023-09-11T15:46:55.8263252	Loot Tables
 70fac5f3da5e56a3221f03ad3388e9157b04753a data/gaiadimension/loot_tables/blocks/active_rock.json
 488882d8b9f64b34ecf3a22af357f2aedd29512a data/gaiadimension/loot_tables/blocks/agate_crafting_table.json
 7d233d88ea3fc2923fa77a2fb7e6b9dafd09ff5f data/gaiadimension/loot_tables/blocks/agathum.json
@@ -319,6 +319,7 @@ a45a13b3ca60059a87855804f1d9e62fadfa868f data/gaiadimension/loot_tables/chests/w
 5b3078dcaed8bf014a5aee4395df65c8d549d6e5 data/gaiadimension/loot_tables/entities/agate_golem.json
 03accbfcf7c243183f69a938137b5e51283f8c48 data/gaiadimension/loot_tables/entities/ancient_lagrahk.json
 48f0d2b028003a2f9ebfb34540ea5d98cbadf1e8 data/gaiadimension/loot_tables/entities/archaic_warrior.json
+74f6699315cbf6c0c07ac530b2c4145c95eab01c data/gaiadimension/loot_tables/entities/aureate_evraun.json
 31fec24f30369b1c8c96823dd70c96d47bf6897d data/gaiadimension/loot_tables/entities/bismuth_uletrus.json
 35c853f34e0e704ef6eb4aa7d9b1ffe98250ecf5 data/gaiadimension/loot_tables/entities/blue_howlite_wolf.json
 77dddcfe7f280d4d93f8fc125773b7b1b5237a81 data/gaiadimension/loot_tables/entities/cavern_tick.json

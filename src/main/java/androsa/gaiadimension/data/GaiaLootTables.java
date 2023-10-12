@@ -429,6 +429,7 @@ public class GaiaLootTables extends LootTableProvider {
             addTable(ModEntities.MOOKAITE_CONSTRUCT, blankTable());
             addTable(ModEntities.OPALITE_CONSTRUCT, blankTable());
             addTable(ModEntities.GROWTH_GRAZER, blankTable());
+            addTable(ModEntities.AUREATE_EVRAUN, blankTable());
 
             addTable(ModEntities.BLUE_HOWLITE_WOLF, blankTable());
 

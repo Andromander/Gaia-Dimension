@@ -282,6 +282,7 @@ public class ModItems {
     public static final RegistryObject<Item> mookaite_construct_spawn_egg = registerEgg("mookaite_construct", ModEntities.MOOKAITE_CONSTRUCT, 0X6F442F, 0X39190E);
     public static final RegistryObject<Item> opalite_construct_spawn_egg = registerEgg("opalite_construct", ModEntities.OPALITE_CONSTRUCT, 0X698A9F, 0X7BFDFE);
     public static final RegistryObject<Item> growth_grazer_spawn_egg = registerEgg("growth_grazer", ModEntities.GROWTH_GRAZER, 0x5A4514, 0xFFD700);
+    public static final RegistryObject<Item> aureate_evraun_spawn_egg = registerEgg("aureate_evraun", ModEntities.AUREATE_EVRAUN, 0X53432F, 0XE2D366);
     public static final RegistryObject<Item> blue_howlite_wolf_spawn_egg = registerEgg("blue_howlite_wolf", ModEntities.BLUE_HOWLITE_WOLF, 0x0099CC, 0xCC00FF);
     public static final RegistryObject<Item> malachite_guard_spawn_egg = registerEgg("malachite_guard", ModEntities.MALACHITE_GUARD, 0x339900, 0x33CC99);
 
