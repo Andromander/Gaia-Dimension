@@ -107,7 +107,7 @@ public class ModEntitiesRendering {
         event.registerLayerDefinition(MALACHITE_DRONE, MalachiteDroneModel::makeBodyLayer);
         event.registerLayerDefinition(MOOKAITE_CONSTRUCT, MookaiteConstructModel::makeBodyLayer);
         event.registerLayerDefinition(OPALITE_CONSTRUCT, OpaliteConstructModel::makeBodyLayer);
-        event.registerLayerDefinition(GROWTH_GRAZER, GrowthGrazerModel::makeeBodyLayer);
+        event.registerLayerDefinition(GROWTH_GRAZER, GrowthGrazerModel::makeBodyLayer);
 
         event.registerLayerDefinition(BLUE_HOWLITE_WOLF, BlueHowliteWolfModel::makeBodyLayer);
 

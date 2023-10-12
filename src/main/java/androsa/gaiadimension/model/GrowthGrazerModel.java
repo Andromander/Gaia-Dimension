@@ -38,7 +38,7 @@ public class GrowthGrazerModel<T extends Mob> extends HierarchicalModel<T> {
 		return this.root;
 	}
 
-	public static LayerDefinition makeeBodyLayer() {
+	public static LayerDefinition makeBodyLayer() {
 		MeshDefinition mesh = new MeshDefinition();
 		PartDefinition root = mesh.getRoot();
 
