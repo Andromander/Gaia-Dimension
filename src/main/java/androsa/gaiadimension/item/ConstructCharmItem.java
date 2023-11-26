@@ -162,7 +162,7 @@ public class ConstructCharmItem extends Item {
                 this.removeUUID(stack, "MookaiteUUID");
                 this.removeUUID(stack, "OpaliteUUID");
             }
-            player.displayClientMessage(Component.translatable("construct_charm.message.reset"), true);
+            player.displayClientMessage(Component.translatable("gaiadimension.construct_charm.message.reset"), true);
 
             return InteractionResultHolder.sidedSuccess(stack, level.isClientSide());
         }
