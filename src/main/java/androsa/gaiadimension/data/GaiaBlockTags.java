@@ -139,8 +139,8 @@ public class GaiaBlockTags extends GaiaBlockTagsProvider {
             ModBlocks.cracked_gaia_stone_bricks, ModBlocks.crusted_gaia_stone_bricks, ModBlocks.jade_bricks, ModBlocks.jade_brick_stairs, ModBlocks.jade_brick_slab, ModBlocks.cracked_jade_bricks,
             ModBlocks.cracked_jade_brick_stairs, ModBlocks.cracked_jade_brick_slab, ModBlocks.crusted_jade_bricks, ModBlocks.crusted_jade_brick_stairs, ModBlocks.crusted_jade_brick_slab, ModBlocks.copal_bricks,
             ModBlocks.copal_brick_stairs, ModBlocks.copal_brick_slab, ModBlocks.cracked_copal_bricks, ModBlocks.cracked_copal_brick_stairs, ModBlocks.cracked_copal_brick_slab, ModBlocks.crusted_copal_bricks,
-            ModBlocks.crusted_copal_brick_stairs, ModBlocks.crusted_copal_brick_slab, ModBlocks.jet_brick_stairs, ModBlocks.jet_brick_slab, ModBlocks.cracked_jet_bricks, ModBlocks.cracked_jet_brick_stairs,
-            ModBlocks.cracked_jet_brick_slab, ModBlocks.crusted_jet_bricks, ModBlocks.crusted_jet_brick_stairs, ModBlocks.crusted_jet_brick_slab, ModBlocks.amethyst_brick_stairs, ModBlocks.amethyst_brick_slab,
+            ModBlocks.crusted_copal_brick_stairs, ModBlocks.crusted_copal_brick_slab, ModBlocks.jet_bricks, ModBlocks.jet_brick_stairs, ModBlocks.jet_brick_slab, ModBlocks.cracked_jet_bricks, ModBlocks.cracked_jet_brick_stairs,
+            ModBlocks.cracked_jet_brick_slab, ModBlocks.crusted_jet_bricks, ModBlocks.crusted_jet_brick_stairs, ModBlocks.crusted_jet_brick_slab, ModBlocks.amethyst_bricks, ModBlocks.amethyst_brick_stairs, ModBlocks.amethyst_brick_slab,
             ModBlocks.cracked_amethyst_bricks, ModBlocks.cracked_amethyst_brick_stairs, ModBlocks.cracked_amethyst_brick_slab, ModBlocks.crusted_amethyst_bricks, ModBlocks.crusted_amethyst_brick_stairs,
             ModBlocks.crusted_amethyst_brick_slab, ModBlocks.keystone_block, ModBlocks.purifier, ModBlocks.wasteland_stone, ModBlocks.static_stone, ModBlocks.volcanic_rock, ModBlocks.searing_rock,
             ModBlocks.primal_mass, ModBlocks.impure_rock, ModBlocks.active_rock, ModBlocks.tough_golden_stone, ModBlocks.gilded_brilliant_stone, ModBlocks.bolstered_bricks, ModBlocks.hematite_ore,
@@ -167,9 +167,9 @@ public class GaiaBlockTags extends GaiaBlockTagsProvider {
             ModBlocks.speckled_rock, ModBlocks.gaia_stone_bricks, ModBlocks.cracked_gaia_stone_bricks, ModBlocks.crusted_gaia_stone_bricks, ModBlocks.jade_bricks, ModBlocks.jade_brick_stairs,
             ModBlocks.jade_brick_slab, ModBlocks.cracked_jade_bricks, ModBlocks.cracked_jade_brick_stairs, ModBlocks.cracked_jade_brick_slab, ModBlocks.crusted_jade_bricks, ModBlocks.crusted_jade_brick_stairs,
             ModBlocks.crusted_jade_brick_slab, ModBlocks.copal_bricks, ModBlocks.copal_brick_stairs, ModBlocks.copal_brick_slab, ModBlocks.cracked_copal_bricks, ModBlocks.cracked_copal_brick_stairs,
-            ModBlocks.cracked_copal_brick_slab, ModBlocks.crusted_copal_bricks, ModBlocks.crusted_copal_brick_stairs, ModBlocks.crusted_copal_brick_slab, ModBlocks.jet_brick_stairs, ModBlocks.jet_brick_slab,
+            ModBlocks.cracked_copal_brick_slab, ModBlocks.crusted_copal_bricks, ModBlocks.crusted_copal_brick_stairs, ModBlocks.crusted_copal_brick_slab, ModBlocks.jet_bricks, ModBlocks.jet_brick_stairs, ModBlocks.jet_brick_slab,
             ModBlocks.cracked_jet_bricks, ModBlocks.cracked_jet_brick_stairs, ModBlocks.cracked_jet_brick_slab, ModBlocks.crusted_jet_bricks, ModBlocks.crusted_jet_brick_stairs, ModBlocks.crusted_jet_brick_slab,
-            ModBlocks.amethyst_brick_stairs, ModBlocks.amethyst_brick_slab, ModBlocks.cracked_amethyst_bricks, ModBlocks.cracked_amethyst_brick_stairs, ModBlocks.cracked_amethyst_brick_slab, ModBlocks.crusted_amethyst_bricks,
+            ModBlocks.amethyst_bricks, ModBlocks.amethyst_brick_stairs, ModBlocks.amethyst_brick_slab, ModBlocks.cracked_amethyst_bricks, ModBlocks.cracked_amethyst_brick_stairs, ModBlocks.cracked_amethyst_brick_slab, ModBlocks.crusted_amethyst_bricks,
             ModBlocks.crusted_amethyst_brick_stairs, ModBlocks.crusted_amethyst_brick_slab
     );
     private static final ImmutableList<Supplier<? extends Block>> NEEDS_IRON = ImmutableList.of(
