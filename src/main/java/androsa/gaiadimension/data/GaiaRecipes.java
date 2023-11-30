@@ -363,9 +363,9 @@ public class GaiaRecipes extends GaiaRecipeProvider {
                 .pattern("///")
                 .pattern("/#/")
                 .pattern("///")
-                .define('/', ModBlocks.reinforced_bricks.get())
+                .define('/', ModBlocks.bolstered_bricks.get())
                 .define('#', ModBlocks.restructurer.get())
-                .unlockedBy("has_bricks", has(ModBlocks.reinforced_bricks.get()))
+                .unlockedBy("has_bricks", has(ModBlocks.bolstered_bricks.get()))
                 .save(consumer, loc("purifier"));
         ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ModItems.PYRITE_TORCH.get(), 4)
                 .pattern("#")
