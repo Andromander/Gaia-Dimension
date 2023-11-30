@@ -48,9 +48,10 @@ public class GaiaRecipes extends GaiaRecipeProvider {
         stairsRecipe(ModBlocks.purple_agate_tile_stairs, ModBlocks.purple_agate_tiles).save(consumer, locWood("purple_agate_tile_stairs"));
         stairsRecipe(ModBlocks.fossilized_tile_stairs, ModBlocks.fossilized_tiles).save(consumer, locWood("fossilized_tile_stairs"));
         stairsRecipe(ModBlocks.corrupted_tile_stairs, ModBlocks.corrupted_tiles).save(consumer, locWood("corrupted_tile_stairs"));
-        stairsRecipe(ModBlocks.burnt_tile_stairs, ModBlocks.burnt_tiles).save(consumer, locWood("burnt_tile_stairs"));
+        stairsRecipe(ModBlocks.burnt_tile_stairs, ModBlocks.burnt_tiles).save(consumer, locWood("burnt_agate_tile_stairs"));
         stairsRecipe(ModBlocks.fire_agate_tile_stairs, ModBlocks.fire_agate_tiles).save(consumer, locWood("fire_agate_tile_stairs"));
         stairsRecipe(ModBlocks.aura_tile_stairs, ModBlocks.aura_tiles).save(consumer, locWood("aura_tile_stairs"));
+        stairsRecipe(ModBlocks.golden_tile_stairs, ModBlocks.golden_tiles).save(consumer, locWood("golden_tile_stairs"));
         smallCompressRecipe(ModBlocks.pink_agate_wood.get(), ModBlocks.pink_agate_log.get(), 3).save(consumer, locWood("pink_agate_wood"));
         smallCompressRecipe(ModBlocks.blue_agate_wood.get(), ModBlocks.blue_agate_log.get(), 3).save(consumer, locWood("blue_agate_wood"));
         smallCompressRecipe(ModBlocks.green_agate_wood.get(), ModBlocks.green_agate_log.get(), 3).save(consumer, locWood("green_agate_wood"));
