@@ -17,11 +17,12 @@ out
 build
 .gradle
 local.gradle
-settings.gradle
 
 # other
 eclipse
 run
+run-data
+runs
 classes
 logs
 src/main/disabled

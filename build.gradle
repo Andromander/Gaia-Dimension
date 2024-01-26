@@ -1,12 +1,4 @@
 buildscript {
-    repositories {
-        maven { url = 'https://maven.minecraftforge.net/' }
-        mavenCentral()
-    }
-    dependencies {
-        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '5.1.+', changing: true
-    }
-
     gradle.projectsEvaluated {
         tasks.withType(JavaCompile) {
             options.compilerArgs << "-Xmaxerrs" << "1000"
@@ -14,89 +6,12 @@ buildscript {
     }
 }
 
-apply plugin: 'net.minecraftforge.gradle'
-//Only edit below this line, the above code adds and enables the necessary things for Forge to be setup.
-apply plugin: 'eclipse'
-apply plugin: 'maven-publish'
-
-version = project.artifactor_minecraft_version + "-" + project.artifactor_mod_version
-group = project.mod_group
-archivesBaseName = project.archives_base_name
-
-if (hasProperty("CIVersion")) {
-    version += "." + CIVersion
-}
-
-java.toolchain.languageVersion = JavaLanguageVersion.of(17) // Need this here so eclipse task generates correctly.
-
-minecraft {
-    mappings channel: project.forge_channel, version: project.forge_mappings
-    //version = "${project.artifactor_minecraft_version}-${project.artifactor_forge_version}"
-    // makeObfSourceJar = false // an Srg named sources jar is made by default. uncomment this to disable.
-
-    accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg')
-
-    // default run configurations.
-    // these can be tweaked, removed, or duplicated as needed.
-    runs {
-        client {
-            workingDirectory project.file('run')
-
-            // Recommended logging data for a userdev environment
-            property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
-
-            // Recommended logging level for the console
-            property 'forge.logging.console.level', 'debug'
-
-            mods {
-                gaiadimension {
-                    source sourceSets.main
-                }
-            }
-        }
-
-        server {
-            workingDirectory project.file('run')
-
-            // Recommended logging data for a userdev environment
-            property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
-
-            // Recommended logging level for the console
-            property 'forge.logging.console.level', 'debug'
-
-            mods {
-                gaiadimension {
-                    source sourceSets.main
-                }
-            }
-        }
-
-        data {
-            args '--mod', 'gaiadimension', '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
-
-            mods {
-                gaiadimension {
-                    source sourceSets.main
-                }
-            }
-        }
-    }
-}
-
-sourceSets.main.resources {
-    srcDir 'src/generated/resources'
-}
-
-jar {
-    manifest {
-        attributes(["Specification-Title": "gaiadimension",
-                    "Specification-Vendor": "Androsa",
-                    "Specification-Version": "1", // We are version 1 of the modlauncher specification
-                    "Implementation-Title": project.name,
-                    "Implementation-Version": "${project.version}",
-                    "Implementation-Vendor" :"Androsa",
-                    "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")],)
-    }
+plugins {
+    id 'java-library'
+    id 'eclipse'
+    id 'idea'
+    id 'maven-publish'
+    id 'net.neoforged.gradle.userdev' version '7.0.61'
 }
 
 def secrets = new Properties()
@@ -112,6 +27,96 @@ if (secretsFile.exists()) {
             file.withInputStream {
                 stream -> secrets.load(stream)
             }
+    }
+}
+
+version = project.minecraft_version + "-" + project.mod_version
+group = project.mod_group
+
+if (hasProperty("CIVersion")) {
+    version += "." + CIVersion
+}
+
+repositories {
+    mavenLocal()
+    maven {
+        name = "tterrag maven" //CTM
+        url = 'https://maven.tterrag.com/'
+    }
+    maven {
+        name 'Jared\'s Maven' // JEI
+        url 'https://maven.blamejared.com/'
+    }
+}
+
+base {
+    archivesName = project.archives_base_name
+}
+
+java.toolchain.languageVersion = JavaLanguageVersion.of(17) // Need this here so eclipse task generates correctly.
+
+runs {
+    minecraft.accessTransformers.file rootProject.file('src/main/resources/META-INF/accesstransformer.cfg')
+
+    configureEach {
+        modSource project.sourceSets.main
+    }
+
+    client {
+        systemProperty 'forge.enabledGameTestNamespaces', project.mod_id
+    }
+
+    server {
+        systemProperty 'forge.enabledGameTestNamespaces', project.mod_id
+        // Recommended logging data for a userdev environment
+        systemProperty 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
+
+        // Recommended logging level for the console
+        systemProperty 'forge.logging.console.level', 'debug'
+    }
+
+    data {
+        programArguments.addAll '--mod', 'gaiadimension', '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
+    }
+}
+
+sourceSets.main.resources {
+    srcDir 'src/generated/resources'
+}
+
+dependencies {
+    implementation "net.neoforged:neoforge:${project.neoforge_version}"
+    //implementation fg.deobf("mezz.jei:jei-${artifactor_minecraft_version}-forge:${jei_version}")
+
+//    runtimeOnly fg.deobf("com.sk88q.worldedit:WorldEdit:${we_version}")
+//    runtimeOnly fg.deobf("team.chisel.ctm:CTM:${project.ctm_version}")
+//    runtimeOnly fg.deobf("me.ichun.mods.tabula.common:Tabula:10.2.0")
+//    runtimeOnly fg.deobf("me.ichun.mods.ichunutil.common:iChunUtil:10.2.0")
+}
+
+tasks.withType(ProcessResources).configureEach {
+    var replaceProperties = [
+            minecraft_version   : minecraft_version, minecraft_version_range: minecraft_version_range,
+            neoforge_version    : neoforge_version, neoforge_version_range: neoforge_version_range,
+            loader_version_range: loader_version_range,
+            mod_id              : mod_id, mod_version: mod_version
+    ]
+    inputs.properties replaceProperties
+
+    filesMatching(['META-INF/mods.toml', 'pack.mcmeta']) {
+        expand replaceProperties + [project: project]
+    }
+}
+
+jar {
+    manifest {
+        attributes(["Specification-Title": "gaiadimension",
+                    "Specification-Vendor": "Androsa",
+                    "Specification-Version": "1", // We are version 1 of the modlauncher specification
+                    "Implementation-Title": project.name,
+                    "Implementation-Version": "${project.version}",
+                    "Implementation-Vendor" :"Androsa",
+                    "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")],)
     }
 }
 
@@ -142,33 +147,8 @@ publishing {
     }
 }
 
-task sourceJar(type: Jar, dependsOn: 'classes') {
+tasks.register('sourceJar', Jar) {
+    dependsOn 'classes'
     from sourceSets.main.allSource
-    archiveName = archivesBaseName + "." + project.version + "-sources.jar"
-    classifier = 'sources'
-}
-
-repositories {
-    maven {
-        name = "tterrag maven"
-        url = 'https://maven.tterrag.com/'
-    }
-    maven {
-        name 'Jared\'s Maven' // JEI
-        url 'https://maven.blamejared.com/'
-    }
-    flatDir {
-        dirs "libs"
-    }
-}
-
-dependencies {
-    implementation fg.deobf("mezz.jei:jei-${artifactor_minecraft_version}-forge:${jei_version}")
-
-//    runtimeOnly fg.deobf("com.sk88q.worldedit:WorldEdit:${we_version}")
-//    runtimeOnly fg.deobf("team.chisel.ctm:CTM:${project.ctm_version}")
-//    runtimeOnly fg.deobf("me.ichun.mods.tabula.common:Tabula:10.2.0")
-//    runtimeOnly fg.deobf("me.ichun.mods.ichunutil.common:iChunUtil:10.2.0")
-
-    minecraft "net.minecraftforge:forge:${project.artifactor_minecraft_version}-${project.artifactor_forge_version}"
+    archiveClassifier = 'sources'
 }
