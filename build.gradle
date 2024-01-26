@@ -40,12 +40,12 @@ if (hasProperty("CIVersion")) {
 repositories {
     mavenLocal()
     maven {
-        name = "tterrag maven" //CTM
-        url = 'https://maven.tterrag.com/'
+        name 'tterrag maven' //CTM
+        url 'https://maven.tterrag.com/'
     }
     maven {
-        name 'Jared\'s Maven' // JEI
-        url 'https://maven.blamejared.com/'
+        name 'progwm\'s Maven' // JEI + Mantle + TCon
+        url 'https://dvs1.progwml6.com/files/maven'
     }
 }
 
@@ -73,9 +73,11 @@ runs {
 
         // Recommended logging level for the console
         systemProperty 'forge.logging.console.level', 'debug'
+        programArgument '--nogui'
     }
 
     data {
+        workingDirectory project.file('run-data')
         programArguments.addAll '--mod', 'gaiadimension', '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
     }
 }
@@ -110,17 +112,15 @@ tasks.withType(ProcessResources).configureEach {
 
 jar {
     manifest {
-        attributes(["Specification-Title": "gaiadimension",
+        attributes(["Specification-Title": "Gaia Dimension",
                     "Specification-Vendor": "Androsa",
-                    "Specification-Version": "1", // We are version 1 of the modlauncher specification
+                    "Specification-Version": "${version}",
                     "Implementation-Title": project.name,
-                    "Implementation-Version": "${project.version}",
+                    "Implementation-Version": "${version}",
                     "Implementation-Vendor" :"Androsa",
                     "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")],)
     }
 }
-
-jar.finalizedBy('reobfJar')
 
 def mavenUser = hasProperty("CIMUser") ? CIMUser : secrets.getProperty("maven_username")
 def mavenToken = hasProperty("CIMToken") ? CIMToken : secrets.getProperty("maven_password")
