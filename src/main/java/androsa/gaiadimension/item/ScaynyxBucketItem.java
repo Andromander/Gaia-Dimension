@@ -21,7 +21,7 @@ import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.BlockHitResult;
-import net.minecraftforge.event.ForgeEventFactory;
+import net.neoforged.neoforge.event.EventHooks;
 
 import java.util.function.Supplier;
 
@@ -39,7 +39,7 @@ public class ScaynyxBucketItem extends BucketItem {
     public InteractionResultHolder<ItemStack> use(Level world, Player player, InteractionHand hand) {
         ItemStack itemstack = player.getItemInHand(hand);
         BlockHitResult raytraceresult = getPlayerPOVHitResult(world, player, getFluid() == Fluids.EMPTY ? ClipContext.Fluid.SOURCE_ONLY : ClipContext.Fluid.NONE);
-        InteractionResultHolder<ItemStack> ret = ForgeEventFactory.onBucketUse(player, world, itemstack, raytraceresult);
+        InteractionResultHolder<ItemStack> ret = EventHooks.onBucketUse(player, world, itemstack, raytraceresult);
         if (ret != null)
             return ret;
         if (raytraceresult.getType() == BlockHitResult.Type.MISS) {
@@ -57,10 +57,10 @@ public class ScaynyxBucketItem extends BucketItem {
                     BlockState fluidblock = world.getBlockState(blockpos);
                     if (fluidblock.getBlock() instanceof BucketPickup) {
                         BucketPickup fluid = ((BucketPickup)fluidblock.getBlock());
-                        ItemStack fluidstack = fluid.pickupBlock(world, blockpos, fluidblock);
+                        ItemStack fluidstack = fluid.pickupBlock(player, world, blockpos, fluidblock);
                         if (!fluidstack.isEmpty()) {
                             player.awardStat(Stats.ITEM_USED.get(this));
-                            fluid.getPickupSound().ifPresent((event) -> player.playSound(event, 1.0F, 1.0F));
+                            fluid.getPickupSound(fluidblock).ifPresent((event) -> player.playSound(event, 1.0F, 1.0F));
                             world.gameEvent(player, GameEvent.FLUID_PICKUP, blockpos);
                             ItemStack itemstack1 = ItemUtils.createFilledResult(itemstack, player, fluidstack);
                             if (!world.isClientSide) {
@@ -75,8 +75,8 @@ public class ScaynyxBucketItem extends BucketItem {
                 } else {
                     //Full Bucket to Empty
                     BlockState blockstate = world.getBlockState(blockpos);
-                    BlockPos blockpos2 = canBlockContainFluid(world, blockpos, blockstate) ? blockpos : blockpos1;
-                    if (this.emptyContents(player, world, blockpos2, raytraceresult)) {
+                    BlockPos blockpos2 = canBlockContainFluid(player, world, blockpos, blockstate) ? blockpos : blockpos1;
+                    if (this.emptyContents(player, world, blockpos2, raytraceresult, itemstack)) {
                         this.checkExtraContent(player, world, itemstack, blockpos2);
                         if (player instanceof ServerPlayer) {
                             CriteriaTriggers.PLACED_BLOCK.trigger((ServerPlayer)player, blockpos2, itemstack);
@@ -95,8 +95,8 @@ public class ScaynyxBucketItem extends BucketItem {
     }
 
     @Override
-    public boolean canBlockContainFluid(Level worldIn, BlockPos posIn, BlockState blockstate) {
-        return blockstate.getBlock() instanceof LiquidBlockContainer && ((LiquidBlockContainer)blockstate.getBlock()).canPlaceLiquid(worldIn, posIn, blockstate, getFluid());
+    public boolean canBlockContainFluid(Player player, Level worldIn, BlockPos posIn, BlockState blockstate) {
+        return blockstate.getBlock() instanceof LiquidBlockContainer && ((LiquidBlockContainer)blockstate.getBlock()).canPlaceLiquid(player, worldIn, posIn, blockstate, getFluid());
     }
 
     /*

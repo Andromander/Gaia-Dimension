@@ -4,10 +4,9 @@ import androsa.gaiadimension.GaiaDimensionMod;
 import net.minecraft.data.PackOutput;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
-import net.minecraftforge.client.model.generators.ItemModelBuilder;
-import net.minecraftforge.client.model.generators.ItemModelProvider;
-import net.minecraftforge.common.data.ExistingFileHelper;
-import net.minecraftforge.registries.RegistryObject;
+import net.neoforged.neoforge.client.model.generators.ItemModelBuilder;
+import net.neoforged.neoforge.client.model.generators.ItemModelProvider;
+import net.neoforged.neoforge.registries.DeferredItem;
 
 public abstract class GaiaItemModelProvider extends ItemModelProvider {
 
@@ -36,21 +35,21 @@ public abstract class GaiaItemModelProvider extends ItemModelProvider {
                 .texture("layer0", modLoc("block/" + texture));
     }
 
-    public ItemModelBuilder basicItem(RegistryObject<Item> item) {
+    public ItemModelBuilder basicItem(DeferredItem<Item> item) {
         return withExistingParent(item.getId().getPath(), mcLoc("item/generated"))
                 .texture("layer0", modLoc("item/" + item.getId().getPath()));
     }
 
-    public ItemModelBuilder heldItem(RegistryObject<Item> item) {
+    public ItemModelBuilder heldItem(DeferredItem<Item> item) {
         return withExistingParent(item.getId().getPath(), mcLoc("item/handheld"))
                 .texture("layer0", modLoc("item/" + item.getId().getPath()));
     }
 
-    public ItemModelBuilder eggItem(RegistryObject<Item> item) {
+    public ItemModelBuilder eggItem(DeferredItem<Item> item) {
         return withExistingParent(item.getId().getPath(), mcLoc("item/template_spawn_egg"));
     }
 
-    public ItemModelBuilder geodeItem(RegistryObject<Item> item) {
+    public ItemModelBuilder geodeItem(DeferredItem<Item> item) {
         return withExistingParent(item.getId().getPath(), mcLoc("item/generated"))
                 .texture("layer0", modLoc("item/geode"));
     }

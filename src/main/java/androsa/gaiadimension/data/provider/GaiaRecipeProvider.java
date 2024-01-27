@@ -17,6 +17,7 @@ import net.minecraft.world.level.block.StairBlock;
 import net.minecraftforge.common.crafting.conditions.IConditionBuilder;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
+import net.neoforged.neoforge.registries.DeferredItem;
 
 import java.util.function.Supplier;
 
@@ -73,13 +74,13 @@ public abstract class GaiaRecipeProvider extends RecipeProvider implements ICond
                 .unlockedBy("has_" + ingredient.getId().getPath(), has(ingredient.get()));
     }
 
-    public ShapelessRecipeBuilder blockToItemRecipe(RegistryObject<Item> result, RegistryObject<Block> ingredient) {
+    public ShapelessRecipeBuilder blockToItemRecipe(Supplier<Item> result, RegistryObject<Block> ingredient) {
         return ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, result.get(), 9)
                 .requires(ingredient.get())
                 .unlockedBy("has_" + ingredient.getId().getPath(), has(ingredient.get()));
     }
 
-    public ShapedRecipeBuilder helmetRecipe(RegistryObject<Item> result, RegistryObject<Item> ingredient) {
+    public ShapedRecipeBuilder helmetRecipe(Supplier<Item> result, DeferredItem<Item> ingredient) {
         return ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, result.get())
                 .pattern("###")
                 .pattern("# #")
@@ -87,7 +88,7 @@ public abstract class GaiaRecipeProvider extends RecipeProvider implements ICond
                 .unlockedBy("has_" + ingredient.getId().getPath(), has(ingredient.get()));
     }
 
-    public ShapedRecipeBuilder chestRecipe(RegistryObject<Item> result, RegistryObject<Item> ingredient) {
+    public ShapedRecipeBuilder chestRecipe(Supplier<Item> result, DeferredItem<Item> ingredient) {
         return ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, result.get())
                 .pattern("# #")
                 .pattern("###")
@@ -96,7 +97,7 @@ public abstract class GaiaRecipeProvider extends RecipeProvider implements ICond
                 .unlockedBy("has_" + ingredient.getId().getPath(), has(ingredient.get()));
     }
 
-    public ShapedRecipeBuilder legsRecipe(RegistryObject<Item> result, RegistryObject<Item> ingredient) {
+    public ShapedRecipeBuilder legsRecipe(Supplier<Item> result, DeferredItem<Item> ingredient) {
         return ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, result.get())
                 .pattern("###")
                 .pattern("# #")
@@ -105,7 +106,7 @@ public abstract class GaiaRecipeProvider extends RecipeProvider implements ICond
                 .unlockedBy("has_" + ingredient.getId().getPath(), has(ingredient.get()));
     }
 
-    public ShapedRecipeBuilder bootsRecipe(RegistryObject<Item> result, RegistryObject<Item> ingredient) {
+    public ShapedRecipeBuilder bootsRecipe(Supplier<Item> result, DeferredItem<Item> ingredient) {
         return ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, result.get())
                 .pattern("# #")
                 .pattern("# #")
@@ -113,7 +114,7 @@ public abstract class GaiaRecipeProvider extends RecipeProvider implements ICond
                 .unlockedBy("has_" + ingredient.getId().getPath(), has(ingredient.get()));
     }
 
-    public ShapedRecipeBuilder axeRecipe(RegistryObject<Item> result, RegistryObject<Item> ingredient) {
+    public ShapedRecipeBuilder axeRecipe(Supplier<Item> result, DeferredItem<Item> ingredient) {
         return ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, result.get())
                 .pattern("##")
                 .pattern("#/")
@@ -133,7 +134,7 @@ public abstract class GaiaRecipeProvider extends RecipeProvider implements ICond
                 .unlockedBy("has_" + ingredient.location().getPath(), has(ingredient));
     }
 
-    public ShapedRecipeBuilder pickaxeRecipe(RegistryObject<Item> result, RegistryObject<Item> ingredient) {
+    public ShapedRecipeBuilder pickaxeRecipe(Supplier<Item> result, DeferredItem<Item> ingredient) {
         return ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, result.get())
                 .pattern("###")
                 .pattern(" / ")
@@ -153,7 +154,7 @@ public abstract class GaiaRecipeProvider extends RecipeProvider implements ICond
                 .unlockedBy("has_" + ingredient.location().getPath(), has(ingredient));
     }
 
-    public ShapedRecipeBuilder shovelRecipe(RegistryObject<Item> result, RegistryObject<Item> ingredient) {
+    public ShapedRecipeBuilder shovelRecipe(Supplier<Item> result, DeferredItem<Item> ingredient) {
         return ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, result.get())
                 .pattern("#")
                 .pattern("/")
@@ -173,7 +174,7 @@ public abstract class GaiaRecipeProvider extends RecipeProvider implements ICond
                 .unlockedBy("has_" + ingredient.location().getPath(), has(ingredient));
     }
 
-    public ShapedRecipeBuilder swordRecipe(RegistryObject<Item> result, RegistryObject<Item> ingredient) {
+    public ShapedRecipeBuilder swordRecipe(Supplier<Item> result, DeferredItem<Item> ingredient) {
         return ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, result.get())
                 .pattern("#")
                 .pattern("#")
@@ -193,7 +194,7 @@ public abstract class GaiaRecipeProvider extends RecipeProvider implements ICond
                 .unlockedBy("has_" + ingredient.location().getPath(), has(ingredient));
     }
 
-    public ShapelessRecipeBuilder drinkRecipe(RegistryObject<Item> result, RegistryObject<Item> geode) {
+    public ShapelessRecipeBuilder drinkRecipe(Supplier<Item> result, Supplier<Item> geode) {
         return ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, result.get())
                 .requires(geode.get())
                 .requires(ModItems.sugar_crystals.get())
@@ -201,7 +202,7 @@ public abstract class GaiaRecipeProvider extends RecipeProvider implements ICond
                 .unlockedBy("has_cup", has(ModItems.agate_cup.get()));
     }
 
-    public ShapelessRecipeBuilder sliceRecipe(RegistryObject<Item> result, RegistryObject<Item> geode) {
+    public ShapelessRecipeBuilder sliceRecipe(Supplier<Item> result, Supplier<Item> geode) {
         return ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, result.get(), 4)
                 .requires(geode.get())
                 .unlockedBy("has_geode", has(geode.get()));

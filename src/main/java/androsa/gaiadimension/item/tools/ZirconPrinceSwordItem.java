@@ -6,8 +6,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.SwordItem;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 
 import java.util.List;
 
@@ -18,7 +16,6 @@ public class ZirconPrinceSwordItem extends SwordItem {
     }
 
     @Override
-    @OnlyIn(Dist.CLIENT)
     public void appendHoverText(ItemStack stack, Level world, List<Component> tooltips, TooltipFlag flags) {
         super.appendHoverText(stack, world, tooltips, flags);
         tooltips.add(Component.translatable(getDescriptionId() + ".tooltip"));

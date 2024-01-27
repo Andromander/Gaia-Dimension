@@ -10,6 +10,8 @@ import net.minecraft.world.level.ItemLike;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.RegistryObject;
 
+import java.util.function.Supplier;
+
 public class ModTabs {
 
     public static final DeferredRegister<CreativeModeTab> CREATIVE_TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, GaiaDimensionMod.MODID);
@@ -141,15 +143,15 @@ public class ModTabs {
             }).build());
 
     @SafeVarargs
-    private static void add(CreativeModeTab.Output output, RegistryObject<? extends ItemLike>... objects) {
-        for (RegistryObject<? extends ItemLike> object : objects) {
+    private static void add(CreativeModeTab.Output output, Supplier<? extends ItemLike>... objects) {
+        for (Supplier<? extends ItemLike> object : objects) {
             output.accept(object.get());
         }
     }
 
     @SafeVarargs
-    private static void addKits(CreativeModeTab.Output output, RegistryObject<? extends Item>... items) {
-        for (RegistryObject<? extends Item> item : items) {
+    private static void addKits(CreativeModeTab.Output output, Supplier<? extends Item>... items) {
+        for (Supplier<? extends Item> item : items) {
             ItemStack stack = new ItemStack(item.get());
             stack.getOrCreateTag();
             if (!stack.getTag().contains("Part")) {

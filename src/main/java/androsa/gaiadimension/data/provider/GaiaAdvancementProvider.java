@@ -19,6 +19,7 @@ import net.minecraftforge.registries.RegistryObject;
 
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
+import java.util.function.Supplier;
 
 public class GaiaAdvancementProvider extends ForgeAdvancementProvider {
 
@@ -46,7 +47,7 @@ public class GaiaAdvancementProvider extends ForgeAdvancementProvider {
         return PlayerTrigger.TriggerInstance.located(LocationPredicate.inBiome(define));
     }
 
-    protected static CriterionTriggerInstance item(RegistryObject<? extends Item> item) {
+    protected static CriterionTriggerInstance item(Supplier<? extends Item> item) {
         return InventoryChangeTrigger.TriggerInstance.hasItems(item.get());
     }
 }
