@@ -2,6 +2,7 @@ package androsa.gaiadimension.block.blockentity;
 
 import androsa.gaiadimension.block.RestructurerBlock;
 import androsa.gaiadimension.block.menu.RestructurerMenu;
+import androsa.gaiadimension.recipe.PurifierRecipe;
 import androsa.gaiadimension.recipe.RestructurerRecipe;
 import androsa.gaiadimension.registry.registration.ModBlockEntities;
 import androsa.gaiadimension.registry.registration.ModBlocks;
@@ -9,6 +10,8 @@ import androsa.gaiadimension.registry.registration.ModItems;
 import androsa.gaiadimension.registry.registration.ModRecipes;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
+import it.unimi.dsi.fastutil.objects.Object2IntMap;
+import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.NonNullList;
@@ -16,6 +19,8 @@ import net.minecraft.core.RegistryAccess;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.util.Mth;
 import net.minecraft.world.Container;
 import net.minecraft.world.ContainerHelper;
@@ -26,17 +31,21 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.player.StackedContents;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
+import net.minecraft.world.inventory.RecipeCraftingHolder;
 import net.minecraft.world.inventory.RecipeHolder;
 import net.minecraft.world.inventory.StackedContentsCompatible;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Recipe;
+import net.minecraft.world.item.crafting.RecipeHolder;
+import net.minecraft.world.item.crafting.RecipeManager;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BaseContainerBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.util.LazyOptional;
@@ -48,7 +57,7 @@ import javax.annotation.Nullable;
 import java.util.List;
 import java.util.Map;
 
-public class RestructurerBlockEntity extends BaseContainerBlockEntity implements WorldlyContainer, RecipeHolder, StackedContentsCompatible {
+public class RestructurerBlockEntity extends BaseContainerBlockEntity implements WorldlyContainer, RecipeCraftingHolder, StackedContentsCompatible {
 
     private static final int[] slotsTop = new int[] { 0 };
     private static final int[] slotsBottom = new int[] { 3, 1, 2, 4 };
@@ -96,10 +105,12 @@ public class RestructurerBlockEntity extends BaseContainerBlockEntity implements
             return 4;
         }
     };
-    private final Map<ResourceLocation, Integer> recipeMap = Maps.newHashMap();
+    private final Object2IntOpenHashMap<ResourceLocation> recipeMap = new Object2IntOpenHashMap<>();
+    private final RecipeManager.CachedCheck<Container, ? extends RestructurerRecipe> cache;
 
     public RestructurerBlockEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntities.RESTRUCTURER.get(), pos, state);
+        this.cache = RecipeManager.createCheck(ModRecipes.RESTRUCTURING.get());
     }
 
     @Override
@@ -211,9 +222,16 @@ public class RestructurerBlockEntity extends BaseContainerBlockEntity implements
         ItemStack goldStack = entity.restructurerItemStacks.get(1);
         ItemStack essenceStack = entity.restructurerItemStacks.get(2);
 
-        if (entity.isBurning() || !goldStack.isEmpty() && !essenceStack.isEmpty() && !entity.restructurerItemStacks.get(0).isEmpty()) {
-            Recipe<?> irecipe = level.getRecipeManager().getRecipeFor(ModRecipes.RESTRUCTURING.get(), entity, level).orElse(null);
-            if (!entity.isBurning() && entity.canChange(level.registryAccess(), irecipe, entity.restructurerItemStacks, entity.getMaxStackSize())) {
+        if (entity.isBurning() || !goldStack.isEmpty() && !essenceStack.isEmpty()) {
+            RecipeHolder<? extends RestructurerRecipe> recipeHolder;
+
+            if (!entity.restructurerItemStacks.get(0).isEmpty()) {
+                recipeHolder = entity.cache.getRecipeFor(entity, level).orElse(null);
+            } else {
+                recipeHolder = null;
+            }
+
+            if (!entity.isBurning() && entity.canChange(level.registryAccess(), recipeHolder, entity.restructurerItemStacks, entity.getMaxStackSize())) {
                 entity.burnTime = entity.getItemBurnTime(goldStack, essenceStack);
                 entity.burnDuration = entity.burnTime;
 
@@ -240,14 +258,14 @@ public class RestructurerBlockEntity extends BaseContainerBlockEntity implements
                 }
             }
 
-            if (entity.isBurning() && entity.canChange(level.registryAccess(), irecipe, entity.restructurerItemStacks, entity.getMaxStackSize())) {
+            if (entity.isBurning() && entity.canChange(level.registryAccess(), recipeHolder, entity.restructurerItemStacks, entity.getMaxStackSize())) {
                 ++entity.cookTime;
 
                 if (entity.cookTime == entity.cookTimeTotal) {
                     entity.cookTime = 0;
                     entity.cookTimeTotal = cookingTime(level, entity);
-                    if (entity.changeItem(level.registryAccess(), irecipe, entity.restructurerItemStacks, entity.getMaxStackSize())) {
-                        entity.setRecipeUsed(irecipe);
+                    if (entity.changeItem(level.registryAccess(), recipeHolder, entity.restructurerItemStacks, entity.getMaxStackSize())) {
+                        entity.setRecipeUsed(recipeHolder);
                     }
                     burn = true;
                 }
@@ -271,10 +289,10 @@ public class RestructurerBlockEntity extends BaseContainerBlockEntity implements
     /**
      * Returns true if the furnace can smelt an item, i.e. has a source item, destination stack isn't full, etc.
      */
-    private boolean canChange(RegistryAccess access, Recipe<?> recipe, NonNullList<ItemStack> stacks, int stacksize) {
+    private boolean canChange(RegistryAccess access, RecipeHolder<? extends RestructurerRecipe> recipe, NonNullList<ItemStack> stacks, int stacksize) {
         if (!stacks.get(0).isEmpty() && recipe != null) {
-            ItemStack slot1 = ((RestructurerRecipe)recipe).getResultItem(access);
-            ItemStack slot2 = ((RestructurerRecipe)recipe).getByproduct();
+            ItemStack slot1 = recipe.value().getResultItem(access);
+            ItemStack slot2 = recipe.value().getByproduct();
 
             if (slot1.isEmpty() && slot2.isEmpty() || slot1.isEmpty()) {
                 return false;
@@ -300,11 +318,11 @@ public class RestructurerBlockEntity extends BaseContainerBlockEntity implements
     /**
      * Turn one item from the furnace source stack into the appropriate smelted item in the furnace result stack
      */
-    private boolean changeItem(RegistryAccess access, Recipe<?> recipe, NonNullList<ItemStack> stacks, int stacksize) {
+    private boolean changeItem(RegistryAccess access, RecipeHolder<? extends RestructurerRecipe> recipe, NonNullList<ItemStack> stacks, int stacksize) {
         if (recipe != null && canChange(access, recipe, stacks, stacksize)) {
             ItemStack input = stacks.get(0);
-            ItemStack slot1 = ((RestructurerRecipe)recipe).getResultItem(access);
-            ItemStack slot2 = ((RestructurerRecipe)recipe).getByproduct();
+            ItemStack slot1 = recipe.value().getResultItem(access);
+            ItemStack slot2 = recipe.value().getByproduct();
             ItemStack output = stacks.get(3);
             ItemStack byproduct = stacks.get(4);
 
@@ -445,52 +463,54 @@ public class RestructurerBlockEntity extends BaseContainerBlockEntity implements
     }
 
     @Override
-    public void setRecipeUsed(@Nullable Recipe<?> recipe) {
+    public void setRecipeUsed(@Nullable RecipeHolder<?> recipe) {
         if (recipe != null) {
-            this.recipeMap.compute(recipe.getId(), (location, integer) -> 1 + (integer == null ? 0 : integer));
+            this.recipeMap.addTo(recipe.id(), 1);
         }
-
     }
 
     @Override
-    public Recipe<?> getRecipeUsed() {
+    public RecipeHolder<?> getRecipeUsed() {
         return null;
     }
 
     @Override
     public void awardUsedRecipes(Player player, List<ItemStack> stacks) { }
 
-    public void unlockRecipe(Player player) {
-        List<Recipe<?>> list = Lists.newArrayList();
+    public void awardRecipe(ServerPlayer player) {
+        List<RecipeHolder<?>> list = unlockRecipe(player.serverLevel(), player.position());
+        player.awardRecipes(list);
 
-        for(Map.Entry<ResourceLocation, Integer> entry : this.recipeMap.entrySet()) {
-            player.level().getRecipeManager().byKey(entry.getKey()).ifPresent((recipe) -> {
-                list.add(recipe);
-                grantExperience(player, entry.getValue(), ((RestructurerRecipe)recipe).getExperience());
-            });
+        for (RecipeHolder<?> holder : list) {
+            if (holder != null) {
+                player.triggerRecipeCrafted(holder, this.restructurerItemStacks);
+            }
         }
 
-        player.awardRecipes(list);
         this.recipeMap.clear();
     }
 
-    private static void grantExperience(Player player, int amount, float multiplier) {
-        if (multiplier == 0.0F) {
-            amount = 0;
-        } else if (multiplier < 1.0F) {
-            int i = Mth.floor((float)amount * multiplier);
-            if (i < Mth.ceil((float)amount * multiplier) && Math.random() < (double)((float)amount * multiplier - (float)i)) {
-                ++i;
-            }
+    public List<RecipeHolder<?>> unlockRecipe(ServerLevel level, Vec3 position) {
+        List<RecipeHolder<?>> list = Lists.newArrayList();
 
-            amount = i;
+        for(Object2IntMap.Entry<ResourceLocation> entry : this.recipeMap.object2IntEntrySet()) {
+            level.getRecipeManager().byKey(entry.getKey()).ifPresent((recipe) -> {
+                list.add(recipe);
+                grantExperience(level, position, entry.getIntValue(), ((RestructurerRecipe)recipe.value()).getExperience());
+            });
         }
 
-        while(amount > 0) {
-            int j = ExperienceOrb.getExperienceValue(amount);
-            amount -= j;
-            player.level().addFreshEntity(new ExperienceOrb(player.level(), player.getX(), player.getY() + 0.5D, player.getZ() + 0.5D, j));
+        return list;
+    }
+
+    private static void grantExperience(ServerLevel level, Vec3 position, int amount, float multiplier) {
+        int i = Mth.floor((float)amount * multiplier);
+        float f = Mth.frac((float)amount * multiplier);
+        if (f != 0.0F && Math.random() < f) {
+            i++;
         }
+
+        ExperienceOrb.award(level, position, i);
     }
 
     @Override
@@ -498,26 +518,5 @@ public class RestructurerBlockEntity extends BaseContainerBlockEntity implements
         for(ItemStack itemstack : this.restructurerItemStacks) {
             helper.accountStack(itemstack);
         }
-    }
-
-    private LazyOptional<? extends IItemHandler>[] handlers = SidedInvWrapper.create(this, Direction.UP, Direction.DOWN, Direction.NORTH);
-
-    @Override
-    @Nonnull
-    public <T> LazyOptional<T> getCapability(Capability<T> capability, @Nullable Direction facing) {
-        if (facing != null && capability == ForgeCapabilities.ITEM_HANDLER)
-            if (facing == Direction.UP)
-                return handlers[0].cast();
-            else if (facing == Direction.DOWN)
-                return handlers[1].cast();
-            else
-                return handlers[2].cast();
-        return super.getCapability(capability, facing);
-    }
-
-    @Override
-    public void invalidateCaps() {
-        super.invalidateCaps();
-        for (LazyOptional<? extends IItemHandler> handler : handlers) handler.invalidate();
     }
 }

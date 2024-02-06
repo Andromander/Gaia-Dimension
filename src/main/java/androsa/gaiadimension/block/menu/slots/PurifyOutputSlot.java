@@ -2,6 +2,7 @@ package androsa.gaiadimension.block.menu.slots;
 
 import androsa.gaiadimension.block.blockentity.PurifierBlockEntity;
 import androsa.gaiadimension.registry.helpers.EventHandler;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.Container;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.Slot;
@@ -47,8 +48,8 @@ public class PurifyOutputSlot extends Slot {
     protected void checkTakeAchievements(ItemStack par1ItemStack) {
         par1ItemStack.onCraftedBy(thePlayer.level(), thePlayer, stackSize);
 
-        if (!thePlayer.level().isClientSide()) {
-            ((PurifierBlockEntity)this.container).unlockRecipe(thePlayer);
+        if (thePlayer instanceof ServerPlayer serverPlayer) {
+            ((PurifierBlockEntity)this.container).awardRecipe(serverPlayer);
         }
 
         stackSize = 0;

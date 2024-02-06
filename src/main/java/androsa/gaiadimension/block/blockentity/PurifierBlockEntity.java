@@ -9,6 +9,8 @@ import androsa.gaiadimension.registry.registration.ModItems;
 import androsa.gaiadimension.registry.registration.ModRecipes;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
+import it.unimi.dsi.fastutil.objects.Object2IntMap;
+import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.NonNullList;
@@ -16,6 +18,8 @@ import net.minecraft.core.RegistryAccess;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.util.Mth;
 import net.minecraft.world.Container;
 import net.minecraft.world.ContainerHelper;
@@ -26,28 +30,23 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.player.StackedContents;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
-import net.minecraft.world.inventory.RecipeHolder;
+import net.minecraft.world.inventory.RecipeCraftingHolder;
 import net.minecraft.world.inventory.StackedContentsCompatible;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.item.crafting.Recipe;
+import net.minecraft.world.item.crafting.RecipeHolder;
+import net.minecraft.world.item.crafting.RecipeManager;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BaseContainerBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.common.capabilities.Capability;
-import net.minecraftforge.common.capabilities.ForgeCapabilities;
-import net.minecraftforge.common.util.LazyOptional;
-import net.minecraftforge.items.IItemHandler;
-import net.minecraftforge.items.wrapper.SidedInvWrapper;
+import net.minecraft.world.phys.Vec3;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 import java.util.List;
 import java.util.Map;
 
-public class PurifierBlockEntity extends BaseContainerBlockEntity implements WorldlyContainer, RecipeHolder, StackedContentsCompatible {
+public class PurifierBlockEntity extends BaseContainerBlockEntity implements WorldlyContainer, RecipeCraftingHolder, StackedContentsCompatible {
 
     private static final int[] slotsTop = new int[] { 0 };
     private static final int[] slotsBottom = new int[] { 4, 1, 2, 3, 5 };
@@ -96,10 +95,12 @@ public class PurifierBlockEntity extends BaseContainerBlockEntity implements Wor
             return 4;
         }
     };
-    private final Map<ResourceLocation, Integer> recipeMap = Maps.newHashMap();
+    private final Object2IntOpenHashMap<ResourceLocation> recipeMap = new Object2IntOpenHashMap<>();
+    private final RecipeManager.CachedCheck<Container, ? extends PurifierRecipe> cache;
 
     public PurifierBlockEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntities.PURIFIER.get(), pos, state);
+        this.cache = RecipeManager.createCheck(ModRecipes.PURIFYING.get());
     }
 
     @Override
@@ -112,6 +113,7 @@ public class PurifierBlockEntity extends BaseContainerBlockEntity implements Wor
         return new PurifierMenu(id, inventory, this, slotsArray);
     }
 
+    //TODO: Bad
     /** Burn times for the third slot*/
     public static Map<Item, Integer> getThirdFuelBurnTime() {
         Map<Item, Integer> map = Maps.newLinkedHashMap();
@@ -179,9 +181,16 @@ public class PurifierBlockEntity extends BaseContainerBlockEntity implements Wor
         ItemStack essenceStack = entity.purifyingItemStacks.get(2);
         ItemStack bismuthStack = entity.purifyingItemStacks.get(3);
 
-        if (entity.isBurning() || !goldStack.isEmpty() && !essenceStack.isEmpty() && !bismuthStack.isEmpty() && !entity.purifyingItemStacks.get(0).isEmpty()) {
-            Recipe<?> irecipe = level.getRecipeManager().getRecipeFor(ModRecipes.PURIFYING.get(), entity, level).orElse(null);
-            if (!entity.isBurning() && entity.canChange(level.registryAccess(), irecipe, entity.purifyingItemStacks, entity.getMaxStackSize())) {
+        if (entity.isBurning() || !goldStack.isEmpty() && !essenceStack.isEmpty() && !bismuthStack.isEmpty()) {
+            RecipeHolder<? extends PurifierRecipe> recipeHolder;
+
+            if (!entity.purifyingItemStacks.get(0).isEmpty()) {
+                recipeHolder = entity.cache.getRecipeFor(entity, level).orElse(null);
+            } else {
+                recipeHolder = null;
+            }
+
+            if (!entity.isBurning() && entity.canChange(level.registryAccess(), recipeHolder, entity.purifyingItemStacks, entity.getMaxStackSize())) {
                 entity.burnTime = entity.getItemBurnTime(goldStack, essenceStack, bismuthStack);
                 entity.burnDuration = entity.burnTime;
 
@@ -217,14 +226,14 @@ public class PurifierBlockEntity extends BaseContainerBlockEntity implements Wor
                 }
             }
 
-            if (entity.isBurning() && entity.canChange(level.registryAccess(), irecipe, entity.purifyingItemStacks, entity.getMaxStackSize())) {
+            if (entity.isBurning() && entity.canChange(level.registryAccess(), recipeHolder, entity.purifyingItemStacks, entity.getMaxStackSize())) {
                 ++entity.cookTime;
 
                 if (entity.cookTime == entity.cookTimeTotal) {
                     entity.cookTime = 0;
                     entity.cookTimeTotal = cookingTime(level, entity);
-                    if (entity.changeItem(level.registryAccess(), irecipe, entity.purifyingItemStacks, entity.getMaxStackSize())) {
-                        entity.setRecipeUsed(irecipe);
+                    if (entity.changeItem(level.registryAccess(), recipeHolder, entity.purifyingItemStacks, entity.getMaxStackSize())) {
+                        entity.setRecipeUsed(recipeHolder);
                     }
                     burn = true;
                 }
@@ -248,12 +257,12 @@ public class PurifierBlockEntity extends BaseContainerBlockEntity implements Wor
     /**
      * Returns true if the furnace can smelt an item, i.e. has a source item, destination stack isn't full, etc.
      */
-    private boolean canChange(RegistryAccess access, Recipe<?> recipe, NonNullList<ItemStack> stacks, int stacksize) {
+    private boolean canChange(RegistryAccess access, RecipeHolder<? extends PurifierRecipe> recipe, NonNullList<ItemStack> stacks, int stacksize) {
         if (!stacks.get(0).isEmpty() && recipe != null) {
-            ItemStack slot1 = ((PurifierRecipe)recipe).getResultItem(access);
-            ItemStack slot2 = ((PurifierRecipe)recipe).getByproduct();
+            ItemStack slot1 = recipe.value().assemble(this, access);
+            ItemStack slot2 = recipe.value().getByproduct();
 
-            if(slot1.isEmpty() && slot2.isEmpty() || slot1.isEmpty()) {
+            if (slot1.isEmpty() && slot2.isEmpty() || slot1.isEmpty()) {
                 return false;
             } else {
                 ItemStack output = stacks.get(4), byproduct = stacks.get(5);
@@ -277,11 +286,11 @@ public class PurifierBlockEntity extends BaseContainerBlockEntity implements Wor
     /**
      * Turn one item from the furnace source stack into the appropriate smelted item in the furnace result stack
      */
-    public boolean changeItem(RegistryAccess access, Recipe<?> recipe, NonNullList<ItemStack> stacks, int stacksize) {
+    public boolean changeItem(RegistryAccess access, RecipeHolder<? extends PurifierRecipe> recipe, NonNullList<ItemStack> stacks, int stacksize) {
         if (recipe != null && canChange(access, recipe, stacks, stacksize)) {
             ItemStack input = stacks.get(0);
-            ItemStack slot1 = ((PurifierRecipe)recipe).getResultItem(access);
-            ItemStack slot2 = ((PurifierRecipe)recipe).getByproduct();
+            ItemStack slot1 = recipe.value().getResultItem(access);
+            ItemStack slot2 = recipe.value().getByproduct();
             ItemStack output = stacks.get(4);
             ItemStack byproduct = stacks.get(5);
 
@@ -438,51 +447,54 @@ public class PurifierBlockEntity extends BaseContainerBlockEntity implements Wor
     }
 
     @Override
-    public void setRecipeUsed(Recipe<?> recipe) {
+    public void setRecipeUsed(RecipeHolder<?> recipe) {
         if (recipe != null) {
-            this.recipeMap.compute(recipe.getId(), (location, integer) -> 1 + (integer == null ? 0 : integer));
+            this.recipeMap.addTo(recipe.id(), 1);
         }
     }
 
     @Override
-    public Recipe<?> getRecipeUsed() {
+    public RecipeHolder<?> getRecipeUsed() {
         return null;
     }
 
     @Override
     public void awardUsedRecipes(Player player, List<ItemStack> stacks) { }
 
-    public void unlockRecipe(Player player) {
-        List<Recipe<?>> list = Lists.newArrayList();
+    public void awardRecipe(ServerPlayer player) {
+        List<RecipeHolder<?>> list = unlockRecipe(player.serverLevel(), player.position());
+        player.awardRecipes(list);
 
-        for(Map.Entry<ResourceLocation, Integer> entry : this.recipeMap.entrySet()) {
-            player.level().getRecipeManager().byKey(entry.getKey()).ifPresent((recipe) -> {
-                list.add(recipe);
-                grantExperience(player, entry.getValue(), ((PurifierRecipe)recipe).getExperience());
-            });
+        for (RecipeHolder<?> holder : list) {
+            if (holder != null) {
+                player.triggerRecipeCrafted(holder, this.purifyingItemStacks);
+            }
         }
 
-        player.awardRecipes(list);
         this.recipeMap.clear();
     }
 
-    private static void grantExperience(Player player, int amount, float multiplier) {
-        if (multiplier == 0.0F) {
-            amount = 0;
-        } else if (multiplier < 1.0F) {
-            int i = Mth.floor((float)amount * multiplier);
-            if (i < Mth.ceil((float)amount * multiplier) && Math.random() < (double)((float)amount * multiplier - (float)i)) {
-                ++i;
-            }
+    public List<RecipeHolder<?>> unlockRecipe(ServerLevel level, Vec3 position) {
+        List<RecipeHolder<?>> list = Lists.newArrayList();
 
-            amount = i;
+        for(Object2IntMap.Entry<ResourceLocation> entry : this.recipeMap.object2IntEntrySet()) {
+            level.getRecipeManager().byKey(entry.getKey()).ifPresent((recipe) -> {
+                list.add(recipe);
+                grantExperience(level, position, entry.getIntValue(), ((PurifierRecipe)recipe.value()).getExperience());
+            });
         }
 
-        while(amount > 0) {
-            int j = ExperienceOrb.getExperienceValue(amount);
-            amount -= j;
-            player.level().addFreshEntity(new ExperienceOrb(player.level(), player.getX(), player.getY() + 0.5D, player.getZ() + 0.5D, j));
+        return list;
+    }
+
+    private static void grantExperience(ServerLevel level, Vec3 position, int amount, float multiplier) {
+        int i = Mth.floor((float)amount * multiplier);
+        float f = Mth.frac((float) amount * multiplier);
+        if (f != 0.0F && Math.random() < f) {
+            i++;
         }
+
+        ExperienceOrb.award(level, position, i);
     }
 
     @Override
@@ -490,27 +502,5 @@ public class PurifierBlockEntity extends BaseContainerBlockEntity implements Wor
         for(ItemStack itemstack : this.purifyingItemStacks) {
             helper.accountStack(itemstack);
         }
-    }
-
-    private LazyOptional<? extends IItemHandler>[] handlers = SidedInvWrapper.create(this, Direction.UP, Direction.DOWN, Direction.NORTH);
-
-    @Override
-    @Nonnull
-    public <T> LazyOptional<T> getCapability(Capability<T> capability, @Nullable Direction facing) {
-        if (!this.remove && facing != null && capability == ForgeCapabilities.ITEM_HANDLER)
-            if (facing == Direction.UP)
-                return handlers[0].cast();
-            else if (facing == Direction.DOWN)
-                return handlers[1].cast();
-            else
-                return handlers[2].cast();
-        return super.getCapability(capability, facing);
-    }
-
-    @Override
-    public void invalidateCaps() {
-        super.invalidateCaps();
-        for (LazyOptional<? extends IItemHandler> handler : handlers)
-            handler.invalidate();
     }
 }

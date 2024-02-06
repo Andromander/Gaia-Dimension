@@ -7,6 +7,7 @@ import androsa.gaiadimension.registry.registration.ModParticles;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.Containers;
 import net.minecraft.world.InteractionHand;
@@ -27,6 +28,7 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.Vec3;
 
 import javax.annotation.Nullable;
 
@@ -89,12 +91,17 @@ public class RestructurerBlock extends Block implements EntityBlock {
     public void onRemove(BlockState state, Level worldIn, BlockPos pos, BlockState newState, boolean isMoving) {
         if (state.getBlock() != newState.getBlock()) {
             BlockEntity tileentity = worldIn.getBlockEntity(pos);
-            if (tileentity instanceof RestructurerBlockEntity) {
-                Containers.dropContents(worldIn, pos, (RestructurerBlockEntity)tileentity);
-                worldIn.updateNeighbourForOutputSignal(pos, this);
-            }
+            if (tileentity instanceof RestructurerBlockEntity restructurer) {
+                if (worldIn instanceof ServerLevel server) {
+                    Containers.dropContents(worldIn, pos, restructurer);
+                    restructurer.unlockRecipe(server, Vec3.atCenterOf(pos));
+                }
 
-            super.onRemove(state, worldIn, pos, newState, isMoving);
+                super.onRemove(state, worldIn, pos, newState, isMoving);
+                worldIn.updateNeighbourForOutputSignal(pos, this);
+            } else {
+                super.onRemove(state, worldIn, pos, newState, isMoving);
+            }
         }
     }
 

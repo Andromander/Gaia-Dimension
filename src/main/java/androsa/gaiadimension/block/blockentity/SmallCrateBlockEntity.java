@@ -17,8 +17,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.RandomizableContainerBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.items.IItemHandler;
-import net.minecraftforge.items.wrapper.SidedInvWrapper;
 
 import java.util.stream.IntStream;
 
@@ -114,10 +112,5 @@ public class SmallCrateBlockEntity extends RandomizableContainerBlockEntity impl
     @Override
     public AbstractContainerMenu createMenu(int id, Inventory playerInventory) {
         return new SmallCrateContainer(id, playerInventory, this);
-    }
-
-    @Override
-    protected IItemHandler createUnSidedHandler() {
-        return new SidedInvWrapper(this, Direction.UP);
     }
 }
