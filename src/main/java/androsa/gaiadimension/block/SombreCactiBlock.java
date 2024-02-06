@@ -1,6 +1,7 @@
 package androsa.gaiadimension.block;
 
 import androsa.gaiadimension.registry.registration.ModBlocks;
+import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.BlockGetter;
@@ -11,15 +12,21 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.pathfinder.PathComputationType;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.minecraftforge.common.IPlantable;
-import net.minecraftforge.common.PlantType;
+import net.neoforged.neoforge.common.IPlantable;
+import net.neoforged.neoforge.common.PlantType;
 
 public class SombreCactiBlock extends Block implements IPlantable {
 
+    public static final MapCodec<? extends SombreCactiBlock> CODEC = simpleCodec(SombreCactiBlock::new);
     public static final VoxelShape SHAPE = Block.box(0.0F, 0.0F, 0.0F, 16.0F, 8.0F, 16.0F);
 
     public SombreCactiBlock(Properties props) {
         super(props);
+    }
+
+    @Override
+    protected MapCodec<? extends Block> codec() {
+        return CODEC;
     }
 
     @Override

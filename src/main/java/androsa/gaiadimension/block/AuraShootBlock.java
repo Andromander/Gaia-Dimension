@@ -1,5 +1,6 @@
 package androsa.gaiadimension.block;
 
+import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
@@ -17,12 +18,13 @@ import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.minecraftforge.common.ForgeHooks;
-import net.minecraftforge.common.IPlantable;
-import net.minecraftforge.common.PlantType;
+import net.neoforged.neoforge.common.CommonHooks;
+import net.neoforged.neoforge.common.IPlantable;
+import net.neoforged.neoforge.common.PlantType;
 
 public class AuraShootBlock extends Block implements IPlantable {
 
+    public static final MapCodec<? extends AuraShootBlock> CODEC = simpleCodec(AuraShootBlock::new);
     public static final IntegerProperty AGE = BlockStateProperties.AGE_5;
     public static final BooleanProperty IS_TOP = BooleanProperty.create("is_top");
     private static final VoxelShape SHOOT_SHAPE = Block.box(5.0D, 0.0D, 5.0D, 11.0D, 16.0D, 11.0D);
@@ -110,14 +112,14 @@ public class AuraShootBlock extends Block implements IPlantable {
             if (i < 15) {
                 int j = state.getValue(AGE);
 
-                if (ForgeHooks.onCropsGrowPre(worldIn, pos, state, true)) {
+                if (CommonHooks.onCropsGrowPre(worldIn, pos, state, true)) {
                     if (j == 5) {
                         worldIn.setBlockAndUpdate(pos.above(), this.defaultBlockState());
                         worldIn.setBlock(pos, state.setValue(AGE, 0).setValue(IS_TOP, false), 3);
                     } else {
                         worldIn.setBlock(pos, state.setValue(AGE, j + 1), 3);
                     }
-                    ForgeHooks.onCropsGrowPost(worldIn, pos, state);
+                    CommonHooks.onCropsGrowPost(worldIn, pos, state);
                 }
             }
         }

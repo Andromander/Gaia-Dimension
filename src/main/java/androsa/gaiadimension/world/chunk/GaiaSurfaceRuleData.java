@@ -10,6 +10,8 @@ import net.minecraft.world.level.levelgen.SurfaceRules;
 import net.minecraft.world.level.levelgen.VerticalAnchor;
 import net.minecraftforge.registries.RegistryObject;
 
+import java.util.function.Supplier;
+
 public class GaiaSurfaceRuleData {
 
     public static final SurfaceRules.RuleSource GLITTER_GRASS = stateRule(ModBlocks.glitter_grass);
@@ -39,7 +41,7 @@ public class GaiaSurfaceRuleData {
     public static final SurfaceRules.RuleSource NEXUSTONE = stateRule(ModBlocks.nexustone);
     public static final SurfaceRules.RuleSource BEDROCK = SurfaceRules.state(Blocks.BEDROCK.defaultBlockState());
 
-    private static SurfaceRules.RuleSource stateRule(RegistryObject<Block> block) {
+    private static SurfaceRules.RuleSource stateRule(Supplier<Block> block) {
         return SurfaceRules.state(block.get().defaultBlockState());
     }
 

@@ -11,20 +11,12 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
 import net.minecraft.world.entity.MobType;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.common.ForgeConfigSpec;
-import net.minecraftforge.common.data.DatapackBuiltinEntriesProvider;
-import net.minecraftforge.data.event.GatherDataEvent;
-import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.fml.DistExecutor;
-import net.minecraftforge.fml.ModLoadingContext;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.config.ModConfig;
-import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
-import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
-import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.RegisterEvent;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.bus.api.IEventBus;
+import net.neoforged.fml.DistExecutor;
+import net.neoforged.fml.common.Mod;
+import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
+import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import org.apache.commons.lang3.tuple.Pair;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -43,15 +35,14 @@ public class GaiaDimensionMod {
     public static final MobType GAIAN = new MobType();
     public static final MobType CORRUPT = new MobType();
 
-    public GaiaDimensionMod() {
-        IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
-        modEventBus.addListener(this::setup);
-        modEventBus.addListener(this::clientSetup);
+    public GaiaDimensionMod(IEventBus bus) {
+        bus.addListener(this::setup);
+        bus.addListener(this::clientSetup);
         modEventBus.addListener(this::gatherData);
         modEventBus.addListener(this::hackyEvent);
 
         GaiaBiomes.BIOMES.register(modEventBus);
-        ModBlocks.BLOCKS.register(modEventBus);
+        ModBlocks.BLOCKS.register(bus);
         ModMenus.CONTAINERS.register(modEventBus);
         ModTabs.CREATIVE_TABS.register(modEventBus);
         ModPOIs.POI_TYPES.register(modEventBus);
@@ -59,7 +50,7 @@ public class GaiaDimensionMod {
         ModEntities.ENTITY_TYPES.register(modEventBus);
         ModFluids.FLUID_TYPES.register(modEventBus);
         ModFluids.FLUIDS.register(modEventBus);
-        ModItems.ITEMS.register(modEventBus);
+        ModItems.ITEMS.register(bus);
         ModParticles.PARTICLE_TYPES.register(modEventBus);
         ModRecipes.RECIPE_TYPES.register(modEventBus);
         ModRecipes.RECIPE_SERIALIZERS.register(modEventBus);
@@ -99,7 +90,6 @@ public class GaiaDimensionMod {
 
     public void clientSetup(FMLClientSetupEvent event) {
         DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> ClientEvents::registerBlockRenderers);
-        DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> ModMenus::registerScreens);
         DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> ModItems::addItemProperties);
     }
 

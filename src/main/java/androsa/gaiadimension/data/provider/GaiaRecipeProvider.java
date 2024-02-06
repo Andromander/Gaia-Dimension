@@ -17,6 +17,7 @@ import net.minecraft.world.level.block.StairBlock;
 import net.minecraftforge.common.crafting.conditions.IConditionBuilder;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
+import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredItem;
 
 import java.util.function.Supplier;
@@ -58,14 +59,14 @@ public abstract class GaiaRecipeProvider extends RecipeProvider implements ICond
                 .unlockedBy("has_" + ingredient.location().getPath(), has(ingredient));
     }
 
-    public ShapedRecipeBuilder slabRecipe(RegistryObject<SlabBlock> result, RegistryObject<Block> ingredient) {
+    public ShapedRecipeBuilder slabRecipe(Supplier<SlabBlock> result, DeferredBlock<Block> ingredient) {
         return ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, result.get(), 6)
                 .pattern("###")
                 .define('#', ingredient.get())
                 .unlockedBy("has_" + ingredient.getId().getPath(), has(ingredient.get()));
     }
 
-    public ShapedRecipeBuilder stairsRecipe(Supplier<StairBlock> result, RegistryObject<? extends Block> ingredient) {
+    public ShapedRecipeBuilder stairsRecipe(Supplier<StairBlock> result, DeferredBlock<? extends Block> ingredient) {
         return ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, result.get(), 8)
                 .pattern("#  ")
                 .pattern("## ")
@@ -74,7 +75,7 @@ public abstract class GaiaRecipeProvider extends RecipeProvider implements ICond
                 .unlockedBy("has_" + ingredient.getId().getPath(), has(ingredient.get()));
     }
 
-    public ShapelessRecipeBuilder blockToItemRecipe(Supplier<Item> result, RegistryObject<Block> ingredient) {
+    public ShapelessRecipeBuilder blockToItemRecipe(Supplier<Item> result, DeferredBlock<Block> ingredient) {
         return ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, result.get(), 9)
                 .requires(ingredient.get())
                 .unlockedBy("has_" + ingredient.getId().getPath(), has(ingredient.get()));
@@ -208,14 +209,14 @@ public abstract class GaiaRecipeProvider extends RecipeProvider implements ICond
                 .unlockedBy("has_geode", has(geode.get()));
     }
 
-    public ShapelessRecipeBuilder tiliRecipe(RegistryObject<Item> result, Block ingredient) {
+    public ShapelessRecipeBuilder tiliRecipe(Supplier<Item> result, Block ingredient) {
         return ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, result.get())
                 .requires(ingredient)
                 .requires(ModBlocks.thiscus.get())
                 .unlockedBy("has_thiscus", has(ModBlocks.thiscus.get()));
     }
 
-    public ShapelessRecipeBuilder tiliRecipe(RegistryObject<Item> result, Supplier<Block> ingredient) {
+    public ShapelessRecipeBuilder tiliRecipe(Supplier<Item> result, Supplier<Block> ingredient) {
         return ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, result.get())
                 .requires(ingredient.get())
                 .requires(ModBlocks.thiscus.get())

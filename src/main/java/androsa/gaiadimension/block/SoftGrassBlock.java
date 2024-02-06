@@ -18,7 +18,7 @@ import java.util.Optional;
 public class SoftGrassBlock extends AbstractGaiaGrassBlock {
 
     public SoftGrassBlock(Properties props) {
-        super(props, ModBlocks.light_soil.get());
+        super(ModBlocks.light_soil.get().defaultBlockState(), props);
     }
 
     @Override

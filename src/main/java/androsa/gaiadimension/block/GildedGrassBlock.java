@@ -10,8 +10,9 @@ import net.minecraft.world.level.block.state.BlockState;
 
 public class GildedGrassBlock extends AbstractGaiaGrassBlock {
 
+    //TODO: Enable bonemealing
     public GildedGrassBlock(Properties props) {
-        super(props, ModBlocks.aurum_soil.get());
+        super(ModBlocks.aurum_soil.get().defaultBlockState(), props);
     }
 
     @Override
@@ -20,7 +21,7 @@ public class GildedGrassBlock extends AbstractGaiaGrassBlock {
     }
 
     @Override
-    public boolean isValidBonemealTarget(LevelReader reader, BlockPos pos, BlockState state, boolean isClient) {
+    public boolean isValidBonemealTarget(LevelReader reader, BlockPos pos, BlockState state) {
         return false;
     }
 

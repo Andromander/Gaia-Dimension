@@ -1,6 +1,9 @@
 package androsa.gaiadimension.block;
 
 import androsa.gaiadimension.registry.registration.ModBlocks;
+import com.mojang.serialization.Codec;
+import com.mojang.serialization.MapCodec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.util.RandomSource;
@@ -11,17 +14,23 @@ import net.minecraft.world.level.block.BushBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 
 public class CrystalFungusBlock extends BushBlock {
+    public static final MapCodec<? extends CrystalFungusBlock> CODEC = RecordCodecBuilder.mapCodec(instance ->
+            instance.group(Codec.BOOL.fieldOf("cavernous").forGetter(obj -> obj.cavernous), propertiesCodec())
+            .apply(instance, CrystalFungusBlock::new));
     protected static final VoxelShape SHAPE = Block.box(2.0D, 0.0D, 2.0D, 14.0D, 13.0D, 14.0D);
     private final boolean cavernous;
 
-    public CrystalFungusBlock(Properties props, boolean isCave) {
+    public CrystalFungusBlock(boolean isCave, Properties props) {
         super(props);
 
         cavernous = isCave;
+    }
+
+    @Override
+    protected MapCodec<? extends BushBlock> codec() {
+        return CODEC;
     }
 
     @Override
@@ -39,7 +48,6 @@ public class CrystalFungusBlock extends BushBlock {
     //TODO: Grow into giant Fungus?
 
     @Override
-    @OnlyIn(Dist.CLIENT)
     public void animateTick(BlockState stateIn, Level worldIn, BlockPos pos, RandomSource rand) {
         double d0 = (double)pos.getX() + rand.nextDouble() * 0.6D + 0.2D;
         double d1 = (double)pos.getY() + rand.nextDouble() * 0.6D + 0.2D;

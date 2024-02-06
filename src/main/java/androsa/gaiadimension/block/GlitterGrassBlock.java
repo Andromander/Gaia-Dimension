@@ -20,7 +20,7 @@ import java.util.Optional;
 public class GlitterGrassBlock extends AbstractGaiaGrassBlock {
 
     public GlitterGrassBlock(Properties props) {
-        super(props, ModBlocks.heavy_soil.get());
+        super(ModBlocks.heavy_soil.get().defaultBlockState(), props);
     }
 
     @Override

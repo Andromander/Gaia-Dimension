@@ -8,17 +8,14 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.WallTorchBlock;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 
 public class PyriteWallTorchBlock extends WallTorchBlock {
 
     public PyriteWallTorchBlock(Properties props) {
-        super(props, ParticleTypes.SMALL_FLAME);
+        super(ParticleTypes.SMALL_FLAME, props);
     }
 
     @Override
-    @OnlyIn(Dist.CLIENT)
     public void animateTick(BlockState state, Level world, BlockPos pos, RandomSource rand) {
         Direction direction = state.getValue(FACING);
         double dx = (double)pos.getX() + 0.5D;

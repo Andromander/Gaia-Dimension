@@ -4,6 +4,7 @@ import androsa.gaiadimension.block.blockentity.PurifierBlockEntity;
 import androsa.gaiadimension.registry.helpers.PropertiesHandler;
 import androsa.gaiadimension.registry.registration.ModBlockEntities;
 import androsa.gaiadimension.registry.registration.ModParticles;
+import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.util.RandomSource;
@@ -26,19 +27,23 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.phys.BlockHitResult;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 
 import javax.annotation.Nullable;
 
 public class PurifierBlock extends Block implements EntityBlock {
 
+    public static final MapCodec<? extends PurifierBlock> CODEC = simpleCodec(PurifierBlock::new);
     public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
     public static final BooleanProperty LIT = RedstoneTorchBlock.LIT;
 
     public PurifierBlock(Properties props) {
         super(props);
         this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(LIT, Boolean.FALSE));
+    }
+
+    @Override
+    protected MapCodec<? extends Block> codec() {
+        return CODEC;
     }
 
     @Override
@@ -140,7 +145,6 @@ public class PurifierBlock extends Block implements EntityBlock {
     }
 
     @Override
-    @OnlyIn(Dist.CLIENT)
     public void animateTick(BlockState stateIn, Level worldIn, BlockPos pos, RandomSource rand) {
         if (stateIn.getValue(LIT)){
             double d0 = (double)pos.getX() + 0.5D;

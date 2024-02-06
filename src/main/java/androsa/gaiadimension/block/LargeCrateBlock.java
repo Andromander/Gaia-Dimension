@@ -1,6 +1,8 @@
 package androsa.gaiadimension.block;
 
 import androsa.gaiadimension.block.blockentity.LargeCrateBlockEntity;
+import androsa.gaiadimension.registry.registration.ModBlockEntities;
+import com.mojang.serialization.MapCodec;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.NonNullList;
@@ -20,6 +22,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.EntityBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -27,14 +30,13 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.storage.loot.LootParams;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import net.minecraft.world.phys.BlockHitResult;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 
 import javax.annotation.Nullable;
 import java.util.List;
 
 public class LargeCrateBlock extends Block implements EntityBlock {
 
+    public static final MapCodec<? extends LargeCrateBlock> CODEC = simpleCodec(LargeCrateBlock::new);
     public static final ResourceLocation NAME = new ResourceLocation("contents");
 
     public LargeCrateBlock(Properties props) {
@@ -45,6 +47,11 @@ public class LargeCrateBlock extends Block implements EntityBlock {
     @Override
     public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
         return new LargeCrateBlockEntity(pos, state);
+    }
+
+    @Override
+    protected MapCodec<? extends Block> codec() {
+        return CODEC;
     }
 
     @Override
@@ -66,7 +73,7 @@ public class LargeCrateBlock extends Block implements EntityBlock {
     }
 
     @Override
-    public void playerWillDestroy(Level worldIn, BlockPos pos, BlockState state, Player player) {
+    public BlockState playerWillDestroy(Level worldIn, BlockPos pos, BlockState state, Player player) {
         BlockEntity tileentity = worldIn.getBlockEntity(pos);
         if (tileentity instanceof LargeCrateBlockEntity crate) {
             if (!worldIn.isClientSide() && player.isCreative() && !crate.isEmpty()) {
@@ -88,7 +95,7 @@ public class LargeCrateBlock extends Block implements EntityBlock {
             }
         }
 
-        super.playerWillDestroy(worldIn, pos, state, player);
+        return super.playerWillDestroy(worldIn, pos, state, player);
     }
 
     @Override
@@ -130,7 +137,6 @@ public class LargeCrateBlock extends Block implements EntityBlock {
     }
 
     @Override
-    @OnlyIn(Dist.CLIENT)
     public void appendHoverText(ItemStack stack, @Nullable BlockGetter worldIn, List<Component> tooltip, TooltipFlag flagIn) {
         super.appendHoverText(stack, worldIn, tooltip, flagIn);
         CompoundTag compoundnbt = stack.getTagElement("BlockEntityTag");
@@ -178,15 +184,9 @@ public class LargeCrateBlock extends Block implements EntityBlock {
 
     @Override
     @Deprecated
-    @OnlyIn(Dist.CLIENT)
-    public ItemStack getCloneItemStack(BlockGetter worldIn, BlockPos pos, BlockState state) {
+    public ItemStack getCloneItemStack(LevelReader worldIn, BlockPos pos, BlockState state) {
         ItemStack itemstack = super.getCloneItemStack(worldIn, pos, state);
-        LargeCrateBlockEntity largecratetileentity = (LargeCrateBlockEntity)worldIn.getBlockEntity(pos);
-        CompoundTag compoundnbt = largecratetileentity.saveToNbt(new CompoundTag());
-        if (!compoundnbt.isEmpty()) {
-            itemstack.addTagElement("BlockEntityTag", compoundnbt);
-        }
-
+        worldIn.getBlockEntity(pos, ModBlockEntities.LARGE_CRATE.get()).ifPresent(entity -> entity.saveToItem(itemstack));
         return itemstack;
     }
 }

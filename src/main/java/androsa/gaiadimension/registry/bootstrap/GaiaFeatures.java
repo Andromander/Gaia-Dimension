@@ -55,6 +55,7 @@ import net.minecraft.world.level.levelgen.structure.templatesystem.RuleTest;
 import net.minecraftforge.registries.RegistryObject;
 
 import java.util.List;
+import java.util.function.Supplier;
 
 public class GaiaFeatures extends GaiaBiomeFeatures {
 
@@ -503,7 +504,7 @@ public class GaiaFeatures extends GaiaBiomeFeatures {
                     BiomeFilter.biome());
         }
 
-        private static PlacedFeature checkTree(HolderGetter<ConfiguredFeature<?, ?>> getter, ResourceKey<ConfiguredFeature<?, ?>> feature, RegistryObject<SaplingBlock> sapling) {
+        private static PlacedFeature checkTree(HolderGetter<ConfiguredFeature<?, ?>> getter, ResourceKey<ConfiguredFeature<?, ?>> feature, Supplier<SaplingBlock> sapling) {
             return new PlacedFeature(getter.getOrThrow(feature), List.of(PlacementUtils.filteredByBlockSurvival(sapling.get())));
         }
 

@@ -1,6 +1,7 @@
 package androsa.gaiadimension.block;
 
 import androsa.gaiadimension.entity.ISpitfireMob;
+import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
@@ -17,8 +18,15 @@ import net.minecraft.world.level.block.state.BlockState;
 
 public class SearingRockBlock extends Block {
 
+    public static final MapCodec<? extends SearingRockBlock> CODEC = simpleCodec(SearingRockBlock::new);
+
     public SearingRockBlock(Properties props) {
         super(props);
+    }
+
+    @Override
+    protected MapCodec<? extends Block> codec() {
+        return CODEC;
     }
 
     public void stepOn(Level worldIn, BlockPos pos, BlockState state, Entity entityIn) {

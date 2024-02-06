@@ -93,8 +93,8 @@ public abstract class GaiaBlockLootTableProvider extends BlockLootSubProvider {
                         .otherwise(LootItem.lootTableItem(result)))));
     }
 
-    public void dropPot(RegistryObject<FlowerPotBlock> flowerpot) {
-        this.add(flowerpot.get(), (pot) -> createPotFlowerItemTable(((FlowerPotBlock)pot).getContent()));
+    public void dropPot(Supplier<FlowerPotBlock> flowerpot) {
+        this.add(flowerpot.get(), (pot) -> createPotFlowerItemTable(((FlowerPotBlock)pot).getPotted()));
     }
 
     protected LootTable.Builder smallCrate(Block block) {

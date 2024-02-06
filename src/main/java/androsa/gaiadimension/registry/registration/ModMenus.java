@@ -32,15 +32,4 @@ public class ModMenus {
             "restructurer", () -> new MenuType<>(RestructurerMenu::new, FeatureFlags.REGISTRY.allFlags()));
     public static final RegistryObject<MenuType<PurifierMenu>> PURIFIER = CONTAINERS.register(
             "purifier", () -> new MenuType<>(PurifierMenu::new, FeatureFlags.REGISTRY.allFlags()));
-
-    @OnlyIn(Dist.CLIENT)
-    public static void registerScreens() {
-        MenuScreens.register(AGATE_CRAFTING_TABLE.get(), AgateCraftingScreen::new);
-        MenuScreens.register(GAIA_STONE_FURNACE.get(), GaiaStoneFurnaceScreen::new);
-        MenuScreens.register(GEMSTONE_POUCH.get(), GemPouchScreen::new);
-        MenuScreens.register(SMALL_CRATE.get(), SmallCrateScreen::new);
-        MenuScreens.register(LARGE_CRATE.get(), LargeCrateScreen::new);
-        MenuScreens.register(RESTRUCTURER.get(), RestructurerScreen::new);
-        MenuScreens.register(PURIFIER.get(), PurifierScreen::new);
-    }
 }

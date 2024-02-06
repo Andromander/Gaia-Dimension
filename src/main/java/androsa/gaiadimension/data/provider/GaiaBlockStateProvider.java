@@ -4,11 +4,10 @@ import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-import net.minecraftforge.client.model.generators.BlockStateProvider;
-import net.minecraftforge.client.model.generators.ConfiguredModel;
-import net.minecraftforge.client.model.generators.ModelFile;
-import net.minecraftforge.common.data.ExistingFileHelper;
-import net.minecraftforge.registries.RegistryObject;
+import net.neoforged.neoforge.client.model.generators.BlockStateProvider;
+import net.neoforged.neoforge.client.model.generators.ConfiguredModel;
+import net.neoforged.neoforge.client.model.generators.ModelFile;
+import net.neoforged.neoforge.registries.DeferredBlock;
 
 import java.util.function.Function;
 import java.util.function.Supplier;
@@ -40,7 +39,7 @@ public abstract class GaiaBlockStateProvider extends BlockStateProvider {
         return modLoc("block/" + name);
     }
 
-    protected String blockName(RegistryObject<? extends Block> block) {
+    protected String blockName(DeferredBlock<? extends Block> block) {
         return block.getId().getPath();
     }
 
@@ -48,37 +47,37 @@ public abstract class GaiaBlockStateProvider extends BlockStateProvider {
         simpleBlock(block.get());
     }
 
-    public void leavesBlock(RegistryObject<? extends Block> block) {
+    public void leavesBlock(DeferredBlock<? extends Block> block) {
         basicBlock(block, "cutout_mipped");
     }
 
-    public void basicBlock(RegistryObject<? extends Block> block, String type) {
+    public void basicBlock(DeferredBlock<? extends Block> block, String type) {
         simpleBlock(block.get(), models().cubeAll(blockName(block), blockTexture(block.get())).renderType(type));
     }
 
-    public void columnBlock(RegistryObject<Block> block) {
+    public void columnBlock(DeferredBlock<Block> block) {
         String basename = blockName(block);
         simpleBlock(block.get(), models().cubeColumn(basename, tLocGaia(basename), tLocGaia(basename + "_top")));
     }
 
-    public void sidedBlock(RegistryObject<Block> block, String top, String bottom, String north, String south, String east, String west) {
+    public void sidedBlock(DeferredBlock<Block> block, String top, String bottom, String north, String south, String east, String west) {
         simpleBlock(block.get(), models().cube(blockName(block), tLocGaia(bottom), tLocGaia(top), tLocGaia(north), tLocGaia(south), tLocGaia(east), tLocGaia(west)).texture("particle", tLocGaia(north)));
     }
 
-    public void basicBlockRotated(RegistryObject<Block> block) {
+    public void basicBlockRotated(DeferredBlock<Block> block) {
         basicBlockRotated(block, "solid");
     }
 
-    public void basicBlockRotated(RegistryObject<Block> block, String type) {
+    public void basicBlockRotated(DeferredBlock<Block> block, String type) {
         Function<ModelFile, ConfiguredModel[]> expander = model -> ConfiguredModel.allYRotations(model, 0, false);
         simpleBlock(block.get(), expander.apply(models().cubeAll(blockName(block), blockTexture(block.get())).renderType(type)));
     }
 
-    public void basicBlockLayered(RegistryObject<Block> block, String bottom, String top, String type) {
+    public void basicBlockLayered(DeferredBlock<Block> block, String bottom, String top, String type) {
         simpleBlock(block.get(), models().basicLayered(block, tLocGaia(bottom), tLocGaia(top)).renderType(type));
     }
 
-    public void layeredEmissive(RegistryObject<Block> block, String bottom, String top) {
+    public void layeredEmissive(DeferredBlock<Block> block, String bottom, String top) {
         simpleBlock(block.get(), models().emissiveLayered(block, tLocGaia(bottom), tLocGaia(top)).renderType("cutout"));
     }
 
@@ -90,52 +89,52 @@ public abstract class GaiaBlockStateProvider extends BlockStateProvider {
         axisBlock(block.get(), tLocGaia("stripped_" + name));
     }
 
-    public void strippedWoodBlock(RegistryObject<RotatedPillarBlock> block, String name) {
+    public void strippedWoodBlock(DeferredBlock<RotatedPillarBlock> block, String name) {
         ModelFile model = models().cubeColumn(blockName(block), tLocGaia("stripped_" + name + "_log_side"), tLocGaia("stripped_" + name + "_log_side"));
         axisBlock(block.get(), model, model);
     }
 
-    public void woodBlock(RegistryObject<RotatedPillarBlock> block, String name) {
+    public void woodBlock(DeferredBlock<RotatedPillarBlock> block, String name) {
         ModelFile model = models().cubeColumn(blockName(block), tLocGaia(name + "_side"), tLocGaia(name + "_side"));
         axisBlock(block.get(), model, model);
     }
 
-    public void stairsBlock(RegistryObject<StairBlock> block, String name) {
+    public void stairsBlock(DeferredBlock<StairBlock> block, String name) {
         stairsBlock(block.get(), tLocGaia(name));
     }
 
-    public void stairsBlockLayered(RegistryObject<StairBlock> block, String inner, String outer, String type) {
+    public void stairsBlockLayered(DeferredBlock<StairBlock> block, String inner, String outer, String type) {
         ModelFile stairs = models().stairsBasicLayer(block, tLocGaia(inner), tLocGaia(outer)).renderType(type);
         ModelFile stairsInner = models().stairsInnerBasicLayer(block, tLocGaia(inner), tLocGaia(outer)).renderType(type);
         ModelFile stairsOuter = models().stairsOuterBasicLayer(block, tLocGaia(inner), tLocGaia(outer)).renderType(type);
         stairsBlock(block.get(), stairs, stairsInner, stairsOuter);
     }
 
-    public void slabBlock(RegistryObject<SlabBlock> block, RegistryObject<Block> doubleBlock) {
+    public void slabBlock(DeferredBlock<SlabBlock> block, DeferredBlock<Block> doubleBlock) {
         slabBlock(block.get(), tLocGaia(blockName(doubleBlock)), tLocGaia(blockName(doubleBlock)));
     }
 
-    public void crossBlock(RegistryObject<? extends Block> block, String type) {
+    public void crossBlock(DeferredBlock<? extends Block> block, String type) {
         crossBlock(block, models().cross(blockName(block), tLocGaia(blockName(block))).renderType(type));
     }
 
-    public void crossBlockTinted(RegistryObject<Block> block) {
+    public void crossBlockTinted(DeferredBlock<Block> block) {
         crossBlock(block, models().tintedCross(blockName(block), tLocGaia(blockName(block))).renderType("translucent"));
     }
 
-    public void orientableBlockLit(RegistryObject<Block> block) {
+    public void orientableBlockLit(DeferredBlock<Block> block) {
         ModelFile off = models().orientable(blockName(block), tLocGaia(blockName(block) + "_side"), tLocGaia(blockName(block) + "_front"), tLocGaia(blockName(block) + "_top"));
         ModelFile on = models().orientable(blockName(block) + "_lit", tLocGaia(blockName(block) + "_side"), tLocGaia(blockName(block) + "_front_lit"), tLocGaia(blockName(block) + "_top"));
         orientableBlock(block, off, on);
     }
 
-    public void orientableBlockBasicLit(RegistryObject<Block> block) {
+    public void orientableBlockBasicLit(DeferredBlock<Block> block) {
         ModelFile off = models().orientable(blockName(block), tLocGaia(blockName(block) + "_side"), tLocGaia(blockName(block) + "_front"), tLocGaia(blockName(block) + "_side"));
         ModelFile on = models().orientable(blockName(block) + "_lit", tLocGaia(blockName(block) + "_side"), tLocGaia(blockName(block) + "_front_lit"), tLocGaia(blockName(block) + "_side"));
         orientableBlock(block, off, on);
     }
 
-    public void grassBlock(RegistryObject<Block> block, String bottom) {
+    public void grassBlock(DeferredBlock<Block> block, String bottom) {
         String baseName = blockName(block);
         ModelFile model = models().grass(
                         block,
@@ -147,11 +146,11 @@ public abstract class GaiaBlockStateProvider extends BlockStateProvider {
         grassBlock(block, model);
     }
 
-    public void pottedPlantBlock(RegistryObject<FlowerPotBlock> block) {
+    public void pottedPlantBlock(DeferredBlock<FlowerPotBlock> block) {
         simpleBlock(block.get(), models().flowerPot(block).renderType("cutout"));
     }
 
-    public void torchBlock(RegistryObject<Block> block, RegistryObject<Block> wall) {
+    public void torchBlock(DeferredBlock<Block> block, DeferredBlock<Block> wall) {
         ModelFile torch = models().torch(blockName(block), tLocGaia(blockName(block))).renderType("cutout");
         ModelFile torchwall = models().torchWall(blockName(wall), tLocGaia(blockName(block))).renderType("cutout");
         simpleBlock(block.get(), torch);
@@ -162,7 +161,7 @@ public abstract class GaiaBlockStateProvider extends BlockStateProvider {
                 .build());
     }
 
-    private void orientableBlock(RegistryObject<Block> block, ModelFile off, ModelFile on) {
+    private void orientableBlock(DeferredBlock<Block> block, ModelFile off, ModelFile on) {
         getVariantBuilder(block.get()).forAllStates(state -> {
             ModelFile model = state.getValue(BlockStateProperties.LIT) ? on : off;
 

@@ -1,6 +1,7 @@
 package androsa.gaiadimension.block;
 
 import androsa.gaiadimension.block.menu.AgateCraftingTableMenu;
+import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
@@ -15,10 +16,16 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
 
 public class AgateCraftingTableBlock extends Block {
+    public static final MapCodec<? extends AgateCraftingTableBlock> CODEC = simpleCodec(AgateCraftingTableBlock::new);
     private static final Component NAME = Component.translatable("gaiadimension.container.crafting");
 
     public AgateCraftingTableBlock(Properties props) {
         super(props);
+    }
+
+    @Override
+    protected MapCodec<? extends Block> codec() {
+        return CODEC;
     }
 
     @Override

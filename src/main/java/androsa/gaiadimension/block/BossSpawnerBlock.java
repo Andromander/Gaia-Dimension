@@ -3,11 +3,15 @@ package androsa.gaiadimension.block;
 import androsa.gaiadimension.block.blockentity.boss.AbstractSpawnerBlockEntity;
 import androsa.gaiadimension.registry.helpers.PropertiesHandler;
 import androsa.gaiadimension.registry.registration.ModBlockEntities;
+import com.mojang.serialization.MapCodec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.BlockPos;
+import net.minecraft.util.StringRepresentable;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.EntityBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -22,6 +26,10 @@ import java.util.function.Supplier;
 
 public class BossSpawnerBlock extends Block implements EntityBlock {
 
+    public static final MapCodec<? extends BossSpawnerBlock> CODEC = RecordCodecBuilder.mapCodec(instance ->
+            instance.group(BossType.CODEC.fieldOf("boss").forGetter(obj -> obj.bossType),
+                            propertiesCodec())
+                    .apply(instance, BossSpawnerBlock::new));
     private static final VoxelShape SHAPE = Block.box(2.0D, 1.0D, 2.0D, 14.0D, 15.0D, 14.0D);
     private final BossType bossType;
 
@@ -65,21 +73,29 @@ public class BossSpawnerBlock extends Block implements EntityBlock {
 
     @Override
     @Deprecated
-    public ItemStack getCloneItemStack(BlockGetter reader, BlockPos pos, BlockState state) {
+    public ItemStack getCloneItemStack(LevelReader reader, BlockPos pos, BlockState state) {
         return ItemStack.EMPTY;
     }
 
-    public enum BossType {
-        MALACHITE(ModBlockEntities.MALACHITE_SPAWNER::get);
+    public enum BossType implements StringRepresentable {
+        MALACHITE("malachite", ModBlockEntities.MALACHITE_SPAWNER::get);
 
+        public static final StringRepresentable.EnumCodec<BossType> CODEC = StringRepresentable.fromEnum(BossType::values);
+        private String name;
         private Supplier<BlockEntityType<? extends AbstractSpawnerBlockEntity<?>>> tileEntity;
 
-        BossType(Supplier<BlockEntityType<? extends AbstractSpawnerBlockEntity<?>>> tileentity) {
+        BossType(String name, Supplier<BlockEntityType<? extends AbstractSpawnerBlockEntity<?>>> tileentity) {
+            this.name = name;
             this.tileEntity = tileentity;
         }
 
         public BlockEntityType<? extends AbstractSpawnerBlockEntity<?>> getBlockEntity() {
             return tileEntity.get();
+        }
+
+        @Override
+        public String getSerializedName() {
+            return name;
         }
     }
 }

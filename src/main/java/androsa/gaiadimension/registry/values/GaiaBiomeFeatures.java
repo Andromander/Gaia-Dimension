@@ -11,6 +11,7 @@ import net.minecraft.world.level.levelgen.structure.templatesystem.TagMatchTest;
 import net.minecraftforge.registries.RegistryObject;
 
 import java.util.List;
+import java.util.function.Supplier;
 
 public class GaiaBiomeFeatures {
 
@@ -113,14 +114,14 @@ public class GaiaBiomeFeatures {
 
     public static final List<Block> cave_blacklist = ImmutableList.of(GLITTER_GRASS.getBlock(), HEAVY_SOIL.getBlock(), CORRUPT_GRASS.getBlock(), CORRUPT_SOIL.getBlock(), MURKY_GRASS.getBlock(), BOGGY_SOIL.getBlock(), SOFT_GRASS.getBlock(), LIGHT_SOIL.getBlock(), SALT.getBlock());
 
-    private static BlockState state(RegistryObject<? extends Block> block) {
+    private static BlockState state(Supplier<? extends Block> block) {
         return block.get().defaultBlockState();
     }
 
     @SafeVarargs
-    protected static BlockPredicate match(RegistryObject<Block>... blocks) {
+    protected static BlockPredicate match(Supplier<Block>... blocks) {
         List<Block> list = Lists.newArrayList();
-        for (RegistryObject<Block> block : blocks) {
+        for (Supplier<Block> block : blocks) {
             list.add(block.get());
         }
         return BlockPredicate.matchesBlocks(list);

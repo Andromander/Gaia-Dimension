@@ -1,5 +1,6 @@
 package androsa.gaiadimension.block;
 
+import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.Block;
@@ -11,10 +12,16 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 
 public class SlowingBlock extends Block {
 
+    public static final MapCodec<? extends SlowingBlock> CODEC = simpleCodec(SlowingBlock::new);
     private static final VoxelShape SHAPE = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 14.0D, 16.0D);
 
     public SlowingBlock(Properties props) {
         super(props);
+    }
+
+    @Override
+    protected MapCodec<? extends Block> codec() {
+        return CODEC;
     }
 
     @Override

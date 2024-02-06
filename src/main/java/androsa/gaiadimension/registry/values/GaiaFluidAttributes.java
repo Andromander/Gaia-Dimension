@@ -6,11 +6,8 @@ import androsa.gaiadimension.registry.registration.ModFluids;
 import androsa.gaiadimension.registry.registration.ModItems;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvents;
-import net.minecraftforge.common.ForgeMod;
-import net.minecraftforge.common.SoundActions;
-import net.minecraftforge.fluids.FluidInteractionRegistry;
-import net.minecraftforge.fluids.FluidType;
-import net.minecraftforge.fluids.ForgeFlowingFluid;
+import net.neoforged.neoforge.common.NeoForgeMod;
+import net.neoforged.neoforge.fluids.FluidInteractionRegistry;
 
 import java.util.function.Supplier;
 
@@ -113,21 +110,21 @@ public class GaiaFluidAttributes {
 
     public static void registerFluidInteractions() {
         //Lava + Mineral Water
-        FluidInteractionRegistry.addInteraction(ForgeMod.LAVA_TYPE.get(), new FluidInteractionRegistry.InteractionInformation(
+        FluidInteractionRegistry.addInteraction(NeoForgeMod.LAVA_TYPE.value(), new FluidInteractionRegistry.InteractionInformation(
                 ModFluids.MINERAL_WATER.get(),
                 ModBlocks.gaia_cobblestone.get().defaultBlockState()));
         //Lava + Sweet Muck
-        FluidInteractionRegistry.addInteraction(ForgeMod.LAVA_TYPE.get(), new FluidInteractionRegistry.InteractionInformation(
+        FluidInteractionRegistry.addInteraction(NeoForgeMod.LAVA_TYPE.value(), new FluidInteractionRegistry.InteractionInformation(
                 ModFluids.SWEET_MUCK.get(),
                 ModBlocks.gaia_cobblestone.get().defaultBlockState()));
         //Lava + Liquid Aura
-        FluidInteractionRegistry.addInteraction(ForgeMod.LAVA_TYPE.get(), new FluidInteractionRegistry.InteractionInformation(
+        FluidInteractionRegistry.addInteraction(NeoForgeMod.LAVA_TYPE.value(), new FluidInteractionRegistry.InteractionInformation(
                 ModFluids.LIQUID_AURA.get(),
                 ModBlocks.sparkling_rock.get().defaultBlockState()));
         //Superhot Magma + Water
         FluidInteractionRegistry.addInteraction(ModFluids.SUPERHOT_MAGMA.get(), new FluidInteractionRegistry.InteractionInformation(
-                ForgeMod.WATER_TYPE.get(),
-                ModBlocks.primal_mass.get().defaultBlockState()));
+                NeoForgeMod.WATER_TYPE.value(),
+                ModBlocks.gaia_cobblestone.get().defaultBlockState()));
         //Superhot Magma + Mineral Water
         FluidInteractionRegistry.addInteraction(ModFluids.SUPERHOT_MAGMA.get(), new FluidInteractionRegistry.InteractionInformation(
                 ModFluids.MINERAL_WATER.get(),
@@ -142,8 +139,8 @@ public class GaiaFluidAttributes {
                 ModBlocks.aura_block.get().defaultBlockState()));
         //Liquid Bismuth + Water
         FluidInteractionRegistry.addInteraction(ModFluids.LIQUID_BISMUTH.get(), new FluidInteractionRegistry.InteractionInformation(
-                ForgeMod.WATER_TYPE.get(),
-                ModBlocks.active_rock.get().defaultBlockState()));
+                NeoForgeMod.WATER_TYPE.value(),
+                ModBlocks.impure_rock.get().defaultBlockState()));
         //Liquid Bismuth + Mineral Water
         FluidInteractionRegistry.addInteraction(ModFluids.LIQUID_BISMUTH.get(), new FluidInteractionRegistry.InteractionInformation(
                 ModFluids.MINERAL_WATER.get(),

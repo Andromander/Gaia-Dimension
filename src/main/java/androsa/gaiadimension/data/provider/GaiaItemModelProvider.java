@@ -6,6 +6,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.client.model.generators.ItemModelBuilder;
 import net.neoforged.neoforge.client.model.generators.ItemModelProvider;
+import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredItem;
 
 public abstract class GaiaItemModelProvider extends ItemModelProvider {
@@ -14,23 +15,23 @@ public abstract class GaiaItemModelProvider extends ItemModelProvider {
         super(output, GaiaDimensionMod.MODID, helper);
     }
 
-    public String blockName(RegistryObject<? extends Block> block) {
+    public String blockName(DeferredBlock<? extends Block> block) {
         return block.getId().getPath();
     }
 
-    public ItemModelBuilder blockItem(RegistryObject<? extends Block> block) {
+    public ItemModelBuilder blockItem(DeferredBlock<? extends Block> block) {
         return blockItem(block, blockName(block));
     }
 
-    public ItemModelBuilder blockItem(RegistryObject<? extends Block> block, String model) {
+    public ItemModelBuilder blockItem(DeferredBlock<? extends Block> block, String model) {
         return withExistingParent(blockName(block), modLoc("block/" + model));
     }
 
-    public ItemModelBuilder blockItemTexture(RegistryObject<? extends Block> block) {
+    public ItemModelBuilder blockItemTexture(DeferredBlock<? extends Block> block) {
         return blockItemTexture(block, blockName(block));
     }
 
-    public ItemModelBuilder blockItemTexture(RegistryObject<? extends Block> block, String texture) {
+    public ItemModelBuilder blockItemTexture(DeferredBlock<? extends Block> block, String texture) {
         return withExistingParent(blockName(block), mcLoc("item/generated"))
                 .texture("layer0", modLoc("block/" + texture));
     }

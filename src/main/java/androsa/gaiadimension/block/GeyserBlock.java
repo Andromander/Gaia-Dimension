@@ -3,6 +3,7 @@ package androsa.gaiadimension.block;
 import androsa.gaiadimension.block.blockentity.GeyserBlockEntity;
 import androsa.gaiadimension.registry.helpers.PropertiesHandler;
 import androsa.gaiadimension.registry.registration.ModBlockEntities;
+import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
@@ -15,6 +16,8 @@ import net.minecraft.world.level.block.state.BlockState;
 import javax.annotation.Nullable;
 
 public class GeyserBlock extends Block implements EntityBlock {
+
+    public static final MapCodec<? extends GeyserBlock> CODEC = simpleCodec(GeyserBlock::new);
 
     public GeyserBlock(Properties props) {
         super(props);

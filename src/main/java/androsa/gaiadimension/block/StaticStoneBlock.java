@@ -2,6 +2,7 @@ package androsa.gaiadimension.block;
 
 import androsa.gaiadimension.entity.IShockshooterMob;
 import androsa.gaiadimension.registry.bootstrap.GaiaDamage;
+import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
@@ -12,8 +13,15 @@ import net.minecraft.world.level.block.state.BlockState;
 
 public class StaticStoneBlock extends Block {
 
+    public static final MapCodec<? extends StaticStoneBlock> CODEC = simpleCodec(StaticStoneBlock::new);
+
     public StaticStoneBlock(Properties props) {
         super(props);
+    }
+
+    @Override
+    protected MapCodec<? extends Block> codec() {
+        return CODEC;
     }
 
     @Override

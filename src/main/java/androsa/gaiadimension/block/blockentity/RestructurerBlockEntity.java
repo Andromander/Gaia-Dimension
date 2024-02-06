@@ -112,6 +112,7 @@ public class RestructurerBlockEntity extends BaseContainerBlockEntity implements
         return new RestructurerMenu(id, inventory, this, slotsArray);
     }
 
+    //TODO: Problematic. Cache the Map somewhere
     /** Burn Times for the first slot */
     public static Map<Item, Integer> getFuelBurnTime() {
         Map<Item, Integer> map = Maps.newLinkedHashMap();
@@ -140,6 +141,7 @@ public class RestructurerBlockEntity extends BaseContainerBlockEntity implements
         return map;
     }
 
+    //TODO: Problematic. Cache the Map somewhere
     /** Burn times for the second slot */
     public static Map<Item, Integer> getSecondFuelBurnTime() {
         Map<Item, Integer> map = Maps.newLinkedHashMap();

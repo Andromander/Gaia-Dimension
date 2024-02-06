@@ -1,9 +1,12 @@
 package androsa.gaiadimension.client;
 
 import androsa.gaiadimension.GaiaDimensionMod;
+import androsa.gaiadimension.block.screen.*;
+import androsa.gaiadimension.item.inventory.GemPouchScreen;
 import androsa.gaiadimension.particle.*;
 import androsa.gaiadimension.registry.registration.*;
 import net.minecraft.client.RecipeBookCategories;
+import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.renderer.BiomeColors;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
@@ -21,6 +24,8 @@ import net.minecraftforge.client.event.RegisterParticleProvidersEvent;
 import net.minecraftforge.client.event.RegisterRecipeBookCategoriesEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
 
 import java.util.function.Supplier;
 
@@ -132,6 +137,17 @@ public class ClientEvents {
     public static void registerDimensionEffects(RegisterDimensionSpecialEffectsEvent event) {
         new GaiaSkyRender();
         event.register(new ResourceLocation(GaiaDimensionMod.MODID, "gaia"), new GaiaDimensionRenderInfo());
+    }
+
+    @SubscribeEvent
+    public static void registerScreens(RegisterMenuScreensEvent e) {
+        e.register(ModMenus.AGATE_CRAFTING_TABLE.get(), AgateCraftingScreen::new);
+        e.register(ModMenus.GAIA_STONE_FURNACE.get(), GaiaStoneFurnaceScreen::new);
+        e.register(ModMenus.GEMSTONE_POUCH.get(), GemPouchScreen::new);
+        e.register(ModMenus.SMALL_CRATE.get(), SmallCrateScreen::new);
+        e.register(ModMenus.LARGE_CRATE.get(), LargeCrateScreen::new);
+        e.register(ModMenus.RESTRUCTURER.get(), RestructurerScreen::new);
+        e.register(ModMenus.PURIFIER.get(), PurifierScreen::new);
     }
 
     public static void registerBlockRenderers() {

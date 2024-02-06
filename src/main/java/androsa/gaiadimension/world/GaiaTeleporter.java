@@ -2,9 +2,9 @@ package androsa.gaiadimension.world;
 
 import androsa.gaiadimension.GaiaDimensionMod;
 import androsa.gaiadimension.block.GaiaPortalBlock;
-import androsa.gaiadimension.registry.registration.ModPOIs;
-import androsa.gaiadimension.registry.registration.ModBlocks;
 import androsa.gaiadimension.registry.bootstrap.GaiaDimensions;
+import androsa.gaiadimension.registry.registration.ModBlocks;
+import androsa.gaiadimension.registry.registration.ModPOIs;
 import net.minecraft.BlockUtil;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -26,8 +26,8 @@ import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.level.portal.PortalInfo;
 import net.minecraft.world.level.portal.PortalShape;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.common.util.ITeleporter;
-import net.minecraftforge.fml.util.ObfuscationReflectionHelper;
+import net.neoforged.fml.util.ObfuscationReflectionHelper;
+import net.neoforged.neoforge.common.util.ITeleporter;
 
 import javax.annotation.Nullable;
 import java.lang.reflect.InvocationTargetException;
@@ -42,7 +42,7 @@ public class GaiaTeleporter implements ITeleporter {
     private static final Block KEYSTONE = ModBlocks.keystone_block.get();
     private final ServerLevel world;
 
-    private static final Method m_getRelativePortalPosition = ObfuscationReflectionHelper.findMethod(Entity.class, "m_7643_", Direction.Axis.class, BlockUtil.FoundRectangle.class);
+    private static final Method m_getRelativePortalPosition = ObfuscationReflectionHelper.findMethod(Entity.class, "getRelativePortalPosition", Direction.Axis.class, BlockUtil.FoundRectangle.class);
 
     public GaiaTeleporter(ServerLevel world) {
         this.world = world;
