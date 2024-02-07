@@ -7,10 +7,7 @@ import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 
-@OnlyIn(Dist.CLIENT)
 public class SmallCrateScreen extends AbstractContainerScreen<SmallCrateContainer> {
 
     private static final ResourceLocation textureLoc = new ResourceLocation(GaiaDimensionMod.MODID, "textures/gui/small_crate.png");
@@ -21,7 +18,7 @@ public class SmallCrateScreen extends AbstractContainerScreen<SmallCrateContaine
 
     @Override
     public void render(GuiGraphics stack, int mouseX, int mouseY, float partialTicks) {
-        this.renderBackground(stack);
+        this.renderBackground(stack, mouseX, mouseY, partialTicks);
         super.render(stack, mouseX, mouseY, partialTicks);
         this.renderTooltip(stack, mouseX, mouseY);
     }

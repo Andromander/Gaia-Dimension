@@ -18,8 +18,6 @@ import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 
 public class RestructurerMenu extends AbstractContainerMenu {
 
@@ -108,14 +106,12 @@ public class RestructurerMenu extends AbstractContainerMenu {
         return this.world.getRecipeManager().getRecipeFor(this.recipeType, new SimpleContainer(stack), this.world).isPresent();
     }
 
-    @OnlyIn(Dist.CLIENT)
     public int getTimeLeftScaled() {
         int time = this.slotsArray.get(2);
         int timeTotal = this.slotsArray.get(3);
         return timeTotal != 0 && time != 0 ? time * 24 / timeTotal : 0;
     }
 
-    @OnlyIn(Dist.CLIENT)
     public int getTimeLeft() {
         int recipes = this.slotsArray.get(1);
         if (recipes == 0) {
@@ -125,7 +121,6 @@ public class RestructurerMenu extends AbstractContainerMenu {
         return this.slotsArray.get(0) * 13 / recipes;
     }
 
-    @OnlyIn(Dist.CLIENT)
     public boolean isBurning() {
         return this.slotsArray.get(0) > 0;
     }

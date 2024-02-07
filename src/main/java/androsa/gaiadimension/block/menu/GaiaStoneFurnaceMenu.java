@@ -12,8 +12,6 @@ import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.item.crafting.SmeltingRecipe;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.AbstractFurnaceBlockEntity;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 
 public class GaiaStoneFurnaceMenu extends AbstractContainerMenu {
 
@@ -112,14 +110,12 @@ public class GaiaStoneFurnaceMenu extends AbstractContainerMenu {
         return AbstractFurnaceBlockEntity.isFuel(stack);
     }
 
-    @OnlyIn(Dist.CLIENT)
     public int getCookProgressionScaled() {
         int i = this.slotData.get(2);
         int j = this.slotData.get(3);
         return j != 0 && i != 0 ? i * 24 / j : 0;
     }
 
-    @OnlyIn(Dist.CLIENT)
     public int getBurnLeftScaled() {
         int i = this.slotData.get(1);
         if (i == 0) {
@@ -129,7 +125,6 @@ public class GaiaStoneFurnaceMenu extends AbstractContainerMenu {
         return this.slotData.get(0) * 13 / i;
     }
 
-    @OnlyIn(Dist.CLIENT)
     public boolean isBurning() {
         return this.slotData.get(0) > 0;
     }

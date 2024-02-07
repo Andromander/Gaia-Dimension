@@ -7,10 +7,7 @@ import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 
-@OnlyIn(Dist.CLIENT)
 public class GaiaStoneFurnaceScreen extends AbstractContainerScreen<GaiaStoneFurnaceMenu> {
 
     private static final ResourceLocation textureLoc = new ResourceLocation(GaiaDimensionMod.MODID, "textures/gui/gaia_stone_furnace.png");
@@ -35,7 +32,7 @@ public class GaiaStoneFurnaceScreen extends AbstractContainerScreen<GaiaStoneFur
 
     @Override
     public void render(GuiGraphics stack, int mouseX, int mouseZ, float partialTicks) {
-        this.renderBackground(stack);
+        this.renderBackground(stack, mouseX, mouseZ, partialTicks);
         super.render(stack, mouseX, mouseZ, partialTicks);
         this.renderTooltip(stack, mouseX, mouseZ);
     }

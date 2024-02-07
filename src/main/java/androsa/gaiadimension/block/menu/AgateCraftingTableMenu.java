@@ -12,10 +12,9 @@ import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.CraftingRecipe;
 import net.minecraft.world.item.crafting.Recipe;
+import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 
 import java.util.Optional;
 
@@ -63,11 +62,15 @@ public class AgateCraftingTableMenu extends RecipeBookMenu<CraftingContainer> {
         if (!world.isClientSide()) {
             ServerPlayer serverplayerentity = (ServerPlayer)playerentity;
             ItemStack itemstack = ItemStack.EMPTY;
-            Optional<CraftingRecipe> optional = world.getServer().getRecipeManager().getRecipeFor(RecipeType.CRAFTING, craft, world);
+            Optional<RecipeHolder<CraftingRecipe>> optional = world.getServer().getRecipeManager().getRecipeFor(RecipeType.CRAFTING, craft, world);
             if (optional.isPresent()) {
-                CraftingRecipe icraftingrecipe = optional.get();
+                RecipeHolder<CraftingRecipe> icraftingrecipe = optional.get();
+                CraftingRecipe crafting = icraftingrecipe.value();
                 if (result.setRecipeUsed(world, serverplayerentity, icraftingrecipe)) {
-                    itemstack = icraftingrecipe.assemble(craft, world.registryAccess());
+                    ItemStack assembled = crafting.assemble(craft, world.registryAccess());
+                    if (assembled.isItemEnabled(world.enabledFeatures())) {
+                        itemstack = assembled;
+                    }
                 }
             }
 
@@ -89,8 +92,8 @@ public class AgateCraftingTableMenu extends RecipeBookMenu<CraftingContainer> {
     }
 
     @Override
-    public boolean recipeMatches(Recipe<? super CraftingContainer> recipeIn) {
-        return recipeIn.matches(this.invCrafting, this.player.level());
+    public boolean recipeMatches(RecipeHolder<? extends Recipe<CraftingContainer>> recipeIn) {
+        return recipeIn.value().matches(this.invCrafting, this.player.level());
     }
 
     @Override
@@ -175,7 +178,6 @@ public class AgateCraftingTableMenu extends RecipeBookMenu<CraftingContainer> {
     }
 
     @Override
-    @OnlyIn(Dist.CLIENT)
     public int getSize() {
         return 10;
     }

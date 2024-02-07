@@ -7,10 +7,7 @@ import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 
-@OnlyIn(Dist.CLIENT)
 public class PurifierScreen extends AbstractContainerScreen<PurifierMenu> {
 
     private static final ResourceLocation textureLoc = new ResourceLocation(GaiaDimensionMod.MODID, "textures/gui/purifier.png");
@@ -24,7 +21,7 @@ public class PurifierScreen extends AbstractContainerScreen<PurifierMenu> {
 
     @Override
     public void render(GuiGraphics stack, int mouseX, int mouseY, float partialTicks) {
-        renderBackground(stack);
+        renderBackground(stack, mouseX, mouseY, partialTicks);
         super.render(stack, mouseX, mouseY, partialTicks);
         renderTooltip(stack, mouseX, mouseY);
     }
