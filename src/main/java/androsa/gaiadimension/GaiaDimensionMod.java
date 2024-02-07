@@ -46,7 +46,7 @@ public class GaiaDimensionMod {
         ModMenus.CONTAINERS.register(bus);
         ModTabs.CREATIVE_TABS.register(bus);
         ModPOIs.POI_TYPES.register(bus);
-        ModEffects.MOB_EFFECTS.register(modEventBus);
+        ModEffects.MOB_EFFECTS.register(bus);
         ModEntities.ENTITY_TYPES.register(modEventBus);
         ModFluids.FLUID_TYPES.register(modEventBus);
         ModFluids.FLUIDS.register(modEventBus);
