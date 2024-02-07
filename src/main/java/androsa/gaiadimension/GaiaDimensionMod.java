@@ -44,7 +44,7 @@ public class GaiaDimensionMod {
         GaiaBiomes.BIOMES.register(modEventBus);
         ModBlocks.BLOCKS.register(bus);
         ModMenus.CONTAINERS.register(bus);
-        ModTabs.CREATIVE_TABS.register(modEventBus);
+        ModTabs.CREATIVE_TABS.register(bus);
         ModPOIs.POI_TYPES.register(modEventBus);
         ModEffects.MOB_EFFECTS.register(modEventBus);
         ModEntities.ENTITY_TYPES.register(modEventBus);

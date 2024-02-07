@@ -7,8 +7,8 @@ import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.ItemLike;
-import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.RegistryObject;
+import net.neoforged.neoforge.registries.DeferredHolder;
+import net.neoforged.neoforge.registries.DeferredRegister;
 
 import java.util.function.Supplier;
 
@@ -16,7 +16,7 @@ public class ModTabs {
 
     public static final DeferredRegister<CreativeModeTab> CREATIVE_TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, GaiaDimensionMod.MODID);
 
-    public static final RegistryObject<CreativeModeTab> GAIA_BLOCKS = CREATIVE_TABS.register("gaia_blocks", () -> CreativeModeTab.builder()
+    public static final DeferredHolder<CreativeModeTab, CreativeModeTab> GAIA_BLOCKS = CREATIVE_TABS.register("gaia_blocks", () -> CreativeModeTab.builder()
             .title(Component.translatable("itemGroup.gaiadimension.gaia_blocks"))
             .icon(() -> new ItemStack(ModBlocks.glitter_grass.get()))
             .displayItems((parameters, output) -> {
@@ -72,7 +72,7 @@ public class ModTabs {
             }).build());
 
     //Tab for generic Items
-    public static final RegistryObject<CreativeModeTab> GAIA_ITEMS = CREATIVE_TABS.register("gaia_items", () -> CreativeModeTab.builder()
+    public static final DeferredHolder<CreativeModeTab, CreativeModeTab> GAIA_ITEMS = CREATIVE_TABS.register("gaia_items", () -> CreativeModeTab.builder()
             .title(Component.translatable("itemGroup.gaiadimension.gaia_items"))
             .withTabsBefore(GAIA_BLOCKS.getId())
             .icon(() -> new ItemStack(ModItems.hematite.get()))
@@ -102,7 +102,7 @@ public class ModTabs {
 
     //Tab for Tools, including Swords. Basically anything able to be used in combat
     //Yes, I'm saying that Hoes can be used for combat
-    public static final RegistryObject<CreativeModeTab> GAIA_TOOLS = CREATIVE_TABS.register("gaia_tools", () -> CreativeModeTab.builder()
+    public static final DeferredHolder<CreativeModeTab, CreativeModeTab> GAIA_TOOLS = CREATIVE_TABS.register("gaia_tools", () -> CreativeModeTab.builder()
             .title(Component.translatable("itemGroup.gaiadimension.gaia_tools"))
             .withTabsBefore(GAIA_ITEMS.getId())
             .icon(() -> new ItemStack(ModItems.gaia_champion_sword.get()))
@@ -120,7 +120,7 @@ public class ModTabs {
 
     //Tab for anything wearable
     //Look, I'm just going to say that I will not look at Baubles, but decorative Armor
-    public static final RegistryObject<CreativeModeTab> GAIA_ARMOR = CREATIVE_TABS.register("gaia_armor", () -> CreativeModeTab.builder()
+    public static final DeferredHolder<CreativeModeTab, CreativeModeTab> GAIA_ARMOR = CREATIVE_TABS.register("gaia_armor", () -> CreativeModeTab.builder()
             .title(Component.translatable("itemGroup.gaiadimension.gaia_armor"))
             .withTabsBefore(GAIA_TOOLS.getId())
             .icon(() -> new ItemStack(ModItems.gaia_champion_helm.get()))
