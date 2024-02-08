@@ -14,9 +14,12 @@ import net.minecraft.world.entity.MobType;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.DistExecutor;
+import net.neoforged.fml.ModLoadingContext;
 import net.neoforged.fml.common.Mod;
+import net.neoforged.fml.config.ModConfig;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.neoforged.neoforge.common.ModConfigSpec;
 import org.apache.commons.lang3.tuple.Pair;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -54,7 +57,7 @@ public class GaiaDimensionMod {
         ModParticles.PARTICLE_TYPES.register(bus);
         ModRecipes.RECIPE_TYPES.register(bus);
         ModRecipes.RECIPE_SERIALIZERS.register(bus);
-        ModBlockEntities.TILE_ENTITIES.register(modEventBus);
+        ModBlockEntities.TILE_ENTITIES.register(bus);
         ModStructures.STRUCTURE_PIECES.register(modEventBus);
         ModStructures.STRUCTURE_PROCESSORS.register(modEventBus);
         ModStructures.STRUCTURE_TYPES.register(modEventBus);
@@ -65,8 +68,8 @@ public class GaiaDimensionMod {
         ModWorldgen.TRUNK_PLACERS.register(modEventBus);
         ModWorldgen.WORLD_CARVERS.register(modEventBus);
 
-        final Pair<GaiaConfig.ClientConfig, ForgeConfigSpec> specPairC = new ForgeConfigSpec.Builder().configure(GaiaConfig.ClientConfig::new);
-        final Pair<GaiaConfig.CommonConfig, ForgeConfigSpec> specPairB = new ForgeConfigSpec.Builder().configure(GaiaConfig.CommonConfig::new);
+        final Pair<GaiaConfig.ClientConfig, ModConfigSpec> specPairC = new ModConfigSpec.Builder().configure(GaiaConfig.ClientConfig::new);
+        final Pair<GaiaConfig.CommonConfig, ModConfigSpec> specPairB = new ModConfigSpec.Builder().configure(GaiaConfig.CommonConfig::new);
         ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, specPairC.getRight());
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, specPairB.getRight());
         clientConfig = specPairC.getLeft();

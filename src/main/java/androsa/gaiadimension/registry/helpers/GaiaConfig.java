@@ -6,16 +6,18 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.biome.Biome;
-import net.minecraftforge.common.ForgeConfigSpec;
-import net.minecraftforge.event.server.ServerStartingEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.event.config.ModConfigEvent;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.Mod;
+import net.neoforged.fml.event.config.ModConfigEvent;
+import net.neoforged.neoforge.common.ModConfigSpec;
+import net.neoforged.neoforge.common.ModConfigSpec.BooleanValue;
+import net.neoforged.neoforge.common.ModConfigSpec.Builder;
+import net.neoforged.neoforge.common.ModConfigSpec.ConfigValue;
+import net.neoforged.neoforge.common.ModConfigSpec.EnumValue;
+import net.neoforged.neoforge.event.server.ServerStartingEvent;
 
 import java.util.Collections;
 import java.util.List;
-
-import static net.minecraftforge.common.ForgeConfigSpec.*;
 
 public class GaiaConfig {
     private static final String config = GaiaDimensionMod.MODID + ".config.";
@@ -88,7 +90,7 @@ public class GaiaConfig {
         @SubscribeEvent
         public static void onConfigChanged(ModConfigEvent.Reloading event) {
             if (event.getConfig().getModId().equals(GaiaDimensionMod.MODID)) {
-                if (event.getConfig().getSpec() instanceof ForgeConfigSpec forgeSpec) {
+                if (event.getConfig().getSpec() instanceof ModConfigSpec forgeSpec) {
                     if (forgeSpec.isLoaded()) {
                         GaiaDimensionMod.LOGGER.debug("""
                                 ForgeConfigSpec is: {}.
