@@ -11,5 +11,5 @@ public class ModEffects {
 
     public static final DeferredRegister<MobEffect> MOB_EFFECTS = DeferredRegister.create(Registries.MOB_EFFECT, GaiaDimensionMod.MODID);
 
-    public static final DeferredHolder<MobEffect, MobEffect> goldstone_plague = MOB_EFFECTS.register("goldstone_plague", () -> new CorruptionEffect(0xF68414, 4.0D));
+    public static final DeferredHolder<MobEffect, MobEffect> goldstone_plague = MOB_EFFECTS.register("goldstone_plague", () -> new CorruptionEffect(0xF68414));
 }
