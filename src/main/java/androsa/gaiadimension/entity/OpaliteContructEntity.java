@@ -35,7 +35,7 @@ import net.minecraft.world.level.block.LeavesBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.pathfinder.BlockPathTypes;
 import net.minecraft.world.level.pathfinder.WalkNodeEvaluator;
-import net.minecraftforge.common.ForgeHooks;
+import net.neoforged.neoforge.common.CommonHooks;
 
 import javax.annotation.Nullable;
 import java.util.EnumSet;
@@ -329,7 +329,7 @@ public class OpaliteContructEntity extends PathfinderMob {
 
     @Override
     public void die(DamageSource source) {
-        if (ForgeHooks.onLivingDeath(this, source)) return;
+        if (CommonHooks.onLivingDeath(this, source)) return;
 
         if (this.level() instanceof ServerLevel level && this.getMookaiteCompanion() != null) {
             Entity entity = level.getEntity(this.getMookaiteCompanion());

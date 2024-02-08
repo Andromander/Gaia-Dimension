@@ -40,7 +40,7 @@ import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.common.ForgeHooks;
+import net.neoforged.neoforge.common.CommonHooks;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.*;
@@ -415,7 +415,7 @@ public class MookaiteConstructEntity extends PathfinderMob {
 
     @Override
     public void die(DamageSource source) {
-        if (ForgeHooks.onLivingDeath(this, source)) return;
+        if (CommonHooks.onLivingDeath(this, source)) return;
 
         if (this.level() instanceof ServerLevel level && this.getOpaliteCompanion() != null) {
             Entity entity = level.getEntity(this.getOpaliteCompanion());

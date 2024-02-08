@@ -29,7 +29,7 @@ import net.minecraft.world.level.block.LeavesBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.pathfinder.BlockPathTypes;
 import net.minecraft.world.level.pathfinder.WalkNodeEvaluator;
-import net.minecraftforge.common.ForgeHooks;
+import net.neoforged.neoforge.common.CommonHooks;
 
 import javax.annotation.Nullable;
 import java.util.EnumSet;
@@ -176,7 +176,7 @@ public class MalachiteDroneEntity extends Monster {
 
     @Override
     public void die(DamageSource source) {
-        if (ForgeHooks.onLivingDeath(this,  source)) //The event was cancelled, therefore do not decrease the Guard's tracker.
+        if (CommonHooks.onLivingDeath(this,  source)) //The event was cancelled, therefore do not decrease the Guard's tracker.
             return;
 
         if (level() instanceof ServerLevel server) {

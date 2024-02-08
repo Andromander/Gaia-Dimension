@@ -36,7 +36,9 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.event.ForgeEventFactory;
+import net.neoforged.neoforge.common.NeoForgeMod;
+import net.neoforged.neoforge.event.EventHooks;
+import net.neoforged.neoforge.fluids.FluidType;
 
 import javax.annotation.Nullable;
 import java.util.EnumSet;
@@ -58,7 +60,6 @@ public class MalachiteGuardEntity extends Monster {
     public MalachiteGuardEntity(EntityType<? extends MalachiteGuardEntity> entity, Level world) {
         super(entity, world);
         this.xpReward = 75;
-        this.setMaxUpStep(1.5F);
     }
 
     public static AttributeSupplier.Builder registerAttributes() {
@@ -66,7 +67,8 @@ public class MalachiteGuardEntity extends Monster {
                 .add(Attributes.MAX_HEALTH, 200.0D)
                 .add(Attributes.ATTACK_DAMAGE, 5.0D)
                 .add(Attributes.MOVEMENT_SPEED, 0.6D)
-                .add(Attributes.ATTACK_KNOCKBACK, 2.0D);
+                .add(Attributes.ATTACK_KNOCKBACK, 2.0D)
+                .add(NeoForgeMod.STEP_HEIGHT.value(), 1.5F);
     }
 
     /**
@@ -299,7 +301,7 @@ public class MalachiteGuardEntity extends Monster {
         MalachiteDroneEntity drone = new MalachiteDroneEntity(ModEntities.MALACHITE_DRONE.get(), this.level());
         drone.moveTo(pos, 0.0F, 0.0F);
         if (!level().isClientSide()) {
-            ForgeEventFactory.onFinalizeSpawn(drone, (ServerLevelAccessor)this.level(), this.level().getCurrentDifficultyAt(pos), MobSpawnType.MOB_SUMMONED, null, null);
+            EventHooks.onFinalizeSpawn(drone, (ServerLevelAccessor)this.level(), this.level().getCurrentDifficultyAt(pos), MobSpawnType.MOB_SUMMONED, null, null);
         }
         drone.setOwner(this);
         this.level().addFreshEntity(drone);
@@ -362,8 +364,8 @@ public class MalachiteGuardEntity extends Monster {
     }
 
     @Override
-    public boolean canBreatheUnderwater() {
-        return true;
+    public boolean canDrownInFluidType(FluidType type) {
+        return false;
     }
 
     @Override

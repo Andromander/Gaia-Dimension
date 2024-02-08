@@ -19,10 +19,8 @@ import net.minecraft.world.entity.animal.WaterAnimal;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.common.ForgeMod;
-import net.minecraftforge.fluids.FluidType;
+import net.neoforged.neoforge.common.NeoForgeMod;
+import net.neoforged.neoforge.fluids.FluidType;
 
 import javax.annotation.Nullable;
 
@@ -52,12 +50,12 @@ public class ShallowArenthisEntity extends WaterAnimal {
 
     @Override
     public boolean canSwimInFluidType(FluidType type) {
-        return type == ModFluids.MINERAL_WATER.get() || type == ForgeMod.WATER_TYPE.get();
+        return type == ModFluids.MINERAL_WATER.get() || type == NeoForgeMod.WATER_TYPE.value();
     }
 
     @Override
     public boolean canDrownInFluidType(FluidType type) {
-        return type != ModFluids.MINERAL_WATER.get() && type != ForgeMod.WATER_TYPE.get();
+        return type != ModFluids.MINERAL_WATER.get() && type != NeoForgeMod.WATER_TYPE.value();
     }
 
     @Override
@@ -174,7 +172,6 @@ public class ShallowArenthisEntity extends WaterAnimal {
     }
 
     @Override
-    @OnlyIn(Dist.CLIENT)
     public void handleEntityEvent(byte id) {
         if (id == 19) {
             this.arenthisRotation = 0.0F;

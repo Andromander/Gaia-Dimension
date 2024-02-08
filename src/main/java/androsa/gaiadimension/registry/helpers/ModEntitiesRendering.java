@@ -8,13 +8,13 @@ import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.builders.CubeDeformation;
 import net.minecraft.client.renderer.entity.NoopRenderer;
 import net.minecraft.client.renderer.entity.ThrownItemRenderer;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.client.event.EntityRenderersEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.registries.ForgeRegistries;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.Mod;
+import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 
 @Mod.EventBusSubscriber(modid = GaiaDimensionMod.MODID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
 public class ModEntitiesRendering {
@@ -63,18 +63,18 @@ public class ModEntitiesRendering {
     }
 
     public static ResourceLocation makeTexture(Entity entity, String path) {
-        String name = ForgeRegistries.ENTITY_TYPES.getKey(entity.getType()).getPath();
+        String name = BuiltInRegistries.ENTITY_TYPE.getKey(entity.getType()).getPath();
         String dir = path.isEmpty() ? name : name + "_" + path;
         return makeTexture(name + "/" + dir);
     }
 
     public static ResourceLocation makeTextureNoPrefix(Entity entity, String path) {
-        String name = ForgeRegistries.ENTITY_TYPES.getKey(entity.getType()).getPath();
+        String name = BuiltInRegistries.ENTITY_TYPE.getKey(entity.getType()).getPath();
         return makeTexture(name + "/" + path);
     }
 
     public static ResourceLocation makeTexture(Entity entity) {
-        return makeTexture(ForgeRegistries.ENTITY_TYPES.getKey(entity.getType()).getPath());
+        return makeTexture(BuiltInRegistries.ENTITY_TYPE.getKey(entity.getType()).getPath());
     }
 
     public static ResourceLocation makeTexture(String path) {
