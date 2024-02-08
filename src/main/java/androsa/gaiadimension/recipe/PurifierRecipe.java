@@ -4,7 +4,6 @@ import androsa.gaiadimension.registry.registration.ModBlocks;
 import androsa.gaiadimension.registry.registration.ModRecipes;
 import net.minecraft.core.NonNullList;
 import net.minecraft.core.RegistryAccess;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.Container;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
@@ -14,7 +13,6 @@ import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
 
 public class PurifierRecipe implements Recipe<Container> {
-    protected final ResourceLocation id;
     protected final String group;
     protected final Ingredient ingredient;
     protected final ItemStack result;
@@ -22,8 +20,7 @@ public class PurifierRecipe implements Recipe<Container> {
     protected final float experience;
     protected final int cookTime;
 
-    public PurifierRecipe(ResourceLocation idIn, String groupIn, Ingredient ingredientIn, ItemStack resultIn, ItemStack byproductIn, float experienceIn, int cookTimeIn) {
-        this.id = idIn;
+    public PurifierRecipe(String groupIn, Ingredient ingredientIn, ItemStack resultIn, ItemStack byproductIn, float experienceIn, int cookTimeIn) {
         this.group = groupIn;
         this.ingredient = ingredientIn;
         this.result = resultIn;
@@ -85,11 +82,6 @@ public class PurifierRecipe implements Recipe<Container> {
     }
 
     @Override
-    public ResourceLocation getId() {
-        return this.id;
-    }
-
-    @Override
     public RecipeType<?> getType() {
         return ModRecipes.PURIFYING.get();
     }
@@ -97,5 +89,9 @@ public class PurifierRecipe implements Recipe<Container> {
     @Override
     public RecipeSerializer<?> getSerializer() {
         return ModRecipes.PURIFYING_SERIALIZER.get();
+    }
+
+    public interface EntityFactory<T extends PurifierRecipe> {
+        T create(String group, Ingredient ingredientIn, ItemStack outputIn, ItemStack byproductIn, float experienceIn, int timeIn);
     }
 }

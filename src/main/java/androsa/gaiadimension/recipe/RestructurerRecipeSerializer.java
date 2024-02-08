@@ -1,69 +1,44 @@
 package androsa.gaiadimension.recipe;
 
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
+import com.mojang.serialization.Codec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.util.GsonHelper;
+import net.minecraft.util.ExtraCodecs;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
-import net.minecraft.world.item.crafting.ShapedRecipe;
-import net.minecraftforge.registries.ForgeRegistries;
 
 public class RestructurerRecipeSerializer<T extends RestructurerRecipe> implements RecipeSerializer<T> {
-    private final int cookTime;
-    private final RestructurerRecipeSerializer.EntityFactory<T> factory;
+    private final RestructurerRecipe.EntityFactory<T> factory;
+    private final Codec<T> codec;
 
-    public RestructurerRecipeSerializer(RestructurerRecipeSerializer.EntityFactory<T> factoryIn, int timeIn) {
-        this.cookTime = timeIn;
+    public RestructurerRecipeSerializer(RestructurerRecipe.EntityFactory<T> factoryIn, int timeIn) {
+        this.codec = RecordCodecBuilder.create(
+                instance -> instance.group(
+                        ExtraCodecs.strictOptionalField(Codec.STRING, "group", "").forGetter(obj -> obj.group),
+                        Ingredient.CODEC_NONEMPTY.fieldOf("ingredient").forGetter(obj -> obj.ingredient),
+                        ItemStack.ITEM_WITH_COUNT_CODEC.fieldOf("result").forGetter(obj -> obj.result),
+                        ItemStack.ITEM_WITH_COUNT_CODEC.fieldOf("byproduct").forGetter(obj -> obj.byproduct),
+                        Codec.FLOAT.fieldOf("experience").orElse(0.0F).forGetter(obj -> obj.experience),
+                        Codec.INT.fieldOf("cookingtime").orElse(timeIn).forGetter(obj -> obj.cookTime)
+                ).apply(instance, factoryIn::create));
         this.factory = factoryIn;
     }
 
     @Override
-    public T fromJson(ResourceLocation recipeId, JsonObject json) {
-        String s = GsonHelper.getAsString(json, "group", "");
-        JsonElement jsonelement = GsonHelper.isArrayNode(json, "ingredient") ? GsonHelper.getAsJsonArray(json, "ingredient") : GsonHelper.getAsJsonObject(json, "ingredient");
-        Ingredient ingredient = Ingredient.fromJson(jsonelement);
-
-        //RESULT
-        if (!json.has("result"))
-            throw new com.google.gson.JsonSyntaxException("Missing result, expected to find a string or object");
-        ItemStack resultStack;
-        if (json.get("result").isJsonObject())
-            resultStack = ShapedRecipe.itemStackFromJson(GsonHelper.getAsJsonObject(json, "result"));
-        else {
-            String s1 = GsonHelper.getAsString(json, "result");
-            ResourceLocation resourcelocation = new ResourceLocation(s1);
-            resultStack = new ItemStack(ForgeRegistries.ITEMS.getDelegate(resourcelocation).orElseThrow(() -> new IllegalStateException("Item: " + s1 + " does not exist")));
-        }
-
-        //BYPRODUCT
-        if (!json.has("byproduct"))
-            throw new com.google.gson.JsonSyntaxException("Missing result, expected to find a string or object");
-        ItemStack byStack;
-        if (json.get("byproduct").isJsonObject())
-            byStack = ShapedRecipe.itemStackFromJson(GsonHelper.getAsJsonObject(json, "byproduct"));
-        else {
-            String s2 = GsonHelper.getAsString(json, "byproduct");
-            ResourceLocation resourcelocation = new ResourceLocation(s2);
-            byStack = new ItemStack(ForgeRegistries.ITEMS.getDelegate(resourcelocation).orElseThrow(() -> new IllegalStateException("Item: " + s2 + " does not exist")));
-        }
-
-        float f = GsonHelper.getAsFloat(json, "experience", 0.0F);
-        int i = GsonHelper.getAsInt(json, "cookingtime", this.cookTime);
-        return this.factory.create(recipeId, s, ingredient, resultStack, byStack, f, i);
+    public Codec<T> codec() {
+        return this.codec;
     }
 
     @Override
-    public T fromNetwork(ResourceLocation recipeId, FriendlyByteBuf buffer) {
+    public T fromNetwork(FriendlyByteBuf buffer) {
         String s = buffer.readUtf(32767);
         Ingredient ingredient = Ingredient.fromNetwork(buffer);
         ItemStack itemstack = buffer.readItem();
         ItemStack itemstack1 = buffer.readItem();
         float f = buffer.readFloat();
         int i = buffer.readVarInt();
-        return this.factory.create(recipeId, s, ingredient, itemstack, itemstack1, f, i);
+        return this.factory.create(s, ingredient, itemstack, itemstack1, f, i);
     }
 
     @Override
@@ -76,7 +51,7 @@ public class RestructurerRecipeSerializer<T extends RestructurerRecipe> implemen
         buffer.writeVarInt(recipe.cookTime);
     }
 
-    public interface EntityFactory<T extends RestructurerRecipe> {
-        T create(ResourceLocation id, String group, Ingredient ingredientIn, ItemStack outputIn, ItemStack byproductIn, float experienceIn, int timeIn);
+    public RestructurerRecipe create(String group, Ingredient input, ItemStack output, ItemStack byproduct, float experience, int time) {
+        return this.factory.create(group, input, output, byproduct, experience, time);
     }
 }

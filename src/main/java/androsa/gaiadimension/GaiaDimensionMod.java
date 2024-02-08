@@ -52,8 +52,8 @@ public class GaiaDimensionMod {
         ModFluids.FLUIDS.register(bus);
         ModItems.ITEMS.register(bus);
         ModParticles.PARTICLE_TYPES.register(bus);
-        ModRecipes.RECIPE_TYPES.register(modEventBus);
-        ModRecipes.RECIPE_SERIALIZERS.register(modEventBus);
+        ModRecipes.RECIPE_TYPES.register(bus);
+        ModRecipes.RECIPE_SERIALIZERS.register(bus);
         ModBlockEntities.TILE_ENTITIES.register(modEventBus);
         ModStructures.STRUCTURE_PIECES.register(modEventBus);
         ModStructures.STRUCTURE_PROCESSORS.register(modEventBus);

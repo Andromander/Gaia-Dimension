@@ -327,7 +327,7 @@ public class PurifierBlockEntity extends BaseContainerBlockEntity implements Wor
     }
 
     private static int cookingTime(Level level, Container container) {
-        return level.getRecipeManager().getRecipeFor(ModRecipes.PURIFYING.get(), container, level).map(PurifierRecipe::getCookTime).orElse(200);
+        return level.getRecipeManager().getRecipeFor(ModRecipes.PURIFYING.get(), container, level).map(recipe -> recipe.value().getCookTime()).orElse(200);
     }
 
     public static boolean isItemFuel(ItemStack stack) {

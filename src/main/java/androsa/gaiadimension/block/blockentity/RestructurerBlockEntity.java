@@ -349,7 +349,7 @@ public class RestructurerBlockEntity extends BaseContainerBlockEntity implements
     }
 
     private static int cookingTime(Level level, Container container) {
-        return level.getRecipeManager().getRecipeFor(ModRecipes.RESTRUCTURING.get(), container, level).map(RestructurerRecipe::getCookTime).orElse(200);
+        return level.getRecipeManager().getRecipeFor(ModRecipes.RESTRUCTURING.get(), container, level).map(recipe -> recipe.value().getCookTime()).orElse(200);
     }
 
     public static boolean isItemFuel(ItemStack stack) {
