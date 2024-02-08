@@ -6,8 +6,6 @@ import net.minecraft.client.particle.ParticleProvider;
 import net.minecraft.client.particle.SmokeParticle;
 import net.minecraft.client.particle.SpriteSet;
 import net.minecraft.core.particles.SimpleParticleType;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 
 public class GeyserSmokeParticle extends SmokeParticle {
 
@@ -15,7 +13,6 @@ public class GeyserSmokeParticle extends SmokeParticle {
         super(world, x, y, z, vX, vY, vZ, 4.0F, sprite);
     }
 
-    @OnlyIn(Dist.CLIENT)
     public static class Factory implements ParticleProvider<SimpleParticleType> {
         private final SpriteSet spriteSet;
 
