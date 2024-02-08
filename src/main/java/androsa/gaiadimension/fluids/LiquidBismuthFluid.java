@@ -6,9 +6,9 @@ import net.minecraft.tags.FluidTags;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.material.FluidState;
-import net.minecraftforge.fluids.ForgeFlowingFluid;
+import net.neoforged.neoforge.fluids.BaseFlowingFluid;
 
-public abstract class LiquidBismuthFluid extends ForgeFlowingFluid {
+public abstract class LiquidBismuthFluid extends BaseFlowingFluid {
 
     public LiquidBismuthFluid(Properties props) {
         super(props);

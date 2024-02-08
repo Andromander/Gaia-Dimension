@@ -16,11 +16,9 @@ import net.minecraft.world.level.block.LevelEvent;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.material.FluidState;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.fluids.ForgeFlowingFluid;
+import net.neoforged.neoforge.fluids.BaseFlowingFluid;
 
-public abstract class SuperhotMagmaFluid extends ForgeFlowingFluid {
+public abstract class SuperhotMagmaFluid extends BaseFlowingFluid {
 
     public SuperhotMagmaFluid(Properties props) {
         super(props);
@@ -38,7 +36,6 @@ public abstract class SuperhotMagmaFluid extends ForgeFlowingFluid {
     }
 
     @Override
-    @OnlyIn(Dist.CLIENT)
     public void animateTick(Level worldIn, BlockPos pos, FluidState state, RandomSource random) {
         BlockPos blockpos = pos.above();
         if (worldIn.getBlockState(blockpos).isAir() && !worldIn.getBlockState(blockpos).isSolidRender(worldIn, blockpos)) {

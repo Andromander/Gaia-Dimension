@@ -7,7 +7,10 @@ import androsa.gaiadimension.registry.registration.ModItems;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvents;
 import net.neoforged.neoforge.common.NeoForgeMod;
+import net.neoforged.neoforge.common.SoundActions;
+import net.neoforged.neoforge.fluids.BaseFlowingFluid;
 import net.neoforged.neoforge.fluids.FluidInteractionRegistry;
+import net.neoforged.neoforge.fluids.FluidType;
 
 import java.util.function.Supplier;
 
@@ -72,34 +75,34 @@ public class GaiaFluidAttributes {
                     .sound(SoundActions.FLUID_VAPORIZE, SoundEvents.FIRE_EXTINGUISH)
                     .viscosity(1500);
 
-    public static final Supplier<ForgeFlowingFluid.Properties> mineral_water_properties =
-            () -> new ForgeFlowingFluid.Properties(() -> ModFluids.MINERAL_WATER.get(), () -> ModFluids.mineral_water_still.get(), () -> ModFluids.mineral_water_flow.get())
+    public static final Supplier<BaseFlowingFluid.Properties> mineral_water_properties =
+            () -> new BaseFlowingFluid.Properties(() -> ModFluids.MINERAL_WATER.get(), () -> ModFluids.mineral_water_still.get(), () -> ModFluids.mineral_water_flow.get())
                     .block(ModBlocks.mineral_water)
                     .bucket(ModItems.mineral_water_bucket)
                     .explosionResistance(100.0F);
-    public static final Supplier<ForgeFlowingFluid.Properties> superhot_magma_properties =
-            () -> new ForgeFlowingFluid.Properties(() -> ModFluids.SUPERHOT_MAGMA.get(), () -> ModFluids.superhot_magma_still.get(), () -> ModFluids.superhot_magma_flow.get())
+    public static final Supplier<BaseFlowingFluid.Properties> superhot_magma_properties =
+            () -> new BaseFlowingFluid.Properties(() -> ModFluids.SUPERHOT_MAGMA.get(), () -> ModFluids.superhot_magma_still.get(), () -> ModFluids.superhot_magma_flow.get())
                     .block(ModBlocks.superhot_magma)
                     .bucket(ModItems.superhot_magma_bucket)
                     .explosionResistance(100.0F)
                     .slopeFindDistance(2)
                     .tickRate(30);
-    public static final Supplier<ForgeFlowingFluid.Properties> sweet_muck_properties =
-            () -> new ForgeFlowingFluid.Properties(() -> ModFluids.SWEET_MUCK.get(), () -> ModFluids.sweet_muck_still.get(), () -> ModFluids.sweet_muck_flow.get())
+    public static final Supplier<BaseFlowingFluid.Properties> sweet_muck_properties =
+            () -> new BaseFlowingFluid.Properties(() -> ModFluids.SWEET_MUCK.get(), () -> ModFluids.sweet_muck_still.get(), () -> ModFluids.sweet_muck_flow.get())
                     .block(ModBlocks.sweet_muck)
                     .bucket(ModItems.sweet_muck_bucket)
                     .explosionResistance(100.0F)
                     .slopeFindDistance(2)
                     .tickRate(20);
-    public static final Supplier<ForgeFlowingFluid.Properties> liquid_bismuth_properties =
-            () -> new ForgeFlowingFluid.Properties(() -> ModFluids.LIQUID_BISMUTH.get(), () -> ModFluids.liquid_bismuth_still.get(), () -> ModFluids.liquid_bismuth_flow.get())
+    public static final Supplier<BaseFlowingFluid.Properties> liquid_bismuth_properties =
+            () -> new BaseFlowingFluid.Properties(() -> ModFluids.LIQUID_BISMUTH.get(), () -> ModFluids.liquid_bismuth_still.get(), () -> ModFluids.liquid_bismuth_flow.get())
                     .block(ModBlocks.liquid_bismuth)
                     .bucket(ModItems.liquid_bismuth_bucket)
                     .explosionResistance(100.0F)
                     .slopeFindDistance(3)
                     .tickRate(20);
-    public static final Supplier<ForgeFlowingFluid.Properties> liquid_aura_properties =
-            () -> new ForgeFlowingFluid.Properties(() -> ModFluids.LIQUID_AURA.get(), () -> ModFluids.liquid_aura_still.get(), () -> ModFluids.liquid_aura_flow.get())
+    public static final Supplier<BaseFlowingFluid.Properties> liquid_aura_properties =
+            () -> new BaseFlowingFluid.Properties(() -> ModFluids.LIQUID_AURA.get(), () -> ModFluids.liquid_aura_still.get(), () -> ModFluids.liquid_aura_flow.get())
                     .block(ModBlocks.liquid_aura)
                     .bucket(ModItems.liquid_aura_bucket)
                     .explosionResistance(100.0F);
