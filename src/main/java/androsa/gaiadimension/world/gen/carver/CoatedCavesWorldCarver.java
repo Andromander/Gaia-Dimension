@@ -30,6 +30,7 @@ import java.util.function.Function;
 
 public class CoatedCavesWorldCarver<T extends CaveCarverConfiguration> extends WorldCarver<T> {
 
+    //TODO: these caves used to generate with glitter blocks but then they...didn't. Bring that back.
     public CoatedCavesWorldCarver(Codec<T> config) {
         super(config);
         liquids = ImmutableSet.of(ModFluids.mineral_water_still.get());

@@ -36,7 +36,7 @@ public class ModWorldgen {
 	public static final DeferredRegister<Feature<?>> FEATURES = DeferredRegister.create(ForgeRegistries.FEATURES, GaiaDimensionMod.MODID);
     public static final DeferredRegister<FoliagePlacerType<?>> FOLIAGE_PLACERS = DeferredRegister.create(Registries.FOLIAGE_PLACER_TYPE, GaiaDimensionMod.MODID);
     public static final DeferredRegister<TrunkPlacerType<?>> TRUNK_PLACERS = DeferredRegister.create(Registries.TRUNK_PLACER_TYPE, GaiaDimensionMod.MODID);
-	public static final DeferredRegister<WorldCarver<?>> WORLD_CARVERS = DeferredRegister.create(ForgeRegistries.WORLD_CARVERS, GaiaDimensionMod.MODID);
+	public static final DeferredRegister<WorldCarver<?>> WORLD_CARVERS = DeferredRegister.create(Registries.CARVER, GaiaDimensionMod.MODID);
 
     //Trunk
     public static final DeferredHolder<TrunkPlacerType<?>, TrunkPlacerType<?>> THICK_TRUNK_PLACER = TRUNK_PLACERS.register("thick_trunk_placer", () -> new TrunkPlacerType<>(ThickTrunkPlacer.CODEC));
@@ -90,8 +90,8 @@ public class ModWorldgen {
             new MookaiteMoundFeature(NoneFeatureConfiguration.CODEC));
 
     //WorldCarver
-    public static final RegistryObject<WorldCarver<CaveCarverConfiguration>> CRYSTAL_CAVES = WORLD_CARVERS.register("crystal_caves", () ->
+    public static final DeferredHolder<WorldCarver<?>, WorldCarver<CaveCarverConfiguration>> CRYSTAL_CAVES = WORLD_CARVERS.register("crystal_caves", () ->
 			new CoatedCavesWorldCarver<>(CaveCarverConfiguration.CODEC));
-    public static final RegistryObject<WorldCarver<CaveCarverConfiguration>> CHASMS = WORLD_CARVERS.register("chasms", () ->
+    public static final DeferredHolder<WorldCarver<?>, WorldCarver<CaveCarverConfiguration>> CHASMS = WORLD_CARVERS.register("chasms", () ->
 			new ChasmsWorldCarver<>(CaveCarverConfiguration.CODEC));
 }
