@@ -27,9 +27,8 @@ import net.minecraft.world.level.levelgen.feature.configurations.TreeConfigurati
 import net.minecraft.world.level.levelgen.feature.foliageplacers.FoliagePlacerType;
 import net.minecraft.world.level.levelgen.feature.treedecorators.TreeDecoratorType;
 import net.minecraft.world.level.levelgen.feature.trunkplacers.TrunkPlacerType;
-import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.RegistryObject;
+import net.neoforged.neoforge.registries.DeferredHolder;
+import net.neoforged.neoforge.registries.DeferredRegister;
 
 public class ModWorldgen {
 
@@ -40,10 +39,10 @@ public class ModWorldgen {
 	public static final DeferredRegister<WorldCarver<?>> WORLD_CARVERS = DeferredRegister.create(ForgeRegistries.WORLD_CARVERS, GaiaDimensionMod.MODID);
 
     //Trunk
-    public static final RegistryObject<TrunkPlacerType<?>> THICK_TRUNK_PLACER = TRUNK_PLACERS.register("thick_trunk_placer", () -> new TrunkPlacerType<>(ThickTrunkPlacer.CODEC));
-    public static final RegistryObject<TrunkPlacerType<?>> FOUR_BRANCH_TRUNK_PLACER = TRUNK_PLACERS.register("four_branch_trunk_placer", () -> new TrunkPlacerType<>(FourBranchTrunkPlacer.CODEC));
-    public static final RegistryObject<TrunkPlacerType<?>> CARDINAL_TRUNK_PLACER = TRUNK_PLACERS.register("cardinal_trunk_placer", () -> new TrunkPlacerType<>(CardinalTrunkPlacer.CODEC));
-    public static final RegistryObject<TrunkPlacerType<?>> VARYING_FOUR_BRANCH_TRUNK_PLACER = TRUNK_PLACERS.register("varying_four_branch_trunk_placer", () -> new TrunkPlacerType<>(VaryingFourBranchTrunkPlacer.CODEC));
+    public static final DeferredHolder<TrunkPlacerType<?>, TrunkPlacerType<?>> THICK_TRUNK_PLACER = TRUNK_PLACERS.register("thick_trunk_placer", () -> new TrunkPlacerType<>(ThickTrunkPlacer.CODEC));
+    public static final DeferredHolder<TrunkPlacerType<?>, TrunkPlacerType<?>> FOUR_BRANCH_TRUNK_PLACER = TRUNK_PLACERS.register("four_branch_trunk_placer", () -> new TrunkPlacerType<>(FourBranchTrunkPlacer.CODEC));
+    public static final DeferredHolder<TrunkPlacerType<?>, TrunkPlacerType<?>> CARDINAL_TRUNK_PLACER = TRUNK_PLACERS.register("cardinal_trunk_placer", () -> new TrunkPlacerType<>(CardinalTrunkPlacer.CODEC));
+    public static final DeferredHolder<TrunkPlacerType<?>, TrunkPlacerType<?>> VARYING_FOUR_BRANCH_TRUNK_PLACER = TRUNK_PLACERS.register("varying_four_branch_trunk_placer", () -> new TrunkPlacerType<>(VaryingFourBranchTrunkPlacer.CODEC));
 
     //Foliage
     public static final RegistryObject<FoliagePlacerType<?>> CAPPED_FOLIAGE_PLACER = FOLIAGE_PLACERS.register("capped_foliage_placer", () -> new FoliagePlacerType<>(CappedFoliagePlacer.CODEC));
