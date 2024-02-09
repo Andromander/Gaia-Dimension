@@ -62,11 +62,11 @@ public class GaiaDimensionMod {
         ModStructures.STRUCTURE_PROCESSORS.register(modEventBus);
         ModStructures.STRUCTURE_TYPES.register(modEventBus);
         ModSounds.SOUND_EVENTS.register(bus);
-        ModWorldgen.DECORATORS.register(modEventBus);
-        ModWorldgen.FEATURES.register(modEventBus);
-        ModWorldgen.FOLIAGE_PLACERS.register(modEventBus);
-        ModWorldgen.TRUNK_PLACERS.register(modEventBus);
-        ModWorldgen.WORLD_CARVERS.register(modEventBus);
+        ModWorldgen.DECORATORS.register(bus);
+        ModWorldgen.FEATURES.register(bus);
+        ModWorldgen.FOLIAGE_PLACERS.register(bus);
+        ModWorldgen.TRUNK_PLACERS.register(bus);
+        ModWorldgen.WORLD_CARVERS.register(bus);
 
         final Pair<GaiaConfig.ClientConfig, ModConfigSpec> specPairC = new ModConfigSpec.Builder().configure(GaiaConfig.ClientConfig::new);
         final Pair<GaiaConfig.CommonConfig, ModConfigSpec> specPairB = new ModConfigSpec.Builder().configure(GaiaConfig.CommonConfig::new);
