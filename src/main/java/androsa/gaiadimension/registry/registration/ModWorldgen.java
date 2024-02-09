@@ -32,7 +32,7 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 
 public class ModWorldgen {
 
-    public static final DeferredRegister<TreeDecoratorType<?>> DECORATORS = DeferredRegister.create(ForgeRegistries.TREE_DECORATOR_TYPES, GaiaDimensionMod.MODID);
+    public static final DeferredRegister<TreeDecoratorType<?>> DECORATORS = DeferredRegister.create(Registries.TREE_DECORATOR_TYPE, GaiaDimensionMod.MODID);
 	public static final DeferredRegister<Feature<?>> FEATURES = DeferredRegister.create(ForgeRegistries.FEATURES, GaiaDimensionMod.MODID);
     public static final DeferredRegister<FoliagePlacerType<?>> FOLIAGE_PLACERS = DeferredRegister.create(Registries.FOLIAGE_PLACER_TYPE, GaiaDimensionMod.MODID);
     public static final DeferredRegister<TrunkPlacerType<?>> TRUNK_PLACERS = DeferredRegister.create(Registries.TRUNK_PLACER_TYPE, GaiaDimensionMod.MODID);
@@ -51,7 +51,7 @@ public class ModWorldgen {
     public static final DeferredHolder<FoliagePlacerType<?>, FoliagePlacerType<?>> CUBE_FOLIAGE_PLACER = FOLIAGE_PLACERS.register("cube_foliage_placer", () -> new FoliagePlacerType<>(CubeFoliagePlacer.CODEC));
 
     //Decorator
-    public static final RegistryObject<TreeDecoratorType<?>> GOLDEN_VINE_DECORATOR = DECORATORS.register("golden_vine", () -> new TreeDecoratorType<>(GoldenVineDecorator.CODEC));
+    public static final DeferredHolder<TreeDecoratorType<?>, TreeDecoratorType<?>> GOLDEN_VINE_DECORATOR = DECORATORS.register("golden_vine", () -> new TreeDecoratorType<>(GoldenVineDecorator.CODEC));
 
     //Feature
     public static final RegistryObject<Feature<BlockStateConfiguration>> POOL = FEATURES.register("pool", () ->
