@@ -45,7 +45,7 @@ public class MookaiteMoundFeature extends Feature<NoneFeatureConfiguration> {
             return false;
         }
 
-        List<Block> mookaiteBlocks = tag.map(holders -> holders.stream().map(Holder::get).filter(block -> !block.defaultBlockState().isAir()).toList()).orElseGet(ArrayList::new);
+        List<Block> mookaiteBlocks = tag.map(holders -> holders.stream().map(Holder::value).filter(block -> !block.defaultBlockState().isAir()).toList()).orElseGet(ArrayList::new);
         if (mookaiteBlocks.isEmpty()) {
             return false;
         }

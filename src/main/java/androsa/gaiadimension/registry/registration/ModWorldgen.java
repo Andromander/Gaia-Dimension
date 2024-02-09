@@ -33,7 +33,7 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 public class ModWorldgen {
 
     public static final DeferredRegister<TreeDecoratorType<?>> DECORATORS = DeferredRegister.create(Registries.TREE_DECORATOR_TYPE, GaiaDimensionMod.MODID);
-	public static final DeferredRegister<Feature<?>> FEATURES = DeferredRegister.create(ForgeRegistries.FEATURES, GaiaDimensionMod.MODID);
+	public static final DeferredRegister<Feature<?>> FEATURES = DeferredRegister.create(Registries.FEATURE, GaiaDimensionMod.MODID);
     public static final DeferredRegister<FoliagePlacerType<?>> FOLIAGE_PLACERS = DeferredRegister.create(Registries.FOLIAGE_PLACER_TYPE, GaiaDimensionMod.MODID);
     public static final DeferredRegister<TrunkPlacerType<?>> TRUNK_PLACERS = DeferredRegister.create(Registries.TRUNK_PLACER_TYPE, GaiaDimensionMod.MODID);
 	public static final DeferredRegister<WorldCarver<?>> WORLD_CARVERS = DeferredRegister.create(Registries.CARVER, GaiaDimensionMod.MODID);
@@ -54,39 +54,39 @@ public class ModWorldgen {
     public static final DeferredHolder<TreeDecoratorType<?>, TreeDecoratorType<?>> GOLDEN_VINE_DECORATOR = DECORATORS.register("golden_vine", () -> new TreeDecoratorType<>(GoldenVineDecorator.CODEC));
 
     //Feature
-    public static final RegistryObject<Feature<BlockStateConfiguration>> POOL = FEATURES.register("pool", () ->
+    public static final DeferredHolder<Feature<?>, Feature<BlockStateConfiguration>> POOL = FEATURES.register("pool", () ->
 			new GaiaLakesFeature<>(BlockStateConfiguration.CODEC));
-    public static final RegistryObject<Feature<NoneFeatureConfiguration>> AURA_SHOOT = FEATURES.register("aura_shoot", () ->
+    public static final DeferredHolder<Feature<?>, Feature<NoneFeatureConfiguration>> AURA_SHOOT = FEATURES.register("aura_shoot", () ->
 			new AuraShootsFeature<>(NoneFeatureConfiguration.CODEC));
-    public static final RegistryObject<Feature<DiskConfiguration>> BOG_PATCH = FEATURES.register("bog_patch", () ->
+    public static final DeferredHolder<Feature<?>, Feature<DiskConfiguration>> BOG_PATCH = FEATURES.register("bog_patch", () ->
 			new BogPatchFeature<>(DiskConfiguration.CODEC));
-    public static final RegistryObject<Feature<FeatureHeightConfig>> BISMUTH_SPIRE = FEATURES.register("bismuth_spire", () ->
+    public static final DeferredHolder<Feature<?>, Feature<FeatureHeightConfig>> BISMUTH_SPIRE = FEATURES.register("bismuth_spire", () ->
 			new BismuthSpireFeature<>(FeatureHeightConfig.CODEC));
-    public static final RegistryObject<Feature<NoneFeatureConfiguration>> BISMUTH_GEYSER = FEATURES.register("bismuth_geyser", () ->
+    public static final DeferredHolder<Feature<?>, Feature<NoneFeatureConfiguration>> BISMUTH_GEYSER = FEATURES.register("bismuth_geyser", () ->
 			new BismuthGeyserFeature<>(NoneFeatureConfiguration.CODEC));
-    public static final RegistryObject<Feature<FeatureHeightConfig>> STATIC_SPIKE = FEATURES.register("static_spike", () ->
+    public static final DeferredHolder<Feature<?>, Feature<FeatureHeightConfig>> STATIC_SPIKE = FEATURES.register("static_spike", () ->
 			new StaticSpikeFeature<>(FeatureHeightConfig.CODEC));
-    public static final RegistryObject<Feature<NoneFeatureConfiguration>> FRAIL_BLOB = FEATURES.register("frail_blob", () ->
+    public static final DeferredHolder<Feature<?>, Feature<NoneFeatureConfiguration>> FRAIL_BLOB = FEATURES.register("frail_blob", () ->
 			new FrailGlitterBlobFeature<>(NoneFeatureConfiguration.CODEC));
-    public static final RegistryObject<Feature<BlockStateConfiguration>> GAIA_BLOB = FEATURES.register("gaia_blob", () ->
+    public static final DeferredHolder<Feature<?>, Feature<BlockStateConfiguration>> GAIA_BLOB = FEATURES.register("gaia_blob", () ->
 			new GaiaBlobFeature<>(BlockStateConfiguration.CODEC));
-    public static final RegistryObject<Feature<BlockStateConfiguration>> TERRAIN_SPIKE = FEATURES.register("terrain_spike", () ->
+    public static final DeferredHolder<Feature<?>, Feature<BlockStateConfiguration>> TERRAIN_SPIKE = FEATURES.register("terrain_spike", () ->
             new TerrainSpikeFeature<>(BlockStateConfiguration.CODEC));
-    public static final RegistryObject<Feature<TwoBlockStateConfig>> BALANCING_ROCKS = FEATURES.register("balancing_rocks", () ->
+    public static final DeferredHolder<Feature<?>, Feature<TwoBlockStateConfig>> BALANCING_ROCKS = FEATURES.register("balancing_rocks", () ->
             new BalancingRockFeature<>(TwoBlockStateConfig.CODEC));
-    public static final RegistryObject<Feature<TreeConfiguration>> STRICT_TREE = FEATURES.register("strict_tree", () ->
+    public static final DeferredHolder<Feature<?>, Feature<TreeConfiguration>> STRICT_TREE = FEATURES.register("strict_tree", () ->
             new StrictTreeFeature(TreeConfiguration.CODEC));
-    public static final RegistryObject<Feature<BlockStateConfiguration>> MONOLITH = FEATURES.register("monolith", () ->
+    public static final DeferredHolder<Feature<?>, Feature<BlockStateConfiguration>> MONOLITH = FEATURES.register("monolith", () ->
             new MonolithFeature(BlockStateConfiguration.CODEC));
-    public static final RegistryObject<Feature<BlockStateConfiguration>> MENHIR = FEATURES.register("menhir", () ->
+    public static final DeferredHolder<Feature<?>, Feature<BlockStateConfiguration>> MENHIR = FEATURES.register("menhir", () ->
             new MenhirFeature(BlockStateConfiguration.CODEC));
-    public static final RegistryObject<Feature<NoneFeatureConfiguration>> MARSH_LAKE = FEATURES.register("marsh_lake", () ->
+    public static final DeferredHolder<Feature<?>, Feature<NoneFeatureConfiguration>> MARSH_LAKE = FEATURES.register("marsh_lake", () ->
             new MarshLakeFeature(NoneFeatureConfiguration.CODEC));
-    public static final RegistryObject<Feature<NoneFeatureConfiguration>> GOLDEN_VINES = FEATURES.register("golden_vines", () ->
+    public static final DeferredHolder<Feature<?>, Feature<NoneFeatureConfiguration>> GOLDEN_VINES = FEATURES.register("golden_vines", () ->
             new GoldenVinesFeature(NoneFeatureConfiguration.CODEC));
-    public static final RegistryObject<Feature<OpaliteOreConfiguration>> OPALITE_ORE = FEATURES.register("opalite_ore", () ->
+    public static final DeferredHolder<Feature<?>, Feature<OpaliteOreConfiguration>> OPALITE_ORE = FEATURES.register("opalite_ore", () ->
             new OpaliteOreFeature(OpaliteOreConfiguration.CODEC));
-    public static final RegistryObject<Feature<NoneFeatureConfiguration>> MOOKAITE_MOUND = FEATURES.register("mookaite_mound", () ->
+    public static final DeferredHolder<Feature<?>, Feature<NoneFeatureConfiguration>> MOOKAITE_MOUND = FEATURES.register("mookaite_mound", () ->
             new MookaiteMoundFeature(NoneFeatureConfiguration.CODEC));
 
     //WorldCarver
