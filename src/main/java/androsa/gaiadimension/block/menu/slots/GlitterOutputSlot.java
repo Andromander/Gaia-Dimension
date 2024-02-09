@@ -7,7 +7,7 @@ import net.minecraft.world.Container;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
-import net.minecraftforge.common.MinecraftForge;
+import net.neoforged.neoforge.common.NeoForge;
 
 public class GlitterOutputSlot extends Slot {
 
@@ -53,6 +53,6 @@ public class GlitterOutputSlot extends Slot {
         }
 
         stackSize = 0;
-        MinecraftForge.EVENT_BUS.post(new EventHandler.ItemGlitteredEvent(thePlayer, par1ItemStack));
+        NeoForge.EVENT_BUS.post(new EventHandler.ItemGlitteredEvent(thePlayer, par1ItemStack));
     }
 }
