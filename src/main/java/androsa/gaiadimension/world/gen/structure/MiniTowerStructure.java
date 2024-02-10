@@ -20,6 +20,7 @@ import net.minecraft.world.level.levelgen.structure.pieces.StructurePiecesBuilde
 
 import java.util.Optional;
 
+//TODO: Could I configurise this and make an indeterminate amount of mini towers?
 public class MiniTowerStructure extends Structure {
     public static final Codec<MiniTowerStructure> CODEC = simpleCodec(MiniTowerStructure::new);
 
