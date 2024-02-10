@@ -5,12 +5,11 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.biome.Biome;
-import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.ForgeRegistries;
+import net.neoforged.neoforge.registries.DeferredRegister;
 
 public class GaiaBiomes {
 
-    public static final DeferredRegister<Biome> BIOMES = DeferredRegister.create(ForgeRegistries.BIOMES, GaiaDimensionMod.MODID);
+    public static final DeferredRegister<Biome> BIOMES = DeferredRegister.create(Registries.BIOME, GaiaDimensionMod.MODID);
 
     public static final ResourceKey<Biome> pink_agate_forest = registerBiome("pink_agate_forest");
     public static final ResourceKey<Biome> blue_agate_taiga = registerBiome("blue_agate_taiga");

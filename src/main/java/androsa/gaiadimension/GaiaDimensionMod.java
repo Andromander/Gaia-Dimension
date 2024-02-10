@@ -44,7 +44,7 @@ public class GaiaDimensionMod {
         modEventBus.addListener(this::gatherData);
         modEventBus.addListener(this::hackyEvent);
 
-        GaiaBiomes.BIOMES.register(modEventBus);
+        GaiaBiomes.BIOMES.register(bus);
         ModBlocks.BLOCKS.register(bus);
         ModMenus.CONTAINERS.register(bus);
         ModTabs.CREATIVE_TABS.register(bus);
