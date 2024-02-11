@@ -20,8 +20,6 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 import org.joml.Matrix4f;
 
 import java.util.Optional;
@@ -194,7 +192,6 @@ public class GaiaSkyRender {
         VertexBuffer.unbind();
     }
 
-    @OnlyIn(Dist.CLIENT)
     public static float getStarBrightness(ClientLevel world, float par1) {
         Player player = Minecraft.getInstance().player;
         Optional<ResourceKey<Biome>> biome = world.getBiome(new BlockPos(player.blockPosition())).unwrapKey();

@@ -15,15 +15,14 @@ import net.minecraft.util.Mth;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.material.Fluid;
+import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
-import net.neoforged.neoforge.client.event.RegisterParticleProvidersEvent;
-import net.neoforged.neoforge.client.event.RegisterRecipeBookCategoriesEvent;
+import net.neoforged.fml.common.Mod;
+import net.neoforged.neoforge.client.event.*;
 
 import java.util.function.Supplier;
 
 @Mod.EventBusSubscriber(value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.MOD, modid = GaiaDimensionMod.MODID)
-@OnlyIn(Dist.CLIENT)
 public class ClientEvents {
 
     @SubscribeEvent
