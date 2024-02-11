@@ -2,13 +2,13 @@ package androsa.gaiadimension.data;
 
 import androsa.gaiadimension.GaiaDimensionMod;
 import androsa.gaiadimension.data.provider.GaiaFluidTagsProvider;
-import androsa.gaiadimension.registry.values.GaiaTags;
 import androsa.gaiadimension.registry.registration.ModFluids;
+import androsa.gaiadimension.registry.values.GaiaTags;
 import com.google.common.collect.ImmutableList;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.tags.FluidTags;
-import net.minecraftforge.common.data.ExistingFileHelper;
+import net.neoforged.neoforge.common.data.ExistingFileHelper;
 
 import java.util.concurrent.CompletableFuture;
 

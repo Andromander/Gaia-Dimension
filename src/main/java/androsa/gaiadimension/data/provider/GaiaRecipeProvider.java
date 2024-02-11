@@ -4,6 +4,7 @@ import androsa.gaiadimension.recipe.PurifierRecipeBuilder;
 import androsa.gaiadimension.recipe.RestructurerRecipeBuilder;
 import androsa.gaiadimension.registry.registration.ModBlocks;
 import androsa.gaiadimension.registry.registration.ModItems;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
 import net.minecraft.tags.TagKey;
@@ -14,18 +15,17 @@ import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SlabBlock;
 import net.minecraft.world.level.block.StairBlock;
-import net.minecraftforge.common.crafting.conditions.IConditionBuilder;
-import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.RegistryObject;
+import net.neoforged.neoforge.common.conditions.IConditionBuilder;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredItem;
 
+import java.util.concurrent.CompletableFuture;
 import java.util.function.Supplier;
 
 public abstract class GaiaRecipeProvider extends RecipeProvider implements IConditionBuilder {
 
-    public GaiaRecipeProvider(PackOutput output) {
-        super(output);
+    public GaiaRecipeProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> provider) {
+        super(output, provider);
     }
 
     public ShapedRecipeBuilder smallCompressRecipe(ItemLike result, ItemLike ingredient) {
@@ -125,7 +125,7 @@ public abstract class GaiaRecipeProvider extends RecipeProvider implements ICond
                 .unlockedBy("has_" + ingredient.getId().getPath(), has(ingredient.get()));
     }
 
-    public ShapedRecipeBuilder axeRecipeTag(RegistryObject<Item> result, TagKey<Item> ingredient) {
+    public ShapedRecipeBuilder axeRecipeTag(Supplier<Item> result, TagKey<Item> ingredient) {
         return ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, result.get())
                 .pattern("##")
                 .pattern("#/")
@@ -145,7 +145,7 @@ public abstract class GaiaRecipeProvider extends RecipeProvider implements ICond
                 .unlockedBy("has_" + ingredient.getId().getPath(), has(ingredient.get()));
     }
 
-    public ShapedRecipeBuilder pickaxeRecipeTag(RegistryObject<Item> result, TagKey<Item> ingredient) {
+    public ShapedRecipeBuilder pickaxeRecipeTag(Supplier<Item> result, TagKey<Item> ingredient) {
         return ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, result.get())
                 .pattern("###")
                 .pattern(" / ")
@@ -165,7 +165,7 @@ public abstract class GaiaRecipeProvider extends RecipeProvider implements ICond
                 .unlockedBy("has_" + ingredient.getId().getPath(), has(ingredient.get()));
     }
 
-    public ShapedRecipeBuilder shovelRecipeTag(RegistryObject<Item> result, TagKey<Item> ingredient) {
+    public ShapedRecipeBuilder shovelRecipeTag(Supplier<Item> result, TagKey<Item> ingredient) {
         return ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, result.get())
                 .pattern("#")
                 .pattern("/")
@@ -185,7 +185,7 @@ public abstract class GaiaRecipeProvider extends RecipeProvider implements ICond
                 .unlockedBy("has_" + ingredient.getId().getPath(), has(ingredient.get()));
     }
 
-    public ShapedRecipeBuilder swordRecipeTag(RegistryObject<Item> result, TagKey<Item> ingredient) {
+    public ShapedRecipeBuilder swordRecipeTag(Supplier<Item> result, TagKey<Item> ingredient) {
         return ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, result.get())
                 .pattern("#")
                 .pattern("#")
@@ -230,32 +230,51 @@ public abstract class GaiaRecipeProvider extends RecipeProvider implements ICond
                 .unlockedBy("has_shard", has(ModItems.crystal_shard.get()));
     }
 
-    public SimpleCookingRecipeBuilder smeltingRecipe(ItemLike result, ItemLike ingredient, float exp) {
+    public SimpleCookingRecipeBuilder smeltingRecipe(ItemLike result, DeferredBlock<? extends Block> ingredient, float exp) {
         return smeltingRecipe(result, ingredient, exp, 1);
     }
 
-    public SimpleCookingRecipeBuilder smeltingRecipe(ItemLike result, ItemLike ingredient, float exp, int count) {
-        return SimpleCookingRecipeBuilder.smelting(Ingredient.of(new ItemStack(ingredient, count)), RecipeCategory.MISC, result, exp, 200)
-                .unlockedBy("has_" + ForgeRegistries.ITEMS.getKey(ingredient.asItem()).getPath(), has(ingredient));
+    public SimpleCookingRecipeBuilder smeltingRecipe(ItemLike result, DeferredItem<Item> ingredient, float exp) {
+        return smeltingRecipe(result, ingredient, exp, 1);
     }
 
-    public RestructurerRecipeBuilder restructureBlackResidue(RegistryObject<Item> result, RegistryObject<Item> ingredient, float exp, int count) {
+    public SimpleCookingRecipeBuilder smeltingRecipe(ItemLike result, DeferredBlock<? extends Block> ingredient, float exp, int count) {
+        return SimpleCookingRecipeBuilder.smelting(Ingredient.of(new ItemStack(ingredient.get(), count)), RecipeCategory.MISC, result, exp, 200)
+                .unlockedBy("has_" + ingredient.getId().getPath(), has(ingredient));
+    }
+
+    public SimpleCookingRecipeBuilder smeltingRecipe(ItemLike result, DeferredItem<Item> ingredient, float exp, int count) {
+        return SimpleCookingRecipeBuilder.smelting(Ingredient.of(new ItemStack(ingredient.get(), count)), RecipeCategory.MISC, result, exp, 200)
+                .unlockedBy("has_" + ingredient.getId().getPath(), has(ingredient));
+    }
+
+    public RestructurerRecipeBuilder restructureBlackResidue(Supplier<Item> result, DeferredItem<Item> ingredient, float exp, int count) {
         return RestructurerRecipeBuilder.restructuring(Ingredient.of(new ItemStack(ingredient.get(), count)), result.get(), ModItems.black_residue.get(), exp, 200)
-                .unlockedBy("has_" + ForgeRegistries.ITEMS.getKey(ingredient.get().asItem()).getPath(), has(ingredient.get()));
+                .unlockedBy("has_" + ingredient.getId().getPath(), has(ingredient.get()));
     }
 
-    public RestructurerRecipeBuilder restructuringTektite(RegistryObject<Block> result, RegistryObject<Block> ingredient, float exp, int count) {
+    public RestructurerRecipeBuilder restructuringTektite(Supplier<Block> result, DeferredBlock<Block> ingredient, float exp, int count) {
         return RestructurerRecipeBuilder.restructuring(Ingredient.of(new ItemStack(ingredient.get(), count)), result.get(), ModItems.tektite.get(), exp, 200)
-                .unlockedBy("has_" + ForgeRegistries.ITEMS.getKey(ingredient.get().asItem()).getPath(), has(ingredient.get()));
+                .unlockedBy("has_" + ingredient.getId().getPath(), has(ingredient.get()));
     }
 
-    public RestructurerRecipeBuilder restructuringItems(ItemLike result, ItemLike byproduct, ItemLike ingredient, float exp, int count) {
-        return RestructurerRecipeBuilder.restructuring(Ingredient.of(new ItemStack(ingredient, count)), result, byproduct, exp, 200)
-                .unlockedBy("has_" + ForgeRegistries.ITEMS.getKey(ingredient.asItem()).getPath(), has(ingredient));
+    public RestructurerRecipeBuilder restructuringItems(ItemLike result, ItemLike byproduct, DeferredItem<Item> ingredient, float exp, int count) {
+        return RestructurerRecipeBuilder.restructuring(Ingredient.of(new ItemStack(ingredient.get(), count)), result, byproduct, exp, 200)
+                .unlockedBy("has_" + ingredient.getId().getPath(), has(ingredient));
     }
 
-    public PurifierRecipeBuilder purifyingItems(ItemLike result, ItemLike byproduct, ItemLike ingredient, float exp, int count, int bycount) {
-        return PurifierRecipeBuilder.purifying(Ingredient.of(new ItemStack(ingredient, count)), result, Ingredient.of(new ItemStack(byproduct, bycount)), exp, 200)
-                .unlockedBy("has_" + ForgeRegistries.ITEMS.getKey(ingredient.asItem()).getPath(), has(ingredient));
+    public RestructurerRecipeBuilder restructuringItems(ItemLike result, ItemLike byproduct, DeferredBlock<Block> ingredient, float exp, int count) {
+        return RestructurerRecipeBuilder.restructuring(Ingredient.of(new ItemStack(ingredient.get(), count)), result, byproduct, exp, 200)
+                .unlockedBy("has_" + ingredient.getId().getPath(), has(ingredient));
+    }
+
+    public PurifierRecipeBuilder purifyingItems(ItemLike result, ItemLike byproduct, DeferredItem<Item> ingredient, float exp, int count, int bycount) {
+        return PurifierRecipeBuilder.purifying(Ingredient.of(ingredient.get()), new ItemStack(result, count), new ItemStack(byproduct, bycount), exp, 200)
+                .unlockedBy("has_" + ingredient.getId().getPath(), has(ingredient));
+    }
+
+    public PurifierRecipeBuilder purifyingItems(ItemLike result, ItemLike byproduct, DeferredBlock<? extends Block> ingredient, float exp, int count, int bycount) {
+        return PurifierRecipeBuilder.purifying(Ingredient.of(ingredient.get()), new ItemStack(result, count), new ItemStack(byproduct, bycount), exp, 200)
+                .unlockedBy("has_" + ingredient.getId().getPath(), has(ingredient));
     }
 }

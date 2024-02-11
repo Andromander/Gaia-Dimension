@@ -1,7 +1,7 @@
 package androsa.gaiadimension.data.provider;
 
 import androsa.gaiadimension.GaiaDimensionMod;
-import net.minecraft.advancements.CriterionTriggerInstance;
+import net.minecraft.advancements.Criterion;
 import net.minecraft.advancements.critereon.InventoryChangeTrigger;
 import net.minecraft.advancements.critereon.LocationPredicate;
 import net.minecraft.advancements.critereon.PlayerTrigger;
@@ -13,15 +13,14 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.biome.Biome;
-import net.minecraftforge.common.data.ExistingFileHelper;
-import net.minecraftforge.common.data.ForgeAdvancementProvider;
-import net.minecraftforge.registries.RegistryObject;
+import net.neoforged.neoforge.common.data.AdvancementProvider;
+import net.neoforged.neoforge.common.data.ExistingFileHelper;
 
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Supplier;
 
-public class GaiaAdvancementProvider extends ForgeAdvancementProvider {
+public class GaiaAdvancementProvider extends AdvancementProvider {
 
     public GaiaAdvancementProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> provider, ExistingFileHelper helper, List<AdvancementGenerator> list) {
         super(output, provider, helper, list);
@@ -43,11 +42,11 @@ public class GaiaAdvancementProvider extends ForgeAdvancementProvider {
         return new ResourceLocation(GaiaDimensionMod.MODID, "gaia/" + name).toString();
     }
 
-    protected static CriterionTriggerInstance biome(ResourceKey<Biome> define) {
-        return PlayerTrigger.TriggerInstance.located(LocationPredicate.inBiome(define));
+    protected static Criterion<?> biome(ResourceKey<Biome> define) {
+        return PlayerTrigger.TriggerInstance.located(LocationPredicate.Builder.inBiome(define));
     }
 
-    protected static CriterionTriggerInstance item(Supplier<? extends Item> item) {
+    protected static Criterion<?> item(Supplier<? extends Item> item) {
         return InventoryChangeTrigger.TriggerInstance.hasItems(item.get());
     }
 }

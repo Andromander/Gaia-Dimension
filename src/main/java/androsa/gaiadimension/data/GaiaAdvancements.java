@@ -2,21 +2,18 @@ package androsa.gaiadimension.data;
 
 import androsa.gaiadimension.GaiaDimensionMod;
 import androsa.gaiadimension.data.provider.GaiaAdvancementProvider;
-import androsa.gaiadimension.registry.registration.ModStructures;
 import androsa.gaiadimension.registry.bootstrap.GaiaBiomes;
 import androsa.gaiadimension.registry.bootstrap.GaiaDimensions;
 import androsa.gaiadimension.registry.registration.ModBlocks;
 import androsa.gaiadimension.registry.registration.ModEntities;
 import androsa.gaiadimension.registry.registration.ModItems;
-import net.minecraft.advancements.Advancement;
-import net.minecraft.advancements.AdvancementRewards;
-import net.minecraft.advancements.FrameType;
-import net.minecraft.advancements.RequirementsStrategy;
+import androsa.gaiadimension.registry.registration.ModStructures;
+import net.minecraft.advancements.*;
 import net.minecraft.advancements.critereon.*;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraftforge.common.data.ExistingFileHelper;
+import net.neoforged.neoforge.common.data.ExistingFileHelper;
 
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
@@ -30,21 +27,21 @@ public class GaiaAdvancements extends GaiaAdvancementProvider {
 
     public static class Advancements implements AdvancementGenerator {
         @Override
-        public void generate(HolderLookup.Provider provider, Consumer<Advancement> consumer, ExistingFileHelper fileHelper) {
+        public void generate(HolderLookup.Provider provider, Consumer<AdvancementHolder> consumer, ExistingFileHelper fileHelper) {
             //Boolean 1 = show Toast
             //Boolean 2 = announce to chat
             //Boolean 3 = hide
 
             //Enter Gaia
-            Advancement root = Advancement.Builder.advancement()
-                    .display(ModBlocks.keystone_block.get(), title("root"), description("root"), new ResourceLocation(GaiaDimensionMod.MODID, "textures/block/gaia_stone.png"), FrameType.TASK, true, true, false)
+            AdvancementHolder root = Advancement.Builder.advancement()
+                    .display(ModBlocks.keystone_block.get(), title("root"), description("root"), new ResourceLocation(GaiaDimensionMod.MODID, "textures/block/gaia_stone.png"), AdvancementType.TASK, true, true, false)
                     .addCriterion("entered_gaia", ChangeDimensionTrigger.TriggerInstance.changedDimensionTo(GaiaDimensions.gaia_world))
                     .save(consumer, loc("root"));
             //Collect a Gemstone
-            Advancement gemstone1 = Advancement.Builder.advancement()
+            AdvancementHolder gemstone1 = Advancement.Builder.advancement()
                     .parent(root)
-                    .display(ModItems.sugilite.get(), title("collect_gemstone"), description("collect_gemstone"), null, FrameType.TASK, true, true, false)
-                    .requirements(RequirementsStrategy.OR)
+                    .display(ModItems.sugilite.get(), title("collect_gemstone"), description("collect_gemstone"), null, AdvancementType.TASK, true, true, false)
+                    .requirements(AdvancementRequirements.Strategy.OR)
                     .addCriterion("get_sugilite", item(ModItems.sugilite))
                     .addCriterion("get_hematite", item(ModItems.hematite))
                     .addCriterion("get_cinnabar", item(ModItems.cinnabar))
@@ -71,10 +68,10 @@ public class GaiaAdvancements extends GaiaAdvancementProvider {
                     .addCriterion("get_celestine", item(ModItems.celestine))
                     .save(consumer, loc("collect_gemstone"));
             //Restructure a Gemstone
-            Advancement gemstone2 = Advancement.Builder.advancement()
+            AdvancementHolder gemstone2 = Advancement.Builder.advancement()
                     .parent(gemstone1)
-                    .display(ModItems.stibnite.get(), title("restructure_gemstone"), description("restructure_gemstone"), null, FrameType.TASK, true, true, false)
-                    .requirements(RequirementsStrategy.OR)
+                    .display(ModItems.stibnite.get(), title("restructure_gemstone"), description("restructure_gemstone"), null, AdvancementType.TASK, true, true, false)
+                    .requirements(AdvancementRequirements.Strategy.OR)
                     .addCriterion("get_stibnite", item(ModItems.stibnite))
                     .addCriterion("get_proustite", item(ModItems.proustite))
                     .addCriterion("get_euclase", item(ModItems.euclase))
@@ -86,9 +83,9 @@ public class GaiaAdvancements extends GaiaAdvancementProvider {
                     .addCriterion("get_tektite", item(ModItems.tektite))
                     .save(consumer, loc("restructure_gemstone"));
             //Collect all mineable Gemstones
-            Advancement gemstone3 = Advancement.Builder.advancement()
+            AdvancementHolder gemstone3 = Advancement.Builder.advancement()
                     .parent(gemstone2)
-                    .display(ModItems.white_opal.get(), title("mine_all_gemstones"), description("mine_all_gemstones"), null, FrameType.TASK, true, true, false)
+                    .display(ModItems.white_opal.get(), title("mine_all_gemstones"), description("mine_all_gemstones"), null, AdvancementType.TASK, true, true, false)
                     .addCriterion("get_sugilite", item(ModItems.sugilite))
                     .addCriterion("get_hematite", item(ModItems.hematite))
                     .addCriterion("get_cinnabar", item(ModItems.cinnabar))
@@ -103,7 +100,7 @@ public class GaiaAdvancements extends GaiaAdvancementProvider {
             //Collect all Gemstones
             Advancement.Builder.advancement()
                     .parent(gemstone3)
-                    .display(ModItems.goshenite.get(), title("get_all_gemstones"), description("get_all_gemstones"), null, FrameType.CHALLENGE, true, true, false)
+                    .display(ModItems.goshenite.get(), title("get_all_gemstones"), description("get_all_gemstones"), null, AdvancementType.CHALLENGE, true, true, false)
                     .rewards(AdvancementRewards.Builder.experience(250))
                     .addCriterion("get_sugilite", item(ModItems.sugilite))
                     .addCriterion("get_hematite", item(ModItems.hematite))
@@ -131,10 +128,10 @@ public class GaiaAdvancements extends GaiaAdvancementProvider {
                     .addCriterion("get_celestine", item(ModItems.celestine))
                     .save(consumer, loc("get_all_gemstones"));
             //Craft a weapon from Gaia
-            Advancement tool1 = Advancement.Builder.advancement()
+            AdvancementHolder tool1 = Advancement.Builder.advancement()
                     .parent(root)
-                    .display(ModItems.agate_sword.get(), title("get_tool"), description("get_tool"), null, FrameType.TASK, true, true, false)
-                    .requirements(RequirementsStrategy.OR)
+                    .display(ModItems.agate_sword.get(), title("get_tool"), description("get_tool"), null, AdvancementType.TASK, true, true, false)
+                    .requirements(AdvancementRequirements.Strategy.OR)
                     .addCriterion("agate_sword", item(ModItems.agate_sword))
                     .addCriterion("agate_pickaxe", item(ModItems.agate_pickaxe))
                     .addCriterion("agate_axe", item(ModItems.agate_axe))
@@ -167,7 +164,7 @@ public class GaiaAdvancements extends GaiaAdvancementProvider {
             //Craft all weapons from Gaia
             Advancement.Builder.advancement()
                     .parent(tool1)
-                    .display(ModItems.goshenite_sword.get(), title("get_all_tools"), description("get_all_tools"), null, FrameType.CHALLENGE, true, true, false)
+                    .display(ModItems.goshenite_sword.get(), title("get_all_tools"), description("get_all_tools"), null, AdvancementType.CHALLENGE, true, true, false)
                     .rewards(AdvancementRewards.Builder.experience(500))
                     .addCriterion("agate_sword", item(ModItems.agate_sword))
                     .addCriterion("agate_pickaxe", item(ModItems.agate_pickaxe))
@@ -199,10 +196,10 @@ public class GaiaAdvancements extends GaiaAdvancementProvider {
                     .addCriterion("goshenite_shovel", item(ModItems.goshenite_shovel))
                     .save(consumer, loc("get_all_tools"));
             //Craft a piece of armour from Gaia
-            Advancement armor1 = Advancement.Builder.advancement()
+            AdvancementHolder armor1 = Advancement.Builder.advancement()
                     .parent(root)
-                    .display(ModItems.sugilite_helmet.get(), title("get_armor"), description("get_armor"), null, FrameType.TASK, true, true, false)
-                    .requirements(RequirementsStrategy.OR)
+                    .display(ModItems.sugilite_helmet.get(), title("get_armor"), description("get_armor"), null, AdvancementType.TASK, true, true, false)
+                    .requirements(AdvancementRequirements.Strategy.OR)
                     .addCriterion("sugilite_helmet", item(ModItems.sugilite_helmet))
                     .addCriterion("sugilite_chestplate", item(ModItems.sugilite_chestplate))
                     .addCriterion("sugilite_legs", item(ModItems.sugilite_legs))
@@ -231,7 +228,7 @@ public class GaiaAdvancements extends GaiaAdvancementProvider {
             //Craft all armour in Gaia
             Advancement.Builder.advancement()
                     .parent(armor1)
-                    .display(ModItems.goshenite_helmet.get(), title("get_all_armor"), description("get_all_armor"), null, FrameType.CHALLENGE, true, true, false)
+                    .display(ModItems.goshenite_helmet.get(), title("get_all_armor"), description("get_all_armor"), null, AdvancementType.CHALLENGE, true, true, false)
                     .rewards(AdvancementRewards.Builder.experience(500))
                     .addCriterion("sugilite_helmet", item(ModItems.sugilite_helmet))
                     .addCriterion("sugilite_chestplate", item(ModItems.sugilite_chestplate))
@@ -261,7 +258,7 @@ public class GaiaAdvancements extends GaiaAdvancementProvider {
             //Explore all of Gaia
             Advancement.Builder.advancement()
                     .parent(root)
-                    .display(ModBlocks.glitter_grass.get(), title("explore_gaia"), description("explore_gaia"), null, FrameType.CHALLENGE, true, true, false)
+                    .display(ModBlocks.glitter_grass.get(), title("explore_gaia"), description("explore_gaia"), null, AdvancementType.CHALLENGE, true, true, false)
                     .rewards(AdvancementRewards.Builder.experience(1000))
                     .addCriterion("pink_agate_forest", biome(GaiaBiomes.pink_agate_forest))
                     .addCriterion("blue_agate_taiga", biome(GaiaBiomes.blue_agate_taiga))
@@ -286,27 +283,27 @@ public class GaiaAdvancements extends GaiaAdvancementProvider {
                     .addCriterion("golden_sands", biome(GaiaBiomes.golden_sands))
                     .save(consumer, loc("explore_gaia"));
             //Find a Gaia Mini Tower
-            Advancement progress1 = Advancement.Builder.advancement()
+            AdvancementHolder progress1 = Advancement.Builder.advancement()
                     .parent(root)
-                    .display(ModBlocks.amethyst_bricks.get(), title("find_mini_tower"), description("find_mini_tower"), null, FrameType.TASK, true, true, false)
-                    .addCriterion("mini_tower", PlayerTrigger.TriggerInstance.located(LocationPredicate.inStructure(ModStructures.MINI_TOWER)))
+                    .display(ModBlocks.amethyst_bricks.get(), title("find_mini_tower"), description("find_mini_tower"), null, AdvancementType.TASK, true, true, false)
+                    .addCriterion("mini_tower", PlayerTrigger.TriggerInstance.located(LocationPredicate.Builder.inStructure(ModStructures.MINI_TOWER)))
                     .save(consumer, loc("find_mini_tower"));
             //Find a Malachite Watchtower
-            Advancement progress2 = Advancement.Builder.advancement()
+            AdvancementHolder progress2 = Advancement.Builder.advancement()
                     .parent(progress1)
-                    .display(ModBlocks.malachite_bricks.get(), title("find_malachite_watchtower"), description("find_malachite_watchtower"), null, FrameType.TASK, true, true, false)
-                    .addCriterion("malachite_watchtower", PlayerTrigger.TriggerInstance.located(LocationPredicate.inStructure(ModStructures.MALACHITE_WATCHTOWER)))
+                    .display(ModBlocks.malachite_bricks.get(), title("find_malachite_watchtower"), description("find_malachite_watchtower"), null, AdvancementType.TASK, true, true, false)
+                    .addCriterion("malachite_watchtower", PlayerTrigger.TriggerInstance.located(LocationPredicate.Builder.inStructure(ModStructures.MALACHITE_WATCHTOWER)))
                     .save(consumer, loc("find_malachite_watchtower"));
             //Slay the Malachite Guard
-            Advancement progress3 = Advancement.Builder.advancement()
+            AdvancementHolder progress3 = Advancement.Builder.advancement()
                     .parent(progress2)
-                    .display(ModItems.malachite_guard_baton.get(), title("slay_malachite_guard"), description("slay_malachite_guard"), null, FrameType.GOAL, true, true, false)
+                    .display(ModItems.malachite_guard_baton.get(), title("slay_malachite_guard"), description("slay_malachite_guard"), null, AdvancementType.GOAL, true, true, false)
                     .addCriterion("malachite_guard", KilledTrigger.TriggerInstance.playerKilledEntity(EntityPredicate.Builder.entity().of(ModEntities.MALACHITE_GUARD.get())))
                     .save(consumer, loc("slay_malachite_guard"));
             //Get all of the Malachite gear
             Advancement.Builder.advancement()
                     .parent(progress3)
-                    .display(ModItems.malachite_guard_headgear.get(), title("all_malachite_gear"), description("all_malachite_gear"), null, FrameType.CHALLENGE, true, true, false)
+                    .display(ModItems.malachite_guard_headgear.get(), title("all_malachite_gear"), description("all_malachite_gear"), null, AdvancementType.CHALLENGE, true, true, false)
                     .addCriterion("malachite_guard_headgear", item(ModItems.malachite_guard_headgear))
                     .addCriterion("malachite_guard_brace", item(ModItems.malachite_guard_brace))
                     .addCriterion("malachite_guard_gear", item(ModItems.malachite_guard_gear))

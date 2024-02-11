@@ -20,6 +20,8 @@ import net.neoforged.fml.config.ModConfig;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.neoforge.common.ModConfigSpec;
+import net.neoforged.neoforge.common.data.DatapackBuiltinEntriesProvider;
+import net.neoforged.neoforge.data.event.GatherDataEvent;
 import org.apache.commons.lang3.tuple.Pair;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -41,7 +43,7 @@ public class GaiaDimensionMod {
     public GaiaDimensionMod(IEventBus bus) {
         bus.addListener(this::setup);
         bus.addListener(this::clientSetup);
-        modEventBus.addListener(this::gatherData);
+        bus.addListener(this::gatherData);
         modEventBus.addListener(this::hackyEvent);
 
         GaiaBiomes.BIOMES.register(bus);
@@ -105,7 +107,7 @@ public class GaiaDimensionMod {
         generator.addProvider(event.includeClient(), new GaiaBlockStates(output, event.getExistingFileHelper()));
         generator.addProvider(event.includeClient(), new GaiaItemModels(output, event.getExistingFileHelper()));
         generator.addProvider(event.includeServer(), new GaiaLootTables(output));
-        generator.addProvider(event.includeServer(), new GaiaRecipes(output));
+        generator.addProvider(event.includeServer(), new GaiaRecipes(output, provider));
         generator.addProvider(event.includeServer(), new GaiaAdvancements(output, provider, event.getExistingFileHelper()));
         generator.addProvider(event.includeServer(), blocktags);
         generator.addProvider(event.includeServer(), new GaiaItemTags(output, provider, blocktags.contentsGetter(), event.getExistingFileHelper()));
@@ -116,6 +118,5 @@ public class GaiaDimensionMod {
         generator.addProvider(event.includeServer(), datapackEntries);
         generator.addProvider(event.includeServer(), new GaiaBiomeTags(output, datapackProvider, event.getExistingFileHelper()));
         generator.addProvider(event.includeServer(), new GaiaDamageTags(output, datapackProvider, event.getExistingFileHelper()));
-
     }
 }
