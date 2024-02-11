@@ -7,9 +7,15 @@ import androsa.gaiadimension.registry.bootstrap.GaiaDimensions;
 import androsa.gaiadimension.registry.helpers.GaiaConfig;
 import androsa.gaiadimension.registry.registration.*;
 import androsa.gaiadimension.registry.values.GaiaFluidAttributes;
+import androsa.gaiadimension.world.chunk.GaiaBiomeSource;
+import androsa.gaiadimension.world.chunk.GaiaChunkGenerator;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.core.Registry;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.MobType;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.IEventBus;
@@ -22,6 +28,7 @@ import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.neoforge.common.ModConfigSpec;
 import net.neoforged.neoforge.common.data.DatapackBuiltinEntriesProvider;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
+import net.neoforged.neoforge.registries.RegisterEvent;
 import org.apache.commons.lang3.tuple.Pair;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -44,7 +51,7 @@ public class GaiaDimensionMod {
         bus.addListener(this::setup);
         bus.addListener(this::clientSetup);
         bus.addListener(this::gatherData);
-        modEventBus.addListener(this::hackyEvent);
+        bus.addListener(this::extraRegistries);
 
         GaiaBiomes.BIOMES.register(bus);
         ModBlocks.BLOCKS.register(bus);
@@ -78,9 +85,13 @@ public class GaiaDimensionMod {
         commonConfig = specPairB.getLeft();
     }
 
-    public void hackyEvent(RegisterEvent event) {
-        if (Objects.equals(event.getForgeRegistry(), ForgeRegistries.RECIPE_SERIALIZERS)) {
-            GaiaDimensions.initDimension();
+    //TODO: Verify this event's necessity
+    public void extraRegistries(RegisterEvent event) {
+        if (event.getRegistryKey() == Registries.BIOME_SOURCE) {
+            Registry.register(BuiltInRegistries.BIOME_SOURCE, new ResourceLocation(GaiaDimensionMod.MODID, "gaia_dimension"), GaiaBiomeSource.CODEC);
+        }
+        if (event.getRegistryKey() == Registries.CHUNK_GENERATOR) {
+            Registry.register(BuiltInRegistries.CHUNK_GENERATOR, new ResourceLocation(GaiaDimensionMod.MODID, "gaia_gen"), GaiaChunkGenerator.CODEC);
         }
     }
 

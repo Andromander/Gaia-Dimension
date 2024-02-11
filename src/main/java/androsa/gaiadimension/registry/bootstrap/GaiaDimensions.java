@@ -7,8 +7,6 @@ import androsa.gaiadimension.world.chunk.GaiaBiomeSource;
 import androsa.gaiadimension.world.chunk.GaiaChunkGenerator;
 import androsa.gaiadimension.world.chunk.GaiaSurfaceRuleData;
 import net.minecraft.core.HolderGetter;
-import net.minecraft.core.Registry;
-import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstapContext;
 import net.minecraft.resources.ResourceKey;
@@ -31,11 +29,6 @@ public class GaiaDimensions {
     public static final ResourceKey<Level> gaia_world = ResourceKey.create(Registries.DIMENSION, new ResourceLocation(GaiaDimensionMod.MODID, "gaia_dimension"));
     public static final ResourceKey<DimensionType> gaia_dimension = ResourceKey.create(Registries.DIMENSION_TYPE, new ResourceLocation(GaiaDimensionMod.MODID, "gaia_dimension"));
     public static final ResourceKey<NoiseGeneratorSettings> gaia_noise = ResourceKey.create(Registries.NOISE_SETTINGS, new ResourceLocation(GaiaDimensionMod.MODID, "gaia_noise"));
-
-    public static void initDimension() {
-        Registry.register(BuiltInRegistries.BIOME_SOURCE, new ResourceLocation(GaiaDimensionMod.MODID, "gaia_dimension"), GaiaBiomeSource.CODEC);
-        Registry.register(BuiltInRegistries.CHUNK_GENERATOR, new ResourceLocation(GaiaDimensionMod.MODID, "gaia_gen"), GaiaChunkGenerator.CODEC);
-    }
 
     public static void initStem(BootstapContext<LevelStem> context) {
         HolderGetter<Biome> biomes = context.lookup(Registries.BIOME);
