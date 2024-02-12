@@ -3,8 +3,8 @@ package androsa.gaiadimension.registry.registration;
 import androsa.gaiadimension.GaiaDimensionMod;
 import androsa.gaiadimension.block.*;
 import androsa.gaiadimension.item.ScaynyxBucketItem;
+import androsa.gaiadimension.registry.bootstrap.GaiaFeatures;
 import androsa.gaiadimension.registry.helpers.PropertiesHandler;
-import androsa.gaiadimension.world.gen.feature.tree.*;
 import com.google.common.collect.Maps;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.dispenser.BlockSource;
@@ -121,16 +121,16 @@ public class ModBlocks {
     public static final DeferredBlock<Block> sombre_shrub = register("sombre_shrub", () -> new SombreShrubBlock(PropertiesHandler.plantProps(MapColor.TERRACOTTA_BROWN, false)));
 
     //Tree Blocks
-    public static final DeferredBlock<SaplingBlock> pink_agate_sapling = register("pink_agate_sapling", () -> new GaiaSaplingBlock(new PinkAgateTree(), PropertiesHandler.saplingProps(MapColor.COLOR_PINK)));
-    public static final DeferredBlock<SaplingBlock> blue_agate_sapling = register("blue_agate_sapling", () -> new GaiaSaplingBlock(new BlueAgateTree(), PropertiesHandler.saplingProps(MapColor.COLOR_LIGHT_BLUE)));
-    public static final DeferredBlock<SaplingBlock> green_agate_sapling = register("green_agate_sapling", () -> new GaiaSaplingBlock(new GreenAgateTree(), PropertiesHandler.saplingProps(MapColor.COLOR_LIGHT_GREEN)));
-    public static final DeferredBlock<SaplingBlock> purple_agate_sapling = register("purple_agate_sapling", () -> new GaiaSaplingBlock(new PurpleAgateTree(), PropertiesHandler.saplingProps(MapColor.TERRACOTTA_PURPLE)));
-    public static final DeferredBlock<SaplingBlock> fossilized_sapling = register("fossilized_sapling", () -> new GaiaSaplingBlock(new FossilizedTree(), PropertiesHandler.saplingProps(MapColor.TERRACOTTA_YELLOW)));
-    public static final DeferredBlock<SaplingBlock> corrupted_sapling = register("corrupted_sapling", () -> new GaiaSaplingBlock(new GoldstoneCorruptTree(), PropertiesHandler.saplingProps(MapColor.TERRACOTTA_BLACK)));
-    public static final DeferredBlock<SaplingBlock> burnt_sapling = register("burnt_agate_sapling", () -> new GaiaSaplingBlock(new BurntAgateTree(), PropertiesHandler.saplingProps(MapColor.COLOR_BLACK)));
-    public static final DeferredBlock<SaplingBlock> fire_agate_sapling = register("fire_agate_sapling", () -> new GaiaSaplingBlock(new FieryAgateTree(), PropertiesHandler.saplingProps(MapColor.TERRACOTTA_ORANGE)), 100);
-    public static final DeferredBlock<SaplingBlock> aura_sapling = register("aura_sapling", () -> new GaiaSaplingBlock(new AuraTree(), PropertiesHandler.saplingProps(MapColor.SNOW)));
-    public static final DeferredBlock<SaplingBlock> golden_sapling = register("golden_sapling", () -> new GaiaSaplingBlock(new GoldenTree(), PropertiesHandler.saplingProps(MapColor.GOLD)));
+    public static final DeferredBlock<SaplingBlock> pink_agate_sapling = register("pink_agate_sapling", () -> new GaiaSaplingBlock(GaiaFeatures.Trees.PINK_AGATE, PropertiesHandler.saplingProps(MapColor.COLOR_PINK)));
+    public static final DeferredBlock<SaplingBlock> blue_agate_sapling = register("blue_agate_sapling", () -> new GaiaSaplingBlock(GaiaFeatures.Trees.BLUE_AGATE, PropertiesHandler.saplingProps(MapColor.COLOR_LIGHT_BLUE)));
+    public static final DeferredBlock<SaplingBlock> green_agate_sapling = register("green_agate_sapling", () -> new GaiaSaplingBlock(GaiaFeatures.Trees.GREEN_AGATE, PropertiesHandler.saplingProps(MapColor.COLOR_LIGHT_GREEN)));
+    public static final DeferredBlock<SaplingBlock> purple_agate_sapling = register("purple_agate_sapling", () -> new GaiaSaplingBlock(GaiaFeatures.Trees.PURPLE_AGATE, PropertiesHandler.saplingProps(MapColor.TERRACOTTA_PURPLE)));
+    public static final DeferredBlock<SaplingBlock> fossilized_sapling = register("fossilized_sapling", () -> new GaiaSaplingBlock(GaiaFeatures.Trees.FOSSILIZED, PropertiesHandler.saplingProps(MapColor.TERRACOTTA_YELLOW)));
+    public static final DeferredBlock<SaplingBlock> corrupted_sapling = register("corrupted_sapling", () -> new GaiaSaplingBlock(GaiaFeatures.Trees.GOLDSTONE, PropertiesHandler.saplingProps(MapColor.TERRACOTTA_BLACK)));
+    public static final DeferredBlock<SaplingBlock> burnt_sapling = register("burnt_agate_sapling", () -> new GaiaSaplingBlock(GaiaFeatures.Trees.BURNT_AGATE, PropertiesHandler.saplingProps(MapColor.COLOR_BLACK)));
+    public static final DeferredBlock<SaplingBlock> fire_agate_sapling = register("fire_agate_sapling", () -> new GaiaSaplingBlock(GaiaFeatures.Trees.FIERY_AGATE, PropertiesHandler.saplingProps(MapColor.TERRACOTTA_ORANGE)), 100);
+    public static final DeferredBlock<SaplingBlock> aura_sapling = register("aura_sapling", () -> new GaiaSaplingBlock(GaiaFeatures.Trees.AURA, PropertiesHandler.saplingProps(MapColor.SNOW)));
+    public static final DeferredBlock<SaplingBlock> golden_sapling = register("golden_sapling", () -> new GaiaSaplingBlock(GaiaFeatures.Trees.GOLDEN, PropertiesHandler.saplingProps(MapColor.GOLD)));
     public static final DeferredBlock<Block> pink_agate_leaves = register("pink_agate_leaves", () -> new LeavesBlock(PropertiesHandler.leavesProps(MapColor.COLOR_MAGENTA)));
     public static final DeferredBlock<Block> blue_agate_leaves = register("blue_agate_leaves", () -> new LeavesBlock(PropertiesHandler.leavesProps(MapColor.COLOR_BLUE)));
     public static final DeferredBlock<Block> green_agate_leaves = register("green_agate_leaves", () -> new LeavesBlock(PropertiesHandler.leavesProps(MapColor.COLOR_GREEN)));

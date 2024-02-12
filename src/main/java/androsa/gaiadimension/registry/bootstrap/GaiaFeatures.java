@@ -30,6 +30,7 @@ import net.minecraft.util.valueproviders.IntProvider;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.SaplingBlock;
+import net.minecraft.world.level.block.grower.TreeGrower;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.level.levelgen.VerticalAnchor;
@@ -54,9 +55,29 @@ import net.minecraft.world.level.levelgen.placement.*;
 import net.minecraft.world.level.levelgen.structure.templatesystem.RuleTest;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.function.Supplier;
 
 public class GaiaFeatures extends GaiaBiomeFeatures {
+
+    public static class Trees {
+        public static final TreeGrower PINK_AGATE = new TreeGrower("pink_agate", Optional.empty(), Optional.of(Configured.pink_agate_tree), Optional.empty());
+        public static final TreeGrower BLUE_AGATE = new TreeGrower("blue_agate", Optional.empty(), Optional.of(Configured.blue_agate_tree), Optional.empty());
+        public static final TreeGrower GREEN_AGATE = new TreeGrower("green_agate", Optional.empty(), Optional.of(Configured.green_agate_tree), Optional.empty());
+        public static final TreeGrower PURPLE_AGATE = new TreeGrower("purple_agate", Optional.empty(), Optional.of(Configured.purple_agate_tree), Optional.empty());
+        public static final TreeGrower FOSSILIZED = new TreeGrower("fossilized", Optional.empty(), Optional.of(Configured.fossilized_tree), Optional.empty());
+        public static final TreeGrower GOLDSTONE = new TreeGrower("goldstone", Optional.empty(), Optional.of(Configured.goldstone_tree), Optional.empty());
+        public static final TreeGrower BURNT_AGATE = new TreeGrower("burnt_agate", Optional.empty(), Optional.of(Configured.burnt_agate_tree), Optional.empty());
+        public static final TreeGrower FIERY_AGATE = new TreeGrower("fiery_agate", Optional.empty(), Optional.of(Configured.fiery_agate_tree), Optional.empty());
+        public static final TreeGrower AURA = new TreeGrower("aura", Optional.empty(), Optional.of(Configured.aura_tree), Optional.empty());
+        public static final TreeGrower GOLDEN = new TreeGrower("golden", 0.45F,
+                Optional.empty(),
+                Optional.empty(),
+                Optional.of(Configured.small_golden_tree),
+                Optional.of(Configured.big_golden_tree),
+                Optional.empty(),
+                Optional.empty());
+    }
 
     public static class Config {
         public static final TreeConfiguration PINK_AGATE_TREE_CONFIG = configureTree(PINK_AGATE_LOG, new StraightTrunkPlacer(5, 3, 3), PINK_AGATE_LEAVES, new CappedFoliagePlacer(ConstantInt.of(3), ConstantInt.of(1)), 1, 0, 1, HEAVY_SOIL);
