@@ -5,6 +5,7 @@ import androsa.gaiadimension.data.*;
 import androsa.gaiadimension.registry.bootstrap.GaiaBiomes;
 import androsa.gaiadimension.registry.bootstrap.GaiaDimensions;
 import androsa.gaiadimension.registry.helpers.GaiaConfig;
+import androsa.gaiadimension.registry.helpers.RemapHelper;
 import androsa.gaiadimension.registry.registration.*;
 import androsa.gaiadimension.registry.values.GaiaFluidAttributes;
 import androsa.gaiadimension.world.chunk.GaiaBiomeSource;
@@ -76,6 +77,8 @@ public class GaiaDimensionMod {
         ModWorldgen.FOLIAGE_PLACERS.register(bus);
         ModWorldgen.TRUNK_PLACERS.register(bus);
         ModWorldgen.WORLD_CARVERS.register(bus);
+
+        RemapHelper.remapEntries();
 
         final Pair<GaiaConfig.ClientConfig, ModConfigSpec> specPairC = new ModConfigSpec.Builder().configure(GaiaConfig.ClientConfig::new);
         final Pair<GaiaConfig.CommonConfig, ModConfigSpec> specPairB = new ModConfigSpec.Builder().configure(GaiaConfig.CommonConfig::new);
