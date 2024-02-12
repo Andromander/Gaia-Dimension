@@ -11,7 +11,6 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.material.Fluid;
-import net.minecraftforge.versions.forge.ForgeVersion;
 
 public class GaiaTags {
 
@@ -22,7 +21,7 @@ public class GaiaTags {
     }
 
     private static TagKey<Item> tagItemForge(String name) {
-        return ItemTags.create(new ResourceLocation(ForgeVersion.MOD_ID, name));
+        return ItemTags.create(new ResourceLocation("forge", name));
     }
 
     private static TagKey<Block> tagBlock(String name) {
@@ -30,7 +29,7 @@ public class GaiaTags {
     }
 
     private static TagKey<Block> tagBlockForge(String name) {
-        return BlockTags.create(new ResourceLocation(ForgeVersion.MOD_ID, name));
+        return BlockTags.create(new ResourceLocation("forge", name));
     }
 
     private static TagKey<Fluid> tagFluid(String name) {
