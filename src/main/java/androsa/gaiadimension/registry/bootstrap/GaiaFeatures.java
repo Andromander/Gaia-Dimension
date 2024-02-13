@@ -113,8 +113,6 @@ public class GaiaFeatures extends GaiaBiomeFeatures {
     }
 
     public static class Configured {
-        public static final HolderSet<PlacedFeature> BUSH_WORKAROUND = HolderSet.direct(PlacementUtils.inlinePlaced(ModWorldgen.STRICT_TREE.get(), Config.GREEN_AGATE_BUSH_CONFIG));
-
         //Lakes
         public static final ResourceKey<ConfiguredFeature<?, ?>> lake_superhot_magma = registerFeature("lake_superhot_magma");
         public static final ResourceKey<ConfiguredFeature<?, ?>> lake_mineral_water = registerFeature("lake_mineral_water");
@@ -380,7 +378,7 @@ public class GaiaFeatures extends GaiaBiomeFeatures {
             context.register(fiery_agate_trees, registerFeature(Feature.SIMPLE_RANDOM_SELECTOR, new SimpleRandomFeatureConfiguration(HolderSet.direct(placed.getOrThrow(Placed.FIERY_AGATE_TREE_CHECKED)))));
             context.register(aura_trees, registerFeature(Feature.SIMPLE_RANDOM_SELECTOR, new SimpleRandomFeatureConfiguration(HolderSet.direct(placed.getOrThrow(Placed.AURA_TREE_CHECKED)))));
             context.register(small_golden_trees_with_vines, registerFeature(Feature.SIMPLE_RANDOM_SELECTOR, new SimpleRandomFeatureConfiguration(HolderSet.direct(placed.getOrThrow(Placed.SMALL_GOLDEN_TREE_VINES_CHECKED)))));
-            context.register(green_agate_bush, registerFeature(Feature.SIMPLE_RANDOM_SELECTOR, new SimpleRandomFeatureConfiguration(BUSH_WORKAROUND)));
+            context.register(green_agate_bush, registerFeature(Feature.SIMPLE_RANDOM_SELECTOR, new SimpleRandomFeatureConfiguration(Placed.BUSH_WORKAROUND)));
             context.register(various_agate_trees, registerFeature(Feature.RANDOM_SELECTOR, new RandomFeatureConfiguration(List.of(
                     new WeightedPlacedFeature(placed.getOrThrow(Placed.PINK_AGATE_TREE_CHECKED), 0.25F),
                     new WeightedPlacedFeature(placed.getOrThrow(Placed.BLUE_AGATE_TREE_CHECKED), 0.25F),
@@ -395,6 +393,8 @@ public class GaiaFeatures extends GaiaBiomeFeatures {
     }
 
     public static class Placed {
+        public static final HolderSet<PlacedFeature> BUSH_WORKAROUND = HolderSet.direct(PlacementUtils.inlinePlaced(ModWorldgen.STRICT_TREE.get(), Config.GREEN_AGATE_BUSH_CONFIG));
+
         //Lakes
         public static final ResourceKey<PlacedFeature> LAKE_SUPERHOT_MAGMA_COMMON = registerPlaced("lake_superhot_magma_common");
         public static final ResourceKey<PlacedFeature> LAKE_SUPERHOT_MAGMA_RARE = registerPlaced("lake_superhot_magma_rare");
