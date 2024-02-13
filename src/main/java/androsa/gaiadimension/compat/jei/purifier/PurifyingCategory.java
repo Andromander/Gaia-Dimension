@@ -19,8 +19,9 @@ import net.minecraft.core.RegistryAccess;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.RecipeHolder;
 
-public class PurifyingCategory extends PurifierRecipeCategory<PurifierRecipe> {
+public class PurifyingCategory extends PurifierRecipeCategory<RecipeHolder<PurifierRecipe>> {
 
     private final IDrawable background;
     private final IDrawable icon;
@@ -52,26 +53,26 @@ public class PurifyingCategory extends PurifierRecipeCategory<PurifierRecipe> {
     }
 
     @Override
-    public RecipeType<PurifierRecipe> getRecipeType() {
+    public RecipeType<RecipeHolder<PurifierRecipe>> getRecipeType() {
         return GaiaRecipeTypes.PURIFY;
     }
 
     @Override
-    public void setRecipe(IRecipeLayoutBuilder layout, PurifierRecipe recipe, IFocusGroup focus) {
+    public void setRecipe(IRecipeLayoutBuilder layout, RecipeHolder<PurifierRecipe> recipe, IFocusGroup focus) {
         ClientLevel level = Minecraft.getInstance().level;
         if (level == null) {
             throw new NullPointerException("level must not be null.");
         }
         RegistryAccess registry = level.registryAccess();
 
-        layout.addSlot(RecipeIngredientRole.INPUT, 30, 3).addIngredients(recipe.getIngredients().get(0));
-        layout.addSlot(RecipeIngredientRole.OUTPUT, 15, 37).addItemStack(recipe.getResultItem(registry));
-        layout.addSlot(RecipeIngredientRole.OUTPUT, 45, 37).addItemStack(recipe.getByproduct());
+        layout.addSlot(RecipeIngredientRole.INPUT, 30, 3).addIngredients(recipe.value().getIngredients().get(0));
+        layout.addSlot(RecipeIngredientRole.OUTPUT, 15, 37).addItemStack(recipe.value().getResultItem(registry));
+        layout.addSlot(RecipeIngredientRole.OUTPUT, 45, 37).addItemStack(recipe.value().getByproduct());
     }
 
     @Override
-    public void draw(PurifierRecipe recipe, IRecipeSlotsView view, GuiGraphics graphics, double mouseX, double mouseY) {
-        float experience = recipe.getExperience();
+    public void draw(RecipeHolder<PurifierRecipe> recipe, IRecipeSlotsView view, GuiGraphics graphics, double mouseX, double mouseY) {
+        float experience = recipe.value().getExperience();
         if (experience > 0.0F) {
             Component experienceString = Component.translatable("gui.jei.category.smelting.experience", experience);
             Minecraft minecraft = Minecraft.getInstance();
@@ -82,7 +83,7 @@ public class PurifyingCategory extends PurifierRecipeCategory<PurifierRecipe> {
     }
 
     @Override
-    public boolean isHandled(PurifierRecipe recipe) {
-        return !recipe.isSpecial();
+    public boolean isHandled(RecipeHolder<PurifierRecipe> recipe) {
+        return !recipe.value().isSpecial();
     }
 }

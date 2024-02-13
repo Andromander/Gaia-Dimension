@@ -19,8 +19,9 @@ import net.minecraft.core.RegistryAccess;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.RecipeHolder;
 
-public class RestructuringCategory extends RestructurerRecipeCategory<RestructurerRecipe> {
+public class RestructuringCategory extends RestructurerRecipeCategory<RecipeHolder<RestructurerRecipe>> {
 
     private final IDrawable background;
     private final IDrawable icon;
@@ -52,26 +53,26 @@ public class RestructuringCategory extends RestructurerRecipeCategory<Restructur
     }
 
     @Override
-    public RecipeType<RestructurerRecipe> getRecipeType() {
+    public RecipeType<RecipeHolder<RestructurerRecipe>> getRecipeType() {
         return GaiaRecipeTypes.RESTRUCTURE;
     }
 
     @Override
-    public void setRecipe(IRecipeLayoutBuilder layout, RestructurerRecipe recipe, IFocusGroup focuses) {
+    public void setRecipe(IRecipeLayoutBuilder layout, RecipeHolder<RestructurerRecipe> recipe, IFocusGroup focuses) {
         ClientLevel level = Minecraft.getInstance().level;
         if (level == null) {
             throw new NullPointerException("level must not be null.");
         }
         RegistryAccess registry = level.registryAccess();
 
-        layout.addSlot(RecipeIngredientRole.INPUT, 30, 3).addIngredients(recipe.getIngredients().get(0));
-        layout.addSlot(RecipeIngredientRole.OUTPUT, 15, 37).addItemStack(recipe.getResultItem(registry));
-        layout.addSlot(RecipeIngredientRole.OUTPUT, 45, 37).addItemStack(recipe.getByproduct());
+        layout.addSlot(RecipeIngredientRole.INPUT, 30, 3).addIngredients(recipe.value().getIngredients().get(0));
+        layout.addSlot(RecipeIngredientRole.OUTPUT, 15, 37).addItemStack(recipe.value().getResultItem(registry));
+        layout.addSlot(RecipeIngredientRole.OUTPUT, 45, 37).addItemStack(recipe.value().getByproduct());
     }
 
     @Override
-    public void draw(RestructurerRecipe recipe, IRecipeSlotsView view, GuiGraphics graphics, double mouseX, double mouseY) {
-        float experience = recipe.getExperience();
+    public void draw(RecipeHolder<RestructurerRecipe> recipe, IRecipeSlotsView view, GuiGraphics graphics, double mouseX, double mouseY) {
+        float experience = recipe.value().getExperience();
         if (experience > 0.0F) {
             Component experienceString = Component.translatable("gui.jei.category.smelting.experience", experience);
             Minecraft minecraft = Minecraft.getInstance();
@@ -82,7 +83,7 @@ public class RestructuringCategory extends RestructurerRecipeCategory<Restructur
     }
 
     @Override
-    public boolean isHandled(RestructurerRecipe recipe) {
-        return !recipe.isSpecial();
+    public boolean isHandled(RecipeHolder<RestructurerRecipe> recipe) {
+        return !recipe.value().isSpecial();
     }
 }

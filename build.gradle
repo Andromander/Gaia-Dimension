@@ -44,8 +44,8 @@ repositories {
         url 'https://maven.tterrag.com/'
     }
     maven {
-        name 'progwm\'s Maven' // JEI + Mantle + TCon
-        url 'https://dvs1.progwml6.com/files/maven'
+        name 'ModMaven' // JEI + Mantle + TCon
+        url 'https://modmaven.dev/'
     }
 }
 
@@ -88,7 +88,8 @@ sourceSets.main.resources {
 
 dependencies {
     implementation "net.neoforged:neoforge:${project.neoforge_version}"
-    //implementation fg.deobf("mezz.jei:jei-${artifactor_minecraft_version}-forge:${jei_version}")
+    compileOnly "mezz.jei:jei-${minecraft_version}-neoforge-api:${jei_version}"
+    runtimeOnly "mezz.jei:jei-${minecraft_version}-neoforge:${jei_version}"
 
 //    runtimeOnly fg.deobf("com.sk88q.worldedit:WorldEdit:${we_version}")
 //    runtimeOnly fg.deobf("team.chisel.ctm:CTM:${project.ctm_version}")

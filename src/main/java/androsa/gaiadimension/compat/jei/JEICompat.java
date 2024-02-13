@@ -49,13 +49,13 @@ public class JEICompat implements IModPlugin {
     public void registerRecipes(IRecipeRegistration registry) {
         IIngredientManager manager = registry.getIngredientManager();
 
-        RestructurerRecipeMaker restructurer = new RestructurerRecipeMaker(manager);
-        PurifierRecipeMaker purifier = new PurifierRecipeMaker(manager);
+        RestructurerRecipeMaker restructurer = new RestructurerRecipeMaker();
+        PurifierRecipeMaker purifier = new PurifierRecipeMaker();
 
-        registry.addRecipes(GaiaRecipeTypes.RESTRUCTURE, restructurer.getRestructurerRecipes(restructuringCategory));
+        registry.addRecipes(GaiaRecipeTypes.RESTRUCTURE, restructurer.getRestructurerRecipes());
         registry.addRecipes(GaiaRecipeTypes.GOLD, GlitterFuelRecipeMaker.getGlitterRecipes(manager));
         registry.addRecipes(GaiaRecipeTypes.SHINE, ShineFuelRecipeMaker.getShineRecipes(manager));
-        registry.addRecipes(GaiaRecipeTypes.PURIFY, purifier.getPurifierRecipes(purifyingCategory));
+        registry.addRecipes(GaiaRecipeTypes.PURIFY, purifier.getPurifierRecipes());
         registry.addRecipes(GaiaRecipeTypes.NULLING, NullFuelRecipeMaker.getNullRecipes(manager));
     }
 
