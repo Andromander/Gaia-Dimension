@@ -22,7 +22,6 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.border.WorldBorder;
 import net.minecraft.world.level.dimension.DimensionType;
-import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.level.portal.PortalInfo;
 import net.minecraft.world.level.portal.PortalShape;
 import net.minecraft.world.phys.Vec3;
@@ -83,11 +82,10 @@ public class GaiaTeleporter implements ITeleporter {
         BlockPos.MutableBlockPos mutable = pos.mutable();
 
         for (BlockPos.MutableBlockPos mut : BlockPos.spiralAround(pos, 16, Direction.EAST, Direction.SOUTH)) {
-            int j = Math.min(height, this.world.getHeight(Heightmap.Types.MOTION_BLOCKING, mut.getX(), mut.getZ()));
             if (border.isWithinBounds(mut) && border.isWithinBounds(mut.move(direction, 1))) {
                 mut.move(direction.getOpposite(), 1);
 
-                for(int l = j; l >= 0; --l) {
+                for(int l = height; l >= 0; --l) {
                     mut.setY(l);
                     if (this.world.isEmptyBlock(mut)) {
                         int i1;
