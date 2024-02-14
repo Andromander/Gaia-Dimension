@@ -17,17 +17,14 @@
     }
   },
   "display": {
-    "announce_to_chat": true,
     "description": {
       "translate": "advancements.gaia.slay_malachite_guard.description"
     },
     "frame": "goal",
-    "hidden": false,
     "icon": {
       "item": "gaiadimension:malachite_guard_baton",
       "nbt": "{Damage:0}"
     },
-    "show_toast": true,
     "title": {
       "translate": "advancements.gaia.slay_malachite_guard.title"
     }

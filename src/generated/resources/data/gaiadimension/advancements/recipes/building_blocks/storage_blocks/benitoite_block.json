@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_benitoite": {
+    "has_gaiadimension:benitoite": {
       "conditions": {
         "items": [
           {
@@ -22,14 +22,13 @@
   },
   "requirements": [
     [
-      "has_benitoite",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_gaiadimension:benitoite"
     ]
   ],
   "rewards": {
     "recipes": [
       "gaiadimension:storage_blocks/benitoite_block"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

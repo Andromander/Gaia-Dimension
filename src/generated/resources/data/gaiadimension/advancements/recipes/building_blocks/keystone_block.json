@@ -34,15 +34,14 @@
   },
   "requirements": [
     [
+      "has_the_recipe",
       "has_lapis",
-      "has_redstone",
-      "has_the_recipe"
+      "has_redstone"
     ]
   ],
   "rewards": {
     "recipes": [
       "gaiadimension:keystone_block"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

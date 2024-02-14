@@ -22,14 +22,13 @@
   },
   "requirements": [
     [
-      "has_carnelian_block",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_carnelian_block"
     ]
   ],
   "rewards": {
     "recipes": [
       "gaiadimension:storage_blocks/carnelian_block_item"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

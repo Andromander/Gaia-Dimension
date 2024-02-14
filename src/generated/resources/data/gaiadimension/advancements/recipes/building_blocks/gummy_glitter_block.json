@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_sweet_muckball": {
+    "has_gaiadimension:sweet_muckball": {
       "conditions": {
         "items": [
           {
@@ -22,14 +22,13 @@
   },
   "requirements": [
     [
-      "has_sweet_muckball",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_gaiadimension:sweet_muckball"
     ]
   ],
   "rewards": {
     "recipes": [
       "gaiadimension:gummy_glitter_block"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

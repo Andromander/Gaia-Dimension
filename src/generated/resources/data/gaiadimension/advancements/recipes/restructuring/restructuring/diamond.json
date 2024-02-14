@@ -22,14 +22,13 @@
   },
   "requirements": [
     [
-      "has_bismuth_crystal",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_bismuth_crystal"
     ]
   ],
   "rewards": {
     "recipes": [
       "gaiadimension:restructuring/diamond"
     ]
-  },
-  "sends_telemetry_event": true
+  }
 }

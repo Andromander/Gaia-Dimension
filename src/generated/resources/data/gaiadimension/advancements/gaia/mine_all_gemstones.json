@@ -123,16 +123,12 @@
     }
   },
   "display": {
-    "announce_to_chat": true,
     "description": {
       "translate": "advancements.gaia.mine_all_gemstones.description"
     },
-    "frame": "task",
-    "hidden": false,
     "icon": {
       "item": "gaiadimension:white_opal"
     },
-    "show_toast": true,
     "title": {
       "translate": "advancements.gaia.mine_all_gemstones.title"
     }

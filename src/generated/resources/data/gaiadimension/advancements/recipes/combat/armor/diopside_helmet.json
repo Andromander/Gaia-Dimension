@@ -22,14 +22,13 @@
   },
   "requirements": [
     [
-      "has_diopside",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_diopside"
     ]
   ],
   "rewards": {
     "recipes": [
       "gaiadimension:armor/diopside_helmet"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

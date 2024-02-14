@@ -22,14 +22,13 @@
   },
   "requirements": [
     [
-      "has_sugilite",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_sugilite"
     ]
   ],
   "rewards": {
     "recipes": [
       "gaiadimension:tools/sugilite_pickaxe"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

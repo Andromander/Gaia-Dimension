@@ -22,14 +22,13 @@
   },
   "requirements": [
     [
-      "has_jade_bricks",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_jade_bricks"
     ]
   ],
   "rewards": {
     "recipes": [
       "gaiadimension:jade_brick_slab"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

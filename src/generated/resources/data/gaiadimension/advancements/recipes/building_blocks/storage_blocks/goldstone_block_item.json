@@ -22,14 +22,13 @@
   },
   "requirements": [
     [
-      "has_goldstone_block",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_goldstone_block"
     ]
   ],
   "rewards": {
     "recipes": [
       "gaiadimension:storage_blocks/goldstone_block_item"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

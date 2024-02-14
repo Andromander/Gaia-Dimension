@@ -22,14 +22,13 @@
   },
   "requirements": [
     [
-      "has_labradorite_block",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_labradorite_block"
     ]
   ],
   "rewards": {
     "recipes": [
       "gaiadimension:storage_blocks/labradorite_block_item"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

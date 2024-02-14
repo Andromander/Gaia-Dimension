@@ -22,14 +22,13 @@
   },
   "requirements": [
     [
-      "has_jet_bricks",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_jet_bricks"
     ]
   ],
   "rewards": {
     "recipes": [
       "gaiadimension:jet_brick_stairs"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

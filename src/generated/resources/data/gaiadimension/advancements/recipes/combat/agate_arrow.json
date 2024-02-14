@@ -34,15 +34,14 @@
   },
   "requirements": [
     [
+      "has_the_recipe",
       "has_pebble",
-      "has_fabric",
-      "has_the_recipe"
+      "has_fabric"
     ]
   ],
   "rewards": {
     "recipes": [
       "gaiadimension:agate_arrow"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

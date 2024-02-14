@@ -291,16 +291,13 @@
     }
   },
   "display": {
-    "announce_to_chat": true,
     "description": {
       "translate": "advancements.gaia.get_all_gemstones.description"
     },
     "frame": "challenge",
-    "hidden": false,
     "icon": {
       "item": "gaiadimension:goshenite"
     },
-    "show_toast": true,
     "title": {
       "translate": "advancements.gaia.get_all_gemstones.title"
     }

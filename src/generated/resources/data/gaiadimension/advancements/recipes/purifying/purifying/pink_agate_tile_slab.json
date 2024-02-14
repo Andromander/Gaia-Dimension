@@ -22,14 +22,13 @@
   },
   "requirements": [
     [
-      "has_corrupted_tile_slab",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_corrupted_tile_slab"
     ]
   ],
   "rewards": {
     "recipes": [
       "gaiadimension:purifying/pink_agate_tile_slab"
     ]
-  },
-  "sends_telemetry_event": true
+  }
 }

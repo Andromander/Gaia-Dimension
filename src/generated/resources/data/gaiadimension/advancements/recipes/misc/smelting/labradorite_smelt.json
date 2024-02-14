@@ -22,14 +22,13 @@
   },
   "requirements": [
     [
-      "has_labradorite_ore",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_labradorite_ore"
     ]
   ],
   "rewards": {
     "recipes": [
       "gaiadimension:smelting/labradorite_smelt"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

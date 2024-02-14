@@ -22,14 +22,13 @@
   },
   "requirements": [
     [
-      "has_pyrite_block",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_pyrite_block"
     ]
   ],
   "rewards": {
     "recipes": [
       "gaiadimension:restructuring/aura_and_bismuth"
     ]
-  },
-  "sends_telemetry_event": true
+  }
 }

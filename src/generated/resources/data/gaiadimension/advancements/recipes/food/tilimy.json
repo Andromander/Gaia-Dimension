@@ -22,14 +22,13 @@
   },
   "requirements": [
     [
-      "has_thiscus",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_thiscus"
     ]
   ],
   "rewards": {
     "recipes": [
       "gaiadimension:tilimy"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

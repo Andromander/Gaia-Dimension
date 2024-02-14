@@ -22,14 +22,13 @@
   },
   "requirements": [
     [
-      "has_benitoite",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_benitoite"
     ]
   ],
   "rewards": {
     "recipes": [
       "gaiadimension:tools/benitoite_sword"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

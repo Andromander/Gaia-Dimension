@@ -20,14 +20,13 @@
   },
   "requirements": [
     [
-      "has_golden_logs",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_golden_logs"
     ]
   ],
   "rewards": {
     "recipes": [
       "gaiadimension:wood/golden_tiles"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

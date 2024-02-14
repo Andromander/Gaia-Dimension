@@ -22,14 +22,13 @@
   },
   "requirements": [
     [
-      "has_euclase",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_euclase"
     ]
   ],
   "rewards": {
     "recipes": [
       "gaiadimension:tools/euclase_axe"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

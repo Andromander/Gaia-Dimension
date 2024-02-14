@@ -22,14 +22,13 @@
   },
   "requirements": [
     [
-      "has_malachite_pulsing_tiles",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_malachite_pulsing_tiles"
     ]
   ],
   "rewards": {
     "recipes": [
       "gaiadimension:malachite_pulsing_tile_stairs"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

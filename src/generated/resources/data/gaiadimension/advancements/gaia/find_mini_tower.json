@@ -19,16 +19,12 @@
     }
   },
   "display": {
-    "announce_to_chat": true,
     "description": {
       "translate": "advancements.gaia.find_mini_tower.description"
     },
-    "frame": "task",
-    "hidden": false,
     "icon": {
       "item": "gaiadimension:amethyst_bricks"
     },
-    "show_toast": true,
     "title": {
       "translate": "advancements.gaia.find_mini_tower.title"
     }

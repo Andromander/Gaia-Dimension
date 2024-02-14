@@ -291,16 +291,12 @@
     }
   },
   "display": {
-    "announce_to_chat": true,
     "description": {
       "translate": "advancements.gaia.collect_gemstone.description"
     },
-    "frame": "task",
-    "hidden": false,
     "icon": {
       "item": "gaiadimension:sugilite"
     },
-    "show_toast": true,
     "title": {
       "translate": "advancements.gaia.collect_gemstone.title"
     }

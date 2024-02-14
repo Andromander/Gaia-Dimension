@@ -1,10 +1,14 @@
 {
   "type": "gaiadimension:restructuring",
-  "byproduct": "gaiadimension:pink_essence",
+  "byproduct": {
+    "item": "gaiadimension:pink_essence"
+  },
   "cookingtime": 200,
   "experience": 0.1,
   "ingredient": {
     "item": "gaiadimension:scaynyx_ingot"
   },
-  "result": "minecraft:gold_ingot"
+  "result": {
+    "item": "minecraft:gold_ingot"
+  }
 }

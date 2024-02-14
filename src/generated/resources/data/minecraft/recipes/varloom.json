@@ -8,5 +8,7 @@
   "ingredient": {
     "item": "gaiadimension:corrupted_varloom"
   },
-  "result": "gaiadimension:varloom"
+  "result": {
+    "item": "gaiadimension:varloom"
+  }
 }

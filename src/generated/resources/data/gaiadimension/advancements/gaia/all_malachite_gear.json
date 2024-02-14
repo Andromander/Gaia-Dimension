@@ -63,17 +63,14 @@
     }
   },
   "display": {
-    "announce_to_chat": true,
     "description": {
       "translate": "advancements.gaia.all_malachite_gear.description"
     },
     "frame": "challenge",
-    "hidden": false,
     "icon": {
       "item": "gaiadimension:malachite_guard_headgear",
       "nbt": "{Damage:0}"
     },
-    "show_toast": true,
     "title": {
       "translate": "advancements.gaia.all_malachite_gear.title"
     }

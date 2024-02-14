@@ -22,14 +22,13 @@
   },
   "requirements": [
     [
-      "has_labradorite_block",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_labradorite_block"
     ]
   ],
   "rewards": {
     "recipes": [
       "gaiadimension:restructuring/euclase_block"
     ]
-  },
-  "sends_telemetry_event": true
+  }
 }

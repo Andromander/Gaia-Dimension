@@ -8,5 +8,7 @@
   "ingredient": {
     "item": "gaiadimension:corrupted_tile_stairs"
   },
-  "result": "gaiadimension:pink_agate_tile_stairs"
+  "result": {
+    "item": "gaiadimension:pink_agate_tile_stairs"
+  }
 }

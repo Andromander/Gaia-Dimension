@@ -22,14 +22,13 @@
   },
   "requirements": [
     [
-      "has_corrupted_soil",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_corrupted_soil"
     ]
   ],
   "rewards": {
     "recipes": [
       "gaiadimension:purifying/heavy_soil"
     ]
-  },
-  "sends_telemetry_event": true
+  }
 }

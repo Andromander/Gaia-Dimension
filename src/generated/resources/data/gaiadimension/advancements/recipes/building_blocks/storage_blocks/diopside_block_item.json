@@ -22,14 +22,13 @@
   },
   "requirements": [
     [
-      "has_diopside_block",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_diopside_block"
     ]
   ],
   "rewards": {
     "recipes": [
       "gaiadimension:storage_blocks/diopside_block_item"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

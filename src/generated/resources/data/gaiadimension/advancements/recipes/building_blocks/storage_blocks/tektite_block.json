@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_tektite": {
+    "has_gaiadimension:tektite": {
       "conditions": {
         "items": [
           {
@@ -22,14 +22,13 @@
   },
   "requirements": [
     [
-      "has_tektite",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_gaiadimension:tektite"
     ]
   ],
   "rewards": {
     "recipes": [
       "gaiadimension:storage_blocks/tektite_block"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_cinnabar": {
+    "has_gaiadimension:cinnabar": {
       "conditions": {
         "items": [
           {
@@ -22,14 +22,13 @@
   },
   "requirements": [
     [
-      "has_cinnabar",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_gaiadimension:cinnabar"
     ]
   ],
   "rewards": {
     "recipes": [
       "gaiadimension:storage_blocks/cinnabar_block"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

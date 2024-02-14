@@ -20,14 +20,13 @@
   },
   "requirements": [
     [
-      "has_fossilized_logs",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_fossilized_logs"
     ]
   ],
   "rewards": {
     "recipes": [
       "gaiadimension:wood/fossilized_tiles"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

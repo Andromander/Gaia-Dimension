@@ -22,14 +22,13 @@
   },
   "requirements": [
     [
-      "has_residue",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_residue"
     ]
   ],
   "rewards": {
     "recipes": [
       "gaiadimension:corrupted_soil"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

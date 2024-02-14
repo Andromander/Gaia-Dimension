@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_sugilite": {
+    "has_gaiadimension:sugilite": {
       "conditions": {
         "items": [
           {
@@ -22,14 +22,13 @@
   },
   "requirements": [
     [
-      "has_sugilite",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_gaiadimension:sugilite"
     ]
   ],
   "rewards": {
     "recipes": [
       "gaiadimension:storage_blocks/sugilite_block"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

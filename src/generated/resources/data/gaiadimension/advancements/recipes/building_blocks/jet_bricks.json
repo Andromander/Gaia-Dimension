@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_raw_jet": {
+    "has_gaiadimension:raw_jet": {
       "conditions": {
         "items": [
           {
@@ -22,14 +22,13 @@
   },
   "requirements": [
     [
-      "has_raw_jet",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_gaiadimension:raw_jet"
     ]
   ],
   "rewards": {
     "recipes": [
       "gaiadimension:jet_bricks"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

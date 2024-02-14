@@ -22,14 +22,13 @@
   },
   "requirements": [
     [
-      "has_golden_tiles",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_golden_tiles"
     ]
   ],
   "rewards": {
     "recipes": [
       "gaiadimension:wood/golden_tile_slab"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

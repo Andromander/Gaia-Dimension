@@ -291,17 +291,13 @@
     }
   },
   "display": {
-    "announce_to_chat": true,
     "description": {
       "translate": "advancements.gaia.get_armor.description"
     },
-    "frame": "task",
-    "hidden": false,
     "icon": {
       "item": "gaiadimension:sugilite_helmet",
       "nbt": "{Damage:0}"
     },
-    "show_toast": true,
     "title": {
       "translate": "advancements.gaia.get_armor.title"
     }

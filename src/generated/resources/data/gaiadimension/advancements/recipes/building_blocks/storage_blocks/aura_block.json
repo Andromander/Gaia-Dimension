@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_aura_cluster": {
+    "has_gaiadimension:aura_cluster": {
       "conditions": {
         "items": [
           {
@@ -22,14 +22,13 @@
   },
   "requirements": [
     [
-      "has_aura_cluster",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_gaiadimension:aura_cluster"
     ]
   ],
   "rewards": {
     "recipes": [
       "gaiadimension:storage_blocks/aura_block"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

@@ -8,5 +8,7 @@
   "ingredient": {
     "item": "gaiadimension:corrupted_tile_slab"
   },
-  "result": "gaiadimension:pink_agate_tile_slab"
+  "result": {
+    "item": "gaiadimension:pink_agate_tile_slab"
+  }
 }

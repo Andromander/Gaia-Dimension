@@ -8,5 +8,7 @@
   "ingredient": {
     "item": "gaiadimension:corrupted_sapling"
   },
-  "result": "gaiadimension:pink_agate_sapling"
+  "result": {
+    "item": "gaiadimension:pink_agate_sapling"
+  }
 }

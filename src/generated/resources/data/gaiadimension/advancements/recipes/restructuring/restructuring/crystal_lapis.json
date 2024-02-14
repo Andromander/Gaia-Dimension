@@ -22,14 +22,13 @@
   },
   "requirements": [
     [
-      "has_benitoite",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_benitoite"
     ]
   ],
   "rewards": {
     "recipes": [
       "gaiadimension:restructuring/crystal_lapis"
     ]
-  },
-  "sends_telemetry_event": true
+  }
 }

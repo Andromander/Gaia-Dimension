@@ -22,14 +22,13 @@
   },
   "requirements": [
     [
-      "has_malachite_pulsing_chisel",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_malachite_pulsing_chisel"
     ]
   ],
   "rewards": {
     "recipes": [
       "gaiadimension:malachite_pulsing_chisel_stairs"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

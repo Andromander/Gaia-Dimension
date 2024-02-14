@@ -22,14 +22,13 @@
   },
   "requirements": [
     [
-      "has_celestine",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_celestine"
     ]
   ],
   "rewards": {
     "recipes": [
       "gaiadimension:construct_charm"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

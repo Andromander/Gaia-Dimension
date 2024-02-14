@@ -1,10 +1,14 @@
 {
   "type": "gaiadimension:restructuring",
-  "byproduct": "gaiadimension:tektite",
+  "byproduct": {
+    "item": "gaiadimension:tektite"
+  },
   "cookingtime": 200,
   "experience": 2.7,
   "ingredient": {
     "item": "gaiadimension:moonstone_block"
   },
-  "result": "gaiadimension:albite_block"
+  "result": {
+    "item": "gaiadimension:albite_block"
+  }
 }

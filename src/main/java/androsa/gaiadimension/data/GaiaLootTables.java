@@ -1,5 +1,6 @@
 package androsa.gaiadimension.data;
 
+import androsa.gaiadimension.GaiaDimensionMod;
 import androsa.gaiadimension.data.provider.GaiaBlockLootTableProvider;
 import androsa.gaiadimension.data.provider.GaiaEntityLootTableProvider;
 import androsa.gaiadimension.registry.registration.ModBlocks;
@@ -7,6 +8,7 @@ import androsa.gaiadimension.registry.registration.ModEntities;
 import androsa.gaiadimension.registry.registration.ModItems;
 import androsa.gaiadimension.registry.values.GaiaBuiltinTables;
 import androsa.gaiadimension.registry.values.GaiaChestTables;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.loot.LootTableProvider;
 import net.minecraft.data.loot.LootTableSubProvider;
@@ -22,6 +24,7 @@ import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
 import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
+import net.neoforged.neoforge.registries.DeferredHolder;
 
 import java.util.List;
 import java.util.Map;
@@ -436,7 +439,7 @@ public class GaiaLootTables extends LootTableProvider {
 
         @Override
         protected Stream<EntityType<?>> getKnownEntityTypes() {
-            return ModEntities.ENTITY_TYPES.getRegistry().get().stream();
+            return ModEntities.ENTITY_TYPES.getEntries().stream().map(DeferredHolder::value);
         }
     }
 

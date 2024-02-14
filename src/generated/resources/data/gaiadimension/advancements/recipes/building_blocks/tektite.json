@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_black_residue": {
+    "has_gaiadimension:black_residue": {
       "conditions": {
         "items": [
           {
@@ -22,14 +22,13 @@
   },
   "requirements": [
     [
-      "has_black_residue",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_gaiadimension:black_residue"
     ]
   ],
   "rewards": {
     "recipes": [
       "gaiadimension:tektite"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

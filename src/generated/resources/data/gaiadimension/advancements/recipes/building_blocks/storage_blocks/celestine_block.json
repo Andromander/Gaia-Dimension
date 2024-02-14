@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_celestine": {
+    "has_gaiadimension:celestine": {
       "conditions": {
         "items": [
           {
@@ -22,14 +22,13 @@
   },
   "requirements": [
     [
-      "has_celestine",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_gaiadimension:celestine"
     ]
   ],
   "rewards": {
     "recipes": [
       "gaiadimension:storage_blocks/celestine_block"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

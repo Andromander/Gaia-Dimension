@@ -20,14 +20,13 @@
   },
   "requirements": [
     [
-      "has_burnt_logs",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_burnt_logs"
     ]
   ],
   "rewards": {
     "recipes": [
       "gaiadimension:wood/burnt_agate_tiles"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

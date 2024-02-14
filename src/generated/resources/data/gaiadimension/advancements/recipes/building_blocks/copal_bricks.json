@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_raw_copal": {
+    "has_gaiadimension:raw_copal": {
       "conditions": {
         "items": [
           {
@@ -22,14 +22,13 @@
   },
   "requirements": [
     [
-      "has_raw_copal",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_gaiadimension:raw_copal"
     ]
   ],
   "rewards": {
     "recipes": [
       "gaiadimension:copal_bricks"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

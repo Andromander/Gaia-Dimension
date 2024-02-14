@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_green_opal": {
+    "has_gaiadimension:green_opal": {
       "conditions": {
         "items": [
           {
@@ -22,14 +22,13 @@
   },
   "requirements": [
     [
-      "has_green_opal",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_gaiadimension:green_opal"
     ]
   ],
   "rewards": {
     "recipes": [
       "gaiadimension:storage_blocks/green_opal_block"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

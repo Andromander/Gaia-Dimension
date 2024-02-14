@@ -22,14 +22,13 @@
   },
   "requirements": [
     [
-      "has_red_opal_ore",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_red_opal_ore"
     ]
   ],
   "rewards": {
     "recipes": [
       "gaiadimension:smelting/red_opal_smelt"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

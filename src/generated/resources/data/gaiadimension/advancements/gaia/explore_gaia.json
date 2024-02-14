@@ -339,16 +339,13 @@
     }
   },
   "display": {
-    "announce_to_chat": true,
     "description": {
       "translate": "advancements.gaia.explore_gaia.description"
     },
     "frame": "challenge",
-    "hidden": false,
     "icon": {
       "item": "gaiadimension:glitter_grass"
     },
-    "show_toast": true,
     "title": {
       "translate": "advancements.gaia.explore_gaia.title"
     }

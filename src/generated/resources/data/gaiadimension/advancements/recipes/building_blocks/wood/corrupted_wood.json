@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_corrupted_log": {
+    "has_gaiadimension:corrupted_log": {
       "conditions": {
         "items": [
           {
@@ -22,14 +22,13 @@
   },
   "requirements": [
     [
-      "has_corrupted_log",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_gaiadimension:corrupted_log"
     ]
   ],
   "rewards": {
     "recipes": [
       "gaiadimension:wood/corrupted_wood"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

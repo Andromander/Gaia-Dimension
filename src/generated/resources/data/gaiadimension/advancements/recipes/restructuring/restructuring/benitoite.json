@@ -22,14 +22,13 @@
   },
   "requirements": [
     [
-      "has_blue_opal",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_blue_opal"
     ]
   ],
   "rewards": {
     "recipes": [
       "gaiadimension:restructuring/benitoite"
     ]
-  },
-  "sends_telemetry_event": true
+  }
 }

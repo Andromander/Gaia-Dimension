@@ -22,14 +22,13 @@
   },
   "requirements": [
     [
-      "has_gaia_stone",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_gaia_stone"
     ]
   ],
   "rewards": {
     "recipes": [
       "gaiadimension:smelting/pink_essence"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

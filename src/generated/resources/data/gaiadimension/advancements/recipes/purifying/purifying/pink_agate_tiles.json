@@ -22,14 +22,13 @@
   },
   "requirements": [
     [
-      "has_corrupted_tiles",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_corrupted_tiles"
     ]
   ],
   "rewards": {
     "recipes": [
       "gaiadimension:purifying/pink_agate_tiles"
     ]
-  },
-  "sends_telemetry_event": true
+  }
 }

@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_aura_residue": {
+    "has_gaiadimension:aura_residue": {
       "conditions": {
         "items": [
           {
@@ -22,14 +22,13 @@
   },
   "requirements": [
     [
-      "has_aura_residue",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_gaiadimension:aura_residue"
     ]
   ],
   "rewards": {
     "recipes": [
       "gaiadimension:aura_cluster"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

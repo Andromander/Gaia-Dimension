@@ -22,14 +22,13 @@
   },
   "requirements": [
     [
-      "has_stripped_corrupted_wood",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_stripped_corrupted_wood"
     ]
   ],
   "rewards": {
     "recipes": [
       "gaiadimension:purifying/stripped_pink_agate_wood"
     ]
-  },
-  "sends_telemetry_event": true
+  }
 }

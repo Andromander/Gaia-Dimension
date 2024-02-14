@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_moonstone": {
+    "has_gaiadimension:moonstone": {
       "conditions": {
         "items": [
           {
@@ -22,14 +22,13 @@
   },
   "requirements": [
     [
-      "has_moonstone",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_gaiadimension:moonstone"
     ]
   ],
   "rewards": {
     "recipes": [
       "gaiadimension:storage_blocks/moonstone_block"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

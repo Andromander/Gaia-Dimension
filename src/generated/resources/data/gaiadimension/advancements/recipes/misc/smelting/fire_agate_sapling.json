@@ -22,14 +22,13 @@
   },
   "requirements": [
     [
-      "has_burnt_agate_sapling",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_burnt_agate_sapling"
     ]
   ],
   "rewards": {
     "recipes": [
       "gaiadimension:smelting/fire_agate_sapling"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

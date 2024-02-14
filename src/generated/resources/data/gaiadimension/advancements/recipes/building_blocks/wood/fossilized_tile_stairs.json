@@ -22,14 +22,13 @@
   },
   "requirements": [
     [
-      "has_fossilized_tiles",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_fossilized_tiles"
     ]
   ],
   "rewards": {
     "recipes": [
       "gaiadimension:wood/fossilized_tile_stairs"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

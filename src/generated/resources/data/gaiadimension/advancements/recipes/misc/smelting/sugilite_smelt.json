@@ -22,14 +22,13 @@
   },
   "requirements": [
     [
-      "has_sugilite_ore",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_sugilite_ore"
     ]
   ],
   "rewards": {
     "recipes": [
       "gaiadimension:smelting/sugilite_smelt"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

@@ -22,14 +22,13 @@
   },
   "requirements": [
     [
-      "has_gaia_cobblestone",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_gaia_cobblestone"
     ]
   ],
   "rewards": {
     "recipes": [
       "gaiadimension:smelting/gaia_stone"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

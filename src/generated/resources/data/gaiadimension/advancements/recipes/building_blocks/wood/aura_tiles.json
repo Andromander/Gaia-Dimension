@@ -20,14 +20,13 @@
   },
   "requirements": [
     [
-      "has_aura_logs",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_aura_logs"
     ]
   ],
   "rewards": {
     "recipes": [
       "gaiadimension:wood/aura_tiles"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

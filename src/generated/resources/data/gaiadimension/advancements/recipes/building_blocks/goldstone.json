@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_goldstone_residue": {
+    "has_gaiadimension:goldstone_residue": {
       "conditions": {
         "items": [
           {
@@ -22,14 +22,13 @@
   },
   "requirements": [
     [
-      "has_goldstone_residue",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_gaiadimension:goldstone_residue"
     ]
   ],
   "rewards": {
     "recipes": [
       "gaiadimension:goldstone"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

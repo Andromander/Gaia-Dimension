@@ -22,14 +22,13 @@
   },
   "requirements": [
     [
-      "has_malachite_slab",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_malachite_slab"
     ]
   ],
   "rewards": {
     "recipes": [
       "gaiadimension:malachite_chisel_bricks"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_goshenite": {
+    "has_gaiadimension:goshenite": {
       "conditions": {
         "items": [
           {
@@ -22,14 +22,13 @@
   },
   "requirements": [
     [
-      "has_goshenite",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_gaiadimension:goshenite"
     ]
   ],
   "rewards": {
     "recipes": [
       "gaiadimension:storage_blocks/goshenite_block"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

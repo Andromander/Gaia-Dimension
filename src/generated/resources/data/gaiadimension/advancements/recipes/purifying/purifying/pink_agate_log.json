@@ -22,14 +22,13 @@
   },
   "requirements": [
     [
-      "has_corrupted_log",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_corrupted_log"
     ]
   ],
   "rewards": {
     "recipes": [
       "gaiadimension:purifying/pink_agate_log"
     ]
-  },
-  "sends_telemetry_event": true
+  }
 }

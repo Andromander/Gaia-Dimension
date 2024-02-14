@@ -8,17 +8,13 @@
     }
   },
   "display": {
-    "announce_to_chat": true,
     "background": "gaiadimension:textures/block/gaia_stone.png",
     "description": {
       "translate": "advancements.gaia.root.description"
     },
-    "frame": "task",
-    "hidden": false,
     "icon": {
       "item": "gaiadimension:keystone_block"
     },
-    "show_toast": true,
     "title": {
       "translate": "advancements.gaia.root.title"
     }

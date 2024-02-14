@@ -22,14 +22,13 @@
   },
   "requirements": [
     [
-      "has_goshenite",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_goshenite"
     ]
   ],
   "rewards": {
     "recipes": [
       "gaiadimension:tools/goshenite_axe"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

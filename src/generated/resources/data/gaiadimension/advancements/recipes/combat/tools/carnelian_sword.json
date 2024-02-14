@@ -22,14 +22,13 @@
   },
   "requirements": [
     [
-      "has_carnelian",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_carnelian"
     ]
   ],
   "rewards": {
     "recipes": [
       "gaiadimension:tools/carnelian_sword"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

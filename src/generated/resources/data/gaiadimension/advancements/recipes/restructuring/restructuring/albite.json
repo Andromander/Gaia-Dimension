@@ -22,14 +22,13 @@
   },
   "requirements": [
     [
-      "has_moonstone",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_moonstone"
     ]
   ],
   "rewards": {
     "recipes": [
       "gaiadimension:restructuring/albite"
     ]
-  },
-  "sends_telemetry_event": true
+  }
 }

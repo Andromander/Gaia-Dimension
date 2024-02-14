@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_hematite": {
+    "has_gaiadimension:hematite": {
       "conditions": {
         "items": [
           {
@@ -22,14 +22,13 @@
   },
   "requirements": [
     [
-      "has_hematite",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_gaiadimension:hematite"
     ]
   ],
   "rewards": {
     "recipes": [
       "gaiadimension:storage_blocks/hematite_block"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

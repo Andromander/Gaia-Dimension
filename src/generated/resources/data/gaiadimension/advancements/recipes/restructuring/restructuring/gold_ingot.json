@@ -22,14 +22,13 @@
   },
   "requirements": [
     [
-      "has_scaynyx_ingot",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_scaynyx_ingot"
     ]
   ],
   "rewards": {
     "recipes": [
       "gaiadimension:restructuring/gold_ingot"
     ]
-  },
-  "sends_telemetry_event": true
+  }
 }

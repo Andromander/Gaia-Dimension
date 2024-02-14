@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_opalite": {
+    "has_gaiadimension:opalite": {
       "conditions": {
         "items": [
           {
@@ -22,14 +22,13 @@
   },
   "requirements": [
     [
-      "has_opalite",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_gaiadimension:opalite"
     ]
   ],
   "rewards": {
     "recipes": [
       "gaiadimension:storage_blocks/opalite_block"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

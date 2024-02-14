@@ -22,14 +22,13 @@
   },
   "requirements": [
     [
-      "has_malachite_pillar",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_malachite_pillar"
     ]
   ],
   "rewards": {
     "recipes": [
       "gaiadimension:malachite_pillar_stairs"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

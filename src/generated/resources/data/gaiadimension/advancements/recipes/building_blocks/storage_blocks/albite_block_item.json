@@ -22,14 +22,13 @@
   },
   "requirements": [
     [
-      "has_albite_block",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_albite_block"
     ]
   ],
   "rewards": {
     "recipes": [
       "gaiadimension:storage_blocks/albite_block_item"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

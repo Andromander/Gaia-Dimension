@@ -22,14 +22,13 @@
   },
   "requirements": [
     [
-      "has_redstone",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_redstone"
     ]
   ],
   "rewards": {
     "recipes": [
       "gaiadimension:smelting/crystal_redstone"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

@@ -22,14 +22,13 @@
   },
   "requirements": [
     [
-      "has_stibnite",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_stibnite"
     ]
   ],
   "rewards": {
     "recipes": [
       "gaiadimension:tools/stibnite_axe"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

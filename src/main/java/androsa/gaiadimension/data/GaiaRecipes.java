@@ -454,8 +454,12 @@ public class GaiaRecipes extends GaiaRecipeProvider {
         smeltingRecipe(ModItems.cinnabar.get(), ModBlocks.cinnabar_ore, 0.3F).save(consumer, locSmelt("cinnabar_smelt"));
         smeltingRecipe(ModItems.cloudy_shard.get(), ModItems.fine_dust, 0.1F).save(consumer, locSmelt("cloudy_shard"));
         smeltingRecipe(ModItems.cooked_luggeroth_chop.get(), ModItems.luggeroth_chop, 0.2F).save(consumer, locSmelt("cooked_luggeroth_chop"));
-        SimpleCookingRecipeBuilder.smelting(Ingredient.of(Items.LAPIS_LAZULI), RecipeCategory.MISC, ModItems.crystallized_lapis_lazuli.get(), 0.25F, 200).save(consumer, locSmelt("crystal_lapis"));
-        SimpleCookingRecipeBuilder.smelting(Ingredient.of(Items.REDSTONE), RecipeCategory.MISC, ModItems.crystallized_redstone.get(), 0.25F, 200).save(consumer, locSmelt("crystal_redstone"));
+        SimpleCookingRecipeBuilder.smelting(Ingredient.of(Items.LAPIS_LAZULI), RecipeCategory.MISC, ModItems.crystallized_lapis_lazuli.get(), 0.25F, 200)
+                .unlockedBy("has_lapis", has(Items.LAPIS_LAZULI))
+                .save(consumer, locSmelt("crystal_lapis"));
+        SimpleCookingRecipeBuilder.smelting(Ingredient.of(Items.REDSTONE), RecipeCategory.MISC, ModItems.crystallized_redstone.get(), 0.25F, 200)
+                .unlockedBy("has_redstone", has(Items.REDSTONE))
+                .save(consumer, locSmelt("crystal_redstone"));
         smeltingRecipe(ModBlocks.foggy_glass.get(), ModBlocks.salt, 0.1F).save(consumer, locSmelt("foggy_glass"));
         smeltingRecipe(ModBlocks.gaia_stone.get(), ModBlocks.gaia_cobblestone, 0.1F).save(consumer, locSmelt("gaia_stone"));
         smeltingRecipe(ModItems.goldstone_residue.get(), ModItems.goldstone_dust, 0.1F).save(consumer, locSmelt("golstone_residue"));

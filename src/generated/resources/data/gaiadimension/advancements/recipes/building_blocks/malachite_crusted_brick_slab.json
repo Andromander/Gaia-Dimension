@@ -22,14 +22,13 @@
   },
   "requirements": [
     [
-      "has_malachite_crusted_bricks",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_malachite_crusted_bricks"
     ]
   ],
   "rewards": {
     "recipes": [
       "gaiadimension:malachite_crusted_brick_slab"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

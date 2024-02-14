@@ -22,14 +22,13 @@
   },
   "requirements": [
     [
-      "has_shard",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_shard"
     ]
   ],
   "rewards": {
     "recipes": [
       "gaiadimension:crusted_gaia_stone_bricks"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

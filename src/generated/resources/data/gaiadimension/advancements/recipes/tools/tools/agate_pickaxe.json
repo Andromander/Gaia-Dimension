@@ -20,14 +20,13 @@
   },
   "requirements": [
     [
-      "has_agate_tiles",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_agate_tiles"
     ]
   ],
   "rewards": {
     "recipes": [
       "gaiadimension:tools/agate_pickaxe"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

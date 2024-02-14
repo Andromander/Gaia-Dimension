@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_cloudy_shard": {
+    "has_gaiadimension:cloudy_shard": {
       "conditions": {
         "items": [
           {
@@ -22,14 +22,13 @@
   },
   "requirements": [
     [
-      "has_cloudy_shard",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_gaiadimension:cloudy_shard"
     ]
   ],
   "rewards": {
     "recipes": [
       "gaiadimension:cloudy_glass"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

@@ -22,14 +22,13 @@
   },
   "requirements": [
     [
-      "has_cinnabar_block",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_cinnabar_block"
     ]
   ],
   "rewards": {
     "recipes": [
       "gaiadimension:storage_blocks/cinnabar_block_item"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

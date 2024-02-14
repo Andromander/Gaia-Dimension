@@ -22,14 +22,13 @@
   },
   "requirements": [
     [
-      "has_corrupted_varloom",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_corrupted_varloom"
     ]
   ],
   "rewards": {
     "recipes": [
       "minecraft:varloom"
     ]
-  },
-  "sends_telemetry_event": true
+  }
 }

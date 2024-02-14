@@ -22,14 +22,13 @@
   },
   "requirements": [
     [
-      "has_red_opal",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_red_opal"
     ]
   ],
   "rewards": {
     "recipes": [
       "gaiadimension:restructuring/carnelian"
     ]
-  },
-  "sends_telemetry_event": true
+  }
 }

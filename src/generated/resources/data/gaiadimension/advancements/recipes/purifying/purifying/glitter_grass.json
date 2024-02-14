@@ -22,14 +22,13 @@
   },
   "requirements": [
     [
-      "has_corrupted_grass",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_corrupted_grass"
     ]
   ],
   "rewards": {
     "recipes": [
       "gaiadimension:purifying/glitter_grass"
     ]
-  },
-  "sends_telemetry_event": true
+  }
 }

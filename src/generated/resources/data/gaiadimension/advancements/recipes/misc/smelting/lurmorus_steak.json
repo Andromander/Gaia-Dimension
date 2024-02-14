@@ -22,14 +22,13 @@
   },
   "requirements": [
     [
-      "has_lurmorus_meat",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_lurmorus_meat"
     ]
   ],
   "rewards": {
     "recipes": [
       "gaiadimension:smelting/lurmorus_steak"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

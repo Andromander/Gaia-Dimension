@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_stibnite": {
+    "has_gaiadimension:stibnite": {
       "conditions": {
         "items": [
           {
@@ -22,14 +22,13 @@
   },
   "requirements": [
     [
-      "has_stibnite",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_gaiadimension:stibnite"
     ]
   ],
   "rewards": {
     "recipes": [
       "gaiadimension:storage_blocks/stibnite_block"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_euclase": {
+    "has_gaiadimension:euclase": {
       "conditions": {
         "items": [
           {
@@ -22,14 +22,13 @@
   },
   "requirements": [
     [
-      "has_euclase",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_gaiadimension:euclase"
     ]
   ],
   "rewards": {
     "recipes": [
       "gaiadimension:storage_blocks/euclase_block"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

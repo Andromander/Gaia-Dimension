@@ -22,14 +22,13 @@
   },
   "requirements": [
     [
-      "has_corrupted_tile_stairs",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_corrupted_tile_stairs"
     ]
   ],
   "rewards": {
     "recipes": [
       "gaiadimension:purifying/pink_agate_tile_stairs"
     ]
-  },
-  "sends_telemetry_event": true
+  }
 }

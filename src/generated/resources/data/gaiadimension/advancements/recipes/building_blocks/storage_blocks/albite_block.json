@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_albite": {
+    "has_gaiadimension:albite": {
       "conditions": {
         "items": [
           {
@@ -22,14 +22,13 @@
   },
   "requirements": [
     [
-      "has_albite",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_gaiadimension:albite"
     ]
   ],
   "rewards": {
     "recipes": [
       "gaiadimension:storage_blocks/albite_block"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

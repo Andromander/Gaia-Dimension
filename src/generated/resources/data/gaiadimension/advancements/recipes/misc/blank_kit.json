@@ -20,14 +20,13 @@
   },
   "requirements": [
     [
-      "has_mookaite",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_mookaite"
     ]
   ],
   "rewards": {
     "recipes": [
       "gaiadimension:blank_kit"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

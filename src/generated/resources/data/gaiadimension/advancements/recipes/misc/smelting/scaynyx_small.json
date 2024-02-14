@@ -22,14 +22,13 @@
   },
   "requirements": [
     [
-      "has_speckled_rock",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_speckled_rock"
     ]
   ],
   "rewards": {
     "recipes": [
       "gaiadimension:smelting/scaynyx_small"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

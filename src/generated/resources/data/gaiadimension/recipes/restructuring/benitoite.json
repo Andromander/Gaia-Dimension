@@ -1,10 +1,14 @@
 {
   "type": "gaiadimension:restructuring",
-  "byproduct": "gaiadimension:black_residue",
+  "byproduct": {
+    "item": "gaiadimension:black_residue"
+  },
   "cookingtime": 200,
   "experience": 0.3,
   "ingredient": {
     "item": "gaiadimension:blue_opal"
   },
-  "result": "gaiadimension:benitoite"
+  "result": {
+    "item": "gaiadimension:benitoite"
+  }
 }

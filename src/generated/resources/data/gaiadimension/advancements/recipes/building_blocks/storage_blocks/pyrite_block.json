@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_pyrite": {
+    "has_gaiadimension:pyrite": {
       "conditions": {
         "items": [
           {
@@ -22,14 +22,13 @@
   },
   "requirements": [
     [
-      "has_pyrite",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_gaiadimension:pyrite"
     ]
   ],
   "rewards": {
     "recipes": [
       "gaiadimension:storage_blocks/pyrite_block"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

@@ -1,6 +1,7 @@
 {
   "type": "gaiadimension:purifying",
   "byproduct": {
+    "count": 2,
     "item": "gaiadimension:goldstone_residue"
   },
   "cookingtime": 200,
@@ -8,5 +9,7 @@
   "ingredient": {
     "item": "gaiadimension:corrupted_wood"
   },
-  "result": "gaiadimension:pink_agate_wood"
+  "result": {
+    "item": "gaiadimension:pink_agate_wood"
+  }
 }

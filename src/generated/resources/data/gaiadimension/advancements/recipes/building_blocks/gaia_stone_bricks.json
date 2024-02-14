@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_gaia_stone": {
+    "has_gaiadimension:gaia_stone": {
       "conditions": {
         "items": [
           {
@@ -22,14 +22,13 @@
   },
   "requirements": [
     [
-      "has_gaia_stone",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_gaiadimension:gaia_stone"
     ]
   ],
   "rewards": {
     "recipes": [
       "gaiadimension:gaia_stone_bricks"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

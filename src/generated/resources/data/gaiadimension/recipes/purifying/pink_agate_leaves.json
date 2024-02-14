@@ -8,5 +8,7 @@
   "ingredient": {
     "item": "gaiadimension:corrupted_leaves"
   },
-  "result": "gaiadimension:pink_agate_leaves"
+  "result": {
+    "item": "gaiadimension:pink_agate_leaves"
+  }
 }

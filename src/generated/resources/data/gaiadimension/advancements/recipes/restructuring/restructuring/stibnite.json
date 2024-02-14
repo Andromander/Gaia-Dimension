@@ -22,14 +22,13 @@
   },
   "requirements": [
     [
-      "has_hematite",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_hematite"
     ]
   ],
   "rewards": {
     "recipes": [
       "gaiadimension:restructuring/stibnite"
     ]
-  },
-  "sends_telemetry_event": true
+  }
 }

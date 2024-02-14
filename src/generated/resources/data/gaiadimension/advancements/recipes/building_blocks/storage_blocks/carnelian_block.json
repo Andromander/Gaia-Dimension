@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_carnelian": {
+    "has_gaiadimension:carnelian": {
       "conditions": {
         "items": [
           {
@@ -22,14 +22,13 @@
   },
   "requirements": [
     [
-      "has_carnelian",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_gaiadimension:carnelian"
     ]
   ],
   "rewards": {
     "recipes": [
       "gaiadimension:storage_blocks/carnelian_block"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

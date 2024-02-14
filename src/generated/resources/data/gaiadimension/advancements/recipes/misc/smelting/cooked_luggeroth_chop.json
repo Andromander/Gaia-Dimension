@@ -22,14 +22,13 @@
   },
   "requirements": [
     [
-      "has_luggeroth_chop",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_luggeroth_chop"
     ]
   ],
   "rewards": {
     "recipes": [
       "gaiadimension:smelting/cooked_luggeroth_chop"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

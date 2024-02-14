@@ -22,14 +22,13 @@
   },
   "requirements": [
     [
-      "has_pyrite_block",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_pyrite_block"
     ]
   ],
   "rewards": {
     "recipes": [
       "gaiadimension:storage_blocks/pyrite_block_item"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

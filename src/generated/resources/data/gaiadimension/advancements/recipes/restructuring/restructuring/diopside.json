@@ -22,14 +22,13 @@
   },
   "requirements": [
     [
-      "has_green_opal",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_green_opal"
     ]
   ],
   "rewards": {
     "recipes": [
       "gaiadimension:restructuring/diopside"
     ]
-  },
-  "sends_telemetry_event": true
+  }
 }

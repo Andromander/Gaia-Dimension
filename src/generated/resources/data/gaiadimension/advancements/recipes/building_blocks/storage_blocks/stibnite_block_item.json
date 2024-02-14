@@ -22,14 +22,13 @@
   },
   "requirements": [
     [
-      "has_stibnite_block",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_stibnite_block"
     ]
   ],
   "rewards": {
     "recipes": [
       "gaiadimension:storage_blocks/stibnite_block_item"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

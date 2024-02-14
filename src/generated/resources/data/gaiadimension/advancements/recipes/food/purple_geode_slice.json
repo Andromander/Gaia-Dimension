@@ -22,14 +22,13 @@
   },
   "requirements": [
     [
-      "has_geode",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_geode"
     ]
   ],
   "rewards": {
     "recipes": [
       "gaiadimension:purple_geode_slice"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

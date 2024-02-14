@@ -111,16 +111,12 @@
     }
   },
   "display": {
-    "announce_to_chat": true,
     "description": {
       "translate": "advancements.gaia.restructure_gemstone.description"
     },
-    "frame": "task",
-    "hidden": false,
     "icon": {
       "item": "gaiadimension:stibnite"
     },
-    "show_toast": true,
     "title": {
       "translate": "advancements.gaia.restructure_gemstone.title"
     }

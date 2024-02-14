@@ -22,14 +22,13 @@
   },
   "requirements": [
     [
-      "has_pyrite",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_pyrite"
     ]
   ],
   "rewards": {
     "recipes": [
       "gaiadimension:pyrite_torch"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

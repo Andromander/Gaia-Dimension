@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_diopside": {
+    "has_gaiadimension:diopside": {
       "conditions": {
         "items": [
           {
@@ -22,14 +22,13 @@
   },
   "requirements": [
     [
-      "has_diopside",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_gaiadimension:diopside"
     ]
   ],
   "rewards": {
     "recipes": [
       "gaiadimension:storage_blocks/diopside_block"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

@@ -22,14 +22,13 @@
   },
   "requirements": [
     [
-      "has_fabric",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_fabric"
     ]
   ],
   "rewards": {
     "recipes": [
       "gaiadimension:gemstone_pouch"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

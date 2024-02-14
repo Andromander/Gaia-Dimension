@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_raw_jade": {
+    "has_gaiadimension:raw_jade": {
       "conditions": {
         "items": [
           {
@@ -22,14 +22,13 @@
   },
   "requirements": [
     [
-      "has_raw_jade",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_gaiadimension:raw_jade"
     ]
   ],
   "rewards": {
     "recipes": [
       "gaiadimension:jade_bricks"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

@@ -22,14 +22,13 @@
   },
   "requirements": [
     [
-      "has_malachite_cracked_bricks",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_malachite_cracked_bricks"
     ]
   ],
   "rewards": {
     "recipes": [
       "gaiadimension:malachite_cracked_brick_stairs"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

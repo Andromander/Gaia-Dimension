@@ -22,14 +22,13 @@
   },
   "requirements": [
     [
-      "has_tektite_block",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_tektite_block"
     ]
   ],
   "rewards": {
     "recipes": [
       "gaiadimension:storage_blocks/tektite_block_item"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

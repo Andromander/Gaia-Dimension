@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_pink_essence": {
+    "has_gaiadimension:pink_essence": {
       "conditions": {
         "items": [
           {
@@ -22,14 +22,13 @@
   },
   "requirements": [
     [
-      "has_pink_essence",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_gaiadimension:pink_essence"
     ]
   ],
   "rewards": {
     "recipes": [
       "gaiadimension:pink_goo"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

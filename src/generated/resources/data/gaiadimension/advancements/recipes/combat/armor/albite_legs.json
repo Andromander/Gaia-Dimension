@@ -22,14 +22,13 @@
   },
   "requirements": [
     [
-      "has_albite",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_albite"
     ]
   ],
   "rewards": {
     "recipes": [
       "gaiadimension:armor/albite_legs"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

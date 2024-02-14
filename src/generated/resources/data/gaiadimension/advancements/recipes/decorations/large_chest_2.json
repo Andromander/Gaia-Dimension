@@ -22,14 +22,13 @@
   },
   "requirements": [
     [
-      "has_crate",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_crate"
     ]
   ],
   "rewards": {
     "recipes": [
       "gaiadimension:large_chest_2"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

@@ -22,14 +22,13 @@
   },
   "requirements": [
     [
-      "has_proustite_block",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_proustite_block"
     ]
   ],
   "rewards": {
     "recipes": [
       "gaiadimension:storage_blocks/proustite_block_item"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

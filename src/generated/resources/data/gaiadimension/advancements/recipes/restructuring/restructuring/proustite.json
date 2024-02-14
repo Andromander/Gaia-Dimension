@@ -22,14 +22,13 @@
   },
   "requirements": [
     [
-      "has_cinnabar",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_cinnabar"
     ]
   ],
   "rewards": {
     "recipes": [
       "gaiadimension:restructuring/proustite"
     ]
-  },
-  "sends_telemetry_event": true
+  }
 }

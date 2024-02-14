@@ -22,14 +22,13 @@
   },
   "requirements": [
     [
-      "has_fine_dust",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_fine_dust"
     ]
   ],
   "rewards": {
     "recipes": [
       "gaiadimension:smelting/cloudy_shard"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_sugar_crystals": {
+    "has_gaiadimension:sugar_crystals": {
       "conditions": {
         "items": [
           {
@@ -22,14 +22,13 @@
   },
   "requirements": [
     [
-      "has_sugar_crystals",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_gaiadimension:sugar_crystals"
     ]
   ],
   "rewards": {
     "recipes": [
       "gaiadimension:sugar_cluster"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

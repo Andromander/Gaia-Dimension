@@ -22,14 +22,13 @@
   },
   "requirements": [
     [
-      "has_cup",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_cup"
     ]
   ],
   "rewards": {
     "recipes": [
       "gaiadimension:green_geode_ale"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

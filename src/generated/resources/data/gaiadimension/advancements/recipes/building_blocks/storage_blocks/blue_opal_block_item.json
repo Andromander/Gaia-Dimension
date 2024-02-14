@@ -22,14 +22,13 @@
   },
   "requirements": [
     [
-      "has_blue_opal_block",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_blue_opal_block"
     ]
   ],
   "rewards": {
     "recipes": [
       "gaiadimension:storage_blocks/blue_opal_block_item"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

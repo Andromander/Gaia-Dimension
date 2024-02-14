@@ -22,14 +22,13 @@
   },
   "requirements": [
     [
-      "has_white_opal",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_white_opal"
     ]
   ],
   "rewards": {
     "recipes": [
       "gaiadimension:restructuring/goshenite"
     ]
-  },
-  "sends_telemetry_event": true
+  }
 }

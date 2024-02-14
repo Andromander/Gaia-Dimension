@@ -22,14 +22,13 @@
   },
   "requirements": [
     [
-      "has_gummy_glitter_block",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_gummy_glitter_block"
     ]
   ],
   "rewards": {
     "recipes": [
       "gaiadimension:smelting/thick_glitter_block"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

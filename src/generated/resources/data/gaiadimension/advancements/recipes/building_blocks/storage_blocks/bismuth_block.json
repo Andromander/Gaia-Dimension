@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_bismuth_crystal": {
+    "has_gaiadimension:bismuth_crystal": {
       "conditions": {
         "items": [
           {
@@ -22,14 +22,13 @@
   },
   "requirements": [
     [
-      "has_bismuth_crystal",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_gaiadimension:bismuth_crystal"
     ]
   ],
   "rewards": {
     "recipes": [
       "gaiadimension:storage_blocks/bismuth_block"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

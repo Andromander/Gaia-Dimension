@@ -8,5 +8,7 @@
   "ingredient": {
     "item": "gaiadimension:corrupted_grass"
   },
-  "result": "gaiadimension:glitter_grass"
+  "result": {
+    "item": "gaiadimension:glitter_grass"
+  }
 }

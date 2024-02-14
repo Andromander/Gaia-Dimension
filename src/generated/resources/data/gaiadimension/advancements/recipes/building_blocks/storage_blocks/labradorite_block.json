@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_labradorite": {
+    "has_gaiadimension:labradorite": {
       "conditions": {
         "items": [
           {
@@ -22,14 +22,13 @@
   },
   "requirements": [
     [
-      "has_labradorite",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_gaiadimension:labradorite"
     ]
   ],
   "rewards": {
     "recipes": [
       "gaiadimension:storage_blocks/labradorite_block"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

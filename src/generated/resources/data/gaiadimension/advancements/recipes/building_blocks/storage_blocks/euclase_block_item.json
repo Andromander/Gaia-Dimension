@@ -22,14 +22,13 @@
   },
   "requirements": [
     [
-      "has_euclase_block",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_euclase_block"
     ]
   ],
   "rewards": {
     "recipes": [
       "gaiadimension:storage_blocks/euclase_block_item"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

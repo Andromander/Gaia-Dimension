@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_raw_amethyst": {
+    "has_gaiadimension:raw_amethyst": {
       "conditions": {
         "items": [
           {
@@ -22,14 +22,13 @@
   },
   "requirements": [
     [
-      "has_raw_amethyst",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_gaiadimension:raw_amethyst"
     ]
   ],
   "rewards": {
     "recipes": [
       "gaiadimension:amethyst_bricks"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

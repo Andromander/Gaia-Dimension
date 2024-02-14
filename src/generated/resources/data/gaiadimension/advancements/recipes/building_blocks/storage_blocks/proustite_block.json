@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_proustite": {
+    "has_gaiadimension:proustite": {
       "conditions": {
         "items": [
           {
@@ -22,14 +22,13 @@
   },
   "requirements": [
     [
-      "has_proustite",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_gaiadimension:proustite"
     ]
   ],
   "rewards": {
     "recipes": [
       "gaiadimension:storage_blocks/proustite_block"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

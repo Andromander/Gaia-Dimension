@@ -20,14 +20,13 @@
   },
   "requirements": [
     [
-      "has_tiles",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_tiles"
     ]
   ],
   "rewards": {
     "recipes": [
       "gaiadimension:agate_stick"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

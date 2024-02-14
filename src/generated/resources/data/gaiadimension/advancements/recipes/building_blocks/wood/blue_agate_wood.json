@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_blue_agate_log": {
+    "has_gaiadimension:blue_agate_log": {
       "conditions": {
         "items": [
           {
@@ -22,14 +22,13 @@
   },
   "requirements": [
     [
-      "has_blue_agate_log",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_gaiadimension:blue_agate_log"
     ]
   ],
   "rewards": {
     "recipes": [
       "gaiadimension:wood/blue_agate_wood"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

@@ -34,15 +34,14 @@
   },
   "requirements": [
     [
+      "has_the_recipe",
       "has_brick",
-      "has_goldstone",
-      "has_the_recipe"
+      "has_goldstone"
     ]
   ],
   "rewards": {
     "recipes": [
       "gaiadimension:bolstered_bricks"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

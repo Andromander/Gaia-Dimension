@@ -20,14 +20,13 @@
   },
   "requirements": [
     [
-      "has_green_agate_logs",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_green_agate_logs"
     ]
   ],
   "rewards": {
     "recipes": [
       "gaiadimension:wood/green_agate_tiles"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

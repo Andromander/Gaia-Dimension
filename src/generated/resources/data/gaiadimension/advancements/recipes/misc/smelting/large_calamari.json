@@ -22,14 +22,13 @@
   },
   "requirements": [
     [
-      "has_large_tentacle",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_large_tentacle"
     ]
   ],
   "rewards": {
     "recipes": [
       "gaiadimension:smelting/large_calamari"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

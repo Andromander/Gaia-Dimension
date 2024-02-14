@@ -22,14 +22,13 @@
   },
   "requirements": [
     [
-      "has_cup",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_cup"
     ]
   ],
   "rewards": {
     "recipes": [
       "gaiadimension:purple_geode_soda"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

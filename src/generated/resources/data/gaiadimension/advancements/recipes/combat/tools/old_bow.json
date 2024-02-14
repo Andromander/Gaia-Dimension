@@ -22,14 +22,13 @@
   },
   "requirements": [
     [
-      "has_bone",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_bone"
     ]
   ],
   "rewards": {
     "recipes": [
       "gaiadimension:tools/old_bow"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_aura_log": {
+    "has_gaiadimension:aura_log": {
       "conditions": {
         "items": [
           {
@@ -22,14 +22,13 @@
   },
   "requirements": [
     [
-      "has_aura_log",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_gaiadimension:aura_log"
     ]
   ],
   "rewards": {
     "recipes": [
       "gaiadimension:wood/aura_wood"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

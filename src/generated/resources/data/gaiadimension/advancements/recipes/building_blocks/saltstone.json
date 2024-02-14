@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_salt": {
+    "has_gaiadimension:salt": {
       "conditions": {
         "items": [
           {
@@ -22,14 +22,13 @@
   },
   "requirements": [
     [
-      "has_salt",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_gaiadimension:salt"
     ]
   ],
   "rewards": {
     "recipes": [
       "gaiadimension:saltstone"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

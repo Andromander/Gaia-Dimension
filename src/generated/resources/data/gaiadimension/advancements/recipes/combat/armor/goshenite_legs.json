@@ -22,14 +22,13 @@
   },
   "requirements": [
     [
-      "has_goshenite",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_goshenite"
     ]
   ],
   "rewards": {
     "recipes": [
       "gaiadimension:armor/goshenite_legs"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }
