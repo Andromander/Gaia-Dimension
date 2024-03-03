@@ -118,7 +118,7 @@ public class GaiaDimensionMod {
         generator.addProvider(event.includeClient(), new GaiaBlockStates(output, event.getExistingFileHelper()));
         generator.addProvider(event.includeClient(), new GaiaItemModels(output, event.getExistingFileHelper()));
         generator.addProvider(event.includeServer(), new GaiaLootTables(output));
-        generator.addProvider(event.includeServer(), new GaiaRecipes(output, provider));
+        generator.addProvider(event.includeServer(), new GaiaRecipes(output));
         generator.addProvider(event.includeServer(), new GaiaAdvancements(output, provider, event.getExistingFileHelper()));
         generator.addProvider(event.includeServer(), blocktags);
         generator.addProvider(event.includeServer(), new GaiaItemTags(output, provider, blocktags.contentsGetter(), event.getExistingFileHelper()));

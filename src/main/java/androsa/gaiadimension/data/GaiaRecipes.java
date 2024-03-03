@@ -17,8 +17,8 @@ import java.util.concurrent.CompletableFuture;
 
 public class GaiaRecipes extends GaiaRecipeProvider {
 
-    public GaiaRecipes(PackOutput output, CompletableFuture<HolderLookup.Provider> provider) {
-        super(output, provider);
+    public GaiaRecipes(PackOutput output) {
+        super(output);
     }
 
     @Override
