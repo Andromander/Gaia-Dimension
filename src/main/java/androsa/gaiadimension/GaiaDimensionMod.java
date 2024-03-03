@@ -3,7 +3,6 @@ package androsa.gaiadimension;
 import androsa.gaiadimension.client.ClientEvents;
 import androsa.gaiadimension.data.*;
 import androsa.gaiadimension.registry.bootstrap.GaiaBiomes;
-import androsa.gaiadimension.registry.bootstrap.GaiaDimensions;
 import androsa.gaiadimension.registry.helpers.GaiaConfig;
 import androsa.gaiadimension.registry.helpers.RemapHelper;
 import androsa.gaiadimension.registry.registration.*;
@@ -18,9 +17,7 @@ import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.MobType;
-import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.IEventBus;
-import net.neoforged.fml.DistExecutor;
 import net.neoforged.fml.ModLoadingContext;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.config.ModConfig;
@@ -34,7 +31,6 @@ import org.apache.commons.lang3.tuple.Pair;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.util.Objects;
 import java.util.concurrent.CompletableFuture;
 
 @Mod(GaiaDimensionMod.MODID)
@@ -109,8 +105,8 @@ public class GaiaDimensionMod {
     }
 
     public void clientSetup(FMLClientSetupEvent event) {
-        DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> ClientEvents::registerBlockRenderers);
-        DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> ModItems::addItemProperties);
+        ClientEvents.registerBlockRenderers();
+        ModItems.addItemProperties();
     }
 
     public void gatherData(GatherDataEvent event) {
