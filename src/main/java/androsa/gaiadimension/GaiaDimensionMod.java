@@ -53,6 +53,7 @@ public class GaiaDimensionMod {
         bus.addListener(this::clientSetup);
         bus.addListener(this::gatherData);
         bus.addListener(this::extraRegistries);
+        bus.addListener(ModDataMaps::registerDataMaps);
 
         GaiaBiomes.BIOMES.register(bus);
         ModBlocks.BLOCKS.register(bus);
@@ -126,6 +127,7 @@ public class GaiaDimensionMod {
         generator.addProvider(event.includeServer(), blocktags);
         generator.addProvider(event.includeServer(), new GaiaItemTags(output, provider, blocktags.contentsGetter(), event.getExistingFileHelper()));
         generator.addProvider(event.includeServer(), new GaiaFluidTags(output, provider, event.getExistingFileHelper()));
+        generator.addProvider(event.includeServer(), new GaiaDataMaps(output, provider));
 
         DatapackBuiltinEntriesProvider datapackEntries = new GaiaDatapackRegistries(output, provider);
         CompletableFuture<HolderLookup.Provider> datapackProvider = datapackEntries.getRegistryProvider();

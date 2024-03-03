@@ -1,0 +1,26 @@
+{
+  "values": {
+    "gaiadimension:frail_glitter_block": 1000,
+    "gaiadimension:gummy_glitter_block": 4000,
+    "gaiadimension:pyrite": 500,
+    "gaiadimension:pyrite_block": 5000,
+    "gaiadimension:sweet_muckball": 250,
+    "gaiadimension:thick_glitter_block": 2000,
+    "minecraft:blaze_powder": 1200,
+    "minecraft:blaze_rod": 2400,
+    "minecraft:gold_block": 2000,
+    "minecraft:gold_ingot": 200,
+    "minecraft:gold_nugget": 20,
+    "minecraft:gold_ore": 150,
+    "minecraft:golden_axe": 150,
+    "minecraft:golden_boots": 500,
+    "minecraft:golden_chestplate": 500,
+    "minecraft:golden_helmet": 500,
+    "minecraft:golden_hoe": 150,
+    "minecraft:golden_horse_armor": 1000,
+    "minecraft:golden_leggings": 500,
+    "minecraft:golden_pickaxe": 150,
+    "minecraft:golden_shovel": 150,
+    "minecraft:golden_sword": 150
+  }
+}

@@ -27,7 +27,7 @@ public class GlitterFuelRecipeMaker {
 
     private static int getBurnTime(ItemStack itemStack) {
         try {
-            return RestructurerBlockEntity.getFuelBurnTime().getOrDefault(itemStack.getItem(), 0);
+            return RestructurerBlockEntity.getFuelBurnTime(itemStack.getItem());
         } catch (LinkageError | RuntimeException var3) {
             GaiaDimensionMod.LOGGER.error("Failed to check if item is fuel {}.", itemStack.getItem().toString(), var3);
             return 0;

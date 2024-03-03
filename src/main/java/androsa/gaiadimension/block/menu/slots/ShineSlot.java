@@ -13,7 +13,7 @@ public class ShineSlot extends Slot {
 
     @Override
     public boolean mayPlace(ItemStack stack) {
-    return RestructurerBlockEntity.getSecondFuelBurnTime().getOrDefault(stack.getItem(), 0) > 0;
+    return RestructurerBlockEntity.getSecondFuelBurnTime(stack.getItem()) > 0;
     }
 
     @Override

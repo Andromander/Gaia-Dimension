@@ -13,7 +13,7 @@ public class NullSlot extends Slot {
 
     @Override
     public boolean mayPlace(ItemStack stack) {
-        return PurifierBlockEntity.getThirdFuelBurnTime().getOrDefault(stack.getItem(), 0) > 0;
+        return PurifierBlockEntity.getThirdFuelBurnTime(stack.getItem()) > 0;
     }
 
     @Override

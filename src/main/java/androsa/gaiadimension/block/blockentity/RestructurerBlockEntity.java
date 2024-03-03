@@ -3,12 +3,8 @@ package androsa.gaiadimension.block.blockentity;
 import androsa.gaiadimension.block.RestructurerBlock;
 import androsa.gaiadimension.block.menu.RestructurerMenu;
 import androsa.gaiadimension.recipe.RestructurerRecipe;
-import androsa.gaiadimension.registry.registration.ModBlockEntities;
-import androsa.gaiadimension.registry.registration.ModBlocks;
-import androsa.gaiadimension.registry.registration.ModItems;
-import androsa.gaiadimension.registry.registration.ModRecipes;
+import androsa.gaiadimension.registry.registration.*;
 import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
 import it.unimi.dsi.fastutil.objects.Object2IntMap;
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap;
 import net.minecraft.core.BlockPos;
@@ -37,9 +33,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.item.crafting.RecipeManager;
-import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BaseContainerBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
@@ -114,50 +108,14 @@ public class RestructurerBlockEntity extends BaseContainerBlockEntity implements
         return new RestructurerMenu(id, inventory, this, slotsArray);
     }
 
-    //TODO: Problematic. Cache the Map somewhere
-    /** Burn Times for the first slot */
-    public static Map<Item, Integer> getFuelBurnTime() {
-        Map<Item, Integer> map = Maps.newLinkedHashMap();
-        addItemToMap(map, Items.GOLD_NUGGET, 20);
-        addItemToMap(map, Items.GOLD_INGOT, 200);
-        addItemToMap(map, Items.GOLDEN_AXE, 150);
-        addItemToMap(map, Items.GOLDEN_HOE, 150);
-        addItemToMap(map, Items.GOLDEN_PICKAXE, 150);
-        addItemToMap(map, Items.GOLDEN_SHOVEL, 150);
-        addItemToMap(map, Items.GOLDEN_SWORD, 150);
-        addItemToMap(map, Items.GOLDEN_HELMET, 500);
-        addItemToMap(map, Items.GOLDEN_CHESTPLATE, 500);
-        addItemToMap(map, Items.GOLDEN_LEGGINGS, 500);
-        addItemToMap(map, Items.GOLDEN_BOOTS, 500);
-        addItemToMap(map, Items.GOLDEN_HORSE_ARMOR, 1000);
-        addItemToMap(map, Blocks.GOLD_BLOCK, 2000);
-        addItemToMap(map, Blocks.GOLD_ORE, 150);
-        addItemToMap(map, ModItems.pyrite.get(), 500);
-        addItemToMap(map, ModBlocks.pyrite_block.get(), 5000);
-        addItemToMap(map, ModItems.sweet_muckball.get(), 250);
-        addItemToMap(map, ModBlocks.frail_glitter_block.get(), 1000);
-        addItemToMap(map, ModBlocks.thick_glitter_block.get(), 2000);
-        addItemToMap(map, ModBlocks.gummy_glitter_block.get(), 4000);
-        addItemToMap(map, Items.BLAZE_POWDER, 1200);
-        addItemToMap(map, Items.BLAZE_ROD, 2400);
-        return map;
+    public static int getFuelBurnTime(Item item) {
+        var fuel = item.builtInRegistryHolder().getData(ModDataMaps.GLITTERING_FUEL);
+        return fuel != null ? fuel : 0;
     }
 
-    //TODO: Problematic. Cache the Map somewhere
-    /** Burn times for the second slot */
-    public static Map<Item, Integer> getSecondFuelBurnTime() {
-        Map<Item, Integer> map = Maps.newLinkedHashMap();
-        addItemToMap(map, ModItems.pink_essence.get(), 100);
-        addItemToMap(map, ModItems.pink_goo.get(), 900);
-        addItemToMap(map, ModBlocks.pink_sludge_block.get(), 8100);
-        addItemToMap(map, ModItems.aura_residue.get(), 200);
-        addItemToMap(map, ModItems.aura_cluster.get(), 1800);
-        addItemToMap(map, ModBlocks.aura_block.get(), 16200);
-        return map;
-    }
-
-    private static void addItemToMap(Map<Item, Integer> map, ItemLike provider, int ticks) {
-        map.put(provider.asItem(), ticks);
+    public static int getSecondFuelBurnTime(Item item) {
+        var fuel = item.builtInRegistryHolder().getData(ModDataMaps.SHINING_FUEL);
+        return fuel != null ? fuel : 0;
     }
 
     /**
@@ -344,7 +302,7 @@ public class RestructurerBlockEntity extends BaseContainerBlockEntity implements
         } else {
             Item itemGlitter = stack1.getItem();
             Item itemShine = stack2.getItem();
-            return (getFuelBurnTime().get(itemGlitter) + getSecondFuelBurnTime().get(itemShine)) / 2;
+            return (getFuelBurnTime(itemGlitter) + getSecondFuelBurnTime(itemShine)) / 2;
         }
     }
 
@@ -354,7 +312,7 @@ public class RestructurerBlockEntity extends BaseContainerBlockEntity implements
 
     public static boolean isItemFuel(ItemStack stack) {
         Item item = stack.getItem();
-        return getFuelBurnTime().get(item) != null || getSecondFuelBurnTime().get(item) != null;
+        return getFuelBurnTime(item) > 0 || getSecondFuelBurnTime(item) > 0;
     }
 
     @Override

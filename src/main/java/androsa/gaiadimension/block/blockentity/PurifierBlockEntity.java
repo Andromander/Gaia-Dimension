@@ -3,12 +3,8 @@ package androsa.gaiadimension.block.blockentity;
 import androsa.gaiadimension.block.PurifierBlock;
 import androsa.gaiadimension.block.menu.PurifierMenu;
 import androsa.gaiadimension.recipe.PurifierRecipe;
-import androsa.gaiadimension.registry.registration.ModBlockEntities;
-import androsa.gaiadimension.registry.registration.ModBlocks;
-import androsa.gaiadimension.registry.registration.ModItems;
-import androsa.gaiadimension.registry.registration.ModRecipes;
+import androsa.gaiadimension.registry.registration.*;
 import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
 import it.unimi.dsi.fastutil.objects.Object2IntMap;
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap;
 import net.minecraft.core.BlockPos;
@@ -37,7 +33,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.item.crafting.RecipeManager;
-import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BaseContainerBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
@@ -113,21 +108,9 @@ public class PurifierBlockEntity extends BaseContainerBlockEntity implements Wor
         return new PurifierMenu(id, inventory, this, slotsArray);
     }
 
-    //TODO: Bad
-    /** Burn times for the third slot*/
-    public static Map<Item, Integer> getThirdFuelBurnTime() {
-        Map<Item, Integer> map = Maps.newLinkedHashMap();
-        addItemToMap(map, ModItems.bismuth_residue.get(), 200);
-        addItemToMap(map, ModItems.bismuth_crystal.get(), 1800);
-        addItemToMap(map, ModBlocks.bismuth_block.get(), 16200);
-        addItemToMap(map, ModItems.black_residue.get(), 100);
-        addItemToMap(map, ModItems.tektite.get(), 900);
-        addItemToMap(map, ModBlocks.tektite_block.get(), 8100);
-        return map;
-    }
-
-    private static void addItemToMap(Map<Item, Integer> map, ItemLike provider, int ticks) {
-        map.put(provider.asItem(), ticks);
+    public static int getThirdFuelBurnTime(Item item) {
+        var fuel = item.builtInRegistryHolder().getData(ModDataMaps.NULLING_FUEL);
+        return fuel != null ? fuel : 0;
     }
 
     public boolean isBurning() {
@@ -322,7 +305,7 @@ public class PurifierBlockEntity extends BaseContainerBlockEntity implements Wor
             Item itemGlitter = stack1.getItem();
             Item itemShine = stack2.getItem();
             Item itemNull = stack3.getItem();
-            return (RestructurerBlockEntity.getFuelBurnTime().get(itemGlitter) + RestructurerBlockEntity.getSecondFuelBurnTime().get(itemShine) + getThirdFuelBurnTime().get(itemNull)) / 3;
+            return (RestructurerBlockEntity.getFuelBurnTime(itemGlitter) + RestructurerBlockEntity.getSecondFuelBurnTime(itemShine) + getThirdFuelBurnTime(itemNull)) / 3;
         }
     }
 
@@ -332,7 +315,7 @@ public class PurifierBlockEntity extends BaseContainerBlockEntity implements Wor
 
     public static boolean isItemFuel(ItemStack stack) {
         Item item = stack.getItem();
-        return RestructurerBlockEntity.getFuelBurnTime().get(item) != null || RestructurerBlockEntity.getSecondFuelBurnTime().get(item) != null || getThirdFuelBurnTime().get(item) != null;
+        return RestructurerBlockEntity.getFuelBurnTime(item) > 0 || RestructurerBlockEntity.getSecondFuelBurnTime(item) > 0 || getThirdFuelBurnTime(item) > 0;
     }
 
     @Override

@@ -13,7 +13,7 @@ public class GoldSlot extends Slot {
 
     @Override
     public boolean mayPlace(ItemStack stack) {
-        return RestructurerBlockEntity.getFuelBurnTime().getOrDefault(stack.getItem(), 0) > 0;
+        return RestructurerBlockEntity.getFuelBurnTime(stack.getItem()) > 0;
     }
 
     @Override
