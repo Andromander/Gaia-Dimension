@@ -11,7 +11,7 @@ plugins {
     id 'eclipse'
     id 'idea'
     id 'maven-publish'
-    id 'net.neoforged.gradle.userdev' version '7.0.93+'
+    id 'net.neoforged.gradle.userdev' version '7.0.152'
 }
 
 def secrets = new Properties()
@@ -53,7 +53,7 @@ base {
     archivesName = project.archives_base_name
 }
 
-java.toolchain.languageVersion = JavaLanguageVersion.of(17) // Need this here so eclipse task generates correctly.
+java.toolchain.languageVersion = JavaLanguageVersion.of(21) // Need this here so eclipse task generates correctly.
 
 runs {
     minecraft.accessTransformers.file rootProject.file('src/main/resources/META-INF/accesstransformer.cfg')
@@ -88,8 +88,8 @@ sourceSets.main.resources {
 
 dependencies {
     implementation "net.neoforged:neoforge:${project.neoforge_version}"
-    compileOnly "mezz.jei:jei-${minecraft_version}-neoforge-api:${jei_version}"
-    runtimeOnly "mezz.jei:jei-${minecraft_version}-neoforge:${jei_version}"
+//    compileOnly "mezz.jei:jei-${minecraft_version}-neoforge-api:${jei_version}"
+//    runtimeOnly "mezz.jei:jei-${minecraft_version}-neoforge:${jei_version}"
 
 //    runtimeOnly fg.deobf("com.sk88q.worldedit:WorldEdit:${we_version}")
 //    runtimeOnly fg.deobf("team.chisel.ctm:CTM:${project.ctm_version}")
