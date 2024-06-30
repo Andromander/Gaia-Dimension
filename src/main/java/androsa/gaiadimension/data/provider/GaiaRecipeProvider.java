@@ -1,5 +1,6 @@
 package androsa.gaiadimension.data.provider;
 
+import androsa.gaiadimension.block.CurtainBlock;
 import androsa.gaiadimension.recipe.PurifierRecipeBuilder;
 import androsa.gaiadimension.recipe.RestructurerRecipeBuilder;
 import androsa.gaiadimension.registry.registration.ModBlocks;
@@ -209,13 +210,6 @@ public abstract class GaiaRecipeProvider extends RecipeProvider implements ICond
                 .unlockedBy("has_geode", has(geode.get()));
     }
 
-    public ShapelessRecipeBuilder tiliRecipe(Supplier<Item> result, Block ingredient) {
-        return ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, result.get())
-                .requires(ingredient)
-                .requires(ModBlocks.thiscus.get())
-                .unlockedBy("has_thiscus", has(ModBlocks.thiscus.get()));
-    }
-
     public ShapelessRecipeBuilder tiliRecipe(Supplier<Item> result, Supplier<Block> ingredient) {
         return ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, result.get())
                 .requires(ingredient.get())
@@ -228,6 +222,16 @@ public abstract class GaiaRecipeProvider extends RecipeProvider implements ICond
                 .requires(ingredient.get())
                 .requires(ModItems.crystal_shard.get())
                 .unlockedBy("has_shard", has(ModItems.crystal_shard.get()));
+    }
+
+    public ShapedRecipeBuilder curtainRecipe(Supplier<CurtainBlock> result, DeferredBlock<Block> curtain, int amount) {
+        return ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, result.get(), amount)
+                .pattern("//")
+                .pattern("##")
+                .pattern("##")
+                .define('/', ModItems.agate_stick)
+                .define('#', curtain.get())
+                .unlockedBy("has_" + curtain.getId().getPath(), has(curtain));
     }
 
     public SimpleCookingRecipeBuilder smeltingRecipe(ItemLike result, DeferredBlock<? extends Block> ingredient, float exp) {

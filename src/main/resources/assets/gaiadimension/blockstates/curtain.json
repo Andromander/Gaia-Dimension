@@ -1,0 +1,88 @@
+{
+  "variants": {
+    "axis=z,half=lower,side=single,open=false": {
+      "model": "gaiadimension:block/pink_agate_curtain_bottom",
+      "y": 90
+    },
+    "axis=z,half=lower,side=single,open=true": {
+      "model": "gaiadimension:block/pink_agate_curtain_bottom_open",
+      "y": 90
+    },
+    "axis=z,half=lower,side=left,open=false": {
+      "model": "gaiadimension:block/pink_agate_curtain_bottom_left",
+      "y": 90
+    },
+    "axis=z,half=lower,side=left,open=true": {
+      "model": "gaiadimension:block/pink_agate_curtain_bottom_left_open",
+      "y": 90
+    },
+    "axis=z,half=lower,side=right,open=false": {
+      "model": "gaiadimension:block/pink_agate_curtain_bottom_right",
+      "y": 90
+    },
+    "axis=z,half=lower,side=right,open=true": {
+      "model": "gaiadimension:block/pink_agate_curtain_bottom_right_open",
+      "y": 90
+    },
+    "axis=z,half=upper,side=single,open=false": {
+      "model": "gaiadimension:block/pink_agate_curtain_top",
+      "y": 90
+    },
+    "axis=z,half=upper,side=single,open=true": {
+      "model": "gaiadimension:block/pink_agate_curtain_top_open",
+      "y": 90
+    },
+    "axis=z,half=upper,side=left,open=false": {
+      "model": "gaiadimension:block/pink_agate_curtain_top_left",
+      "y": 90
+    },
+    "axis=z,half=upper,side=left,open=true": {
+      "model": "gaiadimension:block/pink_agate_curtain_top_left_open",
+      "y": 90
+    },
+    "axis=z,half=upper,side=right,open=false": {
+      "model": "gaiadimension:block/pink_agate_curtain_top_right",
+      "y": 90
+    },
+    "axis=z,half=upper,side=right,open=true": {
+      "model": "gaiadimension:block/pink_agate_curtain_top_right_open",
+      "y": 90
+    },
+    "axis=x,half=lower,side=single,open=false": {
+      "model": "gaiadimension:block/pink_agate_curtain_bottom"
+    },
+    "axis=x,half=lower,side=single,open=true": {
+      "model": "gaiadimension:block/pink_agate_curtain_bottom_open"
+    },
+    "axis=x,half=lower,side=left,open=false": {
+      "model": "gaiadimension:block/pink_agate_curtain_bottom_left"
+    },
+    "axis=x,half=lower,side=left,open=true": {
+      "model": "gaiadimension:block/pink_agate_curtain_bottom_left_open"
+    },
+    "axis=x,half=lower,side=right,open=false": {
+      "model": "gaiadimension:block/pink_agate_curtain_bottom_right"
+    },
+    "axis=x,half=lower,side=right,open=true": {
+      "model": "gaiadimension:block/pink_agate_curtain_bottom_right_open"
+    },
+    "axis=x,half=upper,side=single,open=false": {
+      "model": "gaiadimension:block/pink_agate_curtain_top"
+    },
+    "axis=x,half=upper,side=single,open=true": {
+      "model": "gaiadimension:block/pink_agate_curtain_top_open"
+    },
+    "axis=x,half=upper,side=left,open=false": {
+      "model": "gaiadimension:block/pink_agate_curtain_top_left"
+    },
+    "axis=x,half=upper,side=left,open=true": {
+      "model": "gaiadimension:block/pink_agate_curtain_top_left_open"
+    },
+    "axis=x,half=upper,side=right,open=false": {
+      "model": "gaiadimension:block/pink_agate_curtain_top_right"
+    },
+    "axis=x,half=upper,side=right,open=true": {
+      "model": "gaiadimension:block/pink_agate_curtain_top_right_open"
+    }
+  }
+}

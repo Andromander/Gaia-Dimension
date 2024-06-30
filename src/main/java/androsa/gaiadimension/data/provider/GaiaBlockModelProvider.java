@@ -88,4 +88,9 @@ public abstract class GaiaBlockModelProvider extends BlockModelProvider {
         return withExistingParent(block, mcLoc("block/tinted_cross"))
                 .texture("cross", texture);
     }
+
+    public BlockModelBuilder curtain(String path, ResourceLocation texture) {
+        return withExistingParent(path, modLoc("block/util/curtain_surface"))
+                .texture("texture", texture);
+    }
 }

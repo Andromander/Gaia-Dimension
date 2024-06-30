@@ -37,6 +37,11 @@ public abstract class GaiaItemModelProvider extends ItemModelProvider {
                 .texture("layer0", modLoc("block/" + texture));
     }
 
+    public ItemModelBuilder blockItemFromItem(DeferredBlock<? extends Block> block) {
+        return withExistingParent(blockName(block), mcLoc("item/generated"))
+                .texture("layer0", modLoc("item/" + blockName(block)));
+    }
+
     public ItemModelBuilder basicItem(DeferredItem<Item> item) {
         return withExistingParent(item.getId().getPath(), mcLoc("item/generated"))
                 .texture("layer0", modLoc("item/" + item.getId().getPath()));

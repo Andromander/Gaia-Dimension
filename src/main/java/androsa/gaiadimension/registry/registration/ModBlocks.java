@@ -20,7 +20,6 @@ import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.*;
-import net.minecraft.world.level.block.entity.DispenserBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.level.material.MapColor;
@@ -234,6 +233,18 @@ public class ModBlocks {
     public static final DeferredBlock<StairBlock> fire_agate_tile_stairs = register("fire_agate_tile_stairs", makeStairs(fire_agate_tiles), 300);
     public static final DeferredBlock<StairBlock> aura_tile_stairs = register("aura_tile_stairs", makeStairs(aura_tiles), 0);
     public static final DeferredBlock<StairBlock> golden_tile_stairs = register("golden_tile_stairs", makeStairs(golden_tiles), 0);
+
+    //Decor
+    public static final DeferredBlock<CurtainBlock> pink_agate_curtain = register("pink_agate_curtain", () -> new CurtainBlock(PropertiesHandler.curtainProps(MapColor.COLOR_PINK)));
+    public static final DeferredBlock<CurtainBlock> blue_agate_curtain = register("blue_agate_curtain", () -> new CurtainBlock(PropertiesHandler.curtainProps(MapColor.COLOR_LIGHT_BLUE)));
+    public static final DeferredBlock<CurtainBlock> green_agate_curtain = register("green_agate_curtain", () -> new CurtainBlock(PropertiesHandler.curtainProps(MapColor.COLOR_LIGHT_GREEN)));
+    public static final DeferredBlock<CurtainBlock> purple_agate_curtain = register("purple_agate_curtain", () -> new CurtainBlock(PropertiesHandler.curtainProps(MapColor.TERRACOTTA_PURPLE)));
+    public static final DeferredBlock<CurtainBlock> fossilized_curtain = register("fossilized_curtain", () -> new CurtainBlock(PropertiesHandler.curtainProps(MapColor.TERRACOTTA_YELLOW)));
+    public static final DeferredBlock<CurtainBlock> corrupted_curtain = register("corrupted_curtain", () -> new CurtainBlock(PropertiesHandler.curtainProps(MapColor.TERRACOTTA_BLACK)));
+    public static final DeferredBlock<CurtainBlock> burnt_agate_curtain = register("burnt_agate_curtain", () -> new CurtainBlock(PropertiesHandler.curtainProps(MapColor.TERRACOTTA_BLACK)));
+    public static final DeferredBlock<CurtainBlock> fire_agate_curtain = register("fire_agate_curtain", () -> new CurtainBlock(PropertiesHandler.curtainProps(MapColor.TERRACOTTA_ORANGE).lightLevel((state) -> 3)));
+    public static final DeferredBlock<CurtainBlock> aura_curtain = register("aura_curtain", () -> new CurtainBlock(PropertiesHandler.curtainProps(MapColor.SNOW)));
+    public static final DeferredBlock<CurtainBlock> golden_curtain = register("golden_curtain", () -> new CurtainBlock(PropertiesHandler.curtainProps(MapColor.GOLD)));
 
     //Manufactured
     public static final DeferredBlock<Block> cloudy_glass = register("cloudy_glass", () -> new GlassBlock(PropertiesHandler.glassProps(MapColor.COLOR_YELLOW, 0.7F)));

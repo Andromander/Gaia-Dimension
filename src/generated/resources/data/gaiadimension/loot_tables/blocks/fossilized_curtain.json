@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "conditions": [
+            {
+              "block": "gaiadimension:fossilized_curtain",
+              "condition": "minecraft:block_state_property",
+              "properties": {
+                "half": "upper"
+              }
+            }
+          ],
+          "name": "gaiadimension:fossilized_curtain"
+        }
+      ],
+      "rolls": 1.0
+    }
+  ],
+  "random_sequence": "gaiadimension:blocks/fossilized_curtain"
+}

@@ -170,6 +170,16 @@ public class GaiaItemModels extends GaiaItemModelProvider {
         blockItem(ModBlocks.fire_agate_tiles);
         blockItem(ModBlocks.aura_tiles);
         blockItem(ModBlocks.golden_tiles);
+        blockItemFromItem(ModBlocks.pink_agate_curtain);
+        blockItemFromItem(ModBlocks.blue_agate_curtain);
+        blockItemFromItem(ModBlocks.green_agate_curtain);
+        blockItemFromItem(ModBlocks.purple_agate_curtain);
+        blockItemFromItem(ModBlocks.fossilized_curtain);
+        blockItemFromItem(ModBlocks.corrupted_curtain);
+        blockItemFromItem(ModBlocks.burnt_agate_curtain);
+        blockItemFromItem(ModBlocks.fire_agate_curtain);
+        blockItemFromItem(ModBlocks.aura_curtain);
+        blockItemFromItem(ModBlocks.golden_curtain);
         blockItem(ModBlocks.pink_agate_tile_slab);
         blockItem(ModBlocks.blue_agate_tile_slab);
         blockItem(ModBlocks.green_agate_tile_slab);

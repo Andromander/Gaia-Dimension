@@ -1,0 +1,6 @@
+{
+  "parent": "gaiadimension:block/util/curtain_surface",
+  "textures": {
+    "texture": "gaiadimension:block/aura_curtain_top_open"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "textures": {
+    "particle": "#texture"
+  },
+  "render_type": "minecraft:translucent",
+  "elements": [{
+    "from": [ 0, 0, 8 ],
+    "to": [ 16, 16, 8 ],
+    "faces": {
+      "north": { "texture": "#texture", "uv": [ 16, 0, 0, 16 ] },
+      "south": { "texture": "#texture" }
+    }
+  }]
+}

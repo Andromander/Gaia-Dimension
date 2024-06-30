@@ -236,6 +236,16 @@ public class GaiaLootTables extends LootTableProvider {
             dropSelf(ModBlocks.fire_agate_tile_stairs);
             dropSelf(ModBlocks.aura_tile_stairs);
             dropSelf(ModBlocks.golden_tile_stairs);
+            dropCurtain(ModBlocks.pink_agate_curtain);
+            dropCurtain(ModBlocks.blue_agate_curtain);
+            dropCurtain(ModBlocks.green_agate_curtain);
+            dropCurtain(ModBlocks.purple_agate_curtain);
+            dropCurtain(ModBlocks.fossilized_curtain);
+            dropCurtain(ModBlocks.corrupted_curtain);
+            dropCurtain(ModBlocks.burnt_agate_curtain);
+            dropCurtain(ModBlocks.fire_agate_curtain);
+            dropCurtain(ModBlocks.aura_curtain);
+            dropCurtain(ModBlocks.golden_curtain);
 
             //Manufactured
             dropOnlySilk(ModBlocks.cloudy_glass);

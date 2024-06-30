@@ -1,5 +1,6 @@
 package androsa.gaiadimension.data.provider;
 
+import androsa.gaiadimension.block.CurtainBlock;
 import androsa.gaiadimension.block.LargeCrateBlock;
 import androsa.gaiadimension.block.SmallCrateBlock;
 import androsa.gaiadimension.registry.registration.ModBlockEntities;
@@ -7,6 +8,7 @@ import androsa.gaiadimension.registry.registration.ModItems;
 import net.minecraft.advancements.critereon.*;
 import net.minecraft.core.BlockPos;
 import net.minecraft.data.loot.BlockLootSubProvider;
+import net.minecraft.util.StringRepresentable;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
@@ -92,6 +94,10 @@ public abstract class GaiaBlockLootTableProvider extends BlockLootSubProvider {
                         .otherwise(LootItem.lootTableItem(result)))));
     }
 
+    public void dropCurtain(Supplier<? extends Block> block) {
+        add(block.get(), this::curtainHalf);
+    }
+
     public void dropPot(Supplier<FlowerPotBlock> flowerpot) {
         this.add(flowerpot.get(), (pot) -> createPotFlowerItemTable(((FlowerPotBlock)pot).getPotted()));
     }
@@ -157,6 +163,17 @@ public abstract class GaiaBlockLootTableProvider extends BlockLootSubProvider {
         return createSilkTouchDispatchTable(ore, applyExplosionDecay(ore, LootItem.lootTableItem(drop)
                 .apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 3.0F)))
                 .apply(ApplyBonusCount.addOreBonusCount(Enchantments.BLOCK_FORTUNE))));
+    }
+
+    protected LootTable.Builder curtainHalf(Block block) {
+        return LootTable.lootTable()
+                .withPool(applyExplosionCondition(block,
+                                LootPool.lootPool()
+                                        .setRolls(ConstantValue.exactly(1.0F))
+                                        .add(LootItem.lootTableItem(block)
+                                                .when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(block)
+                                                        .setProperties(StatePropertiesPredicate.Builder.properties()
+                                                                .hasProperty(CurtainBlock.HALF, DoubleBlockHalf.UPPER))))));
     }
 
     protected static LootTable.Builder doubleShearsOnly(Block block, Block half) {

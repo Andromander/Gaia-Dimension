@@ -10,6 +10,7 @@ import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 
@@ -62,6 +63,26 @@ public class GaiaRecipes extends GaiaRecipeProvider {
         smallCompressRecipe(ModBlocks.fire_agate_wood.get(), ModBlocks.fire_agate_log.get(), 3).save(consumer, locWood("fire_agate_wood"));
         smallCompressRecipe(ModBlocks.aura_wood.get(), ModBlocks.aura_log.get(), 3).save(consumer, locWood("aura_wood"));
         smallCompressRecipe(ModBlocks.golden_wood.get(), ModBlocks.golden_log.get(), 3).save(consumer, locWood("golden_wood"));
+        curtainRecipe(ModBlocks.pink_agate_curtain, ModBlocks.pink_agate_tiles, 2).save(consumer, loc("pink_agate_curtain_tiles"));
+        curtainRecipe(ModBlocks.pink_agate_curtain, ModBlocks.pink_agate_leaves, 4).save(consumer, loc("pink_agate_curtain_leaves"));
+        curtainRecipe(ModBlocks.blue_agate_curtain, ModBlocks.blue_agate_tiles, 2).save(consumer, loc("blue_agate_curtain_tiles"));
+        curtainRecipe(ModBlocks.blue_agate_curtain, ModBlocks.blue_agate_leaves, 4).save(consumer, loc("blue_agate_curtain_leaves"));
+        curtainRecipe(ModBlocks.green_agate_curtain, ModBlocks.green_agate_tiles, 2).save(consumer, loc("green_agate_curtain_tiles"));
+        curtainRecipe(ModBlocks.green_agate_curtain, ModBlocks.green_agate_leaves, 4).save(consumer, loc("green_agate_curtain_leaves"));
+        curtainRecipe(ModBlocks.purple_agate_curtain, ModBlocks.purple_agate_tiles, 2).save(consumer, loc("purple_agate_curtain_tiles"));
+        curtainRecipe(ModBlocks.purple_agate_curtain, ModBlocks.purple_agate_leaves, 4).save(consumer, loc("purple_agate_curtain_leaves"));
+        curtainRecipe(ModBlocks.fossilized_curtain, ModBlocks.fossilized_tiles, 2).save(consumer, loc("fossilized_curtain_tiles"));
+        curtainRecipe(ModBlocks.fossilized_curtain, ModBlocks.fossilized_leaves, 4).save(consumer, loc("fossilized_curtain_leaves"));
+        curtainRecipe(ModBlocks.corrupted_curtain, ModBlocks.corrupted_tiles, 2).save(consumer, loc("corrupted_curtain_tiles"));
+        curtainRecipe(ModBlocks.corrupted_curtain, ModBlocks.corrupted_leaves, 4).save(consumer, loc("corrupted_curtain_leaves"));
+        curtainRecipe(ModBlocks.burnt_agate_curtain, ModBlocks.burnt_tiles, 2).save(consumer, loc("burnt_agate_curtain_tiles"));
+        curtainRecipe(ModBlocks.burnt_agate_curtain, ModBlocks.burnt_leaves, 4).save(consumer, loc("burnt_agate_curtain_leaves"));
+        curtainRecipe(ModBlocks.fire_agate_curtain, ModBlocks.fire_agate_tiles, 2).save(consumer, loc("fire_agate_curtain_tiles"));
+        curtainRecipe(ModBlocks.fire_agate_curtain, ModBlocks.fire_agate_leaves, 4).save(consumer, loc("fire_agate_curtain_leaves"));
+        curtainRecipe(ModBlocks.aura_curtain, ModBlocks.aura_tiles, 2).save(consumer, loc("aura_curtain_tiles"));
+        curtainRecipe(ModBlocks.aura_curtain, ModBlocks.aura_leaves, 4).save(consumer, loc("aura_curtain_leaves"));
+        curtainRecipe(ModBlocks.golden_curtain, ModBlocks.golden_tiles, 2).save(consumer, loc("golden_curtain_tiles"));
+        curtainRecipe(ModBlocks.golden_curtain, ModBlocks.golden_leaves, 4).save(consumer, loc("golden_curtain_leaves"));
 
         largeCompressRecipe(ModBlocks.sugilite_block.get(), ModItems.sugilite.get()).save(consumer, locStorage("sugilite_block"));
         largeCompressRecipe(ModBlocks.hematite_block.get(), ModItems.hematite.get()).save(consumer, locStorage("hematite_block"));

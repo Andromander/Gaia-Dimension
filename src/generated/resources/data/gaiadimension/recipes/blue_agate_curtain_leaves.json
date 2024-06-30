@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "#": {
+      "item": "gaiadimension:blue_agate_leaves"
+    },
+    "/": {
+      "item": "gaiadimension:agate_stick"
+    }
+  },
+  "pattern": [
+    "//",
+    "##",
+    "##"
+  ],
+  "result": {
+    "count": 4,
+    "item": "gaiadimension:blue_agate_curtain"
+  }
+}

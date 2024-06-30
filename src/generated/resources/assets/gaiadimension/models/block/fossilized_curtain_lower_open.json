@@ -1,0 +1,6 @@
+{
+  "parent": "gaiadimension:block/util/curtain_surface",
+  "textures": {
+    "texture": "gaiadimension:block/fossilized_curtain_bottom_open"
+  }
+}

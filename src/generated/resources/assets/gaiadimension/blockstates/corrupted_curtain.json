@@ -1,0 +1,88 @@
+{
+  "variants": {
+    "axis=x,half=lower,open=false,side=left": {
+      "model": "gaiadimension:block/corrupted_curtain_lower_left"
+    },
+    "axis=x,half=lower,open=false,side=right": {
+      "model": "gaiadimension:block/corrupted_curtain_lower_right"
+    },
+    "axis=x,half=lower,open=false,side=single": {
+      "model": "gaiadimension:block/corrupted_curtain_lower"
+    },
+    "axis=x,half=lower,open=true,side=left": {
+      "model": "gaiadimension:block/corrupted_curtain_lower_left_open"
+    },
+    "axis=x,half=lower,open=true,side=right": {
+      "model": "gaiadimension:block/corrupted_curtain_lower_right_open"
+    },
+    "axis=x,half=lower,open=true,side=single": {
+      "model": "gaiadimension:block/corrupted_curtain_lower_open"
+    },
+    "axis=x,half=upper,open=false,side=left": {
+      "model": "gaiadimension:block/corrupted_curtain_upper_left"
+    },
+    "axis=x,half=upper,open=false,side=right": {
+      "model": "gaiadimension:block/corrupted_curtain_upper_right"
+    },
+    "axis=x,half=upper,open=false,side=single": {
+      "model": "gaiadimension:block/corrupted_curtain_upper"
+    },
+    "axis=x,half=upper,open=true,side=left": {
+      "model": "gaiadimension:block/corrupted_curtain_upper_left_open"
+    },
+    "axis=x,half=upper,open=true,side=right": {
+      "model": "gaiadimension:block/corrupted_curtain_upper_right_open"
+    },
+    "axis=x,half=upper,open=true,side=single": {
+      "model": "gaiadimension:block/corrupted_curtain_upper_open"
+    },
+    "axis=z,half=lower,open=false,side=left": {
+      "model": "gaiadimension:block/corrupted_curtain_lower_left",
+      "y": 90
+    },
+    "axis=z,half=lower,open=false,side=right": {
+      "model": "gaiadimension:block/corrupted_curtain_lower_right",
+      "y": 90
+    },
+    "axis=z,half=lower,open=false,side=single": {
+      "model": "gaiadimension:block/corrupted_curtain_lower",
+      "y": 90
+    },
+    "axis=z,half=lower,open=true,side=left": {
+      "model": "gaiadimension:block/corrupted_curtain_lower_left_open",
+      "y": 90
+    },
+    "axis=z,half=lower,open=true,side=right": {
+      "model": "gaiadimension:block/corrupted_curtain_lower_right_open",
+      "y": 90
+    },
+    "axis=z,half=lower,open=true,side=single": {
+      "model": "gaiadimension:block/corrupted_curtain_lower_open",
+      "y": 90
+    },
+    "axis=z,half=upper,open=false,side=left": {
+      "model": "gaiadimension:block/corrupted_curtain_upper_left",
+      "y": 90
+    },
+    "axis=z,half=upper,open=false,side=right": {
+      "model": "gaiadimension:block/corrupted_curtain_upper_right",
+      "y": 90
+    },
+    "axis=z,half=upper,open=false,side=single": {
+      "model": "gaiadimension:block/corrupted_curtain_upper",
+      "y": 90
+    },
+    "axis=z,half=upper,open=true,side=left": {
+      "model": "gaiadimension:block/corrupted_curtain_upper_left_open",
+      "y": 90
+    },
+    "axis=z,half=upper,open=true,side=right": {
+      "model": "gaiadimension:block/corrupted_curtain_upper_right_open",
+      "y": 90
+    },
+    "axis=z,half=upper,open=true,side=single": {
+      "model": "gaiadimension:block/corrupted_curtain_upper_open",
+      "y": 90
+    }
+  }
+}

@@ -62,6 +62,15 @@ public class PropertiesHandler {
         return stoneProps(color, 10.0F, 150.0F);
     }
 
+    public static BlockBehaviour.Properties curtainProps(MapColor color) {
+        return BlockBehaviour.Properties.of()
+                .mapColor(color)
+                .strength(1.0F)
+                .sound(SoundType.GLASS)
+                .noOcclusion()
+                .pushReaction(PushReaction.DESTROY);
+    }
+
     public static BlockBehaviour.Properties storageProps(MapColor color) {
         return basicProps(color, SoundType.METAL, 5.0F, 10.0F).requiresCorrectToolForDrops();
     }

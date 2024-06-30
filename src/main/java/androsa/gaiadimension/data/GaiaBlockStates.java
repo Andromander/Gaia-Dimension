@@ -190,6 +190,16 @@ public class GaiaBlockStates extends GaiaBlockStateProvider {
         stairsBlock(ModBlocks.fire_agate_tile_stairs, "fire_agate_tiles");
         stairsBlock(ModBlocks.aura_tile_stairs, "aura_tiles");
         stairsBlock(ModBlocks.golden_tile_stairs, "golden_tiles");
+        curtainBlock(ModBlocks.pink_agate_curtain);
+        curtainBlock(ModBlocks.blue_agate_curtain);
+        curtainBlock(ModBlocks.green_agate_curtain);
+        curtainBlock(ModBlocks.purple_agate_curtain);
+        curtainBlock(ModBlocks.fossilized_curtain);
+        curtainBlock(ModBlocks.corrupted_curtain);
+        curtainBlock(ModBlocks.burnt_agate_curtain);
+        curtainBlock(ModBlocks.fire_agate_curtain);
+        curtainBlock(ModBlocks.aura_curtain);
+        curtainBlock(ModBlocks.golden_curtain);
         basicBlock(ModBlocks.cloudy_glass, "translucent");
         basicBlock(ModBlocks.foggy_glass, "translucent");
         basicBlock(ModBlocks.gaia_stone_bricks);

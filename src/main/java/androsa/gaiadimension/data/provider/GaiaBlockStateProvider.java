@@ -1,9 +1,12 @@
 package androsa.gaiadimension.data.provider;
 
+import androsa.gaiadimension.block.CurtainBlock;
+import net.minecraft.core.Direction;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
 import net.neoforged.neoforge.client.model.generators.BlockStateProvider;
 import net.neoforged.neoforge.client.model.generators.ConfiguredModel;
 import net.neoforged.neoforge.client.model.generators.ModelFile;
@@ -182,5 +185,43 @@ public abstract class GaiaBlockStateProvider extends BlockStateProvider {
 
     private void grassBlock(Supplier<Block> block, ModelFile model) {
         getVariantBuilder(block.get()).forAllStates(state -> ConfiguredModel.allYRotations(model, 0, false));
+    }
+
+    public void curtainBlock(DeferredBlock<? extends Block> block) {
+        String name = block.getId().getPath();
+        ModelFile upper = models().curtain(name + "_upper", tLocGaia(name + "_top"));
+        ModelFile lower = models().curtain(name + "_lower", tLocGaia(name + "_bottom"));
+        ModelFile upper_left = models().curtain(name + "_upper_left", tLocGaia(name + "_top_left"));
+        ModelFile lower_left = models().curtain(name + "_lower_left", tLocGaia(name + "_bottom_left"));
+        ModelFile upper_right = models().curtain(name + "_upper_right", tLocGaia(name + "_top_right"));
+        ModelFile lower_right = models().curtain(name + "_lower_right", tLocGaia(name + "_bottom_right"));
+        ModelFile upper_open = models().curtain(name + "_upper_open", tLocGaia(name + "_top_open"));
+        ModelFile lower_open = models().curtain(name + "_lower_open", tLocGaia(name + "_bottom_open"));
+        ModelFile upper_left_open = models().curtain(name + "_upper_left_open", tLocGaia(name + "_top_left_open"));
+        ModelFile lower_left_open = models().curtain(name + "_lower_left_open", tLocGaia(name + "_bottom_left_open"));
+        ModelFile upper_right_open = models().curtain(name + "_upper_right_open", tLocGaia(name + "_top_right_open"));
+        ModelFile lower_right_open = models().curtain(name + "_lower_right_open", tLocGaia(name + "_bottom_right_open"));
+
+        getVariantBuilder(block.get()).forAllStatesExcept(state -> {
+            ModelFile file;
+            if (state.getValue(CurtainBlock.HALF) == DoubleBlockHalf.UPPER) {
+                file = switch (state.getValue(CurtainBlock.SIDE)) {
+                    case SINGLE -> state.getValue(CurtainBlock.OPEN) ? upper_open : upper;
+                    case LEFT -> state.getValue(CurtainBlock.OPEN) ? upper_left_open : upper_left;
+                    case RIGHT -> state.getValue(CurtainBlock.OPEN) ? upper_right_open : upper_right;
+                };
+            } else {
+                file = switch (state.getValue(CurtainBlock.SIDE)) {
+                    case SINGLE -> state.getValue(CurtainBlock.OPEN) ? lower_open : lower;
+                    case LEFT -> state.getValue(CurtainBlock.OPEN) ? lower_left_open : lower_left;
+                    case RIGHT -> state.getValue(CurtainBlock.OPEN) ? lower_right_open : lower_right;
+                };
+            }
+
+            return ConfiguredModel.builder()
+                    .modelFile(file)
+                    .rotationY(state.getValue(CurtainBlock.FACING) == Direction.Axis.Z ? 90 : 0)
+                    .build();
+        }, CurtainBlock.POWERED);
     }
 }
