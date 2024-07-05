@@ -14,7 +14,7 @@ import java.util.List;
 public class CorruptWarriorSwordItem extends SwordItem {
 
     public CorruptWarriorSwordItem(Properties props) {
-        super(GaiaToolMaterials.CORRUPT, 3, -3.5F, props);
+        super(GaiaToolMaterials.CORRUPT, props.attributes(createAttributes(GaiaToolMaterials.CORRUPT, 3, -3.5F)));
     }
 
     @Override
@@ -24,7 +24,7 @@ public class CorruptWarriorSwordItem extends SwordItem {
     }
 
     @Override
-    public void appendHoverText(ItemStack stack, Level world, List<Component> tooltips, TooltipFlag flags) {
+    public void appendHoverText(ItemStack stack, TooltipContext world, List<Component> tooltips, TooltipFlag flags) {
         super.appendHoverText(stack, world, tooltips, flags);
         tooltips.add(Component.translatable(getDescriptionId() + ".tooltip"));
     }

@@ -14,11 +14,11 @@ import java.util.List;
 public class MalachiteGuardSwordItem extends SwordItem {
 
     public MalachiteGuardSwordItem(Properties props) {
-        super(GaiaToolMaterials.MALACHITE, 3, -3.0F, props);
+        super(GaiaToolMaterials.MALACHITE, props.attributes(createAttributes(GaiaToolMaterials.MALACHITE, 3, -3.0F)));
     }
 
     @Override
-    public void appendHoverText(ItemStack stack, Level world, List<Component> tooltips, TooltipFlag flags) {
+    public void appendHoverText(ItemStack stack, TooltipContext world, List<Component> tooltips, TooltipFlag flags) {
         super.appendHoverText(stack, world, tooltips, flags);
         tooltips.add(Component.translatable(getDescriptionId() + ".tooltip"));
     }

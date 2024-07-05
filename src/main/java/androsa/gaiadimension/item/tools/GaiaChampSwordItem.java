@@ -16,11 +16,11 @@ import java.util.List;
 public class GaiaChampSwordItem extends SwordItem {
 
     public GaiaChampSwordItem(Properties props) {
-        super(GaiaToolMaterials.GAIA_CHAMP, 3, -2.4F, props);
+        super(GaiaToolMaterials.GAIA_CHAMP, props.attributes(createAttributes(GaiaToolMaterials.GAIA_CHAMP, 3, -2.4F)));
     }
 
     @Override
-    public void appendHoverText(ItemStack stack, Level world, List<Component> tooltips, TooltipFlag flags) {
+    public void appendHoverText(ItemStack stack, TooltipContext world, List<Component> tooltips, TooltipFlag flags) {
         super.appendHoverText(stack, world, tooltips, flags);
         tooltips.add(Component.translatable(getDescriptionId() + ".tooltip"));
     }

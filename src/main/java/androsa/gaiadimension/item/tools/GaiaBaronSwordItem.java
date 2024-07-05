@@ -14,7 +14,7 @@ import java.util.List;
 public class GaiaBaronSwordItem extends SwordItem {
 
     public GaiaBaronSwordItem(Properties props) {
-        super(GaiaToolMaterials.TSAVORITE, 3, -1.8F, props);
+        super(GaiaToolMaterials.TSAVORITE, props.attributes(createAttributes(GaiaToolMaterials.TSAVORITE, 3, -1.8F)));
     }
 
     @Override
@@ -24,7 +24,7 @@ public class GaiaBaronSwordItem extends SwordItem {
     }
 
     @Override
-    public void appendHoverText(ItemStack stack, Level world, List<Component> tooltips, TooltipFlag flags) {
+    public void appendHoverText(ItemStack stack, TooltipContext world, List<Component> tooltips, TooltipFlag flags) {
         super.appendHoverText(stack, world, tooltips, flags);
         tooltips.add(Component.translatable(getDescriptionId() + ".tooltip"));
     }

@@ -1,33 +1,31 @@
 package androsa.gaiadimension.item.inventory;
 
+import androsa.gaiadimension.registry.registration.ModDataComponents;
 import androsa.gaiadimension.registry.values.GaiaTags;
 import net.minecraft.core.NonNullList;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.Container;
-import net.minecraft.world.ContainerHelper;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.component.ItemContainerContents;
 
-public class GemPouchInventory implements Container, MenuProvider {
+public class GemPouchMenu implements Container, MenuProvider {
 
     private final ItemStack invItem;
     private NonNullList<ItemStack> inventory;
 
-    public GemPouchInventory(ItemStack stack) {
+    public GemPouchMenu(ItemStack stack) {
         this.invItem = stack;
         this.inventory = NonNullList.withSize(20, ItemStack.EMPTY);
-        if (!stack.hasTag())
-            stack.setTag(new CompoundTag());
-        this.readFromNBT(stack.getTag());
+        this.readFromStack(stack);
     }
 
     @Override
     public int getContainerSize() {
-        return inventory.size();
+        return 20;
     }
 
     @Override
@@ -83,7 +81,7 @@ public class GemPouchInventory implements Container, MenuProvider {
                 this.inventory.set(i, ItemStack.EMPTY);
             }
         }
-        this.writeToNBT(this.invItem.getTag());
+        this.writeToStack(this.invItem);
     }
 
     @Override
@@ -105,7 +103,7 @@ public class GemPouchInventory implements Container, MenuProvider {
     @Override
     public void clearContent() {
         for (int i = 0; i < getContainerSize(); i++) {
-            this.setItem(1, ItemStack.EMPTY);
+            this.setItem(i, ItemStack.EMPTY);
         }
     }
 
@@ -114,13 +112,15 @@ public class GemPouchInventory implements Container, MenuProvider {
         return Component.translatable("gaiadimension.container.gemstone_pouch");
     }
 
-    public void readFromNBT(CompoundTag tag) {
+    public void readFromStack(ItemStack stack) {
         inventory = NonNullList.withSize(getContainerSize(), ItemStack.EMPTY);
-        ContainerHelper.loadAllItems(tag, inventory);
+        stack.getOrDefault(ModDataComponents.POUCH_CONTENTS, ItemContainerContents.EMPTY).copyInto(inventory);
+        //ContainerHelper.loadAllItems(tag, inventory, provider);
     }
 
-    public void writeToNBT(CompoundTag tag) {
-        ContainerHelper.saveAllItems(tag, inventory, true);
+    public void writeToStack(ItemStack stack) {
+        stack.set(ModDataComponents.POUCH_CONTENTS, ItemContainerContents.fromItems(inventory));
+        //ContainerHelper.saveAllItems(tag, inventory, true, provider);
     }
 
     @Override

@@ -6,6 +6,6 @@ import net.minecraft.world.item.Tier;
 public class BasicGaiaShovelItem extends ShovelItem {
 
     public BasicGaiaShovelItem(Tier material, Properties props) {
-        super(material, 1.5F, -3.0F, props);
+        super(material, props.attributes(createAttributes(material, 1.5F, -3.0F)));
     }
 }

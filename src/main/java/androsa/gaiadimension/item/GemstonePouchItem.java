@@ -1,6 +1,6 @@
 package androsa.gaiadimension.item;
 
-import androsa.gaiadimension.item.inventory.GemPouchInventory;
+import androsa.gaiadimension.item.inventory.GemPouchMenu;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.InteractionResultHolder;
@@ -20,7 +20,7 @@ public class GemstonePouchItem extends Item {
         ItemStack stack = playerIn.getItemInHand(handIn);
 
         if(!worldIn.isClientSide()) {
-            playerIn.openMenu(new GemPouchInventory(stack));
+            playerIn.openMenu(new GemPouchMenu(stack));
         }
 
         return new InteractionResultHolder<>(InteractionResult.SUCCESS, stack);

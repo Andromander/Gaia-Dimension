@@ -21,14 +21,13 @@ import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.BlockHitResult;
-import net.neoforged.neoforge.event.EventHooks;
 
 import java.util.function.Supplier;
 
 public class ScaynyxBucketItem extends BucketItem {
 
     public ScaynyxBucketItem(Properties props, Supplier<? extends Fluid> fluid) {
-        super(fluid, props);
+        super(fluid.get(), props);
     }
 
     public static ItemStack getEmptySuccessItem(ItemStack stack, Player entity) {
@@ -38,10 +37,7 @@ public class ScaynyxBucketItem extends BucketItem {
     @Override
     public InteractionResultHolder<ItemStack> use(Level world, Player player, InteractionHand hand) {
         ItemStack itemstack = player.getItemInHand(hand);
-        BlockHitResult raytraceresult = getPlayerPOVHitResult(world, player, getFluid() == Fluids.EMPTY ? ClipContext.Fluid.SOURCE_ONLY : ClipContext.Fluid.NONE);
-        InteractionResultHolder<ItemStack> ret = EventHooks.onBucketUse(player, world, itemstack, raytraceresult);
-        if (ret != null)
-            return ret;
+        BlockHitResult raytraceresult = getPlayerPOVHitResult(world, player, content == Fluids.EMPTY ? ClipContext.Fluid.SOURCE_ONLY : ClipContext.Fluid.NONE);
         if (raytraceresult.getType() == BlockHitResult.Type.MISS) {
             return InteractionResultHolder.pass(itemstack);
         } else if (raytraceresult.getType() != BlockHitResult.Type.BLOCK) {
@@ -52,11 +48,10 @@ public class ScaynyxBucketItem extends BucketItem {
             BlockPos blockpos1 = blockpos.relative(direction);
             if (world.mayInteract(player, blockpos) && player.mayUseItemAt(blockpos1, direction, itemstack)) {
 
-                if (getFluid() == Fluids.EMPTY) {
+                if (content == Fluids.EMPTY) {
                     //Empty Bucket to fill
                     BlockState fluidblock = world.getBlockState(blockpos);
-                    if (fluidblock.getBlock() instanceof BucketPickup) {
-                        BucketPickup fluid = ((BucketPickup)fluidblock.getBlock());
+                    if (fluidblock.getBlock() instanceof BucketPickup fluid) {
                         ItemStack fluidstack = fluid.pickupBlock(player, world, blockpos, fluidblock);
                         if (!fluidstack.isEmpty()) {
                             player.awardStat(Stats.ITEM_USED.get(this));
@@ -96,7 +91,7 @@ public class ScaynyxBucketItem extends BucketItem {
 
     @Override
     public boolean canBlockContainFluid(Player player, Level worldIn, BlockPos posIn, BlockState blockstate) {
-        return blockstate.getBlock() instanceof LiquidBlockContainer && ((LiquidBlockContainer)blockstate.getBlock()).canPlaceLiquid(player, worldIn, posIn, blockstate, getFluid());
+        return blockstate.getBlock() instanceof LiquidBlockContainer && ((LiquidBlockContainer)blockstate.getBlock()).canPlaceLiquid(player, worldIn, posIn, blockstate, content);
     }
 
     /*

@@ -7,6 +7,7 @@ import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
+import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Block;
@@ -42,6 +43,10 @@ public class GaiaTags {
 
     private static TagKey<Biome> tagBiome(String name) {
         return TagKey.create(Registries.BIOME, new ResourceLocation(ID, name));
+    }
+
+    private static TagKey<EntityType<?>> tagEntity(String name) {
+        return TagKey.create(Registries.ENTITY_TYPE, ResourceLocation.fromNamespaceAndPath(GaiaDimensionMod.MODID, name));
     }
 
     public static class Items {
@@ -195,6 +200,23 @@ public class GaiaTags {
         public static final TagKey<Block> STORAGE_BLOCKS_DIOPSIDE = tagBlockForge("storage_blocks/diopside");
         public static final TagKey<Block> STORAGE_BLOCKS_GOSHENITE = tagBlockForge("storage_blocks/goshenite");
         public static final TagKey<Block> STORAGE_BLOCKS_CELESTINE = tagBlockForge("storage_blocks/celestine");
+
+        public static final TagKey<Block> INCORRECT_FOR_AGATE = tagBlock("incorrect_for_agate_tool");
+        public static final TagKey<Block> INCORRECT_FOR_SUGILITE = tagBlock("incorrect_for_sugilite_tool");
+        public static final TagKey<Block> INCORRECT_FOR_STIBNITE = tagBlock("incorrect_for_stibnite_tool");
+        public static final TagKey<Block> INCORRECT_FOR_EUCLASE = tagBlock("incorrect_for_euclase_tool");
+        public static final TagKey<Block> INCORRECT_FOR_CARNELIAN = tagBlock("incorrect_for_carnelian_tool");
+        public static final TagKey<Block> INCORRECT_FOR_BENITOITE = tagBlock("incorrect_for_benitoite_tool");
+        public static final TagKey<Block> INCORRECT_FOR_GOSHENITE = tagBlock("incorrect_for_goshenite_tool");
+        public static final TagKey<Block> INCORRECT_FOR_MALACHITE = tagBlock("incorrect_for_malachite_tool");
+        public static final TagKey<Block> INCORRECT_FOR_TIGER_EYE = tagBlock("incorrect_for_tiger_eye_tool");
+        public static final TagKey<Block> INCORRECT_FOR_SPINEL = tagBlock("incorrect_for_spinel_tool");
+        public static final TagKey<Block> INCORRECT_FOR_ZIRCON = tagBlock("incorrect_for_zircon_tool");
+        public static final TagKey<Block> INCORRECT_FOR_CORRUPT = tagBlock("incorrect_for_corrupt_tool");
+        public static final TagKey<Block> INCORRECT_FOR_BIXBITE = tagBlock("incorrect_for_bixbite_tool");
+        public static final TagKey<Block> INCORRECT_FOR_TSAVORITE = tagBlock("incorrect_for_tsavorite_tool");
+        public static final TagKey<Block> INCORRECT_FOR_LARVIKITE = tagBlock("incorrect_for_larvikite_tool");
+        public static final TagKey<Block> INCORRECT_FOR_CHAMPION = tagBlock("incorrect_for_champion_tool");
     }
 
     public static class Fluids {
@@ -212,5 +234,11 @@ public class GaiaTags {
         public static final TagKey<Biome> GAIA_BIOMES = tagBiome("is_gaia");
         public static final TagKey<Biome> AGATE_BIOMES = tagBiome("is_agate");
         public static final TagKey<Biome> GOLDEN_BIOMES = tagBiome("is_golden");
+    }
+
+    public static class Entities {
+        TagKey<EntityType<?>> GAIAN = tagEntity("gaian");
+        TagKey<EntityType<?>> CORRUPT = tagEntity("corrupt");
+        TagKey<EntityType<?>> CORRUPTION_IMMUNE = tagEntity("corruption_immune");
     }
 }

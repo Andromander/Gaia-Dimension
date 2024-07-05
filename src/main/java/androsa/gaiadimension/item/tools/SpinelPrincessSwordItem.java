@@ -14,11 +14,11 @@ import java.util.List;
 public class SpinelPrincessSwordItem extends SwordItem {
 
     public SpinelPrincessSwordItem(Properties props) {
-        super(GaiaToolMaterials.SPINEL, 3, -2.5F, props);
+        super(GaiaToolMaterials.SPINEL, props.attributes(createAttributes(GaiaToolMaterials.SPINEL, 3, -2.5F)));
     }
 
     @Override
-    public void appendHoverText(ItemStack stack, Level world, List<Component> tooltips, TooltipFlag flags) {
+    public void appendHoverText(ItemStack stack, TooltipContext world, List<Component> tooltips, TooltipFlag flags) {
         super.appendHoverText(stack, world, tooltips, flags);
         tooltips.add(Component.translatable(getDescriptionId() + ".tooltip"));
     }
@@ -27,7 +27,7 @@ public class SpinelPrincessSwordItem extends SwordItem {
     public boolean hurtEnemy(ItemStack stack, LivingEntity target, LivingEntity attacker) {
         if (super.hurtEnemy(stack, target, attacker)) {
             target.level().addParticle(ParticleTypes.FLAME, target.getRandomX(target.getBbWidth()), target.getRandomY(), target.getRandomZ(target.getBbWidth()), 0, 0, 0);
-            target.setSecondsOnFire(10);
+            target.igniteForSeconds(10.0F);
             return true;
         }
         return false;

@@ -16,13 +16,8 @@ public class AgateArrowItem extends ArrowItem {
         super(props);
     }
 
-    public AbstractArrow createArrow(Level worldIn, ItemStack stack, LivingEntity entity) {
-        return new AgateArrowEntity(worldIn, entity);
-    }
-
     @Override
-    public boolean isInfinite(ItemStack stack, ItemStack bow, Player player) {
-        int enchant = EnchantmentHelper.getTagEnchantmentLevel(Enchantments.INFINITY_ARROWS, bow);
-        return enchant > 0 && this.getClass() == AgateArrowItem.class;
+    public AbstractArrow createArrow(Level worldIn, ItemStack stack, LivingEntity entity, ItemStack weapon) {
+        return new AgateArrowEntity(worldIn, entity);
     }
 }

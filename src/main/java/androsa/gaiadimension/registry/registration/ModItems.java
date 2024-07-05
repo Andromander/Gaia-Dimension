@@ -4,7 +4,6 @@ import androsa.gaiadimension.GaiaDimensionMod;
 import androsa.gaiadimension.item.*;
 import androsa.gaiadimension.item.armor.*;
 import androsa.gaiadimension.item.tools.*;
-import androsa.gaiadimension.registry.values.GaiaArmorMaterials;
 import androsa.gaiadimension.registry.values.GaiaFoods;
 import androsa.gaiadimension.registry.values.GaiaToolMaterials;
 import net.minecraft.client.renderer.item.ItemProperties;
@@ -18,6 +17,7 @@ import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.material.Fluids;
 import net.neoforged.neoforge.common.DeferredSpawnEggItem;
+import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
@@ -148,30 +148,30 @@ public class ModItems {
     public static final DeferredItem<Item> opalite = register("opalite");
     public static final DeferredItem<Item> celestine = register("celestine");
 
-    public static final DeferredItem<Item> sugilite_helmet = register("sugilite_helmet", GaiaArmorMaterials.SUGILITE, HELMET);
-    public static final DeferredItem<Item> sugilite_chestplate = register("sugilite_chestplate", GaiaArmorMaterials.SUGILITE, CHESTPLATE);
-    public static final DeferredItem<Item> sugilite_legs = register("sugilite_legs", GaiaArmorMaterials.SUGILITE, LEGGINGS);
-    public static final DeferredItem<Item> sugilite_boots = register("sugilite_boots", GaiaArmorMaterials.SUGILITE, BOOTS);
-    public static final DeferredItem<Item> proustite_helmet = register("proustite_helmet", GaiaArmorMaterials.PROUSTITE, HELMET);
-    public static final DeferredItem<Item> proustite_chestplate = register("proustite_chestplate", GaiaArmorMaterials.PROUSTITE, CHESTPLATE);
-    public static final DeferredItem<Item> proustite_legs = register("proustite_legs", GaiaArmorMaterials.PROUSTITE, LEGGINGS);
-    public static final DeferredItem<Item> proustite_boots = register("proustite_boots", GaiaArmorMaterials.PROUSTITE, BOOTS);
-    public static final DeferredItem<Item> albite_helmet = register("albite_helmet", GaiaArmorMaterials.ALBITE, HELMET);
-    public static final DeferredItem<Item> albite_chestplate = register("albite_chestplate", GaiaArmorMaterials.ALBITE, CHESTPLATE);
-    public static final DeferredItem<Item> albite_legs = register("albite_legs", GaiaArmorMaterials.ALBITE, LEGGINGS);
-    public static final DeferredItem<Item> albite_boots = register("albite_boots", GaiaArmorMaterials.ALBITE, BOOTS);
-    public static final DeferredItem<Item> carnelian_helmet = register("carnelian_helmet", GaiaArmorMaterials.CARNELIAN, HELMET);
-    public static final DeferredItem<Item> carnelian_chestplate = register("carnelian_chestplate", GaiaArmorMaterials.CARNELIAN, CHESTPLATE);
-    public static final DeferredItem<Item> carnelian_legs = register("carnelian_legs", GaiaArmorMaterials.CARNELIAN, LEGGINGS);
-    public static final DeferredItem<Item> carnelian_boots = register("carnelian_boots", GaiaArmorMaterials.CARNELIAN, BOOTS);
-    public static final DeferredItem<Item> diopside_helmet = register("diopside_helmet", GaiaArmorMaterials.DIOPSIDE, HELMET);
-    public static final DeferredItem<Item> diopside_chestplate = register("diopside_chestplate", GaiaArmorMaterials.DIOPSIDE, CHESTPLATE);
-    public static final DeferredItem<Item> diopside_legs = register("diopside_legs", GaiaArmorMaterials.DIOPSIDE, LEGGINGS);
-    public static final DeferredItem<Item> diopside_boots = register("diopside_boots", GaiaArmorMaterials.DIOPSIDE, BOOTS);
-    public static final DeferredItem<Item> goshenite_helmet = register("goshenite_helmet", GaiaArmorMaterials.GOSHENITE, HELMET);
-    public static final DeferredItem<Item> goshenite_chestplate = register("goshenite_chestplate", GaiaArmorMaterials.GOSHENITE, CHESTPLATE);
-    public static final DeferredItem<Item> goshenite_legs = register("goshenite_legs", GaiaArmorMaterials.GOSHENITE, LEGGINGS);
-    public static final DeferredItem<Item> goshenite_boots = register("goshenite_boots", GaiaArmorMaterials.GOSHENITE, BOOTS);
+    public static final DeferredItem<Item> sugilite_helmet = register("sugilite_helmet", ModArmorMaterials.SUGILITE, HELMET, 77);
+    public static final DeferredItem<Item> sugilite_chestplate = register("sugilite_chestplate", ModArmorMaterials.SUGILITE, CHESTPLATE, 77);
+    public static final DeferredItem<Item> sugilite_legs = register("sugilite_legs", ModArmorMaterials.SUGILITE, LEGGINGS, 77);
+    public static final DeferredItem<Item> sugilite_boots = register("sugilite_boots", ModArmorMaterials.SUGILITE, BOOTS, 77);
+    public static final DeferredItem<Item> proustite_helmet = register("proustite_helmet", ModArmorMaterials.PROUSTITE, HELMET, 115);
+    public static final DeferredItem<Item> proustite_chestplate = register("proustite_chestplate", ModArmorMaterials.PROUSTITE, CHESTPLATE, 115);
+    public static final DeferredItem<Item> proustite_legs = register("proustite_legs", ModArmorMaterials.PROUSTITE, LEGGINGS, 115);
+    public static final DeferredItem<Item> proustite_boots = register("proustite_boots", ModArmorMaterials.PROUSTITE, BOOTS, 115);
+    public static final DeferredItem<Item> albite_helmet = register("albite_helmet", ModArmorMaterials.ALBITE, HELMET, 100);
+    public static final DeferredItem<Item> albite_chestplate = register("albite_chestplate", ModArmorMaterials.ALBITE, CHESTPLATE, 100);
+    public static final DeferredItem<Item> albite_legs = register("albite_legs", ModArmorMaterials.ALBITE, LEGGINGS, 100);
+    public static final DeferredItem<Item> albite_boots = register("albite_boots", ModArmorMaterials.ALBITE, BOOTS, 100);
+    public static final DeferredItem<Item> carnelian_helmet = register("carnelian_helmet", ModArmorMaterials.CARNELIAN, HELMET, 192);
+    public static final DeferredItem<Item> carnelian_chestplate = register("carnelian_chestplate", ModArmorMaterials.CARNELIAN, CHESTPLATE, 192);
+    public static final DeferredItem<Item> carnelian_legs = register("carnelian_legs", ModArmorMaterials.CARNELIAN, LEGGINGS, 192);
+    public static final DeferredItem<Item> carnelian_boots = register("carnelian_boots", ModArmorMaterials.CARNELIAN, BOOTS, 192);
+    public static final DeferredItem<Item> diopside_helmet = register("diopside_helmet", ModArmorMaterials.DIOPSIDE, HELMET, 177);
+    public static final DeferredItem<Item> diopside_chestplate = register("diopside_chestplate", ModArmorMaterials.DIOPSIDE, CHESTPLATE, 177);
+    public static final DeferredItem<Item> diopside_legs = register("diopside_legs", ModArmorMaterials.DIOPSIDE, LEGGINGS, 177);
+    public static final DeferredItem<Item> diopside_boots = register("diopside_boots", ModArmorMaterials.DIOPSIDE, BOOTS, 177);
+    public static final DeferredItem<Item> goshenite_helmet = register("goshenite_helmet", ModArmorMaterials.GOSHENITE, HELMET, 230);
+    public static final DeferredItem<Item> goshenite_chestplate = register("goshenite_chestplate", ModArmorMaterials.GOSHENITE, CHESTPLATE, 230);
+    public static final DeferredItem<Item> goshenite_legs = register("goshenite_legs", ModArmorMaterials.GOSHENITE, LEGGINGS, 230);
+    public static final DeferredItem<Item> goshenite_boots = register("goshenite_boots", ModArmorMaterials.GOSHENITE, BOOTS, 230);
 
     public static final DeferredItem<Item> malachite_guard_headgear = register("malachite_guard_headgear", () -> new MalachiteGuardArmorItem(HELMET, armorProps().rarity(Rarity.RARE)));
     public static final DeferredItem<Item> malachite_guard_brace = register("malachite_guard_brace", () -> new MalachiteGuardArmorItem(CHESTPLATE, armorProps().rarity(Rarity.RARE)));
@@ -295,8 +295,8 @@ public class ModItems {
         return register(name, () -> new Item(foodProps(props)));
     }
 
-    private static DeferredItem<Item> register(String name, ArmorMaterial material, ArmorItem.Type slot) {
-        return register(name, () -> new BasicGaiaArmorItem(material, slot, basicProps()));
+    private static DeferredItem<Item> register(String name, DeferredHolder<ArmorMaterial, ArmorMaterial> material, ArmorItem.Type slot, int durability) {
+        return register(name, () -> new BasicGaiaArmorItem(material, slot, basicProps().durability(slot.getDurability(durability))));
     }
 
     private static DeferredItem<Item> registerBucket(String name, Supplier<? extends Fluid> fluid) {
@@ -348,18 +348,18 @@ public class ModItems {
     }
 
     public static void addItemProperties() {
-        ItemProperties.register(old_bow.get(), new ResourceLocation("pull"), ((stack, world, entity, seed) -> {
+        ItemProperties.register(old_bow.get(), ResourceLocation.withDefaultNamespace("pull"), ((stack, world, entity, seed) -> {
             if (entity == null) {
                 return 0.0F;
             } else {
-                return entity.getUseItem() != stack ? 0.0F : (float)(stack.getUseDuration() - entity.getUseItemRemainingTicks()) / 20.0F;
+                return entity.getUseItem() != stack ? 0.0F : (float)(stack.getUseDuration(entity) - entity.getUseItemRemainingTicks()) / 20.0F;
             }
         }));
-        ItemProperties.register(old_bow.get(), new ResourceLocation("pulling"), (stack, world, entity, seed) ->
+        ItemProperties.register(old_bow.get(), ResourceLocation.withDefaultNamespace("pulling"), (stack, world, entity, seed) ->
                 entity != null && entity.isUsingItem() && entity.getUseItem() == stack ? 1.0F : 0.0F);
-        ItemProperties.register(construct_charm.get(), new ResourceLocation("mookaite"), (stack, world, entity, seed) ->
-                entity != null && stack.getTag() != null && stack.getTag().contains("MookaiteUUID") ? 1.0F : 0.0F);
-        ItemProperties.register(construct_charm.get(), new ResourceLocation("opalite"), (stack, world, entity, seed) ->
-                entity != null && stack.getTag() != null && stack.getTag().contains("OpaliteUUID") ? 1.0F : 0.0F);
+        ItemProperties.register(construct_charm.get(), ResourceLocation.withDefaultNamespace("mookaite"), (stack, world, entity, seed) ->
+                entity != null && stack.has(ModDataComponents.MOOKAITE_UUID) ? 1.0F : 0.0F);
+        ItemProperties.register(construct_charm.get(), ResourceLocation.withDefaultNamespace("opalite"), (stack, world, entity, seed) ->
+                entity != null && stack.has(ModDataComponents.OPALITE_UUID) ? 1.0F : 0.0F);
     }
 }

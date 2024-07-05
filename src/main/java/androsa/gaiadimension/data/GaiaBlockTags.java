@@ -292,5 +292,22 @@ public class GaiaBlockTags extends GaiaBlockTagsProvider {
         addTag(GaiaTags.Blocks.COPAL_BRICKS, COPAL_BRICKS);
         addTag(GaiaTags.Blocks.JADE_BRICKS, JADE_BRICKS);
         addTag(GaiaTags.Blocks.JET_BRICKS, JET_BRICKS);
+
+        tag(GaiaTags.Blocks.INCORRECT_FOR_AGATE).addTag(BlockTags.INCORRECT_FOR_STONE_TOOL);
+        tag(GaiaTags.Blocks.INCORRECT_FOR_SUGILITE).addTag(BlockTags.INCORRECT_FOR_IRON_TOOL);
+        tag(GaiaTags.Blocks.INCORRECT_FOR_STIBNITE).addTag(BlockTags.INCORRECT_FOR_IRON_TOOL);
+        tag(GaiaTags.Blocks.INCORRECT_FOR_EUCLASE).addTag(BlockTags.INCORRECT_FOR_IRON_TOOL);
+        tag(GaiaTags.Blocks.INCORRECT_FOR_CARNELIAN).addTag(BlockTags.INCORRECT_FOR_DIAMOND_TOOL);
+        tag(GaiaTags.Blocks.INCORRECT_FOR_BENITOITE).addTag(BlockTags.INCORRECT_FOR_DIAMOND_TOOL);
+        tag(GaiaTags.Blocks.INCORRECT_FOR_GOSHENITE).addTag(BlockTags.INCORRECT_FOR_NETHERITE_TOOL);
+        tag(GaiaTags.Blocks.INCORRECT_FOR_MALACHITE).addTag(BlockTags.INCORRECT_FOR_DIAMOND_TOOL);
+        tag(GaiaTags.Blocks.INCORRECT_FOR_TIGER_EYE).addTag(BlockTags.INCORRECT_FOR_DIAMOND_TOOL);
+        tag(GaiaTags.Blocks.INCORRECT_FOR_SPINEL).addTag(BlockTags.INCORRECT_FOR_DIAMOND_TOOL);
+        tag(GaiaTags.Blocks.INCORRECT_FOR_ZIRCON).addTag(BlockTags.INCORRECT_FOR_DIAMOND_TOOL);
+        tag(GaiaTags.Blocks.INCORRECT_FOR_CORRUPT).addTag(BlockTags.INCORRECT_FOR_NETHERITE_TOOL);
+        tag(GaiaTags.Blocks.INCORRECT_FOR_BIXBITE).addTag(BlockTags.INCORRECT_FOR_DIAMOND_TOOL);
+        tag(GaiaTags.Blocks.INCORRECT_FOR_TSAVORITE).addTag(BlockTags.INCORRECT_FOR_DIAMOND_TOOL);
+        tag(GaiaTags.Blocks.INCORRECT_FOR_LARVIKITE).addTag(BlockTags.INCORRECT_FOR_DIAMOND_TOOL);
+        tag(GaiaTags.Blocks.INCORRECT_FOR_CHAMPION).addTag(BlockTags.INCORRECT_FOR_NETHERITE_TOOL);
     }
 }

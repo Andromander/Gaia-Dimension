@@ -2,11 +2,16 @@ package androsa.gaiadimension.item;
 
 import androsa.gaiadimension.entity.MookaiteConstructEntity;
 import androsa.gaiadimension.entity.OpaliteContructEntity;
+import androsa.gaiadimension.registry.registration.ModDataComponents;
+import com.mojang.serialization.Codec;
+import io.netty.buffer.ByteBuf;
 import net.minecraft.ChatFormatting;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.CommonComponents;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.codec.ByteBufCodecs;
+import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.util.ByIdMap;
+import net.minecraft.util.StringRepresentable;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.InteractionResultHolder;
@@ -16,7 +21,6 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 import java.util.function.IntFunction;
@@ -37,14 +41,13 @@ public class ConstructKitItem extends Item {
     }
 
     @Override
-    public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> components, TooltipFlag flag) {
-        super.appendHoverText(stack, level, components, flag);
+    public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> components, TooltipFlag flag) {
+        super.appendHoverText(stack, context, components, flag);
         components.add(Component.translatable("gaiadimension.construct_kit." + kit.getName()).withStyle(ChatFormatting.GRAY));
 
         if (kit.canCycleParts()) {
-            CompoundTag tag = stack.getTag();
-            if (tag != null && tag.contains("Part")) {
-                components.add(Component.translatable("gaiadimension.construct_kit.part").withStyle(ChatFormatting.GRAY).append(CommonComponents.SPACE).append(getPart(tag)));
+            if (stack.has(ModDataComponents.KIT_PART)) {
+                components.add(Component.translatable("gaiadimension.construct_kit.part").withStyle(ChatFormatting.GRAY).append(CommonComponents.SPACE).append(getPart(stack.get(ModDataComponents.KIT_PART))));
                 components.add(Component.translatable("gaiaidmension.construct_kit.part.instruction").withStyle(ChatFormatting.DARK_GRAY));
             }
         }
@@ -53,8 +56,8 @@ public class ConstructKitItem extends Item {
         }
     }
 
-    private static Component getPart(CompoundTag tag) {
-        return Component.translatable("gaiadimension.construct_kit.part." + Part.byId(tag.getInt("Part")).getPart().name()).withStyle(style -> style.withColor(0x8599ff));
+    private static Component getPart(Part part) {
+        return Component.translatable("gaiadimension.construct_kit.part." + part.getPart().name()).withStyle(style -> style.withColor(0x8599ff));
     }
 
     private static Component getColor(Color part) {
@@ -65,20 +68,18 @@ public class ConstructKitItem extends Item {
     public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
         ItemStack stack = player.getItemInHand(hand);
         if (kit.canCycleParts() && player.isSecondaryUseActive()) {
-            CompoundTag tag = stack.getTag();
-
-            if (tag == null || !tag.contains("Part")) {
+            if (!stack.has(ModDataComponents.KIT_PART)) {
                 //Failed to find a CompoundTag, here's one.
-                stack.getOrCreateTag().putInt("Part", 0);
+                stack.set(ModDataComponents.KIT_PART, Part.LEFT_HORN);
             } else {
                 int maxSize = Part.values().length - 1;
-                int next = tag.getInt("Part") + 1;
+                int next = stack.get(ModDataComponents.KIT_PART).getId() + 1;
                 if (next > maxSize)
                     next = 0; //Cycle back to the start;
                 if (next < 0)
                     next = maxSize; //This shouldn't really happen, but if for whatever reason this becomes negative, cycle to the end.
-                tag.putInt("Part", next);
-                player.displayClientMessage(Component.translatable("gaiadimension.construct_kit.part.swap").append(CommonComponents.SPACE).append(getPart(tag)), true);
+                stack.set(ModDataComponents.KIT_PART, Part.byId(next));
+                player.displayClientMessage(Component.translatable("gaiadimension.construct_kit.part.swap").append(CommonComponents.SPACE).append(getPart(stack.get(ModDataComponents.KIT_PART))), true);
             }
             return InteractionResultHolder.sidedSuccess(stack, level.isClientSide());
         }
@@ -105,17 +106,17 @@ public class ConstructKitItem extends Item {
                     if (!opalite.getKitData().isEmpty()) {
                         return this.fail(player, Error.IN_USE);
                     }
-                    CompoundTag tag = stack.getTag();
+                    Part part = stack.get(ModDataComponents.KIT_PART);
                     //Failsafe check for Part tag
-                    if (tag == null || !tag.contains("Part")) {
+                    if (part == null) {
                         return this.fail(player, Error.NO_PART);
                     }
                     //Validate if we have enough to perform the action
-                    if (!opalite.validateStacks(this.kit, Part.byId(tag.getInt("Part")))) {
+                    if (!opalite.validateStacks(this.kit, part)) {
                         return this.fail(player, Error.RESOURCES);
                     }
                     //Validate if the kit can be used
-                    if (!opalite.validateKit(this.kit, Part.byId(tag.getInt("Part")), this.partColor)) {
+                    if (!opalite.validateKit(this.kit, part, this.partColor)) {
                         return this.fail(player, Error.INCOMPATIBLE);
                     }
                     //Validate if the Mookaite Construct is in action
@@ -123,7 +124,7 @@ public class ConstructKitItem extends Item {
                         return this.fail(player, Error.IN_COMBAT);
                     }
                     //Complete the action because we passed
-                    opalite.writeKitData(this.kit, Part.byId(tag.getInt("Part")), this.partColor);
+                    opalite.writeKitData(this.kit, part, this.partColor);
                     stack.shrink(1);
                     return InteractionResult.sidedSuccess(player.level().isClientSide());
                 } else {
@@ -163,7 +164,7 @@ public class ConstructKitItem extends Item {
         }
     }
 
-    public enum Part {
+    public enum Part implements StringRepresentable {
         LEFT_HORN(0, MookaiteConstructEntity.LEFT_HORN),
         RIGHT_HORN(1, MookaiteConstructEntity.RIGHT_HORN),
         LEFT_EYE(2, MookaiteConstructEntity.LEFT_EYE),
@@ -176,11 +177,15 @@ public class ConstructKitItem extends Item {
         RIGHT_LEG(9, MookaiteConstructEntity.RIGHT_LEG);
 
         private static final IntFunction<Part> ID = ByIdMap.continuous(Part::getId, values(), ByIdMap.OutOfBoundsStrategy.ZERO);
+        public static final Codec<Part> CODEC = StringRepresentable.fromValues(Part::values);
+        public static final StreamCodec<ByteBuf, Part> STREAM_CODEC = ByteBufCodecs.idMapper(ID, part -> part.id);
         private final int id;
+        private final String name;
         private final MookaiteConstructEntity.MookaitePart part;
 
         Part(int id, MookaiteConstructEntity.MookaitePart part) {
             this.id = id;
+            this.name = part.name();
             this.part = part;
         }
 
@@ -194,6 +199,11 @@ public class ConstructKitItem extends Item {
 
         public static Part byId(int id) {
             return ID.apply(id);
+        }
+
+        @Override
+        public String getSerializedName() {
+            return name;
         }
     }
 

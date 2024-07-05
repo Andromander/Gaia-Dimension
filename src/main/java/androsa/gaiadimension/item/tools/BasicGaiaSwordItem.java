@@ -6,6 +6,6 @@ import net.minecraft.world.item.Tier;
 public class BasicGaiaSwordItem extends SwordItem {
 
     public BasicGaiaSwordItem(Tier material, Properties props) {
-        super(material, 3, -2.4F, props);
+        super(material, props.attributes(createAttributes(material, 3, -2.4F)));
     }
 }
