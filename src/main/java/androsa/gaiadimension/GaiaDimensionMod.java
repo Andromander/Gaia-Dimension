@@ -16,9 +16,8 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.entity.MobType;
 import net.neoforged.bus.api.IEventBus;
-import net.neoforged.fml.ModLoadingContext;
+import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.config.ModConfig;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
@@ -41,10 +40,7 @@ public class GaiaDimensionMod {
     public static GaiaConfig.ClientConfig clientConfig;
     public static GaiaConfig.CommonConfig commonConfig;
 
-    public static final MobType GAIAN = new MobType();
-    public static final MobType CORRUPT = new MobType();
-
-    public GaiaDimensionMod(IEventBus bus) {
+    public GaiaDimensionMod(IEventBus bus, ModContainer container) {
         bus.addListener(this::setup);
         bus.addListener(this::clientSetup);
         bus.addListener(this::gatherData);
@@ -79,8 +75,8 @@ public class GaiaDimensionMod {
 
         final Pair<GaiaConfig.ClientConfig, ModConfigSpec> specPairC = new ModConfigSpec.Builder().configure(GaiaConfig.ClientConfig::new);
         final Pair<GaiaConfig.CommonConfig, ModConfigSpec> specPairB = new ModConfigSpec.Builder().configure(GaiaConfig.CommonConfig::new);
-        ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, specPairC.getRight());
-        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, specPairB.getRight());
+        container.registerConfig(ModConfig.Type.CLIENT, specPairC.getRight());
+        container.registerConfig(ModConfig.Type.COMMON, specPairB.getRight());
         clientConfig = specPairC.getLeft();
         commonConfig = specPairB.getLeft();
     }
@@ -88,10 +84,10 @@ public class GaiaDimensionMod {
     //TODO: Verify this event's necessity
     public void extraRegistries(RegisterEvent event) {
         if (event.getRegistryKey() == Registries.BIOME_SOURCE) {
-            Registry.register(BuiltInRegistries.BIOME_SOURCE, new ResourceLocation(GaiaDimensionMod.MODID, "gaia_dimension"), GaiaBiomeSource.CODEC);
+            Registry.register(BuiltInRegistries.BIOME_SOURCE, ResourceLocation.fromNamespaceAndPath(GaiaDimensionMod.MODID, "gaia_dimension"), GaiaBiomeSource.CODEC);
         }
         if (event.getRegistryKey() == Registries.CHUNK_GENERATOR) {
-            Registry.register(BuiltInRegistries.CHUNK_GENERATOR, new ResourceLocation(GaiaDimensionMod.MODID, "gaia_gen"), GaiaChunkGenerator.CODEC);
+            Registry.register(BuiltInRegistries.CHUNK_GENERATOR, ResourceLocation.fromNamespaceAndPath(GaiaDimensionMod.MODID, "gaia_gen"), GaiaChunkGenerator.CODEC);
         }
     }
 
