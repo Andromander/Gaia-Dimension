@@ -10,7 +10,7 @@ import net.minecraft.world.entity.player.Inventory;
 
 public class SmallCrateScreen extends AbstractContainerScreen<SmallCrateContainer> {
 
-    private static final ResourceLocation textureLoc = new ResourceLocation(GaiaDimensionMod.MODID, "textures/gui/small_crate.png");
+    private static final ResourceLocation textureLoc = ResourceLocation.fromNamespaceAndPath(GaiaDimensionMod.MODID, "textures/gui/small_crate.png");
 
     public SmallCrateScreen(SmallCrateContainer container, Inventory playerInv, Component textComponent) {
         super(container, playerInv, textComponent);

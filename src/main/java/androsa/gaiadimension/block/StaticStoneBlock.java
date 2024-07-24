@@ -26,7 +26,7 @@ public class StaticStoneBlock extends Block {
 
     @Override
     public void stepOn(Level worldIn, BlockPos pos, BlockState state, Entity entityIn) {
-        if (entityIn instanceof LivingEntity && !EnchantmentHelper.hasFrostWalker((LivingEntity)entityIn) || !(entityIn instanceof IShockshooterMob)) {
+        if (entityIn instanceof LivingEntity || !(entityIn instanceof IShockshooterMob)) {
             entityIn.hurt(GaiaDamage.getDamage(worldIn, GaiaDamage.STATIC), 2.0F);
         }
 

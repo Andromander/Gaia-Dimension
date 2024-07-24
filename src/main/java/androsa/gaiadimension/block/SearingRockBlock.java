@@ -30,7 +30,7 @@ public class SearingRockBlock extends Block {
     }
 
     public void stepOn(Level worldIn, BlockPos pos, BlockState state, Entity entityIn) {
-        if (entityIn instanceof LivingEntity && !EnchantmentHelper.hasFrostWalker((LivingEntity)entityIn) || !(entityIn instanceof ISpitfireMob)) {
+        if (entityIn instanceof LivingEntity || !(entityIn instanceof ISpitfireMob)) {
             entityIn.hurt(worldIn.damageSources().hotFloor(), 2.0F);
         }
 

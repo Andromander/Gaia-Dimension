@@ -2,17 +2,15 @@ package androsa.gaiadimension.recipe;
 
 import androsa.gaiadimension.registry.registration.ModBlocks;
 import androsa.gaiadimension.registry.registration.ModRecipes;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.core.NonNullList;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.world.Container;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraft.world.item.crafting.Recipe;
-import net.minecraft.world.item.crafting.RecipeSerializer;
-import net.minecraft.world.item.crafting.RecipeType;
+import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.Level;
 
-public class PurifierRecipe implements Recipe<Container> {
+public class PurifierRecipe implements Recipe<SingleRecipeInput> {
     protected final String group;
     protected final Ingredient ingredient;
     protected final ItemStack result;
@@ -35,12 +33,12 @@ public class PurifierRecipe implements Recipe<Container> {
     }
 
     @Override
-    public boolean matches(Container inv, Level worldIn) {
+    public boolean matches(SingleRecipeInput inv, Level worldIn) {
         return this.ingredient.test(inv.getItem(0));
     }
 
     @Override
-    public ItemStack assemble(Container inv, RegistryAccess access) {
+    public ItemStack assemble(SingleRecipeInput inv, HolderLookup.Provider access) {
         return this.result.copy();
     }
 
@@ -61,7 +59,7 @@ public class PurifierRecipe implements Recipe<Container> {
     }
 
     @Override
-    public ItemStack getResultItem(RegistryAccess access) {
+    public ItemStack getResultItem(HolderLookup.Provider access) {
         return this.result;
     }
 

@@ -30,7 +30,7 @@ public class AgateCraftingTableBlock extends Block {
 
     @Override
     @Deprecated
-    public InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult result) {
+    public InteractionResult useWithoutItem(BlockState state, Level world, BlockPos pos, Player player, BlockHitResult result) {
         player.openMenu(state.getMenuProvider(world, pos));
         return InteractionResult.SUCCESS;
     }

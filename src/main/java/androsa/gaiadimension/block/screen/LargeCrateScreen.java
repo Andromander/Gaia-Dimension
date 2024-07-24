@@ -10,7 +10,7 @@ import net.minecraft.world.entity.player.Inventory;
 
 public class LargeCrateScreen extends AbstractContainerScreen<LargeCrateMenu> {
 
-    private static final ResourceLocation textureLoc = new ResourceLocation(GaiaDimensionMod.MODID, "textures/gui/large_crate.png");
+    private static final ResourceLocation textureLoc = ResourceLocation.fromNamespaceAndPath(GaiaDimensionMod.MODID, "textures/gui/large_crate.png");
 
     public LargeCrateScreen(LargeCrateMenu container, Inventory playerInventoryIn, Component component) {
         super(container, playerInventoryIn, component);

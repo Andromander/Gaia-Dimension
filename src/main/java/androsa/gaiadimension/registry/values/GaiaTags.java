@@ -201,6 +201,8 @@ public class GaiaTags {
         public static final TagKey<Block> STORAGE_BLOCKS_GOSHENITE = tagBlockForge("storage_blocks/goshenite");
         public static final TagKey<Block> STORAGE_BLOCKS_CELESTINE = tagBlockForge("storage_blocks/celestine");
 
+        public static final TagKey<Block> GAIA_PLANTS = tagBlock("gaia_plants");
+
         public static final TagKey<Block> INCORRECT_FOR_AGATE = tagBlock("incorrect_for_agate_tool");
         public static final TagKey<Block> INCORRECT_FOR_SUGILITE = tagBlock("incorrect_for_sugilite_tool");
         public static final TagKey<Block> INCORRECT_FOR_STIBNITE = tagBlock("incorrect_for_stibnite_tool");

@@ -22,6 +22,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.border.WorldBorder;
 import net.minecraft.world.level.dimension.DimensionType;
+import net.minecraft.world.level.portal.DimensionTransition;
 import net.minecraft.world.level.portal.PortalInfo;
 import net.minecraft.world.level.portal.PortalShape;
 import net.minecraft.world.phys.Vec3;
@@ -180,10 +181,10 @@ public class GaiaTeleporter implements ITeleporter {
         return true;
     }
 
-    @Override
-    public Entity placeEntity(Entity entity, ServerLevel currentWorld, ServerLevel destWorld, float yaw, Function<Boolean, Entity> repositionEntity) {
-        return repositionEntity.apply(false);
-    }
+//    @Override
+//    public Entity placeEntity(Entity entity, ServerLevel currentWorld, ServerLevel destWorld, float yaw, Function<Boolean, Entity> repositionEntity) {
+//        return repositionEntity.apply(false);
+//    }
 
     @Nullable
     @Override
@@ -221,7 +222,7 @@ public class GaiaTeleporter implements ITeleporter {
         }
     }
 
-    private Optional<BlockUtil.FoundRectangle> getPortalLogic(Entity entity, BlockPos pos) {
+    private DimensionTransition getPortalLogic(Entity entity, BlockPos pos) {
         Optional<BlockUtil.FoundRectangle> existing = this.getExistingPortal(pos);
         if (entity instanceof ServerPlayer) { //ServerPlayer seems to do the portal creation
             if (existing.isPresent()) {

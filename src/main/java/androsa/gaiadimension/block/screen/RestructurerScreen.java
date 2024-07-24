@@ -10,7 +10,7 @@ import net.minecraft.world.entity.player.Inventory;
 
 public class RestructurerScreen extends AbstractContainerScreen<RestructurerMenu> {
 
-    private static final ResourceLocation textureLoc = new ResourceLocation(GaiaDimensionMod.MODID, "textures/gui/glitter_furnace.png");
+    private static final ResourceLocation textureLoc = ResourceLocation.fromNamespaceAndPath(GaiaDimensionMod.MODID, "textures/gui/glitter_furnace.png");
 
     public RestructurerScreen(RestructurerMenu container, Inventory invPlayer, Component textComponent) {
         super(container, invPlayer, textComponent);

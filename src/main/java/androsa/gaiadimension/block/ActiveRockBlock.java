@@ -25,7 +25,7 @@ public class ActiveRockBlock extends Block {
 
     @Override
     public void stepOn(Level worldIn, BlockPos pos, BlockState state, Entity entityIn) {
-        if (entityIn instanceof LivingEntity && !EnchantmentHelper.hasFrostWalker((LivingEntity) entityIn)) {
+        if (entityIn instanceof LivingEntity) {
             entityIn.hurt(GaiaDamage.getDamage(worldIn, GaiaDamage.ENERGETIC), 2.0F);
         }
 

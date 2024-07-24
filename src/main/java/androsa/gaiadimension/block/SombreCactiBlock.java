@@ -12,10 +12,8 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.pathfinder.PathComputationType;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.neoforged.neoforge.common.IPlantable;
-import net.neoforged.neoforge.common.PlantType;
 
-public class SombreCactiBlock extends Block implements IPlantable {
+public class SombreCactiBlock extends Block {
 
     public static final MapCodec<? extends SombreCactiBlock> CODEC = simpleCodec(SombreCactiBlock::new);
     public static final VoxelShape SHAPE = Block.box(0.0F, 0.0F, 0.0F, 16.0F, 8.0F, 16.0F);
@@ -27,16 +25,6 @@ public class SombreCactiBlock extends Block implements IPlantable {
     @Override
     protected MapCodec<? extends Block> codec() {
         return CODEC;
-    }
-
-    @Override
-    public BlockState getPlant(BlockGetter level, BlockPos pos) {
-        return this.defaultBlockState();
-    }
-
-    @Override
-    public PlantType getPlantType(BlockGetter level, BlockPos pos) {
-        return PlantType.DESERT;
     }
 
     @Override
@@ -59,7 +47,7 @@ public class SombreCactiBlock extends Block implements IPlantable {
 
     @Override
     @Deprecated
-    public boolean isPathfindable(BlockState p_60475_, BlockGetter p_60476_, BlockPos p_60477_, PathComputationType p_60478_) {
+    public boolean isPathfindable(BlockState state, PathComputationType path) {
         return false;
     }
 }

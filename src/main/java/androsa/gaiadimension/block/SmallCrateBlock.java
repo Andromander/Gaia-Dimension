@@ -5,22 +5,18 @@ import androsa.gaiadimension.registry.registration.ModBlockEntities;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.NonNullList;
-import net.minecraft.nbt.CompoundTag;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.Container;
-import net.minecraft.world.ContainerHelper;
-import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
-import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
-import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.item.component.ItemContainerContents;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
@@ -37,7 +33,7 @@ import java.util.List;
 public class SmallCrateBlock extends Block implements EntityBlock {
 
     public static final MapCodec<SmallCrateBlock> CODEC = simpleCodec(SmallCrateBlock::new);
-    public static final ResourceLocation NAME = new ResourceLocation("contents");
+    public static final ResourceLocation NAME = ResourceLocation.withDefaultNamespace("contents");
 
     public SmallCrateBlock(Properties props) {
         super(props);
@@ -56,7 +52,7 @@ public class SmallCrateBlock extends Block implements EntityBlock {
 
     @Override
     @Deprecated
-    public InteractionResult use(BlockState state, Level worldIn, BlockPos pos, Player player, InteractionHand handIn, BlockHitResult hit) {
+    public InteractionResult useWithoutItem(BlockState state, Level worldIn, BlockPos pos, Player player, BlockHitResult hit) {
         if (worldIn.isClientSide()) {
             return InteractionResult.SUCCESS;
         } else if (player.isSpectator()) {
@@ -78,15 +74,7 @@ public class SmallCrateBlock extends Block implements EntityBlock {
         if (tileentity instanceof SmallCrateBlockEntity crate) {
             if (!worldIn.isClientSide() && player.isCreative() && !crate.isEmpty()) {
                 ItemStack itemstack = new ItemStack(this);
-                CompoundTag compoundnbt = crate.saveToNbt(new CompoundTag());
-                if (!compoundnbt.isEmpty()) {
-                    itemstack.addTagElement("BlockEntityTag", compoundnbt);
-                }
-
-                if (crate.hasCustomName()) {
-                    itemstack.setHoverName(crate.getCustomName());
-                }
-
+                itemstack.applyComponents(tileentity.collectComponents());
                 ItemEntity itementity = new ItemEntity(worldIn, pos.getX(), pos.getY(), pos.getZ(), itemstack);
                 itementity.setDefaultPickUpDelay();
                 worldIn.addFreshEntity(itementity);
@@ -114,16 +102,6 @@ public class SmallCrateBlock extends Block implements EntityBlock {
     }
 
     @Override
-    public void setPlacedBy(Level worldIn, BlockPos pos, BlockState state, LivingEntity placer, ItemStack stack) {
-        if (stack.hasCustomHoverName()) {
-            BlockEntity tileentity = worldIn.getBlockEntity(pos);
-            if (tileentity instanceof SmallCrateBlockEntity) {
-                ((SmallCrateBlockEntity)tileentity).setCustomName(stack.getHoverName());
-            }
-        }
-    }
-
-    @Override
     @Deprecated
     public void onRemove(BlockState state, Level worldIn, BlockPos pos, BlockState newState, boolean isMoving) {
         if (state.getBlock() != newState.getBlock()) {
@@ -137,36 +115,27 @@ public class SmallCrateBlock extends Block implements EntityBlock {
     }
 
     @Override
-    public void appendHoverText(ItemStack stack, @Nullable BlockGetter worldIn, List<Component> tooltip, TooltipFlag flagIn) {
+    public void appendHoverText(ItemStack stack, @Nullable Item.TooltipContext worldIn, List<Component> tooltip, TooltipFlag flagIn) {
         super.appendHoverText(stack, worldIn, tooltip, flagIn);
-        CompoundTag compoundnbt = stack.getTagElement("BlockEntityTag");
-        if (compoundnbt != null) {
-            if (compoundnbt.contains("LootTable", 8)) {
-                tooltip.add(Component.literal("???????"));
-            }
+        if (stack.has(DataComponents.CONTAINER_LOOT)) {
+            tooltip.add(Component.translatable("container.shulkerBox.unknownContents"));
+        }
 
-            if (compoundnbt.contains("Items", 9)) {
-                NonNullList<ItemStack> nonnulllist = NonNullList.withSize(27, ItemStack.EMPTY);
-                ContainerHelper.loadAllItems(compoundnbt, nonnulllist);
-                int i = 0;
-                int j = 0;
+        int i = 0;
+        int j = 0;
 
-                for(ItemStack itemstack : nonnulllist) {
-                    if (!itemstack.isEmpty()) {
-                        ++j;
-                        if (i <= 4) {
-                            ++i;
-                            MutableComponent itextcomponent = itemstack.getHoverName().copy();
-                            itextcomponent.append(" x").append(String.valueOf(itemstack.getCount()));
-                            tooltip.add(itextcomponent);
-                        }
-                    }
-                }
-
-                if (j - i > 0) {
-                    tooltip.add(Component.translatable("container.shulkerBox.more", j - i).withStyle(ChatFormatting.ITALIC));
+        for(ItemStack itemstack : stack.getOrDefault(DataComponents.CONTAINER, ItemContainerContents.EMPTY).nonEmptyItems()) {
+            if (!itemstack.isEmpty()) {
+                ++j;
+                if (i <= 4) {
+                    ++i;
+                    tooltip.add(Component.translatable("container.shulkerBox.itemCount", itemstack.getHoverName(), itemstack.getCount()));
                 }
             }
+        }
+
+        if (j - i > 0) {
+            tooltip.add(Component.translatable("container.shulkerBox.more", j - i).withStyle(ChatFormatting.ITALIC));
         }
     }
 
@@ -186,7 +155,7 @@ public class SmallCrateBlock extends Block implements EntityBlock {
     @Deprecated
     public ItemStack getCloneItemStack(LevelReader worldIn, BlockPos pos, BlockState state) {
         ItemStack itemstack = super.getCloneItemStack(worldIn, pos, state);
-        worldIn.getBlockEntity(pos, ModBlockEntities.SMALL_CRATE.get()).ifPresent(entity -> entity.saveToItem(itemstack));
+        worldIn.getBlockEntity(pos, ModBlockEntities.SMALL_CRATE.get()).ifPresent(entity -> entity.saveToItem(itemstack, worldIn.registryAccess()));
         return itemstack;
     }
 }

@@ -7,17 +7,13 @@ import androsa.gaiadimension.registry.registration.*;
 import com.google.common.collect.Lists;
 import it.unimi.dsi.fastutil.objects.Object2IntMap;
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap;
-import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
-import net.minecraft.core.NonNullList;
-import net.minecraft.core.RegistryAccess;
+import net.minecraft.core.*;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.util.Mth;
-import net.minecraft.world.Container;
 import net.minecraft.world.ContainerHelper;
 import net.minecraft.world.WorldlyContainer;
 import net.minecraft.world.entity.ExperienceOrb;
@@ -33,6 +29,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.item.crafting.RecipeManager;
+import net.minecraft.world.item.crafting.SingleRecipeInput;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BaseContainerBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
@@ -91,7 +88,7 @@ public class RestructurerBlockEntity extends BaseContainerBlockEntity implements
         }
     };
     private final Object2IntOpenHashMap<ResourceLocation> recipeMap = new Object2IntOpenHashMap<>();
-    private final RecipeManager.CachedCheck<Container, ? extends RestructurerRecipe> cache;
+    private final RecipeManager.CachedCheck<SingleRecipeInput, ? extends RestructurerRecipe> cache;
 
     public RestructurerBlockEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntities.RESTRUCTURER.get(), pos, state);
@@ -126,10 +123,10 @@ public class RestructurerBlockEntity extends BaseContainerBlockEntity implements
     }
 
     @Override
-    public void load(CompoundTag compound) {
-        super.load(compound);
+    public void loadAdditional(CompoundTag compound, HolderLookup.Provider provider) {
+        super.loadAdditional(compound, provider);
         this.restructurerItemStacks = NonNullList.withSize(this.getContainerSize(), ItemStack.EMPTY);
-        ContainerHelper.loadAllItems(compound, this.restructurerItemStacks);
+        ContainerHelper.loadAllItems(compound, this.restructurerItemStacks, provider);
         this.burnTime = compound.getInt("BurnTime");
         this.cookTime = compound.getInt("CookTime");
         this.cookTimeTotal = compound.getInt("CookTimeTotal");
@@ -137,19 +134,19 @@ public class RestructurerBlockEntity extends BaseContainerBlockEntity implements
         int i = compound.getShort("burnDurationSize");
 
         for (int j = 0; j < i; j++) {
-            ResourceLocation resourcelocation = new ResourceLocation(compound.getString("RecipeLocation" + j));
+            ResourceLocation resourcelocation = ResourceLocation.withDefaultNamespace(compound.getString("RecipeLocation" + j));
             int k = compound.getInt("RecipeAmount" + j);
             this.recipeMap.put(resourcelocation, k);
         }
     }
 
     @Override
-    public void saveAdditional(CompoundTag compound) {
-        super.saveAdditional(compound);
+    public void saveAdditional(CompoundTag compound, HolderLookup.Provider provider) {
+        super.saveAdditional(compound, provider);
         compound.putInt("BurnTime", this.burnTime);
         compound.putInt("CookTime", this.cookTime);
         compound.putInt("CookTimeTotal", (short)this.cookTimeTotal);
-        ContainerHelper.saveAllItems(compound, this.restructurerItemStacks);
+        ContainerHelper.saveAllItems(compound, this.restructurerItemStacks, provider);
         compound.putShort("burnDurationSize", (short)this.recipeMap.size());
         int i = 0;
 
@@ -168,6 +165,7 @@ public class RestructurerBlockEntity extends BaseContainerBlockEntity implements
             --entity.burnTime;
         }
 
+        ItemStack input = entity.restructurerItemStacks.get(0);
         ItemStack goldStack = entity.restructurerItemStacks.get(1);
         ItemStack essenceStack = entity.restructurerItemStacks.get(2);
 
@@ -175,7 +173,7 @@ public class RestructurerBlockEntity extends BaseContainerBlockEntity implements
             RecipeHolder<? extends RestructurerRecipe> recipeHolder;
 
             if (!entity.restructurerItemStacks.get(0).isEmpty()) {
-                recipeHolder = entity.cache.getRecipeFor(entity, level).orElse(null);
+                recipeHolder = entity.cache.getRecipeFor(new SingleRecipeInput(input), level).orElse(null);
             } else {
                 recipeHolder = null;
             }
@@ -212,7 +210,7 @@ public class RestructurerBlockEntity extends BaseContainerBlockEntity implements
 
                 if (entity.cookTime == entity.cookTimeTotal) {
                     entity.cookTime = 0;
-                    entity.cookTimeTotal = cookingTime(level, entity);
+                    entity.cookTimeTotal = cookingTime(level, new SingleRecipeInput(entity.getItem(0)));
                     if (entity.changeItem(level.registryAccess(), recipeHolder, entity.restructurerItemStacks, entity.getMaxStackSize())) {
                         entity.setRecipeUsed(recipeHolder);
                     }
@@ -306,7 +304,7 @@ public class RestructurerBlockEntity extends BaseContainerBlockEntity implements
         }
     }
 
-    private static int cookingTime(Level level, Container container) {
+    private static int cookingTime(Level level, SingleRecipeInput container) {
         return level.getRecipeManager().getRecipeFor(ModRecipes.RESTRUCTURING.get(), container, level).map(recipe -> recipe.value().getCookTime()).orElse(200);
     }
 
@@ -377,7 +375,7 @@ public class RestructurerBlockEntity extends BaseContainerBlockEntity implements
     @Override
     public void setItem(int index, ItemStack stack) {
         ItemStack itemstack = this.restructurerItemStacks.get(index);
-        boolean burning = !stack.isEmpty() && ItemStack.isSameItemSameTags(stack, itemstack);
+        boolean burning = !stack.isEmpty() && ItemStack.isSameItemSameComponents(stack, itemstack);
         this.restructurerItemStacks.set(index, stack);
 
         if (stack.getCount() > this.getMaxStackSize()) {
@@ -385,10 +383,20 @@ public class RestructurerBlockEntity extends BaseContainerBlockEntity implements
         }
 
         if (index == 0 && !burning) {
-            this.cookTimeTotal = cookingTime(this.level, this);
+            this.cookTimeTotal = cookingTime(this.level, new SingleRecipeInput(itemstack));
             this.cookTime = 0;
             this.setChanged();
         }
+    }
+
+    @Override
+    protected NonNullList<ItemStack> getItems() {
+        return this.restructurerItemStacks;
+    }
+
+    @Override
+    protected void setItems(NonNullList<ItemStack> stacks) {
+        this.restructurerItemStacks = stacks;
     }
 
     @Override

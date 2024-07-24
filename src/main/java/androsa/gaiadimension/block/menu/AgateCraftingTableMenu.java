@@ -10,15 +10,12 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.player.StackedContents;
 import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.crafting.CraftingRecipe;
-import net.minecraft.world.item.crafting.Recipe;
-import net.minecraft.world.item.crafting.RecipeHolder;
-import net.minecraft.world.item.crafting.RecipeType;
+import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.Level;
 
 import java.util.Optional;
 
-public class AgateCraftingTableMenu extends RecipeBookMenu<CraftingContainer> {
+public class AgateCraftingTableMenu extends RecipeBookMenu<CraftingInput, CraftingRecipe> {
 
     private final CraftingContainer invCrafting = new TransientCraftingContainer(this, 3, 3);
     private final ResultContainer invResult = new ResultContainer();
@@ -60,14 +57,15 @@ public class AgateCraftingTableMenu extends RecipeBookMenu<CraftingContainer> {
 
     protected static void updateSlots(AbstractContainerMenu menu, Level world, Player playerentity, CraftingContainer craft, ResultContainer result) {
         if (!world.isClientSide()) {
+            CraftingInput input = craft.asCraftInput();
             ServerPlayer serverplayerentity = (ServerPlayer)playerentity;
             ItemStack itemstack = ItemStack.EMPTY;
-            Optional<RecipeHolder<CraftingRecipe>> optional = world.getServer().getRecipeManager().getRecipeFor(RecipeType.CRAFTING, craft, world);
+            Optional<RecipeHolder<CraftingRecipe>> optional = world.getServer().getRecipeManager().getRecipeFor(RecipeType.CRAFTING, input, world);
             if (optional.isPresent()) {
                 RecipeHolder<CraftingRecipe> icraftingrecipe = optional.get();
                 CraftingRecipe crafting = icraftingrecipe.value();
                 if (result.setRecipeUsed(world, serverplayerentity, icraftingrecipe)) {
-                    ItemStack assembled = crafting.assemble(craft, world.registryAccess());
+                    ItemStack assembled = crafting.assemble(input, world.registryAccess());
                     if (assembled.isItemEnabled(world.enabledFeatures())) {
                         itemstack = assembled;
                     }
@@ -92,8 +90,8 @@ public class AgateCraftingTableMenu extends RecipeBookMenu<CraftingContainer> {
     }
 
     @Override
-    public boolean recipeMatches(RecipeHolder<? extends Recipe<CraftingContainer>> recipeIn) {
-        return recipeIn.value().matches(this.invCrafting, this.player.level());
+    public boolean recipeMatches(RecipeHolder<CraftingRecipe> recipeIn) {
+        return recipeIn.value().matches(this.invCrafting.asCraftInput(), this.player.level());
     }
 
     @Override

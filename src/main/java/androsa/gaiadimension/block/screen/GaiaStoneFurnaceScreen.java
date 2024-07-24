@@ -10,7 +10,7 @@ import net.minecraft.world.entity.player.Inventory;
 
 public class GaiaStoneFurnaceScreen extends AbstractContainerScreen<GaiaStoneFurnaceMenu> {
 
-    private static final ResourceLocation textureLoc = new ResourceLocation(GaiaDimensionMod.MODID, "textures/gui/gaia_stone_furnace.png");
+    private static final ResourceLocation textureLoc = ResourceLocation.fromNamespaceAndPath(GaiaDimensionMod.MODID, "textures/gui/gaia_stone_furnace.png");
 
     public GaiaStoneFurnaceScreen(GaiaStoneFurnaceMenu container, Inventory playerInventory, Component textComponent) {
         super(container, playerInventory, textComponent);

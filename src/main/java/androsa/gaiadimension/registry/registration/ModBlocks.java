@@ -412,7 +412,7 @@ public class ModBlocks {
     public static final DeferredBlock<BossSpawnerBlock> malachite_guard_spawner = registerNoItem("malachite_guard_spawner", () -> new BossSpawnerBlock(BossSpawnerBlock.BossType.MALACHITE, PropertiesHandler.spawnerProps()));
 
     private static Supplier<StairBlock> makeStairs(Supplier<? extends Block> block) {
-        return () -> new StairBlock(() -> block.get().defaultBlockState(), Properties.ofLegacyCopy(block.get()));
+        return () -> new StairBlock(block.get().defaultBlockState(), Properties.ofLegacyCopy(block.get()));
     }
 
     private static Supplier<SlabBlock> makeSlab(Properties props) {
@@ -553,9 +553,8 @@ public class ModBlocks {
                 LevelAccessor iworld = source.level();
                 BlockPos blockpos = source.pos().relative(source.state().getValue(DispenserBlock.FACING));
                 BlockState blockstate = iworld.getBlockState(blockpos);
-                Block block = blockstate.getBlock();
-                if (block instanceof BucketPickup) {
-                    ItemStack fluid = ((BucketPickup)block).pickupBlock(null, iworld, blockpos, blockstate);
+                if (blockstate.getBlock() instanceof BucketPickup block) {
+                    ItemStack fluid = block.pickupBlock(null, iworld, blockpos, blockstate);
                     if (fluid.isEmpty()) {
                         return super.execute(source, stack);
                     } else {
@@ -565,8 +564,8 @@ public class ModBlocks {
                         if (stack.isEmpty()) {
                             return new ItemStack(item);
                         } else {
-                            if (source.blockEntity().addItem(new ItemStack(item)) < 0) {
-                                this.defaultBehaviour.dispense(source, new ItemStack(item));
+                            if (!source.blockEntity().insertItem(new ItemStack(item)).isEmpty()) {
+                                this.defaultBehaviour.dispense(source, new ItemStack(item)); //TODO
                             }
 
                             return stack;

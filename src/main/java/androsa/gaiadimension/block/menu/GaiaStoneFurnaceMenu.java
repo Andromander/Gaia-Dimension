@@ -9,6 +9,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeType;
+import net.minecraft.world.item.crafting.SingleRecipeInput;
 import net.minecraft.world.item.crafting.SmeltingRecipe;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.AbstractFurnaceBlockEntity;
@@ -103,7 +104,7 @@ public class GaiaStoneFurnaceMenu extends AbstractContainerMenu {
     }
 
     private boolean isRecipePresent(ItemStack stack) {
-        return this.world.getRecipeManager().getRecipeFor(this.recipeType, new SimpleContainer(stack), this.world).isPresent();
+        return this.world.getRecipeManager().getRecipeFor(this.recipeType, new SingleRecipeInput(stack), this.world).isPresent();
     }
 
     public static boolean isFuel(ItemStack stack) {

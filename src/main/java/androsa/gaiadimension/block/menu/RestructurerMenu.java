@@ -17,6 +17,7 @@ import net.minecraft.world.inventory.SimpleContainerData;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeType;
+import net.minecraft.world.item.crafting.SingleRecipeInput;
 import net.minecraft.world.level.Level;
 
 public class RestructurerMenu extends AbstractContainerMenu {
@@ -103,7 +104,7 @@ public class RestructurerMenu extends AbstractContainerMenu {
     }
 
     private boolean isRecipePresent(ItemStack stack) {
-        return this.world.getRecipeManager().getRecipeFor(this.recipeType, new SimpleContainer(stack), this.world).isPresent();
+        return this.world.getRecipeManager().getRecipeFor(this.recipeType, new SingleRecipeInput(stack), this.world).isPresent();
     }
 
     public int getTimeLeftScaled() {

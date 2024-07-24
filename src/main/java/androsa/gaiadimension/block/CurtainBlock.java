@@ -6,7 +6,6 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
 import net.minecraft.util.StringRepresentable;
-import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
@@ -176,7 +175,7 @@ public class CurtainBlock extends Block {
 
     @Override
     @Deprecated
-    public boolean isPathfindable(BlockState state, BlockGetter getter, BlockPos pos, PathComputationType computation) {
+    public boolean isPathfindable(BlockState state, PathComputationType computation) {
         return switch(computation) {
             case LAND, AIR -> state.getValue(OPEN);
             case WATER -> false;
@@ -227,7 +226,7 @@ public class CurtainBlock extends Block {
 
     @Override
     @Deprecated
-    public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult result) {
+    public InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult result) {
         this.openBlock(level, pos, player);
         if (state.getValue(SIDE) != CurtainSide.SINGLE) {
             if (state.getValue(SIDE) == CurtainSide.LEFT) {

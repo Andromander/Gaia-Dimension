@@ -19,10 +19,8 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.neoforged.neoforge.common.CommonHooks;
-import net.neoforged.neoforge.common.IPlantable;
-import net.neoforged.neoforge.common.PlantType;
 
-public class AuraShootBlock extends Block implements IPlantable {
+public class AuraShootBlock extends Block {
 
     public static final MapCodec<? extends AuraShootBlock> CODEC = simpleCodec(AuraShootBlock::new);
     public static final IntegerProperty AGE = BlockStateProperties.AGE_5;
@@ -72,22 +70,12 @@ public class AuraShootBlock extends Block implements IPlantable {
     @Deprecated
     public boolean canSurvive(BlockState state, LevelReader worldIn, BlockPos pos) {
         BlockState soil = worldIn.getBlockState(pos.below());
-        if (soil.canSustainPlant(worldIn, pos.below(), Direction.UP, this))
+        if (soil.canSustainPlant(worldIn, pos.below(), Direction.UP, state).isTrue())
             return true;
         Block block = worldIn.getBlockState(pos.below()).getBlock();
         return block == this ||
                 block instanceof AbstractGaiaGrassBlock ||
                 block instanceof GaiaSoilBlock;
-    }
-
-    @Override
-    public PlantType getPlantType(BlockGetter reader, BlockPos pos) {
-        return PlantType.PLAINS;
-    }
-
-    @Override
-    public BlockState getPlant(BlockGetter reader, BlockPos pos) {
-        return this.defaultBlockState();
     }
 
     @Override
@@ -102,24 +90,23 @@ public class AuraShootBlock extends Block implements IPlantable {
     @Deprecated
     public void randomTick(BlockState state, ServerLevel worldIn, BlockPos pos, RandomSource random) {
         if (worldIn.isEmptyBlock(pos.above())) {
-            int i;
-            i = 1;
+            int i = 1;
 
-            while (worldIn.getBlockState(pos.below(i)).getBlock() == this) {
+            while (worldIn.getBlockState(pos.below(i)).is(this)) {
                 ++i;
             }
 
             if (i < 15) {
                 int j = state.getValue(AGE);
 
-                if (CommonHooks.onCropsGrowPre(worldIn, pos, state, true)) {
+                if (CommonHooks.canCropGrow(worldIn, pos, state, true)) {
                     if (j == 5) {
                         worldIn.setBlockAndUpdate(pos.above(), this.defaultBlockState());
+                        CommonHooks.fireCropGrowPost(worldIn, pos, state);
                         worldIn.setBlock(pos, state.setValue(AGE, 0).setValue(IS_TOP, false), 3);
                     } else {
                         worldIn.setBlock(pos, state.setValue(AGE, j + 1), 3);
                     }
-                    CommonHooks.onCropsGrowPost(worldIn, pos, state);
                 }
             }
         }

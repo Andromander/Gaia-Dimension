@@ -7,17 +7,13 @@ import androsa.gaiadimension.registry.registration.*;
 import com.google.common.collect.Lists;
 import it.unimi.dsi.fastutil.objects.Object2IntMap;
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap;
-import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
-import net.minecraft.core.NonNullList;
-import net.minecraft.core.RegistryAccess;
+import net.minecraft.core.*;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.util.Mth;
-import net.minecraft.world.Container;
 import net.minecraft.world.ContainerHelper;
 import net.minecraft.world.WorldlyContainer;
 import net.minecraft.world.entity.ExperienceOrb;
@@ -33,6 +29,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.item.crafting.RecipeManager;
+import net.minecraft.world.item.crafting.SingleRecipeInput;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BaseContainerBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
@@ -91,7 +88,7 @@ public class PurifierBlockEntity extends BaseContainerBlockEntity implements Wor
         }
     };
     private final Object2IntOpenHashMap<ResourceLocation> recipeMap = new Object2IntOpenHashMap<>();
-    private final RecipeManager.CachedCheck<Container, ? extends PurifierRecipe> cache;
+    private final RecipeManager.CachedCheck<SingleRecipeInput, ? extends PurifierRecipe> cache;
 
     public PurifierBlockEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntities.PURIFIER.get(), pos, state);
@@ -118,10 +115,10 @@ public class PurifierBlockEntity extends BaseContainerBlockEntity implements Wor
     }
 
     @Override
-    public void load(CompoundTag compound) {
-        super.load(compound);
+    public void loadAdditional(CompoundTag compound, HolderLookup.Provider provider) {
+        super.loadAdditional(compound, provider);
         this.purifyingItemStacks = NonNullList.withSize(this.getContainerSize(), ItemStack.EMPTY);
-        ContainerHelper.loadAllItems(compound, this.purifyingItemStacks);
+        ContainerHelper.loadAllItems(compound, this.purifyingItemStacks, provider);
         this.burnTime = compound.getInt("BurnTime");
         this.cookTime = compound.getInt("CookTime");
         this.cookTimeTotal = compound.getInt("CookTimeTotal");
@@ -129,19 +126,19 @@ public class PurifierBlockEntity extends BaseContainerBlockEntity implements Wor
         int i = compound.getShort("burnDurationSize");
 
         for (int j = 0; j < i; j++) {
-            ResourceLocation resourcelocation = new ResourceLocation(compound.getString("RecipeLocation" + j));
+            ResourceLocation resourcelocation = ResourceLocation.withDefaultNamespace(compound.getString("RecipeLocation" + j));
             int k = compound.getInt("RecipeAmount" + j);
             this.recipeMap.put(resourcelocation, k);
         }
     }
 
     @Override
-    public void saveAdditional(CompoundTag compound) {
-        super.saveAdditional(compound);
+    public void saveAdditional(CompoundTag compound, HolderLookup.Provider provider) {
+        super.saveAdditional(compound, provider);
         compound.putInt("BurnTime", this.burnTime);
         compound.putInt("CookTime", this.cookTime);
         compound.putInt("CookTimeTotal", this.cookTimeTotal);
-        ContainerHelper.saveAllItems(compound, this.purifyingItemStacks);
+        ContainerHelper.saveAllItems(compound, this.purifyingItemStacks, provider);
         compound.putShort("burnDurationSize", (short)this.recipeMap.size());
         int i = 0;
 
@@ -160,6 +157,7 @@ public class PurifierBlockEntity extends BaseContainerBlockEntity implements Wor
             --entity.burnTime;
         }
 
+        ItemStack input = entity.purifyingItemStacks.get(0);
         ItemStack goldStack = entity.purifyingItemStacks.get(1);
         ItemStack essenceStack = entity.purifyingItemStacks.get(2);
         ItemStack bismuthStack = entity.purifyingItemStacks.get(3);
@@ -168,7 +166,7 @@ public class PurifierBlockEntity extends BaseContainerBlockEntity implements Wor
             RecipeHolder<? extends PurifierRecipe> recipeHolder;
 
             if (!entity.purifyingItemStacks.get(0).isEmpty()) {
-                recipeHolder = entity.cache.getRecipeFor(entity, level).orElse(null);
+                recipeHolder = entity.cache.getRecipeFor(new SingleRecipeInput(input), level).orElse(null);
             } else {
                 recipeHolder = null;
             }
@@ -214,7 +212,7 @@ public class PurifierBlockEntity extends BaseContainerBlockEntity implements Wor
 
                 if (entity.cookTime == entity.cookTimeTotal) {
                     entity.cookTime = 0;
-                    entity.cookTimeTotal = cookingTime(level, entity);
+                    entity.cookTimeTotal = cookingTime(level, new SingleRecipeInput(entity.getItem(0)));
                     if (entity.changeItem(level.registryAccess(), recipeHolder, entity.purifyingItemStacks, entity.getMaxStackSize())) {
                         entity.setRecipeUsed(recipeHolder);
                     }
@@ -242,10 +240,10 @@ public class PurifierBlockEntity extends BaseContainerBlockEntity implements Wor
      */
     private boolean canChange(RegistryAccess access, RecipeHolder<? extends PurifierRecipe> recipe, NonNullList<ItemStack> stacks, int stacksize) {
         if (!stacks.get(0).isEmpty() && recipe != null) {
-            ItemStack slot1 = recipe.value().assemble(this, access);
+            ItemStack slot1 = recipe.value().assemble(new SingleRecipeInput(this.getItem(0)), access);
             ItemStack slot2 = recipe.value().getByproduct();
 
-            if (slot1.isEmpty() && slot2.isEmpty() || slot1.isEmpty()) {
+            if (slot1.isEmpty() && slot2.isEmpty()) {
                 return false;
             } else {
                 ItemStack output = stacks.get(4), byproduct = stacks.get(5);
@@ -309,7 +307,7 @@ public class PurifierBlockEntity extends BaseContainerBlockEntity implements Wor
         }
     }
 
-    private static int cookingTime(Level level, Container container) {
+    private static int cookingTime(Level level, SingleRecipeInput container) {
         return level.getRecipeManager().getRecipeFor(ModRecipes.PURIFYING.get(), container, level).map(recipe -> recipe.value().getCookTime()).orElse(200);
     }
 
@@ -395,7 +393,7 @@ public class PurifierBlockEntity extends BaseContainerBlockEntity implements Wor
     @Override
     public void setItem(int index, ItemStack stack) {
         ItemStack itemstack = this.purifyingItemStacks.get(index);
-        boolean burning = !stack.isEmpty() && ItemStack.isSameItemSameTags(stack, itemstack);
+        boolean burning = !stack.isEmpty() && ItemStack.isSameItemSameComponents(stack, itemstack);
         this.purifyingItemStacks.set(index, stack);
 
         if (stack.getCount() > this.getMaxStackSize()) {
@@ -403,10 +401,20 @@ public class PurifierBlockEntity extends BaseContainerBlockEntity implements Wor
         }
 
         if (index == 0 && !burning) {
-            this.cookTimeTotal = cookingTime(this.level, this);
+            this.cookTimeTotal = cookingTime(this.level, new SingleRecipeInput(itemstack));
             this.cookTime = 0;
             this.setChanged();
         }
+    }
+
+    @Override
+    protected NonNullList<ItemStack> getItems() {
+        return this.purifyingItemStacks;
+    }
+
+    @Override
+    protected void setItems(NonNullList<ItemStack> stacks) {
+        this.purifyingItemStacks = stacks;
     }
 
     @Override

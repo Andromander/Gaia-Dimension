@@ -44,7 +44,7 @@ public class SlowingBlock extends Block {
 
     @Override
     @Deprecated
-    public boolean isPathfindable(BlockState state, BlockGetter reader, BlockPos pos, PathComputationType path) {
+    public boolean isPathfindable(BlockState state, PathComputationType path) {
         return false;
     }
 }

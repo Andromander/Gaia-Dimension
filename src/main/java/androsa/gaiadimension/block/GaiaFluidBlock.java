@@ -14,18 +14,18 @@ import java.util.function.Supplier;
 public class GaiaFluidBlock extends LiquidBlock {
 
     public GaiaFluidBlock(Supplier<? extends FlowingFluid> fluid, Properties builder) {
-        super(fluid, builder.noCollission().strength(100.0F));
+        super(fluid.get(), builder.noCollission().strength(100.0F));
     }
 
     //TODO: Revise
     @Override
     @Deprecated
     public void entityInside(BlockState state, Level worldIn, BlockPos pos, Entity entityIn) {
-        if (this.getFluid().is(FluidTags.LAVA)) {
-            if (this.getFluid() instanceof SuperhotMagmaFluid && !entityIn.fireImmune()) {
+        if (this.fluid.is(FluidTags.LAVA) || this.fluid instanceof SuperhotMagmaFluid ) {
+            if (!entityIn.fireImmune()) {
                 entityIn.hurt(worldIn.damageSources().lava(), 5.0F);
             }
-            entityIn.setSecondsOnFire(15);
+            entityIn.igniteForSeconds(15);
         }
     }
 }

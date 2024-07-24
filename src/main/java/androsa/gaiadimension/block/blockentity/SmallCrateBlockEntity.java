@@ -5,6 +5,7 @@ import androsa.gaiadimension.block.menu.SmallCrateContainer;
 import androsa.gaiadimension.registry.registration.ModBlockEntities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
@@ -47,28 +48,28 @@ public class SmallCrateBlockEntity extends RandomizableContainerBlockEntity impl
     }
 
     @Override
-    public void load(CompoundTag compound) {
-        super.load(compound);
-        this.loadFromNbt(compound);
+    public void loadAdditional(CompoundTag compound, HolderLookup.Provider provider) {
+        super.loadAdditional(compound, provider);
+        this.loadFromNbt(compound, provider);
     }
 
     @Override
-    public void saveAdditional(CompoundTag compound) {
-        super.saveAdditional(compound);
-        this.saveToNbt(compound);
+    public void saveAdditional(CompoundTag compound, HolderLookup.Provider provider) {
+        super.saveAdditional(compound, provider);
+        this.saveToNbt(compound, provider);
     }
 
-    public void loadFromNbt(CompoundTag compound) {
+    public void loadFromNbt(CompoundTag compound, HolderLookup.Provider provider) {
         this.items = NonNullList.withSize(this.getContainerSize(), ItemStack.EMPTY);
 
         if (!this.tryLoadLootTable(compound) && compound.contains("Items", 9)) {
-            ContainerHelper.loadAllItems(compound, this.items);
+            ContainerHelper.loadAllItems(compound, this.items, provider);
         }
     }
 
-    public CompoundTag saveToNbt(CompoundTag compound) {
+    public CompoundTag saveToNbt(CompoundTag compound, HolderLookup.Provider provider) {
         if (!this.trySaveLootTable(compound)) {
-            ContainerHelper.saveAllItems(compound, this.items, false);
+            ContainerHelper.saveAllItems(compound, this.items, false, provider);
         }
         return compound;
     }

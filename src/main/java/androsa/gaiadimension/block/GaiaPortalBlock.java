@@ -6,35 +6,42 @@ import androsa.gaiadimension.registry.helpers.GaiaConfig;
 import androsa.gaiadimension.registry.registration.ModBlocks;
 import androsa.gaiadimension.registry.registration.ModParticles;
 import androsa.gaiadimension.registry.values.GaiaTags;
-import androsa.gaiadimension.world.GaiaTeleporter;
 import com.mojang.serialization.MapCodec;
+import net.minecraft.BlockUtil;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityDimensions;
+import net.minecraft.world.entity.PortalProcessor;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.Portal;
 import net.minecraft.world.level.block.Rotation;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
+import net.minecraft.world.level.border.WorldBorder;
+import net.minecraft.world.level.dimension.DimensionType;
+import net.minecraft.world.level.portal.DimensionTransition;
+import net.minecraft.world.level.portal.PortalShape;
+import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
 import javax.annotation.Nullable;
 import java.util.Optional;
 
-public class GaiaPortalBlock extends Block {
+public class GaiaPortalBlock extends Block implements Portal {
     public static final MapCodec<? extends GaiaPortalBlock> CODEC = simpleCodec(GaiaPortalBlock::new);
     public static final EnumProperty<Direction.Axis> AXIS = BlockStateProperties.HORIZONTAL_AXIS;
     protected static final VoxelShape X_AABB = Block.box(0.0D, 0.0D, 6.0D, 16.0D, 16.0D, 10.0D);
@@ -114,24 +121,80 @@ public class GaiaPortalBlock extends Block {
     @Override
     @Deprecated
     public void entityInside(BlockState state, Level world, BlockPos pos, Entity entity) {
-        if (!entity.isPassenger() && !entity.isVehicle() && entity.canChangeDimensions()) {
+        if (entity.canUsePortal(false)) {
             if (entity.isOnPortalCooldown()) {
                 entity.setPortalCooldown();
             } else {
-                if (!entity.level().isClientSide() && !pos.equals(entity.portalEntrancePos)) {
-                    entity.portalEntrancePos = pos.immutable();
-                }
-
-                if (entity.level() instanceof ServerLevel serverworld) {
-                    MinecraftServer minecraftserver = serverworld.getServer();
-                    ResourceKey<Level> registrykey = entity.level().dimension() == GaiaDimensions.gaia_world ? GaiaConfig.startDimRK : GaiaDimensions.gaia_world;
-                    ServerLevel serverworld1 = minecraftserver.getLevel(registrykey);
-                    if (serverworld1 != null && !entity.isPassenger()) {
-                        entity.setPortalCooldown();
-                        entity.changeDimension(serverworld1, new GaiaTeleporter(serverworld1));
-                    }
+                if (entity.portalProcess != null && entity.portalProcess.isSamePortal(this)) {
+                    entity.portalProcess.updateEntryPosition(pos.immutable());
+                    entity.portalProcess.setAsInsidePortalThisTick(true);
+                } else {
+                    entity.portalProcess = new PortalProcessor(this, pos.immutable());
                 }
             }
+        }
+    }
+
+    //TODO: Port this properly
+    @Nullable
+    @Override
+    public DimensionTransition getPortalDestination(ServerLevel level, Entity entity, BlockPos pos) {
+        ResourceKey<Level> resourcekey = level.dimension() == GaiaDimensions.gaia_world ? GaiaConfig.startDimRK : GaiaDimensions.gaia_world;
+        ServerLevel destLevel = level.getServer().getLevel(resourcekey);
+        if (destLevel == null) {
+            return null;
+        } else {
+            boolean isNether = destLevel.dimension() == GaiaDimensions.gaia_world;
+            WorldBorder border = destLevel.getWorldBorder();
+            double scale = DimensionType.getTeleportationScale(level.dimensionType(), destLevel.dimensionType());
+            BlockPos exitPos = border.clampToBounds(entity.getX() * scale, entity.getY(), entity.getZ() * scale);
+            Optional<BlockPos> optional = destLevel.getPortalForcer().findClosestPortalPosition(exitPos, isNether, border);
+            BlockUtil.FoundRectangle rectangle;
+            DimensionTransition.PostDimensionTransition transitpost;
+            if (optional.isPresent()) {
+                BlockPos portalpos = optional.get();
+                BlockState blockstate = destLevel.getBlockState(portalpos);
+                rectangle = BlockUtil.getLargestRectangleAround(portalpos, blockstate.getValue(BlockStateProperties.HORIZONTAL_AXIS), 21, Direction.Axis.Y, 21, p -> destLevel.getBlockState(p) == blockstate);
+                transitpost = DimensionTransition.PLAY_PORTAL_SOUND.then(e -> e.placePortalTicket(portalpos));
+            } else {
+                Direction.Axis axis = entity.level().getBlockState(pos).getOptionalValue(AXIS).orElse(Direction.Axis.X);
+                Optional<BlockUtil.FoundRectangle> optional1 = destLevel.getPortalForcer().createPortal(exitPos, axis);
+                if (optional1.isEmpty()) {
+                    GaiaDimensionMod.LOGGER.error("Unable to create a portal, likely target out of worldborder");
+                    return null;
+                }
+
+                rectangle = optional1.get();
+                transitpost = DimensionTransition.PLAY_PORTAL_SOUND.then(DimensionTransition.PLACE_PORTAL_TICKET);
+            }
+
+            BlockState blockstate = entity.level().getBlockState(pos);
+            Direction.Axis axis;
+            Vec3 offset;
+            if (blockstate.hasProperty(BlockStateProperties.HORIZONTAL_AXIS)) {
+                axis = blockstate.getValue(BlockStateProperties.HORIZONTAL_AXIS);
+                BlockUtil.FoundRectangle rec = BlockUtil.getLargestRectangleAround(pos, axis, 21, Direction.Axis.Y, 21, p -> entity.level().getBlockState(p) == blockstate);
+                offset = entity.getRelativePortalPosition(axis, rec);
+            } else {
+                axis = Direction.Axis.X;
+                offset = new Vec3(0.5, 0.0, 0.0);
+            }
+
+            Vec3 speed = entity.getDeltaMovement();
+            float yRot = entity.getYRot();
+            float xRot = entity.getXRot();
+            BlockPos posCorner = rectangle.minCorner;
+            Direction.Axis stateaxis = destLevel.getBlockState(posCorner).getOptionalValue(BlockStateProperties.HORIZONTAL_AXIS).orElse(Direction.Axis.X);
+            EntityDimensions dimensions = entity.getDimensions(entity.getPose());
+            int rot = axis == stateaxis ? 0 : 90;
+            Vec3 speedaxis = axis == stateaxis ? speed : new Vec3(speed.z, speed.y, -speed.x);
+            double xrot = dimensions.width() / 2.0 + (rectangle.axis1Size - dimensions.width()) * offset.x();
+            double ypos = (rectangle.axis2Size - dimensions.height()) * offset.y();
+            double zrot = 0.5 + offset.z();
+            boolean isX = stateaxis == Direction.Axis.X;
+            Vec3 facing = new Vec3(posCorner.getX() + (isX ? xrot : zrot), posCorner.getY() + ypos, posCorner.getZ() + (isX ? zrot : xrot));
+            Vec3 vecportal = PortalShape.findCollisionFreePosition(facing, destLevel, entity, dimensions);
+            return new DimensionTransition(destLevel, vecportal, speedaxis, yRot + rot, xRot, transitpost);
         }
     }
 

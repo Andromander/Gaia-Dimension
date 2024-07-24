@@ -10,7 +10,7 @@ import net.minecraft.world.entity.player.Inventory;
 
 public class PurifierScreen extends AbstractContainerScreen<PurifierMenu> {
 
-    private static final ResourceLocation textureLoc = new ResourceLocation(GaiaDimensionMod.MODID, "textures/gui/purifier.png");
+    private static final ResourceLocation textureLoc = ResourceLocation.fromNamespaceAndPath(GaiaDimensionMod.MODID, "textures/gui/purifier.png");
 
     public PurifierScreen(PurifierMenu purifier, Inventory invPlayer, Component component) {
         super(purifier, invPlayer, component);

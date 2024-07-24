@@ -10,7 +10,7 @@ import net.minecraft.world.entity.player.Inventory;
 
 //TODO: Recipe Book?
 public class AgateCraftingScreen extends AbstractContainerScreen<AgateCraftingTableMenu> {
-    private static final ResourceLocation textureLoc = new ResourceLocation(GaiaDimensionMod.MODID, "textures/gui/crafting_table.png");
+    private static final ResourceLocation textureLoc = ResourceLocation.fromNamespaceAndPath(GaiaDimensionMod.MODID, "textures/gui/crafting_table.png");
 
     public AgateCraftingScreen(AgateCraftingTableMenu container, Inventory player, Component textComponent) {
         super(container, player, textComponent);
