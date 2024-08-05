@@ -6,6 +6,7 @@ import androsa.gaiadimension.registry.registration.ModEntities;
 import androsa.gaiadimension.world.gen.structure.pieces.MalachiteWatchtowerPieces;
 import com.google.common.collect.Lists;
 import com.mojang.serialization.Codec;
+import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.RandomSource;
 import net.minecraft.util.random.WeightedRandomList;
@@ -28,7 +29,7 @@ import java.util.Map;
 import java.util.Optional;
 
 public class MalachiteWatchtowerStructure extends Structure {
-    public static final Codec<MalachiteWatchtowerStructure> CODEC = simpleCodec(MalachiteWatchtowerStructure::new);
+    public static final MapCodec<MalachiteWatchtowerStructure> CODEC = simpleCodec(MalachiteWatchtowerStructure::new);
 
     public static final Map<MobCategory, StructureSpawnOverride> SPAWNS = Map.of(
             MobCategory.MONSTER, new StructureSpawnOverride(StructureSpawnOverride.BoundingBoxType.PIECE, WeightedRandomList.create(

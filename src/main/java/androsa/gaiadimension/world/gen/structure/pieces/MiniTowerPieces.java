@@ -106,7 +106,7 @@ public class MiniTowerPieces {
     }
 
     public static ResourceLocation makePiece(String material, String part) {
-        return new ResourceLocation(GaiaDimensionMod.MODID, "minitower/" + material + "/" + part);
+        return ResourceLocation.fromNamespaceAndPath(GaiaDimensionMod.MODID, "minitower/" + material + "/" + part);
     }
 
     public static class Piece extends TemplateStructurePiece {
@@ -174,7 +174,7 @@ public class MiniTowerPieces {
 
         @Override
         public void postProcess(WorldGenLevel world, StructureManager manager, ChunkGenerator generator, RandomSource random, BoundingBox mbb, ChunkPos chunkpos, BlockPos pos) {
-            ResourceLocation location = new ResourceLocation(this.templateName);
+            ResourceLocation location = ResourceLocation.parse(this.templateName);
 
             switch (towerType) {
                 case AMETHYST -> placeSettings.addProcessor(BlockDegradeProcessor.AMETHYST_DECAY);

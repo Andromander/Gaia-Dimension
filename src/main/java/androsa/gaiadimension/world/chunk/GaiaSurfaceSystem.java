@@ -25,7 +25,7 @@ public class GaiaSurfaceSystem extends SurfaceSystem {
     public GaiaSurfaceSystem(RandomState random, BlockState defaultstone, int sealevel, PositionalRandomFactory posrandom) {
         super(random, defaultstone, sealevel, posrandom);
 
-        this.mookaiteBands = generateBands(posrandom.fromHashOf(new ResourceLocation(GaiaDimensionMod.MODID, "mookaite_bands")));
+        this.mookaiteBands = generateBands(posrandom.fromHashOf(ResourceLocation.fromNamespaceAndPath(GaiaDimensionMod.MODID, "mookaite_bands")));
     }
 
     @Override

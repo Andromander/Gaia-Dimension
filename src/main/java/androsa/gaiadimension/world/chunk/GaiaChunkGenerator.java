@@ -4,7 +4,7 @@ import androsa.gaiadimension.registry.registration.ModBlocks;
 import androsa.gaiadimension.world.chunk.warp.*;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
-import com.mojang.serialization.Codec;
+import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.SharedConstants;
 import net.minecraft.Util;
@@ -32,11 +32,10 @@ import java.util.List;
 import java.util.OptionalInt;
 import java.util.Set;
 import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.Executor;
 import java.util.function.Predicate;
 
 public class GaiaChunkGenerator extends NoiseBasedChunkGenerator {
-    public static final Codec<GaiaChunkGenerator> CODEC = RecordCodecBuilder.create((instance) -> instance.group(
+    public static final MapCodec<GaiaChunkGenerator> CODEC = RecordCodecBuilder.mapCodec((instance) -> instance.group(
             BiomeSource.CODEC.fieldOf("biome_source").forGetter((object) -> object.biomeSource),
             NoiseGeneratorSettings.CODEC.fieldOf("settings").forGetter((object) -> object.settings)
     ).apply(instance, instance.stable(GaiaChunkGenerator::new)));
@@ -80,7 +79,7 @@ public class GaiaChunkGenerator extends NoiseBasedChunkGenerator {
     }
 
     @Override
-    protected Codec<? extends ChunkGenerator> codec() {
+    protected MapCodec<? extends ChunkGenerator> codec() {
         return CODEC;
     }
 
@@ -129,7 +128,7 @@ public class GaiaChunkGenerator extends NoiseBasedChunkGenerator {
     }
 
     @Override
-    public CompletableFuture<ChunkAccess> createBiomes(Executor executor, RandomState random, Blender blender, StructureManager manager, ChunkAccess access) {
+    public CompletableFuture<ChunkAccess> createBiomes(RandomState random, Blender blender, StructureManager manager, ChunkAccess access) {
         return CompletableFuture.supplyAsync(Util.wrapThreadWithTaskName("init_biomes", () -> {
             access.fillBiomesFromNoise(this.getBiomeSource(), Climate.empty());
             return access;
@@ -137,16 +136,14 @@ public class GaiaChunkGenerator extends NoiseBasedChunkGenerator {
     }
 
     @Override
-    public CompletableFuture<ChunkAccess> fillFromNoise(Executor executor, Blender blender, RandomState random, StructureManager manager, ChunkAccess access) {
+    public CompletableFuture<ChunkAccess> fillFromNoise(Blender blender, RandomState random, StructureManager manager, ChunkAccess access) {
         NoiseSettings settings = this.settings.value().noiseSettings();
         int minY = Math.max(settings.minY(), access.getMinBuildHeight());
         int maxY = Math.min(settings.minY() + settings.height(), access.getMaxBuildHeight());
         int mincell = Math.floorDiv(minY, this.cellHeight);
         int maxcell = Math.floorDiv(maxY - minY, this.cellHeight);
 
-        if (maxcell <= 0) {
-            return CompletableFuture.completedFuture(access);
-        } else {
+        return maxcell <= 0 ? CompletableFuture.completedFuture(access) : CompletableFuture.supplyAsync(Util.wrapThreadWithTaskName("wgen_fill_noise_gaia", () -> {
             int maxIndex = access.getSectionIndex(maxcell * this.cellHeight - 1 + minY);
             int minIndex = access.getSectionIndex(minY);
             Set<LevelChunkSection> sections = Sets.newHashSet();
@@ -157,12 +154,16 @@ public class GaiaChunkGenerator extends NoiseBasedChunkGenerator {
                 sections.add(section);
             }
 
-            return CompletableFuture.supplyAsync(() -> this.doFill(access, mincell, maxcell), Util.backgroundExecutor()).whenCompleteAsync((chunk, throwable) -> {
+            ChunkAccess chunk;
+            try {
+                chunk = this.doFill(access, mincell, maxcell);
+            } finally {
                 for (LevelChunkSection section : sections) {
                     section.release();
                 }
-            }, executor);
-        }
+            }
+            return chunk;
+        }), Util.backgroundExecutor());
     }
 
     private ChunkAccess doFill(ChunkAccess access, int min, int max) {

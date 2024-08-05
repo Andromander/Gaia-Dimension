@@ -50,7 +50,7 @@ public class BismuthSpireFeature<T extends FeatureHeightConfig> extends Feature<
                 for (int ex = -2; ex <= 2; ex++) {
                     for (int ez = -2; ez <= 2; ez++) {
                         if (Math.abs(ex) != 2 || Math.abs(ez) != 2)
-                        setBismuthType(worldIn, rand, position.offset(ex, i, ez));
+                            setBismuthType(worldIn, rand, position.offset(ex, i, ez));
                     }
                 }
             } else if (i < heightD) {

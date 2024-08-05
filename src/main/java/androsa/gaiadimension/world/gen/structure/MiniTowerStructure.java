@@ -4,6 +4,7 @@ import androsa.gaiadimension.registry.registration.ModStructures;
 import androsa.gaiadimension.registry.registration.ModBlocks;
 import androsa.gaiadimension.world.gen.structure.pieces.MiniTowerPieces;
 import com.mojang.serialization.Codec;
+import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.ChunkPos;
@@ -22,7 +23,7 @@ import java.util.Optional;
 
 //TODO: Could I configurise this and make an indeterminate amount of mini towers?
 public class MiniTowerStructure extends Structure {
-    public static final Codec<MiniTowerStructure> CODEC = simpleCodec(MiniTowerStructure::new);
+    public static final MapCodec<MiniTowerStructure> CODEC = simpleCodec(MiniTowerStructure::new);
 
     public MiniTowerStructure(StructureSettings config) {
         super(config);

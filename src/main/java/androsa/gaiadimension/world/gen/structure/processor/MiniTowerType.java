@@ -6,12 +6,14 @@ import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Maps;
 import com.mojang.serialization.Codec;
 import net.minecraft.Util;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.StringRepresentable;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SlabBlock;
 import net.minecraft.world.level.block.StairBlock;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.storage.loot.LootTable;
 
 import java.util.Map;
 import java.util.Random;
@@ -42,7 +44,7 @@ public enum MiniTowerType implements StringRepresentable {
     public static final Codec<MiniTowerType> CODEC = StringRepresentable.fromEnum(MiniTowerType::values);
 
     private final String name;
-    private final ResourceLocation chestLoot;
+    private final ResourceKey<LootTable> chestLoot;
     private final Supplier<Block> brickBlock;
     private final ImmutableList<Supplier<Block>> brickDegrades;
     private final Supplier<StairBlock> stairsBlock;
@@ -56,7 +58,7 @@ public enum MiniTowerType implements StringRepresentable {
         }
     });
 
-    MiniTowerType(String name, ResourceLocation loot, Supplier<Block> brick, ImmutableList<Supplier<Block>> breakbricks, Supplier<StairBlock> stairs, ImmutableList<Supplier<StairBlock>> breakstairs, Supplier<SlabBlock> slab, ImmutableList<Supplier<SlabBlock>> breakslab) {
+    MiniTowerType(String name, ResourceKey<LootTable> loot, Supplier<Block> brick, ImmutableList<Supplier<Block>> breakbricks, Supplier<StairBlock> stairs, ImmutableList<Supplier<StairBlock>> breakstairs, Supplier<SlabBlock> slab, ImmutableList<Supplier<SlabBlock>> breakslab) {
         this.name = name;
         chestLoot = loot;
         brickBlock = brick;
@@ -76,7 +78,7 @@ public enum MiniTowerType implements StringRepresentable {
         return name;
     }
 
-    public ResourceLocation getChestLoot() {
+    public ResourceKey<LootTable> getChestLoot() {
         return chestLoot;
     }
 

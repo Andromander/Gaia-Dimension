@@ -111,7 +111,7 @@ public class MalachiteWatchtowerPieces {
     }
 
     public static ResourceLocation makePiece(String part) {
-        return new ResourceLocation(GaiaDimensionMod.MODID, "watchtower/" + part);
+        return ResourceLocation.fromNamespaceAndPath(GaiaDimensionMod.MODID, "watchtower/" + part);
     }
 
     public static class Piece extends TemplateStructurePiece {

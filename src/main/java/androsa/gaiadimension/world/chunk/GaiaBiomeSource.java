@@ -5,6 +5,7 @@ import androsa.gaiadimension.world.layer.GaiaLayerUtil;
 import androsa.gaiadimension.world.layer.util.Layer;
 import com.mojang.datafixers.util.Pair;
 import com.mojang.serialization.Codec;
+import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderGetter;
@@ -20,7 +21,7 @@ import java.util.stream.Stream;
 
 public class GaiaBiomeSource extends BiomeSource {
 
-    public static final Codec<GaiaBiomeSource> CODEC = RecordCodecBuilder.create((instance) -> instance.group(
+    public static final MapCodec<GaiaBiomeSource> CODEC = RecordCodecBuilder.mapCodec((instance) -> instance.group(
             RecordCodecBuilder.<Pair<TerrainPoint, Holder<Biome>>>create((pair) -> pair.group(
                     TerrainPoint.CODEC.fieldOf("parameters").forGetter(Pair::getFirst),
                     Biome.CODEC.fieldOf("biome").forGetter(Pair::getSecond)
@@ -53,7 +54,7 @@ public class GaiaBiomeSource extends BiomeSource {
     }
 
     @Override
-    protected Codec<? extends BiomeSource> codec() {
+    protected MapCodec<? extends BiomeSource> codec() {
         return CODEC;
     }
 
