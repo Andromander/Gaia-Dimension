@@ -35,11 +35,6 @@ public class AureateEvraunEntity extends PathfinderMob {
     }
 
     @Override
-    protected float getStandingEyeHeight(Pose pose, EntityDimensions dimension) {
-        return super.getStandingEyeHeight(pose, dimension);
-    }
-
-    @Override
     protected void registerGoals() {
         this.goalSelector.addGoal(1, new FloatGoal(this));
         this.goalSelector.addGoal(2, new RandomStrollGoal(this, 0.5D));

@@ -10,18 +10,23 @@ import net.minecraft.world.level.Level;
 
 public class AgateArrowEntity extends AbstractArrow {
 
-    private static final ItemStack arrow = new ItemStack(ModItems.agate_arrow.get());
+    private final ItemStack arrow = new ItemStack(ModItems.agate_arrow.get());
 
     public AgateArrowEntity(EntityType<AgateArrowEntity> entity, Level worldIn) {
-        super(entity, worldIn, arrow);
+        super(entity, worldIn);
         setBaseDamage(4.0D);
     }
 
-    public AgateArrowEntity(Level worldIn, double x, double y, double z) {
-        super(ModEntities.AGATE_ARROW.get(), x, y, z, worldIn, arrow);
+    public AgateArrowEntity(Level worldIn, double x, double y, double z, ItemStack projectile) {
+        super(ModEntities.AGATE_ARROW.get(), x, y, z, worldIn, projectile, null);
     }
 
-    public AgateArrowEntity(Level worldIn, LivingEntity shooter) {
-        super(ModEntities.AGATE_ARROW.get(), shooter, worldIn, arrow);
+    public AgateArrowEntity(Level worldIn, LivingEntity shooter, ItemStack projectile) {
+        super(ModEntities.AGATE_ARROW.get(), shooter, worldIn, projectile, null);
+    }
+
+    @Override
+    protected ItemStack getDefaultPickupItem() {
+        return this.arrow;
     }
 }

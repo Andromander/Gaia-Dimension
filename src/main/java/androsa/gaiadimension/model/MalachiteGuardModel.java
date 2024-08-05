@@ -135,10 +135,10 @@ public class MalachiteGuardModel<T extends MalachiteGuardEntity> extends Hierarc
     }
 
     @Override
-    public void renderToBuffer(PoseStack stack, VertexConsumer builder, int light, int overlay, float red, float green, float blue, float scale) {
+    public void renderToBuffer(PoseStack stack, VertexConsumer builder, int light, int overlay, int color) {
         stack.pushPose();
         stack.translate(0.0F, offset, 0.0F);
-        super.renderToBuffer(stack, builder, light, overlay, red, green, blue, scale);
+        super.renderToBuffer(stack, builder, light, overlay, color);
         stack.popPose();
     }
 

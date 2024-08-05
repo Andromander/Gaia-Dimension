@@ -58,11 +58,6 @@ public class LesserSpitfireEntity extends Monster implements ISpitfireMob {
     }
 
     @Override
-    public float getStandingEyeHeight(Pose poseIn, EntityDimensions sizeIn) {
-        return 1.8F;
-    }
-
-    @Override
     public boolean checkSpawnRules(LevelAccessor world, MobSpawnType reason) {
         return true;
     }

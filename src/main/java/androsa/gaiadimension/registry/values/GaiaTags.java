@@ -239,8 +239,8 @@ public class GaiaTags {
     }
 
     public static class Entities {
-        TagKey<EntityType<?>> GAIAN = tagEntity("gaian");
-        TagKey<EntityType<?>> CORRUPT = tagEntity("corrupt");
-        TagKey<EntityType<?>> CORRUPTION_IMMUNE = tagEntity("corruption_immune");
+        public static final TagKey<EntityType<?>> GAIAN = tagEntity("gaian");
+        public static final TagKey<EntityType<?>> CORRUPT = tagEntity("corrupt");
+        public static final TagKey<EntityType<?>> CORRUPTION_IMMUNE = tagEntity("corruption_immune");
     }
 }

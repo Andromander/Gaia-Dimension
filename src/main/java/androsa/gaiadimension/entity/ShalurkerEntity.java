@@ -54,7 +54,7 @@ public class ShalurkerEntity extends Monster {
     public void aiStep() {
         boolean flag = this.isSunBurnTick();
         if (flag) {
-            this.setSecondsOnFire(8);
+            this.igniteForSeconds(8);
         }
 
         super.aiStep();

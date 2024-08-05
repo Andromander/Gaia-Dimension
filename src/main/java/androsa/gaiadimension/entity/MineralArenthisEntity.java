@@ -90,11 +90,6 @@ public class MineralArenthisEntity extends WaterAnimal {
     }
 
     @Override
-    public float getStandingEyeHeight(Pose poseIn, EntityDimensions sizeIn) {
-        return this.getBbHeight() * 0.85F;
-    }
-
-    @Override
     protected MovementEmission getMovementEmission() {
         return MovementEmission.EVENTS;
     }

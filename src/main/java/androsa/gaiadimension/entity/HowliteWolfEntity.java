@@ -7,10 +7,8 @@ import net.minecraft.sounds.SoundEvent;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.entity.EntityDimensions;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobSpawnType;
-import net.minecraft.world.entity.Pose;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.*;
@@ -53,11 +51,6 @@ public class HowliteWolfEntity extends Monster {
     @Override
     protected SoundEvent getHurtSound(DamageSource source) {
         return ModSounds.ENTITY_HOWLITE_WOLF_HURT.get();
-    }
-
-    @Override
-    public float getStandingEyeHeight(Pose poseIn, EntityDimensions sizeIn) {
-        return 0.68F;
     }
 
     @Override

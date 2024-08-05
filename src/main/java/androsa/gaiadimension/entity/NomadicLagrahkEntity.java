@@ -47,9 +47,9 @@ public class NomadicLagrahkEntity extends PathfinderMob {
     }
 
     @Override
-    protected void defineSynchedData() {
-        super.defineSynchedData();
-        this.entityData.define(LAGRAHK_VARIANT, 0);
+    protected void defineSynchedData(SynchedEntityData.Builder builder) {
+        super.defineSynchedData(builder);
+        builder.define(LAGRAHK_VARIANT, 0);
     }
 
     @Override
@@ -121,7 +121,7 @@ public class NomadicLagrahkEntity extends PathfinderMob {
     }
 
     @Override
-    public SpawnGroupData finalizeSpawn(ServerLevelAccessor worldIn, DifficultyInstance difficultyIn, MobSpawnType reason, @Nullable SpawnGroupData spawnDataIn, @Nullable CompoundTag dataTag) {
+    public SpawnGroupData finalizeSpawn(ServerLevelAccessor worldIn, DifficultyInstance difficultyIn, MobSpawnType reason, @Nullable SpawnGroupData spawnDataIn) {
         Optional<ResourceKey<Biome>> biome = worldIn.getBiome(this.blockPosition()).unwrapKey();
 
         if (Objects.equals(biome, Optional.of(GaiaBiomes.salt_dunes))) {
@@ -134,6 +134,6 @@ public class NomadicLagrahkEntity extends PathfinderMob {
             setLagrahkVariant(0);
         }
 
-        return super.finalizeSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
+        return super.finalizeSpawn(worldIn, difficultyIn, reason, spawnDataIn);
     }
 }

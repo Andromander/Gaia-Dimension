@@ -33,7 +33,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.LeavesBlock;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.pathfinder.BlockPathTypes;
+import net.minecraft.world.level.pathfinder.PathType;
 import net.minecraft.world.level.pathfinder.WalkNodeEvaluator;
 import net.neoforged.neoforge.common.CommonHooks;
 
@@ -63,6 +63,13 @@ public class OpaliteContructEntity extends PathfinderMob {
             ModBlocks.mauve_mookaite.get().asItem(), MAUVE_STACK,
             ModBlocks.beige_mookaite.get().asItem(), BEIGE_STACK,
             ModBlocks.ivory_mookaite.get().asItem(), IVORY_STACK);
+    private static final Map<ConstructKitItem.Color, EntityDataAccessor<Integer>> COLOR_TO_DATA = ImmutableMap.of(
+            ConstructKitItem.Color.SCARLET, SCARLET_STACK,
+            ConstructKitItem.Color.AUBURN, AUBURN_STACK,
+            ConstructKitItem.Color.GOLD, GOLD_STACK,
+            ConstructKitItem.Color.MAUVE, MAUVE_STACK,
+            ConstructKitItem.Color.BEIGE, BEIGE_STACK,
+            ConstructKitItem.Color.IVORY, IVORY_STACK);
 
     public OpaliteContructEntity(EntityType<? extends OpaliteContructEntity> entity, Level level) {
         super(entity, level);
@@ -76,19 +83,19 @@ public class OpaliteContructEntity extends PathfinderMob {
     }
 
     @Override
-    protected void defineSynchedData() {
-        super.defineSynchedData();
-        this.entityData.define(BOND_CREATOR_UUID, Optional.empty());
-        this.entityData.define(MOOKAITE_COMPANION_UUID, Optional.empty());
-        this.entityData.define(CONSTRUCT_KIT_DATA, new CompoundTag());
-        this.entityData.define(IS_CONSTRUCTING, false);
-        this.entityData.define(OPALITE_STACK, 0);
-        this.entityData.define(SCARLET_STACK, 0);
-        this.entityData.define(AUBURN_STACK, 0);
-        this.entityData.define(GOLD_STACK, 0);
-        this.entityData.define(MAUVE_STACK, 0);
-        this.entityData.define(BEIGE_STACK, 0);
-        this.entityData.define(IVORY_STACK, 0);
+    protected void defineSynchedData(SynchedEntityData.Builder builder) {
+        super.defineSynchedData(builder);
+        builder.define(BOND_CREATOR_UUID, Optional.empty());
+        builder.define(MOOKAITE_COMPANION_UUID, Optional.empty());
+        builder.define(CONSTRUCT_KIT_DATA, new CompoundTag());
+        builder.define(IS_CONSTRUCTING, false);
+        builder.define(OPALITE_STACK, 0);
+        builder.define(SCARLET_STACK, 0);
+        builder.define(AUBURN_STACK, 0);
+        builder.define(GOLD_STACK, 0);
+        builder.define(MAUVE_STACK, 0);
+        builder.define(BEIGE_STACK, 0);
+        builder.define(IVORY_STACK, 0);
     }
 
     @Override
@@ -167,13 +174,13 @@ public class OpaliteContructEntity extends PathfinderMob {
         entityData.set(IS_CONSTRUCTING, flag);
     }
 
-    public boolean validateStacks(ConstructKitItem.Kit kit, ConstructKitItem.Part part) {
+    public boolean validateStacks(ConstructKitItem.Kit kit, ConstructKitItem.Color color) {
         boolean flag = false;
 
         switch (kit) {
             case REPAIR -> flag = this.getOpaliteAmount() >= 10;
-            case AUGMENT -> flag = this.getOpaliteAmount() >= 5 && this.getMookaiteAmount(part.getPart().main()) >= 10;
-            case REPLACE -> flag = this.getMookaiteAmount(part.getPart().main()) >= 5;
+            case AUGMENT -> flag = this.getOpaliteAmount() >= 5 && this.getMookaiteAmount(COLOR_TO_DATA.get(color)) >= 10; //TODO: No?
+            case REPLACE -> flag = this.getMookaiteAmount(COLOR_TO_DATA.get(color)) >= 5; //TODO: No?
         }
 
         return flag;
@@ -185,11 +192,11 @@ public class OpaliteContructEntity extends PathfinderMob {
         if (mookaite != null) {
             switch (kit) {
                 //Must not be Opalite or missing
-                case REPAIR -> flag = mookaite.getPart(part.getPart()) != 7 && mookaite.getPart(part.getPart()) != 0;
+                case REPAIR -> flag = mookaite.getPart(part.getPart()) != MookaiteConstructEntity.PartType.OPALITE && mookaite.getPart(part.getPart()).isPresent();
                 //Must be missing
-                case AUGMENT -> flag = mookaite.getPart(part.getPart()) == 0;
+                case AUGMENT -> flag = !mookaite.getPart(part.getPart()).isPresent();
                 //Must exist and not the same colour
-                case REPLACE -> flag = mookaite.isPresent(part.getPart()) && mookaite.getPart(part.getPart()) != color.getPartColor();
+                case REPLACE -> flag = mookaite.getPart(part.getPart()).isPresent() && mookaite.getPart(part.getPart()) != color.getPartColor();
             }
         }
 
@@ -267,8 +274,8 @@ public class OpaliteContructEntity extends PathfinderMob {
     }
 
     @Override
-    protected void dropCustomDeathLoot(DamageSource source, int looting, boolean player) {
-        super.dropCustomDeathLoot(source, looting, player);
+    protected void dropCustomDeathLoot(ServerLevel level, DamageSource source, boolean player) {
+        super.dropCustomDeathLoot(level, source, player);
 
         if (getOpaliteAmount() > 0) {
             ItemStack opalite = new ItemStack(ModItems.opalite.get(), this.getOpaliteAmount());
@@ -382,15 +389,15 @@ public class OpaliteContructEntity extends PathfinderMob {
 
         public void start() {
             this.timeToRecalcPath = 0;
-            this.oldWaterCost = this.opalite.getPathfindingMalus(BlockPathTypes.WATER);
-            this.opalite.setPathfindingMalus(BlockPathTypes.WATER, 0.0F);
+            this.oldWaterCost = this.opalite.getPathfindingMalus(PathType.WATER);
+            this.opalite.setPathfindingMalus(PathType.WATER, 0.0F);
         }
 
         @Override
         public void stop() {
             this.mookaite = null;
             this.navigator.stop();
-            this.opalite.setPathfindingMalus(BlockPathTypes.WATER, this.oldWaterCost);
+            this.opalite.setPathfindingMalus(PathType.WATER, this.oldWaterCost);
         }
 
         @Override
@@ -435,8 +442,8 @@ public class OpaliteContructEntity extends PathfinderMob {
         }
 
         private boolean canTeleportTo(BlockPos pos) {
-            BlockPathTypes nodeType = WalkNodeEvaluator.getBlockPathTypeStatic(this.world, pos.mutable());
-            if (nodeType != BlockPathTypes.WALKABLE) {
+            PathType nodeType = WalkNodeEvaluator.getPathTypeStatic(this.opalite, pos.mutable());
+            if (nodeType != PathType.WALKABLE) {
                 return false;
             } else {
                 BlockState state = this.world.getBlockState(pos.below());
@@ -508,9 +515,11 @@ public class OpaliteContructEntity extends PathfinderMob {
                         if (this.repairTime == 0) {
                             ConstructKitItem.Kit kit = ConstructKitItem.Kit.values()[this.opalite.getKitData().getInt("KitID")];
                             MookaiteConstructEntity.MookaitePart part = ConstructKitItem.Part.values()[this.opalite.getKitData().getInt("PartID")].getPart();
-                            int color = ConstructKitItem.Color.values()[this.opalite.getKitData().getInt("ColorID")].getPartColor();
+                            ConstructKitItem.Color kitcolor = ConstructKitItem.Color.values()[this.opalite.getKitData().getInt("ColorID")];
+                            MookaiteConstructEntity.PartType color = kitcolor.getPartColor();
+
                             if (kit == ConstructKitItem.Kit.REPAIR) {
-                                color = 7;
+                                color = MookaiteConstructEntity.PartType.OPALITE;
                             }
 
                             //Subtract materials
@@ -518,9 +527,9 @@ public class OpaliteContructEntity extends PathfinderMob {
                                 case REPAIR -> opalite.setOpaliteAmount(opalite.getOpaliteAmount() - 10);
                                 case AUGMENT -> {
                                     opalite.setOpaliteAmount(opalite.getOpaliteAmount() - 5);
-                                    opalite.setMookaiteAmount(part.main(), opalite.getMookaiteAmount(part.main()) - 10);
+                                    opalite.setMookaiteAmount(COLOR_TO_DATA.get(kitcolor), opalite.getMookaiteAmount(COLOR_TO_DATA.get(kitcolor)) - 10); //TODO: No?
                                 }
-                                case REPLACE -> opalite.setMookaiteAmount(part.main(), opalite.getMookaiteAmount(part.main()) - 5);
+                                case REPLACE -> opalite.setMookaiteAmount(COLOR_TO_DATA.get(kitcolor), opalite.getMookaiteAmount(COLOR_TO_DATA.get(kitcolor)) - 5); //TODO: No?
                             }
                             //Set part
                             mookaite.setPart(part, color);

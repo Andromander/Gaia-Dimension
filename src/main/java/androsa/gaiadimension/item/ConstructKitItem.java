@@ -61,7 +61,7 @@ public class ConstructKitItem extends Item {
     }
 
     private static Component getColor(Color part) {
-        return Component.translatable("gaiadimension.construct_kit.color." + MookaiteConstructEntity.INT_TO_COLOR.get(part.getPartColor())).withStyle(style -> style.withColor(part.getColor()));
+        return Component.translatable("gaiadimension.construct_kit.color." + part.getPartColor().getSerializedName()).withStyle(style -> style.withColor(part.getColor()));
     }
 
     @Override
@@ -112,7 +112,7 @@ public class ConstructKitItem extends Item {
                         return this.fail(player, Error.NO_PART);
                     }
                     //Validate if we have enough to perform the action
-                    if (!opalite.validateStacks(this.kit, part)) {
+                    if (!opalite.validateStacks(this.kit, this.partColor)) {
                         return this.fail(player, Error.RESOURCES);
                     }
                     //Validate if the kit can be used
@@ -208,17 +208,17 @@ public class ConstructKitItem extends Item {
     }
 
     public enum Color {
-        SCARLET(0xc83133, 1),
-        AUBURN(0xc15707, 2),
-        GOLD(0xce9531, 3),
-        MAUVE(0x905090, 4),
-        BEIGE(0xccb393, 5),
-        IVORY(0xd6e2f9, 6);
+        SCARLET(0xc83133, MookaiteConstructEntity.PartType.SCARLET),
+        AUBURN(0xc15707, MookaiteConstructEntity.PartType.AUBURN),
+        GOLD(0xce9531, MookaiteConstructEntity.PartType.GOLD),
+        MAUVE(0x905090, MookaiteConstructEntity.PartType.MAUVE),
+        BEIGE(0xccb393, MookaiteConstructEntity.PartType.BEIGE),
+        IVORY(0xd6e2f9, MookaiteConstructEntity.PartType.IVORY);
 
         private final int color;
-        private final int part;
+        private final MookaiteConstructEntity.PartType part;
 
-        Color(int color, int part) {
+        Color(int color, MookaiteConstructEntity.PartType part) {
             this.color = color;
             this.part = part;
         }
@@ -227,7 +227,7 @@ public class ConstructKitItem extends Item {
             return color;
         }
 
-        public int getPartColor() {
+        public MookaiteConstructEntity.PartType getPartColor() {
             return part;
         }
     }

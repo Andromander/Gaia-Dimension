@@ -4,7 +4,6 @@ import androsa.gaiadimension.GaiaDimensionMod;
 import androsa.gaiadimension.registry.registration.ModItems;
 import androsa.gaiadimension.registry.registration.ModSounds;
 import net.minecraft.core.BlockPos;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.Difficulty;
@@ -51,7 +50,7 @@ public class ArchaicWarriorEntity extends Monster {
     @Override
     public void aiStep() {
         if (this.isSunBurnTick()) {
-            this.setSecondsOnFire(8);
+            this.igniteForSeconds(8);
         }
 
         super.aiStep();
@@ -78,11 +77,6 @@ public class ArchaicWarriorEntity extends Monster {
     }
 
     @Override
-    public MobType getMobType() {
-        return GaiaDimensionMod.GAIAN;
-    }
-
-    @Override
     protected void populateDefaultEquipmentSlots(RandomSource random, DifficultyInstance difficulty) {
         super.populateDefaultEquipmentSlots(random, difficulty);
 
@@ -92,18 +86,13 @@ public class ArchaicWarriorEntity extends Monster {
     }
 
     @Override
-    public float getStandingEyeHeight(Pose poseIn, EntityDimensions sizeIn) {
-        return 1.74F;
-    }
-
-    @Override
     @Deprecated
     @Nullable
-    public SpawnGroupData finalizeSpawn(ServerLevelAccessor worldIn, DifficultyInstance difficultyIn, MobSpawnType reason, @Nullable SpawnGroupData spawnDataIn, @Nullable CompoundTag dataTag) {
-        spawnDataIn = super.finalizeSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
+    public SpawnGroupData finalizeSpawn(ServerLevelAccessor worldIn, DifficultyInstance difficultyIn, MobSpawnType reason, @Nullable SpawnGroupData spawnDataIn) {
+        spawnDataIn = super.finalizeSpawn(worldIn, difficultyIn, reason, spawnDataIn);
 
         this.populateDefaultEquipmentSlots(worldIn.getRandom(), difficultyIn);
-        this.populateDefaultEquipmentEnchantments(worldIn.getRandom(), difficultyIn);
+        this.populateDefaultEquipmentEnchantments(worldIn, worldIn.getRandom(), difficultyIn);
 
         return spawnDataIn;
     }

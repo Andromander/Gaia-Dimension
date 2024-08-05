@@ -36,9 +36,9 @@ public class BismuthUletrusEntity extends PathfinderMob {
     }
 
     @Override
-    protected void defineSynchedData() {
-        super.defineSynchedData();
-        this.entityData.define(RESTING, false);
+    protected void defineSynchedData(SynchedEntityData.Builder builder) {
+        super.defineSynchedData(builder);
+        builder.define(RESTING, false);
     }
 
     public static AttributeSupplier.Builder registerAttributes() {

@@ -42,7 +42,7 @@ public class ThrownPebbleEntity extends ThrowableItemProjectile {
     }
 
     private ParticleOptions getParticleData() {
-        ItemStack itemstack = this.getItemRaw();
+        ItemStack itemstack = this.getItem();
         return itemstack.isEmpty() ? ModParticles.ITEM_PEBBLE.get() : new ItemParticleOption(ParticleTypes.ITEM, itemstack);
     }
 

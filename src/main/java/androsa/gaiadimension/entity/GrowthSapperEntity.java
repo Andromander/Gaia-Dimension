@@ -1,15 +1,14 @@
 package androsa.gaiadimension.entity;
 
-import androsa.gaiadimension.GaiaDimensionMod;
 import androsa.gaiadimension.registry.bootstrap.GaiaBiomes;
 import androsa.gaiadimension.registry.registration.ModSounds;
+import androsa.gaiadimension.registry.values.GaiaBuiltinTables;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
@@ -27,6 +26,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.biome.Biome;
+import net.minecraft.world.level.storage.loot.LootTable;
 
 import javax.annotation.Nullable;
 import java.util.Objects;
@@ -42,9 +42,9 @@ public class GrowthSapperEntity extends PathfinderMob {
     }
 
     @Override
-    protected void defineSynchedData() {
-        super.defineSynchedData();
-        this.entityData.define(SAPPER_VARIANT, 0);
+    protected void defineSynchedData(SynchedEntityData.Builder builder) {
+        super.defineSynchedData(builder);
+        builder.define(SAPPER_VARIANT, 0);
     }
 
     public static AttributeSupplier.Builder registerAttributes() {
@@ -102,22 +102,13 @@ public class GrowthSapperEntity extends PathfinderMob {
     }
 
     @Override
-    public ResourceLocation getDefaultLootTable() {
+    public ResourceKey<LootTable> getDefaultLootTable() {
         return switch (this.getEntityVariant()) {
-            default -> getLocation("common_sapper");
-            case 1 -> getLocation("chilled_sapper");
-            case 2 -> getLocation("nutrient_sapper");
-            case 3 -> getLocation("mystified_sapper");
+            default -> GaiaBuiltinTables.PINK_SAPPER_TABLE;
+            case 1 -> GaiaBuiltinTables.BLUE_SAPPER_TABLE;
+            case 2 -> GaiaBuiltinTables.GREEN_SAPPER_TABLE;
+            case 3 -> GaiaBuiltinTables.PURPLE_SAPPER_TABLE;
         };
-    }
-
-    private ResourceLocation getLocation(String name) {
-        return new ResourceLocation(GaiaDimensionMod.MODID, "entities/" + name);
-    }
-
-    @Override
-    public float getStandingEyeHeight(Pose poseIn, EntityDimensions sizeIn) {
-        return 0.70F;
     }
 
     public static boolean canSpawnHere(EntityType<GrowthSapperEntity> entity, LevelAccessor world, MobSpawnType spawn, BlockPos pos, RandomSource random) {
@@ -125,7 +116,7 @@ public class GrowthSapperEntity extends PathfinderMob {
     }
 
     @Override
-    public SpawnGroupData finalizeSpawn(ServerLevelAccessor worldIn, DifficultyInstance difficultyIn, MobSpawnType reason, @Nullable SpawnGroupData spawnDataIn, @Nullable CompoundTag dataTag) {
+    public SpawnGroupData finalizeSpawn(ServerLevelAccessor worldIn, DifficultyInstance difficultyIn, MobSpawnType reason, @Nullable SpawnGroupData spawnDataIn) {
         Optional<ResourceKey<Biome>> biome = worldIn.getBiome(this.blockPosition()).unwrapKey();
 
         if (Objects.equals(biome, Optional.of(GaiaBiomes.pink_agate_forest)) || Objects.equals(biome, Optional.of(GaiaBiomes.crystal_plains))) {
@@ -141,6 +132,6 @@ public class GrowthSapperEntity extends PathfinderMob {
             setSapperVariant(rand.nextInt(4));
         }
 
-        return super.finalizeSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
+        return super.finalizeSpawn(worldIn, difficultyIn, reason, spawnDataIn);
     }
 }

@@ -27,7 +27,7 @@ public class MookaiteMagicEntity extends ThrowableItemProjectile {
     }
 
     @Override
-    protected float getGravity() {
+    protected double getDefaultGravity() {
         return 0.05F;
     }
 
@@ -47,7 +47,7 @@ public class MookaiteMagicEntity extends ThrowableItemProjectile {
             area.setOwner(living);
 
             if (living instanceof MookaiteConstructEntity mookaite) {
-                area.setDuration(40 + 20 * mookaite.countColors(3));
+                area.setDuration(40 + 20 * mookaite.countColors(MookaiteConstructEntity.PartType.MAUVE));
             }
         }
 

@@ -27,7 +27,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.LeavesBlock;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.pathfinder.BlockPathTypes;
+import net.minecraft.world.level.pathfinder.PathType;
 import net.minecraft.world.level.pathfinder.WalkNodeEvaluator;
 import net.neoforged.neoforge.common.CommonHooks;
 
@@ -53,9 +53,9 @@ public class MalachiteDroneEntity extends Monster {
     }
 
     @Override
-    protected void defineSynchedData() {
-        super.defineSynchedData();
-        this.entityData.define(OWNER_UNIQUE_ID, Optional.empty());
+    protected void defineSynchedData(SynchedEntityData.Builder builder) {
+        super.defineSynchedData(builder);
+        builder.define(OWNER_UNIQUE_ID, Optional.empty());
     }
 
     @Override
@@ -239,15 +239,15 @@ public class MalachiteDroneEntity extends Monster {
 
         public void start() {
             this.timeToRecalcPath = 0;
-            this.oldWaterCost = this.drone.getPathfindingMalus(BlockPathTypes.WATER);
-            this.drone.setPathfindingMalus(BlockPathTypes.WATER, 0.0F);
+            this.oldWaterCost = this.drone.getPathfindingMalus(PathType.WATER);
+            this.drone.setPathfindingMalus(PathType.WATER, 0.0F);
         }
 
         @Override
         public void stop() {
             this.guard = null;
             this.navigator.stop();
-            this.drone.setPathfindingMalus(BlockPathTypes.WATER, this.oldWaterCost);
+            this.drone.setPathfindingMalus(PathType.WATER, this.oldWaterCost);
         }
 
         @Override
@@ -292,8 +292,8 @@ public class MalachiteDroneEntity extends Monster {
         }
 
         private boolean canTeleportTo(BlockPos pos) {
-            BlockPathTypes nodeType = WalkNodeEvaluator.getBlockPathTypeStatic(this.world, pos.mutable());
-            if (nodeType != BlockPathTypes.WALKABLE) {
+            PathType nodeType = WalkNodeEvaluator.getPathTypeStatic(this.drone, pos);
+            if (nodeType != PathType.WALKABLE) {
                 return false;
             } else {
                 BlockState state = this.world.getBlockState(pos.below());

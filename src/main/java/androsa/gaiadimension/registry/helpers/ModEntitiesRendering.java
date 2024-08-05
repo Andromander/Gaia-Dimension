@@ -13,10 +13,10 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.fml.common.Mod;
+import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 
-@Mod.EventBusSubscriber(modid = GaiaDimensionMod.MODID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
+@EventBusSubscriber(modid = GaiaDimensionMod.MODID, bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
 public class ModEntitiesRendering {
     public static final ModelLayerLocation AGATE_GOLEM = baselayer("agate_golem");
     public static final ModelLayerLocation ANCIENT_LAGRAHK = baselayer("ancient_lagrahk");
@@ -59,7 +59,7 @@ public class ModEntitiesRendering {
     }
 
     private static ModelLayerLocation layer(String name, String layer) {
-        return new ModelLayerLocation(new ResourceLocation(GaiaDimensionMod.MODID, name), layer);
+        return new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(GaiaDimensionMod.MODID, name), layer);
     }
 
     public static ResourceLocation makeTexture(Entity entity, String path) {
@@ -78,7 +78,7 @@ public class ModEntitiesRendering {
     }
 
     public static ResourceLocation makeTexture(String path) {
-        return new ResourceLocation(GaiaDimensionMod.MODID, TEXTURE_DIRECTORY + path + ".png");
+        return ResourceLocation.fromNamespaceAndPath(GaiaDimensionMod.MODID, TEXTURE_DIRECTORY + path + ".png");
     }
 
     @SubscribeEvent

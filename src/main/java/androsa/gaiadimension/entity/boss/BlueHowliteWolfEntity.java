@@ -62,11 +62,6 @@ public class BlueHowliteWolfEntity extends Monster {
     }
 
     @Override
-    public float getStandingEyeHeight(Pose poseIn, EntityDimensions sizeIn) {
-        return 2.1F;
-    }
-
-    @Override
     public int getMaxSpawnClusterSize() {
         return 1;
     }

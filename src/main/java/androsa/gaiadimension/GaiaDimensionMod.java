@@ -54,6 +54,7 @@ public class GaiaDimensionMod {
         ModPOIs.POI_TYPES.register(bus);
         ModEffects.MOB_EFFECTS.register(bus);
         ModEntities.ENTITY_TYPES.register(bus);
+        ModEntities.ENTITY_DATA_SERIALIZERS.register(bus);
         ModFluids.FLUID_TYPES.register(bus);
         ModFluids.FLUIDS.register(bus);
         ModItems.ITEMS.register(bus);

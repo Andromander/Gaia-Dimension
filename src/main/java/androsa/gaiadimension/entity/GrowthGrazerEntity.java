@@ -51,11 +51,6 @@ public class GrowthGrazerEntity extends PathfinderMob {
         return ModSounds.ENTITY_GROWTH_SAPPER_HURT.get();
     }
 
-    @Override
-    public float getStandingEyeHeight(Pose poseIn, EntityDimensions sizeIn) {
-        return 0.70F;
-    }
-
     public static boolean canSpawnHere(EntityType<GrowthGrazerEntity> entity, LevelAccessor world, MobSpawnType spawn, BlockPos pos, RandomSource random) {
         return spawn == MobSpawnType.SPAWNER || world.getBlockState(pos.below()).isValidSpawn(world, pos.below(), entity) && world.getRawBrightness(pos, 0) > 8;
     }

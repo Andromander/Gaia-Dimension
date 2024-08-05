@@ -57,11 +57,6 @@ public class CorruptSapperEntity extends Monster {
     }
 
     @Override
-    public float getStandingEyeHeight(Pose poseIn, EntityDimensions sizeIn) {
-        return 0.70F;
-    }
-
-    @Override
     public boolean doHurtTarget(Entity entityIn) {
         if (super.doHurtTarget(entityIn)) {
             if (entityIn instanceof LivingEntity living) {
@@ -73,7 +68,7 @@ public class CorruptSapperEntity extends Monster {
                 };
 
                 if (i > 0) {
-                    living.addEffect(new MobEffectInstance(ModEffects.goldstone_plague.get(), i * 20, 0));
+                    living.addEffect(new MobEffectInstance(ModEffects.goldstone_plague, i * 20, 0));
                 }
             }
             return true;
@@ -96,10 +91,5 @@ public class CorruptSapperEntity extends Monster {
             }
         }
         return false;
-    }
-
-    @Override
-    public MobType getMobType() {
-        return GaiaDimensionMod.CORRUPT;
     }
 }

@@ -36,7 +36,6 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
-import net.neoforged.neoforge.common.NeoForgeMod;
 import net.neoforged.neoforge.event.EventHooks;
 import net.neoforged.neoforge.fluids.FluidType;
 
@@ -68,7 +67,7 @@ public class MalachiteGuardEntity extends Monster {
                 .add(Attributes.ATTACK_DAMAGE, 5.0D)
                 .add(Attributes.MOVEMENT_SPEED, 0.6D)
                 .add(Attributes.ATTACK_KNOCKBACK, 2.0D)
-                .add(NeoForgeMod.STEP_HEIGHT.value(), 1.5F);
+                .add(Attributes.STEP_HEIGHT, 1.5F);
     }
 
     /**
@@ -77,11 +76,11 @@ public class MalachiteGuardEntity extends Monster {
      * Phase 2: Resist  | Charged  | Stomped
      */
     @Override
-    protected void defineSynchedData() {
-        super.defineSynchedData();
-        this.entityData.define(PHASE, 0);
-        this.entityData.define(STOMP_PHASE, 0);
-        this.entityData.define(CHARGE_PHASE, 0);
+    protected void defineSynchedData(SynchedEntityData.Builder builder) {
+        super.defineSynchedData(builder);
+        builder.define(PHASE, 0);
+        builder.define(STOMP_PHASE, 0);
+        builder.define(CHARGE_PHASE, 0);
     }
 
     @Override
@@ -301,7 +300,7 @@ public class MalachiteGuardEntity extends Monster {
         MalachiteDroneEntity drone = new MalachiteDroneEntity(ModEntities.MALACHITE_DRONE.get(), this.level());
         drone.moveTo(pos, 0.0F, 0.0F);
         if (!level().isClientSide()) {
-            EventHooks.onFinalizeSpawn(drone, (ServerLevelAccessor)this.level(), this.level().getCurrentDifficultyAt(pos), MobSpawnType.MOB_SUMMONED, null, null);
+            EventHooks.finalizeMobSpawn(drone, (ServerLevelAccessor)this.level(), this.level().getCurrentDifficultyAt(pos), MobSpawnType.MOB_SUMMONED, null);
         }
         drone.setOwner(this);
         this.level().addFreshEntity(drone);
@@ -380,12 +379,12 @@ public class MalachiteGuardEntity extends Monster {
 
         //Just have this happen in Normal or Hard
         if (difficulty == Difficulty.NORMAL || difficulty == Difficulty.HARD) {
-            if (target instanceof Player) {
-                Player player = (Player) target;
+            if (target instanceof Player player) {
                 NonNullList<ItemStack> armor = player.getInventory().armor;
                 int slot = random.nextInt(armor.size());
                 ItemStack stack = armor.get(slot);
-                EquipmentSlot slotType = EquipmentSlot.byTypeAndIndex(EquipmentSlot.Type.ARMOR, slot);
+                EquipmentSlot[] equipment = new EquipmentSlot[]{EquipmentSlot.HEAD, EquipmentSlot.CHEST, EquipmentSlot.LEGS, EquipmentSlot.FEET};
+                EquipmentSlot slotType = equipment[slot];
 
                 //Normal: 1:16 chance. Hard: 1:8 chance. Chances decrease if the slot is empty
                 if ((difficulty == Difficulty.NORMAL && random.nextInt(16) == 0) || (difficulty == Difficulty.HARD && random.nextInt(8) == 0)) {
@@ -475,7 +474,7 @@ public class MalachiteGuardEntity extends Monster {
 
     @Override
     public boolean canBeAffected(MobEffectInstance effectInstance) {
-        return level().getDifficulty() == Difficulty.HARD && effectInstance.getEffect().isBeneficial();
+        return level().getDifficulty() == Difficulty.HARD && effectInstance.getEffect().value().isBeneficial();
     }
 
     @Override
@@ -499,11 +498,6 @@ public class MalachiteGuardEntity extends Monster {
     }
 
     @Override
-    public float getStandingEyeHeight(Pose poseIn, EntityDimensions sizeIn) {
-        return 3.0F;
-    }
-
-    @Override
     public void startSeenByPlayer(ServerPlayer player) {
         super.startSeenByPlayer(player);
         this.bossInfo.addPlayer(player);
@@ -516,7 +510,7 @@ public class MalachiteGuardEntity extends Monster {
     }
 
     @Override
-    public boolean canChangeDimensions() {
+    public boolean canChangeDimensions(Level from, Level to) {
         return false;
     }
 

@@ -24,7 +24,7 @@ public class MineralArenthisRenderer<T extends MineralArenthisEntity, M extends 
     }
 
     @Override
-    protected void setupRotations(T entityLiving, PoseStack matrixStack, float rotationPitch, float rotationYaw, float partialTicks) {
+    protected void setupRotations(T entityLiving, PoseStack matrixStack, float rotationPitch, float rotationYaw, float partialTicks, float scale) {
         float f = Mth.lerp(partialTicks, entityLiving.prevArenthisPitch, entityLiving.arenthisPitch);
         float f1 = Mth.lerp(partialTicks, entityLiving.prevArenthisYaw, entityLiving.arenthisYaw);
         matrixStack.translate(0.0F, 0.5F, 0.0F);

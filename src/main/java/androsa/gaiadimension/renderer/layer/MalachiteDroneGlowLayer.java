@@ -23,7 +23,7 @@ public class MalachiteDroneGlowLayer<T extends MalachiteDroneEntity, M extends M
     public void render(PoseStack matrixStack, MultiBufferSource buffer, int i, T entity, float v, float v1, float v2, float v3, float v4, float v5) {
         this.validate(entity);
         VertexConsumer builder = entity.getOwnerUniqueId() != null ? buffer.getBuffer(FOLLOW) : buffer.getBuffer(NORMAL);
-        this.getParentModel().renderToBuffer(matrixStack, builder, 15728640, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);
+        this.getParentModel().renderToBuffer(matrixStack, builder, 15728640, OverlayTexture.NO_OVERLAY);
     }
 
     private void validate(T entity) {

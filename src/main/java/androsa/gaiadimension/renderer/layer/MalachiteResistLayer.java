@@ -32,7 +32,7 @@ public class MalachiteResistLayer<T extends MalachiteGuardEntity, M extends Mala
             this.getParentModel().copyPropertiesTo(model);
             VertexConsumer builder = buffer.getBuffer(RenderType.energySwirl(this.getEnergySwirlTexture(entity), this.getEnergySwirlX(ticks), ticks * 0.01F));
             model.setupAnim(entity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
-            model.renderToBuffer(matrix, builder, light, OverlayTexture.NO_OVERLAY, 0.5F, 0.5F, 0.5F, 1.0F);
+            model.renderToBuffer(matrix, builder, light, OverlayTexture.NO_OVERLAY, -8355712);
         }
     }
 

@@ -40,8 +40,8 @@ public class MookaiteAreaEntity extends Entity implements TraceableEntity {
     }
 
     @Override
-    protected void defineSynchedData() {
-        this.getEntityData().define(DATA_RADIUS, 3.0F);
+    protected void defineSynchedData(SynchedEntityData.Builder builder) {
+        builder.define(DATA_RADIUS, 3.0F);
     }
 
     @Override

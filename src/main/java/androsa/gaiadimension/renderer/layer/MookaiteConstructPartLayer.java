@@ -21,12 +21,12 @@ public class MookaiteConstructPartLayer<T extends MookaiteConstructEntity, M ext
     @Override
     public void render(PoseStack stack, MultiBufferSource buffer, int light, T entity, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch) {
         for (MookaiteConstructEntity.MookaitePart part : MookaiteConstructEntity.PARTS) {
-            if (entity.isPresent(part)) {
-                String color = MookaiteConstructEntity.INT_TO_COLOR.getOrDefault(entity.getPart(part), MookaiteConstructEntity.INT_TO_COLOR.get(1));
+            if (entity.getPart(part).isPresent()) {
+                String color = entity.getPart(part).getSerializedName();
                 ResourceLocation location = ModEntitiesRendering.makeTextureNoPrefix(entity, part.name() + "/" + color);
                 if (location != null && !entity.isInvisible()) {
                     VertexConsumer vertex = buffer.getBuffer(RenderType.entityCutout(location));
-                    this.getParentModel().renderToBuffer(stack, vertex, light, LivingEntityRenderer.getOverlayCoords(entity, 0.0F), 1.0F, 1.0F, 1.0F, 1.0F);
+                    this.getParentModel().renderToBuffer(stack, vertex, light, LivingEntityRenderer.getOverlayCoords(entity, 0.0F));
                 }
             }
         }

@@ -2,6 +2,7 @@ package androsa.gaiadimension.entity;
 
 import androsa.gaiadimension.registry.registration.ModSounds;
 import net.minecraft.core.BlockPos;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.Difficulty;
@@ -17,6 +18,7 @@ import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.animal.AbstractGolem;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LightLayer;
@@ -61,11 +63,14 @@ public class AgateGolemEntity extends Monster {
     @Override
     public boolean doHurtTarget(Entity entityIn) {
         this.level().broadcastEntityEvent(this, (byte)4);
-        boolean flag = entityIn.hurt(this.damageSources().mobAttack(this), (float)(6 + this.random.nextInt(15)));
+        DamageSource source = this.damageSources().mobAttack(this);
+        boolean flag = entityIn.hurt(source, (float)(6 + this.random.nextInt(15)));
 
         if (flag) {
             entityIn.setDeltaMovement(entityIn.getDeltaMovement().add(0.0D, 0.4D, 0.0D));
-            this.doEnchantDamageEffects(this, entityIn);
+            if (this.level() instanceof ServerLevel server) {
+                EnchantmentHelper.doPostAttackEffects(server, entityIn, source);
+            }
         }
 
         return flag;

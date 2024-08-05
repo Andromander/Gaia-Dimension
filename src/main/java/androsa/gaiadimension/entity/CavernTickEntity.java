@@ -36,11 +36,6 @@ public class CavernTickEntity extends Monster {
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Player.class, true));
     }
 
-    @Override
-    public float getStandingEyeHeight(Pose poseIn, EntityDimensions sizeIn) {
-        return 0.1F;
-    }
-
     public static AttributeSupplier.Builder registerAttributes() {
         return Monster.createMonsterAttributes()
                 .add(Attributes.MAX_HEALTH, 8.0D)

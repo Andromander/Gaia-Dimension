@@ -20,7 +20,7 @@ public class MalachiteGuardGlowLayer<T extends MalachiteGuardEntity, M extends M
     @Override
     public void render(PoseStack matrixStack, MultiBufferSource buffer, int i, T entity, float v, float v1, float v2, float v3, float v4, float v5) {
         VertexConsumer builder = buffer.getBuffer(validate(entity));
-        this.getParentModel().renderToBuffer(matrixStack, builder, 15728640, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);
+        this.getParentModel().renderToBuffer(matrixStack, builder, 15728640, OverlayTexture.NO_OVERLAY);
     }
 
     private RenderType validate(T entity) {

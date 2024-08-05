@@ -51,11 +51,6 @@ public class RockyLuggerothEntity extends PathfinderMob {
         return ModSounds.ENTITY_ROCKY_LUGGEROTH_HURT.get();
     }
 
-    @Override
-    public float getStandingEyeHeight(Pose poseIn, EntityDimensions sizeIn) {
-        return 0.35F;
-    }
-
     public static boolean canSpawnHere(EntityType<RockyLuggerothEntity> entity, LevelAccessor world, MobSpawnType spawn, BlockPos pos, RandomSource random) {
         return world.getBlockState(pos.below()).isValidSpawn(world, pos.below(), entity) && world.getRawBrightness(pos, 0) > 8;
     }

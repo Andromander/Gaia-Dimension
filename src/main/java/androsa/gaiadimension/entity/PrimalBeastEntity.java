@@ -17,15 +17,15 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
-import net.minecraft.world.level.pathfinder.BlockPathTypes;
+import net.minecraft.world.level.pathfinder.PathType;
 
 public class PrimalBeastEntity extends Monster {
 
     public PrimalBeastEntity(EntityType<? extends PrimalBeastEntity> entity, Level world) {
         super(entity, world);
-        this.setPathfindingMalus(BlockPathTypes.LAVA, 8.0F);
-        this.setPathfindingMalus(BlockPathTypes.DANGER_FIRE, 0.0F);
-        this.setPathfindingMalus(BlockPathTypes.DAMAGE_FIRE, 0.0F);
+        this.setPathfindingMalus(PathType.LAVA, 8.0F);
+        this.setPathfindingMalus(PathType.DANGER_FIRE, 0.0F);
+        this.setPathfindingMalus(PathType.DAMAGE_FIRE, 0.0F);
         this.xpReward = 15;
     }
 
@@ -68,11 +68,6 @@ public class PrimalBeastEntity extends Monster {
     }
 
     @Override
-    public float getStandingEyeHeight(Pose poseIn, EntityDimensions sizeIn) {
-        return 1.9F;
-    }
-
-    @Override
     public float getWalkTargetValue(BlockPos pos) {
         return 0.0F;
     }
@@ -97,7 +92,7 @@ public class PrimalBeastEntity extends Monster {
 
         if (attacked) {
             float diff = this.level().getCurrentDifficultyAt(this.blockPosition()).getEffectiveDifficulty();
-            entityIn.setSecondsOnFire(2 * (int)diff);
+            entityIn.igniteForSeconds(2 * (int)diff);
         }
         return attacked;
     }

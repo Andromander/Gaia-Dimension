@@ -50,11 +50,6 @@ public class RuggedLurmorusEntity extends PathfinderMob {
         return ModSounds.ENTITY_RUGGED_LURMORUS_HURT.get();
     }
 
-    @Override
-    public float getStandingEyeHeight(Pose poseIn, EntityDimensions sizeIn) {
-        return 7.6F;
-    }
-
     public static boolean canSpawnHere(EntityType<RuggedLurmorusEntity> entity, LevelAccessor world, MobSpawnType spawn, BlockPos pos, RandomSource random) {
         return world.getBlockState(pos.below()).isValidSpawn(world, pos.below(), entity) && world.getRawBrightness(pos, 0) > 8;
     }

@@ -56,11 +56,6 @@ public class SaltionEntity extends Monster {
     }
 
     @Override
-    public float getStandingEyeHeight(Pose poseIn, EntityDimensions sizeIn) {
-        return 0.25F;
-    }
-
-    @Override
     public boolean checkSpawnRules(LevelAccessor world, MobSpawnType reason) {
         return true;
     }
