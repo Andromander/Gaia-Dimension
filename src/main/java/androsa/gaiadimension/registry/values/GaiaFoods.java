@@ -33,7 +33,7 @@ public class GaiaFoods {
     public static final FoodProperties TILIPU = buildFood(7, 0.3F);
     public static final FoodProperties TILIOL = buildFood(5, 0.6F);
     public static final FoodProperties TILIMY = buildFood(7, 0.3F);
-    public static final FoodProperties PLAGUED_TILIEY = buildFoodWithEffect(7, 0.3F, false, () -> new MobEffectInstance(ModEffects.goldstone_plague.get(), 100, 0), 1.0F);
+    public static final FoodProperties PLAGUED_TILIEY = buildFoodWithEffect(7, 0.3F, false, () -> new MobEffectInstance(ModEffects.goldstone_plague, 100, 0), 1.0F);
     public static final FoodProperties TILIOU = buildFood(5, 0.6F);
 
     private static FoodProperties buildFood(int hunger, float saturation) {
@@ -41,10 +41,10 @@ public class GaiaFoods {
     }
 
     private static FoodProperties buildFoodWithEffect(int hunger, float saturation, boolean alwaysEdible, Supplier<MobEffectInstance> effect, float duration) {
-        FoodProperties.Builder food = new FoodProperties.Builder().nutrition(hunger).saturationMod(saturation);
+        FoodProperties.Builder food = new FoodProperties.Builder().nutrition(hunger).saturationModifier(saturation);
 
         if (alwaysEdible)
-            food.alwaysEat();
+            food.alwaysEdible();
         if (effect != null)
             food.effect(effect, duration);
 

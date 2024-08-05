@@ -111,6 +111,6 @@ public class ModSounds {
     }
 
     private static Supplier<SoundEvent> makeSound(String name) {
-        return SOUND_EVENTS.register(name, () -> SoundEvent.createVariableRangeEvent(new ResourceLocation(GaiaDimensionMod.MODID, name)));
+        return SOUND_EVENTS.register(name, () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(GaiaDimensionMod.MODID, name)));
     }
 }

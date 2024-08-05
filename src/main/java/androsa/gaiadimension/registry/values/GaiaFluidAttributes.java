@@ -108,7 +108,7 @@ public class GaiaFluidAttributes {
                     .explosionResistance(100.0F);
 
     private static ResourceLocation makePath(String name, String suffix) {
-        return new ResourceLocation(GaiaDimensionMod.MODID, String.format("block/fluids/%s/%s_%s", name, name, suffix));
+        return ResourceLocation.fromNamespaceAndPath(GaiaDimensionMod.MODID, String.format("block/fluids/%s/%s_%s", name, name, suffix));
     }
 
     public static void registerFluidInteractions() {

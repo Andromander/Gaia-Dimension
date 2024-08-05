@@ -5,7 +5,10 @@ import androsa.gaiadimension.block.screen.*;
 import androsa.gaiadimension.item.inventory.GemPouchScreen;
 import androsa.gaiadimension.particle.*;
 import androsa.gaiadimension.registry.registration.*;
+import androsa.gaiadimension.registry.values.GaiaFluidAttributes;
+import net.minecraft.client.Camera;
 import net.minecraft.client.RecipeBookCategories;
+import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.renderer.BiomeColors;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
@@ -13,16 +16,22 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.world.item.BlockItem;
-import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.BlockAndTintGetter;
 import net.minecraft.world.level.material.Fluid;
+import net.minecraft.world.level.material.FluidState;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.fml.common.Mod;
+import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.client.event.*;
+import net.neoforged.neoforge.client.extensions.common.IClientFluidTypeExtensions;
+import net.neoforged.neoforge.client.extensions.common.RegisterClientExtensionsEvent;
+import org.jetbrains.annotations.Nullable;
+import org.joml.Vector3f;
 
+import java.util.function.Function;
 import java.util.function.Supplier;
 
-@Mod.EventBusSubscriber(value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.MOD, modid = GaiaDimensionMod.MODID)
+@EventBusSubscriber(value = Dist.CLIENT, bus = EventBusSubscriber.Bus.MOD, modid = GaiaDimensionMod.MODID)
 public class ClientEvents {
 
     @SubscribeEvent
@@ -128,7 +137,7 @@ public class ClientEvents {
     @SubscribeEvent
     public static void registerDimensionEffects(RegisterDimensionSpecialEffectsEvent event) {
         new GaiaSkyRender();
-        event.register(new ResourceLocation(GaiaDimensionMod.MODID, "gaia"), new GaiaDimensionRenderInfo());
+        event.register(ResourceLocation.fromNamespaceAndPath(GaiaDimensionMod.MODID, "gaia"), new GaiaDimensionRenderInfo());
     }
 
     @SubscribeEvent
@@ -155,7 +164,49 @@ public class ClientEvents {
 
     @SubscribeEvent
     public static void registerRecipeCategories(RegisterRecipeBookCategoriesEvent e) {
-        e.registerRecipeCategoryFinder(ModRecipes.RESTRUCTURING.get(), recipe -> RecipeBookCategories.create("restructuring", new ItemStack(ModItems.stibnite.get())));
-        e.registerRecipeCategoryFinder(ModRecipes.PURIFYING.get(), recipe -> RecipeBookCategories.create("purifying", new ItemStack(ModItems.goldstone.get())));
+        e.registerRecipeCategoryFinder(ModRecipes.RESTRUCTURING.get(), recipe -> RecipeBookCategories.valueOf("RESTRUCTURING_CATEGORY"));
+        e.registerRecipeCategoryFinder(ModRecipes.PURIFYING.get(), recipe -> RecipeBookCategories.valueOf("PURIFYING_CATEGORY"));
+    }
+
+    public static void registerClientExtensions(RegisterClientExtensionsEvent e) {
+        e.registerFluidType(makeFluidType(GaiaFluidAttributes.mineral_still, GaiaFluidAttributes.mineral_flow, true, null, new Vector3f(0.6875F, 0.75F, 1.0F)),
+                ModFluids.MINERAL_WATER.get());
+        e.registerFluidType(makeFluidType(GaiaFluidAttributes.superhot_still, GaiaFluidAttributes.superhot_flow, false, null, new Vector3f(0.0F, 1.0F, 1.0F)),
+                ModFluids.SUPERHOT_MAGMA.get());
+        e.registerFluidType(makeFluidType(GaiaFluidAttributes.sweet_still, GaiaFluidAttributes.sweet_flow, true, null, new Vector3f(0.5F, 0.0F, 0.5F)),
+                ModFluids.SWEET_MUCK.get());
+        e.registerFluidType(makeFluidType(GaiaFluidAttributes.bismuth_still, GaiaFluidAttributes.bismuth_flow, false, () -> ClientEvents::getBismuthColor, new Vector3f(0.5F, 0.5F, 0.5F)),
+                ModFluids.LIQUID_BISMUTH.get());
+        e.registerFluidType(makeFluidType(GaiaFluidAttributes.aura_still, GaiaFluidAttributes.aura_flow, true, () -> ClientEvents::getAuraColor, new Vector3f(1.0F, 1.0F, 1.0F)),
+                ModFluids.LIQUID_AURA.get());
+    }
+
+    private static IClientFluidTypeExtensions makeFluidType(ResourceLocation stillpath, ResourceLocation flowingpath, boolean overlay, Supplier<Function<BlockPos, Integer>> color, Vector3f fog) {
+        return new IClientFluidTypeExtensions() {
+            @Override
+            public ResourceLocation getStillTexture() {
+                return stillpath;
+            }
+
+            @Override
+            public ResourceLocation getFlowingTexture() {
+                return flowingpath;
+            }
+
+            @Override
+            public @Nullable ResourceLocation getOverlayTexture() {
+                return overlay ? ResourceLocation.withDefaultNamespace("block/water_overlay") : null;
+            }
+
+            @Override
+            public int getTintColor(FluidState state, BlockAndTintGetter getter, BlockPos pos) {
+                return color != null ? color.get().apply(pos) | 0xFF000000 : this.getTintColor();
+            }
+
+            @Override
+            public Vector3f modifyFogColor(Camera camera, float partialTick, ClientLevel level, int renderDistance, float darkenWorldAmount, Vector3f fluidFogColor) {
+                return fog;
+            }
+        };
     }
 }

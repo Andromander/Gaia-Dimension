@@ -14,6 +14,7 @@ displayURL="https://www.curseforge.com/minecraft/mc-mods/gaia-dimension" #option
 credits="Androsa, and the Gaia Dimension contributors." #optional
 authors="Androsa" #optional
 description="Explore the fantastical land of Gaia and uncover the secrets within."
+enumExtensions="META-INF/enumextensions.json"
 
 [[dependencies.gaiadimension]] #optional
     modId="neoforge" #mandatory

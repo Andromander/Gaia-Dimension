@@ -18,23 +18,23 @@ public class GaiaTags {
     private static final String ID = GaiaDimensionMod.MODID;
 
     private static TagKey<Item> tagItem(String name) {
-        return ItemTags.create(new ResourceLocation(ID, name));
+        return ItemTags.create(ResourceLocation.fromNamespaceAndPath(ID, name));
     }
 
-    private static TagKey<Item> tagItemForge(String name) {
-        return ItemTags.create(new ResourceLocation("forge", name));
+    private static TagKey<Item> tagItemCommon(String name) {
+        return ItemTags.create(ResourceLocation.fromNamespaceAndPath("c", name));
     }
 
     private static TagKey<Block> tagBlock(String name) {
-        return BlockTags.create(new ResourceLocation(ID, name));
+        return BlockTags.create(ResourceLocation.fromNamespaceAndPath(ID, name));
     }
 
-    private static TagKey<Block> tagBlockForge(String name) {
-        return BlockTags.create(new ResourceLocation("forge", name));
+    private static TagKey<Block> tagBlockCommon(String name) {
+        return BlockTags.create(ResourceLocation.fromNamespaceAndPath("c", name));
     }
 
     private static TagKey<Fluid> tagFluid(String name) {
-        return FluidTags.create(new ResourceLocation(GaiaDimensionMod.MODID, name));
+        return FluidTags.create(ResourceLocation.fromNamespaceAndPath(GaiaDimensionMod.MODID, name));
     }
 
     private static TagKey<Biome> tagStructure(String name) {
@@ -42,7 +42,7 @@ public class GaiaTags {
     }
 
     private static TagKey<Biome> tagBiome(String name) {
-        return TagKey.create(Registries.BIOME, new ResourceLocation(ID, name));
+        return TagKey.create(Registries.BIOME, ResourceLocation.fromNamespaceAndPath(ID, name));
     }
 
     private static TagKey<EntityType<?>> tagEntity(String name) {
@@ -50,69 +50,69 @@ public class GaiaTags {
     }
 
     public static class Items {
-        public static final TagKey<Item> ORES_SUGILITE = tagItemForge("ore/sugilite");
-        public static final TagKey<Item> ORES_HEMATITE = tagItemForge("ore/hematite");
-        public static final TagKey<Item> ORES_CINNABAR = tagItemForge("ore/cinnabar");
-        public static final TagKey<Item> ORES_LABRADORITE = tagItemForge("ore/labradorite");
-        public static final TagKey<Item> ORES_MOONSTONE = tagItemForge("ore/moonstone");
-        public static final TagKey<Item> ORES_RED_OPAL = tagItemForge("ore/red_opal");
-        public static final TagKey<Item> ORES_BLUE_OPAL = tagItemForge("ore/blue_opal");
-        public static final TagKey<Item> ORES_GREEN_OPAL = tagItemForge("ore/green_opal");
-        public static final TagKey<Item> ORES_WHITE_OPAL = tagItemForge("ore/white_opal");
-        public static final TagKey<Item> ORES_PYRITE = tagItemForge("ore/pyrite");
-        public static final TagKey<Item> ORES_OPALITE = tagItemForge("ore/opalite");
-        public static final TagKey<Item> STORAGE_BLOCKS_SUGILITE = tagItemForge("storage_blocks/sugilite");
-        public static final TagKey<Item> STORAGE_BLOCKS_HEMATITE = tagItemForge("storage_blocks/hematite");
-        public static final TagKey<Item> STORAGE_BLOCKS_CINNABAR = tagItemForge("storage_blocks/cinnabar");
-        public static final TagKey<Item> STORAGE_BLOCKS_LABRADORITE = tagItemForge("storage_blocks/labradorite");
-        public static final TagKey<Item> STORAGE_BLOCKS_MOONSTONE = tagItemForge("storage_blocks/moonstone");
-        public static final TagKey<Item> STORAGE_BLOCKS_RED_OPAL = tagItemForge("storage_blocks/red_opal");
-        public static final TagKey<Item> STORAGE_BLOCKS_BLUE_OPAL = tagItemForge("storage_blocks/blue_opal");
-        public static final TagKey<Item> STORAGE_BLOCKS_GREEN_OPAL = tagItemForge("storage_blocks/green_opal");
-        public static final TagKey<Item> STORAGE_BLOCKS_WHITE_OPAL = tagItemForge("storage_blocks/white_opal");
-        public static final TagKey<Item> STORAGE_BLOCKS_PYRITE = tagItemForge("storage_blocks/pyrite");
-        public static final TagKey<Item> STORAGE_BLOCKS_TEKTITE = tagItemForge("storage_blocks/tektite");
-        public static final TagKey<Item> STORAGE_BLOCKS_GOLDSTONE = tagItemForge("storage_blocks/goldstone");
-        public static final TagKey<Item> STORAGE_BLOCKS_AURA_CRYSTAL = tagItemForge("storage_blocks/aura");
-        public static final TagKey<Item> STORAGE_BLOCKS_BISMUTH = tagItemForge("storage_blocks/bismuth");
-        public static final TagKey<Item> STORAGE_BLOCKS_STIBNITE = tagItemForge("storage_blocks/stibnite");
-        public static final TagKey<Item> STORAGE_BLOCKS_PROUSTITE = tagItemForge("storage_blocks/proustite");
-        public static final TagKey<Item> STORAGE_BLOCKS_EUCLASE = tagItemForge("storage_blocks/euclase");
-        public static final TagKey<Item> STORAGE_BLOCKS_ALBITE = tagItemForge("storage_blocks/albite");
-        public static final TagKey<Item> STORAGE_BLOCKS_CARNELIAN = tagItemForge("storage_blocks/carnelian");
-        public static final TagKey<Item> STORAGE_BLOCKS_BENITOITE = tagItemForge("storage_blocks/benitoite");
-        public static final TagKey<Item> STORAGE_BLOCKS_DIOPSIDE = tagItemForge("storage_blocks/diopside");
-        public static final TagKey<Item> STORAGE_BLOCKS_GOSHENITE = tagItemForge("storage_blocks/goshenite");
+        public static final TagKey<Item> ORES_SUGILITE = tagItemCommon("ore/sugilite");
+        public static final TagKey<Item> ORES_HEMATITE = tagItemCommon("ore/hematite");
+        public static final TagKey<Item> ORES_CINNABAR = tagItemCommon("ore/cinnabar");
+        public static final TagKey<Item> ORES_LABRADORITE = tagItemCommon("ore/labradorite");
+        public static final TagKey<Item> ORES_MOONSTONE = tagItemCommon("ore/moonstone");
+        public static final TagKey<Item> ORES_RED_OPAL = tagItemCommon("ore/red_opal");
+        public static final TagKey<Item> ORES_BLUE_OPAL = tagItemCommon("ore/blue_opal");
+        public static final TagKey<Item> ORES_GREEN_OPAL = tagItemCommon("ore/green_opal");
+        public static final TagKey<Item> ORES_WHITE_OPAL = tagItemCommon("ore/white_opal");
+        public static final TagKey<Item> ORES_PYRITE = tagItemCommon("ore/pyrite");
+        public static final TagKey<Item> ORES_OPALITE = tagItemCommon("ore/opalite");
+        public static final TagKey<Item> STORAGE_BLOCKS_SUGILITE = tagItemCommon("storage_blocks/sugilite");
+        public static final TagKey<Item> STORAGE_BLOCKS_HEMATITE = tagItemCommon("storage_blocks/hematite");
+        public static final TagKey<Item> STORAGE_BLOCKS_CINNABAR = tagItemCommon("storage_blocks/cinnabar");
+        public static final TagKey<Item> STORAGE_BLOCKS_LABRADORITE = tagItemCommon("storage_blocks/labradorite");
+        public static final TagKey<Item> STORAGE_BLOCKS_MOONSTONE = tagItemCommon("storage_blocks/moonstone");
+        public static final TagKey<Item> STORAGE_BLOCKS_RED_OPAL = tagItemCommon("storage_blocks/red_opal");
+        public static final TagKey<Item> STORAGE_BLOCKS_BLUE_OPAL = tagItemCommon("storage_blocks/blue_opal");
+        public static final TagKey<Item> STORAGE_BLOCKS_GREEN_OPAL = tagItemCommon("storage_blocks/green_opal");
+        public static final TagKey<Item> STORAGE_BLOCKS_WHITE_OPAL = tagItemCommon("storage_blocks/white_opal");
+        public static final TagKey<Item> STORAGE_BLOCKS_PYRITE = tagItemCommon("storage_blocks/pyrite");
+        public static final TagKey<Item> STORAGE_BLOCKS_TEKTITE = tagItemCommon("storage_blocks/tektite");
+        public static final TagKey<Item> STORAGE_BLOCKS_GOLDSTONE = tagItemCommon("storage_blocks/goldstone");
+        public static final TagKey<Item> STORAGE_BLOCKS_AURA_CRYSTAL = tagItemCommon("storage_blocks/aura");
+        public static final TagKey<Item> STORAGE_BLOCKS_BISMUTH = tagItemCommon("storage_blocks/bismuth");
+        public static final TagKey<Item> STORAGE_BLOCKS_STIBNITE = tagItemCommon("storage_blocks/stibnite");
+        public static final TagKey<Item> STORAGE_BLOCKS_PROUSTITE = tagItemCommon("storage_blocks/proustite");
+        public static final TagKey<Item> STORAGE_BLOCKS_EUCLASE = tagItemCommon("storage_blocks/euclase");
+        public static final TagKey<Item> STORAGE_BLOCKS_ALBITE = tagItemCommon("storage_blocks/albite");
+        public static final TagKey<Item> STORAGE_BLOCKS_CARNELIAN = tagItemCommon("storage_blocks/carnelian");
+        public static final TagKey<Item> STORAGE_BLOCKS_BENITOITE = tagItemCommon("storage_blocks/benitoite");
+        public static final TagKey<Item> STORAGE_BLOCKS_DIOPSIDE = tagItemCommon("storage_blocks/diopside");
+        public static final TagKey<Item> STORAGE_BLOCKS_GOSHENITE = tagItemCommon("storage_blocks/goshenite");
 
-        public static final TagKey<Item> DUSTS_FINE = tagItemForge("dusts/fine");
-        public static final TagKey<Item> DUSTS_GOLDSTONE = tagItemForge("dusts/goldstone");
-        public static final TagKey<Item> DUSTS_HOT = tagItemForge("dusts/hot");
-        public static final TagKey<Item> INGOTS_SCAYNYX = tagItemForge("ingots/scaynyx");
-        public static final TagKey<Item> RODS_AGATE = tagItemForge("rods/agate");
-        public static final TagKey<Item> GEMS_SUGILITE = tagItemForge("gems/sugilite");
-        public static final TagKey<Item> GEMS_HEMATITE = tagItemForge("gems/hematite");
-        public static final TagKey<Item> GEMS_CINNABAR = tagItemForge("gems/cinnabar");
-        public static final TagKey<Item> GEMS_LABRADORITE = tagItemForge("gems/labradorite");
-        public static final TagKey<Item> GEMS_MOONSTONE = tagItemForge("gems/moonstone");
-        public static final TagKey<Item> GEMS_RED_OPAL = tagItemForge("gems/red_opal");
-        public static final TagKey<Item> GEMS_BLUE_OPAL = tagItemForge("gems/blue_opal");
-        public static final TagKey<Item> GEMS_GREEN_OPAL = tagItemForge("gems/green_opal");
-        public static final TagKey<Item> GEMS_WHITE_OPAL = tagItemForge("gems/white_opal");
-        public static final TagKey<Item> GEMS_STIBNITE = tagItemForge("gems/stibnite");
-        public static final TagKey<Item> GEMS_PROUSTITE = tagItemForge("gems/proustite");
-        public static final TagKey<Item> GEMS_EUCLASE = tagItemForge("gems/euclase");
-        public static final TagKey<Item> GEMS_ALBITE = tagItemForge("gems/albite");
-        public static final TagKey<Item> GEMS_CARNELIAN = tagItemForge("gems/carnelian");
-        public static final TagKey<Item> GEMS_BENITOITE = tagItemForge("gems/benitoite");
-        public static final TagKey<Item> GEMS_DIOPSIDE = tagItemForge("gems/diopside");
-        public static final TagKey<Item> GEMS_GOSHENITE = tagItemForge("gems/goshenite");
-        public static final TagKey<Item> GEMS_PYRITE = tagItemForge("gems/pyrite");
-        public static final TagKey<Item> GEMS_TEKTITE = tagItemForge("gems/tektite");
-        public static final TagKey<Item> GEMS_GOLDSTONE = tagItemForge("gems/goldstone");
-        public static final TagKey<Item> GEMS_AURA = tagItemForge("gems/aura");
-        public static final TagKey<Item> GEMS_BISMUTH = tagItemForge("gems/bismuth");
-        public static final TagKey<Item> GEMS_OPALITE = tagItemForge("gems/opalite");
-        public static final TagKey<Item> GEMS_CELESTINE = tagItemForge("gems/celestine");
+        public static final TagKey<Item> DUSTS_FINE = tagItemCommon("dusts/fine");
+        public static final TagKey<Item> DUSTS_GOLDSTONE = tagItemCommon("dusts/goldstone");
+        public static final TagKey<Item> DUSTS_HOT = tagItemCommon("dusts/hot");
+        public static final TagKey<Item> INGOTS_SCAYNYX = tagItemCommon("ingots/scaynyx");
+        public static final TagKey<Item> RODS_AGATE = tagItemCommon("rods/agate");
+        public static final TagKey<Item> GEMS_SUGILITE = tagItemCommon("gems/sugilite");
+        public static final TagKey<Item> GEMS_HEMATITE = tagItemCommon("gems/hematite");
+        public static final TagKey<Item> GEMS_CINNABAR = tagItemCommon("gems/cinnabar");
+        public static final TagKey<Item> GEMS_LABRADORITE = tagItemCommon("gems/labradorite");
+        public static final TagKey<Item> GEMS_MOONSTONE = tagItemCommon("gems/moonstone");
+        public static final TagKey<Item> GEMS_RED_OPAL = tagItemCommon("gems/red_opal");
+        public static final TagKey<Item> GEMS_BLUE_OPAL = tagItemCommon("gems/blue_opal");
+        public static final TagKey<Item> GEMS_GREEN_OPAL = tagItemCommon("gems/green_opal");
+        public static final TagKey<Item> GEMS_WHITE_OPAL = tagItemCommon("gems/white_opal");
+        public static final TagKey<Item> GEMS_STIBNITE = tagItemCommon("gems/stibnite");
+        public static final TagKey<Item> GEMS_PROUSTITE = tagItemCommon("gems/proustite");
+        public static final TagKey<Item> GEMS_EUCLASE = tagItemCommon("gems/euclase");
+        public static final TagKey<Item> GEMS_ALBITE = tagItemCommon("gems/albite");
+        public static final TagKey<Item> GEMS_CARNELIAN = tagItemCommon("gems/carnelian");
+        public static final TagKey<Item> GEMS_BENITOITE = tagItemCommon("gems/benitoite");
+        public static final TagKey<Item> GEMS_DIOPSIDE = tagItemCommon("gems/diopside");
+        public static final TagKey<Item> GEMS_GOSHENITE = tagItemCommon("gems/goshenite");
+        public static final TagKey<Item> GEMS_PYRITE = tagItemCommon("gems/pyrite");
+        public static final TagKey<Item> GEMS_TEKTITE = tagItemCommon("gems/tektite");
+        public static final TagKey<Item> GEMS_GOLDSTONE = tagItemCommon("gems/goldstone");
+        public static final TagKey<Item> GEMS_AURA = tagItemCommon("gems/aura");
+        public static final TagKey<Item> GEMS_BISMUTH = tagItemCommon("gems/bismuth");
+        public static final TagKey<Item> GEMS_OPALITE = tagItemCommon("gems/opalite");
+        public static final TagKey<Item> GEMS_CELESTINE = tagItemCommon("gems/celestine");
 
         public static final TagKey<Item> MOOKAITE = tagItem("mookaite");
         public static final TagKey<Item> TILES = tagItem("agate_tiles");
@@ -135,7 +135,7 @@ public class GaiaTags {
         public static final TagKey<Item> CRUDE_STORAGE_BLACKLIST = tagItem("crude_storage_blacklist");
         public static final TagKey<Item> MEGA_STORAGE_BLACKLIST = tagItem("mega_storage_blacklist");
 
-        public static final TagKey<Item> SHULKER_BOXES = ItemTags.create(new ResourceLocation("shulker_boxes"));
+        public static final TagKey<Item> SHULKER_BOXES = ItemTags.create(ResourceLocation.withDefaultNamespace("shulker_boxes"));
     }
 
     public static class Blocks {
@@ -164,42 +164,42 @@ public class GaiaTags {
         public static final TagKey<Block> JADE_BRICKS = tagBlock("jade_bricks");
         public static final TagKey<Block> JET_BRICKS = tagBlock("jet_bricks");
 
-        public static final TagKey<Block> ORES_SUGILITE = tagBlockForge("ore/sugilite");
-        public static final TagKey<Block> ORES_HEMATITE = tagBlockForge("ore/hematite");
-        public static final TagKey<Block> ORES_CINNABAR = tagBlockForge("ore/cinnabar");
-        public static final TagKey<Block> ORES_LABRADORITE = tagBlockForge("ore/labradorite");
-        public static final TagKey<Block> ORES_MOONSTONE = tagBlockForge("ore/moonstone");
-        public static final TagKey<Block> ORES_RED_OPAL = tagBlockForge("ore/red_opal");
-        public static final TagKey<Block> ORES_BLUE_OPAL = tagBlockForge("ore/blue_opal");
-        public static final TagKey<Block> ORES_GREEN_OPAL = tagBlockForge("ore/green_opal");
-        public static final TagKey<Block> ORES_WHITE_OPAL = tagBlockForge("ore/white_opal");
-        public static final TagKey<Block> ORES_PYRITE = tagBlockForge("ore/pyrite");
-        public static final TagKey<Block> ORES_OPALITE = tagBlockForge("ore/opalite");
-        public static final TagKey<Block> ORES_CELESTINE = tagBlockForge("ore/celestine");
-        public static final TagKey<Block> STORAGE_BLOCKS_SUGILITE = tagBlockForge("storage_blocks/sugilite");
-        public static final TagKey<Block> STORAGE_BLOCKS_HEMATITE = tagBlockForge("storage_blocks/hematite");
-        public static final TagKey<Block> STORAGE_BLOCKS_CINNABAR = tagBlockForge("storage_blocks/cinnabar");
-        public static final TagKey<Block> STORAGE_BLOCKS_LABRADORITE = tagBlockForge("storage_blocks/labradorite");
-        public static final TagKey<Block> STORAGE_BLOCKS_MOONSTONE = tagBlockForge("storage_blocks/moonstone");
-        public static final TagKey<Block> STORAGE_BLOCKS_RED_OPAL = tagBlockForge("storage_blocks/red_opal");
-        public static final TagKey<Block> STORAGE_BLOCKS_BLUE_OPAL = tagBlockForge("storage_blocks/blue_opal");
-        public static final TagKey<Block> STORAGE_BLOCKS_GREEN_OPAL = tagBlockForge("storage_blocks/green_opal");
-        public static final TagKey<Block> STORAGE_BLOCKS_WHITE_OPAL = tagBlockForge("storage_blocks/white_opal");
-        public static final TagKey<Block> STORAGE_BLOCKS_PYRITE = tagBlockForge("storage_blocks/pyrite");
-        public static final TagKey<Block> STORAGE_BLOCKS_TEKTITE = tagBlockForge("storage_blocks/tektite");
-        public static final TagKey<Block> STORAGE_BLOCKS_GOLDSTONE = tagBlockForge("storage_blocks/goldstone");
-        public static final TagKey<Block> STORAGE_BLOCKS_AURA_CRYSTAL = tagBlockForge("storage_blocks/aura");
-        public static final TagKey<Block> STORAGE_BLOCKS_BISMUTH = tagBlockForge("storage_blocks/bismuth");
-        public static final TagKey<Block> STORAGE_BLOCKS_OPALITE = tagBlockForge("storage_blocks/opalite");
-        public static final TagKey<Block> STORAGE_BLOCKS_STIBNITE = tagBlockForge("storage_blocks/stibnite");
-        public static final TagKey<Block> STORAGE_BLOCKS_PROUSTITE = tagBlockForge("storage_blocks/proustite");
-        public static final TagKey<Block> STORAGE_BLOCKS_EUCLASE = tagBlockForge("storage_blocks/euclase");
-        public static final TagKey<Block> STORAGE_BLOCKS_ALBITE = tagBlockForge("storage_blocks/albite");
-        public static final TagKey<Block> STORAGE_BLOCKS_CARNELIAN = tagBlockForge("storage_blocks/carnelian");
-        public static final TagKey<Block> STORAGE_BLOCKS_BENITOITE = tagBlockForge("storage_blocks/benitoite");
-        public static final TagKey<Block> STORAGE_BLOCKS_DIOPSIDE = tagBlockForge("storage_blocks/diopside");
-        public static final TagKey<Block> STORAGE_BLOCKS_GOSHENITE = tagBlockForge("storage_blocks/goshenite");
-        public static final TagKey<Block> STORAGE_BLOCKS_CELESTINE = tagBlockForge("storage_blocks/celestine");
+        public static final TagKey<Block> ORES_SUGILITE = tagBlockCommon("ore/sugilite");
+        public static final TagKey<Block> ORES_HEMATITE = tagBlockCommon("ore/hematite");
+        public static final TagKey<Block> ORES_CINNABAR = tagBlockCommon("ore/cinnabar");
+        public static final TagKey<Block> ORES_LABRADORITE = tagBlockCommon("ore/labradorite");
+        public static final TagKey<Block> ORES_MOONSTONE = tagBlockCommon("ore/moonstone");
+        public static final TagKey<Block> ORES_RED_OPAL = tagBlockCommon("ore/red_opal");
+        public static final TagKey<Block> ORES_BLUE_OPAL = tagBlockCommon("ore/blue_opal");
+        public static final TagKey<Block> ORES_GREEN_OPAL = tagBlockCommon("ore/green_opal");
+        public static final TagKey<Block> ORES_WHITE_OPAL = tagBlockCommon("ore/white_opal");
+        public static final TagKey<Block> ORES_PYRITE = tagBlockCommon("ore/pyrite");
+        public static final TagKey<Block> ORES_OPALITE = tagBlockCommon("ore/opalite");
+        public static final TagKey<Block> ORES_CELESTINE = tagBlockCommon("ore/celestine");
+        public static final TagKey<Block> STORAGE_BLOCKS_SUGILITE = tagBlockCommon("storage_blocks/sugilite");
+        public static final TagKey<Block> STORAGE_BLOCKS_HEMATITE = tagBlockCommon("storage_blocks/hematite");
+        public static final TagKey<Block> STORAGE_BLOCKS_CINNABAR = tagBlockCommon("storage_blocks/cinnabar");
+        public static final TagKey<Block> STORAGE_BLOCKS_LABRADORITE = tagBlockCommon("storage_blocks/labradorite");
+        public static final TagKey<Block> STORAGE_BLOCKS_MOONSTONE = tagBlockCommon("storage_blocks/moonstone");
+        public static final TagKey<Block> STORAGE_BLOCKS_RED_OPAL = tagBlockCommon("storage_blocks/red_opal");
+        public static final TagKey<Block> STORAGE_BLOCKS_BLUE_OPAL = tagBlockCommon("storage_blocks/blue_opal");
+        public static final TagKey<Block> STORAGE_BLOCKS_GREEN_OPAL = tagBlockCommon("storage_blocks/green_opal");
+        public static final TagKey<Block> STORAGE_BLOCKS_WHITE_OPAL = tagBlockCommon("storage_blocks/white_opal");
+        public static final TagKey<Block> STORAGE_BLOCKS_PYRITE = tagBlockCommon("storage_blocks/pyrite");
+        public static final TagKey<Block> STORAGE_BLOCKS_TEKTITE = tagBlockCommon("storage_blocks/tektite");
+        public static final TagKey<Block> STORAGE_BLOCKS_GOLDSTONE = tagBlockCommon("storage_blocks/goldstone");
+        public static final TagKey<Block> STORAGE_BLOCKS_AURA_CRYSTAL = tagBlockCommon("storage_blocks/aura");
+        public static final TagKey<Block> STORAGE_BLOCKS_BISMUTH = tagBlockCommon("storage_blocks/bismuth");
+        public static final TagKey<Block> STORAGE_BLOCKS_OPALITE = tagBlockCommon("storage_blocks/opalite");
+        public static final TagKey<Block> STORAGE_BLOCKS_STIBNITE = tagBlockCommon("storage_blocks/stibnite");
+        public static final TagKey<Block> STORAGE_BLOCKS_PROUSTITE = tagBlockCommon("storage_blocks/proustite");
+        public static final TagKey<Block> STORAGE_BLOCKS_EUCLASE = tagBlockCommon("storage_blocks/euclase");
+        public static final TagKey<Block> STORAGE_BLOCKS_ALBITE = tagBlockCommon("storage_blocks/albite");
+        public static final TagKey<Block> STORAGE_BLOCKS_CARNELIAN = tagBlockCommon("storage_blocks/carnelian");
+        public static final TagKey<Block> STORAGE_BLOCKS_BENITOITE = tagBlockCommon("storage_blocks/benitoite");
+        public static final TagKey<Block> STORAGE_BLOCKS_DIOPSIDE = tagBlockCommon("storage_blocks/diopside");
+        public static final TagKey<Block> STORAGE_BLOCKS_GOSHENITE = tagBlockCommon("storage_blocks/goshenite");
+        public static final TagKey<Block> STORAGE_BLOCKS_CELESTINE = tagBlockCommon("storage_blocks/celestine");
 
         public static final TagKey<Block> GAIA_PLANTS = tagBlock("gaia_plants");
 

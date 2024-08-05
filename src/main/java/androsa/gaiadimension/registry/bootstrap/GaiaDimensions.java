@@ -8,7 +8,7 @@ import androsa.gaiadimension.world.chunk.GaiaChunkGenerator;
 import androsa.gaiadimension.world.chunk.GaiaSurfaceRuleData;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.data.worldgen.BootstapContext;
+import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
@@ -25,12 +25,12 @@ import java.util.OptionalLong;
 
 public class GaiaDimensions {
 
-    public static final ResourceKey<LevelStem> GAIA_DIMENSION_STEM = ResourceKey.create(Registries.LEVEL_STEM, new ResourceLocation(GaiaDimensionMod.MODID, "gaia_dimension"));
-    public static final ResourceKey<Level> gaia_world = ResourceKey.create(Registries.DIMENSION, new ResourceLocation(GaiaDimensionMod.MODID, "gaia_dimension"));
-    public static final ResourceKey<DimensionType> gaia_dimension = ResourceKey.create(Registries.DIMENSION_TYPE, new ResourceLocation(GaiaDimensionMod.MODID, "gaia_dimension"));
-    public static final ResourceKey<NoiseGeneratorSettings> gaia_noise = ResourceKey.create(Registries.NOISE_SETTINGS, new ResourceLocation(GaiaDimensionMod.MODID, "gaia_noise"));
+    public static final ResourceKey<LevelStem> GAIA_DIMENSION_STEM = ResourceKey.create(Registries.LEVEL_STEM, ResourceLocation.fromNamespaceAndPath(GaiaDimensionMod.MODID, "gaia_dimension"));
+    public static final ResourceKey<Level> gaia_world = ResourceKey.create(Registries.DIMENSION, ResourceLocation.fromNamespaceAndPath(GaiaDimensionMod.MODID, "gaia_dimension"));
+    public static final ResourceKey<DimensionType> gaia_dimension = ResourceKey.create(Registries.DIMENSION_TYPE, ResourceLocation.fromNamespaceAndPath(GaiaDimensionMod.MODID, "gaia_dimension"));
+    public static final ResourceKey<NoiseGeneratorSettings> gaia_noise = ResourceKey.create(Registries.NOISE_SETTINGS, ResourceLocation.fromNamespaceAndPath(GaiaDimensionMod.MODID, "gaia_noise"));
 
-    public static void initStem(BootstapContext<LevelStem> context) {
+    public static void initStem(BootstrapContext<LevelStem> context) {
         HolderGetter<Biome> biomes = context.lookup(Registries.BIOME);
         HolderGetter<NoiseGeneratorSettings> noiseGens = context.lookup(Registries.NOISE_SETTINGS);
         HolderGetter<DimensionType> dimTypes = context.lookup(Registries.DIMENSION_TYPE);
@@ -42,7 +42,7 @@ public class GaiaDimensions {
         context.register(GAIA_DIMENSION_STEM, stem);
     }
 
-    public static void initType(BootstapContext<DimensionType> context) {
+    public static void initType(BootstrapContext<DimensionType> context) {
         DimensionType.MonsterSettings monsters = new DimensionType.MonsterSettings(
                 false, //piglin
                 false, //raids
@@ -63,7 +63,7 @@ public class GaiaDimensions {
                 64+256, //maxY
                 64+256, //logical
                 BlockTags.INFINIBURN_OVERWORLD, //infiniburn
-                new ResourceLocation(GaiaDimensionMod.MODID, "gaia"), //effects
+                ResourceLocation.fromNamespaceAndPath(GaiaDimensionMod.MODID, "gaia"), //effects
                 0.0F, //ambient
                 monsters //monsters
         );
@@ -71,7 +71,7 @@ public class GaiaDimensions {
         context.register(gaia_dimension, type);
     }
 
-    public static void initNoise(BootstapContext<NoiseGeneratorSettings> context) {
+    public static void initNoise(BootstrapContext<NoiseGeneratorSettings> context) {
         NoiseSettings noiseSettings = NoiseSettings.create(
                 -64,
                 256,

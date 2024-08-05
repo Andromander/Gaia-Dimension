@@ -1,0 +1,22 @@
+{
+  "entries": [
+    {
+      "enum": "net/minecraft/client/RecipeBookCategories",
+      "name": "RESTRUCTURING_CATEGORY",
+      "constructor": "(Ljava/util/function/Supplier;)V",
+      "parameters": {
+        "class": "androsa/gaiadimension/registry/registration/ModRecipes",
+        "field": "RESTRUCTURING_ENUM_PROXY"
+      }
+    },
+    {
+      "enum": "net/minecraft/client/RecipeBookCategories",
+      "name": "PURIFYING_CATEGORY",
+      "constructor": "(Ljava/util/function/Supplier;)V",
+      "parameters": {
+        "class": "androsa/gaiadimension/registry/registration/ModRecipes",
+        "field": "PURIFYING_ENUM_PROXY"
+      }
+    }
+  ]
+}

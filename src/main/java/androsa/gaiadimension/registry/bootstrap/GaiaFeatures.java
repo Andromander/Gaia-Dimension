@@ -19,7 +19,7 @@ import androsa.gaiadimension.world.gen.feature.trunk.VaryingFourBranchTrunkPlace
 import com.google.common.collect.ImmutableList;
 import net.minecraft.core.*;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.data.worldgen.BootstapContext;
+import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.data.worldgen.placement.PlacementUtils;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
@@ -225,16 +225,8 @@ public class GaiaFeatures extends GaiaBiomeFeatures {
             return SimpleWeightedRandomList.builder();
         }
 
-        public static OreConfiguration configureOre(RuleTest test, BlockState ore, int count) {
-            return new OreConfiguration(test, ore, count);
-        }
-
-        public static RandomPatchConfiguration configurePatch(int tries, int xzspread, int yspread, BlockStateProvider provider) {
-            return new RandomPatchConfiguration(tries, xzspread, yspread, PlacementUtils.onlyWhenEmpty(Feature.SIMPLE_BLOCK, new SimpleBlockConfiguration(provider)));
-        }
-
         private static ResourceKey<ConfiguredFeature<?, ?>> registerFeature(String name) {
-            return ResourceKey.create(Registries.CONFIGURED_FEATURE, new ResourceLocation(GaiaDimensionMod.MODID, name));
+            return ResourceKey.create(Registries.CONFIGURED_FEATURE, ResourceLocation.fromNamespaceAndPath(GaiaDimensionMod.MODID, name));
         }
 
         private static ConfiguredFeature<BlockStateConfiguration, ?> poolFeature(BlockState state) {
@@ -261,7 +253,7 @@ public class GaiaFeatures extends GaiaBiomeFeatures {
             return new ConfiguredFeature<>(feature, config);
         }
 
-        public static void init(BootstapContext<ConfiguredFeature<?, ?>> context) {
+        public static void init(BootstrapContext<ConfiguredFeature<?, ?>> context) {
             HolderGetter<ConfiguredFeature<?, ?>> features = context.lookup(Registries.CONFIGURED_FEATURE);
             HolderGetter<PlacedFeature> placed = context.lookup(Registries.PLACED_FEATURE);
 
@@ -513,7 +505,7 @@ public class GaiaFeatures extends GaiaBiomeFeatures {
         public static final ResourceKey<PlacedFeature> TWINKLING_GILSRI = registerPlaced("twinkling_gilsri");
 
         private static ResourceKey<PlacedFeature> registerPlaced(String name) {
-            return ResourceKey.create(Registries.PLACED_FEATURE, new ResourceLocation(GaiaDimensionMod.MODID, name));
+            return ResourceKey.create(Registries.PLACED_FEATURE, ResourceLocation.fromNamespaceAndPath(GaiaDimensionMod.MODID, name));
         }
 
         private static PlacedFeature placedOre(HolderGetter<ConfiguredFeature<?, ?>> getter, ResourceKey<ConfiguredFeature<?, ?>> ore, int height, int count) {
@@ -556,7 +548,7 @@ public class GaiaFeatures extends GaiaBiomeFeatures {
             return new PlacedFeature(getter.getOrThrow(feature), List.of(modifiers));
         }
 
-        public static void init(BootstapContext<PlacedFeature> context) {
+        public static void init(BootstrapContext<PlacedFeature> context) {
             HolderGetter<ConfiguredFeature<?, ?>> features = context.lookup(Registries.CONFIGURED_FEATURE);
 
             //Lakes

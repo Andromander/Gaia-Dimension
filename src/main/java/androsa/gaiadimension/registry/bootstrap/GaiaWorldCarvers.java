@@ -6,7 +6,7 @@ import androsa.gaiadimension.registry.registration.ModWorldgen;
 import androsa.gaiadimension.registry.values.GaiaBiomeFeatures;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.data.worldgen.BootstapContext;
+import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.valueproviders.ConstantFloat;
@@ -23,10 +23,10 @@ public final class GaiaWorldCarvers extends GaiaBiomeFeatures {
     public static final ResourceKey<ConfiguredWorldCarver<?>> CHASMS = makeKey("chasms");
 
     private static ResourceKey<ConfiguredWorldCarver<?>> makeKey(String name) {
-        return ResourceKey.create(Registries.CONFIGURED_CARVER, new ResourceLocation(GaiaDimensionMod.MODID, name));
+        return ResourceKey.create(Registries.CONFIGURED_CARVER, ResourceLocation.fromNamespaceAndPath(GaiaDimensionMod.MODID, name));
     }
 
-    public static void init(BootstapContext<ConfiguredWorldCarver<?>> context) {
+    public static void init(BootstrapContext<ConfiguredWorldCarver<?>> context) {
         HolderGetter<Block> blocks = context.lookup(Registries.BLOCK);
         context.register(CRYSTAL_CAVES, ModWorldgen.CRYSTAL_CAVES.get().configured(new CaveCarverConfiguration(
                 0.03F,

@@ -7,7 +7,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.biome.Biome;
 import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.fml.common.Mod;
+import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.event.config.ModConfigEvent;
 import net.neoforged.neoforge.common.ModConfigSpec;
 import net.neoforged.neoforge.common.ModConfigSpec.BooleanValue;
@@ -77,7 +77,8 @@ public class GaiaConfig {
         WHITELIST
     }
 
-    @Mod.EventBusSubscriber(modid = GaiaDimensionMod.MODID, bus = Mod.EventBusSubscriber.Bus.FORGE)
+    //TODO: Verify these two, it might be possible to move these elsewhere
+    @EventBusSubscriber(modid = GaiaDimensionMod.MODID, bus = EventBusSubscriber.Bus.GAME)
     public static class ForgeBus {
         @SubscribeEvent
         public static void onConfigLoaded(ServerStartingEvent event) {
@@ -85,7 +86,7 @@ public class GaiaConfig {
         }
     }
 
-    @Mod.EventBusSubscriber(modid = GaiaDimensionMod.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
+    @EventBusSubscriber(modid = GaiaDimensionMod.MODID, bus = EventBusSubscriber.Bus.MOD)
     public static class ModBus {
         @SubscribeEvent
         public static void onConfigChanged(ModConfigEvent.Reloading event) {

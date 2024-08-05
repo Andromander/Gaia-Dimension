@@ -1,6 +1,7 @@
 package androsa.gaiadimension.registry.registration;
 
 import androsa.gaiadimension.GaiaDimensionMod;
+import androsa.gaiadimension.item.ConstructKitItem;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
@@ -153,9 +154,8 @@ public class ModTabs {
     private static void addKits(CreativeModeTab.Output output, Supplier<? extends Item>... items) {
         for (Supplier<? extends Item> item : items) {
             ItemStack stack = new ItemStack(item.get());
-            stack.getOrCreateTag();
-            if (!stack.getTag().contains("Part")) {
-                stack.getTag().putInt("Part", 0);
+            if (!stack.has(ModDataComponents.KIT_PART)) {
+                stack.set(ModDataComponents.KIT_PART, ConstructKitItem.Part.LEFT_HORN);
             }
             output.accept(stack);
         }

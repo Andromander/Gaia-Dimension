@@ -10,7 +10,7 @@ import androsa.gaiadimension.world.gen.structure.processor.BlockDegradeProcessor
 import androsa.gaiadimension.world.gen.structure.processor.MalachiteDegradeProcessor;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.data.worldgen.BootstapContext;
+import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.biome.Biome;
@@ -51,24 +51,24 @@ public final class ModStructures {
     public static final DeferredHolder<StructurePieceType, StructurePieceType> MAWA = STRUCTURE_PIECES.register("mawa", piece(MalachiteWatchtowerPieces.Piece::new));
 
     private static ResourceKey<Structure> makeStructure(String name) {
-        return ResourceKey.create(Registries.STRUCTURE, new ResourceLocation(GaiaDimensionMod.MODID, name));
+        return ResourceKey.create(Registries.STRUCTURE, ResourceLocation.fromNamespaceAndPath(GaiaDimensionMod.MODID, name));
     }
 
     private static ResourceKey<StructureSet> makeSet(String name) {
-        return ResourceKey.create(Registries.STRUCTURE_SET, new ResourceLocation(GaiaDimensionMod.MODID, name));
+        return ResourceKey.create(Registries.STRUCTURE_SET, ResourceLocation.fromNamespaceAndPath(GaiaDimensionMod.MODID, name));
     }
 
     public static Supplier<StructurePieceType> piece(StructurePieceType.StructureTemplateType piece) {
         return () -> piece;
     }
 
-    public static void initStructures(BootstapContext<Structure> context) {
+    public static void initStructures(BootstrapContext<Structure> context) {
         HolderGetter<Biome> biomes = context.lookup(Registries.BIOME);
         context.register(MINI_TOWER, new MiniTowerStructure(new Structure.StructureSettings(biomes.getOrThrow(GaiaTags.Biomes.HAS_MINI_TOWER), Map.of(), GenerationStep.Decoration.SURFACE_STRUCTURES, TerrainAdjustment.NONE)));
         context.register(MALACHITE_WATCHTOWER, new MalachiteWatchtowerStructure(new Structure.StructureSettings(biomes.getOrThrow(GaiaTags.Biomes.HAS_MALACHITE_WATCHTOWER), MalachiteWatchtowerStructure.SPAWNS, GenerationStep.Decoration.SURFACE_STRUCTURES, TerrainAdjustment.NONE)));
     }
 
-    public static void initSets(BootstapContext<StructureSet> context) {
+    public static void initSets(BootstrapContext<StructureSet> context) {
         HolderGetter<Structure> structures = context.lookup(Registries.STRUCTURE);
         context.register(MINI_TOWER_SET, new StructureSet(structures.getOrThrow(MINI_TOWER), new RandomSpreadStructurePlacement(30, 10, RandomSpreadType.LINEAR, 420)));
         context.register(MALACHITE_WATCHTOWER_SET, new StructureSet(structures.getOrThrow(MALACHITE_WATCHTOWER), new RandomSpreadStructurePlacement(35, 15, RandomSpreadType.TRIANGULAR, 621)));

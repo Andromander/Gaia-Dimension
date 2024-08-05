@@ -11,21 +11,21 @@ import net.neoforged.neoforge.registries.datamaps.RegisterDataMapTypesEvent;
 public class ModDataMaps {
 
     public static final DataMapType<Item, Integer> GLITTERING_FUEL = DataMapType.builder(
-                    new ResourceLocation(GaiaDimensionMod.MODID, "glittering_fuel"),
+                    ResourceLocation.fromNamespaceAndPath(GaiaDimensionMod.MODID, "glittering_fuel"),
                     Registries.ITEM,
                     ExtraCodecs.POSITIVE_INT)
             .synced(ExtraCodecs.POSITIVE_INT, false)
             .build();
 
     public static final DataMapType<Item, Integer> SHINING_FUEL = DataMapType.builder(
-                    new ResourceLocation(GaiaDimensionMod.MODID, "shining_fuel"),
+                    ResourceLocation.fromNamespaceAndPath(GaiaDimensionMod.MODID, "shining_fuel"),
                     Registries.ITEM,
                     ExtraCodecs.POSITIVE_INT)
             .synced(ExtraCodecs.POSITIVE_INT, false)
             .build();
 
     public static final DataMapType<Item, Integer> NULLING_FUEL = DataMapType.builder(
-                    new ResourceLocation(GaiaDimensionMod.MODID, "nulling_fuel"),
+                    ResourceLocation.fromNamespaceAndPath(GaiaDimensionMod.MODID, "nulling_fuel"),
                     Registries.ITEM,
                     ExtraCodecs.POSITIVE_INT)
             .synced(ExtraCodecs.POSITIVE_INT, false)

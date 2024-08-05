@@ -92,11 +92,11 @@ public class RemapHelper {
     }
 
     private static void remapBlock(DeferredRegister.Blocks blockreg, DeferredRegister.Items itemreg, String old, String path) {
-        blockreg.addAlias(new ResourceLocation(GaiaDimensionMod.MODID, old), new ResourceLocation(GaiaDimensionMod.MODID, path));
+        blockreg.addAlias(ResourceLocation.fromNamespaceAndPath(GaiaDimensionMod.MODID, old), ResourceLocation.fromNamespaceAndPath(GaiaDimensionMod.MODID, path));
         remapItem(itemreg, old, path);
     }
 
     private static void remapItem(DeferredRegister.Items registry, String old, String path) {
-        registry.addAlias(new ResourceLocation(GaiaDimensionMod.MODID, old), new ResourceLocation(GaiaDimensionMod.MODID, path));
+        registry.addAlias(ResourceLocation.fromNamespaceAndPath(GaiaDimensionMod.MODID, old), ResourceLocation.fromNamespaceAndPath(GaiaDimensionMod.MODID, path));
     }
 }

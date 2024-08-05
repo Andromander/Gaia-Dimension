@@ -35,6 +35,6 @@ public class GaiaBiomes {
     public static final ResourceKey<Biome> golden_marsh = registerBiome("golden_marsh");
 
     private static ResourceKey<Biome> registerBiome(String name) {
-        return ResourceKey.create(Registries.BIOME, new ResourceLocation(GaiaDimensionMod.MODID, name));
+        return ResourceKey.create(Registries.BIOME, ResourceLocation.fromNamespaceAndPath(GaiaDimensionMod.MODID, name));
     }
 }

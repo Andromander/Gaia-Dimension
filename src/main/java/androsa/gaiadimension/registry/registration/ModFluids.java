@@ -34,15 +34,15 @@ public class ModFluids {
 
 	//FluidTypes
 	public static final DeferredHolder<FluidType, FluidType> MINERAL_WATER = FLUID_TYPES.register("mineral_water",
-			makeFluidType(GaiaFluidAttributes.mineral_water_attributes, GaiaFluidAttributes.mineral_still, GaiaFluidAttributes.mineral_flow, true, new Vector3f(0.6875F, 0.75F, 1.0F), null));
+			() -> new FluidType(GaiaFluidAttributes.mineral_water_attributes));
 	public static final DeferredHolder<FluidType, FluidType> SUPERHOT_MAGMA = FLUID_TYPES.register("superhot_magma",
-			makeFluidType(GaiaFluidAttributes.superhot_magma_attributes, GaiaFluidAttributes.superhot_still, GaiaFluidAttributes.superhot_flow, false, new Vector3f(0.0F, 1.0F, 1.0F), null));
+			() -> new FluidType(GaiaFluidAttributes.superhot_magma_attributes));
 	public static final DeferredHolder<FluidType, FluidType> SWEET_MUCK = FLUID_TYPES.register("sweet_muck",
-			makeFluidType(GaiaFluidAttributes.sweet_muck_attrubutes, GaiaFluidAttributes.sweet_still, GaiaFluidAttributes.sweet_flow, true, new Vector3f(0.5F, 0.0F, 0.5F), null));
+			() -> new FluidType(GaiaFluidAttributes.sweet_muck_attrubutes));
 	public static final DeferredHolder<FluidType, FluidType> LIQUID_BISMUTH = FLUID_TYPES.register("liquid_bismuth",
-			makeFluidType(GaiaFluidAttributes.liquid_bismuth_attributes, GaiaFluidAttributes.bismuth_still, GaiaFluidAttributes.bismuth_flow, false, new Vector3f(0.5F, 0.5F, 0.5F), () -> ClientEvents::getBismuthColor));
+			() -> new FluidType(GaiaFluidAttributes.liquid_bismuth_attributes));
 	public static final DeferredHolder<FluidType, FluidType> LIQUID_AURA = FLUID_TYPES.register("liquid_aura",
-			makeFluidType(GaiaFluidAttributes.liquid_aura_attributes, GaiaFluidAttributes.aura_still, GaiaFluidAttributes.aura_flow, true, new Vector3f(1.0F, 1.0F, 1.0F), () -> ClientEvents::getAuraColor));
+			() -> new FluidType(GaiaFluidAttributes.liquid_aura_attributes));
 
 	//Fluids
     public static final DeferredHolder<Fluid, FlowingFluid> mineral_water_still = FLUIDS.register("mineral_water_still",
@@ -65,38 +65,4 @@ public class ModFluids {
 			() -> new BaseFlowingFluid.Source(GaiaFluidAttributes.liquid_aura_properties.get()));
     public static final DeferredHolder<Fluid, FlowingFluid> liquid_aura_flow = FLUIDS.register("liquid_aura_flow",
 			() -> new BaseFlowingFluid.Flowing(GaiaFluidAttributes.liquid_aura_properties.get()));
-
-	private static Supplier<FluidType> makeFluidType(FluidType.Properties props, ResourceLocation stillpath, ResourceLocation flowingpath, boolean overlay, Vector3f fog, Supplier<Function<BlockPos, Integer>> color) {
-		return () -> new FluidType(props) {
-			@Override
-			public void initializeClient(Consumer<IClientFluidTypeExtensions> consumer) {
-				consumer.accept(new IClientFluidTypeExtensions() {
-					@Override
-					public ResourceLocation getStillTexture() {
-						return stillpath;
-					}
-
-					@Override
-					public ResourceLocation getFlowingTexture() {
-						return flowingpath;
-					}
-
-					@Override
-					public @Nullable ResourceLocation getOverlayTexture() {
-						return overlay ? new ResourceLocation("block/water_overlay") : null;
-					}
-
-					@Override
-					public int getTintColor(FluidState state, BlockAndTintGetter getter, BlockPos pos) {
-						return color != null ? color.get().apply(pos) | 0xFF000000 : this.getTintColor();
-					}
-
-					@Override
-					public @NotNull Vector3f modifyFogColor(Camera camera, float partialTick, ClientLevel level, int renderDistance, float darkenWorldAmount, Vector3f fluidFogColor) {
-						return fog;
-					}
-				});
-			}
-		};
-	}
 }
