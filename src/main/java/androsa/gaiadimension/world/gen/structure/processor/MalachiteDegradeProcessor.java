@@ -4,6 +4,7 @@ import androsa.gaiadimension.registry.registration.ModBlocks;
 import androsa.gaiadimension.registry.registration.ModStructures;
 import com.google.common.collect.ImmutableList;
 import com.mojang.serialization.Codec;
+import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
@@ -22,7 +23,7 @@ import java.util.function.Supplier;
 
 public class MalachiteDegradeProcessor extends StructureProcessor {
 
-    public static final Codec<MalachiteDegradeProcessor> CODEC = Codec.FLOAT.fieldOf("integrity").orElse(1.0F).xmap(MalachiteDegradeProcessor::new, (obj) -> obj.integrity).codec();
+    public static final MapCodec<MalachiteDegradeProcessor> CODEC = Codec.FLOAT.fieldOf("integrity").orElse(1.0F).xmap(MalachiteDegradeProcessor::new, (obj) -> obj.integrity);
 
     private final float integrity;
     private static final Random random = new Random();

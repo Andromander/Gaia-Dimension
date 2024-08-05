@@ -3,6 +3,7 @@ package androsa.gaiadimension.world.gen.feature.trunk;
 import androsa.gaiadimension.registry.registration.ModWorldgen;
 import com.google.common.collect.ImmutableList;
 import com.mojang.serialization.Codec;
+import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.RandomSource;
@@ -18,7 +19,7 @@ import java.util.function.BiConsumer;
 
 public class ThickTrunkPlacer extends TrunkPlacer {
 
-    public static final Codec<ThickTrunkPlacer> CODEC = RecordCodecBuilder.create((instance) ->
+    public static final MapCodec<ThickTrunkPlacer> CODEC = RecordCodecBuilder.mapCodec((instance) ->
             trunkPlacerParts(instance).apply(instance, ThickTrunkPlacer::new));
 
     public ThickTrunkPlacer(int base, int randA, int randB) {

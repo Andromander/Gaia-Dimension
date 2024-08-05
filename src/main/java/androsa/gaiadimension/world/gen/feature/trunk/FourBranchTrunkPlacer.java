@@ -3,6 +3,7 @@ package androsa.gaiadimension.world.gen.feature.trunk;
 import androsa.gaiadimension.registry.registration.ModWorldgen;
 import com.google.common.collect.Lists;
 import com.mojang.serialization.Codec;
+import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -19,7 +20,7 @@ import java.util.function.BiConsumer;
 
 public class FourBranchTrunkPlacer extends TrunkPlacer {
 
-    public static final Codec<FourBranchTrunkPlacer> CODEC = RecordCodecBuilder.create((instance) ->
+    public static final MapCodec<FourBranchTrunkPlacer> CODEC = RecordCodecBuilder.mapCodec((instance) ->
             trunkPlacerParts(instance).apply(instance, FourBranchTrunkPlacer::new));
 
     public FourBranchTrunkPlacer(int base, int randA, int randB) {

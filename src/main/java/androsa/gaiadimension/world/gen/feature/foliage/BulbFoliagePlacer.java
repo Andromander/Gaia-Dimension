@@ -2,6 +2,7 @@ package androsa.gaiadimension.world.gen.feature.foliage;
 
 import androsa.gaiadimension.registry.registration.ModWorldgen;
 import com.mojang.serialization.Codec;
+import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.util.RandomSource;
 import net.minecraft.util.valueproviders.IntProvider;
@@ -11,7 +12,7 @@ import net.minecraft.world.level.levelgen.feature.foliageplacers.FoliagePlacer;
 import net.minecraft.world.level.levelgen.feature.foliageplacers.FoliagePlacerType;
 
 public class BulbFoliagePlacer extends FoliagePlacer {
-    public static final Codec<BulbFoliagePlacer> CODEC = RecordCodecBuilder.create((instance) ->
+    public static final MapCodec<BulbFoliagePlacer> CODEC = RecordCodecBuilder.mapCodec((instance) ->
             foliagePlacerParts(instance).apply(instance, BulbFoliagePlacer::new));
 
     public BulbFoliagePlacer(IntProvider radius, IntProvider offset) {

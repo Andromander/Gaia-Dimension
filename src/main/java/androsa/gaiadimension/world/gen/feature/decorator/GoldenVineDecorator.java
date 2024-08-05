@@ -3,6 +3,7 @@ package androsa.gaiadimension.world.gen.feature.decorator;
 import androsa.gaiadimension.registry.registration.ModBlocks;
 import androsa.gaiadimension.registry.registration.ModWorldgen;
 import com.mojang.serialization.Codec;
+import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.block.VineBlock;
@@ -14,7 +15,7 @@ import java.util.List;
 
 public class GoldenVineDecorator extends TreeDecorator {
 
-    public static final Codec<GoldenVineDecorator> CODEC = Codec.unit(() -> GoldenVineDecorator.INSTANCE);
+    public static final MapCodec<GoldenVineDecorator> CODEC = MapCodec.unit(() -> GoldenVineDecorator.INSTANCE);
     public static final GoldenVineDecorator INSTANCE = new GoldenVineDecorator();
 
     @Override

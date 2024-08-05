@@ -2,6 +2,7 @@ package androsa.gaiadimension.world.gen.structure.processor;
 
 import androsa.gaiadimension.registry.registration.ModStructures;
 import com.mojang.serialization.Codec;
+import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.LevelReader;
@@ -25,7 +26,7 @@ public class BlockDegradeProcessor extends StructureProcessor {
     public static final BlockDegradeProcessor JADE_DECAY = new BlockDegradeProcessor(MiniTowerType.JADE, 0.55F);
     public static final BlockDegradeProcessor JET_DECAY = new BlockDegradeProcessor(MiniTowerType.JET, 0.55F);
 
-    public static final Codec<BlockDegradeProcessor> CODEC = RecordCodecBuilder.create((instance) ->
+    public static final MapCodec<BlockDegradeProcessor> CODEC = RecordCodecBuilder.mapCodec((instance) ->
             instance.group(
                     MiniTowerType.CODEC.fieldOf("towertype").orElse(MiniTowerType.AMETHYST).forGetter((obj) -> obj.towertype),
                     Codec.FLOAT.fieldOf("integrity").orElse(1.0F).forGetter((obj) -> obj.integrity)
