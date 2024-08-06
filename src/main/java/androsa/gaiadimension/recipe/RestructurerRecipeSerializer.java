@@ -1,52 +1,58 @@
 package androsa.gaiadimension.recipe;
 
 import com.mojang.serialization.Codec;
+import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.util.ExtraCodecs;
+import net.minecraft.network.RegistryFriendlyByteBuf;
+import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 
 public class RestructurerRecipeSerializer<T extends RestructurerRecipe> implements RecipeSerializer<T> {
     private final RestructurerRecipe.EntityFactory<T> factory;
-    private final Codec<T> codec;
+    private final MapCodec<T> codec;
+    private final StreamCodec<RegistryFriendlyByteBuf, T> streamCodec;
 
     public RestructurerRecipeSerializer(RestructurerRecipe.EntityFactory<T> factoryIn, int timeIn) {
-        this.codec = RecordCodecBuilder.create(
+        this.codec = RecordCodecBuilder.mapCodec(
                 instance -> instance.group(
-                        ExtraCodecs.strictOptionalField(Codec.STRING, "group", "").forGetter(obj -> obj.group),
+                        Codec.STRING.optionalFieldOf("group", "").forGetter(obj -> obj.group),
                         Ingredient.CODEC_NONEMPTY.fieldOf("ingredient").forGetter(obj -> obj.ingredient),
-                        ItemStack.ITEM_WITH_COUNT_CODEC.fieldOf("result").forGetter(obj -> obj.result),
-                        ItemStack.ITEM_WITH_COUNT_CODEC.fieldOf("byproduct").forGetter(obj -> obj.byproduct),
+                        ItemStack.CODEC.fieldOf("result").forGetter(obj -> obj.result),
+                        ItemStack.CODEC.fieldOf("byproduct").forGetter(obj -> obj.byproduct),
                         Codec.FLOAT.fieldOf("experience").orElse(0.0F).forGetter(obj -> obj.experience),
                         Codec.INT.fieldOf("cookingtime").orElse(timeIn).forGetter(obj -> obj.cookTime)
                 ).apply(instance, factoryIn::create));
         this.factory = factoryIn;
+        this.streamCodec = StreamCodec.of(this::toNetwork, this::fromNetwork);
     }
 
     @Override
-    public Codec<T> codec() {
+    public MapCodec<T> codec() {
         return this.codec;
     }
 
     @Override
-    public T fromNetwork(FriendlyByteBuf buffer) {
+    public StreamCodec<RegistryFriendlyByteBuf, T> streamCodec() {
+        return this.streamCodec;
+    }
+
+    public T fromNetwork(RegistryFriendlyByteBuf buffer) {
         String s = buffer.readUtf(32767);
-        Ingredient ingredient = Ingredient.fromNetwork(buffer);
-        ItemStack itemstack = buffer.readItem();
-        ItemStack itemstack1 = buffer.readItem();
+        Ingredient ingredient = Ingredient.CONTENTS_STREAM_CODEC.decode(buffer);
+        ItemStack itemstack = ItemStack.STREAM_CODEC.decode(buffer);
+        ItemStack itemstack1 = ItemStack.STREAM_CODEC.decode(buffer);
         float f = buffer.readFloat();
         int i = buffer.readVarInt();
         return this.factory.create(s, ingredient, itemstack, itemstack1, f, i);
     }
 
-    @Override
-    public void toNetwork(FriendlyByteBuf buffer, T recipe) {
+    public void toNetwork(RegistryFriendlyByteBuf buffer, T recipe) {
         buffer.writeUtf(recipe.group);
-        recipe.ingredient.toNetwork(buffer);
-        buffer.writeItem(recipe.result);
-        buffer.writeItem(recipe.byproduct);
+        Ingredient.CONTENTS_STREAM_CODEC.encode(buffer, recipe.ingredient);
+        ItemStack.STREAM_CODEC.encode(buffer, recipe.result);
+        ItemStack.STREAM_CODEC.encode(buffer, recipe.byproduct);
         buffer.writeFloat(recipe.experience);
         buffer.writeVarInt(recipe.cookTime);
     }
