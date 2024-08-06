@@ -28,8 +28,8 @@ public class NullFuelCategory extends PurifierRecipeCategory<NullFuelRecipe> {
     private final IDrawableStatic staticFlame;
     private final Component localizedName;
     private final LoadingCache<Integer, IDrawableAnimated> cache;
-    private static final ResourceLocation BACKGROUND = new ResourceLocation("jei:textures/jei/gui/gui_vanilla.png");
-    private static final ResourceLocation FLAME = new ResourceLocation(GaiaDimensionMod.MODID, "textures/gui/jei/nulling.png");
+    private static final ResourceLocation BACKGROUND = ResourceLocation.fromNamespaceAndPath("jei", "textures/jei/gui/gui_vanilla.png");
+    private static final ResourceLocation FLAME = ResourceLocation.fromNamespaceAndPath(GaiaDimensionMod.MODID, "textures/gui/jei/nulling.png");
 
     public NullFuelCategory(IGuiHelper guiHelper) {
         background = guiHelper.drawableBuilder(BACKGROUND, 0, 134, 18, 34)

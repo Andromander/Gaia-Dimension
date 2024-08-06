@@ -31,7 +31,7 @@ public class JEICompat implements IModPlugin {
 
     @Override
     public ResourceLocation getPluginUid() {
-        return new ResourceLocation(GaiaDimensionMod.MODID, GaiaDimensionMod.MODID); //This dumb? Probably...
+        return ResourceLocation.fromNamespaceAndPath(GaiaDimensionMod.MODID, GaiaDimensionMod.MODID); //This dumb? Probably...
     }
 
     @Override

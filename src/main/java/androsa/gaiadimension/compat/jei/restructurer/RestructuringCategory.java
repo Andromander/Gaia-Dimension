@@ -26,7 +26,7 @@ public class RestructuringCategory extends RestructurerRecipeCategory<RecipeHold
     private final IDrawable background;
     private final IDrawable icon;
     private final Component localizedName;
-    private static final ResourceLocation BACKGROUND = new ResourceLocation(GaiaDimensionMod.MODID, "textures/gui/jei/recipe2output.png");
+    private static final ResourceLocation BACKGROUND = ResourceLocation.fromNamespaceAndPath(GaiaDimensionMod.MODID, "textures/gui/jei/recipe2output.png");
 
     public RestructuringCategory(IGuiHelper guiHelper) {
         background = guiHelper.drawableBuilder(BACKGROUND, 0, 0, 75, 55)

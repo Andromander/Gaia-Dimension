@@ -28,8 +28,8 @@ public class GlitterFuelCategory extends RestructurerRecipeCategory<GlitterFuelR
     private final IDrawableStatic staticFlame;
     private final Component localizedName;
     private final LoadingCache<Integer, IDrawableAnimated> cache;
-    private static final ResourceLocation BACKGROUND = new ResourceLocation("jei:textures/jei/gui/gui_vanilla.png");
-    private static final ResourceLocation FLAME = new ResourceLocation(GaiaDimensionMod.MODID, "textures/gui/jei/glittering.png");
+    private static final ResourceLocation BACKGROUND = ResourceLocation.fromNamespaceAndPath("jei", "textures/jei/gui/gui_vanilla.png");
+    private static final ResourceLocation FLAME = ResourceLocation.fromNamespaceAndPath(GaiaDimensionMod.MODID, "textures/gui/jei/glittering.png");
 
     public GlitterFuelCategory(IGuiHelper guiHelper) {
         background = guiHelper.drawableBuilder(BACKGROUND, 0, 134, 18, 34)
