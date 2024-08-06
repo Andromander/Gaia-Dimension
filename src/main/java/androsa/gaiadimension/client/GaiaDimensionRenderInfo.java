@@ -1,6 +1,5 @@
 package androsa.gaiadimension.client;
 
-import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.Camera;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.renderer.DimensionSpecialEffects;
@@ -14,8 +13,8 @@ public class GaiaDimensionRenderInfo extends DimensionSpecialEffects {
     }
 
     @Override
-    public boolean renderSky(ClientLevel level, int ticks, float partialTick, PoseStack poseStack, Camera camera, Matrix4f projectionMatrix, boolean isFoggy, Runnable setupFog) {
-        return GaiaSkyRender.render(partialTick, poseStack, level, camera, projectionMatrix, setupFog);
+    public boolean renderSky(ClientLevel level, int ticks, float partialTick, Matrix4f modelMatrix, Camera camera, Matrix4f projectionMatrix, boolean isFoggy, Runnable setupFog) {
+        return GaiaSkyRender.render(partialTick, modelMatrix, level, camera, projectionMatrix, setupFog);
     }
 
     @Override
