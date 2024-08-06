@@ -256,7 +256,7 @@ public class GaiaBlockTags extends GaiaBlockTagsProvider {
         addTag(GaiaTags.Blocks.TILES, TILES);
 
         //addTag(Tags.Blocks.DIRT, DIRT);
-        tag(Tags.Blocks.GLASS).add(ModBlocks.foggy_glass.get(), ModBlocks.cloudy_glass.get());
+        tag(Tags.Blocks.GLASS_BLOCKS).add(ModBlocks.foggy_glass.get(), ModBlocks.cloudy_glass.get());
         tag(Tags.Blocks.ORES).addTags(
                 GaiaTags.Blocks.ORES_SUGILITE, GaiaTags.Blocks.ORES_HEMATITE, GaiaTags.Blocks.ORES_CINNABAR, GaiaTags.Blocks.ORES_LABRADORITE, GaiaTags.Blocks.ORES_MOONSTONE,
                 GaiaTags.Blocks.ORES_RED_OPAL, GaiaTags.Blocks.ORES_BLUE_OPAL, GaiaTags.Blocks.ORES_GREEN_OPAL, GaiaTags.Blocks.ORES_WHITE_OPAL, GaiaTags.Blocks.ORES_PYRITE, GaiaTags.Blocks.ORES_OPALITE);

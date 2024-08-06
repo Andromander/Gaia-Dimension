@@ -25,8 +25,8 @@ import java.util.function.Supplier;
 
 public abstract class GaiaRecipeProvider extends RecipeProvider implements IConditionBuilder {
 
-    public GaiaRecipeProvider(PackOutput output) {
-        super(output);
+    public GaiaRecipeProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> provider) {
+        super(output, provider);
     }
 
     public ShapedRecipeBuilder smallCompressRecipe(ItemLike result, ItemLike ingredient) {

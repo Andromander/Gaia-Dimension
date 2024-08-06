@@ -1,17 +1,17 @@
 package androsa.gaiadimension.data.provider;
 
 import androsa.gaiadimension.block.CurtainBlock;
-import androsa.gaiadimension.block.LargeCrateBlock;
-import androsa.gaiadimension.block.SmallCrateBlock;
-import androsa.gaiadimension.registry.registration.ModBlockEntities;
 import androsa.gaiadimension.registry.registration.ModItems;
 import net.minecraft.advancements.critereon.*;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.HolderLookup;
+import net.minecraft.core.component.DataComponents;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.data.loot.BlockLootSubProvider;
-import net.minecraft.util.StringRepresentable;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.DoublePlantBlock;
@@ -20,12 +20,10 @@ import net.minecraft.world.level.block.SlabBlock;
 import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
 import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
-import net.minecraft.world.level.storage.loot.entries.DynamicLoot;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.entries.LootPoolEntryContainer;
 import net.minecraft.world.level.storage.loot.functions.*;
 import net.minecraft.world.level.storage.loot.predicates.*;
-import net.minecraft.world.level.storage.loot.providers.nbt.ContextNbtProvider;
 import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
 import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
 
@@ -34,13 +32,12 @@ import java.util.function.Function;
 import java.util.function.Supplier;
 
 public abstract class GaiaBlockLootTableProvider extends BlockLootSubProvider {
-    private static final LootItemCondition.Builder has_silk_touch = MatchTool.toolMatches(ItemPredicate.Builder.item().hasEnchantment(new EnchantmentPredicate(Enchantments.SILK_TOUCH, MinMaxBounds.Ints.atLeast(1))));
     private static final LootItemCondition.Builder has_shears = MatchTool.toolMatches(ItemPredicate.Builder.item().of(Items.SHEARS));
-    private static final LootItemCondition.Builder shears_or_silk = has_shears.or(has_silk_touch);
-    private static final LootItemCondition.Builder silk_or_shears = shears_or_silk.invert();
+    private final LootItemCondition.Builder shears_or_silk = has_shears.or(this.hasSilkTouch());
+    private final LootItemCondition.Builder silk_or_shears = shears_or_silk.invert();
 
-    protected GaiaBlockLootTableProvider() {
-        super(Set.of(), FeatureFlags.REGISTRY.allFlags());
+    protected GaiaBlockLootTableProvider(HolderLookup.Provider provider) {
+        super(Set.of(), FeatureFlags.REGISTRY.allFlags(), provider);
     }
 
     public <T extends Block> void noDrops(Supplier<T> block) {
@@ -88,9 +85,10 @@ public abstract class GaiaBlockLootTableProvider extends BlockLootSubProvider {
     }
 
     public void dropAlternative(Supplier<Block> block, Supplier<Item> drop) {
+        HolderLookup.RegistryLookup<Enchantment> lookup = this.registries.lookupOrThrow(Registries.ENCHANTMENT);
         add(block.get(), (result) ->
                 createSilkTouchDispatchTable(result, applyExplosionCondition(result, LootItem.lootTableItem(drop.get())
-                        .when(BonusLevelTableCondition.bonusLevelFlatChance(Enchantments.BLOCK_FORTUNE, 0.1F, 0.14285715F, 0.25F, 1.0F))
+                        .when(BonusLevelTableCondition.bonusLevelFlatChance(lookup.getOrThrow(Enchantments.FORTUNE), 0.1F, 0.14285715F, 0.25F, 1.0F))
                         .otherwise(LootItem.lootTableItem(result)))));
     }
 
@@ -108,12 +106,11 @@ public abstract class GaiaBlockLootTableProvider extends BlockLootSubProvider {
                         .setRolls(ConstantValue.exactly(1))
                         .add(LootItem.lootTableItem(block)
                                 .apply(CopyNameFunction.copyName(CopyNameFunction.NameSource.BLOCK_ENTITY))
-                                .apply(CopyNbtFunction.copyData(ContextNbtProvider.BLOCK_ENTITY)
-                                        .copy("Lock", "BlockEntityTag.Lock")
-                                        .copy("LootTable", "BlockEntityTag.LootTable")
-                                        .copy("LootTableSeed", "BlockEntityTag.LootTableSeed"))
-                                .apply(SetContainerContents.setContents(ModBlockEntities.SMALL_CRATE.get())
-                                        .withEntry(DynamicLoot.dynamicEntry(SmallCrateBlock.NAME))))));
+                                .apply(CopyComponentsFunction.copyComponents(CopyComponentsFunction.Source.BLOCK_ENTITY)
+                                        .include(DataComponents.CUSTOM_NAME)
+                                        .include(DataComponents.CONTAINER)
+                                        .include(DataComponents.LOCK)
+                                        .include(DataComponents.CONTAINER_LOOT)))));
     }
 
     protected LootTable.Builder largeCrate(Block block) {
@@ -122,12 +119,11 @@ public abstract class GaiaBlockLootTableProvider extends BlockLootSubProvider {
                         .setRolls(ConstantValue.exactly(1))
                         .add(LootItem.lootTableItem(block)
                                 .apply(CopyNameFunction.copyName(CopyNameFunction.NameSource.BLOCK_ENTITY))
-                                .apply(CopyNbtFunction.copyData(ContextNbtProvider.BLOCK_ENTITY)
-                                        .copy("Lock", "BlockEntityTag.Lock")
-                                        .copy("LootTable", "BlockEntityTag.LootTable")
-                                        .copy("LootTableSeed", "BlockEntityTag.LootTableSeed"))
-                                .apply(SetContainerContents.setContents(ModBlockEntities.LARGE_CRATE.get())
-                                        .withEntry(DynamicLoot.dynamicEntry(LargeCrateBlock.NAME))))));
+                                .apply(CopyComponentsFunction.copyComponents(CopyComponentsFunction.Source.BLOCK_ENTITY)
+                                        .include(DataComponents.CUSTOM_NAME)
+                                        .include(DataComponents.CONTAINER)
+                                        .include(DataComponents.LOCK)
+                                        .include(DataComponents.CONTAINER_LOOT)))));
     }
 
     public LootTable.Builder withName(Block block) {
@@ -139,30 +135,34 @@ public abstract class GaiaBlockLootTableProvider extends BlockLootSubProvider {
     }
 
     protected LootTable.Builder withChance(Block block, Block drop, float... chances) {
+        HolderLookup.RegistryLookup<Enchantment> lookup = this.registries.lookupOrThrow(Registries.ENCHANTMENT);
         return createSilkTouchOrShearsDispatchTable(block, applyExplosionCondition(block, LootItem.lootTableItem(drop))
-                .when(BonusLevelTableCondition.bonusLevelFlatChance(Enchantments.BLOCK_FORTUNE, chances)));
+                .when(BonusLevelTableCondition.bonusLevelFlatChance(lookup.getOrThrow(Enchantments.FORTUNE), chances)));
     }
 
     protected LootTable.Builder withChanceAdditional(Block block, Block sapling, Item item, float... chances) {
+        HolderLookup.RegistryLookup<Enchantment> lookup = this.registries.lookupOrThrow(Registries.ENCHANTMENT);
         return createSilkTouchOrShearsDispatchTable(block, applyExplosionCondition(block, LootItem.lootTableItem(sapling))
-                .when(BonusLevelTableCondition.bonusLevelFlatChance(Enchantments.BLOCK_FORTUNE, chances)))
+                .when(BonusLevelTableCondition.bonusLevelFlatChance(lookup.getOrThrow(Enchantments.FORTUNE), chances)))
                 .withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1))
                         .when(silk_or_shears)
                         .add(applyExplosionDecay(block, LootItem.lootTableItem(item)
                                 .apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 2.0F))))
-                                .when(BonusLevelTableCondition.bonusLevelFlatChance(Enchantments.BLOCK_FORTUNE, 0.02F, 0.022222223F, 0.025F, 0.033333335F, 0.1F))));
+                                .when(BonusLevelTableCondition.bonusLevelFlatChance(lookup.getOrThrow(Enchantments.FORTUNE), 0.02F, 0.022222223F, 0.025F, 0.033333335F, 0.1F))));
     }
 
     protected LootTable.Builder withShards(Block block) {
+        HolderLookup.RegistryLookup<Enchantment> lookup = this.registries.lookupOrThrow(Registries.ENCHANTMENT);
         return createShearsDispatchTable(block, applyExplosionDecay(block, LootItem.lootTableItem(ModItems.crystal_shard.get())
                 .when(LootItemRandomChanceCondition.randomChance(0.125F))
-                .apply(ApplyBonusCount.addUniformBonusCount(Enchantments.BLOCK_FORTUNE, 2))));
+                .apply(ApplyBonusCount.addUniformBonusCount(lookup.getOrThrow(Enchantments.FORTUNE), 2))));
     }
 
     protected LootTable.Builder multipleOreDrops(Block ore, Item drop) {
+        HolderLookup.RegistryLookup<Enchantment> lookup = this.registries.lookupOrThrow(Registries.ENCHANTMENT);
         return createSilkTouchDispatchTable(ore, applyExplosionDecay(ore, LootItem.lootTableItem(drop)
                 .apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 3.0F)))
-                .apply(ApplyBonusCount.addOreBonusCount(Enchantments.BLOCK_FORTUNE))));
+                .apply(ApplyBonusCount.addOreBonusCount(lookup.getOrThrow(Enchantments.FORTUNE)))));
     }
 
     protected LootTable.Builder curtainHalf(Block block) {

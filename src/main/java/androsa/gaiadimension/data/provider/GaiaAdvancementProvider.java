@@ -5,7 +5,9 @@ import net.minecraft.advancements.Criterion;
 import net.minecraft.advancements.critereon.InventoryChangeTrigger;
 import net.minecraft.advancements.critereon.LocationPredicate;
 import net.minecraft.advancements.critereon.PlayerTrigger;
+import net.minecraft.core.HolderGetter;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
@@ -13,6 +15,7 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.biome.Biome;
+import net.minecraft.world.level.levelgen.structure.Structure;
 import net.neoforged.neoforge.common.data.AdvancementProvider;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 
@@ -39,11 +42,17 @@ public class GaiaAdvancementProvider extends AdvancementProvider {
     }
 
     protected static String loc(String name) {
-        return new ResourceLocation(GaiaDimensionMod.MODID, "gaia/" + name).toString();
+        return ResourceLocation.fromNamespaceAndPath(GaiaDimensionMod.MODID, "gaia/" + name).toString();
     }
 
-    protected static Criterion<?> biome(ResourceKey<Biome> define) {
-        return PlayerTrigger.TriggerInstance.located(LocationPredicate.Builder.inBiome(define));
+    protected static Criterion<?> biome(HolderLookup.Provider provider, ResourceKey<Biome> define) {
+        HolderGetter<Biome> registry = provider.lookupOrThrow(Registries.BIOME);
+        return PlayerTrigger.TriggerInstance.located(LocationPredicate.Builder.inBiome(registry.getOrThrow(define)));
+    }
+
+    protected static Criterion<?> structure(HolderLookup.Provider provider, ResourceKey<Structure> define) {
+        HolderGetter<Structure> registry = provider.lookupOrThrow(Registries.STRUCTURE);
+        return PlayerTrigger.TriggerInstance.located(LocationPredicate.Builder.inStructure(registry.getOrThrow(define)));
     }
 
     protected static Criterion<?> item(Supplier<? extends Item> item) {

@@ -10,7 +10,6 @@ import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 
@@ -18,8 +17,8 @@ import java.util.concurrent.CompletableFuture;
 
 public class GaiaRecipes extends GaiaRecipeProvider {
 
-    public GaiaRecipes(PackOutput output) {
-        super(output);
+    public GaiaRecipes(PackOutput output, CompletableFuture<HolderLookup.Provider> provider) {
+        super(output, provider);
     }
 
     @Override
@@ -538,7 +537,7 @@ public class GaiaRecipes extends GaiaRecipeProvider {
     }
 
     private ResourceLocation loc(String name) {
-        return new ResourceLocation(GaiaDimensionMod.MODID, name);
+        return ResourceLocation.fromNamespaceAndPath(GaiaDimensionMod.MODID, name);
     }
 
     private ResourceLocation locArmor(String name) {

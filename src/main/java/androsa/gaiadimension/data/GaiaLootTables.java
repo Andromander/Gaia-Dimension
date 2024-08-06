@@ -1,6 +1,5 @@
 package androsa.gaiadimension.data;
 
-import androsa.gaiadimension.GaiaDimensionMod;
 import androsa.gaiadimension.data.provider.GaiaBlockLootTableProvider;
 import androsa.gaiadimension.data.provider.GaiaEntityLootTableProvider;
 import androsa.gaiadimension.registry.registration.ModBlocks;
@@ -8,11 +7,13 @@ import androsa.gaiadimension.registry.registration.ModEntities;
 import androsa.gaiadimension.registry.registration.ModItems;
 import androsa.gaiadimension.registry.values.GaiaBuiltinTables;
 import androsa.gaiadimension.registry.values.GaiaChestTables;
-import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.HolderLookup;
+import net.minecraft.core.WritableRegistry;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.loot.LootTableProvider;
 import net.minecraft.data.loot.LootTableSubProvider;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.util.ProblemReporter;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
@@ -27,7 +28,7 @@ import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
 import net.neoforged.neoforge.registries.DeferredHolder;
 
 import java.util.List;
-import java.util.Map;
+import java.util.concurrent.CompletableFuture;
 import java.util.function.BiConsumer;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
@@ -37,19 +38,23 @@ public class GaiaLootTables extends LootTableProvider {
 
     public static final float[] leaf_chances = new float[]{0.05F, 0.0625F, 0.083333336F, 0.1F};
 
-    public GaiaLootTables(PackOutput output) {
+    public GaiaLootTables(PackOutput output, CompletableFuture<HolderLookup.Provider> provider) {
         super(output, GaiaBuiltinTables.builtin(), List.of(
                 new LootTableProvider.SubProviderEntry(Blocks::new, LootContextParamSets.BLOCK),
                 new LootTableProvider.SubProviderEntry(Entities::new, LootContextParamSets.ENTITY),
                 new LootTableProvider.SubProviderEntry(Chests::new, LootContextParamSets.CHEST)
-        ));
+        ), provider);
     }
 
     @Override
-    protected void validate(Map<ResourceLocation, LootTable> map, ValidationContext validationresults) {
+    protected void validate(WritableRegistry<LootTable> writableregistry, ValidationContext validationcontext, ProblemReporter.Collector collector) {
     }
 
     public static class Blocks extends GaiaBlockLootTableProvider {
+        protected Blocks(HolderLookup.Provider provider) {
+            super(provider);
+        }
+
         @Override
         protected void generate() {
             //No Drops
@@ -405,6 +410,9 @@ public class GaiaLootTables extends LootTableProvider {
     }
 
     public static class Entities extends GaiaEntityLootTableProvider {
+        protected Entities(HolderLookup.Provider provider) {
+            super(provider);
+        }
 
         @Override
         public void generate() {
@@ -453,9 +461,9 @@ public class GaiaLootTables extends LootTableProvider {
         }
     }
 
-    public static class Chests implements LootTableSubProvider {
+    public record Chests(HolderLookup.Provider provider) implements LootTableSubProvider {
         @Override
-        public void generate(BiConsumer<ResourceLocation, LootTable.Builder> consumer) {
+        public void generate(BiConsumer<ResourceKey<LootTable>, LootTable.Builder> consumer) {
             consumer.accept(GaiaChestTables.CHESTS_MINITOWER_AMETHYST, LootTable.lootTable()
                     .withPool(LootPool.lootPool()
                             .setRolls(UniformGenerator.between(2.0F, 8.0F))

@@ -19,13 +19,6 @@ public abstract class GaiaItemTagsProvider extends ItemTagsProvider {
         super(output, provider, blocktags, modid, existingFileHelper);
     }
 
-    protected void addTagFromBlock(TagKey<Item> tag, Block... blocks) {
-        IntrinsicHolderTagsProvider.IntrinsicTagAppender<Item> builder = this.tag(tag);
-        for (Block block : blocks) {
-            builder.add(block.asItem());
-        }
-    }
-
     protected void addTag(TagKey<Item> tag, ImmutableList<Supplier<Item>> list) {
         IntrinsicHolderTagsProvider.IntrinsicTagAppender<Item> builder = this.tag(tag);
         for (Supplier<Item> item : list) {
