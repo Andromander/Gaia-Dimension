@@ -18,6 +18,6 @@ public class AgateArrowItem extends ArrowItem {
 
     @Override
     public AbstractArrow createArrow(Level worldIn, ItemStack stack, LivingEntity entity, ItemStack weapon) {
-        return new AgateArrowEntity(worldIn, entity);
+        return new AgateArrowEntity(worldIn, entity, stack.copyWithCount(1));
     }
 }

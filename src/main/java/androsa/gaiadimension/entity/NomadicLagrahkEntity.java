@@ -52,11 +52,6 @@ public class NomadicLagrahkEntity extends PathfinderMob {
         builder.define(LAGRAHK_VARIANT, 0);
     }
 
-    @Override
-    public float getStandingEyeHeight(Pose poseIn, EntityDimensions sizeIn) {
-        return 3.55F;
-    }
-
     /**
      * Get the variant integer
      */

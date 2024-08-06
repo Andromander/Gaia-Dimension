@@ -59,9 +59,4 @@ public class ShalurkerEntity extends Monster {
 
         super.aiStep();
     }
-
-    @Override
-    public float getStandingEyeHeight(Pose poseIn, EntityDimensions sizeIn) {
-        return 1.75F;
-    }
 }
