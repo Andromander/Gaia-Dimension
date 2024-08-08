@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "gaiadimension:spotted_kersei"
+    },
+    {
+      "item": "gaiadimension:thiscus"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "gaiadimension:tilipi"
+  }
+}

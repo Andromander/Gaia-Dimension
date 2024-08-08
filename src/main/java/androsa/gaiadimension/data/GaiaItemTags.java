@@ -52,7 +52,11 @@ public class GaiaItemTags extends GaiaItemTagsProvider {
 
     @Override
     protected void addTags(HolderLookup.Provider provider) {
-        copy(BlockTags.SHULKER_BOXES, GaiaTags.Items.SHULKER_BOXES);
+        //Sigh
+        tag(GaiaTags.Items.SHULKER_BOXES).add(Blocks.SHULKER_BOX.asItem(), Blocks.BLACK_SHULKER_BOX.asItem(), Blocks.BLUE_SHULKER_BOX.asItem(), Blocks.BROWN_SHULKER_BOX.asItem(),
+                Blocks.CYAN_SHULKER_BOX.asItem(), Blocks.GRAY_SHULKER_BOX.asItem(), Blocks.GREEN_SHULKER_BOX.asItem(), Blocks.LIGHT_BLUE_SHULKER_BOX.asItem(), Blocks.LIGHT_GRAY_SHULKER_BOX.asItem(),
+                Blocks.LIME_SHULKER_BOX.asItem(), Blocks.MAGENTA_SHULKER_BOX.asItem(), Blocks.ORANGE_SHULKER_BOX.asItem(), Blocks.PINK_SHULKER_BOX.asItem(), Blocks.PURPLE_SHULKER_BOX.asItem(),
+                Blocks.RED_SHULKER_BOX.asItem(), Blocks.WHITE_SHULKER_BOX.asItem(), Blocks.YELLOW_SHULKER_BOX.asItem());
 
         tag(ItemTags.ARROWS).add(ModItems.agate_arrow.get());
         addTag(ItemTags.BEACON_PAYMENT_ITEMS, BEACON_PAYMENTS);

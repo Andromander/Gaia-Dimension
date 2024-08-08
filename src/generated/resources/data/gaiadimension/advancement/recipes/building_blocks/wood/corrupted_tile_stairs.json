@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_corrupted_tiles": {
+      "conditions": {
+        "items": [
+          {
+            "items": "gaiadimension:corrupted_tiles"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "gaiadimension:wood/corrupted_tile_stairs"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_corrupted_tiles"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "gaiadimension:wood/corrupted_tile_stairs"
+    ]
+  }
+}

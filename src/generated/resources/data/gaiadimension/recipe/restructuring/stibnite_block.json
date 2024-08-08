@@ -1,0 +1,16 @@
+{
+  "type": "gaiadimension:restructuring",
+  "byproduct": {
+    "count": 1,
+    "id": "gaiadimension:tektite"
+  },
+  "cookingtime": 200,
+  "experience": 2.7,
+  "ingredient": {
+    "item": "gaiadimension:hematite_block"
+  },
+  "result": {
+    "count": 1,
+    "id": "gaiadimension:stibnite_block"
+  }
+}

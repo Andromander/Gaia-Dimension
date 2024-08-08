@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "#": {
+      "item": "gaiadimension:goshenite"
+    },
+    "/": {
+      "item": "gaiadimension:agate_stick"
+    }
+  },
+  "pattern": [
+    "#",
+    "/",
+    "/"
+  ],
+  "result": {
+    "count": 1,
+    "id": "gaiadimension:goshenite_shovel"
+  }
+}

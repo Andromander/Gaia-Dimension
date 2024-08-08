@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_gaiadimension:aura_cluster": {
+      "conditions": {
+        "items": [
+          {
+            "items": "gaiadimension:aura_cluster"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "gaiadimension:storage_blocks/aura_block"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_gaiadimension:aura_cluster"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "gaiadimension:storage_blocks/aura_block"
+    ]
+  }
+}

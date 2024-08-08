@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "gaiadimension:fine_thread"
+    },
+    {
+      "item": "gaiadimension:fine_thread"
+    },
+    {
+      "item": "gaiadimension:fine_thread"
+    },
+    {
+      "item": "gaiadimension:fine_thread"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "gaiadimension:twined_thread"
+  }
+}

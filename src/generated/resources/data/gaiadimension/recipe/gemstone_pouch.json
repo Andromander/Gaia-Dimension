@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "equipment",
+  "ingredients": [
+    {
+      "item": "gaiadimension:agate_fabric"
+    },
+    {
+      "item": "gaiadimension:agate_fabric"
+    },
+    {
+      "item": "gaiadimension:agate_fabric"
+    },
+    {
+      "item": "gaiadimension:fine_thread"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "gaiadimension:gemstone_pouch"
+  }
+}

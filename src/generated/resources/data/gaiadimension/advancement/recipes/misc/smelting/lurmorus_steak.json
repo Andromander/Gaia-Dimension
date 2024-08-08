@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_lurmorus_meat": {
+      "conditions": {
+        "items": [
+          {
+            "items": "gaiadimension:lurmorus_meat"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "gaiadimension:smelting/lurmorus_steak"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_lurmorus_meat"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "gaiadimension:smelting/lurmorus_steak"
+    ]
+  }
+}

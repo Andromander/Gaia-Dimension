@@ -1,0 +1,121 @@
+{
+  "parent": "gaiadimension:gaia/collect_gemstone",
+  "criteria": {
+    "get_albite": {
+      "conditions": {
+        "items": [
+          {
+            "items": "gaiadimension:albite"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "get_benitoite": {
+      "conditions": {
+        "items": [
+          {
+            "items": "gaiadimension:benitoite"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "get_carnelian": {
+      "conditions": {
+        "items": [
+          {
+            "items": "gaiadimension:carnelian"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "get_diopside": {
+      "conditions": {
+        "items": [
+          {
+            "items": "gaiadimension:diopside"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "get_euclase": {
+      "conditions": {
+        "items": [
+          {
+            "items": "gaiadimension:euclase"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "get_goshenite": {
+      "conditions": {
+        "items": [
+          {
+            "items": "gaiadimension:goshenite"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "get_proustite": {
+      "conditions": {
+        "items": [
+          {
+            "items": "gaiadimension:proustite"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "get_stibnite": {
+      "conditions": {
+        "items": [
+          {
+            "items": "gaiadimension:stibnite"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "get_tektite": {
+      "conditions": {
+        "items": [
+          {
+            "items": "gaiadimension:tektite"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.gaia.restructure_gemstone.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "gaiadimension:stibnite"
+    },
+    "title": {
+      "translate": "advancements.gaia.restructure_gemstone.title"
+    }
+  },
+  "requirements": [
+    [
+      "get_stibnite",
+      "get_proustite",
+      "get_euclase",
+      "get_albite",
+      "get_carnelian",
+      "get_benitoite",
+      "get_diopside",
+      "get_goshenite",
+      "get_tektite"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "#": {
+      "item": "gaiadimension:pyrite"
+    },
+    "/": {
+      "item": "gaiadimension:agate_stick"
+    }
+  },
+  "pattern": [
+    "#",
+    "/"
+  ],
+  "result": {
+    "count": 4,
+    "id": "gaiadimension:pyrite_torch"
+  }
+}

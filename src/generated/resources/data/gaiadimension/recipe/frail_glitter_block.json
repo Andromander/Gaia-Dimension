@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "ingredients": [
+    {
+      "item": "gaiadimension:thick_glitter_block"
+    }
+  ],
+  "result": {
+    "count": 4,
+    "id": "gaiadimension:frail_glitter_block"
+  }
+}

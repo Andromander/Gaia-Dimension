@@ -1,0 +1,286 @@
+{
+  "parent": "gaiadimension:gaia/root",
+  "criteria": {
+    "albite_boots": {
+      "conditions": {
+        "items": [
+          {
+            "items": "gaiadimension:albite_boots"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "albite_chestplate": {
+      "conditions": {
+        "items": [
+          {
+            "items": "gaiadimension:albite_chestplate"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "albite_helmet": {
+      "conditions": {
+        "items": [
+          {
+            "items": "gaiadimension:albite_helmet"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "albite_legs": {
+      "conditions": {
+        "items": [
+          {
+            "items": "gaiadimension:albite_legs"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "carnelian_boots": {
+      "conditions": {
+        "items": [
+          {
+            "items": "gaiadimension:carnelian_boots"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "carnelian_chestplate": {
+      "conditions": {
+        "items": [
+          {
+            "items": "gaiadimension:carnelian_chestplate"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "carnelian_helmet": {
+      "conditions": {
+        "items": [
+          {
+            "items": "gaiadimension:carnelian_helmet"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "carnelian_legs": {
+      "conditions": {
+        "items": [
+          {
+            "items": "gaiadimension:carnelian_legs"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "diopside_boots": {
+      "conditions": {
+        "items": [
+          {
+            "items": "gaiadimension:diopside_boots"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "diopside_chestplate": {
+      "conditions": {
+        "items": [
+          {
+            "items": "gaiadimension:diopside_chestplate"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "diopside_helmet": {
+      "conditions": {
+        "items": [
+          {
+            "items": "gaiadimension:diopside_helmet"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "diopside_legs": {
+      "conditions": {
+        "items": [
+          {
+            "items": "gaiadimension:diopside_legs"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "goshenite_boots": {
+      "conditions": {
+        "items": [
+          {
+            "items": "gaiadimension:goshenite_boots"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "goshenite_chestplate": {
+      "conditions": {
+        "items": [
+          {
+            "items": "gaiadimension:goshenite_chestplate"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "goshenite_helmet": {
+      "conditions": {
+        "items": [
+          {
+            "items": "gaiadimension:goshenite_helmet"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "goshenite_legs": {
+      "conditions": {
+        "items": [
+          {
+            "items": "gaiadimension:goshenite_legs"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "proustite_boots": {
+      "conditions": {
+        "items": [
+          {
+            "items": "gaiadimension:proustite_boots"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "proustite_chestplate": {
+      "conditions": {
+        "items": [
+          {
+            "items": "gaiadimension:proustite_chestplate"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "proustite_helmet": {
+      "conditions": {
+        "items": [
+          {
+            "items": "gaiadimension:proustite_helmet"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "proustite_legs": {
+      "conditions": {
+        "items": [
+          {
+            "items": "gaiadimension:proustite_legs"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "sugilite_boots": {
+      "conditions": {
+        "items": [
+          {
+            "items": "gaiadimension:sugilite_boots"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "sugilite_chestplate": {
+      "conditions": {
+        "items": [
+          {
+            "items": "gaiadimension:sugilite_chestplate"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "sugilite_helmet": {
+      "conditions": {
+        "items": [
+          {
+            "items": "gaiadimension:sugilite_helmet"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "sugilite_legs": {
+      "conditions": {
+        "items": [
+          {
+            "items": "gaiadimension:sugilite_legs"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.gaia.get_armor.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "gaiadimension:sugilite_helmet"
+    },
+    "title": {
+      "translate": "advancements.gaia.get_armor.title"
+    }
+  },
+  "requirements": [
+    [
+      "sugilite_helmet",
+      "sugilite_chestplate",
+      "sugilite_legs",
+      "sugilite_boots",
+      "proustite_helmet",
+      "proustite_chestplate",
+      "proustite_legs",
+      "proustite_boots",
+      "albite_helmet",
+      "albite_chestplate",
+      "albite_legs",
+      "albite_boots",
+      "carnelian_helmet",
+      "carnelian_chestplate",
+      "carnelian_legs",
+      "carnelian_boots",
+      "diopside_helmet",
+      "diopside_chestplate",
+      "diopside_legs",
+      "diopside_boots",
+      "goshenite_helmet",
+      "goshenite_chestplate",
+      "goshenite_legs",
+      "goshenite_boots"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

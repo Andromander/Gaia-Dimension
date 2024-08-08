@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:smelting",
+  "category": "misc",
+  "cookingtime": 200,
+  "experience": 0.4,
+  "ingredient": {
+    "item": "gaiadimension:coarse_rock"
+  },
+  "result": {
+    "count": 1,
+    "id": "gaiadimension:scaynyx_ingot"
+  }
+}

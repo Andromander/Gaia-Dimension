@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_golden_tiles": {
+      "conditions": {
+        "items": [
+          {
+            "items": "gaiadimension:golden_tiles"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "gaiadimension:wood/golden_tile_slab"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_golden_tiles"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "gaiadimension:wood/golden_tile_slab"
+    ]
+  }
+}

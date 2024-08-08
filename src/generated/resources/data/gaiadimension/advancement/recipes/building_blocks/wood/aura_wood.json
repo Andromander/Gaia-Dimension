@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_gaiadimension:aura_log": {
+      "conditions": {
+        "items": [
+          {
+            "items": "gaiadimension:aura_log"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "gaiadimension:wood/aura_wood"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_gaiadimension:aura_log"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "gaiadimension:wood/aura_wood"
+    ]
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "ingredients": [
+    {
+      "item": "gaiadimension:white_opal_block"
+    }
+  ],
+  "result": {
+    "count": 9,
+    "id": "gaiadimension:white_opal"
+  }
+}

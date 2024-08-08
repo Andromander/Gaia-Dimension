@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_celestine": {
+      "conditions": {
+        "items": [
+          {
+            "items": "gaiadimension:celestine"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "gaiadimension:construct_charm"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_celestine"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "gaiadimension:construct_charm"
+    ]
+  }
+}

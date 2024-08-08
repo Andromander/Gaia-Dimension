@@ -1,10 +1,10 @@
-// 1.20.4	2024-02-14T22:57:19.7926953	Tags for minecraft:worldgen/biome mod id gaiadimension
+// 1.21	2024-08-09T09:50:42.5458014	Tags for minecraft:worldgen/biome mod id gaiadimension
 8c6668600ed62aa9077a8405eb19b6d384381746 data/gaiadimension/tags/worldgen/biome/has_structure/malachite_watchtower.json
 8e6b362faf34338d74e5b776218c54adebb303bd data/gaiadimension/tags/worldgen/biome/has_structure/mini_tower.json
 6453471cf8c33885abd0499ae98daa636ae2b185 data/gaiadimension/tags/worldgen/biome/is_agate.json
 53a72ce0c4a1f80b66aa142dbc5cf0e0cf08bafa data/gaiadimension/tags/worldgen/biome/is_gaia.json
 adddbc165d9a6d00003dbb4d4d88c4ca00a8c905 data/gaiadimension/tags/worldgen/biome/is_golden.json
-58932c4761823b1c2dfb84bff69e9b4f6224d58f data/gaiadimension/tags/worldgen/biome/portal_biomes.json
+f0204e473c77871a24961e8e9b32e7757f02a007 data/gaiadimension/tags/worldgen/biome/portal_biomes.json
 9944aef3b0f4fe28dcf1ec53e0ba6f3e8ebd7fc9 data/minecraft/tags/worldgen/biome/without_patrol_spawns.json
 9944aef3b0f4fe28dcf1ec53e0ba6f3e8ebd7fc9 data/minecraft/tags/worldgen/biome/without_wandering_trader_spawns.json
 9944aef3b0f4fe28dcf1ec53e0ba6f3e8ebd7fc9 data/minecraft/tags/worldgen/biome/without_zombie_sieges.json

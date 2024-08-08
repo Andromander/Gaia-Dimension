@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:smelting",
+  "category": "food",
+  "cookingtime": 200,
+  "experience": 0.2,
+  "ingredient": {
+    "item": "gaiadimension:large_tentacle"
+  },
+  "result": {
+    "count": 1,
+    "id": "gaiadimension:large_calamari"
+  }
+}

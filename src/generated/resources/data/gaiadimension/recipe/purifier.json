@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "#": {
+      "item": "gaiadimension:restructurer"
+    },
+    "/": {
+      "item": "gaiadimension:reinforced_bricks"
+    }
+  },
+  "pattern": [
+    "///",
+    "/#/",
+    "///"
+  ],
+  "result": {
+    "count": 1,
+    "id": "gaiadimension:purifier"
+  }
+}

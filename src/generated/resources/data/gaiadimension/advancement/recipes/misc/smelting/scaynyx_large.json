@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_precious_rock": {
+      "conditions": {
+        "items": [
+          {
+            "items": "gaiadimension:precious_rock"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "gaiadimension:smelting/scaynyx_large"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_precious_rock"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "gaiadimension:smelting/scaynyx_large"
+    ]
+  }
+}

@@ -164,8 +164,8 @@ public class ClientEvents {
 
     @SubscribeEvent
     public static void registerRecipeCategories(RegisterRecipeBookCategoriesEvent e) {
-        e.registerRecipeCategoryFinder(ModRecipes.RESTRUCTURING.get(), recipe -> RecipeBookCategories.valueOf("RESTRUCTURING_CATEGORY"));
-        e.registerRecipeCategoryFinder(ModRecipes.PURIFYING.get(), recipe -> RecipeBookCategories.valueOf("PURIFYING_CATEGORY"));
+        e.registerRecipeCategoryFinder(ModRecipes.RESTRUCTURING.get(), recipe -> RecipeBookCategories.valueOf("GAIADIMENSION_RESTRUCTURING_CATEGORY"));
+        e.registerRecipeCategoryFinder(ModRecipes.PURIFYING.get(), recipe -> RecipeBookCategories.valueOf("GAIADIMENSION_PURIFYING_CATEGORY"));
     }
 
     public static void registerClientExtensions(RegisterClientExtensionsEvent e) {
