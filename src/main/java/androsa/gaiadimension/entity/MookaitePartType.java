@@ -58,6 +58,6 @@ public enum MookaitePartType implements StringRepresentable {
     }
 
     public static MookaitePartType getRandom(RandomSource random) {
-        return BY_ID.apply(random.nextInt(MookaitePartType.values().length));
+        return BY_ID.apply(random.nextInt(MookaitePartType.values().length - 1)); //minus 1 to ignore Opalite
     }
 }
