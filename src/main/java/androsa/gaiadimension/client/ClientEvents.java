@@ -168,6 +168,7 @@ public class ClientEvents {
         e.registerRecipeCategoryFinder(ModRecipes.PURIFYING.get(), recipe -> RecipeBookCategories.valueOf("GAIADIMENSION_PURIFYING_CATEGORY"));
     }
 
+    @SubscribeEvent
     public static void registerClientExtensions(RegisterClientExtensionsEvent e) {
         e.registerFluidType(makeFluidType(GaiaFluidAttributes.mineral_still, GaiaFluidAttributes.mineral_flow, true, null, new Vector3f(0.6875F, 0.75F, 1.0F)),
                 ModFluids.MINERAL_WATER.get());
@@ -195,7 +196,7 @@ public class ClientEvents {
 
             @Override
             public @Nullable ResourceLocation getOverlayTexture() {
-                return overlay ? ResourceLocation.withDefaultNamespace("block/water_overlay") : null;
+                return overlay ? ResourceLocation.withDefaultNamespace("textures/block/water_overlay") : null;
             }
 
             @Override
