@@ -1,6 +1,5 @@
 package androsa.gaiadimension.item;
 
-import androsa.gaiadimension.GaiaDimensionMod;
 import androsa.gaiadimension.entity.MookaiteConstructEntity;
 import androsa.gaiadimension.entity.OpaliteContructEntity;
 import androsa.gaiadimension.registry.registration.ModEntities;
@@ -41,9 +40,7 @@ public class ConstructCharmItem extends Item {
                 if (!stack.has(ModDataComponents.MOOKAITE_UUID)) {
                     //Check if the Mookaite Construct has a bond already
                     if (mookaite.getOpaliteCompanion() == null) {
-                        if (!player.level().isClientSide()) {
-                            this.setUUID(stack, mookaite.getUUID(), ModDataComponents.MOOKAITE_UUID);
-                        }
+                        this.setUUID(stack, mookaite.getUUID(), ModDataComponents.MOOKAITE_UUID);
                     } else {
                         this.displayMessage(player, "mookaite_already_bonded");
                         return InteractionResult.PASS;
@@ -59,9 +56,7 @@ public class ConstructCharmItem extends Item {
                 if (!stack.has(ModDataComponents.OPALITE_UUID)) {
                     //Check if the Mookaite Construct has a bond already
                     if (opalite.getMookaiteCompanion() == null) {
-                        if (!player.level().isClientSide()) {
-                            this.setUUID(stack, opalite.getUUID(), ModDataComponents.OPALITE_UUID);
-                        }
+                        this.setUUID(stack, opalite.getUUID(), ModDataComponents.OPALITE_UUID);
                     } else {
                         this.displayMessage(player, "opalite_already_bonded");
                         return InteractionResult.PASS;
@@ -149,7 +144,7 @@ public class ConstructCharmItem extends Item {
             return InteractionResult.PASS;
         }
 
-        return InteractionResult.PASS;
+        return InteractionResult.sidedSuccess(player.level().isClientSide());
     }
 
     private void displayMessage(Player player, String name) {
