@@ -1,6 +1,7 @@
 package androsa.gaiadimension.entity.projectile;
 
 import androsa.gaiadimension.entity.MookaiteConstructEntity;
+import androsa.gaiadimension.entity.MookaitePartType;
 import androsa.gaiadimension.registry.registration.ModBlocks;
 import androsa.gaiadimension.registry.registration.ModEntities;
 import net.minecraft.world.entity.Entity;
@@ -47,7 +48,7 @@ public class MookaiteMagicEntity extends ThrowableItemProjectile {
             area.setOwner(living);
 
             if (living instanceof MookaiteConstructEntity mookaite) {
-                area.setDuration(40 + 20 * mookaite.countColors(MookaiteConstructEntity.PartType.MAUVE));
+                area.setDuration(40 + 20 * mookaite.countColors(MookaitePartType.MAUVE));
             }
         }
 

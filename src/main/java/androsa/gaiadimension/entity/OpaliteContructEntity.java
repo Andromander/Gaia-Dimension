@@ -192,7 +192,7 @@ public class OpaliteContructEntity extends PathfinderMob {
         if (mookaite != null) {
             switch (kit) {
                 //Must not be Opalite or missing
-                case REPAIR -> flag = mookaite.getPart(part.getPart()) != MookaiteConstructEntity.PartType.OPALITE && mookaite.getPart(part.getPart()).isPresent();
+                case REPAIR -> flag = mookaite.getPart(part.getPart()) != MookaitePartType.OPALITE && mookaite.getPart(part.getPart()).isPresent();
                 //Must be missing
                 case AUGMENT -> flag = !mookaite.getPart(part.getPart()).isPresent();
                 //Must exist and not the same colour
@@ -516,10 +516,10 @@ public class OpaliteContructEntity extends PathfinderMob {
                             ConstructKitItem.Kit kit = ConstructKitItem.Kit.values()[this.opalite.getKitData().getInt("KitID")];
                             MookaiteConstructEntity.MookaitePart part = ConstructKitItem.Part.values()[this.opalite.getKitData().getInt("PartID")].getPart();
                             ConstructKitItem.Color kitcolor = ConstructKitItem.Color.values()[this.opalite.getKitData().getInt("ColorID")];
-                            MookaiteConstructEntity.PartType color = kitcolor.getPartColor();
+                            MookaitePartType color = kitcolor.getPartColor();
 
                             if (kit == ConstructKitItem.Kit.REPAIR) {
-                                color = MookaiteConstructEntity.PartType.OPALITE;
+                                color = MookaitePartType.OPALITE;
                             }
 
                             //Subtract materials

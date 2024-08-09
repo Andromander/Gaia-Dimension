@@ -20,7 +20,7 @@ public class GaiaDuchessSwordItem extends SwordItem {
     @Override
     @Nonnull
     public Component getName(ItemStack stack) {
-        return Component.translatable(super.getName(stack).getString(), ChatFormatting.RED);
+        return Component.translatable(super.getName(stack).getString()).withStyle(ChatFormatting.RED);
     }
 
     @Override

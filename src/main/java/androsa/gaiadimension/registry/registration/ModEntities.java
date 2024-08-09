@@ -72,8 +72,8 @@ public class ModEntities {
     public static final DeferredHolder<EntityType<?>, EntityType<MalachiteGuardEntity>> MALACHITE_GUARD = registerEntity("malachite_guard", MalachiteGuardEntity::new, MobCategory.MONSTER, 0.8F, 3.3F, 3.0F, false);
 
     //EntityDataSerializers
-    public static final DeferredHolder<EntityDataSerializer<?>, EntityDataSerializer<MookaiteConstructEntity.PartType>> MOOKAITE_PART = ENTITY_DATA_SERIALIZERS.register("mookaite_part",
-            () -> EntityDataSerializer.forValueType(MookaiteConstructEntity.PartType.STREAM_CODEC));
+    public static final DeferredHolder<EntityDataSerializer<?>, EntityDataSerializer<MookaitePartType>> MOOKAITE_PART = ENTITY_DATA_SERIALIZERS.register("mookaite_part",
+            () -> EntityDataSerializer.forValueType(MookaitePartType.STREAM_CODEC));
 
     public static <E extends Entity> DeferredHolder<EntityType<?>, EntityType<E>> registerProjectile(String name, EntityType.EntityFactory<E> entity, boolean updates, int range, int interval, float width, float height, boolean fireproof) {
         EntityType.Builder<E> entitytype = makeBuilder(entity, MobCategory.MISC, width, height)

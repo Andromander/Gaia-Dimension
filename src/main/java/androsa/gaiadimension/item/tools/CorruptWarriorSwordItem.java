@@ -20,7 +20,7 @@ public class CorruptWarriorSwordItem extends SwordItem {
     @Override
     @Nonnull
     public Component getName(ItemStack stack) {
-        return Component.translatable(super.getName(stack).getString(), ChatFormatting.DARK_PURPLE);
+        return Component.translatable(super.getName(stack).getString()).withStyle(ChatFormatting.DARK_PURPLE);
     }
 
     @Override

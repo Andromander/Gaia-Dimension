@@ -21,7 +21,7 @@ public class GaiaBaronArmorItem extends BasicGaiaArmorItem {
     @Override
     @Nonnull
     public Component getName(ItemStack stack) {
-        return Component.translatable(super.getName(stack).getString(), ChatFormatting.GREEN);
+        return Component.translatable(super.getName(stack).getString()).withStyle(ChatFormatting.GREEN);
     }
 
     @Override

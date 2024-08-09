@@ -150,6 +150,7 @@ public class ModTabs {
         }
     }
 
+    //TODO: this might just be a set and forget, no check
     @SafeVarargs
     private static void addKits(CreativeModeTab.Output output, Supplier<? extends Item>... items) {
         for (Supplier<? extends Item> item : items) {

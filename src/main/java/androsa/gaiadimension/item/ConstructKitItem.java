@@ -1,6 +1,7 @@
 package androsa.gaiadimension.item;
 
 import androsa.gaiadimension.entity.MookaiteConstructEntity;
+import androsa.gaiadimension.entity.MookaitePartType;
 import androsa.gaiadimension.entity.OpaliteContructEntity;
 import androsa.gaiadimension.registry.registration.ModDataComponents;
 import com.mojang.serialization.Codec;
@@ -24,6 +25,7 @@ import net.minecraft.world.level.Level;
 
 import java.util.List;
 import java.util.function.IntFunction;
+import java.util.function.Supplier;
 
 public class ConstructKitItem extends Item {
 
@@ -165,32 +167,30 @@ public class ConstructKitItem extends Item {
     }
 
     public enum Part implements StringRepresentable {
-        LEFT_HORN(0, MookaiteConstructEntity.LEFT_HORN),
-        RIGHT_HORN(1, MookaiteConstructEntity.RIGHT_HORN),
-        LEFT_EYE(2, MookaiteConstructEntity.LEFT_EYE),
-        RIGHT_EYE(3, MookaiteConstructEntity.RIGHT_EYE),
-        LEFT_SHOULDER(4, MookaiteConstructEntity.LEFT_SHOULDER),
-        RIGHT_SHOULDER(5, MookaiteConstructEntity.RIGHT_SHOULDER),
-        LEFT_ARM(6, MookaiteConstructEntity.LEFT_ARM),
-        RIGHT_ARM(7, MookaiteConstructEntity.RIGHT_ARM),
-        LEFT_LEG(8, MookaiteConstructEntity.LEFT_LEG),
-        RIGHT_LEG(9, MookaiteConstructEntity.RIGHT_LEG);
+        LEFT_HORN(0, () -> MookaiteConstructEntity.LEFT_HORN),
+        RIGHT_HORN(1, () -> MookaiteConstructEntity.RIGHT_HORN),
+        LEFT_EYE(2, () -> MookaiteConstructEntity.LEFT_EYE),
+        RIGHT_EYE(3, () -> MookaiteConstructEntity.RIGHT_EYE),
+        LEFT_SHOULDER(4, () -> MookaiteConstructEntity.LEFT_SHOULDER),
+        RIGHT_SHOULDER(5, () -> MookaiteConstructEntity.RIGHT_SHOULDER),
+        LEFT_ARM(6, () -> MookaiteConstructEntity.LEFT_ARM),
+        RIGHT_ARM(7, () -> MookaiteConstructEntity.RIGHT_ARM),
+        LEFT_LEG(8, () -> MookaiteConstructEntity.LEFT_LEG),
+        RIGHT_LEG(9, () -> MookaiteConstructEntity.RIGHT_LEG);
 
         private static final IntFunction<Part> ID = ByIdMap.continuous(Part::getId, values(), ByIdMap.OutOfBoundsStrategy.ZERO);
         public static final Codec<Part> CODEC = StringRepresentable.fromValues(Part::values);
         public static final StreamCodec<ByteBuf, Part> STREAM_CODEC = ByteBufCodecs.idMapper(ID, part -> part.id);
         private final int id;
-        private final String name;
-        private final MookaiteConstructEntity.MookaitePart part;
+        private final Supplier<MookaiteConstructEntity.MookaitePart> part;
 
-        Part(int id, MookaiteConstructEntity.MookaitePart part) {
+        Part(int id, Supplier<MookaiteConstructEntity.MookaitePart> part) {
             this.id = id;
-            this.name = part.name();
             this.part = part;
         }
 
         public MookaiteConstructEntity.MookaitePart getPart() {
-            return part;
+            return part.get();
         }
 
         public int getId() {
@@ -203,22 +203,22 @@ public class ConstructKitItem extends Item {
 
         @Override
         public String getSerializedName() {
-            return name;
+            return part.get().name();
         }
     }
 
     public enum Color {
-        SCARLET(0xc83133, MookaiteConstructEntity.PartType.SCARLET),
-        AUBURN(0xc15707, MookaiteConstructEntity.PartType.AUBURN),
-        GOLD(0xce9531, MookaiteConstructEntity.PartType.GOLD),
-        MAUVE(0x905090, MookaiteConstructEntity.PartType.MAUVE),
-        BEIGE(0xccb393, MookaiteConstructEntity.PartType.BEIGE),
-        IVORY(0xd6e2f9, MookaiteConstructEntity.PartType.IVORY);
+        SCARLET(0xc83133, MookaitePartType.SCARLET),
+        AUBURN(0xc15707, MookaitePartType.AUBURN),
+        GOLD(0xce9531, MookaitePartType.GOLD),
+        MAUVE(0x905090, MookaitePartType.MAUVE),
+        BEIGE(0xccb393, MookaitePartType.BEIGE),
+        IVORY(0xd6e2f9, MookaitePartType.IVORY);
 
         private final int color;
-        private final MookaiteConstructEntity.PartType part;
+        private final MookaitePartType part;
 
-        Color(int color, MookaiteConstructEntity.PartType part) {
+        Color(int color, MookaitePartType part) {
             this.color = color;
             this.part = part;
         }
@@ -227,7 +227,7 @@ public class ConstructKitItem extends Item {
             return color;
         }
 
-        public MookaiteConstructEntity.PartType getPartColor() {
+        public MookaitePartType getPartColor() {
             return part;
         }
     }

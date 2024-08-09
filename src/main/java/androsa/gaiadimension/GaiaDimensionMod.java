@@ -47,14 +47,16 @@ public class GaiaDimensionMod {
         bus.addListener(this::extraRegistries);
         bus.addListener(ModDataMaps::registerDataMaps);
 
+        ModArmorMaterials.ARMOR_MATERIALS.register(bus);
         GaiaBiomes.BIOMES.register(bus);
         ModBlocks.BLOCKS.register(bus);
         ModMenus.CONTAINERS.register(bus);
         ModTabs.CREATIVE_TABS.register(bus);
         ModPOIs.POI_TYPES.register(bus);
         ModEffects.MOB_EFFECTS.register(bus);
-        ModEntities.ENTITY_TYPES.register(bus);
         ModEntities.ENTITY_DATA_SERIALIZERS.register(bus);
+        ModEntities.ENTITY_TYPES.register(bus);
+        ModDataComponents.DATA_COMPONENTS.register(bus);
         ModFluids.FLUID_TYPES.register(bus);
         ModFluids.FLUIDS.register(bus);
         ModItems.ITEMS.register(bus);
