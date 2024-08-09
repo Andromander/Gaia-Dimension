@@ -1,5 +1,6 @@
 package androsa.gaiadimension.item;
 
+import androsa.gaiadimension.GaiaDimensionMod;
 import androsa.gaiadimension.entity.MookaiteConstructEntity;
 import androsa.gaiadimension.entity.OpaliteContructEntity;
 import androsa.gaiadimension.registry.registration.ModEntities;
@@ -37,7 +38,7 @@ public class ConstructCharmItem extends Item {
             //Mookaite Construct check
             if (entity instanceof MookaiteConstructEntity mookaite) {
                 //Check if we already have a Mookaite Construct's UUID stored
-                if (stack.has(ModDataComponents.MOOKAITE_UUID)) {
+                if (!stack.has(ModDataComponents.MOOKAITE_UUID)) {
                     //Check if the Mookaite Construct has a bond already
                     if (mookaite.getOpaliteCompanion() == null) {
                         if (!player.level().isClientSide()) {
@@ -48,13 +49,14 @@ public class ConstructCharmItem extends Item {
                         return InteractionResult.PASS;
                     }
                 } else {
+                    this.displayMessage(player, "has_opalite_bond");
                     return InteractionResult.PASS;
                 }
             }
             //Opalite Construct check
             if (entity instanceof OpaliteContructEntity opalite) {
                 //Check if we already have an Opalite Construct's UUID stored
-                if (stack.has(ModDataComponents.MOOKAITE_UUID)) {
+                if (!stack.has(ModDataComponents.OPALITE_UUID)) {
                     //Check if the Mookaite Construct has a bond already
                     if (opalite.getMookaiteCompanion() == null) {
                         if (!player.level().isClientSide()) {
@@ -65,7 +67,7 @@ public class ConstructCharmItem extends Item {
                         return InteractionResult.PASS;
                     }
                 } else {
-                    this.displayMessage(player, "has_opalite_bond");
+                    this.displayMessage(player, "has_mookaite_bond");
                     return InteractionResult.PASS;
                 }
             }
