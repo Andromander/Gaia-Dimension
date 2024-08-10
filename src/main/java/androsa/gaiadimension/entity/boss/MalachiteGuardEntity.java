@@ -1,6 +1,8 @@
 package androsa.gaiadimension.entity.boss;
 
 import androsa.gaiadimension.entity.MalachiteDroneEntity;
+import androsa.gaiadimension.entity.data.GuardPhase;
+import androsa.gaiadimension.entity.data.ThreeStagePhase;
 import androsa.gaiadimension.registry.bootstrap.GaiaDamage;
 import androsa.gaiadimension.registry.registration.ModEntities;
 import androsa.gaiadimension.registry.registration.ModItems;
@@ -13,7 +15,6 @@ import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.syncher.EntityDataAccessor;
-import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerBossEvent;
 import net.minecraft.server.level.ServerLevel;
@@ -45,9 +46,9 @@ import java.util.List;
 
 public class MalachiteGuardEntity extends Monster {
 
-    private static final EntityDataAccessor<Integer> PHASE = SynchedEntityData.defineId(MalachiteGuardEntity.class, EntityDataSerializers.INT);
-    private static final EntityDataAccessor<Integer> STOMP_PHASE = SynchedEntityData.defineId(MalachiteGuardEntity.class, EntityDataSerializers.INT);
-    private static final EntityDataAccessor<Integer> CHARGE_PHASE = SynchedEntityData.defineId(MalachiteGuardEntity.class, EntityDataSerializers.INT);
+    private static final EntityDataAccessor<GuardPhase> PHASE = SynchedEntityData.defineId(MalachiteGuardEntity.class, ModEntities.GUARD_PHASE.get());
+    private static final EntityDataAccessor<ThreeStagePhase> STOMP_PHASE = SynchedEntityData.defineId(MalachiteGuardEntity.class, ModEntities.THREE_STAGE_PHASE.get());
+    private static final EntityDataAccessor<ThreeStagePhase> CHARGE_PHASE = SynchedEntityData.defineId(MalachiteGuardEntity.class, ModEntities.THREE_STAGE_PHASE.get());
     private int dronesLeft;
     private boolean hasSpawnedDrones;
     private int stompCooldown;
@@ -71,16 +72,15 @@ public class MalachiteGuardEntity extends Monster {
     }
 
     /**
-     * Phase 0: Defence | Idle     | Idle
-     * Phase 1: Attack  | Charging | Stomping
-     * Phase 2: Resist  | Charged  | Stomped
+     * Stomp: Idle | Stomping | Stomped
+     * Charge: Idle | Charging | Release
      */
     @Override
     protected void defineSynchedData(SynchedEntityData.Builder builder) {
         super.defineSynchedData(builder);
-        builder.define(PHASE, 0);
-        builder.define(STOMP_PHASE, 0);
-        builder.define(CHARGE_PHASE, 0);
+        builder.define(PHASE, GuardPhase.DEFENCE);
+        builder.define(STOMP_PHASE, ThreeStagePhase.IDLE);
+        builder.define(CHARGE_PHASE, ThreeStagePhase.IDLE);
     }
 
     @Override
@@ -100,9 +100,9 @@ public class MalachiteGuardEntity extends Monster {
     @Override
     public void readAdditionalSaveData(CompoundTag nbt) {
         super.readAdditionalSaveData(nbt);
-        this.setPhase(nbt.getInt("Phase"));
-        this.setStompPhase(nbt.getInt("StompPhase"));
-        this.setChargePhase(nbt.getInt("ChargePhase"));
+        this.setPhase(GuardPhase.getPhase(nbt.getInt("Phase")));
+        this.setStompPhase(ThreeStagePhase.getStage(nbt.getInt("StompPhase")));
+        this.setChargePhase(ThreeStagePhase.getStage(nbt.getInt("ChargePhase")));
         this.dronesLeft = nbt.getInt("DronesLeft");
         this.hasSpawnedDrones = nbt.getBoolean("IsSpawned");
         this.stompCooldown = nbt.getInt("StompCooldown");
@@ -116,9 +116,9 @@ public class MalachiteGuardEntity extends Monster {
     @Override
     public void addAdditionalSaveData(CompoundTag nbt) {
         super.addAdditionalSaveData(nbt);
-        nbt.putInt("Phase", getPhase());
-        nbt.putInt("StompPhase", getStompPhase());
-        nbt.putInt("ChargePhase", getChargePhase());
+        nbt.putInt("Phase", getPhase().getId());
+        nbt.putInt("StompPhase", getStompPhase().getId());
+        nbt.putInt("ChargePhase", getChargePhase().getId());
         nbt.putInt("DronesLeft", dronesLeft);
         nbt.putBoolean("IsSpawned", hasSpawnedDrones);
         nbt.putInt("StompCooldown", stompCooldown);
@@ -132,40 +132,30 @@ public class MalachiteGuardEntity extends Monster {
         this.bossInfo.setName(getDisplayName());
     }
 
-    /** Our phase. In order: Defending, Attacking, Resisting. Anything higher restarts the fight and sets to 0 */
-    public int getPhase() {
+    /** Our phase. In order: Defending, Attacking, Resisting. */
+    public GuardPhase getPhase() {
         return this.entityData.get(PHASE);
     }
 
-    private void setPhase(int id) {
-        if (id > 2 || id < 0) { // Fine, I'll just make you redo this fight
-            id = 0;
-            this.hasSpawnedDrones = false;
-        }
+    private void setPhase(GuardPhase id) {
         this.entityData.set(PHASE, id);
     }
 
-    /** Our stomping phase. In order: Inactive, Raising, Stomped. Anything higher assumes we are no longer stomping */
-    public int getStompPhase() {
+    /** Our stomping phase. In order: Inactive, Raising, Stomped. */
+    public ThreeStagePhase getStompPhase() {
         return this.entityData.get(STOMP_PHASE);
     }
 
-    public void setStompPhase(int id) {
-        if (id > 2 || id < 0) { // Guess that means it's supposed to be reset
-            id = 0;
-        }
+    public void setStompPhase(ThreeStagePhase id) {
         this.entityData.set(STOMP_PHASE, id);
     }
 
-    /** Our charge phase. In order: Inactive, Charging, Charged. Anything higher assumes we are no longer charging or charged */
-    public int getChargePhase() {
+    /** Our charge phase. In order: Inactive, Charging, Charged. */
+    public ThreeStagePhase getChargePhase() {
         return this.entityData.get(CHARGE_PHASE);
     }
 
-    private void setChargePhase(int id) {
-        if (id > 2 || id < 0) { // Guess that means it's supposed to be reset
-            id = 0;
-        }
+    private void setChargePhase(ThreeStagePhase id) {
         this.entityData.set(CHARGE_PHASE, id);
     }
 
@@ -174,7 +164,7 @@ public class MalachiteGuardEntity extends Monster {
      */
     @Override
     public void move(MoverType type, Vec3 motion) {
-        if (getPhase() != 0 && (getChargePhase() == 0 || getChargePhase() == 0)) {
+        if (getPhase().canMove() && (getStompPhase() == ThreeStagePhase.IDLE || getChargePhase() == ThreeStagePhase.IDLE)) {
             super.move(type, motion);
         }
     }
@@ -186,7 +176,7 @@ public class MalachiteGuardEntity extends Monster {
      */
     @Override
     public void knockback(double amount, double x, double z) {
-        if (getPhase() == 1 || getChargePhase() != 0 || getStompPhase() != 0) {
+        if (!getPhase().isResistant() || getChargePhase() != ThreeStagePhase.IDLE || getStompPhase() != ThreeStagePhase.IDLE) {
             super.knockback(amount, x, z);
         }
     }
@@ -243,7 +233,7 @@ public class MalachiteGuardEntity extends Monster {
     public void tick() {
         super.tick();
 
-        if (getChargePhase() == 1) {
+        if (getChargePhase() == ThreeStagePhase.CHARGE) {
             if (level().isClientSide()) {
                 for (int i = 0; i < 3; i++) {
                     level().addParticle(ModParticles.MALACHITE_MAGIC.get(), getRandomX(3.0D), this.getY() + (random.nextDouble() * 0.25D), getRandomZ(3.0D), 0.0D, 0.0D, 0.0D);
@@ -316,34 +306,45 @@ public class MalachiteGuardEntity extends Monster {
 
     @Override
     public void aiStep() {
-        if (getPhase() == 0) {
-            //Don't move, except falling
-            Vec3 motion = this.getDeltaMovement();
-            this.setDeltaMovement(0.0D, motion.y(), 0.0D);
 
-            //Check if we spawned drones in this phase
-            if (!hasSpawnedDrones) {
-                this.spawnDrones();
-                this.hasSpawnedDrones = true;
+        //Phase changer
+        switch (getPhase()) {
+            case DEFENCE -> {
+                //Don't move, except falling
+                Vec3 motion = this.getDeltaMovement();
+                this.setDeltaMovement(0.0D, motion.y(), 0.0D);
+
+                //Check if we spawned drones in this phase
+                if (!hasSpawnedDrones) {
+                    this.spawnDrones();
+                    this.hasSpawnedDrones = true;
+                }
+
+                if (dronesLeft <= 0 && hasSpawnedDrones) {
+                    //No more drones, time for the next phase
+                    this.setPhase(GuardPhase.ATTACK);
+                }
             }
-
-            if (dronesLeft <= 0 && hasSpawnedDrones) {
-                //No more drones, time for the next phase
-                this.setPhase(1);
+            case ATTACK -> {
+                //Sufficiently weak enough. Change phase
+                if (getHealth() <= getMaxHealth() / 2) {
+                    this.setPhase(GuardPhase.RESIST);
+                }
             }
-        }
-
-        if (getPhase() == 1 && getHealth() < getMaxHealth() / 2) {
-            //Sufficiently weak enough. Change phase
-            this.setPhase(2);
+            case RESIST -> {
+                //Health is restored enough. Revert phase
+                if (getHealth() > getMaxHealth() / 2) {
+                    this.setPhase(GuardPhase.ATTACK);
+                }
+            }
         }
 
         //Half speed at Phase 3. Phase 1 doesn't move, anyway
         float movespeed = (float) this.getAttribute(Attributes.MOVEMENT_SPEED).getValue();
-        if (getPhase() == 2) {
+        if (getPhase() == GuardPhase.RESIST) {
             //Move at half the speed in this phase
             movespeed *= 0.35F;
-        } else if (getPhase() == 0) {
+        } else if (getPhase() == GuardPhase.DEFENCE) {
             //No moving in this phase
             movespeed = 0.0F;
         }
@@ -400,7 +401,7 @@ public class MalachiteGuardEntity extends Monster {
 
     @Override
     public boolean hurt(DamageSource source, float amount) {
-        if (getChargePhase() == 1) {
+        if (getChargePhase() == ThreeStagePhase.CHARGE) {
             if (isAllowedToDamage(source)) {
                 if (level().getDifficulty() == Difficulty.EASY) {
                     amount /= 4;
@@ -416,34 +417,34 @@ public class MalachiteGuardEntity extends Monster {
             }
         }
 
-        if (getPhase() == 0) {
-            //Don't take any damage until we are sufficiently out of world. We're in Defence mode
-            return this.blockPosition().getY() < -64 && super.hurt(source, amount);
-
-        } else if (getPhase() == 1) {
-            //Take damage as normal. However, we stop at the threshold (minus a little) to change phase
-            float threshold = (getMaxHealth() / 2.0F) - 2.0F;
-            float remaining = getHealth() - threshold;
-            if (amount > remaining) {
-                amount = remaining;
+        //Damage handling
+        return switch (getPhase()) {
+            case DEFENCE -> {
+                //Don't take any damage until we are sufficiently out of world. We're in Defence mode
+                yield this.blockPosition().getY() < -64 && super.hurt(source, amount);
             }
-            return super.hurt(source, amount);
-
-        } else if (getPhase() == 2) { //Start Resist phase
-            //Take damage from appropriate sources
-            if (isAllowedToDamage(source)) {
-                //Calculate a modifier
-                float multiply = getMultiplier(amount);
-
-                return super.hurt(source, amount * multiply);
-            } else {
-                //Not unless you're falling out of the world
-                return this.blockPosition().getY() < -64 && super.hurt(source, amount);
+            case ATTACK -> {
+                //Take damage as normal. However, we stop at the threshold (minus a little) to change phase
+                float threshold = (getMaxHealth() / 2.0F) - 2.0F;
+                float remaining = getHealth() - threshold;
+                if (amount > remaining) {
+                    amount = remaining;
+                }
+                yield super.hurt(source, amount);
             }
-        }
+            case RESIST -> {
+                //Take damage from appropriate sources
+                if (isAllowedToDamage(source)) {
+                    //Calculate a modifier
+                    float multiply = getMultiplier(amount);
 
-        //We aren't any of these phases somehow. Just behave as normal
-        return super.hurt(source, amount);
+                    yield super.hurt(source, amount * multiply);
+                } else {
+                    //Not unless you're falling out of the world
+                    yield this.blockPosition().getY() < -64 && super.hurt(source, amount);
+                }
+            }
+        };
     }
 
     /**
@@ -527,7 +528,7 @@ public class MalachiteGuardEntity extends Monster {
 
         @Override
         public boolean canUse() {
-            return MalachiteGuardEntity.this.getPhase() == 0;
+            return !MalachiteGuardEntity.this.getPhase().canMove();
         }
     }
 
@@ -551,7 +552,7 @@ public class MalachiteGuardEntity extends Monster {
          */
         @Override
         public boolean canUse() {
-            if (guard.getPhase() != 0 && guard.getStompPhase() == 0 && guard.chargeCooldown <= 0) {
+            if (guard.getPhase().canMove() && guard.getStompPhase() == ThreeStagePhase.IDLE && guard.chargeCooldown <= 0) {
                 List<Entity> list = guard.level().getEntities(guard, guard.getBoundingBox().inflate(3.0F), (entity) -> {
                     EntityType<?> type = entity.getType();
                     if (type == EntityType.PLAYER) {
@@ -579,7 +580,7 @@ public class MalachiteGuardEntity extends Monster {
         @Override
         public void start() {
             guard.getNavigation().stop();
-            guard.setChargePhase(1);
+            guard.setChargePhase(ThreeStagePhase.CHARGE);
             attackPhase = 0;
             chargeTimer = 100;
             explodeTime = 0;
@@ -587,7 +588,7 @@ public class MalachiteGuardEntity extends Monster {
 
         @Override
         public void stop() {
-            guard.setChargePhase(0);
+            guard.setChargePhase(ThreeStagePhase.IDLE);
             guard.bideDamage = 0.0F;
         }
 
@@ -602,7 +603,7 @@ public class MalachiteGuardEntity extends Monster {
             chargeTimer--;
             if (chargeTimer <= 0) {
                 if (attackPhase == 0) {
-                    guard.setChargePhase(2);
+                    guard.setChargePhase(ThreeStagePhase.EXECUTE);
                     attackPhase++;
                 }
 
@@ -651,7 +652,7 @@ public class MalachiteGuardEntity extends Monster {
 
         @Override
         public boolean canUse() {
-            if (guard.getPhase() != 0 && guard.getChargePhase() == 0 && guard.stompCooldown <= 0) {
+            if (guard.getPhase().canMove() && guard.getChargePhase() == ThreeStagePhase.IDLE && guard.stompCooldown <= 0) {
                 List<Entity> list = guard.level().getEntities(guard, guard.getBoundingBox().inflate(2.0F), (entity) -> {
                     EntityType<?> type = entity.getType();
                     if (type == EntityType.PLAYER) {
@@ -675,13 +676,13 @@ public class MalachiteGuardEntity extends Monster {
 
         @Override
         public void start() {
-            guard.setStompPhase(1);
+            guard.setStompPhase(ThreeStagePhase.CHARGE);
             this.stompTime = 0;
         }
 
         @Override
         public void stop() {
-            guard.setStompPhase(0);
+            guard.setStompPhase(ThreeStagePhase.IDLE);
         }
 
         @Override
@@ -689,7 +690,7 @@ public class MalachiteGuardEntity extends Monster {
             stompTime++;
 
             if (stompTime == 20) {
-                guard.setStompPhase(2);
+                guard.setStompPhase(ThreeStagePhase.EXECUTE);
 
                 List<Entity> targets = guard.level().getEntities(guard, guard.getBoundingBox().inflate(3.0F, -2.0F, 3.0F), (entity) -> {
                     EntityType<?> type = entity.getType();

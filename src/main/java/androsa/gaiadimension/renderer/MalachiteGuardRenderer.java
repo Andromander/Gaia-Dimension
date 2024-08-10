@@ -1,6 +1,7 @@
 package androsa.gaiadimension.renderer;
 
 import androsa.gaiadimension.entity.boss.MalachiteGuardEntity;
+import androsa.gaiadimension.entity.data.ThreeStagePhase;
 import androsa.gaiadimension.model.MalachiteGuardModel;
 import androsa.gaiadimension.registry.helpers.ModEntitiesRendering;
 import androsa.gaiadimension.renderer.layer.MalachiteDefenceLayer;
@@ -26,6 +27,6 @@ public class MalachiteGuardRenderer<T extends MalachiteGuardEntity, M extends Ma
 
     @Override
     protected boolean isShaking(T entity) {
-        return entity.getChargePhase() == 1;
+        return entity.getChargePhase() == ThreeStagePhase.CHARGE;
     }
 }

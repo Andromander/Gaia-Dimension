@@ -1,6 +1,8 @@
 package androsa.gaiadimension.model;
 
 import androsa.gaiadimension.entity.boss.MalachiteGuardEntity;
+import androsa.gaiadimension.entity.data.GuardPhase;
+import androsa.gaiadimension.entity.data.ThreeStagePhase;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.client.model.HierarchicalModel;
@@ -154,7 +156,7 @@ public class MalachiteGuardModel<T extends MalachiteGuardEntity> extends Hierarc
     @Override
     @SuppressWarnings("UnusedAssignment")
     public void setupAnim(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-        if (entity.getPhase() == 0) {
+        if (entity.getPhase() == GuardPhase.DEFENCE) {
             if (reset) reset = false;
             this.offset = 0.1F;
 
@@ -166,7 +168,7 @@ public class MalachiteGuardModel<T extends MalachiteGuardEntity> extends Hierarc
             setRotateAngle(footR, 0.5F, 0.0F, 0.0F);
             setRotateAngle(lowerArmL, -1.7F, 0.6F, 0.0F);
             setRotateAngle(lowerArmR, -1.7F, -0.6F, 0.0F);
-        } else if (entity.getChargePhase() == 1 || entity.getStompPhase() == 2) {
+        } else if (entity.getChargePhase() == ThreeStagePhase.CHARGE || entity.getStompPhase() == ThreeStagePhase.EXECUTE) {
             if (reset) reset = false;
             this.offset = 0.5F;
 
@@ -180,7 +182,7 @@ public class MalachiteGuardModel<T extends MalachiteGuardEntity> extends Hierarc
             setRotateAngle(legR, -1.1F, 0.3F, 0.0F);
             setRotateAngle(footL, 1.6F, 0.0F, 0.0F);
             setRotateAngle(footR, 1.6F, 0.0F, 0.0F);
-        } else if (entity.getChargePhase() == 2) {
+        } else if (entity.getChargePhase() == ThreeStagePhase.EXECUTE) {
             if (reset) reset = false;
             this.offset = 0.1F;
 
@@ -194,7 +196,7 @@ public class MalachiteGuardModel<T extends MalachiteGuardEntity> extends Hierarc
             setRotateAngle(legR, 0.0F, 0.0F, 0.3F);
             setRotateAngle(footL, 0.0F, 0.0F, 0.0F);
             setRotateAngle(footR, 0.0F, 0.0F, 0.0F);
-        } else if (entity.getStompPhase() == 1) {
+        } else if (entity.getStompPhase() == ThreeStagePhase.CHARGE) {
             if (reset) reset = false;
 
             setRotateAngle(head, -0.3F, 0.0F, 0.0F);

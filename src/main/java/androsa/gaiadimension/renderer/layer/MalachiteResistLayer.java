@@ -1,6 +1,7 @@
 package androsa.gaiadimension.renderer.layer;
 
 import androsa.gaiadimension.entity.boss.MalachiteGuardEntity;
+import androsa.gaiadimension.entity.data.GuardPhase;
 import androsa.gaiadimension.model.MalachiteGuardModel;
 import androsa.gaiadimension.registry.helpers.ModEntitiesRendering;
 import com.mojang.blaze3d.vertex.PoseStack;
@@ -25,7 +26,7 @@ public class MalachiteResistLayer<T extends MalachiteGuardEntity, M extends Mala
 
     @Override
     public void render(PoseStack matrix, MultiBufferSource buffer, int light, T entity, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch) {
-        if (entity.getPhase() == 2) {
+        if (entity.getPhase() == GuardPhase.RESIST) {
             float ticks = (float)entity.tickCount + partialTicks;
             EntityModel<T> model = this.getEnergySwirlModel();
             model.prepareMobModel(entity, limbSwing, limbSwingAmount, partialTicks);

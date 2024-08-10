@@ -4,7 +4,9 @@ import androsa.gaiadimension.GaiaDimensionMod;
 import androsa.gaiadimension.entity.*;
 import androsa.gaiadimension.entity.boss.BlueHowliteWolfEntity;
 import androsa.gaiadimension.entity.boss.MalachiteGuardEntity;
+import androsa.gaiadimension.entity.data.GuardPhase;
 import androsa.gaiadimension.entity.data.MookaitePartType;
+import androsa.gaiadimension.entity.data.ThreeStagePhase;
 import androsa.gaiadimension.entity.projectile.*;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.syncher.EntityDataSerializer;
@@ -75,6 +77,10 @@ public class ModEntities {
     //EntityDataSerializers
     public static final DeferredHolder<EntityDataSerializer<?>, EntityDataSerializer<MookaitePartType>> MOOKAITE_PART = ENTITY_DATA_SERIALIZERS.register("mookaite_part",
             () -> EntityDataSerializer.forValueType(MookaitePartType.STREAM_CODEC));
+    public static final DeferredHolder<EntityDataSerializer<?>, EntityDataSerializer<GuardPhase>> GUARD_PHASE = ENTITY_DATA_SERIALIZERS.register("guard_phase",
+            () -> EntityDataSerializer.forValueType(GuardPhase.STREAM_CODEC));
+    public static final DeferredHolder<EntityDataSerializer<?>, EntityDataSerializer<ThreeStagePhase>> THREE_STAGE_PHASE = ENTITY_DATA_SERIALIZERS.register("three_stage_phase",
+            () -> EntityDataSerializer.forValueType(ThreeStagePhase.STREAM_CODEC));
 
     public static <E extends Entity> DeferredHolder<EntityType<?>, EntityType<E>> registerProjectile(String name, EntityType.EntityFactory<E> entity, boolean updates, int range, int interval, float width, float height, boolean fireproof) {
         EntityType.Builder<E> entitytype = makeBuilder(entity, MobCategory.MISC, width, height)
