@@ -1,7 +1,7 @@
 package androsa.gaiadimension.entity.projectile;
 
 import androsa.gaiadimension.entity.MookaiteConstructEntity;
-import androsa.gaiadimension.entity.MookaitePartType;
+import androsa.gaiadimension.entity.data.MookaitePartType;
 import androsa.gaiadimension.registry.registration.ModBlocks;
 import androsa.gaiadimension.registry.registration.ModEntities;
 import net.minecraft.world.entity.Entity;

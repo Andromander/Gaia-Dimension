@@ -1,4 +1,4 @@
-package androsa.gaiadimension.entity;
+package androsa.gaiadimension.entity.data;
 
 import io.netty.buffer.ByteBuf;
 import net.minecraft.network.codec.ByteBufCodecs;

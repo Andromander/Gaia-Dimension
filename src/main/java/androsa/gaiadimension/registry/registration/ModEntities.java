@@ -4,6 +4,7 @@ import androsa.gaiadimension.GaiaDimensionMod;
 import androsa.gaiadimension.entity.*;
 import androsa.gaiadimension.entity.boss.BlueHowliteWolfEntity;
 import androsa.gaiadimension.entity.boss.MalachiteGuardEntity;
+import androsa.gaiadimension.entity.data.MookaitePartType;
 import androsa.gaiadimension.entity.projectile.*;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.syncher.EntityDataSerializer;
