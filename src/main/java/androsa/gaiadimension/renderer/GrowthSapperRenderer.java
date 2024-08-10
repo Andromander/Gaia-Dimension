@@ -15,11 +15,6 @@ public class GrowthSapperRenderer<T extends GrowthSapperEntity, M extends Growth
 
     @Override
     public ResourceLocation getTextureLocation(T entity) {
-        return switch (entity.getEntityVariant()) {
-            case 1 -> ModEntitiesRendering.makeTexture(entity, "blue");
-            case 2 -> ModEntitiesRendering.makeTexture(entity, "green");
-            case 3 -> ModEntitiesRendering.makeTexture(entity, "purple");
-            default -> ModEntitiesRendering.makeTexture(entity, "pink");
-        };
+        return ModEntitiesRendering.makeTexture(entity, entity.getEntityVariant().getSerializedName());
     }
 }

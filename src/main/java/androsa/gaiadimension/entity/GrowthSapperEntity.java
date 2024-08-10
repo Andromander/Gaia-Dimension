@@ -1,16 +1,15 @@
 package androsa.gaiadimension.entity;
 
+import androsa.gaiadimension.entity.data.SapperVariant;
 import androsa.gaiadimension.registry.bootstrap.GaiaBiomes;
+import androsa.gaiadimension.registry.registration.ModEntities;
 import androsa.gaiadimension.registry.registration.ModSounds;
-import androsa.gaiadimension.registry.values.GaiaBuiltinTables;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
-import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.sounds.SoundEvent;
-import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.damagesource.DamageSource;
@@ -31,10 +30,9 @@ import net.minecraft.world.level.storage.loot.LootTable;
 import javax.annotation.Nullable;
 import java.util.Objects;
 import java.util.Optional;
-import java.util.Random;
 
 public class GrowthSapperEntity extends PathfinderMob {
-    private static final EntityDataAccessor<Integer> SAPPER_VARIANT = SynchedEntityData.defineId(GrowthSapperEntity.class, EntityDataSerializers.INT);
+    private static final EntityDataAccessor<SapperVariant> SAPPER_VARIANT = SynchedEntityData.defineId(GrowthSapperEntity.class, ModEntities.SAPPER_VARIANT.get());
 
     public GrowthSapperEntity(EntityType<? extends GrowthSapperEntity> entity, Level world) {
         super(entity, world);
@@ -44,7 +42,7 @@ public class GrowthSapperEntity extends PathfinderMob {
     @Override
     protected void defineSynchedData(SynchedEntityData.Builder builder) {
         super.defineSynchedData(builder);
-        builder.define(SAPPER_VARIANT, 0);
+        builder.define(SAPPER_VARIANT, SapperVariant.COMMON);
     }
 
     public static AttributeSupplier.Builder registerAttributes() {
@@ -61,32 +59,24 @@ public class GrowthSapperEntity extends PathfinderMob {
         this.goalSelector.addGoal(1, new RandomStrollGoal(this, 0.5D));
     }
 
-    public int getEntityVariant() {
-        return Mth.clamp(entityData.get(SAPPER_VARIANT), 0, 3);
+    public SapperVariant getEntityVariant() {
+        return entityData.get(SAPPER_VARIANT);
     }
 
-    /**
-     * 0 = Common Sapper
-     * 1 = Chilled Sapper
-     * 2 = Nutrient Sapper
-     * 3 = Mystified Sapper
-     *
-     * //@param type The integer variant of the entity
-     */
-    public void setSapperVariant(int type) {
+    public void setSapperVariant(SapperVariant type) {
         entityData.set(SAPPER_VARIANT, type);
     }
 
     @Override
     public void readAdditionalSaveData(CompoundTag compound) {
         super.readAdditionalSaveData(compound);
-        this.setSapperVariant(compound.getInt("SapperVariant"));
+        this.setSapperVariant(SapperVariant.getVariant(compound.getInt("SapperVariant")));
     }
 
     @Override
     public void addAdditionalSaveData(CompoundTag compound) {
         super.addAdditionalSaveData(compound);
-        compound.putInt("SapperVariant", this.getEntityVariant());
+        compound.putInt("SapperVariant", this.getEntityVariant().getId());
     }
 
     @Nullable
@@ -103,12 +93,7 @@ public class GrowthSapperEntity extends PathfinderMob {
 
     @Override
     public ResourceKey<LootTable> getDefaultLootTable() {
-        return switch (this.getEntityVariant()) {
-            default -> GaiaBuiltinTables.PINK_SAPPER_TABLE;
-            case 1 -> GaiaBuiltinTables.BLUE_SAPPER_TABLE;
-            case 2 -> GaiaBuiltinTables.GREEN_SAPPER_TABLE;
-            case 3 -> GaiaBuiltinTables.PURPLE_SAPPER_TABLE;
-        };
+        return this.getEntityVariant().getLootTable();
     }
 
     public static boolean canSpawnHere(EntityType<GrowthSapperEntity> entity, LevelAccessor world, MobSpawnType spawn, BlockPos pos, RandomSource random) {
@@ -120,16 +105,15 @@ public class GrowthSapperEntity extends PathfinderMob {
         Optional<ResourceKey<Biome>> biome = worldIn.getBiome(this.blockPosition()).unwrapKey();
 
         if (Objects.equals(biome, Optional.of(GaiaBiomes.pink_agate_forest)) || Objects.equals(biome, Optional.of(GaiaBiomes.crystal_plains))) {
-            setSapperVariant(0);
+            setSapperVariant(SapperVariant.COMMON);
         } else if (Objects.equals(biome, Optional.of(GaiaBiomes.blue_agate_taiga))) {
-            setSapperVariant(1);
+            setSapperVariant(SapperVariant.CHILLED);
         } else if (Objects.equals(biome, Optional.of(GaiaBiomes.green_agate_jungle))) {
-            setSapperVariant(2);
+            setSapperVariant(SapperVariant.NUTRIENT);
         } else if (Objects.equals(biome, Optional.of(GaiaBiomes.purple_agate_swamp))) {
-            setSapperVariant(3);
+            setSapperVariant(SapperVariant.MYSTIFIED);
         } else {
-            Random rand = new Random();
-            setSapperVariant(rand.nextInt(4));
+            setSapperVariant(SapperVariant.getRandomVariant(worldIn.getRandom()));
         }
 
         return super.finalizeSpawn(worldIn, difficultyIn, reason, spawnDataIn);
