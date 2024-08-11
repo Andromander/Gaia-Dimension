@@ -34,5 +34,6 @@ public class ModDataMaps {
     public static void registerDataMaps(RegisterDataMapTypesEvent event) {
         event.register(GLITTERING_FUEL);
         event.register(SHINING_FUEL);
+        event.register(NULLING_FUEL);
     }
 }
