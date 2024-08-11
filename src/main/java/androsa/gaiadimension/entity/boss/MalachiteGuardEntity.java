@@ -9,6 +9,7 @@ import androsa.gaiadimension.registry.registration.ModItems;
 import androsa.gaiadimension.registry.registration.ModParticles;
 import androsa.gaiadimension.registry.registration.ModSounds;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.core.NonNullList;
 import net.minecraft.core.particles.BlockParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
@@ -250,39 +251,25 @@ public class MalachiteGuardEntity extends Monster {
      * Spawns our drones. Easy: 3. Normal: 4. Hard: 5.
      */
     private void spawnDrones() {
-        BlockPos guardPos = this.blockPosition();
-        int gX = guardPos.getX();
-        int gy = guardPos.getY();
-        int gZ = guardPos.getZ();
+        BlockPos.MutableBlockPos mutable = this.blockPosition().mutable();
         Difficulty difficulty = this.level().getDifficulty();
-
-        //Easy Modes
-        BlockPos bpLeft = new BlockPos(gX - 2, gy, gZ);
-        BlockPos bpRight = new BlockPos(gX + 2, gy, gZ);
-        //Normal and Hard modes
-        BlockPos bpTopLeft = new BlockPos(gX - 2, gy, gZ + 1);
-        BlockPos bpLowLeft = new BlockPos(gX - 2, gy, gZ - 1);
-        BlockPos bpTopRight = new BlockPos(gX + 2, gy, gZ + 1);
-        BlockPos bpLowRight = new BlockPos(gX + 2, gy, gZ - 1);
-        //Middle Drone for Easy and Hard
-        BlockPos bpMid = new BlockPos(gX, gy, gZ + 1);
 
         //Spawn Drones per difficulty
         if (difficulty == Difficulty.EASY) {
-            createDrone(bpLeft);
-            createDrone(bpMid);
-            createDrone(bpRight);
+            createDrone(mutable.move(Direction.EAST, 2));
+            createDrone(mutable.move(Direction.SOUTH, 2));
+            createDrone(mutable.move(Direction.WEST, 2));
         } if (difficulty == Difficulty.NORMAL) {
-            createDrone(bpTopLeft);
-            createDrone(bpLowLeft);
-            createDrone(bpTopRight);
-            createDrone(bpLowRight);
+            createDrone(mutable.move(Direction.EAST, 2).move(Direction.NORTH, 1));
+            createDrone(mutable.move(Direction.EAST, 2).move(Direction.SOUTH, 1));
+            createDrone(mutable.move(Direction.WEST, 2).move(Direction.NORTH, 1));
+            createDrone(mutable.move(Direction.WEST, 2).move(Direction.SOUTH, 1));
         } if (difficulty == Difficulty.HARD) {
-            createDrone(bpTopLeft);
-            createDrone(bpLowLeft);
-            createDrone(bpTopRight);
-            createDrone(bpLowRight);
-            createDrone(bpMid);
+            createDrone(mutable.move(Direction.EAST, 2).move(Direction.NORTH, 1));
+            createDrone(mutable.move(Direction.EAST, 2).move(Direction.SOUTH, 1));
+            createDrone(mutable.move(Direction.WEST, 2).move(Direction.NORTH, 1));
+            createDrone(mutable.move(Direction.WEST, 2).move(Direction.SOUTH, 1));
+            createDrone(mutable.move(Direction.SOUTH, 2));
         }
     }
 
