@@ -8,11 +8,13 @@ import androsa.gaiadimension.registry.values.GaiaFoods;
 import androsa.gaiadimension.registry.values.GaiaToolMaterials;
 import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.core.Direction;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.*;
+import net.minecraft.world.item.component.ItemContainerContents;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.material.Fluids;
@@ -52,7 +54,7 @@ public class ModItems {
     public static final DeferredItem<Item> twined_thread = register("twined_thread");
     public static final DeferredItem<Item> pink_essence = register("pink_essence");
     public static final DeferredItem<Item> pink_goo = register("pink_goo");
-    public static final DeferredItem<Item> gemstone_pouch = register("gemstone_pouch", () -> new GemstonePouchItem(itemProps()));
+    public static final DeferredItem<Item> gemstone_pouch = register("gemstone_pouch", () -> new GemstonePouchItem(itemProps().component(ModDataComponents.POUCH_CONTENTS, ItemContainerContents.EMPTY)));
     public static final DeferredItem<Item> agate_fabric = register("agate_fabric");
     public static final DeferredItem<Item> sturdy_pebble = register("sturdy_pebble", () -> new SturdyPebbleItem(itemProps().stacksTo(16)));
     public static final DeferredItem<Item> blank_kit = register("blank_kit", () -> new ConstructKitItem(itemProps(), ConstructKitItem.Kit.BLANK));
@@ -286,6 +288,8 @@ public class ModItems {
     public static final DeferredItem<Item> malachite_guard_spawn_egg = registerEgg("malachite_guard", ModEntities.MALACHITE_GUARD, 0x339900, 0x33CC99);
 
     public static final DeferredItem<Item> PYRITE_TORCH = ITEMS.register("pyrite_torch", () -> new StandingAndWallBlockItem(ModBlocks.pyrite_torch.get(), ModBlocks.pyrite_wall_torch.get(), basicProps(), Direction.DOWN));
+    public static final DeferredItem<Item> CRUDE_STORAGE_CRATE = ITEMS.register("crude_storage_crate", () -> new BlockItem(ModBlocks.crude_storage_crate.get(), itemProps().component(DataComponents.CONTAINER, ItemContainerContents.EMPTY)));
+    public static final DeferredItem<Item> MEGA_STORAGE_CRATE = ITEMS.register("mega_storage_crate", () -> new BlockItem(ModBlocks.mega_storage_crate.get(), itemProps().component(DataComponents.CONTAINER, ItemContainerContents.EMPTY)));
 
     private static DeferredItem<Item> register(String name) {
         return register(name, () -> new Item(basicProps()));

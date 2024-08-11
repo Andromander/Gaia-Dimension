@@ -7,6 +7,7 @@ import androsa.gaiadimension.registry.bootstrap.GaiaFeatures;
 import androsa.gaiadimension.registry.helpers.PropertiesHandler;
 import com.google.common.collect.Maps;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.dispenser.BlockSource;
 import net.minecraft.core.dispenser.DefaultDispenseItemBehavior;
 import net.minecraft.core.dispenser.DispenseItemBehavior;
@@ -16,6 +17,7 @@ import net.minecraft.world.item.AxeItem;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.component.ItemContainerContents;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
@@ -48,9 +50,9 @@ public class ModBlocks {
     public static final DeferredBlock<Block> pyrite_wall_torch = registerNoItem("pyrite_wall_torch", () -> new PyriteWallTorchBlock(PropertiesHandler.torchProps().lootFrom(pyrite_torch)));
     public static final DeferredBlock<Block> agate_crafting_table = register("agate_crafting_table", () ->
             new AgateCraftingTableBlock(PropertiesHandler.stoneProps(MapColor.TERRACOTTA_PINK, 1.5F, 2.0F, false)));
-    public static final DeferredBlock<Block> crude_storage_crate = register("crude_storage_crate", () ->
+    public static final DeferredBlock<Block> crude_storage_crate = registerNoItem("crude_storage_crate", () ->
             new SmallCrateBlock(PropertiesHandler.stoneProps(MapColor.TERRACOTTA_PINK, 10.0F, 150.0F).pushReaction(PushReaction.DESTROY)));
-    public static final DeferredBlock<Block> mega_storage_crate = register("mega_storage_crate", () ->
+    public static final DeferredBlock<Block> mega_storage_crate = registerNoItem("mega_storage_crate", () ->
             new LargeCrateBlock(PropertiesHandler.stoneProps(MapColor.TERRACOTTA_PURPLE, 10.0F, 300.0F).pushReaction(PushReaction.DESTROY)));
     public static final DeferredBlock<Block> gaia_stone_furnace = register("gaia_stone_furnace", () ->
             new GaiaStoneFurnaceBlock(PropertiesHandler.stoneProps(MapColor.TERRACOTTA_PINK, 20.0F, 300.0F, true).lightLevel((state) -> state.getValue(AbstractFurnaceBlock.LIT) ? 13 : 0)));
