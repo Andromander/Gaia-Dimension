@@ -21,7 +21,6 @@ public class PurifierScreen extends AbstractContainerScreen<PurifierMenu> {
 
     @Override
     public void render(GuiGraphics stack, int mouseX, int mouseY, float partialTicks) {
-        renderBackground(stack, mouseX, mouseY, partialTicks);
         super.render(stack, mouseX, mouseY, partialTicks);
         renderTooltip(stack, mouseX, mouseY);
     }

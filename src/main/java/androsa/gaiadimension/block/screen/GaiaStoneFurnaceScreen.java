@@ -32,7 +32,6 @@ public class GaiaStoneFurnaceScreen extends AbstractContainerScreen<GaiaStoneFur
 
     @Override
     public void render(GuiGraphics stack, int mouseX, int mouseZ, float partialTicks) {
-        this.renderBackground(stack, mouseX, mouseZ, partialTicks);
         super.render(stack, mouseX, mouseZ, partialTicks);
         this.renderTooltip(stack, mouseX, mouseZ);
     }

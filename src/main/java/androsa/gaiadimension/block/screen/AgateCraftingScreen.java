@@ -22,7 +22,6 @@ public class AgateCraftingScreen extends AbstractContainerScreen<AgateCraftingTa
 
     @Override
     public void render(GuiGraphics stack, int mouseX, int mouseY, float partialTicks) {
-        this.renderBackground(stack, mouseX, mouseY, partialTicks);
         super.render(stack, mouseX, mouseY, partialTicks);
         this.renderTooltip(stack, mouseX, mouseY);
     }
