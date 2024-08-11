@@ -27,8 +27,8 @@ public class PurifierScreen extends AbstractContainerScreen<PurifierMenu> {
 
     @Override
     protected void renderLabels(GuiGraphics stack, int mouseX, int mouseY) {
-        stack.drawString(font, title, (imageWidth / 2 - font.width(title.getString()) / 2), 6, 0x000000);
-        stack.drawString(font, playerInventoryTitle, 8, (imageHeight - 96 + 2), 0x000000);
+        stack.drawString(font, title, (imageWidth / 2 - font.width(title.getString()) / 2), 6, 0xF0F0F0);
+        stack.drawString(font, playerInventoryTitle, 8, (imageHeight - 96 + 2), 0xF0F0F0);
     }
 
     @Override
