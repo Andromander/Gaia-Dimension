@@ -280,8 +280,8 @@ public class MalachiteGuardEntity extends Monster {
             EventHooks.finalizeMobSpawn(drone, (ServerLevelAccessor)this.level(), this.level().getCurrentDifficultyAt(pos), MobSpawnType.MOB_SUMMONED, null);
         }
         drone.setOwner(this);
-        this.level().addFreshEntity(drone);
-        this.dronesLeft++;
+        if (this.level().addFreshEntity(drone))
+            this.dronesLeft++;
     }
 
     /**
