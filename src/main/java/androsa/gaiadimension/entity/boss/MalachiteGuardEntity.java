@@ -9,7 +9,6 @@ import androsa.gaiadimension.registry.registration.ModItems;
 import androsa.gaiadimension.registry.registration.ModParticles;
 import androsa.gaiadimension.registry.registration.ModSounds;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
 import net.minecraft.core.NonNullList;
 import net.minecraft.core.particles.BlockParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
@@ -251,37 +250,37 @@ public class MalachiteGuardEntity extends Monster {
      * Spawns our drones. Easy: 3. Normal: 4. Hard: 5.
      */
     private void spawnDrones() {
-        BlockPos.MutableBlockPos mutable = this.blockPosition().mutable();
+        BlockPos position = this.blockPosition();
         Difficulty difficulty = this.level().getDifficulty();
 
         //Spawn Drones per difficulty
         if (difficulty == Difficulty.EASY) {
-            createDrone(mutable.move(Direction.EAST, 2));
-            createDrone(mutable.move(Direction.SOUTH, 2));
-            createDrone(mutable.move(Direction.WEST, 2));
+            createDrone(position.east(2));
+            createDrone(position.south());
+            createDrone(position.west(2));
         } if (difficulty == Difficulty.NORMAL) {
-            createDrone(mutable.move(Direction.EAST, 2).move(Direction.NORTH, 1));
-            createDrone(mutable.move(Direction.EAST, 2).move(Direction.SOUTH, 1));
-            createDrone(mutable.move(Direction.WEST, 2).move(Direction.NORTH, 1));
-            createDrone(mutable.move(Direction.WEST, 2).move(Direction.SOUTH, 1));
+            createDrone(position.east(2).north());
+            createDrone(position.east(2).south());
+            createDrone(position.west(2).north());
+            createDrone(position.west(2).south());
         } if (difficulty == Difficulty.HARD) {
-            createDrone(mutable.move(Direction.EAST, 2).move(Direction.NORTH, 1));
-            createDrone(mutable.move(Direction.EAST, 2).move(Direction.SOUTH, 1));
-            createDrone(mutable.move(Direction.WEST, 2).move(Direction.NORTH, 1));
-            createDrone(mutable.move(Direction.WEST, 2).move(Direction.SOUTH, 1));
-            createDrone(mutable.move(Direction.SOUTH, 2));
+            createDrone(position.east(2).north());
+            createDrone(position.east(2).south());
+            createDrone(position.west(2).north());
+            createDrone(position.west(2).south());
+            createDrone(position.south(2));
         }
     }
 
     private void createDrone(BlockPos pos) {
-        MalachiteDroneEntity drone = new MalachiteDroneEntity(ModEntities.MALACHITE_DRONE.get(), this.level());
-        drone.moveTo(pos, 0.0F, 0.0F);
         if (!level().isClientSide()) {
+            MalachiteDroneEntity drone = ModEntities.MALACHITE_DRONE.get().create(this.level());
+            drone.moveTo(pos, 0.0F, 0.0F);
             EventHooks.finalizeMobSpawn(drone, (ServerLevelAccessor)this.level(), this.level().getCurrentDifficultyAt(pos), MobSpawnType.MOB_SUMMONED, null);
+            drone.setOwner(this);
+            if (this.level().addFreshEntity(drone))
+                this.dronesLeft++;
         }
-        drone.setOwner(this);
-        if (this.level().addFreshEntity(drone))
-            this.dronesLeft++;
     }
 
     /**
@@ -302,14 +301,16 @@ public class MalachiteGuardEntity extends Monster {
                 this.setDeltaMovement(0.0D, motion.y(), 0.0D);
 
                 //Check if we spawned drones in this phase
-                if (!hasSpawnedDrones) {
-                    this.spawnDrones();
-                    this.hasSpawnedDrones = true;
-                }
+                if (!this.level().isClientSide()) {
+                    if (!hasSpawnedDrones) {
+                        this.spawnDrones();
+                        this.hasSpawnedDrones = true;
+                    }
 
-                if (dronesLeft <= 0 && hasSpawnedDrones) {
-                    //No more drones, time for the next phase
-                    this.setPhase(GuardPhase.ATTACK);
+                    if (dronesLeft <= 0 && hasSpawnedDrones) {
+                        //No more drones, time for the next phase
+                        this.setPhase(GuardPhase.ATTACK);
+                    }
                 }
             }
             case ATTACK -> {
