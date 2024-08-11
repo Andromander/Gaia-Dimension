@@ -134,7 +134,7 @@ public class RestructurerBlockEntity extends BaseContainerBlockEntity implements
         int i = compound.getShort("burnDurationSize");
 
         for (int j = 0; j < i; j++) {
-            ResourceLocation resourcelocation = ResourceLocation.withDefaultNamespace(compound.getString("RecipeLocation" + j));
+            ResourceLocation resourcelocation = ResourceLocation.parse(compound.getString("RecipeLocation" + j));
             int k = compound.getInt("RecipeAmount" + j);
             this.recipeMap.put(resourcelocation, k);
         }
