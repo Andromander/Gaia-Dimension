@@ -1,6 +1,6 @@
 package androsa.gaiadimension.renderer;
 
-import androsa.gaiadimension.entity.MineralArenthisEntity;
+import androsa.gaiadimension.entity.MineralArenthis;
 import androsa.gaiadimension.model.MineralArenthisModel;
 import androsa.gaiadimension.registry.helpers.ModEntitiesRendering;
 import androsa.gaiadimension.renderer.layer.MineralArenthisPartsLayer;
@@ -11,7 +11,7 @@ import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 
-public class MineralArenthisRenderer<T extends MineralArenthisEntity, M extends MineralArenthisModel<T>> extends MobRenderer<T, M> {
+public class MineralArenthisRenderer<T extends MineralArenthis, M extends MineralArenthisModel<T>> extends MobRenderer<T, M> {
 
     public MineralArenthisRenderer(EntityRendererProvider.Context manager, M model, float shadowSize) {
         super(manager, model, shadowSize);

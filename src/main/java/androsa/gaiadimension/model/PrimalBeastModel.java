@@ -1,6 +1,6 @@
 package androsa.gaiadimension.model;
 
-import androsa.gaiadimension.entity.PrimalBeastEntity;
+import androsa.gaiadimension.entity.PrimalBeast;
 import net.minecraft.client.model.HierarchicalModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
@@ -14,7 +14,7 @@ import net.minecraft.util.Mth;
  * ModelPrimalBeast - Androsa
  * Created using Tabula 7.0.0
  */
-public class PrimalBeastModel<T extends PrimalBeastEntity> extends HierarchicalModel<T> {
+public class PrimalBeastModel<T extends PrimalBeast> extends HierarchicalModel<T> {
     public ModelPart root;
     public ModelPart head;
     public ModelPart armL;

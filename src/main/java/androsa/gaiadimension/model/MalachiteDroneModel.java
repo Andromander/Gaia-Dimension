@@ -1,6 +1,6 @@
 package androsa.gaiadimension.model;
 
-import androsa.gaiadimension.entity.MalachiteDroneEntity;
+import androsa.gaiadimension.entity.MalachiteDrone;
 import net.minecraft.client.model.HierarchicalModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
@@ -14,7 +14,7 @@ import net.minecraft.util.Mth;
  * MalachiteDroneModel - Androsa
  * Created using Tabula 7.0.0
  */
-public class MalachiteDroneModel<T extends MalachiteDroneEntity> extends HierarchicalModel<T> {
+public class MalachiteDroneModel<T extends MalachiteDrone> extends HierarchicalModel<T> {
     public ModelPart root;
     public ModelPart upperArmL;
     public ModelPart upperArmR;

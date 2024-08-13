@@ -1,6 +1,6 @@
 package androsa.gaiadimension.model;
 
-import androsa.gaiadimension.entity.SpellElementEntity;
+import androsa.gaiadimension.entity.SpellElemental;
 import net.minecraft.client.model.HierarchicalModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
@@ -14,7 +14,7 @@ import net.minecraft.util.Mth;
  * ModelSpellElement - Androsa
  * Created using Tabula 7.0.0
  */
-public class SpellElementModel<T extends SpellElementEntity> extends HierarchicalModel<T> {
+public class SpellElementModel<T extends SpellElemental> extends HierarchicalModel<T> {
     public ModelPart root;
     public ModelPart head;
     public ModelPart scytheL;

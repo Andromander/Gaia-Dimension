@@ -1,6 +1,6 @@
 package androsa.gaiadimension.renderer.layer;
 
-import androsa.gaiadimension.entity.MalachiteDroneEntity;
+import androsa.gaiadimension.entity.MalachiteDrone;
 import androsa.gaiadimension.model.MalachiteDroneModel;
 import androsa.gaiadimension.registry.helpers.ModEntitiesRendering;
 import com.mojang.blaze3d.vertex.PoseStack;
@@ -11,7 +11,7 @@ import net.minecraft.client.renderer.entity.RenderLayerParent;
 import net.minecraft.client.renderer.entity.layers.RenderLayer;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 
-public class MalachiteDroneGlowLayer<T extends MalachiteDroneEntity, M extends MalachiteDroneModel<T>> extends RenderLayer<T, M> {
+public class MalachiteDroneGlowLayer<T extends MalachiteDrone, M extends MalachiteDroneModel<T>> extends RenderLayer<T, M> {
     private static RenderType NORMAL;
     private static RenderType FOLLOW;
 

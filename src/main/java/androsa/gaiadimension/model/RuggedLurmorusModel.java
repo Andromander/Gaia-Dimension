@@ -1,6 +1,6 @@
 package androsa.gaiadimension.model;
 
-import androsa.gaiadimension.entity.RuggedLurmorusEntity;
+import androsa.gaiadimension.entity.RuggedLurmorus;
 import net.minecraft.client.model.HierarchicalModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
@@ -14,7 +14,7 @@ import net.minecraft.util.Mth;
  * ModelRuggedLurmorus - Androsa
  * Created using Tabula 7.0.0
  */
-public class RuggedLurmorusModel<T extends RuggedLurmorusEntity> extends HierarchicalModel<T> {
+public class RuggedLurmorusModel<T extends RuggedLurmorus> extends HierarchicalModel<T> {
     public ModelPart root;
     public ModelPart head;
     public ModelPart shoulderL;

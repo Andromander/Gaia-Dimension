@@ -1,6 +1,6 @@
 package androsa.gaiadimension.model;
 
-import androsa.gaiadimension.entity.SaltionEntity;
+import androsa.gaiadimension.entity.Saltion;
 import net.minecraft.client.model.HierarchicalModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
@@ -14,7 +14,7 @@ import net.minecraft.util.Mth;
  * ModelSaltion - Androsa
  * Created using Tabula 7.0.0
  */
-public class SaltionModel<T extends SaltionEntity> extends HierarchicalModel<T> {
+public class SaltionModel<T extends Saltion> extends HierarchicalModel<T> {
     public ModelPart root;
     public ModelPart head;
     public ModelPart armL;

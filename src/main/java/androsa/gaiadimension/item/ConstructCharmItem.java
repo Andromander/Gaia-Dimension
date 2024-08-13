@@ -1,7 +1,7 @@
 package androsa.gaiadimension.item;
 
-import androsa.gaiadimension.entity.MookaiteConstructEntity;
-import androsa.gaiadimension.entity.OpaliteContructEntity;
+import androsa.gaiadimension.entity.MookaiteConstruct;
+import androsa.gaiadimension.entity.OpaliteContruct;
 import androsa.gaiadimension.registry.registration.ModEntities;
 import androsa.gaiadimension.registry.registration.ModDataComponents;
 import net.minecraft.core.component.DataComponentType;
@@ -33,9 +33,9 @@ public class ConstructCharmItem extends Item {
     @Nonnull
     @ParametersAreNonnullByDefault
     public InteractionResult interactLivingEntity(ItemStack stack, Player player, LivingEntity entity, InteractionHand hand) {
-        if (entity instanceof MookaiteConstructEntity || entity instanceof OpaliteContructEntity) {
+        if (entity instanceof MookaiteConstruct || entity instanceof OpaliteContruct) {
             //Mookaite Construct check
-            if (entity instanceof MookaiteConstructEntity mookaite) {
+            if (entity instanceof MookaiteConstruct mookaite) {
                 //Check if we already have a Mookaite Construct's UUID stored
                 if (!stack.has(ModDataComponents.MOOKAITE_UUID)) {
                     //Check if the Mookaite Construct has a bond already
@@ -51,7 +51,7 @@ public class ConstructCharmItem extends Item {
                 }
             }
             //Opalite Construct check
-            if (entity instanceof OpaliteContructEntity opalite) {
+            if (entity instanceof OpaliteContruct opalite) {
                 //Check if we already have an Opalite Construct's UUID stored
                 if (!stack.has(ModDataComponents.OPALITE_UUID)) {
                     //Check if the Mookaite Construct has a bond already
@@ -94,11 +94,11 @@ public class ConstructCharmItem extends Item {
 
                 //Check if they've been found in range
                 if (mFlag && oFlag) {
-                    mFlag = mookaite instanceof MookaiteConstructEntity;
-                    oFlag = opalite instanceof OpaliteContructEntity;
+                    mFlag = mookaite instanceof MookaiteConstruct;
+                    oFlag = opalite instanceof OpaliteContruct;
 
                     //Failsafe check to make sure they are these specific mobs
-                    if (mookaite instanceof MookaiteConstructEntity mEntity && opalite instanceof OpaliteContructEntity oEntity) {
+                    if (mookaite instanceof MookaiteConstruct mEntity && opalite instanceof OpaliteContruct oEntity) {
                         if (!player.level().isClientSide()) {
                             mEntity.setBonder(player.getUUID());
                             mEntity.setOpaliteCompanion(oEntity.getUUID());

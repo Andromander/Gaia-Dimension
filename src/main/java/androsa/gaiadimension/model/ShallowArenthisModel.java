@@ -1,6 +1,6 @@
 package androsa.gaiadimension.model;
 
-import androsa.gaiadimension.entity.ShallowArenthisEntity;
+import androsa.gaiadimension.entity.ShallowArenthis;
 import net.minecraft.client.model.HierarchicalModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
@@ -16,7 +16,7 @@ import java.util.Arrays;
  * ModelShallowArenthis - Androsa
  * Created using Tabula 7.0.0
  */
-public class ShallowArenthisModel<T extends ShallowArenthisEntity> extends HierarchicalModel<T> {
+public class ShallowArenthisModel<T extends ShallowArenthis> extends HierarchicalModel<T> {
     public ModelPart root;
     public ModelPart[] tentacles = new ModelPart[7];
     public ModelPart body;

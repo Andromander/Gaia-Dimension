@@ -1,6 +1,6 @@
 package androsa.gaiadimension.model;
 
-import androsa.gaiadimension.entity.AgateGolemEntity;
+import androsa.gaiadimension.entity.AgateGolem;
 import net.minecraft.client.model.HierarchicalModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
@@ -14,7 +14,7 @@ import net.minecraft.util.Mth;
  * ModelAgateGolem - Androsa
  * Created using Tabula 7.0.0
  */
-public class AgateGolemModel<T extends AgateGolemEntity> extends HierarchicalModel<T> {
+public class AgateGolemModel<T extends AgateGolem> extends HierarchicalModel<T> {
     public ModelPart root;
     public ModelPart face;
     public ModelPart upperArmL;

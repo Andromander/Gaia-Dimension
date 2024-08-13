@@ -2,7 +2,7 @@ package androsa.gaiadimension.model;
 // Made with Blockbench 4.5.2
 // Exported for Minecraft version 1.17 - 1.18 with Mojang mappings
 
-import androsa.gaiadimension.entity.MookaiteConstructEntity;
+import androsa.gaiadimension.entity.MookaiteConstruct;
 import net.minecraft.client.model.HierarchicalModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
@@ -12,7 +12,7 @@ import net.minecraft.client.model.geom.builders.MeshDefinition;
 import net.minecraft.client.model.geom.builders.PartDefinition;
 import net.minecraft.util.Mth;
 
-public class MookaiteConstructModel<T extends MookaiteConstructEntity> extends HierarchicalModel<T> {
+public class MookaiteConstructModel<T extends MookaiteConstruct> extends HierarchicalModel<T> {
 	private final ModelPart root;
 
 	private final ModelPart head;
@@ -258,15 +258,15 @@ public class MookaiteConstructModel<T extends MookaiteConstructEntity> extends H
 
 	@Override
 	public void prepareMobModel(T entity, float limbSwing, float limbSwingAmount, float partialTicks) {
-		this.right_horn.visible = entity.getPart(MookaiteConstructEntity.RIGHT_HORN).isPresent();
-		this.left_horn.visible = entity.getPart(MookaiteConstructEntity.LEFT_HORN).isPresent();
-		this.left_eye.visible = entity.getPart(MookaiteConstructEntity.LEFT_EYE).isPresent();
-		this.right_eye.visible = entity.getPart(MookaiteConstructEntity.RIGHT_EYE).isPresent();
-		this.right_shoulder.visible = entity.getPart(MookaiteConstructEntity.RIGHT_SHOULDER).isPresent();
-		this.left_shoulder.visible = entity.getPart(MookaiteConstructEntity.LEFT_SHOULDER).isPresent();
-		this.right_arm_brace.visible = entity.getPart(MookaiteConstructEntity.RIGHT_ARM).isPresent();
-		this.left_arm_brace.visible = entity.getPart(MookaiteConstructEntity.LEFT_ARM).isPresent();
-		this.right_leg_brace.visible = entity.getPart(MookaiteConstructEntity.RIGHT_LEG).isPresent();
-		this.left_leg_brace.visible = entity.getPart(MookaiteConstructEntity.LEFT_LEG).isPresent();
+		this.right_horn.visible = entity.getPart(MookaiteConstruct.RIGHT_HORN).isPresent();
+		this.left_horn.visible = entity.getPart(MookaiteConstruct.LEFT_HORN).isPresent();
+		this.left_eye.visible = entity.getPart(MookaiteConstruct.LEFT_EYE).isPresent();
+		this.right_eye.visible = entity.getPart(MookaiteConstruct.RIGHT_EYE).isPresent();
+		this.right_shoulder.visible = entity.getPart(MookaiteConstruct.RIGHT_SHOULDER).isPresent();
+		this.left_shoulder.visible = entity.getPart(MookaiteConstruct.LEFT_SHOULDER).isPresent();
+		this.right_arm_brace.visible = entity.getPart(MookaiteConstruct.RIGHT_ARM).isPresent();
+		this.left_arm_brace.visible = entity.getPart(MookaiteConstruct.LEFT_ARM).isPresent();
+		this.right_leg_brace.visible = entity.getPart(MookaiteConstruct.RIGHT_LEG).isPresent();
+		this.left_leg_brace.visible = entity.getPart(MookaiteConstruct.LEFT_LEG).isPresent();
 	}
 }

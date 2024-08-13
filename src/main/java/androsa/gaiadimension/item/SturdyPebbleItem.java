@@ -1,6 +1,6 @@
 package androsa.gaiadimension.item;
 
-import androsa.gaiadimension.entity.projectile.ThrownPebbleEntity;
+import androsa.gaiadimension.entity.projectile.ThrownPebble;
 import androsa.gaiadimension.registry.registration.ModSounds;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
@@ -29,7 +29,7 @@ public class SturdyPebbleItem extends Item {
         worldIn.playSound(null, playerIn.getX(), playerIn.getY(), playerIn.getZ(), ModSounds.STURDY_PEBBLE_THROW.get(), SoundSource.NEUTRAL, 0.5F, 0.4F / (worldIn.random.nextFloat() * 0.4F + 0.8F));
 
         if (!worldIn.isClientSide()) {
-            ThrownPebbleEntity pebble = new ThrownPebbleEntity(worldIn, playerIn);
+            ThrownPebble pebble = new ThrownPebble(worldIn, playerIn);
             pebble.setItem(itemstack);
             pebble.shootFromRotation(playerIn, playerIn.getXRot(), playerIn.getYRot(), 0.0F, 1.5F, 1.0F);
             worldIn.addFreshEntity(pebble);

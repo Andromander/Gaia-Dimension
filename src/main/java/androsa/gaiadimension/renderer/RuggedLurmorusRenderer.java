@@ -1,11 +1,11 @@
 package androsa.gaiadimension.renderer;
 
-import androsa.gaiadimension.entity.RuggedLurmorusEntity;
+import androsa.gaiadimension.entity.RuggedLurmorus;
 import androsa.gaiadimension.model.RuggedLurmorusModel;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 
-public class RuggedLurmorusRenderer<T extends RuggedLurmorusEntity, M extends RuggedLurmorusModel<T>> extends BasicEntityRenderer<T, M> {
+public class RuggedLurmorusRenderer<T extends RuggedLurmorus, M extends RuggedLurmorusModel<T>> extends BasicEntityRenderer<T, M> {
 
     public RuggedLurmorusRenderer(EntityRendererProvider.Context manager, M model, float shadowSize) {
         super(manager, model, shadowSize);

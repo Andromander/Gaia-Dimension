@@ -1,6 +1,6 @@
 package androsa.gaiadimension.model;
 
-import androsa.gaiadimension.entity.CrystalGolemEntity;
+import androsa.gaiadimension.entity.CrystalGolem;
 import net.minecraft.client.model.HierarchicalModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
@@ -14,7 +14,7 @@ import net.minecraft.util.Mth;
  * ModelCrystalGolem - Androsa
  * Created using Tabula 7.0.0
  */
-public class CrystalGolemModel<T extends CrystalGolemEntity> extends HierarchicalModel<T> {
+public class CrystalGolemModel<T extends CrystalGolem> extends HierarchicalModel<T> {
     public ModelPart root;
     public ModelPart face;
     public ModelPart upperArmL;

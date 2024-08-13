@@ -3,7 +3,7 @@ package androsa.gaiadimension.model;
 // Exported for Minecraft version 1.17 or later with Mojang mappings
 
 
-import androsa.gaiadimension.entity.AureateEvraunEntity;
+import androsa.gaiadimension.entity.AureateEvraun;
 import net.minecraft.client.model.HierarchicalModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
@@ -13,7 +13,7 @@ import net.minecraft.client.model.geom.builders.MeshDefinition;
 import net.minecraft.client.model.geom.builders.PartDefinition;
 import net.minecraft.util.Mth;
 
-public class AureateEvraunModel<T extends AureateEvraunEntity> extends HierarchicalModel<T> {
+public class AureateEvraunModel<T extends AureateEvraun> extends HierarchicalModel<T> {
 	private final ModelPart root;
 	private final ModelPart head;
 	private final ModelPart upperLegL;

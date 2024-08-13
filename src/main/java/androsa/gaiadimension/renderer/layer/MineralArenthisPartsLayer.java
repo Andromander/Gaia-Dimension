@@ -1,6 +1,6 @@
 package androsa.gaiadimension.renderer.layer;
 
-import androsa.gaiadimension.entity.MineralArenthisEntity;
+import androsa.gaiadimension.entity.MineralArenthis;
 import androsa.gaiadimension.model.MineralArenthisModel;
 import androsa.gaiadimension.registry.helpers.ModEntitiesRendering;
 import com.mojang.blaze3d.vertex.PoseStack;
@@ -11,7 +11,7 @@ import net.minecraft.client.renderer.entity.RenderLayerParent;
 import net.minecraft.client.renderer.entity.layers.RenderLayer;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 
-public class MineralArenthisPartsLayer<T extends MineralArenthisEntity, M extends MineralArenthisModel<T>> extends RenderLayer<T, M> {
+public class MineralArenthisPartsLayer<T extends MineralArenthis, M extends MineralArenthisModel<T>> extends RenderLayer<T, M> {
     private static RenderType GLOW;
 
     public MineralArenthisPartsLayer(RenderLayerParent<T, M> arentisRenderIn) {
