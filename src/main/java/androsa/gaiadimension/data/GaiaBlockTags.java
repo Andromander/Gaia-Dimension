@@ -116,6 +116,14 @@ public class GaiaBlockTags extends GaiaBlockTagsProvider {
     private static final ImmutableList<Supplier<? extends Block>> JET_BRICKS = ImmutableList.of(
             ModBlocks.jet_bricks, ModBlocks.cracked_jet_bricks, ModBlocks.crusted_jet_bricks
     );
+    private static final ImmutableList<Supplier<? extends Block>> GAIA_PLANTS = ImmutableList.of(
+            ModBlocks.thiscus, ModBlocks.ouzium, ModBlocks.agathum, ModBlocks.varloom, ModBlocks.corrupted_varloom, ModBlocks.missingno_plant, ModBlocks.glamelea,
+            ModBlocks.spotted_kersei, ModBlocks.thorny_wiltha, ModBlocks.roofed_agaric, ModBlocks.bulbous_hobina, ModBlocks.stickly_cupsir, ModBlocks.corrupted_gaia_eye, ModBlocks.mystical_murgni,
+            ModBlocks.pink_agate_sapling, ModBlocks.blue_agate_sapling, ModBlocks.green_agate_sapling, ModBlocks.purple_agate_sapling,
+            ModBlocks.fossilized_sapling, ModBlocks.corrupted_sapling, ModBlocks.burnt_sapling, ModBlocks.fire_agate_sapling, ModBlocks.aura_sapling, ModBlocks.golden_sapling,
+            ModBlocks.crystal_growth, ModBlocks.crystal_growth_mutant, ModBlocks.crystal_growth_black, ModBlocks.crystal_growth_red, ModBlocks.crystal_growth_seared, ModBlocks.crystal_growth_aura,
+            ModBlocks.golden_grass, ModBlocks.tall_golden_grass, ModBlocks.twinkling_gilsri
+    );
 
     private static final ImmutableList<Supplier<? extends Block>> AXE_TOOL = ImmutableList.of(
             ModBlocks.agate_crafting_table, ModBlocks.crude_storage_crate, ModBlocks.mega_storage_crate, ModBlocks.pink_agate_log, ModBlocks.stripped_pink_agate_log, ModBlocks.pink_agate_wood,
@@ -268,6 +276,7 @@ public class GaiaBlockTags extends GaiaBlockTagsProvider {
                 GaiaTags.Blocks.STORAGE_BLOCKS_PROUSTITE, GaiaTags.Blocks.STORAGE_BLOCKS_EUCLASE, GaiaTags.Blocks.STORAGE_BLOCKS_ALBITE, GaiaTags.Blocks.STORAGE_BLOCKS_CARNELIAN,
                 GaiaTags.Blocks.STORAGE_BLOCKS_BENITOITE, GaiaTags.Blocks.STORAGE_BLOCKS_DIOPSIDE, GaiaTags.Blocks.STORAGE_BLOCKS_GOSHENITE, GaiaTags.Blocks.STORAGE_BLOCKS_CELESTINE);
 
+
         addTag(GaiaTags.Blocks.PINK_AGATE_LOGS, PINK_AGATE_LOGS);
         addTag(GaiaTags.Blocks.BLUE_AGATE_LOGS, BLUE_AGATE_LOGS);
         addTag(GaiaTags.Blocks.GREEN_AGATE_LOGS, GREEN_AGATE_LOGS);
@@ -287,6 +296,7 @@ public class GaiaBlockTags extends GaiaBlockTagsProvider {
         tag(GaiaTags.Blocks.GAIA_SOIL).add(ModBlocks.heavy_soil.get(), ModBlocks.corrupted_soil.get(), ModBlocks.boggy_soil.get(), ModBlocks.light_soil.get(), ModBlocks.aurum_soil.get());
         tag(GaiaTags.Blocks.GAIA_CARVER_REPLACEABLES).addTags(GaiaTags.Blocks.GAIA_GRASS, GaiaTags.Blocks.GAIA_SOIL)
                 .add(ModBlocks.saltstone.get(), ModBlocks.gaia_stone.get(), ModBlocks.wasteland_stone.get(), ModBlocks.volcanic_rock.get(), ModBlocks.primal_mass.get(), ModBlocks.nexustone.get());
+        addTag(GaiaTags.Blocks.GAIA_PLANTS, GAIA_PLANTS);
         addTag(GaiaTags.Blocks.GAIA_BRICKS, GAIA_BRICKS);
         addTag(GaiaTags.Blocks.AMETHYST_BRICKS, AMETHYST_BRICKS);
         addTag(GaiaTags.Blocks.COPAL_BRICKS, COPAL_BRICKS);

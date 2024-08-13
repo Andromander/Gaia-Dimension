@@ -66,7 +66,7 @@ public class AbstractGaiaGrassBlock extends Block implements BonemealableBlock {
 
     @Override
     public TriState canSustainPlant(BlockState state, BlockGetter level, BlockPos soilPosition, Direction facing, BlockState plant) {
-        return state.is(GaiaTags.Blocks.GAIA_PLANTS) ? TriState.TRUE : TriState.FALSE;
+        return plant.is(GaiaTags.Blocks.GAIA_PLANTS) ? TriState.TRUE : TriState.FALSE;
     }
 
     @Override
