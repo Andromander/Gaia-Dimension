@@ -1,8 +1,6 @@
 package androsa.gaiadimension.world;
 
-import androsa.gaiadimension.GaiaDimensionMod;
 import androsa.gaiadimension.block.GaiaPortalBlock;
-import androsa.gaiadimension.registry.bootstrap.GaiaDimensions;
 import androsa.gaiadimension.registry.registration.ModBlocks;
 import androsa.gaiadimension.registry.registration.ModPOIs;
 import net.minecraft.BlockUtil;
@@ -10,39 +8,22 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Vec3i;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.server.level.TicketType;
 import net.minecraft.util.Mth;
-import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.ai.village.poi.PoiManager;
 import net.minecraft.world.entity.ai.village.poi.PoiRecord;
-import net.minecraft.world.level.ChunkPos;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.border.WorldBorder;
-import net.minecraft.world.level.dimension.DimensionType;
-import net.minecraft.world.level.levelgen.Heightmap;
-import net.minecraft.world.level.portal.DimensionTransition;
-import net.minecraft.world.level.portal.PortalShape;
-import net.minecraft.world.phys.Vec3;
-import net.neoforged.fml.util.ObfuscationReflectionHelper;
 
-import javax.annotation.Nullable;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import java.util.Comparator;
 import java.util.Optional;
-import java.util.function.Function;
-import java.util.function.ToDoubleFunction;
 
 public class GaiaTeleporter {
 
     private static final Block KEYSTONE = ModBlocks.keystone_block.get();
     private final ServerLevel world;
-
-    private static final Method m_getRelativePortalPosition = ObfuscationReflectionHelper.findMethod(Entity.class, "getRelativePortalPosition", Direction.Axis.class, BlockUtil.FoundRectangle.class);
 
     public GaiaTeleporter(ServerLevel world) {
         this.world = world;
@@ -179,58 +160,4 @@ public class GaiaTeleporter {
         BlockState state = this.world.getBlockState(mutable);
         return state.canBeReplaced() && state.getFluidState().isEmpty();
     }
-
-//    @Nullable
-//    public PortalInfo getPortalInfo(Entity entity, ServerLevel destWorld, Function<ServerLevel, PortalInfo> defaultPortalInfo) {
-//        boolean toGaia = destWorld.dimension() == GaiaDimensions.gaia_world;
-//        if (entity.level().dimension() != GaiaDimensions.gaia_world && !toGaia) {
-//            return null;
-//        } else {
-//            WorldBorder border = destWorld.getWorldBorder();
-//            double minX = Math.max(-2.9999872E7D, border.getMinX() + 16.0D);
-//            double minZ = Math.max(-2.9999872E7D, border.getMinZ() + 16.0D);
-//            double maxX = Math.min(2.9999872E7D, border.getMaxX() - 16.0D);
-//            double maxZ = Math.min(2.9999872E7D, border.getMaxZ() - 16.0D);
-//            double offset = DimensionType.getTeleportationScale(entity.level().dimensionType(), destWorld.dimensionType());
-//            BlockPos blockpos = BlockPos.containing(Mth.clamp(entity.getX() * offset, minX, maxX), entity.getY(), Mth.clamp(entity.getZ() * offset, minZ, maxZ));
-//            return this.getPortalLogic(entity, blockpos).map((portalresult) -> {
-//                BlockState blockstate = entity.level().getBlockState(entity.portalEntrancePos);
-//                Direction.Axis axis;
-//                Vec3 vector3d;
-//                if (blockstate.hasProperty(BlockStateProperties.HORIZONTAL_AXIS)) {
-//                    axis = blockstate.getValue(BlockStateProperties.HORIZONTAL_AXIS);
-//                    BlockUtil.FoundRectangle result = BlockUtil.getLargestRectangleAround(entity.portalEntrancePos, axis, 21, Direction.Axis.Y, 21, (pos) -> entity.level().getBlockState(pos) == blockstate);
-//                    try {
-//                        vector3d = (Vec3) m_getRelativePortalPosition.invoke(entity, axis, result);
-//                    } catch (IllegalAccessException | InvocationTargetException e) {
-//                        throw new RuntimeException(e);
-//                    }
-//                } else {
-//                    axis = Direction.Axis.X;
-//                    vector3d = new Vec3(0.5D, 0.0D, 0.0D);
-//                }
-//
-//                return PortalShape.createPortalInfo(destWorld, portalresult, axis, vector3d, entity, entity.getDeltaMovement(), entity.getYRot(), entity.getXRot());
-//            }).orElse(null);
-//        }
-//    }
-
-//    private DimensionTransition getPortalLogic(Entity entity, BlockPos pos) {
-//        Optional<BlockUtil.FoundRectangle> existing = this.getExistingPortal(pos);
-//        if (entity instanceof ServerPlayer) { //ServerPlayer seems to do the portal creation
-//            if (existing.isPresent()) {
-//                return existing;
-//            } else {
-//                Direction.Axis axis = entity.level().getBlockState(entity.portalEntrancePos).getOptionalValue(GaiaPortalBlock.AXIS).orElse(Direction.Axis.X);
-//                Optional<BlockUtil.FoundRectangle> portal = this.makePortal(pos, axis);
-//                if (portal.isEmpty()) {
-//                    GaiaDimensionMod.LOGGER.error("Unable to create a portal, likely target out of worldborder");
-//                }
-//
-//                return portal;
-//            }
-//        } else { //Otherwise, we don't care about a dimension unless it does exist
-//            return existing;
-//        }
-//    }
 }
