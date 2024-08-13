@@ -81,10 +81,10 @@ public class GaiaTeleporter {
 
                 for(int l = height; l >= this.world.getMinBuildHeight(); --l) {
                     mut.setY(l);
-                    BlockState state = this.world.getBlockState(mut);
-                    if (state.canBeReplaced() && state.getFluidState().isEmpty()) {
-                        int i1;
-                        for(i1 = l; l > this.world.getMinBuildHeight() && state.canBeReplaced() && state.getFluidState().isEmpty(); --l) {
+                    if (this.canReplaceBlock(mut)) {
+                        int i1 = l;
+                        while (l > this.world.getMinBuildHeight() && this.canReplaceBlock(mut.move(Direction.DOWN))) {
+                            --l;
                         }
 
                         if (l + 4 <= height) {
@@ -173,6 +173,11 @@ public class GaiaTeleporter {
         }
 
         return true;
+    }
+
+    private boolean canReplaceBlock(BlockPos.MutableBlockPos mutable) {
+        BlockState state = this.world.getBlockState(mutable);
+        return state.canBeReplaced() && state.getFluidState().isEmpty();
     }
 
 //    @Nullable
