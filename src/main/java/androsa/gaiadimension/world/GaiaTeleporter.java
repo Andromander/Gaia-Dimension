@@ -8,6 +8,7 @@ import androsa.gaiadimension.registry.registration.ModPOIs;
 import net.minecraft.BlockUtil;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.Vec3i;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.server.level.TicketType;
@@ -22,6 +23,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.border.WorldBorder;
 import net.minecraft.world.level.dimension.DimensionType;
+import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.level.portal.DimensionTransition;
 import net.minecraft.world.level.portal.PortalShape;
 import net.minecraft.world.phys.Vec3;
@@ -46,25 +48,18 @@ public class GaiaTeleporter {
         this.world = world;
     }
 
-    public Optional<BlockUtil.FoundRectangle> getExistingPortal(BlockPos pos) {
+    public Optional<BlockPos> getExistingPortal(BlockPos pos, WorldBorder border) {
         PoiManager poimanager = this.world.getPoiManager();
-        int i = 64; //TODO: correct?
+        int i = 16;
         poimanager.ensureLoadedAndValid(this.world, pos, i);
-        Optional<PoiRecord> optional = poimanager.getInSquare(type ->
+        return poimanager.getInSquare(type ->
                 type.is(ModPOIs.GAIA_PORTAL.getKey()), pos, i, PoiManager.Occupancy.ANY)
-                .sorted(Comparator.comparingDouble((ToDoubleFunction<PoiRecord>) poi ->
-                        poi.getPos().distSqr(pos))
-                        .thenComparingInt(poi ->
-                                poi.getPos().getY()))
-                .filter(poi ->
-                        GaiaTeleporter.this.world.getBlockState(poi.getPos()).hasProperty(BlockStateProperties.HORIZONTAL_AXIS))
-                .findFirst();
-        return optional.map((poi) -> {
-            BlockPos blockpos = poi.getPos();
-            this.world.getChunkSource().addRegionTicket(TicketType.PORTAL, new ChunkPos(blockpos), 3, blockpos);
-            BlockState blockstate = this.world.getBlockState(blockpos);
-            return BlockUtil.getLargestRectangleAround(blockpos, blockstate.getValue(BlockStateProperties.HORIZONTAL_AXIS), 21, Direction.Axis.Y, 21, (posIn) -> this.world.getBlockState(posIn) == blockstate);
-        });
+                .map(PoiRecord::getPos)
+                .filter(border::isWithinBounds)
+                .filter(poi -> GaiaTeleporter.this.world.getBlockState(poi).hasProperty(BlockStateProperties.HORIZONTAL_AXIS))
+                .min(Comparator.<BlockPos>comparingDouble(poi ->
+                        poi.distSqr(pos))
+                        .thenComparingInt(Vec3i::getY));
     }
 
     /**
@@ -77,18 +72,19 @@ public class GaiaTeleporter {
         double d1 = -1.0D;
         BlockPos blockpos1 = null;
         WorldBorder border = this.world.getWorldBorder();
-        int height = this.world.getHeight() - 1;
+        int height = Math.min(this.world.getMaxBuildHeight(), this.world.getMinBuildHeight() + this.world.getLogicalHeight()) - 1;
         BlockPos.MutableBlockPos mutable = pos.mutable();
 
         for (BlockPos.MutableBlockPos mut : BlockPos.spiralAround(pos, 16, Direction.EAST, Direction.SOUTH)) {
             if (border.isWithinBounds(mut) && border.isWithinBounds(mut.move(direction, 1))) {
                 mut.move(direction.getOpposite(), 1);
 
-                for(int l = height; l >= 0; --l) {
+                for(int l = height; l >= this.world.getMinBuildHeight(); --l) {
                     mut.setY(l);
-                    if (this.world.isEmptyBlock(mut)) {
+                    BlockState state = this.world.getBlockState(mut);
+                    if (state.canBeReplaced() && state.getFluidState().isEmpty()) {
                         int i1;
-                        for(i1 = l; l > 0 && this.world.isEmptyBlock(mut.move(Direction.DOWN)); --l) {
+                        for(i1 = l; l > this.world.getMinBuildHeight() && state.canBeReplaced() && state.getFluidState().isEmpty(); --l) {
                         }
 
                         if (l + 4 <= height) {
