@@ -1,12 +1,12 @@
 package androsa.gaiadimension.block.blockentity.boss;
 
-import androsa.gaiadimension.entity.boss.MalachiteGuardEntity;
+import androsa.gaiadimension.entity.boss.MalachiteGuard;
 import androsa.gaiadimension.registry.registration.ModBlockEntities;
 import androsa.gaiadimension.registry.registration.ModEntities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.block.state.BlockState;
 
-public class MalachiteGuardSpawnerBlockEntity extends AbstractSpawnerBlockEntity<MalachiteGuardEntity> {
+public class MalachiteGuardSpawnerBlockEntity extends AbstractSpawnerBlockEntity<MalachiteGuard> {
 
     public MalachiteGuardSpawnerBlockEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntities.MALACHITE_SPAWNER.get(), pos, state, ModEntities.MALACHITE_GUARD.get());

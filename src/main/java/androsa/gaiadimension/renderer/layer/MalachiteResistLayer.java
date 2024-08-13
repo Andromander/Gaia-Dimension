@@ -1,6 +1,6 @@
 package androsa.gaiadimension.renderer.layer;
 
-import androsa.gaiadimension.entity.boss.MalachiteGuardEntity;
+import androsa.gaiadimension.entity.boss.MalachiteGuard;
 import androsa.gaiadimension.entity.data.GuardPhase;
 import androsa.gaiadimension.model.MalachiteGuardModel;
 import androsa.gaiadimension.registry.helpers.ModEntitiesRendering;
@@ -15,7 +15,7 @@ import net.minecraft.client.renderer.entity.layers.RenderLayer;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.resources.ResourceLocation;
 
-public class MalachiteResistLayer<T extends MalachiteGuardEntity, M extends MalachiteGuardModel<T>> extends RenderLayer<T,M> {
+public class MalachiteResistLayer<T extends MalachiteGuard, M extends MalachiteGuardModel<T>> extends RenderLayer<T,M> {
 
     private final EntityModel<T> model;
 

@@ -1,6 +1,6 @@
 package androsa.gaiadimension.renderer.layer;
 
-import androsa.gaiadimension.entity.boss.MalachiteGuardEntity;
+import androsa.gaiadimension.entity.boss.MalachiteGuard;
 import androsa.gaiadimension.model.MalachiteGuardModel;
 import androsa.gaiadimension.registry.helpers.ModEntitiesRendering;
 import com.mojang.blaze3d.vertex.PoseStack;
@@ -11,7 +11,7 @@ import net.minecraft.client.renderer.entity.RenderLayerParent;
 import net.minecraft.client.renderer.entity.layers.RenderLayer;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 
-public class MalachiteGuardGlowLayer<T extends MalachiteGuardEntity, M extends MalachiteGuardModel<T>> extends RenderLayer<T, M> {
+public class MalachiteGuardGlowLayer<T extends MalachiteGuard, M extends MalachiteGuardModel<T>> extends RenderLayer<T, M> {
 
     public MalachiteGuardGlowLayer(RenderLayerParent<T, M> render) {
         super(render);

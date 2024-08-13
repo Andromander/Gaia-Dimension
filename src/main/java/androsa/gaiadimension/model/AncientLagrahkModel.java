@@ -1,6 +1,6 @@
 package androsa.gaiadimension.model;
 
-import androsa.gaiadimension.entity.AncientLagrahkEntity;
+import androsa.gaiadimension.entity.AncientLagrahk;
 import net.minecraft.client.model.HierarchicalModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
@@ -14,7 +14,7 @@ import net.minecraft.util.Mth;
  * ModelAncientLagrahk - Androsa
  * Created using Tabula 7.0.0
  */
-public class AncientLagrahkModel<T extends AncientLagrahkEntity> extends HierarchicalModel<T> {
+public class AncientLagrahkModel<T extends AncientLagrahk> extends HierarchicalModel<T> {
     public ModelPart root;
     public ModelPart head;
     public ModelPart upperArm1;

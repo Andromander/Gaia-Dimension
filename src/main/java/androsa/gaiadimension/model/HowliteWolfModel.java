@@ -1,6 +1,6 @@
 package androsa.gaiadimension.model;
 
-import androsa.gaiadimension.entity.HowliteWolfEntity;
+import androsa.gaiadimension.entity.HowliteWolf;
 import net.minecraft.client.model.HierarchicalModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
@@ -14,7 +14,7 @@ import net.minecraft.util.Mth;
  * ModelSlime - Either Mojang or a mod author
  * Created using Tabula 7.0.0
  */
-public class HowliteWolfModel<T extends HowliteWolfEntity> extends HierarchicalModel<T> {
+public class HowliteWolfModel<T extends HowliteWolf> extends HierarchicalModel<T> {
     public ModelPart root;
     public ModelPart head;
     public ModelPart leg1;

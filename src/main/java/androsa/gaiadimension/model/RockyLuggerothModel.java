@@ -1,6 +1,6 @@
 package androsa.gaiadimension.model;
 
-import androsa.gaiadimension.entity.RockyLuggerothEntity;
+import androsa.gaiadimension.entity.RockyLuggeroth;
 import net.minecraft.client.model.HierarchicalModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
@@ -14,7 +14,7 @@ import net.minecraft.util.Mth;
  * ModelRockyLuggeroth - Androsa
  * Created using Tabula 7.0.0
  */
-public class RockyLuggerothModel<T extends RockyLuggerothEntity> extends HierarchicalModel<T> {
+public class RockyLuggerothModel<T extends RockyLuggeroth> extends HierarchicalModel<T> {
     public ModelPart root;
     public ModelPart head;
     public ModelPart foot1;

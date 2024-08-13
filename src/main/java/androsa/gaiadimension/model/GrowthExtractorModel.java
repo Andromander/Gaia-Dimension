@@ -1,6 +1,6 @@
 package androsa.gaiadimension.model;
 
-import androsa.gaiadimension.entity.MutantGrowthExtractorEntity;
+import androsa.gaiadimension.entity.MutantGrowthExtractor;
 import net.minecraft.client.model.HierarchicalModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
@@ -14,7 +14,7 @@ import net.minecraft.util.Mth;
  * ModelGrowthExtractor - Androsa
  * Created using Tabula 7.0.0
  */
-public class GrowthExtractorModel<T extends MutantGrowthExtractorEntity> extends HierarchicalModel<T> {
+public class GrowthExtractorModel<T extends MutantGrowthExtractor> extends HierarchicalModel<T> {
     public ModelPart root;
     public ModelPart head;
     public ModelPart upperArmTL;

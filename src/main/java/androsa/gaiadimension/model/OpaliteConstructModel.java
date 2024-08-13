@@ -3,7 +3,7 @@ package androsa.gaiadimension.model;
 // Exported for Minecraft version 1.17 - 1.18 with Mojang mappings
 
 
-import androsa.gaiadimension.entity.OpaliteContructEntity;
+import androsa.gaiadimension.entity.OpaliteContruct;
 import net.minecraft.client.model.HierarchicalModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
@@ -13,7 +13,7 @@ import net.minecraft.client.model.geom.builders.MeshDefinition;
 import net.minecraft.client.model.geom.builders.PartDefinition;
 import net.minecraft.util.Mth;
 
-public class OpaliteConstructModel<T extends OpaliteContructEntity> extends HierarchicalModel<T> {
+public class OpaliteConstructModel<T extends OpaliteContruct> extends HierarchicalModel<T> {
 	private final ModelPart root;
 	private final ModelPart head;
 	private final ModelPart left_arm;

@@ -1,6 +1,6 @@
 package androsa.gaiadimension.model;
 
-import androsa.gaiadimension.entity.LesserSpitfireEntity;
+import androsa.gaiadimension.entity.LesserSpitfire;
 import net.minecraft.client.model.HierarchicalModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
@@ -14,7 +14,7 @@ import net.minecraft.util.Mth;
  * ModelLesserSpitfire - Androsa
  * Created using Tabula 7.0.0
  */
-public class LesserSpitfireModel<T extends LesserSpitfireEntity> extends HierarchicalModel<T> {
+public class LesserSpitfireModel<T extends LesserSpitfire> extends HierarchicalModel<T> {
     public ModelPart root;
     public ModelPart head;
     public ModelPart armL;

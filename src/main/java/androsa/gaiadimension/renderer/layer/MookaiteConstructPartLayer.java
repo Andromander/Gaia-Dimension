@@ -1,6 +1,6 @@
 package androsa.gaiadimension.renderer.layer;
 
-import androsa.gaiadimension.entity.MookaiteConstructEntity;
+import androsa.gaiadimension.entity.MookaiteConstruct;
 import androsa.gaiadimension.model.MookaiteConstructModel;
 import androsa.gaiadimension.registry.helpers.ModEntitiesRendering;
 import com.mojang.blaze3d.vertex.PoseStack;
@@ -12,7 +12,7 @@ import net.minecraft.client.renderer.entity.RenderLayerParent;
 import net.minecraft.client.renderer.entity.layers.RenderLayer;
 import net.minecraft.resources.ResourceLocation;
 
-public class MookaiteConstructPartLayer<T extends MookaiteConstructEntity, M extends MookaiteConstructModel<T>> extends RenderLayer<T, M> {
+public class MookaiteConstructPartLayer<T extends MookaiteConstruct, M extends MookaiteConstructModel<T>> extends RenderLayer<T, M> {
 
     public MookaiteConstructPartLayer(RenderLayerParent<T, M> renderer) {
         super(renderer);
@@ -20,7 +20,7 @@ public class MookaiteConstructPartLayer<T extends MookaiteConstructEntity, M ext
 
     @Override
     public void render(PoseStack stack, MultiBufferSource buffer, int light, T entity, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch) {
-        for (MookaiteConstructEntity.MookaitePart part : MookaiteConstructEntity.PARTS) {
+        for (MookaiteConstruct.MookaitePart part : MookaiteConstruct.PARTS) {
             if (entity.getPart(part).isPresent()) {
                 String color = entity.getPart(part).getSerializedName();
                 ResourceLocation location = ModEntitiesRendering.makeTextureNoPrefix(entity, part.name() + "/" + color);

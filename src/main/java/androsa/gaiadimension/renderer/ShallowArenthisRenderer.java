@@ -1,13 +1,13 @@
 package androsa.gaiadimension.renderer;
 
-import androsa.gaiadimension.entity.ShallowArenthisEntity;
+import androsa.gaiadimension.entity.ShallowArenthis;
 import androsa.gaiadimension.model.ShallowArenthisModel;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.util.Mth;
 
-public class ShallowArenthisRenderer<T extends ShallowArenthisEntity, M extends ShallowArenthisModel<T>> extends BasicEntityRenderer<T, M> {
+public class ShallowArenthisRenderer<T extends ShallowArenthis, M extends ShallowArenthisModel<T>> extends BasicEntityRenderer<T, M> {
 
     public ShallowArenthisRenderer(EntityRendererProvider.Context manager, M model, float shadowSize) {
         super(manager, model, shadowSize);

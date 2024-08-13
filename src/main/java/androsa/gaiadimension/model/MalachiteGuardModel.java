@@ -1,6 +1,6 @@
 package androsa.gaiadimension.model;
 
-import androsa.gaiadimension.entity.boss.MalachiteGuardEntity;
+import androsa.gaiadimension.entity.boss.MalachiteGuard;
 import androsa.gaiadimension.entity.data.GuardPhase;
 import androsa.gaiadimension.entity.data.ThreeStagePhase;
 import com.mojang.blaze3d.vertex.PoseStack;
@@ -15,7 +15,7 @@ import net.minecraft.util.Mth;
  * ModelMalachiteGuard - Androsa
  * Created using Tabula 7.0.0
  */
-public class MalachiteGuardModel<T extends MalachiteGuardEntity> extends HierarchicalModel<T> {
+public class MalachiteGuardModel<T extends MalachiteGuard> extends HierarchicalModel<T> {
     public ModelPart root;
     public ModelPart head;
     public ModelPart torso;

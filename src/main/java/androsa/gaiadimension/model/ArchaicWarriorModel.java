@@ -1,6 +1,6 @@
 package androsa.gaiadimension.model;
 
-import androsa.gaiadimension.entity.ArchaicWarriorEntity;
+import androsa.gaiadimension.entity.ArchaicWarrior;
 import net.minecraft.client.model.HierarchicalModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
@@ -11,7 +11,7 @@ import net.minecraft.util.Mth;
  * ModelArchaicWarrior - Androsa
  * Created using Tabula 7.0.0
  */
-public class ArchaicWarriorModel<T extends ArchaicWarriorEntity> extends HierarchicalModel<T> {
+public class ArchaicWarriorModel<T extends ArchaicWarrior> extends HierarchicalModel<T> {
     public ModelPart root;
     public ModelPart bipedRightArm;
     public ModelPart bipedRightLeg;

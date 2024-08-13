@@ -1,6 +1,6 @@
 package androsa.gaiadimension.model;
 
-import androsa.gaiadimension.entity.MarkuzarPlantEntity;
+import androsa.gaiadimension.entity.MarkuzarPlant;
 import net.minecraft.client.model.HierarchicalModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
@@ -14,7 +14,7 @@ import net.minecraft.util.Mth;
  * ModelMarkuzarPlant - Androsa
  * Created using Tabula 7.0.0
  */
-public class MarkuzarPlantModel<T extends MarkuzarPlantEntity> extends HierarchicalModel<T> {
+public class MarkuzarPlantModel<T extends MarkuzarPlant> extends HierarchicalModel<T> {
     public ModelPart root;
     public ModelPart stalkLow;
     public ModelPart stalkMid;

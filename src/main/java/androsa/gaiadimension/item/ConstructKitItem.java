@@ -1,8 +1,8 @@
 package androsa.gaiadimension.item;
 
-import androsa.gaiadimension.entity.MookaiteConstructEntity;
+import androsa.gaiadimension.entity.MookaiteConstruct;
+import androsa.gaiadimension.entity.OpaliteContruct;
 import androsa.gaiadimension.entity.data.MookaitePartType;
-import androsa.gaiadimension.entity.OpaliteContructEntity;
 import androsa.gaiadimension.registry.registration.ModDataComponents;
 import com.mojang.serialization.Codec;
 import io.netty.buffer.ByteBuf;
@@ -94,7 +94,7 @@ public class ConstructKitItem extends Item {
         //Blanks do nothing
         if (this.kit != Kit.BLANK) {
             //Make sure it's an Opalite Construct
-            if (entity.isAlive() && entity instanceof OpaliteContructEntity opalite) {
+            if (entity.isAlive() && entity instanceof OpaliteContruct opalite) {
                 if (!entity.level().isClientSide()) {
                     //First, make sure we are bonded, otherwise we shouldn't do anything
                     if (opalite.getMookaiteCompanion() == null) {
@@ -167,29 +167,29 @@ public class ConstructKitItem extends Item {
     }
 
     public enum Part implements StringRepresentable {
-        LEFT_HORN(0, () -> MookaiteConstructEntity.LEFT_HORN),
-        RIGHT_HORN(1, () -> MookaiteConstructEntity.RIGHT_HORN),
-        LEFT_EYE(2, () -> MookaiteConstructEntity.LEFT_EYE),
-        RIGHT_EYE(3, () -> MookaiteConstructEntity.RIGHT_EYE),
-        LEFT_SHOULDER(4, () -> MookaiteConstructEntity.LEFT_SHOULDER),
-        RIGHT_SHOULDER(5, () -> MookaiteConstructEntity.RIGHT_SHOULDER),
-        LEFT_ARM(6, () -> MookaiteConstructEntity.LEFT_ARM),
-        RIGHT_ARM(7, () -> MookaiteConstructEntity.RIGHT_ARM),
-        LEFT_LEG(8, () -> MookaiteConstructEntity.LEFT_LEG),
-        RIGHT_LEG(9, () -> MookaiteConstructEntity.RIGHT_LEG);
+        LEFT_HORN(0, () -> MookaiteConstruct.LEFT_HORN),
+        RIGHT_HORN(1, () -> MookaiteConstruct.RIGHT_HORN),
+        LEFT_EYE(2, () -> MookaiteConstruct.LEFT_EYE),
+        RIGHT_EYE(3, () -> MookaiteConstruct.RIGHT_EYE),
+        LEFT_SHOULDER(4, () -> MookaiteConstruct.LEFT_SHOULDER),
+        RIGHT_SHOULDER(5, () -> MookaiteConstruct.RIGHT_SHOULDER),
+        LEFT_ARM(6, () -> MookaiteConstruct.LEFT_ARM),
+        RIGHT_ARM(7, () -> MookaiteConstruct.RIGHT_ARM),
+        LEFT_LEG(8, () -> MookaiteConstruct.LEFT_LEG),
+        RIGHT_LEG(9, () -> MookaiteConstruct.RIGHT_LEG);
 
         private static final IntFunction<Part> ID = ByIdMap.continuous(Part::getId, values(), ByIdMap.OutOfBoundsStrategy.ZERO);
         public static final Codec<Part> CODEC = StringRepresentable.fromValues(Part::values);
         public static final StreamCodec<ByteBuf, Part> STREAM_CODEC = ByteBufCodecs.idMapper(ID, part -> part.id);
         private final int id;
-        private final Supplier<MookaiteConstructEntity.MookaitePart> part;
+        private final Supplier<MookaiteConstruct.MookaitePart> part;
 
-        Part(int id, Supplier<MookaiteConstructEntity.MookaitePart> part) {
+        Part(int id, Supplier<MookaiteConstruct.MookaitePart> part) {
             this.id = id;
             this.part = part;
         }
 
-        public MookaiteConstructEntity.MookaitePart getPart() {
+        public MookaiteConstruct.MookaitePart getPart() {
             return part.get();
         }
 

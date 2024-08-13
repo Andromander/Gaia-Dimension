@@ -1,6 +1,6 @@
 package androsa.gaiadimension.model;
 
-import androsa.gaiadimension.entity.boss.BlueHowliteWolfEntity;
+import androsa.gaiadimension.entity.boss.BlueHowliteWolf;
 import net.minecraft.client.model.HierarchicalModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
@@ -14,7 +14,7 @@ import net.minecraft.util.Mth;
  * ModelBlueHowliteWolf - Androsa
  * Created using Tabula 7.0.0
  */
-public class BlueHowliteWolfModel<T extends BlueHowliteWolfEntity> extends HierarchicalModel<T> {
+public class BlueHowliteWolfModel<T extends BlueHowliteWolf> extends HierarchicalModel<T> {
     public ModelPart root;
     public ModelPart head;
     public ModelPart frontUpperLeg1;

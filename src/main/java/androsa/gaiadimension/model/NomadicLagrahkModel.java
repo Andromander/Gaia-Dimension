@@ -1,6 +1,6 @@
 package androsa.gaiadimension.model;
 
-import androsa.gaiadimension.entity.NomadicLagrahkEntity;
+import androsa.gaiadimension.entity.NomadicLagrahk;
 import net.minecraft.client.model.HierarchicalModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
@@ -14,7 +14,7 @@ import net.minecraft.util.Mth;
  * ModelNomadicLagrahk - Androsa
  * Created using Tabula 7.0.0
  */
-public class NomadicLagrahkModel<T extends NomadicLagrahkEntity> extends HierarchicalModel<T> {
+public class NomadicLagrahkModel<T extends NomadicLagrahk> extends HierarchicalModel<T> {
     public ModelPart root;
     public ModelPart head;
     public ModelPart upperArmL;

@@ -1,6 +1,6 @@
 package androsa.gaiadimension.model;
 
-import androsa.gaiadimension.entity.MineralArenthisEntity;
+import androsa.gaiadimension.entity.MineralArenthis;
 import net.minecraft.client.model.HierarchicalModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
@@ -16,7 +16,7 @@ import java.util.Arrays;
  * ModelMineralArenthis - Androsa
  * Created using Tabula 7.0.0
  */
-public class MineralArenthisModel<T extends MineralArenthisEntity> extends HierarchicalModel<T> {
+public class MineralArenthisModel<T extends MineralArenthis> extends HierarchicalModel<T> {
     public ModelPart root;
     public ModelPart body;
     public ModelPart tail;

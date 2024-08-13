@@ -1,6 +1,6 @@
 package androsa.gaiadimension.model;
 
-import androsa.gaiadimension.entity.CavernTickEntity;
+import androsa.gaiadimension.entity.CavernTick;
 import net.minecraft.client.model.HierarchicalModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
@@ -14,7 +14,7 @@ import net.minecraft.util.Mth;
  * ModelCavernTick - Androsa
  * Created using Tabula 7.0.0
  */
-public class CavernTickModel<T extends CavernTickEntity> extends HierarchicalModel<T> {
+public class CavernTickModel<T extends CavernTick> extends HierarchicalModel<T> {
     public ModelPart root;
     public ModelPart head;
     public ModelPart spike1;
