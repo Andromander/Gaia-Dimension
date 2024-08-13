@@ -5,6 +5,10 @@ import androsa.gaiadimension.block.menu.AgateCraftingTableMenu;
 import androsa.gaiadimension.block.menu.GaiaStoneFurnaceMenu;
 import androsa.gaiadimension.block.menu.PurifierMenu;
 import androsa.gaiadimension.block.menu.RestructurerMenu;
+import androsa.gaiadimension.block.screen.AgateCraftingScreen;
+import androsa.gaiadimension.block.screen.GaiaStoneFurnaceScreen;
+import androsa.gaiadimension.block.screen.PurifierScreen;
+import androsa.gaiadimension.block.screen.RestructurerScreen;
 import androsa.gaiadimension.compat.jei.purifier.NullFuelCategory;
 import androsa.gaiadimension.compat.jei.purifier.NullFuelRecipeMaker;
 import androsa.gaiadimension.compat.jei.purifier.PurifierRecipeMaker;
@@ -12,14 +16,14 @@ import androsa.gaiadimension.compat.jei.purifier.PurifyingCategory;
 import androsa.gaiadimension.compat.jei.restructurer.*;
 import androsa.gaiadimension.registry.registration.ModBlocks;
 import androsa.gaiadimension.registry.registration.ModMenus;
+import androsa.gaiadimension.registry.registration.ModRecipes;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
 import mezz.jei.api.constants.RecipeTypes;
-import mezz.jei.api.registration.IRecipeCatalystRegistration;
-import mezz.jei.api.registration.IRecipeCategoryRegistration;
-import mezz.jei.api.registration.IRecipeRegistration;
-import mezz.jei.api.registration.IRecipeTransferRegistration;
+import mezz.jei.api.registration.*;
 import mezz.jei.api.runtime.IIngredientManager;
+import net.minecraft.client.gui.screens.inventory.CraftingScreen;
+import net.minecraft.client.gui.screens.inventory.FurnaceScreen;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 
@@ -77,5 +81,13 @@ public class JEICompat implements IModPlugin {
     public void registerRecipeCatalysts(IRecipeCatalystRegistration registry) {
         registry.addRecipeCatalyst(new ItemStack(ModBlocks.agate_crafting_table.get()), RecipeTypes.CRAFTING);
         registry.addRecipeCatalyst(new ItemStack(ModBlocks.gaia_stone_furnace.get()), RecipeTypes.SMELTING);
+    }
+
+    @Override
+    public void registerGuiHandlers(IGuiHandlerRegistration registration) {
+        registration.addRecipeClickArea(AgateCraftingScreen.class, 88, 32, 28, 23, RecipeTypes.CRAFTING);
+        registration.addRecipeClickArea(GaiaStoneFurnaceScreen.class, 78, 32, 28, 23, RecipeTypes.SMELTING, RecipeTypes.FUELING);
+        registration.addRecipeClickArea(RestructurerScreen.class, 79, 53, 18, 24, GaiaRecipeTypes.RESTRUCTURE, GaiaRecipeTypes.GOLD, GaiaRecipeTypes.SHINE);
+        registration.addRecipeClickArea(PurifierScreen.class, 65, 82, 46, 24, GaiaRecipeTypes.PURIFY, GaiaRecipeTypes.GOLD, GaiaRecipeTypes.SHINE, GaiaRecipeTypes.NULLING);
     }
 }
