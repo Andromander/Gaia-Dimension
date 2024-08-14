@@ -5,7 +5,7 @@
       "name": "GAIADIMENSION_RESTRUCTURING_CATEGORY",
       "constructor": "(Ljava/util/function/Supplier;)V",
       "parameters": {
-        "class": "androsa/gaiadimension/registry/registration/ModRecipes",
+        "class": "androsa/gaiadimension/client/ClientEvents",
         "field": "RESTRUCTURING_ENUM_PROXY"
       }
     },
@@ -14,7 +14,7 @@
       "name": "GAIADIMENSION_PURIFYING_CATEGORY",
       "constructor": "(Ljava/util/function/Supplier;)V",
       "parameters": {
-        "class": "androsa/gaiadimension/registry/registration/ModRecipes",
+        "class": "androsa/gaiadimension/client/ClientEvents",
         "field": "PURIFYING_ENUM_PROXY"
       }
     }
