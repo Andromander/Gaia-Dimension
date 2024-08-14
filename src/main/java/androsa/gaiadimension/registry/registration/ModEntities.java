@@ -4,10 +4,7 @@ import androsa.gaiadimension.GaiaDimensionMod;
 import androsa.gaiadimension.entity.*;
 import androsa.gaiadimension.entity.boss.BlueHowliteWolf;
 import androsa.gaiadimension.entity.boss.MalachiteGuard;
-import androsa.gaiadimension.entity.data.GuardPhase;
-import androsa.gaiadimension.entity.data.MookaitePartType;
-import androsa.gaiadimension.entity.data.SapperVariant;
-import androsa.gaiadimension.entity.data.ThreeStagePhase;
+import androsa.gaiadimension.entity.data.*;
 import androsa.gaiadimension.entity.projectile.*;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.syncher.EntityDataSerializer;
@@ -84,6 +81,8 @@ public class ModEntities {
             () -> EntityDataSerializer.forValueType(ThreeStagePhase.STREAM_CODEC));
     public static final DeferredHolder<EntityDataSerializer<?>, EntityDataSerializer<SapperVariant>> SAPPER_VARIANT = ENTITY_DATA_SERIALIZERS.register("sapper_variant",
             () -> EntityDataSerializer.forValueType(SapperVariant.STREAM_CODEC));
+    public static final DeferredHolder<EntityDataSerializer<?>, EntityDataSerializer<LagrahkVariant>> LAGRAHK_VARIANT = ENTITY_DATA_SERIALIZERS.register("lagrahk_variant",
+            () -> EntityDataSerializer.forValueType(LagrahkVariant.STREAM_CODEC));
 
     public static <E extends Entity> DeferredHolder<EntityType<?>, EntityType<E>> registerProjectile(String name, EntityType.EntityFactory<E> entity, boolean updates, int range, int interval, float width, float height, boolean fireproof) {
         EntityType.Builder<E> entitytype = makeBuilder(entity, MobCategory.MISC, width, height)

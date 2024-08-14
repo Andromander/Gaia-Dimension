@@ -1,15 +1,15 @@
 package androsa.gaiadimension.entity;
 
+import androsa.gaiadimension.entity.data.LagrahkVariant;
 import androsa.gaiadimension.registry.bootstrap.GaiaBiomes;
+import androsa.gaiadimension.registry.registration.ModEntities;
 import androsa.gaiadimension.registry.registration.ModSounds;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
-import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.sounds.SoundEvent;
-import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.damagesource.DamageSource;
@@ -31,7 +31,7 @@ import java.util.Objects;
 import java.util.Optional;
 
 public class NomadicLagrahk extends PathfinderMob {
-    private static final EntityDataAccessor<Integer> LAGRAHK_VARIANT = SynchedEntityData.defineId(NomadicLagrahk.class, EntityDataSerializers.INT);
+    private static final EntityDataAccessor<LagrahkVariant> LAGRAHK_VARIANT = SynchedEntityData.defineId(NomadicLagrahk.class, ModEntities.LAGRAHK_VARIANT.get());
 
     public NomadicLagrahk(EntityType<? extends NomadicLagrahk> entity, Level world) {
         super(entity, world);
@@ -49,23 +49,14 @@ public class NomadicLagrahk extends PathfinderMob {
     @Override
     protected void defineSynchedData(SynchedEntityData.Builder builder) {
         super.defineSynchedData(builder);
-        builder.define(LAGRAHK_VARIANT, 0);
+        builder.define(LAGRAHK_VARIANT, LagrahkVariant.BASE);
     }
 
-    /**
-     * Get the variant integer
-     */
-    public int getEntityVariant() {
-        return Mth.clamp(entityData.get(LAGRAHK_VARIANT), 0, 3);
+    public LagrahkVariant getEntityVariant() {
+        return entityData.get(LAGRAHK_VARIANT);
     }
 
-    /**
-     * 0 = No biome specified (either a fallback, or for later use)
-     * 1 = Salt Dunes variant
-     * 2 = Static Wasteland variant
-     * 3 = Volcaniclands variant
-     */
-    public void setLagrahkVariant(int type) {
+    public void setLagrahkVariant(LagrahkVariant type) {
         entityData.set(LAGRAHK_VARIANT, type);
     }
 
@@ -79,13 +70,13 @@ public class NomadicLagrahk extends PathfinderMob {
 
     public void readAdditionalSaveData(CompoundTag compound) {
         super.readAdditionalSaveData(compound);
-        this.setLagrahkVariant(compound.getInt("LagrahkVariant"));
+        this.setLagrahkVariant(LagrahkVariant.getVariant(compound.getInt("LagrahkVariant")));
     }
 
     @Override
     public void addAdditionalSaveData(CompoundTag compound) {
         super.addAdditionalSaveData(compound);
-        compound.putInt("LagrahkVariant", this.getEntityVariant());
+        compound.putInt("LagrahkVariant", this.getEntityVariant().getId());
     }
 
     @Nullable
@@ -120,13 +111,13 @@ public class NomadicLagrahk extends PathfinderMob {
         Optional<ResourceKey<Biome>> biome = worldIn.getBiome(this.blockPosition()).unwrapKey();
 
         if (Objects.equals(biome, Optional.of(GaiaBiomes.salt_dunes))) {
-            setLagrahkVariant(1);
+            setLagrahkVariant(LagrahkVariant.SALTY);
         } else if (Objects.equals(biome, Optional.of(GaiaBiomes.static_wasteland))) {
-            setLagrahkVariant(2);
+            setLagrahkVariant(LagrahkVariant.STATIC);
         } else if (Objects.equals(biome, Optional.of(GaiaBiomes.volcanic_lands))) {
-            setLagrahkVariant(3);
+            setLagrahkVariant(LagrahkVariant.VOLCANIC);
         } else {
-            setLagrahkVariant(0);
+            setLagrahkVariant(LagrahkVariant.BASE);
         }
 
         return super.finalizeSpawn(worldIn, difficultyIn, reason, spawnDataIn);

@@ -15,11 +15,6 @@ public class NomadicLagrahkRenderer<T extends NomadicLagrahk, M extends NomadicL
 
     @Override
     public ResourceLocation getTextureLocation(T entity) {
-        return switch (entity.getEntityVariant()) {
-            case 1 -> ModEntitiesRendering.makeTexture(entity, "salty");
-            case 2 -> ModEntitiesRendering.makeTexture(entity, "static");
-            case 3 -> ModEntitiesRendering.makeTexture(entity, "volcanic");
-            default -> ModEntitiesRendering.makeTexture(entity, "base");
-        };
+        return ModEntitiesRendering.makeTexture(entity, entity.getEntityVariant().getSerializedName());
     }
 }
