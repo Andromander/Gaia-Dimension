@@ -336,6 +336,12 @@
   "block.gaiadimension.gold_fire": "Gold Fire",
   "block.gaiadimension.gaia_portal": "Gaia Portal",
 
+  "fluid_type.gaiadimension.mineral_water": "Mineral Water",
+  "fluid_type.gaiadimension.superhot_magma": "Superhot Magma",
+  "fluid_type.gaiadimension.sweet_muck": "Sweet Muck",
+  "fluid_type.gaiadimension.liquid_bismuth": "Liquid Bismuth",
+  "fluid_type.gaiadimension.liquid_aura": "Liquid Aura",
+
   "gaiadimension.container.crafting": "Agate Crafting",
   "gaiadimension.container.small_crate": "Crude Storage Crate",
   "gaiadimension.container.large_crate": "Mega Storage Crate",
