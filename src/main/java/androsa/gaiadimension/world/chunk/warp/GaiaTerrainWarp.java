@@ -7,6 +7,7 @@ import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.biome.BiomeSource;
 import net.minecraft.world.level.biome.Climate;
 import net.minecraft.world.level.chunk.ChunkGenerator;
+import net.minecraft.world.level.levelgen.DensityFunction;
 import net.minecraft.world.level.levelgen.NoiseSettings;
 import net.minecraft.world.level.levelgen.synth.BlendedNoise;
 
@@ -85,24 +86,24 @@ public class GaiaTerrainWarp {
             d0 = d6 * 0.265625D;
             d1 = 96.0D / d8;
 
-            if (blendedNoise instanceof GaiaBlendedNoise blend) {
-                double scaleXZ = 684.412D * blend.xzScale;
-                double scaleY = 684.412D * blend.yScale;
-                double factorXZ = scaleXZ / blend.xzFactor;
-                double factorY = scaleY / blend.yFactor;
+            //if (blendedNoise instanceof GaiaBlendedNoise blend) {
+                double scaleXZ = 684.412D * blendedNoise.xzScale;
+                double scaleY = 684.412D * blendedNoise.yScale;
+                double factorXZ = scaleXZ / blendedNoise.xzFactor;
+                double factorY = scaleY / blendedNoise.yFactor;
                 double density = -0.46875;
 
                 for (int index = 0; index <= max; ++index) {
                     int y = index + min;
-                    double noise = blend.sampleAndClampNoise(x, y, z, scaleXZ, scaleY, factorXZ, factorY);
+                    double noise = blendedNoise.compute(new DensityFunction.SinglePointContext(x, y, z));
                     double totaldensity = this.computeInitialDensity(y, d0, d1, density) + noise;
                     totaldensity = this.caveNoiseModifier.modifyNoise(totaldensity, y * this.cellHeight, z * this.cellWidth, x * this.cellWidth);
                     totaldensity = this.applySlide(totaldensity, y);
                     adouble[index] = totaldensity;
                 }
-            } else {
-                throw new IllegalArgumentException("BlendedNoise is not an instance of GaiaBlendedNoise");
-            }
+//            } else {
+//                throw new IllegalArgumentException("BlendedNoise is not an instance of GaiaBlendedNoise");
+//            }
 
         } else {
             throw new IllegalArgumentException("BiomeSource is not an instance of GaiaBiomeSource");

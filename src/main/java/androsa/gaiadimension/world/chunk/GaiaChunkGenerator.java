@@ -64,7 +64,7 @@ public class GaiaChunkGenerator extends NoiseBasedChunkGenerator {
             this.cellHeight = noise.getCellHeight();
             NoiseSlider topSlide = new NoiseSlider(-10.0D, 3, 0);
             NoiseSlider bottomSlide = new NoiseSlider(15.0D, 3, 0);
-            BlendedNoise blendedNoise = new GaiaBlendedNoise(random);
+            BlendedNoise blendedNoise = new BlendedNoise(random, 1.0F, 1.0F, 80.0F, 160.0F, 0.0D);
             NoiseModifier modifier = NoiseModifier.PASS;
             this.warper = new GaiaTerrainWarp(this.cellWidth, this.cellHeight, noise.height() / this.cellHeight, mainsource, noise, topSlide, bottomSlide, blendedNoise, modifier);
         } else {
