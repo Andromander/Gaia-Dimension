@@ -15,21 +15,25 @@ public class GaiaBlendedNoise extends BlendedNoise {
         super(random, 1.0F, 1.0F, 80.0F, 160.0F, 0.0D);
     }
 
-    public double sampleAndClampNoise(int x, int y, int z, double scaleXZ, double scaleY, double factorXZ, double factorY) {
+    public double sampleAndClampNoise(FunctionContext context) {
         double d0 = 0.0D;
         double d1 = 0.0D;
         double d2 = 0.0D;
+        double scaleXZ = 684.412D * this.xzScale;
+        double scaleY = 684.412D * this.yScale;
+        double factorXZ = scaleXZ / this.xzFactor;
+        double factorY = scaleY / this.yFactor;
         double scale = 1.0D;
 
         for(int oct = 0; oct < 8; ++oct) {
             ImprovedNoise improvednoise = this.mainNoise.getOctaveNoise(oct);
             if (improvednoise != null) {
                 d2 += improvednoise.noise(
-                        PerlinNoise.wrap((double)x * factorXZ * scale),
-                        PerlinNoise.wrap((double)y * factorY * scale),
-                        PerlinNoise.wrap((double)z * factorXZ * scale),
+                        PerlinNoise.wrap(context.blockX() * factorXZ * scale),
+                        PerlinNoise.wrap(context.blockY() * factorY * scale),
+                        PerlinNoise.wrap(context.blockZ() * factorXZ * scale),
                         factorY * scale,
-                        (double)y * factorY * scale) / scale;
+                        context.blockY() * factorY * scale) / scale;
             }
 
             scale /= 2.0D;
@@ -41,21 +45,21 @@ public class GaiaBlendedNoise extends BlendedNoise {
         scale = 1.0D;
 
         for(int j = 0; j < 16; ++j) {
-            double d4 = PerlinNoise.wrap((double)x * scaleXZ * scale);
-            double d5 = PerlinNoise.wrap((double)y * scaleY * scale);
-            double d6 = PerlinNoise.wrap((double)z * scaleXZ * scale);
+            double d4 = PerlinNoise.wrap(context.blockX() * scaleXZ * scale);
+            double d5 = PerlinNoise.wrap(context.blockY() * scaleY * scale);
+            double d6 = PerlinNoise.wrap(context.blockZ() * scaleXZ * scale);
             double d7 = scaleY * scale;
             if (!flag1) {
                 ImprovedNoise minimumOct = this.minLimitNoise.getOctaveNoise(j);
                 if (minimumOct != null) {
-                    d0 += minimumOct.noise(d4, d5, d6, d7, (double)y * d7) / scale;
+                    d0 += minimumOct.noise(d4, d5, d6, d7, context.blockY() * d7) / scale;
                 }
             }
 
             if (!flag2) {
                 ImprovedNoise maximumOct = this.maxLimitNoise.getOctaveNoise(j);
                 if (maximumOct != null) {
-                    d1 += maximumOct.noise(d4, d5, d6, d7, (double)y * d7) / scale;
+                    d1 += maximumOct.noise(d4, d5, d6, d7, context.blockY() * d7) / scale;
                 }
             }
 

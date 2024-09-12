@@ -64,7 +64,7 @@ public class GaiaChunkGenerator extends NoiseBasedChunkGenerator {
             this.cellHeight = noise.getCellHeight();
             NoiseSlider topSlide = new NoiseSlider(-10.0D, 3, 0);
             NoiseSlider bottomSlide = new NoiseSlider(15.0D, 3, 0);
-            BlendedNoise blendedNoise = new BlendedNoise(random, 1.0F, 1.0F, 80.0F, 160.0F, 0.0D);
+            BlendedNoise blendedNoise = new GaiaBlendedNoise(random);
             NoiseModifier modifier = NoiseModifier.PASS;
             this.warper = new GaiaTerrainWarp(this.cellWidth, this.cellHeight, noise.height() / this.cellHeight, mainsource, noise, topSlide, bottomSlide, blendedNoise, modifier);
         } else {
@@ -286,8 +286,7 @@ public class GaiaChunkGenerator extends NoiseBasedChunkGenerator {
     }
 
     private void fillNoiseColumn(double[] columns, int x, int z, int min, int max) {
-        NoiseSettings settings = this.settings.value().noiseSettings();
-        this.warper.fillNoiseColumn(this, columns, x, z, settings, sampler, this.getSeaLevel(), min, max);
+        this.warper.fillNoiseColumn(columns, x, z, sampler, this.getSeaLevel(), min, max);
     }
 
     private BlockState generateBaseState(double a, double b) {
