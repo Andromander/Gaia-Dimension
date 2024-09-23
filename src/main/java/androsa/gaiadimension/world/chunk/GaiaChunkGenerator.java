@@ -136,37 +136,7 @@ public class GaiaChunkGenerator extends NoiseBasedChunkGenerator {
     }
 
     @Override
-    public CompletableFuture<ChunkAccess> fillFromNoise(Blender blender, RandomState random, StructureManager manager, ChunkAccess access) {
-        NoiseSettings settings = this.settings.value().noiseSettings();
-        int minY = Math.max(settings.minY(), access.getMinBuildHeight());
-        int maxY = Math.min(settings.minY() + settings.height(), access.getMaxBuildHeight());
-        int mincell = Math.floorDiv(minY, this.cellHeight);
-        int maxcell = Math.floorDiv(maxY - minY, this.cellHeight);
-
-        return maxcell <= 0 ? CompletableFuture.completedFuture(access) : CompletableFuture.supplyAsync(Util.wrapThreadWithTaskName("wgen_fill_noise_gaia", () -> {
-            int maxIndex = access.getSectionIndex(maxcell * this.cellHeight - 1 + minY);
-            int minIndex = access.getSectionIndex(minY);
-            Set<LevelChunkSection> sections = Sets.newHashSet();
-
-            for (int index = maxIndex; index >= minIndex; index--) {
-                LevelChunkSection section = access.getSection(index);
-                section.acquire();
-                sections.add(section);
-            }
-
-            ChunkAccess chunk;
-            try {
-                chunk = this.doFill(access, mincell, maxcell);
-            } finally {
-                for (LevelChunkSection section : sections) {
-                    section.release();
-                }
-            }
-            return chunk;
-        }), Util.backgroundExecutor());
-    }
-
-    private ChunkAccess doFill(ChunkAccess access, int min, int max) {
+    public ChunkAccess doFill(Blender blender, StructureManager manager, RandomState random, ChunkAccess access, int min, int max) {
         int cellCountX = 16 / this.cellWidth;
         int cellCountZ = 16 / this.cellWidth;
         Heightmap oceanfloor = access.getOrCreateHeightmapUnprimed(Heightmap.Types.OCEAN_FLOOR_WG);
