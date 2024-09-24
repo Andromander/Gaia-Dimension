@@ -14,6 +14,7 @@ import net.minecraft.resources.RegistryOps;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.biome.BiomeSource;
 import net.minecraft.world.level.biome.Climate;
+import net.neoforged.neoforge.server.ServerLifecycleHooks;
 
 import java.util.List;
 import java.util.function.Function;
@@ -31,7 +32,7 @@ public class GaiaBiomeSource extends BiomeSource {
             RegistryOps.retrieveGetter(Registries.BIOME)
     ).apply(instance, GaiaBiomeSource::new));
 
-    public static long hackseed; //DON'T TOUCH ME
+    public long seed;
     private final HolderGetter<Biome> registry;
     private Layer genBiomes;
     private final float offset;
@@ -102,7 +103,8 @@ public class GaiaBiomeSource extends BiomeSource {
 
     private void lazyLoad() {
         if (genBiomes == null) {
-            this.genBiomes = GaiaLayerUtil.makeLayers(hackseed, registry);
+            this.seed = ServerLifecycleHooks.getCurrentServer().getWorldData().worldGenOptions().seed();
+            this.genBiomes = GaiaLayerUtil.makeLayers(seed, registry);
         }
     }
 }
