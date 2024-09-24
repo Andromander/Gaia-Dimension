@@ -89,7 +89,7 @@ public class GaiaTerrainWarp {
             for (int index = 0; index <= max; ++index) {
                 int y = index + min;
                 DensityFunction.FunctionContext context = new DensityFunction.SinglePointContext(x, y, z);
-                double noise = blendedNoise instanceof GaiaBlendedNoise blend ? blend.sampleAndClampNoise(context) : blendedNoise.compute(context);
+                double noise = blendedNoise.compute(context) * 128.0D;
                 double totaldensity = this.computeInitialDensity(y, d0, d1, density) + noise;
                 totaldensity = this.caveNoiseModifier.modifyNoise(totaldensity, y * this.cellHeight, z * this.cellWidth, x * this.cellWidth);
                 totaldensity = this.applySlide(totaldensity, y);
