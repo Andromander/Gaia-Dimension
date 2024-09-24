@@ -33,17 +33,16 @@ public class GaiaNoiseInterpolator {
     private double valueXZ11;
 
     public GaiaNoiseInterpolator(int x, int max, int z, ChunkPos pos, int min, NoiseFiller filler) {
-        this.cellCountY = max; //NoiseChunk.cellCountY
-        this.cellCountZ = z;  //NoiseChunk.cellCountXZ
+        this.cellCountY = max;
+        this.cellCountZ = z;
         this.cellMinY = min;
         this.noiseFiller = filler;
-        this.slice0 = allocateSlice(max, z); //cellCountY, cellCountXZ
+        this.slice0 = allocateSlice(max, z);
         this.slice1 = allocateSlice(max, z);
         this.firstX = pos.x * x;
         this.firstZ = pos.z * z;
     }
 
-    //correct
     private static double[][] allocateSlice(int y, int z) {
         int height = y + 1;
         int width = z + 1;
@@ -60,7 +59,6 @@ public class GaiaNoiseInterpolator {
         this.fillSlice(this.slice0, this.firstX);
     }
 
-    //both initialise and advance X
     public void advanceX(int advance) {
         this.fillSlice(this.slice1, this.firstX + advance + 1);
     }
@@ -72,7 +70,6 @@ public class GaiaNoiseInterpolator {
         }
     }
 
-    //correct
     public void selectYZ(int y, int z) {
         this.noise000 = this.slice0[  z  ][  y  ];
         this.noise001 = this.slice0[z + 1][  y  ];
@@ -84,13 +81,11 @@ public class GaiaNoiseInterpolator {
         this.noise111 = this.slice1[z + 1][y + 1];
     }
 
-    //correct
     public void updateX(double x) {
         this.valueZ0 = Mth.lerp(x, this.valueXZ00, this.valueXZ10);
         this.valueZ1 = Mth.lerp(x, this.valueXZ01, this.valueXZ11);
     }
 
-    //correct
     public void updateY(double y) {
         this.valueXZ00 = Mth.lerp(y, this.noise000, this.noise010);
         this.valueXZ10 = Mth.lerp(y, this.noise100, this.noise110);
@@ -98,13 +93,11 @@ public class GaiaNoiseInterpolator {
         this.valueXZ11 = Mth.lerp(y, this.noise101, this.noise111);
     }
 
-    //correct
     public double updateZ(double z) {
         this.value = Mth.lerp(z, this.valueZ0, this.valueZ1);
         return this.value;
     }
 
-    //correct
     public void swapSlices() {
         double[][] swap = this.slice0;
         this.slice0 = this.slice1;
