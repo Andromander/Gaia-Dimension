@@ -6,7 +6,7 @@ import net.minecraft.util.Mth;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.biome.BiomeSource;
 import net.minecraft.world.level.biome.Climate;
-import net.minecraft.world.level.chunk.ChunkGenerator;
+import net.minecraft.world.level.levelgen.DensityFunction;
 import net.minecraft.world.level.levelgen.NoiseSettings;
 import net.minecraft.world.level.levelgen.synth.BlendedNoise;
 
@@ -51,7 +51,7 @@ public class GaiaTerrainWarp {
         this.caveNoiseModifier = modifier;
     }
 
-    public void fillNoiseColumn(ChunkGenerator generator, double[] adouble, int x, int z, NoiseSettings settings, Climate.Sampler sampler, int sealevel, int min, int max) {
+    public void fillNoiseColumn(double[] adouble, int x, int z, Climate.Sampler sampler, int sealevel, int min, int max) {
         if (biomeSource instanceof GaiaBiomeSource source) {
             double d0;
             double d1;
@@ -84,26 +84,17 @@ public class GaiaTerrainWarp {
             double d8 = f11 * 0.9F + 0.1F;
             d0 = d6 * 0.265625D;
             d1 = 96.0D / d8;
+            double density = -0.46875;
 
-            if (blendedNoise instanceof GaiaBlendedNoise blend) {
-                double scaleXZ = 684.412D * blend.xzScale;
-                double scaleY = 684.412D * blend.yScale;
-                double factorXZ = scaleXZ / blend.xzFactor;
-                double factorY = scaleY / blend.yFactor;
-                double density = -0.46875;
-
-                for (int index = 0; index <= max; ++index) {
-                    int y = index + min;
-                    double noise = blend.sampleAndClampNoise(x, y, z, scaleXZ, scaleY, factorXZ, factorY);
-                    double totaldensity = this.computeInitialDensity(y, d0, d1, density) + noise;
-                    totaldensity = this.caveNoiseModifier.modifyNoise(totaldensity, y * this.cellHeight, z * this.cellWidth, x * this.cellWidth);
-                    totaldensity = this.applySlide(totaldensity, y);
-                    adouble[index] = totaldensity;
-                }
-            } else {
-                throw new IllegalArgumentException("BlendedNoise is not an instance of GaiaBlendedNoise");
+            for (int index = 0; index <= max; ++index) {
+                int y = index + min;
+                DensityFunction.FunctionContext context = new DensityFunction.SinglePointContext(x, y, z);
+                double noise = blendedNoise.compute(context) * 128.0D;
+                double totaldensity = this.computeInitialDensity(y, d0, d1, density) + noise;
+                totaldensity = this.caveNoiseModifier.modifyNoise(totaldensity, y * this.cellHeight, z * this.cellWidth, x * this.cellWidth);
+                totaldensity = this.applySlide(totaldensity, y);
+                adouble[index] = totaldensity;
             }
-
         } else {
             throw new IllegalArgumentException("BiomeSource is not an instance of GaiaBiomeSource");
         }

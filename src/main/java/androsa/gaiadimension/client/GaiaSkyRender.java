@@ -12,7 +12,6 @@ import net.minecraft.client.renderer.FogRenderer;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.client.renderer.LevelRenderer;
 import net.minecraft.client.renderer.ShaderInstance;
-import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
@@ -22,8 +21,6 @@ import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.material.FogType;
 import net.minecraft.world.phys.Vec3;
 import org.joml.Matrix4f;
-import org.joml.Quaternionf;
-import org.joml.Vector3f;
 
 import java.util.Optional;
 
@@ -43,7 +40,7 @@ public class GaiaSkyRender {
     private static VertexBuffer starVBO;
 
     public GaiaSkyRender() {
-        generateStars();
+        this.generateStars();
     }
 
     public static boolean render(float partialTicks, Matrix4f model, ClientLevel world, Camera camera, Matrix4f matrix, Runnable fog) {
@@ -116,7 +113,6 @@ public class GaiaSkyRender {
 
             //Stars
             float f10 = getStarBrightness(world, partialTicks);
-
             if (f10 > 0.0F) {
                 RenderSystem.setShaderColor(f10, f10, f10, f10);
                 FogRenderer.setupNoFog();
@@ -150,41 +146,62 @@ public class GaiaSkyRender {
 
     //VanillaCopy of WorldRenderer.generateStars, with VanillaCopy of WorldRenderer.renderStars mashed in
     private void generateStars() {
-        Tesselator tessellator = Tesselator.getInstance();
         RenderSystem.setShader(GameRenderer::getPositionShader);
-        if (this.starVBO != null) {
-            this.starVBO.close();
+        if (starVBO != null) {
+            starVBO.close();
         }
-
-        this.starVBO = new VertexBuffer(VertexBuffer.Usage.STATIC);
-        this.starVBO.bind();
 
         //renderStars
+        starVBO = new VertexBuffer(VertexBuffer.Usage.STATIC);
         RandomSource random = RandomSource.create(10842L);
+        Tesselator tessellator = Tesselator.getInstance();
         BufferBuilder bufferbuilder = tessellator.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION);
         for(int i = 0; i < 1500; ++i) {
-            float x = random.nextFloat() * 2.0F - 1.0F;
-            float y = random.nextFloat() * 2.0F - 1.0F;
-            float z = random.nextFloat() * 2.0F - 1.0F;
-            float d3 = 0.15F + random.nextFloat() * 0.1F;
-            float area = Mth.lengthSquared(x, y, z);
-            if (!(area <= 0.010000001F) && !(area >= 1.0F)) {
-                Vector3f normal = new Vector3f(x, y, z).normalize(100.0F);
-                float zRot = (float) (random.nextDouble() * (float) Math.PI * 2.0F);
-                Quaternionf rotation = new Quaternionf().rotateTo(new Vector3f(0.0F, 0.0F, 1.0F), normal).rotateZ(zRot);
-                bufferbuilder.addVertex(normal.add(new Vector3f(d3, -d3, 0.0F).rotate(rotation)));
-                bufferbuilder.addVertex(normal.add(new Vector3f(d3, d3, 0.0F).rotate(rotation)));
-                bufferbuilder.addVertex(normal.add(new Vector3f(-d3, d3, 0.0F).rotate(rotation)));
-                bufferbuilder.addVertex(normal.add(new Vector3f(-d3, -d3, 0.0F).rotate(rotation)));
+            float x = (random.nextFloat() * 2.0F - 1.0F);
+            float y = (random.nextFloat() * 2.0F - 1.0F);
+            float z = (random.nextFloat() * 2.0F - 1.0F);
+            float d3 = (0.15F + random.nextFloat() * 0.1F);
+            float area = x * x + y * y + z * z;
+            if (area < 1.0F && area > 0.01F) {
+                area = (float) (1.0F / Math.sqrt(area));
+                x = x * area;
+                y = y * area;
+                z = z * area;
+                float xPos = x * 100.0F;
+                float yPos = y * 100.0F;
+                float zPos = z * 100.0F;
+                float d8 = (float) Math.atan2(x, z);
+                float d9 = (float) Math.sin(d8);
+                float d10 = (float) Math.cos(d8);
+                float d11 = (float) Math.atan2(Math.sqrt(x * x + z * z), y);
+                float d12 = (float) Math.sin(d11);
+                float d13 = (float) Math.cos(d11);
+                float d14 = random.nextFloat() * (float) Math.PI * 2.0F;
+                float d15 = (float) Math.sin(d14);
+                float d16 = (float) Math.cos(d14);
+
+                for(int j = 0; j < 4; ++j) {
+                    float d18 = ((j & 2) - 1) * d3;
+                    float d19 = ((j + 1 & 2) - 1) * d3;
+                    float d21 = d18 * d16 - d19 * d15;
+                    float d22 = d19 * d16 + d18 * d15;
+                    float d23 = d21 * d12 + 0.0F * d13;
+                    float d24 = 0.0F * d12 - d21 * d13;
+                    float d25 = d24 * d9 - d22 * d10;
+                    float d26 = d22 * d9 + d24 * d10;
+                    bufferbuilder.addVertex(xPos + d25, yPos + d23, zPos + d26);
+                }
             }
         }
-        this.starVBO.upload(bufferbuilder.buildOrThrow());
+
+        starVBO.bind();
+        starVBO.upload(bufferbuilder.buildOrThrow());
         VertexBuffer.unbind();
     }
 
     public static float getStarBrightness(ClientLevel world, float par1) {
         Player player = Minecraft.getInstance().player;
-        Optional<ResourceKey<Biome>> biome = world.getBiome(new BlockPos(player.blockPosition())).unwrapKey();
+        Optional<ResourceKey<Biome>> biome = world.getBiome(player.blockPosition()).unwrapKey();
 
         return biome.filter(GaiaConfig::canDisplayStars).map(biomeRegistryKey -> 0.5F).orElseGet(() -> world.getStarBrightness(par1));
     }
