@@ -3,7 +3,6 @@ package androsa.gaiadimension.world.chunk;
 import androsa.gaiadimension.registry.registration.ModBlocks;
 import androsa.gaiadimension.world.chunk.warp.*;
 import com.google.common.collect.Lists;
-import com.google.common.collect.Sets;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.SharedConstants;
@@ -27,10 +26,10 @@ import net.minecraft.world.level.chunk.LevelChunkSection;
 import net.minecraft.world.level.levelgen.*;
 import net.minecraft.world.level.levelgen.blending.Blender;
 import net.minecraft.world.level.levelgen.synth.BlendedNoise;
+import org.apache.commons.lang3.mutable.MutableObject;
 
 import java.util.List;
 import java.util.OptionalInt;
-import java.util.Set;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Predicate;
 
@@ -81,38 +80,6 @@ public class GaiaChunkGenerator extends NoiseBasedChunkGenerator {
     @Override
     protected MapCodec<? extends ChunkGenerator> codec() {
         return CODEC;
-    }
-
-    @Override
-    public int getBaseHeight(int x, int z, Heightmap.Types height, LevelHeightAccessor level, RandomState random) {
-        NoiseSettings settings = this.settings.value().noiseSettings();
-        int minY = Math.max(settings.minY(), level.getMinBuildHeight());
-        int maxY = Math.min(settings.minY() + settings.height(), level.getMaxBuildHeight());
-        int mincell = Math.floorDiv(minY, this.cellHeight);
-        int maxcell = Math.floorDiv(maxY - minY, this.cellHeight);
-
-        if (maxcell <= 0) {
-            return level.getMinBuildHeight();
-        } else {
-            return this.iterateNoiseColumn(x, z, null, height.isOpaque(), mincell, maxcell).orElse(level.getMinBuildHeight());
-        }
-    }
-
-    @Override
-    public NoiseColumn getBaseColumn(int x, int z, LevelHeightAccessor level, RandomState random) {
-        NoiseSettings settings = this.settings.value().noiseSettings();
-        int minY = Math.max(settings.minY(), level.getMinBuildHeight());
-        int maxY = Math.min(settings.minY() + settings.height(), level.getMaxBuildHeight());
-        int mincell = Math.floorDiv(minY, this.cellHeight);
-        int maxcell = Math.floorDiv(maxY - minY, this.cellHeight);
-
-        if (maxcell <= 0) {
-            return new NoiseColumn(minY, EMPTY_COLUMN);
-        } else {
-            BlockState[] ablockstate = new BlockState[maxcell * settings.getCellHeight()];
-            this.iterateNoiseColumn(x, z, ablockstate, null, mincell, maxcell);
-            return new NoiseColumn(minY, ablockstate);
-        }
     }
 
     @Override
@@ -205,48 +172,62 @@ public class GaiaChunkGenerator extends NoiseBasedChunkGenerator {
         return access;
     }
 
-    protected OptionalInt iterateNoiseColumn(int x, int z, BlockState[] states, Predicate<BlockState> predicate, int min, int max) {
-        int xDiv = Math.floorDiv(x, this.cellWidth);
-        int zDiv = Math.floorDiv(z, this.cellWidth);
-        int xMod = Math.floorMod(x, this.cellWidth);
-        int zMod = Math.floorMod(z, this.cellWidth);
-        int xMin = xMod / this.cellWidth;
-        int zMin = zMod / this.cellWidth;
-        double[][] columns = new double[][]{
-                this.makeAndFillNoiseColumn(xDiv, zDiv, min, max),
-                this.makeAndFillNoiseColumn(xDiv, zDiv + 1, min, max),
-                this.makeAndFillNoiseColumn(xDiv + 1, zDiv, min, max),
-                this.makeAndFillNoiseColumn(xDiv + 1, zDiv + 1, min, max)
-        };
-        //Aquifers?
+    @Override
+    protected OptionalInt iterateNoiseColumn(LevelHeightAccessor accessor, RandomState random, int x, int z, MutableObject<NoiseColumn> object, Predicate<BlockState> predicate) {
+        NoiseSettings settings = this.settings.value().noiseSettings().clampToHeightAccessor(accessor);
+        int min = Math.floorDiv(settings.minY(), this.cellHeight);
+        int max = Math.floorDiv(settings.height(), this.cellHeight);
 
-        for (int cell = max - 1; cell >= 0; cell--) {
-            double d10 = columns[0][cell];
-            double d20 = columns[1][cell];
-            double d30 = columns[2][cell];
-            double d40 = columns[3][cell];
-            double d11 = columns[0][cell + 1];
-            double d21 = columns[1][cell + 1];
-            double d31 = columns[2][cell + 1];
-            double d41 = columns[3][cell + 1];
+        if (max <= 0) {
+            return OptionalInt.empty();
+        } else {
+            BlockState[] states = null;
+            if (object != null) {
+                states = new BlockState[max * settings.getCellHeight()];
+                object.setValue(new NoiseColumn(settings.minY(), states));
+            }
+            int xDiv = Math.floorDiv(x, this.cellWidth);
+            int zDiv = Math.floorDiv(z, this.cellWidth);
+            int xMod = Math.floorMod(x, this.cellWidth);
+            int zMod = Math.floorMod(z, this.cellWidth);
+            int xMin = xMod / this.cellWidth;
+            int zMin = zMod / this.cellWidth;
+            double[][] columns = new double[][]{
+                    this.makeAndFillNoiseColumn(xDiv, zDiv, min, max),
+                    this.makeAndFillNoiseColumn(xDiv, zDiv + 1, min, max),
+                    this.makeAndFillNoiseColumn(xDiv + 1, zDiv, min, max),
+                    this.makeAndFillNoiseColumn(xDiv + 1, zDiv + 1, min, max)
+            };
+            //Aquifers?
 
-            for (int height = this.cellHeight - 1; height >= 0; height--) {
-                double dcell = height / (double)this.cellHeight;
-                double lcell = Mth.lerp3(dcell, xMin, zMin, d10, d11, d30, d31, d20, d21, d40, d41);
-                int layer = cell * this.cellHeight + height;
-                int maxlayer = layer + min * this.cellHeight;
-                BlockState state = this.generateBaseState(lcell, layer);
-                if (states != null) {
-                    states[layer] = state;
-                }
+            for (int cell = max - 1; cell >= 0; cell--) {
+                double d10 = columns[0][cell];
+                double d20 = columns[1][cell];
+                double d30 = columns[2][cell];
+                double d40 = columns[3][cell];
+                double d11 = columns[0][cell + 1];
+                double d21 = columns[1][cell + 1];
+                double d31 = columns[2][cell + 1];
+                double d41 = columns[3][cell + 1];
 
-                if (predicate != null && predicate.test(state)) {
-                    return OptionalInt.of(maxlayer + 1);
+                for (int height = this.cellHeight - 1; height >= 0; height--) {
+                    double dcell = height / (double)this.cellHeight;
+                    double lcell = Mth.lerp3(dcell, xMin, zMin, d10, d11, d30, d31, d20, d21, d40, d41);
+                    int layer = cell * this.cellHeight + height;
+                    int maxlayer = layer + min * this.cellHeight;
+                    BlockState state = this.generateBaseState(lcell, layer);
+                    if (states != null) {
+                        states[layer] = state;
+                    }
+
+                    if (predicate != null && predicate.test(state)) {
+                        return OptionalInt.of(maxlayer + 1);
+                    }
                 }
             }
-        }
 
-        return OptionalInt.empty();
+            return OptionalInt.empty();
+        }
     }
 
     private double[] makeAndFillNoiseColumn(int x, int z, int min, int max) {
