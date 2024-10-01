@@ -40,7 +40,7 @@
     "2.1.145": " + Added Growth Grazer. A bizarre subspecies of Growth Sappers bursting with gold spines.\n + Added Aureate Evraun. A distant relative to the Nomadic Lagrahk endemic to the golden biomes.\n • Fixed worldgen features using BogPatchFeature not being allowed to generate.\n • Properly fixed Moonstone Ore not having an effective tool.\n • Fixed a THREE YEAR OLD BUG with Cracked Malachite Brick Stairs and Cracked Malachite Brick Slabs having swapped translations.\n • Fixed a FOUR YEAR OLD BUG caused by using Fortune to mine Labradorite and Moonstone Ores. Y'all are out to spite me."
   },
   "1.21": {
-    "2.2.228": " + Added Curtains. These blocks are like Doors but hang from above. Placing two identical Curtains together will combine them into a double-Curtain.\n + Added Data Maps for glittering, shining, and nulling fuel. These allow for configuring the fuel amounts for the Restructurer and Purifier.\n + Added clickable areas to crafting GUIs to open the JEI recipe menu.\n • Retextured the Crystal Golem and Shallow Arenthis. They should now look much more lustrous than before.\n • Rewrote how the Mookaite Contruct and Opalite Contructs function.\n  • Mookaite Contructs handle parts differently. Rather than keep parts and multipliers separate, they are combined together for better cohesion and less entity data bloat.\n  • Fix some typos in Construct Kit descriptions.\n • Rewrote how Malachite Guards handle data. Each phase is now a dedicated named phase rather than a number.\n • Rewrote Growth Sapper variant handling to named entries rather than numbers.\n • Rewrote Nomadic Lagrahk variant handling to named entries rather than numbers.\n • Fixed missing lang keys for fluids."
+    "2.2.230": " + Added Curtains. These blocks are like Doors but hang from above. Placing two identical Curtains together will combine them into a double-Curtain.\n + Added Data Maps for glittering, shining, and nulling fuel. These allow for configuring the fuel amounts for the Restructurer and Purifier.\n + Added clickable areas to crafting GUIs to open the JEI recipe menu.\n • Retextured the Crystal Golem and Shallow Arenthis. They should now look much more lustrous than before.\n • Rewrote how the Mookaite Contruct and Opalite Contructs function.\n  • Mookaite Contructs handle parts differently. Rather than keep parts and multipliers separate, they are combined together for better cohesion and less entity data bloat.\n  • Fix some typos in Construct Kit descriptions.\n • Rewrote how Malachite Guards handle data. Each phase is now a dedicated named phase rather than a number.\n • Rewrote Growth Sapper variant handling to named entries rather than numbers.\n • Rewrote Nomadic Lagrahk variant handling to named entries rather than numbers.\n • Fixed missing lang keys for fluids."
   },
 
   "promos": {
@@ -60,7 +60,7 @@
     "1.20-recommended": "2.1.139",
     "1.20.1-latest": "2.1.145",
     "1.20.1-recommended": "2.1.145",
-    "1.21-latest": "2.2.228",
-    "1.21-recommended": "2.2.228"
+    "1.21-latest": "2.2.230",
+    "1.21-recommended": "2.2.230"
   }
 }
