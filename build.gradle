@@ -88,8 +88,8 @@ sourceSets.main.resources {
 
 dependencies {
     implementation "net.neoforged:neoforge:${project.neoforge_version}"
-    compileOnly "mezz.jei:jei-${minecraft_version}-neoforge-api:${jei_version}"
-    runtimeOnly "mezz.jei:jei-${minecraft_version}-neoforge:${jei_version}"
+//    compileOnly "mezz.jei:jei-${minecraft_version}-neoforge-api:${jei_version}"
+//    runtimeOnly "mezz.jei:jei-${minecraft_version}-neoforge:${jei_version}"
 
 //    runtimeOnly fg.deobf("com.sk88q.worldedit:WorldEdit:${we_version}")
 //    runtimeOnly fg.deobf("team.chisel.ctm:CTM:${project.ctm_version}")
