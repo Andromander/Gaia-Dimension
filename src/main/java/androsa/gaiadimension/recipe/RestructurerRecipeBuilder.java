@@ -7,10 +7,11 @@ import net.minecraft.advancements.Criterion;
 import net.minecraft.advancements.critereon.RecipeUnlockedTrigger;
 import net.minecraft.data.recipes.RecipeBuilder;
 import net.minecraft.data.recipes.RecipeOutput;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.level.ItemLike;
 import org.jetbrains.annotations.Nullable;
 
@@ -40,6 +41,10 @@ public class RestructurerRecipeBuilder implements RecipeBuilder {
         return new RestructurerRecipeBuilder(ingredient, new ItemStack(result), new ItemStack(byproduct), experience, time);
     }
 
+    public static RestructurerRecipeBuilder restructuring(Ingredient ingredient, ItemStack result, ItemStack byproduct, float experience, int time) {
+        return new RestructurerRecipeBuilder(ingredient, result, byproduct, experience, time);
+    }
+
     @Override
     public RestructurerRecipeBuilder unlockedBy(String name, Criterion<?> criteria) {
         this.criteria.put(name, criteria);
@@ -58,7 +63,7 @@ public class RestructurerRecipeBuilder implements RecipeBuilder {
     }
 
     @Override
-    public void save(RecipeOutput consumer, ResourceLocation location) {
+    public void save(RecipeOutput consumer, ResourceKey<Recipe<?>> location) {
         this.validate(location);
         Advancement.Builder builder = consumer.advancement()
                 .addCriterion("has_the_recipe", RecipeUnlockedTrigger.unlocked(location))
@@ -72,12 +77,12 @@ public class RestructurerRecipeBuilder implements RecipeBuilder {
                 this.byproduct,
                 this.experience,
                 this.cookingTime);
-        consumer.accept(location, recipe, builder.build(location.withPrefix("recipes/restructuring/")));
+        consumer.accept(location, recipe, builder.build(location.location().withPrefix("recipes/restructuring/")));
     }
 
-    private void validate(ResourceLocation location) {
+    private void validate(ResourceKey<Recipe<?>> location) {
         if (this.criteria.isEmpty()) {
-            throw new IllegalStateException("No way of obtaining recipe " + location);
+            throw new IllegalStateException("No way of obtaining recipe " + location.location());
         }
     }
 }

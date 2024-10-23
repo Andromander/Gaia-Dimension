@@ -6,7 +6,6 @@ import androsa.gaiadimension.recipe.RestructurerRecipeBuilder;
 import androsa.gaiadimension.registry.registration.ModBlocks;
 import androsa.gaiadimension.registry.registration.ModItems;
 import net.minecraft.core.HolderLookup;
-import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
@@ -20,13 +19,12 @@ import net.neoforged.neoforge.common.conditions.IConditionBuilder;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredItem;
 
-import java.util.concurrent.CompletableFuture;
 import java.util.function.Supplier;
 
 public abstract class GaiaRecipeProvider extends RecipeProvider implements IConditionBuilder {
 
-    public GaiaRecipeProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> provider) {
-        super(output, provider);
+    public GaiaRecipeProvider(HolderLookup.Provider provider, RecipeOutput output) {
+        super(provider, output);
     }
 
     public ShapedRecipeBuilder smallCompressRecipe(ItemLike result, ItemLike ingredient) {
@@ -34,7 +32,7 @@ public abstract class GaiaRecipeProvider extends RecipeProvider implements ICond
     }
 
     public ShapedRecipeBuilder smallCompressRecipe(ItemLike result, ItemLike ingredient, int count) {
-        return ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, result, count)
+        return this.shaped(RecipeCategory.BUILDING_BLOCKS, result, count)
                 .pattern("##")
                 .pattern("##")
                 .define('#', ingredient)
@@ -46,7 +44,7 @@ public abstract class GaiaRecipeProvider extends RecipeProvider implements ICond
     }
 
     public ShapedRecipeBuilder largeCompressRecipe(ItemLike result, ItemLike ingredient, int count) {
-        return ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, result, count)
+        return this.shaped(RecipeCategory.BUILDING_BLOCKS, result, count)
                 .pattern("###")
                 .pattern("###")
                 .pattern("###")
@@ -55,20 +53,20 @@ public abstract class GaiaRecipeProvider extends RecipeProvider implements ICond
     }
 
     public ShapelessRecipeBuilder planksRecipe(Supplier<Block> result, TagKey<Item> ingredient) {
-        return ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, result.get(), 4)
+        return this.shapeless(RecipeCategory.BUILDING_BLOCKS, result.get(), 4)
                 .requires(ingredient)
                 .unlockedBy("has_" + ingredient.location().getPath(), has(ingredient));
     }
 
     public ShapedRecipeBuilder slabRecipe(Supplier<SlabBlock> result, DeferredBlock<Block> ingredient) {
-        return ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, result.get(), 6)
+        return this.shaped(RecipeCategory.BUILDING_BLOCKS, result.get(), 6)
                 .pattern("###")
                 .define('#', ingredient.get())
                 .unlockedBy("has_" + ingredient.getId().getPath(), has(ingredient.get()));
     }
 
     public ShapedRecipeBuilder stairsRecipe(Supplier<StairBlock> result, DeferredBlock<? extends Block> ingredient) {
-        return ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, result.get(), 8)
+        return this.shaped(RecipeCategory.BUILDING_BLOCKS, result.get(), 8)
                 .pattern("#  ")
                 .pattern("## ")
                 .pattern("###")
@@ -77,13 +75,13 @@ public abstract class GaiaRecipeProvider extends RecipeProvider implements ICond
     }
 
     public ShapelessRecipeBuilder blockToItemRecipe(Supplier<Item> result, DeferredBlock<Block> ingredient) {
-        return ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, result.get(), 9)
+        return this.shapeless(RecipeCategory.BUILDING_BLOCKS, result.get(), 9)
                 .requires(ingredient.get())
                 .unlockedBy("has_" + ingredient.getId().getPath(), has(ingredient.get()));
     }
 
     public ShapedRecipeBuilder helmetRecipe(Supplier<Item> result, DeferredItem<Item> ingredient) {
-        return ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, result.get())
+        return this.shaped(RecipeCategory.COMBAT, result.get())
                 .pattern("###")
                 .pattern("# #")
                 .define('#', ingredient.get())
@@ -91,7 +89,7 @@ public abstract class GaiaRecipeProvider extends RecipeProvider implements ICond
     }
 
     public ShapedRecipeBuilder chestRecipe(Supplier<Item> result, DeferredItem<Item> ingredient) {
-        return ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, result.get())
+        return this.shaped(RecipeCategory.COMBAT, result.get())
                 .pattern("# #")
                 .pattern("###")
                 .pattern("###")
@@ -100,7 +98,7 @@ public abstract class GaiaRecipeProvider extends RecipeProvider implements ICond
     }
 
     public ShapedRecipeBuilder legsRecipe(Supplier<Item> result, DeferredItem<Item> ingredient) {
-        return ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, result.get())
+        return this.shaped(RecipeCategory.COMBAT, result.get())
                 .pattern("###")
                 .pattern("# #")
                 .pattern("# #")
@@ -109,7 +107,7 @@ public abstract class GaiaRecipeProvider extends RecipeProvider implements ICond
     }
 
     public ShapedRecipeBuilder bootsRecipe(Supplier<Item> result, DeferredItem<Item> ingredient) {
-        return ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, result.get())
+        return this.shaped(RecipeCategory.COMBAT, result.get())
                 .pattern("# #")
                 .pattern("# #")
                 .define('#', ingredient.get())
@@ -117,7 +115,7 @@ public abstract class GaiaRecipeProvider extends RecipeProvider implements ICond
     }
 
     public ShapedRecipeBuilder axeRecipe(Supplier<Item> result, DeferredItem<Item> ingredient) {
-        return ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, result.get())
+        return this.shaped(RecipeCategory.TOOLS, result.get())
                 .pattern("##")
                 .pattern("#/")
                 .pattern(" /")
@@ -127,7 +125,7 @@ public abstract class GaiaRecipeProvider extends RecipeProvider implements ICond
     }
 
     public ShapedRecipeBuilder axeRecipeTag(Supplier<Item> result, TagKey<Item> ingredient) {
-        return ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, result.get())
+        return this.shaped(RecipeCategory.TOOLS, result.get())
                 .pattern("##")
                 .pattern("#/")
                 .pattern(" /")
@@ -137,7 +135,7 @@ public abstract class GaiaRecipeProvider extends RecipeProvider implements ICond
     }
 
     public ShapedRecipeBuilder pickaxeRecipe(Supplier<Item> result, DeferredItem<Item> ingredient) {
-        return ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, result.get())
+        return this.shaped(RecipeCategory.TOOLS, result.get())
                 .pattern("###")
                 .pattern(" / ")
                 .pattern(" / ")
@@ -147,7 +145,7 @@ public abstract class GaiaRecipeProvider extends RecipeProvider implements ICond
     }
 
     public ShapedRecipeBuilder pickaxeRecipeTag(Supplier<Item> result, TagKey<Item> ingredient) {
-        return ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, result.get())
+        return this.shaped(RecipeCategory.TOOLS, result.get())
                 .pattern("###")
                 .pattern(" / ")
                 .pattern(" / ")
@@ -157,7 +155,7 @@ public abstract class GaiaRecipeProvider extends RecipeProvider implements ICond
     }
 
     public ShapedRecipeBuilder shovelRecipe(Supplier<Item> result, DeferredItem<Item> ingredient) {
-        return ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, result.get())
+        return this.shaped(RecipeCategory.TOOLS, result.get())
                 .pattern("#")
                 .pattern("/")
                 .pattern("/")
@@ -167,7 +165,7 @@ public abstract class GaiaRecipeProvider extends RecipeProvider implements ICond
     }
 
     public ShapedRecipeBuilder shovelRecipeTag(Supplier<Item> result, TagKey<Item> ingredient) {
-        return ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, result.get())
+        return this.shaped(RecipeCategory.TOOLS, result.get())
                 .pattern("#")
                 .pattern("/")
                 .pattern("/")
@@ -177,7 +175,7 @@ public abstract class GaiaRecipeProvider extends RecipeProvider implements ICond
     }
 
     public ShapedRecipeBuilder swordRecipe(Supplier<Item> result, DeferredItem<Item> ingredient) {
-        return ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, result.get())
+        return this.shaped(RecipeCategory.COMBAT, result.get())
                 .pattern("#")
                 .pattern("#")
                 .pattern("/")
@@ -187,7 +185,7 @@ public abstract class GaiaRecipeProvider extends RecipeProvider implements ICond
     }
 
     public ShapedRecipeBuilder swordRecipeTag(Supplier<Item> result, TagKey<Item> ingredient) {
-        return ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, result.get())
+        return this.shaped(RecipeCategory.COMBAT, result.get())
                 .pattern("#")
                 .pattern("#")
                 .pattern("/")
@@ -197,7 +195,7 @@ public abstract class GaiaRecipeProvider extends RecipeProvider implements ICond
     }
 
     public ShapelessRecipeBuilder drinkRecipe(Supplier<Item> result, Supplier<Item> geode) {
-        return ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, result.get())
+        return this.shapeless(RecipeCategory.FOOD, result.get())
                 .requires(geode.get())
                 .requires(ModItems.sugar_crystals.get())
                 .requires(ModItems.agate_cup.get())
@@ -205,27 +203,27 @@ public abstract class GaiaRecipeProvider extends RecipeProvider implements ICond
     }
 
     public ShapelessRecipeBuilder sliceRecipe(Supplier<Item> result, Supplier<Item> geode) {
-        return ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, result.get(), 4)
+        return this.shapeless(RecipeCategory.FOOD, result.get(), 4)
                 .requires(geode.get())
                 .unlockedBy("has_geode", has(geode.get()));
     }
 
     public ShapelessRecipeBuilder tiliRecipe(Supplier<Item> result, Supplier<Block> ingredient) {
-        return ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, result.get())
+        return this.shapeless(RecipeCategory.FOOD, result.get())
                 .requires(ingredient.get())
                 .requires(ModBlocks.thiscus.get())
                 .unlockedBy("has_thiscus", has(ModBlocks.thiscus.get()));
     }
 
     public ShapelessRecipeBuilder crustBricks(Supplier<Block> result, Supplier<Block> ingredient) {
-        return ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, result.get())
+        return this.shapeless(RecipeCategory.BUILDING_BLOCKS, result.get())
                 .requires(ingredient.get())
                 .requires(ModItems.crystal_shard.get())
                 .unlockedBy("has_shard", has(ModItems.crystal_shard.get()));
     }
 
     public ShapedRecipeBuilder curtainRecipe(Supplier<CurtainBlock> result, DeferredBlock<Block> curtain, int amount) {
-        return ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, result.get(), amount)
+        return this.shaped(RecipeCategory.DECORATIONS, result.get(), amount)
                 .pattern("//")
                 .pattern("##")
                 .pattern("##")
@@ -243,32 +241,32 @@ public abstract class GaiaRecipeProvider extends RecipeProvider implements ICond
     }
 
     public SimpleCookingRecipeBuilder smeltingRecipe(ItemLike result, DeferredBlock<? extends Block> ingredient, float exp, int count) {
-        return SimpleCookingRecipeBuilder.smelting(Ingredient.of(new ItemStack(ingredient.get(), count)), RecipeCategory.MISC, result, exp, 200)
+        return SimpleCookingRecipeBuilder.smelting(Ingredient.of(ingredient), RecipeCategory.MISC, new ItemStack(result, count), exp, 200)
                 .unlockedBy("has_" + ingredient.getId().getPath(), has(ingredient));
     }
 
     public SimpleCookingRecipeBuilder smeltingRecipe(ItemLike result, DeferredItem<Item> ingredient, float exp, int count) {
-        return SimpleCookingRecipeBuilder.smelting(Ingredient.of(new ItemStack(ingredient.get(), count)), RecipeCategory.MISC, result, exp, 200)
+        return SimpleCookingRecipeBuilder.smelting(Ingredient.of(ingredient), RecipeCategory.MISC, new ItemStack(result, count), exp, 200)
                 .unlockedBy("has_" + ingredient.getId().getPath(), has(ingredient));
     }
 
     public RestructurerRecipeBuilder restructureBlackResidue(Supplier<Item> result, DeferredItem<Item> ingredient, float exp, int count) {
-        return RestructurerRecipeBuilder.restructuring(Ingredient.of(new ItemStack(ingredient.get(), count)), result.get(), ModItems.black_residue.get(), exp, 200)
+        return RestructurerRecipeBuilder.restructuring(Ingredient.of(ingredient), new ItemStack(result.get(), count), new ItemStack(ModItems.black_residue.get(), 1), exp, 200)
                 .unlockedBy("has_" + ingredient.getId().getPath(), has(ingredient.get()));
     }
 
     public RestructurerRecipeBuilder restructuringTektite(Supplier<Block> result, DeferredBlock<Block> ingredient, float exp, int count) {
-        return RestructurerRecipeBuilder.restructuring(Ingredient.of(new ItemStack(ingredient.get(), count)), result.get(), ModItems.tektite.get(), exp, 200)
+        return RestructurerRecipeBuilder.restructuring(Ingredient.of(ingredient), new ItemStack(result.get(), count), new ItemStack(ModItems.tektite.get(), 1), exp, 200)
                 .unlockedBy("has_" + ingredient.getId().getPath(), has(ingredient.get()));
     }
 
     public RestructurerRecipeBuilder restructuringItems(ItemLike result, ItemLike byproduct, DeferredItem<Item> ingredient, float exp, int count) {
-        return RestructurerRecipeBuilder.restructuring(Ingredient.of(new ItemStack(ingredient.get(), count)), result, byproduct, exp, 200)
+        return RestructurerRecipeBuilder.restructuring(Ingredient.of(ingredient), new ItemStack(result, count), new ItemStack(byproduct, 1), exp, 200)
                 .unlockedBy("has_" + ingredient.getId().getPath(), has(ingredient));
     }
 
     public RestructurerRecipeBuilder restructuringItems(ItemLike result, ItemLike byproduct, DeferredBlock<Block> ingredient, float exp, int count) {
-        return RestructurerRecipeBuilder.restructuring(Ingredient.of(new ItemStack(ingredient.get(), count)), result, byproduct, exp, 200)
+        return RestructurerRecipeBuilder.restructuring(Ingredient.of(ingredient), new ItemStack(result, count), new ItemStack(byproduct, 1), exp, 200)
                 .unlockedBy("has_" + ingredient.getId().getPath(), has(ingredient));
     }
 
