@@ -24,7 +24,7 @@ public class SoftGrassBlock extends AbstractGaiaGrassBlock {
     @Override
     public void performBonemeal(ServerLevel worldIn, RandomSource rand, BlockPos pos, BlockState state) {
         BlockPos blockpos = pos.above();
-        Optional<Holder.Reference<PlacedFeature>> optional = worldIn.registryAccess().registryOrThrow(Registries.PLACED_FEATURE).getHolder(GaiaFeatures.Placed.CRYSTAL_GROWTH_AURA);
+        Optional<Holder.Reference<PlacedFeature>> optional = worldIn.registryAccess().lookupOrThrow(Registries.PLACED_FEATURE).get(GaiaFeatures.Placed.CRYSTAL_GROWTH_AURA);
 
         label48:
         for(int i = 0; i < 128; ++i) {

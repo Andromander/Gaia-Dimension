@@ -44,8 +44,7 @@ public class GoldFireBlock extends Block {
     }
 
     @Override
-    @Deprecated
-    public BlockState updateShape(BlockState state, Direction direction, BlockState facingState, LevelAccessor world, BlockPos currentPos, BlockPos facingPos) {
+    protected BlockState updateShape(BlockState state, LevelReader world, ScheduledTickAccess ticker, BlockPos currentPos, Direction direction, BlockPos facingPos, BlockState facingState, RandomSource random) {
         return this.canSurvive(state, world, currentPos) ? this.defaultBlockState().setValue(AGE, state.getValue(AGE)) : Blocks.AIR.defaultBlockState();
     }
 

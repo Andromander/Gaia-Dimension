@@ -7,7 +7,6 @@ import androsa.gaiadimension.registry.bootstrap.GaiaFeatures;
 import androsa.gaiadimension.registry.helpers.PropertiesHandler;
 import com.google.common.collect.Maps;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.dispenser.BlockSource;
 import net.minecraft.core.dispenser.DefaultDispenseItemBehavior;
 import net.minecraft.core.dispenser.DispenseItemBehavior;
@@ -17,17 +16,18 @@ import net.minecraft.world.item.AxeItem;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.component.ItemContainerContents;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.entity.FuelValues;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.material.PushReaction;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredRegister;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.Map;
 import java.util.function.Function;
@@ -47,7 +47,7 @@ public class ModBlocks {
     public static final DeferredBlock<Block> gold_fire = registerNoItem("gold_fire", () ->
             new GoldFireBlock(Properties.of().mapColor(MapColor.GOLD).strength(0.0F).noCollission().randomTicks().lightLevel((state) -> 15).noLootTable()));
     public static final DeferredBlock<Block> pyrite_torch = registerNoItem("pyrite_torch", () -> new PyriteTorchBlock(PropertiesHandler.torchProps()));
-    public static final DeferredBlock<Block> pyrite_wall_torch = registerNoItem("pyrite_wall_torch", () -> new PyriteWallTorchBlock(PropertiesHandler.torchProps().lootFrom(pyrite_torch)));
+    public static final DeferredBlock<Block> pyrite_wall_torch = registerNoItem("pyrite_wall_torch", () -> new PyriteWallTorchBlock(PropertiesHandler.torchProps().overrideLootTable(pyrite_torch.get().getLootTable())));
     public static final DeferredBlock<Block> agate_crafting_table = register("agate_crafting_table", () ->
             new AgateCraftingTableBlock(PropertiesHandler.stoneProps(MapColor.TERRACOTTA_PINK, 1.5F, 2.0F, false)));
     public static final DeferredBlock<Block> crude_storage_crate = registerNoItem("crude_storage_crate", () ->
@@ -84,7 +84,7 @@ public class ModBlocks {
     public static final DeferredBlock<Block> murky_grass = register("murky_grass", () -> new MurkyGrassBlock(PropertiesHandler.grassProps(MapColor.COLOR_GRAY)));
     public static final DeferredBlock<Block> soft_grass = register("soft_grass", () -> new SoftGrassBlock(PropertiesHandler.grassProps(MapColor.COLOR_CYAN)));
     public static final DeferredBlock<Block> gilded_grass = register("gilded_grass", () -> new GildedGrassBlock(PropertiesHandler.grassProps(MapColor.TERRACOTTA_BROWN)));
-    public static final DeferredBlock<Block> frail_glitter_block = register("frail_glitter_block", () -> new GlassBlock(PropertiesHandler.glassProps(MapColor.COLOR_PINK, 1.0F)));
+    public static final DeferredBlock<Block> frail_glitter_block = register("frail_glitter_block", () -> new TransparentBlock(PropertiesHandler.glassProps(MapColor.COLOR_PINK, 1.0F)));
     public static final DeferredBlock<Block> thick_glitter_block = register("thick_glitter_block", PropertiesHandler.stoneProps(MapColor.TERRACOTTA_PURPLE, 1.5F, 7.5F, true));
     public static final DeferredBlock<Block> gummy_glitter_block = register("gummy_glitter_block", () -> new SlimeBlock(Properties.of().mapColor(MapColor.COLOR_PURPLE).sound(SoundType.SLIME_BLOCK).noOcclusion()));
     public static final DeferredBlock<Block> pink_sludge_block = register("pink_sludge_block", () -> new SlimeBlock(Properties.of().mapColor(MapColor.COLOR_PINK).sound(SoundType.SLIME_BLOCK)));
@@ -249,8 +249,8 @@ public class ModBlocks {
     public static final DeferredBlock<CurtainBlock> golden_curtain = register("golden_curtain", () -> new CurtainBlock(PropertiesHandler.curtainProps(MapColor.GOLD)));
 
     //Manufactured
-    public static final DeferredBlock<Block> cloudy_glass = register("cloudy_glass", () -> new GlassBlock(PropertiesHandler.glassProps(MapColor.COLOR_YELLOW, 0.7F)));
-    public static final DeferredBlock<Block> foggy_glass = register("foggy_glass", () -> new GlassBlock(PropertiesHandler.glassProps(MapColor.COLOR_LIGHT_BLUE, 0.7F)));
+    public static final DeferredBlock<Block> cloudy_glass = register("cloudy_glass", () -> new TransparentBlock(PropertiesHandler.glassProps(MapColor.COLOR_YELLOW, 0.7F)));
+    public static final DeferredBlock<Block> foggy_glass = register("foggy_glass", () -> new TransparentBlock(PropertiesHandler.glassProps(MapColor.COLOR_LIGHT_BLUE, 0.7F)));
     public static final DeferredBlock<Block> gaia_stone_bricks = register("gaia_stone_bricks", PropertiesHandler.gaiaBrickProps());
     public static final DeferredBlock<Block> cracked_gaia_stone_bricks = register("cracked_gaia_stone_bricks", PropertiesHandler.gaiaBrickProps());
     public static final DeferredBlock<Block> crusted_gaia_stone_bricks = register("crusted_gaia_stone_bricks", PropertiesHandler.gaiaBrickProps());
@@ -446,7 +446,7 @@ public class ModBlocks {
     private static <T extends Block> Supplier<BlockItem> registerBlockItemFuel(final Supplier<T> block, int burnTime) {
         return () -> new BlockItem(block.get(), new Item.Properties()) {
             @Override
-            public int getBurnTime(ItemStack itemStack, RecipeType<?> type) {
+            public int getBurnTime(ItemStack itemStack, @Nullable RecipeType<?> recipeType, FuelValues fuelValues) {
                 return burnTime;
             }
         };

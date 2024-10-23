@@ -51,12 +51,12 @@ public class AbstractGaiaGrassBlock extends Block implements BonemealableBlock {
         }
     }
 
-    private static boolean isLightEnough(BlockState state, LevelAccessor reader, BlockPos pos) {
+    private static boolean isLightEnough(BlockState state, BlockGetter reader, BlockPos pos) {
         BlockPos blockpos = pos.above();
         BlockState blockstate = reader.getBlockState(blockpos);
 
-        int i = LightEngine.getLightBlockInto(reader, state, pos, blockstate, blockpos, Direction.UP, blockstate.getLightBlock(reader, blockpos));
-        return i < reader.getMaxLightLevel();
+        int i = LightEngine.getLightBlockInto(state, blockstate, Direction.UP, blockstate.getLightBlock());
+        return i < 15;
     }
 
     private static boolean isValidBonemealTargetGrass(BlockState state, LevelAccessor reader, BlockPos pos) {

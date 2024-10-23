@@ -26,9 +26,9 @@ public class GlitterGrassBlock extends AbstractGaiaGrassBlock {
     @Override
     public void performBonemeal(ServerLevel worldIn, RandomSource rand, BlockPos pos, BlockState state) {
         BlockPos blockpos = pos.above();
-        Optional<Holder.Reference<Biome>> wildwood = worldIn.registryAccess().registryOrThrow(Registries.BIOME).getHolder(GaiaBiomes.mutant_agate_wildwood);
-        Optional<Holder.Reference<PlacedFeature>> optionalD = worldIn.registryAccess().registryOrThrow(Registries.PLACED_FEATURE).getHolder(GaiaFeatures.Placed.CRYSTAL_GROWTH_02);
-        Optional<Holder.Reference<PlacedFeature>> optionalM = worldIn.registryAccess().registryOrThrow(Registries.PLACED_FEATURE).getHolder(GaiaFeatures.Placed.CRYSTAL_GROWTH_MUTANT);
+        Optional<Holder.Reference<Biome>> wildwood = worldIn.registryAccess().lookupOrThrow(Registries.BIOME).get(GaiaBiomes.mutant_agate_wildwood);
+        Optional<Holder.Reference<PlacedFeature>> optionalD = worldIn.registryAccess().lookupOrThrow(Registries.PLACED_FEATURE).get(GaiaFeatures.Placed.CRYSTAL_GROWTH_02);
+        Optional<Holder.Reference<PlacedFeature>> optionalM = worldIn.registryAccess().lookupOrThrow(Registries.PLACED_FEATURE).get(GaiaFeatures.Placed.CRYSTAL_GROWTH_MUTANT);
 
         label48:
         for(int i = 0; i < 128; ++i) {

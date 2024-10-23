@@ -2,9 +2,11 @@ package androsa.gaiadimension.block;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
+import net.minecraft.util.RandomSource;
 import net.minecraft.util.StringRepresentable;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.Entity;
@@ -22,6 +24,7 @@ import net.minecraft.world.level.block.state.properties.*;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.level.pathfinder.PathComputationType;
+import net.minecraft.world.level.redstone.Orientation;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
@@ -65,11 +68,11 @@ public class CurtainBlock extends Block {
 
     @Override
     @Deprecated
-    public BlockState updateShape(BlockState state, Direction direction, BlockState neighbor, LevelAccessor accessor, BlockPos pos, BlockPos nPos) {
+    public BlockState updateShape(BlockState state, LevelReader reader, ScheduledTickAccess ticker, BlockPos pos, Direction direction, BlockPos nPos, BlockState neighbor, RandomSource random) {
         DoubleBlockHalf half = state.getValue(HALF);
         if (direction.getAxis() != Direction.Axis.Y || half == DoubleBlockHalf.UPPER != (direction == Direction.DOWN)) {
             //Half is upper, direction is up, and cannot survive
-            return state.getValue(HALF) == DoubleBlockHalf.UPPER && direction == Direction.UP && !state.canSurvive(accessor, pos)
+            return state.getValue(HALF) == DoubleBlockHalf.UPPER && direction == Direction.UP && !state.canSurvive(reader, pos)
                     ? Blocks.AIR.defaultBlockState()
                     : defineHalf(state, neighbor, direction);
         } else {
@@ -131,7 +134,7 @@ public class CurtainBlock extends Block {
 
     @Override
     @Deprecated
-    public void onExplosionHit(BlockState state, Level level, BlockPos pos, Explosion explosion, BiConsumer<ItemStack, BlockPos> stackpos) {
+    public void onExplosionHit(BlockState state, ServerLevel level, BlockPos pos, Explosion explosion, BiConsumer<ItemStack, BlockPos> stackpos) {
         if (explosion.getBlockInteraction() == Explosion.BlockInteraction.TRIGGER_BLOCK
                 && state.getValue(HALF) == DoubleBlockHalf.UPPER
                 && !level.isClientSide()
@@ -157,7 +160,7 @@ public class CurtainBlock extends Block {
 
     @Override
     public BlockState playerWillDestroy(Level level, BlockPos pos, BlockState state, Player player) {
-        if (!level.isClientSide && (player.isCreative() || !player.hasCorrectToolForDrops(state))) {
+        if (!level.isClientSide && (player.isCreative() || !player.hasCorrectToolForDrops(state, level, pos))) {
             DoubleBlockHalf half = state.getValue(HALF);
             if (half == DoubleBlockHalf.LOWER) {
                 BlockPos blockpos = pos.above();
@@ -246,7 +249,7 @@ public class CurtainBlock extends Block {
                 }
             }
         }
-        return InteractionResult.sidedSuccess(level.isClientSide());
+        return InteractionResult.SUCCESS;
     }
 
     private void openBlock(Level level, BlockPos pos, Player player) {
@@ -259,7 +262,7 @@ public class CurtainBlock extends Block {
 
     @Override
     @Deprecated
-    public void neighborChanged(BlockState state, Level level, BlockPos pos, Block block, BlockPos nPos, boolean moved) {
+    public void neighborChanged(BlockState state, Level level, BlockPos pos, Block block, Orientation orient, boolean moved) {
         //This or the neighbour has a signal
         Direction dir = state.getValue(HALF) == DoubleBlockHalf.UPPER ? Direction.DOWN : Direction.UP;
         boolean flag = level.hasNeighborSignal(pos) || level.hasNeighborSignal(pos.relative(dir));

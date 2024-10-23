@@ -4,9 +4,10 @@ import androsa.gaiadimension.registry.bootstrap.GaiaDamage;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.TransparentBlock;
 import net.minecraft.world.level.block.state.BlockState;
 
-public class ChargedMineralBlock extends GlassBlock {
+public class ChargedMineralBlock extends TransparentBlock {
 
     //TODO: Contact with this block on any side deals damage
     public ChargedMineralBlock(Properties props) {

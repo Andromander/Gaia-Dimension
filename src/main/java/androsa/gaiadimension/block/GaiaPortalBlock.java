@@ -19,9 +19,7 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityDimensions;
 import net.minecraft.world.entity.PortalProcessor;
-import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.*;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
@@ -33,8 +31,8 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.level.border.WorldBorder;
 import net.minecraft.world.level.dimension.DimensionType;
-import net.minecraft.world.level.portal.DimensionTransition;
 import net.minecraft.world.level.portal.PortalShape;
+import net.minecraft.world.level.portal.TeleportTransition;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
@@ -67,7 +65,7 @@ public class GaiaPortalBlock extends Block implements Portal {
     public boolean tryToCreatePortal(Level worldIn, BlockPos pos) {
         GaiaPortalBlock.Size gaiaPortalSize = this.isPortal(worldIn, pos);
         if (gaiaPortalSize != null && this.canCreatePortalByWorld(worldIn, pos)) {
-            gaiaPortalSize.placePortalBlocks();
+            gaiaPortalSize.placePortalBlocks(worldIn);
             return true;
         } else {
             return false;
@@ -112,11 +110,12 @@ public class GaiaPortalBlock extends Block implements Portal {
 
     @Override
     @Deprecated
-    public BlockState updateShape(BlockState stateIn, Direction facing, BlockState facingState, LevelAccessor worldIn, BlockPos currentPos, BlockPos facingPos) {
+    public BlockState updateShape(BlockState stateIn, LevelReader worldIn, ScheduledTickAccess ticker, BlockPos currentPos, Direction facing, BlockPos facingPos, BlockState facingState, RandomSource random) {
         Direction.Axis directionAxis = facing.getAxis();
         Direction.Axis directionAxis1 = stateIn.getValue(AXIS);
         boolean flag = directionAxis1 != directionAxis && directionAxis.isHorizontal();
-        return !flag && facingState.getBlock() != this && !(new GaiaPortalBlock.Size(worldIn, currentPos, directionAxis1)).canCreatePortal() ? Blocks.AIR.defaultBlockState() : super.updateShape(stateIn, facing, facingState, worldIn, currentPos, facingPos);
+        return !flag && facingState.getBlock() != this && !(new GaiaPortalBlock.Size(worldIn, currentPos, directionAxis1)).canCreatePortal() ? Blocks.AIR.defaultBlockState() :
+                super.updateShape(stateIn, worldIn, ticker, currentPos, facing, facingPos, facingState, random);
     }
 
     @Override
@@ -139,7 +138,7 @@ public class GaiaPortalBlock extends Block implements Portal {
     //TODO: Port this properly
     @Nullable
     @Override
-    public DimensionTransition getPortalDestination(ServerLevel level, Entity entity, BlockPos pos) {
+    public TeleportTransition getPortalDestination(ServerLevel level, Entity entity, BlockPos pos) {
         ResourceKey<Level> resourcekey = level.dimension() == GaiaDimensions.gaia_world ? GaiaConfig.startDimRK : GaiaDimensions.gaia_world;
         ServerLevel destLevel = level.getServer().getLevel(resourcekey);
         if (destLevel == null) {
@@ -151,12 +150,12 @@ public class GaiaPortalBlock extends Block implements Portal {
             BlockPos exitPos = border.clampToBounds(entity.getX() * scale, entity.getY(), entity.getZ() * scale);
             Optional<BlockPos> optional = teleporter.getExistingPortal(exitPos, border);
             BlockUtil.FoundRectangle rectangle;
-            DimensionTransition.PostDimensionTransition transitpost;
+            TeleportTransition.PostTeleportTransition transitpost;
             if (optional.isPresent()) {
                 BlockPos portalpos = optional.get();
                 BlockState blockstate = destLevel.getBlockState(portalpos);
                 rectangle = BlockUtil.getLargestRectangleAround(portalpos, blockstate.getValue(BlockStateProperties.HORIZONTAL_AXIS), 21, Direction.Axis.Y, 21, p -> destLevel.getBlockState(p) == blockstate);
-                transitpost = DimensionTransition.PLAY_PORTAL_SOUND.then(e -> e.placePortalTicket(portalpos));
+                transitpost = TeleportTransition.PLAY_PORTAL_SOUND.then(e -> e.placePortalTicket(portalpos));
             } else {
                 Direction.Axis axis = entity.level().getBlockState(pos).getOptionalValue(AXIS).orElse(Direction.Axis.X);
                 Optional<BlockUtil.FoundRectangle> optional1 = teleporter.makePortal(exitPos, axis);
@@ -166,7 +165,7 @@ public class GaiaPortalBlock extends Block implements Portal {
                 }
 
                 rectangle = optional1.get();
-                transitpost = DimensionTransition.PLAY_PORTAL_SOUND.then(DimensionTransition.PLACE_PORTAL_TICKET);
+                transitpost = TeleportTransition.PLAY_PORTAL_SOUND.then(TeleportTransition.PLACE_PORTAL_TICKET);
             }
 
             BlockState blockstate = entity.level().getBlockState(pos);
@@ -195,7 +194,7 @@ public class GaiaPortalBlock extends Block implements Portal {
             boolean isX = stateaxis == Direction.Axis.X;
             Vec3 facing = new Vec3(posCorner.getX() + (isX ? xrot : zrot), posCorner.getY() + ypos, posCorner.getZ() + (isX ? zrot : xrot));
             Vec3 vecportal = PortalShape.findCollisionFreePosition(facing, destLevel, entity, dimensions);
-            return new DimensionTransition(destLevel, vecportal, speedaxis, yRot + rot, xRot, transitpost);
+            return new TeleportTransition(destLevel, vecportal, speedaxis, yRot + rot, xRot, transitpost);
         }
     }
 
@@ -246,7 +245,7 @@ public class GaiaPortalBlock extends Block implements Portal {
 
     //TODO: If ever the portal changes, update this. Hopefully even remove it
     public static class Size {
-        private final LevelAccessor world;
+        private final LevelReader world;
         private final Direction.Axis axis;
         private final Direction rightDir;
         private int portalBlockCount;
@@ -256,7 +255,7 @@ public class GaiaPortalBlock extends Block implements Portal {
         private static final StatePredicate FRAME_TEST = (state, reader, pos) -> state.getBlock() == ModBlocks.keystone_block.get();
         private final Block PORTAL = ModBlocks.gaia_portal.get();
 
-        public Size(LevelAccessor worldIn, BlockPos pos, Direction.Axis facing) {
+        public Size(LevelReader worldIn, BlockPos pos, Direction.Axis facing) {
             world = worldIn;
             axis = facing;
             rightDir = facing == Direction.Axis.X ? Direction.WEST : Direction.SOUTH;
@@ -369,9 +368,9 @@ public class GaiaPortalBlock extends Block implements Portal {
             return bottomLeft != null && width >= 2 && width <= 21 && height >= 3 && this.height <= 21;
         }
 
-        public void placePortalBlocks() {
+        public void placePortalBlocks(LevelAccessor accessor) {
             BlockState state = PORTAL.defaultBlockState().setValue(GaiaPortalBlock.AXIS, this.axis);
-            BlockPos.betweenClosed(bottomLeft, bottomLeft.relative(Direction.UP, height - 1).relative(rightDir, width - 1)).forEach((pos) -> this.world.setBlock(pos, state, 18));
+            BlockPos.betweenClosed(bottomLeft, bottomLeft.relative(Direction.UP, height - 1).relative(rightDir, width - 1)).forEach((pos) -> accessor.setBlock(pos, state, 18));
         }
 
         public boolean canCreatePortal() {
