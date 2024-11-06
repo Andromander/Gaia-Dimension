@@ -8,7 +8,6 @@ import net.minecraft.core.component.DataComponentType;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
-import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
@@ -144,7 +143,7 @@ public class ConstructCharmItem extends Item {
             return InteractionResult.PASS;
         }
 
-        return InteractionResult.sidedSuccess(player.level().isClientSide());
+        return InteractionResult.SUCCESS;
     }
 
     private void displayMessage(Player player, String name) {
@@ -152,7 +151,7 @@ public class ConstructCharmItem extends Item {
     }
 
     @Override
-    public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
+    public InteractionResult use(Level level, Player player, InteractionHand hand) {
         ItemStack stack = player.getItemInHand(hand);
         if (player.isShiftKeyDown()) {
             if (!level.isClientSide()) {
@@ -160,10 +159,10 @@ public class ConstructCharmItem extends Item {
             }
             player.displayClientMessage(Component.translatable("construct_charm.message.reset"), true);
 
-            return InteractionResultHolder.sidedSuccess(stack, level.isClientSide());
+            return InteractionResult.SUCCESS.heldItemTransformedTo(stack);
         }
 
-        return InteractionResultHolder.pass(stack);
+        return InteractionResult.PASS;
     }
 
     private void reset(ItemStack stack) {

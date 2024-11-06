@@ -1,11 +1,11 @@
 package androsa.gaiadimension.item.tools;
 
 import net.minecraft.world.item.ShovelItem;
-import net.minecraft.world.item.Tier;
+import net.minecraft.world.item.ToolMaterial;
 
 public class BasicGaiaShovelItem extends ShovelItem {
 
-    public BasicGaiaShovelItem(Tier material, Properties props) {
-        super(material, props.attributes(createAttributes(material, 1.5F, -3.0F)));
+    public BasicGaiaShovelItem(ToolMaterial material, Properties props) {
+        super(material, 1.5F, -3.0F, props);
     }
 }

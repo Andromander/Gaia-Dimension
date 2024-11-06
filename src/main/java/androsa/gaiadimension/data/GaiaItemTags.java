@@ -117,6 +117,14 @@ public class GaiaItemTags extends GaiaItemTagsProvider {
         tag(GaiaTags.Items.GEMS_OPALITE).add(ModItems.opalite.get());
         tag(GaiaTags.Items.GEMS_CELESTINE).add(ModItems.celestine.get());
 
+        tag(GaiaTags.Items.AGATE_TOOL_MATERIAL).addTags(GaiaTags.Items.TILES);
+        tag(GaiaTags.Items.SUGILITE_TOOL_MATERIAL).addTags(GaiaTags.Items.GEMS_SUGILITE);
+        tag(GaiaTags.Items.STIBNITE_TOOL_MATERIAL).addTags(GaiaTags.Items.GEMS_STIBNITE);
+        tag(GaiaTags.Items.EUCLASE_TOOL_MATERIAL).addTags(GaiaTags.Items.EUCLASE_TOOL_MATERIAL);
+        tag(GaiaTags.Items.CARNELIAN_TOOL_MATERIAL).addTags(GaiaTags.Items.GEMS_CARNELIAN);
+        tag(GaiaTags.Items.BENITOITE_TOOL_MATERIAL).addTags(GaiaTags.Items.GEMS_BENITOITE);
+        tag(GaiaTags.Items.GOSHENITE_TOOL_MATERIAL).addTags(GaiaTags.Items.GEMS_GOSHENITE);
+
         copy(GaiaTags.Blocks.ORES_SUGILITE, GaiaTags.Items.ORES_SUGILITE);
         copy(GaiaTags.Blocks.ORES_HEMATITE, GaiaTags.Items.ORES_HEMATITE);
         copy(GaiaTags.Blocks.ORES_CINNABAR, GaiaTags.Items.ORES_CINNABAR);

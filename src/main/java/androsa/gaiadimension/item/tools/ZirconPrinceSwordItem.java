@@ -12,13 +12,18 @@ import java.util.List;
 public class ZirconPrinceSwordItem extends SwordItem {
 
     public ZirconPrinceSwordItem(Properties props) {
-        super(GaiaToolMaterials.ZIRCON, props.attributes(createAttributes(GaiaToolMaterials.ZIRCON, 3, -2.3F)));
+        super(GaiaToolMaterials.ZIRCON, 3, -2.3F, props);
     }
 
     @Override
     public void appendHoverText(ItemStack stack, TooltipContext world, List<Component> tooltips, TooltipFlag flags) {
         super.appendHoverText(stack, world, tooltips, flags);
         tooltips.add(Component.translatable(getDescriptionId() + ".tooltip"));
+    }
+
+    @Override
+    public boolean isRepairable(ItemStack stack) {
+        return false;
     }
 
     //TODO: Deals lightning damage to those hit

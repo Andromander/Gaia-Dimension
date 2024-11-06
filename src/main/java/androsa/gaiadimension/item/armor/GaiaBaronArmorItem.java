@@ -1,19 +1,19 @@
 package androsa.gaiadimension.item.armor;
 
-import androsa.gaiadimension.registry.registration.ModArmorMaterials;
+import androsa.gaiadimension.registry.bootstrap.GaiaArmorMaterials;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
-import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.item.equipment.ArmorType;
 
 import javax.annotation.Nonnull;
 import java.util.List;
 
 public class GaiaBaronArmorItem extends BasicGaiaArmorItem {
 
-    public GaiaBaronArmorItem(ArmorItem.Type slot, Properties props) {
-        super(ModArmorMaterials.TSAVORITE, slot, props.durability(slot.getDurability(709)));
+    public GaiaBaronArmorItem(ArmorType slot, Properties props) {
+        super(GaiaArmorMaterials.TSAVORITE, slot, props);
     }
 
     //TODO: Small chance to not be dealt damage through melee

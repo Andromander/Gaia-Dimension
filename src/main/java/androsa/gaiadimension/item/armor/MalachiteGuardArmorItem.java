@@ -1,17 +1,18 @@
 package androsa.gaiadimension.item.armor;
 
-import androsa.gaiadimension.registry.registration.ModArmorMaterials;
+import androsa.gaiadimension.registry.bootstrap.GaiaArmorMaterials;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.item.equipment.ArmorType;
 
 import java.util.List;
 
 public class MalachiteGuardArmorItem extends BasicGaiaArmorItem {
 
-    public MalachiteGuardArmorItem(ArmorItem.Type slot, Properties props) {
-        super(ModArmorMaterials.MALACHITE, slot, props.durability(slot.getDurability(394)));
+    public MalachiteGuardArmorItem(ArmorType slot, Properties props) {
+        super(GaiaArmorMaterials.MALACHITE, slot, props);
     }
 
     @Override

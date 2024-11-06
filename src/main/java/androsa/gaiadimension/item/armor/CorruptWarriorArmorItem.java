@@ -1,19 +1,19 @@
 package androsa.gaiadimension.item.armor;
 
-import androsa.gaiadimension.registry.registration.ModArmorMaterials;
+import androsa.gaiadimension.registry.bootstrap.GaiaArmorMaterials;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
-import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.item.equipment.ArmorType;
 
 import javax.annotation.Nonnull;
 import java.util.List;
 
 public class CorruptWarriorArmorItem extends BasicGaiaArmorItem {
 
-    public CorruptWarriorArmorItem(ArmorItem.Type slot, Properties props) {
-        super(ModArmorMaterials.CORRUPT, slot, props.durability(slot.getDurability(1000)));
+    public CorruptWarriorArmorItem(ArmorType slot, Properties props) {
+        super(GaiaArmorMaterials.CORRUPT, slot, props);
     }
 
     //TODO: Half damage from normal targets, but extra damage from bosses

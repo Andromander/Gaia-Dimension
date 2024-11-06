@@ -14,7 +14,7 @@ import java.util.List;
 public class GaiaDukeSwordItem extends SwordItem {
 
     public GaiaDukeSwordItem(Properties props) {
-        super(GaiaToolMaterials.LARVIKITE, props.attributes(createAttributes(GaiaToolMaterials.LARVIKITE, 3, -3.0F)));
+        super(GaiaToolMaterials.LARVIKITE, 3, -3.0F, props);
     }
 
     @Override
@@ -27,6 +27,11 @@ public class GaiaDukeSwordItem extends SwordItem {
     public void appendHoverText(ItemStack stack, TooltipContext world, List<Component> tooltips, TooltipFlag flags) {
         super.appendHoverText(stack, world, tooltips, flags);
         tooltips.add(Component.translatable(getDescriptionId() + ".tooltip"));
+    }
+
+    @Override
+    public boolean isRepairable(ItemStack stack) {
+        return false;
     }
 
     //TODO: Deals extra damage to Gaian mobs

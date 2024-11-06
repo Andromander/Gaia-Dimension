@@ -47,7 +47,6 @@ public class GaiaDimensionMod {
         bus.addListener(this::extraRegistries);
         bus.addListener(ModDataMaps::registerDataMaps);
 
-        ModArmorMaterials.ARMOR_MATERIALS.register(bus);
         GaiaBiomes.BIOMES.register(bus);
         ModBlocks.BLOCKS.register(bus);
         ModMenus.CONTAINERS.register(bus);

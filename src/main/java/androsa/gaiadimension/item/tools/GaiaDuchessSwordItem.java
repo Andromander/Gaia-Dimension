@@ -14,7 +14,7 @@ import java.util.List;
 public class GaiaDuchessSwordItem extends SwordItem {
 
     public GaiaDuchessSwordItem(Properties props) {
-        super(GaiaToolMaterials.BIXBITE, props.attributes(createAttributes(GaiaToolMaterials.BIXBITE, 3, -2.2F)));
+        super(GaiaToolMaterials.BIXBITE, 3, -2.2F, props);
     }
 
     @Override
@@ -27,6 +27,11 @@ public class GaiaDuchessSwordItem extends SwordItem {
     public void appendHoverText(ItemStack stack, TooltipContext world, List<Component> tooltips, TooltipFlag flags) {
         super.appendHoverText(stack, world, tooltips, flags);
         tooltips.add(Component.translatable(getDescriptionId() + ".tooltip"));
+    }
+
+    @Override
+    public boolean isRepairable(ItemStack stack) {
+        return false;
     }
 
     //TODO: Make this sword shoot projectiles, but lowers durability by 2

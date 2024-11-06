@@ -4,11 +4,14 @@ import androsa.gaiadimension.GaiaDimensionMod;
 import androsa.gaiadimension.item.*;
 import androsa.gaiadimension.item.armor.*;
 import androsa.gaiadimension.item.tools.*;
+import androsa.gaiadimension.registry.bootstrap.GaiaArmorMaterials;
 import androsa.gaiadimension.registry.values.GaiaFoods;
 import androsa.gaiadimension.registry.values.GaiaToolMaterials;
 import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.core.Direction;
 import net.minecraft.core.component.DataComponents;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Mob;
@@ -16,31 +19,34 @@ import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.component.ItemContainerContents;
 import net.minecraft.world.item.crafting.RecipeType;
+import net.minecraft.world.item.equipment.ArmorMaterial;
+import net.minecraft.world.item.equipment.ArmorType;
+import net.minecraft.world.level.block.entity.FuelValues;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.material.Fluids;
 import net.neoforged.neoforge.common.DeferredSpawnEggItem;
-import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
 import javax.annotation.Nullable;
+import java.util.function.Function;
 import java.util.function.Supplier;
 
-import static net.minecraft.world.item.ArmorItem.Type.*;
+import static net.minecraft.world.item.equipment.ArmorType.*;
 
 public class ModItems {
     public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(GaiaDimensionMod.MODID);
 
     public static final DeferredItem<Item> crystallized_redstone = register("crystallized_redstone");
     public static final DeferredItem<Item> crystallized_lapis_lazuli = register("crystallized_lapis_lazuli");
-    public static final DeferredItem<Item> glint_and_gold = register("glint_and_gold", () -> new GlintAndGoldItem(itemProps().durability(32)));
+    public static final DeferredItem<Item> glint_and_gold = register("glint_and_gold", GlintAndGoldItem::new, props().durability(32));
     public static final DeferredItem<Item> agate_stick = register("agate_stick");
-    public static final DeferredItem<Item> hot_dust = register("hot_dust", () -> new Item(itemProps()) {
+    public static final DeferredItem<Item> hot_dust = register("hot_dust", props -> new Item(props) {
         @Override
-        public int getBurnTime(ItemStack itemStack, @Nullable RecipeType<?> recipeType) {
+        public int getBurnTime(ItemStack itemStack, @Nullable RecipeType<?> recipeType, FuelValues values) {
             return 100;
         }
-    });
+    }, props());
     public static final DeferredItem<Item> goldstone_dust = register("goldstone_dust");
     public static final DeferredItem<Item> fine_dust = register("fine_dust");
     public static final DeferredItem<Item> cloudy_shard = register("cloudy_shard");
@@ -54,24 +60,24 @@ public class ModItems {
     public static final DeferredItem<Item> twined_thread = register("twined_thread");
     public static final DeferredItem<Item> pink_essence = register("pink_essence");
     public static final DeferredItem<Item> pink_goo = register("pink_goo");
-    public static final DeferredItem<Item> gemstone_pouch = register("gemstone_pouch", () -> new GemstonePouchItem(itemProps().component(ModDataComponents.POUCH_CONTENTS, ItemContainerContents.EMPTY)));
+    public static final DeferredItem<Item> gemstone_pouch = register("gemstone_pouch", props -> new GemstonePouchItem(props.component(ModDataComponents.POUCH_CONTENTS, ItemContainerContents.EMPTY)), props());
     public static final DeferredItem<Item> agate_fabric = register("agate_fabric");
-    public static final DeferredItem<Item> sturdy_pebble = register("sturdy_pebble", () -> new SturdyPebbleItem(itemProps().stacksTo(16)));
-    public static final DeferredItem<Item> blank_kit = register("blank_kit", () -> new ConstructKitItem(itemProps(), ConstructKitItem.Kit.BLANK));
-    public static final DeferredItem<Item> repair_kit = register("repair_kit", () -> new ConstructKitItem(itemProps().stacksTo(1), ConstructKitItem.Kit.REPAIR));
-    public static final DeferredItem<Item> scarlet_augment_kit = register("scarlet_augment_kit", () -> new ConstructKitItem(itemProps().stacksTo(1), ConstructKitItem.Kit.AUGMENT, ConstructKitItem.Color.SCARLET));
-    public static final DeferredItem<Item> auburn_augment_kit = register("auburn_augment_kit", () -> new ConstructKitItem(itemProps().stacksTo(1), ConstructKitItem.Kit.AUGMENT, ConstructKitItem.Color.AUBURN));
-    public static final DeferredItem<Item> gold_augment_kit = register("gold_augment_kit", () -> new ConstructKitItem(itemProps().stacksTo(1), ConstructKitItem.Kit.AUGMENT, ConstructKitItem.Color.GOLD));
-    public static final DeferredItem<Item> mauve_augment_kit = register("mauve_augment_kit", () -> new ConstructKitItem(itemProps().stacksTo(1), ConstructKitItem.Kit.AUGMENT, ConstructKitItem.Color.MAUVE));
-    public static final DeferredItem<Item> beige_augment_kit = register("beige_augment_kit", () -> new ConstructKitItem(itemProps().stacksTo(1), ConstructKitItem.Kit.AUGMENT, ConstructKitItem.Color.BEIGE));
-    public static final DeferredItem<Item> ivory_augment_kit = register("ivory_augment_kit", () -> new ConstructKitItem(itemProps().stacksTo(1), ConstructKitItem.Kit.AUGMENT, ConstructKitItem.Color.IVORY));
-    public static final DeferredItem<Item> scarlet_replace_kit = register("scarlet_replace_kit", () -> new ConstructKitItem(itemProps().stacksTo(1), ConstructKitItem.Kit.REPLACE, ConstructKitItem.Color.SCARLET));
-    public static final DeferredItem<Item> auburn_replace_kit = register("auburn_replace_kit", () -> new ConstructKitItem(itemProps().stacksTo(1), ConstructKitItem.Kit.REPLACE, ConstructKitItem.Color.AUBURN));
-    public static final DeferredItem<Item> gold_replace_kit = register("gold_replace_kit", () -> new ConstructKitItem(itemProps().stacksTo(1), ConstructKitItem.Kit.REPLACE, ConstructKitItem.Color.GOLD));
-    public static final DeferredItem<Item> mauve_replace_kit = register("mauve_replace_kit", () -> new ConstructKitItem(itemProps().stacksTo(1), ConstructKitItem.Kit.REPLACE, ConstructKitItem.Color.MAUVE));
-    public static final DeferredItem<Item> beige_replace_kit = register("beige_replace_kit", () -> new ConstructKitItem(itemProps().stacksTo(1), ConstructKitItem.Kit.REPLACE, ConstructKitItem.Color.BEIGE));
-    public static final DeferredItem<Item> ivory_replace_kit = register("ivory_replace_kit", () -> new ConstructKitItem(itemProps().stacksTo(1), ConstructKitItem.Kit.REPLACE, ConstructKitItem.Color.IVORY));
-    public static final DeferredItem<Item> construct_charm = register("construct_charm", () -> new ConstructCharmItem(itemProps().stacksTo(1)));
+    public static final DeferredItem<Item> sturdy_pebble = register("sturdy_pebble", SturdyPebbleItem::new, props().stacksTo(16));
+    public static final DeferredItem<Item> blank_kit = registerKit("blank_kit", ConstructKitItem.Kit.BLANK, null);
+    public static final DeferredItem<Item> repair_kit = registerKit("repair_kit", ConstructKitItem.Kit.REPAIR, null);
+    public static final DeferredItem<Item> scarlet_augment_kit = registerKit("scarlet_augment_kit", ConstructKitItem.Kit.AUGMENT, ConstructKitItem.Color.SCARLET);
+    public static final DeferredItem<Item> auburn_augment_kit = registerKit("auburn_augment_kit", ConstructKitItem.Kit.AUGMENT, ConstructKitItem.Color.AUBURN);
+    public static final DeferredItem<Item> gold_augment_kit = registerKit("gold_augment_kit", ConstructKitItem.Kit.AUGMENT, ConstructKitItem.Color.GOLD);
+    public static final DeferredItem<Item> mauve_augment_kit = registerKit("mauve_augment_kit", ConstructKitItem.Kit.AUGMENT, ConstructKitItem.Color.MAUVE);
+    public static final DeferredItem<Item> beige_augment_kit = registerKit("beige_augment_kit", ConstructKitItem.Kit.AUGMENT, ConstructKitItem.Color.BEIGE);
+    public static final DeferredItem<Item> ivory_augment_kit = registerKit("ivory_augment_kit", ConstructKitItem.Kit.AUGMENT, ConstructKitItem.Color.IVORY);
+    public static final DeferredItem<Item> scarlet_replace_kit = registerKit("scarlet_replace_kit", ConstructKitItem.Kit.REPLACE, ConstructKitItem.Color.SCARLET);
+    public static final DeferredItem<Item> auburn_replace_kit = registerKit("auburn_replace_kit", ConstructKitItem.Kit.REPLACE, ConstructKitItem.Color.AUBURN);
+    public static final DeferredItem<Item> gold_replace_kit = registerKit("gold_replace_kit", ConstructKitItem.Kit.REPLACE, ConstructKitItem.Color.GOLD);
+    public static final DeferredItem<Item> mauve_replace_kit = registerKit("mauve_replace_kit", ConstructKitItem.Kit.REPLACE, ConstructKitItem.Color.MAUVE);
+    public static final DeferredItem<Item> beige_replace_kit = registerKit("beige_replace_kit", ConstructKitItem.Kit.REPLACE, ConstructKitItem.Color.BEIGE);
+    public static final DeferredItem<Item> ivory_replace_kit = registerKit("ivory_replace_kit", ConstructKitItem.Kit.REPLACE, ConstructKitItem.Color.IVORY);
+    public static final DeferredItem<Item> construct_charm = register("construct_charm", ConstructCharmItem::new, props().stacksTo(1));
     public static final DeferredItem<Item> scaynyx_bucket = registerBucket("scaynyx_bucket", () -> Fluids.EMPTY);
     public static final DeferredItem<Item> mineral_water_bucket = registerBucket("mineral_water_bucket", ModFluids.mineral_water_still);
     public static final DeferredItem<Item> superhot_magma_bucket = registerBucket("superhot_magma_bucket", ModFluids.superhot_magma_still);
@@ -84,15 +90,15 @@ public class ModItems {
     public static final DeferredItem<Item> blue_geode = register("blue_geode");
     public static final DeferredItem<Item> green_geode = register("green_geode");
     public static final DeferredItem<Item> purple_geode = register("purple_geode");
-    public static final DeferredItem<Item> pink_geode_slice = register("pink_geode_slice", () -> new GeodeSliceItem(foodProps(GaiaFoods.PINK_SLICE)));
-    public static final DeferredItem<Item> blue_geode_slice = register("blue_geode_slice", () -> new GeodeSliceItem(foodProps(GaiaFoods.BLUE_SLICE)));
-    public static final DeferredItem<Item> green_geode_slice = register("green_geode_slice", () -> new GeodeSliceItem(foodProps(GaiaFoods.GREEN_SLICE)));
-    public static final DeferredItem<Item> purple_geode_slice = register("purple_geode_slice", () -> new GeodeSliceItem(foodProps(GaiaFoods.PURPLE_SLICE)));
-    public static final DeferredItem<Item> pink_geode_juice = register("pink_geode_juice", () -> new GeodeJuiceItem(foodProps(GaiaFoods.PINK_JUICE)));
-    public static final DeferredItem<Item> blue_geode_tea = register("blue_geode_tea", () -> new GeodeJuiceItem(foodProps(GaiaFoods.BLUE_TEA)));
-    public static final DeferredItem<Item> green_geode_ale = register("green_geode_ale", () -> new GeodeJuiceItem(foodProps(GaiaFoods.GREEN_ALE)));
-    public static final DeferredItem<Item> purple_geode_soda = register("purple_geode_soda", () -> new GeodeJuiceItem(foodProps(GaiaFoods.PURPLE_SODA)));
-    public static final DeferredItem<Item> pearly_geode_elixir = register("pearly_geode_elixir", () -> new GeodeJuiceItem(foodProps(GaiaFoods.PEARLY_ELIXIR)));
+    public static final DeferredItem<Item> pink_geode_slice = register("pink_geode_slice", GeodeSliceItem::new, props().food(GaiaFoods.PINK_SLICE));
+    public static final DeferredItem<Item> blue_geode_slice = register("blue_geode_slice", GeodeSliceItem::new, props().food(GaiaFoods.BLUE_SLICE));
+    public static final DeferredItem<Item> green_geode_slice = register("green_geode_slice", GeodeSliceItem::new, props().food(GaiaFoods.GREEN_SLICE));
+    public static final DeferredItem<Item> purple_geode_slice = register("purple_geode_slice", GeodeSliceItem::new, props().food(GaiaFoods.PURPLE_SLICE));
+    public static final DeferredItem<Item> pink_geode_juice = register("pink_geode_juice", GeodeJuiceItem::new, props().food(GaiaFoods.PINK_JUICE));
+    public static final DeferredItem<Item> blue_geode_tea = register("blue_geode_tea", GeodeJuiceItem::new, props().food(GaiaFoods.BLUE_TEA));
+    public static final DeferredItem<Item> green_geode_ale = register("green_geode_ale", GeodeJuiceItem::new, props().food(GaiaFoods.GREEN_ALE));
+    public static final DeferredItem<Item> purple_geode_soda = register("purple_geode_soda", GeodeJuiceItem::new, props().food(GaiaFoods.PURPLE_SODA));
+    public static final DeferredItem<Item> pearly_geode_elixir = register("pearly_geode_elixir", GeodeJuiceItem::new, props().food(GaiaFoods.PEARLY_ELIXIR));
     public static final DeferredItem<Item> lurmorus_meat = register("lurmorus_meat", GaiaFoods.LURMORUS_MEAT);
     public static final DeferredItem<Item> lurmorus_steak = register("lurmorus_steak", GaiaFoods.LURMORUS_STEAK);
     public static final DeferredItem<Item> small_tentacle = register("small_tentacle", GaiaFoods.SMALL_TENTACLE);
@@ -111,15 +117,15 @@ public class ModItems {
     public static final DeferredItem<Item> plagued_tiliey = register("plagued_tiliey", GaiaFoods.PLAGUED_TILIEY);
     public static final DeferredItem<Item> tiliou = register("tiliou", GaiaFoods.TILIOU);
 
-    public static final DeferredItem<Item> hematite_powder = register("hematite_powder", () -> new GroundGemItem(itemProps()));
-    public static final DeferredItem<Item> cinnabar_powder = register("cinnabar_powder", () -> new GroundGemItem(itemProps()));
-    public static final DeferredItem<Item> labradorite_powder = register("labradorite_powder", () -> new GroundGemItem(itemProps()));
-    public static final DeferredItem<Item> moonstone_powder = register("moonstone_powder", () -> new GroundGemItem(itemProps()));
-    public static final DeferredItem<Item> red_opal_powder = register("red_opal_powder", () -> new GroundGemItem(itemProps()));
-    public static final DeferredItem<Item> blue_opal_powder = register("blue_opal_powder", () -> new GroundGemItem(itemProps()));
-    public static final DeferredItem<Item> green_opal_powder = register("green_opal_powder", () -> new GroundGemItem(itemProps()));
-    public static final DeferredItem<Item> white_opal_grit = register("white_opal_grit", () -> new GroundGemItem(itemProps()));
-    public static final DeferredItem<Item> pyrite_powder = register("pyrite_powder", () -> new GroundGemItem(itemProps()));
+    public static final DeferredItem<Item> hematite_powder = register("hematite_powder", GroundGemItem::new, props());
+    public static final DeferredItem<Item> cinnabar_powder = register("cinnabar_powder", GroundGemItem::new, props());
+    public static final DeferredItem<Item> labradorite_powder = register("labradorite_powder", GroundGemItem::new, props());
+    public static final DeferredItem<Item> moonstone_powder = register("moonstone_powder", GroundGemItem::new, props());
+    public static final DeferredItem<Item> red_opal_powder = register("red_opal_powder", GroundGemItem::new, props());
+    public static final DeferredItem<Item> blue_opal_powder = register("blue_opal_powder", GroundGemItem::new, props());
+    public static final DeferredItem<Item> green_opal_powder = register("green_opal_powder", GroundGemItem::new, props());
+    public static final DeferredItem<Item> white_opal_grit = register("white_opal_grit", GroundGemItem::new, props());
+    public static final DeferredItem<Item> pyrite_powder = register("pyrite_powder", GroundGemItem::new, props());
 
     public static final DeferredItem<Item> sugilite = register("sugilite");
     public static final DeferredItem<Item> hematite = register("hematite");
@@ -150,67 +156,67 @@ public class ModItems {
     public static final DeferredItem<Item> opalite = register("opalite");
     public static final DeferredItem<Item> celestine = register("celestine");
 
-    public static final DeferredItem<Item> sugilite_helmet = register("sugilite_helmet", ModArmorMaterials.SUGILITE, HELMET, 77);
-    public static final DeferredItem<Item> sugilite_chestplate = register("sugilite_chestplate", ModArmorMaterials.SUGILITE, CHESTPLATE, 77);
-    public static final DeferredItem<Item> sugilite_legs = register("sugilite_legs", ModArmorMaterials.SUGILITE, LEGGINGS, 77);
-    public static final DeferredItem<Item> sugilite_boots = register("sugilite_boots", ModArmorMaterials.SUGILITE, BOOTS, 77);
-    public static final DeferredItem<Item> proustite_helmet = register("proustite_helmet", ModArmorMaterials.PROUSTITE, HELMET, 115);
-    public static final DeferredItem<Item> proustite_chestplate = register("proustite_chestplate", ModArmorMaterials.PROUSTITE, CHESTPLATE, 115);
-    public static final DeferredItem<Item> proustite_legs = register("proustite_legs", ModArmorMaterials.PROUSTITE, LEGGINGS, 115);
-    public static final DeferredItem<Item> proustite_boots = register("proustite_boots", ModArmorMaterials.PROUSTITE, BOOTS, 115);
-    public static final DeferredItem<Item> albite_helmet = register("albite_helmet", ModArmorMaterials.ALBITE, HELMET, 100);
-    public static final DeferredItem<Item> albite_chestplate = register("albite_chestplate", ModArmorMaterials.ALBITE, CHESTPLATE, 100);
-    public static final DeferredItem<Item> albite_legs = register("albite_legs", ModArmorMaterials.ALBITE, LEGGINGS, 100);
-    public static final DeferredItem<Item> albite_boots = register("albite_boots", ModArmorMaterials.ALBITE, BOOTS, 100);
-    public static final DeferredItem<Item> carnelian_helmet = register("carnelian_helmet", ModArmorMaterials.CARNELIAN, HELMET, 192);
-    public static final DeferredItem<Item> carnelian_chestplate = register("carnelian_chestplate", ModArmorMaterials.CARNELIAN, CHESTPLATE, 192);
-    public static final DeferredItem<Item> carnelian_legs = register("carnelian_legs", ModArmorMaterials.CARNELIAN, LEGGINGS, 192);
-    public static final DeferredItem<Item> carnelian_boots = register("carnelian_boots", ModArmorMaterials.CARNELIAN, BOOTS, 192);
-    public static final DeferredItem<Item> diopside_helmet = register("diopside_helmet", ModArmorMaterials.DIOPSIDE, HELMET, 177);
-    public static final DeferredItem<Item> diopside_chestplate = register("diopside_chestplate", ModArmorMaterials.DIOPSIDE, CHESTPLATE, 177);
-    public static final DeferredItem<Item> diopside_legs = register("diopside_legs", ModArmorMaterials.DIOPSIDE, LEGGINGS, 177);
-    public static final DeferredItem<Item> diopside_boots = register("diopside_boots", ModArmorMaterials.DIOPSIDE, BOOTS, 177);
-    public static final DeferredItem<Item> goshenite_helmet = register("goshenite_helmet", ModArmorMaterials.GOSHENITE, HELMET, 230);
-    public static final DeferredItem<Item> goshenite_chestplate = register("goshenite_chestplate", ModArmorMaterials.GOSHENITE, CHESTPLATE, 230);
-    public static final DeferredItem<Item> goshenite_legs = register("goshenite_legs", ModArmorMaterials.GOSHENITE, LEGGINGS, 230);
-    public static final DeferredItem<Item> goshenite_boots = register("goshenite_boots", ModArmorMaterials.GOSHENITE, BOOTS, 230);
+    public static final DeferredItem<Item> sugilite_helmet = register("sugilite_helmet", GaiaArmorMaterials.SUGILITE, HELMET);
+    public static final DeferredItem<Item> sugilite_chestplate = register("sugilite_chestplate", GaiaArmorMaterials.SUGILITE, CHESTPLATE);
+    public static final DeferredItem<Item> sugilite_legs = register("sugilite_legs", GaiaArmorMaterials.SUGILITE, LEGGINGS);
+    public static final DeferredItem<Item> sugilite_boots = register("sugilite_boots", GaiaArmorMaterials.SUGILITE, BOOTS);
+    public static final DeferredItem<Item> proustite_helmet = register("proustite_helmet", GaiaArmorMaterials.PROUSTITE, HELMET);
+    public static final DeferredItem<Item> proustite_chestplate = register("proustite_chestplate", GaiaArmorMaterials.PROUSTITE, CHESTPLATE);
+    public static final DeferredItem<Item> proustite_legs = register("proustite_legs", GaiaArmorMaterials.PROUSTITE, LEGGINGS);
+    public static final DeferredItem<Item> proustite_boots = register("proustite_boots", GaiaArmorMaterials.PROUSTITE, BOOTS);
+    public static final DeferredItem<Item> albite_helmet = register("albite_helmet", GaiaArmorMaterials.ALBITE, HELMET);
+    public static final DeferredItem<Item> albite_chestplate = register("albite_chestplate", GaiaArmorMaterials.ALBITE, CHESTPLATE);
+    public static final DeferredItem<Item> albite_legs = register("albite_legs", GaiaArmorMaterials.ALBITE, LEGGINGS);
+    public static final DeferredItem<Item> albite_boots = register("albite_boots", GaiaArmorMaterials.ALBITE, BOOTS);
+    public static final DeferredItem<Item> carnelian_helmet = register("carnelian_helmet", GaiaArmorMaterials.CARNELIAN, HELMET);
+    public static final DeferredItem<Item> carnelian_chestplate = register("carnelian_chestplate", GaiaArmorMaterials.CARNELIAN, CHESTPLATE);
+    public static final DeferredItem<Item> carnelian_legs = register("carnelian_legs", GaiaArmorMaterials.CARNELIAN, LEGGINGS);
+    public static final DeferredItem<Item> carnelian_boots = register("carnelian_boots", GaiaArmorMaterials.CARNELIAN, BOOTS);
+    public static final DeferredItem<Item> diopside_helmet = register("diopside_helmet", GaiaArmorMaterials.DIOPSIDE, HELMET);
+    public static final DeferredItem<Item> diopside_chestplate = register("diopside_chestplate", GaiaArmorMaterials.DIOPSIDE, CHESTPLATE);
+    public static final DeferredItem<Item> diopside_legs = register("diopside_legs", GaiaArmorMaterials.DIOPSIDE, LEGGINGS);
+    public static final DeferredItem<Item> diopside_boots = register("diopside_boots", GaiaArmorMaterials.DIOPSIDE, BOOTS);
+    public static final DeferredItem<Item> goshenite_helmet = register("goshenite_helmet", GaiaArmorMaterials.GOSHENITE, HELMET);
+    public static final DeferredItem<Item> goshenite_chestplate = register("goshenite_chestplate", GaiaArmorMaterials.GOSHENITE, CHESTPLATE);
+    public static final DeferredItem<Item> goshenite_legs = register("goshenite_legs", GaiaArmorMaterials.GOSHENITE, LEGGINGS);
+    public static final DeferredItem<Item> goshenite_boots = register("goshenite_boots", GaiaArmorMaterials.GOSHENITE, BOOTS);
 
-    public static final DeferredItem<Item> malachite_guard_headgear = register("malachite_guard_headgear", () -> new MalachiteGuardArmorItem(HELMET, armorProps().rarity(Rarity.RARE)));
-    public static final DeferredItem<Item> malachite_guard_brace = register("malachite_guard_brace", () -> new MalachiteGuardArmorItem(CHESTPLATE, armorProps().rarity(Rarity.RARE)));
-    public static final DeferredItem<Item> malachite_guard_gear = register("malachite_guard_gear", () -> new MalachiteGuardArmorItem(LEGGINGS, armorProps().rarity(Rarity.RARE)));
-    public static final DeferredItem<Item> malachite_guard_boots = register("malachite_guard_boots", () -> new MalachiteGuardArmorItem(BOOTS, armorProps().rarity(Rarity.RARE)));
-    public static final DeferredItem<Item> apex_predator_hood = register("apex_predator_hood", () -> new ApexPredatorArmorItem(HELMET, armorProps().rarity(Rarity.RARE)));
-    public static final DeferredItem<Item> apex_predator_jacket = register("apex_predator_jacket", () -> new ApexPredatorArmorItem(CHESTPLATE, armorProps().rarity(Rarity.RARE)));
-    public static final DeferredItem<Item> apex_predator_trousers = register("apex_predator_trousers", () -> new ApexPredatorArmorItem(LEGGINGS, armorProps().rarity(Rarity.RARE)));
-    public static final DeferredItem<Item> apex_predator_boots = register("apex_predator_boots", () -> new ApexPredatorArmorItem(BOOTS, armorProps().rarity(Rarity.RARE)));
-    public static final DeferredItem<Item> spinel_princess_cowl = register("spinel_princess_cowl", () -> new SpinelPrincessArmorItem(HELMET, armorProps().rarity(Rarity.RARE)));
-    public static final DeferredItem<Item> spinel_princess_cloak = register("spinel_princess_cloak", () -> new SpinelPrincessArmorItem(CHESTPLATE, armorProps().rarity(Rarity.RARE)));
-    public static final DeferredItem<Item> spinel_princess_dress = register("spinel_princess_dress", () -> new SpinelPrincessArmorItem(LEGGINGS, armorProps().rarity(Rarity.RARE)));
-    public static final DeferredItem<Item> spinel_princess_heels = register("spinel_princess_heels", () -> new SpinelPrincessArmorItem(BOOTS, armorProps().rarity(Rarity.RARE)));
-    public static final DeferredItem<Item> zircon_prince_crown = register("zircon_prince_crown", () -> new ZirconPrinceArmorItem(HELMET, armorProps().rarity(Rarity.RARE)));
-    public static final DeferredItem<Item> zircon_prince_chestpiece = register("zircon_prince_chestpiece", () -> new ZirconPrinceArmorItem(CHESTPLATE, armorProps().rarity(Rarity.RARE)));
-    public static final DeferredItem<Item> zircon_prince_gear = register("zircon_prince_gear", () -> new ZirconPrinceArmorItem(LEGGINGS, armorProps().rarity(Rarity.RARE)));
-    public static final DeferredItem<Item> zircon_prince_boots = register("zircon_prince_boots", () -> new ZirconPrinceArmorItem(BOOTS, armorProps().rarity(Rarity.RARE)));
-    public static final DeferredItem<Item> corrupt_warrior_helm = register("corrupt_warrior_helm", () -> new CorruptWarriorArmorItem(HELMET, armorProps().rarity(Rarity.RARE)));
-    public static final DeferredItem<Item> corrupt_warrior_guard = register("corrupt_warrior_guard", () -> new CorruptWarriorArmorItem(CHESTPLATE, armorProps().rarity(Rarity.RARE)));
-    public static final DeferredItem<Item> corrupt_warrior_greaves = register("corrupt_warrior_greaves", () -> new CorruptWarriorArmorItem(LEGGINGS, armorProps().rarity(Rarity.RARE)));
-    public static final DeferredItem<Item> corrupt_warrior_boots = register("corrupt_warrior_boots", () -> new CorruptWarriorArmorItem(BOOTS, armorProps().rarity(Rarity.RARE)));
-    public static final DeferredItem<Item> gaia_duchess_helm = register("gaia_duchess_helm", () -> new GaiaDuchessArmorItem(HELMET, armorProps().rarity(Rarity.RARE)));
-    public static final DeferredItem<Item> gaia_duchess_guard = register("gaia_duchess_guard", () -> new GaiaDuchessArmorItem(CHESTPLATE, armorProps().rarity(Rarity.RARE)));
-    public static final DeferredItem<Item> gaia_duchess_greaves = register("gaia_duchess_greaves", () -> new GaiaDuchessArmorItem(LEGGINGS, armorProps().rarity(Rarity.RARE)));
-    public static final DeferredItem<Item> gaia_duchess_boots = register("gaia_duchess_boots", () -> new GaiaDuchessArmorItem(BOOTS, armorProps().rarity(Rarity.RARE)));
-    public static final DeferredItem<Item> gaia_baron_mask = register("gaia_baron_mask", () -> new GaiaBaronArmorItem(HELMET, armorProps().rarity(Rarity.RARE)));
-    public static final DeferredItem<Item> gaia_baron_tuxedo = register("gaia_baron_tuxedo", () -> new GaiaBaronArmorItem(CHESTPLATE, armorProps().rarity(Rarity.RARE)));
-    public static final DeferredItem<Item> gaia_baron_pants = register("gaia_baron_pants", () -> new GaiaBaronArmorItem(LEGGINGS, armorProps().rarity(Rarity.RARE)));
-    public static final DeferredItem<Item> gaia_baron_shoes = register("gaia_baron_shoes", () -> new GaiaBaronArmorItem(BOOTS, armorProps().rarity(Rarity.RARE)));
-    public static final DeferredItem<Item> gaia_duke_helm = register("gaia_duke_helm", () -> new GaiaDukeArmorItem(HELMET, armorProps().rarity(Rarity.RARE)));
-    public static final DeferredItem<Item> gaia_duke_guard = register("gaia_duke_guard", () -> new GaiaDukeArmorItem(CHESTPLATE, armorProps().rarity(Rarity.RARE)));
-    public static final DeferredItem<Item> gaia_duke_greaves = register("gaia_duke_greaves", () -> new GaiaDukeArmorItem(LEGGINGS, armorProps().rarity(Rarity.RARE)));
-    public static final DeferredItem<Item> gaia_duke_boots = register("gaia_duke_boots", () -> new GaiaDukeArmorItem(BOOTS, armorProps().rarity(Rarity.RARE)));
-    public static final DeferredItem<Item> gaia_champion_helm = register("gaia_champion_helm", () -> new GaiaChampArmorItem(HELMET, armorProps().rarity(Rarity.EPIC)));
-    public static final DeferredItem<Item> gaia_champion_guard = register("gaia_champion_guard", () -> new GaiaChampArmorItem(CHESTPLATE, armorProps().rarity(Rarity.EPIC)));
-    public static final DeferredItem<Item> gaia_champion_greaves = register("gaia_champion_greaves", () -> new GaiaChampArmorItem(LEGGINGS, armorProps().rarity(Rarity.EPIC)));
-    public static final DeferredItem<Item> gaia_champion_boots = register("gaia_champion_boots", () -> new GaiaChampArmorItem(BOOTS, armorProps().rarity(Rarity.EPIC)));
+    public static final DeferredItem<Item> malachite_guard_headgear = register("malachite_guard_headgear", props -> new MalachiteGuardArmorItem(HELMET, props), props().rarity(Rarity.RARE));
+    public static final DeferredItem<Item> malachite_guard_brace = register("malachite_guard_brace", props -> new MalachiteGuardArmorItem(CHESTPLATE, props), props().rarity(Rarity.RARE));
+    public static final DeferredItem<Item> malachite_guard_gear = register("malachite_guard_gear", props -> new MalachiteGuardArmorItem(LEGGINGS, props), props().rarity(Rarity.RARE));
+    public static final DeferredItem<Item> malachite_guard_boots = register("malachite_guard_boots", props -> new MalachiteGuardArmorItem(BOOTS, props), props().rarity(Rarity.RARE));
+    public static final DeferredItem<Item> apex_predator_hood = register("apex_predator_hood", props -> new ApexPredatorArmorItem(HELMET, props), props().rarity(Rarity.RARE));
+    public static final DeferredItem<Item> apex_predator_jacket = register("apex_predator_jacket", props -> new ApexPredatorArmorItem(CHESTPLATE, props), props().rarity(Rarity.RARE));
+    public static final DeferredItem<Item> apex_predator_trousers = register("apex_predator_trousers", props -> new ApexPredatorArmorItem(LEGGINGS, props), props().rarity(Rarity.RARE));
+    public static final DeferredItem<Item> apex_predator_boots = register("apex_predator_boots", props -> new ApexPredatorArmorItem(BOOTS, props), props().rarity(Rarity.RARE));
+    public static final DeferredItem<Item> spinel_princess_cowl = register("spinel_princess_cowl", props -> new SpinelPrincessArmorItem(HELMET, props), props().rarity(Rarity.RARE));
+    public static final DeferredItem<Item> spinel_princess_cloak = register("spinel_princess_cloak", props -> new SpinelPrincessArmorItem(CHESTPLATE, props), props().rarity(Rarity.RARE));
+    public static final DeferredItem<Item> spinel_princess_dress = register("spinel_princess_dress", props -> new SpinelPrincessArmorItem(LEGGINGS, props), props().rarity(Rarity.RARE));
+    public static final DeferredItem<Item> spinel_princess_heels = register("spinel_princess_heels", props -> new SpinelPrincessArmorItem(BOOTS, props), props().rarity(Rarity.RARE));
+    public static final DeferredItem<Item> zircon_prince_crown = register("zircon_prince_crown", props -> new ZirconPrinceArmorItem(HELMET, props), props().rarity(Rarity.RARE));
+    public static final DeferredItem<Item> zircon_prince_chestpiece = register("zircon_prince_chestpiece", props -> new ZirconPrinceArmorItem(CHESTPLATE, props), props().rarity(Rarity.RARE));
+    public static final DeferredItem<Item> zircon_prince_gear = register("zircon_prince_gear", props -> new ZirconPrinceArmorItem(LEGGINGS, props), props().rarity(Rarity.RARE));
+    public static final DeferredItem<Item> zircon_prince_boots = register("zircon_prince_boots", props -> new ZirconPrinceArmorItem(BOOTS, props), props().rarity(Rarity.RARE));
+    public static final DeferredItem<Item> corrupt_warrior_helm = register("corrupt_warrior_helm", props -> new CorruptWarriorArmorItem(HELMET, props), props().rarity(Rarity.RARE));
+    public static final DeferredItem<Item> corrupt_warrior_guard = register("corrupt_warrior_guard", props -> new CorruptWarriorArmorItem(CHESTPLATE, props), props().rarity(Rarity.RARE));
+    public static final DeferredItem<Item> corrupt_warrior_greaves = register("corrupt_warrior_greaves", props -> new CorruptWarriorArmorItem(LEGGINGS, props), props().rarity(Rarity.RARE));
+    public static final DeferredItem<Item> corrupt_warrior_boots = register("corrupt_warrior_boots", props -> new CorruptWarriorArmorItem(BOOTS, props), props().rarity(Rarity.RARE));
+    public static final DeferredItem<Item> gaia_duchess_helm = register("gaia_duchess_helm", props -> new GaiaDuchessArmorItem(HELMET, props), props().rarity(Rarity.RARE));
+    public static final DeferredItem<Item> gaia_duchess_guard = register("gaia_duchess_guard", props -> new GaiaDuchessArmorItem(CHESTPLATE, props), props().rarity(Rarity.RARE));
+    public static final DeferredItem<Item> gaia_duchess_greaves = register("gaia_duchess_greaves", props -> new GaiaDuchessArmorItem(LEGGINGS, props), props().rarity(Rarity.RARE));
+    public static final DeferredItem<Item> gaia_duchess_boots = register("gaia_duchess_boots", props -> new GaiaDuchessArmorItem(BOOTS, props), props().rarity(Rarity.RARE));
+    public static final DeferredItem<Item> gaia_baron_mask = register("gaia_baron_mask", props -> new GaiaBaronArmorItem(HELMET, props), props().rarity(Rarity.RARE));
+    public static final DeferredItem<Item> gaia_baron_tuxedo = register("gaia_baron_tuxedo", props -> new GaiaBaronArmorItem(CHESTPLATE, props), props().rarity(Rarity.RARE));
+    public static final DeferredItem<Item> gaia_baron_pants = register("gaia_baron_pants", props -> new GaiaBaronArmorItem(LEGGINGS, props), props().rarity(Rarity.RARE));
+    public static final DeferredItem<Item> gaia_baron_shoes = register("gaia_baron_shoes", props -> new GaiaBaronArmorItem(BOOTS, props), props().rarity(Rarity.RARE));
+    public static final DeferredItem<Item> gaia_duke_helm = register("gaia_duke_helm", props -> new GaiaDukeArmorItem(HELMET, props), props().rarity(Rarity.RARE));
+    public static final DeferredItem<Item> gaia_duke_guard = register("gaia_duke_guard", props -> new GaiaDukeArmorItem(CHESTPLATE, props), props().rarity(Rarity.RARE));
+    public static final DeferredItem<Item> gaia_duke_greaves = register("gaia_duke_greaves", props -> new GaiaDukeArmorItem(LEGGINGS, props), props().rarity(Rarity.RARE));
+    public static final DeferredItem<Item> gaia_duke_boots = register("gaia_duke_boots", props -> new GaiaDukeArmorItem(BOOTS, props), props().rarity(Rarity.RARE));
+    public static final DeferredItem<Item> gaia_champion_helm = register("gaia_champion_helm", props -> new GaiaChampArmorItem(HELMET, props), props().rarity(Rarity.EPIC));
+    public static final DeferredItem<Item> gaia_champion_guard = register("gaia_champion_guard", props -> new GaiaChampArmorItem(CHESTPLATE, props), props().rarity(Rarity.EPIC));
+    public static final DeferredItem<Item> gaia_champion_greaves = register("gaia_champion_greaves", props -> new GaiaChampArmorItem(LEGGINGS, props), props().rarity(Rarity.EPIC));
+    public static final DeferredItem<Item> gaia_champion_boots = register("gaia_champion_boots", props -> new GaiaChampArmorItem(BOOTS, props), props().rarity(Rarity.EPIC));
 
     public static final DeferredItem<Item> agate_sword = registerSword("agate_sword", GaiaToolMaterials.AGATE);
     public static final DeferredItem<Item> agate_pickaxe = registerPickaxe("agate_pickaxe", GaiaToolMaterials.AGATE);
@@ -240,20 +246,20 @@ public class ModItems {
     public static final DeferredItem<Item> goshenite_pickaxe = registerPickaxe("goshenite_pickaxe", GaiaToolMaterials.GOSHENITE);
     public static final DeferredItem<Item> goshenite_axe = registerAxe("goshenite_axe", GaiaToolMaterials.GOSHENITE);
     public static final DeferredItem<Item> goshenite_shovel = registerShovel("goshenite_shovel", GaiaToolMaterials.GOSHENITE);
-    public static final DeferredItem<Item> old_bow = register("old_bow", () -> new OldBowItem(toolProps().durability(425)));
-    public static final DeferredItem<Item> agate_arrow = register("agate_arrow", () -> new AgateArrowItem(itemProps()));
+    public static final DeferredItem<Item> old_bow = register("old_bow", OldBowItem::new, props().durability(425));
+    public static final DeferredItem<Item> agate_arrow = register("agate_arrow", AgateArrowItem::new, props());
 
-    public static final DeferredItem<Item> malachite_guard_baton = register("malachite_guard_baton", () -> new MalachiteGuardSwordItem(toolProps().rarity(Rarity.RARE)));
-    public static final DeferredItem<Item> apex_predator_mace = register("apex_predator_mace", () -> new ApexPredatorSwordItem(toolProps().rarity(Rarity.RARE)));
-    public static final DeferredItem<Item> spinel_princess_flamberge = register("spinel_princess_flamberge", () -> new SpinelPrincessSwordItem(toolProps().rarity(Rarity.RARE)));
-    public static final DeferredItem<Item> zircon_prince_razor = register("zircon_prince_razor", () -> new ZirconPrinceSwordItem(toolProps().rarity(Rarity.RARE)));
-    public static final DeferredItem<Item> corrupt_warrior_sword = register("corrupt_warrior_sword", () -> new CorruptWarriorSwordItem(toolProps().rarity(Rarity.RARE)));
-    public static final DeferredItem<Item> gaia_duchess_khopesh = register("gaia_duchess_khopesh", () -> new GaiaDuchessSwordItem(toolProps().rarity(Rarity.RARE)));
-    public static final DeferredItem<Item> gaia_baron_dagger = register("gaia_baron_dagger", () -> new GaiaBaronSwordItem(toolProps().rarity(Rarity.RARE)));
-    public static final DeferredItem<Item> gaia_duke_blade = register("gaia_duke_blade", () -> new GaiaDukeSwordItem(toolProps().rarity(Rarity.RARE)));
-    public static final DeferredItem<Item> gaia_champion_sword = register("gaia_champion_sword", () -> new GaiaChampSwordItem(toolProps().rarity(Rarity.EPIC)));
+    public static final DeferredItem<Item> malachite_guard_baton = register("malachite_guard_baton", MalachiteGuardSwordItem::new, props().rarity(Rarity.RARE));
+    public static final DeferredItem<Item> apex_predator_mace = register("apex_predator_mace", ApexPredatorSwordItem::new, props().rarity(Rarity.RARE));
+    public static final DeferredItem<Item> spinel_princess_flamberge = register("spinel_princess_flamberge", SpinelPrincessSwordItem::new, props().rarity(Rarity.RARE));
+    public static final DeferredItem<Item> zircon_prince_razor = register("zircon_prince_razor", ZirconPrinceSwordItem::new, props().rarity(Rarity.RARE));
+    public static final DeferredItem<Item> corrupt_warrior_sword = register("corrupt_warrior_sword", CorruptWarriorSwordItem::new, props().rarity(Rarity.RARE));
+    public static final DeferredItem<Item> gaia_duchess_khopesh = register("gaia_duchess_khopesh", GaiaDuchessSwordItem::new, props().rarity(Rarity.RARE));
+    public static final DeferredItem<Item> gaia_baron_dagger = register("gaia_baron_dagger", GaiaBaronSwordItem::new, props().rarity(Rarity.RARE));
+    public static final DeferredItem<Item> gaia_duke_blade = register("gaia_duke_blade", GaiaDukeSwordItem::new, props().rarity(Rarity.RARE));
+    public static final DeferredItem<Item> gaia_champion_sword = register("gaia_champion_sword", GaiaChampSwordItem::new, props().rarity(Rarity.EPIC));
 
-    public static final DeferredItem<Item> mock_malachite = register("mock_malachite", () -> new MockGemItem(itemProps()));
+    public static final DeferredItem<Item> mock_malachite = register("mock_malachite", MockGemItem::new, props());
 
     public static final DeferredItem<Item> growth_sapper_spawn_egg = registerEgg("growth_sapper", ModEntities.GROWTH_SAPPER, 0x5A4514, 0xFF00FF);
     public static final DeferredItem<Item> mutant_growth_extractor_spawn_egg = registerEgg("mutant_growth_extractor", ModEntities.MUTANT_GROWTH_EXTRACTOR, 0x5A4514, 0xFFFFCC);
@@ -287,68 +293,67 @@ public class ModItems {
     public static final DeferredItem<Item> blue_howlite_wolf_spawn_egg = registerEgg("blue_howlite_wolf", ModEntities.BLUE_HOWLITE_WOLF, 0x0099CC, 0xCC00FF);
     public static final DeferredItem<Item> malachite_guard_spawn_egg = registerEgg("malachite_guard", ModEntities.MALACHITE_GUARD, 0x339900, 0x33CC99);
 
-    public static final DeferredItem<Item> PYRITE_TORCH = ITEMS.register("pyrite_torch", () -> new StandingAndWallBlockItem(ModBlocks.pyrite_torch.get(), ModBlocks.pyrite_wall_torch.get(), basicProps(), Direction.DOWN));
-    public static final DeferredItem<Item> CRUDE_STORAGE_CRATE = ITEMS.register("crude_storage_crate", () -> new BlockItem(ModBlocks.crude_storage_crate.get(), itemProps().component(DataComponents.CONTAINER, ItemContainerContents.EMPTY)));
-    public static final DeferredItem<Item> MEGA_STORAGE_CRATE = ITEMS.register("mega_storage_crate", () -> new BlockItem(ModBlocks.mega_storage_crate.get(), itemProps().component(DataComponents.CONTAINER, ItemContainerContents.EMPTY)));
+    public static final DeferredItem<Item> PYRITE_TORCH = registerBlock("pyrite_torch", props -> new StandingAndWallBlockItem(ModBlocks.pyrite_torch.get(), ModBlocks.pyrite_wall_torch.get(), Direction.DOWN, props), props());
+    public static final DeferredItem<Item> CRUDE_STORAGE_CRATE = registerBlock("crude_storage_crate", props -> new BlockItem(ModBlocks.crude_storage_crate.get(), props), props().component(DataComponents.CONTAINER, ItemContainerContents.EMPTY));
+    public static final DeferredItem<Item> MEGA_STORAGE_CRATE = registerBlock("mega_storage_crate", props -> new BlockItem(ModBlocks.mega_storage_crate.get(), props), props().component(DataComponents.CONTAINER, ItemContainerContents.EMPTY));
 
     private static DeferredItem<Item> register(String name) {
-        return register(name, () -> new Item(basicProps()));
+        return register(name, Item::new, props());
     }
 
-    private static DeferredItem<Item> register(String name, FoodProperties props) {
-        return register(name, () -> new Item(foodProps(props)));
+    private static DeferredItem<Item> register(String name, FoodProperties food) {
+        return register(name, Item::new, props().food(food));
     }
 
-    private static DeferredItem<Item> register(String name, DeferredHolder<ArmorMaterial, ArmorMaterial> material, ArmorItem.Type slot, int durability) {
-        return register(name, () -> new BasicGaiaArmorItem(material, slot, basicProps().durability(slot.getDurability(durability))));
+    private static DeferredItem<Item> register(String name, ArmorMaterial material, ArmorType slot) {
+        return register(name, props -> new BasicGaiaArmorItem(material, slot, props), props());
+    }
+
+    private static DeferredItem<Item> registerKit(String name, ConstructKitItem.Kit kit, ConstructKitItem.Color color) {
+        Function<Item.Properties, ? extends Item> function = color != null ? props -> new ConstructKitItem(props, kit, color) : props -> new ConstructKitItem(props, kit);
+        Item.Properties props = props();
+        if (kit != ConstructKitItem.Kit.BLANK) props.stacksTo(1);
+        return register(name, function, props);
     }
 
     private static DeferredItem<Item> registerBucket(String name, Supplier<? extends Fluid> fluid) {
-        return register(name, () -> new ScaynyxBucketItem(itemProps().stacksTo(1), fluid));
+        return register(name, props -> new ScaynyxBucketItem(props.stacksTo(1), fluid), props());
     }
 
-    public static DeferredItem<Item> registerSword(String name, Tier tier) {
-        return register(name, () -> new BasicGaiaSwordItem(tier, toolProps()));
+    public static DeferredItem<Item> registerSword(String name, ToolMaterial tier) {
+        return register(name, props -> new BasicGaiaSwordItem(tier, props), props());
     }
 
-    public static DeferredItem<Item> registerPickaxe(String name, Tier tier) {
-        return register(name, () -> new BasicGaiaPickaxeItem(tier, toolProps()));
+    public static DeferredItem<Item> registerPickaxe(String name, ToolMaterial tier) {
+        return register(name, props -> new BasicGaiaPickaxeItem(tier, props), props());
     }
 
-    public static DeferredItem<Item> registerAxe(String name, Tier tier) {
-        return register(name, () -> new BasicGaiaAxeItem(tier, toolProps()));
+    public static DeferredItem<Item> registerAxe(String name, ToolMaterial tier) {
+        return register(name, props -> new BasicGaiaAxeItem(tier, props), props());
     }
 
-    public static DeferredItem<Item> registerShovel(String name, Tier tier) {
-        return register(name, () -> new BasicGaiaShovelItem(tier, toolProps()));
+    public static DeferredItem<Item> registerShovel(String name, ToolMaterial tier) {
+        return register(name, props -> new BasicGaiaShovelItem(tier, props), props());
     }
 
     public static DeferredItem<Item> registerEgg(String name, Supplier<? extends EntityType<? extends Mob>> entity, int back, int front) {
-        return register(name + "_spawn_egg", () -> new DeferredSpawnEggItem(entity, back, front, new Item.Properties()));
+        return register(name + "_spawn_egg", props -> new DeferredSpawnEggItem(entity, back, front, props), props());
     }
 
-    private static DeferredItem<Item> register(String name, Supplier<Item> item) {
-        return ITEMS.register(name, item);
+    private static <I extends Item> DeferredItem<I> register(String name, Function<Item.Properties, ? extends I> func, Item.Properties props) {
+        return ITEMS.register(name, key -> func.apply(itemProps(name, props)));
     }
 
-    private static Item.Properties itemProps() {
-        return basicProps();
+    private static <I extends Item> DeferredItem<I> registerBlock(String name, Function<Item.Properties, ? extends I> func, Item.Properties props) {
+        return ITEMS.register(name, key -> func.apply(itemProps(name, props).useBlockDescriptionPrefix()));
     }
 
-    private static Item.Properties foodProps(FoodProperties food) {
-        return basicProps().food(food);
-    }
-
-    private static Item.Properties toolProps() {
-        return basicProps();
-    }
-
-    private static Item.Properties armorProps() {
-        return basicProps();
-    }
-
-    private static Item.Properties basicProps() {
+    private static Item.Properties props() {
         return new Item.Properties();
+    }
+
+    private static Item.Properties itemProps(String name, Item.Properties props) {
+        return props.setId(ResourceKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(GaiaDimensionMod.MODID, name)));
     }
 
     public static void addItemProperties() {

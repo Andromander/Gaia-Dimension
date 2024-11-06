@@ -1,19 +1,19 @@
 package androsa.gaiadimension.item.armor;
 
-import androsa.gaiadimension.registry.registration.ModArmorMaterials;
+import androsa.gaiadimension.registry.bootstrap.GaiaArmorMaterials;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
-import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.item.equipment.ArmorType;
 
 import javax.annotation.Nonnull;
 import java.util.List;
 
 public class GaiaDukeArmorItem extends BasicGaiaArmorItem {
 
-    public GaiaDukeArmorItem(ArmorItem.Type slot, Properties props) {
-        super(ModArmorMaterials.LARVIKITE, slot, props.durability(slot.getDurability(788)));
+    public GaiaDukeArmorItem(ArmorType slot, Properties props) {
+        super(GaiaArmorMaterials.LARVIKITE, slot, props);
     }
 
     //TODO: If I can, allows for temporary Elytra flight. Otherwise, teleports the attacker randomly

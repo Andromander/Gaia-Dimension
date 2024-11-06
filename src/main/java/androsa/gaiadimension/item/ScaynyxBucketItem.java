@@ -7,7 +7,7 @@ import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.BucketItem;
 import net.minecraft.world.item.ItemStack;
@@ -35,13 +35,13 @@ public class ScaynyxBucketItem extends BucketItem {
     }
 
     @Override
-    public InteractionResultHolder<ItemStack> use(Level world, Player player, InteractionHand hand) {
+    public InteractionResult use(Level world, Player player, InteractionHand hand) {
         ItemStack itemstack = player.getItemInHand(hand);
         BlockHitResult raytraceresult = getPlayerPOVHitResult(world, player, content == Fluids.EMPTY ? ClipContext.Fluid.SOURCE_ONLY : ClipContext.Fluid.NONE);
         if (raytraceresult.getType() == BlockHitResult.Type.MISS) {
-            return InteractionResultHolder.pass(itemstack);
+            return InteractionResult.PASS;
         } else if (raytraceresult.getType() != BlockHitResult.Type.BLOCK) {
-            return InteractionResultHolder.pass(itemstack);
+            return InteractionResult.PASS;
         } else {
             BlockPos blockpos = raytraceresult.getBlockPos();
             Direction direction = raytraceresult.getDirection();
@@ -62,11 +62,11 @@ public class ScaynyxBucketItem extends BucketItem {
                                 CriteriaTriggers.FILLED_BUCKET.trigger((ServerPlayer)player, fluidstack);
                             }
 
-                            return InteractionResultHolder.sidedSuccess(itemstack1, world.isClientSide());
+                            return InteractionResult.SUCCESS.heldItemTransformedTo(itemstack1);
                         }
                     }
 
-                    return InteractionResultHolder.fail(itemstack);
+                    return InteractionResult.FAIL;
                 } else {
                     //Full Bucket to Empty
                     BlockState blockstate = world.getBlockState(blockpos);
@@ -78,13 +78,14 @@ public class ScaynyxBucketItem extends BucketItem {
                         }
 
                         player.awardStat(Stats.ITEM_USED.get(this));
-                        return InteractionResultHolder.sidedSuccess(getEmptySuccessItem(itemstack, player), world.isClientSide());
+                        ItemStack itemstack1 = ItemUtils.createFilledResult(itemstack, player, getEmptySuccessItem(itemstack, player));
+                        return InteractionResult.SUCCESS.heldItemTransformedTo(itemstack1);
                     } else {
-                        return InteractionResultHolder.fail(itemstack);
+                        return InteractionResult.FAIL;
                     }
                 }
             } else {
-                return InteractionResultHolder.fail(itemstack);
+                return InteractionResult.FAIL;
             }
         }
     }

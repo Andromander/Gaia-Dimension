@@ -14,7 +14,7 @@ import java.util.List;
 public class GaiaBaronSwordItem extends SwordItem {
 
     public GaiaBaronSwordItem(Properties props) {
-        super(GaiaToolMaterials.TSAVORITE, props.attributes(createAttributes(GaiaToolMaterials.TSAVORITE, 3, -1.8F)));
+        super(GaiaToolMaterials.TSAVORITE, 3, -1.8F, props);
     }
 
     @Override
@@ -27,6 +27,11 @@ public class GaiaBaronSwordItem extends SwordItem {
     public void appendHoverText(ItemStack stack, TooltipContext world, List<Component> tooltips, TooltipFlag flags) {
         super.appendHoverText(stack, world, tooltips, flags);
         tooltips.add(Component.translatable(getDescriptionId() + ".tooltip"));
+    }
+
+    @Override
+    public boolean isRepairable(ItemStack stack) {
+        return false;
     }
 
     //TODO: Deals damage to target, regardless of armor

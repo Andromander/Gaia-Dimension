@@ -16,13 +16,18 @@ import java.util.List;
 public class GaiaChampSwordItem extends SwordItem {
 
     public GaiaChampSwordItem(Properties props) {
-        super(GaiaToolMaterials.GAIA_CHAMP, props.attributes(createAttributes(GaiaToolMaterials.GAIA_CHAMP, 3, -2.4F)));
+        super(GaiaToolMaterials.GAIA_CHAMP, 3, -2.4F, props);
     }
 
     @Override
     public void appendHoverText(ItemStack stack, TooltipContext world, List<Component> tooltips, TooltipFlag flags) {
         super.appendHoverText(stack, world, tooltips, flags);
         tooltips.add(Component.translatable(getDescriptionId() + ".tooltip"));
+    }
+
+    @Override
+    public boolean isRepairable(ItemStack stack) {
+        return false;
     }
 
     //TODO: Deals extra damage to Corrupt and Non-Gaian mobs

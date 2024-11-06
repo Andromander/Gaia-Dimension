@@ -15,7 +15,6 @@ import net.minecraft.util.ByIdMap;
 import net.minecraft.util.StringRepresentable;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
-import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
@@ -67,7 +66,7 @@ public class ConstructKitItem extends Item {
     }
 
     @Override
-    public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
+    public InteractionResult use(Level level, Player player, InteractionHand hand) {
         ItemStack stack = player.getItemInHand(hand);
         if (kit.canCycleParts() && player.isSecondaryUseActive()) {
             if (!stack.has(ModDataComponents.KIT_PART)) {
@@ -83,10 +82,10 @@ public class ConstructKitItem extends Item {
                 stack.set(ModDataComponents.KIT_PART, Part.byId(next));
                 player.displayClientMessage(Component.translatable("gaiadimension.construct_kit.part.swap").append(CommonComponents.SPACE).append(getPart(stack.get(ModDataComponents.KIT_PART))), true);
             }
-            return InteractionResultHolder.sidedSuccess(stack, level.isClientSide());
+            return InteractionResult.SUCCESS.heldItemTransformedTo(stack);
         }
 
-        return InteractionResultHolder.pass(stack);
+        return InteractionResult.PASS;
     }
 
     @Override
@@ -128,7 +127,7 @@ public class ConstructKitItem extends Item {
                     //Complete the action because we passed
                     opalite.writeKitData(this.kit, part, this.partColor);
                     stack.shrink(1);
-                    return InteractionResult.sidedSuccess(player.level().isClientSide());
+                    return InteractionResult.SUCCESS_SERVER;
                 } else {
                     return InteractionResult.SUCCESS;
                 }

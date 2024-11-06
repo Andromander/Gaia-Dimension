@@ -14,13 +14,18 @@ import java.util.List;
 public class SpinelPrincessSwordItem extends SwordItem {
 
     public SpinelPrincessSwordItem(Properties props) {
-        super(GaiaToolMaterials.SPINEL, props.attributes(createAttributes(GaiaToolMaterials.SPINEL, 3, -2.5F)));
+        super(GaiaToolMaterials.SPINEL, 3, -2.5F, props);
     }
 
     @Override
     public void appendHoverText(ItemStack stack, TooltipContext world, List<Component> tooltips, TooltipFlag flags) {
         super.appendHoverText(stack, world, tooltips, flags);
         tooltips.add(Component.translatable(getDescriptionId() + ".tooltip"));
+    }
+
+    @Override
+    public boolean isRepairable(ItemStack stack) {
+        return false;
     }
 
     @Override

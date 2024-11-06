@@ -1,6 +1,7 @@
 package androsa.gaiadimension.registry.values;
 
 import androsa.gaiadimension.GaiaDimensionMod;
+import androsa.gaiadimension.registry.registration.ModItems;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
@@ -9,6 +10,8 @@ import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ToolMaterial;
+import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.material.Fluid;
@@ -113,6 +116,23 @@ public class GaiaTags {
         public static final TagKey<Item> GEMS_BISMUTH = tagItemCommon("gems/bismuth");
         public static final TagKey<Item> GEMS_OPALITE = tagItemCommon("gems/opalite");
         public static final TagKey<Item> GEMS_CELESTINE = tagItemCommon("gems/celestine");
+
+        public static final TagKey<Item> SUGILITE_ARMOR_MATERIAL = tagItem("sugilite_armor_materials");
+        public static final TagKey<Item> PROUSTITE_ARMOR_MATERIAL = tagItem("proustite_armor_materials");
+        public static final TagKey<Item> ALBITE_ARMOR_MATERIAL = tagItem("albite_armor_materials");
+        public static final TagKey<Item> CARNELIAN_ARMOR_MATERIAL = tagItem("carnelian_armor_materials");
+        public static final TagKey<Item> DIOPSIDE_ARMOR_MATERIAL = tagItem("diopside_armor_materials");
+        public static final TagKey<Item> GOSHENITE_ARMOR_MATERIAL = tagItem("goshenite_armor_materials");
+
+        public static final TagKey<Item> AGATE_TOOL_MATERIAL = tagItem("agate_tool_materials");
+        public static final TagKey<Item> SUGILITE_TOOL_MATERIAL = tagItem("sugilite_tool_materials");
+        public static final TagKey<Item> STIBNITE_TOOL_MATERIAL = tagItem("stibnite_tool_materials");
+        public static final TagKey<Item> EUCLASE_TOOL_MATERIAL = tagItem("euclase_tool_materials");
+        public static final TagKey<Item> CARNELIAN_TOOL_MATERIAL = tagItem("carnelian_tool_materials");
+        public static final TagKey<Item> BENITOITE_TOOL_MATERIAL = tagItem("benitoite_tool_materials");
+        public static final TagKey<Item> GOSHENITE_TOOL_MATERIAL = tagItem("goshenite_tool_materials");
+
+        public static final TagKey<Item> UNOBTAINIUM = tagItem("unobtainium");
 
         public static final TagKey<Item> MOOKAITE = tagItem("mookaite");
         public static final TagKey<Item> TILES = tagItem("agate_tiles");

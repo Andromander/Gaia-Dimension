@@ -1,12 +1,12 @@
 package androsa.gaiadimension.item.armor;
 
-import net.minecraft.core.Holder;
 import net.minecraft.world.item.ArmorItem;
-import net.minecraft.world.item.ArmorMaterial;
+import net.minecraft.world.item.equipment.ArmorMaterial;
+import net.minecraft.world.item.equipment.ArmorType;
 
 public class BasicGaiaArmorItem extends ArmorItem {
 
-    public BasicGaiaArmorItem(Holder<ArmorMaterial> material, ArmorItem.Type slot, Properties props) {
+    public BasicGaiaArmorItem(ArmorMaterial material, ArmorType slot, Properties props) {
         super(material, slot, props);
     }
 

@@ -1,19 +1,19 @@
 package androsa.gaiadimension.item.armor;
 
-import androsa.gaiadimension.registry.registration.ModArmorMaterials;
+import androsa.gaiadimension.registry.bootstrap.GaiaArmorMaterials;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
-import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.item.equipment.ArmorType;
 
 import javax.annotation.Nonnull;
 import java.util.List;
 
 public class GaiaDuchessArmorItem extends BasicGaiaArmorItem {
 
-    public GaiaDuchessArmorItem(ArmorItem.Type slot, Properties props) {
-        super(ModArmorMaterials.BIXBITE, slot, props.durability(630));
+    public GaiaDuchessArmorItem(ArmorType slot, Properties props) {
+        super(GaiaArmorMaterials.BIXBITE, slot, props.durability(630));
     }
 
     //TODO: May teleport user if they are dealt damage. Will check if area is safe to do so

@@ -6,7 +6,6 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.SwordItem;
 import net.minecraft.world.item.TooltipFlag;
-import net.minecraft.world.level.Level;
 
 import javax.annotation.Nonnull;
 import java.util.List;
@@ -14,7 +13,7 @@ import java.util.List;
 public class CorruptWarriorSwordItem extends SwordItem {
 
     public CorruptWarriorSwordItem(Properties props) {
-        super(GaiaToolMaterials.CORRUPT, props.attributes(createAttributes(GaiaToolMaterials.CORRUPT, 3, -3.5F)));
+        super(GaiaToolMaterials.CORRUPT, 3, -3.5F, props);
     }
 
     @Override
@@ -27,6 +26,11 @@ public class CorruptWarriorSwordItem extends SwordItem {
     public void appendHoverText(ItemStack stack, TooltipContext world, List<Component> tooltips, TooltipFlag flags) {
         super.appendHoverText(stack, world, tooltips, flags);
         tooltips.add(Component.translatable(getDescriptionId() + ".tooltip"));
+    }
+
+    @Override
+    public boolean isRepairable(ItemStack stack) {
+        return false;
     }
 
     //TODO: Deal extra damage to Gaian Mobs, but half damage to bosses. May inflict Corrupt Mania
