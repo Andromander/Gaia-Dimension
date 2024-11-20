@@ -51,7 +51,7 @@ public class GrowthGrazer extends PathfinderMob {
         return ModSounds.ENTITY_GROWTH_SAPPER_HURT.get();
     }
 
-    public static boolean canSpawnHere(EntityType<GrowthGrazer> entity, LevelAccessor world, MobSpawnType spawn, BlockPos pos, RandomSource random) {
-        return spawn == MobSpawnType.SPAWNER || world.getBlockState(pos.below()).isValidSpawn(world, pos.below(), entity) && world.getRawBrightness(pos, 0) > 8;
+    public static boolean canSpawnHere(EntityType<GrowthGrazer> entity, LevelAccessor world, EntitySpawnReason spawn, BlockPos pos, RandomSource random) {
+        return spawn == EntitySpawnReason.SPAWNER || world.getBlockState(pos.below()).isValidSpawn(world, pos.below(), entity) && world.getRawBrightness(pos, 0) > 8;
     }
 }

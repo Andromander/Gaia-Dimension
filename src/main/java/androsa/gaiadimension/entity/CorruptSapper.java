@@ -3,6 +3,7 @@ package androsa.gaiadimension.entity;
 import androsa.gaiadimension.registry.registration.ModEffects;
 import androsa.gaiadimension.registry.registration.ModSounds;
 import net.minecraft.core.BlockPos;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.Difficulty;
@@ -56,10 +57,10 @@ public class CorruptSapper extends Monster {
     }
 
     @Override
-    public boolean doHurtTarget(Entity entityIn) {
-        if (super.doHurtTarget(entityIn)) {
+    public boolean doHurtTarget(ServerLevel level, Entity entityIn) {
+        if (super.doHurtTarget(level, entityIn)) {
             if (entityIn instanceof LivingEntity living) {
-                int i = switch (this.level().getDifficulty()) {
+                int i = switch (level.getDifficulty()) {
                     case EASY -> 3;
                     case NORMAL -> 6;
                     case HARD -> 12;
@@ -77,13 +78,13 @@ public class CorruptSapper extends Monster {
     }
 
     @Override
-    public boolean checkSpawnRules(LevelAccessor world, MobSpawnType reason) {
+    public boolean checkSpawnRules(LevelAccessor world, EntitySpawnReason reason) {
         return true;
     }
 
-    public static boolean canSpawnHere(EntityType<CorruptSapper> entity, ServerLevelAccessor world, MobSpawnType spawn, BlockPos pos, RandomSource random) {
+    public static boolean canSpawnHere(EntityType<CorruptSapper> entity, ServerLevelAccessor world, EntitySpawnReason spawn, BlockPos pos, RandomSource random) {
         if (world.getDifficulty() != Difficulty.PEACEFUL) {
-            if (spawn == MobSpawnType.SPAWNER) {
+            if (spawn == EntitySpawnReason.SPAWNER) {
                 return isDarkEnoughToSpawn(world, pos, random);
             } else {
                 return world.getBlockState(pos.below()).isValidSpawn(world, pos.below(), entity) && world.getBrightness(LightLayer.SKY, pos) > 8;

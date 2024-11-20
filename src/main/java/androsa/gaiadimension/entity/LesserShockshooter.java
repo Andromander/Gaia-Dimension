@@ -6,8 +6,8 @@ import net.minecraft.sounds.SoundEvent;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.entity.EntitySpawnReason;
 import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.*;
@@ -36,7 +36,7 @@ public class LesserShockshooter extends Monster implements IShockshooterMob {
         this.goalSelector.addGoal(8, new RandomLookAroundGoal(this));
         this.targetSelector.addGoal(2, new HurtByTargetGoal(this));
         this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, Player.class, true));
-        this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, Monster.class, 10, false, true, entity -> entity instanceof ISpitfireMob));
+        this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, Monster.class, 10, false, true, (entity, level) -> entity instanceof ISpitfireMob));
     }
 
     public static AttributeSupplier.Builder registerAttributes() {
@@ -56,13 +56,13 @@ public class LesserShockshooter extends Monster implements IShockshooterMob {
     }
 
     @Override
-    public boolean checkSpawnRules(LevelAccessor world, MobSpawnType reason) {
+    public boolean checkSpawnRules(LevelAccessor world, EntitySpawnReason reason) {
         return true;
     }
 
-    public static boolean canSpawnHere(EntityType<LesserShockshooter> entity, ServerLevelAccessor world, MobSpawnType spawn, BlockPos pos, RandomSource random) {
+    public static boolean canSpawnHere(EntityType<LesserShockshooter> entity, ServerLevelAccessor world, EntitySpawnReason spawn, BlockPos pos, RandomSource random) {
         if (world.getDifficulty() != Difficulty.PEACEFUL) {
-            if (spawn == MobSpawnType.SPAWNER) {
+            if (spawn == EntitySpawnReason.SPAWNER) {
                 return isDarkEnoughToSpawn(world, pos, random);
             } else {
                 return world.getBlockState(pos.below()).isValidSpawn(world, pos.below(), entity) && world.getBrightness(LightLayer.SKY, pos) > 8;

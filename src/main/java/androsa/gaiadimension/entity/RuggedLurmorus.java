@@ -50,7 +50,7 @@ public class RuggedLurmorus extends PathfinderMob {
         return ModSounds.ENTITY_RUGGED_LURMORUS_HURT.get();
     }
 
-    public static boolean canSpawnHere(EntityType<RuggedLurmorus> entity, LevelAccessor world, MobSpawnType spawn, BlockPos pos, RandomSource random) {
+    public static boolean canSpawnHere(EntityType<RuggedLurmorus> entity, LevelAccessor world, EntitySpawnReason spawn, BlockPos pos, RandomSource random) {
         return world.getBlockState(pos.below()).isValidSpawn(world, pos.below(), entity) && world.getRawBrightness(pos, 0) > 8;
     }
 }

@@ -25,7 +25,6 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.biome.Biome;
-import net.minecraft.world.level.storage.loot.LootTable;
 
 import javax.annotation.Nullable;
 import java.util.Objects;
@@ -91,17 +90,12 @@ public class GrowthSapper extends PathfinderMob {
         return ModSounds.ENTITY_GROWTH_SAPPER_HURT.get();
     }
 
-    @Override
-    public ResourceKey<LootTable> getDefaultLootTable() {
-        return this.getEntityVariant().getLootTable();
-    }
-
-    public static boolean canSpawnHere(EntityType<GrowthSapper> entity, LevelAccessor world, MobSpawnType spawn, BlockPos pos, RandomSource random) {
-        return spawn == MobSpawnType.SPAWNER || world.getBlockState(pos.below()).isValidSpawn(world, pos.below(), entity) && world.getRawBrightness(pos, 0) > 8;
+    public static boolean canSpawnHere(EntityType<GrowthSapper> entity, LevelAccessor world, EntitySpawnReason spawn, BlockPos pos, RandomSource random) {
+        return spawn == EntitySpawnReason.SPAWNER || world.getBlockState(pos.below()).isValidSpawn(world, pos.below(), entity) && world.getRawBrightness(pos, 0) > 8;
     }
 
     @Override
-    public SpawnGroupData finalizeSpawn(ServerLevelAccessor worldIn, DifficultyInstance difficultyIn, MobSpawnType reason, @Nullable SpawnGroupData spawnDataIn) {
+    public SpawnGroupData finalizeSpawn(ServerLevelAccessor worldIn, DifficultyInstance difficultyIn, EntitySpawnReason reason, @Nullable SpawnGroupData spawnDataIn) {
         Optional<ResourceKey<Biome>> biome = worldIn.getBiome(this.blockPosition()).unwrapKey();
 
         if (Objects.equals(biome, Optional.of(GaiaBiomes.pink_agate_forest)) || Objects.equals(biome, Optional.of(GaiaBiomes.crystal_plains))) {

@@ -6,12 +6,13 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.entity.EntitySpawnReason;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Mob;
-import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.PathfinderMob;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
@@ -91,13 +92,13 @@ public class BismuthUletrus extends PathfinderMob {
     }
 
     @Override
-    public boolean hurt(DamageSource source, float amount) {
+    public boolean hurtServer(ServerLevel level, DamageSource source, float amount) {
         this.setResting(false);
-        return super.hurt(source, amount);
+        return super.hurtServer(level, source, amount);
     }
 
-    public static boolean canSpawnHere(EntityType<BismuthUletrus> entity, LevelAccessor world, MobSpawnType spawn, BlockPos pos, RandomSource random) {
-        return spawn == MobSpawnType.SPAWNER || world.getBlockState(pos.below()).isValidSpawn(world, pos.below(), entity) && world.getBrightness(LightLayer.SKY, pos) > 8;
+    public static boolean canSpawnHere(EntityType<BismuthUletrus> entity, LevelAccessor world, EntitySpawnReason spawn, BlockPos pos, RandomSource random) {
+        return spawn == EntitySpawnReason.SPAWNER || world.getBlockState(pos.below()).isValidSpawn(world, pos.below(), entity) && world.getBrightness(LightLayer.SKY, pos) > 8;
     }
 
     @Override
@@ -110,13 +111,13 @@ public class BismuthUletrus extends PathfinderMob {
     }
 
     @Override
-    protected void customServerAiStep() {
-        super.customServerAiStep();
+    protected void customServerAiStep(ServerLevel level) {
+        super.customServerAiStep(level);
         BlockPos blockpos = this.blockPosition();
         BlockPos blockpos1 = blockpos.below();
 
         if (this.getResting()) {
-            if (this.level().getBlockState(blockpos1).isRedstoneConductor(this.level(), blockpos)) {
+            if (level.getBlockState(blockpos1).isRedstoneConductor(level, blockpos)) {
                 if (random.nextInt(1000) == 0) {
                     this.setResting(false);
                 }
@@ -125,7 +126,7 @@ public class BismuthUletrus extends PathfinderMob {
             }
         } else {
             if (this.getDeltaMovement().x() == 0 && this.getDeltaMovement().z() == 0) {
-                if (this.random.nextInt(1000) == 0 && this.level().getBlockState(blockpos1).isRedstoneConductor(this.level(), blockpos)) {
+                if (this.random.nextInt(1000) == 0 && level.getBlockState(blockpos1).isRedstoneConductor(level, blockpos)) {
                     this.setResting(true);
                 }
             }

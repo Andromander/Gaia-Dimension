@@ -7,9 +7,9 @@ import net.minecraft.sounds.SoundEvent;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntitySpawnReason;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Mob;
-import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.*;
@@ -46,18 +46,18 @@ public class CrystalGolem extends AbstractGolem {
         this.goalSelector.addGoal(5, new RandomLookAroundGoal(this));
         this.targetSelector.addGoal(1, new HurtByTargetGoal(this));
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, AgateGolem.class, false));
-        this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, Mob.class, 10, false, true, apply -> apply instanceof Enemy && !(apply instanceof Creeper)));
+        this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, Mob.class, 10, false, true, (entity, level) -> entity instanceof Enemy && !(entity instanceof Creeper)));
     }
 
     @Override
-    public boolean doHurtTarget(Entity entityIn) {
-        this.level().broadcastEntityEvent(this, (byte)4);
+    public boolean doHurtTarget(ServerLevel level, Entity entityIn) {
+        level.broadcastEntityEvent(this, (byte)4);
         DamageSource source = this.damageSources().mobAttack(this);
-        boolean flag = entityIn.hurt(source, (float)(6 + this.random.nextInt(15)));
+        boolean flag = entityIn.hurtServer(level, source, (float)(6 + this.random.nextInt(15)));
 
         if (flag) {
             entityIn.setDeltaMovement(entityIn.getDeltaMovement().add(0.0D, 0.4D, 0.0D));
-            if (this.level() instanceof ServerLevel server) {
+            if (level instanceof ServerLevel server) {
                 EnchantmentHelper.doPostAttackEffects(server, entityIn, source);
             }
         }
@@ -75,7 +75,7 @@ public class CrystalGolem extends AbstractGolem {
         return ModSounds.ENTITY_CRYSTAL_GOLEM_DEATH.get();
     }
 
-    public static boolean canSpawnHere(EntityType<CrystalGolem> entity, LevelAccessor world, MobSpawnType spawn, BlockPos pos, RandomSource random) {
-        return spawn == MobSpawnType.SPAWNER || world.getBlockState(pos.below()).isValidSpawn(world, pos.below(), entity) && world.getRawBrightness(pos, 0) > 8;
+    public static boolean canSpawnHere(EntityType<CrystalGolem> entity, LevelAccessor world, EntitySpawnReason spawn, BlockPos pos, RandomSource random) {
+        return spawn == EntitySpawnReason.SPAWNER || world.getBlockState(pos.below()).isValidSpawn(world, pos.below(), entity) && world.getRawBrightness(pos, 0) > 8;
     }
 }

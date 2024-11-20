@@ -274,9 +274,9 @@ public class MalachiteGuard extends Monster {
 
     private void createDrone(BlockPos pos) {
         if (!level().isClientSide()) {
-            MalachiteDrone drone = ModEntities.MALACHITE_DRONE.get().create(this.level());
+            MalachiteDrone drone = ModEntities.MALACHITE_DRONE.get().create(this.level(), EntitySpawnReason.MOB_SUMMONED);
             drone.moveTo(pos, 0.0F, 0.0F);
-            EventHooks.finalizeMobSpawn(drone, (ServerLevelAccessor)this.level(), this.level().getCurrentDifficultyAt(pos), MobSpawnType.MOB_SUMMONED, null);
+            EventHooks.finalizeMobSpawn(drone, (ServerLevelAccessor)this.level(), this.level().getCurrentDifficultyAt(pos), EntitySpawnReason.MOB_SUMMONED, null);
             drone.setOwner(this);
             if (this.level().addFreshEntity(drone))
                 this.dronesLeft++;
@@ -362,8 +362,8 @@ public class MalachiteGuard extends Monster {
     }
 
     @Override
-    public boolean doHurtTarget(Entity target) {
-        boolean flag = super.doHurtTarget(target);
+    public boolean doHurtTarget(ServerLevel level, Entity target) {
+        boolean flag = super.doHurtTarget(level, target);
         Difficulty difficulty = level().getDifficulty();
 
         //Just have this happen in Normal or Hard
@@ -388,17 +388,17 @@ public class MalachiteGuard extends Monster {
     }
 
     @Override
-    public boolean hurt(DamageSource source, float amount) {
+    public boolean hurtServer(ServerLevel level, DamageSource source, float amount) {
         if (getChargePhase() == ThreeStagePhase.CHARGE) {
             if (isAllowedToDamage(source)) {
-                if (level().getDifficulty() == Difficulty.EASY) {
+                if (level.getDifficulty() == Difficulty.EASY) {
                     amount /= 4;
                     bideDamage += amount;
                     amount *= 3;
-                } else if (level().getDifficulty() == Difficulty.NORMAL) {
+                } else if (level.getDifficulty() == Difficulty.NORMAL) {
                     amount /= 2;
                     bideDamage += amount;
-                } else if (level().getDifficulty() == Difficulty.HARD) {
+                } else if (level.getDifficulty() == Difficulty.HARD) {
                     amount /= 4;
                     bideDamage += amount * 3;
                 }
@@ -409,7 +409,7 @@ public class MalachiteGuard extends Monster {
         return switch (getPhase()) {
             case DEFENCE -> {
                 //Don't take any damage until we are sufficiently out of world. We're in Defence mode
-                yield this.blockPosition().getY() < -64 && super.hurt(source, amount);
+                yield this.blockPosition().getY() < -64 && super.hurtServer(level, source, amount);
             }
             case ATTACK -> {
                 //Take damage as normal. However, we stop at the threshold (minus a little) to change phase
@@ -418,7 +418,7 @@ public class MalachiteGuard extends Monster {
                 if (amount > remaining) {
                     amount = remaining;
                 }
-                yield super.hurt(source, amount);
+                yield super.hurtServer(level, source, amount);
             }
             case RESIST -> {
                 //Take damage from appropriate sources
@@ -426,10 +426,10 @@ public class MalachiteGuard extends Monster {
                     //Calculate a modifier
                     float multiply = getMultiplier(amount);
 
-                    yield super.hurt(source, amount * multiply);
+                    yield super.hurtServer(level, source, amount * multiply);
                 } else {
                     //Not unless you're falling out of the world
-                    yield this.blockPosition().getY() < -64 && super.hurt(source, amount);
+                    yield this.blockPosition().getY() < -64 && super.hurtServer(level, source, amount);
                 }
             }
         };
@@ -467,9 +467,9 @@ public class MalachiteGuard extends Monster {
     }
 
     @Override
-    public void kill() {
+    public void kill(ServerLevel level) {
         this.setHealth(0.0F);
-        super.kill();
+        super.kill(level);
     }
 
     @Override
@@ -480,7 +480,9 @@ public class MalachiteGuard extends Monster {
     @Override
     public void checkDespawn() {
         if (this.level().getDifficulty() == Difficulty.PEACEFUL && this.shouldDespawnInPeaceful()) {
-            this.spawnAtLocation(ModItems.mock_malachite.get(), 1);
+            if (!this.level().isClientSide()) {
+                this.spawnAtLocation((ServerLevel)this.level(), ModItems.mock_malachite.get(), 1);
+            }
             this.discard();
         }
         super.checkDespawn();
@@ -499,7 +501,7 @@ public class MalachiteGuard extends Monster {
     }
 
     @Override
-    public boolean canChangeDimensions(Level from, Level to) {
+    public boolean canTeleport(Level from, Level to) {
         return false;
     }
 

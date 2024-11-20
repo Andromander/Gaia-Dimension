@@ -2,6 +2,7 @@ package androsa.gaiadimension.entity;
 
 import androsa.gaiadimension.registry.registration.ModSounds;
 import net.minecraft.core.BlockPos;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.damagesource.DamageSource;
@@ -55,8 +56,8 @@ public class AureateEvraun extends PathfinderMob {
     }
 
     @Override
-    public boolean isInvulnerableTo(DamageSource source) {
-        return source.is(DamageTypes.CACTUS)  || super.isInvulnerableTo(source);
+    public boolean isInvulnerableTo(ServerLevel level, DamageSource source) {
+        return source.is(DamageTypes.CACTUS) || super.isInvulnerableTo(level, source);
     }
 
     @Override
@@ -64,7 +65,7 @@ public class AureateEvraun extends PathfinderMob {
         return 2;
     }
 
-    public static boolean canSpawnHere(EntityType<AureateEvraun> entity, LevelAccessor world, MobSpawnType spawn, BlockPos pos, RandomSource random) {
+    public static boolean canSpawnHere(EntityType<AureateEvraun> entity, LevelAccessor world, EntitySpawnReason spawn, BlockPos pos, RandomSource random) {
         return world.getBlockState(pos.below()).isValidSpawn(world, pos.below(), entity) && world.getRawBrightness(pos, 0) > 8;
     }
 }

@@ -1,12 +1,15 @@
 package androsa.gaiadimension.data;
 
+import androsa.gaiadimension.advancement.criterion.SapperPredicate;
 import androsa.gaiadimension.data.provider.GaiaBlockLootTableProvider;
 import androsa.gaiadimension.data.provider.GaiaEntityLootTableProvider;
+import androsa.gaiadimension.entity.data.SapperVariant;
 import androsa.gaiadimension.registry.registration.ModBlocks;
 import androsa.gaiadimension.registry.registration.ModEntities;
 import androsa.gaiadimension.registry.registration.ModItems;
 import androsa.gaiadimension.registry.values.GaiaBuiltinTables;
 import androsa.gaiadimension.registry.values.GaiaChestTables;
+import net.minecraft.advancements.critereon.EntityPredicate;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.WritableRegistry;
 import net.minecraft.data.PackOutput;
@@ -17,17 +20,22 @@ import net.minecraft.util.ProblemReporter;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.ValidationContext;
+import net.minecraft.world.level.storage.loot.entries.AlternativesEntry;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
+import net.minecraft.world.level.storage.loot.entries.NestedLootTable;
 import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
+import net.minecraft.world.level.storage.loot.predicates.LootItemEntityPropertyCondition;
 import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
 import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
 import net.neoforged.neoforge.registries.DeferredHolder;
 
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.BiConsumer;
 import java.util.function.Supplier;
@@ -410,6 +418,7 @@ public class GaiaLootTables extends LootTableProvider {
     }
 
     public static class Entities extends GaiaEntityLootTableProvider {
+
         protected Entities(HolderLookup.Provider provider) {
             super(provider);
         }
@@ -424,7 +433,13 @@ public class GaiaLootTables extends LootTableProvider {
             addTable(ModEntities.CONTORTED_NAGA, singleDropTable(ModItems.goldstone, 0.0F, 2.0F));
             addTable(ModEntities.CORRUPT_SAPPER, singleDropTable(ModItems.goldstone_residue, 0.0F, 2.0F));
             addTable(ModEntities.CRYSTAL_GOLEM, blankTable());
-            addTable(ModEntities.GROWTH_SAPPER, blankTable());
+            addTable(ModEntities.GROWTH_SAPPER, LootTable.lootTable().withPool(growthSapperTables(GaiaBuiltinTables.SAPPER_TABLES)));
+            SapperVariant.SapperLoot.GEODE_BY_VARIANT
+                            .forEach((variant, item) -> this.add(
+                                    ModEntities.GROWTH_SAPPER.get(),
+                                    GaiaBuiltinTables.SAPPER_TABLES.get(variant),
+                                    LootTable.lootTable().withPool(LootPool.lootPool().add(LootItem.lootTableItem(item)))
+                            ));
             addTable(ModEntities.GROWTH_SAPPER, GaiaBuiltinTables.PINK_SAPPER_TABLE, sapperTable(ModItems.pink_geode));
             addTable(ModEntities.GROWTH_SAPPER, GaiaBuiltinTables.BLUE_SAPPER_TABLE, sapperTable(ModItems.blue_geode));
             addTable(ModEntities.GROWTH_SAPPER, GaiaBuiltinTables.GREEN_SAPPER_TABLE, sapperTable(ModItems.green_geode));
@@ -458,6 +473,24 @@ public class GaiaLootTables extends LootTableProvider {
         @Override
         protected Stream<EntityType<?>> getKnownEntityTypes() {
             return ModEntities.ENTITY_TYPES.getEntries().stream().map(DeferredHolder::value);
+        }
+
+        private static LootPool.Builder growthSapperTables(Map<SapperVariant, ResourceKey<LootTable>> map) {
+            AlternativesEntry.Builder builder = AlternativesEntry.alternatives();
+
+            for (Map.Entry<SapperVariant, ResourceKey<LootTable>> entry : map.entrySet()) {
+                builder = builder.otherwise(
+                        NestedLootTable.lootTableReference(entry.getValue())
+                                .when(
+                                        LootItemEntityPropertyCondition.hasProperties(
+                                                LootContext.EntityTarget.THIS,
+                                                EntityPredicate.Builder.entity()
+                                                        .subPredicate(SapperPredicate.isVariant(entry.getKey()))
+                                        )
+                                )
+                );
+            }
+            return LootPool.lootPool().add(builder);
         }
     }
 

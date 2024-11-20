@@ -8,8 +8,8 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntitySpawnReason;
 import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.*;
@@ -61,29 +61,27 @@ public class AgateGolem extends Monster {
     }
 
     @Override
-    public boolean doHurtTarget(Entity entityIn) {
-        this.level().broadcastEntityEvent(this, (byte)4);
+    public boolean doHurtTarget(ServerLevel level, Entity entityIn) {
+        level.broadcastEntityEvent(this, (byte)4);
         DamageSource source = this.damageSources().mobAttack(this);
-        boolean flag = entityIn.hurt(source, (float)(6 + this.random.nextInt(15)));
+        boolean flag = entityIn.hurtServer(level, source, (float)(6 + this.random.nextInt(15)));
 
         if (flag) {
             entityIn.setDeltaMovement(entityIn.getDeltaMovement().add(0.0D, 0.4D, 0.0D));
-            if (this.level() instanceof ServerLevel server) {
-                EnchantmentHelper.doPostAttackEffects(server, entityIn, source);
-            }
+            EnchantmentHelper.doPostAttackEffects(level, entityIn, source);
         }
 
         return flag;
     }
 
     @Override
-    public boolean checkSpawnRules(LevelAccessor world, MobSpawnType reason) {
+    public boolean checkSpawnRules(LevelAccessor world, EntitySpawnReason reason) {
         return true;
     }
 
-    public static boolean canSpawnHere(EntityType<AgateGolem> entity, ServerLevelAccessor world, MobSpawnType spawn, BlockPos pos, RandomSource random) {
+    public static boolean canSpawnHere(EntityType<AgateGolem> entity, ServerLevelAccessor world, EntitySpawnReason spawn, BlockPos pos, RandomSource random) {
         if (world.getDifficulty() != Difficulty.PEACEFUL) {
-            if (spawn == MobSpawnType.SPAWNER) {
+            if (spawn == EntitySpawnReason.SPAWNER) {
                 return isDarkEnoughToSpawn(world, pos, random);
             } else {
                 return world.getBlockState(pos.below()).isValidSpawn(world, pos.below(), entity) && world.getBrightness(LightLayer.SKY, pos) > 8;

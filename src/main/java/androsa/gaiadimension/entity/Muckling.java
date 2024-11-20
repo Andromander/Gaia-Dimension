@@ -12,9 +12,9 @@ import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.entity.EntitySpawnReason;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Mob;
-import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.monster.Slime;
@@ -87,9 +87,9 @@ public class Muckling extends Slime {
         return true;
     }
 
-    public static boolean canSpawnHere(EntityType<Muckling> entity, LevelAccessor world, MobSpawnType spawn, BlockPos pos, RandomSource random) {
+    public static boolean canSpawnHere(EntityType<Muckling> entity, LevelAccessor world, EntitySpawnReason spawn, BlockPos pos, RandomSource random) {
         if (world.getDifficulty() != Difficulty.PEACEFUL) {
-            if (spawn == MobSpawnType.SPAWNER && world.getBrightness(LightLayer.SKY, pos) < 8) {
+            if (spawn == EntitySpawnReason.SPAWNER && world.getBrightness(LightLayer.SKY, pos) < 8) {
                 return true;
             } else {
                 Optional<ResourceKey<Biome>> biome = world.getBiome(pos).unwrapKey();

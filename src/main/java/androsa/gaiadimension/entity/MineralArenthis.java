@@ -158,7 +158,7 @@ public class MineralArenthis extends WaterAnimal {
         }
     }
 
-    public static boolean canSpawnHere(EntityType<MineralArenthis> entity, LevelAccessor world, MobSpawnType reason, BlockPos pos, RandomSource rand) {
+    public static boolean canSpawnHere(EntityType<MineralArenthis> entity, LevelAccessor world, EntitySpawnReason reason, BlockPos pos, RandomSource rand) {
         return pos.getY() > 30 && pos.getY() < 50;
     }
 

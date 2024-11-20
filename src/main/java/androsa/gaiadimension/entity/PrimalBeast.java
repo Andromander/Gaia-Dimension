@@ -2,6 +2,7 @@ package androsa.gaiadimension.entity;
 
 import androsa.gaiadimension.registry.registration.ModSounds;
 import net.minecraft.core.BlockPos;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.Difficulty;
@@ -73,11 +74,11 @@ public class PrimalBeast extends Monster {
     }
 
     @Override
-    public boolean checkSpawnRules(LevelAccessor world, MobSpawnType reason) {
+    public boolean checkSpawnRules(LevelAccessor world, EntitySpawnReason reason) {
         return true;
     }
 
-    public static boolean canSpawnHere(EntityType<PrimalBeast> entity, LevelAccessor world, MobSpawnType spawn, BlockPos pos, RandomSource random) {
+    public static boolean canSpawnHere(EntityType<PrimalBeast> entity, LevelAccessor world, EntitySpawnReason spawn, BlockPos pos, RandomSource random) {
         return world.getDifficulty() != Difficulty.PEACEFUL && pos.getY() < 20.0D && pos.getY() > 0.0D;
     }
 
@@ -87,11 +88,11 @@ public class PrimalBeast extends Monster {
     }
 
     @Override
-    public boolean doHurtTarget(Entity entityIn) {
-        boolean attacked = super.doHurtTarget(entityIn);
+    public boolean doHurtTarget(ServerLevel level, Entity entityIn) {
+        boolean attacked = super.doHurtTarget(level, entityIn);
 
         if (attacked) {
-            float diff = this.level().getCurrentDifficultyAt(this.blockPosition()).getEffectiveDifficulty();
+            float diff = level.getCurrentDifficultyAt(this.blockPosition()).getEffectiveDifficulty();
             entityIn.igniteForSeconds(2 * (int)diff);
         }
         return attacked;

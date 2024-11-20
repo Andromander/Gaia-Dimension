@@ -280,11 +280,11 @@ public class OpaliteContruct extends PathfinderMob {
 
         if (getOpaliteAmount() > 0) {
             ItemStack opalite = new ItemStack(ModItems.opalite.get(), this.getOpaliteAmount());
-            this.spawnAtLocation(opalite);
+            this.spawnAtLocation(level, opalite);
         }
         for (Map.Entry<Item, EntityDataAccessor<Integer>> entry : BLOCK_TO_DATA.entrySet()) {
             ItemStack mookaite = new ItemStack(entry.getKey(), this.getMookaiteAmount(entry.getValue()));
-            this.spawnAtLocation(mookaite);
+            this.spawnAtLocation(level, mookaite);
         }
     }
 
@@ -306,7 +306,7 @@ public class OpaliteContruct extends PathfinderMob {
                 } else {
                     this.setOpaliteAmount(this.getOpaliteAmount() + 1);
                     stack.shrink(1);
-                    return InteractionResult.sidedSuccess(this.level().isClientSide());
+                    return InteractionResult.SUCCESS;
                 }
             }
 
@@ -318,7 +318,7 @@ public class OpaliteContruct extends PathfinderMob {
                 } else {
                     this.setMookaiteAmount(data, this.getMookaiteAmount(data) + 1);
                     stack.shrink(1);
-                    return InteractionResult.sidedSuccess(this.level().isClientSide());
+                    return InteractionResult.SUCCESS;
                 }
             }
         }
@@ -326,8 +326,8 @@ public class OpaliteContruct extends PathfinderMob {
         return super.mobInteract(player, hand);
     }
 
-    public static boolean canSpawnHere(EntityType<OpaliteContruct> entity, LevelAccessor world, MobSpawnType spawn, BlockPos pos, RandomSource random) {
-        return spawn == MobSpawnType.SPAWNER || world.getBlockState(pos.below()).isValidSpawn(world, pos.below(), entity) && world.getRawBrightness(pos, 0) > 8;
+    public static boolean canSpawnHere(EntityType<OpaliteContruct> entity, LevelAccessor world, EntitySpawnReason spawn, BlockPos pos, RandomSource random) {
+        return spawn == EntitySpawnReason.SPAWNER || world.getBlockState(pos.below()).isValidSpawn(world, pos.below(), entity) && world.getRawBrightness(pos, 0) > 8;
     }
 
     @Override

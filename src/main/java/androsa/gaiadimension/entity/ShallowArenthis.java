@@ -8,9 +8,9 @@ import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.EntitySpawnReason;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Mob;
-import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.MoverType;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
@@ -162,7 +162,7 @@ public class ShallowArenthis extends WaterAnimal {
         }
     }
 
-    public static boolean canSpawnHere(EntityType<ShallowArenthis> entity, LevelAccessor world, MobSpawnType reason, BlockPos pos, RandomSource rand) {
+    public static boolean canSpawnHere(EntityType<ShallowArenthis> entity, LevelAccessor world, EntitySpawnReason reason, BlockPos pos, RandomSource rand) {
         return pos.getY() > 30 && pos.getY() < world.getSeaLevel();
     }
 

@@ -259,7 +259,7 @@ public class MookaiteConstruct extends PathfinderMob {
     @Nullable
     @Deprecated
     @Override
-    public SpawnGroupData finalizeSpawn(ServerLevelAccessor level, DifficultyInstance difficulty, MobSpawnType spawn, @Nullable SpawnGroupData data) {
+    public SpawnGroupData finalizeSpawn(ServerLevelAccessor level, DifficultyInstance difficulty, EntitySpawnReason spawn, @Nullable SpawnGroupData data) {
         this.setPart(LEFT_HORN, MookaitePartType.getRandom(random));
         this.setPart(RIGHT_HORN, MookaitePartType.getRandom(random));
         this.setPart(LEFT_EYE, MookaitePartType.getRandom(random));
@@ -274,8 +274,8 @@ public class MookaiteConstruct extends PathfinderMob {
         return super.finalizeSpawn(level, difficulty, spawn, data);
     }
 
-    public static boolean canSpawnHere(EntityType<MookaiteConstruct> entity, LevelAccessor world, MobSpawnType spawn, BlockPos pos, RandomSource random) {
-        return spawn == MobSpawnType.SPAWNER || world.getBlockState(pos.below()).isValidSpawn(world, pos.below(), entity) && world.getRawBrightness(pos, 0) > 8;
+    public static boolean canSpawnHere(EntityType<MookaiteConstruct> entity, LevelAccessor world, EntitySpawnReason spawn, BlockPos pos, RandomSource random) {
+        return spawn == EntitySpawnReason.SPAWNER || world.getBlockState(pos.below()).isValidSpawn(world, pos.below(), entity) && world.getRawBrightness(pos, 0) > 8;
     }
 
     @Override
@@ -284,7 +284,7 @@ public class MookaiteConstruct extends PathfinderMob {
     }
 
     @Override
-    public boolean isInvulnerableTo(DamageSource source) {
+    public boolean isInvulnerableTo(ServerLevel level, DamageSource source) {
         if (source.is(DamageTypeTags.IS_EXPLOSION)) {
             return this.countColors(MookaitePartType.SCARLET) >= 10; //Full Scarlet is Explosion immune
         }
@@ -304,7 +304,7 @@ public class MookaiteConstruct extends PathfinderMob {
             return this.countColors(MookaitePartType.IVORY) >= 10; //Full Ivory is Projectile immune
         }
 
-        return super.isInvulnerableTo(source);
+        return super.isInvulnerableTo(level, source);
     }
 
     @Override
