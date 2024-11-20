@@ -20,7 +20,7 @@ public class GaiaDamage {
     }
 
     public static DamageSource getDamage(Level level, ResourceKey<DamageType> damage) {
-        return new DamageSource(level.registryAccess().registryOrThrow(Registries.DAMAGE_TYPE).getHolderOrThrow(damage));
+        return new DamageSource(level.registryAccess().lookupOrThrow(Registries.DAMAGE_TYPE).getOrThrow(damage));
     }
 
     public static void init(BootstrapContext<DamageType> context) {

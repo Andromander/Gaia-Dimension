@@ -6,6 +6,7 @@ import androsa.gaiadimension.registry.registration.ModEffects;
 import androsa.gaiadimension.registry.registration.ModEntities;
 import androsa.gaiadimension.registry.values.GaiaTags;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
@@ -30,9 +31,9 @@ public class CorruptionEffect extends MobEffect {
     }
 
     @Override
-    public boolean applyEffectTick(LivingEntity living, int amplifier) {
+    public boolean applyEffectTick(ServerLevel level, LivingEntity living, int amplifier) {
         if (!living.getType().is(GaiaTags.Entities.CORRUPT)) {
-            living.hurt(GaiaDamage.getDamage(living.level(), GaiaDamage.CORRUPTION), 2.0F);
+            living.hurt(GaiaDamage.getDamage(level, GaiaDamage.CORRUPTION), 2.0F);
         }
         return true;
     }
