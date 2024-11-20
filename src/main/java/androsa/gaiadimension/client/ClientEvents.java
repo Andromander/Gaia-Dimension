@@ -7,7 +7,6 @@ import androsa.gaiadimension.particle.*;
 import androsa.gaiadimension.registry.registration.*;
 import androsa.gaiadimension.registry.values.GaiaFluidAttributes;
 import net.minecraft.client.Camera;
-import net.minecraft.client.RecipeBookCategories;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.renderer.BiomeColors;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
@@ -16,30 +15,25 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.world.item.BlockItem;
-import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.RecipeBookCategories;
 import net.minecraft.world.level.BlockAndTintGetter;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.material.FluidState;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
-import net.neoforged.fml.common.asm.enumextension.EnumProxy;
 import net.neoforged.neoforge.client.event.*;
 import net.neoforged.neoforge.client.extensions.common.IClientFluidTypeExtensions;
 import net.neoforged.neoforge.client.extensions.common.RegisterClientExtensionsEvent;
 import org.jetbrains.annotations.Nullable;
 import org.joml.Vector3f;
+import org.joml.Vector4f;
 
-import java.util.List;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
 @EventBusSubscriber(value = Dist.CLIENT, bus = EventBusSubscriber.Bus.MOD, modid = GaiaDimensionMod.MODID)
 public class ClientEvents {
-
-    //RecipeBookCategory EnumProxy
-    public static final EnumProxy<RecipeBookCategories> RESTRUCTURING_ENUM_PROXY = new EnumProxy<>(RecipeBookCategories.class, (Supplier<List<ItemStack>>) () -> List.of(new ItemStack(ModItems.stibnite.get())));
-    public static final EnumProxy<RecipeBookCategories> PURIFYING_ENUM_PROXY = new EnumProxy<>(RecipeBookCategories.class, (Supplier<List<ItemStack>>) () -> List.of(new ItemStack(ModItems.goldstone.get())));
 
     @SubscribeEvent
     public static void registerBlockColors(RegisterColorHandlersEvent.Block event) {
@@ -170,26 +164,20 @@ public class ClientEvents {
     }
 
     @SubscribeEvent
-    public static void registerRecipeCategories(RegisterRecipeBookCategoriesEvent e) {
-        e.registerRecipeCategoryFinder(ModRecipes.RESTRUCTURING.get(), recipe -> RecipeBookCategories.valueOf("GAIADIMENSION_RESTRUCTURING_CATEGORY"));
-        e.registerRecipeCategoryFinder(ModRecipes.PURIFYING.get(), recipe -> RecipeBookCategories.valueOf("GAIADIMENSION_PURIFYING_CATEGORY"));
-    }
-
-    @SubscribeEvent
     public static void registerClientExtensions(RegisterClientExtensionsEvent e) {
-        e.registerFluidType(makeFluidType(GaiaFluidAttributes.mineral_still, GaiaFluidAttributes.mineral_flow, true, null, new Vector3f(0.6875F, 0.75F, 1.0F)),
+        e.registerFluidType(makeFluidType(GaiaFluidAttributes.mineral_still, GaiaFluidAttributes.mineral_flow, true, null, new Vector4f(0.6875F, 0.75F, 1.0F, 1.0F)),
                 ModFluids.MINERAL_WATER.get());
-        e.registerFluidType(makeFluidType(GaiaFluidAttributes.superhot_still, GaiaFluidAttributes.superhot_flow, false, null, new Vector3f(0.0F, 1.0F, 1.0F)),
+        e.registerFluidType(makeFluidType(GaiaFluidAttributes.superhot_still, GaiaFluidAttributes.superhot_flow, false, null, new Vector4f(0.0F, 1.0F, 1.0F, 1.0F)),
                 ModFluids.SUPERHOT_MAGMA.get());
-        e.registerFluidType(makeFluidType(GaiaFluidAttributes.sweet_still, GaiaFluidAttributes.sweet_flow, true, null, new Vector3f(0.5F, 0.0F, 0.5F)),
+        e.registerFluidType(makeFluidType(GaiaFluidAttributes.sweet_still, GaiaFluidAttributes.sweet_flow, true, null, new Vector4f(0.5F, 0.0F, 0.5F, 1.0F)),
                 ModFluids.SWEET_MUCK.get());
-        e.registerFluidType(makeFluidType(GaiaFluidAttributes.bismuth_still, GaiaFluidAttributes.bismuth_flow, false, () -> ClientEvents::getBismuthColor, new Vector3f(0.5F, 0.5F, 0.5F)),
+        e.registerFluidType(makeFluidType(GaiaFluidAttributes.bismuth_still, GaiaFluidAttributes.bismuth_flow, false, () -> ClientEvents::getBismuthColor, new Vector4f(0.5F, 0.5F, 0.5F, 1.0F)),
                 ModFluids.LIQUID_BISMUTH.get());
-        e.registerFluidType(makeFluidType(GaiaFluidAttributes.aura_still, GaiaFluidAttributes.aura_flow, true, () -> ClientEvents::getAuraColor, new Vector3f(1.0F, 1.0F, 1.0F)),
+        e.registerFluidType(makeFluidType(GaiaFluidAttributes.aura_still, GaiaFluidAttributes.aura_flow, true, () -> ClientEvents::getAuraColor, new Vector4f(1.0F, 1.0F, 1.0F, 1.0F)),
                 ModFluids.LIQUID_AURA.get());
     }
 
-    private static IClientFluidTypeExtensions makeFluidType(ResourceLocation stillpath, ResourceLocation flowingpath, boolean overlay, Supplier<Function<BlockPos, Integer>> color, Vector3f fog) {
+    private static IClientFluidTypeExtensions makeFluidType(ResourceLocation stillpath, ResourceLocation flowingpath, boolean overlay, Supplier<Function<BlockPos, Integer>> color, Vector4f fog) {
         return new IClientFluidTypeExtensions() {
             @Override
             public ResourceLocation getStillTexture() {
@@ -212,7 +200,7 @@ public class ClientEvents {
             }
 
             @Override
-            public Vector3f modifyFogColor(Camera camera, float partialTick, ClientLevel level, int renderDistance, float darkenWorldAmount, Vector3f fluidFogColor) {
+            public Vector4f modifyFogColor(Camera camera, float partialTick, ClientLevel level, int renderDistance, float darkenWorldAmount, Vector4f fluidFogColor) {
                 return fog;
             }
         };

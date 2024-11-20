@@ -2,15 +2,22 @@ package androsa.gaiadimension.block.screen;
 
 import androsa.gaiadimension.GaiaDimensionMod;
 import androsa.gaiadimension.block.menu.RestructurerMenu;
+import androsa.gaiadimension.registry.registration.ModItems;
+import androsa.gaiadimension.registry.registration.ModRecipes;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
+import net.minecraft.client.gui.screens.recipebook.RecipeBookComponent;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 
+import java.util.List;
+
 public class RestructurerScreen extends AbstractContainerScreen<RestructurerMenu> {
 
     private static final ResourceLocation textureLoc = ResourceLocation.fromNamespaceAndPath(GaiaDimensionMod.MODID, "textures/gui/glitter_furnace.png");
+    private static final List<RecipeBookComponent.TabInfo> TABS = List.of(
+            new RecipeBookComponent.TabInfo(ModItems.stibnite.get(), ModRecipes.RESTRUCTURING_CATEGORY.get()));
 
     public RestructurerScreen(RestructurerMenu container, Inventory invPlayer, Component textComponent) {
         super(container, invPlayer, textComponent);
