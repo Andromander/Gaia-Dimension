@@ -3,19 +3,23 @@ package androsa.gaiadimension.block.menu;
 import androsa.gaiadimension.registry.registration.ModBlocks;
 import androsa.gaiadimension.registry.registration.ModMenus;
 import net.minecraft.network.protocol.game.ClientboundContainerSetSlotPacket;
+import net.minecraft.recipebook.ServerPlaceRecipe;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.Container;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.player.StackedContents;
+import net.minecraft.world.entity.player.StackedItemContents;
 import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.Level;
 
+import java.util.List;
 import java.util.Optional;
 
-public class AgateCraftingTableMenu extends RecipeBookMenu<CraftingInput, CraftingRecipe> {
+public class AgateCraftingTableMenu extends RecipeBookMenu {
 
     private final CraftingContainer invCrafting = new TransientCraftingContainer(this, 3, 3);
     private final ResultContainer invResult = new ResultContainer();
@@ -52,46 +56,32 @@ public class AgateCraftingTableMenu extends RecipeBookMenu<CraftingInput, Crafti
 
     @Override
     public void slotsChanged(Container inventoryIn) {
-        this.worldPos.execute((world, pos) -> updateSlots(this, world, this.player, this.invCrafting, this.invResult));
+        this.worldPos.execute((world, pos) -> {
+            if (world instanceof ServerLevel server) {
+                updateSlots(this, server, this.player, this.invCrafting, this.invResult, null);
+            }
+        });
     }
 
-    protected static void updateSlots(AbstractContainerMenu menu, Level world, Player playerentity, CraftingContainer craft, ResultContainer result) {
-        if (!world.isClientSide()) {
-            CraftingInput input = craft.asCraftInput();
-            ServerPlayer serverplayerentity = (ServerPlayer)playerentity;
-            ItemStack itemstack = ItemStack.EMPTY;
-            Optional<RecipeHolder<CraftingRecipe>> optional = world.getServer().getRecipeManager().getRecipeFor(RecipeType.CRAFTING, input, world);
-            if (optional.isPresent()) {
-                RecipeHolder<CraftingRecipe> icraftingrecipe = optional.get();
-                CraftingRecipe crafting = icraftingrecipe.value();
-                if (result.setRecipeUsed(world, serverplayerentity, icraftingrecipe)) {
-                    ItemStack assembled = crafting.assemble(input, world.registryAccess());
-                    if (assembled.isItemEnabled(world.enabledFeatures())) {
-                        itemstack = assembled;
-                    }
+    protected static void updateSlots(AbstractContainerMenu menu, ServerLevel world, Player playerentity, CraftingContainer craft, ResultContainer result, RecipeHolder<CraftingRecipe> holder) {
+        CraftingInput input = craft.asCraftInput();
+        ServerPlayer serverplayerentity = (ServerPlayer)playerentity;
+        ItemStack itemstack = ItemStack.EMPTY;
+        Optional<RecipeHolder<CraftingRecipe>> optional = world.getServer().getRecipeManager().getRecipeFor(RecipeType.CRAFTING, input, world);
+        if (optional.isPresent()) {
+            RecipeHolder<CraftingRecipe> icraftingrecipe = optional.get();
+            CraftingRecipe crafting = icraftingrecipe.value();
+            if (result.setRecipeUsed(serverplayerentity, icraftingrecipe)) {
+                ItemStack assembled = crafting.assemble(input, world.registryAccess());
+                if (assembled.isItemEnabled(world.enabledFeatures())) {
+                    itemstack = assembled;
                 }
             }
-
-            result.setItem(0, itemstack);
-            menu.setRemoteSlot(0, itemstack);
-            serverplayerentity.connection.send(new ClientboundContainerSetSlotPacket(menu.containerId, menu.incrementStateId(), 0, itemstack));
         }
-    }
 
-    @Override
-    public void fillCraftSlotsStackedContents(StackedContents helper) {
-        this.invCrafting.fillStackedContents(helper);
-    }
-
-    @Override
-    public void clearCraftingContent() {
-        this.invCrafting.clearContent();
-        this.invResult.clearContent();
-    }
-
-    @Override
-    public boolean recipeMatches(RecipeHolder<CraftingRecipe> recipeIn) {
-        return recipeIn.value().matches(this.invCrafting.asCraftInput(), this.player.level());
+        result.setItem(0, itemstack);
+        menu.setRemoteSlot(0, itemstack);
+        serverplayerentity.connection.send(new ClientboundContainerSetSlotPacket(menu.containerId, menu.incrementStateId(), 0, itemstack));
     }
 
     @Override
@@ -151,33 +141,44 @@ public class AgateCraftingTableMenu extends RecipeBookMenu<CraftingInput, Crafti
     }
 
     @Override
+    public PostPlaceAction handlePlacement(boolean maxItems, boolean creative, RecipeHolder<?> recipe, ServerLevel server, Inventory inventory) {
+        RecipeHolder<CraftingRecipe> recipeholder = (RecipeHolder<CraftingRecipe>)recipe;
+        RecipeBookMenu.PostPlaceAction action;
+
+        try {
+            List<Slot> list = this.slots.subList(1, 10);
+            action = ServerPlaceRecipe.placeRecipe(new ServerPlaceRecipe.CraftingMenuAccess<>() {
+                @Override
+                public void fillCraftSlotsStackedContents(StackedItemContents contents) {
+                    AgateCraftingTableMenu.this.fillCraftSlotsStackedContents(contents);
+                }
+
+                @Override
+                public void clearCraftingContent() {
+                    AgateCraftingTableMenu.this.invResult.clearContent();
+                    AgateCraftingTableMenu.this.invCrafting.clearContent();
+                }
+
+                @Override
+                public boolean recipeMatches(RecipeHolder<CraftingRecipe> match) {
+                    return match.value().matches(AgateCraftingTableMenu.this.invCrafting.asCraftInput(), AgateCraftingTableMenu.this.player.level());
+                }
+            }, 3, 3, list, list, inventory, recipeholder, maxItems, creative);
+        } finally {
+            updateSlots(this, server, player, invCrafting, invResult, (RecipeHolder<CraftingRecipe>)recipe);
+        }
+
+        return action;
+    }
+
+    @Override
     public boolean canTakeItemForPickAll(ItemStack stack, Slot slotIn) {
         return slotIn.container != this.invResult && super.canTakeItemForPickAll(stack, slotIn);
     }
 
     @Override
-    public boolean shouldMoveToInventory(int id) {
-        return id != this.getResultSlotIndex();
-    }
-
-    @Override
-    public int getResultSlotIndex() {
-        return 0;
-    }
-
-    @Override
-    public int getGridWidth() {
-        return this.invCrafting.getWidth();
-    }
-
-    @Override
-    public int getGridHeight() {
-        return this.invCrafting.getHeight();
-    }
-
-    @Override
-    public int getSize() {
-        return 10;
+    public void fillCraftSlotsStackedContents(StackedItemContents contents) {
+        this.invCrafting.fillStackedContents(contents);
     }
 
     @Override

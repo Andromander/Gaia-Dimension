@@ -72,7 +72,7 @@ public class PurifyingCategory extends PurifierRecipeCategory<RecipeHolder<Purif
 
     @Override
     public void draw(RecipeHolder<PurifierRecipe> recipe, IRecipeSlotsView view, GuiGraphics graphics, double mouseX, double mouseY) {
-        float experience = recipe.value().getExperience();
+        float experience = recipe.value().experience();
         if (experience > 0.0F) {
             Component experienceString = Component.translatable("gui.jei.category.smelting.experience", experience);
             Minecraft minecraft = Minecraft.getInstance();

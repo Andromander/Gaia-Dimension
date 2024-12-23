@@ -7,12 +7,14 @@ import androsa.gaiadimension.registry.registration.ModRecipes;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.gui.screens.recipebook.RecipeBookComponent;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 
 import java.util.List;
 
+//TODO: recipe book?
 public class RestructurerScreen extends AbstractContainerScreen<RestructurerMenu> {
 
     private static final ResourceLocation textureLoc = ResourceLocation.fromNamespaceAndPath(GaiaDimensionMod.MODID, "textures/gui/glitter_furnace.png");
@@ -42,15 +44,15 @@ public class RestructurerScreen extends AbstractContainerScreen<RestructurerMenu
     protected void renderBg(GuiGraphics stack, float partialTicks, int mouseX, int mouseY) {
         int k = (width - imageWidth) / 2;
         int l = (height - imageHeight) / 2;
-        stack.blit(textureLoc, k, l, 0, 0, imageWidth, imageHeight);
+        stack.blit(RenderType::guiTextured, textureLoc, k, l, 0, 0, imageWidth, imageHeight, 256, 256);
         int i1;
 
         if (menu.isBurning()) {
             i1 = menu.getTimeLeft();
-            stack.blit(textureLoc, k + 68, l + 19 + 12 - i1, 176, 14 - i1, 38, i1 + 2);
+            stack.blitSprite(RenderType::guiTextured, textureLoc, k + 68, l + 19 + 12 - i1, 176, 14 - i1, 38, i1 + 2, 256, 256);
         }
 
         i1 = menu.getTimeLeftScaled();
-        stack.blit(textureLoc, k + 80, l + 51, 176, 16, 16, i1);
+        stack.blitSprite(RenderType::guiTextured, textureLoc, k + 80, l + 51, 176, 16, 16, i1, 256, 256);
     }
 }

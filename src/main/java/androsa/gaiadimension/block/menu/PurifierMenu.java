@@ -106,7 +106,7 @@ public class PurifierMenu extends AbstractContainerMenu {
     }
 
     private boolean isRecipePresent(ItemStack stack) {
-        return this.world.getRecipeManager().getRecipeFor(this.recipeType, new SingleRecipeInput(stack), this.world).isPresent();
+        return this.world.recipeAccess().propertySet(ModRecipes.PURIFIER_INPUT).test(stack);
     }
 
     public int getTimeLeftScaled() {

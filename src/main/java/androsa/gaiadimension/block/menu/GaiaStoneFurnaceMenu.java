@@ -8,18 +8,15 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.RecipePropertySet;
 import net.minecraft.world.item.crafting.RecipeType;
-import net.minecraft.world.item.crafting.SingleRecipeInput;
-import net.minecraft.world.item.crafting.SmeltingRecipe;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.entity.AbstractFurnaceBlockEntity;
 
 public class GaiaStoneFurnaceMenu extends AbstractContainerMenu {
 
     private final Container tileFurnace;
     private final ContainerData slotData;
     private final Level world;
-    private final RecipeType<SmeltingRecipe> recipeType = RecipeType.SMELTING;
 
     public GaiaStoneFurnaceMenu(int id, Inventory playerinv) {
         this(id, playerinv, new SimpleContainer(3), new SimpleContainerData(4));
@@ -33,7 +30,7 @@ public class GaiaStoneFurnaceMenu extends AbstractContainerMenu {
         this.slotData = array;
         this.world = playerinv.player.level();
         this.addSlot(new Slot(inventory, 0, 56, 17));
-        this.addSlot(new GaiaFurnaceSlot(inventory, 1, 56, 53));
+        this.addSlot(new GaiaFurnaceSlot(this, inventory, 1, 56, 53));
         this.addSlot(new FurnaceResultSlot(playerinv.player, inventory, 2, 116, 35));
 
         for(int i = 0; i < 3; ++i) {
@@ -104,11 +101,11 @@ public class GaiaStoneFurnaceMenu extends AbstractContainerMenu {
     }
 
     private boolean isRecipePresent(ItemStack stack) {
-        return this.world.getRecipeManager().getRecipeFor(this.recipeType, new SingleRecipeInput(stack), this.world).isPresent();
+        return this.world.recipeAccess().propertySet(RecipePropertySet.FURNACE_INPUT).test(stack);
     }
 
-    public static boolean isFuel(ItemStack stack) {
-        return AbstractFurnaceBlockEntity.isFuel(stack);
+    public boolean isFuel(ItemStack stack) {
+        return stack.getBurnTime(RecipeType.SMELTING, this.world.fuelValues()) > 0;
     }
 
     public int getCookProgressionScaled() {

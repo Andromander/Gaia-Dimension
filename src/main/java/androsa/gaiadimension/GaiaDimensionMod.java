@@ -3,6 +3,7 @@ package androsa.gaiadimension;
 import androsa.gaiadimension.client.ClientEvents;
 import androsa.gaiadimension.data.*;
 import androsa.gaiadimension.registry.bootstrap.GaiaBiomes;
+import androsa.gaiadimension.registry.registration.ModSlotDisplay;
 import androsa.gaiadimension.registry.helpers.GaiaConfig;
 import androsa.gaiadimension.registry.helpers.RemapHelper;
 import androsa.gaiadimension.registry.registration.*;
@@ -63,6 +64,7 @@ public class GaiaDimensionMod {
         ModRecipes.RECIPE_TYPES.register(bus);
         ModRecipes.RECIPE_SERIALIZERS.register(bus);
         ModBlockEntities.TILE_ENTITIES.register(bus);
+        ModSlotDisplay.SLOT_DISPLAYS.register(bus);
         ModStructures.STRUCTURE_PIECES.register(bus);
         ModStructures.STRUCTURE_PROCESSORS.register(bus);
         ModStructures.STRUCTURE_TYPES.register(bus);

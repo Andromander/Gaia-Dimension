@@ -8,14 +8,17 @@ import net.minecraft.world.item.Items;
 
 public class GaiaFurnaceSlot extends Slot {
 
+    private final GaiaStoneFurnaceMenu menu;
+
     //Since Furnace Slot requires me to use AbstractFurnaceContainer and that adds the dumb book, this is an edited FurnaceFuelSlot
-    public GaiaFurnaceSlot(Container inventory, int index, int x, int y) {
+    public GaiaFurnaceSlot(GaiaStoneFurnaceMenu menu, Container inventory, int index, int x, int y) {
         super(inventory, index, x, y);
+        this.menu = menu;
     }
 
     @Override
     public boolean mayPlace(ItemStack stack) {
-        return GaiaStoneFurnaceMenu.isFuel(stack) || isBucket(stack);
+        return menu.isFuel(stack) || isBucket(stack);
     }
 
     @Override

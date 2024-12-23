@@ -7,10 +7,11 @@ import net.minecraft.advancements.Criterion;
 import net.minecraft.advancements.critereon.RecipeUnlockedTrigger;
 import net.minecraft.data.recipes.RecipeBuilder;
 import net.minecraft.data.recipes.RecipeOutput;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.level.ItemLike;
 import org.jetbrains.annotations.Nullable;
 
@@ -62,11 +63,11 @@ public class PurifierRecipeBuilder implements RecipeBuilder {
     }
 
     @Override
-    public void save(RecipeOutput consumer, ResourceLocation location) {
-        this.validate(location);
+    public void save(RecipeOutput consumer, ResourceKey<Recipe<?>> key) {
+        this.validate(key);
         Advancement.Builder builder = consumer.advancement()
-                .addCriterion("has_the_recipe", RecipeUnlockedTrigger.unlocked(location))
-                .rewards(AdvancementRewards.Builder.recipe(location))
+                .addCriterion("has_the_recipe", RecipeUnlockedTrigger.unlocked(key))
+                .rewards(AdvancementRewards.Builder.recipe(key))
                 .requirements(AdvancementRequirements.Strategy.OR);
         this.criteria.forEach(builder::addCriterion);
         PurifierRecipe recipe = new PurifierRecipe(
@@ -76,12 +77,12 @@ public class PurifierRecipeBuilder implements RecipeBuilder {
                 this.byproduct,
                 this.experience,
                 this.cookingTime);
-        consumer.accept(location, recipe, builder.build(location.withPrefix("recipes/purifying/")));
+        consumer.accept(key, recipe, builder.build(key.location().withPrefix("recipes/purifying/")));
     }
 
-    private void validate(ResourceLocation location) {
+    private void validate(ResourceKey<Recipe<?>> location) {
         if (this.criteria.isEmpty()) {
-            throw new IllegalStateException("No way of obtaining recipe " + location);
+            throw new IllegalStateException("No way of obtaining recipe " + location.location());
         }
     }
 }

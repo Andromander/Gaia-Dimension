@@ -130,7 +130,7 @@ public class RestructurerBlock extends Block implements EntityBlock {
     @Nullable
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> entity) {
-        return ModBlockEntities.RESTRUCTURER.get() == entity && !level.isClientSide() ? PropertiesHandler.getTicker(RestructurerBlockEntity::tick) : null;
+        return ModBlockEntities.RESTRUCTURER.get() == entity && level instanceof ServerLevel server ? PropertiesHandler.getTicker((l, p, s, e) -> RestructurerBlockEntity.tick(server, p, s, (RestructurerBlockEntity) e)) : null;
     }
 
     @Override

@@ -4,9 +4,9 @@ import androsa.gaiadimension.registry.registration.ModParticles;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.Difficulty;
+import net.minecraft.world.entity.EntitySpawnReason;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Mob;
-import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -60,10 +60,11 @@ public abstract class AbstractSpawnerBlockEntity<T extends Mob> extends BlockEnt
     public abstract int getColor();
 
     private boolean canSpawnBoss(ServerLevel world) {
-        Mob entity = bossEntity.create(world);
+        EntitySpawnReason reason = EntitySpawnReason.SPAWNER;
+        Mob entity = bossEntity.create(world, reason);
 
         entity.moveTo(getBlockPos(), 0.0F, 0.0F);
-        entity.finalizeSpawn(world, world.getCurrentDifficultyAt(getBlockPos()), MobSpawnType.SPAWNER, null);
+        entity.finalizeSpawn(world, world.getCurrentDifficultyAt(getBlockPos()), reason, null);
         entity.restrictTo(getBlockPos(), getHomeDistance());
 
         return world.addFreshEntity(entity);

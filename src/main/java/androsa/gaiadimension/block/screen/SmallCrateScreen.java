@@ -4,6 +4,7 @@ import androsa.gaiadimension.GaiaDimensionMod;
 import androsa.gaiadimension.block.menu.SmallCrateContainer;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
@@ -32,6 +33,6 @@ public class SmallCrateScreen extends AbstractContainerScreen<SmallCrateContaine
     protected void renderBg(GuiGraphics stack, float partialTicks, int mouseX, int mouseY) {
         int i = (this.width - this.imageWidth) / 2;
         int j = (this.height - this.imageHeight) / 2;
-        stack.blit(textureLoc, i, j, 0, 0, this.imageWidth, this.imageHeight);
+        stack.blit(RenderType::guiTextured, textureLoc, i, j, 0, 0, this.imageWidth, this.imageHeight, 256, 256);
     }
 }

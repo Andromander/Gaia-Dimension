@@ -1,15 +1,11 @@
 package androsa.gaiadimension.registry.registration;
 
 import androsa.gaiadimension.GaiaDimensionMod;
-import androsa.gaiadimension.recipe.PurifierRecipe;
-import androsa.gaiadimension.recipe.PurifierRecipeSerializer;
-import androsa.gaiadimension.recipe.RestructurerRecipe;
-import androsa.gaiadimension.recipe.RestructurerRecipeSerializer;
+import androsa.gaiadimension.recipe.*;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.world.item.crafting.RecipeBookCategories;
-import net.minecraft.world.item.crafting.RecipeBookCategory;
-import net.minecraft.world.item.crafting.RecipeSerializer;
-import net.minecraft.world.item.crafting.RecipeType;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.crafting.*;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
@@ -34,13 +30,17 @@ public class ModRecipes {
     });
 
     //RecipeSerializer
-    public static final DeferredHolder<RecipeSerializer<?>, RestructurerRecipeSerializer<RestructurerRecipe>> RESTRUCTURING_SERIALIZER = RECIPE_SERIALIZERS.register("restructuring",
-            () -> new RestructurerRecipeSerializer<>(RestructurerRecipe::new, 200));
+    public static final DeferredHolder<RecipeSerializer<?>, DoubleOutputRecipe.Serializer<RestructurerRecipe>> RESTRUCTURING_SERIALIZER = RECIPE_SERIALIZERS.register("restructuring",
+            () -> new DoubleOutputRecipe.Serializer<>(RestructurerRecipe::new, 200));
 
-    public static final DeferredHolder<RecipeSerializer<?>, PurifierRecipeSerializer<PurifierRecipe>> PURIFYING_SERIALIZER = RECIPE_SERIALIZERS.register("purifying",
-            () -> new PurifierRecipeSerializer<>(PurifierRecipe::new, 200));
+    public static final DeferredHolder<RecipeSerializer<?>, DoubleOutputRecipe.Serializer<PurifierRecipe>> PURIFYING_SERIALIZER = RECIPE_SERIALIZERS.register("purifying",
+            () -> new DoubleOutputRecipe.Serializer<>(PurifierRecipe::new, 200));
 
     //RecipeBookCategory
     public static final DeferredHolder<RecipeBookCategory, RecipeBookCategory> RESTRUCTURING_CATEGORY = RECIPE_BOOK_CATEGORIES.register("restructuring", RecipeBookCategory::new);
     public static final DeferredHolder<RecipeBookCategory, RecipeBookCategory> PURIFYING_CATEGORY = RECIPE_BOOK_CATEGORIES.register("purifying", RecipeBookCategory::new);
+
+    //RecipePropertySet
+    public static final ResourceKey<RecipePropertySet> RESTRUCTURER_INPUT = ResourceKey.create(RecipePropertySet.TYPE_KEY, ResourceLocation.fromNamespaceAndPath(GaiaDimensionMod.MODID, "restructurer_input"));
+    public static final ResourceKey<RecipePropertySet> PURIFIER_INPUT = ResourceKey.create(RecipePropertySet.TYPE_KEY, ResourceLocation.fromNamespaceAndPath(GaiaDimensionMod.MODID, "purifier_input"));
 }
