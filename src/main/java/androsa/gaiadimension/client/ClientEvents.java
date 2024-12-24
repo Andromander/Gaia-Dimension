@@ -137,7 +137,6 @@ public class ClientEvents {
 
     @SubscribeEvent
     public static void registerDimensionEffects(RegisterDimensionSpecialEffectsEvent event) {
-        new GaiaSkyRender();
         event.register(ResourceLocation.fromNamespaceAndPath(GaiaDimensionMod.MODID, "gaia"), new GaiaDimensionRenderInfo());
     }
 

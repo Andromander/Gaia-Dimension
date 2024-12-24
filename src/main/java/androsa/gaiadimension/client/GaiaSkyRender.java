@@ -1,26 +1,22 @@
 package androsa.gaiadimension.client;
 
 import androsa.gaiadimension.registry.helpers.GaiaConfig;
-import com.mojang.blaze3d.platform.GlStateManager;
+import com.mojang.blaze3d.buffers.BufferUsage;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.*;
 import com.mojang.math.Axis;
 import net.minecraft.client.Camera;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientLevel;
-import net.minecraft.client.renderer.FogRenderer;
-import net.minecraft.client.renderer.GameRenderer;
-import net.minecraft.client.renderer.LevelRenderer;
-import net.minecraft.client.renderer.ShaderInstance;
+import net.minecraft.client.renderer.*;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.util.Mth;
+import net.minecraft.util.ARGB;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.biome.Biome;
-import net.minecraft.world.level.material.FogType;
-import net.minecraft.world.phys.Vec3;
 import org.joml.Matrix4f;
+import org.joml.Matrix4fStack;
 
 import java.util.Optional;
 
@@ -37,122 +33,113 @@ import java.util.Optional;
 public class GaiaSkyRender {
 
     private static final ResourceLocation SUN_TEXTURES = ResourceLocation.withDefaultNamespace("textures/environment/sun.png");
-    private static VertexBuffer starVBO;
+    private final VertexBuffer starVBO = this.generateStars();
 
     public GaiaSkyRender() {
-        this.generateStars();
     }
 
-    public static boolean render(float partialTicks, Matrix4f model, ClientLevel world, Camera camera, Matrix4f matrix, Runnable fog) {
+    public boolean render(float partialTicks, ClientLevel world, Camera camera, Matrix4f matrix, Runnable fog) {
         Minecraft minecraft = Minecraft.getInstance();
         LevelRenderer renderer = minecraft.levelRenderer;
 
         fog.run();
-        FogType fogType = camera.getFluidInCamera();
-        if (fogType != FogType.POWDER_SNOW && fogType != FogType.LAVA && !renderer.doesMobEffectBlockSky(camera)) {
-            PoseStack stack = new PoseStack();
-            stack.mulPose(model);
-            Vec3 skycol = world.getSkyColor(minecraft.gameRenderer.getMainCamera().getPosition(), partialTicks);
-            float sRed = (float) skycol.x;
-            float sGreen = (float) skycol.y;
-            float sBlue = (float) skycol.z;
-            FogRenderer.levelFogColor();
-            Tesselator tesselator = Tesselator.getInstance();
+        RenderStateShard.MAIN_TARGET.setupRenderState();
+        PoseStack stack = new PoseStack();
+        Tesselator tesselator = Tesselator.getInstance();
+        float star = getStarBrightness(world, partialTicks);
+        int skycol = world.getSkyColor(minecraft.gameRenderer.getMainCamera().getPosition(), partialTicks);
+        float red = ARGB.from8BitChannel(ARGB.red(skycol));
+        float grn = ARGB.from8BitChannel(ARGB.green(skycol));
+        float blu = ARGB.from8BitChannel(ARGB.blue(skycol));
+
+        //renderSkyDisc
+        RenderSystem.depthMask(false);
+        RenderSystem.setShader(CoreShaders.POSITION);
+        RenderSystem.setShaderColor(red, grn, blu, 1.0F);
+        renderer.skyRenderer.topSkyBuffer.bind();
+        renderer.skyRenderer.topSkyBuffer.drawWithShader(RenderSystem.getModelViewMatrix(), RenderSystem.getProjectionMatrix(), RenderSystem.getShader());
+        VertexBuffer.unbind();
+        RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
+        RenderSystem.depthMask(true);
+        //
+
+        //renderSunMoonAndStars (without the Moon)
+        stack.pushPose();
+        stack.mulPose(Axis.YP.rotationDegrees(-90.0F));
+        stack.mulPose(Axis.XP.rotationDegrees(world.getTimeOfDay(partialTicks) * 360.0F));
+
+        ///renderSun
+        float f12 = 30.0F;
+        BufferBuilder bufferbuilder = tesselator.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_TEX);
+        Matrix4f matrix4f1 = stack.last().pose();
+        RenderSystem.depthMask(false);
+        RenderSystem.overlayBlendFunc();
+        RenderSystem.setShader(CoreShaders.POSITION_TEX);
+        RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F /*rain level*/);
+        RenderSystem.setShaderTexture(0, SUN_TEXTURES);
+        RenderSystem.enableBlend();
+        bufferbuilder.addVertex(matrix4f1, -f12, 100.0F, -f12).setUv(0.0F, 0.0F);
+        bufferbuilder.addVertex(matrix4f1, f12, 100.0F, -f12).setUv(1.0F, 0.0F);
+        bufferbuilder.addVertex(matrix4f1, f12, 100.0F, f12).setUv(1.0F, 1.0F);
+        bufferbuilder.addVertex(matrix4f1, -f12, 100.0F, f12).setUv(0.0F, 1.0F);
+        BufferUploader.drawWithShader(bufferbuilder.buildOrThrow());
+        RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
+        RenderSystem.disableBlend();
+        RenderSystem.defaultBlendFunc();
+        RenderSystem.depthMask(true);
+        ///
+
+        ///renderStars, kind of
+        if (star > 0.0F) {
+            Matrix4fStack matrixstack = RenderSystem.getModelViewStack();
+            matrixstack.pushMatrix();
+            matrixstack.mul(stack.last().pose());
             RenderSystem.depthMask(false);
-            RenderSystem.setShaderColor(sRed, sGreen, sBlue, 1.0F);
-            ShaderInstance instance = RenderSystem.getShader();
-            renderer.skyBuffer.bind();
-            renderer.skyBuffer.drawWithShader(stack.last().pose(), matrix, instance);
-            VertexBuffer.unbind();
+            RenderSystem.overlayBlendFunc();
+            RenderSystem.setShader(CoreShaders.POSITION);
+            RenderSystem.setShaderColor(star, star, star, star);
             RenderSystem.enableBlend();
-            float[] setcol = world.effects().getSunriseColor(world.getTimeOfDay(partialTicks), partialTicks);
-
-            if (setcol != null) {
-                RenderSystem.setShader(GameRenderer::getPositionColorShader);
-                RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
-                stack.pushPose();
-                stack.mulPose(Axis.XP.rotationDegrees(90.0F));
-                float f3 = Mth.sin(world.getSunAngle(partialTicks)) < 0.0F ? 180.0F : 0.0F;
-                stack.mulPose(Axis.ZP.rotationDegrees(f3));
-                stack.mulPose(Axis.ZP.rotationDegrees(90.0F));
-                float ssRed = setcol[0];
-                float ssGreen = setcol[1];
-                float ssBlue = setcol[2];
-                Matrix4f matrix4f = stack.last().pose();
-                BufferBuilder bufferbuilder = tesselator.begin(VertexFormat.Mode.TRIANGLE_FAN, DefaultVertexFormat.POSITION_COLOR);
-                bufferbuilder.addVertex(matrix4f, 0.0F, 100.0F, 0.0F).setColor(ssRed, ssGreen, ssBlue, setcol[3]);
-
-                for (int j = 0; j <= 16; ++j) {
-                    float f7 = (float) j * ((float) Math.PI * 2F) / 16.0F;
-                    float f8 = Mth.sin(f7);
-                    float f9 = Mth.cos(f7);
-                    bufferbuilder.addVertex(matrix4f, f8 * 120.0F, f9 * 120.0F, -f9 * 40.0F * setcol[3]).setColor(setcol[0], setcol[1], setcol[2], 0.0F);
-                }
-
-                BufferUploader.drawWithShader(bufferbuilder.buildOrThrow());
-                stack.popPose();
-            }
-            RenderSystem.blendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
-            stack.pushPose();
-//          float f11 = 1.0F - this.world.getRainStrength(p_228424_2_);
-//          RenderSystem.color4f(1.0F, 1.0F, 1.0F, f11);
-            stack.mulPose(Axis.YP.rotationDegrees(-90.0F));
-            stack.mulPose(Axis.XP.rotationDegrees(world.getTimeOfDay(partialTicks) * 360.0F));
-            Matrix4f matrix4f1 = stack.last().pose();
-
-            //Sun
-            float f12 = 30.0F;
-            RenderSystem.setShader(GameRenderer::getPositionTexShader);
-            RenderSystem.setShaderTexture(0, SUN_TEXTURES);
-            BufferBuilder bufferbuilder = tesselator.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_TEX);
-            bufferbuilder.addVertex(matrix4f1, -f12, 100.0F, -f12).setUv(0.0F, 0.0F);
-            bufferbuilder.addVertex(matrix4f1, f12, 100.0F, -f12).setUv(1.0F, 0.0F);
-            bufferbuilder.addVertex(matrix4f1, f12, 100.0F, f12).setUv(1.0F, 1.0F);
-            bufferbuilder.addVertex(matrix4f1, -f12, 100.0F, f12).setUv(0.0F, 1.0F);
-            BufferUploader.drawWithShader(bufferbuilder.buildOrThrow());
-
-            //Stars
-            float f10 = getStarBrightness(world, partialTicks);
-            if (f10 > 0.0F) {
-                RenderSystem.setShaderColor(f10, f10, f10, f10);
-                FogRenderer.setupNoFog();
-                starVBO.bind();
-                starVBO.drawWithShader(stack.last().pose(), matrix, GameRenderer.getPositionShader());
-                VertexBuffer.unbind();
-                fog.run();
-            }
-
+            RenderSystem.setShaderFog(FogParameters.NO_FOG);
+            starVBO.bind();
+            starVBO.drawWithShader(matrixstack, RenderSystem.getProjectionMatrix(), RenderSystem.getShader());
+            VertexBuffer.unbind();
+            fog.run();
             RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
             RenderSystem.disableBlend();
             RenderSystem.defaultBlendFunc();
-            stack.popPose();
+            RenderSystem.depthMask(true);
+            matrixstack.popMatrix();
+        }
+        ///
+
+        stack.popPose();
+        //
+
+        //renderDarkDisc
+        if (camera.getEntity().getEyePosition(partialTicks).y - world.getLevelData().getHorizonHeight(world) < 0.0D) {
+            RenderSystem.depthMask(false);
+            RenderSystem.setShader(CoreShaders.POSITION);
             RenderSystem.setShaderColor(0.0F, 0.0F, 0.0F, 1.0F);
-            double y = camera.getEntity().getEyePosition(partialTicks).y - world.getLevelData().getHorizonHeight(world);
-
-            if (y < 0.0D) {
-                stack.pushPose();
-                stack.translate(0.0D, 12.0D, 0.0D);
-                renderer.darkBuffer.bind();
-                renderer.darkBuffer.drawWithShader(stack.last().pose(), matrix, instance);
-                VertexBuffer.unbind();
-                stack.popPose();
-            }
-
+            stack.pushPose();
+            stack.translate(0.0D, 12.0D, 0.0D);
+            renderer.skyRenderer.bottomSkyBuffer.bind();
+            renderer.skyRenderer.bottomSkyBuffer.drawWithShader(RenderSystem.getModelViewMatrix(), RenderSystem.getProjectionMatrix(), RenderSystem.getShader());
+            VertexBuffer.unbind();
+            stack.popPose();
             RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
             RenderSystem.depthMask(true);
         }
+        //
+
         return true;
     }
 
     //VanillaCopy of WorldRenderer.generateStars, with VanillaCopy of WorldRenderer.renderStars mashed in
-    private void generateStars() {
-        RenderSystem.setShader(GameRenderer::getPositionShader);
-        if (starVBO != null) {
-            starVBO.close();
-        }
+    private VertexBuffer generateStars() {
+        VertexBuffer vertexBuffer = new VertexBuffer(BufferUsage.STATIC_WRITE);
+        vertexBuffer.bind();
 
         //renderStars
-        starVBO = new VertexBuffer(VertexBuffer.Usage.STATIC);
         RandomSource random = RandomSource.create(10842L);
         Tesselator tessellator = Tesselator.getInstance();
         BufferBuilder bufferbuilder = tessellator.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION);
@@ -194,9 +181,9 @@ public class GaiaSkyRender {
             }
         }
 
-        starVBO.bind();
-        starVBO.upload(bufferbuilder.buildOrThrow());
+        vertexBuffer.upload(bufferbuilder.buildOrThrow());
         VertexBuffer.unbind();
+        return vertexBuffer;
     }
 
     public static float getStarBrightness(ClientLevel world, float par1) {

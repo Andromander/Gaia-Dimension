@@ -8,13 +8,18 @@ import org.joml.Matrix4f;
 
 public class GaiaDimensionRenderInfo extends DimensionSpecialEffects {
 
+    private GaiaSkyRender renderer;
+
     public GaiaDimensionRenderInfo() {
-        super(255.0F, true, SkyType.NORMAL, false, false);
+        super(255.0F, true, SkyType.OVERWORLD, false, false);
     }
 
     @Override
-    public boolean renderSky(ClientLevel level, int ticks, float partialTick, Matrix4f modelMatrix, Camera camera, Matrix4f projectionMatrix, boolean isFoggy, Runnable setupFog) {
-        return GaiaSkyRender.render(partialTick, modelMatrix, level, camera, projectionMatrix, setupFog);
+    public boolean renderSky(ClientLevel level, int ticks, float partialTick, Matrix4f modelMatrix, Camera camera, Matrix4f projectionMatrix, Runnable setupFog) {
+        if (renderer == null) {
+            renderer = new GaiaSkyRender();
+        }
+        return renderer.render(partialTick, level, camera, projectionMatrix, setupFog);
     }
 
     @Override
