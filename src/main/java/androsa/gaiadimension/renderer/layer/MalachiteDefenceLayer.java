@@ -1,12 +1,11 @@
 package androsa.gaiadimension.renderer.layer;
 
-import androsa.gaiadimension.entity.boss.MalachiteGuard;
 import androsa.gaiadimension.entity.data.GuardPhase;
 import androsa.gaiadimension.model.MalachiteGuardModel;
+import androsa.gaiadimension.model.renderstate.MalachiteGuardRenderState;
 import androsa.gaiadimension.registry.helpers.ModEntitiesRendering;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.model.geom.EntityModelSet;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
@@ -15,24 +14,22 @@ import net.minecraft.client.renderer.entity.layers.RenderLayer;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.resources.ResourceLocation;
 
-public class MalachiteDefenceLayer<T extends MalachiteGuard, M extends MalachiteGuardModel<T>> extends RenderLayer<T,M> {
+public class MalachiteDefenceLayer<M extends MalachiteGuardModel> extends RenderLayer<MalachiteGuardRenderState, M> {
 
-    private final EntityModel<T> model;
+    private final MalachiteGuardModel model;
 
-    public MalachiteDefenceLayer(RenderLayerParent<T, M> renderer, EntityModelSet set) {
+    public MalachiteDefenceLayer(RenderLayerParent<MalachiteGuardRenderState, M> renderer, EntityModelSet set) {
         super(renderer);
-        this.model = new MalachiteGuardModel<>(set.bakeLayer(ModEntitiesRendering.MALACHITE_GUARD_DEFENCE));
+        this.model = new MalachiteGuardModel(set.bakeLayer(ModEntitiesRendering.MALACHITE_GUARD_DEFENCE));
     }
 
     @Override
-    public void render(PoseStack matrix, MultiBufferSource buffer, int light, T entity, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch) {
-        if (entity.getPhase() == GuardPhase.DEFENCE) {
-            float ticks = (float)entity.tickCount + partialTicks;
-            EntityModel<T> model = this.getEnergySwirlModel();
-            model.prepareMobModel(entity, limbSwing, limbSwingAmount, partialTicks);
-            this.getParentModel().copyPropertiesTo(model);
-            VertexConsumer builder = buffer.getBuffer(RenderType.energySwirl(this.getEnergySwirlTexture(entity), this.getEnergySwirlX(ticks), ticks * 0.01F));
-            model.setupAnim(entity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
+    public void render(PoseStack matrix, MultiBufferSource buffer, int light, MalachiteGuardRenderState entity, float netHeadYaw, float headPitch) {
+        if (entity.phase == GuardPhase.DEFENCE) {
+            float ticks = entity.ageInTicks;
+            MalachiteGuardModel model = this.getEnergySwirlModel();
+            VertexConsumer builder = buffer.getBuffer(RenderType.energySwirl(this.getEnergySwirlTexture(), this.getEnergySwirlX(ticks), ticks * 0.01F));
+            model.setupAnim(entity);
             model.renderToBuffer(matrix, builder, light, OverlayTexture.NO_OVERLAY, -8355712);
         }
     }
@@ -41,11 +38,11 @@ public class MalachiteDefenceLayer<T extends MalachiteGuard, M extends Malachite
         return ticks * 0.01F;
     }
 
-    protected ResourceLocation getEnergySwirlTexture(T entity) {
-        return ModEntitiesRendering.makeTexture(entity, "defence");
+    protected ResourceLocation getEnergySwirlTexture() {
+        return ModEntitiesRendering.makeTexture("malachite_guard", "defence");
     }
 
-    protected EntityModel<T> getEnergySwirlModel() {
+    protected MalachiteGuardModel getEnergySwirlModel() {
         return model;
     }
 }

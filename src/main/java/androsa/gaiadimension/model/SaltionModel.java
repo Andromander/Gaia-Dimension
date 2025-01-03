@@ -1,21 +1,20 @@
 package androsa.gaiadimension.model;
 
-import androsa.gaiadimension.entity.Saltion;
-import net.minecraft.client.model.HierarchicalModel;
+import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.CubeListBuilder;
 import net.minecraft.client.model.geom.builders.LayerDefinition;
 import net.minecraft.client.model.geom.builders.MeshDefinition;
 import net.minecraft.client.model.geom.builders.PartDefinition;
+import net.minecraft.client.renderer.entity.state.LivingEntityRenderState;
 import net.minecraft.util.Mth;
 
 /**
  * ModelSaltion - Androsa
  * Created using Tabula 7.0.0
  */
-public class SaltionModel<T extends Saltion> extends HierarchicalModel<T> {
-    public ModelPart root;
+public class SaltionModel extends EntityModel<LivingEntityRenderState> {
     public ModelPart head;
     public ModelPart armL;
     public ModelPart armR;
@@ -31,7 +30,7 @@ public class SaltionModel<T extends Saltion> extends HierarchicalModel<T> {
     public ModelPart bulb;
 
     public SaltionModel(ModelPart root) {
-        this.root = root;
+        super(root);
         ModelPart body = root.getChild("body");
         this.head = body.getChild("head");
         this.armL = body.getChild("arm_left");
@@ -46,11 +45,6 @@ public class SaltionModel<T extends Saltion> extends HierarchicalModel<T> {
         this.tail2 = tail1.getChild("tail_segment_2");
         this.tail3 = tail2.getChild("tail_segment_3");
         this.bulb = tail3.getChild("bulb");
-    }
-
-    @Override
-    public ModelPart root() {
-        return this.root;
     }
 
     public static LayerDefinition makeBodyLayer() {
@@ -141,23 +135,23 @@ public class SaltionModel<T extends Saltion> extends HierarchicalModel<T> {
         return LayerDefinition.create(mesh, 64, 40);
     }
 
-    public void setupAnim(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-        this.head.yRot = netHeadYaw / (180F / (float) Math.PI);
+    public void setupAnim(LivingEntityRenderState state) {
+        this.head.yRot = state.yRot / (180F / (float) Math.PI);
 
-        this.armR.yRot = Mth.cos(limbSwing * 0.6662F) * 0.4F * limbSwingAmount + 0.8377580409572781F;
-        this.armL.yRot = Mth.cos(limbSwing * 0.6662F + (float) Math.PI) * 0.4F * limbSwingAmount - 0.8377580409572781F ;
+        this.armR.yRot = Mth.cos(state.walkAnimationPos * 0.6662F) * 0.4F * state.walkAnimationSpeed + 0.8377580409572781F;
+        this.armL.yRot = Mth.cos(state.walkAnimationPos * 0.6662F + (float) Math.PI) * 0.4F * state.walkAnimationSpeed - 0.8377580409572781F ;
 
-        this.tail1.xRot = Mth.sin(ageInTicks * (float)Math.PI * 0.05F) * 0.1F + 0.7853981633974483F;
-        this.tail2.xRot = Mth.sin(ageInTicks * (float)Math.PI * 0.05F) * 0.1F + 0.9560913642424937F;
-        this.tail3.xRot = Mth.sin(ageInTicks * (float)Math.PI * 0.05F) * 0.1F + 0.8651597102135892F;
-        this.bulb.xRot = Mth.sin(ageInTicks * (float)Math.PI * 0.05F) * 0.1F + 0.7853981633974483F;
+        this.tail1.xRot = Mth.sin(state.ageInTicks * (float)Math.PI * 0.05F) * 0.1F + 0.7853981633974483F;
+        this.tail2.xRot = Mth.sin(state.ageInTicks * (float)Math.PI * 0.05F) * 0.1F + 0.9560913642424937F;
+        this.tail3.xRot = Mth.sin(state.ageInTicks * (float)Math.PI * 0.05F) * 0.1F + 0.8651597102135892F;
+        this.bulb.xRot = Mth.sin(state.ageInTicks * (float)Math.PI * 0.05F) * 0.1F + 0.7853981633974483F;
 
-        float f1 = -(Mth.cos(limbSwing * 0.6662F * 2.0F + (float)Math.PI) * 0.4F) * limbSwingAmount;
-        float f2 = -(Mth.cos(limbSwing * 0.6662F * 2.0F + ((float)Math.PI / 2F)) * 0.4F) * limbSwingAmount;
-        float f3 = -(Mth.cos(limbSwing * 0.6662F * 2.0F + ((float)Math.PI * 3F / 2F)) * 0.4F) * limbSwingAmount;
-        float f4 = Math.abs(Mth.sin(limbSwing * 0.6662F + (float)Math.PI) * 0.4F) * limbSwingAmount;
-        float f5 = Math.abs(Mth.sin(limbSwing * 0.6662F + ((float)Math.PI / 2F)) * 0.4F) * limbSwingAmount;
-        float f6 = Math.abs(Mth.sin(limbSwing * 0.6662F + ((float)Math.PI * 3F / 2F)) * 0.4F) * limbSwingAmount;
+        float f1 = -(Mth.cos(state.walkAnimationPos * 0.6662F * 2.0F + (float)Math.PI) * 0.4F) * state.walkAnimationSpeed;
+        float f2 = -(Mth.cos(state.walkAnimationPos * 0.6662F * 2.0F + ((float)Math.PI / 2F)) * 0.4F) * state.walkAnimationSpeed;
+        float f3 = -(Mth.cos(state.walkAnimationPos * 0.6662F * 2.0F + ((float)Math.PI * 3F / 2F)) * 0.4F) * state.walkAnimationSpeed;
+        float f4 = Math.abs(Mth.sin(state.walkAnimationPos * 0.6662F + (float)Math.PI) * 0.4F) * state.walkAnimationSpeed;
+        float f5 = Math.abs(Mth.sin(state.walkAnimationPos * 0.6662F + ((float)Math.PI / 2F)) * 0.4F) * state.walkAnimationSpeed;
+        float f6 = Math.abs(Mth.sin(state.walkAnimationPos * 0.6662F + ((float)Math.PI * 3F / 2F)) * 0.4F) * state.walkAnimationSpeed;
 
         this.legL1.zRot = -0.3490658503988659F;
         this.legL1.yRot = 0.13962634015954636F;

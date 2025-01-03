@@ -1,20 +1,20 @@
 package androsa.gaiadimension.model;
 
-import androsa.gaiadimension.entity.MarkuzarPlant;
-import net.minecraft.client.model.HierarchicalModel;
+import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.CubeListBuilder;
 import net.minecraft.client.model.geom.builders.LayerDefinition;
 import net.minecraft.client.model.geom.builders.MeshDefinition;
 import net.minecraft.client.model.geom.builders.PartDefinition;
+import net.minecraft.client.renderer.entity.state.LivingEntityRenderState;
 import net.minecraft.util.Mth;
 
 /**
  * ModelMarkuzarPlant - Androsa
  * Created using Tabula 7.0.0
  */
-public class MarkuzarPlantModel<T extends MarkuzarPlant> extends HierarchicalModel<T> {
+public class MarkuzarPlantModel extends EntityModel<LivingEntityRenderState> {
     public ModelPart root;
     public ModelPart stalkLow;
     public ModelPart stalkMid;
@@ -23,17 +23,12 @@ public class MarkuzarPlantModel<T extends MarkuzarPlant> extends HierarchicalMod
     public ModelPart leafL;
 
     public MarkuzarPlantModel(ModelPart root) {
-        this.root = root;
+        super(root);
         this.stalkLow = root.getChild("stalk_lower");
         this.stalkMid = stalkLow.getChild("stalk_middle");
         this.leafL = stalkMid.getChild("leaf_left");
         this.leafR = stalkMid.getChild("leaf_right");
         this.stalkHigh = stalkMid.getChild("stalk_upper");
-    }
-
-    @Override
-    public ModelPart root() {
-        return this.root;
     }
 
     public static LayerDefinition makeBodyLayer() {
@@ -93,19 +88,19 @@ public class MarkuzarPlantModel<T extends MarkuzarPlant> extends HierarchicalMod
     }
 
     @Override
-    public void setupAnim(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
+    public void setupAnim(LivingEntityRenderState state) {
 
         //Oh dear god, this is unsettling to watch
-        this.stalkLow.xRot = Mth.cos(limbSwing * 0.6662F) * 0.5F * limbSwingAmount * 0.5F;
-        this.stalkLow.xRot -= Mth.sin(ageInTicks * 0.067F) * 0.05F;
-        this.stalkMid.xRot = Mth.cos(limbSwing * 0.6662F) * 0.5F * limbSwingAmount * 0.5F;
-        this.stalkMid.xRot -= Mth.sin(ageInTicks * 0.067F) * 0.05F;
-        this.stalkHigh.xRot = Mth.cos(limbSwing * 0.6662F) * 0.5F * limbSwingAmount * 0.5F;
-        this.stalkHigh.xRot -= Mth.sin(ageInTicks * 0.067F) * 0.05F;
+        this.stalkLow.xRot = Mth.cos(state.walkAnimationPos * 0.6662F) * 0.5F * state.walkAnimationSpeed * 0.5F;
+        this.stalkLow.xRot -= Mth.sin(state.ageInTicks * 0.067F) * 0.05F;
+        this.stalkMid.xRot = Mth.cos(state.walkAnimationPos * 0.6662F) * 0.5F * state.walkAnimationSpeed * 0.5F;
+        this.stalkMid.xRot -= Mth.sin(state.ageInTicks * 0.067F) * 0.05F;
+        this.stalkHigh.xRot = Mth.cos(state.walkAnimationPos * 0.6662F) * 0.5F * state.walkAnimationSpeed * 0.5F;
+        this.stalkHigh.xRot -= Mth.sin(state.ageInTicks * 0.067F) * 0.05F;
 
-        this.leafL.yRot = Mth.cos(limbSwing * 0.6662F) * 0.5F * limbSwingAmount * 0.5F;
-        this.leafL.yRot -= Mth.sin(ageInTicks * 0.067F) * 0.05F;
-        this.leafR.zRot = Mth.cos(limbSwing * 0.6662F) * 0.5F * limbSwingAmount * 0.5F;
-        this.leafR.zRot -= Mth.sin(ageInTicks * 0.067F) * 0.05F;
+        this.leafL.yRot = Mth.cos(state.walkAnimationPos * 0.6662F) * 0.5F * state.walkAnimationSpeed * 0.5F;
+        this.leafL.yRot -= Mth.sin(state.ageInTicks * 0.067F) * 0.05F;
+        this.leafR.zRot = Mth.cos(state.walkAnimationPos * 0.6662F) * 0.5F * state.walkAnimationSpeed * 0.5F;
+        this.leafR.zRot -= Mth.sin(state.ageInTicks * 0.067F) * 0.05F;
     }
 }

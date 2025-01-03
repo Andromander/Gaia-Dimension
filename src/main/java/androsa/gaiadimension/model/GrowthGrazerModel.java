@@ -2,18 +2,17 @@ package androsa.gaiadimension.model;
 // Made with Blockbench 4.7.1
 // Exported for Minecraft version 1.17 or later with Mojang mappings
 
-import net.minecraft.client.model.HierarchicalModel;
+import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.CubeListBuilder;
 import net.minecraft.client.model.geom.builders.LayerDefinition;
 import net.minecraft.client.model.geom.builders.MeshDefinition;
 import net.minecraft.client.model.geom.builders.PartDefinition;
+import net.minecraft.client.renderer.entity.state.LivingEntityRenderState;
 import net.minecraft.util.Mth;
-import net.minecraft.world.entity.Mob;
 
-public class GrowthGrazerModel<T extends Mob> extends HierarchicalModel<T> {
-	private final ModelPart root;
+public class GrowthGrazerModel extends EntityModel<LivingEntityRenderState> {
 	private final ModelPart head;
 	private final ModelPart leg1;
 	private final ModelPart leg2;
@@ -23,7 +22,7 @@ public class GrowthGrazerModel<T extends Mob> extends HierarchicalModel<T> {
 	private final ModelPart leg6;
 
 	public GrowthGrazerModel(ModelPart root) {
-		this.root = root;
+        super(root);
 		this.head = root.getChild("head");
 		this.leg1 = root.getChild("leg1");
 		this.leg2 = root.getChild("leg2");
@@ -31,11 +30,6 @@ public class GrowthGrazerModel<T extends Mob> extends HierarchicalModel<T> {
 		this.leg4 = root.getChild("leg4");
 		this.leg5 = root.getChild("leg5");
 		this.leg6 = root.getChild("leg6");
-	}
-
-	@Override
-	public ModelPart root() {
-		return this.root;
 	}
 
 	public static LayerDefinition makeBodyLayer() {
@@ -95,16 +89,16 @@ public class GrowthGrazerModel<T extends Mob> extends HierarchicalModel<T> {
 	}
 
 	@Override
-	public void setupAnim(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-		this.head.yRot = netHeadYaw / (180F / (float) Math.PI);
-		this.head.xRot = headPitch / (180F / (float) Math.PI);
+	public void setupAnim(LivingEntityRenderState state) {
+		this.head.yRot = state.yRot / (180F / (float) Math.PI);
+		this.head.xRot = state.xRot / (180F / (float) Math.PI);
 
-		this.leg1.xRot = Mth.cos(limbSwing * 0.6662F) * 0.5F * limbSwingAmount;
-		this.leg4.xRot = Mth.cos(limbSwing * 0.6662F + (float) Math.PI) * 0.5F * limbSwingAmount;
+		this.leg1.xRot = Mth.cos(state.walkAnimationPos * 0.6662F) * 0.5F * state.walkAnimationSpeed;
+		this.leg4.xRot = Mth.cos(state.walkAnimationPos * 0.6662F + (float) Math.PI) * 0.5F * state.walkAnimationSpeed;
 
-		this.leg2.xRot = Mth.cos(limbSwing * 0.6662F + (float) Math.PI) * 0.5F * limbSwingAmount;
-		this.leg3.xRot = Mth.cos(limbSwing * 0.6662F + (float) Math.PI) * 0.5F * limbSwingAmount;
-		this.leg5.xRot = Mth.cos(limbSwing * 0.6662F) * 0.5F * limbSwingAmount;
-		this.leg6.xRot = Mth.cos(limbSwing * 0.6662F) * 0.5F * limbSwingAmount;
+		this.leg2.xRot = Mth.cos(state.walkAnimationPos * 0.6662F + (float) Math.PI) * 0.5F * state.walkAnimationSpeed;
+		this.leg3.xRot = Mth.cos(state.walkAnimationPos * 0.6662F + (float) Math.PI) * 0.5F * state.walkAnimationSpeed;
+		this.leg5.xRot = Mth.cos(state.walkAnimationPos * 0.6662F) * 0.5F * state.walkAnimationSpeed;
+		this.leg6.xRot = Mth.cos(state.walkAnimationPos * 0.6662F) * 0.5F * state.walkAnimationSpeed;
 	}
 }

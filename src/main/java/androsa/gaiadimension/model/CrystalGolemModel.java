@@ -1,21 +1,20 @@
 package androsa.gaiadimension.model;
 
-import androsa.gaiadimension.entity.CrystalGolem;
-import net.minecraft.client.model.HierarchicalModel;
+import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.CubeListBuilder;
 import net.minecraft.client.model.geom.builders.LayerDefinition;
 import net.minecraft.client.model.geom.builders.MeshDefinition;
 import net.minecraft.client.model.geom.builders.PartDefinition;
+import net.minecraft.client.renderer.entity.state.LivingEntityRenderState;
 import net.minecraft.util.Mth;
 
 /**
  * ModelCrystalGolem - Androsa
  * Created using Tabula 7.0.0
  */
-public class CrystalGolemModel<T extends CrystalGolem> extends HierarchicalModel<T> {
-    public ModelPart root;
+public class CrystalGolemModel extends EntityModel<LivingEntityRenderState> {
     public ModelPart face;
     public ModelPart upperArmL;
     public ModelPart upperArmR;
@@ -23,17 +22,12 @@ public class CrystalGolemModel<T extends CrystalGolem> extends HierarchicalModel
     public ModelPart legR;
 
     public CrystalGolemModel(ModelPart root) {
-        this.root = root;
+        super(root);
         this.face = root.getChild("face");
         this.upperArmL = root.getChild("upper_arm_left");
         this.upperArmR = root.getChild("upper_arm_right");
         this.legL = root.getChild("leg_left");
         this.legR = root.getChild("leg_right");
-    }
-
-    @Override
-    public ModelPart root() {
-        return this.root;
     }
 
     public static LayerDefinition makeBodyLayer() {
@@ -157,22 +151,22 @@ public class CrystalGolemModel<T extends CrystalGolem> extends HierarchicalModel
 
     @Override
     @SuppressWarnings("UnusedAssignment")
-    public void setupAnim(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-        this.face.yRot = netHeadYaw / (180F / (float) Math.PI);
-        this.face.xRot = headPitch / (180F / (float) Math.PI);
+    public void setupAnim(LivingEntityRenderState state) {
+        this.face.yRot = state.yRot / (180F / (float) Math.PI);
+        this.face.xRot = state.xRot / (180F / (float) Math.PI);
 
         this.upperArmR.zRot = 0.0F;
         this.upperArmL.zRot = 0.0F;
         this.upperArmR.xRot = 0.0F;
         this.upperArmL.xRot = 0.0F;
-        this.upperArmR.zRot += Mth.cos(ageInTicks * 0.09F) * 0.05F + 0.2F;
-        this.upperArmL.zRot -= Mth.cos(ageInTicks * 0.09F) * 0.05F + 0.2F;
-        this.upperArmR.xRot += Mth.sin(ageInTicks * 0.067F) * 0.05F;
-        this.upperArmL.xRot -= Mth.sin(ageInTicks * 0.067F) * 0.05F;
-        this.upperArmL.xRot = Mth.cos(limbSwing * 0.6662F) * 1.0F * limbSwingAmount;
-        this.upperArmR.xRot = Mth.cos(limbSwing * 0.6662F + (float) Math.PI) * 1.0F * limbSwingAmount;
+        this.upperArmR.zRot += Mth.cos(state.ageInTicks * 0.09F) * 0.05F + 0.2F;
+        this.upperArmL.zRot -= Mth.cos(state.ageInTicks * 0.09F) * 0.05F + 0.2F;
+        this.upperArmR.xRot += Mth.sin(state.ageInTicks * 0.067F) * 0.05F;
+        this.upperArmL.xRot -= Mth.sin(state.ageInTicks * 0.067F) * 0.05F;
+        this.upperArmL.xRot = Mth.cos(state.walkAnimationPos * 0.6662F) * 1.0F * state.walkAnimationSpeed;
+        this.upperArmR.xRot = Mth.cos(state.walkAnimationPos * 0.6662F + (float) Math.PI) * 1.0F * state.walkAnimationSpeed;
 
-        this.legL.xRot = Mth.cos(limbSwing * 0.6662F) * 0.5F * limbSwingAmount;
-        this.legR.xRot = Mth.cos(limbSwing * 0.6662F + (float) Math.PI) * 0.5F * limbSwingAmount;
+        this.legL.xRot = Mth.cos(state.walkAnimationPos * 0.6662F) * 0.5F * state.walkAnimationSpeed;
+        this.legR.xRot = Mth.cos(state.walkAnimationPos * 0.6662F + (float) Math.PI) * 0.5F * state.walkAnimationSpeed;
     }
 }

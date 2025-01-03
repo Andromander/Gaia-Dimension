@@ -1,20 +1,20 @@
 package androsa.gaiadimension.model;
 
-import androsa.gaiadimension.entity.RockyLuggeroth;
-import net.minecraft.client.model.HierarchicalModel;
+import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.CubeListBuilder;
 import net.minecraft.client.model.geom.builders.LayerDefinition;
 import net.minecraft.client.model.geom.builders.MeshDefinition;
 import net.minecraft.client.model.geom.builders.PartDefinition;
+import net.minecraft.client.renderer.entity.state.LivingEntityRenderState;
 import net.minecraft.util.Mth;
 
 /**
  * ModelRockyLuggeroth - Androsa
  * Created using Tabula 7.0.0
  */
-public class RockyLuggerothModel<T extends RockyLuggeroth> extends HierarchicalModel<T> {
+public class RockyLuggerothModel extends EntityModel<LivingEntityRenderState> {
     public ModelPart root;
     public ModelPart head;
     public ModelPart foot1;
@@ -23,17 +23,12 @@ public class RockyLuggerothModel<T extends RockyLuggeroth> extends HierarchicalM
     public ModelPart foot4;
 
     public RockyLuggerothModel(ModelPart root) {
-        this.root = root;
+        super(root);
         this.head = root.getChild("head");
         this.foot1 = root.getChild("foot_front_left");
         this.foot2 = root.getChild("foot_front_right");
         this.foot3 = root.getChild("foot_back_left");
         this.foot4 = root.getChild("foot_back_right");
-    }
-
-    @Override
-    public ModelPart root() {
-        return this.root;
     }
 
     public static LayerDefinition makeBodyLayer() {
@@ -77,14 +72,14 @@ public class RockyLuggerothModel<T extends RockyLuggeroth> extends HierarchicalM
     }
 
     @Override
-    public void setupAnim(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-        this.head.yRot = netHeadYaw / (180F / (float) Math.PI);
-        this.head.xRot = headPitch / (180F / (float) Math.PI);
+    public void setupAnim(LivingEntityRenderState state) {
+        this.head.yRot = state.yRot / (180F / (float) Math.PI);
+        this.head.xRot = state.xRot / (180F / (float) Math.PI);
 
-        this.foot1.xRot = Mth.cos(limbSwing * 0.6662F) * 0.5F * limbSwingAmount;
-        this.foot2.xRot = Mth.cos(limbSwing * 0.6662F + (float) Math.PI) * 0.5F * limbSwingAmount;
+        this.foot1.xRot = Mth.cos(state.walkAnimationPos * 0.6662F) * 0.5F * state.walkAnimationSpeed;
+        this.foot2.xRot = Mth.cos(state.walkAnimationPos * 0.6662F + (float) Math.PI) * 0.5F * state.walkAnimationSpeed;
 
-        this.foot3.xRot = Mth.cos(limbSwing * 0.6662F + (float) Math.PI) * 0.5F * limbSwingAmount;
-        this.foot4.xRot = Mth.cos(limbSwing * 0.6662F) * 0.5F * limbSwingAmount;
+        this.foot3.xRot = Mth.cos(state.walkAnimationPos * 0.6662F + (float) Math.PI) * 0.5F * state.walkAnimationSpeed;
+        this.foot4.xRot = Mth.cos(state.walkAnimationPos * 0.6662F) * 0.5F * state.walkAnimationSpeed;
     }
 }

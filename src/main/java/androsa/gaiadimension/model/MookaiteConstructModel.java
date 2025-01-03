@@ -2,8 +2,8 @@ package androsa.gaiadimension.model;
 // Made with Blockbench 4.5.2
 // Exported for Minecraft version 1.17 - 1.18 with Mojang mappings
 
-import androsa.gaiadimension.entity.MookaiteConstruct;
-import net.minecraft.client.model.HierarchicalModel;
+import androsa.gaiadimension.model.renderstate.MookaiteConstructRenderState;
+import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.CubeListBuilder;
@@ -12,9 +12,7 @@ import net.minecraft.client.model.geom.builders.MeshDefinition;
 import net.minecraft.client.model.geom.builders.PartDefinition;
 import net.minecraft.util.Mth;
 
-public class MookaiteConstructModel<T extends MookaiteConstruct> extends HierarchicalModel<T> {
-	private final ModelPart root;
-
+public class MookaiteConstructModel extends EntityModel<MookaiteConstructRenderState> {
 	private final ModelPart head;
 	private final ModelPart torso;
 	private final ModelPart right_arm_upper;
@@ -34,7 +32,7 @@ public class MookaiteConstructModel<T extends MookaiteConstruct> extends Hierarc
 	private final ModelPart left_leg_brace;
 
 	public MookaiteConstructModel(ModelPart root) {
-		this.root = root;
+		super(root);
 
 		ModelPart body = root.getChild("body");
 		this.torso = body.getChild("torso");
@@ -54,11 +52,6 @@ public class MookaiteConstructModel<T extends MookaiteConstruct> extends Hierarc
 		this.left_arm_brace = left_arm_upper.getChild("left_arm_lower").getChild("left_arm_brace");
 		this.right_leg_brace = right_leg_upper.getChild("right_leg_lower").getChild("right_leg_brace");
 		this.left_leg_brace = left_leg_upper.getChild("left_leg_lower").getChild("left_leg_brace");
-	}
-
-	@Override
-	public ModelPart root() {
-		return this.root;
 	}
 
 	public static LayerDefinition makeBodyLayer() {
@@ -246,27 +239,24 @@ public class MookaiteConstructModel<T extends MookaiteConstruct> extends Hierarc
 	}
 
 	@Override
-	public void setupAnim(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-		this.torso.yRot = netHeadYaw / (270F / (float) Math.PI);
-		this.head.xRot = headPitch / (180F / (float) Math.PI) - 0.7418F;
+	public void setupAnim(MookaiteConstructRenderState state) {
+		this.right_horn.visible = state.rightHorn.isPresent();
+		this.left_horn.visible = state.leftHorn.isPresent();
+		this.right_eye.visible = state.rightEye.isPresent();
+		this.left_eye.visible = state.leftEye.isPresent();
+		this.right_shoulder.visible = state.rightShoulder.isPresent();
+		this.left_shoulder.visible = state.leftShoulder.isPresent();
+		this.right_arm_brace.visible = state.rightArmBrace.isPresent();
+		this.left_arm_brace.visible = state.leftArmBrace.isPresent();
+		this.right_leg_brace.visible = state.rightLegBrace.isPresent();
+		this.left_leg_brace.visible = state.leftLegBrace.isPresent();
 
-		this.right_arm_upper.xRot = Mth.cos(limbSwing * 0.6662F) * 1.0F * limbSwingAmount + 0.2182F;
-		this.left_arm_upper.xRot = Mth.cos(limbSwing * 0.6662F + (float) Math.PI) * 1.0F * limbSwingAmount + 0.2182F;
-		this.right_leg_upper.xRot = Mth.cos(limbSwing * 0.6662F) * 0.7F * limbSwingAmount;
-		this.left_leg_upper.xRot = Mth.cos(limbSwing * 0.6662F + (float) Math.PI) * 0.7F * limbSwingAmount;
-	}
+		this.torso.yRot = state.yRot / (270F / (float) Math.PI);
+		this.head.xRot = state.xRot / (180F / (float) Math.PI) - 0.7418F;
 
-	@Override
-	public void prepareMobModel(T entity, float limbSwing, float limbSwingAmount, float partialTicks) {
-		this.right_horn.visible = entity.getPart(MookaiteConstruct.RIGHT_HORN).isPresent();
-		this.left_horn.visible = entity.getPart(MookaiteConstruct.LEFT_HORN).isPresent();
-		this.left_eye.visible = entity.getPart(MookaiteConstruct.LEFT_EYE).isPresent();
-		this.right_eye.visible = entity.getPart(MookaiteConstruct.RIGHT_EYE).isPresent();
-		this.right_shoulder.visible = entity.getPart(MookaiteConstruct.RIGHT_SHOULDER).isPresent();
-		this.left_shoulder.visible = entity.getPart(MookaiteConstruct.LEFT_SHOULDER).isPresent();
-		this.right_arm_brace.visible = entity.getPart(MookaiteConstruct.RIGHT_ARM).isPresent();
-		this.left_arm_brace.visible = entity.getPart(MookaiteConstruct.LEFT_ARM).isPresent();
-		this.right_leg_brace.visible = entity.getPart(MookaiteConstruct.RIGHT_LEG).isPresent();
-		this.left_leg_brace.visible = entity.getPart(MookaiteConstruct.LEFT_LEG).isPresent();
+		this.right_arm_upper.xRot = Mth.cos(state.walkAnimationPos * 0.6662F) * 1.0F * state.walkAnimationSpeed + 0.2182F;
+		this.left_arm_upper.xRot = Mth.cos(state.walkAnimationPos * 0.6662F + (float) Math.PI) * 1.0F * state.walkAnimationSpeed + 0.2182F;
+		this.right_leg_upper.xRot = Mth.cos(state.walkAnimationPos * 0.6662F) * 0.7F * state.walkAnimationSpeed;
+		this.left_leg_upper.xRot = Mth.cos(state.walkAnimationPos * 0.6662F + (float) Math.PI) * 0.7F * state.walkAnimationSpeed;
 	}
 }

@@ -1,18 +1,17 @@
 package androsa.gaiadimension.model;
 
-import androsa.gaiadimension.entity.ArchaicWarrior;
-import net.minecraft.client.model.HierarchicalModel;
+import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
+import net.minecraft.client.renderer.entity.state.HumanoidRenderState;
 import net.minecraft.util.Mth;
 
 /**
  * ModelArchaicWarrior - Androsa
  * Created using Tabula 7.0.0
  */
-public class ArchaicWarriorModel<T extends ArchaicWarrior> extends HierarchicalModel<T> {
-    public ModelPart root;
+public class ArchaicWarriorModel extends EntityModel<HumanoidRenderState> {
     public ModelPart bipedRightArm;
     public ModelPart bipedRightLeg;
     public ModelPart bipedLeftLeg;
@@ -25,7 +24,7 @@ public class ArchaicWarriorModel<T extends ArchaicWarrior> extends HierarchicalM
     public ModelPart bipedLeftLegwear;
 
     public ArchaicWarriorModel(ModelPart root) {
-        this.root = root;
+        super(root);
         this.bipedHead = root.getChild("head");
         this.bipedHeadwear = root.getChild("headwear");
         this.bipedLeftArm = root.getChild("arm_left");
@@ -36,11 +35,6 @@ public class ArchaicWarriorModel<T extends ArchaicWarrior> extends HierarchicalM
         this.bipedLeftLegwear = root.getChild("legwear_left");
         this.bipedRightLeg = root.getChild("leg_right");
         this.bipedRightLegwear = root.getChild("legwear_right");
-    }
-
-    @Override
-    public ModelPart root() {
-        return this.root;
     }
 
     public static LayerDefinition makeBodyLayer() {
@@ -108,15 +102,15 @@ public class ArchaicWarriorModel<T extends ArchaicWarrior> extends HierarchicalM
 
     @Override
     @SuppressWarnings("UnusedAssignment")
-    public void setupAnim(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-        this.bipedHead.yRot = netHeadYaw / (180F / (float) Math.PI);
-        this.bipedHead.xRot = headPitch / (180F / (float) Math.PI);
+    public void setupAnim(HumanoidRenderState state) {
+        this.bipedHead.yRot = state.yRot / (180F / (float) Math.PI);
+        this.bipedHead.xRot = state.xRot / (180F / (float) Math.PI);
 
-        this.bipedHeadwear.yRot = netHeadYaw / (180F / (float) Math.PI);
-        this.bipedHeadwear.xRot = headPitch / (180F / (float) Math.PI);
+        this.bipedHeadwear.yRot = state.yRot / (180F / (float) Math.PI);
+        this.bipedHeadwear.xRot = state.xRot / (180F / (float) Math.PI);
 
-        float f = Mth.sin(this.attackTime * (float)Math.PI);
-        float f1 = Mth.sin((1.0F - (1.0F - this.attackTime) * (1.0F - this.attackTime)) * (float)Math.PI);
+        float f = Mth.sin(state.attackTime * (float)Math.PI);
+        float f1 = Mth.sin((1.0F - (1.0F - state.attackTime) * (1.0F - state.attackTime)) * (float)Math.PI);
         this.bipedRightArm.zRot = 0.0F;
         this.bipedLeftArm.zRot = 0.0F;
         this.bipedRightArm.yRot = -(0.1F - f * 0.6F);
@@ -125,12 +119,12 @@ public class ArchaicWarriorModel<T extends ArchaicWarrior> extends HierarchicalM
         this.bipedLeftArm.xRot = 0.0F;
         this.bipedRightArm.xRot -= f * 1.2F - f1 * 0.4F;
         this.bipedLeftArm.xRot -= f * 1.2F - f1 * 0.4F;
-        this.bipedRightArm.zRot += Mth.cos(ageInTicks * 0.09F) * 0.05F + 0.05F;
-        this.bipedLeftArm.zRot -= Mth.cos(ageInTicks * 0.09F) * 0.05F + 0.05F;
-        this.bipedRightArm.xRot += Mth.sin(ageInTicks * 0.067F) * 0.05F;
-        this.bipedLeftArm.xRot -= Mth.sin(ageInTicks * 0.067F) * 0.05F;
-        this.bipedLeftArm.xRot = Mth.cos(limbSwing * 0.6662F) * 1.0F * limbSwingAmount;
-        this.bipedRightArm.xRot = Mth.cos(limbSwing * 0.6662F + (float) Math.PI) * 1.0F * limbSwingAmount;
+        this.bipedRightArm.zRot += Mth.cos(state.ageInTicks * 0.09F) * 0.05F + 0.05F;
+        this.bipedLeftArm.zRot -= Mth.cos(state.ageInTicks * 0.09F) * 0.05F + 0.05F;
+        this.bipedRightArm.xRot += Mth.sin(state.ageInTicks * 0.067F) * 0.05F;
+        this.bipedLeftArm.xRot -= Mth.sin(state.ageInTicks * 0.067F) * 0.05F;
+        this.bipedLeftArm.xRot = Mth.cos(state.walkAnimationPos * 0.6662F) * 1.0F * state.walkAnimationSpeed;
+        this.bipedRightArm.xRot = Mth.cos(state.walkAnimationPos * 0.6662F + (float) Math.PI) * 1.0F * state.walkAnimationSpeed;
 
         this.bipedRightArmwear.zRot = 0.0F;
         this.bipedLeftArmwear.zRot = 0.0F;
@@ -140,17 +134,17 @@ public class ArchaicWarriorModel<T extends ArchaicWarrior> extends HierarchicalM
         this.bipedLeftArmwear.xRot = 0.0F;
         this.bipedRightArmwear.xRot -= f * 1.2F - f1 * 0.4F;
         this.bipedLeftArmwear.xRot -= f * 1.2F - f1 * 0.4F;
-        this.bipedRightArmwear.zRot += Mth.cos(ageInTicks * 0.09F) * 0.05F + 0.05F;
-        this.bipedLeftArmwear.zRot -= Mth.cos(ageInTicks * 0.09F) * 0.05F + 0.05F;
-        this.bipedRightArmwear.xRot += Mth.sin(ageInTicks * 0.067F) * 0.05F;
-        this.bipedLeftArmwear.xRot -= Mth.sin(ageInTicks * 0.067F) * 0.05F;
-        this.bipedLeftArmwear.xRot = Mth.cos(limbSwing * 0.6662F) * 1.0F * limbSwingAmount;
-        this.bipedRightArmwear.xRot = Mth.cos(limbSwing * 0.6662F + (float) Math.PI) * 1.0F * limbSwingAmount;
+        this.bipedRightArmwear.zRot += Mth.cos(state.ageInTicks * 0.09F) * 0.05F + 0.05F;
+        this.bipedLeftArmwear.zRot -= Mth.cos(state.ageInTicks * 0.09F) * 0.05F + 0.05F;
+        this.bipedRightArmwear.xRot += Mth.sin(state.ageInTicks * 0.067F) * 0.05F;
+        this.bipedLeftArmwear.xRot -= Mth.sin(state.ageInTicks * 0.067F) * 0.05F;
+        this.bipedLeftArmwear.xRot = Mth.cos(state.walkAnimationPos * 0.6662F) * 1.0F * state.walkAnimationSpeed;
+        this.bipedRightArmwear.xRot = Mth.cos(state.walkAnimationPos * 0.6662F + (float) Math.PI) * 1.0F * state.walkAnimationSpeed;
 
-        this.bipedRightLeg.xRot = Mth.cos(limbSwing * 0.6662F) * 1.0F * limbSwingAmount;
-        this.bipedLeftLeg.xRot = Mth.cos(limbSwing * 0.6662F + (float) Math.PI) * 1.0F * limbSwingAmount;
+        this.bipedRightLeg.xRot = Mth.cos(state.walkAnimationPos * 0.6662F) * 1.0F * state.walkAnimationSpeed;
+        this.bipedLeftLeg.xRot = Mth.cos(state.walkAnimationPos * 0.6662F + (float) Math.PI) * 1.0F * state.walkAnimationSpeed;
 
-        this.bipedRightLegwear.xRot = Mth.cos(limbSwing * 0.6662F) * 1.0F * limbSwingAmount;
-        this.bipedLeftLegwear.xRot = Mth.cos(limbSwing * 0.6662F + (float) Math.PI) * 1.0F * limbSwingAmount;
+        this.bipedRightLegwear.xRot = Mth.cos(state.walkAnimationPos * 0.6662F) * 1.0F * state.walkAnimationSpeed;
+        this.bipedLeftLegwear.xRot = Mth.cos(state.walkAnimationPos * 0.6662F + (float) Math.PI) * 1.0F * state.walkAnimationSpeed;
     }
 }

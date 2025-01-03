@@ -1,39 +1,33 @@
 package androsa.gaiadimension.model;
 
-import androsa.gaiadimension.entity.AgateGolem;
-import net.minecraft.client.model.HierarchicalModel;
+import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.CubeListBuilder;
 import net.minecraft.client.model.geom.builders.LayerDefinition;
 import net.minecraft.client.model.geom.builders.MeshDefinition;
 import net.minecraft.client.model.geom.builders.PartDefinition;
+import net.minecraft.client.renderer.entity.state.LivingEntityRenderState;
 import net.minecraft.util.Mth;
 
 /**
  * ModelAgateGolem - Androsa
  * Created using Tabula 7.0.0
  */
-public class AgateGolemModel<T extends AgateGolem> extends HierarchicalModel<T> {
-    public ModelPart root;
-    public ModelPart face;
-    public ModelPart upperArmL;
-    public ModelPart upperLegL;
-    public ModelPart upperArmR;
-    public ModelPart upperLegR;
+public class AgateGolemModel extends EntityModel<LivingEntityRenderState> {
+    public final ModelPart face;
+    public final ModelPart upperArmL;
+    public final ModelPart upperLegL;
+    public final ModelPart upperArmR;
+    public final ModelPart upperLegR;
 
     public AgateGolemModel(ModelPart root) {
-        this.root = root;
+        super(root);
         this.face = root.getChild("face");
         this.upperArmL = root.getChild("upper_arm_left");
-        this.upperArmR = root.getChild("upper_arm_right");
-        this.upperLegL = root.getChild("upper_leg_left");
+        this.upperLegL = root.getChild("upper_arm_right");
+        this.upperArmR = root.getChild("upper_leg_left");
         this.upperLegR = root.getChild("upper_leg_right");
-    }
-
-    @Override
-    public ModelPart root() {
-        return root;
     }
 
     public static LayerDefinition makeBodyLayer() {
@@ -181,22 +175,22 @@ public class AgateGolemModel<T extends AgateGolem> extends HierarchicalModel<T> 
 
     @Override
     @SuppressWarnings("UnusedAssignment")
-    public void setupAnim(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-        this.face.yRot = netHeadYaw / (180F / (float) Math.PI);
-        this.face.xRot = headPitch / (180F / (float) Math.PI);
+    public void setupAnim(LivingEntityRenderState state) {
+        this.face.yRot = state.yRot / (180F / (float) Math.PI);
+        this.face.xRot = state.xRot / (180F / (float) Math.PI);
 
         this.upperArmR.zRot = 0.0F;
         this.upperArmL.zRot = 0.0F;
         this.upperArmR.xRot = 0.0F;
         this.upperArmL.xRot = 0.0F;
-        this.upperArmR.zRot += Mth.cos(ageInTicks * 0.09F) * 0.05F + 0.3490658503988659F;
-        this.upperArmL.zRot -= Mth.cos(ageInTicks * 0.09F) * 0.05F + 0.3490658503988659F;
-        this.upperArmR.xRot += Mth.sin(ageInTicks * 0.067F) * 0.05F;
-        this.upperArmL.xRot -= Mth.sin(ageInTicks * 0.067F) * 0.05F;
-        this.upperArmL.xRot = Mth.cos(limbSwing * 0.6662F) * 1.0F * limbSwingAmount;
-        this.upperArmR.xRot = Mth.cos(limbSwing * 0.6662F + (float) Math.PI) * 1.0F * limbSwingAmount;
+        this.upperArmR.zRot += Mth.cos(state.ageInTicks * 0.09F) * 0.05F + 0.3490658503988659F;
+        this.upperArmL.zRot -= Mth.cos(state.ageInTicks * 0.09F) * 0.05F + 0.3490658503988659F;
+        this.upperArmR.xRot += Mth.sin(state.ageInTicks * 0.067F) * 0.05F;
+        this.upperArmL.xRot -= Mth.sin(state.ageInTicks * 0.067F) * 0.05F;
+        this.upperArmL.xRot = Mth.cos(state.walkAnimationPos * 0.6662F) * 1.0F * state.walkAnimationSpeed;
+        this.upperArmR.xRot = Mth.cos(state.walkAnimationPos * 0.6662F + (float) Math.PI) * 1.0F * state.walkAnimationSpeed;
 
-        this.upperLegL.xRot = Mth.cos(limbSwing * 0.6662F) * 0.5F * limbSwingAmount - 0.3490658503988659F;
-        this.upperLegR.xRot = Mth.cos(limbSwing * 0.6662F + (float) Math.PI) * 0.5F * limbSwingAmount - 0.3490658503988659F;
+        this.upperLegL.xRot = Mth.cos(state.walkAnimationPos * 0.6662F) * 0.5F * state.walkAnimationSpeed - 0.3490658503988659F;
+        this.upperLegR.xRot = Mth.cos(state.walkAnimationPos * 0.6662F + (float) Math.PI) * 0.5F * state.walkAnimationSpeed - 0.3490658503988659F;
     }
 }

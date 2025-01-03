@@ -1,21 +1,20 @@
 package androsa.gaiadimension.model;
 
-import androsa.gaiadimension.entity.HowliteWolf;
-import net.minecraft.client.model.HierarchicalModel;
+import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.CubeListBuilder;
 import net.minecraft.client.model.geom.builders.LayerDefinition;
 import net.minecraft.client.model.geom.builders.MeshDefinition;
 import net.minecraft.client.model.geom.builders.PartDefinition;
+import net.minecraft.client.renderer.entity.state.LivingEntityRenderState;
 import net.minecraft.util.Mth;
 
 /**
  * ModelSlime - Either Mojang or a mod author
  * Created using Tabula 7.0.0
  */
-public class HowliteWolfModel<T extends HowliteWolf> extends HierarchicalModel<T> {
-    public ModelPart root;
+public class HowliteWolfModel extends EntityModel<LivingEntityRenderState> {
     public ModelPart head;
     public ModelPart leg1;
     public ModelPart leg2;
@@ -23,17 +22,12 @@ public class HowliteWolfModel<T extends HowliteWolf> extends HierarchicalModel<T
     public ModelPart leg4;
 
     public HowliteWolfModel(ModelPart root) {
-        this.root = root;
+        super(root);
         this.head = root.getChild("head");
         this.leg1 = root.getChild("leg_front_left");
         this.leg2 = root.getChild("leg_front_right");
         this.leg3 = root.getChild("leg_back_left");
         this.leg4 = root.getChild("leg_back_right");
-    }
-
-    @Override
-    public ModelPart root() {
-        return this.root;
     }
 
     public static LayerDefinition makeBodyLayer() {
@@ -91,14 +85,14 @@ public class HowliteWolfModel<T extends HowliteWolf> extends HierarchicalModel<T
     }
 
     @Override
-    public void setupAnim(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-        this.head.yRot = netHeadYaw / (180F / (float) Math.PI);
-        this.head.xRot = headPitch / (180F / (float) Math.PI);
+    public void setupAnim(LivingEntityRenderState state) {
+        this.head.yRot = state.yRot / (180F / (float) Math.PI);
+        this.head.xRot = state.xRot / (180F / (float) Math.PI);
 
-        this.leg4.xRot = Mth.cos(limbSwing * 0.6662F) * 0.5F * limbSwingAmount;
-        this.leg2.xRot = Mth.cos(limbSwing * 0.6662F + (float) Math.PI) * 0.5F * limbSwingAmount;
+        this.leg4.xRot = Mth.cos(state.walkAnimationPos * 0.6662F) * 0.5F * state.walkAnimationSpeed;
+        this.leg2.xRot = Mth.cos(state.walkAnimationPos * 0.6662F + (float) Math.PI) * 0.5F * state.walkAnimationSpeed;
 
-        this.leg1.xRot = Mth.cos(limbSwing * 0.6662F + (float) Math.PI) * 0.5F * limbSwingAmount;
-        this.leg3.xRot = Mth.cos(limbSwing * 0.6662F) * 0.5F * limbSwingAmount;
+        this.leg1.xRot = Mth.cos(state.walkAnimationPos * 0.6662F + (float) Math.PI) * 0.5F * state.walkAnimationSpeed;
+        this.leg3.xRot = Mth.cos(state.walkAnimationPos * 0.6662F) * 0.5F * state.walkAnimationSpeed;
     }
 }

@@ -1,7 +1,7 @@
 package androsa.gaiadimension.model;
 
-import androsa.gaiadimension.entity.MalachiteDrone;
-import net.minecraft.client.model.HierarchicalModel;
+import androsa.gaiadimension.model.renderstate.MalachiteDroneRenderState;
+import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.CubeListBuilder;
@@ -14,24 +14,18 @@ import net.minecraft.util.Mth;
  * MalachiteDroneModel - Androsa
  * Created using Tabula 7.0.0
  */
-public class MalachiteDroneModel<T extends MalachiteDrone> extends HierarchicalModel<T> {
-    public ModelPart root;
+public class MalachiteDroneModel extends EntityModel<MalachiteDroneRenderState> {
     public ModelPart upperArmL;
     public ModelPart upperArmR;
     public ModelPart upperLegL;
     public ModelPart upperLegR;
 
     public MalachiteDroneModel(ModelPart root) {
-        this.root = root;
+        super(root);
         this.upperArmL = root.getChild("upper_arm_left");
         this.upperArmR = root.getChild("upper_arm_right");
         this.upperLegL = root.getChild("upper_leg_left");
         this.upperLegR = root.getChild("upper_leg_right");
-    }
-
-    @Override
-    public ModelPart root() {
-        return this.root;
     }
 
     public static LayerDefinition makeBodyLayer() {
@@ -117,19 +111,19 @@ public class MalachiteDroneModel<T extends MalachiteDrone> extends HierarchicalM
 
     @Override
     @SuppressWarnings("UnusedAssignment")
-    public void setupAnim(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
+    public void setupAnim(MalachiteDroneRenderState state) {
         this.upperArmR.zRot = 0.0F;
         this.upperArmL.zRot = 0.0F;
         this.upperArmR.xRot = 0.0F;
         this.upperArmL.xRot = 0.0F;
-        this.upperArmR.zRot += Mth.cos(ageInTicks * 0.09F) * 0.05F + 0.05F;
-        this.upperArmL.zRot -= Mth.cos(ageInTicks * 0.09F) * 0.05F + 0.05F;
-        this.upperArmR.xRot += Mth.sin(ageInTicks * 0.067F) * 0.05F;
-        this.upperArmL.xRot -= Mth.sin(ageInTicks * 0.067F) * 0.05F;
-        this.upperArmL.xRot = Mth.cos(limbSwing * 0.6662F) * 0.5F * limbSwingAmount;
-        this.upperArmR.xRot = Mth.cos(limbSwing * 0.6662F + (float) Math.PI) * 0.5F * limbSwingAmount;
+        this.upperArmR.zRot += Mth.cos(state.ageInTicks * 0.09F) * 0.05F + 0.05F;
+        this.upperArmL.zRot -= Mth.cos(state.ageInTicks * 0.09F) * 0.05F + 0.05F;
+        this.upperArmR.xRot += Mth.sin(state.ageInTicks * 0.067F) * 0.05F;
+        this.upperArmL.xRot -= Mth.sin(state.ageInTicks * 0.067F) * 0.05F;
+        this.upperArmL.xRot = Mth.cos(state.walkAnimationPos * 0.6662F) * 0.5F * state.walkAnimationSpeed;
+        this.upperArmR.xRot = Mth.cos(state.walkAnimationPos * 0.6662F + (float) Math.PI) * 0.5F * state.walkAnimationSpeed;
 
-        this.upperLegR.xRot = Mth.cos(limbSwing * 0.6662F) * 0.5F * limbSwingAmount + 0.3490658503988659F;
-        this.upperLegL.xRot = Mth.cos(limbSwing * 0.6662F + (float) Math.PI) * 0.5F * limbSwingAmount + 0.3490658503988659F;
+        this.upperLegR.xRot = Mth.cos(state.walkAnimationPos * 0.6662F) * 0.5F * state.walkAnimationSpeed + 0.3490658503988659F;
+        this.upperLegL.xRot = Mth.cos(state.walkAnimationPos * 0.6662F + (float) Math.PI) * 0.5F * state.walkAnimationSpeed + 0.3490658503988659F;
     }
 }

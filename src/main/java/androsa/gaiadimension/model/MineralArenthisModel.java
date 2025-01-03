@@ -1,13 +1,14 @@
 package androsa.gaiadimension.model;
 
-import androsa.gaiadimension.entity.MineralArenthis;
-import net.minecraft.client.model.HierarchicalModel;
+import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.CubeListBuilder;
 import net.minecraft.client.model.geom.builders.LayerDefinition;
 import net.minecraft.client.model.geom.builders.MeshDefinition;
 import net.minecraft.client.model.geom.builders.PartDefinition;
+import net.minecraft.client.renderer.entity.state.LivingEntityRenderState;
+import net.minecraft.client.renderer.entity.state.SquidRenderState;
 import net.minecraft.util.Mth;
 
 import java.util.Arrays;
@@ -16,7 +17,7 @@ import java.util.Arrays;
  * ModelMineralArenthis - Androsa
  * Created using Tabula 7.0.0
  */
-public class MineralArenthisModel<T extends MineralArenthis> extends HierarchicalModel<T> {
+public class MineralArenthisModel extends EntityModel<SquidRenderState> {
     public ModelPart root;
     public ModelPart body;
     public ModelPart tail;
@@ -24,16 +25,11 @@ public class MineralArenthisModel<T extends MineralArenthis> extends Hierarchica
     public ModelPart[] tentacles = new ModelPart[10];
 
     public MineralArenthisModel(ModelPart root) {
-        this.root = root;
+        super(root);
         this.body = root.getChild("cap_top").getChild("cap_bottom").getChild("head").getChild("body");
         this.tail = body.getChild("tail");
         this.tailfin = tail.getChild("tail_fin");
         Arrays.setAll(this.tentacles, (num) -> root.getChild(getTentacleName(num)));
-    }
-
-    @Override
-    public ModelPart root() {
-        return this.root;
     }
 
     public static LayerDefinition makeBodyLayer() {
@@ -91,13 +87,13 @@ public class MineralArenthisModel<T extends MineralArenthis> extends Hierarchica
     }
 
     @Override
-    public void setupAnim(T entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-        this.body.xRot = Mth.sin(ageInTicks * (float)Math.PI * 0.025F) * 3.0F;
-        this.tail.xRot = Mth.sin(ageInTicks * (float)Math.PI * 0.025F) * 3.0F;
-        this.tailfin.xRot = Mth.sin(ageInTicks * (float)Math.PI * 0.025F) * 3.0F;
+    public void setupAnim(SquidRenderState state) {
+        this.body.xRot = Mth.sin(state.ageInTicks * (float)Math.PI * 0.025F) * 3.0F;
+        this.tail.xRot = Mth.sin(state.ageInTicks * (float)Math.PI * 0.025F) * 3.0F;
+        this.tailfin.xRot = Mth.sin(state.ageInTicks * (float)Math.PI * 0.025F) * 3.0F;
 
         for (ModelPart modelrenderer : this.tentacles) {
-            modelrenderer.xRot = ageInTicks;
+            modelrenderer.xRot = state.ageInTicks;
         }
     }
 }

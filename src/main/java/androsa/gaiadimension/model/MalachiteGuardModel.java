@@ -1,11 +1,9 @@
 package androsa.gaiadimension.model;
 
-import androsa.gaiadimension.entity.boss.MalachiteGuard;
 import androsa.gaiadimension.entity.data.GuardPhase;
 import androsa.gaiadimension.entity.data.ThreeStagePhase;
-import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.blaze3d.vertex.VertexConsumer;
-import net.minecraft.client.model.HierarchicalModel;
+import androsa.gaiadimension.model.renderstate.MalachiteGuardRenderState;
+import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
@@ -15,8 +13,7 @@ import net.minecraft.util.Mth;
  * ModelMalachiteGuard - Androsa
  * Created using Tabula 7.0.0
  */
-public class MalachiteGuardModel<T extends MalachiteGuard> extends HierarchicalModel<T> {
-    public ModelPart root;
+public class MalachiteGuardModel extends EntityModel<MalachiteGuardRenderState> {
     public ModelPart head;
     public ModelPart torso;
     public ModelPart upperArmL;
@@ -28,11 +25,10 @@ public class MalachiteGuardModel<T extends MalachiteGuard> extends HierarchicalM
     public ModelPart footL;
     public ModelPart footR;
 
-    private float offset;
     private boolean reset;
 
     public MalachiteGuardModel(ModelPart root) {
-        this.root = root;
+        super(root);
         this.head = root.getChild("head");
         this.torso = root.getChild("torso");
         this.upperArmL = root.getChild("shoulder_left").getChild("upper_arm_left");
@@ -43,11 +39,6 @@ public class MalachiteGuardModel<T extends MalachiteGuard> extends HierarchicalM
         this.footL = legL.getChild("boot_left");
         this.legR = root.getChild("leg_right");
         this.footR = legR.getChild("boot_right");
-    }
-
-    @Override
-    public ModelPart root() {
-        return this.root;
     }
 
     public static LayerDefinition makeBodyLayer(CubeDeformation scale) {
@@ -136,14 +127,6 @@ public class MalachiteGuardModel<T extends MalachiteGuard> extends HierarchicalM
         return LayerDefinition.create(mesh, 128, 64);
     }
 
-    @Override
-    public void renderToBuffer(PoseStack stack, VertexConsumer builder, int light, int overlay, int color) {
-        stack.pushPose();
-        stack.translate(0.0F, offset, 0.0F);
-        super.renderToBuffer(stack, builder, light, overlay, color);
-        stack.popPose();
-    }
-
     /**
      * This is a helper function from Tabula to set the rotation of model parts
      */
@@ -155,10 +138,10 @@ public class MalachiteGuardModel<T extends MalachiteGuard> extends HierarchicalM
 
     @Override
     @SuppressWarnings("UnusedAssignment")
-    public void setupAnim(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-        if (entity.getPhase() == GuardPhase.DEFENCE) {
+    public void setupAnim(MalachiteGuardRenderState state) {
+        if (state.phase == GuardPhase.DEFENCE) {
             if (reset) reset = false;
-            this.offset = 0.1F;
+            this.root.y = 0.1F;
 
             setRotateAngle(upperArmL, -1.3F, -0.1F, 0.0F);
             setRotateAngle(upperArmR, -1.3F, 0.1F, 0.0F);
@@ -168,9 +151,9 @@ public class MalachiteGuardModel<T extends MalachiteGuard> extends HierarchicalM
             setRotateAngle(footR, 0.5F, 0.0F, 0.0F);
             setRotateAngle(lowerArmL, -1.7F, 0.6F, 0.0F);
             setRotateAngle(lowerArmR, -1.7F, -0.6F, 0.0F);
-        } else if (entity.getChargePhase() == ThreeStagePhase.CHARGE || entity.getStompPhase() == ThreeStagePhase.EXECUTE) {
+        } else if (state.chargePhase == ThreeStagePhase.CHARGE || state.stompPhase == ThreeStagePhase.EXECUTE) {
             if (reset) reset = false;
-            this.offset = 0.5F;
+            this.root.y = 0.5F;
 
             setRotateAngle(head, 0.8F, 0.0F, 0.0F);
             setRotateAngle(torso, 0.2F, 0.0F, 0.0F);
@@ -182,9 +165,9 @@ public class MalachiteGuardModel<T extends MalachiteGuard> extends HierarchicalM
             setRotateAngle(legR, -1.1F, 0.3F, 0.0F);
             setRotateAngle(footL, 1.6F, 0.0F, 0.0F);
             setRotateAngle(footR, 1.6F, 0.0F, 0.0F);
-        } else if (entity.getChargePhase() == ThreeStagePhase.EXECUTE) {
+        } else if (state.chargePhase == ThreeStagePhase.EXECUTE) {
             if (reset) reset = false;
-            this.offset = 0.1F;
+            this.root.y = 0.1F;
 
             setRotateAngle(head, -0.8F, 0.0F, 0.0F);
             setRotateAngle(torso, -0.1F, 0.0F, 0.0F);
@@ -196,7 +179,7 @@ public class MalachiteGuardModel<T extends MalachiteGuard> extends HierarchicalM
             setRotateAngle(legR, 0.0F, 0.0F, 0.3F);
             setRotateAngle(footL, 0.0F, 0.0F, 0.0F);
             setRotateAngle(footR, 0.0F, 0.0F, 0.0F);
-        } else if (entity.getStompPhase() == ThreeStagePhase.CHARGE) {
+        } else if (state.stompPhase == ThreeStagePhase.CHARGE) {
             if (reset) reset = false;
 
             setRotateAngle(head, -0.3F, 0.0F, 0.0F);
@@ -209,7 +192,7 @@ public class MalachiteGuardModel<T extends MalachiteGuard> extends HierarchicalM
             setRotateAngle(legR, -0.2F, 0.5F, 0.0F);
             setRotateAngle(footR, 0.2F, 0.0F, 0.0F);
         } else {
-            this.offset = 0.0F;
+            this.root.y = 0.0F;
 
             if (!reset) {
                 this.resetAngles(head, torso, upperArmL, upperArmR, legL, legR, footL, footR, lowerArmL, lowerArmR);
@@ -221,18 +204,18 @@ public class MalachiteGuardModel<T extends MalachiteGuard> extends HierarchicalM
             this.upperArmL.zRot = 0.0F;
             this.upperArmR.xRot = 0.0F;
             this.upperArmL.xRot = 0.0F;
-            this.upperArmR.zRot += Mth.cos(ageInTicks * 0.09F) * 0.05F + 0.05F;
-            this.upperArmL.zRot -= Mth.cos(ageInTicks * 0.09F) * 0.05F + 0.05F;
-            this.upperArmR.xRot += Mth.sin(ageInTicks * 0.067F) * 0.05F;
-            this.upperArmL.xRot -= Mth.sin(ageInTicks * 0.067F) * 0.05F;
-            this.upperArmL.xRot = Mth.cos(limbSwing * 0.6662F) * 0.5F * limbSwingAmount;
-            this.upperArmR.xRot = Mth.cos(limbSwing * 0.6662F + (float) Math.PI) * 0.5F * limbSwingAmount;
+            this.upperArmR.zRot += Mth.cos(state.ageInTicks * 0.09F) * 0.05F + 0.05F;
+            this.upperArmL.zRot -= Mth.cos(state.ageInTicks * 0.09F) * 0.05F + 0.05F;
+            this.upperArmR.xRot += Mth.sin(state.ageInTicks * 0.067F) * 0.05F;
+            this.upperArmL.xRot -= Mth.sin(state.ageInTicks * 0.067F) * 0.05F;
+            this.upperArmL.xRot = Mth.cos(state.walkAnimationPos * 0.6662F) * 0.5F * state.walkAnimationSpeed;
+            this.upperArmR.xRot = Mth.cos(state.walkAnimationPos * 0.6662F + (float) Math.PI) * 0.5F * state.walkAnimationSpeed;
 
-            this.legR.xRot = Mth.cos(limbSwing * 0.6662F) * 0.5F * limbSwingAmount;
-            this.legL.xRot = Mth.cos(limbSwing * 0.6662F + (float) Math.PI) * 0.5F * limbSwingAmount;
+            this.legR.xRot = Mth.cos(state.walkAnimationPos * 0.6662F) * 0.5F * state.walkAnimationSpeed;
+            this.legL.xRot = Mth.cos(state.walkAnimationPos * 0.6662F + (float) Math.PI) * 0.5F * state.walkAnimationSpeed;
 
-            this.head.yRot = netHeadYaw / (180F / (float) Math.PI);
-            this.head.xRot = headPitch / (180F / (float) Math.PI);
+            this.head.yRot = state.yRot / (180F / (float) Math.PI);
+            this.head.xRot = state.xRot / (180F / (float) Math.PI);
         }
     }
 

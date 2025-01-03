@@ -1,21 +1,20 @@
 package androsa.gaiadimension.model;
 
-import androsa.gaiadimension.entity.NomadicLagrahk;
-import net.minecraft.client.model.HierarchicalModel;
+import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.CubeListBuilder;
 import net.minecraft.client.model.geom.builders.LayerDefinition;
 import net.minecraft.client.model.geom.builders.MeshDefinition;
 import net.minecraft.client.model.geom.builders.PartDefinition;
+import net.minecraft.client.renderer.entity.state.LivingEntityRenderState;
 import net.minecraft.util.Mth;
 
 /**
  * ModelNomadicLagrahk - Androsa
  * Created using Tabula 7.0.0
  */
-public class NomadicLagrahkModel<T extends NomadicLagrahk> extends HierarchicalModel<T> {
-    public ModelPart root;
+public class NomadicLagrahkModel extends EntityModel<LivingEntityRenderState> {
     public ModelPart head;
     public ModelPart upperArmL;
     public ModelPart upperArmR;
@@ -27,7 +26,7 @@ public class NomadicLagrahkModel<T extends NomadicLagrahk> extends HierarchicalM
     public ModelPart tail4;
 
     public NomadicLagrahkModel(ModelPart root) {
-        this.root = root;
+        super(root);
         this.head = root.getChild("lower_body").getChild("mid_body").getChild("neck").getChild("head");
         this.upperArmL = root.getChild("upper_arm_left");
         this.upperArmR = root.getChild("upper_arm_right");
@@ -37,11 +36,6 @@ public class NomadicLagrahkModel<T extends NomadicLagrahk> extends HierarchicalM
         this.tail2 = tail1.getChild("tail_segment_2");
         this.tail3 = tail2.getChild("tail_segment_3");
         this.tail4 = tail3.getChild("tail_segment_4");
-    }
-
-    @Override
-    public ModelPart root() {
-        return this.root;
     }
 
     public static LayerDefinition makeBodyLayer() {
@@ -195,32 +189,32 @@ public class NomadicLagrahkModel<T extends NomadicLagrahk> extends HierarchicalM
 
     @Override
     @SuppressWarnings("UnusedAssignment")
-    public void setupAnim(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-        this.head.yRot = netHeadYaw / (180F / (float) Math.PI);
-        this.head.xRot = headPitch / (180F / (float) Math.PI) - 0.5235987755982988F;
+    public void setupAnim(LivingEntityRenderState state) {
+        this.head.yRot = state.yRot / (180F / (float) Math.PI);
+        this.head.xRot = state.xRot / (180F / (float) Math.PI) - 0.5235987755982988F;
 
         this.upperArmL.zRot = 0.0F;
         this.upperArmL.xRot = -0.33161255787892263F;
-        this.upperArmL.zRot += Mth.cos(ageInTicks * 0.09F) * 0.05F + 0.15F;
-        this.upperArmL.xRot += Mth.sin(ageInTicks * 0.067F) * 0.05F;
-        this.upperArmL.xRot = Mth.cos(limbSwing * 0.6662F + (float) Math.PI) * 1.0F * limbSwingAmount - 0.33161255787892263F;
+        this.upperArmL.zRot += Mth.cos(state.ageInTicks * 0.09F) * 0.05F + 0.15F;
+        this.upperArmL.xRot += Mth.sin(state.ageInTicks * 0.067F) * 0.05F;
+        this.upperArmL.xRot = Mth.cos(state.walkAnimationPos * 0.6662F + (float) Math.PI) * 1.0F * state.walkAnimationSpeed - 0.33161255787892263F;
 
         this.upperArmR.zRot = 0.0F;
         this.upperArmR.xRot = -0.33161255787892263F;
-        this.upperArmR.zRot -= Mth.cos(ageInTicks * 0.09F) * 0.05F + 0.15F;
-        this.upperArmR.xRot -= Mth.sin(ageInTicks * 0.067F) * 0.05F;
-        this.upperArmR.xRot = Mth.cos(limbSwing * 0.6662F) * 1.0F * limbSwingAmount - 0.33161255787892263F;
+        this.upperArmR.zRot -= Mth.cos(state.ageInTicks * 0.09F) * 0.05F + 0.15F;
+        this.upperArmR.xRot -= Mth.sin(state.ageInTicks * 0.067F) * 0.05F;
+        this.upperArmR.xRot = Mth.cos(state.walkAnimationPos * 0.6662F) * 1.0F * state.walkAnimationSpeed - 0.33161255787892263F;
 
-        this.upperLegL.xRot = Mth.cos(limbSwing * 0.6662F) * 0.7F * limbSwingAmount + 1.0471975511965976F;
-        this.upperLegR.xRot = Mth.cos(limbSwing * 0.6662F + (float) Math.PI) * 0.7F * limbSwingAmount + 1.0471975511965976F;
+        this.upperLegL.xRot = Mth.cos(state.walkAnimationPos * 0.6662F) * 0.7F * state.walkAnimationSpeed + 1.0471975511965976F;
+        this.upperLegR.xRot = Mth.cos(state.walkAnimationPos * 0.6662F + (float) Math.PI) * 0.7F * state.walkAnimationSpeed + 1.0471975511965976F;
 
-        this.tail1.yRot = Mth.cos(limbSwing * 0.6662F) * 0.5F * limbSwingAmount * 0.5F;
-        this.tail1.yRot -= Mth.sin(ageInTicks * 0.067F) * 0.05F;
-        this.tail2.yRot = Mth.cos(limbSwing * 0.6662F) * 0.5F * limbSwingAmount * 0.5F;
-        this.tail2.yRot -= Mth.sin(ageInTicks * 0.067F) * 0.05F;
-        this.tail3.yRot = Mth.cos(limbSwing * 0.6662F) * 0.5F * limbSwingAmount * 0.5F;
-        this.tail3.yRot -= Mth.sin(ageInTicks * 0.067F) * 0.05F;
-        this.tail4.yRot = Mth.cos(limbSwing * 0.6662F) * 0.5F * limbSwingAmount * 0.5F;
-        this.tail4.yRot -= Mth.sin(ageInTicks * 0.067F) * 0.05F;
+        this.tail1.yRot = Mth.cos(state.walkAnimationPos * 0.6662F) * 0.5F * state.walkAnimationSpeed * 0.5F;
+        this.tail1.yRot -= Mth.sin(state.ageInTicks * 0.067F) * 0.05F;
+        this.tail2.yRot = Mth.cos(state.walkAnimationPos * 0.6662F) * 0.5F * state.walkAnimationSpeed * 0.5F;
+        this.tail2.yRot -= Mth.sin(state.ageInTicks * 0.067F) * 0.05F;
+        this.tail3.yRot = Mth.cos(state.walkAnimationPos * 0.6662F) * 0.5F * state.walkAnimationSpeed * 0.5F;
+        this.tail3.yRot -= Mth.sin(state.ageInTicks * 0.067F) * 0.05F;
+        this.tail4.yRot = Mth.cos(state.walkAnimationPos * 0.6662F) * 0.5F * state.walkAnimationSpeed * 0.5F;
+        this.tail4.yRot -= Mth.sin(state.ageInTicks * 0.067F) * 0.05F;
     }
 }

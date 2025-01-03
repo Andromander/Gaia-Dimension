@@ -2,9 +2,8 @@ package androsa.gaiadimension.model;
 // Made with Blockbench 4.5.2
 // Exported for Minecraft version 1.17 - 1.18 with Mojang mappings
 
-
-import androsa.gaiadimension.entity.OpaliteContruct;
-import net.minecraft.client.model.HierarchicalModel;
+import androsa.gaiadimension.model.renderstate.OpaliteConstructRenderState;
+import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.CubeListBuilder;
@@ -13,8 +12,7 @@ import net.minecraft.client.model.geom.builders.MeshDefinition;
 import net.minecraft.client.model.geom.builders.PartDefinition;
 import net.minecraft.util.Mth;
 
-public class OpaliteConstructModel<T extends OpaliteContruct> extends HierarchicalModel<T> {
-	private final ModelPart root;
+public class OpaliteConstructModel extends EntityModel<OpaliteConstructRenderState> {
 	private final ModelPart head;
 	private final ModelPart left_arm;
 	private final ModelPart right_arm;
@@ -22,18 +20,12 @@ public class OpaliteConstructModel<T extends OpaliteContruct> extends Hierarchic
 	private final ModelPart right_leg;
 
 	public OpaliteConstructModel(ModelPart root) {
-		this.root = root;
-
+        super(root);
 		this.head = root.getChild("head");
 		this.left_arm = root.getChild("left_arm");
 		this.right_arm = root.getChild("right_arm");
 		this.left_leg = root.getChild("left_leg");
 		this.right_leg = root.getChild("right_leg");
-	}
-
-	@Override
-	public ModelPart root() {
-		return this.root;
 	}
 
 	public static LayerDefinition makeBodyLayer() {
@@ -72,28 +64,28 @@ public class OpaliteConstructModel<T extends OpaliteContruct> extends Hierarchic
 	}
 
 	@Override
-	public void setupAnim(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-		this.head.yRot = netHeadYaw / (180F / (float) Math.PI);
-		this.head.xRot = headPitch / (180F / (float) Math.PI);
+	public void setupAnim(OpaliteConstructRenderState state) {
+		this.head.yRot = state.yRot / (180F / (float) Math.PI);
+		this.head.xRot = state.xRot / (180F / (float) Math.PI);
 
 		this.right_arm.zRot = 0.0F;
 		this.left_arm.zRot = 0.0F;
-		this.right_arm.zRot += Mth.cos(ageInTicks * 0.09F) * 0.05F;
-		this.left_arm.zRot -= Mth.cos(ageInTicks * 0.09F) * 0.05F;
+		this.right_arm.zRot += Mth.cos(state.ageInTicks * 0.09F) * 0.05F;
+		this.left_arm.zRot -= Mth.cos(state.ageInTicks * 0.09F) * 0.05F;
 
-		if (entity.isConstructing()) {
+		if (state.isConstructing) {
 			this.right_arm.xRot = -2.0F;
 			this.left_arm.xRot = -2.0F;
 		} else {
 			this.right_arm.xRot = 0.0F;
 			this.left_arm.xRot = 0.0F;
-			this.right_arm.xRot += Mth.sin(ageInTicks * 0.067F) * 0.05F;
-			this.left_arm.xRot -= Mth.sin(ageInTicks * 0.067F) * 0.05F;
-			this.left_arm.xRot = Mth.cos(limbSwing * 0.6662F) * 1.0F * limbSwingAmount;
-			this.right_arm.xRot = Mth.cos(limbSwing * 0.6662F + (float) Math.PI) * 1.0F * limbSwingAmount;
+			this.right_arm.xRot += Mth.sin(state.ageInTicks * 0.067F) * 0.05F;
+			this.left_arm.xRot -= Mth.sin(state.ageInTicks * 0.067F) * 0.05F;
+			this.left_arm.xRot = Mth.cos(state.walkAnimationPos * 0.6662F) * 1.0F * state.walkAnimationSpeed;
+			this.right_arm.xRot = Mth.cos(state.walkAnimationPos * 0.6662F + (float) Math.PI) * 1.0F * state.walkAnimationSpeed;
 		}
 
-		this.left_leg.xRot = Mth.cos(limbSwing * 0.6662F) * 0.5F * limbSwingAmount;
-		this.right_leg.xRot = Mth.cos(limbSwing * 0.6662F + (float) Math.PI) * 0.5F * limbSwingAmount;
+		this.left_leg.xRot = Mth.cos(state.walkAnimationPos * 0.6662F) * 0.5F * state.walkAnimationSpeed;
+		this.right_leg.xRot = Mth.cos(state.walkAnimationPos * 0.6662F + (float) Math.PI) * 0.5F * state.walkAnimationSpeed;
 	}
 }

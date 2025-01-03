@@ -2,19 +2,32 @@ package androsa.gaiadimension.renderer;
 
 import androsa.gaiadimension.entity.GrowthSapper;
 import androsa.gaiadimension.model.GrowthSapperModel;
+import androsa.gaiadimension.model.renderstate.GrowthSapperRenderState;
 import androsa.gaiadimension.registry.helpers.ModEntitiesRendering;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.MobRenderer;
+import net.minecraft.client.renderer.entity.state.LivingEntityRenderState;
 import net.minecraft.resources.ResourceLocation;
 
-public class GrowthSapperRenderer<T extends GrowthSapper, M extends GrowthSapperModel<T>> extends MobRenderer<T, M> {
+public class GrowthSapperRenderer<T extends GrowthSapper, M extends GrowthSapperModel> extends MobRenderer<T, GrowthSapperRenderState, M> {
 
     public GrowthSapperRenderer(EntityRendererProvider.Context manager, M model, float shadowSize) {
         super(manager, model, shadowSize);
     }
 
     @Override
-    public ResourceLocation getTextureLocation(T entity) {
-        return ModEntitiesRendering.makeTexture(entity, entity.getEntityVariant().getSerializedName());
+    public GrowthSapperRenderState createRenderState() {
+        return new GrowthSapperRenderState();
+    }
+
+    @Override
+    public void extractRenderState(T entity, GrowthSapperRenderState state, float partialTicks) {
+        super.extractRenderState(entity, state, partialTicks);
+        state.variant = entity.getEntityVariant();
+    }
+
+    @Override
+    public ResourceLocation getTextureLocation(GrowthSapperRenderState entity) {
+        return ModEntitiesRendering.makeTexture("growth_sapper", entity.variant.getSerializedName());
     }
 }

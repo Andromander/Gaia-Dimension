@@ -1,13 +1,13 @@
 package androsa.gaiadimension.model;
 
-import androsa.gaiadimension.entity.ShallowArenthis;
-import net.minecraft.client.model.HierarchicalModel;
+import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.CubeListBuilder;
 import net.minecraft.client.model.geom.builders.LayerDefinition;
 import net.minecraft.client.model.geom.builders.MeshDefinition;
 import net.minecraft.client.model.geom.builders.PartDefinition;
+import net.minecraft.client.renderer.entity.state.LivingEntityRenderState;
 import net.minecraft.util.Mth;
 
 import java.util.Arrays;
@@ -16,22 +16,17 @@ import java.util.Arrays;
  * ModelShallowArenthis - Androsa
  * Created using Tabula 7.0.0
  */
-public class ShallowArenthisModel<T extends ShallowArenthis> extends HierarchicalModel<T> {
+public class ShallowArenthisModel extends EntityModel<LivingEntityRenderState> {
     public ModelPart root;
     public ModelPart[] tentacles = new ModelPart[7];
     public ModelPart body;
     public ModelPart tail;
 
     public ShallowArenthisModel(ModelPart root) {
-        this.root = root;
+        super(root);
         this.body = root.getChild("cap").getChild("head").getChild("body");
         this.tail = body.getChild("tail");
         Arrays.setAll(this.tentacles, (num) -> root.getChild(getTentacleName(num)));
-    }
-
-    @Override
-    public ModelPart root() {
-        return this.root;
     }
 
     public static LayerDefinition makeBodyLayer() {
@@ -74,12 +69,12 @@ public class ShallowArenthisModel<T extends ShallowArenthis> extends Hierarchica
     }
 
     @Override
-    public void setupAnim(T entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-        this.body.xRot = Mth.sin(ageInTicks * (float)Math.PI * 0.025F) * 3.0F;
-        this.tail.xRot = Mth.sin(ageInTicks * (float)Math.PI * 0.025F) * 3.0F;
+    public void setupAnim(LivingEntityRenderState state) {
+        this.body.xRot = Mth.sin(state.ageInTicks * (float)Math.PI * 0.025F) * 3.0F;
+        this.tail.xRot = Mth.sin(state.ageInTicks * (float)Math.PI * 0.025F) * 3.0F;
 
         for (ModelPart modelrenderer : this.tentacles) {
-            modelrenderer.xRot = ageInTicks;
+            modelrenderer.xRot = state.ageInTicks;
         }
     }
 }

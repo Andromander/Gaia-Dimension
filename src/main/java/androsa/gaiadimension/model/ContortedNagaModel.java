@@ -1,21 +1,20 @@
 package androsa.gaiadimension.model;
 
-import androsa.gaiadimension.entity.ContortedNaga;
-import net.minecraft.client.model.HierarchicalModel;
+import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.CubeListBuilder;
 import net.minecraft.client.model.geom.builders.LayerDefinition;
 import net.minecraft.client.model.geom.builders.MeshDefinition;
 import net.minecraft.client.model.geom.builders.PartDefinition;
+import net.minecraft.client.renderer.entity.state.LivingEntityRenderState;
 import net.minecraft.util.Mth;
 
 /**
  * ModelContortedNaga - Androsa
  * Created using Tabula 7.0.0
  */
-public class ContortedNagaModel<T extends ContortedNaga> extends HierarchicalModel<T> {
-    public ModelPart root;
+public class ContortedNagaModel extends EntityModel<LivingEntityRenderState> {
     public ModelPart head;
     public ModelPart lowerJaw;
     public ModelPart upperArmL;
@@ -29,7 +28,7 @@ public class ContortedNagaModel<T extends ContortedNaga> extends HierarchicalMod
     public ModelPart tailBottom;
 
     public ContortedNagaModel(ModelPart root) {
-        this.root = root;
+        super(root);
         ModelPart torso = root.getChild("torso");
         this.head = torso.getChild("neck").getChild("head");
         this.lowerJaw = head.getChild("jaw");
@@ -42,11 +41,6 @@ public class ContortedNagaModel<T extends ContortedNaga> extends HierarchicalMod
         this.miniTendril3 = miniTendril2.getChild("mini_tendril_segment_3");
         this.tailTop = torso.getChild("chest").getChild("lower_body").getChild("tail_top");
         this.tailBottom = tailTop.getChild("tail_bottom");
-    }
-
-    @Override
-    public ModelPart root() {
-        return this.root;
     }
 
     public static LayerDefinition makeBodyLayer() {
@@ -163,24 +157,24 @@ public class ContortedNagaModel<T extends ContortedNaga> extends HierarchicalMod
     }
 
     @Override
-    public void setupAnim(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-        this.head.yRot = netHeadYaw / (180F / (float) Math.PI);
-        this.head.xRot = headPitch / (180F / (float) Math.PI) + -0.3141592653589793F;
+    public void setupAnim(LivingEntityRenderState state) {
+        this.head.yRot = state.yRot / (180F / (float) Math.PI);
+        this.head.xRot = state.xRot / (180F / (float) Math.PI) + -0.3141592653589793F;
 
-        this.lowerJaw.xRot = Mth.sin(ageInTicks * (float)Math.PI * 0.025F) * 0.1F + 0.15F;
+        this.lowerJaw.xRot = Mth.sin(state.ageInTicks * (float)Math.PI * 0.025F) * 0.1F + 0.15F;
 
-        this.upperArmL.yRot = Mth.cos(limbSwing * 0.6662F) * 0.5F * limbSwingAmount * 0.5F;
-        this.upperArmL.yRot -= Mth.sin(ageInTicks * 0.067F) * 0.05F - 0.3141592653589793F;
+        this.upperArmL.yRot = Mth.cos(state.walkAnimationPos * 0.6662F) * 0.5F * state.walkAnimationSpeed * 0.5F;
+        this.upperArmL.yRot -= Mth.sin(state.ageInTicks * 0.067F) * 0.05F - 0.3141592653589793F;
 
-        this.tendril1.xRot = Mth.sin(ageInTicks * (float)Math.PI * 0.025F) * 0.15F - 0.2565634000431664F;
-        this.tendril2.xRot = Mth.sin(ageInTicks * (float)Math.PI * 0.025F) * 0.15F + 0.9075712110370513F;
-        this.tendril3.xRot = Mth.sin(ageInTicks * (float)Math.PI * 0.025F) * 0.15F - 0.7155849933176751F;
+        this.tendril1.xRot = Mth.sin(state.ageInTicks * (float)Math.PI * 0.025F) * 0.15F - 0.2565634000431664F;
+        this.tendril2.xRot = Mth.sin(state.ageInTicks * (float)Math.PI * 0.025F) * 0.15F + 0.9075712110370513F;
+        this.tendril3.xRot = Mth.sin(state.ageInTicks * (float)Math.PI * 0.025F) * 0.15F - 0.7155849933176751F;
 
-        this.miniTendril1.zRot = Mth.sin(ageInTicks * (float)Math.PI * 0.025F) * 0.15F + 0.9075712110370513F;
-        this.miniTendril2.zRot = Mth.sin(ageInTicks * (float)Math.PI * 0.025F) * 0.15F - 0.6108652381980153F;
-        this.miniTendril3.zRot = Mth.sin(ageInTicks * (float)Math.PI * 0.025F) * 0.15F + 0.45378560551852565F;
+        this.miniTendril1.zRot = Mth.sin(state.ageInTicks * (float)Math.PI * 0.025F) * 0.15F + 0.9075712110370513F;
+        this.miniTendril2.zRot = Mth.sin(state.ageInTicks * (float)Math.PI * 0.025F) * 0.15F - 0.6108652381980153F;
+        this.miniTendril3.zRot = Mth.sin(state.ageInTicks * (float)Math.PI * 0.025F) * 0.15F + 0.45378560551852565F;
 
-        this.tailTop.yRot = Mth.cos(limbSwing * 0.6662F) * 0.5F * limbSwingAmount;
-        this.tailBottom.yRot = Mth.cos(limbSwing * 0.6662F) * 0.5F * limbSwingAmount;
+        this.tailTop.yRot = Mth.cos(state.walkAnimationPos * 0.6662F) * 0.5F * state.walkAnimationSpeed;
+        this.tailBottom.yRot = Mth.cos(state.walkAnimationPos * 0.6662F) * 0.5F * state.walkAnimationSpeed;
     }
 }

@@ -1,38 +1,32 @@
 package androsa.gaiadimension.model;
 
-import androsa.gaiadimension.entity.CavernTick;
-import net.minecraft.client.model.HierarchicalModel;
+import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.CubeListBuilder;
 import net.minecraft.client.model.geom.builders.LayerDefinition;
 import net.minecraft.client.model.geom.builders.MeshDefinition;
 import net.minecraft.client.model.geom.builders.PartDefinition;
+import net.minecraft.client.renderer.entity.state.LivingEntityRenderState;
 import net.minecraft.util.Mth;
 
 /**
  * ModelCavernTick - Androsa
  * Created using Tabula 7.0.0
  */
-public class CavernTickModel<T extends CavernTick> extends HierarchicalModel<T> {
-    public ModelPart root;
+public class CavernTickModel extends EntityModel<LivingEntityRenderState> {
     public ModelPart head;
     public ModelPart spike1;
     public ModelPart spike2;
     public ModelPart spike3;
 
     public CavernTickModel(ModelPart root) {
-        this.root = root;
+        super(root);
         ModelPart body = root.getChild("body");
         this.head = body.getChild("head");
         this.spike1 = body.getChild("spike_left");
         this.spike2 = body.getChild("spike_mid");
         this.spike3 = body.getChild("spike_right");
-    }
-
-    @Override
-    public ModelPart root() {
-        return this.root;
     }
 
     public static LayerDefinition makeBodyLayer() {
@@ -68,11 +62,11 @@ public class CavernTickModel<T extends CavernTick> extends HierarchicalModel<T> 
     }
 
     @Override
-    public void setupAnim(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-        this.spike1.xRot = Mth.sin(ageInTicks * (float)Math.PI * 0.05F) * 0.1F + 0.7853981633974483F;
-        this.spike2.xRot = Mth.sin(ageInTicks * (float)Math.PI * 0.05F) * 0.1F + 0.7853981633974483F;
-        this.spike3.xRot = Mth.sin(ageInTicks * (float)Math.PI * 0.05F) * 0.1F + 0.7853981633974483F;
+    public void setupAnim(LivingEntityRenderState state) {
+        this.spike1.xRot = Mth.sin(state.ageInTicks * (float)Math.PI * 0.05F) * 0.1F + 0.7853981633974483F;
+        this.spike2.xRot = Mth.sin(state.ageInTicks * (float)Math.PI * 0.05F) * 0.1F + 0.7853981633974483F;
+        this.spike3.xRot = Mth.sin(state.ageInTicks * (float)Math.PI * 0.05F) * 0.1F + 0.7853981633974483F;
 
-        this.head.yRot = netHeadYaw / (180F / (float) Math.PI);
+        this.head.yRot = state.yRot / (180F / (float) Math.PI);
     }
 }

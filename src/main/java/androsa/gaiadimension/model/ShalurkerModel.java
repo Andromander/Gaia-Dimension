@@ -1,21 +1,20 @@
 package androsa.gaiadimension.model;
 
-import androsa.gaiadimension.entity.Shalurker;
-import net.minecraft.client.model.HierarchicalModel;
+import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.CubeListBuilder;
 import net.minecraft.client.model.geom.builders.LayerDefinition;
 import net.minecraft.client.model.geom.builders.MeshDefinition;
 import net.minecraft.client.model.geom.builders.PartDefinition;
+import net.minecraft.client.renderer.entity.state.LivingEntityRenderState;
 import net.minecraft.util.Mth;
 
 /**
  * ModelShalurker - Androsa
  * Created using Tabula 7.0.0
  */
-public class ShalurkerModel<T extends Shalurker> extends HierarchicalModel<T> {
-    public ModelPart root;
+public class ShalurkerModel extends EntityModel<LivingEntityRenderState> {
     public ModelPart head;
     public ModelPart armL;
     public ModelPart armR;
@@ -23,17 +22,12 @@ public class ShalurkerModel<T extends Shalurker> extends HierarchicalModel<T> {
     public ModelPart legR;
 
     public ShalurkerModel(ModelPart root) {
-        this.root = root;
+        super(root);
         this.head = root.getChild("head");
         this.armL = root.getChild("arm_left");
         this.armR = root.getChild("arm_right");
         this.legL = root.getChild("leg_left");
         this.legR = root.getChild("leg_right");
-    }
-
-    @Override
-    public ModelPart root() {
-        return this.root;
     }
 
     public static LayerDefinition makeBodyLayer() {
@@ -88,14 +82,14 @@ public class ShalurkerModel<T extends Shalurker> extends HierarchicalModel<T> {
     }
 
     @Override
-    public void setupAnim(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-        this.head.yRot = netHeadYaw / (180F / (float) Math.PI);
-        this.head.xRot = headPitch / (180F / (float) Math.PI);
+    public void setupAnim(LivingEntityRenderState state) {
+        this.head.yRot = state.yRot / (180F / (float) Math.PI);
+        this.head.xRot = state.xRot / (180F / (float) Math.PI);
 
-        this.armR.xRot = Mth.cos(limbSwing * 0.6662F) * 0.5F * limbSwingAmount - 0.2617993877991494F;
-        this.armL.xRot = Mth.cos(limbSwing * 0.6662F + (float) Math.PI) * 0.5F * limbSwingAmount - 0.2617993877991494F;
+        this.armR.xRot = Mth.cos(state.walkAnimationPos * 0.6662F) * 0.5F * state.walkAnimationSpeed - 0.2617993877991494F;
+        this.armL.xRot = Mth.cos(state.walkAnimationPos * 0.6662F + (float) Math.PI) * 0.5F * state.walkAnimationSpeed - 0.2617993877991494F;
 
-        this.legL.xRot = Mth.cos(limbSwing * 0.6662F + (float) Math.PI) * 0.5F * limbSwingAmount - 0.6108652381980153F;
-        this.legR.xRot = Mth.cos(limbSwing * 0.6662F) * 0.5F * limbSwingAmount - 0.6108652381980153F;
+        this.legL.xRot = Mth.cos(state.walkAnimationPos * 0.6662F + (float) Math.PI) * 0.5F * state.walkAnimationSpeed - 0.6108652381980153F;
+        this.legR.xRot = Mth.cos(state.walkAnimationPos * 0.6662F) * 0.5F * state.walkAnimationSpeed - 0.6108652381980153F;
     }
 }

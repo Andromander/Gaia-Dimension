@@ -68,9 +68,13 @@ public class ModEntitiesRendering {
         return makeTexture(name + "/" + dir);
     }
 
-    public static ResourceLocation makeTextureNoPrefix(Entity entity, String path) {
-        String name = BuiltInRegistries.ENTITY_TYPE.getKey(entity.getType()).getPath();
-        return makeTexture(name + "/" + path);
+    public static ResourceLocation makeTexture(String entity, String path) {
+        String dir = path.isEmpty() ? entity : entity + "_" + path;
+        return makeTexture(entity + "/" + dir);
+    }
+
+    public static ResourceLocation makeTextureNoPrefix(String entity, String path) {
+        return makeTexture(entity + "/" + path);
     }
 
     public static ResourceLocation makeTexture(Entity entity) {
@@ -127,37 +131,37 @@ public class ModEntitiesRendering {
         event.registerEntityRenderer(ModEntities.MOOKAITE_MAGIC_BULLET.get(), ThrownItemRenderer::new);
         event.registerEntityRenderer(ModEntities.MOOKAITE_MAGIC_AREA.get(), NoopRenderer::new);
 
-        event.registerEntityRenderer(ModEntities.AGATE_GOLEM.get(), m -> new BasicEntityRenderer<>(m, new AgateGolemModel<>(m.bakeLayer(AGATE_GOLEM)), 0.9F));
-        event.registerEntityRenderer(ModEntities.ANCIENT_LAGRAHK.get(), m -> new BasicEntityRenderer<>(m, new AncientLagrahkModel<>(m.bakeLayer(ANCIENT_LAGRAHK)), 2.0F));
-        event.registerEntityRenderer(ModEntities.ARCHAIC_WARRIOR.get(), m -> new ArchaicWarriorRenderer<>(m, new ArchaicWarriorModel<>(m.bakeLayer(ARCHAIC_WARRIOR)), 0.5F));
-        event.registerEntityRenderer(ModEntities.BISMUTH_ULETRUS.get(), m -> new BasicEntityRenderer<>(m, new BismuthUletrusModel<>(m.bakeLayer(BISMUTH_ULETRUS)), 1.0F));
-        event.registerEntityRenderer(ModEntities.CAVERN_TICK.get(), m -> new BasicEntityRenderer<>(m, new CavernTickModel<>(m.bakeLayer(CAVERN_TICK)), 0.2F));
-        event.registerEntityRenderer(ModEntities.CONTORTED_NAGA.get(), m -> new BasicEntityRenderer<>(m, new ContortedNagaModel<>(m.bakeLayer(CONTORTED_NAGA)), 0.7F));
-        event.registerEntityRenderer(ModEntities.CORRUPT_SAPPER.get(), m -> new BasicEntityRenderer<>(m, new GrowthSapperModel<>(m.bakeLayer(GROWTH_SAPPER)), 0.6F));
-        event.registerEntityRenderer(ModEntities.CRYSTAL_GOLEM.get(), m -> new BasicEntityRenderer<>(m, new CrystalGolemModel<>(m.bakeLayer(CRYSTAL_GOLEM)), 0.9F));
-        event.registerEntityRenderer(ModEntities.GROWTH_SAPPER.get(), m -> new GrowthSapperRenderer<>(m, new GrowthSapperModel<>(m.bakeLayer(GROWTH_SAPPER)), 0.6F));
-        event.registerEntityRenderer(ModEntities.HOWLITE_WOLF.get(), m -> new BasicEntityRenderer<>(m, new HowliteWolfModel<>(m.bakeLayer(HOWLITE_WOLF)), 0.5F));
-        event.registerEntityRenderer(ModEntities.LESSER_SHOCKSHOOTER.get(), m -> new BasicEntityRenderer<>(m, new LesserShockshooterModel<>(m.bakeLayer(LESSER_SHOCKSHOOTER)), 0.5F));
-        event.registerEntityRenderer(ModEntities.LESSER_SPITFIRE.get(), m -> new BasicEntityRenderer<>(m, new LesserSpitfireModel<>(m.bakeLayer(LESSER_SPITFIRE)), 0.5F));
-        event.registerEntityRenderer(ModEntities.MARKUZAR_PLANT.get(), m -> new BasicEntityRenderer<>(m, new MarkuzarPlantModel<>(m.bakeLayer(MARKUZAR_PLANT)), 0.5F));
-        event.registerEntityRenderer(ModEntities.MINERAL_ARENTHIS.get(), m -> new MineralArenthisRenderer<>(m, new MineralArenthisModel<>(m.bakeLayer(MINERAL_ARENTHIS)), 0.8F));
+        event.registerEntityRenderer(ModEntities.AGATE_GOLEM.get(), m -> new BasicEntityRenderer<>(m, new AgateGolemModel(m.bakeLayer(AGATE_GOLEM)), "agate_golem", 0.9F));
+        event.registerEntityRenderer(ModEntities.ANCIENT_LAGRAHK.get(), m -> new BasicEntityRenderer<>(m, new AncientLagrahkModel(m.bakeLayer(ANCIENT_LAGRAHK)), "ancient_lagrahk", 2.0F));
+        event.registerEntityRenderer(ModEntities.ARCHAIC_WARRIOR.get(), m -> new ArchaicWarriorRenderer<>(m, new ArchaicWarriorModel(m.bakeLayer(ARCHAIC_WARRIOR)), 0.5F));
+        event.registerEntityRenderer(ModEntities.BISMUTH_ULETRUS.get(), m -> new BismuthUletrusRenderer(m, new BismuthUletrusModel(m.bakeLayer(BISMUTH_ULETRUS)), 1.0F));
+        event.registerEntityRenderer(ModEntities.CAVERN_TICK.get(), m -> new BasicEntityRenderer<>(m, new CavernTickModel(m.bakeLayer(CAVERN_TICK)), "cavern_tick", 0.2F));
+        event.registerEntityRenderer(ModEntities.CONTORTED_NAGA.get(), m -> new BasicEntityRenderer<>(m, new ContortedNagaModel(m.bakeLayer(CONTORTED_NAGA)), "contorted_naga", 0.7F));
+        event.registerEntityRenderer(ModEntities.CORRUPT_SAPPER.get(), m -> new BasicEntityRenderer<>(m, new GrowthSapperModel(m.bakeLayer(GROWTH_SAPPER)), "corrupt_sapper", 0.6F));
+        event.registerEntityRenderer(ModEntities.CRYSTAL_GOLEM.get(), m -> new BasicEntityRenderer<>(m, new CrystalGolemModel(m.bakeLayer(CRYSTAL_GOLEM)), "crystal_golem", 0.9F));
+        event.registerEntityRenderer(ModEntities.GROWTH_SAPPER.get(), m -> new GrowthSapperRenderer<>(m, new GrowthSapperModel(m.bakeLayer(GROWTH_SAPPER)), 0.6F));
+        event.registerEntityRenderer(ModEntities.HOWLITE_WOLF.get(), m -> new BasicEntityRenderer<>(m, new HowliteWolfModel(m.bakeLayer(HOWLITE_WOLF)), "howlite_wolf", 0.5F));
+        event.registerEntityRenderer(ModEntities.LESSER_SHOCKSHOOTER.get(), m -> new BasicEntityRenderer<>(m, new LesserShockshooterModel(m.bakeLayer(LESSER_SHOCKSHOOTER)), "lesser_shockshooter", 0.5F));
+        event.registerEntityRenderer(ModEntities.LESSER_SPITFIRE.get(), m -> new BasicEntityRenderer<>(m, new LesserSpitfireModel(m.bakeLayer(LESSER_SPITFIRE)), "lesser_spitfire", 0.5F));
+        event.registerEntityRenderer(ModEntities.MARKUZAR_PLANT.get(), m -> new BasicEntityRenderer<>(m, new MarkuzarPlantModel(m.bakeLayer(MARKUZAR_PLANT)), "markuzar_plant", 0.5F));
+        event.registerEntityRenderer(ModEntities.MINERAL_ARENTHIS.get(), m -> new MineralArenthisRenderer<>(m, new MineralArenthisModel(m.bakeLayer(MINERAL_ARENTHIS)), 0.8F));
         event.registerEntityRenderer(ModEntities.MUCKLING.get(), m -> new MucklingRenderer(m, 0.625F));
-        event.registerEntityRenderer(ModEntities.MUTANT_GROWTH_EXTRACTOR.get(), m -> new BasicEntityRenderer<>(m, new GrowthExtractorModel<>(m.bakeLayer(MUTANT_GROWTH_EXTRACTOR)),0.8F));
-        event.registerEntityRenderer(ModEntities.NOMADIC_LAGRAHK.get(), m -> new NomadicLagrahkRenderer<>(m, new NomadicLagrahkModel<>(m.bakeLayer(NOMADIC_LAGRAHK)), 1.0F));
-        event.registerEntityRenderer(ModEntities.PRIMAL_BEAST.get(), m -> new PrimalBeastRenderer<>(m, new PrimalBeastModel<>(m.bakeLayer(PRIMAL_BEAST)), 0.5F));
-        event.registerEntityRenderer(ModEntities.ROCKY_LUGGEROTH.get(), m -> new BasicEntityRenderer<>(m, new RockyLuggerothModel<>(m.bakeLayer(ROCKY_LUGGEROTH)), 0.7F));
-        event.registerEntityRenderer(ModEntities.RUGGED_LURMORUS.get(), m -> new RuggedLurmorusRenderer<>(m, new RuggedLurmorusModel<>(m.bakeLayer(RUGGED_LURMORUS)), 3.0F));
-        event.registerEntityRenderer(ModEntities.SALTION.get(), m -> new BasicEntityRenderer<>(m, new SaltionModel<>(m.bakeLayer(SALTION)), 0.7F));
-        event.registerEntityRenderer(ModEntities.SHALLOW_ARENTHIS.get(), m -> new ShallowArenthisRenderer<>(m, new ShallowArenthisModel<>(m.bakeLayer(SHALLOW_ARENTHIS)), 0.5F));
-        event.registerEntityRenderer(ModEntities.SHALURKER.get(), m -> new BasicEntityRenderer<>(m, new ShalurkerModel<>(m.bakeLayer(SHALURKER)), 0.5F));
-        event.registerEntityRenderer(ModEntities.SPELLBOUND_ELEMENTAL.get(), m -> new BasicEntityRenderer<>(m, new SpellElementModel<>(m.bakeLayer(SPELLBOUND_ELEMENTAL)), 0.4F));
-        event.registerEntityRenderer(ModEntities.MALACHITE_DRONE.get(), m -> new MalachiteDroneRenderer<>(m, new MalachiteDroneModel<>(m.bakeLayer(MALACHITE_DRONE)), 0.5F));
-        event.registerEntityRenderer(ModEntities.MOOKAITE_CONSTRUCT.get(), m -> new MookaiteConstructRenderer<>(m, new MookaiteConstructModel<>(m.bakeLayer(MOOKAITE_CONSTRUCT)), 0.7F));
-        event.registerEntityRenderer(ModEntities.OPALITE_CONSTRUCT.get(), m -> new BasicEntityRenderer<>(m, new OpaliteConstructModel<>(m.bakeLayer(OPALITE_CONSTRUCT)), 0.5F));
-        event.registerEntityRenderer(ModEntities.GROWTH_GRAZER.get(), m -> new BasicEntityRenderer<>(m, new GrowthGrazerModel<>(m.bakeLayer(GROWTH_GRAZER)), 0.6F));
-        event.registerEntityRenderer(ModEntities.AUREATE_EVRAUN.get(), m -> new BasicEntityRenderer<>(m, new AureateEvraunModel<>(m.bakeLayer(AUREATE_EVRAUN)), 0.9F));
+        event.registerEntityRenderer(ModEntities.MUTANT_GROWTH_EXTRACTOR.get(), m -> new BasicEntityRenderer<>(m, new GrowthExtractorModel(m.bakeLayer(MUTANT_GROWTH_EXTRACTOR)), "mutant_growth_extractor",0.8F));
+        event.registerEntityRenderer(ModEntities.NOMADIC_LAGRAHK.get(), m -> new NomadicLagrahkRenderer<>(m, new NomadicLagrahkModel(m.bakeLayer(NOMADIC_LAGRAHK)), 1.0F));
+        event.registerEntityRenderer(ModEntities.PRIMAL_BEAST.get(), m -> new PrimalBeastRenderer<>(m, new PrimalBeastModel(m.bakeLayer(PRIMAL_BEAST)), 0.5F));
+        event.registerEntityRenderer(ModEntities.ROCKY_LUGGEROTH.get(), m -> new BasicEntityRenderer<>(m, new RockyLuggerothModel(m.bakeLayer(ROCKY_LUGGEROTH)), "rocky_luggeroth", 0.7F));
+        event.registerEntityRenderer(ModEntities.RUGGED_LURMORUS.get(), m -> new RuggedLurmorusRenderer<>(m, new RuggedLurmorusModel(m.bakeLayer(RUGGED_LURMORUS)), 3.0F));
+        event.registerEntityRenderer(ModEntities.SALTION.get(), m -> new BasicEntityRenderer<>(m, new SaltionModel(m.bakeLayer(SALTION)), "saltion", 0.7F));
+        event.registerEntityRenderer(ModEntities.SHALLOW_ARENTHIS.get(), m -> new ShallowArenthisRenderer<>(m, new ShallowArenthisModel(m.bakeLayer(SHALLOW_ARENTHIS)), 0.5F));
+        event.registerEntityRenderer(ModEntities.SHALURKER.get(), m -> new BasicEntityRenderer<>(m, new ShalurkerModel(m.bakeLayer(SHALURKER)), "shalurker", 0.5F));
+        event.registerEntityRenderer(ModEntities.SPELLBOUND_ELEMENTAL.get(), m -> new BasicEntityRenderer<>(m, new SpellElementModel(m.bakeLayer(SPELLBOUND_ELEMENTAL)), "spellbound_elemental", 0.4F));
+        event.registerEntityRenderer(ModEntities.MALACHITE_DRONE.get(), m -> new MalachiteDroneRenderer<>(m, new MalachiteDroneModel(m.bakeLayer(MALACHITE_DRONE)), 0.5F));
+        event.registerEntityRenderer(ModEntities.MOOKAITE_CONSTRUCT.get(), m -> new MookaiteConstructRenderer<>(m, new MookaiteConstructModel(m.bakeLayer(MOOKAITE_CONSTRUCT)), 0.7F));
+        event.registerEntityRenderer(ModEntities.OPALITE_CONSTRUCT.get(), m -> new OpaliteConstructRenderer(m, new OpaliteConstructModel(m.bakeLayer(OPALITE_CONSTRUCT)), 0.5F));
+        event.registerEntityRenderer(ModEntities.GROWTH_GRAZER.get(), m -> new BasicEntityRenderer<>(m, new GrowthGrazerModel(m.bakeLayer(GROWTH_GRAZER)), "growth_grazer", 0.6F));
+        event.registerEntityRenderer(ModEntities.AUREATE_EVRAUN.get(), m -> new BasicEntityRenderer<>(m, new AureateEvraunModel(m.bakeLayer(AUREATE_EVRAUN)), "aureate_evraun", 0.9F));
 
-        event.registerEntityRenderer(ModEntities.BLUE_HOWLITE_WOLF.get(), m -> new BasicEntityRenderer<>(m, new BlueHowliteWolfModel<>(m.bakeLayer(BLUE_HOWLITE_WOLF)), 1.0F));
-        event.registerEntityRenderer(ModEntities.MALACHITE_GUARD.get(), m -> new MalachiteGuardRenderer<>(m, new MalachiteGuardModel<>(m.bakeLayer(MALACHITE_GUARD)), 0.7F));
+        event.registerEntityRenderer(ModEntities.BLUE_HOWLITE_WOLF.get(), m -> new BasicEntityRenderer<>(m, new BlueHowliteWolfModel(m.bakeLayer(BLUE_HOWLITE_WOLF)), "blue_howlite_wolf", 1.0F));
+        event.registerEntityRenderer(ModEntities.MALACHITE_GUARD.get(), m -> new MalachiteGuardRenderer<>(m, new MalachiteGuardModel(m.bakeLayer(MALACHITE_GUARD)), 0.7F));
     }
 }

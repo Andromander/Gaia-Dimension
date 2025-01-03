@@ -1,35 +1,29 @@
 package androsa.gaiadimension.model;
 
-import androsa.gaiadimension.entity.SpellElemental;
-import net.minecraft.client.model.HierarchicalModel;
+import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.CubeListBuilder;
 import net.minecraft.client.model.geom.builders.LayerDefinition;
 import net.minecraft.client.model.geom.builders.MeshDefinition;
 import net.minecraft.client.model.geom.builders.PartDefinition;
+import net.minecraft.client.renderer.entity.state.LivingEntityRenderState;
 import net.minecraft.util.Mth;
 
 /**
  * ModelSpellElement - Androsa
  * Created using Tabula 7.0.0
  */
-public class SpellElementModel<T extends SpellElemental> extends HierarchicalModel<T> {
-    public ModelPart root;
+public class SpellElementModel extends EntityModel<LivingEntityRenderState> {
     public ModelPart head;
     public ModelPart scytheL;
     public ModelPart scytheR;
 
     public SpellElementModel(ModelPart root) {
-        this.root = root;
+        super(root);
         this.head = root.getChild("head");
         this.scytheL = root.getChild("scythe_left");
         this.scytheR = root.getChild("scythe_right");
-    }
-
-    @Override
-    public ModelPart root() {
-        return this.root;
     }
 
     public static LayerDefinition makeBodyLayer() {
@@ -117,13 +111,13 @@ public class SpellElementModel<T extends SpellElemental> extends HierarchicalMod
     }
 
     @Override
-    public void setupAnim(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-        this.head.yRot = netHeadYaw / (180F / (float) Math.PI);
-        this.head.xRot = headPitch / (180F / (float) Math.PI);
+    public void setupAnim(LivingEntityRenderState state) {
+        this.head.yRot = state.yRot / (180F / (float) Math.PI);
+        this.head.xRot = state.xRot / (180F / (float) Math.PI);
 
-        this.scytheR.zRot = Mth.cos(limbSwing * 0.6662F + (float) Math.PI) * 0.5F * limbSwingAmount * 0.5F;
-        this.scytheL.zRot = Mth.cos(limbSwing * 0.6662F) * 0.5F * limbSwingAmount * 0.5F;
-        this.scytheR.zRot += Mth.sin(ageInTicks * 0.067F) * 0.05F - 0.08726646259971647F;
-        this.scytheL.zRot -= Mth.sin(ageInTicks * 0.067F) * 0.05F - 0.08726646259971647F;
+        this.scytheR.zRot = Mth.cos(state.walkAnimationPos * 0.6662F + (float) Math.PI) * 0.5F * state.walkAnimationSpeed * 0.5F;
+        this.scytheL.zRot = Mth.cos(state.walkAnimationPos * 0.6662F) * 0.5F * state.walkAnimationSpeed * 0.5F;
+        this.scytheR.zRot += Mth.sin(state.ageInTicks * 0.067F) * 0.05F - 0.08726646259971647F;
+        this.scytheL.zRot -= Mth.sin(state.ageInTicks * 0.067F) * 0.05F - 0.08726646259971647F;
     }
 }

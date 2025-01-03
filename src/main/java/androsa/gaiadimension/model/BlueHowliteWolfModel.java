@@ -1,21 +1,20 @@
 package androsa.gaiadimension.model;
 
-import androsa.gaiadimension.entity.boss.BlueHowliteWolf;
-import net.minecraft.client.model.HierarchicalModel;
+import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.CubeListBuilder;
 import net.minecraft.client.model.geom.builders.LayerDefinition;
 import net.minecraft.client.model.geom.builders.MeshDefinition;
 import net.minecraft.client.model.geom.builders.PartDefinition;
+import net.minecraft.client.renderer.entity.state.LivingEntityRenderState;
 import net.minecraft.util.Mth;
 
 /**
  * ModelBlueHowliteWolf - Androsa
  * Created using Tabula 7.0.0
  */
-public class BlueHowliteWolfModel<T extends BlueHowliteWolf> extends HierarchicalModel<T> {
-    public ModelPart root;
+public class BlueHowliteWolfModel extends EntityModel<LivingEntityRenderState> {
     public ModelPart head;
     public ModelPart frontUpperLeg1;
     public ModelPart frontUpperLeg2;
@@ -23,17 +22,12 @@ public class BlueHowliteWolfModel<T extends BlueHowliteWolf> extends Hierarchica
     public ModelPart backUpperLeg2;
 
     public BlueHowliteWolfModel(ModelPart root) {
-        this.root = root;
+        super(root);
         this.head = root.getChild("head");
         this.frontUpperLeg1 = root.getChild("front_upper_leg_right");
         this.frontUpperLeg2 = root.getChild("front_upper_leg_left");
         this.backUpperLeg1 = root.getChild("back_upper_leg_right");
         this.backUpperLeg2 = root.getChild("back_upper_leg_left");
-    }
-
-    @Override
-    public ModelPart root() {
-        return this.root;
     }
 
     public static LayerDefinition makeBodyLayer() {
@@ -135,14 +129,14 @@ public class BlueHowliteWolfModel<T extends BlueHowliteWolf> extends Hierarchica
     }
 
     @Override
-    public void setupAnim(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-        this.head.yRot = netHeadYaw / (180F / (float) Math.PI);
-        this.head.xRot = headPitch / (180F / (float) Math.PI);
+    public void setupAnim(LivingEntityRenderState state) {
+        this.head.yRot = state.yRot / (180F / (float) Math.PI);
+        this.head.xRot = state.xRot / (180F / (float) Math.PI);
 
-        this.frontUpperLeg1.xRot = Mth.cos(limbSwing * 0.6662F) * 0.5F * limbSwingAmount;
-        this.frontUpperLeg2.xRot = Mth.cos(limbSwing * 0.6662F + (float) Math.PI) * 0.5F * limbSwingAmount;
+        this.frontUpperLeg1.xRot = Mth.cos(state.walkAnimationPos * 0.6662F) * 0.5F * state.walkAnimationSpeed;
+        this.frontUpperLeg2.xRot = Mth.cos(state.walkAnimationPos * 0.6662F + (float) Math.PI) * 0.5F * state.walkAnimationSpeed;
 
-        this.backUpperLeg1.xRot = Mth.cos(limbSwing * 0.6662F + (float) Math.PI) * 0.5F * limbSwingAmount - 0.7285004297824331F;
-        this.backUpperLeg2.xRot = Mth.cos(limbSwing * 0.6662F) * 0.5F * limbSwingAmount - 0.7285004297824331F;
+        this.backUpperLeg1.xRot = Mth.cos(state.walkAnimationPos * 0.6662F + (float) Math.PI) * 0.5F * state.walkAnimationSpeed - 0.7285004297824331F;
+        this.backUpperLeg2.xRot = Mth.cos(state.walkAnimationPos * 0.6662F) * 0.5F * state.walkAnimationSpeed - 0.7285004297824331F;
     }
 }

@@ -1,7 +1,7 @@
 package androsa.gaiadimension.model;
 
-import androsa.gaiadimension.entity.BismuthUletrus;
-import net.minecraft.client.model.HierarchicalModel;
+import androsa.gaiadimension.model.renderstate.BismuthUletrusRenderState;
+import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.CubeListBuilder;
@@ -14,7 +14,7 @@ import net.minecraft.util.Mth;
  * ModelBismuthUletrus - Androsa
  * Created using Tabula 7.0.0
  */
-public class BismuthUletrusModel<T extends BismuthUletrus> extends HierarchicalModel<T> {
+public class BismuthUletrusModel extends EntityModel<BismuthUletrusRenderState> {
     public ModelPart root;
     public ModelPart head;
     public ModelPart upperArmL;
@@ -35,7 +35,7 @@ public class BismuthUletrusModel<T extends BismuthUletrus> extends HierarchicalM
     public ModelPart tail4;
 
     public BismuthUletrusModel(ModelPart root) {
-        this.root = root;
+        super(root);
         this.head = root.getChild("body").getChild("neck").getChild("head");
         this.upperArmL = root.getChild("upper_arm_left");
         this.lowerArmL = upperArmL.getChild("lower_arm_left");
@@ -53,11 +53,6 @@ public class BismuthUletrusModel<T extends BismuthUletrus> extends HierarchicalM
         this.tail2 = tail1.getChild("tail_segment_2");
         this.tail3 = tail2.getChild("tail_segment_3");
         this.tail4 = tail3.getChild("tail_segment_4");
-    }
-
-    @Override
-    public ModelPart root() {
-        return this.root;
     }
 
     public static LayerDefinition makeBodyLayer() {
@@ -199,11 +194,11 @@ public class BismuthUletrusModel<T extends BismuthUletrus> extends HierarchicalM
     }
 
     @Override
-    public void setupAnim(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-        this.head.yRot = netHeadYaw / (180F / (float) Math.PI);
-        this.head.xRot = headPitch / (180F / (float) Math.PI) + 0.4363323129985824F;
+    public void setupAnim(BismuthUletrusRenderState state) {
+        this.head.yRot = state.yRot / (180F / (float) Math.PI);
+        this.head.xRot = state.xRot / (180F / (float) Math.PI) + 0.4363323129985824F;
 
-        if (entity.getResting()) {
+        if (state.isResting) {
             this.setRotateAngle(upperArmL, 1.117010721276371F, 0.4363323129985824F, 0.0F);
             this.setRotateAngle(upperArmR, 1.117010721276371F, -0.4363323129985824F, 0.0F);
             this.setRotateAngle(lowerArmL, -1.7453292519943295F, 0.0F, 0.0F);
@@ -260,20 +255,20 @@ public class BismuthUletrusModel<T extends BismuthUletrus> extends HierarchicalM
 //            this.tail1.setPos(0.0F, -1.5F, 16.0F);
             this.root.y = 0.0F;
 
-            this.upperArmL.xRot = Mth.cos(limbSwing * 0.6662F) * 0.5F * limbSwingAmount + 0.33161255787892263F;
-            this.upperArmR.xRot = Mth.cos(limbSwing * 0.6662F + (float) Math.PI) * 0.5F * limbSwingAmount + 0.33161255787892263F;
+            this.upperArmL.xRot = Mth.cos(state.walkAnimationPos * 0.6662F) * 0.5F * state.walkAnimationSpeed + 0.33161255787892263F;
+            this.upperArmR.xRot = Mth.cos(state.walkAnimationPos * 0.6662F + (float) Math.PI) * 0.5F * state.walkAnimationSpeed + 0.33161255787892263F;
 
-            this.upperLegL.xRot = Mth.cos(limbSwing * 0.6662F + (float) Math.PI) * 0.5F * limbSwingAmount + 1.0471975511965976F;
-            this.upperLegR.xRot = Mth.cos(limbSwing * 0.6662F) * 0.5F * limbSwingAmount + 1.0471975511965976F;
+            this.upperLegL.xRot = Mth.cos(state.walkAnimationPos * 0.6662F + (float) Math.PI) * 0.5F * state.walkAnimationSpeed + 1.0471975511965976F;
+            this.upperLegR.xRot = Mth.cos(state.walkAnimationPos * 0.6662F) * 0.5F * state.walkAnimationSpeed + 1.0471975511965976F;
 
-            this.tail1.yRot = Mth.cos(limbSwing * 0.6662F) * 0.5F * limbSwingAmount * 0.5F - 0.014660765716752367F;
-            this.tail1.yRot -= Mth.sin(ageInTicks * 0.067F) * 0.05F - 0.014660765716752367F;
-            this.tail2.yRot = Mth.cos(limbSwing * 0.6662F) * 0.5F * limbSwingAmount * 0.5F - 0.014660765716752367F;
-            this.tail2.yRot -= Mth.sin(ageInTicks * 0.067F) * 0.05F - 0.014660765716752367F;
-            this.tail3.yRot = Mth.cos(limbSwing * 0.6662F) * 0.5F * limbSwingAmount * 0.5F - 0.014660765716752367F;
-            this.tail3.yRot -= Mth.sin(ageInTicks * 0.067F) * 0.05F - 0.014660765716752367F;
-            this.tail4.yRot = Mth.cos(limbSwing * 0.6662F) * 0.5F * limbSwingAmount * 0.5F - 0.014660765716752367F;
-            this.tail4.yRot -= Mth.sin(ageInTicks * 0.067F) * 0.05F - 0.014660765716752367F;
+            this.tail1.yRot = Mth.cos(state.walkAnimationPos * 0.6662F) * 0.5F * state.walkAnimationSpeed * 0.5F - 0.014660765716752367F;
+            this.tail1.yRot -= Mth.sin(state.ageInTicks * 0.067F) * 0.05F - 0.014660765716752367F;
+            this.tail2.yRot = Mth.cos(state.walkAnimationPos * 0.6662F) * 0.5F * state.walkAnimationSpeed * 0.5F - 0.014660765716752367F;
+            this.tail2.yRot -= Mth.sin(state.ageInTicks * 0.067F) * 0.05F - 0.014660765716752367F;
+            this.tail3.yRot = Mth.cos(state.walkAnimationPos * 0.6662F) * 0.5F * state.walkAnimationSpeed * 0.5F - 0.014660765716752367F;
+            this.tail3.yRot -= Mth.sin(state.ageInTicks * 0.067F) * 0.05F - 0.014660765716752367F;
+            this.tail4.yRot = Mth.cos(state.walkAnimationPos * 0.6662F) * 0.5F * state.walkAnimationSpeed * 0.5F - 0.014660765716752367F;
+            this.tail4.yRot -= Mth.sin(state.ageInTicks * 0.067F) * 0.05F - 0.014660765716752367F;
         }
     }
 }

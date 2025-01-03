@@ -1,21 +1,20 @@
 package androsa.gaiadimension.model;
 
-import androsa.gaiadimension.entity.LesserSpitfire;
-import net.minecraft.client.model.HierarchicalModel;
+import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.CubeListBuilder;
 import net.minecraft.client.model.geom.builders.LayerDefinition;
 import net.minecraft.client.model.geom.builders.MeshDefinition;
 import net.minecraft.client.model.geom.builders.PartDefinition;
+import net.minecraft.client.renderer.entity.state.HumanoidRenderState;
 import net.minecraft.util.Mth;
 
 /**
  * ModelLesserSpitfire - Androsa
  * Created using Tabula 7.0.0
  */
-public class LesserSpitfireModel<T extends LesserSpitfire> extends HierarchicalModel<T> {
-    public ModelPart root;
+public class LesserSpitfireModel extends EntityModel<HumanoidRenderState> {
     public ModelPart head;
     public ModelPart armL;
     public ModelPart armR;
@@ -23,17 +22,12 @@ public class LesserSpitfireModel<T extends LesserSpitfire> extends HierarchicalM
     public ModelPart legR;
 
     public LesserSpitfireModel(ModelPart root) {
-        this.root = root;
+        super(root);
         this.head = root.getChild("head");
         this.armL = root.getChild("arm_left");
         this.armR = root.getChild("arm_right");
         this.legL = root.getChild("leg_left");
         this.legR = root.getChild("leg_right");
-    }
-
-    @Override
-    public ModelPart root() {
-        return this.root;
     }
 
     public static LayerDefinition makeBodyLayer() {
@@ -101,12 +95,12 @@ public class LesserSpitfireModel<T extends LesserSpitfire> extends HierarchicalM
 
     @Override
     @SuppressWarnings("UnusedAssignment")
-    public void setupAnim(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-        this.head.yRot = netHeadYaw / (180F / (float) Math.PI);
-        this.head.xRot = headPitch / (180F / (float) Math.PI);
+    public void setupAnim(HumanoidRenderState state) {
+        this.head.yRot = state.yRot / (180F / (float) Math.PI);
+        this.head.xRot = state.xRot / (180F / (float) Math.PI);
 
-        float f = Mth.sin(this.attackTime * (float) Math.PI);
-        float f1 = Mth.sin((1.0F - (1.0F - this.attackTime) * (1.0F - this.attackTime)) * (float) Math.PI);
+        float f = Mth.sin(state.attackTime * (float) Math.PI);
+        float f1 = Mth.sin((1.0F - (1.0F - state.attackTime) * (1.0F - state.attackTime)) * (float) Math.PI);
         this.armR.zRot = 0.0F;
         this.armL.zRot = 0.0F;
         this.armR.yRot = -(0.1F - f * 0.6F);
@@ -115,14 +109,14 @@ public class LesserSpitfireModel<T extends LesserSpitfire> extends HierarchicalM
         this.armL.xRot = 0.0F;
         this.armR.xRot -= f * 1.2F - f1 * 0.4F;
         this.armL.xRot -= f * 1.2F - f1 * 0.4F;
-        this.armR.zRot += Mth.cos(ageInTicks * 0.09F) * 0.05F + 0.05F;
-        this.armL.zRot -= Mth.cos(ageInTicks * 0.09F) * 0.05F + 0.05F;
-        this.armR.xRot += Mth.sin(ageInTicks * 0.067F) * 0.05F;
-        this.armL.xRot -= Mth.sin(ageInTicks * 0.067F) * 0.05F;
-        this.armL.xRot = Mth.cos(limbSwing * 0.6662F) * 1.0F * limbSwingAmount;
-        this.armR.xRot = Mth.cos(limbSwing * 0.6662F + (float) Math.PI) * 1.0F * limbSwingAmount;
+        this.armR.zRot += Mth.cos(state.ageInTicks * 0.09F) * 0.05F + 0.05F;
+        this.armL.zRot -= Mth.cos(state.ageInTicks * 0.09F) * 0.05F + 0.05F;
+        this.armR.xRot += Mth.sin(state.ageInTicks * 0.067F) * 0.05F;
+        this.armL.xRot -= Mth.sin(state.ageInTicks * 0.067F) * 0.05F;
+        this.armL.xRot = Mth.cos(state.walkAnimationPos * 0.6662F) * 1.0F * state.walkAnimationSpeed;
+        this.armR.xRot = Mth.cos(state.walkAnimationPos * 0.6662F + (float) Math.PI) * 1.0F * state.walkAnimationSpeed;
 
-        this.legR.xRot = Mth.cos(limbSwing * 0.6662F) * 1.0F * limbSwingAmount;
-        this.legL.xRot = Mth.cos(limbSwing * 0.6662F + (float) Math.PI) * 1.0F * limbSwingAmount;
+        this.legR.xRot = Mth.cos(state.walkAnimationPos * 0.6662F) * 1.0F * state.walkAnimationSpeed;
+        this.legL.xRot = Mth.cos(state.walkAnimationPos * 0.6662F + (float) Math.PI) * 1.0F * state.walkAnimationSpeed;
     }
 }

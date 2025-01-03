@@ -3,8 +3,8 @@ package androsa.gaiadimension.renderer;
 import androsa.gaiadimension.registry.helpers.ModEntitiesRendering;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.SlimeRenderer;
+import net.minecraft.client.renderer.entity.state.SlimeRenderState;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.entity.monster.Slime;
 
 public class MucklingRenderer extends SlimeRenderer {
 
@@ -14,7 +14,7 @@ public class MucklingRenderer extends SlimeRenderer {
     }
 
     @Override
-    public ResourceLocation getTextureLocation(Slime entity) {
-        return ModEntitiesRendering.makeTexture(entity);
+    public ResourceLocation getTextureLocation(SlimeRenderState entity) {
+        return ModEntitiesRendering.makeTexture("muckling");
     }
 }
