@@ -40,7 +40,7 @@ public class MookaiteMoundFeature extends Feature<NoneFeatureConfiguration> {
             }
         }
 
-        Optional<HolderSet.Named<Block>> tag = BuiltInRegistries.BLOCK.getTag(GaiaTags.Blocks.MOOKAITE);
+        Optional<HolderSet.Named<Block>> tag = BuiltInRegistries.BLOCK.get(GaiaTags.Blocks.MOOKAITE);
         if (tag.isEmpty()) {
             return false;
         }

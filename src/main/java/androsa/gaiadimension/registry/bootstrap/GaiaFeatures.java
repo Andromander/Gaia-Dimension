@@ -316,7 +316,7 @@ public class GaiaFeatures extends GaiaBiomeFeatures {
                                     new SimpleBlockConfiguration(new WeightedStateProvider(weight().add(ELDER_IMKLIA, 2).add(GOLD_ORB_TUCHER, 2))),
                                     BlockPredicate.allOf(
                                             BlockPredicate.matchesBlocks(Blocks.CAVE_AIR),
-                                            BlockPredicate.not(BlockPredicate.matchesBlocks(Direction.DOWN.getNormal(), cave_blacklist))
+                                            BlockPredicate.not(BlockPredicate.matchesBlocks(Direction.DOWN.getUnitVec3i(), cave_blacklist))
                                     )))));
 
             //Vegetal Decoration

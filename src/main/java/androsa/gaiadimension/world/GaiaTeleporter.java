@@ -53,18 +53,18 @@ public class GaiaTeleporter {
         double d1 = -1.0D;
         BlockPos blockpos1 = null;
         WorldBorder border = this.world.getWorldBorder();
-        int height = Math.min(this.world.getMaxBuildHeight(), this.world.getMinBuildHeight() + this.world.getLogicalHeight()) - 1;
+        int height = Math.min(this.world.getMaxY(), this.world.getMinY() + this.world.getLogicalHeight()) - 1;
         BlockPos.MutableBlockPos mutable = pos.mutable();
 
         for (BlockPos.MutableBlockPos mut : BlockPos.spiralAround(pos, 16, Direction.EAST, Direction.SOUTH)) {
             if (border.isWithinBounds(mut) && border.isWithinBounds(mut.move(direction, 1))) {
                 mut.move(direction.getOpposite(), 1);
 
-                for(int l = height; l >= this.world.getMinBuildHeight(); --l) {
+                for(int l = height; l >= this.world.getMinY(); --l) {
                     mut.setY(l);
                     if (this.canReplaceBlock(mut)) {
                         int i1 = l;
-                        while (l > this.world.getMinBuildHeight() && this.canReplaceBlock(mut.move(Direction.DOWN))) {
+                        while (l > this.world.getMinY() && this.canReplaceBlock(mut.move(Direction.DOWN))) {
                             --l;
                         }
 
