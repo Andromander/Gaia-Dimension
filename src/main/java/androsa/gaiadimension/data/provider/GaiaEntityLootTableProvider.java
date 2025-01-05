@@ -49,7 +49,7 @@ public abstract class GaiaEntityLootTableProvider extends EntityLootSubProvider 
                                 .apply(EnchantedCountIncreaseFunction.lootingMultiplier(this.registries, UniformGenerator.between(0.0F, 1.0F)))))
                 .withPool(LootPool.lootPool()
                         .setRolls(ConstantValue.exactly(1))
-                        .add(NestedLootTable.lootTableReference(ModEntities.GROWTH_SAPPER.get().getDefaultLootTable())));
+                        .add(NestedLootTable.lootTableReference(ModEntities.GROWTH_SAPPER.get().getDefaultLootTable().orElseThrow())));
     }
 
     public LootTable.Builder singleDropTable(Supplier<Item> drop, float minCount, float maxCount) {

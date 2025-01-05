@@ -19,7 +19,7 @@ public class GaiaDataMaps extends DataMapProvider {
     }
 
     @Override
-    protected void gather() {
+    protected void gather(HolderLookup.Provider provider) {
         Builder<Integer, Item> glitter = this.builder(ModDataMaps.GLITTERING_FUEL);
         glitter.add(Items.GOLD_NUGGET.builtInRegistryHolder(), 20, false);
         glitter.add(Items.GOLD_INGOT.builtInRegistryHolder(), 200, false);

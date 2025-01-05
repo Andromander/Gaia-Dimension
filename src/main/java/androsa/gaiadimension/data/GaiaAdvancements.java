@@ -10,9 +10,12 @@ import androsa.gaiadimension.registry.registration.ModItems;
 import androsa.gaiadimension.registry.registration.ModStructures;
 import net.minecraft.advancements.*;
 import net.minecraft.advancements.critereon.*;
+import net.minecraft.core.HolderGetter;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.EntityType;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 
 import java.util.List;
@@ -28,6 +31,7 @@ public class GaiaAdvancements extends GaiaAdvancementProvider {
     public static class Advancements implements AdvancementGenerator {
         @Override
         public void generate(HolderLookup.Provider provider, Consumer<AdvancementHolder> consumer, ExistingFileHelper fileHelper) {
+            HolderGetter<EntityType<?>> entities = provider.lookupOrThrow(Registries.ENTITY_TYPE);
             //Boolean 1 = show Toast
             //Boolean 2 = announce to chat
             //Boolean 3 = hide
@@ -298,7 +302,7 @@ public class GaiaAdvancements extends GaiaAdvancementProvider {
             AdvancementHolder progress3 = Advancement.Builder.advancement()
                     .parent(progress2)
                     .display(ModItems.malachite_guard_baton.get(), title("slay_malachite_guard"), description("slay_malachite_guard"), null, AdvancementType.GOAL, true, true, false)
-                    .addCriterion("malachite_guard", KilledTrigger.TriggerInstance.playerKilledEntity(EntityPredicate.Builder.entity().of(ModEntities.MALACHITE_GUARD.get())))
+                    .addCriterion("malachite_guard", KilledTrigger.TriggerInstance.playerKilledEntity(EntityPredicate.Builder.entity().of(entities, ModEntities.MALACHITE_GUARD.get())))
                     .save(consumer, loc("slay_malachite_guard"));
             //Get all of the Malachite gear
             Advancement.Builder.advancement()

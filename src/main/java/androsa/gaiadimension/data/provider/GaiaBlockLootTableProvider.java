@@ -10,7 +10,6 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.data.loot.BlockLootSubProvider;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.block.Block;
@@ -32,9 +31,6 @@ import java.util.function.Function;
 import java.util.function.Supplier;
 
 public abstract class GaiaBlockLootTableProvider extends BlockLootSubProvider {
-    private static final LootItemCondition.Builder has_shears = MatchTool.toolMatches(ItemPredicate.Builder.item().of(Items.SHEARS));
-    private final LootItemCondition.Builder shears_or_silk = has_shears.or(this.hasSilkTouch());
-    private final LootItemCondition.Builder silk_or_shears = shears_or_silk.invert();
 
     protected GaiaBlockLootTableProvider(HolderLookup.Provider provider) {
         super(Set.of(), FeatureFlags.REGISTRY.allFlags(), provider);
@@ -145,7 +141,7 @@ public abstract class GaiaBlockLootTableProvider extends BlockLootSubProvider {
         return createSilkTouchOrShearsDispatchTable(block, applyExplosionCondition(block, LootItem.lootTableItem(sapling))
                 .when(BonusLevelTableCondition.bonusLevelFlatChance(lookup.getOrThrow(Enchantments.FORTUNE), chances)))
                 .withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1))
-                        .when(silk_or_shears)
+                        .when(doesNotHaveSilkTouch())
                         .add(applyExplosionDecay(block, LootItem.lootTableItem(item)
                                 .apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 2.0F))))
                                 .when(BonusLevelTableCondition.bonusLevelFlatChance(lookup.getOrThrow(Enchantments.FORTUNE), 0.02F, 0.022222223F, 0.025F, 0.033333335F, 0.1F))));
@@ -176,17 +172,18 @@ public abstract class GaiaBlockLootTableProvider extends BlockLootSubProvider {
                                                                 .hasProperty(CurtainBlock.HALF, DoubleBlockHalf.UPPER))))));
     }
 
-    protected static LootTable.Builder doubleShearsOnly(Block block, Block half) {
+    protected LootTable.Builder doubleShearsOnly(Block block, Block half) {
+        HolderLookup.RegistryLookup<Block> registryLookup = this.registries.lookupOrThrow(Registries.BLOCK);
         LootPoolEntryContainer.Builder<?> builder = LootItem.lootTableItem(half)
                 .apply(SetItemCountFunction.setCount(ConstantValue.exactly(2.0F)))
-                .when(has_shears);
+                .when(hasShears());
         return LootTable.lootTable()
                 .withPool(LootPool.lootPool().add(builder)
                         .when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(block).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(DoublePlantBlock.HALF, DoubleBlockHalf.LOWER)))
-                        .when(LocationCheck.checkLocation(LocationPredicate.Builder.location().setBlock(BlockPredicate.Builder.block().of(block).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(DoublePlantBlock.HALF, DoubleBlockHalf.UPPER))), new BlockPos(0, 1, 0))))
+                        .when(LocationCheck.checkLocation(LocationPredicate.Builder.location().setBlock(BlockPredicate.Builder.block().of(registryLookup, block).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(DoublePlantBlock.HALF, DoubleBlockHalf.UPPER))), new BlockPos(0, 1, 0))))
                 .withPool(LootPool.lootPool()
                         .add(builder)
                         .when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(block).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(DoublePlantBlock.HALF, DoubleBlockHalf.UPPER)))
-                        .when(LocationCheck.checkLocation(LocationPredicate.Builder.location().setBlock(BlockPredicate.Builder.block().of(block).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(DoublePlantBlock.HALF, DoubleBlockHalf.LOWER))), new BlockPos(0, -1, 0))));
+                        .when(LocationCheck.checkLocation(LocationPredicate.Builder.location().setBlock(BlockPredicate.Builder.block().of(registryLookup, block).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(DoublePlantBlock.HALF, DoubleBlockHalf.LOWER))), new BlockPos(0, -1, 0))));
     }
 }

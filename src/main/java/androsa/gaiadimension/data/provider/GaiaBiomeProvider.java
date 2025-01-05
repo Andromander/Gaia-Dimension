@@ -47,8 +47,8 @@ public abstract class GaiaBiomeProvider {
 
     public static BiomeGenerationSettings.Builder createSettings(HolderGetter<PlacedFeature> features, HolderGetter<ConfiguredWorldCarver<?>> carvers) {
         return new BiomeGenerationSettings.Builder(features, carvers)
-                .addCarver(GenerationStep.Carving.AIR, GaiaWorldCarvers.CRYSTAL_CAVES)
-                .addCarver(GenerationStep.Carving.AIR, GaiaWorldCarvers.CHASMS)
+                .addCarver(GaiaWorldCarvers.CRYSTAL_CAVES)
+                .addCarver(GaiaWorldCarvers.CHASMS)
                 .addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, GaiaFeatures.Placed.ORE_PRIMAL_MASS)
                 .addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, GaiaFeatures.Placed.ORE_PEBBLES)
                 .addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, GaiaFeatures.Placed.ORE_SPECKLED_ROCK)
