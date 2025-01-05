@@ -17,6 +17,7 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.*;
+import net.minecraft.world.item.component.Consumable;
 import net.minecraft.world.item.component.ItemContainerContents;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.item.equipment.ArmorMaterial;
@@ -94,11 +95,11 @@ public class ModItems {
     public static final DeferredItem<Item> blue_geode_slice = register("blue_geode_slice", GeodeSliceItem::new, props().food(GaiaFoods.BLUE_SLICE));
     public static final DeferredItem<Item> green_geode_slice = register("green_geode_slice", GeodeSliceItem::new, props().food(GaiaFoods.GREEN_SLICE));
     public static final DeferredItem<Item> purple_geode_slice = register("purple_geode_slice", GeodeSliceItem::new, props().food(GaiaFoods.PURPLE_SLICE));
-    public static final DeferredItem<Item> pink_geode_juice = register("pink_geode_juice", GeodeJuiceItem::new, props().food(GaiaFoods.PINK_JUICE));
-    public static final DeferredItem<Item> blue_geode_tea = register("blue_geode_tea", GeodeJuiceItem::new, props().food(GaiaFoods.BLUE_TEA));
-    public static final DeferredItem<Item> green_geode_ale = register("green_geode_ale", GeodeJuiceItem::new, props().food(GaiaFoods.GREEN_ALE));
-    public static final DeferredItem<Item> purple_geode_soda = register("purple_geode_soda", GeodeJuiceItem::new, props().food(GaiaFoods.PURPLE_SODA));
-    public static final DeferredItem<Item> pearly_geode_elixir = register("pearly_geode_elixir", GeodeJuiceItem::new, props().food(GaiaFoods.PEARLY_ELIXIR));
+    public static final DeferredItem<Item> pink_geode_juice = register("pink_geode_juice", GeodeJuiceItem::new, props().food(GaiaFoods.PINK_JUICE, GaiaFoods.PINK_JUICE_EFFECT));
+    public static final DeferredItem<Item> blue_geode_tea = register("blue_geode_tea", GeodeJuiceItem::new, props().food(GaiaFoods.BLUE_TEA, GaiaFoods.BLUE_TEA_EFFECT));
+    public static final DeferredItem<Item> green_geode_ale = register("green_geode_ale", GeodeJuiceItem::new, props().food(GaiaFoods.GREEN_ALE, GaiaFoods.GREEN_ALE_EFFECT));
+    public static final DeferredItem<Item> purple_geode_soda = register("purple_geode_soda", GeodeJuiceItem::new, props().food(GaiaFoods.PURPLE_SODA, GaiaFoods.PURPLE_SODA_EFFECT));
+    public static final DeferredItem<Item> pearly_geode_elixir = register("pearly_geode_elixir", GeodeJuiceItem::new, props().food(GaiaFoods.PEARLY_ELIXIR, GaiaFoods.PEARLY_ELIXIR_EFFECT));
     public static final DeferredItem<Item> lurmorus_meat = register("lurmorus_meat", GaiaFoods.LURMORUS_MEAT);
     public static final DeferredItem<Item> lurmorus_steak = register("lurmorus_steak", GaiaFoods.LURMORUS_STEAK);
     public static final DeferredItem<Item> small_tentacle = register("small_tentacle", GaiaFoods.SMALL_TENTACLE);
@@ -114,7 +115,7 @@ public class ModItems {
     public static final DeferredItem<Item> tilipu = register("tilipu", GaiaFoods.TILIPU);
     public static final DeferredItem<Item> tiliol = register("tiliol", GaiaFoods.TILIOL);
     public static final DeferredItem<Item> tilimy = register("tilimy", GaiaFoods.TILIMY);
-    public static final DeferredItem<Item> plagued_tiliey = register("plagued_tiliey", GaiaFoods.PLAGUED_TILIEY);
+    public static final DeferredItem<Item> plagued_tiliey = register("plagued_tiliey", GaiaFoods.PLAGUED_TILIEY, GaiaFoods.PLAGUED_TILIEY_EFFECT);
     public static final DeferredItem<Item> tiliou = register("tiliou", GaiaFoods.TILIOU);
 
     public static final DeferredItem<Item> hematite_powder = register("hematite_powder", GroundGemItem::new, props());
@@ -303,6 +304,10 @@ public class ModItems {
 
     private static DeferredItem<Item> register(String name, FoodProperties food) {
         return register(name, Item::new, props().food(food));
+    }
+
+    private static DeferredItem<Item> register(String name, FoodProperties food, Consumable consumable) {
+        return register(name, Item::new, props().food(food, consumable));
     }
 
     private static DeferredItem<Item> register(String name, ArmorMaterial material, ArmorType slot) {

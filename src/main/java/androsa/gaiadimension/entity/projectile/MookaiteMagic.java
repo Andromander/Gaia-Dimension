@@ -9,6 +9,7 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.projectile.ThrowableItemProjectile;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.HitResult;
 
@@ -18,8 +19,8 @@ public class MookaiteMagic extends ThrowableItemProjectile {
         super(entity, level);
     }
 
-    public MookaiteMagic(Level level, LivingEntity entity) {
-        super(ModEntities.MOOKAITE_MAGIC_BULLET.get(), entity, level);
+    public MookaiteMagic(Level level, LivingEntity entity, ItemStack stack) {
+        super(ModEntities.MOOKAITE_MAGIC_BULLET.get(), entity, level, stack);
     }
 
     @Override

@@ -4,6 +4,7 @@ import androsa.gaiadimension.entity.data.MookaitePartType;
 import androsa.gaiadimension.entity.projectile.MookaiteAmmo;
 import androsa.gaiadimension.entity.projectile.MookaiteMagic;
 import androsa.gaiadimension.registry.bootstrap.GaiaDamage;
+import androsa.gaiadimension.registry.registration.ModBlocks;
 import androsa.gaiadimension.registry.registration.ModEntities;
 import androsa.gaiadimension.registry.registration.ModSounds;
 import com.google.common.collect.ImmutableList;
@@ -35,6 +36,7 @@ import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.ServerLevelAccessor;
@@ -658,7 +660,7 @@ public class MookaiteConstruct extends PathfinderMob {
             double ty = target.getEyeY() - (double)1.1F;
             double tz = target.getZ() - this.mookaite.getZ();
 
-            MookaiteMagic bullet = new MookaiteMagic(this.mookaite.level(), this.mookaite);
+            MookaiteMagic bullet = new MookaiteMagic(this.mookaite.level(), this.mookaite, new ItemStack(ModBlocks.gold_mookaite));
             bullet.shoot(tx, ty - bullet.getY(), tz, 1.6F, 12.0F);
             mookaite.playSound(ModSounds.ENTITY_MOOKAITE_CONSTRUCT_CAST.get(), 1.0F, 1.0F / (mookaite.getRandom().nextFloat() * 0.4F + 0.8F));
             this.mookaite.level().addFreshEntity(bullet);
@@ -763,7 +765,7 @@ public class MookaiteConstruct extends PathfinderMob {
             --this.attackTime;
 
             if (attackTime <= 0) {
-                MookaiteAmmo bullet = new MookaiteAmmo(this.mookaite.level(), this.mookaite);
+                MookaiteAmmo bullet = new MookaiteAmmo(this.mookaite.level(), this.mookaite, new ItemStack(ModBlocks.ivory_mookaite));
                 bullet.shoot(tx, ty - bullet.getY(), tz, 1.6F, 12.0F);
                 mookaite.playSound(ModSounds.ENTITY_MOOKAITE_CONSTRUCT_SHOOT.get(), 1.0F, 1.0F / (mookaite.getRandom().nextFloat() * 0.4F + 0.8F));
                 this.mookaite.level().addFreshEntity(bullet);

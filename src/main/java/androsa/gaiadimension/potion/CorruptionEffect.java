@@ -11,6 +11,7 @@ import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntitySpawnReason;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
@@ -59,7 +60,7 @@ public class CorruptionEffect extends MobEffect {
 
     @SubscribeEvent
     public static void onEntityDeath(LivingDeathEvent e) {
-        Entity corrputSpawn = ModEntities.CORRUPT_SAPPER.get().create(e.getEntity().getCommandSenderWorld());
+        Entity corrputSpawn = ModEntities.CORRUPT_SAPPER.get().create(e.getEntity().getCommandSenderWorld(), EntitySpawnReason.CONVERSION);
 
         if (e.getSource().is(GaiaDamage.CORRUPTION)) {
             e.getEntity().getCommandSenderWorld().addFreshEntity(corrputSpawn);
