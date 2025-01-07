@@ -37,7 +37,7 @@ public class GaiaTags {
     }
 
     private static TagKey<Fluid> tagFluid(String name) {
-        return FluidTags.create(ResourceLocation.fromNamespaceAndPath(GaiaDimensionMod.MODID, name));
+        return FluidTags.create(ResourceLocation.fromNamespaceAndPath(ID, name));
     }
 
     private static TagKey<Biome> tagStructure(String name) {

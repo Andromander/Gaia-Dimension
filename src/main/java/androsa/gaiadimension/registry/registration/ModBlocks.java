@@ -10,6 +10,9 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.dispenser.BlockSource;
 import net.minecraft.core.dispenser.DefaultDispenseItemBehavior;
 import net.minecraft.core.dispenser.DispenseItemBehavior;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.ColorRGBA;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.item.AxeItem;
@@ -40,163 +43,154 @@ public class ModBlocks {
 	public static final DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(GaiaDimensionMod.MODID);
 
     //Utility Blocks
-    public static final DeferredBlock<GaiaPortalBlock> gaia_portal = registerNoItem("gaia_portal", () ->
-            new GaiaPortalBlock(PropertiesHandler.stoneProps(MapColor.TERRACOTTA_PINK, -1.0F, -1.0F, false).noCollission().randomTicks().lightLevel((state) -> 15).noLootTable()));
-    public static final DeferredBlock<Block> keystone_block = register("keystone_block",
-            PropertiesHandler.basicProps(MapColor.GOLD, SoundType.METAL, 5.0F, 10.0F).requiresCorrectToolForDrops());
-    public static final DeferredBlock<Block> gold_fire = registerNoItem("gold_fire", () ->
-            new GoldFireBlock(Properties.of().mapColor(MapColor.GOLD).strength(0.0F).noCollission().randomTicks().lightLevel((state) -> 15).noLootTable()));
-    public static final DeferredBlock<Block> pyrite_torch = registerNoItem("pyrite_torch", () -> new PyriteTorchBlock(PropertiesHandler.torchProps()));
-    public static final DeferredBlock<Block> pyrite_wall_torch = registerNoItem("pyrite_wall_torch", () -> new PyriteWallTorchBlock(PropertiesHandler.torchProps().overrideLootTable(pyrite_torch.get().getLootTable())));
-    public static final DeferredBlock<Block> agate_crafting_table = register("agate_crafting_table", () ->
-            new AgateCraftingTableBlock(PropertiesHandler.stoneProps(MapColor.TERRACOTTA_PINK, 1.5F, 2.0F, false)));
-    public static final DeferredBlock<Block> crude_storage_crate = registerNoItem("crude_storage_crate", () ->
-            new SmallCrateBlock(PropertiesHandler.stoneProps(MapColor.TERRACOTTA_PINK, 10.0F, 150.0F).pushReaction(PushReaction.DESTROY)));
-    public static final DeferredBlock<Block> mega_storage_crate = registerNoItem("mega_storage_crate", () ->
-            new LargeCrateBlock(PropertiesHandler.stoneProps(MapColor.TERRACOTTA_PURPLE, 10.0F, 300.0F).pushReaction(PushReaction.DESTROY)));
-    public static final DeferredBlock<Block> gaia_stone_furnace = register("gaia_stone_furnace", () ->
-            new GaiaStoneFurnaceBlock(PropertiesHandler.stoneProps(MapColor.TERRACOTTA_PINK, 20.0F, 300.0F, true).lightLevel((state) -> state.getValue(AbstractFurnaceBlock.LIT) ? 13 : 0)));
-    public static final DeferredBlock<Block> restructurer = register("restructurer", () ->
-            new RestructurerBlock(PropertiesHandler.stoneProps(MapColor.TERRACOTTA_PURPLE, 20.0F, 300.0F, true).lightLevel((state) -> state.getValue(RestructurerBlock.LIT) ? 14 : 0)));
-    public static final DeferredBlock<Block> purifier = register("purifier", () ->
-            new PurifierBlock(PropertiesHandler.stoneProps(MapColor.SAND, 20.0F, 300.0F, true).lightLevel((state) -> state.getValue(PurifierBlock.LIT) ? 14 : 0)));
+    public static final DeferredBlock<GaiaPortalBlock> gaia_portal = registerNoItem("gaia_portal", GaiaPortalBlock::new, PropertiesHandler.stoneProps(MapColor.TERRACOTTA_PINK, -1.0F, -1.0F, false).noCollission().randomTicks().lightLevel((state) -> 15).noLootTable());
+    public static final DeferredBlock<Block> keystone_block = register("keystone_block", PropertiesHandler.basicProps(MapColor.GOLD, SoundType.METAL, 5.0F, 10.0F).requiresCorrectToolForDrops());
+    public static final DeferredBlock<Block> gold_fire = registerNoItem("gold_fire", GoldFireBlock::new, Properties.of().mapColor(MapColor.GOLD).strength(0.0F).noCollission().randomTicks().lightLevel((state) -> 15).noLootTable());
+    public static final DeferredBlock<Block> pyrite_torch = registerNoItem("pyrite_torch", PyriteTorchBlock::new, PropertiesHandler.torchProps());
+    public static final DeferredBlock<Block> pyrite_wall_torch = registerVariant("pyrite_wall_torch", PyriteWallTorchBlock::new, pyrite_torch, PropertiesHandler.torchProps());
+    public static final DeferredBlock<Block> agate_crafting_table = register("agate_crafting_table", AgateCraftingTableBlock::new, PropertiesHandler.stoneProps(MapColor.TERRACOTTA_PINK, 1.5F, 2.0F, false));
+    public static final DeferredBlock<Block> crude_storage_crate = registerNoItem("crude_storage_crate", SmallCrateBlock::new, PropertiesHandler.stoneProps(MapColor.TERRACOTTA_PINK, 10.0F, 150.0F).pushReaction(PushReaction.DESTROY));
+    public static final DeferredBlock<Block> mega_storage_crate = registerNoItem("mega_storage_crate", LargeCrateBlock::new, PropertiesHandler.stoneProps(MapColor.TERRACOTTA_PURPLE, 10.0F, 300.0F).pushReaction(PushReaction.DESTROY));
+    public static final DeferredBlock<Block> gaia_stone_furnace = register("gaia_stone_furnace", GaiaStoneFurnaceBlock::new, PropertiesHandler.stoneProps(MapColor.TERRACOTTA_PINK, 20.0F, 300.0F, true).lightLevel((state) -> state.getValue(AbstractFurnaceBlock.LIT) ? 13 : 0));
+    public static final DeferredBlock<Block> restructurer = register("restructurer", RestructurerBlock::new, PropertiesHandler.stoneProps(MapColor.TERRACOTTA_PURPLE, 20.0F, 300.0F, true).lightLevel((state) -> state.getValue(RestructurerBlock.LIT) ? 14 : 0));
+    public static final DeferredBlock<Block> purifier = register("purifier", PurifierBlock::new, PropertiesHandler.stoneProps(MapColor.SAND, 20.0F, 300.0F, true).lightLevel((state) -> state.getValue(PurifierBlock.LIT) ? 14 : 0));
 
     //Fluids
-    public static final DeferredBlock<LiquidBlock> mineral_water = registerNoItem("mineral_water", () ->
-            new GaiaFluidBlock(ModFluids.mineral_water_still, PropertiesHandler.liquidProps(MapColor.TERRACOTTA_LIGHT_BLUE)));
-    public static final DeferredBlock<LiquidBlock> superhot_magma = registerNoItem("superhot_magma", () ->
-            new GaiaFluidBlock(ModFluids.superhot_magma_still, PropertiesHandler.liquidProps(MapColor.COLOR_BLUE).randomTicks().lightLevel((state) -> 15)));
-    public static final DeferredBlock<LiquidBlock> sweet_muck = registerNoItem("sweet_muck", () ->
-            new GaiaFluidBlock(ModFluids.sweet_muck_still, PropertiesHandler.liquidProps(MapColor.COLOR_PURPLE)));
-    public static final DeferredBlock<LiquidBlock> liquid_bismuth = registerNoItem("liquid_bismuth", () ->
-            new GaiaFluidBlock(ModFluids.liquid_bismuth_still, PropertiesHandler.liquidProps(MapColor.TERRACOTTA_PURPLE).randomTicks().lightLevel((state) -> 3)));
-    public static final DeferredBlock<LiquidBlock> liquid_aura = registerNoItem("liquid_aura", () ->
-            new GaiaFluidBlock(ModFluids.liquid_aura_still, PropertiesHandler.liquidProps(MapColor.COLOR_LIGHT_BLUE)));
+    public static final DeferredBlock<LiquidBlock> mineral_water = registerNoItem("mineral_water", props ->
+            new GaiaFluidBlock(ModFluids.mineral_water_still, props), PropertiesHandler.liquidProps(MapColor.TERRACOTTA_LIGHT_BLUE));
+    public static final DeferredBlock<LiquidBlock> superhot_magma = registerNoItem("superhot_magma", props ->
+            new GaiaFluidBlock(ModFluids.superhot_magma_still, props), PropertiesHandler.liquidProps(MapColor.COLOR_BLUE).randomTicks().lightLevel((state) -> 15));
+    public static final DeferredBlock<LiquidBlock> sweet_muck = registerNoItem("sweet_muck", props ->
+            new GaiaFluidBlock(ModFluids.sweet_muck_still, props), PropertiesHandler.liquidProps(MapColor.COLOR_PURPLE));
+    public static final DeferredBlock<LiquidBlock> liquid_bismuth = registerNoItem("liquid_bismuth", props ->
+            new GaiaFluidBlock(ModFluids.liquid_bismuth_still, props), PropertiesHandler.liquidProps(MapColor.TERRACOTTA_PURPLE).randomTicks().lightLevel((state) -> 3));
+    public static final DeferredBlock<LiquidBlock> liquid_aura = registerNoItem("liquid_aura", props ->
+            new GaiaFluidBlock(ModFluids.liquid_aura_still, props), PropertiesHandler.liquidProps(MapColor.COLOR_LIGHT_BLUE));
 
     //Natural Blocks
-    public static final DeferredBlock<Block> heavy_soil = register("heavy_soil", () -> new GaiaSoilBlock(PropertiesHandler.soilProps(MapColor.TERRACOTTA_PURPLE)));
-    public static final DeferredBlock<Block> corrupted_soil = register("corrupted_soil", () -> new GaiaSoilBlock(PropertiesHandler.soilProps(MapColor.COLOR_GRAY)));
-    public static final DeferredBlock<Block> boggy_soil = register("boggy_soil", () -> new GaiaSoilBlock(PropertiesHandler.soilProps(MapColor.COLOR_GRAY)));
-    public static final DeferredBlock<Block> light_soil = register("light_soil", () -> new GaiaSoilBlock(PropertiesHandler.soilProps(MapColor.GOLD)));
-    public static final DeferredBlock<Block> aurum_soil = register("aurum_soil", () -> new GaiaSoilBlock(PropertiesHandler.soilProps(MapColor.TERRACOTTA_BLACK)));
-    public static final DeferredBlock<Block> glitter_grass = register("glitter_grass", () -> new GlitterGrassBlock(PropertiesHandler.grassProps(MapColor.COLOR_PINK)));
-    public static final DeferredBlock<Block> corrupted_grass = register("corrupted_grass", () -> new CorruptGrassBlock(PropertiesHandler.grassProps(MapColor.COLOR_BLACK)));
-    public static final DeferredBlock<Block> murky_grass = register("murky_grass", () -> new MurkyGrassBlock(PropertiesHandler.grassProps(MapColor.COLOR_GRAY)));
-    public static final DeferredBlock<Block> soft_grass = register("soft_grass", () -> new SoftGrassBlock(PropertiesHandler.grassProps(MapColor.COLOR_CYAN)));
-    public static final DeferredBlock<Block> gilded_grass = register("gilded_grass", () -> new GildedGrassBlock(PropertiesHandler.grassProps(MapColor.TERRACOTTA_BROWN)));
-    public static final DeferredBlock<Block> frail_glitter_block = register("frail_glitter_block", () -> new TransparentBlock(PropertiesHandler.glassProps(MapColor.COLOR_PINK, 1.0F)));
+    public static final DeferredBlock<Block> heavy_soil = register("heavy_soil", GaiaSoilBlock::new, PropertiesHandler.soilProps(MapColor.TERRACOTTA_PURPLE));
+    public static final DeferredBlock<Block> corrupted_soil = register("corrupted_soil", GaiaSoilBlock::new, PropertiesHandler.soilProps(MapColor.COLOR_GRAY));
+    public static final DeferredBlock<Block> boggy_soil = register("boggy_soil", GaiaSoilBlock::new, PropertiesHandler.soilProps(MapColor.COLOR_GRAY));
+    public static final DeferredBlock<Block> light_soil = register("light_soil", GaiaSoilBlock::new, PropertiesHandler.soilProps(MapColor.GOLD));
+    public static final DeferredBlock<Block> aurum_soil = register("aurum_soil", GaiaSoilBlock::new, PropertiesHandler.soilProps(MapColor.TERRACOTTA_BLACK));
+    public static final DeferredBlock<Block> glitter_grass = register("glitter_grass", GlitterGrassBlock::new, PropertiesHandler.grassProps(MapColor.COLOR_PINK));
+    public static final DeferredBlock<Block> corrupted_grass = register("corrupted_grass", CorruptGrassBlock::new, PropertiesHandler.grassProps(MapColor.COLOR_BLACK));
+    public static final DeferredBlock<Block> murky_grass = register("murky_grass", MurkyGrassBlock::new, PropertiesHandler.grassProps(MapColor.COLOR_GRAY));
+    public static final DeferredBlock<Block> soft_grass = register("soft_grass", SoftGrassBlock::new, PropertiesHandler.grassProps(MapColor.COLOR_CYAN));
+    public static final DeferredBlock<Block> gilded_grass = register("gilded_grass", GildedGrassBlock::new, PropertiesHandler.grassProps(MapColor.TERRACOTTA_BROWN));
+    public static final DeferredBlock<Block> frail_glitter_block = register("frail_glitter_block", TransparentBlock::new, PropertiesHandler.glassProps(MapColor.COLOR_PINK, 1.0F));
     public static final DeferredBlock<Block> thick_glitter_block = register("thick_glitter_block", PropertiesHandler.stoneProps(MapColor.TERRACOTTA_PURPLE, 1.5F, 7.5F, true));
-    public static final DeferredBlock<Block> gummy_glitter_block = register("gummy_glitter_block", () -> new SlimeBlock(Properties.of().mapColor(MapColor.COLOR_PURPLE).sound(SoundType.SLIME_BLOCK).noOcclusion()));
-    public static final DeferredBlock<Block> pink_sludge_block = register("pink_sludge_block", () -> new SlimeBlock(Properties.of().mapColor(MapColor.COLOR_PINK).sound(SoundType.SLIME_BLOCK)));
+    public static final DeferredBlock<Block> gummy_glitter_block = register("gummy_glitter_block", SlimeBlock::new, Properties.of().mapColor(MapColor.COLOR_PURPLE).sound(SoundType.SLIME_BLOCK).noOcclusion());
+    public static final DeferredBlock<Block> pink_sludge_block = register("pink_sludge_block", SlimeBlock::new, Properties.of().mapColor(MapColor.COLOR_PINK).sound(SoundType.SLIME_BLOCK));
 
     //Plants
-    public static final DeferredBlock<Block> crystal_growth = register("crystal_growth", () -> new CrystalGrowthBlock(PropertiesHandler.plantProps(MapColor.SNOW, true)));
-    public static final DeferredBlock<Block> crystal_growth_red = register("crystal_growth_red", () -> new CrystalGrowthBlock(PropertiesHandler.plantProps(MapColor.COLOR_RED, true)));
-    public static final DeferredBlock<Block> crystal_growth_black = register("crystal_growth_black", () -> new CrystalGrowthBlock(PropertiesHandler.plantProps(MapColor.COLOR_BLACK, true)));
-    public static final DeferredBlock<Block> crystal_growth_seared = register("crystal_growth_seared", () -> new CrystalGrowthBlock(PropertiesHandler.plantProps(MapColor.COLOR_BLACK, true)));
-    public static final DeferredBlock<Block> crystal_growth_mutant = register("crystal_growth_mutant", () -> new CrystalGrowthBlock(PropertiesHandler.plantProps(MapColor.TERRACOTTA_WHITE, true)));
-    public static final DeferredBlock<Block> crystal_growth_aura = register("crystal_growth_aura", () -> new CrystalGrowthBlock(PropertiesHandler.plantProps(MapColor.TERRACOTTA_LIGHT_BLUE, true)));
-    public static final DeferredBlock<Block> golden_grass = register("golden_grass", () -> new GoldenGrassBlock(PropertiesHandler.plantProps(MapColor.GOLD, false)));
-    public static final DeferredBlock<Block> tall_golden_grass = register("tall_golden_grass", () -> new DoubleCrystalGrowthBlock(PropertiesHandler.plantProps(MapColor.GOLD, false)));
-    public static final DeferredBlock<Block> thiscus = register("thiscus", () -> new CrystalBloomBlock(PropertiesHandler.bloomProps()));
-    public static final DeferredBlock<Block> ouzium = register("ouzium", () -> new CrystalBloomBlock(PropertiesHandler.bloomProps()));
-    public static final DeferredBlock<Block> agathum = register("agathum", () -> new CrystalBloomBlock(PropertiesHandler.bloomProps()));
-    public static final DeferredBlock<Block> varloom = register("varloom", () -> new CrystalBloomBlock(PropertiesHandler.bloomProps()));
-    public static final DeferredBlock<Block> corrupted_varloom = register("corrupted_varloom", () -> new CrystalBloomBlock(PropertiesHandler.bloomProps()));
-    public static final DeferredBlock<Block> glamelea = register("glamelea", () -> new GlameleaBlock(PropertiesHandler.bloomProps()));
-    public static final DeferredBlock<Block> missingno_plant = register("missingno_plant", () -> new CrystalBloomBlock(PropertiesHandler.bloomProps()));
-    public static final DeferredBlock<Block> spotted_kersei = register("spotted_kersei", () -> new CrystalFungusBlock(false, PropertiesHandler.plantProps(MapColor.COLOR_PINK, false)));
-    public static final DeferredBlock<Block> thorny_wiltha = register("thorny_wiltha", () -> new CrystalFungusBlock(false, PropertiesHandler.plantProps(MapColor.COLOR_LIGHT_BLUE, false)));
-    public static final DeferredBlock<Block> roofed_agaric = register("roofed_agaric", () -> new CrystalFungusBlock(false, PropertiesHandler.plantProps(MapColor.COLOR_LIGHT_GREEN, false)));
-    public static final DeferredBlock<Block> bulbous_hobina = register("bulbous_hobina", () -> new CrystalFungusBlock(false, PropertiesHandler.plantProps(MapColor.TERRACOTTA_PINK, false)));
-    public static final DeferredBlock<Block> stickly_cupsir = register("stickly_cupsir", () -> new CrystalFungusBlock(false, PropertiesHandler.plantProps(MapColor.TERRACOTTA_YELLOW, false)));
-    public static final DeferredBlock<Block> mystical_murgni = register("mystical_murgni", () -> new CrystalFungusBlock(false, PropertiesHandler.plantProps(MapColor.GOLD, false)));
-    public static final DeferredBlock<Block> corrupted_gaia_eye = register("corrupted_gaia_eye", () -> new CrystalFungusBlock(false, PropertiesHandler.plantProps(MapColor.FIRE, false)));
-    public static final DeferredBlock<Block> twinkling_gilsri = register("twinkling_gilsri", ()-> new CrystalFungusBlock(false, PropertiesHandler.plantProps(MapColor.GOLD, false)));
+    public static final DeferredBlock<Block> crystal_growth = register("crystal_growth", CrystalGrowthBlock::new, PropertiesHandler.plantProps(MapColor.SNOW, true));
+    public static final DeferredBlock<Block> crystal_growth_red = register("crystal_growth_red", CrystalGrowthBlock::new, PropertiesHandler.plantProps(MapColor.COLOR_RED, true));
+    public static final DeferredBlock<Block> crystal_growth_black = register("crystal_growth_black", CrystalGrowthBlock::new, PropertiesHandler.plantProps(MapColor.COLOR_BLACK, true));
+    public static final DeferredBlock<Block> crystal_growth_seared = register("crystal_growth_seared", CrystalGrowthBlock::new, PropertiesHandler.plantProps(MapColor.COLOR_BLACK, true));
+    public static final DeferredBlock<Block> crystal_growth_mutant = register("crystal_growth_mutant", CrystalGrowthBlock::new, PropertiesHandler.plantProps(MapColor.TERRACOTTA_WHITE, true));
+    public static final DeferredBlock<Block> crystal_growth_aura = register("crystal_growth_aura", CrystalGrowthBlock::new, PropertiesHandler.plantProps(MapColor.TERRACOTTA_LIGHT_BLUE, true));
+    public static final DeferredBlock<Block> golden_grass = register("golden_grass", GoldenGrassBlock::new, PropertiesHandler.plantProps(MapColor.GOLD, false));
+    public static final DeferredBlock<Block> tall_golden_grass = register("tall_golden_grass", DoubleCrystalGrowthBlock::new, PropertiesHandler.plantProps(MapColor.GOLD, false));
+    public static final DeferredBlock<Block> thiscus = register("thiscus", CrystalBloomBlock::new, PropertiesHandler.bloomProps());
+    public static final DeferredBlock<Block> ouzium = register("ouzium", CrystalBloomBlock::new, PropertiesHandler.bloomProps());
+    public static final DeferredBlock<Block> agathum = register("agathum", CrystalBloomBlock::new, PropertiesHandler.bloomProps());
+    public static final DeferredBlock<Block> varloom = register("varloom", CrystalBloomBlock::new, PropertiesHandler.bloomProps());
+    public static final DeferredBlock<Block> corrupted_varloom = register("corrupted_varloom", CrystalBloomBlock::new, PropertiesHandler.bloomProps());
+    public static final DeferredBlock<Block> glamelea = register("glamelea", GlameleaBlock::new, PropertiesHandler.bloomProps());
+    public static final DeferredBlock<Block> missingno_plant = register("missingno_plant", CrystalBloomBlock::new, PropertiesHandler.bloomProps());
+    public static final DeferredBlock<Block> spotted_kersei = register("spotted_kersei", props -> new CrystalFungusBlock(false, props), PropertiesHandler.plantProps(MapColor.COLOR_PINK, false));
+    public static final DeferredBlock<Block> thorny_wiltha = register("thorny_wiltha", props -> new CrystalFungusBlock(false, props), PropertiesHandler.plantProps(MapColor.COLOR_LIGHT_BLUE, false));
+    public static final DeferredBlock<Block> roofed_agaric = register("roofed_agaric", props -> new CrystalFungusBlock(false, props), PropertiesHandler.plantProps(MapColor.COLOR_LIGHT_GREEN, false));
+    public static final DeferredBlock<Block> bulbous_hobina = register("bulbous_hobina", props -> new CrystalFungusBlock(false, props), PropertiesHandler.plantProps(MapColor.TERRACOTTA_PINK, false));
+    public static final DeferredBlock<Block> stickly_cupsir = register("stickly_cupsir", props -> new CrystalFungusBlock(false, props), PropertiesHandler.plantProps(MapColor.TERRACOTTA_YELLOW, false));
+    public static final DeferredBlock<Block> mystical_murgni = register("mystical_murgni", props -> new CrystalFungusBlock(false, props), PropertiesHandler.plantProps(MapColor.GOLD, false));
+    public static final DeferredBlock<Block> corrupted_gaia_eye = register("corrupted_gaia_eye", props -> new CrystalFungusBlock(false, props), PropertiesHandler.plantProps(MapColor.FIRE, false));
+    public static final DeferredBlock<Block> twinkling_gilsri = register("twinkling_gilsri", props -> new CrystalFungusBlock(false, props), PropertiesHandler.plantProps(MapColor.GOLD, false));
     //public static final DeferredBlock<Block> sacred_gaia_eye = RegistryHelper.registerBlock()("sacred_gaia_eye", new CrystalFungusBlock(false));
-    public static final DeferredBlock<Block> elder_imklia = register("elder_imklia", () -> new CrystalFungusBlock(true, PropertiesHandler.plantProps(MapColor.COLOR_PURPLE, false)));
-    public static final DeferredBlock<Block> gold_orb_tucher = register("gold_orb_tucher", () -> new CrystalFungusBlock(true, PropertiesHandler.plantProps(MapColor.GOLD, false)));
-    public static final DeferredBlock<Block> missingno_fungus = register("missingno_fungus", () -> new CrystalFungusBlock(false, PropertiesHandler.plantProps(MapColor.COLOR_MAGENTA, false)));
-    public static final DeferredBlock<Block> golden_vine = register("golden_vine", () -> new VineBlock(PropertiesHandler.plantProps(MapColor.GOLD, false)));
-    public static final DeferredBlock<Block> sombre_cacti = register("sombre_cacti", () -> new SombreCactiBlock(PropertiesHandler.plantProps(MapColor.TERRACOTTA_BROWN, false)));
-    public static final DeferredBlock<Block> sombre_shrub = register("sombre_shrub", () -> new SombreShrubBlock(PropertiesHandler.plantProps(MapColor.TERRACOTTA_BROWN, false)));
+    public static final DeferredBlock<Block> elder_imklia = register("elder_imklia", props -> new CrystalFungusBlock(true, props), PropertiesHandler.plantProps(MapColor.COLOR_PURPLE, false));
+    public static final DeferredBlock<Block> gold_orb_tucher = register("gold_orb_tucher", props -> new CrystalFungusBlock(true, props), PropertiesHandler.plantProps(MapColor.GOLD, false));
+    public static final DeferredBlock<Block> missingno_fungus = register("missingno_fungus", props -> new CrystalFungusBlock(false, props), PropertiesHandler.plantProps(MapColor.COLOR_MAGENTA, false));
+    public static final DeferredBlock<Block> golden_vine = register("golden_vine", VineBlock::new, PropertiesHandler.plantProps(MapColor.GOLD, false));
+    public static final DeferredBlock<Block> sombre_cacti = register("sombre_cacti", SombreCactiBlock::new, PropertiesHandler.plantProps(MapColor.TERRACOTTA_BROWN, false));
+    public static final DeferredBlock<Block> sombre_shrub = register("sombre_shrub", SombreShrubBlock::new, PropertiesHandler.plantProps(MapColor.TERRACOTTA_BROWN, false));
 
     //Tree Blocks
-    public static final DeferredBlock<Block> pink_agate_leaves = register("pink_agate_leaves", () -> new LeavesBlock(PropertiesHandler.leavesProps(MapColor.COLOR_MAGENTA)));
-    public static final DeferredBlock<Block> blue_agate_leaves = register("blue_agate_leaves", () -> new LeavesBlock(PropertiesHandler.leavesProps(MapColor.COLOR_BLUE)));
-    public static final DeferredBlock<Block> green_agate_leaves = register("green_agate_leaves", () -> new LeavesBlock(PropertiesHandler.leavesProps(MapColor.COLOR_GREEN)));
-    public static final DeferredBlock<Block> purple_agate_leaves = register("purple_agate_leaves", () -> new LeavesBlock(PropertiesHandler.leavesProps(MapColor.TERRACOTTA_PURPLE)));
-    public static final DeferredBlock<Block> fossilized_leaves = register("fossilized_leaves", () -> new LeavesBlock(PropertiesHandler.leavesProps(MapColor.COLOR_YELLOW)));
-    public static final DeferredBlock<Block> corrupted_leaves = register("corrupted_leaves", () -> new LeavesBlock(PropertiesHandler.leavesProps(MapColor.FIRE)));
-    public static final DeferredBlock<Block> burnt_leaves = register("burnt_agate_leaves", () -> new LeavesBlock(PropertiesHandler.leavesProps(MapColor.COLOR_GRAY)));
-    public static final DeferredBlock<Block> fire_agate_leaves = register("fire_agate_leaves", () -> new LeavesBlock(PropertiesHandler.leavesProps(MapColor.TERRACOTTA_ORANGE).lightLevel((state) -> 3)), 200);
-    public static final DeferredBlock<Block> aura_leaves = register("aura_leaves", () -> new LeavesBlock(PropertiesHandler.leavesProps(MapColor.METAL)));
-    public static final DeferredBlock<Block> golden_leaves = register("golden_leaves", () -> new LeavesBlock(PropertiesHandler.leavesProps(MapColor.GOLD)));
-    public static final DeferredBlock<RotatedPillarBlock> pink_agate_log = register("pink_agate_log", () -> new RotatedPillarBlock(PropertiesHandler.logProps(MapColor.COLOR_MAGENTA, MapColor.TERRACOTTA_PINK)));
-    public static final DeferredBlock<RotatedPillarBlock> blue_agate_log = register("blue_agate_log", () -> new RotatedPillarBlock(PropertiesHandler.logProps(MapColor.COLOR_BLUE, MapColor.TERRACOTTA_BLUE)));
-    public static final DeferredBlock<RotatedPillarBlock> green_agate_log = register("green_agate_log", () -> new RotatedPillarBlock(PropertiesHandler.logProps(MapColor.COLOR_GREEN, MapColor.TERRACOTTA_LIGHT_GREEN)));
-    public static final DeferredBlock<RotatedPillarBlock> purple_agate_log = register("purple_agate_log", () -> new RotatedPillarBlock(PropertiesHandler.logProps(MapColor.TERRACOTTA_PURPLE, MapColor.COLOR_PURPLE)));
-    public static final DeferredBlock<RotatedPillarBlock> fossilized_log = register("fossilized_log", () -> new RotatedPillarBlock(PropertiesHandler.logProps(MapColor.COLOR_YELLOW, MapColor.DIRT)));
-    public static final DeferredBlock<RotatedPillarBlock> corrupted_log = register("corrupted_log", () -> new RotatedPillarBlock(PropertiesHandler.logProps(MapColor.FIRE, MapColor.TERRACOTTA_GRAY)));
-    public static final DeferredBlock<RotatedPillarBlock> burnt_log = register("burnt_agate_log", () -> new RotatedPillarBlock(PropertiesHandler.logProps(MapColor.COLOR_GRAY, MapColor.TERRACOTTA_BLACK)));
-    public static final DeferredBlock<RotatedPillarBlock> fire_agate_log = register("fire_agate_log", () -> new RotatedPillarBlock(PropertiesHandler.logProps(MapColor.COLOR_ORANGE, MapColor.TERRACOTTA_ORANGE).lightLevel((state) -> 3)), 1600);
-    public static final DeferredBlock<RotatedPillarBlock> aura_log = register("aura_log", () -> new RotatedPillarBlock(PropertiesHandler.logProps(MapColor.METAL, MapColor.COLOR_GRAY)));
-    public static final DeferredBlock<RotatedPillarBlock> golden_log = register("golden_log", () -> new RotatedPillarBlock(PropertiesHandler.logProps(MapColor.GOLD, MapColor.TERRACOTTA_BROWN)));
-    public static final DeferredBlock<RotatedPillarBlock> stripped_pink_agate_log = register("stripped_pink_agate_log", () -> new RotatedPillarBlock(PropertiesHandler.logProps(MapColor.COLOR_MAGENTA)));
-    public static final DeferredBlock<RotatedPillarBlock> stripped_blue_agate_log = register("stripped_blue_agate_log", () -> new RotatedPillarBlock(PropertiesHandler.logProps(MapColor.COLOR_BLUE)));
-    public static final DeferredBlock<RotatedPillarBlock> stripped_green_agate_log = register("stripped_green_agate_log", () -> new RotatedPillarBlock(PropertiesHandler.logProps(MapColor.COLOR_GREEN)));
-    public static final DeferredBlock<RotatedPillarBlock> stripped_purple_agate_log = register("stripped_purple_agate_log", () -> new RotatedPillarBlock(PropertiesHandler.logProps(MapColor.TERRACOTTA_PURPLE)));
-    public static final DeferredBlock<RotatedPillarBlock> stripped_fossilized_log = register("stripped_fossilized_log", () -> new RotatedPillarBlock(PropertiesHandler.logProps(MapColor.COLOR_YELLOW)));
-    public static final DeferredBlock<RotatedPillarBlock> stripped_corrupted_log = register("stripped_corrupted_log", () -> new RotatedPillarBlock(PropertiesHandler.logProps(MapColor.FIRE)));
-    public static final DeferredBlock<RotatedPillarBlock> stripped_burnt_log = register("stripped_burnt_agate_log", () -> new RotatedPillarBlock(PropertiesHandler.logProps(MapColor.COLOR_GRAY)));
-    public static final DeferredBlock<RotatedPillarBlock> stripped_fire_agate_log = register("stripped_fire_agate_log", () -> new RotatedPillarBlock(PropertiesHandler.logProps(MapColor.COLOR_ORANGE).lightLevel((state) -> 3)), 1600);
-    public static final DeferredBlock<RotatedPillarBlock> stripped_aura_log = register("stripped_aura_log", () -> new RotatedPillarBlock(PropertiesHandler.logProps(MapColor.METAL)));
-    public static final DeferredBlock<RotatedPillarBlock> stripped_golden_log = register("stripped_golden_log", () -> new RotatedPillarBlock(PropertiesHandler.logProps(MapColor.GOLD)));
-    public static final DeferredBlock<RotatedPillarBlock> pink_agate_wood = register("pink_agate_wood", () -> new RotatedPillarBlock(PropertiesHandler.logProps(MapColor.TERRACOTTA_PINK)));
-    public static final DeferredBlock<RotatedPillarBlock> blue_agate_wood = register("blue_agate_wood", () -> new RotatedPillarBlock(PropertiesHandler.logProps(MapColor.TERRACOTTA_BLUE)));
-    public static final DeferredBlock<RotatedPillarBlock> green_agate_wood = register("green_agate_wood", () -> new RotatedPillarBlock(PropertiesHandler.logProps(MapColor.TERRACOTTA_LIGHT_GREEN)));
-    public static final DeferredBlock<RotatedPillarBlock> purple_agate_wood = register("purple_agate_wood", () -> new RotatedPillarBlock(PropertiesHandler.logProps(MapColor.COLOR_PURPLE)));
-    public static final DeferredBlock<RotatedPillarBlock> fossilized_wood = register("fossilized_wood", () -> new RotatedPillarBlock(PropertiesHandler.logProps(MapColor.DIRT)));
-    public static final DeferredBlock<RotatedPillarBlock> corrupted_wood = register("corrupted_wood", () -> new RotatedPillarBlock(PropertiesHandler.logProps(MapColor.TERRACOTTA_GRAY)));
-    public static final DeferredBlock<RotatedPillarBlock> burnt_wood = register("burnt_agate_wood", () -> new RotatedPillarBlock(PropertiesHandler.logProps(MapColor.TERRACOTTA_BLACK)));
-    public static final DeferredBlock<RotatedPillarBlock> fire_agate_wood = register("fire_agate_wood", () -> new RotatedPillarBlock(PropertiesHandler.logProps(MapColor.TERRACOTTA_ORANGE).lightLevel((state) -> 3)), 1600);
-    public static final DeferredBlock<RotatedPillarBlock> aura_wood = register("aura_wood", () -> new RotatedPillarBlock(PropertiesHandler.logProps(MapColor.COLOR_GRAY)));
-    public static final DeferredBlock<RotatedPillarBlock> golden_wood = register("golden_wood", () -> new RotatedPillarBlock(PropertiesHandler.logProps(MapColor.TERRACOTTA_BROWN)));
-    public static final DeferredBlock<RotatedPillarBlock> stripped_pink_agate_wood = register("stripped_pink_agate_wood", () -> new RotatedPillarBlock(PropertiesHandler.logProps(MapColor.COLOR_MAGENTA)));
-    public static final DeferredBlock<RotatedPillarBlock> stripped_blue_agate_wood = register("stripped_blue_agate_wood", () -> new RotatedPillarBlock(PropertiesHandler.logProps(MapColor.COLOR_BLUE)));
-    public static final DeferredBlock<RotatedPillarBlock> stripped_green_agate_wood = register("stripped_green_agate_wood", () -> new RotatedPillarBlock(PropertiesHandler.logProps(MapColor.COLOR_GREEN)));
-    public static final DeferredBlock<RotatedPillarBlock> stripped_purple_agate_wood = register("stripped_purple_agate_wood", () -> new RotatedPillarBlock(PropertiesHandler.logProps(MapColor.TERRACOTTA_PURPLE)));
-    public static final DeferredBlock<RotatedPillarBlock> stripped_fossilized_wood = register("stripped_fossilized_wood", () -> new RotatedPillarBlock(PropertiesHandler.logProps(MapColor.COLOR_YELLOW)));
-    public static final DeferredBlock<RotatedPillarBlock> stripped_corrupted_wood = register("stripped_corrupted_wood", () -> new RotatedPillarBlock(PropertiesHandler.logProps(MapColor.FIRE)));
-    public static final DeferredBlock<RotatedPillarBlock> stripped_burnt_wood = register("stripped_burnt_agate_wood", () -> new RotatedPillarBlock(PropertiesHandler.logProps(MapColor.COLOR_GRAY)));
-    public static final DeferredBlock<RotatedPillarBlock> stripped_fire_agate_wood = register("stripped_fire_agate_wood", () -> new RotatedPillarBlock(PropertiesHandler.logProps(MapColor.COLOR_ORANGE).lightLevel((state) -> 3)), 1600);
-    public static final DeferredBlock<RotatedPillarBlock> stripped_aura_wood = register("stripped_aura_wood", () -> new RotatedPillarBlock(PropertiesHandler.logProps(MapColor.METAL)));
-    public static final DeferredBlock<RotatedPillarBlock> stripped_golden_wood = register("stripped_golden_wood", () -> new RotatedPillarBlock(PropertiesHandler.logProps(MapColor.GOLD)));
+    public static final DeferredBlock<Block> pink_agate_leaves = register("pink_agate_leaves", LeavesBlock::new, PropertiesHandler.leavesProps(MapColor.COLOR_MAGENTA));
+    public static final DeferredBlock<Block> blue_agate_leaves = register("blue_agate_leaves", LeavesBlock::new, PropertiesHandler.leavesProps(MapColor.COLOR_BLUE));
+    public static final DeferredBlock<Block> green_agate_leaves = register("green_agate_leaves", LeavesBlock::new, PropertiesHandler.leavesProps(MapColor.COLOR_GREEN));
+    public static final DeferredBlock<Block> purple_agate_leaves = register("purple_agate_leaves", LeavesBlock::new, PropertiesHandler.leavesProps(MapColor.TERRACOTTA_PURPLE));
+    public static final DeferredBlock<Block> fossilized_leaves = register("fossilized_leaves", LeavesBlock::new, PropertiesHandler.leavesProps(MapColor.COLOR_YELLOW));
+    public static final DeferredBlock<Block> corrupted_leaves = register("corrupted_leaves", LeavesBlock::new, PropertiesHandler.leavesProps(MapColor.FIRE));
+    public static final DeferredBlock<Block> burnt_leaves = register("burnt_agate_leaves", LeavesBlock::new, PropertiesHandler.leavesProps(MapColor.COLOR_GRAY));
+    public static final DeferredBlock<Block> fire_agate_leaves = register("fire_agate_leaves", LeavesBlock::new, PropertiesHandler.leavesProps(MapColor.TERRACOTTA_ORANGE).lightLevel((state) -> 3), 200);
+    public static final DeferredBlock<Block> aura_leaves = register("aura_leaves", LeavesBlock::new, PropertiesHandler.leavesProps(MapColor.METAL));
+    public static final DeferredBlock<Block> golden_leaves = register("golden_leaves", LeavesBlock::new, PropertiesHandler.leavesProps(MapColor.GOLD));
+    public static final DeferredBlock<RotatedPillarBlock> pink_agate_log = register("pink_agate_log", RotatedPillarBlock::new, PropertiesHandler.logProps(MapColor.COLOR_MAGENTA, MapColor.TERRACOTTA_PINK));
+    public static final DeferredBlock<RotatedPillarBlock> blue_agate_log = register("blue_agate_log", RotatedPillarBlock::new, PropertiesHandler.logProps(MapColor.COLOR_BLUE, MapColor.TERRACOTTA_BLUE));
+    public static final DeferredBlock<RotatedPillarBlock> green_agate_log = register("green_agate_log", RotatedPillarBlock::new, PropertiesHandler.logProps(MapColor.COLOR_GREEN, MapColor.TERRACOTTA_LIGHT_GREEN));
+    public static final DeferredBlock<RotatedPillarBlock> purple_agate_log = register("purple_agate_log", RotatedPillarBlock::new, PropertiesHandler.logProps(MapColor.TERRACOTTA_PURPLE, MapColor.COLOR_PURPLE));
+    public static final DeferredBlock<RotatedPillarBlock> fossilized_log = register("fossilized_log", RotatedPillarBlock::new, PropertiesHandler.logProps(MapColor.COLOR_YELLOW, MapColor.DIRT));
+    public static final DeferredBlock<RotatedPillarBlock> corrupted_log = register("corrupted_log", RotatedPillarBlock::new, PropertiesHandler.logProps(MapColor.FIRE, MapColor.TERRACOTTA_GRAY));
+    public static final DeferredBlock<RotatedPillarBlock> burnt_log = register("burnt_agate_log", RotatedPillarBlock::new, PropertiesHandler.logProps(MapColor.COLOR_GRAY, MapColor.TERRACOTTA_BLACK));
+    public static final DeferredBlock<RotatedPillarBlock> fire_agate_log = register("fire_agate_log", RotatedPillarBlock::new, PropertiesHandler.logProps(MapColor.COLOR_ORANGE, MapColor.TERRACOTTA_ORANGE).lightLevel((state) -> 3), 1600);
+    public static final DeferredBlock<RotatedPillarBlock> aura_log = register("aura_log", RotatedPillarBlock::new, PropertiesHandler.logProps(MapColor.METAL, MapColor.COLOR_GRAY));
+    public static final DeferredBlock<RotatedPillarBlock> golden_log = register("golden_log", RotatedPillarBlock::new, PropertiesHandler.logProps(MapColor.GOLD, MapColor.TERRACOTTA_BROWN));
+    public static final DeferredBlock<RotatedPillarBlock> stripped_pink_agate_log = register("stripped_pink_agate_log", RotatedPillarBlock::new, PropertiesHandler.logProps(MapColor.COLOR_MAGENTA));
+    public static final DeferredBlock<RotatedPillarBlock> stripped_blue_agate_log = register("stripped_blue_agate_log", RotatedPillarBlock::new, PropertiesHandler.logProps(MapColor.COLOR_BLUE));
+    public static final DeferredBlock<RotatedPillarBlock> stripped_green_agate_log = register("stripped_green_agate_log", RotatedPillarBlock::new, PropertiesHandler.logProps(MapColor.COLOR_GREEN));
+    public static final DeferredBlock<RotatedPillarBlock> stripped_purple_agate_log = register("stripped_purple_agate_log", RotatedPillarBlock::new, PropertiesHandler.logProps(MapColor.TERRACOTTA_PURPLE));
+    public static final DeferredBlock<RotatedPillarBlock> stripped_fossilized_log = register("stripped_fossilized_log", RotatedPillarBlock::new, PropertiesHandler.logProps(MapColor.COLOR_YELLOW));
+    public static final DeferredBlock<RotatedPillarBlock> stripped_corrupted_log = register("stripped_corrupted_log", RotatedPillarBlock::new, PropertiesHandler.logProps(MapColor.FIRE));
+    public static final DeferredBlock<RotatedPillarBlock> stripped_burnt_log = register("stripped_burnt_agate_log", RotatedPillarBlock::new, PropertiesHandler.logProps(MapColor.COLOR_GRAY));
+    public static final DeferredBlock<RotatedPillarBlock> stripped_fire_agate_log = register("stripped_fire_agate_log", RotatedPillarBlock::new, PropertiesHandler.logProps(MapColor.COLOR_ORANGE).lightLevel((state) -> 3), 1600);
+    public static final DeferredBlock<RotatedPillarBlock> stripped_aura_log = register("stripped_aura_log", RotatedPillarBlock::new, PropertiesHandler.logProps(MapColor.METAL));
+    public static final DeferredBlock<RotatedPillarBlock> stripped_golden_log = register("stripped_golden_log", RotatedPillarBlock::new, PropertiesHandler.logProps(MapColor.GOLD));
+    public static final DeferredBlock<RotatedPillarBlock> pink_agate_wood = register("pink_agate_wood", RotatedPillarBlock::new, PropertiesHandler.logProps(MapColor.TERRACOTTA_PINK));
+    public static final DeferredBlock<RotatedPillarBlock> blue_agate_wood = register("blue_agate_wood", RotatedPillarBlock::new, PropertiesHandler.logProps(MapColor.TERRACOTTA_BLUE));
+    public static final DeferredBlock<RotatedPillarBlock> green_agate_wood = register("green_agate_wood", RotatedPillarBlock::new, PropertiesHandler.logProps(MapColor.TERRACOTTA_LIGHT_GREEN));
+    public static final DeferredBlock<RotatedPillarBlock> purple_agate_wood = register("purple_agate_wood", RotatedPillarBlock::new, PropertiesHandler.logProps(MapColor.COLOR_PURPLE));
+    public static final DeferredBlock<RotatedPillarBlock> fossilized_wood = register("fossilized_wood", RotatedPillarBlock::new, PropertiesHandler.logProps(MapColor.DIRT));
+    public static final DeferredBlock<RotatedPillarBlock> corrupted_wood = register("corrupted_wood", RotatedPillarBlock::new, PropertiesHandler.logProps(MapColor.TERRACOTTA_GRAY));
+    public static final DeferredBlock<RotatedPillarBlock> burnt_wood = register("burnt_agate_wood", RotatedPillarBlock::new, PropertiesHandler.logProps(MapColor.TERRACOTTA_BLACK));
+    public static final DeferredBlock<RotatedPillarBlock> fire_agate_wood = register("fire_agate_wood", RotatedPillarBlock::new, PropertiesHandler.logProps(MapColor.TERRACOTTA_ORANGE).lightLevel((state) -> 3), 1600);
+    public static final DeferredBlock<RotatedPillarBlock> aura_wood = register("aura_wood", RotatedPillarBlock::new, PropertiesHandler.logProps(MapColor.COLOR_GRAY));
+    public static final DeferredBlock<RotatedPillarBlock> golden_wood = register("golden_wood", RotatedPillarBlock::new, PropertiesHandler.logProps(MapColor.TERRACOTTA_BROWN));
+    public static final DeferredBlock<RotatedPillarBlock> stripped_pink_agate_wood = register("stripped_pink_agate_wood", RotatedPillarBlock::new, PropertiesHandler.logProps(MapColor.COLOR_MAGENTA));
+    public static final DeferredBlock<RotatedPillarBlock> stripped_blue_agate_wood = register("stripped_blue_agate_wood", RotatedPillarBlock::new, PropertiesHandler.logProps(MapColor.COLOR_BLUE));
+    public static final DeferredBlock<RotatedPillarBlock> stripped_green_agate_wood = register("stripped_green_agate_wood", RotatedPillarBlock::new, PropertiesHandler.logProps(MapColor.COLOR_GREEN));
+    public static final DeferredBlock<RotatedPillarBlock> stripped_purple_agate_wood = register("stripped_purple_agate_wood", RotatedPillarBlock::new, PropertiesHandler.logProps(MapColor.TERRACOTTA_PURPLE));
+    public static final DeferredBlock<RotatedPillarBlock> stripped_fossilized_wood = register("stripped_fossilized_wood", RotatedPillarBlock::new, PropertiesHandler.logProps(MapColor.COLOR_YELLOW));
+    public static final DeferredBlock<RotatedPillarBlock> stripped_corrupted_wood = register("stripped_corrupted_wood", RotatedPillarBlock::new, PropertiesHandler.logProps(MapColor.FIRE));
+    public static final DeferredBlock<RotatedPillarBlock> stripped_burnt_wood = register("stripped_burnt_agate_wood", RotatedPillarBlock::new, PropertiesHandler.logProps(MapColor.COLOR_GRAY));
+    public static final DeferredBlock<RotatedPillarBlock> stripped_fire_agate_wood = register("stripped_fire_agate_wood", RotatedPillarBlock::new, PropertiesHandler.logProps(MapColor.COLOR_ORANGE).lightLevel((state) -> 3), 1600);
+    public static final DeferredBlock<RotatedPillarBlock> stripped_aura_wood = register("stripped_aura_wood", RotatedPillarBlock::new, PropertiesHandler.logProps(MapColor.METAL));
+    public static final DeferredBlock<RotatedPillarBlock> stripped_golden_wood = register("stripped_golden_wood", RotatedPillarBlock::new, PropertiesHandler.logProps(MapColor.GOLD));
 
-    public static final DeferredBlock<Block> salt = register("salt", () -> new ColoredFallingBlock(new ColorRGBA(0xE0E0FFFF), PropertiesHandler.sandProps(MapColor.SNOW, 0.9F, SoundType.SAND)));
+    public static final DeferredBlock<Block> salt = register("salt", props -> new ColoredFallingBlock(new ColorRGBA(0xE0E0FFFF), props), PropertiesHandler.sandProps(MapColor.SNOW, 0.9F, SoundType.SAND));
     public static final DeferredBlock<Block> saltstone = register("saltstone", PropertiesHandler.stoneProps(MapColor.TERRACOTTA_LIGHT_BLUE, 1.5F, 10.0F, true));
-    public static final DeferredBlock<Block> pebbles = register("pebbles", () -> new ColoredFallingBlock(new ColorRGBA(0x663366FF), PropertiesHandler.sandProps(MapColor.COLOR_GRAY, 1.3F, SoundType.GRAVEL)));
+    public static final DeferredBlock<Block> pebbles = register("pebbles", props -> new ColoredFallingBlock(new ColorRGBA(0x663366FF), props), PropertiesHandler.sandProps(MapColor.COLOR_GRAY, 1.3F, SoundType.GRAVEL));
     public static final DeferredBlock<Block> gaia_stone = register("gaia_stone", PropertiesHandler.stoneProps(MapColor.COLOR_MAGENTA, 2.0F, 15.0F, true));
     public static final DeferredBlock<Block> gaia_cobblestone = register("gaia_cobblestone", PropertiesHandler.stoneProps(MapColor.COLOR_MAGENTA, 2.0F, 15.0F, true));
     public static final DeferredBlock<Block> wasteland_stone = register("wasteland_stone", PropertiesHandler.stoneProps(MapColor.TERRACOTTA_BLUE, 15.0F, 200.0F, true));
-    public static final DeferredBlock<Block> static_stone = register("static_stone", () -> new StaticStoneBlock(PropertiesHandler.stoneProps(MapColor.TERRACOTTA_BLUE, 50.0F, 200.0F, true)));
-    public static final DeferredBlock<Block> charged_mineral = register("charged_mineral", () -> new ChargedMineralBlock(Properties.of().mapColor(MapColor.COLOR_CYAN).strength(4.0F, 15.0F).sound(SoundType.GLASS).noOcclusion()));
+    public static final DeferredBlock<Block> static_stone = register("static_stone", StaticStoneBlock::new, PropertiesHandler.stoneProps(MapColor.TERRACOTTA_BLUE, 50.0F, 200.0F, true));
+    public static final DeferredBlock<Block> charged_mineral = register("charged_mineral", ChargedMineralBlock::new, Properties.of().mapColor(MapColor.COLOR_CYAN).strength(4.0F, 15.0F).sound(SoundType.GLASS).noOcclusion());
     public static final DeferredBlock<Block> volcanic_rock = register("volcanic_rock", PropertiesHandler.stoneProps(MapColor.TERRACOTTA_GRAY, 15.0F, 200.0F, true));
-    public static final DeferredBlock<Block> searing_rock = register("searing_rock", () -> new SearingRockBlock(PropertiesHandler.stoneProps(MapColor.TERRACOTTA_GRAY, 20.0F, 600.0F, true).lightLevel((state) -> 7)));
+    public static final DeferredBlock<Block> searing_rock = register("searing_rock", SearingRockBlock::new, PropertiesHandler.stoneProps(MapColor.TERRACOTTA_GRAY, 20.0F, 600.0F, true).lightLevel((state) -> 7));
     public static final DeferredBlock<Block> primal_mass = register("primal_mass", PropertiesHandler.stoneProps(MapColor.TERRACOTTA_PURPLE, 5.0F, 45.0F, true));
     public static final DeferredBlock<Block> nexustone = register("nexustone", PropertiesHandler.stoneProps(MapColor.TERRACOTTA_BLACK, 10.0F, 100.0F, true));
     public static final DeferredBlock<Block> impure_rock = register("impure_rock", PropertiesHandler.stoneProps(MapColor.COLOR_GRAY, 20.0F, 300.0F, true));
-    public static final DeferredBlock<Block> active_rock = register("active_rock", () -> new ActiveRockBlock(PropertiesHandler.stoneProps(MapColor.TERRACOTTA_PURPLE, 15.0F, 250.0F, true).lightLevel((state) -> 7)));
-    public static final DeferredBlock<Block> impure_sludge = register("impure_sludge", () -> new SlowingBlock(PropertiesHandler.muckyProps(MapColor.TERRACOTTA_YELLOW, 0.4F, 0.8F)));
-    public static final DeferredBlock<Block> geyser_block = register("geyser_block", () -> new GeyserBlock(PropertiesHandler.stoneProps(MapColor.METAL, 5.0F, 10.0F, true)));
+    public static final DeferredBlock<Block> active_rock = register("active_rock", ActiveRockBlock::new, PropertiesHandler.stoneProps(MapColor.TERRACOTTA_PURPLE, 15.0F, 250.0F, true).lightLevel((state) -> 7));
+    public static final DeferredBlock<Block> impure_sludge = register("impure_sludge", SlowingBlock::new, PropertiesHandler.muckyProps(MapColor.TERRACOTTA_YELLOW, 0.4F, 0.8F));
+    public static final DeferredBlock<Block> geyser_block = register("geyser_block", GeyserBlock::new, PropertiesHandler.stoneProps(MapColor.METAL, 5.0F, 10.0F, true));
     public static final DeferredBlock<Block> sparkling_rock = register("sparkling_rock", Properties.of().mapColor(MapColor.METAL).strength(10.0F, 150.0F).sound(SoundType.AMETHYST).requiresCorrectToolForDrops());
-    public static final DeferredBlock<Block> aura_shoot = register("aura_shoot", () -> new AuraShootBlock(Properties.of().mapColor(MapColor.COLOR_BLUE).sound(SoundType.AMETHYST_CLUSTER).randomTicks()));
+    public static final DeferredBlock<Block> aura_shoot = register("aura_shoot", AuraShootBlock::new, Properties.of().mapColor(MapColor.COLOR_BLUE).sound(SoundType.AMETHYST_CLUSTER).randomTicks());
     public static final DeferredBlock<Block> golden_stone = register("golden_stone", PropertiesHandler.stoneProps(MapColor.TERRACOTTA_PURPLE, 2.0F, 15.0F, true));
     public static final DeferredBlock<Block> tough_golden_stone = register("tough_golden_stone", PropertiesHandler.stoneProps(MapColor.COLOR_BLACK, 3.0F, 30.0F, true));
     public static final DeferredBlock<Block> brilliant_stone = register("brilliant_stone", PropertiesHandler.stoneProps(MapColor.TERRACOTTA_YELLOW, 5.0F, 35.0F, true));
     public static final DeferredBlock<Block> gilded_brilliant_stone = register("gilded_brilliant_stone", PropertiesHandler.stoneProps(MapColor.TERRACOTTA_WHITE, 5.0F, 35.0F, true).lightLevel((state) -> 5));
     public static final DeferredBlock<Block> aurum_mud = register("aurum_mud", PropertiesHandler.muckyProps(MapColor.TERRACOTTA_BLACK, 0.3F, 0.4F));
-    public static final DeferredBlock<Block> golden_sand = register("golden_sand", () -> new ColoredFallingBlock(new ColorRGBA(0xFFD700FF), PropertiesHandler.sandProps(MapColor.GOLD, 1.0F, SoundType.SAND)));
+    public static final DeferredBlock<Block> golden_sand = register("golden_sand", props -> new ColoredFallingBlock(new ColorRGBA(0xFFD700FF), props), PropertiesHandler.sandProps(MapColor.GOLD, 1.0F, SoundType.SAND));
     public static final DeferredBlock<Block> scarlet_mookaite = register("scarlet_mookaite", PropertiesHandler.stoneProps(MapColor.TERRACOTTA_RED, 1.8F, 12.0F));
     public static final DeferredBlock<Block> auburn_mookaite = register("auburn_mookaite", PropertiesHandler.stoneProps(MapColor.TERRACOTTA_ORANGE, 1.8F, 12.0F));
     public static final DeferredBlock<Block> gold_mookaite = register("gold_mookaite", PropertiesHandler.stoneProps(MapColor.TERRACOTTA_YELLOW, 1.8F, 12.0F));
@@ -215,86 +209,86 @@ public class ModBlocks {
     public static final DeferredBlock<Block> fire_agate_tiles = register("fire_agate_tiles", PropertiesHandler.tileProps(MapColor.TERRACOTTA_ORANGE).lightLevel((state) -> 3), 400);
     public static final DeferredBlock<Block> aura_tiles = register("aura_tiles", PropertiesHandler.tileProps(MapColor.SNOW));
     public static final DeferredBlock<Block> golden_tiles = register("golden_tiles", PropertiesHandler.tileProps(MapColor.GOLD));
-    public static final DeferredBlock<SlabBlock> pink_agate_tile_slab = register("pink_agate_tile_slab", () -> new SlabBlock(PropertiesHandler.tileProps(MapColor.COLOR_PINK)));
-    public static final DeferredBlock<SlabBlock> blue_agate_tile_slab = register("blue_agate_tile_slab", () -> new SlabBlock(PropertiesHandler.tileProps(MapColor.COLOR_LIGHT_BLUE)));
-    public static final DeferredBlock<SlabBlock> green_agate_tile_slab = register("green_agate_tile_slab", () -> new SlabBlock(PropertiesHandler.tileProps(MapColor.COLOR_LIGHT_GREEN)));
-    public static final DeferredBlock<SlabBlock> purple_agate_tile_slab = register("purple_agate_tile_slab", () -> new SlabBlock(PropertiesHandler.tileProps(MapColor.TERRACOTTA_PURPLE)));
-    public static final DeferredBlock<SlabBlock> fossilized_tile_slab = register("fossilized_tile_slab", () -> new SlabBlock(PropertiesHandler.tileProps(MapColor.TERRACOTTA_YELLOW)));
-    public static final DeferredBlock<SlabBlock> corrupted_tile_slab = register("corrupted_tile_slab", () -> new SlabBlock(PropertiesHandler.tileProps(MapColor.TERRACOTTA_BLACK)));
-    public static final DeferredBlock<SlabBlock> burnt_tile_slab = register("burnt_agate_tile_slab", () -> new SlabBlock(PropertiesHandler.tileProps(MapColor.COLOR_BLACK)));
-    public static final DeferredBlock<SlabBlock> fire_agate_tile_slab = register("fire_agate_tile_slab", () -> new SlabBlock(PropertiesHandler.tileProps(MapColor.TERRACOTTA_ORANGE).lightLevel((state) -> 3)), 200);
-    public static final DeferredBlock<SlabBlock> aura_tile_slab = register("aura_tile_slab", () -> new SlabBlock(PropertiesHandler.tileProps(MapColor.SNOW)));
-    public static final DeferredBlock<SlabBlock> golden_tile_slab = register("golden_tile_slab", () -> new SlabBlock(PropertiesHandler.tileProps(MapColor.GOLD)));
-    public static final DeferredBlock<StairBlock> pink_agate_tile_stairs = register("pink_agate_tile_stairs", makeStairs(pink_agate_tiles), 0);
-    public static final DeferredBlock<StairBlock> blue_agate_tile_stairs = register("blue_agate_tile_stairs", makeStairs(blue_agate_tiles), 0);
-    public static final DeferredBlock<StairBlock> green_agate_tile_stairs = register("green_agate_tile_stairs", makeStairs(green_agate_tiles), 0);
-    public static final DeferredBlock<StairBlock> purple_agate_tile_stairs = register("purple_agate_tile_stairs", makeStairs(purple_agate_tiles), 0);
-    public static final DeferredBlock<StairBlock> fossilized_tile_stairs = register("fossilized_tile_stairs", makeStairs(fossilized_tiles), 0);
-    public static final DeferredBlock<StairBlock> corrupted_tile_stairs = register("corrupted_tile_stairs", makeStairs(corrupted_tiles), 0);
-    public static final DeferredBlock<StairBlock> burnt_tile_stairs = register("burnt_agate_tile_stairs", makeStairs(burnt_tiles), 0);
-    public static final DeferredBlock<StairBlock> fire_agate_tile_stairs = register("fire_agate_tile_stairs", makeStairs(fire_agate_tiles), 300);
-    public static final DeferredBlock<StairBlock> aura_tile_stairs = register("aura_tile_stairs", makeStairs(aura_tiles), 0);
-    public static final DeferredBlock<StairBlock> golden_tile_stairs = register("golden_tile_stairs", makeStairs(golden_tiles), 0);
+    public static final DeferredBlock<SlabBlock> pink_agate_tile_slab = makeSlab("pink_agate_tile_slab", PropertiesHandler.tileProps(MapColor.COLOR_PINK), 0);
+    public static final DeferredBlock<SlabBlock> blue_agate_tile_slab = makeSlab("blue_agate_tile_slab", PropertiesHandler.tileProps(MapColor.COLOR_LIGHT_BLUE), 0);
+    public static final DeferredBlock<SlabBlock> green_agate_tile_slab = makeSlab("green_agate_tile_slab", PropertiesHandler.tileProps(MapColor.COLOR_LIGHT_GREEN), 0);
+    public static final DeferredBlock<SlabBlock> purple_agate_tile_slab = makeSlab("purple_agate_tile_slab", PropertiesHandler.tileProps(MapColor.TERRACOTTA_PURPLE), 0);
+    public static final DeferredBlock<SlabBlock> fossilized_tile_slab = makeSlab("fossilized_tile_slab", PropertiesHandler.tileProps(MapColor.TERRACOTTA_YELLOW), 0);
+    public static final DeferredBlock<SlabBlock> corrupted_tile_slab = makeSlab("corrupted_tile_slab", PropertiesHandler.tileProps(MapColor.TERRACOTTA_BLACK), 0);
+    public static final DeferredBlock<SlabBlock> burnt_tile_slab = makeSlab("burnt_agate_tile_slab", PropertiesHandler.tileProps(MapColor.COLOR_BLACK), 0);
+    public static final DeferredBlock<SlabBlock> fire_agate_tile_slab = makeSlab("fire_agate_tile_slab", PropertiesHandler.tileProps(MapColor.TERRACOTTA_ORANGE).lightLevel((state) -> 3), 200);
+    public static final DeferredBlock<SlabBlock> aura_tile_slab = makeSlab("aura_tile_slab", PropertiesHandler.tileProps(MapColor.SNOW), 0);
+    public static final DeferredBlock<SlabBlock> golden_tile_slab = makeSlab("golden_tile_slab", PropertiesHandler.tileProps(MapColor.GOLD), 0);
+    public static final DeferredBlock<StairBlock> pink_agate_tile_stairs = makeStairs("pink_agate_tile_stairs", pink_agate_tiles, 0);
+    public static final DeferredBlock<StairBlock> blue_agate_tile_stairs = makeStairs("blue_agate_tile_stairs", blue_agate_tiles, 0);
+    public static final DeferredBlock<StairBlock> green_agate_tile_stairs = makeStairs("green_agate_tile_stairs", green_agate_tiles, 0);
+    public static final DeferredBlock<StairBlock> purple_agate_tile_stairs = makeStairs("purple_agate_tile_stairs", purple_agate_tiles, 0);
+    public static final DeferredBlock<StairBlock> fossilized_tile_stairs = makeStairs("fossilized_tile_stairs", fossilized_tiles, 0);
+    public static final DeferredBlock<StairBlock> corrupted_tile_stairs = makeStairs("corrupted_tile_stairs", corrupted_tiles, 0);
+    public static final DeferredBlock<StairBlock> burnt_tile_stairs = makeStairs("burnt_agate_tile_stairs", burnt_tiles, 0);
+    public static final DeferredBlock<StairBlock> fire_agate_tile_stairs = makeStairs("fire_agate_tile_stairs", fire_agate_tiles, 300);
+    public static final DeferredBlock<StairBlock> aura_tile_stairs = makeStairs("aura_tile_stairs", aura_tiles, 0);
+    public static final DeferredBlock<StairBlock> golden_tile_stairs = makeStairs("golden_tile_stairs", golden_tiles, 0);
 
     //Decor
-    public static final DeferredBlock<CurtainBlock> pink_agate_curtain = register("pink_agate_curtain", () -> new CurtainBlock(PropertiesHandler.curtainProps(MapColor.COLOR_PINK)));
-    public static final DeferredBlock<CurtainBlock> blue_agate_curtain = register("blue_agate_curtain", () -> new CurtainBlock(PropertiesHandler.curtainProps(MapColor.COLOR_LIGHT_BLUE)));
-    public static final DeferredBlock<CurtainBlock> green_agate_curtain = register("green_agate_curtain", () -> new CurtainBlock(PropertiesHandler.curtainProps(MapColor.COLOR_LIGHT_GREEN)));
-    public static final DeferredBlock<CurtainBlock> purple_agate_curtain = register("purple_agate_curtain", () -> new CurtainBlock(PropertiesHandler.curtainProps(MapColor.TERRACOTTA_PURPLE)));
-    public static final DeferredBlock<CurtainBlock> fossilized_curtain = register("fossilized_curtain", () -> new CurtainBlock(PropertiesHandler.curtainProps(MapColor.TERRACOTTA_YELLOW)));
-    public static final DeferredBlock<CurtainBlock> corrupted_curtain = register("corrupted_curtain", () -> new CurtainBlock(PropertiesHandler.curtainProps(MapColor.TERRACOTTA_BLACK)));
-    public static final DeferredBlock<CurtainBlock> burnt_agate_curtain = register("burnt_agate_curtain", () -> new CurtainBlock(PropertiesHandler.curtainProps(MapColor.TERRACOTTA_BLACK)));
-    public static final DeferredBlock<CurtainBlock> fire_agate_curtain = register("fire_agate_curtain", () -> new CurtainBlock(PropertiesHandler.curtainProps(MapColor.TERRACOTTA_ORANGE).lightLevel((state) -> 3)));
-    public static final DeferredBlock<CurtainBlock> aura_curtain = register("aura_curtain", () -> new CurtainBlock(PropertiesHandler.curtainProps(MapColor.SNOW)));
-    public static final DeferredBlock<CurtainBlock> golden_curtain = register("golden_curtain", () -> new CurtainBlock(PropertiesHandler.curtainProps(MapColor.GOLD)));
+    public static final DeferredBlock<CurtainBlock> pink_agate_curtain = register("pink_agate_curtain", CurtainBlock::new, PropertiesHandler.curtainProps(MapColor.COLOR_PINK));
+    public static final DeferredBlock<CurtainBlock> blue_agate_curtain = register("blue_agate_curtain", CurtainBlock::new, PropertiesHandler.curtainProps(MapColor.COLOR_LIGHT_BLUE));
+    public static final DeferredBlock<CurtainBlock> green_agate_curtain = register("green_agate_curtain", CurtainBlock::new, PropertiesHandler.curtainProps(MapColor.COLOR_LIGHT_GREEN));
+    public static final DeferredBlock<CurtainBlock> purple_agate_curtain = register("purple_agate_curtain", CurtainBlock::new, PropertiesHandler.curtainProps(MapColor.TERRACOTTA_PURPLE));
+    public static final DeferredBlock<CurtainBlock> fossilized_curtain = register("fossilized_curtain", CurtainBlock::new, PropertiesHandler.curtainProps(MapColor.TERRACOTTA_YELLOW));
+    public static final DeferredBlock<CurtainBlock> corrupted_curtain = register("corrupted_curtain", CurtainBlock::new, PropertiesHandler.curtainProps(MapColor.TERRACOTTA_BLACK));
+    public static final DeferredBlock<CurtainBlock> burnt_agate_curtain = register("burnt_agate_curtain", CurtainBlock::new, PropertiesHandler.curtainProps(MapColor.TERRACOTTA_BLACK));
+    public static final DeferredBlock<CurtainBlock> fire_agate_curtain = register("fire_agate_curtain", CurtainBlock::new, PropertiesHandler.curtainProps(MapColor.TERRACOTTA_ORANGE).lightLevel((state) -> 3));
+    public static final DeferredBlock<CurtainBlock> aura_curtain = register("aura_curtain", CurtainBlock::new, PropertiesHandler.curtainProps(MapColor.SNOW));
+    public static final DeferredBlock<CurtainBlock> golden_curtain = register("golden_curtain", CurtainBlock::new, PropertiesHandler.curtainProps(MapColor.GOLD));
 
     //Manufactured
-    public static final DeferredBlock<Block> cloudy_glass = register("cloudy_glass", () -> new TransparentBlock(PropertiesHandler.glassProps(MapColor.COLOR_YELLOW, 0.7F)));
-    public static final DeferredBlock<Block> foggy_glass = register("foggy_glass", () -> new TransparentBlock(PropertiesHandler.glassProps(MapColor.COLOR_LIGHT_BLUE, 0.7F)));
+    public static final DeferredBlock<Block> cloudy_glass = register("cloudy_glass", TransparentBlock::new, PropertiesHandler.glassProps(MapColor.COLOR_YELLOW, 0.7F));
+    public static final DeferredBlock<Block> foggy_glass = register("foggy_glass", TransparentBlock::new, PropertiesHandler.glassProps(MapColor.COLOR_LIGHT_BLUE, 0.7F));
     public static final DeferredBlock<Block> gaia_stone_bricks = register("gaia_stone_bricks", PropertiesHandler.gaiaBrickProps());
     public static final DeferredBlock<Block> cracked_gaia_stone_bricks = register("cracked_gaia_stone_bricks", PropertiesHandler.gaiaBrickProps());
     public static final DeferredBlock<Block> crusted_gaia_stone_bricks = register("crusted_gaia_stone_bricks", PropertiesHandler.gaiaBrickProps());
 
     public static final DeferredBlock<Block> raw_jade = register("raw_jade", PropertiesHandler.stoneProps(MapColor.COLOR_GREEN, 2.0F, 20.0F, true));
     public static final DeferredBlock<Block> jade_bricks = register("jade_bricks", PropertiesHandler.jadeProps());
-    public static final DeferredBlock<SlabBlock> jade_brick_slab = register("jade_brick_slab", makeSlab(PropertiesHandler.jadeProps()));
-    public static final DeferredBlock<StairBlock> jade_brick_stairs = register("jade_brick_stairs", makeStairs(jade_bricks));
+    public static final DeferredBlock<SlabBlock> jade_brick_slab = makeSlab("jade_brick_slab", PropertiesHandler.jadeProps(), 0);
+    public static final DeferredBlock<StairBlock> jade_brick_stairs = makeStairs("jade_brick_stairs", jade_bricks, 0);
     public static final DeferredBlock<Block> cracked_jade_bricks = register("cracked_jade_bricks", PropertiesHandler.jadeProps());
-    public static final DeferredBlock<SlabBlock> cracked_jade_brick_slab = register("cracked_jade_brick_slab", makeSlab(PropertiesHandler.jadeProps()));
-    public static final DeferredBlock<StairBlock> cracked_jade_brick_stairs = register("cracked_jade_brick_stairs", makeStairs(cracked_jade_bricks));
+    public static final DeferredBlock<SlabBlock> cracked_jade_brick_slab = makeSlab("cracked_jade_brick_slab", PropertiesHandler.jadeProps(), 0);
+    public static final DeferredBlock<StairBlock> cracked_jade_brick_stairs = makeStairs("cracked_jade_brick_stairs", cracked_jade_bricks, 0);
     public static final DeferredBlock<Block> crusted_jade_bricks = register("crusted_jade_bricks", PropertiesHandler.jadeProps());
-    public static final DeferredBlock<SlabBlock> crusted_jade_brick_slab = register("crusted_jade_brick_slab", makeSlab(PropertiesHandler.jadeProps()));
-    public static final DeferredBlock<StairBlock> crusted_jade_brick_stairs = register("crusted_jade_brick_stairs", makeStairs(crusted_jade_bricks));
+    public static final DeferredBlock<SlabBlock> crusted_jade_brick_slab = makeSlab("crusted_jade_brick_slab", PropertiesHandler.jadeProps(), 0);
+    public static final DeferredBlock<StairBlock> crusted_jade_brick_stairs = makeStairs("crusted_jade_brick_stairs", crusted_jade_bricks, 0);
     public static final DeferredBlock<Block> raw_copal = register("raw_copal", PropertiesHandler.stoneProps(MapColor.GOLD, 2.0F, 20.0F, true));
     public static final DeferredBlock<Block> copal_bricks = register("copal_bricks", PropertiesHandler.copalProps());
-    public static final DeferredBlock<SlabBlock> copal_brick_slab = register("copal_brick_slab", makeSlab(PropertiesHandler.copalProps()));
-    public static final DeferredBlock<StairBlock> copal_brick_stairs = register("copal_brick_stairs", makeStairs(copal_bricks));
+    public static final DeferredBlock<SlabBlock> copal_brick_slab = makeSlab("copal_brick_slab", PropertiesHandler.copalProps(), 0);
+    public static final DeferredBlock<StairBlock> copal_brick_stairs = makeStairs("copal_brick_stairs", copal_bricks, 0);
     public static final DeferredBlock<Block> cracked_copal_bricks = register("cracked_copal_bricks", PropertiesHandler.copalProps());
-    public static final DeferredBlock<SlabBlock> cracked_copal_brick_slab = register("cracked_copal_brick_slab", makeSlab(PropertiesHandler.copalProps()));
-    public static final DeferredBlock<StairBlock> cracked_copal_brick_stairs = register("cracked_copal_brick_stairs", makeStairs(cracked_copal_bricks));
+    public static final DeferredBlock<SlabBlock> cracked_copal_brick_slab = makeSlab("cracked_copal_brick_slab", PropertiesHandler.copalProps(), 0);
+    public static final DeferredBlock<StairBlock> cracked_copal_brick_stairs = makeStairs("cracked_copal_brick_stairs", cracked_copal_bricks, 0);
     public static final DeferredBlock<Block> crusted_copal_bricks = register("crusted_copal_bricks", PropertiesHandler.copalProps());
-    public static final DeferredBlock<SlabBlock> crusted_copal_brick_slab = register("crusted_copal_brick_slab", makeSlab(PropertiesHandler.copalProps()));
-    public static final DeferredBlock<StairBlock> crusted_copal_brick_stairs = register("crusted_copal_brick_stairs", makeStairs(crusted_copal_bricks));
+    public static final DeferredBlock<SlabBlock> crusted_copal_brick_slab = makeSlab("crusted_copal_brick_slab", PropertiesHandler.copalProps(), 0);
+    public static final DeferredBlock<StairBlock> crusted_copal_brick_stairs = makeStairs("crusted_copal_brick_stairs", crusted_copal_bricks, 0);
     public static final DeferredBlock<Block> raw_jet = register("raw_jet", PropertiesHandler.stoneProps(MapColor.COLOR_GRAY, 2.0F, 20.0F, true));
     public static final DeferredBlock<Block> jet_bricks = register("jet_bricks", PropertiesHandler.jetProps());
-    public static final DeferredBlock<SlabBlock> jet_brick_slab = register("jet_brick_slab", makeSlab(PropertiesHandler.jetProps()));
-    public static final DeferredBlock<StairBlock> jet_brick_stairs = register("jet_brick_stairs", makeStairs(jet_bricks));
+    public static final DeferredBlock<SlabBlock> jet_brick_slab = makeSlab("jet_brick_slab", PropertiesHandler.jetProps(), 0);
+    public static final DeferredBlock<StairBlock> jet_brick_stairs = makeStairs("jet_brick_stairs", jet_bricks, 0);
     public static final DeferredBlock<Block> cracked_jet_bricks = register("cracked_jet_bricks", PropertiesHandler.jetProps());
-    public static final DeferredBlock<SlabBlock> cracked_jet_brick_slab = register("cracked_jet_brick_slab", makeSlab(PropertiesHandler.jetProps()));
-    public static final DeferredBlock<StairBlock> cracked_jet_brick_stairs = register("cracked_jet_brick_stairs", makeStairs(cracked_jet_bricks));
+    public static final DeferredBlock<SlabBlock> cracked_jet_brick_slab = makeSlab("cracked_jet_brick_slab", PropertiesHandler.jetProps(), 0);
+    public static final DeferredBlock<StairBlock> cracked_jet_brick_stairs = makeStairs("cracked_jet_brick_stairs", cracked_jet_bricks, 0);
     public static final DeferredBlock<Block> crusted_jet_bricks = register("crusted_jet_bricks", PropertiesHandler.jetProps());
-    public static final DeferredBlock<SlabBlock> crusted_jet_brick_slab = register("crusted_jet_brick_slab", makeSlab(PropertiesHandler.jetProps()));
-    public static final DeferredBlock<StairBlock> crusted_jet_brick_stairs = register("crusted_jet_brick_stairs", makeStairs(crusted_jet_bricks));
+    public static final DeferredBlock<SlabBlock> crusted_jet_brick_slab = makeSlab("crusted_jet_brick_slab", PropertiesHandler.jetProps(), 0);
+    public static final DeferredBlock<StairBlock> crusted_jet_brick_stairs = makeStairs("crusted_jet_brick_stairs", crusted_jet_bricks, 0);
     public static final DeferredBlock<Block> raw_amethyst = register("raw_amethyst", PropertiesHandler.stoneProps(MapColor.TERRACOTTA_PURPLE, 2.0F, 20.0F, true));
     public static final DeferredBlock<Block> amethyst_bricks = register("amethyst_bricks", PropertiesHandler.amethystProps());
-    public static final DeferredBlock<SlabBlock> amethyst_brick_slab = register("amethyst_brick_slab", makeSlab(PropertiesHandler.amethystProps()));
-    public static final DeferredBlock<StairBlock> amethyst_brick_stairs = register("amethyst_brick_stairs", makeStairs(amethyst_bricks));
+    public static final DeferredBlock<SlabBlock> amethyst_brick_slab = makeSlab("amethyst_brick_slab", PropertiesHandler.amethystProps(), 0);
+    public static final DeferredBlock<StairBlock> amethyst_brick_stairs = makeStairs("amethyst_brick_stairs", amethyst_bricks, 0);
     public static final DeferredBlock<Block> cracked_amethyst_bricks = register("cracked_amethyst_bricks", PropertiesHandler.amethystProps());
-    public static final DeferredBlock<SlabBlock> cracked_amethyst_brick_slab = register("cracked_amethyst_brick_slab", makeSlab(PropertiesHandler.amethystProps()));
-    public static final DeferredBlock<StairBlock> cracked_amethyst_brick_stairs = register("cracked_amethyst_brick_stairs", makeStairs(cracked_amethyst_bricks));
+    public static final DeferredBlock<SlabBlock> cracked_amethyst_brick_slab = makeSlab("cracked_amethyst_brick_slab", PropertiesHandler.amethystProps(), 0);
+    public static final DeferredBlock<StairBlock> cracked_amethyst_brick_stairs = makeStairs("cracked_amethyst_brick_stairs", cracked_amethyst_bricks, 0);
     public static final DeferredBlock<Block> crusted_amethyst_bricks = register("crusted_amethyst_bricks", PropertiesHandler.amethystProps());
-    public static final DeferredBlock<SlabBlock> crusted_amethyst_brick_slab = register("crusted_amethyst_brick_slab", makeSlab(PropertiesHandler.amethystProps()));
-    public static final DeferredBlock<StairBlock> crusted_amethyst_brick_stairs = register("crusted_amethyst_brick_stairs", makeStairs(crusted_amethyst_bricks));
+    public static final DeferredBlock<SlabBlock> crusted_amethyst_brick_slab = makeSlab("crusted_amethyst_brick_slab", PropertiesHandler.amethystProps(), 0);
+    public static final DeferredBlock<StairBlock> crusted_amethyst_brick_stairs = makeStairs("crusted_amethyst_brick_stairs", crusted_amethyst_bricks, 0);
 
     public static final DeferredBlock<Block> reinforced_bricks = register("reinforced_bricks", PropertiesHandler.stoneProps(MapColor.COLOR_PURPLE, 10.0F, 100.0F, true));
     public static final DeferredBlock<Block> bolstered_bricks = register("bolstered_bricks", PropertiesHandler.stoneProps(MapColor.SAND, 30.0F, 400.0F, true));
@@ -306,20 +300,20 @@ public class ModBlocks {
     public static final DeferredBlock<Block> malachite_pulsing_bricks = register("malachite_pulsing_bricks", PropertiesHandler.malachiteProps());
     public static final DeferredBlock<Block> malachite_pulsing_tiles = register("malachite_pulsing_tiles", PropertiesHandler.malachiteProps());
     public static final DeferredBlock<Block> malachite_pulsing_chisel = register("malachite_pulsing_chisel", PropertiesHandler.malachiteProps());
-    public static final DeferredBlock<SlabBlock> malachite_brick_slab = register("malachite_brick_slab", makeSlab(PropertiesHandler.malachiteProps()));
-    public static final DeferredBlock<SlabBlock> malachite_cracked_brick_slab = register("malachite_cracked_brick_slab", makeSlab(PropertiesHandler.malachiteProps()));
-    public static final DeferredBlock<SlabBlock> malachite_crusted_brick_slab = register("malachite_crusted_brick_slab", makeSlab(PropertiesHandler.malachiteProps()));
-    public static final DeferredBlock<SlabBlock> malachite_tile_slab = register("malachite_tile_slab", makeSlab(PropertiesHandler.malachiteProps()));
-    public static final DeferredBlock<RotatedPillarBlock> malachite_pillar = register("malachite_pillar", () -> new RotatedPillarBlock(PropertiesHandler.malachiteProps()));
-    public static final DeferredBlock<StairBlock> malachite_brick_stairs = register("malachite_brick_stairs", makeStairs(malachite_bricks));
-    public static final DeferredBlock<StairBlock> malachite_cracked_brick_stairs = register("malachite_cracked_brick_stairs", makeStairs(malachite_cracked_bricks));
-    public static final DeferredBlock<StairBlock> malachite_crusted_brick_stairs = register("malachite_crusted_brick_stairs", makeStairs(malachite_crusted_bricks));
-    public static final DeferredBlock<StairBlock> malachite_tile_stairs = register("malachite_tile_stairs", makeStairs(malachite_tiles));
-    public static final DeferredBlock<StairBlock> malachite_chisel_stairs = register("malachite_chisel_stairs", makeStairs(malachite_chisel_bricks));
-    public static final DeferredBlock<StairBlock> malachite_pulsing_brick_stairs = register("malachite_pulsing_brick_stairs", makeStairs(malachite_pulsing_bricks));
-    public static final DeferredBlock<StairBlock> malachite_pulsing_floor_stairs = register("malachite_pulsing_tile_stairs", makeStairs(malachite_pulsing_tiles));
-    public static final DeferredBlock<StairBlock> malachite_pulsing_chisel_stairs = register("malachite_pulsing_chisel_stairs", makeStairs(malachite_pulsing_chisel));
-    public static final DeferredBlock<StairBlock> malachite_pillar_stairs = register("malachite_pillar_stairs", makeStairs(malachite_pillar));
+    public static final DeferredBlock<SlabBlock> malachite_brick_slab = makeSlab("malachite_brick_slab", PropertiesHandler.malachiteProps(), 0);
+    public static final DeferredBlock<SlabBlock> malachite_cracked_brick_slab = makeSlab("malachite_cracked_brick_slab", PropertiesHandler.malachiteProps(), 0);
+    public static final DeferredBlock<SlabBlock> malachite_crusted_brick_slab = makeSlab("malachite_crusted_brick_slab", PropertiesHandler.malachiteProps(), 0);
+    public static final DeferredBlock<SlabBlock> malachite_tile_slab = makeSlab("malachite_tile_slab", PropertiesHandler.malachiteProps(), 0);
+    public static final DeferredBlock<RotatedPillarBlock> malachite_pillar = register("malachite_pillar", RotatedPillarBlock::new, PropertiesHandler.malachiteProps());
+    public static final DeferredBlock<StairBlock> malachite_brick_stairs = makeStairs("malachite_brick_stairs", malachite_bricks, 0);
+    public static final DeferredBlock<StairBlock> malachite_cracked_brick_stairs = makeStairs("malachite_cracked_brick_stairs", malachite_cracked_bricks, 0);
+    public static final DeferredBlock<StairBlock> malachite_crusted_brick_stairs = makeStairs("malachite_crusted_brick_stairs", malachite_crusted_bricks, 0);
+    public static final DeferredBlock<StairBlock> malachite_tile_stairs = makeStairs("malachite_tile_stairs", malachite_tiles, 0);
+    public static final DeferredBlock<StairBlock> malachite_chisel_stairs = makeStairs("malachite_chisel_stairs", malachite_chisel_bricks, 0);
+    public static final DeferredBlock<StairBlock> malachite_pulsing_brick_stairs = makeStairs("malachite_pulsing_brick_stairs", malachite_pulsing_bricks, 0);
+    public static final DeferredBlock<StairBlock> malachite_pulsing_floor_stairs = makeStairs("malachite_pulsing_tile_stairs", malachite_pulsing_tiles, 0);
+    public static final DeferredBlock<StairBlock> malachite_pulsing_chisel_stairs = makeStairs("malachite_pulsing_chisel_stairs", malachite_pulsing_chisel, 0);
+    public static final DeferredBlock<StairBlock> malachite_pillar_stairs = makeStairs("malachite_pillar_stairs", malachite_pillar, 0);
 
     //Storage Blocks
     public static final DeferredBlock<Block> sugilite_block = register("sugilite_block", PropertiesHandler.storageProps(MapColor.COLOR_PURPLE));
@@ -348,38 +342,38 @@ public class ModBlocks {
     public static final DeferredBlock<Block> celestine_block = register("celestine_block", PropertiesHandler.storageProps(MapColor.COLOR_LIGHT_BLUE));
 
     //Ores
-    public static final DeferredBlock<Block> sugilite_ore = register("sugilite_ore", () -> new DropExperienceBlock(UniformInt.of(1, 3), PropertiesHandler.oreProps(MapColor.COLOR_PURPLE)));
-    public static final DeferredBlock<Block> hematite_ore = register("hematite_ore", () -> new DropExperienceBlock(UniformInt.of(1, 4), PropertiesHandler.oreProps(MapColor.COLOR_GRAY)));
-    public static final DeferredBlock<Block> cinnabar_ore = register("cinnabar_ore", () -> new DropExperienceBlock(UniformInt.of(1, 4), PropertiesHandler.oreProps(MapColor.COLOR_ORANGE)));
-    public static final DeferredBlock<Block> labradorite_ore = register("labradorite_ore", () -> new DropExperienceBlock(UniformInt.of(2, 5), PropertiesHandler.oreProps(MapColor.COLOR_GREEN)));
-    public static final DeferredBlock<Block> moonstone_ore = register("moonstone_ore", () -> new DropExperienceBlock(UniformInt.of(2, 5), PropertiesHandler.oreProps(MapColor.METAL)));
-    public static final DeferredBlock<Block> red_opal_ore = register("red_opal_ore", () -> new DropExperienceBlock(UniformInt.of(2, 5), PropertiesHandler.oreProps(MapColor.COLOR_RED)));
-    public static final DeferredBlock<Block> blue_opal_ore = register("blue_opal_ore", () -> new DropExperienceBlock(UniformInt.of(2, 5), PropertiesHandler.oreProps(MapColor.COLOR_LIGHT_BLUE)));
-    public static final DeferredBlock<Block> green_opal_ore = register("green_opal_ore", () -> new DropExperienceBlock(UniformInt.of(2, 5), PropertiesHandler.oreProps(MapColor.COLOR_LIGHT_GREEN)));
-    public static final DeferredBlock<Block> white_opal_ore = register("white_opal_ore", () -> new DropExperienceBlock(UniformInt.of(3, 7), PropertiesHandler.oreProps(MapColor.SNOW)));
-    public static final DeferredBlock<Block> pyrite_ore = register("pyrite_ore", () -> new DropExperienceBlock(UniformInt.of(1, 4), PropertiesHandler.oreProps(MapColor.GOLD).lightLevel((state) -> 3)));
-    public static final DeferredBlock<Block> speckled_rock = register("speckled_rock", () -> new Block(PropertiesHandler.oreProps(MapColor.COLOR_MAGENTA)));
-    public static final DeferredBlock<Block> coarse_rock = register("coarse_rock", () -> new Block(PropertiesHandler.oreProps(MapColor.COLOR_MAGENTA)));
-    public static final DeferredBlock<Block> precious_rock = register("precious_rock", () -> new Block(PropertiesHandler.oreProps(MapColor.COLOR_MAGENTA)));
-    public static final DeferredBlock<Block> scarlet_opalite_ore = register("scarlet_opalite_ore", () -> new DropExperienceBlock(UniformInt.of(1, 2), PropertiesHandler.oreProps(MapColor.TERRACOTTA_RED)));
-    public static final DeferredBlock<Block> auburn_opalite_ore = register("auburn_opalite_ore", () -> new DropExperienceBlock(UniformInt.of(1, 2), PropertiesHandler.oreProps(MapColor.TERRACOTTA_ORANGE)));
-    public static final DeferredBlock<Block> gold_opalite_ore = register("gold_opalite_ore", () -> new DropExperienceBlock(UniformInt.of(1, 2), PropertiesHandler.oreProps(MapColor.TERRACOTTA_YELLOW)));
-    public static final DeferredBlock<Block> mauve_opalite_ore = register("mauve_opalite_ore", () -> new DropExperienceBlock(UniformInt.of(1, 2), PropertiesHandler.oreProps(MapColor.TERRACOTTA_PURPLE)));
-    public static final DeferredBlock<Block> beige_opalite_ore = register("beige_opalite_ore", () -> new DropExperienceBlock(UniformInt.of(1, 2), PropertiesHandler.oreProps(MapColor.SAND)));
-    public static final DeferredBlock<Block> ivory_opalite_ore = register("ivory_opalite_ore", () -> new DropExperienceBlock(UniformInt.of(1, 2), PropertiesHandler.oreProps(MapColor.TERRACOTTA_WHITE)));
-    public static final DeferredBlock<Block> celestine_ore = register("celestine_ore", () -> new DropExperienceBlock(UniformInt.of(2, 4), PropertiesHandler.oreProps(MapColor.COLOR_LIGHT_BLUE)));
+    public static final DeferredBlock<Block> sugilite_ore = register("sugilite_ore", props -> new DropExperienceBlock(UniformInt.of(1, 3), props), PropertiesHandler.oreProps(MapColor.COLOR_PURPLE));
+    public static final DeferredBlock<Block> hematite_ore = register("hematite_ore", props -> new DropExperienceBlock(UniformInt.of(1, 4), props), PropertiesHandler.oreProps(MapColor.COLOR_GRAY));
+    public static final DeferredBlock<Block> cinnabar_ore = register("cinnabar_ore", props -> new DropExperienceBlock(UniformInt.of(1, 4), props), PropertiesHandler.oreProps(MapColor.COLOR_ORANGE));
+    public static final DeferredBlock<Block> labradorite_ore = register("labradorite_ore", props -> new DropExperienceBlock(UniformInt.of(2, 5), props), PropertiesHandler.oreProps(MapColor.COLOR_GREEN));
+    public static final DeferredBlock<Block> moonstone_ore = register("moonstone_ore", props -> new DropExperienceBlock(UniformInt.of(2, 5), props), PropertiesHandler.oreProps(MapColor.METAL));
+    public static final DeferredBlock<Block> red_opal_ore = register("red_opal_ore", props -> new DropExperienceBlock(UniformInt.of(2, 5), props), PropertiesHandler.oreProps(MapColor.COLOR_RED));
+    public static final DeferredBlock<Block> blue_opal_ore = register("blue_opal_ore", props -> new DropExperienceBlock(UniformInt.of(2, 5), props), PropertiesHandler.oreProps(MapColor.COLOR_LIGHT_BLUE));
+    public static final DeferredBlock<Block> green_opal_ore = register("green_opal_ore", props -> new DropExperienceBlock(UniformInt.of(2, 5), props), PropertiesHandler.oreProps(MapColor.COLOR_LIGHT_GREEN));
+    public static final DeferredBlock<Block> white_opal_ore = register("white_opal_ore", props -> new DropExperienceBlock(UniformInt.of(3, 7), props), PropertiesHandler.oreProps(MapColor.SNOW));
+    public static final DeferredBlock<Block> pyrite_ore = register("pyrite_ore", props -> new DropExperienceBlock(UniformInt.of(1, 4), props), PropertiesHandler.oreProps(MapColor.GOLD).lightLevel((state) -> 3));
+    public static final DeferredBlock<Block> speckled_rock = register("speckled_rock", PropertiesHandler.oreProps(MapColor.COLOR_MAGENTA));
+    public static final DeferredBlock<Block> coarse_rock = register("coarse_rock", PropertiesHandler.oreProps(MapColor.COLOR_MAGENTA));
+    public static final DeferredBlock<Block> precious_rock = register("precious_rock", PropertiesHandler.oreProps(MapColor.COLOR_MAGENTA));
+    public static final DeferredBlock<Block> scarlet_opalite_ore = register("scarlet_opalite_ore", props -> new DropExperienceBlock(UniformInt.of(1, 2), props), PropertiesHandler.oreProps(MapColor.TERRACOTTA_RED));
+    public static final DeferredBlock<Block> auburn_opalite_ore = register("auburn_opalite_ore", props -> new DropExperienceBlock(UniformInt.of(1, 2), props), PropertiesHandler.oreProps(MapColor.TERRACOTTA_ORANGE));
+    public static final DeferredBlock<Block> gold_opalite_ore = register("gold_opalite_ore", props -> new DropExperienceBlock(UniformInt.of(1, 2), props), PropertiesHandler.oreProps(MapColor.TERRACOTTA_YELLOW));
+    public static final DeferredBlock<Block> mauve_opalite_ore = register("mauve_opalite_ore", props -> new DropExperienceBlock(UniformInt.of(1, 2), props), PropertiesHandler.oreProps(MapColor.TERRACOTTA_PURPLE));
+    public static final DeferredBlock<Block> beige_opalite_ore = register("beige_opalite_ore", props -> new DropExperienceBlock(UniformInt.of(1, 2), props), PropertiesHandler.oreProps(MapColor.SAND));
+    public static final DeferredBlock<Block> ivory_opalite_ore = register("ivory_opalite_ore", props -> new DropExperienceBlock(UniformInt.of(1, 2), props), PropertiesHandler.oreProps(MapColor.TERRACOTTA_WHITE));
+    public static final DeferredBlock<Block> celestine_ore = register("celestine_ore", props -> new DropExperienceBlock(UniformInt.of(2, 4), props), PropertiesHandler.oreProps(MapColor.COLOR_LIGHT_BLUE));
 
     //Saplings, to force my hand
-    public static final DeferredBlock<SaplingBlock> pink_agate_sapling = register("pink_agate_sapling", () -> new GaiaSaplingBlock(GaiaFeatures.Trees.PINK_AGATE, PropertiesHandler.saplingProps(MapColor.COLOR_PINK)));
-    public static final DeferredBlock<SaplingBlock> blue_agate_sapling = register("blue_agate_sapling", () -> new GaiaSaplingBlock(GaiaFeatures.Trees.BLUE_AGATE, PropertiesHandler.saplingProps(MapColor.COLOR_LIGHT_BLUE)));
-    public static final DeferredBlock<SaplingBlock> green_agate_sapling = register("green_agate_sapling", () -> new GaiaSaplingBlock(GaiaFeatures.Trees.GREEN_AGATE, PropertiesHandler.saplingProps(MapColor.COLOR_LIGHT_GREEN)));
-    public static final DeferredBlock<SaplingBlock> purple_agate_sapling = register("purple_agate_sapling", () -> new GaiaSaplingBlock(GaiaFeatures.Trees.PURPLE_AGATE, PropertiesHandler.saplingProps(MapColor.TERRACOTTA_PURPLE)));
-    public static final DeferredBlock<SaplingBlock> fossilized_sapling = register("fossilized_sapling", () -> new GaiaSaplingBlock(GaiaFeatures.Trees.FOSSILIZED, PropertiesHandler.saplingProps(MapColor.TERRACOTTA_YELLOW)));
-    public static final DeferredBlock<SaplingBlock> corrupted_sapling = register("corrupted_sapling", () -> new GaiaSaplingBlock(GaiaFeatures.Trees.GOLDSTONE, PropertiesHandler.saplingProps(MapColor.TERRACOTTA_BLACK)));
-    public static final DeferredBlock<SaplingBlock> burnt_sapling = register("burnt_agate_sapling", () -> new GaiaSaplingBlock(GaiaFeatures.Trees.BURNT_AGATE, PropertiesHandler.saplingProps(MapColor.COLOR_BLACK)));
-    public static final DeferredBlock<SaplingBlock> fire_agate_sapling = register("fire_agate_sapling", () -> new GaiaSaplingBlock(GaiaFeatures.Trees.FIERY_AGATE, PropertiesHandler.saplingProps(MapColor.TERRACOTTA_ORANGE)), 100);
-    public static final DeferredBlock<SaplingBlock> aura_sapling = register("aura_sapling", () -> new GaiaSaplingBlock(GaiaFeatures.Trees.AURA, PropertiesHandler.saplingProps(MapColor.SNOW)));
-    public static final DeferredBlock<SaplingBlock> golden_sapling = register("golden_sapling", () -> new GaiaSaplingBlock(GaiaFeatures.Trees.GOLDEN, PropertiesHandler.saplingProps(MapColor.GOLD)));
+    public static final DeferredBlock<SaplingBlock> pink_agate_sapling = register("pink_agate_sapling", props -> new GaiaSaplingBlock(GaiaFeatures.Trees.PINK_AGATE, props), PropertiesHandler.saplingProps(MapColor.COLOR_PINK));
+    public static final DeferredBlock<SaplingBlock> blue_agate_sapling = register("blue_agate_sapling", props -> new GaiaSaplingBlock(GaiaFeatures.Trees.BLUE_AGATE, props), PropertiesHandler.saplingProps(MapColor.COLOR_LIGHT_BLUE));
+    public static final DeferredBlock<SaplingBlock> green_agate_sapling = register("green_agate_sapling", props -> new GaiaSaplingBlock(GaiaFeatures.Trees.GREEN_AGATE, props), PropertiesHandler.saplingProps(MapColor.COLOR_LIGHT_GREEN));
+    public static final DeferredBlock<SaplingBlock> purple_agate_sapling = register("purple_agate_sapling", props -> new GaiaSaplingBlock(GaiaFeatures.Trees.PURPLE_AGATE, props), PropertiesHandler.saplingProps(MapColor.TERRACOTTA_PURPLE));
+    public static final DeferredBlock<SaplingBlock> fossilized_sapling = register("fossilized_sapling", props -> new GaiaSaplingBlock(GaiaFeatures.Trees.FOSSILIZED, props), PropertiesHandler.saplingProps(MapColor.TERRACOTTA_YELLOW));
+    public static final DeferredBlock<SaplingBlock> corrupted_sapling = register("corrupted_sapling", props -> new GaiaSaplingBlock(GaiaFeatures.Trees.GOLDSTONE, props), PropertiesHandler.saplingProps(MapColor.TERRACOTTA_BLACK));
+    public static final DeferredBlock<SaplingBlock> burnt_sapling = register("burnt_agate_sapling", props -> new GaiaSaplingBlock(GaiaFeatures.Trees.BURNT_AGATE, props), PropertiesHandler.saplingProps(MapColor.COLOR_BLACK));
+    public static final DeferredBlock<SaplingBlock> fire_agate_sapling = register("fire_agate_sapling", props -> new GaiaSaplingBlock(GaiaFeatures.Trees.FIERY_AGATE, props), PropertiesHandler.saplingProps(MapColor.TERRACOTTA_ORANGE), 100);
+    public static final DeferredBlock<SaplingBlock> aura_sapling = register("aura_sapling", props -> new GaiaSaplingBlock(GaiaFeatures.Trees.AURA, props), PropertiesHandler.saplingProps(MapColor.SNOW));
+    public static final DeferredBlock<SaplingBlock> golden_sapling = register("golden_sapling", props -> new GaiaSaplingBlock(GaiaFeatures.Trees.GOLDEN, props), PropertiesHandler.saplingProps(MapColor.GOLD));
 
     //Flower Pots
     public static final DeferredBlock<FlowerPotBlock> potted_thiscus = registerFlowerPot(thiscus);
@@ -411,14 +405,14 @@ public class ModBlocks {
     public static final DeferredBlock<FlowerPotBlock> potted_golden_sapling = registerFlowerPot(golden_sapling);
 
     //Spawners
-    public static final DeferredBlock<BossSpawnerBlock> malachite_guard_spawner = registerNoItem("malachite_guard_spawner", () -> new BossSpawnerBlock(BossSpawnerBlock.BossType.MALACHITE, PropertiesHandler.spawnerProps()));
+    public static final DeferredBlock<BossSpawnerBlock> malachite_guard_spawner = registerNoItem("malachite_guard_spawner", props -> new BossSpawnerBlock(BossSpawnerBlock.BossType.MALACHITE, props), PropertiesHandler.spawnerProps());
 
-    private static Supplier<StairBlock> makeStairs(Supplier<? extends Block> block) {
-        return () -> new StairBlock(block.get().defaultBlockState(), Properties.ofLegacyCopy(block.get()));
+    private static DeferredBlock<StairBlock> makeStairs(String name, Supplier<? extends Block> block, int burn) {
+        return register(name, props -> new StairBlock(block.get().defaultBlockState(), props), block, i -> registerBlockItemFuel(name, i, burn));
     }
 
-    private static Supplier<SlabBlock> makeSlab(Properties props) {
-        return () -> new SlabBlock(props);
+    private static DeferredBlock<SlabBlock> makeSlab(String name, Properties props, int burn) {
+        return register(name, SlabBlock::new, props(props, name), burn);
     }
 
     private static DeferredBlock<Block> register(String name, Properties props) {
@@ -426,25 +420,35 @@ public class ModBlocks {
     }
 
     private static DeferredBlock<Block> register(String name, Properties props, int burn) {
-        return register(name, () -> new Block(props), burn);
+        return register(name, p -> new Block(props(p, name)), props, burn);
     }
 
-    private static <T extends Block> DeferredBlock<T> register(String name, Supplier<? extends T> block) {
-        return register(name, block, 0);
+    private static <B extends Block> DeferredBlock<B> register(String name, Function<Properties, ? extends B> func, Properties props) {
+        return register(name, func, props, i -> registerBlockItemFuel(name, i, 0));
     }
 
-    private static <T extends Block> DeferredBlock<T> register(String name, Supplier<? extends T> block, int burnTime) {
-        return registerBlock(name, block, item -> registerBlockItemFuel(item, burnTime));
+    private static <B extends Block> DeferredBlock<B> register(String name, Function<Properties, ? extends B> func, Properties props, int burn) {
+        return register(name, func, props, i -> registerBlockItemFuel(name, i, burn));
     }
 
-    private static <T extends Block> DeferredBlock<T> registerBlock(String name, Supplier<? extends T> block, Function<DeferredBlock<T>, Supplier<? extends Item>> item) {
-        DeferredBlock<T> reg = BLOCKS.register(name, block);
+    private static <B extends Block> DeferredBlock<B> register(String name, Function<Properties, ? extends B> func, Properties props, Function<DeferredBlock<B>, Supplier<? extends Item>> item) {
+        DeferredBlock<B> reg = BLOCKS.register(name, key -> func.apply(props(props, name)));
         ModItems.ITEMS.register(name, item.apply(reg));
         return reg;
     }
 
-    private static <T extends Block> Supplier<BlockItem> registerBlockItemFuel(final Supplier<T> block, int burnTime) {
-        return () -> new BlockItem(block.get(), new Item.Properties()) {
+    private static <B extends Block> DeferredBlock<B> register(String name, Function<Properties, ? extends B> func, Supplier<? extends Block> copy, Function<DeferredBlock<B>, Supplier<? extends Item>> item) {
+        DeferredBlock<B> reg = BLOCKS.register(name, key -> func.apply(props(Properties.ofLegacyCopy(copy.get()), name)));
+        ModItems.ITEMS.register(name, item.apply(reg));
+        return reg;
+    }
+
+    private static Properties props(Properties props, String name) {
+        return props.setId(ResourceKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(GaiaDimensionMod.MODID, name)));
+    }
+
+    private static <T extends Block> Supplier<BlockItem> registerBlockItemFuel(String name, final Supplier<T> block, int burnTime) {
+        return () -> new BlockItem(block.get(), new Item.Properties().setId(ResourceKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(GaiaDimensionMod.MODID, name)))) {
             @Override
             public int getBurnTime(ItemStack itemStack, @Nullable RecipeType<?> recipeType, FuelValues fuelValues) {
                 return burnTime;
@@ -453,12 +457,16 @@ public class ModBlocks {
     }
 
     private static DeferredBlock<FlowerPotBlock> registerFlowerPot(DeferredBlock<? extends Block> plant) {
-        return registerNoItem("potted_" + plant.getId().getPath(), () ->
-                new FlowerPotBlock(() -> (FlowerPotBlock) Blocks.FLOWER_POT, plant, Block.Properties.of().strength(0.0F)));
+        String name = "potted_" + plant.getId().getPath();
+        return registerNoItem(name, props -> new FlowerPotBlock(() -> (FlowerPotBlock) Blocks.FLOWER_POT, plant, props), props(Block.Properties.of().strength(0.0F), name));
     }
 
-    private static <T extends Block> DeferredBlock<T> registerNoItem(String name, Supplier<? extends T> block) {
-        return BLOCKS.register(name, block);
+    private static <T extends Block> DeferredBlock<T> registerNoItem(String name, Function<Properties, ? extends T> block, Properties props) {
+        return BLOCKS.register(name, key -> block.apply(props(props, name)));
+    }
+
+    private static <T extends Block> DeferredBlock<T> registerVariant(String name, Function<Properties, ? extends T> block, Supplier<? extends T> parent, Properties props) {
+        return BLOCKS.register(name, key -> block.apply(props(props, name).overrideLootTable(parent.get().getLootTable())));
     }
 
     public static void addPlants() {
