@@ -72,7 +72,7 @@ public class BossSpawnerBlock extends Block implements EntityBlock {
     }
 
     @Override
-    protected ItemStack getCloneItemStack(LevelReader p_382795_, BlockPos p_383120_, BlockState p_382830_, boolean p_388788_) {
+    protected ItemStack getCloneItemStack(LevelReader worldIn, BlockPos pos, BlockState state, boolean includeData) {
         return ItemStack.EMPTY;
     }
 

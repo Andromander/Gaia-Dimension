@@ -154,7 +154,7 @@ public class SmallCrateBlock extends Block implements EntityBlock {
     /* TODO ShulkerBox no longer overrides this, verify if no longer necessary
     @Override
     @Deprecated
-    public ItemStack getCloneItemStack(LevelReader worldIn, BlockPos pos, BlockState state) {
+    public ItemStack getCloneItemStack(LevelReader worldIn, BlockPos pos, BlockState state, boolean includeData) {
         ItemStack itemstack = super.getCloneItemStack(worldIn, pos, state);
         worldIn.getBlockEntity(pos, ModBlockEntities.SMALL_CRATE.get()).ifPresent(entity -> entity.saveToItem(itemstack, worldIn.registryAccess()));
         return itemstack;
