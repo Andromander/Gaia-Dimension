@@ -14,8 +14,6 @@ import net.minecraft.client.renderer.RenderType;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
-import net.minecraft.world.item.BlockItem;
-import net.minecraft.world.item.crafting.RecipeBookCategories;
 import net.minecraft.world.level.BlockAndTintGetter;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.material.FluidState;
@@ -26,7 +24,6 @@ import net.neoforged.neoforge.client.event.*;
 import net.neoforged.neoforge.client.extensions.common.IClientFluidTypeExtensions;
 import net.neoforged.neoforge.client.extensions.common.RegisterClientExtensionsEvent;
 import org.jetbrains.annotations.Nullable;
-import org.joml.Vector3f;
 import org.joml.Vector4f;
 
 import java.util.function.Function;
@@ -113,7 +110,7 @@ public class ClientEvents {
         return (red << 16) | (green << 8) | blue;
     }
 
-    @SubscribeEvent
+    /*@SubscribeEvent
     public static void registerItemColors(RegisterColorHandlersEvent.Item event) {
         event.register((stack, tintIndex) -> event.getBlockColors().getColor(((BlockItem) stack.getItem()).getBlock().defaultBlockState(), null, null, tintIndex),
                 ModBlocks.glitter_grass.get(),
@@ -121,7 +118,7 @@ public class ClientEvents {
                 ModBlocks.murky_grass.get(),
                 ModBlocks.aura_shoot.get(),
                 ModBlocks.soft_grass.get());
-    }
+    }*/
 
     @SubscribeEvent
     public static void registerFactories(RegisterParticleProvidersEvent e) {

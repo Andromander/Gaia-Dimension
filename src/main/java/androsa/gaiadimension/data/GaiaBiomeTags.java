@@ -8,14 +8,13 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.tags.BiomeTags;
 import net.neoforged.neoforge.common.Tags;
-import net.neoforged.neoforge.common.data.ExistingFileHelper;
 
 import java.util.concurrent.CompletableFuture;
 
 public class GaiaBiomeTags extends GaiaBiomeTagProvider {
 
-    public GaiaBiomeTags(PackOutput output, CompletableFuture<HolderLookup.Provider> provider, ExistingFileHelper helper) {
-        super(output, provider, GaiaDimensionMod.MODID, helper);
+    public GaiaBiomeTags(PackOutput output, CompletableFuture<HolderLookup.Provider> provider) {
+        super(output, provider, GaiaDimensionMod.MODID);
     }
 
     @Override

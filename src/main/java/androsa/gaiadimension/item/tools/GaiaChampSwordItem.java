@@ -26,7 +26,7 @@ public class GaiaChampSwordItem extends SwordItem {
     }
 
     @Override
-    public boolean isRepairable(ItemStack stack) {
+    public boolean isCombineRepairable(ItemStack stack) {
         return false;
     }
 

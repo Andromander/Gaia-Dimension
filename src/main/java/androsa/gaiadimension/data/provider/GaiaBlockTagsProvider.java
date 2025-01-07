@@ -7,15 +7,14 @@ import net.minecraft.data.tags.IntrinsicHolderTagsProvider;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.common.data.BlockTagsProvider;
-import net.neoforged.neoforge.common.data.ExistingFileHelper;
 
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Supplier;
 
 public abstract class GaiaBlockTagsProvider extends BlockTagsProvider {
 
-    public GaiaBlockTagsProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> provider, String modid, ExistingFileHelper existingFileHelper) {
-        super(output, provider, modid, existingFileHelper);
+    public GaiaBlockTagsProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> provider, String modid) {
+        super(output, provider, modid);
     }
 
     protected void addTag(TagKey<Block> tag, ImmutableList<Supplier<? extends Block>> list) {

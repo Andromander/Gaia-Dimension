@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/slab",
-  "textures": {
-    "bottom": "gaiadimension:block/copal_bricks",
-    "side": "gaiadimension:block/copal_bricks",
-    "top": "gaiadimension:block/copal_bricks"
-  }
-}

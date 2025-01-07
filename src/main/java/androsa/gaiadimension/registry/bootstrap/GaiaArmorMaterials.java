@@ -5,6 +5,8 @@ import androsa.gaiadimension.registry.values.GaiaTags;
 import net.minecraft.Util;
 import net.minecraft.core.Holder;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
@@ -12,6 +14,7 @@ import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.equipment.ArmorMaterial;
 import net.minecraft.world.item.equipment.ArmorType;
+import net.minecraft.world.item.equipment.EquipmentAssets;
 
 import java.util.EnumMap;
 import java.util.Map;
@@ -64,6 +67,6 @@ public class GaiaArmorMaterials {
             map.put(ArmorType.BODY, reduction[1]);
         });
 
-        return new ArmorMaterial(durability, defense, enchant, sound, toughness, resistance, repair, model);
+        return new ArmorMaterial(durability, defense, enchant, sound, toughness, resistance, repair, ResourceKey.create(EquipmentAssets.ROOT_ID, model));
     }
 }

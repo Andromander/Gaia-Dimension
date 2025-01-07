@@ -7,7 +7,6 @@ import androsa.gaiadimension.item.tools.*;
 import androsa.gaiadimension.registry.bootstrap.GaiaArmorMaterials;
 import androsa.gaiadimension.registry.values.GaiaFoods;
 import androsa.gaiadimension.registry.values.GaiaToolMaterials;
-import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.core.Direction;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.Registries;
@@ -25,7 +24,6 @@ import net.minecraft.world.item.equipment.ArmorType;
 import net.minecraft.world.level.block.entity.FuelValues;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.material.Fluids;
-import net.neoforged.neoforge.common.DeferredSpawnEggItem;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
@@ -342,7 +340,8 @@ public class ModItems {
     }
 
     public static DeferredItem<Item> registerEgg(String name, Supplier<? extends EntityType<? extends Mob>> entity, int back, int front) {
-        return register(name + "_spawn_egg", props -> new DeferredSpawnEggItem(entity, back, front, props), props());
+        // FIXME color codes moved to item model https://github.com/neoforged/.github/blob/main/primers/1.21.4/index.md#tint-sources
+        return register(name + "_spawn_egg", props -> new SpawnEggItem(entity.get(), props), props());
     }
 
     private static <I extends Item> DeferredItem<I> register(String name, Function<Item.Properties, ? extends I> func, Item.Properties props) {
@@ -362,7 +361,9 @@ public class ModItems {
     }
 
     public static void addItemProperties() {
-        ItemProperties.register(old_bow.get(), ResourceLocation.withDefaultNamespace("pull"), ((stack, world, entity, seed) -> {
+        // FIXME Port to Vanilla's new Item Model properties, check out ItemModelGenerators.generateBow()
+        //  https://github.com/neoforged/.github/blob/main/primers/1.21.4/index.md#client-items
+        /*ItemProperties.register(old_bow.get(), ResourceLocation.withDefaultNamespace("pull"), ((stack, world, entity, seed) -> {
             if (entity == null) {
                 return 0.0F;
             } else {
@@ -374,6 +375,6 @@ public class ModItems {
         ItemProperties.register(construct_charm.get(), ResourceLocation.withDefaultNamespace("mookaite"), (stack, world, entity, seed) ->
                 entity != null && stack.has(ModDataComponents.MOOKAITE_UUID) ? 1.0F : 0.0F);
         ItemProperties.register(construct_charm.get(), ResourceLocation.withDefaultNamespace("opalite"), (stack, world, entity, seed) ->
-                entity != null && stack.has(ModDataComponents.OPALITE_UUID) ? 1.0F : 0.0F);
+                entity != null && stack.has(ModDataComponents.OPALITE_UUID) ? 1.0F : 0.0F);*/
     }
 }

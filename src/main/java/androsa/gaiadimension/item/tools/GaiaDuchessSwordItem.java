@@ -30,7 +30,7 @@ public class GaiaDuchessSwordItem extends SwordItem {
     }
 
     @Override
-    public boolean isRepairable(ItemStack stack) {
+    public boolean isCombineRepairable(ItemStack stack) {
         return false;
     }
 

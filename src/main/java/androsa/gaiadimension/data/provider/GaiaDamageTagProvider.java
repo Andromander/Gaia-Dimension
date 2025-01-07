@@ -7,14 +7,13 @@ import net.minecraft.data.tags.TagsProvider;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.damagesource.DamageType;
-import net.neoforged.neoforge.common.data.ExistingFileHelper;
 
 import java.util.concurrent.CompletableFuture;
 
 public abstract class GaiaDamageTagProvider extends TagsProvider<DamageType> {
 
-    public GaiaDamageTagProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> provider, String modid, ExistingFileHelper existingFileHelper) {
-        super(output, Registries.DAMAGE_TYPE, provider, modid, existingFileHelper);
+    public GaiaDamageTagProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> provider, String modid) {
+        super(output, Registries.DAMAGE_TYPE, provider, modid);
     }
 
     protected void addTag(TagKey<DamageType> tag, ResourceKey<DamageType>... damages) {

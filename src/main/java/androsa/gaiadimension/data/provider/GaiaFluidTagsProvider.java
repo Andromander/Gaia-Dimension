@@ -7,15 +7,14 @@ import net.minecraft.data.tags.FluidTagsProvider;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.material.FlowingFluid;
 import net.minecraft.world.level.material.Fluid;
-import net.neoforged.neoforge.common.data.ExistingFileHelper;
 
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Supplier;
 
 public class GaiaFluidTagsProvider extends FluidTagsProvider {
 
-    public GaiaFluidTagsProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> provider, String modid, ExistingFileHelper existingFileHelper) {
-        super(output, provider, modid, existingFileHelper);
+    public GaiaFluidTagsProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> provider, String modid) {
+        super(output, provider, modid);
     }
 
     protected void addTag(TagKey<Fluid> tag, ImmutableList<Supplier<FlowingFluid>> list) {

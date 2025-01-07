@@ -48,9 +48,9 @@ public class GaiaSkyRender {
         Tesselator tesselator = Tesselator.getInstance();
         float star = getStarBrightness(world, partialTicks);
         int skycol = world.getSkyColor(minecraft.gameRenderer.getMainCamera().getPosition(), partialTicks);
-        float red = ARGB.from8BitChannel(ARGB.red(skycol));
-        float grn = ARGB.from8BitChannel(ARGB.green(skycol));
-        float blu = ARGB.from8BitChannel(ARGB.blue(skycol));
+        float red = ARGB.redFloat(skycol);
+        float grn = ARGB.greenFloat(skycol);
+        float blu = ARGB.blue(skycol);
 
         //renderSkyDisc
         RenderSystem.depthMask(false);
@@ -73,7 +73,7 @@ public class GaiaSkyRender {
         BufferBuilder bufferbuilder = tesselator.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_TEX);
         Matrix4f matrix4f1 = stack.last().pose();
         RenderSystem.depthMask(false);
-        RenderSystem.overlayBlendFunc();
+        RenderType.OVERLAY_TRANSPARENCY.setupRenderState();
         RenderSystem.setShader(CoreShaders.POSITION_TEX);
         RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F /*rain level*/);
         RenderSystem.setShaderTexture(0, SUN_TEXTURES);
@@ -95,7 +95,7 @@ public class GaiaSkyRender {
             matrixstack.pushMatrix();
             matrixstack.mul(stack.last().pose());
             RenderSystem.depthMask(false);
-            RenderSystem.overlayBlendFunc();
+            RenderType.OVERLAY_TRANSPARENCY.setupRenderState();
             RenderSystem.setShader(CoreShaders.POSITION);
             RenderSystem.setShaderColor(star, star, star, star);
             RenderSystem.enableBlend();

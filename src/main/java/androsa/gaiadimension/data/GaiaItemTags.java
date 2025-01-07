@@ -15,7 +15,6 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.neoforged.neoforge.common.Tags;
-import net.neoforged.neoforge.common.data.ExistingFileHelper;
 
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Supplier;
@@ -46,8 +45,8 @@ public class GaiaItemTags extends GaiaItemTagsProvider {
             GaiaTags.Items.STORAGE_BLOCKS_DIOPSIDE, GaiaTags.Items.STORAGE_BLOCKS_GOSHENITE
     );
 
-    public GaiaItemTags(PackOutput output, CompletableFuture<HolderLookup.Provider> provider, CompletableFuture<TagLookup<Block>> blocktags, ExistingFileHelper existingFileHelper) {
-        super(output, provider, blocktags, GaiaDimensionMod.MODID, existingFileHelper);
+    public GaiaItemTags(PackOutput output, CompletableFuture<HolderLookup.Provider> provider, CompletableFuture<TagLookup<Block>> blocktags) {
+        super(output, provider, blocktags, GaiaDimensionMod.MODID);
     }
 
     @Override

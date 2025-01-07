@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/slab",
-  "textures": {
-    "bottom": "gaiadimension:block/crusted_amethyst_bricks",
-    "side": "gaiadimension:block/crusted_amethyst_bricks",
-    "top": "gaiadimension:block/crusted_amethyst_bricks"
-  }
-}

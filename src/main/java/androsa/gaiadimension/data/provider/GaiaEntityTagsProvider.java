@@ -7,14 +7,13 @@ import net.minecraft.data.tags.EntityTypeTagsProvider;
 import net.minecraft.data.tags.IntrinsicHolderTagsProvider;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.entity.EntityType;
-import net.neoforged.neoforge.common.data.ExistingFileHelper;
 
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Supplier;
 
 public class GaiaEntityTagsProvider extends EntityTypeTagsProvider {
-    public GaiaEntityTagsProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> provider, String modid, ExistingFileHelper helper) {
-        super(output, provider, modid, helper);
+    public GaiaEntityTagsProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> provider, String modid) {
+        super(output, provider, modid);
     }
 
     protected void addTag(TagKey<EntityType<?>> tag, ImmutableList<Supplier<? extends EntityType<?>>> list) {
