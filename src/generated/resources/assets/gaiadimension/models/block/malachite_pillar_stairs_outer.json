@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/outer_stairs",
-  "textures": {
-    "bottom": "gaiadimension:block/malachite_pillar_end",
-    "side": "gaiadimension:block/malachite_pillar_side",
-    "top": "gaiadimension:block/malachite_pillar_end"
-  }
-}

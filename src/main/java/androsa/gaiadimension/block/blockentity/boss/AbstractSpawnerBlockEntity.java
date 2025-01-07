@@ -71,9 +71,4 @@ public abstract class AbstractSpawnerBlockEntity<T extends Mob> extends BlockEnt
     }
 
     public abstract int getHomeDistance();
-
-    @Override
-    public boolean onlyOpCanSetNbt() {
-        return true;
-    }
 }

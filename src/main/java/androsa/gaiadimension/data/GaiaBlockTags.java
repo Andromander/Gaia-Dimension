@@ -10,7 +10,6 @@ import net.minecraft.data.PackOutput;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.common.Tags;
-import net.neoforged.neoforge.common.data.ExistingFileHelper;
 
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Supplier;
@@ -196,8 +195,8 @@ public class GaiaBlockTags extends GaiaBlockTagsProvider {
             ModBlocks.nexustone, ModBlocks.white_opal_ore, ModBlocks.precious_rock, ModBlocks.celestine_ore
     );
 
-    public GaiaBlockTags(PackOutput output, CompletableFuture<HolderLookup.Provider> provider, ExistingFileHelper existingFileHelper) {
-        super(output, provider, GaiaDimensionMod.MODID, existingFileHelper);
+    public GaiaBlockTags(PackOutput output, CompletableFuture<HolderLookup.Provider> provider) {
+        super(output, provider, GaiaDimensionMod.MODID);
     }
 
     @Override

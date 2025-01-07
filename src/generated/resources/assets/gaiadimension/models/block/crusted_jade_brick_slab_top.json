@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/slab_top",
-  "textures": {
-    "bottom": "gaiadimension:block/crusted_jade_bricks",
-    "side": "gaiadimension:block/crusted_jade_bricks",
-    "top": "gaiadimension:block/crusted_jade_bricks"
-  }
-}

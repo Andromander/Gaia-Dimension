@@ -44,7 +44,8 @@ public class GaiaDimensionMod {
     public GaiaDimensionMod(IEventBus bus, ModContainer container) {
         bus.addListener(this::setup);
         bus.addListener(this::clientSetup);
-        bus.addListener(this::gatherData);
+        bus.addListener(this::gatherClientData);
+        bus.addListener(this::gatherServerData);
         bus.addListener(this::extraRegistries);
         bus.addListener(ModDataMaps::registerDataMaps);
 
@@ -109,27 +110,31 @@ public class GaiaDimensionMod {
         ModItems.addItemProperties();
     }
 
-    public void gatherData(GatherDataEvent event) {
+    public void gatherClientData(GatherDataEvent.Client event) {
+        // FIXME: NeoForge removed their custom DataGen stuff due to Lex's old code breaking, check out BlockModelGenerators and ItemModelGenerators
+        // generator.addProvider(true, new GaiaBlockStates(output));
+        // generator.addProvider(true, new GaiaItemModels(output));
+    }
+
+    public void gatherServerData(GatherDataEvent.Server event) {
         DataGenerator generator = event.getGenerator();
         PackOutput output = generator.getPackOutput();
         CompletableFuture<HolderLookup.Provider> provider = event.getLookupProvider();
-        GaiaBlockTags blocktags = new GaiaBlockTags(output, provider, event.getExistingFileHelper());
+        GaiaBlockTags blocktags = new GaiaBlockTags(output, provider);
 
-        generator.addProvider(event.includeClient(), new GaiaBlockStates(output, event.getExistingFileHelper()));
-        generator.addProvider(event.includeClient(), new GaiaItemModels(output, event.getExistingFileHelper()));
-        generator.addProvider(event.includeServer(), new GaiaLootTables(output, provider));
-        generator.addProvider(event.includeServer(), new GaiaRecipes.Runner(output, provider));
-        generator.addProvider(event.includeServer(), blocktags);
-        generator.addProvider(event.includeServer(), new GaiaItemTags(output, provider, blocktags.contentsGetter(), event.getExistingFileHelper()));
-        generator.addProvider(event.includeServer(), new GaiaFluidTags(output, provider, event.getExistingFileHelper()));
-        generator.addProvider(event.includeServer(), new GaiaDataMaps(output, provider));
+        generator.addProvider(true, new GaiaLootTables(output, provider));
+        // generator.addProvider(true, new GaiaRecipes.Runner(output, provider));
+        generator.addProvider(true, blocktags);
+        generator.addProvider(true, new GaiaItemTags(output, provider, blocktags.contentsGetter()));
+        generator.addProvider(true, new GaiaFluidTags(output, provider));
+        generator.addProvider(true, new GaiaDataMaps(output, provider));
 
         DatapackBuiltinEntriesProvider datapackEntries = new GaiaDatapackRegistries(output, provider);
         CompletableFuture<HolderLookup.Provider> datapackProvider = datapackEntries.getRegistryProvider();
-        generator.addProvider(event.includeServer(), datapackEntries);
-        generator.addProvider(event.includeServer(), new GaiaBiomeTags(output, datapackProvider, event.getExistingFileHelper()));
-        generator.addProvider(event.includeServer(), new GaiaDamageTags(output, datapackProvider, event.getExistingFileHelper()));
-        generator.addProvider(event.includeServer(), new GaiaEntityTags(output, datapackProvider, event.getExistingFileHelper()));
-        generator.addProvider(event.includeServer(), new GaiaAdvancements(output, datapackProvider, event.getExistingFileHelper()));
+        generator.addProvider(true, datapackEntries);
+        generator.addProvider(true, new GaiaBiomeTags(output, datapackProvider));
+        generator.addProvider(true, new GaiaDamageTags(output, datapackProvider));
+        generator.addProvider(true, new GaiaEntityTags(output, datapackProvider));
+       // generator.addProvider(true, new GaiaAdvancements(output, datapackProvider));
     }
 }

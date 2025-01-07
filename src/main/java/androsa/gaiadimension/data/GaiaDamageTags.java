@@ -6,14 +6,13 @@ import androsa.gaiadimension.registry.bootstrap.GaiaDamage;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.tags.DamageTypeTags;
-import net.neoforged.neoforge.common.data.ExistingFileHelper;
 
 import java.util.concurrent.CompletableFuture;
 
 public class GaiaDamageTags extends GaiaDamageTagProvider {
 
-    public GaiaDamageTags(PackOutput output, CompletableFuture<HolderLookup.Provider> provider, ExistingFileHelper existingFileHelper) {
-        super(output, provider, GaiaDimensionMod.MODID, existingFileHelper);
+    public GaiaDamageTags(PackOutput output, CompletableFuture<HolderLookup.Provider> provider) {
+        super(output, provider, GaiaDimensionMod.MODID);
     }
 
     @Override

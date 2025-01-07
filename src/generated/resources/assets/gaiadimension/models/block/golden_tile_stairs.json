@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/stairs",
-  "textures": {
-    "bottom": "gaiadimension:block/golden_tiles",
-    "side": "gaiadimension:block/golden_tiles",
-    "top": "gaiadimension:block/golden_tiles"
-  }
-}

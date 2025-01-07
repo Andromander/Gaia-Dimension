@@ -7,13 +7,12 @@ import androsa.gaiadimension.registry.values.GaiaTags;
 import com.google.common.collect.ImmutableList;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
-import net.neoforged.neoforge.common.data.ExistingFileHelper;
 
 import java.util.concurrent.CompletableFuture;
 
 public class GaiaEntityTags extends GaiaEntityTagsProvider {
-    public GaiaEntityTags(PackOutput output, CompletableFuture<HolderLookup.Provider> provider, ExistingFileHelper helper) {
-        super(output, provider, GaiaDimensionMod.MODID, helper);
+    public GaiaEntityTags(PackOutput output, CompletableFuture<HolderLookup.Provider> provider) {
+        super(output, provider, GaiaDimensionMod.MODID);
     }
 
     @Override

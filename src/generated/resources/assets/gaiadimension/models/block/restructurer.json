@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/orientable",
-  "textures": {
-    "front": "gaiadimension:block/restructurer_front",
-    "side": "gaiadimension:block/restructurer_side",
-    "top": "gaiadimension:block/restructurer_side"
-  }
-}

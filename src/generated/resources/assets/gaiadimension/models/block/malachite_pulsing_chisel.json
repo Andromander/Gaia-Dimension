@@ -1,8 +1,0 @@
-{
-  "parent": "gaiadimension:block/util/emissive_2_layer",
-  "render_type": "minecraft:cutout",
-  "textures": {
-    "texture": "gaiadimension:block/malachite_chisel_bricks",
-    "texture2": "gaiadimension:block/malachite_lime_pulse_corner"
-  }
-}

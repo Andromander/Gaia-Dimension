@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/orientable",
-  "textures": {
-    "front": "gaiadimension:block/gaia_stone_furnace_front_lit",
-    "side": "gaiadimension:block/gaia_stone_furnace_side",
-    "top": "gaiadimension:block/gaia_stone_furnace_top"
-  }
-}

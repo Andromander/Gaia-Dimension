@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/slab_top",
-  "textures": {
-    "bottom": "gaiadimension:block/cracked_jet_bricks",
-    "side": "gaiadimension:block/cracked_jet_bricks",
-    "top": "gaiadimension:block/cracked_jet_bricks"
-  }
-}

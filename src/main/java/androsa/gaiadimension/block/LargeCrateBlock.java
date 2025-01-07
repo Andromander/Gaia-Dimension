@@ -149,11 +149,12 @@ public class LargeCrateBlock extends Block implements EntityBlock {
         return AbstractContainerMenu.getRedstoneSignalFromContainer((Container)worldIn.getBlockEntity(pos));
     }
 
+    /* TODO ShulkerBox no longer overrides this, verify if no longer necessary
     @Override
     @Deprecated
-    public ItemStack getCloneItemStack(LevelReader worldIn, BlockPos pos, BlockState state) {
+    public ItemStack getCloneItemStack(LevelReader worldIn, BlockPos pos, BlockState state, boolean includeData) {
         ItemStack itemstack = super.getCloneItemStack(worldIn, pos, state);
         worldIn.getBlockEntity(pos, ModBlockEntities.LARGE_CRATE.get()).ifPresent(entity -> entity.saveToItem(itemstack, worldIn.registryAccess()));
         return itemstack;
-    }
+    }*/
 }

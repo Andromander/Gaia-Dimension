@@ -11,7 +11,7 @@ plugins {
     id 'eclipse'
     id 'idea'
     id 'maven-publish'
-    id 'net.neoforged.gradle.userdev' version '7.0.165'
+    id 'net.neoforged.gradle.userdev' version '7.0.173'
 }
 
 def secrets = new Properties()
@@ -76,7 +76,7 @@ runs {
         programArgument '--nogui'
     }
 
-    data {
+    clientData {
         workingDirectory project.file('run-data')
         programArguments.addAll '--mod', 'gaiadimension', '--all', '--output', file('src/generated/resources/').getAbsolutePath(), '--existing', file('src/main/resources/').getAbsolutePath()
     }

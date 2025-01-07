@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/inner_stairs",
-  "textures": {
-    "bottom": "gaiadimension:block/aura_tiles",
-    "side": "gaiadimension:block/aura_tiles",
-    "top": "gaiadimension:block/aura_tiles"
-  }
-}
