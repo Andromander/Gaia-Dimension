@@ -1,0 +1,21 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "gaiadimension:block/glitter_grass"
+      },
+      {
+        "model": "gaiadimension:block/glitter_grass",
+        "y": 90
+      },
+      {
+        "model": "gaiadimension:block/glitter_grass",
+        "y": 180
+      },
+      {
+        "model": "gaiadimension:block/glitter_grass",
+        "y": 270
+      }
+    ]
+  }
+}

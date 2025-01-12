@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "gaiadimension:block/aura_log_end",
+    "side": "gaiadimension:block/aura_log_side"
+  }
+}

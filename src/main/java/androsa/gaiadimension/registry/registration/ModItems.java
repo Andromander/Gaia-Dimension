@@ -260,37 +260,37 @@ public class ModItems {
 
     public static final DeferredItem<Item> mock_malachite = register("mock_malachite", MockGemItem::new, props());
 
-    public static final DeferredItem<Item> growth_sapper_spawn_egg = registerEgg("growth_sapper", ModEntities.GROWTH_SAPPER, 0x5A4514, 0xFF00FF);
-    public static final DeferredItem<Item> mutant_growth_extractor_spawn_egg = registerEgg("mutant_growth_extractor", ModEntities.MUTANT_GROWTH_EXTRACTOR, 0x5A4514, 0xFFFFCC);
-    public static final DeferredItem<Item> howlite_wolf_spawn_egg = registerEgg("howlite_wolf", ModEntities.HOWLITE_WOLF, 0xDDDDDD, 0x3333FF);
-    public static final DeferredItem<Item> spellbound_elemental_spawn_egg = registerEgg("spellbound_elemental", ModEntities.SPELLBOUND_ELEMENTAL, 0x885555, 0xCC33CC);
-    public static final DeferredItem<Item> rocky_luggeroth_spawn_egg = registerEgg("rocky_luggeroth", ModEntities.ROCKY_LUGGEROTH, 0xB07700, 0xCC9900);
-    public static final DeferredItem<Item> shalurker_spawn_egg = registerEgg("shalurker", ModEntities.SHALURKER, 0x771177, 0x000000);
-    public static final DeferredItem<Item> muckling_spawn_egg = registerEgg("muckling", ModEntities.MUCKLING, 0xFF00FF, 0xCC66CC);
-    public static final DeferredItem<Item> markuzar_plant_spawn_egg = registerEgg("markuzar_plant", ModEntities.MARKUZAR_PLANT, 0x00FF66, 0xCC00FF);
-    public static final DeferredItem<Item> rugged_lurmorus_spawn_egg = registerEgg("rugged_lurmorus", ModEntities.RUGGED_LURMORUS, 0xCC9933, 0xFF6600);
-    public static final DeferredItem<Item> agate_golem_spawn_egg = registerEgg("agate_golem", ModEntities.AGATE_GOLEM, 0x660000, 0xBB5555);
-    public static final DeferredItem<Item> ancient_lagrahk_spawn_egg = registerEgg("ancient_lagrahk", ModEntities.ANCIENT_LAGRAHK, 0x772200, 0xAA5500);
-    public static final DeferredItem<Item> crystal_golem_spawn_egg = registerEgg("crystal_golem", ModEntities.CRYSTAL_GOLEM, 0xFF66CC, 0xFF99CC);
-    public static final DeferredItem<Item> saltion_spawn_egg = registerEgg("saltion", ModEntities.SALTION, 0x6699FF, 0x6633FF);
-    public static final DeferredItem<Item> nomadic_lagrahk_spawn_egg = registerEgg("nomadic_lagrahk", ModEntities.NOMADIC_LAGRAHK, 0x3366CC, 0x232323);
-    public static final DeferredItem<Item> shallow_arenthis_spawn_egg = registerEgg("shallow_arenthis", ModEntities.SHALLOW_ARENTHIS, 0x6699CC, 0x003399);
-    public static final DeferredItem<Item> corrupt_sapper_spawn_egg = registerEgg("corrupt_sapper", ModEntities.CORRUPT_SAPPER, 0x202020, 0xCC3300);
-    public static final DeferredItem<Item> contorted_naga_spawn_egg = registerEgg("contorted_naga", ModEntities.CONTORTED_NAGA, 0x202020, 0xCC3300);
-    public static final DeferredItem<Item> lesser_spitfire_spawn_egg = registerEgg("lesser_spitfire", ModEntities.LESSER_SPITFIRE, 0xFF00FF, 0x202020);
-    public static final DeferredItem<Item> lesser_shockshooter_spawn_egg = registerEgg("lesser_shockshooter", ModEntities.LESSER_SHOCKSHOOTER, 0x00FFFF, 0x202020);
-    public static final DeferredItem<Item> mineral_arenthis_spawn_egg = registerEgg("mineral_arenthis", ModEntities.MINERAL_ARENTHIS, 0x0066CC, 0x000033);
-    public static final DeferredItem<Item> bismuth_uletrus_spawn_egg = registerEgg("bismuth_uletrus", ModEntities.BISMUTH_ULETRUS, 0x4E3863, 0x303030);
-    public static final DeferredItem<Item> archaic_warrior_spawn_egg = registerEgg("archaic_warrior", ModEntities.ARCHAIC_WARRIOR, 0x996699, 0xCC3366);
-    public static final DeferredItem<Item> primal_beast_spawn_egg = registerEgg("primal_beast", ModEntities.PRIMAL_BEAST, 0x006699, 0x66FFFF);
-    public static final DeferredItem<Item> cavern_tick_spawn_egg = registerEgg("cavern_tick", ModEntities.CAVERN_TICK, 0x9966CC, 0x666699);
-    public static final DeferredItem<Item> malachite_drone_spawn_egg = registerEgg("malachite_drone", ModEntities.MALACHITE_DRONE, 0x00AA33, 0x33AA00);
-    public static final DeferredItem<Item> mookaite_construct_spawn_egg = registerEgg("mookaite_construct", ModEntities.MOOKAITE_CONSTRUCT, 0X6F442F, 0X39190E);
-    public static final DeferredItem<Item> opalite_construct_spawn_egg = registerEgg("opalite_construct", ModEntities.OPALITE_CONSTRUCT, 0X698A9F, 0X7BFDFE);
-    public static final DeferredItem<Item> growth_grazer_spawn_egg = registerEgg("growth_grazer", ModEntities.GROWTH_GRAZER, 0x5A4514, 0xFFD700);
-    public static final DeferredItem<Item> aureate_evraun_spawn_egg = registerEgg("aureate_evraun", ModEntities.AUREATE_EVRAUN, 0X53432F, 0XE2D366);
-    public static final DeferredItem<Item> blue_howlite_wolf_spawn_egg = registerEgg("blue_howlite_wolf", ModEntities.BLUE_HOWLITE_WOLF, 0x0099CC, 0xCC00FF);
-    public static final DeferredItem<Item> malachite_guard_spawn_egg = registerEgg("malachite_guard", ModEntities.MALACHITE_GUARD, 0x339900, 0x33CC99);
+    public static final DeferredItem<Item> growth_sapper_spawn_egg = registerEgg("growth_sapper", ModEntities.GROWTH_SAPPER);
+    public static final DeferredItem<Item> mutant_growth_extractor_spawn_egg = registerEgg("mutant_growth_extractor", ModEntities.MUTANT_GROWTH_EXTRACTOR);
+    public static final DeferredItem<Item> howlite_wolf_spawn_egg = registerEgg("howlite_wolf", ModEntities.HOWLITE_WOLF);
+    public static final DeferredItem<Item> spellbound_elemental_spawn_egg = registerEgg("spellbound_elemental", ModEntities.SPELLBOUND_ELEMENTAL);
+    public static final DeferredItem<Item> rocky_luggeroth_spawn_egg = registerEgg("rocky_luggeroth", ModEntities.ROCKY_LUGGEROTH);
+    public static final DeferredItem<Item> shalurker_spawn_egg = registerEgg("shalurker", ModEntities.SHALURKER);
+    public static final DeferredItem<Item> muckling_spawn_egg = registerEgg("muckling", ModEntities.MUCKLING);
+    public static final DeferredItem<Item> markuzar_plant_spawn_egg = registerEgg("markuzar_plant", ModEntities.MARKUZAR_PLANT);
+    public static final DeferredItem<Item> rugged_lurmorus_spawn_egg = registerEgg("rugged_lurmorus", ModEntities.RUGGED_LURMORUS);
+    public static final DeferredItem<Item> agate_golem_spawn_egg = registerEgg("agate_golem", ModEntities.AGATE_GOLEM);
+    public static final DeferredItem<Item> ancient_lagrahk_spawn_egg = registerEgg("ancient_lagrahk", ModEntities.ANCIENT_LAGRAHK);
+    public static final DeferredItem<Item> crystal_golem_spawn_egg = registerEgg("crystal_golem", ModEntities.CRYSTAL_GOLEM);
+    public static final DeferredItem<Item> saltion_spawn_egg = registerEgg("saltion", ModEntities.SALTION);
+    public static final DeferredItem<Item> nomadic_lagrahk_spawn_egg = registerEgg("nomadic_lagrahk", ModEntities.NOMADIC_LAGRAHK);
+    public static final DeferredItem<Item> shallow_arenthis_spawn_egg = registerEgg("shallow_arenthis", ModEntities.SHALLOW_ARENTHIS);
+    public static final DeferredItem<Item> corrupt_sapper_spawn_egg = registerEgg("corrupt_sapper", ModEntities.CORRUPT_SAPPER);
+    public static final DeferredItem<Item> contorted_naga_spawn_egg = registerEgg("contorted_naga", ModEntities.CONTORTED_NAGA);
+    public static final DeferredItem<Item> lesser_spitfire_spawn_egg = registerEgg("lesser_spitfire", ModEntities.LESSER_SPITFIRE);
+    public static final DeferredItem<Item> lesser_shockshooter_spawn_egg = registerEgg("lesser_shockshooter", ModEntities.LESSER_SHOCKSHOOTER);
+    public static final DeferredItem<Item> mineral_arenthis_spawn_egg = registerEgg("mineral_arenthis", ModEntities.MINERAL_ARENTHIS);
+    public static final DeferredItem<Item> bismuth_uletrus_spawn_egg = registerEgg("bismuth_uletrus", ModEntities.BISMUTH_ULETRUS);
+    public static final DeferredItem<Item> archaic_warrior_spawn_egg = registerEgg("archaic_warrior", ModEntities.ARCHAIC_WARRIOR);
+    public static final DeferredItem<Item> primal_beast_spawn_egg = registerEgg("primal_beast", ModEntities.PRIMAL_BEAST);
+    public static final DeferredItem<Item> cavern_tick_spawn_egg = registerEgg("cavern_tick", ModEntities.CAVERN_TICK);
+    public static final DeferredItem<Item> malachite_drone_spawn_egg = registerEgg("malachite_drone", ModEntities.MALACHITE_DRONE);
+    public static final DeferredItem<Item> mookaite_construct_spawn_egg = registerEgg("mookaite_construct", ModEntities.MOOKAITE_CONSTRUCT);
+    public static final DeferredItem<Item> opalite_construct_spawn_egg = registerEgg("opalite_construct", ModEntities.OPALITE_CONSTRUCT);
+    public static final DeferredItem<Item> growth_grazer_spawn_egg = registerEgg("growth_grazer", ModEntities.GROWTH_GRAZER);
+    public static final DeferredItem<Item> aureate_evraun_spawn_egg = registerEgg("aureate_evraun", ModEntities.AUREATE_EVRAUN);
+    public static final DeferredItem<Item> blue_howlite_wolf_spawn_egg = registerEgg("blue_howlite_wolf", ModEntities.BLUE_HOWLITE_WOLF);
+    public static final DeferredItem<Item> malachite_guard_spawn_egg = registerEgg("malachite_guard", ModEntities.MALACHITE_GUARD);
 
     public static final DeferredItem<Item> PYRITE_TORCH = registerBlock("pyrite_torch", props -> new StandingAndWallBlockItem(ModBlocks.pyrite_torch.get(), ModBlocks.pyrite_wall_torch.get(), Direction.DOWN, props), props());
     public static final DeferredItem<Item> CRUDE_STORAGE_CRATE = registerBlock("crude_storage_crate", props -> new BlockItem(ModBlocks.crude_storage_crate.get(), props), props().component(DataComponents.CONTAINER, ItemContainerContents.EMPTY));
@@ -339,8 +339,7 @@ public class ModItems {
         return register(name, props -> new BasicGaiaShovelItem(tier, props), props());
     }
 
-    public static DeferredItem<Item> registerEgg(String name, Supplier<? extends EntityType<? extends Mob>> entity, int back, int front) {
-        // FIXME color codes moved to item model https://github.com/neoforged/.github/blob/main/primers/1.21.4/index.md#tint-sources
+    public static DeferredItem<Item> registerEgg(String name, Supplier<? extends EntityType<? extends Mob>> entity) {
         return register(name + "_spawn_egg", props -> new SpawnEggItem(entity.get(), props), props());
     }
 

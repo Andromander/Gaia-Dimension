@@ -1,0 +1,21 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "gaiadimension:block/golden_sand"
+      },
+      {
+        "model": "gaiadimension:block/golden_sand",
+        "y": 90
+      },
+      {
+        "model": "gaiadimension:block/golden_sand",
+        "y": 180
+      },
+      {
+        "model": "gaiadimension:block/golden_sand",
+        "y": 270
+      }
+    ]
+  }
+}

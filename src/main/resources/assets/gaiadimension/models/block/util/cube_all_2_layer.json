@@ -8,11 +8,11 @@
     "east": "#all",
     "south": "#all",
     "west": "#all",
-    "down2": "#all2",
-    "up2": "#all2",
-    "north2": "#all2",
-    "east2": "#all2",
-    "south2": "#all2",
-    "west2": "#all2"
+    "down2": "#overlay",
+    "up2": "#overlay",
+    "north2": "#overlay",
+    "east2": "#overlay",
+    "south2": "#overlay",
+    "west2": "#overlay"
   }
 }

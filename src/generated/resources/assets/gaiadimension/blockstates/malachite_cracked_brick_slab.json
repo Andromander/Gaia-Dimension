@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "gaiadimension:block/malachite_cracked_brick_slab"
+    },
+    "type=double": {
+      "model": "gaiadimension:block/malachite_cracked_bricks"
+    },
+    "type=top": {
+      "model": "gaiadimension:block/malachite_cracked_brick_slab_top"
+    }
+  }
+}

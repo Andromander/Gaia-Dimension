@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "gaiadimension:block/cracked_copal_brick_slab"
+    },
+    "type=double": {
+      "model": "gaiadimension:block/cracked_copal_bricks"
+    },
+    "type=top": {
+      "model": "gaiadimension:block/cracked_copal_brick_slab_top"
+    }
+  }
+}

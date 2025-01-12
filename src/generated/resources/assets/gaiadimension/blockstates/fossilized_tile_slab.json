@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "gaiadimension:block/fossilized_tile_slab"
+    },
+    "type=double": {
+      "model": "gaiadimension:block/fossilized_tiles"
+    },
+    "type=top": {
+      "model": "gaiadimension:block/fossilized_tile_slab_top"
+    }
+  }
+}

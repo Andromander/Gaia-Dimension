@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/orientable",
+  "textures": {
+    "front": "gaiadimension:block/purifier_front_lit",
+    "side": "gaiadimension:block/purifier_side",
+    "top": "gaiadimension:block/purifier_side"
+  }
+}

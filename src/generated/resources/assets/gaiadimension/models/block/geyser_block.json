@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/cube_bottom_top",
+  "textures": {
+    "bottom": "gaiadimension:block/geyser_block_bottom",
+    "side": "gaiadimension:block/geyser_block_side",
+    "top": "gaiadimension:block/geyser_block_top"
+  }
+}

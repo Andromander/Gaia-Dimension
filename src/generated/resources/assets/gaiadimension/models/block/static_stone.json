@@ -1,0 +1,8 @@
+{
+  "parent": "gaiadimension:block/util/cube_all_2_layer",
+  "render_type": "minecraft:translucent",
+  "textures": {
+    "all": "gaiadimension:block/wasteland_stone",
+    "overlay": "gaiadimension:block/static_stone"
+  }
+}

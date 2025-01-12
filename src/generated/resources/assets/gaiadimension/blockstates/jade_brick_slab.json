@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "gaiadimension:block/jade_brick_slab"
+    },
+    "type=double": {
+      "model": "gaiadimension:block/jade_bricks"
+    },
+    "type=top": {
+      "model": "gaiadimension:block/jade_brick_slab_top"
+    }
+  }
+}

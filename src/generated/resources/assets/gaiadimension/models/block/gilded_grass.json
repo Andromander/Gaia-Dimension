@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/cube_bottom_top",
+  "textures": {
+    "bottom": "gaiadimension:block/aurum_soil",
+    "side": "gaiadimension:block/gilded_grass_side",
+    "top": "gaiadimension:block/gilded_grass_top"
+  }
+}

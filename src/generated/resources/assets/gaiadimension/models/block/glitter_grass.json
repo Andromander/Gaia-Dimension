@@ -1,0 +1,11 @@
+{
+  "parent": "gaiadimension:block/util/grass_block",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "bottom": "gaiadimension:block/heavy_soil",
+    "overlay": "gaiadimension:block/glitter_grass_overlay",
+    "particle": "gaiadimension:block/glitter_grass_side",
+    "side": "gaiadimension:block/glitter_grass_side",
+    "top": "gaiadimension:block/glitter_grass_top"
+  }
+}

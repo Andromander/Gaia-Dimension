@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab",
+  "textures": {
+    "bottom": "gaiadimension:block/malachite_tiles",
+    "side": "gaiadimension:block/malachite_tiles",
+    "top": "gaiadimension:block/malachite_tiles"
+  }
+}

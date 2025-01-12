@@ -1,0 +1,7 @@
+{
+  "parent": "gaiadimension:block/util/curtain_surface",
+  "render_type": "minecraft:translucent",
+  "textures": {
+    "texture": "gaiadimension:block/fossilized_curtain_bottom_left"
+  }
+}

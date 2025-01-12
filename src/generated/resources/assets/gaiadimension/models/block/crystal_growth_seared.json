@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cross",
+  "render_type": "minecraft:translucent",
+  "textures": {
+    "cross": "gaiadimension:block/crystal_growth_seared"
+  }
+}

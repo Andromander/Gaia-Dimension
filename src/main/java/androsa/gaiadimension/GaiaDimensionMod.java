@@ -2,6 +2,7 @@ package androsa.gaiadimension;
 
 import androsa.gaiadimension.client.ClientEvents;
 import androsa.gaiadimension.data.*;
+import androsa.gaiadimension.data.provider.GaiaModelProvider;
 import androsa.gaiadimension.registry.bootstrap.GaiaBiomes;
 import androsa.gaiadimension.registry.registration.ModSlotDisplay;
 import androsa.gaiadimension.registry.helpers.GaiaConfig;
@@ -111,9 +112,10 @@ public class GaiaDimensionMod {
     }
 
     public void gatherClientData(GatherDataEvent.Client event) {
+        DataGenerator generator = event.getGenerator();
+        PackOutput output = generator.getPackOutput();
         // FIXME: NeoForge removed their custom DataGen stuff due to Lex's old code breaking, check out BlockModelGenerators and ItemModelGenerators
-        // generator.addProvider(true, new GaiaBlockStates(output));
-        // generator.addProvider(true, new GaiaItemModels(output));
+        generator.addProvider(true, new GaiaModelProvider(output));
     }
 
     public void gatherServerData(GatherDataEvent.Server event) {

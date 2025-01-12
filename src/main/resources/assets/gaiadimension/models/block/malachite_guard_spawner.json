@@ -3,7 +3,8 @@
   "textures": {
     "core": "gaiadimension:block/spawner_core",
     "shell": "gaiadimension:block/spawner_shell",
-    "cage": "gaiadimension:block/spawner_cage"
+    "cage": "gaiadimension:block/spawner_cage",
+    "particle": "gaiadimension:block/spawner_shell"
   },
   "elements": [{
     "from": [ 6, 6, 6 ],

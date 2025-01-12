@@ -1,0 +1,100 @@
+{
+  "variants": {
+    "axis=x,half=lower,open=false,side=left": {
+      "model": "gaiadimension:block/blue_agate_curtain_bottom_left",
+      "y": 0
+    },
+    "axis=x,half=lower,open=false,side=right": {
+      "model": "gaiadimension:block/blue_agate_curtain_bottom_right",
+      "y": 0
+    },
+    "axis=x,half=lower,open=false,side=single": {
+      "model": "gaiadimension:block/blue_agate_curtain_bottom",
+      "y": 0
+    },
+    "axis=x,half=lower,open=true,side=left": {
+      "model": "gaiadimension:block/blue_agate_curtain_bottom_left_open",
+      "y": 0
+    },
+    "axis=x,half=lower,open=true,side=right": {
+      "model": "gaiadimension:block/blue_agate_curtain_bottom_right_open",
+      "y": 0
+    },
+    "axis=x,half=lower,open=true,side=single": {
+      "model": "gaiadimension:block/blue_agate_curtain_bottom_open",
+      "y": 0
+    },
+    "axis=x,half=upper,open=false,side=left": {
+      "model": "gaiadimension:block/blue_agate_curtain_top_left",
+      "y": 0
+    },
+    "axis=x,half=upper,open=false,side=right": {
+      "model": "gaiadimension:block/blue_agate_curtain_top_right",
+      "y": 0
+    },
+    "axis=x,half=upper,open=false,side=single": {
+      "model": "gaiadimension:block/blue_agate_curtain_top",
+      "y": 0
+    },
+    "axis=x,half=upper,open=true,side=left": {
+      "model": "gaiadimension:block/blue_agate_curtain_top_left_open",
+      "y": 0
+    },
+    "axis=x,half=upper,open=true,side=right": {
+      "model": "gaiadimension:block/blue_agate_curtain_top_right_open",
+      "y": 0
+    },
+    "axis=x,half=upper,open=true,side=single": {
+      "model": "gaiadimension:block/blue_agate_curtain_top_open",
+      "y": 0
+    },
+    "axis=z,half=lower,open=false,side=left": {
+      "model": "gaiadimension:block/blue_agate_curtain_bottom_left",
+      "y": 90
+    },
+    "axis=z,half=lower,open=false,side=right": {
+      "model": "gaiadimension:block/blue_agate_curtain_bottom_right",
+      "y": 90
+    },
+    "axis=z,half=lower,open=false,side=single": {
+      "model": "gaiadimension:block/blue_agate_curtain_bottom",
+      "y": 90
+    },
+    "axis=z,half=lower,open=true,side=left": {
+      "model": "gaiadimension:block/blue_agate_curtain_bottom_left_open",
+      "y": 90
+    },
+    "axis=z,half=lower,open=true,side=right": {
+      "model": "gaiadimension:block/blue_agate_curtain_bottom_right_open",
+      "y": 90
+    },
+    "axis=z,half=lower,open=true,side=single": {
+      "model": "gaiadimension:block/blue_agate_curtain_bottom_open",
+      "y": 90
+    },
+    "axis=z,half=upper,open=false,side=left": {
+      "model": "gaiadimension:block/blue_agate_curtain_top_left",
+      "y": 90
+    },
+    "axis=z,half=upper,open=false,side=right": {
+      "model": "gaiadimension:block/blue_agate_curtain_top_right",
+      "y": 90
+    },
+    "axis=z,half=upper,open=false,side=single": {
+      "model": "gaiadimension:block/blue_agate_curtain_top",
+      "y": 90
+    },
+    "axis=z,half=upper,open=true,side=left": {
+      "model": "gaiadimension:block/blue_agate_curtain_top_left_open",
+      "y": 90
+    },
+    "axis=z,half=upper,open=true,side=right": {
+      "model": "gaiadimension:block/blue_agate_curtain_top_right_open",
+      "y": 90
+    },
+    "axis=z,half=upper,open=true,side=single": {
+      "model": "gaiadimension:block/blue_agate_curtain_top_open",
+      "y": 90
+    }
+  }
+}

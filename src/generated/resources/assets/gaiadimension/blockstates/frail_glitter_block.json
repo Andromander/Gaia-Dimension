@@ -1,0 +1,21 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "gaiadimension:block/frail_glitter_block"
+      },
+      {
+        "model": "gaiadimension:block/frail_glitter_block",
+        "y": 90
+      },
+      {
+        "model": "gaiadimension:block/frail_glitter_block",
+        "y": 180
+      },
+      {
+        "model": "gaiadimension:block/frail_glitter_block",
+        "y": 270
+      }
+    ]
+  }
+}
