@@ -131,7 +131,6 @@ public abstract class GaiaBlockStateProvider {
         blockModels.createTrivialCube(block.get());
     }
 
-    //TODO: Merge leavesBlock and translucentBlock, as it is more seamless
     public void leavesBlock(DeferredBlock<? extends Block> block) {
         blockModels.createTrivialBlock(block.get(), LEAVES_MODEL);
     }

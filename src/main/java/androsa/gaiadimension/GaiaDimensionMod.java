@@ -115,7 +115,6 @@ public class GaiaDimensionMod {
     public void gatherClientData(GatherDataEvent.Client event) {
         DataGenerator generator = event.getGenerator();
         PackOutput output = generator.getPackOutput();
-        // FIXME: NeoForge removed their custom DataGen stuff due to Lex's old code breaking, check out BlockModelGenerators and ItemModelGenerators
         generator.addProvider(true, new GaiaModelProvider(output));
     }
 
