@@ -87,8 +87,9 @@ runs {
     }
 }
 
-sourceSets.main.resources {
-    srcDir 'src/generated/resources'
+sourceSets {
+    main.resources.srcDirs += 'src/generated-client/resources'
+    main.resources.srcDirs += 'src/generated-data/resources/'
 }
 
 dependencies {
