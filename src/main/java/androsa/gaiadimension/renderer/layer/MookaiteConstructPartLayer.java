@@ -1,5 +1,6 @@
 package androsa.gaiadimension.renderer.layer;
 
+import androsa.gaiadimension.entity.MookaiteConstruct;
 import androsa.gaiadimension.entity.data.MookaitePartType;
 import androsa.gaiadimension.model.MookaiteConstructModel;
 import androsa.gaiadimension.model.renderstate.MookaiteConstructRenderState;
@@ -13,6 +14,8 @@ import net.minecraft.client.renderer.entity.RenderLayerParent;
 import net.minecraft.client.renderer.entity.layers.RenderLayer;
 import net.minecraft.resources.ResourceLocation;
 
+import java.util.Map;
+
 public class MookaiteConstructPartLayer<M extends MookaiteConstructModel> extends RenderLayer<MookaiteConstructRenderState, M> {
 
     public MookaiteConstructPartLayer(RenderLayerParent<MookaiteConstructRenderState, M> renderer) {
@@ -20,14 +23,14 @@ public class MookaiteConstructPartLayer<M extends MookaiteConstructModel> extend
     }
 
     @Override
-    public void render(PoseStack stack, MultiBufferSource buffer, int light, MookaiteConstructRenderState entity, float netHeadYaw, float headPitch) {
-        for (MookaitePartType part : entity.partList) {
-            if (part.isPresent()) {
-                String color = part.getSerializedName();
-                ResourceLocation location = ModEntitiesRendering.makeTextureNoPrefix("mookaite_construct", part.name() + "/" + color);
-                if (location != null && !entity.isInvisible) {
+    public void render(PoseStack stack, MultiBufferSource buffer, int light, MookaiteConstructRenderState state, float netHeadYaw, float headPitch) {
+        for (Map.Entry<MookaiteConstruct.MookaitePart, MookaitePartType> part : state.partMap.entrySet()) {
+            if (part.getValue().isPresent()) {
+                String color = part.getValue().getSerializedName();
+                ResourceLocation location = ModEntitiesRendering.makeTextureNoPrefix("mookaite_construct", part.getKey().name() + "/" + color);
+                if (location != null && !state.isInvisible) {
                     VertexConsumer vertex = buffer.getBuffer(RenderType.entityCutout(location));
-                    this.getParentModel().renderToBuffer(stack, vertex, light, LivingEntityRenderer.getOverlayCoords(entity, 0.0F));
+                    this.getParentModel().renderToBuffer(stack, vertex, light, LivingEntityRenderer.getOverlayCoords(state, 0.0F));
                 }
             }
         }

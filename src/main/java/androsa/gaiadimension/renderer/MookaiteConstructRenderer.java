@@ -1,22 +1,26 @@
 package androsa.gaiadimension.renderer;
 
 import androsa.gaiadimension.entity.MookaiteConstruct;
-import androsa.gaiadimension.entity.data.MookaitePartType;
 import androsa.gaiadimension.model.MookaiteConstructModel;
 import androsa.gaiadimension.model.renderstate.MookaiteConstructRenderState;
 import androsa.gaiadimension.registry.helpers.ModEntitiesRendering;
 import androsa.gaiadimension.renderer.layer.MookaiteConstructPartLayer;
-import com.google.common.collect.ImmutableList;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
+import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.resources.ResourceLocation;
 
-import java.util.List;
+import java.util.Map;
 
-public class MookaiteConstructRenderer<T extends MookaiteConstruct, M extends MookaiteConstructModel> extends BasicEntityRenderer<T, MookaiteConstructRenderState, M> {
+public class MookaiteConstructRenderer<T extends MookaiteConstruct, M extends MookaiteConstructModel> extends MobRenderer<T, MookaiteConstructRenderState, M> {
 
     public MookaiteConstructRenderer(EntityRendererProvider.Context manager, M model, float shadow) {
-        super(manager, model, new MookaiteConstructRenderState(), "mookaite_construct", shadow);
+        super(manager, model, shadow);
         this.addLayer(new MookaiteConstructPartLayer<>(this));
+    }
+
+    @Override
+    public MookaiteConstructRenderState createRenderState() {
+        return new MookaiteConstructRenderState();
     }
 
     @Override
@@ -32,11 +36,21 @@ public class MookaiteConstructRenderer<T extends MookaiteConstruct, M extends Mo
         state.leftArmBrace = entity.getPart(MookaiteConstruct.LEFT_ARM_BRACE_TYPE);
         state.rightLegBrace = entity.getPart(MookaiteConstruct.RIGHT_LEG_BRACE_TYPE);
         state.leftLegBrace = entity.getPart(MookaiteConstruct.LEFT_LEG_BRACE_TYPE);
-        state.partList = ImmutableList.of(
-                state.rightHorn, state.leftHorn,
-                state.rightEye, state.leftEye,
-                state.rightShoulder, state.leftShoulder,
-                state.rightArmBrace, state.leftArmBrace,
-                state.rightLegBrace, state.leftLegBrace);
+        state.partMap = Map.of(
+                MookaiteConstruct.RIGHT_HORN,state.rightHorn,
+                MookaiteConstruct.LEFT_HORN,state.leftHorn,
+                MookaiteConstruct.RIGHT_EYE,state.rightEye,
+                MookaiteConstruct.LEFT_EYE,state.leftEye,
+                MookaiteConstruct.RIGHT_SHOULDER,state.rightShoulder,
+                MookaiteConstruct.LEFT_SHOULDER,state.leftShoulder,
+                MookaiteConstruct.RIGHT_ARM,state.rightArmBrace,
+                MookaiteConstruct.LEFT_ARM,state.leftArmBrace,
+                MookaiteConstruct.RIGHT_LEG,state.rightLegBrace,
+                MookaiteConstruct.LEFT_LEG, state.leftLegBrace);
+    }
+
+    @Override
+    public ResourceLocation getTextureLocation(MookaiteConstructRenderState entity) {
+        return ModEntitiesRendering.makeTexture("mookaite_construct/mookaite_construct");
     }
 }

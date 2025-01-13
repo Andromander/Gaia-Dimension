@@ -1,9 +1,10 @@
 package androsa.gaiadimension.model.renderstate;
 
+import androsa.gaiadimension.entity.MookaiteConstruct;
 import androsa.gaiadimension.entity.data.MookaitePartType;
 import net.minecraft.client.renderer.entity.state.LivingEntityRenderState;
 
-import java.util.List;
+import java.util.Map;
 
 public class MookaiteConstructRenderState extends LivingEntityRenderState {
     public MookaitePartType rightHorn;
@@ -16,5 +17,5 @@ public class MookaiteConstructRenderState extends LivingEntityRenderState {
 	public MookaitePartType leftArmBrace;
 	public MookaitePartType rightLegBrace;
 	public MookaitePartType leftLegBrace;
-	public List<MookaitePartType> partList;
+	public Map<MookaiteConstruct.MookaitePart, MookaitePartType> partMap;
 }
