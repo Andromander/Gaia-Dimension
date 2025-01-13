@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "#": "#gaiadimension:agate_tiles",
+    "/": "gaiadimension:agate_stick"
+  },
+  "pattern": [
+    "###",
+    " / ",
+    " / "
+  ],
+  "result": {
+    "count": 1,
+    "id": "gaiadimension:agate_pickaxe"
+  }
+}

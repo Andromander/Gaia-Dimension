@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "ingredients": [
+    "#gaiadimension:aura_logs"
+  ],
+  "result": {
+    "count": 4,
+    "id": "gaiadimension:aura_tiles"
+  }
+}

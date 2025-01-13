@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "#": [
+      "gaiadimension:pink_agate_sapling",
+      "gaiadimension:blue_agate_sapling",
+      "gaiadimension:green_agate_sapling",
+      "gaiadimension:purple_agate_sapling"
+    ],
+    "/": "gaiadimension:goldstone_residue"
+  },
+  "pattern": [
+    " / ",
+    "/#/",
+    " / "
+  ],
+  "result": {
+    "count": 1,
+    "id": "gaiadimension:corrupted_sapling"
+  }
+}

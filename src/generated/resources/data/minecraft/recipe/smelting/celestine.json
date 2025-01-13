@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:smelting",
+  "category": "misc",
+  "cookingtime": 200,
+  "experience": 1.5,
+  "ingredient": "gaiadimension:celestine_ore",
+  "result": {
+    "count": 1,
+    "id": "gaiadimension:celestine"
+  }
+}

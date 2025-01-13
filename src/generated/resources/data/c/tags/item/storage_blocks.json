@@ -1,0 +1,26 @@
+{
+  "values": [
+    "#c:storage_blocks/sugilite",
+    "#c:storage_blocks/hematite",
+    "#c:storage_blocks/cinnabar",
+    "#c:storage_blocks/labradorite",
+    "#c:storage_blocks/moonstone",
+    "#c:storage_blocks/red_opal",
+    "#c:storage_blocks/blue_opal",
+    "#c:storage_blocks/green_opal",
+    "#c:storage_blocks/white_opal",
+    "#c:storage_blocks/pyrite",
+    "#c:storage_blocks/tektite",
+    "#c:storage_blocks/goldstone",
+    "#c:storage_blocks/aura",
+    "#c:storage_blocks/bismuth",
+    "#c:storage_blocks/stibnite",
+    "#c:storage_blocks/proustite",
+    "#c:storage_blocks/euclase",
+    "#c:storage_blocks/albite",
+    "#c:storage_blocks/carnelian",
+    "#c:storage_blocks/benitoite",
+    "#c:storage_blocks/diopside",
+    "#c:storage_blocks/goshenite"
+  ]
+}

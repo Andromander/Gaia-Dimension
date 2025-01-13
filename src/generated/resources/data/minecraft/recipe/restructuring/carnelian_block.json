@@ -1,0 +1,14 @@
+{
+  "type": "gaiadimension:restructuring",
+  "byproduct": {
+    "count": 1,
+    "id": "gaiadimension:tektite"
+  },
+  "cookingtime": 200,
+  "experience": 2.7,
+  "ingredient": "gaiadimension:red_opal_block",
+  "result": {
+    "count": 1,
+    "id": "gaiadimension:carnelian_block"
+  }
+}

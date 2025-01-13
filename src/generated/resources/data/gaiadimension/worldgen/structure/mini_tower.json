@@ -1,0 +1,6 @@
+{
+  "type": "gaiadimension:mini_tower",
+  "biomes": "#gaiadimension:has_structure/mini_tower",
+  "spawn_overrides": {},
+  "step": "surface_structures"
+}

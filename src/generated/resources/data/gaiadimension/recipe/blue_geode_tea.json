@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "gaiadimension:blue_geode_slice",
+    "gaiadimension:sugar_crystals",
+    "gaiadimension:agate_cup"
+  ],
+  "result": {
+    "count": 1,
+    "id": "gaiadimension:blue_geode_tea"
+  }
+}

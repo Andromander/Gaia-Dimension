@@ -63,6 +63,7 @@ public class GaiaDimensionMod {
         ModFluids.FLUIDS.register(bus);
         ModItems.ITEMS.register(bus);
         ModParticles.PARTICLE_TYPES.register(bus);
+        ModPredicates.ENTITY_SUB_PREDICATES.register(bus);
         ModRecipes.RECIPE_TYPES.register(bus);
         ModRecipes.RECIPE_SERIALIZERS.register(bus);
         ModBlockEntities.TILE_ENTITIES.register(bus);
@@ -125,7 +126,7 @@ public class GaiaDimensionMod {
         GaiaBlockTags blocktags = new GaiaBlockTags(output, provider);
 
         generator.addProvider(true, new GaiaLootTables(output, provider));
-        // generator.addProvider(true, new GaiaRecipes.Runner(output, provider));
+        generator.addProvider(true, new GaiaRecipes.Runner(output, provider));
         generator.addProvider(true, blocktags);
         generator.addProvider(true, new GaiaItemTags(output, provider, blocktags.contentsGetter()));
         generator.addProvider(true, new GaiaFluidTags(output, provider));
@@ -137,6 +138,6 @@ public class GaiaDimensionMod {
         generator.addProvider(true, new GaiaBiomeTags(output, datapackProvider));
         generator.addProvider(true, new GaiaDamageTags(output, datapackProvider));
         generator.addProvider(true, new GaiaEntityTags(output, datapackProvider));
-       // generator.addProvider(true, new GaiaAdvancements(output, datapackProvider));
+        generator.addProvider(true, new GaiaAdvancements(output, datapackProvider));
     }
 }

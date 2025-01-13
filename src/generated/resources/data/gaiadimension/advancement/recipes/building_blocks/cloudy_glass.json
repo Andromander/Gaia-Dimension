@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_gaiadimension:cloudy_shard": {
+      "conditions": {
+        "items": [
+          {
+            "items": "gaiadimension:cloudy_shard"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "gaiadimension:cloudy_glass"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_gaiadimension:cloudy_shard"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "gaiadimension:cloudy_glass"
+    ]
+  }
+}

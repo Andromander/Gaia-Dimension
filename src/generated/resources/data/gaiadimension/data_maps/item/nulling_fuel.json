@@ -1,0 +1,10 @@
+{
+  "values": {
+    "gaiadimension:bismuth_block": 16200,
+    "gaiadimension:bismuth_crystal": 1800,
+    "gaiadimension:bismuth_residue": 200,
+    "gaiadimension:black_residue": 100,
+    "gaiadimension:tektite": 900,
+    "gaiadimension:tektite_block": 8100
+  }
+}

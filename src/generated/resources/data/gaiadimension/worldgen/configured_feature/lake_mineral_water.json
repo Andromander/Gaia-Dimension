@@ -1,0 +1,11 @@
+{
+  "type": "gaiadimension:pool",
+  "config": {
+    "state": {
+      "Name": "gaiadimension:mineral_water",
+      "Properties": {
+        "level": "0"
+      }
+    }
+  }
+}

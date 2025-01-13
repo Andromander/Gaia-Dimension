@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "#": "gaiadimension:aura_leaves",
+    "/": "gaiadimension:agate_stick"
+  },
+  "pattern": [
+    "//",
+    "##",
+    "##"
+  ],
+  "result": {
+    "count": 4,
+    "id": "gaiadimension:aura_curtain"
+  }
+}

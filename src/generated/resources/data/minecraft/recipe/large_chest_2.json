@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "#": "gaiadimension:crude_storage_crate",
+    "%": "#gaiadimension:agate_tiles",
+    "*": "gaiadimension:thick_glitter_block"
+  },
+  "pattern": [
+    "*%*",
+    "%#%",
+    "*%*"
+  ],
+  "result": {
+    "count": 1,
+    "id": "gaiadimension:mega_storage_crate"
+  }
+}

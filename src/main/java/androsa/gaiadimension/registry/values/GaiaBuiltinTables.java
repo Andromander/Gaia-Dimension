@@ -24,10 +24,10 @@ public class GaiaBuiltinTables {
                 }
             }
     );
-    public static final ResourceKey<LootTable> PINK_SAPPER_TABLE = makeTable("entities/common_sapper");
-    public static final ResourceKey<LootTable> BLUE_SAPPER_TABLE = makeTable("entities/chilled_sapper");
-    public static final ResourceKey<LootTable> GREEN_SAPPER_TABLE = makeTable("entities/nutrient_sapper");
-    public static final ResourceKey<LootTable> PURPLE_SAPPER_TABLE = makeTable("entities/mystified_sapper");
+//    public static final ResourceKey<LootTable> PINK_SAPPER_TABLE = makeTable("entities/common_sapper");
+//    public static final ResourceKey<LootTable> BLUE_SAPPER_TABLE = makeTable("entities/chilled_sapper");
+//    public static final ResourceKey<LootTable> GREEN_SAPPER_TABLE = makeTable("entities/nutrient_sapper");
+//    public static final ResourceKey<LootTable> PURPLE_SAPPER_TABLE = makeTable("entities/mystified_sapper");
 
     private static ResourceKey<LootTable> makeTable(String path) {
         ResourceKey<LootTable> loc = ResourceKey.create(Registries.LOOT_TABLE, ResourceLocation.fromNamespaceAndPath(GaiaDimensionMod.MODID, path));

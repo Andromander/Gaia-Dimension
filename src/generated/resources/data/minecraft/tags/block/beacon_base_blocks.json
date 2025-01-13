@@ -1,0 +1,28 @@
+{
+  "values": [
+    "gaiadimension:sugilite_block",
+    "gaiadimension:hematite_block",
+    "gaiadimension:cinnabar_block",
+    "gaiadimension:labradorite_block",
+    "gaiadimension:moonstone_block",
+    "gaiadimension:red_opal_block",
+    "gaiadimension:blue_opal_block",
+    "gaiadimension:green_opal_block",
+    "gaiadimension:white_opal_block",
+    "gaiadimension:pyrite_block",
+    "gaiadimension:tektite_block",
+    "gaiadimension:goldstone_block",
+    "gaiadimension:aura_block",
+    "gaiadimension:bismuth_block",
+    "gaiadimension:stibnite_block",
+    "gaiadimension:proustite_block",
+    "gaiadimension:euclase_block",
+    "gaiadimension:albite_block",
+    "gaiadimension:carnelian_block",
+    "gaiadimension:benitoite_block",
+    "gaiadimension:diopside_block",
+    "gaiadimension:goshenite_block",
+    "gaiadimension:opalite_block",
+    "gaiadimension:celestine_block"
+  ]
+}

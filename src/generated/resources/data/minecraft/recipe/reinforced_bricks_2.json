@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "#": "#gaiadimension:gaia_bricks",
+    "%": "gaiadimension:thick_glitter_block"
+  },
+  "pattern": [
+    "#%",
+    "%#"
+  ],
+  "result": {
+    "count": 2,
+    "id": "gaiadimension:reinforced_bricks"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "gaiadimension:celestine",
+    "#gaiadimension:mookaite",
+    "gaiadimension:opalite"
+  ],
+  "result": {
+    "count": 1,
+    "id": "gaiadimension:construct_charm"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "type": "gaiadimension:pool",
+  "config": {
+    "state": {
+      "Name": "gaiadimension:sweet_muck",
+      "Properties": {
+        "level": "0"
+      }
+    }
+  }
+}

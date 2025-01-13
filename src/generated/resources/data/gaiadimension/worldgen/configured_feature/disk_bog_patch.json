@@ -1,0 +1,27 @@
+{
+  "type": "gaiadimension:bog_patch",
+  "config": {
+    "half_height": 2,
+    "radius": {
+      "type": "minecraft:uniform",
+      "max_inclusive": 4,
+      "min_inclusive": 1
+    },
+    "state_provider": {
+      "fallback": {
+        "type": "minecraft:simple_state_provider",
+        "state": {
+          "Name": "gaiadimension:impure_sludge"
+        }
+      },
+      "rules": []
+    },
+    "target": {
+      "type": "minecraft:matching_blocks",
+      "blocks": [
+        "gaiadimension:murky_grass",
+        "gaiadimension:boggy_soil"
+      ]
+    }
+  }
+}

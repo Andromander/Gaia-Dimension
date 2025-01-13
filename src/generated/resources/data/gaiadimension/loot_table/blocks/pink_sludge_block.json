@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "gaiadimension:pink_sludge_block"
+        }
+      ],
+      "rolls": 1.0
+    }
+  ],
+  "random_sequence": "gaiadimension:blocks/pink_sludge_block"
+}

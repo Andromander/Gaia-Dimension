@@ -91,7 +91,8 @@ public class ModEntities {
         EntityType.Builder<E> entitytype = makeBuilder(entity, MobCategory.MISC, width, height)
                 .setShouldReceiveVelocityUpdates(updates)
                 .setTrackingRange(range)
-                .setUpdateInterval(interval);
+                .setUpdateInterval(interval)
+                .noLootTable();
         if (fireproof) entitytype.fireImmune();
         return ENTITY_TYPES.register(name, () -> entitytype.build(key));
     }

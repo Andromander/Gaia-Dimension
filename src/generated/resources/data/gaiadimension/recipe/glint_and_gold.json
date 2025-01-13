@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "equipment",
+  "ingredients": [
+    "minecraft:diamond",
+    "minecraft:gold_ingot"
+  ],
+  "result": {
+    "count": 1,
+    "id": "gaiadimension:glint_and_gold"
+  }
+}

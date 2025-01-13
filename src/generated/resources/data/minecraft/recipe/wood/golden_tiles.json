@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "ingredients": [
+    "#gaiadimension:golden_logs"
+  ],
+  "result": {
+    "count": 4,
+    "id": "gaiadimension:golden_tiles"
+  }
+}

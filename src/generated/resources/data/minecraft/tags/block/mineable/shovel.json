@@ -1,0 +1,19 @@
+{
+  "values": [
+    "gaiadimension:heavy_soil",
+    "gaiadimension:corrupted_soil",
+    "gaiadimension:boggy_soil",
+    "gaiadimension:light_soil",
+    "gaiadimension:aurum_soil",
+    "gaiadimension:glitter_grass",
+    "gaiadimension:corrupted_grass",
+    "gaiadimension:murky_grass",
+    "gaiadimension:soft_grass",
+    "gaiadimension:gilded_grass",
+    "gaiadimension:salt",
+    "gaiadimension:pebbles",
+    "gaiadimension:impure_sludge",
+    "gaiadimension:aurum_mud",
+    "gaiadimension:golden_sand"
+  ]
+}

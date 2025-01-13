@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "ingredients": [
+    "gaiadimension:albite_block"
+  ],
+  "result": {
+    "count": 9,
+    "id": "gaiadimension:albite"
+  }
+}

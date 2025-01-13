@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "gaiadimension:pink_geode_slice",
+    "gaiadimension:blue_geode_slice",
+    "gaiadimension:green_geode_slice",
+    "gaiadimension:purple_geode_slice",
+    "gaiadimension:sugar_cluster",
+    "gaiadimension:agate_cup"
+  ],
+  "result": {
+    "count": 1,
+    "id": "gaiadimension:pearly_geode_elixir"
+  }
+}

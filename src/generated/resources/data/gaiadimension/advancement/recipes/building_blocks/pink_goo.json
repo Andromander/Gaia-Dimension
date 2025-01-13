@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_gaiadimension:pink_essence": {
+      "conditions": {
+        "items": [
+          {
+            "items": "gaiadimension:pink_essence"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "gaiadimension:pink_goo"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_gaiadimension:pink_essence"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "gaiadimension:pink_goo"
+    ]
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "values": {
+    "gaiadimension:aura_block": 16200,
+    "gaiadimension:aura_cluster": 1800,
+    "gaiadimension:aura_residue": 200,
+    "gaiadimension:pink_essence": 100,
+    "gaiadimension:pink_goo": 900,
+    "gaiadimension:pink_sludge_block": 8100
+  }
+}

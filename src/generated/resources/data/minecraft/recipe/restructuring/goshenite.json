@@ -1,0 +1,14 @@
+{
+  "type": "gaiadimension:restructuring",
+  "byproduct": {
+    "count": 1,
+    "id": "gaiadimension:black_residue"
+  },
+  "cookingtime": 200,
+  "experience": 0.3,
+  "ingredient": "gaiadimension:white_opal",
+  "result": {
+    "count": 1,
+    "id": "gaiadimension:goshenite"
+  }
+}

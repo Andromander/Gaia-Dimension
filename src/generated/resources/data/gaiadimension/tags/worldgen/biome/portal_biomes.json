@@ -1,0 +1,8 @@
+{
+  "values": [
+    "#c:is_hot",
+    "#c:is_dry",
+    "#c:is_mountain",
+    "#gaiadimension:is_gaia"
+  ]
+}

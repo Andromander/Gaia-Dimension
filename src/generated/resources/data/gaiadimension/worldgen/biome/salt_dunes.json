@@ -1,0 +1,122 @@
+{
+  "carvers": [
+    "gaiadimension:crystal_caves",
+    "gaiadimension:chasms"
+  ],
+  "downfall": 0.0,
+  "effects": {
+    "fog_color": 15381216,
+    "foliage_color": 15901620,
+    "grass_color": 15901620,
+    "mood_sound": {
+      "block_search_extent": 8,
+      "offset": 2.0,
+      "sound": "minecraft:ambient.cave",
+      "tick_delay": 6000
+    },
+    "music_volume": 1.0,
+    "sky_color": 13016408,
+    "water_color": 7117233,
+    "water_fog_color": 9617108
+  },
+  "features": [
+    [],
+    [
+      "gaiadimension:lake_mineral_water_rare"
+    ],
+    [],
+    [],
+    [],
+    [],
+    [
+      "gaiadimension:ore_primal_mass",
+      "gaiadimension:ore_pebbles",
+      "gaiadimension:ore_speckled_rock",
+      "gaiadimension:ore_coarse_rock",
+      "gaiadimension:ore_precious_rock",
+      "gaiadimension:ore_sugilite",
+      "gaiadimension:ore_hematite",
+      "gaiadimension:ore_pyrite",
+      "gaiadimension:ore_cinnabar",
+      "gaiadimension:ore_labradorite",
+      "gaiadimension:ore_moonstone",
+      "gaiadimension:ore_celestine",
+      "gaiadimension:ore_raw_amethyst",
+      "gaiadimension:ore_raw_jet"
+    ],
+    [
+      "gaiadimension:crystal_fungi_caves",
+      "gaiadimension:underground_glitter_blob"
+    ]
+  ],
+  "has_precipitation": false,
+  "spawn_costs": {},
+  "spawners": {
+    "ambient": [],
+    "axolotls": [],
+    "creature": [
+      {
+        "type": "gaiadimension:nomadic_lagrahk",
+        "maxCount": 3,
+        "minCount": 1,
+        "weight": 15
+      },
+      {
+        "type": "gaiadimension:saltion",
+        "maxCount": 3,
+        "minCount": 1,
+        "weight": 15
+      }
+    ],
+    "misc": [],
+    "monster": [
+      {
+        "type": "gaiadimension:cavern_tick",
+        "maxCount": 4,
+        "minCount": 2,
+        "weight": 65
+      },
+      {
+        "type": "gaiadimension:shalurker",
+        "maxCount": 4,
+        "minCount": 2,
+        "weight": 65
+      },
+      {
+        "type": "gaiadimension:archaic_warrior",
+        "maxCount": 4,
+        "minCount": 2,
+        "weight": 65
+      },
+      {
+        "type": "gaiadimension:muckling",
+        "maxCount": 4,
+        "minCount": 2,
+        "weight": 65
+      },
+      {
+        "type": "minecraft:enderman",
+        "maxCount": 2,
+        "minCount": 1,
+        "weight": 5
+      },
+      {
+        "type": "gaiadimension:primal_beast",
+        "maxCount": 2,
+        "minCount": 1,
+        "weight": 15
+      }
+    ],
+    "underground_water_creature": [],
+    "water_ambient": [],
+    "water_creature": [
+      {
+        "type": "gaiadimension:shallow_arenthis",
+        "maxCount": 4,
+        "minCount": 2,
+        "weight": 10
+      }
+    ]
+  },
+  "temperature": 0.8
+}

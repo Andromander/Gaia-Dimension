@@ -440,10 +440,10 @@ public class GaiaLootTables extends LootTableProvider {
                                     GaiaBuiltinTables.SAPPER_TABLES.get(variant),
                                     LootTable.lootTable().withPool(LootPool.lootPool().add(LootItem.lootTableItem(item)))
                             ));
-            addTable(ModEntities.GROWTH_SAPPER, GaiaBuiltinTables.PINK_SAPPER_TABLE, sapperTable(ModItems.pink_geode));
-            addTable(ModEntities.GROWTH_SAPPER, GaiaBuiltinTables.BLUE_SAPPER_TABLE, sapperTable(ModItems.blue_geode));
-            addTable(ModEntities.GROWTH_SAPPER, GaiaBuiltinTables.GREEN_SAPPER_TABLE, sapperTable(ModItems.green_geode));
-            addTable(ModEntities.GROWTH_SAPPER, GaiaBuiltinTables.PURPLE_SAPPER_TABLE, sapperTable(ModItems.purple_geode));
+//            addTable(ModEntities.GROWTH_SAPPER, GaiaBuiltinTables.PINK_SAPPER_TABLE, sapperTable(ModItems.pink_geode));
+//            addTable(ModEntities.GROWTH_SAPPER, GaiaBuiltinTables.BLUE_SAPPER_TABLE, sapperTable(ModItems.blue_geode));
+//            addTable(ModEntities.GROWTH_SAPPER, GaiaBuiltinTables.GREEN_SAPPER_TABLE, sapperTable(ModItems.green_geode));
+//            addTable(ModEntities.GROWTH_SAPPER, GaiaBuiltinTables.PURPLE_SAPPER_TABLE, sapperTable(ModItems.purple_geode));
             addTable(ModEntities.HOWLITE_WOLF, blankTable());
             addTable(ModEntities.LESSER_SHOCKSHOOTER, singleDropTable(ModItems.crystallized_lapis_lazuli, 0.0F, 2.0F));
             addTable(ModEntities.LESSER_SPITFIRE, singleDropTable(ModItems.crystallized_redstone, 0.0F, 2.0F));

@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:disk",
+  "config": {
+    "half_height": 3,
+    "radius": {
+      "type": "minecraft:uniform",
+      "max_inclusive": 4,
+      "min_inclusive": 2
+    },
+    "state_provider": {
+      "fallback": {
+        "type": "minecraft:simple_state_provider",
+        "state": {
+          "Name": "gaiadimension:static_stone"
+        }
+      },
+      "rules": []
+    },
+    "target": {
+      "type": "minecraft:matching_blocks",
+      "blocks": "gaiadimension:wasteland_stone"
+    }
+  }
+}

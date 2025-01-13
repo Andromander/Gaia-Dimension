@@ -1,0 +1,286 @@
+{
+  "parent": "gaiadimension:gaia/root",
+  "criteria": {
+    "get_albite": {
+      "conditions": {
+        "items": [
+          {
+            "items": "gaiadimension:albite"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "get_aura_cluster": {
+      "conditions": {
+        "items": [
+          {
+            "items": "gaiadimension:aura_cluster"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "get_benitoite": {
+      "conditions": {
+        "items": [
+          {
+            "items": "gaiadimension:benitoite"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "get_bismuth_crystal": {
+      "conditions": {
+        "items": [
+          {
+            "items": "gaiadimension:bismuth_crystal"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "get_blue_opal": {
+      "conditions": {
+        "items": [
+          {
+            "items": "gaiadimension:blue_opal"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "get_carnelian": {
+      "conditions": {
+        "items": [
+          {
+            "items": "gaiadimension:carnelian"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "get_celestine": {
+      "conditions": {
+        "items": [
+          {
+            "items": "gaiadimension:celestine"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "get_cinnabar": {
+      "conditions": {
+        "items": [
+          {
+            "items": "gaiadimension:cinnabar"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "get_diopside": {
+      "conditions": {
+        "items": [
+          {
+            "items": "gaiadimension:diopside"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "get_euclase": {
+      "conditions": {
+        "items": [
+          {
+            "items": "gaiadimension:euclase"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "get_goldstone": {
+      "conditions": {
+        "items": [
+          {
+            "items": "gaiadimension:goldstone"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "get_goshenite": {
+      "conditions": {
+        "items": [
+          {
+            "items": "gaiadimension:goshenite"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "get_green_opal": {
+      "conditions": {
+        "items": [
+          {
+            "items": "gaiadimension:green_opal"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "get_hematite": {
+      "conditions": {
+        "items": [
+          {
+            "items": "gaiadimension:hematite"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "get_labradorite": {
+      "conditions": {
+        "items": [
+          {
+            "items": "gaiadimension:labradorite"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "get_moonstone": {
+      "conditions": {
+        "items": [
+          {
+            "items": "gaiadimension:moonstone"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "get_opalite": {
+      "conditions": {
+        "items": [
+          {
+            "items": "gaiadimension:opalite"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "get_proustite": {
+      "conditions": {
+        "items": [
+          {
+            "items": "gaiadimension:proustite"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "get_pyrite": {
+      "conditions": {
+        "items": [
+          {
+            "items": "gaiadimension:pyrite"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "get_red_opal": {
+      "conditions": {
+        "items": [
+          {
+            "items": "gaiadimension:red_opal"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "get_stibnite": {
+      "conditions": {
+        "items": [
+          {
+            "items": "gaiadimension:stibnite"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "get_sugilite": {
+      "conditions": {
+        "items": [
+          {
+            "items": "gaiadimension:sugilite"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "get_tektite": {
+      "conditions": {
+        "items": [
+          {
+            "items": "gaiadimension:tektite"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "get_white_opal": {
+      "conditions": {
+        "items": [
+          {
+            "items": "gaiadimension:white_opal"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.gaia.collect_gemstone.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "gaiadimension:sugilite"
+    },
+    "title": {
+      "translate": "advancements.gaia.collect_gemstone.title"
+    }
+  },
+  "requirements": [
+    [
+      "get_sugilite",
+      "get_hematite",
+      "get_cinnabar",
+      "get_labradorite",
+      "get_moonstone",
+      "get_red_opal",
+      "get_blue_opal",
+      "get_green_opal",
+      "get_white_opal",
+      "get_stibnite",
+      "get_proustite",
+      "get_euclase",
+      "get_albite",
+      "get_carnelian",
+      "get_benitoite",
+      "get_diopside",
+      "get_goshenite",
+      "get_pyrite",
+      "get_tektite",
+      "get_goldstone",
+      "get_aura_cluster",
+      "get_bismuth_crystal",
+      "get_opalite",
+      "get_celestine"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

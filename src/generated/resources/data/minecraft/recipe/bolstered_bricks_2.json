@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "#": "gaiadimension:reinforced_bricks",
+    "%": "gaiadimension:goldstone_block"
+  },
+  "pattern": [
+    "#%",
+    "%#"
+  ],
+  "result": {
+    "count": 2,
+    "id": "gaiadimension:bolstered_bricks"
+  }
+}

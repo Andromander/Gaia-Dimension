@@ -1,0 +1,81 @@
+{
+  "type": "minecraft:entity",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:alternatives",
+          "children": [
+            {
+              "type": "minecraft:loot_table",
+              "conditions": [
+                {
+                  "condition": "minecraft:entity_properties",
+                  "entity": "this",
+                  "predicate": {
+                    "type_specific": {
+                      "type": "gaiadimension:sapper",
+                      "variant": "pink"
+                    }
+                  }
+                }
+              ],
+              "value": "gaiadimension:entities/common_sapper"
+            },
+            {
+              "type": "minecraft:loot_table",
+              "conditions": [
+                {
+                  "condition": "minecraft:entity_properties",
+                  "entity": "this",
+                  "predicate": {
+                    "type_specific": {
+                      "type": "gaiadimension:sapper",
+                      "variant": "blue"
+                    }
+                  }
+                }
+              ],
+              "value": "gaiadimension:entities/chilled_sapper"
+            },
+            {
+              "type": "minecraft:loot_table",
+              "conditions": [
+                {
+                  "condition": "minecraft:entity_properties",
+                  "entity": "this",
+                  "predicate": {
+                    "type_specific": {
+                      "type": "gaiadimension:sapper",
+                      "variant": "green"
+                    }
+                  }
+                }
+              ],
+              "value": "gaiadimension:entities/nutrient_sapper"
+            },
+            {
+              "type": "minecraft:loot_table",
+              "conditions": [
+                {
+                  "condition": "minecraft:entity_properties",
+                  "entity": "this",
+                  "predicate": {
+                    "type_specific": {
+                      "type": "gaiadimension:sapper",
+                      "variant": "purple"
+                    }
+                  }
+                }
+              ],
+              "value": "gaiadimension:entities/mystified_sapper"
+            }
+          ]
+        }
+      ],
+      "rolls": 1.0
+    }
+  ],
+  "random_sequence": "gaiadimension:entities/growth_sapper"
+}

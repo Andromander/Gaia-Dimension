@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "#gaiadimension:agate_tiles"
+  ],
+  "result": {
+    "count": 4,
+    "id": "gaiadimension:agate_stick"
+  }
+}

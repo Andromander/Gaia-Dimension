@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "ingredients": [
+    "#gaiadimension:burning_logs"
+  ],
+  "result": {
+    "count": 4,
+    "id": "gaiadimension:fire_agate_tiles"
+  }
+}

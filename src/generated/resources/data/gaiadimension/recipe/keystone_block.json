@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "#": "minecraft:gold_ingot",
+    "%": "gaiadimension:crystallized_redstone",
+    "*": "gaiadimension:crystallized_lapis_lazuli"
+  },
+  "pattern": [
+    "*%*",
+    "%#%",
+    "*%*"
+  ],
+  "result": {
+    "count": 1,
+    "id": "gaiadimension:keystone_block"
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:random_selector",
+  "config": {
+    "default": {
+      "feature": "gaiadimension:mutant_crystal_growth",
+      "placement": []
+    },
+    "features": [
+      {
+        "chance": 0.25,
+        "feature": "gaiadimension:pink_agate_tree_checked"
+      },
+      {
+        "chance": 0.25,
+        "feature": "gaiadimension:blue_agate_tree_checked"
+      },
+      {
+        "chance": 0.25,
+        "feature": "gaiadimension:green_agate_tree_checked"
+      },
+      {
+        "chance": 0.25,
+        "feature": "gaiadimension:purple_agate_tree_checked"
+      }
+    ]
+  }
+}

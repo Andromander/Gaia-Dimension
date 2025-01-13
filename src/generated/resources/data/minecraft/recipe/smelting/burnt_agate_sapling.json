@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:smelting",
+  "category": "blocks",
+  "cookingtime": 200,
+  "experience": 0.1,
+  "ingredient": [
+    "gaiadimension:pink_agate_sapling",
+    "gaiadimension:blue_agate_sapling",
+    "gaiadimension:green_agate_sapling",
+    "gaiadimension:purple_agate_sapling"
+  ],
+  "result": {
+    "count": 1,
+    "id": "gaiadimension:burnt_agate_sapling"
+  }
+}

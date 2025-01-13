@@ -1,0 +1,17 @@
+{
+  "values": [
+    "#gaiadimension:is_agate",
+    "#gaiadimension:is_golden",
+    "gaiadimension:fossil_woodland",
+    "gaiadimension:volcanic_lands",
+    "gaiadimension:static_wasteland",
+    "gaiadimension:goldstone_lands",
+    "gaiadimension:crystal_plains",
+    "gaiadimension:salt_dunes",
+    "gaiadimension:mookaite_mesa",
+    "gaiadimension:shining_grove",
+    "gaiadimension:smoldering_bog",
+    "gaiadimension:mineral_reservoir",
+    "gaiadimension:mineral_river"
+  ]
+}

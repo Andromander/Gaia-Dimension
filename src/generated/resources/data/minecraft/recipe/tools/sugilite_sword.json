@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "#": "gaiadimension:sugilite",
+    "/": "gaiadimension:agate_stick"
+  },
+  "pattern": [
+    "#",
+    "#",
+    "/"
+  ],
+  "result": {
+    "count": 1,
+    "id": "gaiadimension:sugilite_sword"
+  }
+}

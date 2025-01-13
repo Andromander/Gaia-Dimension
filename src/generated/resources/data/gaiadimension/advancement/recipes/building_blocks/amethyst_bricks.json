@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_gaiadimension:raw_amethyst": {
+      "conditions": {
+        "items": [
+          {
+            "items": "gaiadimension:raw_amethyst"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "gaiadimension:amethyst_bricks"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_gaiadimension:raw_amethyst"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "gaiadimension:amethyst_bricks"
+    ]
+  }
+}
