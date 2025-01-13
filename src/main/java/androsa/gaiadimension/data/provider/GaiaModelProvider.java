@@ -36,9 +36,7 @@ public class GaiaModelProvider extends ModelProvider {
             ModBlocks.tall_golden_grass.asItem(),
             ModBlocks.glamelea.asItem(),
             ModBlocks.golden_vine.asItem(),
-            ModBlocks.aura_shoot.asItem(),
-            ModItems.construct_charm.get(),
-            ModItems.old_bow.get());
+            ModBlocks.aura_shoot.asItem());
 
     public GaiaModelProvider(PackOutput output) {
         super(output, GaiaDimensionMod.MODID);

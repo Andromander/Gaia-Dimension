@@ -1,10 +1,8 @@
 package androsa.gaiadimension.data;
 
 import androsa.gaiadimension.data.provider.GaiaItemModelProvider;
-import androsa.gaiadimension.registry.registration.ModBlocks;
 import androsa.gaiadimension.registry.registration.ModItems;
 import net.minecraft.client.data.models.ItemModelGenerators;
-import net.minecraft.data.PackOutput;
 
 public class GaiaItemModels extends GaiaItemModelProvider {
 
@@ -34,6 +32,7 @@ public class GaiaItemModels extends GaiaItemModelProvider {
         flatItem(ModItems.gemstone_pouch);
         flatItem(ModItems.agate_fabric);
         flatItem(ModItems.sturdy_pebble);
+        constructCharm(ModItems.construct_charm, itemModels);
         flatItem(ModItems.blank_kit);
         flatItem(ModItems.repair_kit);
         flatItem(ModItems.scarlet_augment_kit);
@@ -210,6 +209,7 @@ public class GaiaItemModels extends GaiaItemModelProvider {
         heldItem(ModItems.goshenite_pickaxe);
         heldItem(ModItems.goshenite_axe);
         heldItem(ModItems.goshenite_shovel);
+        itemModels.generateBow(ModItems.old_bow.get());
         flatItem(ModItems.agate_arrow);
         flatItem(ModItems.mock_malachite);
 

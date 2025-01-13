@@ -1,6 +1,0 @@
-{
-  "parent": "gaiadimension:item/old_bow",
-  "textures": {
-    "layer0": "gaiadimension:item/old_bow_pull_1"
-  }
-}

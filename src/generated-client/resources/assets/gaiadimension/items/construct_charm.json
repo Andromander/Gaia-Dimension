@@ -1,0 +1,33 @@
+{
+  "model": {
+    "type": "minecraft:condition",
+    "component": "gaiadimension:mookaite_uuid",
+    "on_false": {
+      "type": "minecraft:condition",
+      "component": "gaiadimension:opalite_uuid",
+      "on_false": {
+        "type": "minecraft:model",
+        "model": "gaiadimension:item/construct_charm"
+      },
+      "on_true": {
+        "type": "minecraft:model",
+        "model": "gaiadimension:item/construct_charm_opalite"
+      },
+      "property": "minecraft:has_component"
+    },
+    "on_true": {
+      "type": "minecraft:condition",
+      "component": "gaiadimension:opalite_uuid",
+      "on_false": {
+        "type": "minecraft:model",
+        "model": "gaiadimension:item/construct_charm_mookaite"
+      },
+      "on_true": {
+        "type": "minecraft:model",
+        "model": "gaiadimension:item/construct_charm_both"
+      },
+      "property": "minecraft:has_component"
+    },
+    "property": "minecraft:has_component"
+  }
+}

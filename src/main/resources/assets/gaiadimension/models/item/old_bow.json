@@ -3,26 +3,26 @@
   "textures": {
     "layer0": "gaiadimension:item/old_bow_standby"
   },
-  "overrides": [
-    {
-      "predicate": {
-        "pulling": 1
-      },
-      "model": "gaiadimension:item/old_bow_pull_0"
+  "display": {
+    "thirdperson_righthand": {
+      "rotation": [ -80, 260, -40 ],
+      "translation": [ -1, -2, 2.5 ],
+      "scale": [ 0.9, 0.9, 0.9 ]
     },
-    {
-      "predicate": {
-        "pulling": 1,
-        "pull": 0.65
-      },
-      "model": "gaiadimension:item/old_bow_pull_1"
+    "thirdperson_lefthand": {
+      "rotation": [ -80, -280, 40 ],
+      "translation": [ -1, -2, 2.5 ],
+      "scale": [ 0.9, 0.9, 0.9 ]
     },
-    {
-      "predicate": {
-        "pulling": 1,
-        "pull": 0.9
-      },
-      "model": "gaiadimension:item/old_bow_pull_2"
+    "firstperson_righthand": {
+      "rotation": [ 0, -90, 25 ],
+      "translation": [ 1.13, 3.2, 1.13],
+      "scale": [ 0.68, 0.68, 0.68 ]
+    },
+    "firstperson_lefthand": {
+      "rotation": [ 0, 90, -25 ],
+      "translation": [ 1.13, 3.2, 1.13],
+      "scale": [ 0.68, 0.68, 0.68 ]
     }
-  ]
+  }
 }
