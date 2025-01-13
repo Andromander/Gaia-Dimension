@@ -78,7 +78,12 @@ runs {
 
     clientData {
         workingDirectory project.file('run-data')
-        programArguments.addAll '--mod', 'gaiadimension', '--all', '--output', file('src/generated/resources/').getAbsolutePath(), '--existing', file('src/main/resources/').getAbsolutePath()
+        programArguments.addAll '--mod', 'gaiadimension', '--all', '--output', file('src/generated-client/resources/').getAbsolutePath(), '--existing', file('src/main/resources/').getAbsolutePath()
+    }
+
+    serverData {
+        workingDirectory project.file('run-data')
+        programArguments.addAll '--mod', 'gaiadimension', '--all', '--output', file('src/generated-data/resources/').getAbsolutePath(), '--existing', file('src/main/resources/').getAbsolutePath()
     }
 }
 
