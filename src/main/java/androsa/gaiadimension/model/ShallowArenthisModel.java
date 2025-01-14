@@ -8,6 +8,7 @@ import net.minecraft.client.model.geom.builders.LayerDefinition;
 import net.minecraft.client.model.geom.builders.MeshDefinition;
 import net.minecraft.client.model.geom.builders.PartDefinition;
 import net.minecraft.client.renderer.entity.state.LivingEntityRenderState;
+import net.minecraft.client.renderer.entity.state.SquidRenderState;
 import net.minecraft.util.Mth;
 
 import java.util.Arrays;
@@ -16,8 +17,7 @@ import java.util.Arrays;
  * ModelShallowArenthis - Androsa
  * Created using Tabula 7.0.0
  */
-public class ShallowArenthisModel extends EntityModel<LivingEntityRenderState> {
-    public ModelPart root;
+public class ShallowArenthisModel extends EntityModel<SquidRenderState> {
     public ModelPart[] tentacles = new ModelPart[7];
     public ModelPart body;
     public ModelPart tail;
@@ -68,14 +68,13 @@ public class ShallowArenthisModel extends EntityModel<LivingEntityRenderState> {
         return "tentacle_" + num;
     }
 
-    //FIXME
     @Override
-    public void setupAnim(LivingEntityRenderState state) {
-        this.body.xRot = Mth.sin(state.ageInTicks * (float)Math.PI * 0.025F) * 3.0F;
-        this.tail.xRot = Mth.sin(state.ageInTicks * (float)Math.PI * 0.025F) * 3.0F;
+    public void setupAnim(SquidRenderState state) {
+        this.body.xRot = Mth.sin(state.ageInTicks * (float)Math.PI * 0.025F) * 0.3F;
+        this.tail.xRot = Mth.sin(state.ageInTicks * (float)Math.PI * 0.025F) * 0.3F;
 
         for (ModelPart modelrenderer : this.tentacles) {
-            modelrenderer.xRot = state.ageInTicks;
+            modelrenderer.xRot = state.tentacleAngle;
         }
     }
 }

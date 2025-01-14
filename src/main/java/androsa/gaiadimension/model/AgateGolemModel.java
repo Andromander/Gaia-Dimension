@@ -25,8 +25,8 @@ public class AgateGolemModel extends EntityModel<LivingEntityRenderState> {
         super(root);
         this.face = root.getChild("face");
         this.upperArmL = root.getChild("upper_arm_left");
-        this.upperLegL = root.getChild("upper_arm_right");
-        this.upperArmR = root.getChild("upper_leg_left");
+        this.upperLegL = root.getChild("upper_leg_left");
+        this.upperArmR = root.getChild("upper_arm_right");
         this.upperLegR = root.getChild("upper_leg_right");
     }
 
@@ -173,7 +173,6 @@ public class AgateGolemModel extends EntityModel<LivingEntityRenderState> {
         return LayerDefinition.create(mesh, 138, 64);
     }
 
-    //FIXME
     @Override
     @SuppressWarnings("UnusedAssignment")
     public void setupAnim(LivingEntityRenderState state) {

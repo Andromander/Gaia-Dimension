@@ -18,7 +18,6 @@ import java.util.Arrays;
  * Created using Tabula 7.0.0
  */
 public class MineralArenthisModel extends EntityModel<SquidRenderState> {
-    public ModelPart root;
     public ModelPart body;
     public ModelPart tail;
     public ModelPart tailfin;
@@ -86,15 +85,14 @@ public class MineralArenthisModel extends EntityModel<SquidRenderState> {
         return "tentacle_" + num;
     }
 
-    //FIXME
     @Override
     public void setupAnim(SquidRenderState state) {
-        this.body.xRot = Mth.sin(state.ageInTicks * (float)Math.PI * 0.025F) * 3.0F;
-        this.tail.xRot = Mth.sin(state.ageInTicks * (float)Math.PI * 0.025F) * 3.0F;
-        this.tailfin.xRot = Mth.sin(state.ageInTicks * (float)Math.PI * 0.025F) * 3.0F;
+        this.body.xRot = Mth.sin(state.ageInTicks * (float)Math.PI * 0.025F) * 0.3F;
+        this.tail.xRot = Mth.sin(state.ageInTicks * (float)Math.PI * 0.025F) * 0.3F;
+        this.tailfin.xRot = Mth.sin(state.ageInTicks * (float)Math.PI * 0.025F) * 0.3F;
 
         for (ModelPart modelrenderer : this.tentacles) {
-            modelrenderer.xRot = state.ageInTicks;
+            modelrenderer.xRot = state.tentacleAngle;
         }
     }
 }

@@ -30,7 +30,6 @@ public class ShallowArenthisRenderer<T extends ShallowArenthis, M extends Shallo
         state.zBodyRot = Mth.lerp(partialTicks, entity.prevArenthisYaw, entity.arenthisYaw);
     }
 
-    //FIXME
     @Override
     protected void setupRotations(SquidRenderState entity, PoseStack matrixStack, float rotationPitch, float rotationYaw) {
         matrixStack.translate(0.0F, 0.5F, 0.0F);
