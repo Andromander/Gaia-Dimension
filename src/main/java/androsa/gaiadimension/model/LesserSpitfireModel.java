@@ -1,5 +1,6 @@
 package androsa.gaiadimension.model;
 
+import androsa.gaiadimension.model.renderstate.SimpleHumanoidRenderState;
 import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
@@ -7,14 +8,13 @@ import net.minecraft.client.model.geom.builders.CubeListBuilder;
 import net.minecraft.client.model.geom.builders.LayerDefinition;
 import net.minecraft.client.model.geom.builders.MeshDefinition;
 import net.minecraft.client.model.geom.builders.PartDefinition;
-import net.minecraft.client.renderer.entity.state.HumanoidRenderState;
 import net.minecraft.util.Mth;
 
 /**
  * ModelLesserSpitfire - Androsa
  * Created using Tabula 7.0.0
  */
-public class LesserSpitfireModel extends EntityModel<HumanoidRenderState> {
+public class LesserSpitfireModel extends EntityModel<SimpleHumanoidRenderState> {
     public ModelPart head;
     public ModelPart armL;
     public ModelPart armR;
@@ -95,7 +95,7 @@ public class LesserSpitfireModel extends EntityModel<HumanoidRenderState> {
 
     @Override
     @SuppressWarnings("UnusedAssignment")
-    public void setupAnim(HumanoidRenderState state) {
+    public void setupAnim(SimpleHumanoidRenderState state) {
         this.head.yRot = state.yRot / (180F / (float) Math.PI);
         this.head.xRot = state.xRot / (180F / (float) Math.PI);
 

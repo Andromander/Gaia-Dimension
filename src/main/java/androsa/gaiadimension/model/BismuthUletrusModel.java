@@ -15,7 +15,6 @@ import net.minecraft.util.Mth;
  * Created using Tabula 7.0.0
  */
 public class BismuthUletrusModel extends EntityModel<BismuthUletrusRenderState> {
-    public ModelPart root;
     public ModelPart head;
     public ModelPart upperArmL;
     public ModelPart lowerArmL;

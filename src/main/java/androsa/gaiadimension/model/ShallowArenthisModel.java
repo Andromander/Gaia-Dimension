@@ -68,6 +68,7 @@ public class ShallowArenthisModel extends EntityModel<LivingEntityRenderState> {
         return "tentacle_" + num;
     }
 
+    //FIXME
     @Override
     public void setupAnim(LivingEntityRenderState state) {
         this.body.xRot = Mth.sin(state.ageInTicks * (float)Math.PI * 0.025F) * 3.0F;

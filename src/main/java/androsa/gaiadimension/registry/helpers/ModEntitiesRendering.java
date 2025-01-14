@@ -94,7 +94,7 @@ public class ModEntitiesRendering {
         event.registerLayerDefinition(CAVERN_TICK, CavernTickModel::makeBodyLayer);
         event.registerLayerDefinition(CONTORTED_NAGA, ContortedNagaModel::makeBodyLayer);
         event.registerLayerDefinition(CRYSTAL_GOLEM, CrystalGolemModel::makeBodyLayer);
-        event.registerLayerDefinition(GROWTH_SAPPER, GrowthSapperModel::makeBodyLayer);
+        event.registerLayerDefinition(GROWTH_SAPPER, BaseSapperModel::makeBodyLayer);
         event.registerLayerDefinition(HOWLITE_WOLF, HowliteWolfModel::makeBodyLayer);
         event.registerLayerDefinition(LESSER_SHOCKSHOOTER, LesserShockshooterModel::makeBodyLayer);
         event.registerLayerDefinition(LESSER_SPITFIRE, LesserSpitfireModel::makeBodyLayer);
@@ -137,12 +137,12 @@ public class ModEntitiesRendering {
         event.registerEntityRenderer(ModEntities.BISMUTH_ULETRUS.get(), m -> new BismuthUletrusRenderer(m, new BismuthUletrusModel(m.bakeLayer(BISMUTH_ULETRUS)), 1.0F));
         event.registerEntityRenderer(ModEntities.CAVERN_TICK.get(), m -> new BasicEntityRenderer<>(m, new CavernTickModel(m.bakeLayer(CAVERN_TICK)), "cavern_tick", 0.2F));
         event.registerEntityRenderer(ModEntities.CONTORTED_NAGA.get(), m -> new BasicEntityRenderer<>(m, new ContortedNagaModel(m.bakeLayer(CONTORTED_NAGA)), "contorted_naga", 0.7F));
-        event.registerEntityRenderer(ModEntities.CORRUPT_SAPPER.get(), m -> new BasicEntityRenderer<>(m, new GrowthSapperModel(m.bakeLayer(GROWTH_SAPPER)), "corrupt_sapper", 0.6F));
+        event.registerEntityRenderer(ModEntities.CORRUPT_SAPPER.get(), m -> new BasicEntityRenderer<>(m, new BaseSapperModel<>(m.bakeLayer(GROWTH_SAPPER)), "corrupt_sapper", 0.6F));
         event.registerEntityRenderer(ModEntities.CRYSTAL_GOLEM.get(), m -> new BasicEntityRenderer<>(m, new CrystalGolemModel(m.bakeLayer(CRYSTAL_GOLEM)), "crystal_golem", 0.9F));
         event.registerEntityRenderer(ModEntities.GROWTH_SAPPER.get(), m -> new GrowthSapperRenderer<>(m, new GrowthSapperModel(m.bakeLayer(GROWTH_SAPPER)), 0.6F));
         event.registerEntityRenderer(ModEntities.HOWLITE_WOLF.get(), m -> new BasicEntityRenderer<>(m, new HowliteWolfModel(m.bakeLayer(HOWLITE_WOLF)), "howlite_wolf", 0.5F));
-        event.registerEntityRenderer(ModEntities.LESSER_SHOCKSHOOTER.get(), m -> new BasicEntityRenderer<>(m, new LesserShockshooterModel(m.bakeLayer(LESSER_SHOCKSHOOTER)), "lesser_shockshooter", 0.5F));
-        event.registerEntityRenderer(ModEntities.LESSER_SPITFIRE.get(), m -> new BasicEntityRenderer<>(m, new LesserSpitfireModel(m.bakeLayer(LESSER_SPITFIRE)), "lesser_spitfire", 0.5F));
+        event.registerEntityRenderer(ModEntities.LESSER_SHOCKSHOOTER.get(), m -> new LesserShockshooterRenderer<>(m, new LesserShockshooterModel(m.bakeLayer(LESSER_SHOCKSHOOTER)), 0.5F));
+        event.registerEntityRenderer(ModEntities.LESSER_SPITFIRE.get(), m -> new LesserSpitfireRenderer<>(m, new LesserSpitfireModel(m.bakeLayer(LESSER_SPITFIRE)), 0.5F));
         event.registerEntityRenderer(ModEntities.MARKUZAR_PLANT.get(), m -> new BasicEntityRenderer<>(m, new MarkuzarPlantModel(m.bakeLayer(MARKUZAR_PLANT)), "markuzar_plant", 0.5F));
         event.registerEntityRenderer(ModEntities.MINERAL_ARENTHIS.get(), m -> new MineralArenthisRenderer<>(m, new MineralArenthisModel(m.bakeLayer(MINERAL_ARENTHIS)), 0.8F));
         event.registerEntityRenderer(ModEntities.MUCKLING.get(), m -> new MucklingRenderer(m, 0.625F));

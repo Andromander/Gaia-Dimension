@@ -173,6 +173,7 @@ public class AgateGolemModel extends EntityModel<LivingEntityRenderState> {
         return LayerDefinition.create(mesh, 138, 64);
     }
 
+    //FIXME
     @Override
     @SuppressWarnings("UnusedAssignment")
     public void setupAnim(LivingEntityRenderState state) {

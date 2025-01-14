@@ -6,10 +6,10 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.state.LivingEntityRenderState;
 
-public class RuggedLurmorusRenderer<T extends RuggedLurmorus, M extends RuggedLurmorusModel> extends BasicEntityRenderer<T, LivingEntityRenderState, M> {
+public class RuggedLurmorusRenderer<T extends RuggedLurmorus, M extends RuggedLurmorusModel> extends BasicEntityRenderer<T, M> {
 
     public RuggedLurmorusRenderer(EntityRendererProvider.Context manager, M model, float shadowSize) {
-        super(manager, model, new LivingEntityRenderState(), "rugged_lurmorus", shadowSize);
+        super(manager, model, "rugged_lurmorus", shadowSize);
     }
 
     @Override

@@ -3,7 +3,6 @@ package androsa.gaiadimension.renderer;
 import androsa.gaiadimension.entity.MalachiteDrone;
 import androsa.gaiadimension.model.MalachiteDroneModel;
 import androsa.gaiadimension.model.renderstate.MalachiteDroneRenderState;
-import androsa.gaiadimension.model.renderstate.MalachiteGuardRenderState;
 import androsa.gaiadimension.registry.helpers.ModEntitiesRendering;
 import androsa.gaiadimension.renderer.layer.MalachiteDroneGlowLayer;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;

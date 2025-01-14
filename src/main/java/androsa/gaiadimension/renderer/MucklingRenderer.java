@@ -13,6 +13,7 @@ public class MucklingRenderer extends SlimeRenderer {
         this.shadowRadius = shadowSize;
     }
 
+    //FIXME
     @Override
     public ResourceLocation getTextureLocation(SlimeRenderState entity) {
         return ModEntitiesRendering.makeTexture("muckling");

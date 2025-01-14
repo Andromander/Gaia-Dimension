@@ -1,17 +1,17 @@
 package androsa.gaiadimension.model;
 
+import androsa.gaiadimension.model.renderstate.SimpleHumanoidRenderState;
 import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
-import net.minecraft.client.renderer.entity.state.HumanoidRenderState;
 import net.minecraft.util.Mth;
 
 /**
  * ModelArchaicWarrior - Androsa
  * Created using Tabula 7.0.0
  */
-public class ArchaicWarriorModel extends EntityModel<HumanoidRenderState> {
+public class ArchaicWarriorModel extends EntityModel<SimpleHumanoidRenderState> {
     public ModelPart bipedRightArm;
     public ModelPart bipedRightLeg;
     public ModelPart bipedLeftLeg;
@@ -102,7 +102,7 @@ public class ArchaicWarriorModel extends EntityModel<HumanoidRenderState> {
 
     @Override
     @SuppressWarnings("UnusedAssignment")
-    public void setupAnim(HumanoidRenderState state) {
+    public void setupAnim(SimpleHumanoidRenderState state) {
         this.bipedHead.yRot = state.yRot / (180F / (float) Math.PI);
         this.bipedHead.xRot = state.xRot / (180F / (float) Math.PI);
 

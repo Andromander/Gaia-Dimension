@@ -1,7 +1,7 @@
 package androsa.gaiadimension.renderer;
 
-import androsa.gaiadimension.entity.ArchaicWarrior;
-import androsa.gaiadimension.model.ArchaicWarriorModel;
+import androsa.gaiadimension.entity.LesserShockshooter;
+import androsa.gaiadimension.model.LesserShockshooterModel;
 import androsa.gaiadimension.model.renderstate.SimpleHumanoidRenderState;
 import androsa.gaiadimension.registry.helpers.ModEntitiesRendering;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
@@ -9,11 +9,9 @@ import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.client.renderer.entity.state.ArmedEntityRenderState;
 import net.minecraft.resources.ResourceLocation;
 
-//TODO: Display weapon
-public class ArchaicWarriorRenderer<T extends ArchaicWarrior, M extends ArchaicWarriorModel> extends MobRenderer<T, SimpleHumanoidRenderState, M> {
-
-    public ArchaicWarriorRenderer(EntityRendererProvider.Context manager, M model, float shadowSize) {
-        super(manager, model, shadowSize);
+public class LesserShockshooterRenderer<T extends LesserShockshooter, M extends LesserShockshooterModel> extends MobRenderer<T, SimpleHumanoidRenderState, M> {
+    public LesserShockshooterRenderer(EntityRendererProvider.Context context, M model, float shadow) {
+        super(context, model, shadow);
     }
 
     @Override
@@ -29,7 +27,7 @@ public class ArchaicWarriorRenderer<T extends ArchaicWarrior, M extends ArchaicW
     }
 
     @Override
-    public ResourceLocation getTextureLocation(SimpleHumanoidRenderState entity) {
-        return ModEntitiesRendering.makeTexture("archaic_warrior");
+    public ResourceLocation getTextureLocation(SimpleHumanoidRenderState state) {
+        return ModEntitiesRendering.makeTexture("lesser_shockshooter");
     }
 }

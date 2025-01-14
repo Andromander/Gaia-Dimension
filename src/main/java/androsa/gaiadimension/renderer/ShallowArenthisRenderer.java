@@ -2,16 +2,24 @@ package androsa.gaiadimension.renderer;
 
 import androsa.gaiadimension.entity.ShallowArenthis;
 import androsa.gaiadimension.model.ShallowArenthisModel;
+import androsa.gaiadimension.registry.helpers.ModEntitiesRendering;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
+import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.client.renderer.entity.state.SquidRenderState;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 
-public class ShallowArenthisRenderer<T extends ShallowArenthis, M extends ShallowArenthisModel> extends BasicEntityRenderer<T, SquidRenderState, M> {
+public class ShallowArenthisRenderer<T extends ShallowArenthis, M extends ShallowArenthisModel> extends MobRenderer<T, SquidRenderState, M> {
 
     public ShallowArenthisRenderer(EntityRendererProvider.Context manager, M model, float shadowSize) {
-        super(manager, model, new SquidRenderState(), "shallow_arenthis", shadowSize);
+        super(manager, model, shadowSize);
+    }
+
+    @Override
+    public SquidRenderState createRenderState() {
+        return new SquidRenderState();
     }
 
     @Override
@@ -22,6 +30,7 @@ public class ShallowArenthisRenderer<T extends ShallowArenthis, M extends Shallo
         state.zBodyRot = Mth.lerp(partialTicks, entity.prevArenthisYaw, entity.arenthisYaw);
     }
 
+    //FIXME
     @Override
     protected void setupRotations(SquidRenderState entity, PoseStack matrixStack, float rotationPitch, float rotationYaw) {
         matrixStack.translate(0.0F, 0.5F, 0.0F);
@@ -29,5 +38,10 @@ public class ShallowArenthisRenderer<T extends ShallowArenthis, M extends Shallo
         matrixStack.mulPose(Axis.XP.rotationDegrees(entity.xBodyRot));
         matrixStack.mulPose(Axis.YP.rotationDegrees(entity.zBodyRot));
         matrixStack.translate(0.0F, -1.2F, 0.0F);
+    }
+
+    @Override
+    public ResourceLocation getTextureLocation(SquidRenderState entity) {
+        return ModEntitiesRendering.makeTexture("shallow_arenthis");
     }
 }

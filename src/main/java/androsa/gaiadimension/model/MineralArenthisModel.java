@@ -86,6 +86,7 @@ public class MineralArenthisModel extends EntityModel<SquidRenderState> {
         return "tentacle_" + num;
     }
 
+    //FIXME
     @Override
     public void setupAnim(SquidRenderState state) {
         this.body.xRot = Mth.sin(state.ageInTicks * (float)Math.PI * 0.025F) * 3.0F;

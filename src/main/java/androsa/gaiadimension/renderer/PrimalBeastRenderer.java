@@ -6,10 +6,10 @@ import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.state.LivingEntityRenderState;
 import net.minecraft.core.BlockPos;
 
-public class PrimalBeastRenderer<T extends PrimalBeast, M extends PrimalBeastModel> extends BasicEntityRenderer<T, LivingEntityRenderState, M> {
+public class PrimalBeastRenderer<T extends PrimalBeast, M extends PrimalBeastModel> extends BasicEntityRenderer<T, M> {
 
     public PrimalBeastRenderer(EntityRendererProvider.Context manager, M model, float shadowSize) {
-        super(manager, model, new LivingEntityRenderState(), "primal_beast", shadowSize);
+        super(manager, model, "primal_beast", shadowSize);
     }
 
     @Override
