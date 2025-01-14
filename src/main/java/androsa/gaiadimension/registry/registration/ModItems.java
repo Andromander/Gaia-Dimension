@@ -358,22 +358,4 @@ public class ModItems {
     private static Item.Properties itemProps(String name, Item.Properties props) {
         return props.setId(ResourceKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(GaiaDimensionMod.MODID, name)));
     }
-
-    public static void addItemProperties() {
-        // FIXME Port to Vanilla's new Item Model properties, check out ItemModelGenerators.generateBow()
-        //  https://github.com/neoforged/.github/blob/main/primers/1.21.4/index.md#client-items
-        /*ItemProperties.register(old_bow.get(), ResourceLocation.withDefaultNamespace("pull"), ((stack, world, entity, seed) -> {
-            if (entity == null) {
-                return 0.0F;
-            } else {
-                return entity.getUseItem() != stack ? 0.0F : (float)(stack.getUseDuration(entity) - entity.getUseItemRemainingTicks()) / 20.0F;
-            }
-        }));
-        ItemProperties.register(old_bow.get(), ResourceLocation.withDefaultNamespace("pulling"), (stack, world, entity, seed) ->
-                entity != null && entity.isUsingItem() && entity.getUseItem() == stack ? 1.0F : 0.0F);
-        ItemProperties.register(construct_charm.get(), ResourceLocation.withDefaultNamespace("mookaite"), (stack, world, entity, seed) ->
-                entity != null && stack.has(ModDataComponents.MOOKAITE_UUID) ? 1.0F : 0.0F);
-        ItemProperties.register(construct_charm.get(), ResourceLocation.withDefaultNamespace("opalite"), (stack, world, entity, seed) ->
-                entity != null && stack.has(ModDataComponents.OPALITE_UUID) ? 1.0F : 0.0F);*/
-    }
 }
