@@ -52,7 +52,7 @@ public class ModEntities {
     public static final DeferredHolder<EntityType<?>, EntityType<LesserSpitfire>> LESSER_SPITFIRE = registerEntity("lesser_spitfire", LesserSpitfire::new, MobCategory.MONSTER, 0.5F, 2.0F, 1.8F, true);
     public static final DeferredHolder<EntityType<?>, EntityType<MarkuzarPlant>> MARKUZAR_PLANT = registerEntity("markuzar_plant", MarkuzarPlant::new, MobCategory.AMBIENT, 0.6F, 2.0F, false);
     public static final DeferredHolder<EntityType<?>, EntityType<MineralArenthis>> MINERAL_ARENTHIS = registerEntity("mineral_arenthis", MineralArenthis::new, MobCategory.WATER_CREATURE, 1.5F, 1.5F, 0.85F, false);
-    public static final DeferredHolder<EntityType<?>, EntityType<Muckling>> MUCKLING = registerEntity("muckling", Muckling::new, MobCategory.MONSTER, 2.0F, 2.0F, false);
+    public static final DeferredHolder<EntityType<?>, EntityType<Muckling>> MUCKLING = registerEntity("muckling", Muckling::new, MobCategory.MONSTER, 0.5F, 0.5F, false);
     public static final DeferredHolder<EntityType<?>, EntityType<MutantGrowthExtractor>> MUTANT_GROWTH_EXTRACTOR = registerEntity("mutant_growth_extractor", MutantGrowthExtractor::new, MobCategory.CREATURE, 1.0F, 1.5F, 1.3F, false);
     public static final DeferredHolder<EntityType<?>, EntityType<NomadicLagrahk>> NOMADIC_LAGRAHK = registerEntity("nomadic_lagrahk", NomadicLagrahk::new, MobCategory.CREATURE, 1.5F, 4.0F, 3.55F, false);
     public static final DeferredHolder<EntityType<?>, EntityType<PrimalBeast>> PRIMAL_BEAST = registerEntity("primal_beast", PrimalBeast::new, MobCategory.MONSTER, 1.0F, 2.0F, 1.9F, true);
