@@ -1,18 +1,20 @@
 package androsa.gaiadimension.data;
 
-import androsa.gaiadimension.GaiaDimensionMod;
 import androsa.gaiadimension.data.provider.GaiaRecipeProvider;
+import androsa.gaiadimension.item.ConstructKitItem;
 import androsa.gaiadimension.registry.registration.ModBlocks;
+import androsa.gaiadimension.registry.registration.ModDataComponents;
 import androsa.gaiadimension.registry.registration.ModItems;
 import androsa.gaiadimension.registry.values.GaiaTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
-import net.neoforged.fml.common.Mod;
+import net.neoforged.neoforge.registries.DeferredItem;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -466,6 +468,19 @@ public class GaiaRecipes extends GaiaRecipeProvider {
                 .requires(ModItems.opalite.get())
                 .unlockedBy("has_celestine", has(ModItems.celestine.get()))
                 .save(this.output);
+        repairKit().save(output);
+        augmentKit(ModItems.scarlet_augment_kit, ModBlocks.scarlet_mookaite).save(output);
+        augmentKit(ModItems.auburn_augment_kit, ModBlocks.auburn_mookaite).save(output);
+        augmentKit(ModItems.gold_augment_kit, ModBlocks.gold_mookaite).save(output);
+        augmentKit(ModItems.mauve_augment_kit, ModBlocks.mauve_mookaite).save(output);
+        augmentKit(ModItems.beige_augment_kit, ModBlocks.beige_mookaite).save(output);
+        augmentKit(ModItems.ivory_augment_kit, ModBlocks.ivory_mookaite).save(output);
+        replaceKit(ModItems.scarlet_replace_kit, ModBlocks.scarlet_mookaite).save(output);
+        replaceKit(ModItems.auburn_replace_kit, ModBlocks.auburn_mookaite).save(output);
+        replaceKit(ModItems.gold_replace_kit, ModBlocks.gold_mookaite).save(output);
+        replaceKit(ModItems.mauve_replace_kit, ModBlocks.mauve_mookaite).save(output);
+        replaceKit(ModItems.beige_replace_kit, ModBlocks.beige_mookaite).save(output);
+        replaceKit(ModItems.ivory_replace_kit, ModBlocks.ivory_mookaite).save(output);
 
         smeltingRecipe(ModItems.blue_opal.get(), ModBlocks.blue_opal_ore, 0.3F).save(this.output, locSmelt("blue_opal"));
         smeltingRecipe(ModItems.celestine.get(), ModBlocks.celestine_ore, 1.5F).save(this.output, locSmelt("celestine"));

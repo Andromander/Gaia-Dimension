@@ -1,11 +1,11 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_kit": {
+    "has_opalite": {
       "conditions": {
         "items": [
           {
-            "item": "gaiadimension:blank_kit"
+            "items": "gaiadimension:opalite"
           }
         ]
       },
@@ -20,14 +20,13 @@
   },
   "requirements": [
     [
-      "has_kit",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_opalite"
     ]
   ],
   "rewards": {
     "recipes": [
       "gaiadimension:repair_kit"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

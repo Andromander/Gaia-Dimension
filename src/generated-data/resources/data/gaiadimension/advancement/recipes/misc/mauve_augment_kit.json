@@ -1,11 +1,11 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_kit": {
+    "has_mauve_mookaite": {
       "conditions": {
         "items": [
           {
-            "item": "gaiadimension:blank_kit"
+            "items": "gaiadimension:mauve_mookaite"
           }
         ]
       },
@@ -13,21 +13,20 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "gaiadimension:auburn_augment_kit"
+        "recipe": "gaiadimension:mauve_augment_kit"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
   },
   "requirements": [
     [
-      "has_kit",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_mauve_mookaite"
     ]
   ],
   "rewards": {
     "recipes": [
-      "gaiadimension:auburn_augment_kit"
+      "gaiadimension:mauve_augment_kit"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

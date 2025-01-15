@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "gaiadimension:blank_kit",
+    "gaiadimension:opalite",
+    "gaiadimension:gold_mookaite"
+  ],
+  "result": {
+    "components": {
+      "gaiadimension:kit_part": "left_horn"
+    },
+    "count": 1,
+    "id": "gaiadimension:gold_augment_kit"
+  }
+}

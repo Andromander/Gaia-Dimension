@@ -1,11 +1,11 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_kit": {
+    "has_gold_mookaite": {
       "conditions": {
         "items": [
           {
-            "item": "gaiadimension:blank_kit"
+            "items": "gaiadimension:gold_mookaite"
           }
         ]
       },
@@ -13,21 +13,20 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "gaiadimension:mauve_augment_kit"
+        "recipe": "gaiadimension:gold_replace_kit"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
   },
   "requirements": [
     [
-      "has_kit",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_gold_mookaite"
     ]
   ],
   "rewards": {
     "recipes": [
-      "gaiadimension:mauve_augment_kit"
+      "gaiadimension:gold_replace_kit"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }
