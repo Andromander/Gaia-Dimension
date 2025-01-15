@@ -122,16 +122,7 @@ public class GaiaPortalBlock extends Block implements Portal {
     @Deprecated
     public void entityInside(BlockState state, Level world, BlockPos pos, Entity entity) {
         if (entity.canUsePortal(false)) {
-            if (entity.isOnPortalCooldown()) {
-                entity.setPortalCooldown();
-            } else {
-                if (entity.portalProcess != null && entity.portalProcess.isSamePortal(this)) {
-                    entity.portalProcess.updateEntryPosition(pos.immutable());
-                    entity.portalProcess.setAsInsidePortalThisTick(true);
-                } else {
-                    entity.portalProcess = new PortalProcessor(this, pos.immutable());
-                }
-            }
+            entity.setAsInsidePortal(this, pos);
         }
     }
 

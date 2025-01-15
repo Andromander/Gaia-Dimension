@@ -1,4 +1,4 @@
-// 1.21.4	2025-01-13T13:17:12.4750947	Tags for minecraft:item mod id gaiadimension
+// 1.21.4	2025-01-15T20:31:40.019065	Tags for minecraft:item mod id gaiadimension
 b8824061659e34d2bcb2a29f7526c559c25d1834 data/c/tags/item/bones.json
 d67324c41876289e35996384266b7cb310ef4d04 data/c/tags/item/dusts.json
 307d706a2aab12da68949f0ac0ae908638e5b471 data/c/tags/item/dusts/fine.json
@@ -80,7 +80,7 @@ de89c37919ce0067b9d5ad69a2329633dfd6fa3d data/gaiadimension/tags/item/carnelian_
 5d97b14a0c00e360e66e09ba9435a1ab102a28fd data/gaiadimension/tags/item/copal_bricks.json
 2b719201fa9a67ace59b745753ee58cc04ac2047 data/gaiadimension/tags/item/corrupted_logs.json
 c4857a5da01b41cd04581d4d85cd6d0420ffeecd data/gaiadimension/tags/item/crude_storage_blacklist.json
-3ab981ea97aa6139532ab0d24ae3c608ed49c09b data/gaiadimension/tags/item/euclase_tool_materials.json
+0999d3dac2c214b21e2f70d861f3bcc42ee96533 data/gaiadimension/tags/item/euclase_tool_materials.json
 4bdaba1b7376284767884597916b1ddc88988574 data/gaiadimension/tags/item/fossilized_logs.json
 1cd062210289b860829029d2daf5ddc6dca72920 data/gaiadimension/tags/item/gaia_bricks.json
 ac02b82dfaa66a07f0ec90589ba1d7faab681344 data/gaiadimension/tags/item/gem_pouch_items.json
