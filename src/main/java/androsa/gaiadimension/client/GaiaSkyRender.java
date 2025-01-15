@@ -50,7 +50,7 @@ public class GaiaSkyRender {
         int skycol = world.getSkyColor(minecraft.gameRenderer.getMainCamera().getPosition(), partialTicks);
         float red = ARGB.redFloat(skycol);
         float grn = ARGB.greenFloat(skycol);
-        float blu = ARGB.blue(skycol);
+        float blu = ARGB.blueFloat(skycol);
 
         //renderSkyDisc
         RenderSystem.depthMask(false);
