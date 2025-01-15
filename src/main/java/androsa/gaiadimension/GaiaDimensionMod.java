@@ -109,7 +109,6 @@ public class GaiaDimensionMod {
 
     public void clientSetup(FMLClientSetupEvent event) {
         ClientEvents.registerBlockRenderers();
-        ModItems.addItemProperties();
     }
 
     public void gatherClientData(GatherDataEvent.Client event) {
