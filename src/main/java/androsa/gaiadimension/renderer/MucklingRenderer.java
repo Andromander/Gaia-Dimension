@@ -34,7 +34,6 @@ public class MucklingRenderer extends MobRenderer<Muckling, SlimeRenderState, Sl
         state.size = entity.getSize();
     }
 
-    //FIXME
     @Override
     public ResourceLocation getTextureLocation(SlimeRenderState entity) {
         return LOCATION;
