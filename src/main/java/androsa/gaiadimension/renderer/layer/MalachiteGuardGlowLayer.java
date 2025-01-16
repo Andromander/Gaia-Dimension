@@ -11,7 +11,6 @@ import net.minecraft.client.renderer.entity.RenderLayerParent;
 import net.minecraft.client.renderer.entity.layers.RenderLayer;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 
-//FIXME
 public class MalachiteGuardGlowLayer<M extends MalachiteGuardModel> extends RenderLayer<MalachiteGuardRenderState, M> {
     private static RenderType GLOW;
 

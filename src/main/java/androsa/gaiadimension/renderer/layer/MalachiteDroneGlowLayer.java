@@ -11,7 +11,6 @@ import net.minecraft.client.renderer.entity.RenderLayerParent;
 import net.minecraft.client.renderer.entity.layers.RenderLayer;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 
-//FIXME
 public class MalachiteDroneGlowLayer<S extends MalachiteDroneRenderState, M extends MalachiteDroneModel> extends RenderLayer<S, M> {
     private static RenderType NORMAL;
     private static RenderType FOLLOW;
