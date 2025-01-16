@@ -1,0 +1,14 @@
+{
+  "layers": {
+    "humanoid": [
+      {
+        "texture": "gaiadimension:sugilite"
+      }
+    ],
+    "humanoid_leggings": [
+      {
+        "texture": "gaiadimension:sugilite"
+      }
+    ]
+  }
+}

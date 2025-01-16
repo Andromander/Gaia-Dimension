@@ -1,0 +1,14 @@
+{
+  "layers": {
+    "humanoid": [
+      {
+        "texture": "gaiadimension:malachite_guard"
+      }
+    ],
+    "humanoid_leggings": [
+      {
+        "texture": "gaiadimension:malachite_guard"
+      }
+    ]
+  }
+}

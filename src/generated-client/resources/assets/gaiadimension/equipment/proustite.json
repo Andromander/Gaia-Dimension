@@ -1,0 +1,14 @@
+{
+  "layers": {
+    "humanoid": [
+      {
+        "texture": "gaiadimension:proustite"
+      }
+    ],
+    "humanoid_leggings": [
+      {
+        "texture": "gaiadimension:proustite"
+      }
+    ]
+  }
+}

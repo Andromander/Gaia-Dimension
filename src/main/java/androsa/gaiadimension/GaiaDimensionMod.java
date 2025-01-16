@@ -117,6 +117,7 @@ public class GaiaDimensionMod {
         DataGenerator generator = event.getGenerator();
         PackOutput output = generator.getPackOutput();
         generator.addProvider(true, new GaiaModelProvider(output));
+        generator.addProvider(true, new GaiaEquipmentAssets(output));
     }
 
     public void gatherServerData(GatherDataEvent.Server event) {

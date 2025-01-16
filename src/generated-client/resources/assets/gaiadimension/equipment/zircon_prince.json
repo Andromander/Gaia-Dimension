@@ -1,0 +1,14 @@
+{
+  "layers": {
+    "humanoid": [
+      {
+        "texture": "gaiadimension:zircon_prince"
+      }
+    ],
+    "humanoid_leggings": [
+      {
+        "texture": "gaiadimension:zircon_prince"
+      }
+    ]
+  }
+}

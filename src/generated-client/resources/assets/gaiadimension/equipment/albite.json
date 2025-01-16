@@ -1,0 +1,14 @@
+{
+  "layers": {
+    "humanoid": [
+      {
+        "texture": "gaiadimension:albite"
+      }
+    ],
+    "humanoid_leggings": [
+      {
+        "texture": "gaiadimension:albite"
+      }
+    ]
+  }
+}

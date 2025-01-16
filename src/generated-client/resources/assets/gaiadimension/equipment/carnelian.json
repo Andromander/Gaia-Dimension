@@ -1,0 +1,14 @@
+{
+  "layers": {
+    "humanoid": [
+      {
+        "texture": "gaiadimension:carnelian"
+      }
+    ],
+    "humanoid_leggings": [
+      {
+        "texture": "gaiadimension:carnelian"
+      }
+    ]
+  }
+}

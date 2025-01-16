@@ -5,7 +5,6 @@ import androsa.gaiadimension.registry.values.GaiaTags;
 import net.minecraft.Util;
 import net.minecraft.core.Holder;
 import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
@@ -14,6 +13,7 @@ import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.equipment.ArmorMaterial;
 import net.minecraft.world.item.equipment.ArmorType;
+import net.minecraft.world.item.equipment.EquipmentAsset;
 import net.minecraft.world.item.equipment.EquipmentAssets;
 
 import java.util.EnumMap;
@@ -21,21 +21,21 @@ import java.util.Map;
 
 public class GaiaArmorMaterials {
 
-    public static final ResourceLocation SUGILITE_MODEL = location("sugilite");
-    public static final ResourceLocation PROUSTITE_MODEL = location("proustite");
-    public static final ResourceLocation ALBITE_MODEL = location("albite");
-    public static final ResourceLocation CARNELIAN_MODEL = location("carnelian");
-    public static final ResourceLocation DIOPSIDE_MODEL = location("diopside");
-    public static final ResourceLocation GOSHENITE_MODEL = location("goshenite");
-    public static final ResourceLocation MALACHITE_MODEL = location("malachite_guard");
-    public static final ResourceLocation TIGER_EYE_MODEL = location("apex_predator");
-    public static final ResourceLocation SPINEL_MODEL = location("spinel_princess");
-    public static final ResourceLocation ZIRCON_MODEL = location("zircon_prince");
-    public static final ResourceLocation CORRUPT_MODEL = location("corrupt_warrior");
-    public static final ResourceLocation BIXBITE_MODEL = location("gaia_duchess");
-    public static final ResourceLocation TSAVORITE_MODEL = location("gaia_baron");
-    public static final ResourceLocation LARVIKITE_MODEL = location("gaia_duke");
-    public static final ResourceLocation GAIA_CHAMP_MODEL = location("gaia_champion");
+    public static final ResourceKey<EquipmentAsset> SUGILITE_MODEL = location("sugilite");
+    public static final ResourceKey<EquipmentAsset> PROUSTITE_MODEL = location("proustite");
+    public static final ResourceKey<EquipmentAsset> ALBITE_MODEL = location("albite");
+    public static final ResourceKey<EquipmentAsset> CARNELIAN_MODEL = location("carnelian");
+    public static final ResourceKey<EquipmentAsset> DIOPSIDE_MODEL = location("diopside");
+    public static final ResourceKey<EquipmentAsset> GOSHENITE_MODEL = location("goshenite");
+    public static final ResourceKey<EquipmentAsset> MALACHITE_MODEL = location("malachite_guard");
+    public static final ResourceKey<EquipmentAsset> TIGER_EYE_MODEL = location("apex_predator");
+    public static final ResourceKey<EquipmentAsset> SPINEL_MODEL = location("spinel_princess");
+    public static final ResourceKey<EquipmentAsset> ZIRCON_MODEL = location("zircon_prince");
+    public static final ResourceKey<EquipmentAsset> CORRUPT_MODEL = location("corrupt_warrior");
+    public static final ResourceKey<EquipmentAsset> BIXBITE_MODEL = location("gaia_duchess");
+    public static final ResourceKey<EquipmentAsset> TSAVORITE_MODEL = location("gaia_baron");
+    public static final ResourceKey<EquipmentAsset> LARVIKITE_MODEL = location("gaia_duke");
+    public static final ResourceKey<EquipmentAsset> GAIA_CHAMP_MODEL = location("gaia_champion");
 
     public static final ArmorMaterial SUGILITE = create(SUGILITE_MODEL, 77, new int[]{1, 4, 6, 1}, 5, SoundEvents.ARMOR_EQUIP_CHAIN, 0.0F, 0.0F, GaiaTags.Items.SUGILITE_ARMOR_MATERIAL);
     public static final ArmorMaterial PROUSTITE = create(PROUSTITE_MODEL, 115, new int[]{1, 4, 6, 1}, 5, SoundEvents.ARMOR_EQUIP_CHAIN, 0.0F, 0.0F, GaiaTags.Items.PROUSTITE_ARMOR_MATERIAL);
@@ -54,11 +54,11 @@ public class GaiaArmorMaterials {
     public static final ArmorMaterial LARVIKITE = create(LARVIKITE_MODEL, 788, new int[]{3, 6, 8, 3}, 20, SoundEvents.ARMOR_EQUIP_GOLD, 3.0F, 0.0F, GaiaTags.Items.UNOBTAINIUM);
     public static final ArmorMaterial GAIA_CHAMP = create(GAIA_CHAMP_MODEL, 1000, new int[]{4, 7, 9, 4}, 30, SoundEvents.ARMOR_EQUIP_DIAMOND, 4.0F, 0.0F, GaiaTags.Items.UNOBTAINIUM);
 
-    private static ResourceLocation location(String name) {
-        return ResourceLocation.fromNamespaceAndPath(GaiaDimensionMod.MODID, name);
+    private static ResourceKey<EquipmentAsset> location(String name) {
+        return ResourceKey.create(EquipmentAssets.ROOT_ID, ResourceLocation.fromNamespaceAndPath(GaiaDimensionMod.MODID, name));
     }
 
-    public static ArmorMaterial create(ResourceLocation model, int durability, int[] reduction, int enchant, Holder<SoundEvent> sound, float toughness, float resistance, TagKey<Item> repair) {
+    public static ArmorMaterial create(ResourceKey<EquipmentAsset> model, int durability, int[] reduction, int enchant, Holder<SoundEvent> sound, float toughness, float resistance, TagKey<Item> repair) {
         Map<ArmorType, Integer> defense = Util.make(new EnumMap<>(ArmorType.class), map -> {
             map.put(ArmorType.HELMET, reduction[0]);
             map.put(ArmorType.CHESTPLATE, reduction[1]);
@@ -67,6 +67,6 @@ public class GaiaArmorMaterials {
             map.put(ArmorType.BODY, reduction[1]);
         });
 
-        return new ArmorMaterial(durability, defense, enchant, sound, toughness, resistance, repair, ResourceKey.create(EquipmentAssets.ROOT_ID, model));
+        return new ArmorMaterial(durability, defense, enchant, sound, toughness, resistance, repair, model);
     }
 }
