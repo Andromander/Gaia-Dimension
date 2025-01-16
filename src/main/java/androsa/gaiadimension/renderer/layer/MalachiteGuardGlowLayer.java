@@ -13,6 +13,7 @@ import net.minecraft.client.renderer.texture.OverlayTexture;
 
 //FIXME
 public class MalachiteGuardGlowLayer<M extends MalachiteGuardModel> extends RenderLayer<MalachiteGuardRenderState, M> {
+    private static RenderType GLOW;
 
     public MalachiteGuardGlowLayer(RenderLayerParent<MalachiteGuardRenderState, M> render) {
         super(render);
@@ -25,6 +26,9 @@ public class MalachiteGuardGlowLayer<M extends MalachiteGuardModel> extends Rend
     }
 
     private RenderType validate() {
-        return RenderType.eyes(ModEntitiesRendering.makeTexture("malachite_guard", "glow"));
+        if (GLOW == null) {
+            GLOW = RenderType.eyes(ModEntitiesRendering.makeTexture("malachite_guard", "glow"));
+        }
+        return GLOW;
     }
 }
