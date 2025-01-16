@@ -11,6 +11,7 @@ import net.minecraft.client.gui.screens.recipebook.SearchRecipeBookCategory;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.Mth;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -48,18 +49,18 @@ public class PurifierScreen extends AbstractContainerScreen<PurifierMenu> {
 
     @Override
     protected void renderBg(GuiGraphics stack, float par1, int par2, int par3) {
-        int k = (width - imageWidth) / 2;
-        int l = (height - imageHeight) / 2;
+        int k = leftPos;
+        int l = topPos;
         stack.blit(RenderType::guiTextured, textureLoc, k, l, 0, 0, imageWidth, imageHeight, 256, 256);
         int i1;
 
         if (menu.isBurning()) {
             i1 = menu.getTimeLeftScaled();
-            stack.blitSprite(RenderType::guiTextured, textureLoc, k + 64, l + 81, 176, 22, 47, i1 + 1, 256, 256);
+            stack.blit(RenderType::guiTextured, textureLoc, k + 64, l + 81, 176, 22, 47, i1 + 1, 256, 256);
 
         }
 
         i1 = menu.getTimeLeft();
-        stack.blitSprite(RenderType::guiTextured, textureLoc, k + 77, l + 61 + 12 - i1, 176, 20 - i1, 22, i1 + 2, 256, 256);
+        stack.blit(RenderType::guiTextured, textureLoc, k + 77, l + 61 + 12 - i1, 176, 20 - i1, 22, i1 + 2, 256, 256);
     }
 }

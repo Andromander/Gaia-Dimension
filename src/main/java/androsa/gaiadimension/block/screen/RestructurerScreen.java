@@ -49,10 +49,10 @@ public class RestructurerScreen extends AbstractContainerScreen<RestructurerMenu
 
         if (menu.isBurning()) {
             i1 = menu.getTimeLeft();
-            stack.blitSprite(RenderType::guiTextured, textureLoc, k + 68, l + 19 + 12 - i1, 176, 14 - i1, 38, i1 + 2, 256, 256);
+            stack.blit(RenderType::guiTextured, textureLoc, k + 68, l + 19 + 12 - i1, 176, 14 - i1, 38, i1 + 2, 256, 256);
         }
 
         i1 = menu.getTimeLeftScaled();
-        stack.blitSprite(RenderType::guiTextured, textureLoc, k + 80, l + 51, 176, 16, 16, i1, 256, 256);
+        stack.blit(RenderType::guiTextured, textureLoc, k + 80, l + 51, 176, 16, 16, i1, 256, 256);
     }
 }

@@ -24,11 +24,11 @@ public class GaiaStoneFurnaceScreen extends AbstractContainerScreen<GaiaStoneFur
         stack.blit(RenderType::guiTextured, textureLoc, i, j, 0, 0, this.imageWidth, this.imageHeight, 256, 256);
         if ((this.menu).isBurning()) {
             int k = (this.menu).getBurnLeftScaled();
-            stack.blitSprite(RenderType::guiTextured, textureLoc, i + 56, j + 36 + 12 - k, 176, 12 - k, 14, k + 1, 256, 256);
+            stack.blit(RenderType::guiTextured, textureLoc, i + 56, j + 36 + 12 - k, 176, 12 - k, 14, k + 1, 256, 256);
         }
 
         int l = (this.menu).getCookProgressionScaled();
-        stack.blitSprite(RenderType::guiTextured, textureLoc, i + 79, j + 34, 176, 14, l + 1, 16, 256, 256);
+        stack.blit(RenderType::guiTextured, textureLoc, i + 79, j + 34, 176, 14, l + 1, 16, 256, 256);
     }
 
     @Override
