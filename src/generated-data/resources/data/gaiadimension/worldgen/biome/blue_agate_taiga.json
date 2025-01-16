@@ -66,6 +66,12 @@
     "axolotls": [],
     "creature": [
       {
+        "type": "gaiadimension:howlite_wolf",
+        "maxCount": 4,
+        "minCount": 2,
+        "weight": 15
+      },
+      {
         "type": "gaiadimension:nomadic_lagrahk",
         "maxCount": 1,
         "minCount": 1,
@@ -114,12 +120,6 @@
         "type": "gaiadimension:primal_beast",
         "maxCount": 2,
         "minCount": 1,
-        "weight": 15
-      },
-      {
-        "type": "gaiadimension:howlite_wolf",
-        "maxCount": 4,
-        "minCount": 2,
         "weight": 15
       },
       {
