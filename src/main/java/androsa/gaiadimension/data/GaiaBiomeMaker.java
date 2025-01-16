@@ -97,7 +97,7 @@ public class GaiaBiomeMaker extends GaiaBiomeProvider {
                         blueAgateTaiga(features, carvers),
                         buildSpawns(
                                 createSpawns()
-                                        .addSpawn(MobCategory.MONSTER, mobData(ModEntities.HOWLITE_WOLF, 15, 2, 4))
+                                        .addSpawn(MobCategory.CREATURE, mobData(ModEntities.HOWLITE_WOLF, 15, 2, 4))
                                         .addSpawn(MobCategory.MONSTER, mobData(ModEntities.BLUE_HOWLITE_WOLF, 1, 1, 1))
                                         .addSpawn(MobCategory.CREATURE, mobData(ModEntities.NOMADIC_LAGRAHK, 15, 1, 1))
                                         .addSpawn(MobCategory.CREATURE, mobData(ModEntities.GROWTH_SAPPER, 20, 3, 5)))

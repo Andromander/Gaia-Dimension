@@ -38,7 +38,7 @@ public class ModEntities {
     public static final DeferredHolder<EntityType<?>, EntityType<MookaiteAreaEffect>> MOOKAITE_MAGIC_AREA = registerProjectile("mookaite_magic_area", MookaiteAreaEffect::new, true, 150, Integer.MAX_VALUE, 6.0F, 0.5F, true);
 
     //Mobs
-    public static final DeferredHolder<EntityType<?>, EntityType<AgateGolem>> AGATE_GOLEM = registerEntity("agate_golem", AgateGolem::new, MobCategory.MONSTER, 1.2F, 2.7F, false);
+    public static final DeferredHolder<EntityType<?>, EntityType<AgateGolem>> AGATE_GOLEM = registerEntity("agate_golem", AgateGolem::new, MobCategory.CREATURE, 1.2F, 2.7F, false);
     public static final DeferredHolder<EntityType<?>, EntityType<AncientLagrahk>> ANCIENT_LAGRAHK = registerEntity("ancient_lagrahk", AncientLagrahk::new, MobCategory.MONSTER, 1.5F, 4.0F, 3.55F, false);
     public static final DeferredHolder<EntityType<?>, EntityType<ArchaicWarrior>> ARCHAIC_WARRIOR = registerEntity("archaic_warrior", ArchaicWarrior::new, MobCategory.MONSTER, 0.6F, 1.95F, 1.74F, false);
     public static final DeferredHolder<EntityType<?>, EntityType<BismuthUletrus>> BISMUTH_ULETRUS = registerEntity("bismuth_uletrus", BismuthUletrus::new, MobCategory.CREATURE, 2.0F, 1.8F, false);
