@@ -1,6 +1,8 @@
 package androsa.gaiadimension.registry.registration;
 
 import androsa.gaiadimension.GaiaDimensionMod;
+import androsa.gaiadimension.world.chunk.GaiaBiomeSource;
+import androsa.gaiadimension.world.chunk.GaiaChunkGenerator;
 import androsa.gaiadimension.world.gen.carver.ChasmsWorldCarver;
 import androsa.gaiadimension.world.gen.carver.CoatedCavesWorldCarver;
 import androsa.gaiadimension.world.gen.feature.*;
@@ -16,7 +18,10 @@ import androsa.gaiadimension.world.gen.feature.trunk.CardinalTrunkPlacer;
 import androsa.gaiadimension.world.gen.feature.trunk.FourBranchTrunkPlacer;
 import androsa.gaiadimension.world.gen.feature.trunk.ThickTrunkPlacer;
 import androsa.gaiadimension.world.gen.feature.trunk.VaryingFourBranchTrunkPlacer;
+import com.mojang.serialization.MapCodec;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.world.level.biome.BiomeSource;
+import net.minecraft.world.level.chunk.ChunkGenerator;
 import net.minecraft.world.level.levelgen.carver.CaveCarverConfiguration;
 import net.minecraft.world.level.levelgen.carver.WorldCarver;
 import net.minecraft.world.level.levelgen.feature.Feature;
@@ -32,11 +37,19 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 
 public class ModWorldgen {
 
+    public static final DeferredRegister<MapCodec<? extends BiomeSource>> BIOME_SOURCES = DeferredRegister.create(Registries.BIOME_SOURCE, GaiaDimensionMod.MODID);
+    public static final DeferredRegister<MapCodec<? extends ChunkGenerator>> CHUNK_GENERATORS = DeferredRegister.create(Registries.CHUNK_GENERATOR, GaiaDimensionMod.MODID);
     public static final DeferredRegister<TreeDecoratorType<?>> DECORATORS = DeferredRegister.create(Registries.TREE_DECORATOR_TYPE, GaiaDimensionMod.MODID);
 	public static final DeferredRegister<Feature<?>> FEATURES = DeferredRegister.create(Registries.FEATURE, GaiaDimensionMod.MODID);
     public static final DeferredRegister<FoliagePlacerType<?>> FOLIAGE_PLACERS = DeferredRegister.create(Registries.FOLIAGE_PLACER_TYPE, GaiaDimensionMod.MODID);
     public static final DeferredRegister<TrunkPlacerType<?>> TRUNK_PLACERS = DeferredRegister.create(Registries.TRUNK_PLACER_TYPE, GaiaDimensionMod.MODID);
 	public static final DeferredRegister<WorldCarver<?>> WORLD_CARVERS = DeferredRegister.create(Registries.CARVER, GaiaDimensionMod.MODID);
+
+    //Biome Sources
+    public static final DeferredHolder<MapCodec<? extends BiomeSource>, MapCodec<? extends BiomeSource>> GAIA_BIOME_SOURCE = BIOME_SOURCES.register("gaia_dimension", () -> GaiaBiomeSource.CODEC);
+
+    //Chunk Generators
+    public static final DeferredHolder<MapCodec<? extends ChunkGenerator>, MapCodec<? extends ChunkGenerator>> GAIA_CHUNK_GEN = CHUNK_GENERATORS.register("gaia_gen", () -> GaiaChunkGenerator.CODEC);
 
     //Trunk
     public static final DeferredHolder<TrunkPlacerType<?>, TrunkPlacerType<?>> THICK_TRUNK_PLACER = TRUNK_PLACERS.register("thick_trunk_placer", () -> new TrunkPlacerType<>(ThickTrunkPlacer.CODEC));
