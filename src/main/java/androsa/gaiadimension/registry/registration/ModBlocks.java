@@ -448,7 +448,7 @@ public class ModBlocks {
     }
 
     private static <T extends Block> Supplier<BlockItem> registerBlockItemFuel(String name, final Supplier<T> block, int burnTime) {
-        return () -> new BlockItem(block.get(), new Item.Properties().setId(ResourceKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(GaiaDimensionMod.MODID, name)))) {
+        return () -> new BlockItem(block.get(), new Item.Properties().useBlockDescriptionPrefix().setId(ResourceKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(GaiaDimensionMod.MODID, name)))) {
             @Override
             public int getBurnTime(ItemStack itemStack, @Nullable RecipeType<?> recipeType, FuelValues fuelValues) {
                 return burnTime;
