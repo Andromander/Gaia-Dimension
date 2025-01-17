@@ -110,16 +110,6 @@ public class ClientEvents {
         return (red << 16) | (green << 8) | blue;
     }
 
-    /*@SubscribeEvent
-    public static void registerItemColors(RegisterColorHandlersEvent.Item event) {
-        event.register((stack, tintIndex) -> event.getBlockColors().getColor(((BlockItem) stack.getItem()).getBlock().defaultBlockState(), null, null, tintIndex),
-                ModBlocks.glitter_grass.get(),
-                ModBlocks.crystal_growth.get(),
-                ModBlocks.murky_grass.get(),
-                ModBlocks.aura_shoot.get(),
-                ModBlocks.soft_grass.get());
-    }*/
-
     @SubscribeEvent
     public static void registerFactories(RegisterParticleProvidersEvent e) {
         e.registerSpriteSet(ModParticles.GEYSER_SMOKE.get(), GeyserSmokeParticle.Factory::new);
