@@ -30,13 +30,11 @@ public class GaiaModelProvider extends ModelProvider {
             ModBlocks.glamelea.get(),
             ModBlocks.golden_vine.get(),
             ModBlocks.sombre_cacti.get(),
-            ModBlocks.aura_shoot.get(),
             ModBlocks.malachite_guard_spawner.get());
     public static final Set<Item> IGNORED_ITEMS = ImmutableSet.of(
             ModBlocks.tall_golden_grass.asItem(),
             ModBlocks.glamelea.asItem(),
-            ModBlocks.golden_vine.asItem(),
-            ModBlocks.aura_shoot.asItem());
+            ModBlocks.golden_vine.asItem());
 
     public GaiaModelProvider(PackOutput output) {
         super(output, GaiaDimensionMod.MODID);

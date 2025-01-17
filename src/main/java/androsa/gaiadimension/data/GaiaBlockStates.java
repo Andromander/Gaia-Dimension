@@ -25,11 +25,11 @@ public class GaiaBlockStates extends GaiaBlockStateProvider {
         basicBlockRotated(ModBlocks.boggy_soil);
         basicBlockRotated(ModBlocks.light_soil);
         basicBlock(ModBlocks.aurum_soil);
-        grassBlock(ModBlocks.glitter_grass, ModBlocks.heavy_soil, true);
-        grassBlock(ModBlocks.corrupted_grass, ModBlocks.corrupted_soil, false);
-        grassBlock(ModBlocks.murky_grass, ModBlocks.boggy_soil, true);
-        grassBlock(ModBlocks.soft_grass, ModBlocks.light_soil, true);
-        grassBlock(ModBlocks.gilded_grass, ModBlocks.aurum_soil, false);
+        grassBlock(ModBlocks.glitter_grass, ModBlocks.heavy_soil, 0xF2A3B4);
+        grassBlock(ModBlocks.corrupted_grass, ModBlocks.corrupted_soil, -1);
+        grassBlock(ModBlocks.murky_grass, ModBlocks.boggy_soil, 0x606060);
+        grassBlock(ModBlocks.soft_grass, ModBlocks.light_soil, 0xA0A0A0);
+        grassBlock(ModBlocks.gilded_grass, ModBlocks.aurum_soil, -1);
         basicBlockRotated(ModBlocks.frail_glitter_block, "translucent");
         basicBlockRotated(ModBlocks.thick_glitter_block);
         basicBlockRotated(ModBlocks.gummy_glitter_block, "translucent");
@@ -42,6 +42,7 @@ public class GaiaBlockStates extends GaiaBlockStateProvider {
         crossBlock(ModBlocks.crystal_growth_aura, "cutout");
         crossBlock(ModBlocks.golden_grass, "cutout");
         crossBlock(ModBlocks.sombre_shrub, "cutout");
+        auraShoot();
         pottedPlantBlock(ModBlocks.thiscus, ModBlocks.potted_thiscus);
         pottedPlantBlock(ModBlocks.ouzium, ModBlocks.potted_ouzium);
         pottedPlantBlock(ModBlocks.agathum, ModBlocks.potted_agathum);

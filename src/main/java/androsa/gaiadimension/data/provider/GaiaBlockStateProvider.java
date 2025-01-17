@@ -1,7 +1,9 @@
 package androsa.gaiadimension.data.provider;
 
 import androsa.gaiadimension.GaiaDimensionMod;
+import androsa.gaiadimension.block.AuraShootBlock;
 import androsa.gaiadimension.block.CurtainBlock;
+import androsa.gaiadimension.registry.registration.ModBlocks;
 import net.minecraft.client.color.item.GrassColorSource;
 import net.minecraft.client.data.models.BlockModelGenerators;
 import net.minecraft.client.data.models.blockstates.MultiVariantGenerator;
@@ -291,7 +293,15 @@ public abstract class GaiaBlockStateProvider {
         ResourceLocation location = ModelTemplates.TINTED_CROSS.extend().renderType("translucent").build().create(block.get(), TextureMapping.cross(block.get()), blockModels.modelOutput);
         ResourceLocation item = blockModels.createFlatItemModelWithBlockTexture(block.asItem(), block.get());
         blockModels.blockStateOutput.accept(BlockModelGenerators.createSimpleBlock(block.get(), location));
-        blockModels.registerSimpleTintedItemModel(block.get(), item, new GrassColorSource()); //TODO
+        blockModels.registerSimpleTintedItemModel(block.get(), item, ItemModelUtils.constantTint(0xF2A3B4));
+    }
+
+    public void auraShoot() {
+        ResourceLocation base = ModelLocationUtils.getModelLocation(ModBlocks.aura_shoot.get());
+        ResourceLocation tip = ModelLocationUtils.getModelLocation(ModBlocks.aura_shoot.get(), "_top");
+        blockModels.blockStateOutput.accept(MultiVariantGenerator.multiVariant(ModBlocks.aura_shoot.get())
+                .with(BlockModelGenerators.createBooleanModelDispatch(AuraShootBlock.IS_TOP, tip, base)));
+        blockModels.registerSimpleTintedItemModel(ModBlocks.aura_shoot.get(), tip, ItemModelUtils.constantTint(0x1109B7));
     }
 
     public void orientableBlockLit(DeferredBlock<Block> block) {
@@ -324,11 +334,11 @@ public abstract class GaiaBlockStateProvider {
                         .with(BlockModelGenerators.createHorizontalFacingDispatch()));
     }
 
-    public void grassBlock(DeferredBlock<Block> block, DeferredBlock<Block> bottom, boolean tinted) {
-        if (tinted) {
+    public void grassBlock(DeferredBlock<Block> block, DeferredBlock<Block> bottom, int tint) {
+        if (tint >= 0) {
             ResourceLocation model = GRASS_TEMPLATE.create(block.get(), grass(block.get(), bottom), blockModels.modelOutput);
             blockModels.blockStateOutput.accept(BlockModelGenerators.createRotatedVariant(block.get(), model));
-            blockModels.registerSimpleTintedItemModel(block.get(), model, new GrassColorSource()); //TODO
+            blockModels.registerSimpleTintedItemModel(block.get(), model, ItemModelUtils.constantTint(tint));
         } else {
             TextureMapping mapping = new TextureMapping()
                     .put(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(block.get(), "_side"))

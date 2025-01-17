@@ -1,6 +1,0 @@
-{
-  "variants": {
-    "is_top=true": { "model": "gaiadimension:block/aura_shoot_top" },
-    "is_top=false": { "model": "gaiadimension:block/aura_shoot" }
-  }
-}

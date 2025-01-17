@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "is_top=false": {
+      "model": "gaiadimension:block/aura_shoot"
+    },
+    "is_top=true": {
+      "model": "gaiadimension:block/aura_shoot_top"
+    }
+  }
+}

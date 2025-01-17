@@ -1,11 +1,11 @@
 {
   "model": {
     "type": "minecraft:model",
-    "model": "gaiadimension:item/crystal_growth",
+    "model": "gaiadimension:block/aura_shoot_top",
     "tints": [
       {
         "type": "minecraft:constant",
-        "value": -875596
+        "value": -15660617
       }
     ]
   }
