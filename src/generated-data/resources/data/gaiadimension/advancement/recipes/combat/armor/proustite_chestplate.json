@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_proustite": {
+      "conditions": {
+        "items": [
+          {
+            "items": "gaiadimension:proustite"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "gaiadimension:armor/proustite_chestplate"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_proustite"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "gaiadimension:armor/proustite_chestplate"
+    ]
+  }
+}

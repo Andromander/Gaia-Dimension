@@ -32,7 +32,7 @@ public abstract class GaiaRecipeProvider extends RecipeProvider {
     }
 
     protected String loc(String name) {
-        return ResourceLocation.fromNamespaceAndPath(GaiaDimensionMod.MODID, name).getPath();
+        return ResourceLocation.fromNamespaceAndPath(GaiaDimensionMod.MODID, name).toString();
     }
 
     public ShapedRecipeBuilder smallCompressRecipe(ItemLike result, ItemLike ingredient) {
@@ -129,7 +129,8 @@ public abstract class GaiaRecipeProvider extends RecipeProvider {
     }
 
     public void armorRecipe(ShapedRecipeBuilder recipe, RecipeOutput output, Supplier<Item> result) {
-        recipe.save(output, loc("armor/" + BuiltInRegistries.ITEM.getKey(result.get()).getPath()));
+        String path = loc("armor/" + BuiltInRegistries.ITEM.getKey(result.get()).getPath());
+        recipe.save(output, path);
     }
 
     public void axeRecipe(Supplier<Item> result, DeferredItem<Item> ingredient, RecipeOutput output) {

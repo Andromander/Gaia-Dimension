@@ -383,7 +383,7 @@ public class GaiaRecipes extends GaiaRecipeProvider {
                 .define('#', ModItems.twined_thread.get())
                 .define('/', ModItems.shiny_bone.get())
                 .unlockedBy("has_bone", has(ModItems.shiny_bone.get()))
-                .save(this.output, "gaiadimension/tools/old_bow");
+                .save(this.output, loc("tools/old_bow"));
         this.shaped(RecipeCategory.DECORATIONS, ModBlocks.purifier.get())
                 .pattern("///")
                 .pattern("/#/")
@@ -453,7 +453,7 @@ public class GaiaRecipes extends GaiaRecipeProvider {
                 .requires(ModItems.shiny_bone.get())
                 .group("bonemeal")
                 .unlockedBy("has_bone", has(ModItems.shiny_bone.get()))
-                .save(this.output);
+                .save(this.output, loc("bone_meal"));
         this.shaped(RecipeCategory.MISC, ModItems.blank_kit.get())
                 .pattern(" / ")
                 .pattern("/#/")
@@ -550,7 +550,7 @@ public class GaiaRecipes extends GaiaRecipeProvider {
         purifyingItems(ModBlocks.pink_agate_tile_stairs.get(), ModItems.goldstone_residue.get(), ModBlocks.corrupted_tile_stairs, 0.3F, 1, 1).save(this.output, locPurify("pink_agate_tile_stairs"));
         purifyingItems(ModBlocks.pink_agate_tile_slab.get(), ModItems.goldstone_residue.get(), ModBlocks.corrupted_tile_slab, 0.3F, 1, 1).save(this.output, locPurify("pink_agate_tile_slab"));
         purifyingItems(ModBlocks.pink_agate_sapling.get(), ModItems.goldstone_residue.get(), ModBlocks.corrupted_sapling, 0.3F, 1, 1).save(this.output, locPurify("pink_agate_sapling"));
-        purifyingItems(ModBlocks.varloom.get(), ModItems.goldstone_residue.get(), ModBlocks.corrupted_varloom, 0.3F, 1, 1).save(this.output, "varloom");
+        purifyingItems(ModBlocks.varloom.get(), ModItems.goldstone_residue.get(), ModBlocks.corrupted_varloom, 0.3F, 1, 1).save(this.output, locPurify("varloom"));
     }
 
     private String locSmelt(String name) {

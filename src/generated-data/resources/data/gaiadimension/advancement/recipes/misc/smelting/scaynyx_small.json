@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_speckled_rock": {
+      "conditions": {
+        "items": [
+          {
+            "items": "gaiadimension:speckled_rock"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "gaiadimension:smelting/scaynyx_small"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_speckled_rock"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "gaiadimension:smelting/scaynyx_small"
+    ]
+  }
+}

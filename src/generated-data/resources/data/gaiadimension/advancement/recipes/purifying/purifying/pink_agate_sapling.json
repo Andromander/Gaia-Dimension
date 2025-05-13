@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_corrupted_sapling": {
+      "conditions": {
+        "items": [
+          {
+            "items": "gaiadimension:corrupted_sapling"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "gaiadimension:purifying/pink_agate_sapling"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_corrupted_sapling"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "gaiadimension:purifying/pink_agate_sapling"
+    ]
+  }
+}

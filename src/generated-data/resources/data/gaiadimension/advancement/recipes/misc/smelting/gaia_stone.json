@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_gaia_cobblestone": {
+      "conditions": {
+        "items": [
+          {
+            "items": "gaiadimension:gaia_cobblestone"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "gaiadimension:smelting/gaia_stone"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_gaia_cobblestone"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "gaiadimension:smelting/gaia_stone"
+    ]
+  }
+}

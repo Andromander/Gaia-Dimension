@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_gummy_glitter_block": {
+      "conditions": {
+        "items": [
+          {
+            "items": "gaiadimension:gummy_glitter_block"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "gaiadimension:smelting/thick_glitter_block"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_gummy_glitter_block"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "gaiadimension:smelting/thick_glitter_block"
+    ]
+  }
+}
