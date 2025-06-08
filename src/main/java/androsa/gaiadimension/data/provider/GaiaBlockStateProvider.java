@@ -4,7 +4,6 @@ import androsa.gaiadimension.GaiaDimensionMod;
 import androsa.gaiadimension.block.AuraShootBlock;
 import androsa.gaiadimension.block.CurtainBlock;
 import androsa.gaiadimension.registry.registration.ModBlocks;
-import net.minecraft.client.color.item.GrassColorSource;
 import net.minecraft.client.data.models.BlockModelGenerators;
 import net.minecraft.client.data.models.blockstates.MultiVariantGenerator;
 import net.minecraft.client.data.models.blockstates.PropertyDispatch;
