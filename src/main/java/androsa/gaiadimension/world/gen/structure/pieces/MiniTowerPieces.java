@@ -119,8 +119,8 @@ public class MiniTowerPieces {
 
         public Piece(StructureTemplateManager level, CompoundTag nbt) {
             super(ModStructures.MITO.get(), nbt, level, (rl) ->
-                    loadTemplate(Rotation.valueOf(nbt.getString("Rot")), rl));
-            this.towerType = MiniTowerType.valueOf(nbt.getString("TowerType"));
+                    loadTemplate(nbt.read("Rot", Rotation.LEGACY_CODEC).orElseThrow(), rl));
+            this.towerType = nbt.read("TowerType", MiniTowerType.CODEC).orElseThrow();
         }
 
         private static StructurePlaceSettings loadTemplate(Rotation rotation, ResourceLocation pivot) {

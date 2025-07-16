@@ -69,7 +69,7 @@ public class GrowthSapper extends PathfinderMob {
     @Override
     public void readAdditionalSaveData(CompoundTag compound) {
         super.readAdditionalSaveData(compound);
-        this.setSapperVariant(SapperVariant.getVariant(compound.getInt("SapperVariant")));
+        this.setSapperVariant(SapperVariant.getVariant(compound.getIntOr("SapperVariant", 0)));
     }
 
     @Override

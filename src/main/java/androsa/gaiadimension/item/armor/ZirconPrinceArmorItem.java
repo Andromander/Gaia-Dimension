@@ -2,12 +2,12 @@ package androsa.gaiadimension.item.armor;
 
 import androsa.gaiadimension.registry.bootstrap.GaiaArmorMaterials;
 import net.minecraft.network.chat.Component;
-import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.item.component.TooltipDisplay;
 import net.minecraft.world.item.equipment.ArmorType;
 
-import java.util.List;
+import java.util.function.Consumer;
 
 public class ZirconPrinceArmorItem extends BasicGaiaArmorItem {
 
@@ -18,8 +18,9 @@ public class ZirconPrinceArmorItem extends BasicGaiaArmorItem {
     //TODO: Deals lightning damage to attackers
 
     @Override
-    public void appendHoverText(ItemStack stack, TooltipContext world, List<Component> tooltips, TooltipFlag flags) {
-        super.appendHoverText(stack, world, tooltips, flags);
-        tooltips.add(Component.translatable("zircon_armor.tooltip"));
+    @Deprecated
+    public void appendHoverText(ItemStack stack, TooltipContext world, TooltipDisplay display, Consumer<Component> tooltips, TooltipFlag flags) {
+        super.appendHoverText(stack, world, display, tooltips, flags);
+        tooltips.accept(Component.translatable("zircon_armor.tooltip"));
     }
 }

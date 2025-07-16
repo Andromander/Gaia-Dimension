@@ -116,16 +116,16 @@ public class ModBlocks {
     public static final DeferredBlock<Block> sombre_shrub = register("sombre_shrub", SombreShrubBlock::new, PropertiesHandler.plantProps(MapColor.TERRACOTTA_BROWN, false));
 
     //Tree Blocks
-    public static final DeferredBlock<Block> pink_agate_leaves = register("pink_agate_leaves", LeavesBlock::new, PropertiesHandler.leavesProps(MapColor.COLOR_MAGENTA));
-    public static final DeferredBlock<Block> blue_agate_leaves = register("blue_agate_leaves", LeavesBlock::new, PropertiesHandler.leavesProps(MapColor.COLOR_BLUE));
-    public static final DeferredBlock<Block> green_agate_leaves = register("green_agate_leaves", LeavesBlock::new, PropertiesHandler.leavesProps(MapColor.COLOR_GREEN));
-    public static final DeferredBlock<Block> purple_agate_leaves = register("purple_agate_leaves", LeavesBlock::new, PropertiesHandler.leavesProps(MapColor.TERRACOTTA_PURPLE));
-    public static final DeferredBlock<Block> fossilized_leaves = register("fossilized_leaves", LeavesBlock::new, PropertiesHandler.leavesProps(MapColor.COLOR_YELLOW));
-    public static final DeferredBlock<Block> corrupted_leaves = register("corrupted_leaves", LeavesBlock::new, PropertiesHandler.leavesProps(MapColor.FIRE));
-    public static final DeferredBlock<Block> burnt_leaves = register("burnt_agate_leaves", LeavesBlock::new, PropertiesHandler.leavesProps(MapColor.COLOR_GRAY));
-    public static final DeferredBlock<Block> fire_agate_leaves = register("fire_agate_leaves", LeavesBlock::new, PropertiesHandler.leavesProps(MapColor.TERRACOTTA_ORANGE).lightLevel((state) -> 3), 200);
-    public static final DeferredBlock<Block> aura_leaves = register("aura_leaves", LeavesBlock::new, PropertiesHandler.leavesProps(MapColor.METAL));
-    public static final DeferredBlock<Block> golden_leaves = register("golden_leaves", LeavesBlock::new, PropertiesHandler.leavesProps(MapColor.GOLD));
+    public static final DeferredBlock<Block> pink_agate_leaves = register("pink_agate_leaves", GaiaLeavesBlock::new, PropertiesHandler.leavesProps(MapColor.COLOR_MAGENTA));
+    public static final DeferredBlock<Block> blue_agate_leaves = register("blue_agate_leaves", GaiaLeavesBlock::new, PropertiesHandler.leavesProps(MapColor.COLOR_BLUE));
+    public static final DeferredBlock<Block> green_agate_leaves = register("green_agate_leaves", GaiaLeavesBlock::new, PropertiesHandler.leavesProps(MapColor.COLOR_GREEN));
+    public static final DeferredBlock<Block> purple_agate_leaves = register("purple_agate_leaves", GaiaLeavesBlock::new, PropertiesHandler.leavesProps(MapColor.TERRACOTTA_PURPLE));
+    public static final DeferredBlock<Block> fossilized_leaves = register("fossilized_leaves", GaiaLeavesBlock::new, PropertiesHandler.leavesProps(MapColor.COLOR_YELLOW));
+    public static final DeferredBlock<Block> corrupted_leaves = register("corrupted_leaves", GaiaLeavesBlock::new, PropertiesHandler.leavesProps(MapColor.FIRE));
+    public static final DeferredBlock<Block> burnt_leaves = register("burnt_agate_leaves", GaiaLeavesBlock::new, PropertiesHandler.leavesProps(MapColor.COLOR_GRAY));
+    public static final DeferredBlock<Block> fire_agate_leaves = register("fire_agate_leaves", GaiaLeavesBlock::new, PropertiesHandler.leavesProps(MapColor.TERRACOTTA_ORANGE).lightLevel((state) -> 3), 200);
+    public static final DeferredBlock<Block> aura_leaves = register("aura_leaves", GaiaLeavesBlock::new, PropertiesHandler.leavesProps(MapColor.METAL));
+    public static final DeferredBlock<Block> golden_leaves = register("golden_leaves", GaiaLeavesBlock::new, PropertiesHandler.leavesProps(MapColor.GOLD));
     public static final DeferredBlock<RotatedPillarBlock> pink_agate_log = register("pink_agate_log", RotatedPillarBlock::new, PropertiesHandler.logProps(MapColor.COLOR_MAGENTA, MapColor.TERRACOTTA_PINK));
     public static final DeferredBlock<RotatedPillarBlock> blue_agate_log = register("blue_agate_log", RotatedPillarBlock::new, PropertiesHandler.logProps(MapColor.COLOR_BLUE, MapColor.TERRACOTTA_BLUE));
     public static final DeferredBlock<RotatedPillarBlock> green_agate_log = register("green_agate_log", RotatedPillarBlock::new, PropertiesHandler.logProps(MapColor.COLOR_GREEN, MapColor.TERRACOTTA_LIGHT_GREEN));

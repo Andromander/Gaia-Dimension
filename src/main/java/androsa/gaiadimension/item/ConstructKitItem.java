@@ -20,9 +20,11 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.item.component.TooltipDisplay;
 import net.minecraft.world.level.Level;
 
 import java.util.List;
+import java.util.function.Consumer;
 import java.util.function.IntFunction;
 import java.util.function.Supplier;
 
@@ -42,18 +44,19 @@ public class ConstructKitItem extends Item {
     }
 
     @Override
-    public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> components, TooltipFlag flag) {
-        super.appendHoverText(stack, context, components, flag);
-        components.add(Component.translatable("gaiadimension.construct_kit." + kit.getName()).withStyle(ChatFormatting.GRAY));
+    @Deprecated
+    public void appendHoverText(ItemStack stack, TooltipContext world, TooltipDisplay display, Consumer<Component> components, TooltipFlag flags) {
+        super.appendHoverText(stack, world, display, components, flags);
+        components.accept(Component.translatable("gaiadimension.construct_kit." + kit.getName()).withStyle(ChatFormatting.GRAY));
 
         if (kit.canCycleParts()) {
             if (stack.has(ModDataComponents.KIT_PART)) {
-                components.add(Component.translatable("gaiadimension.construct_kit.part").withStyle(ChatFormatting.GRAY).append(CommonComponents.SPACE).append(getPart(stack.get(ModDataComponents.KIT_PART))));
-                components.add(Component.translatable("gaiaidmension.construct_kit.part.instruction").withStyle(ChatFormatting.DARK_GRAY));
+                components.accept(Component.translatable("gaiadimension.construct_kit.part").withStyle(ChatFormatting.GRAY).append(CommonComponents.SPACE).append(getPart(stack.get(ModDataComponents.KIT_PART))));
+                components.accept(Component.translatable("gaiaidmension.construct_kit.part.instruction").withStyle(ChatFormatting.DARK_GRAY));
             }
         }
         if (partColor != null) {
-            components.add(Component.translatable("gaiadimension.construct_kit.color").withStyle(ChatFormatting.GRAY).append(CommonComponents.SPACE).append(getColor(partColor)));
+            components.accept(Component.translatable("gaiadimension.construct_kit.color").withStyle(ChatFormatting.GRAY).append(CommonComponents.SPACE).append(getColor(partColor)));
         }
     }
 

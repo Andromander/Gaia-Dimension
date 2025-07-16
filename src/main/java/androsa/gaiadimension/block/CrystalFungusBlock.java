@@ -29,8 +29,8 @@ public class CrystalFungusBlock extends BushBlock {
     }
 
     @Override
-    protected MapCodec<? extends BushBlock> codec() {
-        return CODEC;
+    public MapCodec<BushBlock> codec() {
+        return (MapCodec<BushBlock>)(MapCodec<?>) CODEC;
     }
 
     @Override

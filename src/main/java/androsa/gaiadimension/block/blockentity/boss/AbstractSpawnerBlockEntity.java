@@ -63,7 +63,7 @@ public abstract class AbstractSpawnerBlockEntity<T extends Mob> extends BlockEnt
         EntitySpawnReason reason = EntitySpawnReason.SPAWNER;
         Mob entity = bossEntity.create(world, reason);
 
-        entity.moveTo(getBlockPos(), 0.0F, 0.0F);
+        entity.snapTo(getBlockPos(), 0.0F, 0.0F);
         entity.finalizeSpawn(world, world.getCurrentDifficultyAt(getBlockPos()), reason, null);
         entity.restrictTo(getBlockPos(), getHomeDistance());
 

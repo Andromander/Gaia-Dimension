@@ -28,8 +28,12 @@ public abstract class GaiaItemModelProvider {
         itemModels.generateFlatItem(item.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
     }
 
-    public void eggItem(DeferredItem<Item> item, int primary, int secondary) {
-        itemModels.generateSpawnEgg(item.get(), primary, secondary);
+    public void eggItem(DeferredItem<Item> item) {
+        itemModels.itemModelOutput.accept(item.get(), ItemModelUtils.plainModel(
+                ModelTemplates.FLAT_ITEM.create(
+                        ModelLocationUtils.getModelLocation(item.get()),
+                        TextureMapping.layer0(ResourceLocation.fromNamespaceAndPath(GaiaDimensionMod.MODID, "item/spawn_egg/" + item.getId().getPath())),
+                        itemModels.modelOutput)));
     }
 
     public void geodeItem(DeferredItem<Item> item) {

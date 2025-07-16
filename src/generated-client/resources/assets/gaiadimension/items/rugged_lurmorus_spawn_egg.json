@@ -1,16 +1,6 @@
 {
   "model": {
     "type": "minecraft:model",
-    "model": "minecraft:item/template_spawn_egg",
-    "tints": [
-      {
-        "type": "minecraft:constant",
-        "value": -3368653
-      },
-      {
-        "type": "minecraft:constant",
-        "value": -39424
-      }
-    ]
+    "model": "gaiadimension:item/rugged_lurmorus_spawn_egg"
   }
 }

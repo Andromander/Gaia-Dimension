@@ -25,7 +25,6 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.phys.BlockHitResult;
-import net.minecraft.world.phys.Vec3;
 
 import javax.annotation.Nullable;
 
@@ -78,22 +77,27 @@ public class PurifierBlock extends Block implements EntityBlock {
         return this.defaultBlockState().setValue(FACING, context.getHorizontalDirection().getOpposite());
     }
 
+//    @Override
+//    @Deprecated
+//    public void onRemove(BlockState state, Level worldIn, BlockPos pos, BlockState newState, boolean isMoving) {
+//        if (state.getBlock() != newState.getBlock()) {
+//            BlockEntity tileentity = worldIn.getBlockEntity(pos);
+//            if (tileentity instanceof PurifierBlockEntity purifier) {
+//                if (worldIn instanceof ServerLevel server) {
+//                    Containers.dropContents(worldIn, pos, purifier);
+//                    purifier.unlockRecipe(server, Vec3.atCenterOf(pos));
+//                }
+//                super.onRemove(state, worldIn, pos, newState, isMoving);
+//                worldIn.updateNeighbourForOutputSignal(pos, this);
+//            } else {
+//                super.onRemove(state, worldIn, pos, newState, isMoving);
+//            }
+//        }
+//    }
+
     @Override
-    @Deprecated
-    public void onRemove(BlockState state, Level worldIn, BlockPos pos, BlockState newState, boolean isMoving) {
-        if (state.getBlock() != newState.getBlock()) {
-            BlockEntity tileentity = worldIn.getBlockEntity(pos);
-            if (tileentity instanceof PurifierBlockEntity purifier) {
-                if (worldIn instanceof ServerLevel server) {
-                    Containers.dropContents(worldIn, pos, purifier);
-                    purifier.unlockRecipe(server, Vec3.atCenterOf(pos));
-                }
-                super.onRemove(state, worldIn, pos, newState, isMoving);
-                worldIn.updateNeighbourForOutputSignal(pos, this);
-            } else {
-                super.onRemove(state, worldIn, pos, newState, isMoving);
-            }
-        }
+    protected void affectNeighborsAfterRemoval(BlockState state, ServerLevel level, BlockPos pos, boolean isMoving) {
+        Containers.updateNeighboursAfterDestroy(state, level, pos);
     }
 
     @Override

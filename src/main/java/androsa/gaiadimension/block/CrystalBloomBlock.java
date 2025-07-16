@@ -5,6 +5,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.BushBlock;
+import net.minecraft.world.level.block.FenceBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
@@ -18,8 +19,8 @@ public class CrystalBloomBlock extends BushBlock {
     }
 
     @Override
-    protected MapCodec<? extends CrystalBloomBlock> codec() {
-        return CODEC;
+    public MapCodec<BushBlock> codec() {
+        return (MapCodec<BushBlock>)(MapCodec<?>) CODEC;
     }
 
     @Override

@@ -46,7 +46,7 @@ public class PurifyOutputSlot extends Slot {
 
     @Override
     protected void checkTakeAchievements(ItemStack par1ItemStack) {
-        par1ItemStack.onCraftedBy(thePlayer.level(), thePlayer, stackSize);
+        par1ItemStack.onCraftedBy(thePlayer, stackSize);
 
         if (thePlayer instanceof ServerPlayer serverPlayer) {
             ((PurifierBlockEntity)this.container).awardRecipe(serverPlayer);

@@ -103,7 +103,7 @@ public class AgateCraftingTableMenu extends RecipeBookMenu {
             ItemStack itemstack1 = slot.getItem();
             itemstack = itemstack1.copy();
             if (index == 0) {
-                this.worldPos.execute((world, pos) -> itemstack1.getItem().onCraftedBy(itemstack1, world, playerIn));
+                this.worldPos.execute((world, pos) -> itemstack1.getItem().onCraftedBy(itemstack1, playerIn));
                 if (!this.moveItemStackTo(itemstack1, 10, 46, true)) {
                     return ItemStack.EMPTY;
                 }

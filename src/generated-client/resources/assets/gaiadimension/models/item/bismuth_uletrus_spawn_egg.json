@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "gaiadimension:item/spawn_egg/bismuth_uletrus_spawn_egg"
+  }
+}

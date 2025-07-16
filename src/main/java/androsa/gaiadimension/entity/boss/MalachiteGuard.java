@@ -9,7 +9,6 @@ import androsa.gaiadimension.registry.registration.ModItems;
 import androsa.gaiadimension.registry.registration.ModParticles;
 import androsa.gaiadimension.registry.registration.ModSounds;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.NonNullList;
 import net.minecraft.core.particles.BlockParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
@@ -41,6 +40,7 @@ import net.neoforged.neoforge.event.EventHooks;
 import net.neoforged.neoforge.fluids.FluidType;
 
 import javax.annotation.Nullable;
+import java.util.Arrays;
 import java.util.EnumSet;
 import java.util.List;
 
@@ -100,14 +100,14 @@ public class MalachiteGuard extends Monster {
     @Override
     public void readAdditionalSaveData(CompoundTag nbt) {
         super.readAdditionalSaveData(nbt);
-        this.setPhase(GuardPhase.getPhase(nbt.getInt("Phase")));
-        this.setStompPhase(ThreeStagePhase.getStage(nbt.getInt("StompPhase")));
-        this.setChargePhase(ThreeStagePhase.getStage(nbt.getInt("ChargePhase")));
-        this.dronesLeft = nbt.getInt("DronesLeft");
-        this.hasSpawnedDrones = nbt.getBoolean("IsSpawned");
-        this.stompCooldown = nbt.getInt("StompCooldown");
-        this.chargeCooldown = nbt.getInt("ChargeCooldown");
-        this.bideDamage = nbt.getFloat("BideDamage");
+        this.setPhase(GuardPhase.getPhase(nbt.getIntOr("Phase", 0)));
+        this.setStompPhase(ThreeStagePhase.getStage(nbt.getIntOr("StompPhase", 0)));
+        this.setChargePhase(ThreeStagePhase.getStage(nbt.getIntOr("ChargePhase", 0)));
+        this.dronesLeft = nbt.getIntOr("DronesLeft", 0);
+        this.hasSpawnedDrones = nbt.getBooleanOr("IsSpawned", false);
+        this.stompCooldown = nbt.getIntOr("StompCooldown", 0);
+        this.chargeCooldown = nbt.getIntOr("ChargeCooldown", 0);
+        this.bideDamage = nbt.getFloatOr("BideDamage", 0.0F);
         if (hasCustomName()) {
             this.bossInfo.setName(getDisplayName());
         }
@@ -185,7 +185,7 @@ public class MalachiteGuard extends Monster {
      * Guard is too heavy to be dealt fall damage
      */
     @Override
-    public boolean causeFallDamage(float dist, float mul, DamageSource source) {
+    public boolean causeFallDamage(double dist, float mul, DamageSource source) {
         return false;
     }
 
@@ -275,7 +275,7 @@ public class MalachiteGuard extends Monster {
     private void createDrone(BlockPos pos) {
         if (!level().isClientSide()) {
             MalachiteDrone drone = ModEntities.MALACHITE_DRONE.get().create(this.level(), EntitySpawnReason.MOB_SUMMONED);
-            drone.moveTo(pos, 0.0F, 0.0F);
+            drone.snapTo(pos, 0.0F, 0.0F);
             EventHooks.finalizeMobSpawn(drone, (ServerLevelAccessor)this.level(), this.level().getCurrentDifficultyAt(pos), EntitySpawnReason.MOB_SUMMONED, null);
             drone.setOwner(this);
             if (this.level().addFreshEntity(drone))
@@ -357,7 +357,7 @@ public class MalachiteGuard extends Monster {
     }
 
     @Override
-    protected boolean isAffectedByFluids() {
+    public boolean isAffectedByFluids() {
         return false;
     }
 
@@ -369,17 +369,18 @@ public class MalachiteGuard extends Monster {
         //Just have this happen in Normal or Hard
         if (difficulty == Difficulty.NORMAL || difficulty == Difficulty.HARD) {
             if (target instanceof Player player) {
-                NonNullList<ItemStack> armor = player.getInventory().armor;
-                int slot = random.nextInt(armor.size());
+                EntityEquipment armor = player.getInventory().equipment;
+                List<EquipmentSlot> equipment = Arrays.stream(EquipmentSlot.values()).filter(s -> s.getType() == EquipmentSlot.Type.HUMANOID_ARMOR).toList();
+                EquipmentSlot slot = equipment.get(random.nextInt(equipment.size()));
                 ItemStack stack = armor.get(slot);
-                EquipmentSlot[] equipment = new EquipmentSlot[]{EquipmentSlot.HEAD, EquipmentSlot.CHEST, EquipmentSlot.LEGS, EquipmentSlot.FEET};
-                EquipmentSlot slotType = equipment[slot];
 
                 //Normal: 1:16 chance. Hard: 1:8 chance. Chances decrease if the slot is empty
-                if ((difficulty == Difficulty.NORMAL && random.nextInt(16) == 0) || (difficulty == Difficulty.HARD && random.nextInt(8) == 0)) {
-                    //Remove your piece of armor
-                    player.drop(stack, true, false);
-                    player.setItemSlot(slotType, ItemStack.EMPTY);
+                if (!stack.isEmpty()) {
+                    if ((difficulty == Difficulty.NORMAL && random.nextInt(16) == 0) || (difficulty == Difficulty.HARD && random.nextInt(8) == 0)) {
+                        //Remove your piece of armor
+                        player.drop(stack, true, false);
+                        player.setItemSlot(slot, ItemStack.EMPTY);
+                    }
                 }
             }
         }

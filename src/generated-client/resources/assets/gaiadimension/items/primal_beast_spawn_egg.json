@@ -1,16 +1,6 @@
 {
   "model": {
     "type": "minecraft:model",
-    "model": "minecraft:item/template_spawn_egg",
-    "tints": [
-      {
-        "type": "minecraft:constant",
-        "value": -16750951
-      },
-      {
-        "type": "minecraft:constant",
-        "value": -10027009
-      }
-    ]
+    "model": "gaiadimension:item/primal_beast_spawn_egg"
   }
 }

@@ -5,14 +5,13 @@ import androsa.gaiadimension.block.menu.PurifierMenu;
 import androsa.gaiadimension.recipe.PurifierRecipe;
 import androsa.gaiadimension.registry.registration.*;
 import com.google.common.collect.Lists;
+import com.mojang.serialization.Codec;
 import it.unimi.dsi.fastutil.objects.Object2IntMap;
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap;
 import net.minecraft.core.*;
-import net.minecraft.core.registries.Registries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.util.Mth;
@@ -38,6 +37,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
 
 import java.util.List;
+import java.util.Map;
 
 public class PurifierBlockEntity extends BaseContainerBlockEntity implements WorldlyContainer, RecipeCraftingHolder, StackedContentsCompatible {
 
@@ -90,6 +90,7 @@ public class PurifierBlockEntity extends BaseContainerBlockEntity implements Wor
     };
     private final Object2IntOpenHashMap<ResourceKey<Recipe<?>>> recipeMap = new Object2IntOpenHashMap<>();
     private final RecipeManager.CachedCheck<SingleRecipeInput, ? extends PurifierRecipe> cache;
+    private static final Codec<Map<ResourceKey<Recipe<?>>, Integer>> RECIPES_USED_CODEC = Codec.unboundedMap(Recipe.KEY_CODEC, Codec.INT);
 
     public PurifierBlockEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntities.PURIFIER.get(), pos, state);
@@ -120,15 +121,13 @@ public class PurifierBlockEntity extends BaseContainerBlockEntity implements Wor
         super.loadAdditional(compound, provider);
         this.purifyingItemStacks = NonNullList.withSize(this.getContainerSize(), ItemStack.EMPTY);
         ContainerHelper.loadAllItems(compound, this.purifyingItemStacks, provider);
-        this.burnTime = compound.getInt("BurnTime");
-        this.cookTime = compound.getInt("CookTime");
-        this.cookTimeTotal = compound.getInt("CookTimeTotal");
+        this.burnTime = compound.getIntOr("BurnTime", 0);
+        this.cookTime = compound.getIntOr("CookTime", 0);
+        this.cookTimeTotal = compound.getIntOr("CookTimeTotal", 0);
         this.burnDuration = getItemBurnTime(this.purifyingItemStacks.get(1), this.purifyingItemStacks.get(2), this.purifyingItemStacks.get(3));
-        CompoundTag usedRecipes = compound.getCompound("RecipesUsed");
-
-        for (String s : usedRecipes.getAllKeys()) {
-            this.recipeMap.put(ResourceKey.create(Registries.RECIPE, ResourceLocation.parse(s)), usedRecipes.getInt(s));
-        }
+        CompoundTag usedRecipes = compound.getCompoundOrEmpty("RecipesUsed");
+        this.recipeMap.clear();
+        this.recipeMap.putAll(compound.read("RecipesUsed", RECIPES_USED_CODEC).orElse(Map.of()));
     }
 
     @Override

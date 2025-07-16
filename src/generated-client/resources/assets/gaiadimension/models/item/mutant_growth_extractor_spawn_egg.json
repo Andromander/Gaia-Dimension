@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "gaiadimension:item/spawn_egg/mutant_growth_extractor_spawn_egg"
+  }
+}

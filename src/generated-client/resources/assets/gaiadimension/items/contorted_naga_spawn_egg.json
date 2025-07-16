@@ -1,16 +1,6 @@
 {
   "model": {
     "type": "minecraft:model",
-    "model": "minecraft:item/template_spawn_egg",
-    "tints": [
-      {
-        "type": "minecraft:constant",
-        "value": -14671840
-      },
-      {
-        "type": "minecraft:constant",
-        "value": -3394816
-      }
-    ]
+    "model": "gaiadimension:item/contorted_naga_spawn_egg"
   }
 }

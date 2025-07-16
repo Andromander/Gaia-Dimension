@@ -8,7 +8,9 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.Container;
+import net.minecraft.world.Containers;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
@@ -101,42 +103,22 @@ public class SmallCrateBlock extends Block implements EntityBlock {
         return super.getDrops(state, builder);
     }
 
+//    @Override
+//    @Deprecated
+//    public void onRemove(BlockState state, Level worldIn, BlockPos pos, BlockState newState, boolean isMoving) {
+//        if (state.getBlock() != newState.getBlock()) {
+//            BlockEntity tileentity = worldIn.getBlockEntity(pos);
+//            if (tileentity instanceof SmallCrateBlockEntity) {
+//                worldIn.updateNeighbourForOutputSignal(pos, state.getBlock());
+//            }
+//
+//            super.onRemove(state, worldIn, pos, newState, isMoving);
+//        }
+//    }
+
     @Override
-    @Deprecated
-    public void onRemove(BlockState state, Level worldIn, BlockPos pos, BlockState newState, boolean isMoving) {
-        if (state.getBlock() != newState.getBlock()) {
-            BlockEntity tileentity = worldIn.getBlockEntity(pos);
-            if (tileentity instanceof SmallCrateBlockEntity) {
-                worldIn.updateNeighbourForOutputSignal(pos, state.getBlock());
-            }
-
-            super.onRemove(state, worldIn, pos, newState, isMoving);
-        }
-    }
-
-    @Override
-    public void appendHoverText(ItemStack stack, @Nullable Item.TooltipContext worldIn, List<Component> tooltip, TooltipFlag flagIn) {
-        super.appendHoverText(stack, worldIn, tooltip, flagIn);
-        if (stack.has(DataComponents.CONTAINER_LOOT)) {
-            tooltip.add(Component.translatable("container.shulkerBox.unknownContents"));
-        }
-
-        int i = 0;
-        int j = 0;
-
-        for(ItemStack itemstack : stack.getOrDefault(DataComponents.CONTAINER, ItemContainerContents.EMPTY).nonEmptyItems()) {
-            if (!itemstack.isEmpty()) {
-                ++j;
-                if (i <= 4) {
-                    ++i;
-                    tooltip.add(Component.translatable("container.shulkerBox.itemCount", itemstack.getHoverName(), itemstack.getCount()));
-                }
-            }
-        }
-
-        if (j - i > 0) {
-            tooltip.add(Component.translatable("container.shulkerBox.more", j - i).withStyle(ChatFormatting.ITALIC));
-        }
+    protected void affectNeighborsAfterRemoval(BlockState state, ServerLevel level, BlockPos pos, boolean isMoving) {
+        Containers.updateNeighboursAfterDestroy(state, level, pos);
     }
 
     @Override

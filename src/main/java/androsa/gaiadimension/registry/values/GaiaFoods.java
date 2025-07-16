@@ -50,17 +50,17 @@ public class GaiaFoods {
     public static final Consumable GREEN_ALE_EFFECT = Consumables.defaultDrink()
             .onConsume(
                     new ApplyStatusEffectsConsumeEffect(
-                            new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 100, 0)))
+                            new MobEffectInstance(MobEffects.SPEED, 100, 0)))
             .build();
     public static final Consumable PURPLE_SODA_EFFECT = Consumables.defaultDrink()
             .onConsume(
                     new ApplyStatusEffectsConsumeEffect(
-                            new MobEffectInstance(MobEffects.DAMAGE_BOOST, 100, 0)))
+                            new MobEffectInstance(MobEffects.STRENGTH, 100, 0)))
             .build();
     public static final Consumable PEARLY_ELIXIR_EFFECT = Consumables.defaultDrink()
             .onConsume(
                     new ApplyStatusEffectsConsumeEffect(
-                            new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 100, 0)))
+                            new MobEffectInstance(MobEffects.RESISTANCE, 100, 0)))
             .build();
     public static final Consumable PLAGUED_TILIEY_EFFECT = Consumables.defaultDrink()
             .onConsume(

@@ -162,13 +162,13 @@ public class CoatedCavesWorldCarver<T extends CaveCarverConfiguration> extends W
                     if (around.is(ModFluids.mineral_water_still.get()) || above.is(ModFluids.mineral_water_still.get()) || aroundabove.is(ModFluids.mineral_water_still.get())) {
                         return false;
                     } else {
-                        chunk.setBlockState(mutable, state, false);
+                        chunk.setBlockState(mutable, state);
 
                         if (bool.isTrue()) {
                             newmutable.setWithOffset(mutable, Direction.DOWN);
                             if (chunk.getBlockState(newmutable).getBlock() instanceof GaiaSoilBlock) {
                                 context.topMaterial(biomepos, chunk, newmutable, !state.getFluidState().isEmpty()).ifPresent((newstate) -> {
-                                    chunk.setBlockState(newmutable, newstate, false);
+                                    chunk.setBlockState(newmutable, newstate);
                                     if (!newstate.getFluidState().isEmpty()) {
                                         chunk.markPosForPostprocessing(newmutable);
                                     }

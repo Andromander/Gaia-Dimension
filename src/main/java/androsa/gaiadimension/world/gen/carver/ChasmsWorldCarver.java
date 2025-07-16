@@ -153,13 +153,13 @@ public class ChasmsWorldCarver<T extends CaveCarverConfiguration> extends WorldC
                     if (around.is(ModFluids.mineral_water_still.get()) || above.is(ModFluids.mineral_water_still.get()) || aroundabove.is(ModFluids.mineral_water_still.get())) {
                         return false;
                     } else {
-                        chunkIn.setBlockState(mutable, state, false);
+                        chunkIn.setBlockState(mutable, state);
 
                         if (flag.isTrue()) {
                             newmutable.setWithOffset(mutable, Direction.DOWN);
                             if (chunkIn.getBlockState(newmutable).getBlock() instanceof GaiaSoilBlock) {
                                 context.topMaterial(biomePos, chunkIn, newmutable, !state.getFluidState().isEmpty()).ifPresent((newstate) -> {
-                                    chunkIn.setBlockState(newmutable, newstate, false);
+                                    chunkIn.setBlockState(newmutable, newstate);
                                     if (!newstate.getFluidState().isEmpty()) {
                                         chunkIn.markPosForPostprocessing(newmutable);
                                     }

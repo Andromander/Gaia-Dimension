@@ -70,7 +70,7 @@ public class BismuthUletrus extends PathfinderMob {
     @Override
     public void readAdditionalSaveData(CompoundTag compound) {
         super.readAdditionalSaveData(compound);
-        this.setResting(compound.getBoolean("UletrusResting"));
+        this.setResting(compound.getBooleanOr("UletrusResting", false));
     }
 
     @Override

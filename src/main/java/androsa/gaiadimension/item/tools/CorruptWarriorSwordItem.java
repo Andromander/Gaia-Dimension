@@ -3,17 +3,18 @@ package androsa.gaiadimension.item.tools;
 import androsa.gaiadimension.registry.values.GaiaToolMaterials;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.SwordItem;
 import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.item.component.TooltipDisplay;
 
 import javax.annotation.Nonnull;
-import java.util.List;
+import java.util.function.Consumer;
 
-public class CorruptWarriorSwordItem extends SwordItem {
+public class CorruptWarriorSwordItem extends Item {
 
     public CorruptWarriorSwordItem(Properties props) {
-        super(GaiaToolMaterials.CORRUPT, 3, -3.5F, props);
+        super(props.sword(GaiaToolMaterials.CORRUPT, 3, -3.5F));
     }
 
     @Override
@@ -23,9 +24,10 @@ public class CorruptWarriorSwordItem extends SwordItem {
     }
 
     @Override
-    public void appendHoverText(ItemStack stack, TooltipContext world, List<Component> tooltips, TooltipFlag flags) {
-        super.appendHoverText(stack, world, tooltips, flags);
-        tooltips.add(Component.translatable(getDescriptionId() + ".tooltip"));
+    @Deprecated
+    public void appendHoverText(ItemStack stack, TooltipContext world, TooltipDisplay display, Consumer<Component> tooltips, TooltipFlag flags) {
+        super.appendHoverText(stack, world, display, tooltips, flags);
+        tooltips.accept(Component.translatable(getDescriptionId() + ".tooltip"));
     }
 
     @Override

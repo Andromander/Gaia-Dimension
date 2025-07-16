@@ -1,16 +1,6 @@
 {
   "model": {
     "type": "minecraft:model",
-    "model": "minecraft:item/template_spawn_egg",
-    "tints": [
-      {
-        "type": "minecraft:constant",
-        "value": -9860449
-      },
-      {
-        "type": "minecraft:constant",
-        "value": -8651266
-      }
-    ]
+    "model": "gaiadimension:item/opalite_construct_spawn_egg"
   }
 }

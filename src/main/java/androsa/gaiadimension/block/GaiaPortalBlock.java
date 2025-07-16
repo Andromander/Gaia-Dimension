@@ -18,7 +18,7 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityDimensions;
-import net.minecraft.world.entity.PortalProcessor;
+import net.minecraft.world.entity.InsideBlockEffectApplier;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Block;
@@ -120,7 +120,7 @@ public class GaiaPortalBlock extends Block implements Portal {
 
     @Override
     @Deprecated
-    public void entityInside(BlockState state, Level world, BlockPos pos, Entity entity) {
+    public void entityInside(BlockState state, Level world, BlockPos pos, Entity entity, InsideBlockEffectApplier applier) {
         if (entity.canUsePortal(false)) {
             entity.setAsInsidePortal(this, pos);
         }

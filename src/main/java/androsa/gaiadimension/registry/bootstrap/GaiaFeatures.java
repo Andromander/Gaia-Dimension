@@ -23,7 +23,7 @@ import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.data.worldgen.placement.PlacementUtils;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.util.random.SimpleWeightedRandomList;
+import net.minecraft.util.random.WeightedList;
 import net.minecraft.util.valueproviders.ClampedInt;
 import net.minecraft.util.valueproviders.ConstantInt;
 import net.minecraft.util.valueproviders.IntProvider;
@@ -221,8 +221,8 @@ public class GaiaFeatures extends GaiaBiomeFeatures {
         public static final ResourceKey<ConfiguredFeature<?, ?>> various_agate_trees = registerFeature("various_agate_trees");
         public static final ResourceKey<ConfiguredFeature<?, ?>> golden_trees = registerFeature("golden_trees");
 
-        private static SimpleWeightedRandomList.Builder<BlockState> weight() {
-            return SimpleWeightedRandomList.builder();
+        private static WeightedList.Builder<BlockState> weight() {
+            return WeightedList.builder();
         }
 
         private static ResourceKey<ConfiguredFeature<?, ?>> registerFeature(String name) {

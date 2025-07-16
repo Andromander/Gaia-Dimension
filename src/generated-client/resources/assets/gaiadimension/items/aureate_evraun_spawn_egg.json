@@ -1,16 +1,6 @@
 {
   "model": {
     "type": "minecraft:model",
-    "model": "minecraft:item/template_spawn_egg",
-    "tints": [
-      {
-        "type": "minecraft:constant",
-        "value": -11320529
-      },
-      {
-        "type": "minecraft:constant",
-        "value": -1911962
-      }
-    ]
+    "model": "gaiadimension:item/aureate_evraun_spawn_egg"
   }
 }

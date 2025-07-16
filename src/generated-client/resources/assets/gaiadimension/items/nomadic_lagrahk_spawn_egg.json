@@ -1,16 +1,6 @@
 {
   "model": {
     "type": "minecraft:model",
-    "model": "minecraft:item/template_spawn_egg",
-    "tints": [
-      {
-        "type": "minecraft:constant",
-        "value": -13408564
-      },
-      {
-        "type": "minecraft:constant",
-        "value": -14474461
-      }
-    ]
+    "model": "gaiadimension:item/nomadic_lagrahk_spawn_egg"
   }
 }

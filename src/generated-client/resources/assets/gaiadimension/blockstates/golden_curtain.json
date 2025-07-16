@@ -1,52 +1,40 @@
 {
   "variants": {
     "axis=x,half=lower,open=false,side=left": {
-      "model": "gaiadimension:block/golden_curtain_bottom_left",
-      "y": 0
+      "model": "gaiadimension:block/golden_curtain_bottom_left"
     },
     "axis=x,half=lower,open=false,side=right": {
-      "model": "gaiadimension:block/golden_curtain_bottom_right",
-      "y": 0
+      "model": "gaiadimension:block/golden_curtain_bottom_right"
     },
     "axis=x,half=lower,open=false,side=single": {
-      "model": "gaiadimension:block/golden_curtain_bottom",
-      "y": 0
+      "model": "gaiadimension:block/golden_curtain_bottom"
     },
     "axis=x,half=lower,open=true,side=left": {
-      "model": "gaiadimension:block/golden_curtain_bottom_left_open",
-      "y": 0
+      "model": "gaiadimension:block/golden_curtain_bottom_left_open"
     },
     "axis=x,half=lower,open=true,side=right": {
-      "model": "gaiadimension:block/golden_curtain_bottom_right_open",
-      "y": 0
+      "model": "gaiadimension:block/golden_curtain_bottom_right_open"
     },
     "axis=x,half=lower,open=true,side=single": {
-      "model": "gaiadimension:block/golden_curtain_bottom_open",
-      "y": 0
+      "model": "gaiadimension:block/golden_curtain_bottom_open"
     },
     "axis=x,half=upper,open=false,side=left": {
-      "model": "gaiadimension:block/golden_curtain_top_left",
-      "y": 0
+      "model": "gaiadimension:block/golden_curtain_top_left"
     },
     "axis=x,half=upper,open=false,side=right": {
-      "model": "gaiadimension:block/golden_curtain_top_right",
-      "y": 0
+      "model": "gaiadimension:block/golden_curtain_top_right"
     },
     "axis=x,half=upper,open=false,side=single": {
-      "model": "gaiadimension:block/golden_curtain_top",
-      "y": 0
+      "model": "gaiadimension:block/golden_curtain_top"
     },
     "axis=x,half=upper,open=true,side=left": {
-      "model": "gaiadimension:block/golden_curtain_top_left_open",
-      "y": 0
+      "model": "gaiadimension:block/golden_curtain_top_left_open"
     },
     "axis=x,half=upper,open=true,side=right": {
-      "model": "gaiadimension:block/golden_curtain_top_right_open",
-      "y": 0
+      "model": "gaiadimension:block/golden_curtain_top_right_open"
     },
     "axis=x,half=upper,open=true,side=single": {
-      "model": "gaiadimension:block/golden_curtain_top_open",
-      "y": 0
+      "model": "gaiadimension:block/golden_curtain_top_open"
     },
     "axis=z,half=lower,open=false,side=left": {
       "model": "gaiadimension:block/golden_curtain_bottom_left",

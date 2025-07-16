@@ -1,16 +1,6 @@
 {
   "model": {
     "type": "minecraft:model",
-    "model": "minecraft:item/template_spawn_egg",
-    "tints": [
-      {
-        "type": "minecraft:constant",
-        "value": -11650973
-      },
-      {
-        "type": "minecraft:constant",
-        "value": -13619152
-      }
-    ]
+    "model": "gaiadimension:item/bismuth_uletrus_spawn_egg"
   }
 }

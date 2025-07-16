@@ -3,6 +3,7 @@ package androsa.gaiadimension.entity;
 import androsa.gaiadimension.registry.registration.ModFluids;
 import androsa.gaiadimension.registry.registration.ModSounds;
 import net.minecraft.core.BlockPos;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
@@ -59,8 +60,8 @@ public class ShallowArenthis extends WaterAnimal {
     }
 
     @Override
-    protected void handleAirSupply(int amount) {
-        if (this.isAlive() && !this.isInWaterOrBubble() && this.isInFluidType((type, height) -> this.canDrownInFluidType(type), true)) {
+    protected void handleAirSupply(ServerLevel server, int amount) {
+        if (this.isAlive() && !this.isInWater() && this.isInFluidType((type, height) -> this.canDrownInFluidType(type), true)) {
             this.setAirSupply(amount - 1);
             if (this.getAirSupply() == -20) {
                 this.setAirSupply(0);
@@ -119,7 +120,7 @@ public class ShallowArenthis extends WaterAnimal {
             }
         }
 
-        if (this.isInWaterOrBubble() || this.isInFluidType((type, height) -> this.canSwimInFluidType(type))) {
+        if (this.isInWater() || this.isInFluidType((type, height) -> this.canSwimInFluidType(type))) {
             if (this.arenthisRotation < (float)Math.PI) {
                 float f = this.arenthisRotation / (float)Math.PI;
                 this.tentacleAngle = Mth.sin(f * f * (float)Math.PI) * (float)Math.PI * 0.25F;

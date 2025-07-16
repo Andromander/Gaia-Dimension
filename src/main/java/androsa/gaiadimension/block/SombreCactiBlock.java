@@ -4,6 +4,7 @@ import androsa.gaiadimension.registry.registration.ModBlocks;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.InsideBlockEffectApplier;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
@@ -41,7 +42,7 @@ public class SombreCactiBlock extends Block {
 
     @Override
     @Deprecated
-    public void entityInside(BlockState state, Level level, BlockPos pos, Entity entity) {
+    public void entityInside(BlockState state, Level level, BlockPos pos, Entity entity, InsideBlockEffectApplier applier) {
         entity.hurt(level.damageSources().cactus(), 1.0F);
     }
 

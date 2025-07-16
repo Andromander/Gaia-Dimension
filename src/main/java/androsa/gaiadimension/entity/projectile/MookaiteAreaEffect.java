@@ -2,6 +2,7 @@ package androsa.gaiadimension.entity.projectile;
 
 import androsa.gaiadimension.entity.MookaiteConstruct;
 import androsa.gaiadimension.registry.registration.ModEntities;
+import net.minecraft.core.UUIDUtil;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
@@ -47,34 +48,22 @@ public class MookaiteAreaEffect extends Entity implements TraceableEntity {
 
     @Override
     protected void readAdditionalSaveData(CompoundTag tag) {
-        this.tickCount = tag.getInt("Age");
-        this.duration = tag.getInt("Duration");
-        this.setRadius(tag.getFloat("Radius"));
-        if (tag.hasUUID("Owner")) {
-            this.ownerUUID = tag.getUUID("Owner");
-        }
-        if (tag.hasUUID("Companion")) {
-            this.companionUUID = tag.getUUID("Companion");
-        }
-        if (tag.hasUUID("Bonder")) {
-            this.bonderUUID = tag.getUUID("Bonder");
-        }
+        this.tickCount = tag.getIntOr("Age", 0);
+        this.duration = tag.getIntOr("Duration", -1);
+        this.setRadius(tag.getFloatOr("Radius", 3.0F));
+        this.ownerUUID = tag.read("Owner", UUIDUtil.CODEC).orElse(null);
+        this.companionUUID = tag.read("Companion", UUIDUtil.CODEC).orElse(null);
+        this.bonderUUID = tag.read("Bonder", UUIDUtil.CODEC).orElse(null);
     }
 
     @Override
     protected void addAdditionalSaveData(CompoundTag tag) {
         tag.putInt("Age", this.tickCount);
-        tag.putInt("Duration", this.duration);
+        tag.putInt("Duration", this.getDuration());
         tag.putFloat("Radius", this.getRadius());
-        if (this.ownerUUID != null) {
-            tag.putUUID("Owner", this.ownerUUID);
-        }
-        if (this.companionUUID != null) {
-            tag.putUUID("Companion", this.companionUUID);
-        }
-        if (this.bonderUUID != null) {
-            tag.putUUID("Bonder", this.bonderUUID);
-        }
+        tag.storeNullable("Owner", UUIDUtil.CODEC, this.ownerUUID);
+        tag.storeNullable("Companion", UUIDUtil.CODEC, this.companionUUID);
+        tag.storeNullable("Bonder", UUIDUtil.CODEC, this.bonderUUID);
     }
 
     @Override
@@ -133,7 +122,7 @@ public class MookaiteAreaEffect extends Entity implements TraceableEntity {
                 this.level().addAlwaysVisibleParticle(ParticleTypes.ENCHANTED_HIT, x, y, z, vx, vy, vz);
             }
         } else {
-            if (this.tickCount >= this.duration) {
+            if (this.tickCount >= this.getDuration()) {
                 this.discard();
                 return;
             }
@@ -174,10 +163,10 @@ public class MookaiteAreaEffect extends Entity implements TraceableEntity {
 
         if (entity instanceof MookaiteConstruct mookaite) {
             if (mookaite.getOpaliteCompanion() != null) {
-                this.companionUUID = mookaite.getOpaliteCompanion();
+                this.companionUUID = mookaite.getOpaliteCompanion().getUUID();
             }
             if (mookaite.getBonder() != null) {
-                this.bonderUUID = mookaite.getBonder();
+                this.bonderUUID = mookaite.getBonder().getUUID();
             }
         }
     }
@@ -185,8 +174,8 @@ public class MookaiteAreaEffect extends Entity implements TraceableEntity {
     @Override
     @Nullable
     public LivingEntity getOwner() {
-        if (this.owner == null && this.ownerUUID != null && this.level() instanceof ServerLevel) {
-            Entity entity = ((ServerLevel)this.level()).getEntity(this.ownerUUID);
+        if (this.owner == null && this.ownerUUID != null && this.level() instanceof ServerLevel server) {
+            Entity entity = server.getEntity(this.ownerUUID);
             if (entity instanceof LivingEntity) {
                 this.owner = (LivingEntity)entity;
             }

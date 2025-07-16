@@ -9,6 +9,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityReference;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
@@ -99,10 +100,10 @@ public class ConstructCharmItem extends Item {
                     //Failsafe check to make sure they are these specific mobs
                     if (mookaite instanceof MookaiteConstruct mEntity && opalite instanceof OpaliteContruct oEntity) {
                         if (!player.level().isClientSide()) {
-                            mEntity.setBonder(player.getUUID());
-                            mEntity.setOpaliteCompanion(oEntity.getUUID());
-                            oEntity.setBonder(player.getUUID());
-                            oEntity.setMookaiteCompanion(mEntity.getUUID());
+                            mEntity.setBonder(new EntityReference<>(player.getUUID()));
+                            mEntity.setOpaliteCompanion(new EntityReference<>(oEntity.getUUID()));
+                            oEntity.setBonder(new EntityReference<>(player.getUUID()));
+                            oEntity.setMookaiteCompanion(new EntityReference<>(mEntity.getUUID()));
                             stack.shrink(1);
                         }
 

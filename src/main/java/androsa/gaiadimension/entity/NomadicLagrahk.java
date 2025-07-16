@@ -70,7 +70,7 @@ public class NomadicLagrahk extends PathfinderMob {
 
     public void readAdditionalSaveData(CompoundTag compound) {
         super.readAdditionalSaveData(compound);
-        this.setLagrahkVariant(LagrahkVariant.getVariant(compound.getInt("LagrahkVariant")));
+        this.setLagrahkVariant(LagrahkVariant.getVariant(compound.getIntOr("LagrahkVariant", 0)));
     }
 
     @Override

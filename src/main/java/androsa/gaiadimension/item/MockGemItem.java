@@ -5,8 +5,10 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.item.component.TooltipDisplay;
 
 import java.util.List;
+import java.util.function.Consumer;
 
 public class MockGemItem extends Item {
 
@@ -15,8 +17,9 @@ public class MockGemItem extends Item {
     }
 
     @Override
-    public void appendHoverText(ItemStack stack, TooltipContext world, List<Component> tooltips, TooltipFlag flags) {
-        super.appendHoverText(stack, world, tooltips, flags);
-        tooltips.add(Component.translatable("mock_gem.tooltip"));
+    @Deprecated
+    public void appendHoverText(ItemStack stack, TooltipContext world, TooltipDisplay display, Consumer<Component> tooltips, TooltipFlag flags) {
+        super.appendHoverText(stack, world, display, tooltips, flags);
+        tooltips.accept(Component.translatable("mock_gem.tooltip"));
     }
 }

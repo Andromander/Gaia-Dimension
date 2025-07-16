@@ -5,11 +5,11 @@ import androsa.gaiadimension.registry.registration.ModBlocks;
 import androsa.gaiadimension.registry.registration.ModEntities;
 import androsa.gaiadimension.world.gen.structure.pieces.MalachiteWatchtowerPieces;
 import com.google.common.collect.Lists;
-import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.RandomSource;
-import net.minecraft.util.random.WeightedRandomList;
+import net.minecraft.util.random.Weighted;
+import net.minecraft.util.random.WeightedList;
 import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.level.ChunkPos;
 import net.minecraft.world.level.StructureManager;
@@ -32,11 +32,11 @@ public class MalachiteWatchtowerStructure extends Structure {
     public static final MapCodec<MalachiteWatchtowerStructure> CODEC = simpleCodec(MalachiteWatchtowerStructure::new);
 
     public static final Map<MobCategory, StructureSpawnOverride> SPAWNS = Map.of(
-            MobCategory.MONSTER, new StructureSpawnOverride(StructureSpawnOverride.BoundingBoxType.PIECE, WeightedRandomList.create(
-                    new MobSpawnSettings.SpawnerData(ModEntities.MALACHITE_DRONE.get(), 10, 1, 1),
-                    new MobSpawnSettings.SpawnerData(ModEntities.SHALURKER.get(), 5, 1, 2),
-                    new MobSpawnSettings.SpawnerData(ModEntities.ARCHAIC_WARRIOR.get(), 8, 1, 2),
-                    new MobSpawnSettings.SpawnerData(ModEntities.CAVERN_TICK.get(), 3, 2, 3))));
+            MobCategory.MONSTER, new StructureSpawnOverride(StructureSpawnOverride.BoundingBoxType.PIECE, WeightedList.of(
+                    new Weighted<>(new MobSpawnSettings.SpawnerData(ModEntities.MALACHITE_DRONE.get(), 1, 1), 10),
+                    new Weighted<>(new MobSpawnSettings.SpawnerData(ModEntities.SHALURKER.get(), 1, 2), 5),
+                    new Weighted<>(new MobSpawnSettings.SpawnerData(ModEntities.ARCHAIC_WARRIOR.get(), 1, 2), 8),
+                    new Weighted<>(new MobSpawnSettings.SpawnerData(ModEntities.CAVERN_TICK.get(), 2, 3), 3))));
 
     public MalachiteWatchtowerStructure(StructureSettings config) {
         super(config);

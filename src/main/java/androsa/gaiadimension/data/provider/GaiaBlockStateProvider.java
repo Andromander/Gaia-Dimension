@@ -4,12 +4,13 @@ import androsa.gaiadimension.GaiaDimensionMod;
 import androsa.gaiadimension.block.AuraShootBlock;
 import androsa.gaiadimension.block.CurtainBlock;
 import androsa.gaiadimension.registry.registration.ModBlocks;
+import com.mojang.math.Quadrant;
 import net.minecraft.client.data.models.BlockModelGenerators;
+import net.minecraft.client.data.models.MultiVariant;
 import net.minecraft.client.data.models.blockstates.MultiVariantGenerator;
 import net.minecraft.client.data.models.blockstates.PropertyDispatch;
-import net.minecraft.client.data.models.blockstates.Variant;
-import net.minecraft.client.data.models.blockstates.VariantProperties;
 import net.minecraft.client.data.models.model.*;
+import net.minecraft.client.renderer.block.model.VariantMutator;
 import net.minecraft.core.Direction;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.*;
@@ -152,6 +153,10 @@ public abstract class GaiaBlockStateProvider {
         blockModels.createTrivialBlock(block.get(), TexturedModel.CUBE_TOP_BOTTOM);
     }
 
+    protected static MultiVariant plain(ResourceLocation location) {
+        return BlockModelGenerators.plainVariant(location);
+    }
+
     public void sidedBlock(DeferredBlock<Block> block, String topSuffix, String bottomSuffix, String northSuffix, String eastSuffix, String southSuffix, String westSuffix) {
         TextureMapping mapping = new TextureMapping()
                 .put(TextureSlot.UP, TextureMapping.getBlockTexture(block.get(), topSuffix))
@@ -162,7 +167,7 @@ public abstract class GaiaBlockStateProvider {
                 .put(TextureSlot.WEST, TextureMapping.getBlockTexture(block.get(), westSuffix))
                 .put(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(block.get(), northSuffix));
         ResourceLocation model = ModelTemplates.CUBE.create(block.get(), mapping, blockModels.modelOutput);
-        blockModels.blockStateOutput.accept(BlockModelGenerators.createSimpleBlock(block.get(), model));
+        blockModels.blockStateOutput.accept(BlockModelGenerators.createSimpleBlock(block.get(), plain(model)));
     }
 
     public void basicBlockRotated(DeferredBlock<Block> block) {
@@ -171,7 +176,7 @@ public abstract class GaiaBlockStateProvider {
 
     public void basicBlockRotated(DeferredBlock<Block> block, String type) {
         ResourceLocation model = ModelTemplates.CUBE_ALL.extend().renderType(type).build().create(block.get(), TextureMapping.cube(block.get()), blockModels.modelOutput);
-        blockModels.blockStateOutput.accept(BlockModelGenerators.createRotatedVariant(block.get(), model));
+        blockModels.blockStateOutput.accept(MultiVariantGenerator.dispatch(block.get(), BlockModelGenerators.createRotatedVariants(BlockModelGenerators.plainModel(model))));
         blockModels.itemModelOutput.accept(block.asItem(), ItemModelUtils.plainModel(model));
     }
 
@@ -183,7 +188,7 @@ public abstract class GaiaBlockStateProvider {
     public void basicBlockLayered(DeferredBlock<Block> block, String bottom, String top, String type) {
         ModelTemplate template = CUBE_ALL_LAYERED_TEMPLATE.extend().renderType(type).build();
         ResourceLocation location = template.create(block.get(), cubeAllTwoLayer(bottom, top), blockModels.modelOutput);
-        blockModels.blockStateOutput.accept(BlockModelGenerators.createSimpleBlock(block.get(), location));
+        blockModels.blockStateOutput.accept(BlockModelGenerators.createSimpleBlock(block.get(), plain(location)));
         blockModels.itemModelOutput.accept(block.asItem(), ItemModelUtils.plainModel(location));
     }
 
@@ -203,12 +208,12 @@ public abstract class GaiaBlockStateProvider {
                 .put(TextureSlot.ALL, ResourceLocation.fromNamespaceAndPath(GaiaDimensionMod.MODID, "block/" + all))
                 .put(OVERLAY, ResourceLocation.fromNamespaceAndPath(GaiaDimensionMod.MODID, "block/" + overlay));
         ResourceLocation model = template.create(block.get(), mapping, blockModels.modelOutput);
-        blockModels.blockStateOutput.accept(BlockModelGenerators.createSimpleBlock(block.get(), model));
+        blockModels.blockStateOutput.accept(BlockModelGenerators.createSimpleBlock(block.get(), plain(model)));
     }
 
     public void logBlock(DeferredBlock<? extends Block> block) {
-        ResourceLocation vertical = ModelTemplates.CUBE_COLUMN.create(block.get(), log(block), blockModels.modelOutput);
-        ResourceLocation horizontal = ModelTemplates.CUBE_COLUMN_HORIZONTAL.create(block.get(), log(block), blockModels.modelOutput);
+        MultiVariant vertical = plain(ModelTemplates.CUBE_COLUMN.create(block.get(), log(block), blockModels.modelOutput));
+        MultiVariant horizontal = plain(ModelTemplates.CUBE_COLUMN_HORIZONTAL.create(block.get(), log(block), blockModels.modelOutput));
         blockModels.blockStateOutput.accept(BlockModelGenerators.createRotatedPillarWithHorizontalVariant(block.get(), vertical, horizontal));
     }
 
@@ -216,14 +221,14 @@ public abstract class GaiaBlockStateProvider {
         TextureMapping base = log(log);
         TextureMapping mapping = base.copyAndUpdate(TextureSlot.END, base.get(TextureSlot.SIDE));
         ResourceLocation model = ModelTemplates.CUBE_COLUMN.create(block.get(), mapping, blockModels.modelOutput);
-        blockModels.blockStateOutput.accept(BlockModelGenerators.createAxisAlignedPillarBlock(block.get(), model));
+        blockModels.blockStateOutput.accept(BlockModelGenerators.createAxisAlignedPillarBlock(block.get(), plain(model)));
     }
 
     public void stairsBlock(DeferredBlock<StairBlock> block, DeferredBlock<Block> base) {
         ResourceLocation inner = ModelTemplates.STAIRS_INNER.create(block.get(), stair(base), blockModels.modelOutput);
         ResourceLocation straight = ModelTemplates.STAIRS_STRAIGHT.create(block.get(), stair(base), blockModels.modelOutput);
         ResourceLocation outer = ModelTemplates.STAIRS_OUTER.create(block.get(), stair(base), blockModels.modelOutput);
-        blockModels.blockStateOutput.accept(BlockModelGenerators.createStairs(block.get(), inner, straight, outer));
+        blockModels.blockStateOutput.accept(BlockModelGenerators.createStairs(block.get(), BlockModelGenerators.plainVariant(inner), BlockModelGenerators.plainVariant(straight), BlockModelGenerators.plainVariant(outer)));
         blockModels.itemModelOutput.accept(block.asItem(), ItemModelUtils.plainModel(straight));
     }
 
@@ -231,7 +236,7 @@ public abstract class GaiaBlockStateProvider {
         ResourceLocation inner = ModelTemplates.STAIRS_INNER.create(block.get(), pillarStair(base), blockModels.modelOutput);
         ResourceLocation straight = ModelTemplates.STAIRS_STRAIGHT.create(block.get(), pillarStair(base), blockModels.modelOutput);
         ResourceLocation outer = ModelTemplates.STAIRS_OUTER.create(block.get(), pillarStair(base), blockModels.modelOutput);
-        blockModels.blockStateOutput.accept(BlockModelGenerators.createStairs(block.get(), inner, straight, outer));
+        blockModels.blockStateOutput.accept(BlockModelGenerators.createStairs(block.get(), BlockModelGenerators.plainVariant(inner), BlockModelGenerators.plainVariant(straight), BlockModelGenerators.plainVariant(outer)));
         blockModels.itemModelOutput.accept(block.asItem(), ItemModelUtils.plainModel(straight));
     }
 
@@ -270,7 +275,7 @@ public abstract class GaiaBlockStateProvider {
         ResourceLocation inner = inner_template.create(block.get(), mapping, blockModels.modelOutput);
         ResourceLocation straight = straight_template.create(block.get(), mapping, blockModels.modelOutput);
         ResourceLocation outer = outer_template.create(block.get(), mapping, blockModels.modelOutput);
-        blockModels.blockStateOutput.accept(BlockModelGenerators.createStairs(block.get(), inner, straight, outer));
+        blockModels.blockStateOutput.accept(BlockModelGenerators.createStairs(block.get(), BlockModelGenerators.plainVariant(inner), BlockModelGenerators.plainVariant(straight), BlockModelGenerators.plainVariant(outer)));
         blockModels.itemModelOutput.accept(block.asItem(), ItemModelUtils.plainModel(straight));
     }
 
@@ -278,28 +283,28 @@ public abstract class GaiaBlockStateProvider {
         ResourceLocation bottom = ModelTemplates.SLAB_BOTTOM.create(block.get(), slab(doubleBlock), blockModels.modelOutput);
         ResourceLocation top = ModelTemplates.SLAB_TOP.create(block.get(), slab(doubleBlock), blockModels.modelOutput);
         ResourceLocation full = ModelLocationUtils.getModelLocation(doubleBlock.get());
-        blockModels.blockStateOutput.accept(BlockModelGenerators.createSlab(block.get(), bottom, top, full));
+        blockModels.blockStateOutput.accept(BlockModelGenerators.createSlab(block.get(), BlockModelGenerators.plainVariant(bottom), BlockModelGenerators.plainVariant(top), BlockModelGenerators.plainVariant(full)));
         blockModels.itemModelOutput.accept(block.asItem(), ItemModelUtils.plainModel(bottom));
     }
 
     public void crossBlock(DeferredBlock<? extends Block> block, String type) {
         ResourceLocation location = ModelTemplates.CROSS.extend().renderType(type).build().create(block.get(), TextureMapping.cross(block.get()), blockModels.modelOutput);
-        blockModels.blockStateOutput.accept(BlockModelGenerators.createSimpleBlock(block.get(), location));
+        blockModels.blockStateOutput.accept(BlockModelGenerators.createSimpleBlock(block.get(), plain(location)));
         blockModels.registerSimpleItemModel(block.asItem(), blockModels.createFlatItemModelWithBlockTexture(block.asItem(), block.get()));
     }
 
     public void crossBlockTinted(DeferredBlock<Block> block) {
         ResourceLocation location = ModelTemplates.TINTED_CROSS.extend().renderType("translucent").build().create(block.get(), TextureMapping.cross(block.get()), blockModels.modelOutput);
         ResourceLocation item = blockModels.createFlatItemModelWithBlockTexture(block.asItem(), block.get());
-        blockModels.blockStateOutput.accept(BlockModelGenerators.createSimpleBlock(block.get(), location));
+        blockModels.blockStateOutput.accept(BlockModelGenerators.createSimpleBlock(block.get(), plain(location)));
         blockModels.registerSimpleTintedItemModel(block.get(), item, ItemModelUtils.constantTint(0xF2A3B4));
     }
 
     public void auraShoot() {
         ResourceLocation base = ModelLocationUtils.getModelLocation(ModBlocks.aura_shoot.get());
         ResourceLocation tip = ModelLocationUtils.getModelLocation(ModBlocks.aura_shoot.get(), "_top");
-        blockModels.blockStateOutput.accept(MultiVariantGenerator.multiVariant(ModBlocks.aura_shoot.get())
-                .with(BlockModelGenerators.createBooleanModelDispatch(AuraShootBlock.IS_TOP, tip, base)));
+        blockModels.blockStateOutput.accept(MultiVariantGenerator.dispatch(ModBlocks.aura_shoot.get())
+                .with(BlockModelGenerators.createBooleanModelDispatch(AuraShootBlock.IS_TOP, BlockModelGenerators.plainVariant(tip), BlockModelGenerators.plainVariant(base))));
         blockModels.registerSimpleTintedItemModel(ModBlocks.aura_shoot.get(), tip, ItemModelUtils.constantTint(0x1109B7));
     }
 
@@ -309,7 +314,7 @@ public abstract class GaiaBlockStateProvider {
         ResourceLocation on = TexturedModel.ORIENTABLE_ONLY_TOP.get(block.get())
                 .updateTextures(t -> t.put(TextureSlot.FRONT, frontlit))
                 .createWithSuffix(block.get(), "_lit", blockModels.modelOutput);
-        orientableBlock(block, on, off);
+        orientableBlock(block, BlockModelGenerators.plainVariant(on), BlockModelGenerators.plainVariant(off));
     }
 
     public void orientableBlockBasicLit(DeferredBlock<Block> block) {
@@ -317,27 +322,27 @@ public abstract class GaiaBlockStateProvider {
                 .put(TextureSlot.SIDE, TextureMapping.getBlockTexture(block.get(), "_side"))
                 .put(TextureSlot.FRONT, TextureMapping.getBlockTexture(block.get(), "_front"))
                 .put(TextureSlot.TOP, TextureMapping.getBlockTexture(block.get(), "_side"));
-        ResourceLocation off = ModelTemplates.CUBE_ORIENTABLE.create(block.get(), mapping, blockModels.modelOutput);
+        MultiVariant off = BlockModelGenerators.plainVariant(ModelTemplates.CUBE_ORIENTABLE.create(block.get(), mapping, blockModels.modelOutput));
         TextureMapping mappinglit = new TextureMapping()
                 .put(TextureSlot.SIDE, TextureMapping.getBlockTexture(block.get(), "_side"))
                 .put(TextureSlot.FRONT, TextureMapping.getBlockTexture(block.get(), "_front_lit"))
                 .put(TextureSlot.TOP, TextureMapping.getBlockTexture(block.get(), "_side"));
-        ResourceLocation on = ModelTemplates.CUBE_ORIENTABLE.extend().suffix("_lit").build().create(block.get(), mappinglit, blockModels.modelOutput);
+        MultiVariant on = BlockModelGenerators.plainVariant(ModelTemplates.CUBE_ORIENTABLE.extend().suffix("_lit").build().create(block.get(), mappinglit, blockModels.modelOutput));
         orientableBlock(block, on, off);
     }
 
-    public void orientableBlock(DeferredBlock<Block> block, ResourceLocation lit, ResourceLocation unlit) {
+    public void orientableBlock(DeferredBlock<Block> block, MultiVariant lit, MultiVariant unlit) {
         this.blockModels.blockStateOutput.accept(
-                MultiVariantGenerator.multiVariant(block.get())
+                MultiVariantGenerator.dispatch(block.get())
                         .with(BlockModelGenerators.createBooleanModelDispatch(BlockStateProperties.LIT, lit, unlit))
-                        .with(BlockModelGenerators.createHorizontalFacingDispatch()));
+                        .with(BlockModelGenerators.ROTATION_HORIZONTAL_FACING));
     }
 
     public void grassBlock(DeferredBlock<Block> block, DeferredBlock<Block> bottom, int tint) {
         if (tint >= 0) {
-            ResourceLocation model = GRASS_TEMPLATE.create(block.get(), grass(block.get(), bottom), blockModels.modelOutput);
-            blockModels.blockStateOutput.accept(BlockModelGenerators.createRotatedVariant(block.get(), model));
-            blockModels.registerSimpleTintedItemModel(block.get(), model, ItemModelUtils.constantTint(tint));
+            ResourceLocation location = GRASS_TEMPLATE.create(block.get(), grass(block.get(), bottom), blockModels.modelOutput);
+            blockModels.blockStateOutput.accept(MultiVariantGenerator.dispatch(block.get(), BlockModelGenerators.createRotatedVariants(BlockModelGenerators.plainModel(location))));
+            blockModels.registerSimpleTintedItemModel(block.get(), location, ItemModelUtils.constantTint(tint));
         } else {
             TextureMapping mapping = new TextureMapping()
                     .put(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(block.get(), "_side"))
@@ -345,7 +350,7 @@ public abstract class GaiaBlockStateProvider {
                     .put(TextureSlot.BOTTOM, TextureMapping.getBlockTexture(bottom.get()))
                     .put(TextureSlot.SIDE, TextureMapping.getBlockTexture(block.get(), "_side"));
             ResourceLocation model = ModelTemplates.CUBE_BOTTOM_TOP.create(block.get(), mapping, blockModels.modelOutput);
-            blockModels.blockStateOutput.accept(BlockModelGenerators.createRotatedVariant(block.get(), model));
+            blockModels.blockStateOutput.accept(MultiVariantGenerator.dispatch(block.get(), BlockModelGenerators.createRotatedVariants(BlockModelGenerators.plainModel(model))));
             blockModels.itemModelOutput.accept(block.asItem(), ItemModelUtils.plainModel(model));
         }
     }
@@ -354,49 +359,48 @@ public abstract class GaiaBlockStateProvider {
         //plant
         TextureMapping plantmap = TextureMapping.cross(plant.get());
         ResourceLocation plantloc = ModelTemplates.CROSS.extend().renderType("cutout").build().create(plant.get(), plantmap, blockModels.modelOutput);
-        blockModels.blockStateOutput.accept(BlockModelGenerators.createSimpleBlock(plant.get(), plantloc));
+        blockModels.blockStateOutput.accept(BlockModelGenerators.createSimpleBlock(plant.get(), BlockModelGenerators.plainVariant(plantloc)));
         //pot
         TextureMapping potmap = TextureMapping.plant(plant.get());
         ResourceLocation potloc = POT_CROSS_CUTOUT_TEMPLATE.create(pot.get(), potmap, blockModels.modelOutput);
-        blockModels.blockStateOutput.accept(BlockModelGenerators.createSimpleBlock(pot.get(), potloc));
+        blockModels.blockStateOutput.accept(BlockModelGenerators.createSimpleBlock(pot.get(), BlockModelGenerators.plainVariant(potloc)));
         //item
         blockModels.registerSimpleItemModel(plant.asItem(), blockModels.createFlatItemModelWithBlockTexture(plant.asItem(), plant.get()));
     }
 
     public void torchBlock(DeferredBlock<Block> block, DeferredBlock<Block> wall) {
         TextureMapping texturemapping = TextureMapping.torch(block.get());
-        blockModels.blockStateOutput.accept(BlockModelGenerators.createSimpleBlock(block.get(), ModelTemplates.TORCH.extend().renderType("cutout").build().create(block.get(), texturemapping, blockModels.modelOutput)));
+        ResourceLocation wallmodel = ModelTemplates.WALL_TORCH.extend().renderType("cutout").build().create(wall.get(), texturemapping, blockModels.modelOutput);
+
+        blockModels.blockStateOutput.accept(BlockModelGenerators.createSimpleBlock(block.get(), BlockModelGenerators.plainVariant(ModelTemplates.TORCH.extend().renderType("cutout").build().create(block.get(), texturemapping, blockModels.modelOutput))));
         blockModels.blockStateOutput
                 .accept(
-                        MultiVariantGenerator.multiVariant(
-                                        wall.get(),
-                                        Variant.variant().with(VariantProperties.MODEL, ModelTemplates.WALL_TORCH.extend().renderType("cutout").build().create(wall.get(), texturemapping, blockModels.modelOutput))
-                                )
-                                .with(BlockModelGenerators.createTorchHorizontalDispatch())
-                );
+                        MultiVariantGenerator.dispatch(wall.get(), BlockModelGenerators.plainVariant(wallmodel))
+                                .with(BlockModelGenerators.ROTATION_TORCH));
+
         blockModels.registerSimpleFlatItemModel(block.get());
     }
 
-    public void curtainProps(PropertyDispatch.C4<Direction.Axis, DoubleBlockHalf, CurtainBlock.CurtainSide, Boolean> base, Direction.Axis axis, DoubleBlockHalf half, CurtainBlock.CurtainSide side, boolean open, ResourceLocation model) {
-        base.select(axis, half, side, open, Variant.variant().with(VariantProperties.MODEL, model).with(VariantProperties.Y_ROT, axis == Direction.Axis.Z ? VariantProperties.Rotation.R90 : VariantProperties.Rotation.R0));
+    public void curtainProps(PropertyDispatch.C4<MultiVariant, Direction.Axis, DoubleBlockHalf, CurtainBlock.CurtainSide, Boolean> base, Direction.Axis axis, DoubleBlockHalf half, CurtainBlock.CurtainSide side, boolean open, MultiVariant model) {
+        base.select(axis, half, side, open, model.with(axis == Direction.Axis.Z ? BlockModelGenerators.Y_ROT_90 : VariantMutator.Y_ROT.withValue(Quadrant.R0)));
     }
 
     public void curtainBlock(DeferredBlock<? extends Block> block) {
         Block curtain = block.get();
-        ResourceLocation upper = CURTAIN_TOP.create(curtain, curtain(block, "_top"), blockModels.modelOutput);
-        ResourceLocation lower = CURTAIN_BOTTOM.create(curtain, curtain(block, "_bottom"), blockModels.modelOutput);
-        ResourceLocation upper_left = CURTAIN_TOP_LEFT.create(curtain, curtain(block, "_top_left"), blockModels.modelOutput);
-        ResourceLocation lower_left = CURTAIN_BOTTOM_LEFT.create(curtain, curtain(block, "_bottom_left"), blockModels.modelOutput);
-        ResourceLocation upper_right = CURTAIN_TOP_RIGHT.create(curtain, curtain(block, "_top_right"), blockModels.modelOutput);
-        ResourceLocation lower_right = CURTAIN_BOTTOM_RIGHT.create(curtain, curtain(block, "_bottom_right"), blockModels.modelOutput);
-        ResourceLocation upper_open = CURTAIN_TOP_OPEN.create(curtain, curtain(block, "_top_open"), blockModels.modelOutput);
-        ResourceLocation lower_open = CURTAIN_BOTTOM_OPEN.create(curtain, curtain(block, "_bottom_open"), blockModels.modelOutput);
-        ResourceLocation upper_left_open = CURTAIN_TOP_LEFT_OPEN.create(curtain, curtain(block, "_top_left_open"), blockModels.modelOutput);
-        ResourceLocation lower_left_open = CURTAIN_BOTTOM_LEFT_OPEN.create(curtain, curtain(block, "_bottom_left_open"), blockModels.modelOutput);
-        ResourceLocation upper_right_open = CURTAIN_TOP_RIGHT_OPEN.create(curtain, curtain(block, "_top_right_open"), blockModels.modelOutput);
-        ResourceLocation lower_right_open = CURTAIN_BOTTOM_RIGHT_OPEN.create(curtain, curtain(block, "_bottom_right_open"), blockModels.modelOutput);
+        MultiVariant upper = plain(CURTAIN_TOP.create(curtain, curtain(block, "_top"), blockModels.modelOutput));
+        MultiVariant lower = plain(CURTAIN_BOTTOM.create(curtain, curtain(block, "_bottom"), blockModels.modelOutput));
+        MultiVariant upper_left = plain(CURTAIN_TOP_LEFT.create(curtain, curtain(block, "_top_left"), blockModels.modelOutput));
+        MultiVariant lower_left = plain(CURTAIN_BOTTOM_LEFT.create(curtain, curtain(block, "_bottom_left"), blockModels.modelOutput));
+        MultiVariant upper_right = plain(CURTAIN_TOP_RIGHT.create(curtain, curtain(block, "_top_right"), blockModels.modelOutput));
+        MultiVariant lower_right = plain(CURTAIN_BOTTOM_RIGHT.create(curtain, curtain(block, "_bottom_right"), blockModels.modelOutput));
+        MultiVariant upper_open = plain(CURTAIN_TOP_OPEN.create(curtain, curtain(block, "_top_open"), blockModels.modelOutput));
+        MultiVariant lower_open = plain(CURTAIN_BOTTOM_OPEN.create(curtain, curtain(block, "_bottom_open"), blockModels.modelOutput));
+        MultiVariant upper_left_open = plain(CURTAIN_TOP_LEFT_OPEN.create(curtain, curtain(block, "_top_left_open"), blockModels.modelOutput));
+        MultiVariant lower_left_open = plain(CURTAIN_BOTTOM_LEFT_OPEN.create(curtain, curtain(block, "_bottom_left_open"), blockModels.modelOutput));
+        MultiVariant upper_right_open = plain(CURTAIN_TOP_RIGHT_OPEN.create(curtain, curtain(block, "_top_right_open"), blockModels.modelOutput));
+        MultiVariant lower_right_open = plain(CURTAIN_BOTTOM_RIGHT_OPEN.create(curtain, curtain(block, "_bottom_right_open"), blockModels.modelOutput));
 
-        PropertyDispatch.C4<Direction.Axis, DoubleBlockHalf, CurtainBlock.CurtainSide, Boolean> dispatch = PropertyDispatch.properties(
+        PropertyDispatch.C4<MultiVariant, Direction.Axis, DoubleBlockHalf, CurtainBlock.CurtainSide, Boolean> dispatch = PropertyDispatch.initial(
                 CurtainBlock.FACING,
                 CurtainBlock.HALF,
                 CurtainBlock.SIDE,
@@ -427,7 +431,7 @@ public abstract class GaiaBlockStateProvider {
         curtainProps(dispatch, Direction.Axis.Z, DoubleBlockHalf.LOWER, CurtainBlock.CurtainSide.RIGHT, true, lower_right_open);
 
         blockModels.blockStateOutput.accept(
-                MultiVariantGenerator.multiVariant(block.get())
+                MultiVariantGenerator.dispatch(block.get())
                         .with(dispatch));
         blockModels.registerSimpleFlatItemModel(block.asItem());
     }

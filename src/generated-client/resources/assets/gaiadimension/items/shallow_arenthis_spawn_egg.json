@@ -1,16 +1,6 @@
 {
   "model": {
     "type": "minecraft:model",
-    "model": "minecraft:item/template_spawn_egg",
-    "tints": [
-      {
-        "type": "minecraft:constant",
-        "value": -10053172
-      },
-      {
-        "type": "minecraft:constant",
-        "value": -16764007
-      }
-    ]
+    "model": "gaiadimension:item/shallow_arenthis_spawn_egg"
   }
 }

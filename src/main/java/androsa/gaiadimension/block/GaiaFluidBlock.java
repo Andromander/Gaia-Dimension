@@ -4,6 +4,7 @@ import androsa.gaiadimension.fluids.SuperhotMagmaFluid;
 import net.minecraft.core.BlockPos;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.InsideBlockEffectApplier;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.LiquidBlock;
 import net.minecraft.world.level.block.state.BlockState;
@@ -20,7 +21,7 @@ public class GaiaFluidBlock extends LiquidBlock {
     //TODO: Revise
     @Override
     @Deprecated
-    public void entityInside(BlockState state, Level worldIn, BlockPos pos, Entity entityIn) {
+    public void entityInside(BlockState state, Level worldIn, BlockPos pos, Entity entityIn, InsideBlockEffectApplier applier) {
         if (this.fluid.is(FluidTags.LAVA) || this.fluid instanceof SuperhotMagmaFluid ) {
             if (!entityIn.fireImmune()) {
                 entityIn.hurt(worldIn.damageSources().lava(), 5.0F);

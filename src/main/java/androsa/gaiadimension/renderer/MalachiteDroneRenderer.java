@@ -24,7 +24,7 @@ public class MalachiteDroneRenderer<T extends MalachiteDrone, M extends Malachit
     @Override
     public void extractRenderState(T entity, MalachiteDroneRenderState state, float partialTicks) {
         super.extractRenderState(entity, state, partialTicks);
-        state.isFollowing = entity.getOwnerUniqueId() != null;
+        state.isFollowing = entity.getOwnerReference() != null;
     }
 
     @Override

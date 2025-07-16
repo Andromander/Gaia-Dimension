@@ -3,6 +3,7 @@ package androsa.gaiadimension.block;
 import androsa.gaiadimension.registry.bootstrap.GaiaDamage;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.InsideBlockEffectApplier;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.TransparentBlock;
 import net.minecraft.world.level.block.state.BlockState;
@@ -16,7 +17,7 @@ public class ChargedMineralBlock extends TransparentBlock {
 
     @Override
     @Deprecated
-    public void entityInside(BlockState state, Level worldIn, BlockPos pos, Entity entityIn) {
+    public void entityInside(BlockState state, Level worldIn, BlockPos pos, Entity entityIn, InsideBlockEffectApplier applier) {
         entityIn.hurt(GaiaDamage.getDamage(worldIn, GaiaDamage.STATIC), 4.0F);
     }
 }

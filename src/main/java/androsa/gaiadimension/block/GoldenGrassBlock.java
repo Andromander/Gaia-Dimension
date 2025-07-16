@@ -20,8 +20,8 @@ public class GoldenGrassBlock extends BushBlock implements IShearable {
     }
 
     @Override
-    protected MapCodec<? extends GoldenGrassBlock> codec() {
-        return CODEC;
+    public MapCodec<BushBlock> codec() {
+        return (MapCodec<BushBlock>)(MapCodec<?>) CODEC;
     }
 
     @Override

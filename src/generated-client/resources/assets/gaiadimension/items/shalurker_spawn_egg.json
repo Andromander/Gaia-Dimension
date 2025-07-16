@@ -1,16 +1,6 @@
 {
   "model": {
     "type": "minecraft:model",
-    "model": "minecraft:item/template_spawn_egg",
-    "tints": [
-      {
-        "type": "minecraft:constant",
-        "value": -8973961
-      },
-      {
-        "type": "minecraft:constant",
-        "value": -16777216
-      }
-    ]
+    "model": "gaiadimension:item/shalurker_spawn_egg"
   }
 }

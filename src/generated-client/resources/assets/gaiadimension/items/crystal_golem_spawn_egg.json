@@ -1,16 +1,6 @@
 {
   "model": {
     "type": "minecraft:model",
-    "model": "minecraft:item/template_spawn_egg",
-    "tints": [
-      {
-        "type": "minecraft:constant",
-        "value": -39220
-      },
-      {
-        "type": "minecraft:constant",
-        "value": -26164
-      }
-    ]
+    "model": "gaiadimension:item/crystal_golem_spawn_egg"
   }
 }

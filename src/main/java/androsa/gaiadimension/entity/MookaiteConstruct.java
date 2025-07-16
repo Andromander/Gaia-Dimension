@@ -51,8 +51,8 @@ import java.util.function.Supplier;
 
 public class MookaiteConstruct extends PathfinderMob {
 
-    private static final EntityDataAccessor<Optional<UUID>> BOND_CREATOR_UUID = SynchedEntityData.defineId(MookaiteConstruct.class, EntityDataSerializers.OPTIONAL_UUID);
-    private static final EntityDataAccessor<Optional<UUID>> OPALITE_COMPANION_UUID = SynchedEntityData.defineId(MookaiteConstruct.class, EntityDataSerializers.OPTIONAL_UUID);
+    private static final EntityDataAccessor<Optional<EntityReference<LivingEntity>>> BOND_CREATOR_UUID = SynchedEntityData.defineId(MookaiteConstruct.class, EntityDataSerializers.OPTIONAL_LIVING_ENTITY_REFERENCE);
+    private static final EntityDataAccessor<Optional<EntityReference<LivingEntity>>> OPALITE_COMPANION_UUID = SynchedEntityData.defineId(MookaiteConstruct.class, EntityDataSerializers.OPTIONAL_LIVING_ENTITY_REFERENCE);
     private static final EntityDataAccessor<Boolean> IS_BURNING = SynchedEntityData.defineId(MookaiteConstruct.class, EntityDataSerializers.BOOLEAN);
     private static final EntityDataAccessor<Boolean> IS_CONSTRUCTING = SynchedEntityData.defineId(MookaiteConstruct.class, EntityDataSerializers.BOOLEAN);
     public static final EntityDataAccessor<MookaitePartType> LEFT_HORN_TYPE = SynchedEntityData.defineId(MookaiteConstruct.class, ModEntities.MOOKAITE_PART.get());
@@ -126,34 +126,30 @@ public class MookaiteConstruct extends PathfinderMob {
     @Override
     public void readAdditionalSaveData(CompoundTag tag) {
         super.readAdditionalSaveData(tag);
-        if (tag.hasUUID("BonderUUID")) {
-            this.setBonder(tag.getUUID("BonderUUID"));
-        }
-        if (tag.hasUUID("OpaliteUUID")) {
-            this.setOpaliteCompanion(tag.getUUID("OpaliteUUID"));
-        }
-        this.setBurning(tag.getBoolean("IsBurning"));
-        this.setConstructing(tag.getBoolean("IsConstructing"));
-        this.setPart(LEFT_HORN, MookaitePartType.fromName(tag.getString("LeftHornType")));
-        this.setPart(RIGHT_HORN, MookaitePartType.fromName(tag.getString("RightHornType")));
-        this.setPart(LEFT_EYE, MookaitePartType.fromName(tag.getString("LeftEyeType")));
-        this.setPart(RIGHT_EYE, MookaitePartType.fromName(tag.getString("RightEyeType")));
-        this.setPart(LEFT_SHOULDER, MookaitePartType.fromName(tag.getString("LeftShoulderType")));
-        this.setPart(RIGHT_SHOULDER, MookaitePartType.fromName(tag.getString("RightShoulderType")));
-        this.setPart(LEFT_ARM, MookaitePartType.fromName(tag.getString("LeftArmBraceType")));
-        this.setPart(RIGHT_ARM, MookaitePartType.fromName(tag.getString("RightArmBraceType")));
-        this.setPart(LEFT_LEG, MookaitePartType.fromName(tag.getString("LeftLegBraceType")));
-        this.setPart(RIGHT_LEG, MookaitePartType.fromName(tag.getString("RightLegBraceType")));
+        this.setBonder(EntityReference.readWithOldOwnerConversion(tag, "BonderUUID", this.level()));
+        this.setOpaliteCompanion(EntityReference.readWithOldOwnerConversion(tag, "OpaliteUUID", this.level()));
+        this.setBurning(tag.getBooleanOr("IsBurning", false));
+        this.setConstructing(tag.getBooleanOr("IsConstructing", false));
+        this.setPart(LEFT_HORN, MookaitePartType.fromName(tag.getStringOr("LeftHornType", "")));
+        this.setPart(RIGHT_HORN, MookaitePartType.fromName(tag.getStringOr("RightHornType", "")));
+        this.setPart(LEFT_EYE, MookaitePartType.fromName(tag.getStringOr("LeftEyeType", "")));
+        this.setPart(RIGHT_EYE, MookaitePartType.fromName(tag.getStringOr("RightEyeType", "")));
+        this.setPart(LEFT_SHOULDER, MookaitePartType.fromName(tag.getStringOr("LeftShoulderType", "")));
+        this.setPart(RIGHT_SHOULDER, MookaitePartType.fromName(tag.getStringOr("RightShoulderType", "")));
+        this.setPart(LEFT_ARM, MookaitePartType.fromName(tag.getStringOr("LeftArmBraceType", "")));
+        this.setPart(RIGHT_ARM, MookaitePartType.fromName(tag.getStringOr("RightArmBraceType", "")));
+        this.setPart(LEFT_LEG, MookaitePartType.fromName(tag.getStringOr("LeftLegBraceType", "")));
+        this.setPart(RIGHT_LEG, MookaitePartType.fromName(tag.getStringOr("RightLegBraceType", "")));
     }
 
     @Override
     public void addAdditionalSaveData(CompoundTag tag) {
         super.addAdditionalSaveData(tag);
         if (this.getBonder() != null) {
-            tag.putUUID("BonderUUID", this.getBonder());
+            tag.putString("BonderUUID", this.getBonder().toString());
         }
         if (this.getOpaliteCompanion() != null) {
-            tag.putUUID("OpaliteUUID", this.getOpaliteCompanion());
+            tag.putString("OpaliteUUID", this.getOpaliteCompanion().toString());
         }
         tag.putBoolean("IsBurning", isBurning());
         tag.putBoolean("IsConstructing", isConstructing());
@@ -169,19 +165,19 @@ public class MookaiteConstruct extends PathfinderMob {
         tag.putString("RightLegBraceType", getPart(RIGHT_LEG).getSerializedName());
     }
 
-    public void setBonder(UUID id) {
+    public void setBonder(EntityReference<LivingEntity> id) {
         this.entityData.set(BOND_CREATOR_UUID, Optional.ofNullable(id));
     }
 
-    public UUID getBonder() {
+    public EntityReference<LivingEntity> getBonder() {
         return this.entityData.get(BOND_CREATOR_UUID).orElse(null);
     }
 
-    public void setOpaliteCompanion(UUID id) {
+    public void setOpaliteCompanion(EntityReference<LivingEntity> id) {
         this.entityData.set(OPALITE_COMPANION_UUID, Optional.ofNullable(id));
     }
 
-    public UUID getOpaliteCompanion() {
+    public EntityReference<LivingEntity> getOpaliteCompanion() {
         return this.entityData.get(OPALITE_COMPANION_UUID).orElse(null);
     }
 
@@ -355,7 +351,7 @@ public class MookaiteConstruct extends PathfinderMob {
         if (CommonHooks.onLivingDeath(this, source)) return;
 
         if (this.level() instanceof ServerLevel level && this.getOpaliteCompanion() != null) {
-            Entity entity = level.getEntity(this.getOpaliteCompanion());
+            Entity entity = level.getEntity(this.getOpaliteCompanion().getUUID());
             if (entity instanceof OpaliteContruct opalite) {
                 opalite.setMookaiteCompanion(null);
             }
@@ -375,7 +371,7 @@ public class MookaiteConstruct extends PathfinderMob {
 
         public boolean canUse() {
             if (this.mob.level() instanceof ServerLevel server) {
-                this.lookAt = server.getEntity(this.mob.getOpaliteCompanion());
+                this.lookAt = server.getEntity(this.mob.getOpaliteCompanion().getUUID());
             }
 
             return this.mob.isConstructing() && this.mob.getOpaliteCompanion() != null;
@@ -475,7 +471,7 @@ public class MookaiteConstruct extends PathfinderMob {
             if (stompTime >= 10) {
                 float range = 2.0F + (float) mookaite.countColors(this.color);
                 List<Entity> targets = mookaite.level().getEntities(mookaite, mookaite.getBoundingBox().inflate(range), (entity) ->
-                        !entity.getUUID().equals(mookaite.getOpaliteCompanion()) && !entity.getUUID().equals(mookaite.getBonder()) && entity.onGround());
+                        !entity.getUUID().equals(mookaite.getOpaliteCompanion().getUUID()) && !entity.getUUID().equals(mookaite.getBonder().getUUID()) && entity.onGround());
                 mookaite.playSound(ModSounds.ENTITY_MOOKAITE_CONSTRUCT_STOMP.get(), 1.0F, 1.0F);
 
                 for (Entity entity : targets) {
@@ -485,13 +481,13 @@ public class MookaiteConstruct extends PathfinderMob {
                     entity.setDeltaMovement(targetV3D.x() * 0.25F, targetV3D.y() + 0.2F, targetV3D.z() * 0.25F);
                 }
 
-                if (!mookaite.level().isClientSide()) {
+                if (mookaite.level() instanceof ServerLevel server) {
                     int size = 2 + mookaite.countColors(this.color);
                     for (int x = -size; x <= size; x++) {
                         for (int z = -size; z <= size; z++) {
                             BlockPos pos = mookaite.blockPosition().offset(x, 0, z);
-                            BlockState state = mookaite.level().getBlockState(pos.below());
-                            ((ServerLevel) mookaite.level()).sendParticles(new BlockParticleOption(ParticleTypes.BLOCK, state), pos.getX(), mookaite.getY() + (mookaite.random.nextDouble() * 0.25D), pos.getZ(), 5, 0.0F, 0.0F, 0.0F, 0.0D);
+                            BlockState state = server.getBlockState(pos.below());
+                            server.sendParticles(new BlockParticleOption(ParticleTypes.BLOCK, state), pos.getX(), mookaite.getY() + (mookaite.random.nextDouble() * 0.25D), pos.getZ(), 5, 0.0F, 0.0F, 0.0F, 0.0D);
                         }
                     }
                 }
@@ -592,8 +588,8 @@ public class MookaiteConstruct extends PathfinderMob {
             List<Entity> affectedList = Lists.newArrayList();
             List<Entity> possibleList = this.mookaite.level().getEntities(this.mookaite, this.mookaite.getBoundingBox().move(lookVec.x * offset, lookVec.y * offset, lookVec.z * offset).inflate(area), (entity) ->
                     entity.isPickable() &&
-                    !entity.getUUID().equals(this.mookaite.getOpaliteCompanion()) &&
-                    !entity.getUUID().equals(this.mookaite.getBonder()) &&
+                    !entity.getUUID().equals(this.mookaite.getOpaliteCompanion().getUUID()) &&
+                    !entity.getUUID().equals(this.mookaite.getBonder().getUUID()) &&
                     EntitySelector.NO_CREATIVE_OR_SPECTATOR.and(EntitySelector.LIVING_ENTITY_STILL_ALIVE).test(entity));
 
             for (Entity possibleEntity : possibleList) {
@@ -696,7 +692,7 @@ public class MookaiteConstruct extends PathfinderMob {
         @Override
         public void tick() {
             List<Entity> targets = mookaite.level().getEntities(mookaite, mookaite.getBoundingBox().inflate(2.0F), (entity) ->
-                    !entity.getUUID().equals(mookaite.getOpaliteCompanion()) && !entity.getUUID().equals(mookaite.getBonder()));
+                    !entity.getUUID().equals(mookaite.getOpaliteCompanion().getUUID()) && !entity.getUUID().equals(mookaite.getBonder().getUUID()));
 
             for (Entity entity : targets) {
                 Vec3 targetV3D = entity.getDeltaMovement();
@@ -705,10 +701,10 @@ public class MookaiteConstruct extends PathfinderMob {
                 entity.setDeltaMovement(targetV3D.x() * 0.35F, targetV3D.y() + 0.15F, targetV3D.z() * 0.35F);
             }
 
-            if (!mookaite.level().isClientSide()) {
+            if (mookaite.level() instanceof ServerLevel server) {
                 for (int x = -2; x <= 2; x++) {
                     for (int z = -2; z <= 2; z++) {
-                        ((ServerLevel) mookaite.level()).sendParticles(ParticleTypes.ELECTRIC_SPARK, mookaite.getRandomX(2.0D), this.mookaite.getRandomY(), this.mookaite.getRandomZ(2.0D), 10, 0.0F, 0.0F, 0.0F, 0.0D);
+                        server.sendParticles(ParticleTypes.ELECTRIC_SPARK, mookaite.getRandomX(2.0D), this.mookaite.getRandomY(), this.mookaite.getRandomZ(2.0D), 10, 0.0F, 0.0F, 0.0F, 0.0D);
                     }
                 }
             }

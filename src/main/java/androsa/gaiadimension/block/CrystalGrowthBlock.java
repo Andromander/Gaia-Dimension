@@ -19,8 +19,8 @@ public class CrystalGrowthBlock extends BushBlock implements IShearable {
     }
 
     @Override
-    protected MapCodec<? extends CrystalGrowthBlock> codec() {
-        return CODEC;
+    public MapCodec<BushBlock> codec() {
+        return (MapCodec<BushBlock>)(MapCodec<?>) CODEC;
     }
 
     @Override

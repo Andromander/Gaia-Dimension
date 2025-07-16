@@ -1,24 +1,18 @@
 package androsa.gaiadimension.block;
 
 import androsa.gaiadimension.block.blockentity.LargeCrateBlockEntity;
-import androsa.gaiadimension.registry.registration.ModBlockEntities;
 import com.mojang.serialization.MapCodec;
-import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.component.DataComponents;
-import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.Container;
+import net.minecraft.world.Containers;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.TooltipFlag;
-import net.minecraft.world.item.component.ItemContainerContents;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.EntityBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -102,40 +96,22 @@ public class LargeCrateBlock extends Block implements EntityBlock {
     }
 
     @Override
-    @Deprecated
-    public void onRemove(BlockState state, Level worldIn, BlockPos pos, BlockState newState, boolean isMoving) {
-        if (state.getBlock() != newState.getBlock()) {
-            BlockEntity tileentity = worldIn.getBlockEntity(pos);
-            if (tileentity instanceof LargeCrateBlockEntity) {
-                worldIn.updateNeighbourForOutputSignal(pos, state.getBlock());
-            }
-
-            super.onRemove(state, worldIn, pos, newState, isMoving);
-        }
+    protected void affectNeighborsAfterRemoval(BlockState state, ServerLevel level, BlockPos pos, boolean isMoving) {
+        Containers.updateNeighboursAfterDestroy(state, level, pos);
     }
 
-    @Override
-    public void appendHoverText(ItemStack stack, @Nullable Item.TooltipContext worldIn, List<Component> tooltip, TooltipFlag flagIn) {
-        super.appendHoverText(stack, worldIn, tooltip, flagIn);
-        if (stack.has(DataComponents.CONTAINER_LOOT)) {
-            tooltip.add(Component.translatable("container.shulkerBox.unknownContents"));
-        }
-
-        int i = 0;
-        int j = 0;
-
-        for(ItemStack itemstack : stack.getOrDefault(DataComponents.CONTAINER, ItemContainerContents.EMPTY).nonEmptyItems()) {
-            ++j;
-            if (i <= 4) {
-                ++i;
-                tooltip.add(Component.translatable("container.shulkerBox.itemCount", itemstack.getHoverName(), itemstack.getCount()));
-            }
-        }
-
-        if (j - i > 0) {
-            tooltip.add(Component.translatable("container.shulkerBox.more", j - i).withStyle(ChatFormatting.ITALIC));
-        }
-    }
+//    @Override
+//    @Deprecated
+//    public void onRemove(BlockState state, Level worldIn, BlockPos pos, BlockState newState, boolean isMoving) {
+//        if (state.getBlock() != newState.getBlock()) {
+//            BlockEntity tileentity = worldIn.getBlockEntity(pos);
+//            if (tileentity instanceof LargeCrateBlockEntity) {
+//                worldIn.updateNeighbourForOutputSignal(pos, state.getBlock());
+//            }
+//
+//            super.onRemove(state, worldIn, pos, newState, isMoving);
+//        }
+//    }
 
     @Override
     @Deprecated

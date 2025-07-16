@@ -62,7 +62,7 @@ public class LargeCrateBlockEntity extends RandomizableContainerBlockEntity impl
     public void loadFromNbt(CompoundTag compound, HolderLookup.Provider provider) {
         this.items = NonNullList.withSize(this.getContainerSize(), ItemStack.EMPTY);
 
-        if (!this.tryLoadLootTable(compound) && compound.contains("Items", 9)) {
+        if (!this.tryLoadLootTable(compound)) {
             ContainerHelper.loadAllItems(compound, this.items, provider);
         }
     }

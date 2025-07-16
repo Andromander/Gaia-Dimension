@@ -1,8 +1,13 @@
 package androsa.gaiadimension.client;
 
 import androsa.gaiadimension.registry.helpers.GaiaConfig;
+import com.mojang.blaze3d.buffers.BufferType;
 import com.mojang.blaze3d.buffers.BufferUsage;
+import com.mojang.blaze3d.buffers.GpuBuffer;
+import com.mojang.blaze3d.pipeline.RenderPipeline;
+import com.mojang.blaze3d.systems.RenderPass;
 import com.mojang.blaze3d.systems.RenderSystem;
+import com.mojang.blaze3d.textures.GpuTexture;
 import com.mojang.blaze3d.vertex.*;
 import com.mojang.math.Axis;
 import net.minecraft.client.Camera;
@@ -12,13 +17,18 @@ import net.minecraft.client.renderer.*;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.ARGB;
+import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.biome.Biome;
+import org.joml.Matrix3f;
 import org.joml.Matrix4f;
 import org.joml.Matrix4fStack;
+import org.joml.Vector3f;
 
 import java.util.Optional;
+import java.util.OptionalDouble;
+import java.util.OptionalInt;
 
 /**
  * Custom sky render for Gaia:
@@ -33,9 +43,12 @@ import java.util.Optional;
 public class GaiaSkyRender {
 
     private static final ResourceLocation SUN_TEXTURES = ResourceLocation.withDefaultNamespace("textures/environment/sun.png");
-    private final VertexBuffer starVBO = this.generateStars();
+    private final GpuBuffer starVBO;
+    private final RenderSystem.AutoStorageIndexBuffer starIndices = RenderSystem.getSequentialBuffer(VertexFormat.Mode.QUADS);
+    private int starIndexCount;
 
     public GaiaSkyRender() {
+        this.starVBO = this.generateStars();
     }
 
     public boolean render(float partialTicks, ClientLevel world, Camera camera, Matrix4f matrix, Runnable fog) {
@@ -45,7 +58,6 @@ public class GaiaSkyRender {
         fog.run();
         RenderStateShard.MAIN_TARGET.setupRenderState();
         PoseStack stack = new PoseStack();
-        Tesselator tesselator = Tesselator.getInstance();
         float star = getStarBrightness(world, partialTicks);
         int skycol = world.getSkyColor(minecraft.gameRenderer.getMainCamera().getPosition(), partialTicks);
         float red = ARGB.redFloat(skycol);
@@ -53,15 +65,22 @@ public class GaiaSkyRender {
         float blu = ARGB.blueFloat(skycol);
 
         //renderSkyDisc
-        RenderSystem.depthMask(false);
-        RenderSystem.setShader(CoreShaders.POSITION);
         RenderSystem.setShaderColor(red, grn, blu, 1.0F);
-        renderer.skyRenderer.topSkyBuffer.bind();
-        renderer.skyRenderer.topSkyBuffer.drawWithShader(RenderSystem.getModelViewMatrix(), RenderSystem.getProjectionMatrix(), RenderSystem.getShader());
-        VertexBuffer.unbind();
+        GpuTexture colortex = Minecraft.getInstance().getMainRenderTarget().getColorTexture();
+        GpuTexture depthtex = Minecraft.getInstance().getMainRenderTarget().getDepthTexture();
+
+        try (RenderPass pass = RenderSystem.getDevice()
+                .createCommandEncoder()
+                .createRenderPass(colortex, OptionalInt.empty(), depthtex, OptionalDouble.empty())) {
+            pass.setPipeline(RenderPipelines.SKY);
+            pass.setVertexBuffer(0, renderer.skyRenderer.topSkyBuffer);
+            pass.draw(0, 10);
+        }
+
         RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
-        RenderSystem.depthMask(true);
         //
+
+        MultiBufferSource.BufferSource bufferSource = renderer.renderBuffers.bufferSource();
 
         //renderSunMoonAndStars (without the Moon)
         stack.pushPose();
@@ -70,23 +89,13 @@ public class GaiaSkyRender {
 
         ///renderSun
         float f12 = 30.0F;
-        BufferBuilder bufferbuilder = tesselator.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_TEX);
+        VertexConsumer bufferbuilder = bufferSource.getBuffer(RenderType.celestial(SUN_TEXTURES));
         Matrix4f matrix4f1 = stack.last().pose();
-        RenderSystem.depthMask(false);
-        RenderType.OVERLAY_TRANSPARENCY.setupRenderState();
-        RenderSystem.setShader(CoreShaders.POSITION_TEX);
-        RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F /*rain level*/);
-        RenderSystem.setShaderTexture(0, SUN_TEXTURES);
-        RenderSystem.enableBlend();
-        bufferbuilder.addVertex(matrix4f1, -f12, 100.0F, -f12).setUv(0.0F, 0.0F);
-        bufferbuilder.addVertex(matrix4f1, f12, 100.0F, -f12).setUv(1.0F, 0.0F);
-        bufferbuilder.addVertex(matrix4f1, f12, 100.0F, f12).setUv(1.0F, 1.0F);
-        bufferbuilder.addVertex(matrix4f1, -f12, 100.0F, f12).setUv(0.0F, 1.0F);
-        BufferUploader.drawWithShader(bufferbuilder.buildOrThrow());
-        RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
-        RenderSystem.disableBlend();
-        RenderSystem.defaultBlendFunc();
-        RenderSystem.depthMask(true);
+        int color = ARGB.white(1.0F);
+        bufferbuilder.addVertex(matrix4f1, -f12, 100.0F, -f12).setUv(0.0F, 0.0F).setColor(color);
+        bufferbuilder.addVertex(matrix4f1, f12, 100.0F, -f12).setUv(1.0F, 0.0F).setColor(color);
+        bufferbuilder.addVertex(matrix4f1, f12, 100.0F, f12).setUv(1.0F, 1.0F).setColor(color);
+        bufferbuilder.addVertex(matrix4f1, -f12, 100.0F, f12).setUv(0.0F, 1.0F).setColor(color);
         ///
 
         ///renderStars, kind of
@@ -94,20 +103,24 @@ public class GaiaSkyRender {
             Matrix4fStack matrixstack = RenderSystem.getModelViewStack();
             matrixstack.pushMatrix();
             matrixstack.mul(stack.last().pose());
-            RenderSystem.depthMask(false);
-            RenderType.OVERLAY_TRANSPARENCY.setupRenderState();
-            RenderSystem.setShader(CoreShaders.POSITION);
             RenderSystem.setShaderColor(star, star, star, star);
-            RenderSystem.enableBlend();
             RenderSystem.setShaderFog(FogParameters.NO_FOG);
-            starVBO.bind();
-            starVBO.drawWithShader(matrixstack, RenderSystem.getProjectionMatrix(), RenderSystem.getShader());
-            VertexBuffer.unbind();
+            RenderPipeline pipeline = RenderPipelines.STARS;
+            GpuTexture ct = Minecraft.getInstance().getMainRenderTarget().getColorTexture();
+            GpuTexture dt = Minecraft.getInstance().getMainRenderTarget().getDepthTexture();
+            GpuBuffer indices = this.starIndices.getBuffer(this.starIndexCount);
+
+            try (RenderPass pass = RenderSystem.getDevice()
+                    .createCommandEncoder()
+                    .createRenderPass(ct, OptionalInt.empty(), dt, OptionalDouble.empty())) {
+                pass.setPipeline(pipeline);
+                pass.setVertexBuffer(0, this.starVBO);
+                pass.setIndexBuffer(indices, this.starIndices.type());
+                pass.drawIndexed(0, this.starIndexCount);
+            }
+
             fog.run();
             RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
-            RenderSystem.disableBlend();
-            RenderSystem.defaultBlendFunc();
-            RenderSystem.depthMask(true);
             matrixstack.popMatrix();
         }
         ///
@@ -117,17 +130,23 @@ public class GaiaSkyRender {
 
         //renderDarkDisc
         if (camera.getEntity().getEyePosition(partialTicks).y - world.getLevelData().getHorizonHeight(world) < 0.0D) {
-            RenderSystem.depthMask(false);
-            RenderSystem.setShader(CoreShaders.POSITION);
             RenderSystem.setShaderColor(0.0F, 0.0F, 0.0F, 1.0F);
-            stack.pushPose();
-            stack.translate(0.0D, 12.0D, 0.0D);
-            renderer.skyRenderer.bottomSkyBuffer.bind();
-            renderer.skyRenderer.bottomSkyBuffer.drawWithShader(RenderSystem.getModelViewMatrix(), RenderSystem.getProjectionMatrix(), RenderSystem.getShader());
-            VertexBuffer.unbind();
-            stack.popPose();
+            Matrix4fStack matrixstack = RenderSystem.getModelViewStack();
+            matrixstack.pushMatrix();
+            matrixstack.translate(0.0F, 12.0F, 0.0F);
+            GpuTexture ct = Minecraft.getInstance().getMainRenderTarget().getColorTexture();
+            GpuTexture dt = Minecraft.getInstance().getMainRenderTarget().getDepthTexture();
+
+            try (RenderPass renderpass = RenderSystem.getDevice()
+                    .createCommandEncoder()
+                    .createRenderPass(ct, OptionalInt.empty(), dt, OptionalDouble.empty())) {
+                renderpass.setPipeline(RenderPipelines.SKY);
+                renderpass.setVertexBuffer(0, renderer.skyRenderer.bottomSkyBuffer);
+                renderpass.draw(0, 10);
+            }
+
+            matrixstack.popMatrix();
             RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
-            RenderSystem.depthMask(true);
         }
         //
 
@@ -135,54 +154,39 @@ public class GaiaSkyRender {
     }
 
     //VanillaCopy of WorldRenderer.generateStars, with VanillaCopy of WorldRenderer.renderStars mashed in
-    private VertexBuffer generateStars() {
-        VertexBuffer vertexBuffer = new VertexBuffer(BufferUsage.STATIC_WRITE);
-        vertexBuffer.bind();
+    private GpuBuffer generateStars() {
+        GpuBuffer vertexBuffer;
+        RandomSource random = RandomSource.create(10842L);
 
         //renderStars
-        RandomSource random = RandomSource.create(10842L);
-        Tesselator tessellator = Tesselator.getInstance();
-        BufferBuilder bufferbuilder = tessellator.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION);
-        for(int i = 0; i < 1500; ++i) {
-            float x = (random.nextFloat() * 2.0F - 1.0F);
-            float y = (random.nextFloat() * 2.0F - 1.0F);
-            float z = (random.nextFloat() * 2.0F - 1.0F);
-            float d3 = (0.15F + random.nextFloat() * 0.1F);
-            float area = x * x + y * y + z * z;
-            if (area < 1.0F && area > 0.01F) {
-                area = (float) (1.0F / Math.sqrt(area));
-                x = x * area;
-                y = y * area;
-                z = z * area;
-                float xPos = x * 100.0F;
-                float yPos = y * 100.0F;
-                float zPos = z * 100.0F;
-                float d8 = (float) Math.atan2(x, z);
-                float d9 = (float) Math.sin(d8);
-                float d10 = (float) Math.cos(d8);
-                float d11 = (float) Math.atan2(Math.sqrt(x * x + z * z), y);
-                float d12 = (float) Math.sin(d11);
-                float d13 = (float) Math.cos(d11);
-                float d14 = random.nextFloat() * (float) Math.PI * 2.0F;
-                float d15 = (float) Math.sin(d14);
-                float d16 = (float) Math.cos(d14);
+        try (ByteBufferBuilder bytebuilder = new ByteBufferBuilder(DefaultVertexFormat.POSITION.getVertexSize() * 1500 * 4)) {
+            BufferBuilder bufferbuilder = new BufferBuilder(bytebuilder, VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION);
 
-                for(int j = 0; j < 4; ++j) {
-                    float d18 = ((j & 2) - 1) * d3;
-                    float d19 = ((j + 1 & 2) - 1) * d3;
-                    float d21 = d18 * d16 - d19 * d15;
-                    float d22 = d19 * d16 + d18 * d15;
-                    float d23 = d21 * d12 + 0.0F * d13;
-                    float d24 = 0.0F * d12 - d21 * d13;
-                    float d25 = d24 * d9 - d22 * d10;
-                    float d26 = d22 * d9 + d24 * d10;
-                    bufferbuilder.addVertex(xPos + d25, yPos + d23, zPos + d26);
+            for(int i = 0; i < 1500; ++i) {
+                float x = random.nextFloat() * 2.0F - 1.0F;
+                float y = random.nextFloat() * 2.0F - 1.0F;
+                float z = random.nextFloat() * 2.0F - 1.0F;
+                float d3 = 0.15F + random.nextFloat() * 0.1F;
+                float area = Mth.lengthSquared(x, y, z);
+                if ((area < 1.0F) && area > 0.01F) {
+                    Vector3f vec3f = new Vector3f(x, y, z).normalize(100.0F);
+                    float rotZ = random.nextFloat() * (float) Math.PI * 2.0F;
+                    Matrix3f mat3f = new Matrix3f().rotateTowards(new Vector3f(vec3f).negate(), new Vector3f(0.0F, 1.0F, 0.0F)).rotateZ(-rotZ);
+                    bufferbuilder.addVertex(new Vector3f(d3, -d3, 0.0F).mul(mat3f).add(vec3f));
+                    bufferbuilder.addVertex(new Vector3f(d3, d3, 0.0F).mul(mat3f).add(vec3f));
+                    bufferbuilder.addVertex(new Vector3f(-d3, d3, 0.0F).mul(mat3f).add(vec3f));
+                    bufferbuilder.addVertex(new Vector3f(-d3, -d3, 0.0F).mul(mat3f).add(vec3f));
                 }
+            }
+
+            try (MeshData mesh = bufferbuilder.buildOrThrow()) {
+                this.starIndexCount = mesh.drawState().indexCount();
+                vertexBuffer = RenderSystem.getDevice()
+                        .createBuffer(() -> "Gaia star buffer", BufferType.VERTICES, BufferUsage.STATIC_WRITE, mesh.vertexBuffer());
+
             }
         }
 
-        vertexBuffer.upload(bufferbuilder.buildOrThrow());
-        VertexBuffer.unbind();
         return vertexBuffer;
     }
 

@@ -1,16 +1,6 @@
 {
   "model": {
     "type": "minecraft:model",
-    "model": "minecraft:item/template_spawn_egg",
-    "tints": [
-      {
-        "type": "minecraft:constant",
-        "value": -10053121
-      },
-      {
-        "type": "minecraft:constant",
-        "value": -10079233
-      }
-    ]
+    "model": "gaiadimension:item/saltion_spawn_egg"
   }
 }

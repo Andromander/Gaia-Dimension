@@ -1,16 +1,6 @@
 {
   "model": {
     "type": "minecraft:model",
-    "model": "minecraft:item/template_spawn_egg",
-    "tints": [
-      {
-        "type": "minecraft:constant",
-        "value": -65281
-      },
-      {
-        "type": "minecraft:constant",
-        "value": -14671840
-      }
-    ]
+    "model": "gaiadimension:item/lesser_spitfire_spawn_egg"
   }
 }

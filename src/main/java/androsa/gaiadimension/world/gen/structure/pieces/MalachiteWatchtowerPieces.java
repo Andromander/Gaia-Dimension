@@ -121,7 +121,7 @@ public class MalachiteWatchtowerPieces {
 
         public Piece(StructureTemplateManager level, CompoundTag nbt) {
             super(ModStructures.MAWA.get(), nbt, level, (rl) ->
-                    loadTemplate(Rotation.valueOf(nbt.getString("Rot")), rl));
+                    loadTemplate(nbt.read("Rot", Rotation.LEGACY_CODEC).orElseThrow(), rl));
         }
 
         private static StructurePlaceSettings loadTemplate(Rotation rotation, ResourceLocation pivot) {

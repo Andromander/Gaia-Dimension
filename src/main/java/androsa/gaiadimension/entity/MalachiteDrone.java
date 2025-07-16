@@ -13,6 +13,7 @@ import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityReference;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
@@ -34,11 +35,10 @@ import net.neoforged.neoforge.common.CommonHooks;
 import javax.annotation.Nullable;
 import java.util.EnumSet;
 import java.util.Optional;
-import java.util.UUID;
 
 public class MalachiteDrone extends Monster {
 
-    private static final EntityDataAccessor<Optional<UUID>> OWNER_UNIQUE_ID = SynchedEntityData.defineId(MalachiteDrone.class, EntityDataSerializers.OPTIONAL_UUID);
+    private static final EntityDataAccessor<Optional<EntityReference<LivingEntity>>> OWNER_REFERENCE = SynchedEntityData.defineId(MalachiteDrone.class, EntityDataSerializers.OPTIONAL_LIVING_ENTITY_REFERENCE);
     private LivingEntity owner;
 
     public MalachiteDrone(EntityType<? extends MalachiteDrone> entity, Level world) {
@@ -55,7 +55,7 @@ public class MalachiteDrone extends Monster {
     @Override
     protected void defineSynchedData(SynchedEntityData.Builder builder) {
         super.defineSynchedData(builder);
-        builder.define(OWNER_UNIQUE_ID, Optional.empty());
+        builder.define(OWNER_REFERENCE, Optional.empty());
     }
 
     @Override
@@ -74,21 +74,21 @@ public class MalachiteDrone extends Monster {
     @Override
     public void readAdditionalSaveData(CompoundTag nbt) {
         super.readAdditionalSaveData(nbt);
-        this.setOwnerUniqueId(UUID.fromString(nbt.getString("OwnerUUID")));
+        this.setOwnerUniqueId(EntityReference.readWithOldOwnerConversion(nbt, "OwnerUUID", this.level()));
     }
 
     @Override
     public void addAdditionalSaveData(CompoundTag nbt) {
         super.addAdditionalSaveData(nbt);
-        if (this.getOwnerUniqueId() != null) {
-            nbt.putString("OwnerUUID", this.getOwnerUniqueId().toString());
+        if (this.getOwnerReference() != null) {
+            nbt.putString("OwnerUUID", this.getOwnerReference().toString());
         }
     }
 
     @Nullable
     public LivingEntity getOwner() {
-        if (getOwnerUniqueId() != null && this.level() instanceof ServerLevel server) {
-            Entity entity = server.getEntity(getOwnerUniqueId());
+        if (getOwnerReference() != null && this.level() instanceof ServerLevel server) {
+            Entity entity = server.getEntity(getOwnerReference().getUUID());
             if (entity instanceof LivingEntity) {
                 return (LivingEntity) entity;
             }
@@ -98,16 +98,16 @@ public class MalachiteDrone extends Monster {
 
     public void setOwner(@Nullable LivingEntity entity) {
         this.owner = entity;
-        setOwnerUniqueId(entity == null ? null : entity.getUUID());
+        this.entityData.set(OWNER_REFERENCE, Optional.ofNullable(entity).map(EntityReference::new));
     }
 
     @Nullable
-    public UUID getOwnerUniqueId() {
-        return this.entityData.get(OWNER_UNIQUE_ID).orElse(null);
+    public EntityReference<LivingEntity> getOwnerReference() {
+        return this.entityData.get(OWNER_REFERENCE).orElse(null);
     }
 
-    public void setOwnerUniqueId(@Nullable UUID id) {
-        this.entityData.set(OWNER_UNIQUE_ID, Optional.ofNullable(id));
+    public void setOwnerUniqueId(@Nullable EntityReference<LivingEntity> id) {
+        this.entityData.set(OWNER_REFERENCE, Optional.ofNullable(id));
     }
 
     @Override
@@ -125,9 +125,9 @@ public class MalachiteDrone extends Monster {
         super.tick();
 
         if (level() instanceof ServerLevel server) {
-            if (getOwnerUniqueId() != null) {
+            if (getOwnerReference() != null) {
                 //Check if we have been removed too far away from the Guard.
-                Entity entity = server.getEntity(getOwnerUniqueId());
+                Entity entity = server.getEntity(getOwnerReference().getUUID());
 
                 if (entity != null) {
                     //Wrong dimension, sever the link
@@ -167,7 +167,7 @@ public class MalachiteDrone extends Monster {
     @Override
     public void remove(RemovalReason reason) {
         if (reason == RemovalReason.DISCARDED) {
-            if (this.getOwnerUniqueId() != null) {
+            if (this.getOwnerReference() != null) {
                 this.ownerRemoved(this.getOwner());
             }
         }
@@ -180,7 +180,7 @@ public class MalachiteDrone extends Monster {
             return;
 
         if (level() instanceof ServerLevel server) {
-            @Nullable Entity entity = server.getEntity(getOwnerUniqueId());
+            @Nullable Entity entity = server.getEntity(getOwnerReference().getUUID());
 
             //Were we a follower, and was it a Guard? If so, detract that Guard's counter
             if (entity != null) {
@@ -195,7 +195,7 @@ public class MalachiteDrone extends Monster {
     @Override
     public boolean removeWhenFarAway(double dist) {
         //Don't despawn if we have an owner. Disregard whether it's a Guard because we don't want to disappear in general.
-        return this.getOwnerUniqueId() == null;
+        return this.getOwnerReference() == null;
     }
 
     static class FollowGuardGoal extends Goal {
@@ -285,7 +285,7 @@ public class MalachiteDrone extends Monster {
             } else if (!this.canTeleportTo(new BlockPos(x, y, z))) {
                 return false;
             } else {
-                this.drone.moveTo((float)x + 0.5F, y, (float)z + 0.5F, this.drone.getYRot(), this.drone.getXRot());
+                this.drone.snapTo((float)x + 0.5F, y, (float)z + 0.5F, this.drone.getYRot(), this.drone.getXRot());
                 this.navigator.stop();
                 return true;
             }

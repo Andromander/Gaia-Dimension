@@ -70,17 +70,17 @@ public abstract class GaiaBiomeProvider {
 
     public static MobSpawnSettings.Builder createSpawns() {
         return new MobSpawnSettings.Builder()
-                .addSpawn(MobCategory.MONSTER, mobData(ModEntities.CAVERN_TICK, 65, 2, 4))
-                .addSpawn(MobCategory.MONSTER, mobData(ModEntities.SHALURKER, 65, 2, 4))
-                .addSpawn(MobCategory.MONSTER, mobData(ModEntities.ARCHAIC_WARRIOR, 65, 2, 4))
-                .addSpawn(MobCategory.MONSTER, mobData(ModEntities.MUCKLING, 65, 2, 4))
-                .addSpawn(MobCategory.MONSTER, mobData(() -> EntityType.ENDERMAN, 5, 1, 2))
-                .addSpawn(MobCategory.MONSTER, mobData(ModEntities.PRIMAL_BEAST, 15, 1, 2))
-                .addSpawn(MobCategory.WATER_CREATURE, mobData(ModEntities.SHALLOW_ARENTHIS, 10, 2, 4));
+                .addSpawn(MobCategory.MONSTER, 65, mobData(ModEntities.CAVERN_TICK, 2, 4))
+                .addSpawn(MobCategory.MONSTER, 65, mobData(ModEntities.SHALURKER, 2, 4))
+                .addSpawn(MobCategory.MONSTER, 65, mobData(ModEntities.ARCHAIC_WARRIOR, 2, 4))
+                .addSpawn(MobCategory.MONSTER, 65, mobData(ModEntities.MUCKLING, 2, 4))
+                .addSpawn(MobCategory.MONSTER, 5, mobData(() -> EntityType.ENDERMAN, 1, 2))
+                .addSpawn(MobCategory.MONSTER, 15, mobData(ModEntities.PRIMAL_BEAST, 1, 2))
+                .addSpawn(MobCategory.WATER_CREATURE, 10, mobData(ModEntities.SHALLOW_ARENTHIS, 2, 4));
     }
 
-    public static MobSpawnSettings.SpawnerData mobData(Supplier<? extends EntityType<?>> entity, int weight, int min, int max) {
-        return new MobSpawnSettings.SpawnerData(entity.get(), weight, min, max);
+    public static MobSpawnSettings.SpawnerData mobData(Supplier<? extends EntityType<?>> entity, int min, int max) {
+        return new MobSpawnSettings.SpawnerData(entity.get(), min, max);
     }
 
     public static BiomeGenerationSettings pinkAgateForest(HolderGetter<PlacedFeature> features, HolderGetter<ConfiguredWorldCarver<?>> carvers) {
