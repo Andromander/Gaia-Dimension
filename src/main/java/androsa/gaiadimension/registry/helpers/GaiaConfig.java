@@ -78,7 +78,7 @@ public class GaiaConfig {
     }
 
     //TODO: Verify these two, it might be possible to move these elsewhere
-    @EventBusSubscriber(modid = GaiaDimensionMod.MODID, bus = EventBusSubscriber.Bus.GAME)
+    @EventBusSubscriber(modid = GaiaDimensionMod.MODID)
     public static class ForgeBus {
         @SubscribeEvent
         public static void onConfigLoaded(ServerStartingEvent event) {
@@ -86,7 +86,7 @@ public class GaiaConfig {
         }
     }
 
-    @EventBusSubscriber(modid = GaiaDimensionMod.MODID, bus = EventBusSubscriber.Bus.MOD)
+    @EventBusSubscriber(modid = GaiaDimensionMod.MODID)
     public static class ModBus {
         @SubscribeEvent
         public static void onConfigChanged(ModConfigEvent.Reloading event) {

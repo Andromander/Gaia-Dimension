@@ -24,7 +24,7 @@ import net.neoforged.neoforge.registries.NeoForgeRegistries;
 
 import java.util.function.Supplier;
 
-@EventBusSubscriber(modid = GaiaDimensionMod.MODID, bus = EventBusSubscriber.Bus.MOD)
+@EventBusSubscriber(modid = GaiaDimensionMod.MODID)
 public class ModEntities {
 
     public static final DeferredRegister<EntityType<?>> ENTITY_TYPES = DeferredRegister.create(Registries.ENTITY_TYPE, GaiaDimensionMod.MODID);

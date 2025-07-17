@@ -30,6 +30,8 @@ import net.minecraft.world.level.block.LeavesBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.pathfinder.PathType;
 import net.minecraft.world.level.pathfinder.WalkNodeEvaluator;
+import net.minecraft.world.level.storage.ValueInput;
+import net.minecraft.world.level.storage.ValueOutput;
 import net.neoforged.neoforge.common.CommonHooks;
 
 import javax.annotation.Nullable;
@@ -72,13 +74,13 @@ public class MalachiteDrone extends Monster {
     }
 
     @Override
-    public void readAdditionalSaveData(CompoundTag nbt) {
+    public void readAdditionalSaveData(ValueInput nbt) {
         super.readAdditionalSaveData(nbt);
         this.setOwnerUniqueId(EntityReference.readWithOldOwnerConversion(nbt, "OwnerUUID", this.level()));
     }
 
     @Override
-    public void addAdditionalSaveData(CompoundTag nbt) {
+    public void addAdditionalSaveData(ValueOutput nbt) {
         super.addAdditionalSaveData(nbt);
         if (this.getOwnerReference() != null) {
             nbt.putString("OwnerUUID", this.getOwnerReference().toString());

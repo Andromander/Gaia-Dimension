@@ -21,6 +21,7 @@ import net.minecraft.world.level.dimension.LevelStem;
 import net.minecraft.world.level.levelgen.*;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.OptionalLong;
 
 public class GaiaDimensions {
@@ -65,6 +66,7 @@ public class GaiaDimensions {
                 BlockTags.INFINIBURN_OVERWORLD, //infiniburn
                 ResourceLocation.fromNamespaceAndPath(GaiaDimensionMod.MODID, "gaia"), //effects
                 0.0F, //ambient
+                Optional.of(255), //cloud height
                 monsters //monsters
         );
 

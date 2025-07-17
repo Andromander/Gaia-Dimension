@@ -4,6 +4,7 @@ import com.google.common.collect.ImmutableList;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.IntrinsicHolderTagsProvider;
+import net.minecraft.data.tags.TagAppender;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.common.data.BlockTagsProvider;
@@ -18,7 +19,7 @@ public abstract class GaiaBlockTagsProvider extends BlockTagsProvider {
     }
 
     protected void addTag(TagKey<Block> tag, ImmutableList<Supplier<? extends Block>> list) {
-        IntrinsicHolderTagsProvider.IntrinsicTagAppender<Block> builder = this.tag(tag);
+        TagAppender<Block, Block> builder = this.tag(tag);
         for (Supplier<? extends Block> block : list) {
             builder.add(block.get());
         }

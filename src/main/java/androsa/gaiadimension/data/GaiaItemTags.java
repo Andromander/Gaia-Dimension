@@ -7,15 +7,15 @@ import androsa.gaiadimension.registry.registration.ModItems;
 import androsa.gaiadimension.registry.values.GaiaTags;
 import com.google.common.collect.ImmutableList;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.data.PackOutput;
-import net.minecraft.tags.BlockTags;
-import net.minecraft.tags.ItemTags;
-import net.minecraft.tags.TagKey;
+import net.minecraft.data.tags.TagAppender;
+import net.minecraft.tags.*;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
 import net.neoforged.neoforge.common.Tags;
 
+import java.util.Objects;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Supplier;
 
@@ -45,46 +45,24 @@ public class GaiaItemTags extends GaiaItemTagsProvider {
             GaiaTags.Items.STORAGE_BLOCKS_DIOPSIDE, GaiaTags.Items.STORAGE_BLOCKS_GOSHENITE
     );
 
-    public GaiaItemTags(PackOutput output, CompletableFuture<HolderLookup.Provider> provider, CompletableFuture<TagLookup<Block>> blocktags) {
-        super(output, provider, blocktags, GaiaDimensionMod.MODID);
+    public GaiaItemTags(PackOutput output, CompletableFuture<HolderLookup.Provider> provider) {
+        super(output, provider, GaiaDimensionMod.MODID);
     }
 
     @Override
     protected void addTags(HolderLookup.Provider provider) {
-        //Sigh
-        tag(GaiaTags.Items.SHULKER_BOXES).add(Blocks.SHULKER_BOX.asItem(), Blocks.BLACK_SHULKER_BOX.asItem(), Blocks.BLUE_SHULKER_BOX.asItem(), Blocks.BROWN_SHULKER_BOX.asItem(),
-                Blocks.CYAN_SHULKER_BOX.asItem(), Blocks.GRAY_SHULKER_BOX.asItem(), Blocks.GREEN_SHULKER_BOX.asItem(), Blocks.LIGHT_BLUE_SHULKER_BOX.asItem(), Blocks.LIGHT_GRAY_SHULKER_BOX.asItem(),
-                Blocks.LIME_SHULKER_BOX.asItem(), Blocks.MAGENTA_SHULKER_BOX.asItem(), Blocks.ORANGE_SHULKER_BOX.asItem(), Blocks.PINK_SHULKER_BOX.asItem(), Blocks.PURPLE_SHULKER_BOX.asItem(),
-                Blocks.RED_SHULKER_BOX.asItem(), Blocks.WHITE_SHULKER_BOX.asItem(), Blocks.YELLOW_SHULKER_BOX.asItem());
+        (new GaiaBlockItemTags() {
+            @Override
+            protected TagAppender<Block, Block> tag(TagKey<Block> blocktag, TagKey<Item> itemtag) {
+                return new BlockToItemTag(GaiaItemTags.this.tag(itemtag));
+            }
+        }).run();
 
         tag(ItemTags.ARROWS).add(ModItems.agate_arrow.get());
         addTag(ItemTags.BEACON_PAYMENT_ITEMS, BEACON_PAYMENTS);
-        copy(BlockTags.LEAVES, ItemTags.LEAVES);
-        copy(BlockTags.LOGS, ItemTags.LOGS);
-        copy(BlockTags.SAPLINGS, ItemTags.SAPLINGS);
-        copy(BlockTags.SLABS, ItemTags.SLABS);
-        copy(BlockTags.STAIRS, ItemTags.STAIRS);
-
-        copy(GaiaTags.Blocks.MOOKAITE, GaiaTags.Items.MOOKAITE);
-        copy(GaiaTags.Blocks.TILES, GaiaTags.Items.TILES);
-        copy(GaiaTags.Blocks.PINK_AGATE_LOGS, GaiaTags.Items.PINK_AGATE_LOGS);
-        copy(GaiaTags.Blocks.BLUE_AGATE_LOGS, GaiaTags.Items.BLUE_AGATE_LOGS);
-        copy(GaiaTags.Blocks.GREEN_AGATE_LOGS, GaiaTags.Items.GREEN_AGATE_LOGS);
-        copy(GaiaTags.Blocks.PURPLE_AGATE_LOGS, GaiaTags.Items.PURPLE_AGATE_LOGS);
-        copy(GaiaTags.Blocks.FOSSILIZED_LOGS, GaiaTags.Items.FOSSILIZED_LOGS);
-        copy(GaiaTags.Blocks.CORRUPTED_LOGS, GaiaTags.Items.CORRUPTED_LOGS);
-        copy(GaiaTags.Blocks.BURNT_LOGS, GaiaTags.Items.BURNT_LOGS);
-        copy(GaiaTags.Blocks.BURNING_LOGS, GaiaTags.Items.BURNING_LOGS);
-        copy(GaiaTags.Blocks.AURA_LOGS, GaiaTags.Items.AURA_LOGS);
-        copy(GaiaTags.Blocks.GOLDEN_LOGS, GaiaTags.Items.GOLDEN_LOGS);
-        copy(GaiaTags.Blocks.GAIA_BRICKS, GaiaTags.Items.GAIA_BRICKS);
-        copy(GaiaTags.Blocks.AMETHYST_BRICKS, GaiaTags.Items.AMETHYST_BRICKS);
-        copy(GaiaTags.Blocks.COPAL_BRICKS, GaiaTags.Items.COPAL_BRICKS);
-        copy(GaiaTags.Blocks.JADE_BRICKS, GaiaTags.Items.JADE_BRICKS);
-        copy(GaiaTags.Blocks.JET_BRICKS, GaiaTags.Items.JET_BRICKS);
         addTag(GaiaTags.Items.GEM_POUCH_ITEMS, BEACON_PAYMENTS);
-        tag(GaiaTags.Items.CRUDE_STORAGE_BLACKLIST).addTag(GaiaTags.Items.SHULKER_BOXES).add(ModBlocks.crude_storage_crate.get().asItem(), ModBlocks.mega_storage_crate.get().asItem());
-        tag(GaiaTags.Items.MEGA_STORAGE_BLACKLIST).addTag(GaiaTags.Items.SHULKER_BOXES).add(ModBlocks.mega_storage_crate.get().asItem());
+        tag(GaiaTags.Items.CRUDE_STORAGE_BLACKLIST).addTag(ItemTags.SHULKER_BOXES).add(ModBlocks.crude_storage_crate.get().asItem(), ModBlocks.mega_storage_crate.get().asItem());
+        tag(GaiaTags.Items.MEGA_STORAGE_BLACKLIST).addTag(ItemTags.SHULKER_BOXES).add(ModBlocks.mega_storage_crate.get().asItem());
 
         tag(GaiaTags.Items.DUSTS_FINE).add(ModItems.fine_dust.get());
         tag(GaiaTags.Items.DUSTS_GOLDSTONE).add(ModItems.goldstone_dust.get());
@@ -124,40 +102,6 @@ public class GaiaItemTags extends GaiaItemTagsProvider {
         tag(GaiaTags.Items.BENITOITE_TOOL_MATERIAL).addTags(GaiaTags.Items.GEMS_BENITOITE);
         tag(GaiaTags.Items.GOSHENITE_TOOL_MATERIAL).addTags(GaiaTags.Items.GEMS_GOSHENITE);
 
-        copy(GaiaTags.Blocks.ORES_SUGILITE, GaiaTags.Items.ORES_SUGILITE);
-        copy(GaiaTags.Blocks.ORES_HEMATITE, GaiaTags.Items.ORES_HEMATITE);
-        copy(GaiaTags.Blocks.ORES_CINNABAR, GaiaTags.Items.ORES_CINNABAR);
-        copy(GaiaTags.Blocks.ORES_LABRADORITE, GaiaTags.Items.ORES_LABRADORITE);
-        copy(GaiaTags.Blocks.ORES_MOONSTONE, GaiaTags.Items.ORES_MOONSTONE);
-        copy(GaiaTags.Blocks.ORES_RED_OPAL, GaiaTags.Items.ORES_RED_OPAL);
-        copy(GaiaTags.Blocks.ORES_BLUE_OPAL, GaiaTags.Items.ORES_BLUE_OPAL);
-        copy(GaiaTags.Blocks.ORES_GREEN_OPAL, GaiaTags.Items.ORES_GREEN_OPAL);
-        copy(GaiaTags.Blocks.ORES_WHITE_OPAL, GaiaTags.Items.ORES_WHITE_OPAL);
-        copy(GaiaTags.Blocks.ORES_PYRITE, GaiaTags.Items.ORES_PYRITE);
-        copy(GaiaTags.Blocks.ORES_OPALITE, GaiaTags.Items.ORES_OPALITE);
-        copy(GaiaTags.Blocks.STORAGE_BLOCKS_SUGILITE, GaiaTags.Items.STORAGE_BLOCKS_SUGILITE);
-        copy(GaiaTags.Blocks.STORAGE_BLOCKS_HEMATITE, GaiaTags.Items.STORAGE_BLOCKS_HEMATITE);
-        copy(GaiaTags.Blocks.STORAGE_BLOCKS_CINNABAR, GaiaTags.Items.STORAGE_BLOCKS_CINNABAR);
-        copy(GaiaTags.Blocks.STORAGE_BLOCKS_LABRADORITE, GaiaTags.Items.STORAGE_BLOCKS_LABRADORITE);
-        copy(GaiaTags.Blocks.STORAGE_BLOCKS_MOONSTONE, GaiaTags.Items.STORAGE_BLOCKS_MOONSTONE);
-        copy(GaiaTags.Blocks.STORAGE_BLOCKS_RED_OPAL, GaiaTags.Items.STORAGE_BLOCKS_RED_OPAL);
-        copy(GaiaTags.Blocks.STORAGE_BLOCKS_BLUE_OPAL, GaiaTags.Items.STORAGE_BLOCKS_BLUE_OPAL);
-        copy(GaiaTags.Blocks.STORAGE_BLOCKS_GREEN_OPAL, GaiaTags.Items.STORAGE_BLOCKS_GREEN_OPAL);
-        copy(GaiaTags.Blocks.STORAGE_BLOCKS_WHITE_OPAL, GaiaTags.Items.STORAGE_BLOCKS_WHITE_OPAL);
-        copy(GaiaTags.Blocks.STORAGE_BLOCKS_PYRITE, GaiaTags.Items.STORAGE_BLOCKS_PYRITE);
-        copy(GaiaTags.Blocks.STORAGE_BLOCKS_TEKTITE, GaiaTags.Items.STORAGE_BLOCKS_TEKTITE);
-        copy(GaiaTags.Blocks.STORAGE_BLOCKS_GOLDSTONE, GaiaTags.Items.STORAGE_BLOCKS_GOLDSTONE);
-        copy(GaiaTags.Blocks.STORAGE_BLOCKS_AURA_CRYSTAL, GaiaTags.Items.STORAGE_BLOCKS_AURA_CRYSTAL);
-        copy(GaiaTags.Blocks.STORAGE_BLOCKS_BISMUTH, GaiaTags.Items.STORAGE_BLOCKS_BISMUTH);
-        copy(GaiaTags.Blocks.STORAGE_BLOCKS_STIBNITE, GaiaTags.Items.STORAGE_BLOCKS_STIBNITE);
-        copy(GaiaTags.Blocks.STORAGE_BLOCKS_PROUSTITE, GaiaTags.Items.STORAGE_BLOCKS_PROUSTITE);
-        copy(GaiaTags.Blocks.STORAGE_BLOCKS_EUCLASE, GaiaTags.Items.STORAGE_BLOCKS_EUCLASE);
-        copy(GaiaTags.Blocks.STORAGE_BLOCKS_ALBITE, GaiaTags.Items.STORAGE_BLOCKS_ALBITE);
-        copy(GaiaTags.Blocks.STORAGE_BLOCKS_CARNELIAN, GaiaTags.Items.STORAGE_BLOCKS_CARNELIAN);
-        copy(GaiaTags.Blocks.STORAGE_BLOCKS_BENITOITE, GaiaTags.Items.STORAGE_BLOCKS_BENITOITE);
-        copy(GaiaTags.Blocks.STORAGE_BLOCKS_DIOPSIDE, GaiaTags.Items.STORAGE_BLOCKS_DIOPSIDE);
-        copy(GaiaTags.Blocks.STORAGE_BLOCKS_GOSHENITE, GaiaTags.Items.STORAGE_BLOCKS_GOSHENITE);
-
         tag(Tags.Items.BONES).add(ModItems.shiny_bone.get());
         tag(Tags.Items.DUSTS).addTags(GaiaTags.Items.DUSTS_FINE, GaiaTags.Items.DUSTS_GOLDSTONE, GaiaTags.Items.DUSTS_HOT);
         for (TagKey<Item> tag : GEM_TAGS) {
@@ -170,6 +114,63 @@ public class GaiaItemTags extends GaiaItemTagsProvider {
         }
         for (TagKey<Item> tag : STORAGE_TAGS) {
             tag(Tags.Items.STORAGE_BLOCKS).addTag(tag);
+        }
+    }
+
+    static class BlockToItemTag implements TagAppender<Block, Block> {
+
+        private final TagAppender<Item, Item> itemAppender;
+
+        public BlockToItemTag(TagAppender<Item, Item> itemAppender) {
+            this.itemAppender = itemAppender;
+        }
+
+        @Override
+        public TagAppender<Block, Block> add(Block block) {
+            this.itemAppender.add(Objects.requireNonNull(block.asItem()));
+            return this;
+        }
+
+        @Override
+        public TagAppender<Block, Block> addOptional(Block block) {
+            this.itemAppender.addOptional(Objects.requireNonNull(block.asItem()));
+            return this;
+        }
+
+        @Override
+        public TagAppender<Block, Block> addTag(TagKey<Block> tag) {
+            this.itemAppender.addTag(TagKey.create(Registries.ITEM, tag.location()));
+            return this;
+        }
+
+        @Override
+        public TagAppender<Block, Block> addOptionalTag(TagKey<Block> tag) {
+            this.itemAppender.addOptionalTag(TagKey.create(Registries.ITEM, tag.location()));
+            return this;
+        }
+
+        @Override
+        public TagAppender<Block, Block> add(TagEntry entry) {
+            itemAppender.add(entry);
+            return this;
+        }
+
+        @Override
+        public TagAppender<Block, Block> replace(boolean value) {
+            itemAppender.replace(value);
+            return this;
+        }
+
+        @Override
+        public TagAppender<Block, Block> remove(Block block) {
+            itemAppender.remove(block.asItem());
+            return this;
+        }
+
+        @Override
+        public TagAppender<Block, Block> remove(TagKey<Block> tag) {
+            itemAppender.remove(TagKey.create(Registries.ITEM, tag.location()));
+            return this;
         }
     }
 }

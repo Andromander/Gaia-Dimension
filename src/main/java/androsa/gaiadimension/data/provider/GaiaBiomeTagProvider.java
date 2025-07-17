@@ -3,6 +3,7 @@ package androsa.gaiadimension.data.provider;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.BiomeTagsProvider;
+import net.minecraft.data.tags.TagAppender;
 import net.minecraft.data.tags.TagsProvider;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.tags.TagKey;
@@ -17,7 +18,7 @@ public class GaiaBiomeTagProvider extends BiomeTagsProvider {
     }
 
     protected void addTag(TagKey<Biome> tag, ResourceKey<Biome>... keys) {
-        TagsProvider.TagAppender<Biome> builder = this.tag(tag);
+        TagAppender<ResourceKey<Biome>, Biome> builder = this.tag(tag);
         builder.add(keys);
     }
 }

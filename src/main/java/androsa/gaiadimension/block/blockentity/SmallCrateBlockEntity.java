@@ -5,9 +5,7 @@ import androsa.gaiadimension.block.menu.SmallCrateContainer;
 import androsa.gaiadimension.registry.registration.ModBlockEntities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.core.HolderLookup;
 import net.minecraft.core.NonNullList;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.ContainerHelper;
 import net.minecraft.world.WorldlyContainer;
@@ -18,6 +16,8 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.RandomizableContainerBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.storage.ValueInput;
+import net.minecraft.world.level.storage.ValueOutput;
 
 import java.util.stream.IntStream;
 
@@ -48,28 +48,28 @@ public class SmallCrateBlockEntity extends RandomizableContainerBlockEntity impl
     }
 
     @Override
-    public void loadAdditional(CompoundTag compound, HolderLookup.Provider provider) {
-        super.loadAdditional(compound, provider);
-        this.loadFromNbt(compound, provider);
+    public void loadAdditional(ValueInput compound) {
+        super.loadAdditional(compound);
+        this.loadFromNbt(compound);
     }
 
     @Override
-    public void saveAdditional(CompoundTag compound, HolderLookup.Provider provider) {
-        super.saveAdditional(compound, provider);
-        this.saveToNbt(compound, provider);
+    public void saveAdditional(ValueOutput compound) {
+        super.saveAdditional(compound);
+        this.saveToNbt(compound);
     }
 
-    public void loadFromNbt(CompoundTag compound, HolderLookup.Provider provider) {
+    public void loadFromNbt(ValueInput compound) {
         this.items = NonNullList.withSize(this.getContainerSize(), ItemStack.EMPTY);
 
         if (!this.tryLoadLootTable(compound)) {
-            ContainerHelper.loadAllItems(compound, this.items, provider);
+            ContainerHelper.loadAllItems(compound, this.items);
         }
     }
 
-    public CompoundTag saveToNbt(CompoundTag compound, HolderLookup.Provider provider) {
+    public ValueOutput saveToNbt(ValueOutput compound) {
         if (!this.trySaveLootTable(compound)) {
-            ContainerHelper.saveAllItems(compound, this.items, false, provider);
+            ContainerHelper.saveAllItems(compound, this.items, false);
         }
         return compound;
     }

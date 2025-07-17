@@ -36,6 +36,8 @@ import net.minecraft.world.level.block.LeavesBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.pathfinder.PathType;
 import net.minecraft.world.level.pathfinder.WalkNodeEvaluator;
+import net.minecraft.world.level.storage.ValueInput;
+import net.minecraft.world.level.storage.ValueOutput;
 import net.neoforged.neoforge.common.CommonHooks;
 
 import javax.annotation.Nullable;
@@ -99,7 +101,7 @@ public class OpaliteContruct extends PathfinderMob {
     }
 
     @Override
-    public void readAdditionalSaveData(CompoundTag tag) {
+    public void readAdditionalSaveData(ValueInput tag) {
         super.readAdditionalSaveData(tag);
         this.setConstructing(tag.getBooleanOr("IsConstructing", false));
         this.setOpaliteAmount(tag.getIntOr("OpaliteStack", 0));
@@ -111,11 +113,11 @@ public class OpaliteContruct extends PathfinderMob {
         this.setMookaiteAmount(IVORY_STACK, tag.getIntOr("IvoryStack", 0));
         this.setBonder(EntityReference.readWithOldOwnerConversion(tag, "BonderUUID", this.level()));
         this.setMookaiteCompanion(EntityReference.readWithOldOwnerConversion(tag, "MookaiteUUID", this.level()));
-        this.setKitData(tag.getCompoundOrEmpty("ConstructKit"));
+        this.setKitData(tag.read("ConstructKit", CompoundTag.CODEC).orElseGet(CompoundTag::new));
     }
 
     @Override
-    public void addAdditionalSaveData(CompoundTag tag) {
+    public void addAdditionalSaveData(ValueOutput tag) {
         super.addAdditionalSaveData(tag);
         tag.putBoolean("IsConstructing", this.isConstructing());
         tag.putInt("OpaliteStack", this.getOpaliteAmount());
@@ -132,7 +134,7 @@ public class OpaliteContruct extends PathfinderMob {
             tag.putString("BonderUUID", this.getBonder().toString());
         }
         if (!this.getKitData().isEmpty()) {
-            tag.put("ConstructKit", this.getKitData());
+            tag.store("ConstructKit", CompoundTag.CODEC, this.getKitData());
         }
     }
 

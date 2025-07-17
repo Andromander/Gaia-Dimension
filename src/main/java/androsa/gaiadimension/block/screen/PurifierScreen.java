@@ -7,19 +7,12 @@ import androsa.gaiadimension.registry.registration.ModRecipes;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.gui.screens.recipebook.RecipeBookComponent;
-import net.minecraft.client.gui.screens.recipebook.SearchRecipeBookCategory;
-import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.util.Mth;
 import net.minecraft.world.entity.player.Inventory;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
-import net.minecraft.world.item.crafting.RecipeBookCategories;
-import net.neoforged.fml.common.asm.enumextension.EnumProxy;
 
 import java.util.List;
-import java.util.function.Supplier;
 
 //TODO: recipe book?
 public class PurifierScreen extends AbstractContainerScreen<PurifierMenu> {
@@ -51,16 +44,16 @@ public class PurifierScreen extends AbstractContainerScreen<PurifierMenu> {
     protected void renderBg(GuiGraphics stack, float par1, int par2, int par3) {
         int k = leftPos;
         int l = topPos;
-        stack.blit(RenderType::guiTextured, textureLoc, k, l, 0, 0, imageWidth, imageHeight, 256, 256);
+        stack.blit(RenderPipelines.GUI_TEXTURED, textureLoc, k, l, 0, 0, imageWidth, imageHeight, 256, 256);
         int i1;
 
         if (menu.isBurning()) {
             i1 = menu.getTimeLeftScaled();
-            stack.blit(RenderType::guiTextured, textureLoc, k + 64, l + 81, 176, 22, 47, i1 + 1, 256, 256);
+            stack.blit(RenderPipelines.GUI_TEXTURED, textureLoc, k + 64, l + 81, 176, 22, 47, i1 + 1, 256, 256);
 
         }
 
         i1 = menu.getTimeLeft();
-        stack.blit(RenderType::guiTextured, textureLoc, k + 77, l + 61 + 12 - i1, 176, 20 - i1, 22, i1 + 2, 256, 256);
+        stack.blit(RenderPipelines.GUI_TEXTURED, textureLoc, k + 77, l + 61 + 12 - i1, 176, 20 - i1, 22, i1 + 2, 256, 256);
     }
 }

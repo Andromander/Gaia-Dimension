@@ -4,7 +4,7 @@ import androsa.gaiadimension.GaiaDimensionMod;
 import androsa.gaiadimension.block.menu.AgateCraftingTableMenu;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
-import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
@@ -37,6 +37,6 @@ public class AgateCraftingScreen extends AbstractContainerScreen<AgateCraftingTa
     protected void renderBg(GuiGraphics stack, float partialTickTime, int x, int y) {
         int left = leftPos;
         int top = topPos;
-        stack.blit(RenderType::guiTextured, textureLoc, left, top, 0, 0, imageWidth, imageHeight, 256, 256);
+        stack.blit(RenderPipelines.GUI_TEXTURED, textureLoc, left, top, 0, 0, imageWidth, imageHeight, 256, 256);
     }
 }

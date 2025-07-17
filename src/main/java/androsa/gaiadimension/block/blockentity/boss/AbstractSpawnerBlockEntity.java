@@ -65,7 +65,7 @@ public abstract class AbstractSpawnerBlockEntity<T extends Mob> extends BlockEnt
 
         entity.snapTo(getBlockPos(), 0.0F, 0.0F);
         entity.finalizeSpawn(world, world.getCurrentDifficultyAt(getBlockPos()), reason, null);
-        entity.restrictTo(getBlockPos(), getHomeDistance());
+        entity.setHomeTo(getBlockPos(), getHomeDistance());
 
         return world.addFreshEntity(entity);
     }

@@ -14,6 +14,8 @@ import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.material.PushReaction;
+import net.minecraft.world.level.storage.ValueInput;
+import net.minecraft.world.level.storage.ValueOutput;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -47,7 +49,7 @@ public class MookaiteAreaEffect extends Entity implements TraceableEntity {
     }
 
     @Override
-    protected void readAdditionalSaveData(CompoundTag tag) {
+    protected void readAdditionalSaveData(ValueInput tag) {
         this.tickCount = tag.getIntOr("Age", 0);
         this.duration = tag.getIntOr("Duration", -1);
         this.setRadius(tag.getFloatOr("Radius", 3.0F));
@@ -57,7 +59,7 @@ public class MookaiteAreaEffect extends Entity implements TraceableEntity {
     }
 
     @Override
-    protected void addAdditionalSaveData(CompoundTag tag) {
+    protected void addAdditionalSaveData(ValueOutput tag) {
         tag.putInt("Age", this.tickCount);
         tag.putInt("Duration", this.getDuration());
         tag.putFloat("Radius", this.getRadius());

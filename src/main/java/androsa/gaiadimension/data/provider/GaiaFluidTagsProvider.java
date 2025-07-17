@@ -4,6 +4,7 @@ import com.google.common.collect.ImmutableList;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.FluidTagsProvider;
+import net.minecraft.data.tags.TagAppender;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.material.FlowingFluid;
 import net.minecraft.world.level.material.Fluid;
@@ -18,7 +19,7 @@ public class GaiaFluidTagsProvider extends FluidTagsProvider {
     }
 
     protected void addTag(TagKey<Fluid> tag, ImmutableList<Supplier<FlowingFluid>> list) {
-        IntrinsicTagAppender<Fluid> builder = this.tag(tag);
+        TagAppender<Fluid, Fluid> builder = this.tag(tag);
         for (Supplier<FlowingFluid> fluid : list) {
             builder.add(fluid.get());
         }

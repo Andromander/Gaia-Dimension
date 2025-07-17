@@ -41,6 +41,8 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.storage.ValueInput;
+import net.minecraft.world.level.storage.ValueOutput;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.neoforge.common.CommonHooks;
@@ -124,7 +126,7 @@ public class MookaiteConstruct extends PathfinderMob {
     }
 
     @Override
-    public void readAdditionalSaveData(CompoundTag tag) {
+    public void readAdditionalSaveData(ValueInput tag) {
         super.readAdditionalSaveData(tag);
         this.setBonder(EntityReference.readWithOldOwnerConversion(tag, "BonderUUID", this.level()));
         this.setOpaliteCompanion(EntityReference.readWithOldOwnerConversion(tag, "OpaliteUUID", this.level()));
@@ -143,7 +145,7 @@ public class MookaiteConstruct extends PathfinderMob {
     }
 
     @Override
-    public void addAdditionalSaveData(CompoundTag tag) {
+    public void addAdditionalSaveData(ValueOutput tag) {
         super.addAdditionalSaveData(tag);
         if (this.getBonder() != null) {
             tag.putString("BonderUUID", this.getBonder().toString());

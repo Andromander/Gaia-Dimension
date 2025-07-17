@@ -34,6 +34,8 @@ import net.minecraft.world.item.crafting.RecipeManager;
 import net.minecraft.world.item.crafting.SingleRecipeInput;
 import net.minecraft.world.level.block.entity.BaseContainerBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.storage.ValueInput;
+import net.minecraft.world.level.storage.ValueOutput;
 import net.minecraft.world.phys.Vec3;
 
 import java.util.List;
@@ -117,29 +119,28 @@ public class PurifierBlockEntity extends BaseContainerBlockEntity implements Wor
     }
 
     @Override
-    public void loadAdditional(CompoundTag compound, HolderLookup.Provider provider) {
-        super.loadAdditional(compound, provider);
+    public void loadAdditional(ValueInput compound) {
+        super.loadAdditional(compound);
         this.purifyingItemStacks = NonNullList.withSize(this.getContainerSize(), ItemStack.EMPTY);
-        ContainerHelper.loadAllItems(compound, this.purifyingItemStacks, provider);
+        ContainerHelper.loadAllItems(compound, this.purifyingItemStacks);
         this.burnTime = compound.getIntOr("BurnTime", 0);
         this.cookTime = compound.getIntOr("CookTime", 0);
         this.cookTimeTotal = compound.getIntOr("CookTimeTotal", 0);
         this.burnDuration = getItemBurnTime(this.purifyingItemStacks.get(1), this.purifyingItemStacks.get(2), this.purifyingItemStacks.get(3));
-        CompoundTag usedRecipes = compound.getCompoundOrEmpty("RecipesUsed");
         this.recipeMap.clear();
         this.recipeMap.putAll(compound.read("RecipesUsed", RECIPES_USED_CODEC).orElse(Map.of()));
     }
 
     @Override
-    public void saveAdditional(CompoundTag compound, HolderLookup.Provider provider) {
-        super.saveAdditional(compound, provider);
+    public void saveAdditional(ValueOutput compound) {
+        super.saveAdditional(compound);
         compound.putInt("BurnTime", this.burnTime);
         compound.putInt("CookTime", this.cookTime);
         compound.putInt("CookTimeTotal", this.cookTimeTotal);
-        ContainerHelper.saveAllItems(compound, this.purifyingItemStacks, provider);
+        ContainerHelper.saveAllItems(compound, this.purifyingItemStacks);
         CompoundTag usedRecipes = new CompoundTag();
         this.recipeMap.forEach((key, i) -> usedRecipes.putInt(key.location().toString(), i));
-        compound.put("RecipesUsed", usedRecipes);
+        compound.store("RecipesUsed", CompoundTag.CODEC, usedRecipes);
     }
 
     public static void tick(ServerLevel level, BlockPos pos, BlockState state, PurifierBlockEntity entity) {
@@ -452,7 +453,7 @@ public class PurifierBlockEntity extends BaseContainerBlockEntity implements Wor
     public void awardUsedRecipes(Player player, List<ItemStack> stacks) { }
 
     public void awardRecipe(ServerPlayer player) {
-        List<RecipeHolder<?>> list = unlockRecipe(player.serverLevel(), player.position());
+        List<RecipeHolder<?>> list = unlockRecipe(player.level(), player.position());
         player.awardRecipes(list);
 
         for (RecipeHolder<?> holder : list) {

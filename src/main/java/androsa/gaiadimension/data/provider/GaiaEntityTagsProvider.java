@@ -5,6 +5,7 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.EntityTypeTagsProvider;
 import net.minecraft.data.tags.IntrinsicHolderTagsProvider;
+import net.minecraft.data.tags.TagAppender;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.entity.EntityType;
 
@@ -17,7 +18,7 @@ public class GaiaEntityTagsProvider extends EntityTypeTagsProvider {
     }
 
     protected void addTag(TagKey<EntityType<?>> tag, ImmutableList<Supplier<? extends EntityType<?>>> list) {
-        IntrinsicHolderTagsProvider.IntrinsicTagAppender<EntityType<?>> builder = this.tag(tag);
+        TagAppender<EntityType<?>, EntityType<?>> builder = this.tag(tag);
         for (Supplier<? extends EntityType<?>> entity : list) {
             builder.add(entity.get());
         }

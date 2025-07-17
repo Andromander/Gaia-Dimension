@@ -10,7 +10,7 @@ import net.minecraft.client.Camera;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.renderer.BiomeColors;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
-import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.chunk.ChunkSectionLayer;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
@@ -29,7 +29,7 @@ import org.joml.Vector4f;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
-@EventBusSubscriber(value = Dist.CLIENT, bus = EventBusSubscriber.Bus.MOD, modid = GaiaDimensionMod.MODID)
+@EventBusSubscriber(value = Dist.CLIENT, modid = GaiaDimensionMod.MODID)
 public class ClientEvents {
 
     @SubscribeEvent
@@ -146,7 +146,7 @@ public class ClientEvents {
     }
 
     private static void renderFluid(Supplier<? extends Fluid> fluid) {
-        ItemBlockRenderTypes.setRenderLayer(fluid.get(), RenderType.translucent());
+        ItemBlockRenderTypes.setRenderLayer(fluid.get(), ChunkSectionLayer.TRANSLUCENT);
     }
 
     @SubscribeEvent

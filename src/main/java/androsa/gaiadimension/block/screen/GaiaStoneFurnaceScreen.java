@@ -4,7 +4,7 @@ import androsa.gaiadimension.GaiaDimensionMod;
 import androsa.gaiadimension.block.menu.GaiaStoneFurnaceMenu;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
-import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
@@ -21,14 +21,14 @@ public class GaiaStoneFurnaceScreen extends AbstractContainerScreen<GaiaStoneFur
     protected void renderBg(GuiGraphics stack, float partialTicks, int mouseX, int mouseY) {
         int i = this.leftPos;
         int j = this.topPos;
-        stack.blit(RenderType::guiTextured, textureLoc, i, j, 0, 0, this.imageWidth, this.imageHeight, 256, 256);
+        stack.blit(RenderPipelines.GUI_TEXTURED, textureLoc, i, j, 0, 0, this.imageWidth, this.imageHeight, 256, 256);
         if ((this.menu).isBurning()) {
             int k = (this.menu).getBurnLeftScaled();
-            stack.blit(RenderType::guiTextured, textureLoc, i + 56, j + 36 + 12 - k, 176, 12 - k, 14, k + 1, 256, 256);
+            stack.blit(RenderPipelines.GUI_TEXTURED, textureLoc, i + 56, j + 36 + 12 - k, 176, 12 - k, 14, k + 1, 256, 256);
         }
 
         int l = (this.menu).getCookProgressionScaled();
-        stack.blit(RenderType::guiTextured, textureLoc, i + 79, j + 34, 176, 14, l + 1, 16, 256, 256);
+        stack.blit(RenderPipelines.GUI_TEXTURED, textureLoc, i + 79, j + 34, 176, 14, l + 1, 16, 256, 256);
     }
 
     @Override

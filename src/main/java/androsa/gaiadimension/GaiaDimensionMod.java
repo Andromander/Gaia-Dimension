@@ -108,12 +108,11 @@ public class GaiaDimensionMod {
         DataGenerator generator = event.getGenerator();
         PackOutput output = generator.getPackOutput();
         CompletableFuture<HolderLookup.Provider> provider = event.getLookupProvider();
-        GaiaBlockTags blocktags = new GaiaBlockTags(output, provider);
 
         generator.addProvider(true, new GaiaLootTables(output, provider));
         generator.addProvider(true, new GaiaRecipes.Runner(output, provider));
-        generator.addProvider(true, blocktags);
-        generator.addProvider(true, new GaiaItemTags(output, provider, blocktags.contentsGetter()));
+        generator.addProvider(true, new GaiaBlockTags(output, provider));
+        generator.addProvider(true, new GaiaItemTags(output, provider));
         generator.addProvider(true, new GaiaFluidTags(output, provider));
         generator.addProvider(true, new GaiaDataMaps(output, provider));
 

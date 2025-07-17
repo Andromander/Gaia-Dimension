@@ -1,7 +1,6 @@
 package androsa.gaiadimension.registry.values;
 
 import androsa.gaiadimension.GaiaDimensionMod;
-import androsa.gaiadimension.registry.registration.ModItems;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
@@ -10,8 +9,6 @@ import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ToolMaterial;
-import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.material.Fluid;
@@ -64,6 +61,7 @@ public class GaiaTags {
         public static final TagKey<Item> ORES_WHITE_OPAL = tagItemCommon("ore/white_opal");
         public static final TagKey<Item> ORES_PYRITE = tagItemCommon("ore/pyrite");
         public static final TagKey<Item> ORES_OPALITE = tagItemCommon("ore/opalite");
+        public static final TagKey<Item> ORES_CELESTINE = tagItemCommon("ore/celestine");
         public static final TagKey<Item> STORAGE_BLOCKS_SUGILITE = tagItemCommon("storage_blocks/sugilite");
         public static final TagKey<Item> STORAGE_BLOCKS_HEMATITE = tagItemCommon("storage_blocks/hematite");
         public static final TagKey<Item> STORAGE_BLOCKS_CINNABAR = tagItemCommon("storage_blocks/cinnabar");
@@ -78,6 +76,7 @@ public class GaiaTags {
         public static final TagKey<Item> STORAGE_BLOCKS_GOLDSTONE = tagItemCommon("storage_blocks/goldstone");
         public static final TagKey<Item> STORAGE_BLOCKS_AURA_CRYSTAL = tagItemCommon("storage_blocks/aura");
         public static final TagKey<Item> STORAGE_BLOCKS_BISMUTH = tagItemCommon("storage_blocks/bismuth");
+        public static final TagKey<Item> STORAGE_BLOCKS_OPALITE = tagItemCommon("storage_blocks/opalite");
         public static final TagKey<Item> STORAGE_BLOCKS_STIBNITE = tagItemCommon("storage_blocks/stibnite");
         public static final TagKey<Item> STORAGE_BLOCKS_PROUSTITE = tagItemCommon("storage_blocks/proustite");
         public static final TagKey<Item> STORAGE_BLOCKS_EUCLASE = tagItemCommon("storage_blocks/euclase");
@@ -86,6 +85,7 @@ public class GaiaTags {
         public static final TagKey<Item> STORAGE_BLOCKS_BENITOITE = tagItemCommon("storage_blocks/benitoite");
         public static final TagKey<Item> STORAGE_BLOCKS_DIOPSIDE = tagItemCommon("storage_blocks/diopside");
         public static final TagKey<Item> STORAGE_BLOCKS_GOSHENITE = tagItemCommon("storage_blocks/goshenite");
+        public static final TagKey<Item> STORAGE_BLOCKS_CELESTINE = tagItemCommon("storage_blocks/celestine");
 
         public static final TagKey<Item> DUSTS_FINE = tagItemCommon("dusts/fine");
         public static final TagKey<Item> DUSTS_GOLDSTONE = tagItemCommon("dusts/goldstone");
@@ -154,8 +154,6 @@ public class GaiaTags {
         public static final TagKey<Item> GEM_POUCH_ITEMS = tagItem("gem_pouch_items");
         public static final TagKey<Item> CRUDE_STORAGE_BLACKLIST = tagItem("crude_storage_blacklist");
         public static final TagKey<Item> MEGA_STORAGE_BLACKLIST = tagItem("mega_storage_blacklist");
-
-        public static final TagKey<Item> SHULKER_BOXES = ItemTags.create(ResourceLocation.withDefaultNamespace("shulker_boxes"));
     }
 
     public static class Blocks {

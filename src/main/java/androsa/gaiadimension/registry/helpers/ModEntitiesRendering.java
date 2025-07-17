@@ -16,7 +16,7 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 
-@EventBusSubscriber(modid = GaiaDimensionMod.MODID, bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
+@EventBusSubscriber(modid = GaiaDimensionMod.MODID, value = Dist.CLIENT)
 public class ModEntitiesRendering {
     public static final ModelLayerLocation AGATE_GOLEM = baselayer("agate_golem");
     public static final ModelLayerLocation ANCIENT_LAGRAHK = baselayer("ancient_lagrahk");

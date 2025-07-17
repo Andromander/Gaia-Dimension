@@ -34,6 +34,8 @@ import net.minecraft.world.item.crafting.RecipeManager;
 import net.minecraft.world.item.crafting.SingleRecipeInput;
 import net.minecraft.world.level.block.entity.BaseContainerBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.storage.ValueInput;
+import net.minecraft.world.level.storage.ValueOutput;
 import net.minecraft.world.phys.Vec3;
 
 import javax.annotation.Nullable;
@@ -125,10 +127,10 @@ public class RestructurerBlockEntity extends BaseContainerBlockEntity implements
     }
 
     @Override
-    public void loadAdditional(CompoundTag compound, HolderLookup.Provider provider) {
-        super.loadAdditional(compound, provider);
+    public void loadAdditional(ValueInput compound) {
+        super.loadAdditional(compound);
         this.restructurerItemStacks = NonNullList.withSize(this.getContainerSize(), ItemStack.EMPTY);
-        ContainerHelper.loadAllItems(compound, this.restructurerItemStacks, provider);
+        ContainerHelper.loadAllItems(compound, this.restructurerItemStacks);
         this.burnTime = compound.getIntOr("BurnTime", 0);
         this.cookTime = compound.getIntOr("CookTime", 0);
         this.cookTimeTotal = compound.getIntOr("CookTimeTotal", 0);
@@ -138,15 +140,15 @@ public class RestructurerBlockEntity extends BaseContainerBlockEntity implements
     }
 
     @Override
-    public void saveAdditional(CompoundTag compound, HolderLookup.Provider provider) {
-        super.saveAdditional(compound, provider);
+    public void saveAdditional(ValueOutput compound) {
+        super.saveAdditional(compound);
         compound.putInt("BurnTime", this.burnTime);
         compound.putInt("CookTime", this.cookTime);
         compound.putInt("CookTimeTotal", (short)this.cookTimeTotal);
-        ContainerHelper.saveAllItems(compound, this.restructurerItemStacks, provider);
+        ContainerHelper.saveAllItems(compound, this.restructurerItemStacks);
         CompoundTag usedRecipes = new CompoundTag();
         this.recipeMap.forEach((key, i) -> usedRecipes.putInt(key.location().toString(), i));
-        compound.put("RecipesUsed", usedRecipes);
+        compound.store("RecipesUsed", CompoundTag.CODEC, usedRecipes);
     }
 
     public static void tick(ServerLevel level, BlockPos pos, BlockState state, RestructurerBlockEntity entity) {
@@ -429,7 +431,7 @@ public class RestructurerBlockEntity extends BaseContainerBlockEntity implements
     public void awardUsedRecipes(Player player, List<ItemStack> stacks) { }
 
     public void awardRecipe(ServerPlayer player) {
-        List<RecipeHolder<?>> list = unlockRecipe(player.serverLevel(), player.position());
+        List<RecipeHolder<?>> list = unlockRecipe(player.level(), player.position());
         player.awardRecipes(list);
 
         for (RecipeHolder<?> holder : list) {

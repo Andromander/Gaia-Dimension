@@ -1,10 +1,10 @@
-// 1.21.5	2025-07-14T14:41:40.3723055	Registries
+// 1.21.6	2025-07-17T19:38:41.7803917	Registries
 56d72770b020b85f72c305522124360858cbe607 data/gaiadimension/damage_type/corruption.json
 a1e930106447e88a8543df5b23b57cfb80a32144 data/gaiadimension/damage_type/energetic.json
 fabd7f085894b585a78435b4771454b6036d241e data/gaiadimension/damage_type/malachite_blast.json
 f90004ec2c2661cd6f96f4773fda5e63e1354d21 data/gaiadimension/damage_type/static.json
 06fa0206a9f7743130a7f6eb58ad88fc2bae06c9 data/gaiadimension/dimension/gaia_dimension.json
-d591a5d89ce5ab5bf2e9de4bea4a63cc16569cdf data/gaiadimension/dimension_type/gaia_dimension.json
+d9cc3ba04546f59517444d7474a0de5c35fb55dc data/gaiadimension/dimension_type/gaia_dimension.json
 5a29984651acf37accdf6ece6ada990c91d4564b data/gaiadimension/worldgen/biome/blue_agate_taiga.json
 b214544e88ccf0ae92bfa3beacea153446429783 data/gaiadimension/worldgen/biome/crystal_plains.json
 2551f9a2dd39ed23d866ae84d4c2aaf0a5c427b4 data/gaiadimension/worldgen/biome/fossil_woodland.json

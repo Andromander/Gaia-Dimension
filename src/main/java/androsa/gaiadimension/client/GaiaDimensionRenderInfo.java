@@ -11,15 +11,15 @@ public class GaiaDimensionRenderInfo extends DimensionSpecialEffects {
     private GaiaSkyRender renderer;
 
     public GaiaDimensionRenderInfo() {
-        super(255.0F, true, SkyType.OVERWORLD, false, false);
+        super(SkyType.OVERWORLD, false, false);
     }
 
     @Override
-    public boolean renderSky(ClientLevel level, int ticks, float partialTick, Matrix4f modelMatrix, Camera camera, Matrix4f projectionMatrix, Runnable setupFog) {
+    public boolean renderSky(ClientLevel level, int ticks, float partialTick, Matrix4f modelMatrix, Camera camera, Runnable setupFog) {
         if (renderer == null) {
             renderer = new GaiaSkyRender();
         }
-        return renderer.render(partialTick, level, camera, projectionMatrix, setupFog);
+        return renderer.render(partialTick, level, camera, setupFog);
     }
 
     @Override
