@@ -261,7 +261,6 @@ public class GaiaItemModels extends GaiaItemModelProvider {
         eggItem(ModItems.opalite_construct_spawn_egg);
         eggItem(ModItems.growth_grazer_spawn_egg);
         eggItem(ModItems.aureate_evraun_spawn_egg);
-        eggItem(ModItems.moss_agate_monitor_spawn_egg);
         eggItem(ModItems.blue_howlite_wolf_spawn_egg);
         eggItem(ModItems.malachite_guard_spawn_egg);
     }
