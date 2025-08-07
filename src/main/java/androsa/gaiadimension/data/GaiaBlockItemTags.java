@@ -64,6 +64,7 @@ public abstract class GaiaBlockItemTags {
         tag(GaiaTags.Blocks.ORES_OPALITE, GaiaTags.Items.ORES_OPALITE)
                 .add(ModBlocks.scarlet_opalite_ore.get(), ModBlocks.auburn_opalite_ore.get(), ModBlocks.gold_opalite_ore.get(), ModBlocks.mauve_opalite_ore.get(), ModBlocks.beige_opalite_ore.get(), ModBlocks.ivory_opalite_ore.get());
         tag(GaiaTags.Blocks.ORES_CELESTINE, GaiaTags.Items.ORES_CELESTINE).add(ModBlocks.celestine_ore.get());
+        tag(GaiaTags.Blocks.STORAGE_BLOCKS_SCAYNYX, GaiaTags.Items.STORAGE_BLOCKS_SCAYNYX).add(ModBlocks.scaynyx_block.get());
         tag(GaiaTags.Blocks.STORAGE_BLOCKS_SUGILITE, GaiaTags.Items.STORAGE_BLOCKS_SUGILITE).add(ModBlocks.sugilite_block.get());
         tag(GaiaTags.Blocks.STORAGE_BLOCKS_HEMATITE, GaiaTags.Items.STORAGE_BLOCKS_HEMATITE).add(ModBlocks.hematite_block.get());
         tag(GaiaTags.Blocks.STORAGE_BLOCKS_CINNABAR, GaiaTags.Items.STORAGE_BLOCKS_CINNABAR).add(ModBlocks.cinnabar_block.get());

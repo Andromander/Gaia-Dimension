@@ -54,6 +54,16 @@ public class GaiaItemModels extends GaiaItemModelProvider {
         flatItem(ModItems.liquid_bismuth_bucket);
         flatItem(ModItems.liquid_aura_bucket);
         flatItem(ModItems.crystal_shard);
+        flatItem(ModItems.crystal_core);
+        flatItem(ModItems.spitfire_heart);
+        flatItem(ModItems.shockshooter_soul);
+        flatItem(ModItems.howlite_fang);
+        flatItem(ModItems.spellbound_core);
+        flatItem(ModItems.bismuth_horn);
+        flatItem(ModItems.glitter_dust);
+        flatItem(ModItems.glitter_rod);
+        flatItem(ModItems.aura_rod);
+
         geodeItem(ModItems.pink_geode);
         geodeItem(ModItems.blue_geode);
         geodeItem(ModItems.green_geode);
@@ -251,6 +261,7 @@ public class GaiaItemModels extends GaiaItemModelProvider {
         eggItem(ModItems.opalite_construct_spawn_egg);
         eggItem(ModItems.growth_grazer_spawn_egg);
         eggItem(ModItems.aureate_evraun_spawn_egg);
+        eggItem(ModItems.moss_agate_monitor_spawn_egg);
         eggItem(ModItems.blue_howlite_wolf_spawn_egg);
         eggItem(ModItems.malachite_guard_spawn_egg);
     }

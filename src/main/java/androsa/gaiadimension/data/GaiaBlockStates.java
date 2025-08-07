@@ -264,6 +264,7 @@ public class GaiaBlockStates extends GaiaBlockStateProvider {
         stairsBlockLayered(ModBlocks.malachite_pulsing_floor_stairs, "malachite_tiles", "malachite_blue_pulse_corner", "cutout");
         stairsBlockLayered(ModBlocks.malachite_pulsing_chisel_stairs, "malachite_chisel_bricks", "malachite_lime_pulse_corner", "cutout");
         pillarStairsBlock(ModBlocks.malachite_pillar_stairs, ModBlocks.malachite_pillar);
+        basicBlock(ModBlocks.scaynyx_block);
         basicBlock(ModBlocks.sugilite_block);
         basicBlock(ModBlocks.hematite_block);
         basicBlock(ModBlocks.cinnabar_block);

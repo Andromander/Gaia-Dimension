@@ -61,6 +61,20 @@ public abstract class GaiaEntityLootTableProvider extends EntityLootSubProvider 
                                 .apply(EnchantedCountIncreaseFunction.lootingMultiplier(this.registries, UniformGenerator.between(0.0F, 1.0F)))));
     }
 
+    public LootTable.Builder doubleDropTable(Supplier<Item> drop1, Supplier<Item> drop2, float minCount1, float maxCount1, float minCount2, float maxCount2) {
+        return LootTable.lootTable()
+                .withPool(LootPool.lootPool()
+                        .setRolls(ConstantValue.exactly(1))
+                        .add(LootItem.lootTableItem(drop1.get())
+                                .apply(SetItemCountFunction.setCount(UniformGenerator.between(minCount1, maxCount1)))
+                                .apply(EnchantedCountIncreaseFunction.lootingMultiplier(this.registries, UniformGenerator.between(0.0F, 1.0F)))))
+                .withPool(LootPool.lootPool()
+                        .setRolls(ConstantValue.exactly(1))
+                        .add(LootItem.lootTableItem(drop2.get())
+                                .apply(SetItemCountFunction.setCount(UniformGenerator.between(minCount2, maxCount2)))
+                                .apply(EnchantedCountIncreaseFunction.lootingMultiplier(this.registries, UniformGenerator.between(0.0F, 1.0F)))));
+    }
+
     public LootTable.Builder cookableSingleDropTable(Supplier<Item> raw, float minCount, float maxCount) {
         return LootTable.lootTable()
                 .withPool(LootPool.lootPool()

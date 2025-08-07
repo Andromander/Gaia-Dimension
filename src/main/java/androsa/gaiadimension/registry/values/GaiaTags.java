@@ -62,6 +62,7 @@ public class GaiaTags {
         public static final TagKey<Item> ORES_PYRITE = tagItemCommon("ore/pyrite");
         public static final TagKey<Item> ORES_OPALITE = tagItemCommon("ore/opalite");
         public static final TagKey<Item> ORES_CELESTINE = tagItemCommon("ore/celestine");
+        public static final TagKey<Item> STORAGE_BLOCKS_SCAYNYX = tagItemCommon("storage_blocks/scaynyx");
         public static final TagKey<Item> STORAGE_BLOCKS_SUGILITE = tagItemCommon("storage_blocks/sugilite");
         public static final TagKey<Item> STORAGE_BLOCKS_HEMATITE = tagItemCommon("storage_blocks/hematite");
         public static final TagKey<Item> STORAGE_BLOCKS_CINNABAR = tagItemCommon("storage_blocks/cinnabar");
@@ -194,6 +195,7 @@ public class GaiaTags {
         public static final TagKey<Block> ORES_PYRITE = tagBlockCommon("ore/pyrite");
         public static final TagKey<Block> ORES_OPALITE = tagBlockCommon("ore/opalite");
         public static final TagKey<Block> ORES_CELESTINE = tagBlockCommon("ore/celestine");
+        public static final TagKey<Block> STORAGE_BLOCKS_SCAYNYX = tagBlockCommon("storage_blocks/scaynyx");
         public static final TagKey<Block> STORAGE_BLOCKS_SUGILITE = tagBlockCommon("storage_blocks/sugilite");
         public static final TagKey<Block> STORAGE_BLOCKS_HEMATITE = tagBlockCommon("storage_blocks/hematite");
         public static final TagKey<Block> STORAGE_BLOCKS_CINNABAR = tagBlockCommon("storage_blocks/cinnabar");

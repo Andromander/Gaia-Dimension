@@ -316,6 +316,7 @@ public class ModBlocks {
     public static final DeferredBlock<StairBlock> malachite_pillar_stairs = makeStairs("malachite_pillar_stairs", malachite_pillar, 0);
 
     //Storage Blocks
+    public static final DeferredBlock<Block> scaynyx_block = register("scaynyx_block", PropertiesHandler.storageProps(MapColor.COLOR_MAGENTA));
     public static final DeferredBlock<Block> sugilite_block = register("sugilite_block", PropertiesHandler.storageProps(MapColor.COLOR_PURPLE));
     public static final DeferredBlock<Block> hematite_block = register("hematite_block", PropertiesHandler.storageProps(MapColor.COLOR_GRAY));
     public static final DeferredBlock<Block> cinnabar_block = register("cinnabar_block", PropertiesHandler.storageProps(MapColor.COLOR_ORANGE));

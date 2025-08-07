@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_aura_rod": {
+      "conditions": {
+        "items": [
+          {
+            "items": "gaiadimension:aura_rod"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "gaiadimension:aura_curtain_rods"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_aura_rod"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "gaiadimension:aura_curtain_rods"
+    ]
+  }
+}

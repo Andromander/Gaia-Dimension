@@ -1,4 +1,4 @@
-// 1.21.6	2025-07-17T19:38:41.7763916	Tags for minecraft:item mod id gaiadimension
+// 1.21.8	2025-08-07T10:30:59.8446806	Tags for minecraft:item mod id gaiadimension
 b8824061659e34d2bcb2a29f7526c559c25d1834 data/c/tags/item/bones.json
 d67324c41876289e35996384266b7cb310ef4d04 data/c/tags/item/dusts.json
 307d706a2aab12da68949f0ac0ae908638e5b471 data/c/tags/item/dusts/fine.json
@@ -67,6 +67,7 @@ f94fa3cf67fd37c3e11e2451b692fb1bf87b087f data/c/tags/item/storage_blocks/opalite
 9beb5e8cc773cae774690cf50690e4ec67c38768 data/c/tags/item/storage_blocks/proustite.json
 6a2438c6f77b23160e9fa5c55f4f0924d38d18c0 data/c/tags/item/storage_blocks/pyrite.json
 6d31a11564a6ea7d7a62857ffc5928478f5432d6 data/c/tags/item/storage_blocks/red_opal.json
+4a625ae630daccf0f9fa69228ddbaccad02634ba data/c/tags/item/storage_blocks/scaynyx.json
 e326594bd9e85548d76dd046e3f21a2c1a1c7a05 data/c/tags/item/storage_blocks/stibnite.json
 b4be287b2db0739db846165accc676d6c19c1db8 data/c/tags/item/storage_blocks/sugilite.json
 c17d48cad4a7c7c19a92d57a2475718999347e7e data/c/tags/item/storage_blocks/tektite.json
