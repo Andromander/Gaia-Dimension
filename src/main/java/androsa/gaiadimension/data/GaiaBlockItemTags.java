@@ -89,6 +89,7 @@ public abstract class GaiaBlockItemTags {
         tag(GaiaTags.Blocks.STORAGE_BLOCKS_DIOPSIDE, GaiaTags.Items.STORAGE_BLOCKS_DIOPSIDE).add(ModBlocks.diopside_block.get());
         tag(GaiaTags.Blocks.STORAGE_BLOCKS_GOSHENITE, GaiaTags.Items.STORAGE_BLOCKS_GOSHENITE).add(ModBlocks.goshenite_block.get());
         tag(GaiaTags.Blocks.STORAGE_BLOCKS_CELESTINE, GaiaTags.Items.STORAGE_BLOCKS_CELESTINE).add(ModBlocks.celestine_block.get());
+        tag(GaiaTags.Blocks.STORAGE_BLOCKS_MAGNETITE, GaiaTags.Items.STORAGE_BLOCKS_MAGNETITE).add(ModBlocks.magnetite_block.get());
     }
 
     protected abstract TagAppender<Block, Block> tag(TagKey<Block> blocktag, TagKey<Item> itemtag);

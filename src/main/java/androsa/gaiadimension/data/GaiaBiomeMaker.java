@@ -111,9 +111,10 @@ public class GaiaBiomeMaker extends GaiaBiomeProvider {
                         greenAgateJungle(features, carvers),
                         buildSpawns(
                                 createSpawns()
-                                        .addSpawn(MobCategory.CREATURE, 15, mobData(ModEntities.NOMADIC_LAGRAHK, 1, 1))
-                                        .addSpawn(MobCategory.CREATURE, 20, mobData(ModEntities.GROWTH_SAPPER, 3, 5))
-                                        .addSpawn(MobCategory.AMBIENT, 15, mobData(ModEntities.MARKUZAR_PLANT, 2, 4)))
+                                        .addSpawn(MobCategory.CREATURE, 10, mobData(ModEntities.NOMADIC_LAGRAHK, 1, 1))
+                                        .addSpawn(MobCategory.CREATURE, 15, mobData(ModEntities.GROWTH_SAPPER, 3, 5))
+                                        .addSpawn(MobCategory.CREATURE, 10, mobData(ModEntities.MOSS_AGATE_MONITOR, 1, 2))
+                                        .addSpawn(MobCategory.AMBIENT, 10, mobData(ModEntities.MARKUZAR_PLANT, 2, 4)))
                 ).temperature(0.75F));
     }
 

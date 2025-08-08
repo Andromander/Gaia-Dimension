@@ -87,6 +87,7 @@ public class GaiaTags {
         public static final TagKey<Item> STORAGE_BLOCKS_DIOPSIDE = tagItemCommon("storage_blocks/diopside");
         public static final TagKey<Item> STORAGE_BLOCKS_GOSHENITE = tagItemCommon("storage_blocks/goshenite");
         public static final TagKey<Item> STORAGE_BLOCKS_CELESTINE = tagItemCommon("storage_blocks/celestine");
+        public static final TagKey<Item> STORAGE_BLOCKS_MAGNETITE = tagItemCommon("storage_blocks/magnetite");
 
         public static final TagKey<Item> DUSTS_FINE = tagItemCommon("dusts/fine");
         public static final TagKey<Item> DUSTS_GOLDSTONE = tagItemCommon("dusts/goldstone");
@@ -117,6 +118,7 @@ public class GaiaTags {
         public static final TagKey<Item> GEMS_BISMUTH = tagItemCommon("gems/bismuth");
         public static final TagKey<Item> GEMS_OPALITE = tagItemCommon("gems/opalite");
         public static final TagKey<Item> GEMS_CELESTINE = tagItemCommon("gems/celestine");
+        public static final TagKey<Item> GEMS_MAGNETITE = tagItemCommon("gems/magnetite");
 
         public static final TagKey<Item> SUGILITE_ARMOR_MATERIAL = tagItem("sugilite_armor_materials");
         public static final TagKey<Item> PROUSTITE_ARMOR_MATERIAL = tagItem("proustite_armor_materials");
@@ -220,6 +222,7 @@ public class GaiaTags {
         public static final TagKey<Block> STORAGE_BLOCKS_DIOPSIDE = tagBlockCommon("storage_blocks/diopside");
         public static final TagKey<Block> STORAGE_BLOCKS_GOSHENITE = tagBlockCommon("storage_blocks/goshenite");
         public static final TagKey<Block> STORAGE_BLOCKS_CELESTINE = tagBlockCommon("storage_blocks/celestine");
+        public static final TagKey<Block> STORAGE_BLOCKS_MAGNETITE = tagBlockCommon("storage_blocks/magnetite");
 
         public static final TagKey<Block> GAIA_PLANTS = tagBlock("gaia_plants");
 

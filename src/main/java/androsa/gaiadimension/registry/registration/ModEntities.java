@@ -67,6 +67,7 @@ public class ModEntities {
     public static final DeferredHolder<EntityType<?>, EntityType<OpaliteContruct>> OPALITE_CONSTRUCT = registerEntity("opalite_construct", OpaliteContruct::new, MobCategory.CREATURE, 1.0F, 1.5F, false);
     public static final DeferredHolder<EntityType<?>, EntityType<GrowthGrazer>> GROWTH_GRAZER = registerEntity("growth_grazer", GrowthGrazer::new, MobCategory.CREATURE, 1.0F, 1.0F, 0.7F, false);
     public static final DeferredHolder<EntityType<?>, EntityType<AureateEvraun>> AUREATE_EVRAUN = registerEntity("aureate_evraun", AureateEvraun::new, MobCategory.CREATURE, 2.7F, 3.8F, false);
+    public static final DeferredHolder<EntityType<?>, EntityType<MossAgateMonitor>> MOSS_AGATE_MONITOR = registerEntity("moss_agate_monitor", MossAgateMonitor::new, MobCategory.CREATURE, 1.0F, 1.0F, false);
 
     //Mini Bosses
     public static final DeferredHolder<EntityType<?>, EntityType<BlueHowliteWolf>> BLUE_HOWLITE_WOLF = registerEntity("blue_howlite_wolf", BlueHowliteWolf::new, MobCategory.MONSTER, 1.2F, 2.2F, 2.1F, false);
@@ -145,6 +146,7 @@ public class ModEntities {
         registerPlacement(event, OPALITE_CONSTRUCT, SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, OpaliteContruct::canSpawnHere);
         registerPlacement(event, GROWTH_GRAZER, SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, GrowthGrazer::canSpawnHere);
         registerPlacement(event, AUREATE_EVRAUN, SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, AureateEvraun::canSpawnHere);
+        registerPlacement(event, MOSS_AGATE_MONITOR, SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, MossAgateMonitor::canSpawnHere);
     }
 
     private static <E extends Mob, T extends EntityType<E>> void registerPlacement(RegisterSpawnPlacementsEvent event, Supplier<T> entity, SpawnPlacementType type, Heightmap.Types heightmap, SpawnPlacements.SpawnPredicate<E> predicate) {
@@ -182,6 +184,7 @@ public class ModEntities {
         setAttributes(evt, OPALITE_CONSTRUCT, OpaliteContruct.registerAttributes());
         setAttributes(evt, GROWTH_GRAZER, GrowthGrazer.registerAttributes());
         setAttributes(evt, AUREATE_EVRAUN, AureateEvraun.registerAttributes());
+        setAttributes(evt, MOSS_AGATE_MONITOR, MossAgateMonitor.registerAttributes());
         setAttributes(evt, BLUE_HOWLITE_WOLF, BlueHowliteWolf.registerAttributes());
         setAttributes(evt, MALACHITE_GUARD, MalachiteGuard.registerAttributes());
     }

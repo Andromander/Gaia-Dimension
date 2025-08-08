@@ -127,6 +127,7 @@ public class GaiaRecipes extends GaiaRecipeProvider {
         largeCompressRecipe(ModBlocks.diopside_block.get(), ModItems.diopside.get()).save(this.output);
         largeCompressRecipe(ModBlocks.goshenite_block.get(), ModItems.goshenite.get()).save(this.output);
         largeCompressRecipe(ModBlocks.celestine_block.get(), ModItems.celestine.get()).save(this.output);
+        largeCompressRecipe(ModBlocks.magnetite_block.get(), ModItems.magnetite.get()).save(this.output);
 
         blockToItemRecipe(ModItems.scaynyx_ingot, ModBlocks.scaynyx_block, this.output, "scaynyx_block_item");
         blockToItemRecipe(ModItems.sugilite, ModBlocks.sugilite_block, this.output, "sugilite_block_item");
@@ -153,6 +154,7 @@ public class GaiaRecipes extends GaiaRecipeProvider {
         blockToItemRecipe(ModItems.bismuth_crystal, ModBlocks.bismuth_block, this.output, "bismuth_crystal_block_item");
         blockToItemRecipe(ModItems.opalite, ModBlocks.opalite_block, this.output, "opalite_block_item");
         blockToItemRecipe(ModItems.celestine, ModBlocks.celestine_block, this.output, "celestine_block_item");
+        blockToItemRecipe(ModItems.magnetite, ModBlocks.magnetite_block, this.output, "magnetite_block_item");
 
         helmetRecipe(ModItems.sugilite_helmet, ModItems.sugilite, this.output);
         chestRecipe(ModItems.sugilite_chestplate, ModItems.sugilite, this.output);
@@ -210,6 +212,7 @@ public class GaiaRecipes extends GaiaRecipeProvider {
 
         largeCompressRecipe(ModItems.aura_cluster.get(), ModItems.aura_residue.get()).save(this.output);
         largeCompressRecipe(ModItems.bismuth_crystal.get(), ModItems.bismuth_residue.get()).save(this.output);
+        largeCompressRecipe(ModItems.magnetite.get(), ModItems.metallic_fragment.get()).save(this.output);
         drinkRecipe(ModItems.pink_geode_juice, ModItems.pink_geode_slice).save(this.output);
         drinkRecipe(ModItems.blue_geode_tea, ModItems.blue_geode_slice).save(this.output);
         drinkRecipe(ModItems.green_geode_ale, ModItems.green_geode_slice).save(this.output);
@@ -292,6 +295,12 @@ public class GaiaRecipes extends GaiaRecipeProvider {
                 .pattern("#")
                 .define('#', ModBlocks.aura_shoot)
                 .unlockedBy("has_aura_shoot", has(ModBlocks.aura_shoot))
+                .save(this.output);
+        this.shaped(RecipeCategory.MISC, ModItems.magnetite_rod.get(), 4)
+                .pattern("#")
+                .pattern("#")
+                .define('#', ModItems.magnetite)
+                .unlockedBy("has_magnetite", has(ModItems.magnetite))
                 .save(this.output);
         this.shaped(RecipeCategory.BUILDING_BLOCKS, ModBlocks.bolstered_bricks.get(), 2)
                 .pattern("%#")
@@ -541,6 +550,8 @@ public class GaiaRecipes extends GaiaRecipeProvider {
         smeltingRecipe(ModBlocks.thick_glitter_block.get(), ModBlocks.gummy_glitter_block, 0.1F).save(this.output, locSmelt("thick_glitter_block"));
         smeltingRecipe(ModItems.white_opal.get(), ModBlocks.white_opal_ore, 1.0F).save(this.output, locSmelt("white_opal"));
         smeltingRecipe(ModItems.glitter_rod.get(), ModItems.glitter_dust, 0.0F).save(this.output, locSmelt("glitter_dust"));
+        smeltingRecipe(ModItems.magnetite.get(), ModBlocks.static_stone, 0.0F).save(this.output, locSmelt("magnetite_from_static_stone"));
+        smeltingRecipe(ModItems.magnetite.get(), ModBlocks.charged_mineral, 0.0F, 2).save(this.output, locSmelt("magnetite_from_charged_mineral"));
 
         restructureBlackResidue(ModItems.benitoite, ModItems.blue_opal, 0.3F, 1).save(this.output, locRestructure("benitoite"));
         restructuringTektite(ModBlocks.benitoite_block, ModBlocks.blue_opal_block, 2.7F, 1).save(this.output, locRestructure("benitoite_block"));

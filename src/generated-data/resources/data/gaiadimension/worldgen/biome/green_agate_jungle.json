@@ -68,7 +68,7 @@
         "type": "gaiadimension:markuzar_plant",
         "maxCount": 4,
         "minCount": 2,
-        "weight": 15
+        "weight": 10
       }
     ],
     "axolotls": [],
@@ -77,13 +77,19 @@
         "type": "gaiadimension:nomadic_lagrahk",
         "maxCount": 1,
         "minCount": 1,
-        "weight": 15
+        "weight": 10
       },
       {
         "type": "gaiadimension:growth_sapper",
         "maxCount": 5,
         "minCount": 3,
-        "weight": 20
+        "weight": 15
+      },
+      {
+        "type": "gaiadimension:moss_agate_monitor",
+        "maxCount": 2,
+        "minCount": 1,
+        "weight": 10
       }
     ],
     "misc": [],

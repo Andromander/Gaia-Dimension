@@ -23,7 +23,7 @@ public class GaiaItemTags extends GaiaItemTagsProvider {
     ImmutableList<Supplier<Item>> BEACON_PAYMENTS = ImmutableList.of(
             ModItems.sugilite, ModItems.hematite, ModItems.cinnabar, ModItems.labradorite, ModItems.moonstone, ModItems.red_opal, ModItems.blue_opal, ModItems.green_opal,
             ModItems.white_opal, ModItems.stibnite, ModItems.proustite, ModItems.euclase, ModItems.albite, ModItems.carnelian, ModItems.benitoite, ModItems.diopside,
-            ModItems.goshenite, ModItems.pyrite, ModItems.tektite, ModItems.goldstone, ModItems.aura_cluster, ModItems.bismuth_crystal, ModItems.opalite, ModItems.celestine
+            ModItems.goshenite, ModItems.pyrite, ModItems.tektite, ModItems.goldstone, ModItems.aura_cluster, ModItems.bismuth_crystal, ModItems.opalite, ModItems.celestine, ModItems.magnetite
     );
     ImmutableList<TagKey<Item>> GEM_TAGS = ImmutableList.of(
             GaiaTags.Items.GEMS_SUGILITE, GaiaTags.Items.GEMS_HEMATITE, GaiaTags.Items.GEMS_CINNABAR, GaiaTags.Items.GEMS_LABRADORITE, GaiaTags.Items.GEMS_MOONSTONE,
@@ -93,6 +93,7 @@ public class GaiaItemTags extends GaiaItemTagsProvider {
         tag(GaiaTags.Items.GEMS_BISMUTH).add(ModItems.bismuth_crystal.get());
         tag(GaiaTags.Items.GEMS_OPALITE).add(ModItems.opalite.get());
         tag(GaiaTags.Items.GEMS_CELESTINE).add(ModItems.celestine.get());
+        tag(GaiaTags.Items.GEMS_MAGNETITE).add(ModItems.magnetite.get());
 
         tag(GaiaTags.Items.AGATE_TOOL_MATERIAL).addTags(GaiaTags.Items.TILES);
         tag(GaiaTags.Items.SUGILITE_TOOL_MATERIAL).addTags(GaiaTags.Items.GEMS_SUGILITE);

@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "render_type": "minecraft:translucent",
+  "textures": {
+    "all": "gaiadimension:block/charged_mineral",
+    "top": "gaiadimension:block/charged_mineral_top",
+    "inclusion": "gaiadimension:block/charged_mineral_inclusions"
+  },
+  "elements": [{
+    "from": [ 0, 0, 0 ],
+    "to": [ 16, 16, 16 ],
+    "faces": {
+      "down":  { "texture": "#top", "cullface": "down" },
+      "up":    { "texture": "#top", "cullface": "up" },
+      "north": { "texture": "#all", "cullface": "north" },
+      "south": { "texture": "#all", "cullface": "south" },
+      "west":  { "texture": "#all", "cullface": "west" },
+      "east":  { "texture": "#all", "cullface": "east" }
+    }
+  } ,{
+    "from": [ 0.08, 0.08, 0.08 ],
+    "to": [ 15.92, 15.92, 15.92 ],
+    "faces": {
+      "down":  { "texture": "#inclusion", "cullface": "down"  },
+      "up":    { "texture": "#inclusion", "cullface": "up" },
+      "north": { "texture": "#inclusion", "cullface": "north" },
+      "south": { "texture": "#inclusion", "cullface": "south" },
+      "west":  { "texture": "#inclusion", "cullface": "west" },
+      "east":  { "texture": "#inclusion", "cullface": "east" }
+    }
+  }]
+}

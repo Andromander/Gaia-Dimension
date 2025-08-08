@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "ingredients": [
+    "gaiadimension:magnetite_block"
+  ],
+  "result": {
+    "count": 9,
+    "id": "gaiadimension:magnetite"
+  }
+}

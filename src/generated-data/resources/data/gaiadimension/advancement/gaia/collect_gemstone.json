@@ -151,6 +151,16 @@
       },
       "trigger": "minecraft:inventory_changed"
     },
+    "get_magnetite": {
+      "conditions": {
+        "items": [
+          {
+            "items": "gaiadimension:magnetite"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
     "get_moonstone": {
       "conditions": {
         "items": [
@@ -279,7 +289,8 @@
       "get_aura_cluster",
       "get_bismuth_crystal",
       "get_opalite",
-      "get_celestine"
+      "get_celestine",
+      "get_magnetite"
     ]
   ],
   "sends_telemetry_event": true

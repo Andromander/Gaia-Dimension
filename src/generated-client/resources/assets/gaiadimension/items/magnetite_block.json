@@ -1,6 +1,6 @@
 {
   "model": {
     "type": "minecraft:model",
-    "model": "gaiadimension:block/charged_mineral"
+    "model": "gaiadimension:block/magnetite_block"
   }
 }
