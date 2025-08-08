@@ -54,7 +54,6 @@ public class ModBlocks {
     public static final DeferredBlock<Block> gaia_stone_furnace = register("gaia_stone_furnace", GaiaStoneFurnaceBlock::new, PropertiesHandler.stoneProps(MapColor.TERRACOTTA_PINK, 20.0F, 300.0F, true).lightLevel((state) -> state.getValue(AbstractFurnaceBlock.LIT) ? 13 : 0));
     public static final DeferredBlock<Block> restructurer = register("restructurer", RestructurerBlock::new, PropertiesHandler.stoneProps(MapColor.TERRACOTTA_PURPLE, 20.0F, 300.0F, true).lightLevel((state) -> state.getValue(RestructurerBlock.LIT) ? 14 : 0));
     public static final DeferredBlock<Block> purifier = register("purifier", PurifierBlock::new, PropertiesHandler.stoneProps(MapColor.SAND, 20.0F, 300.0F, true).lightLevel((state) -> state.getValue(PurifierBlock.LIT) ? 14 : 0));
-    public static final DeferredBlock<Block> augmenter = register("augmenter", AugmenterBlock::new, PropertiesHandler.stoneProps(MapColor.TERRACOTTA_PURPLE, 10.0F, 150.0F).lightLevel((state) -> 12));
 
     //Fluids
     public static final DeferredBlock<LiquidBlock> mineral_water = registerNoItem("mineral_water", props ->
