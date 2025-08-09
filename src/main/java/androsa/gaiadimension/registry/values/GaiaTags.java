@@ -3,10 +3,8 @@ package androsa.gaiadimension.registry.values;
 import androsa.gaiadimension.GaiaDimensionMod;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.tags.BlockTags;
-import net.minecraft.tags.FluidTags;
-import net.minecraft.tags.ItemTags;
-import net.minecraft.tags.TagKey;
+import net.minecraft.tags.*;
+import net.minecraft.world.damagesource.DamageType;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.biome.Biome;
@@ -47,6 +45,10 @@ public class GaiaTags {
 
     private static TagKey<EntityType<?>> tagEntity(String name) {
         return TagKey.create(Registries.ENTITY_TYPE, ResourceLocation.fromNamespaceAndPath(GaiaDimensionMod.MODID, name));
+    }
+
+    private static TagKey<DamageType> tagDamage(String name) {
+        return TagKey.create(Registries.DAMAGE_TYPE, ResourceLocation.fromNamespaceAndPath("c", name));
     }
 
     public static class Items {
@@ -265,5 +267,9 @@ public class GaiaTags {
         public static final TagKey<EntityType<?>> GAIAN = tagEntity("gaian");
         public static final TagKey<EntityType<?>> CORRUPT = tagEntity("corrupt");
         public static final TagKey<EntityType<?>> CORRUPTION_IMMUNE = tagEntity("corruption_immune");
+    }
+
+    public static class Damage {
+        public static final TagKey<DamageType> IS_ELECTRIC = tagDamage("is_electric");
     }
 }

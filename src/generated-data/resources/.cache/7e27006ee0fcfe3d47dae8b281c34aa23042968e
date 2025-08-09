@@ -1,4 +1,4 @@
-// 1.21.8	2025-08-08T13:43:04.9902259	Gaia Dimension Recipes
+// 1.21.8	2025-08-09T14:11:22.0219853	Gaia Dimension Recipes
 2a1e241d7d1c50626f01b2901870745c3a79054a data/gaiadimension/advancement/recipes/building_blocks/albite_block.json
 a8cb9280902b7d3bd16020611d9df62a2fc3eb00 data/gaiadimension/advancement/recipes/building_blocks/amethyst_bricks.json
 6b4767698fd3ed00ab0c9287c83d7e873743f935 data/gaiadimension/advancement/recipes/building_blocks/amethyst_brick_slab.json
@@ -178,6 +178,7 @@ aacb8133e0c0f600b382e2d00eb51af36b829f88 data/gaiadimension/advancement/recipes/
 61bb37590c6c57f0e207d7bee1298f9f57fae423 data/gaiadimension/advancement/recipes/combat/tools/stibnite_sword.json
 aa5e446aab594fc230effb764c3ff179842bc369 data/gaiadimension/advancement/recipes/combat/tools/sugilite_sword.json
 7de162f1b198cbac7cd48c73aff47ae87a61d2e3 data/gaiadimension/advancement/recipes/decorations/agate_crafting_table.json
+d845dfde4e4533cd9ea4e5bf028cdf774af11586 data/gaiadimension/advancement/recipes/decorations/augmenter.json
 5b68cf07bdffea11b19140f63f0764a9135fe653 data/gaiadimension/advancement/recipes/decorations/aura_curtain_leaves.json
 f33b71eeb07b3bd124ac3ce6ab103f28f259f238 data/gaiadimension/advancement/recipes/decorations/aura_curtain_rods.json
 165da97c3bf2b594bccd5e21e1a6d4529e2cc0f3 data/gaiadimension/advancement/recipes/decorations/aura_curtain_tiles.json
@@ -313,6 +314,7 @@ f9f05d3aa0e766d7e7848f0136ab5163322b58d2 data/gaiadimension/advancement/recipes/
 937b8413f05cc9f184b614f65863c57db8b273c3 data/gaiadimension/advancement/recipes/restructuring/restructuring/stibnite_block.json
 98bf770edca3e7df7880365bb8e8314371ec6a1e data/gaiadimension/advancement/recipes/tools/gemstone_pouch.json
 56bed615a9a11d4ee70022b3c6e419ad34488385 data/gaiadimension/advancement/recipes/tools/glint_and_gold.json
+bd9d0c7c79ca840056b7c6404666e171e860b7e8 data/gaiadimension/advancement/recipes/tools/magic_staff.json
 6d42e743eea43a9ec685d6345af37f0bb5bc8443 data/gaiadimension/advancement/recipes/tools/scaynyx_bucket.json
 541b166f93b224180b681fe668eac4c5ce8e0bae data/gaiadimension/advancement/recipes/tools/tools/agate_axe.json
 caa5e3a52f0c8b082ac98dad1bf594d04a473831 data/gaiadimension/advancement/recipes/tools/tools/agate_pickaxe.json
@@ -369,6 +371,7 @@ b19566d0a606ec903c18ec22712c6a0141651835 data/gaiadimension/recipe/armor/prousti
 f1a2b4a92e83aed9671474c6443bbec1249a2584 data/gaiadimension/recipe/armor/sugilite_legs.json
 fb830684ab7e4b9ea16b50c6099ae1eb3aba1ebe data/gaiadimension/recipe/auburn_augment_kit.json
 b5e59369661a93ae5a4fe2c2dc016ce095dbf81e data/gaiadimension/recipe/auburn_replace_kit.json
+caf77c4cd1c7d3c615308f08da88e28f76ff1f77 data/gaiadimension/recipe/augmenter.json
 5afde7bc38554bf8e5a962391df8cbef5806bf98 data/gaiadimension/recipe/aura_block.json
 b9c0ea9f448139af063d1bbf6c26cf92f3767469 data/gaiadimension/recipe/aura_cluster.json
 a69e98807d129d0405ab4da63bfb333f6f0eef7a data/gaiadimension/recipe/aura_curtain_leaves.json
@@ -447,6 +450,7 @@ ffddb884f91ac758a617d347674d09f9792d53fb data/gaiadimension/recipe/jet_bricks.js
 5ed3149805de9a7ef620dfdc9ffc0f17f3d511c9 data/gaiadimension/recipe/keystone_block.json
 d9ecd8a75cfa79b75bb3c235103bcb315eb3c703 data/gaiadimension/recipe/labradorite_block.json
 8ba79e000b64a262aa7dcaef37a794984c3c57f2 data/gaiadimension/recipe/large_chest_2.json
+9a9f21e8d4c9ea4e7b9218616d2948d99e8fadb0 data/gaiadimension/recipe/magic_staff.json
 350b4947e48e8945855738a203a049e8416367db data/gaiadimension/recipe/magnetite.json
 12bd4047a9d5b3560d9d2d4011d5982d06ba4457 data/gaiadimension/recipe/magnetite_block.json
 e85a1cd032a81d69b36e933379acdbda07403583 data/gaiadimension/recipe/magnetite_rod.json

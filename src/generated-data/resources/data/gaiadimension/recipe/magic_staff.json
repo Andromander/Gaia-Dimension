@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "#": "gaiadimension:crystal_core",
+    "/": "gaiadimension:agate_stick",
+    "^": "gaiadimension:sugilite"
+  },
+  "pattern": [
+    "#",
+    "^",
+    "/"
+  ],
+  "result": {
+    "count": 1,
+    "id": "gaiadimension:magic_staff"
+  }
+}

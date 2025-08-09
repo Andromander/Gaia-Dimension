@@ -27,4 +27,6 @@ public class ModMenus {
             "restructurer", () -> new MenuType<>(RestructurerMenu::new, FeatureFlags.REGISTRY.allFlags()));
     public static final DeferredHolder<MenuType<?>, MenuType<PurifierMenu>> PURIFIER = CONTAINERS.register(
             "purifier", () -> new MenuType<>(PurifierMenu::new, FeatureFlags.REGISTRY.allFlags()));
+    public static final DeferredHolder<MenuType<?>, MenuType<AugmenterMenu>> AUGMENTER = CONTAINERS.register(
+            "augmenter", () -> new MenuType<>(AugmenterMenu::new, FeatureFlags.REGISTRY.allFlags()));
 }

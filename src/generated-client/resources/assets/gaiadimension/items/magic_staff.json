@@ -1,0 +1,2213 @@
+{
+  "model": {
+    "type": "minecraft:select",
+    "cases": [
+      {
+        "model": {
+          "type": "minecraft:select",
+          "cases": [
+            {
+              "model": {
+                "type": "minecraft:select",
+                "cases": [
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_physical_basic_standard"
+                    },
+                    "when": "standard"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_physical_basic_power"
+                    },
+                    "when": "power"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_physical_basic_speed"
+                    },
+                    "when": "speed"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_physical_basic_recharge"
+                    },
+                    "when": "recharge"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_physical_basic_force"
+                    },
+                    "when": "force"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_physical_basic_sustain"
+                    },
+                    "when": "sustain"
+                  }
+                ],
+                "property": "gaiadimension:stat"
+              },
+              "when": "basic"
+            },
+            {
+              "model": {
+                "type": "minecraft:select",
+                "cases": [
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_physical_scatter_standard"
+                    },
+                    "when": "standard"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_physical_scatter_power"
+                    },
+                    "when": "power"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_physical_scatter_speed"
+                    },
+                    "when": "speed"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_physical_scatter_recharge"
+                    },
+                    "when": "recharge"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_physical_scatter_force"
+                    },
+                    "when": "force"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_physical_scatter_sustain"
+                    },
+                    "when": "sustain"
+                  }
+                ],
+                "property": "gaiadimension:stat"
+              },
+              "when": "scatter"
+            },
+            {
+              "model": {
+                "type": "minecraft:select",
+                "cases": [
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_physical_ricochet_standard"
+                    },
+                    "when": "standard"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_physical_ricochet_power"
+                    },
+                    "when": "power"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_physical_ricochet_speed"
+                    },
+                    "when": "speed"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_physical_ricochet_recharge"
+                    },
+                    "when": "recharge"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_physical_ricochet_force"
+                    },
+                    "when": "force"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_physical_ricochet_sustain"
+                    },
+                    "when": "sustain"
+                  }
+                ],
+                "property": "gaiadimension:stat"
+              },
+              "when": "ricochet"
+            },
+            {
+              "model": {
+                "type": "minecraft:select",
+                "cases": [
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_physical_blast_standard"
+                    },
+                    "when": "standard"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_physical_blast_power"
+                    },
+                    "when": "power"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_physical_blast_speed"
+                    },
+                    "when": "speed"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_physical_blast_recharge"
+                    },
+                    "when": "recharge"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_physical_blast_force"
+                    },
+                    "when": "force"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_physical_blast_sustain"
+                    },
+                    "when": "sustain"
+                  }
+                ],
+                "property": "gaiadimension:stat"
+              },
+              "when": "blast"
+            },
+            {
+              "model": {
+                "type": "minecraft:select",
+                "cases": [
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_physical_linger_standard"
+                    },
+                    "when": "standard"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_physical_linger_power"
+                    },
+                    "when": "power"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_physical_linger_speed"
+                    },
+                    "when": "speed"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_physical_linger_recharge"
+                    },
+                    "when": "recharge"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_physical_linger_force"
+                    },
+                    "when": "force"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_physical_linger_sustain"
+                    },
+                    "when": "sustain"
+                  }
+                ],
+                "property": "gaiadimension:stat"
+              },
+              "when": "linger"
+            },
+            {
+              "model": {
+                "type": "minecraft:select",
+                "cases": [
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_physical_burst_standard"
+                    },
+                    "when": "standard"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_physical_burst_power"
+                    },
+                    "when": "power"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_physical_burst_speed"
+                    },
+                    "when": "speed"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_physical_burst_recharge"
+                    },
+                    "when": "recharge"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_physical_burst_force"
+                    },
+                    "when": "force"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_physical_burst_sustain"
+                    },
+                    "when": "sustain"
+                  }
+                ],
+                "property": "gaiadimension:stat"
+              },
+              "when": "burst"
+            }
+          ],
+          "property": "gaiadimension:behavior"
+        },
+        "when": "physical"
+      },
+      {
+        "model": {
+          "type": "minecraft:select",
+          "cases": [
+            {
+              "model": {
+                "type": "minecraft:select",
+                "cases": [
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_fire_basic_standard"
+                    },
+                    "when": "standard"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_fire_basic_power"
+                    },
+                    "when": "power"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_fire_basic_speed"
+                    },
+                    "when": "speed"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_fire_basic_recharge"
+                    },
+                    "when": "recharge"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_fire_basic_force"
+                    },
+                    "when": "force"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_fire_basic_sustain"
+                    },
+                    "when": "sustain"
+                  }
+                ],
+                "property": "gaiadimension:stat"
+              },
+              "when": "basic"
+            },
+            {
+              "model": {
+                "type": "minecraft:select",
+                "cases": [
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_fire_scatter_standard"
+                    },
+                    "when": "standard"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_fire_scatter_power"
+                    },
+                    "when": "power"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_fire_scatter_speed"
+                    },
+                    "when": "speed"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_fire_scatter_recharge"
+                    },
+                    "when": "recharge"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_fire_scatter_force"
+                    },
+                    "when": "force"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_fire_scatter_sustain"
+                    },
+                    "when": "sustain"
+                  }
+                ],
+                "property": "gaiadimension:stat"
+              },
+              "when": "scatter"
+            },
+            {
+              "model": {
+                "type": "minecraft:select",
+                "cases": [
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_fire_ricochet_standard"
+                    },
+                    "when": "standard"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_fire_ricochet_power"
+                    },
+                    "when": "power"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_fire_ricochet_speed"
+                    },
+                    "when": "speed"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_fire_ricochet_recharge"
+                    },
+                    "when": "recharge"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_fire_ricochet_force"
+                    },
+                    "when": "force"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_fire_ricochet_sustain"
+                    },
+                    "when": "sustain"
+                  }
+                ],
+                "property": "gaiadimension:stat"
+              },
+              "when": "ricochet"
+            },
+            {
+              "model": {
+                "type": "minecraft:select",
+                "cases": [
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_fire_blast_standard"
+                    },
+                    "when": "standard"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_fire_blast_power"
+                    },
+                    "when": "power"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_fire_blast_speed"
+                    },
+                    "when": "speed"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_fire_blast_recharge"
+                    },
+                    "when": "recharge"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_fire_blast_force"
+                    },
+                    "when": "force"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_fire_blast_sustain"
+                    },
+                    "when": "sustain"
+                  }
+                ],
+                "property": "gaiadimension:stat"
+              },
+              "when": "blast"
+            },
+            {
+              "model": {
+                "type": "minecraft:select",
+                "cases": [
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_fire_linger_standard"
+                    },
+                    "when": "standard"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_fire_linger_power"
+                    },
+                    "when": "power"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_fire_linger_speed"
+                    },
+                    "when": "speed"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_fire_linger_recharge"
+                    },
+                    "when": "recharge"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_fire_linger_force"
+                    },
+                    "when": "force"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_fire_linger_sustain"
+                    },
+                    "when": "sustain"
+                  }
+                ],
+                "property": "gaiadimension:stat"
+              },
+              "when": "linger"
+            },
+            {
+              "model": {
+                "type": "minecraft:select",
+                "cases": [
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_fire_burst_standard"
+                    },
+                    "when": "standard"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_fire_burst_power"
+                    },
+                    "when": "power"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_fire_burst_speed"
+                    },
+                    "when": "speed"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_fire_burst_recharge"
+                    },
+                    "when": "recharge"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_fire_burst_force"
+                    },
+                    "when": "force"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_fire_burst_sustain"
+                    },
+                    "when": "sustain"
+                  }
+                ],
+                "property": "gaiadimension:stat"
+              },
+              "when": "burst"
+            }
+          ],
+          "property": "gaiadimension:behavior"
+        },
+        "when": "fire"
+      },
+      {
+        "model": {
+          "type": "minecraft:select",
+          "cases": [
+            {
+              "model": {
+                "type": "minecraft:select",
+                "cases": [
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_electric_basic_standard"
+                    },
+                    "when": "standard"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_electric_basic_power"
+                    },
+                    "when": "power"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_electric_basic_speed"
+                    },
+                    "when": "speed"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_electric_basic_recharge"
+                    },
+                    "when": "recharge"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_electric_basic_force"
+                    },
+                    "when": "force"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_electric_basic_sustain"
+                    },
+                    "when": "sustain"
+                  }
+                ],
+                "property": "gaiadimension:stat"
+              },
+              "when": "basic"
+            },
+            {
+              "model": {
+                "type": "minecraft:select",
+                "cases": [
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_electric_scatter_standard"
+                    },
+                    "when": "standard"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_electric_scatter_power"
+                    },
+                    "when": "power"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_electric_scatter_speed"
+                    },
+                    "when": "speed"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_electric_scatter_recharge"
+                    },
+                    "when": "recharge"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_electric_scatter_force"
+                    },
+                    "when": "force"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_electric_scatter_sustain"
+                    },
+                    "when": "sustain"
+                  }
+                ],
+                "property": "gaiadimension:stat"
+              },
+              "when": "scatter"
+            },
+            {
+              "model": {
+                "type": "minecraft:select",
+                "cases": [
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_electric_ricochet_standard"
+                    },
+                    "when": "standard"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_electric_ricochet_power"
+                    },
+                    "when": "power"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_electric_ricochet_speed"
+                    },
+                    "when": "speed"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_electric_ricochet_recharge"
+                    },
+                    "when": "recharge"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_electric_ricochet_force"
+                    },
+                    "when": "force"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_electric_ricochet_sustain"
+                    },
+                    "when": "sustain"
+                  }
+                ],
+                "property": "gaiadimension:stat"
+              },
+              "when": "ricochet"
+            },
+            {
+              "model": {
+                "type": "minecraft:select",
+                "cases": [
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_electric_blast_standard"
+                    },
+                    "when": "standard"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_electric_blast_power"
+                    },
+                    "when": "power"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_electric_blast_speed"
+                    },
+                    "when": "speed"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_electric_blast_recharge"
+                    },
+                    "when": "recharge"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_electric_blast_force"
+                    },
+                    "when": "force"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_electric_blast_sustain"
+                    },
+                    "when": "sustain"
+                  }
+                ],
+                "property": "gaiadimension:stat"
+              },
+              "when": "blast"
+            },
+            {
+              "model": {
+                "type": "minecraft:select",
+                "cases": [
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_electric_linger_standard"
+                    },
+                    "when": "standard"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_electric_linger_power"
+                    },
+                    "when": "power"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_electric_linger_speed"
+                    },
+                    "when": "speed"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_electric_linger_recharge"
+                    },
+                    "when": "recharge"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_electric_linger_force"
+                    },
+                    "when": "force"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_electric_linger_sustain"
+                    },
+                    "when": "sustain"
+                  }
+                ],
+                "property": "gaiadimension:stat"
+              },
+              "when": "linger"
+            },
+            {
+              "model": {
+                "type": "minecraft:select",
+                "cases": [
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_electric_burst_standard"
+                    },
+                    "when": "standard"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_electric_burst_power"
+                    },
+                    "when": "power"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_electric_burst_speed"
+                    },
+                    "when": "speed"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_electric_burst_recharge"
+                    },
+                    "when": "recharge"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_electric_burst_force"
+                    },
+                    "when": "force"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_electric_burst_sustain"
+                    },
+                    "when": "sustain"
+                  }
+                ],
+                "property": "gaiadimension:stat"
+              },
+              "when": "burst"
+            }
+          ],
+          "property": "gaiadimension:behavior"
+        },
+        "when": "electric"
+      },
+      {
+        "model": {
+          "type": "minecraft:select",
+          "cases": [
+            {
+              "model": {
+                "type": "minecraft:select",
+                "cases": [
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_poison_basic_standard"
+                    },
+                    "when": "standard"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_poison_basic_power"
+                    },
+                    "when": "power"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_poison_basic_speed"
+                    },
+                    "when": "speed"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_poison_basic_recharge"
+                    },
+                    "when": "recharge"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_poison_basic_force"
+                    },
+                    "when": "force"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_poison_basic_sustain"
+                    },
+                    "when": "sustain"
+                  }
+                ],
+                "property": "gaiadimension:stat"
+              },
+              "when": "basic"
+            },
+            {
+              "model": {
+                "type": "minecraft:select",
+                "cases": [
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_poison_scatter_standard"
+                    },
+                    "when": "standard"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_poison_scatter_power"
+                    },
+                    "when": "power"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_poison_scatter_speed"
+                    },
+                    "when": "speed"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_poison_scatter_recharge"
+                    },
+                    "when": "recharge"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_poison_scatter_force"
+                    },
+                    "when": "force"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_poison_scatter_sustain"
+                    },
+                    "when": "sustain"
+                  }
+                ],
+                "property": "gaiadimension:stat"
+              },
+              "when": "scatter"
+            },
+            {
+              "model": {
+                "type": "minecraft:select",
+                "cases": [
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_poison_ricochet_standard"
+                    },
+                    "when": "standard"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_poison_ricochet_power"
+                    },
+                    "when": "power"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_poison_ricochet_speed"
+                    },
+                    "when": "speed"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_poison_ricochet_recharge"
+                    },
+                    "when": "recharge"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_poison_ricochet_force"
+                    },
+                    "when": "force"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_poison_ricochet_sustain"
+                    },
+                    "when": "sustain"
+                  }
+                ],
+                "property": "gaiadimension:stat"
+              },
+              "when": "ricochet"
+            },
+            {
+              "model": {
+                "type": "minecraft:select",
+                "cases": [
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_poison_blast_standard"
+                    },
+                    "when": "standard"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_poison_blast_power"
+                    },
+                    "when": "power"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_poison_blast_speed"
+                    },
+                    "when": "speed"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_poison_blast_recharge"
+                    },
+                    "when": "recharge"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_poison_blast_force"
+                    },
+                    "when": "force"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_poison_blast_sustain"
+                    },
+                    "when": "sustain"
+                  }
+                ],
+                "property": "gaiadimension:stat"
+              },
+              "when": "blast"
+            },
+            {
+              "model": {
+                "type": "minecraft:select",
+                "cases": [
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_poison_linger_standard"
+                    },
+                    "when": "standard"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_poison_linger_power"
+                    },
+                    "when": "power"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_poison_linger_speed"
+                    },
+                    "when": "speed"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_poison_linger_recharge"
+                    },
+                    "when": "recharge"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_poison_linger_force"
+                    },
+                    "when": "force"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_poison_linger_sustain"
+                    },
+                    "when": "sustain"
+                  }
+                ],
+                "property": "gaiadimension:stat"
+              },
+              "when": "linger"
+            },
+            {
+              "model": {
+                "type": "minecraft:select",
+                "cases": [
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_poison_burst_standard"
+                    },
+                    "when": "standard"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_poison_burst_power"
+                    },
+                    "when": "power"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_poison_burst_speed"
+                    },
+                    "when": "speed"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_poison_burst_recharge"
+                    },
+                    "when": "recharge"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_poison_burst_force"
+                    },
+                    "when": "force"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_poison_burst_sustain"
+                    },
+                    "when": "sustain"
+                  }
+                ],
+                "property": "gaiadimension:stat"
+              },
+              "when": "burst"
+            }
+          ],
+          "property": "gaiadimension:behavior"
+        },
+        "when": "poison"
+      },
+      {
+        "model": {
+          "type": "minecraft:select",
+          "cases": [
+            {
+              "model": {
+                "type": "minecraft:select",
+                "cases": [
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_frost_basic_standard"
+                    },
+                    "when": "standard"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_frost_basic_power"
+                    },
+                    "when": "power"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_frost_basic_speed"
+                    },
+                    "when": "speed"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_frost_basic_recharge"
+                    },
+                    "when": "recharge"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_frost_basic_force"
+                    },
+                    "when": "force"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_frost_basic_sustain"
+                    },
+                    "when": "sustain"
+                  }
+                ],
+                "property": "gaiadimension:stat"
+              },
+              "when": "basic"
+            },
+            {
+              "model": {
+                "type": "minecraft:select",
+                "cases": [
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_frost_scatter_standard"
+                    },
+                    "when": "standard"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_frost_scatter_power"
+                    },
+                    "when": "power"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_frost_scatter_speed"
+                    },
+                    "when": "speed"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_frost_scatter_recharge"
+                    },
+                    "when": "recharge"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_frost_scatter_force"
+                    },
+                    "when": "force"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_frost_scatter_sustain"
+                    },
+                    "when": "sustain"
+                  }
+                ],
+                "property": "gaiadimension:stat"
+              },
+              "when": "scatter"
+            },
+            {
+              "model": {
+                "type": "minecraft:select",
+                "cases": [
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_frost_ricochet_standard"
+                    },
+                    "when": "standard"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_frost_ricochet_power"
+                    },
+                    "when": "power"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_frost_ricochet_speed"
+                    },
+                    "when": "speed"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_frost_ricochet_recharge"
+                    },
+                    "when": "recharge"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_frost_ricochet_force"
+                    },
+                    "when": "force"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_frost_ricochet_sustain"
+                    },
+                    "when": "sustain"
+                  }
+                ],
+                "property": "gaiadimension:stat"
+              },
+              "when": "ricochet"
+            },
+            {
+              "model": {
+                "type": "minecraft:select",
+                "cases": [
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_frost_blast_standard"
+                    },
+                    "when": "standard"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_frost_blast_power"
+                    },
+                    "when": "power"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_frost_blast_speed"
+                    },
+                    "when": "speed"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_frost_blast_recharge"
+                    },
+                    "when": "recharge"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_frost_blast_force"
+                    },
+                    "when": "force"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_frost_blast_sustain"
+                    },
+                    "when": "sustain"
+                  }
+                ],
+                "property": "gaiadimension:stat"
+              },
+              "when": "blast"
+            },
+            {
+              "model": {
+                "type": "minecraft:select",
+                "cases": [
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_frost_linger_standard"
+                    },
+                    "when": "standard"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_frost_linger_power"
+                    },
+                    "when": "power"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_frost_linger_speed"
+                    },
+                    "when": "speed"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_frost_linger_recharge"
+                    },
+                    "when": "recharge"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_frost_linger_force"
+                    },
+                    "when": "force"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_frost_linger_sustain"
+                    },
+                    "when": "sustain"
+                  }
+                ],
+                "property": "gaiadimension:stat"
+              },
+              "when": "linger"
+            },
+            {
+              "model": {
+                "type": "minecraft:select",
+                "cases": [
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_frost_burst_standard"
+                    },
+                    "when": "standard"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_frost_burst_power"
+                    },
+                    "when": "power"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_frost_burst_speed"
+                    },
+                    "when": "speed"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_frost_burst_recharge"
+                    },
+                    "when": "recharge"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_frost_burst_force"
+                    },
+                    "when": "force"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_frost_burst_sustain"
+                    },
+                    "when": "sustain"
+                  }
+                ],
+                "property": "gaiadimension:stat"
+              },
+              "when": "burst"
+            }
+          ],
+          "property": "gaiadimension:behavior"
+        },
+        "when": "frost"
+      },
+      {
+        "model": {
+          "type": "minecraft:select",
+          "cases": [
+            {
+              "model": {
+                "type": "minecraft:select",
+                "cases": [
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_magic_basic_standard"
+                    },
+                    "when": "standard"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_magic_basic_power"
+                    },
+                    "when": "power"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_magic_basic_speed"
+                    },
+                    "when": "speed"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_magic_basic_recharge"
+                    },
+                    "when": "recharge"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_magic_basic_force"
+                    },
+                    "when": "force"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_magic_basic_sustain"
+                    },
+                    "when": "sustain"
+                  }
+                ],
+                "property": "gaiadimension:stat"
+              },
+              "when": "basic"
+            },
+            {
+              "model": {
+                "type": "minecraft:select",
+                "cases": [
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_magic_scatter_standard"
+                    },
+                    "when": "standard"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_magic_scatter_power"
+                    },
+                    "when": "power"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_magic_scatter_speed"
+                    },
+                    "when": "speed"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_magic_scatter_recharge"
+                    },
+                    "when": "recharge"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_magic_scatter_force"
+                    },
+                    "when": "force"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_magic_scatter_sustain"
+                    },
+                    "when": "sustain"
+                  }
+                ],
+                "property": "gaiadimension:stat"
+              },
+              "when": "scatter"
+            },
+            {
+              "model": {
+                "type": "minecraft:select",
+                "cases": [
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_magic_ricochet_standard"
+                    },
+                    "when": "standard"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_magic_ricochet_power"
+                    },
+                    "when": "power"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_magic_ricochet_speed"
+                    },
+                    "when": "speed"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_magic_ricochet_recharge"
+                    },
+                    "when": "recharge"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_magic_ricochet_force"
+                    },
+                    "when": "force"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_magic_ricochet_sustain"
+                    },
+                    "when": "sustain"
+                  }
+                ],
+                "property": "gaiadimension:stat"
+              },
+              "when": "ricochet"
+            },
+            {
+              "model": {
+                "type": "minecraft:select",
+                "cases": [
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_magic_blast_standard"
+                    },
+                    "when": "standard"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_magic_blast_power"
+                    },
+                    "when": "power"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_magic_blast_speed"
+                    },
+                    "when": "speed"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_magic_blast_recharge"
+                    },
+                    "when": "recharge"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_magic_blast_force"
+                    },
+                    "when": "force"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_magic_blast_sustain"
+                    },
+                    "when": "sustain"
+                  }
+                ],
+                "property": "gaiadimension:stat"
+              },
+              "when": "blast"
+            },
+            {
+              "model": {
+                "type": "minecraft:select",
+                "cases": [
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_magic_linger_standard"
+                    },
+                    "when": "standard"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_magic_linger_power"
+                    },
+                    "when": "power"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_magic_linger_speed"
+                    },
+                    "when": "speed"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_magic_linger_recharge"
+                    },
+                    "when": "recharge"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_magic_linger_force"
+                    },
+                    "when": "force"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_magic_linger_sustain"
+                    },
+                    "when": "sustain"
+                  }
+                ],
+                "property": "gaiadimension:stat"
+              },
+              "when": "linger"
+            },
+            {
+              "model": {
+                "type": "minecraft:select",
+                "cases": [
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_magic_burst_standard"
+                    },
+                    "when": "standard"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_magic_burst_power"
+                    },
+                    "when": "power"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_magic_burst_speed"
+                    },
+                    "when": "speed"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_magic_burst_recharge"
+                    },
+                    "when": "recharge"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_magic_burst_force"
+                    },
+                    "when": "force"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_magic_burst_sustain"
+                    },
+                    "when": "sustain"
+                  }
+                ],
+                "property": "gaiadimension:stat"
+              },
+              "when": "burst"
+            }
+          ],
+          "property": "gaiadimension:behavior"
+        },
+        "when": "magic"
+      },
+      {
+        "model": {
+          "type": "minecraft:select",
+          "cases": [
+            {
+              "model": {
+                "type": "minecraft:select",
+                "cases": [
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_energy_basic_standard"
+                    },
+                    "when": "standard"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_energy_basic_power"
+                    },
+                    "when": "power"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_energy_basic_speed"
+                    },
+                    "when": "speed"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_energy_basic_recharge"
+                    },
+                    "when": "recharge"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_energy_basic_force"
+                    },
+                    "when": "force"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_energy_basic_sustain"
+                    },
+                    "when": "sustain"
+                  }
+                ],
+                "property": "gaiadimension:stat"
+              },
+              "when": "basic"
+            },
+            {
+              "model": {
+                "type": "minecraft:select",
+                "cases": [
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_energy_scatter_standard"
+                    },
+                    "when": "standard"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_energy_scatter_power"
+                    },
+                    "when": "power"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_energy_scatter_speed"
+                    },
+                    "when": "speed"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_energy_scatter_recharge"
+                    },
+                    "when": "recharge"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_energy_scatter_force"
+                    },
+                    "when": "force"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_energy_scatter_sustain"
+                    },
+                    "when": "sustain"
+                  }
+                ],
+                "property": "gaiadimension:stat"
+              },
+              "when": "scatter"
+            },
+            {
+              "model": {
+                "type": "minecraft:select",
+                "cases": [
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_energy_ricochet_standard"
+                    },
+                    "when": "standard"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_energy_ricochet_power"
+                    },
+                    "when": "power"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_energy_ricochet_speed"
+                    },
+                    "when": "speed"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_energy_ricochet_recharge"
+                    },
+                    "when": "recharge"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_energy_ricochet_force"
+                    },
+                    "when": "force"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_energy_ricochet_sustain"
+                    },
+                    "when": "sustain"
+                  }
+                ],
+                "property": "gaiadimension:stat"
+              },
+              "when": "ricochet"
+            },
+            {
+              "model": {
+                "type": "minecraft:select",
+                "cases": [
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_energy_blast_standard"
+                    },
+                    "when": "standard"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_energy_blast_power"
+                    },
+                    "when": "power"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_energy_blast_speed"
+                    },
+                    "when": "speed"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_energy_blast_recharge"
+                    },
+                    "when": "recharge"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_energy_blast_force"
+                    },
+                    "when": "force"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_energy_blast_sustain"
+                    },
+                    "when": "sustain"
+                  }
+                ],
+                "property": "gaiadimension:stat"
+              },
+              "when": "blast"
+            },
+            {
+              "model": {
+                "type": "minecraft:select",
+                "cases": [
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_energy_linger_standard"
+                    },
+                    "when": "standard"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_energy_linger_power"
+                    },
+                    "when": "power"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_energy_linger_speed"
+                    },
+                    "when": "speed"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_energy_linger_recharge"
+                    },
+                    "when": "recharge"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_energy_linger_force"
+                    },
+                    "when": "force"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_energy_linger_sustain"
+                    },
+                    "when": "sustain"
+                  }
+                ],
+                "property": "gaiadimension:stat"
+              },
+              "when": "linger"
+            },
+            {
+              "model": {
+                "type": "minecraft:select",
+                "cases": [
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_energy_burst_standard"
+                    },
+                    "when": "standard"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_energy_burst_power"
+                    },
+                    "when": "power"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_energy_burst_speed"
+                    },
+                    "when": "speed"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_energy_burst_recharge"
+                    },
+                    "when": "recharge"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_energy_burst_force"
+                    },
+                    "when": "force"
+                  },
+                  {
+                    "model": {
+                      "type": "minecraft:model",
+                      "model": "gaiadimension:item/magic_staff_energy_burst_sustain"
+                    },
+                    "when": "sustain"
+                  }
+                ],
+                "property": "gaiadimension:stat"
+              },
+              "when": "burst"
+            }
+          ],
+          "property": "gaiadimension:behavior"
+        },
+        "when": "energy"
+      }
+    ],
+    "property": "gaiadimension:element"
+  }
+}

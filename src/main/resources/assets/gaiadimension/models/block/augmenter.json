@@ -1,0 +1,71 @@
+{
+  "parent": "block/block",
+  "textures": {
+    "particle": "#top",
+    "texture": "gaiadimension:block/gaia_stone_bricks",
+    "top": "gaiadimension:block/augmenter_top",
+    "side": "gaiadimension:block/augmenter_side"
+  },
+  "elements": [{
+    "from": [ 1, 0, 1 ],
+    "to": [ 15, 5, 15 ],
+    "faces": {
+      "down":  { "texture": "#texture", "cullface": "down" },
+      "up":    { "texture": "#top" },
+      "north": { "texture": "#side" },
+      "south": { "texture": "#side" },
+      "west":  { "texture": "#side" },
+      "east":  { "texture": "#side" }
+    }
+  }, {
+    "from": [ 1, 5, 1 ],
+    "to": [ 4, 8, 4 ],
+    "faces": {
+      "up":    { "texture": "#top" },
+      "north": { "texture": "#side" },
+      "south": { "texture": "#side" },
+      "west":  { "texture": "#side" },
+      "east":  { "texture": "#side" }
+    }
+  }, {
+    "from": [ 12, 5, 12 ],
+    "to": [ 15, 8, 15 ],
+    "faces": {
+      "up":    { "texture": "#top" },
+      "north": { "texture": "#side" },
+      "south": { "texture": "#side" },
+      "west":  { "texture": "#side" },
+      "east":  { "texture": "#side" }
+    }
+  }, {
+    "from": [ 1, 5, 12 ],
+    "to": [ 4, 8, 15 ],
+    "faces": {
+      "up":    { "texture": "#top" },
+      "north": { "texture": "#side" },
+      "south": { "texture": "#side" },
+      "west":  { "texture": "#side" },
+      "east":  { "texture": "#side" }
+    }
+  }, {
+    "from": [ 12, 5, 1 ],
+    "to": [ 15, 8, 4 ],
+    "faces": {
+      "up":    { "texture": "#top" },
+      "north": { "texture": "#side" },
+      "south": { "texture": "#side" },
+      "west":  { "texture": "#side" },
+      "east":  { "texture": "#side" }
+    }
+  }, {
+    "from": [ 4, 5, 4 ],
+    "to": [ 12, 6, 12 ],
+    "faces": {
+      "up":    { "texture": "#top" },
+      "north": { "texture": "#side" },
+      "south": { "texture": "#side" },
+      "west":  { "texture": "#side" },
+      "east":  { "texture": "#side" }
+    }
+  }]
+}

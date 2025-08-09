@@ -31,6 +31,7 @@ public class GaiaModelProvider extends ModelProvider {
             ModBlocks.golden_vine.get(),
             ModBlocks.sombre_cacti.get(),
             ModBlocks.malachite_guard_spawner.get(),
+            ModBlocks.augmenter.get(),
             ModBlocks.charged_mineral.get());
     public static final Set<Item> IGNORED_ITEMS = ImmutableSet.of(
             ModBlocks.tall_golden_grass.asItem(),

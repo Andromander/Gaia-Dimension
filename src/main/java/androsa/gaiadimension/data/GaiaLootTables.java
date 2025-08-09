@@ -79,6 +79,7 @@ public class GaiaLootTables extends LootTableProvider {
             dropTable(ModBlocks.gaia_stone_furnace, withName(ModBlocks.gaia_stone_furnace.get()));
             dropTable(ModBlocks.restructurer, withName(ModBlocks.restructurer.get()));
             dropTable(ModBlocks.purifier, withName(ModBlocks.purifier.get()));
+            dropTable(ModBlocks.augmenter, withName(ModBlocks.augmenter.get()));
 
             //Natural Blocks
             dropSelf(ModBlocks.heavy_soil);

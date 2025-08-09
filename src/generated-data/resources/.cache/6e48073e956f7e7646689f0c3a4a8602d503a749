@@ -1,5 +1,13 @@
-// 1.21.6	2025-07-17T19:38:41.7753924	Tags for minecraft:damage_type mod id gaiadimension
-acccfeb8cf6d63b6ce782c599c2816d6210796d7 data/minecraft/tags/damage_type/bypasses_armor.json
+// 1.21.8	2025-08-07T10:30:59.843681	Tags for minecraft:damage_type mod id gaiadimension
+bf0fa23da9fa6228c98e356cb095a6d1c2e77eec data/c/tags/damage_type/is_electric.json
+e09f6bd6409ac1fe6861128de307002d1f36e981 data/minecraft/tags/damage_type/bypasses_armor.json
+303fbf88ff648f898a5e36dc30741aeb6aaf12cb data/minecraft/tags/damage_type/bypasses_effects.json
 92a36c9640e77d9579957b0adf34556f88dc4a8e data/minecraft/tags/damage_type/bypasses_enchantments.json
+8d4fde713e62d78db16d97cf2e38e9e019baf77a data/minecraft/tags/damage_type/bypasses_invulnerability.json
 92a36c9640e77d9579957b0adf34556f88dc4a8e data/minecraft/tags/damage_type/bypasses_resistance.json
 c6292c606dc8e8082eaa972f7f7c594b06c98fed data/minecraft/tags/damage_type/bypasses_shield.json
+23e5a04ec3fea36317ccf07d109e45833d9562b8 data/minecraft/tags/damage_type/is_fire.json
+fc6456971ae77180ee3d94286383457cdebe0fbd data/minecraft/tags/damage_type/is_freezing.json
+a563f42f1e154d36b7d66f0d02a411d6f07523f0 data/minecraft/tags/damage_type/no_knockback.json
+c40eb072bd155e7ee6f6c9ba971e2ed82b4cedc1 data/neoforge/tags/damage_type/is_magic.json
+7735d595b81f51c415bfa31d5a3e6886e76e1ea5 data/neoforge/tags/damage_type/is_poison.json

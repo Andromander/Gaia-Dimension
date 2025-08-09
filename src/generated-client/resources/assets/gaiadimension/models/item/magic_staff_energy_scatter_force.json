@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:item/handheld",
+  "textures": {
+    "layer0": "gaiadimension:item/magic_staff/rod/force",
+    "layer1": "gaiadimension:item/magic_staff/head/scatter",
+    "layer2": "gaiadimension:item/magic_staff/core/energy"
+  }
+}

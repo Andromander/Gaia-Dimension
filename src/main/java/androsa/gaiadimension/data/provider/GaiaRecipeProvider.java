@@ -8,8 +8,10 @@ import androsa.gaiadimension.recipe.RestructurerRecipeBuilder;
 import androsa.gaiadimension.registry.registration.ModBlocks;
 import androsa.gaiadimension.registry.registration.ModDataComponents;
 import androsa.gaiadimension.registry.registration.ModItems;
+import net.minecraft.core.HolderGetter;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.data.recipes.*;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
@@ -27,8 +29,11 @@ import java.util.function.Supplier;
 
 public abstract class GaiaRecipeProvider extends RecipeProvider {
 
+    protected final HolderGetter<Item> hack;
+
     public GaiaRecipeProvider(HolderLookup.Provider provider, RecipeOutput output) {
         super(provider, output);
+        this.hack = provider.lookupOrThrow(Registries.ITEM);
     }
 
     protected String loc(String name) {

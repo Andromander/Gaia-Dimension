@@ -6,7 +6,9 @@ import androsa.gaiadimension.registry.registration.ModBlocks;
 import androsa.gaiadimension.registry.registration.ModDataComponents;
 import androsa.gaiadimension.registry.registration.ModItems;
 import androsa.gaiadimension.registry.values.GaiaTags;
+import net.minecraft.core.HolderGetter;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
 import net.minecraft.tags.ItemTags;
@@ -514,6 +516,24 @@ public class GaiaRecipes extends GaiaRecipeProvider {
         replaceKit(ModItems.mauve_replace_kit, ModBlocks.mauve_mookaite).save(output);
         replaceKit(ModItems.beige_replace_kit, ModBlocks.beige_mookaite).save(output);
         replaceKit(ModItems.ivory_replace_kit, ModBlocks.ivory_mookaite).save(output);
+        this.shaped(RecipeCategory.TOOLS, ModItems.magic_staff.get())
+                .pattern("#")
+                .pattern("^")
+                .pattern("/")
+                .define('#', ModItems.crystal_core)
+                .define('^', ModItems.sugilite)
+                .define('/', ModItems.agate_stick)
+                .unlockedBy("has_crystal_core", has(ModItems.crystal_core))
+                .save(this.output);
+        this.shaped(RecipeCategory.DECORATIONS, ModBlocks.augmenter)
+                .pattern("^/^")
+                .pattern("###")
+                .define('#', ModBlocks.gaia_stone_bricks)
+                .define('^', ModItems.sugilite)
+                .define('/', ModItems.scaynyx_ingot)
+                .unlockedBy("has_scaynyx_ingot", has(ModItems.scaynyx_ingot))
+                .save(this.output);
+
 
         smeltingRecipe(ModItems.blue_opal.get(), ModBlocks.blue_opal_ore, 0.3F).save(this.output, locSmelt("blue_opal"));
         smeltingRecipe(ModItems.celestine.get(), ModBlocks.celestine_ore, 1.5F).save(this.output, locSmelt("celestine"));

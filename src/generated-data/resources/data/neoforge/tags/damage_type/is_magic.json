@@ -1,0 +1,11 @@
+{
+  "values": [
+    "gaiadimension:physical_magic",
+    "gaiadimension:fire_magic",
+    "gaiadimension:electric_magic",
+    "gaiadimension:poison_magic",
+    "gaiadimension:frost_magic",
+    "gaiadimension:light_magic",
+    "gaiadimension:energy_magic"
+  ]
+}

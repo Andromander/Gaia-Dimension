@@ -260,6 +260,7 @@ public class ModItems {
     public static final DeferredItem<Item> goshenite_shovel = registerShovel("goshenite_shovel", GaiaToolMaterials.GOSHENITE);
     public static final DeferredItem<Item> old_bow = register("old_bow", OldBowItem::new, props().durability(425));
     public static final DeferredItem<Item> agate_arrow = register("agate_arrow", AgateArrowItem::new, props());
+    public static final DeferredItem<Item> magic_staff = register("magic_staff", GaiaStaffItem::new, props().durability(500));
 
     public static final DeferredItem<Item> malachite_guard_baton = register("malachite_guard_baton", MalachiteGuardSwordItem::new, props().rarity(Rarity.RARE));
     public static final DeferredItem<Item> apex_predator_mace = register("apex_predator_mace", ApexPredatorSwordItem::new, props().rarity(Rarity.RARE));

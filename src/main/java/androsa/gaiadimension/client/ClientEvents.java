@@ -2,6 +2,9 @@ package androsa.gaiadimension.client;
 
 import androsa.gaiadimension.GaiaDimensionMod;
 import androsa.gaiadimension.block.screen.*;
+import androsa.gaiadimension.client.properties.Behavior;
+import androsa.gaiadimension.client.properties.Element;
+import androsa.gaiadimension.client.properties.Stat;
 import androsa.gaiadimension.item.inventory.GemPouchScreen;
 import androsa.gaiadimension.particle.*;
 import androsa.gaiadimension.registry.registration.*;
@@ -120,6 +123,7 @@ public class ClientEvents {
         e.registerSpecial(ModParticles.ITEM_PEBBLE.get(), new GaiaBreakingParticle.PebbleFactory());
         e.registerSpriteSet(ModParticles.SPAWNER_CORE.get(), SpawnerCoreParticle.Factory::new);
         e.registerSpriteSet(ModParticles.MALACHITE_MAGIC.get(), MalachiteMagicParticle.Factory::new);
+        e.registerSpriteSet(ModParticles.MAGIC_STAFF_TRAIL.get(), StaffMagicParticle.Provider::new);
     }
 
     @SubscribeEvent
@@ -136,6 +140,7 @@ public class ClientEvents {
         e.register(ModMenus.LARGE_CRATE.get(), LargeCrateScreen::new);
         e.register(ModMenus.RESTRUCTURER.get(), RestructurerScreen::new);
         e.register(ModMenus.PURIFIER.get(), PurifierScreen::new);
+        e.register(ModMenus.AUGMENTER.get(), AugmenterScreen::new);
     }
 
     public static void registerBlockRenderers() {
@@ -190,5 +195,12 @@ public class ClientEvents {
                 return fog;
             }
         };
+    }
+
+    @SubscribeEvent
+    public static void registerSelectProperties(RegisterSelectItemModelPropertyEvent e) {
+        e.register(ResourceLocation.fromNamespaceAndPath(GaiaDimensionMod.MODID, "element"), Element.TYPE);
+        e.register(ResourceLocation.fromNamespaceAndPath(GaiaDimensionMod.MODID, "behavior"), Behavior.TYPE);
+        e.register(ResourceLocation.fromNamespaceAndPath(GaiaDimensionMod.MODID, "stat"), Stat.TYPE);
     }
 }

@@ -226,6 +226,7 @@ public class GaiaItemModels extends GaiaItemModelProvider {
         itemModels.generateBow(ModItems.old_bow.get());
         flatItem(ModItems.agate_arrow);
         flatItem(ModItems.mock_malachite);
+        magicStaff(ModItems.magic_staff, itemModels);
 
         heldItem(ModItems.malachite_guard_baton);
         heldItem(ModItems.apex_predator_mace);

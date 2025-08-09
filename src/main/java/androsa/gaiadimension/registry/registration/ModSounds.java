@@ -89,6 +89,10 @@ public class ModSounds {
     public static final Supplier<SoundEvent> ENTITY_MALACHITE_GUARD_DEATH         = makeDeathSound("malachite_guard");
     public static final Supplier<SoundEvent> ENTITY_MALACHITE_GUARD_HURT          = makeHurtSound("malachite_guard");
     public static final Supplier<SoundEvent> ENTITY_MALACHITE_GUARD_STOMP         = makeEntitySound("malachite_guard", "stomp");
+    public static final Supplier<SoundEvent> ENTITY_MAGIC_PROJECTILE_SHOOT        = makeEntitySound("magic_projectile", "shoot");
+    public static final Supplier<SoundEvent> ENTITY_MAGIC_PROJECTILE_BREAK        = makeEntitySound("magic_projectile", "break");
+    public static final Supplier<SoundEvent> ENTITY_MAGIC_PROJECTILE_BOUNCE        = makeEntitySound("magic_projectile", "bounce");
+    public static final Supplier<SoundEvent> ENTITY_MAGIC_PROJECTILE_EXPLODE      = makeEntitySound("magic_projectile", "explode");
     public static final Supplier<SoundEvent> ENTITY_MOSS_AGATE_MONITOR_DEATH      = makeDeathSound("moss_agate_monitor");
     public static final Supplier<SoundEvent> ENTITY_MOSS_AGATE_MONITOR_HURT       = makeHurtSound("moss_agate_monitor");
 
