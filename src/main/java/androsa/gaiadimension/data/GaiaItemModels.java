@@ -358,6 +358,15 @@ public class GaiaItemModels extends GaiaItemModelProvider {
         basicItem(ModItems.liquid_bismuth_bucket);
         basicItem(ModItems.liquid_aura_bucket);
         basicItem(ModItems.crystal_shard);
+        basicItem(ModItems.crystal_core);
+        basicItem(ModItems.spitfire_heart);
+        basicItem(ModItems.shockshooter_soul);
+        basicItem(ModItems.howlite_fang);
+        basicItem(ModItems.spellbound_core);
+        basicItem(ModItems.bismuth_horn);
+        basicItem(ModItems.glitter_dust);
+        basicItem(ModItems.glitter_rod);
+        basicItem(ModItems.aura_rod);
         geodeItem(ModItems.pink_geode);
         geodeItem(ModItems.blue_geode);
         geodeItem(ModItems.green_geode);

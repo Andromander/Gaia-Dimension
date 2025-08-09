@@ -80,7 +80,8 @@ public class ModTabs {
             .displayItems((parameters, output) -> {
                 add(output, ModItems.crystallized_redstone, ModItems.crystallized_lapis_lazuli, ModItems.glint_and_gold);
                 add(output, ModItems.hot_dust, ModItems.goldstone_dust, ModItems.fine_dust);
-                add(output, ModItems.crystal_shard, ModItems.agate_stick, ModItems.agate_fabric, ModItems.sugar_crystals, ModItems.sugar_cluster, ModItems.sturdy_pebble, ModItems.shiny_bone, ModItems.fine_thread, ModItems.sweet_muckball, ModItems.cloudy_shard);
+                add(output, ModItems.crystal_shard, ModItems.agate_stick, ModItems.agate_fabric, ModItems.sugar_crystals, ModItems.sugar_cluster, ModItems.sturdy_pebble, ModItems.shiny_bone, ModItems.fine_thread, ModItems.sweet_muckball, ModItems.cloudy_shard, ModItems.glitter_dust, ModItems.glitter_rod, ModItems.aura_rod);
+                add(output, ModItems.crystal_core, ModItems.spitfire_heart, ModItems.shockshooter_soul, ModItems.howlite_fang, ModItems.spellbound_core, ModItems.bismuth_horn);
                 add(output, ModItems.agate_cup, ModItems.twined_thread, ModItems.pink_essence, ModItems.pink_goo, ModItems.scaynyx_ingot);
                 add(output, ModItems.goldstone_residue, ModItems.goldstone, ModItems.bismuth_residue, ModItems.bismuth_crystal, ModItems.aura_residue, ModItems.aura_cluster, ModItems.black_residue, ModItems.tektite);
                 add(output, ModItems.opalite, ModItems.pyrite, ModItems.sugilite, ModItems.hematite, ModItems.cinnabar, ModItems.labradorite, ModItems.moonstone, ModItems.red_opal, ModItems.blue_opal, ModItems.green_opal, ModItems.white_opal, ModItems.celestine);

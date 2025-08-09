@@ -38,7 +38,7 @@ public class GaiaItemTags extends GaiaItemTagsProvider {
             GaiaTags.Items.ORES_RED_OPAL, GaiaTags.Items.ORES_BLUE_OPAL, GaiaTags.Items.ORES_GREEN_OPAL, GaiaTags.Items.ORES_WHITE_OPAL, GaiaTags.Items.ORES_PYRITE
     );
     ImmutableList<TagKey<Item>> STORAGE_TAGS = ImmutableList.of(
-            GaiaTags.Items.STORAGE_BLOCKS_SUGILITE, GaiaTags.Items.STORAGE_BLOCKS_HEMATITE, GaiaTags.Items.STORAGE_BLOCKS_CINNABAR, GaiaTags.Items.STORAGE_BLOCKS_LABRADORITE,
+            GaiaTags.Items.STORAGE_BLOCKS_SCAYNYX, GaiaTags.Items.STORAGE_BLOCKS_SUGILITE, GaiaTags.Items.STORAGE_BLOCKS_HEMATITE, GaiaTags.Items.STORAGE_BLOCKS_CINNABAR, GaiaTags.Items.STORAGE_BLOCKS_LABRADORITE,
             GaiaTags.Items.STORAGE_BLOCKS_MOONSTONE, GaiaTags.Items.STORAGE_BLOCKS_RED_OPAL, GaiaTags.Items.STORAGE_BLOCKS_BLUE_OPAL, GaiaTags.Items.STORAGE_BLOCKS_GREEN_OPAL,
             GaiaTags.Items.STORAGE_BLOCKS_WHITE_OPAL, GaiaTags.Items.STORAGE_BLOCKS_PYRITE, GaiaTags.Items.STORAGE_BLOCKS_TEKTITE, GaiaTags.Items.STORAGE_BLOCKS_GOLDSTONE,
             GaiaTags.Items.STORAGE_BLOCKS_AURA_CRYSTAL, GaiaTags.Items.STORAGE_BLOCKS_BISMUTH, GaiaTags.Items.STORAGE_BLOCKS_STIBNITE, GaiaTags.Items.STORAGE_BLOCKS_PROUSTITE,
@@ -128,6 +128,7 @@ public class GaiaItemTags extends GaiaItemTagsProvider {
         copy(GaiaTags.Blocks.ORES_WHITE_OPAL, GaiaTags.Items.ORES_WHITE_OPAL);
         copy(GaiaTags.Blocks.ORES_PYRITE, GaiaTags.Items.ORES_PYRITE);
         copy(GaiaTags.Blocks.ORES_OPALITE, GaiaTags.Items.ORES_OPALITE);
+        copy(GaiaTags.Blocks.STORAGE_BLOCKS_SCAYNYX, GaiaTags.Items.STORAGE_BLOCKS_SCAYNYX);
         copy(GaiaTags.Blocks.STORAGE_BLOCKS_SUGILITE, GaiaTags.Items.STORAGE_BLOCKS_SUGILITE);
         copy(GaiaTags.Blocks.STORAGE_BLOCKS_HEMATITE, GaiaTags.Items.STORAGE_BLOCKS_HEMATITE);
         copy(GaiaTags.Blocks.STORAGE_BLOCKS_CINNABAR, GaiaTags.Items.STORAGE_BLOCKS_CINNABAR);

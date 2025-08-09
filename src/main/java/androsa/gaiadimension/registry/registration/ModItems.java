@@ -79,6 +79,15 @@ public class ModItems {
     public static final DeferredItem<Item> liquid_bismuth_bucket = registerBucket("liquid_bismuth_bucket", ModFluids.liquid_bismuth_still);
     public static final DeferredItem<Item> liquid_aura_bucket = registerBucket("liquid_aura_bucket", ModFluids.liquid_aura_still);
     public static final DeferredItem<Item> crystal_shard = register("crystal_shard");
+    public static final DeferredItem<Item> crystal_core = register("crystal_core");
+    public static final DeferredItem<Item> spitfire_heart = register("spitfire_heart");
+    public static final DeferredItem<Item> shockshooter_soul = register("shockshooter_soul");
+    public static final DeferredItem<Item> howlite_fang = register("howlite_fang");
+    public static final DeferredItem<Item> spellbound_core = register("spellbound_core");
+    public static final DeferredItem<Item> bismuth_horn = register("bismuth_horn");
+    public static final DeferredItem<Item> glitter_dust = register("glitter_dust");
+    public static final DeferredItem<Item> glitter_rod = register("glitter_rod");
+    public static final DeferredItem<Item> aura_rod = register("aura_rod");
 
     public static final DeferredItem<Item> pink_geode = register("pink_geode");
     public static final DeferredItem<Item> blue_geode = register("blue_geode");

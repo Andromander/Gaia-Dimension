@@ -1,4 +1,4 @@
-// 1.21	2024-08-09T09:50:42.5197777	Gaia Blockstates and Models
+// 1.21	2025-08-09T23:43:19.5741113	Gaia Blockstates and Models
 8608ca08d4e09a00c5ac1279dc5458d093d263da assets/gaiadimension/blockstates/active_rock.json
 23ea34251e78628208a9041761eae63ba0f255fa assets/gaiadimension/blockstates/agate_crafting_table.json
 77a0b7c45ea73099883d8e25af0610686569ed6a assets/gaiadimension/blockstates/agathum.json
@@ -275,6 +275,7 @@ ac1569a2817c7dc62e1c99b25d7456fae2974301 assets/gaiadimension/blockstates/salt.j
 cba10a0e3a1c90a9432550b40f8eddfd95e93e12 assets/gaiadimension/blockstates/saltstone.json
 28d9125c80b10748a4dc51013c8767d89db21e23 assets/gaiadimension/blockstates/scarlet_mookaite.json
 83bd193559b6ac4cdfeb9fc4ff8a6da67ca37e26 assets/gaiadimension/blockstates/scarlet_opalite_ore.json
+cdc20215a4e500fd3d2565b7c8d45cb911a01635 assets/gaiadimension/blockstates/scaynyx_block.json
 f89ed0fd013c7cd5532bd7af0a601efbac7fd64b assets/gaiadimension/blockstates/searing_rock.json
 09ad130bf5f8449d25db679353761fa383c2109c assets/gaiadimension/blockstates/soft_grass.json
 8013348cd876b495aed662b95146296994a4be4c assets/gaiadimension/blockstates/sombre_shrub.json
@@ -805,6 +806,7 @@ ccc550d4d998c48203b5a0e56edd91b3c9f259d2 assets/gaiadimension/models/block/roofe
 f76abe5afbd4b115af41b23ebbd3862e93c4f7f1 assets/gaiadimension/models/block/saltstone.json
 4d430dac1ff8848fefc4b4c2effc08e218bcbd2e assets/gaiadimension/models/block/scarlet_mookaite.json
 6a8531d80f99699e3015077d63ec25cbba926c36 assets/gaiadimension/models/block/scarlet_opalite_ore.json
+f6a384cae24c03d3775cd9292d48e4e566c1c127 assets/gaiadimension/models/block/scaynyx_block.json
 47096e680455addf037eabaf659ea6ab9f76816c assets/gaiadimension/models/block/searing_rock.json
 3ccb55c88f62badc9d2b01e5db4c182f87d6f123 assets/gaiadimension/models/block/soft_grass.json
 af598f82b9b7d76ec10dfe6e29b204f96580ced5 assets/gaiadimension/models/block/sombre_shrub.json

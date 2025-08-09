@@ -7,7 +7,6 @@ import androsa.gaiadimension.registry.bootstrap.GaiaFeatures;
 import androsa.gaiadimension.registry.helpers.PropertiesHandler;
 import com.google.common.collect.Maps;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.dispenser.BlockSource;
 import net.minecraft.core.dispenser.DefaultDispenseItemBehavior;
 import net.minecraft.core.dispenser.DispenseItemBehavior;
@@ -17,7 +16,6 @@ import net.minecraft.world.item.AxeItem;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.component.ItemContainerContents;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
@@ -322,6 +320,7 @@ public class ModBlocks {
     public static final DeferredBlock<StairBlock> malachite_pillar_stairs = register("malachite_pillar_stairs", makeStairs(malachite_pillar));
 
     //Storage Blocks
+    public static final DeferredBlock<Block> scaynyx_block = register("scaynyx_block", PropertiesHandler.storageProps(MapColor.COLOR_MAGENTA));
     public static final DeferredBlock<Block> sugilite_block = register("sugilite_block", PropertiesHandler.storageProps(MapColor.COLOR_PURPLE));
     public static final DeferredBlock<Block> hematite_block = register("hematite_block", PropertiesHandler.storageProps(MapColor.COLOR_GRAY));
     public static final DeferredBlock<Block> cinnabar_block = register("cinnabar_block", PropertiesHandler.storageProps(MapColor.COLOR_ORANGE));

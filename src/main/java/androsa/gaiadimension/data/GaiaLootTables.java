@@ -37,6 +37,7 @@ import java.util.stream.Stream;
 public class GaiaLootTables extends LootTableProvider {
 
     public static final float[] leaf_chances = new float[]{0.05F, 0.0625F, 0.083333336F, 0.1F};
+    public static final float[] glitter_chances = new float[]{0.25F, 0.35F, 0.5F, 1.0F};
 
     public GaiaLootTables(PackOutput output, CompletableFuture<HolderLookup.Provider> provider) {
         super(output, GaiaBuiltinTables.builtin(), List.of(
@@ -82,6 +83,7 @@ public class GaiaLootTables extends LootTableProvider {
             dropWithSilk(ModBlocks.soft_grass, ModBlocks.light_soil);
             dropWithSilk(ModBlocks.gilded_grass, ModBlocks.aurum_soil);
             dropOnlySilk(ModBlocks.frail_glitter_block);
+            dropChance(ModBlocks.frail_glitter_block, ModItems.glitter_dust, glitter_chances);
             dropSelf(ModBlocks.thick_glitter_block);
             dropSelf(ModBlocks.gummy_glitter_block);
             dropSelf(ModBlocks.pink_sludge_block);
@@ -94,7 +96,7 @@ public class GaiaLootTables extends LootTableProvider {
             dropTable(ModBlocks.crystal_growth_mutant, withShards(ModBlocks.crystal_growth_mutant.get()));
             dropTable(ModBlocks.crystal_growth_aura, withShards(ModBlocks.crystal_growth_aura.get()));
             dropTable(ModBlocks.golden_grass, createShearsOnlyDrop(ModBlocks.golden_grass.get()));
-            dropTable(ModBlocks.tall_golden_grass, (block) -> GaiaBlockLootTableProvider.doubleShearsOnly(block, ModBlocks.golden_grass.get()));
+            dropTable(ModBlocks.tall_golden_grass, (block) -> this.doubleShearsOnly(block, ModBlocks.golden_grass.get()));
             dropSelf(ModBlocks.thiscus);
             dropSelf(ModBlocks.ouzium);
             dropSelf(ModBlocks.agathum);
@@ -326,6 +328,7 @@ public class GaiaLootTables extends LootTableProvider {
             dropSelf(ModBlocks.malachite_pillar_stairs);
 
             //Storage Blocks
+            dropSelf(ModBlocks.scaynyx_block);
             dropSelf(ModBlocks.sugilite_block);
             dropSelf(ModBlocks.hematite_block);
             dropSelf(ModBlocks.cinnabar_block);
@@ -410,6 +413,7 @@ public class GaiaLootTables extends LootTableProvider {
     }
 
     public static class Entities extends GaiaEntityLootTableProvider {
+
         protected Entities(HolderLookup.Provider provider) {
             super(provider);
         }
@@ -420,10 +424,12 @@ public class GaiaLootTables extends LootTableProvider {
             addTable(ModEntities.ANCIENT_LAGRAHK, blankTable());
             addTable(ModEntities.ARCHAIC_WARRIOR, warriorTable());
             addTable(ModEntities.BISMUTH_ULETRUS, blankTable());
+            addTable(ModEntities.BISMUTH_ULETRUS, singleDropTable(ModItems.bismuth_horn, 0.0F, 1.0F));
             addTable(ModEntities.CAVERN_TICK, singleDropTable(ModItems.fine_thread, 0.0F, 1.0F));
             addTable(ModEntities.CONTORTED_NAGA, singleDropTable(ModItems.goldstone, 0.0F, 2.0F));
             addTable(ModEntities.CORRUPT_SAPPER, singleDropTable(ModItems.goldstone_residue, 0.0F, 2.0F));
             addTable(ModEntities.CRYSTAL_GOLEM, blankTable());
+            addTable(ModEntities.CRYSTAL_GOLEM, singleDropTable(ModItems.crystal_core, 0.0F, 1.0F));
             addTable(ModEntities.GROWTH_SAPPER, blankTable());
             addTable(ModEntities.GROWTH_SAPPER, GaiaBuiltinTables.PINK_SAPPER_TABLE, sapperTable(ModItems.pink_geode));
             addTable(ModEntities.GROWTH_SAPPER, GaiaBuiltinTables.BLUE_SAPPER_TABLE, sapperTable(ModItems.blue_geode));
@@ -432,6 +438,9 @@ public class GaiaLootTables extends LootTableProvider {
             addTable(ModEntities.HOWLITE_WOLF, blankTable());
             addTable(ModEntities.LESSER_SHOCKSHOOTER, singleDropTable(ModItems.crystallized_lapis_lazuli, 0.0F, 2.0F));
             addTable(ModEntities.LESSER_SPITFIRE, singleDropTable(ModItems.crystallized_redstone, 0.0F, 2.0F));
+            addTable(ModEntities.HOWLITE_WOLF, singleDropTable(ModItems.howlite_fang, 0.0F, 1.0F));
+            addTable(ModEntities.LESSER_SHOCKSHOOTER, doubleDropTable(ModItems.crystallized_lapis_lazuli, ModItems.shockshooter_soul, 0.0F, 2.0F, 0.0F, 1.0F));
+            addTable(ModEntities.LESSER_SPITFIRE, doubleDropTable(ModItems.crystallized_redstone, ModItems.spitfire_heart, 0.0F, 2.0F, 0.0F, 1.0F));
             addTable(ModEntities.MARKUZAR_PLANT, singleDropTable(ModItems.markuzar_mint, 0.0F, 2.0F));
             addTable(ModEntities.MINERAL_ARENTHIS, cookableDoubleDropTable(ModItems.large_tentacle, ModItems.sugar_cluster, 0.0F, 3.0F, 0.0F, 2.0F));
             addTable(ModEntities.MUCKLING, singleDropTable(ModItems.sweet_muckball, 0.0F, 2.0F));
@@ -444,6 +453,7 @@ public class GaiaLootTables extends LootTableProvider {
             addTable(ModEntities.SHALLOW_ARENTHIS, cookableDoubleDropTable(ModItems.small_tentacle, ModItems.sugar_crystals, 0.0F, 3.0F, 0.0F, 2.0F));
             addTable(ModEntities.SHALURKER, blankTable());
             addTable(ModEntities.SPELLBOUND_ELEMENTAL, blankTable());
+            addTable(ModEntities.SPELLBOUND_ELEMENTAL, singleDropTable(ModItems.spellbound_core, 0.0F, 1.0F));
             addTable(ModEntities.MALACHITE_DRONE, blankTable());
             addTable(ModEntities.MOOKAITE_CONSTRUCT, blankTable());
             addTable(ModEntities.OPALITE_CONSTRUCT, blankTable());

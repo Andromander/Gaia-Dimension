@@ -1,4 +1,4 @@
-// 1.21	2024-08-09T09:50:42.51177	Tags for minecraft:item mod id gaiadimension
+// 1.21	2025-08-09T23:47:28.7383933	Tags for minecraft:item mod id gaiadimension
 b8824061659e34d2bcb2a29f7526c559c25d1834 data/c/tags/item/bones.json
 d67324c41876289e35996384266b7cb310ef4d04 data/c/tags/item/dusts.json
 307d706a2aab12da68949f0ac0ae908638e5b471 data/c/tags/item/dusts/fine.json
@@ -45,7 +45,7 @@ c68e0f1188532e3ddba1e571463ae634e7ce75f4 data/c/tags/item/ore/sugilite.json
 3bd73d68dcc5dba0dd512b8c55daff4781a84786 data/c/tags/item/ore/white_opal.json
 440da905f6ed3e378ab09ff28b32130a1ce8bbfa data/c/tags/item/rods.json
 50bf26e9cec490e8241d3006e830099f4306bfd3 data/c/tags/item/rods/agate.json
-43e17289b50aa86fa00d8494770ac805b16a953c data/c/tags/item/storage_blocks.json
+e2fb47d61d7d25af0c5409e53675a9c8c124ccea data/c/tags/item/storage_blocks.json
 ac466ac3c654d84fd774366207d2081e6835ed75 data/c/tags/item/storage_blocks/albite.json
 7b35e1615226390bb3af055e44a148d1a87acb97 data/c/tags/item/storage_blocks/aura.json
 7a8d2d08a585a897fbb08ec7d09be2121d8bd936 data/c/tags/item/storage_blocks/benitoite.json
@@ -64,6 +64,7 @@ f4cd4c0ebec0f31dddc5eb39e4a173392d020050 data/c/tags/item/storage_blocks/labrado
 9beb5e8cc773cae774690cf50690e4ec67c38768 data/c/tags/item/storage_blocks/proustite.json
 6a2438c6f77b23160e9fa5c55f4f0924d38d18c0 data/c/tags/item/storage_blocks/pyrite.json
 6d31a11564a6ea7d7a62857ffc5928478f5432d6 data/c/tags/item/storage_blocks/red_opal.json
+4a625ae630daccf0f9fa69228ddbaccad02634ba data/c/tags/item/storage_blocks/scaynyx.json
 e326594bd9e85548d76dd046e3f21a2c1a1c7a05 data/c/tags/item/storage_blocks/stibnite.json
 b4be287b2db0739db846165accc676d6c19c1db8 data/c/tags/item/storage_blocks/sugilite.json
 c17d48cad4a7c7c19a92d57a2475718999347e7e data/c/tags/item/storage_blocks/tektite.json

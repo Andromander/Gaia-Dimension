@@ -82,7 +82,23 @@ public class GaiaRecipes extends GaiaRecipeProvider {
         curtainRecipe(ModBlocks.aura_curtain, ModBlocks.aura_leaves, 4).save(consumer, loc("aura_curtain_leaves"));
         curtainRecipe(ModBlocks.golden_curtain, ModBlocks.golden_tiles, 2).save(consumer, loc("golden_curtain_tiles"));
         curtainRecipe(ModBlocks.golden_curtain, ModBlocks.golden_leaves, 4).save(consumer, loc("golden_curtain_leaves"));
-
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ModBlocks.aura_curtain.get(), 2)
+                .pattern("//")
+                .pattern("##")
+                .pattern("##")
+                .define('/', ModItems.agate_stick)
+                .define('#', ModItems.aura_rod.get())
+                .unlockedBy("has_aura_rod", has(ModItems.aura_rod.get()))
+                .save(consumer, loc("aura_curtain_rods"));
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ModBlocks.pink_agate_curtain.get(), 2)
+                .pattern("//")
+                .pattern("##")
+                .pattern("##")
+                .define('/', ModItems.agate_stick)
+                .define('#', ModItems.glitter_rod.get())
+                .unlockedBy("has_glitter_rod", has(ModItems.glitter_rod.get()))
+                .save(consumer, loc("pink_agate_curtain_rods"));
+        largeCompressRecipe(ModBlocks.scaynyx_block.get(), ModItems.scaynyx_ingot.get()).save(consumer, locStorage("scaynyx_block"));
         largeCompressRecipe(ModBlocks.sugilite_block.get(), ModItems.sugilite.get()).save(consumer, locStorage("sugilite_block"));
         largeCompressRecipe(ModBlocks.hematite_block.get(), ModItems.hematite.get()).save(consumer, locStorage("hematite_block"));
         largeCompressRecipe(ModBlocks.cinnabar_block.get(), ModItems.cinnabar.get()).save(consumer, locStorage("cinnabar_block"));
@@ -108,6 +124,7 @@ public class GaiaRecipes extends GaiaRecipeProvider {
         largeCompressRecipe(ModBlocks.goshenite_block.get(), ModItems.goshenite.get()).save(consumer, locStorage("goshenite_block"));
         largeCompressRecipe(ModBlocks.celestine_block.get(), ModItems.celestine.get()).save(consumer, locStorage("celestine_block"));
 
+        blockToItemRecipe(ModItems.scaynyx_ingot, ModBlocks.scaynyx_block).save(consumer, locStorage("scaynyx_block_item"));
         blockToItemRecipe(ModItems.sugilite, ModBlocks.sugilite_block).save(consumer, locStorage("sugilite_block_item"));
         blockToItemRecipe(ModItems.hematite, ModBlocks.hematite_block).save(consumer, locStorage("hematite_block_item"));
         blockToItemRecipe(ModItems.cinnabar, ModBlocks.cinnabar_block).save(consumer, locStorage("cinnabar_block_item"));
@@ -266,6 +283,12 @@ public class GaiaRecipes extends GaiaRecipeProvider {
                 .requires(GaiaTags.Items.TILES)
                 .unlockedBy("has_tiles", has(GaiaTags.Items.TILES))
                 .save(consumer, loc("agate_stick"));
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.aura_rod.get(), 4)
+                .pattern("#")
+                .pattern("#")
+                .define('#', ModBlocks.aura_shoot)
+                .unlockedBy("has_aura_shoot", has(ModBlocks.aura_shoot))
+                .save(consumer, loc("aura_rod"));
         ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ModBlocks.bolstered_bricks.get(), 2)
                 .pattern("%#")
                 .pattern("#%")
@@ -395,6 +418,7 @@ public class GaiaRecipes extends GaiaRecipeProvider {
                 .define('/', ModItems.agate_stick.get())
                 .unlockedBy("has_pyrite", has(ModItems.pyrite.get()))
                 .save(consumer, loc("pyrite_torch"));
+        smallCompressRecipe(ModBlocks.frail_glitter_block.get(), ModItems.glitter_dust).save(consumer, loc("frail_glitter_block_dust"));
         ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ModBlocks.reinforced_bricks.get(), 2)
                 .pattern("%#")
                 .pattern("#%")
@@ -499,6 +523,7 @@ public class GaiaRecipes extends GaiaRecipeProvider {
         smeltingRecipe(ModItems.sugilite.get(), ModBlocks.sugilite_ore, 0.3F).save(consumer, locSmelt("sugilite_smelt"));
         smeltingRecipe(ModBlocks.thick_glitter_block.get(), ModBlocks.gummy_glitter_block, 0.1F).save(consumer, locSmelt("thick_glitter_block"));
         smeltingRecipe(ModItems.white_opal.get(), ModBlocks.white_opal_ore, 1.0F).save(consumer, locSmelt("white_opal_smelt"));
+        smeltingRecipe(ModItems.glitter_rod.get(), ModItems.glitter_dust, 0.0F).save(consumer, locSmelt("glitter_dust"));
 
         restructureBlackResidue(ModItems.benitoite, ModItems.blue_opal, 0.3F, 1).save(consumer, locRestructure("benitoite"));
         restructuringTektite(ModBlocks.benitoite_block, ModBlocks.blue_opal_block, 2.7F, 1).save(consumer, locRestructure("benitoite_block"));

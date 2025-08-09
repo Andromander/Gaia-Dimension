@@ -8,6 +8,8 @@ import com.google.common.collect.ImmutableList;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.TagKey;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
@@ -147,8 +149,8 @@ public class GaiaBlockTags extends GaiaBlockTagsProvider {
             ModBlocks.cracked_gaia_stone_bricks, ModBlocks.crusted_gaia_stone_bricks, ModBlocks.jade_bricks, ModBlocks.jade_brick_stairs, ModBlocks.jade_brick_slab, ModBlocks.cracked_jade_bricks,
             ModBlocks.cracked_jade_brick_stairs, ModBlocks.cracked_jade_brick_slab, ModBlocks.crusted_jade_bricks, ModBlocks.crusted_jade_brick_stairs, ModBlocks.crusted_jade_brick_slab, ModBlocks.copal_bricks,
             ModBlocks.copal_brick_stairs, ModBlocks.copal_brick_slab, ModBlocks.cracked_copal_bricks, ModBlocks.cracked_copal_brick_stairs, ModBlocks.cracked_copal_brick_slab, ModBlocks.crusted_copal_bricks,
-            ModBlocks.crusted_copal_brick_stairs, ModBlocks.crusted_copal_brick_slab, ModBlocks.jet_brick_stairs, ModBlocks.jet_brick_slab, ModBlocks.cracked_jet_bricks, ModBlocks.cracked_jet_brick_stairs,
-            ModBlocks.cracked_jet_brick_slab, ModBlocks.crusted_jet_bricks, ModBlocks.crusted_jet_brick_stairs, ModBlocks.crusted_jet_brick_slab, ModBlocks.amethyst_brick_stairs, ModBlocks.amethyst_brick_slab,
+            ModBlocks.crusted_copal_brick_stairs, ModBlocks.crusted_copal_brick_slab, ModBlocks.jet_bricks, ModBlocks.jet_brick_stairs, ModBlocks.jet_brick_slab, ModBlocks.cracked_jet_bricks, ModBlocks.cracked_jet_brick_stairs,
+            ModBlocks.cracked_jet_brick_slab, ModBlocks.crusted_jet_bricks, ModBlocks.crusted_jet_brick_stairs, ModBlocks.crusted_jet_brick_slab, ModBlocks.amethyst_bricks, ModBlocks.amethyst_brick_stairs, ModBlocks.amethyst_brick_slab,
             ModBlocks.cracked_amethyst_bricks, ModBlocks.cracked_amethyst_brick_stairs, ModBlocks.cracked_amethyst_brick_slab, ModBlocks.crusted_amethyst_bricks, ModBlocks.crusted_amethyst_brick_stairs,
             ModBlocks.crusted_amethyst_brick_slab, ModBlocks.keystone_block, ModBlocks.purifier, ModBlocks.wasteland_stone, ModBlocks.static_stone, ModBlocks.volcanic_rock, ModBlocks.searing_rock,
             ModBlocks.primal_mass, ModBlocks.impure_rock, ModBlocks.active_rock, ModBlocks.tough_golden_stone, ModBlocks.gilded_brilliant_stone, ModBlocks.bolstered_bricks, ModBlocks.hematite_ore,
@@ -157,7 +159,7 @@ public class GaiaBlockTags extends GaiaBlockTagsProvider {
             ModBlocks.malachite_pulsing_tiles, ModBlocks.malachite_pulsing_chisel, ModBlocks.malachite_brick_slab, ModBlocks.malachite_cracked_brick_slab, ModBlocks.malachite_crusted_brick_slab,
             ModBlocks.malachite_tile_slab, ModBlocks.malachite_pillar, ModBlocks.malachite_brick_stairs, ModBlocks.malachite_cracked_brick_stairs, ModBlocks.malachite_crusted_brick_stairs,
             ModBlocks.malachite_tile_stairs, ModBlocks.malachite_chisel_stairs, ModBlocks.malachite_pulsing_brick_stairs, ModBlocks.malachite_pulsing_floor_stairs, ModBlocks.malachite_pulsing_chisel_stairs,
-            ModBlocks.malachite_pillar_stairs, ModBlocks.sugilite_block, ModBlocks.hematite_block, ModBlocks.cinnabar_block, ModBlocks.labradorite_block, ModBlocks.moonstone_block, ModBlocks.red_opal_block,
+            ModBlocks.malachite_pillar_stairs, ModBlocks.scaynyx_block, ModBlocks.sugilite_block, ModBlocks.hematite_block, ModBlocks.cinnabar_block, ModBlocks.labradorite_block, ModBlocks.moonstone_block, ModBlocks.red_opal_block,
             ModBlocks.blue_opal_block, ModBlocks.green_opal_block, ModBlocks.white_opal_block, ModBlocks.pyrite_block, ModBlocks.tektite_block, ModBlocks.goldstone_block, ModBlocks.aura_block,
             ModBlocks.bismuth_block, ModBlocks.stibnite_block, ModBlocks.proustite_block, ModBlocks.euclase_block, ModBlocks.albite_block, ModBlocks.carnelian_block, ModBlocks.benitoite_block,
             ModBlocks.diopside_block, ModBlocks.goshenite_block, ModBlocks.nexustone, ModBlocks.white_opal_ore, ModBlocks.precious_rock, ModBlocks.scarlet_opalite_ore, ModBlocks.auburn_opalite_ore,
@@ -175,10 +177,10 @@ public class GaiaBlockTags extends GaiaBlockTagsProvider {
             ModBlocks.speckled_rock, ModBlocks.gaia_stone_bricks, ModBlocks.cracked_gaia_stone_bricks, ModBlocks.crusted_gaia_stone_bricks, ModBlocks.jade_bricks, ModBlocks.jade_brick_stairs,
             ModBlocks.jade_brick_slab, ModBlocks.cracked_jade_bricks, ModBlocks.cracked_jade_brick_stairs, ModBlocks.cracked_jade_brick_slab, ModBlocks.crusted_jade_bricks, ModBlocks.crusted_jade_brick_stairs,
             ModBlocks.crusted_jade_brick_slab, ModBlocks.copal_bricks, ModBlocks.copal_brick_stairs, ModBlocks.copal_brick_slab, ModBlocks.cracked_copal_bricks, ModBlocks.cracked_copal_brick_stairs,
-            ModBlocks.cracked_copal_brick_slab, ModBlocks.crusted_copal_bricks, ModBlocks.crusted_copal_brick_stairs, ModBlocks.crusted_copal_brick_slab, ModBlocks.jet_brick_stairs, ModBlocks.jet_brick_slab,
+            ModBlocks.cracked_copal_brick_slab, ModBlocks.crusted_copal_bricks, ModBlocks.crusted_copal_brick_stairs, ModBlocks.crusted_copal_brick_slab, ModBlocks.jet_bricks, ModBlocks.jet_brick_stairs, ModBlocks.jet_brick_slab,
             ModBlocks.cracked_jet_bricks, ModBlocks.cracked_jet_brick_stairs, ModBlocks.cracked_jet_brick_slab, ModBlocks.crusted_jet_bricks, ModBlocks.crusted_jet_brick_stairs, ModBlocks.crusted_jet_brick_slab,
-            ModBlocks.amethyst_brick_stairs, ModBlocks.amethyst_brick_slab, ModBlocks.cracked_amethyst_bricks, ModBlocks.cracked_amethyst_brick_stairs, ModBlocks.cracked_amethyst_brick_slab, ModBlocks.crusted_amethyst_bricks,
-            ModBlocks.crusted_amethyst_brick_stairs, ModBlocks.crusted_amethyst_brick_slab
+            ModBlocks.amethyst_bricks, ModBlocks.amethyst_brick_stairs, ModBlocks.amethyst_brick_slab, ModBlocks.cracked_amethyst_bricks, ModBlocks.cracked_amethyst_brick_stairs, ModBlocks.cracked_amethyst_brick_slab,
+            ModBlocks.crusted_amethyst_bricks, ModBlocks.crusted_amethyst_brick_stairs, ModBlocks.crusted_amethyst_brick_slab, ModBlocks.scaynyx_block
     );
     private static final ImmutableList<Supplier<? extends Block>> NEEDS_IRON = ImmutableList.of(
             ModBlocks.keystone_block, ModBlocks.purifier, ModBlocks.wasteland_stone, ModBlocks.static_stone, ModBlocks.volcanic_rock, ModBlocks.searing_rock, ModBlocks.primal_mass, ModBlocks.impure_rock,
@@ -261,6 +263,7 @@ public class GaiaBlockTags extends GaiaBlockTagsProvider {
         tag(GaiaTags.Blocks.STORAGE_BLOCKS_DIOPSIDE).add(ModBlocks.diopside_block.get());
         tag(GaiaTags.Blocks.STORAGE_BLOCKS_GOSHENITE).add(ModBlocks.goshenite_block.get());
         tag(GaiaTags.Blocks.STORAGE_BLOCKS_CELESTINE).add(ModBlocks.celestine_block.get());
+        tag(GaiaTags.Blocks.STORAGE_BLOCKS_SCAYNYX).add(ModBlocks.scaynyx_block.get());
         addTag(GaiaTags.Blocks.TILES, TILES);
 
         //addTag(Tags.Blocks.DIRT, DIRT);

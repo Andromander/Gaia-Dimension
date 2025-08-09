@@ -13,6 +13,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.Enchantments;
+import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.DoublePlantBlock;
 import net.minecraft.world.level.block.FlowerPotBlock;
@@ -76,8 +77,8 @@ public abstract class GaiaBlockLootTableProvider extends BlockLootSubProvider {
         add(block.get(), (result) -> createSingleItemTableWithSilkTouch(result, drop.get()));
     }
 
-    public void dropChance(Supplier<? extends Block> block, Supplier<? extends Block> drop, float... chances) {
-        add(block.get(), (result) -> withChance(block.get(), drop.get(), chances));
+    public void dropChance(Supplier<? extends Block> block, ItemLike drop, float... chances) {
+        add(block.get(), (result) -> withChance(block.get(), drop, chances));
     }
 
     public void dropChanceAlternative(Supplier<? extends Block> block, Supplier<? extends Block> drop, Supplier<Item> item, float... chances) {
@@ -134,7 +135,7 @@ public abstract class GaiaBlockLootTableProvider extends BlockLootSubProvider {
                                 .apply(CopyNameFunction.copyName(CopyNameFunction.NameSource.BLOCK_ENTITY)))));
     }
 
-    protected LootTable.Builder withChance(Block block, Block drop, float... chances) {
+    protected LootTable.Builder withChance(Block block, ItemLike drop, float... chances) {
         HolderLookup.RegistryLookup<Enchantment> lookup = this.registries.lookupOrThrow(Registries.ENCHANTMENT);
         return createSilkTouchOrShearsDispatchTable(block, applyExplosionCondition(block, LootItem.lootTableItem(drop))
                 .when(BonusLevelTableCondition.bonusLevelFlatChance(lookup.getOrThrow(Enchantments.FORTUNE), chances)));
