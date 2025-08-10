@@ -1,4 +1,4 @@
-// 1.21	2025-08-10T12:01:35.2077826	Tags for minecraft:item mod id gaiadimension
+// 1.21	2025-08-11T08:34:31.4805314	Tags for minecraft:item mod id gaiadimension
 b8824061659e34d2bcb2a29f7526c559c25d1834 data/c/tags/item/bones.json
 d67324c41876289e35996384266b7cb310ef4d04 data/c/tags/item/dusts.json
 307d706a2aab12da68949f0ac0ae908638e5b471 data/c/tags/item/dusts/fine.json
@@ -46,6 +46,7 @@ c68e0f1188532e3ddba1e571463ae634e7ce75f4 data/c/tags/item/ore/sugilite.json
 3bd73d68dcc5dba0dd512b8c55daff4781a84786 data/c/tags/item/ore/white_opal.json
 440da905f6ed3e378ab09ff28b32130a1ce8bbfa data/c/tags/item/rods.json
 50bf26e9cec490e8241d3006e830099f4306bfd3 data/c/tags/item/rods/agate.json
+41963bfa81a43b3edf11139daedab98d59d6f7b5 data/c/tags/item/slimeballs.json
 e2fb47d61d7d25af0c5409e53675a9c8c124ccea data/c/tags/item/storage_blocks.json
 ac466ac3c654d84fd774366207d2081e6835ed75 data/c/tags/item/storage_blocks/albite.json
 7b35e1615226390bb3af055e44a148d1a87acb97 data/c/tags/item/storage_blocks/aura.json

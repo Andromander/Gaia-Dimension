@@ -160,6 +160,7 @@ public class GaiaItemTags extends GaiaItemTagsProvider {
         }
         tag(Tags.Items.INGOTS).addTag(GaiaTags.Items.INGOTS_SCAYNYX);
         tag(Tags.Items.RODS).addTag(GaiaTags.Items.RODS_AGATE);
+        tag(Tags.Items.SLIMEBALLS).add(ModItems.sweet_muckball.get());
         for (TagKey<Item> tag : ORE_TAGS) {
             tag(Tags.Items.ORES).addTag(tag);
         }
