@@ -1,4 +1,4 @@
-// 1.21	2025-08-10T22:05:04.2970503	Recipes
+// 1.21	2025-08-11T08:32:32.3883052	Recipes
 a8cb9280902b7d3bd16020611d9df62a2fc3eb00 data/gaiadimension/advancement/recipes/building_blocks/amethyst_bricks.json
 6b4767698fd3ed00ab0c9287c83d7e873743f935 data/gaiadimension/advancement/recipes/building_blocks/amethyst_brick_slab.json
 be8246f32a255385c311c4cc7be6668fed68a2bf data/gaiadimension/advancement/recipes/building_blocks/amethyst_brick_stairs.json
@@ -336,7 +336,7 @@ b5be88d57912a5d908c91f3458bac760cc10c2ae data/gaiadimension/advancement/recipes/
 4baf36f3d4c9cc007cf9408f93309770f3c9d9ce data/gaiadimension/advancement/recipes/tools/tools/sugilite_shovel.json
 0890e0bf2ae0afd0f2ec83d63c3ac44bd33b3330 data/gaiadimension/recipe/agate_arrow.json
 0486a46b5a6e364c91976c06916d65f977e78b36 data/gaiadimension/recipe/agate_cup.json
-757ae82fec7b7260ccba34bc90b7688c4b4a45f9 data/gaiadimension/recipe/agate_stick.json
+ddc6730e717895bf73290bf07e52aba516bf7e6a data/gaiadimension/recipe/agate_stick.json
 1f9871299dd780c1457398560e8652c58befc5b7 data/gaiadimension/recipe/amethyst_bricks.json
 b53c0c4332fb5b49abeca34eadc7b0df770843f4 data/gaiadimension/recipe/amethyst_brick_slab.json
 a9141a872d9c2287d1ef3b4ae2f08cf7b7be3365 data/gaiadimension/recipe/amethyst_brick_stairs.json
