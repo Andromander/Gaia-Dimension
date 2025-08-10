@@ -139,6 +139,7 @@ public class ClientEvents {
         e.registerSpecial(ModParticles.ITEM_PEBBLE.get(), new GaiaBreakingParticle.PebbleFactory());
         e.registerSpriteSet(ModParticles.SPAWNER_CORE.get(), SpawnerCoreParticle.Factory::new);
         e.registerSpriteSet(ModParticles.MALACHITE_MAGIC.get(), MalachiteMagicParticle.Factory::new);
+        e.registerSpriteSet(ModParticles.MAGIC_STAFF_TRAIL.get(), StaffMagicParticle.Provider::new);
     }
 
     @SubscribeEvent
@@ -156,6 +157,7 @@ public class ClientEvents {
         e.register(ModMenus.LARGE_CRATE.get(), LargeCrateScreen::new);
         e.register(ModMenus.RESTRUCTURER.get(), RestructurerScreen::new);
         e.register(ModMenus.PURIFIER.get(), PurifierScreen::new);
+        e.register(ModMenus.AUGMENTER.get(), AugmenterScreen::new);
     }
 
     public static void registerBlockRenderers() {

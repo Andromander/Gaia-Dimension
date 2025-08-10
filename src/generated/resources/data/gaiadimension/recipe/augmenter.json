@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "#": {
+      "item": "gaiadimension:gaia_stone_bricks"
+    },
+    "/": {
+      "item": "gaiadimension:scaynyx_ingot"
+    },
+    "^": {
+      "item": "gaiadimension:sugilite"
+    }
+  },
+  "pattern": [
+    "^/^",
+    "###"
+  ],
+  "result": {
+    "count": 1,
+    "id": "gaiadimension:augmenter"
+  }
+}

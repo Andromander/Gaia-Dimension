@@ -128,6 +128,8 @@ public class ModEntitiesRendering {
         event.registerEntityRenderer(ModEntities.MOOKAITE_AMMO_BULLET.get(), ThrownItemRenderer::new);
         event.registerEntityRenderer(ModEntities.MOOKAITE_MAGIC_BULLET.get(), ThrownItemRenderer::new);
         event.registerEntityRenderer(ModEntities.MOOKAITE_MAGIC_AREA.get(), NoopRenderer::new);
+        event.registerEntityRenderer(ModEntities.STAFF_PROJECTILE.get(), StaffProjectileRenderer::new);
+        event.registerEntityRenderer(ModEntities.STAFF_AREA_EFFECT.get(), NoopRenderer::new);
 
         event.registerEntityRenderer(ModEntities.AGATE_GOLEM.get(), m -> new BasicEntityRenderer<>(m, new AgateGolemModel<>(m.bakeLayer(AGATE_GOLEM)), 0.9F));
         event.registerEntityRenderer(ModEntities.ANCIENT_LAGRAHK.get(), m -> new BasicEntityRenderer<>(m, new AncientLagrahkModel<>(m.bakeLayer(ANCIENT_LAGRAHK)), 2.0F));

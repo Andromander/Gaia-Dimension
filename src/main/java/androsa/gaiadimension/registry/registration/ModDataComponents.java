@@ -2,6 +2,7 @@ package androsa.gaiadimension.registry.registration;
 
 import androsa.gaiadimension.GaiaDimensionMod;
 import androsa.gaiadimension.item.ConstructKitItem;
+import androsa.gaiadimension.item.tools.GaiaStaffItem;
 import net.minecraft.core.UUIDUtil;
 import net.minecraft.core.component.DataComponentType;
 import net.minecraft.world.item.component.ItemContainerContents;
@@ -22,4 +23,11 @@ public class ModDataComponents {
             builder -> builder.persistent(ConstructKitItem.Part.CODEC).networkSynchronized(ConstructKitItem.Part.STREAM_CODEC));
     public static final DeferredHolder<DataComponentType<?>, DataComponentType<ItemContainerContents>> POUCH_CONTENTS = DATA_COMPONENTS.registerComponentType("pouch_contents",
             builder -> builder.persistent(ItemContainerContents.CODEC).networkSynchronized(ItemContainerContents.STREAM_CODEC).cacheEncoding());
+    //Staff Component
+    public static final DeferredHolder<DataComponentType<?>, DataComponentType<GaiaStaffItem.Element>> STAFF_ELEMENT = DATA_COMPONENTS.registerComponentType("staff_element",
+            builder -> builder.persistent(GaiaStaffItem.Element.CODEC).networkSynchronized(GaiaStaffItem.Element.STREAM_CODEC).cacheEncoding());
+    public static final DeferredHolder<DataComponentType<?>, DataComponentType<GaiaStaffItem.Behavior>> STAFF_BEHAVIOR = DATA_COMPONENTS.registerComponentType("staff_behavior",
+            builder -> builder.persistent(GaiaStaffItem.Behavior.CODEC).networkSynchronized(GaiaStaffItem.Behavior.STREAM_CODEC).cacheEncoding());
+    public static final DeferredHolder<DataComponentType<?>, DataComponentType<GaiaStaffItem.Stat>> STAFF_STAT = DATA_COMPONENTS.registerComponentType("staff_stat",
+            builder -> builder.persistent(GaiaStaffItem.Stat.CODEC).networkSynchronized(GaiaStaffItem.Stat.STREAM_CODEC).cacheEncoding());
 }

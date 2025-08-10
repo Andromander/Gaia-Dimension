@@ -6,6 +6,7 @@ import androsa.gaiadimension.entity.boss.BlueHowliteWolf;
 import androsa.gaiadimension.entity.boss.MalachiteGuard;
 import androsa.gaiadimension.entity.data.*;
 import androsa.gaiadimension.entity.projectile.*;
+import androsa.gaiadimension.item.tools.GaiaStaffItem;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.syncher.EntityDataSerializer;
 import net.minecraft.world.entity.*;
@@ -34,6 +35,8 @@ public class ModEntities {
     public static final DeferredHolder<EntityType<?>, EntityType<MookaiteAmmo>> MOOKAITE_AMMO_BULLET = registerProjectile("mookaite_ammo_bullet", MookaiteAmmo::new, true, 150, 2, 0.25F, 0.25F, false);
     public static final DeferredHolder<EntityType<?>, EntityType<MookaiteMagic>> MOOKAITE_MAGIC_BULLET = registerProjectile("mookaite_magic_bullet", MookaiteMagic::new, true, 150, 10, 0.25F, 0.25F, false);
     public static final DeferredHolder<EntityType<?>, EntityType<MookaiteAreaEffect>> MOOKAITE_MAGIC_AREA = registerProjectile("mookaite_magic_area", MookaiteAreaEffect::new, true, 150, Integer.MAX_VALUE, 6.0F, 0.5F, true);
+    public static final DeferredHolder<EntityType<?>, EntityType<StaffProjectile>> STAFF_PROJECTILE = registerProjectile("staff_projectile", StaffProjectile::new, true, 150, 2, 0.25F, 0.25F, false);
+    public static final DeferredHolder<EntityType<?>, EntityType<StaffAreaEffect>> STAFF_AREA_EFFECT = registerProjectile("staff_area_effect", StaffAreaEffect::new, true, 150, Integer.MAX_VALUE, 4.0F, 0.5F, true);
 
     //Mobs
     public static final DeferredHolder<EntityType<?>, EntityType<AgateGolem>> AGATE_GOLEM = registerEntity("agate_golem", AgateGolem::new, MobCategory.MONSTER, 1.2F, 2.7F, false);
@@ -84,6 +87,12 @@ public class ModEntities {
             () -> EntityDataSerializer.forValueType(SapperVariant.STREAM_CODEC));
     public static final DeferredHolder<EntityDataSerializer<?>, EntityDataSerializer<LagrahkVariant>> LAGRAHK_VARIANT = ENTITY_DATA_SERIALIZERS.register("lagrahk_variant",
             () -> EntityDataSerializer.forValueType(LagrahkVariant.STREAM_CODEC));
+    public static final DeferredHolder<EntityDataSerializer<?>, EntityDataSerializer<GaiaStaffItem.Element>> STAFF_ELEMENT = ENTITY_DATA_SERIALIZERS.register("staff_element",
+            () -> EntityDataSerializer.forValueType(GaiaStaffItem.Element.STREAM_CODEC));
+    public static final DeferredHolder<EntityDataSerializer<?>, EntityDataSerializer<GaiaStaffItem.Behavior>> STAFF_BEHAVIOR = ENTITY_DATA_SERIALIZERS.register("staff_behavior",
+            () -> EntityDataSerializer.forValueType(GaiaStaffItem.Behavior.STREAM_CODEC));
+    public static final DeferredHolder<EntityDataSerializer<?>, EntityDataSerializer<GaiaStaffItem.Stat>> STAFF_STAT = ENTITY_DATA_SERIALIZERS.register("staff_stat",
+            () -> EntityDataSerializer.forValueType(GaiaStaffItem.Stat.STREAM_CODEC));
 
     public static <E extends Entity> DeferredHolder<EntityType<?>, EntityType<E>> registerProjectile(String name, EntityType.EntityFactory<E> entity, boolean updates, int range, int interval, float width, float height, boolean fireproof) {
         EntityType.Builder<E> entitytype = makeBuilder(entity, MobCategory.MISC, width, height)

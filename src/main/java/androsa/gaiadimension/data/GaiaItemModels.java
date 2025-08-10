@@ -25,6 +25,7 @@ public class GaiaItemModels extends GaiaItemModelProvider {
         blockItem(ModBlocks.crude_storage_crate);
         blockItem(ModBlocks.mega_storage_crate);
         blockItem(ModBlocks.gaia_stone_furnace);
+        blockItem(ModBlocks.augmenter);
         blockItem(ModBlocks.restructurer);
         blockItem(ModBlocks.purifier);
         blockItem(ModBlocks.heavy_soil);

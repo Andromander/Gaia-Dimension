@@ -255,6 +255,7 @@ public class ModItems {
     public static final DeferredItem<Item> goshenite_shovel = registerShovel("goshenite_shovel", GaiaToolMaterials.GOSHENITE);
     public static final DeferredItem<Item> old_bow = register("old_bow", () -> new OldBowItem(toolProps().durability(425)));
     public static final DeferredItem<Item> agate_arrow = register("agate_arrow", () -> new AgateArrowItem(itemProps()));
+    public static final DeferredItem<Item> magic_staff = register("magic_staff", () -> new GaiaStaffItem(itemProps().durability(500)));
 
     public static final DeferredItem<Item> malachite_guard_baton = register("malachite_guard_baton", () -> new MalachiteGuardSwordItem(toolProps().rarity(Rarity.RARE)));
     public static final DeferredItem<Item> apex_predator_mace = register("apex_predator_mace", () -> new ApexPredatorSwordItem(toolProps().rarity(Rarity.RARE)));
@@ -379,5 +380,45 @@ public class ModItems {
                 entity != null && stack.has(ModDataComponents.MOOKAITE_UUID) ? 1.0F : 0.0F);
         ItemProperties.register(construct_charm.get(), ResourceLocation.withDefaultNamespace("opalite"), (stack, world, entity, seed) ->
                 entity != null && stack.has(ModDataComponents.OPALITE_UUID) ? 1.0F : 0.0F);
+        ItemProperties.register(magic_staff.get(), ResourceLocation.withDefaultNamespace("element"), (stack, world, entity, seed) -> {
+            if (entity != null && (stack.has(ModDataComponents.STAFF_ELEMENT))) {
+                return switch (stack.get(ModDataComponents.STAFF_ELEMENT)) {
+                    case FIRE -> 0.1F;
+                    case ELECTRIC -> 0.2F;
+                    case POISON -> 0.3F;
+                    case FROST -> 0.4F;
+                    case MAGIC -> 0.5F;
+                    case ENERGY -> 0.6F;
+                    default -> 0.0F;
+                };
+            }
+            return 0.0F;
+        });
+        ItemProperties.register(magic_staff.get(), ResourceLocation.withDefaultNamespace("behavior"), (stack, world, entity, seed) -> {
+            if (entity != null && (stack.has(ModDataComponents.STAFF_BEHAVIOR))) {
+                return switch (stack.get(ModDataComponents.STAFF_BEHAVIOR)) {
+                    case SCATTER -> 0.1F;
+                    case RICOCHET -> 0.2F;
+                    case BLAST -> 0.3F;
+                    case LINGER -> 0.4F;
+                    case BURST -> 0.5F;
+                    default -> 0.0F;
+                };
+            }
+            return 0.0F;
+        });
+        ItemProperties.register(magic_staff.get(), ResourceLocation.withDefaultNamespace("stat"), (stack, world, entity, seed) -> {
+            if (entity != null && (stack.has(ModDataComponents.STAFF_STAT))) {
+                return switch (stack.get(ModDataComponents.STAFF_STAT)) {
+                    case POWER -> 0.1F;
+                    case SPEED -> 0.2F;
+                    case RECHARGE -> 0.3F;
+                    case FORCE -> 0.4F;
+                    case SUSTAIN -> 0.5F;
+                    default -> 0.0F;
+                };
+            }
+            return 0.0F;
+        });
     }
 }

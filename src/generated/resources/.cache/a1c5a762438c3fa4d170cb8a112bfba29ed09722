@@ -1,4 +1,4 @@
-// 1.21	2025-08-10T12:10:53.1786515	Gaia Item Models
+// 1.21	2025-08-10T22:05:04.293051	Gaia Item Models
 d5c0f0011c11d4bd7b161026eed13370329d4981 assets/gaiadimension/models/item/active_rock.json
 f8516b22f5651209e5c6893ab609ebc1105db572 assets/gaiadimension/models/item/agate_arrow.json
 8edce106f0b6a88ad044dafcb45074427a389d02 assets/gaiadimension/models/item/agate_axe.json
@@ -31,6 +31,7 @@ c303419610860fb87bb1b00e8f16e7cb86b45a24 assets/gaiadimension/models/item/auburn
 e3c6b53e8cd69aa7c366c07e9739b15b3f9a2bb5 assets/gaiadimension/models/item/auburn_mookaite.json
 6ec8789465528ab4b3893e25cd9f1bf5f559d5cb assets/gaiadimension/models/item/auburn_opalite_ore.json
 98f09726a769db1d47cb698707499fa59775be9d assets/gaiadimension/models/item/auburn_replace_kit.json
+333d4cedff43a73e90e7cba43137478989ad4e92 assets/gaiadimension/models/item/augmenter.json
 fe5ebc44714d168bb19ff2118a0cc366e87c9d19 assets/gaiadimension/models/item/aura_block.json
 da2111bbe22c5bf03dc2105ab74affa044562455 assets/gaiadimension/models/item/aura_cluster.json
 b6c926e848e72bbc48840d64cb1c0cf3edc9d163 assets/gaiadimension/models/item/aura_curtain.json

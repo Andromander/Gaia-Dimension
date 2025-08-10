@@ -3,6 +3,13 @@
     "gaiadimension:energetic",
     "gaiadimension:static",
     "gaiadimension:corruption",
-    "gaiadimension:malachite_blast"
+    "gaiadimension:malachite_blast",
+    "gaiadimension:physical_magic",
+    "gaiadimension:fire_magic",
+    "gaiadimension:electric_magic",
+    "gaiadimension:poison_magic",
+    "gaiadimension:frost_magic",
+    "gaiadimension:light_magic",
+    "gaiadimension:energy_magic"
   ]
 }

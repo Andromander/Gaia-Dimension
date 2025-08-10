@@ -570,6 +570,37 @@
       "random/explode4"
     ]
   },
+  "entity.magic_projectile.shoot": {
+  "subtitle": "subtitles.entity.magic_projectile.shoot",
+    "sounds": [
+      "random/bow"
+    ]
+  },
+  "entity.magic_projectile.break": {
+  "subtitle": "subtitles.entity.magic_projectile.break",
+    "sounds": [
+      "random/glass1",
+      "random/glass2",
+      "random/glass3"
+    ]
+  },
+  "entity.magic_projectile.bounce": {
+  "subtitle": "subtitles.entity.magic_projectile.bounce",
+    "sounds": [
+      "random/glass1",
+      "random/glass2",
+      "random/glass3"
+    ]
+  },
+  "entity.magic_projectile.explode": {
+    "subtitle": "subtitles.entity.magic_projectile.explode",
+    "sounds": [
+      "random/explode1",
+      "random/explode2",
+      "random/explode3",
+      "random/explode4"
+    ]
+  },
   "entity.moss_agate_monitor.death": {
     "subtitle": "subtitles.entity.moss_agate_monitor.death",
     "sounds": [

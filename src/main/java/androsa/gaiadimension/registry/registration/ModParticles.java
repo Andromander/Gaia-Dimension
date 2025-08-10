@@ -1,11 +1,20 @@
 package androsa.gaiadimension.registry.registration;
 
 import androsa.gaiadimension.GaiaDimensionMod;
+import com.mojang.serialization.MapCodec;
+import net.minecraft.core.Registry;
+import net.minecraft.core.particles.ColorParticleOption;
+import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleType;
 import net.minecraft.core.particles.SimpleParticleType;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.network.RegistryFriendlyByteBuf;
+import net.minecraft.network.codec.StreamCodec;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
+
+import java.util.function.Function;
 
 public class ModParticles {
 
@@ -19,4 +28,20 @@ public class ModParticles {
     public static final DeferredHolder<ParticleType<?>, SimpleParticleType> ITEM_PEBBLE = PARTICLE_TYPES.register("item_pebble", () -> new SimpleParticleType(false));
     public static final DeferredHolder<ParticleType<?>, SimpleParticleType> SPAWNER_CORE = PARTICLE_TYPES.register("spawner_core", () -> new SimpleParticleType(false));
     public static final DeferredHolder<ParticleType<?>, SimpleParticleType> MALACHITE_MAGIC = PARTICLE_TYPES.register("malachite_magic", () -> new SimpleParticleType(false));
+    public static final DeferredHolder<ParticleType<?>, ParticleType<ColorParticleOption>> MAGIC_STAFF_TRAIL = PARTICLE_TYPES.register("magic_staff_trail", () ->
+            register(false, ColorParticleOption::codec, ColorParticleOption::streamCodec));
+
+    private static <T extends ParticleOptions> ParticleType<T> register(boolean alwaysShow, final Function<ParticleType<T>, MapCodec<T>> codec, final Function<ParticleType<T>, StreamCodec<? super RegistryFriendlyByteBuf, T>> stream) {
+        return new ParticleType<>(alwaysShow) {
+            @Override
+            public MapCodec<T> codec() {
+                return codec.apply(this);
+            }
+
+            @Override
+            public StreamCodec<? super RegistryFriendlyByteBuf, T> streamCodec() {
+                return stream.apply(this);
+            }
+        };
+    }
 }

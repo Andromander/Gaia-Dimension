@@ -2,6 +2,7 @@ package androsa.gaiadimension.registry.registration;
 
 import androsa.gaiadimension.GaiaDimensionMod;
 import androsa.gaiadimension.item.ConstructKitItem;
+import androsa.gaiadimension.item.tools.GaiaStaffItem;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
@@ -9,6 +10,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.ItemLike;
 import net.neoforged.neoforge.registries.DeferredHolder;
+import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
 import java.util.function.Supplier;
@@ -36,7 +38,7 @@ public class ModTabs {
                 add(output, ModBlocks.stripped_pink_agate_wood, ModBlocks.stripped_blue_agate_wood, ModBlocks.stripped_green_agate_wood, ModBlocks.stripped_purple_agate_wood, ModBlocks.stripped_fossilized_wood, ModBlocks.stripped_corrupted_wood, ModBlocks.stripped_burnt_wood, ModBlocks.stripped_fire_agate_wood, ModBlocks.stripped_aura_wood, ModBlocks.stripped_golden_wood);
                 add(output, ModBlocks.frail_glitter_block, ModBlocks.thick_glitter_block, ModBlocks.gummy_glitter_block, ModBlocks.pink_sludge_block);
                 add(output, ModBlocks.pyrite_torch);
-                add(output, ModBlocks.agate_crafting_table, ModBlocks.crude_storage_crate, ModBlocks.mega_storage_crate, ModBlocks.gaia_stone_furnace, ModBlocks.restructurer, ModBlocks.purifier);
+                add(output, ModBlocks.agate_crafting_table, ModBlocks.crude_storage_crate, ModBlocks.mega_storage_crate, ModBlocks.gaia_stone_furnace, ModBlocks.augmenter, ModBlocks.restructurer, ModBlocks.purifier);
                 add(output, ModBlocks.salt, ModBlocks.saltstone);
                 add(output, ModBlocks.wasteland_stone, ModBlocks.static_stone, ModBlocks.charged_mineral);
                 add(output, ModBlocks.volcanic_rock, ModBlocks.searing_rock);
@@ -80,7 +82,7 @@ public class ModTabs {
             .displayItems((parameters, output) -> {
                 add(output, ModItems.crystallized_redstone, ModItems.crystallized_lapis_lazuli, ModItems.glint_and_gold);
                 add(output, ModItems.hot_dust, ModItems.goldstone_dust, ModItems.fine_dust);
-                add(output, ModItems.crystal_shard, ModItems.agate_stick, ModItems.agate_fabric, ModItems.sugar_crystals, ModItems.sugar_cluster, ModItems.sturdy_pebble, ModItems.shiny_bone, ModItems.fine_thread, ModItems.sweet_muckball, ModItems.cloudy_shard, ModItems.glitter_dust, ModItems.glitter_rod, ModItems.aura_rod);
+                add(output, ModItems.crystal_shard, ModItems.agate_stick, ModItems.agate_fabric, ModItems.sugar_crystals, ModItems.sugar_cluster, ModItems.sturdy_pebble, ModItems.shiny_bone, ModItems.fine_thread, ModItems.sweet_muckball, ModItems.cloudy_shard, ModItems.glitter_dust, ModItems.glitter_rod, ModItems.aura_rod, ModItems.magnetite_rod);
                 add(output, ModItems.crystal_core, ModItems.spitfire_heart, ModItems.shockshooter_soul, ModItems.moss_agate_claw, ModItems.howlite_fang, ModItems.spellbound_core, ModItems.bismuth_horn);
                 add(output, ModItems.agate_cup, ModItems.twined_thread, ModItems.pink_essence, ModItems.pink_goo, ModItems.scaynyx_ingot);
                 add(output, ModItems.goldstone_residue, ModItems.goldstone, ModItems.bismuth_residue, ModItems.bismuth_crystal, ModItems.aura_residue, ModItems.aura_cluster, ModItems.black_residue, ModItems.tektite, ModItems.metallic_fragment, ModItems.magnetite);
@@ -110,6 +112,7 @@ public class ModTabs {
             .icon(() -> new ItemStack(ModItems.gaia_champion_sword.get()))
             .displayItems((parameters, output) -> {
                 add(output, ModItems.old_bow, ModItems.agate_arrow);
+                addStaff(output, ModItems.magic_staff);
                 add(output, ModItems.agate_sword, ModItems.agate_pickaxe, ModItems.agate_axe, ModItems.agate_shovel);
                 add(output, ModItems.sugilite_sword, ModItems.sugilite_pickaxe, ModItems.sugilite_axe, ModItems.sugilite_shovel);
                 add(output, ModItems.stibnite_sword, ModItems.stibnite_pickaxe, ModItems.stibnite_axe, ModItems.stibnite_shovel);
@@ -161,5 +164,13 @@ public class ModTabs {
             }
             output.accept(stack);
         }
+    }
+
+    private static void addStaff(CreativeModeTab.Output output, DeferredItem<Item> item) {
+        ItemStack stack = new ItemStack(item.get());
+        stack.set(ModDataComponents.STAFF_ELEMENT, GaiaStaffItem.Element.PHYSICAL);
+        stack.set(ModDataComponents.STAFF_BEHAVIOR, GaiaStaffItem.Behavior.BASIC);
+        stack.set(ModDataComponents.STAFF_STAT, GaiaStaffItem.Stat.STANDARD);
+        output.accept(stack);
     }
 }

@@ -509,6 +509,23 @@ public class GaiaRecipes extends GaiaRecipeProvider {
         replaceKit(ModItems.mauve_replace_kit, ModBlocks.mauve_mookaite).save(consumer, loc("mauve_replace_kit"));
         replaceKit(ModItems.beige_replace_kit, ModBlocks.beige_mookaite).save(consumer, loc("beige_replace_kit"));
         replaceKit(ModItems.ivory_replace_kit, ModBlocks.ivory_mookaite).save(consumer, loc("ivory_replace_kit"));
+        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, ModItems.magic_staff.get())
+                .pattern("#")
+                .pattern("^")
+                .pattern("/")
+                .define('#', ModItems.crystal_core)
+                .define('^', ModItems.sugilite)
+                .define('/', ModItems.agate_stick)
+                .unlockedBy("has_crystal_core", has(ModItems.crystal_core))
+                .save(consumer, loc("magic_staff"));
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ModBlocks.augmenter)
+                .pattern("^/^")
+                .pattern("###")
+                .define('#', ModBlocks.gaia_stone_bricks)
+                .define('^', ModItems.sugilite)
+                .define('/', ModItems.scaynyx_ingot)
+                .unlockedBy("has_scaynyx_ingot", has(ModItems.scaynyx_ingot))
+                .save(consumer, loc("augmenter"));
 
         smeltingRecipe(ModItems.blue_opal.get(), ModBlocks.blue_opal_ore, 0.3F).save(consumer, locSmelt("blue_opal_smelt"));
         smeltingRecipe(ModItems.celestine.get(), ModBlocks.celestine_ore, 1.5F).save(consumer, locSmelt("celestine_smelt"));

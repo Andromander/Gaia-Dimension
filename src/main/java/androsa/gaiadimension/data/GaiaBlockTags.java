@@ -142,7 +142,7 @@ public class GaiaBlockTags extends GaiaBlockTagsProvider {
             ModBlocks.fire_agate_tile_slab, ModBlocks.aura_tile_slab, ModBlocks.golden_tile_slab
     );
     private static final ImmutableList<Supplier<? extends Block>> PICKAXE_TOOL = ImmutableList.of(
-            ModBlocks.cloudy_glass, ModBlocks.foggy_glass, ModBlocks.gaia_stone_furnace, ModBlocks.saltstone, ModBlocks.scarlet_mookaite, ModBlocks.auburn_mookaite, ModBlocks.gold_mookaite,
+            ModBlocks.cloudy_glass, ModBlocks.foggy_glass, ModBlocks.gaia_stone_furnace, ModBlocks.augmenter, ModBlocks.saltstone, ModBlocks.scarlet_mookaite, ModBlocks.auburn_mookaite, ModBlocks.gold_mookaite,
             ModBlocks.mauve_mookaite, ModBlocks.beige_mookaite, ModBlocks.ivory_mookaite, ModBlocks.restructurer, ModBlocks.thick_glitter_block, ModBlocks.gaia_stone, ModBlocks.gaia_cobblestone,
             ModBlocks.charged_mineral, ModBlocks.geyser_block, ModBlocks.sparkling_rock, ModBlocks.golden_stone, ModBlocks.brilliant_stone, ModBlocks.aura_shoot, ModBlocks.raw_jade,
             ModBlocks.raw_copal, ModBlocks.raw_jet, ModBlocks.raw_amethyst, ModBlocks.reinforced_bricks, ModBlocks.sugilite_ore, ModBlocks.pyrite_ore, ModBlocks.speckled_rock, ModBlocks.gaia_stone_bricks,
@@ -171,7 +171,7 @@ public class GaiaBlockTags extends GaiaBlockTagsProvider {
     );
 
     private static final ImmutableList<Supplier<? extends Block>> NEEDS_STONE = ImmutableList.of(
-            ModBlocks.restructurer, ModBlocks.thick_glitter_block, ModBlocks.gaia_stone, ModBlocks.gaia_cobblestone, ModBlocks.charged_mineral, ModBlocks.geyser_block, ModBlocks.sparkling_rock, ModBlocks.golden_stone,
+            ModBlocks.augmenter, ModBlocks.restructurer, ModBlocks.thick_glitter_block, ModBlocks.gaia_stone, ModBlocks.gaia_cobblestone, ModBlocks.charged_mineral, ModBlocks.geyser_block, ModBlocks.sparkling_rock, ModBlocks.golden_stone,
             ModBlocks.brilliant_stone, ModBlocks.aura_shoot, ModBlocks.raw_jade, ModBlocks.raw_copal, ModBlocks.raw_jet, ModBlocks.raw_amethyst, ModBlocks.reinforced_bricks, ModBlocks.sugilite_ore,
             ModBlocks.pyrite_ore, ModBlocks.scarlet_opalite_ore, ModBlocks.auburn_opalite_ore, ModBlocks.gold_opalite_ore, ModBlocks.mauve_opalite_ore, ModBlocks.beige_opalite_ore, ModBlocks.ivory_opalite_ore,
             ModBlocks.speckled_rock, ModBlocks.gaia_stone_bricks, ModBlocks.cracked_gaia_stone_bricks, ModBlocks.crusted_gaia_stone_bricks, ModBlocks.jade_bricks, ModBlocks.jade_brick_stairs,
