@@ -65,6 +65,7 @@
     "gaiadimension:diopside_block",
     "gaiadimension:goshenite_block",
     "gaiadimension:opalite_block",
-    "gaiadimension:celestine_block"
+    "gaiadimension:celestine_block",
+    "gaiadimension:magnetite_block"
   ]
 }

@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_static_stone": {
+      "conditions": {
+        "items": [
+          {
+            "items": "gaiadimension:static_stone"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "gaiadimension:smelting/magnetite_from_static_stone"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_static_stone"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "gaiadimension:smelting/magnetite_from_static_stone"
+    ]
+  }
+}

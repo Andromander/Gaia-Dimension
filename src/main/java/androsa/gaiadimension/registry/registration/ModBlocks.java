@@ -345,6 +345,7 @@ public class ModBlocks {
     public static final DeferredBlock<Block> diopside_block = register("diopside_block", PropertiesHandler.storageProps(MapColor.COLOR_LIGHT_GREEN));
     public static final DeferredBlock<Block> goshenite_block = register("goshenite_block", PropertiesHandler.storageProps(MapColor.SNOW));
     public static final DeferredBlock<Block> celestine_block = register("celestine_block", PropertiesHandler.storageProps(MapColor.COLOR_LIGHT_BLUE));
+    public static final DeferredBlock<Block> magnetite_block = register("magnetite_block", PropertiesHandler.storageProps(MapColor.COLOR_GRAY));
 
     //Ores
     public static final DeferredBlock<Block> sugilite_ore = register("sugilite_ore", () -> new DropExperienceBlock(UniformInt.of(1, 3), PropertiesHandler.oreProps(MapColor.COLOR_PURPLE)));

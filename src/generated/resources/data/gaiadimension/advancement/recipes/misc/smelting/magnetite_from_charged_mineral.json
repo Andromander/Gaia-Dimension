@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_charged_mineral": {
+      "conditions": {
+        "items": [
+          {
+            "items": "gaiadimension:charged_mineral"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "gaiadimension:smelting/magnetite_from_charged_mineral"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_charged_mineral"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "gaiadimension:smelting/magnetite_from_charged_mineral"
+    ]
+  }
+}

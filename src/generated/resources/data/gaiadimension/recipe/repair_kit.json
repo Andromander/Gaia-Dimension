@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "gaiadimension:blank_kit"
+    },
+    {
+      "item": "gaiadimension:opalite"
+    }
+  ],
+  "result": {
+    "components": {
+      "gaiadimension:kit_part": "left_horn"
+    },
+    "count": 1,
+    "id": "gaiadimension:repair_kit"
+  }
+}

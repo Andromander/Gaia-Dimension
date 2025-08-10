@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_mauve_mookaite": {
+      "conditions": {
+        "items": [
+          {
+            "items": "gaiadimension:mauve_mookaite"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "gaiadimension:mauve_augment_kit"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_mauve_mookaite"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "gaiadimension:mauve_augment_kit"
+    ]
+  }
+}

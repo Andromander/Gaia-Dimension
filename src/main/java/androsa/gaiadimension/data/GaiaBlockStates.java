@@ -137,7 +137,6 @@ public class GaiaBlockStates extends GaiaBlockStateProvider {
         basicBlock(ModBlocks.gaia_cobblestone);
         basicBlockLayered(ModBlocks.wasteland_stone, "wasteland_stone", "wasteland_stone_static", "translucent");
         basicBlockLayered(ModBlocks.static_stone, "wasteland_stone", "static_stone", "translucent");
-        basicBlock(ModBlocks.charged_mineral, "translucent");
         basicBlock(ModBlocks.volcanic_rock);
         basicBlock(ModBlocks.searing_rock, "translucent");
         basicBlock(ModBlocks.primal_mass);
@@ -299,6 +298,7 @@ public class GaiaBlockStates extends GaiaBlockStateProvider {
         basicBlock(ModBlocks.diopside_block);
         basicBlock(ModBlocks.goshenite_block);
         basicBlock(ModBlocks.celestine_block);
+        basicBlock(ModBlocks.magnetite_block);
         basicBlock(ModBlocks.sugilite_ore);
         basicBlock(ModBlocks.hematite_ore);
         basicBlock(ModBlocks.cinnabar_ore);

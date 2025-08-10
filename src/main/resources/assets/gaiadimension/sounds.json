@@ -569,5 +569,19 @@
       "random/explode3",
       "random/explode4"
     ]
+  },
+  "entity.moss_agate_monitor.death": {
+    "subtitle": "subtitles.entity.moss_agate_monitor.death",
+    "sounds": [
+      "damage/hit1",
+      "damage/hit2",
+      "damage/hit3"
+    ]
+  },
+  "entity.moss_agate_monitor.hurt": {
+    "subtitle": "subtitles.entity.moss_agate_monitor.hurt",
+    "sounds": [
+      "damage/fallsmall"
+    ]
   }
 }

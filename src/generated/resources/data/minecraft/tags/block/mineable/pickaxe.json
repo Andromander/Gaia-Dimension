@@ -143,6 +143,7 @@
     "gaiadimension:ivory_opalite_ore",
     "gaiadimension:opalite_block",
     "gaiadimension:celestine_block",
-    "gaiadimension:celestine_ore"
+    "gaiadimension:celestine_ore",
+    "gaiadimension:magnetite_block"
   ]
 }

@@ -1,0 +1,18 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "gaiadimension:block/charged_mineral_1"
+      },
+      {
+        "model": "gaiadimension:block/charged_mineral_2"
+      },
+      {
+        "model": "gaiadimension:block/charged_mineral_2"
+      },
+      {
+        "model": "gaiadimension:block/charged_mineral_2"
+      }
+    ]
+  }
+}

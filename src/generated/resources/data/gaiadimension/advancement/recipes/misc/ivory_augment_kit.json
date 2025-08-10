@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_ivory_mookaite": {
+      "conditions": {
+        "items": [
+          {
+            "items": "gaiadimension:ivory_mookaite"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "gaiadimension:ivory_augment_kit"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_ivory_mookaite"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "gaiadimension:ivory_augment_kit"
+    ]
+  }
+}

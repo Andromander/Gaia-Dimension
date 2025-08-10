@@ -1,9 +1,11 @@
 package androsa.gaiadimension.data.provider;
 
 import androsa.gaiadimension.block.CurtainBlock;
+import androsa.gaiadimension.item.ConstructKitItem;
 import androsa.gaiadimension.recipe.PurifierRecipeBuilder;
 import androsa.gaiadimension.recipe.RestructurerRecipeBuilder;
 import androsa.gaiadimension.registry.registration.ModBlocks;
+import androsa.gaiadimension.registry.registration.ModDataComponents;
 import androsa.gaiadimension.registry.registration.ModItems;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
@@ -232,6 +234,37 @@ public abstract class GaiaRecipeProvider extends RecipeProvider implements ICond
                 .define('/', ModItems.agate_stick)
                 .define('#', curtain.get())
                 .unlockedBy("has_" + curtain.getId().getPath(), has(curtain));
+    }
+
+    public ShapelessRecipeBuilder repairKit() {
+        ItemStack stack = new ItemStack(ModItems.repair_kit.get());
+        stack.set(ModDataComponents.KIT_PART, ConstructKitItem.Part.LEFT_HORN);
+
+        return ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, stack)
+                .requires(ModItems.blank_kit)
+                .requires(ModItems.opalite)
+                .unlockedBy("has_opalite", has(ModItems.opalite));
+    }
+
+    public ShapelessRecipeBuilder augmentKit(Supplier<Item> result, DeferredBlock<Block> ingredient) {
+        ItemStack stack = new ItemStack(result.get());
+        stack.set(ModDataComponents.KIT_PART, ConstructKitItem.Part.LEFT_HORN);
+
+        return ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, stack)
+                .requires(ModItems.blank_kit)
+                .requires(ModItems.opalite)
+                .requires(ingredient.get())
+                .unlockedBy("has_" + ingredient.getId().getPath(), has(ingredient));
+    }
+
+    public ShapelessRecipeBuilder replaceKit(Supplier<Item> result, DeferredBlock<Block> ingredient) {
+        ItemStack stack = new ItemStack(result.get());
+        stack.set(ModDataComponents.KIT_PART, ConstructKitItem.Part.LEFT_HORN);
+
+        return ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, stack)
+                .requires(ModItems.blank_kit)
+                .requires(ingredient.get())
+                .unlockedBy("has_" + ingredient.getId().getPath(), has(ingredient));
     }
 
     public SimpleCookingRecipeBuilder smeltingRecipe(ItemLike result, DeferredBlock<? extends Block> ingredient, float exp) {

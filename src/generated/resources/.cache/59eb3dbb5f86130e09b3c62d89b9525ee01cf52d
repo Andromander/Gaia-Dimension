@@ -1,4 +1,4 @@
-// 1.21	2025-08-09T23:43:19.5671097	Loot Tables
+// 1.21	2025-08-10T12:01:35.2107811	Loot Tables
 70fac5f3da5e56a3221f03ad3388e9157b04753a data/gaiadimension/loot_table/blocks/active_rock.json
 488882d8b9f64b34ecf3a22af357f2aedd29512a data/gaiadimension/loot_table/blocks/agate_crafting_table.json
 7d233d88ea3fc2923fa77a2fb7e6b9dafd09ff5f data/gaiadimension/loot_table/blocks/agathum.json
@@ -49,7 +49,7 @@ fc0aa74d2e47f95a023f85d6c0116a37ce18dd25 data/gaiadimension/loot_table/blocks/bu
 9c1c203d313cbf14d30768ee4f524f2805325ec4 data/gaiadimension/loot_table/blocks/carnelian_block.json
 5de810fad231cd1a3075b5cc594e0dda8e2f7239 data/gaiadimension/loot_table/blocks/celestine_block.json
 22e5f2abc2f5a5019c75c8e5103aae3a3f39641e data/gaiadimension/loot_table/blocks/celestine_ore.json
-bd7e2cbc342f58f4efad4b2a0ca0c2c5e27975cb data/gaiadimension/loot_table/blocks/charged_mineral.json
+37542a4388205ecc490acadc3581661ea5601e80 data/gaiadimension/loot_table/blocks/charged_mineral.json
 ac041d82cd0caab81776b067478ee603b2b9001e data/gaiadimension/loot_table/blocks/cinnabar_block.json
 7cc172d0ab1658c02eedc0954e5a1b32ffe3fe64 data/gaiadimension/loot_table/blocks/cinnabar_ore.json
 19a269195c84e55b018c41bbd9b4337607252abe data/gaiadimension/loot_table/blocks/cloudy_glass.json
@@ -177,6 +177,7 @@ e17006f7401fb4247672f42e9313d179b7e816ed data/gaiadimension/loot_table/blocks/je
 cac02fe2dbb6d6637426d16823fae89ae4c05fab data/gaiadimension/loot_table/blocks/labradorite_block.json
 d6b11a6a4f8ffce64fdf95ba4e20320a0e6b22e5 data/gaiadimension/loot_table/blocks/labradorite_ore.json
 a390fbce25a50556d55d66f00c1548e15084f947 data/gaiadimension/loot_table/blocks/light_soil.json
+c7017506419db4fccca671a7be726e75686dfd18 data/gaiadimension/loot_table/blocks/magnetite_block.json
 f5045ee3c9b72368867dd9ef97a636d5810c2692 data/gaiadimension/loot_table/blocks/malachite_bricks.json
 0c6df95cbd9921ec529c6cdf479488d3a59b745d data/gaiadimension/loot_table/blocks/malachite_brick_slab.json
 f2ed5c323779edd208db96c51cb24d1560b0c0a2 data/gaiadimension/loot_table/blocks/malachite_brick_stairs.json
@@ -349,6 +350,7 @@ ff0b4ea0e6b0fb9c9c6431461e32e5f1bbe4bce0 data/gaiadimension/loot_table/entities/
 a65dd9b95eb21e52ff425a0a657d686419b9359a data/gaiadimension/loot_table/entities/markuzar_plant.json
 5659827038c3d4602d2af2022978f219c50402e1 data/gaiadimension/loot_table/entities/mineral_arenthis.json
 1f63ecfe15d082cbfbba7cd4232338bab68670eb data/gaiadimension/loot_table/entities/mookaite_construct.json
+0429bae1a8aca1267d3ef3125248a51e0aa30074 data/gaiadimension/loot_table/entities/moss_agate_monitor.json
 4f88f5fdf724f29be003e3f09f0df77b894586da data/gaiadimension/loot_table/entities/muckling.json
 72936677713aef0cb469971647b2110828a9c13d data/gaiadimension/loot_table/entities/mutant_growth_extractor.json
 7c66c325922de20b133b55d04ded7d67cfe091c9 data/gaiadimension/loot_table/entities/mystified_sapper.json

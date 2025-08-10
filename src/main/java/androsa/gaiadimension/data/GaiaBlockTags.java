@@ -23,7 +23,7 @@ public class GaiaBlockTags extends GaiaBlockTagsProvider {
             ModBlocks.sugilite_block, ModBlocks.hematite_block, ModBlocks.cinnabar_block, ModBlocks.labradorite_block, ModBlocks.moonstone_block, ModBlocks.red_opal_block,
             ModBlocks.blue_opal_block, ModBlocks.green_opal_block,  ModBlocks.white_opal_block, ModBlocks.pyrite_block, ModBlocks.tektite_block, ModBlocks.goldstone_block,
             ModBlocks.aura_block, ModBlocks.bismuth_block, ModBlocks.stibnite_block, ModBlocks.proustite_block, ModBlocks.euclase_block, ModBlocks.albite_block,
-            ModBlocks.carnelian_block, ModBlocks.benitoite_block, ModBlocks.diopside_block, ModBlocks.goshenite_block, ModBlocks.opalite_block, ModBlocks.celestine_block
+            ModBlocks.carnelian_block, ModBlocks.benitoite_block, ModBlocks.diopside_block, ModBlocks.goshenite_block, ModBlocks.opalite_block, ModBlocks.celestine_block, ModBlocks.magnetite_block
     );
     private static final ImmutableList<Supplier<? extends Block>> FLOWER_POTS = ImmutableList.of(
             ModBlocks.potted_thiscus, ModBlocks.potted_ouzium, ModBlocks.potted_agathum, ModBlocks.potted_varloom, ModBlocks.potted_corrupted_varloom, ModBlocks.potted_missingno_plant,
@@ -163,7 +163,7 @@ public class GaiaBlockTags extends GaiaBlockTagsProvider {
             ModBlocks.blue_opal_block, ModBlocks.green_opal_block, ModBlocks.white_opal_block, ModBlocks.pyrite_block, ModBlocks.tektite_block, ModBlocks.goldstone_block, ModBlocks.aura_block,
             ModBlocks.bismuth_block, ModBlocks.stibnite_block, ModBlocks.proustite_block, ModBlocks.euclase_block, ModBlocks.albite_block, ModBlocks.carnelian_block, ModBlocks.benitoite_block,
             ModBlocks.diopside_block, ModBlocks.goshenite_block, ModBlocks.nexustone, ModBlocks.white_opal_ore, ModBlocks.precious_rock, ModBlocks.scarlet_opalite_ore, ModBlocks.auburn_opalite_ore,
-            ModBlocks.gold_opalite_ore, ModBlocks.mauve_opalite_ore, ModBlocks.beige_opalite_ore, ModBlocks.ivory_opalite_ore, ModBlocks.opalite_block, ModBlocks.celestine_block, ModBlocks.celestine_ore
+            ModBlocks.gold_opalite_ore, ModBlocks.mauve_opalite_ore, ModBlocks.beige_opalite_ore, ModBlocks.ivory_opalite_ore, ModBlocks.opalite_block, ModBlocks.celestine_block, ModBlocks.celestine_ore, ModBlocks.magnetite_block
     );
     private static final ImmutableList<Supplier<? extends Block>> SHOVEL_TOOL = ImmutableList.of(
             ModBlocks.heavy_soil, ModBlocks.corrupted_soil, ModBlocks.boggy_soil, ModBlocks.light_soil, ModBlocks.aurum_soil, ModBlocks.glitter_grass, ModBlocks.corrupted_grass, ModBlocks.murky_grass,
@@ -192,7 +192,7 @@ public class GaiaBlockTags extends GaiaBlockTagsProvider {
             ModBlocks.malachite_pulsing_chisel_stairs, ModBlocks.malachite_pillar_stairs, ModBlocks.sugilite_block, ModBlocks.hematite_block, ModBlocks.cinnabar_block, ModBlocks.labradorite_block, ModBlocks.moonstone_block,
             ModBlocks.red_opal_block, ModBlocks.blue_opal_block, ModBlocks.green_opal_block, ModBlocks.white_opal_block, ModBlocks.pyrite_block, ModBlocks.tektite_block, ModBlocks.goldstone_block, ModBlocks.aura_block,
             ModBlocks.bismuth_block, ModBlocks.stibnite_block, ModBlocks.proustite_block, ModBlocks.euclase_block, ModBlocks.albite_block, ModBlocks.carnelian_block, ModBlocks.benitoite_block, ModBlocks.diopside_block,
-            ModBlocks.goshenite_block, ModBlocks.opalite_block, ModBlocks.celestine_block
+            ModBlocks.goshenite_block, ModBlocks.opalite_block, ModBlocks.celestine_block, ModBlocks.magnetite_block
     );
     private static final ImmutableList<Supplier<? extends Block>> NEEDS_DIAMOND = ImmutableList.of(
             ModBlocks.nexustone, ModBlocks.white_opal_ore, ModBlocks.precious_rock, ModBlocks.celestine_ore

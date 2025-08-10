@@ -123,6 +123,7 @@ public class GaiaRecipes extends GaiaRecipeProvider {
         largeCompressRecipe(ModBlocks.diopside_block.get(), ModItems.diopside.get()).save(consumer, locStorage("diopside_block"));
         largeCompressRecipe(ModBlocks.goshenite_block.get(), ModItems.goshenite.get()).save(consumer, locStorage("goshenite_block"));
         largeCompressRecipe(ModBlocks.celestine_block.get(), ModItems.celestine.get()).save(consumer, locStorage("celestine_block"));
+        largeCompressRecipe(ModBlocks.magnetite_block.get(), ModItems.magnetite.get()).save(consumer, locStorage("magnetite_block"));
 
         blockToItemRecipe(ModItems.scaynyx_ingot, ModBlocks.scaynyx_block).save(consumer, locStorage("scaynyx_block_item"));
         blockToItemRecipe(ModItems.sugilite, ModBlocks.sugilite_block).save(consumer, locStorage("sugilite_block_item"));
@@ -206,6 +207,7 @@ public class GaiaRecipes extends GaiaRecipeProvider {
 
         largeCompressRecipe(ModItems.aura_cluster.get(), ModItems.aura_residue.get()).save(consumer, loc("aura_cluster"));
         largeCompressRecipe(ModItems.bismuth_crystal.get(), ModItems.bismuth_residue.get()).save(consumer, loc("bismuth_crystal"));
+        largeCompressRecipe(ModItems.magnetite.get(), ModItems.metallic_fragment.get()).save(consumer, loc("magnetite"));
         drinkRecipe(ModItems.pink_geode_juice, ModItems.pink_geode_slice).save(consumer, loc("pink_geode_juice"));
         drinkRecipe(ModItems.blue_geode_tea, ModItems.blue_geode_slice).save(consumer, loc("blue_geode_tea"));
         drinkRecipe(ModItems.green_geode_ale, ModItems.green_geode_slice).save(consumer, loc("green_geode_ale"));
@@ -297,6 +299,12 @@ public class GaiaRecipes extends GaiaRecipeProvider {
                 .unlockedBy("has_brick", has(ModBlocks.reinforced_bricks.get()))
                 .unlockedBy("has_goldstone", has(ModBlocks.goldstone_block.get()))
                 .save(consumer, loc("bolstered_bricks"));
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.magnetite_rod.get(), 4)
+                .pattern("#")
+                .pattern("#")
+                .define('#', ModItems.magnetite)
+                .unlockedBy("has_magnetite", has(ModItems.magnetite))
+                .save(consumer, loc("magnetite_rod"));
         ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ModBlocks.bolstered_bricks.get(), 2)
                 .pattern("#%")
                 .pattern("%#")
@@ -488,6 +496,19 @@ public class GaiaRecipes extends GaiaRecipeProvider {
                 .requires(ModItems.opalite.get())
                 .unlockedBy("has_celestine", has(ModItems.celestine.get()))
                 .save(consumer, loc("construct_charm"));
+        repairKit().save(consumer, loc("repair_kit"));
+        augmentKit(ModItems.scarlet_augment_kit, ModBlocks.scarlet_mookaite).save(consumer, loc("scarlet_augment_kit"));
+        augmentKit(ModItems.auburn_augment_kit, ModBlocks.auburn_mookaite).save(consumer, loc("auburn_augment_kit"));
+        augmentKit(ModItems.gold_augment_kit, ModBlocks.gold_mookaite).save(consumer, loc("gold_augment_kit"));
+        augmentKit(ModItems.mauve_augment_kit, ModBlocks.mauve_mookaite).save(consumer, loc("mauve_augment_kit"));
+        augmentKit(ModItems.beige_augment_kit, ModBlocks.beige_mookaite).save(consumer, loc("beige_augment_kit"));
+        augmentKit(ModItems.ivory_augment_kit, ModBlocks.ivory_mookaite).save(consumer, loc("ivory_augment_kit"));
+        replaceKit(ModItems.scarlet_replace_kit, ModBlocks.scarlet_mookaite).save(consumer, loc("scarlet_replace_kit"));
+        replaceKit(ModItems.auburn_replace_kit, ModBlocks.auburn_mookaite).save(consumer, loc("auburn_replace_kit"));
+        replaceKit(ModItems.gold_replace_kit, ModBlocks.gold_mookaite).save(consumer, loc("gold_replace_kit"));
+        replaceKit(ModItems.mauve_replace_kit, ModBlocks.mauve_mookaite).save(consumer, loc("mauve_replace_kit"));
+        replaceKit(ModItems.beige_replace_kit, ModBlocks.beige_mookaite).save(consumer, loc("beige_replace_kit"));
+        replaceKit(ModItems.ivory_replace_kit, ModBlocks.ivory_mookaite).save(consumer, loc("ivory_replace_kit"));
 
         smeltingRecipe(ModItems.blue_opal.get(), ModBlocks.blue_opal_ore, 0.3F).save(consumer, locSmelt("blue_opal_smelt"));
         smeltingRecipe(ModItems.celestine.get(), ModBlocks.celestine_ore, 1.5F).save(consumer, locSmelt("celestine_smelt"));
@@ -524,6 +545,8 @@ public class GaiaRecipes extends GaiaRecipeProvider {
         smeltingRecipe(ModBlocks.thick_glitter_block.get(), ModBlocks.gummy_glitter_block, 0.1F).save(consumer, locSmelt("thick_glitter_block"));
         smeltingRecipe(ModItems.white_opal.get(), ModBlocks.white_opal_ore, 1.0F).save(consumer, locSmelt("white_opal_smelt"));
         smeltingRecipe(ModItems.glitter_rod.get(), ModItems.glitter_dust, 0.0F).save(consumer, locSmelt("glitter_dust"));
+        smeltingRecipe(ModItems.magnetite.get(), ModBlocks.static_stone, 0.0F).save(consumer, locSmelt("magnetite_from_static_stone"));
+        smeltingRecipe(ModItems.magnetite.get(), ModBlocks.charged_mineral, 0.0F, 2).save(consumer, locSmelt("magnetite_from_charged_mineral"));
 
         restructureBlackResidue(ModItems.benitoite, ModItems.blue_opal, 0.3F, 1).save(consumer, locRestructure("benitoite"));
         restructuringTektite(ModBlocks.benitoite_block, ModBlocks.blue_opal_block, 2.7F, 1).save(consumer, locRestructure("benitoite_block"));

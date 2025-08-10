@@ -82,11 +82,13 @@ public class ModItems {
     public static final DeferredItem<Item> crystal_core = register("crystal_core");
     public static final DeferredItem<Item> spitfire_heart = register("spitfire_heart");
     public static final DeferredItem<Item> shockshooter_soul = register("shockshooter_soul");
+    public static final DeferredItem<Item> moss_agate_claw = register("moss_agate_claw");
     public static final DeferredItem<Item> howlite_fang = register("howlite_fang");
     public static final DeferredItem<Item> spellbound_core = register("spellbound_core");
     public static final DeferredItem<Item> bismuth_horn = register("bismuth_horn");
     public static final DeferredItem<Item> glitter_dust = register("glitter_dust");
     public static final DeferredItem<Item> glitter_rod = register("glitter_rod");
+    public static final DeferredItem<Item> magnetite_rod = register("magnetite_rod");
     public static final DeferredItem<Item> aura_rod = register("aura_rod");
 
     public static final DeferredItem<Item> pink_geode = register("pink_geode");
@@ -158,6 +160,8 @@ public class ModItems {
     public static final DeferredItem<Item> bismuth_crystal = register("bismuth_crystal");
     public static final DeferredItem<Item> opalite = register("opalite");
     public static final DeferredItem<Item> celestine = register("celestine");
+    public static final DeferredItem<Item> metallic_fragment = register("metallic_fragment");
+    public static final DeferredItem<Item> magnetite = register("magnetite");
 
     public static final DeferredItem<Item> sugilite_helmet = register("sugilite_helmet", ModArmorMaterials.SUGILITE, HELMET, 77);
     public static final DeferredItem<Item> sugilite_chestplate = register("sugilite_chestplate", ModArmorMaterials.SUGILITE, CHESTPLATE, 77);
@@ -293,6 +297,7 @@ public class ModItems {
     public static final DeferredItem<Item> opalite_construct_spawn_egg = registerEgg("opalite_construct", ModEntities.OPALITE_CONSTRUCT, 0X698A9F, 0X7BFDFE);
     public static final DeferredItem<Item> growth_grazer_spawn_egg = registerEgg("growth_grazer", ModEntities.GROWTH_GRAZER, 0x5A4514, 0xFFD700);
     public static final DeferredItem<Item> aureate_evraun_spawn_egg = registerEgg("aureate_evraun", ModEntities.AUREATE_EVRAUN, 0X53432F, 0XE2D366);
+    public static final DeferredItem<Item> moss_agate_monitor_spawn_egg = registerEgg("moss_agate_monitor", ModEntities.MOSS_AGATE_MONITOR, 0x1D4827, 0xAFC0AE);
     public static final DeferredItem<Item> blue_howlite_wolf_spawn_egg = registerEgg("blue_howlite_wolf", ModEntities.BLUE_HOWLITE_WOLF, 0x0099CC, 0xCC00FF);
     public static final DeferredItem<Item> malachite_guard_spawn_egg = registerEgg("malachite_guard", ModEntities.MALACHITE_GUARD, 0x339900, 0x33CC99);
 

@@ -137,7 +137,6 @@ public class GaiaItemModels extends GaiaItemModelProvider {
         blockItem(ModBlocks.gaia_cobblestone);
         blockItem(ModBlocks.wasteland_stone);
         blockItem(ModBlocks.static_stone);
-        blockItem(ModBlocks.charged_mineral);
         blockItem(ModBlocks.volcanic_rock);
         blockItem(ModBlocks.searing_rock);
         blockItem(ModBlocks.primal_mass);
@@ -271,6 +270,7 @@ public class GaiaItemModels extends GaiaItemModelProvider {
         blockItem(ModBlocks.malachite_pulsing_floor_stairs);
         blockItem(ModBlocks.malachite_pulsing_chisel_stairs);
         blockItem(ModBlocks.malachite_pillar_stairs);
+        blockItem(ModBlocks.scaynyx_block);
         blockItem(ModBlocks.sugilite_block);
         blockItem(ModBlocks.hematite_block);
         blockItem(ModBlocks.cinnabar_block);
@@ -305,6 +305,7 @@ public class GaiaItemModels extends GaiaItemModelProvider {
         blockItem(ModBlocks.green_opal_ore);
         blockItem(ModBlocks.white_opal_ore);
         blockItem(ModBlocks.pyrite_ore);
+        blockItem(ModBlocks.magnetite_block);
         blockItem(ModBlocks.speckled_rock);
         blockItem(ModBlocks.coarse_rock);
         blockItem(ModBlocks.precious_rock);
@@ -361,11 +362,13 @@ public class GaiaItemModels extends GaiaItemModelProvider {
         basicItem(ModItems.crystal_core);
         basicItem(ModItems.spitfire_heart);
         basicItem(ModItems.shockshooter_soul);
+        basicItem(ModItems.moss_agate_claw);
         basicItem(ModItems.howlite_fang);
         basicItem(ModItems.spellbound_core);
         basicItem(ModItems.bismuth_horn);
         basicItem(ModItems.glitter_dust);
         basicItem(ModItems.glitter_rod);
+        basicItem(ModItems.magnetite_rod);
         basicItem(ModItems.aura_rod);
         geodeItem(ModItems.pink_geode);
         geodeItem(ModItems.blue_geode);
@@ -434,6 +437,8 @@ public class GaiaItemModels extends GaiaItemModelProvider {
         basicItem(ModItems.bismuth_crystal);
         basicItem(ModItems.opalite);
         basicItem(ModItems.celestine);
+        basicItem(ModItems.metallic_fragment);
+        basicItem(ModItems.magnetite);
         basicItem(ModItems.sugilite_helmet);
         basicItem(ModItems.sugilite_chestplate);
         basicItem(ModItems.sugilite_legs);
@@ -563,6 +568,7 @@ public class GaiaItemModels extends GaiaItemModelProvider {
         eggItem(ModItems.opalite_construct_spawn_egg);
         eggItem(ModItems.growth_grazer_spawn_egg);
         eggItem(ModItems.aureate_evraun_spawn_egg);
+        eggItem(ModItems.moss_agate_monitor_spawn_egg);
         eggItem(ModItems.blue_howlite_wolf_spawn_egg);
         eggItem(ModItems.malachite_guard_spawn_egg);
     }
