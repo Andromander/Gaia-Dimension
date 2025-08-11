@@ -59,7 +59,7 @@ public class ModBlocks {
     public static final DeferredBlock<Block> purifier = register("purifier", () ->
             new PurifierBlock(PropertiesHandler.stoneProps(MapColor.SAND, 20.0F, 300.0F, true).lightLevel((state) -> state.getValue(PurifierBlock.LIT) ? 14 : 0)));
     public static final DeferredBlock<Block> augmenter = register("augmenter", () ->
-            new AugmenterBlock(PropertiesHandler.stoneProps(MapColor.TERRACOTTA_PURPLE, 10.0F, 150.0F).lightLevel((state) -> 12)));
+            new AugmenterBlock(PropertiesHandler.stoneProps(MapColor.TERRACOTTA_PURPLE, 10.0F, 150.0F).lightLevel((state) -> 6)));
     
     //Fluids
     public static final DeferredBlock<LiquidBlock> mineral_water = registerNoItem("mineral_water", () ->
