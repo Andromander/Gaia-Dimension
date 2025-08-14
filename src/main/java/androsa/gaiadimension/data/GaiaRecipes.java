@@ -288,8 +288,10 @@ public class GaiaRecipes extends GaiaRecipeProvider {
                 .define('#', GaiaTags.Items.TILES)
                 .unlockedBy("has_tiles", has(GaiaTags.Items.TILES))
                 .save(this.output);
-        this.shapeless(RecipeCategory.MISC, ModItems.agate_stick.get(), 4)
-                .requires(GaiaTags.Items.TILES)
+        this.shaped(RecipeCategory.MISC, ModItems.agate_stick.get(), 4)
+                .pattern("#")
+                .pattern("#")
+                .define('#', GaiaTags.Items.TILES)
                 .unlockedBy("has_tiles", has(GaiaTags.Items.TILES))
                 .save(this.output);
         this.shaped(RecipeCategory.MISC, ModItems.aura_rod.get(), 4)

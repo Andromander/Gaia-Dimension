@@ -1,4 +1,4 @@
-// 1.21.8	2025-08-09T14:11:22.0219853	Gaia Dimension Recipes
+// 1.21.8	2025-08-14T11:01:14.1430109	Gaia Dimension Recipes
 2a1e241d7d1c50626f01b2901870745c3a79054a data/gaiadimension/advancement/recipes/building_blocks/albite_block.json
 a8cb9280902b7d3bd16020611d9df62a2fc3eb00 data/gaiadimension/advancement/recipes/building_blocks/amethyst_bricks.json
 6b4767698fd3ed00ab0c9287c83d7e873743f935 data/gaiadimension/advancement/recipes/building_blocks/amethyst_brick_slab.json
@@ -340,7 +340,7 @@ b5be88d57912a5d908c91f3458bac760cc10c2ae data/gaiadimension/advancement/recipes/
 ccc749172fbe6ba15e6e108c6a4c804fb30c63bf data/gaiadimension/recipe/agate_arrow.json
 2ff9f50208dac404a19d22fbc2c6aa527076bd50 data/gaiadimension/recipe/agate_crafting_table.json
 feef6d05b05448cc50bf5991e2f9d9f90d5d8567 data/gaiadimension/recipe/agate_cup.json
-6890d9ed8ae40f33a7243812211978324d32612e data/gaiadimension/recipe/agate_stick.json
+28bf18024596194fa38ddc4d73fc055abd035e71 data/gaiadimension/recipe/agate_stick.json
 de0b3f27333dca91add85d1977c40c2b7450710e data/gaiadimension/recipe/albite_block.json
 0b013f5aaebb019e7004a5bc608430753d99e2e9 data/gaiadimension/recipe/amethyst_bricks.json
 88edc8017afd92381be2d7c5901f3813fa67916b data/gaiadimension/recipe/amethyst_brick_slab.json
