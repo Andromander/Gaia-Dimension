@@ -371,14 +371,14 @@ public class MalachiteGuard extends Monster {
         //Just have this happen in Normal or Hard
         if (difficulty == Difficulty.NORMAL || difficulty == Difficulty.HARD) {
             if (target instanceof Player player) {
-                EntityEquipment armor = player.getInventory().equipment;
-                List<EquipmentSlot> equipment = Arrays.stream(EquipmentSlot.values()).filter(s -> s.getType() == EquipmentSlot.Type.HUMANOID_ARMOR).toList();
-                EquipmentSlot slot = equipment.get(random.nextInt(equipment.size()));
-                ItemStack stack = armor.get(slot);
-
                 //Normal: 1:16 chance. Hard: 1:8 chance. Chances decrease if the slot is empty
-                if (!stack.isEmpty()) {
-                    if ((difficulty == Difficulty.NORMAL && random.nextInt(16) == 0) || (difficulty == Difficulty.HARD && random.nextInt(8) == 0)) {
+                if ((difficulty == Difficulty.NORMAL && random.nextInt(16) == 0) || (difficulty == Difficulty.HARD && random.nextInt(8) == 0)) {
+                    EntityEquipment armor = player.getInventory().equipment;
+                    List<EquipmentSlot> equipment = Arrays.stream(EquipmentSlot.values()).filter(s -> s.getType() == EquipmentSlot.Type.HUMANOID_ARMOR).toList();
+                    EquipmentSlot slot = equipment.get(random.nextInt(equipment.size()));
+                    ItemStack stack = armor.get(slot);
+
+                    if (!stack.isEmpty()) {
                         //Remove your piece of armor
                         player.drop(stack, true, false);
                         player.setItemSlot(slot, ItemStack.EMPTY);
