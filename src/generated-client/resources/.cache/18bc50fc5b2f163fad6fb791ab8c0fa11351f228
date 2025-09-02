@@ -1,4 +1,4 @@
-// 1.21.8	2025-08-09T13:38:17.4293409	Model Definitions - gaiadimension
+// 1.21.8	2025-09-02T20:45:51.7589469	Model Definitions - gaiadimension
 8608ca08d4e09a00c5ac1279dc5458d093d263da assets/gaiadimension/blockstates/active_rock.json
 23ea34251e78628208a9041761eae63ba0f255fa assets/gaiadimension/blockstates/agate_crafting_table.json
 77a0b7c45ea73099883d8e25af0610686569ed6a assets/gaiadimension/blockstates/agathum.json
@@ -1967,5 +1967,3 @@ db81e1d9bb097e69fbef06156e12f6a4df92a903 assets/gaiadimension/models/item/zircon
 d9353188b9042178e609619af77bc1a7328c216f assets/gaiadimension/models/item/zircon_prince_crown.json
 0d5764f62025a56c7b5dc672aab85a8a8800409b assets/gaiadimension/models/item/zircon_prince_gear.json
 59a120547cbc3e96da622b496d79c506fdcf044b assets/gaiadimension/models/item/zircon_prince_razor.json
-5fc1e101a24bbe7916507d20d154059053ed6af4 assets/minecraft/items/air.json
-25cf454b871d2bb7295b7aff10eb7ffb052a7e78 assets/minecraft/models/item/air.json

@@ -13,6 +13,7 @@ import net.minecraft.client.data.models.model.*;
 import net.minecraft.client.renderer.block.model.VariantMutator;
 import net.minecraft.core.Direction;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
@@ -290,7 +291,9 @@ public abstract class GaiaBlockStateProvider {
     public void crossBlock(DeferredBlock<? extends Block> block, String type) {
         ResourceLocation location = ModelTemplates.CROSS.extend().renderType(type).build().create(block.get(), TextureMapping.cross(block.get()), blockModels.modelOutput);
         blockModels.blockStateOutput.accept(BlockModelGenerators.createSimpleBlock(block.get(), plain(location)));
-        blockModels.registerSimpleItemModel(block.asItem(), blockModels.createFlatItemModelWithBlockTexture(block.asItem(), block.get()));
+        if (block.asItem() != Items.AIR) {
+            blockModels.registerSimpleItemModel(block.asItem(), blockModels.createFlatItemModelWithBlockTexture(block.asItem(), block.get()));
+        }
     }
 
     public void crossBlockTinted(DeferredBlock<Block> block) {

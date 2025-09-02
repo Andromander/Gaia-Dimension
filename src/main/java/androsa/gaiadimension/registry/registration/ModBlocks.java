@@ -503,7 +503,7 @@ public class ModBlocks {
         block.addPlant(aura_sapling.getId(), potted_aura_sapling);
         block.addPlant(golden_sapling.getId(), potted_golden_sapling);
     }
-    
+
     public static void registerDispenserBehaviour() {
         DispenseItemBehavior dispenseFluid = new DefaultDispenseItemBehavior() {
             private final DefaultDispenseItemBehavior defaultBehaviour = new DefaultDispenseItemBehavior();
