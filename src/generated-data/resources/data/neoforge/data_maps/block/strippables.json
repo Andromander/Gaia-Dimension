@@ -1,0 +1,64 @@
+{
+  "values": {
+    "gaiadimension:aura_log": {
+      "stripped_block": "gaiadimension:stripped_aura_log"
+    },
+    "gaiadimension:aura_wood": {
+      "stripped_block": "gaiadimension:stripped_aura_wood"
+    },
+    "gaiadimension:blue_agate_log": {
+      "stripped_block": "gaiadimension:stripped_blue_agate_log"
+    },
+    "gaiadimension:blue_agate_wood": {
+      "stripped_block": "gaiadimension:stripped_blue_agate_wood"
+    },
+    "gaiadimension:burnt_agate_log": {
+      "stripped_block": "gaiadimension:stripped_burnt_agate_log"
+    },
+    "gaiadimension:burnt_agate_wood": {
+      "stripped_block": "gaiadimension:stripped_burnt_agate_wood"
+    },
+    "gaiadimension:corrupted_log": {
+      "stripped_block": "gaiadimension:stripped_corrupted_log"
+    },
+    "gaiadimension:corrupted_wood": {
+      "stripped_block": "gaiadimension:stripped_corrupted_wood"
+    },
+    "gaiadimension:fire_agate_log": {
+      "stripped_block": "gaiadimension:stripped_fire_agate_log"
+    },
+    "gaiadimension:fire_agate_wood": {
+      "stripped_block": "gaiadimension:stripped_fire_agate_wood"
+    },
+    "gaiadimension:fossilized_log": {
+      "stripped_block": "gaiadimension:stripped_fossilized_log"
+    },
+    "gaiadimension:fossilized_wood": {
+      "stripped_block": "gaiadimension:stripped_fossilized_wood"
+    },
+    "gaiadimension:golden_log": {
+      "stripped_block": "gaiadimension:stripped_golden_log"
+    },
+    "gaiadimension:golden_wood": {
+      "stripped_block": "gaiadimension:stripped_golden_wood"
+    },
+    "gaiadimension:green_agate_log": {
+      "stripped_block": "gaiadimension:stripped_green_agate_log"
+    },
+    "gaiadimension:green_agate_wood": {
+      "stripped_block": "gaiadimension:stripped_green_agate_wood"
+    },
+    "gaiadimension:pink_agate_log": {
+      "stripped_block": "gaiadimension:stripped_pink_agate_log"
+    },
+    "gaiadimension:pink_agate_wood": {
+      "stripped_block": "gaiadimension:stripped_pink_agate_wood"
+    },
+    "gaiadimension:purple_agate_log": {
+      "stripped_block": "gaiadimension:stripped_purple_agate_log"
+    },
+    "gaiadimension:purple_agate_wood": {
+      "stripped_block": "gaiadimension:stripped_purple_agate_wood"
+    }
+  }
+}

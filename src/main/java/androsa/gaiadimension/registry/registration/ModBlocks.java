@@ -503,38 +503,7 @@ public class ModBlocks {
         block.addPlant(aura_sapling.getId(), potted_aura_sapling);
         block.addPlant(golden_sapling.getId(), potted_golden_sapling);
     }
-
-    public static void addStripping() {
-        Map<Block, Block> STRIPABLES = Maps.newHashMap(AxeItem.STRIPPABLES);
-
-        addToMap(STRIPABLES, pink_agate_log, stripped_pink_agate_log);
-        addToMap(STRIPABLES, blue_agate_log, stripped_blue_agate_log);
-        addToMap(STRIPABLES, green_agate_log, stripped_green_agate_log);
-        addToMap(STRIPABLES, purple_agate_log, stripped_purple_agate_log);
-        addToMap(STRIPABLES, fossilized_log, stripped_fossilized_log);
-        addToMap(STRIPABLES, corrupted_log, stripped_corrupted_log);
-        addToMap(STRIPABLES, burnt_log, stripped_burnt_log);
-        addToMap(STRIPABLES, fire_agate_log, stripped_fire_agate_log);
-        addToMap(STRIPABLES, aura_log, stripped_aura_log);
-        addToMap(STRIPABLES, golden_log, stripped_golden_log);
-        addToMap(STRIPABLES, pink_agate_wood, stripped_pink_agate_wood);
-        addToMap(STRIPABLES, blue_agate_wood, stripped_blue_agate_wood);
-        addToMap(STRIPABLES, green_agate_wood, stripped_green_agate_wood);
-        addToMap(STRIPABLES, purple_agate_wood, stripped_purple_agate_wood);
-        addToMap(STRIPABLES, fossilized_wood, stripped_fossilized_wood);
-        addToMap(STRIPABLES, corrupted_wood, stripped_corrupted_wood);
-        addToMap(STRIPABLES, burnt_wood, stripped_burnt_wood);
-        addToMap(STRIPABLES, fire_agate_wood, stripped_fire_agate_wood);
-        addToMap(STRIPABLES, aura_wood, stripped_aura_wood);
-        addToMap(STRIPABLES, golden_wood, stripped_golden_wood);
-
-        AxeItem.STRIPPABLES = STRIPABLES;
-    }
-
-    private static void addToMap(Map<Block, Block> map, Supplier<? extends Block> original, Supplier<? extends Block> newstate) {
-        map.put(original.get(), newstate.get());
-    }
-
+    
     public static void registerDispenserBehaviour() {
         DispenseItemBehavior dispenseFluid = new DefaultDispenseItemBehavior() {
             private final DefaultDispenseItemBehavior defaultBehaviour = new DefaultDispenseItemBehavior();

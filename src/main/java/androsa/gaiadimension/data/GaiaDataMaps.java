@@ -7,8 +7,13 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.neoforged.neoforge.common.NeoForgeMod;
 import net.neoforged.neoforge.common.data.DataMapProvider;
+import net.neoforged.neoforge.registries.datamaps.DataMapType;
+import net.neoforged.neoforge.registries.datamaps.builtin.NeoForgeDataMaps;
+import net.neoforged.neoforge.registries.datamaps.builtin.Strippable;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -59,5 +64,27 @@ public class GaiaDataMaps extends DataMapProvider {
         nulling.add(ModItems.black_residue, 100, false);
         nulling.add(ModItems.tektite, 900, false);
         nulling.add(ModBlocks.tektite_block.asItem().builtInRegistryHolder(), 8100, false);
+
+        Builder<Strippable, Block> strippables = this.builder(NeoForgeDataMaps.STRIPPABLES);
+        strippables.add(ModBlocks.pink_agate_log, new Strippable(ModBlocks.stripped_pink_agate_log.get()), false);
+        strippables.add(ModBlocks.blue_agate_log, new Strippable(ModBlocks.stripped_blue_agate_log.get()), false);
+        strippables.add(ModBlocks.green_agate_log, new Strippable(ModBlocks.stripped_green_agate_log.get()), false);
+        strippables.add(ModBlocks.purple_agate_log, new Strippable(ModBlocks.stripped_purple_agate_log.get()), false);
+        strippables.add(ModBlocks.fossilized_log, new Strippable(ModBlocks.stripped_fossilized_log.get()), false);
+        strippables.add(ModBlocks.corrupted_log, new Strippable(ModBlocks.stripped_corrupted_log.get()), false);
+        strippables.add(ModBlocks.burnt_log, new Strippable(ModBlocks.stripped_burnt_log.get()), false);
+        strippables.add(ModBlocks.fire_agate_log, new Strippable(ModBlocks.stripped_fire_agate_log.get()), false);
+        strippables.add(ModBlocks.aura_log, new Strippable(ModBlocks.stripped_aura_log.get()), false);
+        strippables.add(ModBlocks.golden_log, new Strippable(ModBlocks.stripped_golden_log.get()), false);
+        strippables.add(ModBlocks.pink_agate_wood, new Strippable(ModBlocks.stripped_pink_agate_wood.get()), false);
+        strippables.add(ModBlocks.blue_agate_wood, new Strippable(ModBlocks.stripped_blue_agate_wood.get()), false);
+        strippables.add(ModBlocks.green_agate_wood, new Strippable(ModBlocks.stripped_green_agate_wood.get()), false);
+        strippables.add(ModBlocks.purple_agate_wood, new Strippable(ModBlocks.stripped_purple_agate_wood.get()), false);
+        strippables.add(ModBlocks.fossilized_wood, new Strippable(ModBlocks.stripped_fossilized_wood.get()), false);
+        strippables.add(ModBlocks.corrupted_wood, new Strippable(ModBlocks.stripped_corrupted_wood.get()), false);
+        strippables.add(ModBlocks.burnt_wood, new Strippable(ModBlocks.stripped_burnt_wood.get()), false);
+        strippables.add(ModBlocks.fire_agate_wood, new Strippable(ModBlocks.stripped_fire_agate_wood.get()), false);
+        strippables.add(ModBlocks.aura_wood, new Strippable(ModBlocks.stripped_aura_wood.get()), false);
+        strippables.add(ModBlocks.golden_wood, new Strippable(ModBlocks.stripped_golden_wood.get()), false);
     }
 }

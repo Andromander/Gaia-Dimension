@@ -86,7 +86,6 @@ public class GaiaDimensionMod {
 
     public void setup(FMLCommonSetupEvent event) {
         event.enqueueWork(() -> {
-            ModBlocks.addStripping();
             ModBlocks.registerDispenserBehaviour();
             GaiaFluidAttributes.registerFluidInteractions();
         });
