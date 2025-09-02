@@ -43,7 +43,8 @@ public class GaiaFluidAttributes {
                     .canSwim(true)
                     .fallDistanceModifier(0.0F)
                     .supportsBoating(true)
-                    .viscosity(750);
+                    .viscosity(750)
+                    .isWaterLike(true);
     public static final FluidType.Properties superhot_magma_attributes =
             FluidType.Properties.create()
                     .sound(SoundActions.BUCKET_FILL, SoundEvents.BUCKET_FILL_LAVA)
@@ -59,7 +60,8 @@ public class GaiaFluidAttributes {
                     .sound(SoundActions.FLUID_VAPORIZE, SoundEvents.FIRE_EXTINGUISH)
                     .canConvertToSource(true)
                     .density(1000)
-                    .viscosity(750);
+                    .viscosity(750)
+                    .isWaterLike(true);
     public static final FluidType.Properties liquid_bismuth_attributes =
             FluidType.Properties.create()
                     .sound(SoundActions.BUCKET_FILL, SoundEvents.BUCKET_FILL_LAVA)
@@ -73,7 +75,8 @@ public class GaiaFluidAttributes {
                     .sound(SoundActions.BUCKET_FILL, SoundEvents.BUCKET_FILL)
                     .sound(SoundActions.BUCKET_EMPTY, SoundEvents.BUCKET_EMPTY)
                     .sound(SoundActions.FLUID_VAPORIZE, SoundEvents.FIRE_EXTINGUISH)
-                    .viscosity(1500);
+                    .viscosity(1500)
+                    .isWaterLike(true);
 
     public static final Supplier<BaseFlowingFluid.Properties> mineral_water_properties =
             () -> new BaseFlowingFluid.Properties(() -> ModFluids.MINERAL_WATER.get(), () -> ModFluids.mineral_water_still.get(), () -> ModFluids.mineral_water_flow.get())
