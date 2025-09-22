@@ -42,9 +42,15 @@
   "1.21": {
     "2.2.230": " + Added Curtains. These blocks are like Doors but hang from above. Placing two identical Curtains together will combine them into a double-Curtain.\n + Added Data Maps for glittering, shining, and nulling fuel. These allow for configuring the fuel amounts for the Restructurer and Purifier.\n + Added clickable areas to crafting GUIs to open the JEI recipe menu.\n • Retextured the Crystal Golem and Shallow Arenthis. They should now look much more lustrous than before.\n • Rewrote how the Mookaite Contruct and Opalite Contructs function.\n  • Mookaite Contructs handle parts differently. Rather than keep parts and multipliers separate, they are combined together for better cohesion and less entity data bloat.\n  • Fix some typos in Construct Kit descriptions.\n • Rewrote how Malachite Guards handle data. Each phase is now a dedicated named phase rather than a number.\n • Rewrote Growth Sapper variant handling to named entries rather than numbers.\n • Rewrote Nomadic Lagrahk variant handling to named entries rather than numbers.\n • Fixed missing lang keys for fluids."
   },
+  "1.21.1": {
+    "2.2.288": " + Added Magic Staff. This weapon is configurable with 3 parts, allowing for it to deal different damage types, behaviour, and stat changes.\n + Added Augmenter. This block adds and removes components from the Magic Staff.\n + Some more new blocks:\n  + Block of Scaynyx. Can be crafted from 9 Scaynyx Ingots.\n  + Magnetite Block. Can be crafted from 9 Magnetite.\n + New Items:\n  + Crystal Core\n  + Spitfire Heart\n  + Shockshooter Soul\n  + Moss Agate Claw\n  + Howlite Fang\n  + Spellbound Core\n  + Bismuth Horn\n  + Glitter Dust. Drops from Frail Glitter Blocks.\n  + Glitter Rod. Smelted from Glitter Dust.\n  + Aura Rod. Crafted from 2 Aura Shoots.\n  + Metallic Fragment. Drops from Charged Mineral.\n  + Magnetite. Crafted from 9 Metallic Fragments\n  + Magnetite Rod. Crafted from 2 Magnetite.\n + New Moss Agate Monitor entity. A neutral mob that spawns in the Green Agate Jungle. When provoked, it will attack with a chance of dealing poison. When killed, they may drop Moss Agate Claw.\n + New Entity loot tables:\n  + Crystal Golems now drop Crystal Core\n  + Lesser Spitfires now drop Spitfire Heart\n  + Lesser Shockshooters now drop Shockshooter Soul\n  + Howlite Wolves now drop Howlite Fang\n  + Spellbound Elementals now drop Spellbound Core\n  + Bismuth Uletrus now drop Bismuth Horn\n + New recipes\n  + Pink Agate Curtain can now be made using Glitter Rods\n  + Aura Curtain can now be made using Aura Rods\n  + Frail Glitter Blocks can now be crafted from 4 Glitter Dust\n + Add Sweet Muckball to the Slime Balls tag.\n • Retextured Scaynyx Ingot, Static Stone, and Charged Mineral.\n • Fix Malachite Guard deleting or duplicating equipment it attempts to knock off players.\n • Fix crafting recipe issue with Agate Stick.\n • Fix a few tags for Celestine Ore, Celestine Block, and Opalite Ore."
+  },
   "1.21.4": {
     "2.3.267": "Gaia Dimension is now out for 1.21.4! This is only a direct port, but some bugs may be present. Please report any issues to the issue tracker if any bugs occur.",
     "2.3.270": " - Fixed some blocks missing mining tags.\n - Fixed a long list of recipes."
+  },
+  "1.21.8": {
+    "2.4.289": "For those looking to play the \"bleeding edge\" versions of Gaia Dimension, the 1.21.4 versions will not have the new content. All new content that was added during the 1.21.8 port was backported to only 1.21.1, with the exception of the Malachite Guard armour glitch, this has been redone due to code changes. Don't expect me to do more backports in the future.\n + New Spawn Egg textures. These textures are not \"unique\" to each entity. Sorry, but also not sorry.\n + Added tooltip hints for Magic Staff components. Hold Shift while hovering over a Magic Staff to learn more about it.\n • Log and Wood Stripping is now handled with a DataMap."
   },
 
   "promos": {
@@ -66,7 +72,11 @@
     "1.20.1-recommended": "2.1.145",
     "1.21-latest": "2.2.230",
     "1.21-recommended": "2.2.230",
+    "1.21.1-latest": "2.2.288",
+    "1.21.1-recommended": "2.2.288",
     "1.21.4-latest": "2.3.270",
-    "1.21.4-recommended": "2.3.270"
+    "1.21.4-recommended": "2.3.270",
+    "1.21.8-latest": "2.3.289",
+    "1.21.8-recommended": "2.3.289"
   }
 }
