@@ -108,7 +108,7 @@ public class PurifierBlock extends Block implements EntityBlock {
 
     @Override
     @Deprecated
-    public int getAnalogOutputSignal(BlockState state, Level world, BlockPos pos) {
+    public int getAnalogOutputSignal(BlockState state, Level world, BlockPos pos, Direction dir) {
         return AbstractContainerMenu.getRedstoneSignalFromBlockEntity(world.getBlockEntity(pos));
     }
 

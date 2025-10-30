@@ -42,7 +42,7 @@ public class SombreCactiBlock extends Block {
 
     @Override
     @Deprecated
-    public void entityInside(BlockState state, Level level, BlockPos pos, Entity entity, InsideBlockEffectApplier applier) {
+    public void entityInside(BlockState state, Level level, BlockPos pos, Entity entity, InsideBlockEffectApplier applier, boolean intersect) {
         entity.hurt(level.damageSources().cactus(), 1.0F);
     }
 

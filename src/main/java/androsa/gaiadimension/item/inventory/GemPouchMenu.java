@@ -6,6 +6,7 @@ import net.minecraft.core.NonNullList;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.Container;
 import net.minecraft.world.MenuProvider;
+import net.minecraft.world.entity.ContainerUser;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
@@ -90,10 +91,10 @@ public class GemPouchMenu implements Container, MenuProvider {
     }
 
     @Override
-    public void startOpen(Player player) { }
+    public void startOpen(ContainerUser player) { }
 
     @Override
-    public void stopOpen(Player player) { }
+    public void stopOpen(ContainerUser player) { }
 
     @Override
     public boolean canPlaceItem(int index, ItemStack stack) {

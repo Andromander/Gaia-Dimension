@@ -6,9 +6,8 @@ import androsa.gaiadimension.model.MookaiteConstructModel;
 import androsa.gaiadimension.model.renderstate.MookaiteConstructRenderState;
 import androsa.gaiadimension.registry.helpers.ModEntitiesRendering;
 import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.blaze3d.vertex.VertexConsumer;
-import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.SubmitNodeCollector;
 import net.minecraft.client.renderer.entity.LivingEntityRenderer;
 import net.minecraft.client.renderer.entity.RenderLayerParent;
 import net.minecraft.client.renderer.entity.layers.RenderLayer;
@@ -23,14 +22,21 @@ public class MookaiteConstructPartLayer<M extends MookaiteConstructModel> extend
     }
 
     @Override
-    public void render(PoseStack stack, MultiBufferSource buffer, int light, MookaiteConstructRenderState state, float netHeadYaw, float headPitch) {
+    public void submit(PoseStack stack, SubmitNodeCollector buffer, int light, MookaiteConstructRenderState state, float netHeadYaw, float headPitch) {
         for (Map.Entry<MookaiteConstruct.MookaitePart, MookaitePartType> part : state.partMap.entrySet()) {
             if (part.getValue().isPresent()) {
                 String color = part.getValue().getSerializedName();
                 ResourceLocation location = ModEntitiesRendering.makeTextureNoPrefix("mookaite_construct", part.getKey().name() + "/" + color);
                 if (location != null && !state.isInvisible) {
-                    VertexConsumer vertex = buffer.getBuffer(RenderType.entityCutout(location));
-                    this.getParentModel().renderToBuffer(stack, vertex, light, LivingEntityRenderer.getOverlayCoords(state, 0.0F));
+                    buffer.submitModel(
+                            this.getParentModel(),
+                            state,
+                            stack,
+                            RenderType.entityCutout(location),
+                            light,
+                            LivingEntityRenderer.getOverlayCoords(state, 0.0F),
+                            state.outlineColor,
+                            null);
                 }
             }
         }

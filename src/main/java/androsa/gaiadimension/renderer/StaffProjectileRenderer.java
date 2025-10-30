@@ -5,10 +5,11 @@ import androsa.gaiadimension.entity.projectile.StaffProjectile;
 import androsa.gaiadimension.model.renderstate.MagicProjectileRenderState;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.SubmitNodeCollector;
 import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
+import net.minecraft.client.renderer.state.CameraRenderState;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
@@ -38,18 +39,18 @@ public class StaffProjectileRenderer extends EntityRenderer<StaffProjectile, Mag
         return 15;
     }
 
-    public void render(MagicProjectileRenderState state, PoseStack stack, MultiBufferSource buffer, int light) {
+    public void submit(MagicProjectileRenderState state, PoseStack stack, SubmitNodeCollector buffer, CameraRenderState camera) {
         stack.pushPose();
         stack.scale(0.65F, 0.65F, 0.65F);
-        stack.mulPose(this.entityRenderDispatcher.cameraOrientation());
-        PoseStack.Pose last = stack.last();
-        VertexConsumer vertexconsumer = buffer.getBuffer(RENDER_TYPE);
-        vertex(vertexconsumer, last, state, light, 0.0F, 0, 0, 1);
-        vertex(vertexconsumer, last, state, light, 1.0F, 0, 1, 1);
-        vertex(vertexconsumer, last, state, light, 1.0F, 1, 1, 0);
-        vertex(vertexconsumer, last, state, light, 0.0F, 1, 0, 0);
+        stack.mulPose(camera.orientation);
+        buffer.submitCustomGeometry(stack, RENDER_TYPE, (pose, consumer) -> {
+            vertex(consumer, pose, state, state.lightCoords, 0.0F, 0, 0, 1);
+            vertex(consumer, pose, state, state.lightCoords, 1.0F, 0, 1, 1);
+            vertex(consumer, pose, state, state.lightCoords, 1.0F, 1, 1, 0);
+            vertex(consumer, pose, state, state.lightCoords, 0.0F, 1, 0, 0);
+        });
         stack.popPose();
-        super.render(state, stack, buffer, light);
+        super.submit(state, stack, buffer, camera);
     }
 
     private static void vertex(VertexConsumer consumer, PoseStack.Pose pose, MagicProjectileRenderState state, int light, float x, int y, int u, int v) {

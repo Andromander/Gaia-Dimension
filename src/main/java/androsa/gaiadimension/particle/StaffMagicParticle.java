@@ -3,13 +3,14 @@ package androsa.gaiadimension.particle;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.particle.*;
 import net.minecraft.core.particles.ColorParticleOption;
+import net.minecraft.util.RandomSource;
 import org.jetbrains.annotations.Nullable;
 
-public class StaffMagicParticle extends TextureSheetParticle {
+public class StaffMagicParticle extends SingleQuadParticle {
     private final SpriteSet sprites;
 
     public StaffMagicParticle(ClientLevel level, double x, double y, double z, double velX, double velY, double velZ, ColorParticleOption option, SpriteSet sprites) {
-        super(level, x, y, z, velX, velY, velZ);
+        super(level, x, y, z, velX, velY, velZ, sprites.first());
 
         this.xd = velX;
         this.yd = velY;
@@ -25,8 +26,8 @@ public class StaffMagicParticle extends TextureSheetParticle {
     }
 
     @Override
-    public ParticleRenderType getRenderType() {
-        return ParticleRenderType.PARTICLE_SHEET_TRANSLUCENT;
+    protected Layer getLayer() {
+        return Layer.TRANSLUCENT;
     }
 
     @Override
@@ -53,7 +54,7 @@ public class StaffMagicParticle extends TextureSheetParticle {
 
         @Nullable
         @Override
-        public Particle createParticle(ColorParticleOption option, ClientLevel level, double x, double y, double z, double velX, double velY, double velZ) {
+        public Particle createParticle(ColorParticleOption option, ClientLevel level, double x, double y, double z, double velX, double velY, double velZ, RandomSource rand) {
             return new StaffMagicParticle(level, x, y, z, velX, velY, velZ, option, sprites);
         }
     }

@@ -5,7 +5,6 @@ import androsa.gaiadimension.block.*;
 import androsa.gaiadimension.item.ScaynyxBucketItem;
 import androsa.gaiadimension.registry.bootstrap.GaiaFeatures;
 import androsa.gaiadimension.registry.helpers.PropertiesHandler;
-import com.google.common.collect.Maps;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.dispenser.BlockSource;
 import net.minecraft.core.dispenser.DefaultDispenseItemBehavior;
@@ -15,7 +14,6 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.ColorRGBA;
 import net.minecraft.util.valueproviders.UniformInt;
-import net.minecraft.world.item.AxeItem;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -32,7 +30,6 @@ import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.Map;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
@@ -43,9 +40,9 @@ public class ModBlocks {
 	public static final DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(GaiaDimensionMod.MODID);
 
     //Utility Blocks
-    public static final DeferredBlock<GaiaPortalBlock> gaia_portal = registerNoItem("gaia_portal", GaiaPortalBlock::new, PropertiesHandler.stoneProps(MapColor.TERRACOTTA_PINK, -1.0F, -1.0F, false).noCollission().randomTicks().lightLevel((state) -> 15).noLootTable());
+    public static final DeferredBlock<GaiaPortalBlock> gaia_portal = registerNoItem("gaia_portal", GaiaPortalBlock::new, PropertiesHandler.stoneProps(MapColor.TERRACOTTA_PINK, -1.0F, -1.0F, false).noCollision().randomTicks().lightLevel((state) -> 15).noLootTable());
     public static final DeferredBlock<Block> keystone_block = register("keystone_block", PropertiesHandler.basicProps(MapColor.GOLD, SoundType.METAL, 5.0F, 10.0F).requiresCorrectToolForDrops());
-    public static final DeferredBlock<Block> gold_fire = registerNoItem("gold_fire", GoldFireBlock::new, Properties.of().mapColor(MapColor.GOLD).strength(0.0F).noCollission().randomTicks().lightLevel((state) -> 15).noLootTable());
+    public static final DeferredBlock<Block> gold_fire = registerNoItem("gold_fire", GoldFireBlock::new, Properties.of().mapColor(MapColor.GOLD).strength(0.0F).noCollision().randomTicks().lightLevel((state) -> 15).noLootTable());
     public static final DeferredBlock<Block> pyrite_torch = registerNoItem("pyrite_torch", PyriteTorchBlock::new, PropertiesHandler.torchProps());
     public static final DeferredBlock<Block> pyrite_wall_torch = registerVariant("pyrite_wall_torch", PyriteWallTorchBlock::new, pyrite_torch, PropertiesHandler.torchProps());
     public static final DeferredBlock<Block> agate_crafting_table = register("agate_crafting_table", AgateCraftingTableBlock::new, PropertiesHandler.stoneProps(MapColor.TERRACOTTA_PINK, 1.5F, 2.0F, false));

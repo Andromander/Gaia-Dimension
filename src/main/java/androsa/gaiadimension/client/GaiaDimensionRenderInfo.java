@@ -1,8 +1,8 @@
 package androsa.gaiadimension.client;
 
-import net.minecraft.client.Camera;
-import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.renderer.DimensionSpecialEffects;
+import net.minecraft.client.renderer.state.LevelRenderState;
+import net.minecraft.client.renderer.state.SkyRenderState;
 import net.minecraft.world.phys.Vec3;
 import org.joml.Matrix4f;
 
@@ -15,11 +15,11 @@ public class GaiaDimensionRenderInfo extends DimensionSpecialEffects {
     }
 
     @Override
-    public boolean renderSky(ClientLevel level, int ticks, float partialTick, Matrix4f modelMatrix, Camera camera, Runnable setupFog) {
+    public boolean renderSky(LevelRenderState levelState, SkyRenderState skyState, Matrix4f modelMatrix, Runnable setupFog) {
         if (renderer == null) {
             renderer = new GaiaSkyRender();
         }
-        return renderer.render(partialTick, level, camera, setupFog);
+        return renderer.render(levelState, skyState, modelMatrix, setupFog);
     }
 
     @Override

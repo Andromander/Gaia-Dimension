@@ -23,7 +23,7 @@ import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.component.TooltipDisplay;
 import net.minecraft.world.level.Level;
 
-import java.util.List;
+import java.util.Optional;
 import java.util.function.Consumer;
 import java.util.function.IntFunction;
 import java.util.function.Supplier;
@@ -41,6 +41,14 @@ public class ConstructKitItem extends Item {
         super(props);
         this.kit = kit;
         this.partColor = color;
+    }
+
+    public Optional<Kit> getKitID() {
+        return Optional.ofNullable(this.kit);
+    }
+
+    public Optional<Color> getColorID() {
+        return Optional.of(this.partColor);
     }
 
     @Override
@@ -128,7 +136,7 @@ public class ConstructKitItem extends Item {
                         return this.fail(player, Error.IN_COMBAT);
                     }
                     //Complete the action because we passed
-                    opalite.writeKitData(this.kit, part, this.partColor);
+                    opalite.writeKitData(new ItemStack(this));
                     stack.shrink(1);
                     return InteractionResult.SUCCESS_SERVER;
                 } else {

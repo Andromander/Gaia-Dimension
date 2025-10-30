@@ -3,11 +3,11 @@ package androsa.gaiadimension.entity;
 import androsa.gaiadimension.entity.data.MookaitePartType;
 import androsa.gaiadimension.item.ConstructKitItem;
 import androsa.gaiadimension.registry.registration.ModBlocks;
+import androsa.gaiadimension.registry.registration.ModDataComponents;
 import androsa.gaiadimension.registry.registration.ModItems;
 import androsa.gaiadimension.registry.registration.ModSounds;
 import com.google.common.collect.ImmutableMap;
 import net.minecraft.core.BlockPos;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
@@ -49,7 +49,7 @@ public class OpaliteContruct extends PathfinderMob {
 
     private static final EntityDataAccessor<Optional<EntityReference<LivingEntity>>> BOND_CREATOR_UUID = SynchedEntityData.defineId(OpaliteContruct.class, EntityDataSerializers.OPTIONAL_LIVING_ENTITY_REFERENCE);
     private static final EntityDataAccessor<Optional<EntityReference<LivingEntity>>> MOOKAITE_COMPANION_UUID = SynchedEntityData.defineId(OpaliteContruct.class, EntityDataSerializers.OPTIONAL_LIVING_ENTITY_REFERENCE);
-    private static final EntityDataAccessor<CompoundTag> CONSTRUCT_KIT_DATA = SynchedEntityData.defineId(OpaliteContruct.class, EntityDataSerializers.COMPOUND_TAG);
+    private static final EntityDataAccessor<ItemStack> CONSTRUCT_KIT_DATA = SynchedEntityData.defineId(OpaliteContruct.class, EntityDataSerializers.ITEM_STACK);
     private static final EntityDataAccessor<Boolean> IS_CONSTRUCTING = SynchedEntityData.defineId(OpaliteContruct.class, EntityDataSerializers.BOOLEAN);
     private static final EntityDataAccessor<Integer> OPALITE_STACK = SynchedEntityData.defineId(OpaliteContruct.class, EntityDataSerializers.INT);
     private static final EntityDataAccessor<Integer> SCARLET_STACK = SynchedEntityData.defineId(OpaliteContruct.class, EntityDataSerializers.INT);
@@ -89,7 +89,7 @@ public class OpaliteContruct extends PathfinderMob {
         super.defineSynchedData(builder);
         builder.define(BOND_CREATOR_UUID, Optional.empty());
         builder.define(MOOKAITE_COMPANION_UUID, Optional.empty());
-        builder.define(CONSTRUCT_KIT_DATA, new CompoundTag());
+        builder.define(CONSTRUCT_KIT_DATA, ItemStack.EMPTY);
         builder.define(IS_CONSTRUCTING, false);
         builder.define(OPALITE_STACK, 0);
         builder.define(SCARLET_STACK, 0);
@@ -113,7 +113,7 @@ public class OpaliteContruct extends PathfinderMob {
         this.setMookaiteAmount(IVORY_STACK, tag.getIntOr("IvoryStack", 0));
         this.setBonder(EntityReference.readWithOldOwnerConversion(tag, "BonderUUID", this.level()));
         this.setMookaiteCompanion(EntityReference.readWithOldOwnerConversion(tag, "MookaiteUUID", this.level()));
-        this.setKitData(tag.read("ConstructKit", CompoundTag.CODEC).orElseGet(CompoundTag::new));
+        this.setKitData(tag.read("ConstructKit", ItemStack.CODEC).orElse(ItemStack.EMPTY));
     }
 
     @Override
@@ -134,7 +134,7 @@ public class OpaliteContruct extends PathfinderMob {
             tag.putString("BonderUUID", this.getBonder().toString());
         }
         if (!this.getKitData().isEmpty()) {
-            tag.store("ConstructKit", CompoundTag.CODEC, this.getKitData());
+            tag.store("ConstructKit", ItemStack.CODEC, this.getKitData());
         }
     }
 
@@ -154,11 +154,11 @@ public class OpaliteContruct extends PathfinderMob {
         return this.entityData.get(MOOKAITE_COMPANION_UUID).orElse(null);
     }
 
-    public CompoundTag getKitData() {
+    public ItemStack getKitData() {
         return entityData.get(CONSTRUCT_KIT_DATA);
     }
 
-    public void setKitData(CompoundTag tag) {
+    public void setKitData(ItemStack tag) {
         entityData.set(CONSTRUCT_KIT_DATA, tag);
     }
 
@@ -208,17 +208,12 @@ public class OpaliteContruct extends PathfinderMob {
         return false;
     }
 
-    public void writeKitData(ConstructKitItem.Kit kit, ConstructKitItem.Part part, ConstructKitItem.Color color) {
-        CompoundTag tag = new CompoundTag();
-        tag.putInt("KitID", kit.ordinal());
-        tag.putInt("PartID", part.ordinal());
-        if (color != null) tag.putInt("ColorID", color.ordinal());
-        this.setKitData(tag);
+    public void writeKitData(ItemStack stack) {
+        this.setKitData(stack);
     }
 
     public void clearKitData() {
-        CompoundTag tag = new CompoundTag();
-        this.setKitData(tag);
+        this.setKitData(ItemStack.EMPTY);
     }
 
     public void setOpaliteAmount(int amount) {
@@ -509,27 +504,30 @@ public class OpaliteContruct extends PathfinderMob {
                             this.opalite.playSound(SoundEvents.ANVIL_USE);
                         }
                         if (this.repairTime == 0) {
-                            ConstructKitItem.Kit kit = ConstructKitItem.Kit.values()[this.opalite.getKitData().getIntOr("KitID", 0)];
-                            MookaiteConstruct.MookaitePart part = ConstructKitItem.Part.values()[this.opalite.getKitData().getIntOr("PartID", 0)].getPart();
-                            ConstructKitItem.Color kitcolor = ConstructKitItem.Color.values()[this.opalite.getKitData().getIntOr("ColorID", 0)];
-                            MookaitePartType color = kitcolor.getPartColor();
+                            if (this.opalite.getKitData().getItem() instanceof ConstructKitItem kit) {
+                                ConstructKitItem.Kit kittype = kit.getKitID().orElse(ConstructKitItem.Kit.BLANK);
+                                MookaiteConstruct.MookaitePart part = this.opalite.getKitData().getOrDefault(ModDataComponents.KIT_PART, ConstructKitItem.Part.LEFT_HORN).getPart();
+                                ConstructKitItem.Color kitcolor = kit.getColorID().orElse(ConstructKitItem.Color.SCARLET);
+                                MookaitePartType color = kitcolor.getPartColor();
 
-                            if (kit == ConstructKitItem.Kit.REPAIR) {
-                                color = MookaitePartType.OPALITE;
-                            }
-
-                            //Subtract materials
-                            switch (kit) {
-                                case REPAIR -> opalite.setOpaliteAmount(opalite.getOpaliteAmount() - 10);
-                                case AUGMENT -> {
-                                    opalite.setOpaliteAmount(opalite.getOpaliteAmount() - 5);
-                                    opalite.setMookaiteAmount(COLOR_TO_DATA.get(kitcolor), opalite.getMookaiteAmount(COLOR_TO_DATA.get(kitcolor)) - 10); //TODO: No?
+                                if (kittype == ConstructKitItem.Kit.REPAIR) {
+                                    color = MookaitePartType.OPALITE;
                                 }
-                                case REPLACE -> opalite.setMookaiteAmount(COLOR_TO_DATA.get(kitcolor), opalite.getMookaiteAmount(COLOR_TO_DATA.get(kitcolor)) - 5); //TODO: No?
+
+                                //Subtract materials
+                                switch (kittype) {
+                                    case REPAIR -> opalite.setOpaliteAmount(opalite.getOpaliteAmount() - 10);
+                                    case AUGMENT -> {
+                                        opalite.setOpaliteAmount(opalite.getOpaliteAmount() - 5);
+                                        opalite.setMookaiteAmount(COLOR_TO_DATA.get(kitcolor), opalite.getMookaiteAmount(COLOR_TO_DATA.get(kitcolor)) - 10); //TODO: No?
+                                    }
+                                    case REPLACE -> opalite.setMookaiteAmount(COLOR_TO_DATA.get(kitcolor), opalite.getMookaiteAmount(COLOR_TO_DATA.get(kitcolor)) - 5); //TODO: No?
+                                }
+
+                                //Set part
+                                mookaite.setPart(part, color);
+                                this.isDone = true;
                             }
-                            //Set part
-                            mookaite.setPart(part, color);
-                            this.isDone = true;
                         }
                         repairTime--;
                     }

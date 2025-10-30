@@ -12,13 +12,13 @@ import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.resources.ResourceLocation;
 
-public class MalachiteGuardRenderer<T extends MalachiteGuard, M extends MalachiteGuardModel> extends MobRenderer<T, MalachiteGuardRenderState, M> {
+public class MalachiteGuardRenderer<T extends MalachiteGuard> extends MobRenderer<T, MalachiteGuardRenderState, MalachiteGuardModel> {
 
-    public MalachiteGuardRenderer(EntityRendererProvider.Context manager, M model, float shadowSize) {
+    public MalachiteGuardRenderer(EntityRendererProvider.Context manager, MalachiteGuardModel model, float shadowSize) {
         super(manager, model, shadowSize);
         addLayer(new MalachiteGuardGlowLayer<>(this));
-        addLayer(new MalachiteDefenceLayer<>(this, manager.getModelSet()));
-        addLayer(new MalachiteResistLayer<>(this, manager.getModelSet()));
+        addLayer(new MalachiteDefenceLayer(this, manager.getModelSet()));
+        addLayer(new MalachiteResistLayer(this, manager.getModelSet()));
     }
 
     @Override

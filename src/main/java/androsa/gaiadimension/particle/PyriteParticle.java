@@ -2,12 +2,14 @@ package androsa.gaiadimension.particle;
 
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.particle.*;
+import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.core.particles.SimpleParticleType;
+import net.minecraft.util.RandomSource;
 
-public class PyriteParticle extends TextureSheetParticle {
+public class PyriteParticle extends SingleQuadParticle {
 
-    public PyriteParticle(ClientLevel worldIn, double xCoordIn, double yCoordIn, double zCoordIn, double xSpeedIn, double ySpeedIn, double speedIn) {
-        super(worldIn, xCoordIn, yCoordIn, zCoordIn, xSpeedIn, ySpeedIn, speedIn);
+    public PyriteParticle(ClientLevel worldIn, double xCoordIn, double yCoordIn, double zCoordIn, double xSpeedIn, double ySpeedIn, double speedIn, TextureAtlasSprite sprite) {
+        super(worldIn, xCoordIn, yCoordIn, zCoordIn, xSpeedIn, ySpeedIn, speedIn, sprite);
         this.rCol = 1.0F;
         this.gCol = 0.8F;
         this.bCol = 0.0F;
@@ -20,8 +22,8 @@ public class PyriteParticle extends TextureSheetParticle {
     }
 
     @Override
-    public ParticleRenderType getRenderType() {
-        return ParticleRenderType.PARTICLE_SHEET_OPAQUE;
+    protected Layer getLayer() {
+        return Layer.OPAQUE;
     }
 
     @Override
@@ -52,9 +54,8 @@ public class PyriteParticle extends TextureSheetParticle {
             this.spriteSet = sprite;
         }
 
-        public Particle createParticle(SimpleParticleType typeIn, ClientLevel worldIn, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
-            PyriteParticle pyriteparticle = new PyriteParticle(worldIn, x, y, z, xSpeed, ySpeed, zSpeed);
-            pyriteparticle.pickSprite(this.spriteSet);
+        public Particle createParticle(SimpleParticleType typeIn, ClientLevel worldIn, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed, RandomSource rand) {
+            PyriteParticle pyriteparticle = new PyriteParticle(worldIn, x, y, z, xSpeed, ySpeed, zSpeed, spriteSet.get(rand));
             pyriteparticle.setColor(1.0F, 0.8F, 0.0F);
             return pyriteparticle;
         }

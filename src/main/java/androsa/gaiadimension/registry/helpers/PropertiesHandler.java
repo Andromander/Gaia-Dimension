@@ -40,7 +40,7 @@ public class PropertiesHandler {
     }
 
     public static BlockBehaviour.Properties saplingProps(MapColor color) {
-        return basicProps(color, SoundType.GLASS, 0.0F).noCollission().randomTicks();
+        return basicProps(color, SoundType.GLASS, 0.0F).noCollision().randomTicks();
     }
 
     public static BlockBehaviour.Properties leavesProps(MapColor color) {
@@ -88,7 +88,7 @@ public class PropertiesHandler {
                 .mapColor(color)
                 .strength(0.0F)
                 .sound(isGlass ? SoundType.GLASS : SoundType.GRASS)
-                .noCollission();
+                .noCollision();
     }
 
     public static BlockBehaviour.Properties muckyProps(MapColor color, float speed, float jump) {
@@ -138,14 +138,14 @@ public class PropertiesHandler {
         return BlockBehaviour.Properties.of()
                 .strength(0.0F)
                 .lightLevel((state) -> 14)
-                .noCollission();
+                .noCollision();
     }
 
     public static BlockBehaviour.Properties liquidProps(MapColor color) {
         return BlockBehaviour.Properties.of()
                 .mapColor(color)
                 .replaceable()
-                .noCollission()
+                .noCollision()
                 .pushReaction(PushReaction.DESTROY)
                 .noLootTable()
                 .sound(SoundType.EMPTY)

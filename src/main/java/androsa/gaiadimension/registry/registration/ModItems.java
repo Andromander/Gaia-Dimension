@@ -355,7 +355,7 @@ public class ModItems {
     }
 
     public static DeferredItem<Item> registerEgg(String name, Supplier<? extends EntityType<? extends Mob>> entity) {
-        return register(name + "_spawn_egg", props -> new SpawnEggItem(entity.get(), props), props());
+        return register(name + "_spawn_egg", props -> new SpawnEggItem(props.spawnEgg(entity.get())), props());
     }
 
     private static <I extends Item> DeferredItem<I> register(String name, Function<Item.Properties, ? extends I> func, Item.Properties props) {

@@ -92,7 +92,7 @@ public class MossAgateMonitor extends PathfinderMob implements NeutralMob {
     public void aiStep() {
         super.aiStep();
 
-        if (!this.level().isClientSide) {
+        if (!this.level().isClientSide()) {
             this.updatePersistentAnger((ServerLevel)this.level(), true);
         }
     }

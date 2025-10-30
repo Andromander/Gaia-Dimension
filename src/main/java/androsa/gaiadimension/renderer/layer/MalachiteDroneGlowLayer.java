@@ -4,34 +4,43 @@ import androsa.gaiadimension.model.MalachiteDroneModel;
 import androsa.gaiadimension.model.renderstate.MalachiteDroneRenderState;
 import androsa.gaiadimension.registry.helpers.ModEntitiesRendering;
 import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.blaze3d.vertex.VertexConsumer;
-import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.SubmitNodeCollector;
 import net.minecraft.client.renderer.entity.RenderLayerParent;
 import net.minecraft.client.renderer.entity.layers.RenderLayer;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 
 public class MalachiteDroneGlowLayer<S extends MalachiteDroneRenderState, M extends MalachiteDroneModel> extends RenderLayer<S, M> {
-    private static RenderType NORMAL;
-    private static RenderType FOLLOW;
+
+    private final RenderType normal = RenderType.eyes(ModEntitiesRendering.makeTexture("malachite_drone", "normal_glow"));
+    private final RenderType follower = RenderType.eyes(ModEntitiesRendering.makeTexture("malachite_drone", "follow_glow"));
 
     public MalachiteDroneGlowLayer(RenderLayerParent<S, M> renderer) {
         super(renderer);
     }
 
     @Override
-    public void render(PoseStack matrixStack, MultiBufferSource buffer, int i, S entity, float yrot, float xrot) {
-        this.validate();
-        VertexConsumer builder = entity.isFollowing ? buffer.getBuffer(FOLLOW) : buffer.getBuffer(NORMAL);
-        this.getParentModel().renderToBuffer(matrixStack, builder, 15728640, OverlayTexture.NO_OVERLAY);
+    public void submit(PoseStack matrixStack, SubmitNodeCollector buffer, int i, S entity, float yrot, float xrot) {
+        buffer.order(1)
+                .submitModel(
+                        this.getParentModel(),
+                        entity,
+                        matrixStack,
+                        renderType(entity),
+                        i,
+                        OverlayTexture.NO_OVERLAY,
+                        15728640,
+                        null,
+                        entity.outlineColor,
+                        null
+                );
     }
 
-    private void validate() {
-        if (NORMAL == null) {
-            NORMAL = RenderType.eyes(ModEntitiesRendering.makeTexture("malachite_drone", "normal_glow"));
-        }
-        if (FOLLOW == null) {
-            FOLLOW = RenderType.eyes(ModEntitiesRendering.makeTexture("malachite_drone", "follow_glow"));
+    private RenderType renderType(S entity) {
+        if (entity.isFollowing) {
+            return follower;
+        } else {
+            return normal;
         }
     }
 }

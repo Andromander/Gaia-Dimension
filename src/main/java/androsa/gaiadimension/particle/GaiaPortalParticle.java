@@ -2,15 +2,17 @@ package androsa.gaiadimension.particle;
 
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.particle.*;
+import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.core.particles.SimpleParticleType;
+import net.minecraft.util.RandomSource;
 
-public class GaiaPortalParticle extends TextureSheetParticle {
+public class GaiaPortalParticle extends SingleQuadParticle {
     private final double portalPosX;
     private final double portalPosY;
     private final double portalPosZ;
 
-    public GaiaPortalParticle(ClientLevel worldIn, double xCoordIn, double yCoordIn, double zCoordIn, double xSpeedIn, double ySpeedIn, double zSpeedIn) {
-        super(worldIn, xCoordIn, yCoordIn, zCoordIn, xSpeedIn, ySpeedIn, zSpeedIn);
+    public GaiaPortalParticle(ClientLevel worldIn, double xCoordIn, double yCoordIn, double zCoordIn, double xSpeedIn, double ySpeedIn, double zSpeedIn, TextureAtlasSprite sprite) {
+        super(worldIn, xCoordIn, yCoordIn, zCoordIn, sprite);
         this.xd = xSpeedIn;
         this.yd = ySpeedIn;
         this.zd = zSpeedIn;
@@ -28,8 +30,8 @@ public class GaiaPortalParticle extends TextureSheetParticle {
     }
 
     @Override
-    public ParticleRenderType getRenderType() {
-        return ParticleRenderType.PARTICLE_SHEET_OPAQUE;
+    protected Layer getLayer() {
+        return Layer.OPAQUE;
     }
 
     @Override
@@ -89,10 +91,8 @@ public class GaiaPortalParticle extends TextureSheetParticle {
         }
 
         @Override
-        public Particle createParticle(SimpleParticleType typeIn, ClientLevel worldIn, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
-            GaiaPortalParticle portalparticle = new GaiaPortalParticle(worldIn, x, y, z, xSpeed, ySpeed, zSpeed);
-            portalparticle.pickSprite(this.spriteSet);
-            return portalparticle;
+        public Particle createParticle(SimpleParticleType typeIn, ClientLevel worldIn, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed, RandomSource rand) {
+            return new GaiaPortalParticle(worldIn, x, y, z, xSpeed, ySpeed, zSpeed, spriteSet.get(rand));
         }
     }
 }

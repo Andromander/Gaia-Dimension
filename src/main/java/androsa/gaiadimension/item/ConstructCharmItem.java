@@ -100,10 +100,10 @@ public class ConstructCharmItem extends Item {
                     //Failsafe check to make sure they are these specific mobs
                     if (mookaite instanceof MookaiteConstruct mEntity && opalite instanceof OpaliteContruct oEntity) {
                         if (!player.level().isClientSide()) {
-                            mEntity.setBonder(new EntityReference<>(player.getUUID()));
-                            mEntity.setOpaliteCompanion(new EntityReference<>(oEntity.getUUID()));
-                            oEntity.setBonder(new EntityReference<>(player.getUUID()));
-                            oEntity.setMookaiteCompanion(new EntityReference<>(mEntity.getUUID()));
+                            mEntity.setBonder(EntityReference.of(player.getUUID()));
+                            mEntity.setOpaliteCompanion(EntityReference.of(oEntity.getUUID()));
+                            oEntity.setBonder(EntityReference.of(player.getUUID()));
+                            oEntity.setMookaiteCompanion(EntityReference.of(mEntity.getUUID()));
                             stack.shrink(1);
                         }
 

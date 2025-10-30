@@ -108,7 +108,7 @@ public class MookaiteAreaEffect extends Entity implements TraceableEntity {
     public void tick() {
         super.tick();
         float radius = this.getRadius();
-        if (this.level().isClientSide) {
+        if (this.level().isClientSide()) {
             int area = Mth.ceil((float)Math.PI * radius * radius);
 
             for(int j = 0; j < area; ++j) {

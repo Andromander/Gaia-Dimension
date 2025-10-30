@@ -100,7 +100,7 @@ public class MalachiteDrone extends Monster {
 
     public void setOwner(@Nullable LivingEntity entity) {
         this.owner = entity;
-        this.entityData.set(OWNER_REFERENCE, Optional.ofNullable(entity).map(EntityReference::new));
+        this.entityData.set(OWNER_REFERENCE, Optional.ofNullable(entity).map(EntityReference::of));
     }
 
     @Nullable

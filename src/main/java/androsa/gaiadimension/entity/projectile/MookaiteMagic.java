@@ -36,7 +36,7 @@ public class MookaiteMagic extends ThrowableItemProjectile {
     @Override
     protected void onHit(HitResult result) {
         super.onHit(result);
-        if (!this.level().isClientSide) {
+        if (!this.level().isClientSide()) {
             this.applyArea();
             this.discard();
         }

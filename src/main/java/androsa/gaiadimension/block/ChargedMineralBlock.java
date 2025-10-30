@@ -17,7 +17,7 @@ public class ChargedMineralBlock extends TransparentBlock {
 
     @Override
     @Deprecated
-    public void entityInside(BlockState state, Level worldIn, BlockPos pos, Entity entityIn, InsideBlockEffectApplier applier) {
+    public void entityInside(BlockState state, Level worldIn, BlockPos pos, Entity entityIn, InsideBlockEffectApplier applier, boolean intersect) {
         entityIn.hurt(GaiaDamage.getDamage(worldIn, GaiaDamage.STATIC), 4.0F);
     }
 }

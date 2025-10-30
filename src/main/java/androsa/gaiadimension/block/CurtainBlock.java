@@ -160,7 +160,7 @@ public class CurtainBlock extends Block {
 
     @Override
     public BlockState playerWillDestroy(Level level, BlockPos pos, BlockState state, Player player) {
-        if (!level.isClientSide && (player.isCreative() || !player.hasCorrectToolForDrops(state, level, pos))) {
+        if (!level.isClientSide() && (player.isCreative() || !player.hasCorrectToolForDrops(state, level, pos))) {
             DoubleBlockHalf half = state.getValue(HALF);
             if (half == DoubleBlockHalf.LOWER) {
                 BlockPos blockpos = pos.above();

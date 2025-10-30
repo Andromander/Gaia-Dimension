@@ -482,9 +482,9 @@ public class MalachiteGuard extends Monster {
 
     @Override
     public void checkDespawn() {
-        if (this.level().getDifficulty() == Difficulty.PEACEFUL && this.shouldDespawnInPeaceful()) {
+        if (this.level().getDifficulty() == Difficulty.PEACEFUL && !this.getType().isAllowedInPeaceful()) {
             if (!this.level().isClientSide()) {
-                this.spawnAtLocation((ServerLevel)this.level(), ModItems.mock_malachite.get(), 1);
+                this.spawnAtLocation((ServerLevel)this.level(), new ItemStack(ModItems.mock_malachite.get()));
             }
             this.discard();
         }

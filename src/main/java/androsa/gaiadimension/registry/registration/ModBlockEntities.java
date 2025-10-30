@@ -9,9 +9,9 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
-import net.neoforged.neoforge.items.wrapper.SidedInvWrapper;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
+import net.neoforged.neoforge.transfer.item.WorldlyContainerWrapper;
 
 @EventBusSubscriber
 public class ModBlockEntities {
@@ -36,8 +36,8 @@ public class ModBlockEntities {
 
     @SubscribeEvent
     public static void registerHandlers(RegisterCapabilitiesEvent e) {
-        e.registerBlockEntity(Capabilities.ItemHandler.BLOCK, GAIA_STONE_FURNACE.get(), SidedInvWrapper::new);
-        e.registerBlockEntity(Capabilities.ItemHandler.BLOCK, RESTRUCTURER.get(), SidedInvWrapper::new);
-        e.registerBlockEntity(Capabilities.ItemHandler.BLOCK, PURIFIER.get(), SidedInvWrapper::new);
+        e.registerBlockEntity(Capabilities.Item.BLOCK, GAIA_STONE_FURNACE.get(), WorldlyContainerWrapper::new);
+        e.registerBlockEntity(Capabilities.Item.BLOCK, RESTRUCTURER.get(), WorldlyContainerWrapper::new);
+        e.registerBlockEntity(Capabilities.Item.BLOCK, PURIFIER.get(), WorldlyContainerWrapper::new);
     }
 }

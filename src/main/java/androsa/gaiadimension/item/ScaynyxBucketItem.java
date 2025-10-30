@@ -58,7 +58,7 @@ public class ScaynyxBucketItem extends BucketItem {
                             fluid.getPickupSound(fluidblock).ifPresent((event) -> player.playSound(event, 1.0F, 1.0F));
                             world.gameEvent(player, GameEvent.FLUID_PICKUP, blockpos);
                             ItemStack itemstack1 = ItemUtils.createFilledResult(itemstack, player, fluidstack);
-                            if (!world.isClientSide) {
+                            if (!world.isClientSide()) {
                                 CriteriaTriggers.FILLED_BUCKET.trigger((ServerPlayer)player, fluidstack);
                             }
 

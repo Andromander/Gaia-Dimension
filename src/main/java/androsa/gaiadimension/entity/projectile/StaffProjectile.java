@@ -115,8 +115,6 @@ public class StaffProjectile extends AbstractHurtingProjectile {
             this.discard();
         }
         this.setTime(this.getTime() - 1);
-
-        System.out.println("Time left: " + this.getTime());
     }
 
     @Override

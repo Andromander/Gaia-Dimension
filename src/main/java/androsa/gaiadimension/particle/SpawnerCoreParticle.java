@@ -3,15 +3,16 @@ package androsa.gaiadimension.particle;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.particle.*;
 import net.minecraft.core.particles.SimpleParticleType;
+import net.minecraft.util.RandomSource;
 
 import java.util.Random;
 
-public class SpawnerCoreParticle extends TextureSheetParticle {
+public class SpawnerCoreParticle extends SingleQuadParticle {
 
     private static final Random RANDOM = new Random();
 
     public SpawnerCoreParticle(ClientLevel world, double posX, double posY, double posZ, double motionX, double motionY, double motionZ, SpriteSet sprite) {
-        super(world, posX, posY, posZ, 0.5D - RANDOM.nextDouble(), motionY, 0.5D - RANDOM.nextDouble());
+        super(world, posX, posY, posZ, 0.5D - RANDOM.nextDouble(), motionY, 0.5D - RANDOM.nextDouble(), sprite.first());
         if (motionX == 0.0D && motionZ == 0.0D) {
             this.xd *= 0.2F;
             this.zd *= 0.2F;
@@ -25,8 +26,8 @@ public class SpawnerCoreParticle extends TextureSheetParticle {
     }
 
     @Override
-    public ParticleRenderType getRenderType() {
-        return ParticleRenderType.PARTICLE_SHEET_TRANSLUCENT;
+    protected Layer getLayer() {
+        return Layer.TRANSLUCENT;
     }
 
     public int getLightColor(float partialTicks) {
@@ -62,8 +63,8 @@ public class SpawnerCoreParticle extends TextureSheetParticle {
             this.spriteSet = sprite;
         }
 
-        public Particle createParticle(SimpleParticleType type, ClientLevel world, double posX, double posY, double posZ, double r, double g, double b) {
-            Particle particle = new SpawnerCoreParticle(world, posX, posY, posZ, r, g, b, this.spriteSet);
+        public Particle createParticle(SimpleParticleType type, ClientLevel world, double posX, double posY, double posZ, double r, double g, double b, RandomSource rand) {
+            SpawnerCoreParticle particle = new SpawnerCoreParticle(world, posX, posY, posZ, r, g, b, this.spriteSet);
             particle.setColor((float)r, (float)g, (float)b);
             return particle;
         }

@@ -120,7 +120,7 @@ public class GaiaPortalBlock extends Block implements Portal {
 
     @Override
     @Deprecated
-    public void entityInside(BlockState state, Level world, BlockPos pos, Entity entity, InsideBlockEffectApplier applier) {
+    public void entityInside(BlockState state, Level world, BlockPos pos, Entity entity, InsideBlockEffectApplier applier, boolean interserct) {
         if (entity.canUsePortal(false)) {
             entity.setAsInsidePortal(this, pos);
         }
