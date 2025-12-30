@@ -3,13 +3,15 @@ package androsa.gaiadimension.registry.registration;
 import androsa.gaiadimension.GaiaDimensionMod;
 import androsa.gaiadimension.recipe.*;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.item.crafting.display.RecipeDisplay;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
+import org.jspecify.annotations.NullMarked;
 
+@NullMarked
 public class ModRecipes {
 
     public static final DeferredRegister<RecipeSerializer<?>> RECIPE_SERIALIZERS = DeferredRegister.create(Registries.RECIPE_SERIALIZER, GaiaDimensionMod.MODID);
@@ -43,8 +45,8 @@ public class ModRecipes {
     public static final DeferredHolder<RecipeBookCategory, RecipeBookCategory> PURIFYING_CATEGORY = RECIPE_BOOK_CATEGORIES.register("purifying", RecipeBookCategory::new);
 
     //RecipePropertySet
-    public static final ResourceKey<RecipePropertySet> RESTRUCTURER_INPUT = ResourceKey.create(RecipePropertySet.TYPE_KEY, ResourceLocation.fromNamespaceAndPath(GaiaDimensionMod.MODID, "restructurer_input"));
-    public static final ResourceKey<RecipePropertySet> PURIFIER_INPUT = ResourceKey.create(RecipePropertySet.TYPE_KEY, ResourceLocation.fromNamespaceAndPath(GaiaDimensionMod.MODID, "purifier_input"));
+    public static final ResourceKey<RecipePropertySet> RESTRUCTURER_INPUT = ResourceKey.create(RecipePropertySet.TYPE_KEY, Identifier.fromNamespaceAndPath(GaiaDimensionMod.MODID, "restructurer_input"));
+    public static final ResourceKey<RecipePropertySet> PURIFIER_INPUT = ResourceKey.create(RecipePropertySet.TYPE_KEY, Identifier.fromNamespaceAndPath(GaiaDimensionMod.MODID, "purifier_input"));
 
     //RecipeDisplay
     public static final DeferredHolder<RecipeDisplay.Type<?>, RecipeDisplay.Type<RestructurerRecipeDisplay>> RESTRUCTURER_DISPLAY = RECIPE_DISPLAYS.register("restructurer", () -> RestructurerRecipeDisplay.TYPE);

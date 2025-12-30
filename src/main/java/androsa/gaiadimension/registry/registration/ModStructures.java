@@ -11,8 +11,8 @@ import androsa.gaiadimension.world.gen.structure.processor.MalachiteDegradeProce
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;
+import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.levelgen.GenerationStep;
 import net.minecraft.world.level.levelgen.structure.Structure;
@@ -25,10 +25,12 @@ import net.minecraft.world.level.levelgen.structure.placement.RandomSpreadType;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructureProcessorType;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
+import org.jspecify.annotations.NullMarked;
 
 import java.util.Map;
 import java.util.function.Supplier;
 
+@NullMarked
 public final class ModStructures {
 
     public static final DeferredRegister<StructureType<?>> STRUCTURE_TYPES = DeferredRegister.create(Registries.STRUCTURE_TYPE, GaiaDimensionMod.MODID);
@@ -51,11 +53,11 @@ public final class ModStructures {
     public static final DeferredHolder<StructurePieceType, StructurePieceType> MAWA = STRUCTURE_PIECES.register("mawa", piece(MalachiteWatchtowerPieces.Piece::new));
 
     private static ResourceKey<Structure> makeStructure(String name) {
-        return ResourceKey.create(Registries.STRUCTURE, ResourceLocation.fromNamespaceAndPath(GaiaDimensionMod.MODID, name));
+        return ResourceKey.create(Registries.STRUCTURE, Identifier.fromNamespaceAndPath(GaiaDimensionMod.MODID, name));
     }
 
     private static ResourceKey<StructureSet> makeSet(String name) {
-        return ResourceKey.create(Registries.STRUCTURE_SET, ResourceLocation.fromNamespaceAndPath(GaiaDimensionMod.MODID, name));
+        return ResourceKey.create(Registries.STRUCTURE_SET, Identifier.fromNamespaceAndPath(GaiaDimensionMod.MODID, name));
     }
 
     public static Supplier<StructurePieceType> piece(StructurePieceType.StructureTemplateType piece) {

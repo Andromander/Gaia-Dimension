@@ -13,7 +13,7 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.recipes.*;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -24,9 +24,11 @@ import net.minecraft.world.level.block.SlabBlock;
 import net.minecraft.world.level.block.StairBlock;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredItem;
+import org.jspecify.annotations.NullMarked;
 
 import java.util.function.Supplier;
 
+@NullMarked
 public abstract class GaiaRecipeProvider extends RecipeProvider {
 
     protected final HolderGetter<Item> hack;
@@ -37,7 +39,7 @@ public abstract class GaiaRecipeProvider extends RecipeProvider {
     }
 
     protected String loc(String name) {
-        return ResourceLocation.fromNamespaceAndPath(GaiaDimensionMod.MODID, name).toString();
+        return Identifier.fromNamespaceAndPath(GaiaDimensionMod.MODID, name).toString();
     }
 
     public ShapedRecipeBuilder smallCompressRecipe(ItemLike result, ItemLike ingredient) {

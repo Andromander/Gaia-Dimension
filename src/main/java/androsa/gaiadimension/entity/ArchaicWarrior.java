@@ -47,15 +47,6 @@ public class ArchaicWarrior extends Monster {
     }
 
     @Override
-    public void aiStep() {
-        if (this.isSunBurnTick()) {
-            this.igniteForSeconds(8);
-        }
-
-        super.aiStep();
-    }
-
-    @Override
     protected SoundEvent getAmbientSound() {
         return ModSounds.ENTITY_ARCHAIC_WARRIOR_AMBIENT.get();
     }

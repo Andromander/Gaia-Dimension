@@ -10,6 +10,7 @@ import net.minecraft.core.HolderGetter;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.world.attribute.EnvironmentAttributes;
 import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.levelgen.carver.ConfiguredWorldCarver;
@@ -80,257 +81,283 @@ public class GaiaBiomeMaker extends GaiaBiomeProvider {
     public static Biome makePinkAgateForest(HolderGetter<PlacedFeature> features, HolderGetter<ConfiguredWorldCarver<?>> carvers) {
         return buildBiome(
                 createBuilder(
-                        createAmbience(15901620, 13016408, 15381216),
+                        createAmbience(15901620),
                         pinkAgateForest(features, carvers),
                         buildSpawns(
                                 createSpawns()
                                         .addSpawn(MobCategory.CREATURE, 15, mobData(ModEntities.NOMADIC_LAGRAHK, 1, 1))
                                         .addSpawn(MobCategory.CREATURE, 20, mobData(ModEntities.GROWTH_SAPPER, 3, 5))
-                                        .addSpawn(MobCategory.CREATURE, 15, mobData(ModEntities.AGATE_GOLEM, 1, 3)))
-                ).temperature(0.66F));
+                                        .addSpawn(MobCategory.CREATURE, 15, mobData(ModEntities.AGATE_GOLEM, 1, 3))))
+                        .temperature(0.66F));
     }
 
     public static Biome makeBlueAgateTaiga(HolderGetter<PlacedFeature> features, HolderGetter<ConfiguredWorldCarver<?>> carvers) {
         return buildBiome(
                 createBuilder(
-                        createAmbience(6851272, 9815527, 15381216),
+                        createAmbience(6851272),
                         blueAgateTaiga(features, carvers),
                         buildSpawns(
                                 createSpawns()
                                         .addSpawn(MobCategory.CREATURE, 15, mobData(ModEntities.HOWLITE_WOLF, 2, 4))
                                         .addSpawn(MobCategory.MONSTER, 1, mobData(ModEntities.BLUE_HOWLITE_WOLF, 1, 1))
                                         .addSpawn(MobCategory.CREATURE, 15, mobData(ModEntities.NOMADIC_LAGRAHK, 1, 1))
-                                        .addSpawn(MobCategory.CREATURE, 20, mobData(ModEntities.GROWTH_SAPPER, 3, 5)))
-                ).temperature(0.4F));
+                                        .addSpawn(MobCategory.CREATURE, 20, mobData(ModEntities.GROWTH_SAPPER, 3, 5))))
+                        .temperature(0.4F)
+                        .setAttribute(EnvironmentAttributes.SKY_COLOR, 9815527));
     }
 
     public static Biome makeGreenAgateJungle(HolderGetter<PlacedFeature> features, HolderGetter<ConfiguredWorldCarver<?>> carvers) {
         return buildBiome(
                 createBuilder(
-                        createAmbience(4961870, 8437662, 15381216),
+                        createAmbience(4961870),
                         greenAgateJungle(features, carvers),
                         buildSpawns(
                                 createSpawns()
                                         .addSpawn(MobCategory.CREATURE, 10, mobData(ModEntities.NOMADIC_LAGRAHK, 1, 1))
                                         .addSpawn(MobCategory.CREATURE, 15, mobData(ModEntities.GROWTH_SAPPER, 3, 5))
                                         .addSpawn(MobCategory.CREATURE, 10, mobData(ModEntities.MOSS_AGATE_MONITOR, 1, 2))
-                                        .addSpawn(MobCategory.AMBIENT, 10, mobData(ModEntities.MARKUZAR_PLANT, 2, 4)))
-                ).temperature(0.75F));
+                                        .addSpawn(MobCategory.AMBIENT, 10, mobData(ModEntities.MARKUZAR_PLANT, 2, 4))))
+                        .temperature(0.75F)
+                        .setAttribute(EnvironmentAttributes.SKY_COLOR, 8437662));
     }
 
     public static Biome makePurpleAgateSwamp(HolderGetter<PlacedFeature> features, HolderGetter<ConfiguredWorldCarver<?>> carvers) {
         return buildBiome(
                 createBuilder(
-                        createAmbience(8417209, 11234801, 15381216),
+                        createAmbience(8417209),
                         purpleAgateSwamp(features, carvers),
                         buildSpawns(
                                 createSpawns()
                                         .addSpawn(MobCategory.CREATURE, 15, mobData(ModEntities.NOMADIC_LAGRAHK, 1, 1))
                                         .addSpawn(MobCategory.CREATURE, 20, mobData(ModEntities.GROWTH_SAPPER, 3, 5))
-                                        .addSpawn(MobCategory.CREATURE, 10, mobData(ModEntities.SPELLBOUND_ELEMENTAL, 2, 4)))
-                ).temperature(0.66F));
+                                        .addSpawn(MobCategory.CREATURE, 10, mobData(ModEntities.SPELLBOUND_ELEMENTAL, 2, 4))))
+                        .temperature(0.66F)
+                        .setAttribute(EnvironmentAttributes.SKY_COLOR, 11234801));
     }
 
     public static Biome makeFossilWoodland(HolderGetter<PlacedFeature> features, HolderGetter<ConfiguredWorldCarver<?>> carvers) {
         return buildBiome(
                 createBuilder(
-                        createAmbience(12298105, 13016408, 15381216),
+                        createAmbience(12298105),
                         fossilWoodland(features, carvers),
                         buildSpawns(
                                 createSpawns()
                                         .addSpawn(MobCategory.MONSTER, 10, mobData(ModEntities.ANCIENT_LAGRAHK, 1, 2))
                                         .addSpawn(MobCategory.CREATURE, 15, mobData(ModEntities.NOMADIC_LAGRAHK, 1, 1))
                                         .addSpawn(MobCategory.CREATURE, 10, mobData(ModEntities.ROCKY_LUGGEROTH, 4, 5))
-                                        .addSpawn(MobCategory.CREATURE, 10, mobData(ModEntities.RUGGED_LURMORUS, 1, 3)))
-                ).temperature(0.66F));
+                                        .addSpawn(MobCategory.CREATURE, 10, mobData(ModEntities.RUGGED_LURMORUS, 1, 3))))
+                        .temperature(0.66F));
     }
 
     public static Biome makeMutantAgateWildwood(HolderGetter<PlacedFeature> features, HolderGetter<ConfiguredWorldCarver<?>> carvers) {
         return buildBiome(
                 createBuilder(
-                        createAmbience(13948848, 15833793, 15381216),
+                        createAmbience(13948848),
                         mutantAgateWildwood(features, carvers),
                         buildSpawns(
                                 createSpawns()
                                         .addSpawn(MobCategory.CREATURE, 15, mobData(ModEntities.NOMADIC_LAGRAHK, 1, 1))
                                         .addSpawn(MobCategory.CREATURE, 40, mobData(ModEntities.GROWTH_SAPPER, 3, 5))
-                                        .addSpawn(MobCategory.CREATURE, 5, mobData(ModEntities.MUTANT_GROWTH_EXTRACTOR, 2, 4)))
-                ).temperature(0.66F));
+                                        .addSpawn(MobCategory.CREATURE, 5, mobData(ModEntities.MUTANT_GROWTH_EXTRACTOR, 2, 4))))
+                        .temperature(0.66F)
+                        .setAttribute(EnvironmentAttributes.SKY_COLOR, 15833793));
     }
 
     public static Biome makeVolcanicLands(HolderGetter<PlacedFeature> features, HolderGetter<ConfiguredWorldCarver<?>> carvers) {
         return buildBiome(
                 createBuilder(
-                        createAmbience(2302755, 4922905, 16086896),
+                        createAmbience(2302755),
                         volcanicLands(features, carvers),
                         buildSpawns(
                                 createSpawns()
                                         .addSpawn(MobCategory.MONSTER, 10, mobData(ModEntities.LESSER_SPITFIRE, 2, 4))
-                                        .addSpawn(MobCategory.CREATURE, 15, mobData(ModEntities.NOMADIC_LAGRAHK, 1, 3)))
-                ).temperature(0.9F));
+                                        .addSpawn(MobCategory.CREATURE, 15, mobData(ModEntities.NOMADIC_LAGRAHK, 1, 3))))
+                        .temperature(0.9F)
+                        .setAttribute(EnvironmentAttributes.FOG_COLOR, 16086896)
+                        .setAttribute(EnvironmentAttributes.SKY_COLOR, 4922905));
     }
 
     public static Biome makeStaticWasteland(HolderGetter<PlacedFeature> features, HolderGetter<ConfiguredWorldCarver<?>> carvers) {
         return buildBiome(
                 createBuilder(
-                        createAmbience(2837910, 2633554, 5690794),
+                        createAmbience(2837910),
                         staticWasteland(features, carvers),
                         buildSpawns(
                                 createSpawns()
                                         .addSpawn(MobCategory.MONSTER, 10, mobData(ModEntities.LESSER_SHOCKSHOOTER, 2, 4))
-                                        .addSpawn(MobCategory.CREATURE, 15, mobData(ModEntities.NOMADIC_LAGRAHK, 1, 3)))
-                ).temperature(0.4F));
+                                        .addSpawn(MobCategory.CREATURE, 15, mobData(ModEntities.NOMADIC_LAGRAHK, 1, 3))))
+                        .temperature(0.4F)
+                        .setAttribute(EnvironmentAttributes.FOG_COLOR, 5690794)
+                        .setAttribute(EnvironmentAttributes.SKY_COLOR, 2633554));
     }
 
     public static Biome makeGoldstoneLands(HolderGetter<PlacedFeature> features, HolderGetter<ConfiguredWorldCarver<?>> carvers) {
         return buildBiome(
                 createBuilder(
-                        createAmbience(2302755, 2236962, 12352044),
+                        createAmbience(2302755),
                         goldstoneLands(features, carvers),
                         buildSpawns(
                                 createSpawns()
                                         .addSpawn(MobCategory.MONSTER, 20, mobData(ModEntities.CORRUPT_SAPPER, 2, 4))
-                                        .addSpawn(MobCategory.MONSTER, 10, mobData(ModEntities.CONTORTED_NAGA, 2, 3)))
-                ).temperature(0.55F));
+                                        .addSpawn(MobCategory.MONSTER, 10, mobData(ModEntities.CONTORTED_NAGA, 2, 3))))
+                        .temperature(0.55F)
+                        .setAttribute(EnvironmentAttributes.FOG_COLOR, 12352044)
+                        .setAttribute(EnvironmentAttributes.SKY_COLOR, 2236962));
     }
 
     public static Biome makeCrystalPlains(HolderGetter<PlacedFeature> features, HolderGetter<ConfiguredWorldCarver<?>> carvers) {
         return buildBiome(
                 createBuilder(
-                        createAmbience(15901620, 13016408, 15381216),
+                        createAmbience(15901620),
                         crystalPlains(features, carvers),
                         buildSpawns(
                                 createSpawns()
                                         .addSpawn(MobCategory.CREATURE, 15, mobData(ModEntities.NOMADIC_LAGRAHK, 1, 1))
                                         .addSpawn(MobCategory.CREATURE, 20, mobData(ModEntities.GROWTH_SAPPER, 4, 6))
-                                        .addSpawn(MobCategory.CREATURE, 15, mobData(ModEntities.CRYSTAL_GOLEM, 1, 3)))
-                ).temperature(0.66F));
+                                        .addSpawn(MobCategory.CREATURE, 15, mobData(ModEntities.CRYSTAL_GOLEM, 1, 3))))
+                        .temperature(0.66F));
     }
 
     public static Biome makeSaltDunes(HolderGetter<PlacedFeature> features, HolderGetter<ConfiguredWorldCarver<?>> carvers) {
         return buildBiome(
                 createBuilder(
-                        createAmbience(15901620, 13016408, 15381216),
+                        createAmbience(15901620),
                         saltDunes(features, carvers),
                         buildSpawns(
                                 createSpawns()
                                         .addSpawn(MobCategory.CREATURE, 15, mobData(ModEntities.NOMADIC_LAGRAHK, 1, 3))
-                                        .addSpawn(MobCategory.CREATURE, 15, mobData(ModEntities.SALTION, 1, 3)))
-                ).temperature(0.8F));
+                                        .addSpawn(MobCategory.CREATURE, 15, mobData(ModEntities.SALTION, 1, 3))))
+                        .temperature(0.8F));
     }
 
     public static Biome makeSmolderingBog(HolderGetter<PlacedFeature> features, HolderGetter<ConfiguredWorldCarver<?>> carvers) {
         return buildBiome(
                 createBuilder(
-                        createAmbience(2500135, 1118482, 3287859, 8284598),
+                        createAmbience(2500135, 1118482),
                         smolderingBog(features, carvers),
                         buildSpawns(
                                 createSpawns()
                                         .addSpawn(MobCategory.CREATURE, 15, mobData(ModEntities.NOMADIC_LAGRAHK, 1, 1))
-                                        .addSpawn(MobCategory.CREATURE, 20, mobData(ModEntities.BISMUTH_ULETRUS, 2, 3)))
-                ).temperature(0.9F));
+                                        .addSpawn(MobCategory.CREATURE, 20, mobData(ModEntities.BISMUTH_ULETRUS, 2, 3))))
+                        .temperature(0.9F)
+                        .setAttribute(EnvironmentAttributes.FOG_COLOR, 8284598)
+                        .setAttribute(EnvironmentAttributes.SKY_COLOR, 3287859));
     }
 
     public static Biome makeShiningGrove(HolderGetter<PlacedFeature> features, HolderGetter<ConfiguredWorldCarver<?>> carvers) {
         return buildBiome(
                 createBuilder(
-                        createAmbience(7982765, 14546943, 15004627, 16764489),
+                        createAmbience(7982765, 14546943),
                         shiningGrove(features, carvers),
                         buildSpawns(
                                 createSpawns()
-                                        .addSpawn(MobCategory.CREATURE, 15, mobData(ModEntities.NOMADIC_LAGRAHK, 1, 1)))
-                ).temperature(0.5F));
+                                        .addSpawn(MobCategory.CREATURE, 15, mobData(ModEntities.NOMADIC_LAGRAHK, 1, 1))))
+                        .temperature(0.5F)
+                        .setAttribute(EnvironmentAttributes.FOG_COLOR, 16764489)
+                        .setAttribute(EnvironmentAttributes.SKY_COLOR, 15004627));
     }
 
     public static Biome makeMineralReservoir(HolderGetter<PlacedFeature> features, HolderGetter<ConfiguredWorldCarver<?>> carvers) {
         return buildBiome(
                 createBuilder(
-                        createAmbience(15901620, 13016408, 15381216),
+                        createAmbience(15901620),
                         mineralBiome(features, carvers),
                         buildSpawns(
                                 createSpawns()
-                                        .addSpawn(MobCategory.WATER_CREATURE, 10, mobData(ModEntities.MINERAL_ARENTHIS, 1, 4)))
-                ).temperature(0.66F));
+                                        .addSpawn(MobCategory.WATER_CREATURE, 10, mobData(ModEntities.MINERAL_ARENTHIS, 1, 4))))
+                        .temperature(0.66F));
     }
 
     public static Biome makeSaltyCoast(HolderGetter<PlacedFeature> features, HolderGetter<ConfiguredWorldCarver<?>> carvers) {
         return buildBiome(
                 createBuilder(
-                        createAmbience(15901620, 13016408, 15381216),
+                        createAmbience(15901620),
                         mineralBiome(features, carvers),
-                        buildSpawns(createSpawns())
-                ).temperature(0.66F));
+                        buildSpawns(createSpawns()))
+                        .temperature(0.66F));
     }
 
     public static Biome makeMineralRiver(HolderGetter<PlacedFeature> features, HolderGetter<ConfiguredWorldCarver<?>> carvers) {
         return buildBiome(
                 createBuilder(
-                        createAmbience(15901620, 13016408, 15381216),
+                        createAmbience(15901620),
                         mineralBiome(features, carvers),
-                        buildSpawns(createSpawns())
-                ).temperature(0.66F));
+                        buildSpawns(createSpawns()))
+                        .temperature(0.66F));
     }
 
     public static Biome makeGoldenHills(HolderGetter<PlacedFeature> features, HolderGetter<ConfiguredWorldCarver<?>> carvers) {
         return buildBiome(
                 createBuilder(
-                        createAmbience(4997150, 3415307, 13801728),
+                        createAmbience(4997150),
                         goldenHillsBiome(features, carvers),
                         buildSpawns(createSpawns()
-                                .addSpawn(MobCategory.CREATURE, 20, mobData(ModEntities.AUREATE_EVRAUN, 1, 2)))
-                ).temperature(0.3F));
+                                .addSpawn(MobCategory.CREATURE, 20, mobData(ModEntities.AUREATE_EVRAUN, 1, 2))))
+                        .temperature(0.3F)
+                        .setAttribute(EnvironmentAttributes.FOG_COLOR, 13801728)
+                        .setAttribute(EnvironmentAttributes.SKY_COLOR, 3415307));
     }
 
     public static Biome makeGoldenForest(HolderGetter<PlacedFeature> features, HolderGetter<ConfiguredWorldCarver<?>> carvers) {
         return buildBiome(
                 createBuilder(
-                        createAmbience(4997150, 3415307, 13801728),
+                        createAmbience(4997150),
                         goldenForestBiome(features, carvers),
                         buildSpawns(createSpawns()
                                 .addSpawn(MobCategory.CREATURE, 20, mobData(ModEntities.GROWTH_GRAZER, 2, 4))
-                                .addSpawn(MobCategory.CREATURE, 20, mobData(ModEntities.AUREATE_EVRAUN, 1, 2)))
-                ).temperature(0.3F));
+                                .addSpawn(MobCategory.CREATURE, 20, mobData(ModEntities.AUREATE_EVRAUN, 1, 2))))
+                        .temperature(0.3F)
+                        .setAttribute(EnvironmentAttributes.FOG_COLOR, 13801728)
+                        .setAttribute(EnvironmentAttributes.SKY_COLOR, 3415307));
     }
 
     public static Biome makeGoldenPlains(HolderGetter<PlacedFeature> features, HolderGetter<ConfiguredWorldCarver<?>> carvers) {
         return buildBiome(
                 createBuilder(
-                        createAmbience(4997150, 3415307, 13801728),
+                        createAmbience(4997150),
                         goldenPlainsBiome(features, carvers),
                         buildSpawns(createSpawns()
                                 .addSpawn(MobCategory.CREATURE, 20, mobData(ModEntities.GROWTH_GRAZER, 2, 4))
-                                .addSpawn(MobCategory.CREATURE, 20, mobData(ModEntities.AUREATE_EVRAUN, 1, 2)))
-                ).temperature(0.3F));
+                                .addSpawn(MobCategory.CREATURE, 20, mobData(ModEntities.AUREATE_EVRAUN, 1, 2))))
+                        .temperature(0.3F)
+                        .setAttribute(EnvironmentAttributes.FOG_COLOR, 13801728)
+                        .setAttribute(EnvironmentAttributes.SKY_COLOR, 3415307));
     }
 
     public static Biome makeGoldenMarsh(HolderGetter<PlacedFeature> features, HolderGetter<ConfiguredWorldCarver<?>> carvers) {
         return buildBiome(
                 createBuilder(
-                        createAmbience(4997150, 3415307, 13801728),
+                        createAmbience(4997150),
                         goldenMarshBiome(features, carvers),
                         buildSpawns(createSpawns()
-                                .addSpawn(MobCategory.CREATURE, 20, mobData(ModEntities.AUREATE_EVRAUN, 1, 2)))
-                ).temperature(0.3F));
+                                .addSpawn(MobCategory.CREATURE, 20, mobData(ModEntities.AUREATE_EVRAUN, 1, 2))))
+                        .temperature(0.3F)
+                        .setAttribute(EnvironmentAttributes.FOG_COLOR, 13801728)
+                        .setAttribute(EnvironmentAttributes.SKY_COLOR, 3415307));
     }
 
     public static Biome makeGoldenSands(HolderGetter<PlacedFeature> features, HolderGetter<ConfiguredWorldCarver<?>> carvers) {
         return buildBiome(
                 createBuilder(
-                        createAmbience(4997150, 3415307, 13801728),
+                        createAmbience(4997150),
                         goldenSandsBiome(features, carvers),
                         buildSpawns(createSpawns()
-                                .addSpawn(MobCategory.CREATURE, 20, mobData(ModEntities.AUREATE_EVRAUN, 1, 2)))
-                ).temperature(0.7F));
+                                .addSpawn(MobCategory.CREATURE, 20, mobData(ModEntities.AUREATE_EVRAUN, 1, 2))))
+                        .temperature(0.7F)
+                        .setAttribute(EnvironmentAttributes.FOG_COLOR, 13801728)
+                        .setAttribute(EnvironmentAttributes.SKY_COLOR, 3415307));
     }
 
     public static Biome makeMookaite(HolderGetter<PlacedFeature> features, HolderGetter<ConfiguredWorldCarver<?>> carvers) {
         return buildBiome(
                 createBuilder(
-                        createAmbience(14646073, 16165141, 12793637),
+                        createAmbience(14646073),
                         mookaiteMesa(features, carvers),
                         buildSpawns(createSpawns()
                                 .addSpawn(MobCategory.CREATURE, 10, mobData(ModEntities.MOOKAITE_CONSTRUCT, 1, 2))
-                                .addSpawn(MobCategory.CREATURE, 10, mobData(ModEntities.OPALITE_CONSTRUCT, 1, 2)))
-                ).temperature(0.65F));
+                                .addSpawn(MobCategory.CREATURE, 10, mobData(ModEntities.OPALITE_CONSTRUCT, 1, 2))))
+                        .temperature(0.65F)
+                        .setAttribute(EnvironmentAttributes.FOG_COLOR, 12793637)
+                        .setAttribute(EnvironmentAttributes.SKY_COLOR, 16165141));
     }
 }

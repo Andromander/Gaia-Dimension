@@ -275,10 +275,10 @@ public class MalachiteGuard extends Monster {
     }
 
     private void createDrone(BlockPos pos) {
-        if (!level().isClientSide()) {
+        if (level() instanceof ServerLevel server) {
             MalachiteDrone drone = ModEntities.MALACHITE_DRONE.get().create(this.level(), EntitySpawnReason.MOB_SUMMONED);
             drone.snapTo(pos, 0.0F, 0.0F);
-            EventHooks.finalizeMobSpawn(drone, (ServerLevelAccessor)this.level(), this.level().getCurrentDifficultyAt(pos), EntitySpawnReason.MOB_SUMMONED, null);
+            EventHooks.finalizeMobSpawn(drone, server, server.getCurrentDifficultyAt(pos), EntitySpawnReason.MOB_SUMMONED, null);
             drone.setOwner(this);
             if (this.level().addFreshEntity(drone))
                 this.dronesLeft++;

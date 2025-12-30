@@ -7,8 +7,10 @@ import androsa.gaiadimension.registry.helpers.ModEntitiesRendering;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.client.renderer.entity.state.ArmedEntityRenderState;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
+import org.jspecify.annotations.NullMarked;
 
+@NullMarked
 public class LesserShockshooterRenderer<T extends LesserShockshooter, M extends LesserShockshooterModel> extends MobRenderer<T, SimpleHumanoidRenderState, M> {
     public LesserShockshooterRenderer(EntityRendererProvider.Context context, M model, float shadow) {
         super(context, model, shadow);
@@ -22,12 +24,12 @@ public class LesserShockshooterRenderer<T extends LesserShockshooter, M extends 
     @Override
     public void extractRenderState(T entity, SimpleHumanoidRenderState state, float partialTicks) {
         super.extractRenderState(entity, state, partialTicks);
-        ArmedEntityRenderState.extractArmedEntityRenderState(entity, state, this.itemModelResolver);
+        ArmedEntityRenderState.extractArmedEntityRenderState(entity, state, this.itemModelResolver, partialTicks);
         state.attackTime = entity.getAttackAnim(partialTicks);
     }
 
     @Override
-    public ResourceLocation getTextureLocation(SimpleHumanoidRenderState state) {
+    public Identifier getTextureLocation(SimpleHumanoidRenderState state) {
         return ModEntitiesRendering.makeTexture("lesser_shockshooter");
     }
 }

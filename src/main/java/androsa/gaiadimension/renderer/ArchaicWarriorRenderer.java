@@ -7,9 +7,11 @@ import androsa.gaiadimension.registry.helpers.ModEntitiesRendering;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.client.renderer.entity.state.ArmedEntityRenderState;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
+import org.jspecify.annotations.NullMarked;
 
 //TODO: Display weapon
+@NullMarked
 public class ArchaicWarriorRenderer<T extends ArchaicWarrior, M extends ArchaicWarriorModel> extends MobRenderer<T, SimpleHumanoidRenderState, M> {
 
     public ArchaicWarriorRenderer(EntityRendererProvider.Context manager, M model, float shadowSize) {
@@ -24,12 +26,12 @@ public class ArchaicWarriorRenderer<T extends ArchaicWarrior, M extends ArchaicW
     @Override
     public void extractRenderState(T entity, SimpleHumanoidRenderState state, float partialTicks) {
         super.extractRenderState(entity, state, partialTicks);
-        ArmedEntityRenderState.extractArmedEntityRenderState(entity, state, this.itemModelResolver);
+        ArmedEntityRenderState.extractArmedEntityRenderState(entity, state, this.itemModelResolver, partialTicks);
         state.attackTime = entity.getAttackAnim(partialTicks);
     }
 
     @Override
-    public ResourceLocation getTextureLocation(SimpleHumanoidRenderState entity) {
+    public Identifier getTextureLocation(SimpleHumanoidRenderState entity) {
         return ModEntitiesRendering.makeTexture("archaic_warrior");
     }
 }

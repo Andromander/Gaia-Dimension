@@ -9,7 +9,7 @@ import net.minecraft.client.model.geom.builders.CubeDeformation;
 import net.minecraft.client.renderer.entity.NoopRenderer;
 import net.minecraft.client.renderer.entity.ThrownItemRenderer;
 import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.entity.Entity;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -60,30 +60,30 @@ public class ModEntitiesRendering {
     }
 
     private static ModelLayerLocation layer(String name, String layer) {
-        return new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(GaiaDimensionMod.MODID, name), layer);
+        return new ModelLayerLocation(Identifier.fromNamespaceAndPath(GaiaDimensionMod.MODID, name), layer);
     }
 
-    public static ResourceLocation makeTexture(Entity entity, String path) {
+    public static Identifier makeTexture(Entity entity, String path) {
         String name = BuiltInRegistries.ENTITY_TYPE.getKey(entity.getType()).getPath();
         String dir = path.isEmpty() ? name : name + "_" + path;
         return makeTexture(name + "/" + dir);
     }
 
-    public static ResourceLocation makeTexture(String entity, String path) {
+    public static Identifier makeTexture(String entity, String path) {
         String dir = path.isEmpty() ? entity : entity + "_" + path;
         return makeTexture(entity + "/" + dir);
     }
 
-    public static ResourceLocation makeTextureNoPrefix(String entity, String path) {
+    public static Identifier makeTextureNoPrefix(String entity, String path) {
         return makeTexture(entity + "/" + path);
     }
 
-    public static ResourceLocation makeTexture(Entity entity) {
+    public static Identifier makeTexture(Entity entity) {
         return makeTexture(BuiltInRegistries.ENTITY_TYPE.getKey(entity.getType()).getPath());
     }
 
-    public static ResourceLocation makeTexture(String path) {
-        return ResourceLocation.fromNamespaceAndPath(GaiaDimensionMod.MODID, TEXTURE_DIRECTORY + path + ".png");
+    public static Identifier makeTexture(String path) {
+        return Identifier.fromNamespaceAndPath(GaiaDimensionMod.MODID, TEXTURE_DIRECTORY + path + ".png");
     }
 
     @SubscribeEvent

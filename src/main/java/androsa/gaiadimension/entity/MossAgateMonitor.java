@@ -19,7 +19,6 @@ import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.*;
 import net.minecraft.world.entity.ai.goal.target.*;
-import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
@@ -27,13 +26,12 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.storage.ValueInput;
 import net.minecraft.world.level.storage.ValueOutput;
 import net.minecraft.world.phys.Vec3;
-
-import java.util.UUID;
+import org.jspecify.annotations.Nullable;
 
 public class MossAgateMonitor extends PathfinderMob implements NeutralMob {
     private static final EntityDataAccessor<Integer> DATA_REMAINING_ANGER_TIME = SynchedEntityData.defineId(MossAgateMonitor.class, EntityDataSerializers.INT);
     private static final UniformInt PERSISTENT_ANGER_TIME = TimeUtil.rangeOfSeconds(20, 39);
-    private UUID persistentAngerTarget;
+    private EntityReference<LivingEntity> persistentAngerTarget;
 
     public MossAgateMonitor(EntityType<? extends MossAgateMonitor> type, Level level) {
         super(type, level);
@@ -112,27 +110,27 @@ public class MossAgateMonitor extends PathfinderMob implements NeutralMob {
     }
 
     @Override
-    public int getRemainingPersistentAngerTime() {
+    public long getPersistentAngerEndTime() {
         return this.entityData.get(DATA_REMAINING_ANGER_TIME);
     }
 
     @Override
-    public void setRemainingPersistentAngerTime(int time) {
-        this.entityData.set(DATA_REMAINING_ANGER_TIME, time);
+    public void setPersistentAngerEndTime(long time) {
+        this.entityData.set(DATA_REMAINING_ANGER_TIME, (int) time);
     }
 
     @Override
     public void startPersistentAngerTimer() {
-        this.setRemainingPersistentAngerTime(PERSISTENT_ANGER_TIME.sample(this.random));
+        this.setPersistentAngerEndTime(PERSISTENT_ANGER_TIME.sample(this.random));
     }
 
     @Override
-    public UUID getPersistentAngerTarget() {
+    public @Nullable EntityReference<LivingEntity> getPersistentAngerTarget() {
         return this.persistentAngerTarget;
     }
 
     @Override
-    public void setPersistentAngerTarget(UUID uuid) {
+    public void setPersistentAngerTarget(EntityReference<LivingEntity> uuid) {
         this.persistentAngerTarget = uuid;
     }
 

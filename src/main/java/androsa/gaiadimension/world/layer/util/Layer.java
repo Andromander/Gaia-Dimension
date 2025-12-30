@@ -2,10 +2,10 @@ package androsa.gaiadimension.world.layer.util;
 
 import androsa.gaiadimension.GaiaDimensionMod;
 import net.minecraft.SharedConstants;
-import net.minecraft.Util;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.util.Util;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.biome.Biomes;
 import net.neoforged.neoforge.server.ServerLifecycleHooks;

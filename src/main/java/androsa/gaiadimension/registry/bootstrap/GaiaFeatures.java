@@ -21,8 +21,8 @@ import net.minecraft.core.*;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.data.worldgen.placement.PlacementUtils;
+import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.random.WeightedList;
 import net.minecraft.util.valueproviders.ClampedInt;
 import net.minecraft.util.valueproviders.ConstantInt;
@@ -53,6 +53,7 @@ import net.minecraft.world.level.levelgen.feature.trunkplacers.TrunkPlacer;
 import net.minecraft.world.level.levelgen.heightproviders.BiasedToBottomHeight;
 import net.minecraft.world.level.levelgen.placement.*;
 import net.minecraft.world.level.levelgen.structure.templatesystem.RuleTest;
+import org.jspecify.annotations.NullMarked;
 
 import java.util.List;
 import java.util.Optional;
@@ -112,6 +113,7 @@ public class GaiaFeatures extends GaiaBiomeFeatures {
         }
     }
 
+    @NullMarked
     public static class Configured {
         //Lakes
         public static final ResourceKey<ConfiguredFeature<?, ?>> lake_superhot_magma = registerFeature("lake_superhot_magma");
@@ -226,7 +228,7 @@ public class GaiaFeatures extends GaiaBiomeFeatures {
         }
 
         private static ResourceKey<ConfiguredFeature<?, ?>> registerFeature(String name) {
-            return ResourceKey.create(Registries.CONFIGURED_FEATURE, ResourceLocation.fromNamespaceAndPath(GaiaDimensionMod.MODID, name));
+            return ResourceKey.create(Registries.CONFIGURED_FEATURE, Identifier.fromNamespaceAndPath(GaiaDimensionMod.MODID, name));
         }
 
         private static ConfiguredFeature<BlockStateConfiguration, ?> poolFeature(BlockState state) {
@@ -505,7 +507,7 @@ public class GaiaFeatures extends GaiaBiomeFeatures {
         public static final ResourceKey<PlacedFeature> TWINKLING_GILSRI = registerPlaced("twinkling_gilsri");
 
         private static ResourceKey<PlacedFeature> registerPlaced(String name) {
-            return ResourceKey.create(Registries.PLACED_FEATURE, ResourceLocation.fromNamespaceAndPath(GaiaDimensionMod.MODID, name));
+            return ResourceKey.create(Registries.PLACED_FEATURE, Identifier.fromNamespaceAndPath(GaiaDimensionMod.MODID, name));
         }
 
         private static PlacedFeature placedOre(HolderGetter<ConfiguredFeature<?, ?>> getter, ResourceKey<ConfiguredFeature<?, ?>> ore, int height, int count) {

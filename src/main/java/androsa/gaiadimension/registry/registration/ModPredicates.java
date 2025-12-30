@@ -3,7 +3,7 @@ package androsa.gaiadimension.registry.registration;
 import androsa.gaiadimension.GaiaDimensionMod;
 import androsa.gaiadimension.advancement.criterion.SapperPredicate;
 import com.mojang.serialization.MapCodec;
-import net.minecraft.advancements.critereon.EntitySubPredicate;
+import net.minecraft.advancements.criterion.EntitySubPredicate;
 import net.minecraft.core.registries.Registries;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;

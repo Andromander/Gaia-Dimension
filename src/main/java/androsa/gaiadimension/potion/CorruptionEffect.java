@@ -5,7 +5,7 @@ import androsa.gaiadimension.registry.bootstrap.GaiaDamage;
 import androsa.gaiadimension.registry.registration.ModEffects;
 import androsa.gaiadimension.registry.registration.ModEntities;
 import androsa.gaiadimension.registry.values.GaiaTags;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffect;
@@ -24,7 +24,7 @@ import net.neoforged.neoforge.event.entity.living.MobEffectEvent;
 @EventBusSubscriber(modid = GaiaDimensionMod.MODID)
 public class CorruptionEffect extends MobEffect {
 
-    public static final ResourceLocation NAME = ResourceLocation.fromNamespaceAndPath(GaiaDimensionMod.MODID, "attack_boost");
+    public static final Identifier NAME = Identifier.fromNamespaceAndPath(GaiaDimensionMod.MODID, "attack_boost");
 
     public CorruptionEffect(int color) {
         super(MobEffectCategory.HARMFUL, color);

@@ -7,8 +7,10 @@ import androsa.gaiadimension.registry.helpers.ModEntitiesRendering;
 import androsa.gaiadimension.renderer.layer.MalachiteDroneGlowLayer;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.MobRenderer;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
+import org.jspecify.annotations.NullMarked;
 
+@NullMarked
 public class MalachiteDroneRenderer<T extends MalachiteDrone, M extends MalachiteDroneModel> extends MobRenderer<T, MalachiteDroneRenderState, M> {
 
     public MalachiteDroneRenderer(EntityRendererProvider.Context manager, M model, float shadowSize) {
@@ -28,7 +30,7 @@ public class MalachiteDroneRenderer<T extends MalachiteDrone, M extends Malachit
     }
 
     @Override
-    public ResourceLocation getTextureLocation(MalachiteDroneRenderState entity) {
+    public Identifier getTextureLocation(MalachiteDroneRenderState entity) {
         return entity.isFollowing ? ModEntitiesRendering.makeTexture("malachite_drone", "follow") : ModEntitiesRendering.makeTexture("malachite_drone", "normal");
     }
 }

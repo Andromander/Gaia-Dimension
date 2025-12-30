@@ -7,8 +7,10 @@ import androsa.gaiadimension.registry.helpers.ModEntitiesRendering;
 import net.minecraft.client.model.geom.EntityModelSet;
 import net.minecraft.client.renderer.entity.RenderLayerParent;
 import net.minecraft.client.renderer.entity.layers.EnergySwirlLayer;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
+import org.jspecify.annotations.NullMarked;
 
+@NullMarked
 public class MalachiteResistLayer extends EnergySwirlLayer<MalachiteGuardRenderState,MalachiteGuardModel> {
 
     private final MalachiteGuardModel model;
@@ -29,7 +31,7 @@ public class MalachiteResistLayer extends EnergySwirlLayer<MalachiteGuardRenderS
     }
 
     @Override
-    protected ResourceLocation getTextureLocation() {
+    protected Identifier getTextureLocation() {
         return ModEntitiesRendering.makeTexture("malachite_guard", "resist");
     }
 

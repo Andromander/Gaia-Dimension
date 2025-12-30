@@ -6,9 +6,10 @@ import androsa.gaiadimension.model.renderstate.GrowthSapperRenderState;
 import androsa.gaiadimension.registry.helpers.ModEntitiesRendering;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.MobRenderer;
-import net.minecraft.client.renderer.entity.state.LivingEntityRenderState;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
+import org.jspecify.annotations.NullMarked;
 
+@NullMarked
 public class GrowthSapperRenderer<T extends GrowthSapper, M extends GrowthSapperModel> extends MobRenderer<T, GrowthSapperRenderState, M> {
 
     public GrowthSapperRenderer(EntityRendererProvider.Context manager, M model, float shadowSize) {
@@ -27,7 +28,7 @@ public class GrowthSapperRenderer<T extends GrowthSapper, M extends GrowthSapper
     }
 
     @Override
-    public ResourceLocation getTextureLocation(GrowthSapperRenderState entity) {
+    public Identifier getTextureLocation(GrowthSapperRenderState entity) {
         return ModEntitiesRendering.makeTexture("growth_sapper", entity.variant.getSerializedName());
     }
 }

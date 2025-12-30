@@ -2,16 +2,18 @@ package androsa.gaiadimension.renderer.layer;
 
 import androsa.gaiadimension.renderer.MucklingRenderer;
 import com.mojang.blaze3d.vertex.PoseStack;
-import net.minecraft.client.model.SlimeModel;
 import net.minecraft.client.model.geom.EntityModelSet;
 import net.minecraft.client.model.geom.ModelLayers;
-import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.model.monster.slime.SlimeModel;
 import net.minecraft.client.renderer.SubmitNodeCollector;
 import net.minecraft.client.renderer.entity.LivingEntityRenderer;
 import net.minecraft.client.renderer.entity.RenderLayerParent;
 import net.minecraft.client.renderer.entity.layers.RenderLayer;
 import net.minecraft.client.renderer.entity.state.SlimeRenderState;
+import net.minecraft.client.renderer.rendertype.RenderTypes;
+import org.jspecify.annotations.NullMarked;
 
+@NullMarked
 public class MucklingOuterLayer extends RenderLayer<SlimeRenderState, SlimeModel> {
     private final SlimeModel model;
 
@@ -31,7 +33,7 @@ public class MucklingOuterLayer extends RenderLayer<SlimeRenderState, SlimeModel
                                 this.model,
                                 state,
                                 stack,
-                                RenderType.outline(MucklingRenderer.LOCATION),
+                                RenderTypes.outline(MucklingRenderer.LOCATION),
                                 light,
                                 overlay,
                                 -1,
@@ -44,7 +46,7 @@ public class MucklingOuterLayer extends RenderLayer<SlimeRenderState, SlimeModel
                                 this.model,
                                 state,
                                 stack,
-                                RenderType.entityTranslucent(MucklingRenderer.LOCATION),
+                                RenderTypes.entityTranslucent(MucklingRenderer.LOCATION),
                                 light,
                                 overlay,
                                 -1,

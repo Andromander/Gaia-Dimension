@@ -48,13 +48,4 @@ public class Shalurker extends Monster {
     protected SoundEvent getHurtSound(DamageSource source) {
         return ModSounds.ENTITY_SHALURKER_HURT.get();
     }
-
-    public void aiStep() {
-        boolean flag = this.isSunBurnTick();
-        if (flag) {
-            this.igniteForSeconds(8);
-        }
-
-        super.aiStep();
-    }
 }

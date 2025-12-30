@@ -3,10 +3,10 @@ package androsa.gaiadimension.registry.values;
 import androsa.gaiadimension.GaiaDimensionMod;
 import androsa.gaiadimension.entity.data.SapperVariant;
 import com.google.common.collect.Sets;
-import net.minecraft.Util;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.Util;
 import net.minecraft.world.level.storage.loot.LootTable;
 
 import java.util.Collections;
@@ -30,7 +30,7 @@ public class GaiaBuiltinTables {
 //    public static final ResourceKey<LootTable> PURPLE_SAPPER_TABLE = makeTable("entities/mystified_sapper");
 
     private static ResourceKey<LootTable> makeTable(String path) {
-        ResourceKey<LootTable> loc = ResourceKey.create(Registries.LOOT_TABLE, ResourceLocation.fromNamespaceAndPath(GaiaDimensionMod.MODID, path));
+        ResourceKey<LootTable> loc = ResourceKey.create(Registries.LOOT_TABLE, Identifier.fromNamespaceAndPath(GaiaDimensionMod.MODID, path));
 
         if (BUILTIN.add(loc)) {
             return loc;

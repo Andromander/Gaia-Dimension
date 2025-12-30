@@ -1,23 +1,17 @@
 {
+  "attributes": {
+    "minecraft:visual/fog_color": "#c33725",
+    "minecraft:visual/sky_color": "#f6a915"
+  },
   "carvers": [
     "gaiadimension:crystal_caves",
     "gaiadimension:chasms"
   ],
   "downfall": 0.0,
   "effects": {
-    "fog_color": 12793637,
-    "foliage_color": 14646073,
-    "grass_color": 14646073,
-    "mood_sound": {
-      "block_search_extent": 8,
-      "offset": 2.0,
-      "sound": "minecraft:ambient.cave",
-      "tick_delay": 6000
-    },
-    "music_volume": 1.0,
-    "sky_color": 16165141,
-    "water_color": 7117233,
-    "water_fog_color": 9617108
+    "foliage_color": "#df7b39",
+    "grass_color": "#df7b39",
+    "water_color": "#6c99b1"
   },
   "features": [
     [],

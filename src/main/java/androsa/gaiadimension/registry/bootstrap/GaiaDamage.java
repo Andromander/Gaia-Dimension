@@ -3,8 +3,8 @@ package androsa.gaiadimension.registry.bootstrap;
 import androsa.gaiadimension.GaiaDimensionMod;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;
+import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.DamageType;
 import net.minecraft.world.level.Level;
@@ -23,7 +23,7 @@ public class GaiaDamage {
     public static final ResourceKey<DamageType> ENERGY_MAGIC = makeDamage("energy_magic");
 
     private static ResourceKey<DamageType> makeDamage(String name) {
-        return ResourceKey.create(Registries.DAMAGE_TYPE, ResourceLocation.fromNamespaceAndPath(GaiaDimensionMod.MODID, name));
+        return ResourceKey.create(Registries.DAMAGE_TYPE, Identifier.fromNamespaceAndPath(GaiaDimensionMod.MODID, name));
     }
 
     public static DamageSource getDamage(Level level, ResourceKey<DamageType> damage) {

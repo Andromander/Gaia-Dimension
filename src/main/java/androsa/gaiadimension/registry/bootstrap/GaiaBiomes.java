@@ -2,8 +2,8 @@ package androsa.gaiadimension.registry.bootstrap;
 
 import androsa.gaiadimension.GaiaDimensionMod;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.biome.Biome;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
@@ -35,6 +35,6 @@ public class GaiaBiomes {
     public static final ResourceKey<Biome> golden_marsh = registerBiome("golden_marsh");
 
     private static ResourceKey<Biome> registerBiome(String name) {
-        return ResourceKey.create(Registries.BIOME, ResourceLocation.fromNamespaceAndPath(GaiaDimensionMod.MODID, name));
+        return ResourceKey.create(Registries.BIOME, Identifier.fromNamespaceAndPath(GaiaDimensionMod.MODID, name));
     }
 }

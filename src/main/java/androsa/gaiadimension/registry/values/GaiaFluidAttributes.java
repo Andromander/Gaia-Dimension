@@ -4,7 +4,7 @@ import androsa.gaiadimension.GaiaDimensionMod;
 import androsa.gaiadimension.registry.registration.ModBlocks;
 import androsa.gaiadimension.registry.registration.ModFluids;
 import androsa.gaiadimension.registry.registration.ModItems;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.sounds.SoundEvents;
 import net.neoforged.neoforge.common.NeoForgeMod;
 import net.neoforged.neoforge.common.SoundActions;
@@ -21,16 +21,16 @@ import java.util.function.Supplier;
  */
 public class GaiaFluidAttributes {
 
-    public static final ResourceLocation mineral_still = makePath("mineral_water", "still");
-    public static final ResourceLocation mineral_flow = makePath("mineral_water", "flow");
-    public static final ResourceLocation superhot_still = makePath("superhot_magma", "still");
-    public static final ResourceLocation superhot_flow = makePath("superhot_magma", "flow");
-    public static final ResourceLocation sweet_still = makePath("sweet_muck", "still");
-    public static final ResourceLocation sweet_flow = makePath("sweet_muck", "flow");
-    public static final ResourceLocation bismuth_still = makePath("liquid_bismuth", "still");
-    public static final ResourceLocation bismuth_flow = makePath("liquid_bismuth", "flow");
-    public static final ResourceLocation aura_still = makePath("liquid_aura", "still");
-    public static final ResourceLocation aura_flow = makePath("liquid_aura", "flow");
+    public static final Identifier mineral_still = makePath("mineral_water", "still");
+    public static final Identifier mineral_flow = makePath("mineral_water", "flow");
+    public static final Identifier superhot_still = makePath("superhot_magma", "still");
+    public static final Identifier superhot_flow = makePath("superhot_magma", "flow");
+    public static final Identifier sweet_still = makePath("sweet_muck", "still");
+    public static final Identifier sweet_flow = makePath("sweet_muck", "flow");
+    public static final Identifier bismuth_still = makePath("liquid_bismuth", "still");
+    public static final Identifier bismuth_flow = makePath("liquid_bismuth", "flow");
+    public static final Identifier aura_still = makePath("liquid_aura", "still");
+    public static final Identifier aura_flow = makePath("liquid_aura", "flow");
 
     public static final FluidType.Properties mineral_water_attributes =
             FluidType.Properties.create()
@@ -110,8 +110,8 @@ public class GaiaFluidAttributes {
                     .bucket(ModItems.liquid_aura_bucket)
                     .explosionResistance(100.0F);
 
-    private static ResourceLocation makePath(String name, String suffix) {
-        return ResourceLocation.fromNamespaceAndPath(GaiaDimensionMod.MODID, String.format("block/fluids/%s/%s_%s", name, name, suffix));
+    private static Identifier makePath(String name, String suffix) {
+        return Identifier.fromNamespaceAndPath(GaiaDimensionMod.MODID, String.format("block/fluids/%s/%s_%s", name, name, suffix));
     }
 
     public static void registerFluidInteractions() {

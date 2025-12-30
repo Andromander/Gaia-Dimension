@@ -2,7 +2,7 @@ package androsa.gaiadimension.registry.registration;
 
 import androsa.gaiadimension.GaiaDimensionMod;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.sounds.SoundEvent;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
@@ -117,6 +117,6 @@ public class ModSounds {
     }
 
     private static Supplier<SoundEvent> makeSound(String name) {
-        return SOUND_EVENTS.register(name, () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(GaiaDimensionMod.MODID, name)));
+        return SOUND_EVENTS.register(name, () -> SoundEvent.createVariableRangeEvent(Identifier.fromNamespaceAndPath(GaiaDimensionMod.MODID, name)));
     }
 }

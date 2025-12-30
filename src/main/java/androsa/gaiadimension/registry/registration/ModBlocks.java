@@ -10,8 +10,8 @@ import net.minecraft.core.dispenser.BlockSource;
 import net.minecraft.core.dispenser.DefaultDispenseItemBehavior;
 import net.minecraft.core.dispenser.DispenseItemBehavior;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.ColorRGBA;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.item.BlockItem;
@@ -29,12 +29,14 @@ import net.minecraft.world.level.material.PushReaction;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.NullMarked;
 
 import java.util.function.Function;
 import java.util.function.Supplier;
 
 import static net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 
+@NullMarked
 public class ModBlocks {
 
 	public static final DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(GaiaDimensionMod.MODID);
@@ -444,11 +446,11 @@ public class ModBlocks {
     }
 
     private static Properties props(Properties props, String name) {
-        return props.setId(ResourceKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(GaiaDimensionMod.MODID, name)));
+        return props.setId(ResourceKey.create(Registries.BLOCK, Identifier.fromNamespaceAndPath(GaiaDimensionMod.MODID, name)));
     }
 
     private static <T extends Block> Supplier<BlockItem> registerBlockItemFuel(String name, final Supplier<T> block, int burnTime) {
-        return () -> new BlockItem(block.get(), new Item.Properties().useBlockDescriptionPrefix().setId(ResourceKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(GaiaDimensionMod.MODID, name)))) {
+        return () -> new BlockItem(block.get(), new Item.Properties().useBlockDescriptionPrefix().setId(ResourceKey.create(Registries.ITEM, Identifier.fromNamespaceAndPath(GaiaDimensionMod.MODID, name)))) {
             @Override
             public int getBurnTime(ItemStack itemStack, @Nullable RecipeType<?> recipeType, FuelValues fuelValues) {
                 return burnTime;

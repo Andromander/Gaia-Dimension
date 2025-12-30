@@ -2,14 +2,14 @@ package androsa.gaiadimension.registry.bootstrap;
 
 import androsa.gaiadimension.GaiaDimensionMod;
 import androsa.gaiadimension.registry.values.GaiaTags;
-import net.minecraft.Util;
 import net.minecraft.core.Holder;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.tags.TagKey;
+import net.minecraft.util.Util;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.equipment.ArmorMaterial;
 import net.minecraft.world.item.equipment.ArmorType;
@@ -55,7 +55,7 @@ public class GaiaArmorMaterials {
     public static final ArmorMaterial GAIA_CHAMP = create(GAIA_CHAMP_MODEL, 1000, new int[]{4, 7, 9, 4}, 30, SoundEvents.ARMOR_EQUIP_DIAMOND, 4.0F, 0.0F, GaiaTags.Items.UNOBTAINIUM);
 
     private static ResourceKey<EquipmentAsset> location(String name) {
-        return ResourceKey.create(EquipmentAssets.ROOT_ID, ResourceLocation.fromNamespaceAndPath(GaiaDimensionMod.MODID, name));
+        return ResourceKey.create(EquipmentAssets.ROOT_ID, Identifier.fromNamespaceAndPath(GaiaDimensionMod.MODID, name));
     }
 
     public static ArmorMaterial create(ResourceKey<EquipmentAsset> model, int durability, int[] reduction, int enchant, Holder<SoundEvent> sound, float toughness, float resistance, TagKey<Item> repair) {

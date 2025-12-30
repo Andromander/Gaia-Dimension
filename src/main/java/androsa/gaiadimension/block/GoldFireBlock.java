@@ -62,7 +62,7 @@ public class GoldFireBlock extends Block {
     @Override
     @Deprecated
     public void tick(BlockState state, ServerLevel worldIn, BlockPos pos, RandomSource random) {
-        if (worldIn.getGameRules().getBoolean(GameRules.RULE_DOFIRETICK)) {
+        if (worldIn.canSpreadFireAround(pos)) {
             if (!worldIn.isAreaLoaded(pos, 2)) return;
             if (!state.canSurvive(worldIn, pos)) {
                 worldIn.removeBlock(pos, false);
@@ -117,7 +117,7 @@ public class GoldFireBlock extends Block {
     @Deprecated
     public void onPlace(BlockState state1, Level worldIn, BlockPos pos, BlockState state2, boolean flag) {
         if (state2.getBlock() != state1.getBlock()) {
-            if (!worldIn.dimension().location().equals(GaiaConfig.startDimRL) && worldIn.dimension() != GaiaDimensions.gaia_world || !ModBlocks.gaia_portal.get().tryToCreatePortal(worldIn, pos)) {
+            if (!worldIn.dimension().identifier().equals(GaiaConfig.startDimRL) && worldIn.dimension() != GaiaDimensions.gaia_world || !ModBlocks.gaia_portal.get().tryToCreatePortal(worldIn, pos)) {
                 if (!state1.canSurvive(worldIn, pos)) {
                     worldIn.removeBlock(pos, false);
                 } else {

@@ -29,19 +29,19 @@ public abstract class GaiaBiomeProvider {
                 .mobSpawnSettings(info);
     }
 
-    public static BiomeSpecialEffects createAmbience(int plant, int sky, int fog) {
-        return createAmbience(plant, plant, sky, fog);
+    public static BiomeSpecialEffects createAmbience(int plant) {
+        return createAmbience(plant, plant);
     }
 
-    public static BiomeSpecialEffects createAmbience(int grass, int foliage, int sky, int fog) {
+    public static BiomeSpecialEffects createAmbience(int grass, int foliage) {
         return (new BiomeSpecialEffects.Builder())
                 .grassColorOverride(grass)
                 .foliageColorOverride(foliage)
-                .skyColor(sky)
-                .fogColor(fog)
+                //.skyColor(sky)
+                //.fogColor(fog)
                 .waterColor(7117233)
-                .waterFogColor(9617108)
-                .ambientMoodSound(AmbientMoodSettings.LEGACY_CAVE_SETTINGS)
+                //.waterFogColor(9617108)
+                //.ambientMoodSound(AmbientMoodSettings.LEGACY_CAVE_SETTINGS)
                 .build();
     }
 

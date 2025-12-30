@@ -6,8 +6,10 @@ import androsa.gaiadimension.model.renderstate.MossAgateMonitorRenderState;
 import androsa.gaiadimension.registry.helpers.ModEntitiesRendering;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.MobRenderer;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
+import org.jspecify.annotations.NullMarked;
 
+@NullMarked
 public class MossAgateMonitorRenderer<T extends MossAgateMonitor, M extends MossAgateMonitorModel> extends MobRenderer<T, MossAgateMonitorRenderState, M> {
 
     public MossAgateMonitorRenderer(EntityRendererProvider.Context manager, M model, float shadowSize) {
@@ -26,7 +28,7 @@ public class MossAgateMonitorRenderer<T extends MossAgateMonitor, M extends Moss
     }
 
     @Override
-    public ResourceLocation getTextureLocation(MossAgateMonitorRenderState entity) {
+    public Identifier getTextureLocation(MossAgateMonitorRenderState entity) {
         return ModEntitiesRendering.makeTexture("moss_agate_monitor");
     }
 }

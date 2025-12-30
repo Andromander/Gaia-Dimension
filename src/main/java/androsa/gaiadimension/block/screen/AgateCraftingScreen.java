@@ -6,12 +6,14 @@ import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.entity.player.Inventory;
+import org.jspecify.annotations.NullMarked;
 
 //TODO: Recipe Book?
+@NullMarked
 public class AgateCraftingScreen extends AbstractContainerScreen<AgateCraftingTableMenu> {
-    private static final ResourceLocation textureLoc = ResourceLocation.fromNamespaceAndPath(GaiaDimensionMod.MODID, "textures/gui/crafting_table.png");
+    private static final Identifier textureLoc = Identifier.fromNamespaceAndPath(GaiaDimensionMod.MODID, "textures/gui/crafting_table.png");
 
     public AgateCraftingScreen(AgateCraftingTableMenu container, Inventory player, Component textComponent) {
         super(container, player, textComponent);

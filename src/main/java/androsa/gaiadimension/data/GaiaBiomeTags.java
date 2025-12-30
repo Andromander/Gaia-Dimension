@@ -30,7 +30,6 @@ public class GaiaBiomeTags extends GaiaBiomeTagProvider {
 
         //no to vanilla
         this.tag(BiomeTags.WITHOUT_WANDERING_TRADER_SPAWNS).addTags(GaiaTags.Biomes.GAIA_BIOMES);
-        this.tag(BiomeTags.WITHOUT_PATROL_SPAWNS).addTags(GaiaTags.Biomes.GAIA_BIOMES);
         this.tag(BiomeTags.WITHOUT_ZOMBIE_SIEGES).addTags(GaiaTags.Biomes.GAIA_BIOMES);
     }
 }

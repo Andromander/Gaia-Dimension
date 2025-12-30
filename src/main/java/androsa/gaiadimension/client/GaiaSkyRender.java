@@ -14,10 +14,7 @@ import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.renderer.*;
 import net.minecraft.client.renderer.state.LevelRenderState;
 import net.minecraft.client.renderer.state.SkyRenderState;
-import net.minecraft.client.renderer.texture.AbstractTexture;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.util.ARGB;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.player.Player;
@@ -41,8 +38,6 @@ import java.util.OptionalInt;
  */
 public class GaiaSkyRender {
 
-    private static final ResourceLocation SUN_TEXTURES = ResourceLocation.withDefaultNamespace("textures/environment/sun.png");
-    private AbstractTexture SUN_TEX;
     private final GpuBuffer starVBO;
     private final RenderSystem.AutoStorageIndexBuffer quadIndices = RenderSystem.getSequentialBuffer(VertexFormat.Mode.QUADS);
     private final RenderSystem.AutoStorageIndexBuffer starIndices = RenderSystem.getSequentialBuffer(VertexFormat.Mode.QUADS);
@@ -50,9 +45,6 @@ public class GaiaSkyRender {
 
     public GaiaSkyRender() {
         this.starVBO = this.generateStars();
-        AbstractTexture sun = Minecraft.getInstance().getTextureManager().getTexture(SUN_TEXTURES);
-        sun.setUseMipmaps(false);
-        this.SUN_TEX = sun;
     }
 
     public boolean render(LevelRenderState levelState, SkyRenderState skyState, Matrix4f modelMatrix, Runnable fog) {
@@ -63,44 +55,38 @@ public class GaiaSkyRender {
         fog.run();
         PoseStack stack = new PoseStack();
         float star = getStarBrightness(minecraft.level, skyState.starBrightness);
-        float red = ARGB.redFloat(skyState.skyColor);
-        float grn = ARGB.greenFloat(skyState.skyColor);
-        float blu = ARGB.blueFloat(skyState.skyColor);
-
-        skyRenderer.renderSkyDisc(red, grn, blu);
+        skyRenderer.renderSkyDisc(skyState.skyColor);
 
         //renderSunMoonAndStars (without the Moon)
         stack.pushPose();
         stack.mulPose(Axis.YP.rotationDegrees(-90.0F));
-        stack.mulPose(Axis.XP.rotationDegrees(skyState.timeOfDay * 360.0F));
+        stack.mulPose(Axis.XP.rotationDegrees(skyState.sunAngle));
 
         ///renderSun
-        if (this.SUN_TEX != null) {
-            Matrix4fStack matrixStack = RenderSystem.getModelViewStack();
-            matrixStack.pushMatrix();
-            matrixStack.mul(stack.last().pose());
-            matrixStack.translate(0.0F, 100.0F, 0.0F);
-            matrixStack.scale(30.0F, 1.0F, 30.0F);
-            GpuBufferSlice slice = RenderSystem.getDynamicUniforms()
-                    .writeTransform(matrixStack, new Vector4f(1.0F, 1.0F, 1.0F, skyState.rainBrightness), new Vector3f(), new Matrix4f(), 0.0F);
-            GpuTextureView ct = Minecraft.getInstance().getMainRenderTarget().getColorTextureView();
-            GpuTextureView dt = Minecraft.getInstance().getMainRenderTarget().getDepthTextureView();
-            GpuBuffer buffer = this.quadIndices.getBuffer(6);
+        Matrix4fStack matrixStack = RenderSystem.getModelViewStack();
+        matrixStack.pushMatrix();
+        matrixStack.mul(stack.last().pose());
+        matrixStack.translate(0.0F, 100.0F, 0.0F);
+        matrixStack.scale(30.0F, 1.0F, 30.0F);
+        GpuBufferSlice sSlice = RenderSystem.getDynamicUniforms()
+                .writeTransform(matrixStack, new Vector4f(1.0F, 1.0F, 1.0F, skyState.rainBrightness), new Vector3f(), new Matrix4f());
+        GpuTextureView sct = Minecraft.getInstance().getMainRenderTarget().getColorTextureView();
+        GpuTextureView sdt = Minecraft.getInstance().getMainRenderTarget().getDepthTextureView();
+        GpuBuffer buffer = this.quadIndices.getBuffer(6);
 
-            try (RenderPass pass = RenderSystem.getDevice()
-                    .createCommandEncoder()
-                    .createRenderPass(() -> "Sun", ct, OptionalInt.empty(), dt, OptionalDouble.empty())) {
-                pass.setPipeline(RenderPipelines.CELESTIAL);
-                RenderSystem.bindDefaultUniforms(pass);
-                pass.setUniform("DynamicTransforms", slice);
-                pass.bindSampler("Sampler0", SUN_TEX.getTextureView());
-                pass.setVertexBuffer(0, skyRenderer.sunBuffer);
-                pass.setIndexBuffer(buffer, this.quadIndices.type());
-                pass.drawIndexed(0, 0, 6, 1);
-            }
-
-            matrixStack.popMatrix();
+        try (RenderPass pass = RenderSystem.getDevice()
+                .createCommandEncoder()
+                .createRenderPass(() -> "Sun", sct, OptionalInt.empty(), sdt, OptionalDouble.empty())) {
+            pass.setPipeline(RenderPipelines.CELESTIAL);
+            RenderSystem.bindDefaultUniforms(pass);
+            pass.setUniform("DynamicTransforms", sSlice);
+            pass.bindTexture("Sampler0", skyRenderer.celestialsAtlas.getTextureView(), skyRenderer.celestialsAtlas.getSampler());
+            pass.setVertexBuffer(0, skyRenderer.sunBuffer);
+            pass.setIndexBuffer(buffer, this.quadIndices.type());
+            pass.drawIndexed(0, 0, 6, 1);
         }
+
+        matrixStack.popMatrix();
         ///
 
         ///renderStars, kind of
@@ -109,15 +95,15 @@ public class GaiaSkyRender {
             matrixstack.pushMatrix();
             matrixstack.mul(stack.last().pose());
             RenderPipeline pipeline = RenderPipelines.STARS;
-            GpuTextureView ct = Minecraft.getInstance().getMainRenderTarget().getColorTextureView();
-            GpuTextureView dt = Minecraft.getInstance().getMainRenderTarget().getDepthTextureView();
+            GpuTextureView tct = Minecraft.getInstance().getMainRenderTarget().getColorTextureView();
+            GpuTextureView tdt = Minecraft.getInstance().getMainRenderTarget().getDepthTextureView();
             GpuBuffer indices = this.starIndices.getBuffer(this.starIndexCount);
             GpuBufferSlice starslice = RenderSystem.getDynamicUniforms()
-                    .writeTransform(matrixstack, new Vector4f(star, star, star, star), new Vector3f(), new Matrix4f(), 0.0F);
+                    .writeTransform(matrixstack, new Vector4f(star, star, star, star), new Vector3f(), new Matrix4f());
 
             try (RenderPass pass = RenderSystem.getDevice()
                     .createCommandEncoder()
-                    .createRenderPass(() -> "Stars", ct, OptionalInt.empty(), dt, OptionalDouble.empty())) {
+                    .createRenderPass(() -> "Stars", tct, OptionalInt.empty(), tdt, OptionalDouble.empty())) {
                 pass.setPipeline(pipeline);
                 RenderSystem.bindDefaultUniforms(pass);
                 pass.setUniform("DynamicTransforms", starslice);
@@ -183,6 +169,6 @@ public class GaiaSkyRender {
         Player player = Minecraft.getInstance().player;
         Optional<ResourceKey<Biome>> biome = world.getBiome(player.blockPosition()).unwrapKey();
 
-        return biome.filter(GaiaConfig::canDisplayStars).map(biomeRegistryKey -> 0.5F).orElseGet(() -> world.getStarBrightness(par1));
+        return biome.filter(GaiaConfig::canDisplayStars).map(biomeRegistryKey -> 0.5F).orElse(par1);
     }
 }

@@ -8,13 +8,13 @@ import androsa.gaiadimension.registry.registration.ModParticles;
 import androsa.gaiadimension.registry.values.GaiaTags;
 import androsa.gaiadimension.world.GaiaTeleporter;
 import com.mojang.serialization.MapCodec;
-import net.minecraft.BlockUtil;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.util.BlockUtil;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityDimensions;
@@ -74,7 +74,7 @@ public class GaiaPortalBlock extends Block implements Portal {
 
     // This will check for creation conditions in the Overworld or Gaia
     private boolean canCreatePortalByWorld(Level world, BlockPos pos) {
-        if (world.dimension().location().equals(GaiaConfig.startDimRL)) {
+        if (world.dimension().identifier().equals(GaiaConfig.startDimRL)) {
             //Check if the portal needs to be checking
             if (GaiaConfig.portalCheck.get()) {
                 Optional<ResourceKey<Biome>> biome = world.getBiome(pos).unwrapKey();

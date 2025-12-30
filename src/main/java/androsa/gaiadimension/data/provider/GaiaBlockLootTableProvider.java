@@ -2,7 +2,9 @@ package androsa.gaiadimension.data.provider;
 
 import androsa.gaiadimension.block.CurtainBlock;
 import androsa.gaiadimension.registry.registration.ModItems;
-import net.minecraft.advancements.critereon.*;
+import net.minecraft.advancements.criterion.BlockPredicate;
+import net.minecraft.advancements.criterion.LocationPredicate;
+import net.minecraft.advancements.criterion.StatePropertiesPredicate;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.component.DataComponents;

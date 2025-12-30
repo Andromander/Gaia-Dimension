@@ -5,12 +5,12 @@ import androsa.gaiadimension.block.menu.AugmenterMenu;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.ItemCombinerScreen;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.entity.player.Inventory;
 
 public class AugmenterScreen extends ItemCombinerScreen<AugmenterMenu> {
 
-    private static final ResourceLocation LOCATION = ResourceLocation.fromNamespaceAndPath(GaiaDimensionMod.MODID, "textures/gui/augmenter.png");
+    private static final Identifier LOCATION = Identifier.fromNamespaceAndPath(GaiaDimensionMod.MODID, "textures/gui/augmenter.png");
 
     public AugmenterScreen(AugmenterMenu menu, Inventory inventory, Component component) {
         super(menu, inventory, component, LOCATION);

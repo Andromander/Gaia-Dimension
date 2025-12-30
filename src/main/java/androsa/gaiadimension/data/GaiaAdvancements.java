@@ -9,13 +9,15 @@ import androsa.gaiadimension.registry.registration.ModEntities;
 import androsa.gaiadimension.registry.registration.ModItems;
 import androsa.gaiadimension.registry.registration.ModStructures;
 import net.minecraft.advancements.*;
-import net.minecraft.advancements.critereon.*;
+import net.minecraft.advancements.criterion.ChangeDimensionTrigger;
+import net.minecraft.advancements.criterion.EntityPredicate;
+import net.minecraft.advancements.criterion.KilledTrigger;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.advancements.AdvancementSubProvider;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.entity.EntityType;
 
 import java.util.List;
@@ -38,7 +40,7 @@ public class GaiaAdvancements extends GaiaAdvancementProvider {
 
             //Enter Gaia
             AdvancementHolder root = Advancement.Builder.advancement()
-                    .display(ModBlocks.keystone_block.get(), title("root"), description("root"), ResourceLocation.fromNamespaceAndPath(GaiaDimensionMod.MODID, "textures/block/gaia_stone.png"), AdvancementType.TASK, true, true, false)
+                    .display(ModBlocks.keystone_block.get(), title("root"), description("root"), Identifier.fromNamespaceAndPath(GaiaDimensionMod.MODID, "textures/block/gaia_stone.png"), AdvancementType.TASK, true, true, false)
                     .addCriterion("entered_gaia", ChangeDimensionTrigger.TriggerInstance.changedDimensionTo(GaiaDimensions.gaia_world))
                     .save(consumer, loc("root"));
             //Collect a Gemstone

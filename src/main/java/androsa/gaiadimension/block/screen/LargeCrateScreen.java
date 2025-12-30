@@ -6,12 +6,12 @@ import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.entity.player.Inventory;
 
 public class LargeCrateScreen extends AbstractContainerScreen<LargeCrateMenu> {
 
-    private static final ResourceLocation textureLoc = ResourceLocation.fromNamespaceAndPath(GaiaDimensionMod.MODID, "textures/gui/large_crate.png");
+    private static final Identifier textureLoc = Identifier.fromNamespaceAndPath(GaiaDimensionMod.MODID, "textures/gui/large_crate.png");
 
     public LargeCrateScreen(LargeCrateMenu container, Inventory playerInventoryIn, Component component) {
         super(container, playerInventoryIn, component);

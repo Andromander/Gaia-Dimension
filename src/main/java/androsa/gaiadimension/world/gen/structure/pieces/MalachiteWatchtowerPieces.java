@@ -9,7 +9,7 @@ import androsa.gaiadimension.world.gen.structure.processor.MalachiteDegradeProce
 import com.google.common.collect.ImmutableMap;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.Blocks;
@@ -27,26 +27,26 @@ import java.util.List;
 
 public class MalachiteWatchtowerPieces {
 
-    private static final ResourceLocation foyer = makePiece("foyer");
-    private static final ResourceLocation floor1_1 = makePiece("floor1_1");
-    private static final ResourceLocation floor1_2 = makePiece("floor1_2");
-    private static final ResourceLocation floor1_3 = makePiece("floor1_3");
-    private static final ResourceLocation floor_random1 = makePiece("floor_random1");
-    private static final ResourceLocation floor_random2 = makePiece("floor_random2");
-    private static final ResourceLocation floor_random3 = makePiece("floor_random3");
-    private static final ResourceLocation floor_random4 = makePiece("floor_random4");
-    private static final ResourceLocation floor_random5 = makePiece("floor_random5");
-    private static final ResourceLocation floor_random1_m = makePiece("floor_random1_m");
-    private static final ResourceLocation floor_random2_m = makePiece("floor_random2_m");
-    private static final ResourceLocation floor_random3_m = makePiece("floor_random3_m");
-    private static final ResourceLocation floor_random4_m = makePiece("floor_random4_m");
-    private static final ResourceLocation floor_random5_m = makePiece("floor_random5_m");
-    private static final ResourceLocation roof = makePiece("roof");
-    private static final ResourceLocation roof_m = makePiece("roof_m");
+    private static final Identifier foyer = makePiece("foyer");
+    private static final Identifier floor1_1 = makePiece("floor1_1");
+    private static final Identifier floor1_2 = makePiece("floor1_2");
+    private static final Identifier floor1_3 = makePiece("floor1_3");
+    private static final Identifier floor_random1 = makePiece("floor_random1");
+    private static final Identifier floor_random2 = makePiece("floor_random2");
+    private static final Identifier floor_random3 = makePiece("floor_random3");
+    private static final Identifier floor_random4 = makePiece("floor_random4");
+    private static final Identifier floor_random5 = makePiece("floor_random5");
+    private static final Identifier floor_random1_m = makePiece("floor_random1_m");
+    private static final Identifier floor_random2_m = makePiece("floor_random2_m");
+    private static final Identifier floor_random3_m = makePiece("floor_random3_m");
+    private static final Identifier floor_random4_m = makePiece("floor_random4_m");
+    private static final Identifier floor_random5_m = makePiece("floor_random5_m");
+    private static final Identifier roof = makePiece("roof");
+    private static final Identifier roof_m = makePiece("roof_m");
 
-    private static final ResourceLocation[] first_floors = new ResourceLocation[]{floor1_1, floor1_2, floor1_3};
-    private static final ResourceLocation[] next_floors = new ResourceLocation[]{floor_random1, floor_random2, floor_random3, floor_random4, floor_random5};
-    private static final ResourceLocation[] next_floors_m = new ResourceLocation[]{floor_random1_m, floor_random2_m, floor_random3_m, floor_random4_m, floor_random5_m};
+    private static final Identifier[] first_floors = new Identifier[]{floor1_1, floor1_2, floor1_3};
+    private static final Identifier[] next_floors = new Identifier[]{floor_random1, floor_random2, floor_random3, floor_random4, floor_random5};
+    private static final Identifier[] next_floors_m = new Identifier[]{floor_random1_m, floor_random2_m, floor_random3_m, floor_random4_m, floor_random5_m};
 
     private static final BlockPos baseCenter = new BlockPos(15, 15, 15);
     private static final BlockPos f1Center = new BlockPos(12, 11, 12);
@@ -76,7 +76,7 @@ public class MalachiteWatchtowerPieces {
             Rotation.COUNTERCLOCKWISE_90, offsetCC90Small
     );
 
-    protected static final ImmutableMap<ResourceLocation, BlockPos> PIVOTS = ImmutableMap.<ResourceLocation, BlockPos>builder()
+    protected static final ImmutableMap<Identifier, BlockPos> PIVOTS = ImmutableMap.<Identifier, BlockPos>builder()
             .put(foyer, baseCenter)
             .put(floor1_1, f1Center).put(floor1_2, f1Center).put(floor1_3, f1Center)
             .put(floor_random1, f1Center).put(floor_random2, f1Center).put(floor_random3, f1Center).put(floor_random4, f1Center).put(floor_random5, f1Center)
@@ -110,12 +110,12 @@ public class MalachiteWatchtowerPieces {
         }
     }
 
-    public static ResourceLocation makePiece(String part) {
-        return ResourceLocation.fromNamespaceAndPath(GaiaDimensionMod.MODID, "watchtower/" + part);
+    public static Identifier makePiece(String part) {
+        return Identifier.fromNamespaceAndPath(GaiaDimensionMod.MODID, "watchtower/" + part);
     }
 
     public static class Piece extends TemplateStructurePiece {
-        public Piece(StructureTemplateManager manager, ResourceLocation pieceloc, BlockPos pos, Rotation rot, int offset) {
+        public Piece(StructureTemplateManager manager, Identifier pieceloc, BlockPos pos, Rotation rot, int offset) {
             super(ModStructures.MAWA.get(), 0, manager, pieceloc, pieceloc.toString(), loadTemplate(rot, pieceloc), loadPosition(pos, offset));
         }
 
@@ -124,7 +124,7 @@ public class MalachiteWatchtowerPieces {
                     loadTemplate(nbt.read("Rot", Rotation.LEGACY_CODEC).orElseThrow(), rl));
         }
 
-        private static StructurePlaceSettings loadTemplate(Rotation rotation, ResourceLocation pivot) {
+        private static StructurePlaceSettings loadTemplate(Rotation rotation, Identifier pivot) {
             return (new StructurePlaceSettings())
                     .setRotation(rotation)
                     .setMirror(Mirror.NONE)

@@ -15,7 +15,7 @@ import net.minecraft.client.renderer.BiomeColors;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.chunk.ChunkSectionLayer;
 import net.minecraft.core.BlockPos;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.util.Mth;
 import net.minecraft.world.level.BlockAndTintGetter;
 import net.minecraft.world.level.material.Fluid;
@@ -127,8 +127,8 @@ public class ClientEvents {
     }
 
     @SubscribeEvent
-    public static void registerDimensionEffects(RegisterDimensionSpecialEffectsEvent event) {
-        event.register(ResourceLocation.fromNamespaceAndPath(GaiaDimensionMod.MODID, "gaia"), new GaiaDimensionRenderInfo());
+    public static void registerDimensionEffects(RegisterCustomEnvironmentEffectRendererEvent event) {
+        event.registerSkyboxRenderer(Identifier.fromNamespaceAndPath(GaiaDimensionMod.MODID, "gaia"), new GaiaDimensionRenderInfo());
     }
 
     @SubscribeEvent
@@ -168,21 +168,21 @@ public class ClientEvents {
                 ModFluids.LIQUID_AURA.get());
     }
 
-    private static IClientFluidTypeExtensions makeFluidType(ResourceLocation stillpath, ResourceLocation flowingpath, boolean overlay, Supplier<Function<BlockPos, Integer>> color, Vector4f fog) {
+    private static IClientFluidTypeExtensions makeFluidType(Identifier stillpath, Identifier flowingpath, boolean overlay, Supplier<Function<BlockPos, Integer>> color, Vector4f fog) {
         return new IClientFluidTypeExtensions() {
             @Override
-            public ResourceLocation getStillTexture() {
+            public Identifier getStillTexture() {
                 return stillpath;
             }
 
             @Override
-            public ResourceLocation getFlowingTexture() {
+            public Identifier getFlowingTexture() {
                 return flowingpath;
             }
 
             @Override
-            public @Nullable ResourceLocation getOverlayTexture() {
-                return overlay ? ResourceLocation.withDefaultNamespace("textures/block/water_overlay") : null;
+            public @Nullable Identifier getOverlayTexture() {
+                return overlay ? Identifier.withDefaultNamespace("textures/block/water_overlay") : null;
             }
 
             @Override
@@ -199,8 +199,8 @@ public class ClientEvents {
 
     @SubscribeEvent
     public static void registerSelectProperties(RegisterSelectItemModelPropertyEvent e) {
-        e.register(ResourceLocation.fromNamespaceAndPath(GaiaDimensionMod.MODID, "element"), Element.TYPE);
-        e.register(ResourceLocation.fromNamespaceAndPath(GaiaDimensionMod.MODID, "behavior"), Behavior.TYPE);
-        e.register(ResourceLocation.fromNamespaceAndPath(GaiaDimensionMod.MODID, "stat"), Stat.TYPE);
+        e.register(Identifier.fromNamespaceAndPath(GaiaDimensionMod.MODID, "element"), Element.TYPE);
+        e.register(Identifier.fromNamespaceAndPath(GaiaDimensionMod.MODID, "behavior"), Behavior.TYPE);
+        e.register(Identifier.fromNamespaceAndPath(GaiaDimensionMod.MODID, "stat"), Stat.TYPE);
     }
 }

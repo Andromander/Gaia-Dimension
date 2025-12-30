@@ -3,12 +3,12 @@ package androsa.gaiadimension.entity.data;
 import androsa.gaiadimension.registry.registration.ModItems;
 import com.google.common.collect.Maps;
 import io.netty.buffer.ByteBuf;
-import net.minecraft.Util;
 import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.util.ByIdMap;
 import net.minecraft.util.RandomSource;
 import net.minecraft.util.StringRepresentable;
+import net.minecraft.util.Util;
 import net.minecraft.world.level.ItemLike;
 
 import java.util.Map;

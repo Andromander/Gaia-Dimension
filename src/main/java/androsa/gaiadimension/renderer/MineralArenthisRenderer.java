@@ -8,11 +8,12 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.MobRenderer;
-import net.minecraft.client.renderer.entity.state.LivingEntityRenderState;
 import net.minecraft.client.renderer.entity.state.SquidRenderState;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.util.Mth;
+import org.jspecify.annotations.NullMarked;
 
+@NullMarked
 public class MineralArenthisRenderer<T extends MineralArenthis, M extends MineralArenthisModel> extends MobRenderer<T, SquidRenderState, M> {
 
     public MineralArenthisRenderer(EntityRendererProvider.Context manager, M model, float shadowSize) {
@@ -21,7 +22,7 @@ public class MineralArenthisRenderer<T extends MineralArenthis, M extends Minera
     }
 
     @Override
-    public ResourceLocation getTextureLocation(SquidRenderState entity) {
+    public Identifier getTextureLocation(SquidRenderState entity) {
         return ModEntitiesRendering.makeTexture("mineral_arenthis", "");
     }
 

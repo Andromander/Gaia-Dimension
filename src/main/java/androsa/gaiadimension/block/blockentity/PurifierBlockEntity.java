@@ -139,7 +139,7 @@ public class PurifierBlockEntity extends BaseContainerBlockEntity implements Wor
         compound.putInt("CookTimeTotal", this.cookTimeTotal);
         ContainerHelper.saveAllItems(compound, this.purifyingItemStacks);
         CompoundTag usedRecipes = new CompoundTag();
-        this.recipeMap.forEach((key, i) -> usedRecipes.putInt(key.location().toString(), i));
+        this.recipeMap.forEach((key, i) -> usedRecipes.putInt(key.identifier().toString(), i));
         compound.store("RecipesUsed", CompoundTag.CODEC, usedRecipes);
     }
 

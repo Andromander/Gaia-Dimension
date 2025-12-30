@@ -5,9 +5,11 @@ import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.client.renderer.entity.state.LivingEntityRenderState;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.entity.Mob;
+import org.jspecify.annotations.NullMarked;
 
+@NullMarked
 public class BasicEntityRenderer<T extends Mob, M extends EntityModel<LivingEntityRenderState>> extends MobRenderer<T, LivingEntityRenderState, M> {
 
     private final String texture;
@@ -23,7 +25,7 @@ public class BasicEntityRenderer<T extends Mob, M extends EntityModel<LivingEnti
     }
 
     @Override
-    public ResourceLocation getTextureLocation(LivingEntityRenderState entity) {
+    public Identifier getTextureLocation(LivingEntityRenderState entity) {
         return ModEntitiesRendering.makeTexture(texture);
     }
 }

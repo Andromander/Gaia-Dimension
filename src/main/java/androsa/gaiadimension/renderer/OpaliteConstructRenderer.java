@@ -6,8 +6,10 @@ import androsa.gaiadimension.model.renderstate.OpaliteConstructRenderState;
 import androsa.gaiadimension.registry.helpers.ModEntitiesRendering;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.MobRenderer;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
+import org.jspecify.annotations.NullMarked;
 
+@NullMarked
 public class OpaliteConstructRenderer extends MobRenderer<OpaliteContruct, OpaliteConstructRenderState, OpaliteConstructModel> {
 
     public OpaliteConstructRenderer(EntityRendererProvider.Context context, OpaliteConstructModel model, float shadow) {
@@ -26,7 +28,7 @@ public class OpaliteConstructRenderer extends MobRenderer<OpaliteContruct, Opali
     }
 
     @Override
-    public ResourceLocation getTextureLocation(OpaliteConstructRenderState entity) {
+    public Identifier getTextureLocation(OpaliteConstructRenderState entity) {
         return ModEntitiesRendering.makeTexture("opalite_construct");
     }
 }

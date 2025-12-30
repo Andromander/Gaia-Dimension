@@ -6,8 +6,10 @@ import androsa.gaiadimension.model.renderstate.NomadicLagrahkRenderState;
 import androsa.gaiadimension.registry.helpers.ModEntitiesRendering;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.MobRenderer;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
+import org.jspecify.annotations.NullMarked;
 
+@NullMarked
 public class NomadicLagrahkRenderer<T extends NomadicLagrahk, M extends NomadicLagrahkModel> extends MobRenderer<T, NomadicLagrahkRenderState, M> {
 
     public NomadicLagrahkRenderer(EntityRendererProvider.Context manager, M model, float shadowSize) {
@@ -26,7 +28,7 @@ public class NomadicLagrahkRenderer<T extends NomadicLagrahk, M extends NomadicL
     }
 
     @Override
-    public ResourceLocation getTextureLocation(NomadicLagrahkRenderState entity) {
+    public Identifier getTextureLocation(NomadicLagrahkRenderState entity) {
         return ModEntitiesRendering.makeTexture("nomadic_lagrahk", entity.variant.getSerializedName());
     }
 }

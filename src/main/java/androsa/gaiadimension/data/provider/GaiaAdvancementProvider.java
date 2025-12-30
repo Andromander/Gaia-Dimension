@@ -2,9 +2,9 @@ package androsa.gaiadimension.data.provider;
 
 import androsa.gaiadimension.GaiaDimensionMod;
 import net.minecraft.advancements.Criterion;
-import net.minecraft.advancements.critereon.InventoryChangeTrigger;
-import net.minecraft.advancements.critereon.LocationPredicate;
-import net.minecraft.advancements.critereon.PlayerTrigger;
+import net.minecraft.advancements.criterion.InventoryChangeTrigger;
+import net.minecraft.advancements.criterion.LocationPredicate;
+import net.minecraft.advancements.criterion.PlayerTrigger;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.Registries;
@@ -13,8 +13,8 @@ import net.minecraft.data.advancements.AdvancementProvider;
 import net.minecraft.data.advancements.AdvancementSubProvider;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
+import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.levelgen.structure.Structure;
@@ -42,7 +42,7 @@ public class GaiaAdvancementProvider extends AdvancementProvider {
     }
 
     protected static String loc(String name) {
-        return ResourceLocation.fromNamespaceAndPath(GaiaDimensionMod.MODID, "gaia/" + name).toString();
+        return Identifier.fromNamespaceAndPath(GaiaDimensionMod.MODID, "gaia/" + name).toString();
     }
 
     protected static Criterion<?> biome(HolderLookup.Provider provider, ResourceKey<Biome> define) {

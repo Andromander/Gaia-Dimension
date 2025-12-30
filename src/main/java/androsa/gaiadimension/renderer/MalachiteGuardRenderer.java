@@ -10,8 +10,10 @@ import androsa.gaiadimension.renderer.layer.MalachiteGuardGlowLayer;
 import androsa.gaiadimension.renderer.layer.MalachiteResistLayer;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.MobRenderer;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
+import org.jspecify.annotations.NullMarked;
 
+@NullMarked
 public class MalachiteGuardRenderer<T extends MalachiteGuard> extends MobRenderer<T, MalachiteGuardRenderState, MalachiteGuardModel> {
 
     public MalachiteGuardRenderer(EntityRendererProvider.Context manager, MalachiteGuardModel model, float shadowSize) {
@@ -35,7 +37,7 @@ public class MalachiteGuardRenderer<T extends MalachiteGuard> extends MobRendere
     }
 
     @Override
-    public ResourceLocation getTextureLocation(MalachiteGuardRenderState entity) {
+    public Identifier getTextureLocation(MalachiteGuardRenderState entity) {
         return ModEntitiesRendering.makeTexture("malachite_guard", "");
     }
 

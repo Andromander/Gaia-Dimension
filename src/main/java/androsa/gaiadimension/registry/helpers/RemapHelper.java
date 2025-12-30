@@ -3,7 +3,7 @@ package androsa.gaiadimension.registry.helpers;
 import androsa.gaiadimension.GaiaDimensionMod;
 import androsa.gaiadimension.registry.registration.ModBlocks;
 import androsa.gaiadimension.registry.registration.ModItems;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
 public class RemapHelper {
@@ -92,11 +92,11 @@ public class RemapHelper {
     }
 
     private static void remapBlock(DeferredRegister.Blocks blockreg, DeferredRegister.Items itemreg, String old, String path) {
-        blockreg.addAlias(ResourceLocation.fromNamespaceAndPath(GaiaDimensionMod.MODID, old), ResourceLocation.fromNamespaceAndPath(GaiaDimensionMod.MODID, path));
+        blockreg.addAlias(Identifier.fromNamespaceAndPath(GaiaDimensionMod.MODID, old), Identifier.fromNamespaceAndPath(GaiaDimensionMod.MODID, path));
         remapItem(itemreg, old, path);
     }
 
     private static void remapItem(DeferredRegister.Items registry, String old, String path) {
-        registry.addAlias(ResourceLocation.fromNamespaceAndPath(GaiaDimensionMod.MODID, old), ResourceLocation.fromNamespaceAndPath(GaiaDimensionMod.MODID, path));
+        registry.addAlias(Identifier.fromNamespaceAndPath(GaiaDimensionMod.MODID, old), Identifier.fromNamespaceAndPath(GaiaDimensionMod.MODID, path));
     }
 }

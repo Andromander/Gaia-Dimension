@@ -5,8 +5,8 @@ import androsa.gaiadimension.registry.bootstrap.GaiaArmorMaterials;
 import net.minecraft.client.data.models.EquipmentAssetProvider;
 import net.minecraft.client.resources.model.EquipmentClientInfo;
 import net.minecraft.data.PackOutput;
+import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.equipment.EquipmentAsset;
 
 import java.util.function.BiConsumer;
@@ -38,6 +38,6 @@ public class GaiaEquipmentAssets extends EquipmentAssetProvider {
     }
 
     public static EquipmentClientInfo makeBasic(String name) {
-        return EquipmentClientInfo.builder().addHumanoidLayers(ResourceLocation.fromNamespaceAndPath(GaiaDimensionMod.MODID, name)).build();
+        return EquipmentClientInfo.builder().addHumanoidLayers(Identifier.fromNamespaceAndPath(GaiaDimensionMod.MODID, name)).build();
     }
 }

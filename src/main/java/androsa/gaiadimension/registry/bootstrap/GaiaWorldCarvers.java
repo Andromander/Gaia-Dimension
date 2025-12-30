@@ -7,8 +7,8 @@ import androsa.gaiadimension.registry.values.GaiaBiomeFeatures;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;
+import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.valueproviders.ConstantFloat;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.levelgen.VerticalAnchor;
@@ -23,7 +23,7 @@ public final class GaiaWorldCarvers extends GaiaBiomeFeatures {
     public static final ResourceKey<ConfiguredWorldCarver<?>> CHASMS = makeKey("chasms");
 
     private static ResourceKey<ConfiguredWorldCarver<?>> makeKey(String name) {
-        return ResourceKey.create(Registries.CONFIGURED_CARVER, ResourceLocation.fromNamespaceAndPath(GaiaDimensionMod.MODID, name));
+        return ResourceKey.create(Registries.CONFIGURED_CARVER, Identifier.fromNamespaceAndPath(GaiaDimensionMod.MODID, name));
     }
 
     public static void init(BootstrapContext<ConfiguredWorldCarver<?>> context) {

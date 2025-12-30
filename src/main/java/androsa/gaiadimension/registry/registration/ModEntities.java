@@ -9,8 +9,8 @@ import androsa.gaiadimension.entity.projectile.*;
 import androsa.gaiadimension.item.tools.GaiaStaffItem;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.syncher.EntityDataSerializer;
+import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.monster.Monster;
@@ -22,9 +22,11 @@ import net.neoforged.neoforge.event.entity.RegisterSpawnPlacementsEvent;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.neoforged.neoforge.registries.NeoForgeRegistries;
+import org.jspecify.annotations.NullMarked;
 
 import java.util.function.Supplier;
 
+@NullMarked
 @EventBusSubscriber(modid = GaiaDimensionMod.MODID)
 public class ModEntities {
 
@@ -97,7 +99,7 @@ public class ModEntities {
             () -> EntityDataSerializer.forValueType(GaiaStaffItem.Stat.STREAM_CODEC));
 
     public static <E extends Entity> DeferredHolder<EntityType<?>, EntityType<E>> registerProjectile(String name, EntityType.EntityFactory<E> entity, boolean updates, int range, int interval, float width, float height, boolean fireproof) {
-        ResourceKey<EntityType<?>> key = ResourceKey.create(Registries.ENTITY_TYPE, ResourceLocation.fromNamespaceAndPath(GaiaDimensionMod.MODID, name));
+        ResourceKey<EntityType<?>> key = ResourceKey.create(Registries.ENTITY_TYPE, Identifier.fromNamespaceAndPath(GaiaDimensionMod.MODID, name));
         EntityType.Builder<E> entitytype = makeBuilder(entity, MobCategory.MISC, width, height)
                 .setShouldReceiveVelocityUpdates(updates)
                 .setTrackingRange(range)
@@ -112,7 +114,7 @@ public class ModEntities {
     }
 
     public static <E extends Entity> DeferredHolder<EntityType<?>, EntityType<E>> registerEntity(String name, EntityType.EntityFactory<E> entity, MobCategory classification, float width, float height, float eye, boolean fireproof) {
-        ResourceKey<EntityType<?>> key = ResourceKey.create(Registries.ENTITY_TYPE, ResourceLocation.fromNamespaceAndPath(GaiaDimensionMod.MODID, name));
+        ResourceKey<EntityType<?>> key = ResourceKey.create(Registries.ENTITY_TYPE, Identifier.fromNamespaceAndPath(GaiaDimensionMod.MODID, name));
         EntityType.Builder<E> type = makeBuilder(entity, classification, width, height);
         if (fireproof) type.fireImmune();
         if (eye > 0.0F) type.eyeHeight(eye);

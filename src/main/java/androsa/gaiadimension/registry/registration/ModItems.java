@@ -10,8 +10,8 @@ import androsa.gaiadimension.registry.values.GaiaToolMaterials;
 import net.minecraft.core.Direction;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.food.FoodProperties;
@@ -26,6 +26,7 @@ import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.material.Fluids;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
+import org.jspecify.annotations.NullMarked;
 
 import javax.annotation.Nullable;
 import java.util.function.Function;
@@ -33,6 +34,7 @@ import java.util.function.Supplier;
 
 import static net.minecraft.world.item.equipment.ArmorType.*;
 
+@NullMarked
 public class ModItems {
     public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(GaiaDimensionMod.MODID);
 
@@ -327,7 +329,7 @@ public class ModItems {
         return register(name, props -> new BasicGaiaArmorItem(material, slot, props), props());
     }
 
-    private static DeferredItem<Item> registerKit(String name, ConstructKitItem.Kit kit, ConstructKitItem.Color color) {
+    private static DeferredItem<Item> registerKit(String name, ConstructKitItem.Kit kit, @Nullable ConstructKitItem.Color color) {
         Function<Item.Properties, ? extends Item> function = color != null ? props -> new ConstructKitItem(props, kit, color) : props -> new ConstructKitItem(props, kit);
         Item.Properties props = props();
         if (kit != ConstructKitItem.Kit.BLANK) props.stacksTo(1);
@@ -371,6 +373,6 @@ public class ModItems {
     }
 
     private static Item.Properties itemProps(String name, Item.Properties props) {
-        return props.setId(ResourceKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(GaiaDimensionMod.MODID, name)));
+        return props.setId(ResourceKey.create(Registries.ITEM, Identifier.fromNamespaceAndPath(GaiaDimensionMod.MODID, name)));
     }
 }

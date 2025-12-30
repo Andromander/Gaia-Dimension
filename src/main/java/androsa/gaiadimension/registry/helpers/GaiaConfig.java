@@ -2,8 +2,8 @@ package androsa.gaiadimension.registry.helpers;
 
 import androsa.gaiadimension.GaiaDimensionMod;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.biome.Biome;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -23,7 +23,7 @@ public class GaiaConfig {
     private static final String config = GaiaDimensionMod.MODID + ".config.";
 
     public static ConfigValue<List<? extends String>> starsInSky;
-    public static ResourceLocation startDimRL;
+    public static Identifier startDimRL;
     public static ResourceKey<Level> startDimRK;
 
     public static List<? extends String> starBiomes = Collections.singletonList("gaiadimension:purple_agate_swamp");
@@ -59,14 +59,14 @@ public class GaiaConfig {
     }
 
     public static boolean canDisplayStars(ResourceKey<Biome> define) {
-        return starsInSky.get().contains(define.location().toString());
+        return starsInSky.get().contains(define.identifier().toString());
     }
 
     public static void checkDimension() {
-        ResourceLocation rl = ResourceLocation.tryParse(startDimension.get());
+        Identifier rl = Identifier.tryParse(startDimension.get());
         if (rl == null) {
-            GaiaDimensionMod.LOGGER.warn("Could not create a ResourceLocation with the Start Dimension! Is there a typo, or is there an incorrect character?");
-            rl = Level.OVERWORLD.location();
+            GaiaDimensionMod.LOGGER.warn("Could not create an Identifier with the Start Dimension! Is there a typo, or is there an incorrect character?");
+            rl = Level.OVERWORLD.identifier();
         }
         startDimRL = rl;
         startDimRK = ResourceKey.create(Registries.DIMENSION, startDimRL);

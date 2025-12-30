@@ -147,7 +147,7 @@ public class RestructurerBlockEntity extends BaseContainerBlockEntity implements
         compound.putInt("CookTimeTotal", (short)this.cookTimeTotal);
         ContainerHelper.saveAllItems(compound, this.restructurerItemStacks);
         CompoundTag usedRecipes = new CompoundTag();
-        this.recipeMap.forEach((key, i) -> usedRecipes.putInt(key.location().toString(), i));
+        this.recipeMap.forEach((key, i) -> usedRecipes.putInt(key.identifier().toString(), i));
         compound.store("RecipesUsed", CompoundTag.CODEC, usedRecipes);
     }
 

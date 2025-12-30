@@ -9,7 +9,7 @@ import androsa.gaiadimension.registry.registration.ModEntities;
 import androsa.gaiadimension.registry.registration.ModItems;
 import androsa.gaiadimension.registry.values.GaiaBuiltinTables;
 import androsa.gaiadimension.registry.values.GaiaChestTables;
-import net.minecraft.advancements.critereon.EntityPredicate;
+import net.minecraft.advancements.criterion.EntityPredicate;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.WritableRegistry;
 import net.minecraft.data.PackOutput;

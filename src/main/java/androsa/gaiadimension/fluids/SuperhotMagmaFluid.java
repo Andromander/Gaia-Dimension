@@ -9,7 +9,6 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.level.GameRules;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Blocks;
@@ -56,7 +55,7 @@ public abstract class SuperhotMagmaFluid extends BaseFlowingFluid {
 
     @Override
     public void randomTick(ServerLevel world, BlockPos pos, FluidState state, RandomSource random) {
-        if (world.getGameRules().getBoolean(GameRules.RULE_DOFIRETICK)) {
+        if (world.canSpreadFireAround(pos)) {
             int i = random.nextInt(3);
             if (i > 0) {
                 BlockPos blockpos = pos;

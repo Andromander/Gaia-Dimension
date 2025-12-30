@@ -4,7 +4,7 @@ import androsa.gaiadimension.block.blockentity.LargeCrateBlockEntity;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.Container;
 import net.minecraft.world.Containers;
@@ -28,7 +28,7 @@ import java.util.List;
 public class LargeCrateBlock extends Block implements EntityBlock {
 
     public static final MapCodec<? extends LargeCrateBlock> CODEC = simpleCodec(LargeCrateBlock::new);
-    public static final ResourceLocation NAME = ResourceLocation.withDefaultNamespace("contents");
+    public static final Identifier NAME = Identifier.withDefaultNamespace("contents");
 
     public LargeCrateBlock(Properties props) {
         super(props);

@@ -9,7 +9,7 @@ import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.gui.screens.recipebook.RecipeBookComponent;
 import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.entity.player.Inventory;
 
 import java.util.List;
@@ -17,7 +17,7 @@ import java.util.List;
 //TODO: recipe book?
 public class RestructurerScreen extends AbstractContainerScreen<RestructurerMenu> {
 
-    private static final ResourceLocation textureLoc = ResourceLocation.fromNamespaceAndPath(GaiaDimensionMod.MODID, "textures/gui/glitter_furnace.png");
+    private static final Identifier textureLoc = Identifier.fromNamespaceAndPath(GaiaDimensionMod.MODID, "textures/gui/glitter_furnace.png");
     private static final List<RecipeBookComponent.TabInfo> TABS = List.of(
             new RecipeBookComponent.TabInfo(ModItems.stibnite.get(), ModRecipes.RESTRUCTURING_CATEGORY.get()));
 

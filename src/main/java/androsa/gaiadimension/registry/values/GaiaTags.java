@@ -2,7 +2,7 @@ package androsa.gaiadimension.registry.values;
 
 import androsa.gaiadimension.GaiaDimensionMod;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.tags.*;
 import net.minecraft.world.damagesource.DamageType;
 import net.minecraft.world.entity.EntityType;
@@ -10,29 +10,30 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.material.Fluid;
+import net.minecraft.world.timeline.Timeline;
 
 public class GaiaTags {
 
     private static final String ID = GaiaDimensionMod.MODID;
 
     private static TagKey<Item> tagItem(String name) {
-        return ItemTags.create(ResourceLocation.fromNamespaceAndPath(ID, name));
+        return ItemTags.create(Identifier.fromNamespaceAndPath(ID, name));
     }
 
     private static TagKey<Item> tagItemCommon(String name) {
-        return ItemTags.create(ResourceLocation.fromNamespaceAndPath("c", name));
+        return ItemTags.create(Identifier.fromNamespaceAndPath("c", name));
     }
 
     private static TagKey<Block> tagBlock(String name) {
-        return BlockTags.create(ResourceLocation.fromNamespaceAndPath(ID, name));
+        return BlockTags.create(Identifier.fromNamespaceAndPath(ID, name));
     }
 
     private static TagKey<Block> tagBlockCommon(String name) {
-        return BlockTags.create(ResourceLocation.fromNamespaceAndPath("c", name));
+        return BlockTags.create(Identifier.fromNamespaceAndPath("c", name));
     }
 
     private static TagKey<Fluid> tagFluid(String name) {
-        return FluidTags.create(ResourceLocation.fromNamespaceAndPath(ID, name));
+        return FluidTags.create(Identifier.fromNamespaceAndPath(ID, name));
     }
 
     private static TagKey<Biome> tagStructure(String name) {
@@ -40,15 +41,19 @@ public class GaiaTags {
     }
 
     private static TagKey<Biome> tagBiome(String name) {
-        return TagKey.create(Registries.BIOME, ResourceLocation.fromNamespaceAndPath(ID, name));
+        return TagKey.create(Registries.BIOME, Identifier.fromNamespaceAndPath(ID, name));
     }
 
     private static TagKey<EntityType<?>> tagEntity(String name) {
-        return TagKey.create(Registries.ENTITY_TYPE, ResourceLocation.fromNamespaceAndPath(GaiaDimensionMod.MODID, name));
+        return TagKey.create(Registries.ENTITY_TYPE, Identifier.fromNamespaceAndPath(GaiaDimensionMod.MODID, name));
     }
 
     private static TagKey<DamageType> tagDamage(String name) {
-        return TagKey.create(Registries.DAMAGE_TYPE, ResourceLocation.fromNamespaceAndPath("c", name));
+        return TagKey.create(Registries.DAMAGE_TYPE, Identifier.fromNamespaceAndPath("c", name));
+    }
+
+    private static TagKey<Timeline> tagTimeline(String name) {
+        return TagKey.create(Registries.TIMELINE, Identifier.fromNamespaceAndPath(GaiaDimensionMod.MODID, name));
     }
 
     public static class Items {
@@ -271,5 +276,9 @@ public class GaiaTags {
 
     public static class Damage {
         public static final TagKey<DamageType> IS_ELECTRIC = tagDamage("is_electric");
+    }
+
+    public static class Timelines {
+        public static final TagKey<Timeline> IN_GAIA = tagTimeline("in_gaia");
     }
 }

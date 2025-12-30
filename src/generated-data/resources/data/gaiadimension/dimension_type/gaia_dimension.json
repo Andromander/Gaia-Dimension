@@ -1,12 +1,32 @@
 {
   "ambient_light": 0.0,
-  "bed_works": true,
-  "cloud_height": 255,
+  "attributes": {
+    "minecraft:gameplay/bed_rule": {
+      "can_set_spawn": "always",
+      "can_sleep": "when_dark",
+      "error_message": {
+        "translate": "block.minecraft.bed.no_sleep"
+      }
+    },
+    "minecraft:gameplay/can_pillager_patrol_spawn": false,
+    "minecraft:gameplay/can_start_raid": false,
+    "minecraft:gameplay/fast_lava": true,
+    "minecraft:gameplay/monsters_burn": true,
+    "minecraft:gameplay/nether_portal_spawns_piglin": false,
+    "minecraft:gameplay/piglins_zombify": true,
+    "minecraft:gameplay/respawn_anchor_works": true,
+    "minecraft:gameplay/water_evaporates": true,
+    "minecraft:visual/cloud_height": 255.0,
+    "minecraft:visual/fog_color": "#eab2e0",
+    "minecraft:visual/moon_angle": 270.0,
+    "minecraft:visual/moon_phase": "full_moon",
+    "minecraft:visual/sky_color": "#c69d58",
+    "minecraft:visual/sun_angle": 90.0,
+    "neoforge:custom_skybox": "gaiadimension:gaia"
+  },
   "coordinate_scale": 1.0,
-  "effects": "gaiadimension:gaia",
-  "fixed_time": 6000,
   "has_ceiling": false,
-  "has_raids": false,
+  "has_fixed_time": true,
   "has_skylight": true,
   "height": 320,
   "infiniburn": "#minecraft:infiniburn_overworld",
@@ -18,8 +38,5 @@
     "max_inclusive": 7,
     "min_inclusive": 0
   },
-  "natural": true,
-  "piglin_safe": false,
-  "respawn_anchor_works": true,
-  "ultrawarm": false
+  "timelines": "#gaiadimension:in_gaia"
 }

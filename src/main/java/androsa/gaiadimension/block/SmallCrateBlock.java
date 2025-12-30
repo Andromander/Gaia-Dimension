@@ -1,14 +1,10 @@
 package androsa.gaiadimension.block;
 
 import androsa.gaiadimension.block.blockentity.SmallCrateBlockEntity;
-import androsa.gaiadimension.registry.registration.ModBlockEntities;
 import com.mojang.serialization.MapCodec;
-import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.core.component.DataComponents;
-import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.Container;
 import net.minecraft.world.Containers;
@@ -16,12 +12,8 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.TooltipFlag;
-import net.minecraft.world.item.component.ItemContainerContents;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.EntityBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -36,7 +28,7 @@ import java.util.List;
 public class SmallCrateBlock extends Block implements EntityBlock {
 
     public static final MapCodec<SmallCrateBlock> CODEC = simpleCodec(SmallCrateBlock::new);
-    public static final ResourceLocation NAME = ResourceLocation.withDefaultNamespace("contents");
+    public static final Identifier NAME = Identifier.withDefaultNamespace("contents");
 
     public SmallCrateBlock(Properties props) {
         super(props);

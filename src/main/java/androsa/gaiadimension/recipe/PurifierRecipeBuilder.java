@@ -4,7 +4,7 @@ import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.AdvancementRequirements;
 import net.minecraft.advancements.AdvancementRewards;
 import net.minecraft.advancements.Criterion;
-import net.minecraft.advancements.critereon.RecipeUnlockedTrigger;
+import net.minecraft.advancements.criterion.RecipeUnlockedTrigger;
 import net.minecraft.data.recipes.RecipeBuilder;
 import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.resources.ResourceKey;
@@ -77,12 +77,12 @@ public class PurifierRecipeBuilder implements RecipeBuilder {
                 this.byproduct,
                 this.experience,
                 this.cookingTime);
-        consumer.accept(key, recipe, builder.build(key.location().withPrefix("recipes/purifying/")));
+        consumer.accept(key, recipe, builder.build(key.identifier().withPrefix("recipes/purifying/")));
     }
 
     private void validate(ResourceKey<Recipe<?>> location) {
         if (this.criteria.isEmpty()) {
-            throw new IllegalStateException("No way of obtaining recipe " + location.location());
+            throw new IllegalStateException("No way of obtaining recipe " + location.identifier());
         }
     }
 }

@@ -2,7 +2,7 @@ package androsa.gaiadimension.world.chunk;
 
 import androsa.gaiadimension.GaiaDimensionMod;
 import androsa.gaiadimension.registry.registration.ModBlocks;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.PositionalRandomFactory;
@@ -25,7 +25,7 @@ public class GaiaSurfaceSystem extends SurfaceSystem {
     public GaiaSurfaceSystem(RandomState random, BlockState defaultstone, int sealevel, PositionalRandomFactory posrandom) {
         super(random, defaultstone, sealevel, posrandom);
 
-        this.mookaiteBands = generateBands(posrandom.fromHashOf(ResourceLocation.fromNamespaceAndPath(GaiaDimensionMod.MODID, "mookaite_bands")));
+        this.mookaiteBands = generateBands(posrandom.fromHashOf(Identifier.fromNamespaceAndPath(GaiaDimensionMod.MODID, "mookaite_bands")));
     }
 
     @Override
