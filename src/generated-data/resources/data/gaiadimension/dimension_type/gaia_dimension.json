@@ -3,10 +3,7 @@
   "attributes": {
     "minecraft:gameplay/bed_rule": {
       "can_set_spawn": "always",
-      "can_sleep": "when_dark",
-      "error_message": {
-        "translate": "block.minecraft.bed.no_sleep"
-      }
+      "can_sleep": "never"
     },
     "minecraft:gameplay/can_pillager_patrol_spawn": false,
     "minecraft:gameplay/can_start_raid": false,

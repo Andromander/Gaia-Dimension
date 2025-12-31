@@ -28,6 +28,7 @@ import net.minecraft.world.timeline.Timeline;
 import net.neoforged.neoforge.common.world.NeoForgeEnvironmentAttributes;
 
 import java.util.List;
+import java.util.Optional;
 
 public class GaiaDimensions {
 
@@ -71,7 +72,7 @@ public class GaiaDimensions {
                 DimensionType.Skybox.OVERWORLD, //skybox
                 DimensionType.CardinalLightType.DEFAULT, //cardinalLightType
                 EnvironmentAttributeMap.builder() //attributes
-                        .set(EnvironmentAttributes.BED_RULE, BedRule.CAN_SLEEP_WHEN_DARK) //oh my god I can do more than this...
+                        .set(EnvironmentAttributes.BED_RULE, new BedRule(BedRule.Rule.NEVER, BedRule.Rule.ALWAYS, false, Optional.empty()))
                         .set(EnvironmentAttributes.CAN_PILLAGER_PATROL_SPAWN, false)
                         .set(EnvironmentAttributes.CAN_START_RAID, false)
                         .set(EnvironmentAttributes.CLOUD_HEIGHT, 255.0F)
@@ -97,7 +98,7 @@ public class GaiaDimensions {
     public static void initNoise(BootstrapContext<NoiseGeneratorSettings> context) {
         NoiseSettings noiseSettings = NoiseSettings.create(
                 -64,
-                128,
+                256,
                 1,
                 2);
         NoiseRouter noiseRouter = new NoiseRouter(
