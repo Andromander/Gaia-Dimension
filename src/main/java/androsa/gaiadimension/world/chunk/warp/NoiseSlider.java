@@ -17,7 +17,7 @@ public record NoiseSlider(double target, int size, int offset) {
             return density;
         } else {
             double slide = (y - (double)this.offset) / (double)this.size;
-            return Mth.clampedLerp(this.target, density, slide);
+            return Mth.clampedLerp(slide, this.target, density);
         }
     }
 }
