@@ -372,11 +372,11 @@ public class MookaiteConstruct extends PathfinderMob {
         }
 
         public boolean canUse() {
-            if (this.mob.level() instanceof ServerLevel server) {
-                this.lookAt = server.getEntity(this.mob.getOpaliteCompanion().getUUID());
+            if (this.mob.getOpaliteCompanion() != null) {
+                this.lookAt = this.mob.level().getEntity(this.mob.getOpaliteCompanion().getUUID());
             }
 
-            return this.mob.isConstructing() && this.mob.getOpaliteCompanion() != null;
+            return this.mob.isConstructing() && this.lookAt != null;
         }
 
         public boolean canContinueToUse() {
