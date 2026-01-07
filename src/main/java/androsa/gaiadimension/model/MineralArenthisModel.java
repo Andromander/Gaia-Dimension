@@ -7,7 +7,6 @@ import net.minecraft.client.model.geom.builders.CubeListBuilder;
 import net.minecraft.client.model.geom.builders.LayerDefinition;
 import net.minecraft.client.model.geom.builders.MeshDefinition;
 import net.minecraft.client.model.geom.builders.PartDefinition;
-import net.minecraft.client.renderer.entity.state.LivingEntityRenderState;
 import net.minecraft.client.renderer.entity.state.SquidRenderState;
 import net.minecraft.util.Mth;
 
@@ -22,6 +21,7 @@ public class MineralArenthisModel extends EntityModel<SquidRenderState> {
     public ModelPart tail;
     public ModelPart tailfin;
     public ModelPart[] tentacles = new ModelPart[10];
+    public ModelPart[] lowertents = new ModelPart[10];
 
     public MineralArenthisModel(ModelPart root) {
         super(root);
@@ -29,6 +29,7 @@ public class MineralArenthisModel extends EntityModel<SquidRenderState> {
         this.tail = body.getChild("tail");
         this.tailfin = tail.getChild("tail_fin");
         Arrays.setAll(this.tentacles, (num) -> root.getChild(getTentacleName(num)));
+        Arrays.setAll(this.lowertents, (num) -> tentacles[num].getChild(getTentacleName(num) + num));
     }
 
     public static LayerDefinition makeBodyLayer() {
@@ -69,13 +70,18 @@ public class MineralArenthisModel extends EntityModel<SquidRenderState> {
                 PartPose.offset(0.0F, 7.0F, 0.0F));
 
         CubeListBuilder tentaclecube = CubeListBuilder.create()
-                .texOffs(28, 23).addBox(-1.0F, 0.0F, -1.0F, 2, 30, 2);
+                .texOffs(28, 23).addBox(-1.0F, 0.0F, -1.0F, 2, 15, 2);
+        CubeListBuilder lowertentcube = CubeListBuilder.create()
+                .texOffs(99, 39).addBox(-1.0F, 0.0F, -1.0F, 2, 15, 2);
         for (int j = 0; j < 10; ++j) {
+            String tentaclename = getTentacleName(j);
+            String lowertentname = tentaclename + j;
             double d0 = (double)j * Math.PI * 2.0D / 10.0D;
             float f = (float)Math.cos(d0) * 8.0F;
             float f1 = (float)Math.sin(d0) * 8.0F;
             d0 = (double)j * Math.PI * -2.0D / 10.0D + (Math.PI / 2D);
-            root.addOrReplaceChild(getTentacleName(j), tentaclecube, PartPose.offsetAndRotation(f, 5.0F, f1, 0.0F, (float)d0, 0.0F));
+            PartDefinition tentacle = root.addOrReplaceChild(getTentacleName(j), tentaclecube, PartPose.offsetAndRotation(f, 5.0F, f1, 0.0F, (float)d0, 0.0F));
+            tentacle.addOrReplaceChild(lowertentname, lowertentcube, PartPose.offset(0.0F, 15.0F, 0.0F));
         }
 
         return LayerDefinition.create(mesh, 128, 80);
@@ -92,7 +98,11 @@ public class MineralArenthisModel extends EntityModel<SquidRenderState> {
         this.tailfin.xRot = Mth.sin(state.ageInTicks * (float)Math.PI * 0.025F) * 0.3F;
 
         for (ModelPart modelrenderer : this.tentacles) {
-            modelrenderer.xRot = state.tentacleAngle;
+            modelrenderer.xRot = state.tentacleAngle * 0.75F;
+        }
+
+        for (ModelPart modelrenderer: this.lowertents) {
+            modelrenderer.xRot = state.tentacleAngle * 0.5F;
         }
     }
 }
