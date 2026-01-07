@@ -42,7 +42,7 @@ public class MineralArenthisRenderer<T extends MineralArenthis, M extends Minera
     @Override
     protected void setupRotations(SquidRenderState entity, PoseStack matrixStack, float rotationPitch, float rotationYaw) {
         matrixStack.translate(0.0F, 0.5F, 0.0F);
-        matrixStack.mulPose(Axis.YP.rotationDegrees(180.0F - rotationYaw));
+        matrixStack.mulPose(Axis.YP.rotationDegrees(180.0F - rotationPitch));
         matrixStack.mulPose(Axis.XP.rotationDegrees(entity.xBodyRot));
         matrixStack.mulPose(Axis.YP.rotationDegrees(entity.zBodyRot));
         matrixStack.translate(0.0F, -1.2F, 0.0F);
