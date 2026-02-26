@@ -52,6 +52,9 @@
   "1.21.8": {
     "2.4.289": "For those looking to play the \"bleeding edge\" versions of Gaia Dimension, the 1.21.4 versions will not have the new content. All new content that was added during the 1.21.8 port was backported to only 1.21.1, with the exception of the Malachite Guard armour glitch, this has been redone due to code changes. Don't expect me to do more backports in the future.\n + New Spawn Egg textures. These textures are not \"unique\" to each entity. Sorry, but also not sorry.\n + Added tooltip hints for Magic Staff components. Hold Shift while hovering over a Magic Staff to learn more about it.\n • Log and Wood Stripping is now handled with a DataMap."
   },
+  "1.21.11": {
+    "2.5.298": "Gaia Dimension is now out for 1.21.11! It's been out long enough, 26.1 is going to be massive, so there is no time to waste.\n • Mineral Arenthis has received a new texture! It now looks a little more glassy, some minor flaws patched here and there.\n • Small remodelling work for the Mineral Arenthis. The tentacles are now in two segments, making it look much less stiff.\n • Contorted Naga has a new texture. More scales, more polish, same threatening gaze.\n • Fixed a rotation issue with Shallow Arenthis and Mineral Arenthis whenever they swam. They should look much less awkward."
+  },
 
   "promos": {
     "1.12.2-latest": "1.0.5",
