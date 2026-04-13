@@ -1,4 +1,4 @@
-// 26.1	2026-04-09T23:02:47.7432964	Advancements
+// 26.1	2026-04-13T15:07:35.7369263	Advancements
 868829ce026949e46694d4edd07ae7d59cbd4d99 data/gaiadimension/advancement/gaia/all_malachite_gear.json
 a5114d72c8c4ac533ba5bcd651edbfd4fead57ab data/gaiadimension/advancement/gaia/collect_gemstone.json
 585fed28481d2396360786a51b193b818d67d842 data/gaiadimension/advancement/gaia/explore_gaia.json
@@ -11,5 +11,5 @@ e8f5bd007aa1b10a7596240fbb90578f672cf83d data/gaiadimension/advancement/gaia/fin
 410c0b5e03fb735ca4953dffb0bbbd63042c8ebd data/gaiadimension/advancement/gaia/get_tool.json
 10ed423e096ead1935f1fddd77f6b1a3ee1e1d97 data/gaiadimension/advancement/gaia/mine_all_gemstones.json
 3fad7d2e30185c421e2cecb88ea4a0f7f06c3d64 data/gaiadimension/advancement/gaia/restructure_gemstone.json
-bd32a581503a55838af7e623f6b82a83aa9178dd data/gaiadimension/advancement/gaia/root.json
+49cd51858bff6c65dcbbee26e21759f5d7169b0b data/gaiadimension/advancement/gaia/root.json
 dbb45627aef7b84394b5b82baf2b950c8e97172e data/gaiadimension/advancement/gaia/slay_malachite_guard.json

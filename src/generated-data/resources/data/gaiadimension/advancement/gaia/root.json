@@ -8,7 +8,7 @@
     }
   },
   "display": {
-    "background": "gaiadimension:textures/block/gaia_stone.png",
+    "background": "gaiadimension:block/gaia_stone",
     "description": {
       "translate": "advancements.gaia.root.description"
     },

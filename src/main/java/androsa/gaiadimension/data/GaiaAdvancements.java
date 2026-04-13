@@ -40,7 +40,7 @@ public class GaiaAdvancements extends GaiaAdvancementProvider {
 
             //Enter Gaia
             AdvancementHolder root = Advancement.Builder.advancement()
-                    .display(ModBlocks.keystone_block.get(), title("root"), description("root"), Identifier.fromNamespaceAndPath(GaiaDimensionMod.MODID, "textures/block/gaia_stone.png"), AdvancementType.TASK, true, true, false)
+                    .display(ModBlocks.keystone_block.get(), title("root"), description("root"), Identifier.fromNamespaceAndPath(GaiaDimensionMod.MODID, "block/gaia_stone"), AdvancementType.TASK, true, true, false)
                     .addCriterion("entered_gaia", ChangeDimensionTrigger.TriggerInstance.changedDimensionTo(GaiaDimensions.gaia_world))
                     .save(consumer, loc("root"));
             //Collect a Gemstone
