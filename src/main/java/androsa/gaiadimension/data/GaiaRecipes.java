@@ -1,22 +1,16 @@
 package androsa.gaiadimension.data;
 
 import androsa.gaiadimension.data.provider.GaiaRecipeProvider;
-import androsa.gaiadimension.item.ConstructKitItem;
 import androsa.gaiadimension.registry.registration.ModBlocks;
-import androsa.gaiadimension.registry.registration.ModDataComponents;
 import androsa.gaiadimension.registry.registration.ModItems;
 import androsa.gaiadimension.registry.values.GaiaTags;
-import net.minecraft.core.HolderGetter;
 import net.minecraft.core.HolderLookup;
-import net.minecraft.core.registries.Registries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
 import net.minecraft.tags.ItemTags;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.CookingBookCategory;
 import net.minecraft.world.item.crafting.Ingredient;
-import net.neoforged.neoforge.registries.DeferredItem;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -537,43 +531,43 @@ public class GaiaRecipes extends GaiaRecipeProvider {
                 .save(this.output);
 
 
-        smeltingRecipe(ModItems.blue_opal.get(), ModBlocks.blue_opal_ore, 0.3F).save(this.output, locSmelt("blue_opal"));
-        smeltingRecipe(ModItems.celestine.get(), ModBlocks.celestine_ore, 1.5F).save(this.output, locSmelt("celestine"));
-        smeltingRecipe(ModBlocks.fire_agate_sapling.get(), ModBlocks.burnt_sapling, 0.1F).save(this.output, locSmelt("fire_agate_sapling"));
-        SimpleCookingRecipeBuilder.smelting(Ingredient.of(ModBlocks.pink_agate_sapling.get(), ModBlocks.blue_agate_sapling.get(), ModBlocks.green_agate_sapling.get(), ModBlocks.purple_agate_sapling.get()), RecipeCategory.DECORATIONS, ModBlocks.burnt_sapling.get(), 0.1F, 200)
+        smeltingRecipe(ModItems.blue_opal.get(), CookingBookCategory.MISC, ModBlocks.blue_opal_ore, 0.3F).save(this.output, locSmelt("blue_opal"));
+        smeltingRecipe(ModItems.celestine.get(), CookingBookCategory.MISC, ModBlocks.celestine_ore, 1.5F).save(this.output, locSmelt("celestine"));
+        smeltingRecipe(ModBlocks.fire_agate_sapling.get(), CookingBookCategory.BLOCKS, ModBlocks.burnt_sapling, 0.1F).save(this.output, locSmelt("fire_agate_sapling"));
+        SimpleCookingRecipeBuilder.smelting(Ingredient.of(ModBlocks.pink_agate_sapling.get(), ModBlocks.blue_agate_sapling.get(), ModBlocks.green_agate_sapling.get(), ModBlocks.purple_agate_sapling.get()), RecipeCategory.DECORATIONS, CookingBookCategory.BLOCKS, ModBlocks.burnt_sapling.get(), 0.1F, 200)
                 .unlockedBy("has_sapling", has(ModBlocks.pink_agate_sapling.get()))
                 .save(this.output, locSmelt("burnt_agate_sapling"));
-        smeltingRecipe(ModItems.cinnabar.get(), ModBlocks.cinnabar_ore, 0.3F).save(this.output, locSmelt("cinnabar"));
-        smeltingRecipe(ModItems.cloudy_shard.get(), ModItems.fine_dust, 0.1F).save(this.output, locSmelt("cloudy_shard"));
-        smeltingRecipe(ModItems.cooked_luggeroth_chop.get(), ModItems.luggeroth_chop, 0.2F).save(this.output, locSmelt("cooked_luggeroth_chop"));
-        SimpleCookingRecipeBuilder.smelting(Ingredient.of(Items.LAPIS_LAZULI), RecipeCategory.MISC, ModItems.crystallized_lapis_lazuli.get(), 0.25F, 200)
+        smeltingRecipe(ModItems.cinnabar.get(), CookingBookCategory.MISC, ModBlocks.cinnabar_ore, 0.3F).save(this.output, locSmelt("cinnabar"));
+        smeltingRecipe(ModItems.cloudy_shard.get(), CookingBookCategory.MISC, ModItems.fine_dust, 0.1F).save(this.output, locSmelt("cloudy_shard"));
+        smeltingRecipe(ModItems.cooked_luggeroth_chop.get(), CookingBookCategory.MISC, ModItems.luggeroth_chop, 0.2F).save(this.output, locSmelt("cooked_luggeroth_chop"));
+        SimpleCookingRecipeBuilder.smelting(Ingredient.of(Items.LAPIS_LAZULI), RecipeCategory.MISC, CookingBookCategory.MISC, ModItems.crystallized_lapis_lazuli.get(), 0.25F, 200)
                 .unlockedBy("has_lapis", has(Items.LAPIS_LAZULI))
                 .save(this.output, locSmelt("crystal_lapis"));
-        SimpleCookingRecipeBuilder.smelting(Ingredient.of(Items.REDSTONE), RecipeCategory.MISC, ModItems.crystallized_redstone.get(), 0.25F, 200)
+        SimpleCookingRecipeBuilder.smelting(Ingredient.of(Items.REDSTONE), RecipeCategory.MISC, CookingBookCategory.MISC, ModItems.crystallized_redstone.get(), 0.25F, 200)
                 .unlockedBy("has_redstone", has(Items.REDSTONE))
                 .save(this.output, locSmelt("crystal_redstone"));
-        smeltingRecipe(ModBlocks.foggy_glass.get(), ModBlocks.salt, 0.1F).save(this.output, locSmelt("foggy_glass"));
-        smeltingRecipe(ModBlocks.gaia_stone.get(), ModBlocks.gaia_cobblestone, 0.1F).save(this.output, locSmelt("gaia_stone"));
-        smeltingRecipe(ModItems.goldstone_residue.get(), ModItems.goldstone_dust, 0.1F).save(this.output, locSmelt("golstone_residue"));
-        smeltingRecipe(ModItems.green_opal.get(), ModBlocks.green_opal_ore, 0.3F).save(this.output, locSmelt("green_opal"));
-        smeltingRecipe(ModItems.hematite.get(), ModBlocks.hematite_ore, 0.3F).save(this.output, locSmelt("hematite"));
-        smeltingRecipe(ModItems.labradorite.get(), ModBlocks.labradorite_ore, 0.3F).save(this.output, locSmelt("labradorite"));
-        smeltingRecipe(ModItems.large_calamari.get(), ModItems.large_tentacle, 0.2F).save(this.output, locSmelt("large_calamari"));
-        smeltingRecipe(ModItems.lurmorus_steak.get(), ModItems.lurmorus_meat, 0.2F).save(this.output, locSmelt("lurmorus_steak"));
-        smeltingRecipe(ModItems.moonstone.get(), ModBlocks.moonstone_ore, 0.3F).save(this.output, locSmelt("moonstone"));
-        smeltingRecipe(ModItems.pink_essence.get(), ModBlocks.gaia_stone, 0.1F).save(this.output, locSmelt("pink_essence"));
-        smeltingRecipe(ModItems.pyrite.get(), ModBlocks.pyrite_ore, 0.3F).save(this.output, locSmelt("pyrite"));
-        smeltingRecipe(ModItems.red_opal.get(), ModBlocks.red_opal_ore, 0.3F).save(this.output, locSmelt("red_opal"));
-        smeltingRecipe(ModItems.scaynyx_ingot.get(), ModBlocks.precious_rock, 0.8F, 4).save(this.output, locSmelt("scaynyx_large"));
-        smeltingRecipe(ModItems.scaynyx_ingot.get(), ModBlocks.coarse_rock, 0.4F, 2).save(this.output, locSmelt("scaynyx_medium"));
-        smeltingRecipe(ModItems.scaynyx_ingot.get(), ModBlocks.speckled_rock, 0.2F).save(this.output, locSmelt("scaynyx_small"));
-        smeltingRecipe(ModItems.small_calamari.get(), ModItems.small_tentacle, 0.2F).save(this.output, locSmelt("small_calamari"));
-        smeltingRecipe(ModItems.sugilite.get(), ModBlocks.sugilite_ore, 0.3F).save(this.output, locSmelt("sugilite"));
-        smeltingRecipe(ModBlocks.thick_glitter_block.get(), ModBlocks.gummy_glitter_block, 0.1F).save(this.output, locSmelt("thick_glitter_block"));
-        smeltingRecipe(ModItems.white_opal.get(), ModBlocks.white_opal_ore, 1.0F).save(this.output, locSmelt("white_opal"));
-        smeltingRecipe(ModItems.glitter_rod.get(), ModItems.glitter_dust, 0.0F).save(this.output, locSmelt("glitter_dust"));
-        smeltingRecipe(ModItems.magnetite.get(), ModBlocks.static_stone, 0.0F).save(this.output, locSmelt("magnetite_from_static_stone"));
-        smeltingRecipe(ModItems.magnetite.get(), ModBlocks.charged_mineral, 0.0F, 2).save(this.output, locSmelt("magnetite_from_charged_mineral"));
+        smeltingRecipe(ModBlocks.foggy_glass.get(), CookingBookCategory.BLOCKS, ModBlocks.salt, 0.1F).save(this.output, locSmelt("foggy_glass"));
+        smeltingRecipe(ModBlocks.gaia_stone.get(), CookingBookCategory.BLOCKS, ModBlocks.gaia_cobblestone, 0.1F).save(this.output, locSmelt("gaia_stone"));
+        smeltingRecipe(ModItems.goldstone_residue.get(), CookingBookCategory.MISC, ModItems.goldstone_dust, 0.1F).save(this.output, locSmelt("golstone_residue"));
+        smeltingRecipe(ModItems.green_opal.get(), CookingBookCategory.MISC, ModBlocks.green_opal_ore, 0.3F).save(this.output, locSmelt("green_opal"));
+        smeltingRecipe(ModItems.hematite.get(), CookingBookCategory.MISC, ModBlocks.hematite_ore, 0.3F).save(this.output, locSmelt("hematite"));
+        smeltingRecipe(ModItems.labradorite.get(), CookingBookCategory.MISC, ModBlocks.labradorite_ore, 0.3F).save(this.output, locSmelt("labradorite"));
+        smeltingRecipe(ModItems.large_calamari.get(), CookingBookCategory.FOOD, ModItems.large_tentacle, 0.2F).save(this.output, locSmelt("large_calamari"));
+        smeltingRecipe(ModItems.lurmorus_steak.get(), CookingBookCategory.FOOD, ModItems.lurmorus_meat, 0.2F).save(this.output, locSmelt("lurmorus_steak"));
+        smeltingRecipe(ModItems.moonstone.get(), CookingBookCategory.MISC, ModBlocks.moonstone_ore, 0.3F).save(this.output, locSmelt("moonstone"));
+        smeltingRecipe(ModItems.pink_essence.get(), CookingBookCategory.MISC, ModBlocks.gaia_stone, 0.1F).save(this.output, locSmelt("pink_essence"));
+        smeltingRecipe(ModItems.pyrite.get(), CookingBookCategory.MISC, ModBlocks.pyrite_ore, 0.3F).save(this.output, locSmelt("pyrite"));
+        smeltingRecipe(ModItems.red_opal.get(), CookingBookCategory.MISC, ModBlocks.red_opal_ore, 0.3F).save(this.output, locSmelt("red_opal"));
+        smeltingRecipe(ModItems.scaynyx_ingot.get(), CookingBookCategory.MISC, ModBlocks.precious_rock, 0.8F, 4).save(this.output, locSmelt("scaynyx_large"));
+        smeltingRecipe(ModItems.scaynyx_ingot.get(), CookingBookCategory.MISC, ModBlocks.coarse_rock, 0.4F, 2).save(this.output, locSmelt("scaynyx_medium"));
+        smeltingRecipe(ModItems.scaynyx_ingot.get(), CookingBookCategory.MISC, ModBlocks.speckled_rock, 0.2F).save(this.output, locSmelt("scaynyx_small"));
+        smeltingRecipe(ModItems.small_calamari.get(), CookingBookCategory.FOOD, ModItems.small_tentacle, 0.2F).save(this.output, locSmelt("small_calamari"));
+        smeltingRecipe(ModItems.sugilite.get(), CookingBookCategory.MISC, ModBlocks.sugilite_ore, 0.3F).save(this.output, locSmelt("sugilite"));
+        smeltingRecipe(ModBlocks.thick_glitter_block.get(), CookingBookCategory.BLOCKS, ModBlocks.gummy_glitter_block, 0.1F).save(this.output, locSmelt("thick_glitter_block"));
+        smeltingRecipe(ModItems.white_opal.get(), CookingBookCategory.MISC, ModBlocks.white_opal_ore, 1.0F).save(this.output, locSmelt("white_opal"));
+        smeltingRecipe(ModItems.glitter_rod.get(), CookingBookCategory.MISC, ModItems.glitter_dust, 0.0F).save(this.output, locSmelt("glitter_dust"));
+        smeltingRecipe(ModItems.magnetite.get(), CookingBookCategory.MISC, ModBlocks.static_stone, 0.0F).save(this.output, locSmelt("magnetite_from_static_stone"));
+        smeltingRecipe(ModItems.magnetite.get(), CookingBookCategory.MISC, ModBlocks.charged_mineral, 0.0F, 2).save(this.output, locSmelt("magnetite_from_charged_mineral"));
 
         restructureBlackResidue(ModItems.benitoite, ModItems.blue_opal, 0.3F, 1).save(this.output, locRestructure("benitoite"));
         restructuringTektite(ModBlocks.benitoite_block, ModBlocks.blue_opal_block, 2.7F, 1).save(this.output, locRestructure("benitoite_block"));

@@ -10,6 +10,7 @@ import androsa.gaiadimension.registry.registration.ModDataComponents;
 import androsa.gaiadimension.registry.registration.ModItems;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.core.component.DataComponentPatch;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.recipes.*;
@@ -17,6 +18,8 @@ import net.minecraft.resources.Identifier;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.ItemStackTemplate;
+import net.minecraft.world.item.crafting.CookingBookCategory;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
@@ -271,8 +274,7 @@ public abstract class GaiaRecipeProvider extends RecipeProvider {
     }
 
     public ShapelessRecipeBuilder repairKit() {
-        ItemStack stack = new ItemStack(ModItems.repair_kit.get());
-        stack.set(ModDataComponents.KIT_PART, ConstructKitItem.Part.LEFT_HORN);
+        ItemStackTemplate stack = new ItemStackTemplate(ModItems.repair_kit, DataComponentPatch.builder().set(ModDataComponents.KIT_PART.value(), ConstructKitItem.Part.LEFT_HORN).build());
 
         return this.shapeless(RecipeCategory.MISC, stack)
                 .requires(ModItems.blank_kit)
@@ -281,8 +283,7 @@ public abstract class GaiaRecipeProvider extends RecipeProvider {
     }
 
     public ShapelessRecipeBuilder augmentKit(Supplier<Item> result, DeferredBlock<Block> ingredient) {
-        ItemStack stack = new ItemStack(result.get());
-        stack.set(ModDataComponents.KIT_PART, ConstructKitItem.Part.LEFT_HORN);
+        ItemStackTemplate stack = new ItemStackTemplate(result.get(), DataComponentPatch.builder().set(ModDataComponents.KIT_PART.value(), ConstructKitItem.Part.LEFT_HORN).build());
 
         return this.shapeless(RecipeCategory.MISC, stack)
                 .requires(ModItems.blank_kit)
@@ -292,8 +293,7 @@ public abstract class GaiaRecipeProvider extends RecipeProvider {
     }
 
     public ShapelessRecipeBuilder replaceKit(Supplier<Item> result, DeferredBlock<Block> ingredient) {
-        ItemStack stack = new ItemStack(result.get());
-        stack.set(ModDataComponents.KIT_PART, ConstructKitItem.Part.LEFT_HORN);
+        ItemStackTemplate stack = new ItemStackTemplate(result.get(), DataComponentPatch.builder().set(ModDataComponents.KIT_PART.value(), ConstructKitItem.Part.LEFT_HORN).build());
 
         return this.shapeless(RecipeCategory.MISC, stack)
                 .requires(ModItems.blank_kit)
@@ -305,51 +305,51 @@ public abstract class GaiaRecipeProvider extends RecipeProvider {
         recipe.save(output, loc("wood/" + BuiltInRegistries.ITEM.getKey(result).getPath()));
     }
 
-    public SimpleCookingRecipeBuilder smeltingRecipe(ItemLike result, DeferredBlock<? extends Block> ingredient, float exp) {
-        return smeltingRecipe(result, ingredient, exp, 1);
+    public SimpleCookingRecipeBuilder smeltingRecipe(ItemLike result, CookingBookCategory cooking, DeferredBlock<? extends Block> ingredient, float exp) {
+        return smeltingRecipe(result, cooking, ingredient, exp, 1);
     }
 
-    public SimpleCookingRecipeBuilder smeltingRecipe(ItemLike result, DeferredItem<Item> ingredient, float exp) {
-        return smeltingRecipe(result, ingredient, exp, 1);
+    public SimpleCookingRecipeBuilder smeltingRecipe(ItemLike result, CookingBookCategory cooking, DeferredItem<Item> ingredient, float exp) {
+        return smeltingRecipe(result, cooking, ingredient, exp, 1);
     }
 
-    public SimpleCookingRecipeBuilder smeltingRecipe(ItemLike result, DeferredBlock<? extends Block> ingredient, float exp, int count) {
-        return SimpleCookingRecipeBuilder.smelting(Ingredient.of(ingredient), RecipeCategory.MISC, new ItemStack(result, count), exp, 200)
+    public SimpleCookingRecipeBuilder smeltingRecipe(ItemLike result, CookingBookCategory cooking, DeferredBlock<? extends Block> ingredient, float exp, int count) {
+        return SimpleCookingRecipeBuilder.smelting(Ingredient.of(ingredient), RecipeCategory.MISC, cooking, new ItemStackTemplate(result.asItem(), count), exp, 200)
                 .unlockedBy("has_" + ingredient.getId().getPath(), has(ingredient));
     }
 
-    public SimpleCookingRecipeBuilder smeltingRecipe(ItemLike result, DeferredItem<Item> ingredient, float exp, int count) {
-        return SimpleCookingRecipeBuilder.smelting(Ingredient.of(ingredient), RecipeCategory.MISC, new ItemStack(result, count), exp, 200)
+    public SimpleCookingRecipeBuilder smeltingRecipe(ItemLike result, CookingBookCategory cooking, DeferredItem<Item> ingredient, float exp, int count) {
+        return SimpleCookingRecipeBuilder.smelting(Ingredient.of(ingredient), RecipeCategory.MISC, cooking, new ItemStackTemplate(result.asItem(), count), exp, 200)
                 .unlockedBy("has_" + ingredient.getId().getPath(), has(ingredient));
     }
 
-    public RestructurerRecipeBuilder restructureBlackResidue(Supplier<Item> result, DeferredItem<Item> ingredient, float exp, int count) {
-        return RestructurerRecipeBuilder.restructuring(Ingredient.of(ingredient), new ItemStack(result.get(), count), new ItemStack(ModItems.black_residue.get(), 1), exp, 200)
+    public RestructurerRecipeBuilder restructureBlackResidue(ItemLike result, DeferredItem<Item> ingredient, float exp, int count) {
+        return RestructurerRecipeBuilder.restructuring(Ingredient.of(ingredient), new ItemStackTemplate(result.asItem(), count), new ItemStackTemplate(ModItems.black_residue.get().asItem(), 1), exp, 200)
                 .unlockedBy("has_" + ingredient.getId().getPath(), has(ingredient.get()));
     }
 
     public RestructurerRecipeBuilder restructuringTektite(Supplier<Block> result, DeferredBlock<Block> ingredient, float exp, int count) {
-        return RestructurerRecipeBuilder.restructuring(Ingredient.of(ingredient), new ItemStack(result.get(), count), new ItemStack(ModItems.tektite.get(), 1), exp, 200)
+        return RestructurerRecipeBuilder.restructuring(Ingredient.of(ingredient), new ItemStackTemplate(result.get().asItem(), count), new ItemStackTemplate(ModItems.tektite.get(), 1), exp, 200)
                 .unlockedBy("has_" + ingredient.getId().getPath(), has(ingredient.get()));
     }
 
     public RestructurerRecipeBuilder restructuringItems(ItemLike result, ItemLike byproduct, DeferredItem<Item> ingredient, float exp, int count) {
-        return RestructurerRecipeBuilder.restructuring(Ingredient.of(ingredient), new ItemStack(result, count), new ItemStack(byproduct, 1), exp, 200)
+        return RestructurerRecipeBuilder.restructuring(Ingredient.of(ingredient), new ItemStackTemplate(result.asItem(), count), new ItemStackTemplate(byproduct.asItem(), 1), exp, 200)
                 .unlockedBy("has_" + ingredient.getId().getPath(), has(ingredient));
     }
 
     public RestructurerRecipeBuilder restructuringItems(ItemLike result, ItemLike byproduct, DeferredBlock<Block> ingredient, float exp, int count) {
-        return RestructurerRecipeBuilder.restructuring(Ingredient.of(ingredient), new ItemStack(result, count), new ItemStack(byproduct, 1), exp, 200)
+        return RestructurerRecipeBuilder.restructuring(Ingredient.of(ingredient), new ItemStackTemplate(result.asItem(), count), new ItemStackTemplate(byproduct.asItem(), 1), exp, 200)
                 .unlockedBy("has_" + ingredient.getId().getPath(), has(ingredient));
     }
 
     public PurifierRecipeBuilder purifyingItems(ItemLike result, ItemLike byproduct, DeferredItem<Item> ingredient, float exp, int count, int bycount) {
-        return PurifierRecipeBuilder.purifying(Ingredient.of(ingredient.get()), new ItemStack(result, count), new ItemStack(byproduct, bycount), exp, 200)
+        return PurifierRecipeBuilder.purifying(Ingredient.of(ingredient.get()), new ItemStackTemplate(result.asItem(), count), new ItemStackTemplate(byproduct.asItem(), bycount), exp, 200)
                 .unlockedBy("has_" + ingredient.getId().getPath(), has(ingredient));
     }
 
     public PurifierRecipeBuilder purifyingItems(ItemLike result, ItemLike byproduct, DeferredBlock<? extends Block> ingredient, float exp, int count, int bycount) {
-        return PurifierRecipeBuilder.purifying(Ingredient.of(ingredient.get()), new ItemStack(result, count), new ItemStack(byproduct, bycount), exp, 200)
+        return PurifierRecipeBuilder.purifying(Ingredient.of(ingredient.get()), new ItemStackTemplate(result.asItem(), count), new ItemStackTemplate(byproduct.asItem(), bycount), exp, 200)
                 .unlockedBy("has_" + ingredient.getId().getPath(), has(ingredient));
     }
 }

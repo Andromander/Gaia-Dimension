@@ -8,13 +8,10 @@
       "min_inclusive": 3
     },
     "state_provider": {
-      "fallback": {
-        "type": "minecraft:simple_state_provider",
-        "state": {
-          "Name": "gaiadimension:aurum_mud"
-        }
-      },
-      "rules": []
+      "type": "minecraft:simple_state_provider",
+      "state": {
+        "Name": "gaiadimension:aurum_mud"
+      }
     },
     "target": {
       "type": "minecraft:matching_blocks",

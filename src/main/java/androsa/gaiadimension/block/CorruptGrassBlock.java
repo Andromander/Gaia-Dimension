@@ -7,9 +7,9 @@ import net.minecraft.core.Holder;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
+import net.minecraft.util.Util;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
-import net.minecraft.world.level.levelgen.feature.configurations.RandomPatchConfiguration;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 
 import java.util.List;
@@ -38,23 +38,18 @@ public class CorruptGrassBlock extends AbstractGaiaGrassBlock {
             }
 
             BlockState blockstate2 = worldIn.getBlockState(blockpos1);
-            if (blockstate2.isAir()) {
-                Holder<PlacedFeature> feature;
+            if (blockstate2.isAir() && !worldIn.isOutsideBuildHeight(blockpos1)) {
                 if (rand.nextInt(8) == 0) {
-                    List<ConfiguredFeature<?, ?>> list = worldIn.getBiome(blockpos1).value().getGenerationSettings().getFlowerFeatures();
-                    if (list.isEmpty()) {
-                        continue;
+                    List<ConfiguredFeature<?, ?>> list = worldIn.getBiome(blockpos1).value().getGenerationSettings().getBoneMealFeatures();
+                    if (!list.isEmpty()) {
+                        ConfiguredFeature<?, ?> config = Util.getRandom(list, rand);
+                        config.place(worldIn, worldIn.getChunkSource().getGenerator(), rand, blockpos1);
                     }
-
-                    feature = ((RandomPatchConfiguration)list.get(0).config()).feature();
                 } else {
-                    if (optional.isEmpty()) {
-                        continue;
+                    if (optional.isPresent()) {
+                        optional.get().value().place(worldIn, worldIn.getChunkSource().getGenerator(), rand, blockpos1);
                     }
-                    feature = optional.get();
                 }
-
-                feature.value().place(worldIn, worldIn.getChunkSource().getGenerator(), rand, blockpos1);
             }
         }
     }

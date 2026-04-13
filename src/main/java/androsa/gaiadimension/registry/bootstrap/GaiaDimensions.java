@@ -17,6 +17,7 @@ import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.attribute.BedRule;
 import net.minecraft.world.attribute.EnvironmentAttributeMap;
 import net.minecraft.world.attribute.EnvironmentAttributes;
+import net.minecraft.world.level.CardinalLighting;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.MoonPhase;
 import net.minecraft.world.level.biome.Biome;
@@ -62,15 +63,16 @@ public class GaiaDimensions {
                 true, //hasFixedTime
                 true, //hasSkyLight
                 false, //hasCeiling
+                false, //hasEnderDragonFight
                 1.0D, //coordinateScale
                 -64, //minY
                 64+256, //height
                 64+256, //logicalHeight
                 BlockTags.INFINIBURN_OVERWORLD, //infiniburn
                 0.0F, //ambientLight
-                monsters, //monsters
+                monsters, //monsterSettings
                 DimensionType.Skybox.OVERWORLD, //skybox
-                DimensionType.CardinalLightType.DEFAULT, //cardinalLightType
+                CardinalLighting.Type.DEFAULT, //cardinalLightType
                 EnvironmentAttributeMap.builder() //attributes
                         .set(EnvironmentAttributes.BED_RULE, new BedRule(BedRule.Rule.NEVER, BedRule.Rule.ALWAYS, false, Optional.empty()))
                         .set(EnvironmentAttributes.CAN_PILLAGER_PATROL_SPAWN, false)
@@ -86,10 +88,11 @@ public class GaiaDimensions {
                         .set(EnvironmentAttributes.RESPAWN_ANCHOR_WORKS, true)
                         .set(EnvironmentAttributes.SKY_COLOR, 13016408)
                         .set(EnvironmentAttributes.SUN_ANGLE, 90.0F)
-                        .set(EnvironmentAttributes.WATER_EVAPORATES, true)
+                        //.set(EnvironmentAttributes.WATER_EVAPORATES, true)
                         .set(NeoForgeEnvironmentAttributes.CUSTOM_SKYBOX, Identifier.fromNamespaceAndPath(GaiaDimensionMod.MODID, "gaia"))
                         .build(),
-                timelines.getOrThrow(GaiaTags.Timelines.IN_GAIA)
+                timelines.getOrThrow(GaiaTags.Timelines.IN_GAIA), //timelines
+                Optional.empty() //defaultClock //TODO
         );
 
         context.register(gaia_dimension, type);

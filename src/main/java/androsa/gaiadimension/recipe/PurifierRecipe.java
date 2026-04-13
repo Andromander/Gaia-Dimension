@@ -3,7 +3,10 @@ package androsa.gaiadimension.recipe;
 import androsa.gaiadimension.registry.registration.ModSlotDisplay;
 import androsa.gaiadimension.registry.registration.ModBlocks;
 import androsa.gaiadimension.registry.registration.ModRecipes;
-import net.minecraft.world.item.ItemStack;
+import com.mojang.serialization.MapCodec;
+import net.minecraft.network.RegistryFriendlyByteBuf;
+import net.minecraft.network.codec.StreamCodec;
+import net.minecraft.world.item.ItemStackTemplate;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.item.crafting.display.RecipeDisplay;
 import net.minecraft.world.item.crafting.display.SlotDisplay;
@@ -11,8 +14,11 @@ import net.minecraft.world.item.crafting.display.SlotDisplay;
 import java.util.List;
 
 public class PurifierRecipe extends DoubleOutputRecipe {
+    public static final MapCodec<PurifierRecipe> CODEC = codec(PurifierRecipe::new, 200);
+    public static final StreamCodec<RegistryFriendlyByteBuf, PurifierRecipe> STREAM_CODEC = streamCodec(PurifierRecipe::new);
+    public static final RecipeSerializer<PurifierRecipe> SERIALIZER = new RecipeSerializer<>(CODEC, STREAM_CODEC);
 
-    public PurifierRecipe(String groupIn, Ingredient ingredientIn, ItemStack resultIn, ItemStack byproductIn, float experienceIn, int cookTimeIn) {
+    public PurifierRecipe(String groupIn, Ingredient ingredientIn, ItemStackTemplate resultIn, ItemStackTemplate byproductIn, float experienceIn, int cookTimeIn) {
         super(groupIn, ingredientIn, resultIn, byproductIn, experienceIn, cookTimeIn);
     }
 
@@ -39,7 +45,7 @@ public class PurifierRecipe extends DoubleOutputRecipe {
 
     @Override
     public RecipeSerializer<PurifierRecipe> getSerializer() {
-        return ModRecipes.PURIFYING_SERIALIZER.get();
+        return SERIALIZER;
     }
 
     @Override

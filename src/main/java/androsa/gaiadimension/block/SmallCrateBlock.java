@@ -48,11 +48,7 @@ public class SmallCrateBlock extends Block implements EntityBlock {
     @Override
     @Deprecated
     public InteractionResult useWithoutItem(BlockState state, Level worldIn, BlockPos pos, Player player, BlockHitResult hit) {
-        if (worldIn.isClientSide()) {
-            return InteractionResult.SUCCESS;
-        } else if (player.isSpectator()) {
-            return InteractionResult.SUCCESS;
-        } else {
+        if (!worldIn.isClientSide()) {
             BlockEntity tileentity = worldIn.getBlockEntity(pos);
             if (tileentity instanceof SmallCrateBlockEntity crate) {
                 player.openMenu(crate);
@@ -61,14 +57,15 @@ public class SmallCrateBlock extends Block implements EntityBlock {
                 return InteractionResult.PASS;
             }
         }
+        return InteractionResult.SUCCESS;
     }
 
     @Override
     public BlockState playerWillDestroy(Level worldIn, BlockPos pos, BlockState state, Player player) {
         BlockEntity tileentity = worldIn.getBlockEntity(pos);
         if (tileentity instanceof SmallCrateBlockEntity crate) {
-            if (!worldIn.isClientSide() && player.isCreative() && !crate.isEmpty()) {
-                ItemStack itemstack = new ItemStack(this);
+            if (!worldIn.isClientSide() && player.preventsBlockDrops() && !crate.isEmpty()) {
+                ItemStack itemstack = new ItemStack(state.getBlock());
                 itemstack.applyComponents(tileentity.collectComponents());
                 ItemEntity itementity = new ItemEntity(worldIn, pos.getX(), pos.getY(), pos.getZ(), itemstack);
                 itementity.setDefaultPickUpDelay();
@@ -84,9 +81,9 @@ public class SmallCrateBlock extends Block implements EntityBlock {
     @Override
     @Deprecated
     public List<ItemStack> getDrops(BlockState state, LootParams.Builder builder) {
-        BlockEntity tileentity = builder.getParameter(LootContextParams.BLOCK_ENTITY);
+        BlockEntity tileentity = builder.getOptionalParameter(LootContextParams.BLOCK_ENTITY);
         if (tileentity instanceof SmallCrateBlockEntity crate) {
-            builder = builder.withDynamicDrop(NAME, (stack) -> {
+            builder = builder.withDynamicDrop(NAME, stack -> {
                 for(int i = 0; i < crate.getContainerSize(); ++i) {
                     stack.accept(crate.getItem(i));
                 }

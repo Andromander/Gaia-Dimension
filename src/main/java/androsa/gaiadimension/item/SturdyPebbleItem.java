@@ -27,7 +27,7 @@ public class SturdyPebbleItem extends Item {
             itemstack.shrink(1);
         }
 
-        worldIn.playSound(null, playerIn.getX(), playerIn.getY(), playerIn.getZ(), ModSounds.STURDY_PEBBLE_THROW.get(), SoundSource.NEUTRAL, 0.5F, 0.4F / (worldIn.random.nextFloat() * 0.4F + 0.8F));
+        worldIn.playSound(null, playerIn.getX(), playerIn.getY(), playerIn.getZ(), ModSounds.STURDY_PEBBLE_THROW.get(), SoundSource.NEUTRAL, 0.5F, 0.4F / (worldIn.getRandom().nextFloat() * 0.4F + 0.8F));
 
         if (worldIn instanceof ServerLevel server) {
             Projectile.spawnProjectileFromRotation(ThrownPebble::new, server, itemstack, playerIn, 0.0F, 1.5F, 1.0F);

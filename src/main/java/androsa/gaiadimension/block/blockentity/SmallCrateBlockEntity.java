@@ -112,6 +112,10 @@ public class SmallCrateBlockEntity extends RandomizableContainerBlockEntity impl
     }
 
     @Override
+    public void preRemoveSideEffects(BlockPos pos, BlockState state) {
+    }
+
+    @Override
     public AbstractContainerMenu createMenu(int id, Inventory playerInventory) {
         return new SmallCrateContainer(id, playerInventory, this);
     }

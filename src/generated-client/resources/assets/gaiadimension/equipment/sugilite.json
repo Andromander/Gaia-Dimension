@@ -5,6 +5,11 @@
         "texture": "gaiadimension:sugilite"
       }
     ],
+    "humanoid_baby": [
+      {
+        "texture": "gaiadimension:sugilite"
+      }
+    ],
     "humanoid_leggings": [
       {
         "texture": "gaiadimension:sugilite"

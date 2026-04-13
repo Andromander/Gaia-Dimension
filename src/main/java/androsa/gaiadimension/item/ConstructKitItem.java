@@ -91,7 +91,7 @@ public class ConstructKitItem extends Item {
                 if (next < 0)
                     next = maxSize; //This shouldn't really happen, but if for whatever reason this becomes negative, cycle to the end.
                 stack.set(ModDataComponents.KIT_PART, Part.byId(next));
-                player.displayClientMessage(Component.translatable("gaiadimension.construct_kit.part.swap").append(CommonComponents.SPACE).append(getPart(stack.get(ModDataComponents.KIT_PART))), true);
+                player.sendOverlayMessage(Component.translatable("gaiadimension.construct_kit.part.swap").append(CommonComponents.SPACE).append(getPart(stack.get(ModDataComponents.KIT_PART))));
             }
             return InteractionResult.SUCCESS.heldItemTransformedTo(stack);
         }
@@ -149,7 +149,7 @@ public class ConstructKitItem extends Item {
     }
 
     private InteractionResult fail(Player player, Error failure) {
-        player.displayClientMessage(failure.getLangKey(), true);
+        player.sendOverlayMessage(failure.getLangKey());
         return InteractionResult.FAIL;
     }
 

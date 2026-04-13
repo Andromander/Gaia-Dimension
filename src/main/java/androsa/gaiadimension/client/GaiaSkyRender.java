@@ -12,8 +12,8 @@ import com.mojang.math.Axis;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.renderer.*;
-import net.minecraft.client.renderer.state.LevelRenderState;
-import net.minecraft.client.renderer.state.SkyRenderState;
+import net.minecraft.client.renderer.state.level.LevelRenderState;
+import net.minecraft.client.renderer.state.level.SkyRenderState;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
@@ -47,7 +47,7 @@ public class GaiaSkyRender {
         this.starVBO = this.generateStars();
     }
 
-    public boolean render(LevelRenderState levelState, SkyRenderState skyState, Matrix4f modelMatrix, Runnable fog) {
+    public boolean render(LevelRenderState levelState, SkyRenderState skyState, Matrix4fc modelMatrix, Runnable fog) {
         Minecraft minecraft = Minecraft.getInstance();
         LevelRenderer renderer = minecraft.levelRenderer;
         SkyRenderer skyRenderer = renderer.skyRenderer;

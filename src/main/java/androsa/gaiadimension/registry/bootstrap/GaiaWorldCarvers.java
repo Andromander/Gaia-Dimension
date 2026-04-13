@@ -29,7 +29,7 @@ public final class GaiaWorldCarvers extends GaiaBiomeFeatures {
     public static void init(BootstrapContext<ConfiguredWorldCarver<?>> context) {
         HolderGetter<Block> blocks = context.lookup(Registries.BLOCK);
         context.register(CRYSTAL_CAVES, ModWorldgen.CRYSTAL_CAVES.get().configured(new CaveCarverConfiguration(
-                0.03F,
+                0.15F,
                 UniformHeight.of(VerticalAnchor.aboveBottom(10), VerticalAnchor.absolute(120)),
                 ConstantFloat.of(0.5F),
                 VerticalAnchor.aboveBottom(10),
@@ -38,7 +38,7 @@ public final class GaiaWorldCarvers extends GaiaBiomeFeatures {
                 ConstantFloat.of(1.0F),
                 ConstantFloat.of(-0.7F))));
         context.register(CHASMS, ModWorldgen.CHASMS.get().configured(new CaveCarverConfiguration(
-                0.03F,
+                0.05F,
                 BiasedToBottomHeight.of(VerticalAnchor.aboveBottom(5), VerticalAnchor.absolute(24), 8),
                 ConstantFloat.of(0.5F),
                 VerticalAnchor.aboveBottom(10),

@@ -148,7 +148,7 @@ public class ConstructCharmItem extends Item {
     }
 
     private void displayMessage(Player player, String name) {
-        player.displayClientMessage(Component.translatable("gaiadimension.construct_charm.message." + name), true);
+        player.sendOverlayMessage(Component.translatable("gaiadimension.construct_charm.message." + name));
     }
 
     @Override
@@ -158,7 +158,7 @@ public class ConstructCharmItem extends Item {
             if (!level.isClientSide()) {
                 this.reset(stack);
             }
-            player.displayClientMessage(Component.translatable("construct_charm.message.reset"), true);
+            player.sendOverlayMessage(Component.translatable("construct_charm.message.reset"));
 
             return InteractionResult.SUCCESS.heldItemTransformedTo(stack);
         }

@@ -2,7 +2,7 @@ package androsa.gaiadimension.block.screen;
 
 import androsa.gaiadimension.GaiaDimensionMod;
 import androsa.gaiadimension.block.menu.AgateCraftingTableMenu;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.network.chat.Component;
@@ -24,19 +24,19 @@ public class AgateCraftingScreen extends AbstractContainerScreen<AgateCraftingTa
     }
 
     @Override
-    public void render(GuiGraphics stack, int mouseX, int mouseY, float partialTicks) {
-        super.render(stack, mouseX, mouseY, partialTicks);
-        this.renderTooltip(stack, mouseX, mouseY);
+    public void extractRenderState(GuiGraphicsExtractor graphics, int mouseX, int mouseY, float a) {
+        super.extractRenderState(graphics, mouseX, mouseY, a);
     }
 
     @Override
-    protected void renderLabels(GuiGraphics stack, int x, int y) {
-        stack.drawString(font, title, 28, 6, 0xF0F0F0);
-        stack.drawString(font, playerInventoryTitle, 8, (imageHeight - 96 + 3), 0xF0F0F0);
+    protected void extractLabels(GuiGraphicsExtractor stack, int x, int y) {
+        stack.text(font, title, 28, 6, 0xFFF0F0F0, false);
+        stack.text(font, playerInventoryTitle, 8, (imageHeight - 96 + 3), 0xFFF0F0F0, false);
     }
 
     @Override
-    protected void renderBg(GuiGraphics stack, float partialTickTime, int x, int y) {
+    public void extractBackground(GuiGraphicsExtractor stack, int x, int y, float partialTickTime) {
+        super.extractBackground(stack, x, y, partialTickTime);
         int left = leftPos;
         int top = topPos;
         stack.blit(RenderPipelines.GUI_TEXTURED, textureLoc, left, top, 0, 0, imageWidth, imageHeight, 256, 256);

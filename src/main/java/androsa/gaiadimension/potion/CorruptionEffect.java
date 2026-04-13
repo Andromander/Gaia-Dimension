@@ -33,7 +33,7 @@ public class CorruptionEffect extends MobEffect {
 
     @Override
     public boolean applyEffectTick(ServerLevel level, LivingEntity living, int amplifier) {
-        if (!living.getType().is(GaiaTags.Entities.CORRUPT)) {
+        if (!living.is(GaiaTags.Entities.CORRUPT)) {
             living.hurt(GaiaDamage.getDamage(level, GaiaDamage.CORRUPTION), 2.0F);
         }
         return true;
@@ -51,7 +51,7 @@ public class CorruptionEffect extends MobEffect {
         if (e.getEntity().hasEffect(ModEffects.goldstone_plague)) {
             DamageSource source = e.getContainer().getSource();
             if (source.getDirectEntity() != null && source.getDirectEntity() instanceof LivingEntity attacker) {
-                if (attacker.getType().is(GaiaTags.Entities.CORRUPT)) {
+                if (attacker.is(GaiaTags.Entities.CORRUPT)) {
                     e.getContainer().setNewDamage(e.getOriginalDamage() * 1.5F);
                 }
             }
@@ -70,7 +70,7 @@ public class CorruptionEffect extends MobEffect {
     //Do not apply to Corrupted mobs
     @SubscribeEvent
     public static void applyEffect(MobEffectEvent.Applicable e) {
-        if (e.getEntity().getType().is(GaiaTags.Entities.CORRUPT)) {
+        if (e.getEntity().is(GaiaTags.Entities.CORRUPT)) {
             e.setResult(MobEffectEvent.Applicable.Result.DO_NOT_APPLY);
         }
     }

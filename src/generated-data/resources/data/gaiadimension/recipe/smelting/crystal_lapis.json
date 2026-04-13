@@ -5,7 +5,6 @@
   "experience": 0.25,
   "ingredient": "minecraft:lapis_lazuli",
   "result": {
-    "count": 1,
     "id": "gaiadimension:crystallized_lapis_lazuli"
   }
 }

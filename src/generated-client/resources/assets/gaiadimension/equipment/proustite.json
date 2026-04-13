@@ -5,6 +5,11 @@
         "texture": "gaiadimension:proustite"
       }
     ],
+    "humanoid_baby": [
+      {
+        "texture": "gaiadimension:proustite"
+      }
+    ],
     "humanoid_leggings": [
       {
         "texture": "gaiadimension:proustite"

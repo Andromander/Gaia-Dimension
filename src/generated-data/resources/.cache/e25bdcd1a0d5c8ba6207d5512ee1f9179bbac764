@@ -1,4 +1,4 @@
-// 1.21.11	2025-12-30T09:26:13.7912507	Tags for minecraft:block mod id gaiadimension
+// 26.1	2026-04-09T23:02:47.7422973	Tags for minecraft:block mod id gaiadimension
 a0f6d052fb3fbfa78856319e5a0690260f5f1324 data/c/tags/block/glass_blocks.json
 a7ed70e3ad0e271c909551aa96f7973f1e0bd6b0 data/c/tags/block/ores.json
 4b8f45b473a841817cf09db0adaba060881f30e6 data/c/tags/block/ore/blue_opal.json
@@ -60,6 +60,7 @@ fd8e2693b0608b474f1f5d748e2c5446606a9c42 data/gaiadimension/tags/block/burnt_log
 5d675540979ab54efa418710199760b5ea07b6a3 data/gaiadimension/tags/block/gaia_soil.json
 8984ad8286ec1911e16a6180db174b3c8ae26b74 data/gaiadimension/tags/block/golden_logs.json
 c0a14608cf3450ba2b117f632ec560b832e6ae57 data/gaiadimension/tags/block/green_agate_logs.json
+4c97ad7cca1fece55d179958689122f009abaabc data/gaiadimension/tags/block/gummy_glitter_blob_placeable.json
 b239e7b03736ed687b12fa515c9a1139f07cc1a8 data/gaiadimension/tags/block/incorrect_for_agate_tool.json
 f57a1c0d935679dbbcab3f2e8a06cae2238a6735 data/gaiadimension/tags/block/incorrect_for_benitoite_tool.json
 f57a1c0d935679dbbcab3f2e8a06cae2238a6735 data/gaiadimension/tags/block/incorrect_for_bixbite_tool.json

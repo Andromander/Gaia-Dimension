@@ -10,110 +10,99 @@ import androsa.gaiadimension.particle.*;
 import androsa.gaiadimension.registry.registration.*;
 import androsa.gaiadimension.registry.values.GaiaFluidAttributes;
 import net.minecraft.client.Camera;
+import net.minecraft.client.color.block.BlockTintSources;
 import net.minecraft.client.multiplayer.ClientLevel;
-import net.minecraft.client.renderer.BiomeColors;
-import net.minecraft.client.renderer.ItemBlockRenderTypes;
-import net.minecraft.client.renderer.chunk.ChunkSectionLayer;
-import net.minecraft.core.BlockPos;
+import net.minecraft.client.renderer.block.FluidModel;
+import net.minecraft.client.resources.model.sprite.Material;
 import net.minecraft.resources.Identifier;
-import net.minecraft.util.Mth;
-import net.minecraft.world.level.BlockAndTintGetter;
 import net.minecraft.world.level.material.Fluid;
-import net.minecraft.world.level.material.FluidState;
 import net.neoforged.api.distmarker.Dist;
-import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.client.event.*;
 import net.neoforged.neoforge.client.extensions.common.IClientFluidTypeExtensions;
 import net.neoforged.neoforge.client.extensions.common.RegisterClientExtensionsEvent;
-import org.jetbrains.annotations.Nullable;
+import net.neoforged.neoforge.client.fluid.FluidTintSource;
 import org.joml.Vector4f;
 
-import java.util.function.Function;
-import java.util.function.Supplier;
+import java.util.List;
 
 @EventBusSubscriber(value = Dist.CLIENT, modid = GaiaDimensionMod.MODID)
 public class ClientEvents {
 
-    @SubscribeEvent
-    public static void registerBlockColors(RegisterColorHandlersEvent.Block event) {
-        event.register((state, worldIn, pos, tintIndex) ->
-                        worldIn != null && pos != null ?
-                                /*worldIn.getColor(pos, (biome, x, z) -> biome instanceof BaseGaiaBiome ?*/ BiomeColors.getAverageGrassColor(worldIn, pos) : 0xF2A3B4,
+    public static void init(IEventBus bus) {
+        bus.addListener(ClientEvents::registerBlockColors);
+        bus.addListener(ClientEvents::registerFluidModels);
+        bus.addListener(ClientEvents::registerFactories);
+        bus.addListener(ClientEvents::registerDimensionEffects);
+        bus.addListener(ClientEvents::registerScreens);
+        bus.addListener(ClientEvents::registerClientExtensions);
+        bus.addListener(ClientEvents::registerSelectProperties);
+    }
+
+    public static void registerBlockColors(RegisterColorHandlersEvent.BlockTintSources event) {
+        event.register(List.of(BlockTints.grassTinting(0xF2A3B4)),
                 ModBlocks.glitter_grass.get(),
                 ModBlocks.crystal_growth.get());
 
-        event.register((state, worldIn, pos, tintIndex) ->
-                        worldIn != null && pos != null ?
-                                /*worldIn.getColor(pos, (biome, x, z) -> biome instanceof BaseGaiaBiome ?*/ BiomeColors.getAverageGrassColor(worldIn, pos) : 0x606060,
+        event.register(List.of(BlockTints.grassTinting(0x606060)),
                 ModBlocks.murky_grass.get());
 
-        event.register((state, worldIn, pos, tintIndex) ->
-                        worldIn != null && pos != null ?
-                                /*worldIn.getColor(pos, (biome, x, z) -> biome instanceof BaseGaiaBiome ?*/ BiomeColors.getAverageGrassColor(worldIn, pos) : 0xA0A0A0,
+        event.register(List.of(BlockTints.grassTinting(0xA0A0A0)),
                 ModBlocks.soft_grass.get());
 
-        event.register((state, worldIn, pos, tintIndex) -> {
-            if (worldIn != null && pos != null) {
-                return getAuraColor(pos);
-            } else {
-                return 0xFFFFFF;
-            }
+        event.register(List.of(BlockTints.auraLeaves()),
+                ModBlocks.aura_leaves.get());
 
-        }, ModBlocks.aura_leaves.get());
+        event.register(List.of(BlockTints.auraShoot()),
+                ModBlocks.aura_shoot.get());
 
-        event.register((state, worldIn, pos, tintIndex) -> {
-            int hex;
-
-            if (worldIn != null && pos != null) {
-                int location = (Math.abs(pos.getX() % 5)) + (Math.abs(pos.getZ() % 5));
-                hex = switch (location) {
-                    case 0 -> 0xEA500D;
-                    case 1 -> 0xFFC24C;
-                    case 2 -> 0xC1ED26;
-                    case 3 -> 0x67FFB9;
-                    case 4 -> 0x265AEf;
-                    case 5 -> 0x5C0AD7;
-                    case 7 -> 0xC330E8;
-                    case 8 -> 0xFF6CAE;
-                    default -> 0x5D3883;
-                };
-            } else {
-                hex = 0x1109B7;
-            }
-
-            return hex;
-        }, ModBlocks.aura_shoot.get());
-
-        event.register((state, worldIn, pos, tintindex) -> worldIn != null && pos != null ? 0x00AA00 : 0xFFFFFF,
+        event.register(List.of(BlockTintSources.constant(0xFFFFFF, 0x00AA00)),
                 ModBlocks.malachite_guard_spawner.get());
     }
 
-    public static int getBismuthColor(BlockPos pos) {
-        int red = (int) ((Mth.cos((float) Math.toRadians(pos.getX() * 4)) + 1F) / 2F * 0xFF);
-        int green = (int) ((Mth.cos((float) Math.toRadians(pos.getY() * 8)) + 1F) / 3F * 0xFF);
-        int blue = (int) ((Mth.cos((float) Math.toRadians(pos.getZ() * 4)) + 1F) / 2F * 0xFF);
-
-        red = Mth.clamp(red, 20, 170);
-        green = Mth.clamp(green, 20, 160);
-        blue = Mth.clamp(blue, 20, 200);
-
-        return (red << 16) | (green << 8) | blue;
+    public static void registerFluidModels(RegisterFluidModelsEvent event) {
+        ModFluids.MINERAL_WATER.asOptional().ifPresent(f -> fluidModel(
+                event,
+                ModFluids.mineral_water_still.value(), ModFluids.mineral_water_flow.value(),
+                GaiaFluidAttributes.mineral_still, GaiaFluidAttributes.mineral_flow,
+                true,
+                null));
+        ModFluids.SUPERHOT_MAGMA.asOptional().ifPresent(f -> fluidModel(
+                event,
+                ModFluids.superhot_magma_still.value(), ModFluids.superhot_magma_flow.value(),
+                GaiaFluidAttributes.superhot_still, GaiaFluidAttributes.superhot_flow,
+                false,
+                null));
+        ModFluids.SWEET_MUCK.asOptional().ifPresent(f -> fluidModel(
+                event,
+                ModFluids.sweet_muck_still.value(), ModFluids.sweet_muck_flow.value(),
+                GaiaFluidAttributes.sweet_still, GaiaFluidAttributes.sweet_flow,
+                true,
+                null));
+        ModFluids.LIQUID_BISMUTH.asOptional().ifPresent(f -> fluidModel(
+                event,
+                ModFluids.liquid_bismuth_still.value(), ModFluids.liquid_bismuth_flow.value(),
+                GaiaFluidAttributes.bismuth_still, GaiaFluidAttributes.bismuth_flow,
+                false,
+                BlockTints.liquidBismuth()));
+        ModFluids.LIQUID_AURA.asOptional().ifPresent(f -> fluidModel(
+                event,
+                ModFluids.liquid_aura_still.value(), ModFluids.liquid_aura_flow.value(),
+                GaiaFluidAttributes.aura_still, GaiaFluidAttributes.aura_flow,
+                true,
+                BlockTints.liquidAura()));
     }
 
-    public static int getAuraColor(BlockPos pos) {
-        int red = (int) ((Mth.cos((float) Math.toRadians((pos.getX() + 100) * 8)) + 1F) / 2F * 0xFF);
-        int green = (int) ((Mth.cos((float) Math.toRadians((pos.getY() + 100) * 32)) + 1F) / 2F * 0xFF);
-        int blue = (int) ((Mth.cos((float) Math.toRadians((pos.getZ() + 100) * 8)) + 1F) / 2F * 0xFF);
-
-        red = Mth.clamp(red, 150, 256);
-        green = Mth.clamp(green, 100, 220);
-        blue = Mth.clamp(blue, 150, 256);
-
-        return (red << 16) | (green << 8) | blue;
+    public static void fluidModel(RegisterFluidModelsEvent e, Fluid still, Fluid flow, Identifier stillTex, Identifier flowingTex, boolean overlay, FluidTintSource tint) {
+        e.register(new FluidModel.Unbaked(
+                new Material(stillTex),
+                new Material(flowingTex),
+                overlay ? new Material(Identifier.withDefaultNamespace("block/water_overlay")) : null,
+                tint),
+                still, flow);
     }
 
-    @SubscribeEvent
     public static void registerFactories(RegisterParticleProvidersEvent e) {
         e.registerSpriteSet(ModParticles.GEYSER_SMOKE.get(), GeyserSmokeParticle.Factory::new);
         e.registerSpriteSet(ModParticles.RESTRUCTURER_FIRE.get(), RestructurerFireParticle.Factory::new);
@@ -126,12 +115,10 @@ public class ClientEvents {
         e.registerSpriteSet(ModParticles.MAGIC_STAFF_TRAIL.get(), StaffMagicParticle.Provider::new);
     }
 
-    @SubscribeEvent
     public static void registerDimensionEffects(RegisterCustomEnvironmentEffectRendererEvent event) {
         event.registerSkyboxRenderer(Identifier.fromNamespaceAndPath(GaiaDimensionMod.MODID, "gaia"), new GaiaDimensionRenderInfo());
     }
 
-    @SubscribeEvent
     public static void registerScreens(RegisterMenuScreensEvent e) {
         e.register(ModMenus.AGATE_CRAFTING_TABLE.get(), AgateCraftingScreen::new);
         e.register(ModMenus.GAIA_STONE_FURNACE.get(), GaiaStoneFurnaceScreen::new);
@@ -143,61 +130,28 @@ public class ClientEvents {
         e.register(ModMenus.AUGMENTER.get(), AugmenterScreen::new);
     }
 
-    public static void registerBlockRenderers() {
-        renderFluid(ModFluids.mineral_water_flow);
-        renderFluid(ModFluids.mineral_water_still);
-        renderFluid(ModFluids.sweet_muck_flow);
-        renderFluid(ModFluids.sweet_muck_still);
-    }
-
-    private static void renderFluid(Supplier<? extends Fluid> fluid) {
-        ItemBlockRenderTypes.setRenderLayer(fluid.get(), ChunkSectionLayer.TRANSLUCENT);
-    }
-
-    @SubscribeEvent
     public static void registerClientExtensions(RegisterClientExtensionsEvent e) {
-        e.registerFluidType(makeFluidType(GaiaFluidAttributes.mineral_still, GaiaFluidAttributes.mineral_flow, true, null, new Vector4f(0.6875F, 0.75F, 1.0F, 1.0F)),
+        e.registerFluidType(makeFluidType(new Vector4f(0.6875F, 0.75F, 1.0F, 1.0F)),
                 ModFluids.MINERAL_WATER.get());
-        e.registerFluidType(makeFluidType(GaiaFluidAttributes.superhot_still, GaiaFluidAttributes.superhot_flow, false, null, new Vector4f(0.0F, 1.0F, 1.0F, 1.0F)),
+        e.registerFluidType(makeFluidType(new Vector4f(0.0F, 1.0F, 1.0F, 1.0F)),
                 ModFluids.SUPERHOT_MAGMA.get());
-        e.registerFluidType(makeFluidType(GaiaFluidAttributes.sweet_still, GaiaFluidAttributes.sweet_flow, true, null, new Vector4f(0.5F, 0.0F, 0.5F, 1.0F)),
+        e.registerFluidType(makeFluidType(new Vector4f(0.5F, 0.0F, 0.5F, 1.0F)),
                 ModFluids.SWEET_MUCK.get());
-        e.registerFluidType(makeFluidType(GaiaFluidAttributes.bismuth_still, GaiaFluidAttributes.bismuth_flow, false, () -> ClientEvents::getBismuthColor, new Vector4f(0.5F, 0.5F, 0.5F, 1.0F)),
+        e.registerFluidType(makeFluidType(new Vector4f(0.5F, 0.5F, 0.5F, 1.0F)),
                 ModFluids.LIQUID_BISMUTH.get());
-        e.registerFluidType(makeFluidType(GaiaFluidAttributes.aura_still, GaiaFluidAttributes.aura_flow, true, () -> ClientEvents::getAuraColor, new Vector4f(1.0F, 1.0F, 1.0F, 1.0F)),
+        e.registerFluidType(makeFluidType(new Vector4f(1.0F, 1.0F, 1.0F, 1.0F)),
                 ModFluids.LIQUID_AURA.get());
     }
 
-    private static IClientFluidTypeExtensions makeFluidType(Identifier stillpath, Identifier flowingpath, boolean overlay, Supplier<Function<BlockPos, Integer>> color, Vector4f fog) {
+    private static IClientFluidTypeExtensions makeFluidType(Vector4f fog) {
         return new IClientFluidTypeExtensions() {
             @Override
-            public Identifier getStillTexture() {
-                return stillpath;
-            }
-
-            @Override
-            public Identifier getFlowingTexture() {
-                return flowingpath;
-            }
-
-            @Override
-            public @Nullable Identifier getOverlayTexture() {
-                return overlay ? Identifier.withDefaultNamespace("textures/block/water_overlay") : null;
-            }
-
-            @Override
-            public int getTintColor(FluidState state, BlockAndTintGetter getter, BlockPos pos) {
-                return color != null ? color.get().apply(pos) | 0xFF000000 : this.getTintColor();
-            }
-
-            @Override
-            public Vector4f modifyFogColor(Camera camera, float partialTick, ClientLevel level, int renderDistance, float darkenWorldAmount, Vector4f fluidFogColor) {
-                return fog;
+            public void modifyFogColor(Camera camera, float partialTick, ClientLevel level, int renderDistance, float darkenWorldAmount, Vector4f fluidFogColor) {
+                fluidFogColor.set(fog);
             }
         };
     }
 
-    @SubscribeEvent
     public static void registerSelectProperties(RegisterSelectItemModelPropertyEvent e) {
         e.register(Identifier.fromNamespaceAndPath(GaiaDimensionMod.MODID, "element"), Element.TYPE);
         e.register(Identifier.fromNamespaceAndPath(GaiaDimensionMod.MODID, "behavior"), Behavior.TYPE);

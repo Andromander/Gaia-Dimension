@@ -2,7 +2,7 @@ package androsa.gaiadimension.block.screen;
 
 import androsa.gaiadimension.GaiaDimensionMod;
 import androsa.gaiadimension.block.menu.AugmenterMenu;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.screens.inventory.ItemCombinerScreen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
@@ -16,13 +16,14 @@ public class AugmenterScreen extends ItemCombinerScreen<AugmenterMenu> {
         super(menu, inventory, component, LOCATION);
     }
 
-    protected void renderLabels(GuiGraphics gui, int x, int y) {
-        gui.drawString(this.font, this.title, this.titleLabelX, this.titleLabelY, 0xFFBBBBBB, false);
-        gui.drawString(this.font, this.playerInventoryTitle, this.inventoryLabelX, this.inventoryLabelY, 0xFFBBBBBB, false);
+    @Override
+    protected void extractLabels(GuiGraphicsExtractor gui, int x, int y) {
+        gui.text(this.font, this.title, this.titleLabelX, this.titleLabelY, 0xFFBBBBBB, false);
+        gui.text(this.font, this.playerInventoryTitle, this.inventoryLabelX, this.inventoryLabelY, 0xFFBBBBBB, false);
     }
 
     @Override
-    protected void renderErrorIcon(GuiGraphics p_281990_, int p_266822_, int p_267045_) {
+    protected void extractErrorIcon(GuiGraphicsExtractor p_281990_, int p_266822_, int p_267045_) {
         //nah lol
     }
 }

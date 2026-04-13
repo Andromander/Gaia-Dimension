@@ -61,7 +61,7 @@ public class MossAgateMonitor extends PathfinderMob implements NeutralMob {
 
     @Override
     protected void playStepSound(BlockPos pos, BlockState state) {
-        this.playSound(SoundEvents.WOLF_STEP, 0.15F, 1.0F);
+        this.playSound(SoundEvents.WOLF_STEP.value(), 0.15F, 1.0F); //TODO
     }
 
     @Override

@@ -2,7 +2,7 @@ package androsa.gaiadimension.block.screen;
 
 import androsa.gaiadimension.GaiaDimensionMod;
 import androsa.gaiadimension.block.menu.GaiaStoneFurnaceMenu;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.network.chat.Component;
@@ -18,7 +18,8 @@ public class GaiaStoneFurnaceScreen extends AbstractContainerScreen<GaiaStoneFur
     }
 
     @Override
-    protected void renderBg(GuiGraphics stack, float partialTicks, int mouseX, int mouseY) {
+    public void extractBackground(GuiGraphicsExtractor stack, int mouseX, int mouseY, float partialTicks) {
+        super.extractBackground(stack, mouseX, mouseY, partialTicks);
         int i = this.leftPos;
         int j = this.topPos;
         stack.blit(RenderPipelines.GUI_TEXTURED, textureLoc, i, j, 0, 0, this.imageWidth, this.imageHeight, 256, 256);
@@ -32,15 +33,9 @@ public class GaiaStoneFurnaceScreen extends AbstractContainerScreen<GaiaStoneFur
     }
 
     @Override
-    public void render(GuiGraphics stack, int mouseX, int mouseZ, float partialTicks) {
-        super.render(stack, mouseX, mouseZ, partialTicks);
-        this.renderTooltip(stack, mouseX, mouseZ);
-    }
-
-    @Override
-    protected void renderLabels(GuiGraphics stack, int mouseX, int mouseY) {
+    protected void extractLabels(GuiGraphicsExtractor stack, int mouseX, int mouseY) {
         String s = this.title.getString();
-        stack.drawString(font, s, (this.imageWidth / 2 - this.font.width(s) / 2), 6, 0xD0D0D0);
-        stack.drawString(font, this.playerInventoryTitle, 8, (this.imageHeight - 96 + 2), 0xD0D0D0);
+        stack.text(font, s, (this.imageWidth / 2 - this.font.width(s) / 2), 6, 0xFFD0D0D0, false);
+        stack.text(font, this.playerInventoryTitle, 8, (this.imageHeight - 96 + 2), 0xFFD0D0D0, false);
     }
 }

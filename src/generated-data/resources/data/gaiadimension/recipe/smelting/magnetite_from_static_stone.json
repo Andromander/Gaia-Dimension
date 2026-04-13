@@ -5,7 +5,6 @@
   "experience": 0.0,
   "ingredient": "gaiadimension:static_stone",
   "result": {
-    "count": 1,
     "id": "gaiadimension:magnetite"
   }
 }

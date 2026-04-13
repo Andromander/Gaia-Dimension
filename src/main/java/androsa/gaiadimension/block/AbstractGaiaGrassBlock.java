@@ -55,7 +55,7 @@ public class AbstractGaiaGrassBlock extends Block implements BonemealableBlock {
         BlockPos blockpos = pos.above();
         BlockState blockstate = reader.getBlockState(blockpos);
 
-        int i = LightEngine.getLightBlockInto(state, blockstate, Direction.UP, blockstate.getLightBlock());
+        int i = LightEngine.getLightBlockInto(state, blockstate, Direction.UP, blockstate.getLightDampening());
         return i < 15;
     }
 

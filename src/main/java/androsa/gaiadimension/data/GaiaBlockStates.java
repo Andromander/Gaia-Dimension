@@ -11,8 +11,8 @@ public class GaiaBlockStates extends GaiaBlockStateProvider {
     }
 
     public void runBlockModels() {
-        basicBlockLayered(ModBlocks.keystone_block, "_empty", "cutout");
-        crossBlock(ModBlocks.gold_fire, "cutout");
+        basicBlockLayered(ModBlocks.keystone_block, "_empty");
+        crossBlock(ModBlocks.gold_fire);
         torchBlock(ModBlocks.pyrite_torch, ModBlocks.pyrite_wall_torch);
         sidedBlock(ModBlocks.agate_crafting_table, "_top", "_bottom", "_front", "_side", "_side", "_side");
         basicBlock(ModBlocks.crude_storage_crate);
@@ -30,18 +30,18 @@ public class GaiaBlockStates extends GaiaBlockStateProvider {
         grassBlock(ModBlocks.murky_grass, ModBlocks.boggy_soil, 0x606060);
         grassBlock(ModBlocks.soft_grass, ModBlocks.light_soil, 0xA0A0A0);
         grassBlock(ModBlocks.gilded_grass, ModBlocks.aurum_soil, -1);
-        basicBlockRotated(ModBlocks.frail_glitter_block, "translucent");
+        basicBlockRotated(ModBlocks.frail_glitter_block);
         basicBlockRotated(ModBlocks.thick_glitter_block);
-        basicBlockRotated(ModBlocks.gummy_glitter_block, "translucent");
+        basicBlockRotated(ModBlocks.gummy_glitter_block);
         basicBlockRotated(ModBlocks.pink_sludge_block);
         crossBlockTinted(ModBlocks.crystal_growth);
-        crossBlock(ModBlocks.crystal_growth_red, "translucent");
-        crossBlock(ModBlocks.crystal_growth_black, "translucent");
-        crossBlock(ModBlocks.crystal_growth_seared, "translucent");
-        crossBlock(ModBlocks.crystal_growth_mutant, "translucent");
-        crossBlock(ModBlocks.crystal_growth_aura, "cutout");
-        crossBlock(ModBlocks.golden_grass, "cutout");
-        crossBlock(ModBlocks.sombre_shrub, "cutout");
+        crossBlock(ModBlocks.crystal_growth_red);
+        crossBlock(ModBlocks.crystal_growth_black);
+        crossBlock(ModBlocks.crystal_growth_seared);
+        crossBlock(ModBlocks.crystal_growth_mutant);
+        crossBlock(ModBlocks.crystal_growth_aura);
+        crossBlock(ModBlocks.golden_grass);
+        crossBlock(ModBlocks.sombre_shrub);
         auraShoot();
         pottedPlantBlock(ModBlocks.thiscus, ModBlocks.potted_thiscus);
         pottedPlantBlock(ModBlocks.ouzium, ModBlocks.potted_ouzium);
@@ -125,8 +125,8 @@ public class GaiaBlockStates extends GaiaBlockStateProvider {
         basicBlock(ModBlocks.pebbles);
         basicBlockRotated(ModBlocks.gaia_stone);
         basicBlock(ModBlocks.gaia_cobblestone);
-        basicBlockLayered(ModBlocks.wasteland_stone, "_static", "translucent");
-        basicBlockLayered(ModBlocks.static_stone, "wasteland_stone", "static_stone", "translucent");
+        basicBlockLayered(ModBlocks.wasteland_stone, "_static");
+        basicBlockLayered(ModBlocks.static_stone, "wasteland_stone", "static_stone");
         basicBlock(ModBlocks.volcanic_rock);
         translucentBlock(ModBlocks.searing_rock);
         basicBlock(ModBlocks.primal_mass);
@@ -259,9 +259,9 @@ public class GaiaBlockStates extends GaiaBlockStateProvider {
         stairsBlock(ModBlocks.malachite_crusted_brick_stairs, ModBlocks.malachite_crusted_bricks);
         stairsBlock(ModBlocks.malachite_tile_stairs, ModBlocks.malachite_tiles);
         stairsBlock(ModBlocks.malachite_chisel_stairs, ModBlocks.malachite_chisel_bricks);
-        stairsBlockLayered(ModBlocks.malachite_pulsing_brick_stairs, "malachite_bricks", "malachite_green_pulse_corner", "cutout");
-        stairsBlockLayered(ModBlocks.malachite_pulsing_floor_stairs, "malachite_tiles", "malachite_blue_pulse_corner", "cutout");
-        stairsBlockLayered(ModBlocks.malachite_pulsing_chisel_stairs, "malachite_chisel_bricks", "malachite_lime_pulse_corner", "cutout");
+        stairsBlockLayered(ModBlocks.malachite_pulsing_brick_stairs, "malachite_bricks", "malachite_green_pulse_corner");
+        stairsBlockLayered(ModBlocks.malachite_pulsing_floor_stairs, "malachite_tiles", "malachite_blue_pulse_corner");
+        stairsBlockLayered(ModBlocks.malachite_pulsing_chisel_stairs, "malachite_chisel_bricks", "malachite_lime_pulse_corner");
         pillarStairsBlock(ModBlocks.malachite_pillar_stairs, ModBlocks.malachite_pillar);
         basicBlock(ModBlocks.scaynyx_block);
         basicBlock(ModBlocks.sugilite_block);

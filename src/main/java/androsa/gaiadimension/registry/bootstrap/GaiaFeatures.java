@@ -4,6 +4,7 @@ import androsa.gaiadimension.GaiaDimensionMod;
 import androsa.gaiadimension.registry.registration.ModBlocks;
 import androsa.gaiadimension.registry.registration.ModWorldgen;
 import androsa.gaiadimension.registry.values.GaiaBiomeFeatures;
+import androsa.gaiadimension.registry.values.GaiaTags;
 import androsa.gaiadimension.world.gen.feature.config.FeatureHeightConfig;
 import androsa.gaiadimension.world.gen.feature.config.OpaliteOreConfiguration;
 import androsa.gaiadimension.world.gen.feature.config.TwoBlockStateConfig;
@@ -28,7 +29,6 @@ import net.minecraft.util.valueproviders.ClampedInt;
 import net.minecraft.util.valueproviders.ConstantInt;
 import net.minecraft.util.valueproviders.IntProvider;
 import net.minecraft.util.valueproviders.UniformInt;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.SaplingBlock;
 import net.minecraft.world.level.block.grower.TreeGrower;
 import net.minecraft.world.level.block.state.BlockState;
@@ -45,7 +45,6 @@ import net.minecraft.world.level.levelgen.feature.foliageplacers.FoliagePlacer;
 import net.minecraft.world.level.levelgen.feature.foliageplacers.PineFoliagePlacer;
 import net.minecraft.world.level.levelgen.feature.foliageplacers.SpruceFoliagePlacer;
 import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
-import net.minecraft.world.level.levelgen.feature.stateproviders.RuleBasedBlockStateProvider;
 import net.minecraft.world.level.levelgen.feature.stateproviders.WeightedStateProvider;
 import net.minecraft.world.level.levelgen.feature.treedecorators.TreeDecorator;
 import net.minecraft.world.level.levelgen.feature.trunkplacers.StraightTrunkPlacer;
@@ -105,8 +104,9 @@ public class GaiaFeatures extends GaiaBiomeFeatures {
                     trunk,
                     BlockStateProvider.simple(leaves),
                     foliage,
-                    new TwoLayersFeatureSize(limit, lower, upper))
-                    .dirt(BlockStateProvider.simple(dirt));
+                    Optional.empty(),
+                    new TwoLayersFeatureSize(limit, lower, upper),
+                    BlockStateProvider.simple(dirt));
             if (!decorators.isEmpty()) builder.decorators(decorators);
 
             return builder.build();
@@ -240,11 +240,11 @@ public class GaiaFeatures extends GaiaBiomeFeatures {
         }
 
         private static DiskConfiguration diskConfig(BlockState state, BlockPredicate target, IntProvider range, int height) {
-            return new DiskConfiguration(RuleBasedBlockStateProvider.simple(BlockStateProvider.simple(state)), target, range, height);
+            return new DiskConfiguration(BlockStateProvider.simple(state), target, range, height);
         }
 
-        private static ConfiguredFeature<RandomPatchConfiguration, ?> patchFeature(int tries, int xzspread, int yspread, BlockStateProvider provider) {
-            return new ConfiguredFeature<>(Feature.RANDOM_PATCH, new RandomPatchConfiguration(tries, xzspread, yspread, PlacementUtils.onlyWhenEmpty(Feature.SIMPLE_BLOCK, new SimpleBlockConfiguration(provider))));
+        private static ConfiguredFeature<SimpleBlockConfiguration, ?> patchFeature(BlockStateProvider provider) {
+            return new ConfiguredFeature<>(Feature.SIMPLE_BLOCK, new SimpleBlockConfiguration(provider));
         }
 
         private static ConfiguredFeature<TreeConfiguration, ?> treeFeature(TreeConfiguration config) {
@@ -267,7 +267,7 @@ public class GaiaFeatures extends GaiaBiomeFeatures {
             context.register(lake_liquid_bismuth, poolFeature(LIQUID_BISMUTH));
 
             //Local Modifications
-            context.register(gummy_glitter_blob, registerFeature(ModWorldgen.GAIA_BLOB.get(), new BlockStateConfiguration(GUMMY_GLITTER)));
+            context.register(gummy_glitter_blob, registerFeature(Feature.BLOCK_BLOB, new BlockBlobConfiguration(GUMMY_GLITTER, BlockPredicate.matchesTag(GaiaTags.Blocks.GUMMY_BLOB_PLACEABLE))));
             context.register(static_spikes, registerFeature(ModWorldgen.STATIC_SPIKE.get(), new FeatureHeightConfig(8)));
             context.register(bismuth_spires, registerFeature(ModWorldgen.BISMUTH_SPIRE.get(), new FeatureHeightConfig(7)));
             context.register(bismuth_geysers, registerFeature(ModWorldgen.BISMUTH_GEYSER.get(), FeatureConfiguration.NONE));
@@ -311,43 +311,36 @@ public class GaiaFeatures extends GaiaBiomeFeatures {
             //Underground Decoration
             context.register(underground_glitter_blob, registerFeature(ModWorldgen.FRAIL_BLOB.get(), FeatureConfiguration.NONE));
             context.register(cave_fungi, registerFeature(
-                    Feature.RANDOM_PATCH,
-                    new RandomPatchConfiguration(64, 7, 3,
-                            PlacementUtils.filtered(
-                                    Feature.SIMPLE_BLOCK,
-                                    new SimpleBlockConfiguration(new WeightedStateProvider(weight().add(ELDER_IMKLIA, 2).add(GOLD_ORB_TUCHER, 2))),
-                                    BlockPredicate.allOf(
-                                            BlockPredicate.matchesBlocks(Blocks.CAVE_AIR),
-                                            BlockPredicate.not(BlockPredicate.matchesBlocks(Direction.DOWN.getUnitVec3i(), cave_blacklist))
-                                    )))));
+                    Feature.SIMPLE_BLOCK,
+                    new SimpleBlockConfiguration(new WeightedStateProvider(weight().add(ELDER_IMKLIA, 2).add(GOLD_ORB_TUCHER, 2)))));
 
             //Vegetal Decoration
             context.register(aura_shoots, registerFeature(ModWorldgen.AURA_SHOOT.get(), FeatureConfiguration.NONE));
-            context.register(normal_growth, patchFeature(32, 7, 3, BlockStateProvider.simple(CRYSTAL_GROWTH)));
-            context.register(mutant_growth, patchFeature(32, 7, 3, BlockStateProvider.simple(CRYSTAL_GROWTH_MUTANT)));
-            context.register(seared_growth, patchFeature(32, 7, 3, BlockStateProvider.simple(CRYSTAL_GROWTH_SEARED)));
-            context.register(corrupt_growth, patchFeature(32, 7, 3, new WeightedStateProvider(weight().add(CRYSTAL_GROWTH_RED, 2).add(CRYSTAL_GROWTH_BLACK, 2))));
-            context.register(aura_growth, patchFeature(32, 7, 3, BlockStateProvider.simple(CRYSTAL_GROWTH_AURA)));
-            context.register(golden_grass, patchFeature(32, 7, 3, BlockStateProvider.simple(GOLDEN_GRASS)));
-            context.register(tall_golden_grass, patchFeature(32, 7, 3, BlockStateProvider.simple(TALL_GOLDEN_GRASS)));
+            context.register(normal_growth, patchFeature(BlockStateProvider.simple(CRYSTAL_GROWTH)));
+            context.register(mutant_growth, patchFeature(BlockStateProvider.simple(CRYSTAL_GROWTH_MUTANT)));
+            context.register(seared_growth, patchFeature(BlockStateProvider.simple(CRYSTAL_GROWTH_SEARED)));
+            context.register(corrupt_growth, patchFeature(new WeightedStateProvider(weight().add(CRYSTAL_GROWTH_RED, 2).add(CRYSTAL_GROWTH_BLACK, 2))));
+            context.register(aura_growth, patchFeature(BlockStateProvider.simple(CRYSTAL_GROWTH_AURA)));
+            context.register(golden_grass, patchFeature(BlockStateProvider.simple(GOLDEN_GRASS)));
+            context.register(tall_golden_grass, patchFeature(BlockStateProvider.simple(TALL_GOLDEN_GRASS)));
             context.register(golden_vines, registerFeature(ModWorldgen.GOLDEN_VINES.get(), FeatureConfiguration.NONE));
-            context.register(sombre_cacti, patchFeature(16, 4, 3, BlockStateProvider.simple(ModBlocks.sombre_cacti.get())));
-            context.register(sombre_shrub, patchFeature(32, 7, 3, BlockStateProvider.simple(SOMBRE_SHRUB)));
+            context.register(sombre_cacti, patchFeature(BlockStateProvider.simple(ModBlocks.sombre_cacti.get())));
+            context.register(sombre_shrub, patchFeature(BlockStateProvider.simple(SOMBRE_SHRUB)));
 
-            context.register(common_bloom, patchFeature(32, 7, 3, new WeightedStateProvider(weight().add(THISCUS, 4).add(OUZIUM, 1))));
-            context.register(rare_bloom, patchFeature(32, 7, 3, new WeightedStateProvider(weight().add(OUZIUM, 4).add(THISCUS, 1))));
-            context.register(mutant_bloom, patchFeature(32, 7, 3, new WeightedStateProvider(weight().add(OUZIUM, 4).add(AGATHUM, 1))));
-            context.register(corrupt_bloom, patchFeature(64, 7, 3, BlockStateProvider.simple(CORRUPTED_VARLOOM)));
-            context.register(golden_bloom, patchFeature(32, 6, 3, BlockStateProvider.simple(GLAMELEA)));
+            context.register(common_bloom, patchFeature(new WeightedStateProvider(weight().add(THISCUS, 4).add(OUZIUM, 1))));
+            context.register(rare_bloom, patchFeature(new WeightedStateProvider(weight().add(OUZIUM, 4).add(THISCUS, 1))));
+            context.register(mutant_bloom, patchFeature(new WeightedStateProvider(weight().add(OUZIUM, 4).add(AGATHUM, 1))));
+            context.register(corrupt_bloom, patchFeature(BlockStateProvider.simple(CORRUPTED_VARLOOM)));
+            context.register(golden_bloom, patchFeature(BlockStateProvider.simple(GLAMELEA)));
 
-            context.register(kersei, patchFeature(16, 7, 3, BlockStateProvider.simple(SPOTTED_KERSEI)));
-            context.register(wiltha, patchFeature(16, 7, 3, BlockStateProvider.simple(THORNY_WILTHA)));
-            context.register(agaric, patchFeature(16, 7, 3, BlockStateProvider.simple(ROOFED_AGARIC)));
-            context.register(hobina, patchFeature(16, 7, 3, BlockStateProvider.simple(BULBOUS_HOBINA)));
-            context.register(cupsir, patchFeature(16, 7, 3, BlockStateProvider.simple(STICKLY_CUPSIR)));
-            context.register(murgni, patchFeature(16, 7, 3, BlockStateProvider.simple(MYSTICAL_MURGNI)));
-            context.register(corrupt_eye, patchFeature(16, 7, 3, BlockStateProvider.simple(CORRUPTED_GAIA_EYE)));
-            context.register(gilsri, patchFeature(16, 7, 3, BlockStateProvider.simple(TWINKLING_GILSRI)));
+            context.register(kersei, patchFeature(BlockStateProvider.simple(SPOTTED_KERSEI)));
+            context.register(wiltha, patchFeature(BlockStateProvider.simple(THORNY_WILTHA)));
+            context.register(agaric, patchFeature(BlockStateProvider.simple(ROOFED_AGARIC)));
+            context.register(hobina, patchFeature(BlockStateProvider.simple(BULBOUS_HOBINA)));
+            context.register(cupsir, patchFeature(BlockStateProvider.simple(STICKLY_CUPSIR)));
+            context.register(murgni, patchFeature(BlockStateProvider.simple(MYSTICAL_MURGNI)));
+            context.register(corrupt_eye, patchFeature(BlockStateProvider.simple(CORRUPTED_GAIA_EYE)));
+            context.register(gilsri, patchFeature(BlockStateProvider.simple(TWINKLING_GILSRI)));
 
             context.register(pink_agate_tree, treeFeature(Config.PINK_AGATE_TREE_CONFIG));
             context.register(blue_agate_tree, treeFeature(Config.BLUE_AGATE_TREE_CONFIG));
@@ -531,19 +524,23 @@ public class GaiaFeatures extends GaiaBiomeFeatures {
                     BiomeFilter.biome());
         }
 
-        private static PlacedFeature placedPlant(HolderGetter<ConfiguredFeature<?, ?>> getter, ResourceKey<ConfiguredFeature<?, ?>> growth, int count) {
+        private static PlacedFeature plantPatch(HolderGetter<ConfiguredFeature<?, ?>> getter, ResourceKey<ConfiguredFeature<?, ?>> growth, int count, int xzRange, int yRange) {
             return registerPlacedFeature(getter, growth,
                     InSquarePlacement.spread(),
                     PlacementUtils.HEIGHTMAP_WORLD_SURFACE,
-                    CountPlacement.of(count));
+                    BiomeFilter.biome(),
+                    CountPlacement.of(count),
+                    RandomOffsetPlacement.ofTriangle(xzRange, yRange),
+                    BlockPredicateFilter.forPredicate(BlockPredicate.ONLY_IN_AIR_PREDICATE));
         }
 
         private static PlacedFeature placedFungi(HolderGetter<ConfiguredFeature<?, ?>> getter, ResourceKey<ConfiguredFeature<?, ?>> patch, int count) {
             return registerPlacedFeature(getter, patch,
                     InSquarePlacement.spread(),
                     PlacementUtils.HEIGHTMAP,
+                    BiomeFilter.biome(),
                     CountPlacement.of(count),
-                    BiomeFilter.biome());
+                    BlockPredicateFilter.forPredicate(BlockPredicate.ONLY_IN_AIR_PREDICATE));
         }
 
         private static PlacedFeature registerPlacedFeature(HolderGetter<ConfiguredFeature<?, ?>> getter, ResourceKey<ConfiguredFeature<?, ?>> feature, PlacementModifier... modifiers) {
@@ -707,10 +704,12 @@ public class GaiaFeatures extends GaiaBiomeFeatures {
                     HeightRangePlacement.uniform(VerticalAnchor.absolute(30), VerticalAnchor.absolute(70)),
                     BiomeFilter.biome()));
             context.register(CRYSTAL_FUNGI_CAVES, registerPlacedFeature(features, Configured.cave_fungi,
-                    CountPlacement.of(2),
                     InSquarePlacement.spread(),
                     HeightRangePlacement.uniform(VerticalAnchor.absolute(0), VerticalAnchor.absolute(70)),
-                    BiomeFilter.biome()));
+                    BiomeFilter.biome(),
+                    CountPlacement.of(16),
+                    RandomOffsetPlacement.ofTriangle(7, 3),
+                    BlockPredicateFilter.forPredicate(BlockPredicate.ONLY_IN_AIR_PREDICATE)));
 
             //Tree Placers
             context.register(PINK_AGATE_TREE_CHECKED, checkTree(features, Configured.pink_agate_tree, ModBlocks.pink_agate_sapling));
@@ -770,24 +769,25 @@ public class GaiaFeatures extends GaiaBiomeFeatures {
                     PlacementUtils.HEIGHTMAP,
                     RarityFilter.onAverageOnceEvery(2),
                     BiomeFilter.biome()));
-            context.register(CRYSTAL_GROWTH_02, placedPlant(features, Configured.normal_growth, 2));
-            context.register(CRYSTAL_GROWTH_03, placedPlant(features, Configured.normal_growth, 3));
-            context.register(CRYSTAL_GROWTH_04, placedPlant(features, Configured.normal_growth, 4));
-            context.register(CRYSTAL_GROWTH_05, placedPlant(features, Configured.normal_growth, 5));
-            context.register(CRYSTAL_GROWTH_SEARED, placedPlant(features, Configured.seared_growth, 1));
-            context.register(CRYSTAL_GROWTH_CORRUPT, placedPlant(features, Configured.corrupt_growth, 1));
-            context.register(CRYSTAL_GROWTH_AURA, placedPlant(features, Configured.aura_growth, 2));
-            context.register(CRYSTAL_GROWTH_MUTANT, placedPlant(features, Configured.mutant_growth, 2));
-            context.register(GOLDEN_GRASS_COMMON, placedPlant(features, Configured.golden_grass, 7));
-            context.register(GOLDEN_GRASS_UNCOMMON, placedPlant(features, Configured.golden_grass, 3));
-            context.register(GOLDEN_GRASS_RARE, placedPlant(features, Configured.golden_grass, 2));
-            context.register(TALL_GOLDEN_GRASS, placedPlant(features, Configured.tall_golden_grass, 4));
-            context.register(CRYSTAL_BLOOMS_COMMON, placedPlant(features, Configured.common_bloom, 2));
-            context.register(CRYSTAL_BLOOMS_RARE, placedPlant(features, Configured.rare_bloom, 2));
-            context.register(CRYSTAL_BLOOMS_MUTANT, placedPlant(features, Configured.mutant_bloom, 2));
-            context.register(CRYSTAL_BLOOMS_CORRUPT, placedPlant(features, Configured.corrupt_bloom, 1));
-            context.register(CRYSTAL_BLOOMS_GOLDEN, placedPlant(features, Configured.golden_bloom, 1));
-            context.register(SOMBRE_SHRUBS, placedPlant(features, Configured.sombre_shrub, 2));
+
+            context.register(CRYSTAL_GROWTH_02, plantPatch(features, Configured.normal_growth, 32, 7, 3));
+            context.register(CRYSTAL_GROWTH_03, plantPatch(features, Configured.normal_growth, 64, 7, 3));
+            context.register(CRYSTAL_GROWTH_04, plantPatch(features, Configured.normal_growth, 128, 7, 3));
+            context.register(CRYSTAL_GROWTH_05, plantPatch(features, Configured.normal_growth, 192, 14, 3));
+            context.register(CRYSTAL_GROWTH_SEARED, plantPatch(features, Configured.seared_growth, 16, 7, 3));
+            context.register(CRYSTAL_GROWTH_CORRUPT, plantPatch(features, Configured.corrupt_growth, 16, 7, 3));
+            context.register(CRYSTAL_GROWTH_AURA, plantPatch(features, Configured.aura_growth, 16, 7, 3));
+            context.register(CRYSTAL_GROWTH_MUTANT, plantPatch(features, Configured.mutant_growth, 64, 7, 3));
+            context.register(GOLDEN_GRASS_COMMON, plantPatch(features, Configured.golden_grass, 128, 7, 3));
+            context.register(GOLDEN_GRASS_UNCOMMON, plantPatch(features, Configured.golden_grass, 32, 7, 3));
+            context.register(GOLDEN_GRASS_RARE, plantPatch(features, Configured.golden_grass, 16, 7, 3));
+            context.register(TALL_GOLDEN_GRASS, plantPatch(features, Configured.tall_golden_grass, 64, 7, 3));
+            context.register(CRYSTAL_BLOOMS_COMMON, plantPatch(features, Configured.common_bloom, 16, 7, 3));
+            context.register(CRYSTAL_BLOOMS_RARE, plantPatch(features, Configured.rare_bloom, 16, 7, 3));
+            context.register(CRYSTAL_BLOOMS_MUTANT, plantPatch(features, Configured.mutant_bloom, 16, 7, 3));
+            context.register(CRYSTAL_BLOOMS_CORRUPT, plantPatch(features, Configured.corrupt_bloom, 8, 7, 3));
+            context.register(CRYSTAL_BLOOMS_GOLDEN, plantPatch(features, Configured.golden_bloom, 8, 7, 3));
+            context.register(SOMBRE_SHRUBS, plantPatch(features, Configured.sombre_shrub, 8, 7, 3));
             context.register(SPOTTED_KERSEI, placedFungi(features, Configured.kersei, 1));
             context.register(THORNY_WILTHA, placedFungi(features, Configured.wiltha, 1));
             context.register(ROOFED_AGARIC, placedFungi(features, Configured.agaric, 1));

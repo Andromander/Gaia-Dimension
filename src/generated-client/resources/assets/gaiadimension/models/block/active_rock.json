@@ -1,6 +1,5 @@
 {
   "parent": "gaiadimension:block/util/emissive_2_layer",
-  "render_type": "minecraft:cutout",
   "textures": {
     "all": "gaiadimension:block/active_rock",
     "overlay": "gaiadimension:block/active_rock_overlay"

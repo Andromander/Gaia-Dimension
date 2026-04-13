@@ -1,13 +1,13 @@
 {
   "type": "gaiadimension:strict_tree",
   "config": {
-    "decorators": [],
-    "dirt_provider": {
+    "below_trunk_provider": {
       "type": "minecraft:simple_state_provider",
       "state": {
         "Name": "gaiadimension:heavy_soil"
       }
     },
+    "decorators": [],
     "foliage_placer": {
       "type": "gaiadimension:bulb_foliage_placer",
       "offset": 1,
@@ -24,7 +24,6 @@
         }
       }
     },
-    "force_dirt": false,
     "ignore_vines": false,
     "minimum_size": {
       "type": "minecraft:two_layers_feature_size",

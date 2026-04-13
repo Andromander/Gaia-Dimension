@@ -9,12 +9,10 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.Container;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.entity.player.StackedContents;
 import net.minecraft.world.entity.player.StackedItemContents;
 import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.*;
-import net.minecraft.world.level.Level;
 
 import java.util.List;
 import java.util.Optional;
@@ -72,7 +70,7 @@ public class AgateCraftingTableMenu extends RecipeBookMenu {
             RecipeHolder<CraftingRecipe> icraftingrecipe = optional.get();
             CraftingRecipe crafting = icraftingrecipe.value();
             if (result.setRecipeUsed(serverplayerentity, icraftingrecipe)) {
-                ItemStack assembled = crafting.assemble(input, world.registryAccess());
+                ItemStack assembled = crafting.assemble(input);
                 if (assembled.isItemEnabled(world.enabledFeatures())) {
                     itemstack = assembled;
                 }

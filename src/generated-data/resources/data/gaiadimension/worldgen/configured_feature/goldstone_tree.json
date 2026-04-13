@@ -1,13 +1,13 @@
 {
   "type": "gaiadimension:strict_tree",
   "config": {
-    "decorators": [],
-    "dirt_provider": {
+    "below_trunk_provider": {
       "type": "minecraft:simple_state_provider",
       "state": {
         "Name": "gaiadimension:corrupted_soil"
       }
     },
+    "decorators": [],
     "foliage_placer": {
       "type": "minecraft:pine_foliage_placer",
       "height": {
@@ -29,7 +29,6 @@
         }
       }
     },
-    "force_dirt": false,
     "ignore_vines": false,
     "minimum_size": {
       "type": "minecraft:two_layers_feature_size",

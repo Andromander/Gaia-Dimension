@@ -8,13 +8,10 @@
       "min_inclusive": 1
     },
     "state_provider": {
-      "fallback": {
-        "type": "minecraft:simple_state_provider",
-        "state": {
-          "Name": "gaiadimension:impure_sludge"
-        }
-      },
-      "rules": []
+      "type": "minecraft:simple_state_provider",
+      "state": {
+        "Name": "gaiadimension:impure_sludge"
+      }
     },
     "target": {
       "type": "minecraft:matching_blocks",

@@ -10,7 +10,7 @@ import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.rendertype.RenderType;
 import net.minecraft.client.renderer.rendertype.RenderTypes;
-import net.minecraft.client.renderer.state.CameraRenderState;
+import net.minecraft.client.renderer.state.level.CameraRenderState;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.Identifier;
@@ -19,7 +19,7 @@ import org.jspecify.annotations.NullMarked;
 @NullMarked
 public class StaffProjectileRenderer extends EntityRenderer<StaffProjectile, MagicProjectileRenderState> {
     private static final Identifier TEXTURE_LOCATION = Identifier.fromNamespaceAndPath(GaiaDimensionMod.MODID, "textures/entity/staff_projectile.png");
-    private static final RenderType RENDER_TYPE = RenderTypes.entityCutoutNoCull(TEXTURE_LOCATION);
+    private static final RenderType RENDER_TYPE = RenderTypes.entityCutout(TEXTURE_LOCATION);
 
     public StaffProjectileRenderer(EntityRendererProvider.Context context) {
         super(context);

@@ -25,10 +25,7 @@ import net.minecraft.world.level.chunk.ChunkGenerator;
 import net.minecraft.world.level.levelgen.carver.CaveCarverConfiguration;
 import net.minecraft.world.level.levelgen.carver.WorldCarver;
 import net.minecraft.world.level.levelgen.feature.Feature;
-import net.minecraft.world.level.levelgen.feature.configurations.BlockStateConfiguration;
-import net.minecraft.world.level.levelgen.feature.configurations.DiskConfiguration;
-import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
-import net.minecraft.world.level.levelgen.feature.configurations.TreeConfiguration;
+import net.minecraft.world.level.levelgen.feature.configurations.*;
 import net.minecraft.world.level.levelgen.feature.foliageplacers.FoliagePlacerType;
 import net.minecraft.world.level.levelgen.feature.treedecorators.TreeDecoratorType;
 import net.minecraft.world.level.levelgen.feature.trunkplacers.TrunkPlacerType;
@@ -81,8 +78,6 @@ public class ModWorldgen {
 			new StaticSpikeFeature<>(FeatureHeightConfig.CODEC));
     public static final DeferredHolder<Feature<?>, Feature<NoneFeatureConfiguration>> FRAIL_BLOB = FEATURES.register("frail_blob", () ->
 			new FrailGlitterBlobFeature<>(NoneFeatureConfiguration.CODEC));
-    public static final DeferredHolder<Feature<?>, Feature<BlockStateConfiguration>> GAIA_BLOB = FEATURES.register("gaia_blob", () ->
-			new GaiaBlobFeature<>(BlockStateConfiguration.CODEC));
     public static final DeferredHolder<Feature<?>, Feature<BlockStateConfiguration>> TERRAIN_SPIKE = FEATURES.register("terrain_spike", () ->
             new TerrainSpikeFeature<>(BlockStateConfiguration.CODEC));
     public static final DeferredHolder<Feature<?>, Feature<TwoBlockStateConfig>> BALANCING_ROCKS = FEATURES.register("balancing_rocks", () ->

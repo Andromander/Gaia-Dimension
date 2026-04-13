@@ -1,6 +1,5 @@
 {
   "parent": "gaiadimension:block/util/grass_block",
-  "render_type": "minecraft:cutout",
   "textures": {
     "bottom": "gaiadimension:block/boggy_soil",
     "overlay": "gaiadimension:block/murky_grass_overlay",

@@ -2,13 +2,12 @@ package androsa.gaiadimension.world.gen.feature.trunk;
 
 import androsa.gaiadimension.registry.registration.ModWorldgen;
 import com.google.common.collect.Lists;
-import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.util.RandomSource;
-import net.minecraft.world.level.LevelSimulatedReader;
+import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.block.RotatedPillarBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.feature.configurations.TreeConfiguration;
@@ -34,10 +33,10 @@ public class CardinalTrunkPlacer extends TrunkPlacer {
     }
 
     @Override
-    public List<FoliagePlacer.FoliageAttachment> placeTrunk(LevelSimulatedReader level, BiConsumer<BlockPos, BlockState> statepos, RandomSource random, int height, BlockPos origin, TreeConfiguration config) {
+    public List<FoliagePlacer.FoliageAttachment> placeTrunk(WorldGenLevel level, BiConsumer<BlockPos, BlockState> statepos, RandomSource random, int height, BlockPos origin, TreeConfiguration config) {
         List<FoliagePlacer.FoliageAttachment> list = Lists.newArrayList();
 
-        setDirtAt(level, statepos, random, origin.below(), config);
+        placeBelowTrunkBlock(level, statepos, random, origin.below(), config);
 
         for (int y = 0; y <= height - 2; y++) {
             placeLog(level, statepos, random, origin.above(y), config);

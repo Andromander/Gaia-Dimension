@@ -20,10 +20,7 @@ import net.minecraft.util.ProblemReporter;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.storage.loot.LootContext;
-import net.minecraft.world.level.storage.loot.LootPool;
-import net.minecraft.world.level.storage.loot.LootTable;
-import net.minecraft.world.level.storage.loot.ValidationContext;
+import net.minecraft.world.level.storage.loot.*;
 import net.minecraft.world.level.storage.loot.entries.AlternativesEntry;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.entries.NestedLootTable;
@@ -57,7 +54,7 @@ public class GaiaLootTables extends LootTableProvider {
     }
 
     @Override
-    protected void validate(WritableRegistry<LootTable> writableregistry, ValidationContext validationcontext, ProblemReporter.Collector collector) {
+    protected void validate(WritableRegistry<LootTable> writableregistry, ValidationContextSource validationcontext, ProblemReporter.Collector collector) {
     }
 
     public static class Blocks extends GaiaBlockLootTableProvider {

@@ -1,6 +1,10 @@
 {
-  "type": "gaiadimension:gaia_blob",
+  "type": "minecraft:block_blob",
   "config": {
+    "can_place_on": {
+      "type": "minecraft:matching_block_tag",
+      "tag": "gaiadimension:gummy_glitter_blob_placeable"
+    },
     "state": {
       "Name": "gaiadimension:gummy_glitter_block"
     }

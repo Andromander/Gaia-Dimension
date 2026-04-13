@@ -6,7 +6,7 @@
     "lava_level": {
       "above_bottom": 10
     },
-    "probability": 0.03,
+    "probability": 0.05,
     "replaceable": "#gaiadimension:gaia_carver_replaceables",
     "vertical_radius_multiplier": 1.0,
     "y": {

@@ -10,7 +10,8 @@ import net.minecraft.client.data.models.MultiVariant;
 import net.minecraft.client.data.models.blockstates.MultiVariantGenerator;
 import net.minecraft.client.data.models.blockstates.PropertyDispatch;
 import net.minecraft.client.data.models.model.*;
-import net.minecraft.client.renderer.block.model.VariantMutator;
+import net.minecraft.client.renderer.block.dispatch.VariantMutator;
+import net.minecraft.client.resources.model.sprite.Material;
 import net.minecraft.core.Direction;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.Items;
@@ -39,17 +40,14 @@ public abstract class GaiaBlockStateProvider {
     public static final ModelTemplate LEAVES_TEMPLATE = ExtendedModelTemplateBuilder.builder()
             .parent(ModelTemplates.CUBE_ALL.model.get())
             .requiredTextureSlot(TextureSlot.ALL)
-            .renderType("cutout")
             .build();
     public static final ModelTemplate TRANSLUCENT_TEMPLATE = ExtendedModelTemplateBuilder.builder()
             .parent(ModelTemplates.CUBE_ALL.model.get())
             .requiredTextureSlot(TextureSlot.ALL)
-            .renderType("translucent")
             .build();
     public static final ModelTemplate GRASS_TEMPLATE = ExtendedModelTemplateBuilder.builder()
             .parent(Identifier.parse("gaiadimension:block/util/grass_block"))
             .requiredTextureSlot(TextureSlot.BOTTOM).requiredTextureSlot(TextureSlot.TOP).requiredTextureSlot(TextureSlot.SIDE).requiredTextureSlot(OVERLAY).requiredTextureSlot(TextureSlot.PARTICLE)
-            .renderType("cutout")
             .build();
     public static final ModelTemplate CURTAIN_BOTTOM = curtainTemplate("_bottom");
     public static final ModelTemplate CURTAIN_TOP = curtainTemplate("_top");
@@ -66,7 +64,6 @@ public abstract class GaiaBlockStateProvider {
     public static final ModelTemplate POT_CROSS_CUTOUT_TEMPLATE = ExtendedModelTemplateBuilder.builder()
             .parent(ModelTemplates.FLOWER_POT_CROSS.model.get())
             .requiredTextureSlot(TextureSlot.PLANT)
-            .renderType("cutout")
             .build();
     public static final TexturedModel.Provider LEAVES_MODEL = TexturedModel.createDefault(TextureMapping::cube, LEAVES_TEMPLATE);
     public static final TexturedModel.Provider TRANSLUCENT_MODEL = TexturedModel.createDefault(TextureMapping::cube, TRANSLUCENT_TEMPLATE);
@@ -80,14 +77,13 @@ public abstract class GaiaBlockStateProvider {
                 .parent(Identifier.fromNamespaceAndPath(GaiaDimensionMod.MODID, "block/util/curtain_surface"))
                 .requiredTextureSlot(TextureSlot.TEXTURE)
                 .suffix(suffix)
-                .renderType("translucent")
                 .build();
     }
 
     public static TextureMapping cubeAllTwoLayer(String bottom, String top) {
         return new TextureMapping()
-                .put(TextureSlot.ALL, Identifier.fromNamespaceAndPath(GaiaDimensionMod.MODID, "block/" + bottom))
-                .put(OVERLAY, Identifier.fromNamespaceAndPath(GaiaDimensionMod.MODID, "block/" + top));
+                .put(TextureSlot.ALL, new Material(Identifier.fromNamespaceAndPath(GaiaDimensionMod.MODID, "block/" + bottom)))
+                .put(OVERLAY, new Material(Identifier.fromNamespaceAndPath(GaiaDimensionMod.MODID, "block/" + top)));
     }
 
     public static TextureMapping log(DeferredBlock<? extends Block> base) {
@@ -174,22 +170,18 @@ public abstract class GaiaBlockStateProvider {
     }
 
     public void basicBlockRotated(DeferredBlock<Block> block) {
-        basicBlockRotated(block, "solid");
-    }
-
-    public void basicBlockRotated(DeferredBlock<Block> block, String type) {
-        Identifier model = ModelTemplates.CUBE_ALL.extend().renderType(type).build().create(block.get(), TextureMapping.cube(block.get()), blockModels.modelOutput);
+        Identifier model = ModelTemplates.CUBE_ALL.extend().build().create(block.get(), TextureMapping.cube(block.get()), blockModels.modelOutput);
         blockModels.blockStateOutput.accept(MultiVariantGenerator.dispatch(block.get(), BlockModelGenerators.createRotatedVariants(BlockModelGenerators.plainModel(model))));
         blockModels.itemModelOutput.accept(block.asItem(), ItemModelUtils.plainModel(model));
     }
 
-    public void basicBlockLayered(DeferredBlock<Block> block, String suffix, String type) {
+    public void basicBlockLayered(DeferredBlock<Block> block, String suffix) {
         String blockname = block.getId().getPath();
-        basicBlockLayered(block, blockname, blockname + suffix, type);
+        basicBlockLayered(block, blockname, blockname + suffix);
     }
 
-    public void basicBlockLayered(DeferredBlock<Block> block, String bottom, String top, String type) {
-        ModelTemplate template = CUBE_ALL_LAYERED_TEMPLATE.extend().renderType(type).build();
+    public void basicBlockLayered(DeferredBlock<Block> block, String bottom, String top) {
+        ModelTemplate template = CUBE_ALL_LAYERED_TEMPLATE.extend().build();
         Identifier location = template.create(block.get(), cubeAllTwoLayer(bottom, top), blockModels.modelOutput);
         blockModels.blockStateOutput.accept(BlockModelGenerators.createSimpleBlock(block.get(), plain(location)));
         blockModels.itemModelOutput.accept(block.asItem(), ItemModelUtils.plainModel(location));
@@ -205,11 +197,10 @@ public abstract class GaiaBlockStateProvider {
         ModelTemplate template = ExtendedModelTemplateBuilder.builder()
                 .parent(parent)
                 .requiredTextureSlot(TextureSlot.ALL).requiredTextureSlot(OVERLAY)
-                .renderType("cutout")
                 .build();
         TextureMapping mapping = new TextureMapping()
-                .put(TextureSlot.ALL, Identifier.fromNamespaceAndPath(GaiaDimensionMod.MODID, "block/" + all))
-                .put(OVERLAY, Identifier.fromNamespaceAndPath(GaiaDimensionMod.MODID, "block/" + overlay));
+                .put(TextureSlot.ALL, new Material(Identifier.fromNamespaceAndPath(GaiaDimensionMod.MODID, "block/" + all)))
+                .put(OVERLAY, new Material(Identifier.fromNamespaceAndPath(GaiaDimensionMod.MODID, "block/" + overlay)));
         Identifier model = template.create(block.get(), mapping, blockModels.modelOutput);
         blockModels.blockStateOutput.accept(BlockModelGenerators.createSimpleBlock(block.get(), plain(model)));
     }
@@ -243,7 +234,7 @@ public abstract class GaiaBlockStateProvider {
         blockModels.itemModelOutput.accept(block.asItem(), ItemModelUtils.plainModel(straight));
     }
 
-    public void stairsBlockLayered(DeferredBlock<StairBlock> block, String base, String overlay, String type) {
+    public void stairsBlockLayered(DeferredBlock<StairBlock> block, String base, String overlay) {
         Identifier inner_parent = Identifier.fromNamespaceAndPath(GaiaDimensionMod.MODID, "block/util/inner_stairs_2_layer");
         Identifier straight_parent = Identifier.fromNamespaceAndPath(GaiaDimensionMod.MODID, "block/util/stairs_2_layer");
         Identifier outer_parent = Identifier.fromNamespaceAndPath(GaiaDimensionMod.MODID, "block/util/outer_stairs_2_layer");
@@ -252,29 +243,26 @@ public abstract class GaiaBlockStateProvider {
                 .requiredTextureSlot(SIDE2).requiredTextureSlot(TOP2).requiredTextureSlot(BOTTOM2)
                 .parent(inner_parent)
                 .suffix("_inner")
-                .renderType("cutout")
                 .build();
         ModelTemplate straight_template = ExtendedModelTemplateBuilder.builder()
                 .requiredTextureSlot(TextureSlot.SIDE).requiredTextureSlot(TextureSlot.TOP).requiredTextureSlot(TextureSlot.BOTTOM)
                 .requiredTextureSlot(SIDE2).requiredTextureSlot(TOP2).requiredTextureSlot(BOTTOM2)
                 .parent(straight_parent)
                 .suffix("_straight")
-                .renderType("cutout")
                 .build();
         ModelTemplate outer_template = ExtendedModelTemplateBuilder.builder()
                 .requiredTextureSlot(TextureSlot.SIDE).requiredTextureSlot(TextureSlot.TOP).requiredTextureSlot(TextureSlot.BOTTOM)
                 .requiredTextureSlot(SIDE2).requiredTextureSlot(TOP2).requiredTextureSlot(BOTTOM2)
                 .parent(outer_parent)
                 .suffix("_outer")
-                .renderType("cutout")
                 .build();
         TextureMapping mapping = new TextureMapping()
-                .put(TextureSlot.TOP, Identifier.fromNamespaceAndPath(GaiaDimensionMod.MODID, "block/" + base))
-                .put(TextureSlot.BOTTOM, Identifier.fromNamespaceAndPath(GaiaDimensionMod.MODID, "block/" + base))
-                .put(TextureSlot.SIDE, Identifier.fromNamespaceAndPath(GaiaDimensionMod.MODID, "block/" + base))
-                .put(TOP2, Identifier.fromNamespaceAndPath(GaiaDimensionMod.MODID, "block/" + overlay))
-                .put(BOTTOM2, Identifier.fromNamespaceAndPath(GaiaDimensionMod.MODID, "block/" + overlay))
-                .put(SIDE2, Identifier.fromNamespaceAndPath(GaiaDimensionMod.MODID, "block/" + overlay));
+                .put(TextureSlot.TOP, new Material(Identifier.fromNamespaceAndPath(GaiaDimensionMod.MODID, "block/" + base)))
+                .put(TextureSlot.BOTTOM, new Material(Identifier.fromNamespaceAndPath(GaiaDimensionMod.MODID, "block/" + base)))
+                .put(TextureSlot.SIDE, new Material(Identifier.fromNamespaceAndPath(GaiaDimensionMod.MODID, "block/" + base)))
+                .put(TOP2, new Material(Identifier.fromNamespaceAndPath(GaiaDimensionMod.MODID, "block/" + overlay)))
+                .put(BOTTOM2, new Material(Identifier.fromNamespaceAndPath(GaiaDimensionMod.MODID, "block/" + overlay)))
+                .put(SIDE2, new Material(Identifier.fromNamespaceAndPath(GaiaDimensionMod.MODID, "block/" + overlay)));
         Identifier inner = inner_template.create(block.get(), mapping, blockModels.modelOutput);
         Identifier straight = straight_template.create(block.get(), mapping, blockModels.modelOutput);
         Identifier outer = outer_template.create(block.get(), mapping, blockModels.modelOutput);
@@ -290,8 +278,8 @@ public abstract class GaiaBlockStateProvider {
         blockModels.itemModelOutput.accept(block.asItem(), ItemModelUtils.plainModel(bottom));
     }
 
-    public void crossBlock(DeferredBlock<? extends Block> block, String type) {
-        Identifier location = ModelTemplates.CROSS.extend().renderType(type).build().create(block.get(), TextureMapping.cross(block.get()), blockModels.modelOutput);
+    public void crossBlock(DeferredBlock<? extends Block> block) {
+        Identifier location = ModelTemplates.CROSS.create(block.get(), TextureMapping.cross(block.get()), blockModels.modelOutput);
         blockModels.blockStateOutput.accept(BlockModelGenerators.createSimpleBlock(block.get(), plain(location)));
         if (block.asItem() != Items.AIR) {
             blockModels.registerSimpleItemModel(block.asItem(), blockModels.createFlatItemModelWithBlockTexture(block.asItem(), block.get()));
@@ -299,7 +287,7 @@ public abstract class GaiaBlockStateProvider {
     }
 
     public void crossBlockTinted(DeferredBlock<Block> block) {
-        Identifier location = ModelTemplates.TINTED_CROSS.extend().renderType("translucent").build().create(block.get(), TextureMapping.cross(block.get()), blockModels.modelOutput);
+        Identifier location = ModelTemplates.TINTED_CROSS.create(block.get(), TextureMapping.cross(block.get()), blockModels.modelOutput);
         Identifier item = blockModels.createFlatItemModelWithBlockTexture(block.asItem(), block.get());
         blockModels.blockStateOutput.accept(BlockModelGenerators.createSimpleBlock(block.get(), plain(location)));
         blockModels.registerSimpleTintedItemModel(block.get(), item, ItemModelUtils.constantTint(0xF2A3B4));
@@ -315,7 +303,7 @@ public abstract class GaiaBlockStateProvider {
 
     public void orientableBlockLit(DeferredBlock<Block> block) {
         Identifier off = TexturedModel.ORIENTABLE_ONLY_TOP.create(block.get(), blockModels.modelOutput);
-        Identifier frontlit = TextureMapping.getBlockTexture(block.get(), "_front_lit");
+        Material frontlit = TextureMapping.getBlockTexture(block.get(), "_front_lit");
         Identifier on = TexturedModel.ORIENTABLE_ONLY_TOP.get(block.get())
                 .updateTextures(t -> t.put(TextureSlot.FRONT, frontlit))
                 .createWithSuffix(block.get(), "_lit", blockModels.modelOutput);
@@ -363,7 +351,7 @@ public abstract class GaiaBlockStateProvider {
     public void pottedPlantBlock(DeferredBlock<? extends Block> plant, DeferredBlock<? extends Block> pot) {
         //plant
         TextureMapping plantmap = TextureMapping.cross(plant.get());
-        Identifier plantloc = ModelTemplates.CROSS.extend().renderType("cutout").build().create(plant.get(), plantmap, blockModels.modelOutput);
+        Identifier plantloc = ModelTemplates.CROSS.create(plant.get(), plantmap, blockModels.modelOutput);
         blockModels.blockStateOutput.accept(BlockModelGenerators.createSimpleBlock(plant.get(), BlockModelGenerators.plainVariant(plantloc)));
         //pot
         TextureMapping potmap = TextureMapping.plant(plant.get());
@@ -375,9 +363,9 @@ public abstract class GaiaBlockStateProvider {
 
     public void torchBlock(DeferredBlock<Block> block, DeferredBlock<Block> wall) {
         TextureMapping texturemapping = TextureMapping.torch(block.get());
-        Identifier wallmodel = ModelTemplates.WALL_TORCH.extend().renderType("cutout").build().create(wall.get(), texturemapping, blockModels.modelOutput);
+        Identifier wallmodel = ModelTemplates.WALL_TORCH.create(wall.get(), texturemapping, blockModels.modelOutput);
 
-        blockModels.blockStateOutput.accept(BlockModelGenerators.createSimpleBlock(block.get(), BlockModelGenerators.plainVariant(ModelTemplates.TORCH.extend().renderType("cutout").build().create(block.get(), texturemapping, blockModels.modelOutput))));
+        blockModels.blockStateOutput.accept(BlockModelGenerators.createSimpleBlock(block.get(), BlockModelGenerators.plainVariant(ModelTemplates.TORCH.create(block.get(), texturemapping, blockModels.modelOutput))));
         blockModels.blockStateOutput
                 .accept(
                         MultiVariantGenerator.dispatch(wall.get(), BlockModelGenerators.plainVariant(wallmodel))

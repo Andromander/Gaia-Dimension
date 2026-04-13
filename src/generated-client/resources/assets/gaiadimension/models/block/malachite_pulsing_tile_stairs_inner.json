@@ -1,6 +1,5 @@
 {
   "parent": "gaiadimension:block/util/inner_stairs_2_layer",
-  "render_type": "minecraft:cutout",
   "textures": {
     "bottom": "gaiadimension:block/malachite_tiles",
     "bottom2": "gaiadimension:block/malachite_blue_pulse_corner",

@@ -5,6 +5,11 @@
         "texture": "gaiadimension:gaia_champion"
       }
     ],
+    "humanoid_baby": [
+      {
+        "texture": "gaiadimension:gaia_champion"
+      }
+    ],
     "humanoid_leggings": [
       {
         "texture": "gaiadimension:gaia_champion"

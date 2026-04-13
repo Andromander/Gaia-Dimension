@@ -12,11 +12,11 @@ import androsa.gaiadimension.registry.values.GaiaFluidAttributes;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
+import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.config.ModConfig;
-import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.neoforge.common.ModConfigSpec;
 import net.neoforged.neoforge.common.data.DatapackBuiltinEntriesProvider;
@@ -35,12 +35,15 @@ public class GaiaDimensionMod {
     public static GaiaConfig.ClientConfig clientConfig;
     public static GaiaConfig.CommonConfig commonConfig;
 
-    public GaiaDimensionMod(IEventBus bus, ModContainer container) {
+    public GaiaDimensionMod(IEventBus bus, ModContainer container, Dist dist) {
         bus.addListener(this::setup);
-        bus.addListener(this::clientSetup);
         bus.addListener(this::gatherClientData);
         bus.addListener(this::gatherServerData);
         bus.addListener(ModDataMaps::registerDataMaps);
+
+        if (dist.isClient()) {
+            ClientEvents.init(bus);
+        }
 
         GaiaBiomes.BIOMES.register(bus);
         ModBlocks.BLOCKS.register(bus);
@@ -90,10 +93,6 @@ public class GaiaDimensionMod {
             GaiaFluidAttributes.registerFluidInteractions();
         });
         ModBlocks.addPlants();
-    }
-
-    public void clientSetup(FMLClientSetupEvent event) {
-        ClientEvents.registerBlockRenderers();
     }
 
     public void gatherClientData(GatherDataEvent.Client event) {

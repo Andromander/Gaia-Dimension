@@ -1,68 +1,22 @@
 {
-  "type": "minecraft:random_patch",
+  "type": "minecraft:simple_block",
   "config": {
-    "feature": {
-      "feature": {
-        "type": "minecraft:simple_block",
-        "config": {
-          "to_place": {
-            "type": "minecraft:weighted_state_provider",
-            "entries": [
-              {
-                "data": {
-                  "Name": "gaiadimension:elder_imklia"
-                },
-                "weight": 2
-              },
-              {
-                "data": {
-                  "Name": "gaiadimension:gold_orb_tucher"
-                },
-                "weight": 2
-              }
-            ]
-          }
-        }
-      },
-      "placement": [
+    "to_place": {
+      "type": "minecraft:weighted_state_provider",
+      "entries": [
         {
-          "type": "minecraft:block_predicate_filter",
-          "predicate": {
-            "type": "minecraft:all_of",
-            "predicates": [
-              {
-                "type": "minecraft:matching_blocks",
-                "blocks": "minecraft:cave_air"
-              },
-              {
-                "type": "minecraft:not",
-                "predicate": {
-                  "type": "minecraft:matching_blocks",
-                  "blocks": [
-                    "gaiadimension:glitter_grass",
-                    "gaiadimension:heavy_soil",
-                    "gaiadimension:corrupted_grass",
-                    "gaiadimension:corrupted_soil",
-                    "gaiadimension:murky_grass",
-                    "gaiadimension:boggy_soil",
-                    "gaiadimension:soft_grass",
-                    "gaiadimension:light_soil",
-                    "gaiadimension:salt"
-                  ],
-                  "offset": [
-                    0,
-                    -1,
-                    0
-                  ]
-                }
-              }
-            ]
-          }
+          "data": {
+            "Name": "gaiadimension:elder_imklia"
+          },
+          "weight": 2
+        },
+        {
+          "data": {
+            "Name": "gaiadimension:gold_orb_tucher"
+          },
+          "weight": 2
         }
       ]
-    },
-    "tries": 64,
-    "xz_spread": 7,
-    "y_spread": 3
+    }
   }
 }

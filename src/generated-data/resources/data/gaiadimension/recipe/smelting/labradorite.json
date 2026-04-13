@@ -5,7 +5,6 @@
   "experience": 0.3,
   "ingredient": "gaiadimension:labradorite_ore",
   "result": {
-    "count": 1,
     "id": "gaiadimension:labradorite"
   }
 }

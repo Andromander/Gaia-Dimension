@@ -61,7 +61,7 @@ public class ShallowArenthis extends WaterAnimal {
 
     @Override
     protected void handleAirSupply(ServerLevel server, int amount) {
-        if (this.isAlive() && !this.isInWater() && this.isInFluidType((type, height) -> this.canDrownInFluidType(type), true)) {
+        if (this.isAlive() && !this.isInWater() /*&& this.isInFluidType((type, height) -> this.canDrownInFluidType(type), true)*/) {
             this.setAirSupply(amount - 1);
             if (this.getAirSupply() == -20) {
                 this.setAirSupply(0);
@@ -120,7 +120,7 @@ public class ShallowArenthis extends WaterAnimal {
             }
         }
 
-        if (this.isInWater() || this.isInFluidType((type, height) -> this.canSwimInFluidType(type))) {
+        if (this.isInWater() /*|| this.isInFluidType((type, height) -> this.canSwimInFluidType(type))*/) {
             if (this.arenthisRotation < (float)Math.PI) {
                 float f = this.arenthisRotation / (float)Math.PI;
                 this.tentacleAngle = Mth.sin(f * f * (float)Math.PI) * (float)Math.PI * 0.25F;
@@ -210,7 +210,7 @@ public class ShallowArenthis extends WaterAnimal {
 
             if (i > 100) {
                 this.arenthis.setMovementVector(0.0F, 0.0F, 0.0F);
-            } else if (this.arenthis.getRandom().nextInt(reducedTickDelay(50)) == 0 || !(this.arenthis.wasTouchingWater || this.arenthis.isInFluidType((fluidType, height) -> this.arenthis.canSwimInFluidType(fluidType))) || !this.arenthis.hasMovementVector()) {
+            } else if (this.arenthis.getRandom().nextInt(reducedTickDelay(50)) == 0 || !(this.arenthis.wasTouchingWater /*|| this.arenthis.isInFluidType((fluidType, height) -> this.arenthis.canSwimInFluidType(fluidType))*/) || !this.arenthis.hasMovementVector()) {
                 float randomVec = this.arenthis.getRandom().nextFloat() * ((float)Math.PI * 2F);
                 float vecX = Mth.cos(randomVec) * 0.2F;
                 float vecY = -0.1F + this.arenthis.getRandom().nextFloat() * 0.2F;

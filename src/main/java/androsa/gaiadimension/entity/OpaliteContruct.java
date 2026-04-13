@@ -291,7 +291,7 @@ public class OpaliteContruct extends PathfinderMob {
         if (this.getBonder() != null && player.getUUID().equals(this.getBonder().getUUID())) {
             if (stack.is(ModItems.opalite.get())) {
                 if (this.getOpaliteAmount() >= 10) {
-                    player.displayClientMessage(Component.translatable("gaiadimension.opalite_construct.too_many_opalite"), true);
+                    player.sendOverlayMessage(Component.translatable("gaiadimension.opalite_construct.too_many_opalite"));
                     return InteractionResult.PASS;
                 } else {
                     this.setOpaliteAmount(this.getOpaliteAmount() + 1);
@@ -303,7 +303,7 @@ public class OpaliteContruct extends PathfinderMob {
             if (BLOCK_TO_DATA.containsKey(item)) {
                 EntityDataAccessor<Integer> data = BLOCK_TO_DATA.get(item);
                 if (this.getMookaiteAmount(data) >= 10) {
-                    player.displayClientMessage(Component.translatable("gaiadimension.opalite_construct.too_many_mookaite"), true);
+                    player.sendOverlayMessage(Component.translatable("gaiadimension.opalite_construct.too_many_mookaite"));
                     return InteractionResult.PASS;
                 } else {
                     this.setMookaiteAmount(data, this.getMookaiteAmount(data) + 1);

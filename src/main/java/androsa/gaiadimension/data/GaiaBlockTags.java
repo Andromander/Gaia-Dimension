@@ -249,6 +249,7 @@ public class GaiaBlockTags extends GaiaBlockTagsProvider {
         tag(GaiaTags.Blocks.GAIA_CARVER_REPLACEABLES).addTags(GaiaTags.Blocks.GAIA_GRASS, GaiaTags.Blocks.GAIA_SOIL)
                 .add(ModBlocks.saltstone.get(), ModBlocks.gaia_stone.get(), ModBlocks.wasteland_stone.get(), ModBlocks.volcanic_rock.get(), ModBlocks.primal_mass.get(), ModBlocks.nexustone.get());
         addTag(GaiaTags.Blocks.GAIA_PLANTS, GAIA_PLANTS);
+        tag(GaiaTags.Blocks.GUMMY_BLOB_PLACEABLE).addTag(GaiaTags.Blocks.GAIA_SOIL).addTag(GaiaTags.Blocks.GAIA_GRASS).addTag(GaiaTags.Blocks.GAIA_STONE);
 
         tag(GaiaTags.Blocks.INCORRECT_FOR_AGATE).addTag(BlockTags.INCORRECT_FOR_STONE_TOOL);
         tag(GaiaTags.Blocks.INCORRECT_FOR_SUGILITE).addTag(BlockTags.INCORRECT_FOR_IRON_TOOL);

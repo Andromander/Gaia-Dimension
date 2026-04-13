@@ -39,8 +39,8 @@ public class GaiaNoiseInterpolator {
         this.noiseFiller = filler;
         this.slice0 = allocateSlice(max, z);
         this.slice1 = allocateSlice(max, z);
-        this.firstX = pos.x * x;
-        this.firstZ = pos.z * z;
+        this.firstX = pos.x() * x;
+        this.firstZ = pos.z() * z;
     }
 
     private static double[][] allocateSlice(int y, int z) {

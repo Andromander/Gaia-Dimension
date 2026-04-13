@@ -1,6 +1,5 @@
 {
   "parent": "minecraft:block/cube_all",
-  "render_type": "minecraft:cutout",
   "textures": {
     "all": "gaiadimension:block/fire_agate_leaves"
   }

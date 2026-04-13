@@ -5,6 +5,11 @@
         "texture": "gaiadimension:apex_predator"
       }
     ],
+    "humanoid_baby": [
+      {
+        "texture": "gaiadimension:apex_predator"
+      }
+    ],
     "humanoid_leggings": [
       {
         "texture": "gaiadimension:apex_predator"

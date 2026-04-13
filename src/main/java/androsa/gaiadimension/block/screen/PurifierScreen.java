@@ -4,7 +4,7 @@ import androsa.gaiadimension.GaiaDimensionMod;
 import androsa.gaiadimension.block.menu.PurifierMenu;
 import androsa.gaiadimension.registry.registration.ModItems;
 import androsa.gaiadimension.registry.registration.ModRecipes;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.gui.screens.recipebook.RecipeBookComponent;
 import net.minecraft.client.renderer.RenderPipelines;
@@ -22,26 +22,18 @@ public class PurifierScreen extends AbstractContainerScreen<PurifierMenu> {
             new RecipeBookComponent.TabInfo(ModItems.goldstone.get(), ModRecipes.PURIFYING_CATEGORY.get()));
 
     public PurifierScreen(PurifierMenu purifier, Inventory invPlayer, Component component) {
-        super(purifier, invPlayer, component);
-
-        imageWidth = 176;
-        imageHeight = 207;
+        super(purifier, invPlayer, component, 176, 207);
     }
 
     @Override
-    public void render(GuiGraphics stack, int mouseX, int mouseY, float partialTicks) {
-        super.render(stack, mouseX, mouseY, partialTicks);
-        renderTooltip(stack, mouseX, mouseY);
+    protected void extractLabels(GuiGraphicsExtractor stack, int mouseX, int mouseY) {
+        stack.text(font, title, (imageWidth / 2 - font.width(title.getString()) / 2), 6, 0xFFF0F0F0, false);
+        stack.text(font, playerInventoryTitle, 8, (imageHeight - 96 + 2), 0xFFF0F0F0, false);
     }
 
     @Override
-    protected void renderLabels(GuiGraphics stack, int mouseX, int mouseY) {
-        stack.drawString(font, title, (imageWidth / 2 - font.width(title.getString()) / 2), 6, 0xF0F0F0);
-        stack.drawString(font, playerInventoryTitle, 8, (imageHeight - 96 + 2), 0xF0F0F0);
-    }
-
-    @Override
-    protected void renderBg(GuiGraphics stack, float par1, int par2, int par3) {
+    public void extractBackground(GuiGraphicsExtractor stack, int x, int z, float partialticks) {
+        super.extractBackground(stack, x, z, partialticks);
         int k = leftPos;
         int l = topPos;
         stack.blit(RenderPipelines.GUI_TEXTURED, textureLoc, k, l, 0, 0, imageWidth, imageHeight, 256, 256);

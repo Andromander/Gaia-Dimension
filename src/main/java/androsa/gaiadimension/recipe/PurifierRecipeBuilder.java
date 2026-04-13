@@ -8,8 +8,8 @@ import net.minecraft.advancements.criterion.RecipeUnlockedTrigger;
 import net.minecraft.data.recipes.RecipeBuilder;
 import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.ItemStackTemplate;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.level.ItemLike;
@@ -22,14 +22,14 @@ import java.util.Objects;
 public class PurifierRecipeBuilder implements RecipeBuilder {
 
     private final Ingredient ingredient;
-    private final ItemStack result;
-    private final ItemStack byproduct;
+    private final ItemStackTemplate result;
+    private final ItemStackTemplate byproduct;
     private final float experience;
     private final int cookingTime;
     private final Map<String, Criterion<?>> criteria = new LinkedHashMap<>();
     private String group;
 
-    private PurifierRecipeBuilder(Ingredient ingredient, ItemStack result, ItemStack byproduct, float experience, int time) {
+    private PurifierRecipeBuilder(Ingredient ingredient, ItemStackTemplate result, ItemStackTemplate byproduct, float experience, int time) {
         this.ingredient = ingredient;
         this.result = result;
         this.byproduct = byproduct;
@@ -38,11 +38,15 @@ public class PurifierRecipeBuilder implements RecipeBuilder {
     }
 
     public static PurifierRecipeBuilder purifying(Ingredient ingredient, ItemStack result, ItemStack byproduct, float experience, int time) {
+        return new PurifierRecipeBuilder(ingredient, ItemStackTemplate.fromNonEmptyStack(result), ItemStackTemplate.fromNonEmptyStack(byproduct), experience, time);
+    }
+
+    public static PurifierRecipeBuilder purifying(Ingredient ingredient, ItemStackTemplate result, ItemStackTemplate byproduct, float experience, int time) {
         return new PurifierRecipeBuilder(ingredient, result, byproduct, experience, time);
     }
 
     public static PurifierRecipeBuilder purifying(Ingredient ingredient, ItemLike result, ItemLike byproduct, float experience, int time) {
-        return new PurifierRecipeBuilder(ingredient, new ItemStack(result), new ItemStack(byproduct), experience, time);
+        return new PurifierRecipeBuilder(ingredient, new ItemStackTemplate(result.asItem()), new ItemStackTemplate(byproduct.asItem()), experience, time);
     }
 
     @Override
@@ -58,8 +62,8 @@ public class PurifierRecipeBuilder implements RecipeBuilder {
     }
 
     @Override
-    public Item getResult() {
-        return this.result.getItem();
+    public ResourceKey<Recipe<?>> defaultId() {
+        return RecipeBuilder.getDefaultRecipeId(this.result);
     }
 
     @Override

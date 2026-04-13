@@ -1,4 +1,4 @@
-// 1.21.11	2025-12-30T09:26:13.7722504	Tags for minecraft:damage_type mod id gaiadimension
+// 26.1	2026-04-09T23:02:47.7272958	Tags for minecraft:damage_type mod id gaiadimension
 bf0fa23da9fa6228c98e356cb095a6d1c2e77eec data/c/tags/damage_type/is_electric.json
 e09f6bd6409ac1fe6861128de307002d1f36e981 data/minecraft/tags/damage_type/bypasses_armor.json
 303fbf88ff648f898a5e36dc30741aeb6aaf12cb data/minecraft/tags/damage_type/bypasses_effects.json

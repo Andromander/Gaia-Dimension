@@ -11,7 +11,6 @@ import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import org.jspecify.annotations.NullMarked;
 
-@NullMarked
 public class ModRecipes {
 
     public static final DeferredRegister<RecipeSerializer<?>> RECIPE_SERIALIZERS = DeferredRegister.create(Registries.RECIPE_SERIALIZER, GaiaDimensionMod.MODID);
@@ -34,11 +33,8 @@ public class ModRecipes {
     });
 
     //RecipeSerializer
-    public static final DeferredHolder<RecipeSerializer<?>, DoubleOutputRecipe.Serializer<RestructurerRecipe>> RESTRUCTURING_SERIALIZER = RECIPE_SERIALIZERS.register("restructuring",
-            () -> new DoubleOutputRecipe.Serializer<>(RestructurerRecipe::new, 200));
-
-    public static final DeferredHolder<RecipeSerializer<?>, DoubleOutputRecipe.Serializer<PurifierRecipe>> PURIFYING_SERIALIZER = RECIPE_SERIALIZERS.register("purifying",
-            () -> new DoubleOutputRecipe.Serializer<>(PurifierRecipe::new, 200));
+    public static final DeferredHolder<RecipeSerializer<?>, RecipeSerializer<RestructurerRecipe>> RESTRUCTURING_SERIALIZER = RECIPE_SERIALIZERS.register("restructuring", () -> RestructurerRecipe.SERIALIZER);
+    public static final DeferredHolder<RecipeSerializer<?>, RecipeSerializer<PurifierRecipe>> PURIFYING_SERIALIZER = RECIPE_SERIALIZERS.register("purifying", () -> PurifierRecipe.SERIALIZER);
 
     //RecipeBookCategory
     public static final DeferredHolder<RecipeBookCategory, RecipeBookCategory> RESTRUCTURING_CATEGORY = RECIPE_BOOK_CATEGORIES.register("restructuring", RecipeBookCategory::new);

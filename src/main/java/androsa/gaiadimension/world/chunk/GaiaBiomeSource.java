@@ -103,7 +103,7 @@ public class GaiaBiomeSource extends BiomeSource {
 
     private void lazyLoad() {
         if (genBiomes == null) {
-            this.seed = ServerLifecycleHooks.getCurrentServer().getWorldData().worldGenOptions().seed();
+            this.seed = ServerLifecycleHooks.getCurrentServer().getWorldGenSettings().options().seed();
             this.genBiomes = GaiaLayerUtil.makeLayers(seed, registry);
         }
     }

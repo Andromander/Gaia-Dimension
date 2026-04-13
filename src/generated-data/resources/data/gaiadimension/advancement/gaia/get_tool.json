@@ -287,7 +287,6 @@
       "translate": "advancements.gaia.get_tool.description"
     },
     "icon": {
-      "count": 1,
       "id": "gaiadimension:agate_sword"
     },
     "title": {

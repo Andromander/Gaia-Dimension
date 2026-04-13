@@ -1,41 +1,22 @@
 {
-  "type": "minecraft:random_patch",
+  "type": "minecraft:simple_block",
   "config": {
-    "feature": {
-      "feature": {
-        "type": "minecraft:simple_block",
-        "config": {
-          "to_place": {
-            "type": "minecraft:weighted_state_provider",
-            "entries": [
-              {
-                "data": {
-                  "Name": "gaiadimension:crystal_growth_red"
-                },
-                "weight": 2
-              },
-              {
-                "data": {
-                  "Name": "gaiadimension:crystal_growth_black"
-                },
-                "weight": 2
-              }
-            ]
-          }
-        }
-      },
-      "placement": [
+    "to_place": {
+      "type": "minecraft:weighted_state_provider",
+      "entries": [
         {
-          "type": "minecraft:block_predicate_filter",
-          "predicate": {
-            "type": "minecraft:matching_blocks",
-            "blocks": "minecraft:air"
-          }
+          "data": {
+            "Name": "gaiadimension:crystal_growth_red"
+          },
+          "weight": 2
+        },
+        {
+          "data": {
+            "Name": "gaiadimension:crystal_growth_black"
+          },
+          "weight": 2
         }
       ]
-    },
-    "tries": 32,
-    "xz_spread": 7,
-    "y_spread": 3
+    }
   }
 }

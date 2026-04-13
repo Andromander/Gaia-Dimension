@@ -1,6 +1,5 @@
 {
   "parent": "gaiadimension:block/util/curtain_surface",
-  "render_type": "minecraft:translucent",
   "textures": {
     "texture": "gaiadimension:block/burnt_agate_curtain_bottom_left_open"
   }

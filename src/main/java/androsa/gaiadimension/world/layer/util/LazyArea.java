@@ -16,7 +16,7 @@ public class LazyArea implements Area {
 
     @Override
     public int get(int pX, int pZ) {
-        long i = ChunkPos.asLong(pX, pZ);
+        long i = ChunkPos.pack(pX, pZ);
         synchronized(this.cache) {
             int j = this.cache.get(i);
             if (j != Integer.MIN_VALUE) {

@@ -121,7 +121,7 @@ public class GoldFireBlock extends Block {
                 if (!state1.canSurvive(worldIn, pos)) {
                     worldIn.removeBlock(pos, false);
                 } else {
-                    worldIn.scheduleTick(pos, this, this.tickRate() + worldIn.random.nextInt(10));
+                    worldIn.scheduleTick(pos, this, this.tickRate() + worldIn.getRandom().nextInt(10));
                 }
             }
         }

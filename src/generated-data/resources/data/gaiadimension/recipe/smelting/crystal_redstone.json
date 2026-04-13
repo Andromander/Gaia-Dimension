@@ -5,7 +5,6 @@
   "experience": 0.25,
   "ingredient": "minecraft:redstone",
   "result": {
-    "count": 1,
     "id": "gaiadimension:crystallized_redstone"
   }
 }

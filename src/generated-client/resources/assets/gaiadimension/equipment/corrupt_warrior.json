@@ -5,6 +5,11 @@
         "texture": "gaiadimension:corrupt_warrior"
       }
     ],
+    "humanoid_baby": [
+      {
+        "texture": "gaiadimension:corrupt_warrior"
+      }
+    ],
     "humanoid_leggings": [
       {
         "texture": "gaiadimension:corrupt_warrior"

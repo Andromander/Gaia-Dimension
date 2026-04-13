@@ -67,8 +67,8 @@ public class LargeCrateBlock extends Block implements EntityBlock {
     public BlockState playerWillDestroy(Level worldIn, BlockPos pos, BlockState state, Player player) {
         BlockEntity tileentity = worldIn.getBlockEntity(pos);
         if (tileentity instanceof LargeCrateBlockEntity crate) {
-            if (!worldIn.isClientSide() && player.isCreative() && !crate.isEmpty()) {
-                ItemStack itemstack = new ItemStack(this);
+            if (!worldIn.isClientSide() && player.preventsBlockDrops() && !crate.isEmpty()) {
+                ItemStack itemstack = new ItemStack(state.getBlock());
                 itemstack.applyComponents(tileentity.collectComponents());
                 ItemEntity itementity = new ItemEntity(worldIn, pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D, itemstack);
                 itementity.setDefaultPickUpDelay();
@@ -84,7 +84,7 @@ public class LargeCrateBlock extends Block implements EntityBlock {
     @Override
     @Deprecated
     public List<ItemStack> getDrops(BlockState state, LootParams.Builder builder) {
-        BlockEntity tileentity = builder.getParameter(LootContextParams.BLOCK_ENTITY);
+        BlockEntity tileentity = builder.getOptionalParameter(LootContextParams.BLOCK_ENTITY);
         if (tileentity instanceof LargeCrateBlockEntity crate) {
             builder = builder.withDynamicDrop(NAME, (stack) -> {
                 for(int i = 0; i < crate.getContainerSize(); ++i) {

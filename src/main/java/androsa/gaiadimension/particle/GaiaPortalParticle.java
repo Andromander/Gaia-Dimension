@@ -50,8 +50,8 @@ public class GaiaPortalParticle extends SingleQuadParticle {
     }
 
     @Override
-    public int getLightColor(float partialTick) {
-        int i = super.getLightColor(partialTick);
+    public int getLightCoords(float partialTick) {
+        int i = super.getLightCoords(partialTick);
         float f = (float)this.age / (float)this.lifetime;
         f = f * f;
         f = f * f;

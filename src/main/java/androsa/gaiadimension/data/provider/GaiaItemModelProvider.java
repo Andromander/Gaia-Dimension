@@ -11,6 +11,7 @@ import net.minecraft.client.data.models.ItemModelGenerators;
 import net.minecraft.client.data.models.model.*;
 import net.minecraft.client.renderer.item.ItemModel;
 import net.minecraft.client.renderer.item.SelectItemModel;
+import net.minecraft.client.resources.model.sprite.Material;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.Item;
 import net.neoforged.neoforge.registries.DeferredItem;
@@ -42,7 +43,7 @@ public abstract class GaiaItemModelProvider {
         itemModels.itemModelOutput.accept(item.get(), ItemModelUtils.plainModel(
                 ModelTemplates.FLAT_ITEM.create(
                         ModelLocationUtils.getModelLocation(item.get()),
-                        TextureMapping.layer0(Identifier.fromNamespaceAndPath(GaiaDimensionMod.MODID, "item/spawn_egg/" + item.getId().getPath())),
+                        TextureMapping.layer0(new Material(Identifier.fromNamespaceAndPath(GaiaDimensionMod.MODID, "item/spawn_egg/" + item.getId().getPath()))),
                         itemModels.modelOutput)));
     }
 
@@ -50,7 +51,7 @@ public abstract class GaiaItemModelProvider {
         itemModels.itemModelOutput.accept(item.get(), ItemModelUtils.plainModel(
                 ModelTemplates.FLAT_ITEM.create(
                         ModelLocationUtils.getModelLocation(item.get()),
-                        TextureMapping.layer0(Identifier.fromNamespaceAndPath(GaiaDimensionMod.MODID, "item/geode")),
+                        TextureMapping.layer0(new Material(Identifier.fromNamespaceAndPath(GaiaDimensionMod.MODID, "item/geode"))),
                         itemModels.modelOutput)));
     }
 
@@ -83,18 +84,18 @@ public abstract class GaiaItemModelProvider {
         List<SelectItemModel.SwitchCase<GaiaStaffItem.Element>> cases = Lists.newArrayList();
 
         for (GaiaStaffItem.Element element : GaiaStaffItem.Element.values()) {
-            cases.add(ItemModelUtils.when(element, behaviorArray(generator, base, base.withSuffix("_" + element.getSerializedName()), base.withSuffix("/core/" + element.getSerializedName()))));
+            cases.add(ItemModelUtils.when(element, behaviorArray(generator, base, base.withSuffix("_" + element.getSerializedName()), new Material(base.withSuffix("/core/" + element.getSerializedName())))));
         }
         return ItemModelUtils.select(
                 new Element(),
                 cases);
     }
 
-    private ItemModel.Unbaked behaviorArray(ItemModelGenerators generator, Identifier base, Identifier combo, Identifier layer2) {
+    private ItemModel.Unbaked behaviorArray(ItemModelGenerators generator, Identifier base, Identifier combo, Material layer2) {
         List<SelectItemModel.SwitchCase<GaiaStaffItem.Behavior>> cases = Lists.newArrayList();
 
         for (GaiaStaffItem.Behavior behavior : GaiaStaffItem.Behavior.values()) {
-            cases.add(ItemModelUtils.when(behavior, statArray(generator, base, combo.withSuffix("_" + behavior.getSerializedName()), base.withSuffix("/head/" + behavior.getSerializedName()), layer2)));
+            cases.add(ItemModelUtils.when(behavior, statArray(generator, base, combo.withSuffix("_" + behavior.getSerializedName()), new Material(base.withSuffix("/head/" + behavior.getSerializedName())), layer2)));
         }
 
         return ItemModelUtils.select(
@@ -102,7 +103,7 @@ public abstract class GaiaItemModelProvider {
                 cases);
     }
 
-    private ItemModel.Unbaked statArray(ItemModelGenerators generator, Identifier base, Identifier combo, Identifier layer1, Identifier layer2) {
+    private ItemModel.Unbaked statArray(ItemModelGenerators generator, Identifier base, Identifier combo, Material layer1, Material layer2) {
         List<SelectItemModel.SwitchCase<GaiaStaffItem.Stat>> cases = Lists.newArrayList();
 
         for (GaiaStaffItem.Stat stat : GaiaStaffItem.Stat.values()) {
@@ -114,7 +115,7 @@ public abstract class GaiaItemModelProvider {
                 cases);
     }
 
-    private ItemModel.Unbaked makeStaffModel(String stat, Identifier base, Identifier combo, Identifier layer1, Identifier layer2, ItemModelGenerators generator) {
-        return ItemModelUtils.plainModel(THREE_LAYERED_TOOL.create(combo.withSuffix("_" + stat), TextureMapping.layered(base.withSuffix("/rod/" + stat), layer1, layer2), generator.modelOutput));
+    private ItemModel.Unbaked makeStaffModel(String stat, Identifier base, Identifier combo, Material layer1, Material layer2, ItemModelGenerators generator) {
+        return ItemModelUtils.plainModel(THREE_LAYERED_TOOL.create(combo.withSuffix("_" + stat), TextureMapping.layered(new Material(base.withSuffix("/rod/" + stat)), layer1, layer2), generator.modelOutput));
     }
 }

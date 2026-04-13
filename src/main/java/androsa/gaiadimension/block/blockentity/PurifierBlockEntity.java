@@ -27,6 +27,7 @@ import net.minecraft.world.inventory.RecipeCraftingHolder;
 import net.minecraft.world.inventory.StackedContentsCompatible;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.ItemStackTemplate;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeHolder;
@@ -170,52 +171,44 @@ public class PurifierBlockEntity extends BaseContainerBlockEntity implements Wor
                 recipeHolder = null;
             }
 
-            if (!entity.isBurning() && canChange(level.registryAccess(), recipeHolder, recipeInput, entity.purifyingItemStacks, entity.getMaxStackSize())) {
-                entity.burnTime = entity.getItemBurnTime(goldStack, essenceStack, bismuthStack);
-                entity.burnDuration = entity.burnTime;
+            if (!entity.isBurning() && canChange(recipeHolder, recipeInput, entity.purifyingItemStacks, entity.getMaxStackSize())) {
+                int newTime = entity.getItemBurnTime(goldStack, essenceStack, bismuthStack);
+                entity.burnTime = newTime;
+                entity.burnDuration = newTime;
 
-                if (entity.isBurning()) {
+                if (newTime > 0) {
                     burn = true;
 
-                    ItemStack goldRemain = goldStack.getCraftingRemainder();
-                    if (!goldRemain.isEmpty()) {
-                        entity.purifyingItemStacks.set(1, goldRemain);
-                    } else if (!goldStack.isEmpty()) {
-                        goldStack.shrink(1);
-                        if (goldStack.isEmpty()) {
-                            entity.purifyingItemStacks.set(1, goldRemain);
-                        }
+                    Item goldFuel = goldStack.getItem();
+                    goldStack.shrink(1);
+                    if (goldStack.isEmpty()) {
+                        ItemStackTemplate goldRemain = goldFuel.getCraftingRemainder();
+                        entity.purifyingItemStacks.set(1, goldRemain != null ? goldRemain.create() : ItemStack.EMPTY);
                     }
 
-                    ItemStack essenceRemain = essenceStack.getCraftingRemainder();
-                    if (!essenceRemain.isEmpty()) {
-                        entity.purifyingItemStacks.set(2, essenceRemain);
-                    } else if (!essenceStack.isEmpty()) {
-                        essenceStack.shrink(1);
-                        if (essenceStack.isEmpty()) {
-                            entity.purifyingItemStacks.set(2, essenceRemain);
-                        }
+                    Item essenceFuel = essenceStack.getItem();
+                    essenceStack.shrink(1);
+                    if (essenceStack.isEmpty()) {
+                        ItemStackTemplate essenceRemain = essenceFuel.getCraftingRemainder();
+                        entity.purifyingItemStacks.set(2, essenceRemain != null ? essenceRemain.create() : ItemStack.EMPTY);
                     }
 
-                    ItemStack bismuthRemain = bismuthStack.getCraftingRemainder();
-                    if (!bismuthRemain.isEmpty()) {
-                        entity.purifyingItemStacks.set(3, bismuthRemain);
-                    } else if (!bismuthStack.isEmpty()) {
-                        bismuthStack.shrink(1);
-                        if (bismuthStack.isEmpty()) {
-                            entity.purifyingItemStacks.set(3, bismuthRemain);
-                        }
+                    Item bismuthFuel = bismuthStack.getItem();
+                    bismuthStack.shrink(1);
+                    if (bismuthStack.isEmpty()) {
+                        ItemStackTemplate bismuthRemain = bismuthFuel.getCraftingRemainder();
+                        entity.purifyingItemStacks.set(3, bismuthRemain != null ? bismuthRemain.create() : ItemStack.EMPTY);
                     }
                 }
             }
 
-            if (entity.isBurning() && canChange(level.registryAccess(), recipeHolder, recipeInput, entity.purifyingItemStacks, entity.getMaxStackSize())) {
+            if (entity.isBurning() && canChange(recipeHolder, recipeInput, entity.purifyingItemStacks, entity.getMaxStackSize())) {
                 ++entity.cookTime;
 
                 if (entity.cookTime == entity.cookTimeTotal) {
                     entity.cookTime = 0;
                     entity.cookTimeTotal = cookingTime(level, entity);
-                    if (entity.changeItem(level.registryAccess(), recipeHolder, recipeInput, entity.purifyingItemStacks, entity.getMaxStackSize())) {
+                    if (entity.changeItem(recipeHolder, recipeInput, entity.purifyingItemStacks, entity.getMaxStackSize())) {
                         entity.setRecipeUsed(recipeHolder);
                     }
                     burn = true;
@@ -240,10 +233,10 @@ public class PurifierBlockEntity extends BaseContainerBlockEntity implements Wor
     /**
      * Returns true if the furnace can smelt an item, i.e. has a source item, destination stack isn't full, etc.
      */
-    private static boolean canChange(RegistryAccess access, RecipeHolder<? extends PurifierRecipe> recipe, SingleRecipeInput input, NonNullList<ItemStack> stacks, int stacksize) {
+    private static boolean canChange(RecipeHolder<? extends PurifierRecipe> recipe, SingleRecipeInput input, NonNullList<ItemStack> stacks, int stacksize) {
         if (!stacks.get(0).isEmpty() && recipe != null) {
-            ItemStack slot1 = recipe.value().assemble(input, access);
-            ItemStack slot2 = recipe.value().byproduct();
+            ItemStack slot1 = recipe.value().assemble(input);
+            ItemStack slot2 = recipe.value().assembleByproduct(input);
 
             if (slot1.isEmpty() && slot2.isEmpty()) {
                 return false;
@@ -269,11 +262,11 @@ public class PurifierBlockEntity extends BaseContainerBlockEntity implements Wor
     /**
      * Turn one item from the furnace source stack into the appropriate smelted item in the furnace result stack
      */
-    public boolean changeItem(RegistryAccess access, RecipeHolder<? extends PurifierRecipe> recipe, SingleRecipeInput recipeInput, NonNullList<ItemStack> stacks, int stacksize) {
-        if (recipe != null && canChange(access, recipe, recipeInput, stacks, stacksize)) {
+    public boolean changeItem(RecipeHolder<? extends PurifierRecipe> recipe, SingleRecipeInput recipeInput, NonNullList<ItemStack> stacks, int stacksize) {
+        if (recipe != null && canChange(recipe, recipeInput, stacks, stacksize)) {
             ItemStack input = stacks.get(0);
-            ItemStack slot1 = recipe.value().assemble(recipeInput, access);
-            ItemStack slot2 = recipe.value().byproduct();
+            ItemStack slot1 = recipe.value().assemble(recipeInput);
+            ItemStack slot2 = recipe.value().assembleByproduct(recipeInput);
             ItemStack output = stacks.get(4);
             ItemStack byproduct = stacks.get(5);
 

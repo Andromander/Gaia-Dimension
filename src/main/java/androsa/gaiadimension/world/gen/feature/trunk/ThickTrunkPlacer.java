@@ -2,12 +2,11 @@ package androsa.gaiadimension.world.gen.feature.trunk;
 
 import androsa.gaiadimension.registry.registration.ModWorldgen;
 import com.google.common.collect.ImmutableList;
-import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.RandomSource;
-import net.minecraft.world.level.LevelSimulatedReader;
+import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.feature.configurations.TreeConfiguration;
 import net.minecraft.world.level.levelgen.feature.foliageplacers.FoliagePlacer;
@@ -32,8 +31,8 @@ public class ThickTrunkPlacer extends TrunkPlacer {
     }
 
     @Override
-    public List<FoliagePlacer.FoliageAttachment> placeTrunk(LevelSimulatedReader level, BiConsumer<BlockPos, BlockState> statepos, RandomSource random, int height, BlockPos origin, TreeConfiguration config) {
-        setDirtAt(level, statepos, random, origin.below(), config);
+    public List<FoliagePlacer.FoliageAttachment> placeTrunk(WorldGenLevel level, BiConsumer<BlockPos, BlockState> statepos, RandomSource random, int height, BlockPos origin, TreeConfiguration config) {
+        placeBelowTrunkBlock(level, statepos, random, origin.below(), config);
 
         for (int y = 0; y < height; y++) {
             if (y == 0) {
