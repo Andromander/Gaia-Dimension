@@ -472,6 +472,10 @@ public class GaiaFeatures extends GaiaBiomeFeatures {
         public static final ResourceKey<PlacedFeature> AURA_SHOOTS = registerPlaced("aura_shoots");
         public static final ResourceKey<PlacedFeature> GOLDEN_VINES = registerPlaced("golden_vines");
         public static final ResourceKey<PlacedFeature> SOMBRE_CACTI = registerPlaced("sombre_cacti");
+        public static final ResourceKey<PlacedFeature> CRYSTAL_GROWTH_BONEMEAL = registerPlaced("crystal_growth_bonemeal");
+        public static final ResourceKey<PlacedFeature> CRYSTAL_GROWTH_MUTANT_BONEMEAL = registerPlaced("crystal_growth_mutant_bonemeal");
+        public static final ResourceKey<PlacedFeature> CRYSTAL_GROWTH_CORRUPT_BONEMEAL = registerPlaced("crystal_growth_corrupt_bonemeal");
+        public static final ResourceKey<PlacedFeature> CRYSTAL_GROWTH_AURA_BONEMEAL = registerPlaced("crystal_growth_aura_bonemeal");
         public static final ResourceKey<PlacedFeature> CRYSTAL_GROWTH_02 = registerPlaced("crystal_growth_02");
         public static final ResourceKey<PlacedFeature> CRYSTAL_GROWTH_03 = registerPlaced("crystal_growth_03");
         public static final ResourceKey<PlacedFeature> CRYSTAL_GROWTH_04 = registerPlaced("crystal_growth_04");
@@ -796,6 +800,12 @@ public class GaiaFeatures extends GaiaBiomeFeatures {
             context.register(MYSTICAL_MURGNI, placedFungi(features, Configured.murgni, 1));
             context.register(CORRUPTED_GAIA_EYE, placedFungi(features, Configured.corrupt_eye, 1));
             context.register(TWINKLING_GILSRI, placedFungi(features, Configured.gilsri, 1));
+
+            //bonemeal
+            context.register(CRYSTAL_GROWTH_BONEMEAL, registerPlacedFeature(features, Configured.normal_growth, PlacementUtils.isEmpty()));
+            context.register(CRYSTAL_GROWTH_MUTANT_BONEMEAL, registerPlacedFeature(features, Configured.mutant_growth, PlacementUtils.isEmpty()));
+            context.register(CRYSTAL_GROWTH_CORRUPT_BONEMEAL, registerPlacedFeature(features, Configured.corrupt_growth, PlacementUtils.isEmpty()));
+            context.register(CRYSTAL_GROWTH_AURA_BONEMEAL, registerPlacedFeature(features, Configured.aura_growth, PlacementUtils.isEmpty()));
         }
     }
 }

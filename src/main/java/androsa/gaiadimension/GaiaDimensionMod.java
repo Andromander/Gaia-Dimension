@@ -122,5 +122,6 @@ public class GaiaDimensionMod {
         generator.addProvider(true, new GaiaEntityTags(output, datapackProvider));
         generator.addProvider(true, new GaiaAdvancements(output, datapackProvider));
         generator.addProvider(true, new GaiaTimelines(output, datapackProvider));
+        generator.addProvider(true, new GaiaFeatureTags(output, datapackProvider));
     }
 }
