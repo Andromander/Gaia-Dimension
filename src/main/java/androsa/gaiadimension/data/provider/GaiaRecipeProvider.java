@@ -333,6 +333,16 @@ public abstract class GaiaRecipeProvider extends RecipeProvider {
                 .unlockedBy("has_" + ingredient.getId().getPath(), has(ingredient.get()));
     }
 
+    public RestructurerRecipeBuilder restructuringCalcite(DeferredBlock<Block> ingredient, DeferredBlock<Block> fungi) {
+        return RestructurerRecipeBuilder.restructuring(Ingredient.of(ingredient), new ItemStackTemplate(fungi.asItem()), new ItemStackTemplate(ModBlocks.white_calcite.asItem()), 0.0F, 200)
+                .unlockedBy("has_" + ingredient.getId().getPath(), has(ingredient.get()));
+    }
+
+    public RestructurerRecipeBuilder restructuringAragonite(DeferredBlock<Block> ingredient, DeferredBlock<Block> fungi) {
+        return RestructurerRecipeBuilder.restructuring(Ingredient.of(ingredient), new ItemStackTemplate(fungi.asItem()), new ItemStackTemplate(ModBlocks.white_aragonite.asItem()), 0.0F, 200)
+                .unlockedBy("has_" + ingredient.getId().getPath(), has(ingredient.get()));
+    }
+
     public RestructurerRecipeBuilder restructuringItems(ItemLike result, ItemLike byproduct, DeferredItem<Item> ingredient, float exp, int count) {
         return RestructurerRecipeBuilder.restructuring(Ingredient.of(ingredient), new ItemStackTemplate(result.asItem(), count), new ItemStackTemplate(byproduct.asItem(), 1), exp, 200)
                 .unlockedBy("has_" + ingredient.getId().getPath(), has(ingredient));
