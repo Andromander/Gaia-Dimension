@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_purple_aragonite": {
+      "conditions": {
+        "items": [
+          {
+            "items": "gaiadimension:purple_aragonite"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "gaiadimension:restructuring/bulbous_hobina_purple_aragonite"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_purple_aragonite"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "gaiadimension:restructuring/bulbous_hobina_purple_aragonite"
+    ]
+  }
+}

@@ -248,6 +248,8 @@ public class GaiaBlockTags extends GaiaBlockTagsProvider {
         tag(GaiaTags.Blocks.GAIA_SOIL).add(ModBlocks.heavy_soil.get(), ModBlocks.corrupted_soil.get(), ModBlocks.boggy_soil.get(), ModBlocks.light_soil.get(), ModBlocks.aurum_soil.get());
         tag(GaiaTags.Blocks.GAIA_CARVER_REPLACEABLES).addTags(GaiaTags.Blocks.GAIA_GRASS, GaiaTags.Blocks.GAIA_SOIL)
                 .add(ModBlocks.saltstone.get(), ModBlocks.gaia_stone.get(), ModBlocks.wasteland_stone.get(), ModBlocks.volcanic_rock.get(), ModBlocks.primal_mass.get(), ModBlocks.nexustone.get());
+        tag(GaiaTags.Blocks.CRYSTAL_FUNGI_SURFACE_PLACEABLE).addTag(GaiaTags.Blocks.GAIA_SOIL).addTag(GaiaTags.Blocks.GAIA_GRASS);
+        tag(GaiaTags.Blocks.HUGE_CRYSTAL_FUNGI_REPLACEABLES).addTag(BlockTags.REPLACEABLE_BY_MUSHROOMS);
         addTag(GaiaTags.Blocks.GAIA_PLANTS, GAIA_PLANTS);
         tag(GaiaTags.Blocks.GUMMY_BLOB_PLACEABLE).addTag(GaiaTags.Blocks.GAIA_SOIL).addTag(GaiaTags.Blocks.GAIA_GRASS).addTag(GaiaTags.Blocks.GAIA_STONE);
 

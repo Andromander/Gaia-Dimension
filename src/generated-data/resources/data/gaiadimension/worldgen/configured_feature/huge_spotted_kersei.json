@@ -1,0 +1,24 @@
+{
+  "type": "gaiadimension:huge_spotted_kersei",
+  "config": {
+    "can_place_on": {
+      "type": "minecraft:matching_block_tag",
+      "tag": "gaiadimension:crystal_fungi_surface_placeable"
+    },
+    "primary_cap_state": {
+      "Name": "gaiadimension:pink_calcite"
+    },
+    "primary_stem_state": {
+      "Name": "gaiadimension:pink_aragonite",
+      "Properties": {
+        "axis": "y"
+      }
+    },
+    "secondary_cap_state": [
+      {
+        "Name": "gaiadimension:red_calcite"
+      }
+    ],
+    "stem_height": 3
+  }
+}

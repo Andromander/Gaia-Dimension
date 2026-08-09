@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "gaiadimension:block/smooth_blue_aragonite_top",
+    "side": "gaiadimension:block/smooth_blue_aragonite_side"
+  }
+}

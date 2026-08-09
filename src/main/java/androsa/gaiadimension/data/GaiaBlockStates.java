@@ -1,8 +1,12 @@
 package androsa.gaiadimension.data;
 
 import androsa.gaiadimension.data.provider.GaiaBlockStateProvider;
+import androsa.gaiadimension.registry.helpers.PropertiesHandler;
 import androsa.gaiadimension.registry.registration.ModBlocks;
 import net.minecraft.client.data.models.BlockModelGenerators;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.material.MapColor;
+import net.neoforged.neoforge.registries.DeferredBlock;
 
 public class GaiaBlockStates extends GaiaBlockStateProvider {
 
@@ -120,6 +124,57 @@ public class GaiaBlockStates extends GaiaBlockStateProvider {
         woodBlock(ModBlocks.stripped_fire_agate_wood, ModBlocks.stripped_fire_agate_log);
         woodBlock(ModBlocks.stripped_aura_wood, ModBlocks.stripped_aura_log);
         woodBlock(ModBlocks.stripped_golden_wood, ModBlocks.stripped_golden_log);
+        basicBlock(ModBlocks.pink_calcite);
+        basicBlock(ModBlocks.red_calcite);
+        basicBlock(ModBlocks.blue_calcite);
+        basicBlock(ModBlocks.light_blue_calcite);
+        basicBlock(ModBlocks.green_calcite);
+        basicBlock(ModBlocks.purple_calcite);
+        basicBlock(ModBlocks.beige_calcite);
+        basicBlock(ModBlocks.yellow_calcite);
+        basicBlock(ModBlocks.black_calcite);
+        basicBlock(ModBlocks.orange_calcite);
+        basicBlock(ModBlocks.navy_calcite);
+        basicBlock(ModBlocks.gold_calcite);
+        basicBlock(ModBlocks.white_calcite);
+        basicBlock(ModBlocks.clear_calcite);
+        pillarBlock(ModBlocks.pink_aragonite);
+        pillarBlock(ModBlocks.blue_aragonite);
+        pillarBlock(ModBlocks.light_blue_aragonite);
+        pillarBlock(ModBlocks.green_aragonite);
+        pillarBlock(ModBlocks.purple_aragonite);
+        pillarBlock(ModBlocks.tan_aragonite);
+        pillarBlock(ModBlocks.yellow_aragonite);
+        pillarBlock(ModBlocks.black_aragonite);
+        pillarBlock(ModBlocks.brown_aragonite);
+        pillarBlock(ModBlocks.white_aragonite);
+        pillarBlock(ModBlocks.clear_aragonite);
+        basicBlock(ModBlocks.smooth_pink_calcite);
+        basicBlock(ModBlocks.smooth_red_calcite);
+        basicBlock(ModBlocks.smooth_blue_calcite);
+        basicBlock(ModBlocks.smooth_light_blue_calcite);
+        basicBlock(ModBlocks.smooth_green_calcite);
+        basicBlock(ModBlocks.smooth_purple_calcite);
+        basicBlock(ModBlocks.smooth_beige_calcite);
+        basicBlock(ModBlocks.smooth_yellow_calcite);
+        basicBlock(ModBlocks.smooth_black_calcite);
+        basicBlock(ModBlocks.smooth_orange_calcite);
+        basicBlock(ModBlocks.smooth_navy_calcite);
+        basicBlock(ModBlocks.smooth_gold_calcite);
+        basicBlock(ModBlocks.smooth_white_calcite);
+        basicBlock(ModBlocks.smooth_clear_calcite);
+        pillarBlock(ModBlocks.smooth_pink_aragonite);
+        pillarBlock(ModBlocks.smooth_blue_aragonite);
+        pillarBlock(ModBlocks.smooth_light_blue_aragonite);
+        pillarBlock(ModBlocks.smooth_green_aragonite);
+        pillarBlock(ModBlocks.smooth_purple_aragonite);
+        pillarBlock(ModBlocks.smooth_tan_aragonite);
+        pillarBlock(ModBlocks.smooth_yellow_aragonite);
+        pillarBlock(ModBlocks.smooth_black_aragonite);
+        pillarBlock(ModBlocks.smooth_brown_aragonite);
+        pillarBlock(ModBlocks.smooth_white_aragonite);
+        pillarBlock(ModBlocks.smooth_clear_aragonite);
+
         basicBlockRotated(ModBlocks.salt);
         topBottomBlock(ModBlocks.saltstone);
         basicBlock(ModBlocks.pebbles);

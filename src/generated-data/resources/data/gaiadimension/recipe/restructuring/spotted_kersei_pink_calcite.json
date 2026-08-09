@@ -1,0 +1,12 @@
+{
+  "type": "gaiadimension:restructuring",
+  "byproduct": {
+    "id": "gaiadimension:white_calcite"
+  },
+  "cookingtime": 200,
+  "experience": 0.0,
+  "ingredient": "gaiadimension:pink_calcite",
+  "result": {
+    "id": "gaiadimension:spotted_kersei"
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "type": "gaiadimension:huge_gaia_eye",
+  "config": {
+    "can_place_on": {
+      "type": "minecraft:matching_block_tag",
+      "tag": "gaiadimension:crystal_fungi_surface_placeable"
+    },
+    "primary_cap_state": {
+      "Name": "gaiadimension:black_calcite"
+    },
+    "primary_stem_state": {
+      "Name": "gaiadimension:black_aragonite",
+      "Properties": {
+        "axis": "y"
+      }
+    },
+    "secondary_cap_state": [
+      {
+        "Name": "gaiadimension:orange_calcite"
+      },
+      {
+        "Name": "gaiadimension:navy_calcite"
+      }
+    ],
+    "stem_height": 4
+  }
+}

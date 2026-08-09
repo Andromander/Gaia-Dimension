@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_gaiadimension:tan_aragonite": {
+      "conditions": {
+        "items": [
+          {
+            "items": "gaiadimension:tan_aragonite"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "gaiadimension:smooth_tan_aragonite"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_gaiadimension:tan_aragonite"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "gaiadimension:smooth_tan_aragonite"
+    ]
+  }
+}

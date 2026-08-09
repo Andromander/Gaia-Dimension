@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_brown_aragonite": {
+      "conditions": {
+        "items": [
+          {
+            "items": "gaiadimension:brown_aragonite"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "gaiadimension:restructuring/twinkling_gilsri_brown_aragonite"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_brown_aragonite"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "gaiadimension:restructuring/twinkling_gilsri_brown_aragonite"
+    ]
+  }
+}

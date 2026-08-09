@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "gaiadimension:smelting/clear_calcite"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "has_white_calcite": {
+      "conditions": {
+        "items": [
+          {
+            "items": "gaiadimension:white_calcite"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_white_calcite"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "gaiadimension:smelting/clear_calcite"
+    ]
+  }
+}

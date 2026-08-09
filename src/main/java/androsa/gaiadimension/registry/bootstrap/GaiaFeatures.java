@@ -5,6 +5,7 @@ import androsa.gaiadimension.registry.registration.ModBlocks;
 import androsa.gaiadimension.registry.registration.ModWorldgen;
 import androsa.gaiadimension.registry.values.GaiaBiomeFeatures;
 import androsa.gaiadimension.registry.values.GaiaTags;
+import androsa.gaiadimension.world.gen.feature.config.CrystalFungiConfig;
 import androsa.gaiadimension.world.gen.feature.config.FeatureHeightConfig;
 import androsa.gaiadimension.world.gen.feature.config.OpaliteOreConfiguration;
 import androsa.gaiadimension.world.gen.feature.config.TwoBlockStateConfig;
@@ -29,6 +30,7 @@ import net.minecraft.util.valueproviders.ClampedInt;
 import net.minecraft.util.valueproviders.ConstantInt;
 import net.minecraft.util.valueproviders.IntProvider;
 import net.minecraft.util.valueproviders.UniformInt;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.SaplingBlock;
 import net.minecraft.world.level.block.grower.TreeGrower;
 import net.minecraft.world.level.block.state.BlockState;
@@ -196,6 +198,15 @@ public class GaiaFeatures extends GaiaBiomeFeatures {
         public static final ResourceKey<ConfiguredFeature<?, ?>> corrupt_eye = registerFeature("corrupt_gaia_eye");
         public static final ResourceKey<ConfiguredFeature<?, ?>> gilsri = registerFeature("twinkling_gilsri");
 
+        public static final ResourceKey<ConfiguredFeature<?, ?>> huge_kersei = registerFeature("huge_spotted_kersei");
+        public static final ResourceKey<ConfiguredFeature<?, ?>> huge_wiltha = registerFeature("huge_thorny_wiltha");
+        public static final ResourceKey<ConfiguredFeature<?, ?>> huge_agaric = registerFeature("huge_roofed_agaric");
+        public static final ResourceKey<ConfiguredFeature<?, ?>> huge_hobina = registerFeature("huge_bulbous_hobina");
+        public static final ResourceKey<ConfiguredFeature<?, ?>> huge_cupsir = registerFeature("huge_stickly_cupsir");
+        public static final ResourceKey<ConfiguredFeature<?, ?>> huge_murgni = registerFeature("huge_mystical_murgni");
+        public static final ResourceKey<ConfiguredFeature<?, ?>> huge_corrupt_eye = registerFeature("huge_corrupt_gaia_eye");
+        public static final ResourceKey<ConfiguredFeature<?, ?>> huge_gilsri = registerFeature("huge_twinkling_gilsri");
+
         public static final ResourceKey<ConfiguredFeature<?, ?>> pink_agate_tree = registerFeature("pink_agate_tree");
         public static final ResourceKey<ConfiguredFeature<?, ?>> blue_agate_tree = registerFeature("blue_agate_tree");
         public static final ResourceKey<ConfiguredFeature<?, ?>> green_agate_tree = registerFeature("green_agate_tree");
@@ -341,6 +352,81 @@ public class GaiaFeatures extends GaiaBiomeFeatures {
             context.register(murgni, patchFeature(BlockStateProvider.simple(MYSTICAL_MURGNI)));
             context.register(corrupt_eye, patchFeature(BlockStateProvider.simple(CORRUPTED_GAIA_EYE)));
             context.register(gilsri, patchFeature(BlockStateProvider.simple(TWINKLING_GILSRI)));
+
+            context.register(huge_kersei, registerFeature(ModWorldgen.HUGE_SPOTTED_KERSEI.get(),
+                    new CrystalFungiConfig(
+                            3,
+                            ModBlocks.pink_aragonite.value().defaultBlockState(),
+                            Optional.empty(),
+                            ModBlocks.pink_calcite.value().defaultBlockState(),
+                            Optional.of(List.of(
+                                    ModBlocks.red_calcite.value().defaultBlockState())),
+                            BlockPredicate.matchesTag(GaiaTags.Blocks.CRYSTAL_FUNGI_SURFACE_PLACEABLE))));
+            context.register(huge_wiltha, registerFeature(ModWorldgen.HUGE_THORNY_WILTHA.get(),
+                    new CrystalFungiConfig(
+                            5,
+                            ModBlocks.blue_aragonite.value().defaultBlockState(),
+                            Optional.of(List.of(
+                                    ModBlocks.light_blue_aragonite.value().defaultBlockState())),
+                            ModBlocks.blue_calcite.value().defaultBlockState(),
+                            Optional.of(List.of(
+                                    ModBlocks.light_blue_calcite.value().defaultBlockState())),
+                            BlockPredicate.matchesTag(GaiaTags.Blocks.CRYSTAL_FUNGI_SURFACE_PLACEABLE))));
+            context.register(huge_agaric, registerFeature(ModWorldgen.HUGE_ROOFED_AGARIC.get(),
+                    new CrystalFungiConfig(
+                            5,
+                            ModBlocks.green_aragonite.value().defaultBlockState(),
+                            Optional.empty(),
+                            ModBlocks.green_calcite.value().defaultBlockState(),
+                            Optional.empty(),
+                            BlockPredicate.matchesTag(GaiaTags.Blocks.CRYSTAL_FUNGI_SURFACE_PLACEABLE))));
+            context.register(huge_hobina, registerFeature(ModWorldgen.HUGE_BULBOUS_HOBINA.get(),
+                    new CrystalFungiConfig(
+                            2,
+                            ModBlocks.purple_aragonite.value().defaultBlockState(),
+                            Optional.empty(),
+                            ModBlocks.purple_calcite.value().defaultBlockState(),
+                            Optional.empty(),
+                            BlockPredicate.matchesTag(GaiaTags.Blocks.CRYSTAL_FUNGI_SURFACE_PLACEABLE))));
+            context.register(huge_cupsir, registerFeature(ModWorldgen.HUGE_STICKLY_CUPSIR.get(),
+                    new CrystalFungiConfig(
+                            5,
+                            ModBlocks.tan_aragonite.value().defaultBlockState(),
+                            Optional.empty(),
+                            ModBlocks.beige_calcite.value().defaultBlockState(),
+                            Optional.empty(),
+                            BlockPredicate.matchesTag(GaiaTags.Blocks.CRYSTAL_FUNGI_SURFACE_PLACEABLE))));
+            context.register(huge_murgni, registerFeature(ModWorldgen.HUGE_MYSTICAL_MURGNI.get(),
+                    new CrystalFungiConfig(
+                            4,
+                            ModBlocks.yellow_aragonite.value().defaultBlockState(),
+                            Optional.empty(),
+                            ModBlocks.yellow_calcite.value().defaultBlockState(),
+                            Optional.of(List.of(
+                                    ModBlocks.pink_calcite.value().defaultBlockState(),
+                                    ModBlocks.blue_calcite.value().defaultBlockState(),
+                                    ModBlocks.green_calcite.value().defaultBlockState(),
+                                    ModBlocks.purple_calcite.value().defaultBlockState(),
+                                    ModBlocks.beige_calcite.value().defaultBlockState())),
+                            BlockPredicate.matchesTag(GaiaTags.Blocks.CRYSTAL_FUNGI_SURFACE_PLACEABLE))));
+            context.register(huge_corrupt_eye, registerFeature(ModWorldgen.HUGE_GAIA_EYE.get(),
+                    new CrystalFungiConfig(
+                            4,
+                            ModBlocks.black_aragonite.value().defaultBlockState(),
+                            Optional.empty(),
+                            ModBlocks.black_calcite.value().defaultBlockState(),
+                            Optional.of(List.of(
+                                    ModBlocks.orange_calcite.value().defaultBlockState(),
+                                    ModBlocks.navy_calcite.value().defaultBlockState())),
+                            BlockPredicate.matchesTag(GaiaTags.Blocks.CRYSTAL_FUNGI_SURFACE_PLACEABLE))));
+            context.register(huge_gilsri, registerFeature(ModWorldgen.HUGE_TWINKLING_GILSRI.get(),
+                    new CrystalFungiConfig(
+                            4,
+                            ModBlocks.brown_aragonite.value().defaultBlockState(),
+                            Optional.empty(),
+                            ModBlocks.gold_calcite.value().defaultBlockState(),
+                            Optional.empty(),
+                            BlockPredicate.matchesTag(GaiaTags.Blocks.CRYSTAL_FUNGI_SURFACE_PLACEABLE))));
 
             context.register(pink_agate_tree, treeFeature(Config.PINK_AGATE_TREE_CONFIG));
             context.register(blue_agate_tree, treeFeature(Config.BLUE_AGATE_TREE_CONFIG));

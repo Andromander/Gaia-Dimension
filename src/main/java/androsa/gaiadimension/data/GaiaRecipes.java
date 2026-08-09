@@ -98,6 +98,32 @@ public class GaiaRecipes extends GaiaRecipeProvider {
                 .define('#', ModItems.glitter_rod.get())
                 .unlockedBy("has_glitter_rod", has(ModItems.glitter_rod.get()))
                 .save(this.output, loc("pink_agate_curtain_rods"));
+        smallCompressRecipe(ModBlocks.smooth_pink_calcite.get(), ModBlocks.pink_calcite).save(this.output);
+        smallCompressRecipe(ModBlocks.smooth_red_calcite.get(), ModBlocks.red_calcite).save(this.output);
+        smallCompressRecipe(ModBlocks.smooth_blue_calcite.get(), ModBlocks.blue_calcite).save(this.output);
+        smallCompressRecipe(ModBlocks.smooth_light_blue_calcite.get(), ModBlocks.light_blue_calcite).save(this.output);
+        smallCompressRecipe(ModBlocks.smooth_green_calcite.get(), ModBlocks.green_calcite).save(this.output);
+        smallCompressRecipe(ModBlocks.smooth_purple_calcite.get(), ModBlocks.purple_calcite).save(this.output);
+        smallCompressRecipe(ModBlocks.smooth_beige_calcite.get(), ModBlocks.beige_calcite).save(this.output);
+        smallCompressRecipe(ModBlocks.smooth_yellow_calcite.get(), ModBlocks.yellow_calcite).save(this.output);
+        smallCompressRecipe(ModBlocks.smooth_black_calcite.get(), ModBlocks.black_calcite).save(this.output);
+        smallCompressRecipe(ModBlocks.smooth_orange_calcite.get(), ModBlocks.orange_calcite).save(this.output);
+        smallCompressRecipe(ModBlocks.smooth_navy_calcite.get(), ModBlocks.navy_calcite).save(this.output);
+        smallCompressRecipe(ModBlocks.smooth_gold_calcite.get(), ModBlocks.gold_calcite).save(this.output);
+        smallCompressRecipe(ModBlocks.smooth_white_calcite.get(), ModBlocks.white_calcite).save(this.output);
+        smallCompressRecipe(ModBlocks.smooth_clear_calcite.get(), ModBlocks.clear_calcite).save(this.output);
+        smallCompressRecipe(ModBlocks.smooth_pink_aragonite.get(), ModBlocks.pink_aragonite).save(this.output);
+        smallCompressRecipe(ModBlocks.smooth_blue_aragonite.get(), ModBlocks.blue_aragonite).save(this.output);
+        smallCompressRecipe(ModBlocks.smooth_light_blue_aragonite.get(), ModBlocks.light_blue_aragonite).save(this.output);
+        smallCompressRecipe(ModBlocks.smooth_green_aragonite.get(), ModBlocks.green_aragonite).save(this.output);
+        smallCompressRecipe(ModBlocks.smooth_purple_aragonite.get(), ModBlocks.purple_aragonite).save(this.output);
+        smallCompressRecipe(ModBlocks.smooth_tan_aragonite.get(), ModBlocks.tan_aragonite).save(this.output);
+        smallCompressRecipe(ModBlocks.smooth_yellow_aragonite.get(), ModBlocks.yellow_aragonite).save(this.output);
+        smallCompressRecipe(ModBlocks.smooth_black_aragonite.get(), ModBlocks.black_aragonite).save(this.output);
+        smallCompressRecipe(ModBlocks.smooth_brown_aragonite.get(), ModBlocks.brown_aragonite).save(this.output);
+        smallCompressRecipe(ModBlocks.smooth_white_aragonite.get(), ModBlocks.white_aragonite).save(this.output);
+        smallCompressRecipe(ModBlocks.smooth_clear_aragonite.get(), ModBlocks.clear_aragonite).save(this.output);
+
         largeCompressRecipe(ModBlocks.scaynyx_block.get(), ModItems.scaynyx_ingot.get()).save(this.output);
         largeCompressRecipe(ModBlocks.sugilite_block.get(), ModItems.sugilite.get()).save(this.output);
         largeCompressRecipe(ModBlocks.hematite_block.get(), ModItems.hematite.get()).save(this.output);
@@ -568,6 +594,8 @@ public class GaiaRecipes extends GaiaRecipeProvider {
         smeltingRecipe(ModItems.glitter_rod.get(), CookingBookCategory.MISC, ModItems.glitter_dust, 0.0F).save(this.output, locSmelt("glitter_dust"));
         smeltingRecipe(ModItems.magnetite.get(), CookingBookCategory.MISC, ModBlocks.static_stone, 0.0F).save(this.output, locSmelt("magnetite_from_static_stone"));
         smeltingRecipe(ModItems.magnetite.get(), CookingBookCategory.MISC, ModBlocks.charged_mineral, 0.0F, 2).save(this.output, locSmelt("magnetite_from_charged_mineral"));
+        smeltingRecipe(ModBlocks.clear_calcite.get(), CookingBookCategory.BLOCKS, ModBlocks.white_calcite, 0.0F).save(this.output, locSmelt("clear_calcite"));
+        smeltingRecipe(ModBlocks.clear_aragonite.get(), CookingBookCategory.BLOCKS, ModBlocks.clear_aragonite, 0.0F).save(this.output, locSmelt("clear_aragonite"));
 
         restructureBlackResidue(ModItems.benitoite, ModItems.blue_opal, 0.3F, 1).save(this.output, locRestructure("benitoite"));
         restructuringTektite(ModBlocks.benitoite_block, ModBlocks.blue_opal_block, 2.7F, 1).save(this.output, locRestructure("benitoite_block"));
@@ -591,6 +619,27 @@ public class GaiaRecipes extends GaiaRecipeProvider {
         restructuringItems(Items.DIAMOND, ModItems.pink_essence.get(), ModItems.bismuth_crystal, 0.1F, 1).save(this.output, locRestructure("diamond"));
         restructuringItems(Items.GOLD_INGOT, ModItems.pink_essence.get(), ModItems.scaynyx_ingot, 0.1F, 1).save(this.output, locRestructure("gold_ingot"));
         restructuringItems(ModItems.aura_residue.get(), ModItems.bismuth_residue.get(), ModItems.pyrite, 0.2F, 1).save(this.output, locRestructure("residues"));
+        restructuringCalcite(ModBlocks.pink_calcite, ModBlocks.spotted_kersei).save(this.output, locRestructure("spotted_kersei_pink_calcite"));
+        restructuringCalcite(ModBlocks.red_calcite, ModBlocks.spotted_kersei).save(this.output, locRestructure("spotted_kersei_red_calcite"));
+        restructuringCalcite(ModBlocks.blue_calcite, ModBlocks.thorny_wiltha).save(this.output, locRestructure("thorny_wiltha_blue_calcite"));
+        restructuringCalcite(ModBlocks.light_blue_calcite, ModBlocks.thorny_wiltha).save(this.output, locRestructure("thorny_wiltha_light_blue_calcite"));
+        restructuringCalcite(ModBlocks.green_calcite, ModBlocks.roofed_agaric).save(this.output, locRestructure("roofed_agaric_green_calcite"));
+        restructuringCalcite(ModBlocks.purple_calcite, ModBlocks.bulbous_hobina).save(this.output, locRestructure("bulbous_hobina_purple_calcite"));
+        restructuringCalcite(ModBlocks.beige_calcite, ModBlocks.stickly_cupsir).save(this.output, locRestructure("stickly_cupsir_beige_calcite"));
+        restructuringCalcite(ModBlocks.yellow_calcite, ModBlocks.mystical_murgni).save(this.output, locRestructure("mystical_murgni_yellow_calcite"));
+        restructuringCalcite(ModBlocks.black_calcite, ModBlocks.corrupted_gaia_eye).save(this.output, locRestructure("corrupted_gaia_eye_black_calcite"));
+        restructuringCalcite(ModBlocks.navy_calcite, ModBlocks.corrupted_gaia_eye).save(this.output, locRestructure("corrupted_gaia_eye_navy_calcite"));
+        restructuringCalcite(ModBlocks.orange_calcite, ModBlocks.corrupted_gaia_eye).save(this.output, locRestructure("corrupted_gaia_eye_orange_calcite"));
+        restructuringCalcite(ModBlocks.gold_calcite, ModBlocks.twinkling_gilsri).save(this.output, locRestructure("twinkling_gilsri_gold_calcite"));
+        restructuringAragonite(ModBlocks.pink_aragonite, ModBlocks.spotted_kersei).save(this.output, locRestructure("spotted_kersei_pink_aragonite"));
+        restructuringAragonite(ModBlocks.blue_aragonite, ModBlocks.thorny_wiltha).save(this.output, locRestructure("thorny_wiltha_blue_aragonite"));
+        restructuringAragonite(ModBlocks.light_blue_aragonite, ModBlocks.thorny_wiltha).save(this.output, locRestructure("thorny_wiltha_light_blue_aragonite"));
+        restructuringAragonite(ModBlocks.green_aragonite, ModBlocks.roofed_agaric).save(this.output, locRestructure("roofed_agaric_green_aragonite"));
+        restructuringAragonite(ModBlocks.purple_aragonite, ModBlocks.bulbous_hobina).save(this.output, locRestructure("bulbous_hobina_purple_aragonite"));
+        restructuringAragonite(ModBlocks.tan_aragonite, ModBlocks.stickly_cupsir).save(this.output, locRestructure("stickly_cupsir_tan_aragonite"));
+        restructuringAragonite(ModBlocks.yellow_aragonite, ModBlocks.mystical_murgni).save(this.output, locRestructure("mystical_murgni_yellow_aragonite"));
+        restructuringAragonite(ModBlocks.black_aragonite, ModBlocks.corrupted_gaia_eye).save(this.output, locRestructure("corrupted_gaia_eye_black_aragonite"));
+        restructuringAragonite(ModBlocks.brown_aragonite, ModBlocks.twinkling_gilsri).save(this.output, locRestructure("twinkling_gilsri_brown_aragonite"));
         purifyingItems(ModBlocks.glitter_grass.get(), ModItems.goldstone_residue.get(), ModBlocks.corrupted_grass, 0.3F, 1, 1).save(this.output, locPurify("glitter_grass"));
         purifyingItems(ModBlocks.heavy_soil.get(), ModItems.goldstone_residue.get(), ModBlocks.corrupted_soil, 0.3F, 1, 1).save(this.output, locPurify("heavy_soil"));
         purifyingItems(ModBlocks.pink_agate_leaves.get(), ModItems.goldstone_residue.get(), ModBlocks.corrupted_leaves, 0.3F, 1, 1).save(this.output, locPurify("pink_agate_leaves"));

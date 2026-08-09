@@ -1,4 +1,4 @@
-// 26.1	2026-04-09T23:02:47.7422973	Tags for minecraft:block mod id gaiadimension
+// 26.1	2026-04-19T22:06:45.8594583	Tags for minecraft:block mod id gaiadimension
 a0f6d052fb3fbfa78856319e5a0690260f5f1324 data/c/tags/block/glass_blocks.json
 a7ed70e3ad0e271c909551aa96f7973f1e0bd6b0 data/c/tags/block/ores.json
 4b8f45b473a841817cf09db0adaba060881f30e6 data/c/tags/block/ore/blue_opal.json
@@ -52,6 +52,7 @@ af3891e1ab1728b31ca89fc17e4f4b126f938f18 data/gaiadimension/tags/block/base_ston
 fd8e2693b0608b474f1f5d748e2c5446606a9c42 data/gaiadimension/tags/block/burnt_logs.json
 5d97b14a0c00e360e66e09ba9435a1ab102a28fd data/gaiadimension/tags/block/copal_bricks.json
 2b719201fa9a67ace59b745753ee58cc04ac2047 data/gaiadimension/tags/block/corrupted_logs.json
+60bb97d98f99a3585b7230ea50d99ce8565468de data/gaiadimension/tags/block/crystal_fungi_surface_placeable.json
 4bdaba1b7376284767884597916b1ddc88988574 data/gaiadimension/tags/block/fossilized_logs.json
 1cd062210289b860829029d2daf5ddc6dca72920 data/gaiadimension/tags/block/gaia_bricks.json
 98c660adb59aba0d98ef8249d33ca78a29fc22dd data/gaiadimension/tags/block/gaia_carver_replaceables.json
@@ -61,6 +62,7 @@ fd8e2693b0608b474f1f5d748e2c5446606a9c42 data/gaiadimension/tags/block/burnt_log
 8984ad8286ec1911e16a6180db174b3c8ae26b74 data/gaiadimension/tags/block/golden_logs.json
 c0a14608cf3450ba2b117f632ec560b832e6ae57 data/gaiadimension/tags/block/green_agate_logs.json
 4c97ad7cca1fece55d179958689122f009abaabc data/gaiadimension/tags/block/gummy_glitter_blob_placeable.json
+236ab024c35163e1efbdb814f0ff2cf509404f33 data/gaiadimension/tags/block/huge_crystal_fungi_replaceables.json
 b239e7b03736ed687b12fa515c9a1139f07cc1a8 data/gaiadimension/tags/block/incorrect_for_agate_tool.json
 f57a1c0d935679dbbcab3f2e8a06cae2238a6735 data/gaiadimension/tags/block/incorrect_for_benitoite_tool.json
 f57a1c0d935679dbbcab3f2e8a06cae2238a6735 data/gaiadimension/tags/block/incorrect_for_bixbite_tool.json

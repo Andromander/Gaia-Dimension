@@ -1,0 +1,12 @@
+{
+  "type": "gaiadimension:restructuring",
+  "byproduct": {
+    "id": "gaiadimension:white_calcite"
+  },
+  "cookingtime": 200,
+  "experience": 0.0,
+  "ingredient": "gaiadimension:blue_calcite",
+  "result": {
+    "id": "gaiadimension:thorny_wiltha"
+  }
+}

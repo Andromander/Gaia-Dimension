@@ -1,0 +1,36 @@
+{
+  "type": "gaiadimension:huge_mystical_murgni",
+  "config": {
+    "can_place_on": {
+      "type": "minecraft:matching_block_tag",
+      "tag": "gaiadimension:crystal_fungi_surface_placeable"
+    },
+    "primary_cap_state": {
+      "Name": "gaiadimension:yellow_calcite"
+    },
+    "primary_stem_state": {
+      "Name": "gaiadimension:yellow_aragonite",
+      "Properties": {
+        "axis": "y"
+      }
+    },
+    "secondary_cap_state": [
+      {
+        "Name": "gaiadimension:pink_calcite"
+      },
+      {
+        "Name": "gaiadimension:blue_calcite"
+      },
+      {
+        "Name": "gaiadimension:green_calcite"
+      },
+      {
+        "Name": "gaiadimension:purple_calcite"
+      },
+      {
+        "Name": "gaiadimension:beige_calcite"
+      }
+    ],
+    "stem_height": 4
+  }
+}

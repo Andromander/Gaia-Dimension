@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_blue_aragonite": {
+      "conditions": {
+        "items": [
+          {
+            "items": "gaiadimension:blue_aragonite"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "gaiadimension:restructuring/thorny_wiltha_blue_aragonite"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_blue_aragonite"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "gaiadimension:restructuring/thorny_wiltha_blue_aragonite"
+    ]
+  }
+}

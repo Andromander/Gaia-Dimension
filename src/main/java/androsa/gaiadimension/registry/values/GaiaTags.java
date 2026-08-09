@@ -233,6 +233,8 @@ public class GaiaTags {
 
         public static final TagKey<Block> GAIA_PLANTS = tagBlock("gaia_plants");
         public static final TagKey<Block> GUMMY_BLOB_PLACEABLE = tagBlock("gummy_glitter_blob_placeable");
+        public static final TagKey<Block> CRYSTAL_FUNGI_SURFACE_PLACEABLE = tagBlock("crystal_fungi_surface_placeable");
+        public static final TagKey<Block> HUGE_CRYSTAL_FUNGI_REPLACEABLES = tagBlock("huge_crystal_fungi_replaceables");
 
         public static final TagKey<Block> INCORRECT_FOR_AGATE = tagBlock("incorrect_for_agate_tool");
         public static final TagKey<Block> INCORRECT_FOR_SUGILITE = tagBlock("incorrect_for_sugilite_tool");

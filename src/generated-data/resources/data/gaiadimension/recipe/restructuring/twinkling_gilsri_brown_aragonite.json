@@ -1,0 +1,12 @@
+{
+  "type": "gaiadimension:restructuring",
+  "byproduct": {
+    "id": "gaiadimension:white_aragonite"
+  },
+  "cookingtime": 200,
+  "experience": 0.0,
+  "ingredient": "gaiadimension:brown_aragonite",
+  "result": {
+    "id": "gaiadimension:twinkling_gilsri"
+  }
+}

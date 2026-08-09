@@ -6,6 +6,7 @@ import androsa.gaiadimension.world.chunk.GaiaChunkGenerator;
 import androsa.gaiadimension.world.gen.carver.ChasmsWorldCarver;
 import androsa.gaiadimension.world.gen.carver.CoatedCavesWorldCarver;
 import androsa.gaiadimension.world.gen.feature.*;
+import androsa.gaiadimension.world.gen.feature.config.CrystalFungiConfig;
 import androsa.gaiadimension.world.gen.feature.config.FeatureHeightConfig;
 import androsa.gaiadimension.world.gen.feature.config.OpaliteOreConfiguration;
 import androsa.gaiadimension.world.gen.feature.config.TwoBlockStateConfig;
@@ -14,6 +15,7 @@ import androsa.gaiadimension.world.gen.feature.foliage.BulbFoliagePlacer;
 import androsa.gaiadimension.world.gen.feature.foliage.CappedFoliagePlacer;
 import androsa.gaiadimension.world.gen.feature.foliage.CubeFoliagePlacer;
 import androsa.gaiadimension.world.gen.feature.foliage.ThickFoliagePlacer;
+import androsa.gaiadimension.world.gen.feature.fungi.*;
 import androsa.gaiadimension.world.gen.feature.trunk.CardinalTrunkPlacer;
 import androsa.gaiadimension.world.gen.feature.trunk.FourBranchTrunkPlacer;
 import androsa.gaiadimension.world.gen.feature.trunk.ThickTrunkPlacer;
@@ -96,6 +98,22 @@ public class ModWorldgen {
             new OpaliteOreFeature(OpaliteOreConfiguration.CODEC));
     public static final DeferredHolder<Feature<?>, Feature<NoneFeatureConfiguration>> MOOKAITE_MOUND = FEATURES.register("mookaite_mound", () ->
             new MookaiteMoundFeature(NoneFeatureConfiguration.CODEC));
+    public static final DeferredHolder<Feature<?>, Feature<CrystalFungiConfig>> HUGE_SPOTTED_KERSEI = FEATURES.register("huge_spotted_kersei", () ->
+            new HugeSpottedKerseiFeature(CrystalFungiConfig.CODEC));
+    public static final DeferredHolder<Feature<?>, Feature<CrystalFungiConfig>> HUGE_THORNY_WILTHA = FEATURES.register("huge_thorny_wiltha", () ->
+            new HugeThornyWilthaFeature(CrystalFungiConfig.CODEC));
+    public static final DeferredHolder<Feature<?>, Feature<CrystalFungiConfig>> HUGE_ROOFED_AGARIC = FEATURES.register("huge_roofed_agaric", () ->
+            new HugeRoofedAgaricFeature(CrystalFungiConfig.CODEC));
+    public static final DeferredHolder<Feature<?>, Feature<CrystalFungiConfig>> HUGE_BULBOUS_HOBINA = FEATURES.register("huge_bulbous_hobina", () ->
+            new HugeBulbousHobinaFeature(CrystalFungiConfig.CODEC));
+    public static final DeferredHolder<Feature<?>, Feature<CrystalFungiConfig>> HUGE_STICKLY_CUPSIR = FEATURES.register("huge_stickly_cupsir", () ->
+            new HugeSticklyCupsirFeature(CrystalFungiConfig.CODEC));
+    public static final DeferredHolder<Feature<?>, Feature<CrystalFungiConfig>> HUGE_MYSTICAL_MURGNI = FEATURES.register("huge_mystical_murgni", () ->
+            new HugeMysticalMurgniFeature(CrystalFungiConfig.CODEC));
+    public static final DeferredHolder<Feature<?>, Feature<CrystalFungiConfig>> HUGE_GAIA_EYE = FEATURES.register("huge_gaia_eye", () ->
+            new HugeGaiaEyeFeature(CrystalFungiConfig.CODEC));
+    public static final DeferredHolder<Feature<?>, Feature<CrystalFungiConfig>> HUGE_TWINKLING_GILSRI = FEATURES.register("huge_twinkling_gilsri", () ->
+            new HugeTwinklingGilsriFeature(CrystalFungiConfig.CODEC));
 
     //WorldCarver
     public static final DeferredHolder<WorldCarver<?>, WorldCarver<CaveCarverConfiguration>> CRYSTAL_CAVES = WORLD_CARVERS.register("crystal_caves", () ->

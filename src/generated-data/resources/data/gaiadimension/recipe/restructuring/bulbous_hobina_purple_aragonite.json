@@ -1,0 +1,12 @@
+{
+  "type": "gaiadimension:restructuring",
+  "byproduct": {
+    "id": "gaiadimension:white_aragonite"
+  },
+  "cookingtime": 200,
+  "experience": 0.0,
+  "ingredient": "gaiadimension:purple_aragonite",
+  "result": {
+    "id": "gaiadimension:bulbous_hobina"
+  }
+}

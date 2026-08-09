@@ -1,0 +1,19 @@
+{
+  "type": "gaiadimension:huge_twinkling_gilsri",
+  "config": {
+    "can_place_on": {
+      "type": "minecraft:matching_block_tag",
+      "tag": "gaiadimension:crystal_fungi_surface_placeable"
+    },
+    "primary_cap_state": {
+      "Name": "gaiadimension:gold_calcite"
+    },
+    "primary_stem_state": {
+      "Name": "gaiadimension:brown_aragonite",
+      "Properties": {
+        "axis": "y"
+      }
+    },
+    "stem_height": 4
+  }
+}

@@ -31,6 +31,7 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 import org.jetbrains.annotations.Nullable;
 import org.jspecify.annotations.NullMarked;
 
+import java.util.Optional;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
@@ -99,14 +100,14 @@ public class ModBlocks {
     public static final DeferredBlock<Block> corrupted_varloom = register("corrupted_varloom", CrystalBloomBlock::new, PropertiesHandler.bloomProps());
     public static final DeferredBlock<Block> glamelea = register("glamelea", GlameleaBlock::new, PropertiesHandler.bloomProps());
     public static final DeferredBlock<Block> missingno_plant = register("missingno_plant", CrystalBloomBlock::new, PropertiesHandler.bloomProps());
-    public static final DeferredBlock<Block> spotted_kersei = register("spotted_kersei", props -> new CrystalFungusBlock(false, props), PropertiesHandler.plantProps(MapColor.COLOR_PINK, false));
-    public static final DeferredBlock<Block> thorny_wiltha = register("thorny_wiltha", props -> new CrystalFungusBlock(false, props), PropertiesHandler.plantProps(MapColor.COLOR_LIGHT_BLUE, false));
-    public static final DeferredBlock<Block> roofed_agaric = register("roofed_agaric", props -> new CrystalFungusBlock(false, props), PropertiesHandler.plantProps(MapColor.COLOR_LIGHT_GREEN, false));
-    public static final DeferredBlock<Block> bulbous_hobina = register("bulbous_hobina", props -> new CrystalFungusBlock(false, props), PropertiesHandler.plantProps(MapColor.TERRACOTTA_PINK, false));
-    public static final DeferredBlock<Block> stickly_cupsir = register("stickly_cupsir", props -> new CrystalFungusBlock(false, props), PropertiesHandler.plantProps(MapColor.TERRACOTTA_YELLOW, false));
-    public static final DeferredBlock<Block> mystical_murgni = register("mystical_murgni", props -> new CrystalFungusBlock(false, props), PropertiesHandler.plantProps(MapColor.GOLD, false));
-    public static final DeferredBlock<Block> corrupted_gaia_eye = register("corrupted_gaia_eye", props -> new CrystalFungusBlock(false, props), PropertiesHandler.plantProps(MapColor.FIRE, false));
-    public static final DeferredBlock<Block> twinkling_gilsri = register("twinkling_gilsri", props -> new CrystalFungusBlock(false, props), PropertiesHandler.plantProps(MapColor.GOLD, false));
+    public static final DeferredBlock<Block> spotted_kersei = register("spotted_kersei", props -> new CrystalFungusBlock(false, Optional.of(GaiaFeatures.Configured.huge_kersei), props), PropertiesHandler.plantProps(MapColor.COLOR_PINK, false));
+    public static final DeferredBlock<Block> thorny_wiltha = register("thorny_wiltha", props -> new CrystalFungusBlock(false, Optional.of(GaiaFeatures.Configured.huge_wiltha), props), PropertiesHandler.plantProps(MapColor.COLOR_LIGHT_BLUE, false));
+    public static final DeferredBlock<Block> roofed_agaric = register("roofed_agaric", props -> new CrystalFungusBlock(false, Optional.of(GaiaFeatures.Configured.huge_agaric), props), PropertiesHandler.plantProps(MapColor.COLOR_LIGHT_GREEN, false));
+    public static final DeferredBlock<Block> bulbous_hobina = register("bulbous_hobina", props -> new CrystalFungusBlock(false, Optional.of(GaiaFeatures.Configured.huge_hobina), props), PropertiesHandler.plantProps(MapColor.TERRACOTTA_PINK, false));
+    public static final DeferredBlock<Block> stickly_cupsir = register("stickly_cupsir", props -> new CrystalFungusBlock(false, Optional.of(GaiaFeatures.Configured.huge_cupsir), props), PropertiesHandler.plantProps(MapColor.TERRACOTTA_YELLOW, false));
+    public static final DeferredBlock<Block> mystical_murgni = register("mystical_murgni", props -> new CrystalFungusBlock(false, Optional.of(GaiaFeatures.Configured.huge_murgni), props), PropertiesHandler.plantProps(MapColor.GOLD, false));
+    public static final DeferredBlock<Block> corrupted_gaia_eye = register("corrupted_gaia_eye", props -> new CrystalFungusBlock(false, Optional.of(GaiaFeatures.Configured.huge_corrupt_eye), props), PropertiesHandler.plantProps(MapColor.FIRE, false));
+    public static final DeferredBlock<Block> twinkling_gilsri = register("twinkling_gilsri", props -> new CrystalFungusBlock(false, Optional.of(GaiaFeatures.Configured.huge_gilsri), props), PropertiesHandler.plantProps(MapColor.GOLD, false));
     //public static final DeferredBlock<Block> sacred_gaia_eye = RegistryHelper.registerBlock()("sacred_gaia_eye", new CrystalFungusBlock(false));
     public static final DeferredBlock<Block> elder_imklia = register("elder_imklia", props -> new CrystalFungusBlock(true, props), PropertiesHandler.plantProps(MapColor.COLOR_PURPLE, false));
     public static final DeferredBlock<Block> gold_orb_tucher = register("gold_orb_tucher", props -> new CrystalFungusBlock(true, props), PropertiesHandler.plantProps(MapColor.GOLD, false));
@@ -114,6 +115,59 @@ public class ModBlocks {
     public static final DeferredBlock<Block> golden_vine = register("golden_vine", VineBlock::new, PropertiesHandler.plantProps(MapColor.GOLD, false));
     public static final DeferredBlock<Block> sombre_cacti = register("sombre_cacti", SombreCactiBlock::new, PropertiesHandler.plantProps(MapColor.TERRACOTTA_BROWN, false));
     public static final DeferredBlock<Block> sombre_shrub = register("sombre_shrub", SombreShrubBlock::new, PropertiesHandler.plantProps(MapColor.TERRACOTTA_BROWN, false));
+
+    //Huge Fungi Blocks
+    public static final DeferredBlock<Block> pink_calcite = register("pink_calcite", Block::new, PropertiesHandler.calciteProps(MapColor.COLOR_MAGENTA));
+    public static final DeferredBlock<Block> red_calcite = register("red_calcite", Block::new, PropertiesHandler.calciteProps(MapColor.COLOR_RED));
+    public static final DeferredBlock<Block> blue_calcite = register("blue_calcite", Block::new, PropertiesHandler.calciteProps(MapColor.COLOR_BLUE));
+    public static final DeferredBlock<Block> light_blue_calcite = register("light_blue_calcite", Block::new, PropertiesHandler.calciteProps(MapColor.COLOR_LIGHT_BLUE));
+    public static final DeferredBlock<Block> green_calcite = register("green_calcite", Block::new, PropertiesHandler.calciteProps(MapColor.COLOR_LIGHT_GREEN));
+    public static final DeferredBlock<Block> purple_calcite = register("purple_calcite", Block::new, PropertiesHandler.calciteProps(MapColor.COLOR_PURPLE));
+    public static final DeferredBlock<Block> beige_calcite = register("beige_calcite", Block::new, PropertiesHandler.calciteProps(MapColor.SAND));
+    public static final DeferredBlock<Block> yellow_calcite = register("yellow_calcite", Block::new, PropertiesHandler.calciteProps(MapColor.COLOR_YELLOW));
+    public static final DeferredBlock<Block> black_calcite = register("black_calcite", Block::new, PropertiesHandler.calciteProps(MapColor.COLOR_BLACK));
+    public static final DeferredBlock<Block> orange_calcite = register("orange_calcite", Block::new, PropertiesHandler.calciteProps(MapColor.COLOR_ORANGE));
+    public static final DeferredBlock<Block> navy_calcite = register("navy_calcite", Block::new, PropertiesHandler.calciteProps(MapColor.COLOR_BLUE));
+    public static final DeferredBlock<Block> gold_calcite = register("gold_calcite", Block::new, PropertiesHandler.calciteProps(MapColor.GOLD));
+    public static final DeferredBlock<Block> white_calcite = register("white_calcite", Block::new, PropertiesHandler.calciteProps(MapColor.SNOW));
+    public static final DeferredBlock<Block> clear_calcite = register("clear_calcite", TransparentBlock::new, PropertiesHandler.calciteProps(MapColor.NONE).noOcclusion());
+    public static final DeferredBlock<Block> pink_aragonite = register("pink_aragonite", RotatedPillarBlock::new, PropertiesHandler.aragoniteProps(MapColor.TERRACOTTA_MAGENTA));
+    public static final DeferredBlock<Block> blue_aragonite = register("blue_aragonite", RotatedPillarBlock::new, PropertiesHandler.aragoniteProps(MapColor.TERRACOTTA_BLUE));
+    public static final DeferredBlock<Block> light_blue_aragonite = register("light_blue_aragonite", RotatedPillarBlock::new, PropertiesHandler.aragoniteProps(MapColor.TERRACOTTA_LIGHT_BLUE));
+    public static final DeferredBlock<Block> green_aragonite = register("green_aragonite", RotatedPillarBlock::new, PropertiesHandler.aragoniteProps(MapColor.TERRACOTTA_LIGHT_GREEN));
+    public static final DeferredBlock<Block> purple_aragonite = register("purple_aragonite", RotatedPillarBlock::new, PropertiesHandler.aragoniteProps(MapColor.TERRACOTTA_PURPLE));
+    public static final DeferredBlock<Block> tan_aragonite = register("tan_aragonite", RotatedPillarBlock::new, PropertiesHandler.aragoniteProps(MapColor.TERRACOTTA_BROWN));
+    public static final DeferredBlock<Block> yellow_aragonite = register("yellow_aragonite", RotatedPillarBlock::new, PropertiesHandler.aragoniteProps(MapColor.TERRACOTTA_YELLOW));
+    public static final DeferredBlock<Block> black_aragonite = register("black_aragonite", RotatedPillarBlock::new, PropertiesHandler.aragoniteProps(MapColor.TERRACOTTA_BLACK));
+    public static final DeferredBlock<Block> brown_aragonite = register("brown_aragonite", RotatedPillarBlock::new, PropertiesHandler.aragoniteProps(MapColor.COLOR_BROWN));
+    public static final DeferredBlock<Block> white_aragonite = register("white_aragonite", RotatedPillarBlock::new, PropertiesHandler.aragoniteProps(MapColor.SNOW));
+    public static final DeferredBlock<Block> clear_aragonite = register("clear_aragonite", RotatedTransparentBlock::new, PropertiesHandler.aragoniteProps(MapColor.NONE).noOcclusion());
+
+    public static final DeferredBlock<Block> smooth_pink_calcite = register("smooth_pink_calcite", Block::new, PropertiesHandler.calciteProps(MapColor.COLOR_MAGENTA));
+    public static final DeferredBlock<Block> smooth_red_calcite = register("smooth_red_calcite", Block::new, PropertiesHandler.calciteProps(MapColor.COLOR_RED));
+    public static final DeferredBlock<Block> smooth_blue_calcite = register("smooth_blue_calcite", Block::new, PropertiesHandler.calciteProps(MapColor.COLOR_BLUE));
+    public static final DeferredBlock<Block> smooth_light_blue_calcite = register("smooth_light_blue_calcite", Block::new, PropertiesHandler.calciteProps(MapColor.COLOR_LIGHT_BLUE));
+    public static final DeferredBlock<Block> smooth_green_calcite = register("smooth_green_calcite", Block::new, PropertiesHandler.calciteProps(MapColor.COLOR_LIGHT_GREEN));
+    public static final DeferredBlock<Block> smooth_purple_calcite = register("smooth_purple_calcite", Block::new, PropertiesHandler.calciteProps(MapColor.COLOR_PURPLE));
+    public static final DeferredBlock<Block> smooth_beige_calcite = register("smooth_beige_calcite", Block::new, PropertiesHandler.calciteProps(MapColor.SAND));
+    public static final DeferredBlock<Block> smooth_yellow_calcite = register("smooth_yellow_calcite", Block::new, PropertiesHandler.calciteProps(MapColor.COLOR_YELLOW));
+    public static final DeferredBlock<Block> smooth_black_calcite = register("smooth_black_calcite", Block::new, PropertiesHandler.calciteProps(MapColor.COLOR_BLACK));
+    public static final DeferredBlock<Block> smooth_orange_calcite = register("smooth_orange_calcite", Block::new, PropertiesHandler.calciteProps(MapColor.COLOR_ORANGE));
+    public static final DeferredBlock<Block> smooth_navy_calcite = register("smooth_navy_calcite", Block::new, PropertiesHandler.calciteProps(MapColor.COLOR_BLUE));
+    public static final DeferredBlock<Block> smooth_gold_calcite = register("smooth_gold_calcite", Block::new, PropertiesHandler.calciteProps(MapColor.GOLD));
+    public static final DeferredBlock<Block> smooth_white_calcite = register("smooth_white_calcite", Block::new, PropertiesHandler.calciteProps(MapColor.SNOW));
+    public static final DeferredBlock<Block> smooth_clear_calcite = register("smooth_clear_calcite", TransparentBlock::new, PropertiesHandler.calciteProps(MapColor.NONE).noOcclusion());
+    public static final DeferredBlock<Block> smooth_pink_aragonite = register("smooth_pink_aragonite", RotatedPillarBlock::new, PropertiesHandler.aragoniteProps(MapColor.TERRACOTTA_MAGENTA));
+    public static final DeferredBlock<Block> smooth_blue_aragonite = register("smooth_blue_aragonite", RotatedPillarBlock::new, PropertiesHandler.aragoniteProps(MapColor.TERRACOTTA_BLUE));
+    public static final DeferredBlock<Block> smooth_light_blue_aragonite = register("smooth_light_blue_aragonite", RotatedPillarBlock::new, PropertiesHandler.aragoniteProps(MapColor.TERRACOTTA_LIGHT_BLUE));
+    public static final DeferredBlock<Block> smooth_green_aragonite = register("smooth_green_aragonite", RotatedPillarBlock::new, PropertiesHandler.aragoniteProps(MapColor.TERRACOTTA_LIGHT_GREEN));
+    public static final DeferredBlock<Block> smooth_purple_aragonite = register("smooth_purple_aragonite", RotatedPillarBlock::new, PropertiesHandler.aragoniteProps(MapColor.TERRACOTTA_PURPLE));
+    public static final DeferredBlock<Block> smooth_tan_aragonite = register("smooth_tan_aragonite", RotatedPillarBlock::new, PropertiesHandler.aragoniteProps(MapColor.TERRACOTTA_BROWN));
+    public static final DeferredBlock<Block> smooth_yellow_aragonite = register("smooth_yellow_aragonite", RotatedPillarBlock::new, PropertiesHandler.aragoniteProps(MapColor.TERRACOTTA_YELLOW));
+    public static final DeferredBlock<Block> smooth_black_aragonite = register("smooth_black_aragonite", RotatedPillarBlock::new, PropertiesHandler.aragoniteProps(MapColor.TERRACOTTA_BLACK));
+    public static final DeferredBlock<Block> smooth_brown_aragonite = register("smooth_brown_aragonite", RotatedPillarBlock::new, PropertiesHandler.aragoniteProps(MapColor.COLOR_BROWN));
+    public static final DeferredBlock<Block> smooth_white_aragonite = register("smooth_white_aragonite", RotatedPillarBlock::new, PropertiesHandler.aragoniteProps(MapColor.SNOW));
+    public static final DeferredBlock<Block> smooth_clear_aragonite = register("smooth_clear_aragonite", RotatedTransparentBlock::new, PropertiesHandler.aragoniteProps(MapColor.NONE).noOcclusion());
 
     //Tree Blocks
     public static final DeferredBlock<Block> pink_agate_leaves = register("pink_agate_leaves", GaiaLeavesBlock::new, PropertiesHandler.leavesProps(MapColor.COLOR_MAGENTA));

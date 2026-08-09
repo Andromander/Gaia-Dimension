@@ -1,0 +1,12 @@
+{
+  "type": "gaiadimension:restructuring",
+  "byproduct": {
+    "id": "gaiadimension:white_aragonite"
+  },
+  "cookingtime": 200,
+  "experience": 0.0,
+  "ingredient": "gaiadimension:tan_aragonite",
+  "result": {
+    "id": "gaiadimension:stickly_cupsir"
+  }
+}

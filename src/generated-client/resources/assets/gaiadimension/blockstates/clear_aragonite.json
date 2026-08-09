@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "gaiadimension:block/clear_aragonite_horizontal",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "gaiadimension:block/clear_aragonite"
+    },
+    "axis=z": {
+      "model": "gaiadimension:block/clear_aragonite_horizontal",
+      "x": 90
+    }
+  }
+}

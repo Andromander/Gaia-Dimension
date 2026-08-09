@@ -141,6 +141,16 @@ public class PropertiesHandler {
                 .noCollision();
     }
 
+    public static BlockBehaviour.Properties calciteProps(MapColor color) {
+        return basicProps(color, SoundType.CALCITE, 1.0F, 10.0F)
+                .requiresCorrectToolForDrops();
+    }
+
+    public static BlockBehaviour.Properties aragoniteProps(MapColor color) {
+        return basicProps(color, SoundType.BASALT, 1.0F, 10.0F)
+                .requiresCorrectToolForDrops();
+    }
+
     public static BlockBehaviour.Properties liquidProps(MapColor color) {
         return BlockBehaviour.Properties.of()
                 .mapColor(color)

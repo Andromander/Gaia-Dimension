@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:smelting",
+  "category": "blocks",
+  "cookingtime": 200,
+  "experience": 0.0,
+  "ingredient": "gaiadimension:white_calcite",
+  "result": {
+    "id": "gaiadimension:clear_calcite"
+  }
+}

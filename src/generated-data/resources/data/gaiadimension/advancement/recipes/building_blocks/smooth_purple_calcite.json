@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_gaiadimension:purple_calcite": {
+      "conditions": {
+        "items": [
+          {
+            "items": "gaiadimension:purple_calcite"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "gaiadimension:smooth_purple_calcite"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_gaiadimension:purple_calcite"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "gaiadimension:smooth_purple_calcite"
+    ]
+  }
+}
