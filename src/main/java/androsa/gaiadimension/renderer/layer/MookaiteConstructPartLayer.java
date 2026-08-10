@@ -30,7 +30,7 @@ public class MookaiteConstructPartLayer<M extends MookaiteConstructModel> extend
                 String color = part.getValue().getSerializedName();
                 Identifier location = ModEntitiesRendering.makeTextureNoPrefix("mookaite_construct", part.getKey().name() + "/" + color);
                 if (location != null && !state.isInvisible) {
-                    buffer.submitModel(
+                    buffer.order(1).submitModel(
                             this.getParentModel(),
                             state,
                             stack,
