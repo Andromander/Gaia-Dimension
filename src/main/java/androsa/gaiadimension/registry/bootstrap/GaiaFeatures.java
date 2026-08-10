@@ -614,8 +614,9 @@ public class GaiaFeatures extends GaiaBiomeFeatures {
                     BiomeFilter.biome());
         }
 
-        private static PlacedFeature plantPatch(HolderGetter<ConfiguredFeature<?, ?>> getter, ResourceKey<ConfiguredFeature<?, ?>> growth, int count, int xzRange, int yRange) {
+        private static PlacedFeature plantPatch(HolderGetter<ConfiguredFeature<?, ?>> getter, ResourceKey<ConfiguredFeature<?, ?>> growth, int count, int xzRange, int yRange, int frequency) {
             return registerPlacedFeature(getter, growth,
+                    CountPlacement.of(frequency),
                     InSquarePlacement.spread(),
                     PlacementUtils.HEIGHTMAP_WORLD_SURFACE,
                     BiomeFilter.biome(),
@@ -626,6 +627,7 @@ public class GaiaFeatures extends GaiaBiomeFeatures {
 
         private static PlacedFeature placedFungi(HolderGetter<ConfiguredFeature<?, ?>> getter, ResourceKey<ConfiguredFeature<?, ?>> patch, int count) {
             return registerPlacedFeature(getter, patch,
+                    CountPlacement.of(16),
                     InSquarePlacement.spread(),
                     PlacementUtils.HEIGHTMAP,
                     BiomeFilter.biome(),
@@ -860,24 +862,24 @@ public class GaiaFeatures extends GaiaBiomeFeatures {
                     RarityFilter.onAverageOnceEvery(2),
                     BiomeFilter.biome()));
 
-            context.register(CRYSTAL_GROWTH_02, plantPatch(features, Configured.normal_growth, 32, 7, 3));
-            context.register(CRYSTAL_GROWTH_03, plantPatch(features, Configured.normal_growth, 64, 7, 3));
-            context.register(CRYSTAL_GROWTH_04, plantPatch(features, Configured.normal_growth, 128, 7, 3));
-            context.register(CRYSTAL_GROWTH_05, plantPatch(features, Configured.normal_growth, 192, 14, 3));
-            context.register(CRYSTAL_GROWTH_SEARED, plantPatch(features, Configured.seared_growth, 16, 7, 3));
-            context.register(CRYSTAL_GROWTH_CORRUPT, plantPatch(features, Configured.corrupt_growth, 16, 7, 3));
-            context.register(CRYSTAL_GROWTH_AURA, plantPatch(features, Configured.aura_growth, 16, 7, 3));
-            context.register(CRYSTAL_GROWTH_MUTANT, plantPatch(features, Configured.mutant_growth, 64, 7, 3));
-            context.register(GOLDEN_GRASS_COMMON, plantPatch(features, Configured.golden_grass, 128, 7, 3));
-            context.register(GOLDEN_GRASS_UNCOMMON, plantPatch(features, Configured.golden_grass, 32, 7, 3));
-            context.register(GOLDEN_GRASS_RARE, plantPatch(features, Configured.golden_grass, 16, 7, 3));
-            context.register(TALL_GOLDEN_GRASS, plantPatch(features, Configured.tall_golden_grass, 64, 7, 3));
-            context.register(CRYSTAL_BLOOMS_COMMON, plantPatch(features, Configured.common_bloom, 16, 7, 3));
-            context.register(CRYSTAL_BLOOMS_RARE, plantPatch(features, Configured.rare_bloom, 16, 7, 3));
-            context.register(CRYSTAL_BLOOMS_MUTANT, plantPatch(features, Configured.mutant_bloom, 16, 7, 3));
-            context.register(CRYSTAL_BLOOMS_CORRUPT, plantPatch(features, Configured.corrupt_bloom, 8, 7, 3));
-            context.register(CRYSTAL_BLOOMS_GOLDEN, plantPatch(features, Configured.golden_bloom, 8, 7, 3));
-            context.register(SOMBRE_SHRUBS, plantPatch(features, Configured.sombre_shrub, 8, 7, 3));
+            context.register(CRYSTAL_GROWTH_02, plantPatch(features, Configured.normal_growth, 32, 7, 3, 2));
+            context.register(CRYSTAL_GROWTH_03, plantPatch(features, Configured.normal_growth, 32, 7, 3, 3));
+            context.register(CRYSTAL_GROWTH_04, plantPatch(features, Configured.normal_growth, 32, 7, 3, 4));
+            context.register(CRYSTAL_GROWTH_05, plantPatch(features, Configured.normal_growth, 32, 14, 3, 5));
+            context.register(CRYSTAL_GROWTH_SEARED, plantPatch(features, Configured.seared_growth, 32, 7, 3, 1));
+            context.register(CRYSTAL_GROWTH_CORRUPT, plantPatch(features, Configured.corrupt_growth, 32, 7, 3, 1));
+            context.register(CRYSTAL_GROWTH_AURA, plantPatch(features, Configured.aura_growth, 32, 7, 3, 2));
+            context.register(CRYSTAL_GROWTH_MUTANT, plantPatch(features, Configured.mutant_growth, 32, 7, 3, 2));
+            context.register(GOLDEN_GRASS_COMMON, plantPatch(features, Configured.golden_grass, 32, 7, 3, 7));
+            context.register(GOLDEN_GRASS_UNCOMMON, plantPatch(features, Configured.golden_grass, 32, 7, 3, 3));
+            context.register(GOLDEN_GRASS_RARE, plantPatch(features, Configured.golden_grass, 32, 7, 3, 2));
+            context.register(TALL_GOLDEN_GRASS, plantPatch(features, Configured.tall_golden_grass, 32, 7, 3, 4));
+            context.register(CRYSTAL_BLOOMS_COMMON, plantPatch(features, Configured.common_bloom, 32, 7, 3, 2));
+            context.register(CRYSTAL_BLOOMS_RARE, plantPatch(features, Configured.rare_bloom, 32, 7, 3, 2));
+            context.register(CRYSTAL_BLOOMS_MUTANT, plantPatch(features, Configured.mutant_bloom, 32, 7, 3, 2));
+            context.register(CRYSTAL_BLOOMS_CORRUPT, plantPatch(features, Configured.corrupt_bloom, 64, 7, 3, 1));
+            context.register(CRYSTAL_BLOOMS_GOLDEN, plantPatch(features, Configured.golden_bloom, 32, 7, 3, 1));
+            context.register(SOMBRE_SHRUBS, plantPatch(features, Configured.sombre_shrub, 32, 7, 3, 2));
             context.register(SPOTTED_KERSEI, placedFungi(features, Configured.kersei, 1));
             context.register(THORNY_WILTHA, placedFungi(features, Configured.wiltha, 1));
             context.register(ROOFED_AGARIC, placedFungi(features, Configured.agaric, 1));

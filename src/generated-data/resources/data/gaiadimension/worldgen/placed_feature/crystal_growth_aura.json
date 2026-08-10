@@ -2,6 +2,10 @@
   "feature": "gaiadimension:aura_crystal_growth",
   "placement": [
     {
+      "type": "minecraft:count",
+      "count": 2
+    },
+    {
       "type": "minecraft:in_square"
     },
     {
@@ -13,7 +17,7 @@
     },
     {
       "type": "minecraft:count",
-      "count": 16
+      "count": 32
     },
     {
       "type": "minecraft:random_offset",
