@@ -173,45 +173,46 @@ public class GaiaStaffItem extends Item {
 
         Element element = stack.get(ModDataComponents.STAFF_ELEMENT);
         component.accept(
-                Component.translatable("gaiadimension.magic_staff.desc.element")
+                Component.translatable(this.getDescriptionId() + ".desc.element")
                         .withStyle(style -> style.withColor(0xff9eee))
+                        .append(Component.literal(":"))
                         .append(CommonComponents.SPACE)
-                        .append(Component.translatable("gaiadimension.magic_staff.element." + Objects.requireNonNullElse(element, Element.PHYSICAL).getSerializedName())
+                        .append(Component.translatable(this.getDescriptionId() + ".element." + Objects.requireNonNullElse(element, Element.PHYSICAL).getSerializedName())
                                 .withStyle(ChatFormatting.GRAY)));
 
         if (flag.hasShiftDown()) {
-            component.accept(Component.translatable("gaiadimension.magic_staff.element.help." + Objects.requireNonNullElse(element, Element.PHYSICAL).getSerializedName())
+            component.accept(Component.translatable(this.getDescriptionId() + ".element.help." + Objects.requireNonNullElse(element, Element.PHYSICAL).getSerializedName())
                     .withStyle(ChatFormatting.GRAY));
         }
 
         Behavior behavior = stack.get(ModDataComponents.STAFF_BEHAVIOR);
         component.accept(
-                Component.translatable("gaiadimension.magic_staff.desc.behavior")
+                Component.translatable(this.getDescriptionId() + ".desc.behavior")
                         .withStyle(style -> style.withColor(0xff9eee))
                         .append(CommonComponents.SPACE)
-                        .append(Component.translatable("gaiadimension.magic_staff.behavior." + Objects.requireNonNullElse(behavior, Behavior.BASIC).getSerializedName())
+                        .append(Component.translatable(this.getDescriptionId() + ".behavior." + Objects.requireNonNullElse(behavior, Behavior.BASIC).getSerializedName())
                                 .withStyle(ChatFormatting.GRAY)));
 
         if (flag.hasShiftDown()) {
-            component.accept(Component.translatable("gaiadimension.magic_staff.behavior.help." + Objects.requireNonNullElse(behavior, Behavior.BASIC).getSerializedName())
+            component.accept(Component.translatable(this.getDescriptionId() + ".behavior.help." + Objects.requireNonNullElse(behavior, Behavior.BASIC).getSerializedName())
                     .withStyle(ChatFormatting.GRAY));
         }
 
         Stat stat = stack.get(ModDataComponents.STAFF_STAT);
         component.accept(
-                Component.translatable("gaiadimension.magic_staff.desc.stat")
+                Component.translatable(this.getDescriptionId() + ".desc.stat")
                         .withStyle(style -> style.withColor(0xff9eee))
                         .append(CommonComponents.SPACE)
-                        .append(Component.translatable("gaiadimension.magic_staff.stat." + Objects.requireNonNullElse(stat, Stat.STANDARD).getSerializedName())
+                        .append(Component.translatable(this.getDescriptionId() + ".stat." + Objects.requireNonNullElse(stat, Stat.STANDARD).getSerializedName())
                                 .withStyle(ChatFormatting.GRAY)));
 
         if (flag.hasShiftDown()) {
-            component.accept(Component.translatable("gaiadimension.magic_staff.stat.help." + Objects.requireNonNullElse(stat, Stat.STANDARD).getSerializedName())
+            component.accept(Component.translatable(this.getDescriptionId() + ".stat.help." + Objects.requireNonNullElse(stat, Stat.STANDARD).getSerializedName())
                     .withStyle(ChatFormatting.GRAY));
         }
 
         if (!flag.hasShiftDown()) {
-            component.accept(Component.translatable("gaiadimension.magic_staff.help").withStyle(ChatFormatting.DARK_GRAY));
+            component.accept(Component.translatable(this.getDescriptionId() + ".help").withStyle(ChatFormatting.DARK_GRAY));
         }
     }
 

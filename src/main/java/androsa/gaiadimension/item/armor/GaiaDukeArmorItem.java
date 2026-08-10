@@ -29,6 +29,6 @@ public class GaiaDukeArmorItem extends BasicGaiaArmorItem {
     @Deprecated
     public void appendHoverText(ItemStack stack, TooltipContext world, TooltipDisplay display, Consumer<Component> tooltips, TooltipFlag flags) {
         super.appendHoverText(stack, world, display, tooltips, flags);
-        tooltips.accept(Component.translatable("larvikite_armor.tooltip"));
+        tooltips.accept(Component.translatable("item.gaiadimension.larvikite_armor.tooltip"));
     }
 }

@@ -6,7 +6,7 @@
     ]
   },
   "entity.agate_golem.death": {
-    "subtitle": "subtitles.agate_golem.death",
+    "subtitle": "subtitles.entity.agate_golem.death",
     "sounds": [
       "damage/hit1",
       "damage/hit2",
@@ -14,7 +14,7 @@
     ]
   },
   "entity.agate_golem.hurt": {
-    "subtitle": "subtitles.agate_golem.hurt",
+    "subtitle": "subtitles.entity.agate_golem.hurt",
     "sounds": [
       "damage/fallsmall"
     ]

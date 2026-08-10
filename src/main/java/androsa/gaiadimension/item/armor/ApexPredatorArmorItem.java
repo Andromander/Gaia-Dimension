@@ -21,6 +21,6 @@ public class ApexPredatorArmorItem extends BasicGaiaArmorItem {
     @Deprecated
     public void appendHoverText(ItemStack stack, TooltipContext world, TooltipDisplay display, Consumer<Component> tooltips, TooltipFlag flags) {
         super.appendHoverText(stack, world, display, tooltips, flags);
-        tooltips.accept(Component.translatable("tigereye_armor.tooltip"));
+        tooltips.accept(Component.translatable("item.gaiadimension.tigereye_armor.tooltip"));
     }
 }

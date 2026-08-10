@@ -2,6 +2,8 @@ package androsa.gaiadimension;
 
 import androsa.gaiadimension.client.ClientEvents;
 import androsa.gaiadimension.data.*;
+import androsa.gaiadimension.data.lang.GaiaGBAULang;
+import androsa.gaiadimension.data.lang.GaiaUSLang;
 import androsa.gaiadimension.data.provider.GaiaModelProvider;
 import androsa.gaiadimension.registry.bootstrap.GaiaBiomes;
 import androsa.gaiadimension.registry.registration.ModSlotDisplay;
@@ -100,6 +102,9 @@ public class GaiaDimensionMod {
         PackOutput output = generator.getPackOutput();
         generator.addProvider(true, new GaiaModelProvider(output));
         generator.addProvider(true, new GaiaEquipmentAssets(output));
+        generator.addProvider(true, new GaiaUSLang(output));
+        generator.addProvider(true, new GaiaGBAULang(output, "en_gb"));
+        generator.addProvider(true, new GaiaGBAULang(output, "en_au"));
     }
 
     public void gatherServerData(GatherDataEvent.Server event) {

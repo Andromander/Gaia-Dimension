@@ -3,6 +3,8 @@ Contributing to Gaia Dimension has various ways to contribute to the development
 
 * Does not comply with the listed guielines
 * No action is done to resolve conflicts or build failures within 2 weeks
+* Contains clear markers of AI-generated content
+* Contributions include an AI agent or copilot
 
 ## Coding
 Though it is not easy from a surface level, it's worth more to contribute via coding than any other place. However, there are a few things to note when submitting a PR for coding.
@@ -16,7 +18,7 @@ public void() {
 }
 ```
 ### It needs to work
-You can submit a PR that's got a solution to a problem or a new feature, but it needs to build. This can be checked by submitting the PR's and looking at the mergability. This repo uses Travis-CI, so builds are often checked.
+You can submit a PR that's got a solution to a problem or a new feature, but it needs to build. This can be checked by submitting the PR's and looking at the mergability. This repo uses Artifactor, so builds are often checked.
 That being said, it also needs to be functional in-game. You could submit a PR based on the grounds that it works, but thorough testing is required to make sure that it doesn't break any other feature.
 
 ## Assets
@@ -34,7 +36,17 @@ This might be a mod, but it needs to stay true to Minecraft's art style. Do not 
 Not unless you also volunteer to remodel the entity at the same time.
 
 ### Regarding Translations, make sure that it is sound quality
-I cannot understand languages outside of English, so if you are ready to have your lang file pulled, please ping the author that you are ready to do so. Lang files should also be formatted as `xx_xx`, as it is the current format. Any reports of low quality or troll translations will be immediately reverted or deleted, as well as you, the contributor, risk being banned from future contributions.
+I cannot understand languages outside of English, so if you are ready to have your lang file pulled, please ping the author that you are ready to do so. 
+
+Language files can be contributed in one of two ways: manually, or datagen.
+
+#### Manual method
+Upload the language file to `src/main/resources/assets/gaiadimension/lang/`. The file name must be formatted as `xx_xx.json`, where `xx_xx` is the locale.
+
+#### Datagen method
+Language files can also be contributed by using `GaiaLangProvider`. This method is more advanced but is offered as an alternative to manual editing. Create a new class named after your locale, such as `GaiaGBAULang` for `en_gb` and `en_au`, then in the constructor, pass in the `PackOutput` and the locale as a String. Translations are added via `addTranslations()`
+
+Files generated via Datagen are subject to rules in place under `/src/generated-client/`. **Do not manually edit a generated language file.**
 
 ### It needs to look good
 The requisite for this will vary. Some textures may be slated for retextures but lack time to produce, but if you are able to snuff these out and provide new and better textures, feel free to make an attempt.

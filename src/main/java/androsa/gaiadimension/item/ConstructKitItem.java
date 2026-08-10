@@ -55,25 +55,25 @@ public class ConstructKitItem extends Item {
     @Deprecated
     public void appendHoverText(ItemStack stack, TooltipContext world, TooltipDisplay display, Consumer<Component> components, TooltipFlag flags) {
         super.appendHoverText(stack, world, display, components, flags);
-        components.accept(Component.translatable("gaiadimension.construct_kit." + kit.getName()).withStyle(ChatFormatting.GRAY));
+        components.accept(Component.translatable("item.gaiadimension.construct_kit." + kit.getName()).withStyle(ChatFormatting.GRAY));
 
         if (kit.canCycleParts()) {
             if (stack.has(ModDataComponents.KIT_PART)) {
-                components.accept(Component.translatable("gaiadimension.construct_kit.part").withStyle(ChatFormatting.GRAY).append(CommonComponents.SPACE).append(getPart(stack.get(ModDataComponents.KIT_PART))));
-                components.accept(Component.translatable("gaiaidmension.construct_kit.part.instruction").withStyle(ChatFormatting.DARK_GRAY));
+                components.accept(Component.translatable("item.gaiadimension.construct_kit.part").withStyle(ChatFormatting.GRAY).append(CommonComponents.SPACE).append(getPart(stack.get(ModDataComponents.KIT_PART))));
+                components.accept(Component.translatable("item.gaiadimension.construct_kit.part.instruction").withStyle(ChatFormatting.DARK_GRAY));
             }
         }
         if (partColor != null) {
-            components.accept(Component.translatable("gaiadimension.construct_kit.color").withStyle(ChatFormatting.GRAY).append(CommonComponents.SPACE).append(getColor(partColor)));
+            components.accept(Component.translatable("item.gaiadimension.construct_kit.color").withStyle(ChatFormatting.GRAY).append(CommonComponents.SPACE).append(getColor(partColor)));
         }
     }
 
     private static Component getPart(Part part) {
-        return Component.translatable("gaiadimension.construct_kit.part." + part.getPart().name()).withStyle(style -> style.withColor(0x8599ff));
+        return Component.translatable("item.gaiadimension.construct_kit.part." + part.getPart().name()).withStyle(style -> style.withColor(0x8599ff));
     }
 
     private static Component getColor(Color part) {
-        return Component.translatable("gaiadimension.construct_kit.color." + part.getPartColor().getSerializedName()).withStyle(style -> style.withColor(part.getColor()));
+        return Component.translatable("item.gaiadimension.construct_kit.color." + part.getPartColor().getSerializedName()).withStyle(style -> style.withColor(part.getColor()));
     }
 
     @Override
@@ -91,7 +91,7 @@ public class ConstructKitItem extends Item {
                 if (next < 0)
                     next = maxSize; //This shouldn't really happen, but if for whatever reason this becomes negative, cycle to the end.
                 stack.set(ModDataComponents.KIT_PART, Part.byId(next));
-                player.sendOverlayMessage(Component.translatable("gaiadimension.construct_kit.part.swap").append(CommonComponents.SPACE).append(getPart(stack.get(ModDataComponents.KIT_PART))));
+                player.sendOverlayMessage(Component.translatable("item.gaiadimension.construct_kit.part.swap").append(CommonComponents.SPACE).append(getPart(stack.get(ModDataComponents.KIT_PART))));
             }
             return InteractionResult.SUCCESS.heldItemTransformedTo(stack);
         }
@@ -258,7 +258,7 @@ public class ConstructKitItem extends Item {
         }
 
         public Component getLangKey() {
-            return Component.translatable("gaiadimension.construct_kit.invalid." + lang).withStyle(ChatFormatting.RED);
+            return Component.translatable("item.gaiadimension.construct_kit.invalid." + lang).withStyle(ChatFormatting.RED);
         }
     }
 }

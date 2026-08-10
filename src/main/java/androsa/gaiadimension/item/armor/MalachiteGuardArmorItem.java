@@ -19,6 +19,6 @@ public class MalachiteGuardArmorItem extends BasicGaiaArmorItem {
     @Deprecated
     public void appendHoverText(ItemStack stack, TooltipContext world, TooltipDisplay display, Consumer<Component> tooltips, TooltipFlag flags) {
         super.appendHoverText(stack, world, display, tooltips, flags);
-        tooltips.accept(Component.translatable("malachite_armor.tooltip"));
+        tooltips.accept(Component.translatable("item.gaiadimension.malachite_armor.tooltip"));
     }
 }

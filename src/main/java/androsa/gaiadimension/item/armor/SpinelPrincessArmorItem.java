@@ -21,7 +21,7 @@ public class SpinelPrincessArmorItem extends BasicGaiaArmorItem {
     @Deprecated
     public void appendHoverText(ItemStack stack, TooltipContext world, TooltipDisplay display, Consumer<Component> tooltips, TooltipFlag flags) {
         super.appendHoverText(stack, world, display, tooltips, flags);
-        tooltips.accept(Component.translatable("spinel_armor.tooltip"));
+        tooltips.accept(Component.translatable("item.gaiadimension.spinel_armor.tooltip"));
     }
 }
 
