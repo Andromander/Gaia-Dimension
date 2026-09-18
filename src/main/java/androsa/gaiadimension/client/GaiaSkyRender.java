@@ -1,6 +1,5 @@
 package androsa.gaiadimension.client;
 
-import androsa.gaiadimension.registry.helpers.GaiaConfig;
 import com.mojang.blaze3d.buffers.GpuBuffer;
 import com.mojang.blaze3d.buffers.GpuBufferSlice;
 import com.mojang.blaze3d.pipeline.RenderPipeline;
@@ -10,19 +9,14 @@ import com.mojang.blaze3d.textures.GpuTextureView;
 import com.mojang.blaze3d.vertex.*;
 import com.mojang.math.Axis;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.renderer.*;
 import net.minecraft.client.renderer.state.level.LevelRenderState;
 import net.minecraft.client.renderer.state.level.SkyRenderState;
-import net.minecraft.resources.ResourceKey;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.level.biome.Biome;
 import org.joml.*;
 
 import java.lang.Math;
-import java.util.Optional;
 import java.util.OptionalDouble;
 import java.util.OptionalInt;
 
