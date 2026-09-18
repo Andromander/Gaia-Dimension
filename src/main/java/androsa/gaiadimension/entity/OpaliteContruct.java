@@ -127,12 +127,8 @@ public class OpaliteContruct extends PathfinderMob {
         tag.putInt("MauveStack", this.getMookaiteAmount(MAUVE_STACK));
         tag.putInt("BeigeStack", this.getMookaiteAmount(BEIGE_STACK));
         tag.putInt("IvoryStack", this.getMookaiteAmount(IVORY_STACK));
-        if (this.getMookaiteCompanion() != null) {
-            tag.putString("MookaiteUUID", this.getMookaiteCompanion().toString());
-        }
-        if (this.getBonder() != null) {
-            tag.putString("BonderUUID", this.getBonder().toString());
-        }
+        EntityReference.store(this.getBonder(), tag, "BonderUUID");
+        EntityReference.store(this.getMookaiteCompanion(), tag, "MookaiteUUID");
         if (!this.getKitData().isEmpty()) {
             tag.store("ConstructKit", ItemStack.CODEC, this.getKitData());
         }

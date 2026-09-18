@@ -82,9 +82,7 @@ public class MalachiteDrone extends Monster {
     @Override
     public void addAdditionalSaveData(ValueOutput nbt) {
         super.addAdditionalSaveData(nbt);
-        if (this.getOwnerReference() != null) {
-            nbt.putString("OwnerUUID", this.getOwnerReference().toString());
-        }
+        EntityReference.store(this.getOwnerReference(), nbt, "OwnerUUID");
     }
 
     @Nullable

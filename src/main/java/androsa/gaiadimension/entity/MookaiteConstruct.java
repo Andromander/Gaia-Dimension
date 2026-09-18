@@ -147,12 +147,8 @@ public class MookaiteConstruct extends PathfinderMob {
     @Override
     public void addAdditionalSaveData(ValueOutput tag) {
         super.addAdditionalSaveData(tag);
-        if (this.getBonder() != null) {
-            tag.putString("BonderUUID", this.getBonder().toString());
-        }
-        if (this.getOpaliteCompanion() != null) {
-            tag.putString("OpaliteUUID", this.getOpaliteCompanion().toString());
-        }
+        EntityReference.store(this.getBonder(), tag, "BonderUUID");
+        EntityReference.store(this.getOpaliteCompanion(), tag, "OpaliteUUID");
         tag.putBoolean("IsBurning", isBurning());
         tag.putBoolean("IsConstructing", isConstructing());
         tag.putString("LeftHornType", getPart(LEFT_HORN).getSerializedName());
