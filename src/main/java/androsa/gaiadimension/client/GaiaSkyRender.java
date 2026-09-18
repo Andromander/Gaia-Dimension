@@ -54,7 +54,7 @@ public class GaiaSkyRender {
 
         fog.run();
         PoseStack stack = new PoseStack();
-        float star = getStarBrightness(minecraft.level, skyState.starBrightness);
+        float star = skyState.starBrightness;
         skyRenderer.renderSkyDisc(skyState.skyColor);
 
         //renderSunMoonAndStars (without the Moon)
@@ -163,12 +163,5 @@ public class GaiaSkyRender {
         }
 
         return vertexBuffer;
-    }
-
-    public static float getStarBrightness(ClientLevel world, float par1) {
-        Player player = Minecraft.getInstance().player;
-        Optional<ResourceKey<Biome>> biome = world.getBiome(player.blockPosition()).unwrapKey();
-
-        return biome.filter(GaiaConfig::canDisplayStars).map(biomeRegistryKey -> 0.5F).orElse(par1);
     }
 }

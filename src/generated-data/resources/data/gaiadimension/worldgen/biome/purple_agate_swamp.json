@@ -1,6 +1,7 @@
 {
   "attributes": {
-    "minecraft:visual/sky_color": "#ab6df1"
+    "minecraft:visual/sky_color": "#ab6df1",
+    "minecraft:visual/star_brightness": 0.5
   },
   "carvers": [
     "gaiadimension:crystal_caves",

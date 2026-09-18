@@ -132,7 +132,8 @@ public class GaiaBiomeMaker extends GaiaBiomeProvider {
                                         .addSpawn(MobCategory.CREATURE, 20, mobData(ModEntities.GROWTH_SAPPER, 3, 5))
                                         .addSpawn(MobCategory.CREATURE, 10, mobData(ModEntities.SPELLBOUND_ELEMENTAL, 2, 4))))
                         .temperature(0.66F)
-                        .setAttribute(EnvironmentAttributes.SKY_COLOR, 11234801));
+                        .setAttribute(EnvironmentAttributes.SKY_COLOR, 11234801)
+                        .setAttribute(EnvironmentAttributes.STAR_BRIGHTNESS, 0.5F));
     }
 
     public static Biome makeFossilWoodland(HolderGetter<PlacedFeature> features, HolderGetter<ConfiguredWorldCarver<?>> carvers) {

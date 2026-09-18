@@ -1,4 +1,4 @@
-// 26.1	2026-08-10T22:35:24.7196265	Registries
+// 26.1.2	2026-09-18T22:29:54.7108449	Registries
 56d72770b020b85f72c305522124360858cbe607 data/gaiadimension/damage_type/corruption.json
 4351f8a9e71915bc1dac5096bc14d7770aaa0cb4 data/gaiadimension/damage_type/electric_magic.json
 a1e930106447e88a8543df5b23b57cfb80a32144 data/gaiadimension/damage_type/energetic.json
@@ -27,7 +27,7 @@ c4511e5cec209887d3aaa9350eee1510d1779173 data/gaiadimension/worldgen/biome/green
 c8f6e86995435b2eb28eaf30056814580413794d data/gaiadimension/worldgen/biome/mookaite_mesa.json
 5336e1c83d944744617585748417018f64dcd7fc data/gaiadimension/worldgen/biome/mutant_agate_wildwood.json
 97c0fb3abf0ffd560e80a5043154a19fc3b257d3 data/gaiadimension/worldgen/biome/pink_agate_forest.json
-edd0f0c01c49ed3fd8cf954a8c698c270f2d6d8d data/gaiadimension/worldgen/biome/purple_agate_swamp.json
+6897255fdae2733fc3a6222505540304f629ed8b data/gaiadimension/worldgen/biome/purple_agate_swamp.json
 7939e7bdac3f6f281dec8045463b27d95079d63f data/gaiadimension/worldgen/biome/salt_dunes.json
 6dae8181d05f7a238022324c3cb0743043d4bd3b data/gaiadimension/worldgen/biome/shining_grove.json
 51541d8011aedae6dca849f1f2432c904cbe0603 data/gaiadimension/worldgen/biome/smoldering_bog.json

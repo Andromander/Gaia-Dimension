@@ -34,7 +34,6 @@ public class GaiaDimensionMod {
     public static final String MODID = "gaiadimension";
 
     public static final Logger LOGGER = LogManager.getLogger(MODID);
-    public static GaiaConfig.ClientConfig clientConfig;
     public static GaiaConfig.CommonConfig commonConfig;
 
     public GaiaDimensionMod(IEventBus bus, ModContainer container, Dist dist) {
@@ -81,11 +80,8 @@ public class GaiaDimensionMod {
 
         RemapHelper.remapEntries();
 
-        final Pair<GaiaConfig.ClientConfig, ModConfigSpec> specPairC = new ModConfigSpec.Builder().configure(GaiaConfig.ClientConfig::new);
         final Pair<GaiaConfig.CommonConfig, ModConfigSpec> specPairB = new ModConfigSpec.Builder().configure(GaiaConfig.CommonConfig::new);
-        container.registerConfig(ModConfig.Type.CLIENT, specPairC.getRight());
         container.registerConfig(ModConfig.Type.COMMON, specPairB.getRight());
-        clientConfig = specPairC.getLeft();
         commonConfig = specPairB.getLeft();
     }
 

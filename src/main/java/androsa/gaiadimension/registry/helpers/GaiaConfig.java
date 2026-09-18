@@ -22,20 +22,8 @@ import java.util.List;
 public class GaiaConfig {
     private static final String config = GaiaDimensionMod.MODID + ".config.";
 
-    public static ConfigValue<List<? extends String>> starsInSky;
     public static Identifier startDimRL;
     public static ResourceKey<Level> startDimRK;
-
-    public static List<? extends String> starBiomes = Collections.singletonList("gaiadimension:purple_agate_swamp");
-
-    public static class ClientConfig {
-        public ClientConfig(Builder builder) {
-            starsInSky = builder
-                    .translation(config + "stars_in_sky")
-                    .comment("A list of biomes to always display stars. This will only work in the dimension as this is where stars are rendered per biome")
-                    .defineList("starsInSky", starBiomes, p -> true);
-        }
-    }
 
     public static ConfigValue<? extends String> startDimension;
     public static BooleanValue portalCheck;
@@ -56,10 +44,6 @@ public class GaiaConfig {
                     .comment("Changes whether the portal_biomes Biome Tag is a blacklist or a whitelist. A blacklist will exclude biomes from the portal, anything not on the list is allowed. A whitelist will allow biomes for the portal, anything on the list is allowed. If portalCheck is false, this value is unused.")
                     .defineEnum("listType", ListType.WHITELIST);
         }
-    }
-
-    public static boolean canDisplayStars(ResourceKey<Biome> define) {
-        return starsInSky.get().contains(define.identifier().toString());
     }
 
     public static void checkDimension() {
