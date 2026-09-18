@@ -43,42 +43,42 @@ public class ModEntities {
     public static final DeferredHolder<EntityType<?>, EntityType<StaffAreaEffect>> STAFF_AREA_EFFECT = registerProjectile("staff_area_effect", StaffAreaEffect::new, true, 150, Integer.MAX_VALUE, 4.0F, 0.5F, true);
 
     //Mobs
-    public static final DeferredHolder<EntityType<?>, EntityType<AgateGolem>> AGATE_GOLEM = registerEntity("agate_golem", AgateGolem::new, MobCategory.CREATURE, 1.2F, 2.7F, false);
-    public static final DeferredHolder<EntityType<?>, EntityType<AncientLagrahk>> ANCIENT_LAGRAHK = registerEntity("ancient_lagrahk", AncientLagrahk::new, MobCategory.MONSTER, 1.5F, 4.0F, 3.55F, false);
-    public static final DeferredHolder<EntityType<?>, EntityType<ArchaicWarrior>> ARCHAIC_WARRIOR = registerEntity("archaic_warrior", ArchaicWarrior::new, MobCategory.MONSTER, 0.6F, 1.95F, 1.74F, false);
-    public static final DeferredHolder<EntityType<?>, EntityType<BismuthUletrus>> BISMUTH_ULETRUS = registerEntity("bismuth_uletrus", BismuthUletrus::new, MobCategory.CREATURE, 2.0F, 1.8F, false);
-    public static final DeferredHolder<EntityType<?>, EntityType<CavernTick>> CAVERN_TICK = registerEntity("cavern_tick", CavernTick::new, MobCategory.MONSTER, 0.4F, 0.3F, 0.1F, false);
-    public static final DeferredHolder<EntityType<?>, EntityType<ContortedNaga>> CONTORTED_NAGA = registerEntity("contorted_naga", ContortedNaga::new, MobCategory.MONSTER, 1.0F, 2.6F, 2.3F, false);
-    public static final DeferredHolder<EntityType<?>, EntityType<CorruptSapper>> CORRUPT_SAPPER = registerEntity("corrupt_sapper", CorruptSapper::new, MobCategory.MONSTER, 1.0F, 1.0F, 0.7F, false);
-    public static final DeferredHolder<EntityType<?>, EntityType<CrystalGolem>> CRYSTAL_GOLEM = registerEntity("crystal_golem", CrystalGolem::new, MobCategory.CREATURE, 1.2F, 2.7F, false);
-    public static final DeferredHolder<EntityType<?>, EntityType<GrowthSapper>> GROWTH_SAPPER = registerEntity("growth_sapper", GrowthSapper::new, MobCategory.CREATURE, 1.0F, 1.0F, 0.7F, false);
-    public static final DeferredHolder<EntityType<?>, EntityType<HowliteWolf>> HOWLITE_WOLF = registerEntity("howlite_wolf", HowliteWolf::new, MobCategory.CREATURE, 1.0F, 1.0F, 0.68F, false);
-    public static final DeferredHolder<EntityType<?>, EntityType<LesserShockshooter>> LESSER_SHOCKSHOOTER = registerEntity("lesser_shockshooter", LesserShockshooter::new, MobCategory.MONSTER, 0.5F, 2.0F, 1.8F, false);
-    public static final DeferredHolder<EntityType<?>, EntityType<LesserSpitfire>> LESSER_SPITFIRE = registerEntity("lesser_spitfire", LesserSpitfire::new, MobCategory.MONSTER, 0.5F, 2.0F, 1.8F, true);
-    public static final DeferredHolder<EntityType<?>, EntityType<MarkuzarPlant>> MARKUZAR_PLANT = registerEntity("markuzar_plant", MarkuzarPlant::new, MobCategory.AMBIENT, 0.6F, 2.0F, false);
-    public static final DeferredHolder<EntityType<?>, EntityType<MineralArenthis>> MINERAL_ARENTHIS = registerEntity("mineral_arenthis", MineralArenthis::new, MobCategory.WATER_CREATURE, 1.5F, 1.5F, 0.85F, false);
-    public static final DeferredHolder<EntityType<?>, EntityType<Muckling>> MUCKLING = registerEntity("muckling", Muckling::new, MobCategory.MONSTER, 0.5F, 0.5F, false);
-    public static final DeferredHolder<EntityType<?>, EntityType<MutantGrowthExtractor>> MUTANT_GROWTH_EXTRACTOR = registerEntity("mutant_growth_extractor", MutantGrowthExtractor::new, MobCategory.CREATURE, 1.0F, 1.5F, 1.3F, false);
-    public static final DeferredHolder<EntityType<?>, EntityType<NomadicLagrahk>> NOMADIC_LAGRAHK = registerEntity("nomadic_lagrahk", NomadicLagrahk::new, MobCategory.CREATURE, 1.5F, 4.0F, 3.55F, false);
-    public static final DeferredHolder<EntityType<?>, EntityType<PrimalBeast>> PRIMAL_BEAST = registerEntity("primal_beast", PrimalBeast::new, MobCategory.MONSTER, 1.0F, 2.0F, 1.9F, true);
-    public static final DeferredHolder<EntityType<?>, EntityType<RockyLuggeroth>> ROCKY_LUGGEROTH = registerEntity("rocky_luggeroth", RockyLuggeroth::new, MobCategory.CREATURE, 1.0F, 1.6F, 0.35F, false);
-    public static final DeferredHolder<EntityType<?>, EntityType<RuggedLurmorus>> RUGGED_LURMORUS = registerEntity("rugged_lurmorus", RuggedLurmorus::new, MobCategory.CREATURE, 3.5F, 8.0F, 7.6F, false);
-    public static final DeferredHolder<EntityType<?>, EntityType<Saltion>> SALTION = registerEntity("saltion", Saltion::new, MobCategory.CREATURE, 1.0F, 0.3F, 0.25F, false);
-    public static final DeferredHolder<EntityType<?>, EntityType<ShallowArenthis>> SHALLOW_ARENTHIS = registerEntity("shallow_arenthis", ShallowArenthis::new, MobCategory.WATER_CREATURE, 0.6F, 0.6F, false);
-    public static final DeferredHolder<EntityType<?>, EntityType<Shalurker>> SHALURKER = registerEntity("shalurker", Shalurker::new, MobCategory.MONSTER, 0.6F, 1.9F, 1.75F, false);
-    public static final DeferredHolder<EntityType<?>, EntityType<SpellElemental>> SPELLBOUND_ELEMENTAL = registerEntity("spellbound_elemental", SpellElemental::new, MobCategory.CREATURE, 0.5F, 2.0F, false);
-    public static final DeferredHolder<EntityType<?>, EntityType<MalachiteDrone>> MALACHITE_DRONE = registerEntity("malachite_drone", MalachiteDrone::new, MobCategory.MONSTER, 1.0F, 2.0F, false);
-    public static final DeferredHolder<EntityType<?>, EntityType<MookaiteConstruct>> MOOKAITE_CONSTRUCT = registerEntity("mookaite_construct", MookaiteConstruct::new, MobCategory.CREATURE, 1.2F, 3.2F, false);
-    public static final DeferredHolder<EntityType<?>, EntityType<OpaliteContruct>> OPALITE_CONSTRUCT = registerEntity("opalite_construct", OpaliteContruct::new, MobCategory.CREATURE, 1.0F, 1.5F, false);
-    public static final DeferredHolder<EntityType<?>, EntityType<GrowthGrazer>> GROWTH_GRAZER = registerEntity("growth_grazer", GrowthGrazer::new, MobCategory.CREATURE, 1.0F, 1.0F, 0.7F, false);
-    public static final DeferredHolder<EntityType<?>, EntityType<AureateEvraun>> AUREATE_EVRAUN = registerEntity("aureate_evraun", AureateEvraun::new, MobCategory.CREATURE, 2.7F, 3.8F, false);
-    public static final DeferredHolder<EntityType<?>, EntityType<MossAgateMonitor>> MOSS_AGATE_MONITOR = registerEntity("moss_agate_monitor", MossAgateMonitor::new, MobCategory.CREATURE, 1.0F, 1.0F, false);
+    public static final DeferredHolder<EntityType<?>, EntityType<AgateGolem>> AGATE_GOLEM = registerEntity("agate_golem", AgateGolem::new, MobCategory.CREATURE, 1.2F, 2.7F, false, true);
+    public static final DeferredHolder<EntityType<?>, EntityType<AncientLagrahk>> ANCIENT_LAGRAHK = registerEntity("ancient_lagrahk", AncientLagrahk::new, MobCategory.MONSTER, 1.5F, 4.0F, 3.55F, false, true);
+    public static final DeferredHolder<EntityType<?>, EntityType<ArchaicWarrior>> ARCHAIC_WARRIOR = registerEntity("archaic_warrior", ArchaicWarrior::new, MobCategory.MONSTER, 0.6F, 1.95F, 1.74F, false, true);
+    public static final DeferredHolder<EntityType<?>, EntityType<BismuthUletrus>> BISMUTH_ULETRUS = registerEntity("bismuth_uletrus", BismuthUletrus::new, MobCategory.CREATURE, 2.0F, 1.8F, false, false);
+    public static final DeferredHolder<EntityType<?>, EntityType<CavernTick>> CAVERN_TICK = registerEntity("cavern_tick", CavernTick::new, MobCategory.MONSTER, 0.4F, 0.3F, 0.1F, false, true);
+    public static final DeferredHolder<EntityType<?>, EntityType<ContortedNaga>> CONTORTED_NAGA = registerEntity("contorted_naga", ContortedNaga::new, MobCategory.MONSTER, 1.0F, 2.6F, 2.3F, false, true);
+    public static final DeferredHolder<EntityType<?>, EntityType<CorruptSapper>> CORRUPT_SAPPER = registerEntity("corrupt_sapper", CorruptSapper::new, MobCategory.MONSTER, 1.0F, 1.0F, 0.7F, false, true);
+    public static final DeferredHolder<EntityType<?>, EntityType<CrystalGolem>> CRYSTAL_GOLEM = registerEntity("crystal_golem", CrystalGolem::new, MobCategory.CREATURE, 1.2F, 2.7F, false, false);
+    public static final DeferredHolder<EntityType<?>, EntityType<GrowthSapper>> GROWTH_SAPPER = registerEntity("growth_sapper", GrowthSapper::new, MobCategory.CREATURE, 1.0F, 1.0F, 0.7F, false, false);
+    public static final DeferredHolder<EntityType<?>, EntityType<HowliteWolf>> HOWLITE_WOLF = registerEntity("howlite_wolf", HowliteWolf::new, MobCategory.CREATURE, 1.0F, 1.0F, 0.68F, false, true);
+    public static final DeferredHolder<EntityType<?>, EntityType<LesserShockshooter>> LESSER_SHOCKSHOOTER = registerEntity("lesser_shockshooter", LesserShockshooter::new, MobCategory.MONSTER, 0.5F, 2.0F, 1.8F, false, true);
+    public static final DeferredHolder<EntityType<?>, EntityType<LesserSpitfire>> LESSER_SPITFIRE = registerEntity("lesser_spitfire", LesserSpitfire::new, MobCategory.MONSTER, 0.5F, 2.0F, 1.8F, true, true);
+    public static final DeferredHolder<EntityType<?>, EntityType<MarkuzarPlant>> MARKUZAR_PLANT = registerEntity("markuzar_plant", MarkuzarPlant::new, MobCategory.AMBIENT, 0.6F, 2.0F, false, false);
+    public static final DeferredHolder<EntityType<?>, EntityType<MineralArenthis>> MINERAL_ARENTHIS = registerEntity("mineral_arenthis", MineralArenthis::new, MobCategory.WATER_CREATURE, 1.5F, 1.5F, 0.85F, false, false);
+    public static final DeferredHolder<EntityType<?>, EntityType<Muckling>> MUCKLING = registerEntity("muckling", Muckling::new, MobCategory.MONSTER, 0.5F, 0.5F, false, true);
+    public static final DeferredHolder<EntityType<?>, EntityType<MutantGrowthExtractor>> MUTANT_GROWTH_EXTRACTOR = registerEntity("mutant_growth_extractor", MutantGrowthExtractor::new, MobCategory.CREATURE, 1.0F, 1.5F, 1.3F, false, false);
+    public static final DeferredHolder<EntityType<?>, EntityType<NomadicLagrahk>> NOMADIC_LAGRAHK = registerEntity("nomadic_lagrahk", NomadicLagrahk::new, MobCategory.CREATURE, 1.5F, 4.0F, 3.55F, false, false);
+    public static final DeferredHolder<EntityType<?>, EntityType<PrimalBeast>> PRIMAL_BEAST = registerEntity("primal_beast", PrimalBeast::new, MobCategory.MONSTER, 1.0F, 2.0F, 1.9F, true, true);
+    public static final DeferredHolder<EntityType<?>, EntityType<RockyLuggeroth>> ROCKY_LUGGEROTH = registerEntity("rocky_luggeroth", RockyLuggeroth::new, MobCategory.CREATURE, 1.0F, 1.6F, 0.35F, false, false);
+    public static final DeferredHolder<EntityType<?>, EntityType<RuggedLurmorus>> RUGGED_LURMORUS = registerEntity("rugged_lurmorus", RuggedLurmorus::new, MobCategory.CREATURE, 3.5F, 8.0F, 7.6F, false, false);
+    public static final DeferredHolder<EntityType<?>, EntityType<Saltion>> SALTION = registerEntity("saltion", Saltion::new, MobCategory.CREATURE, 1.0F, 0.3F, 0.25F, false, true);
+    public static final DeferredHolder<EntityType<?>, EntityType<ShallowArenthis>> SHALLOW_ARENTHIS = registerEntity("shallow_arenthis", ShallowArenthis::new, MobCategory.WATER_CREATURE, 0.6F, 0.6F, false, false);
+    public static final DeferredHolder<EntityType<?>, EntityType<Shalurker>> SHALURKER = registerEntity("shalurker", Shalurker::new, MobCategory.MONSTER, 0.6F, 1.9F, 1.75F, false, true);
+    public static final DeferredHolder<EntityType<?>, EntityType<SpellElemental>> SPELLBOUND_ELEMENTAL = registerEntity("spellbound_elemental", SpellElemental::new, MobCategory.CREATURE, 0.5F, 2.0F, false, false);
+    public static final DeferredHolder<EntityType<?>, EntityType<MalachiteDrone>> MALACHITE_DRONE = registerEntity("malachite_drone", MalachiteDrone::new, MobCategory.MONSTER, 1.0F, 2.0F, false, true);
+    public static final DeferredHolder<EntityType<?>, EntityType<MookaiteConstruct>> MOOKAITE_CONSTRUCT = registerEntity("mookaite_construct", MookaiteConstruct::new, MobCategory.CREATURE, 1.2F, 3.2F, false, false);
+    public static final DeferredHolder<EntityType<?>, EntityType<OpaliteContruct>> OPALITE_CONSTRUCT = registerEntity("opalite_construct", OpaliteContruct::new, MobCategory.CREATURE, 1.0F, 1.5F, false, false);
+    public static final DeferredHolder<EntityType<?>, EntityType<GrowthGrazer>> GROWTH_GRAZER = registerEntity("growth_grazer", GrowthGrazer::new, MobCategory.CREATURE, 1.0F, 1.0F, 0.7F, false, false);
+    public static final DeferredHolder<EntityType<?>, EntityType<AureateEvraun>> AUREATE_EVRAUN = registerEntity("aureate_evraun", AureateEvraun::new, MobCategory.CREATURE, 2.7F, 3.8F, false, false);
+    public static final DeferredHolder<EntityType<?>, EntityType<MossAgateMonitor>> MOSS_AGATE_MONITOR = registerEntity("moss_agate_monitor", MossAgateMonitor::new, MobCategory.CREATURE, 1.0F, 1.0F, false, true);
 
     //Mini Bosses
-    public static final DeferredHolder<EntityType<?>, EntityType<BlueHowliteWolf>> BLUE_HOWLITE_WOLF = registerEntity("blue_howlite_wolf", BlueHowliteWolf::new, MobCategory.MONSTER, 1.2F, 2.2F, 2.1F, false);
+    public static final DeferredHolder<EntityType<?>, EntityType<BlueHowliteWolf>> BLUE_HOWLITE_WOLF = registerEntity("blue_howlite_wolf", BlueHowliteWolf::new, MobCategory.MONSTER, 1.2F, 2.2F, 2.1F, false, true);
 
     //Bosses
-    public static final DeferredHolder<EntityType<?>, EntityType<MalachiteGuard>> MALACHITE_GUARD = registerEntity("malachite_guard", MalachiteGuard::new, MobCategory.MONSTER, 0.8F, 3.3F, 3.0F, false);
+    public static final DeferredHolder<EntityType<?>, EntityType<MalachiteGuard>> MALACHITE_GUARD = registerEntity("malachite_guard", MalachiteGuard::new, MobCategory.MONSTER, 0.8F, 3.3F, 3.0F, false, true);
 
     //EntityDataSerializers
     public static final DeferredHolder<EntityDataSerializer<?>, EntityDataSerializer<MookaitePartType>> MOOKAITE_PART = ENTITY_DATA_SERIALIZERS.register("mookaite_part",
@@ -109,15 +109,16 @@ public class ModEntities {
         return ENTITY_TYPES.register(name, () -> entitytype.build(key));
     }
 
-    public static <E extends Entity> DeferredHolder<EntityType<?>, EntityType<E>> registerEntity(String name, EntityType.EntityFactory<E> entity, MobCategory classification, float width, float height, boolean fireproof) {
-        return registerEntity(name, entity, classification, width, height, 0.0F, fireproof);
+    public static <E extends Entity> DeferredHolder<EntityType<?>, EntityType<E>> registerEntity(String name, EntityType.EntityFactory<E> entity, MobCategory classification, float width, float height, boolean fireproof, boolean hostile) {
+        return registerEntity(name, entity, classification, width, height, 0.0F, fireproof, hostile);
     }
 
-    public static <E extends Entity> DeferredHolder<EntityType<?>, EntityType<E>> registerEntity(String name, EntityType.EntityFactory<E> entity, MobCategory classification, float width, float height, float eye, boolean fireproof) {
+    public static <E extends Entity> DeferredHolder<EntityType<?>, EntityType<E>> registerEntity(String name, EntityType.EntityFactory<E> entity, MobCategory classification, float width, float height, float eye, boolean fireproof, boolean hostile) {
         ResourceKey<EntityType<?>> key = ResourceKey.create(Registries.ENTITY_TYPE, Identifier.fromNamespaceAndPath(GaiaDimensionMod.MODID, name));
         EntityType.Builder<E> type = makeBuilder(entity, classification, width, height);
         if (fireproof) type.fireImmune();
         if (eye > 0.0F) type.eyeHeight(eye);
+        if (hostile) type.notInPeaceful();
         return ENTITY_TYPES.register(name, () -> type.build(key));
     }
 
