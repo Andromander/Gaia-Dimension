@@ -55,6 +55,9 @@
   "1.21.11": {
     "2.5.298": "Gaia Dimension is now out for 1.21.11! It's been out long enough, 26.1 is going to be massive, so there is no time to waste.\n • Mineral Arenthis has received a new texture! It now looks a little more glassy, some minor flaws patched here and there.\n • Small remodelling work for the Mineral Arenthis. The tentacles are now in two segments, making it look much less stiff.\n • Contorted Naga has a new texture. More scales, more polish, same threatening gaze.\n • Fixed a rotation issue with Shallow Arenthis and Mineral Arenthis whenever they swam. They should look much less awkward."
   },
+  "26.1.2": {
+    "2.6.314": "Gaia Dimension is now out for 26.1.2! Things happened in this update, quite a few things.\n • Added huge Crystal Fungi for all surface-type Crystal Fungi. Using Bone Meal on these will turn them into giant Calcite and Aragonite features. \n • Added numerous colours of Calcite blocks. These are not like vanilla's Calcite blocks and can be used for building purposes.\n • Added numerous colours of Aragonite blocks. They are primarily used for building purposes.\n • Restructuring any colour of Calcite and Aragonite blocks will return White Calcite and the Crystal Fungus of that colour.\n • Star brightness in the Purple Agate Swamp is now controlled with environment attributes. Adjusting this setting is now done via datapacks. As a result, the client config is now gone.\n • The English (US), English (UK), and English (Australia) language files are now generated. Please report any missing translations as a bug report.\n • Fixed a bug affecting Mookaite Construct, Opalite Construct, and Malachite Drone not saving entity UUIDs.\n • Fixed Mutant Crystal Growth generation. They just weren't set since...a long time."
+  },
 
   "promos": {
     "1.12.2-latest": "1.0.5",
